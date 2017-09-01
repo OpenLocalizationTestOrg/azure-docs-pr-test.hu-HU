@@ -1,0 +1,4 @@
+Virtuális gépek (VM) létrehozása az Azure-ban, és csatlakoztassa a virtuális gépek mindegyikének több hálózati adapterek (NIC). Több hálózati adapter feltétele számos hálózati virtuális készülékeket, például az alkalmazások biztosításán és WAN-optimalizálást megoldások. Több hálózati adapter is több hálózati forgalom felügyeleti funkciót biztosít, többek között a következőket elkülönítési elöl közötti forgalom hálózati végén, és biztonsági end hálózati kártya vagy vezérlősík adatforgalom elkülönítése felügyeleti vezérlősík forgalom.
+
+Előtt több hálózati adaptert a virtuális gépek is alkalmazható, fontos tudni, amikor több hálózati adaptert, és megismerkedhet használatukkal. Olvassa el a [több hálózati áttekintése](../articles/virtual-network/virtual-networks-multiple-nics.md) több hálózati adapterrel rendelkező virtuális gépek tájékozódhat.
+
