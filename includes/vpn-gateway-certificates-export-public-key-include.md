@@ -1,0 +1,7 @@
+Pont – hely kapcsolat esetén a tanúsítvány nyilvános kulcs .cer fájl (nem a titkos kulcs) az Azure-bA feltölteni kívánt. A következő lépések segítenek a .cer fájl a önaláírt legfelső szintű tanúsítvány exportálása:
+
+1. A .cer fájl tanúsítványból történő beszerzéséhez nyissa meg a **Felhasználói tanúsítványok kezelése** elemet. Keresse meg az önaláírt főtanúsítványt. Ezt általában a „Tanúsítványok – aktuális felhasználó\Személyes\Tanúsítványok” útvonalon érheti el. Ha megtalálta, kattintson rá a jobb egérgombbal. Kattintson a **Minden feladat**, majd az **Exportálás** elemre. Megnyílik a **Tanúsítványexportáló varázsló**.
+2. A varázslóban kattintson a **Tovább** gombra. Válassza a **Nem, nem akarom exportálni a titkos kulcsomat** lehetőséget, majd kattintson a **Tovább** gombra.
+3. Az **Exportfájlformátum** lapon válassza a **Base-64 kódolású X.509 (.CER)** lehetőséget, majd kattintson a **Tovább** gombra. 
+4. Az **Exportálandó fájl** lapon a **Tallózás** gombra kattintva keresse meg azt a helyet, ahová exportálni szeretné a tanúsítványt. A **Fájlnév** mezőben nevezze el a tanúsítványfájlt. Ezután kattintson a **Tovább** gombra.
+5. Kattintson a **Befejezés** gombra a tanúsítvány exportálásához. Látni **sikeres volt-e az exportálás**. A varázsló bezárásához kattintson az **OK** gombra.
