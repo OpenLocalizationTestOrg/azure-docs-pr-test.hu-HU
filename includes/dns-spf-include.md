@@ -1,0 +1,5 @@
+Küldő házirend keretrendszer (SPF) rekordjai megadó mely e-mail kiszolgálók engedélyezett az adott tartománynév nevében e-mailek küldése.  Az SPF-rekordokat helyes konfiguráció azért fontos, hogy az e-maileket, mint "Levélszemét" jelölést címzettnek.
+
+A DNS RFC-ben bevezetett lomtárszolgáltatás az új "SPF" típusát a forgatókönyv támogatása. Támogatja a régebbi névkiszolgálókat, azokat is engedélyezni adhatja meg az SPF-rekordokat TXT rekord típusú használatát.  Ez zavart, amelyből került vezetett [RFC 7208](http://tools.ietf.org/html/rfc7208#section-3.1).  Ez jelzi, hogy az SPF-rekordokat csak létrehozandó TXT típusú rekordok használatával, és az SPF rekordtípus elavult.
+
+**SPF-rekordokat Azure DNS által támogatott, és létre kell hozni a TXT rekord típussal.** Az SPF elavult rekordtípus nem támogatott. Ha [importálása egy DNS-zónafájlját](../articles/dns/dns-import-export.md), bármely SPF rekordtípust használja SPF-rekordokat TXT típusú rekordok alakulnak.
