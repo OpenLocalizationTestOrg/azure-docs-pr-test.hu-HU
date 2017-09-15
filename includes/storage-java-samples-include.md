@@ -1,10 +1,10 @@
-## <a name="java-sample-code-repositories"></a>Java-sample adattárakban
+## <a name="java-sample-code-repositories"></a><span data-ttu-id="2b732-101">Java-sample adattárakban</span><span class="sxs-lookup"><span data-stu-id="2b732-101">Java sample code repositories</span></span>
 
-Ez egy lista összes a minta-adattárak az Azure Storage Java ügyféloldali kódtár.
+<span data-ttu-id="2b732-102">Ez egy lista összes a minta-adattárak az Azure Storage Java ügyféloldali kódtár.</span><span class="sxs-lookup"><span data-stu-id="2b732-102">Here is a list of all our sample repositories for the Azure Storage Java client library.</span></span>
 
-* [Első Java Storage-fiókot az Storage - kezelése](https://azure.microsoft.com/resources/samples/storage-java-manage-storage-accounts/)
-* [Ismerkedés az Azure Blob szolgáltatás Java nyelven](https://azure.microsoft.com/resources/samples/storage-blob-java-getting-started/)
-* [Ismerkedés az Azure File szolgáltatással Java nyelven](https://azure.microsoft.com/resources/samples/storage-file-java-getting-started/)
-* [Ismerkedés az Azure Queue szolgáltatás Java nyelven](https://azure.microsoft.com/resources/samples/storage-queue-java-getting-started/)
-* [Ismerkedés az Azure Table szolgáltatás Java nyelven](https://azure.microsoft.com/resources/samples/storage-table-java-getting-started/)
-* [Tárolási Java ügyfél függvénytár – minták](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage)
+* [<span data-ttu-id="2b732-103">Első Java Storage-fiókot az Storage - kezelése</span><span class="sxs-lookup"><span data-stu-id="2b732-103">Getting Started with Storage - Manage Storage Account in Java</span></span>](https://azure.microsoft.com/resources/samples/storage-java-manage-storage-accounts/)
+* [<span data-ttu-id="2b732-104">Ismerkedés az Azure Blob szolgáltatás Java nyelven</span><span class="sxs-lookup"><span data-stu-id="2b732-104">Getting Started with Azure Blob Service in Java</span></span>](https://azure.microsoft.com/resources/samples/storage-blob-java-getting-started/)
+* [<span data-ttu-id="2b732-105">Ismerkedés az Azure File szolgáltatással Java nyelven</span><span class="sxs-lookup"><span data-stu-id="2b732-105">Getting Started with Azure File Service in Java</span></span>](https://azure.microsoft.com/resources/samples/storage-file-java-getting-started/)
+* [<span data-ttu-id="2b732-106">Ismerkedés az Azure Queue szolgáltatás Java nyelven</span><span class="sxs-lookup"><span data-stu-id="2b732-106">Getting Started with Azure Queue Service in Java</span></span>](https://azure.microsoft.com/resources/samples/storage-queue-java-getting-started/)
+* [<span data-ttu-id="2b732-107">Ismerkedés az Azure Table szolgáltatás Java nyelven</span><span class="sxs-lookup"><span data-stu-id="2b732-107">Getting Started with Azure Table Service in Java</span></span>](https://azure.microsoft.com/resources/samples/storage-table-java-getting-started/)
+* [<span data-ttu-id="2b732-108">Tárolási Java ügyfél függvénytár – minták</span><span class="sxs-lookup"><span data-stu-id="2b732-108">Storage Java Client Library Samples</span></span>](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage)

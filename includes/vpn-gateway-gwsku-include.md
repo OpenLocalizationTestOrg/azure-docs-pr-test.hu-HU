@@ -1,39 +1,39 @@
-Egy virtuális hálózati átjáró létrehozásakor meg kell adni a használni kívánt termékváltozatot. Válassza ki a számítási feladatok, a teljesítmény, a funkciók és a szolgáltatói szerződés igényeinek megfelelő termékváltozatokat.
+<span data-ttu-id="3156a-101">Egy virtuális hálózati átjáró létrehozásakor meg kell adni a használni kívánt termékváltozatot.</span><span class="sxs-lookup"><span data-stu-id="3156a-101">When you create a virtual network gateway, you need to specify the gateway SKU that you want to use.</span></span> <span data-ttu-id="3156a-102">Válassza ki a számítási feladatok, a teljesítmény, a funkciók és a szolgáltatói szerződés igényeinek megfelelő termékváltozatokat.</span><span class="sxs-lookup"><span data-stu-id="3156a-102">Select the SKUs that satisfy your requirements based on the types of workloads, throughputs, features, and SLAs.</span></span>
 
 [!INCLUDE [classic SKU](./vpn-gateway-classic-sku-support-include.md)]
 
 [!INCLUDE [Aggregated throughput by SKU](./vpn-gateway-table-gwtype-aggtput-include.md)]
 
-###  <a name="workloads"></a>Termelés *vs.* Dev-Test számítási feladatok
+###  <span data-ttu-id="3156a-103"><a name="workloads"></a>Termelés *vs.* Dev-Test számítási feladatok</span><span class="sxs-lookup"><span data-stu-id="3156a-103"><a name="workloads"></a>Production *vs.* Dev-Test Workloads</span></span>
 
-A szolgáltatói szerződések és a szolgáltatáskészletek eltérései miatt az alábbi termékváltozatokat javasoljuk termelés *vs.* dev-test környezetekhez:
+<span data-ttu-id="3156a-104">A szolgáltatói szerződések és a szolgáltatáskészletek eltérései miatt az alábbi termékváltozatokat javasoljuk termelés *vs.* dev-test környezetekhez:</span><span class="sxs-lookup"><span data-stu-id="3156a-104">Due to the differences in SLAs and feature sets, we recommend the following SKUs for production *vs.* dev-test:</span></span>
 
-| **Számítási feladat**                       | **Termékváltozatok**               |
+| <span data-ttu-id="3156a-105">**Számítási feladat**</span><span class="sxs-lookup"><span data-stu-id="3156a-105">**Workload**</span></span>                       | <span data-ttu-id="3156a-106">**Termékváltozatok**</span><span class="sxs-lookup"><span data-stu-id="3156a-106">**SKUs**</span></span>               |
 | ---                                | ---                    |
-| **Termelés, kritikus fontosságú számítási feladatok** | VpnGw1, VpnGw2, VpnGw3 |
-| **Dev-test vagy a koncepció igazolása**   | Basic                  |
+| <span data-ttu-id="3156a-107">**Termelés, kritikus fontosságú számítási feladatok**</span><span class="sxs-lookup"><span data-stu-id="3156a-107">**Production, critical workloads**</span></span> | <span data-ttu-id="3156a-108">VpnGw1, VpnGw2, VpnGw3</span><span class="sxs-lookup"><span data-stu-id="3156a-108">VpnGw1, VpnGw2, VpnGw3</span></span> |
+| <span data-ttu-id="3156a-109">**Dev-test vagy a koncepció igazolása**</span><span class="sxs-lookup"><span data-stu-id="3156a-109">**Dev-test or proof of concept**</span></span>   | <span data-ttu-id="3156a-110">Basic</span><span class="sxs-lookup"><span data-stu-id="3156a-110">Basic</span></span>                  |
 |                                    |                        |
 
-Ha a régi termékváltozatokat használja, a termelési termékváltozatnak a Standard és a Nagy teljesítményű termékváltozatot javasoljuk. További információ a régi termékváltozatokról: [Átjáró termékváltozatai (örökölt termékváltozatok)](../articles/vpn-gateway/vpn-gateway-about-skus-legacy.md).
+<span data-ttu-id="3156a-111">Ha a régi termékváltozatokat használja, a termelési termékváltozatnak a Standard és a Nagy teljesítményű termékváltozatot javasoljuk.</span><span class="sxs-lookup"><span data-stu-id="3156a-111">If you are using the old SKUs, the production SKU recommendations are Standard and HighPerformance SKUs.</span></span> <span data-ttu-id="3156a-112">További információ a régi termékváltozatokról: [Átjáró termékváltozatai (örökölt termékváltozatok)](../articles/vpn-gateway/vpn-gateway-about-skus-legacy.md).</span><span class="sxs-lookup"><span data-stu-id="3156a-112">For information on the old SKUs, see [Gateway SKUs (legacy SKUs)](../articles/vpn-gateway/vpn-gateway-about-skus-legacy.md).</span></span>
 
-###  <a name="feature"></a>Átjáró termékváltozatainak szolgáltatáskészletei
+###  <span data-ttu-id="3156a-113"><a name="feature"></a>Átjáró termékváltozatainak szolgáltatáskészletei</span><span class="sxs-lookup"><span data-stu-id="3156a-113"><a name="feature"></a>Gateway SKU feature sets</span></span>
 
-Az átjárók új termékváltozatai egyszerűbbé teszik az átjárókon elérhető szolgáltatáskészleteket alkalmazását:
+<span data-ttu-id="3156a-114">Az átjárók új termékváltozatai egyszerűbbé teszik az átjárókon elérhető szolgáltatáskészleteket alkalmazását:</span><span class="sxs-lookup"><span data-stu-id="3156a-114">The new gateway SKUs streamline the feature sets offered on the gateways:</span></span>
 
-| **Termékváltozat**| **Szolgáltatások**|
+| <span data-ttu-id="3156a-115">**Termékváltozat**</span><span class="sxs-lookup"><span data-stu-id="3156a-115">**SKU**</span></span>| <span data-ttu-id="3156a-116">**Szolgáltatások**</span><span class="sxs-lookup"><span data-stu-id="3156a-116">**Features**</span></span>|
 | ---    | ---         |
-|**Basic**   | **Útvonalalapú VPN**: 10 alagút P2S-sel<br><br>**Házirend-alapú VPN** (IKEv1): 1 alagút, P2S nélkül|
-| **VpnGw1, VpnGw2 és VpnGw3** | **Útvonalalapú VPN**: legfeljebb 30 alagút (*), P2S, BGP, aktív-aktív, egyéni IPsec/IKE-házirend, ExpressRoute/VPN együttes jelenléte |
+|<span data-ttu-id="3156a-117">**Basic**</span><span class="sxs-lookup"><span data-stu-id="3156a-117">**Basic**</span></span>   | <span data-ttu-id="3156a-118">**Útvonalalapú VPN**: 10 alagút P2S-sel</span><span class="sxs-lookup"><span data-stu-id="3156a-118">**Route-based VPN**: 10 tunnels with P2S</span></span><br><br><span data-ttu-id="3156a-119">**Házirend-alapú VPN** (IKEv1): 1 alagút, P2S nélkül</span><span class="sxs-lookup"><span data-stu-id="3156a-119">**Policy-based VPN**: (IKEv1): 1 tunnel; no P2S</span></span>|
+| <span data-ttu-id="3156a-120">**VpnGw1, VpnGw2 és VpnGw3**</span><span class="sxs-lookup"><span data-stu-id="3156a-120">**VpnGw1, VpnGw2, and VpnGw3**</span></span> | <span data-ttu-id="3156a-121">**Útvonalalapú VPN**: legfeljebb 30 alagút (*), P2S, BGP, aktív-aktív, egyéni IPsec/IKE-házirend, ExpressRoute/VPN együttes jelenléte</span><span class="sxs-lookup"><span data-stu-id="3156a-121">**Route-based VPN**: up to 30 tunnels (*), P2S, BGP, active-active, custom IPsec/IKE policy, ExpressRoute/VPN co-existence</span></span> |
 |        |             |
 
-(*) A „PolicyBasedTrafficSelectors” paraméter konfigurálásával egy útvonalalapú VPN-átjárót (VpnGw1, VpnGw2, VpnGw3) több helyszíni, házirendalapú tűzfaleszközhöz is csatlakoztathat. További részletekért tekintse meg a [VPN-átjárók több helyszíni házirendalapú VPN-eszközhöz való csatlakoztatása a PowerShellel](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md) című cikket.
+<span data-ttu-id="3156a-122">(*) A „PolicyBasedTrafficSelectors” paraméter konfigurálásával egy útvonalalapú VPN-átjárót (VpnGw1, VpnGw2, VpnGw3) több helyszíni, házirendalapú tűzfaleszközhöz is csatlakoztathat.</span><span class="sxs-lookup"><span data-stu-id="3156a-122">(*) You can configure "PolicyBasedTrafficSelectors" to connect a route-based VPN gateway (VpnGw1, VpnGw2, VpnGw3) to multiple on-premises policy-based firewall devices.</span></span> <span data-ttu-id="3156a-123">További részletekért tekintse meg a [VPN-átjárók több helyszíni házirendalapú VPN-eszközhöz való csatlakoztatása a PowerShellel](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md) című cikket.</span><span class="sxs-lookup"><span data-stu-id="3156a-123">Refer to [Connect VPN gateways to multiple on-premises policy-based VPN devices using PowerShell](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md) for details.</span></span>
 
-###  <a name="resize"></a>Az átjárók termékváltozatainak átméretezése
+###  <span data-ttu-id="3156a-124"><a name="resize"></a>Az átjárók termékváltozatainak átméretezése</span><span class="sxs-lookup"><span data-stu-id="3156a-124"><a name="resize"></a>Resizing gateway SKUs</span></span>
 
-1. Az átméretezés során a VpnGw1, a VpnGw2 és a VpnGw3 termékváltozatok közül választhat.
-2. Ha a régi átjárók termékváltozataival dolgozik, az átméretezéskor az Alapszintű, a Standard és a Nagy teljesítményű termékváltozatok közül választhat.
-2. Az Alapszintű/Standard/Nagy teljesítményű termékváltozatokról **nem** méretezhet a VpnGw1/VpnGw2/VpnGw3 termékváltozatokra. Ehelyett [migrálnia](#migrate) kell az új termékváltozatokra.
+1. <span data-ttu-id="3156a-125">Az átméretezés során a VpnGw1, a VpnGw2 és a VpnGw3 termékváltozatok közül választhat.</span><span class="sxs-lookup"><span data-stu-id="3156a-125">You can resize between VpnGw1, VpnGw2, and VpnGw3 SKUs.</span></span>
+2. <span data-ttu-id="3156a-126">Ha a régi átjárók termékváltozataival dolgozik, az átméretezéskor az Alapszintű, a Standard és a Nagy teljesítményű termékváltozatok közül választhat.</span><span class="sxs-lookup"><span data-stu-id="3156a-126">When working with the old gateway SKUs, you can resize between Basic, Standard, and HighPerformance SKUs.</span></span>
+2. <span data-ttu-id="3156a-127">Az Alapszintű/Standard/Nagy teljesítményű termékváltozatokról **nem** méretezhet a VpnGw1/VpnGw2/VpnGw3 termékváltozatokra.</span><span class="sxs-lookup"><span data-stu-id="3156a-127">You **cannot** resize from Basic/Standard/HighPerformance SKUs to the new VpnGw1/VpnGw2/VpnGw3 SKUs.</span></span> <span data-ttu-id="3156a-128">Ehelyett [migrálnia](#migrate) kell az új termékváltozatokra.</span><span class="sxs-lookup"><span data-stu-id="3156a-128">You must, instead, [migrate](#migrate) to the new SKUs.</span></span>
 
-###  <a name="migrate"></a>Migrálás a régi termékváltozatokról az új termékváltozatokra
+###  <span data-ttu-id="3156a-129"><a name="migrate"></a>Migrálás a régi termékváltozatokról az új termékváltozatokra</span><span class="sxs-lookup"><span data-stu-id="3156a-129"><a name="migrate"></a>Migrating from old SKUs to the new SKUs</span></span>
 
 [!INCLUDE [Migrate SKU](./vpn-gateway-migrate-legacy-sku-include.md)]

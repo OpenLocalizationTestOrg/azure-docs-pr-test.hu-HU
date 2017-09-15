@@ -1,21 +1,21 @@
-#### <a name="prerequisites"></a>Előfeltételek
-* Az Azure-fiók; létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free)
-* A [OneDrive](https://www.microsoft.com/store/apps/onedrive/9wzdncrfj1p3) fiók 
+#### <a name="prerequisites"></a><span data-ttu-id="9acd3-101">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="9acd3-101">Prerequisites</span></span>
+* <span data-ttu-id="9acd3-102">Az Azure-fiók; létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free)</span><span class="sxs-lookup"><span data-stu-id="9acd3-102">An Azure account; you can create a [free account](https://azure.microsoft.com/free)</span></span>
+* <span data-ttu-id="9acd3-103">A [OneDrive](https://www.microsoft.com/store/apps/onedrive/9wzdncrfj1p3) fiók</span><span class="sxs-lookup"><span data-stu-id="9acd3-103">A [OneDrive](https://www.microsoft.com/store/apps/onedrive/9wzdncrfj1p3) account</span></span> 
 
-A OneDrive-fiókja a logikai alkalmazás használata előtt engedélyezze a logikai alkalmazást a OneDrive-fiókja való kapcsolódáshoz.  Ehhez egyszerűen a logikai alkalmazásban, az Azure portálon. 
+<span data-ttu-id="9acd3-104">A OneDrive-fiókja a logikai alkalmazás használata előtt engedélyezze a logikai alkalmazást a OneDrive-fiókja való kapcsolódáshoz.</span><span class="sxs-lookup"><span data-stu-id="9acd3-104">Before you can use your OneDrive account in a logic app, authorize the logic app to connect to your OneDrive account.</span></span>  <span data-ttu-id="9acd3-105">Ehhez egyszerűen a logikai alkalmazásban, az Azure portálon.</span><span class="sxs-lookup"><span data-stu-id="9acd3-105">You can do this easily within your logic app on the Azure portal.</span></span> 
 
-Engedélyezze a Logic Apps alkalmazást, a OneDrive-fiókja, az alábbi lépéseket követve való csatlakozáshoz:
+<span data-ttu-id="9acd3-106">Engedélyezze a Logic Apps alkalmazást, a OneDrive-fiókja, az alábbi lépéseket követve való csatlakozáshoz:</span><span class="sxs-lookup"><span data-stu-id="9acd3-106">Authorize your logic app to connect to your OneDrive account using the following steps:</span></span>
 
-1. Logikai alkalmazás létrehozása. A Logic Apps-tervezőben, válassza ki a **megjelenítése Microsoft felügyelt API-k** a legördülő listában, és írja be a keresőmezőbe "onedrive". Az eseményindítók és műveletek közül választhat:  
+1. <span data-ttu-id="9acd3-107">Logikai alkalmazás létrehozása.</span><span class="sxs-lookup"><span data-stu-id="9acd3-107">Create a logic app.</span></span> <span data-ttu-id="9acd3-108">A Logic Apps-tervezőben, válassza ki a **megjelenítése Microsoft felügyelt API-k** a legördülő listában, és írja be a keresőmezőbe "onedrive".</span><span class="sxs-lookup"><span data-stu-id="9acd3-108">In the Logic Apps designer, select **Show Microsoft managed APIs** in the drop down list, and then enter "onedrive" in the search box.</span></span> <span data-ttu-id="9acd3-109">Az eseményindítók és műveletek közül választhat:</span><span class="sxs-lookup"><span data-stu-id="9acd3-109">Select one of the triggers or actions:</span></span>  
    ![](./media/connectors-create-api-onedrive/onedrive-1.png)
-2. Ha korábban még nem létrehozott a onedrive-kapcsolatokat, a onedrive vállalati verzió hitelesítő adataival bejelentkezni kéri:  
+2. <span data-ttu-id="9acd3-110">Ha korábban még nem létrehozott a onedrive-kapcsolatokat, a onedrive vállalati verzió hitelesítő adataival bejelentkezni kéri:</span><span class="sxs-lookup"><span data-stu-id="9acd3-110">If you haven't previously created any connections to OneDrive, you are prompted to sign in using your OneDrive credentials:</span></span>  
    ![](./media/connectors-create-api-onedrive/onedrive-2.png)
-3. Válassza ki **bejelentkezés**, és írja be a felhasználónevet és jelszót. Válassza ki **bejelentkezés**:  
+3. <span data-ttu-id="9acd3-111">Válassza ki **bejelentkezés**, és írja be a felhasználónevet és jelszót.</span><span class="sxs-lookup"><span data-stu-id="9acd3-111">Select **Sign in**, and enter your user name and password.</span></span> <span data-ttu-id="9acd3-112">Válassza ki **bejelentkezés**:</span><span class="sxs-lookup"><span data-stu-id="9acd3-112">Select **Sign in**:</span></span>  
    ![](./media/connectors-create-api-onedrive/onedrive-3.png)   
    
-    Ezek a hitelesítő adatok segítségével engedélyezi a Logic Apps alkalmazást, és a OneDrive-fiókja adatait. 
-4. Válassza ki **Igen** engedélyezése a logikai alkalmazás használata a OneDrive-fiókja:  
+    <span data-ttu-id="9acd3-113">Ezek a hitelesítő adatok segítségével engedélyezi a Logic Apps alkalmazást, és a OneDrive-fiókja adatait.</span><span class="sxs-lookup"><span data-stu-id="9acd3-113">These credentials are used to authorize your logic app to connect to, and access the data in your OneDrive account.</span></span> 
+4. <span data-ttu-id="9acd3-114">Válassza ki **Igen** engedélyezése a logikai alkalmazás használata a OneDrive-fiókja:</span><span class="sxs-lookup"><span data-stu-id="9acd3-114">Select **Yes** to authorize the logic app to use your OneDrive account:</span></span>  
    ![](./media/connectors-create-api-onedrive/onedrive-4.png)   
-5. Figyelje meg, a kapcsolat létrejött. Most folytassa a Logic Apps alkalmazást más lépéseket:  
+5. <span data-ttu-id="9acd3-115">Figyelje meg, a kapcsolat létrejött.</span><span class="sxs-lookup"><span data-stu-id="9acd3-115">Notice the connection has been created.</span></span> <span data-ttu-id="9acd3-116">Most folytassa a Logic Apps alkalmazást más lépéseket:</span><span class="sxs-lookup"><span data-stu-id="9acd3-116">Now, proceed with the other steps in your logic app:</span></span>  
    ![](./media/connectors-create-api-onedrive/onedrive-5.png)
 

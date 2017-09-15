@@ -1,6 +1,6 @@
-A másolási tevékenység során típusú forrás esetén **FileSystemSource**, a következő tulajdonságok érhetők el typeProperties szakaszában:
+<span data-ttu-id="e641c-101">A másolási tevékenység során típusú forrás esetén **FileSystemSource**, a következő tulajdonságok érhetők el typeProperties szakaszában:</span><span class="sxs-lookup"><span data-stu-id="e641c-101">In Copy Activity, when source is of type **FileSystemSource**, the following properties are available in typeProperties section:</span></span>
 
-| Tulajdonság | Leírás | Megengedett értékek | Szükséges |
+| <span data-ttu-id="e641c-102">Tulajdonság</span><span class="sxs-lookup"><span data-stu-id="e641c-102">Property</span></span> | <span data-ttu-id="e641c-103">Leírás</span><span class="sxs-lookup"><span data-stu-id="e641c-103">Description</span></span> | <span data-ttu-id="e641c-104">Megengedett értékek</span><span class="sxs-lookup"><span data-stu-id="e641c-104">Allowed values</span></span> | <span data-ttu-id="e641c-105">Szükséges</span><span class="sxs-lookup"><span data-stu-id="e641c-105">Required</span></span> |
 | --- | --- | --- | --- |
-| Rekurzív |Azt jelzi, hogy az adatok olvasható rekurzív módon az almappák vagy csak a megadott mappát. |IGAZ, hamis (alapértelmezés) |Nem |
+| <span data-ttu-id="e641c-106">Rekurzív</span><span class="sxs-lookup"><span data-stu-id="e641c-106">recursive</span></span> |<span data-ttu-id="e641c-107">Azt jelzi, hogy az adatok olvasható rekurzív módon az almappák vagy csak a megadott mappát.</span><span class="sxs-lookup"><span data-stu-id="e641c-107">Indicates whether the data is read recursively from the sub folders or only from the specified folder.</span></span> |<span data-ttu-id="e641c-108">IGAZ, hamis (alapértelmezés)</span><span class="sxs-lookup"><span data-stu-id="e641c-108">True, False (default)</span></span> |<span data-ttu-id="e641c-109">Nem</span><span class="sxs-lookup"><span data-stu-id="e641c-109">No</span></span> |
 

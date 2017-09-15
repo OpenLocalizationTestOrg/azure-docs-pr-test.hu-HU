@@ -1,124 +1,124 @@
-Nincsenek különböző okokból nem kezdődhet vagy egy Azure virtuális gépen (VM) futó alkalmazás csatlakozzon. Okai az alkalmazás nem fut, vagy a várt porton figyel, a figyelő portja, blokkolva vagy a hálózat szabályok nem megfelelő az alkalmazás sikeres forgalmat. Ez a cikk ismerteti a módszeres megközelítés található, és kijavítja a hibát.
+<span data-ttu-id="1fd5c-101">Nincsenek különböző okokból nem kezdődhet vagy egy Azure virtuális gépen (VM) futó alkalmazás csatlakozzon.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-101">There are various reasons when you cannot start or connect to an application running on an Azure virtual machine (VM).</span></span> <span data-ttu-id="1fd5c-102">Okai az alkalmazás nem fut, vagy a várt porton figyel, a figyelő portja, blokkolva vagy a hálózat szabályok nem megfelelő az alkalmazás sikeres forgalmat.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-102">Reasons include the application not running or listening on the expected ports, the listening port blocked, or networking rules not correctly passing traffic to the application.</span></span> <span data-ttu-id="1fd5c-103">Ez a cikk ismerteti a módszeres megközelítés található, és kijavítja a hibát.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-103">This article describes a methodical approach to find and correct the problem.</span></span>
 
-Ha a virtuális gép RDP és az SSH használatával való kapcsolódás problémát tapasztal, először tekintse meg a következő cikkekben egyikét:
+<span data-ttu-id="1fd5c-104">Ha a virtuális gép RDP és az SSH használatával való kapcsolódás problémát tapasztal, először tekintse meg a következő cikkekben egyikét:</span><span class="sxs-lookup"><span data-stu-id="1fd5c-104">If you are having issues connecting to your VM using RDP or SSH, see one of the following articles first:</span></span>
 
-* [Távoli asztali kapcsolatok számára Windows-alapú Azure virtuális gép hibaelhárítása](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md)
-* [Végezzen hibaelhárítást a Secure Shell (SSH) kapcsolatokon a Linux-alapú Azure virtuális gépekhez](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md).
+* [<span data-ttu-id="1fd5c-105">Távoli asztali kapcsolatok számára Windows-alapú Azure virtuális gép hibaelhárítása</span><span class="sxs-lookup"><span data-stu-id="1fd5c-105">Troubleshoot Remote Desktop connections to a Windows-based Azure Virtual Machine</span></span>](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md)
+* <span data-ttu-id="1fd5c-106">[Végezzen hibaelhárítást a Secure Shell (SSH) kapcsolatokon a Linux-alapú Azure virtuális gépekhez](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md).</span><span class="sxs-lookup"><span data-stu-id="1fd5c-106">[Troubleshoot Secure Shell (SSH) connections to a Linux-based Azure virtual machine](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md).</span></span>
 
 > [!NOTE]
-> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../articles/resource-manager-deployment-model.md). A jelen cikk mindkét modell használatát bemutatja, de a Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja.
+> <span data-ttu-id="1fd5c-107">Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../articles/resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="1fd5c-107">Azure has two different deployment models for creating and working with resources: [Resource Manager and classic](../articles/resource-manager-deployment-model.md).</span></span> <span data-ttu-id="1fd5c-108">A jelen cikk mindkét modell használatát bemutatja, de a Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-108">This article covers using both models, but Microsoft recommends that most new deployments use the Resource Manager model.</span></span>
 
-Ha ez a cikk bármely pontján további segítségre van szüksége, forduljon az Azure-szakértők a [az MSDN Azure és a Stack Overflow fórumok](https://azure.microsoft.com/support/forums/). Másik lehetőségként is fájl is az Azure támogatási incidens. Lépjen a [az Azure támogatási webhelyén](https://azure.microsoft.com/support/options/) válassza **támogatja az beszerzése**.
+<span data-ttu-id="1fd5c-109">Ha ez a cikk bármely pontján további segítségre van szüksége, forduljon az Azure-szakértők a [az MSDN Azure és a Stack Overflow fórumok](https://azure.microsoft.com/support/forums/).</span><span class="sxs-lookup"><span data-stu-id="1fd5c-109">If you need more help at any point in this article, you can contact the Azure experts on [the MSDN Azure and the Stack Overflow forums](https://azure.microsoft.com/support/forums/).</span></span> <span data-ttu-id="1fd5c-110">Másik lehetőségként is fájl is az Azure támogatási incidens.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-110">Alternatively, you can also file an Azure support incident.</span></span> <span data-ttu-id="1fd5c-111">Lépjen a [az Azure támogatási webhelyén](https://azure.microsoft.com/support/options/) válassza **támogatja az beszerzése**.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-111">Go to the [Azure support site](https://azure.microsoft.com/support/options/) and select **Get Support**.</span></span>
 
-## <a name="quick-start-troubleshooting-steps"></a>Gyors üzembe helyezési hibaelhárítási lépések
-Ha egy alkalmazás problémái, próbálja a következő általános hibaelhárítási lépéseket. Minden lépés után próbáljon meg újra az alkalmazáshoz:
+## <a name="quick-start-troubleshooting-steps"></a><span data-ttu-id="1fd5c-112">Gyors üzembe helyezési hibaelhárítási lépések</span><span class="sxs-lookup"><span data-stu-id="1fd5c-112">Quick-start troubleshooting steps</span></span>
+<span data-ttu-id="1fd5c-113">Ha egy alkalmazás problémái, próbálja a következő általános hibaelhárítási lépéseket.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-113">If you have problems connecting to an application, try the following general troubleshooting steps.</span></span> <span data-ttu-id="1fd5c-114">Minden lépés után próbáljon meg újra az alkalmazáshoz:</span><span class="sxs-lookup"><span data-stu-id="1fd5c-114">After each step, try connecting to your application again:</span></span>
 
-* A virtuális gép újraindítása
-* Hozza létre újra a végpontot / tűzfal-szabályokat / hálózati biztonsági csoport (NSG) szabályok
-  * [Erőforrás-kezelő modell - hálózati biztonsági csoportok kezelése](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
-  * [Klasszikus modell - Felhőszolgáltatások kezelése végpontok](../articles/cloud-services/cloud-services-enable-communication-role-instances.md)
-* Csatlakozás másik helyről, például különböző Azure virtuális hálózathoz
-* A virtuális gép újbóli üzembe helyezése
-  * [Telepítse újra a Windows virtuális gép](../articles/virtual-machines/windows/redeploy-to-new-node.md)
-  * [Telepítse újra a Linux virtuális gép](../articles/virtual-machines/linux/redeploy-to-new-node.md)
-* Hozza létre újra a virtuális gép
+* <span data-ttu-id="1fd5c-115">A virtuális gép újraindítása</span><span class="sxs-lookup"><span data-stu-id="1fd5c-115">Restart the virtual machine</span></span>
+* <span data-ttu-id="1fd5c-116">Hozza létre újra a végpontot / tűzfal-szabályokat / hálózati biztonsági csoport (NSG) szabályok</span><span class="sxs-lookup"><span data-stu-id="1fd5c-116">Recreate the endpoint / firewall rules / network security group (NSG) rules</span></span>
+  * [<span data-ttu-id="1fd5c-117">Erőforrás-kezelő modell - hálózati biztonsági csoportok kezelése</span><span class="sxs-lookup"><span data-stu-id="1fd5c-117">Resource Manager model - Manage Network Security Groups</span></span>](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
+  * [<span data-ttu-id="1fd5c-118">Klasszikus modell - Felhőszolgáltatások kezelése végpontok</span><span class="sxs-lookup"><span data-stu-id="1fd5c-118">Classic model - Manage Cloud Services endpoints</span></span>](../articles/cloud-services/cloud-services-enable-communication-role-instances.md)
+* <span data-ttu-id="1fd5c-119">Csatlakozás másik helyről, például különböző Azure virtuális hálózathoz</span><span class="sxs-lookup"><span data-stu-id="1fd5c-119">Connect from different location, such as a different Azure virtual network</span></span>
+* <span data-ttu-id="1fd5c-120">A virtuális gép újbóli üzembe helyezése</span><span class="sxs-lookup"><span data-stu-id="1fd5c-120">Redeploy the virtual machine</span></span>
+  * [<span data-ttu-id="1fd5c-121">Telepítse újra a Windows virtuális gép</span><span class="sxs-lookup"><span data-stu-id="1fd5c-121">Redeploy Windows VM</span></span>](../articles/virtual-machines/windows/redeploy-to-new-node.md)
+  * [<span data-ttu-id="1fd5c-122">Telepítse újra a Linux virtuális gép</span><span class="sxs-lookup"><span data-stu-id="1fd5c-122">Redeploy Linux VM</span></span>](../articles/virtual-machines/linux/redeploy-to-new-node.md)
+* <span data-ttu-id="1fd5c-123">Hozza létre újra a virtuális gép</span><span class="sxs-lookup"><span data-stu-id="1fd5c-123">Recreate the virtual machine</span></span>
 
-További információkért lásd: [hibaelhárítási végpont kapcsolat (RDP/SSH/HTTP, hiba stb.)](https://social.msdn.microsoft.com/Forums/azure/en-US/538a8f18-7c1f-4d6e-b81c-70c00e25c93d/troubleshooting-endpoint-connectivity-rdpsshhttp-etc-failures?forum=WAVirtualMachinesforWindows).
+<span data-ttu-id="1fd5c-124">További információkért lásd: [hibaelhárítási végpont kapcsolat (RDP/SSH/HTTP, hiba stb.)](https://social.msdn.microsoft.com/Forums/azure/en-US/538a8f18-7c1f-4d6e-b81c-70c00e25c93d/troubleshooting-endpoint-connectivity-rdpsshhttp-etc-failures?forum=WAVirtualMachinesforWindows).</span><span class="sxs-lookup"><span data-stu-id="1fd5c-124">For more information, see [Troubleshooting Endpoint Connectivity (RDP/SSH/HTTP, etc. failures)](https://social.msdn.microsoft.com/Forums/azure/en-US/538a8f18-7c1f-4d6e-b81c-70c00e25c93d/troubleshooting-endpoint-connectivity-rdpsshhttp-etc-failures?forum=WAVirtualMachinesforWindows).</span></span>
 
-## <a name="detailed-troubleshooting-overview"></a>Részletes hibaelhárítási áttekintése
-Nincsenek a hozzáférést egy Azure virtuális gépen futó alkalmazás hibaelhárítása négy fő területet.
+## <a name="detailed-troubleshooting-overview"></a><span data-ttu-id="1fd5c-125">Részletes hibaelhárítási áttekintése</span><span class="sxs-lookup"><span data-stu-id="1fd5c-125">Detailed troubleshooting overview</span></span>
+<span data-ttu-id="1fd5c-126">Nincsenek a hozzáférést egy Azure virtuális gépen futó alkalmazás hibaelhárítása négy fő területet.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-126">There are four main areas to troubleshoot the access of an application that is running on an Azure virtual machine.</span></span>
 
 ![hibaelhárítás alkalmazás nem indítható el.](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access1.png)
 
-1. Az Azure virtuális gépen futó alkalmazás.
-   * Maga az alkalmazás megfelelően fut?
-2. Az Azure virtuális géphez.
-   * Az a virtuális gépért megfelelően működik és válaszol a kérelmekre?
-3. Azure-hálózat végpontok.
-   * A felhőalapú szolgáltatás végpontok a klasszikus üzembe helyezési modellel virtuális gépekhez.
-   * Hálózati biztonsági csoportok és a bejövő NAT-szabályok virtuális gépek erőforrás-kezelő üzembe helyezési modellben.
-   * Folyamat a felhasználók a virtuális gép/alkalmazás a várt portokon is forgalom?
-4. Az Internet peremhálózati eszköz.
-   * Tűzfalszabályok helyen akadályozzák a forgalom továbbítására megfelelően?
+1. <span data-ttu-id="1fd5c-128">Az Azure virtuális gépen futó alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-128">The application running on the Azure virtual machine.</span></span>
+   * <span data-ttu-id="1fd5c-129">Maga az alkalmazás megfelelően fut?</span><span class="sxs-lookup"><span data-stu-id="1fd5c-129">Is the application itself running correctly?</span></span>
+2. <span data-ttu-id="1fd5c-130">Az Azure virtuális géphez.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-130">The Azure virtual machine.</span></span>
+   * <span data-ttu-id="1fd5c-131">Az a virtuális gépért megfelelően működik és válaszol a kérelmekre?</span><span class="sxs-lookup"><span data-stu-id="1fd5c-131">Is the VM itself running correctly and responding to requests?</span></span>
+3. <span data-ttu-id="1fd5c-132">Azure-hálózat végpontok.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-132">Azure network endpoints.</span></span>
+   * <span data-ttu-id="1fd5c-133">A felhőalapú szolgáltatás végpontok a klasszikus üzembe helyezési modellel virtuális gépekhez.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-133">Cloud service endpoints for virtual machines in the Classic deployment model.</span></span>
+   * <span data-ttu-id="1fd5c-134">Hálózati biztonsági csoportok és a bejövő NAT-szabályok virtuális gépek erőforrás-kezelő üzembe helyezési modellben.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-134">Network Security Groups and inbound NAT rules for virtual machines in Resource Manager deployment model.</span></span>
+   * <span data-ttu-id="1fd5c-135">Folyamat a felhasználók a virtuális gép/alkalmazás a várt portokon is forgalom?</span><span class="sxs-lookup"><span data-stu-id="1fd5c-135">Can traffic flow from users to the VM/application on the expected ports?</span></span>
+4. <span data-ttu-id="1fd5c-136">Az Internet peremhálózati eszköz.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-136">Your Internet edge device.</span></span>
+   * <span data-ttu-id="1fd5c-137">Tűzfalszabályok helyen akadályozzák a forgalom továbbítására megfelelően?</span><span class="sxs-lookup"><span data-stu-id="1fd5c-137">Are firewall rules in place preventing traffic from flowing correctly?</span></span>
 
-A pont-pont származó VPN- vagy ExpressRoute-kapcsolaton keresztül az alkalmazást használó ügyfélszámítógépek számára a fő területet problémákat okozhat, az alkalmazás és az Azure virtuális géphez.
+<span data-ttu-id="1fd5c-138">A pont-pont származó VPN- vagy ExpressRoute-kapcsolaton keresztül az alkalmazást használó ügyfélszámítógépek számára a fő területet problémákat okozhat, az alkalmazás és az Azure virtuális géphez.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-138">For client computers that are accessing the application over a site-to-site VPN or ExpressRoute connection, the main areas that can cause problems are the application and the Azure virtual machine.</span></span>
 
-A problémáról és annak javítása megállapításán, kövesse az alábbi lépéseket.
+<span data-ttu-id="1fd5c-139">A problémáról és annak javítása megállapításán, kövesse az alábbi lépéseket.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-139">To determine the source of the problem and its correction, follow these steps.</span></span>
 
-## <a name="step-1-access-application-from-target-vm"></a>1. lépés: A cél virtuális gép alkalmazás elérése
-Próbáljon meg hozzáférni az alkalmazást a megfelelő ügyféloldali program amelyen fut a virtuális gépről. A helyi számítógép neve, a helyi IP-cím vagy a visszacsatolási cím (127.0.0.1) használja.
+## <a name="step-1-access-application-from-target-vm"></a><span data-ttu-id="1fd5c-140">1. lépés: A cél virtuális gép alkalmazás elérése</span><span class="sxs-lookup"><span data-stu-id="1fd5c-140">Step 1: Access application from target VM</span></span>
+<span data-ttu-id="1fd5c-141">Próbáljon meg hozzáférni az alkalmazást a megfelelő ügyféloldali program amelyen fut a virtuális gépről.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-141">Try to access the application with the appropriate client program from the VM on which it is running.</span></span> <span data-ttu-id="1fd5c-142">A helyi számítógép neve, a helyi IP-cím vagy a visszacsatolási cím (127.0.0.1) használja.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-142">Use the local host name, the local IP address, or the loopback address (127.0.0.1).</span></span>
 
 ![Indítsa el az alkalmazás közvetlenül a virtuális gépről](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access2.png)
 
-Például ha az alkalmazás egy webkiszolgálón, nyisson meg egy böngészőt, a virtuális Gépre, és próbáljon meg hozzáférni egy weblapot, a virtuális Gépen futó.
+<span data-ttu-id="1fd5c-144">Például ha az alkalmazás egy webkiszolgálón, nyisson meg egy böngészőt, a virtuális Gépre, és próbáljon meg hozzáférni egy weblapot, a virtuális Gépen futó.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-144">For example, if the application is a web server, open a browser on the VM and try to access a web page hosted on the VM.</span></span>
 
-Ha az alkalmazást érheti el, folytassa a [2. lépés](#step2).
+<span data-ttu-id="1fd5c-145">Ha az alkalmazást érheti el, folytassa a [2. lépés](#step2).</span><span class="sxs-lookup"><span data-stu-id="1fd5c-145">If you can access the application, go to [Step 2](#step2).</span></span>
 
-Ha az alkalmazás nem fér hozzá, ellenőrizze a következő beállításokat:
+<span data-ttu-id="1fd5c-146">Ha az alkalmazás nem fér hozzá, ellenőrizze a következő beállításokat:</span><span class="sxs-lookup"><span data-stu-id="1fd5c-146">If you cannot access the application, verify the following settings:</span></span>
 
-* Az alkalmazás fut a cél virtuális gépen.
-* Az alkalmazás a várt TCP és UDP-porton figyel.
+* <span data-ttu-id="1fd5c-147">Az alkalmazás fut a cél virtuális gépen.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-147">The application is running on the target virtual machine.</span></span>
+* <span data-ttu-id="1fd5c-148">Az alkalmazás a várt TCP és UDP-porton figyel.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-148">The application is listening on the expected TCP and UDP ports.</span></span>
 
-A Windows és Linux-alapú virtuális gépek használata a **netstat - a** aktív figyelőportjait a parancsot. Vizsgálja meg a várt portokat, amelyen az alkalmazás figyelésére kell a kimenetét. Indítsa újra az alkalmazást, vagy konfigurálja úgy, hogy a várt portok használatára, szükség szerint, és próbálja meg újra az alkalmazás helyi eléréséhez.
+<span data-ttu-id="1fd5c-149">A Windows és Linux-alapú virtuális gépek használata a **netstat - a** aktív figyelőportjait a parancsot.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-149">On both Windows and Linux-based virtual machines, use the **netstat -a** command to show the active listening ports.</span></span> <span data-ttu-id="1fd5c-150">Vizsgálja meg a várt portokat, amelyen az alkalmazás figyelésére kell a kimenetét.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-150">Examine the output for the expected ports on which your application should be listening.</span></span> <span data-ttu-id="1fd5c-151">Indítsa újra az alkalmazást, vagy konfigurálja úgy, hogy a várt portok használatára, szükség szerint, és próbálja meg újra az alkalmazás helyi eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-151">Restart the application or configure it to use the expected ports as needed and try to access the application locally again.</span></span>
 
-## <a id="step2"></a>2. lépés: Az azonos virtuális hálózatban lévő másik virtuális alkalmazás elérése
-Próbáljon meg hozzáférni az alkalmazás, egy másik virtuális gépről, de az azonos virtuális hálózatban, a virtuális gép állomásnevét vagy az Azure által hozzárendelt public, private vagy szolgáltatói IP-címét. A virtuális gépek a klasszikus telepítési modellel készült ne használja a felhőalapú szolgáltatás nyilvános IP-címét.
+## <span data-ttu-id="1fd5c-152"><a id="step2"></a>2. lépés: Az azonos virtuális hálózatban lévő másik virtuális alkalmazás elérése</span><span class="sxs-lookup"><span data-stu-id="1fd5c-152"><a id="step2"></a>Step 2: Access application from another VM in the same virtual network</span></span>
+<span data-ttu-id="1fd5c-153">Próbáljon meg hozzáférni az alkalmazás, egy másik virtuális gépről, de az azonos virtuális hálózatban, a virtuális gép állomásnevét vagy az Azure által hozzárendelt public, private vagy szolgáltatói IP-címét.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-153">Try to access the application from a different VM but in the same virtual network, using the VM's host name or its Azure-assigned public, private, or provider IP address.</span></span> <span data-ttu-id="1fd5c-154">A virtuális gépek a klasszikus telepítési modellel készült ne használja a felhőalapú szolgáltatás nyilvános IP-címét.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-154">For virtual machines created using the classic deployment model, do not use the public IP address of the cloud service.</span></span>
 
 ![Indítsa el az alkalmazás egy másik virtuális gépről](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access3.png)
 
-Például ha az alkalmazás egy webkiszolgálón, próbáljon meg hozzáférni egy weblap eltérő virtuális gépet az azonos virtuális hálózatban lévő böngészővel.
+<span data-ttu-id="1fd5c-156">Például ha az alkalmazás egy webkiszolgálón, próbáljon meg hozzáférni egy weblap eltérő virtuális gépet az azonos virtuális hálózatban lévő böngészővel.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-156">For example, if the application is a web server, try to access a web page from a browser on a different VM in the same virtual network.</span></span>
 
-Ha az alkalmazást érheti el, folytassa a [3. lépés](#step3).
+<span data-ttu-id="1fd5c-157">Ha az alkalmazást érheti el, folytassa a [3. lépés](#step3).</span><span class="sxs-lookup"><span data-stu-id="1fd5c-157">If you can access the application, go to [Step 3](#step3).</span></span>
 
-Ha az alkalmazás nem fér hozzá, ellenőrizze a következő beállításokat:
+<span data-ttu-id="1fd5c-158">Ha az alkalmazás nem fér hozzá, ellenőrizze a következő beállításokat:</span><span class="sxs-lookup"><span data-stu-id="1fd5c-158">If you cannot access the application, verify the following settings:</span></span>
 
-* A cél virtuális gép a gazdagép tűzfalának engedélyezi, hogy a bejövő kérelem és a kimenő válasz forgalmat.
-* Behatolásérzékelési vagy a cél virtuális gép futó szoftver hálózatfigyelési átengedi a forgalmat.
-* Cloud Services végpontjainak vagy a hálózati biztonsági csoportok a forgalmat engedélyezi:
-  * [Klasszikus modell - Felhőszolgáltatások kezelése végpontok](../articles/cloud-services/cloud-services-enable-communication-role-instances.md)
-  * [Erőforrás-kezelő modell - hálózati biztonsági csoportok kezelése](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
-* Egy külön összetevő fut a virtuális Gépet, az elérési út között a teszt virtuális gép és a virtuális Gépet, például terheléselosztó vagy tűzfal, engedélyezi, hogy a forgalmat.
+* <span data-ttu-id="1fd5c-159">A cél virtuális gép a gazdagép tűzfalának engedélyezi, hogy a bejövő kérelem és a kimenő válasz forgalmat.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-159">The host firewall on the target VM is allowing the inbound request and outbound response traffic.</span></span>
+* <span data-ttu-id="1fd5c-160">Behatolásérzékelési vagy a cél virtuális gép futó szoftver hálózatfigyelési átengedi a forgalmat.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-160">Intrusion detection or network monitoring software running on the target VM is allowing the traffic.</span></span>
+* <span data-ttu-id="1fd5c-161">Cloud Services végpontjainak vagy a hálózati biztonsági csoportok a forgalmat engedélyezi:</span><span class="sxs-lookup"><span data-stu-id="1fd5c-161">Cloud Services endpoints or Network Security Groups are allowing the traffic:</span></span>
+  * [<span data-ttu-id="1fd5c-162">Klasszikus modell - Felhőszolgáltatások kezelése végpontok</span><span class="sxs-lookup"><span data-stu-id="1fd5c-162">Classic model - Manage Cloud Services endpoints</span></span>](../articles/cloud-services/cloud-services-enable-communication-role-instances.md)
+  * [<span data-ttu-id="1fd5c-163">Erőforrás-kezelő modell - hálózati biztonsági csoportok kezelése</span><span class="sxs-lookup"><span data-stu-id="1fd5c-163">Resource Manager model - Manage Network Security Groups</span></span>](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
+* <span data-ttu-id="1fd5c-164">Egy külön összetevő fut a virtuális Gépet, az elérési út között a teszt virtuális gép és a virtuális Gépet, például terheléselosztó vagy tűzfal, engedélyezi, hogy a forgalmat.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-164">A separate component running in your VM in the path between the test VM and your VM, such as a load balancer or firewall, is allowing the traffic.</span></span>
 
-A Windows-alapú virtuális gépen biztonságú Windows tűzfal segítségével határozza meg, hogy a tűzfalszabályok kizárása az alkalmazás bejövő és kimenő forgalmat.
+<span data-ttu-id="1fd5c-165">A Windows-alapú virtuális gépen biztonságú Windows tűzfal segítségével határozza meg, hogy a tűzfalszabályok kizárása az alkalmazás bejövő és kimenő forgalmat.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-165">On a Windows-based virtual machine, use Windows Firewall with Advanced Security to determine whether the firewall rules exclude your application's inbound and outbound traffic.</span></span>
 
-## <a id="step3"></a>3. lépés: A virtuális hálózaton kívül, az alkalmazás elérése
-Az alkalmazáshoz való hozzáférés a virtuális hálózaton kívüli gépről a virtuális gép, amelyen az alkalmazás fut, próbálja meg. Egy másik hálózati használják az eredeti ügyfélszámítógépen.
+## <span data-ttu-id="1fd5c-166"><a id="step3"></a>3. lépés: A virtuális hálózaton kívül, az alkalmazás elérése</span><span class="sxs-lookup"><span data-stu-id="1fd5c-166"><a id="step3"></a>Step 3: Access application from outside the virtual network</span></span>
+<span data-ttu-id="1fd5c-167">Az alkalmazáshoz való hozzáférés a virtuális hálózaton kívüli gépről a virtuális gép, amelyen az alkalmazás fut, próbálja meg.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-167">Try to access the application from a computer outside the virtual network as the VM on which the application is running.</span></span> <span data-ttu-id="1fd5c-168">Egy másik hálózati használják az eredeti ügyfélszámítógépen.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-168">Use a different network as your original client computer.</span></span>
 
 ![Indítsa el az alkalmazást a virtuális hálózaton kívüli gépről](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access4.png)
 
-Például ha az alkalmazás egy webkiszolgálón, próbáljon meg hozzáférni a weblap, amely nincs a virtuális hálózatban lévő számítógépeken futó böngészővel.
+<span data-ttu-id="1fd5c-170">Például ha az alkalmazás egy webkiszolgálón, próbáljon meg hozzáférni a weblap, amely nincs a virtuális hálózatban lévő számítógépeken futó böngészővel.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-170">For example, if the application is a web server, try to access the web page from a browser running on a computer that is not in the virtual network.</span></span>
 
-Ha az alkalmazás nem fér hozzá, ellenőrizze a következő beállításokat:
+<span data-ttu-id="1fd5c-171">Ha az alkalmazás nem fér hozzá, ellenőrizze a következő beállításokat:</span><span class="sxs-lookup"><span data-stu-id="1fd5c-171">If you cannot access the application, verify the following settings:</span></span>
 
-* A virtuális gépek a klasszikus telepítési modellel készült:
+* <span data-ttu-id="1fd5c-172">A virtuális gépek a klasszikus telepítési modellel készült:</span><span class="sxs-lookup"><span data-stu-id="1fd5c-172">For VMs created using the classic deployment model:</span></span>
   
-  * Győződjön meg arról, hogy a végpont-konfiguráció, a virtuális gép átengedi a bejövő forgalmat, különösen a protocol (TCP és UDP) és a nyilvános és titkos portszámokat.
-  * Győződjön meg arról, hogy a végpont hozzáférés-vezérlési listák (ACL) nem akadályozzák meg a bejövő forgalom az internetről.
-  * További információkért lásd: [hogyan állítsa be végpontok egy virtuális géphez](../articles/virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
-* A virtuális gépek erőforrás-kezelő telepítési modellel készült:
+  * <span data-ttu-id="1fd5c-173">Győződjön meg arról, hogy a végpont-konfiguráció, a virtuális gép átengedi a bejövő forgalmat, különösen a protocol (TCP és UDP) és a nyilvános és titkos portszámokat.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-173">Verify that the endpoint configuration for the VM is allowing the incoming traffic, especially the protocol (TCP or UDP) and the public and private port numbers.</span></span>
+  * <span data-ttu-id="1fd5c-174">Győződjön meg arról, hogy a végpont hozzáférés-vezérlési listák (ACL) nem akadályozzák meg a bejövő forgalom az internetről.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-174">Verify that access control lists (ACLs) on the endpoint are not preventing incoming traffic from the Internet.</span></span>
+  * <span data-ttu-id="1fd5c-175">További információkért lásd: [hogyan állítsa be végpontok egy virtuális géphez](../articles/virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="1fd5c-175">For more information, see [How to Set Up Endpoints to a Virtual Machine](../articles/virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).</span></span>
+* <span data-ttu-id="1fd5c-176">A virtuális gépek erőforrás-kezelő telepítési modellel készült:</span><span class="sxs-lookup"><span data-stu-id="1fd5c-176">For VMs created using the Resource Manager deployment model:</span></span>
   
-  * Győződjön meg arról, hogy a VM bejövő NAT-szabály konfigurációjának átengedi a bejövő forgalmat, különösen a protocol (TCP és UDP) és a nyilvános és titkos portszámokat.
-  * Győződjön meg arról, hogy hálózati biztonsági csoport engedélyezi a bejövő kérelem és a kimenő válasz forgalmat.
-  * További információ: [What is a Network Security Group (NSG)?](../articles/virtual-network/virtual-networks-nsg.md) (Mi az a hálózati biztonsági csoport?).
+  * <span data-ttu-id="1fd5c-177">Győződjön meg arról, hogy a VM bejövő NAT-szabály konfigurációjának átengedi a bejövő forgalmat, különösen a protocol (TCP és UDP) és a nyilvános és titkos portszámokat.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-177">Verify that the inbound NAT rule configuration for the VM is allowing the incoming traffic, especially the protocol (TCP or UDP) and the public and private port numbers.</span></span>
+  * <span data-ttu-id="1fd5c-178">Győződjön meg arról, hogy hálózati biztonsági csoport engedélyezi a bejövő kérelem és a kimenő válasz forgalmat.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-178">Verify that Network Security Groups are allowing the inbound request and outbound response traffic.</span></span>
+  * <span data-ttu-id="1fd5c-179">További információ: [What is a Network Security Group (NSG)?](../articles/virtual-network/virtual-networks-nsg.md) (Mi az a hálózati biztonsági csoport?).</span><span class="sxs-lookup"><span data-stu-id="1fd5c-179">For more information, see [What is a Network Security Group (NSG)?](../articles/virtual-network/virtual-networks-nsg.md)</span></span>
 
-Ha a virtuális gép vagy a végpont egy elosztott terhelésű készlet tagja:
+<span data-ttu-id="1fd5c-180">Ha a virtuális gép vagy a végpont egy elosztott terhelésű készlet tagja:</span><span class="sxs-lookup"><span data-stu-id="1fd5c-180">If the virtual machine or endpoint is a member of a load-balanced set:</span></span>
 
-* Győződjön meg arról, hogy a mintavétel protocol (TCP és UDP) és a portszám helyességéről.
-* Ha a mintavételi protokoll és port eltér attól az elosztott terhelésű készlet protokoll és port:
-  * Győződjön meg arról, hogy az alkalmazás figyeli-e a mintavételi protocol (TCP és UDP) és a portszám (használata **netstat – a** a cél virtuális gép).
-  * Győződjön meg arról, hogy a cél virtuális gép a gazdagép tűzfalának engedélyezi, hogy a bejövő mintavételi kérelem és a kimenő mintavételi válasz forgalmat.
+* <span data-ttu-id="1fd5c-181">Győződjön meg arról, hogy a mintavétel protocol (TCP és UDP) és a portszám helyességéről.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-181">Verify that the probe protocol (TCP or UDP) and port number are correct.</span></span>
+* <span data-ttu-id="1fd5c-182">Ha a mintavételi protokoll és port eltér attól az elosztott terhelésű készlet protokoll és port:</span><span class="sxs-lookup"><span data-stu-id="1fd5c-182">If the probe protocol and port is different than the load-balanced set protocol and port:</span></span>
+  * <span data-ttu-id="1fd5c-183">Győződjön meg arról, hogy az alkalmazás figyeli-e a mintavételi protocol (TCP és UDP) és a portszám (használata **netstat – a** a cél virtuális gép).</span><span class="sxs-lookup"><span data-stu-id="1fd5c-183">Verify that the application is listening on the probe protocol (TCP or UDP) and port number (use **netstat –a** on the target VM).</span></span>
+  * <span data-ttu-id="1fd5c-184">Győződjön meg arról, hogy a cél virtuális gép a gazdagép tűzfalának engedélyezi, hogy a bejövő mintavételi kérelem és a kimenő mintavételi válasz forgalmat.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-184">Verify that the host firewall on the target VM is allowing the inbound probe request and outbound probe response traffic.</span></span>
 
-Ha az alkalmazást érheti el, győződjön meg arról, hogy az Internet peremhálózati eszközön keresztülhaladó:
+<span data-ttu-id="1fd5c-185">Ha az alkalmazást érheti el, győződjön meg arról, hogy az Internet peremhálózati eszközön keresztülhaladó:</span><span class="sxs-lookup"><span data-stu-id="1fd5c-185">If you can access the application, ensure that your Internet edge device is allowing:</span></span>
 
-* A kimenő alkalmazás kérelem-forgalom az ügyfélszámítógépen az Azure virtuális géphez.
-* A bejövő kérelem válasz forgalmát az Azure virtuális géphez.
+* <span data-ttu-id="1fd5c-186">A kimenő alkalmazás kérelem-forgalom az ügyfélszámítógépen az Azure virtuális géphez.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-186">The outbound application request traffic from your client computer to the Azure virtual machine.</span></span>
+* <span data-ttu-id="1fd5c-187">A bejövő kérelem válasz forgalmát az Azure virtuális géphez.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-187">The inbound application response traffic from the Azure virtual machine.</span></span>
 
-## <a name="step-4-if-you-cannot-access-the-application-use-ip-verify-to-check-the-settings"></a>Lépés 4 Ha nem fér hozzá az alkalmazás segítségével IP ellenőrizze ellenőrizze a beállításokat. 
+## <a name="step-4-if-you-cannot-access-the-application-use-ip-verify-to-check-the-settings"></a><span data-ttu-id="1fd5c-188">Lépés 4 Ha nem fér hozzá az alkalmazás segítségével IP ellenőrizze ellenőrizze a beállításokat.</span><span class="sxs-lookup"><span data-stu-id="1fd5c-188">Step 4 If you cannot access the application, use IP Verify to check the settings.</span></span> 
 
-További információkért lásd: [áttekintése Azure hálózatfigyelési](https://docs.microsoft.com/en-us/azure/network-watcher/network-watcher-monitoring-overview). 
+<span data-ttu-id="1fd5c-189">További információkért lásd: [áttekintése Azure hálózatfigyelési](https://docs.microsoft.com/en-us/azure/network-watcher/network-watcher-monitoring-overview).</span><span class="sxs-lookup"><span data-stu-id="1fd5c-189">For more information, see [Azure network monitoring overview](https://docs.microsoft.com/en-us/azure/network-watcher/network-watcher-monitoring-overview).</span></span> 
 
-## <a name="additional-resources"></a>További források
-[Távoli asztali kapcsolatok számára Windows-alapú Azure virtuális gép hibaelhárítása](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md)
+## <a name="additional-resources"></a><span data-ttu-id="1fd5c-190">További források</span><span class="sxs-lookup"><span data-stu-id="1fd5c-190">Additional resources</span></span>
+[<span data-ttu-id="1fd5c-191">Távoli asztali kapcsolatok számára Windows-alapú Azure virtuális gép hibaelhárítása</span><span class="sxs-lookup"><span data-stu-id="1fd5c-191">Troubleshoot Remote Desktop connections to a Windows-based Azure Virtual Machine</span></span>](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md)
 
-[Végezzen hibaelhárítást a Secure Shell (SSH) kapcsolatokon egy Linux-alapú Azure virtuális géphez](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md)
+[<span data-ttu-id="1fd5c-192">Végezzen hibaelhárítást a Secure Shell (SSH) kapcsolatokon egy Linux-alapú Azure virtuális géphez</span><span class="sxs-lookup"><span data-stu-id="1fd5c-192">Troubleshoot Secure Shell (SSH) connections to a Linux-based Azure virtual machine</span></span>](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md)
 

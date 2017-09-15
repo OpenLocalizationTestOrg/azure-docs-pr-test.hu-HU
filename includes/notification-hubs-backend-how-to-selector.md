@@ -1,8 +1,8 @@
 > [!div class="op_single_selector"]
-> * [Java](../articles/notification-hubs/notification-hubs-java-push-notification-tutorial.md)
-> * [Node.js](../articles/notification-hubs/notification-hubs-nodejs-push-notification-tutorial.md)
-> * [PHP](../articles/notification-hubs/notification-hubs-php-push-notification-tutorial.md)
-> * [Python](../articles/notification-hubs/notification-hubs-python-push-notification-tutorial.md)
+> * [<span data-ttu-id="08627-101">Java</span><span class="sxs-lookup"><span data-stu-id="08627-101">Java</span></span>](../articles/notification-hubs/notification-hubs-java-push-notification-tutorial.md)
+> * [<span data-ttu-id="08627-102">Node.js</span><span class="sxs-lookup"><span data-stu-id="08627-102">Node.js</span></span>](../articles/notification-hubs/notification-hubs-nodejs-push-notification-tutorial.md)
+> * [<span data-ttu-id="08627-103">PHP</span><span class="sxs-lookup"><span data-stu-id="08627-103">PHP</span></span>](../articles/notification-hubs/notification-hubs-php-push-notification-tutorial.md)
+> * [<span data-ttu-id="08627-104">Python</span><span class="sxs-lookup"><span data-stu-id="08627-104">Python</span></span>](../articles/notification-hubs/notification-hubs-python-push-notification-tutorial.md)
 > 
 > 
 

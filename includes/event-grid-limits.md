@@ -1,4 +1,4 @@
-| Erőforrás | Korlát |
+| <span data-ttu-id="f7113-101">Erőforrás</span><span class="sxs-lookup"><span data-stu-id="f7113-101">Resource</span></span> | <span data-ttu-id="f7113-102">Korlát</span><span class="sxs-lookup"><span data-stu-id="f7113-102">Limit</span></span> |
 | --- | --- |
-| Eseményfeliratkozások régiónkénti bontásban |1000 |
-| Egyéni témakörök régiónkénti bontásban |20 |
+| <span data-ttu-id="f7113-103">Eseményfeliratkozások régiónkénti bontásban</span><span class="sxs-lookup"><span data-stu-id="f7113-103">Event Subscriptions per region</span></span> |<span data-ttu-id="f7113-104">1000</span><span class="sxs-lookup"><span data-stu-id="f7113-104">1000</span></span> |
+| <span data-ttu-id="f7113-105">Egyéni témakörök régiónkénti bontásban</span><span class="sxs-lookup"><span data-stu-id="f7113-105">Custom Topics per region</span></span> |<span data-ttu-id="f7113-106">20</span><span class="sxs-lookup"><span data-stu-id="f7113-106">20</span></span> |

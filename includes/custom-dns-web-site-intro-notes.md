@@ -1,10 +1,10 @@
-Ez a cikk az Azure App Service (Web Apps, az API Apps, Mobile Apps, a Logic Apps); Cloud Services, lásd: [egy egyéni tartománynevet, az Azure-felhőszolgáltatás konfigurálása](../articles/cloud-services/cloud-services-custom-domain-name.md).
+<span data-ttu-id="08afa-101">Ez a cikk az Azure App Service (Web Apps, az API Apps, Mobile Apps, a Logic Apps); Cloud Services, lásd: [egy egyéni tartománynevet, az Azure-felhőszolgáltatás konfigurálása](../articles/cloud-services/cloud-services-custom-domain-name.md).</span><span class="sxs-lookup"><span data-stu-id="08afa-101">This article is for Azure App Service (Web Apps, API Apps, Mobile Apps, Logic Apps); for Cloud Services, see [Configuring a custom domain name for an Azure cloud service](../articles/cloud-services/cloud-services-custom-domain-name.md).</span></span>
 
 > [!NOTE]
-> Ha alkalmazást által terhelésű [Azure Traffic Manager](https://azure.microsoft.com/services/traffic-manager/), kattintson a választó, ez a cikk tetején konkrét lépések segítségével.
+> <span data-ttu-id="08afa-102">Ha alkalmazást által terhelésű [Azure Traffic Manager](https://azure.microsoft.com/services/traffic-manager/), kattintson a választó, ez a cikk tetején konkrét lépések segítségével.</span><span class="sxs-lookup"><span data-stu-id="08afa-102">If you app is load-balanced by [Azure Traffic Manager](https://azure.microsoft.com/services/traffic-manager/), click the selector at the top of this article to get specific steps.</span></span>
 > 
-> **Az egyéni tartomány nevében a rendszer nem szabad engedélyezve réteg**. Meg kell [legfeljebb egy magasabb szintű tarifacsomagban használható méretezési](../articles/app-service-web/web-sites-scale.md), előfordulhat, hogy változási számlázása, hogy mennyit az előfizetéséhez. 
-> Lásd: [App Service szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/app-service/) további információt.
+> <span data-ttu-id="08afa-103">**Az egyéni tartomány nevében a rendszer nem szabad engedélyezve réteg**.</span><span class="sxs-lookup"><span data-stu-id="08afa-103">**Custom domain names are not enabled for Free tier**.</span></span> <span data-ttu-id="08afa-104">Meg kell [legfeljebb egy magasabb szintű tarifacsomagban használható méretezési](../articles/app-service-web/web-sites-scale.md), előfordulhat, hogy változási számlázása, hogy mennyit az előfizetéséhez.</span><span class="sxs-lookup"><span data-stu-id="08afa-104">You must [scale up to a higher pricing tier](../articles/app-service-web/web-sites-scale.md), which may change how much you are billed for your subscription.</span></span> 
+> <span data-ttu-id="08afa-105">Lásd: [App Service szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/app-service/) további információt.</span><span class="sxs-lookup"><span data-stu-id="08afa-105">See [App Service Pricing](https://azure.microsoft.com/pricing/details/app-service/) for more information.</span></span>
 > 
 > 
 

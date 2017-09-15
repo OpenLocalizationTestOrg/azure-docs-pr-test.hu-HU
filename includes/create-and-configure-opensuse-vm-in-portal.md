@@ -1,52 +1,52 @@
-1. Jelentkezzen be a [klasszikus Azure portálra](http://manage.windowsazure.com).  
-2. A parancssávon az ablak alján kattintson **új**.
-3. A **számítási**, kattintson a **virtuális gép**, és kattintson a **a gyűjtemény**.
+1. <span data-ttu-id="43f43-101">Jelentkezzen be a [klasszikus Azure portálra](http://manage.windowsazure.com).</span><span class="sxs-lookup"><span data-stu-id="43f43-101">Sign in to the [Azure classic portal](http://manage.windowsazure.com).</span></span>  
+2. <span data-ttu-id="43f43-102">A parancssávon az ablak alján kattintson **új**.</span><span class="sxs-lookup"><span data-stu-id="43f43-102">On the command bar at the bottom of the window, click **New**.</span></span>
+3. <span data-ttu-id="43f43-103">A **számítási**, kattintson a **virtuális gép**, és kattintson a **a gyűjtemény**.</span><span class="sxs-lookup"><span data-stu-id="43f43-103">Under **Compute**, click **Virtual Machine**, and then click **From Gallery**.</span></span>
    
     ![Új virtuális gép létrehozása][Image1]
-4. Az a **SUSE** csoportban, OpenSUSE virtuálisgép-lemezkép válassza ki, majd kattintson a nyílra, a folytatáshoz.
-5. Az első **virtuálisgép-konfiguráció** lap:
+4. <span data-ttu-id="43f43-105">Az a **SUSE** csoportban, OpenSUSE virtuálisgép-lemezkép válassza ki, majd kattintson a nyílra, a folytatáshoz.</span><span class="sxs-lookup"><span data-stu-id="43f43-105">Under the **SUSE** group, select an OpenSUSE virtual machine image, and then click the arrow to continue.</span></span>
+5. <span data-ttu-id="43f43-106">Az első **virtuálisgép-konfiguráció** lap:</span><span class="sxs-lookup"><span data-stu-id="43f43-106">On the first **Virtual machine configuration** page:</span></span>
    
-   * Adjon meg egy **virtuális gép neve**, például a "testlinuxvm". A név kell csak 3 és 15 karakter közötti lehet, is tartalmazhat, csak betűket, számokat és kötőjeleket tartalmazhat, és kell betűvel kezdődhet és betűvel vagy számmal végződhet.
-   * Ellenőrizze a **réteg** , és válasszon egy **mérete**. A réteg meghatározza, hogy a méretek közül választhat. A mérete befolyásolja költségét, valamint csatolhat a konfigurációs beállítások, például hogy hány adatok lemezek. További információkért lásd: [virtuális gépek méretei](../articles/virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
-   * Adjon meg egy **új felhasználónevet**, vagy fogadja el az alapértelmezett **azureuser**. Ez a név a Sudoers listáját tartalmazó fájl kerül.
-   * Döntse el, hogy milyen típusú **hitelesítési** használatára. Általános jelszó útmutatást lásd: [erős jelszavak](http://msdn.microsoft.com/library/ms161962.aspx).
-6. A következő **virtuálisgép-konfiguráció** lap:
+   * <span data-ttu-id="43f43-107">Adjon meg egy **virtuális gép neve**, például a "testlinuxvm".</span><span class="sxs-lookup"><span data-stu-id="43f43-107">Type a **Virtual Machine Name**, such as "testlinuxvm".</span></span> <span data-ttu-id="43f43-108">A név kell csak 3 és 15 karakter közötti lehet, is tartalmazhat, csak betűket, számokat és kötőjeleket tartalmazhat, és kell betűvel kezdődhet és betűvel vagy számmal végződhet.</span><span class="sxs-lookup"><span data-stu-id="43f43-108">The name must contain between 3 and 15 characters, can contain only letters, numbers, and hyphens, and must start with a letter and end with either a letter or number.</span></span>
+   * <span data-ttu-id="43f43-109">Ellenőrizze a **réteg** , és válasszon egy **mérete**.</span><span class="sxs-lookup"><span data-stu-id="43f43-109">Verify the **Tier** and pick a **Size**.</span></span> <span data-ttu-id="43f43-110">A réteg meghatározza, hogy a méretek közül választhat.</span><span class="sxs-lookup"><span data-stu-id="43f43-110">The tier determines the sizes you can choose from.</span></span> <span data-ttu-id="43f43-111">A mérete befolyásolja költségét, valamint csatolhat a konfigurációs beállítások, például hogy hány adatok lemezek.</span><span class="sxs-lookup"><span data-stu-id="43f43-111">The size affects the cost of using it, as well as configuration options such as how many data disks you can attach.</span></span> <span data-ttu-id="43f43-112">További információkért lásd: [virtuális gépek méretei](../articles/virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="43f43-112">For details, see [Sizes for virtual machines](../articles/virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+   * <span data-ttu-id="43f43-113">Adjon meg egy **új felhasználónevet**, vagy fogadja el az alapértelmezett **azureuser**.</span><span class="sxs-lookup"><span data-stu-id="43f43-113">Type a **New User Name**, or accept the default, **azureuser**.</span></span> <span data-ttu-id="43f43-114">Ez a név a Sudoers listáját tartalmazó fájl kerül.</span><span class="sxs-lookup"><span data-stu-id="43f43-114">This name is added to the Sudoers list file.</span></span>
+   * <span data-ttu-id="43f43-115">Döntse el, hogy milyen típusú **hitelesítési** használatára.</span><span class="sxs-lookup"><span data-stu-id="43f43-115">Decide which type of **Authentication** to use.</span></span> <span data-ttu-id="43f43-116">Általános jelszó útmutatást lásd: [erős jelszavak](http://msdn.microsoft.com/library/ms161962.aspx).</span><span class="sxs-lookup"><span data-stu-id="43f43-116">For general password guidelines, see [Strong passwords](http://msdn.microsoft.com/library/ms161962.aspx).</span></span>
+6. <span data-ttu-id="43f43-117">A következő **virtuálisgép-konfiguráció** lap:</span><span class="sxs-lookup"><span data-stu-id="43f43-117">On the next **Virtual machine configuration** page:</span></span>
    
-   * Használja az alapértelmezett **hozzon létre egy új felhőalapú szolgáltatás**.
-   * Az a **DNS-név** mezőbe írja be a címet, például "testlinuxvm" része egy egyedi DNS-név.
-   * Az a **régió/affinitás csoport/virtuális hálózati** mezőben válasszon ki egy régiót, ahol a virtuális lemezképet fog üzemelni.
-   * A **végpontok**, tartsa meg az SSH-végpontot. Mások, vegye fel vagy hozzáadása, módosítása, vagy törölje azokat, a virtuális gép létrehozása után.
+   * <span data-ttu-id="43f43-118">Használja az alapértelmezett **hozzon létre egy új felhőalapú szolgáltatás**.</span><span class="sxs-lookup"><span data-stu-id="43f43-118">Use the default **Create a new cloud service**.</span></span>
+   * <span data-ttu-id="43f43-119">Az a **DNS-név** mezőbe írja be a címet, például "testlinuxvm" része egy egyedi DNS-név.</span><span class="sxs-lookup"><span data-stu-id="43f43-119">In the **DNS Name** box, type a unique DNS name to use as part of the address, such as "testlinuxvm".</span></span>
+   * <span data-ttu-id="43f43-120">Az a **régió/affinitás csoport/virtuális hálózati** mezőben válasszon ki egy régiót, ahol a virtuális lemezképet fog üzemelni.</span><span class="sxs-lookup"><span data-stu-id="43f43-120">In the **Region/Affinity Group/Virtual Network** box, select a region where this virtual image will be hosted.</span></span>
+   * <span data-ttu-id="43f43-121">A **végpontok**, tartsa meg az SSH-végpontot.</span><span class="sxs-lookup"><span data-stu-id="43f43-121">Under **Endpoints**, keep the SSH endpoint.</span></span> <span data-ttu-id="43f43-122">Mások, vegye fel vagy hozzáadása, módosítása, vagy törölje azokat, a virtuális gép létrehozása után.</span><span class="sxs-lookup"><span data-stu-id="43f43-122">You can add others now, or add, change, or delete them after the virtual machine is created.</span></span>
      
      > [!NOTE]
-     > Ha azt szeretné, hogy a virtuális gép egy virtuális hálózatot, akkor **kell** adja meg a virtuális hálózatot, a virtuális gép létrehozásakor. Nem adható hozzá a virtuális gép virtuális hálózathoz, a virtuális gép létrehozása után. További információkért lásd: [virtuális hálózat áttekintése](../articles/virtual-network/virtual-networks-overview.md).
+     > <span data-ttu-id="43f43-123">Ha azt szeretné, hogy a virtuális gép egy virtuális hálózatot, akkor **kell** adja meg a virtuális hálózatot, a virtuális gép létrehozásakor.</span><span class="sxs-lookup"><span data-stu-id="43f43-123">If you want a virtual machine to use a virtual network, you **must** specify the virtual network when you create the virtual machine.</span></span> <span data-ttu-id="43f43-124">Nem adható hozzá a virtuális gép virtuális hálózathoz, a virtuális gép létrehozása után.</span><span class="sxs-lookup"><span data-stu-id="43f43-124">You can't add a virtual machine to a virtual network after you create the virtual machine.</span></span> <span data-ttu-id="43f43-125">További információkért lásd: [virtuális hálózat áttekintése](../articles/virtual-network/virtual-networks-overview.md).</span><span class="sxs-lookup"><span data-stu-id="43f43-125">For more information, see [Virtual Network Overview](../articles/virtual-network/virtual-networks-overview.md).</span></span>
      > 
      > 
-7. Utolsó **virtuálisgép-konfiguráció** lapon. az alapértelmezett beállítások megtartásához, majd kattintson a pipa jelre a Befejezés gombra.
+7. <span data-ttu-id="43f43-126">Utolsó **virtuálisgép-konfiguráció** lapon. az alapértelmezett beállítások megtartásához, majd kattintson a pipa jelre a Befejezés gombra.</span><span class="sxs-lookup"><span data-stu-id="43f43-126">On the last **Virtual machine configuration** page, keep the default settings and then click the check mark to finish.</span></span>
 
-A portál megjeleníti az új virtuális gépek **virtuális gépek**. Amíg az állapota **(kiépítése)**, a virtuális gép beállítása folyamatban van. Ha az állapot az elvártnak megfelelően **futtató**, a következő lépéssel továbbléphet.
+<span data-ttu-id="43f43-127">A portál megjeleníti az új virtuális gépek **virtuális gépek**.</span><span class="sxs-lookup"><span data-stu-id="43f43-127">The portal lists the new virtual machine under **Virtual Machines**.</span></span> <span data-ttu-id="43f43-128">Amíg az állapota **(kiépítése)**, a virtuális gép beállítása folyamatban van.</span><span class="sxs-lookup"><span data-stu-id="43f43-128">While the status is reported as **(Provisioning)**, the virtual machine is being set up.</span></span> <span data-ttu-id="43f43-129">Ha az állapot az elvártnak megfelelően **futtató**, a következő lépéssel továbbléphet.</span><span class="sxs-lookup"><span data-stu-id="43f43-129">When the status is reported as **Running**, you can move on to the next step.</span></span>
 
-## <a name="connect-to-the-virtual-machine"></a>Csatlakozzon a virtuális géphez
-SSH vagy PuTTY fogja használni a virtuális gép, attól függően, hogy az operációs rendszer azon a számítógépen történő csatlakozás fog csatlakozni:
+## <a name="connect-to-the-virtual-machine"></a><span data-ttu-id="43f43-130">Csatlakozzon a virtuális géphez</span><span class="sxs-lookup"><span data-stu-id="43f43-130">Connect to the Virtual Machine</span></span>
+<span data-ttu-id="43f43-131">SSH vagy PuTTY fogja használni a virtuális gép, attól függően, hogy az operációs rendszer azon a számítógépen történő csatlakozás fog csatlakozni:</span><span class="sxs-lookup"><span data-stu-id="43f43-131">You'll use SSH or PuTTY to connect to the virtual machine, depending on the operating system on the computer you'll connect from:</span></span>
 
-* Linux rendszerű számítógépeken az SSH használata. A parancssorba írja be:
+* <span data-ttu-id="43f43-132">Linux rendszerű számítógépeken az SSH használata.</span><span class="sxs-lookup"><span data-stu-id="43f43-132">From a computer running Linux, use SSH.</span></span> <span data-ttu-id="43f43-133">A parancssorba írja be:</span><span class="sxs-lookup"><span data-stu-id="43f43-133">At the command prompt, type:</span></span>
   
     `$ ssh newuser@testlinuxvm.cloudapp.net -o ServerAliveInterval=180`
   
-    Írja be a jelszót.
-* Windows rendszerű számítógépeken a PuTTY használata. Ha nincs telepítve, töltse le a [PuTTY letöltési oldalát][PuTTYDownload].
+    <span data-ttu-id="43f43-134">Írja be a jelszót.</span><span class="sxs-lookup"><span data-stu-id="43f43-134">Type the user's password.</span></span>
+* <span data-ttu-id="43f43-135">Windows rendszerű számítógépeken a PuTTY használata.</span><span class="sxs-lookup"><span data-stu-id="43f43-135">From a computer running Windows, use PuTTY.</span></span> <span data-ttu-id="43f43-136">Ha nincs telepítve, töltse le a [PuTTY letöltési oldalát][PuTTYDownload].</span><span class="sxs-lookup"><span data-stu-id="43f43-136">If you don't have it installed, download it from the [PuTTY Download Page][PuTTYDownload].</span></span>
   
-    Mentés **putty.exe** könyvtárra a számítógépen. Nyisson meg egy parancssort, keresse meg azt a mappát, és futtassa **putty.exe**.
+    <span data-ttu-id="43f43-137">Mentés **putty.exe** könyvtárra a számítógépen.</span><span class="sxs-lookup"><span data-stu-id="43f43-137">Save **putty.exe** to a directory on your computer.</span></span> <span data-ttu-id="43f43-138">Nyisson meg egy parancssort, keresse meg azt a mappát, és futtassa **putty.exe**.</span><span class="sxs-lookup"><span data-stu-id="43f43-138">Open a command prompt, navigate to that folder, and run **putty.exe**.</span></span>
   
-    Írja be a gazdagép nevét, például a "testlinuxvm.cloudapp.net", és írja be a "22" a **Port**.
+    <span data-ttu-id="43f43-139">Írja be a gazdagép nevét, például a "testlinuxvm.cloudapp.net", és írja be a "22" a **Port**.</span><span class="sxs-lookup"><span data-stu-id="43f43-139">Type the host name, such as "testlinuxvm.cloudapp.net", and type "22" for the **Port**.</span></span>
   
     ![PuTTY képernyő][Image6]  
 
-## <a name="update-the-virtual-machine-optional"></a>Frissítse a virtuális gép (nem kötelező)
-1. Miután a virtuális gép csatlakozik, rendszer frissítések és javítások igény szerint telepítheti. A frissítés futtatásához írja be:
+## <a name="update-the-virtual-machine-optional"></a><span data-ttu-id="43f43-141">Frissítse a virtuális gép (nem kötelező)</span><span class="sxs-lookup"><span data-stu-id="43f43-141">Update the Virtual Machine (optional)</span></span>
+1. <span data-ttu-id="43f43-142">Miután a virtuális gép csatlakozik, rendszer frissítések és javítások igény szerint telepítheti.</span><span class="sxs-lookup"><span data-stu-id="43f43-142">After you're connected to the virtual machine, you can optionally install system updates and patches.</span></span> <span data-ttu-id="43f43-143">A frissítés futtatásához írja be:</span><span class="sxs-lookup"><span data-stu-id="43f43-143">To run the update, type:</span></span>
    
     `$ sudo zypper update`
-2. Válassza ki **szoftver**, majd **Online frissítés** rendelkezésre álló frissítések listáját. Válassza ki **elfogadás** a telepítés megkezdéséhez és javításokat minden új érhető el (kivéve a választható megfelelően).
-3. Telepítés után válassza ki a **Befejezés**.  A rendszer már naprakészek legyenek.
+2. <span data-ttu-id="43f43-144">Válassza ki **szoftver**, majd **Online frissítés** rendelkezésre álló frissítések listáját.</span><span class="sxs-lookup"><span data-stu-id="43f43-144">Select **Software**, then **Online Update** to list available updates.</span></span> <span data-ttu-id="43f43-145">Válassza ki **elfogadás** a telepítés megkezdéséhez és javításokat minden új érhető el (kivéve a választható megfelelően).</span><span class="sxs-lookup"><span data-stu-id="43f43-145">Select **Accept** to start the installation and apply all new available patches (except the optional ones).</span></span>
+3. <span data-ttu-id="43f43-146">Telepítés után válassza ki a **Befejezés**.</span><span class="sxs-lookup"><span data-stu-id="43f43-146">After installation is done, select **Finish**.</span></span>  <span data-ttu-id="43f43-147">A rendszer már naprakészek legyenek.</span><span class="sxs-lookup"><span data-stu-id="43f43-147">Your system is now up to date.</span></span>
 
 [PuTTYDownload]: http://www.puttyssh.org/download.html
 

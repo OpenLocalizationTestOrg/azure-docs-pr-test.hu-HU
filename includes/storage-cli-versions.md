@@ -1,6 +1,6 @@
-## <a name="versions-of-the-azure-cli"></a>Az Azure CLI verziói
+## <a name="versions-of-the-azure-cli"></a><span data-ttu-id="c4d59-101">Az Azure CLI verziói</span><span class="sxs-lookup"><span data-stu-id="c4d59-101">Versions of the Azure CLI</span></span>
 
-Az Azure parancssori felületének (CLI) jelenleg két verziója érhető el:
+<span data-ttu-id="c4d59-102">Az Azure parancssori felületének (CLI) jelenleg két verziója érhető el:</span><span class="sxs-lookup"><span data-stu-id="c4d59-102">There are two versions of the Azure Command-Line Interface (CLI) currently available:</span></span>
 
-* [Azure CLI 2.0](../articles/storage/common/storage-azure-cli.md): A következő generációs, Pythonban írt parancssori felületünk, Resource Manager-alapú üzemi modellel történő használathoz.
-* [Azure CLI 1.0](../articles/storage/common/storage-azure-cli-nodejs.md): A Node.js-ben írt parancssori felületünk, klasszikus és Resource Manager-alapú üzemi modellel történő használathoz.
+* <span data-ttu-id="c4d59-103">[Azure CLI 2.0](../articles/storage/common/storage-azure-cli.md): A következő generációs, Pythonban írt parancssori felületünk, Resource Manager-alapú üzemi modellel történő használathoz.</span><span class="sxs-lookup"><span data-stu-id="c4d59-103">[Azure CLI 2.0](../articles/storage/common/storage-azure-cli.md): Our next-generation CLI written in Python, for use with the Resource Manager deployment model.</span></span>
+* <span data-ttu-id="c4d59-104">[Azure CLI 1.0](../articles/storage/common/storage-azure-cli-nodejs.md): A Node.js-ben írt parancssori felületünk, klasszikus és Resource Manager-alapú üzemi modellel történő használathoz.</span><span class="sxs-lookup"><span data-stu-id="c4d59-104">[Azure CLI 1.0](../articles/storage/common/storage-azure-cli-nodejs.md): Our CLI written in Node.js, for use with both the classic and Resource Manager deployment models.</span></span>

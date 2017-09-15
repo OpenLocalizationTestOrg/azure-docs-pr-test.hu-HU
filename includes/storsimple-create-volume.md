@@ -1,32 +1,32 @@
 <!--author=SharS last changed: 02/04/2016-->
 
-#### <a name="to-create-a-volume"></a>Kötet létrehozása
-1. A **Gyors üzembe helyezés** oldalon kattintson a **Kötet hozzáadása** lehetőségre. Ezzel elindítja a Kötet hozzáadása varázslót.
-2. A Kötet hozzáadása varázslóban az **Alapbeállítások** területen tegye a következőket:
+#### <a name="to-create-a-volume"></a><span data-ttu-id="1053b-101">Kötet létrehozása</span><span class="sxs-lookup"><span data-stu-id="1053b-101">To create a volume</span></span>
+1. <span data-ttu-id="1053b-102">A **Gyors üzembe helyezés** oldalon kattintson a **Kötet hozzáadása** lehetőségre.</span><span class="sxs-lookup"><span data-stu-id="1053b-102">On the device **Quick Start** page, click **Add a volume**.</span></span> <span data-ttu-id="1053b-103">Ezzel elindítja a Kötet hozzáadása varázslót.</span><span class="sxs-lookup"><span data-stu-id="1053b-103">This starts the Add a volume wizard.</span></span>
+2. <span data-ttu-id="1053b-104">A Kötet hozzáadása varázslóban az **Alapbeállítások** területen tegye a következőket:</span><span class="sxs-lookup"><span data-stu-id="1053b-104">In the Add a volume wizard, under **Basic Settings**, do the following:</span></span>
    
-   1. Adjon **nevet** a kötetnek.
-   2. Adja meg a kötethez tartozó **Kiosztott kapacitást** GB-ban vagy TB-ban. A kötet kapacitása egy 1 GB és 64 TB közötti érték lehet fizikai eszközök esetében.
-   3. A legördülő listából adja meg a **Használat típusa** beállítást a kötethez. 
-   4. Ha archív adatokhoz használja ezt a kötetet, jelölje be a **Kötet használata ritkábban használt archív adatokhoz** jelölőnégyzetet. Minden más használat esetén egyszerűen válassza a **Rétegzett kötet** lehetőséget. (A rétegzett kötetek neve korábban elsődleges kötet volt.)
+   1. <span data-ttu-id="1053b-105">Adjon **nevet** a kötetnek.</span><span class="sxs-lookup"><span data-stu-id="1053b-105">Supply a **Name** for your volume.</span></span>
+   2. <span data-ttu-id="1053b-106">Adja meg a kötethez tartozó **Kiosztott kapacitást** GB-ban vagy TB-ban.</span><span class="sxs-lookup"><span data-stu-id="1053b-106">Specify the **Provisioned Capacity** for your volume in GB or TB.</span></span> <span data-ttu-id="1053b-107">A kötet kapacitása egy 1 GB és 64 TB közötti érték lehet fizikai eszközök esetében.</span><span class="sxs-lookup"><span data-stu-id="1053b-107">The volume capacity must be between 1 GB and 64 TB for a physical device.</span></span>
+   3. <span data-ttu-id="1053b-108">A legördülő listából adja meg a **Használat típusa** beállítást a kötethez.</span><span class="sxs-lookup"><span data-stu-id="1053b-108">On the drop-down list, select the **Usage Type** for your volume.</span></span> 
+   4. <span data-ttu-id="1053b-109">Ha archív adatokhoz használja ezt a kötetet, jelölje be a **Kötet használata ritkábban használt archív adatokhoz** jelölőnégyzetet.</span><span class="sxs-lookup"><span data-stu-id="1053b-109">If you are using this volume for archival data, select the **Use this volume for less frequently accessed archival data** check box.</span></span> <span data-ttu-id="1053b-110">Minden más használat esetén egyszerűen válassza a **Rétegzett kötet** lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="1053b-110">For all other use cases, simply select **Tiered Volume**.</span></span> <span data-ttu-id="1053b-111">(A rétegzett kötetek neve korábban elsődleges kötet volt.)</span><span class="sxs-lookup"><span data-stu-id="1053b-111">(Tiered volumes were formerly called primary volumes).</span></span>
       
         ![Kötet hozzáadása](./media/storsimple-create-volume/ScreenshotUpdate1VolumeFlow.png)
       
-      1. Kattintson a nyíl ikonra ![nyíl ikon](./media/storsimple-create-volume/HCS_ArrowIcon-include.png) a következő oldalra lépéshez.
-3. A **További beállítások** párbeszédpanelen adjon hozzá egy új hozzáférés-vezérlési rekordot (ACR):
+      1. <span data-ttu-id="1053b-113">Kattintson a nyíl ikonra</span><span class="sxs-lookup"><span data-stu-id="1053b-113">Click the arrow icon</span></span> ![nyíl ikon](./media/storsimple-create-volume/HCS_ArrowIcon-include.png) <span data-ttu-id="1053b-115">a következő oldalra lépéshez.</span><span class="sxs-lookup"><span data-stu-id="1053b-115">to go to the next page.</span></span>
+3. <span data-ttu-id="1053b-116">A **További beállítások** párbeszédpanelen adjon hozzá egy új hozzáférés-vezérlési rekordot (ACR):</span><span class="sxs-lookup"><span data-stu-id="1053b-116">In the **Additional Settings** dialog box, add a new access control record (ACR):</span></span>
    
-   1. Adja meg az ACR **nevét**.
-   2. Az **iSCSI-kezdeményező neve** alatt adja meg a Windows-gazdagép iSCSI minősített nevét (IQN). Ha nem tudja az IQN-t, lépjen a [Windows Server-gazdagép IQN nevének lekérése](#get-the-iqn-of-a-windows-server-host) szakaszhoz.
-   3. Javasoljuk, hogy engedélyezze az alapértelmezett biztonsági mentést az **Alapértelmezett biztonsági mentés engedélyezése ehhez a kötethez** jelölőnégyzet bejelölésével. Az alapértelmezett biztonsági mentés létrehoz egy házirendet, amelyet a rendszer mindennap 22:30-kor (az eszköz ideje szerint) futtat, és létrehoz egy felhő-pillanatfelvételt a kötetről.
+   1. <span data-ttu-id="1053b-117">Adja meg az ACR **nevét**.</span><span class="sxs-lookup"><span data-stu-id="1053b-117">Supply a **Name** for your ACR.</span></span>
+   2. <span data-ttu-id="1053b-118">Az **iSCSI-kezdeményező neve** alatt adja meg a Windows-gazdagép iSCSI minősített nevét (IQN).</span><span class="sxs-lookup"><span data-stu-id="1053b-118">Under **iSCSI Initiator Name**, provide the iSCSI Qualified Name (IQN) of your Windows host.</span></span> <span data-ttu-id="1053b-119">Ha nem tudja az IQN-t, lépjen a [Windows Server-gazdagép IQN nevének lekérése](#get-the-iqn-of-a-windows-server-host) szakaszhoz.</span><span class="sxs-lookup"><span data-stu-id="1053b-119">If you don't have the IQN, go to [Get the IQN of a Windows Server host](#get-the-iqn-of-a-windows-server-host).</span></span>
+   3. <span data-ttu-id="1053b-120">Javasoljuk, hogy engedélyezze az alapértelmezett biztonsági mentést az **Alapértelmezett biztonsági mentés engedélyezése ehhez a kötethez** jelölőnégyzet bejelölésével.</span><span class="sxs-lookup"><span data-stu-id="1053b-120">We recommend that you enable a default backup by selecting the **Enable a default backup for this volume** check box.</span></span> <span data-ttu-id="1053b-121">Az alapértelmezett biztonsági mentés létrehoz egy házirendet, amelyet a rendszer mindennap 22:30-kor (az eszköz ideje szerint) futtat, és létrehoz egy felhő-pillanatfelvételt a kötetről.</span><span class="sxs-lookup"><span data-stu-id="1053b-121">The default backup will create a policy that executes at 22:30 each day (device time) and creates a cloud snapshot of this volume.</span></span>
       
       > [!NOTE]
-      > Miután itt engedélyezte a biztonsági mentést, a beállítás nem állítható vissza. A beállítás módosításához a kötetet kell szerkesztenie.
+      > <span data-ttu-id="1053b-122">Miután itt engedélyezte a biztonsági mentést, a beállítás nem állítható vissza.</span><span class="sxs-lookup"><span data-stu-id="1053b-122">After the backup is enabled here, it cannot be reverted.</span></span> <span data-ttu-id="1053b-123">A beállítás módosításához a kötetet kell szerkesztenie.</span><span class="sxs-lookup"><span data-stu-id="1053b-123">You will need to edit the volume to modify this setting.</span></span>
       > 
       > 
       
         ![Kötet hozzáadása](./media/storsimple-create-volume/AddVolume2-include.png)
-4. Kattintson a pipa ikonra ![pipa ikon](./media/storsimple-create-volume/HCS_CheckIcon-include.png). Létrejön egy kötet a megadott beállításokkal.
+4. <span data-ttu-id="1053b-125">Kattintson a pipa ikonra</span><span class="sxs-lookup"><span data-stu-id="1053b-125">Click the check icon</span></span> ![pipa ikon](./media/storsimple-create-volume/HCS_CheckIcon-include.png)<span data-ttu-id="1053b-127">.</span><span class="sxs-lookup"><span data-stu-id="1053b-127">.</span></span> <span data-ttu-id="1053b-128">Létrejön egy kötet a megadott beállításokkal.</span><span class="sxs-lookup"><span data-stu-id="1053b-128">A volume will be created with the specified settings.</span></span>
 
-![Videó elérhető](./media/storsimple-create-volume/Video_icon.png) **Videó elérhető**
+<span data-ttu-id="1053b-129">![Videó elérhető](./media/storsimple-create-volume/Video_icon.png) **Videó elérhető**</span><span class="sxs-lookup"><span data-stu-id="1053b-129">![Video available](./media/storsimple-create-volume/Video_icon.png) **Video available**</span></span>
 
-A StorSimple-kötet létrehozását bemutató videó megtekintéséhez kattintson [ide](https://azure.microsoft.com/documentation/videos/create-a-storsimple-volume/).
+<span data-ttu-id="1053b-130">A StorSimple-kötet létrehozását bemutató videó megtekintéséhez kattintson [ide](https://azure.microsoft.com/documentation/videos/create-a-storsimple-volume/).</span><span class="sxs-lookup"><span data-stu-id="1053b-130">To watch a video that demonstrates how to create a StorSimple volume, click [here](https://azure.microsoft.com/documentation/videos/create-a-storsimple-volume/).</span></span>
 

@@ -1,16 +1,16 @@
 
-**Objective-C**:
+<span data-ttu-id="d7031-101">**Objective-C**:</span><span class="sxs-lookup"><span data-stu-id="d7031-101">**Objective-C**:</span></span>
 
-1. A **QSAppDelegate.m**, importálja az iOS SDK és **QSTodoService.h**:
+1. <span data-ttu-id="d7031-102">A **QSAppDelegate.m**, importálja az iOS SDK és **QSTodoService.h**:</span><span class="sxs-lookup"><span data-stu-id="d7031-102">In **QSAppDelegate.m**, import the iOS SDK and **QSTodoService.h**:</span></span>
    
         #import <MicrosoftAzureMobile/MicrosoftAzureMobile.h>
         #import "QSTodoService.h"
-2. A `didFinishLaunchingWithOptions` a **QSAppDelegate.m**, a következő közvetlenül előtt sor beszúrása `return YES;`:
+2. <span data-ttu-id="d7031-103">A `didFinishLaunchingWithOptions` a **QSAppDelegate.m**, a következő közvetlenül előtt sor beszúrása `return YES;`:</span><span class="sxs-lookup"><span data-stu-id="d7031-103">In `didFinishLaunchingWithOptions` in **QSAppDelegate.m**, insert the following lines right before `return YES;`:</span></span>
    
         UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
-3. A **QSAppDelegate.m**, adja hozzá a következő kezelő metódusokat. Az alkalmazás most frissíteni leküldéses értesítések támogatásához használható. 
+3. <span data-ttu-id="d7031-104">A **QSAppDelegate.m**, adja hozzá a következő kezelő metódusokat.</span><span class="sxs-lookup"><span data-stu-id="d7031-104">In **QSAppDelegate.m**, add the following handler methods.</span></span> <span data-ttu-id="d7031-105">Az alkalmazás most frissíteni leküldéses értesítések támogatásához használható.</span><span class="sxs-lookup"><span data-stu-id="d7031-105">Your app is now updated to support push notifications.</span></span> 
    
         // Registration with APNs is successful
         - (void)application:(UIApplication *)application
@@ -77,17 +77,17 @@
    
         }
 
-**SWIFT**:
+<span data-ttu-id="d7031-106">**SWIFT**:</span><span class="sxs-lookup"><span data-stu-id="d7031-106">**Swift**:</span></span>
 
-1. Adja hozzá a fájl **ClientManager.swift** a következő tartalommal. Cserélje le *AppUrl %* az Azure Mobile Apps-háttéralkalmazás URL-címét.
+1. <span data-ttu-id="d7031-107">Adja hozzá a fájl **ClientManager.swift** a következő tartalommal.</span><span class="sxs-lookup"><span data-stu-id="d7031-107">Add file **ClientManager.swift** with the following contents.</span></span> <span data-ttu-id="d7031-108">Cserélje le *AppUrl %* az Azure Mobile Apps-háttéralkalmazás URL-címét.</span><span class="sxs-lookup"><span data-stu-id="d7031-108">Replace *%AppUrl%* with the URL of the Azure Mobile App backend.</span></span>
    
         class ClientManager {
             static let sharedClient = MSClient(applicationURLString: "%AppUrl%")
         }
-2. A **ToDoTableViewController.swift**, cserélje le a `let client` inicializálja sor egy `MSClient` ehhez a sorhoz:
+2. <span data-ttu-id="d7031-109">A **ToDoTableViewController.swift**, cserélje le a `let client` inicializálja sor egy `MSClient` ehhez a sorhoz:</span><span class="sxs-lookup"><span data-stu-id="d7031-109">In **ToDoTableViewController.swift**, replace the `let client` line that initializes an `MSClient` with this line:</span></span>
    
         let client = ClientManager.sharedClient
-3. A **AppDelegate.swift**, cserélje le a törzsét `func application` az alábbiak szerint:
+3. <span data-ttu-id="d7031-110">A **AppDelegate.swift**, cserélje le a törzsét `func application` az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="d7031-110">In **AppDelegate.swift**, replace the body of `func application` as follows:</span></span>
    
         func application(application: UIApplication,
           didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -97,7 +97,7 @@
            application.registerForRemoteNotifications()
            return true
         }
-4. A **AppDelegate.swift**, adja hozzá a következő kezelő metódusokat. Az alkalmazás most frissíteni leküldéses értesítések támogatásához használható.
+4. <span data-ttu-id="d7031-111">A **AppDelegate.swift**, adja hozzá a következő kezelő metódusokat.</span><span class="sxs-lookup"><span data-stu-id="d7031-111">In **AppDelegate.swift**, add the following handler methods.</span></span> <span data-ttu-id="d7031-112">Az alkalmazás most frissíteni leküldéses értesítések támogatásához használható.</span><span class="sxs-lookup"><span data-stu-id="d7031-112">Your app is now updated to support push notifications.</span></span>
    
         func application(application: UIApplication,
            didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {

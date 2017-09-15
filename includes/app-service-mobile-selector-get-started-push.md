@@ -1,11 +1,11 @@
 > [!div class="op_single_selector"]
-> * [Android](../articles/app-service-mobile/app-service-mobile-android-get-started-push.md)
-> * [Cordova](../articles/app-service-mobile/app-service-mobile-cordova-get-started-push.md)
-> * [iOS](../articles/app-service-mobile/app-service-mobile-ios-get-started-push.md)
-> * [Windows](../articles/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md)
-> * [Xamarin.Android](../articles/app-service-mobile/app-service-mobile-xamarin-android-get-started-push.md)
-> * [Xamarin.iOS](../articles/app-service-mobile/app-service-mobile-xamarin-ios-get-started-push.md)
-> * [Xamarin.Forms](../articles/app-service-mobile/app-service-mobile-xamarin-forms-get-started-push.md)
+> * [<span data-ttu-id="59072-101">Android</span><span class="sxs-lookup"><span data-stu-id="59072-101">Android</span></span>](../articles/app-service-mobile/app-service-mobile-android-get-started-push.md)
+> * [<span data-ttu-id="59072-102">Cordova</span><span class="sxs-lookup"><span data-stu-id="59072-102">Cordova</span></span>](../articles/app-service-mobile/app-service-mobile-cordova-get-started-push.md)
+> * [<span data-ttu-id="59072-103">iOS</span><span class="sxs-lookup"><span data-stu-id="59072-103">iOS</span></span>](../articles/app-service-mobile/app-service-mobile-ios-get-started-push.md)
+> * [<span data-ttu-id="59072-104">Windows</span><span class="sxs-lookup"><span data-stu-id="59072-104">Windows</span></span>](../articles/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md)
+> * [<span data-ttu-id="59072-105">Xamarin.Android</span><span class="sxs-lookup"><span data-stu-id="59072-105">Xamarin.Android</span></span>](../articles/app-service-mobile/app-service-mobile-xamarin-android-get-started-push.md)
+> * [<span data-ttu-id="59072-106">Xamarin.iOS</span><span class="sxs-lookup"><span data-stu-id="59072-106">Xamarin.iOS</span></span>](../articles/app-service-mobile/app-service-mobile-xamarin-ios-get-started-push.md)
+> * [<span data-ttu-id="59072-107">Xamarin.Forms</span><span class="sxs-lookup"><span data-stu-id="59072-107">Xamarin.Forms</span></span>](../articles/app-service-mobile/app-service-mobile-xamarin-forms-get-started-push.md)
 > 
 > 
 

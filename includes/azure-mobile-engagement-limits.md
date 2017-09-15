@@ -1,11 +1,11 @@
-| Erőforrás | Felső korlát |
+| <span data-ttu-id="99544-101">Erőforrás</span><span class="sxs-lookup"><span data-stu-id="99544-101">Resource</span></span> | <span data-ttu-id="99544-102">Felső korlát</span><span class="sxs-lookup"><span data-stu-id="99544-102">Maximum Limit</span></span> |
 | --- | --- |
-| Alkalmazás gyűjtemény felhasználók |5 alkalmazás gyűjteményenként |
-| Adatpont átlagos |Aktív felhasználó/napi 200 |
-| Átlagos App-Info beállítása |Aktív felhasználó/naponta 50 |
-| Átlagos leküldött üzenetek |Aktív felhasználó/naponta 20 |
-| Szegmensek |alkalmazásonkénti 100 |
-| Szegmensenkénti feltételek |10 |
-| Aktív leküldéses kampányokra |alkalmazásonkénti 50 |
-| Teljes leküldéses kampányokra (tartalmazza a aktív & Befejezve) |alkalmazásonkénti 1000 |
+| <span data-ttu-id="99544-103">Alkalmazás gyűjtemény felhasználók</span><span class="sxs-lookup"><span data-stu-id="99544-103">App Collection Users</span></span> |<span data-ttu-id="99544-104">5 alkalmazás gyűjteményenként</span><span class="sxs-lookup"><span data-stu-id="99544-104">5 per App Collection</span></span> |
+| <span data-ttu-id="99544-105">Adatpont átlagos</span><span class="sxs-lookup"><span data-stu-id="99544-105">Average Data points</span></span> |<span data-ttu-id="99544-106">Aktív felhasználó/napi 200</span><span class="sxs-lookup"><span data-stu-id="99544-106">200 per Active User/Day</span></span> |
+| <span data-ttu-id="99544-107">Átlagos App-Info beállítása</span><span class="sxs-lookup"><span data-stu-id="99544-107">Average App-Info set</span></span> |<span data-ttu-id="99544-108">Aktív felhasználó/naponta 50</span><span class="sxs-lookup"><span data-stu-id="99544-108">50 per Active User/Day</span></span> |
+| <span data-ttu-id="99544-109">Átlagos leküldött üzenetek</span><span class="sxs-lookup"><span data-stu-id="99544-109">Average Messages pushed</span></span> |<span data-ttu-id="99544-110">Aktív felhasználó/naponta 20</span><span class="sxs-lookup"><span data-stu-id="99544-110">20 per Active User/Day</span></span> |
+| <span data-ttu-id="99544-111">Szegmensek</span><span class="sxs-lookup"><span data-stu-id="99544-111">Segments</span></span> |<span data-ttu-id="99544-112">alkalmazásonkénti 100</span><span class="sxs-lookup"><span data-stu-id="99544-112">100 per app</span></span> |
+| <span data-ttu-id="99544-113">Szegmensenkénti feltételek</span><span class="sxs-lookup"><span data-stu-id="99544-113">Criteria per segment</span></span> |<span data-ttu-id="99544-114">10</span><span class="sxs-lookup"><span data-stu-id="99544-114">10</span></span> |
+| <span data-ttu-id="99544-115">Aktív leküldéses kampányokra</span><span class="sxs-lookup"><span data-stu-id="99544-115">Active Push Campaigns</span></span> |<span data-ttu-id="99544-116">alkalmazásonkénti 50</span><span class="sxs-lookup"><span data-stu-id="99544-116">50 per app</span></span> |
+| <span data-ttu-id="99544-117">Teljes leküldéses kampányokra (tartalmazza a aktív & Befejezve)</span><span class="sxs-lookup"><span data-stu-id="99544-117">Total Push Campaigns (includes Active & Completed)</span></span> |<span data-ttu-id="99544-118">alkalmazásonkénti 1000</span><span class="sxs-lookup"><span data-stu-id="99544-118">1000 per app</span></span> |
 

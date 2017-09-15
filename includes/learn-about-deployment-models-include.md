@@ -1,2 +1,2 @@
 > [!IMPORTANT]
-> Az Azure-erőforrásokkal való munka előtt ismerkedjen meg az Azure két üzembe helyezési modelljével: [Resource Manager és klasszikus](../articles/azure-resource-manager/resource-manager-deployment-model.md).
+> <span data-ttu-id="85843-101">Az Azure-erőforrásokkal való munka előtt ismerkedjen meg az Azure két üzembe helyezési modelljével: [Resource Manager és klasszikus](../articles/azure-resource-manager/resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="85843-101">Before you work with Azure resources, get familiar with the deployment models: [Resource Manager, and classic](../articles/azure-resource-manager/resource-manager-deployment-model.md).</span></span>

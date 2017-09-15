@@ -1,42 +1,42 @@
-### <a name="prerequisites"></a>Előfeltételek
-* Az Azure-fiók; létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free)
-* Egy [Azure SQL Database](../articles/sql-database/sql-database-get-started.md) és annak kapcsolati adatait, beleértve a kiszolgáló neve, az adatbázisnév és a felhasználónév/jelszó. Ez az információ az SQL adatbázis-kapcsolati karakterlánc szerepel:
+### <a name="prerequisites"></a><span data-ttu-id="24fb5-101">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="24fb5-101">Prerequisites</span></span>
+* <span data-ttu-id="24fb5-102">Az Azure-fiók; létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free)</span><span class="sxs-lookup"><span data-stu-id="24fb5-102">An Azure account; you can create a [free account](https://azure.microsoft.com/free)</span></span>
+* <span data-ttu-id="24fb5-103">Egy [Azure SQL Database](../articles/sql-database/sql-database-get-started.md) és annak kapcsolati adatait, beleértve a kiszolgáló neve, az adatbázisnév és a felhasználónév/jelszó.</span><span class="sxs-lookup"><span data-stu-id="24fb5-103">An [Azure SQL Database](../articles/sql-database/sql-database-get-started.md) with its connection information, including the server name, database name, and username/password.</span></span> <span data-ttu-id="24fb5-104">Ez az információ az SQL adatbázis-kapcsolati karakterlánc szerepel:</span><span class="sxs-lookup"><span data-stu-id="24fb5-104">This information is included in the SQL Database connection string:</span></span>
   
-    Kiszolgáló = tcp:*yoursqlservername*. database.windows.net,1433;Initial katalógus =*yourqldbname*; Biztonsági információ megőrzése = False; Felhasználói azonosító = {your_username}; Jelszó = {your_password}; MultipleActiveResultSets eredménykészleteket = False; Titkosítani = True; TrustServerCertificate = False; Kapcsolódási időtúllépés = 30.
+    <span data-ttu-id="24fb5-105">Kiszolgáló = tcp:*yoursqlservername*. database.windows.net,1433;Initial katalógus =*yourqldbname*; Biztonsági információ megőrzése = False; Felhasználói azonosító = {your_username}; Jelszó = {your_password}; MultipleActiveResultSets eredménykészleteket = False; Titkosítani = True; TrustServerCertificate = False; Kapcsolódási időtúllépés = 30.</span><span class="sxs-lookup"><span data-stu-id="24fb5-105">Server=tcp:*yoursqlservername*.database.windows.net,1433;Initial Catalog=*yourqldbname*;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;</span></span>
   
-    Tudjon meg többet az [Azure SQL-adatbázisok](https://azure.microsoft.com/services/sql-database).
+    <span data-ttu-id="24fb5-106">Tudjon meg többet az [Azure SQL-adatbázisok](https://azure.microsoft.com/services/sql-database).</span><span class="sxs-lookup"><span data-stu-id="24fb5-106">Read more about [Azure SQL Databases](https://azure.microsoft.com/services/sql-database).</span></span>
 
 > [!NOTE]
-> Egy Azure SQL-adatbázis létrehozásakor az SQL mellékelt mintaadatbázisokat is létrehozhat. 
+> <span data-ttu-id="24fb5-107">Egy Azure SQL-adatbázis létrehozásakor az SQL mellékelt mintaadatbázisokat is létrehozhat.</span><span class="sxs-lookup"><span data-stu-id="24fb5-107">When you create an Azure SQL Database, you can also create the sample databases included with SQL.</span></span> 
 > 
 > 
 
-A logikai alkalmazást az Azure SQL Database használatához csatlakozni az SQL-adatbázis. Ehhez egyszerűen a logikai alkalmazásban, az Azure portálon.  
+<span data-ttu-id="24fb5-108">A logikai alkalmazást az Azure SQL Database használatához csatlakozni az SQL-adatbázis.</span><span class="sxs-lookup"><span data-stu-id="24fb5-108">Before using your Azure SQL Database in a logic app, connect to your SQL Database.</span></span> <span data-ttu-id="24fb5-109">Ehhez egyszerűen a logikai alkalmazásban, az Azure portálon.</span><span class="sxs-lookup"><span data-stu-id="24fb5-109">You can do this easily within your logic app on the Azure portal.</span></span>  
 
-Csatlakozás az Azure SQL-adatbázis, az alábbi lépéseket követve:  
+<span data-ttu-id="24fb5-110">Csatlakozás az Azure SQL-adatbázis, az alábbi lépéseket követve:</span><span class="sxs-lookup"><span data-stu-id="24fb5-110">Connect to your Azure SQL Database using the following steps:</span></span>  
 
-1. Logikai alkalmazás létrehozása. A Logic Apps-tervezőben adja hozzá egy eseményindító, és adja hozzá az műveletet. Válassza ki **megjelenítése Microsoft felügyelt API-k** a legördülő listában, majd adja meg az "sql" be a keresőmezőbe. A műveletek közül választhat:  
+1. <span data-ttu-id="24fb5-111">Logikai alkalmazás létrehozása.</span><span class="sxs-lookup"><span data-stu-id="24fb5-111">Create a logic app.</span></span> <span data-ttu-id="24fb5-112">A Logic Apps-tervezőben adja hozzá egy eseményindító, és adja hozzá az műveletet.</span><span class="sxs-lookup"><span data-stu-id="24fb5-112">In the Logic Apps designer, add a trigger, and then add an action.</span></span> <span data-ttu-id="24fb5-113">Válassza ki **megjelenítése Microsoft felügyelt API-k** a legördülő listában, majd adja meg az "sql" be a keresőmezőbe.</span><span class="sxs-lookup"><span data-stu-id="24fb5-113">Select **Show Microsoft managed APIs** in the drop down list, and then enter "sql" in the search box.</span></span> <span data-ttu-id="24fb5-114">A műveletek közül választhat:</span><span class="sxs-lookup"><span data-stu-id="24fb5-114">Select one of the actions:</span></span>  
    
     ![Az SQL Azure kapcsolat létrehozását lépést](./media/connectors-create-api-sqlazure/sql-actions.png)
-2. Ha még nem korábban hozott létre a kapcsolatokat, az SQL Database, kéri a kapcsolat adatai:  
+2. <span data-ttu-id="24fb5-116">Ha még nem korábban hozott létre a kapcsolatokat, az SQL Database, kéri a kapcsolat adatai:</span><span class="sxs-lookup"><span data-stu-id="24fb5-116">If you haven't previously created any connections to SQL Database, you are prompted for the connection details:</span></span>  
    
     ![Az SQL Azure kapcsolat létrehozását lépést](./media/connectors-create-api-sqlazure/connection-details.png) 
-3. Írja be az SQL-adatbázis adatait. Tulajdonságok csillaggal szükség.
+3. <span data-ttu-id="24fb5-118">Írja be az SQL-adatbázis adatait.</span><span class="sxs-lookup"><span data-stu-id="24fb5-118">Enter the SQL Database details.</span></span> <span data-ttu-id="24fb5-119">Tulajdonságok csillaggal szükség.</span><span class="sxs-lookup"><span data-stu-id="24fb5-119">Properties with an asterisk are required.</span></span>
    
-   | Tulajdonság | Részletek |
+   | <span data-ttu-id="24fb5-120">Tulajdonság</span><span class="sxs-lookup"><span data-stu-id="24fb5-120">Property</span></span> | <span data-ttu-id="24fb5-121">Részletek</span><span class="sxs-lookup"><span data-stu-id="24fb5-121">Details</span></span> |
    | --- | --- |
-   | Csatlakozás az átjárón keresztül |Hagyja üresen ezt. Ez használatos, amikor csatlakozik egy helyszíni SQL Server. |
-   | Kapcsolat neve * |Adjon meg egy tetszőleges nevet a kapcsolat. |
-   | SQL Server neve * |Adja meg a kiszolgáló nevét; Ez az hasonlót *servername.database.windows.net*. A kiszolgáló nevét az SQL adatbázis-tulajdonságok az Azure-portálon jelenik meg, és a kapcsolati karakterláncot is megjelenik. |
-   | SQL-adatbázis neve * |Adja meg a neve, mint az SQL-adatbázis. Ez az SQL adatbázis-tulajdonságok a kapcsolati karakterláncban szereplő: Initial Catalog =*yoursqldbname*. |
-   | Felhasználónév * |Megadja a felhasználónevét, az SQL-adatbázis létrehozásakor létrehozott. Ez az SQL adatbázis-tulajdonságok az Azure-portálon jelenik meg. |
-   | Jelszó * |Adja meg a jelszót, amelyet az SQL-adatbázis létrehozásakor. |
+   | <span data-ttu-id="24fb5-122">Csatlakozás az átjárón keresztül</span><span class="sxs-lookup"><span data-stu-id="24fb5-122">Connect via Gateway</span></span> |<span data-ttu-id="24fb5-123">Hagyja üresen ezt.</span><span class="sxs-lookup"><span data-stu-id="24fb5-123">Leave this unchecked.</span></span> <span data-ttu-id="24fb5-124">Ez használatos, amikor csatlakozik egy helyszíni SQL Server.</span><span class="sxs-lookup"><span data-stu-id="24fb5-124">This is used when connecting to an on-premises SQL Server.</span></span> |
+   | <span data-ttu-id="24fb5-125">Kapcsolat neve *</span><span class="sxs-lookup"><span data-stu-id="24fb5-125">Connection Name *</span></span> |<span data-ttu-id="24fb5-126">Adjon meg egy tetszőleges nevet a kapcsolat.</span><span class="sxs-lookup"><span data-stu-id="24fb5-126">Enter any name for your connection.</span></span> |
+   | <span data-ttu-id="24fb5-127">SQL Server neve *</span><span class="sxs-lookup"><span data-stu-id="24fb5-127">SQL Server Name *</span></span> |<span data-ttu-id="24fb5-128">Adja meg a kiszolgáló nevét; Ez az hasonlót *servername.database.windows.net*.</span><span class="sxs-lookup"><span data-stu-id="24fb5-128">Enter the server name; which is something like *servername.database.windows.net*.</span></span> <span data-ttu-id="24fb5-129">A kiszolgáló nevét az SQL adatbázis-tulajdonságok az Azure-portálon jelenik meg, és a kapcsolati karakterláncot is megjelenik.</span><span class="sxs-lookup"><span data-stu-id="24fb5-129">The server name is displayed in the SQL Database properties in the Azure portal, and also displayed in the connection string.</span></span> |
+   | <span data-ttu-id="24fb5-130">SQL-adatbázis neve *</span><span class="sxs-lookup"><span data-stu-id="24fb5-130">SQL Database Name *</span></span> |<span data-ttu-id="24fb5-131">Adja meg a neve, mint az SQL-adatbázis.</span><span class="sxs-lookup"><span data-stu-id="24fb5-131">Enter the name you gave your SQL Database.</span></span> <span data-ttu-id="24fb5-132">Ez az SQL adatbázis-tulajdonságok a kapcsolati karakterláncban szereplő: Initial Catalog =*yoursqldbname*.</span><span class="sxs-lookup"><span data-stu-id="24fb5-132">This is listed in the SQL Database properties in the connection string: Initial Catalog=*yoursqldbname*.</span></span> |
+   | <span data-ttu-id="24fb5-133">Felhasználónév *</span><span class="sxs-lookup"><span data-stu-id="24fb5-133">Username *</span></span> |<span data-ttu-id="24fb5-134">Megadja a felhasználónevét, az SQL-adatbázis létrehozásakor létrehozott.</span><span class="sxs-lookup"><span data-stu-id="24fb5-134">Enter the username you created when the SQL Database was created.</span></span> <span data-ttu-id="24fb5-135">Ez az SQL adatbázis-tulajdonságok az Azure-portálon jelenik meg.</span><span class="sxs-lookup"><span data-stu-id="24fb5-135">This is listed in the SQL Database properties in the Azure portal.</span></span> |
+   | <span data-ttu-id="24fb5-136">Jelszó *</span><span class="sxs-lookup"><span data-stu-id="24fb5-136">Password *</span></span> |<span data-ttu-id="24fb5-137">Adja meg a jelszót, amelyet az SQL-adatbázis létrehozásakor.</span><span class="sxs-lookup"><span data-stu-id="24fb5-137">Enter the password you created when the SQL Database was created.</span></span> |
    
-    Ezek a hitelesítő adatok segítségével engedélyezik a Logic Apps alkalmazást, és az SQL-adatok elérése. Művelet befejeződése után a kapcsolat adatai keressen a következőhöz hasonló:  
+    <span data-ttu-id="24fb5-138">Ezek a hitelesítő adatok segítségével engedélyezik a Logic Apps alkalmazást, és az SQL-adatok elérése.</span><span class="sxs-lookup"><span data-stu-id="24fb5-138">These credentials are used to authorize your logic app to connect, and access your SQL data.</span></span> <span data-ttu-id="24fb5-139">Művelet befejeződése után a kapcsolat adatai keressen a következőhöz hasonló:</span><span class="sxs-lookup"><span data-stu-id="24fb5-139">Once complete, your connection details look similar to the following:</span></span>  
    
     ![Az SQL Azure kapcsolat létrehozását lépést](./media/connectors-create-api-sqlazure/sample-connection.png) 
-4. Kattintson a **Létrehozás** gombra. 
-5. Figyelje meg, a kapcsolat létrejött. Most folytassa a Logic Apps alkalmazást más lépéseket: 
+4. <span data-ttu-id="24fb5-141">Kattintson a **Létrehozás** gombra.</span><span class="sxs-lookup"><span data-stu-id="24fb5-141">Select **Create**.</span></span> 
+5. <span data-ttu-id="24fb5-142">Figyelje meg, a kapcsolat létrejött.</span><span class="sxs-lookup"><span data-stu-id="24fb5-142">Notice the connection has been created.</span></span> <span data-ttu-id="24fb5-143">Most folytassa a Logic Apps alkalmazást más lépéseket:</span><span class="sxs-lookup"><span data-stu-id="24fb5-143">Now, proceed with the other steps in your logic app:</span></span> 
    
     ![Az SQL Azure kapcsolat létrehozását lépést](./media/connectors-create-api-sqlazure/table.png)
 

@@ -1,10 +1,10 @@
-| Erőforrás | Felső korlát |
+| <span data-ttu-id="a2dfd-101">Erőforrás</span><span class="sxs-lookup"><span data-stu-id="a2dfd-101">Resource</span></span> | <span data-ttu-id="a2dfd-102">Felső korlát</span><span class="sxs-lookup"><span data-stu-id="a2dfd-102">Maximum Limit</span></span> |
 | --- | --- |
-| Új Automation-fiók (nem ütemezett feladatok) / 30 másodpercenként küldheti el feladatok maximális száma |100 |
-| Automation-fiók (nem ütemezett feladatok) idő ugyanazt a példányát, egyidejűleg futó feladatok maximális száma |200 |
-| Automation-fiók / 30 másodpercenként importálható modulok maximális száma |5 |
-| A modul maximális mérete |100 MB |
-| A feladat futtatása időpontja - ingyenes szint |naptári hónaponként előfizetésenként 500 perc |
-| Egy feladathoz megadott memória maximális mennyisége |400 MB |
-| Hálózati sockets feladat telepítésenként engedélyezett maximális száma |1000 |
+| <span data-ttu-id="a2dfd-103">Új Automation-fiók (nem ütemezett feladatok) / 30 másodpercenként küldheti el feladatok maximális száma</span><span class="sxs-lookup"><span data-stu-id="a2dfd-103">Max number of new jobs that can be submitted every 30 seconds per Automation Account (non Scheduled jobs)</span></span> |<span data-ttu-id="a2dfd-104">100</span><span class="sxs-lookup"><span data-stu-id="a2dfd-104">100</span></span> |
+| <span data-ttu-id="a2dfd-105">Automation-fiók (nem ütemezett feladatok) idő ugyanazt a példányát, egyidejűleg futó feladatok maximális száma</span><span class="sxs-lookup"><span data-stu-id="a2dfd-105">Max number of concurrent running jobs at the same instance of time per Automation Account (non Scheduled jobs)</span></span> |<span data-ttu-id="a2dfd-106">200</span><span class="sxs-lookup"><span data-stu-id="a2dfd-106">200</span></span> |
+| <span data-ttu-id="a2dfd-107">Automation-fiók / 30 másodpercenként importálható modulok maximális száma</span><span class="sxs-lookup"><span data-stu-id="a2dfd-107">Max number of modules that can be imported every 30 seconds per Automation Account</span></span> |<span data-ttu-id="a2dfd-108">5</span><span class="sxs-lookup"><span data-stu-id="a2dfd-108">5</span></span> |
+| <span data-ttu-id="a2dfd-109">A modul maximális mérete</span><span class="sxs-lookup"><span data-stu-id="a2dfd-109">Max size of a Module</span></span> |<span data-ttu-id="a2dfd-110">100 MB</span><span class="sxs-lookup"><span data-stu-id="a2dfd-110">100 MB</span></span> |
+| <span data-ttu-id="a2dfd-111">A feladat futtatása időpontja - ingyenes szint</span><span class="sxs-lookup"><span data-stu-id="a2dfd-111">Job Run Time - Free tier</span></span> |<span data-ttu-id="a2dfd-112">naptári hónaponként előfizetésenként 500 perc</span><span class="sxs-lookup"><span data-stu-id="a2dfd-112">500 minutes per subscription per calendar month</span></span> |
+| <span data-ttu-id="a2dfd-113">Egy feladathoz megadott memória maximális mennyisége</span><span class="sxs-lookup"><span data-stu-id="a2dfd-113">Max amount of memory given to a job</span></span> |<span data-ttu-id="a2dfd-114">400 MB</span><span class="sxs-lookup"><span data-stu-id="a2dfd-114">400 MB</span></span> |
+| <span data-ttu-id="a2dfd-115">Hálózati sockets feladat telepítésenként engedélyezett maximális száma</span><span class="sxs-lookup"><span data-stu-id="a2dfd-115">Max number of network sockets allowed per job</span></span> |<span data-ttu-id="a2dfd-116">1000</span><span class="sxs-lookup"><span data-stu-id="a2dfd-116">1000</span></span> |
 

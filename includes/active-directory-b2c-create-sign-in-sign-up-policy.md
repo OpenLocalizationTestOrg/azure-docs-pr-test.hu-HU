@@ -1,38 +1,38 @@
-Az alkalmazásba való bejelentkezés engedélyezéséhez létre kell hoznia egy bejelentkezési szabályzatot. Ez a szabályzat írja le, hogy mit tapasztalnak a felhasználók a bejelentkezés során, valamint megadja azokat a jogkivonatokat, amelyeket az alkalmazás fogad a sikeres bejelentkezésekkor.
+<span data-ttu-id="b1087-101">Az alkalmazásba való bejelentkezés engedélyezéséhez létre kell hoznia egy bejelentkezési szabályzatot.</span><span class="sxs-lookup"><span data-stu-id="b1087-101">To enable sign-in on your application, you will need to create a sign-in policy.</span></span> <span data-ttu-id="b1087-102">Ez a szabályzat írja le, hogy mit tapasztalnak a felhasználók a bejelentkezés során, valamint megadja azokat a jogkivonatokat, amelyeket az alkalmazás fogad a sikeres bejelentkezésekkor.</span><span class="sxs-lookup"><span data-stu-id="b1087-102">This policy describes the experiences that consumers will go through during sign-in and the contents of tokens that the application will receive on successful sign-ins.</span></span>
 
 [!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](active-directory-b2c-portal-navigate-b2c-service.md)]
 
-A beállítások szabályzatokat tartalmazó részén válassza a **Regisztrálási vagy bejelentkezési szabályzatok** lehetőséget, majd kattintson a **+ Hozzáadás** gombra.
+<span data-ttu-id="b1087-103">A beállítások szabályzatokat tartalmazó részén válassza a **Regisztrálási vagy bejelentkezési szabályzatok** lehetőséget, majd kattintson a **+ Hozzáadás** gombra.</span><span class="sxs-lookup"><span data-stu-id="b1087-103">In the policies section of settings, select **Sign-up or sign-in policies** and click **+ Add**.</span></span>
 
 ![Válassza ki a regisztrálási vagy a bejelentkezési szabályzatokat, és kattintson a Hozzáadás gombra.](media/active-directory-b2c-create-sign-in-sign-up-policy/add-b2c-signup-signin-policy.png)
 
-Adjon meg egy **nevet** a szabályzatnak, amelyre az alkalmazás hivatkozni fog. Adja meg például a következőt: `SiUpIn`.
+<span data-ttu-id="b1087-105">Adjon meg egy **nevet** a szabályzatnak, amelyre az alkalmazás hivatkozni fog.</span><span class="sxs-lookup"><span data-stu-id="b1087-105">Enter a policy **Name** for your application to reference.</span></span> <span data-ttu-id="b1087-106">Adja meg például a következőt: `SiUpIn`.</span><span class="sxs-lookup"><span data-stu-id="b1087-106">For example, enter `SiUpIn`.</span></span>
 
-Válassza az **Identitásszolgáltatók** lehetőséget, és jelölje be a **Regisztráció e-mail-címmel** jelölőnégyzetet. Azt is megteheti, hogy közösségi identitásszolgáltatókat választ ki, ha ezek már be vannak állítva. Kattintson az **OK** gombra.
+<span data-ttu-id="b1087-107">Válassza az **Identitásszolgáltatók** lehetőséget, és jelölje be a **Regisztráció e-mail-címmel** jelölőnégyzetet.</span><span class="sxs-lookup"><span data-stu-id="b1087-107">Select **Identity providers** and check **Email signup**.</span></span> <span data-ttu-id="b1087-108">Azt is megteheti, hogy közösségi identitásszolgáltatókat választ ki, ha ezek már be vannak állítva.</span><span class="sxs-lookup"><span data-stu-id="b1087-108">Optionally, you can also select social identity providers, if already configured.</span></span> <span data-ttu-id="b1087-109">Kattintson az **OK** gombra.</span><span class="sxs-lookup"><span data-stu-id="b1087-109">Click **OK**.</span></span>
 
 ![Válassza a Regisztráció e-mail-címmel lehetőséget identitásszolgáltatóként, és kattintson az OK gombra.](media/active-directory-b2c-create-sign-in-sign-up-policy/add-b2c-signup-signin-identity-providers.png)
 
-Válassza a **Regisztrálási attribútumok** lehetőséget. Válassza ki, milyen attribútumokat kell a felhasználóknak megadniuk a regisztráció során. Például jelölje be az **Ország/régió**, a **Megjelenítendő név** és az **Irányítószám** attribútumokat. Kattintson az **OK** gombra.
+<span data-ttu-id="b1087-111">Válassza a **Regisztrálási attribútumok** lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="b1087-111">Select **Sign-up attributes**.</span></span> <span data-ttu-id="b1087-112">Válassza ki, milyen attribútumokat kell a felhasználóknak megadniuk a regisztráció során.</span><span class="sxs-lookup"><span data-stu-id="b1087-112">Choose attributes you want to collect from the consumer during sign-up.</span></span> <span data-ttu-id="b1087-113">Például jelölje be az **Ország/régió**, a **Megjelenítendő név** és az **Irányítószám** attribútumokat.</span><span class="sxs-lookup"><span data-stu-id="b1087-113">For example, check **Country/Region**, **Display Name**, and **Postal Code**.</span></span> <span data-ttu-id="b1087-114">Kattintson az **OK** gombra.</span><span class="sxs-lookup"><span data-stu-id="b1087-114">Click **OK**.</span></span>
 
 ![Válaszon ki néhány attribútumot, majd kattintson az OK gombra.](media/active-directory-b2c-create-sign-in-sign-up-policy/add-b2c-signup-signin-sign-up-attributes.png)
 
-Válassza az **Alkalmazásjogcímek** lehetőséget. Válassza ki azokat a jogcímeket, amelyeket szeretne szerepeltetni a sikeres regisztrációs vagy bejelentkezési művelet után az alkalmazásnak visszaküldött hitelesítő jogkivonatokban. Válassza például a **Megjelenítendő név**, az **Identitásszolgáltató**, az **Irányítószám**, az **Új felhasználó** és a **Felhasználó objektumazonosítója** lehetőséget.
+<span data-ttu-id="b1087-116">Válassza az **Alkalmazásjogcímek** lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="b1087-116">Select **Application claims**.</span></span> <span data-ttu-id="b1087-117">Válassza ki azokat a jogcímeket, amelyeket szeretne szerepeltetni a sikeres regisztrációs vagy bejelentkezési művelet után az alkalmazásnak visszaküldött hitelesítő jogkivonatokban.</span><span class="sxs-lookup"><span data-stu-id="b1087-117">Choose claims you want returned in the authorization tokens sent back to your application after a successful sign-up or sign-in experience.</span></span> <span data-ttu-id="b1087-118">Válassza például a **Megjelenítendő név**, az **Identitásszolgáltató**, az **Irányítószám**, az **Új felhasználó** és a **Felhasználó objektumazonosítója** lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="b1087-118">For example, select **Display Name**, **Identity Provider**, **Postal Code**, **User is new** and **User's Object ID**.</span></span>
 
 ![Válasszon ki néhány alkalmazásjogcímet, majd kattintson az OK gombra.](media/active-directory-b2c-create-sign-in-sign-up-policy/add-b2c-signup-signin-application-claims.png)
 
-A szabályzat hozzáadásához kattintson a **Létrehozás** gombra. A szabályzat **B2C_1_SiUpIn** néven jelenik meg a listában. A **B2C_1_** előtagot a rendszer adja hozzá a névhez.
+<span data-ttu-id="b1087-120">A szabályzat hozzáadásához kattintson a **Létrehozás** gombra.</span><span class="sxs-lookup"><span data-stu-id="b1087-120">Click **Create** to add the policy.</span></span> <span data-ttu-id="b1087-121">A szabályzat **B2C_1_SiUpIn** néven jelenik meg a listában.</span><span class="sxs-lookup"><span data-stu-id="b1087-121">The policy is listed as **B2C_1_SiUpIn**.</span></span> <span data-ttu-id="b1087-122">A **B2C_1_** előtagot a rendszer adja hozzá a névhez.</span><span class="sxs-lookup"><span data-stu-id="b1087-122">The **B2C_1_** prefix is appended to the name.</span></span>
 
-Nyissa meg a szabályzatot a **B2C_1_SiUpIn** kiválasztásával. Ellenőrizze a táblázatban megadott beállításokat, majd kattintson a **Futtatás most** gombra.
+<span data-ttu-id="b1087-123">Nyissa meg a szabályzatot a **B2C_1_SiUpIn** kiválasztásával.</span><span class="sxs-lookup"><span data-stu-id="b1087-123">Open the policy by selecting **B2C_1_SiUpIn**.</span></span> <span data-ttu-id="b1087-124">Ellenőrizze a táblázatban megadott beállításokat, majd kattintson a **Futtatás most** gombra.</span><span class="sxs-lookup"><span data-stu-id="b1087-124">Verify the settings specified in the table then click **Run now**.</span></span>
 
 ![Szabályzat kiválasztása és futtatása](media/active-directory-b2c-create-sign-in-sign-up-policy/run-b2c-signup-signin-policy.png)
 
-| Beállítás      | Érték  |
+| <span data-ttu-id="b1087-126">Beállítás</span><span class="sxs-lookup"><span data-stu-id="b1087-126">Setting</span></span>      | <span data-ttu-id="b1087-127">Érték</span><span class="sxs-lookup"><span data-stu-id="b1087-127">Value</span></span>  |
 | ------------ | ------ |
-| **Alkalmazások** | Contoso B2C-alkalmazás |
-| **Válasz URL-cím kiválasztása** | `https://localhost:44316/` |
+| <span data-ttu-id="b1087-128">**Alkalmazások**</span><span class="sxs-lookup"><span data-stu-id="b1087-128">**Applications**</span></span> | <span data-ttu-id="b1087-129">Contoso B2C-alkalmazás</span><span class="sxs-lookup"><span data-stu-id="b1087-129">Contoso B2C app</span></span> |
+| <span data-ttu-id="b1087-130">**Válasz URL-cím kiválasztása**</span><span class="sxs-lookup"><span data-stu-id="b1087-130">**Select reply url**</span></span> | `https://localhost:44316/` |
 
-Megnyílik egy böngészőablak, ahol ellenőrizheti, hogyan működik az alkalmazás regisztrációs vagy bejelentkezési felhasználói folyamata.
+<span data-ttu-id="b1087-131">Megnyílik egy böngészőablak, ahol ellenőrizheti, hogyan működik az alkalmazás regisztrációs vagy bejelentkezési felhasználói folyamata.</span><span class="sxs-lookup"><span data-stu-id="b1087-131">A new browser tab opens, and you can verify the sign-up or sign-in consumer experience as configured.</span></span>
 
 > [!NOTE]
-> A szabályzat létrehozása és a frissítések érvénybe lépése akár egy percig is eltarthat.
+> <span data-ttu-id="b1087-132">A szabályzat létrehozása és a frissítések érvénybe lépése akár egy percig is eltarthat.</span><span class="sxs-lookup"><span data-stu-id="b1087-132">It takes up to a minute for policy creation and updates to take effect.</span></span>
 >

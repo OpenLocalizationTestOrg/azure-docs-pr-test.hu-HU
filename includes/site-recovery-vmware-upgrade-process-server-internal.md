@@ -1,4 +1,4 @@
-1. Jelentkezzen be a folyamatkiszolgálóra rendszergazdaként.
-2. Töltse le az [egyesített telepítő](http://aka.ms/unifiedinstaller) legújabb verzióját.
-3. Kattintson duplán a telepítőre a frissítési folyamat elindításához.
-4. A telepítő észleli a különféle telepített összetevőket, és frissíti a legújabb verzióra őket.
+1. <span data-ttu-id="5044b-101">Jelentkezzen be a folyamatkiszolgálóra rendszergazdaként.</span><span class="sxs-lookup"><span data-stu-id="5044b-101">Login to the process server as an Administrator.</span></span>
+2. <span data-ttu-id="5044b-102">Töltse le az [egyesített telepítő](http://aka.ms/unifiedinstaller) legújabb verzióját.</span><span class="sxs-lookup"><span data-stu-id="5044b-102">Download the latest version of the [Unified Setup](http://aka.ms/unifiedinstaller).</span></span>
+3. <span data-ttu-id="5044b-103">Kattintson duplán a telepítőre a frissítési folyamat elindításához.</span><span class="sxs-lookup"><span data-stu-id="5044b-103">Double-click the installer to launch the update process.</span></span>
+4. <span data-ttu-id="5044b-104">A telepítő észleli a különféle telepített összetevőket, és frissíti a legújabb verzióra őket.</span><span class="sxs-lookup"><span data-stu-id="5044b-104">The installer will detect the various components that are installed and upgrade them to the latest version.</span></span>

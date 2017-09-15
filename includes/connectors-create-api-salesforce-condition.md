@@ -1,18 +1,18 @@
-Ez a feltétel az e-mail cím mező az egyes új Salesforce vezető kiértékeli. Ha az e-mail cím tartalmaz *amazon.com*, a feltétel eredménye lesz *igaz*.
+<span data-ttu-id="9b8cb-101">Ez a feltétel az e-mail cím mező az egyes új Salesforce vezető kiértékeli.</span><span class="sxs-lookup"><span data-stu-id="9b8cb-101">This condition will evaluate the email address field of each new Salesforce lead.</span></span> <span data-ttu-id="9b8cb-102">Ha az e-mail cím tartalmaz *amazon.com*, a feltétel eredménye lesz *igaz*.</span><span class="sxs-lookup"><span data-stu-id="9b8cb-102">If the email address contains *amazon.com*, the condition result will be *True*.</span></span>
 
-1. Válassza ki **+ új lépés**.  
-   ![Salesforce feltétel kép 1](./media/connectors-create-api-salesforce/condition-1.png)   
-2. Válassza ki **feltétel hozzáadása**.    
-   ![Salesforce feltétel kép 2](./media/connectors-create-api-salesforce/condition-2.png)  
-3. Válassza ki **adjon meg értéket**.    
-   ![Salesforce feltétel kép 3](./media/connectors-create-api-salesforce/condition-3.png)  
-4. Válassza ki a *E-mail* származó az eseményindító átfutási token.    
-   ![Salesforce feltétel kép 4](./media/connectors-create-api-salesforce/condition-4.png)  
-5. Válassza ki *tartalmaz*.      
-   ![Salesforce feltétel kép 5](./media/connectors-create-api-salesforce/condition-5.png)  
-6. Válassza ki **adjon meg értéket** a vezérlő alján.     
-   ![Salesforce feltétel kép 6](./media/connectors-create-api-salesforce/condition-6.png)  
-7. Adja meg *amazon.com* a vezethet szeretné kiértékelni az e-mail címet az új értékkel. Ha az e-mail cím tartalmaz *amazon.com*, a feltétel kiértékelik a *igaz* és a többi lépés a Logic Apps alkalmazást csak ezután folytatható.    
-   ![Salesforce feltétel kép 7](./media/connectors-create-api-salesforce/condition-7.png)  
-8. Mentse a logic Apps alkalmazásokat.  
+1. <span data-ttu-id="9b8cb-103">Válassza ki **+ új lépés**.</span><span class="sxs-lookup"><span data-stu-id="9b8cb-103">Select **+ New step**.</span></span>  
+   <span data-ttu-id="9b8cb-104">![Salesforce feltétel kép 1](./media/connectors-create-api-salesforce/condition-1.png)</span><span class="sxs-lookup"><span data-stu-id="9b8cb-104">![Salesforce condition image 1](./media/connectors-create-api-salesforce/condition-1.png)</span></span>   
+2. <span data-ttu-id="9b8cb-105">Válassza ki **feltétel hozzáadása**.</span><span class="sxs-lookup"><span data-stu-id="9b8cb-105">Select **Add a condition**.</span></span>    
+   <span data-ttu-id="9b8cb-106">![Salesforce feltétel kép 2](./media/connectors-create-api-salesforce/condition-2.png)</span><span class="sxs-lookup"><span data-stu-id="9b8cb-106">![Salesforce condition image 2](./media/connectors-create-api-salesforce/condition-2.png)</span></span>  
+3. <span data-ttu-id="9b8cb-107">Válassza ki **adjon meg értéket**.</span><span class="sxs-lookup"><span data-stu-id="9b8cb-107">Select **Choose a value**.</span></span>    
+   <span data-ttu-id="9b8cb-108">![Salesforce feltétel kép 3](./media/connectors-create-api-salesforce/condition-3.png)</span><span class="sxs-lookup"><span data-stu-id="9b8cb-108">![Salesforce condition image 3](./media/connectors-create-api-salesforce/condition-3.png)</span></span>  
+4. <span data-ttu-id="9b8cb-109">Válassza ki a *E-mail* származó az eseményindító átfutási token.</span><span class="sxs-lookup"><span data-stu-id="9b8cb-109">Select the *Email* token from the lead of the trigger.</span></span>    
+   <span data-ttu-id="9b8cb-110">![Salesforce feltétel kép 4](./media/connectors-create-api-salesforce/condition-4.png)</span><span class="sxs-lookup"><span data-stu-id="9b8cb-110">![Salesforce condition image 4](./media/connectors-create-api-salesforce/condition-4.png)</span></span>  
+5. <span data-ttu-id="9b8cb-111">Válassza ki *tartalmaz*.</span><span class="sxs-lookup"><span data-stu-id="9b8cb-111">Select *Contains*.</span></span>      
+   <span data-ttu-id="9b8cb-112">![Salesforce feltétel kép 5](./media/connectors-create-api-salesforce/condition-5.png)</span><span class="sxs-lookup"><span data-stu-id="9b8cb-112">![Salesforce condition image 5](./media/connectors-create-api-salesforce/condition-5.png)</span></span>  
+6. <span data-ttu-id="9b8cb-113">Válassza ki **adjon meg értéket** a vezérlő alján.</span><span class="sxs-lookup"><span data-stu-id="9b8cb-113">Select **Choose a value** at the bottom of the control.</span></span>     
+   <span data-ttu-id="9b8cb-114">![Salesforce feltétel kép 6](./media/connectors-create-api-salesforce/condition-6.png)</span><span class="sxs-lookup"><span data-stu-id="9b8cb-114">![Salesforce condition image 6](./media/connectors-create-api-salesforce/condition-6.png)</span></span>  
+7. <span data-ttu-id="9b8cb-115">Adja meg *amazon.com* a vezethet szeretné kiértékelni az e-mail címet az új értékkel.</span><span class="sxs-lookup"><span data-stu-id="9b8cb-115">Enter *amazon.com* as the value you would like to evaluate the email address of the new lead for.</span></span> <span data-ttu-id="9b8cb-116">Ha az e-mail cím tartalmaz *amazon.com*, a feltétel kiértékelik a *igaz* és a többi lépés a Logic Apps alkalmazást csak ezután folytatható.</span><span class="sxs-lookup"><span data-stu-id="9b8cb-116">If the email address contains *amazon.com*, the condition will evaluate to *True* and the other steps in your logic app can proceed.</span></span>    
+   <span data-ttu-id="9b8cb-117">![Salesforce feltétel kép 7](./media/connectors-create-api-salesforce/condition-7.png)</span><span class="sxs-lookup"><span data-stu-id="9b8cb-117">![Salesforce condition image 7](./media/connectors-create-api-salesforce/condition-7.png)</span></span>  
+8. <span data-ttu-id="9b8cb-118">Mentse a logic Apps alkalmazásokat.</span><span class="sxs-lookup"><span data-stu-id="9b8cb-118">Save your logic apps.</span></span>  
 

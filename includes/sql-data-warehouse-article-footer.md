@@ -1,17 +1,17 @@
-## <a name="additional-resources"></a>További források
+## <a name="additional-resources"></a><span data-ttu-id="f4cd3-101">További források</span><span class="sxs-lookup"><span data-stu-id="f4cd3-101">Additional Resources</span></span>
 
-Szeretne naprakész maradni a termékekkel kapcsolatos híreket illetően? Olvassa [blogunkat], vagy kövessen bennünket a [Twitter] .</br>
-Funkciókérése van az SQL DW-vel kapcsolatban? Tegye közzé a [UserVoice-on] .</br>
-A termékekkel kapcsolatos kérdése van? Kérdezze meg az [MSDN] .</br>
-Műszaki kérdése van? Tegye fel a [StackOverflow-n].</br>
-Támogatásra van szüksége? Küldjön egy [támogatási jegyet].</br>
+<span data-ttu-id="f4cd3-102">Szeretne naprakész maradni a termékekkel kapcsolatos híreket illetően?</span><span class="sxs-lookup"><span data-stu-id="f4cd3-102">Want to stay up to date with product news?</span></span> <span data-ttu-id="f4cd3-103">Olvassa [blogunkat], vagy kövessen bennünket a [Twitter] .</span><span class="sxs-lookup"><span data-stu-id="f4cd3-103">Read our [Blog] or follow us on [Twitter] </span></span></br>
+<span data-ttu-id="f4cd3-104">Funkciókérése van az SQL DW-vel kapcsolatban?</span><span class="sxs-lookup"><span data-stu-id="f4cd3-104">Have a feature request for SQL DW?</span></span> <span data-ttu-id="f4cd3-105">Tegye közzé a [UserVoice-on] .</span><span class="sxs-lookup"><span data-stu-id="f4cd3-105">Please post it on [UserVoice] </span></span></br>
+<span data-ttu-id="f4cd3-106">A termékekkel kapcsolatos kérdése van?</span><span class="sxs-lookup"><span data-stu-id="f4cd3-106">Have a product question?</span></span> <span data-ttu-id="f4cd3-107">Kérdezze meg az [MSDN] .</span><span class="sxs-lookup"><span data-stu-id="f4cd3-107">Consider asking it on [MSDN] </span></span></br>
+<span data-ttu-id="f4cd3-108">Műszaki kérdése van?</span><span class="sxs-lookup"><span data-stu-id="f4cd3-108">Have a technical question?</span></span> <span data-ttu-id="f4cd3-109">Tegye fel a [StackOverflow-n].</span><span class="sxs-lookup"><span data-stu-id="f4cd3-109">Ask on [StackOverflow]</span></span></br>
+<span data-ttu-id="f4cd3-110">Támogatásra van szüksége?</span><span class="sxs-lookup"><span data-stu-id="f4cd3-110">Need Support?</span></span> <span data-ttu-id="f4cd3-111">Küldjön egy [támogatási jegyet].</span><span class="sxs-lookup"><span data-stu-id="f4cd3-111">Submit a [Support Ticket]</span></span></br>
 
-[blogunkat]: https://azure.microsoft.com/blog/tag/azure-sql-data-warehouse/
-[Twitter]: https://twitter.com/AzureSQLDW
-[UserVoice-on]: https://feedback.azure.com/forums/307516-sql-data-warehouse
-[MSDN]: https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=AzureSQLDataWarehouse
-[StackOverflow-n]: http://stackoverflow.com/questions/tagged/azure-sqldw
-[támogatási jegyet]: ../articles/sql-data-warehouse/sql-data-warehouse-get-started-create-support-ticket.md
+<span data-ttu-id="f4cd3-112">[blogunkat]: https://azure.microsoft.com/blog/tag/azure-sql-data-warehouse/</span><span class="sxs-lookup"><span data-stu-id="f4cd3-112">[Blog]: https://azure.microsoft.com/blog/tag/azure-sql-data-warehouse/</span></span>
+<span data-ttu-id="f4cd3-113">[Twitter]: https://twitter.com/AzureSQLDW</span><span class="sxs-lookup"><span data-stu-id="f4cd3-113">[Twitter]: https://twitter.com/AzureSQLDW</span></span>
+<span data-ttu-id="f4cd3-114">[UserVoice-on]: https://feedback.azure.com/forums/307516-sql-data-warehouse</span><span class="sxs-lookup"><span data-stu-id="f4cd3-114">[UserVoice]: https://feedback.azure.com/forums/307516-sql-data-warehouse</span></span>
+<span data-ttu-id="f4cd3-115">[MSDN]: https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=AzureSQLDataWarehouse</span><span class="sxs-lookup"><span data-stu-id="f4cd3-115">[MSDN]: https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=AzureSQLDataWarehouse</span></span>
+<span data-ttu-id="f4cd3-116">[StackOverflow-n]: http://stackoverflow.com/questions/tagged/azure-sqldw</span><span class="sxs-lookup"><span data-stu-id="f4cd3-116">[StackOverflow]: http://stackoverflow.com/questions/tagged/azure-sqldw</span></span>
+<span data-ttu-id="f4cd3-117">[támogatási jegyet]: ../articles/sql-data-warehouse/sql-data-warehouse-get-started-create-support-ticket.md</span><span class="sxs-lookup"><span data-stu-id="f4cd3-117">[Support Ticket]: ../articles/sql-data-warehouse/sql-data-warehouse-get-started-create-support-ticket.md</span></span>
 
 
 

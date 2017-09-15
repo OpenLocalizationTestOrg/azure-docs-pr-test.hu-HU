@@ -1,46 +1,46 @@
-Az Azure CLI 2.0 macOS, a Linux és a Windows az Azure erőforrások kezeléséhez teszi lehetővé. Ez a cikk részletesen a leggyakrabban használt parancsainak létrehozását és kezelését virtuális gépek (VM).
+<span data-ttu-id="e02ac-101">Az Azure CLI 2.0 macOS, a Linux és a Windows az Azure erőforrások kezeléséhez teszi lehetővé.</span><span class="sxs-lookup"><span data-stu-id="e02ac-101">The Azure CLI 2.0 allows you to create and manage your Azure resources on macOS, Linux, and Windows.</span></span> <span data-ttu-id="e02ac-102">Ez a cikk részletesen a leggyakrabban használt parancsainak létrehozását és kezelését virtuális gépek (VM).</span><span class="sxs-lookup"><span data-stu-id="e02ac-102">This article details some of the most common commands to create and manage virtual machines (VMs).</span></span>
 
-Ez a cikk igényel az Azure parancssori felület 2.0.4 verzió vagy újabb. A verzió azonosításához futtassa a következőt: `az --version`. Ha frissíteni szeretne: [Az Azure CLI 2.0 telepítése](/cli/azure/install-azure-cli). Is [felhő rendszerhéj](/azure/cloud-shell/quickstart) a böngészőből.
+<span data-ttu-id="e02ac-103">Ez a cikk igényel az Azure parancssori felület 2.0.4 verzió vagy újabb.</span><span class="sxs-lookup"><span data-stu-id="e02ac-103">This article requires the Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="e02ac-104">A verzió azonosításához futtassa a következőt: `az --version`.</span><span class="sxs-lookup"><span data-stu-id="e02ac-104">Run `az --version` to find the version.</span></span> <span data-ttu-id="e02ac-105">Ha frissíteni szeretne: [Az Azure CLI 2.0 telepítése](/cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="e02ac-105">If you need to upgrade, see [Install Azure CLI 2.0](/cli/azure/install-azure-cli).</span></span> <span data-ttu-id="e02ac-106">Is [felhő rendszerhéj](/azure/cloud-shell/quickstart) a böngészőből.</span><span class="sxs-lookup"><span data-stu-id="e02ac-106">You can also use [Cloud Shell](/azure/cloud-shell/quickstart) from your browser.</span></span>
 
-## <a name="basic-azure-resource-manager-commands-in-azure-cli"></a>Alapszintű Azure Resource Manager-parancsok az Azure CLI-ben
-Segítségért adott parancssori kapcsolók és a lehetőségek részletes, használhatja a online utasítás segítséget és beállítások beírásával `az <command> <subcommand> --help`.
+## <a name="basic-azure-resource-manager-commands-in-azure-cli"></a><span data-ttu-id="e02ac-107">Alapszintű Azure Resource Manager-parancsok az Azure CLI-ben</span><span class="sxs-lookup"><span data-stu-id="e02ac-107">Basic Azure Resource Manager commands in Azure CLI</span></span>
+<span data-ttu-id="e02ac-108">Segítségért adott parancssori kapcsolók és a lehetőségek részletes, használhatja a online utasítás segítséget és beállítások beírásával `az <command> <subcommand> --help`.</span><span class="sxs-lookup"><span data-stu-id="e02ac-108">For more detailed help with specific command line switches and options, you can use the online command help and options by typing `az <command> <subcommand> --help`.</span></span>
 
-### <a name="create-vms"></a>Virtuális gépek létrehozása
-| Tevékenység | Az Azure parancssori felület parancsai |
+### <a name="create-vms"></a><span data-ttu-id="e02ac-109">Virtuális gépek létrehozása</span><span class="sxs-lookup"><span data-stu-id="e02ac-109">Create VMs</span></span>
+| <span data-ttu-id="e02ac-110">Tevékenység</span><span class="sxs-lookup"><span data-stu-id="e02ac-110">Task</span></span> | <span data-ttu-id="e02ac-111">Az Azure parancssori felület parancsai</span><span class="sxs-lookup"><span data-stu-id="e02ac-111">Azure CLI commands</span></span> |
 | --- | --- |
-| Hozzon létre egy erőforráscsoportot | `az group create --name myResourceGroup --location eastus` |
-| Linux rendszerű virtuális gép létrehozása | `az vm create --resource-group myResourceGroup --name myVM --image ubuntults` |
-| Windows rendszerű virtuális gép létrehozása | `az vm create --resource-group myResourceGroup --name myVM --image win2016datacenter` |
+| <span data-ttu-id="e02ac-112">Hozzon létre egy erőforráscsoportot</span><span class="sxs-lookup"><span data-stu-id="e02ac-112">Create a resource group</span></span> | `az group create --name myResourceGroup --location eastus` |
+| <span data-ttu-id="e02ac-113">Linux rendszerű virtuális gép létrehozása</span><span class="sxs-lookup"><span data-stu-id="e02ac-113">Create a Linux VM</span></span> | `az vm create --resource-group myResourceGroup --name myVM --image ubuntults` |
+| <span data-ttu-id="e02ac-114">Windows rendszerű virtuális gép létrehozása</span><span class="sxs-lookup"><span data-stu-id="e02ac-114">Create a Windows VM</span></span> | `az vm create --resource-group myResourceGroup --name myVM --image win2016datacenter` |
 
-### <a name="manage-vm-state"></a>VM állapotának kezelése
-| Tevékenység | Az Azure parancssori felület parancsai |
+### <a name="manage-vm-state"></a><span data-ttu-id="e02ac-115">VM állapotának kezelése</span><span class="sxs-lookup"><span data-stu-id="e02ac-115">Manage VM state</span></span>
+| <span data-ttu-id="e02ac-116">Tevékenység</span><span class="sxs-lookup"><span data-stu-id="e02ac-116">Task</span></span> | <span data-ttu-id="e02ac-117">Az Azure parancssori felület parancsai</span><span class="sxs-lookup"><span data-stu-id="e02ac-117">Azure CLI commands</span></span> |
 | --- | --- |
-| Virtuális gép elindítása | `az vm start --resource-group myResourceGroup --name myVM` |
-| Virtuális gép leállítása | `az vm stop --resource-group myResourceGroup --name myVM` |
-| Virtuális gép felszabadítása | `az vm deallocate --resource-group myResourceGroup --name myVM` |
-| Virtuális gép újraindítása | `az vm restart --resource-group myResourceGroup --name myVM` |
-| Virtuális gép ismételt üzembe helyezése | `az vm redeploy --resource-group myResourceGroup --name myVM` |
-| Virtuális gép törlése | `az vm delete --resource-group myResourceGroup --name myVM` |
+| <span data-ttu-id="e02ac-118">Virtuális gép elindítása</span><span class="sxs-lookup"><span data-stu-id="e02ac-118">Start a VM</span></span> | `az vm start --resource-group myResourceGroup --name myVM` |
+| <span data-ttu-id="e02ac-119">Virtuális gép leállítása</span><span class="sxs-lookup"><span data-stu-id="e02ac-119">Stop a VM</span></span> | `az vm stop --resource-group myResourceGroup --name myVM` |
+| <span data-ttu-id="e02ac-120">Virtuális gép felszabadítása</span><span class="sxs-lookup"><span data-stu-id="e02ac-120">Deallocate a VM</span></span> | `az vm deallocate --resource-group myResourceGroup --name myVM` |
+| <span data-ttu-id="e02ac-121">Virtuális gép újraindítása</span><span class="sxs-lookup"><span data-stu-id="e02ac-121">Restart a VM</span></span> | `az vm restart --resource-group myResourceGroup --name myVM` |
+| <span data-ttu-id="e02ac-122">Virtuális gép ismételt üzembe helyezése</span><span class="sxs-lookup"><span data-stu-id="e02ac-122">Redeploy a VM</span></span> | `az vm redeploy --resource-group myResourceGroup --name myVM` |
+| <span data-ttu-id="e02ac-123">Virtuális gép törlése</span><span class="sxs-lookup"><span data-stu-id="e02ac-123">Delete a VM</span></span> | `az vm delete --resource-group myResourceGroup --name myVM` |
 
-### <a name="get-vm-info"></a>Virtuálisgép-adatok beolvasása
-| Tevékenység | Az Azure parancssori felület parancsai |
+### <a name="get-vm-info"></a><span data-ttu-id="e02ac-124">Virtuálisgép-adatok beolvasása</span><span class="sxs-lookup"><span data-stu-id="e02ac-124">Get VM info</span></span>
+| <span data-ttu-id="e02ac-125">Tevékenység</span><span class="sxs-lookup"><span data-stu-id="e02ac-125">Task</span></span> | <span data-ttu-id="e02ac-126">Az Azure parancssori felület parancsai</span><span class="sxs-lookup"><span data-stu-id="e02ac-126">Azure CLI commands</span></span> |
 | --- | --- |
-| Virtuális gépek felsorolása | `az vm list` |
-| Virtuális gép adatainak lekérése | `az vm show --resource-group myResourceGroup --name myVM` |
-| A virtuálisgép-erőforrások használatának megtekintése | `az vm list-usage --location eastus` |
-| Minden elérhető virtuálisgép-méret megtekintése | `az vm list-sizes --location eastus` |
+| <span data-ttu-id="e02ac-127">Virtuális gépek felsorolása</span><span class="sxs-lookup"><span data-stu-id="e02ac-127">List VMs</span></span> | `az vm list` |
+| <span data-ttu-id="e02ac-128">Virtuális gép adatainak lekérése</span><span class="sxs-lookup"><span data-stu-id="e02ac-128">Get information about a VM</span></span> | `az vm show --resource-group myResourceGroup --name myVM` |
+| <span data-ttu-id="e02ac-129">A virtuálisgép-erőforrások használatának megtekintése</span><span class="sxs-lookup"><span data-stu-id="e02ac-129">Get usage of VM resources</span></span> | `az vm list-usage --location eastus` |
+| <span data-ttu-id="e02ac-130">Minden elérhető virtuálisgép-méret megtekintése</span><span class="sxs-lookup"><span data-stu-id="e02ac-130">Get all available VM sizes</span></span> | `az vm list-sizes --location eastus` |
 
-## <a name="disks-and-images"></a>A lemezek és lemezképek
-| Tevékenység | Az Azure parancssori felület parancsai |
+## <a name="disks-and-images"></a><span data-ttu-id="e02ac-131">A lemezek és lemezképek</span><span class="sxs-lookup"><span data-stu-id="e02ac-131">Disks and images</span></span>
+| <span data-ttu-id="e02ac-132">Tevékenység</span><span class="sxs-lookup"><span data-stu-id="e02ac-132">Task</span></span> | <span data-ttu-id="e02ac-133">Az Azure parancssori felület parancsai</span><span class="sxs-lookup"><span data-stu-id="e02ac-133">Azure CLI commands</span></span> |
 | --- | --- |
-| Adatlemez hozzáadása egy virtuális géphez | `az vm disk attach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk --size-gb 128 --new ` |
-| Adatlemez eltávolítása egy virtuális gépből | `az vm disk detach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk` |
-| Lemez átméretezése | `az disk update --resource-group myResourceGroup --name myDataDisk --size-gb 256` |
-| Lemez pillanatképének elkészítése | `az snapshot create --resource-group myResourceGroup --name mySnapshot --source myDataDisk` |
-| Hozzon létre egy virtuális gép képe | `az image create --resource-group myResourceGroup --source myVM --name myImage` |
-| Hozzon létre virtuális Gépet lemezképből | `az vm create --resource-group myResourceGroup --name myNewVM --image myImage` |
+| <span data-ttu-id="e02ac-134">Adatlemez hozzáadása egy virtuális géphez</span><span class="sxs-lookup"><span data-stu-id="e02ac-134">Add a data disk to a VM</span></span> | `az vm disk attach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk --size-gb 128 --new ` |
+| <span data-ttu-id="e02ac-135">Adatlemez eltávolítása egy virtuális gépből</span><span class="sxs-lookup"><span data-stu-id="e02ac-135">Remove a data disk from a VM</span></span> | `az vm disk detach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk` |
+| <span data-ttu-id="e02ac-136">Lemez átméretezése</span><span class="sxs-lookup"><span data-stu-id="e02ac-136">Resize a disk</span></span> | `az disk update --resource-group myResourceGroup --name myDataDisk --size-gb 256` |
+| <span data-ttu-id="e02ac-137">Lemez pillanatképének elkészítése</span><span class="sxs-lookup"><span data-stu-id="e02ac-137">Snapshot a disk</span></span> | `az snapshot create --resource-group myResourceGroup --name mySnapshot --source myDataDisk` |
+| <span data-ttu-id="e02ac-138">Hozzon létre egy virtuális gép képe</span><span class="sxs-lookup"><span data-stu-id="e02ac-138">Create image of a VM</span></span> | `az image create --resource-group myResourceGroup --source myVM --name myImage` |
+| <span data-ttu-id="e02ac-139">Hozzon létre virtuális Gépet lemezképből</span><span class="sxs-lookup"><span data-stu-id="e02ac-139">Create VM from image</span></span> | `az vm create --resource-group myResourceGroup --name myNewVM --image myImage` |
 
 
-## <a name="next-steps"></a>Következő lépések
-A parancssori felület parancsait további példákért lásd a [létrehozása és kezelése a Linux virtuális gépek az Azure parancssori felülettel](../articles/virtual-machines/linux/tutorial-manage-vm.md) oktatóanyag.
+## <a name="next-steps"></a><span data-ttu-id="e02ac-140">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="e02ac-140">Next steps</span></span>
+<span data-ttu-id="e02ac-141">A parancssori felület parancsait további példákért lásd a [létrehozása és kezelése a Linux virtuális gépek az Azure parancssori felülettel](../articles/virtual-machines/linux/tutorial-manage-vm.md) oktatóanyag.</span><span class="sxs-lookup"><span data-stu-id="e02ac-141">For additional examples of the CLI commands, see the [Create and Manage Linux VMs with the Azure CLI](../articles/virtual-machines/linux/tutorial-manage-vm.md) tutorial.</span></span>
 

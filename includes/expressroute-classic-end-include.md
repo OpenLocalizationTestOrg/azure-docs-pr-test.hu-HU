@@ -1,12 +1,12 @@
 > [!IMPORTANT] 
-> 2017. március 1. után nem hozhat létre új ExpressRoute-kapcsolatcsoportot a klasszikus üzemi modellben.
+> <span data-ttu-id="703a8-101">2017. március 1. után nem hozhat létre új ExpressRoute-kapcsolatcsoportot a klasszikus üzemi modellben.</span><span class="sxs-lookup"><span data-stu-id="703a8-101">As of March 1, 2017, you can't create new ExpressRoute circuits in the classic deployment model.</span></span>
 > 
-> - Meglévő ExpressRoute-kapcsolatcsoportot a kapcsolat megszakadása nélkül helyezhet át a klasszikus üzemi modellből a Resource Manager-alapú üzemi modellbe. További információ: [Meglévő kapcsolatcsoport áthelyezése](../articles/expressroute/expressroute-move.md).
-> - A klasszikus üzemi modellben az **allowClassicOperations** TRUE értékűre állításával kapcsolódhat virtuális hálózatokhoz.
+> - <span data-ttu-id="703a8-102">Meglévő ExpressRoute-kapcsolatcsoportot a kapcsolat megszakadása nélkül helyezhet át a klasszikus üzemi modellből a Resource Manager-alapú üzemi modellbe.</span><span class="sxs-lookup"><span data-stu-id="703a8-102">You can move an existing ExpressRoute circuit from the classic deployment model to the Resource Manager deployment model without experiencing any connectivity down time.</span></span> <span data-ttu-id="703a8-103">További információ: [Meglévő kapcsolatcsoport áthelyezése](../articles/expressroute/expressroute-move.md).</span><span class="sxs-lookup"><span data-stu-id="703a8-103">For more information, see [Move an existing circuit](../articles/expressroute/expressroute-move.md).</span></span>
+> - <span data-ttu-id="703a8-104">A klasszikus üzemi modellben az **allowClassicOperations** TRUE értékűre állításával kapcsolódhat virtuális hálózatokhoz.</span><span class="sxs-lookup"><span data-stu-id="703a8-104">You can connect to virtual networks in the classic deployment model by setting **allowClassicOperations** to TRUE.</span></span>
 > 
-> Ha a Resource Manager-alapú üzemi modellben szeretne létrehozni és kezelni ExpressRoute-kapcsolatcsoportokat, kövesse az alábbi hivatkozásokat:
+> <span data-ttu-id="703a8-105">Ha a Resource Manager-alapú üzemi modellben szeretne létrehozni és kezelni ExpressRoute-kapcsolatcsoportokat, kövesse az alábbi hivatkozásokat:</span><span class="sxs-lookup"><span data-stu-id="703a8-105">Use the following links to create and manage ExpressRoute circuits in the Resource Manager deployment model:</span></span>
 
-> - [ExpressRoute-kapcsolatcsoportok létrehozása és kezelése](../articles/expressroute/expressroute-howto-circuit-portal-resource-manager.md)<br>
-> - [Útválasztás (társviszony-létesítés) konfigurálása ExpressRoute-kapcsolatcsoportok számára](../articles/expressroute/expressroute-howto-routing-portal-resource-manager.md)
+> - [<span data-ttu-id="703a8-106">ExpressRoute-kapcsolatcsoportok létrehozása és kezelése</span><span class="sxs-lookup"><span data-stu-id="703a8-106">Create and manage ExpressRoute circuits</span></span>](../articles/expressroute/expressroute-howto-circuit-portal-resource-manager.md)<br>
+> - [<span data-ttu-id="703a8-107">Útválasztás (társviszony-létesítés) konfigurálása ExpressRoute-kapcsolatcsoportok számára</span><span class="sxs-lookup"><span data-stu-id="703a8-107">Configure routing (peering) for ExpressRoute circuits</span></span>](../articles/expressroute/expressroute-howto-routing-portal-resource-manager.md)
 >
 >

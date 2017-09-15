@@ -1,38 +1,38 @@
-Az alkalmazás profilszerkesztésének engedélyezéséhez létre kell hoznia egy profilszerkesztési szabályzatot. Ez a szabályzat írja le, hogy mit tapasztalnak a felhasználók a profilszerkesztés során, valamint megadja azokat a jogkivonatokat, amelyeket az alkalmazás fogad a szerkesztés sikeres elvégzésekor.
+<span data-ttu-id="862cc-101">Az alkalmazás profilszerkesztésének engedélyezéséhez létre kell hoznia egy profilszerkesztési szabályzatot.</span><span class="sxs-lookup"><span data-stu-id="862cc-101">To enable profile editing on your application, you will need to create a profile editing policy.</span></span> <span data-ttu-id="862cc-102">Ez a szabályzat írja le, hogy mit tapasztalnak a felhasználók a profilszerkesztés során, valamint megadja azokat a jogkivonatokat, amelyeket az alkalmazás fogad a szerkesztés sikeres elvégzésekor.</span><span class="sxs-lookup"><span data-stu-id="862cc-102">This policy describes the experiences that consumers will go through during profile editing and the contents of tokens that the application will receive on successful completion.</span></span>
 
 [!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](active-directory-b2c-portal-navigate-b2c-service.md)]
 
-A beállítások szabályzatokat tartalmazó részén válassza a **Profilszerkesztési szabályzatok** lehetőséget, majd kattintson a **+ Hozzáadás** elemre.
+<span data-ttu-id="862cc-103">A beállítások szabályzatokat tartalmazó részén válassza a **Profilszerkesztési szabályzatok** lehetőséget, majd kattintson a **+ Hozzáadás** elemre.</span><span class="sxs-lookup"><span data-stu-id="862cc-103">In the policies section of settings, select **Profile editing policies** and click **+ Add**.</span></span>
 
 ![Válassza a Profilszerkesztési szabályzatok elemet, és kattintson a Hozzáadás gombra.](media/active-directory-b2c-create-profile-editing-policy/add-b2c-editing-policy.png)
 
-Adjon meg egy **nevet** a szabályzatnak, amelyre az alkalmazás hivatkozni fog. Adja meg például a következőt: `SiPe`.
+<span data-ttu-id="862cc-105">Adjon meg egy **nevet** a szabályzatnak, amelyre az alkalmazás hivatkozni fog.</span><span class="sxs-lookup"><span data-stu-id="862cc-105">Enter a policy **Name** for your application to reference.</span></span> <span data-ttu-id="862cc-106">Adja meg például a következőt: `SiPe`.</span><span class="sxs-lookup"><span data-stu-id="862cc-106">For example, enter `SiPe`.</span></span>
 
-Válassza az **Identitásszolgáltatók** lehetőséget, és jelölje be a **Bejelentkezés helyi fiókba** jelölőnégyzetet. Azt is megteheti, hogy közösségi identitásszolgáltatókat választ ki, ha ezek már be vannak állítva. Kattintson az **OK** gombra.
+<span data-ttu-id="862cc-107">Válassza az **Identitásszolgáltatók** lehetőséget, és jelölje be a **Bejelentkezés helyi fiókba** jelölőnégyzetet.</span><span class="sxs-lookup"><span data-stu-id="862cc-107">Select **Identity providers** and check **Local Account Signin**.</span></span> <span data-ttu-id="862cc-108">Azt is megteheti, hogy közösségi identitásszolgáltatókat választ ki, ha ezek már be vannak állítva.</span><span class="sxs-lookup"><span data-stu-id="862cc-108">Optionally, you can also select social identity providers, if already configured.</span></span> <span data-ttu-id="862cc-109">Kattintson az **OK** gombra.</span><span class="sxs-lookup"><span data-stu-id="862cc-109">Click **OK**.</span></span>
 
 ![Válassza a Bejelentkezés helyi fiókba lehetőséget identitásszolgáltatóként, és kattintson az OK gombra.](media/active-directory-b2c-create-profile-editing-policy/add-b2c-editing-identity-providers.png)
 
-Válassza a **Profilattribútumok** elemet. Válassza ki azokat az attribútumokat, amelyeket a felhasználó megtekinthet és szerkeszthet a profilján belül. Például jelölje be az **Ország/régió**, a **Megjelenítendő név** és az **Irányítószám** attribútumokat. Kattintson az **OK** gombra.
+<span data-ttu-id="862cc-111">Válassza a **Profilattribútumok** elemet.</span><span class="sxs-lookup"><span data-stu-id="862cc-111">Select **Profile attributes**.</span></span> <span data-ttu-id="862cc-112">Válassza ki azokat az attribútumokat, amelyeket a felhasználó megtekinthet és szerkeszthet a profilján belül.</span><span class="sxs-lookup"><span data-stu-id="862cc-112">Choose attributes the consumer can view and edit in their profile.</span></span> <span data-ttu-id="862cc-113">Például jelölje be az **Ország/régió**, a **Megjelenítendő név** és az **Irányítószám** attribútumokat.</span><span class="sxs-lookup"><span data-stu-id="862cc-113">For example, check **Country/Region**, **Display Name**, and **Postal Code**.</span></span> <span data-ttu-id="862cc-114">Kattintson az **OK** gombra.</span><span class="sxs-lookup"><span data-stu-id="862cc-114">Click **OK**.</span></span>
 
 ![Válaszon ki néhány attribútumot, majd kattintson az OK gombra.](media/active-directory-b2c-create-profile-editing-policy/add-b2c-editing-attributes.png)
 
-Válassza az **Alkalmazásjogcímek** lehetőséget. Válassza ki azokat a jogcímeket, amelyeket szeretne szerepeltetni a sikeres profilszerkesztési művelet után az alkalmazásnak visszaküldött hitelesítő jogkivonatokban. Válassza például a **Megjelenítendő név** és az **Irányítószám** lehetőséget.
+<span data-ttu-id="862cc-116">Válassza az **Alkalmazásjogcímek** lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="862cc-116">Select **Application claims**.</span></span> <span data-ttu-id="862cc-117">Válassza ki azokat a jogcímeket, amelyeket szeretne szerepeltetni a sikeres profilszerkesztési művelet után az alkalmazásnak visszaküldött hitelesítő jogkivonatokban.</span><span class="sxs-lookup"><span data-stu-id="862cc-117">Choose claims you want returned in the authorization tokens sent back to your application after a successful profile editing experience.</span></span> <span data-ttu-id="862cc-118">Válassza például a **Megjelenítendő név** és az **Irányítószám** lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="862cc-118">For example, select **Display Name**, **Postal Code**.</span></span>
 
 ![Válasszon ki néhány alkalmazásjogcímet, majd kattintson az OK gombra.](media/active-directory-b2c-create-profile-editing-policy/add-b2c-editing-application-claims.png)
 
-A szabályzat hozzáadásához kattintson a **Létrehozás** gombra. A szabályzat **B2C_1_SiPe** néven jelenik meg a listában. A **B2C_1_** előtagot a rendszer adja hozzá a névhez.
+<span data-ttu-id="862cc-120">A szabályzat hozzáadásához kattintson a **Létrehozás** gombra.</span><span class="sxs-lookup"><span data-stu-id="862cc-120">Click **Create** to add the policy.</span></span> <span data-ttu-id="862cc-121">A szabályzat **B2C_1_SiPe** néven jelenik meg a listában.</span><span class="sxs-lookup"><span data-stu-id="862cc-121">The policy is listed as **B2C_1_SiPe**.</span></span> <span data-ttu-id="862cc-122">A **B2C_1_** előtagot a rendszer adja hozzá a névhez.</span><span class="sxs-lookup"><span data-stu-id="862cc-122">The **B2C_1_** prefix is appended to the name.</span></span>
 
-Nyissa meg a szabályzatot a **B2C_1_SiPe** kiválasztásával. Ellenőrizze a táblázatban megadott beállításokat, majd kattintson a **Futtatás most** gombra.
+<span data-ttu-id="862cc-123">Nyissa meg a szabályzatot a **B2C_1_SiPe** kiválasztásával.</span><span class="sxs-lookup"><span data-stu-id="862cc-123">Open the policy by selecting **B2C_1_SiPe**.</span></span> <span data-ttu-id="862cc-124">Ellenőrizze a táblázatban megadott beállításokat, majd kattintson a **Futtatás most** gombra.</span><span class="sxs-lookup"><span data-stu-id="862cc-124">Verify the settings specified in the table then click **Run now**.</span></span>
 
 ![Szabályzat kiválasztása és futtatása](media/active-directory-b2c-create-profile-editing-policy/run-b2c-editing-policy.png)
 
-| Beállítás      | Érték  |
+| <span data-ttu-id="862cc-126">Beállítás</span><span class="sxs-lookup"><span data-stu-id="862cc-126">Setting</span></span>      | <span data-ttu-id="862cc-127">Érték</span><span class="sxs-lookup"><span data-stu-id="862cc-127">Value</span></span>  |
 | ------------ | ------ |
-| **Alkalmazások** | Contoso B2C-alkalmazás |
-| **Válasz URL-cím kiválasztása** | `https://localhost:44316/` |
+| <span data-ttu-id="862cc-128">**Alkalmazások**</span><span class="sxs-lookup"><span data-stu-id="862cc-128">**Applications**</span></span> | <span data-ttu-id="862cc-129">Contoso B2C-alkalmazás</span><span class="sxs-lookup"><span data-stu-id="862cc-129">Contoso B2C app</span></span> |
+| <span data-ttu-id="862cc-130">**Válasz URL-cím kiválasztása**</span><span class="sxs-lookup"><span data-stu-id="862cc-130">**Select reply url**</span></span> | `https://localhost:44316/` |
 
-Megnyílik egy böngészőablak, ahol ellenőrizheti, hogyan működik az alkalmazás profilszerkesztési felhasználói folyamata.
+<span data-ttu-id="862cc-131">Megnyílik egy böngészőablak, ahol ellenőrizheti, hogyan működik az alkalmazás profilszerkesztési felhasználói folyamata.</span><span class="sxs-lookup"><span data-stu-id="862cc-131">A new browser tab opens, and you can verify the profile editing consumer experience as configured.</span></span>
 
 > [!NOTE]
-> A szabályzat létrehozása és a frissítések érvénybe lépése akár egy percig is eltarthat.
+> <span data-ttu-id="862cc-132">A szabályzat létrehozása és a frissítések érvénybe lépése akár egy percig is eltarthat.</span><span class="sxs-lookup"><span data-stu-id="862cc-132">It takes up to a minute for policy creation and updates to take effect.</span></span>
 >

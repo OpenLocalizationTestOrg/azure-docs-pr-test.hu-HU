@@ -1,25 +1,25 @@
-#### <a name="to-install-mpio-on-the-host"></a>A gazdagép MPIO telepítése
-1. Nyissa meg a Kiszolgálókezelőt a Windows Server-állomáson. Alapértelmezés szerint a Kiszolgálókezelő akkor kezdődik, amikor egy tagja a Rendszergazdák csoport bejelentkezik egy Windows Server 2012 R2 vagy Windows Server 2012 rendszert futtató számítógép. Ha a Kiszolgálókezelő még nincs megnyitva, kattintson a **Start > Kiszolgálókezelő**.
+#### <a name="to-install-mpio-on-the-host"></a><span data-ttu-id="ca024-101">A gazdagép MPIO telepítése</span><span class="sxs-lookup"><span data-stu-id="ca024-101">To install MPIO on the host</span></span>
+1. <span data-ttu-id="ca024-102">Nyissa meg a Kiszolgálókezelőt a Windows Server-állomáson.</span><span class="sxs-lookup"><span data-stu-id="ca024-102">Open Server Manager on your Windows Server host.</span></span> <span data-ttu-id="ca024-103">Alapértelmezés szerint a Kiszolgálókezelő akkor kezdődik, amikor egy tagja a Rendszergazdák csoport bejelentkezik egy Windows Server 2012 R2 vagy Windows Server 2012 rendszert futtató számítógép.</span><span class="sxs-lookup"><span data-stu-id="ca024-103">By default, Server Manager starts when a member of the Administrators group logs on to a computer that is running Windows Server 2012 R2 or Windows Server 2012.</span></span> <span data-ttu-id="ca024-104">Ha a Kiszolgálókezelő még nincs megnyitva, kattintson a **Start > Kiszolgálókezelő**.</span><span class="sxs-lookup"><span data-stu-id="ca024-104">If the Server Manager is not already open, click **Start > Server Manager**.</span></span>
    
     ![Kiszolgálókezelő](./media/storsimple-install-mpio-windows-server/IC740997.png)
-2. Kattintson a **Kiszolgálókezelő > irányítópult > szerepkörök és szolgáltatások hozzáadása**. Ekkor elindul a **szerepkörök és szolgáltatások hozzáadása** varázsló.
+2. <span data-ttu-id="ca024-106">Kattintson a **Kiszolgálókezelő > irányítópult > szerepkörök és szolgáltatások hozzáadása**.</span><span class="sxs-lookup"><span data-stu-id="ca024-106">Click **Server Manager > Dashboard > Add roles and features**.</span></span> <span data-ttu-id="ca024-107">Ekkor elindul a **szerepkörök és szolgáltatások hozzáadása** varázsló.</span><span class="sxs-lookup"><span data-stu-id="ca024-107">This starts the **Add Roles and Features** wizard.</span></span>
    
     ![Szerepkörök és szolgáltatások hozzáadása varázsló 1](./media/storsimple-install-mpio-windows-server/IC740998.png)
-3. Az a **szerepkörök és szolgáltatások hozzáadása** varázsló, tegye a következőket:
+3. <span data-ttu-id="ca024-109">Az a **szerepkörök és szolgáltatások hozzáadása** varázsló, tegye a következőket:</span><span class="sxs-lookup"><span data-stu-id="ca024-109">In the **Add Roles and Features** wizard, do the following:</span></span>
    
-   * Az a **megkezdése előtt** kattintson **következő**.
-   * Az a **telepítés típusának kiválasztása** lap, fogadja el az alapértelmezett **szerepköralapú vagy szolgáltatásalapú** telepítését. Kattintson a **Tovább** gombra.
+   * <span data-ttu-id="ca024-110">Az a **megkezdése előtt** kattintson **következő**.</span><span class="sxs-lookup"><span data-stu-id="ca024-110">On the **Before you begin** page, click **Next**.</span></span>
+   * <span data-ttu-id="ca024-111">Az a **telepítés típusának kiválasztása** lap, fogadja el az alapértelmezett **szerepköralapú vagy szolgáltatásalapú** telepítését.</span><span class="sxs-lookup"><span data-stu-id="ca024-111">On the **Select installation type** page, accept the default setting of **Role-based or feature-based** installation.</span></span> <span data-ttu-id="ca024-112">Kattintson a **Tovább** gombra.</span><span class="sxs-lookup"><span data-stu-id="ca024-112">Click **Next**.</span></span>
      
        ![Szerepkörök és szolgáltatások hozzáadása varázsló 2. régiója](./media/storsimple-install-mpio-windows-server/IC740999.png)
-   * Az a **jelölje be a célkiszolgáló** lapon, válassza ki **kiszolgáló kijelölése a kiszolgálókészletből**. A gazdagép-kiszolgálón kell automatikusan észlelhetők. Kattintson a **Tovább** gombra.
-   * Az a **kiszolgálói szerepkörök kiválasztása** kattintson **következő**.
-   * A a **szolgáltatások kiválasztása** lapon, hogy melyik **többutas i/o**, és kattintson a **következő**.
+   * <span data-ttu-id="ca024-114">Az a **jelölje be a célkiszolgáló** lapon, válassza ki **kiszolgáló kijelölése a kiszolgálókészletből**.</span><span class="sxs-lookup"><span data-stu-id="ca024-114">On the **Select destination server** page, choose **Select a server from the server pool**.</span></span> <span data-ttu-id="ca024-115">A gazdagép-kiszolgálón kell automatikusan észlelhetők.</span><span class="sxs-lookup"><span data-stu-id="ca024-115">Your host server should be discovered automatically.</span></span> <span data-ttu-id="ca024-116">Kattintson a **Tovább** gombra.</span><span class="sxs-lookup"><span data-stu-id="ca024-116">Click **Next**.</span></span>
+   * <span data-ttu-id="ca024-117">Az a **kiszolgálói szerepkörök kiválasztása** kattintson **következő**.</span><span class="sxs-lookup"><span data-stu-id="ca024-117">On the **Select server roles** page, click **Next**.</span></span>
+   * <span data-ttu-id="ca024-118">A a **szolgáltatások kiválasztása** lapon, hogy melyik **többutas i/o**, és kattintson a **következő**.</span><span class="sxs-lookup"><span data-stu-id="ca024-118">On the **Select features** page, select **Multipath I/O**, and click **Next**.</span></span>
      
        ![Szerepkörök és szolgáltatások hozzáadása varázsló 5](./media/storsimple-install-mpio-windows-server/IC741000.png)
-   * Az a **erősítse meg a telepítendő** lapon ellenőrizze a kijelölést, majd válassza ki **a célkiszolgáló automatikus újraindítása, ha szükséges**lent látható módon. Kattintson az **Install** (Telepítés) gombra.
+   * <span data-ttu-id="ca024-120">Az a **erősítse meg a telepítendő** lapon ellenőrizze a kijelölést, majd válassza ki **a célkiszolgáló automatikus újraindítása, ha szükséges**lent látható módon.</span><span class="sxs-lookup"><span data-stu-id="ca024-120">On the **Confirm installation selections** page, confirm the selection and then select **Restart the destination server automatically if required**, as shown below.</span></span> <span data-ttu-id="ca024-121">Kattintson az **Install** (Telepítés) gombra.</span><span class="sxs-lookup"><span data-stu-id="ca024-121">Click **Install**.</span></span>
      
        ![Szerepkörök és szolgáltatások hozzáadása varázsló 8](./media/storsimple-install-mpio-windows-server/IC741001.png)
-   * Fog értesítést jelenít meg, ha a telepítés befejeződött. A varázsló bezárásához kattintson a **Bezárás** gombra.
+   * <span data-ttu-id="ca024-123">Fog értesítést jelenít meg, ha a telepítés befejeződött.</span><span class="sxs-lookup"><span data-stu-id="ca024-123">You will be notified when the installation is complete.</span></span> <span data-ttu-id="ca024-124">A varázsló bezárásához kattintson a **Bezárás** gombra.</span><span class="sxs-lookup"><span data-stu-id="ca024-124">Click **Close** to close the wizard.</span></span>
      
        ![Szerepkörök és szolgáltatások hozzáadása varázsló 9](./media/storsimple-install-mpio-windows-server/IC741002.png)
 

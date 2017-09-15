@@ -1,21 +1,21 @@
-## <a name="specify-the-behavior-of-the-iot-device"></a>Az IoT eszköz viselkedésének meghatározása
+## <a name="specify-the-behavior-of-the-iot-device"></a><span data-ttu-id="7708a-101">Az IoT eszköz viselkedésének meghatározása</span><span class="sxs-lookup"><span data-stu-id="7708a-101">Specify the behavior of the IoT device</span></span>
 
-Az IoT Hub szerializáló ügyfélkódtára egy modell alapján határozza meg az eszköz és az IoT Hub közötti üzenetek formátumát.
+<span data-ttu-id="7708a-102">Az IoT Hub szerializáló ügyfélkódtára egy modell alapján határozza meg az eszköz és az IoT Hub közötti üzenetek formátumát.</span><span class="sxs-lookup"><span data-stu-id="7708a-102">The IoT Hub serializer client library uses a model to specify the format of the messages the device exchanges with IoT Hub.</span></span>
 
-1. Adja hozzá a következő változódeklarációkat az `#include` utasítások után. Cserélje le a [Device Id] és a [Device Key] helyőrzőértékeket az eszközhöz tartozó értékekre a távoli figyelési megoldás irányítópultja alapján. Cserélje le az [IoTHub Name] értéket a megoldás irányítópultján található IoT Hub gazdanévre. Ha például az IoT Hub gazdaneve **contoso.azure-devices.net**, cserélje le az [IoTHub Name] helyőrzőt a **contoso** értékre:
+1. <span data-ttu-id="7708a-103">Adja hozzá a következő változódeklarációkat az `#include` utasítások után.</span><span class="sxs-lookup"><span data-stu-id="7708a-103">Add the following variable declarations after the `#include` statements.</span></span> <span data-ttu-id="7708a-104">Cserélje le a [Device Id] és a [Device Key] helyőrzőértékeket az eszközhöz tartozó értékekre a távoli figyelési megoldás irányítópultja alapján.</span><span class="sxs-lookup"><span data-stu-id="7708a-104">Replace the placeholder values [Device Id] and [Device Key] with values you noted for your device in the remote monitoring solution dashboard.</span></span> <span data-ttu-id="7708a-105">Cserélje le az [IoTHub Name] értéket a megoldás irányítópultján található IoT Hub gazdanévre.</span><span class="sxs-lookup"><span data-stu-id="7708a-105">Use the IoT Hub Hostname from the solution dashboard to replace [IoTHub Name].</span></span> <span data-ttu-id="7708a-106">Ha például az IoT Hub gazdaneve **contoso.azure-devices.net**, cserélje le az [IoTHub Name] helyőrzőt a **contoso** értékre:</span><span class="sxs-lookup"><span data-stu-id="7708a-106">For example, if your IoT Hub Hostname is **contoso.azure-devices.net**, replace [IoTHub Name] with **contoso**:</span></span>
    
     ```c
     static const char* deviceId = "[Device Id]";
     static const char* connectionString = "HostName=[IoTHub Name].azure-devices.net;DeviceId=[Device Id];SharedAccessKey=[Device Key]";
     ```
 
-1. Adja hozzá a következő kódot az eszköz és az IoT Hub kommunikációját lehetővé tévő modell létrehozásához. Ez a modell meghatározza, hogy az eszköz:
+1. <span data-ttu-id="7708a-107">Adja hozzá a következő kódot az eszköz és az IoT Hub kommunikációját lehetővé tévő modell létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="7708a-107">Add the following code to define the model that enables the device to communicate with IoT Hub.</span></span> <span data-ttu-id="7708a-108">Ez a modell meghatározza, hogy az eszköz:</span><span class="sxs-lookup"><span data-stu-id="7708a-108">This model specifies that the device:</span></span>
 
-   - A hőmérsékletre, a külső hőmérsékletre és a páratartalomra vonatkozó adatokat, valamint egy eszközazonosítót küldhet telemetriaként.
-   - Metaadatokat küldhet az eszközzel kapcsolatban az IoT Hub számára. Az eszköz az alapszintű metaadatokat egy **DeviceInfo** objektumban küldi el indításkor.
-   - Jelentett tulajdonságokat küldhet az IoT Hubban található ikereszköznek. Ezek a jelentett tulajdonságok konfigurációs, eszköz- és rendszertulajdonságok szerint vannak csoportosítva.
-   - Fogadhatja az IoT Hubban található ikereszköz kívánt tulajdonságait, és reagálhat rájuk.
-   - Válaszolhat a megoldásportálon meghívott **Reboot** és **InitiateFirmwareUpdate** közvetlen metódusokra. Az eszköz jelentett tulajdonságokkal küld információkat azokról a közvetlen metódusokról, amelyeket támogat.
+   - <span data-ttu-id="7708a-109">A hőmérsékletre, a külső hőmérsékletre és a páratartalomra vonatkozó adatokat, valamint egy eszközazonosítót küldhet telemetriaként.</span><span class="sxs-lookup"><span data-stu-id="7708a-109">Can send temperature, external temperature, humidity, and a device id as telemetry.</span></span>
+   - <span data-ttu-id="7708a-110">Metaadatokat küldhet az eszközzel kapcsolatban az IoT Hub számára.</span><span class="sxs-lookup"><span data-stu-id="7708a-110">Can send metadata about the device to IoT Hub.</span></span> <span data-ttu-id="7708a-111">Az eszköz az alapszintű metaadatokat egy **DeviceInfo** objektumban küldi el indításkor.</span><span class="sxs-lookup"><span data-stu-id="7708a-111">The device sends basic metadata in a **DeviceInfo** object at startup.</span></span>
+   - <span data-ttu-id="7708a-112">Jelentett tulajdonságokat küldhet az IoT Hubban található ikereszköznek.</span><span class="sxs-lookup"><span data-stu-id="7708a-112">Can send reported properties, to the device twin in IoT Hub.</span></span> <span data-ttu-id="7708a-113">Ezek a jelentett tulajdonságok konfigurációs, eszköz- és rendszertulajdonságok szerint vannak csoportosítva.</span><span class="sxs-lookup"><span data-stu-id="7708a-113">These reported properties are grouped into configuration, device, and system properties.</span></span>
+   - <span data-ttu-id="7708a-114">Fogadhatja az IoT Hubban található ikereszköz kívánt tulajdonságait, és reagálhat rájuk.</span><span class="sxs-lookup"><span data-stu-id="7708a-114">Can receive and act on desired properties set in the device twin in IoT Hub.</span></span>
+   - <span data-ttu-id="7708a-115">Válaszolhat a megoldásportálon meghívott **Reboot** és **InitiateFirmwareUpdate** közvetlen metódusokra.</span><span class="sxs-lookup"><span data-stu-id="7708a-115">Can respond to the **Reboot** and **InitiateFirmwareUpdate** direct methods invoked through the solution portal.</span></span> <span data-ttu-id="7708a-116">Az eszköz jelentett tulajdonságokkal küld információkat azokról a közvetlen metódusokról, amelyeket támogat.</span><span class="sxs-lookup"><span data-stu-id="7708a-116">The device sends information about the direct methods it supports using reported properties.</span></span>
    
     ```c
     // Define the Model
@@ -85,10 +85,10 @@ Az IoT Hub szerializáló ügyfélkódtára egy modell alapján határozza meg a
     END_NAMESPACE(Contoso);
     ```
 
-## <a name="implement-the-behavior-of-the-device"></a>Az eszköz viselkedésének megvalósítása
-Most adja hozzá a kódot, amely megvalósítja a modellben meghatározott viselkedést.
+## <a name="implement-the-behavior-of-the-device"></a><span data-ttu-id="7708a-117">Az eszköz viselkedésének megvalósítása</span><span class="sxs-lookup"><span data-stu-id="7708a-117">Implement the behavior of the device</span></span>
+<span data-ttu-id="7708a-118">Most adja hozzá a kódot, amely megvalósítja a modellben meghatározott viselkedést.</span><span class="sxs-lookup"><span data-stu-id="7708a-118">Now add code that implements the behavior defined in the model.</span></span>
 
-1. Adja hozzá a következő függvényeket, amelyek a megoldás irányítópultján beállított kívánt tulajdonságokat kezelik. A modellben a következő kívánt tulajdonságok vannak meghatározva:
+1. <span data-ttu-id="7708a-119">Adja hozzá a következő függvényeket, amelyek a megoldás irányítópultján beállított kívánt tulajdonságokat kezelik.</span><span class="sxs-lookup"><span data-stu-id="7708a-119">Add the following functions that handle the desired properties set in the solution dashboard.</span></span> <span data-ttu-id="7708a-120">A modellben a következő kívánt tulajdonságok vannak meghatározva:</span><span class="sxs-lookup"><span data-stu-id="7708a-120">These desired properties are defined in the model:</span></span>
 
     ```c
     void onDesiredTemperatureMeanValue(void* argument)
@@ -107,7 +107,7 @@ Most adja hozzá a kódot, amely megvalósítja a modellben meghatározott visel
     }
     ```
 
-1. Adja hozzá a következő függvényeket, amelyek az IoT Hubon keresztül meghívott közvetlen metódusokat kezelik. A modellben a következő közvetlen metódusok vannak meghatározva:
+1. <span data-ttu-id="7708a-121">Adja hozzá a következő függvényeket, amelyek az IoT Hubon keresztül meghívott közvetlen metódusokat kezelik.</span><span class="sxs-lookup"><span data-stu-id="7708a-121">Add the following functions that handle the direct methods invoked through the IoT hub.</span></span> <span data-ttu-id="7708a-122">A modellben a következő közvetlen metódusok vannak meghatározva:</span><span class="sxs-lookup"><span data-stu-id="7708a-122">These direct methods are defined in the model:</span></span>
 
     ```c
     /* Handlers for direct methods */
@@ -130,7 +130,7 @@ Most adja hozzá a kódot, amely megvalósítja a modellben meghatározott visel
     }
     ```
 
-1. Adja hozzá a következő függvényt, amely egy üzenetet küld az előre konfigurált megoldásnak:
+1. <span data-ttu-id="7708a-123">Adja hozzá a következő függvényt, amely egy üzenetet küld az előre konfigurált megoldásnak:</span><span class="sxs-lookup"><span data-stu-id="7708a-123">Add the following function that sends a message to the preconfigured solution:</span></span>
    
     ```c
     /* Send data to IoT Hub */
@@ -158,7 +158,7 @@ Most adja hozzá a kódot, amely megvalósítja a modellben meghatározott visel
     }
     ```
 
-1. Adja hozzá a következő visszahíváskezelőt, amely akkor fut, ha az eszköz új jelentett tulajdonságértékeket küldött az előre konfigurált megoldásnak:
+1. <span data-ttu-id="7708a-124">Adja hozzá a következő visszahíváskezelőt, amely akkor fut, ha az eszköz új jelentett tulajdonságértékeket küldött az előre konfigurált megoldásnak:</span><span class="sxs-lookup"><span data-stu-id="7708a-124">Add the following callback handler that runs when the device has sent new reported property values to the preconfigured solution:</span></span>
 
     ```c
     /* Callback after sending reported properties */
@@ -169,16 +169,16 @@ Most adja hozzá a kódot, amely megvalósítja a modellben meghatározott visel
     }
     ```
 
-1. Adja hozzá a következő függvényt, amely összekapcsolja az eszközt az előre konfigurált megoldással a felhőben, és adatcserét végez. Ez a függvény a következő lépéseket hajtja végre:
+1. <span data-ttu-id="7708a-125">Adja hozzá a következő függvényt, amely összekapcsolja az eszközt az előre konfigurált megoldással a felhőben, és adatcserét végez.</span><span class="sxs-lookup"><span data-stu-id="7708a-125">Add the following function to connect your device to the preconfigured solution in the cloud, and exchange data.</span></span> <span data-ttu-id="7708a-126">Ez a függvény a következő lépéseket hajtja végre:</span><span class="sxs-lookup"><span data-stu-id="7708a-126">This function performs the following steps:</span></span>
 
-    - Inicializálja a platformot.
-    - Regisztrálja a Contoso névteret a szerializációs kódtárban.
-    - Inicializálja az ügyfelet az eszközkapcsolati karakterlánccal.
-    - Létrehozza a **Thermostat** modell egy példányát.
-    - Létrehozza és elküldi a jelentett tulajdonságértékeket.
-    - Elküld egy **DeviceInfo** objektumot.
-    - Létrehoz egy hurkot, és másodpercenként telemetriát küld.
-    - Deinicializálja az összes erőforrást.
+    - <span data-ttu-id="7708a-127">Inicializálja a platformot.</span><span class="sxs-lookup"><span data-stu-id="7708a-127">Initializes the platform.</span></span>
+    - <span data-ttu-id="7708a-128">Regisztrálja a Contoso névteret a szerializációs kódtárban.</span><span class="sxs-lookup"><span data-stu-id="7708a-128">Registers the Contoso namespace with the serialization library.</span></span>
+    - <span data-ttu-id="7708a-129">Inicializálja az ügyfelet az eszközkapcsolati karakterlánccal.</span><span class="sxs-lookup"><span data-stu-id="7708a-129">Initializes the client with the device connection string.</span></span>
+    - <span data-ttu-id="7708a-130">Létrehozza a **Thermostat** modell egy példányát.</span><span class="sxs-lookup"><span data-stu-id="7708a-130">Create an instance of the **Thermostat** model.</span></span>
+    - <span data-ttu-id="7708a-131">Létrehozza és elküldi a jelentett tulajdonságértékeket.</span><span class="sxs-lookup"><span data-stu-id="7708a-131">Creates and sends reported property values.</span></span>
+    - <span data-ttu-id="7708a-132">Elküld egy **DeviceInfo** objektumot.</span><span class="sxs-lookup"><span data-stu-id="7708a-132">Sends a **DeviceInfo** object.</span></span>
+    - <span data-ttu-id="7708a-133">Létrehoz egy hurkot, és másodpercenként telemetriát küld.</span><span class="sxs-lookup"><span data-stu-id="7708a-133">Creates a loop to send telemetry every second.</span></span>
+    - <span data-ttu-id="7708a-134">Deinicializálja az összes erőforrást.</span><span class="sxs-lookup"><span data-stu-id="7708a-134">Deinitializes all resources.</span></span>
 
       ```c
       void remote_monitoring_run(void)
@@ -296,7 +296,7 @@ Most adja hozzá a kódot, amely megvalósítja a modellben meghatározott visel
       }
     ```
    
-    Referenciaként itt egy példa az előre konfigurált megoldás számára küldött **telemetria** üzenetekre:
+    <span data-ttu-id="7708a-135">Referenciaként itt egy példa az előre konfigurált megoldás számára küldött **telemetria** üzenetekre:</span><span class="sxs-lookup"><span data-stu-id="7708a-135">For reference, here is a sample **Telemetry** message sent to the preconfigured solution:</span></span>
    
     ```
     {"DeviceId":"mydevice01", "Temperature":50, "Humidity":50, "ExternalTemperature":55}

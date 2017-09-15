@@ -1,20 +1,20 @@
-### <a name="prerequisites"></a>Előfeltételek
-* A [Google Drive-hoz](https://www.google.com/drive/) fiók  
+### <a name="prerequisites"></a><span data-ttu-id="676e4-101">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="676e4-101">Prerequisites</span></span>
+* <span data-ttu-id="676e4-102">A [Google Drive-hoz](https://www.google.com/drive/) fiók</span><span class="sxs-lookup"><span data-stu-id="676e4-102">A [GoogleDrive](https://www.google.com/drive/) account</span></span>  
 
-A Google Drive-hoz fiókját a logikai alkalmazás használata előtt engedélyeznie kell a logikai alkalmazást a Google Drive-hoz-fiókjához. Szerencsére ehhez egyszerűen a a logikai alkalmazásban, az Azure portálon.  
+<span data-ttu-id="676e4-103">A Google Drive-hoz fiókját a logikai alkalmazás használata előtt engedélyeznie kell a logikai alkalmazást a Google Drive-hoz-fiókjához. Szerencsére ehhez egyszerűen a a logikai alkalmazásban, az Azure portálon.</span><span class="sxs-lookup"><span data-stu-id="676e4-103">Before you can use your GoogleDrive account in a Logic app, you must authorize the Logic app to connect to your GoogleDrive account.Fortunately, you can do this easily from within your Logic app on the Azure Portal.</span></span>  
 
-A Logic Apps alkalmazást a Google Drive-hoz fiókjához engedélyezésére lépései a következők:  
+<span data-ttu-id="676e4-104">A Logic Apps alkalmazást a Google Drive-hoz fiókjához engedélyezésére lépései a következők:</span><span class="sxs-lookup"><span data-stu-id="676e4-104">Here are the steps to authorize your Logic app to connect to your GoogleDrive account:</span></span>  
 
-1. Válassza ki a Google Drive-hoz, a VPN-kapcsolat létrehozásához a Logic app tervezőben, **megjelenítése Microsoft felügyelt API-k** a legördülő listában adja meg *Google Drive-hoz* be a keresőmezőbe. Válassza ki az eseményindító vagy művelet fogjuk használni kívánt:  
-   ![Google Drive-hoz a kapcsolat létrehozását lépést](./media/connectors-create-api-googledrive/googledrive-1.png)  
-2. Ha még nem hozott létre a Google Drive-hoz előtt fennálló kapcsolatokat, a rendszer adja meg a Google Drive-hoz hitelesítő adatokat fogja kérni. Ezeket a hitelesítő adatokat engedélyezik a Logic Apps alkalmazást való kapcsolódáshoz használt, és a Google Drive-hoz fiók adatok eléréséhez:  
+1. <span data-ttu-id="676e4-105">Válassza ki a Google Drive-hoz, a VPN-kapcsolat létrehozásához a Logic app tervezőben, **megjelenítése Microsoft felügyelt API-k** a legördülő listában adja meg *Google Drive-hoz* be a keresőmezőbe.</span><span class="sxs-lookup"><span data-stu-id="676e4-105">To create a connection to GoogleDrive, in the Logic app designer, select **Show Microsoft managed APIs** in the drop down list then enter *GoogleDrive* in the search box.</span></span> <span data-ttu-id="676e4-106">Válassza ki az eseményindító vagy művelet fogjuk használni kívánt:</span><span class="sxs-lookup"><span data-stu-id="676e4-106">Select the trigger or action you'll like to use:</span></span>  
+   <span data-ttu-id="676e4-107">![Google Drive-hoz a kapcsolat létrehozását lépést](./media/connectors-create-api-googledrive/googledrive-1.png)</span><span class="sxs-lookup"><span data-stu-id="676e4-107">![GoogleDrive connection creation step](./media/connectors-create-api-googledrive/googledrive-1.png)</span></span>  
+2. <span data-ttu-id="676e4-108">Ha még nem hozott létre a Google Drive-hoz előtt fennálló kapcsolatokat, a rendszer adja meg a Google Drive-hoz hitelesítő adatokat fogja kérni.</span><span class="sxs-lookup"><span data-stu-id="676e4-108">If you haven't created any connections to GoogleDrive before, you'll get prompted to provide your GoogleDrive credentials.</span></span> <span data-ttu-id="676e4-109">Ezeket a hitelesítő adatokat engedélyezik a Logic Apps alkalmazást való kapcsolódáshoz használt, és a Google Drive-hoz fiók adatok eléréséhez:</span><span class="sxs-lookup"><span data-stu-id="676e4-109">These credentials will be used to authorize your Logic app to connect to, and access your GoogleDrive account's data:</span></span>  
    ![Google Drive-hoz a kapcsolat létrehozását lépést](./media/connectors-create-api-googledrive/googledrive-2.png)  
-3. Adja meg a Google Drive-hoz e-mail címét:  
+3. <span data-ttu-id="676e4-111">Adja meg a Google Drive-hoz e-mail címét:</span><span class="sxs-lookup"><span data-stu-id="676e4-111">Provide your GoogleDrive email address:</span></span>  
    ![Google Drive-hoz a kapcsolat létrehozását lépést](./media/connectors-create-api-googledrive/googledrive-3.png)  
-4. Adja meg a Google Drive-hoz jelszó hitelesítése a Logic Apps alkalmazást:  
+4. <span data-ttu-id="676e4-113">Adja meg a Google Drive-hoz jelszó hitelesítése a Logic Apps alkalmazást:</span><span class="sxs-lookup"><span data-stu-id="676e4-113">Provide your GoogleDrive password to authorize your Logic app:</span></span>  
    ![Google Drive-hoz a kapcsolat létrehozását lépést](./media/connectors-create-api-googledrive/googledrive-4.png)
-5. A Google Drive-hoz való csatlakozás engedélyezése  
+5. <span data-ttu-id="676e4-115">A Google Drive-hoz való csatlakozás engedélyezése</span><span class="sxs-lookup"><span data-stu-id="676e4-115">Allow the connection to GoogleDrive</span></span>  
    ![Google Drive-hoz a kapcsolat létrehozását lépést](./media/connectors-create-api-googledrive/googledrive-5.png)  
-6. Figyelje meg, a kapcsolat létrejött, és szabadon most folytatja a Logic Apps alkalmazást más lépéseket:  
+6. <span data-ttu-id="676e4-117">Figyelje meg, a kapcsolat létrejött, és szabadon most folytatja a Logic Apps alkalmazást más lépéseket:</span><span class="sxs-lookup"><span data-stu-id="676e4-117">Notice the connection has been created and you are now free to proceed with the other steps in your Logic app:</span></span>  
    ![Google Drive-hoz a kapcsolat létrehozását lépést](./media/connectors-create-api-googledrive/googledrive-6.png)  
 
