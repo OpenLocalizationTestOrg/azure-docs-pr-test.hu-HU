@@ -1,0 +1,22 @@
+
+| <span data-ttu-id="e687a-101">Erőforrás</span><span class="sxs-lookup"><span data-stu-id="e687a-101">Resource</span></span> | <span data-ttu-id="e687a-102">Alapértelmezett korlát</span><span class="sxs-lookup"><span data-stu-id="e687a-102">Default limit</span></span> |
+| --- | --- |
+| <span data-ttu-id="e687a-103">Gyűjtemények minden felhasználóhoz</span><span class="sxs-lookup"><span data-stu-id="e687a-103">Collections per user</span></span> |<span data-ttu-id="e687a-104">1</span><span class="sxs-lookup"><span data-stu-id="e687a-104">1</span></span> |
+| <span data-ttu-id="e687a-105">Közzétett alkalmazások gyűjteményenként</span><span class="sxs-lookup"><span data-stu-id="e687a-105">Published apps per collection</span></span> |<span data-ttu-id="e687a-106">100</span><span class="sxs-lookup"><span data-stu-id="e687a-106">100</span></span> |
+| <span data-ttu-id="e687a-107">Fizetett gyűjtemények</span><span class="sxs-lookup"><span data-stu-id="e687a-107">Paid collections</span></span> |<span data-ttu-id="e687a-108">3</span><span class="sxs-lookup"><span data-stu-id="e687a-108">3</span></span> |
+| <span data-ttu-id="e687a-109">Fizetett sablonrendszerképek</span><span class="sxs-lookup"><span data-stu-id="e687a-109">Paid template images</span></span> |<span data-ttu-id="e687a-110">25</span><span class="sxs-lookup"><span data-stu-id="e687a-110">25</span></span> |
+| <span data-ttu-id="e687a-111">Felhasználók – az alapszintű csomag</span><span class="sxs-lookup"><span data-stu-id="e687a-111">Users - basic tier</span></span> |<span data-ttu-id="e687a-112">maximális 800</span><span class="sxs-lookup"><span data-stu-id="e687a-112">800 maximum</span></span> |
+| <span data-ttu-id="e687a-113">Felhasználók – normál rétegben</span><span class="sxs-lookup"><span data-stu-id="e687a-113">Users - standard tier</span></span> |<span data-ttu-id="e687a-114">legfeljebb 500</span><span class="sxs-lookup"><span data-stu-id="e687a-114">500 maximum</span></span> |
+| <span data-ttu-id="e687a-115">Felhasználók – prémium szint</span><span class="sxs-lookup"><span data-stu-id="e687a-115">Users- premium tier</span></span> |<span data-ttu-id="e687a-116">legfeljebb 100</span><span class="sxs-lookup"><span data-stu-id="e687a-116">100 maximum</span></span> |
+| <span data-ttu-id="e687a-117">Felhasználók – prémium plusz réteg</span><span class="sxs-lookup"><span data-stu-id="e687a-117">Users - premium plus tier</span></span> |<span data-ttu-id="e687a-118">legfeljebb 50-et</span><span class="sxs-lookup"><span data-stu-id="e687a-118">50 maximum</span></span> |
+| <span data-ttu-id="e687a-119">Felhasználói adatokat tároló (UPD) gyűjteményenként felhasználónként</span><span class="sxs-lookup"><span data-stu-id="e687a-119">User data storage (UPD) per user per collection</span></span> |<span data-ttu-id="e687a-120">50 GB</span><span class="sxs-lookup"><span data-stu-id="e687a-120">50 GB</span></span> |
+| <span data-ttu-id="e687a-121">Üresjárati időtúllépés</span><span class="sxs-lookup"><span data-stu-id="e687a-121">Idle timeout</span></span> |<span data-ttu-id="e687a-122">4 óra</span><span class="sxs-lookup"><span data-stu-id="e687a-122">4 hours</span></span> |
+| <span data-ttu-id="e687a-123">Leválasztott időtúllépés</span><span class="sxs-lookup"><span data-stu-id="e687a-123">Disconnected timeout</span></span> |<span data-ttu-id="e687a-124">4 óra</span><span class="sxs-lookup"><span data-stu-id="e687a-124">4 hours</span></span> |
+
+<span data-ttu-id="e687a-125">A felhasználók száma a gyűjteményben használt virtuális gépek számát határozza meg:</span><span class="sxs-lookup"><span data-stu-id="e687a-125">The number of users is determined by the number of VMs used for your collection:</span></span>
+
+* <span data-ttu-id="e687a-126">Alapszintű virtuális gépenként 16 felhasználót =</span><span class="sxs-lookup"><span data-stu-id="e687a-126">Basic = 16 users per VM</span></span>
+* <span data-ttu-id="e687a-127">Standard = 10 olyan felhasználót virtuális gépenként</span><span class="sxs-lookup"><span data-stu-id="e687a-127">Standard = 10 users per VM</span></span>
+* <span data-ttu-id="e687a-128">Prémium szintű = 4 users virtuális gépenként</span><span class="sxs-lookup"><span data-stu-id="e687a-128">Premium = 4 users per VM</span></span>
+* <span data-ttu-id="e687a-129">Premium plus = 2 felhasználók virtuális gépenként</span><span class="sxs-lookup"><span data-stu-id="e687a-129">Premium plus = 2 users per VM</span></span>
+
