@@ -1,0 +1,7 @@
+[!INCLUDE [active-directory-b2c-switch-b2c-tenant](active-directory-b2c-switch-b2c-tenant.md)]
+
+[!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](active-directory-b2c-portal-navigate-b2c-service.md)]
+
+<span data-ttu-id="8bab9-101">Ha az Azure AD B2C nincs a szolgáltatások listájában, nyissa meg a **További szolgáltatások** menüt a portál bal alsó oldalán található navigációs sáv alatt.</span><span class="sxs-lookup"><span data-stu-id="8bab9-101">If Azure AD B2C isn't in the services list, expand **More services** below the navigation bar in the bottom-left side of the portal.</span></span> <span data-ttu-id="8bab9-102">Keressen rá az **Azure AD B2C** kifejezésre, és válassza ki az **Azure AD B2C** elemet a találatok listájában.</span><span class="sxs-lookup"><span data-stu-id="8bab9-102">Search for **Azure AD B2C** and select **Azure AD B2C** in the result list.</span></span> <span data-ttu-id="8bab9-103">A csillag ikonnal az Azure AD B2C-t kedvenc szolgáltatásai listájához is hozzáadhatja.</span><span class="sxs-lookup"><span data-stu-id="8bab9-103">You can also select the star icon to add Azure AD B2C it your favorite services list.</span></span>
+
+![Az Azure AD B2C-szolgáltatás megkeresése](media/active-directory-b2c-find-service-settings/navigate-to-azure-ad-b2c.png)
