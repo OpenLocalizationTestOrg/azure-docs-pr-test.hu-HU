@@ -15,10 +15,10 @@ ms.workload: storage
 ms.date: 06/03/2017
 ms.author: marsma
 ms.openlocfilehash: aa2b53c514890aa980bc89626e8c7c7336b77a0b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-storage-samples"></a>Azure Storage-minták
 
