@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 03/03/2017
 ms.author: robinsh
 ms.openlocfilehash: a477c1eaf2388f31d4fd36b90f9a830c782873d3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="storage-analytics"></a>Storage Analytics
 
