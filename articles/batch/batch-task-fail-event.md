@@ -1,0 +1,93 @@
+---
+title: "Azure Batch feladat sikertelen esemény |} Microsoft Docs"
+description: "Útmutató a kötegelt feladat nem esemény."
+services: batch
+author: tamram
+manager: timlt
+ms.assetid: 
+ms.service: batch
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: vm-windows
+ms.workload: big-compute
+ms.date: 04/20/2017
+ms.author: tamram
+ms.openlocfilehash: 08feb4ec34bb1635f8ea744b54a10b677b94ab3e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 07/11/2017
+---
+# <a name="task-fail-event"></a><span data-ttu-id="15244-103">A feladat sikertelen esemény</span><span class="sxs-lookup"><span data-stu-id="15244-103">Task fail event</span></span>
+
+ <span data-ttu-id="15244-104">Ez az esemény kibocsátott hibával feladat befejezését.</span><span class="sxs-lookup"><span data-stu-id="15244-104">This event is emitted when a task completes with a failure.</span></span> <span data-ttu-id="15244-105">Jelenleg minden nem nulla kilépési kód minősülnek hibák.</span><span class="sxs-lookup"><span data-stu-id="15244-105">Currently all nonzero exit codes are considered failures.</span></span> <span data-ttu-id="15244-106">Ezt az eseményt a rendszer kibocsátott *kívül* feladat esemény befejeződik, és segítségével észlelés, ha a feladat végrehajtása sikertelen.</span><span class="sxs-lookup"><span data-stu-id="15244-106">This event will be emitted *in addition to* a task complete event and can be used to detect when a task has failed.</span></span>
+
+
+ <span data-ttu-id="15244-107">A következő példa bemutatja, hogy a szervezet egy feladat sikertelen esemény.</span><span class="sxs-lookup"><span data-stu-id="15244-107">The following example shows the body of a task fail event.</span></span>
+
+```
+{
+    "jobId": "job-0000000001",
+    "id": "task-5",
+    "taskType": "User",
+    "systemTaskVersion": 0,
+    "nodeInfo": {
+        "poolId": "pool-001",
+        "nodeId": "tvm-257509324_1-20160908t162728z"
+    },
+    "multiInstanceSettings": {
+        "numberOfInstances": 1
+    },
+    "constraints": {
+        "maxTaskRetryCount": 2
+    },
+    "executionInfo": {
+        "startTime": "2016-09-08T16:32:23.799Z",
+        "endTime": "2016-09-08T16:34:00.666Z",
+        "exitCode": 1,
+        "retryCount": 2,
+        "requeueCount": 0
+    }
+}
+```
+
+|<span data-ttu-id="15244-108">Elem neve</span><span class="sxs-lookup"><span data-stu-id="15244-108">Element name</span></span>|<span data-ttu-id="15244-109">Típus</span><span class="sxs-lookup"><span data-stu-id="15244-109">Type</span></span>|<span data-ttu-id="15244-110">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="15244-110">Notes</span></span>|
+|------------------|----------|-----------|
+|<span data-ttu-id="15244-111">A JobId értékének</span><span class="sxs-lookup"><span data-stu-id="15244-111">jobId</span></span>|<span data-ttu-id="15244-112">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="15244-112">String</span></span>|<span data-ttu-id="15244-113">A feladat a tevékenységet tartalmazó azonosítója.</span><span class="sxs-lookup"><span data-stu-id="15244-113">The id of the job containing the task.</span></span>|
+|<span data-ttu-id="15244-114">id</span><span class="sxs-lookup"><span data-stu-id="15244-114">id</span></span>|<span data-ttu-id="15244-115">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="15244-115">String</span></span>|<span data-ttu-id="15244-116">A feladat azonosítóját.</span><span class="sxs-lookup"><span data-stu-id="15244-116">The id of the task.</span></span>|
+|<span data-ttu-id="15244-117">taskType</span><span class="sxs-lookup"><span data-stu-id="15244-117">taskType</span></span>|<span data-ttu-id="15244-118">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="15244-118">String</span></span>|<span data-ttu-id="15244-119">A tevékenység típusa.</span><span class="sxs-lookup"><span data-stu-id="15244-119">The type of the task.</span></span> <span data-ttu-id="15244-120">Ez is, miszerint manager feladata JobManager kell vagy a "User" jelezve, hogy ez nem egy kezelő feladat.</span><span class="sxs-lookup"><span data-stu-id="15244-120">This can either be 'JobManager' indicating it is a job manager task or 'User' indicating it is not a job manager task.</span></span> <span data-ttu-id="15244-121">Ez az esemény nem kibocsátott feladat előkészítő feladatok, a feladat kiadása feladatok vagy a start feladatokhoz.</span><span class="sxs-lookup"><span data-stu-id="15244-121">This event is not emitted for job preparation tasks, job release tasks or start tasks.</span></span>|
+|<span data-ttu-id="15244-122">systemTaskVersion</span><span class="sxs-lookup"><span data-stu-id="15244-122">systemTaskVersion</span></span>|<span data-ttu-id="15244-123">Int32</span><span class="sxs-lookup"><span data-stu-id="15244-123">Int32</span></span>|<span data-ttu-id="15244-124">Ez egy, a belső újrapróbálkozási számláló meg olyan feladatra.</span><span class="sxs-lookup"><span data-stu-id="15244-124">This is the internal retry counter on a task.</span></span> <span data-ttu-id="15244-125">A Batch szolgáltatás belső újra egy feladatot, hogy figyelembe vegye az átmeneti problémákat.</span><span class="sxs-lookup"><span data-stu-id="15244-125">Internally the Batch service can retry a task to account for transient issues.</span></span> <span data-ttu-id="15244-126">A hibák például belső ütemezési hibák, vagy megpróbálja helyreállítani a számítási csomópontok hibás állapotban.</span><span class="sxs-lookup"><span data-stu-id="15244-126">These issues can include internal scheduling errors or attempts to recover from compute nodes in a bad state.</span></span>|
+|[<span data-ttu-id="15244-127">nodeInfo</span><span class="sxs-lookup"><span data-stu-id="15244-127">nodeInfo</span></span>](#nodeInfo)|<span data-ttu-id="15244-128">Összetett típus</span><span class="sxs-lookup"><span data-stu-id="15244-128">Complex Type</span></span>|<span data-ttu-id="15244-129">A számítási csomópont, amelyen a feladat futott adatait tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="15244-129">Contains information about the compute node on which the task ran.</span></span>|
+|[<span data-ttu-id="15244-130">multiInstanceSettings</span><span class="sxs-lookup"><span data-stu-id="15244-130">multiInstanceSettings</span></span>](#multiInstanceSettings)|<span data-ttu-id="15244-131">Összetett típus</span><span class="sxs-lookup"><span data-stu-id="15244-131">Complex Type</span></span>|<span data-ttu-id="15244-132">Megadja, hogy a feladat több számítási csomópont igénylő többpéldányos feladat.</span><span class="sxs-lookup"><span data-stu-id="15244-132">Specifies that the task is a Multi-Instance Task requiring multiple compute nodes.</span></span>  <span data-ttu-id="15244-133">Lásd: [multiInstanceSettings](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-task) részleteiről.</span><span class="sxs-lookup"><span data-stu-id="15244-133">See [multiInstanceSettings](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-task) for details.</span></span>|
+|[<span data-ttu-id="15244-134">megkötések</span><span class="sxs-lookup"><span data-stu-id="15244-134">constraints</span></span>](#constraints)|<span data-ttu-id="15244-135">Összetett típus</span><span class="sxs-lookup"><span data-stu-id="15244-135">Complex Type</span></span>|<span data-ttu-id="15244-136">Ez a feladat vonatkozó végrehajtási korlátozások.</span><span class="sxs-lookup"><span data-stu-id="15244-136">The execution constraints that apply to this task.</span></span>|
+|[<span data-ttu-id="15244-137">executionInfo</span><span class="sxs-lookup"><span data-stu-id="15244-137">executionInfo</span></span>](#executionInfo)|<span data-ttu-id="15244-138">Összetett típus</span><span class="sxs-lookup"><span data-stu-id="15244-138">Complex Type</span></span>|<span data-ttu-id="15244-139">A feladat végrehajtásának adatait tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="15244-139">Contains information about the execution of the task.</span></span>|
+
+###  <span data-ttu-id="15244-140"><a name="nodeInfo"></a>nodeInfo</span><span class="sxs-lookup"><span data-stu-id="15244-140"><a name="nodeInfo"></a> nodeInfo</span></span>
+
+|<span data-ttu-id="15244-141">Elem neve</span><span class="sxs-lookup"><span data-stu-id="15244-141">Element name</span></span>|<span data-ttu-id="15244-142">Típus</span><span class="sxs-lookup"><span data-stu-id="15244-142">Type</span></span>|<span data-ttu-id="15244-143">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="15244-143">Notes</span></span>|
+|------------------|----------|-----------|
+|<span data-ttu-id="15244-144">poolId</span><span class="sxs-lookup"><span data-stu-id="15244-144">poolId</span></span>|<span data-ttu-id="15244-145">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="15244-145">String</span></span>|<span data-ttu-id="15244-146">A készlet, amelyen a feladat futott azonosítója.</span><span class="sxs-lookup"><span data-stu-id="15244-146">The id of the pool on which the task ran.</span></span>|
+|<span data-ttu-id="15244-147">nodeId</span><span class="sxs-lookup"><span data-stu-id="15244-147">nodeId</span></span>|<span data-ttu-id="15244-148">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="15244-148">String</span></span>|<span data-ttu-id="15244-149">A csomópont, amelyen a feladat futott azonosítója.</span><span class="sxs-lookup"><span data-stu-id="15244-149">The id of the node on which the task ran.</span></span>|
+
+###  <span data-ttu-id="15244-150"><a name="multiInstanceSettings"></a>multiInstanceSettings</span><span class="sxs-lookup"><span data-stu-id="15244-150"><a name="multiInstanceSettings"></a> multiInstanceSettings</span></span>
+
+|<span data-ttu-id="15244-151">Elem neve</span><span class="sxs-lookup"><span data-stu-id="15244-151">Element name</span></span>|<span data-ttu-id="15244-152">Típus</span><span class="sxs-lookup"><span data-stu-id="15244-152">Type</span></span>|<span data-ttu-id="15244-153">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="15244-153">Notes</span></span>|
+|------------------|----------|-----------|
+|<span data-ttu-id="15244-154">numberOfInstances</span><span class="sxs-lookup"><span data-stu-id="15244-154">numberOfInstances</span></span>|<span data-ttu-id="15244-155">Int32</span><span class="sxs-lookup"><span data-stu-id="15244-155">Int32</span></span>|<span data-ttu-id="15244-156">A tevékenységhez szükséges számítási csomópontok száma.</span><span class="sxs-lookup"><span data-stu-id="15244-156">The number of compute nodes required by the task.</span></span>|
+
+###  <span data-ttu-id="15244-157"><a name="constraints"></a>megkötések</span><span class="sxs-lookup"><span data-stu-id="15244-157"><a name="constraints"></a> constraints</span></span>
+
+|<span data-ttu-id="15244-158">Elem neve</span><span class="sxs-lookup"><span data-stu-id="15244-158">Element name</span></span>|<span data-ttu-id="15244-159">Típus</span><span class="sxs-lookup"><span data-stu-id="15244-159">Type</span></span>|<span data-ttu-id="15244-160">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="15244-160">Notes</span></span>|
+|------------------|----------|-----------|
+|<span data-ttu-id="15244-161">maxTaskRetryCount</span><span class="sxs-lookup"><span data-stu-id="15244-161">maxTaskRetryCount</span></span>|<span data-ttu-id="15244-162">Int32</span><span class="sxs-lookup"><span data-stu-id="15244-162">Int32</span></span>|<span data-ttu-id="15244-163">A maximális száma a próbálhassa.</span><span class="sxs-lookup"><span data-stu-id="15244-163">The maximum number of times the task may be retried.</span></span> <span data-ttu-id="15244-164">A Batch szolgáltatás feladat újrapróbálkozik, ha annak kilépési kódja nem nulla.</span><span class="sxs-lookup"><span data-stu-id="15244-164">The Batch service retries a task if its exit code is nonzero.</span></span><br /><br /> <span data-ttu-id="15244-165">Vegye figyelembe, hogy ez az érték kifejezetten határozza meg az újbóli próbálkozások számát.</span><span class="sxs-lookup"><span data-stu-id="15244-165">Note that this value specifically controls the number of retries.</span></span> <span data-ttu-id="15244-166">A Batch szolgáltatás egyszer megpróbál-e a feladatot, és előfordulhat, hogy ismételje meg ezt a határt legfeljebb.</span><span class="sxs-lookup"><span data-stu-id="15244-166">The Batch service will try the task once, and may then retry up to this limit.</span></span> <span data-ttu-id="15244-167">Például ha az újrapróbálkozások maximális száma 3, a feladat kötegelt záma legfeljebb 4 alkalommal (egy kezdeti próbálja és 3 újrapróbálás).</span><span class="sxs-lookup"><span data-stu-id="15244-167">For example, if the maximum retry count is 3, Batch tries a task up to 4 times (one initial try and 3 retries).</span></span><br /><br /> <span data-ttu-id="15244-168">Ha az újrapróbálkozások maximális száma 0, a Batch szolgáltatás nem próbálja meg újra feladatok.</span><span class="sxs-lookup"><span data-stu-id="15244-168">If the maximum retry count is 0, the Batch service does not retry tasks.</span></span><br /><br /> <span data-ttu-id="15244-169">Ha az újrapróbálkozások maximális száma -1, a Batch szolgáltatás korlátozás nélkül feladatok után ismét.</span><span class="sxs-lookup"><span data-stu-id="15244-169">If the maximum retry count is -1, the Batch service retries tasks without limit.</span></span><br /><br /> <span data-ttu-id="15244-170">Az alapértelmezett érték: 0 (nincs újrapróbálás).</span><span class="sxs-lookup"><span data-stu-id="15244-170">The default value is 0 (no retries).</span></span>|
+
+
+###  <span data-ttu-id="15244-171"><a name="executionInfo"></a>executionInfo</span><span class="sxs-lookup"><span data-stu-id="15244-171"><a name="executionInfo"></a> executionInfo</span></span>
+
+|<span data-ttu-id="15244-172">Elem neve</span><span class="sxs-lookup"><span data-stu-id="15244-172">Element name</span></span>|<span data-ttu-id="15244-173">Típus</span><span class="sxs-lookup"><span data-stu-id="15244-173">Type</span></span>|<span data-ttu-id="15244-174">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="15244-174">Notes</span></span>|
+|------------------|----------|-----------|
+|<span data-ttu-id="15244-175">startTime</span><span class="sxs-lookup"><span data-stu-id="15244-175">startTime</span></span>|<span data-ttu-id="15244-176">Dátum és idő</span><span class="sxs-lookup"><span data-stu-id="15244-176">DateTime</span></span>|<span data-ttu-id="15244-177">A feladat kezdésének ideje futó.</span><span class="sxs-lookup"><span data-stu-id="15244-177">The time at which the task started running.</span></span> <span data-ttu-id="15244-178">"Fut" megfelel-e a **futtató** állapotba kerül, így ha a feladat Erőforrásfájlok vagy alkalmazásokat ad meg, kezdési idejét tükrözi a indításakor, amelyen a feladat letöltése vagy telepítése ezeket.</span><span class="sxs-lookup"><span data-stu-id="15244-178">'Running' corresponds to the **running** state, so if the task specifies resource files or application packages, then the start time reflects the time at which the task started downloading or deploying these.</span></span>  <span data-ttu-id="15244-179">Ha a feladat újraindítása, vagy a rendszer megpróbálja újból végrehajtani, akkor a legutóbbi feladat kezdésének ideje futó.</span><span class="sxs-lookup"><span data-stu-id="15244-179">If the task has been restarted or retried, this is the most recent time at which the task started running.</span></span>|
+|<span data-ttu-id="15244-180">Befejezés időpontja</span><span class="sxs-lookup"><span data-stu-id="15244-180">endTime</span></span>|<span data-ttu-id="15244-181">Dátum és idő</span><span class="sxs-lookup"><span data-stu-id="15244-181">DateTime</span></span>|<span data-ttu-id="15244-182">Az az idő, amelyen a feladat befejeződött.</span><span class="sxs-lookup"><span data-stu-id="15244-182">The time at which the task completed.</span></span>|
+|<span data-ttu-id="15244-183">exitCode</span><span class="sxs-lookup"><span data-stu-id="15244-183">exitCode</span></span>|<span data-ttu-id="15244-184">Int32</span><span class="sxs-lookup"><span data-stu-id="15244-184">Int32</span></span>|<span data-ttu-id="15244-185">A feladat kilépési kódot.</span><span class="sxs-lookup"><span data-stu-id="15244-185">The exit code of the task.</span></span>|
+|<span data-ttu-id="15244-186">a retryCount</span><span class="sxs-lookup"><span data-stu-id="15244-186">retryCount</span></span>|<span data-ttu-id="15244-187">Int32</span><span class="sxs-lookup"><span data-stu-id="15244-187">Int32</span></span>|<span data-ttu-id="15244-188">A száma a feladat próbálkozásainak már elérte a Batch szolgáltatás.</span><span class="sxs-lookup"><span data-stu-id="15244-188">The number of times the task has been retried by the Batch service.</span></span> <span data-ttu-id="15244-189">A rendszer megpróbálja újból végrehajtani a feladatot, ha egy nem nulla kilépési kód, mely legfeljebb a megadott MaxTaskRetryCount kilép.</span><span class="sxs-lookup"><span data-stu-id="15244-189">The task is retried if it exits with a nonzero exit code, up to the specified MaxTaskRetryCount.</span></span>|
+|<span data-ttu-id="15244-190">requeueCount</span><span class="sxs-lookup"><span data-stu-id="15244-190">requeueCount</span></span>|<span data-ttu-id="15244-191">Int32</span><span class="sxs-lookup"><span data-stu-id="15244-191">Int32</span></span>|<span data-ttu-id="15244-192">A száma a feladat egy felhasználói kérelem miatt van a Batch szolgáltatás által lett helyezte.</span><span class="sxs-lookup"><span data-stu-id="15244-192">The number of times the task has been requeued by the Batch service as the result of a user request.</span></span><br /><br /> <span data-ttu-id="15244-193">Amikor a felhasználó eltávolítja csomópontok (az átméretezés, vagy a készlet méretének csökkentése) egy készletet vagy ha a feladat letiltódik, a felhasználó használatával adja meg, hogy fut a csomópontokon feladatokat kell helyezte a végrehajtáshoz.</span><span class="sxs-lookup"><span data-stu-id="15244-193">When the user removes nodes from a pool (by resizing or shrinking the pool) or when the job is being disabled, the user can specify that running tasks on the nodes be requeued for execution.</span></span> <span data-ttu-id="15244-194">A számláló értéke ezen okok miatt a feladat rendelkezik lett helyezte hány alkalommal követi nyomon.</span><span class="sxs-lookup"><span data-stu-id="15244-194">This count tracks how many times the task has been requeued for these reasons.</span></span>|
