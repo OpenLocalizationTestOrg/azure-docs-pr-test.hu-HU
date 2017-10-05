@@ -1,0 +1,111 @@
+---
+title: "Egy Azure Import/Export importálási feladat - v1 javítására |} Microsoft Docs"
+description: "Megtudhatja, hogyan javítsa az importálási feladat létrehozott és az Azure Import/Export szolgáltatás használatával fusson."
+author: muralikk
+manager: syadav
+editor: tysonn
+services: storage
+documentationcenter: 
+ms.assetid: 38cc16bd-ad55-4625-9a85-e1726c35fd1b
+ms.service: storage
+ms.workload: storage
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 01/23/2017
+ms.author: muralikk
+ms.openlocfilehash: b374eabcbafa6ffe64c639fb6c89be857ecfc221
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 07/11/2017
+---
+# <a name="repairing-an-import-job"></a><span data-ttu-id="2965d-103">Importálási feladat javítása</span><span class="sxs-lookup"><span data-stu-id="2965d-103">Repairing an import job</span></span>
+<span data-ttu-id="2965d-104">A Microsoft Azure Import/Export szolgáltatás lehetséges, hogy nem másolja a fájlok vagy a fájl tartalmát egy része a Windows Azure Blob szolgáltatásban.</span><span class="sxs-lookup"><span data-stu-id="2965d-104">The Microsoft Azure Import/Export service may fail to copy some of your files or parts of a file to the Windows Azure Blob service.</span></span> <span data-ttu-id="2965d-105">Néhány ok, amiért hibák a következők:</span><span class="sxs-lookup"><span data-stu-id="2965d-105">Some reasons for failures include:</span></span>  
+  
+-   <span data-ttu-id="2965d-106">A sérült fájlok</span><span class="sxs-lookup"><span data-stu-id="2965d-106">Corrupted files</span></span>  
+  
+-   <span data-ttu-id="2965d-107">Sérült meghajtók</span><span class="sxs-lookup"><span data-stu-id="2965d-107">Damaged drives</span></span>  
+  
+-   <span data-ttu-id="2965d-108">A fiók kulcsot módosítható, amíg a fájl átvitel során.</span><span class="sxs-lookup"><span data-stu-id="2965d-108">The storage account key changed while the file was being transferred.</span></span>  
+  
+<span data-ttu-id="2965d-109">Futtathatja a Microsoft Azure Import/Export eszköz az importálás feladat másolási naplófájlokat, és az eszköz fel kell töltenie a hiányzó fájlokat (vagy a fájl tartalmát) a Windows Azure-tárfiókhoz importálási feladat befejeződik.</span><span class="sxs-lookup"><span data-stu-id="2965d-109">You can run the Microsoft Azure Import/Export Tool with the import job's copy log files, and the tool will upload the missing files (or parts of a file) to your Windows Azure storage account to complete import job.</span></span>  
+  
+## <a name="repairimport-parameters"></a><span data-ttu-id="2965d-110">RepairImport paraméterek</span><span class="sxs-lookup"><span data-stu-id="2965d-110">RepairImport parameters</span></span>
+
+<span data-ttu-id="2965d-111">A következő paraméterekkel rendelkező adható meg **RepairImport**:</span><span class="sxs-lookup"><span data-stu-id="2965d-111">The following parameters can be specified with **RepairImport**:</span></span> 
+  
+|||  
+|-|-|  
+|<span data-ttu-id="2965d-112">**r:**< RepairFile\></span><span class="sxs-lookup"><span data-stu-id="2965d-112">**/r:**<RepairFile\></span></span>|<span data-ttu-id="2965d-113">**Szükséges.**</span><span class="sxs-lookup"><span data-stu-id="2965d-113">**Required.**</span></span> <span data-ttu-id="2965d-114">A fájl elérési útját javítása, amely nyomon követi a folyamatot, a javítási, és lehetővé teszi az megszakított javítását folytatása.</span><span class="sxs-lookup"><span data-stu-id="2965d-114">Path to the repair file, which tracks the progress of the repair, and allows you to resume an interrupted repair.</span></span> <span data-ttu-id="2965d-115">Minden olyan meghajtó meg kell adni egy javítási fájlt.</span><span class="sxs-lookup"><span data-stu-id="2965d-115">Each drive must have one and only one repair file.</span></span> <span data-ttu-id="2965d-116">Egy adott meghajtó javítás indításakor meg fogja továbbítani az elérési út egy javítási fájlt, amely még nem létezik.</span><span class="sxs-lookup"><span data-stu-id="2965d-116">When you start a repair for a given drive, you will pass in the path to a repair file which does not yet exist.</span></span> <span data-ttu-id="2965d-117">Az megszakított javítását folytatásához meglévő javítási fájl nevében kell átadni.</span><span class="sxs-lookup"><span data-stu-id="2965d-117">To resume an interrupted repair, you should pass in the name of an existing repair file.</span></span> <span data-ttu-id="2965d-118">A célmeghajtó megfelelő javítási fájlt mindig meg kell adni.</span><span class="sxs-lookup"><span data-stu-id="2965d-118">The repair file corresponding to the target drive must always be specified.</span></span>|  
+|<span data-ttu-id="2965d-119">**/ logdir:**< LogDirectory\></span><span class="sxs-lookup"><span data-stu-id="2965d-119">**/logdir:**<LogDirectory\></span></span>|<span data-ttu-id="2965d-120">**Nem kötelező.**</span><span class="sxs-lookup"><span data-stu-id="2965d-120">**Optional.**</span></span> <span data-ttu-id="2965d-121">A naplózási könyvtár.</span><span class="sxs-lookup"><span data-stu-id="2965d-121">The log directory.</span></span> <span data-ttu-id="2965d-122">Ez a könyvtár részletes naplófájlok fog szerepelni.</span><span class="sxs-lookup"><span data-stu-id="2965d-122">Verbose log files will be written to this directory.</span></span> <span data-ttu-id="2965d-123">Ha nincs naplókönyvtár meg van adva, a naplózási könyvtár az aktuális könyvtár lesz.</span><span class="sxs-lookup"><span data-stu-id="2965d-123">If no log directory is specified, the current directory will be used as the log directory.</span></span>|  
+|<span data-ttu-id="2965d-124">**/ d:**< TargetDirectories\></span><span class="sxs-lookup"><span data-stu-id="2965d-124">**/d:**<TargetDirectories\></span></span>|<span data-ttu-id="2965d-125">**Szükséges.**</span><span class="sxs-lookup"><span data-stu-id="2965d-125">**Required.**</span></span> <span data-ttu-id="2965d-126">Legalább egy pontosvesszővel elválasztott könyvtárak importált eredeti fájlokat tartalmazó.</span><span class="sxs-lookup"><span data-stu-id="2965d-126">One or more semicolon-separated directories that contain the original files that were imported.</span></span> <span data-ttu-id="2965d-127">Az importálás meghajtó is használható, de nincs szükség esetén érhetők el az eredeti fájlokat más helyekre.</span><span class="sxs-lookup"><span data-stu-id="2965d-127">The import drive may also be used, but is not required if alternate locations of original files are available.</span></span>|  
+|<span data-ttu-id="2965d-128">**/BK:**< BitLockerKey\></span><span class="sxs-lookup"><span data-stu-id="2965d-128">**/bk:**<BitLockerKey\></span></span>|<span data-ttu-id="2965d-129">**Nem kötelező.**</span><span class="sxs-lookup"><span data-stu-id="2965d-129">**Optional.**</span></span> <span data-ttu-id="2965d-130">A BitLocker kulcsot kell megadnia, ha azt szeretné, hogy az eszköz zárolásának feloldásához egy titkosított meghajtó, ahol az eredeti fájl áll rendelkezésre.</span><span class="sxs-lookup"><span data-stu-id="2965d-130">You should specify the BitLocker key if you want the tool to unlock an encrypted drive where the original files are available.</span></span>|  
+|<span data-ttu-id="2965d-131">**/sn:**< StorageAccountName\></span><span class="sxs-lookup"><span data-stu-id="2965d-131">**/sn:**<StorageAccountName\></span></span>|<span data-ttu-id="2965d-132">**Szükséges.**</span><span class="sxs-lookup"><span data-stu-id="2965d-132">**Required.**</span></span> <span data-ttu-id="2965d-133">Az importálási feladatnak a tárfiók neve.</span><span class="sxs-lookup"><span data-stu-id="2965d-133">The name of the storage account for the import job.</span></span>|  
+|<span data-ttu-id="2965d-134">**/SK:**< StorageAccountKey\></span><span class="sxs-lookup"><span data-stu-id="2965d-134">**/sk:**<StorageAccountKey\></span></span>|<span data-ttu-id="2965d-135">**Szükséges** csak, ha a tároló SAS nincs megadva.</span><span class="sxs-lookup"><span data-stu-id="2965d-135">**Required** if and only if a container SAS is not specified.</span></span> <span data-ttu-id="2965d-136">A fiók az importálási feladatnak a tárfiók kulcsa.</span><span class="sxs-lookup"><span data-stu-id="2965d-136">The account key for the storage account for the import job.</span></span>|  
+|<span data-ttu-id="2965d-137">**/csas:**< ContainerSas\></span><span class="sxs-lookup"><span data-stu-id="2965d-137">**/csas:**<ContainerSas\></span></span>|<span data-ttu-id="2965d-138">**Szükséges** csak, ha nincs megadva a tárfiók kulcsára.</span><span class="sxs-lookup"><span data-stu-id="2965d-138">**Required** if and only if the storage account key is not specified.</span></span> <span data-ttu-id="2965d-139">A tároló SAS az importálási feladattal társított BLOB eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="2965d-139">The container SAS for accessing the blobs associated with the import job.</span></span>|  
+|<span data-ttu-id="2965d-140">**/ CopyLogFile:**< DriveCopyLogFile\></span><span class="sxs-lookup"><span data-stu-id="2965d-140">**/CopyLogFile:**<DriveCopyLogFile\></span></span>|<span data-ttu-id="2965d-141">**Szükséges.**</span><span class="sxs-lookup"><span data-stu-id="2965d-141">**Required.**</span></span> <span data-ttu-id="2965d-142">Naplófájl elérési útja a meghajtó másolása (vagy részletes naplózás vagy hiba napló).</span><span class="sxs-lookup"><span data-stu-id="2965d-142">Path to the drive copy log file (either verbose log or error log).</span></span> <span data-ttu-id="2965d-143">A fájlt a Windows Azure Import/Export szolgáltatás által generált és tölthető le: a feladathoz társított blob-tároló.</span><span class="sxs-lookup"><span data-stu-id="2965d-143">The file is generated by the Windows Azure Import/Export service and can be downloaded from the blob storage associated with the job.</span></span> <span data-ttu-id="2965d-144">A napló fájl másolása sikertelen blobokkal vagy a fájlokat, amelyek javítani kell információkat tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="2965d-144">The copy log file contains information about failed blobs or files which are to be repaired.</span></span>|  
+|<span data-ttu-id="2965d-145">**/ PathMapFile:**< DrivePathMapFile\></span><span class="sxs-lookup"><span data-stu-id="2965d-145">**/PathMapFile:**<DrivePathMapFile\></span></span>|<span data-ttu-id="2965d-146">**Nem kötelező.**</span><span class="sxs-lookup"><span data-stu-id="2965d-146">**Optional.**</span></span> <span data-ttu-id="2965d-147">Elérési útját egy szövegfájlt, amely segítségével kétértelműséget feloldása, ha több fájl, amely ugyanazt a feladatot importálna ugyanazzal a névvel rendelkezik.</span><span class="sxs-lookup"><span data-stu-id="2965d-147">Path to a text file that can be used to resolve ambiguities if you have multiple files with the same name that you were importing in the same job.</span></span> <span data-ttu-id="2965d-148">Az eszköz fut, először azt töltheti fel az összes, a nem egyértelmű nevek a fájl.</span><span class="sxs-lookup"><span data-stu-id="2965d-148">The first time the tool is run, it can populate this file with all of the ambiguous names.</span></span> <span data-ttu-id="2965d-149">Az eszköz utólagosan ezt a fájlt használja a kétértelműséget megoldásához.</span><span class="sxs-lookup"><span data-stu-id="2965d-149">Subsequent runs of the tool will use this file to resolve the ambiguities.</span></span>|  
+  
+## <a name="using-the-repairimport-command"></a><span data-ttu-id="2965d-150">A RepairImport paranccsal</span><span class="sxs-lookup"><span data-stu-id="2965d-150">Using the RepairImport command</span></span>  
+<span data-ttu-id="2965d-151">Adatok importálása a hálózaton keresztül az adatok folyamatos javításához importálna, használja az eredeti fájlokat tartalmazó könyvtárak kell megadnia a `/d` paraméter.</span><span class="sxs-lookup"><span data-stu-id="2965d-151">To repair import data by streaming the data over the network, you must specify the directories that contain the original files you were importing using the `/d` parameter.</span></span> <span data-ttu-id="2965d-152">A letöltött importáljon a tárfiókba másolása naplófájl is meg kell adnia.</span><span class="sxs-lookup"><span data-stu-id="2965d-152">You must also specify the copy log file that you downloaded from your storage account.</span></span> <span data-ttu-id="2965d-153">Tipikus parancssor használatával javítsa ki az importálási feladat részleges kapcsolatos problémákkal néz ki:</span><span class="sxs-lookup"><span data-stu-id="2965d-153">A typical command line to repair an import job with partial failures looks like:</span></span>  
+  
+```  
+WAImportExport.exe RepairImport /r:C:\WAImportExport\9WM35C2V.rep /d:C:\Users\bob\Pictures;X:\BobBackup\photos /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /CopyLogFile:C:\WAImportExport\9WM35C2V.log  
+```  
+  
+<span data-ttu-id="2965d-154">A következő példában látható egy egy másolás naplófájl.</span><span class="sxs-lookup"><span data-stu-id="2965d-154">The following is an example of a copy log file.</span></span> <span data-ttu-id="2965d-155">Ebben az esetben az egyik 64 K adat, a fájl megsérült a meghajtón, az importálási feladatnak teljesített.</span><span class="sxs-lookup"><span data-stu-id="2965d-155">In this case, one 64K piece of a file was corrupted on the drive that was shipped for the import job.</span></span> <span data-ttu-id="2965d-156">Mivel ez a csak hibát jelzett, a blobot, amely a feladatot a többi az importálás sikeres volt.</span><span class="sxs-lookup"><span data-stu-id="2965d-156">Since this is the only failure indicated, the rest of the blobs in the job were successfully imported.</span></span>  
+  
+```xml
+<?xml version="1.0" encoding="utf-8"?>  
+<DriveLog>  
+ <DriveId>9WM35C2V</DriveId>  
+ <Blob Status="CompletedWithErrors">  
+ <BlobPath>pictures/animals/koala.jpg</BlobPath>  
+ <FilePath>\animals\koala.jpg</FilePath>  
+ <Length>163840</Length>  
+ <ImportDisposition Status="Overwritten">overwrite</ImportDisposition>  
+ <PageRangeList>  
+  <PageRange Offset="65536" Length="65536" Hash="AA2585F6F6FD01C4AD4256E018240CD4" Status="Corrupted" />  
+ </PageRangeList>  
+ </Blob>  
+ <Status>CompletedWithErrors</Status>  
+</DriveLog>  
+```
+  
+<span data-ttu-id="2965d-157">Ha ezt a naplót másolása az Azure Import/Export eszköz számára, az eszköz megpróbál a hiányzó tartalmának másolása a hálózaton keresztül az adott fájlt az importálási befejezéséhez.</span><span class="sxs-lookup"><span data-stu-id="2965d-157">When this copy log is passed to the Azure Import/Export Tool, the tool will try to finish the import for this file by copying the missing contents across the network.</span></span> <span data-ttu-id="2965d-158">A fenti példában követően az eszköz az eredeti fájlt fog keresni `\animals\koala.jpg` belül a két címtár `C:\Users\bob\Pictures` és `X:\BobBackup\photos`.</span><span class="sxs-lookup"><span data-stu-id="2965d-158">Following the example above, the tool will look for the original file `\animals\koala.jpg` within the two directories `C:\Users\bob\Pictures` and `X:\BobBackup\photos`.</span></span> <span data-ttu-id="2965d-159">Ha a fájl `C:\Users\bob\Pictures\animals\koala.jpg` létezik, az Azure Import/Export eszköz a hiányzó adattartomány fogja másolni a megfelelő blob `http://bobmediaaccount.blob.core.windows.net/pictures/animals/koala.jpg`.</span><span class="sxs-lookup"><span data-stu-id="2965d-159">If the file `C:\Users\bob\Pictures\animals\koala.jpg` exists, the Azure Import/Export Tool will copy the missing range of data to the corresponding blob `http://bobmediaaccount.blob.core.windows.net/pictures/animals/koala.jpg`.</span></span>  
+  
+## <a name="resolving-conflicts-when-using-repairimport"></a><span data-ttu-id="2965d-160">Az ütközések feloldása RepairImport használatakor</span><span class="sxs-lookup"><span data-stu-id="2965d-160">Resolving conflicts when using RepairImport</span></span>  
+<span data-ttu-id="2965d-161">Bizonyos esetekben az eszköz nem lehet tudni található, vagy nyissa meg a szükséges fájl a következő okok miatt: a fájl nem található, a fájl nem érhető el, a fájl neve nem egyértelmű, vagy a fájl tartalma nem megfelelő.</span><span class="sxs-lookup"><span data-stu-id="2965d-161">In some situations, the tool may not be able to find or open the necessary file for one of the following reasons: the file could not be found, the file is not accessible, the file name is ambiguous, or the content of the file is no longer correct.</span></span>  
+  
+<span data-ttu-id="2965d-162">Nem egyértelmű hiba akkor fordulhat elő, ha az eszköz megkeresésére tett kísérlet `\animals\koala.jpg` , és mindkettő adott nevű fájl `C:\Users\bob\pictures` és `X:\BobBackup\photos`.</span><span class="sxs-lookup"><span data-stu-id="2965d-162">An ambiguous error could occur if the tool is trying to locate `\animals\koala.jpg` and there is a file with that name under both `C:\Users\bob\pictures` and `X:\BobBackup\photos`.</span></span> <span data-ttu-id="2965d-163">Ez azt jelenti, hogy mindkét `C:\Users\bob\pictures\animals\koala.jpg` és `X:\BobBackup\photos\animals\koala.jpg` az importálási feladat meghajtón található.</span><span class="sxs-lookup"><span data-stu-id="2965d-163">That is, both `C:\Users\bob\pictures\animals\koala.jpg` and `X:\BobBackup\photos\animals\koala.jpg` exist on the import job drives.</span></span>  
+  
+<span data-ttu-id="2965d-164">A `/PathMapFile` beállítás lehetővé teszi a hibák elhárításához.</span><span class="sxs-lookup"><span data-stu-id="2965d-164">The `/PathMapFile` option will allow you to resolve these errors.</span></span> <span data-ttu-id="2965d-165">Megadhatja, hogy a fájl, amelyek neve tartalmazza a fájlokat, az eszköz nem tudta helyesen azonosítani.</span><span class="sxs-lookup"><span data-stu-id="2965d-165">You can specify the name of the file which will contains the list of files that the tool was not able to correctly identify.</span></span> <span data-ttu-id="2965d-166">Az alábbiakban egy példa parancssori feltöltő lenne egy `9WM35C2V_pathmap.txt`:</span><span class="sxs-lookup"><span data-stu-id="2965d-166">The following is an example command line that would populate `9WM35C2V_pathmap.txt`:</span></span>  
+  
+```
+WAImportExport.exe RepairImport /r:C:\WAImportExport\9WM35C2V.rep /d:C:\Users\bob\Pictures;X:\BobBackup\photos /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /CopyLogFile:C:\WAImportExport\9WM35C2V.log /PathMapFile:C:\WAImportExport\9WM35C2V_pathmap.txt  
+```
+  
+<span data-ttu-id="2965d-167">Az eszköz majd fog kiírni, a hibás fájlt elérési útjait `9WM35C2V_pathmap.txt`, soronként egy.</span><span class="sxs-lookup"><span data-stu-id="2965d-167">The tool will then write the problematic file paths to `9WM35C2V_pathmap.txt`, one on each line.</span></span> <span data-ttu-id="2965d-168">Azt jelzi, például a fájl tartalmazhat-e a parancs futtatása után az alábbi bejegyzéseket:</span><span class="sxs-lookup"><span data-stu-id="2965d-168">For instance, the file may contain the following entries after running the command:</span></span>  
+ 
+```
+\animals\koala.jpg  
+\animals\kangaroo.jpg  
+```
+  
+ <span data-ttu-id="2965d-169">A listában lévő összes fájlhoz meg kell próbálni keresse meg, és nyissa meg a fájlt annak érdekében, hogy az eszköz a rendelkezésére áll.</span><span class="sxs-lookup"><span data-stu-id="2965d-169">For each file in the list, you should attempt to locate and open the file to ensure it is available to the tool.</span></span> <span data-ttu-id="2965d-170">Ha kívánja, hogy az eszköz explicit módon a fájl helyét, módosítsa az elérési út térkép fájlt, és vegye fel az elérési útját minden egyes fájl egy sorban, karakterrel elválasztó karakterláncként lapon:</span><span class="sxs-lookup"><span data-stu-id="2965d-170">If you wish to tell the tool explicitly where to find a file, you can modify the path map file and add the path to each file on the same line, separated by a tab character:</span></span>  
+  
+```
+\animals\koala.jpg           C:\Users\bob\Pictures\animals\koala.jpg  
+\animals\kangaroo.jpg        X:\BobBackup\photos\animals\kangaroo.jpg  
+```
+  
+<span data-ttu-id="2965d-171">Elérhetővé teszi azokat a fájlokat az eszköz, vagy az elérési út leképezési fájl frissítése után az eszköz az importálási folyamat befejezéséhez futtassa újra.</span><span class="sxs-lookup"><span data-stu-id="2965d-171">After making the necessary files available to the tool, or updating the path map file, you can rerun the tool to complete the import process.</span></span>  
+  
+## <a name="next-steps"></a><span data-ttu-id="2965d-172">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="2965d-172">Next steps</span></span>
+ 
+* [<span data-ttu-id="2965d-173">Az Azure Import/Export eszköz beállítása</span><span class="sxs-lookup"><span data-stu-id="2965d-173">Setting Up the Azure Import/Export Tool</span></span>](storage-import-export-tool-setup-v1.md)   
+* [<span data-ttu-id="2965d-174">Merevlemezek előkészítése importálási feladatokhoz</span><span class="sxs-lookup"><span data-stu-id="2965d-174">Preparing hard drives for an import job</span></span>](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
+* [<span data-ttu-id="2965d-175">Feladatok állapotának áttekintése a másolási naplófájlok segítségével</span><span class="sxs-lookup"><span data-stu-id="2965d-175">Reviewing job status with copy log files</span></span>](storage-import-export-tool-reviewing-job-status-v1.md)   
+* [<span data-ttu-id="2965d-176">Exportálási feladat javítása</span><span class="sxs-lookup"><span data-stu-id="2965d-176">Repairing an export job</span></span>](storage-import-export-tool-repairing-an-export-job-v1.md)   
+* [<span data-ttu-id="2965d-177">Az Azure Import/Export eszköz hibaelhárítása</span><span class="sxs-lookup"><span data-stu-id="2965d-177">Troubleshooting the Azure Import/Export Tool</span></span>](storage-import-export-tool-troubleshooting-v1.md)

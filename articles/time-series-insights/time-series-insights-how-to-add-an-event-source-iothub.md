@@ -1,0 +1,73 @@
+---
+title: "Az IoT-központ eseményforrást felvétele az Azure idő adatsorozat Insights környezet |} Microsoft Docs"
+description: "Ez az oktatóanyag bemutatja, hogyan adhat hozzá egy eseményforrás, amely az IoT-központ az idő adatsorozat Insights-környezethez csatlakozik"
+keywords: 
+services: time-series-insights
+documentationcenter: 
+author: sandshadow
+manager: almineev
+editor: cgronlun
+ms.assetid: 
+ms.service: time-series-insights
+ms.devlang: na
+ms.topic: how-to-article
+ms.tgt_pltfrm: na
+ms.workload: big-data
+ms.date: 04/19/2017
+ms.author: edett
+ms.openlocfilehash: 72037677fac528ff8174d25b474ca7e70826a7b0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 07/11/2017
+---
+# <a name="how-to-add-an-iot-hub-event-source"></a><span data-ttu-id="f7262-103">Az IoT-központ forrás hozzáadása</span><span class="sxs-lookup"><span data-stu-id="f7262-103">How to add an IoT Hub event source</span></span>
+
+<span data-ttu-id="f7262-104">Ez az oktatóanyag bemutatja, hogyan adhat az Azure portál segítségével olvassa be az IoT-központ az az idő adatsorozat Insights környezethez eseményforrást hozzáadása.</span><span class="sxs-lookup"><span data-stu-id="f7262-104">This tutorial covers how to use the Azure portal to add an event source that reads from an IoT Hub to your Time Series Insights environment.</span></span>
+
+## <a name="prerequisites"></a><span data-ttu-id="f7262-105">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="f7262-105">Prerequisites</span></span>
+
+<span data-ttu-id="f7262-106">Az IoT-központ hozott létre, és hozzá események írás.</span><span class="sxs-lookup"><span data-stu-id="f7262-106">You have created an IoT Hub and are writing events to it.</span></span> <span data-ttu-id="f7262-107">Az IoT-központok további információkért lásd: <https://azure.microsoft.com/services/iot-hub/></span><span class="sxs-lookup"><span data-stu-id="f7262-107">For more information on IoT Hubs, see <https://azure.microsoft.com/services/iot-hub/></span></span>
+
+> <span data-ttu-id="f7262-108">[A fogyasztói csoportok] Minden alkalommal adatsorozat Insights eseményforrás saját dedikált fogyasztói csoportot, amelyek nincsenek megosztva, más fogyasztóval rendelkeznie kell.</span><span class="sxs-lookup"><span data-stu-id="f7262-108">[Consumer Groups] Each Time Series Insights event source needs to have its own dedicated consumer group that is not shared with any other consumers.</span></span> <span data-ttu-id="f7262-109">Ha több olvasók ugyanazt a felhasználói csoportban lévő események felhasználásához, minden olvasók valószínűleg tekintse meg a hibákat.</span><span class="sxs-lookup"><span data-stu-id="f7262-109">If multiple readers consume events from the same consumer group, all readers are likely to see failures.</span></span> <span data-ttu-id="f7262-110">További információkért lásd: a [IoT Hub fejlesztői útmutató](../iot-hub/iot-hub-devguide.md).</span><span class="sxs-lookup"><span data-stu-id="f7262-110">For details, see the [IoT Hub developer guide](../iot-hub/iot-hub-devguide.md).</span></span>
+
+## <a name="choose-an-import-option"></a><span data-ttu-id="f7262-111">Válassza ki importálása</span><span class="sxs-lookup"><span data-stu-id="f7262-111">Choose an Import option</span></span>
+
+<span data-ttu-id="f7262-112">A következő eseményforrás beállításait is meg lehet adni manuálisan, vagy az IoT-központ az IoT-központok, amelyek elérhetők a lehet kiválasztani.</span><span class="sxs-lookup"><span data-stu-id="f7262-112">The settings for the event source can be entered manually or an IoT hub can be selected from the IoT hubs that are available to you.</span></span>
+<span data-ttu-id="f7262-113">Az a **importálási lehetőség** választó, a következő lehetőségek közül választhat:</span><span class="sxs-lookup"><span data-stu-id="f7262-113">In the **Import Option** selector, choose one of the following options:</span></span>
+
+* <span data-ttu-id="f7262-114">Adja meg az IoT-központ beállításait manuálisan</span><span class="sxs-lookup"><span data-stu-id="f7262-114">Provide IoT Hub settings manually</span></span>
+* <span data-ttu-id="f7262-115">Az elérhető előfizetések IoT Hubjának használata</span><span class="sxs-lookup"><span data-stu-id="f7262-115">Use IoT Hub from available subscriptions</span></span>
+
+### <a name="select-an-available-iot-hub"></a><span data-ttu-id="f7262-116">Válassza ki az elérhető IoT-központ</span><span class="sxs-lookup"><span data-stu-id="f7262-116">Select an available IoT Hub</span></span>
+
+<span data-ttu-id="f7262-117">Az alábbi táblázat ismerteti az új eseményforrás lapon annak leírását az egyes lehetőségek lehetőséget választva az elérhető IoT-központ, egy Eseményforrás:</span><span class="sxs-lookup"><span data-stu-id="f7262-117">The following table explains each option in the New Event Source tab with its description when selecting an available IoT Hub as an event source:</span></span>
+
+| <span data-ttu-id="f7262-118">TULAJDONSÁG NEVE</span><span class="sxs-lookup"><span data-stu-id="f7262-118">PROPERTY NAME</span></span> | <span data-ttu-id="f7262-119">LEÍRÁS</span><span class="sxs-lookup"><span data-stu-id="f7262-119">DESCRIPTION</span></span> |
+| --- | --- |
+| <span data-ttu-id="f7262-120">Eseményforrás neve</span><span class="sxs-lookup"><span data-stu-id="f7262-120">Event source name</span></span> | <span data-ttu-id="f7262-121">A forrás neve.</span><span class="sxs-lookup"><span data-stu-id="f7262-121">The name of your event source.</span></span> <span data-ttu-id="f7262-122">Ez a név a idő adatsorozat Insights környezeten belül egyedinek kell lennie.</span><span class="sxs-lookup"><span data-stu-id="f7262-122">This name must be unique within your Time Series Insights environment.</span></span>
+| <span data-ttu-id="f7262-123">Forrás</span><span class="sxs-lookup"><span data-stu-id="f7262-123">Source</span></span> | <span data-ttu-id="f7262-124">Válasszon **IoT-központ** egy IoT-központ eseményforrás létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="f7262-124">Choose **IoT Hub** to create an IoT Hub event source.</span></span>
+| <span data-ttu-id="f7262-125">Előfizetés-azonosító</span><span class="sxs-lookup"><span data-stu-id="f7262-125">Subscription Id</span></span> | <span data-ttu-id="f7262-126">Válassza ki az előfizetést, ahol ez az IoT-központ hozták létre.</span><span class="sxs-lookup"><span data-stu-id="f7262-126">Select the subscription in which this IoT hub was created.</span></span>
+| <span data-ttu-id="f7262-127">Az IoT-központ nevét</span><span class="sxs-lookup"><span data-stu-id="f7262-127">IoT hub name</span></span> | <span data-ttu-id="f7262-128">Válassza ki az IoT Hub nevét.</span><span class="sxs-lookup"><span data-stu-id="f7262-128">Select the name of the IoT Hub.</span></span>
+| <span data-ttu-id="f7262-129">Az IoT hub házirend neve</span><span class="sxs-lookup"><span data-stu-id="f7262-129">IoT hub policy name</span></span> | <span data-ttu-id="f7262-130">Válassza ki a megosztott elérési házirendet, amely az IoT-központ beállítások lapján található.</span><span class="sxs-lookup"><span data-stu-id="f7262-130">Select the shared access policy, which can be found on the IoT Hub settings tab.</span></span> <span data-ttu-id="f7262-131">Minden megosztott elérési házirend rendelkezik egy nevet, hogy Ön meghatározott engedélyekkel és hozzáférési kulcsokkal.</span><span class="sxs-lookup"><span data-stu-id="f7262-131">Each shared access policy has a name, permissions that you set, and access keys.</span></span> <span data-ttu-id="f7262-132">A megosztott hozzáférési házirend a eseményforrás *kell* rendelkezik **service csatlakozás** engedélyek.</span><span class="sxs-lookup"><span data-stu-id="f7262-132">The shared access policy for your event source *must* have **service connect** permissions.</span></span>
+| <span data-ttu-id="f7262-133">Az IoT hub fogyasztói csoportot</span><span class="sxs-lookup"><span data-stu-id="f7262-133">IoT hub consumer group</span></span> | <span data-ttu-id="f7262-134">A rendszer kiolvassa az eseményeket az IoT hubból fogyasztói csoportot.</span><span class="sxs-lookup"><span data-stu-id="f7262-134">The Consumer Group to read events from the IoT Hub.</span></span> <span data-ttu-id="f7262-135">Ajánlott az eseményforrás dedikált fogyasztói csoportot használja.</span><span class="sxs-lookup"><span data-stu-id="f7262-135">It is highly recommended to use a dedicated consumer group for your event source.</span></span>
+
+### <a name="provide-iot-hub-settings-manually"></a><span data-ttu-id="f7262-136">Adja meg az IoT-központ beállításait manuálisan</span><span class="sxs-lookup"><span data-stu-id="f7262-136">Provide IoT Hub settings manually</span></span>
+
+<span data-ttu-id="f7262-137">Az alábbi táblázat ismerteti az új esemény (forrás) lapot annak leírását az egyes tulajdonságai beállításainak megadásakor manuálisan:</span><span class="sxs-lookup"><span data-stu-id="f7262-137">The following table explains each property in the New Event Source tab with its description when entering settings manually:</span></span>
+
+| <span data-ttu-id="f7262-138">TULAJDONSÁG NEVE</span><span class="sxs-lookup"><span data-stu-id="f7262-138">PROPERTY NAME</span></span> | <span data-ttu-id="f7262-139">LEÍRÁS</span><span class="sxs-lookup"><span data-stu-id="f7262-139">DESCRIPTION</span></span> |
+| --- | --- |
+| <span data-ttu-id="f7262-140">Eseményforrás neve</span><span class="sxs-lookup"><span data-stu-id="f7262-140">Event source name</span></span> | <span data-ttu-id="f7262-141">A forrás neve.</span><span class="sxs-lookup"><span data-stu-id="f7262-141">The name of your event source.</span></span> <span data-ttu-id="f7262-142">Ez a név a idő adatsorozat Insights környezeten belül egyedinek kell lennie.</span><span class="sxs-lookup"><span data-stu-id="f7262-142">This name must be unique within your Time Series Insights environment.</span></span>
+| <span data-ttu-id="f7262-143">Forrás</span><span class="sxs-lookup"><span data-stu-id="f7262-143">Source</span></span> | <span data-ttu-id="f7262-144">Válasszon **IoT-központ** egy IoT-központ eseményforrás létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="f7262-144">Choose **IoT Hub** to create an IoT Hub event source.</span></span>
+| <span data-ttu-id="f7262-145">Előfizetés-azonosító</span><span class="sxs-lookup"><span data-stu-id="f7262-145">Subscription Id</span></span> | <span data-ttu-id="f7262-146">Az előfizetés, amelyben ez az IoT hub létrehozása történt.</span><span class="sxs-lookup"><span data-stu-id="f7262-146">The subscription in which this IoT hub was created.</span></span>
+| <span data-ttu-id="f7262-147">Erőforráscsoport</span><span class="sxs-lookup"><span data-stu-id="f7262-147">Resource group</span></span> | <span data-ttu-id="f7262-148">Az előfizetés, amelyben ez az IoT hub létrehozása történt.</span><span class="sxs-lookup"><span data-stu-id="f7262-148">The subscription in which this IoT hub was created.</span></span>
+| <span data-ttu-id="f7262-149">Az IoT-központ nevét</span><span class="sxs-lookup"><span data-stu-id="f7262-149">IoT hub name</span></span> | <span data-ttu-id="f7262-150">Az IoT Hub neve.</span><span class="sxs-lookup"><span data-stu-id="f7262-150">The name of your IoT Hub.</span></span> <span data-ttu-id="f7262-151">Az IoT hub létrehozása után, akkor nevet is adott neki</span><span class="sxs-lookup"><span data-stu-id="f7262-151">When you created your IoT hub, you also gave it a specific name</span></span>
+| <span data-ttu-id="f7262-152">Az IoT hub házirend neve</span><span class="sxs-lookup"><span data-stu-id="f7262-152">IoT hub policy name</span></span> | <span data-ttu-id="f7262-153">A megosztott elérési házirendet, amelyet létrehozhat az IoT-központ beállítások lapon.</span><span class="sxs-lookup"><span data-stu-id="f7262-153">The shared access policy, which can be created on the IoT Hub settings tab.</span></span> <span data-ttu-id="f7262-154">Minden megosztott elérési házirend rendelkezik egy nevet, hogy Ön meghatározott engedélyekkel és hozzáférési kulcsokkal.</span><span class="sxs-lookup"><span data-stu-id="f7262-154">Each shared access policy has a name, permissions that you set, and access keys.</span></span> <span data-ttu-id="f7262-155">A megosztott hozzáférési házirend a eseményforrás *kell* rendelkezik **service csatlakozás** engedélyek.</span><span class="sxs-lookup"><span data-stu-id="f7262-155">The shared access policy for your event source *must* have **service connect** permissions.</span></span>
+| <span data-ttu-id="f7262-156">Az IoT hub házirend kulcs</span><span class="sxs-lookup"><span data-stu-id="f7262-156">IoT hub policy key</span></span> | <span data-ttu-id="f7262-157">A Service Bus-névtér való hozzáférés hitelesítéséhez használt megosztott hozzáférési kulcs.</span><span class="sxs-lookup"><span data-stu-id="f7262-157">The Shared Access key used to authenticate access to the Service Bus namespace.</span></span> <span data-ttu-id="f7262-158">Ide írja be az elsődleges vagy másodlagos kulcsot.</span><span class="sxs-lookup"><span data-stu-id="f7262-158">Type the primary or secondary key here.</span></span>
+| <span data-ttu-id="f7262-159">Az IoT hub fogyasztói csoportot</span><span class="sxs-lookup"><span data-stu-id="f7262-159">IoT hub consumer group</span></span> | <span data-ttu-id="f7262-160">A rendszer kiolvassa az eseményeket az IoT hubból fogyasztói csoportot.</span><span class="sxs-lookup"><span data-stu-id="f7262-160">The Consumer Group to read events from the IoT Hub.</span></span> <span data-ttu-id="f7262-161">Ajánlott az eseményforrás dedikált fogyasztói csoportot használja.</span><span class="sxs-lookup"><span data-stu-id="f7262-161">It is highly recommended to use a dedicated consumer group for your event source.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="f7262-162">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="f7262-162">Next steps</span></span>
+
+1. <span data-ttu-id="f7262-163">Egy adat-hozzáférési házirend hozzá a környezethez [Define adat-hozzáférési házirendek](time-series-insights-data-access.md)</span><span class="sxs-lookup"><span data-stu-id="f7262-163">Add a data access policy to your environment [Define data access policies](time-series-insights-data-access.md)</span></span>
+1. <span data-ttu-id="f7262-164">A környezet az elérni a [idő adatsorozat Insights portálon találja meg](https://insights.timeseries.azure.com)</span><span class="sxs-lookup"><span data-stu-id="f7262-164">Access your environment in the [Time Series Insights Portal](https://insights.timeseries.azure.com)</span></span>

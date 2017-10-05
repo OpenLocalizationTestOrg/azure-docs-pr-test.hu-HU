@@ -1,0 +1,88 @@
+---
+title: "StorSimple feladatátvétel, a StorSimple 8000 series fizikai eszköz vészhelyreállítás |} Microsoft Docs"
+description: "Útmutató: a StorSimple 8000 series fizikai eszköz egy másik fizikai eszközre feladatátvételt."
+services: storsimple
+documentationcenter: 
+author: alkohli
+manager: timlt
+editor: 
+ms.assetid: 
+ms.service: storsimple
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 05/03/2017
+ms.author: alkohli
+ms.openlocfilehash: f3ac9545a341fc24ca12c9f2547805d6956cd98a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 07/11/2017
+---
+# <a name="fail-over-to-a-storsimple-8000-series-physical-device"></a><span data-ttu-id="235f9-103">Feladatok átadása a StorSimple 8000 series fizikai eszköz</span><span class="sxs-lookup"><span data-stu-id="235f9-103">Fail over to a StorSimple 8000 series physical device</span></span>
+
+## <a name="overview"></a><span data-ttu-id="235f9-104">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="235f9-104">Overview</span></span>
+
+<span data-ttu-id="235f9-105">Ez az oktatóanyag a StorSimple 8000 series fizikai eszközöket, hogy egy másik fizikai StorSimple-eszköz feladatátvételt, ha egy olyan vészhelyzet esetén szükséges lépéseket ismerteti.</span><span class="sxs-lookup"><span data-stu-id="235f9-105">This tutorial describes the steps required to fail over a StorSimple 8000 series physical device to another StorSimple physical device if there is a disaster.</span></span> <span data-ttu-id="235f9-106">StorSimple eszköz feladatátvételi szolgáltatását használja egy másik fizikai eszközre át adatokat a forrás fizikai eszközt az adatközpontban.</span><span class="sxs-lookup"><span data-stu-id="235f9-106">StorSimple uses the device failover feature to migrate data from a source physical device in the datacenter to another physical device.</span></span> <span data-ttu-id="235f9-107">Ez az oktatóanyag az útmutató a StorSimple 8000 Series érvényes 3 és újabb verzióit szoftververziók frissítést futtató fizikai eszközöket.</span><span class="sxs-lookup"><span data-stu-id="235f9-107">The guidance in this tutorial applies to StorSimple 8000 series physical devices running software versions Update 3 and later.</span></span>
+
+<span data-ttu-id="235f9-108">Eszköz feladatátvételi, és hogyan használja a katasztrófa utáni helyreállítás kapcsolatos további tudnivalókért keresse fel [feladatátvétel és a katasztrófa utáni helyreállítás a StorSimple 8000 sorozat eszközeire](storsimple-8000-device-failover-disaster-recovery.md).</span><span class="sxs-lookup"><span data-stu-id="235f9-108">To learn more about device failover and how it is used to recover from a disaster, go to [Failover and disaster recovery for StorSimple 8000 series devices](storsimple-8000-device-failover-disaster-recovery.md).</span></span>
+
+<span data-ttu-id="235f9-109">Feladatok átadása a StorSimple felhő készülék StorSimple fizikai eszköz, keresse fel [feladatok átadása a StorSimple felhő készülék](storsimple-8000-device-failover-cloud-appliance.md).</span><span class="sxs-lookup"><span data-stu-id="235f9-109">To fail over a StorSimple physical device to a StorSimple Cloud Appliance, go to [Fail over to a StorSimple Cloud Appliance](storsimple-8000-device-failover-cloud-appliance.md).</span></span> <span data-ttu-id="235f9-110">Maga az fizikai eszköz feladatátvételt, keresse fel [átveheti az ugyanazon fizikai StorSimple-eszköz](storsimple-8000-device-failover-same-device.md).</span><span class="sxs-lookup"><span data-stu-id="235f9-110">To fail over a physical device to itself, go to [Fail over to the same StorSimple physical device](storsimple-8000-device-failover-same-device.md).</span></span>
+
+
+## <a name="prerequisites"></a><span data-ttu-id="235f9-111">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="235f9-111">Prerequisites</span></span>
+
+- <span data-ttu-id="235f9-112">Győződjön meg arról, hogy átolvasta eszköz feladatátvételi szempontokat.</span><span class="sxs-lookup"><span data-stu-id="235f9-112">Ensure that you have reviewed the considerations for device failover.</span></span> <span data-ttu-id="235f9-113">További információkért látogasson el [eszköz feladatátvételi a gyakori szempontok](storsimple-8000-device-failover-disaster-recovery.md).</span><span class="sxs-lookup"><span data-stu-id="235f9-113">For more information, go to [Common considerations for device failover](storsimple-8000-device-failover-disaster-recovery.md).</span></span>
+
+- <span data-ttu-id="235f9-114">A StorSimple 8000 series fizikai eszközt az adatközpontban telepített kell rendelkeznie.</span><span class="sxs-lookup"><span data-stu-id="235f9-114">You must have a StorSimple 8000 series physical device deployed in the datacenter.</span></span> <span data-ttu-id="235f9-115">Az eszköz Update 3-as vagy újabb szoftvert kell futtatnia.</span><span class="sxs-lookup"><span data-stu-id="235f9-115">The device must run Update 3 or later software version.</span></span> <span data-ttu-id="235f9-116">További információkért látogasson el [a helyszíni StorSimple eszköz üzembe helyezése](storsimple-8000-deployment-walkthrough-u2.md).</span><span class="sxs-lookup"><span data-stu-id="235f9-116">For more information, go to [Deploy your on-premises StorSimple device](storsimple-8000-deployment-walkthrough-u2.md).</span></span>
+
+
+## <a name="steps-to-fail-over-to-a-physical-device"></a><span data-ttu-id="235f9-117">Feladatok átadása a fizikai eszköz lépései</span><span class="sxs-lookup"><span data-stu-id="235f9-117">Steps to fail over to a physical device</span></span>
+
+<span data-ttu-id="235f9-118">A következő lépésekkel állítsa vissza az eszköz a fizikai céleszközön.</span><span class="sxs-lookup"><span data-stu-id="235f9-118">Perform the following steps to restore your device to a target physical device.</span></span>
+
+1. <span data-ttu-id="235f9-119">Győződjön meg arról, hogy a feladatátvétel kívánt kötettároló felhőalapú pillanatfelvételek vannak társítva.</span><span class="sxs-lookup"><span data-stu-id="235f9-119">Verify that the volume container you want to fail over has associated cloud snapshots.</span></span> <span data-ttu-id="235f9-120">További információkért látogasson el [StorSimple az Eszközkezelő szolgáltatás a biztonsági mentések létrehozását](storsimple-8000-manage-backup-policies-u2.md).</span><span class="sxs-lookup"><span data-stu-id="235f9-120">For more information, go to [Use StorSimple Device Manager service to create backups](storsimple-8000-manage-backup-policies-u2.md).</span></span>
+2. <span data-ttu-id="235f9-121">Nyissa meg a StorSimple Eszközkezelő, és kattintson a **eszközök**.</span><span class="sxs-lookup"><span data-stu-id="235f9-121">Go to your StorSimple Device Manager and then click **Devices**.</span></span> <span data-ttu-id="235f9-122">Az a **eszközök** panelen, lépjen a szolgáltatáshoz kapcsolódó eszközök listáját.</span><span class="sxs-lookup"><span data-stu-id="235f9-122">In the **Devices** blade, go to the list of devices connected with your service.</span></span>
+    <span data-ttu-id="235f9-123">![Válassza ki az eszköz](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev1.png)</span><span class="sxs-lookup"><span data-stu-id="235f9-123">![Select device](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev1.png)</span></span>
+3. <span data-ttu-id="235f9-124">Válassza ki, és kattintson a forrás-eszközre.</span><span class="sxs-lookup"><span data-stu-id="235f9-124">Select and click your source device.</span></span> <span data-ttu-id="235f9-125">A forráseszköz átadni kívánt kötettárolók.</span><span class="sxs-lookup"><span data-stu-id="235f9-125">The source device has the volume containers that you want to fail over.</span></span> <span data-ttu-id="235f9-126">Ugrás a **beállítások > Kötettárolók**.</span><span class="sxs-lookup"><span data-stu-id="235f9-126">Go to **Settings > Volume Containers**.</span></span>
+4. <span data-ttu-id="235f9-127">Válassza ki a kötettároló szeretné, hogy áthelyezze a feladatokat egy másik eszközre.</span><span class="sxs-lookup"><span data-stu-id="235f9-127">Select a volume container that you would like to fail over to another device.</span></span> <span data-ttu-id="235f9-128">Kattintson a kötettároló található kötetek listájának megjelenítéséhez.</span><span class="sxs-lookup"><span data-stu-id="235f9-128">Click the volume container to display the list of volumes within this container.</span></span> <span data-ttu-id="235f9-129">Válassza ki a kötetet, kattintson a jobb gombbal, majd kattintson **Offline állapotba** a kötet offline állapotba.</span><span class="sxs-lookup"><span data-stu-id="235f9-129">Select a volume, right-click, and click **Take Offline** to take the volume offline.</span></span> <span data-ttu-id="235f9-130">Ismételje meg ezt a folyamatot a a kötettároló összes kötetet.</span><span class="sxs-lookup"><span data-stu-id="235f9-130">Repeat this process for all the volumes in the volume container.</span></span>
+5. <span data-ttu-id="235f9-131">Ismételje meg az előző lépésben szeretné, hogy áthelyezze a feladatokat egy másik eszközre kötettárolók.</span><span class="sxs-lookup"><span data-stu-id="235f9-131">Repeat the previous step for all the volume containers you would like to fail over to another device.</span></span>
+6. <span data-ttu-id="235f9-132">Lépjen vissza a **eszközök** panelen.</span><span class="sxs-lookup"><span data-stu-id="235f9-132">Go back to the **Devices** blade.</span></span> <span data-ttu-id="235f9-133">A parancssávon kattintson **feladatátvételt**.</span><span class="sxs-lookup"><span data-stu-id="235f9-133">From the command bar, click **Fail over**.</span></span>
+    <span data-ttu-id="235f9-134">![Kattintson a sikertelen keresztül](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev2.png)</span><span class="sxs-lookup"><span data-stu-id="235f9-134">![Click fail over](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev2.png)</span></span>
+    
+7. <span data-ttu-id="235f9-135">Az a **feladatátvételt** panelen végezze el a következő lépéseket:</span><span class="sxs-lookup"><span data-stu-id="235f9-135">In the **Fail over** blade, perform the following steps:</span></span>
+   
+   1. <span data-ttu-id="235f9-136">Kattintson a **forrás**.</span><span class="sxs-lookup"><span data-stu-id="235f9-136">Click **Source**.</span></span> <span data-ttu-id="235f9-137">A felhőalapú pillanatfelvételek társított kötetek kötettárolók jelennek meg.</span><span class="sxs-lookup"><span data-stu-id="235f9-137">The volume containers with volumes associated with cloud snapshots are displayed.</span></span> <span data-ttu-id="235f9-138">Csak a megjelenített tárolók jogosultak a feladatátvételre.</span><span class="sxs-lookup"><span data-stu-id="235f9-138">Only the containers displayed are eligible for failover.</span></span> <span data-ttu-id="235f9-139">A kötettárolók, jelölje ki a kötettárolók szeretné, hogy áthelyezze a feladatokat.</span><span class="sxs-lookup"><span data-stu-id="235f9-139">In the list of volume containers, select the volume containers you would like to fail over.</span></span> <span data-ttu-id="235f9-140">**Csak a hozzárendelt felhő pillanatképek és a kapcsolat nélküli kötetekkel kötettárolók jelennek meg.**</span><span class="sxs-lookup"><span data-stu-id="235f9-140">**Only the volume containers with associated cloud snapshots and offline volumes are displayed.**</span></span>
+
+       ![Forrás kiválasztása](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev5.png)
+   2. <span data-ttu-id="235f9-142">Kattintson a **cél**.</span><span class="sxs-lookup"><span data-stu-id="235f9-142">Click **Target**.</span></span> <span data-ttu-id="235f9-143">Az előző lépésben kiválasztott kötettárolók válasszon ki a legördülő listából válassza ki az elérhető eszközök a céleszközön.</span><span class="sxs-lookup"><span data-stu-id="235f9-143">For the volume containers selected in the previous step, select a target device from the drop-down list of available devices.</span></span> <span data-ttu-id="235f9-144">Csak azokat az eszközöket, amelyek forrás kötettárolók befogadásához elegendő kapacitással rendelkeznek a listában jelennek meg.</span><span class="sxs-lookup"><span data-stu-id="235f9-144">Only the devices that have sufficient capacity to accommodate source volume containers are displayed in the list.</span></span>
+
+        ![Válassza ki a cél](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev6.png)
+
+   3. <span data-ttu-id="235f9-146">Végül tekintse át a feladatátvételi beállítások **összegzés**.</span><span class="sxs-lookup"><span data-stu-id="235f9-146">Finally, review all the failover settings under **Summary**.</span></span> <span data-ttu-id="235f9-147">Tekintse át a beállításokat, jelölje be a jelölőnégyzetet, amely azt jelzi, hogy a kijelölt kötet tárolókban lévő kötetek offline módban.</span><span class="sxs-lookup"><span data-stu-id="235f9-147">After you have reviewed the settings, select the checkbox indicating that the volumes in selected volume containers are offline.</span></span> <span data-ttu-id="235f9-148">Kattintson az **OK** gombra.</span><span class="sxs-lookup"><span data-stu-id="235f9-148">Click **OK**.</span></span>
+
+       ![Tekintse át a feladatátvételi beállításait](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev8.png)
+  
+8. <span data-ttu-id="235f9-150">StorSimple létrehoz egy feladatátvételi feladatot.</span><span class="sxs-lookup"><span data-stu-id="235f9-150">StorSimple creates a failover job.</span></span> <span data-ttu-id="235f9-151">A feladatátvételi feladatban keresztül figyelheti a feladat értesítési kattintson a **feladatok** panelen.</span><span class="sxs-lookup"><span data-stu-id="235f9-151">Click the job notification to monitor the failover job via the **Jobs** blade.</span></span>
+
+    <span data-ttu-id="235f9-152">Ha az Ön meghibásodott kötettároló helyi köteteken, majd megjelenik minden helyi kötet (nem a rétegzett kötetek) a tárolóban levő egyes visszaállítási feladat.</span><span class="sxs-lookup"><span data-stu-id="235f9-152">If the volume container that you failed over has local volumes, then you see individual restore jobs for each local volume (not for tiered volumes) in the container.</span></span> <span data-ttu-id="235f9-153">A visszaállítási feladatok befejezéséhez meglehetősen hosszabb időt vehet igénybe.</span><span class="sxs-lookup"><span data-stu-id="235f9-153">These restore jobs may take quite some time to complete.</span></span> <span data-ttu-id="235f9-154">Valószínű, hogy a feladatátvételi feladatban korábbi lehet végrehajtani.</span><span class="sxs-lookup"><span data-stu-id="235f9-154">It is likely that the failover job may complete earlier.</span></span> <span data-ttu-id="235f9-155">Ezek a kötetek lesz a helyi garanciákat, csak a visszaállítási feladatok végrehajtását követően.</span><span class="sxs-lookup"><span data-stu-id="235f9-155">These volumes will have local guarantees only after the restore jobs are complete.</span></span>
+
+    ![A figyelő feladatátvételi feladatban](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev13.png)
+
+9. <span data-ttu-id="235f9-157">Miután a feladatátvétel befejeződött, lépjen a **eszközök** panelen.</span><span class="sxs-lookup"><span data-stu-id="235f9-157">After the failover is completed, go to the **Devices** blade.</span></span>
+   
+   1. <span data-ttu-id="235f9-158">Válassza ki az eszközt, hogy a céleszközt, a feladatátvételi folyamat volt megadva.</span><span class="sxs-lookup"><span data-stu-id="235f9-158">Select the device that was used as the target device for the failover process.</span></span>
+
+       ![Válassza ki az eszköz](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev14.png)
+
+   2. <span data-ttu-id="235f9-160">Lépjen a **Kötettárolók** panelen.</span><span class="sxs-lookup"><span data-stu-id="235f9-160">Go to the **Volume Containers** blade.</span></span> <span data-ttu-id="235f9-161">Minden kötettárolók, a köteteket a régi eszközről együtt kell szerepelnie.</span><span class="sxs-lookup"><span data-stu-id="235f9-161">All the volume containers, along with the volumes from the old device, should be listed.</span></span>
+
+       ![Nézet target kötettárolók](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev16.png)
+
+
+## <a name="next-steps"></a><span data-ttu-id="235f9-163">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="235f9-163">Next steps</span></span>
+
+* <span data-ttu-id="235f9-164">Miután elvégezte a feladatátvételt, esetleg [inaktiválja vagy törölje a StorSimple eszköz](storsimple-8000-deactivate-and-delete-device.md).</span><span class="sxs-lookup"><span data-stu-id="235f9-164">After you have performed a failover, you may need to [deactivate or delete your StorSimple device](storsimple-8000-deactivate-and-delete-device.md).</span></span>
+* <span data-ttu-id="235f9-165">A StorSimple Device Manager szolgáltatás használatával kapcsolatos információkért látogasson el [felügyelete a StorSimple eszközt a StorSimple Device Manager szolgáltatással](storsimple-8000-manager-service-administration.md).</span><span class="sxs-lookup"><span data-stu-id="235f9-165">For information about how to use the StorSimple Device Manager service, go to [Use the StorSimple Device Manager service to administer your StorSimple device](storsimple-8000-manager-service-administration.md).</span></span>
+

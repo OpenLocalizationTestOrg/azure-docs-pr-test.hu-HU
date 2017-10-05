@@ -1,0 +1,3 @@
+> [!IMPORTANT]
+> <span data-ttu-id="4e3e2-101">Előfordulhat, hogy az eszközazonosító látható az ügyfélszolgálat számára és a hibaelhárításhoz gyűjtött naplókban, ezért ügyeljen arra, hogy az elnevezésekor ne adjon meg bizalmas adatokat.</span><span class="sxs-lookup"><span data-stu-id="4e3e2-101">The device ID may be visible in the logs collected for customer support and troubleshooting, so make sure to avoid any sensitive information while naming it.</span></span>
+>
