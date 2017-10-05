@@ -1,0 +1,87 @@
+---
+title: "Egy alkalmazás az App Service-környezet méretezése"
+description: "Egy alkalmazás az App Service-környezetek skálázás"
+services: app-service
+documentationcenter: 
+author: ccompy
+manager: stefsch
+editor: jimbe
+ms.assetid: 78eb1e49-4fcd-49e7-b3c7-f1906f0f22e3
+ms.service: app-service
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/17/2016
+ms.author: ccompy
+ms.openlocfilehash: 240c2486c23b7cd84e2471bf5b2170e08ee1f150
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 07/11/2017
+---
+# <a name="scaling-apps-in-an-app-service-environment"></a><span data-ttu-id="5e9ef-103">Alkalmazások méretezése App Service-környezetben</span><span class="sxs-lookup"><span data-stu-id="5e9ef-103">Scaling apps in an App Service Environment</span></span>
+<span data-ttu-id="5e9ef-104">Az Azure App Service általában három dolog méretezheti:</span><span class="sxs-lookup"><span data-stu-id="5e9ef-104">In the Azure App Service there are normally three things you can scale:</span></span>
+
+* <span data-ttu-id="5e9ef-105">terv díjszabása</span><span class="sxs-lookup"><span data-stu-id="5e9ef-105">pricing plan</span></span>
+* <span data-ttu-id="5e9ef-106">munkavégző mérete</span><span class="sxs-lookup"><span data-stu-id="5e9ef-106">worker size</span></span> 
+* <span data-ttu-id="5e9ef-107">példányok száma.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-107">number of instances.</span></span>
+
+<span data-ttu-id="5e9ef-108">-Környezetben nincs szükség válassza ki, vagy a tarifacsomag módosítása.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-108">In an ASE there is no need to select or change the pricing plan.</span></span>  <span data-ttu-id="5e9ef-109">Képességek szempontjából ez ugyanis már azonos a prémium tarifacsomag a képesség szintjét.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-109">In terms of capabilities it is already at a Premium pricing capability level.</span></span>  
+
+<span data-ttu-id="5e9ef-110">Munkavégző méretek tekintetében a ASE admin rendelhet hozzá a számítási erőforrással minden feldolgozókészletek használandó méretét.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-110">With respect to worker sizes, the ASE admin can assign the size of the compute resource to be used for each worker pool.</span></span>  <span data-ttu-id="5e9ef-111">Amely: munkavégző készlet 1 P4 számítási erőforrással rendelkezhet, és munkavégző Pool 2 P1 a számítási erőforrásokat, ha szükséges.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-111">That means you can have Worker Pool 1 with P4 compute resources and Worker Pool 2 with P1 compute resources, if desired.</span></span>  <span data-ttu-id="5e9ef-112">Nem rendelkeznek mérete ahhoz, hogy.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-112">They do not have to be in size order.</span></span>  <span data-ttu-id="5e9ef-113">További információ a méretek és tarifacsomagját: a dokumentum itt [Azure App Service szolgáltatás díjszabása][AppServicePricing].</span><span class="sxs-lookup"><span data-stu-id="5e9ef-113">For details around the sizes and their pricing see the document here [Azure App Service Pricing][AppServicePricing].</span></span>  <span data-ttu-id="5e9ef-114">Az App Service-környezetek kell lennie a mindeddig webes alkalmazások és az App Service-csomagok méretezési lehetőségek:</span><span class="sxs-lookup"><span data-stu-id="5e9ef-114">This leaves the scaling options for web apps and App Service Plans in an App Service Environment to be:</span></span>
+
+* <span data-ttu-id="5e9ef-115">munkavégző készlet kiválasztása</span><span class="sxs-lookup"><span data-stu-id="5e9ef-115">worker pool selection</span></span>
+* <span data-ttu-id="5e9ef-116">példányok száma</span><span class="sxs-lookup"><span data-stu-id="5e9ef-116">number of instances</span></span>
+
+<span data-ttu-id="5e9ef-117">Módosítása vagy a cikk a megfelelő felhasználói felület esetében a ASE üzemeltetett App Service-csomagok látható segítségével történik.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-117">Changing either item is done through the appropriate UI shown for your ASE hosted App Service Plans.</span></span>  
+
+![][1]
+
+<span data-ttu-id="5e9ef-118">A worker-készlet, amely az ASP elérhető számítási erőforrások száma meghaladja az ASP nem növelheti.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-118">You can't scale up your ASP beyond the number of available compute resources in the worker pool that your ASP is in.</span></span>  <span data-ttu-id="5e9ef-119">Ha a munkavégző készlethez tartozó erőforrások szükséges számítási kell beolvasni a ASE rendszergazdájához, és adja hozzá.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-119">If you need compute resources in that worker pool you need to get your ASE administrator to add them.</span></span>  <span data-ttu-id="5e9ef-120">Az információk körül újrakonfigurálása a ASE itt az információk elolvasásához: [az App Service-környezetek konfigurálása][HowtoConfigureASE].</span><span class="sxs-lookup"><span data-stu-id="5e9ef-120">For information around re-configuring your ASE read the information here: [How to Configure an App Service environment][HowtoConfigureASE].</span></span>  <span data-ttu-id="5e9ef-121">Érdemes lehet is, a ASE automatikus skálázási funkciót hozzáadása ütemezés vagy mérőszámok alapján kapacitás kihasználását.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-121">You may also want to take advantage of the ASE autoscale features to add capacity based on schedule or metrics.</span></span>  <span data-ttu-id="5e9ef-122">Konfigurálásával kapcsolatos további információkért lásd maga ASE környezetre automatikus skálázási [automatikus skálázás konfigurálása az App Service-környezetek][ASEAutoscale].</span><span class="sxs-lookup"><span data-stu-id="5e9ef-122">To get more details on configuring autoscale for the ASE environment itself see [How to configure autoscale for an App Service Environment][ASEAutoscale].</span></span>
+
+<span data-ttu-id="5e9ef-123">Létrehozhat több app service-csomagokról különböző feldolgozókészletek a számítási erőforrásokat használ, vagy használhatja a munkavégző készlethez.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-123">You can create multiple app service plans using compute resources from different worker pools, or you can use the same worker pool.</span></span>  <span data-ttu-id="5e9ef-124">Ha például a Worker-készlet 1 (10) elérhető számítási erőforrások rendelkezik, esetén dönthet úgy, hogy hozzon létre egy app service-csomag (6) számítási erőforrásokat használ, és egy második app service-csomag (4) használó számítási erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-124">For example if you have (10) available compute resources in Worker Pool 1, you can choose to create one app service plan using (6) compute resources, and a second app service plan that uses (4) compute resources.</span></span>
+
+### <a name="scaling-the-number-of-instances"></a><span data-ttu-id="5e9ef-125">A példányok száma skálázás</span><span class="sxs-lookup"><span data-stu-id="5e9ef-125">Scaling the number of instances</span></span>
+<span data-ttu-id="5e9ef-126">Ha a webalkalmazás létrehozása az App Service-környezetek 1 példány kezdődik.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-126">When you first create your web app in an App Service Environment it starts with 1 instance.</span></span>  <span data-ttu-id="5e9ef-127">Majd méretezheti ki további számítási erőforrásokat biztosít az alkalmazás további példányait.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-127">You can then scale out to additional instances to provide additional compute resources for your app.</span></span>   
+
+<span data-ttu-id="5e9ef-128">Ha a ASE rendelkezik elegendő kapacitással a akkor közérthető egyszerű.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-128">If your ASE has enough capacity then this is pretty simple.</span></span>  <span data-ttu-id="5e9ef-129">Ugrás az az App Service-csomag, amely tárolja a helyek növelheti, és válassza ki a skála.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-129">You go to your App Service Plan that holds the sites you want to scale up and select Scale.</span></span>  <span data-ttu-id="5e9ef-130">Ekkor megnyílik a felhasználói felület, ahol manuálisan beosztásának beállítására szolgál az ASP és a ASP automatikus skálázási szabályok konfigurálása.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-130">This opens the UI where you can manually set the scale for your ASP or configure autoscale rules for your ASP.</span></span>  <span data-ttu-id="5e9ef-131">Manuálisan méretezhető, az alkalmazás egyszerűen állítsa ***szerint*** való ***manuálisan megadott példányszám***.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-131">To manually scale your app simply set ***Scale by*** to ***an instance count that I enter manually***.</span></span>  <span data-ttu-id="5e9ef-132">Itt húzza a csúszkát a kívánt mennyiség, vagy adja meg azt a csúszka melletti jelölőnégyzetbe.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-132">From here either drag the slider to the desired quantity or enter it in the box next to the slider.</span></span>  
+
+![][2] 
+
+<span data-ttu-id="5e9ef-133">Az automatikus skálázási szabályok egy ASP-környezetben működnek azonos, általában.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-133">The autoscale rules for an ASP in an ASE work the same as they do normally.</span></span>  <span data-ttu-id="5e9ef-134">Kiválaszthatja ***processzor*** alatt ***szerint*** és automatikus skálázás szabályt hoz létre, a processzor, vagy alapján az ASP használatával összetettebb szabályokat hozhat létre ***ütemezés és a teljesítmény szabályok ***.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-134">You can select ***CPU Percentage*** under ***Scale by*** and create autoscale rules for your ASP based on CPU Percentage or you can create more complex rules using ***schedule and performance rules***.</span></span>  <span data-ttu-id="5e9ef-135">További részleteket konfigurálása az automatikus skálázási használja az útmutatóban Itt [alkalmazás skálázása az Azure App Service][AppScale].</span><span class="sxs-lookup"><span data-stu-id="5e9ef-135">To see more complete details on configuring autoscale use the guide here [Scale an app in Azure App Service][AppScale].</span></span> 
+
+### <a name="worker-pool-selection"></a><span data-ttu-id="5e9ef-136">Munkavégző készlet kiválasztása</span><span class="sxs-lookup"><span data-stu-id="5e9ef-136">Worker Pool selection</span></span>
+<span data-ttu-id="5e9ef-137">Ahogy azt korábban említettük, a munkavégző készlet kiválasztása az ASP felhasználói felületi elérése.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-137">As noted earlier, the worker pool selection is accessed from the ASP UI.</span></span>  <span data-ttu-id="5e9ef-138">A panel megnyitásához, amely méretezhető, és válassza ki a feldolgozókészleten ASP.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-138">Open the blade for the ASP that you want to scale and select worker pool.</span></span>  <span data-ttu-id="5e9ef-139">Megjelenik a feldolgozókészletek, amely az App Service-környezet be vannak állítva.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-139">You will see all of the worker pools which you have configured in your App Service Environment.</span></span>  <span data-ttu-id="5e9ef-140">Ha csak egy feldolgozókészletek majd csak akkor jelenik meg a felsorolt egy készletet.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-140">If you have only one worker pool then you will only see the one pool listed.</span></span>  <span data-ttu-id="5e9ef-141">Milyen munkavégző készletét. a rendszer az ASP, akkor egyszerűen jelölje ki a feldolgozókészleten szeretne az App Service-csomag áthelyezése.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-141">To change what worker pool your ASP is in, you simply select the worker pool you want your App Service Plan to move to.</span></span>  
+
+![][3]
+
+<span data-ttu-id="5e9ef-142">Mielőtt az ASP egy munkavégző készletből egy másik fontos győződjön meg arról, hogy az ASP megfelelő kapacitása.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-142">Before moving your ASP from one worker pool to another it is important to make sure you will have adequate capacity for your ASP.</span></span>  <span data-ttu-id="5e9ef-143">A feldolgozókészletek közül nem csak a munkavégző alkalmazáskészlet neve szerepel, de azt is láthatja, hogy hány munkavállalók érhetők el, hogy a munkavégző készletét.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-143">In the list of worker pools, not only is the worker pool name listed but you can also see how many workers are available in that worker pool.</span></span>  <span data-ttu-id="5e9ef-144">Győződjön meg arról, hogy vannak-e elegendő elérhető tartalmazzák az App Service-csomag példányok.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-144">Make sure that there are enough instances available to contain your App Service Plan.</span></span>  <span data-ttu-id="5e9ef-145">Ha áthelyezi a feldolgozókészleten erőforrásokat kell több számítja ki, majd kérje le a ASE rendszergazdájához, és adja hozzá.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-145">If you need more compute resources in the worker pool you wish to move to, then get your ASE administrator to add them.</span></span>  
+
+> [!NOTE]
+> <span data-ttu-id="5e9ef-146">Az, hogy az ASP-alkalmazások áthelyezése egy munkavégző készletből egy ASP hatására cold kezdődik.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-146">Moving an ASP from one worker pool will cause cold starts of the apps in that ASP.</span></span>  <span data-ttu-id="5e9ef-147">Ennek hatására kérelmek lassabban működik, mert az alkalmazás cold az új számítási erőforrásokat a következőn:.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-147">This can cause requests to run slowly as your app is cold started on the new compute resources.</span></span>  <span data-ttu-id="5e9ef-148">A hidegindítás segítségével elkerülhetők a [meleg funkció mentése alkalmazás] [ AppWarmup] az Azure App Service-ben.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-148">The cold start can be avoided by using the [application warm up capability][AppWarmup] in Azure App Service.</span></span>  <span data-ttu-id="5e9ef-149">Az alkalmazásinicializálás modul, a cikkben ismertetett is működik hidegindítások, mert az inicializálási folyamatot is nyílik meg, ha azok cold kezdete: új számítási erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="5e9ef-149">The Application Initialization module described in the article also works for cold starts because the initialization process is also invoked when apps are cold started on new compute resources.</span></span> 
+> 
+> 
+
+## <a name="getting-started"></a><span data-ttu-id="5e9ef-150">Bevezetés</span><span class="sxs-lookup"><span data-stu-id="5e9ef-150">Getting started</span></span>
+<span data-ttu-id="5e9ef-151">App Service Environment-környezetek megkezdéséhez, lásd: [hogyan számára hozzon létre egy App Service-környezet][HowtoCreateASE]</span><span class="sxs-lookup"><span data-stu-id="5e9ef-151">To get started with App Service Environments, see [How To Create An App Service Environment][HowtoCreateASE]</span></span>
+
+<span data-ttu-id="5e9ef-152">Az Azure App Service platformmal kapcsolatos további információkért lásd: [Azure App Service][AzureAppService].</span><span class="sxs-lookup"><span data-stu-id="5e9ef-152">For more information about the Azure App Service platform, see [Azure App Service][AzureAppService].</span></span>
+
+<!--Image references-->
+[1]: ./media/app-service-web-scale-a-web-app-in-an-app-service-environment/aseappscale-aspblade.png
+[2]: ./media/app-service-web-scale-a-web-app-in-an-app-service-environment/aseappscale-manualscale.png
+[3]: ./media/app-service-web-scale-a-web-app-in-an-app-service-environment/aseappscale-sizescale.png
+
+<!--Links-->
+[WhatisASE]: http://azure.microsoft.com/documentation/articles/app-service-app-service-environment-intro/
+[ScaleWebapp]: http://azure.microsoft.com/documentation/articles/web-sites-scale/
+[HowtoCreateASE]: http://azure.microsoft.com/documentation/articles/app-service-web-how-to-create-an-app-service-environment/
+[HowtoConfigureASE]: http://azure.microsoft.com/documentation/articles/app-service-web-configure-an-app-service-environment/
+[CreateWebappinASE]: http://azure.microsoft.com/documentation/articles/app-service-web-how-to-create-a-web-app-in-an-ase/
+[Appserviceplans]: http://azure.microsoft.com/documentation/articles/azure-web-sites-web-hosting-plans-in-depth-overview/
+[AppServicePricing]: http://azure.microsoft.com/pricing/details/app-service/ 
+[AzureAppService]: http://azure.microsoft.com/documentation/articles/app-service-value-prop-what-is/
+[ASEAutoscale]: http://azure.microsoft.com/documentation/articles/app-service-environment-auto-scale/
+[AppScale]: http://azure.microsoft.com/documentation/articles/web-sites-scale/
+[AppWarmup]: http://ruslany.net/2015/09/how-to-warm-up-azure-web-app-during-deployment-slots-swap/
