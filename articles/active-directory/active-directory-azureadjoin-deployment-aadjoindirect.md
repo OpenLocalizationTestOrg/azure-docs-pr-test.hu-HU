@@ -1,0 +1,84 @@
+---
+title: "Használati forgatókönyvek és az Azure AD-csatlakozás telepítési szempontjai |} Microsoft Docs"
+description: "Ismerteti, hogyan rendszergazdák állíthat be az Azure AD Join a saját végfelhasználóik számára (az alkalmazottak, a diákok, más felhasználókat). A cikk ismerteti az Azure AD Joint a különböző valós forgatókönyv is."
+services: active-directory
+documentationcenter: 
+author: femila
+manager: femila
+editor: 
+tags: azure-classic-portal
+ms.assetid: 81d4461e-21c8-4fdd-9076-0e4991979f62
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 05/16/2017
+ms.author: markvi
+ms.openlocfilehash: fd0aab1a14bbd324e734e5efe8fe101e8a8dfefa
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 07/11/2017
+---
+# <a name="usage-scenarios-and-deployment-considerations-for-azure-ad-join"></a><span data-ttu-id="cd2bf-104">Használati forgatókönyvek és az Azure AD-csatlakozás telepítési szempontjai</span><span class="sxs-lookup"><span data-stu-id="cd2bf-104">Usage scenarios and deployment considerations for Azure AD Join</span></span>
+## <a name="usage-scenarios-for-azure-ad-join"></a><span data-ttu-id="cd2bf-105">Az Azure AD Join használati forgatókönyvek</span><span class="sxs-lookup"><span data-stu-id="cd2bf-105">Usage scenarios for Azure AD Join</span></span>
+### <a name="scenario-1-businesses-largely-in-the-cloud"></a><span data-ttu-id="cd2bf-106">1. forgatókönyv: Vállalatok nagy mértékben a felhőben</span><span class="sxs-lookup"><span data-stu-id="cd2bf-106">Scenario 1: Businesses largely in the cloud</span></span>
+<span data-ttu-id="cd2bf-107">Az Azure Active Directory Join (Azure AD Join) előnyei Ha jelenleg működik és identitáskezelést saját üzleti a felhőben vagy a felhőre rövidesen áthelyezi.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-107">Azure Active Directory Join (Azure AD Join) can benefit you if you currently operate and manage identities for your business in the cloud or are moving to the cloud soon.</span></span> <span data-ttu-id="cd2bf-108">Használhatja az Azure ad-ben bejelentkezni a Windows 10 létrehozott fiók.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-108">You can use an account that you have created in Azure AD to sign in to Windows 10.</span></span> <span data-ttu-id="cd2bf-109">Keresztül [első alkalommal történő futtatásakor élmény (FRX) folyamat](active-directory-azureadjoin-user-frx.md), vagy az Azure AD összeillesztésével [a beállítások menü](active-directory-azureadjoin-user-upgrade.md), a felhasználók csatlakozhatnak a gépek az Azure AD.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-109">Through [the first run experience (FRX) process](active-directory-azureadjoin-user-frx.md), or by joining Azure AD from [the settings menu](active-directory-azureadjoin-user-upgrade.md), your users can join their machines to Azure AD.</span></span>  <span data-ttu-id="cd2bf-110">A felhasználók is élvezheti az (egyszeri bejelentkezés SSO) hozzáférést a felhőalapú erőforrásokhoz Office 365-höz hasonló böngészőjük vagy egy Office-alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-110">Your users can also enjoy single sign-on (SSO) access to  cloud resources like Office 365, either in their browsers or in Office applications.</span></span>
+
+### <a name="scenario-2-educational-institutions"></a><span data-ttu-id="cd2bf-111">2. forgatókönyv: Oktatási intézmények</span><span class="sxs-lookup"><span data-stu-id="cd2bf-111">Scenario 2: Educational institutions</span></span>
+<span data-ttu-id="cd2bf-112">Oktatási intézmények általában rendelkeznek kétféle felhasználói: faculty és a diákok.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-112">Educational institutions usually have two user types: faculty and students.</span></span> <span data-ttu-id="cd2bf-113">Faculty tagok számít a szervezet hosszabb távú tagjai.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-113">Faculty members are considered longer-term members of the organization.</span></span> <span data-ttu-id="cd2bf-114">A helyszíni fiókokat hoz létre nekik kívánatos.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-114">Creating on-premises accounts for them is desirable.</span></span> <span data-ttu-id="cd2bf-115">A diákok a szervezet shorter-term tagjai és fiókjukat kezelheti az Azure ad-ben.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-115">But students are shorter-term members of the organization and  their accounts can be managed in Azure AD.</span></span> <span data-ttu-id="cd2bf-116">Ez azt jelenti, hogy a felhő helyett a helyszínen tárolt alatt directory méretezési továbbíthatja.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-116">This means that directory scale can be pushed to the cloud instead of being stored on-premises.</span></span> <span data-ttu-id="cd2bf-117">Azt is jelenti, hogy a diákok fogja tudni Windows jelentkezzen be a saját Azure AD-fiókok és Office 365-erőforrások eléréséhez az Office-alkalmazásokban.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-117">It also means that students  will be able to sign in to Windows with their Azure AD accounts and get access to Office 365 resources in Office applications.</span></span>
+
+### <a name="scenario-3-retail-businesses"></a><span data-ttu-id="cd2bf-118">3. forgatókönyv: Kiskereskedelemben</span><span class="sxs-lookup"><span data-stu-id="cd2bf-118">Scenario 3: Retail businesses</span></span>
+<span data-ttu-id="cd2bf-119">Kereskedelmi cégek határozza dolgozó munkatársak és a hosszú távú alkalmazottak rendelkezik.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-119">Retail businesses have seasonal workers and long-term employees.</span></span> <span data-ttu-id="cd2bf-120">Általában a helyi fiókok létrehozásához, és tartományhoz csatlakoztatott számítógépeken használja a hosszabb távú teljes munkaidejű alkalmazottak számára.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-120">You typically create on-premises accounts and use domain-joined machines for longer-term full-time employees.</span></span> <span data-ttu-id="cd2bf-121">De határozza munkavállalók a szervezet shorter-term tagjai, és kezelheti a fiókok, ahol a felhasználói licencek könnyebben átvihetők kívánatos.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-121">But seasonal workers are shorter-term members of the organization, and it's desirable to manage their accounts where user licenses can be more easily moved around.</span></span> <span data-ttu-id="cd2bf-122">A felhasználói fiókokat hozhat létre az Office 365 licencek a felhőben, ha ezek a felhasználók beolvasása a bejelentkezés a Windows és Office alkalmazások az Azure AD-fiókot, amíg a licenccel rendelkező nagyobb rugalmasságot karbantartása, hogy kilép a előnyeit.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-122">When you create their user accounts in the cloud with Office 365 licenses, these users get the benefits of signing in to Windows and Office applications with an Azure AD account, while you maintain more flexibility with their licenses after they leave.</span></span>
+
+### <a name="scenario-4-additional-scenarios"></a><span data-ttu-id="cd2bf-123">4. forgatókönyv: További forgatókönyvek</span><span class="sxs-lookup"><span data-stu-id="cd2bf-123">Scenario 4: Additional scenarios</span></span>
+<span data-ttu-id="cd2bf-124">Az előnyöket, azt a korábbiakban említettük, valamint hogy a felhasználók az eszközök regisztrálása az Azure AD miatt egy egyszerűsített csatlakozó élmény, hatékony kezelése, automatikus mobileszköz-kezelési beléptetés és egyszeri bejelentkezés az Azure AD előnyei és a helyszíni erőforrások.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-124">Along with the benefits discussed earlier, you  benefit from having your users join their devices to Azure AD because of a simplified joining experience, efficient device management, automatic mobile device management enrollment, and single sign-on to Azure AD and on-premises resources.</span></span>  
+
+## <a name="deployment-considerations-for-azure-ad-join"></a><span data-ttu-id="cd2bf-125">Azure AD-csatlakozás telepítési szempontjai</span><span class="sxs-lookup"><span data-stu-id="cd2bf-125">Deployment considerations for Azure AD Join</span></span>
+### <a name="enable-your-users-to-join-a-company-owned-device-directly-to-azure-ad"></a><span data-ttu-id="cd2bf-126">Lehetővé teszi a felhasználók közvetlenül az Azure AD a vállalat tulajdonában álló eszközről csatlakozni</span><span class="sxs-lookup"><span data-stu-id="cd2bf-126">Enable your users to join a company-owned device directly to Azure AD</span></span>
+<span data-ttu-id="cd2bf-127">A vállalatok partnervállalatokban és a szervezetek a csak felhőalapú fiókok biztosításához.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-127">Enterprises can provide cloud-only accounts to partner companies and organizations.</span></span> <span data-ttu-id="cd2bf-128">Ezek a partnerek egyszerűen ezután hozzáférhetnek vállalati alkalmazások és erőforrások eléréséről az egyszeri bejelentkezés.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-128">These partners can then easily access company apps and resources with single sign-on.</span></span> <span data-ttu-id="cd2bf-129">Ebben a forgatókönyvben olyan felhasználók számára, akik elsősorban a felhőben, például az Office 365-öt vagy SaaS-alkalmazásokhoz Azure AD hitelesítésében támaszkodó erőforrások alkalmazható.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-129">This scenario is applicable to users who access resources primarily in the cloud, such as Office 365 or SaaS apps that rely on Azure AD for authentication.</span></span>
+
+### <a name="prerequisites"></a><span data-ttu-id="cd2bf-130">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="cd2bf-130">Prerequisites</span></span>
+<span data-ttu-id="cd2bf-131">**A vállalati szinten (rendszergazda)**</span><span class="sxs-lookup"><span data-stu-id="cd2bf-131">**At the enterprise level (administrator)**</span></span>
+
+* <span data-ttu-id="cd2bf-132">Azure-előfizetések az Azure Active Directoryval</span><span class="sxs-lookup"><span data-stu-id="cd2bf-132">Azure subscription with Azure Active Directory</span></span>  
+
+<span data-ttu-id="cd2bf-133">**A felhasználói szinten**</span><span class="sxs-lookup"><span data-stu-id="cd2bf-133">**At the user level**</span></span>
+
+* <span data-ttu-id="cd2bf-134">Windows 10 (Professional és Enterprise kiadás)</span><span class="sxs-lookup"><span data-stu-id="cd2bf-134">Windows 10 (Professional and Enterprise editions)</span></span>
+
+### <a name="administrator-tasks"></a><span data-ttu-id="cd2bf-135">Rendszergazdai feladatok</span><span class="sxs-lookup"><span data-stu-id="cd2bf-135">Administrator tasks</span></span>
+* [<span data-ttu-id="cd2bf-136">Az eszközregisztráció beállítása</span><span class="sxs-lookup"><span data-stu-id="cd2bf-136">Set up device registration</span></span>](active-directory-azureadjoin-setup.md)
+
+### <a name="user-tasks"></a><span data-ttu-id="cd2bf-137">Felhasználói feladatok</span><span class="sxs-lookup"><span data-stu-id="cd2bf-137">User tasks</span></span>
+* [<span data-ttu-id="cd2bf-138">A telepítés során az Azure AD-val a Windows 10 új eszköz beállítása</span><span class="sxs-lookup"><span data-stu-id="cd2bf-138">Set up a new Windows 10 device with Azure AD during setup</span></span>](active-directory-azureadjoin-user-frx.md)
+* [<span data-ttu-id="cd2bf-139">Egy Windows 10-es eszköz beállítása az Azure AD a beállítások menüből</span><span class="sxs-lookup"><span data-stu-id="cd2bf-139">Set up a Windows 10 device with Azure AD from the settings menu</span></span>](active-directory-azureadjoin-user-upgrade.md)
+* [<span data-ttu-id="cd2bf-140">A szervezet egy személyes Windows 10 rendszerű eszköz csatlakoztatása</span><span class="sxs-lookup"><span data-stu-id="cd2bf-140">Join a personal Windows 10 device to your organization</span></span>](active-directory-azureadjoin-personal-device.md)
+
+## <a name="enable-byod-in-your-organization-for-windows-10"></a><span data-ttu-id="cd2bf-141">A Windows 10-re a szervezetében BYOD engedélyezése</span><span class="sxs-lookup"><span data-stu-id="cd2bf-141">Enable BYOD in your organization for Windows 10</span></span>
+<span data-ttu-id="cd2bf-142">Állíthat be a felhasználók és az alkalmazottak a személyes Windows eszközök használata (BYOD) hozzáférni a vállalati alkalmazások és erőforrások használatára.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-142">You can set up your users and employees to use their personal Windows devices (BYOD) to access company apps and resources.</span></span> <span data-ttu-id="cd2bf-143">A felhasználók az Azure AD-fiókok (munkahelyi vagy iskolai fiókok) adhat hozzá egy saját Windows eszköz biztonságos és megfelelő módon erőforrások eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="cd2bf-143">Your users can add their Azure AD accounts (work or school accounts) to a personal Windows device to access resources in a secure and compliant fashion.</span></span>
+
+### <a name="prerequisites"></a><span data-ttu-id="cd2bf-144">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="cd2bf-144">Prerequisites</span></span>
+<span data-ttu-id="cd2bf-145">**A vállalati szinten (rendszergazda)**</span><span class="sxs-lookup"><span data-stu-id="cd2bf-145">**At the enterprise level (administrator)**</span></span>
+
+* <span data-ttu-id="cd2bf-146">Azure AD-előfizetés</span><span class="sxs-lookup"><span data-stu-id="cd2bf-146">Azure AD subscription</span></span>
+
+<span data-ttu-id="cd2bf-147">**A felhasználói szinten**</span><span class="sxs-lookup"><span data-stu-id="cd2bf-147">**At the user level**</span></span>
+
+* <span data-ttu-id="cd2bf-148">Windows 10 (Professional és Enterprise kiadás)</span><span class="sxs-lookup"><span data-stu-id="cd2bf-148">Windows 10 (Professional and Enterprise editions)</span></span>
+
+### <a name="administrator-tasks"></a><span data-ttu-id="cd2bf-149">Rendszergazdai feladatok</span><span class="sxs-lookup"><span data-stu-id="cd2bf-149">Administrator tasks</span></span>
+* [<span data-ttu-id="cd2bf-150">Az eszközregisztráció beállítása</span><span class="sxs-lookup"><span data-stu-id="cd2bf-150">Set up device registration</span></span>](active-directory-azureadjoin-setup.md)
+
+### <a name="user-tasks"></a><span data-ttu-id="cd2bf-151">Felhasználói feladatok</span><span class="sxs-lookup"><span data-stu-id="cd2bf-151">User tasks</span></span>
+* [<span data-ttu-id="cd2bf-152">A szervezet egy személyes Windows 10 rendszerű eszköz csatlakoztatása</span><span class="sxs-lookup"><span data-stu-id="cd2bf-152">Join a personal Windows 10 device to your organization</span></span>](active-directory-azureadjoin-personal-device.md)
+
+## <a name="additional-information"></a><span data-ttu-id="cd2bf-153">További információ</span><span class="sxs-lookup"><span data-stu-id="cd2bf-153">Additional information</span></span>
+* [<span data-ttu-id="cd2bf-154">Vállalati használatú Windows 10: Az eszközök munkahelyi célú használata</span><span class="sxs-lookup"><span data-stu-id="cd2bf-154">Windows 10 for the enterprise: Ways to use devices for work</span></span>](active-directory-azureadjoin-windows10-devices-overview.md)
+* [<span data-ttu-id="cd2bf-155">A felhőalapú képességek kiterjesztése a Windows 10-eszközökre az Azure Active Directory Joinon keresztül</span><span class="sxs-lookup"><span data-stu-id="cd2bf-155">Extending cloud capabilities to Windows 10 devices through Azure Active Directory Join</span></span>](active-directory-azureadjoin-user-upgrade.md)
+* [<span data-ttu-id="cd2bf-156">Microsoft Passporton keresztül jelszó nélkül identitások hitelesítése</span><span class="sxs-lookup"><span data-stu-id="cd2bf-156">Authenticating identities without passwords through Microsoft Passport</span></span>](active-directory-azureadjoin-passport.md)
+* [<span data-ttu-id="cd2bf-157">További információk az Azure AD Join használati forgatókönyveiről</span><span class="sxs-lookup"><span data-stu-id="cd2bf-157">Learn about usage scenarios for Azure AD Join</span></span>](active-directory-azureadjoin-deployment-aadjoindirect.md)
+* [<span data-ttu-id="cd2bf-158">Tartományhoz csatlakoztatott eszközök csatlakoztatása az Azure AD-hez Windows 10-es környezetben</span><span class="sxs-lookup"><span data-stu-id="cd2bf-158">Connect domain-joined devices to Azure AD for Windows 10 experiences</span></span>](active-directory-azureadjoin-devices-group-policy.md)
+* [<span data-ttu-id="cd2bf-159">Az Azure AD Join beállítása</span><span class="sxs-lookup"><span data-stu-id="cd2bf-159">Set up Azure AD Join</span></span>](active-directory-azureadjoin-setup.md)
+

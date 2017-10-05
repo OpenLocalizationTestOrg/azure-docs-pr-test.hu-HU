@@ -1,0 +1,61 @@
+---
+title: "Azure Automation szolgáltatásbeli hibrid forgatókönyv-feldolgozó hibaelhárítása |} Microsoft Docs"
+description: "A jelenség okok és az Azure Automation a leggyakrabban használt hibrid forgatókönyv-feldolgozó problémák megoldási ismertetik."
+services: automation
+documentationcenter: 
+author: mgoedtel
+manager: jwhit
+editor: tysonn
+ms.assetid: 02c6606e-8924-4328-a196-45630c2255e9
+ms.service: automation
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 07/25/2017
+ms.author: magoedte
+ms.openlocfilehash: 9d1ceda5a072f494651a751a25a8ccf66e4c72ef
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 08/03/2017
+---
+# <a name="troubleshooting-tips-for-hybrid-runbook-worker"></a><span data-ttu-id="9b9c4-103">Hibaelhárítási tippek a hibrid forgatókönyv-feldolgozó</span><span class="sxs-lookup"><span data-stu-id="9b9c4-103">Troubleshooting tips for Hybrid Runbook Worker</span></span>
+
+<span data-ttu-id="9b9c4-104">Ez a cikk ismerteti a hibaelhárítást hibákat tapasztalhat az Automation hibrid forgatókönyv-feldolgozók és azok megoldását lehetséges megoldások javasolja.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-104">This article provides help troubleshooting errors you might experience with Automation Hybrid Runbook Workers and suggests possible solutions to resolve them.</span></span>
+
+## <a name="a-runbook-job-terminates-with-a-status-of-suspended"></a><span data-ttu-id="9b9c4-105">Egy runbook-feladat leállítása felfüggesztett állapotú</span><span class="sxs-lookup"><span data-stu-id="9b9c4-105">A runbook job terminates with a status of Suspended</span></span>
+
+<span data-ttu-id="9b9c4-106">A runbook hamarosan után kísérel meg végrehajtani, akkor állítsa be háromszor fel van függesztve.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-106">Your runbook is suspended shortly after attempting to execute it three times.</span></span> <span data-ttu-id="9b9c4-107">Feltételek vonatkoznak, amelyek megszakíthatja a runbook sikeres befejezését, és a kapcsolódó hibaüzenet tartalmazza, amely jelzi, hogy miért további adatokat.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-107">There are conditions which may interrupt the runbook from completing successfully and the related error message does not include any additional information indicating why.</span></span> <span data-ttu-id="9b9c4-108">Ez a cikk nyújt a hibrid forgatókönyv-feldolgozót a runbook végrehajtása hibákhoz kapcsolódó problémák hibaelhárítási lépéseket.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-108">This article provides troubleshooting steps for issues related to the Hybrid Runbook Worker runbook execution failures.</span></span>
+
+<span data-ttu-id="9b9c4-109">Ha az Azure nem problémával az ebben a cikkben, látogasson el az Azure-fórumok a [MSDN és a Stack Overflow](https://azure.microsoft.com/support/forums/).</span><span class="sxs-lookup"><span data-stu-id="9b9c4-109">If your Azure issue is not addressed in this article, visit the Azure forums on [MSDN and the Stack Overflow](https://azure.microsoft.com/support/forums/).</span></span> <span data-ttu-id="9b9c4-110">A probléma, beküldheti, ezek fórumokban, vagy [ @AzureSupport a Twitteren](https://twitter.com/AzureSupport).</span><span class="sxs-lookup"><span data-stu-id="9b9c4-110">You can post your issue on these forums or to [@AzureSupport on Twitter](https://twitter.com/AzureSupport).</span></span> <span data-ttu-id="9b9c4-111">Emellett fájlt a az Azure támogatási kérelmet kiválasztásával **segítségre van szüksége** a a [az Azure támogatási](https://azure.microsoft.com/support/options/) hely.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-111">Also, you can file an Azure support request by selecting **Get support** on the [Azure support](https://azure.microsoft.com/support/options/) site.</span></span>
+
+### <a name="symptom"></a><span data-ttu-id="9b9c4-112">Jelenség</span><span class="sxs-lookup"><span data-stu-id="9b9c4-112">Symptom</span></span>
+<span data-ttu-id="9b9c4-113">A Runbook végrehajtása sikertelen, és a visszaadott hiba a következő, "a feladat művelete"Aktiválás"Feladatművelet nem futtatható, mert a folyamat váratlanul leállt.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-113">Runbook execution fails and the error returned is, "The job action 'Activate' cannot be run, because the process stopped unexpectedly.</span></span> <span data-ttu-id="9b9c4-114">A feladat művelet végrehajtására történt kísérlet 3-szor."</span><span class="sxs-lookup"><span data-stu-id="9b9c4-114">The job action was attempted 3 times."</span></span>
+
+<span data-ttu-id="9b9c4-115">Nincsenek a hiba lehetséges okai:</span><span class="sxs-lookup"><span data-stu-id="9b9c4-115">There are several possible causes for the error:</span></span> 
+
+1. <span data-ttu-id="9b9c4-116">A hibrid feldolgozó a proxy vagy az tűzfal mögött van</span><span class="sxs-lookup"><span data-stu-id="9b9c4-116">The hybrid worker is behind a proxy or firewall</span></span>
+2. <span data-ttu-id="9b9c4-117">A hibrid feldolgozó futtató számítógép nem felel meg a minimális [hardverkövetelmények](automation-offering-get-started.md#hybrid-runbook-worker)</span><span class="sxs-lookup"><span data-stu-id="9b9c4-117">The computer the hybrid worker is running on has less than the minimum [hardware  requirements](automation-offering-get-started.md#hybrid-runbook-worker)</span></span>  
+3. <span data-ttu-id="9b9c4-118">A runbookok nem tudja hitelesíteni a helyi erőforrások</span><span class="sxs-lookup"><span data-stu-id="9b9c4-118">The runbooks cannot authenticate with local resources</span></span>
+
+#### <a name="cause-1-hybrid-runbook-worker-is-behind-proxy-or-firewall"></a><span data-ttu-id="9b9c4-119">1. ok: Az hibrid forgatókönyv-feldolgozó proxy és tűzfal mögött van.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-119">Cause 1: Hybrid Runbook Worker is behind proxy or firewall</span></span>
+<span data-ttu-id="9b9c4-120">A hibrid forgatókönyv-feldolgozó fut a számítógépen van egy tűzfal vagy a proxykiszolgáló mögött, és a kimenő hálózati hozzáférés nem engedélyezett, lehet, illetve megfelelően konfigurálva.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-120">The computer the Hybrid Runbook Worker is running on is behind a firewall or proxy server and outbound network access may not be permitted or configured correctly.</span></span>
+
+#### <a name="solution"></a><span data-ttu-id="9b9c4-121">Megoldás</span><span class="sxs-lookup"><span data-stu-id="9b9c4-121">Solution</span></span>
+<span data-ttu-id="9b9c4-122">Ellenőrizze, hogy a számítógép *.azure-automation.net kimenő hozzáféréssel rendelkezzen a 443-as porton.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-122">Verify the computer has outbound access to *.azure-automation.net on port 443.</span></span> 
+
+#### <a name="cause-2-computer-has-less-than-minimum-hardware-requirements"></a><span data-ttu-id="9b9c4-123">2. ok: A számítógépben kisebb, mint a minimális hardverkövetelmények</span><span class="sxs-lookup"><span data-stu-id="9b9c4-123">Cause 2: Computer has less than minimum hardware requirements</span></span>
+<span data-ttu-id="9b9c4-124">A hibrid forgatókönyv-feldolgozó futtató számítógépeken meg kell felelnie a minimális hardverkövetelményeknek, ez a szolgáltatás futtatásához kijelölése előtt.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-124">Computers running the Hybrid Runbook Worker should meet the minimum hardware requirements before designating it to host this feature.</span></span> <span data-ttu-id="9b9c4-125">Ellenkező esetben az attól függően, hogy az erőforrás-használat más háttérfolyamatot és végrehajtása során runbookok által okozott versengés, a számítógép túlterhelt fog válik, és runbook-feladat késleltetés vagy időtúllépések okozhat.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-125">Otherwise, depending on the resource utilization of other background processes and contention caused by runbooks during execution, the computer will become over utilized and cause runbook job delays or timeouts.</span></span> 
+
+#### <a name="solution"></a><span data-ttu-id="9b9c4-126">Megoldás</span><span class="sxs-lookup"><span data-stu-id="9b9c4-126">Solution</span></span>
+<span data-ttu-id="9b9c4-127">Először ellenőrizze a hibrid forgatókönyv-feldolgozó szolgáltatás futtatására kijelölt számítógép megfelel a minimális hardverkövetelményeknek.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-127">First confirm the computer designated to run the Hybrid Runbook Worker feature meets the minimum hardware requirements.</span></span>  <span data-ttu-id="9b9c4-128">Ha igen, figyelheti a Processzor- és memóriafelhasználását a hibrid forgatókönyv-feldolgozó folyamat teljesítményét és a Windows között a korrelációs meghatározásához.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-128">If it does, monitor CPU and memory utilization to determine any correlation between the performance of Hybrid Runbook Worker processes and Windows.</span></span>  <span data-ttu-id="9b9c4-129">Ha memória vagy a CPU-terhelés, jelezheti, hogy a szükséges frissítése vagy további processzorok hozzáadásával, vagy növelje a memória erőforrás szűk cím, és hárítsa el a hibát.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-129">If there is memory or CPU pressure, this may indicate the need to upgrade or add additional processors, or increase memory to address the resource bottleneck and resolve the error.</span></span> <span data-ttu-id="9b9c4-130">Azt is megteheti válassza ki a különböző számítási erőforrása, amely támogathatja a minimális követelményeknek és a skála, ha terheléshez növelését szükség.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-130">Alternatively, select a different compute resource that can support the minimum requirements and scale when workload demands indicate an increase is necessary.</span></span>         
+
+#### <a name="cause-3-runbooks-cannot-authenticate-with-local-resources"></a><span data-ttu-id="9b9c4-131">3. ok: A Runbookok nem tudják hitelesíteni magukat a helyi erőforrások</span><span class="sxs-lookup"><span data-stu-id="9b9c4-131">Cause 3: Runbooks cannot authenticate with local resources</span></span>
+
+#### <a name="solution"></a><span data-ttu-id="9b9c4-132">Megoldás</span><span class="sxs-lookup"><span data-stu-id="9b9c4-132">Solution</span></span>
+<span data-ttu-id="9b9c4-133">Ellenőrizze a **Microsoft-SMA** egy kapcsolódó esemény leírása az eseménynaplóban *Win32 a folyamat kilépett a következő kód [4294967295]*.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-133">Check the **Microsoft-SMA** event log for a corresponding event with description *Win32 Process Exited with code [4294967295]*.</span></span>  <span data-ttu-id="9b9c4-134">Ez a hiba oka még nem konfigurált hitelesítési a runbookok vagy a hibrid feldolgozócsoport a futtató hitelesítő adatokat adott.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-134">The cause of this error is you haven't configured authentication in your runbooks or specified the Run As credentials for the Hybrid worker group.</span></span>  <span data-ttu-id="9b9c4-135">Tekintse át [Runbookokra vonatkozó engedélyek](automation-hrw-run-runbooks.md#runbook-permissions) a runbookok megfelelően konfigurált hitelesítési megerősítéséhez.</span><span class="sxs-lookup"><span data-stu-id="9b9c4-135">Please review [Runbook permissions](automation-hrw-run-runbooks.md#runbook-permissions) to confirm you have correctly configured authentication for your runbooks.</span></span>  
+
+## <a name="next-steps"></a><span data-ttu-id="9b9c4-136">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="9b9c4-136">Next steps</span></span>
+
+<span data-ttu-id="9b9c4-137">Az automatizálás egyéb problémák elhárításához talál segítséget [közös Azure Automation-problémák elhárítása](automation-troubleshooting-automation-errors.md)</span><span class="sxs-lookup"><span data-stu-id="9b9c4-137">For help troubleshooting other issues in Automation, see [Troubleshooting common Azure Automation issues](automation-troubleshooting-automation-errors.md)</span></span> 

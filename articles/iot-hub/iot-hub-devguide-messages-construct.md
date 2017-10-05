@@ -1,0 +1,78 @@
+---
+title: "Azure IoT Hub üzenetformátum megértése |} Microsoft Docs"
+description: "Fejlesztői útmutató - descibes a formátum és az IoT-központ üzenetek várt tartalom."
+services: iot-hub
+documentationcenter: .net
+author: dominicbetts
+manager: timlt
+editor: 
+ms.assetid: 3fc5f1a3-3711-4611-9897-d4db079b4250
+ms.service: iot-hub
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 05/25/2017
+ms.author: dobett
+ms.openlocfilehash: e6eafb1a0030b022da2b5d0b787e092f3067c99f
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 08/18/2017
+---
+# <a name="create-and-read-iot-hub-messages"></a><span data-ttu-id="a987d-103">Hozzon létre, és az IoT-központ üzenet olvasása</span><span class="sxs-lookup"><span data-stu-id="a987d-103">Create and read IoT Hub messages</span></span>
+
+<span data-ttu-id="a987d-104">Zökkenőmentes együttműködés támogatására biztosíthat a protokollokon, IoT-központ az összes eszköz számára is elérhető protokollhoz közös üzenetformátum határozza meg.</span><span class="sxs-lookup"><span data-stu-id="a987d-104">To support seamless interoperability across protocols, IoT Hub defines a common message format for all device-facing protocols.</span></span> <span data-ttu-id="a987d-105">Mindkét használt üzenetformátuma [eszközről a felhőbe] [ lnk-d2c] és [felhő eszközre] [ lnk-c2d] üzeneteket.</span><span class="sxs-lookup"><span data-stu-id="a987d-105">This message format is used for both [device-to-cloud][lnk-d2c] and [cloud-to-device][lnk-c2d] messages.</span></span> <span data-ttu-id="a987d-106">Egy [IoT-központ üzenet] [ lnk-messaging] áll:</span><span class="sxs-lookup"><span data-stu-id="a987d-106">An [IoT Hub message][lnk-messaging] consists of:</span></span>
+
+* <span data-ttu-id="a987d-107">Egy *Rendszertulajdonságok*.</span><span class="sxs-lookup"><span data-stu-id="a987d-107">A set of *system properties*.</span></span> <span data-ttu-id="a987d-108">Az IoT-központ értelmezi, vagy beállítja a tulajdonságokat.</span><span class="sxs-lookup"><span data-stu-id="a987d-108">Properties that IoT Hub interprets or sets.</span></span> <span data-ttu-id="a987d-109">A csoportok pedig előre meghatározott.</span><span class="sxs-lookup"><span data-stu-id="a987d-109">This set is predetermined.</span></span>
+* <span data-ttu-id="a987d-110">Egy *alkalmazástulajdonságok*.</span><span class="sxs-lookup"><span data-stu-id="a987d-110">A set of *application properties*.</span></span> <span data-ttu-id="a987d-111">Az alkalmazás meghatározó karakterlánc-tulajdonságok és a hozzáférés, anélkül, hogy az üzenet törzsének deszerializálása dictionary.</span><span class="sxs-lookup"><span data-stu-id="a987d-111">A dictionary of string properties that the application can define and access, without needing to deserialize the message body.</span></span> <span data-ttu-id="a987d-112">Az IoT-központ soha nem módosítja ezeket a tulajdonságokat.</span><span class="sxs-lookup"><span data-stu-id="a987d-112">IoT Hub never modifies these properties.</span></span>
+* <span data-ttu-id="a987d-113">Nem átlátszó bináris törzsében.</span><span class="sxs-lookup"><span data-stu-id="a987d-113">An opaque binary body.</span></span>
+
+<span data-ttu-id="a987d-114">Nevét és értékeit csak ASCII alfanumerikus karaktereket tartalmazhat, valamint ``{'!', '#', '$', '%, '&', "'", '*', '*', '+', '-', '.', '^', '_', '`', '|', '~'}`\` amikor Ön:</span><span class="sxs-lookup"><span data-stu-id="a987d-114">Property names and values can only contain ASCII alphanumeric characters, plus ``{'!', '#', '$', '%, '&', "'", '*', '*', '+', '-', '.', '^', '_', '`', '|', '~'}`\` when you:</span></span>
+
+* <span data-ttu-id="a987d-115">A HTTP protokollal eszközről a felhőbe üzeneteket küldeni.</span><span class="sxs-lookup"><span data-stu-id="a987d-115">Send device-to-cloud messages using the HTTP protocol.</span></span>
+* <span data-ttu-id="a987d-116">Felhő-eszközre küldött üzenetek küldése.</span><span class="sxs-lookup"><span data-stu-id="a987d-116">Send cloud-to-device messages.</span></span>
+
+<span data-ttu-id="a987d-117">Kódolására, és különböző protokollok használatával küldött üzenetek dekódolási kapcsolatos további információkért lásd: [Azure IoT SDK-k][lnk-sdks].</span><span class="sxs-lookup"><span data-stu-id="a987d-117">For more information about how to encode and decode messages sent using different protocols, see [Azure IoT SDKs][lnk-sdks].</span></span>
+
+<span data-ttu-id="a987d-118">A következő táblázat az IoT Hub-kezelő üzeneteinek tulajdonságainak listája.</span><span class="sxs-lookup"><span data-stu-id="a987d-118">The following table lists the set of system properties in IoT Hub messages.</span></span>
+
+| <span data-ttu-id="a987d-119">Tulajdonság</span><span class="sxs-lookup"><span data-stu-id="a987d-119">Property</span></span> | <span data-ttu-id="a987d-120">Leírás</span><span class="sxs-lookup"><span data-stu-id="a987d-120">Description</span></span> |
+| --- | --- |
+| <span data-ttu-id="a987d-121">messageId</span><span class="sxs-lookup"><span data-stu-id="a987d-121">MessageId</span></span> |<span data-ttu-id="a987d-122">Az üzenet kérelem-válasz minták használt felhasználói állítható be azonosítója.</span><span class="sxs-lookup"><span data-stu-id="a987d-122">A user-settable identifier for the message used for request-reply patterns.</span></span> <span data-ttu-id="a987d-123">Formátum: A kis-és nagybetűket (legfeljebb 128 karakter hosszú) ASCII 7 bites alfanumerikus karakterekből álló karakterlánc + `{'-', ':',’.', '+', '%', '_', '#', '*', '?', '!', '(', ')', ',', '=', '@', ';', '$', '''}`.</span><span class="sxs-lookup"><span data-stu-id="a987d-123">Format: A case-sensitive string (up to 128 characters long) of ASCII 7-bit alphanumeric characters + `{'-', ':',’.', '+', '%', '_', '#', '*', '?', '!', '(', ')', ',', '=', '@', ';', '$', '''}`.</span></span> |
+| <span data-ttu-id="a987d-124">Sorozat száma</span><span class="sxs-lookup"><span data-stu-id="a987d-124">Sequence number</span></span> |<span data-ttu-id="a987d-125">Minden felhő eszközre üzenetet az IoT-központ által hozzárendelt szám (eszköz-várólista minden egyedi).</span><span class="sxs-lookup"><span data-stu-id="a987d-125">A number (unique per device-queue) assigned by IoT Hub to each cloud-to-device message.</span></span> |
+| <span data-ttu-id="a987d-126">–</span><span class="sxs-lookup"><span data-stu-id="a987d-126">To</span></span> |<span data-ttu-id="a987d-127">A megadott célhelyre [felhő eszközre] [ lnk-c2d] üzeneteket.</span><span class="sxs-lookup"><span data-stu-id="a987d-127">A destination specified in [Cloud-to-Device][lnk-c2d] messages.</span></span> |
+| <span data-ttu-id="a987d-128">ExpiryTimeUtc</span><span class="sxs-lookup"><span data-stu-id="a987d-128">ExpiryTimeUtc</span></span> |<span data-ttu-id="a987d-129">Dátum és az üzenet lejárati idejét.</span><span class="sxs-lookup"><span data-stu-id="a987d-129">Date and time of message expiration.</span></span> |
+| <span data-ttu-id="a987d-130">EnqueuedTime</span><span class="sxs-lookup"><span data-stu-id="a987d-130">EnqueuedTime</span></span> |<span data-ttu-id="a987d-131">Dátum és idő a [felhő eszközre] [ lnk-c2d] üzenet érkezett az IoT-központot.</span><span class="sxs-lookup"><span data-stu-id="a987d-131">Date and time the [Cloud-to-Device][lnk-c2d] message was received by IoT Hub.</span></span> |
+| <span data-ttu-id="a987d-132">CorrelationId</span><span class="sxs-lookup"><span data-stu-id="a987d-132">CorrelationId</span></span> |<span data-ttu-id="a987d-133">A kérelem a kérelem-válasz minták MessageId általában tartalmazó válaszüzenetet a karakterlánc típusú tulajdonság.</span><span class="sxs-lookup"><span data-stu-id="a987d-133">A string property in a response message that typically contains the MessageId of the request, in request-reply patterns.</span></span> |
+| <span data-ttu-id="a987d-134">Felhasználói azonosítóját</span><span class="sxs-lookup"><span data-stu-id="a987d-134">UserId</span></span> |<span data-ttu-id="a987d-135">Adja meg az üzenetek eredeti használt azonosító.</span><span class="sxs-lookup"><span data-stu-id="a987d-135">An ID used to specify the origin of messages.</span></span> <span data-ttu-id="a987d-136">Az IoT-központ által előállított üzeneteket, ha van-e beállítva `{iot hub name}`.</span><span class="sxs-lookup"><span data-stu-id="a987d-136">When messages are generated by IoT Hub, it is set to `{iot hub name}`.</span></span> |
+| <span data-ttu-id="a987d-137">Nyugtázási</span><span class="sxs-lookup"><span data-stu-id="a987d-137">Ack</span></span> |<span data-ttu-id="a987d-138">A visszajelzési üzenet generátor.</span><span class="sxs-lookup"><span data-stu-id="a987d-138">A feedback message generator.</span></span> <span data-ttu-id="a987d-139">Ezt a tulajdonságot használják a felhő-eszközre küldött üzenetek igényelni az IoT-központ létrehozhat visszajelzés üzeneteket a felhasználás az üzenet miatt az eszköz.</span><span class="sxs-lookup"><span data-stu-id="a987d-139">This property is used in cloud-to-device messages to request IoT Hub to generate feedback messages as a result of the consumption of the message by the device.</span></span> <span data-ttu-id="a987d-140">A lehetséges értékek: **nincs** (alapértelmezett): Nincs visszajelzés üzenet jön létre, **pozitív**: visszajelzés üzenetet kap, ha az üzenet befejeződött, **negatív**: visszajelzés üzenetet kap, ha nélkül végzi az eszközt, az üzenet lejárt (vagy elérte a maximális száma) vagy **teljes**: pozitív és negatív.</span><span class="sxs-lookup"><span data-stu-id="a987d-140">Possible values: **none** (default): no feedback message is generated, **positive**: receive a feedback message if the message was completed, **negative**: receive a feedback message if the message expired (or maximum delivery count was reached) without being completed by the device, or **full**: both positive and negative.</span></span> <span data-ttu-id="a987d-141">További információkért lásd: [visszajelzés üzenet][lnk-feedback].</span><span class="sxs-lookup"><span data-stu-id="a987d-141">For more information, see [Message feedback][lnk-feedback].</span></span> |
+| <span data-ttu-id="a987d-142">ConnectionDeviceId</span><span class="sxs-lookup"><span data-stu-id="a987d-142">ConnectionDeviceId</span></span> |<span data-ttu-id="a987d-143">Az eszköz a felhőbe küldött üzeneteket az IoT-központ által beállított azonosító.</span><span class="sxs-lookup"><span data-stu-id="a987d-143">An ID set by IoT Hub on device-to-cloud messages.</span></span> <span data-ttu-id="a987d-144">Tartalmazza a **deviceId** az eszközt, az üzenetet küldő.</span><span class="sxs-lookup"><span data-stu-id="a987d-144">It contains the **deviceId** of the device that sent the message.</span></span> |
+| <span data-ttu-id="a987d-145">ConnectionDeviceGenerationId</span><span class="sxs-lookup"><span data-stu-id="a987d-145">ConnectionDeviceGenerationId</span></span> |<span data-ttu-id="a987d-146">Az eszköz a felhőbe küldött üzeneteket az IoT-központ által beállított azonosító.</span><span class="sxs-lookup"><span data-stu-id="a987d-146">An ID set by IoT Hub on device-to-cloud messages.</span></span> <span data-ttu-id="a987d-147">Tartalmazza a **generationId** (megfelelően [identitás eszköztulajdonságok][lnk-device-properties]) az eszköz az üzenetet küldő.</span><span class="sxs-lookup"><span data-stu-id="a987d-147">It contains the **generationId** (as per [Device identity properties][lnk-device-properties]) of the device that sent the message.</span></span> |
+| <span data-ttu-id="a987d-148">ConnectionAuthMethod</span><span class="sxs-lookup"><span data-stu-id="a987d-148">ConnectionAuthMethod</span></span> |<span data-ttu-id="a987d-149">Az eszköz a felhőbe küldött üzeneteket az IoT-központ által beállított hitelesítési módszert.</span><span class="sxs-lookup"><span data-stu-id="a987d-149">An authentication method set by IoT Hub on device-to-cloud messages.</span></span> <span data-ttu-id="a987d-150">Ez a tulajdonság a üzenetet küld az eszköz hitelesítésére használt hitelesítési módszert információkat tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="a987d-150">This property contains information about the authentication method used to authenticate the device sending the message.</span></span> <span data-ttu-id="a987d-151">További információkért lásd: [hamisításszűrés felhőbe eszköz][lnk-antispoofing].</span><span class="sxs-lookup"><span data-stu-id="a987d-151">For more information, see [Device to cloud anti-spoofing][lnk-antispoofing].</span></span> |
+
+## <a name="message-size"></a><span data-ttu-id="a987d-152">Üzenet mérete</span><span class="sxs-lookup"><span data-stu-id="a987d-152">Message size</span></span>
+
+<span data-ttu-id="a987d-153">Az IoT-központ méri üzenet mérete protokoll-független módon annak eldöntéséhez, hogy csak a tényleges tartalmat.</span><span class="sxs-lookup"><span data-stu-id="a987d-153">IoT Hub measures message size in a protocol-agnostic way, considering only the actual payload.</span></span> <span data-ttu-id="a987d-154">A mérete bájtban a következő összegeként számítható ki:</span><span class="sxs-lookup"><span data-stu-id="a987d-154">The size in bytes is calculated as the sum of the following:</span></span>
+
+* <span data-ttu-id="a987d-155">A törzs mérete bájtban.</span><span class="sxs-lookup"><span data-stu-id="a987d-155">The body size in bytes.</span></span>
+* <span data-ttu-id="a987d-156">A mérete bájtban megadva az üzenet tulajdonságainak értékek.</span><span class="sxs-lookup"><span data-stu-id="a987d-156">The size in bytes of all the values of the message system properties.</span></span>
+* <span data-ttu-id="a987d-157">A mérete bájtban minden felhasználó nevét és értékeit.</span><span class="sxs-lookup"><span data-stu-id="a987d-157">The size in bytes of all user property names and values.</span></span>
+
+<span data-ttu-id="a987d-158">Nevét és értékeit korlátozódnak ASCII-karaktereket, így a karakterlánc hosszát eredménye a mérete bájtban.</span><span class="sxs-lookup"><span data-stu-id="a987d-158">Property names and values are limited to ASCII characters, so the length of the strings equals the size in bytes.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="a987d-159">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="a987d-159">Next steps</span></span>
+
+<span data-ttu-id="a987d-160">További információ a méretkorlátozásokról üzenetet az IoT hubon: [IoT-központ kvóták és sávszélesség-szabályozási][lnk-quotas].</span><span class="sxs-lookup"><span data-stu-id="a987d-160">For information about message size limits in IoT Hub, see [IoT Hub quotas and throttling][lnk-quotas].</span></span>
+
+<span data-ttu-id="a987d-161">Megtudhatja, hogyan hozhat létre, és az IoT-központ különböző programnyelveken üzenet olvasása, tekintse meg a [Ismerkedés] [ lnk-get-started] oktatóanyagok.</span><span class="sxs-lookup"><span data-stu-id="a987d-161">To learn how to create and read IoT Hub messages in various programming languages, see the [Get started][lnk-get-started] tutorials.</span></span>
+
+[lnk-messaging]: iot-hub-devguide-messaging.md
+[lnk-quotas]: iot-hub-devguide-quotas-throttling.md
+[lnk-get-started]: iot-hub-get-started.md
+[lnk-sdks]: iot-hub-devguide-sdks.md
+[lnk-c2d]: iot-hub-devguide-messages-c2d.md
+[lnk-d2c]: iot-hub-devguide-messages-d2c.md
+[lnk-feedback]: iot-hub-devguide-messages-c2d.md#message-feedback
+[lnk-device-properties]: iot-hub-devguide-identity-registry.md#device-identity-properties
+[lnk-antispoofing]: iot-hub-devguide-messages-d2c.md#anti-spoofing-properties
