@@ -2,7 +2,7 @@
 ## [Mi az a Load Balancer?](load-balancer-overview.md)
 ## [Internetes Load Balancer](load-balancer-internet-overview.md)
 ## [Belső terheléselosztó](load-balancer-internal-overview.md)
-## [A terheléselosztó vizsgálatok ismertetése](load-balancer-custom-probe-overview.md)
+## [A Load Balancer vizsgálatok ismertetése](load-balancer-custom-probe-overview.md)
 ## [Azure Resource Manager-támogatás](load-balancer-arm.md)
 ## [IPv6-támogatás](load-balancer-ipv6-overview.md)
 ## [Több virtuális IP-cím](load-balancer-multivip-overview.md)
@@ -15,8 +15,8 @@
 ### [Belső Load balancer konfigurálása (parancssori felület)](load-balancer-get-started-ilb-arm-cli.md)
 ### [Belső Load Balancer konfigurálása (sablon)](load-balancer-get-started-ilb-arm-template.md)
 
-## [Belső Load Balancer konfigurálása a Cloud Services szolgáltatáshoz](load-balancer-get-started-ilb-classic-cloud.md)
-### [Belső Load Balancer konfigurálása a Cloud Services szolgáltatáshoz (PowerShell)](load-balancer-get-started-ilb-classic-ps.md)
+## [Belső Load Balancer konfigurálása a felhőszolgáltatásokhoz](load-balancer-get-started-ilb-classic-cloud.md)
+### [Belső Load Balancer konfigurálása a felhőszolgáltatásokhoz (PowerShell)](load-balancer-get-started-ilb-classic-ps.md)
 ### [Belső Load Balancer konfigurálása a Cloud Services szolgáltatáshoz (parancssori felület)](load-balancer-get-started-ilb-classic-cli.md)
 
 ## [Internetkapcsolattal rendelkező Load Balancer konfigurálása](load-balancer-get-started-internet-portal.md)
@@ -29,7 +29,7 @@
 ### [Internetkapcsolattal rendelkező Load Balancer konfigurálása (klasszikus PS)](load-balancer-get-started-internet-classic-ps.md)
 ### [Internetkapcsolattal rendelkező Load Balancer konfigurálása (klasszikus parancssori felület)](load-balancer-get-started-internet-classic-cli.md)
 
-## [Internetkapcsolattal rendelkező terheléselosztó konfigurálása IPv6-tal](load-balancer-ipv6-internet-ps.md)
+## [Internetkapcsolattal rendelkező Load Balancer konfigurálása IPv6-tal](load-balancer-ipv6-internet-ps.md)
 ### [Internetkapcsolattal rendelkező terheléselosztó konfigurálása IPv6-tal (parancssori felület)](load-balancer-ipv6-internet-cli.md)
 ### [Internetkapcsolattal rendelkező terheléselosztó konfigurálása IPv6-tal (sablon)](load-balancer-ipv6-internet-template.md)
 

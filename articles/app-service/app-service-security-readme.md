@@ -1,6 +1,6 @@
 ---
-title: "Az Azure App Service-biztonsági"
-description: "Útmutató: a biztonságos webes, mobil-, API és logikai alkalmazások az Azure App Service-ben."
+title: "App Service biztonsági aaaAzure"
+description: "Megtudhatja, hogyan toosecure webes, mobil-, API és logikai alkalmazások az Azure App Service-ben."
 services: app-service
 documentationcenter: 
 author: naziml
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/16/2015
 ms.author: naziml
-ms.openlocfilehash: 7d26d52ad04bd4158a1450ae0f49fc7c1f8a04e8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8a0bff7d9665abadd70c1cfd07dca265ea057596
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-app-service-security"></a><span data-ttu-id="839a1-103">Az Azure App Service-biztonsági</span><span class="sxs-lookup"><span data-stu-id="839a1-103">Azure App Service Security</span></span>
-<span data-ttu-id="839a1-104">Az Azure App Services megfelel-e a fő iparági szabványoknak megfelelő biztonsága és megbízhatósága biztonságos fórumot ügyfeleink számára.</span><span class="sxs-lookup"><span data-stu-id="839a1-104">Azure App Services complies with the key industry standards for security and reliability to provide our customers a secure platform.</span></span> <span data-ttu-id="839a1-105">Van több könnyen használható funkciót, az alkalmazás a bejövő és kimenő forgalmának biztonságossá tétele érdekében.</span><span class="sxs-lookup"><span data-stu-id="839a1-105">We have several easy-to-use features to help secure both inbound and outbound traffic for your app.</span></span> <span data-ttu-id="839a1-106">Azt is hozzájárulhat a felhasználók biztonságos az alkalmazás kódjában külsőleg megadásával a webes alkalmazás a biztonsági réseket megvizsgálja a funkciókat biztosította.</span><span class="sxs-lookup"><span data-stu-id="839a1-106">We also help customers secure their application code by providing externally provided functionality to scan your web application for vulnerabilities.</span></span>
+# <a name="azure-app-service-security"></a><span data-ttu-id="ca444-103">Az Azure App Service-biztonsági</span><span class="sxs-lookup"><span data-stu-id="ca444-103">Azure App Service Security</span></span>
+<span data-ttu-id="ca444-104">Az Azure App Services megfelel hello fő iparági szabványai biztonsága és megbízhatósága tooprovide ügyfeleink biztonságos platformot.</span><span class="sxs-lookup"><span data-stu-id="ca444-104">Azure App Services complies with hello key industry standards for security and reliability tooprovide our customers a secure platform.</span></span> <span data-ttu-id="ca444-105">Az alkalmazás a bejövő és kimenő forgalmának biztonságossá tétele több könnyen használható szolgáltatások toohelp van.</span><span class="sxs-lookup"><span data-stu-id="ca444-105">We have several easy-to-use features toohelp secure both inbound and outbound traffic for your app.</span></span> <span data-ttu-id="ca444-106">Azt is hozzájárulhat a felhasználók biztonságos az alkalmazás kódjában azáltal, hogy külsőleg biztosított funkció tooscan a webes alkalmazás a biztonsági réseket.</span><span class="sxs-lookup"><span data-stu-id="ca444-106">We also help customers secure their application code by providing externally provided functionality tooscan your web application for vulnerabilities.</span></span>
 
 [!INCLUDE [app-service-blueprint-security](../../includes/app-service-blueprint-security.md)]
 
-<span data-ttu-id="839a1-107">Az Azure App Service ugyanaz a kártevővédelmi megoldás Azure Cloud Services és a virtuális gépek által használt használja.</span><span class="sxs-lookup"><span data-stu-id="839a1-107">Azure App Service uses the same Antimalware solution used by Azure Cloud Services and Virtual Machines.</span></span> <span data-ttu-id="839a1-108">Ismerje meg, ez bővebben lásd a [kártevőirtó dokumentáció](../security/azure-security-antimalware.md).</span><span class="sxs-lookup"><span data-stu-id="839a1-108">To learn more about this refer to our [Antimalware documentation](../security/azure-security-antimalware.md).</span></span> 
+<span data-ttu-id="ca444-107">Az Azure App Service által használt hello ugyanaz a kártevővédelmi megoldás Azure Cloud Services és a virtuális gépek által használt.</span><span class="sxs-lookup"><span data-stu-id="ca444-107">Azure App Service uses hello same Antimalware solution used by Azure Cloud Services and Virtual Machines.</span></span> <span data-ttu-id="ca444-108">További információ toolearn tekintse meg a tooour [kártevőirtó dokumentáció](../security/azure-security-antimalware.md).</span><span class="sxs-lookup"><span data-stu-id="ca444-108">toolearn more about this refer tooour [Antimalware documentation](../security/azure-security-antimalware.md).</span></span> 
 

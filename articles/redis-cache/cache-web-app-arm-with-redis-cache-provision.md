@@ -1,6 +1,6 @@
 ---
-title: "Redis gyorsítótár Webalkalmazásnál kiépítése"
-description: "Webes alkalmazás a Redis Cache telepítéséhez használható Azure Resource Manager-sablon."
+title: "Webes alkalmazás a Redis Cache aaaProvision"
+description: "Azure Resource Manager sablon toodeploy webes alkalmazás használata a Redis Cache."
 services: app-service
 documentationcenter: 
 author: steved0x
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/06/2017
 ms.author: sdanie
-ms.openlocfilehash: 810c1cedd4fe0bd6ecdf9bd32dfb241f5f345300
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b95b5e230dc40c1157940c2017cba836975b6930
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-web-app-plus-redis-cache-using-a-template"></a><span data-ttu-id="91224-103">Hozzon létre egy webalkalmazást és a Redis Cache-sablon használatával</span><span class="sxs-lookup"><span data-stu-id="91224-103">Create a Web App plus Redis Cache using a template</span></span>
-<span data-ttu-id="91224-104">Ebben a témakörben elsajátíthatja lesz egy Azure Resource Manager-sablon, amely telepíti az Azure Web Apps a Redis gyorsítótár létrehozása.</span><span class="sxs-lookup"><span data-stu-id="91224-104">In this topic, you will learn how to create an Azure Resource Manager template that deploys an Azure Web App with Redis cache.</span></span> <span data-ttu-id="91224-105">Megtudhatja, hogyan határozza meg, mely erőforrásokat központilag telepíti, és hogyan adhat meg a paramétereket, amelyek megadott, amikor a központi telepítés végrehajtása.</span><span class="sxs-lookup"><span data-stu-id="91224-105">You will learn how to define which resources are deployed and how to define parameters that are specified when the deployment is executed.</span></span> <span data-ttu-id="91224-106">Ez a sablont használhatja a saját környezeteiben, vagy testre is szabhatja a saját követelményeinek megfelelően.</span><span class="sxs-lookup"><span data-stu-id="91224-106">You can use this template for your own deployments, or customize it to meet your requirements.</span></span>
+# <a name="create-a-web-app-plus-redis-cache-using-a-template"></a><span data-ttu-id="e9303-103">Hozzon létre egy webalkalmazást és a Redis Cache-sablon használatával</span><span class="sxs-lookup"><span data-stu-id="e9303-103">Create a Web App plus Redis Cache using a template</span></span>
+<span data-ttu-id="e9303-104">Ez a témakör megtudhatja, hogyan toocreate egy Azure Resource Manager-sablon, amely az Azure Web Apps a Redis gyorsítótár telepít.</span><span class="sxs-lookup"><span data-stu-id="e9303-104">In this topic, you will learn how toocreate an Azure Resource Manager template that deploys an Azure Web App with Redis cache.</span></span> <span data-ttu-id="e9303-105">Megtudhatja, hogyan toodefine erőforrások vannak telepítve, és hogyan toodefine paramétereket megadott, amikor hello központi telepítés végrehajtása.</span><span class="sxs-lookup"><span data-stu-id="e9303-105">You will learn how toodefine which resources are deployed and how toodefine parameters that are specified when hello deployment is executed.</span></span> <span data-ttu-id="e9303-106">Ez a sablon használhat saját rendszerekhez, vagy testre szabhatja, toomeet igényeinek.</span><span class="sxs-lookup"><span data-stu-id="e9303-106">You can use this template for your own deployments, or customize it toomeet your requirements.</span></span>
 
-<span data-ttu-id="91224-107">Sablonok létrehozásával kapcsolatos további információkért lásd: [Azure Resource Manager sablonok készítése](../azure-resource-manager/resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="91224-107">For more information about creating templates, see [Authoring Azure Resource Manager Templates](../azure-resource-manager/resource-group-authoring-templates.md).</span></span>
+<span data-ttu-id="e9303-107">Sablonok létrehozásával kapcsolatos további információkért lásd: [Azure Resource Manager sablonok készítése](../azure-resource-manager/resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="e9303-107">For more information about creating templates, see [Authoring Azure Resource Manager Templates](../azure-resource-manager/resource-group-authoring-templates.md).</span></span>
 
-<span data-ttu-id="91224-108">Tekintse meg a teljes sablon [webes alkalmazás a Redis Cache sablon](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json).</span><span class="sxs-lookup"><span data-stu-id="91224-108">For the complete template, see [Web App with Redis Cache template](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json).</span></span>
+<span data-ttu-id="e9303-108">Hello teljes sablon, lásd: [webes alkalmazás a Redis Cache sablon](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json).</span><span class="sxs-lookup"><span data-stu-id="e9303-108">For hello complete template, see [Web App with Redis Cache template](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json).</span></span>
 
-## <a name="what-you-will-deploy"></a><span data-ttu-id="91224-109">Mit fog üzembe helyezni</span><span class="sxs-lookup"><span data-stu-id="91224-109">What you will deploy</span></span>
-<span data-ttu-id="91224-110">Ha a sablonban telepíti:</span><span class="sxs-lookup"><span data-stu-id="91224-110">In this template, you will deploy:</span></span>
+## <a name="what-you-will-deploy"></a><span data-ttu-id="e9303-109">Mit fog üzembe helyezni</span><span class="sxs-lookup"><span data-stu-id="e9303-109">What you will deploy</span></span>
+<span data-ttu-id="e9303-110">Ha a sablonban telepíti:</span><span class="sxs-lookup"><span data-stu-id="e9303-110">In this template, you will deploy:</span></span>
 
-* <span data-ttu-id="91224-111">Azure Web App</span><span class="sxs-lookup"><span data-stu-id="91224-111">Azure Web App</span></span>
-* <span data-ttu-id="91224-112">Azure Redis Cache.</span><span class="sxs-lookup"><span data-stu-id="91224-112">Azure Redis Cache.</span></span>
+* <span data-ttu-id="e9303-111">Azure Web App</span><span class="sxs-lookup"><span data-stu-id="e9303-111">Azure Web App</span></span>
+* <span data-ttu-id="e9303-112">Azure Redis Cache.</span><span class="sxs-lookup"><span data-stu-id="e9303-112">Azure Redis Cache.</span></span>
 
-<span data-ttu-id="91224-113">Az automatikus üzembe helyezéshez kattintson az alábbi gombra:</span><span class="sxs-lookup"><span data-stu-id="91224-113">To run the deployment automatically, click the following button:</span></span>
+<span data-ttu-id="e9303-113">toorun telepítési hello automatikusan, kattintson a következő gombra hello:</span><span class="sxs-lookup"><span data-stu-id="e9303-113">toorun hello deployment automatically, click hello following button:</span></span>
 
-<span data-ttu-id="91224-114">[![Üzembe helyezés az Azure-ban](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)</span><span class="sxs-lookup"><span data-stu-id="91224-114">[![Deploy to Azure](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)</span></span>
+<span data-ttu-id="e9303-114">[![TooAzure telepítése](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)</span><span class="sxs-lookup"><span data-stu-id="e9303-114">[![Deploy tooAzure](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)</span></span>
 
-## <a name="parameters-to-specify"></a><span data-ttu-id="91224-115">Paraméterek megadása</span><span class="sxs-lookup"><span data-stu-id="91224-115">Parameters to specify</span></span>
+## <a name="parameters-toospecify"></a><span data-ttu-id="e9303-115">Paraméterek toospecify</span><span class="sxs-lookup"><span data-stu-id="e9303-115">Parameters toospecify</span></span>
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
 [!INCLUDE [cache-deploy-parameters](../../includes/cache-deploy-parameters.md)]
 
-## <a name="variables-for-names"></a><span data-ttu-id="91224-116">Nevek változói</span><span class="sxs-lookup"><span data-stu-id="91224-116">Variables for names</span></span>
-<span data-ttu-id="91224-117">Ez a sablon nevét az erőforrások létrehozásához változókat használ.</span><span class="sxs-lookup"><span data-stu-id="91224-117">This template uses variables to construct names for the resources.</span></span> <span data-ttu-id="91224-118">Használja a [uniqueString](../azure-resource-manager/resource-group-template-functions-string.md#uniquestring) függvény értéket összeállítani az erőforráscsoport azonosítója alapján.</span><span class="sxs-lookup"><span data-stu-id="91224-118">It uses the [uniqueString](../azure-resource-manager/resource-group-template-functions-string.md#uniquestring) function to construct a value based on the resource group id.</span></span>
+## <a name="variables-for-names"></a><span data-ttu-id="e9303-116">Nevek változói</span><span class="sxs-lookup"><span data-stu-id="e9303-116">Variables for names</span></span>
+<span data-ttu-id="e9303-117">Ez a sablon változók tooconstruct csoportneveket hello erőforrások használja.</span><span class="sxs-lookup"><span data-stu-id="e9303-117">This template uses variables tooconstruct names for hello resources.</span></span> <span data-ttu-id="e9303-118">Hello használ [uniqueString](../azure-resource-manager/resource-group-template-functions-string.md#uniquestring) tooconstruct értéket az erőforráscsoport azonosítója alapján működnek.</span><span class="sxs-lookup"><span data-stu-id="e9303-118">It uses hello [uniqueString](../azure-resource-manager/resource-group-template-functions-string.md#uniquestring) function tooconstruct a value based on the resource group id.</span></span>
 
     "variables": {
       "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -52,13 +52,13 @@ ms.lasthandoff: 07/11/2017
     },
 
 
-## <a name="resources-to-deploy"></a><span data-ttu-id="91224-119">Üzembe helyezendő erőforrások</span><span class="sxs-lookup"><span data-stu-id="91224-119">Resources to deploy</span></span>
+## <a name="resources-toodeploy"></a><span data-ttu-id="e9303-119">Erőforrások toodeploy</span><span class="sxs-lookup"><span data-stu-id="e9303-119">Resources toodeploy</span></span>
 [!INCLUDE [app-service-web-deploy-web-host](../../includes/app-service-web-deploy-web-host.md)]
 
-### <a name="redis-cache"></a><span data-ttu-id="91224-120">Redis Cache</span><span class="sxs-lookup"><span data-stu-id="91224-120">Redis Cache</span></span>
-<span data-ttu-id="91224-121">A webalkalmazásban használt Azure Redis Cache hoz létre.</span><span class="sxs-lookup"><span data-stu-id="91224-121">Creates the Azure Redis Cache that is used with the web app.</span></span> <span data-ttu-id="91224-122">A gyorsítótár neve van megadva az a **cacheName** változó.</span><span class="sxs-lookup"><span data-stu-id="91224-122">The name of the cache is specified in the **cacheName** variable.</span></span>
+### <a name="redis-cache"></a><span data-ttu-id="e9303-120">Redis Cache</span><span class="sxs-lookup"><span data-stu-id="e9303-120">Redis Cache</span></span>
+<span data-ttu-id="e9303-121">Azure Redis Cache hello webalkalmazás használt hello hoz létre.</span><span class="sxs-lookup"><span data-stu-id="e9303-121">Creates hello Azure Redis Cache that is used with hello web app.</span></span> <span data-ttu-id="e9303-122">hello gyorsítótár hello neve van megadva az hello **cacheName** változó.</span><span class="sxs-lookup"><span data-stu-id="e9303-122">hello name of hello cache is specified in hello **cacheName** variable.</span></span>
 
-<span data-ttu-id="91224-123">A sablon létrehozza a gyorsítótár az erőforráscsoporttal megegyező ugyanazon a helyen.</span><span class="sxs-lookup"><span data-stu-id="91224-123">The template creates the cache in the same location as the resource group.</span></span>
+<span data-ttu-id="e9303-123">hello sablont hoz létre hello gyorsítótár hello hello erőforráscsoport és ugyanazon a helyen.</span><span class="sxs-lookup"><span data-stu-id="e9303-123">hello template creates hello cache in hello same location as hello resource group.</span></span>
 
     {
       "name": "[variables('cacheName')]",
@@ -79,10 +79,10 @@ ms.lasthandoff: 07/11/2017
     }
 
 
-### <a name="web-app"></a><span data-ttu-id="91224-124">Webalkalmazás</span><span class="sxs-lookup"><span data-stu-id="91224-124">Web app</span></span>
-<span data-ttu-id="91224-125">A megadott nevű létrehozza a webalkalmazást a **webSiteName** változó.</span><span class="sxs-lookup"><span data-stu-id="91224-125">Creates the web app with name specified in the **webSiteName** variable.</span></span>
+### <a name="web-app"></a><span data-ttu-id="e9303-124">Webalkalmazás</span><span class="sxs-lookup"><span data-stu-id="e9303-124">Web app</span></span>
+<span data-ttu-id="e9303-125">Létrehozza a hello webalkalmazást hello megadott nevű **webSiteName** változó.</span><span class="sxs-lookup"><span data-stu-id="e9303-125">Creates hello web app with name specified in hello **webSiteName** variable.</span></span>
 
-<span data-ttu-id="91224-126">Figyelje meg, hogy a webes alkalmazás van konfigurálva, amelyek lehetővé teszik, hogy a Redis Cache használata app beállításának tulajdonságai.</span><span class="sxs-lookup"><span data-stu-id="91224-126">Notice that the web app is configured with app setting properties that enable it to work with the Redis Cache.</span></span> <span data-ttu-id="91224-127">A beállítások dinamikusan jönnek létre alkalmazást a telepítés során megadott értékek alapján.</span><span class="sxs-lookup"><span data-stu-id="91224-127">This app settings are dynamically created based on values provided during deployment.</span></span>
+<span data-ttu-id="e9303-126">Figyelje meg, hogy hello webalkalmazás tulajdonságokat, amelyek lehetővé teszik a Redis Cache hello toowork alkalmazás van konfigurálva.</span><span class="sxs-lookup"><span data-stu-id="e9303-126">Notice that hello web app is configured with app setting properties that enable it toowork with hello Redis Cache.</span></span> <span data-ttu-id="e9303-127">A beállítások dinamikusan jönnek létre alkalmazást a telepítés során megadott értékek alapján.</span><span class="sxs-lookup"><span data-stu-id="e9303-127">This app settings are dynamically created based on values provided during deployment.</span></span>
 
     {
       "apiVersion": "2015-08-01",
@@ -117,11 +117,11 @@ ms.lasthandoff: 07/11/2017
       ]
     }
 
-## <a name="commands-to-run-deployment"></a><span data-ttu-id="91224-128">Az üzembe helyezést futtató parancsok</span><span class="sxs-lookup"><span data-stu-id="91224-128">Commands to run deployment</span></span>
+## <a name="commands-toorun-deployment"></a><span data-ttu-id="e9303-128">Parancsok toorun központi telepítés</span><span class="sxs-lookup"><span data-stu-id="e9303-128">Commands toorun deployment</span></span>
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
-### <a name="powershell"></a><span data-ttu-id="91224-129">PowerShell</span><span class="sxs-lookup"><span data-stu-id="91224-129">PowerShell</span></span>
+### <a name="powershell"></a><span data-ttu-id="e9303-129">PowerShell</span><span class="sxs-lookup"><span data-stu-id="e9303-129">PowerShell</span></span>
     New-AzureRmResourceGroupDeployment -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-with-redis-cache/azuredeploy.json -ResourceGroupName ExampleDeployGroup
 
-### <a name="azure-cli"></a><span data-ttu-id="91224-130">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="91224-130">Azure CLI</span></span>
+### <a name="azure-cli"></a><span data-ttu-id="e9303-130">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="e9303-130">Azure CLI</span></span>
     azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-with-redis-cache/azuredeploy.json -g ExampleDeployGroup
