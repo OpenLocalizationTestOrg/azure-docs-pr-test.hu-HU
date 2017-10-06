@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált SAP HANA Cloud Platform |} Microsoft Docs"
-description: "Útmutató SAP HANA Cloud Platform az Azure Active Directoryval az egyszeri bejelentkezés, automatikus kiépítésének, és több!"
+description: "Ismerje meg, hogyan toouse SAP HANA Cloud Platform az Azure Active Directory tooenable egyszeri bejelentkezést, automatizált üzembe helyezést és további!"
 services: active-directory
 author: jeevansd
 documentationcenter: na
@@ -13,138 +13,138 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 03/23/2017
 ms.author: jeedes
-ms.openlocfilehash: e03bc2410a8d57363c558f723b3bfd0e69b3f4c0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cc6610969b1c7b08f776e6969a5977fc75eb9ab4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-sap-hana-cloud-platform"></a>Oktatóanyag: Azure Active Directory-integráció az SAP HANA Cloud Platform megoldással
-Ez az oktatóanyag célja az Azure és az SAP HANA Cloud Platform integrációját megjelenítése.
+hello Ez az oktatóanyag célja az Azure és az SAP HANA Cloud Platform tooshow hello integrációját.
 
-Ebben az oktatóanyagban leírt forgatókönyv feltételezi, hogy már rendelkezik a következő elemek:
+Ebben az oktatóanyagban leírt hello forgatókönyv feltételezi, hogy már rendelkezik a következő elemek hello:
 
 * Egy érvényes Azure-előfizetés
 * Egy SAP HANA-Felhőplatform-fiók
 
-Ez az oktatóanyag befejezése után az Azure AD felhasználók SAP HANA Cloud Platform rendelt tudják az alkalmazás használatával történő egyszeri bejelentkezéshez a [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
+Ez az oktatóanyag befejezése után a hozzárendelt tooSAP HANA felhő platform képes toosingle bejelentkezési hello alkalmazásba hello használata az Azure AD-felhasználók hello [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
 
 >[!IMPORTANT]
->A saját-alkalmazás központi telepítése, illetve fizethetnek elő az egyszeri bejelentkezés tesztelése SAP HANA Cloud Platform fiókja kérelmet kell. Ebben az oktatóanyagban egy alkalmazás lett telepítve a fiókban.
+>Tooan alkalmazás a SAP HANA Cloud Platform egyetlen fiók tootest jelentkezzen be az előfizetés vagy toodeploy saját alkalmazás szükséges. Ebben az oktatóanyagban egy alkalmazás hello fiók van telepítve.
 > 
 > 
 
-Ebben az oktatóanyagban leírt forgatókönyv az alábbi építőelemeket áll:
+Ebben az oktatóanyagban leírt hello forgatókönyv építőelemei következő hello áll:
 
-1. Az alkalmazás-integráció SAP HANA Cloud Platform engedélyezése
+1. Alkalmazások integrálása hello SAP HANA felhő platform engedélyezése
 2. Egyszeri bejelentkezés (SSO) konfigurálása
-3. Szerepkör hozzárendelése felhasználóhoz
+3. Egy szerepkör tooa felhasználói hozzárendelése
 4. Felhasználók hozzárendelése
 
 ![A forgatókönyv](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC790795.png "forgatókönyv")
 
-## <a name="enabling-the-application-integration-for-sap-hana-cloud-platform"></a>Az alkalmazás-integráció SAP HANA Cloud Platform engedélyezése
-Ez a szakasz célja felvázoló SAP HANA Cloud Platform az alkalmazás-integráció engedélyezése.
+## <a name="enabling-hello-application-integration-for-sap-hana-cloud-platform"></a>Alkalmazások integrálása hello SAP HANA felhő platform engedélyezése
+hello ebben a szakaszban célja toooutline hogyan tooenable hello alkalmazásintegráció SAP HANA felhő platform.
 
-**Ahhoz, hogy az alkalmazás-integráció SAP HANA Cloud Platform, hajtsa végre a következő lépéseket:**
+**tooenable hello alkalmazásintegráció SAP HANA felhő platform, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure felügyeleti portálon, a bal oldali navigációs panelen kattintson a **Active Directory**.
+1. Hello Azure felügyeleti portálon, a hello bal oldali navigációs ablaktábláján kattintson **Active Directory**.
    
     ![Az Active Directory](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC700993.png "Active Directory")
-2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
-3. A könyvtár nézetben a alkalmazások nézet megnyitásához kattintson **alkalmazások** a felső menüben.
+2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
+3. tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
    
     ![Alkalmazások](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC700994.png "alkalmazások")
-4. Kattintson a **Hozzáadás** az oldal alján.
+4. Kattintson a **Hozzáadás** hello lap hello alján.
    
     ![Alkalmazás hozzáadása](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC749321.png "alkalmazás hozzáadása")
-5. Az a **mi történjen a teendő** párbeszédpanel, kattintson a **hozzáadhat egy alkalmazást a katalógusból**.
+5. A hello **miről szeretne toodo** párbeszédpanel, kattintson **hello gyűjteményből alkalmazás hozzáadása**.
    
     ![Alkalmazás hozzáadása a gallerry](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC749322.png "gallerry az alkalmazás hozzáadása")
-6. Az a **keresőmezőbe**, típus **SAP HANA Cloud Platform**.
+6. A hello **keresőmezőbe**, típus **SAP HANA Cloud Platform**.
    
     ![Alkalmazáskatalógusában](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC790796.png "Alkalmazáskatalógusában")
-7. Az eredmények ablaktáblájában válassza **SAP HANA Cloud Platform**, és kattintson a **Complete** hozzáadása az alkalmazáshoz.
+7. Hello eredmények ablaktábláján jelöljön ki **SAP HANA Cloud Platform**, és kattintson a **Complete** tooadd hello alkalmazás.
    
     ![SAP Hana](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC793929.png "SAP Hana")
    
 ## <a name="configure-single-sign-on"></a>Egyszeri bejelentkezés konfigurálása
 
-Ez a szakasz célja felvázoló engedélyezése a felhasználók a fiókjukkal SAP HANA Cloud platform hitelesítést az Azure AD összevonási alapján a SAML protokoll használatával.
+hello ebben a szakaszban célja toooutline hogyan tooenable felhasználók tooauthenticate tooSAP HANA Cloud Platform fiókkal az Azure AD összevonási használatával hello SAML protokoll alapján.
 
-Ez az eljárás részeként kötelesek base-64 kódolású tanúsítvány feltöltéséhez az SAP HANA-Felhőplatform-bérlőjéhez tartozik.  
+Ez az eljárás részeként szükség tooupload a base-64 kódolású tanúsítvány tooyour SAP HANA Cloud Platform bérlő.  
 
-Ha nem ismeri ezt az eljárást, tekintse meg a [bináris tanúsítvány szöveg fájlba való konvertálása](http://youtu.be/PlgrzUZ-Y1o)
+Ha nem ismeri ezt az eljárást, tekintse meg a [hogyan tooconvert bináris tanúsítvány egy szövegfájlba](http://youtu.be/PlgrzUZ-Y1o)
 
-**Egyszeri bejelentkezés konfigurálásához hajtsa végre az alábbi lépéseket:**
+**tooconfigure egyszeri bejelentkezés, hajtsa végre az alábbi lépésekkel hello:**
 
-1. A klasszikus Azure portálon a a **SAP HANA Cloud Platform** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** megnyitásához a **konfigurálása egyszeri bejelentkezés** párbeszédpanel.
+1. A klasszikus Azure portálon, a hello hello **SAP HANA Cloud Platform** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** tooopen hello **egyszeribejelentkezéskonfigurálása**párbeszédpanel.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC778552.png "egyszeri bejelentkezés konfigurálása")
-2. Az a **hová felhasználók bejelentkezhetnek a SAP HANA felhő Platform** lapon jelölje be **Microsoft Azure AD az egyszeri bejelentkezés**, és kattintson a **tovább**.
+2. A hello **hogyan szeretné tooSAP HANA Cloud Platform a felhasználók toosign** lapon jelölje be **Microsoft Azure AD az egyszeri bejelentkezés**, és kattintson a **tovább**.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC790797.png "egyszeri bejelentkezés konfigurálása")
-3. Egy másik webes böngészőablakban jelentkezzen be az SAP HANA felhő Platform vezérlőpultot https://account. \<fekvő állomás\>.ondemand.com/cockpit (pl.: *https://account.hanatrial.ondemand.com/cockpit*).
-4. Kattintson a **megbízható** fülre.
+3. Egy másik webes böngészőablakban toohello SAP HANA felhő Platform Vezérlőpult https://account a bejelentkezéskor. \<fekvő állomás\>.ondemand.com/cockpit (pl.: *https://account.hanatrial.ondemand.com/cockpit*).
+4. Kattintson a hello **megbízható** fülre.
    
     ![Megbízható](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC790800.png "megbízhatóság")
-5. Megbízhatósági felügyeleti csoportjában hajtsa végre az alábbi lépéseket:
+5. Megbízhatósági felügyeleti csoportjában hajtsa végre a lépéseket követve hello:
    
     ![Metaadatok beolvasása](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC793930.png "metaadatot beszerezni")
    
-   1. Kattintson a **helyi szolgáltató** fülre.
-   2. Az SAP HANA Cloud Platform metaadatait tartalmazó fájl letöltéséhez kattintson **metaadatok beolvasása**.
-6. Az Azure Active klasszikus portálon a a **alkalmazás URL-cím konfigurálása** lapon hajtsa végre az alábbi lépéseket, és kattintson a **következő**.
+   1. Kattintson a hello **helyi szolgáltató** fülre.
+   2. Kattintson a toodownload hello SAP HANA Cloud Platform metaadatfájl, **metaadatok beolvasása**.
+6. Hello Azure Active klasszikus portál a hello **alkalmazás URL-cím konfigurálása** lapon hajtsa végre az alábbi lépésekkel hello, és kattintson a **következő**.
    
     ![Alkalmazás URL-CÍMEK konfigurálása](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC790798.png "alkalmazás URL-CÍMEK konfigurálása")
    
-   1. Az a **URL-cím bejelentkezési** szövegmező, írja be az URL-cím segítségével a felhasználók jelentkezzen be a **SAP HANA Cloud Platform** alkalmazás. Ez az a fiók-specifikus az SAP HANA Cloud Platform alkalmazásban védett erőforrás URL-CÍMÉT. Az URL-cím alapján a következő mintát: *https://\<applicationName\>\<accountName\>.\< fekvő állomás\>.ondemand.com/\<elérési\_való\_védett\_erőforrás\>*  (pl.: *https://xleavep1941203872trial.hanatrial.ondemand.com/xleave*)
+   1. A hello **URL-cím bejelentkezési** szövegmezőhöz típus hello URL-címet használják a felhasználók toosign azokat a **SAP HANA Cloud Platform** alkalmazás. Ez egy SAP HANA Cloud Platform alkalmazásában védett erőforrás hello fiókspecifikus URL-címet. hello URL-címe alapján a következő mintát hello: *https://\<applicationName\>\<accountName\>.\< fekvő állomás\>.ondemand.com/\<elérési\_való\_védett\_erőforrás\>*  (pl.: *https://xleavep1941203872trial.hanatrial.ondemand.com/xleave*)
       
      >[!NOTE]
-     >Ez az URL-CÍMÉT, amelyhez a felhasználó hitelesítésére az SAP HANA Cloud Platform alkalmazásban.
+     >Ez az az SAP HANA Cloud Platform alkalmazás hello felhasználói tooauthenticate igénylő hello URL-címet.
      > 
 
-   2. Nyissa meg a letöltött SAP HANA Cloud Platform metaadat-fájlt, és keresse meg a **ns3:AssertionConsumerService** címke.
-   3. Másolja a értékének a **hely** attribútumot, és illessze be azt a **SAP HANA felhő Platform válasz URL-CÍMEN** szövegmező.
+   2. Nyissa meg a letöltött hello SAP HANA Cloud Platform metaadat-fájlt, és keresse a hello **ns3:AssertionConsumerService** címke.
+   3. Másolja a hello hello értékének **hely** attribútumot, és illessze be hello **SAP HANA felhő Platform válasz URL-CÍMEN** szövegmező.
 
-7. Az a **SAP HANA Cloud Platform, az egyszeri bejelentkezés konfigurálása** töltse le a metaadatokat, kattintson **metaadatok letöltése**, majd mentse a fájlt a számítógépen.
+7. A hello **SAP HANA Cloud Platform, az egyszeri bejelentkezés konfigurálása** lap, toodownload a metaadatok kattintson **metaadatok letöltése**, majd mentse hello fájlt a számítógépen.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC790799.png "egyszeri bejelentkezés konfigurálása")
-8. Az SAP HANA felhő Platform vezérlőpultot a a **helyi szolgáltató** területen tegye a következőket:
+8. Az SAP HANA felhő Platform Vezérlőpult hello a hello **helyi szolgáltató** csoportjában hajtsa végre az alábbi lépésekkel hello:
    
     ![Megbízható felügyeleti](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC793931.png "felügyeleti megbízhatóság")
    
   1. Kattintson a **Szerkesztés** gombra.
   2. Mint **konfigurációtípus**, jelölje be **egyéni**.
-  3. Mint **helyi szolgáltatónevet**, hagyja meg az alapértelmezett értéket.
-  4. Létrehozásához egy **aláírási kulcs** és egy **aláíró tanúsítvány** pár billentyűt, kattintson a **kulcspár létrehozása**.
+  3. Mint **helyi szolgáltatónevet**, hagyja hello alapértelmezett értéket.
+  4. toogenerate egy **aláírási kulcs** és egy **aláíró tanúsítvány** pár billentyűt, kattintson a **kulcspár létrehozása**.
   5. Mint **egyszerű propagálás**, jelölje be **letiltott**.
   6. Mint **kényszerített hitelesítési**, jelölje be **letiltott**.
   7. Kattintson a **Save** (Mentés) gombra.
 
-9. Kattintson a **megbízható identitásszolgáltató** fülre, majd **megbízható identitásszolgáltató hozzáadása**.
+9. Kattintson a hello **megbízható identitásszolgáltató** fülre, majd **megbízható identitásszolgáltató hozzáadása**.
    
     ![Megbízható felügyeleti](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC790802.png "felügyeleti megbízhatóság")
    
     >[!NOTE]
-    >A megbízható identitás-szolgáltatóktól kezelését, az egyéni konfigurációs típus választotta, a helyi szolgáltató szakasz kell. Az alapértelmezett típus hogy egy nem szerkeszthető és implicit megbízhatóságot az SAP-azonosító szolgáltatáshoz. Sem a megbízhatóság beállításokat nem rendelkezik.
+    >megbízható identitás-szolgáltatóktól toomanage hello listája, hello egyéni konfigurációs típus hello helyi szolgáltató szakasz a kiválasztott toohave kell. Az alapértelmezett típus hogy egy nem szerkeszthető és implicit megbízhatósági toohello SAP ID szolgáltatás. Sem a megbízhatóság beállításokat nem rendelkezik.
     > 
     > 
 
-10. Kattintson a **általános** fülre, majd **Tallózás** feltölteni a fájlt a letöltött metaadat.
+10. Kattintson a hello **általános** fülre, majd **Tallózás** tooupload hello letöltött metaadatait tartalmazó fájl.
     
     ![Megbízható felügyeleti](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC793932.png "felügyeleti megbízhatóság")
     
     >[!NOTE]
-    >A metaadatfájl, értékeit feltöltése után **egyszeri bejelentkezési URL-cím**, **egyetlen kijelentkezési URL-címet** és **aláíró tanúsítvány** automatikusan fel van töltve.
+    >Hello metaadatok fájl feltöltése után hello értékei **egyszeri bejelentkezési URL-cím**, **egyetlen kijelentkezési URL-címet** és **aláíró tanúsítvány** automatikusan fel van töltve.
     > 
     > 
 
-11. Kattintson az **Attribútumok** fülre.
-12. Az a **attribútumok** lapra, hajtsa végre a következő lépést:
+11. Kattintson a hello **attribútumok** fülre.
+12. A hello **attribútumok** lapra, hajtsa végre a következő lépés hello:
     
     ![Attribútumok](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC790804.png "attribútumok") 
-  * Kattintson a **Add Assertion-Based attribútum**, majd adja hozzá a következő állítás alapú attribútumok:
+  * Kattintson a **Add Assertion-Based attribútum**, majd adja hozzá a következő attribútumok helyességi feltétel alapú hello:
        
     | Helyességi feltétel attribútum | Egyszerű attribútum |
     | --- | --- |
@@ -153,54 +153,54 @@ Ha nem ismeri ezt az eljárást, tekintse meg a [bináris tanúsítvány szöveg
     | http://schemas.xmlsoap.org/ws/2005/05/Identity/Claims/emailaddress |E-mailek 
    
      >[!NOTE]
-     >A konfiguráció az attribútumok attól függ, hogyan HCP a alkalmazás(ok) fejlesztett, azaz mely attribútum(ok) a SAML-válasz várható, és milyen néven (egyszerű attribútum) hozzáféréskor ezt az attribútumot a kódot.
+     >hello konfiguráció hello attribútumok attól függ, hogyan hello alkalmazás(ok) a HCP fejlesztett, azaz mely attribútum(ok) hello SAML-válasz a várható, és milyen néven (egyszerű attribútum) hozzáféréskor hello kód ezt az attribútumot.
      > 
      >  
 
-    1.  A **alapértelmezett attribútum** ezen a képernyőfelvételen a folyamat csak illusztrációs célokat szolgálnak. Nem működik a forgatókönyv végrehajtásához szükséges.   
-    2.  A nevek és értékek **egyszerű attribútum** a képernyőfelvételen látható módon az alkalmazás fejlesztése hogyan függ. Akkor lehet, hogy az alkalmazás által igényelt különböző leképezéseket.
+    1.  Hello **alapértelmezett attribútum** hello a képernyőkép a folyamat csak illusztrációs célokat szolgálnak. Nem szükséges toomake hello forgatókönyv munka.   
+    2.  hello és tartozó értékek **egyszerű attribútum** hello látható képernyőfelvétel, attól függ, hogyan hello alkalmazás fejlesztése. Akkor lehet, hogy az alkalmazás által igényelt különböző leképezéseket.
      
-13. A klasszikus Azure portálon a a **SAP HANA Cloud Platform, az egyszeri bejelentkezés konfigurálása** párbeszéd lapra, válassza ki az egyszeri bejelentkezés konfigurációs megerősítő, és kattintson **Complete**.
+13. A klasszikus Azure portálon, a hello hello **SAP HANA Cloud Platform, az egyszeri bejelentkezés konfigurálása** párbeszéd lap, válassza ki a hello egyszeri bejelentkezés konfigurációs megerősítő, kattintson a **Complete**.
     
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC796933.png "egyszeri bejelentkezés konfigurálása")
 
 ###<a name="assertion-based-groups"></a>Csoportok helyességi feltétel alapján
 Egy nem kötelező lépés konfigurálható az Azure Active Directory identitásszolgáltató csoportok helyességi feltétel alapján.
 
-Csoportok használata a SAP HANA Cloud Platform lehetővé teszi egy vagy több felhasználó dinamikusan hozzárendelése egy vagy több szerepkör az SAP HANA Cloud Platform alkalmazásokban, határozza meg a SAML 2.0 helyességi feltétel attribútumok értékek. 
+Csoportok használata a SAP HANA Cloud Platform lehetővé teszi toodynamically hozzárendelése egy vagy több felhasználók tooone vagy a SAP HANA Cloud Platform alkalmazások, a további szerepkörök határozza meg értékek attribútumok hello SAML 2.0 helyességi feltétel. 
 
-Például, ha a helyességi feltételt tartalmaz az attribútum "*szerződés = ideiglenes*", érdemes lehet a csoporthoz lehet hozzáadni az összes érintett felhasználók"*ideiglenes*". A csoport "*ideiglenes*" tartalmazhat egy vagy több szerepkör az SAP HANA-Felhőplatform-fiókban telepített egy vagy több alkalmazásokból.
+Például akkor, ha hello helyességi feltételt tartalmaz hello attribútum "*szerződés = ideiglenes*", érdemes lehet az összes érintett felhasználók toobe hozzáadott toohello csoport"*ideiglenes*". hello csoport "*ideiglenes*" tartalmazhat egy vagy több szerepkör az SAP HANA-Felhőplatform-fiókban telepített egy vagy több alkalmazásokból.
  
-Csoportok helyességi feltétel alapú használható, ha egyszerre sok felhasználó hozzárendelése egy vagy több szerepkör az alkalmazások az SAP HANA-Felhőplatform-fiókban. Ha azt szeretné, csak egyetlen vagy kis számú felhasználók hozzárendelése adott szerepkörök, ajánlott közvetlenül a hozzárendelése a "**engedélyek**" az SAP HANA Cloud Platform vezérlőpultot lapján.
+Előfeltétel-alapú csoportok esetén célszerű használni toosimultaneously hozzárendelése számos felhasználók tooone vagy a további szerepkörök az alkalmazások az SAP HANA-Felhőplatform-fiókban. Ha azt szeretné, hogy csak egyetlen vagy kis számú felhasználók toospecific szerepkörök tooassign, ajánlott közvetlenül a hello hozzárendelése "**engedélyek**" hello SAP HANA Cloud Platform Vezérlőpult lapján.
 
-## <a name="assign-a-role-to-a-user"></a>A szerepkör hozzárendelése felhasználóhoz
-Ahhoz, hogy az Azure AD-felhasználók SAP HANA Cloud Platform bejelentkezni, meg kell hozzájuk rendelhet szerepköröket a SAP HANA felhő platform.
+## <a name="assign-a-role-tooa-user"></a>A szerepkör tooa felhasználók hozzárendelése
+A sorrend tooenable az Azure AD felhasználók toolog az SAP HANA Cloud Platform kell rendelnie a szerepkörök az hello SAP HANA Cloud Platform toothem.
 
-**A szerepkör hozzárendelése felhasználóhoz, hajtsa végre az alábbi lépéseket:**
+**tooassign szerepkör tooa felhasználója, hajtsa végre a lépéseket követve hello:**
 
-1. Jelentkezzen be a **SAP HANA Cloud Platform** vezérlőpultot.
-2. Hajtsa végre a következő:
+1. Jelentkezzen be tooyour **SAP HANA Cloud Platform** vezérlőpultot.
+2. Hello következőket hajthatja végre:
    
    ![Engedélyek](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC790805.png "engedélyek")
    
   1. Kattintson a **engedélyezési**.
-  2. Kattintson a **felhasználók** fülre.
-  3. Az a **felhasználói** szövegmező, írja be a felhasználó e-mail címét.
-  4. Kattintson a **hozzárendelése** a felhasználó hozzárendelése egy szerepkörhöz.
+  2. Kattintson a hello **felhasználók** fülre.
+  3. A hello **felhasználói** szövegmezőhöz típus hello felhasználó e-mail címét.
+  4. Kattintson a **hozzárendelése** tooassign hello tooa szerepkörben.
   5. Kattintson a **Save** (Mentés) gombra.
 
 ## <a name="assign-users"></a>Felhasználók hozzárendelése
-A konfiguráció teszteléséhez kell biztosítania az Azure AD-felhasználók számára engedélyezni, használja az alkalmazás elérésére hozzárendelésével.
+tootest a konfigurációs kell azt szeretné, hogy az alkalmazás hozzáférési tooit használatával hozzárendelésével tooallow toogrant hello Azure AD felhasználók.
 
-**Felhasználók hozzárendelése SAP HANA Cloud Platform, hajtsa végre az alábbi lépéseket:**
+**tooassign felhasználók tooSAP HANA Cloud Platform, hajtsa végre a következő lépéseket hello:**
 
-1. A klasszikus Azure portálon hozzon létre egy olyan fiókot.
-2. Az a **SAP HANA Cloud Platform** alkalmazás integráció lapján, kattintson a **felhasználók hozzárendelése**.
+1. Hello a klasszikus Azure portálon hozzon létre egy olyan fiókot.
+2. A hello **SAP HANA Cloud Platform** alkalmazás integráció lapján, kattintson a **felhasználók hozzárendelése**.
    
    ![Felhasználók hozzárendelése](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC790806.png "felhasználók hozzárendelése")
-3. Adja meg a tesztfelhasználó számára, kattintson **hozzárendelése**, és kattintson a **Igen** a hozzárendelés megerősítéséhez.
+3. Adja meg a tesztfelhasználó számára, kattintson **hozzárendelése**, és kattintson a **Igen** tooconfirm a hozzárendelés.
    
    ![Igen](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC767830.png "Igen")
 
-Az SSO-beállítások tesztelésére, nyissa meg a hozzáférési Panel. A hozzáférési Panel kapcsolatos további tudnivalókért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
+Ha tootest az egyszeri Bejelentkezést a beállításokat, nyissa meg a hozzáférési Panel hello. Hozzáférési Panel hello kapcsolatos további tudnivalókért lásd: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
 

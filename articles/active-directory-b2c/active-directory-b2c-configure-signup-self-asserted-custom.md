@@ -1,6 +1,6 @@
 ---
 title: "Az Azure Active Directory B2C: Módosítsa a bejelentkezési be az egyéni házirendek, és saját magas szolgáltató konfigurálása"
-description: "Egy általános bemutató hozzáadása regisztrálhat és konfigurálása a felhasználó által megadott jogcímek"
+description: "Egy általános bemutató hozzáadása toosign állítja be, és konfigurálja a hello felhasználói bevitel"
 services: active-directory-b2c
 documentationcenter: 
 author: rojasja
@@ -14,30 +14,30 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/29/2017
 ms.author: joroja
-ms.openlocfilehash: 64b9d904d7d070052e125b479f4719d208c9ff85
-ms.sourcegitcommit: b0af2a2cf44101a1b1ff41bd2ad795eaef29612a
+ms.openlocfilehash: c31d737263fef3e771bdf451b809b0ca522c8fe0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/28/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-active-directory-b2c-modify-sign-up-to-add-new-claims-and-configure-user-input"></a>Az Azure Active Directory B2C: A módosítás jelentkezzen be új jogcímeket adhatnak hozzá, és konfigurálja a felhasználói bevitel.
+# <a name="azure-active-directory-b2c-modify-sign-up-tooadd-new-claims-and-configure-user-input"></a>Az Azure Active Directory B2C: Tooadd új jogcímeket regisztrációs módosítása, és konfigurálja a felhasználói beavatkozást.
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-Ebben a cikkben egy új felhasználó által megadott bejegyzés (a jogcímek) fogja hozzáadni a bejelentkezési felhasználói használatában.  A bejegyzés konfigurálása, a legördülő menüből, és szükség esetén adja meg.
+Ebben a cikkben adhat egy új felhasználó által megadott bejegyzés (a jogcímek) tooyour előfizetési felhasználói út.  Hello bejegyzés konfigurálása, a legördülő menüből, és szükség esetén adja meg.
 
-Módosította a Sipi elindítani a teszt handoff számára.
+Módosította a Sipi tootrigger teszt handoff számára.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-* Hajtsa végre a cikk a [Ismerkedés az egyéni házirendek](active-directory-b2c-get-started-custom.md).  A regisztráció vagy bejelentkezés felhasználói utazás előfizetési egy új helyi fiók a folytatás előtt tesztelje.
+* Teljes hello hello cikkben ismertetett visszaállítási lépésekkel [Ismerkedés az egyéni házirendek](active-directory-b2c-get-started-custom.md).  Tesztelje a hello regisztráció vagy bejelentkezés felhasználói út toosignup a folytatás előtt egy új helyi fiókot.
 
 
-A felhasználók kezdeti adatgyűjtés az előfizetési/signin keresztül érhető el.  További jogcímek később gyűjthetők profil szerkesztése felhasználói utak keresztül. Az Azure AD B2C gyűjtse össze az adatokat közvetlenül a felhasználó interaktív módon, bármikor identitás élmény keretében használja a `selfasserted provider`. Az alábbi lépéseket alkalmazni, bármikor ezt a szolgáltatót használja.
+A felhasználók kezdeti adatgyűjtés az előfizetési/signin keresztül érhető el.  További jogcímek később gyűjthetők profil szerkesztése felhasználói utak keresztül. Az Azure AD B2C gyűjtse össze az adatokat közvetlenül hello felhasználói interaktív módon, bármikor hello identitás élmény keretrendszer használja annak `selfasserted provider`. hello az alábbi lépéseket bármikor ezt a szolgáltatót használja.
 
 
-## <a name="define-the-claim-its-display-name-and-the-user-input-type"></a>A jogcímek, a megjelenített név és a felhasználó bemeneti típus megadása
-Lehetővé teszi, hogy azok városhoz kérnie a felhasználót.  A következő elem hozzáadása a `<ClaimsSchema>` a TrustFrameWorkExtensions házirend fájlban:
+## <a name="define-hello-claim-its-display-name-and-hello-user-input-type"></a>Adja meg a hello jogcím, a megjelenítési nevet és egy hello felhasználói bevitel típusa
+Lehetővé teszi, hogy hello felhasználói kérjen a város.  Adja hozzá a következő elem toohello hello `<ClaimsSchema>` hello TrustFrameWorkExtensions házirend fájlban:
 
 ```xml
 <ClaimType Id="city">
@@ -47,13 +47,13 @@ Lehetővé teszi, hogy azok városhoz kérnie a felhasználót.  A következő e
   <UserInputType>TextBox</UserInputType>
 </ClaimType>
 ```
-Nincsenek további lehetőségek tehet itt testre szabhatja a jogcímek.  A teljes séma, tekintse meg a **identitás élmény keretrendszer a műszaki referencia-útmutató**.  Ez az útmutató az útmutató szakaszban a közeljövőben lesznek közzétéve.
+Nincsenek további lehetőségek itt jogcím toocustomize hello biztosíthatja.  A teljes séma, tekintse meg a toohello **identitás élmény keretrendszer a műszaki referencia-útmutató**.  Ez az útmutató hello útmutató szakaszban a közeljövőben lesznek közzétéve.
 
-* `<DisplayName>`egy karakterlánc, amely meghatározza a felhasználók számára is elérhető *címke*
+* `<DisplayName>`egy karakterlánc, amely meghatározza a hello felhasználók számára is elérhető *címke*
 
-* `<UserHelpText>`a rendszer kötelező felhasználó segítségével
+* `<UserHelpText>`segít megérteni a szükséges hello felhasználói
 
-* `<UserInputType>`a következő négy beállítás alatt van kiemelve:
+* `<UserInputType>`hello következő négy beállítás kiemelt alatt:
     * `TextBox`
 ```xml
 <ClaimType Id="city">
@@ -78,7 +78,7 @@ Nincsenek további lehetőségek tehet itt testre szabhatja a jogcímek.  A telj
 </ClaimType>
 ```
 
-    * `DropdownSingleSelect`-Lehetővé teszi, hogy a kijelölés csak érvényes érték.
+    * `DropdownSingleSelect`-Érvényes értéke csak hello kiválasztását teszi lehetővé.
 
 ![Képernyőfelvétel a legördülő lista lehetőséget](./media/active-directory-b2c-configure-signup-self-asserted-custom/dropdown-menu-example.png)
 
@@ -97,7 +97,7 @@ Nincsenek további lehetőségek tehet itt testre szabhatja a jogcímek.  A telj
 ```
 
 
-* `CheckboxMultiSelect`Lehetővé teszi a kijelölt egy vagy több értéket.
+* `CheckboxMultiSelect`Lehetővé teszi egy vagy több érték hello kiválasztását.
 
 ![Képernyőkép a multiselect beállítás](./media/active-directory-b2c-configure-signup-self-asserted-custom/multiselect-menu-example.png)
 
@@ -115,9 +115,9 @@ Nincsenek további lehetőségek tehet itt testre szabhatja a jogcímek.  A telj
 </ClaimType>
 ```
 
-## <a name="add-the-claim-to-the-sign-upsign-in-user-journey"></a>Vegye fel a kérelmet a bejelentkezési felhasználói út felfelé vagy bejelentkezés
+## <a name="add-hello-claim-toohello-sign-upsign-in-user-journey"></a>Adja hozzá a hello jogcím toohello bejelentkezési felhasználói út fel vagy bejelentkezés
 
-1. Adja hozzá a jogcímek, az `<OutputClaim ClaimTypeReferenceId="city"/>` a TechnicalProfile való `LocalAccountSignUpWithLogonEmail` (a TrustFrameworkBase házirend fájlban található).  Vegye figyelembe a TechnicalProfile használja a SelfAssertedAttributeProvider.
+1. Mint hello jogcím hozzáadása egy `<OutputClaim ClaimTypeReferenceId="city"/>` toohello TechnicalProfile `LocalAccountSignUpWithLogonEmail` (hello TrustFrameworkBase házirend fájl található).  Vegye figyelembe a TechnicalProfile hello SelfAssertedAttributeProvider használja.
 
   ```xml
   <TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">
@@ -142,7 +142,7 @@ Nincsenek további lehetőségek tehet itt testre szabhatja a jogcímek.  A telj
       <OutputClaim ClaimTypeReferenceId="executed-SelfAsserted-Input" DefaultValue="true" />
       <OutputClaim ClaimTypeReferenceId="authenticationSource" />
       <OutputClaim ClaimTypeReferenceId="newUser" />
-      <!-- Optional claims, to be collected from the user -->
+      <!-- Optional claims, toobe collected from hello user -->
       <OutputClaim ClaimTypeReferenceId="givenName" />
       <OutputClaim ClaimTypeReferenceId="surName" />
       <OutputClaim ClaimTypeReferenceId="city"/>
@@ -154,7 +154,7 @@ Nincsenek további lehetőségek tehet itt testre szabhatja a jogcímek.  A telj
   </TechnicalProfile>
   ```
 
-2. Az AAD-UserWriteUsingLogonEmail, a jogcím hozzáadása egy `<PersistedClaim ClaimTypeReferenceId="city" />` az AAD-címtárában, a felhasználó összegyűjtése után a jogcím írni. Ezt a lépést kihagyhatja, ha nem szeretné megőrizni a későbbi használatra a könyvtárban a jogcímet.
+2. Hello jogcím toohello AAD-UserWriteUsingLogonEmail, vegye fel a `<PersistedClaim ClaimTypeReferenceId="city" />` toowrite hello jogcím toohello AAD-címtárában hello felhasználói azt összegyűjtése után. Előfordulhat, hogy kihagyja ezt a lépést, ha szeretné, hogy nem toopersist hello jogcím hello directory későbbi használatra.
 
   ```xml
   <!-- Technical profiles for local accounts -->
@@ -190,14 +190,14 @@ Nincsenek további lehetőségek tehet itt testre szabhatja a jogcímek.  A telj
   </TechnicalProfile>
   ```
 
-3. Az olvasó a könyvtárból, amikor a felhasználó jelentkezik be a TechnicalProfile jogcím hozzáadása egy`<OutputClaim ClaimTypeReferenceId="city" />`
+3. Adja hozzá a hello jogcím toohello TechnicalProfile hello könyvtárból olvassa be, amikor a felhasználó jelentkezik be amely egy`<OutputClaim ClaimTypeReferenceId="city" />`
 
   ```xml
   <TechnicalProfile Id="AAD-UserReadUsingEmailAddress">
     <Metadata>
       <Item Key="Operation">Read</Item>
       <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
-      <Item Key="UserMessageIfClaimsPrincipalDoesNotExist">An account could not be found for the provided user ID.</Item>
+      <Item Key="UserMessageIfClaimsPrincipalDoesNotExist">An account could not be found for hello provided user ID.</Item>
     </Metadata>
     <IncludeInSso>false</IncludeInSso>
     <InputClaims>
@@ -218,7 +218,7 @@ Nincsenek további lehetőségek tehet itt testre szabhatja a jogcímek.  A telj
   </TechnicalProfile>
   ```
 
-4. Adja hozzá a `<OutputClaim ClaimTypeReferenceId="city" />` SignUporSignIn.xml RP szabályzat fájl, ezért ezt a kérelmet küld az alkalmazás a jogkivonat a felhasználó sikeres út után.
+4. Adja hozzá a hello `<OutputClaim ClaimTypeReferenceId="city" />` toohello RP házirendfájl SignUporSignIn.xml, ezt a kérelmet küldött toohello alkalmazás hello jogkivonat a felhasználó sikeres út után.
 
   ```xml
   <RelyingParty>
@@ -240,17 +240,17 @@ Nincsenek további lehetőségek tehet itt testre szabhatja a jogcímek.  A telj
   </RelyingParty>
   ```
 
-## <a name="test-the-custom-policy-using-run-now"></a>Az egyéni házirend használatával "Futtatás most" tesztelése
+## <a name="test-hello-custom-policy-using-run-now"></a>Teszt hello egyéni házirend használatával "Futtatás most"
 
-1. Nyissa meg a **panel az Azure AD B2C** , és keresse meg **identitás élmény keretrendszer > egyéni házirendek**.
-2. Válassza ki az egyéni házirendet, feltöltött, majd kattintson a **futtatása most** gombra.
-3. Iratkozhat fel e-mail cím használatával kell lennie.
+1. Nyissa meg hello **panel az Azure AD B2C** , és keresse meg a túl**identitás élmény keretrendszer > egyéni házirendek**.
+2. Válassza ki a feltöltött hello egyéni házirendet, majd kattintson a hello **futtatása most** gombra.
+3. Meg kell tudni toosign be egy e-mail címet.
 
-A regisztráció képernyő tesztmódban ehhez hasonlóan kell kinéznie:
+hello előfizetési képernyő tesztmódban toothis hasonlóan kell kinéznie:
 
 ![Képernyőkép a módosított előfizetési lehetőség](./media/active-directory-b2c-configure-signup-self-asserted-custom/signup-with-city-claim-dropdown-example.png)
 
-  A jogkivonat az alkalmazás most már tartalmazza a `city` jogcím a lent látható módon
+  hello token hátsó tooyour alkalmazás most már tartalmazza hello `city` jogcím a lent látható módon
 ```json
 {
   "exp": 1493596822,
@@ -273,16 +273,16 @@ A regisztráció képernyő tesztmódban ehhez hasonlóan kell kinéznie:
 
 ## <a name="optional-remove-email-verification-from-signup-journey"></a>Választható lehetőség: Távolítsa el e-mail ellenőrzése az előfizetési út
 
-E-mail-ellenőrzés kihagyása a házirend Szerző beállíthatja úgy a eltávolítása `PartnerClaimType="Verified.Email"`. Az e-mail cím lesz szükség, de nincs ellenőrizve, kivéve, ha a "Kötelező" = true törlődik.  Alaposan fontolja meg, hogy ez a beállítás a használati esetek számára megfelelő!
+tooskip e-mail ellenőrzése, hello házirend Szerző választhat tooremove `PartnerClaimType="Verified.Email"`. hello e-mail cím lesz szükség, de nincs ellenőrizve, kivéve, ha a "Kötelező" = true törlődik.  Alaposan fontolja meg, hogy ez a beállítás a használati esetek számára megfelelő!
 
-Alapértelmezés szerint engedélyezve van a e-mailek ellenőrzése a `<TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">` az alapszintű csomag TrustFrameworkBase házirend fájlban:
+A hello alapértelmezés szerint engedélyezve van a e-mailek ellenőrzése `<TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">` hello TrustFrameworkBase házirend hello alapszintű csomag fájlban:
 ```xml
 <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email" Required="true" />
 ```
 
 ## <a name="next-steps"></a>Következő lépések
 
-Adja hozzá a közösségi fiók bejelentkezések során a viszonylatában új jogcímet a lenti TechnicalProfiles módosításával. Ezek használhatók társadalombiztosítási/összevont fiók bejelentkezések által írható és olvasható a felhasználói adatokat a alternativeSecurityId használja, mint a lokátor.
+Adja hozzá a hello új jogcímet toohello adatfolyamok a közösségi fiók bejelentkezések során TechnicalProfiles lenti hello módosításával. Ezek társadalombiztosítási/összevont fiók bejelentkezések toowrite használják, és hello alternativeSecurityId használatával, mint a lokátor hello hello felhasználói adatokat olvasni.
 ```xml
 <TechnicalProfile Id="AAD-UserWriteUsingAlternativeSecurityId">
 <TechnicalProfile Id="AAD-UserReadUsingAlternativeSecurityId">

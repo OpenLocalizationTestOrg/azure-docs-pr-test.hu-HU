@@ -1,6 +1,6 @@
 ---
-title: "Engedélyezze a Microsoft vállalati Windows Hello a szervezet |} Microsoft Docs"
-description: "A Microsoft Passport engedélyezése a szervezetében üzembe helyezési utasításokat tartalmaz."
+title: "aaaEnable Microsoft vállalati Windows Hello a szervezet |} Microsoft Docs"
+description: "Központi telepítési utasításokat tooenable Microsoft Passport a szervezetében."
 services: active-directory
 documentationcenter: 
 keywords: "a Microsoft Passport, Microsoft Windows Hello-üzleti központi telepítés konfigurálása"
@@ -15,72 +15,72 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
-ms.openlocfilehash: 58943e1e29755c983e55c675dd4fe7b75ac47b34
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6041f5916f606752bc55844b1b2d0a423b913cd3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-microsoft-windows-hello-for-business-in-your-organization"></a>Engedélyezze a Microsoft vállalati Windows Hello a szervezetben
-Után [Windows 10-tartományhoz csatlakoztatott eszközök csatlakoztatása az Azure Active Directoryval](active-directory-azureadjoin-devices-group-policy.md), engedélyezze a Microsoft vállalati Windows Hello a szervezet érdekében tegye a következőket:
+Miután [Windows 10-tartományhoz csatlakoztatott eszközök csatlakoztatása az Azure Active Directoryval](active-directory-azureadjoin-devices-group-policy.md), Microsoft Windows Hello for Business tooenable a szervezet következő hello:
 
 1. A System Center Configuration Manager központi telepítése  
 2. Házirend-beállítások konfigurálása
-3. A tanúsítványprofilok konfigurálása  
+3. Hello tanúsítványprofil konfigurálása  
 
 ## <a name="deploy-system-center-configuration-manager"></a>A System Center Configuration Manager központi telepítése
-A Windows Hello üzleti kulcsok alapján felhasználói tanúsítványok telepítése, a következőkre lesz szüksége:
+a Windows Hello üzleti kulcsok alapján toodeploy felhasználói tanúsítvány következőkre lesz szüksége hello:
 
-* **A System Center Configuration Manager aktuális ágának** -1606 vagy jobb verzióját telepíteni kell. További információkért lásd: a [dokumentáció a System Center Configuration Manager](https://technet.microsoft.com/library/mt346023.aspx) és [System Center Configuration Manager Team Blog](http://blogs.technet.com/b/configmgrteam/archive/2015/09/23/now-available-update-for-system-center-config-manager-tp3.aspx).
-* **Nyilvános kulcsokra épülő infrastruktúra (PKI)** - engedélyezése a Microsoft vállalati Windows Hello segítségével a felhasználói tanúsítványok, rendelkeznie kell egy nyilvános kulcsokra épülő infrastruktúra helyen. Ha még nincs fiókja, vagy nem kívánja használni a felhasználói tanúsítványok, telepíthet egy új tartományvezérlő, amely a Windows Server 2016-os build 10551 (vagy nagyobb frekvenciával) telepítve van. Kövesse a lépéseket a [replika tartományvezérlő telepítése meglévő tartományban](https://technet.microsoft.com/library/jj574134.aspx) vagy [egy új Active Directory-erdő telepítéséhez, ha hoz létre egy új környezetben](https://technet.microsoft.com/library/jj574166). (Az ISO letölthetők a [Signiant Media Exchange](https://datatransfer.microsoft.com/signiant_media_exchange/spring/main?sdkAccessible=true).)
+* **A System Center Configuration Manager aktuális ágának** -1606 vagy jobb tooinstall verziója szükséges. További információkért lásd: hello [dokumentáció a System Center Configuration Manager](https://technet.microsoft.com/library/mt346023.aspx) és [System Center Configuration Manager Team Blog](http://blogs.technet.com/b/configmgrteam/archive/2015/09/23/now-available-update-for-system-center-config-manager-tp3.aspx).
+* **Nyilvános kulcsokra épülő infrastruktúra (PKI)** -tooenable Microsoft Windows Hello üzleti felhasználói tanúsítványok használatával, rendelkeznie kell egy nyilvános kulcsokra épülő infrastruktúra helyen. Ha még nincs fiókja, vagy nem szeretné, hogy toouse azt a felhasználói tanúsítványok telepítése egy új tartományvezérlő, amely a Windows Server 2016-os build 10551 (vagy nagyobb frekvenciával) telepítve van. Hello lépésekkel túl[replika tartományvezérlő telepítése meglévő tartományban](https://technet.microsoft.com/library/jj574134.aspx) vagy túl[egy új Active Directory-erdő telepítéséhez, ha hoz létre egy új környezetben](https://technet.microsoft.com/library/jj574166). (hello ISO letölthetők a [Signiant Media Exchange](https://datatransfer.microsoft.com/signiant_media_exchange/spring/main?sdkAccessible=true).)
 
 ## <a name="configure-policy-settings"></a>Házirend-beállítások konfigurálása
-Az a Microsoft Windows Hello-üzleti házirend-beállítások megadásához két lehetőség közül választhat:
+Microsoft Windows Hello tooconfigure hello házirend-beállítások, két lehetőség közül választhat:
 
 * Az Active Directory csoportházirend 
-* A System Center Configuration Managerben 
+* hello System Center Configuration Managerben 
 
-Az Active Directoryban a csoportházirendekkel a konfigurálásának javasolt módja a Microsoft Windows Hello az üzleti házirend-beállításokat. 
+Az Active Directoryban a csoportházirendekkel üzleti házirend-beállítások a Microsoft Windows Hello metódus tooconfigure ajánlott hello. 
 
-A System Center Configuration Manager az előnyben részesített módszere is használata esetén azt szolgáltatást tanúsítványok központi telepítésére. Ebben a forgatókönyvben:
+A System Center Configuration Manager hello előnyben részesített módszert is használata esetén azt toodeploy tanúsítványokat. Ebben a forgatókönyvben:
 
-* Biztosítja a kompatibilitást a újabb történő telepítések esetén
-* Az ügyféloldali Windows 10-es verzió 1607 vagy nagyobb frekvenciával igényel.
+* Biztosítja a kompatibilitást hello újabb történő telepítések esetén
+* Hello ügyféloldali Windows 10-es verzió 1607 vagy nagyobb frekvenciával igényel.
 
 ### <a name="configure-microsoft-windows-hello-for-business-via-group-policy-in-active-directory"></a>Konfigurálja a Microsoft vállalati Windows Hello az Active Directory csoportházirend segítségével
 **Lépéseket**:
 
-1. Nyissa meg a Kiszolgálókezelőt, és navigáljon a **eszközök** > **csoportházirend-kezelő**.
-2. A Csoportházirend kezelése eszközt navigáljon a kívánja engedélyezése az Azure AD-csatlakozás tartományhoz tartozó tartományi csomópontot.
+1. Nyissa meg a Kiszolgálókezelőt, és keresse meg a túl**eszközök** > **csoportházirend-kezelő**.
+2. A Csoportházirend kezelése keresse meg a használni kívánt Azure AD Join tooenable toohello tartományhoz tartozó tartományi csomópontot toohello.
 3. Kattintson a jobb gombbal **csoportházirend-objektumok**, és válassza ki **új**. Nevezze el a csoportházirend-objektum, például engedélyezése vállalati Windows Hello. Kattintson az **OK** gombra.
 4. Kattintson a jobb gombbal az új csoportházirend-objektumot, majd válassza ki **szerkesztése**.
-5. Navigáljon a **számítógép konfigurációja** > **házirendek** > **felügyeleti sablonok** > **Windows Összetevők** > **a vállalati Windows Hello**.
+5. Keresse meg a túl**számítógép konfigurációja** > **házirendek** > **felügyeleti sablonok** > **Windows Összetevők** > **a vállalati Windows Hello**.
 6. Kattintson a jobb gombbal **engedélyezése vállalati Windows Hello**, majd válassza ki **szerkesztése**.
-7. Válassza ki a **engedélyezve** választógomb, és kattintson a **alkalmaz**. Kattintson az **OK** gombra.
-8. A csoportházirend-objektum most hozzákapcsolhatja egy tetszés szerinti helyre. Ahhoz, hogy ez a házirend az összes a tartományhoz csatlakoztatott Windows 10-eszközök a szervezetben, kapcsolja a csoportházirendet a tartományhoz. Példa:
+7. Jelölje be hello **engedélyezve** választógomb, és kattintson a **alkalmaz**. Kattintson az **OK** gombra.
+8. Most hozzákapcsolhatja hello csoportházirend-objektum tooa tetszőleges helyre. tooenable ezt a házirendet az összes hello tartományhoz csatlakoztatott Windows 10-eszközök a szervezetben, hivatkozás hello csoportházirend toohello tartomány. Példa:
    * Egy adott szervezeti egység (OU) az Active Directoryban, ha Windows 10-es tartományhoz csatlakoztatott számítógépek lesznek elhelyezve
    * Egy adott biztonsági csoport, amely tartalmazza a Windows 10-tartományhoz csatlakoztatott számítógépeket, amelyek automatikusan regisztrálva lesz az Azure ad szolgáltatással
 
 ### <a name="configure-windows-hello-for-business-using-system-center-configuration-manager"></a>A System Center Configuration Manager vállalati Windows Hello konfigurálása
 **Lépéseket**:
 
-1. Nyissa meg a **System Center Configuration Manager**, és navigáljon arra **eszközök és megfelelőség > megfelelőségi beállítások > Vállalati erőforrások elérése > üzleti profilok a Windows Hello-**.
+1. Megnyitás hello **System Center Configuration Manager**, és keresse meg a túl**eszközök és megfelelőség > megfelelőségi beállítások > Vállalati erőforrások elérése > üzleti profilok a Windows Hello**.
    
     ![A vállalati Windows Hello konfigurálása](./media/active-directory-azureadjoin-passport-deployment/01.png)
-2. A felső eszköztáron kattintson **létrehozása a Windows Hello-profil üzleti**.
+2. Hello hello felső eszköztárán kattintson **vállalati profil létrehozása a Windows Hello**.
    
     ![A vállalati Windows Hello konfigurálása](./media/active-directory-azureadjoin-passport-deployment/02.png)
-3. Az a **általános** párbeszédpanelen hajtsa végre a következő lépéseket:
+3. A hello **általános** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
    
     ![A vállalati Windows Hello konfigurálása](./media/active-directory-azureadjoin-passport-deployment/03.png)
    
-    a. Az a **neve** szövegmező, írja be például a profil nevét **WHfB profil**.
+    a. A hello **neve** szövegmező, írja be például a profil nevét **WHfB profil**.
    
     b. Kattintson a **Tovább** gombra.
-4. Az a **által támogatott platformok** párbeszédpanelen jelölje ki a platformokat, amelyek megkapják a Windows Hello-profil üzleti, és kattintson a **következő**.
+4. A hello **által támogatott platformok** párbeszédpanelen jelölje be hello platformokat, amelyek megkapják a Windows Hello üzleti profil, és kattintson a **következő**.
    
     ![A vállalati Windows Hello konfigurálása](./media/active-directory-azureadjoin-passport-deployment/04.png)
-5. Az a **beállítások** párbeszédpanelen hajtsa végre a következő lépéseket:
+5. A hello **beállítások** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
    
     ![A vállalati Windows Hello konfigurálása](./media/active-directory-azureadjoin-passport-deployment/05.png)
    
@@ -91,25 +91,25 @@ A System Center Configuration Manager az előnyben részesített módszere is ha
     c. Mint **hitelesítési módszer**, jelölje be **tanúsítványalapú**.
    
     d. Kattintson a **Tovább** gombra.
-6. Az a **összegzés** párbeszédpanel, kattintson a **következő**.
-7. Az a **befejezési** párbeszédpanel, kattintson a **Bezárás**.
-8. A felső eszköztáron kattintson **telepítés**.
+6. A hello **összegzés** párbeszédpanel, kattintson a **következő**.
+7. A hello **befejezési** párbeszédpanel, kattintson a **Bezárás**.
+8. Hello hello felső eszköztárán kattintson **telepítés**.
    
     ![A vállalati Windows Hello konfigurálása](./media/active-directory-azureadjoin-passport-deployment/06.png)
 
-## <a name="configure-the-certificate-profile"></a>A tanúsítványprofilok konfigurálása
-Ha a helyszíni hitelesítéshez tanúsítvány alapú hitelesítést használ, meg kell konfigurálnia és tanúsítványprofil központi telepítése. Ez a feladat meg kell adnia egy NDES-kiszolgáló és a Tanúsítványregisztrációs pont helyrendszer-szerepkör a System Center Configuration Manager számára. További részletekért lásd: a [előfeltételei a Configuration Manager Tanúsítványprofiljaihoz](https://technet.microsoft.com/library/dn261205.aspx).
+## <a name="configure-hello-certificate-profile"></a>Hello tanúsítványprofil konfigurálása
+Ha a tanúsítvány alapú hitelesítést használ a helyszíni hitelesítéshez, tooconfigure kell, és tanúsítványprofil központi telepítése. Ez a feladat egy NDES-kiszolgáló és a Tanúsítványregisztrációs pont helyrendszer-szerepkör a System Center Configuration Manager hello tooset igényel. További részletekért lásd: hello [előfeltételei a Configuration Manager Tanúsítványprofiljaihoz](https://technet.microsoft.com/library/dn261205.aspx).
 
-1. Nyissa meg a **System Center Configuration Manager**, és navigáljon arra **eszközök és megfelelőség > megfelelőségi beállítások > Vállalati erőforrások elérése > Tanúsítványprofilok**.
+1. Megnyitás hello **System Center Configuration Manager**, majd keresse meg a túl**eszközök és megfelelőség > megfelelőségi beállítások > Vállalati erőforrások elérése > Tanúsítványprofilok**.
 2. Válasszon olyan sablont, amely rendelkezik az intelligens kártyás bejelentkezési kibővített kulcshasználat (EKU).
 
-Az a **SCEP-igénylés** lap a tanúsítványprofilok, meg kell adnia **telepítse a Passport for Work szolgáltatásba, másként meghibásodás történik** , a **kulcstároló-szolgáltató**.
+A hello **SCEP-igénylés** lap hello tanúsítványprofilt, akkor kell toochoose **tooPassport for Work szolgáltatásba, másként meghibásodás történik telepítése** hello, **kulcstároló-szolgáltató**.
 
 ## <a name="next-steps"></a>Következő lépések
-* [Vállalati használatú Windows 10: Az eszközök munkahelyi célú használata](active-directory-azureadjoin-windows10-devices-overview.md)
-* [A felhőalapú képességek kiterjesztése a Windows 10-eszközökre az Azure Active Directory Joinon keresztül](active-directory-azureadjoin-user-upgrade.md)
+* [Windows 10 Enterprise hello: módon toouse eszközök munkára](active-directory-azureadjoin-windows10-devices-overview.md)
+* [Felhőalapú képességek tooWindows 10 eszközöknek az Azure Active Directory csatlakozási kiterjesztése](active-directory-azureadjoin-user-upgrade.md)
 * [Microsoft Passporton keresztül jelszó nélkül identitások hitelesítése](active-directory-azureadjoin-passport.md)
 * [További információk az Azure AD Join használati forgatókönyveiről](active-directory-azureadjoin-deployment-aadjoindirect.md)
-* [Tartományhoz csatlakoztatott eszközök csatlakoztatása az Azure AD-hez Windows 10-es környezetben](active-directory-azureadjoin-devices-group-policy.md)
+* [Csatlakozás a tartományhoz csatlakozó eszközök tooAzure AD-hez Windows 10-es környezetben](active-directory-azureadjoin-devices-group-policy.md)
 * [Az Azure AD Join beállítása](active-directory-azureadjoin-setup.md)
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure Active Directory jelentéskészítés – gyakori kérdések |} Microsoft Docs"
+title: "aaaAzure Active Directory Reporting – gyakori kérdések |} Microsoft Docs"
 description: "Az Azure Active Directory reporting gyakran ismételt kérdések."
 services: active-directory
 documentationcenter: 
@@ -14,98 +14,98 @@ ms.topic: article
 ms.date: 08/22/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: accf292f70bf0eafdefc00c3feeaf8e346605401
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: be65a05574ea3b5b190cd02a96b211c571ba70bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-reporting-faq"></a>Azure Active Directory jelentéskészítés – gyakori kérdések
 
-Ez a cikk kapcsolatos gyakori kérdések (GYIK) Azure Active Directory reporting rájuk adott válaszokat tartalmazza.  
+A cikk a Microsoft Azure Active Directory reporting kapcsolatban felmerülő kérdések (GYIK) válaszok toofrequently tartalmaz.  
 További részletekért lásd: [Azure Active Directory reporting](active-directory-reporting-azure-portal.md). 
 
-**K: Mi az az adatok megőrzése (naplózási és bejelentkezések) tevékenységi naplóit Azure-portálon?** 
+**K: Mi hello adatok megőrzése (naplózási és bejelentkezések) tevékenységi naplóit hello Azure-portálon?** 
 
-**V:** nyújtunk adatok 7 nap szabad ügyfelei és az Azure AD Premium 1 vagy Premium 2 licenc váltásával, akár 30 napig lehet elérni az adatokat. A megőrzési további részletekért lásd: [Azure Active Directory-jelentés adatmegőrzési szabályai](active-directory-reporting-retention.md)
+**V:** nyújtunk adatok 7 nap szabad ügyfeleink és tooan Azure AD Premium 1 vagy Premium 2 licenc váltásával, too30 nap fel az adatok eléréséhez. A megőrzési további részletekért lásd: [Azure Active Directory-jelentés adatmegőrzési szabályai](active-directory-reporting-retention.md)
 
 --- 
 
-**K: mennyi ideig tart amíg I a feladat befejezése után is látható a tevékenységek adatai?**
+**K: mennyi ideig tart amíg I a feladat befejezése után is látható hello tevékenységek adatai?**
 
-**V:** tevékenység naplókat a 15 perc és egy óra közötti késéssel rendelkeznek. Bejelentkezési tevékenység naplók rendelkezik a legtöbb rekordok 15 perc közötti késleltetés és néhány rekord két óra.
-
----
-
-**K: kell lennie a globális rendszergazdának kell tekintse meg a tevékenység naplózza az Azure portálon vagy az adatok lekérése az API-n keresztül?**
-
-**V.:** Nem. Akkor lehet egy **biztonsági olvasó**, egy **biztonsági rendszergazda** vagy egy **globális rendszergazda** megtekintéséhez a jelentéskészítéshez szükséges adatok az Azure portálon vagy az API-n keresztül elérésével.
+**V:** tevékenység naplókat a 15 perc tooan óra közötti késéssel rendelkeznek. Bejelentkezési tevékenység naplók a legtöbb rekordok, és néhány rekordok too2 órában 15 perc közötti késéssel rendelkeznek.
 
 ---
 
-**K: kaphatok Office 365 műveletnapló adatai az Azure portálon keresztül?**
+**K: kell toobe hello Azure portál vagy tooget adatok hello API használatával bejelentkezik egy globális rendszergazdai toosee hello tevékenységet?**
 
-**V:** annak ellenére, hogy Office 365 tevékenységet, és az Azure AD tevékenység naplók megosztás a könyvtár-erőforrások számos, ha azt szeretné, hogy az Office 365 tevékenységi naplóit, teljes egészében meg kell lépjen az Office 365 felügyeleti központban Office 365 tevékenység naplózási adatok beszerzése.
+**V.:** Nem. Akkor lehet egy **biztonsági olvasó**, egy **biztonsági rendszergazda** vagy egy **globális rendszergazda** toosee jelentéskészítéshez szükséges adatok az Azure portálon vagy keresztül hello API elérésével.
+
+---
+
+**K: kaphatok Office 365 műveletnapló adatai hello Azure-portálon keresztül?**
+
+**V:** annak ellenére, hogy Office 365 tevékenységet és az Azure AD tevékenység naplók megosztási hello címtárerőforrásokkal, ha azt szeretné, amely teljes rálátást számos hello Office 365 tevékenységi naplóit, toohello Office 365 felügyeleti központban tooget Office 365 műveletnapló adatai kell lépjen.
 
 ---
 
 
-**K: milyen API-k használata Office 365 tevékenységi naplóit kapcsolatos adatok**
+**K: amelyek API-k használata Office 365 tevékenységi naplóit tooget információ?**
 
-**V:** eléréséhez használja az Office 365 felügyeleti API-kat a [Office 365 tevékenység naplózza az API-n keresztül](https://msdn.microsoft.com/office-365/office-365-managment-apis-overview).
+**V:** használata hello Office 365 felügyeleti API-k tooaccess hello [Office 365 tevékenység naplózza az API-n keresztül](https://msdn.microsoft.com/office-365/office-365-managment-apis-overview).
 
 ---
 
 **K: hogyan sok rekord letölthető Azure-portálon?**
 
-**V:** legfeljebb 120 K rekordok tölthet le az Azure-portálon. A rekordok alapján vannak rendezve *legutóbbi* és alapértelmezés szerint le a legfrissebb 120 K rögzíti. 
+**V:** töltheti fel too120K bejegyzéseit hello Azure-portálon. hello rekordok alapján vannak rendezve *legutóbbi* és alapértelmezés szerint le hello legutóbbi 120-K rögzíti. 
 
 ---
 
-**K: hogyan sok rekord tudja lekérdezni a tevékenységek API keresztül?**
+**K: hogyan sok rekord tudja lekérdezni hello tevékenységek API keresztül?**
 
-**V:** legfeljebb 1 millió rekordot lekérheti (Ha nem adja meg a top operátor, többsége a rekord rendező legutóbbi). Ha a "top" operátort használja, lekérheti mentése 500 KB-os rekordok. Mintalekérdezések a API használatáról itt található [Itt](active-directory-reporting-api-getting-started.md).
+**V:** too1 millió rekordok kérdezhetők le (Ha nem adja meg hello top operátor, többsége hello rekord rendező legutóbbi). Ha hello "top" operátort használja, lekérheti too500K rekordok. Mintalekérdezések a módját a toouse hello API itt található [Itt](active-directory-reporting-api-getting-started.md).
 
 ---
 
 **K: Hogyan tudom működtetni premium licenc?**
 
-**V:** lásd [Ismerkedés az Azure Active Directory Premium](active-directory-get-started-premium.md) a választ a kérdésére.
+**V:** lásd [Ismerkedés az Azure Active Directory Premium](active-directory-get-started-premium.md) egy válasz toothis kérdés.
 
 ---
 
 **K: hogyan hamarosan kell meg a tevékenységek adatok premium licenc beolvasása után?**
 
-**V:** Ha szabad licenc tevékenységek az adatok már rendelkezik, akkor ugyanazokat az adatokat láthatja. Ha még nem rendelkezik az adatokat, majd tart egy vagy két napot.
+**V:** Ha szabad licenc tevékenységek az adatok már rendelkezik, akkor láthatja hello ugyanazokat az adatokat. Ha még nem rendelkezik az adatokat, majd tart egy vagy két napot.
 
 ---
 
 **K: jelennek meg adatok előző hónap után egy Azure AD premium-licenc beolvasásakor?**
 
-**V:** nemrég váltott egy prémium verzió (beleértve a rendszer próbaverzióját), ha látható adatok mentése 7 napra kezdetben. Összesít adatokat, ha akár 30 napig jelenik meg.
+**V:** nemrég váltottunk tooa prémium verzió (beleértve a rendszer próbaverzióját), ha látható adatok mentése too7 nap kezdetben. Összesít adatokat, amikor látni fogja a másolatot too30 nap.
 
 ---
 
-**K: van a kockázati események azonosító adatok védelmét, de nem látható az megfelelő bejelentkezhet az összes bejelentkezéseket. Ez várható?**
+**K: van a kockázati események azonosító adatok védelmét, de nem látható az megfelelő bejelentkezés hello az összes bejelentkezéseket. Ez várható?**
 
-**V:** Igen, Identity Protection kiértékeli minden hitelesítési forgalom kockázatát e ha interaktív vagy nem interaktív. Azonban minden bejelentkezések csak jelentésben csak a interaktív bejelentkezések.
-
----
-
-**K: hogyan töltheti Azure-portálon a "Kockázat megjelölt felhasználók" jelentést?**
-
-**V:** letöltése beállítás *felhasználók meg van jelölve, a kockázat* jelentés hamarosan megjelenik.
+**V:** Igen, Identity Protection kiértékeli minden hitelesítési forgalom kockázatát e ha interaktív vagy nem interaktív. Azonban minden bejelentkezések csak jelentésben csak hello interaktív bejelentkezést.
 
 ---
 
-**K: Hogyan állapítható meg, hogy miért a bejelentkezés vagy a felhasználó lett megjelölve kockázatos Azure-portálon?**
+**K: hogyan töltheti hello Azure-portálon "Kockázat megjelölt felhasználók" jelentést?**
 
-**V:** Premium edition ügyfelek tudhat meg többet az alapul szolgáló kockázati események a felhasználó a "Kockázat megjelölt felhasználók" vagy a "kockázatos bejelentkezések" parancsával. Szabad és alapvető edition ügyfelek eléréséhez at-risk felhasználók és bejelentkezések nélkül az alapul szolgáló kockázati események adatait.
+**V:** hello beállítás toodownload *felhasználók meg van jelölve, a kockázat* jelentés hamarosan megjelenik.
 
 ---
 
-**K: hogyan kiszámítása a bejelentkezéseket és a kockázatos bejelentkezések jelentés IP-címek??**
+**K: Hogyan állapítható meg, hogy miért a bejelentkezés vagy a felhasználó lett megjelölve hello Azure-portálon a kockázatos?**
 
-**V:** IP-címeket úgy, hogy nincs-e végleges kapcsolat közötti IP-cím és a számítógépre, hogy a cím fizikailag helyét adják. Ez például a mobil szolgáltatók és a kiállító központi készletek IP-címek nagyon gyakran távol, amelyekben ténylegesen szerepel az ügyféleszköz VPN tényezőktől bonyolítja. A fentiek IP-cím átalakítása a fizikai hely a nyomkövetési adatokat, beállításjegyzék-adatok, fordított keresések és egyéb információk alapján a lehető legkedvezőbb módon. 
+**V:** Premium edition ügyfelek talál további információt az alapul szolgáló kockázati események ehhez kattintson a "Felhasználók megjelölt kockázatot jelent a" hello felhasználó vagy a "Kockázatos sign-ins" hello kattintva hello. Szabad és alapvető edition ügyfelek le toosee hello at-risk felhasználók és a bejelentkezések nélkül hello az alapul szolgáló kockázati események adatait.
+
+---
+
+**K: hogyan kiszámítása hello bejelentkezéseket és kockázatos bejelentkezések jelentés IP-címek??**
+
+**V:** IP-címek kiállított úgy, hogy nincs-e végleges kapcsolat közötti IP-cím és hello számítógép ezzel a címmel rendelkező fizikai helyét. Ez például a mobil szolgáltatók és a kiállító központi készletek IP-címek nagyon gyakran messze hol használják ténylegesen hello ügyféleszköz VPN tényezőktől bonyolítja. Megadott fenti hello, IP-cím tooa fizikai hely konvertálása a nyomkövetési adatokat, beállításjegyzék-adatok, fordított keresések és egyéb információk alapján a lehető legkedvezőbb módon. 
 
 ---

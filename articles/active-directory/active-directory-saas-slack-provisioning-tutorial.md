@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Slackhez konfigurálása az automatikus felhasználó-átadási az Azure Active Directoryval |} Microsoft Docs"
-description: "Útmutató: Azure Active Directory konfigurálása automatikusan kiépítés és deaktiválás rendelkezés felhasználói fiókokhoz slackhez."
+description: "Ismerje meg, hogyan tooconfigure Azure Active Directory tooautomatically kiépítése és deaktiválás rendelkezés felhasználói fiókot, tooSlack."
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -15,99 +15,99 @@ ms.topic: article
 ms.date: 07/20/2017
 ms.author: asmalser-msft
 ms.reviewer: asmalser
-ms.openlocfilehash: 3cb49a4abb26c34a938c963c4cf326b5ccd490de
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d0a565bbe0bd7e229b9dd99b1ebbaf67d93a2206
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-configuring-slack-for-automatic-user-provisioning"></a>Oktatóanyag: Slackhez konfigurálása az automatikus felhasználó létesítése
 
 
-Ez az oktatóanyag célja mutatjuk be, a lépéseket kell elvégeznie a Slackhez és az Azure AD automatikus kiépítés és deaktiválás rendelkezés felhasználói fiókok Azure ad-slackhez. 
+hello Ez az oktatóanyag célja tooshow meg hello lépéseket kell tooperform a Slackhez és az Azure AD tooautomatically kiépítése és deaktiválás rendelkezés lévő felhasználói fiókok Azure AD tooSlack. 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Ebben az oktatóanyagban leírt forgatókönyv feltételezi, hogy már rendelkezik a következő elemek:
+Ebben az oktatóanyagban leírt hello forgatókönyv feltételezi, hogy már rendelkezik a következő elemek hello:
 
 *   Az Azure Active Active directory-bérlő
-*   A Slackhez-bérlőben a [plusz terv](https://aadsyncfabric.slack.com/pricing) vagy jobban engedélyezve 
+*   A Slackhez-bérlőben hello [plusz terv](https://aadsyncfabric.slack.com/pricing) vagy jobban engedélyezve 
 *   A Slackhez Team rendszergazdai jogosultságokkal rendelkező felhasználói fiókot 
 
-Megjegyzés: Az Azure AD-integrációs kiépítés támaszkodik a [Slackhez SCIM API](https://api.slack.com/scim) Slack csoportokhoz elérhető a plusz a terv és jobb.
+Megjegyzés: hello az Azure AD-integrációs kiépítés támaszkodik hello [Slackhez SCIM API](https://api.slack.com/scim) Ez az hello terv plusz vagy nagyobb a rendelkezésre álló tooSlack csoportok.
 
-## <a name="assigning-users-to-slack"></a>Felhasználók hozzárendelése a Slackhez
+## <a name="assigning-users-tooslack"></a>Felhasználók tooSlack hozzárendelése
 
-Az Azure Active Directory egy fogalom, más néven "hozzárendeléseket" használ annak meghatározásához, hogy mely felhasználók kell kapnia a kiválasztott alkalmazásokhoz való hozzáférés. Automatikus fiók felhasználókiépítése keretében csak a felhasználók és csoportok "hozzárendelt" az Azure AD-alkalmazáshoz való szinkronizálásra kerül. 
+Az Azure Active Directory mely felhasználók hozzáférési tooselected alkalmazásokat kell látnia "hozzárendelések" toodetermine nevű elvét használja. Automatikus felhasználói fiók kiépítése hello kontextusában csak hello felhasználók és csoportok "hozzárendelt" tooan alkalmazás az Azure AD-szinkronizálásra kerül. 
 
-A létesítési szolgáltatás engedélyezése és konfigurálása, előtt kell döntenie, hogy mely felhasználók és/vagy az Azure AD-csoportok határoz meg a felhasználók, akik az Slack alkalmazásához való hozzáférést. Ha úgy döntött, itt cikk utasításait követve ezek a felhasználók rendelhet a Slack-alkalmazásba:
+Hello szolgáltatás kiépítését engedélyezése és konfigurálása, mielőtt kell toodecide milyen felhasználói és/vagy csoportok tooyour közzététele a Slack-alkalmazást kell használni az Azure AD jelentik hello felhasználók. Ha úgy döntött, hozzárendelheti a felhasználók tooyour Slack app itt hello utasításokat követve:
 
-[Egy felhasználó vagy csoport hozzárendelése egy vállalati alkalmazás](active-directory-coreapps-assign-user-azure-portal.md)
+[Rendelje hozzá a felhasználó vagy csoport tooan vállalati alkalmazások](active-directory-coreapps-assign-user-azure-portal.md)
 
-### <a name="important-tips-for-assigning-users-to-slack"></a>Felhasználók hozzárendelése a Slackhez fontos tippek
+### <a name="important-tips-for-assigning-users-tooslack"></a>Fontos tippek a felhasználók tooSlack hozzárendelése
 
-*   Javasoljuk, hogy egyetlen Azure AD-felhasználó hozzárendelni Slackhez teszteli a telepítési konfigurációt. További felhasználók és/vagy csoportok később is rendelhető.
+*   Javasoljuk, hogy egyetlen Azure AD-felhasználó tooSlack tootest hello konfigurálása kiosztás rendelni. További felhasználók és/vagy csoportok később is rendelhető.
 
-*   Amikor egy felhasználó hozzárendelése a Slackhez, ki kell választania a **felhasználói** vagy a "Csoport" szerepkör-hozzárendelés párbeszédpanelen. A "Default" szerepkör nem működik történő üzembe helyezéséhez.
-
-
-## <a name="configuring-user-provisioning-to-slack"></a>A felhasználók átadása slackhez konfigurálása 
-
-Ez a szakasz végigvezeti az Azure AD csatlakozás a Slackhez a felhasználói fiók kiépítése API, és a Slackhez, a felhasználó és csoport-hozzárendelés az Azure AD-alapú felhasználói fiókok létrehozásához, frissítéséhez és tiltsa le a létesítési szolgáltatás konfigurálása hozzárendelve.
-
-**Tipp:** is választhatja, hogy engedélyezze a SAML-alapú egyszeri bejelentkezés a Slackhez, utasításai (az Azure portálon) [https://portal.azure.com]. Egyszeri bejelentkezés konfigurálható függetlenül automatikus kiépítés, bár ez a két funkció egészítse ki egymást.
+*   Amikor egy felhasználó tooSlack rendel, ki kell választania hello **felhasználói** vagy a "Csoport" szerepkör hello hozzárendelés párbeszédpanelen. hello "alapértelmezett" szerepkör nem működik történő üzembe helyezéséhez.
 
 
-### <a name="to-configure-automatic-user-account-provisioning-to-slack-in-azure-ad"></a>Konfigurálása automatikus felhasználói fiók kiépítése slackhez Azure AD-ben:
+## <a name="configuring-user-provisioning-tooslack"></a>Felhasználók átadásához tooSlack konfigurálása 
+
+Ez a szakasz végigvezeti a csatlakozás az Azure AD tooSlack felhasználói fiók kiépítése API, és kiépítése szolgáltatáshoz toocreate hello konfigurálása, frissítése és tiltsa le a hozzárendelt felhasználói fiókok a Slackhez alapján a felhasználók és csoportok hozzárendelése az Azure ad-ben.
+
+**Tipp:** is választhatja, hogy SAML-alapú egyszeri bejelentkezés a Slackhez, (az Azure portálon) hello megjelenő utasításokat követve tooenabled [https://portal.azure.com]. Egyszeri bejelentkezés konfigurálható függetlenül automatikus kiépítés, bár ez a két funkció egészítse ki egymást.
 
 
-1)  Az a [Azure-portálon](https://portal.azure.com), keresse meg a **Azure Active Directory > Vállalati alkalmazások > összes alkalmazás** szakasz.
+### <a name="tooconfigure-automatic-user-account-provisioning-tooslack-in-azure-ad"></a>tooconfigure automatikus felhasználói fiók tooSlack kiépítése az Azure ad-ben:
 
-2) Ha már konfigurált Slackhez egyszeri bejelentkezést, keresse meg a Slackhez, használja a keresőmezőt példányát. Máskülönben válassza **Hozzáadás** keresse meg a **Slackhez** az alkalmazás katalógusában. A keresési eredmények közül válassza ki a Slackhez, és adja hozzá az alkalmazások listáját.
 
-3)  Jelölje ki a Slackhez példányát, majd válassza ki a **kiépítési** fülre.
+1)  A hello [Azure-portálon](https://portal.azure.com), keresse meg a toohello **Azure Active Directory > Vállalati alkalmazások > összes alkalmazás** szakasz.
 
-4)  Állítsa be a **kiépítési üzemmódját** való **automatikus**.
+2) Ha már konfigurált Slackhez egyszeri bejelentkezést, keresse meg a Slackhez hello keresési mező példányát. Máskülönben válassza **Hozzáadás** keresse meg a **Slackhez** hello alkalmazás gyűjteményben. Válassza ki a Slackhez hello keresési eredmények közül, és vegye fel tooyour alkalmazások listáját.
+
+3)  Jelölje ki a Slackhez példányát, majd válassza ki a hello **kiépítési** fülre.
+
+4)  Set hello **kiépítési üzemmódban** túl**automatikus**.
 
 ![Slack-kiépítés](./media/active-directory-saas-slack-provisioning-tutorial/Slack1.PNG)
 
-5)  Az a **rendszergazdai hitelesítő adataival** kattintson **engedélyezés**. A Slack engedélyezési párbeszédpanel megnyílik egy új böngészőablakban. 
+5)  A hello **rendszergazdai hitelesítő adataival** kattintson **engedélyezés**. A Slack engedélyezési párbeszédpanel megnyílik egy új böngészőablakban. 
 
-6) Az új ablakban jelentkezzen be arra a Slackhez a csapat rendszergazda fiók használatával. az eredményül kapott engedélyezési párbeszédpanelen válassza ki a Slack, amely engedélyezi a kiépítést, majd válassza ki **engedélyezés**. Ezt követően térjen vissza az Azure-portálon a létesítési konfiguráció befejezéséhez.
+6) Hello új ablakban jelentkezzen be arra a Slackhez a csapat rendszergazda fiók használatával. hello eredményül kapott engedélyezési párbeszédpanelen válassza ki a Slack csoport, amely szeretné, hogy tooenable kiépítést, és válassza hello **engedélyezés**. Egyszer befejezett, visszatérési toohello az Azure portál toocomplete hello konfigurálása kiosztás.
 
 ![Engedélyezési párbeszédpanel](./media/active-directory-saas-slack-provisioning-tutorial/Slack3.PNG)
 
-7) Az Azure portálon kattintson **kapcsolat tesztelése** biztosításához az Azure AD csatlakozhat a Slack alkalmazást. Ha nem sikerül, győződjön meg arról, a Slack fiók Team rendszergazdai jogosultságokkal rendelkezik, és ismételje meg az "Engedélyezés" lépést.
+7) Hello Azure-portálon, kattintson **kapcsolat tesztelése** tooensure az Azure AD kapcsolódhatnak tooyour közzététele a Slack-alkalmazást. Ha hello létesített kapcsolat megszakad, győződjön meg arról, a Slack fiók Team rendszergazdai jogosultságokkal rendelkezik, és próbálja meg újból. "Engedélyezés" lépés hello.
 
-8) Adja meg az e-mail címet vagy egy csoport, az üzembe helyezési hiba értesítéseket kapjanak a **értesítő e-mailt** mezőben, majd jelölje be az alábbi jelölőnégyzetet.
+8) Adja meg a hello e-mail címet vagy egy csoport létesítési hiba értesítések a hello kapjanak **értesítő e-mailt** mezőben, majd jelölje be az alábbi hello jelölőnégyzetet.
 
 9) Kattintson a **Save** (Mentés) gombra. 
 
-10) A hozzárendelések szakaszban válassza ki a **szinkronizálása Azure Active Directory-felhasználók slackhez**.
+10) A hello hozzárendelések szakaszt, válassza a **szinkronizálása Azure Active Directory-felhasználók tooSlack**.
 
-11) Az a **attribútum-leképezésekhez** szakaszban, tekintse át a felhasználói attribútumok szinkronizálva lesznek az Azure AD az Slackhez. Vegye figyelembe, hogy az attribútumok választotta **egyező** tulajdonságok felel meg a felhasználói fiókokat a Slackhez a frissítési műveletek használatával. Válassza ki a Mentés gombra a módosítások véglegesítéséhez.
+11) A hello **attribútum-leképezésekhez** szakaszban, tekintse át a hello felhasználói attribútumok szinkronizálva lesznek az Azure AD tooSlack. Vegye figyelembe, hogy a kiválasztott attribútumok hello **egyező** tulajdonságok használt toomatch hello felhasználói fiókok a Slackhez a frissítési műveletek lesz. Válassza ki a hello Mentés gombra toocommit módosításokat.
 
-12) Az Azure AD szolgáltatás a Slackhez kiépítés engedélyezéséhez módosítsa a **kiépítési állapot** való **a** a a **beállítások** szakasz
+12) tooenable hello Azure AD létesítési szolgáltatás a Slackhez, módosítás hello **kiépítési állapot** túl**a** a hello **beállítások** szakasz
 
 13) Kattintson a **Save** (Mentés) gombra. 
 
-Elindítja a kezdeti szinkronizálás bármely felhasználói és/vagy a felhasználók és csoportok szakaszban slackhez hozzárendelt csoportok. Figyelje meg, hogy a kezdeti szinkronizálás hosszabb ideig tart hajtsa végre ezt követő szinkronizálások, amely körülbelül 10 percenként történik, amíg a szolgáltatás fut-nál. Használhatja a **szinkronizálás részleteivel** szakasz figyelemmel az előrehaladást, és hivatkozásokat követve történő rendszerbe állításához tevékenység jelentéseit, amelyek a létesítési szolgáltatás az közzététele a Slack-alkalmazás által végzett összes műveletet írják le.
+Felhasználók és/vagy csoportok tooSlack a hello felhasználók és csoportok szakasz hello kezdeti szinkronizálása elindítja. Megjegyzés: hello kezdeti szinkronizálás hosszabb, mint körülbelül 10 percenként bekövetkező mindaddig, amíg hello szolgáltatás fut. ezt követő szinkronizálások tooperform kezeléséért. Használhatja a hello **szinkronizálás részleteivel** toomonitor folyamatban szakaszt, és hivatkozások tooprovisioning Tevékenységjelentések, minden hello szolgáltatást a Slack app a kiépítés végrehajtott műveletekről, amelyeket követve.
 
-## <a name="optional-configuring-group-object-provisioning-to-slack"></a>[Választható] Csoport objektum kiépítés slackhez konfigurálása 
+## <a name="optional-configuring-group-object-provisioning-tooslack"></a>[Választható] Kiépítés tooSlack csoportházirend-objektum konfigurálása 
 
-Másik lehetőségként engedélyezheti a slackhez Azure ad-csoport objektumok kiépítését. Ez eltér a "felhasználói csoportok hozzárendelése", az, hogy a tényleges csoport tagjai mellett objektumot a rendszer replikálja az Azure AD Slackhez. Például ha a "Saját csoport" nevű az Azure AD-csoport, egy "Saját csoport" nevű identitical csoportot az Slackhez belül létrejön.
+Másik lehetőségként engedélyezheti a hello kiépítése az Azure AD tooSlack objektumok. Ez nem azonos a "felhasználói csoportok hozzárendelése", a hello tényleges csoportobjektumnak továbbá tooits tagok replikálásra kerülnek a Azure AD tooSlack. Például ha a "Saját csoport" nevű az Azure AD-csoport, egy "Saját csoport" nevű identitical csoportot az Slackhez belül létrejön.
 
-### <a name="to-enable-provisioning-of-group-objects"></a>Az objektumok kiépítés engedélyezése:
+### <a name="tooenable-provisioning-of-group-objects"></a>tooenable kiépítés objektumok:
 
-1) A hozzárendelések szakaszban válassza ki a **szinkronizálása Azure Active Directory-csoportok slackhez**.
+1) A hello hozzárendelések szakaszt, válassza a **szinkronizálása Azure Active Directory-csoportok tooSlack**.
 
-2) Az attribútum hozzárendelése panelen beállítása engedélyezve igen.
+2) Állítson be engedélyezve tooYes hello attribútum leképezési panelen.
 
-3) Az a **attribútum-leképezésekhez** szakaszban, tekintse át a slackhez az Azure Active Directoryból szinkronizált csoport attribútumait. Vegye figyelembe, hogy az attribútumok választotta **egyező** tulajdonságok felel meg a frissítési műveleteket a Slackhez a csoportok használatával. 
+3) A hello **attribútum-leképezésekhez** szakaszban, tekintse át a hello attribútumokat, amelyek az Azure AD tooSlack szinkronizálódnak. Vegye figyelembe, hogy a kiválasztott attribútumok hello **egyező** tulajdonságok lesz a frissítési műveletek Slackhez használt toomatch hello csoportok. 
 
 4) Kattintson a **Save** (Mentés) gombra.
 
-Ez bármilyen a Slackhez rendelt objektumok eredményez a **felhasználók és csoportok** Slackhez teljesen szinkronizált Azure ad-szakasz. Használhatja a **szinkronizálás részleteivel** szakasz figyelemmel az előrehaladást, és hivatkozásokat követve történő rendszerbe állításához tevékenység jelentéseit, amelyek a létesítési szolgáltatás az közzététele a Slack-alkalmazás által végzett összes műveletet írják le.
+Ez az eredmény bármely csoporthoz rendelt objektumok tooSlack hello a **felhasználók és csoportok** szakaszban az Azure AD tooSlack a teljes szinkronizálás folyik. Használhatja a hello **szinkronizálás részleteivel** toomonitor folyamatban szakaszt, és hivatkozások tooprovisioning Tevékenységjelentések, minden hello szolgáltatást a Slack app a kiépítés végrehajtott műveletekről, amelyeket követve.
 
 
 ## <a name="additional-resources"></a>További források

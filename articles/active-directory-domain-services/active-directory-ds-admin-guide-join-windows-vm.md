@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directory tartományi szolgáltatások: A Windows Server virtuális gép csatlakoztatása felügyelt tartományhoz |} Microsoft Docs"
-description: "A Windows Server virtuális gépek csatlakoztatása az Azure AD tartományi szolgáltatások"
+title: "Az Azure Active Directory tartományi szolgáltatások: Csatlakozás a Windows Server virtuális gép tooa felügyelt tartományhoz |} Microsoft Docs"
+description: "A Windows Server virtuális gép tooAzure AD tartományi szolgáltatások"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: 9f8d21f6964d26a2e17e31d1f2947e7eb07c177d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1e85833b42bd51f3b3df067d6c5b69253459bec5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="join-a-windows-server-virtual-machine-to-a-managed-domain"></a>Windows Server virtuális gépek csatlakoztatása felügyelt tartományokhoz
+# <a name="join-a-windows-server-virtual-machine-tooa-managed-domain"></a>Csatlakozás egy Windows Server virtuális gép tooa felügyelt tartományhoz
 > [!div class="op_single_selector"]
 > * [Klasszikus Azure portál – Windows](active-directory-ds-admin-guide-join-windows-vm.md)
 > * [PowerShell - Windows](active-directory-ds-admin-guide-join-windows-vm-classic-powershell.md)
@@ -29,97 +29,97 @@ ms.lasthandoff: 07/11/2017
 
 <br>
 
-Ez a cikk bemutatja, hogyan csatlakozzon az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz, a klasszikus Azure portál használatával Windows Server 2012 R2 rendszert futtató virtuális gép.
+Ez a cikk bemutatja, hogyan toojoin egy virtuális gép futó Windows Server 2012 R2 tooan Azure AD tartományi szolgáltatások által felügyelt tartományba, hello klasszikus Azure portál használatával.
 
-## <a name="step-1-create-the-windows-server-virtual-machine"></a>1. lépés: A Windows Server virtuális gép létrehozása
-Című rész utasításait kövesse a [a klasszikus Azure portálon Windows rendszerű virtuális gép létrehozása](../virtual-machines/windows/classic/tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) oktatóanyag. Fontos, hogy az újonnan létrehozott virtuális gépet egy tartományhoz az azonos virtuális hálózatban, amelyben engedélyezte az Azure AD tartományi szolgáltatások biztosításához. A "Gyors létrehozása" beállítás nem engedélyezi, hogy a virtuális gép csatlakoztatása egy virtuális hálózatot. Ezért szeretné a virtuális gép létrehozása a "A gyűjtemény" kapcsoló használatával.
+## <a name="step-1-create-hello-windows-server-virtual-machine"></a>1. lépés: Hello Windows Server virtuális gép létrehozása
+Útmutatás alapján hello hello leírt [Windows hello a klasszikus Azure portálon futó virtuális gép létrehozása](../virtual-machines/windows/classic/tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) oktatóanyag. Fontos, hogy az újonnan létrehozott virtuális gép tooensure csatlakoztatott toohello ugyanazt a virtuális hálózatot, amelyben engedélyezte az Azure AD tartományi szolgáltatásokat. hello gyors Létrehozás beállítás nem engedélyezi az toojoin hello virtuális gép tooa virtuális hálózaton. Ezért toouse hello "A gyűjtemény" lehetőséget toocreate hello virtuális gép van szüksége.
 
-A következő lépésekkel, amelyben engedélyezve van a Azure AD tartományi szolgáltatások a virtuális hálózathoz csatlakozó Windows virtuális gép létrehozása.
+Hajtsa végre egy Windows virtuális gép csatlakoztatott toohello virtuális hálózatot, amelyben engedélyezve van a Azure AD tartományi szolgáltatások a következő lépéseket toocreate hello.
 
-1. A klasszikus Azure portálon, a parancssávon az ablak alján kattintson **új**.
+1. Hello hello parancssávon hello aljához hello ablak, klasszikus Azure portálon kattintson **új**.
 2. A **számítási**, kattintson a **virtuális gép**, majd kattintson a **a gyűjtemény**.
-3. Az első képernyőn lehetővé teszi, hogy **kép kiválasztása** a virtuális gép elérhető rendszerkép közül. Válassza ki a megfelelő lemezképet.
+3. első üdvözlő képernyőt lehetővé teszi, hogy **kép kiválasztása** a virtuális gép elérhető rendszerkép hello listája. Válassza ki a megfelelő lemezképet hello.
 
     ![Válassza ki a lemezképet](./media/active-directory-domain-services-admin-guide/create-windows-vm-select-image.png)
-4. A második képernyő lehetővé teszi a számítógép nevét, méretét, és rendszergazdai felhasználónév és jelszó. Használja a réteg és az alkalmazás vagy a munkaterhelések futtatásához szükséges méret. Itt válassza ki a felhasználónevet a helyi rendszergazda felhasználó a számítógépen. Ne adja meg itt egy tartományi felhasználói fiók hitelesítő adatait.
+4. második üdvözlő képernyőt lehetővé teszi a számítógép nevét, méretét, és rendszergazdai felhasználónév és jelszó. Az alkalmazás vagy a munkaterhelés, használja a hello réteg és a szükséges méret toorun. Itt választ hello felhasználónév megadása a helyi rendszergazda felhasználó hello gépen. Ne adja meg itt egy tartományi felhasználói fiók hitelesítő adatait.
 
     ![Virtuális gép konfigurálása](./media/active-directory-domain-services-admin-guide/create-windows-vm-config.png)
-5. A harmadik képernyő lehetővé teszi a hálózati, tárolási és rendelkezésre állás erőforrásait. Győződjön meg arról, amelyiken engedélyezte az Azure AD tartományi szolgáltatások a virtuális hálózatot választ a **régió/affinitás csoport/virtuális hálózati** legördülő menüből. Adjon meg egy **felhőalapú szolgáltatás DNS-név** a virtuális gép szükség szerint.
+5. harmadik üdvözlő képernyőt lehetővé teszi a hálózati, tárolási és rendelkezésre állás erőforrásait. Győződjön meg arról, amelyiken engedélyezte az hello Azure AD tartományi szolgáltatások hello virtuális hálózatot választ **régió/affinitás csoport/virtuális hálózati** legördülő menüből. Adjon meg egy **felhőalapú szolgáltatás DNS-név** hello virtuális gép szükség szerint.
 
     ![Válassza ki a virtuális gép virtuális hálózatot](./media/active-directory-domain-services-admin-guide/create-windows-vm-select-vnet.png)
 
    > [!WARNING]
-   > Győződjön meg arról, a virtuális gép csatlakoztatása az azonos virtuális hálózatban, amelyben engedélyezve van a Azure AD tartományi szolgáltatásokat. Ennek eredményeképpen a virtuális gép "Lásd" a tartomány és feladatokat végezhet, például a tartományhoz való csatlakozás. Ha egy másik virtuális hálózatban a virtuális gép létrehozása mellett dönt, a virtuális hálózatban csatlakozni a virtuális hálózat, amelyen engedélyezve van a Azure AD tartományi szolgáltatások.
+   > Győződjön meg arról, hogy csatlakozik-e virtuális gép toohello hello ugyanazt a virtuális hálózatot, amelyben engedélyezve van a Azure AD tartományi szolgáltatásokat. Ennek eredményeképpen hello virtuális gép "Lásd a" hello tartományi és feladatokat végezhet, például hello tartományhoz való csatlakozás. Ha toocreate hello virtuális gép egy másik virtuális hálózatban, csatlakoztassa a virtuális hálózati toohello virtuális hálózatban, amelyben engedélyezve van a Azure AD tartományi szolgáltatásokat.
    >
    >
-6. A negyedik képernyő lehetővé teszi a Virtuálisgép-ügynök telepítése és konfigurálása a rendelkezésre álló bővítések egy része.
+6. negyedik üdvözlő képernyőt lehetővé teszi a hello Virtuálisgép-ügynök telepítéséhez és konfigurálásához elérhető hello bővítések egy része.
 
     ![Kész](./media/active-directory-domain-services-admin-guide/create-windows-vm-done.png)
-7. A virtuális gép létrehozása után a klasszikus portál megjeleníti-e az új virtuális gépek a **virtuális gépek** csomópont. Mind a virtuális gép, mind a felhőszolgáltatás automatikusan elindul, és **Fut** állapotúként jelenik meg.
+7. Hello virtuális gép létrehozása után hello klasszikus portál megjeleníti-e új virtuális gépek hello hello **virtuális gépek** csomópont. Hello virtuális gép és a felhőalapú szolgáltatás automatikusan elindulnak, és azok állapottal jelenik meg, **futtató**.
 
     ![Virtuális gép megfelelően működik, és](./media/active-directory-domain-services-admin-guide/create-windows-vm-running.png)
 
-## <a name="step-2-connect-to-the-windows-server-virtual-machine-using-the-local-administrator-account"></a>2. lépés: Csatlakozás a Windows Server virtuális gép a helyi rendszergazda fiók használatával
-Most azt csatlakoztassa az újonnan létrehozott Windows Server virtuális géphez való csatlakoztatása a tartományhoz. Használja a helyi rendszergazdai hitelesítő adatokat, a csatlakozáshoz a virtuális gép létrehozásakor megadott.
+## <a name="step-2-connect-toohello-windows-server-virtual-machine-using-hello-local-administrator-account"></a>2. lépés: Csatlakozás toohello Windows Server virtuális gép hello helyi rendszergazdai fiók használatával
+Most, a Microsoft connect toohello az újonnan létrehozott Windows Server virtuális gép, toojoin azt toohello tartomány. Hello helyi rendszergazdai hitelesítő adatok használata hello virtuális gép, tooconnect tooit létrehozásakor megadott.
 
-A következő lépésekkel csatlakozzon a virtuális géphez.
+Hajtsa végre a következő lépéseket tooconnect toohello virtuális gép hello.
 
-1. Navigáljon a **virtuális gépek** csomópont a klasszikus portálon. Válassza ki az 1. lépésben létrehozott virtuális gépet, és kattintson a **Connect** a parancssávon az ablak alján.
+1. Keresse meg a túl**virtuális gépek** csomópont hello a klasszikus portálon. Válassza ki az 1. lépésben létrehozott hello virtuális gépet, és kattintson a **Connect** hello parancssávon hello ablak hello alján.
 
-    ![Windows virtuális géphez](./media/active-directory-domain-services-admin-guide/connect-windows-vm.png)
-2. A klasszikus portál felszólítja, hogy a fájl megnyitása vagy mentése egy, a virtuális géphez való kapcsolódáshoz használt ".rdp" kiterjesztéssel. Kattintson a letöltés után, nyissa meg a fájlt.
-3. A bejelentkezési parancssorba írja be a **helyi rendszergazdai hitelesítő adatokat**, amely a virtuális gép létrehozása a megadott. Például ebben a példában "localhost\mahesh" már használtuk.
+    ![Csatlakoztassa tooWindows virtuális gépet](./media/active-directory-domain-services-admin-guide/connect-windows-vm.png)
+2. hello klasszikus portál felszólítja tooopen vagy ".rdp" kiterjesztésű fájl, amely használt tooconnect toohello virtuális gép. Kattintson a tooopen hello fájl letöltése után.
+3. Hello bejelentkezési parancssorba írja be a **helyi rendszergazdai hitelesítő adatokat**, a megadott hello virtuális gép létrehozása során. Például ebben a példában "localhost\mahesh" már használtuk.
 
-Ezen a ponton be kell jelentkeznie az újonnan létrehozott Windows rendszerű virtuális gép helyi rendszergazdai hitelesítő adatokkal való. A következő lépés, hogy a virtuális gép csatlakoztatása a tartományhoz.
+Ezen a ponton be kell jelentkeznie toohello az újonnan létrehozott Windows rendszerű virtuális gép helyi rendszergazdai hitelesítő adatokkal a. hello következő lépés az toojoin hello virtuális gép toohello tartomány.
 
-## <a name="step-3-join-the-windows-server-virtual-machine-to-the-aad-ds-managed-domain"></a>3. lépés: Csatlakozás az AAD-felügyelt tartományi szolgáltatások a Windows Server virtuális gépen
-Hajtsa végre az alábbi lépéseket a Windows Server virtuális gép csatlakoztatása az AAD-Directory tartományi szolgáltatások által felügyelt tartományokhoz.
+## <a name="step-3-join-hello-windows-server-virtual-machine-toohello-aad-ds-managed-domain"></a>3. lépés: Csatlakozás hello Windows Server virtuális gép toohello AAD-DS felügyelt tartományhoz
+Hajtsa végre a következő lépéseket toojoin hello Windows Server virtuális gép toohello AAD-Directory tartományi szolgáltatások által kezelt tartomány hello.
 
-1. Csatlakoztassa a Windows Server a 2. A kezdőképernyőről nyissa meg a **Kiszolgálókezelő**.
-2. Kattintson a **helyi kiszolgáló** a Kiszolgálókezelő ablakban a bal oldali ablaktáblán.
+1. Csatlakoztassa a Windows Server toohello 2. lépés. Hello kezdőképernyőről nyissa meg a **Kiszolgálókezelő**.
+2. Kattintson a **helyi kiszolgáló** hello hello Kiszolgálókezelő ablak bal oldali ablaktábláján.
 
     ![Indítsa el a Kiszolgálókezelőt a virtuális gépen](./media/active-directory-domain-services-admin-guide/join-domain-server-manager.png)
-3. Kattintson a **munkacsoport** alatt a **tulajdonságok** szakasz. Az a **Rendszertulajdonságok** lapot, kattintson a **módosítása** a tartományhoz való csatlakozáshoz.
+3. Kattintson a **munkacsoport** alatt hello **tulajdonságok** szakasz. A hello **Rendszertulajdonságok** tulajdonságlapját, kattintson a **módosítás** toojoin hello tartomány.
 
     ![Rendszer Tulajdonságok lap](./media/active-directory-domain-services-admin-guide/join-domain-system-properties.png)
-4. Adja meg az Azure AD tartományi szolgáltatások által kezelt tartomány a tartomány nevét a **tartomány** szövegmezőben kattintson **OK**.
+4. Adja meg az Azure AD tartományi szolgáltatások által kezelt tartomány hello tartománynevet hello **tartomány** szövegmezőben kattintson **OK**.
 
-    ![Adja meg a tartományt, amelyet egyesíteni](./media/active-directory-domain-services-admin-guide/join-domain-system-properties-specify-domain.png)
-5. A tartományhoz való csatlakozásnál a hitelesítő adatok megadását kéri. Győződjön meg arról, hogy **adja meg a hitelesítő adatait az aad-ben DC rendszergazdák tartozó felhasználó** csoport. Csak a csoport tagjai jogosultak gépeket csatlakoztatni a felügyelt tartományra.
+    ![Adja meg a hello tartomány toobe csatlakoztatva](./media/active-directory-domain-services-admin-guide/join-domain-system-properties-specify-domain.png)
+5. Ön felszólító tooenter a hitelesítő adatok toojoin hello tartományban vannak. Győződjön meg arról, hogy **adja meg a felhasználó tartozó toohello AAD DC rendszergazdák hello hitelesítő adatait** csoport. Csak a csoport tagjai rendelkeznek jogosultsággal toojoin gépek toohello által felügyelt tartományokhoz.
 
     ![Adja meg a tartományhoz való csatlakozás hitelesítő adatait](./media/active-directory-domain-services-admin-guide/join-domain-system-properties-specify-credentials.png)
-6. Hitelesítő adatokat adhat meg a következő módon:
+6. Hitelesítő adatokat adhat meg a következő módokon hello valamelyikét:
 
-   * Egyszerű felhasználónév formátuma: Adja meg a felhasználói fiókhoz az egyszerű Felhasználónévi utótagot az Azure AD-be. Ebben a példában a "bob" felhasználói UPN-utótagját van "bob@domainservicespreview.onmicrosoft.com".
-   * SAMAccountName formátum: a SAMAccountName formátumban is adja meg a fiók nevét. Ebben a példában a felhasználó "bob" kell "CONTOSO100\bob" adja meg.
+   * Egyszerű felhasználónév formátuma: hello egyszerű Felhasználónévi utótagot hello felhasználói fiókhoz, adja meg, az Azure AD-be. Ebben a példában a hello egyszerű Felhasználónévi utótagot hello felhasználó "bob" a "bob@domainservicespreview.onmicrosoft.com".
+   * SAMAccountName formátum: hello fióknév hello SAMAccountName formátumban is megadhat. Ebben a példában a "bob" hello felhasználói kellene tooenter "CONTOSO100\bob".
 
      > [!NOTE]
-     > **Azt javasoljuk, hogy az egyszerű felhasználónév formátumban adja meg a hitelesítő adatokat.** A SAMAccountName előfordulhat, hogy lehet automatikus-jön létre, ha a felhasználói UPN-előtag túl hosszú (például az "joereallylongnameuser"). Ha több felhasználó azonos UPN-előtagot (például Bálint) az Azure AD-bérlő rendelkezik, azok SAMAccountName formátuma lehet a szolgáltatás által automatikusan generált. Ezekben az esetekben az UPN-formátum használható megbízhatóan bejelentkezni a tartományba.
+     > **Hello UPN formátum toospecify hitelesítő adatok használatát javasoljuk.** hello SAMAccountName lehet automatikus-jön létre, ha a felhasználói UPN-előtag túl hosszú (például az "joereallylongnameuser"). Ha több felhasználó hello azonos UPN-előtagot (például Bálint) Azure AD-bérlőn, a SAMAccountName formátum automatikus-generálhatja hello szolgáltatást. Ezekben az esetekben hello UPN formátum használható megbízhatóan toolog toohello tartományban.
      >
      >
-7. Tartományhoz való csatlakozást befejezését követően megjelenik a következő üzenet, és Üdvözli Önt a tartományban. Indítsa újra a virtuális gépet, a tartományhoz csatlakoztatás művelet elvégzéséhez.
+7. Tartományhoz való csatlakozást befejezését követően hello toohello tartomány üdvözlőlapjának üzenet a következő témakörben talál. Indítsa újra a virtuális gép hello hello tartomány illesztési művelet toocomplete.
 
-    ![Üdvözli a tartományhoz](./media/active-directory-domain-services-admin-guide/join-domain-done.png)
+    ![Üdvözli a toohello tartomány](./media/active-directory-domain-services-admin-guide/join-domain-done.png)
 
 ## <a name="troubleshooting-domain-join"></a>Hibaelhárítás a tartományhoz való csatlakozást
 ### <a name="connectivity-issues"></a>Csatlakozási problémák
-Ha a virtuális gép nem található a tartomány, tekintse meg a következő hibaelhárítási lépéseket:
+Ha hello virtuális gép nem toofind hello tartomány, tekintse meg a következő hibaelhárítási lépéseket toohello:
 
-* Győződjön meg arról, hogy a virtuális gép csatlakozik ugyanahhoz a virtuális hálózathoz, mint a tartományi szolgáltatások engedélyezése. Ha nem, akkor a virtuális gép nem tud csatlakozni a tartományhoz, és ezért nem tud csatlakozni a tartományhoz.
-* Ha a virtuális gép egy másik virtuális hálózathoz csatlakozik, győződjön meg arról, hogy ez a virtuális hálózat csatlakozik-e a virtuális hálózat, amelyen engedélyezve van a tartományi szolgáltatások.
-* Próbálja pingelni a tartományban, a tartománynév, a felügyelt tartomány (például "ping contoso100.com") használatával. Ha nem sikerül, akkor próbálja meg Pingelje meg az IP-címek, amelyen engedélyezve van az Azure AD tartományi szolgáltatásokat az oldalon megjelenített tartomány (például "Pingelje meg 10.0.0.4"). Ha tudni pingelni a IP-címet, de nem a tartomány, DNS esetleg nem megfelelően van konfigurálva. Előfordulhat, hogy nem konfigurálta az IP-címek, a tartomány a virtuális hálózat DNS-kiszolgálóként.
-* Próbálja meg a DNS-feloldási gyorsítótárból a virtuális gépen ("ipconfig/flushdns" paranccsal).
+* Győződjön meg arról, hogy hello virtuális géphez csatlakoztatott toohello, amelyek azonos virtuális hálózaton a tartományi szolgáltatások bekapcsolását. Ha nem, akkor hello virtuális gép nem tooconnect toohello tartományt, és ezért nem tudja toojoin hello tartomány.
+* Ha hello virtuális gép virtuális hálózati csatlakoztatott tooanother, győződjön meg arról, hogy a virtuális hálózat-e a csatlakoztatott toohello virtuális hálózatot, amelyben engedélyezve van a tartományi szolgáltatások.
+* Próbálja meg tooping hello tartomány tartománynév hello hello felügyelt tartomány (például "ping contoso100.com") használatával. Ha tehát nem toodo, próbálja tooping hello IP-címek, ahol engedélyezve van az Azure AD tartományi szolgáltatások hello oldalon megjelenített hello tartomány (például "Pingelje meg 10.0.0.4"). Ha tudja tooping hello IP-címet, de nem hello tartomány, DNS esetleg nem megfelelően van konfigurálva. Előfordulhat, hogy nem konfigurálta hello IP-címek hello tartomány hello virtuális hálózat DNS-kiszolgálóként.
+* Próbálja hello hello ("ipconfig/flushdns") virtuális gépen a DNS-feloldási gyorsítótár kiürítése.
 
-Ha a párbeszédpanelt, amely a tartományhoz való csatlakozásnál a hitelesítő adatokat kér, nincs kapcsolódási problémák.
+Ha toohello párbeszédpanelt, amely kéri a hitelesítő adatok toojoin hello tartomány, csatlakozási problémák nem rendelkeznek.
 
 ### <a name="credentials-related-issues"></a>Hitelesítő adatok kapcsolatos problémák
-Ha hiba történt a hitelesítő adatokkal, és nem tud csatlakozni a tartományhoz tekintse meg az alábbi lépéseket.
+Tekintse meg a következő lépéseket, ha hiba történt a hitelesítő adatokkal, és nem toojoin hello tartomány toohello.
 
-* Próbálja az UPN-formátum használatával adja meg a hitelesítő adatokat. A fiók SAMAccountName lehet, automatikusan létrehozott, ha több felhasználó az Ön bérelt szolgáltatásának azonos UPN előtaggal, vagy ha az UPN-előtag túl hosszú. Ezért a fiók SAMAccountName formátumát eltérhet mi várható és használatához el a helyszíni tartományban.
-* Próbálja meg a "AAD DC rendszergazdák" csoportba gépeket csatlakoztatni a felügyelt tartományra tartozó felhasználói fiók hitelesítő adatait.
-* Győződjön meg arról, hogy [engedélyezte a jelszó-szinkronizálást](active-directory-ds-getting-started-password-sync.md) az első lépéseket ismertető útmutató lépéseinek megfelelően.
-* Győződjön meg arról, hogy a felhasználó egyszerű Felhasználónevét az Azure AD-be (például "bob@domainservicespreview.onmicrosoft.com") való bejelentkezéshez.
-* Győződjön meg arról, hogy amíg a jelszó-szinkronizálás végrehajtásához az első lépések útmutató a várt.
+* Próbálja meg hello UPN formátum toospecify hitelesítő adatok használatával. hello SAMAccountName fiókja lehet, hogy lehet automatikusan generált hello azonos UPN-bérlőben előtag, vagy ha az UPN-előtag túl hosszú a több felhasználó esetén. Ezért hello SAMAccountName formátum fiókja eltérhet mi várható és használatához el a helyszíni tartományban.
+* Próbálja meg toouse hello tartozó toohello "AAD DC rendszergazdák" csoportot toojoin gépek toohello kezelt tartományi felhasználói fiók hitelesítő adatait.
+* Győződjön meg arról, hogy [engedélyezve a jelszó-szinkronizálás](active-directory-ds-getting-started-password-sync.md) hello a kezdeti lépések útmutatóban található lépések hello megfelelően.
+* Győződjön meg arról, hogy az Azure ad-ben konfigurált használja hello hello felhasználó egyszerű Felhasználónevét (például "bob@domainservicespreview.onmicrosoft.com") a toosign.
+* Győződjön meg arról, hogy amíg a jelszó-szinkronizálás toocomplete hello első lépések útmutató a várt.
 
 ## <a name="related-content"></a>Kapcsolódó tartalom
 * [Azure AD tartományi szolgáltatások – első lépések útmutató](active-directory-ds-getting-started.md)

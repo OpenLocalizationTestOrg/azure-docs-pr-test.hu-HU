@@ -1,6 +1,6 @@
 ---
-title: "Az Azure App Service-biztonsági"
-description: "Útmutató: a biztonságos webes, mobil-, API és logikai alkalmazások az Azure App Service-ben."
+title: "App Service biztonsági aaaAzure"
+description: "Megtudhatja, hogyan toosecure webes, mobil-, API és logikai alkalmazások az Azure App Service-ben."
 services: app-service
 documentationcenter: 
 author: naziml
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/16/2015
 ms.author: naziml
-ms.openlocfilehash: 7d26d52ad04bd4158a1450ae0f49fc7c1f8a04e8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8a0bff7d9665abadd70c1cfd07dca265ea057596
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-app-service-security"></a>Az Azure App Service-biztonsági
-Az Azure App Services megfelel-e a fő iparági szabványoknak megfelelő biztonsága és megbízhatósága biztonságos fórumot ügyfeleink számára. Van több könnyen használható funkciót, az alkalmazás a bejövő és kimenő forgalmának biztonságossá tétele érdekében. Azt is hozzájárulhat a felhasználók biztonságos az alkalmazás kódjában külsőleg megadásával a webes alkalmazás a biztonsági réseket megvizsgálja a funkciókat biztosította.
+Az Azure App Services megfelel hello fő iparági szabványai biztonsága és megbízhatósága tooprovide ügyfeleink biztonságos platformot. Az alkalmazás a bejövő és kimenő forgalmának biztonságossá tétele több könnyen használható szolgáltatások toohelp van. Azt is hozzájárulhat a felhasználók biztonságos az alkalmazás kódjában azáltal, hogy külsőleg biztosított funkció tooscan a webes alkalmazás a biztonsági réseket.
 
 [!INCLUDE [app-service-blueprint-security](../../includes/app-service-blueprint-security.md)]
 
-Az Azure App Service ugyanaz a kártevővédelmi megoldás Azure Cloud Services és a virtuális gépek által használt használja. Ismerje meg, ez bővebben lásd a [kártevőirtó dokumentáció](../security/azure-security-antimalware.md). 
+Az Azure App Service által használt hello ugyanaz a kártevővédelmi megoldás Azure Cloud Services és a virtuális gépek által használt. További információ toolearn tekintse meg a tooour [kártevőirtó dokumentáció](../security/azure-security-antimalware.md). 
 

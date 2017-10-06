@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure AD Java parancssori |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozhat létre egy Java parancssori alkalmazás, amely a felhasználó bejelentkezik az API-k eléréséhez."
+title: "első lépések AD Java parancssori aaaAzure |} Microsoft Docs"
+description: "Hogyan toobuild Java parancs, mely aláírja a felhasználók számára az API-k tooaccess sor alkalmazást."
 services: active-directory
 documentationcenter: java
 author: navyasric
@@ -15,51 +15,51 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 91e4a7b2ac454465d5cce4948a4d5f0b542d2b55
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9ba1d1e794928a39ca1f091bd0e6eba57ce3d6aa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-java-command-line-app-to-access-an-api-with-azure-ad"></a>Az Azure AD az API-k elérésére használt Java parancssori alkalmazás
+# <a name="using-java-command-line-app-tooaccess-an-api-with-azure-ad"></a>Java parancssori alkalmazás tooAccess az API használatával az Azure ad szolgáltatással
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-Az Azure AD teszi egyszerű és magától értetődő kihelyező a webalkalmazás az Identitáskezelés, így egyetlen be- és kijelentkezési rendelkező csak néhány sornyi kódot.  A Java-webalkalmazások Ez elvégezhető a közösségi szerkesztésű ADAL4J Microsoft végrehajtásának használatával.
+Az Azure AD egyszerű és magától értetődő toooutsource teszi a webalkalmazás az Identitáskezelés, így az egyszeri bejelentkezés és kijelentkezés, az csak néhány sornyi kódot.  A Java-webalkalmazások Ez elvégezhető a Microsoft hello közösségi szerkesztésű ADAL4J végrehajtásának használatával.
 
   Itt a ADAL4J fogjuk használni:
 
-* A felhasználó jelentkezzen be az alkalmazást az Azure AD az identitás-szolgáltatóként.
-* A felhasználói információkat jelenítsen meg.
-* Jelentkezzen ki az alkalmazásból a felhasználó.
+* Bejelentkezési hello felhasználói hello alkalmazásba az Azure AD hello identitás-szolgáltatóként.
+* Hello felhasználói információkat jelenítsen meg.
+* Bejelentkezési hello felhasználói hello alkalmazásból.
 
-Ehhez szüksége:
+Ennek rendelés toodo, lesz szüksége:
 
 1. Alkalmazás regisztrálása az Azure ad szolgáltatással
-2. Az alkalmazás beállítása a ADAL4J könyvtárban.
-3. A ADAL4J könyvtár segítségével be- és kijelentkezési kérések kiállítása az Azure ad Szolgáltatásba.
-4. Nyomtassa ki a felhasználóval kapcsolatos adatokat.
+2. Állítsa be az alkalmazás toouse hello ADAL4J könyvtár.
+3. Hello ADAL4J könyvtár tooissue bejelentkezés és kijelentkezési kérések tooAzure AD használatára.
+4. Nyomtassa ki hello felhasználó adatait.
 
-A kezdéshez [töltse le az alkalmazás vázat](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/skeleton.zip) vagy [töltse le az elkészült mintát](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect\\/archive/complete.zip).  Biztosítani kell az Azure AD-bérlő, amelyben az alkalmazás regisztrálásához.  Ha Ön nem rendelkezik ilyennel, [beszerzéséről egy](active-directory-howto-tenant.md).
+elindult, tooget [hello app vázat letöltése](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/skeleton.zip) vagy [letöltése befejeződött hello minta](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect\\/archive/complete.zip).  Biztosítani kell az Azure AD-bérlő mely tooregister a az alkalmazás.  Ha Ön nem rendelkezik ilyennel, [megtudhatja, hogyan egy tooget](active-directory-howto-tenant.md).
 
 ## <a name="1--register-an-application-with-azure-ad"></a>1.  Alkalmazás regisztrálása az Azure ad szolgáltatással
-Ahhoz, hogy az alkalmazás a felhasználók hitelesítésére, először egy új alkalmazás regisztrálásához az Ön bérelt szolgáltatásának.
+tooenable a tooauthenticate felhasználók, először tooregister egy új alkalmazás az Ön bérelt szolgáltatásának.
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-2. A felső eszköztáron kattintson a fiókhoz, majd a a **Directory** menüben válassza ki az Active Directory-bérlőt, ahová be szeretné-e az alkalmazás regisztrálásához.
-3. Kattintson a **több szolgáltatások** a bal oldali navigációs válassza **Azure Active Directory**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. Hello felső sávon, kattintson a fiókjában, és a hello **Directory** menüben válassza ki, hol kívánja tooregister, az alkalmazás hello Active Directory-bérlő.
+3. Kattintson a **több szolgáltatások** a bal oldali navigációs hello, és válassza a **Azure Active Directory**.
 4. Kattintson a **App regisztrációk** válassza **Hozzáadás**.
-5. Kövesse az utasításokat, és hozzon létre egy új **webalkalmazás és/vagy WebAPI**.
-  * A **neve** az alkalmazás ismerteti az alkalmazást a végfelhasználók számára
-  * A **bejelentkezési URL-cím** az alkalmazás alap URL-címe.  A vázat alapértelmezett érték a `http://localhost:8080/adal4jsample/`.
-6. Miután végrehajtotta a regisztráció, AAD fogja hozzárendelni az alkalmazás egy egyedi azonosítót.  Ez az érték kell a következő szakaszokban lévő, másolja az alkalmazás lapján.
-7. Az a **beállítások** -> **tulajdonságok** az alkalmazás lapján frissítse a App ID URI. A **App ID URI** az alkalmazás egyedi azonosítója.  Az egyezmény használandó `https://<tenant-domain>/<app-name>`, pl. `http://localhost:8080/adal4jsample/`.
+5. Hello utasításokat követve, és hozzon létre egy új **webalkalmazás és/vagy WebAPI**.
+  * Hello **neve** hello az alkalmazás ismerteti, az alkalmazás tooend-felhasználók
+  * Hello **bejelentkezési URL-cím** hello alap URL-cím az alkalmazás.  hello vázat alapértelmezett érték a `http://localhost:8080/adal4jsample/`.
+6. Miután végrehajtotta a regisztráció, AAD fogja hozzárendelni az alkalmazás egy egyedi azonosítót.  Ez az érték kell a következő szakaszok hello, ezért másolja hello alkalmazás lapján.
+7. A hello **beállítások** -> **tulajdonságok** az alkalmazás lapján hello App ID URI frissítése. Hello **App ID URI** az alkalmazás egyedi azonosítója.  hello konvenció: toouse `https://<tenant-domain>/<app-name>`, pl. `http://localhost:8080/adal4jsample/`.
 
-Egyszer a portálon, az alkalmazás létrehozása egy **kulcs** a a **beállítások** lapon az alkalmazáshoz, és másolja le.  Erre hamarosan szüksége lesz.
+Egyszer hello portálon az alkalmazás létrehozása egy **kulcs** a hello **beállítások** lapon az alkalmazáshoz, és másolja le.  Erre hamarosan szüksége lesz.
 
-## <a name="2-set-up-your-app-to-use-adal4j-library-and-prerequisites-using-maven"></a>2. Az alkalmazás beállítása ADAL4J könyvtár és előfeltételek Maven használatával
-Itt konfigurálását végezzük el ADAL4J az OpenID Connect hitelesítési protokoll használatára.  Be- és kijelentkezési kérések kiállítása, a felhasználói munkamenet kezelésére, és többek között a felhasználó adatai ADAL4J fogja használni.
+## <a name="2-set-up-your-app-toouse-adal4j-library-and-prerequisites-using-maven"></a>2. Az alkalmazás toouse ADAL4J könyvtár és Maven használatával Előfeltételek beállítása
+Itt konfigurálását végezzük el ADAL4J toouse hello OpenID Connect hitelesítési protokoll.  ADAL4J kell használt tooissue be- és kijelentkezési kérések, hello felhasználói munkamenet kezeli, és többek között a hello felhasználó adatainak beolvasása.
 
-* A projekt gyökérkönyvtárában, megnyitni vagy létrehozni `pom.xml` , és keresse meg a `// TODO: provide dependencies for Maven` , és cserélje le a következőre:
+* A projekt gyökérkönyvtárában hello, megnyitni vagy létrehozni `pom.xml` , és keresse meg a hello `// TODO: provide dependencies for Maven` és cserélje le a következő hello:
 
 ```Java
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -181,10 +181,10 @@ Itt konfigurálását végezzük el ADAL4J az OpenID Connect hitelesítési prot
 
 
 
-## <a name="3-create-the-java-publicclient-file"></a>3. A Java PublicClient fájl létrehozása
-A fentiek alapján fogjuk használni a Graph API a bejelentkezett felhasználó kapcsolatos adatok eléréséhez. Ez lesz az USA könnyen mindkét fájlt képviselő azt létrehoznia egy **könyvtárobjektum** és képviselő fájlhoz a **felhasználói** , hogy a Java OO mintáját használható.
+## <a name="3-create-hello-java-publicclient-file"></a>3. Hello Java PublicClient fájl létrehozása
+A fentiek alapján fogjuk használni hello bejelentkezett felhasználó hello Graph API tooget adatait. Ez az USA könnyen toobe azt létrehoznia mindkét egy fájl toorepresent egy **könyvtárobjektum** és az egyes fájl toorepresent hello **felhasználói** , hogy hello Java OO mintáját is használható.
 
-* Hozzon létre egy nevű fájlt `DirectoryObject.java` , amelyek segítségével bármely DirectoryObject (, nyugodtan később használhatja más diagramhoz lekérdezések a következőkre) kapcsolatos alapvető adatok tárolásához. Akkor is kivágás-beillesztés ezt az alábbi lehetőségek közül:
+* Hozzon létre egy nevű fájlt `DirectoryObject.java` amely toostore bármely DirectoryObject (úgy is látja szabad toouse ezt később más diagramhoz lekérdezések a következőkre) vonatkozó alapvető adatokat fogjuk használni. Akkor is kivágás-beillesztés ezt az alábbi lehetőségek közül:
 
 ```Java
 import java.io.BufferedReader;
@@ -248,24 +248,24 @@ public class PublicClient {
 ```
 
 
-## <a name="compile-and-run-the-sample"></a>Fordítsa le, és futtathatja a
-A gyökérkönyvtár vissza kimenő módosítsa, majd futtassa a következő parancsot a minta csak állapotba használata `maven`. Ez a beállítás használja a `pom.xml` függőségek megírt fájlt.
+## <a name="compile-and-run-hello-sample"></a>Fordítsa le és futtasson hello mintát
+Vissza kimenő tooyour gyökérkönyvtár módosítsa, majd futtassa a következő parancs toobuild hello minta csak állapotba használata hello `maven`. Ez a beállítás használja hello `pom.xml` függőségek megírt fájlt.
 
 `$ mvn package`
 
-Most már rendelkeznie kell egy `adal4jsample.war` fájlt a `/targets` könyvtár. Előfordulhat, hogy telepíteni, amely a Tomcat tárolóban, és látogasson el az URL-cím 
+Most már rendelkeznie kell egy `adal4jsample.war` fájlt a `/targets` könyvtár. Előfordulhat, hogy telepíteni, amely a Tomcat tárolóban, és látogasson el a hello URL-címe 
 
 `http://localhost:8080/adal4jsample/`
 
 > [!NOTE]
-> Rendkívül egyszerűen telepíthető a legújabb Tomcat kiszolgálókkal WAR. Egyszerűen lépjen `http://localhost:8080/manager/` feltöltésével kapcsolatos kövesse az utasításokat a "adal4jsample.war" fájl. A következőket hajtja végre autodeploy meg a helyes végpontját.
+> Nagyon könnyen toodeploy hello legújabb Tomcat kiszolgálókkal WAR. Egyszerűen nyissa meg a túl`http://localhost:8080/manager/` és feltöltésével kapcsolatos hello utasítások a "adal4jsample.war" fájl. A következőket hajtja végre autodeploy meg hello megfelelő végponttal.
 > 
 > 
 
 ## <a name="next-steps"></a>Következő lépések
-Gratulálunk! Most már rendelkezik egy Java-alkalmazás, amely képes biztonságosan hitelesíti a felhasználókat, működő hívja fel a webes API-k, az OAuth 2.0 verziót használja, és a felhasználó alapszintű adatainak beolvasása.  Ha még nem tette meg, most már az egyes felhasználóival a bérlő feltölti idő.
+Gratulálunk! Ön most Java-alkalmazás, amely rendelkezik hello képességét tooauthenticate felhasználók, biztonságosan hívja a webes API-k, az OAuth 2.0 verziót használja, és működik alapszintű hello felhasználó adatainak beolvasása.  Ha még nem tette meg, most az hello idő toopopulate a bérlő az egyes felhasználók.
 
-Az elkészült mintát (a konfigurációs értékek nélkül) referenciaként [is letöltheti a .zip Itt](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/complete.zip), vagy a Githubból is klónozhatja:
+Referenciaként hello befejeződött (a konfigurációs értékek nélkül) minta [is letöltheti a .zip Itt](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/complete.zip), vagy a Githubból is klónozhatja:
 
 ```git clone --branch complete https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect.git```
 

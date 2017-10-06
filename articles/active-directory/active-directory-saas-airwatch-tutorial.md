@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált AirWatch |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és AirWatch között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és AirWatch között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,115 +14,115 @@ ms.topic: article
 ms.date: 07/20/2017
 ms.author: jeedes
 ms.reviewer: jeedes
-ms.openlocfilehash: 1996ec97e7c0d94c5606ca43bb5956548f1f3712
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e5230d5a36824778a4d9804dadf9f13a0d11a68d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-airwatch"></a>Oktatóanyag: Azure Active Directoryval integrált AirWatch
 
-Ebben az oktatóanyagban elsajátíthatja AirWatch integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate AirWatch az Azure Active Directoryval (Azure AD).
 
-AirWatch integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+AirWatch integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Megadhatja a AirWatch hozzáféréssel rendelkező Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett AirWatch (egyszeri bejelentkezés) számára a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Megadhatja a hozzáférés tooAirWatch rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooAirWatch (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs AirWatch, a következőkre van szükség:
+az Azure AD integrálása AirWatch tooconfigure, kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - Egy AirWatch egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A gyűjteményből AirWatch hozzáadása
+1. Hello gyűjteményből AirWatch hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-airwatch-from-the-gallery"></a>A gyűjteményből AirWatch hozzáadása
-Az Azure AD integrálása a AirWatch konfigurálásához kell hozzáadnia AirWatch a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-airwatch-from-hello-gallery"></a>Hello gyűjteményből AirWatch hozzáadása
+tooconfigure hello integrációja AirWatch az Azure AD-be, meg kell tooadd AirWatch hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A gyűjteményből AirWatch hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd AirWatch hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
+3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **AirWatch**.
+4. Hello keresési mezőbe, írja be a **AirWatch**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-airwatch-tutorial/tutorial_airwatch_search.png)
 
-5. Az eredmények panelen válassza ki a **AirWatch**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. A hello eredmények panelen válassza ki a **AirWatch**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-airwatch-tutorial/tutorial_airwatch_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban konfigurálása, és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon." nevű tesztfelhasználó alapján AirWatch
 
-Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó AirWatch a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a AirWatch közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó AirWatch tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello AirWatch közötti kapcsolat kapcsolatot kell létrehozni toobe.
 
-Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** AirWatch a.
+Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** a AirWatch.
 
-Az Azure AD egyszeri bejelentkezést a AirWatch tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés AirWatch-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[AirWatch tesztfelhasználó létrehozása](#creating-a-airwatch-test-user)**  - való Britta Simon valami AirWatch, amely csatolva van a felhasználó az Azure AD-ábrázolását.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[AirWatch tesztfelhasználó létrehozása](#creating-a-airwatch-test-user)**  -toohave egy megfelelője a Britta Simon a AirWatch, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az AirWatch alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az AirWatch alkalmazásban.
 
-**Konfigurálása az Azure AD az egyszeri bejelentkezés AirWatch, hajtsa végre az alábbi lépéseket:**
+**az Azure AD tooconfigure egyszeri bejelentkezést a AirWatch, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure portálon a a **AirWatch** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **AirWatch** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-airwatch-tutorial/tutorial_airwatch_samlbase.png)
 
-3. Az a **AirWatch tartomány és az URL-címek** területen tegye a következőket:
+3. A hello **AirWatch tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-airwatch-tutorial/tutorial_airwatch_url.png)
 
-    a. Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<subdomain>.awmdm.com/AirWatch/Login?gid=companycode`
+    a. A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<subdomain>.awmdm.com/AirWatch/Login?gid=companycode`
 
-    b. Az a **azonosító** szövegmező, írja be az értéket, mint`AirWatch`
+    b. A hello **azonosító** szövegmezőhöz hello érték típusa`AirWatch`
 
     > [!NOTE] 
-    > Ez az érték nem a valós. Frissítse ezt az értéket a tényleges bejelentkezési URL-címet. Ügyfél [AirWatch ügyfél-támogatási csoport](http://www.air-watch.com/company/contact-us/) lekérni ezt az értéket. 
+    > Ez az érték nincs valós hello. Ez az érték frissítése hello tényleges bejelentkezési URL-CÍMÉT. Ügyfél [AirWatch ügyfél-támogatási csoport](http://www.air-watch.com/company/contact-us/) tooget ezt az értéket. 
  
-4. Az a **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse az XML-fájlt a számítógépen.
+4. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello XML-fájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-airwatch-tutorial/tutorial_airwatch_certificate.png) 
 
-5. A a **AirWatch konfigurációs** kattintson **konfigurálása AirWatch** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
+5. A hello **AirWatch konfigurációs** kattintson **konfigurálása AirWatch** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-airwatch-tutorial/tutorial_airwatch_configure.png) 
 
@@ -130,25 +130,25 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-airwatch-tutorial/tutorial_general_400.png)
 <CS>
-7. Egy másik webes böngészőablakban jelentkezzen be a AirWatch vállalati webhely rendszergazdaként.
+7. Egy másik webes böngészőablakban jelentkezzen tooyour AirWatch vállalati hely rendszergazdaként.
 
-8. A bal oldali navigációs ablaktáblán kattintson **fiókok**, és kattintson a **rendszergazdák**.
+8. Hello bal oldali navigációs ablaktábláján kattintson **fiókok**, és kattintson a **rendszergazdák**.
    
    ![A rendszergazdák](./media/active-directory-saas-airwatch-tutorial/ic791920.png "rendszergazdák")
 
-9. Bontsa ki a **beállítások** menüben, majd kattintson **címtárszolgáltatások**.
+9. Bontsa ki a hello **beállítások** menüben, majd kattintson **címtárszolgáltatások**.
    
    ![Beállítások](./media/active-directory-saas-airwatch-tutorial/ic791921.png "beállítások")
 
-10. Kattintson a **felhasználói** lap a **Base DN** szövegmező, írja be a tartomány nevét, és kattintson **mentése**.
+10. Hello kattintson **felhasználói** lap hello **Base DN** szövegmező, írja be a tartomány nevét, és kattintson **mentése**.
    
    ![Felhasználói](./media/active-directory-saas-airwatch-tutorial/ic791922.png "felhasználó")
 
-11. Kattintson a **Server** fülre.
+11. Kattintson a hello **Server** fülre.
    
    ![Kiszolgáló](./media/active-directory-saas-airwatch-tutorial/ic791923.png "kiszolgáló")
 
-12. Hajtsa végre a következő lépéseket:
+12. Hajtsa végre az alábbi lépésekkel hello:
     
     ![Töltse fel](./media/active-directory-saas-airwatch-tutorial/ic791924.png "feltöltése")   
     
@@ -156,117 +156,117 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     b. Válassza ki **SAML-alapú hitelesítéshez használandó**.
 
-    c. A letöltött tanúsítvány feltöltése, kattintson a **feltöltése**.
+    c. tooupload hello a letöltött tanúsítvány, kattintson a **feltöltése**.
 
-13. Az a **kérelem** területen tegye a következőket:
+13. A hello **kérelem** csoportjában hajtsa végre az alábbi lépésekkel hello:
     
     ![Kérelem](./media/active-directory-saas-airwatch-tutorial/ic791925.png "kérése")  
 
     a. Mint **kötési típus kérése**, jelölje be **POST**.
 
-    b. Az Azure portálon a a **konfigurálhatja az egyszeri bejelentkezés Airwatch** párbeszédpanel lap, a Másolás a **SAML-alapú egyszeri bejelentkezési URL-címe** értékét, és illessze be azt a **Identity Provider egyszeri bejelentkezés URL-cím** szövegmező.
+    b. Az Azure portál, a hello hello **konfigurálhatja az egyszeri bejelentkezés Airwatch** párbeszédpanel lap, a Másolás hello **SAML-alapú egyszeri bejelentkezési URL-címe** értékét, és illessze be hello **identitásszolgáltató Az egyszeri bejelentkezés az URL-cím** szövegmező.
 
     c. Mint **NameID formátum**, jelölje be **E-mail cím**.
 
     d. Kattintson a **Save** (Mentés) gombra.
 
-14. Kattintson a **felhasználói** újra fülre.
+14. Kattintson a hello **felhasználói** újra fülre.
     
     ![Felhasználói](./media/active-directory-saas-airwatch-tutorial/ic791926.png "felhasználó")
 
-15. Az a **attribútum** területen tegye a következőket:
+15. A hello **attribútum** csoportjában hajtsa végre az alábbi lépésekkel hello:
     
     ![Attribútum](./media/active-directory-saas-airwatch-tutorial/ic791927.png "attribútum")
 
-    a. Az a **objektumazonosító** szövegmezőhöz típus **http://schemas.microsoft.com/identity/claims/objectidentifier**.
+    a. A hello **objektumazonosító** szövegmezőhöz típus **http://schemas.microsoft.com/identity/claims/objectidentifier**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típus **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**.
+    b. A hello **felhasználónév** szövegmezőhöz típus **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**.
 
-    c. Az a **megjelenített név** szövegmezőhöz típus **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**.
+    c. A hello **megjelenített név** szövegmezőhöz típus **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**.
 
-    d. Az a **Utónév** szövegmezőhöz típus **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**.
+    d. A hello **Utónév** szövegmezőhöz típus **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**.
 
-    e. Az a **Vezetéknév** szövegmezőhöz típus **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname**.
+    e. A hello **Vezetéknév** szövegmezőhöz típus **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname**.
 
-    f. Az a **E-mail** szövegmezőhöz típus **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**.
+    f. A hello **E-mail** szövegmezőhöz típus **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**.
 
     g. Kattintson a **Save** (Mentés) gombra.
 
 <CE>
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-airwatch-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-airwatch-tutorial/create_aaduser_02.png) 
 
-3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
+3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-airwatch-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-airwatch-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a Britta Simon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a Britta Simon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-airwatch-test-user"></a>AirWatch tesztfelhasználó létrehozása
 
-Ahhoz, hogy az Azure AD-felhasználók AirWatch bejelentkezni, akkor ki kell építenie a AirWatch.
+az Azure AD tooenable felhasználók toolog tooAirWatch, az ezeket ki kell építenie a tooAirWatch.
 
 * AirWatch, ha a kézi tevékenység kiépítés.
 
-**Felhasználói fiók létrehozásához hajtsa végre az alábbi lépéseket:**
+**tooprovision egy felhasználói fiókot, hajtsa végre a következő lépéseket hello:**
 
-1. Jelentkezzen be a **AirWatch** vállalati hely rendszergazdaként.
-2. A bal oldali navigációs ablaktábláján kattintson **fiókok**, és kattintson a **felhasználók**.
+1. Jelentkezzen be tooyour **AirWatch** vállalati hely rendszergazdaként.
+2. A bal oldalon hello hello navigációs ablaktábláján kattintson **fiókok**, és kattintson a **felhasználók**.
    
    ![Felhasználók](./media/active-directory-saas-airwatch-tutorial/ic791929.png "felhasználók")
-3. Az a **felhasználók** menüben kattintson a **listanézet**, és kattintson a **Hozzáadás \> felhasználó hozzáadása**.
+3. A hello **felhasználók** menüben kattintson a **listanézet**, és kattintson a **Hozzáadás \> felhasználó hozzáadása**.
    
    ![Felhasználó hozzáadása](./media/active-directory-saas-airwatch-tutorial/ic791930.png "felhasználó hozzáadása")
-4. Az a **hozzáadása / szerkesztése felhasználói** párbeszédpanelen hajtsa végre a következő lépéseket:
+4. A hello **hozzáadása / szerkesztése felhasználói** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
 
    ![Felhasználó hozzáadása](./media/active-directory-saas-airwatch-tutorial/ic791931.png "felhasználó hozzáadása")   
-   1. Típus a **felhasználónév**, **jelszó**, **jelszó megerősítése**, **Utónév**, **keresztneve**,  **E-mail cím** egy érvényes Azure Active Directory-fiók szeretné azokat a kapcsolódó szövegmezők kiépítéséhez.
+   1. Típus hello **felhasználónév**, **jelszó**, **jelszó megerősítése**, **Utónév**, **Vezetéknév**,  **E-mail cím** egy érvényes Azure Active Directory-fiókot a kívánt tooprovision hello kapcsolódó szövegmezőből.
    2. Kattintson a **Save** (Mentés) gombra.
 
 >[!NOTE]
->Bármely más AirWatch felhasználói fiók létrehozása eszközök vagy rendelkezés AAD felhasználói fiókokhoz AirWatch által nyújtott API-k.
+>Bármely más AirWatch felhasználói fiók létrehozása eszközök vagy AirWatch tooprovision által nyújtott API-k AAD felhasználói fiókokat.
 >  
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés AirWatch Azure egyszeri bejelentkezéshez használandó.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooAirWatch megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon hozzárendelése AirWatch, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooAirWatch, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **AirWatch**.
+2. Hello alkalmazások listában válassza ki a **AirWatch**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-airwatch-tutorial/tutorial_airwatch_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -274,7 +274,7 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -282,14 +282,14 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-Ha azt szeretné, az egyszeri bejelentkezés beállításainak ellenőrzéséhez nyissa meg a hozzáférési Panel. A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
+Ha tootest az egyszeri bejelentkezés a beállításokat, nyissa meg a hozzáférési Panel hello. További információ a hozzáférési Panel hello: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
 
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

@@ -1,6 +1,6 @@
 ---
 title: "Áttekintés: Azure virtuális gépek védelme Recovery Services-tárolóval | Microsoft Docs"
-description: "Megvédheti Azure virtuális gépeit egy Recovery Services-tárolóval. Adatai védelmére a Resource Manager-alapú és a klasszikus üzemi modellen alapuló virtuális gépek, a Premium Storage-alapú virtuális gépek, a titkosított virtuális gépek és a Managed Disksen található virtuális gépek biztonsági másolatait használhatja. Létrehozhat és regisztrálhat egy Recovery Services-tárolót. Regisztrálhat virtuális gépeket, létrehozhat egy házirendet, és megvédheti virtuális gépeit az Azure-ban."
+description: "Megvédheti Azure virtuális gépeit egy Recovery Services-tárolóval. Használja az adatok az erőforrás-kezelő telepített virtuális gépek, a klasszikus telepített virtuális gépek és a prémium szintű tároló virtuális gépek, virtuális gépek titkosítva felügyelt lemezek tooprotect futó virtuális gépek biztonsági mentése. Létrehozhat és regisztrálhat egy Recovery Services-tárolót. Regisztrálhat virtuális gépeket, létrehozhat egy házirendet, és megvédheti virtuális gépeit az Azure-ban."
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -16,20 +16,20 @@ ms.topic: hero-article
 ms.date: 08/15/2017
 ms.author: markgal;jimpark
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 696f8025d0d7a65f59be650fac0a6e0e68f1a2ca
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 70e4700abb76e16e32e1ead06ce1dbe277e1f0e5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="back-up-azure-virtual-machines-to-recovery-services-vaults"></a>Azure-beli virtuális gépek biztonsági mentése Recovery Services-tárolókba
+# <a name="back-up-azure-virtual-machines-toorecovery-services-vaults"></a>Készítsen biztonsági másolatot az Azure virtuális gépek tooRecovery szolgáltatások tárolók
 > [!div class="op_single_selector"]
 > * [Virtuális gépek védelme Recovery Services-tárolóval](backup-azure-vms-first-look-arm.md)
 > * [Virtuális gépek védelme Backup-tárolóval](backup-azure-vms-first-look.md)
 >
 >
 
-Ez az oktatóprogram végigkíséri egy Recovery Services-tároló létrehozásának és egy Azure virtuális gép (VM) biztonsági mentésének lépésein. A Recovery Services-tárolók megvédik:
+Ez az oktatóanyag végigvezeti a recovery services-tároló létrehozása és biztonsági mentése egy Azure virtuális gép (VM) hello lépései. A Recovery Services-tárolók megvédik:
 
 * Az Azure Resource Manager által telepített virtuális gépeket
 * A klasszikus virtuális gépeket
@@ -39,308 +39,308 @@ Ez az oktatóprogram végigkíséri egy Recovery Services-tároló létrehozás�
 * Az Azure Disk Encryption használatával titkosított virtuális gépeket, amelyek rendelkeznek BEK-kel és KEK-kel
 * Windows rendszerű virtuális gépek alkalmazáskonzisztens biztonsági mentése VSS és Linux rendszerű virtuális gépekkel egyéni, pillanatkép előtti és utáni szkriptekkel
 
-A Prémium szintű tárolós virtuális gépek védelméről további információt a következő cikkben talál: [Prémium szintű tárolós virtuális gépek biztonsági mentése és visszaállítása](backup-introduction-to-azure-backup.md#using-premium-storage-vms-with-azure-backup). További információ a felügyelt lemezeken található virtuális gépek támogatásáról: [ Virtuális gépek biztonsági mentése és visszaállítása felügyelt lemezeken](backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup). A Linux rendszerű virtuális gépek biztonsági mentéseinek szkript előtti és utáni keretrendszerével kapcsolatos további információért lásd: [Linux rendszerű virtuális gépek alkalmazáskonzisztens biztonsági mentése szkript előtti és utáni keretrendszerrel] (https://docs.microsoft.com/azure/backup/backup-azure-linux-app-consistent).
+Prémium szintű storage virtuális gépek védelméről további információkért lásd: hello cikk [biztonsági mentése és visszaállítása a prémium szintű Storage virtuális gépek](backup-introduction-to-azure-backup.md#using-premium-storage-vms-with-azure-backup). További információ a felügyelt lemezeken található virtuális gépek támogatásáról: [ Virtuális gépek biztonsági mentése és visszaállítása felügyelt lemezeken](backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup). A Linux rendszerű virtuális gépek biztonsági mentéseinek szkript előtti és utáni keretrendszerével kapcsolatos további információért lásd: [Linux rendszerű virtuális gépek alkalmazáskonzisztens biztonsági mentése szkript előtti és utáni keretrendszerrel] (https://docs.microsoft.com/azure/backup/backup-azure-linux-app-consistent).
 
-[Ide](backup-azure-vms-prepare.md#limitations-when-backing-up-and-restoring-a-vm) kattintva további információt talál arról, hogy miről készülhet biztonsági másolat, és miről nem
+Tekintse meg a toofind több mi is meg biztonsági másolat, és mit nem, [Itt](backup-azure-vms-prepare.md#limitations-when-backing-up-and-restoring-a-vm)
 
 > [!NOTE]
-> Ez az oktatóprogram feltételezi, hogy Ön már rendelkezik egy virtuális géppel az Azure-előfizetésében, és hogy lépéseket tett azért, hogy a biztonsági mentési szolgáltatás hozzáférjen a virtuális géphez.
+> Ez az oktatóanyag azt feltételezi, hogy már rendelkezik egy virtuális Gépet az Azure-előfizetéshez, és, hogy elvégezte-e az intézkedések tooallow hello biztonsági mentési szolgáltatás tooaccess hello virtuális gép.
 >
 >
 
 [!INCLUDE [learn-about-Azure-Backup-deployment-models](../../includes/backup-deployment-models.md)]
 
-A védeni kívánt virtuális gépek számától függően különböző kiindulási pontokból kezdhet. Ha több virtuális gépről szeretne biztonsági mentést készíteni egy művelettel, lépjen a Recovery Services-tárolóhoz, és [indítsa el a biztonsági mentési feladatot a tároló irányítópultjáról](backup-azure-vms-first-look-arm.md#configure-the-backup-job-from-the-recovery-services-vault). Ha egyetlen virtuális gépről szeretne biztonsági mentést készíteni, a biztonsági mentési feladatot a Virtuális gép kezelése panelről indíthatja el.
+Attól függően, hogy a virtuális gépek száma hello meg tooprotect, elkezdheti a különböző kezdőpontja. Ha szeretne egy művelettel több virtuális gépek tooback, nyissa meg toohello Recovery Services-tároló és [biztonsági mentési feladat indítása hello hello tároló irányítópultról](backup-azure-vms-first-look-arm.md#configure-the-backup-job-from-the-recovery-services-vault). Ha azt szeretné, hogy egyetlen virtuális gépek tooback, hello biztonsági mentési feladat a Virtuálisgép-felügyelet panel is kezdeményezhető.
 
-## <a name="configure-the-backup-job-from-the-vm-management-blade"></a>A biztonsági mentési feladat konfigurálása a virtuális gép kezelése panelről
+## <a name="configure-hello-backup-job-from-hello-vm-management-blade"></a>Hello biztonsági mentési feladat a Virtuálisgép-felügyelet panel hello konfigurálása
 
-A következő lépések végrehajtásával konfigurálhatja a biztonsági mentési feladatot az Azure Portal Virtuális gép kezelése paneljéről. Ezek a lépések nem vonatkoznak a klasszikus portálon található virtuális gépekre.
+Hello lépéseket tooconfigure hello biztonsági mentési feladat követően – hello virtuális gép felügyelet panel az Azure-portálon hello használata. Ezeket a lépéseket a klasszikus portálon hello toohello virtuális gépek nem vonatkoznak.
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com/).
-2. A központi menüben kattintson a **További szolgáltatások** elemre, majd a Szűrés párbeszédpanelen írja be a következőt: **Virtuális gépek**. A gépelés során a rendszer szűri az erőforrások listáját. Amikor meglátja a Virtuális gépet, kattintson rá.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
+2. Hello központ menüben kattintson a **több szolgáltatások** hello szűrő párbeszédpanelen írja be a **virtuális gépek**. Megadásakor hello erőforrások szűrők listája. Amikor meglátja a Virtuális gépet, kattintson rá.
 
-  ![A központi menüben kattintson a További szolgáltatások elemre a párbeszédpanel megnyitásához, és írja be a következőt: Virtuális gépek.](./media/backup-azure-vms-first-look-arm/open-vm-from-hub.png)
+  ![A központ menüben kattintson a további szolgáltatások tooopen párbeszédpanelen, és írja be a virtuális gépek](./media/backup-azure-vms-first-look-arm/open-vm-from-hub.png)
 
-  Megjelenik az előfizetésben található virtuális gépek listája.
+  virtuális gépek (VM) hello előfizetésben hello listája jelenik meg.
 
-  ![Megjelenik az előfizetésben található virtuális gépek listája.](./media/backup-azure-vms-first-look-arm/list-of-vms.png)
+  ![hello hello előfizetésben található virtuális gépek listája jelenik meg.](./media/backup-azure-vms-first-look-arm/list-of-vms.png)
 
-3. Válasszon egy virtuális gépet a listából, amelyről biztonsági mentést kíván készíteni.
+3. Hello listájából válassza ki a virtuális gép tooback fel.
 
-  ![Megjelenik az előfizetésben található virtuális gépek listája.](./media/backup-azure-vms-first-look-arm/list-of-vms-selected.png)
+  ![hello hello előfizetésben található virtuális gépek listája jelenik meg.](./media/backup-azure-vms-first-look-arm/list-of-vms-selected.png)
 
-  Amikor kiválasztja a virtuális gépet, a virtuális gépek listája a bal oldalra kerül, és megnyílik a Virtuális gép kezelése panel, illetve a virtuális gép irányítópultja. </br>
+  Hello méretű kiválasztásakor virtuális gépek listájának hello átvált toohello balra, és hello virtuálisgép-felügyelet panel és hello virtuális gép irányítópult, nyissa meg. </br>
  ![Virtuális gép kezelése panel](./media/backup-azure-vms-first-look-arm/vm-management-blade.png)
 
-4. A Virtuális gép kezelése panel **Beállítások** szakaszában kattintson a **Backup** elemre. </br>
+4. Hello VM felügyeleti panelen, a hello **beállítások** kattintson **biztonsági mentés**. </br>
 
   ![Backup beállítás a Virtuális gép kezelése panelen](./media/backup-azure-vms-first-look-arm/backup-option-vm-management-blade.png)
 
-  Megnyílik a Biztonsági mentés engedélyezése panel.
+  hello engedélyezése biztonsági mentési panel nyílik meg.
 
   ![Backup beállítás a Virtuális gép kezelése panelen](./media/backup-azure-vms-first-look-arm/vm-blade-enable-backup.png)
 
-5. A Recovery Services-tároló kiválasztásához kattintson a **Meglévő kiválasztása** elemre, és válassza ki a tárolót a legördülő menüből.
+5. Hello Recovery Services-tároló, kattintson a **válasszon meglévő** és hello legördülő listából válassza ki a hello tárolóban.
 
   ![Biztonsági mentés engedélyezése varázsló](./media/backup-azure-vms-first-look-arm/vm-blade-enable-backup.png)
 
-  Ha nincsenek Recovery Services-tárolók, vagy ha új tárolót szeretne használni, kattintson az **Új létrehozása** elemre, és adja meg az új tároló nevét. Az új tároló létrejön ugyanabban az Erőforráscsoportban és ugyanazon a helyen, ahol a virtuális gép is van. Ha más értékekkel szeretne Recovery Services-tárolót létrehozni, tekintse meg a [Recovery Services-tároló létrehozását](backup-azure-vms-first-look-arm.md#create-a-recovery-services-vault-for-a-vm) bemutató szakaszt.
+  Ha nincs Recovery Services-tárolók, vagy ha azt szeretné, hogy egy új tároló toouse, kattintson a **hozzon létre új** , és adja meg az új tároló hello hello nevét. Egy új tároló létrehozása hello ugyanazt az erőforráscsoportot és hello virtuális gép ugyanazon a helyen. Ha azt szeretné, hogy a Recovery Services-tároló, eltérő értékű toocreate, című hello hogyan túl[a recovery services-tároló létrehozása](backup-azure-vms-first-look-arm.md#create-a-recovery-services-vault-for-a-vm).
 
-6. A Biztonsági mentési házirend részleteinek megtekintéséhez kattintson a **Biztonsági mentési házirend** elemre.
+6. a biztonsági mentési házirend, hello tooview hello részletekért kattintson **biztonsági mentési házirend**.
 
-  Megnyílik a **Biztonsági mentési házirend** panel, és megjeleníti a kiválasztott házirend részleteit. Ha egyéb házirendek is léteznek, használja a legördülő menüt egy másik biztonsági mentési házirend kiválasztásához. Ha házirendet hozna létre, válassza az **Új létrehozása** elemet a legördülő menüből. A biztonsági mentési házirendek meghatározását segítő utasításokat itt találja: [Biztonsági mentési házirend meghatározása](backup-azure-vms-first-look-arm.md#defining-a-backup-policy). A biztonsági mentési házirend módosításainak mentéséhez és a Biztonsági mentés engedélyezése panelre való visszatéréshez kattintson az **OK** gombra.
+  Hello **biztonsági mentési házirend** panel nyílik meg, és kijelölt hello házirend hello részleteit. Ha vannak más házirendek, használja a hello legördülő menü toochoose egy másik biztonsági mentési házirend. Ha azt szeretné, hogy toocreate egy házirendet, válassza ki a **hozzon létre új** hello legördülő menüből. A biztonsági mentési házirendek meghatározását segítő utasításokat itt találja: [Biztonsági mentési házirend meghatározása](backup-azure-vms-first-look-arm.md#defining-a-backup-policy). toosave hello módosítások toohello a biztonsági mentési házirend, és visszatérési toohello engedélyezése biztonsági mentési paneljén kattintson **OK**.
 
   ![Biztonsági mentési házirend kiválasztása](./media/backup-azure-vms-first-look-arm/setting-rs-backup-policy-new-2.png)
 
-7. A Biztonsági mentés engedélyezése panelen kattintson a **Biztonsági mentés engedélyezése** elemre a házirend telepítéséhez. A házirend telepítésével társítja azt a tárolóval és a virtuális gépekkel.
+7. Hello engedélyezése biztonsági mentési paneljén kattintson **biztonsági mentés engedélyezése** toodeploy hello házirend. Hello szabályzat telepítése társítja azt hello tárolóban és hello virtuális gépek.
 
   ![Biztonsági mentés engedélyezése gomb](./media/backup-azure-vms-first-look-arm/vm-management-blade-enable-backup-button.png)
 
-8. Nyomon követheti a konfigurációs folyamatot a portálon megjelenő értesítések segítségével. Az alábbi példában az látható, hogy a Telepítés megkezdődött.
+8. Előrehaladásának hello konfigurációs keresztül hello értesítések, amelyek hello portálon jelennek meg. hello a következő példa bemutatja, hogy elindult-e a központi telepítés.
 
   ![Biztonsági mentési értesítések engedélyezése](./media/backup-azure-vms-first-look-arm/vm-management-blade-enable-backup-notification.png)
 
-9. A konfigurációs folyamat befejezése után a Virtuális gép kezelése panelen kattintson a **Biztonsági mentés** elemre a Biztonsági mentési elemek panel megnyitásához és a részletek megtekintéséhez.
+9. A Virtuálisgép-felügyelet panel hello, hello konfigurációs folyamat befejezése után kattintson **biztonsági mentés** tooopen hello biztonsági másolati elem panelt, és tekintse meg a hello részleteit.
 
   ![Virtuális gép biztonsági mentési elemei nézet](./media/backup-azure-vms-first-look-arm/backup-item-view.png)
 
-  A kezdeti biztonsági mentés befejezéséig az **Utolsó biztonsági mentés állapota** **Figyelmeztetés (kezdeti biztonsági mentés folyamatban)** állapotú. A következő ütemezett biztonsági mentési feladat időpontjának megtekintéséhez kattintson a házirend nevére a **Biztonsági mentési házirend** területen. Megnyílik a Biztonsági mentési házirend panel, és megjeleníti a ütemezett biztonsági mentés időpontját.
+  Hello kezdeti biztonsági mentés befejeződött, amíg **utolsó biztonsági mentés állapotának** jeleníti meg, mint a **figyelmeztetés (függőben lévő kezdeti biztonsági mentési)**. Amikor hello a biztonsági mentési feladat következő ütemezett toosee következik be, a **biztonsági mentési házirend** kattintson hello hello házirend nevét. hello biztonsági mentési házirend panel nyílik meg, és hello ütemezett biztonsági mentés hello időt jeleníti meg.
 
-10. Biztonsági mentési feladat futtatásához és az első helyreállítási pont létrehozásához kattintson a **Biztonsági mentés** elemre a Backup-tároló panelen.
+10. toorun egy biztonsági mentési feladat és hello első helyreállítási pont létrehozása, a biztonsági mentés hello tároló panelen kattintson **biztonsági mentés most**.
 
-  ![a kezdeti biztonsági mentés futtatásához kattintson a Biztonsági mentés elemre](./media/backup-azure-vms-first-look-arm/backup-now.png)
+  ![a biztonsági mentés most toorun hello kezdeti biztonsági mentés gombra](./media/backup-azure-vms-first-look-arm/backup-now.png)
 
-  Megnyílik a Biztonsági mentés panel.
+  hello biztonsági mentés most panel nyílik meg.
 
-  ![a Biztonsági mentés panel képe](./media/backup-azure-vms-first-look-arm/backup-now-blade-short.png)
+  ![hello biztonsági mentés most panelen látható](./media/backup-azure-vms-first-look-arm/backup-now-blade-short.png)
 
-11. A Biztonsági mentés panelen kattintson a naptár ikonra, használja a naptárvezérlőt annak kiválasztására, hogy meddig kívánja megőrizni a helyreállítási pontot, majd kattintson a **Biztonsági mentés** elemre.
+11. Hello biztonsági mentés most paneljén kattintson hello naptár ikonra, használja a hello Naptár vezérlőelem tooselect hello utolsó napja a helyreállítási pont őrzi meg, és kattintson a **biztonsági mentés**.
 
-  ![adja meg az utolsó napot, ameddig Biztonsági mentés helyreállítási pontját meg kívánja őrizni](./media/backup-azure-vms-first-look-arm/backup-now-blade-calendar.png)
+  ![hello utolsó nap hello biztonsági mentés most őrzi meg a helyreállítási pont beállítása](./media/backup-azure-vms-first-look-arm/backup-now-blade-calendar.png)
 
-  Az üzembehelyezési értesítések értesítik, hogy a biztonsági mentési feladat elindult, és hogy a feladat állapotát a Biztonsági mentési feladatok oldalon figyelheti.
+  Központi telepítés értesítések lehetővé teszik, hogy hello biztonsági mentési feladat lett elindítva, és hogy kísérheti hello hello feladat hello biztonsági mentési feladatok lapján.
 
-## <a name="configure-the-backup-job-from-the-recovery-services-vault"></a>A biztonsági mentési feladat konfigurálása a Recovery Services-tárolóból
-A biztonsági mentési feladat konfigurálásához végezze el a következő lépéseket.  
+## <a name="configure-hello-backup-job-from-hello-recovery-services-vault"></a>Hello biztonsági mentési feladata a Recovery Services-tároló hello konfigurálása
+tooconfigure hello biztonsági mentési feladat, befejezte a következő lépéseket hello.  
 
 1. Hozzon létre egy Recovery Services-tárolót egy virtuális géphez.
-2. Az Azure Portal használatával válasszon ki egy Forgatókönyvet, állítson be egy Biztonsági mentési házirendet, és azonosítsa a védelemmel ellátni kívánt elemeket.
-3. Futtatja a kezdeti biztonsági mentést.
+2. Az Azure portál tooselect esetén használjon hello beállított biztonsági mentési házirend és az elemek tooprotect azonosítja.
+3. Hello kezdeti biztonsági mentés futtatására.
 
 ## <a name="create-a-recovery-services-vault-for-a-vm"></a>Létrehoz egy Recovery Services-tárolót egy virtuális géphez.
-A Recovery Services-tároló egy olyan entitás, amely eltárolja az idők során létrehozott biztonsági mentéseket és helyreállítási pontokat. A Recovery Services-tároló tartalmazza a védelem alatt álló virtuális gépeken alkalmazott biztonsági mentési házirendet is.
+Recovery Services-tároló olyan entitás, amely hello biztonsági mentések és adott idő alatt létrehozott helyreállítási pontokat tárolja. hello Recovery Services-tároló is tartalmaz hello alkalmazza a biztonsági mentési házirend toohello védett virtuális gépeket.
 
 > [!NOTE]
-> A virtuális gépek biztonsági mentése egy helyi folyamat. Nem lehet biztonsági mentést készíteni egy adott helyen található virtuális gépről egy másik helyen található Recovery Services-tárolóra. Így aztán minden olyan Azure-helyen, ahol biztonsági mentésre szoruló virtuális gépek vannak, legalább egy Recovery Services-tárolónak kell lennie.
+> A virtuális gépek biztonsági mentése egy helyi folyamat. Nem készíthet biztonsági másolatot virtuális gépeket az egyik helyen tooa Recovery Services-tárolónak egy másik helyen. Igen minden Azure-beli hely, amely rendelkezik a virtuális gépek toobe biztonsági másolat, legalább egy Recovery Services-tároló léteznie kell az adott helyre.
 >
 >
 
-Egy Recovery Services-tároló létrehozásához:
+Recovery Services-tároló toocreate:
 
-1. Ha még nem tette meg, jelentkezzen be az [Azure Portalra](https://portal.azure.com/) Azure-előfizetésével.
-2. A központi menüben kattintson a **További szolgáltatások** elemre, majd a Szűrés párbeszédpanelen írja be a következőt: **Recovery Services**. A gépelés során a rendszer szűri az erőforrások listáját. Amikor meglátja a Recovery Services-tárolót a listában, kattintson rá.
+1. Ha még nem tette meg, jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/) használata az Azure-előfizetéshez.
+2. Hello központ menüben kattintson a **további szolgáltatások** hello szűrő párbeszédpanelen írja be a **Recovery Services**. Megadásakor hello erőforrások szűrők listája. Amikor megjelenik a Recovery Services-tárolók hello listában, kattintson rá.
 
     ![Recovery Services-tároló létrehozása – 1. lépés](./media/backup-try-azure-backup-in-10-mins/open-rs-vault-list.png) <br/>
 
-    Ha az előfizetés Recovery Services-tárolókat tartalmaz, megjelennek a tárolók.
+    Ha nincsenek Recovery Services-tárolók hello az előfizetést, hello tárolók vannak felsorolva.
 
     ![Recovery Services-tároló létrehozása – 2. lépés](./media/backup-azure-vms-first-look-arm/list-of-rs-vault.png)
-3. A **Recovery Services-tárolók** menüben kattintson a **Hozzáadás** elemre.
+3. A hello **Recovery Services-tárolók** menüben kattintson a **Hozzáadás**.
 
     ![Recovery Services-tároló létrehozása – 2. lépés](./media/backup-try-azure-backup-in-10-mins/rs-vault-menu.png)
 
-    Megnyílik a Recovery Services-tároló panelje, a rendszer pedig egy **Név**, **Előfizetés**, **Erőforráscsoport** és **Hely** megadását kéri.
+    hello Recovery Services tároló panel nyílik tooprovide kéri egy **neve**, **előfizetés**, **erőforráscsoport**, és **hely**.
 
     ![Recovery Services-tároló létrehozása – 3. lépés](./media/backup-try-azure-backup-in-10-mins/rs-vault-step-3.png)
 
-4. A **Név** mezőben adjon meg egy egyszerű nevet a tároló azonosításához. A névnek egyedinek kell lennie az Azure-előfizetéshez. Írjon be egy 2–50 karakter hosszúságú nevet. Ennek egy betűvel kell kezdődnie, és csak betűket, számokat és kötőjeleket tartalmazhat.
+4. A **neve**, adjon meg egy rövid nevet tooidentify hello tárolóban. hello nevének kell toobe egyedi hello Azure-előfizetés esetében. Írjon be egy 2–50 karakter hosszúságú nevet. Ennek egy betűvel kell kezdődnie, és csak betűket, számokat és kötőjeleket tartalmazhat.
 
-5. Az **Előfizetés** szakaszban, az Azure-előfizetés kiválasztásához használja a legördülő menüt. Ha csak egy előfizetést használ, az az előfizetés jelenik meg, és továbbléphet a következő lépésre. Ha nem biztos benne, hogy melyik előfizetést szeretné használni, használja az alapértelmezett (vagy javasolt) előfizetést. Csak akkor lesz több választási lehetőség, ha a szervezetéhez tartozó fiók több Azure-előfizetéssel van összekötve.
+5. A hello **előfizetés** területen hello legördülő menü toochoose hello Azure-előfizetés használatára. Ha csak egyetlen előfizetéssel, előfizetés megjelenő használja, és tovább toohello a lépést kihagyhatja. Ha nem biztos abban, hogy melyik előfizetéssel toouse, használhatja az alapértelmezettet hello (vagy javasolt) előfizetés. Csak akkor lesz több választási lehetőség, ha a szervezetéhez tartozó fiók több Azure-előfizetéssel van összekötve.
 
-6. Az **Erőforráscsoport** szakaszban:
+6. A hello **erőforráscsoport** szakasz:
 
-    * válassza az **Új létrehozása** lehetőséget, ha erőforráscsoportot szeretne létrehozni.
+    * Válassza ki **hozzon létre új** Ha azt szeretné, hogy toocreate egy erőforráscsoportot.
     Vagy
-    * válassza a **Meglévő használata** lehetőséget, és kattintson a legördülő menüben az elérhető erőforráscsoportok listájának megtekintéséhez.
+    * Válassza ki **meglévő** kattintson hello legördülő menü toosee hello elérhető erőforráscsoportok listáját.
 
-  Átfogó információk az erőforráscsoportokkal kapcsolatban: [Az Azure Resource Manager áttekintése](../azure-resource-manager/resource-group-overview.md).
+  Az erőforráscsoportok, tanulmányozza hello [Azure Resource Manager áttekintése](../azure-resource-manager/resource-group-overview.md).
 
-7. Kattintson a **Hely** elemre a tárolóhoz tartozó földrajzi régió kiválasztásához. Ez a választás határozza meg a földrajzi régiót, ahová az adatok biztonsági másolata el lesz küldve.
+7. Kattintson a **hely** tooselect hello földrajzi régióban hello tároló. Ez a beállítás meghatározza, hogy hello földrajzi régiót, ahol a biztonsági mentési adatokat küldi el.
 
   > [!IMPORTANT]
-  > Ha nem biztos a virtuális gép helyében, lépjen ki a tároló-létrehozási párbeszédpanelből, és lépjen a virtuális gépek listájához a portálon. Ha több régióban rendelkezik virtuális gépekkel, minden régióban hozzon létre egy Recovery Services-tárolót. Hozza létre a tárolót az első helyen, majd lépjen a következő helyre. Az adatok biztonsági másolatának tárolásához használt tárfiókok megadása nem szükséges – a Recovery Services-tároló és az Azure Backup szolgáltatás automatikusan kezeli a tárolást.
+  > Ha biztos benne, hogy hello helyét, amelyben a virtuális gép található, hello tároló létrehozása párbeszédpanel bezárásához, és válassza a toohello hello portál virtuális gépek listáját. Ha több régióban rendelkezik virtuális gépekkel, minden régióban hozzon létre egy Recovery Services-tárolót. Mielőtt továbblép a következő helyre toohello hello első helyen hello tárolóban hozza létre. Nem kell toospecify hello tárfiókok használt toostore hello biztonsági mentési adatok – hello Recovery Services-tároló és a hello Azure Backup szolgáltatás automatikusan hello-tároló kezeléséhez.
   >
 
-8. Kattintson a Recovery Services-tároló panel alján a **Létrehozás** gombra.
+8. A Recovery Services-tároló panel hello hello alján kattintson **létrehozása**.
 
-    A Recovery Services-tároló létrehozása több percet is igénybe vehet. Figyelje az állapotértesítéseket a portál jobb felső területén. Miután a tároló létrejött, megjelenik a Recovery Services-tárolók listájában. Ha több perc után sem látja a tárolót, kattintson a **Frissítés** gombra.
+    Recovery Services-tároló létrehozása toobe hello több percet is igénybe vehet. Hello állapot értesítések hello felső jobb területen hello portál figyelése. A tároló létrehozása után hello Recovery Services-tárolók listája jelenik meg. Ha több perc után sem látja a tárolót, kattintson a **Frissítés** gombra.
 
     ![Kattintson a Frissítés gombra](./media/backup-try-azure-backup-in-10-mins/refresh-button.png)</br>
 
-    Ha látja a tárolót a Recovery Services-tárolók listájában, készen áll tárhely-redundancia beállítására.
+    A tároló a Recovery Services-tárolók hello listája jelenik meg, ha készen áll a tooset hello adattároló redundanciája, amely áll.
 
-Most, hogy létrehozta a tárolóját, megismerkedhet a tárreplikáció beállításának módjával.
+Most, hogy létrehozta a tárolót, megtudhatja, hogyan tooset hello tárolóreplikálást.
 
 ### <a name="set-storage-replication"></a>Tárreplikáció beállítása
-A tárreplikáció lehetősége lehetővé teszi, hogy georedundáns tárolás és helyileg redundáns tárolás között válasszon. Alapértelmezés szerint a tárolója georedundáns tárolással rendelkezik. Ha a Recovery Services-tároló az elsődleges biztonsági mentési tároló, hagyja a tárolóreplikációs beállítást georedundáns tároláson. Ha egy olcsóbb, rövidebb élettartamú megoldást szeretne, válassza a helyileg redundáns tárolást. A [georedundáns](../storage/common/storage-redundancy.md#geo-redundant-storage) és a [helyileg redundáns](../storage/common/storage-redundancy.md#locally-redundant-storage) tárolási lehetőségekről többet olvashat az [Azure tárreplikáció áttekintése](../storage/common/storage-redundancy.md) című cikkben.
+hello tárolási replikációs beállítás lehetővé teszi toochoose georedundáns tárolás és a helyileg redundáns tárolás között. Alapértelmezés szerint a tárolója georedundáns tárolással rendelkezik. Az elsődleges biztonsági mentés esetén a Recovery Services-tároló hello hagyja hello tárolási replikációs beállítás set toogeo redundáns tárolás. Ha egy olcsóbb, rövidebb élettartamú megoldást szeretne, válassza a helyileg redundáns tárolást. Tudjon meg többet az [georedundáns](../storage/common/storage-redundancy.md#geo-redundant-storage) és [helyileg redundáns](../storage/common/storage-redundancy.md#locally-redundant-storage) tárolásáról: hello [Azure Storage replikáció – áttekintés](../storage/common/storage-redundancy.md).
 
-A tárreplikációs beállítás szerkesztése:
+tooedit hello tárolási replikációs beállítását:
 
-1. A **Recovery Services-tárolók** panelen jelölje ki az új tárolót.
+1. A hello **Recovery Services-tárolók** panelen, jelölje be hello új tárolóba.
 
-  ![A Recovery Services-tárolók listájából válassza ki az új tárolót](./media/backup-try-azure-backup-in-10-mins/rs-vault-list.png)
+  ![Válassza ki az új tároló hello a hello Recovery Services-tároló](./media/backup-try-azure-backup-in-10-mins/rs-vault-list.png)
 
-  Ha kiválasztja a tárolót, megnyílik a Beállítások panel (*amelynek tetején a tároló neve látható*), valamint a tároló részleteit tartalmazó panel.
+  Hello tároló kiválasztásakor hello beállítások panel (*hello tároló neve tartalmaz hello felső*) és hello tároló Részletek panel megnyitása.
 
-  ![Az új tároló tárolási konfigurációjának beállítása](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration-2.png)
+  ![Hello új tároló tárolási konfiguráció megtekintése](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration-2.png)
 
-2. Használja a függőleges csúszkát az új tároló Beállítások paneljén a legörgetéshez a Kezelés szakaszhoz, és kattintson a **Biztonsági mentési infrastruktúra** lehetőségre.
-    Megnyílik a Biztonsági mentési infrastruktúra panel.
-3. A Biztonsági mentési infrastruktúra panelen kattintson a **Biztonsági mentés konfigurációja** elemre a **Biztonsági mentés konfigurációja** panel megnyitásához.
+2. Hello új tároló-beállítások panelen hello függőleges diák tooscroll le toohello kezelése szakasz használja, és kattintson **biztonsági infrastruktúra**.
+    hello biztonsági infrastruktúra panel nyílik meg.
+3. Hello biztonsági infrastruktúra paneljén kattintson **biztonsági mentési konfigurációhoz** tooopen hello **biztonsági mentési konfigurációhoz** panelen.
 
-    ![Az új tároló tárolási konfigurációjának beállítása](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration.png)
-4. Válassza ki a megfelelő tárolóreplikációs beállítást a tárolóhoz.
+    ![Új tároló hello tárolási konfiguráció beállítása](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration.png)
+4. Válassza ki a hello megfelelő tárolási replikációs beállítás a tároló számára.
 
     ![a tároló konfigurálásának lehetőségei](./media/backup-try-azure-backup-in-10-mins/choose-storage-configuration.png)
 
-    Alapértelmezés szerint a tárolója georedundáns tárolással rendelkezik. Ha az Azure-t használja az elsődleges biztonsági mentési tároló végpontjaként, folytassa a **georedundáns** beállítás használatát. Ha nem az Azure-t használja az elsődleges biztonsági mentési tároló végpontjaként, válassza a **Helyileg redundáns** lehetőséget, amellyel csökkentheti az Azure Storage-költségeit. A [georedundáns](../storage/common/storage-redundancy.md#geo-redundant-storage) és a [helyileg redundáns](../storage/common/storage-redundancy.md#locally-redundant-storage) tárolási lehetőségekről többet olvashat ebben a [Tárhely-redundancia áttekintésben](../storage/common/storage-redundancy.md).
+    Alapértelmezés szerint a tárolója georedundáns tárolással rendelkezik. Azure biztonságimásolat-tároláshoz-végpontként használatakor, továbbra is toouse **georedundáns**. Ha nem adja meg Azure biztonságimásolat-tároláshoz-végpontként, majd válasszon **helyileg redundáns**, amely csökkenti a hello Azure storage költségei. A [georedundáns](../storage/common/storage-redundancy.md#geo-redundant-storage) és a [helyileg redundáns](../storage/common/storage-redundancy.md#locally-redundant-storage) tárolási lehetőségekről többet olvashat ebben a [Tárhely-redundancia áttekintésben](../storage/common/storage-redundancy.md).
 
 
-## <a name="select-a-backup-goal-set-policy-and-define-items-to-protect"></a>Válassza ki a biztonsági mentés célját, állítsa be a házirendet, és határozza meg a megvédeni kívánt elemeket
-Mielőtt regisztrálna egy virtuális gépet a tárolóval, futtassa a felfedezési folyamatot, hogy meggyőződjön arról, hogy az előfizetéshez hozzáadott minden új virtuális gép azonosítva lett. A folyamat lekéri az Azure-ból az előfizetésben található virtuális gépek listáját, olyan kiegészítő információkkal, mint a felhőszolgáltatás neve és a régió. Az Azure portálon a forgatókönyv arra utal, amit bele fog tenni a Recovery Services-tárolóba. A házirend adja meg a helyreállítási pontok gyakoriságának és elhelyezési idejének a menetrendjét. A házirend emellett tartalmazza a helyreállítási pontok megőrzési tartományát.
+## <a name="select-a-backup-goal-set-policy-and-define-items-tooprotect"></a>Biztonsági mentési cél, házirend, és adja meg az elemek tooprotect
+Mielőtt regisztrálná a virtuális gép egy tárolóban, futtassa a hello felderítési folyamat tooensure, hogy minden új virtuális gépek toohello előfizetés hozzáadott azonosítja. hello folyamat lekérdezések Azure hello hello az előfizetést, valamint további információkat a virtuális gépek listája például a felhőalapú szolgáltatás- és hello régió hello. Hello Azure-portálon, a forgatókönyv tooput hello recovery services-tároló be fog toowhat hivatkozik. A házirend olyan hello milyen gyakran és mikor készít-e a helyreállítási pontok ütemezését. Házirend hello megőrzési időtartam hello helyreállítási pontok esetében is.
 
-1. Ha már meg van nyitva egy Recovery Services-tároló, folytassa a 2. lépéssel. Ha még nincs, a központi menüben kattintson a **További szolgáltatások** elemre, majd az erőforrások listájában írja be a **Recovery Services** szöveget, és kattintson a **Recovery Services-tárolók** elemre.
+1. Ha már van egy helyreállítási szolgáltatások nyissa meg a tároló, a folytatáshoz toostep 2. Ellenkező esetben hello központ menüben kattintson **további szolgáltatások** hello az erőforrások listájához, írja be a **Recovery Services** kattintson **Recovery Services-tárolók**.
 
     ![Recovery Services-tároló létrehozása – 1. lépés](./media/backup-try-azure-backup-in-10-mins/open-rs-vault-list.png) <br/>
 
-    A Recovery Services-tárolók listája megjelenik.
+    helyreállítási szolgáltatások tárolók hello listája jelenik meg.
 
-    ![A Recovery Services-tároló listájának nézete](./media/backup-azure-arm-vms-prepare/rs-list-of-vaults.png)
+    ![Helyreállítási szolgáltatások hello ábrázolása tárolók listája](./media/backup-azure-arm-vms-prepare/rs-list-of-vaults.png)
 
-    A Recovery Services-tárolók listájából válasszon ki egy tárolót az irányítópult megnyitásához.
+    A recovery services-tárolók hello listáról válassza ki a tároló tooopen az irányítópulton.
 
      ![Tároló panelének megnyitása](./media/backup-azure-arm-vms-prepare/new-vault-settings-blade.png)
 
-2. A tároló irányítópultos menüjében kattintson a **Biztonsági mentés** elemre a Biztonsági mentés panel megnyitásához.
+2. Hello tároló irányítópult menüjének **biztonsági mentés** tooopen hello biztonsági mentés panelen.
 
     ![Biztonsági mentés panel megnyitása](./media/backup-azure-arm-vms-prepare/backup-button.png)
 
-    Megnyílik a Biztonsági mentés és a Biztonsági mentés célja panel.
+    hello biztonsági mentési és a biztonsági mentési cél panel nyílik meg.
 
     ![Forgatókönyv panel megnyitása](./media/backup-azure-arm-vms-prepare/select-backup-goal-1.png)
-3. A Biztonsági mentés célja panelen a **Hol futnak az alkalmazások és szolgáltatások?** legördülő menüből válassza az Azure lehetőséget. A **Miről szeretne biztonsági másolatot készíteni?** legördülő menüből válassza a Virtuális gép lehetőséget, és kattintson az **OK** gombra.
+3. Hello biztonsági mentési cél panelen, a hello **a számítási feladatok futtató** legördülő menüben válassza ki az Azure. A hello **miről szeretne toobackup** legördülő, válassza ki a virtuális gépet, majd kattintson a **OK**.
 
-    Ezek a műveletek regisztrálják a virtuálisgép-bővítményt a tárolóban. A Biztonsági mentés célja panel bezárul, a **Biztonsági mentési házirend** panel pedig megnyílik.
+    Ezek a műveletek hello Virtuálisgép-bővítmény hello tárolóhoz regisztrált. hello panel bezárása után a biztonsági másolat cél és hello **biztonsági mentési házirend** panel nyílik meg.
 
     ![Forgatókönyv panel megnyitása](./media/backup-azure-arm-vms-prepare/select-backup-goal-2.png)
 
-4. A Biztonsági mentési házirend panelen válassza ki a tároló esetén alkalmazni kívánt biztonsági mentési házirendet.
+4. Hello biztonsági szabályzat paneljén válassza hello tooapply toohello tároló kívánt biztonsági mentési házirendet.
 
     ![Biztonsági mentési házirend kiválasztása](./media/backup-azure-arm-vms-prepare/setting-rs-backup-policy-new.png)
 
-    Az alapértelmezett házirend részletei megtalálhatók a legördülő menüben. Ha házirendet hozna létre, válassza az **Új létrehozása** elemet a legördülő menüből. A biztonsági mentési házirendek meghatározását segítő utasításokat itt találja: [Biztonsági mentési házirend meghatározása](backup-azure-vms-first-look-arm.md#defining-a-backup-policy).
-    Kattintson az **OK** gombra a biztonsági mentési házirend a tárolóhoz való hozzárendeléséhez.
+    hello alapértelmezett házirend hello adatait hello legördülő menüjében találhatók. Ha azt szeretné, hogy toocreate egy házirendet, válassza ki a **hozzon létre új** hello legördülő menüből. A biztonsági mentési házirendek meghatározását segítő utasításokat itt találja: [Biztonsági mentési házirend meghatározása](backup-azure-vms-first-look-arm.md#defining-a-backup-policy).
+    Kattintson a **OK** tooassociate hello biztonsági mentési házirend hello tárolóban.
 
-    A Biztonsági mentés házirend panel bezárul, a **Virtuális gépek kijelölése** panel pedig megnyílik.
-5. A **Virtuális gépek kijelölése** panelen válassza ki a megadott házirendhez hozzárendelni kívánt virtuális gépeket, majd kattintson az **OK** gombra.
+    Biztonsági szabályzat panel bezárása és hello hello **válassza ki a virtuális gépek** panel nyílik meg.
+5. A hello **válassza ki a virtuális gépek** panelen válassza ki a hello virtuális gépek tooassociate hello a megadott házirend, és kattintson a **OK**.
 
     ![Számítási feladat kiválasztása](./media/backup-azure-arm-vms-prepare/select-vms-to-backup.png)
 
-    Megtörténik a kiválasztott virtuális gép ellenőrzése. Ha nem látja a várt virtuális gépeket, ellenőrizze, hogy ugyanazon az Azure-helyen találhatók-e, mint a Recovery Services-tároló. A Recovery Services-tároló helye a tároló irányítópultján jelenik meg.
+    hello kijelölt virtuális gép van hitelesítve. Ha nem látja a hello virtuális gépekhez, amelyek toosee, ellenőrizze, hogy léteznek a várt hello azonos Azure-beli hely, hello Recovery Services-tároló. Recovery Services-tároló hello hello helye hello tároló irányítópulton látható.
 
-6. Most, hogy minden beállítást megadott a tárolóhoz, a Biztonsági mentés panelen kattintson a **Biztonsági mentés engedélyezése** elemre a házirend a tárolóra és a virtuális gépekre történő telepítéséhez. A biztonsági mentési házirend telepítése nem hozza létre a virtuális géphez tartozó első helyreállítási pontot.
+6. Most, hogy a beállított hello tárolóban, az összes beállítás hello biztonsági mentés panelen, kattintson a **biztonsági mentés engedélyezése** toodeploy hello házirend toohello tárolóban, és a virtuális gépek hello. Hello biztonsági mentési házirend központi telepítése nem hoz létre hello első helyreállítási pont hello virtuális géphez.
 
     ![Biztonsági mentés engedélyezése](./media/backup-azure-arm-vms-prepare/vm-validated-click-enable.png)
 
-A biztonsági mentés sikeres engedélyezése után a biztonsági mentési házirend az ütemezés szerint fog futni. Ennek ellenére lépjen tovább az első biztonsági mentési feladat elindításához.
+Miután sikeresen engedélyezte a hello biztonsági mentés, a biztonsági mentési házirend végrehajtja a ütemezés szerint. A folytatáshoz azonban tooinitiate hello első biztonsági mentési feladat.
 
 ## <a name="initial-backup"></a>Kezdeti biztonsági mentés
-Az, hogy egy biztonsági mentési házirend lett bevezetve a virtuális gépeken, nem jelenti azt, hogy az adatokról biztonsági mentés készült. Alapértelmezés szerint az első ütemezett biztonsági mentés (a biztonsági mentési házirendben meghatározottak szerint) a kezdeti biztonsági mentés. A kezdeti biztonsági mentés végrehajtásáig a **Biztonsági mentési feladatok** panelen az Utolsó biztonsági mentés állapota **Figyelmeztetés (kezdeti biztonsági mentés folyamatban)** állapotú.
+Ha a biztonsági mentési házirend lett telepítve a hello virtuális gép számára, amely nem jelenti azt hello adatok biztonsági másolat készült. Alapértelmezés szerint hello első ütemezett biztonsági mentést (meghatározott módon a biztonsági mentési házirend hello) az hello kezdeti biztonsági másolatot. Amíg nem történik hello kezdeti biztonsági másolatot, a hello hello utolsó biztonsági mentés állapotának **biztonsági mentési feladatok** panelt jeleníti meg, mint a **figyelmeztetés (függőben lévő kezdeti biztonsági másolatot)**.
 
 ![Biztonsági mentés függőben](./media/backup-azure-vms-first-look-arm/initial-backup-not-run.png)
 
-Hacsak a kezdeti biztonsági mentés kezdete nem a nagyon közeli jövőben van, érdemes futtatni a **Biztonsági másolat készítése** lehetőséget.
+Kivéve, ha a kezdeti biztonsági másolatot esedékes toobegin hamarosan, javasoljuk, hogy **biztonsági másolat készítése**.
 
-A kezdeti biztonsági mentési feladat futtatása:
+toorun hello kezdeti biztonsági mentési feladat:
 
-1. A tároló irányítópultján kattintson a **Biztonsági mentési elemek** szakaszban található számra, vagy kattintson a **Biztonsági mentési elemek** csempére. <br/>
+1. Az hello tároló irányítópultján kattintson a hello szám alatt **biztonsági mentés elemek**, vagy kattintson a hello **biztonsági mentés elemek** csempe. <br/>
   ![Beállítások ikon](./media/backup-azure-vms-first-look-arm/rs-vault-config-vm-back-up-now-1.png)
 
-  Megnyílik a **Biztonsági mentési elemek** panel.
+  Hello **biztonsági mentés elemek** panel nyílik meg.
 
   ![Elemek biztonsági mentése](./media/backup-azure-vms-first-look-arm/back-up-items-list.png)
 
-2. A **Biztonsági mentési elemek** panelen válassza ki az elemet.
+2. A hello **biztonsági mentés elemek** panelen, jelölje be hello elemet.
 
   ![Beállítások ikon](./media/backup-azure-vms-first-look-arm/back-up-items-list-selected.png)
 
-  Megnyílik a **Biztonsági mentési elemek** listája. <br/>
+  Hello **biztonsági mentés elemek** listában megnyílik. <br/>
 
   ![Biztonsági mentési feladat elindul](./media/backup-azure-vms-first-look-arm/backup-items-not-run.png)
 
-3. A **Biztonsági mentési elemek** listában kattintson a három pontra **...** a helyi menü megnyitásához.
+3. A hello **biztonsági mentés elemek** listában, kattintson a hello folytatást jelző pontokra **...**  tooopen hello helyi menü.
 
   ![Helyi menü](./media/backup-azure-vms-first-look-arm/context-menu.png)
 
-  Megjelenik a Helyi menü.
+  hello helyi menü megjelenik.
 
   ![Helyi menü](./media/backup-azure-vms-first-look-arm/context-menu-small.png)
 
-4. A Helyi menüben kattintson a **Biztonsági mentés** elemre.
+4. Hello helyi menüben, kattintson a **biztonsági mentés most**.
 
   ![Helyi menü](./media/backup-azure-vms-first-look-arm/context-menu-small-backup-now.png)
 
-  Megnyílik a Biztonsági mentés panel.
+  hello biztonsági mentés most panel nyílik meg.
 
-  ![a Biztonsági mentés panel képe](./media/backup-azure-vms-first-look-arm/backup-now-blade-short.png)
+  ![hello biztonsági mentés most panelen látható](./media/backup-azure-vms-first-look-arm/backup-now-blade-short.png)
 
-5. A Biztonsági mentés panelen kattintson a naptár ikonra, használja a naptárvezérlőt annak kiválasztására, hogy meddig kívánja megőrizni a helyreállítási pontot, majd kattintson a **Biztonsági mentés** elemre.
+5. Hello biztonsági mentés most paneljén kattintson hello naptár ikonra, használja a hello Naptár vezérlőelem tooselect hello utolsó napja a helyreállítási pont őrzi meg, és kattintson a **biztonsági mentés**.
 
-  ![adja meg az utolsó napot, ameddig Biztonsági mentés helyreállítási pontját meg kívánja őrizni](./media/backup-azure-vms-first-look-arm/backup-now-blade-calendar.png)
+  ![hello utolsó nap hello biztonsági mentés most őrzi meg a helyreállítási pont beállítása](./media/backup-azure-vms-first-look-arm/backup-now-blade-calendar.png)
 
-  Az üzembehelyezési értesítések értesítik, hogy a biztonsági mentési feladat elindult, és hogy a feladat állapotát a Biztonsági mentési feladatok oldalon figyelheti. A virtuális gép méretétől függően a kezdeti biztonsági mentés létrehozása hosszabb időt vehet igénybe.
+  Központi telepítés értesítések lehetővé teszik, hogy hello biztonsági mentési feladat lett elindítva, és hogy kísérheti hello hello feladat hello biztonsági mentési feladatok lapján. Attól függően, hogy a virtuális gép mérete hello hello kezdeti biztonsági másolatot készít eltarthat egy ideig.
 
-6. A kezdeti biztonsági mentés állapotának megtekintéséhez vagy nyomon követéséhez a tároló irányítópultjának **Biztonsági mentési feladatok** csempéjén kattintson a **Folyamatban** elemre.
+6. hello első biztonsági hello tároló irányítópult hello tooview vagy követése hello állapotának **biztonsági mentési feladatok** csempén kattintson **folyamatban**.
 
   ![Biztonsági mentési feladatok csempe](./media/backup-azure-vms-first-look-arm/open-backup-jobs-1.png)
 
-  Megnyílik a Biztonsági mentési feladatok panel.
+  hello biztonsági mentési feladatok panel nyílik meg.
 
   ![Biztonsági mentési feladatok csempe](./media/backup-azure-vms-first-look-arm/backup-jobs-in-jobs-view-1.png)
 
-  A **Biztonsági mentési feladatok** panelen megtekintheti az összes feladat állapotát. Ellenőrizze, hogy a virtuális gép biztonsági mentése folyamatban van-e, vagy már befejeződött. Amikor a biztonsági mentési feladat befejeződött, az állapota *Befejezve* lesz.
+  A hello **biztonsági mentési feladatok** panelen láthatja, hogy az összes feladat hello állapota. Ellenőrizze, ha még folyamatban van a virtuális gép biztonsági mentési feladata hello, vagy befejeződött. Ha egy biztonsági mentési feladat befejeződött, hello állapota *befejezve*.
 
   > [!NOTE]
-  > A biztonsági mentési művelet részeként az Azure Backup szolgáltatás egy parancsot ad minden virtuális gépre a biztonsági mentési bővítménynek, hogy ürítsen ki minden írást, és készítsen egy egységes pillanatképet.
+  > Hello biztonsági mentési művelet részeként hello Azure Backup szolgáltatás kibocsát egy parancs toohello tartalék mellék minden virtuális gép tooflush ír, és egységes pillanatképet készít a.
   >
   >
 
 
 [!INCLUDE [backup-create-backup-policy-for-vm](../../includes/backup-create-backup-policy-for-vm.md)]
 
-## <a name="install-the-vm-agent-on-the-virtual-machine"></a>Telepítse a virtuális gép ügynökét a virtuális gépre.
-Ez az információ szükség esetén mellékelve van. Az Azure virtuálisgép-ügynököt telepíteni kell az Azure virtuális gépre, hogy a Backup bővítmény működjön. Ugyanakkor ha a virtuális gépe az Azure-katalógusból lett létrehozva, a virtuálisgép-ügynök már jelen van a virtuális gépen. A helyszíni adatközpontokból áttelepített virtuális gépek nem rendelkeznek telepített virtuálisgép-ügynökkel. Ebben az esetben a virtuális gép ügynökét telepíteni kell. Ha problémákba ütközik az Azure-beli virtuális gép telepítése közben, ellenőrizze, hogy az Azure virtuálisgép-ügynöke megfelelően telepítve van-e a virtuális gépen (lásd az alábbi táblázatot). Ha egy egyéni virtuális gépet hoz létre, [a **Virtuálisgép-ügynök telepítése** jelölőnégyzet legyen bejelölve](../virtual-machines/windows/classic/agents-and-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) a virtuális gép kiépítése előtt.
+## <a name="install-hello-vm-agent-on-hello-virtual-machine"></a>Hello Virtuálisgép-ügynök telepítése hello virtuális gépen
+Ez az információ szükség esetén mellékelve van. hello Azure Virtuálisgép-ügynök hello hello biztonsági mentés bővítmény toowork Azure virtuális gép telepítve kell lennie. Azonban ha a virtuális Gépet az Azure katalógusában hello jött létre, majd hello Virtuálisgép-ügynök már telepítve hello virtuális gépet. Virtuális gépek, amelyek áttelepítése a helyszíni adatközpontját a volna nem hello Virtuálisgép-ügynök telepítve. Ebben az esetben hello Virtuálisgép-ügynök telepítve toobe van szüksége. Ha problémába ütközik hello Azure virtuális gép biztonsági mentéséről, ellenőrizze, hogy a hello Azure Virtuálisgép-ügynök megfelelően telepítve van a hello virtuális gépen (lásd a következő táblázat hello). Ha létrehoz egy egyéni virtuális Gépet, [hello biztosítása **Virtuálisgép-ügynök telepítése hello** jelölőnégyzet be van jelölve](../virtual-machines/windows/classic/agents-and-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) hello virtuális gép kiépítése előtt.
 
-Többet is megtudhat itt a [virtuálisgép-ügynökről](https://go.microsoft.com/fwLink/?LinkID=390493&clcid=0x409) és arról, [hogyan kell telepíteni](../virtual-machines/windows/classic/manage-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+További tudnivalók: hello [Virtuálisgép-ügynök](https://go.microsoft.com/fwLink/?LinkID=390493&clcid=0x409) és [hogyan tooinstall azt](../virtual-machines/windows/classic/manage-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
-A következő táblázat további információkat tartalmaz a Windows és Linux virtuális gépekhez tartozó virtuálisgép-ügynökről.
+a következő táblázat hello VM ügynök a Windows hello és a Linux virtuális gépek további információkat tartalmaz.
 
 | **Művelet** | **Windows** | **Linux** |
 | --- | --- | --- |
-| A virtuálisgép-ügynök telepítése |<li>Töltse le és telepítse az [ügynök MSI-t](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409). A telepítés befejezéséhez rendszergazdai jogosultságok szükségesek. <li>[Frissítse a virtuális gép tulajdonságát](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx), hogy megjelenjen a telepített ügynök. |<li> Telepítse a legújabb [Linux ügynököt](https://github.com/Azure/WALinuxAgent) a GitHubról. A telepítés befejezéséhez rendszergazdai jogosultságok szükségesek. <li> [Frissítse a virtuális gép tulajdonságát](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx), hogy megjelenjen a telepített ügynök. |
-| A virtuálisgép-ügynök frissítése |A virtuálisgép-ügynök frissítése a [virtuálisgép-ügynök bináris fájljainak](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409) újratelepítéséből áll. <br>Győződjön meg róla, hogy nem fut biztonsági mentési művelet a virtuálisgép-ügynök frissítése közben. |Kövesse a [linuxos virtuálisgép-ügynök frissítését](../virtual-machines/linux/update-agent.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) ismertető szakasz utasításait. <br>Győződjön meg róla, hogy nem fut biztonsági mentési művelet a virtuálisgép-ügynök frissítése közben. |
-| A virtuálisgép-ügynök telepítésének érvényesítése |<li>Lépjen a *C:\WindowsAzure\Packages* mappába az Azure virtuális gépen. <li>Itt találja a WaAppAgent.exe fájlt.<li> Kattintson jobb gombbal a fájlra, válassza a **Tulajdonságok** parancsot, majd nyissa meg a **Részletek** lapot. A Termék verziószáma mezőben 2.6.1198.718 vagy újabb verziónak kell lennie. |N/A |
+| Hello Virtuálisgép-ügynök telepítése |<li>Töltse le és telepítse a hello [ügynök MSI](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409). Rendszergazdai jogosultságok toocomplete hello telepítési van szüksége. <li>[Hello VM tulajdonság](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx) tooindicate, amely hello ügynök telepítve van. |<li> Telepítse legújabb hello [Linux-ügynök](https://github.com/Azure/WALinuxAgent) a Githubról. Rendszergazdai jogosultságok toocomplete hello telepítési van szüksége. <li> [Hello VM tulajdonság](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx) tooindicate, amely hello ügynök telepítve van. |
+| Hello Virtuálisgép-ügynök frissítése |Frissítési hello Virtuálisgép-ügynök újratelepítését hello egyszerűen [Virtuálisgép-ügynök bináris](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409). <br>Győződjön meg arról, hogy fut-e biztonsági mentési művelet, hello Virtuálisgép-ügynök frissítése közben. |Hello utasításokat kövesse a megjelenő [Linux Virtuálisgép-ügynök frissítése hello](../virtual-machines/linux/update-agent.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). <br>Győződjön meg arról, hogy fut-e biztonsági mentési művelet során hello Virtuálisgép-ügynök frissítése folyamatban van. |
+| Hello Virtuálisgép-ügynök telepítésének ellenőrzése |<li>Keresse meg a toohello *C:\WindowsAzure\Packages* hello Azure virtuális gép mappájában. <li>Keresse meg hello WaAppAgent.exe fájl található.<li> Kattintson a jobb gombbal a hello fájlt, nyissa meg túl**tulajdonságok**, majd válassza ki a hello **részletek** külön-külön hello termékverzió mező lehet 2.6.1198.718 vagy újabb. |N/A |
 
 ### <a name="backup-extension"></a>Backup bővítmény
-Miután a virtuálisgép-ügynök telepítve lett a virtuális gépen, az Azure Backup szolgáltatás telepíti a biztonsági mentési bővítményt a virtuálisgép-ügynökhöz. Az Azure Backup szolgáltatás akadásmentesen frissíti és javítja a biztonsági mentési bővítményt a felhasználó további beavatkozása nélkül.
+Virtuálisgép-ügynök telepítve van a hello virtuális gépen, hello Azure Backup szolgáltatás hello egyszer hello tartalék mellék toohello Virtuálisgép-ügynök telepítése. hello Azure Backup szolgáltatás zökkenőmentesen frissíti, és javításokkal hello tartalék mellék további felhasználói beavatkozás nélkül.
 
-A Backup szolgáltatás akkor is telepíti a biztonsági mentési bővítményt, ha a virtuális gép nem fut. Egy futó virtuális gép adja a legnagyobb esélyt egy alkalmazással konzisztens helyreállítási pont létrehozásának. Ugyanakkor az Azure Backup szolgáltatás folytatja a virtuális gép biztonsági másolatának elkészítését akkor is, ha az ki van kapcsolva és a bővítményt nem lehet telepíteni. Az ilyen típusú biztonsági mentés Offline virtuális gép néven ismeretes, és a helyreállítási pont *összeomlás-konzisztens*.
+hello biztonsági mentési szolgáltatás hello tartalék mellék, telepíti, akkor is, ha nem fut a virtuális gép hello. A virtuális gép hello legnagyobb esély arra az alkalmazáskonzisztens helyreállítási pontot biztosít. Azonban hello Azure Backup szolgáltatás továbbra is fel hello VM tooback még akkor is, ha ki van kapcsolva, és hello bővítmény telepítése sikertelen volt. Ilyen típusú biztonsági mentést is ismert, offline állapotba a virtuális gép, és hello helyreállítási pont *összeomlás-konzisztens*.
 
 ## <a name="troubleshooting-information"></a>Hibaelhárítási információ
-Ha problémákba ütközik a cikkben leírt feladatok elvégzésében, tekintse meg a [Hibaelhárítási útmutatót](backup-azure-vms-troubleshoot.md).
+Ha problémába ütközik ebben a cikkben hello feladatokat parancsokról, tekintse meg a [hibaelhárítási útmutatás](backup-azure-vms-troubleshoot.md).
 
 ## <a name="pricing"></a>Díjszabás
-Az Azure-beli virtuális gépek biztonsági mentésének költsége a védett példányok számától függ. A védett példányok definíciójáért lásd [a fogalmat ismertető szakaszt](backup-introduction-to-azure-backup.md#what-is-a-protected-instance). Ha szeretne egy példát látni a virtuális gépek biztonsági mentési költségeinek számítására, olvassa el [a védett példányok számítását](backup-azure-vms-introduction.md#calculating-the-cost-of-protected-instances) ismertető cikket. [A Backup díjszabásával](https://azure.microsoft.com/pricing/details/backup/) kapcsolatban lásd az Azure Backup díjszabását ismertető oldalt.
+Azure virtuális gépek biztonsági mentéséről hello költségét védett példányok száma hello alapul. A védett példányok definíciójáért lásd [a fogalmat ismertető szakaszt](backup-introduction-to-azure-backup.md#what-is-a-protected-instance). A virtuális gépek biztonsági mentéséről hello költségét kiszámítása példáért lásd: [védett példányok kiszámítási módját](backup-azure-vms-introduction.md#calculating-the-cost-of-protected-instances). Tekintse meg az Azure Backup árairól hello kapcsolatos információ lapon [biztonsági mentés árazásának](https://azure.microsoft.com/pricing/details/backup/).
 
 ## <a name="questions"></a>Kérdései vannak?
-Ha kérdései vannak, vagy van olyan szolgáltatás, amelyről hallani szeretne, [küldjön visszajelzést](http://aka.ms/azurebackup_feedback).
+Ha kérdése van, vagy ha bármely új szolgáltatása része, toosee szeretné [visszajelzést küldhet](http://aka.ms/azurebackup_feedback).

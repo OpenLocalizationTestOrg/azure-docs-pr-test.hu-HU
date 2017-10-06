@@ -1,6 +1,6 @@
 ---
-title: "CORS támogatás az App Service-ben | Microsoft Docs"
-description: "Megtudhatja, hogyan használhatja a CORS-támogatást az Azure App Service platformon."
+title: "aaaCORS támogatja az App Service szolgáltatásban |} Microsoft Docs"
+description: "Ismerje meg, hogyan támogatják a toouse CORS Azure Azure App Service-ben."
 services: app-service\api
 documentationcenter: .net
 author: alexkarcher-msft
@@ -14,46 +14,46 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/27/2016
 ms.author: alkarche
-ms.openlocfilehash: f8373cf5b2e06e6c71bce51cd9e9d5123eea7cfd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c229378b75840bc0f7b2eefc3df3031233f9b494
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="consume-an-api-app-from-javascript-using-cors"></a>API-alkalmazások felhasználása JavaScriptből a CORS használatával
-Az App Service beépített támogatást nyújt a [Cross Origin Resource Sharing (CORS)](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) szolgáltatáshoz, amely lehetővé teszi, hogy a JavaScript-ügyfelek tartományok között hívjanak meg az API-alkalmazások által nyújtott API-kat. Az App Service segítségével úgy állíthatja be a saját API-ja CORS-elérését, hogy nem kell az API-ba kódot írnia.
+App Service beépített támogatást nyújt a [Cross Origin Resource Sharing (CORS)](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), lehetővé teszi a JavaScript ügyfelek toomake tartományközi meghívja az API-alkalmazások tárolt tooAPIs. App Service segítségével úgy konfigurálja a CORS hozzáférés tooyour API a API programozás nélkül.
 
 Ez a cikk két részből áll:
 
-* [A CORS konfigurálásának módja](#corsconfig) című rész általánosságban ismerteti, hogyan kell a CORS szolgáltatást konfigurálni tetszőleges API-alkalmazáshoz, webalkalmazáshoz vagy mobilalkalmazáshoz. Ez a rész minden, az App Service által támogatott keretrendszerre alkalmazható, beleértve a .NET, a Node.js és a Java keretrendszert. 
-* A [.NET-bevezető oktatóanyagok folytatása](#tutorialstart) résztől kezdve a cikk oktató funkciót tölt be, és [az első API-alkalmazásokba való bevezető oktatóanyag](app-service-api-dotnet-get-started.md) tartalmára építve mutatja be a CORS-támogatást. 
+* Hello [hogyan tooconfigure CORS](#corsconfig) a szakasz ismerteti a általános hogyan tooconfigure CORS API-alkalmazás, webalkalmazás, és mobilalkalmazás. Ez egyaránt érvényes tooall keretrendszerek, amelyet az App Service, beleértve a .NET, Node.js és Java támogatott. 
+* Hello kezdve [hello .NET-bevezető oktatóanyagok folytatása](#tutorialstart) szakaszban hello cikk mutatja be a CORS-támogatás oktató építve [hello első API-alkalmazások alapszintű bemutató ](app-service-api-dotnet-get-started.md). 
 
-## <a id="corsconfig"></a> A CORS konfigurálása az Azure App Service platformon
-A CORS szolgáltatást konfigurálhatja az Azure Portalon vagy az [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) eszközeinek használatával.
+## <a id="corsconfig"></a>Hogyan tooconfigure az Azure App Service CORS
+Cors szolgáltatást konfigurálhatja a hello Azure-portálon vagy [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) eszközök.
 
-#### <a name="configure-cors-in-the-azure-portal"></a>A CORS konfigurálása az Azure portálon
-1. Nyissa meg böngészőben az [Azure Portalt](https://portal.azure.com/).
-2. Kattintson az **App Services** lehetőségre, majd kattintson az API-alkalmazás nevére.
+#### <a name="configure-cors-in-hello-azure-portal"></a>A CORS konfigurálása hello Azure-portálon
+1. Egy böngészőben nyissa meg toohello [Azure-portálon](https://portal.azure.com/).
+2. Kattintson a **alkalmazásszolgáltatások**, majd kattintson az API-alkalmazás hello nevét.
    
     ![API-alkalmazás kiválasztása a portálon](./media/app-service-api-cors-consume-javascript/browseapiapps.png)
-3. A **Settings** (Beállítások) panelen (az **API app** (API-alkalmazás) paneltől jobbra) keresse meg az **API** szakaszt, majd kattintson a **CORS** lehetőségre.
+3. A hello **beállítások** panelen megjelenő toohello jobb oldalán hello **API-alkalmazás** panelen, a keresés hello **API** szakaszt, és kattintson a **CORS**.
    
    ![Válassza a CORS lehetőséget a Beállítások panelen](./media/app-service-api-cors-consume-javascript/clicksettings.png)
-4. A szövegmezőbe írja be azokat az URL-címeket, amelyekről engedélyezni szeretné a JavaScript-hívásokat.
+4. Hello mezőbe írjon be hello URL-címe vagy tooallow JavaScript-hívásokat toocome a használni kívánt URL-címeket.
 
-    Ha például a JavaScript-alkalmazását egy todolistangular nevű webalkalmazásra telepítette, írja be a "https://todolistangular.azurewebsites.net" címet. Ha csillagot (*) ír be, azzal beállíthatja, hogy minden eredettartományból elfogadja a hívásokat.
+    Például ha telepítette a JavaScript alkalmazás tooa webalkalmazás todolistangular nevű webalkalmazásra telepítette, akkor adja meg az "https://todolistangular.azurewebsites.net" értéket. Alternatív megoldásként megadhat egy csillag (*) toospecify, hogy minden eredettartományból elfogadja a hívásokat.
 
 
 1. Kattintson a **Save** (Mentés) gombra.
    
    ![Kattintson a Save (Mentés) gombra.](./media/app-service-api-cors-consume-javascript/corsinportal.png)
    
-   A **Save** (Mentés) gombra való kattintás után az API-alkalmazás fogadni fogja a megadott URL-címekről jövő hívásokat.
+   Miután rákattintott **mentése**, hello API-alkalmazás fogadni fogja a JavaScript hello hívásait megadott URL-címeket.
 
 #### <a name="configure-cors-by-using-azure-resource-manager-tools"></a>A CORS konfigurálása az Azure Resource Manager eszközeinek használatával
-A CORS szolgáltatást úgy is beállíthatja egy API-alkalmazáshoz, hogy [Azure Resource Manager-sablonokat](../azure-resource-manager/resource-group-authoring-templates.md) használ a parancssori eszközökben, például az  [Azure PowerShell](/powershell/azureps-cmdlets-docs) vagy az [Azure CLI](../cli-install-nodejs.md) felületen. 
+Beállíthatja úgy is a CORS API-alkalmazás használatával [Azure Resource Manager-sablonok](../azure-resource-manager/resource-group-authoring-templates.md) parancssori eszközökben, például a [Azure PowerShell](/powershell/azureps-cmdlets-docs) és hello [Azure CLI](../cli-install-nodejs.md). 
 
-Ha szeretne példát látni egy olyan Azure Resource Manager-sablonra, amely beállítja a CORS tulajdonságot, nyissa meg az oktatóanyag példaalkalmazását, amely a tárházban az [azuredeploy.json fájl](https://github.com/azure-samples/app-service-api-dotnet-todo-list/blob/master/azuredeploy.json). Keresse meg a sablonban az a részt, amely az alábbi példára hasonlít:
+Például egy olyan Azure Resource Manager sablon, amely beállítja hello CORS tulajdonságot, nyissa meg a hello [azuredeploy.json fájlt az oktatóanyag példaalkalmazását hello tárház](https://github.com/azure-samples/app-service-api-dotnet-todo-list/blob/master/azuredeploy.json). A következő példa hello néz hello sablon hello szakasz keresése:
 
         "cors": {
             "allowedOrigins": [
@@ -61,15 +61,15 @@ Ha szeretne példát látni egy olyan Azure Resource Manager-sablonra, amely be�
             ]
         }
 
-## <a id="tutorialstart"></a> A .NET-bevezető oktatóanyag folytatása
-Ha az API-alkalmazásokhoz készült Node.js vagy Java-bevezető sorozatot követi, akkor elvégezte a bevezetősorozatot. Ugorjon a [További lépések](#next-steps) című részre, ahol tanácsokat találhat az API-alkalmazások bővebb megismeréséhez.
+## <a id="tutorialstart"></a>Hello .NET-bevezető oktatóanyag folytatása
+Ha hello Node.js vagy Java-bevezető sorozat API-alkalmazások, első lépések adatsorozat befejezett hello rendelkezik. Hagyja ki a toohello [további lépések](#next-steps) szakasz toofind javaslatok API-alkalmazások bővebb megismeréséhez.
 
-A cikk hátralévő része a .NET-bevezető sorozat folytatása, és feltételezi, hogy Ön sikeresen elvégezte [az első oktatóanyagot](app-service-api-dotnet-get-started.md).
+hello a cikk hátralévő része hello .NET-bevezető sorozat folytatása, és feltételezi, hogy Ön sikeresen elvégezte [hello első oktatóanyaga, amely](app-service-api-dotnet-get-started.md).
 
-## <a name="deploy-the-todolistangular-project-to-a-new-web-app"></a>A ToDoListAngular projekt telepítése új webalkalmazásra
-[Az első oktatóprogramban](app-service-api-dotnet-get-started.md) létrehozott egy középső rétegbeli API-alkalmazást és egy adatrétegbeli API-alkalmazást. Ebben az oktatóanyagban egy egyoldalas webalkalmazást (SPA) fogunk létrehozni, amely a középső rétegbeli API-alkalmazást hívja meg. Az SPA működéséhez engedélyeznie kell a CORS szolgáltatást a középső rétegbeli API-alkalmazásra. 
+## <a name="deploy-hello-todolistangular-project-tooa-new-web-app"></a>Hello ToDoListAngular projekt tooa új webalkalmazás telepítése
+A [hello első oktatóanyaga, amely](app-service-api-dotnet-get-started.md), létrehozott egy középső rétegbeli API-alkalmazást és egy adatrétegbeli API-alkalmazást. Ebben az oktatóanyagban létrehoz egy egyoldalas alkalmazások (SPA) webalkalmazás adott hívások hello középső réteg API-alkalmazást. Hello SPA toowork a hello középső rétegbeli API-alkalmazás CORS tooenable rendelkezik. 
 
-A [ToDoList példaalkalmazásban](https://github.com/Azure-Samples/app-service-api-dotnet-todo-list) a ToDoListAngular projekt egy olyan, az AngularJS ügyfelet bemutató példaprogram, amely a középső rétegbeli ToDoListAPI webes API projektet hívja meg. Az *app/scripts/todoListSvc.js* fájlban lévő JavaScript-kód az AngularJS HTTP-szolgáltató használatával hívja meg az API-t. 
+A hello [ToDoList példaalkalmazásban](https://github.com/Azure-Samples/app-service-api-dotnet-todo-list), hello ToDoListAngular projekt egy egyszerű AngularJS ügyfél hello középső rétegbeli ToDoListAPI webes API projektet hívja. JavaScript-kód hello hello *app/scripts/todoListSvc.js* fájl hívja hello API-t hello AngularJS HTTP-szolgáltató használatával. 
 
         angular.module('todoApp')
         .factory('todoListSvc', ['$http', function ($http) {
@@ -90,42 +90,42 @@ A [ToDoList példaalkalmazásban](https://github.com/Azure-Samples/app-service-a
             };
         }]);
 
-### <a name="create-a-new-web-app-for-the-todolistangular-project"></a>Új webalkalmazás létrehozása a ToDoListAngular projekthez
-Az új App Service-webalkalmazások létrehozása és a hozzájuk tartozó projekt telepítése hasonló módon történik, mint az [API-alkalmazások létrehozása és telepítése, amit a sorozat első oktatóanyaga ismertetett](app-service-api-dotnet-get-started.md#createapiapp). Az egyetlen különbség, hogy az alkalmazás típusa **webalkalmazás**, nem pedig **API-alkalmazás**.  A párbeszédpanelek képernyőképeit az alábbi módon érheti el: 
+### <a name="create-a-new-web-app-for-hello-todolistangular-project"></a>Hozzon létre egy új webalkalmazást hello ToDoListAngular projekthez
+hello eljárás toocreate egy új App Service web app és projekt telepítése tooit a látott hasonló toowhat [létrehozása és telepítése az API-alkalmazás az a sorozat első oktatóanyaga hello](app-service-api-dotnet-get-started.md#createapiapp). hello egyetlen különbség az, hogy hello alkalmazás típusa van **webalkalmazás** helyett **API-alkalmazás**.  Hello párbeszédpanelek képernyőképeit lásd: 
 
-1. A **Solution Explorer** (Megoldáskezelő) területén kattintson a jobb gombbal a ToDoListAngular projektre, majd kattintson a **Publish** (Közzététel) elemre.
-2. A **Publish Web** (Weboldal közzététele) varázsló **Profile** (Profile) lapján kattintson a **Microsoft Azure App Service** lehetőségre.
-3. Az **App Service** párbeszédpanelen kattintson a **New** (Új) gombra.
-4. A **Create App Service** (App Service létrehozása) párbeszédpanel **Hosting** (Üzemeltetés) lapján írjon be egy olyan nevet a **Web App Name** (Webalkalmazás neve) mezőbe, amely egyedi az *azurewebsites.net* tartományban. 
-5. Válassza ki a használni kívánt Azure **előfizetést**.
-6. A **Resource Group** (Erőforráscsoport) legördülő listában válassza a korábban létrehozott erőforráscsoportot.
-7. Az **App Service Plan** (App Service-csomag) legördülő listában válassza a korábban létrehozott csomagot. 
-8. Kattintson a **Létrehozás** gombra.
+1. A **Megoldáskezelőben**, kattintson a jobb gombbal a ToDoListAngular projekt hello, és kattintson a **közzététel**.
+2. A hello **profil** hello lapján **webhely közzététele** varázsló, kattintson a **Microsoft Azure App Service**.
+3. A hello **App Service** párbeszédpanel, kattintson a **új**.
+4. A hello **üzemeltetési** hello lapján **App Service létrehozása** párbeszédpanelen adja meg egy **webalkalmazás neve** hello az egyedi *azurewebsites.net* tartomány. 
+5. Válassza ki a hello Azure **előfizetés** azt szeretné, hogy a toowork.
+6. A hello **erőforráscsoport** legördülő menüben válassza ki a hello ugyanazt az a korábban létrehozott erőforráscsoportot.
+7. A hello **App Service-csomag** legördülő menüben válassza ki a hello korábban létrehozott csomagot. 
+8. Kattintson a **Create** (Létrehozás) gombra.
    
-    A Visual Studio létrehozza a webalkalmazást és a hozzá tartozó közzétételi profilt, majd megjeleníti a **Publish Web** (Weboldal közzététele) varázsló **Connection** (Kapcsolat) lépését.
+    A Visual Studio létrehozza hello webalkalmazást, a közzétételi profilt hozza létre és hello megjeleníti **kapcsolat** hello lépését **webhely közzététele** varázsló.
    
-    Még ne kattintson a **Publish** (Közzététel) elemre. A következő szakaszban beállíthatja, hogy a webalkalmazás az App Service platformon futó, középső rétegbeli API-alkalmazást hívja. 
+    Még ne kattintson a **Publish** (Közzététel) elemre. A következő szakasz hello hello új alkalmazás toocall hello középső réteg API webalkalmazást az App Service-ben futtató konfigurálja. 
 
-### <a name="set-the-middle-tier-url-in-web-app-settings"></a>A középső réteg URL-címének beállítása a webalkalmazás beállításaiban
-1. Nyissa meg az [Azure Portalt](https://portal.azure.com/), majd keresse meg a ToDoListAngular projekt (kezelőfelület) üzemeltetésére létrehozott webalkalmazáshoz tartozó **Web App** (Webalkalmazás) panelt.
+### <a name="set-hello-middle-tier-url-in-web-app-settings"></a>Hello középső réteg URL-Címének beállítása a webalkalmazás beállításaiban
+1. Toohello lépjen [Azure-portálon](https://portal.azure.com/), és navigáljon a toohello **webalkalmazás** toohost hello TodoListAngular (kezelőfelület) projekt létrehozott hello webalkalmazás panelen.
 2. Kattintson a **Settings > Application Settings** (Beállítások > Alkalmazásbeállítások) lehetőségre.
-3. Az **App settings** (Alkalmazás beállításai) szakaszban adja meg a következő kulcs-érték párt:
+3. A hello **Alkalmazásbeállítások** területen írja be a következő hello kulcs-érték:
    
    | Kulcs | Érték | Példa |
    | --- | --- | --- |
    | toDoListAPIURL |https://{a középső réteg API-alkalmazásának neve}.azurewebsites.net |https://todolistapi0121.azurewebsites.NET |
 4. Kattintson a **Save** (Mentés) gombra.
    
-    Amikor a kód lefut az Azure-ban, a rendszer ezzel az értékkel írja felül a *Web.config* fájlban található localhost URL-címet. 
+    Amikor hello kód lefut az Azure-ban, ez az érték felülbírálja hello localhost URL-címet a hello *Web.config* fájlt. 
    
-    A beállítás értékét lekérdező kód az *index.cshtml* fájlban található:
+    hello beállításérték hello kód van *index.cshtml*:
    
         <script type="text/javascript">
             var apiEndpoint = "@System.Configuration.ConfigurationManager.AppSettings["toDoListAPIURL"]";
         </script>
         <script src="app/scripts/todoListSvc.js"></script>
    
-    A *todoListSvc.js* fájlban lévő kód a következő beállítást használja:
+    a kód hello *todoListSvc.js* hello beállítást használja:
    
         return {
             getItems : function(){
@@ -148,60 +148,60 @@ Az új App Service-webalkalmazások létrehozása és a hozzájuk tartozó proje
             }
         };
 
-### <a name="deploy-the-todolistangular-web-project-to-the-new-web-app"></a>A ToDoListAngular webes projekt telepítése az új webalkalmazásra
-* A Visual Studio **Publish Web** (Webes közzététel) varázslójának **Connection** (Kapcsolat) lépésénél kattintson a **Publish** (Közzététel) elemre.
+### <a name="deploy-hello-todolistangular-web-project-toohello-new-web-app"></a>Hello ToDoListAngular webes projekt toohello új webalkalmazás telepítése
+* A Visual Studio, a hello **kapcsolat** hello lépését **webhely közzététele** varázsló, kattintson a **közzététel**.
   
-   A Visual Studio telepíti a ToDoListAPI projektet az új webalkalmazásba, és egy böngészőablakban megnyitja a webalkalmazás URL-címét. 
+   A Visual Studio hello ToDoListAngular projekt toohello webalkalmazása telepíti, és megnyitja a böngésző toohello webalkalmazás URL-címe hello. 
 
-### <a name="test-the-application-without-cors-enabled"></a>Az alkalmazás tesztelése a CORS engedélyezése nélkül
-1. A böngésző Fejlesztői eszközök funkciójával nyissa meg a Konzol ablakot.
-2. Az AngularJS felhasználói felületet megjelenítő böngészőablakban kattintson a **To Do List** (Tennivalók) hivatkozásra.
+### <a name="test-hello-application-without-cors-enabled"></a>Hello alkalmazás tesztelése a CORS engedélyezése nélkül
+1. Nyissa meg a böngésző fejlesztői eszközök, hello Console ablakban.
+2. Megjeleníti az AngularJS felhasználói felület hello hello böngészőablakban, kattintson a hello **tooDo lista** hivatkozásra.
    
-    A JavaScript-kód megpróbálja meghívni a középső rétegbeli API-alkalmazást, de a hívás sikertelen lesz, mivel a kezelőfelület egy másik tartományban fut, mint a háttéralkalmazás. A böngésző Fejlesztői eszközök funkciójával elérhető konzolablak hibaüzenetet jelenít meg az eltérő eredetről.
+    hello JavaScript-kód megpróbál toocall hello középső rétegbeli API-alkalmazás, de hello hívás sikertelen lesz, mivel hello előtér mint hello vissza egy másik tartományban fut célból. hello böngésző fejlesztői eszközök konzol ablakának egy eltérő eredetű hibaüzenetet jelenít meg.
    
     ![Hibaüzenet az eltérő eredetről](./media/app-service-api-cors-consume-javascript/consoleaccessdenied.png)
 
-## <a name="configure-cors-for-the-middle-tier-api-app"></a>A CORS konfigurálása középső rétegbeli API-alkalmazáshoz
-Ebben a szakaszban a középső rétegbeli ToDoListAPI API-alkalmazás CORS beállítását konfiguráljuk az Azure-ban. Ez a beállítás lehetővé teszi, hogy a középső rétegbeli API-alkalmazás JavaScript-hívásokat fogadjon abból a webalkalmazásból, amelyet a ToDoListAngular projekthez létrehozott.
+## <a name="configure-cors-for-hello-middle-tier-api-app"></a>Hello középső rétegbeli API-alkalmazás CORS konfigurálása
+Ebben a szakaszban konfigurálni hello CORS beállítása az Azure-ban hello középső rétegbeli ToDoListAPI API-alkalmazás. Ez a beállítás lehetővé teszi a hello középső rétegbeli API app tooreceive JavaScript-hívásokat webalkalmazásból hello hello ToDoListAngular projekthez létrehozott.
 
-1. Nyissa meg böngészőben az [Azure Portalt](https://portal.azure.com/).
-2. Kattintson az **App Services** (Alkalmazásszolgáltatások) lehetőségre, majd a ToDoListAPI (középső réteg) API-alkalmazásra.
+1. Egy böngészőben nyissa meg toohello [Azure-portálon](https://portal.azure.com/).
+2. Kattintson a **alkalmazásszolgáltatások**, majd kattintson a hello ToDoListAPI (középső réteg) API-alkalmazást.
    
     ![API-alkalmazás kiválasztása a portálon](./media/app-service-api-cors-consume-javascript/browseapiapps.png)
-3. A **Settings** (Beállítások) panelen (az **API app** (API-alkalmazás) paneltől jobbra) keresse meg az **API** szakaszt, majd kattintson a **CORS** lehetőségre.
+3. A hello **beállítások** panelen megjelenő toohello jobb oldalán hello **API-alkalmazás** panelen, a keresés hello **API** szakaszt, és kattintson a **CORS**.
    
    ![A CORS kiválasztása a portálon](./media/app-service-api-cors-consume-javascript/clicksettings.png)
-4. A szövegmezőbe írja be a ToDoListAngular (kezelőfelület) webalkalmazás URL-címét. Ha például a ToDoListAngular projektet egy todolistangular0121 nevű webalkalmazáshoz telepítette, engedélyezze a hívásokat a következő URL-címről: `https://todolistangular0121.azurewebsites.net`.
+4. Hello szövegmezőben hello ToDoListAngular (kezelőfelület) webalkalmazás hello URL-cím megadása. Például ha hello ToDoListAngular projekt tooa webalkalmazás todolistangular0121 nevű webalkalmazáshoz telepítette, engedélyezze a hívásokat a hello URL-cím `https://todolistangular0121.azurewebsites.net`.
    
-   Ha csillagot (*) ír be, azzal beállíthatja, hogy minden eredettartományból elfogadja a hívásokat.
+   Alternatív megoldásként megadhat egy csillag (*) toospecify, hogy minden eredettartományból elfogadja a hívásokat.
 5. Kattintson a **Save** (Mentés) gombra.
    
    ![Kattintson a Save (Mentés) gombra.](./media/app-service-api-cors-consume-javascript/corsinportal.png)
    
-   A **Save** (Mentés) gombra való kattintás után az API-alkalmazás fogadni fogja a megadott URL-címről jövő hívásokat. Ezen a képernyőképen a ToDoListAPI0223 API-alkalmazás fogja fogadni a ToDoListAngular webalkalmazásból jövő JavaScript-ügyfélhívásokat.
+   Miután rákattintott **mentése**, hello API-alkalmazás fogadni fogja a JavaScript hello hívásait megadott URL-CÍMÉT. Ezen a képernyőfelvételen a hello ToDoListAPI0223 API-alkalmazás fogja fogadni a ToDoListAngular webalkalmazásból hello JavaScript-ügyfélhívásokat.
 
-### <a name="test-the-application-with-cors-enabled"></a>Az alkalmazás tesztelése a CORS engedélyezése mellett
-* Nyissa meg egy böngészőben a webalkalmazás HTTPS URL-címét. 
+### <a name="test-hello-application-with-cors-enabled"></a>Hello alkalmazás tesztelése a CORS engedélyezése mellett
+* Nyissa meg a böngésző toohello hello webalkalmazás HTTPS URL-CÍMÉT. 
   
-    Ezúttal az alkalmazás lehetővé teszi tennivalók megtekintését, hozzáadását, szerkesztését és törlését. 
+    Az idő hello alkalmazás lehetővé teszi megtekintése, hozzáadása, szerkesztése és törlése a Tennivalólista elemein. 
   
-    ![A példaalkalmazás To Do List oldala](./media/app-service-api-cors-consume-javascript/corssuccess.png)
+    ![a mintaalkalmazás tooDo lista lap](./media/app-service-api-cors-consume-javascript/corssuccess.png)
 
 ## <a name="app-service-cors-versus-web-api-cors"></a>Az App Service CORS és a webes API CORS összehasonlítása
-Web API-projektekben a [Microsoft.AspNet.WebApi.Cors](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Cors/) NuGet-csomag telepítésével állíthatja be, hogy milyen tartományokból fogadja az API a JavaScript-hívásokat.
+A Web API-projektet telepíthet hello [Microsoft.AspNet.WebApi.Cors](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Cors/) NuGet csomag toospecify a kódban, mely tartományok tartományokból fogadja az API a JavaScript-hívásokat.
 
 A Web API CORS-támogatása rugalmasabb, mint az App Service CORS-támogatása. Például a kódban a különböző műveletekhez különböző elfogadott származási helyeket adhat meg, míg az App Service CORS esetében az API-alkalmazás összes függvényéhez csupán az elfogadott tartományok egyetlen halmazát állíthatja be.
 
 > [!NOTE]
-> Egy API-alkalmazásban ne használja a Web API CORS-t és az App Service CORS-t is. Az App Service CORS szolgáltatása elsőbbséget élvez, így a Web API CORS szolgáltatásának nem lesz hatása. Ha például az App Service-ben egyetlen eredettartományt engedélyez, a Web API-kódban pedig az összes tartományt engedélyezi, akkor az Azure API-alkalmazás csak az Azure-ban megadott tartományból fogja a hívásokat fogadni.
+> Ne próbáljon toouse Web API CORS és az App Service CORS egy API-alkalmazás is. Az App Service CORS szolgáltatása elsőbbséget élvez, így a Web API CORS szolgáltatásának nem lesz hatása. Például ha engedélyezi az App Service egy forrástartományt, és minden eredettartományból engedélyezéséhez a Web API-kódban, az Azure API-alkalmazás fogja csak hívásokat fogadni hello Azure-ban megadott tartományból.
 > 
 > 
 
-### <a name="how-to-enable-cors-in-web-api-code"></a>A CORS engedélyezése Web API-kódban
-A Web API CORS-támogatásának engedélyezése az alábbi lépésekkel foglalható össze. További információ: [Enabling Cross-Origin Requests in ASP.NET Web API 2](http://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api) (Az eltérő eredetű kérések engedélyezése az ASP.NET Web API 2-ben).
+### <a name="how-tooenable-cors-in-web-api-code"></a>Hogyan tooenable CORS webes API-kódban
+a lépéseket követve hello hello folyamat Web API CORS-támogatás engedélyezésének foglalják össze. További információ: [Enabling Cross-Origin Requests in ASP.NET Web API 2](http://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api) (Az eltérő eredetű kérések engedélyezése az ASP.NET Web API 2-ben).
 
-1. Egy Web API-projektben telepítse a [Microsoft.AspNet.WebApi.Cors](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Cors/) NuGet-csomagot.
-2. Adja hozzá a `config.EnableCors()` kódsort a **WebApiConfig** osztály **Register** metódusához az alábbi példában látható módon. 
+1. A Web API-projektet, telepítse a hello [Microsoft.AspNet.WebApi.Cors](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Cors/) NuGet-csomagot.
+2. Tartalmaznak egy `config.EnableCors()` hello kódsort **regisztrálása** hello metódusában **register** osztály, mint például a következő hello. 
    
         public static class WebApiConfig
         {
@@ -209,7 +209,7 @@ A Web API CORS-támogatásának engedélyezése az alábbi lépésekkel foglalha
             {
                 // Web API configuration and services
    
-                // The following line enables you to control CORS by using Web API code
+                // hello following line enables you toocontrol CORS by using Web API code
                 config.EnableCors();
    
                 // Web API routes
@@ -222,7 +222,7 @@ A Web API CORS-támogatásának engedélyezése az alábbi lépésekkel foglalha
                 );
             }
         }
-3. A Web API-vezérlőben helyezzen el egy `using` utasítást a `System.Web.Http.Cors` névtérhez, és adja hozzá az `EnableCors` attribútumot a vezérlő osztályhoz vagy az egyes műveletmetódusokhoz. A következő példában a CORS-támogatás a teljes vezérlőre vonatkozik.
+3. Adja hozzá a Web API-vezérlőben egy `using` hello nyilatkozata `System.Web.Http.Cors` névteret, és adja hozzá a hello `EnableCors` toohello-vezérlő osztályhoz vagy tooindividual műveletmetódusokhoz attribútum. A következő példa hello, a CORS-támogatás toohello teljes vezérlőre vonatkozik.
    
         namespace ToDoListAPI.Controllers 
         {
@@ -231,7 +231,7 @@ A Web API CORS-támogatásának engedélyezése az alábbi lépésekkel foglalha
             public class ToDoListController : ApiController
 
 ## <a name="using-azure-api-management-with-api-apps"></a>Az Azure API Management használata API-alkalmazásokkal
-Ha az Azure API Management szolgáltatást egy API-alkalmazással használja, az API-alkalmazás helyett az API Management szolgáltatásban konfigurálja a CORS támogatást. További információkért lásd a következőket:
+Ha Azure API Management használata API-alkalmazást, adja meg a CORS API felügyelete hello API-alkalmazás. További információkért tekintse meg a következő erőforrások hello:
 
 * [Az Azure API Management áttekintése (videó: a CORS-ról szóló rész 12:10-nél kezdődik)](https://azure.microsoft.com/documentation/videos/azure-api-management-overview/)
 * [Az API Management tartományközi szabályzatai](https://msdn.microsoft.com/library/azure/dn894084.aspx#CORS)
@@ -239,13 +239,13 @@ Ha az Azure API Management szolgáltatást egy API-alkalmazással használja, az
 ## <a name="troubleshooting"></a>Hibaelhárítás
 Ha az oktatóanyag lépéseinek elvégzése közben hibákba ütközne, olvassa el az alábbi hibaelhárítási tippeket:
 
-* Ellenőrizze, hogy az [Azure SDK for .NET for Visual Studio 2015](http://go.microsoft.com/fwlink/?linkid=518003) legfrissebb verzióját használja-e.
-* Győződjön meg arról, hogy `https`-t írt be a CORS beállításba, valamint arról, hogy `https`-t használ a webalkalmazás kezelőfelületének futtatásához.
-* Győződjön meg arról, hogy a CORS beállítást a középső rétegbeli API-alkalmazásba, és nem a kezelőfelületbe helyezte el.
-* Ha az alkalmazás kódjában és az Azure App Service platformon is konfigurálja a CORS-támogatást, akkor ne feledje, hogy az App Service CORS-beállítása felülírja az alkalmazás kódjában lévő beállítást. 
+* Győződjön meg arról, hogy hello hello legújabb verzióját használja [Azure SDK for .NET for Visual Studio 2015](http://go.microsoft.com/fwlink/?linkid=518003).
+* Győződjön meg arról, hogy a megadott `https` hello CORS beállítását, és győződjön meg arról, hogy használata `https` toorun hello előtér-webalkalmazást.
+* Győződjön meg arról, hogy a megadott hello CORS beállításba hello középső rétegbeli API-alkalmazás, és nem hello előtér-webalkalmazást.
+* Ha az alkalmazás kódjában és az Azure App Service CORS konfigurálja, vegye figyelembe, hogy hello App Service CORS-beállítása felülírja alkalmazáskód végzett függetlenül. 
 
-A Visual Studio hibaelhárítást egyszerűsítő szolgáltatásairól a [Troubleshooting Azure App Service apps in Visual Studio](../app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md) (Azure App Service-alkalmazások hibáinak elhárítása Visual Studióban) című szakaszban olvashat bővebben.
+További információ a Visual Studio funkcióit, hibaelhárítást egyszerűsítő toolearn lásd [hibaelhárítási Azure App Service apps szolgáltatásban a Visual Studio](../app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md).
 
 ## <a name="next-steps"></a>Következő lépések
-Ebből a cikkből megtudhatta, hogyan engedélyezheti az App Service CORS-támogatását úgy, hogy az ügyfélbeli JavaScript-kód meghívhasson egy másik tartományban lévő API-t. Az API-alkalmazások részletesebb megismeréséhez olvassa el az [App Service-hitelesítésbe való bevezetést](../app-service/app-service-authentication-overview.md), majd nyissa meg az [API-alkalmazásokban való felhasználóhitelesítést](app-service-api-dotnet-user-principal-auth.md) bemutató oktatóanyagot.
+Ebből a cikkből megtudhatta, hogyan támogatják a tooenable App Service CORS, hogy az ügyfélbeli JavaScript-kód meghívhatja az API-k egy másik tartományban. További API-alkalmazások, olvassa el a hello toolearn [bemutatása tooauthentication az App Service](../app-service/app-service-authentication-overview.md), és folytassa a toohello [API-alkalmazások felhasználói hitelesítésének](app-service-api-dotnet-user-principal-auth.md) oktatóanyag.
 

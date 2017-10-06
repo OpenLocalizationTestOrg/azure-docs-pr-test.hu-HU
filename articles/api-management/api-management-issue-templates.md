@@ -1,6 +1,6 @@
 ---
-title: Adja ki a sablonok az Azure API Management |} Microsoft Docs
-description: "Ismerje meg, hogyan szabhatja testre a fejlesztői portálra az Azure API Management a probléma lapok tartalmát."
+title: az Azure API Management aaaIssue sablonok |} Microsoft Docs
+description: "Ismerje meg, hogyan toocustomize hello hello developer portálon az Azure API Management hello probléma lapok tartalmát."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: e13344df198bca4f73c75fa58221436b94e2f258
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e12902e52c164f73902a97f15ea550790dfecf1c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="issue-templates-in-azure-api-management"></a>A probléma sablonok az Azure API Management
-Az Azure API Management lehetővé teszi a tartalom developer portálon lapok használatával konfigurálhatja a tartalom-sablonok testreszabása. Használatával [DotLiquid](http://dotliquidmarkup.org/) szintaxisát és az Ön által választott szerkesztőben, mint [tervezőknek DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), és a megadott készlete honosított [karakterlánc-erőforrások](api-management-template-resources.md#strings), [betűkép-erőforrások](api-management-template-resources.md#glyphs), és [vezérlők lapon](api-management-page-controls.md), konfigurálja a tartalmat, a lapok, ahogyan szeretné ezeket a sablonokat használ nagy rugalmasságot biztosítanak.  
+Az Azure API Management biztosít, akkor hello képességét toocustomize hello fejlesztői portál lapok használatával konfigurálhatja a tartalom-sablonok tartalmának. Használatával [DotLiquid](http://dotliquidmarkup.org/) szintaxisát és hello szerkesztő az Ön által választott, például a [tervezőknek DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), és a megadott készlete honosított [karakterlánc-erőforrások](api-management-template-resources.md#strings), [ A betűkép-erőforrások](api-management-template-resources.md#glyphs), és [vezérlők lapon](api-management-page-controls.md), rugalmas lehetőségeket biztosítanak tooconfigure hello hello lapok tartalmát rendelkezik, ezeket a sablonokat igényei szerint.  
   
- Ebben a szakaszban a sablonok lehetővé teszi a tartalom a fejlesztői portálra probléma oldalak testreszabásához.  
+ Ebben a szakaszban hello sablonok lehetővé teszik hello probléma lapok tartalmát toocustomize hello hello developer portálon.  
   
 -   [Problémák listája](#IssueList)  
   
 > [!NOTE]
->  Minta alapértelmezett sablonok az alábbi dokumentáció szerepelnek, de folyamatos fejlesztéseket miatt változhat. Megtekintheti az élő alapértelmezett sablonok a fejlesztői portálra nyissa meg a kívánt egyéni sablonokat. A sablonok használatának kapcsolatos további információkért lásd: [hogyan szabhatja testre a sablonok segítségével az API Management fejlesztői portálján](api-management-developer-portal-templates.md).  
+>  Minta alapértelmezett sablonok a következő dokumentáció hello szerepelnek, de tulajdonos toochange toocontinuous fejlesztései miatt. Navigáljon a szükséges toohello egyéni sablonok hello élő alapértelmezett sablonok a hello fejlesztői portálján tekintheti meg. A sablonok használatának kapcsolatos további információkért lásd: [hogyan toocustomize hello API Management fejlesztői portálján sablonokkal](api-management-developer-portal-templates.md).  
   
 ##  <a name="IssueList"></a>Problémák listája  
- A **problémák listája** sablon lehetővé teszi a fejlesztői portálra, a probléma lista lap törzsében testreszabását.  
+ Hello **problémák listája** sablon teszi hello probléma lista lap toocustomize hello törzsében hello developer portálon.  
   
  ![Adja ki a lista fejlesztői portálján](./media/api-management-issue-templates/APIM-Issue-List-Developer-Portal.png "APIM probléma lista fejlesztői portálján")  
   
@@ -88,7 +88,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ### <a name="controls"></a>Vezérlők  
- A `Issue list` sablon előfordulhat, hogy használja a következő [vezérlők lapon](api-management-page-controls.md).  
+ Hello `Issue list` sablon használhat hello következő [vezérlők lapon](api-management-page-controls.md).  
   
 -   [lapozófájl-vezérlő](api-management-page-controls.md#paging-control)  
   
@@ -96,10 +96,10 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
   
 |Tulajdonság|Típus|Leírás|  
 |--------------|----------|-----------------|  
-|Hibák|A gyűjtemény [probléma](api-management-template-data-model-reference.md#Issue) entitásokat.|Az aktuális felhasználó számára látható problémákat.|  
-|Lapozás|[Lapozás](api-management-template-data-model-reference.md#Paging) entitás.|Az alkalmazások gyűjtemény lapozás adatait.|  
-|IsAuthenticated|Logikai érték|Hogy az aktuális felhasználó van bejelentkezve a fejlesztői portálhoz.|  
-|CanReportIssues|Logikai érték|Az aktuális felhasználónak van-e engedélyekkel a következő fájl kapcsolatos problémát.|  
+|Hibák|A gyűjtemény [probléma](api-management-template-data-model-reference.md#Issue) entitásokat.|hello problémák látható toohello aktuális felhasználó.|  
+|Lapozás|[Lapozás](api-management-template-data-model-reference.md#Paging) entitás.|hello lapozás információ hello alkalmazások gyűjtemény.|  
+|IsAuthenticated|Logikai érték|Hello aktuális felhasználónak-e bejelentkezve toohello fejlesztői portálján.|  
+|CanReportIssues|Logikai érték|Hello aktuális felhasználó rendelkezik-e engedélyekkel toofile kapcsolatos problémát.|  
 |Keresés|Karakterlánc|Ez a tulajdonság elavult, és nem használható.|  
   
 ### <a name="sample-template-data"></a>Mintaadatokat sablon  
@@ -110,8 +110,8 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
         {  
             "Id": "5702b68bb16653124c8f9ba7",  
             "ApiId": "570275f1b16653124c8f9ba3",  
-            "Title": "I couldn't figure out how to connect my application to the API",  
-            "Description": "I'm having trouble connecting my application to the backend API.",  
+            "Title": "I couldn't figure out how tooconnect my application toohello API",  
+            "Description": "I'm having trouble connecting my application toohello backend API.",  
             "SubscriptionDeveloperName": "Clayton",  
             "IssueState": "Proposed",  
             "ReportedOn": "2016-04-04T18:46:35.64",  
@@ -134,4 +134,4 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-A sablonok használatának kapcsolatos további információkért lásd: [hogyan szabhatja testre a sablonok segítségével az API Management fejlesztői portálján](api-management-developer-portal-templates.md).
+A sablonok használatának kapcsolatos további információkért lásd: [hogyan toocustomize hello API Management fejlesztői portálján sablonokkal](api-management-developer-portal-templates.md).

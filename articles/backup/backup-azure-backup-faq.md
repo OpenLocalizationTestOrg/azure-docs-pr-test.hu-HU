@@ -1,6 +1,6 @@
 ---
-title: "Azure Backup – gyakori kérdések | Microsoft Docs"
-description: "Gyakori kérdésekre adott válaszok a következő témakörökben: az Azure Backup szolgáltatásai, mint például a Recovery Services-tárolók, a biztonsági mentés lehetséges elemei, működése, titkosítás és korlátozások. "
+title: "aaaAzure biztonsági mentés – gyakori kérdések |} Microsoft Docs"
+description: "Toocommon kérdésekre vonatkozó: Azure biztonsági mentési funkciót, beleértve a Recovery Services tárolók, mi azt biztonsági mentését is, hogyan működik, titkosítási és korlátokat. "
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -15,45 +15,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/21/2017
 ms.author: markgal;arunak;trinadhk;
-ms.openlocfilehash: 62ca4e395a7390c57b46c548395333283a06c21a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3338f7620bcc6ebf53c9c161191f2d8bca1a29da
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="questions-about-the-azure-backup-service"></a>Kérdések az Azure Backup szolgáltatással kapcsolatban
-A cikk gyakori kérdésekre adott válaszokat tartalmazó szakaszaiban gyorsan áttekinthető az Azure Backup összetevőinek működése. Egyes válaszokban részletes információkat tartalmazó cikkekre mutató hivatkozások találhatók. Ha kérdést szeretne feltenni az Azure Backup szolgáltatással kapcsolatban, kattintson a jobb oldalon található **Megjegyzések** gombra. A megjegyzések a cikk alján jelennek meg. Megjegyzések írásához Livefyre-fiók szükséges. Emellett egy fórumbejegyzésben is feltehet kérdéseket az Azure Backup szolgáltatással kapcsolatban a [vitafórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazureonlinebackup).
+# <a name="questions-about-hello-azure-backup-service"></a>Hello Azure Backup szolgáltatás kapcsolatos kérdések
+Ez a cikk válaszok toocommon kérdések toohelp hello Azure biztonsági mentés összetevők gyorsan tisztában van. Hello válaszok némelyike nincsenek hivatkozások toohello cikket, amely átfogó információkat. Kérdéseit teheti fel Azure biztonsági mentéssel kapcsolatos kattintva **megjegyzések** (toohello jobbra). Megjegyzések a cikk hello alján jelennek meg. Egy Livefyre fiók szükséges toocomment. A hello is beküldheti hello Azure Backup szolgáltatás kapcsolatos kérdéseket [vitafóruma](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazureonlinebackup).
 
-A cikk szakaszainak gyors áttekintéséhez használja **A cikk tartalma** terület hivatkozásait a jobb oldalon.
+tooquickly vizsgálat hello szakasz ebben a cikkben a használja hello hivatkozások toohello jobb **ebben a cikkben**.
 
 
 ## <a name="recovery-services-vault"></a>Recovery Services-tároló
 
-### <a name="is-there-any-limit-on-the-number-of-vaults-that-can-be-created-in-each-azure-subscription-br"></a>Az egyes Azure-előfizetésekben létrehozható tárolók száma korlátozott? <br/>
-Igen. 2016 szeptemberétől kezdve előfizetésenként 25 Recovery Services-szolgáltatás vagy biztonsági mentési tár hozható létre. Előfizetésenként az Azure Backup szolgáltatás minden támogatott régiójához legfeljebb 25 Recovery Services-tároló hozható létre. Ha több tárolóra van szüksége, hozzon létre egy további előfizetést.
+### <a name="is-there-any-limit-on-hello-number-of-vaults-that-can-be-created-in-each-azure-subscription-br"></a>Nem minden egyes Azure-előfizetések létrehozott tárolók hello számára vonatkozó korlátozást? <br/>
+Igen. 2016 szeptemberétől kezdve előfizetésenként 25 Recovery Services-szolgáltatás vagy biztonsági mentési tár hozható létre. Hozhat létre too25 helyreállítási szolgáltatások tárolók régiónként támogatott az Azure Backup szolgáltatásban. Ha több tárolóra van szüksége, hozzon létre egy további előfizetést.
 
-### <a name="are-there-limits-on-the-number-of-serversmachines-that-can-be-registered-against-each-vault-br"></a>Az egyes tárolókhoz regisztrálható kiszolgálók/gépek száma korlátozott? <br/>
-Igen, tárolónként 50 gépet regisztrálhat. Az Azure IaaS virtuális gépei esetén a korlát 200 virtuális gép tárolónként. Ha több gépet szeretne regisztrálni, hozzon létre egy másik tárolót.
+### <a name="are-there-limits-on-hello-number-of-serversmachines-that-can-be-registered-against-each-vault-br"></a>Vannak-e minden egyes tárolóban elleni regisztrálható kiszolgálók/gépek hello számát vonatkozó korlátozások? <br/>
+Igen, akkor regisztrálnia too50 gépek / tároló. Az Azure infrastruktúra-szolgáltatási virtuális gépeket a hello határértéke 200 gépek tárolóban. Ha további gépeket kell tooregister, hozzon létre egy másik tárolóban.
 
 ### <a name="if-my-organization-has-one-vault-how-can-i-isolate-one-servers-data-from-another-server-when-restoring-databr"></a>Ha a szervezetem egy tárolóval rendelkezik, hogyan tudom az egyik kiszolgáló adatait elszigetelni egy másik kiszolgálóétól az adatok visszaállításakor?<br/>
-Minden kiszolgáló, amely ugyanahhoz a tárolóhoz van regisztrálva, képes helyreállítani más, *ugyanazt a hozzáférési kódot használó* kiszolgálók adatainak biztonsági másolatait. Ha olyan kiszolgálókkal rendelkezik, amelyek adatainak biztonsági másolatait szeretné elszigetelni a szervezetében található más kiszolgálóétól, használjon egy erre kijelölt hozzáférési kódot ezekhez a kiszolgálókhoz. Például a humánerőforrás-kiszolgálók használhatnának egy titkosító hozzáférési kódot, a könyvelési kiszolgálók egy másikat és a tároló kiszolgálók egy harmadikat.
+Összes kiszolgáló, amely regisztrált toohello azonos tároló helyre tudja állítani az adatok biztonsági mentése más kiszolgálók által hello *használó hello ugyanazt a jelszót*. Ha kiszolgálók amelynek biztonsági mentési adatokat szeretne tooisolate a szervezet egyéb kiszolgálóin, használja a kijelölt jelszót az ezeken a kiszolgálókon. Például a humánerőforrás-kiszolgálók használhatnának egy titkosító hozzáférési kódot, a könyvelési kiszolgálók egy másikat és a tároló kiszolgálók egy harmadikat.
 
 ### <a name="can-i-migrate-my-backup-data-or-vault-between-subscriptions-br"></a>Át lehet telepíteni a biztonsági mentési adatokat vagy tárolót az előfizetéseim között? <br/>
-Nem. A tároló előfizetési szinten jön létre, és a létrehozása után nem lehet másik előfizetéshez hozzárendelni.
+Nem. hello tároló egy előfizetés szintjén jön létre, és nem lehet máshoz hozzárendelt tooanother előfizetés létrehozása után.
 
 ### <a name="recovery-services-vaults-are-resource-manager-based-are-backup-vaults-classic-mode-still-supported-br"></a>A helyreállítási tárak a Resource Manageren alapulnak. A biztonsági mentési tárak (klasszikus módban) továbbra is támogatottak? <br/>
-A [klasszikus portálon](https://manage.windowsazure.com) lévő biztonsági mentési tárak továbbra is támogatottak. A klasszikus portál azonban nem használható új biztonsági mentési tárak üzembe helyezésére. A Microsoft javasolja, hogy Recovery Services-tárolókat használjon az összes üzemelő példányhoz, mivel a jövőbeli fejlesztések csak a Recovery Services-tárolókra lesznek érvényesek. Ha a klasszikus portálon próbál létrehozni egy biztonsági mentési tárolót, a rendszer át fogja irányítani az [Azure Portalra](https://portal.azure.com).
+Az összes meglévő mentési tárolókban lévő hello [klasszikus portál](https://manage.windowsazure.com) továbbra is támogatott toobe. Azonban már nem használható hello klasszikus portál toodeploy új biztonsági mentési tárolóból. A Microsoft azt javasolja, Recovery Services-tárolók használatával minden telepítés esetén, mert a jövőbeli fejlesztések tooRecovery szolgáltatások tárolók, csak alkalmazni. A biztonsági másolatok tárolóját a klasszikus portálon hello toocreate kísérli meg, ha fogja átirányított toohello [Azure-portálon](https://portal.azure.com).
 
-### <a name="can-i-migrate-a-backup-vault-to-a-recovery-services-vault-br"></a>Áttelepíthetek egy Backup tárolót egy Recovery Services-tárolóra? <br/>
-Sajnos nem, a Backup-tároló tartalma nem telepíthető át egy Recovery Services-tárolóra. Jelenleg is dolgozunk ezen funkción, azonban most még nem elérhető.
+### <a name="can-i-migrate-a-backup-vault-tooa-recovery-services-vault-br"></a>Áttelepítheti a biztonsági mentési tároló tooa Recovery Services-tároló? <br/>
+Sajnos nem, nem telepíthetők át a biztonsági mentési tároló tooa Recovery Services-tároló hello tartalmát. Jelenleg is dolgozunk ezen funkción, azonban most még nem elérhető.
 
-### <a name="i-backed-up-my-classic-vms-in-a-backup-vault-can-i-migrate-my-vms-from-classic-mode-to-resource-manager-mode-and-protect-them-in-a-recovery-services-vault"></a>Biztonsági másolatot készítettem a klasszikus virtuális gépemről egy biztonsági mentési tárban. Áttelepíthetem a virtuális gépeimet a klasszikus módból Resource Manager módba, hogy egy Recovery Services-tárolóban védjem őket?
-A klasszikus virtuális gépek a biztonsági mentési tárolókban lévő helyreállítási pontjai nem lesznek automatikusan áttelepítve a Recovery Services-tárolóba, amikor a virtuális gépet klasszikus módból Resource Manager módba telepíti. Hajtsa végre ezeket a lépéseket a virtuális gép biztonsági mentéseinek áttelepítéséhez:
+### <a name="i-backed-up-my-classic-vms-in-a-backup-vault-can-i-migrate-my-vms-from-classic-mode-tooresource-manager-mode-and-protect-them-in-a-recovery-services-vault"></a>Biztonsági másolatot készítettem a klasszikus virtuális gépemről egy biztonsági mentési tárban. A virtuális gépek áttelepítése a klasszikus mód tooResource Manager mód és a Recovery Services-tároló a védelmüket?
+Klasszikus virtuális gép helyreállítási pontokat a biztonságimásolat-tárolóban nem automatikusan telepíti át tooa Recovery Services-tároló hello VM áthelyezése klasszikus tooResource kezelő módban. Kövesse ezeket a lépéseket tootransfer a virtuális gép biztonsági mentések:
 
-1. A Backup-tárolóban lépjen a **Protected Items** (Védett elemek) lapra, és válassza ki a virtuális gépet. Kattintson a [Védelem kikapcsolása](backup-azure-manage-vms-classic.md#stop-protecting-virtual-machines) parancsra. Hagyja a *Delete associated backup data* (Társított biztonsági mentési adatok törlése) beállítást **bejelöletlenül**.
-2. Törölje a biztonsági mentés/pillanatkép bővítményt a virtuális gépről.
-3. Telepítse át a virtuális gépet a klasszikus módból a Resource Manager módba. A virtuális gépnek megfelelő tároló és hálózat adatait is mindenképpen telepítse át Resource Manager módba.
-4. Hozzon létre egy Recovery Services-tárolót, és konfigurálja a biztonsági mentést az áttelepített virtuális gépen a tároló irányítópultjának tetejénél található **Backup** (Biztonsági mentés) művelettel. A virtuális gépek Recovery Services-tárolóba való biztonsági mentésével kapcsolatos részletes információkért lásd az [Azure virtuális gépek védelme Recovery Services-tárolóval](backup-azure-vms-first-look-arm.md) című cikket.
+1. Hello Backup-tárolóban, lépjen a toohello **védett elemek** fülre, és válassza ki a virtuális gép hello. Kattintson a [Védelem kikapcsolása](backup-azure-manage-vms-classic.md#stop-protecting-virtual-machines) parancsra. Hagyja a *Delete associated backup data* (Társított biztonsági mentési adatok törlése) beállítást **bejelöletlenül**.
+2. Hello biztonsági másolat vagy pillanatkép-bővítmény törlése a virtuális gép hello.
+3. Hello virtuális gép áttelepítése a klasszikus mód tooResource Manager üzemmódból. Ellenőrizze, hogy a megfelelő toohello virtuális gépek egyben hello tárolási és hálózati információk át tooResource kezelő módban.
+4. Recovery Services-tároló létrehozása és konfigurálása a hello biztonsági mentési áttelepítése a virtuális gép **biztonsági mentési** művelet tároló irányítópult felett. Részletes információk a virtuális gép tooa Recovery Services biztonsági mentésével tároló, hello cikke [Azure virtuális gépek védelme Recovery Services-tároló](backup-azure-vms-first-look-arm.md).
 
 ## <a name="azure-backup-agent"></a>Az Azure Backup ügynöke
 A kérdések részletes listája a [Gyakori kérdések az Azure-beli fájlok és mappák biztonsági mentéséről](backup-azure-file-folder-backup-faq.md) című részben található
@@ -63,40 +63,40 @@ A kérdések részletes listája a [Gyakori kérdések az Azure-beli virtuális 
 
 ## <a name="back-up-vmware-servers"></a>VMware-kiszolgálók biztonsági mentése
 
-### <a name="can-i-back-up-vmware-vcenter-servers-to-azure"></a>Tudok biztonsági mentést készíteni VMware vCenter-kiszolgálókról az Azure-ban?
+### <a name="can-i-back-up-vmware-vcenter-servers-tooazure"></a>Is biztonsági másolatot a VMware vCenter-kiszolgálók tooAzure?
 
-Igen. Az Azure Backup Server használatával biztonsági mentést készíthet a VMware vCenter-, valamint az ESXi-kiszolgálókról az Azure-ban. A támogatott VMware-verziókkal kapcsolatos információkért tekintse meg az [Azure Backup Server védelmi mátrix](backup-mabs-protection-matrix.md)című cikket. Részletes útmutatásért lásd: [VMware-kiszolgáló biztonsági mentése az Azure Backup Server használatával](backup-azure-backup-server-vmware.md).
+Igen. Használhatja az Azure Backup Server tooback VMware vCenter és az ESXi tooAzure. Hello támogatott VMware-verzión információkért lásd: hello cikk [Azure Backup Server védelmi mátrix](backup-mabs-protection-matrix.md). Részletes útmutatásért lásd: [VMware-kiszolgáló használata Azure Backup Server tooback](backup-azure-backup-server-vmware.md).
 
 
 ## <a name="azure-backup-server-and-system-center-data-protection-manager"></a>Azure Backup Server és System Center Data Protection Manager
-### <a name="can-i-use-azure-backup-server-to-create-a-bare-metal-recovery-bmr-backup-for-a-physical-server-br"></a>Használhatom az Azure Backup kiszolgálót egy operációs rendszer nélküli helyreállítás (BMR) biztonsági másolatának létrehozásához egy fizikai kiszolgálón? <br/>
+### <a name="can-i-use-azure-backup-server-toocreate-a-bare-metal-recovery-bmr-backup-for-a-physical-server-br"></a>Használható Azure Backup Server toocreate egy operációs rendszer nélküli helyreállítást (BMR) biztonsági mentés a fizikai kiszolgáló? <br/>
 Igen.
 
-### <a name="can-i-register-my-dpm-server-to-multiple-vaults-br"></a>Regisztrálhatom a DPM-kiszolgálómat több tárolóhoz? <br/>
-Nem. A DPM- vagy MABS- kiszolgálók csak egy tárolóhoz regisztrálhatók.
+### <a name="can-i-register-my-dpm-server-toomultiple-vaults-br"></a>A DPM-kiszolgáló toomultiple tárolók tud regisztrálni? <br/>
+Nem. A DPM vagy MABS kiszolgáló lehet egy regisztrált tooonly tárolóban.
 
 ### <a name="which-version-of-system-center-data-protection-manager-is-supported-br"></a>A System Center – Data Protection Manager melyik verziója támogatott? <br/>
-Javasoljuk, hogy telepítse a [legújabb](http://aka.ms/azurebackup_agent) Azure Backup-ügynököt a System Center – Data Protection Manager legújabb kumulatív frissítésén. 2016 augusztusában a legújabb frissítés a 11. kumulatív frissítés.
+Azt javasoljuk, hogy telepítse hello [legújabb](http://aka.ms/azurebackup_agent) hello legújabb kumulatív frissítéssel (UR) a System Center Data Protection Manager (DPM) az Azure Backup szolgáltatás ügynöke. 2016 augusztusától az Update Rollup 11 a hello legújabb frissítés.
 
-### <a name="i-have-installed-azure-backup-agent-to-protect-my-files-and-folders-can-i-now-install-system-center-dpm-to-work-with-azure-backup-agent-to-protect-on-premises-applicationvm-workloads-to-azure-br"></a>Telepítettem az Azure Backup ügynököt a fájljaim és mappáim megvédéséhez. Telepíthetem a System Center DPM-et, hogy az Azure Backup-ügynökkel együttműködve az Azure-ban védje a helyszíni alkalmazásokat vagy a virtuális gépek számítási feladatait? <br/>
-Az Azure Backup és a System Center Data Protection Manager (DPM) együttes használatához először a DPM-et telepítse, majd az Azure Backup ügynököt. Az Azure Backup ügynök és a DPM együttműködését úgy biztosíthatja, ha az Azure Backup-összetevőket ebben a sorrendben telepíti. Nem javasolt és nem támogatott az Azure Backup ügynök telepítése a DPM telepítése előtt.
+### <a name="i-have-installed-azure-backup-agent-tooprotect-my-files-and-folders-can-i-now-install-system-center-dpm-toowork-with-azure-backup-agent-tooprotect-on-premises-applicationvm-workloads-tooazure-br"></a>Azure Backup agent tooprotect telepítése a fájlokat és mappákat. Most már telepíthető System Center DPM toowork az Azure Backup agent tooprotect helyi alkalmazás vagy Virtuálisgép-munkaterhelések tooAzure? <br/>
+toouse Azure Backup a System Center Data Protection Manager (DPM), először a DPM telepítéséhez, és telepítse az Azure Backup szolgáltatás ügynöke. Az itt megadott sorrendben hello Azure biztonsági mentés összetevők telepítése hello Azure Backup szolgáltatás ügynökének DPM együttműködve biztosítja. Hello Azure biztonsági mentési ügynök telepítése a DPM telepítése előtt, azt javasoljuk, vagy nem támogatott.
 
 
 ## <a name="how-azure-backup-works"></a>Az Azure Backup működése
-### <a name="if-i-cancel-a-backup-job-once-it-has-started-is-the-transferred-backup-data-deleted-br"></a>Ha megszakítok egy már elindult biztonsági mentési feladatot, az átküldött adatok biztonsági másolata törlődik? <br/>
-Nem. A biztonsági mentési feladat megszakításának pillanata előtt a tárolóba már átvitt minden adat a tárolóban marad. Az Azure Backup egy ellenőrzőpont-alapú mechanizmust használ, így a biztonsági mentés közben esetenként ellenőrzőpontokat ad az adatok biztonsági másolatához. Mivel ellenőrzőpontok vannak az adatok biztonsági másolatában, a következő biztonsági mentési folyamat ellenőrizni tudja a fájlok épségét. A következő biztonsági mentési feladat a korábban már mentett adatokra épülő növekményes mentés lesz. A növekményes mentések csak az új vagy módosított adatok átvitelét jelentik, így a sávszélesség-használat optimalizálható.
+### <a name="if-i-cancel-a-backup-job-once-it-has-started-is-hello-transferred-backup-data-deleted-br"></a>Ha egy biztonsági mentési feladata után kezdett I le, hello átvitt biztonsági mentési adatok törlődik? <br/>
+Nem. Hello biztonsági mentési feladat megszakadt, mielőtt hello tárolóban történő továbbított összes adat hello tárolóban marad. Az Azure biztonsági mentés használ egy ellenőrzőpont mechanizmus toooccasionally hozzá ellenőrzőpontokat toohello biztonsági mentési adatok során hello biztonsági mentés. Nincsenek ellenőrzőpontok hello biztonsági mentési adatokat, mert hello következő biztonsági mentési folyamat hello fájlok hello sértetlenségének ellenőrzéséhez. hello következő biztonsági mentési feladat lesz növekményes toohello adatokat előzőleg készült biztonsági másolat. Növekményes biztonsági másolatok csak akkor továbbíthatnak új vagy módosított adatok, amely megfelel a sávszélesség toobetter kihasználását.
 
-Ha megszakítja egy Azure virtuális gép valamely biztonsági mentését, a rendszer a már átvitt adatokat figyelmen kívül hagyja. A következő biztonsági mentési feladat az utolsó sikeres biztonsági mentéshez képest végzi el az adatok növekményes mentését.
+Ha megszakítja egy Azure virtuális gép valamely biztonsági mentését, a rendszer a már átvitt adatokat figyelmen kívül hagyja. hello következő biztonsági mentési feladat növekményes adatokat visz át a hello utolsó sikeres biztonsági mentési feladat.
 
 ### <a name="are-there-limits-on-when-or-how-many-times-a-backup-job-can-be-scheduledbr"></a>Korlátozva van, hogy mikorra vagy hányszor ütemezhető egy biztonsági mentési feladat?<br/>
-Igen. Windows Server- vagy Windows-munkaállomásokon a biztonsági mentési feladatok naponta legfeljebb háromszor futtathatók. System Center DPM esetén a biztonsági mentési feladatok naponta legfeljebb kétszer futtathatók. Az infrastruktúra-szolgáltatás virtuális gépei esetén a biztonsági mentési feladat naponta legfeljebb egyszer futtatható. A napi vagy heti ütemezéseket a Windows Server- vagy Windows-munkaállomás ütemezési szabályzatával adhatja meg. A System Center DPM-mel napi, heti, havi és évi ütemezéseket határozhat meg.
+Igen. A Windows Server vagy Windows munkaállomások mentése toothree időpontokban naponta biztonsági mentési feladatok is futtathatja. System Center DPM biztonsági mentési feladatok mentést napi tootwice futtathatja. Az infrastruktúra-szolgáltatás virtuális gépei esetén a biztonsági mentési feladat naponta legfeljebb egyszer futtatható. Használhatja az ütemezési házirend a Windows Server vagy a Windows munkaállomás toospecify hello napi vagy heti ütemezést. A System Center DPM-mel napi, heti, havi és évi ütemezéseket határozhat meg.
 
-### <a name="why-is-the-size-of-the-data-transferred-to-the-recovery-services-vault-smaller-than-the-data-i-backed-upbr"></a>Miért kisebb a Recovery Services-tárolóba átvitt adatok mérete a biztonsági mentéskor létrehozott adatméretnél?<br/>
- Minden, az Azure Backup ügynökétől, az SCDPM-ből vagy az Azure Backup Serverről származó adatot, amelyről biztonsági mentés készül, a rendszer tömörít és titkosít az átvitel előtt. A tömörítés és a titkosítás alkalmazása után a biztonsági mentési tárolóban lévő adatok 30–40 százalékkal kisebbek.
+### <a name="why-is-hello-size-of-hello-data-transferred-toohello-recovery-services-vault-smaller-than-hello-data-i-backed-upbr"></a>Miért van hello mérete kisebb, mint a biztonsági mentés I hello adat tároló Recovery Services hello átvitt adatok toohello?<br/>
+ Minden hello adatok biztonsági mentése az Azure Backup szolgáltatás ügynökének vagy az SCDPM vagy az Azure Backup Server tömörített és átvitele előtt titkosítja. Miután hello tömörítés és a titkosítás alkalmazásakor hello hello mentési tároló adatai 30-40 %-os kisebb.
 
 ## <a name="what-can-i-back-up"></a>Miről tudok biztonsági mentést készíteni?
 ### <a name="which-operating-systems-do-azure-backup-support-br"></a>Mely operációs rendszereket támogatja az Azure Backup? <br/>
-Az Azure Backup a következő operációs rendszerek biztonsági mentését támogatja: az Azure Backup Server és a System Center Data Protection Manager (DPM) használatával védett fájlok és mappák, valamint számítási feladatokat végző alkalmazások.
+Azure biztonsági mentés támogatja a biztonsági mentési operációs rendszerek listája a következő hello: fájlok és mappák és munkaterhelés-alkalmazások Azure Backup Server és System Center Data Protection Manager (DPM) használatával védett.
 
 | Operációs rendszer | Platform | SKU |
 |:--- | --- |:--- |
@@ -116,12 +116,12 @@ Az Azure Backup a következő operációs rendszerek biztonsági mentését tám
 
 **Azure VM Backup esetében:**
 
-* **Linux**: Az Azure Backup az [Azure által támogatott disztribúciókat](../virtual-machines/linux/endorsed-distros.md) támogatja, a Core OS Linux kivételével.  Egyéb saját Linux-disztribúciók is működtethetők, ha a virtuális gép ügynöke elérhető a virtuális gépen, és a rendszer támogatja a Pythont.
+* **Linux**: Az Azure Backup az [Azure által támogatott disztribúciókat](../virtual-machines/linux/endorsed-distros.md) támogatja, a Core OS Linux kivételével.  Más kerüljön-a-saját-Linux terjesztéseket is előfordulhat, hogy működni, amíg hello Virtuálisgép-ügynök hello virtuális gépen érhető el, a Python létezik támogatása.
 * **Windows Server**: A Windows Server 2008 R2-nél régebbi verziók nem támogatottak.
 
 
-### <a name="is-there-a-limit-on-the-size-of-each-data-source-being-backed-up-br"></a>Létezik méretkorlátozás a biztonsági mentésre kijelölt adatforrásokra vonatkozóan? <br/>
-Azon adatok mennyisége, amelyekről egy adott tárolóban biztonsági másolat készíthető, nem korlátozott. Az Azure Backup ugyan korlátozza az adatforrások maximális méretét, ez a korlát azonban elég magas. A 2015. augusztusi állapot szerint a támogatott operációs rendszerek esetén az adatforrás maximális mérete a következő:
+### <a name="is-there-a-limit-on-hello-size-of-each-data-source-being-backed-up-br"></a>Van korlátja a biztonsági mentés alatt minden adatforrás hello mérete? <br/>
+Hello adatmennyiség készíthet biztonsági mentést tooa tároló korlátozva van. Azure biztonsági mentés hello adatforrás hello maximális mérete korlátozza, azonban ezek a korlátozások nagy. 2015. augusztus frissítésétől hello maximális hello támogatott operációs rendszerek adatforrás mérete:
 
 | Sorszám | Operációs rendszer | Adatforrás maximális mérete |
 |:---:|:--- |:--- |
@@ -130,56 +130,56 @@ Azon adatok mennyisége, amelyekről egy adott tárolóban biztonsági másolat 
 | 3 |Windows Server 2008, Windows Server 2008 R2 |1700 GB |
 | 4 |Windows 7 |1700 GB |
 
-Az alábbi táblázat megmagyarázza, hogy az egyes adatforrásméretek hogyan lettek meghatározva.
+hello a következő táblázat ismerteti, hogyan minden adatforrás mérete határozza meg.
 
 | Adatforrás | Részletek |
 |:---:|:--- |
-| Kötet |Egy kiszolgáló vagy ügyfélgép egyetlen kötetéről biztonsági mentés alatt álló adatok mennyisége |
-| Hyper-V virtuális gép |A biztonsági mentés alatt álló virtuális gép összes virtuális merevlemezének összes adata |
+| Kötet |hello adatmennyiség egyetlen kötetéről a kiszolgáló vagy az ügyfél gépek biztonsági mentése folyamatban |
+| Hyper-V virtuális gép |Összesített összes hello a VHD-k hello virtuális gép biztonsági mentése folyamatban |
 | Microsoft SQL Server-adatbázis |A biztonsági mentés alatt álló egyetlen SQL-adatbázis mérete |
-| Microsoft SharePoint |Egy biztonsági mentés alatt álló SharePoint-farm tartalmának és konfigurációs adatbázisainak összessége |
+| Microsoft SharePoint |Egy SharePoint-farm biztonsági mentés alatt található tartalom és konfigurációs adatbázisok hello összege |
 | Microsoft Exchange |Egy biztonsági mentés alatt álló Exchange-kiszolgáló összes Exchange-adatbázisa |
-| BMR/Rendszerállapot |A biztonsági mentés alatt álló gép BMR-ének vagy rendszerállapotának minden egyes másolata |
+| BMR/Rendszerállapot |BMR vagy rendszerállapot biztonsági mentése folyamatban hello gép minden egyes másolata |
 
-Az Azure-beli virtuális gépek biztonsági mentésekor minden virtuális gép legfeljebb 16 adatlemezzel rendelkezhet, az egyes adatlemezek pedig legfeljebb 1023 GB méretűek lehetnek. 
+Azure virtuális gép biztonsági mentése, az egyes virtuális gépek lehet too16 adatok lemezeket egyes adatok lemez alatt méretet 1023 GB-os vagy annál kisebb. 
 
 ## <a name="retention-policy-and-recovery-points"></a>Adatmegőrzési szabály és helyreállítási pontok
-### <a name="is-there-a-difference-between-the-retention-policy-for-dpm-and-windows-serverclient-that-is-on-windows-server-without-dpmbr"></a>Van különbség a DPM és a Windows Server vagy Windows-ügyfél (pl. Windows Server kiszolgálón DPM nélkül) esetén a megtartási házirendben?<br/>
+### <a name="is-there-a-difference-between-hello-retention-policy-for-dpm-and-windows-serverclient-that-is-on-windows-server-without-dpmbr"></a>Hello adatmegőrzési a DPM és a Windows Server-ügyfél van (Ez azt jelenti, hogy a Windows Server a DPM nélkül)?<br/>
 Nem, a DPM és a Windows Server vagy Windows-ügyfél is rendelkezik napi, heti, havi és évi megtartási házirendekkel.
 
 ### <a name="can-i-configure-my-retention-policies-selectively--ie-configure-weekly-and-daily-but-not-yearly-and-monthlybr"></a>Beállíthatom a megtartási házirendeket szelektíven – pl. konfigurálom hetente és naponta, de nem évente és havonta?<br/>
-Igen, az Azure Backup megtartási struktúrája az igényeihez igazodva teljes rugalmasságot tesz lehetővé a megtartási házirend meghatározásában.
+Igen, hello Azure biztonsági mentés megőrzési struktúra lehetővé teszi a toohave teljesen rugalmasan a definiáló hello adatmegőrzési a követelményeknek.
 
 ### <a name="can-i-schedule-a-backup-at-6pm-and-specify-retention-policies-at-a-different-timebr"></a>„Ütemezhetek egy biztonsági mentést” este 6 órára, és megadhatok „megtartási házirendeket” egy másik időpontra?<br/>
-Nem. Megtartási házirendeket csak biztonsági mentési pontokon lehet alkalmazni. A következő képen a megtartási házirend 0 és 18 órakor készült biztonsági mentésekre van meghatározva. <br/>
+Nem. Megtartási házirendeket csak biztonsági mentési pontokon lehet alkalmazni. A kép a következő hello hello adatmegőrzési 12 óra és 18: 00 órakor biztonsági mentés van megadva. <br/>
 
 ![Biztonsági mentés és megőrzés ütemezése](./media/backup-azure-backup-faq/Schedule.png)
 <br/>
 
-### <a name="if-a-backup-is-retained-for-a-long-duration-does-it-take-more-time-to-recover-an-older-data-point-br"></a>Ha egy biztonsági másolat hosszú ideig van megtartva, több időbe telik egy régebbi adatpont helyreállítása? <br/>
-Nem – a legrégebbi és a legújabb pont helyreállítási ideje azonos. Minden helyreállítási pont teljes pontként viselkedik.
+### <a name="if-a-backup-is-retained-for-a-long-duration-does-it-take-more-time-toorecover-an-older-data-point-br"></a>Ha a biztonsági másolat egy hosszú ideig őrzi meg, időt vesz igénybe több idő toorecover egy régebbi adatpont? <br/>
+Nem – hello idő toorecover hello legrégebbi vagy legújabb pont hello van hello azonos. Minden helyreállítási pont teljes pontként viselkedik.
 
-### <a name="if-each-recovery-point-is-like-a-full-point-does-it-impact-the-total-billable-backup-storagebr"></a>Ha minden helyreállítási pont olyan, mint egy teljes pont, ez befolyásolja a teljes számlázandó biztonsági mentési tárolást?<br/>
-A tipikus hosszú távú megtartási pontok az adatok biztonsági másolatát teljes pontokként tárolják. A teljes pontok tárolás szempontjából *nem hatékonyak*, azonban könnyebben és gyorsabban visszaállíthatók. A növekményes másolatok tárolás szempontjából *hatékonyak* de egy adatlánc visszaállítását teszik szükségessé, ami befolyásolja a helyreállítási időt. Az Azure Backup tárolási architektúrája ezen két megoldás előnyeit ötvözi az adatok optimális tárolásával a gyors visszaállítás érdekében és alacsony tárolási költségekkel. Ez az adattárolási módszer biztosítja, hogy a bemenő és kimenő sávszélesség is hatékonyan van felhasználva. Mind az adattárolási hely, mind az adatok helyreállításához szükséges idő mértéke a minimális szinten van tartva. Megtudhatja, hogy miért hatékonyak a [növekményes biztonsági mentések](https://azure.microsoft.com/blog/microsoft-azure-backup-save-on-long-term-storage/).
+### <a name="if-each-recovery-point-is-like-a-full-point-does-it-impact-hello-total-billable-backup-storagebr"></a>Ha például egy teljes pont egyes helyreállítási pontok, nem azt befolyásolja a hello számlázható biztonsági mentési tárolókészlet?<br/>
+A tipikus hosszú távú megtartási pontok az adatok biztonsági másolatát teljes pontokként tárolják. hello teljes pontok tárolási *nem elég hatékony* , de egyszerűbb és gyorsabb toorestore. Növekményes példányokra tárolási *hatékony* , de használatba toorestore adatait, amely hatással van a helyreállítási idő láncolata. Az Azure biztonsági mentés tárolási architektúra ad meg mindkét világot legjobb hello optimális gyors visszaállítások adattárolás és nélül alacsony tárolási költségek. Ez az adattárolási módszer biztosítja, hogy a bemenő és kimenő sávszélesség is hatékonyan van felhasználva. Mindkét hello időn adatok tárolási és hello szükséges toorecover hello adatok, tooa minimális tárolódik. Megtudhatja, hogy miért hatékonyak a [növekményes biztonsági mentések](https://azure.microsoft.com/blog/microsoft-azure-backup-save-on-long-term-storage/).
 
-### <a name="is-there-a-limit-on-the-number-of-recovery-points-that-can-be-createdbr"></a>A létrehozható helyreállítási pontok száma korlátozott?<br/>
-Védett példányonként 9999 helyreállítási pontot hozhat létre. A védett példányok olyan számítógépek, kiszolgálók (fizikai vagy virtuális) vagy számítási feladatok, amelyek úgy vannak konfigurálva, hogy biztonsági mentést végezzenek az Azure-ba. További információkért lásd a magyarázatokat a [biztonsági mentést és megőrzést](./backup-introduction-to-azure-backup.md#backup-and-retention), illetve a [védett példányokat](./backup-introduction-to-azure-backup.md#what-is-a-protected-instance) ismertető szakaszban.
+### <a name="is-there-a-limit-on-hello-number-of-recovery-points-that-can-be-createdbr"></a>Nem hozható létre helyreállítási pontok számát hello korlátozást?<br/>
+Másolatot védett példányonként too9999 helyreállítási pontokat hozhat létre. Egy védett példány egy számítógép, a server (fizikai vagy virtuális) vagy a munkaterhelés konfigurált tooback adatok tooAzure fel. További információkért lásd: hello magyarázatokat [biztonsági mentési és adatmegőrzési](./backup-introduction-to-azure-backup.md#backup-and-retention), és [Mi az, hogy a védett példánya](./backup-introduction-to-azure-backup.md#what-is-a-protected-instance)?
 
-### <a name="how-many-recoveries-can-i-perform-on-the-data-that-is-backed-up-to-azurebr"></a>Hány helyreállítást végezhetek el az Azure-ban biztonsági másolattal rendelkező adatokból?<br/>
-Az Azure Backupból történő helyreállítások száma korlátlan.
+### <a name="how-many-recoveries-can-i-perform-on-hello-data-that-is-backed-up-tooazurebr"></a>Hány helyreállítási végrehajthatok hello adatok biztonsági mentése tooAzure?<br/>
+Az Azure Backup a helyreállítások hello száma korlátozva van.
 
-### <a name="when-restoring-data-do-i-pay-for-the-egress-traffic-from-azure-br"></a>Az adatok visszaállításakor fizetnem kell az Azure-ból kimenő forgalomért? <br/>
-Nem. A helyreállítások ingyenesek, és nem kell fizetni a kimenő forgalomért.
+### <a name="when-restoring-data-do-i-pay-for-hello-egress-traffic-from-azure-br"></a>Adatok helyreállításakor kell fizetni hello kimenő forgalom az Azure-ból? <br/>
+Nem. A helyreállítások szabadon, és nem kell fizetnie hello kilépő forgalmat.
 
 ## <a name="azure-backup-encryption"></a>Azure Backup-titkosítás
-### <a name="is-the-data-sent-to-azure-encrypted-br"></a>Az Azure-ba küldött adatok titkosítottak? <br/>
-Igen. Az adatokat a rendszer az AES256 használatával a helyszíni kiszolgálón/ügyfélen/SCDPM-gépen titkosítja, és egy biztonságos HTTPS-kapcsolaton keresztül küldi el.
+### <a name="is-hello-data-sent-tooazure-encrypted-br"></a>Hello adatokat küldött titkosított tooAzure? <br/>
+Igen. Adatok titkosítása a gépen hello a helyi kiszolgáló vagy ügyfél/SCDPM használatával AES256 és hello adatküldést biztonságos HTTPS-kapcsolaton keresztül.
 
-### <a name="is-the-backup-data-on-azure-encrypted-as-wellbr"></a>Az adatokról készült biztonsági másolat az Azure-on is titkosított?<br/>
-Igen. Az Azure-ba küldött (aktívan nem használt) adatok titkosítva maradnak. A Microsoft soha nem fejt vissza adatokat. Azure virtuális gép biztonsági mentése esetén az Azure Backup a virtuális gép titkosítására támaszkodik. Ha például a virtuális gépe az Azure Disk Encryption vagy más titkosítási technológiával van titkosítva, az Azure Backup ezzel védi az adatait.
+### <a name="is-hello-backup-data-on-azure-encrypted-as-wellbr"></a>Hello biztonsági mentési adatok van titkosítva, valamint Azure?<br/>
+Igen. hello adatküldés tooAzure (inaktív) titkosított marad. A Microsoft nem fejti vissza a biztonsági mentési adatok hello bármely pontján. Ha biztonsági másolatot az Azure virtuális gép, Azure Backup szolgáltatás titkosítási hello virtuális gép támaszkodik. Például ha a virtuális gép titkosítása a Azure Disk Encryption, vagy olyan titkosítási technológiákat, Azure biztonsági mentés használja a titkosítási toosecure az adatok.
 
-### <a name="what-is-the-minimum-length-of-encryption-key-used-to-encrypt-backup-data-br"></a>Mi az adatok biztonsági másolatának titkosításához használt titkosítási kulcs minimális hossza? <br/>
-Az Azure Backup-ügynök használatakor a titkosítási kulcsnak legalább 16 karakterből kell állnia. Az Azure-beli virtuális gépek esetében nincs korlátozva az Azure KeyVault által használt kulcsok hossza. 
+### <a name="what-is-hello-minimum-length-of-encryption-key-used-tooencrypt-backup-data-br"></a>Mi az titkosítási kulcs minimális hosszát hello használt tooencrypt biztonsági mentési adatokat? <br/>
+hello titkosítási kulcs legalább 16 karakter lehet, az Azure Backup szolgáltatás ügynöke használata esetén. Azure virtuális gépeken nincs nincs korlát toolength Azure KeyVault által használt kulcsok. 
 
-### <a name="what-happens-if-i-misplace-the-encryption-key-can-i-recover-the-data-or-can-microsoft-recover-the-data-br"></a>Mi történik, ha elveszítem a titkosítási kulcsot? Helyre tudom állítani az adatokat (vagy) a Microsoft helyre tudja állítani az adatokat? <br/>
-Az adatok biztonsági másolatának titkosításához használt kulcs csak az ügyfél telephelyén van jelen. A Microsoft nem tárol másolatot az Azure-ban, és nem rendelkezik hozzáféréssel a kulcshoz. Ha az ügyfél elveszíti a kulcsot, a Microsoft nem tudja helyreállítani az adatok biztonsági másolatát.
+### <a name="what-happens-if-i-misplace-hello-encryption-key-can-i-recover-hello-data-or-can-microsoft-recover-hello-data-br"></a>Mi történik, ha szeretnék feljegyezte hello titkosítási kulcsot? Helyreállíthatók hello adatok (vagy) helyreállíthatja a Microsoft hello adatokat? <br/>
+csak a hello ügyfél helyszíni hello kulcs használt tooencrypt hello biztonsági mentési adatok jelen. A Microsoft nem tart fenn egy másolatot, az Azure-ban, és nincs semmilyen hozzáférési toohello kulcsa. Hello ügyfél misplaces hello kulcsot, ha az Microsoft hello biztonsági mentési adatok nem állíthatók vissza.

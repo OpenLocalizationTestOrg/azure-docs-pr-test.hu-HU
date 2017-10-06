@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directoryban címtárobjektum-attribútumok alapján dinamikusan csoportok feltöltéséhez |} Microsoft Docs"
-description: "Hogyan-a következőre csoport tagsági beleértve a támogatott szabályoperátorokat kifejezés és paraméterek speciális szabályok létrehozásához."
+title: "aaaPopulate csoportokat dinamikusan az Azure Active Directoryban címtárobjektum-attribútumok alapján |} Microsoft Docs"
+description: "Hogyan-tartozó toocreate speciális szabályok kifejezés szabályoperátorokat és paraméterek csoport tagsági többek között támogatott."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,55 +15,55 @@ ms.topic: article
 ms.date: 06/19/2017
 ms.author: curtand
 ms.reviewer: rodejo
-ms.openlocfilehash: b9b5ddf42958a2b4e241d0252101d979009e7dc0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fe22829118ed8f5137a619d93fa6f9bf80835863
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="populate-groups-dynamically-based-on-object-attributes"></a>Csoportok címtárobjektum-attribútumok alapján dinamikusan feltöltése
-A klasszikus Azure portálon összetettebb Attribútumalapú dinamikus csoporttagságok az Azure Active Directory (Azure AD) csoport engedélyezése lehetőséget nyújt.  
+a klasszikus Azure portálon hello biztosít hello képességét tooenable összetettebb Attribútumalapú dinamikus csoporttagságok az Azure Active Directory (Azure AD) csoport.  
 
-Ha módosítja egy felhasználó vagy eszköz attribútuma, a rendszer kiértékeli az összes dinamikus csoport szabályokat annak ellenőrzéséhez, hogy a módosítás kiváltották bármely csoport hozzáadása vagy eltávolítása a könyvtárban található. Ha egy felhasználó vagy az eszköz megfelel a csoporton szabály, azokat hozzá szeretné adni a csoport tagjai. A szabály már nem megfelelnek eltávolítja.
+Ha bármely felhasználó vagy eszköz változás attribútumok, hello rendszer kiértékeli az összes dinamikus csoport szabályokat egy directory toosee a hello módosítás kiváltották, ha bármely csoport hozzáadása vagy eltávolítása. Ha egy felhasználó vagy az eszköz megfelel a csoporton szabály, azokat hozzá szeretné adni a csoport tagjai. Hello szabály már nem megfelelnek eltávolítja.
 
 > [!NOTE]
 > - Biztonsági vagy Office 365-csoportok esetében dinamikustagság-szabály beállítására is lehetőség van.
 >
-> - Ez a szolgáltatás legalább egy dinamikus csoportba felvett felhasználói tagjaihoz tartozó Azure AD Premium P1-licencre van szükség.
+> - Ez a szolgáltatás minden egyes felhasználó tag hozzáadott tooat legalább egy dinamikus csoport Azure AD Premium P1-licencre van szükség.
 >
 > - Létrehozhat egy dinamikus csoportot eszközök vagy felhasználók számára, de nem hozható létre egy szabályt, amely a felhasználó és eszköz objektumokat is tartalmaz.
 
-> - Jelenleg nincs lehetőség a felhasználói attribútumok a tulajdonos alapján eszköz csoport létrehozásához. Eszköz tagsági szabályok csak az eszköz a címtárban található objektumokhoz azonnali attribútumok hivatkozhat.
+> - Hello jelenleg nincs a felhasználói attribútumok a tulajdonos alapján eszközcsoport lehetséges toocreate. Eszköz tagsági szabályok csak referencia azonnali attribútumok hello directory eszköz objektumokat is.
 
-## <a name="to-create-an-advanced-rule"></a>Speciális szabály létrehozása
-1. Az a [a klasszikus Azure portálon](https://manage.windowsazure.com), jelölje be **Active Directory**, majd nyissa meg a munkahely címtárában.
-2. Válassza ki a **csoportok** lapra, és nyissa meg a szerkeszteni kívánt csoportot.
-3. Válassza ki a **konfigurálása** lapon jelölje be a **speciális szabály** lehetőséget, majd a speciális szabályt a szövegmezőbe írja be.
+## <a name="toocreate-an-advanced-rule"></a>toocreate speciális szabály
+1. A hello [a klasszikus Azure portálon](https://manage.windowsazure.com), jelölje be **Active Directory**, majd nyissa meg a munkahely címtárában.
+2. Jelölje be hello **csoportok** fülre, és azt szeretné, hogy tooedit majd nyitott hello csoport.
+3. Jelölje be hello **konfigurálása** lapra, jelölje be hello **speciális szabály** lehetőséget, és hello speciális szabály hello szövegmezőbe írja be.
 
-## <a name="constructing-the-body-of-an-advanced-rule"></a>A szervezet egy speciális szabály létrehozása
-A speciális szabályt, a dinamikus tagságot csoportokat hozhat létre az lényegében egy bináris kifejezés, amely három részből áll, és IGAZ vagy hamis eredménye eredményez. A három részt a következők:
+## <a name="constructing-hello-body-of-an-advanced-rule"></a>Hello törzsét speciális szabály létrehozása
+hello speciális szabályt is létrehozhat dinamikus tagságot hello csoportok lényegében egy bináris kifejezés, amely három részből áll, és IGAZ vagy hamis eredménye eredményez. hello három részek a következők:
 
 * Bal oldali paraméter
 * Bináris operátor
 * Jobb oldali állandó
 
-A teljes speciális szabály néz: (leftParameter binaryOperator "RightConstant"), ahol a nyitó és záró zárójel szükségesek a teljes bináris kifejezésből, dupla idézőjelek között szükség a megfelelő állandó és a bal oldali paraméter szintaxisa a következő user.property. Speciális szabály állhat egynél több bináris kifejezések vesszővel elválasztva a - és, - vagy, és - nem logikai operátor.
-A következő példák a megfelelően felépített speciális szabályt:
+A teljes speciális szabály a következőhöz hasonló toothis: (leftParameter binaryOperator "RightConstant"), amennyiben a nyitó és záró zárójel hello hello teljes bináris kifejezés szükséges, dupla idézőjelek között szükség, hello szintaxisát, és jobb oldali állandó hello a hello a bal oldali paraméter user.property. Speciális szabály egynél több bináris kifejezések elválasztott hello állhat- és, - vagy, és - nem logikai operátor.
+hello következő példákban a megfelelően felépített speciális szabályt:
 
 * (felhasználó.részleg - eq "Értékesítési") – vagy (felhasználó.részleg - eq "Marketing")
 * (felhasználó.részleg - eq "Értékesítési")- és - nem (user.jobTitle-tartalmazza a "SDE")
 
-Támogatott paraméterek és kifejezés szabályoperátorokat teljes listájáért tekintse meg az alábbi szakaszok.
+A támogatott paraméterek és kifejezés szabályoperátorokat hello teljes listáját az alábbi szakaszban talál.
 
 
-Vegye figyelembe, hogy a tulajdonság a megfelelő objektumtípus lehet előtagként: felhasználó vagy eszköz.
-Az alábbi szabály sikertelen lesz, az érvényesítés: az e-mail – ne null
+Vegye figyelembe, hogy hello tulajdonság előtaggal kell a megfelelő objektumtípus hello: felhasználó vagy eszköz.
+hello alatt szabály sikertelen lesz, hello érvényesítése: az e-mail – ne null
 
-A megfelelő szabályt a következő lesz:
+hello helyes-e a szabály a következő lesz:
 
 User.mail – ne NULL értékű
 
-A speciális szabály törzsét teljes hossza legfeljebb 2048 karakter hosszú lehet.
+a speciális szabály törzsét hello hello teljes hossza nem haladhatja meg a 2048 karakter.
 
 > [!NOTE]
 > Karakterlánc és regex műveletek esetében-és nagybetűket.
@@ -73,7 +73,7 @@ A speciális szabály törzsét teljes hossza legfeljebb 2048 karakter hosszú l
 >
 
 ## <a name="supported-expression-rule-operators"></a>Támogatott kifejezés szabály operátorok
-Az alábbi táblázat a támogatott kifejezés szabályoperátorokat és szintaxisát a speciális szabály törzsét használhatók:
+hello következő táblázat felsorolja az összes támogatott hello kifejezés szabályoperátorokat és a speciális szabály hello hello törzsét használt szintaxis toobe:
 
 | Operátor | Szintaxis |
 | --- | --- |
@@ -90,11 +90,11 @@ Az alábbi táblázat a támogatott kifejezés szabályoperátorokat és szintax
 
 ## <a name="operator-precedence"></a>Precedencia
 
-Minden operátorok a következők / élveznek a csökkenteni a magasabb, operátor szerepel ugyanabban a sorban szerepelnek egyenlő élvez-bármely - összes - vagy - és - nem - eq - ne - megadott módon kezdődő - notStartsWith-- notContains tartalmazza-– notMatch egyezik-- notIn a
+Minden operátorok a következők / élveznek a kisebb toohigher, operátor szerepel ugyanabban a sorban szerepelnek egyenlő élvez-bármely - összes - vagy - és - nem - eq - ne - megadott módon kezdődő - notStartsWith-- notContains tartalmazza-– notMatch egyezik-- notIn a
 
 Minden műveleteivel végrehajtható vagy kötőjel előtag nélkül.
 
-Vegye figyelembe, hogy nem mindig szükséges zárójeleket tartalmazhat, csak kell hozzáadnia a zárójelek közé foglalva, amikor sorrendje nem felel meg a követelmények például:
+Vegye figyelembe, hogy zárójel nem mindig szükséges, ha sorrendje nem felel meg a követelmények például csak kell tooadd zárójel:
 
    felhasználó.részleg-eq "Marketing" – és felhasználó.ország-eq "US"
 
@@ -102,27 +102,27 @@ az egyenértékű:
 
    (felhasználó.részleg-eq "Marketing") – és (felhasználó.ország-eq "US")
 
-## <a name="using-the--in-and--notin-operators"></a>Használja az - a és - notIn operátorok
+## <a name="using-hello--in-and--notin-operators"></a>Hello segítségével – az és - notIn operátorok
 
-Ha számos különböző értéket elleni felhasználói attribútum értékének összehasonlítandó használhatja az - a vagy - notIn operátorokat. Példa használja a - operátorban:
+Ha azt szeretné, hogy számos különböző értéket elleni felhasználói attribútum értékének toocompare hello hello - a vagy - notIn operátorokat. Íme egy példa segítségével hello - operátorban:
 
     user.department -In [ "50001", "50002", "50003", “50005”, “50006”, “50007”, “50008”, “50016”, “50020”, “50024”, “50038”, “50039”, “51100” ]
 
-Vegye figyelembe a használatát a "[" és "]" elején és értékek listájának végét. Ez a feltétel eredménye IGAZ érték felhasználó.részleg egyenlő a listában szereplő értékek közül.
+Vegye figyelembe a hello hello használata "[" és "]" hello elején és végén lévő hello értékekből álló listát:. A feltétel értéke tooTrue hello értékének felhasználó.részleg egyenlő egy hello értékek hello listában.
 
 ## <a name="query-error-remediation"></a>Lekérdezési hiba szervizelés
-A következő táblázat felsorolja a lehetséges hibákat, és hogyan javítsa ki azokat, ha az előfordulásuk időpontjában naplózhatja őket
+hello táblázatban a lehetséges hibákat, és hogyan toocorrect őket, ha az előfordulásuk időpontjában naplózhatja őket
 
 | Lekérdezés-elemzési hiba | Hiba kihasználtsága | Javított kihasználtsága |
 | --- | --- | --- |
-| Hiba történt: Az attribútum nem támogatott. |(user.invalidProperty - eq "Érték") |(felhasználó.részleg - eq "érték")<br/>Tulajdonságot meg kell felelnie közül a [tulajdonságainak listája támogatott](#supported-properties). |
-| Hiba: Operátor nem támogatott az attribútum. |(user.accountEnabled-igaz tartalmazza) |(user.accountEnabled - eq igaz)<br/>Tulajdonság logikai érték típusú. A támogatott operátorokkal (-eq vagy - ne) logikai típus a fenti listából. |
-| Hiba: Lekérdezésfordítási hiba. |(felhasználó.részleg - eq "Értékesítési")- és (felhasználó.részleg - eq "Marketing") (user.userPrincipalName-match "*@domain.ext") |(felhasználó.részleg - eq "Értékesítési")- és (felhasználó.részleg - eq "Marketing")<br/>Logikai operátor meg kell felelnie egy, a támogatott tulajdonságok a fenti listából. (user.userPrincipalName-egyeznie ". *@domain.ext") vagy (user.userPrincipalName-egyeznie "@domain.ext$") hiba történt a reguláris kifejezés. |
+| Hiba történt: Az attribútum nem támogatott. |(user.invalidProperty - eq "Érték") |(felhasználó.részleg - eq "érték")<br/>Tulajdonságot meg kell felelnie hello közül [tulajdonságainak listája támogatott](#supported-properties). |
+| Hiba: Operátor nem támogatott az attribútum. |(user.accountEnabled-igaz tartalmazza) |(user.accountEnabled - eq igaz)<br/>Tulajdonság logikai érték típusú. Hello támogatott operátorokkal (-eq vagy - ne) logikai típusának hello lista fölött. |
+| Hiba: Lekérdezésfordítási hiba. |(felhasználó.részleg - eq "Értékesítési")- és (felhasználó.részleg - eq "Marketing") (user.userPrincipalName-match "*@domain.ext") |(felhasználó.részleg - eq "Értékesítési")- és (felhasználó.részleg - eq "Marketing")<br/>Logikai operátor meg kell felelnie egy hello támogatott tulajdonságok a fenti listából. (user.userPrincipalName-egyeznie ". *@domain.ext") vagy (user.userPrincipalName-egyeznie "@domain.ext$") hiba történt a reguláris kifejezés. |
 | Hiba: Bináris kifejezés nem megfelelő formátumban van. |(felhasználó.részleg-eq "Értékesítési") (felhasználó.részleg - eq "Értékesítési") (felhasználó.részleg-eq "Értékesítési") |(user.accountEnabled - eq igaz) – és (user.userPrincipalName-tartalmaz "alias@domain")<br/>A lekérdezés több hibát tartalmaz. Nem megfelelő helyen zárójel. |
 | Hiba: Ismeretlen hiba történt a dinamikus csoporttagságok beállítása során. |(user.accountEnabled - eq "True" és user.userPrincipalName-tartalmaz "alias@domain") |(user.accountEnabled - eq igaz) – és (user.userPrincipalName-tartalmaz "alias@domain")<br/>A lekérdezés több hibát tartalmaz. Nem megfelelő helyen zárójel. |
 
 ## <a name="supported-properties"></a>Támogatott tulajdonságok
-A speciális szabály használható felhasználói tulajdonságok a következők:
+Az alábbiakban hello hello felhasználói tulajdonságok a speciális szabályt is használhatja:
 
 ### <a name="properties-of-type-boolean"></a>Logikai érték típusú tulajdonságairól
 Engedélyezett operátorok
@@ -159,11 +159,11 @@ Engedélyezett operátorok
 | facsimileTelephoneNumber |Bármilyen karakterlánc vagy $null |(user.facsimileTelephoneNumber - eq "érték") |
 | givenName |Bármilyen karakterlánc vagy $null |(user.givenName - eq "érték") |
 | Beosztás |Bármilyen karakterlánc vagy $null |(user.jobTitle - eq "érték") |
-| mail |Bármilyen karakterlánc vagy $null (SMTP-cím felhasználó) |(user.mail - eq "érték") |
-| mailNickName |Bármilyen karakterlánc típusú értéket (mail alias a felhasználó) |(user.mailNickName - eq "érték") |
+| mail |Bármilyen karakterlánc vagy $null (SMTP-cím hello felhasználó) |(user.mail - eq "érték") |
+| mailNickName |Bármilyen karakterlánc típusú értéket (mail alias hello felhasználó) |(user.mailNickName - eq "érték") |
 | Mobileszköz |Bármilyen karakterlánc vagy $null |(user.mobile - eq "érték") |
-| Objektumazonosító |A user objektum GUID-azonosítója |(user.objectId - eq "1111111-1111-1111-1111-111111111111") |
-| onPremisesSecurityIdentifier | A helyi biztonsági azonosítóját (SID) a felhasználók számára a felhőbe a helyszíni szinkronizálva. |(user.onPremisesSecurityIdentifier - eq "S-1-1-11-1111111111-1111111111-1111111111-1111111") |
+| Objektumazonosító |Hello felhasználóobjektum GUID azonosítója |(user.objectId - eq "1111111-1111-1111-1111-111111111111") |
+| onPremisesSecurityIdentifier | A helyi biztonsági azonosítója (SID) a szinkronizált felhasználók helyszíni toohello felhő. |(user.onPremisesSecurityIdentifier - eq "S-1-1-11-1111111111-1111111111-1111111111-1111111") |
 | passwordPolicies |Nincs DisableStrongPassword DisablePasswordExpiration DisablePasswordExpiration, DisableStrongPassword |(user.passwordPolicies - eq "DisableStrongPassword") |
 | physicalDeliveryOfficeName |Bármilyen karakterlánc vagy $null |(user.physicalDeliveryOfficeName - eq "érték") |
 | Irányítószám |Bármilyen karakterlánc vagy $null |(user.postalCode - eq "érték") |
@@ -191,63 +191,63 @@ Engedélyezett operátorok
 ## <a name="multi-value-properties"></a>Többértékű tulajdonságai
 Engedélyezett operátorok
 
-* -a (kielégíteni, ha legalább a gyűjtemény több eleme egyezik a következő feltételt:)
-* -az összes (teljesülnek, ha a gyűjtemény összes elemének felel meg a feltétel)
+* -a (hello gyűjtemény legalább egy eleme megegyezik hello feltétel meg)
+* -az összes (teljesülnek, ha hello gyűjtemény minden elemén hello feltétel felel meg)
 
 | Tulajdonságok | Értékek | Használat |
 | --- | --- | --- |
-| assignedPlans |A gyűjtemény minden vezérlőnek a következő karakterlánc tulajdonságai: capabilityStatus, szolgáltatás, servicePlanId |user.assignedPlans-bármely (assignedPlan.servicePlanId - eq "efb87545-963c-4e0d-99df-69c6916d9eb0"- és assignedPlan.capabilityStatus - eq "Engedélyezett") |
+| assignedPlans |Minden hello gyűjtemény-vezérlőnek a következő karakterlánc tulajdonságai hello: capabilityStatus, szolgáltatás, servicePlanId |user.assignedPlans-bármely (assignedPlan.servicePlanId - eq "efb87545-963c-4e0d-99df-69c6916d9eb0"- és assignedPlan.capabilityStatus - eq "Engedélyezett") |
 
-A rendszer ugyanolyan típusú objektumok gyűjteményeit adják többértékű tulajdonságokat. Használhat - bármely és - minden üzemeltetői számára, illetve egy vagy az összes elem a gyűjteményben, alkalmaz rá egy feltételt. Példa:
+Többértékű tulajdonságok hello objektumainak gyűjteményei ugyanarra a típusra. Használhat - egy feltétel tooone vagy az összes hello elemek hello gyűjteményben, illetve bármely és - összes operátorok tooapply. Példa:
 
-assignedPlans egy többértékű tulajdonság, amely tartalmazza a felhasználóhoz rendelt összes service-csomagokról. Az alábbi kifejezés fogja kiválasztani az Exchange Online (terv 2) service-csomag, amely egyúttal az engedélyezési állapotot rendelkező felhasználók:
+assignedPlans egy többértékű tulajdonság, amely tartalmazza az összes hozzárendelt toohello felhasználó service-csomagokról. alább kifejezés hello kiválaszt hello Exchange Online (terv 2) service-csomag, amely egyúttal az engedélyezési állapotot rendelkező felhasználók:
 
 ```
 user.assignedPlans -any (assignedPlan.servicePlanId -eq "efb87545-963c-4e0d-99df-69c6916d9eb0" -and assignedPlan.capabilityStatus -eq "Enabled")
 ```
 
-(A Guid azonosító azonosítja az Exchange Online (terv 2) service-csomag).
+(hello Guid-azonosító azonosítja hello Exchange Online (terv 2) service-csomag).
 
 > [!NOTE]
-> Ez akkor hasznos, ha azt szeretné, hogy minden felhasználó azonosításához, amely az Office 365 (vagy más Microsoft Online Services szolgáltatással) funkció engedélyezve van, például, amelyekre őket egy bizonyos házirendcsoport.
+> Ez akkor hasznos, ha azt szeretné, tooidentify minden felhasználó, akinek az Office 365 (vagy más Microsoft Online Services szolgáltatással) funkció engedélyezve van, például tootarget házirendek bizonyos állítja be őket.
 
-Az alábbi kifejezés fogja kiválasztani az összes, akik rendelkeznek minden service-csomag, amely az Intune szolgáltatással (szolgáltatásnév "SCO" által azonosított) van társítva:
+hello következő kifejezés fogja kiválasztani bármely service-csomag társított hello Intune-ba (szolgáltatásnév "SCO" által azonosított) rendelkező felhasználók:
 ```
 user.assignedPlans -any (assignedPlan.service -eq "SCO" -and assignedPlan.capabilityStatus -eq "Enabled")
 ```
 
 ## <a name="use-of-null-values"></a>Null értékek használatát
 
-Egy szabály null értéket ad meg, "null" vagy a $null is használhat. Példa:
+toospecify null értéket a szabályban, "null" vagy a $null használja. Példa:
 
    User.mail – ne null értéke megegyezik user.mail – ne $null
 
 ## <a name="extension-attributes-and-custom-attributes"></a>Egyéni oszlopainál és a bővítmény
 A bővítményattribútumokat és egyéni attribútumok dinamikus tagsági szabályok támogatottak.
 
-Kiterjesztési attribútumot a helyszíni Windows Server AD szinkronizált, és tegye meg "ExtensionAttributeX", ahol X értéke 1 – 15 formátuma.
+Kiterjesztési attribútumot a helyszíni Windows Server AD szinkronizált, és tegye meg "ExtensionAttributeX", ahol X értéke 1 – 15 hello formátuma.
 Egy bővítmény attribútumot használó szabály például lenne.
 
 (user.extensionAttribute15 - eq "Marketing")
 
-Az egyéni attribútumok szinkronizált a helyi Windows Server AD-ről vagy csatlakoztatott SaaS-alkalmazás és a formátuma "user.extension_[GUID]\__ [attribútum]" ahol [GUID] az az attribútum az aad-ben létrehozott alkalmazás az aad-ben az egyedi azonosítója, amely [attribútum] esetén az attribútum neve, mert azt létrehozták.
+Az egyéni attribútumok a helyi Windows Server AD-ről vagy egy csatlakoztatott SaaS alkalmazás és hello hello formátuma szinkronizált "user.extension_[GUID]\__ [attribútum]", ahol a [GUID] hello alkalmazás egyedi azonosítója az aad-ben hello, az aad-ben és a [attribútum] létrehozott hello attribútum hello attribútum hello neve megegyezik hozták létre.
 Példa egy szabályt, amely egy egyéni attribútumot használ:
 
 User.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber  
 
-Az egyéni attribútum nevében található a könyvtárban a felhasználó lekérdezésével attribútum Graph Explorerrel és keres az attribútum nevét.
+hello egyéni attribútum nevében található hello directory lekérdezésével egy felhasználói attribútum Graph Explorerrel és hello attribútumnév keres.
 
 ## <a name="direct-reports-rule"></a>"Közvetlen beosztottai" szabály
-Létrehozhat egy Manager minden közvetlen beosztottai tartalmazó csoport. A kezelő közvetlen beosztottai később módosíthatja, ha a csoport tagsága automatikusan igazítani.
+Létrehozhat egy Manager minden közvetlen beosztottai tartalmazó csoport. Hello manager közvetlen jelentések módosításakor a jövőbeli hello hello csoport tagsága automatikusan igazítani.
 
 > [!NOTE]
-> 1. A szabály érvényesítéséhez, ellenőrizze, hogy a **kezelő azonosítója** tulajdonság helyesen beállítva a felhasználók az Ön bérelt szolgáltatásának. Akkor is ellenőrizhesse a felhasználó aktuális értékét az **profil lapon**.
-> 2. Ez a szabály csak **közvetlen** jelentéseket. Jelenleg nem lehetséges egy beágyazott hierarchiához, pl. tartalmazó csoport közvetlen jelentések és a csoport létrehozásához.
+> 1. Hello szabály toowork, győződjön meg arról, hogy hello **Manager azonosító** tulajdonság helyesen beállítva a felhasználók az Ön bérelt szolgáltatásának. Akkor is ellenőrizhesse a felhasználó aktuális értéke hello azok **profil lapon**.
+> 2. Ez a szabály csak **közvetlen** jelentéseket. Jelenleg nem lehetséges toocreate beágyazott hierarchiáját, pl. tartalmazó csoport közvetlen és a jelentések egy csoportot.
 
-**A csoport konfigurálása**
+**tooconfigure hello csoport**
 
-1. Kövesse a 1-5 lépések szakaszából [a speciális szabály létrehozásához](#to-create-the-advanced-rule), és válassza ki egy **tagsági típusa** a **dinamikus felhasználói**.
-2. Az a **dinamikus tagsági szabályok** panelen adja meg a szabály a következő szintaxissal:
+1. Hajtsa végre a 1-5 lépések szakaszából [toocreate hello speciális szabály](#to-create-the-advanced-rule), és válassza ki a **tagsági típusa** a **dinamikus felhasználói**.
+2. A hello **dinamikus tagsági szabályok** panelen adja meg a hello szabály a hello szintaxisa a következő:
 
     *A(z) "{obectID_of_manager}" közvetlen beosztottaik*
 
@@ -255,11 +255,11 @@ Létrehozhat egy Manager minden közvetlen beosztottai tartalmazó csoport. A ke
 ```
                     Direct Reports for "62e19b97-8b3d-4d4a-a106-4ce66896a863"
 ```
-    where “62e19b97-8b3d-4d4a-a106-4ce66896a863” is the objectID of the manager. The object ID can be found on manager's **Profile tab**.
-3. A szabály mentése után a megadott kezelő azonosítója értékkel rendelkező összes felhasználó bekerül a csoporthoz.
+    where “62e19b97-8b3d-4d4a-a106-4ce66896a863” is hello objectID of hello manager. hello object ID can be found on manager's **Profile tab**.
+3. Hello szabály mentése után minden felhasználó hello megadott toohello csoport Manager azonosító értéket ad hozzá.
 
-## <a name="using-attributes-to-create-rules-for-device-objects"></a>Attribútumok használata eszközobjektumok szabályok létrehozása
-Olyan szabály, amely kijelöli a tagság eszközobjektumok egy csoportot is létrehozhat. A következő tulajdonságok használhatók:
+## <a name="using-attributes-toocreate-rules-for-device-objects"></a>Az eszközobjektumok attribútumok toocreate szabályok használatával
+Olyan szabály, amely kijelöli a tagság eszközobjektumok egy csoportot is létrehozhat. a következő eszközattribútumokon hello használhatók:
 
 | Tulajdonságok              | Megengedett értékek                  | Használat                                                       |
 |-------------------------|---------------------------------|-------------------------------------------------------------|
@@ -280,7 +280,7 @@ Olyan szabály, amely kijelöli a tagság eszközobjektumok egy csoportot is lé
 | Objektumazonosító                | egy érvényes AAD objectId            | (device.objectId - eq "76ad43c9-32c5-45e8-a272-7b58b58f596d") |
 
 > [!NOTE]
-> Ezeket az eszköz szabályokat nem hozható létre, hogy a "egyszerű szabály" legördülő lista használatakor a klasszikus Azure portálon.
+> Ezeket az eszköz szabályokat nem hozható létre, a klasszikus Azure portálon hello hello "egyszerű szabály" legördülő lista használatával.
 >
 >
 
@@ -288,7 +288,7 @@ Olyan szabály, amely kijelöli a tagság eszközobjektumok egy csoportot is lé
 E cikkekben további információk találhatók az Azure Active Directoryval kapcsolatban.
 
 * [A csoportok dinamikus csoporttagságok hibaelhárítása](active-directory-accessmanagement-troubleshooting.md)
-* [Erőforráshozzáférés-kezelés Azure Active Directory-csoportokkal](active-directory-manage-groups.md)
+* [Hozzáférés tooresources kezelése az Azure Active Directoryval](active-directory-manage-groups.md)
 * [Azure Active Directory-parancsmagok csoportbeállítások konfigurálásához](active-directory-accessmanagement-groups-settings-cmdlets.md)
 * [Az Azure Active Directory segítségével végzett alkalmazásfelügyeletre vonatkozó cikkek jegyzéke](active-directory-apps-index.md)
 * [Helyszíni identitások integrálása az Azure Active Directoryval](active-directory-aadconnect.md)

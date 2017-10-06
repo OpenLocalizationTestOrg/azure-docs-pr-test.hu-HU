@@ -1,6 +1,6 @@
 ---
-title: "A webes alkalmazás által használt SQL-adatbázis telepítéséhez"
-description: "Az Azure Resource Manager-sablon használatával, amely tartalmazza az SQL-adatbázis webalkalmazás üzembe helyezése."
+title: "a webes alkalmazás által használt SQL-adatbázis aaaProvision"
+description: "Az Azure Resource Manager sablon toodeploy egy webalkalmazást, amely tartalmazza az SQL-adatbázis használata."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/27/2016
 ms.author: cephalin
-ms.openlocfilehash: cc34f684f8c50e95a62cb7b04fd2ddce5deb68d6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 189c0122d201e88f15013bf241d66652ef23df4e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="provision-a-web-app-with-a-sql-database"></a>Az SQL-adatbázis a webes alkalmazás telepítéséhez
-Ebben a témakörben elsajátíthatja lesz egy Azure Resource Manager-sablon, amely telepít egy web app és az SQL-adatbázis létrehozása. Megtudhatja, hogyan határozza meg, mely erőforrásokat központilag telepíti, és hogyan adhat meg a paramétereket, amelyek megadott, amikor a központi telepítés végrehajtása. Ez a sablont használhatja a saját környezeteiben, vagy testre is szabhatja a saját követelményeinek megfelelően.
+Ez a témakör megtudhatja, hogyan toocreate egy Azure Resource Manager-sablon, amely telepít egy web app és az SQL-adatbázis. Megtudhatja, hogyan toodefine erőforrások vannak telepítve, és hogyan toodefine paramétereket megadott, amikor hello központi telepítés végrehajtása. Ez a sablon használhat saját rendszerekhez, vagy testre szabhatja, toomeet igényeinek.
 
 Sablonok létrehozásával kapcsolatos további információkért lásd: [Azure Resource Manager sablonok készítése](../azure-resource-manager/resource-group-authoring-templates.md).
 
 Alkalmazások központi telepítésével kapcsolatos további információkért lásd: [kiszámítható módon tudja az Azure-ban összetett alkalmazást központilag](app-service-deploy-complex-application-predictably.md).
 
-Tekintse meg a teljes sablon [az SQL adatbázis Web App sablon](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json).
+Hello teljes sablon, lásd: [az SQL adatbázis Web App sablon](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json).
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
@@ -41,29 +41,29 @@ Ha a sablonban telepíti:
 * A riasztási szabályok
 * App Insights
 
-Az automatikus üzembe helyezéshez kattintson az alábbi gombra:
+toorun telepítési hello automatikusan, kattintson a következő gombra hello:
 
-[![Üzembe helyezés az Azure-ban](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)
+[![TooAzure telepítése](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)
 
-## <a name="parameters-to-specify"></a>Paraméterek megadása
+## <a name="parameters-toospecify"></a>Paraméterek toospecify
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
 ### <a name="administratorlogin"></a>administratorLogin
-A fiók nevét az adatbázis-kiszolgáló rendszergazdájához.
+hello fiók neve toouse hello adatbázis-kiszolgáló rendszergazdájához tartozó.
 
     "administratorLogin": {
       "type": "string"
     }
 
 ### <a name="administratorloginpassword"></a>administratorLoginPassword
-Az adatbázis-kiszolgáló rendszergazdájához tartozó használandó jelszó.
+hello jelszó toouse hello adatbázis-kiszolgáló rendszergazdájához tartozó.
 
     "administratorLoginPassword": {
       "type": "securestring"
     }
 
 ### <a name="databasename"></a>DatabaseName
-A név az új adatbázis létrehozásához.
+hello új adatbázis toocreate hello neve.
 
     "databaseName": {
       "type": "string",
@@ -71,7 +71,7 @@ A név az új adatbázis létrehozásához.
     }
 
 ### <a name="collation"></a>Rendezés
-A megfelelő karakterek használatát szabályozó használandó adatbázis-rendezésével.
+hello adatbázis rendezését toouse irányító hello megfelelő karaktereket használja.
 
     "collation": {
       "type": "string",
@@ -79,7 +79,7 @@ A megfelelő karakterek használatát szabályozó használandó adatbázis-rend
     }
 
 ### <a name="edition"></a>Edition
-Az adatbázis létrehozásához típusa.
+adatbázis toocreate hello típusa.
 
     "edition": {
       "type": "string",
@@ -90,12 +90,12 @@ Az adatbázis létrehozásához típusa.
         "Premium"
       ],
       "metadata": {
-        "description": "The type of database to create."
+        "description": "hello type of database toocreate."
       }
     }
 
 ### <a name="maxsizebytes"></a>maxSizeBytes
-A maximális méretét, bájtban, az adatbázis.
+hello maximális méretét, bájtban hello adatbázis.
 
     "maxSizeBytes": {
       "type": "string",
@@ -103,7 +103,7 @@ A maximális méretét, bájtban, az adatbázis.
     }
 
 ### <a name="requestedserviceobjectivename"></a>requestedServiceObjectiveName
-A kiadás teljesítményszintjét nevével. 
+hello nevének megfelelő toohello teljesítményszintet kiadásához. 
 
     "requestedServiceObjectiveName": {
       "type": "string",
@@ -118,12 +118,12 @@ A kiadás teljesítményszintjét nevével.
         "P3"
       ],
       "metadata": {
-        "description": "Describes the performance level for Edition"
+        "description": "Describes hello performance level for Edition"
       }
     }
 
 ## <a name="variables-for-names"></a>Nevek változói
-Ez a sablon tartalmazza a változókat, amelyek a sablonban használt nevek összeállításához. A változó értékeket használja a **uniqueString** függvény használatával hozzon létre egy nevet az erőforráscsoport azonosítója.
+Ez a sablon tartalmazza a változókat, amelyek hello sablonban használt nevek összeállításához. hello változók értékeinek hello használata **uniqueString** toogenerate egy nevet a hello erőforráscsoport azonosítója működik.
 
     "variables": {
         "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -132,9 +132,9 @@ Ez a sablon tartalmazza a változókat, amelyek a sablonban használt nevek öss
     },
 
 
-## <a name="resources-to-deploy"></a>Üzembe helyezendő erőforrások
+## <a name="resources-toodeploy"></a>Erőforrások toodeploy
 ### <a name="sql-server-and-database"></a>SQL Server és adatbázis
-Létrehoz egy új SQL Server és adatbázis. A kiszolgáló neve szerepel a **kiszolgálónév** paraméter és a megadott helyre a **serverLocation** paraméter. Az új kiszolgáló létrehozásakor meg kell adnia a bejelentkezési nevet és jelszót az adatbázis-kiszolgáló rendszergazdájához tartozó. 
+Létrehoz egy új SQL Server és adatbázis. hello kiszolgáló hello neve van megadva az hello **kiszolgálónév** hello megadott paraméter és hello helyre **serverLocation** paraméter. Hello új kiszolgáló létrehozásakor meg kell adnia a bejelentkezési nevet és jelszót hello adatbázis-kiszolgáló rendszergazdájához. 
 
     {
       "name": "[variables('sqlserverName')]",
@@ -373,7 +373,7 @@ Létrehoz egy új SQL Server és adatbázis. A kiszolgáló neve szerepel a **ki
       },
       "properties": {
         "name": "[concat('CPUHigh ', variables('hostingPlanName'))]",
-        "description": "[concat('The average CPU is high across all the instances of ', variables('hostingPlanName'))]",
+        "description": "[concat('hello average CPU is high across all hello instances of ', variables('hostingPlanName'))]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
@@ -407,7 +407,7 @@ Létrehoz egy új SQL Server és adatbázis. A kiszolgáló neve szerepel a **ki
       },
       "properties": {
         "name": "[concat('LongHttpQueue ', variables('hostingPlanName'))]",
-        "description": "[concat('The HTTP queue for the instances of ', variables('hostingPlanName'), ' has a large number of pending requests.')]",
+        "description": "[concat('hello HTTP queue for hello instances of ', variables('hostingPlanName'), ' has a large number of pending requests.')]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
@@ -446,7 +446,7 @@ Létrehoz egy új SQL Server és adatbázis. A kiszolgáló neve szerepel a **ki
       }
     }
 
-## <a name="commands-to-run-deployment"></a>Az üzembe helyezést futtató parancsok
+## <a name="commands-toorun-deployment"></a>Parancsok toorun központi telepítés
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ### <a name="powershell"></a>PowerShell
@@ -462,6 +462,6 @@ Létrehoz egy új SQL Server és adatbázis. A kiszolgáló neve szerepel a **ki
     az resource deployment create -g {resource-group-name} --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json --parameters '@azuredeploy.parameters.json'
 
 > [!NOTE]
-> A paraméterek JSON-fájl tartalmát, lásd: [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.parameters.json).
+> Hello paraméterek JSON-fájl tartalmát, lásd: [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.parameters.json).
 >
 >

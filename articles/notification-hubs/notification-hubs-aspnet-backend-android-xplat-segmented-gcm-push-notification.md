@@ -1,6 +1,6 @@
 ---
-title: "Notification Hubs – legfrissebb hírek oktatóanyag - Android"
-description: "Útmutató: Azure Service Bus Notification Hubs használatával legfrissebb híreket tartalmazó értesítések küldése Android-eszközök."
+title: "aaaNotification hubok Megtörje hírek oktatóanyag – Android"
+description: "Megtudhatja, hogyan toouse Azure Service Bus Notification Hubs toosend megtörje hírek értesítések tooAndroid eszközök."
 services: notification-hubs
 documentationcenter: android
 author: ysxu
@@ -14,27 +14,27 @@ ms.devlang: java
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: 76ec01c874fceedab7d76b2ef58e4b45b5489f58
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e6eb41bec95c67d7dc059f560194966d04400494
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-notification-hubs-to-send-breaking-news"></a>A legfrissebb hírek elküldése a Notification Hubs használatával
+# <a name="use-notification-hubs-toosend-breaking-news"></a>Használja a Notification Hubs toosend legfrissebb hírek
 [!INCLUDE [notification-hubs-selector-breaking-news](../../includes/notification-hubs-selector-breaking-news.md)]
 
 ## <a name="overview"></a>Áttekintés
-Ez a témakör bemutatja, hogyan szórási legfrissebb híreket tartalmazó értesítések Android-alkalmazás az Azure Notification Hubs használatával. Amikor végzett, akkor fog számára megtörje érdekli hírek kategóriák regisztrálni, és ezen kategóriák csak leküldéses értesítések fogadásához. Ebben a forgatókönyvben számos alkalmazás általános felépítését, ahol értesítések kell őket, például az RSS-olvasóval, az alkalmazások zene ventilátorok stb érdeklődik elemnek már deklarálva felhasználói csoportokat kell küldeni.
+Ez a témakör bemutatja, hogyan toouse Azure Notification Hubs toobroadcast breaking news értesítések tooan Android-alkalmazás. Amikor végzett, akkor tudja tooregister számára megtörje hírek kategóriák érdekli, és ezen kategóriák csak leküldéses értesítések fogadásához. Ebben a forgatókönyvben számos alkalmazás általános felépítését, amelyben értesítések vannak küldött toobe toogroups, amely rendelkezik deklarálva érdeklődési rajtuk, például az RSS-olvasóval, az alkalmazások zene ventilátorok stb.
 
-Szórási forgatókönyvek engedélyezve vannak, beleértve a következőket egy vagy több *címkék* regisztráció létrehozásakor az értesítési központban. Amikor a rendszer értesítéseket küld egy címkét, akkor a címke regisztrált minden eszköz a értesítést kap. Mivel a címkékkel egyszerűen csak karakterláncok, nem rendelkeznek előre kell építeni. Címkékkel kapcsolatos további információkért tekintse meg [Notification Hubs útválasztási és címke kifejezések](notification-hubs-tags-segment-push-message.md).
+Szórási forgatókönyvek engedélyezve vannak, beleértve a következőket egy vagy több *címkék* hello értesítési központ regisztráció létrehozásakor. Ha az értesítések küldése tooa címke hello címke regisztrált minden eszköz hello értesítést kap. Mivel a címkékkel egyszerűen csak karakterláncok, nincs kiépítve előzetes toobe. Címkékkel kapcsolatos további információkért tekintse meg túl[Notification Hubs útválasztási és címke kifejezések](notification-hubs-tags-segment-push-message.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ez a témakör a létrehozott alkalmazás épül [Ismerkedés a Notification Hubs][get-started]. Az oktatóanyag elindítása előtt már végrehajtotta [Ismerkedés a Notification Hubs][get-started].
+Ebben a témakörben megfogalmazott célra épül létrehozott hello app [Ismerkedés a Notification Hubs][get-started]. Az oktatóanyag elindítása előtt már végrehajtotta [Ismerkedés a Notification Hubs][get-started].
 
-## <a name="add-category-selection-to-the-app"></a>Kategória kiválasztása hozzáadása az alkalmazáshoz
-Az első lépés a felhasználói felületi elemek hozzáadása a meglévő fő tevékenységeket, amelyek lehetővé teszik a felhasználó számára a kategóriák regisztrálni kívánt. A felhasználó által kiválasztott kategóriák tárolódnak az eszközön. Az alkalmazás indításakor a eszközregisztráció címkeként az értesítési központ, a kiválasztott kategóriákra jön létre.
+## <a name="add-category-selection-toohello-app"></a>Kategória kiválasztása toohello alkalmazás hozzáadása
+első lépés hello tooadd hello felhasználói felületi elemek tooyour meglévő fő tevékenységet, amelyek lehetővé teszik a hello felhasználói tooselect kategóriák tooregister. felhasználó által kijelölt hello kategóriák hello eszközön tárolja. Hello alkalmazás indításakor a eszközregisztráció címkeként az értesítési központ kijelölt hello kategóriákhoz jön létre.
 
-1. Nyissa meg a res/layout/activity_main.xml fájlt, és helyettesítse be a tartalmat a következő:
+1. Nyissa meg a res/layout/activity_main.xml fájlt, és helyettesítő hello következőre hello tartalom:
    
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -83,7 +83,7 @@ Az első lépés a felhasználói felületi elemek hozzáadása a meglévő fő 
                     android:onClick="subscribe"
                     android:text="@string/button_subscribe" />
         </LinearLayout>
-2. Nyissa meg a res/values/strings.xml fájlt, és adja hozzá a következő sorokat:
+2. Nyissa meg a res/values/strings.xml fájlt, és adja hozzá az alábbi hello:
    
         <string name="button_subscribe">Subscribe</string>
         <string name="label_world">World</string>
@@ -96,7 +96,7 @@ Az első lépés a felhasználói felületi elemek hozzáadása a meglévő fő 
     A main_activity.xml grafikus elrendezés most példához hasonló:
    
     ![][A1]
-3. Most hozzon létre egy osztályt **értesítések** azonos csomagban található a **MainActivity** osztály.
+3. Most hozzon létre egy osztályt **értesítések** a hello azonos csomag a **MainActivity** osztály.
    
         import java.util.HashSet;
         import java.util.Set;
@@ -150,7 +150,7 @@ Az első lépés a felhasználói felületi elemek hozzáadása a meglévő fő 
                             hub.registerTemplate(regid,"simpleGCMTemplate", templateBodyGCM, 
                                 categories.toArray(new String[categories.size()]));
                         } catch (Exception e) {
-                            Log.e("MainActivity", "Failed to register - " + e.getMessage());
+                            Log.e("MainActivity", "Failed tooregister - " + e.getMessage());
                             return e;
                         }
                         return null;
@@ -167,13 +167,13 @@ Az első lépés a felhasználói felületi elemek hozzáadása a meglévő fő 
    
         }
    
-    Ez az osztály a helyi tároló, amely az eszköz rendelkezik fogadásához hírek kategóriáinak tárolására használja. Ezen kategóriák regisztrálásához módszerek is tartalmaz.
+    Ez az osztály hello helyi tároló toostore hello kategóriáinak híreket, hogy az eszköz rendelkezik-e tooreceive használja. Az ezen kategóriák módszerek tooregister is tartalmaz.
 4. Az a **MainActivity** osztály, távolítsa el a privát mezőinek **NotificationHub** és **GoogleCloudMessaging**, és a mező felvétele **értesítések**:
    
         // private GoogleCloudMessaging gcm;
         // private NotificationHub hub;
         private Notifications notifications;
-5. Ezt követően a a **onCreate** módszer, távolítsa el a inicializálása a **hub** mező és a **registerWithNotificationHubs** metódust. Majd adja hozzá a következő sort, amelyben a példányának inicializálása a **értesítések** osztály. 
+5. Ezt követően a hello **onCreate** módszer, eltávolítás hello inicializálása hello **hub** mező és hello **registerWithNotificationHubs** metódust. Majd adja hozzá a sort, amelyben a hello példányának inicializálása a következő hello **értesítések** osztály. 
 
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -188,12 +188,12 @@ Az első lépés a felhasználói felületi elemek hozzáadása a meglévő fő 
             notifications.subscribeToCategories(notifications.retrieveCategories());
         }
 
-    `HubName`és `HubListenConnectionString` kell már lehet beállítani a `<hub name>` és `<connection string with listen access>` helyőrzőket az értesítési központ nevére és a kapcsolati karakterláncot *DefaultListenSharedAccessSignature* korábban beszerzett.
+    `HubName`és `HubListenConnectionString` már kell beállítani a hello `<hub name>` és `<connection string with listen access>` helyőrzőket az értesítési központ nevét és hello kapcsolati karakterláncot *DefaultListenSharedAccessSignature* beszerzett korábban.
 
-    > [AZURE.NOTE] Eszközzel együtt egy ügyfélalkalmazás hitelesítő adatok nem általában biztonságos, mert csak kell terjeszteni a figyelési hozzáférési kulcs ügyfél alkalmazása. Figyeljen hozzáférés lehetővé teszi, hogy az alkalmazás regisztrálásához értesítések, de a meglévő regisztrációk nem módosítható, és értesítések nem küldhető el. A teljes körű hozzáférési kulcs értesítések küldését, és meglévő regisztrációk módosítása védett háttérszolgáltatás használatban.
+    > [AZURE.NOTE] Ügyfél alkalmazáshoz elosztott hitelesítő adatok nem általában biztonságos, mert csak kell terjeszteni figyelési hozzáférési kulcs hello ügyfél alkalmazása. Figyeljen hozzáférés lehetővé teszi, hogy az alkalmazás tooregister az értesítéseket, de a meglévő regisztrációját nem lehet módosítani, és értesítések nem küldhető el. hello teljes körű hozzáférési kulcsot használnak a következő biztonságos háttérszolgáltatás értesítések küldését, és meglévő regisztrációk módosítása.
 
 
-1. Ezt követően adja hozzá az alábbi importálásokat és `subscribe` metódust az előfizetés gombra kattintson esemény:
+1. Adja hozzá a következő hello importálja és `subscribe` metódus toohandle hello előfizetés gomb eseményt:
    
         import android.widget.CheckBox;
         import java.util.HashSet;
@@ -224,24 +224,24 @@ Az első lépés a felhasználói felületi elemek hozzáadása a meglévő fő 
             notifications.storeCategoriesAndSubscribe(categories);
         }
    
-    Ezzel a módszerrel hoz létre a kategóriák és a használja listáját a **értesítések** osztályra, hogy a lista a helyi tároló tárolja, és regisztrálja a megfelelő címkéket az értesítési központban. Kategóriák módosításakor a regisztrációs újra létrejön az új kategóriák.
+    Ezzel a módszerrel hoz létre a kategóriák és a hello listáját **értesítések** osztály toostore hello lista hello helyi tárolóban, és regisztrálja a hello megfelelő címkéket az értesítési központban. Kategóriák megváltozásakor hello regisztrációs hello új kategóriák újra létrejön.
 
-Az alkalmazás már kategóriák készlete tárolja az eszköz helyi tárolóhoz, és regisztrálhatja az értesítési központban, amikor a felhasználó módosítja a kiválasztott kategóriák.
+Az alkalmazás most már tudja toostore kategóriák készlete hello eszközön helyi tárolóban és regisztrálása az értesítési központban hello hello felhasználót módosítások hello kategóriák kiválasztását.
 
 ## <a name="register-for-notifications"></a>Az értesítések regisztrálása
-Ezeket a lépéseket az értesítési központ indításakor a helyi tárolóban tárolt kategóriák segítségével regisztrálja.
+Ezeket a lépéseket hello értesítési központ használatával a helyi tárolóban tárolt hello kategóriák indításkor regisztrálja.
 
 > [!NOTE]
-> A hozzárendelt által Google Cloud Messaging (GCM) registrationId bármikor módosíthatja, mert az értesítések a notification hibák elkerülése érdekében gyakran kell regisztrálni. Ebben a példában regisztrál az értesítési minden alkalommal, az alkalmazás indítása. Gyakran futtatott alkalmazások esetén naponta csak egyszer, valószínűleg kihagyhatja regisztrációt, hogy a sávszélesség megőrzése, ha az előző regisztráció óta eltelt egy napnál.
+> Hello registrationId által Google Cloud Messaging (GCM) hozzárendelt bármikor módosíthatja, mert regisztrálnia kell az értesítésekhez gyakran tooavoid értesítés sikertelen. Ebben a példában regisztrál az értesítési hello alkalmazás minden indításakor. Gyakran futtatott alkalmazások esetén naponta csak egyszer, valószínűleg kihagyhatja regisztrációs toopreserve sávszélesség Ha kevesebb mint egy nappal hello előző regisztráció óta eltelt.
 > 
 > 
 
-1. Adja hozzá a következő kódot végén a **onCreate** metódust a **MainActivity** osztály:
+1. Adja hozzá a következő kód hello hello végén hello **onCreate** metódus a hello **MainActivity** osztály:
    
         notifications.subscribeToCategories(notifications.retrieveCategories());
    
-    Ez biztosítja, hogy az alkalmazás minden indításakor azt a kategóriák átmásolja a helyi tároló, és kéri a regisztrálás ezen kategóriák. 
-2. Ezután frissítse a `onStart()` metódusában a `MainActivity` osztály az alábbiak szerint:
+    Ez biztosítja, hogy hello alkalmazás minden indításakor azt hello kategóriák átmásolja a helyi tárolóhoz, és kéri a regisztrálás ezen kategóriák. 
+2. Ezután frissítse a hello `onStart()` hello metódusában `MainActivity` osztály az alábbiak szerint:
    
     @Overridevédett "void" onStart() {
    
@@ -264,43 +264,43 @@ Ezeket a lépéseket az értesítési központ indításakor a helyi tárolóban
         sports.setChecked(categories.contains("sports"));
     }
    
-    Ekkor frissül, a fő tevékenységnél a korábban mentett kategóriák állapota alapján.
+    Ekkor frissül hello fő tevékenységnél a korábban mentett kategóriák hello állapota alapján.
 
-Az alkalmazás most már befejeződött, és képes tárolni a kategóriák az eszköz helyi tárolójára való regisztrálásához az értesítési központnak a felhasználói kategóriák kiválasztott megváltozásakor használt. A következő azt határozza meg, amely ennek az alkalmazásnak kategória értesítéseket küldhet háttérkiszolgálón.
+hello alkalmazás kész, és képes tárolni a kategóriák hello eszköz használt helyi tárhely tooregister hello értesítési központban az amikor hello felhasználót módosítások hello kategóriák kiválasztása. A következő kategória értesítések toothis app küldő háttérkiszolgálón meghatározzák azt.
 
 ## <a name="sending-tagged-notifications"></a>Címkézett értesítések küldése
 [!INCLUDE [notification-hubs-send-categories-template](../../includes/notification-hubs-send-categories-template.md)]
 
-## <a name="run-the-app-and-generate-notifications"></a>Futtassa az alkalmazást, és értesítések
-1. Az Android Studióban az alkalmazás elkészítésére, és indítsa el a egy eszközt vagy emulátort.
+## <a name="run-hello-app-and-generate-notifications"></a>Hello alkalmazás futtatását, és értesítések
+1. Az Android Studióban hello alkalmazás elkészítésére, és indítsa el a egy eszközt vagy emulátort.
    
-    Vegye figyelembe, hogy az alkalmazás felhasználói felület számos váltógombok, amely lehetővé teszi, hogy válassza ki a előfizetni.
+    Megjegyzés: a felhasználói felület számos hello alkalmazást, amely váltja kiválaszthatja hello kategóriák toosubscribe számára.
 2. Egy vagy több kategóriák váltógombok engedélyezése, majd kattintson az **előfizetés**.
    
-    Az app alakítja át a kiválasztott kategóriákra címkék, és egy új eszköz regisztrálása a kijelölt címkék kéri le az értesítési központban. A regisztrált kategóriák tér vissza, és egy bejelentési értesítés jelenik meg.
-3. Egy új értesítés küldése a .NET-Konzolalkalmazás futtatásával.  Másik lehetőségként az értesítési központ hibakeresési lapján címkézett sablon értesítéseket küldhet a [klasszikus Azure portál].
+    hello app hello kiválasztott kategóriák alakítja címkék, és egy új eszközök regisztrációja kijelölt hello címkék hello értesítési központ érkező kérelmeket. hello regisztrált kategóriák adott vissza, és egy bejelentési értesítés jelenik meg.
+3. Egy új értesítés küldése hello .NET Konzolalkalmazás futtatásával.  Másik lehetőségként az értesítési központ hibakeresési lapján hello használatát hello címkézett sablon értesítéseket küldhet [klasszikus Azure portál].
    
-    A kiválasztott kategóriákra értesítések bejelentési értesítések jelennek meg.
+    Értesítések a kiválasztott hello kategóriák bejelentési értesítések jelennek meg.
 
 ## <a name="next-steps"></a>Következő lépések
-Az oktatóanyag azt megtudta, hogyan kell közvetíteni legfrissebb hírek kategória szerint. Vegye figyelembe az alábbi oktatóanyagok számára más speciális Notification Hubs-forgatókönyvek közül befejezése:
+Ez az oktatóanyag azt megtanulta, hogyan toobroadcast legfrissebb hírek kategória szerint. Vegye figyelembe, hogy befejezése hello oktatóprogramot kínál, amelyek más speciális Notification Hubs forgatókönyvek jelölje ki a következő egyikét:
 
-* [Honosított legfrissebb hírek szórási a Notification Hubs használatával]
+* [Használjon honosított toobroadcast Notification Hubs – legfrissebb hírek]
   
-    Megtudhatja, hogyan bontsa ki a legfrissebb hírek app küldő honosított értesítések engedélyezéséhez.
+    Ismerje meg, hogyan megtörje hírek app tooenable küldése tooexpand hello honosított értesítések.
 
 <!-- Images. -->
 [A1]: ./media/notification-hubs-aspnet-backend-android-breaking-news/android-breaking-news1.PNG
 
 <!-- URLs.-->
 [get-started]: notification-hubs-android-push-notification-google-gcm-get-started.md
-[Honosított legfrissebb hírek szórási a Notification Hubs használatával]: /manage/services/notification-hubs/breaking-news-localized-dotnet/
+[Használjon honosított toobroadcast Notification Hubs – legfrissebb hírek]: /manage/services/notification-hubs/breaking-news-localized-dotnet/
 [Notify users with Notification Hubs]: /manage/services/notification-hubs/notify-users
 [Mobile Service]: /develop/mobile/tutorials/get-started/
 [Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx
-[Notification Hubs How-To for Windows Store]: http://msdn.microsoft.com/library/jj927172.aspx
+[Notification Hubs How-toofor Windows Store]: http://msdn.microsoft.com/library/jj927172.aspx
 [Submit an app page]: http://go.microsoft.com/fwlink/p/?LinkID=266582
 [My Applications]: http://go.microsoft.com/fwlink/p/?LinkId=262039
 [Live SDK for Windows]: http://go.microsoft.com/fwlink/p/?LinkId=262253
-[klasszikus Azure portál]: https://manage.windowsazure.com
+[Klasszikus Azure portál]: https://manage.windowsazure.com
 [wns object]: http://go.microsoft.com/fwlink/p/?LinkId=260591

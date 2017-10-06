@@ -1,6 +1,6 @@
 ---
-title: "Felhasználó-hozzárendelés – az Azure AD szükséges |} Microsoft Docs"
-description: "Használatának megkövetelése a felhasználó hozzárendelése az Azure-alkalmazások."
+title: "felhasználói aaaRequire - hozzárendelés az Azure AD |} Microsoft Docs"
+description: "Hogyan toorequire felhasználói kiosztása az Azure-alkalmazások."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,24 +15,24 @@ ms.topic: article
 ms.date: 05/16/2017
 ms.author: kgremban
 robots: noindex
-ms.openlocfilehash: 079b806c041a4a21e9350342867aee581c57bf45
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b72037cb2321fe03a8ecbbefb568029ce903a126
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-and-applications-require-user-assignment"></a>Az Azure AD és az alkalmazások: igényelnek felhasználói kiosztása
 ## <a name="requiring-user-assignment"></a>Igénylő felhasználó-hozzárendelés
-1. Jelentkezzen be rendszergazdai fiókkal az Azure portálon.
-2. Kattintson a **összes elemet** a főmenü elemére.
-3. Adja meg az alkalmazás használja.
-4. Kattintson a **alkalmazások** fülre.
-5. Az ebben a könyvtárban társított alkalmazások listájából válassza ki az alkalmazást.
-6. Kattintson a **KONFIGURÁLÁSA** fülre.
-7. Módosítsa a **felhasználói Access alkalmazásnak szükséges hozzárendelés** váltása igen.
-8. Kattintson a **mentése** gomb a képernyő alján.
+1. Jelentkezzen be toohello Azure portálra rendszergazdaként.
+2. Kattintson a hello **minden elem** hello főmenü elemére.
+3. Válassza ki a hello directory hello alkalmazás használja.
+4. Kattintson a hello **alkalmazások** fülre.
+5. Válassza ki a hello alkalmazást ebben a könyvtárban társított alkalmazások hello listája.
+6. Kattintson a hello **KONFIGURÁLÁSA** fülre.
+7. Változás hello **felhasználói hozzárendelés szükséges tooAccess App** tooYes váltáshoz.
+8. Kattintson a hello **mentése** üdvözlő képernyőt hello alján gombra.
 
-Felhasználók és/vagy csoportok hozzárendelése az alkalmazás most már rendelkezik lesz. Lásd: [felhasználók hozzárendelése egy alkalmazás](active-directory-applications-guiding-developers-assigning-users.md) és [csoportok hozzárendelése egy alkalmazás](active-directory-applications-guiding-developers-assigning-groups.md).
+Felhasználók és/vagy csoportok tooassign toohello alkalmazás most lesz. Lásd: [felhasználók tooan alkalmazás hozzárendelése](active-directory-applications-guiding-developers-assigning-users.md) és [csoportok tooan alkalmazás hozzárendelése](active-directory-applications-guiding-developers-assigning-groups.md).
 
 ## <a name="next-steps"></a>Következő lépések
 [!INCLUDE [active-directory-applications-guiding-developers-for-lob-applications-toc.md](../../includes/active-directory-applications-guiding-developers-for-lob-applications-toc.md)]

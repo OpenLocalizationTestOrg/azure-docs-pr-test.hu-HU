@@ -1,6 +1,6 @@
 ---
-title: "A lapon lévő hivatkozások nem működnek az alkalmazásproxy alkalmazás |} Microsoft Docs"
-description: "Érvénytelen hivatkozásokkal a integrálva van az Azure AD alkalmazásproxy-alkalmazásokkal kapcsolatos problémák elhárítása"
+title: "hello oldalon aaaLinks nem működnek az alkalmazásproxy alkalmazás |} Microsoft Docs"
+description: "Hogyan tootroubleshoot érintő problémákat működésképtelen integrálva van az Azure AD alkalmazásproxy-alkalmazásokban"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,36 +13,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 83c4261fab0498541591c01f9bb692b396c7b751
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 77c1e22d27c7a6436d8e57e105037c2328180481
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="links-on-the-page-dont-work-for-an-application-proxy-application"></a>A lapon lévő hivatkozások nem működnek az alkalmazásproxy alkalmazás
+# <a name="links-on-hello-page-dont-work-for-an-application-proxy-application"></a>Hello lapon lévő hivatkozások nem működnek az alkalmazásproxy alkalmazás
 
-Ez a cikk segítséget hibaelhárítása, ezért az Azure Active Directory Alkalmazásproxyjával alkalmazás lévő hivatkozások nem működnek megfelelően.
+Ez a cikk segítséget tootroubleshoot miért érdemes az Azure Active Directory Alkalmazásproxyjával alkalmazás lévő hivatkozások nem működnek megfelelően.
 
 ## <a name="overview"></a>Áttekintés 
-Miután közzétette az alkalmazásproxy-alkalmazást, a csak hivatkozások, amelyek az alkalmazás alapértelmezés szerint működnek a célok a közzétett gyökér URL-cím található hivatkozások olyan. Az alkalmazásokon belül a hivatkozások nem működnek, az alkalmazás belső URL-címe valószínűleg nem tartalmaz hivatkozásokat az alkalmazáson belül a célhelyre.
+Miután közzétette az alkalmazásproxy-alkalmazások, hello csak hivatkozásokat, hogy a munkahelyi hello alkalmazás alapértelmezés szerint hello belül található hivatkozások toodestinations közzétett gyökér URL-CÍMÉT. hello alkalmazásokon belül hello hivatkozások nem működnek, hello belső URL-cím hello alkalmazás valószínűleg nem tartalmazza az összes hello cél hivatkozások hello alkalmazáson belül.
 
-**Miért történik ez?** Amikor egy alkalmazás egy hivatkozásra kattint, a alkalmazásproxy megpróbálja feloldani az URL-címet, vagy belső URL-címként belül ugyanazt az alkalmazást, vagy kívülről elérhető URL-címként. A hivatkozás mutat egy belső URL-CÍMÉT, amely kívül esik az ugyanahhoz az alkalmazáshoz, ha azt nem tartozik sem a gyűjtők és nem talált hibát eredményez.
+**Miért történik ez?** Amikor egy alkalmazás egy hivatkozásra kattint, alkalmazásproxy záma tooresolve hello az URL-címet vagy egy belső URL-cím belül azonos hello alkalmazás, vagy a kívülről elérhető URL-címként. Ha hello hivatkozás mutat tooan belső URL-címet, amely nem szerepel a következőben hello azonos alkalmazás, nem tartozik a gyűjtők a tooeither és nem talált hibát eredményez.
 
 ## <a name="ways-you-can-resolve-broken-links"></a>Hibás hivatkozások oldhatja módjai
 
-A probléma megoldásához három módja van. Az alábbi lehetőségek a felsorolt növekvő összetettségét.
+Nincsenek három módon tooresolve probléma. az alábbi hello lehetőségek szerepel az növekvő bonyolultsági szerepelnek.
 
-1.  Ellenőrizze, hogy a belső URL-cím a legfelső szintű az alkalmazás összes ide tartozó hivatkozásokat tartalmaz. Ez lehetővé teszi az ugyanazon alkalmazásban közzétett tartalmat oldható mutató összes hivatkozást.
+1.  Ellenőrizze, hogy hello belső URL-címet, amely tartalmazza az összes hello ide tartozó hivatkozásokat hello alkalmazás legfelső szintű. Ez lehetővé teszi, hogy a közzétett tartalom hello belül azonos feloldani az összes hivatkozások toobe alkalmazás.
 
-    Ha módosítsa a belső URL-címet, de nem szeretné módosítani a felhasználók kezdőlapja, módosítsa a kezdőlap URL-címet a korábban közzétett belső URL-címre. Ha az "Azure Active Directory" - Ehhez&gt; App regisztrációk -&gt; válassza ki az alkalmazás -&gt; tulajdonságok. A Tulajdonságok lapon tekintse meg a mező "Kezdőlap URL-címe" amely beállíthatja a kívánt kezdőlapja lehet.
+    Ha módosítsa hello belső URL-címet, de nem szeretné, hogy a felhasználók kezdőlapján toochange hello, a módosítás hello Kezdőlap toohello korábban közzétett belső URL-cím. Túl címen ehhez "Azure Active Directory" -&gt; App regisztrációk -&gt; hello alkalmazás - kijelölése&gt; tulajdonságok. A Tulajdonságok lapon látható hello mező "Kezdőlap URL-címe" amely is toobe hello szükséges kezdőlapja.
 
-2.  Ha az alkalmazások teljes tartományneveit (FQDN) használ, akkor [egyéni tartományok](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains) az alkalmazások közzétételét. Ez a funkció lehetővé teszi, hogy az URL-CÍMÉRE kell használni, mind belső és külső beállításait.
+2.  Ha az alkalmazások teljes tartományneveit (FQDN) használ, akkor [egyéni tartományok](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains) toopublish az alkalmazások. Ez a funkció lehetővé teszi, hogy a hello azonos URL-cím toobe mind belső használatú és külső beállításait.
 
-    Ez a beállítás biztosítja, hogy az alkalmazás hivatkozását kívülről elérhető proxyn keresztül történő óta a hivatkozások belső URL-címek az alkalmazáson belül kívülről is felismeri. Ne feledje, hogy minden kapcsolat továbbra is a közzétett alkalmazás tartozik. Azonban ez a beállítás a hivatkozások nem kell tartozniuk ugyanazt az alkalmazást, és több alkalmazást is tartozik.
+    Ez a beállítás biztosítja, hogy hello hivatkozások az alkalmazás kívülről elérhető proxyn keresztül történő óta hello hivatkozások belül hello toointernal URL-címeket is felismeri kívülről. Vegye figyelembe, hogy az összes hivatkozás továbbra is kell toobelong tooa közzétett alkalmazást. Azonban ez a beállítás hello hivatkozások nem szükséges toobelong toohello ugyanahhoz az alkalmazáshoz és toomultiple alkalmazások is tartozhatnak.
 
-3.  Ha egyik sem valósítható meg, egy új szolgáltatás, amelyek URL-cím fordítása/írja át az előzetes csatlakozik. Ezzel a lehetőséggel belső URL-címeket és az alkalmazások HTML törzsében fennálló lefordítva, vagy "leképezve", a közzétett külső Proxy URL-címek. Ez csak akkor működik, a HTML-vagy CSS hivatkozások, és ez segít a hivatkozás segítségével JS jön létre. 
+3.  Ha egyik sem valósítható meg, csatlakozik egy új funkciója, amelyek URL-cím fordítása/újraírását hello előzetes verzióját. Ezzel a lehetőséggel belső URL-címeket és hivatkozásokat tartalmaz, amelyek az alkalmazások hello HTML törzs léteznie kell a lefordított, vagy "leképezve", toohello közzétett külső Proxy URL-címek. Ez csak akkor működik, a HTML- vagy CSS hello hivatkozások, és ez segít a hivatkozás segítségével JS jön létre. 
 
-Ennek eredményeképpen, erősen ajánlott használatával a [egyéni tartományok](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains) megoldás Ha lehetséges. Ha csatlakozni szeretne az előzetes, e-mailben < aadapfeedback@microsoft.com > a applicationId(s) együtt.
+Ennek eredményeképpen, erősen ajánlott hello segítségével [egyéni tartományok](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains) megoldás Ha lehetséges. Ha szeretné, hogy toojoin hello preview, e-mailben < aadapfeedback@microsoft.com > hello applicationId(s) együtt.
 
 ## <a name="next-steps"></a>Következő lépések
 [A meglévő helyszíni proxykiszolgálókkal működik](application-proxy-working-with-proxy-servers.md)

@@ -1,5 +1,5 @@
 ---
-title: "Mi az Azure Relay, és mire használható? – áttekintés | Microsoft Docs"
+title: "aaaWhat Azure továbbítási, és miért érdemes használni áttekintése |} Microsoft Docs"
 description: "Az Azure Relay áttekintése"
 services: service-bus-relay
 documentationcenter: .net
@@ -14,28 +14,28 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.date: 08/23/2017
 ms.author: sethm
-ms.openlocfilehash: 77ee85db0bcc701514a1a98da9405a79d658d49d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4cfd77048210a435c446b908b7896737cad0edbf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-azure-relay"></a>Mi az az Azure Relay?
 
-Az Azure Relay szolgáltatás úgy segíti a hibrid alkalmazásokat, hogy biztonságosan lehetővé teszi a vállalati hálózaton belüli szolgáltatások közzétételét a nyilvános felhőben anélkül, hogy meg kellene nyitni egy tűzfalkapcsolatot, vagy zavaró módosításokat kellene végrehajtani a vállalati hálózati infrastruktúrában. A Relay számos különböző átviteli protokollt és webszolgáltatási szabványt támogat.
+hello Azure továbbítási szolgáltatás lehetővé teszi hibrid alkalmazások azáltal, hogy toosecurely tesz közzé a szolgáltatásokhoz, amelyek a vállalati hálózati toohello nyilvános felhőben, anélkül, hogy egy tűzfalkapcsolatot, tooopen találhatók, vagy zavaró szükséges tooa módosítása vállalati hálózati infrastruktúrában. A Relay számos különböző átviteli protokollt és webszolgáltatási szabványt támogat.
 
-A továbbítási szolgáltatás támogatja a hagyományos egyirányú, a kérelem/válasz típusú és a társközi forgalmat. Támogatja az események terjesztését is az internetes tartományban, így a pontok közötti nagyobb hatékonyság érdekében lehetővé válnak a közzétételi/előfizetési forgatókönyvek és a kétirányú szoftvercsatornás kommunikáció. 
+hello továbbítási szolgáltatás támogatja a hagyományos egyirányú, kérelem/válasz és a társ-társ forgalmat. Nagyobb pontok közötti nagyobb hatékonyság az internetes tartományban tooenable közzétételi/előfizetési forgatókönyvek és a kétirányú szoftvercsatornás kommunikáció események terjesztését is támogatja. 
 
-A továbbítón keresztüli adatátviteli mintában a helyszíni szolgáltatás csatlakozik a továbbítási szolgáltatáshoz egy kimenő porton keresztül, majd létrehoz egy adott szinkronizálási címhez kötött kétirányú szoftvercsatornát a kommunikációhoz. Az ügyfél ezután kommunikálhat a helyszíni szolgáltatással, ha a szinkronizálási címet megcélozva forgalmat küld a továbbítási szolgáltatásnak. A továbbítási szolgáltatás ezután továbbítja az adatokat a helyszíni szolgáltatásba az egyes ügyfelek számára kijelölt kétirányú szoftvercsatornán keresztül. Az ügyfélnek nincs szüksége közvetlen kapcsolatra a helyszíni szolgáltatással, és azt sem kell tudnia, hol található, a helyszíni szolgáltatásnak pedig nincs szüksége megnyitott bejövő portra a tűzfalon.
+Továbbítón keresztüli hello adatok átvitel mintában a helyszíni szolgáltatásnak toohello továbbítási szolgáltatáshoz egy kimenő porton keresztül csatlakozik, és a kétirányú szoftvercsatornás kommunikáció kötött tooa adott szinkronizálási címhez hoz létre. hello ügyfél küldött forgalmat toohello továbbítási szolgáltatás hello szinkronizálási címhez célcsoportkezelést majd kommunikál hello a helyszíni szolgáltatással. hello továbbítási szolgáltatás majd "szegélyhálózatába, az" adatok toohello a helyszíni szolgáltatás a kétirányú szoftvercsatornás dedikált tooeach ügyfélen keresztül. hello ügyfélnek nincs szüksége egy közvetlen kapcsolat toohello helyszíni szolgáltatással, nem szükséges tooknow, ahol hello szolgáltatás található, és hello helyszíni szolgáltatást nem kell bejövő portra a hello tűzfal nyissa meg.
 
-A Relay által biztosított kulcsfontosságú képesség a TPC-szerű szabályozással, végpontészleléssel, kapcsolati állapottal és átfedő végpontvédelemmel rendelkező, hálózati határok között történő kétirányú, nem pufferelt kommunikációban rejlik. A továbbítási képességek abban térnek el az olyan hálózati szintű integrációs technológiáktól mint például a VPN, hogy a továbbítás egyetlen alkalmazásvégpontra is fókuszálható a gépen, míg a VPN technológia ennél jóval agresszívabb, hiszen a hálózati környezet módosítására támaszkodik.
+Továbbító által biztosított hello kulcs funkció elemeket kétirányú, a nem pufferelt kommunikációs határozzon meg hálózati határok TCP-szerű szabályozás, a végpont felderítése, a kapcsolati állapot között, és átfedett végpontok közötti védelem. hello továbbítási képességei eltérnek a hálózati szintű integrációs technológiák, például a VPN, az, hogy a továbbító lehet hatókörön belüli tooa egyetlen alkalmazás végpontjának egyetlen számítógépen, a VPN-technológia sokkal tolakodó módon támaszkodnak az hello hálózati környezet módosítása közben .
 
 Az Azure Relay két funkciója:
 
-1. [Hibrid kapcsolatok](#hybrid-connections) – A többplatformos forgatókönyveket lehetővé tevő WebSockets nyílt szabványt használja.
-2. [WCF-továbbítók](#wcf-relays) – A Windows Communication Foundation (WCF) használatával engedélyezi a távoli eljáráshívásokat. A WCF-továbbító egy olyan örökölt Relay-ajánlat, amelyet számos ügyfél már használ a WCF-programozási modelljeivel.
+1. [Hibrid kapcsolatok](#hybrid-connections) - használ hello nyissa meg szabványos webes szoftvercsatornák többplatformos forgatókönyv engedélyezése.
+2. [WCF-továbbítók](#wcf-relays) -használ a Windows Communication Foundation (WCF) tooenable távoli eljáráshívásokat. WCF továbbító hello örökölt továbbítási, hogy sok ügyfél már használjon a WCF programozási modellt kínál.
 
-A Hibrid kapcsolatok és a WCF-továbbítók egyaránt lehetővé teszik a vállalati hálózaton belüli eszközökhöz való biztonságos csatlakozást. Az Ön igényein múlik, hogy melyik lehetőséget választja, ahogy az az alábbi táblázatban látható:
+Hibrid kapcsolatok és a WCF-továbbítók is lehetővé teszik a biztonságos kapcsolat tooassets, amely a vállalati hálózaton belül. Egy másik hello használata az adott igényeknek megfelelően a függő hello a következő táblázatban leírtak szerint:
 
 |  | WCF-továbbító | Hibrid kapcsolatok |
 | --- |:---:|:---:|
@@ -48,20 +48,20 @@ A Hibrid kapcsolatok és a WCF-továbbítók egyaránt lehetővé teszik a váll
 
 ## <a name="hybrid-connections"></a>Hibrid kapcsolatok
 
-Az [Azure Relay Hibrid kapcsolatok képesség](relay-hybrid-connections-protocol.md) egy biztonságos, nyílt protokoll szerinti továbbfejlesztése a létező továbbítófunkcióknak, amely bármely platformon, illetve bármely olyan nyelvben is alkalmazható, amely rendelkezik alapszintű WebSocket képességgel, ha kifejezetten tartalmazza a WebSocket API-t a gyakori internetes böngészőkben. A Hibrid kapcsolatok a HTTP-n és a WebSockets szabványon alapul.
+Hello [Azure hibrid kapcsolatok](relay-hybrid-connections-protocol.md) képesség bármilyen platformon, és bármilyen nyelven, egy alapszintű WebSocket alkalmas implementálhatók továbbítási funkciókat meglévő hello biztonságos, nyílt-protokoll fejlődéséhez, amely hello WebSocket API explicit módon szerepel közös webböngésző. A Hibrid kapcsolatok a HTTP-n és a WebSockets szabványon alapul.
 
 ### <a name="service-history"></a>Szolgáltatási előzmények
 
-A Hibrid kapcsolatok pótolja a korábbi, hasonló nevű „BizTalk Services” funkciót, amely az Azure Service Bus WCF-továbbítóra épült. Az új Hibrid kapcsolatok képesség kiegészíti a már meglévő WCF-továbbítót, és a két szolgáltatási képesség egymás mellett fog működni az Azure Relay szolgáltatásban. E szolgáltatások közös átjáróval rendelkeznek, de ettől eltekintve különböző megvalósításról van szó.
+Hibrid kapcsolatok kiszorítva helyéről, azt a hello volt, hasonlóképpen nevű hello Azure Service Bus WCF-továbbító a épülő "BizTalk szolgáltatás" funkció. hello az új hibrid kapcsolatok funkcióval kiegészíti hello meglévő WCF továbbító szolgáltatás, és e két szolgáltatás jellemzőinek-mellé a hello Azure továbbítási szolgáltatás létezik. E szolgáltatások közös átjáróval rendelkeznek, de ettől eltekintve különböző megvalósításról van szó.
 
 ## <a name="wcf-relays"></a>WCF-továbbítók
 
-A WCF-továbbító a teljes .NET-keretrendszer (NETFEX) és a WCF esetén működik. A kapcsolatot a helyszíni és a továbbítási szolgáltatás között kezdeményezheti egy WCF továbbító kötéskészlet használatával. A színfalak mögött a továbbítási kötéseket a rendszer a Service Busszal a felhőben integrálódó WCF-csatornaösszetevők létrehozására tervezett új átviteli kötőelemekké képezi le.
+hello WCF továbbító működik hello teljes .NET-keretrendszer (NETFX) és a WCF. A helyszíni és a WCF "továbbítása" kötéskészlet használatával hello továbbítási szolgáltatás között hello kapcsolatot kezdeményez. Hello háttérben hello továbbítási kötéseket a toonew átviteli kötés elemek toocreate WCF-csatornaösszetevők Service Bus hello felhőben integrálódó képezi.
 
 ## <a name="architecture-processing-of-incoming-relay-requests"></a>Architektúra: Bejövő továbbítási kérelmek feldolgozása
-Amikor egy ügyfél kérelmet küld az [Azure Relay](/azure/service-bus-relay/) szolgáltatásnak, az Azure Load Balancer továbbítja azt valamelyik átjárócsomópontnak. Ha kérelem figyelési kérelem, az átjárócsomópont létrehoz egy új továbbítót. Ha kérelem egy adott továbbítóhoz való kapcsolódásra irányul, az átjárócsomópont továbbítja a kapcsolódási kérelmet annak az átjárócsomópontnak, amely a továbbító tulajdonosa. A továbbítót birtokló átjárócsomópont küld egy szinkronizálási kérelmet a figyelő ügyfélnek, amelyben arra kéri a figyelőt, hogy hozzon létre egy ideiglenes csatornát ahhoz az átjárócsomóponthoz, amely a kapcsolódási kérelmet kapta.
+Amikor egy ügyfél küld egy kérelem toohello [Azure továbbítási](/azure/service-bus-relay/) szolgáltatás, hello Azure load balancer továbbítja azt tooany hello átjáró csomópontok. Ha hello kérelem figyelési kérelem, hello átjárócsomópont létrehoz egy új továbbítót. Ha hello kérés kapcsolódási kérelem tooa megtalálhatják, a hello átjárócsomópont továbbítja hello kapcsolódási kérelem toohello birtokló átjárócsomópont hello továbbító. hello továbbítót birtokló átjárócsomópont hello elküld egy szinkronizálási kérelmet toohello figyelő ügyfélnek, kérő figyelő toocreate hello egy ideiglenes csatornát toohello átjárócsomópontnak, amely hello kapcsolódási kérelmet kapott.
 
-Ha a továbbítási kapcsolat létrejött, az ügyfelek üzeneteket válthatnak a szinkronizálásra használt átjárócsomóponton keresztül.
+Amikor hello továbbítási kapcsolat létrejött, hello ügyfelek továbbíthatja az hello szinkronizálási használt hello átjárócsomópont keresztül.
 
 ![Bejövő WCF Relay továbbítási kérelmek feldolgozása](./media/relay-what-is-it/ic690645.png)
 

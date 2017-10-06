@@ -1,6 +1,6 @@
 ---
-title: "Kapcsolat nélküli szinkronizálásának engedélyezése az Azure Mobile alkalmazások (Android)"
-description: "App Service Mobile Apps az Android-alkalmazás gyorsítótárába, a szinkronizálási kapcsolat nélküli adatainak használata"
+title: "kapcsolat nélküli szinkronizálásának aaaEnable az Azure Mobile Apps (Android)"
+description: "Megtudhatja, hogyan toouse App Service Mobile Apps toocache és szinkronizálási offline adatokat az Android-alkalmazás"
 documentationcenter: android
 author: ggailey777
 manager: syntaxc4
@@ -13,48 +13,48 @@ ms.devlang: java
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 304323c1816302e8c1f68f36a029aee55e02c54e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 34508c7394610cf9127e1753637940826b8fd06a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-offline-sync-for-your-android-mobile-app"></a>Androidos mobilalkalmazás kapcsolat nélküli szinkronizálásának engedélyezése
 [!INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]
 
 ## <a name="overview"></a>Áttekintés
-Ez az oktatóanyag az Azure Mobile Apps a kapcsolat nélküli szinkronizálás szolgáltatása Android ismerteti. Kapcsolat nélküli szinkronizálás lehetővé teszi, hogy a végfelhasználók számára a mobilalkalmazás együttműködhet&mdash;megtekintését, hozzáadását és módosítását adatok&mdash;akkor is, ha nincs hálózati kapcsolat. Változások a helyi adatbázisban tárolódnak. Az eszköz újra online állapotba kerül, ha ezek a változások szinkronizálása megtörtént-e a távoli háttér.
+Ez az oktatóanyag az Azure Mobile Apps hello kapcsolat nélküli szinkronizálás szolgáltatása Android ismerteti. Kapcsolat nélküli szinkronizálás lehetővé teszi, hogy a befejező felhasználóknak toointeract mobilalkalmazást&mdash;megtekintését, hozzáadását és módosítását adatok&mdash;akkor is, ha nincs hálózati kapcsolat. Változások a helyi adatbázisban tárolódnak. Hello eszköz újra online állapotba kerül, ha ezek a változások szinkronizálása megtörtént-e hello távoli háttér.
 
-Ha ez az Azure Mobile Apps első élményét, először ki az oktatóanyag [Android-alkalmazás létrehozása]. Ha nem használja a letöltött gyors üzembe helyezési kiszolgálóprojektet, hozzá kell adnia a hozzáférési adatok bővítménycsomagok a projekthez. Kiszolgáló bővítménycsomagok kapcsolatos további információkért lásd: [használható a .NET-háttérrendszer server SDK az Azure Mobile Apps a](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
+Ha ez az Azure Mobile Apps első élményét, először ki hello oktatóanyag [Android-alkalmazás létrehozása]. Ha nem használ hello letöltése – első lépések, hello data access kiegészítő csomagok tooyour projekt hozzá kell adnia. Kiszolgáló bővítménycsomagok kapcsolatos további információkért lásd: [használható hello .NET háttérkiszolgáló SDK az Azure Mobile Apps a](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
 
-A kapcsolat nélküli szinkronizálás szolgáltatással kapcsolatos további tudnivalókért lásd a témakör [az Azure Mobile Apps Offline adatszinkronizálás].
+További információ az hello kapcsolat nélküli szinkronizálás szolgáltatást, toolearn hello témakörben találhatók [az Azure Mobile Apps Offline adatszinkronizálás].
 
-## <a name="update-the-app-to-support-offline-sync"></a>Kapcsolat nélküli szinkronizálás támogatásához az alkalmazás frissítésére
-Kapcsolat nélküli szinkronizálás, az olvasási és írási egy *szinkronizálási tábla* (használatával a *IMobileServiceSyncTable* interface), amely része egy **SQLite** adatbázis az eszközön.
+## <a name="update-hello-app-toosupport-offline-sync"></a>Hello app toosupport kapcsolat nélküli szinkronizálás frissítése
+A kapcsolat nélküli szinkronizálás, olvassa el a tooand írási egy *szinkronizálási tábla* (hello segítségével *IMobileServiceSyncTable* felület), amely része egy **SQLite** adatbázis az eszközön.
 
-Leküldéses és lekéréses módosítások között az eszköz és az Azure Mobile Services, használja a *szinkronizálási környezetet* (*MobileServiceClient.SyncContext*), amely a helyi adatbázisban tárolják a inicializálása helyi adatok.
+toopush és lekéréses módosítások hello eszköz és az Azure Mobile Services között, használhatja a *szinkronizálási környezetet* (*MobileServiceClient.SyncContext*), amely a helyi adatbázis hello inicializálása helyben toostore az adatokat.
 
-1. A `TodoActivity.java`, a meglévő definíciót megjegyzésbe `mToDoTable` és állítsa vissza a szinkronizálási tábla verziója:
+1. A `TodoActivity.java`, meglévő definíciója hello megjegyzésbe `mToDoTable` hello szinkronizálási tábla verziója kódrészig, és:
    
         private MobileServiceSyncTable<ToDoItem> mToDoTable;
-2. Az a `onCreate` metódus, a meglévő inicializálása megjegyzésbe `mToDoTable` és törölje az ehhez a definícióhoz:
+2. A hello `onCreate` módszer, meglévő inicializálása hello megjegyzésbe `mToDoTable` és törölje az ehhez a definícióhoz:
    
         mToDoTable = mClient.getSyncTable("ToDoItem", ToDoItem.class);
-3. A `refreshItemsFromTable` definíciója megjegyzésbe `results` és törölje az ehhez a definícióhoz:
+3. A `refreshItemsFromTable` hello definíciója megjegyzésbe `results` és törölje az ehhez a definícióhoz:
    
         // Offline Sync
         final List<ToDoItem> results = refreshItemsFromMobileServiceTableSyncTable();
-4. Definíciója megjegyzésbe `refreshItemsFromMobileServiceTable`.
-5. Állítsa vissza a definíciója `refreshItemsFromMobileServiceTableSyncTable`:
+4. Hello definíciója megjegyzésbe `refreshItemsFromMobileServiceTable`.
+5. Állítsa vissza a hello definíciója `refreshItemsFromMobileServiceTableSyncTable`:
    
         private List<ToDoItem> refreshItemsFromMobileServiceTableSyncTable() throws ExecutionException, InterruptedException {
-            //sync the data
+            //sync hello data
             sync().get();
             Query query = QueryOperations.field("complete").
                     eq(val(false));
             return mToDoTable.read(query).get();
         }
-6. Állítsa vissza a definíciója `sync`:
+6. Állítsa vissza a hello definíciója `sync`:
    
         private AsyncTask<Void, Void, Void> sync() {
             AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
@@ -73,26 +73,26 @@ Leküldéses és lekéréses módosítások között az eszköz és az Azure Mob
             return runAsyncTask(task);
         }
 
-## <a name="test-the-app"></a>Az alkalmazás tesztelése
-Ebben a szakaszban a működését Wi-Fi tesztelje a, és kapcsolja ki a Wi-Fi egy kapcsolat nélküli forgatókönyv létrehozásához.
+## <a name="test-hello-app"></a>Teszt hello alkalmazás
+Ebben a szakaszban hello működését Wi-Fi tesztelje a, és kapcsolja ki a Wi-Fi toocreate egy kapcsolat nélküli forgatókönyv.
 
-Adatelemek hozzáadásakor használatban a helyi tárolóból. SQLite, de nincs szinkronizálva a mobilszolgáltatást, amíg lenyomja az a **frissítése** gombra. Más alkalmazások előfordulhat, hogy amikor adatokat szinkronizálni kell különböző követelményeit, de bemutató céljára ebben az oktatóanyagban a felhasználónak explicit módon kérheti rendelkezik.
+Adatelemek hozzáadásakor tárolják őket hello helyi SQLite tárolóban, de nem szinkronizált toohello mobilszolgáltatás amíg hello nyomja le az ENTER **frissítése** gombra. Más alkalmazások előfordulhat, hogy mikor adatoknak kell szinkronizálva toobe kapcsolatos eltérő követelmények vonatkoznak, de bemutató céljára ebben az oktatóanyagban rendelkezik explicit módon kérheti hello felhasználó.
 
-A gomb megnyomásakor új háttérfeladat kezdődik. Először a helyi tárolójába szinkronizálási környezetet, akkor minden ponttá módosult adatokat az Azure-ból a helyi táblába használatával végrehajtott valamennyi módosítást leküldéses értesítések.
+A gomb megnyomásakor új háttérfeladat kezdődik. Először az összes végrehajtott módosítások toohello helyi állapottárolójához szinkronizálási környezetet, majd Azure toohello helyi tábla összes ponttá megváltozott adatait leküldéses értesítések.
 
 ### <a name="offline-testing"></a>Kapcsolat nélküli tesztelése
-1. Helyezze el az eszköz vagy a szimulátor *repülési üzemmód*. Ezzel létrehoz egy kapcsolat nélküli forgatókönyv.
-2. Adja hozzá az egyes *ToDo* elemeket, vagy be van jelölve befejezettként egyes elemek. Lépjen ki az eszköz vagy szimulátor (vagy a kényszerített zárja be az alkalmazást), és indítsa újra. Győződjön meg arról, hogy a módosítások maradnak az eszközön mert tárolják őket a helyi SQLite-tárolóban.
-3. Az Azure tartalmának megtekintése *TodoItem* például a tábla vagy egy SQL eszközzel *SQL Server Management Studio*, vagy egy REST-ügyfél, például *Fiddler* vagy  *Postman*. Ellenőrizze, hogy rendelkezik-e az új elemek *nem* lett-e szinkronizálva a kiszolgálóhoz
+1. Hely hello eszköz vagy a szimulátor *repülési üzemmód*. Ezzel létrehoz egy kapcsolat nélküli forgatókönyv.
+2. Adja hozzá az egyes *ToDo* elemeket, vagy be van jelölve befejezettként egyes elemek. Lépjen a hello eszköz vagy szimulátor (vagy a kényszerített bezárása hello app), és indítsa újra. Győződjön meg arról, hogy a módosítások maradnak hello eszközön tárolják őket mert hello helyi SQLite tárolójában.
+3. Hello Azure hello tartalmának megtekintése *TodoItem* például a tábla vagy egy SQL eszközzel *SQL Server Management Studio*, vagy egy REST-ügyfél, például *Fiddler* vagy  *Postman*. Ellenőrizze, hogy rendelkezik-e új elemek hello *nem* lett szinkronizált toohello kiszolgáló
    
-       + Node.js-háttéralkalmazáshoz, látogasson el a [Azure-portálon](https://portal.azure.com/), és a háttérkiszolgáló kattintson a mobilalkalmazás **könnyen táblák** > **TodoItem** a tartalmánakmegtekintéséhez`TodoItem`tábla.
-       + A .NET-háttérrendszer, tekintse meg a tábla tartalmát, vagy egy SQL eszközzel, mint *SQL Server Management Studio*, vagy egy REST-ügyfél, például *Fiddler* vagy *Postman*.
-4. Kapcsolja be a Wi-Fi az eszköz vagy szimulátor. Nyomja meg a **frissítése** gombra.
-5. A TodoItem adatainak megtekintéséhez újra az Azure-portálon. Az új és módosított TodoItems ekkor meg kell jelennie.
+       + Node.js-háttéralkalmazáshoz, lépjen a toohello [Azure-portálon](https://portal.azure.com/), és a háttérkiszolgáló kattintson a mobilalkalmazás **könnyen táblák** > **TodoItem** hello tooviewhellotartalmát`TodoItem` tábla.
+       + A .NET-háttérrendszer, nézet hello tábla tartalmát vagy egy SQL eszközzel például *SQL Server Management Studio*, vagy egy REST-ügyfél, például *Fiddler* vagy *Postman*.
+4. Kapcsolja be a Wi-Fi hello eszköz vagy szimulátor. Nyomja meg az hello **frissítése** gombra.
+5. Hello TodoItem adatainak megtekintéséhez újra hello Azure-portálon. hello új és módosított TodoItems ekkor meg kell jelennie.
 
 ## <a name="additional-resources"></a>További források
 * [az Azure Mobile Apps Offline adatszinkronizálás]
-* [Felhő tartalma: Kapcsolat nélküli szinkronizálás az Azure Mobile Services] \(Megjegyzés: a videó megtalálható-e a Mobile Services, de a kapcsolat nélküli szinkronizálás az Azure Mobile Apps hasonló módon működik\)
+* [Felhő tartalma: Kapcsolat nélküli szinkronizálás az Azure Mobile Services] \(Megjegyzés: a Mobile Services hello video van, de a kapcsolat nélküli szinkronizálás az Azure Mobile Apps hasonló módon működik\)
 
 <!-- URLs. -->
 

@@ -1,6 +1,6 @@
 ---
-title: "Index lekérdezése (REST API – Azure Search) | Microsoft Docs"
-description: "Létrehozhat keresési lekérdezést az Azure Search szolgáltatásban, a keresési eredmények szűrését és rendezését pedig keresési paraméterek használatával végezheti el."
+title: "AAA \"lekérdezheti az indexét (REST API - Azure Search) |} Microsoft dokumentumok\""
+description: "Hozza létre az Azure search keresési lekérdezés, és használja a keresési paraméterek toofilter és rendezési keresési eredmények."
 services: search
 documentationcenter: 
 manager: jhubbard
@@ -13,13 +13,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 01/12/2017
 ms.author: ashmaka
-ms.openlocfilehash: 49062bec233ad35cd457f9665fa94c1855343582
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2f12238b8f4b045f536489cfc8766fb68307bbe2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="query-your-azure-search-index-using-the-rest-api"></a>Az Azure Search-index lekérdezése a REST API használatával
+# <a name="query-your-azure-search-index-using-hello-rest-api"></a>Hello REST API használatával az Azure Search-index lekérdezése
 > [!div class="op_single_selector"]
 >
 > * [Áttekintés](search-query-overview.md)
@@ -29,37 +29,37 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-Ebből a cikkből megtudhatja, hogyan történik egy index lekérdezése az [Azure Search REST API](https://docs.microsoft.com/rest/api/searchservice/) használatával.
+Ez a cikk bemutatja, hogyan egy index használatával tooquery hello [Azure Search REST API](https://docs.microsoft.com/rest/api/searchservice/).
 
 A bemutató elindítása előtt [létre kell hoznia egy Azure Search-indexet](search-what-is-an-index.md), majd [fel kell töltenie azt adatokkal](search-what-is-data-import.md). Háttér-információkért lásd: [A teljes szöveges keresés működése az Azure Search szolgáltatásban](search-lucene-query-architecture.md).
 
 ## <a name="identify-your-azure-search-services-query-api-key"></a>Azonosítsa az Azure Search szolgáltatás lekérdezési API-kulcsát
-Az Azure Search REST API-ján végrehajtott keresési műveletek egyik fontos eleme az Ön által üzembe helyezett szolgáltatás számára létrehozott *API-kulcs*. Érvényes kulcs birtokában kérelmenként létesíthető megbízhatósági kapcsolat a kérést küldő alkalmazás és az azt kezelő szolgáltatás között.
+Minden keresési művelet hello Azure Search REST API nyilvános kulcsokra épülő hello *api-kulcs* létesített hello szolgáltatás számára létrehozott. Érvényes kulcs birtokában létesít megbízhatósági, egy kérelem alapon hello küldő hello kérelem és a kezelő hello szolgáltatás között.
 
-1. A szolgáltatás API-kulcsainak megkereséséhez bejelentkezhet az [Azure Portalra](https://portal.azure.com/).
-2. Nyissa meg az Azure Search szolgáltatáspaneljét
-3. Kattintson a „Kulcsok” ikonra
+1. toofind a szolgáltatás api-kulcsokat, bármikor beléphet toohello [Azure-portálon](https://portal.azure.com/)
+2. Nyissa meg tooyour Azure Search szolgáltatás paneljét
+3. Hello "Kulcsok" ikonra
 
 A szolgáltatás *rendszergazdai kulcsokkal* és *lekérdezési kulcsokkal* rendelkezik.
 
-* Az elsődleges és másodlagos *rendszergazdai kulcsok* teljes jogosultságot biztosítanak az összes művelethez, beleértve a szolgáltatás felügyeletének, valamint az indexek, indexelők és adatforrások létrehozásának és törlésének képességét. Két kulcs létezi, tehát ha az elsődleges kulcs újbóli létrehozása mellett dönt, a másodlagos kulcsot továbbra is használhatja (ez fordítva is igaz).
-* A *lekérdezési kulcsok* csak olvasási hozzáférést biztosítanak az indexekhez és a dokumentumokhoz, és általában a keresési kéréseket kibocsátó ügyfélalkalmazások számára vannak kiosztva.
+* Az elsődleges és másodlagos *adminisztrációs kulcsok* teljes körű tooall műveleteket, köztük a hello képességét toomanage hello szolgáltatást biztosítania hozzon létre, és törölje az indexek, az indexelők és az adatforrások. Két kulcs van, hogy a Folytatás toouse hello másodlagos kulcsát. Ha úgy dönt, hogy tooregenerate hello elsődleges kulcs, és fordítva.
+* A *lekérdezési kulcsok* adjon olvasási hozzáférést tooindexes és a dokumentumok és keresési kérelmeket kibocsátó általában elosztott tooclient alkalmazások.
 
-Indexlekérdezéshez a lekérdezési kulcsok egyikét használhatja. A rendszergazdai kulcsok szintén használhatók a lekérdezésekhez, az alkalmazáskódban azonban inkább lekérdezési kulcsot használjon, mivel ez a módszer jobban követi a [legalacsonyabb jogosultsági szint elvét](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
+Az index lekérdezése hello alkalmazásában a lekérdezési kulcsok egyikét használhatja. Az adminisztrációs kulcsok is használható a lekérdezések, de egy lekérdezési kulcsot kell használni az alkalmazás kódjában, az alábbi módon ez jobban hello [legalacsonyabb jogosultsági szint elve](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
 
 ## <a name="formulate-your-query"></a>A lekérdezés meghatározása
-Kétféleképpen [keresheti meg az indexet a REST API használatával](https://docs.microsoft.com/rest/api/searchservice/Search-Documents). Az egyik lehetőség egy HTTP POST kérés kiadása azon a helyen, ahol a lekérdezési paraméterek vannak meghatározva a kéréstörzs JSON-objektumában. A másik lehetőség egy HTTP GET kérés kiadása azon a helyen, ahol a lekérdezési paraméterek vannak meghatározva a kérés URL-címén belül. A lekérdezési paraméterek méretének tekintetében a POST több [enyhe korlátozással](https://docs.microsoft.com/rest/api/searchservice/Search-Documents) rendelkezik, mint a GET. Éppen ezért a POST használatát javasoljuk, hacsak nem állnak fenn olyan speciális körülmények, amelyek a GET használatát kényelmesebbé tennék.
+Két módon túl[keresse meg a hello REST API használatával](https://docs.microsoft.com/rest/api/searchservice/Search-Documents). Egyik módja tooissue HTTP POST-kérelmet ahol definiálva vannak a lekérdezés-paraméterek a JSON-objektumból hello kérés törzsében. hello más módon tooissue HTTP GET kérelemre, ahol meg van határozva a lekérdezési paraméterek belül hello kérelem URL-CÍMÉT. ÁLLOMÁS rendelkezik több [korlátok enyhíteni](https://docs.microsoft.com/rest/api/searchservice/Search-Documents) a lekérdezési paraméterei nem felelnek meg GET hello mérete. Éppen ezért a POST használatát javasoljuk, hacsak nem állnak fenn olyan speciális körülmények, amelyek a GET használatát kényelmesebbé tennék.
 
-A POST és a GET esetében egyaránt meg kell majd adnia a *szolgáltatás nevét*, az *index nevét*, valamint a megfelelő *API-verziót* (a jelen dokumentum kiadásakor érvényes API-verzió: `2016-09-01`) a kérés URL-címében. A GET esetében a lekérdezési paramétereket az URL-cím végén található *lekérdezési karakterláncban* kell megadni. Az URL-cím formátuma alább látható:
+A POST és a GET tooprovide kell a *szolgáltatásnév*, *indexnév*, és megfelelő hello *API-verzió* (hello aktuális API-verzió `2016-09-01` hello időpontban Ez a dokumentum közzétételének) hello a kérelem URL-CÍMÉT. GET, hello *lekérdezési karakterlánc* hello: hello URL-cím végéhez, ahol meg kell adnia hello lekérdezési paramétereket. Olvassa el az alábbi hello URL-formátum:
 
     https://[service name].search.windows.net/indexes/[index name]/docs?[query string]&api-version=2016-09-01
 
-A POST esetében a formátum ugyanez, azzal a kiegészítéssel, hogy a lekérdezési karakterlánc paraméterei között csak az API-verzió szerepel.
+hello formázza a FELADÁS egy vagy több rendszer hello azonos, de csak az api-version hello lekérdezési karakterlánc paraméterek.
 
 #### <a name="example-queries"></a>Példa a lekérdezésekre
 Alább néhány példa látható a „hotels” nevű index lekérdezéseire. Ezek a lekérdezések GET- és POST-formátumban is megtekinthetők.
 
-A teljes indexben keres a „budget” kifejezésre, és csak a `hotelName` mezőt adja vissza:
+Hello teljes index keressen hello kifejezés "költségvetés", és térjen vissza csak hello `hotelName` mező:
 
 ```
 GET https://[service name].search.windows.net/indexes/hotels/docs?search=budget&$select=hotelName&api-version=2016-09-01
@@ -71,7 +71,7 @@ POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-ve
 }
 ```
 
-Egy olyan szűrőt alkalmaz az indexen, amely az éjszakánkénti 150 dollárnál olcsóbb szállodákra keres rá, majd visszaadja a `hotelId` és `description` mezőket:
+A szűrő toohello index toofind szállodák olcsóbb, mint 150 $ éjszakánként alkalmazni, és térjen vissza a hello `hotelId` és `description`:
 
 ```
 GET https://[service name].search.windows.net/indexes/hotels/docs?search=*&$filter=baseRate lt 150&$select=hotelId,description&api-version=2016-09-01
@@ -84,7 +84,7 @@ POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-ve
 }
 ```
 
-A teljes indexen végrehajtja a keresést, azt egy adott mező (`lastRenovationDate`) szerint csökkenő sorrendbe rendezi, veszi az első két találatot, majd kizárólag a `hotelName` és `lastRenovationDate` mezőket jeleníti meg:
+Keresési hello teljes index, sorrendben egy adott mező (`lastRenovationDate`) csökkenő sorrendben, érvénybe hello felső két eredményeit, és csak megjelenítése `hotelName` és `lastRenovationDate`:
 
 ```
 GET https://[service name].search.windows.net/indexes/hotels/docs?search=*&$top=2&$orderby=lastRenovationDate desc&$select=hotelName,lastRenovationDate&api-version=2016-09-01
@@ -104,11 +104,11 @@ Azt követően, hogy meghatározta a lekérdezést a HTTP-kérés (GET esetében
 #### <a name="request-and-request-headers"></a>Kérés és kérésfejlécek
 A GET esetében kettő, a POST esetében három kérésfejlécet kell meghatároznia:
 
-1. Az `api-key` fejléc beállításának a fenti I. lépésben található lekérdezési kulcsnak kell lennie. Az `api-key` fejléceként rendszergazdai kulcsot is használhat, javasolt azonban a lekérdezési kulcs használata, mivel az kizárólag csak olvasási hozzáférést biztosít az indexekhez és a dokumentumokhoz.
-2. Az `Accept` fejléc beállítása a következő legyen: `application/json`.
-3. Kizárólag a POST kérelem esetében, a `Content-Type` fejléc beállítása szintén a következő legyen: `application/json`.
+1. Hello `api-key` fejléc talált lépésben I fenti toohello lekérdezési kulcsot kell állítani. Egy adminisztrációs kulcsot is használhatja, hello `api-key` fejléc, de az ajánlott, hogy egy lekérdezési kulcsot, kizárólag ad csak olvasási hozzáféréssel tooindexes és dokumentumok.
+2. Hello `Accept` fejléc túl be kell állítani`application/json`.
+3. Csak a POST hello `Content-Type` fejlécben is meg kell túl`application/json`.
 
-Az alábbiakban megtekintheti a „hotels” index Azure Search REST API használatával történő kereséséhez tartozó HTTP GET kérést, amely a „motel” kifejezésre egy egyszerű lekérdezéssel keres rá:
+Olvassa el az alábbi HTTP GET kérést toosearch hello "Hotels nevű" index használatával hello Azure Search REST API-t egy egyszerű lekérdezést, amely megkeresi a "motel" hello kifejezés használatával:
 
 ```
 GET https://[service name].search.windows.net/indexes/hotels/docs?search=motel&api-version=2016-09-01
@@ -116,7 +116,7 @@ Accept: application/json
 api-key: [query key]
 ```
 
-Az alábbiakban ugyanazt a példalekérdezést láthatja a HTTP POST használatával:
+Ez megegyezik hello példalekérdezés, ez alkalommal HTTP POST használatával:
 
 ```
 POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2016-09-01
@@ -129,7 +129,7 @@ api-key: [query key]
 }
 ```
 
-A sikeres lekérdezési kérés `200 OK` állapotkódot eredményez, a keresési eredmények pedig a kéréstörzsben, JSON-objektum formájában lesznek visszaadva. A fenti lekérdezés eredménye a következőképpen fog megjelenni, feltételezve, hogy a „hotels” index az [Adatok importálása az Azure Search szolgáltatásban REST API használatával](search-import-data-rest-api.md) rész mintaadataival van feltöltve (vegye figyelembe, hogy a JSON a jobb áttekinthetőség érdekében formázva van).
+A sikeres kérelmek állapotkódot eredményez `200 OK` és hello keresés eredményeinek JSON-ként hello válasz törzsében. Íme, milyen hello hello fent lekérdezés kinézetét, feltéve, hogy hello "Hotels"nevű index példaadatok hello fel van töltve az eredmények [adatok importálása az Azure Search használatával hello REST API](search-import-data-rest-api.md) (vegye figyelembe, hogy hello JSON formátumú egyértelműség).
 
 ```JSON
 {
@@ -162,4 +162,4 @@ A sikeres lekérdezési kérés `200 OK` állapotkódot eredményez, a keresési
 }
 ```
 
-További segítségért tekintse meg a [Dokumentumok keresése](https://docs.microsoft.com/rest/api/searchservice/Search-Documents) rész „Válasz” szakaszát. További információk a meghiúsult műveletek esetében visszaadható HTTP-állapotkódokról: [HTTP-állapotkódok (Azure Search)](https://docs.microsoft.com/rest/api/searchservice/HTTP-status-codes).
+toolearn több, látogasson el a hello "Válasz" szakaszában [dokumentumok keresése](https://docs.microsoft.com/rest/api/searchservice/Search-Documents). További információk a meghiúsult műveletek esetében visszaadható HTTP-állapotkódokról: [HTTP-állapotkódok (Azure Search)](https://docs.microsoft.com/rest/api/searchservice/HTTP-status-codes).

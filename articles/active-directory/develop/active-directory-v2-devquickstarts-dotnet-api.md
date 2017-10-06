@@ -1,6 +1,6 @@
 ---
-title: "Bejelentkezés hozzáadása egy .NET MVC webes API-k használata az Azure AD v2.0-végponttól |} Microsoft Docs"
-description: "Hogyan hozhat létre egy .NET MVC webes API-t, amely mindkét személyes Microsoft Account jogkivonatokat fogad el és a munkahelyi vagy iskolai fiókját."
+title: "az Azure AD v2.0-végponttól aaaAdd bejelentkezési tooa .NET MVC webes API használatával hello |} Microsoft Docs"
+description: "Hogyan toobuild egy .NET MVC webes API-t, amely fogadja a mindkét személyes Microsoft-Account jogkivonatokat és a munkahelyi vagy iskolai fiókját."
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,30 +15,30 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: b2d7bbfcd9218698f71e9dfdb1ad5d9ff8740f5e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4e517145422bb6e9368e82a7eef4a5c57cce530a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="secure-an-mvc-web-api"></a>Egy MVC webes API biztonságossá tétele
-Az Azure Active Directoryban a v2.0-végpontra, megvédheti a Web API használatával [OAuth 2.0](active-directory-v2-protocols.md) hozzáférési jogkivonatok, mindkét személyes Microsoft-fiókkal rendelkező felhasználók és a munkahelyi vagy iskolai fiókok biztonságos hozzáférés a webes API.
+Az Azure Active Directory hello v2.0-végpontra, megvédheti a Web API használatával [OAuth 2.0](active-directory-v2-protocols.md) hozzáférési jogkivonatok, mindkét személyes Microsoft-fiókkal rendelkező felhasználók és a munkahelyi vagy iskolai fiókok toosecurely hozzáférni a Web API engedélyezése.
 
 > [!NOTE]
-> Nem minden Azure Active Directory forgatókönyvek és funkciók támogatják a v2.0-végponttól.  Annak meghatározásához, ha a v2.0-végponttal kell használnia, olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
+> Nem minden Azure Active Directory forgatókönyvek és funkciók támogatják hello v2.0-végponttól.  toodetermine használatát hello v2.0-végpontra, olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
 >
 >
 
-ASP.NET webes API-k Ez elvégezhető a .NET-keretrendszer 4.5 része a Microsoft OWIN köztes használatával.  Itt hozhat létre egy "Teendőlista" MVC webes API-t, amely lehetővé teszi az ügyfelek létrehozásához, és feladatokat beolvasni a felhasználói feladatlistában OWIN fogjuk használni.  A webes API-t, hogy a bejövő kérelmek tartalmaznak egy érvényes hozzáférési jogkivonatot, és bármilyen kérelmeket, amelyek nem teljesíti az ellenőrző egy védett útvonal fogja ellenőrizni.  Ez a minta a Visual Studio 2015 használatával lett létrehozva.
+ASP.NET webes API-k Ez elvégezhető a .NET-keretrendszer 4.5 része a Microsoft OWIN köztes használatával.  Itt a "lista tooDo" MVC webes API, amely lehetővé teszi az ügyfelek a felhasználók feladatlistáit toocreate és olvasási feladatok OWIN toobuild fogjuk használni.  ellenőrzi, hogy a hello webes API-t, hogy a bejövő kérelmek tartalmaznak egy érvényes hozzáférési jogkivonatot, és bármilyen kérelmeket, amelyek nem teljesíti az ellenőrző egy védett útvonal.  Ez a minta a Visual Studio 2015 használatával lett létrehozva.
 
 ## <a name="download"></a>Letöltés
-Az oktatóanyag kódjának [karbantartása a GitHubon történik](https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet).  Követéséhez is [töltse le az alkalmazás vázát egy .zip](https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet/archive/skeleton.zip) vagy klónozza a vázat:
+az oktatóanyag kódjának hello kezelt [a Githubon](https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet).  toofollow mellett, akkor [töltse le a .zip hello alkalmazás vázát](https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet/archive/skeleton.zip) vagy a Klónozás hello vázat:
 
 ```
 git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet.git
 ```
 
-Az üres alkalmazás egyszerű API-t a bolierplate kódot tartalmaz, de hiányzik az identitás-kapcsolódó darab mindegyikét. Ha nem szeretné követéséhez, hanem klónozhat vagy [töltse le az elkészült mintát](https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet/archive/complete.zip).
+hello üres alkalmazás tartalmazza az összes hello bolierplate kód egyszerű API-t, de összes hello identitás kapcsolatos eleme hiányzik. Ha nem szeretné mentén toofollow, hanem klónozhat vagy [letöltése befejeződött hello minta](https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet/archive/complete.zip).
 
 ```
 git clone https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet.git
@@ -47,16 +47,16 @@ git clone https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet.git
 ## <a name="register-an-app"></a>Alkalmazás regisztrálása
 Hozzon létre egy új alkalmazást [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), vagy kövesse az alábbi [részletes lépéseket](active-directory-v2-app-registration.md).  Győződjön meg arról, hogy:
 
-* Másolja le a **alkalmazásazonosító** be az alkalmazáshoz hozzárendelt szüksége lehet rájuk hamarosan.
+* Másolja le hello **alkalmazásazonosító** tooyour app hozzárendelve, szüksége lehet rájuk hamarosan.
 
-A visual studio megoldás is tartalmaz egy "TodoListClient", amely egy egyszerű WPF-alkalmazás.  A TodoListClient bemutatják, hogyan egy felhasználó bejelentkezik, és hogyan ügyfél is kérelmeket kiadni a Web API segítségével.  Ebben az esetben a TodoListClient, mind a TodoListService jelölik ugyanahhoz az alkalmazáshoz.  A TodoListClient konfigurálásához el a következőket is:
+A visual studio megoldás is tartalmaz egy "TodoListClient", amely egy egyszerű WPF-alkalmazás.  hello TodoListClient használt toodemonstrate módját a felhasználó bejelentkezik, és hogyan adhat ki egy ügyfél-kérelmek tooyour Web API.  Ebben az esetben is hello TodoListClient és hello TodoListService képviselik hello ugyanahhoz az alkalmazáshoz.  tooconfigure hello TodoListClient, akkor is:
 
-* Adja hozzá a **Mobile** platform az alkalmazásra vonatkozóan.
+* Adja hozzá a hello **Mobile** platform az alkalmazásra vonatkozóan.
 
 ## <a name="install-owin"></a>Az OWIN telepítése
-Most, hogy egy alkalmazás regisztrálása kell ellenőrizni fogja a bejövő kérések és a tokeneket a v2.0-végpontra kommunikálni az alkalmazás beállítása.
+Most, hogy egy alkalmazás regisztrálása tooset kell fel az alkalmazás toocommunicate hello v2.0-végponttal rendelés toovalidate bejövő kérelmek & jogkivonatokat.
 
-* Első lépésként nyissa meg a megoldást, és az OWIN köztes NuGet-csomagok hozzáadása a TodoListService projekthez a Csomagkezelő konzol használatával.
+* toobegin, nyissa meg hello megoldást, és adja hozzá a hello OWIN köztes NuGet csomagjainak toohello TodoListService projekt hello Csomagkezelő konzol használatával.
 
 ```
 PM> Install-Package Microsoft.Owin.Security.OAuth -ProjectName TodoListService
@@ -66,8 +66,8 @@ PM> Install-Package Microsoft.IdentityModel.Protocol.Extensions -ProjectName Tod
 ```
 
 ## <a name="configure-oauth-authentication"></a>OAuth-hitelesítés konfigurálása
-* Egy OWIN indítási osztály hozzáadása a TodoListService projekt neve `Startup.cs`.  Kattintson a jobb gombbal a projektre--> **Hozzáadás** --> **új elem** --> "OWIN" keresése.  Az OWIN közbenső szoftver meghívja a `Configuration(…)` metódust az alkalmazás indulásakor.
-* Módosítsa az osztálydeklaráció való `public partial class Startup` -azt korábban már megvalósított Ez az osztály tartozik, egy másik fájlban.  Az a `Configuration(…)` metódus hívása ConfgureAuth(...) hitelesítés a webalkalmazás beállítása legyen.
+* Adja hozzá egy OWIN indítási osztály toohello TodoListService projekt nevű `Startup.cs`.  Kattintson a jobb gombbal a projekt hello--> **Hozzáadás** --> **új elem** --> "OWIN" keresése.  hello OWIN köztes által aktivált hello `Configuration(…)` módszer az alkalmazás indításakor.
+* Hello osztálydeklaráció túl módosítása`public partial class Startup` -azt korábban már megvalósított Ez az osztály tartozik, egy másik fájlban.  A hello `Configuration(…)` módszert, győződjön meg a hívás tooConfgureAuth(...) tooset hitelesítés a webalkalmazás.
 
 ```C#
 public partial class Startup
@@ -79,34 +79,34 @@ public partial class Startup
 }
 ```
 
-* Nyissa meg a fájlt `App_Start\Startup.Auth.cs` és megvalósítását a `ConfigureAuth(…)` metódus, amely elfogadja a v2.0-végpontra származó jogkivonatokat a Web API beállításához.
+* Nyissa meg hello fájl `App_Start\Startup.Auth.cs` és valósíthatnak meg hello `ConfigureAuth(…)` metódus, amely a v2.0-végponttól hello hello Web API tooaccept jogkivonatok beállításához.
 
 ```C#
 public void ConfigureAuth(IAppBuilder app)
 {
         var tvps = new TokenValidationParameters
         {
-                // In this app, the TodoListClient and TodoListService
-                // are represented using the same Application Id - we use
-                // the Application Id to represent the audience, or the
+                // In this app, hello TodoListClient and TodoListService
+                // are represented using hello same Application Id - we use
+                // hello Application Id toorepresent hello audience, or the
                 // intended recipient of tokens.
 
                 ValidAudience = clientId,
 
                 // In a real applicaiton, you might use issuer validation to
-                // verify that the user's organization (if applicable) has
-                // signed up for the app.  Here, we'll just turn it off.
+                // verify that hello user's organization (if applicable) has
+                // signed up for hello app.  Here, we'll just turn it off.
 
                 ValidateIssuer = false,
         };
 
-        // Set up the OWIN pipeline to use OAuth 2.0 Bearer authentication.
-        // The options provided here tell the middleware about the type of tokens
-        // that will be recieved, which are JWTs for the v2.0 endpoint.
+        // Set up hello OWIN pipeline toouse OAuth 2.0 Bearer authentication.
+        // hello options provided here tell hello middleware about hello type of tokens
+        // that will be recieved, which are JWTs for hello v2.0 endpoint.
 
-        // NOTE: The usual WindowsAzureActiveDirectoryBearerAuthenticaitonMiddleware uses a
-        // metadata endpoint which is not supported by the v2.0 endpoint.  Instead, this
-        // OpenIdConenctCachingSecurityTokenProvider can be used to fetch & use the OpenIdConnect
+        // NOTE: hello usual WindowsAzureActiveDirectoryBearerAuthenticaitonMiddleware uses a
+        // metadata endpoint which is not supported by hello v2.0 endpoint.  Instead, this
+        // OpenIdConenctCachingSecurityTokenProvider can be used toofetch & use hello OpenIdConnect
         // metadata document.
 
         app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions
@@ -116,7 +116,7 @@ public void ConfigureAuth(IAppBuilder app)
 }
 ```
 
-* Mostantól a `[Authorize]` attribútumok a tartományvezérlők és az OAuth 2.0 tulajdonosi hitelesítéssel műveletek védelme érdekében.  Adja a `Controllers\TodoListController.cs` osztály engedélyezés címke használatával.  Ezzel kikényszeríti a felhasználót, hogy jelentkezzen be a lap elérése előtt.
+* Mostantól a `[Authorize]` attribútumok tooprotect, a tartományvezérlőket és a műveletek OAuth 2.0 tulajdonosi hitelesítéssel.  Adja a hello `Controllers\TodoListController.cs` osztály engedélyezés címke használatával.  Ezzel kikényszeríti a hello felhasználói toosign a lap elérése előtt.
 
 ```C#
 [Authorize]
@@ -124,14 +124,14 @@ public class TodoListController : ApiController
 {
 ```
 
-* Amikor egy jogosult hívó sikeresen hív meg, egy a `TodoListController` API-k, a művelet módosítania kell információkhoz juthat a hívóról.  A jogcímek belül a tulajdonosi jogkivonattal keresztül hozzáférést biztosít az OWIN a `ClaimsPrincpal` objektum.  
+* Amikor egy jogosult hívó sikeresen hív meg egyik hello `TodoListController` API-k, hello művelet is kell hozzáférhetnek tooinformation hello hívó kapcsolatban.  OWIN hozzáférés toohello jogcímeket belül hello tulajdonosi jogkivonattal hello keresztül biztosít `ClaimsPrincpal` objektum.  
 
 ```C#
 public IEnumerable<TodoItem> Get()
 {
-    // You can use the ClaimsPrincipal to access information about the
-    // user making the call.  In this case, we use the 'sub' or
-    // NameIdentifier claim to serve as a key for the tasks in the data store.
+    // You can use hello ClaimsPrincipal tooaccess information about the
+    // user making hello call.  In this case, we use hello 'sub' or
+    // NameIdentifier claim tooserve as a key for hello tasks in hello data store.
 
     Claim subject = ClaimsPrincipal.Current.FindFirst(ClaimTypes.NameIdentifier);
 
@@ -141,30 +141,30 @@ public IEnumerable<TodoItem> Get()
 }
 ```
 
-* Végül nyissa meg a `web.config` a TodoListService projekt gyökérkönyvtárában található fájlt, és adja meg a konfigurációs értékeit a `<appSettings>` szakasz.
-  * A `ida:Audience` van a **alkalmazásazonosító** az alkalmazás a portálon megadott.
+* Végül nyissa meg a hello `web.config` hello TodoListService projekt gyökerében hello fájlt, és adja meg a konfigurációs értékek hello `<appSettings>` szakasz.
+  * A `ida:Audience` hello van **alkalmazásazonosító** hello portálon megadott hello alkalmazás.
 
-## <a name="configure-the-client-app"></a>Az ügyfélalkalmazás konfigurálása
-Ahhoz, hogy a művelet a teendőlista lista szolgáltatás, a teendőlista lista ügyfél konfigurálása, hogy azok tokenek beszerzése a v2.0-végpontra és a szolgáltatás meghíváshoz kell.
+## <a name="configure-hello-client-app"></a>Hello ügyfélalkalmazás konfigurálása
+Ahhoz, hogy hello Todo lista szolgáltatás működés közben, tooconfigure hello Todo lista ügyfél szüksége, hogy azok tokenek beszerzése hello v2.0-végpontra, és ellenőrizze a hívások toohello szolgáltatás.
 
-* A TodoListClient projektben nyissa meg a `App.config` , és írja be a konfigurációs értékeit a `<appSettings>` szakasz.
-  * A `ida:ClientId` alkalmazásazonosító másolta a portálról.
+* Hello TodoListClient projektben nyissa meg `App.config` , majd írja be a konfigurációs értékek hello `<appSettings>` szakasz.
+  * A `ida:ClientId` hello portálról másolt alkalmazásazonosító.
 
-Végezetül tiszta, felépítéséhez, és minden olyan projekthez futtatásához!  Most már rendelkezik egy .NET MVC webes API-t, amely fogadja a személyes Microsoft-fiókot is származó jogkivonatokat és a munkahelyi vagy iskolai fiókját.  Jelentkezzen be a TodoListClient, és hívja meg a webes api tevékenységek hozzáadása a felhasználói feladatlistában.
+Végezetül tiszta, felépítéséhez, és minden olyan projekthez futtatásához!  Most már rendelkezik egy .NET MVC webes API-t, amely fogadja a személyes Microsoft-fiókot is származó jogkivonatokat és a munkahelyi vagy iskolai fiókját.  Jelentkezzen be a hello TodoListClient, és a webes api tooadd feladatok toohello felhasználói feladatlistát hívja.
 
-Az elkészült mintát (a konfigurációs értékek nélkül) referenciaként [is letöltheti a .zip Itt](https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet/archive/complete.zip), vagy a Githubból is klónozhatja:
+Referenciaként hello befejeződött (a konfigurációs értékek nélkül) minta [is letöltheti a .zip Itt](https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet/archive/complete.zip), vagy a Githubból is klónozhatja:
 
 ```git clone --branch complete https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet.git```
 
 ## <a name="next-steps"></a>Következő lépések
-Kiegészítő témakörök most már továbbléphet.  Előfordulhat, hogy ki szeretné próbálni:
+Kiegészítő témakörök most már továbbléphet.  Érdemes lehet tootry:
 
 [Webes API-k egy webalkalmazásból hívja >>](active-directory-v2-devquickstarts-webapp-webapi-dotnet.md)
 
 További forrásokért tekintse meg:
 
-* [A v2.0 – útmutató fejlesztőknek >>](active-directory-appmodel-v2-overview.md)
+* [hello v2.0 – útmutató fejlesztőknek >>](active-directory-appmodel-v2-overview.md)
 * [StackOverflow "azure-active-directory" címke >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
 
 ## <a name="get-security-updates-for-our-products"></a>Biztonsági frissítések termékeinkhez
-Javasoljuk, hogy kérjen értesítést a bekövetkező biztonsági incidensekről. Látogasson el [erre a lapra](https://technet.microsoft.com/security/dd252948), és fizessen elő a biztonsági tanácsadói riasztásokra.
+Javasoljuk, tooget értesítést a bekövetkező biztonsági incidensekről ellátogatva [ezen a lapon](https://technet.microsoft.com/security/dd252948) és előfizetés tooSecurity tanácsadói riasztásokra.

@@ -1,6 +1,6 @@
 ---
-title: "Hogyan menteni a Azure RemoteApp a felhasználói adatok és beállítások? | Microsoft Docs"
-description: "Ismerje meg, hogyan menti az Azure RemoteApp a felhasználói adatok a felhasználói profil lemez használatával."
+title: "aaaHow Azure RemoteApp felhasználói adatok és beállítások mentési használ? | Microsoft Docs"
+description: "Ismerje meg, hogyan menti az Azure RemoteApp a felhasználói adatok hello felhasználói profillemeze használatával."
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,136 +13,136 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 4993bf507536659d7951e1552559cf0a6061d345
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dccebc7861e8a0d87cb3ee174f399a2df7fe023c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="how-does-azure-remoteapp-save-user-data-and-settings"></a>Hogyan menteni a Azure RemoteApp a felhasználói adatok és beállítások?
 > [!IMPORTANT]
-> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. A részletekért olvassa el a [bejelentést](https://go.microsoft.com/fwlink/?linkid=821148).
+> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. Olvasási hello [közlemény](https://go.microsoft.com/fwlink/?linkid=821148) részleteiről.
 > 
 > 
 
-Az Azure RemoteApp menti a felhasználói azonosító és a testreszabások eszközök és munkamenet között. Felhasználói adatok felhasználónkénti gyűjteményre lemez, a felhasználói profil lemezre (UPD) néven ismert tárolja. A lemez a felhasználó a következő, és biztosítja, hogy a felhasználó rendelkezik-e egy egységes felhasználói élményt, ahol bejelentkeznek az függetlenül.
+Az Azure RemoteApp menti a felhasználói azonosító és a testreszabások eszközök és munkamenet között. Felhasználói adatok felhasználónkénti gyűjteményre lemez, a felhasználói profil lemezre (UPD) néven ismert tárolja. hello lemez hello felhasználói követi, és biztosítja a hello felhasználó rendelkezik-e egy egységes felhasználói élményt, függetlenül attól, ahol bejelentkeznek az.
 
-Felhasználói profillemezek rendszer teljesen átlátható a felhasználó – felhasználói menti az dokumentumok a dokumentumok mappát (Mi a úgy tűnik, hogy egy helyi meghajtó), és módosítsa a alkalmazás beállításait, mint a szokásos. Egy időben az összes személyes beállítások megmaradnak, bármilyen eszközről Azure RemoteApp történő csatlakozás során. A felhasználónál ugyanazon a helyen adataikat.
+Felhasználói profillemezek teljes mértékben transzparens toohello felhasználókként szerepelnek – felhasználók dokumentumok tootheir dokumentumok mappa mentése (a megjelenő toobe egy helyi meghajtó), és módosítsa a alkalmazás beállításait, mint a szokásos. At hello azonos belül, mind a személyes beállítások megmaradnak, bármilyen eszközről tooAzure RemoteApp kapcsolódáskor. Minden hello felhasználónál információikat a hello ugyanazon a helyen.
 
 Minden egyes UPD állandó tároló 50GB rendelkezik, és mindkét felhasználói adatok és alkalmazások beállításait tartalmazza. 
 
 A részletekért a felhasználói profil adatainak olvasás.
 
 > [!NOTE]
-> Le kell tiltania a UPD? Megteheti, hogy most - Pavithra által írt blogbejegyzés, kivételét [tiltsa le a felhasználói Profillemezek (felhasználóiprofil) az Azure Remoteappban](https://blogs.technet.microsoft.com/enterprisemobility/2015/11/11/disable-user-profile-disks-upds-in-azure-remoteapp/), a részletekért.
+> Szükséges toodisable hello UPD? Megteheti, hogy most - Pavithra által írt blogbejegyzés, kivételét [tiltsa le a felhasználói Profillemezek (felhasználóiprofil) az Azure Remoteappban](https://blogs.technet.microsoft.com/enterprisemobility/2015/11/11/disable-user-profile-disks-upds-in-azure-remoteapp/), a részletekért.
 > 
 > 
 
-## <a name="how-can-an-admin-get-to-the-data"></a>Hogyan férhetnek a rendszergazda az adatokhoz?
-Egy a felhasználókat (a vész-helyreállítási, vagy ha a felhasználó elhagyja a céget) adatok eléréséhez szükséges, ha Azure ügyfélszolgálatához, és adja meg az előfizetési adatok gyűjtésére és a felhasználói identitás. Az Azure RemoteApp csapatától biztosítja azokat a virtuális merevlemez URL-CÍMÉT. Töltse le a virtuális merevlemez, és a dokumentumok és fájlok kell beolvasni. Vegye figyelembe, hogy a virtuális merevlemez 50 GB-os, így jelző bit annak letöltését.
+## <a name="how-can-an-admin-get-toohello-data"></a>Hogyan férhetnek a rendszergazda toohello adatokat?
+Ha tooaccess hello adatokat kell a felhasználókat (a vész-helyreállítási, vagy ha hello felhasználó elhagyja-e a hello vállalati) egyike, lépjen kapcsolatba az Azure támogatási szolgálatához, és adjon meg hello előfizetési adatok hello adatgyűjtési és -hello felhasználói azonosító. hello Azure RemoteApp csapatától biztosítja azokat egy URL-cím toohello VHD-t. Töltse le a virtuális merevlemez, és a dokumentumok és fájlok kell beolvasni. Vegye figyelembe, hogy hello VHD 50 GB-os, így a bit toodownload azt.
 
-## <a name="is-the-data-backed-up"></a>Az adatok biztonsági mentése?
-Igen, azt a biztonsági másolatot a felhasználói adatok egy földrajzi helyet. Az adatok csak olvasható, és ugyanolyan módon is elérhetők, a rendszeres adatgyűjtési (lépjen kapcsolatba az Azure RemoteApp Letöltés helye) lenne, ha az elsődleges adatközpont leáll. Az adatokat a biztonsági mentési helyre valós idejű másolja, és azt nem példányaira különböző verziói. Igen adatsérülést, azt nem lesz visszaállítható korábban ismert helyes verzióra, de az elsődleges adatközpont leáll, ha nem kérhető le a felhasználói adatok a másik helyen.
+## <a name="is-hello-data-backed-up"></a>Hello adatairól készít biztonsági mentést?
+Igen, azt a biztonsági mentéshez hello felhasználói adatok egy földrajzi helyet. hello adatok csak olvasható, és lehet hozzáférni hello ugyanaz, mint hello rendszeres adatai (lépjen kapcsolatba az Azure RemoteApp tooget azt), ha az elsődleges adatközpont hello nem működik. hello adatok másolt valós idejű toohello biztonsági mentési helyre, és azt nem példányaira különböző verziói. Így adatsérülés, azt nem lesz képes toorestore azt korábban a helyes verziót, de ha hello elsődleges adatközpont leáll, a képes tooget felhasználó adatait fogja ismert tooa hello más helyre.
 
-## <a name="how-do-users-see-the-upd-on-the-server-side"></a>Hogyan felhasználók látnak az UPD kiszolgálóoldali?
-Minden felhasználó saját kell a kiszolgálón, amely a UPD van leképezve: c:\Users\username.
+## <a name="how-do-users-see-hello-upd-on-hello-server-side"></a>Hogyan felhasználók látnak hello UPD hello kiszolgálóoldalon?
+Minden felhasználó saját rendelkezik, amely leképezhető tootheir UPD hello kiszolgálón: c:\Users\username.
 
-## <a name="whats-the-best-way-to-use-outlook-and-upd"></a>Mi az a legjobb módszer az Outlook és UPD?
-Az Azure RemoteApp menti az Outlook állapotát (postaládák, pst) munkamenetek között. Ennek engedélyezéséhez igazolnia kell a csendes-óceáni TÉLI tárolja a felhasználói profil adatait (c:\users\<felhasználónév >). Ez az alapértelmezett hely a adatok esetén, amennyiben nem módosítja a helyet, az adatok megmaradnak a munkamenetek között.
+## <a name="whats-hello-best-way-toouse-outlook-and-upd"></a>Mi az az hello legjobb módja toouse Outlook és UPD?
+Az Azure RemoteApp hello Outlook állapota (postaládák, pst) menti a munkamenetek között. tooenable, igazolnia kell hello csendes-óceáni TÉLI toobe hello felhasználói profil adatait tárolja (c:\users\<felhasználónév >). Ez az alapértelmezett hely hello hello adatok esetén, amennyiben nem módosítja hello helyét, hello adatok megmaradnak a munkamenetek között.
 
 Javasoljuk továbbá, az Outlook használja a "gyorsítótárazott" és "server/online" üzemmódban használja a keresés.
 
 Tekintse meg [Ez a cikk](remoteapp-outlook.md) vonatkozó további információ az Outlook és az Azure RemoteApp használatával.
 
 ## <a name="what-about-redirection"></a>Mi a helyzet átirányítása?
-Beállíthatja, hogy a felhasználók férhetnek hozzá a helyi eszközök beállítása az Azure RemoteApp [átirányítás](remoteapp-redirection.md). Helyi eszközök érhessék el az adatokat a UPD lesz.
+Konfigurálhatja az Azure RemoteApp toolet felhasználók férhetnek hozzá a helyi eszközök beállításával [átirányítás](remoteapp-redirection.md). Helyi eszközök képes tooaccess hello adatok hello UPD lesz.
 
 ## <a name="can-i-use-my-upd-as-a-network-share"></a>Használható hálózati megosztásnak a UPD?
-Nem. Felhasználóiprofil nem használható egy hálózati megosztásra. Egy UPD metódus csak a felhasználó számára elérhető, ha a felhasználó aktívan kapcsolódik az Azure RemoteApp.
+Nem. Felhasználóiprofil nem használható egy hálózati megosztásra. A rendszer egy UPD csak elérhető toohello felhasználói Ha hello felhasználó aktívan csatlakozó tooAzure RemoteApp.
 
 ## <a name="if-i-delete-a-user-from-a-collection-is-their-upd-deleted"></a>Ha egy felhasználó egy gyűjteményből, azok UPD törölve van?
-Nem, a felhasználó töröl, a Microsoft automatikusan törli a UPD - ehelyett tároljuk az adatokat mindaddig, amíg a gyűjtemény törlése. a gyűjtemény törlése után 90 nappal azt minden felhasználóiprofil törlése. 
+Nem, ha a felhasználó töröl, azt nem automatikusan delete hello UPD - ehelyett tároljuk hello adatok hello gyűjtemény törléséig. hello gyűjtemény törlése után 90 nappal azt minden felhasználóiprofil törlése. 
 
-Ha egy UPD törölje gyűjteménye, lépjen kapcsolatba az Azure RemoteApp - kell azt az ügyféloldali UPD törli.
+Ha egy olyan gyűjteményből UPD toodelete van szüksége, lépjen kapcsolatba az Azure RemoteApp - UPD az ügyféloldali törölheti azt.
 
 ## <a name="can-i-access-my-users-upds-either-current-or-deleted-users"></a>Hozzáférhet a felhasználók felhasználóiprofil (vagy a jelenlegi, vagy a törölt felhasználók)?
-Igen, ha kapcsolatba lép a [Azure RemoteApp](mailto:remoteappforum@microsoft.com), azt állíthat be, egy URL-cím, az adatok eléréséhez. Körülbelül 10 órát kell letöltését adatokat és fájlokat a UPD járjon le a hozzáférési.
+Igen, ha kapcsolatba lép a [Azure RemoteApp](mailto:remoteappforum@microsoft.com), azt állíthat be, az egy URL-cím tooaccess hello adatokat. Összekapcsolta 10 óra toodownload kapcsolatos adatokat és fájlokat hello UPD hello hozzáférés lejárata előtt.
 
 ## <a name="are-upds-available-offline"></a>Elérhetők a felhasználóiprofil offline?
-Most azt nem offline hozzáférést nyújtani a felhasználóiprofil, túl a fent leírt 10 óra hozzáférés ablakban. Ez azt jelenti, hogy jelenleg nincs oly módon, hogy hosszú ideig nyújt hozzáférést elég bonyolultabb feladatokat, például víruskereső fut a felhasználóiprofil, vagy a naplózási adatok eléréséhez.
+Most nem nyújtunk offline hozzáférés tooUPDs túl a fent leírt hello 10 óra hozzáférés ablakban. Ez azt jelenti, hogy jelenleg nincs olyan módon tooprovide való hozzáférési elég hosszú több bonyolult toocomplete feladatok, például víruskereső szoftver futó hello felhasználóiprofil vagy a naplózási adatok elérése.
 
 ## <a name="do-registry-key-settings-persist"></a>Tegye megőrizni a beállításkulcs-értékei?
-Igen, a HKEY_CURRENT_USER írt semmit a UPD részét képezi.
+Igen, tooHKEY_Current_User írt semmit a hello UPD részét képezi.
 
 ## <a name="can-i-disable-upds-for-a-collection"></a>Képes-e letiltása felhasználóiprofil gyűjtemény?
-Igen, megkérheti, hogy letiltja a felhasználóiprofil-előfizetéshez tartozó Azure RemoteApp, de nem adott meg. Ez azt jelenti, hogy felhasználóiprofil le lesz tiltva az előfizetés minden gyűjteményére.
+Igen, kérje meg az Azure RemoteApp toodisable felhasználóiprofil-előfizetéssel, de nem adott meg. Ez azt jelenti, hogy felhasználóiprofil le lesz tiltva hello előfizetés minden gyűjteményére.
 
-Előfordulhat, hogy le szeretné tiltani az alábbi esetek bármelyikében felhasználóiprofil: 
+Érdemes lehet a következő helyzetekben hello valamelyikében toodisable felhasználóiprofil: 
 
 * El kell végeznie, elérését és irányítását felhasználói adatok (a naplózása, és tekintse át a pénzügyi intézmények például céljából).
-* 3. fél felhasználói profil megoldások helyszíni felügyelethez, és továbbra is használja azokat a tartományhoz csatlakoztatott Azure RemoteApp környezetben van. Ehhez a profilhoz ügynök betöltését az arany lemezképbe van szükség. 
-* Nincs szükség helyi adattárolóval, vagy minden adatokat tartalmaz a felhő vagy a fájlmegosztásnak, és a vezérlő szeretné helyileg használata az Azure RemoteApp adatok mentése.
+* 3. fél felhasználói profil megoldások helyszíni felügyelethez, és szeretné, hogy a tartományhoz csatlakoztatott Azure RemoteApp környezetben használatuk toocontinue rendelkezik. Ehhez hello profil ügynök toobe hello arany lemezképpel betöltött van szükség. 
+* Nincs szükség helyi adattárolóval vagy hello felhő vagy a fájlmegosztásnak összes adatokat tartalmaz, és szeretné toocontrol mentése az adatok helyileg az Azure RemoteApp használatával.
 
 Lásd: [tiltsa le a felhasználói Profillemezek (felhasználóiprofil) az Azure Remoteappban](https://blogs.technet.microsoft.com/enterprisemobility/2015/11/11/disable-user-profile-disks-upds-in-azure-remoteapp/) további információt.
 
-## <a name="can-i-restrict-users-from-saving-data-to-the-system-drive"></a>Felhasználók tiltása adatok mentése a rendszermeghajtón?
-Igen, de kell beállítani, hogy a sablon lemezképe a gyűjtemény létrehozása előtt. Letiltja a hozzáférést a rendszermeghajtó tegye a következőket:
+## <a name="can-i-restrict-users-from-saving-data-toohello-system-drive"></a>Felhasználók tiltása mentése adatok toohello rendszermeghajtón?
+Igen, de tooset, amely másolatot hello sablon rendszerképet hello gyűjtemény létrehozása előtt szüksége lesz. A következő lépéseket tooblock hozzáférés toohello rendszermeghajtó hello használata:
 
-1. Futtatás **gpedit.msc** meg a sablon lemezképe.
-2. Navigáljon a **felhasználó konfigurációja > Felügyeleti sablonok > Windows-összetevők > Explorer**.
-3. Válassza ki a következő beállításokat:
+1. Futtatás **gpedit.msc** hello sablon rendszerképre.
+2. Keresse meg a túl**felhasználó konfigurációja > Felügyeleti sablonok > Windows-összetevők > Explorer**.
+3. Válassza ki az alábbi beállítások hello:
    * **A megadott meghajtók Sajátgép elrejtése**
-   * **A Sajátgép meghajtókhoz való hozzáférés letiltása**
+   * **Hozzáférés toodrives saját számítógépről megakadályozása**
 
-## <a name="can-i-seed-upds-i-want-to-put-some-data-in-the-upd-thats-available-the-first-time-the-user-signs-in"></a>Is feltöltheti felhasználóiprofil? Egyes adatokat be a rendelkezésre álló a felhasználó jelentkezik be először UPD szeretnék.
-Igen, a sablon lemezképe létrehozásakor hozzáadhat információk az alapértelmezett profil. Ezt az információt a UPD majd kerül.
+## <a name="can-i-seed-upds-i-want-tooput-some-data-in-hello-upd-thats-available-hello-first-time-hello-user-signs-in"></a>Is feltöltheti felhasználóiprofil? Szeretném tooput adatokat tartalmaz, amely elérhető hello első alkalommal hello felhasználói UPD hello jelentkezik be.
+Igen, hello sablonlemezkép létrehozásakor hozzáadhat információk toohello alapértelmezett profilt. Ez az információ toohello UPD kerül.
 
-## <a name="can-i-change-the-size-of-the-upd-depending-on-how-much-data-i-want-to-store"></a>Módosíthatja a tárolni kívánt adatok mennyiségétől függően UPD mérete?
-Nem, minden felhasználóiprofil rendelkezik 50 GB tárhelyet. Ha azt szeretné, különböző mennyiségű adat tárolására, próbálkozzon a következőkkel:
+## <a name="can-i-change-hello-size-of-hello-upd-depending-on-how-much-data-i-want-toostore"></a>Módosítható hello UPD hello mérete attól függően, hogy mennyi adatot toostore kívánt?
+Nem, minden felhasználóiprofil rendelkezik 50 GB tárhelyet. Ha azt szeretné, hogy a különféle adatmennyiségek toostore, próbálkozzon a hello következő:
 
-1. Tiltsa le a felhasználóiprofil ahhoz a gyűjteményhez.
-2. A felhasználók számára hozzáférést fájlmegosztás beállítása.
-3. A fájlmegosztás betölteni egy indítási parancsfájl használatával. További információ alább olvasható az indítási parancsfájlokat az Azure Remoteappban.
-4. Közvetlen felhasználó összes adatok mentése a fájlmegosztáshoz.
+1. Tiltsa le a felhasználóiprofil hello gyűjtemény.
+2. Felhasználók tooaccess fájlmegosztás beállítása.
+3. Hello-fájlmegosztás terhelés indítási parancsfájl használatával. További információ alább olvasható az indítási parancsfájlokat az Azure Remoteappban.
+4. Közvetlen felhasználók toosave összes adatok toohello fájlmegosztást.
 
 ## <a name="how-do-i-run-a-startup-script-in-azure-remoteapp"></a>Hogyan futtathatok egy indítási parancsfájl az Azure Remoteappban?
-Ha azt szeretné, egy indítási parancsfájl futtatásához, először hozzon létre egy ütemezett feladatot a gyűjteményhez használni kívánt sablon-lemezképben. (Ehhez *előtt* futtatja a Sysprep programot.) 
+Ha azt szeretné, hogy egy indítási parancsfájl toorun, indítsa el az ütemezett feladat létrehozásával hello sablon rendszerképet kívánja toouse hello gyűjtemény. (Ehhez *előtt* futtatja a Sysprep programot.) 
 
 ![A rendszer a feladat létrehozása](./media/remoteapp-upd/upd1.png)
 
 ![A rendszer fut, amikor a felhasználó bejelentkezik feladat létrehozása](./media/remoteapp-upd/upd2.png)
 
-Az a **általános** lapra, ügyeljen arra, hogy módosítsa a **felhasználói fiók** alatt a biztonság a "BUILTIN\Users."
+A hello **általános** lapra, lehet, hogy toochange hello **felhasználói fiók** biztonsági csoportban túl "BUILTIN\Users."
 
-![A felhasználói fiók módosítása egy csoporthoz](./media/remoteapp-upd/upd4.png)
+![Hello felhasználói fiók tooa csoport módosítása](./media/remoteapp-upd/upd4.png)
 
-Az ütemezett feladat elindul a indítási parancsfájl, a felhasználó hitelesítő adataival. A futtatandó feladat ütemezése minden felhasználó egy alkalommal jelentkezik be.
+hello ütemezett feladat elindul a indítási parancsfájl hello felhasználói hitelesítő adatok használatával. Hello feladat toorun ütemezése minden felhasználó egy alkalommal jelentkezik be.
 
-![Állítsa be megfelelően az eseményindító a feladathoz tartozó, "bejelentkezés"](./media/remoteapp-upd/upd3.png)
+![Set hello eseményindítója a következőnek: "A napló a" hello tevékenység](./media/remoteapp-upd/upd3.png)
 
 Is [csoportházirend-alapú indítási parancsfájlok](https://technet.microsoft.com/library/cc779329%28v=ws.10%29.aspx). 
 
-## <a name="what-about-placing-a-startup-script-in-the-start-menu-would-that-work"></a>Mi a helyzet helyezi el a Start menüben egy indítási parancsfájl? Szeretné, hogy működik a?
-Ez azt jelenti I létrehozhat egy config ablak parancsfájlt futtató .bat fájl és mentse a c:\ProgramData\Microsoft\Windows\Start Menu\Programok\Indítópult mappát, és akkor kell, hogy lefusson, amikor a felhasználó elindít egy RemoteApp-munkamenetben parancsfájl?
+## <a name="what-about-placing-a-startup-script-in-hello-start-menu-would-that-work"></a>Mi a helyzet helyezi el egy indítási parancsfájl hello Start menü? Szeretné, hogy működik a?
+Más szóval I hozzon létre egy .bat fájlt egy config ablak parancsfájlt futtató és mentheti azt toohello c:\ProgramData\Microsoft\Windows\Start Menu\Programok\Indítópult mappát, és akkor kell, hogy lefusson, amikor a felhasználó elindít egy RemoteApp-munkamenetben parancsfájl?
 
-Nem, amely nem támogatott az Azure RemoteApp, amely RDSH, amely is nem támogatja az indítási parancsfájlokat a Start menüben használja.
+Nem, amely nem támogatott az Azure RemoteApp, amely RDSH, amely még nem támogatja a indítási parancsfájlok hello Start menüben használja.
 
-## <a name="can-i-use-mstscexe-the-remote-desktop-program-to-configure-logon-scripts"></a>Mstsc.exe (a távoli asztal program) segítségével konfigurálhatja a bejelentkezési parancsfájlok?
+## <a name="can-i-use-mstscexe-hello-remote-desktop-program-tooconfigure-logon-scripts"></a>Mstsc.exe (hello távoli asztal program) tooconfigure bejelentkezési parancsfájlok használata
 Nope nem támogatja az Azure RemoteApp.
 
-## <a name="can-i-store-data-on-the-vm-locally"></a>Tárolhatok adatok a helyi virtuális Gépen?
-NEM, a virtuális gép nem a felhasználói profillemezen bármely mappájában tárolt adatok ekkor elvesznek. Nincs a nagy valószínűséggel a felhasználó nem kap az azonos virtuális gép a következő bejelentkezéskor az Azure Remoteappba. Felhasználó-VM adatmegőrzési, nem azt karbantartása, így a felhasználó nem alá fogja írni az azonos virtuális gép, és a tárolt adatok ekkor elvesznek. Továbbá azt frissítenie kell a gyűjteményt, ha a meglévő virtuális gépek váltják fel olyan új készletét virtuális gépek -, amely azt jelenti, hogy a virtuális gépért tárolt összes adatot elvész. Az ajánljuk, hogy adatok tárolása a UPD, például Azure-fájlokban, a virtuális hálózaton belül, vagy a felhő dropboxba felhőalapú tárolási rendszert használ, a fájlkiszolgáló megosztott tároló.
+## <a name="can-i-store-data-on-hello-vm-locally"></a>Tárolhatok adatok a helyi virtuális gép hello?
+NEM, hello UPD a virtuális gép nem hello bármely mappájában tárolt adatok ekkor elvesznek. Van egy nagy valószínűséggel hello felhasználó nem kap hello ugyanazon VM hello, amikor legközelebb bejelentkeznek az Azure Remoteappba. Jelenleg nem tartanak felhasználói-VM adatmegőrzési, így hello felhasználói nem alá fogja írni a hello azonos virtuális gép, és hello tárolt adatok ekkor elvesznek. Emellett hello gyűjtemény frissítjük, meglévő virtuális gépek olyan új készletét virtuális gépek -, amely azt jelenti, hogy a virtuális gépért hello tárolt összes adatot cserélése hello elvész. hello ajánljuk, hello UPD, például Azure-fájlokban, a VNETEN belül, vagy hello felhő dropboxba felhőalapú tárolási rendszert használ, a fájlkiszolgáló megosztott tároló toostore adatokat.
 
 ## <a name="how-do-i-mount-an-azure-file-share-on-a-vm-using-powershell"></a>Hogyan csatlakoztassa egy Azure fájlmegosztás a virtuális gép, PowerShell segítségével?
-A Net-PSDrive parancsmag segítségével a meghajtó csatlakoztatása az alábbiak szerint:
+Hello Net-PSDrive parancsmag toomount hello meghajtó, az alábbiak szerint használható:
 
     New-PSDrive -Name <drive-name> -PSProvider FileSystem -Root \\<storage-account-name>.file.core.windows.net\<share-name> -Credential :<storage-account-name>
 
 
-A hitelesítő adatok is mentheti a következő futtatásával:
+A hitelesítő adatok is mentheti hello következő futtatásával:
 
     cmdkey /add:<storage-account-name>.file.core.windows.net /user:<storage-account-name> /pass:<storage-account-key>
 
 
-Lehetővé teszi, hagyja ki a - Credential paramétert a New-PSDrive parancsmagban.
+Amely lehetővé teszi kihagyása hello - Credential paramétert a New-PSDrive hello parancsmagban.
 

@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Active Directory-jelentés adatmegőrzési |} Microsoft Docs"
+title: "az Active Directory-jelentés adatmegőrzési aaaAzure |} Microsoft Docs"
 description: "A jelentés adatokat az Azure Active Directoryban adatmegőrzési"
 services: active-directory
 documentationcenter: 
@@ -15,42 +15,42 @@ ms.workload: identity
 ms.date: 07/05/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: ffeba8a6c32a21c75af21f948bbd6ea88dd9278c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c46a68198cb34e9c92662b2f8461010745392c04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-report-retention-policies"></a>Az Azure Active Directory-jelentés adatmegőrzési szabályai
 
 
-Ez a témakör a kérdésekre adott válaszok a leggyakrabban használt a különböző tevékenység jelentések az Azure Active Directoryban az adatok megőrzése mellett. 
+Ez a témakör a válaszok toohello leggyakoribb kérdések hello különböző tevékenység jelentések az Azure Active Directoryban hello adatok megőrzése mellett. 
 
-**K: hogyan férhetnek indítása tevékenység adatok gyűjtését?**
+**K: hogyan férhetnek hello adatgyűjtés tevékenység elindult?**
 
 **V:**
 
 | Az Azure AD Edition | Gyűjtemény indítása |
 | :--              | :--   |
 | Prémium szintű Azure AD P1 <br /> Prémium szintű Azure AD P2 | Ha a regisztráláskor az előfizetéshez |
-| Azure AD Free | Az első megnyitásakor a [Azure Active Directory panel](https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview) , vagy használja a [reporting API-k](https://aka.ms/aadreports)  |
+| Azure AD Free | hello első megnyitásakor hello [Azure Active Directory panel](https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview) , vagy használjon hello [reporting API-k](https://aka.ms/aadreports)  |
 
 ---
-**K: mikor érhető el a tevékenységek adatai az Azure-portálon?**
+**K: mikor érhető el a tevékenységek adatai hello Azure-portálon?**
 
 **V:**
 
-- **Azonnal** – Ha már dolgozott jelentéseket a klasszikus Azure portálon
-- **2 órán belül** – Ha nem kapcsolta reporting klasszikus Azure portálon
+- **Azonnal** – Ha már dolgozott jelentésekkel hello a klasszikus Azure portálon
+- **2 órán belül** – Ha még nem bekapcsolta a jelentés a klasszikus Azure portálon hello
 
 ---
-**K: hogyan férhetnek a gyűjtemény biztonsági jelek lépések?**  
+**K: hogyan férhetnek lépések biztonsági jelek hello gyűjtemény?**  
 
-**V:** a biztonsági jelek, az adatgyűjtési folyamat kezdődik, amikor Ön részt a Identity Protection-központtól használja. 
+**V:** biztonsági jelek, az adatgyűjtési folyamat hello kezdődik, amikor Ön részt toouse hello Identity Protection-központtól. 
 
 
 ---
-**K: mennyi ideig az összegyűjtött adatok tárolják?**
+**K: mennyi ideig hello összegyűjtött adatok tárolják?**
 
 **V:**
 

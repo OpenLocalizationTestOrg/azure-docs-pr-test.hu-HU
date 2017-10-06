@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Moxtra |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Moxtra között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Moxtra között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,110 +13,110 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: jeedes
-ms.openlocfilehash: db2f041a44b6771b0a4f734e58d899298ef0847b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 82e2fcc390ba508e86a3992ec1c81d0a0ffed96b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-moxtra"></a>Oktatóanyag: Azure Active Directoryval integrált Moxtra
 
-Ebben az oktatóanyagban elsajátíthatja Moxtra integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Moxtra az Azure Active Directoryval (Azure AD).
 
-Moxtra integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+Moxtra integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Megadhatja a Moxtra hozzáféréssel rendelkező Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett Moxtra (egyszeri bejelentkezés) számára a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Megadhatja a hozzáférés tooMoxtra rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooMoxtra (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs Moxtra, a következőkre van szükség:
+az Azure AD integrálása Moxtra tooconfigure, kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - Egy Moxtra egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A gyűjteményből Moxtra hozzáadása
+1. Hello gyűjteményből Moxtra hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-moxtra-from-the-gallery"></a>A gyűjteményből Moxtra hozzáadása
-Az Azure AD integrálása a Moxtra konfigurálásához kell hozzáadnia Moxtra a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-moxtra-from-hello-gallery"></a>Hello gyűjteményből Moxtra hozzáadása
+tooconfigure hello integrációja Moxtra az Azure AD-be, meg kell tooadd Moxtra hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A gyűjteményből Moxtra hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd Moxtra hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
+3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **Moxtra**.
+4. Hello keresési mezőbe, írja be a **Moxtra**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_search.png)
 
-5. Az eredmények panelen válassza ki a **Moxtra**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. A hello eredmények panelen válassza ki a **Moxtra**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján Moxtra.
 
-Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Moxtra a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a Moxtra közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Moxtra tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello Moxtra közötti kapcsolat kapcsolatot kell létrehozni toobe.
 
-Moxtra, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
+Moxtra, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
 
-Az Azure AD egyszeri bejelentkezést a Moxtra tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés Moxtra-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[Moxtra tesztfelhasználó létrehozása](#creating-a-moxtra-test-user)**  - való Britta Simon valami Moxtra, amely csatolva van a felhasználó az Azure AD-ábrázolását.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[Moxtra tesztfelhasználó létrehozása](#creating-a-moxtra-test-user)**  -toohave egy megfelelője a Britta Simon a Moxtra, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az Moxtra alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az Moxtra alkalmazásban.
 
-**Konfigurálása az Azure AD az egyszeri bejelentkezés Moxtra, hajtsa végre az alábbi lépéseket:**
+**az Azure AD tooconfigure egyszeri bejelentkezést a Moxtra, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure portálon a a **Moxtra** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **Moxtra** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_samlbase.png)
 
-3. Az a **Moxtra tartomány és az URL-címek** csoportjában hajtsa végre a következő lépést:
+3. A hello **Moxtra tartomány és az URL-címek** csoportjában hajtsa végre a következő lépés hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_url.png)
 
-    Az a **bejelentkezési URL-cím** szövegmező, adja meg az URL-címet:`https://www.moxtra.com/service/#login`
+    A hello **bejelentkezési URL-cím** szövegmező, adja meg az URL-címet:`https://www.moxtra.com/service/#login`
 
-4. Moxtra alkalmazás vár a SAML helyességi feltételek egy meghatározott formátumban. A következő jogcímek alkalmazás konfigurálása. Ezek az attribútumok értékének kezelheti a "**felhasználói attribútumok**" szakasz alkalmazás integráció lapján. Az alábbi képernyőfelvételen látható egy példa ehhez a konfigurációhoz. 
+4. Moxtra alkalmazás hello SAML helyességi feltételek vár egy meghatározott formátumban. Az alkalmazás jogcímek a következő hello konfigurálása. Ezek az attribútumok értékének hello hello kezelése "**felhasználói attribútumok**" szakasz alkalmazás integráció lapján. a következő képernyőkép hello ehhez a konfigurációhoz példáját mutatja be. 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_attributes.png)
     
-5. A a **felhasználói attribútumok** a szakasz a **egyszeri bejelentkezés** párbeszédpanelen konfigurálja a SAML-jogkivonat attribútum, az ábrán látható módon, és hajtsa végre a következő lépéseket:
+5. A hello **felhasználói attribútumok** szakaszt, hello **egyszeri bejelentkezés** párbeszédpanelen konfigurálja a SAML-jogkivonat attribútum hello ábrának megfelelően, és hajtsa végre az alábbi lépésekkel hello:
     
     | Attribútum neve | Attribútum-érték |
     | ------------------- | -------------------- |    
@@ -125,21 +125,21 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
     | idpid    | < SAML entitás azonosítója > 
 
     > [!Note]
-    > Értékének **idpid** attribútum nincs valós. A tényleges érték kaphat **rövid összefoglaló** szakaszában **Moxtra konfigurációs**.
+    > hello értékének **idpid** attribútum nincs valós. Kaphat a tényleges érték hello **rövid összefoglaló** szakaszában **Moxtra konfigurációs**.
     
-    a. Kattintson a **Hozzáadás attribútum** megnyitásához a **attribútum hozzáadása** párbeszédpanel.
+    a. Kattintson a **Hozzáadás attribútum** tooopen hello **attribútum hozzáadása** párbeszédpanel.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-moxtra-tutorial/tutorial_attribute_04.png)
 
-    b. Az a **neve** szövegmező, írja be az adott sorhoz feltüntetett attribútumot nevét.
+    b. A hello **neve** szövegmezőben, az adott sorhoz feltüntetett hello attribútum neve.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-moxtra-tutorial/tutorial_attribute_05.png)
 
-    c. Az a **érték** kilistázásához írja be a sorhoz látható attribútum értéke.
+    c. A hello **érték** listájában, hello attribútuma Típusérték az adott sorhoz feltüntetett.
 
     d. Kattintson az **OK** gombra.
     
-5. Az a **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a tanúsítványfájlt, a számítógépen.
+5. A hello **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a hello tanúsítványfájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_certificate.png) 
 
@@ -147,118 +147,118 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-moxtra-tutorial/tutorial_general_400.png)
 
-7. A a **Moxtra konfigurációs** kattintson **konfigurálása Moxtra** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **SAML Entitásazonosító és SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
+7. A hello **Moxtra konfigurációs** kattintson **konfigurálása Moxtra** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **SAML Entitásazonosító és SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_configure.png) 
 
-8. Egy másik böngészőablakban jelentkezzen be a Moxtra vállalati webhely rendszergazdaként.
+8. Egy másik böngészőablakban bejelentkezéskor tooyour Moxtra vállalati hely rendszergazdaként.
 
-9. A bal oldali eszköztárán kattintson **felügyeleti konzol > SAML-alapú egyszeri bejelentkezést**, és kattintson a **új**.
+9. Hello bal oldali hello eszköztárában kattintson **felügyeleti konzol > SAML-alapú egyszeri bejelentkezést**, és kattintson a **új**.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_06.png) 
 
-10. Az a **SAML** lapon, a következő lépésekkel:
+10. A hello **SAML** lapon, hajtsa végre az alábbi lépésekkel hello:
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_08.png)   
  
-    a. Az a **neve** szövegmező, adja meg a konfiguráció nevét (pl.: *SAML*). 
+    a. A hello **neve** szövegmező, adja meg a konfiguráció nevét (pl.: *SAML*). 
   
-    b. Az a **IdP Entitásazonosító** szövegmezőhöz illessze be az értékét **SAML Entitásazonosító** ami Azure-portálon másolta. 
+    b. A hello **IdP Entitásazonosító** szövegmezőhöz Beillesztés hello értékének **SAML Entitásazonosító** ami Azure-portálon másolta. 
  
-    c. A **bejelentkezési URL-cím** szövegmezőhöz illessze be az értékét **SAML-alapú egyszeri bejelentkezési URL-címe** ami Azure-portálon másolta. 
+    c. A **bejelentkezési URL-cím** szövegmezőhöz Beillesztés hello értékének **SAML-alapú egyszeri bejelentkezési URL-címe** ami Azure-portálon másolta. 
  
-    d. Az a **AuthnContextClassRef** szövegmezőhöz típus **urn: oasis: nevek: tc: SAML:2.0:ac:classes:Password**. 
+    d. A hello **AuthnContextClassRef** szövegmezőhöz típus **urn: oasis: nevek: tc: SAML:2.0:ac:classes:Password**. 
  
-    e. Az a **NameID formátum** szövegmezőhöz típus **urn: oasis: nevek: tc: SAML:1.1:nameid-formátum: emailAddress**. 
+    e. A hello **NameID formátum** szövegmezőhöz típus **urn: oasis: nevek: tc: SAML:1.1:nameid-formátum: emailAddress**. 
  
-    f. Nyissa meg a tanúsítványt, amely a Jegyzettömbben az Azure portálról letöltött másolja a tartalmat, és illessze be azt a **tanúsítvány** szövegmező.    
+    f. Nyissa meg a tanúsítványt, amely a Jegyzettömbben az Azure portálról letöltött hello tartalmát, és illessze be hello **tanúsítvány** szövegmező.    
  
-    g. A SAML-alapú e-mail tartomány szövegmezőben írja be a SAML-alapú e-mail tartománya.    
+    g. Hello SAML e-mail tartomány szövegmezőben írja be a SAML-alapú e-mail tartománya.    
   
     >[!NOTE]
-    >A tartomány ellenőrzésének lépéseit megtekintéséhez kattintson a "**i**" alatt.
+    >toosee hello lépéseket tooverify hello tartomány, kattintson a hello "**i**" alatt.
 
     h. Kattintson a **frissítés**.
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-moxtra-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-moxtra-tutorial/create_aaduser_02.png) 
 
-3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
+3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-moxtra-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-moxtra-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-moxtra-test-user"></a>Moxtra tesztfelhasználó létrehozása
 
-Ez a szakasz célja Moxtra Britta Simon nevű felhasználót létrehozni.
+hello ebben a szakaszban célja toocreate Moxtra Britta Simon nevű felhasználó.
 
-**A felhasználó Britta Simon meghívta Moxtra létrehozásához hajtsa végre az alábbi lépéseket:**
+**toocreate Britta Simon meghívta Moxtra, a felhasználó hajtsa végre a lépéseket követve hello:**
 
-1. Jelentkezzen be rendszergazdaként a Moxtra vállalati webhely.
+1. Bejelentkezés tooyour Moxtra vállalati hely rendszergazdaként.
 
-2. A bal oldali eszköztárán kattintson **felügyeleti konzol > felhasználók kezelése**, majd **felhasználó hozzáadása**.
+2. Hello bal oldali hello eszköztárában kattintson **felügyeleti konzol > felhasználók kezelése**, majd **felhasználó hozzáadása**.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_10.png) 
 
-3. Az a **felhasználó hozzáadása** párbeszédpanelen hajtsa végre a következő lépéseket:
+3. A hello **felhasználó hozzáadása** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
   
-    a. Az a **Utónév** szövegmezőhöz típus **Britta**.
+    a. A hello **Utónév** szövegmezőhöz típus **Britta**.
   
-    b. Az a **Vezetéknév** szövegmezőhöz típus **Simon**.
+    b. A hello **Vezetéknév** szövegmezőhöz típus **Simon**.
   
-    c. Az a **E-mail** szövegmezőhöz Britta tartozó e-mail cím megegyezik az Azure-portál típusa.
+    c. A hello **E-mail** szövegmezőhöz Britta tartozó e-mail cím megegyezik az Azure-portál típusa.
   
-    d. Az a **osztás** szövegmezőhöz típus **fejlesztői**.
+    d. A hello **osztás** szövegmezőhöz típus **fejlesztői**.
   
-    e. Az a **részleg** szövegmezőhöz típus **informatikai**.
+    e. A hello **részleg** szövegmezőhöz típus **informatikai**.
   
     f. Válassza ki **rendszergazda**.
   
     g. Kattintson az **Add** (Hozzáadás) parancsra.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés Moxtra Azure egyszeri bejelentkezéshez használandó.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooMoxtra megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon hozzárendelése Moxtra, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooMoxtra, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **Moxtra**.
+2. Hello alkalmazások listában válassza ki a **Moxtra**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -266,7 +266,7 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -274,14 +274,14 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-Ha a hozzáférési panelen Moxtra csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az Moxtra alkalmazására.
-A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
+Ha a hozzáférési Panel hello hello Moxtra csempe gombra kattint, automatikusan bejelentkezett tooyour Moxtra alkalmazás szerezheti be.
+További információ a hozzáférési Panel hello: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Nyelvspecifikus vállalati arculat megjelenítése a bejelentkezési oldal az Azure Active Directory |} Microsoft Docs"
-description: "Útmutató: a nyelvi adott vállalati arculat képek és szövegek egy Azure bejelentkezési oldalra"
+title: "aaaAdd nyelvspecifikus Védjegyadatok tooyour bejelentkezési oldal az Azure Active Directory hello |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooadd egy nyelvspecifikus vállalati arculat képek és szöveget az Azure-bejelentkezés tooan lap"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
-ms.openlocfilehash: e1fe8d855386ceec39edbc985538cdf32d78a13b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1e33c31abc242e8455290beb1f03760be7b9ac42
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-language-specific-company-branding-to-your-sign-in-page-in-the-azure-active-directory"></a>Nyelvspecifikus vállalati arculat megjelenítése a bejelentkezési oldal az Azure Active Directoryban
-A félreértések elkerülése végett számos vállalat igyekszik egységes megjelenést adni az általa kezelt összes webhelynek és szolgáltatásnak. Az Azure Active Directory ezt a képességet biztosít azáltal, hogy a vállalat emblémájának elhelyezésével és egyéni színsémák alkalmazásával a bejelentkezési oldal testreszabása. A bejelentkezési oldal az Office 365 vagy más webes alkalmazásokat az identitás-szolgáltatóként az Azure AD-t használó bejelentkezéskor megjelenő lap. Ön a szolgáltatóosztályokkal ezen a lapon adja meg a hitelesítő adatokat.
+# <a name="add-language-specific-company-branding-tooyour-sign-in-page-in-hello-azure-active-directory"></a>Nyelvspecifikus vállalati arculat megjelenítése a tooyour hello Azure Active Directory bejelentkezési lap
+tooavoid zavart, számos vállalat szeretné, hogy egy egységes megjelenést és működést tooapply összes hello webhelyek és szolgáltatások kezelnek. Az Azure Active Directory toocustomize hello megjelenését a vállalat emblémájának elhelyezésével és egyéni színsémák alkalmazásával a hello bejelentkezési oldal lehetővé ezt a képességet nyújt. hello bejelentkezési oldal hello oldal jelenik meg a bejelentkezéskor tooOffice 365 vagy más webes alkalmazásokat, az identitás-szolgáltatóként az Azure AD-t használó. Ön a szolgáltatóosztályokkal a lap tooenter a hitelesítő adatait.
 
-## <a name="customizing-the-sign-in-page-for-another-language"></a>A bejelentkezési oldal más nyelven történő testreszabása
-Hozzáadhat nyelvspecifikus elemek az egyéni bejelentkezési oldal csak akkor, ha már létrehozott egy egyéni bejelentkezési oldala a [vállalati arculat megjelenítése a bejelentkezési oldal](active-directory-branding-custom-signon-azure-portal.md). Egy bejelentkezési oldal Címtáranként egy testreszabható elemek egy alapértelmezett készletét konfigurálható. Miután konfigurálta a elemei alapértelmezett készletét, konfigurálhatja a különböző területi beállításokhoz további verziókat. A különböző elemek szabadon kombinálhatók. Például hogy a következőket teheti:
+## <a name="customizing-hello-sign-in-page-for-another-language"></a>Más nyelven történő hello bejelentkezési oldal testreszabása
+Hozzáadhat nyelvspecifikus elemek tooyour egyéni bejelentkezési oldal csak akkor, ha már létrehozott egy egyéni bejelentkezési oldal leírtak [vállalati arculat megjelenítése a bejelentkezési oldal tooyour](active-directory-branding-custom-signon-azure-portal.md). Egy bejelentkezési oldal Címtáranként egy testreszabható elemek egy alapértelmezett készletét konfigurálható. Miután konfigurálta a elemei hello alapértelmezett készletét, konfigurálhatja a különböző területi beállításokhoz további verziókat. A különböző elemek szabadon kombinálhatók. Például hogy a következőket teheti:
 
-* Hozzon létre egy alapértelmezett **bejelentkezési lap képe** , minden országban használható, majd hozzon létre különböző verziókat angol és francia. Ha úgy állítja be a böngészőbe egy két nyelv valamelyikére, a nyelvspecifikus kép jelenik meg, míg minden más nyelv az alapértelmezett ábra jelenik meg.
+* Hozzon létre egy alapértelmezett **bejelentkezési lap képe** , minden országban használható, majd hozzon létre különböző verziókat angol és francia. Ha úgy állítja be a böngészők tooone két nyelv valamelyikére, hello nyelvspecifikus kép jelenik meg, míg minden más nyelv hello alapértelmezett ábra jelenik meg.
 * A vállalat eltérő verziójú (például japán vagy héber) emblémáit is beállíthatja.
 
-Azt javasoljuk, hogy ne túl sok nyelvi változat alacsony karbantartási és teljesítmény okokból.
+Azt javasoljuk, hogy ne hello túl sok nyelvi változat alacsony karbantartási és teljesítmény okokból.
 
-**Vállalti arculatot szeretne adni a könyvtárhoz:**
+**tooadd vállalati arculat tooyour könyvtár:**
 
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely a címtár globális rendszergazdája.
-2. Válassza ki **további szolgáltatások**, adja meg **felhasználók és csoportok** a szövegmezőbe, majd válassza ki azt a **Enter**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely hello címtár globális rendszergazdája.
+2. Válassza ki **további szolgáltatások**, adja meg **felhasználók és csoportok** hello szövegmezőbe, és válassza ki **Enter**.
 
    ![Nyitó felhasználók kezelése](./media/active-directory-branding-localize-azure-portal/user-management.png)
-3. Az a **felhasználók és csoportok** panelen válassza **vállalati arculat**.
-4. Az a **felhasználók és csoportok – a vállalati arculat** panelen válassza a **nyelv hozzáadása** parancsot.
+3. A hello **felhasználók és csoportok** panelen válassza **vállalati arculat**.
+4. A hello **felhasználók és csoportok – a vállalati arculat** panelen, jelölje be hello **nyelv hozzáadása** parancsot.
 
     ![Nyelvspecifikus márkajelzési elemek hozzáadása](./media/active-directory-branding-localize-azure-portal/add-language.png)
-5. Módosítsa az elemeket, amelyeket testre szeretne szabni. Ezen elemek egyike sem kötelező.
+5. Módosítsa a kívánt toocustomize hello elemek. Ezen elemek egyike sem kötelező.
 6. Kattintson a **Save** (Mentés) gombra.
 
-A bejelentkezési oldal megjelenik márkajelzési végrehajtott módosítások egy órát is igénybe vehet.
+A módosítások toohello bejelentkezési lapon márkajelzési tooappear is eltarthat tooan óra.
 
 ## <a name="next-steps"></a>Következő lépések
-[Vállalati arculat megjelenítése a bejelentkezési oldal](active-directory-branding-custom-signon-azure-portal.md)
+[Vállalati arculat megjelenítése a tooyour bejelentkezési oldal](active-directory-branding-custom-signon-azure-portal.md)

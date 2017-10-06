@@ -1,5 +1,5 @@
 ---
-title: SendGrid |} Microsoft Docs
+title: aaaSendGrid |} Microsoft Docs
 description: "Az Azure App service Logic Apps alkalmazások létrehozása SendGrid Kapcsolatszolgáltatója lehetővé teszi, hogy küldjenek e-maileket, és kezelheti a címzettjeinek listája."
 services: logic-apps
 documentationcenter: .net,nodejs,java
@@ -15,33 +15,33 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 9ff0591741899d65b8274fb14ab3f3c8db9abe36
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c89c9930310232ac4c0fc9ee474f45d7910cf27c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-sendgrid-connector"></a>A SendGrid szolgáltatás összekötőjével az első lépései
+# <a name="get-started-with-hello-sendgrid-connector"></a>Ismerkedés a SendGrid szolgáltatás összekötőjével hello
 SendGrid Kapcsolatszolgáltatója lehetővé teszi, hogy küldjenek e-maileket, és kezelheti a címzettjeinek listája.
 
 Most hozzon létre egy Logic app kezdheti, lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-to-sendgrid"></a>Kapcsolatot létesíthet a SendGrid
-A Logic apps sendgrid létrehozásához, létre kell hoznia egy **kapcsolat** adja meg a részleteket a következő tulajdonságokkal: 
+## <a name="create-a-connection-toosendgrid"></a>Egy kapcsolat tooSendGrid létrehozása
+toocreate Logic apps sendgrid, létre kell hoznia egy **kapcsolat** hello részletek adja meg a következő tulajdonságok hello: 
 
 | Tulajdonság | Szükséges | Leírás |
 | --- | --- | --- |
 | apiKey |Igen |Adja meg a SendGrid Api-kulcsát |
 
-> [!INCLUDE [Steps to create a connection to SendGrid](../../includes/connectors-create-api-sendgrid.md)]
+> [!INCLUDE [Steps toocreate a connection tooSendGrid](../../includes/connectors-create-api-sendgrid.md)]
 > 
 
 
-Miután létrehozta a kapcsolatot, a műveletek végrehajtásához, és figyeljen az eseményindítók a használhatja.
+Hello kapcsolat létrehozása után tooexecute hello műveletek használják, és a hello eseményindítók figyelésére.
 
 ## <a name="connector-specific-details"></a>Összekötő-specifikus részletei
 
-Bármely eseményindítók és a swagger definiált műveletek megtekintése, és semmilyen határnak a Lásd még: a [connector részleteket](/connectors/sendgrid/).
+Bármely eseményindítók és hello swagger definiált műveletek megtekintése, és semmilyen határnak hello a Lásd még: [connector részleteket](/connectors/sendgrid/).
 
 ## <a name="more-connectors"></a>További összekötők
-Lépjen vissza a [API-k lista](apis-list.md).
+Lépjen vissza toohello [API-k lista](apis-list.md).

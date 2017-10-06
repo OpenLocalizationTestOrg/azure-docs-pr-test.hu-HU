@@ -1,6 +1,6 @@
 ---
-title: "What's New in IntelliJ Azure eszköztára |} Microsoft Docs"
-description: "További tudnivalók az Azure-eszközkészlet a legújabb funkciókat az intellij-t."
+title: "aaaWhat tartozó új az intellij-t Azure eszköztára hello |} Microsoft Docs"
+description: "További tudnivalók hello hello Azure eszközkészlet legfrissebb szolgáltatásai az intellij-t."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,73 +14,73 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm;asirveda;martinsawicki
-ms.openlocfilehash: 23714856f0f778be04cf321e0726b53ade430f57
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 57599c9af1d41784941b8b363ab9089db5df98f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="whats-new-in-the-azure-toolkit-for-intellij"></a>What's New in IntelliJ Azure eszköztára
+# <a name="whats-new-in-hello-azure-toolkit-for-intellij"></a>Újdonságok az intellij-t Azure eszköztára hello
 ## <a name="azure-toolkit-for-intellij-releases"></a>Az IntelliJ kiadásokban Azure eszköztára
-Ez a cikk ismerteti a különböző kiadások és az Azure-eszközkészlet legújabb frissítéseinek az intellij-t.
+Ez a cikk különböző kiadások hello információkat tartalmaz, és a legújabb frissítések toohello Azure eszközkészlet az intellij-t.
 
 > [!NOTE]
-> Az Eclipse IDE egy Azure eszközkészletét is van. További információkért lásd: [Eclipse Azure eszköztára].
+> Az Eclipse IDE hello Azure eszközkészletét is van. További információkért lásd: [Eclipse Azure eszköztára].
 > 
 > 
 
 ### <a name="april-14-2017"></a>2017. április 14.
-Az Azure eszközkészlet az IntelliJ - 2017. április kiadásban a következő fejlesztéseket tartalmazza:
+az IntelliJ - 2017. április kiadás Azure eszköztára hello hello a következő fejlesztéseket tartalmazza:
 
-* **Továbbfejlesztett Azure bejelentkezési élmény**: az intellij-t az Azure-eszközkészlet mostantól támogatja az Azure-fiókjába való bejelentkezés két módszerrel: *interaktív* és *automatikus*. További információkért lásd: [Azure bejelentkezési az utasítások az intellij-t Azure eszköztára].
-* **Közzététel a Docker-tárolók**: most közzéteheti a webalkalmazások Azure eszközkészlet segítségével az IntelliJ Docker tárolóként. További információkért lásd: [webalkalmazás közzététele az Azure-eszközkészlet segítségével az intellij-t egy Docker-tároló,].
-* **Tárolási fiókkezelés**: az intellij-t az Azure-eszközkészlet mostantól támogatja a storage-fiókok kezelése az Azure Explorer nézetből. További információkért lásd: [kezelése Storage-fiókok az Azure-kezelővel használ az IntelliJ].
-* **Virtuálisgép-kezelő**: az intellij-t az Azure-eszközkészlet mostantól támogatja a virtuális gépek kezelése az Azure Explorer eszköz ablakból. További információkért lásd: [kezelése használó virtuális gépek az Azure-kezelővel az IntelliJ].
-* **Távoli hibaelhárítási támogatás eltávolítása**. Java-webalkalmazások Azure App Service távoli hibakeresés el lett távolítva az Azure-eszközkészlet az IntelliJ; Ez volt néhány problémát, amely az ügyfelek volt tapasztalják az eszközkészlet használata esetén feloldásához szükséges.
+* **Továbbfejlesztett Azure bejelentkezési élmény**: hello Azure eszközkészlet IntelliJ mostantól támogatja az Azure-fiókjába való bejelentkezés két módszerrel: *interaktív* és *automatikus*. További információkért lásd: [Azure bejelentkezési a vonatkozó utasítások az IntelliJ Azure eszköztára hello].
+* **Közzététel a Docker-tárolók**: most közzéteheti a webalkalmazások Azure eszközkészlet segítségével az IntelliJ Docker tárolóként. További információkért lásd: [hogyan toopublish egy webalkalmazást, mint egy Docker-tároló használata hello Azure eszközkészlet IntelliJ].
+* **Tárolási fiókkezelés**: hello Azure eszközkészlet IntelliJ mostantól támogatja a storage-fiókok kezelése hello Azure terület Intézőbeli nézetében. További információkért lásd: [Azure Explorer Storage-fiókok kezelése használatával hello IntelliJ].
+* **Virtuálisgép-kezelő**: hello Azure eszközkészlet IntelliJ mostantól támogatja a virtuális gépek kezelésére hello Azure eszköz ablak. További információkért lásd: [intellij-t használó virtuális gépek kezelése hello Azure Explorer].
+* **Távoli hibaelhárítási támogatás eltávolítása**. Java-webalkalmazások Azure App Service távoli hibakeresés el lett távolítva hello Azure eszközkészlet az IntelliJ; szükséges tooresolve volt néhány problémát, mely ügyfelek volt tapasztaló használatakor hello eszközkészlet.
 
 ### <a name="august-26-2016"></a>2016 augusztusától 26
-Az IntelliJ - kiadás 2016 augusztusától Azure eszköztára a következő fejlesztéseket tartalmazza:
+az IntelliJ - kiadás 2016 augusztusától Azure eszköztára hello hello a következő fejlesztéseket tartalmazza:
 
-* **Egyéni JDK Terjesztéseket**. Az IntelliJ Azure eszköztára mostantól támogatja a megadása, és az Azure-webalkalmazás tárolóhoz egy tetszőleges JDK-verzió telepítése:
-  * Az Azure által biztosított JDKs, mellett is választhat Zulu OpenJDK verziók által elérhetővé tett Azure Azul rendszerek széles kijelölés.
-  * A saját JDK terjesztési is megadható, ha a feltöltés csomagot .zip fájlként a tárfiókhoz.
-* **Az Azure terület Intézőbeli nézetében fejlesztései**:
-  * Új Azure Resource Manager-modell használatával a virtuális gép felügyelet támogatása: listában, létrehozhat, és törölje a resource manager-alapú virtuális gépek anélkül, hogy az IDE.
-  * A Tárfiók a blob felügyelet kiegészíti a meglévő funkciók "klasszikus" storage-fiókok Azure Resource Manager használatával támogatása.
-* **Az SQL Server 6.0 Microsoft JDBC-illesztőt**. A frissítés a Microsoft SQL Server (v6.0), amely magában foglalja a legfrissebb JDBC-illesztőt most része, amely egyszerűen hozzáadhatja a Java-projektekhez tárként, ezáltal a mag cseréje a régebbi verziót.
+* **Egyéni JDK Terjesztéseket**. hello Azure eszköztára IntelliJ mostantól támogatja a megadása, és egy tetszőleges JDK verzió tooyour Azure webalkalmazás tároló üzembe helyezése:
+  * Ezenkívül toohello JDKs Azure által biztosított, is választhat Zulu OpenJDK verziók által elérhetővé tett Azure Azul rendszerek széles kijelölés.
+  * Ha egy ZIP-fájl tooyour tárfiókkal feltöltése a saját JDK terjesztési is megadható.
+* **Továbbfejlesztett toohello Azure terület Intézőbeli nézetében**:
+  * Új Azure Resource Manager-modell használatával a virtuális gép felügyelet támogatása: listában, létrehozhat, és törölje a resource manager-alapú virtuális gépek hello IDE maradjanak.
+  * A Tárfiók a blob felügyelet kiegészíti a meglévő funkciók hello "klasszikus" storage-fiókok kezeléséhez Azure Resource Manager használatával támogatása.
+* **Az SQL Server 6.0 Microsoft JDBC-illesztőt**. A frissítés a Microsoft SQL Server (v6.0), amely már tartalmazza a hello legújabb JDBC-illesztőt tárként része, hogy egyszerűen hozzáadhatja tooyour Java projektek, ezáltal cseréje hello régebbi verzióját.
 
 ### <a name="june-29-2016"></a>2016. június 29.
-Az Azure eszközkészlet az IntelliJ - 2016. június kiadásban a következő fejlesztéseket tartalmazza:
+hello Azure eszköztára IntelliJ – 2016. június kiadás hello a következő fejlesztéseket tartalmazza:
 
-* **Java 8 követelmény**. Az IntelliJ Azure eszköztára megköveteli Java 8, bár ez a követelmény csak az eszközkészlet van – az alkalmazások továbbra is használhatja a Java Azure által támogatott összes verzióját.
-* **A legújabb Java JDKs támogatása**. A Java JDKs a legfrissebb verziója most már támogatja az Azure-eszközkészlet az intellij-t.
-* **Az Azure SDK v2.9.1 támogatása**. Az Azure SDK legújabb verziójára már az intellij-t Azure eszköztára minimális előzetesen szükséges.
-* **Minták integrált**. Az IntelliJ Azure eszköztára most funkciókat több minta alkalmazás segítségével a fejlesztők a kezdéshez.
-* **A HDInsight eszközzel integrációs**. Azure HDInsight eszközök most vannak becsomagolva Azure eszközkészlete az intellij-t. További információkért lásd: [IntelliJ HDInsight-eszközei beépülő].
-* **Java-webalkalmazások távoli hibakeresés**. Az IntelliJ Azure eszköztára mostantól támogatja a Java-webalkalmazások Azure App Service távoli hibakeresés.
+* **Java 8 követelmény**. hello Azure eszköztára IntelliJ megköveteli Java 8, bár ez a követelmény csak hello eszközkészlet van – az alkalmazások továbbra is toouse Java Azure által támogatott összes verziója.
+* **Támogatja a legújabb Java JDKs hello**. hello hello Java JDKs a legfrissebb verziója most támogatja hello Azure eszközkészlet az intellij-t.
+* **Az Azure SDK v2.9.1 támogatása**. hello hello Azure SDK legújabb verziója már hello minimális előfeltétel hello Azure eszköztára intellij-t.
+* **Minták integrált**. hello Azure eszköztára IntelliJ most toohelp fejlesztők Ismerkedés több mintaalkalmazások funkciókat.
+* **A HDInsight eszközzel integrációs**. Azure HDInsight eszközök vannak most mellékelhető hello Azure eszközkészlet az intellij-t. További információkért lásd: [IntelliJ HDInsight-eszközei beépülő].
+* **Java-webalkalmazások távoli hibakeresés**. hello Azure eszköztára IntelliJ mostantól támogatja a Java-webalkalmazások Azure App Service távoli hibakeresés.
 
 ### <a name="april-12-2016"></a>2016. április 12.
-Az Azure eszközkészlet az IntelliJ - 2016. április kiadásban a következő fejlesztéseket tartalmazza:
+hello Azure eszköztára IntelliJ – 2016. április kiadás hello a következő fejlesztéseket tartalmazza:
 
-* **Az Azure SDK v2.9.0 támogatása**. Az Azure SDK legújabb verziójára már az intellij-t Azure eszköztára minimális előzetesen szükséges.
-* **Vegyes használhatóság, válaszkészsége és teljesítménnyel kapcsolatos fejlesztések az Azure Web Apps támogatás kapcsolódó**. Hogyan kommunikál a az eszközkészlet Azure eredménye a teljesítményoptimalizálás számos olyan gyorsabban felhasználói felületén.
-* **Az IntelliJ belül az Azure-ban meglévő webes alkalmazás tároló törlésére**. Az IntelliJ Azure eszköztára mostantól lehetővé teszi egy meglévő Azure webes tároló törlése IntelliJ maradjanak.
+* **Az Azure SDK v2.9.0 támogatása**. hello hello Azure SDK legújabb verziója már hello minimális előfeltétel hello Azure eszköztára intellij-t.
+* **Vegyes használhatóság, válaszkészsége és teljesítménnyel kapcsolatos fejlesztések kapcsolódó tooAzure webalkalmazás támogatási**. Hogyan kommunikál a eszközkészlet hello Azure eredménye a teljesítményoptimalizálás számos olyan gyorsabban felhasználói felületén.
+* **Képes toodelete az IntelliJ belül az Azure-ban meglévő webes alkalmazás tároló**. hello Azure eszköztára IntelliJ mostantól lehetővé teszi egy meglévő Azure webes tároló toodelete IntelliJ maradjanak.
 
 ## <a name="see-also"></a>Lásd még:
-A Java IDE környezetekhez készült Azure-eszközkészlettel kapcsolatos további információkért lásd az alábbi hivatkozásokat:
+A Java IDEs hello Azure eszközök gazdag kapcsolatos további információkért tekintse meg a következő hivatkozások hello:
 
 * [Eclipse Azure eszköztára]
-  * [Az Eclipse-hez készült Azure-eszközkészlet újdonságai]
-  * [Az Eclipse-hez készült Azure-eszközkészlet telepítése]
+  * [Újdonságok az Eclipse Azure eszköztára hello]
+  * [Hello Azure eszköztára Eclipse telepítése]
   * [Hello World webalkalmazás létrehozása az Azure-hoz az eclipse-ben]
-  * [Bejelentkezési utasítások az Eclipse-hez készült Azure-eszközkészlethez]
+  * [Bejelentkezés a utasításokat hello Eclipse Azure eszköztára]
 * [Az IntelliJ-hez készült Azure-eszközkészlet]
-  * *What's New in IntelliJ (Ez a cikk) Azure eszköztára*
-  * [Az IntelliJ-hez készült Azure-eszközkészlet telepítése]
-  * [Bejelentkezési utasítások az IntelliJ-hez készült Azure-eszközkészlethez]
+  * *Újdonságok az intellij-t (Ez a cikk) Azure eszköztára hello*
+  * [Az IntelliJ hello Azure eszközkészlet telepítése]
+  * [Bejelentkezés a utasításokat hello IntelliJ Azure eszköztára]
   * [Hello World webalkalmazás létrehozása az intellij-t az Azure]
 
-Az Azure Javával való használatáról további információ: [Azure Java fejlesztői központ].
+Azure Java használatával kapcsolatos további információkért lásd: hello [Azure Java fejlesztői központból].
 
 <!-- URL List -->
 
@@ -88,18 +88,18 @@ Az Azure Javával való használatáról további információ: [Azure Java fejl
 [Az IntelliJ-hez készült Azure-eszközkészlet]: ./azure-toolkit-for-intellij.md
 [Hello World webalkalmazás létrehozása az Azure-hoz az eclipse-ben]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [Hello World webalkalmazás létrehozása az intellij-t az Azure]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Az Eclipse-hez készült Azure-eszközkészlet telepítése]: ./azure-toolkit-for-eclipse-installation.md
-[Az IntelliJ-hez készült Azure-eszközkészlet telepítése]: ./azure-toolkit-for-intellij-installation.md
-[Bejelentkezési utasítások az Eclipse-hez készült Azure-eszközkészlethez]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[Bejelentkezési utasítások az IntelliJ-hez készült Azure-eszközkészlethez]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[Az Eclipse-hez készült Azure-eszközkészlet újdonságai]: ./azure-toolkit-for-eclipse-whats-new.md
-[What's New in the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
+[Hello Azure eszköztára Eclipse telepítése]: ./azure-toolkit-for-eclipse-installation.md
+[Az IntelliJ hello Azure eszközkészlet telepítése]: ./azure-toolkit-for-intellij-installation.md
+[Bejelentkezés a utasításokat hello Eclipse Azure eszköztára]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[Bejelentkezés a utasításokat hello IntelliJ Azure eszköztára]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[Újdonságok az Eclipse Azure eszköztára hello]: ./azure-toolkit-for-eclipse-whats-new.md
+[What's New in hello Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
 
-[Azure bejelentkezési az utasítások az intellij-t Azure eszköztára]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[webalkalmazás közzététele az Azure-eszközkészlet segítségével az intellij-t egy Docker-tároló,]: ./azure-toolkit-for-intellij-publish-as-docker-container.md
-[kezelése Storage-fiókok az Azure-kezelővel használ az IntelliJ]: ./azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md
-[kezelése használó virtuális gépek az Azure-kezelővel az IntelliJ]: ./azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md
+[Azure bejelentkezési a vonatkozó utasítások az IntelliJ Azure eszköztára hello]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[hogyan toopublish egy webalkalmazást, mint egy Docker-tároló használata hello Azure eszközkészlet IntelliJ]: ./azure-toolkit-for-intellij-publish-as-docker-container.md
+[Azure Explorer Storage-fiókok kezelése használatával hello IntelliJ]: ./azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md
+[intellij-t használó virtuális gépek kezelése hello Azure Explorer]: ./azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md
 
-[Azure Java fejlesztői központ]: http://go.microsoft.com/fwlink/?LinkID=699547
+[Azure Java fejlesztői központból]: http://go.microsoft.com/fwlink/?LinkID=699547
 
 [IntelliJ HDInsight-eszközei beépülő]: ./hdinsight/hdinsight-apache-spark-intellij-tool-plugin.md

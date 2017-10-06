@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Active Directory-jelentéskészítés – útmutató |} Microsoft Docs"
+title: "Active Directory-jelentéskészítés – útmutató aaaAzure |} Microsoft Docs"
 description: "Egy Azure Active Directory Reporting összes cikk tartalmazó útmutató"
 services: active-directory
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 01/19/2017
 ms.author: femila;markvi
-ms.openlocfilehash: 3d790908125416424d6ec55b9d96ca8339c1f245
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 27892417fff1d35d8aaa980b13ef799a7b06b15c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-reporting-guide"></a>Az Azure Active Directory-jelentéskészítés – útmutató
 > [!div class="op_single_selector"]
@@ -27,7 +27,7 @@ ms.lasthandoff: 07/11/2017
 > 
 
 * [Az Azure Active Directory jelentéskészítési – előzetes](active-directory-reporting-azure-portal.md)
-* [Ismerkedés az Azure AD jelentéskészítési API](active-directory-reporting-api-getting-started.md)
+* [Ismerkedés az Azure AD jelentéskészítési API hello](active-directory-reporting-api-getting-started.md)
 * [Azure Active Directory jelentéskészítés események naplózása](active-directory-reporting-audit-events.md)
 * [Az Azure Active Directory Reporting megőrzési](active-directory-reporting-retention.md)
 

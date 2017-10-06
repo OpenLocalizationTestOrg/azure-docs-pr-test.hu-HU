@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directory-integráció való összefolyás felett az SAML-alapú egyszeri felbontása GmbH |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és a SAML SSO való összefolyás felett a felbontása GmbH."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és a felbontása GmbH való összefolyás felett SAML SSO között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,68 +13,68 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
 ms.author: jeedes
-ms.openlocfilehash: 9a36d686ba39b5168860a20e8c4db357888df6a7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fe50636709857ec49023e24bdc8c6cd8c58e3c7a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-saml-sso-for-confluence-by-resolution-gmbh"></a>Oktatóanyag: Azure Active Directory-integráció való összefolyás felett az SAML-alapú egyszeri felbontása GmbH
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan integrálását a SAML SSO való összefolyás felett a feloldási GmbH az Azure Active Directoryval (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate való összefolyás felett a SAML SSO felbontása GmbH az Azure Active Directoryval (Azure AD).
 
-SAML SSO való összefolyás felett a felbontása GmbH az Azure AD integrálása lehetővé teszi a következő előnyöket biztosítja:
+SAML SSO való összefolyás felett a felbontása GmbH az Azure AD integrálása lehetővé teszi a következő előnyöket hello:
 
-- Szabályozhatja, aki hozzáféréssel rendelkezik SAML SSO való összefolyás felett a felbontása GmbH Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a SAML SSO való összefolyás felett a felbontása GmbH (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Megadhatja a hozzáférés tooSAML való összefolyás felett az SSO felbontása GmbH rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooSAML való összefolyás felett az SSO felbontása GmbH (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs való összefolyás felett a SAML SSO feloldási GmbH, a következőkre van szükség:
+tooconfigure felbontása GmbH SAML-alapú egyszeri való összefolyás felett az Azure AD-integrációs, a következő elemek hello kell:
 
 - Az Azure AD szolgáltatásra
 - A SAML SSO a felbontása GmbH egyszeri bejelentkezés engedélyezve van az előfizetésben való összefolyás felett
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. Megoldási GmbH való összefolyás felett a SAML SSO hozzáadását a gyűjteményből
+1. Megoldási GmbH való összefolyás felett a SAML SSO hozzáadását hello gyűjteményből
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-saml-sso-for-confluence-by-resolution-gmbh-from-the-gallery"></a>Megoldási GmbH való összefolyás felett a SAML SSO hozzáadását a gyűjteményből
+## <a name="adding-saml-sso-for-confluence-by-resolution-gmbh-from-hello-gallery"></a>Megoldási GmbH való összefolyás felett a SAML SSO hozzáadását hello gyűjteményből
 
-A integrálása a SAML SSO való összefolyás felett a feloldási GmbH által az Azure AD konfigurálásához kell hozzáadnia való összefolyás felett a SAML SSO felbontása GmbH a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+tooconfigure hello integrációja való összefolyás felett a SAML SSO felbontása GmbH az Azure AD-be, szükség van tooadd SAML SSO való összefolyás felett felbontása GmbH hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**Adja hozzá a SAML SSO való összefolyás felett a felbontása GmbH a gyűjteményből, hajtsa végre az alábbi lépéseket:**
+**tooadd való összefolyás felett a SAML SSO felbontása GmbH hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
+3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **felbontása GmbH való összefolyás felett a SAML SSO**.
+4. Hello keresési mezőbe, írja be a **felbontása GmbH való összefolyás felett a SAML SSO**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-samlssoconfluence-tutorial/tutorial_samlssoconfluence_search.png)
 
-5. Az eredmények panelen válassza ki a **felbontása GmbH való összefolyás felett a SAML SSO**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. A hello eredmények panelen válassza a **felbontása GmbH való összefolyás felett a SAML SSO**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-samlssoconfluence-tutorial/tutorial_samlssoconfluence_addfromgallery.png)
 
@@ -82,50 +82,50 @@ A integrálása a SAML SSO való összefolyás felett a feloldási GmbH által a
 
 Ebben a szakaszban, tesztelése és konfigurálása az Azure AD egyszeri bejelentkezéshez való összefolyás felett az SAML-alapú egyszeri által GmbH alapuló "Britta Simon." nevű tesztfelhasználó felbontás
 
-Az egyszeri bejelentkezés működéséhez az Azure AD tudnia kell, a partner felhasználó a SAML SSO való összefolyás felett a az Azure AD egy felhasználónak van GmbH felbontása. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a SAML SSO való összefolyás felett a felbontása hivatkozás kapcsolatának GmbH kell létrehozni.
+Egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználót a SAML SSO való összefolyás felett a feloldási GmbH tooa felhasználó az Azure ad-ben. Ez azt jelenti az Azure AD-felhasználó és hello kapcsolódó felhasználót a SAML SSO való összefolyás felett a feloldási hivatkozás kapcsolatát GmbH kell toobe létrejött.
 
-A SAML SSO a felbontása GmbH való összefolyás felett, rendelje az értékét a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
+A SAML SSO a felbontása GmbH való összefolyás felett, rendelje a hello hello értékét **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
 
-Az Azure AD egyszeri bejelentkezéshez a SAML SSO való összefolyás felett a felbontása GmbH tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és tesztelése az Azure AD az egyszeri bejelentkezés SAML-alapú egyszeri való összefolyás felett felbontása GmbH, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[A SAML SSO a feloldási GmbH teszt felhasználó való összefolyás felett létrehozása](#creating-a-saml-sso-for-confluence-by-resolution-gmbh-test-user)**  - való egy megfelelője a Britta Simon való összefolyás felett a SAML SSO felbontása GmbH, amely csatolva van a felhasználó az Azure AD-ábrázolását.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[A SAML SSO a feloldási GmbH teszt felhasználó való összefolyás felett létrehozása](#creating-a-saml-sso-for-confluence-by-resolution-gmbh-test-user)**  -toohave Britta Simon a SAML SSO való összefolyás felett a egy megfelelője a felbontása GmbH, amely a felhasználó csatolt toohello az Azure AD-ábrázolása.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, majd állítsa egyszeri bejelentkezéshez a SAML SSO való összefolyás felett a felbontása GmbH alkalmazás.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, majd állítsa egyszeri bejelentkezéshez a SAML SSO való összefolyás felett a felbontása GmbH alkalmazás.
 
-**Konfigurálja az Azure AD egyszeri bejelentkezéssel való összefolyás felett az SAML-alapú egyszeri feloldási GmbH, hajtsa végre az alábbi lépéseket:**
+**tooconfigure az Azure AD egyszeri bejelentkezéshez a SAML SSO való összefolyás felett a felbontása GmbH, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure portálon a a **felbontása GmbH való összefolyás felett a SAML SSO** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **felbontása GmbH való összefolyás felett a SAML SSO** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/tutorial_samlssoconfluence_samlbase.png)
 
-3. Az a **SAML SSO való összefolyás felett felbontása GmbH tartomány és az URL-címek** szakaszban, ha szeretne beállítani az alkalmazás **IDP** kezdeményezett mód:
+3. A hello **SAML SSO való összefolyás felett felbontása GmbH tartomány és az URL-címek** szakaszban, ha tooconfigure hello alkalmazás **IDP** kezdeményezett mód:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/tutorial_samlssoconfluence_url_1.png)
 
-    a. Az a **azonosító** szövegmező, adja meg a következő minta használatával URL-címe:`https://<server-base-url>/plugins/servlet/samlsso`
+    a. A hello **azonosító** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<server-base-url>/plugins/servlet/samlsso`
 
-    b. Az a **válasz URL-CÍMEN** szövegmező, adja meg a következő minta használatával URL-címe:`https://<server-base-url>/plugins/servlet/samlsso`
+    b. A hello **válasz URL-CÍMEN** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<server-base-url>/plugins/servlet/samlsso`
 
-4. Ellenőrizze **megjelenítése speciális URL-beállításainak**. Ha szeretne beállítani az alkalmazás **SP** kezdeményezett mód:
+4. Ellenőrizze **megjelenítése speciális URL-beállításainak**. Ha tooconfigure hello alkalmazás **SP** kezdeményezett mód:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/tutorial_samlssoconfluence_url_2.png)
 
-    Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<server-base-url>/plugins/servlet/samlsso`
+    A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<server-base-url>/plugins/servlet/samlsso`
      
     > [!NOTE] 
-    > Ezek az értékek nincsenek valós. Frissítheti ezeket az értékeket a tényleges azonosítója, válasz URL-CÍMEN és bejelentkezési URL-cím. Ügyfél [való összefolyás felett feloldási GmbH ügyfél által a SAML SSO támogatási csoport](https://www.resolution.de/go/support) beolvasni ezeket az értékeket. 
+    > Ezek az értékek nincsenek valós. Frissítse a azonosító, a válasz URL-CÍMEN és a bejelentkezési URL-cím a tényleges hello értékeket. Ügyfél [való összefolyás felett feloldási GmbH ügyfél által a SAML SSO támogatási csoport](https://www.resolution.de/go/support) tooget ezeket az értékeket. 
 
-5. Az a **SAML-aláíró tanúsítványa** területen kattintson **metaadatainak XML-kódja** és mentse a metaadat-fájlt a számítógépen.
+5. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello metaadatait tartalmazó fájl a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/tutorial_samlssoconfluence_certificate.png) 
 
@@ -133,13 +133,13 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/tutorial_general_400.png)  
     
-7. Egy másik webes böngészőablakban, jelentkezzen be a **való összefolyás felett feloldási GmbH felügyeleti portál a SAML SSO** rendszergazdaként.
+7. Egy másik webes böngészőablakban, jelentkezzen be tooyour **való összefolyás felett feloldási GmbH felügyeleti portál a SAML SSO** rendszergazdaként.
 
-8. Vigye a mutatót a ikonjára, majd kattintson a **bővítmények**.
+8. Vigye a mutatót a ikonjára, majd kattintson a hello **bővítmények**.
     
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/addon1.png)
 
-9. Rendszergazdai hozzáférés lap van átirányítva. Adja meg a jelszót, és kattintson a **megerősítése** gombra.
+9. Biztosan átirányított tooAdministrator lapot. Megadja a hello jelszót, majd **megerősítése** gombra.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/addon2.png)
 
@@ -147,11 +147,11 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/addon.png)
 
-11. Keresési **SAML-alapú egyszeri bejelentkezés (SSO) való összefolyás felett a** kattintson **telepítése** az új SAML-alapú beépülő modul telepítése gombra.
+11. Keresési **SAML-alapú egyszeri bejelentkezés (SSO) való összefolyás felett a** kattintson **telepítése** gomb tooinstall hello új SAML-alapú beépülő modul.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/addon7.png)
 
-12. A beépülő modul telepítése elindul. Kattintson a **Bezárás** gombra.
+12. hello beépülő modul telepítése elindul. Kattintson a **Bezárás** gombra.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/addon8.png)
 
@@ -161,7 +161,7 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/addon10.png)
     
-14. Kattintson a **konfigurálása** konfigurálása az új beépülő modul.
+14. Kattintson a **konfigurálása** tooconfigure hello új beépülő modult.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/addon11.png)
 
@@ -169,7 +169,7 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/addon3.png)
     
-16. A **SAML SingleSignOn beépülő modul konfigurációs** kattintson **adja hozzá a további identitásszolgáltató** gombra kattintva adja meg a beállításokat az identitásszolgáltató.
+16. A **SAML SingleSignOn beépülő modul konfigurációs** kattintson **adja hozzá a további identitásszolgáltató** az identitásszolgáltató tooconfigure hello-beállítások gombra.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/addon4.png)
 
@@ -177,99 +177,99 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/addon5.png)
  
-    a. Adja hozzá **neve** az Identity Provider (például az Azure AD).
+    a. Adja hozzá **neve** az identitásszolgáltató (például az Azure AD) hello.
     
-    b. Adja hozzá **leírás** az Identity Provider (például az Azure AD).
+    b. Adja hozzá **leírás** az identitásszolgáltató (például az Azure AD) hello.
 
-    c. Kattintson a **XML** válassza ki a **metaadatok** Azure portálról letöltött fájl.
+    c. Kattintson a **XML** és select hello **metaadatok** Azure portálról letöltött fájl.
 
     d. Kattintson a **terhelés** gombra.
 
-    e. Beolvassa a kiállító terjesztési hely metaadatok, és feltölti a mezőt is ezen a képernyőfelvételen kiemelt. 
-18. Kattintson a **beállítások mentése** gombra a beállítások mentéséhez.
+    e. Hello IdP metaadatok olvas, és kiemelve hello képernyőfelvétel a hello mezők tölti fel.   
+18. Kattintson a **beállítások mentése** toosave hello-beállítások gombra.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/addon6.png)
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-samlssoconfluence-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-samlssoconfluence-tutorial/create_aaduser_02.png) 
 
-3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
+3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-samlssoconfluence-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-samlssoconfluence-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-saml-sso-for-confluence-by-resolution-gmbh-test-user"></a>A SAML SSO a való összefolyás felett feloldási GmbH teszt felhasználó létrehozása
 
-Ahhoz, hogy a SAML SSO való összefolyás felett a feloldási GmbH jelentkezzen be az Azure AD-felhasználók, azok kell üzembe való összefolyás felett a SAML SSO be névfeloldási GmbH által.  
+az Azure AD tooenable felhasználók toolog tooSAML való összefolyás felett az SSO felbontása GmbH, a azok kell üzembe való összefolyás felett a SAML SSO be névfeloldási GmbH által.  
 A SAML SSO a felbontása GmbH való összefolyás felett egy kézi tevékenység.
 
-**Felhasználói fiók létrehozásához hajtsa végre az alábbi lépéseket:**
+**tooprovision egy felhasználói fiókot, hajtsa végre a következő lépéseket hello:**
 
-1. Jelentkezzen be rendszergazdaként a feloldási GmbH vállalati hely való összefolyás felett a SAML SSO.
+1. Jelentkezzen be rendszergazdaként való összefolyás felett feloldási GmbH vállalati hely által a SAML SSO tooyour.
 
-2. Vigye a mutatót a ikonjára, majd kattintson a **felhasználókezelés**.
+2. Vigye a mutatót a ikonjára, majd kattintson a hello **felhasználókezelés**.
 
     ![Alkalmazott hozzáadása](./media/active-directory-saas-samlssoconfluence-tutorial/user1.png) 
 
-3. A felhasználók szakaszban kattintson **felhasználók hozzáadása az** fülre. Az a **"A felhasználó hozzáadása"** párbeszédpanel lapon, a következő lépésekkel:
+3. A felhasználók szakaszban kattintson **felhasználók hozzáadása az** fülre. A hello **"A felhasználó hozzáadása"** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
 
     ![Alkalmazott hozzáadása](./media/active-directory-saas-samlssoconfluence-tutorial/user2.png) 
 
-    a. Az a **felhasználónév** szövegmező, írja be a felhasználó Britta Simon például az e-mailt.
+    a. A hello **felhasználónév** szövegmezőhöz: hello e-mail Britta Simon például felhasználó.
 
-    b. Az a **teljes nevét** szövegmező, írja be például a Britta Simon felhasználói teljes nevét.
+    b. A hello **teljes nevét** szövegmezőhöz hello teljes típusnév Britta Simon például felhasználó.
 
-    c. Az a **E-mail** szövegmező, a felhasználó e-mail címe típusát, például Brittasimon@contoso.com.
+    c. A hello **E-mail** szövegmezőhöz típus hello felhasználó e-mail címét, például Brittasimon@contoso.com.
 
-    d. Az a **jelszó** szövegmezőhöz Britta Simon írja be a jelszót.
+    d. A hello **jelszó** szövegmezőhöz Britta Simon típus hello jelszavát.
 
-    e. Kattintson a **jelszó megerősítése** írja be újból a jelszót.
+    e. Kattintson a **jelszó megerősítése** írja be újból hello jelszót.
     
     f. Kattintson a **Hozzáadás** gombra.    
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban Britta Simon való összefolyás felett a SAML SSO GmbH megoldás által biztosított hozzáférés szerint használandó Azure egyszeri bejelentkezés engedélyezése.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooSAML való összefolyás felett az SSO felbontása GmbH megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon GmbH megoldási történő való összefolyás felett a SAML SSO hozzárendelését, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooSAML való összefolyás felett az SSO felbontása GmbH, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **felbontása GmbH való összefolyás felett a SAML SSO**.
+2. Hello alkalmazások listában válassza ki a **felbontása GmbH való összefolyás felett a SAML SSO**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-samlssoconfluence-tutorial/tutorial_samlssoconfluence_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -277,7 +277,7 @@ Ebben a szakaszban Britta Simon való összefolyás felett a SAML SSO GmbH megol
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -285,14 +285,14 @@ Ebben a szakaszban Britta Simon való összefolyás felett a SAML SSO GmbH megol
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-A SAML SSO való összefolyás felett a kattintson a feloldás GmbH csempe a hozzáférési panelen által, meg kell beolvasása automatikusan aláírt a a SAML SSO való összefolyás felett a felbontása GmbH alkalmazás.
+Hello való összefolyás felett a SAML SSO által feloldási GmbH csempe a hozzáférési Panel hello kattintáskor szerezheti be automatikusan bejelentkezett tooyour SAML SSO való összefolyás felett a felbontása GmbH alkalmazás.
 A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

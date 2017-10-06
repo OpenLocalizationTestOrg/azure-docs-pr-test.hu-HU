@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált BenefitHub |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és BenefitHub között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és BenefitHub között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,136 +13,136 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: jeedes
-ms.openlocfilehash: 8df9c0d8443d6685253207ed1915c780275014fc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c07d6e44e8cbc79afd79c900664011b059206b56
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-benefithub"></a>Oktatóanyag: Azure Active Directoryval integrált BenefitHub
 
-Ebben az oktatóanyagban elsajátíthatja BenefitHub integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate BenefitHub az Azure Active Directoryval (Azure AD).
 
-BenefitHub integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+BenefitHub integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Megadhatja a BenefitHub hozzáféréssel rendelkező Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett BenefitHub (egyszeri bejelentkezés) számára a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Megadhatja a hozzáférés tooBenefitHub rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooBenefitHub (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs BenefitHub, a következőkre van szükség:
+az Azure AD integrálása BenefitHub tooconfigure, kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - Egy BenefitHub egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A gyűjteményből BenefitHub hozzáadása
+1. Hello gyűjteményből BenefitHub hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-benefithub-from-the-gallery"></a>A gyűjteményből BenefitHub hozzáadása
-Az Azure AD integrálása a BenefitHub konfigurálásához kell hozzáadnia BenefitHub a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-benefithub-from-hello-gallery"></a>Hello gyűjteményből BenefitHub hozzáadása
+tooconfigure hello integrációja BenefitHub az Azure AD-be, meg kell tooadd BenefitHub hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A gyűjteményből BenefitHub hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd BenefitHub hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
+3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **BenefitHub**.
+4. Hello keresési mezőbe, írja be a **BenefitHub**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-benefithub-tutorial/tutorial_benefithub_search.png)
 
-5. Az eredmények panelen válassza ki a **BenefitHub**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. A hello eredmények panelen válassza ki a **BenefitHub**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-benefithub-tutorial/tutorial_benefithub_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban konfigurálása, és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon." nevű tesztfelhasználó alapján BenefitHub
 
-Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó BenefitHub a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a BenefitHub közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó BenefitHub tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello BenefitHub közötti kapcsolat kapcsolatot kell létrehozni toobe.
 
-BenefitHub, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
+BenefitHub, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
 
-Az Azure AD egyszeri bejelentkezést a BenefitHub tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés BenefitHub-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[BenefitHub tesztfelhasználó létrehozása](#creating-a-benefithub-test-user)**  - való Britta Simon valami BenefitHub, amely csatolva van a felhasználó az Azure AD-ábrázolását.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[BenefitHub tesztfelhasználó létrehozása](#creating-a-benefithub-test-user)**  -toohave egy megfelelője a Britta Simon a BenefitHub, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az BenefitHub alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az BenefitHub alkalmazásban.
 
-**Konfigurálása az Azure AD az egyszeri bejelentkezés BenefitHub, hajtsa végre az alábbi lépéseket:**
+**az Azure AD tooconfigure egyszeri bejelentkezést a BenefitHub, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure portálon a a **BenefitHub** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **BenefitHub** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-benefithub-tutorial/tutorial_benefithub_samlbase.png)
 
-3. Az a **BenefitHub tartomány és az URL-címek** területen tegye a következőket:
+3. A hello **BenefitHub tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-benefithub-tutorial/tutorial_benefithub_url1.png)
   
-    a. Az a **azonosító** szövegmező, típus:`urn:benefithub:passport`
+    a. A hello **azonosító** szövegmező, típus:`urn:benefithub:passport`
     
-    b. Az a **válasz URL-CÍMEN** szövegmező, típus:`https://passport.benefithub.info/saml/post/ac`
+    b. A hello **válasz URL-CÍMEN** szövegmező, típus:`https://passport.benefithub.info/saml/post/ac`
 
-4. A BenefitHub alkalmazás a SAML helyességi feltételek egy meghatározott formátumban, amelyek megkövetelik olyan egyéni attribútum-leképezésekhez hozzáadása a SAML-jogkivonat attribútumok konfigurációs vár. A következő jogcímek alkalmazás konfigurálása. Ezek az attribútumok értékének kezelheti a "**felhasználói attribútumok**" szakasz alkalmazás integráció lapján. 
+4. hello BenefitHub alkalmazás hello SAML helyességi feltételek vár egy meghatározott formátumban, és hogy tooadd egyéni attribútum hozzárendelések tooyour SAML token attribútumok konfigurációt igényel. Az alkalmazás jogcímek a következő hello konfigurálása. Ezek az attribútumok értékének hello hello kezelése "**felhasználói attribútumok**" szakasz alkalmazás integráció lapján. 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-benefithub-tutorial/tutorial_benefithub_attribute.png)
 
-5. A a **felhasználói attribútumok** a szakasz a **egyszeri bejelentkezés** párbeszédpanelen konfigurálja a SAML-jogkivonat attribútum, az előző ábrán látható módon, és hajtsa végre a következő lépéseket:
+5. A hello **felhasználói attribútumok** hello szakaszban **egyszeri bejelentkezés** párbeszédpanelen konfigurálja a SAML-jogkivonat attribútum, a lemezkép megelőző hello látható módon, és hajtsa végre az alábbi lépésekkel hello:
     
     | Attribútum neve | Attribútum-érték |
     | ------------------- | -------------------- |    
     | a szervezeti | < a szervezeti > |
 
     > [!NOTE]
-    > Az attribútum értéke nem valódi. Frissítse a tényleges a szervezeti ezt az értéket. Ügyfél [BenefitHub támogatási csoport](https://www.benefithub.com/Home/ContactUs) tényleges a szervezeti eléréséhez.
+    > Az attribútum értéke nem valódi. Frissítse a tényleges a szervezeti ezt az értéket. Ügyfél [BenefitHub támogatási csoport](https://www.benefithub.com/Home/ContactUs) tooget hello tényleges a szervezeti.
     
-    a. Kattintson a **Hozzáadás attribútum** megnyitásához a **attribútum hozzáadása** párbeszédpanel.
+    a. Kattintson a **Hozzáadás attribútum** tooopen hello **attribútum hozzáadása** párbeszédpanel.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-benefithub-tutorial/tutorial_attribute_04.png)
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-benefithub-tutorial/tutorial_attribute_05.png)
 
-    b. Az a **neve** szövegmező, írja be az adott sorhoz feltüntetett attribútumot nevét.
+    b. A hello **neve** szövegmezőben, az adott sorhoz feltüntetett hello attribútum neve.
     
-    c. Az a **érték** kilistázásához írja be a sorhoz látható attribútum értéke.
+    c. A hello **érték** listájában, hello attribútuma Típusérték az adott sorhoz feltüntetett.
     
     d. Kattintson az **OK** gombra.
 
     > [!NOTE] 
-    > A SAML-előfeltétel konfigurálása előtt kapcsolatba kell lépnie a [BenefitHub támogatási](https://www.benefithub.com/Home/ContactUs) és az egyedi azonosító attribútum értékének kérhetnek a bérlő. Ezt az értéket az egyéni jogcímleírásokat, az alkalmazás konfigurálása van szüksége.
+    > Hello SAML-előfeltétel konfigurálása előtt meg kell-e toocontact a [BenefitHub támogatási](https://www.benefithub.com/Home/ContactUs) hello egyedi azonosító attribútum értékének hello kérik a bérlő számára. Az érték tooconfigure hello egyéni jogcím az alkalmazás van szüksége.
 
-6. Az a **SAML-aláíró tanúsítványa** területen kattintson **metaadatainak XML-kódja** és mentse a metaadat-fájlt a számítógépen.
+6. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello metaadatait tartalmazó fájl a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-benefithub-tutorial/tutorial_benefithub_certificate.png) 
 
@@ -150,63 +150,63 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-benefithub-tutorial/tutorial_general_400.png)
 
-8. Egyszeri bejelentkezés konfigurálása **BenefitHub** oldalon kell küldeniük a letöltött **metaadatainak XML-kódja** való [BenefitHub támogatási csoport](https://www.benefithub.com/Home/ContactUs). Akkor állítsa be ezt a beállítást, hogy a SAML SSO kapcsolat mindkét oldalán megfelelően beállítva.
+8. tooconfigure egyszeri bejelentkezést a **BenefitHub** oldalon kell letöltött toosend hello **metaadatainak XML-kódja** túl[BenefitHub támogatási csoport](https://www.benefithub.com/Home/ContactUs). Maguk állítják be ezt a beállítást toohave hello SAML SSO kapcsolat mindkét oldalán megfelelően beállítva.
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-benefithub-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-benefithub-tutorial/create_aaduser_02.png) 
 
-3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
+3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-benefithub-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-benefithub-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-benefithub-test-user"></a>BenefitHub tesztfelhasználó létrehozása
 
-Ebben a szakaszban egy BenefitHub Britta Simon nevű felhasználót hoz létre. Együttműködve [BenefitHub támogatási csoport](https://www.benefithub.com/Home/ContactUs) a felhasználók hozzáadása a BenefitHub platform. Felhasználók kell létrehoznia és aktiválni az egyszeri bejelentkezés használata előtt. 
+Ebben a szakaszban egy BenefitHub Britta Simon nevű felhasználót hoz létre. Együttműködve [BenefitHub támogatási csoport](https://www.benefithub.com/Home/ContactUs) felhasználót is hozzáadhat hello hello BenefitHub platform. Felhasználók kell létrehoznia és aktiválni az egyszeri bejelentkezés használata előtt. 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés BenefitHub Azure egyszeri bejelentkezéshez használandó.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooBenefitHub megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon hozzárendelése BenefitHub, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooBenefitHub, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **BenefitHub**.
+2. Hello alkalmazások listában válassza ki a **BenefitHub**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-benefithub-tutorial/tutorial_benefithub_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -214,7 +214,7 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -222,14 +222,14 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-Ha a hozzáférési panelen BenefitHub csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az BenefitHub alkalmazására.
+Ha a hozzáférési Panel hello hello BenefitHub csempe gombra kattint, automatikusan bejelentkezett tooyour BenefitHub alkalmazás szerezheti be.
 A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](https://msdn.microsoft.com/library/dn308586).
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

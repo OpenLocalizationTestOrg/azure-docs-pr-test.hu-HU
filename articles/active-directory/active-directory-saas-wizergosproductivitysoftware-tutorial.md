@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directory-integráció Wizergos termelékenység szoftverrel |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és a termelékenység szoftver Wizergos között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és a termelékenység szoftver Wizergos között."
 services: active-directory
 documentationcenter: 
 author: jeevansd
@@ -14,196 +14,196 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/20/2017
 ms.author: jeedes
-ms.openlocfilehash: 73b3bc05aeb337c12acb7e47c0dbebe6d0196530
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cdd186c38c426dde404ed8bb84700faf9c8c1a46
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-wizergos-productivity-software"></a>Oktatóanyag: Azure Active Directory-integráció Wizergos termelékenység szoftverrel
-Ez az oktatóanyag célja Wizergos termelékenység szoftver integrálása az Azure Active Directory (Azure AD) mutatjuk be.
+hello Ez az oktatóanyag célja tooshow, hogyan toointegrate Wizergos termelékenység szoftver az Azure Active Directoryval (Azure AD).
 
-Wizergos termelékenység szoftver integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+Wizergos termelékenység szoftver integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-* Szabályozhatja az Azure AD, aki hozzáfér Wizergos termelékenység szoftver
-* Engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a Wizergos termelékenység szoftver egyszeri bejelentkezés (SSO) és az Azure AD-fiókok
-* Kezelheti a fiókokat, egy központi helyen - a klasszikus Azure portálon
+* Megadhatja a hozzáférés tooWizergos termelékenység szoftver rendelkező Azure AD-ben
+* Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooWizergos termelékenység szoftver egyszeri bejelentkezés (SSO) és az Azure AD-fiókok
+* Kezelheti a fiókokat, egy központi helyen - hello a klasszikus Azure portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az Azure AD-integráció konfigurálása Wizergos termelékenység szoftverrel, a következőkre van szükség:
+tooconfigure Wizergos termelékenység szoftver az Azure AD integrálása, a következő elemek hello kell:
 
 * Az Azure AD szolgáltatásra
 * Egy Wizergos termelékenység szoftver SSO előfizetés engedélyezése
 
 >[!NOTE]
->Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben. 
+>tootest hello lépéseit az oktatóanyag, ne használja éles környezetben. 
 > 
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 * Ne használja az éles környezetben, ha ez nem szükséges.
 * Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, beszerezheti a [egy hónapos próbaverzió](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ez az oktatóanyag célja ahhoz, hogy az Azure AD SSO teszteléséhez tesztkörnyezetben.
+hello Ez az oktatóanyag célja tooenable meg tootest Azure AD SSO tesztkörnyezetben.
 
-Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A gyűjteményből Wizergos termelékenység szoftver hozzáadása
+1. Hello gyűjteményből Wizergos termelékenység szoftver hozzáadása
 2. Azure AD egyszeri bejelentkezés tesztelése és konfigurálása
 
-## <a name="adding-wizergos-productivity-software-from-the-gallery"></a>A gyűjteményből Wizergos termelékenység szoftver hozzáadása
-Az Azure AD integrálása a Wizergos termelékenység szoftver konfigurálásához kell hozzáadnia Wizergos termelékenység szoftver a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-wizergos-productivity-software-from-hello-gallery"></a>Hello gyűjteményből Wizergos termelékenység szoftver hozzáadása
+tooconfigure hello integrációs Wizergos termelékenység szoftver az Azure AD-be, meg kell tooadd Wizergos termelékenység szoftver hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**Wizergos termelékenység szoftver hozzáadása a gyűjteményből, hajtsa végre az alábbi lépéseket:**
+**tooadd Wizergos termelékenység szoftver hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a **a klasszikus Azure portálon**, a bal oldali navigációs ablaktábláján kattintson **Active Directory**. 
+1. A hello **a klasszikus Azure portálon**, a hello bal oldali navigációs panelen, kattintson a **Active Directory**. 
    
     ![Active Directory][1]
-2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
-3. A könyvtár nézetben a alkalmazások nézet megnyitásához kattintson **alkalmazások** a felső menüben.
+2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
+3. tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
    
     ![Alkalmazások][2]
-4. Kattintson a **Hozzáadás** az oldal alján.
+4. Kattintson a **Hozzáadás** hello lap hello alján.
    
     ![Alkalmazások][3]
-5. Az a **mi történjen a teendő** párbeszédpanel, kattintson a **hozzáadhat egy alkalmazást a katalógusból**.
+5. A hello **miről szeretne toodo** párbeszédpanel, kattintson **hello gyűjteményből alkalmazás hozzáadása**.
    
     ![Alkalmazások][4]
-6. Írja be a keresőmezőbe, **Wizergos termelékenység szoftver**.
+6. Hello keresési mezőbe, írja be a **Wizergos termelékenység szoftver**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_01.png)
-7. Az eredmények panelen válassza ki a **Wizergos termelékenység szoftver**, és kattintson a **Complete** hozzáadása az alkalmazáshoz.
+7. A hello eredmények panelen válassza ki a **Wizergos termelékenység szoftver**, és kattintson a **Complete** tooadd hello alkalmazás.
    
-    ![Az alkalmazás kiválasztása a katalógusban](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_001.png)
+    ![Hello katalógusában hello alkalmazás kiválasztása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_001.png)
 
 ## <a name="configure-and-test-azure-ad-sso"></a>Azure AD egyszeri bejelentkezés tesztelése és konfigurálása
-Ez a szakasz célja mutatjuk be, hogyan lehet konfigurálni és tesztelése az Azure AD SSO "Britta Simon" nevű tesztfelhasználó alapján Wizergos termelékenység szoftverrel.
+hello ebben a szakaszban célja tooshow hogyan tooconfigure és tesztelési Azure AD SSO Wizergos termelékenység szoftverrel alapján "Britta Simon" nevű tesztfelhasználó.
 
-Az egyszeri bejelentkezés működjön az Azure AD tudnia kell, a partner felhasználó Wizergos termelékenység szoftver egy olyan felhasználó számára az Azure ad-ben van. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó Wizergos termelékenység szoftver közötti kapcsolat kapcsolatot kell létrehozni.
+Az SSO toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Wizergos termelékenység szoftver tooan felhasználó Azure AD-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználói hello Wizergos termelékenység szoftver közötti kapcsolat kapcsolatot kell létrehozni toobe.
 
-A hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** Wizergos termelékenység szoftverben.
+Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** Wizergos termelékenység szoftverben.
 
-Az Azure AD egyszeri bejelentkezést a BynWizergos termelékenység Softwareder tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés BynWizergos termelékenység Softwareder-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[Wizergos termelékenység szoftver tesztfelhasználó létrehozása](#creating-a-wizergos-productivity-software-test-user)**  - való egy megfelelője a Britta Simon Wizergos termelékenység szoftver, amely csatolva van rá, hogy az Azure AD ábrázolása.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[Wizergos termelékenység szoftver tesztfelhasználó létrehozása](#creating-a-wizergos-productivity-software-test-user)**  -toohave Britta Simon Wizergos termelékenység szoftver, amely az Azure AD csatolt toohello ábrázolása rá, hogy valami.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-sso"></a>Az Azure AD-egyszeri bejelentkezés konfigurálása
-Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a klasszikus portálon, és a Wizergos termelékenység alkalmazás egyszeri bejelentkezés konfigurálása.
+Ebben a szakaszban az Azure AD az egyszeri bejelentkezés a klasszikus portálon hello engedélyezése, és az Wizergos termelékenység szoftver alkalmazás egyszeri bejelentkezés beállítása.
 
-**Konfigurálja az Azure AD az egyszeri bejelentkezés Wizergos termelékenység szoftverrel, hajtsa végre az alábbi lépéseket:**
+**Wizergos termelékenység szoftvert, az Azure AD az egyszeri bejelentkezés tooconfigure hajtsa végre a lépéseket követve hello:**
 
-1. A klasszikus portálon a a **Wizergos termelékenység szoftver** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** megnyitásához a **konfigurálása egyszeri bejelentkezéshez**  párbeszédpanel.
+1. Hello klasszikus portál, a hello **Wizergos termelékenység szoftver** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** tooopen hello **konfigurálása egyszeri bejelentkezéshez**párbeszédpanel.
    
     ![Egyszeri bejelentkezés konfigurálása][6] 
-2. A a **hová felhasználók bejelentkezhetnek a Wizergos termelékenység szoftver** lapon jelölje be **az Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**:
+2. A hello **hogyan szeretné tooWizergos termelékenység szoftvert a felhasználók toosign** lapon jelölje be **az Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**:
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_03.png)
-3. Az a **Alkalmazásbeállítások konfigurálása** párbeszédpanel lap, kattintson a **következő**:
+3. A hello **Alkalmazásbeállítások konfigurálása** párbeszédpanel lap, kattintson a **következő**:
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_04.png)
-4. A a **konfigurálhatja az egyszeri bejelentkezés Wizergos termelékenység szoftver** kattintson **tanúsítvánnyal letöltés**, majd mentse a fájlt a számítógépen:
+4. A hello **konfigurálhatja az egyszeri bejelentkezés Wizergos termelékenység szoftver** lapján kattintson **tanúsítvánnyal letöltés**, majd mentse hello fájlt a számítógépen:
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_05.png)
-5. Egy másik webes böngészőablakban bejelentkezés a Wizergos termelékenység szoftver bérlő rendszergazdaként.
-6. A Hamburg menüben válassza ki a **Admin**.
+5. Egy másik webes böngészőablakban, bejelentkezés tooyour Wizergos termelékenység szoftver Bérlői rendszergazda.
+6. Hello Hamburg menüben válassza ki a **Admin**.
    
     ![Egyszeri bejelentkezés az alkalmazás ügyféloldali konfigurálása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_000.png)
 7. A rendszergazda lap bal oldali menüben válassza ki **hitelesítési** , majd kattintson a **az Azure AD**.
    
     ![Egyszeri bejelentkezés az alkalmazás ügyféloldali konfigurálása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_002.png)
-8. Hajtsa végre a következő lépéseket **hitelesítési** szakasz.
+8. Hajtsa végre a következő lépéseket hello **hitelesítési** szakasz.
    
     ![Egyszeri bejelentkezés az alkalmazás ügyféloldali konfigurálása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_003.png)
-  1. Kattintson a **FELTÖLTÉSE** gomb az Azure AD a letöltött tanúsítvány feltöltése. 
-  2. Az a **kiállítójának URL-címe** szövegmezőbe írja be az értéket a **kiállítójának URL-címe** az Azure AD alkalmazás-konfigurációs varázsló.
-  3. Az a **egyszeri bejelentkezési URL-cím** szövegmezőbe írja be az értéket a **egyszeri bejelentkezési URL-címe** az Azure AD alkalmazás-konfigurációs varázsló.
-  4. Az a **egyetlen Sign-Out URL-címet** szövegmezőbe írja be az értéket a **egyetlen Sign-out URL-címe** az Azure AD alkalmazás-konfigurációs varázsló.
+  1. Kattintson a **FELTÖLTÉSE** gomb tooupload hello letöltött tanúsítvány az Azure AD. 
+  2. A hello **kiállítójának URL-címe** szövegmezőbe írja be a hello értéket **kiállítójának URL-címe** az Azure AD alkalmazás-konfigurációs varázsló.
+  3. A hello **egyszeri bejelentkezési URL-cím** szövegmezőbe írja be a hello értéket **egyszeri bejelentkezési URL-címe** az Azure AD alkalmazás-konfigurációs varázsló.
+  4. A hello **egyetlen Sign-Out URL-címet** szövegmezőbe írja be a hello értéket **egyetlen Sign-out URL-címe** az Azure AD alkalmazás-konfigurációs varázsló.
   5. Kattintson a **mentése** gombra.
-9. A klasszikus portálon, válassza ki az egyszeri bejelentkezés konfigurációs megerősítő, és kattintson **következő**.
+9. A klasszikus portálon hello, válassza ki a hello egyszeri bejelentkezés konfigurációs megerősítő, és kattintson **következő**.
    
     ![Az Azure AD-egyszeri bejelentkezés][10]
-10. Az a **az egyszeri bejelentkezés megerősítő** kattintson **Complete**.  
+10. A hello **az egyszeri bejelentkezés megerősítő** kattintson **Complete**.  
     
     ![Az Azure AD-egyszeri bejelentkezés][11]
 
 ### <a name="create-an-azure-ad-test-user"></a>Hozzon létre egy Azure AD-teszt felhasználó
-Ez a szakasz célja a tesztfelhasználó létrehozása Britta Simon neve a klasszikus portálon.
+hello ebben a szakaszban célja toocreate tesztfelhasználó hello Britta Simon neve a klasszikus portálon.
 
 ![Az Azure AD-felhasználó létrehozása][20]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **a klasszikus Azure portálon**, a bal oldali navigációs ablaktábláján kattintson **Active Directory**.
+1. A hello **a klasszikus Azure portálon**, a hello bal oldali navigációs panelen, kattintson a **Active Directory**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/create_aaduser_09.png)
-2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
-3. A felhasználók listájának megjelenítéséhez a felső menüben, kattintson a **felhasználók**.
+2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
+3. toodisplay hello azoknak a felhasználóknak, hello menüben található hello felső részén kattintson **felhasználók**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/create_aaduser_03.png)
-4. Lehetőségre a **felhasználó hozzáadása** párbeszédpanel alján, az eszköztárban kattintson **felhasználó hozzáadása**.
+4. tooopen hello **felhasználó hozzáadása** párbeszédpanelen hello eszköztár hello alján, kattintson a **felhasználó hozzáadása**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/create_aaduser_04.png)
-5. Az a **adja meg azt a felhasználó** párbeszédpanel lapon, a következő lépésekkel:
+5. A hello **adja meg azt a felhasználó** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/create_aaduser_05.png) 
   1. A felhasználó típusát válassza ki az új felhasználót a szervezetében.
-  2. A felhasználó nevében **szövegmező**, típus **BrittaSimon**.
+  2. A felhasználónév hello **szövegmező**, típus **BrittaSimon**.
   3. Kattintson a **Tovább** gombra.
-6. Az a **felhasználói profil** párbeszédpanel lapon, a következő lépésekkel:
+6. A hello **felhasználói profil** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
    
    ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/create_aaduser_06.png)
-  1. Az a **Utónév** szövegmezőhöz típus **Britta**.  
-  2. Az a **Vezetéknév** szövegmezőhöz típusa, **Simon**.
-  3. Az a **megjelenített név** szövegmezőhöz típus **Britta Simon**.
-  4. Az a **szerepkör** listáról válassza ki **felhasználói**.
+  1. A hello **Utónév** szövegmezőhöz típus **Britta**.  
+  2. A hello **Vezetéknév** szövegmezőhöz típusa, **Simon**.
+  3. A hello **megjelenített név** szövegmezőhöz típus **Britta Simon**.
+  4. A hello **szerepkör** listáról válassza ki **felhasználói**.
   5. Kattintson a **Tovább** gombra.
-7. Az a **ideiglenes jelszó beszerzése** párbeszédpanel lap, kattintson a **létrehozása**.
+7. A hello **ideiglenes jelszó beszerzése** párbeszédpanel lap, kattintson a **létrehozása**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/create_aaduser_07.png)
-8. Az a **ideiglenes jelszó beszerzése** párbeszédpanel lapon, a következő lépésekkel:
+8. A hello **ideiglenes jelszó beszerzése** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/create_aaduser_08.png)
-  1. Jegyezze fel az értéket a **új jelszó**.
+  1. Írja le hello hello értékének **új jelszó**.
   2. Kattintson a **Befejezés** gombra.   
 
 ### <a name="create-a-wizergos-productivity-software-test-user"></a>Wizergos termelékenység szoftver tesztfelhasználó létrehozása
-Ebben a szakaszban egy felhasználó Britta Simon meghívta Wizergos termelékenység szoftver hoz létre. Adjon Wizergos termelékenység szoftver támogatási csoport keresztül együttműködésre [ support@wizergos.com ](emailTo:support@wizergos.com) a felhasználók hozzáadása a Wizergos termelékenység szoftver platform.
+Ebben a szakaszban egy felhasználó Britta Simon meghívta Wizergos termelékenység szoftver hoz létre. Adjon Wizergos termelékenység szoftver támogatási csoport keresztül együttműködésre [ support@wizergos.com ](emailTo:support@wizergos.com) tooadd hello felhasználók hello Wizergos termelékenység szoftver platform.
 
-### <a name="assign-the-azure-ad-test-user"></a>Rendelje hozzá az Azure AD-teszt felhasználó
-Ez a szakasz célja Britta Simon nyújtó saját Wizergos termelékenység szoftver Azure SSO használandó engedélyezése.
+### <a name="assign-hello-azure-ad-test-user"></a>Rendelje hozzá az Azure AD hello tesztfelhasználó számára
+hello ebben a szakaszban célja tooenabling Britta Simon toouse Azure SSO saját hozzáférés tooWizergos termelékenység szoftver megadásával.
 
   ![Felhasználó hozzárendelése][200]
 
-**Britta Simon hozzárendelése Wizergos termelékenység szoftver, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooWizergos termelékenység szoftver, hajtsa végre a lépéseket követve hello:**
 
-1. A klasszikus portál megnyitásához az alkalmazások megtekintése a könyvtár nézetben kattintson **alkalmazások** a felső menüben.
+1. Klasszikus portál hello tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
    
     ![Felhasználó hozzárendelése][201]
-2. Az alkalmazások listában válassza ki a **Wizergos termelékenység szoftver**.
+2. Hello alkalmazások listában válassza ki a **Wizergos termelékenység szoftver**.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_50.png)
-3. Kattintson a felső menüben **felhasználók**.
+3. Hello hello felső menüben kattintson a **felhasználók**.
    
     ![Felhasználó hozzárendelése][203]
-4. A felhasználók listában válassza ki a **Britta Simon**.
-5. Kattintson az alsó eszköztár **hozzárendelése**.
+4. Hello felhasználók listában válassza ki a **Britta Simon**.
+5. Hello alján hello eszköztárában kattintson **hozzárendelése**.
    
     ![Felhasználó hozzárendelése][205]
 
 ### <a name="test-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
-Ez a szakasz célja a hozzáférési panelen az Azure AD SSO-konfigurációjának tesztelése.
+hello ebben a szakaszban célja tootest hozzáférési Panel az Azure AD SSO konfigurációs használatával hello.
 
-Ha a hozzáférési panelen Wizergos termelékenység szoftver csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az Wizergos termelékenység szoftverfrissítések alkalmazására.
+Ha a hozzáférési Panel hello hello Wizergos termelékenység szoftver csempe gombra kattint, automatikusan bejelentkezett tooyour Wizergos termelékenység alkalmazás szerezheti be.
 
 ## <a name="additional-resources"></a>További források
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

@@ -1,6 +1,6 @@
 ---
-title: "Az intellij-t az Azure-eszközkészlet használatával egy Docker-tároló közzététele |} Microsoft Docs"
-description: "Útmutató a webes alkalmazás a Microsoft Azure is közzé egy Docker-tároló az intellij-t az Azure-eszközkészlet használatával."
+title: "egy Docker-tároló segítségével aaaPublish hello Azure eszközkészlet IntelliJ |} Microsoft Docs"
+description: "Megtudhatja, hogyan toopublish egy webes alkalmazás tooMicrosoft Azure-bA egy Docker-tároló segítségével hello Azure eszközkészlet intellij-t."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,189 +14,189 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 96680319a6c4c0f0a4673cd6303a5b172f428797
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bee94cb269ea707ae7ad55232e23e915aec48c34
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="publish-a-web-app-as-a-docker-container-by-using-the-azure-toolkit-for-intellij"></a>A webes alkalmazás is egy Docker-tároló közzé a intellij-t az Azure-eszközkészlet használatával
+# <a name="publish-a-web-app-as-a-docker-container-by-using-hello-azure-toolkit-for-intellij"></a>A webes alkalmazás is egy Docker-tároló közzé a IntelliJ hello Azure eszközkészlet használatával
 
-Docker-tároló széles körben használt módszerrel az webes alkalmazások. Docker-tárolók használatával a fejlesztők képes egyesíteni a project fájlok és a függőségek egy kiszolgáló üzembe helyezése egyetlen csomagban. Az IntelliJ Azure eszköztára egyszerűbben a Java-fejlesztőknek hozzáadásával *Docker-tároló közzététel* központi telepítést, hogy a Microsoft Azure szolgáltatásainak. Ez a cikk végigvezeti az alkalmazások az Azure-bA Docker tárolóként közzétételéhez szükséges lépéseket.
+Docker-tároló széles körben használt módszerrel az webes alkalmazások. Docker-tárolók használatával a fejlesztők képes egyesíteni a project fájlok és a függőségek telepítési tooa kiszolgáló egyetlen csomagban. hello Azure eszköztára IntelliJ egyszerűbben a Java-fejlesztőknek hozzáadásával *Docker-tároló közzététel* telepítési tooMicrosoft Azure szolgáltatásai. Ez a cikk bemutatja, hogyan hello lépéseket szükséges toopublish az alkalmazások tooAzure Docker tárolóként.
 
 > [!NOTE]
 >
-> További információ a Docker érhető el a [Docker webhely].
+> További információ a Docker érhető el hello [Docker webhely].
 >
 
 [!INCLUDE [azure-toolkit-for-intellij-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
 
-## <a name="publish-your-web-app-to-azure-by-using-a-docker-container"></a>A webalkalmazás közzététele az Azure-bA egy Docker-tároló használatával
+## <a name="publish-your-web-app-tooazure-by-using-a-docker-container"></a>A webes alkalmazás tooAzure közzététele egy Docker-tároló használatával
 
 > [!NOTE]
-> * A webalkalmazás közzétételét, létre kell hoznia egy központi telepítés kész összetevő. További tudnivalókért tekintse meg a [összetevők létrehozásával kapcsolatos további információért](#artifacts) szakasz.
+> * toopublish webalkalmazását, létre kell hoznia egy központi telepítés kész összetevő. toolearn több, tekintse meg a hello [összetevők létrehozásával kapcsolatos további információért](#artifacts) szakasz.
 >
-> * Befejezését követően a központi telepítési varázsló legalább egyszer, a beállítások a legtöbb alapértelmezett használata, amikor a varázsló ismételt futtatása.
+> * Befejezését követően hello telepítési varázsló legalább egyszer, a beállítások a legtöbb alapértelmezett szolgálnak, hogy hello varázsló futtatásakor ismét.
 >
 
 1. Nyissa meg a webalkalmazás-projektet az intellij-t.
 
-2. Elindítani a **Docker-tároló közzététel** varázsló, tegye a következők egyikét:
+2. toostart hello **Docker-tároló közzététel** varázsló hello alábbi módszerekkel:
 
-   * Az a **projekt** eszköz ablak, kattintson jobb gombbal a projektre, kattintson a **Azure**, és kattintson a **Docker-tároló közzététel**:
+   * A hello **projekt** eszköz ablak, kattintson jobb gombbal a projektre, kattintson a **Azure**, és kattintson a **Docker-tároló közzététel**:
 
-      ![A közzététel Docker-tároló parancsot][PUB01]
+      ![hello Docker-tároló parancsként közzététele][PUB01]
 
-   * Az IntelliJ eszköztáron kattintson a **közzététel csoport** gombra, majd **Docker-tároló közzététel**:
+   * Hello IntelliJ eszköztáron kattintson a hello **közzététel csoport** gombra, majd **Docker-tároló közzététel**:
 
-      ![A közzététel Docker-tároló parancsot][PUB02]  
-    A **Docker-tároló központi telepítése az Azure-on** varázsló megnyílik.
+      ![hello Docker-tároló parancsként közzététele][PUB02]  
+    Hello **Docker-tároló központi telepítése az Azure-on** varázsló megnyílik.
 
-   ![A központi telepítése Docker-tároló Azure varázsló][PUB03]
+   ![hello Azure varázsló a Docker-tároló központi telepítése][PUB03]
 
-3. Az a **adjon meg egy kép nevet, válassza ki a összetevő elérési útja, ellenőrizze a használt Docker állomás** ablakban tegye a következőket: 
+3. A hello **írja be a lemezkép nevét, válassza ki a hello összetevő elérési útja, ellenőrizze a használt Docker állomás toobe** ablakban, a következő hello: 
 
-   a. Az a **Docker lemezképnév** mezőben adjon meg egy egyedi nevet a Docker-állomás. (A varázsló automatikusan létrehozza a nevét, de módosíthatja.) 
+   a. A hello **Docker lemezképnév** mezőben adjon meg egy egyedi nevet a Docker-állomás. (hello varázsló automatikusan létrehozza a nevét, de módosíthatja.) 
 
-   b. A **állomások** terület tartalmazza a Docker állomásokon, már létrehozott. A következő lehetőségek közül választhat: 
-      * Ha egy meglévő Docker-állomás, a webes alkalmazás telepíthet rá.
-      * Hozzon létre egy Docker-állomás, kattintson a zöld plusz jel (**+**).  
-       A **Docker állomás létrehozása** párbeszédpanel. 
+   b. Hello **állomások** terület tartalmazza a Docker állomásokon, már létrehozott. Hello alábbi módszerekkel: 
+      * Ha egy meglévő Docker-állomás, a webes alkalmazás tooit telepítheti.
+      * toocreate egy Docker-állomás, kattintson a hello zöld plusz jel (**+**).  
+       Hello **Docker állomás létrehozása** párbeszédpanel. 
 
       ![Az Azure varázsló Docker-tároló telepítése][PUB04a]
 
-4. Az a **állítsa be az új virtuális gép** ablakban adja meg a következő információkat a Docker-állomás. (A varázsló automatikusan létrehozza az adatokat a legtöbb, de egyikük módosíthatja.) 
+4. A hello **hello új virtuális gép konfigurálása** ablakban adja meg a következő információ a Docker állomás hello. (hello varázsló automatikusan létrehozza a legtöbb hello az adatokat, de egyikük módosíthatja.) 
 
-   a. Az a **neve** mezőben adjon meg egy egyedi nevet a Docker-állomás. (Nincs ugyanaz, mint a korábban megadott Docker lemezképnév.) 
+   a. A hello **neve** hello Docker állomás egyedi nevét adja meg. (Fontos nem ugyanaz, mint a korábban megadott Docker lemezképnév hello hello.) 
     
-   b. Az a **előfizetés** mezőbe írja be az Azure-előfizetés, amelyekkel az állomáshoz. 
+   b. A hello **előfizetés** mezőbe írja be a hello Azure-előfizetéssel, amelyekkel az állomáshoz. 
       
-   c. Az a **régió** mezőben adja meg a földrajzi régió, ahol az állomás.
+   c. A hello **régió** mezőbe írja be a hello földrajzi terület, ahol a gazdagépen található.
       
-   d. Az a **az operációs rendszer és a méret** lapján tegye a következőket:      
-      * **Az operációs rendszer üzemeltetéséhez**: Adja meg az operációs rendszer a virtuális gép, amely tartalmazza a gazdagépet. 
-      * **Méret**: Adja meg a virtuális gép méretét az állomáshoz.   
+   d. A hello **az operációs rendszer és a méret** lapon, a következő hello:      
+      * **Az operációs rendszer üzemeltetéséhez**: hello operációs rendszer hello virtuális gépet, amely tartalmazza a gazdagépet adjon meg. 
+      * **Méret**: hello virtuális gép méretét adja meg a gazdagépen.   
        
-   e. Az a **erőforráscsoport** lapra, válassza ki a következők egyikét:      
+   e. A hello **erőforráscsoport** lapra, válassza ki a hello a következők egyikét:      
       * **Új erőforráscsoport**: hozzon létre egy erőforráscsoportot az állomáshoz.
       * **Meglévő erőforráscsoport**: Adjon meg egy meglévő erőforráscsoportot az Azure-fiókjába. 
        
-   f. Az a **hálózati** lapra, válassza ki a következők egyikét:      
+   f. A hello **hálózati** lapra, válassza ki a hello a következők egyikét:      
       * **Új virtuális hálózat**: virtuális hálózat létrehozása az állomáshoz.
       * **Meglévő virtuális hálózat**: Adjon meg egy meglévő virtuális hálózatot az Azure-fiókjába. 
        
-   g. Az a **tárolási** lapra, válassza ki a következők egyikét:      
+   g. A hello **tárolási** lapra, válassza ki a hello a következők egyikét:      
       * **Új tárfiók**: hozzon létre egy tárfiókot az állomáshoz.
       * **Meglévő tárfiók**: Adja meg az Azure-fiókjába meglévő tárfiókot.
        
 5. Kattintson a **Tovább** gombra.  
-     A **napló konfigurálja a hitelesítő adatokat, és a portbeállítások** ablak nyílik meg.
+     Hello **napló konfigurálja a hitelesítő adatokat, és a portbeállítások** ablak nyílik meg.
 
-      ![A konfigurálás bejelentkezési hitelesítő adatok és a port beállításai ablak][PUB05]
+      ![hello konfigurálása bejelentkezési hitelesítő adatok és a port beállításai ablak][PUB05]
 
-6. A következő lehetőségek közül:
+6. Válasszon egyet az alábbi beállítások hello:
 
       * **Hitelesítő adatok importálása az Azure Key Vault**: Adjon meg egy korábban mentett hitelesítő adatokat, amelyek az Azure-előfizetéshez vannak tárolva.
 
           > [!NOTE]
-          > Az az Azure key vault, amely egy meghatározott fiók vagy a szolgáltatás egyszerű nincs egy másik fiókot vagy egyszerű szolgáltatásnév osztja meg az előfizetés által automatikusan elérhető. Egy másik fiókot, vagy a szolgáltatás lehetővé teszi a key vault használata egyszerű, az Azure-portálon kell használnia a fiókot, vagy az egyszerű szolgáltatásnév hozzáadásához.
+          > Az az Azure key vault, amely egy meghatározott fiók vagy a szolgáltatás egyszerű nincs egy másik fiókot vagy egyszerű szolgáltatásnév osztja meg a hello előfizetés automatikusan elérhető. tooallow egy másik fiókot, vagy a szolgáltatás egyszerű toouse hello kulcsot tároló, hello Azure portál tooadd hello fiók vagy a szolgáltatásnevet kell használnia.
 
-      * **Új bejelentkezési hitelesítő adatok**: létrehozhat egy új bejelentkezési hitelesítő adatokat. Ha ezt a lehetőséget választja, tegye a következőket:
+      * **Új bejelentkezési hitelesítő adatok**: létrehozhat egy új bejelentkezési hitelesítő adatokat. Ha ezt a lehetőséget választja, a hello, a következő:
 
-        a. Az a **VM hitelesítő adatok** lapra, adja meg a következő információkat a virtuális gép bejelentkezési hitelesítő adatok a Docker-állomás: * **felhasználónév**: be a felhasználónevet a virtuális gép bejelentkezési adatait hitelesítő adatok.
-             * **Jelszó** és **megerősítése**: Adja meg a jelszót a virtuális gép bejelentkezési hitelesítő adatokat.
-             * **SSH**: Adja meg a Secure Shell (SSH) beállításait a Docker-állomás. Az alábbi lehetőségek közül választhat: * **nincs**: meghatározza, hogy a virtuális gép nem teszi lehetővé SSH-kapcsolatokhoz.
-                * **Automatikus generálása**: automatikusan létrehozza a szükséges beállítások SSH-kapcsolaton keresztül csatlakozni.
-                * **Importálás a directory**: lehetővé teszi egy korábban mentett SSH-beállítások készletét tartalmazó könyvtárat. A könyvtár a következő két fájlt kell tartalmaznia:
+        a. A hello **VM hitelesítő adatok** lapra, adja meg a következő információ hello virtuális gép bejelentkezési hitelesítő adatokat a Docker-állomás hello: * **felhasználónév**: Adja meg a virtuális gép bejelentkezési hello felhasználónév hitelesítő adatok.
+             * **Jelszó** és **megerősítése**: hello jelszó megadása a virtuális gép bejelentkezési hitelesítő adatait.
+             * **SSH**: Adja meg a Docker állomás hello Secure Shell (SSH) beállításait. Hello alábbi beállítások közül választhat: * **nincs**: meghatározza, hogy a virtuális gép nem teszi lehetővé SSH-kapcsolatokhoz.
+                * **Automatikus generálása**: hozza létre automatikusan hello szükséges beállítások SSH-kapcsolaton keresztül csatlakozni.
+                * **Importálás a directory**: lehetővé teszi egy korábban mentett SSH-beállítások készletét tartalmazó könyvtár toospecify. hello directory tartalmaznia kell a következő két fájlok hello:
                 
-                  * *id_rsa*: Contains the RSA identification for a user.
-                  * *id_rsa.pub*: Contains the RSA public key that is used for authentication.
+                  * *id_rsa*: Contains hello RSA identification for a user.
+                  * *id_rsa.pub*: Contains hello RSA public key that is used for authentication.
             
-        b. Az a **Docker démon hozzáférés** lapra, adja meg a következő információkat:
+        b. A hello **Docker démon hozzáférés** lapra, adja meg a következő információ hello:
 
           ![Docker állomás létrehozása][PUB06]
     
-             * **Docker Daemon port**: Enter the unique TCP port for your Docker host.
-             * **TLS Security**: Enter the Transport Layer Security settings for your Docker host. You can choose from the following options:
+             * **Docker Daemon port**: Enter hello unique TCP port for your Docker host.
+             * **TLS Security**: Enter hello Transport Layer Security settings for your Docker host. You can choose from hello following options:
                 * **None**: Specifies that your virtual machine does not allow TLS connections.
-                * **Auto-generate**: Automatically creates the requisite settings for connecting via TLS.
-                * **Import from directory**: Specifies a directory that contains a set of previously saved TLS settings. The directory must contain the following six files: 
-                   * *ca.pem* and *ca-key.pem*: Contain the certificate and public key for the TLS Certificate Authority.
+                * **Auto-generate**: Automatically creates hello requisite settings for connecting via TLS.
+                * **Import from directory**: Specifies a directory that contains a set of previously saved TLS settings. hello directory must contain hello following six files: 
+                   * *ca.pem* and *ca-key.pem*: Contain hello certificate and public key for hello TLS Certificate Authority.
                    * *cert.pem* and *key.pem*: Contain client certificate and public key which will be used for TLS authentication.
-                   * *server.pem* and *server-key.pem*: Contain the client certificate and public key that is used for TLS authentication.
+                   * *server.pem* and *server-key.pem*: Contain hello client certificate and public key that is used for TLS authentication.
 
-7. Miután megadta a szükséges adatokat, kattintson a **Befejezés**.  
-    A **Docker-tároló központi telepítése az Azure-on** varázsló ismét megjelenik.
+7. Miután megadta a hello szükséges információkat, kattintson a **Befejezés**.  
+    Hello **Docker-tároló központi telepítése az Azure-on** varázsló ismét megjelenik.
 
    ![Az Azure varázsló Docker-tároló telepítése][PUB07]
 
 8. Kattintson a **Tovább** gombra.  
-    A **létrehozni a Docker-tároló konfigurálása** ablak nyílik meg.
+    Hello **hello Docker-tároló toobe létrehozott konfigurálása** ablak nyílik meg.
 
-   ![A létrehozandó ablakban a Docker-tároló konfigurálása][PUB08]
+   ![hello konfigurálása hello Docker tároló létrehozott toobe ablak][PUB08]
 
-9. Az a **létrehozni a Docker-tároló konfigurálása** ablakban adja meg a következő információkat: 
+9. A hello **hello Docker-tároló toobe létrehozott konfigurálása** ablakban adja meg a következő információ hello: 
 
-   a. Az a **Docker-tároló neve** mezőben adjon meg egy egyedi nevet a Docker-tároló.
+   a. A hello **Docker-tároló neve** mezőben adjon meg egy egyedi nevet a Docker-tároló.
 
-   b. A következő Docker-rendszerképek közül választhat: 
+   b. A következő Docker képek hello közül választhat: 
 
       * **Előre definiált Docker kép**: Adjon meg egy már meglévő Docker-lemezképet az Azure-ból. 
 
         > [!NOTE]
-        > A Docker képek ebben a mezőben a lista az számos olyan rendszerkép található, amely az Azure-eszközkészlet lett konfigurálva, hogy a rendszer automatikusan telepíti az összetevő javítás. 
+        > hello Docker képek ebben a mezőben a lista az számos olyan rendszerkép található, hogy hello Azure eszközkészlet lett konfigurálva toopatch, hogy a rendszer automatikusan telepíti az összetevő. 
 
       * **Egyéni Dockerfile**: Adjon meg egy korábban mentett Dockerfile a helyi számítógépről.
 
         > [!NOTE]
-        > Ez a tulajdonság speciális fejlesztők számára a saját Dockerfile telepíteni kívánja. Azonban esetén a fejlesztők számára ez a beállítás segítségével győződjön meg arról, hogy azok Dockerfile van megfelelően lett felépítve. Az Azure-eszközkészlet nem felel meg egy egyéni Dockerfile tartalmát, mert a telepítés meghiúsulhat, ha a Dockerfile problémákkal rendelkezik. Ezenkívül az Azure Toolkit tartalmaz egy webes alkalmazás összetevő egyéni Dockerfile vár, mert megpróbálja nyissa meg a HTTP-kapcsolatot. Fejlesztők összetevő más típusú közzé, ha azok ártalmatlan hibák fordulhat elő, a telepítés utáni.
+        > Ez a tulajdonság speciális fejlesztők számára toodeploy saját Dockerfile. Azt azonban ez a beállítás tooensure azok Dockerfile megfelelően részét képező használó toodevelopers legfeljebb lesz. Hello Azure eszközkészlet nem felel meg egy egyéni Dockerfile hello tartalma, mert hello telepítése meghiúsulhat, ha hello Dockerfile problémákkal rendelkezik. Ezenkívül hello Azure eszközkészlet hello egyéni Dockerfile toocontain egy webes alkalmazás összetevő vár, mert az megpróbál tooopen HTTP-kapcsolatot. Fejlesztők összetevő más típusú közzé, ha azok ártalmatlan hibák fordulhat elő, a telepítés utáni.
 
-   c. Az a **portbeállításokat** mezőbe írja be a Docker-tároló egyedi TCP-port kötés. 
+   c. A hello **portbeállításokat** mezőbe írja be a hello egyedi TCP port kötést a Docker-tároló. 
 
-10. Kattintson a fenti lépések végrehajtása után **Befejezés**. 
+10. Kattintson az előző lépésekben hello befejezését követően **Befejezés**. 
 
-Az Azure-eszközkészlet megkezdi a központi telepítését a webalkalmazás Azure egy Docker-tároló. Ha beállította az intellij-t a háttérben telepíteni egy **üzembe helyezése az Azure-bA** folyamatjelző sáv jelenik meg. 
+hello Azure eszközkészlet megkezdi a központi telepítését a webes alkalmazás tooAzure egy Docker-tároló. Ha beállította az IntelliJ toobe hello háttérben telepített egy **tooAzure telepítése** folyamatjelző sáv jelenik meg. 
 
-![A telepítés folyamatjelző][PUB09]
+![hello telepítés folyamatjelző][PUB09]
 
 <a name="artifacts"></a>
 ## <a name="additional-information-about-creating-artifacts"></a>Az összetevők létrehozásával kapcsolatos további információért
 
-A telepítés kész összetevő létrehozásához tegye a következőket:
+a telepítés kész összetevő toocreate hello a következő:
 
 1. Nyissa meg a webalkalmazás-projektet az intellij-t.
 
 2. Kattintson a **fájl**, és kattintson a **szerkezetének**.
 
-   ![A projekt struktúra parancs][ART01]
+   ![hello szerkezetének parancs][ART01]
 
-3. Összetevő hozzáadásához kattintson a zöld plusz jel (**+**), és kattintson a **webalkalmazás: archív**.
+3. az összetevő, tooadd kattintson hello zöld plusz jel (**+**), és kattintson a **webalkalmazás: archív**.
 
-   ![A ": webalkalmazások archívumából" parancs][ART02]
+   ![hello ": webalkalmazások archívumából" parancs][ART02]
 
-4. Az a **neve** mezőbe írja be a adatösszetevőt nevét (nem tartalmaznak a *.war* bővítmény), és kattintson a **OK**.
+4. A hello **neve** mezőbe írja be a adatösszetevőt nevét (nem tartalmaznak hello *.war* bővítmény), és kattintson a **OK**.
 
-   ![Az összetevő neve mező][ART03]
+   ![hello összetevő neve mező][ART03]
 
-Az IntelliJ összetevők létrehozásával kapcsolatos további információkért lásd: [összetevők konfigurálása] a JetBrains webhelyen.
+Az IntelliJ összetevők létrehozásával kapcsolatos további információkért lásd: [összetevők konfigurálása] hello JetBrains webhelyen.
 
 ## <a name="next-steps"></a>Következő lépések
-A Java IDEs az Azure eszközök gazdag kapcsolatos további információkért lásd a következőket:
+A Java IDEs hello Azure eszközök gazdag kapcsolatos további információkért tekintse meg a következő erőforrások hello:
 
 * [Eclipse Azure eszköztára]
-  * [What's new in Eclipse Azure eszköztára]
-  * [Az Eclipse-hez készült Azure-eszközkészlet telepítése]
-  * [Az Eclipse Azure eszköztára bejelentkezési utasítások]
+  * [What's new in hello Eclipse Azure eszköztára]
+  * [Hello Azure eszköztára Eclipse telepítése]
+  * [Hello Azure eszköztára Eclipse bejelentkezési utasítások]
   * [Hello World webalkalmazás létrehozása az Azure-hoz az eclipse-ben]
 * [Az IntelliJ-hez készült Azure-eszközkészlet]
-  * [What's new in IntelliJ Azure eszköztára]
-  * [Az IntelliJ-hez készült Azure-eszközkészlet telepítése]
-  * [Bejelentkezési utasításokat az Azure-eszközkészlet az intellij-t]
+  * [What's new in hello IntelliJ Azure eszköztára]
+  * [Az IntelliJ hello Azure eszközkészlet telepítése]
+  * [Bejelentkezési utasításokat hello Azure eszközkészlet az intellij-t]
   * [Hello World webalkalmazás létrehozása az intellij-t az Azure]
 
-Az Azure Javával való használatáról további információ: [Azure Java fejlesztői központ] és [Java-eszközök a Visual Studio Team Serviceshez].
+Azure Java használatával kapcsolatos további információkért lásd: hello [Azure Java fejlesztői központból] és hello [Java Tools for Visual Studio Team Services].
 
-További erőforrásokat a Docker, tekintse meg a hivatalos [Docker webhely].
+További erőforrásokat a Docker, lásd: hello hivatalos [Docker webhely].
 
 <!-- URL List -->
 
@@ -204,18 +204,18 @@ További erőforrásokat a Docker, tekintse meg a hivatalos [Docker webhely].
 [Az IntelliJ-hez készült Azure-eszközkészlet]: ./azure-toolkit-for-intellij.md
 [Hello World webalkalmazás létrehozása az Azure-hoz az eclipse-ben]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [Hello World webalkalmazás létrehozása az intellij-t az Azure]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Az Eclipse-hez készült Azure-eszközkészlet telepítése]: ./azure-toolkit-for-eclipse-installation.md
-[Az IntelliJ-hez készült Azure-eszközkészlet telepítése]: ./azure-toolkit-for-intellij-installation.md
-[Az Eclipse Azure eszköztára bejelentkezési utasítások]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[Bejelentkezési utasításokat az Azure-eszközkészlet az intellij-t]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[What's new in Eclipse Azure eszköztára]: ./azure-toolkit-for-eclipse-whats-new.md
-[What's new in IntelliJ Azure eszköztára]: ./azure-toolkit-for-intellij-whats-new.md
+[Hello Azure eszköztára Eclipse telepítése]: ./azure-toolkit-for-eclipse-installation.md
+[Az IntelliJ hello Azure eszközkészlet telepítése]: ./azure-toolkit-for-intellij-installation.md
+[Hello Azure eszköztára Eclipse bejelentkezési utasítások]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[Bejelentkezési utasításokat hello Azure eszközkészlet az intellij-t]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[What's new in hello Eclipse Azure eszköztára]: ./azure-toolkit-for-eclipse-whats-new.md
+[What's new in hello IntelliJ Azure eszköztára]: ./azure-toolkit-for-intellij-whats-new.md
 
 [Azure Java fejlesztői központ]: https://azure.microsoft.com/develop/java/
-[Java-eszközök a Visual Studio Team Serviceshez]: https://java.visualstudio.com/
+[A Visual Studio Team Services Java-eszközök]: https://java.visualstudio.com/
 
-[Docker webhely]: https://www.docker.com/
-[összetevők konfigurálása]: https://www.jetbrains.com/help/idea/2016.1/configuring-artifacts.html
+[Docker-webhely]: https://www.docker.com/
+[Az összetevők konfigurálása]: https://www.jetbrains.com/help/idea/2016.1/configuring-artifacts.html
 
 <!-- IMG List -->
 

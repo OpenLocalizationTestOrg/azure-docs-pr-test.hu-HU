@@ -1,6 +1,6 @@
 ---
-title: "Leküldéses értesítések hozzáadása Xamarin.Android-alkalmazáshoz |} Microsoft Docs"
-description: "Azure App Service és az Azure Notification Hubs használata leküldéses értesítések küldésére a Xamarin.Android-alkalmazás"
+title: "aaaAdd leküldéses értesítések tooyour Xamarin.Android-alkalmazásokhoz |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse Azure App Service és az Azure Notification Hubs toosend leküldéses értesítések tooyour Xamarin.Android-alkalmazás"
 services: app-service\mobile
 documentationcenter: xamarin
 author: ysxu
@@ -14,22 +14,22 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/12/2016
 ms.author: yuaxu
-ms.openlocfilehash: c3757d56fb1792092710740dc5ffbd64f18730cf
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c93d1d0cae06ab15e3e3e5c4b342808b2cd49113
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-push-notifications-to-your-xamarinandroid-app"></a>Leküldéses értesítések hozzáadása Xamarin.Android-alkalmazáshoz
+# <a name="add-push-notifications-tooyour-xamarinandroid-app"></a>Leküldéses értesítések tooyour Xamarin.Android-alkalmazás hozzáadása
 [!INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
 ## <a name="overview"></a>Áttekintés
-Ebben az oktatóanyagban leküldéses értesítések hozzáadása a [Xamarin.Android gyors üzembe helyezési](app-service-mobile-windows-store-dotnet-get-started.md) projektre, hogy egy leküldéses értesítést küld az eszköz minden alkalommal, amikor egy olyan rekordot csatlakoztatva van.
+Ebben az oktatóanyagban leküldéses értesítések toohello hozzáadása [Xamarin.Android gyors üzembe helyezési](app-service-mobile-windows-store-dotnet-get-started.md) projektre, hogy egy leküldéses értesítést küld toohello eszköz minden alkalommal, amikor egy olyan rekordot csatlakoztatva van.
 
-Ha nem használja a letöltött gyors üzembe helyezési kiszolgálóprojektet, szüksége lesz a leküldéses értesítési kiterjesztési csomagot. Lásd: [használható a .NET-háttérrendszer server SDK az Azure Mobile Apps a](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md) további információt.
+Ha nem használja a hello letöltése – első lépések, meg fog kell hello leküldéses értesítési kiterjesztés csomagjában. Lásd: [használható hello .NET háttérkiszolgáló SDK az Azure Mobile Apps a](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md) további információt.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az oktatóanyaghoz az alábbiakra lesz szükség:
+Ez az oktatóanyag hello következő szükséges:
 
 * Aktív Google-fiók. A Google-fiókja, regisztrálhat [accounts.google.com](http://go.microsoft.com/fwlink/p/?LinkId=268302).
 * [A Google Cloud Messaging Client összetevő](http://components.xamarin.com/view/GCMClient/).
@@ -40,28 +40,28 @@ Az oktatóanyaghoz az alábbiakra lesz szükség:
 ## <a id="register"></a>Engedélyezze a Firebase Cloud Messaging
 [!INCLUDE [notification-hubs-enable-firebase-cloud-messaging](../../includes/notification-hubs-enable-firebase-cloud-messaging.md)]
 
-## <a name="configure-azure-to-send-push-requests"></a>Leküldéses kérelmek küldésére Azure konfigurálása
+## <a name="configure-azure-toosend-push-requests"></a>Konfigurálhatja az Azure toosend leküldéses kérések
 [!INCLUDE [app-service-mobile-android-configure-push](../../includes/app-service-mobile-android-configure-push-for-firebase.md)]
 
-## <a id="update-server"></a>Frissítés a kiszolgáló projekt leküldéses értesítések küldéséhez
+## <a id="update-server"></a>Frissítési hello server projekt toosend leküldéses értesítések
 [!INCLUDE [app-service-mobile-update-server-project-for-push-template](../../includes/app-service-mobile-update-server-project-for-push-template.md)]
 
-## <a id="configure-app"></a>Az ügyfél-projektjét, amely a leküldéses értesítések konfigurálása
+## <a id="configure-app"></a>A leküldéses értesítések hello ügyfél-projekt konfigurálása
 [!INCLUDE [mobile-services-xamarin-android-push-configure-project](../../includes/mobile-services-xamarin-android-push-configure-project.md)]
 
-## <a id="add-push"></a>Leküldéses értesítések kód hozzáadása az alkalmazáshoz
+## <a id="add-push"></a>Leküldéses értesítések kód tooyour alkalmazás hozzáadása
 [!INCLUDE [app-service-mobile-xamarin-android-push-add-to-app](../../includes/app-service-mobile-xamarin-android-push-add-to-app.md)]
 
 ## <a name="test"></a>Teszt leküldéses értesítések az alkalmazásban
-Az alkalmazást az emulátorban a virtuális eszköz segítségével tesztelheti. Nincsenek az emulátor futtatásához szükséges további konfigurációs lépéseket.
+Egy virtuális eszközzel hello emulátorban hello alkalmazást tesztelheti. Nincsenek az emulátor futtatásához szükséges további konfigurációs lépéseket.
 
-1. Győződjön meg arról, üzembe vagy hibakeresés egy virtuális eszközön, amely rendelkezik a Google API-k, célként beállítva, az Android virtuális eszközt (AVD) kezelő az alábbiak szerint vannak.
+1. Győződjön meg arról, hogy telepít egy virtuális eszközön, amely rendelkezik a Google API-k hello célként beállítva hello Android virtuális eszközt (AVD) kezelő az alábbiak szerint hibakeresés tooor.
    
     ![](./media/app-service-mobile-xamarin-android-get-started-push/google-apis-avd-settings.png)
-2. A Google-fiók kattintva vegyen fel új Android-eszköz **alkalmazások** > **beállítások** > **fiók hozzáadása**, majd kövesse a megjelenő utasításokat.
+2. Google fiók toohello Android-eszköz hozzáadásához kattintson **alkalmazások** > **beállítások** > **fiók hozzáadása**, majd kövesse a hello megjelenő utasításokat.
    
     ![](./media/app-service-mobile-xamarin-android-get-started-push/add-google-account.png)
-3. Futtassa a todolist alkalmazást előtt, és egy új teendő elem beszúrása. Ebben az esetben egy értesítési ikon jelenik meg az értesítési területen. Úgy is megnyithatja az értesítési fiókot, az értesítés a teljes szöveg megtekintéséhez.
+3. Futtassa a hello todolist alkalmazást előtt, és egy új teendő elem beszúrására. Megadott idő hello értesítési területén egy értesítési ikon jelenik meg. Hello értesítési fiók tooview hello teljes szöveges hello értesítés nyithatja meg.
    
     ![](./media/app-service-mobile-xamarin-android-get-started-push/android-notifications.png)
 

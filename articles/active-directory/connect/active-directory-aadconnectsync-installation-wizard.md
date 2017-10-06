@@ -1,7 +1,7 @@
 ---
-title: "Az Azure AD Connect ismételt futtatásával telepítse a varázsló |} Microsoft Docs"
-description: "Ismerteti a telepítési varázsló működése a második futtatásakor."
-keywords: "Az Azure AD Connect telepítővarázsló lehetővé teszi, hogy konfigurálja a karbantartási beállításait, a második futtatásakor"
+title: "Ismételt futtatásával hello Azure AD Connect varázsló |} Microsoft Docs"
+description: "Ismerteti, hello telepítési varázsló működése hello még egyszer kell futtatnia."
+keywords: "hello Azure AD Connect telepítővarázsló lehetővé teszi a karbantartási beállítások hello konfigurálása még egyszer kell futtatnia"
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -15,29 +15,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: 42855b785c0ab334e33a622c8db912ce2438c627
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 83cc74aca471ef9b4f65f7f3582e3e48d3d81cfe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-ad-connect-sync-running-the-installation-wizard-a-second-time"></a>Azure AD Connect szinkronizálása: még egyszer a telepítővarázsló futtatása
-Az Azure AD Connect telepítővarázsló első futtatásakor az végigvezeti a telepítés konfigurálása. Ha újra futtatni a telepítési varázsló, karbantartási lehetőségeinek kínál.
+# <a name="azure-ad-connect-sync-running-hello-installation-wizard-a-second-time"></a>Azure AD Connect szinkronizálása: hello telepítővarázsló futtatása még egyszer
+hello hello Azure AD Connect telepítővarázsló első futtatásakor az végigvezeti tooconfigure a telepítést. Ha újra hello telepítési varázsló, karbantartási lehetőségeinek kínál.
 
-A start menü nevű megtalálja a telepítési varázsló **az Azure AD Connect**.
+Hello telepítővarázsló nevű hello start menüben található **az Azure AD Connect**.
 
 ![Start menü](./media/active-directory-aadconnectsync-installation-wizard/startmenu.png)
 
-A telepítési varázsló elindításakor, beállítások lap jelenik meg:
+Hello telepítővarázsló indításakor, beállítások lap jelenik meg:
 
 ![További feladatok listáját tartalmazó lap](./media/active-directory-aadconnectsync-installation-wizard/additionaltasks.png)
 
-Ha már telepítette az AD FS az Azure AD Connect, még akkor is több lehetőség van. A további beállításait az AD FS ismertetett [az AD FS felügyeleti](active-directory-aadconnect-federation-management.md#manage-ad-fs).
+Ha már telepítette az AD FS az Azure AD Connect, még akkor is több lehetőség van. az AD FS ismertetett rendelkezik további beállítások hello [az AD FS felügyeleti](active-directory-aadconnect-federation-management.md#manage-ad-fs).
 
-Válassza ki a feladatok közül, és kattintson a **tovább** a folytatáshoz.
+Válassza ki valamelyik hello feladatot, és kattintson a **következő** toocontinue.
 
 > [!IMPORTANT]
-> Miközben a telepítési varázsló megnyitása, a szinkronizálási motor az összes művelet fel vannak függesztve. Győződjön meg arról, amint a konfigurációs módosítások végrehajtása zárja be a telepítővarázslót.
+> Miközben hello telepítési varázsló megnyitása, a szinkronizálási motor hello szereplő összes művelet fel vannak függesztve. Ellenőrizze, hogy hello telepítővarázsló bezárása, amint befejezte a konfigurációs módosításokat.
 >
 >
 
@@ -46,45 +46,45 @@ Ez a beállítás lehetővé teszi a jelenleg konfigurált beállítások gyors 
 
 ![Az összes beállítás és állapotukra listáját lap](./media/active-directory-aadconnectsync-installation-wizard/viewconfig.png)
 
-Kattintson a **előző** térhet vissza. Ha **kilépési**, akkor zárja be a telepítővarázslót.
+Kattintson a **előző** toogo vissza. Ha **kilépési**, hello telepítési varázsló bezárásához.
 
 ## <a name="customize-synchronization-options"></a>Szinkronizálási beállítások testreszabása
-Ezzel a beállítással a szinkronizálási konfigurációs módosításokat. Egyéni konfiguráció telepítési elérési úton található beállítások egy részét látja. Látja ezt a beállítást, akkor is, ha az Expressz telepítés eredetileg használt.
+Ez a beállítás akkor használt toomake módosítások toohello sync konfigurációja. Megjelenik egy részhalmazát hello egyéni konfigurációs telepítési elérési utat a beállításai. Látja ezt a beállítást, akkor is, ha az Expressz telepítés eredetileg használt.
 
 * [Adja hozzá a további címtárakat](active-directory-aadconnect-get-started-custom.md#connect-your-directories). A könyvtár törlése, lásd: [összekötő törlése](active-directory-aadconnectsync-service-manager-ui-connectors.md#delete).
 * [Módosítsa a tartomány és szervezeti egységek szűrése](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering).
 * Szűrés csoport eltávolítása.
 * [Választható szolgáltatások módosítása](active-directory-aadconnect-get-started-custom.md#optional-features).
 
-A többi beállítás a kezdeti telepítés nem módosítható, és nem érhetők el. Ezek a beállítások a következők:
+hello egyéb beállítások és a kezdeti telepítés hello nem módosítható és nem érhetők el. Ezek a beállítások a következők:
 
-* Módosítsa a userPrincipalName és a sourceAnchor attribútum.
-* Másik erdőből származó objektumok csatlakozó módjának módosítása.
+* A userPrincipalName és sourceAnchor hello attribútum toouse módosítása.
+* Csatlakozás másik erdőből származó objektumok metódus hello módosítása.
 * Csoport-alapú szűrés engedélyezése.
 
 ## <a name="refresh-directory-schema"></a>Directory-séma frissítése
-Ez a beállítás használható, ha a séma módosította az egyik a helyszíni AD DS-erdőkből. Például előfordulhat, hogy telepítette az Exchange vagy a Windows Server 2012 sémára eszköz objektumok frissítése. Ebben az esetben szüksége arra utasítani az Azure AD Connect újból beolvasni a sémát az AD DS-ből, és frissíti a gyorsítótárat. Ezzel a művelettel újragenerálja a szinkronizálási szabályok is. Ha például az Exchange-séma ad hozzá, a konfigurációs kerülnek Exchange szinkronizálási szabályait.
+Ez a beállítás használható, ha hello séma módosította az egyik a helyszíni AD DS-erdőkből. Például előfordulhat, hogy telepített Exchange, vagy frissített Windows Server 2012 tooa séma eszköz objektummal. Ebben az esetben kell tooinstruct az Azure AD Connect tooread hello séma újra az Active Directory tartományi Szolgáltatásokban, és frissítse gyorsítótárát. Ezzel a művelettel újragenerálja a hello szinkronizálási szabályokat is. Példa felvételekor hello Exchange-séma, az Exchange hello szinkronizálási szabályok hozzáadása történik meg toohello konfigurációs.
 
-Ha ezt a lehetőséget választja, a konfigurációt a könyvtárak jelennek meg. Megtartani az alapértelmezett beállítást, és frissítse az összes erdőben, és némelyikük törölje.
+Ha ezt a lehetőséget választja, a konfiguráció összes hello könyvtárak jelennek meg. Hello alapértelmezett megtartásához és frissítse az összes erdőben, és némelyikük törölje.
 
-![A környezet összes könyvtárainak listáját tartalmazó lap](./media/active-directory-aadconnectsync-installation-wizard/refreshschema.png)
+![Az összes könyvtár hello környezetben listáját lap](./media/active-directory-aadconnectsync-installation-wizard/refreshschema.png)
 
 ## <a name="configure-staging-mode"></a>Átmeneti környezetű üzemmód konfigurálása
-Ezzel a beállítással engedélyezheti vagy letilthatja az átmeneti környezetű üzemmód a kiszolgálón. További információt az átmeneti módot, és hogyan használja fel azokat a található [műveletek](active-directory-aadconnectsync-operations.md#staging-mode).
+Ez a beállítás lehetővé teszi tooenable, és tiltsa le az átmeneti környezetű üzemmód hello kiszolgálón. További információt az átmeneti módot, és hogyan használja fel azokat a található [műveletek](active-directory-aadconnectsync-operations.md#staging-mode).
 
-A beállítás jeleníti meg, ha átmeneti jelenleg engedélyezve vagy letiltva:  
-![Lehetőség, amely a rendszer azt is jelzi az átmeneti környezetű üzemmód jelenlegi állapotában](./media/active-directory-aadconnectsync-installation-wizard/stagingmodecurrentstate.png)
+hello beállítást jeleníti meg, ha átmeneti jelenleg engedélyezve vagy letiltva:  
+![Lehetőség, amely is láthatók az átmeneti környezetű üzemmód hello aktuális állapota](./media/active-directory-aadconnectsync-installation-wizard/stagingmodecurrentstate.png)
 
-Az állapot módosítására irányuló ezt a beállítást, és válassza ki, vagy törölje a jelölőnégyzet jelölését.  
-![Lehetőség, amely a rendszer azt is jelzi az átmeneti környezetű üzemmód jelenlegi állapotában](./media/active-directory-aadconnectsync-installation-wizard/stagingmodeenable.png)
+toochange hello állapotát, jelölje be ezt a beállítást és válassza ki, vagy visszavonása hello jelölőnégyzetet.  
+![Lehetőség, amely is láthatók az átmeneti környezetű üzemmód hello aktuális állapota](./media/active-directory-aadconnectsync-installation-wizard/stagingmodeenable.png)
 
 ## <a name="change-user-sign-in"></a>Felhasználói bejelentkezés módosítása
-Ez a beállítás lehetővé teszi, hogy a jelszó-szinkronizálás összevonási vagy megfordítva már módosíthatja. Nem lehet átváltani **ne konfiguráljon**.
+Ez a beállítás lehetővé teszi a jelszó-szinkronizálás toofederation vagy megfordítva már hello toochange. Nem módosítható túl**ne konfiguráljon**.
 
 Ez a beállítás további információkért lásd: [felhasználói bejelentkezés](active-directory-aadconnect-user-signin.md#changing-the-user-sign-in-method).
 
 ## <a name="next-steps"></a>Következő lépések
-* További tudnivalók az Azure AD Connect szinkronizálási által alkalmazott konfigurációs modell [ismertetése deklaratív kiépítés](active-directory-aadconnectsync-understanding-declarative-provisioning.md).
+* További tudnivalók az Azure AD Connect szinkronizálási által használt hello konfigurációs modell [ismertetése deklaratív kiépítés](active-directory-aadconnectsync-understanding-declarative-provisioning.md).
 
 **Áttekintő témakör**
 

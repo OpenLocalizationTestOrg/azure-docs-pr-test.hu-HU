@@ -1,6 +1,6 @@
 ---
-title: "Egyéni tartománynév hozzáadása az Azure Active Directoryhoz | Microsoft Docs"
-description: "A vállalati tartománynevek hozzáadása az Azure Active Directoryhoz és a nevek ellenőrzése."
+title: "aaaAdd az egyéni tartomány neve az Active Directory tooAzure |} Microsoft Docs"
+description: "Hogyan tooadd a vállalati tartománynevek tooAzure Active Directory, és hogyan tooverify hello tartomány nevét."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -14,71 +14,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/25/2017
 ms.author: curtand
-ms.openlocfilehash: ad72f768add7edc1d34a85c27dc2aa1b4e4b3a50
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 88d5f443cd10b098a9a9ffb3137f5e1ca33b6aad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-custom-domain-name-to-azure-active-directory"></a>Egyéni tartománynév hozzáadása az Azure Active Directoryhoz
+# <a name="add-a-custom-domain-name-tooazure-active-directory"></a>Egy egyéni tartomány nevét az Active Directory tooAzure hozzáadása
 > [!div class="op_single_selector"]
 > * [Azure Portal](active-directory-domains-add-azure-portal.md)
 > * [klasszikus Azure portál](active-directory-add-domain.md)
 > 
 
-Azure Active Directory (Azure AD) segítségével adhat hozzá a vállalata tartománynevét, valamint az Azure AD. Lehetséges, hogy a tartománynév, amely akkor használnak üzleti, és jelentkezzen be a vállalati tartománynév használatával a felhasználók. A tartománynév hozzáadása az Azure AD lehetővé teszi a felhasználóneveket rendeljen a könyvtárat, amelyek a felhasználók számára, mint "alice@contoso.com." A folyamat egyszerűen végrehajtható:
+Az Azure Active Directoryval (Azure AD), a vállalati tartomány neve tooAzure AD is hozzáadhat. Lehetséges, hogy a tartomány nevét, hogy Ön szervezete által használt toodo üzleti és a felhasználók, akik jelentkezzen be vállalati tartománynév használatával. Hello tartomány neve tooAzure AD hozzáadni lehetővé teszi a tooassign felhasználónevek hello könyvtárban, amelyek a megszokott tooyour felhasználók, például a "alice@contoso.com." hello folyamat felettébb egyszerű:
 
-1. Az egyéni tartománynév hozzáadása a címtárhoz
-2. Vegye fel a DNS-bejegyzést a tartománynévhez a tartománynév-regisztrálónál
-3. Az egyéni tartománynév ellenőrzése az Azure AD-ben
+1. Hello egyéni tartomány nevét tooyour könyvtár hozzáadása
+2. Hello regisztrációs hello tartománynévhez tartozó DNS-bejegyzés hozzáadása
+3. Ellenőrizze a hello egyéni tartomány nevét az Azure ad-ben
 
 ## <a name="how-do-i-add-a-domain-name"></a>Hogyan hozzá egy tartománynevet?
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely a címtár globális rendszergazdája.
-2. Válassza ki **további szolgáltatások**, adja meg **Azure Active Directory** a szövegmezőbe, majd válassza ki azt a **Enter**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely hello címtár globális rendszergazdája.
+2. Válassza ki **további szolgáltatások**, adja meg **Azure Active Directory** hello szövegmezőbe, és válassza ki **Enter**.
    
    ![Nyitó felhasználók kezelése](./media/active-directory-domains-add-azure-portal/user-management.png)
-3. Az a ***könyvtárnév*** panelen válassza **tartománynevek**.
-4. Az a  ***könyvtárnév* -tartománynevek** panelen válassza a **Hozzáadás** parancsot.
+3. A hello ***könyvtárnév*** panelen válassza **tartománynevek**.
+4. A hello  ***könyvtárnév* -tartománynevek** panelen, jelölje be hello **Hozzáadás** parancsot.
    
-   ![Az Add parancs kiválasztása](./media/active-directory-domains-add-azure-portal/add-command.png)
-5. Az a **tartománynév** panelen írja be a mezőbe, például "contoso.com", az egyéni tartomány nevét, és válassza ki **tartomány hozzáadása**. A névben mindenképpen szerepeljen a .com, a .net vagy egyéb legfelső szintű kiterjesztés.
-6. Az a ***tartománynév*** panel (Ez azt jelenti, hogy a panel, amelyen megnyitása, amelyen az új tartomány nevét a cím), az Azure AD segítségével győződjön meg arról, hogy a szervezete rendelkezik-e az egyéni tartománynév DNS-bejegyzés információk beolvasása.
+   ![Hello hozzáadása paranccsal](./media/active-directory-domains-add-azure-portal/add-command.png)
+5. A hello **tartománynév** panelen írja be az egyéni tartomány nevét hello hello mezőbe, például "contoso.com", és válassza ki **tartomány hozzáadása**. Lehet, hogy tooinclude hello .com, .net vagy egyéb legfelső szintű kiterjesztés.
+6. A hello ***tartománynév*** panel (Ez azt jelenti, hogy hello panel, amelyen megnyitása, amelyen az új tartomány nevét a hello cím), első hello DNS-bejegyzés adatait, hogy az Azure AD, hogy a szervezete rendelkezik-e az egyéni tartománynév hello tooverify fogja használni.
    
    ![DNS-bejegyzés adatainak lekérése](./media/active-directory-domains-add-azure-portal/get-dns-info.png)
 
-A tartománynév hozzáadását követően az Azure AD-nek ellenőriznie kell, hogy az adott tartománynév valóban a szervezete tulajdonában van-e. Mielőtt az Azure AD végre tudná hajtani ezt az ellenőrzést, DNS-bejegyzést kell hozzáadnia a tartománynév DNS zónafájljában. Ezt a feladatot a tartománynév-regisztrációs webhelyén kell végrehajtani.
+Most, hogy a felvett hello tartománynév, az Azure AD ellenőriznie kell, hogy a szervezete rendelkezik hello tartomány nevét. Mielőtt az Azure AD végre tudná hajtani ezt az ellenőrzést, fel kell vennie egy DNS-bejegyzés hello hello tartománynév DNS zónafájljában. Ez a feladat hello tartománynév-regisztrációs hello webhelyen történik.
 
-## <a name="add-the-dns-entry-at-the-domain-name-registrar-for-the-domain"></a>Vegye fel a DNS-bejegyzést a tartomány tartománynév-regisztrálójánál.
-A következő lépés az egyéni tartománynév Azure AD-vel történő használatához a tartomány DNS-zónafájljának frissítése. Ez lehetővé teszi, hogy az Azure AD ellenőrizze, hogy az adott tartománynév valóban a szervezete tulajdonában van-e.
+## <a name="add-hello-dns-entry-at-hello-domain-name-registrar-for-hello-domain"></a>Hello regisztrációs hello tartomány hello DNS-bejegyzés hozzáadása
+hello az egyéni tartomány neve és az Azure AD tovább lépés toouse tooupdate hello DNS-zónafájlját hello tartományban. Ez lehetővé teszi, hogy a szervezete rendelkezik-e az egyéni tartománynév hello Azure AD tooverify.
 
-1. Jelentkezzen be a tartomány tartománynév-regisztrálójába. Ha nem rendelkezik hozzáféréssel a DNS-bejegyzés frissítéséhez, kérjen meg egy olyan személyt vagy csapatot, amely rendelkezik a 2. lépés végrehajtásához szükséges hozzáféréssel, és értesíti, amikor a frissítés befejeződött.
-2. Frissítse a tartomány DNS-zónafájlját az Azure AD által rendelkezésre bocsátott DNS-bejegyzés hozzáadásával. Ez a DNS-bejegyzés lehetővé teszi az Azure AD számára az adott tartomány tulajdonosának ellenőrzését. A DNS-bejegyzés semmilyen értelemben nem módosítja a rendszer viselkedését, például a levélkezelési útválasztást vagy a webes üzemeltetést sem.
+1. Jelentkezzen be toohello regisztrációs hello tartomány. Ha még nem rendelkezik hozzáféréssel tooupdate hello DNS-bejegyzés, kérje meg a hello személy vagy a hozzáférés toocomplete 2. lépés rendelkező csoportját, és kész tudja toolet.
+2. Frissítés hello DNS-zónafájlját hello tartomány hello DNS-bejegyzés hozzáadásával tooyou az Azure AD által biztosított. A DNS-bejegyzés lehetővé teszi, hogy az Azure AD tooverify a hello tartomány tulajdonjogát. hello DNS-bejegyzés semmilyen értelemben nem módosítja például a levélkezelési útválasztást vagy a webes üzemeltetést sem.
 
-DNS-bejegyzések hozzáadásával kapcsolatos segítségért olvassa el az [Útmutató DNS-bejegyzések hozzáadásához népszerű DNS-regisztrálókon](https://support.office.com/article/Create-DNS-records-for-Office-365-when-you-manage-your-DNS-records-b0f3fdca-8a80-4e8e-9ef3-61e8a2a9ab23/) című részt.
+Súgó a hozzáadása hello DNS-bejegyzés használatával, olvassa el a [utasításokat a DNS-bejegyzés hozzáadásához népszerű DNS-regisztráló szervezetek:](https://support.office.com/article/Create-DNS-records-for-Office-365-when-you-manage-your-DNS-records-b0f3fdca-8a80-4e8e-9ef3-61e8a2a9ab23/)
 
-## <a name="verify-the-domain-name-with-azure-ad"></a>A tartománynév ellenőrzése az Azure AD-vel
-A DNS-bejegyzés hozzáadását követően készen áll a tartománynév Azure AD-vel történő ellenőrzésére.
+## <a name="verify-hello-domain-name-with-azure-ad"></a>Ellenőrizze az Azure ad-val hello tartománynevet
+Hello DNS-bejegyzés hozzáadását követően készen áll a tooverify hello tartomány nevét az Azure ad-val áll.
 
-A tartománynév csak azt követően a DNS-rekordok propagálása ellenőrizhetők. Ez a propagálás általában csak másodperceket vesz igénybe, de néha egy vagy több óráig is eltarthat. Ha az ellenőrzés nem sikerül első alkalommal, próbálkozzon újra később.
+A tartománynév csak azt követően hello DNS-rekord propagálása ellenőrizhetők. Ez a propagálás általában csak másodperceket vesz igénybe, de néha egy vagy több óráig is eltarthat. Ha ellenőrzési első alkalommal nem működik a hello, próbálkozzon újra később.
 
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely a címtár globális rendszergazdája.
-2. Válassza ki **Tallózás**, a mezőben adja meg a felhasználói kezelését, és válassza **Enter**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely hello címtár globális rendszergazdája.
+2. Válassza ki **Tallózás**, a felhasználó felügyeleti hello mezőben adja meg, és válassza **Enter**.
    
    ![Nyitó felhasználók kezelése](./media/active-directory-domains-add-azure-portal/user-management.png)
-3. Az a **felhasználókezelés - tartománynevek** panelen válassza ki az ellenőrizni kívánt nem ellenőrzött tartomány nevét.
-4. A a ***tartománynév*** panel (Ez azt jelenti, hogy a panel, amelyen megnyitása, amelyen az új tartomány nevét a cím), válasszon **ellenőrizze** az ellenőrzés végrehajtásához.
+3. A hello **felhasználókezelés - tartománynevek** panelen, a select hello nem ellenőrzött tartomány nevét, amelyet az tooverify.
+4. A hello ***tartománynév*** (Ez azt jelenti, hogy hello panelen megjelenő, amely rendelkezik az új tartomány nevét hello címben) panelen válassza ki **ellenőrizze** toocomplete hello ellenőrzése.
 
 Mostantól [hozzá tud rendelni egyéni tartománynevet tartalmazó felhasználóneveket](active-directory-users-create-azure-portal.md).
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
-Ha nem képes egyéni tartománynév ellenőrzésére, próbálja meg a következőket. A leggyakoribb okok ismertetésével kezdjük, és a végén megemlítünk néhány ritkábban jelentkező okot is.
+Ha egy egyéni tartománynevet nem tudja ellenőrizni, próbálja hello következő. Először foglalkozunk hello közös és a munkahelyi legalább közös toohello le.
 
-1. **Várjon egy órát**. A DNS-rekordokat propagálni kell, mielőtt az Azure AD ellenőrizni tudja a tartományt. Ez egy vagy több órát is igénybe vehet.
-2. **Győződjön meg róla, hogy a DNS-rekord helyesen lett megadva**. Hajtsa végre ezt a lépést a tartomány tartománynév-regisztrációs webhelyén. Az Azure AD nem tudja ellenőrizni a tartománynevet, ha a DNS-bejegyzés nincs a DNS-zónafájlban, vagy ha az nem pontosan egyezik azzal a DNS-bejegyzéssel, amelyet az Azure AD adott meg. Ha nincs hozzáférése a tartomány DNS-rekordjainak frissítéséhez a tartománynév-regisztrálónál, ossza meg a DNS-bejegyzést egy ilyen engedélyekkel rendelkező személlyel vagy csapattal, majd kérje a DNS-bejegyzés hozzáadását.
-3. **Tartománynév törlése egy Azure AD-ben található másik címtárból**. A tartománynév csak egyetlen címtárban ellenőrizhető. Ha a tartománynév ellenőrzése egy másik címtárban már megtörtént, onnan előbb törölni kell, mielőtt ellenőrizni lehetne az új címtárban. Információ a tartománynevek törléséről: [Egyéni tartománynevek kezelése](active-directory-domains-manage-azure-portal.md).    
+1. **Várjon egy órát**. DNS-rekordokat kell toopropagate, ahhoz az Azure AD tartományi hello ellenőrizheti. Ez egy vagy több órát is igénybe vehet.
+2. **Győződjön meg arról, hello DNS-rekord lett megadva, és a helyes**. Ennek végrehajtásáról hello tartomány hello regisztrációs hello webhelyen. Az Azure AD hello tartománynév nem ellenőrizhető, ha hello DNS-bejegyzés nem DNS-zónafájlját hello szerepelnek, vagy ha még nincs terméknévnek pontosan egyeznie kell hello DNS-bejegyzést, hogy az Azure AD meg a megadott. Ha nem rendelkezik hozzáférési hello tartomány: hello regisztrációs tooupdate DNS-rekordjait, hello DNS-bejegyzés megosztása hello személyt vagy csapatot a szervezetnél, aki hozzáfér-e, és kérje meg őket tooadd hello DNS-bejegyzés.
+3. **Hello tartománynév törlése egy másik címtárból az Azure AD**. A tartománynév csak egyetlen címtárban ellenőrizhető. Ha a tartománynév ellenőrzése egy másik címtárban már megtörtént, onnan előbb törölni kell, mielőtt ellenőrizni lehetne az új címtárban. tartománynevekkel törléséről toolearn olvasási [egyéni tartománynevek kezelése](active-directory-domains-manage-azure-portal.md).    
 
 ## <a name="add-more-custom-domain-names"></a>További egyéni tartománynevek hozzáadása
-Ha a szervezete több tartománynevet használ (például: „contoso.com” és „contosobank.com”), legfeljebb 900 tartománynév felvételére van lehetőség. Minden egyes tartománynév hozzáadásához hajtsa végre a jelen cikkben ismertetett lépéseket.
+Ha a szervezet használja több egyéni tartománynevek, például "contoso.com" és "contosobank.com", később is hozzáadhatja tooa legfeljebb 900 tartománynév fel. Ugyanaz a cikk tooadd minden tartományneve szükséges lépések hello használata.
 
 ## <a name="next-steps"></a>Következő lépések
 [Egyéni tartománynevek kezelése](active-directory-domains-manage-azure-portal.md)

@@ -1,5 +1,5 @@
 ---
-title: "Azure-felhő rendszerhéj (előzetes verzió) funkció |} Microsoft Docs"
+title: "aaaAzure felhő rendszerhéj (előzetes verzió) szolgáltatásainak |} Microsoft Docs"
 description: "Azure Cloud rendszerhéj funkcióinak áttekintése"
 services: 
 documentationcenter: 
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: juluk
-ms.openlocfilehash: 67f03d5857e37b253ac57536e289b5468d69e9b5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 65482ca6caeac01dda18a6b12eabe943e3d68a96
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="features-and-tools-for-azure-cloud-shell"></a>Funkciók és eszközök az Azure-felhőbe rendszerhéj
-Azure Cloud rendszerhéj található az adott egy webböngésző-alapú felület és Azure-erőforrások fejlesztését.
+Azure Cloud rendszerhéj egy webböngésző-alapú rendszerhéj élmény toomanage és fejlesztése az Azure-erőforrások.
 
-Felhő rendszerhéj kínál a böngésző által elérhető, előre konfigurált rendszerhéj élmény nem növeli a telepítése, versioning, és a gép karbantartása, saját magának az Azure erőforrások kezeléséhez.
+Felhő rendszerhéj kínál a böngésző által elérhető, előre konfigurált rendszerhéj élmény nélkül hello terhelését, telepítése, versioning, és a gép karbantartása, saját magának az Azure erőforrások kezeléséhez.
 
 Felhő rendszerhéj kérelem alapú számítógépek kiépítését, és emiatt gép állapota nem minden munkamenetben megmarad. Felhő rendszerhéj interaktív munkamenet lett tervezve, mivel a parancskörnyezet automatikusan leáll, 20 perc rendszerhéj inaktivitás után.
 
@@ -50,14 +50,14 @@ Felhő rendszerhéj kérelem alapú számítógépek kiépítését, és emiatt 
 |Python     |2.7 és 3.5-ös (alapértelmezett)|
 
 ## <a name="secure-automatic-authentication"></a>Biztonságos automatikus hitelesítés
-Felhő rendszerhéj biztonságosan és automatikusan hitelesíti felhasználóifiók-hozzáférés az Azure CLI 2.0.
+Felhő rendszerhéj biztonságosan és automatikusan hitelesíti az Azure CLI 2.0 hello felhasználóifiók-hozzáférés.
 
 ## <a name="azure-files-persistence"></a>Az Azure fájlok adatmegőrzési
 Ideiglenes gépek használatának kérelem alapú felhő rendszerhéj lefoglalt, mivel fájlok kívül a $Home és a gép állapota nem maradnak meg a munkamenetek között.
-A munkamenetek között a fájlok továbbra is fennáll, felhőalapú rendszerhéj bemutatja, hogyan csatlakoztatása az Azure fájlmegosztások első indításkor.
+toopersist fájlok felhő rendszerhéj bemutatja, hogyan egy Azure fájl csatolása keresztül megosztott az első indítási,-munkamenetek között.
 Egyszer befejezett felhő rendszerhéj automatikusan elvégzi a tárhely minden további munkamenetekhez.
 
-[További tudnivalók az Azure fájlmegosztások csatolása felhő rendszerhéj.](persisting-shell-storage.md)
+[További tudnivalók az Azure file megosztások tooCloud rendszerhéj csatolni.](persisting-shell-storage.md)
 
 ## <a name="next-steps"></a>Következő lépések
 [Felhő rendszerhéj gyors üzembe helyezés](quickstart.md) <br>

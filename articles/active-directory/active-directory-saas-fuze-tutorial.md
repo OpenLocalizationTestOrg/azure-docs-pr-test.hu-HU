@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Fuze |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Fuze között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Fuze között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,71 +13,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: jeedes
-ms.openlocfilehash: c7f7b095aac6202a7ec5248ee2bbb109615287a7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d0ea8c6456824e348301ed8bf1f5e00f4bfa8121
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-fuze"></a>Oktatóanyag: Azure Active Directoryval integrált Fuze
 
-Ebben az oktatóanyagban elsajátíthatja Fuze integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Fuze az Azure Active Directoryval (Azure AD).
 
-Fuze integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+Fuze integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Megadhatja a Fuze hozzáféréssel rendelkező Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett Fuze (egyszeri bejelentkezés) számára a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure felügyeleti portálon
+- Megadhatja a hozzáférés tooFuze rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooFuze (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure felügyeleti portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs Fuze, a következőkre van szükség:
+az Azure AD integrálása Fuze tooconfigure, kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - Egy Fuze egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, ha ez nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A gyűjteményből Fuze hozzáadása
+1. Hello gyűjteményből Fuze hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
 
-## <a name="adding-fuze-from-the-gallery"></a>A gyűjteményből Fuze hozzáadása
-Az Azure AD integrálása a Fuze konfigurálásához kell hozzáadnia Fuze a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-fuze-from-hello-gallery"></a>Hello gyűjteményből Fuze hozzáadása
+tooconfigure hello integrációja Fuze az Azure AD-be, meg kell tooadd Fuze hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A gyűjteményből Fuze hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd Fuze hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure felügyeleti portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure felügyeleti portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Kattintson a **Hozzáadás** gombra a párbeszédpanel tetején.
+3. Kattintson a **Hozzáadás** hello párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **Fuze**.
+4. Hello keresési mezőbe, írja be a **Fuze**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-fuze-tutorial/tutorial_fuze_000.png)
 
-5. Az eredmények panelen válassza ki a **Fuze**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. A hello eredmények panelen válassza ki a **Fuze**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-fuze-tutorial/tutorial_fuze_0001.png)
 
@@ -85,77 +85,77 @@ Az Azure AD integrálása a Fuze konfigurálásához kell hozzáadnia Fuze a gy�
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján Fuze.
 
-Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Fuze a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a Fuze közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Fuze tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello Fuze közötti kapcsolat kapcsolatot kell létrehozni toobe.
 
-Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** Fuze a.
+Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** a Fuze.
 
-Az Azure AD egyszeri bejelentkezést a Fuze tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés Fuze-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[Fuze tesztfelhasználó létrehozása](#creating-a-fuze-test-user)**  - való Britta Simon valami Fuze, amely csatolva van rá, hogy az Azure AD ábrázolása.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[Fuze tesztfelhasználó létrehozása](#creating-a-fuze-test-user)**  -toohave Britta Simon Fuze, amely az Azure AD csatolt toohello ábrázolása rá, hogy az egy megfelelője.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure felügyeleti portálon, és konfigurálása egyszeri bejelentkezéshez az Fuze alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel hello Azure felügyeleti portálon, és konfigurálása egyszeri bejelentkezéshez az Fuze alkalmazásban.
 
-**Konfigurálása az Azure AD az egyszeri bejelentkezés Fuze, hajtsa végre az alábbi lépéseket:**
+**az Azure AD tooconfigure egyszeri bejelentkezést a Fuze, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure felügyeleti portálján a a **Fuze** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Hello Azure felügyeleti portálon, a hello **Fuze** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A a **egyszeri bejelentkezés** párbeszédpanel, mint **mód** kiválasztása **SAML-alapú bejelentkezés** a engedélyezése az egyszeri bejelentkezéshez.
+2. A hello **egyszeri bejelentkezés** párbeszédpanel, mint **mód** kiválasztása **SAML-alapú bejelentkezés** tooenable az egyszeri bejelentkezés.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-fuze-tutorial/tutorial_fuze_01.png)
 
-3. Az a **Fuze tartomány és az URL-címek** területen tegye a következőket:
+3. A hello **Fuze tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-fuze-tutorial/tutorial_fuze_020.png)
     
-    Az a **bejelentkezési URL-cím** szövegmező, a bejelentkezés típusát az URL-címet:`https://www.thinkingphones.com/jetspeed/portal/`
+    A hello **bejelentkezési URL-cím** szövegmezőhöz típus hello bejelentkezési URL-címet:`https://www.thinkingphones.com/jetspeed/portal/`
 
 4.  Kattintson a **mentése** gombra.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-fuze-tutorial/tutorial_general_400.png)
 
-5. Az a **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse az XML-fájlt a számítógépen.
+5. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello XML-fájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-fuze-tutorial/tutorial_fuze_05.png) 
 
-6. Egyszeri bejelentkezés konfigurálása **Fuze** oldalon kell küldeniük a letöltött **metaadatainak XML-kódja** való [Fuze támogatási csoport](https://www.fuze.com/support). Akkor lesz beállítására kell biztosítani a SAML SSO-kapcsolat mindkét oldalán megfelelően beállítva.
+6. tooconfigure egyszeri bejelentkezést a **Fuze** oldalon kell letöltött toosend hello **metaadatainak XML-kódja** túl[Fuze támogatási csoport](https://www.fuze.com/support). Azok fog beállítása ennek rendelés toohave hello SAML SSO kapcsolat mindkét oldalán megfelelően beállítva.
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure felügyeleti portálján Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate tesztfelhasználó Britta Simon nevű hello Azure felügyeleti portálon.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure Management portal**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure Management portal**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-fuze-tutorial/create_aaduser_01.png) 
 
-2. Ugrás a **felhasználók és csoportok** kattintson **minden felhasználó** azon felhasználók listájának megjelenítéséhez.
+2. Nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó** toodisplay hello azoknak a felhasználóknak.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-fuze-tutorial/create_aaduser_02.png) 
 
-3. Kattintson a párbeszédpanel tetején **Hozzáadás** megnyitásához a **felhasználói** párbeszédpanel.
+3. Hello párbeszédpanel hello tetején kattintson **Hozzáadás** tooopen hello **felhasználói** párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-fuze-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-fuze-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra. 
 
@@ -164,23 +164,23 @@ Ez a szakasz célja a tesztfelhasználó létrehozása az Azure felügyeleti por
 
 Fuze alkalmazás teljes csak támogatja idő felhasználói kiépítését, így a felhasználókat a rendszer létrehozza automatikusan, ha azok bejelentkezés. A további tisztázása, lépjen kapcsolatba az Fuze [támogatja](https://www.fuze.com/support).
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban engedélyezze Britta Simon által biztosított a hozzáférés Fuze Azure egyszeri bejelentkezéshez használandó.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés saját hozzáférés tooFuze megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon hozzárendelése Fuze, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooFuze, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure felügyeleti portálra, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Hello Azure felügyeleti portálján, nyissa meg a hello alkalmazások megtekintése, majd toohello könyvtár nézetben keresse meg, és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **Fuze**.
+2. Hello alkalmazások listában válassza ki a **Fuze**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-fuze-tutorial/tutorial_fuze_50.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -188,7 +188,7 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított a hozzáféré
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -197,14 +197,14 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított a hozzáféré
 
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-Ha a hozzáférési panelen Fuze csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az Fuze alkalmazására.
+Ha a hozzáférési Panel hello hello Fuze csempe gombra kattint, automatikusan bejelentkezett tooyour Fuze alkalmazás szerezheti be.
 
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

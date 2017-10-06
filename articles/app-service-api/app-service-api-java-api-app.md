@@ -1,6 +1,6 @@
 ---
-title: "Java API-alkalmazás buildjének elkészítése és telepítése az Azure App Service platformon"
-description: "Megtudhatja, hogyan hozhat létre egy Java API-alkalmazáscsomagot, és hogyan telepítheti az Azure App Service platformra."
+title: "aaaBuild és az Azure App Service egy Java API-alkalmazás telepítése"
+description: "Megtudhatja, hogyan toocreate egy Java API-alkalmazás csomagot, majd központilag telepíti az App Service tooAzure."
 services: app-service\api
 documentationcenter: java
 author: rmcmurray
@@ -14,30 +14,30 @@ ms.devlang: java
 ms.topic: get-started-article
 ms.date: 04/25/2017
 ms.author: rachelap;robmcm
-ms.openlocfilehash: e38c540071cb49b0177e79178566d72ecb5f8886
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a4056fec870b1c4bed8ee14bb0e748b3ee89b9e1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-and-deploy-a-java-api-app-in-azure-app-service"></a>Java API-alkalmazás buildjének elkészítése és telepítése az Azure App Service platformon
 [!INCLUDE [app-service-api-get-started-selector](../../includes/app-service-api-get-started-selector.md)]
 
-Ez az oktatóanyag bemutatja, hogyan hozhat létre egy Java-alkalmazást, és hogyan telepítheti az Azure App Service API Apps szolgáltatásba a [Git] használatával. Az oktatóanyagban lévő utasítások bármilyen, Java-programok futtatására alkalmas operációs rendszeren végrehajthatók. Az oktatóanyagban szereplő kód a [Maven] használatával lett lefordítva. A RESTful szolgáltatás létrehozásához a [Jax-RS] API-t használjuk, és a szolgáltatás generálása [Swagger] metaadat-specifikáció alapján történik, amelyet a [Swagger Editor] programmal készítünk el.
+Ez az oktatóanyag bemutatja, hogyan toocreate egy Java-alkalmazást, és telepítse azt tooAzure App Service API Apps segítségével [Git]. hello az oktatóanyag utasításai követhetők bármely operációs rendszeren, amely képes Java. Ebben az oktatóanyagban hello kód-t [Maven]. [Jax-RS] használt toocreate hello RESTful szolgáltatás, és jön létre hello alapján [Swagger] hello segítségével metaadat-specifikáció [Swagger Editor].
 
 ## <a name="prerequisites"></a>Előfeltételek
-1. [Java Developer's Kit 8] \(vagy újabb)
+1. [Java Developer's Kit 8]\(vagy újabb)
 2. A fejlesztői gépen telepítve van a [Maven]
 3. A fejlesztő gépen telepítve van a [Git]
-4. [Ingyenes] vagy fizetős [Microsoft Azure]-előfizetés
+4. Fizetett vagy [ingyenes próbaverzió] előfizetés túl[Microsoft Azure]
 5. HTTP-tesztalkalmazás, például [Postman]
 
-## <a name="scaffold-the-api-using-swaggerio"></a>Az API strukturálása a Swagger.IO használatával
-A swagger.io online szerkesztő segítségével az API struktúráját leírhatja Swagger JSON- vagy YAM- kóddal. Az API felületének megtervezése után a kódot exportálhatja különböző platformokra és keretrendszerekre. A következő szakaszban a generált kódot úgy módosítjuk, hogy tartalmazza a funkciók utánzatait. 
+## <a name="scaffold-hello-api-using-swaggerio"></a>Scaffold hello API Swagger.IO használatával
+Hello swagger.io online szerkesztő segítségével adhatja meg az API struktúráját hello képviselő Swagger JSON- vagy YAM-kóddal. Miután hello API felület tervezték, exportálhatja a különböző platformokon és keretrendszerek kódját. A következő szakaszban hello hello generált kód lesz módosított tooinclude a funkciók utánzatait. 
 
-A demonstráció elején a swagger.io online szerkesztőbe Swagger JSON-kódot illesztünk be, amelyből a JAX-RS segítségével egy REST API-végpont elérésére alkalmas kódot generálunk. Ezt követően a generált kódot úgy szerkesztjük, hogy próbaadatokat adjon vissza, ezáltal egy adatperzisztencia-mechanizmus feletti REST API-t szimulálva.  
+Ebben a bemutatóban kezdődik egy Swagger JSON-törzsére, amely akkor lesz illessze be hello swagger.io szerkesztő, amely majd használt toogenerate kód végez egy REST API-végpont JAX-RS tooaccess használatát. Ezt követően kell szerkeszteni hello generált kód tooreturn próbaadatokat, szimulálva egy adatperzisztencia-mechanizmus REST API.  
 
-1. Másolja a vágólapra a következő Swagger JSON-kódot:
+1. A következő Swagger JSON-kód tooyour vágólapra másolás hello:
    
         {
             "swagger": "2.0",
@@ -131,28 +131,28 @@ A demonstráció elején a swagger.io online szerkesztőbe Swagger JSON-kódot i
                 }
             }
         }
-2. Nyissa meg az [Online Swagger Editort]. A szerkesztőben kattintson a **File -> Paste JSON**(Fájl -> JSON-kód beillesztése)  menüpontra.
+2. Keresse meg a toohello [Online Swagger Editor]. Ezután kattintson hello **fájl -> JSON beillesztése** menüpont.
    
     ![A JSON beillesztése menüpont][paste-json]
-3. Illessze be a Contacts List API korábban vágólapra másolt Swagger JSON-kódját. 
+3. Illessze be a névjegyek lista API Swagger JSON korábban kimásolt hello. 
    
     ![JSON-kód beillesztése a Swaggerbe][pasted-swagger]
-4. Olvassa el a szerkesztőben renderelt dokumentációs oldalakat és API-összefoglalót. 
+4. Nézet hello dokumentációs oldalakat és API-összefoglalót hello szerkesztőben megjelenítve. 
    
     ![A Swagger által generált dokumentumok megtekintése][view-swagger-generated-docs]
-5. A **Generate Server -> JAX-RS** (Kiszolgáló generálása -> JAX-RS) menüpontot választva generálja le a kiszolgálóoldali kódot, amelyet szerkeszteni fog, és próbaimplementációval fog bővíteni. 
+5. Jelölje be hello **kiszolgáló generálása -> JAX-RS** menü beállítás tooscaffold hello kiszolgálóoldali kód amelyet szerkeszteni fog újabb tooadd utánzatait végrehajtására. 
    
     ![A Kód generálása menüpont][generate-code-menu-item]
    
-    A kódgenerálás után egy ZIP-fájlt tölthet le. Ez a fájl tartalmazza a Swagger kódgeneráló által generált kódot és az összes kapcsolódó fordítási parancsprogramot. Bontsa ki a fájl teljes tartalmát a fejlesztő munkaállomás valamelyik könyvtárába. 
+    Miután hello kód jön létre, lesz egy ZIP-fájl toodownload megadni. Ez a fájl hello Swagger kódgeneráló által generált hello kódot tartalmaz, és összes kapcsolódó fordítási parancsprogramot. Bontsa ki a hello teljes tooa könyvtárat a fejlesztő munkaállomás. 
 
-## <a name="edit-the-code-to-add-api-implementation"></a>A kód szerkesztése API-implementáció hozzáadásához
-Ebben a szakaszban a Swagger által generált kód kiszolgálóoldali implementációját a saját kódjára cseréli le. Az új kód egy Contact entitásokat tartalmazó ArrayListet fog visszaadni a hívó ügyfélnek. 
+## <a name="edit-hello-code-tooadd-api-implementation"></a>Hello kód tooadd API-implementáció szerkesztése
+Ebben a szakaszban cseréli le hello Swagger által generált kód kiszolgálóoldali implementációját a saját kódjára. hello új kódot ad vissza egy ArrayList Contact entitásokat toohello hívó ügyfelet. 
 
-1. Nyissa meg az *src/gen/java/io/swagger/model* mappában található  *Contact.java* modellfájlt a [Visual Studio Code]-dal vagy kedvenc szövegszerkesztőjével. 
+1. Nyissa meg hello *Contact.java* modellfájl, amely hello *src/gen/java/io/swagger/model* mappa, használatával [Visual Studio Code] vagy kedvenc szövegszerkesztőjével. 
    
     ![A Contact modellfájl megnyitása][open-contact-model-file]
-2. Adja hozzá az alábbi konstruktort a **Contact** osztályon belül. 
+2. Adja hozzá a következő belül hello konstruktor hello **forduljon** osztály. 
    
         public Contact(Integer id, String name, String email) 
         {
@@ -160,10 +160,10 @@ Ebben a szakaszban a Swagger által generált kód kiszolgálóoldali implement�
             this.name = name;
             this.emailAddress = email;
         }
-3. Nyissa meg az *src/main/java/io/swagger/api/impl* mappában található *ContactsApiServiceImpl.java* szolgáltatásimplementációs fájlt a [Visual Studio Code]-dal vagy kedvenc szövegszerkesztőjével.
+3. Nyissa meg hello *mappában* fájlt, amely hello *src/main/java/io/swagger/api/impl* mappa, használatával [Visual Studio Code]vagy kedvenc szövegszerkesztőjével.
    
     ![A Contact szolgáltatásimplementációs fájl megnyitása][open-contact-service-code-file]
-4. Írja felül a fájlban lévő kódot az alábbi új kóddal, amely a szolgáltatáskód próbaimplementációját tartalmazza. 
+4. Hello kód hello fájl felülírása az új kódot tooadd utánzatait megvalósítási toohello szolgáltatás kódot. 
    
         package io.swagger.api.impl;
    
@@ -211,51 +211,51 @@ Ebben a szakaszban a Swagger által generált kód kiszolgálóoldali implement�
                 return Response.ok().entity(ret).build();
             }
         }
-5. Nyisson meg egy parancssort, és váltson az alkalmazás gyökérkönyvtárára.
-6. Hajtsa végre a következő Maven-parancsot a kód lefordításához és a Jetty alkalmazáskiszolgálóval való helyi futtatásához. 
+5. Nyisson meg egy parancssort, és módosítsa a könyvtárat toohello az alkalmazás gyökérmappájában.
+6. Hajtható végre a következő Maven parancs toobuild hello kód hello, és futtassa helyileg a Jetty alkalmazáskiszolgálóval hello segítségével. 
    
         mvn package jetty:run
-7. A parancssori ablakban azt kell látnia, hogy a Jetty elindította a kódot a 8080-as porton. 
+7. Meg kell jelennie hello parancsablakot tükrözi, hogy Jetty elindította a kódot a 8080-as porton. 
    
     ![A Contact szolgáltatásimplementációs fájl megnyitása][run-jetty-war]
-8. A [Postman] használatával indítson egy lekérdezést a „get all contacts” API-metódusra a http://localhost:8080/api/contacts címen.
+8. Használjon [Postman] toomake kérelem toohello "get all contacts" API-metódus: 8080/api/Contacts címen.
    
-    ![A Contacts API meghívása][calling-contacts-api]
-9. A [Postman] használatával indítson egy lekérdezést a „get specific contact” API-metódusra a http://localhost:8080/api/contacts/2 címen.
+    ![Hello névjegyek API hívása][calling-contacts-api]
+9. Használjon [Postman] toomake kérelem toohello "get specific contact" API-módszer helye: 8080/api/contacts/2.
    
-    ![A Contacts API meghívása][calling-specific-contact-api]
-10. Végezetül fordítsa le a Java WAR (Web ARchive) fájlt a következő Maven-parancsnak a konzolban való futtatásával. 
+    ![Hello névjegyek API hívása][calling-specific-contact-api]
+10. Végezetül fordítsa le hello Java WAR (Web ARchive) fájlt a következő Maven-parancsot a konzolon hello végrehajtásával. 
     
          mvn package war:war
-11. A WAR-fájl fordítás után bekerül a **target** mappába. Nyissa meg a **target** mappát, és nevezze át a WAR-fájlt **ROOT.war**-ra. (Ügyeljen a kis- és nagybetűkre).
+11. Miután összeállította hello WAR-fájlt, akkor bekerülnek hello **cél** mappát. Hello navigálni **cél** mappa, és nevezze át hello WAR-fájl túl**ROOT.war**. (Győződjön meg arról, hogy hello és nagybetűkre).
     
           rename swagger-jaxrs-server-1.0.0.war ROOT.war
-12. Végezetül a következő parancsokat az alkalmazás gyökérmappájában végrehajtva hozza létre a **deploy** mappát a WAR-fájlnak az Azure platformra való telepítéséhez. 
+12. Végezetül parancsok követően az alkalmazás toocreate hello gyökérmappájában hello egy **telepítése** mappa toouse toodeploy hello WAR-fájl tooAzure. 
     
           mkdir deploy
           mkdir deploy\webapps
           copy target\ROOT.war deploy\webapps
           cd deploy
 
-## <a name="publish-the-output-to-azure-app-service"></a>A kimenet közzététele az Azure App Service platformon
-Ebben a szakaszban megtudhatja, hogyan hozhat létre új API-alkalmazást az Azure portálon, hogyan készítheti elő az API-alkalmazást Java-alkalmazások futtatására, valamint hogy hogyan telepítheti az újonnan létrehozott WAR-fájlt az Azure App Service platformra az új API-alkalmazás futtatásához. 
+## <a name="publish-hello-output-tooazure-app-service"></a>Hello kimeneti tooAzure App Service közzététele
+Ebben a szakaszban megtudhatja, hogyan toocreate hello segítségével új API-alkalmazást az Azure portál, adott API-alkalmazások előkészítése a Java-alkalmazások és hello telepítése újonnan létrehozott WAR fájlt az új API-alkalmazás az App Service toorun tooAzure. 
 
-1. Hozzon létre egy új API-alkalmazást az [Azure Portal]. Ehhez kattintson a **Új -> Web + mobil -> API-alkalmazás** menüpontra, írja be az adatokat, majd kattintson a **Létrehozás** gombra.
+1. Hozzon létre egy új API-alkalmazás hello [Azure-portálon], hello kattintva **új -> Web + mobil -> API-alkalmazás** menüpont, írja be az adatokat, majd kattintson **létrehozása**.
    
     ![Új API-alkalmazás létrehozása][create-api-app]
-2. Az API-alkalmazás létrehozása után nyissa meg az alkalmazás **Beállítások**  paneljét, majd kattintson az **Alkalmazás beállításai** menüpontra. Az elérhető lehetőségek közül válassza a legújabb Java-verziót, majd a legújabb Tomcat-verziót a **Webes tároló** menüből, és kattintson a **Mentés** gombra.
+2. Az API-alkalmazás létrehozása után, nyissa meg az alkalmazás **beállítások** panelen, majd kattintson a hello **Alkalmazásbeállítások** menüpont. Válassza ki hello hello rendelkezésre álló lehetőségeket, a legújabb Java-verziót, majd válassza ki a legújabb tomcat-verziót a hello hello **webes tároló** menüben, majd kattintson **mentése**.
    
-    ![A Java beállítása az API-alkalmazás paneljén][set-up-java]
-3. Kattintson a **Telepítési hitelesítő adatok** menüpontra, és írja be azt a felhasználónevet és jelszót, amelyet a fájloknak az API-alkalmazásban való közzétételéhez szeretne használni. 
+    ![Java API-alkalmazás paneljének hello beállítása][set-up-java]
+3. Kattintson a hello **üzembe helyezési hitelesítő adatok** menüpontra, és írja be egy felhasználónevet és jelszót fájlok tooyour API-alkalmazás-közzététel toouse kívánja. 
    
     ![Telepítési hitelesítő adatok beállítása][deployment-credentials]
-4. Kattintson a **Központi telepítés forrása** menüpontra. Ezután kattintson a **Forrás választása** gombra, válassza a **Helyi git-tárház** lehetőséget, majd kattintson az **OK** gombra. Ezzel létrehoz egy Git-tárházat, amely az Azure-ban fut és az Ön API-alkalmazásához van társítva. Minden alkalommal, amikor kódot véglegesít a Git-tárház *master* ágán, a kódot közzéteszi a környezet az élő futó API-alkalmazáspéldányban. 
+4. Kattintson a hello **központi telepítés forrásának** menüpontra. Ezután kattintson hello **forrás választása** gombra, jelölje be hello **helyi Git-tárház** lehetőséget, majd kattintson a **OK**. Ezzel létrehoz egy Git-tárházat, amely az Azure-ban fut és az Ön API-alkalmazásához van társítva. Minden alkalommal, amikor véglegesíti kód toohello *fő* fiókirodai a Git-tárház, a kódot közzéteszi a környezet az élő futó API-alkalmazáspéldányban. 
    
     ![Új helyi Git-tárház beállítása][select-git-repo]
-5. Másolja az új Git-tárház URL-címét a vágólapra. Mentse, mert hamarosan szüksége lesz rá. 
+5. Hello új Git-tárház URL-cím tooyour vágólapra másolása. Mentse, mert hamarosan szüksége lesz rá. 
    
     ![Új Git-tárház beállítása az alkalmazáshoz][copy-git-repo-url]
-6. A Git push parancsával küldje el a WAR-fájlt az online tárházba. Ehhez nyissa meg a korábban létrehozott **deploy** mappát, hogy könnyen véglegesíthesse a kódot az App Service-ben futó tárházba. Ha már a konzolablakban van, és belépett a webapps mappát tartalmazó mappába, adja ki a következő Git-parancsokat a folyamat elindításához és a telepítés megkezdéséhez. 
+6. Git push hello WAR fájl toohello online tárházba. toodo, hello navigálni **telepítése** mappa a korábban létrehozott, hogy könnyen véglegesíthesse hello kód fel az App Service-ben futó toohello tárházba. Egyszer Ön hello konzolablakban, és belépett hello mappáját hello webapps mappát, adja ki a Git parancsok toolaunch hello folyamatot követve hello és a telepítés megkezdéséhez. 
    
          git init
          git add .
@@ -263,15 +263,15 @@ Ebben a szakaszban megtudhatja, hogyan hozhat létre új API-alkalmazást az Azu
          git remote add azure [YOUR GIT URL]
          git push azure master
    
-    A **push** parancs kiadása után meg kell adnia azt a jelszót, amelyet a telepítési hitelesítő adatokhoz korábban megadott. Miután megadta a hitelesítő adatait, a portál értesíti arról, hogy a frissítés telepítése megtörtént.
-7. Ha a Postmannel ismét eléri az Azure App Service-ben futó, újonnan telepített  API-alkalmazást, azt fogja tapasztalni, hogy az API viselkedése konzisztens, és most már a várt módon adja vissza a névjegyadatokat, és a Swagger.io által generált Java-kódot használja. 
+    Hello kiadása után **leküldéses** kérelem, meg kell adnia a hello hello telepítési hitelesítő adatokhoz korábban létrehozott jelszót. Miután megadta a hitelesítő adatait, meg kell jelennie, a portál megjelenítése, frissítés hello tették elérhetővé telepítésre.
+7. Még egyszer használatakor Postman toohit hello újonnan telepített API-alkalmazás fusson az Azure App Service-ben, látni fogja, hogy hello viselkedése konzisztens, és most adja vissza kapcsolattartási adatokat várt módon, és egyszerű kód módosítások toohello Swagger.io használatával generált Java-kódot. 
    
     ![A Java Contacts REST API használata élőben az Azure-ban][postman-calling-azure-contacts]
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben a cikkben egy Swagger JSON-fájllal és a Swagger.io szerkesztő által generált Java-kóddal indultunk el. Ezekből egyszerű módosításokkal és a Git telepítési folyamatának eredményeként egy működő, Java nyelven írt API-alkalmazást kaptunk. A következő oktatóanyag azt mutatja be, hogyan [használhat API-alkalmazásokat JavaScript-ügyfelekkel a CORS segítségével][App Service API CORS]. A sorozat későbbi részei bemutatják, hogyan implementálhatja a hitelesítést és az engedélyezést.
+Ebben a cikkben egy Swagger JSON-fájlt, és néhány generált Java-kóddal indultunk el hello Swagger.io szerkesztő képes toostart volt. Ezekből egyszerű módosításokkal és a Git telepítési folyamatának eredményeként egy működő, Java nyelven írt API-alkalmazást kaptunk. hello tovább az oktatóanyag bemutatja, hogyan túl[JavaScript-ügyfelekkel a CORS segítségével API-alkalmazásokat felhasználni][App Service API CORS]. Későbbi részei hello adatsor megjelenítése hogyan tooimplement hitelesítéshez és engedélyezéshez.
 
-Erre a példára építve részletesen megismerheti, hogyan használhatja a [Storage SDK for Java] csomagot a JSON-blobok megtartásához. Vagy a [Document DB Java SDK] használatával mentheti a névjegyadatokat az Azure Document DB rendszerbe. 
+erre a példára toobuild, akkor tudhat meg többet hello [Storage SDK for Java] toopersist hello JSON-blobok. Vagy használhat hello [Document DB Java SDK] toosave a kapcsolattartó adatok tooAzure Document DB rendszerbe. 
 
 <a name="see-also"></a>
 
@@ -281,16 +281,16 @@ További információk az Azure és a Java együttes használatáról lásd: [Az
 <!-- URL List -->
 
 [App Service API CORS]: app-service-api-cors-consume-javascript.md
-[Azure Portal]: https://portal.azure.com/
+[Azure-portálon]: https://portal.azure.com/
 [Document DB Java SDK]: ../documentdb/documentdb-java-application.md
-[Ingyenes]: https://azure.microsoft.com/pricing/free-trial/
+[ingyenes próbaverzió]: https://azure.microsoft.com/pricing/free-trial/
 [Git]: http://www.git-scm.com/
 [Azure Java Developer Center]: /develop/java/
 [Java Developer's Kit 8]: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 [Jax-RS]: https://jax-rs-spec.java.net/
 [Maven]: https://maven.apache.org/
 [Microsoft Azure]: https://azure.microsoft.com/
-[Online Swagger Editort]: http://editor2.swagger.io/
+[Online Swagger Editor]: http://editor2.swagger.io/
 [Postman]: https://www.getpostman.com/
 [Storage SDK for Java]:../storage/blobs/storage-java-how-to-use-blob-storage.md
 [Swagger]: http://swagger.io/

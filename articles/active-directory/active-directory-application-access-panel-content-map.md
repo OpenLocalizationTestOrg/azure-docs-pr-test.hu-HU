@@ -1,6 +1,6 @@
 ---
-title: "Az alkalmazás hozzáférési panel webhelyen vagy a mobilalkalmazás problémák\""
-description: "Az alkalmazás hozzáférési panel webhelyen vagy a mobilalkalmazás problémák\""
+title: "hello alkalmazás hozzáférési panel webhelyen vagy a mobilalkalmazás aaaProblems\""
+description: "A problémák hello alkalmazás hozzáférési panel webhely vagy mobilalkalmazás\""
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -12,29 +12,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: d78f9c59c069664fa77bdf9a16a48bb3745b1224
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bbec5bcc4200e26dd825e64529651e4d4974747d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="problems-using-the-application-access-panel-website-or-mobile-application"></a>Az alkalmazás-hozzáférési panel használatával kapcsolatos problémák a weblapon vagy a mobilalkalmazásban
+# <a name="problems-using-hello-application-access-panel-website-or-mobile-application"></a>Problémák hello alkalmazás hozzáférési panel webhelyére vagy a mobilalkalmazás használatával
 
 
-## <a name="i-do-not-see-the-applications-i-expect-on-the-application-access-panel"></a>Nem található a várt az alkalmazás az alkalmazás-hozzáférési panelre
-  Az alábbi dokumentum segíthet a kategóriába tartozó leggyakoribb problémák megoldásában.
-  * [Nem tudom, miért nem jelenik meg a hozzáférési panelen az az alkalmazás, amelyet hozzárendeltem](https://docs.microsoft.com/azure/active-directory/application-access-panel-unexpected-application-not-appearing/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
-  * [Nem értem, miért jelenik meg egy adott alkalmazás a hozzáférési panelen](https://docs.microsoft.com/azure/active-directory/application-access-panel-unexpected-application-appears/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+## <a name="i-do-not-see-hello-applications-i-expect-on-hello-application-access-panel"></a>Nem található a várt hello alkalmazások hello alkalmazás hozzáférési panel
+  hello következő dokumentumok segítségével tooresolve hello ebbe a kategóriába tartozó kapcsolatos leggyakoribb hibák némelyike.
+  * [Nem tudom, hogy miért kiosztott alkalmazás nem jelenik meg a hello hozzáférési panel](https://docs.microsoft.com/azure/active-directory/application-access-panel-unexpected-application-not-appearing/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+  * [Nem tudom, hogy miért az alkalmazás szereplő hello hozzáférési panel](https://docs.microsoft.com/azure/active-directory/application-access-panel-unexpected-application-appears/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
 
-## <a name="im-having-problems-signing-in-to-the-application-access-panel"></a>Problémák az alkalmazás-hozzáférési panelre való bejelentkezéskor
-  Az alábbi dokumentum segíthet a kategóriába tartozó leggyakoribb problémák megoldásában.
-  * [Nem tudok bejelentkezni a hozzáférési panel webhelyére](https://docs.microsoft.com/azure/active-directory/application-access-panel-web-sign-in-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+## <a name="im-having-problems-signing-in-toohello-application-access-panel"></a>Problémák toohello alkalmazás hozzáférési panel bejelentkezés
+  hello következő dokumentumok segítségével tooresolve hello ebbe a kategóriába tartozó kapcsolatos leggyakoribb hibák némelyike.
+  * [Nem tud bejelentkezni toohello hozzáférési panel webhely](https://docs.microsoft.com/azure/active-directory/application-access-panel-web-sign-in-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
 
-## <a name="im-having-problems-using-the-application-access-panel-browser-extension"></a>Problémák az alkalmazás hozzáférési panel bővítmény használatával
-  Az alábbi dokumentum segíthet a kategóriába tartozó leggyakoribb problémák megoldásában.
-  * [Hiba lépett fel az alkalmazás-hozzáférési panel böngészőbővítményének telepítésekor](https://docs.microsoft.com/azure/active-directory/application-access-panel-extension-problem-installing/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+## <a name="im-having-problems-using-hello-application-access-panel-browser-extension"></a>Problémák hello alkalmazás hozzáférési panel bővítmény használatával
+  hello következő dokumentumok segítségével tooresolve hello ebbe a kategóriába tartozó kapcsolatos leggyakoribb hibák némelyike.
+  * [Hello alkalmazás hozzáférési panel bővítmény telepítésekor hiba látott](https://docs.microsoft.com/azure/active-directory/application-access-panel-extension-problem-installing/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
 
-## <a name="im-having-problems-with-a-feature-on-the-application-access-panel"></a>Problémák a szolgáltatással a az alkalmazás-hozzáférési panelre.
-  Az alábbi dokumentum segíthet a kategóriába tartozó leggyakoribb problémák megoldásában.
-  * [Nem tudom, hogyan kell használni az önkiszolgáló alkalmazás-hozzáférést](https://docs.microsoft.com/azure/active-directory/application-access-panel-self-service-applications-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+## <a name="im-having-problems-with-a-feature-on-hello-application-access-panel"></a>Problémák a szolgáltatással a hello alkalmazás hozzáférési panel
+  hello következő dokumentumok segítségével tooresolve hello ebbe a kategóriába tartozó kapcsolatos leggyakoribb hibák némelyike.
+  * [Nem tudom, hogy miként férhetnek hozzá az toouse önkiszolgáló alkalmazás](https://docs.microsoft.com/azure/active-directory/application-access-panel-self-service-applications-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
   * [Hiba lépett fel az önkiszolgáló alkalmazás-hozzáférés használata közben](https://docs.microsoft.com/azure/active-directory/application-access-panel-self-service-applications-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)

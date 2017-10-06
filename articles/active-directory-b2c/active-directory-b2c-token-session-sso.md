@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/26/2017
 ms.author: swkrish
-ms.openlocfilehash: 4442174a857681adff33001e660809ec7d47ad7d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 63325ed97a7363723c97ee3a992046ebb5592662
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-token-session-and-single-sign-on-configuration"></a>Az Azure Active Directory B2C: Token, munkamenet és egyszeri bejelentkezés konfigurálása
 Ez a funkció lehetővé teszi részletes vezérlés, a egy [házirend alapon](active-directory-b2c-reference-policies.md), a:
 
 1. Azure Active Directory (Azure AD) B2C által kibocsátott biztonsági jogkivonatok élettartama.
 2. A webes alkalmazás munkamenetek kezeli az Azure AD B2C élettartamának.
-3. Fontos jogcím szerepel a biztonsági jogkivonatokat az Azure AD B2C által kibocsátott formátumban.
+3. Az Azure AD B2C által kibocsátott hello biztonsági jogkivonatokba fontos jogcímek formátumát.
 4. Egyszeri bejelentkezés (SSO) viselkedés több alkalmazások és házirendek a B2C-bérlőben.
 
 A B2C-bérlő az alábbiak szerint használhatja a szolgáltatást:
 
-1. Az alábbi lépéseket követve [lépjen a B2C funkciók panelje](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) az Azure portálon.
+1. Kövesse az alábbi lépéseket túl[keresse meg a toohello B2C funkciók panelje](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) a hello Azure-portálon.
 2. Kattintson a **bejelentkezési házirendek**. *Megjegyzés: Használható ez a szolgáltatás bármely házirend típus nem csupán a **bejelentkezési házirendek***.
 3. Egy házirend megnyitásához kattintson rá. Kattintson például a **B2C_1_SiIn**.
-4. Kattintson a **szerkesztése** a panel tetején.
+4. Kattintson a **szerkesztése** hello panel hello tetején.
 5. Kattintson a **Token, a munkamenet és az egyszeri bejelentkezés config**.
 6. A kívánt módosításokat. További információk a rendelkezésre álló tulajdonságok az ezt követő szakaszok.
 7. Kattintson az **OK** gombra.
-8. Kattintson a **mentése** a panel tetején.
+8. Kattintson a **mentése** hello felül hello panelről.
 
 ## <a name="token-lifetimes-configuration"></a>Token élettartama konfiguráció
-Az Azure AD B2C támogatja a [OAuth 2.0 protokoll](active-directory-b2c-reference-protocols.md) védett erőforrások biztonságos hozzáférést tesz lehetővé. Ez a támogatás végrehajtásához az Azure AD B2C bocsát ki különböző [biztonsági jogkivonatokat](active-directory-b2c-reference-tokens.md). A biztonsági jogkivonatokat az Azure AD B2C által kibocsátott élettartamának kezeléséhez használható tulajdonságok a következők:
+Az Azure AD B2C támogatja hello [OAuth 2.0 protokoll](active-directory-b2c-reference-protocols.md) engedélyezésének biztonságos hozzáférés tooprotected erőforrásokat. tooimplement Ez a támogatás az Azure AD B2C bocsát ki, különböző [biztonsági jogkivonatokat](active-directory-b2c-reference-tokens.md). Használhatja az Azure AD B2C által kibocsátott biztonsági jogkivonatainak toomanage élettartama hello tulajdonságai a következők:
 
-* **& Azonosító elérése token élettartama (perc)**: az OAuth 2.0 tulajdonosi jogkivonat élettartamát használt védett erőforrásokhoz való hozzáférést. Az Azure AD B2C jelenleg csak az azonosító-jogkivonatokat állít. Ha azt fel őket támogatása alkalmazandó, valamint a hozzáférési jogkivonatok ezt az értéket.
+* **& Azonosító elérése token élettartama (perc)**: hello OAuth 2.0 tulajdonosi jogkivonat használt toogain hozzáférés tooa hello élettartama védett erőforrás. Az Azure AD B2C jelenleg csak az azonosító-jogkivonatokat állít. Ezt az értéket csak akkor vonatkozik tooaccess jogkivonatokat is, ha azt fel őket támogatása.
   * Alapértelmezett = 60 perc.
   * (A határokat is beleértve) minimális = 5 perc.
   * (A határokat is beleértve) legfeljebb 1440 perc =.
-* **Frissítse a jogkivonatok élettartama (nap)**: az maximális időtartamot, ameddig egy frissítési jogkivonat segítségével szerezzen be egy új hozzáférés vagy az azonosító token (és szükség esetén egy új frissítési jogkivonat, ha az alkalmazás megadták a `offline_access` hatókör).
+* **Frissítse a jogkivonatok élettartama (nap)**: hello maximális időszak, ameddig egy frissítési jogkivonat használt tooacquire lehet egy új hozzáférés vagy az azonosító token (és szükség esetén egy új frissítési jogkivonat, ha az alkalmazás megadták hello `offline_access` hatókör).
   * Alapértelmezett = 14 nap.
   * (A határokat is beleértve) minimális = 1 nap.
   * (A határokat is beleértve) maximális = 90 nap.
-* **Frissítse mozgó ablakban az élettartam (nap)**: Ebben az időszakban elteltével a felhasználónak újra hitelesíteni, függetlenül a legutóbbi érvényességi frissítse az alkalmazás által igényelt jogkivonat kényszeríti. Azt is csak adni, ha a kapcsoló értéke **Bounded**. Nagyobb vagy azzal egyenlőnek kell a **frissítési jogkivonat élettartamát (nap)** érték. Ha a kapcsoló értéke **Unbounded**, nem adhat meg egy adott értéket.
+* **Frissítse mozgó ablakban az élettartam (nap)**: után ez alkalommal időszak eltelte hello felhasználói kényszerített toore-függetlenül hello érvényességi időszaka hello hello alkalmazás által igényelt legutóbbi frissítési jogkivonat hitelesítésére. Ez csak biztosítható, hogy ha hello kapcsoló értéke túl**Bounded**. Toobe nagyobb vagy egyenlő toohello igényel **frissítési jogkivonat élettartamát (nap)** érték. Ha hello kapcsoló értéke túl**Unbounded**, nem adhat meg egy adott értéket.
   * Alapértelmezett = 90 nap.
   * (A határokat is beleértve) minimális = 1 nap.
   * (A határokat is beleértve) legfeljebb 365 nap =.
 
 Az alábbiak néhány engedélyezheti az ezekkel a tulajdonságokkal használati esethez:
 
-* Amikor engedélyezi határozatlan ideig mobilalkalmazás bejelentkezve marad mindaddig, amíg nem folyamatosan aktív, az alkalmazás. Ehhez úgy, hogy a **frissítési jogkivonat mozgó ablak élettartamát (nap)** váltani **Unbounded** a bejelentkezési házirend.
-* Az iparági biztonsági és megfelelőségi követelményeknek megfelelő úgy, hogy a megfelelő hozzáférési jogkivonat élettartamát.
+* Engedélyezése egy felhasználó toostay mobilalkalmazás határozatlan ideig bejelentkeztetheti mindaddig, amíg nem folyamatosan aktív hello alkalmazástól. Ehhez hello beállítása által **frissítési jogkivonat mozgó ablak élettartamát (nap)** túl kapcsoló**Unbounded** a bejelentkezési házirend.
+* Az iparági biztonsági és megfelelőségi követelményeknek megfelelő hello megfelelő hozzáférési jogkivonat élettartamát beállításával.
 
     > [!NOTE]
     > Ezek a beállítások nem érhetők el, a jelszó-átállítási házirendek.
@@ -66,30 +66,30 @@ Az alábbiak néhány engedélyezheti az ezekkel a tulajdonságokkal használati
     > 
 
 ## <a name="token-compatibility-settings"></a>Token kompatibilitási beállítások
-A Microsoft módosítja formázási az Azure AD B2C által kibocsátott biztonsági jogkivonatokba fontos jogcímeket. Ez végezhető el a szabványos protokoll támogatása javítása és a külső azonosító könyvtárak jobb együttműködés érdekében. Azonban ha el szeretné kerülni meglévő alkalmazások, létrehozott segítségével a felhasználók részt igény szerint a következő tulajdonságokat:
+A biztonsági jogkivonatokat az Azure AD B2C által kibocsátott azt végrehajtott formázási módosítások tooimportant jogcímeket. Ez volt kész tooimprove a szabványos protokoll támogatása és jobb együttműködés külső identity szalagtárak. Azonban tooavoid legfrissebb meglévő alkalmazások esetében létrehozott hello tulajdonságok tooallow ügyfelek tooopt-igény szerint a következő:
 
-* **Jogcím kiállítója (iss)**: Ez az Azure AD B2C-bérlő a jogkivonatot kibocsátó azonosítja.
-  * `https://login.microsoftonline.com/{B2C tenant GUID}/v2.0/`: Ez az az alapértelmezett érték.
-  * `https://login.microsoftonline.com/tfp/{B2C tenant GUID}/{Policy ID}/v2.0/`: Ez az érték azonosítók egyaránt tartalmazza a B2C-bérlő és a házirendet, amelyet a token kérés. Ha az alkalmazás vagy a könyvtárban kell-e az Azure AD B2C meg kell felelnie a [OpenID Connect felderítési 1.0 spec](http://openid.net/specs/openid-connect-discovery-1_0.html), használja ezt az értéket.
-* **Tulajdonos (rész-) jogcím**: Ez azonosítja az entitást, azaz, a felhasználó, amelynek a token állításokat információkat.
-  * **ObjectID**: Ez az az alapértelmezett érték. Azt a felhasználót a címtárban történő Objektumazonosítója tölti fel a `sub` jogcím a tokenben.
-  * **Nem támogatott**: Ez csak a visszamenőleges kompatibilitás érdekében biztosítja, és azt javasoljuk, hogy vált **ObjectID** , amint lehet.
-* **Jogcím-házirend-azonosító képviselő**: Ez azonosítja a jogcímtípus, amelybe a rendszer a házirend-azonosító, amelyet a token kérés tölti fel.
-  * **tfp**: Ez az az alapértelmezett érték.
-  * **ACR**: Ez csak a visszamenőleges kompatibilitás érdekében biztosítja, és azt javasoljuk, hogy vált `tfp` , amint lehet.
+* **A jogcím kiállítójának (iss)**: hello Azure AD B2C bérlő hello jogkivonatot kibocsátó azonosítja.
+  * `https://login.microsoftonline.com/{B2C tenant GUID}/v2.0/`: Ez az alapértelmezett érték hello.
+  * `https://login.microsoftonline.com/tfp/{B2C tenant GUID}/{Policy ID}/v2.0/`: Ez az érték azonosítók hello B2C-bérlő és a használt hello jogkivonatkérelem hello házirend tartalmazza. Ha az alkalmazás vagy a könyvtárban van szüksége az Azure AD B2C toobe hello megfelelő [OpenID Connect felderítési 1.0 spec](http://openid.net/specs/openid-connect-discovery-1_0.html), használja ezt az értéket.
+* **Tulajdonos (rész-) jogcím**: hello entitás, azaz egy hello felhasználói, mely hello token az használjon esetleg imperatív állításokat információkat azonosítja.
+  * **ObjectID**: hello alapértelmezett érték. A hello hello Objektumazonosító hello directory hello felhasználó feltölt `sub` jogcím hello jogkivonatban.
+  * **Nem támogatott**: Ez csak a visszamenőleges kompatibilitás érdekében biztosítja, és azt javasoljuk, hogy vált túl**ObjectID** , amint lehet.
+* **Jogcím-házirend-azonosító képviselő**: Ez azonosítja hello jogcímtípus mely hello a házirend-azonosító, amelyet hello token kérés fel van töltve.
+  * **tfp**: hello alapértelmezett érték.
+  * **ACR**: Ez csak a visszamenőleges kompatibilitás érdekében biztosítja, és azt javasoljuk, hogy vált túl`tfp` , amint lehet.
 
 ## <a name="session-behavior"></a>Munkamenet viselkedése
-Az Azure AD B2C támogatja a [OpenID Connect hitelesítési protokoll](active-directory-b2c-reference-oidc.md) engedélyezéséhez a biztonságos bejelentkezés a webes alkalmazásokhoz. A webes alkalmazás munkameneteket kezelhessen segítségével tulajdonságai a következők:
+Az Azure AD B2C támogatja hello [OpenID Connect hitelesítési protokoll](active-directory-b2c-reference-oidc.md) a biztonságos bejelentkezés tooweb alkalmazások engedélyezéséhez. Használható toomanage a webes alkalmazás munkamenetek hello tulajdonságok a következők:
 
-* **A webalkalmazás munkamenet élettartama (perc)**: Azure AD B2C munkamenetcookie-t a sikeres hitelesítést követően a felhasználó böngészője tárolt élettartamát.
+* **A webalkalmazás munkamenet élettartama (perc)**: hello élettartama tárolt hello böngésző sikeres hitelesítés után az Azure AD B2C munkamenetcookie-t.
   * Alapértelmezett = 1440 perc.
   * (A határokat is beleértve) minimális = 15 perc.
   * (A határokat is beleértve) legfeljebb 1440 perc =.
-* **Webes alkalmazás munkamenet időkorlátja**: Ha a kapcsoló értéke **abszolút**, a felhasználó által megadott idő elteltével újra hitelesíteni kényszeríti **webalkalmazás munkamenet élettartama (perc)** eltelt. Ha a kapcsoló értéke **működés közbeni** (az alapértelmezett beállítás), a felhasználó bejelentkezett marad mindaddig, amíg a felhasználó a webalkalmazásban folyamatosan aktív.
+* **Webes alkalmazás munkamenet időkorlátja**: Ha a kapcsoló értéke túl**abszolút**, hello felhasználó kényszerített toore-hello által megadott időszak után hitelesítéséhez **webalkalmazás munkamenet élettartama (perc)** eltelt. Ha a kapcsoló értéke túl**működés közbeni** (hello az alapértelmezett beállítás), hello felhasználói mindaddig bejelentkezett felhasználó hello a webalkalmazásban folyamatosan aktív.
 
 Az alábbiak néhány engedélyezheti az ezekkel a tulajdonságokkal használati esethez:
 
-* Az iparági biztonsági és megfelelőségi követelményeknek megfelelő úgy, hogy a megfelelő webes alkalmazás munkamenet élettartama.
+* Az iparági biztonsági és megfelelőségi követelményeknek megfelelő hello megfelelő webes alkalmazás munkamenet beállításával élettartama.
 * Egy felhasználó és a magas biztonsági részét a webes alkalmazás közötti interakció során beállított idő elteltével ismételt hitelesítés kényszerítése. 
 
     > [!NOTE]
@@ -98,12 +98,12 @@ Az alábbiak néhány engedélyezheti az ezekkel a tulajdonságokkal használati
     > 
 
 ## <a name="single-sign-on-sso-configuration"></a>Egyszeri bejelentkezés (SSO) konfigurálása
-Ha a B2C-bérlő több alkalmazásokat és házirendeket is van, felhasználói interakció mindegyik kezelheti használatával a **egyszeri bejelentkezés konfigurációs** tulajdonság. Beállíthatja a tulajdonság a következő beállítások egyikét:
+Ha a B2C-bérlő több alkalmazásokat és házirendeket is van, felhasználói interakció mindegyik kezelheti hello segítségével **egyszeri bejelentkezés konfigurációs** tulajdonság. A beállítások a következő hello hello tulajdonság tooone állíthatja be:
 
-* **Bérlői**: Ez az alapértelmezett beállítása. Ezzel a beállítással lehetővé teszi több alkalmazásokat és házirendeket a B2C bérlőre, az azonos felhasználói munkamenet megosztásához. Például után a felhasználó bejelentkezik egy alkalmazásba, Contoso vásárlás, általa is is zökkenőmentesen jelentkezzen be egy másik egy, a Contoso gyógyszerészet, esetén használja.
-* **Alkalmazás**: Ez lehetővé teszi, hogy a felhasználói munkamenet kizárólag az alkalmazáshoz, független a többi alkalmazás karbantartása. Például ha a felhasználót, hogy jelentkezzen be Contoso Gyógyszertári (ugyanazokat a hitelesítő adatokat), azt szeretné, akkor is, ha az őt van már be van jelentkezve Contoso vásárlás, egy másik alkalmazás ugyanazon B2C bérlői. 
-* **Házirend**: Ez lehetővé teszi, hogy kizárólag a házirend, az azt használó alkalmazások független a felhasználói munkamenet fenntartásához. Például ha a felhasználó már bejelentkezett, és a többszörös többtényezős hitelesítés (MFA) lépés befejezése, általa is kell való hozzáférése több alkalmazás részei magasabb biztonsági mindaddig, amíg a házirend társítva a munkamenethez nem jár le.
-* **Letiltott**: Ez arra kényszeríti a felhasználó minden végrehajtási házirend a teljes felhasználói út keresztül futtatásához. Például ez lehetővé teszi több felhasználó regisztrálnia kell az alkalmazást (egy megosztott asztali esetén), még akkor is, amikor egy felhasználó marad bejelentkezett a teljes időszak.
+* **Bérlői**: Ez az hello alapértelmezett beállítása. Ez a beállítás lehetővé teszi, hogy több alkalmazásokat és házirendeket a B2C-bérlő tooshare hello azonos felhasználói munkamenet. Például után a felhasználó bejelentkezik egy alkalmazásba, Contoso vásárlás, általa is is zökkenőmentesen jelentkezzen be egy másik egy, a Contoso gyógyszerészet, esetén használja.
+* **Alkalmazás**: Ez egy felhasználói munkamenet kizárólag az alkalmazáshoz, más alkalmazások független toomaintain lehetővé teszi. Például, ha azt szeretné, hogy hello felhasználói toosign tooContoso Gyógyszertári a (a hello ugyanazokat a hitelesítő adatokat), akkor is, ha az őt van már be van jelentkezve Contoso vásárlás, egy másik alkalmazás hello azonos B2C-bérlő. 
+* **Házirend**: Ez kizárólag a házirend, független hello alkalmazások használja azt a felhasználói munkamenet toomaintain lehetővé teszi. Például ha hello felhasználó már bejelentkezett és a többszörös többtényezős hitelesítés (MFA) lépés befejezése, ő adható meg több alkalmazás részei hozzáférés toohigher biztonsági mindaddig, amíg hello kötött munkamenet toohello házirend nem jár le.
+* **Letiltott**: hello felhasználói toorun keresztül hello teljes felhasználói út ekkor elemezni a hello házirend minden végrehajtásakor. Például ez lehetővé teszi több felhasználók toosign mentése tooyour application (a megosztott asztali forgatókönyvek), még akkor is, míg egy-egy felhasználóhoz marad az aláírt hello teljes idő alatt.
 
     > [!NOTE]
     > Ezek a beállítások nem érhetők el, a jelszó-átállítási házirendek.

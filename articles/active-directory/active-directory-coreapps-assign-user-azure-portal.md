@@ -1,6 +1,6 @@
 ---
-title: "Egy felhasználó vagy csoport hozzárendelése az Azure Active Directory vállalati alkalmazások |} Microsoft Docs"
-description: "Egy vállalati alkalmazás hozzárendelése egy felhasználóhoz vagy csoporthoz, az Azure Active Directory kiválasztása"
+title: "a felhasználó vagy csoport tooan vállalati alkalmazások az Azure Active Directoryban aaaAssign |} Microsoft Docs"
+description: "Hogyan tooselect egy vállalati alkalmazás tooassign egy felhasználó vagy csoport tooit az Azure Active Directoryban"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
-ms.openlocfilehash: ee784704ada9238b5cd048f99aaa4cb192ec7d57
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 86c11f19892b9c947a5331677c17759178ed2806
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="assign-a-user-or-group-to-an-enterprise-app-in-azure-active-directory"></a>Egy felhasználó vagy csoport hozzárendelése egy vállalati alkalmazás Azure Active Directoryban
-Akkor is könnyen egy felhasználó vagy csoport hozzárendelése az Azure Active Directory (Azure AD) a vállalati alkalmazások. A vállalati alkalmazások kezelésére a megfelelő engedélyekkel kell rendelkeznie, és a címtár globális rendszergazdának kell lennie.
+# <a name="assign-a-user-or-group-tooan-enterprise-app-in-azure-active-directory"></a>Rendelje hozzá a felhasználó vagy csoport tooan vállalati alkalmazások az Azure Active Directoryban
+Fontos, hogy könnyen tooassign egy felhasználó vagy egy csoport tooyour vállalati alkalmazások az Azure Active Directory (Azure AD). Rendelkeznie kell hello megfelelő engedélyek toomanage hello vállalati alkalmazást, és hello címtár globális rendszergazdának kell lennie.
 
-## <a name="how-do-i-assign-user-access-to-an-enterprise-app"></a>Hogyan oszthatok ki a felhasználói hozzáférés vállalati alkalmazások számára?
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely a címtár globális rendszergazdája.
-2. Válassza ki **további szolgáltatások**, a mezőben adja meg Azure Active Directoryban, és válassza **Enter**.
-3. Az a **Azure Active Directory - *directoryname***  (Ez azt jelenti, hogy az Azure AD panelen a kezelt könyvtár) panelen válassza ki **vállalati alkalmazások**.
+## <a name="how-do-i-assign-user-access-tooan-enterprise-app"></a>Hogyan oszthatok ki a felhasználói hozzáférés tooan vállalati alkalmazást?
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely hello címtár globális rendszergazdája.
+2. Válassza ki **további szolgáltatások**, Azure Active Directory hello mezőben adja meg, és válassza **Enter**.
+3. A hello **Azure Active Directory - *directoryname***  (Ez azt jelenti, hogy az Azure AD hello panelen kezelt hello könyvtár) panelen válassza ki **vállalati alkalmazások**.
 
     ![Vállalati alkalmazások megnyitásakor](./media/active-directory-coreapps-assign-user-azure-portal/open-enterprise-apps.png)
-4. Az a **vállalati alkalmazások** panelen válassza **összes alkalmazás**. Kezelheti az alkalmazások listáját láthatja.
-5. Az a **vállalati alkalmazások – összes alkalmazás** panelen, jelöljön ki egy alkalmazást.
-6. Az a ***appname*** (Ez azt jelenti, hogy a panel nevű, a kijelölt alkalmazást a címben) panelen válassza ki **felhasználók és csoportok**.
+4. A hello **vállalati alkalmazások** panelen válassza **összes alkalmazás**. Látni fogja a kezelhető hello alkalmazások listáját.
+5. A hello **vállalati alkalmazások – összes alkalmazás** panelen, jelöljön ki egy alkalmazást.
+6. A hello ***appname*** (Ez azt jelenti, hogy hello panelen kiválasztott alkalmazás hello hello címben hello nevű) panelen válassza ki **felhasználók és csoportok**.
 
-    ![Az összes alkalmazások paranccsal](./media/active-directory-coreapps-assign-user-azure-portal/select-app-users.png)
-7. Az a ***appname*** **-felhasználó & csoport-hozzárendelés** panelen válassza a **Hozzáadás** parancsot.
-8. Az a **hozzáadása hozzárendelés** panelen válassza **felhasználók és csoportok**.
+    ![Minden alkalmazások parancs kiválasztásával hello](./media/active-directory-coreapps-assign-user-azure-portal/select-app-users.png)
+7. A hello ***appname*** **-felhasználó & csoport-hozzárendelés** panelen, jelölje be hello **Hozzáadás** parancsot.
+8. A hello **hozzáadása hozzárendelés** panelen válassza **felhasználók és csoportok**.
 
-    ![Az alkalmazás egy felhasználó vagy csoport hozzárendelése](./media/active-directory-coreapps-assign-user-azure-portal/assign-users.png)
-9. Az a **felhasználók és csoportok** panelen válasszon ki egy vagy több felhasználót vagy csoportot a listából, és válassza ki a **válasszon** gomb a panel alján.
-10. Az a **hozzáadása hozzárendelés** panelen válassza **szerepkör**. Ezt követően a **Szerepkörválasztás** panelen válassza ki a megfelelő szerepkört a kiválasztott felhasználókra vagy csoportokra alkalmazza, és válassza ki a **OK** gomb a panel alján.
-11. Az a **hozzáadása hozzárendelés** panelen válassza a **hozzárendelése** gomb a panel alján. A kijelölt felhasználók vagy csoportok a vállalati alkalmazás a kiválasztott szerepkör által meghatározott engedélyekkel rendelkezik.
+    ![Egy felhasználó vagy csoport toohello alkalmazás hozzárendelése](./media/active-directory-coreapps-assign-user-azure-portal/assign-users.png)
+9. A hello **felhasználók és csoportok** panelen, jelölje be egy vagy több felhasználók vagy csoportok hello a listában, és válassza a hello **válasszon** hello hello panel alsó részén gombra.
+10. A hello **hozzáadása hozzárendelés** panelen válassza **szerepkör**. Ezután a hello **Szerepkörválasztás** panelen, jelölje ki a szerepkör tooapply toohello kijelölt felhasználók vagy csoportok, és válassza ki hello **OK** hello hello panel alsó részén gombra.
+11. A hello **hozzáadása hozzárendelés** panelen, jelölje be hello **hozzárendelése** hello hello panel alsó részén gombra. hello hozzárendelt felhasználók vagy csoportok hello kijelölt szerepkör vállalati alkalmazás által meghatározott hello engedélyekkel rendelkezik.
 
 ## <a name="next-steps"></a>Következő lépések
 * [Összes saját csoportok](active-directory-groups-view-azure-portal.md)
 * [Egy felhasználó vagy csoport-hozzárendelés eltávolítása a vállalati alkalmazások](active-directory-coreapps-remove-assignment-azure-portal.md)
 * [Tiltsa le a felhasználói bejelentkezéseket a vállalati alkalmazás](active-directory-coreapps-disable-app-azure-portal.md)
-* [Módosítja a nevét, vagy egy vállalati alkalmazás embléma](active-directory-coreapps-change-app-logo-user-azure-portal.md)
+* [Hello nevének módosítása vagy egy vállalati alkalmazás embléma](active-directory-coreapps-change-app-logo-user-azure-portal.md)

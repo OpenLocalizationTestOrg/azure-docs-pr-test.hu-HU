@@ -1,6 +1,6 @@
 ---
-title: "Hitelesítés konfigurálása az Amazon webszolgáltatásokkal (AWS) | Microsoft Docs"
-description: "Ez a cikk ismerteti, hogyan lehet létrehozni és megerősíteni egy AWS hitelesítést az Azure Automation forgatókönyveihez, amelyek az AWS-erőforrásokat kezelik."
+title: "Hitelesítés az Amazon Web Services aaaConfigure |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan toocreate és az AWS erőforrások kezelése Azure Automation runbookjai az AWS hitelesítő adatainak ellenőrzése."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -15,28 +15,28 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 11/11/2016
 ms.author: magoedte
-ms.openlocfilehash: fe590e7fc551c175d2f41f5b98e1558a756df806
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6edaa000c1b206d80fe64b18c729dac124849070
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="authenticate-runbooks-with-amazon-web-services"></a>Forgatókönyvek hitelesítése az Amazon webszolgáltatásokkal
 Az általános feladatoknak az Amazon webszolgáltatások (AWS) erőforrásaival történő automatizálása az Automation forgatókönyvekkel lehetséges az Azure szolgáltatásban.  Sok feladatot automatizálhat az AWS-ben az Automation forgatókönyvek használatával, ugyanúgy, mint az Azure erőforrásaival.  Mindössze két dologra van szükség:
 
-* Egy AWS-előfizetésre és a hitelesítő adatokra.  Konkréten az AWS-hozzáférési kulcsára és a titkos kulcsára.  További információkért tekintse át az [AWS hitelesítő adatok használata](http://docs.aws.amazon.com/powershell/latest/userguide/specifying-your-aws-credentials.html) című cikket.
-* Egy Azure-előfizetésre és egy Automation-fiókra.  Egy Azure Automation-fiók beállításáról további információkért tekintse át az [Azure-beli futtató fiók konfigurálása](automation-sec-configure-azure-runas-account.md) című cikket.  
+* Egy AWS-előfizetésre és a hitelesítő adatokra.  Konkréten az AWS-hozzáférési kulcsára és a titkos kulcsára.  További információkért tekintse át az hello cikk [használatával AWS hitelesítő adatok](http://docs.aws.amazon.com/powershell/latest/userguide/specifying-your-aws-credentials.html).
+* Egy Azure-előfizetésre és egy Automation-fiókra.  Egy Azure Automation-fiók beállításával kapcsolatos további információkért tekintse át az hello cikk [konfigurálása Azure futtató fiók](automation-sec-configure-azure-runas-account.md).  
 
-Az AWS használatával történő hitelesítéshez meg kell határozni az AWS hitelesítő adatokat az Azure Automation által futtatott forgatókönyvek hitelesítéséhez. Ha már létrehozott egy Automation-fiókot, és annak használatával szeretne AWS felé hitelesíteni, kövesse a következő szakaszban leírt lépéseket.  Ha szeretne az AWS-erőforrásokat célzó forgatókönyvekhez egy dedikált fiókot használni, először hozzon létre egy új [Automation futtató fiókot](automation-sec-configure-azure-runas-account.md) (hagyja ki az egyszerű szolgáltatás létrehozásának lehetőségét), majd kövesse az alábbi lépéseket.
+az AWS tooauthenticate, meg kell adnia egy készletét AWS hitelesítő adatok tooauthenticate az Azure Automation futó runbookok. Ha már rendelkezik egy Automation-fiók létrehozása és toouse, hogy az AWS tooauthenticate, lépésekkel hello hello a következő szakaszban található.  Ha runbookok adatforráselemhez AWS erőforrások toodedicated egy fiókot, először készítsen egy új [Automation Futtatás mint fiók](automation-sec-configure-azure-runas-account.md) (kihagyása hello beállítás toocreate egy egyszerű szolgáltatásnév) és kövesse az alábbi hello lépéseket.
 
 ## <a name="configure-automation-account"></a>Automation-fiók konfigurálása
-Ahhoz, hogy az Azure Automation és az AWS kommunikáljon egymással, először le kell kérnie AWS hitelesítő adatait, és objektumként eltárolni őket az Azure Automation szolgáltatásban.  Végezze el az [AWS-fiók elérési kulcsának kezelése](http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html) című dokumentumban leírt lépéseket egy elérési kulcs létrehozásához, és másolja át az **Elérési kulcs azonosítóját** és a **Titkos elérési kulcsot** (vagy le is töltheti kulcsfájlját, hogy egy másik, biztonságos helyen tárolja azt).
+Az Azure Automation toocommunicate az AWS először fog tooretrieve AWS hitelesítő adatait kell és tárolja őket az Azure Automationben eszközként.  Hajtsa végre a következő hello AWS dokumentumban leírt lépéseket hello [Tárelérési kulcsok kezelése az AWS fiók](http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html) toocreate egy hozzáférési kulcsot, és másolja hello **hozzáférési kulcs azonosító** és **titkos hívóbetű** (nem kötelező töltse le a kulcsfájl toostore azt biztonságos helyen).
 
-Miután létrehozta ás átmásolta AWS biztonsági kulcsait, létre kell hoznia egy hitelesítési objektumot egy Azure Automation fiókhoz, hogy biztonságosan tárolja őket, és hivatkozni tudjon rájuk a forgatókönyvekkel.  Kövesse az [Azure Automation hitelesítő objektumai](automation-credentials.md) című cikk **Új hitelesítő objektum létrehozása** szakaszában leírt lépéseket, és adja meg a következő információkat:
+Miután létrehozott és a AWS titkosítási kulcsok másolása, szüksége lesz a hitelesítőadat-eszköz egy Azure Automation-fiók toosecurely toocreate tárolja őket, és azok a runbookok hivatkozik.  Hello lépésekkel hello szakaszban **új hitelesítőadat-eszköz létrehozása** a hello [hitelesítőadat-eszköz az Azure Automationben](automation-credentials.md) a következő cikket, és írja be a következő információ hello:
 
-1. A **Név** mezőbe írja be az **AWScred** nevet, vagy egy megfelelő értéket, amely követi az elnevezési szabványait.  
-2. A **Felhasználónév** mezőbe írja be az **Elérési azonosítóját** és a **Titkos elérési kulcsát** a **Jelszó** és **Jelszó megerősítése** mezőbe.   
+1. A hello **neve** adja meg a **AWScred** vagy egy megfelelő értéket a elnevezési szabályai a következő.  
+2. A hello **felhasználónév** mezőbe írja be a **hozzáférési azonosító** és a **titkos hívóbetű** a hello **jelszó** és **megerősítése jelszó** mezőbe.   
 
 ## <a name="next-steps"></a>Következő lépések
-* Az AWS feladatainak automatizálására szolgáló forgatókönyvek létrehozásáról további információkért tekintse át a [VM telepítésének automatizálása az Amazon webszolgáltatásokban](automation-scenario-aws-deployment.md) című megoldásbemutató cikket.
+* Reivew hello megoldás cikk [automatizálása a virtuális gépet az Amazon Web Services](automation-scenario-aws-deployment.md) hogyan toocreate runbookok tooautomate feladatainak AWS toolearn.
 

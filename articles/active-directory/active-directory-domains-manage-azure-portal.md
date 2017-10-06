@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Active Directoryban egyéni tartománynevek kezelése |} Microsoft Docs"
+title: "aaaManaging egyéni tartománynevek az Azure Active Directoryban |} Microsoft Docs"
 description: "Felügyeleti fogalmakat és a tartomány nevét az Azure Active Directory felügyeletéhez használati útmutatók"
 services: active-directory
 documentationcenter: 
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: curtand;jeffsta
-ms.openlocfilehash: 402c1be07b8ee885ee5341128fb3f419611b924d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4719524c4e972f6c981db39f016729da13b37670
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-custom-domain-names-in-your-azure-active-directory"></a>Az Azure Active Directoryban egyéni tartománynevek kezelése
-A tartománynév sok címtárerőforrásokkal azonosítója fontos része: felhasználói név vagy e-mail cím egy felhasználó, a cím egy csoport része, és hozzájárulhat az alkalmazás az alkalmazás URI azonosítója. Az Azure Active Directory (Azure AD) erőforrás lehetnek egy tartomány nevét, amely már ellenőrizve, a könyvtárban, amely tartalmazza az erőforrás tulajdonosa. Csak egy globális rendszergazda Azure AD-ben végrehajthat tartomány feladatokat.
+Tartománynév sok címtárerőforrásokkal hello azonosítója fontos szerepet: a felhasználói név vagy e-mail cím egy felhasználó hello cím egy csoport része, és hozzájárulhat az alkalmazás hello app ID URI. Az Azure Active Directory (Azure AD) erőforrás egy tartomány nevét, amely már ellenőrizve, tulajdonában hello directory hello erőforrást tartalmaz, amelyek tartalmazhatnak. Csak egy globális rendszergazda Azure AD-ben végrehajthat tartomány feladatokat.
 
-## <a name="set-the-primary-domain-name-for-your-azure-ad-directory"></a>Állítsa be az elsődleges tartomány nevét az Azure AD-címtár
-A könyvtár jön létre, a kezdeti tartománynevet, például "contoso.onmicrosoft.com," esetén is az elsődleges tartomány nevét. Az elsődleges tartomány az alapértelmezett tartomány nevét az új felhasználó esetén létrehoz egy új felhasználót. Elsődleges tartománynév beállítása leegyszerűsíti és felgyorsítja a rendszergazda számára hozzon létre új felhasználók a portálon. Az elsődleges tartomány nevének módosítása:
+## <a name="set-hello-primary-domain-name-for-your-azure-ad-directory"></a>Állítsa be az Azure AD-címtár hello elsődleges tartományi neve
+A könyvtár jön létre, hello kezdeti tartománynevet, például "contoso.onmicrosoft.com," esetén is hello elsődleges tartomány nevét. hello elsődleges tartománya hello alapértelmezett tartomány nevét az új felhasználó új felhasználó létrehozásakor. Elsődleges tartománynév beállítása leegyszerűsíti a hello folyamat egy rendszergazda toocreate új felhasználók hello portálon. toochange hello elsődleges tartománynév:
 
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely a címtár globális rendszergazdája.
-2. Válassza ki **további szolgáltatások**, adja meg **Azure Active Directory** a szövegmezőbe, majd válassza ki azt a **Enter**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely hello címtár globális rendszergazdája.
+2. Válassza ki **további szolgáltatások**, adja meg **Azure Active Directory** hello szövegmezőbe, és válassza ki **Enter**.
    
    ![Nyitó felhasználók kezelése](./media/active-directory-domains-add-azure-portal/user-management.png)
-3. Az a ***könyvtárnév*** panelen válassza **tartománynevek**.
-4. Az a  ***könyvtárnév* -tartománynevek** panelen válassza ki a kívánt tartomány nevét ellenőrizze az elsődleges tartomány nevét.
-5. A a ***tartománynév*** (Ez azt jelenti, hogy a panelen megjelenő, amely rendelkezik az új tartomány nevét a címben) panelen válassza ki a **ellenőrizze elsődleges** parancsot. Erősítse meg választását, amikor a rendszer kéri.
+3. A hello ***könyvtárnév*** panelen válassza **tartománynevek**.
+4. A hello  ***könyvtárnév* -tartománynevek** panelen, a select hello tartománynév szeretné toomake hello elsődleges tartomány nevét.
+5. A hello ***tartománynév*** (Ez azt jelenti, hogy hello panelen megjelenő, amely rendelkezik az új tartomány nevét hello címben) panelen válassza ki a hello **ellenőrizze elsődleges** parancsot. Erősítse meg választását, amikor a rendszer kéri.
    
    ![Ellenőrizze a tartománynév elsődleges](./media/active-directory-domains-manage-azure-portal/make-primary.png)
 
-Módosíthatja a címtáron bármely, a ellenőrzött egyéni tartományt is, hogy az nem összevont elsődleges tartományneve. Az elsődleges tartomány a címtáron módosítása nem módosítja a felhasználónevek, a meglévő felhasználókat.
+Elsődleges tartománynév hello a directory toobe módosíthatja bármely ellenőrzött egyéni tartomány, amely nincs összevonva. Változó hello elsődleges tartományt a könyvtár nem változik meg a hello felhasználónevek bármely létező felhasználó számára.
 
-## <a name="add-custom-domain-names-to-your-azure-ad"></a>Egyéni tartománynevek hozzáadása az Azure AD
-Minden Azure AD-címtár legfeljebb 900 egyéni tartományneveket adhat hozzá. A folyamat [további egyéni tartománynév hozzáadása](add-custom-domain.md) megegyezik az első egyéni tartománynevet.
+## <a name="add-custom-domain-names-tooyour-azure-ad"></a>Az egyéni tartomány nevét tooyour az Azure AD hozzá
+Másolatot too900 egyéni tartomány nevét tooeach Azure AD-címtár is hozzáadhat. folyamat túl hello[további egyéni tartománynév hozzáadása](add-custom-domain.md) van hello azonos hello első egyéni tartomány nevét.
 
 ## <a name="add-subdomains-of-a-custom-domain"></a>Altartományok az egyéni tartomány hozzáadása
-Ha szeretne egy harmadik szintű tartomány neve, pl. "europe.contoso.com" adni a könyvtárhoz, először adja hozzá, és ellenőrizze a második szintű tartomány, például contoso.com. Az altartomány Azure AD által automatikusan fog ellenőrizhető. Jelenik meg, hogy a most felvett altartomány ellenőrzése megtörtént, frissítse a lapot a böngészőben, amely felsorolja azokat a tartományokat.
+Ha azt szeretné, hogy egy harmadik szintű tartomány nevét, például a "europe.contoso.com" tooyour directory tooadd, először adja hozzá, és ellenőrizze hello második szintű tartomány, például contoso.com. hello altartomány Azure AD által automatikusan fog ellenőrizhető. ellenőrizte, hogy a most felvett altartomány hello toosee, frissítési hello böngészőben hello hello tartományok felsoroló.
 
-## <a name="what-to-do-if-you-change-the-dns-registrar-for-your-custom-domain-name"></a>Mi a teendő, ha a DNS-regisztráló webhelyén módosítja az egyéni tartománynevet
-Ha módosítja a DNS-regisztráló webhelyén az egyéni tartománynevet, továbbra is az egyéni tartománynevet használja az Azure AD maga megszakítás nélkül, és további konfigurációs feladatok nélkül. Az egyéni tartománynevet és az Office 365 használatakor, Intune, illetve egyéb szolgáltatások egyéni tartománynevekkel az Azure ad-ben, tekintse meg a szolgáltatások dokumentációjában.
+## <a name="what-toodo-if-you-change-hello-dns-registrar-for-your-custom-domain-name"></a>Milyen toodo, ha módosítja az egyéni tartománynevet hello DNS-regisztráló webhelyén
+Ha módosítja az egyéni tartománynevet hello DNS-regisztráló webhelyén, folytathatja az egyéni tartománynevet, és az Azure AD maga megszakítás nélkül, és további konfigurációs feladatok nélkül toouse. Az egyéni tartománynevet és az Office 365 használatakor, Intune, illetve egyéb szolgáltatások egyéni tartománynevekkel az Azure ad-ben, tekintse meg a toohello dokumentációját szolgáltatások esetében.
 
 ## <a name="delete-a-custom-domain-name"></a>Egyéni tartománynév törlése
-Egy egyéni tartománynevet törölheti az Azure AD-ből, ha a szervezet már nem használja ezt a nevet, vagy ha ezt a nevet használja egy másik Azure AD-val kell.
+Egy egyéni tartománynevet törölheti az Azure AD-ből, ha a szervezet már nem használja ezt a nevet, vagy ha egy másik Azure AD-val a tartománynevet kell toouse.
 
-Törölni egy egyéni tartománynevet, akkor előbb ellenőrizze, hogy a címtárban nincsenek erőforrások támaszkodjon a tartomány nevét. A címtárban lévő tartománynév nem törölhető, ha:
+egy egyéni tartománynevet toodelete, akkor előbb ellenőrizze, hogy a címtárban nincsenek erőforrások támaszkodnak hello tartomány nevét. A címtárban lévő tartománynév nem törölhető, ha:
 
-* Bármely felhasználó rendelkezik egy felhasználónevet, a e-mail cím vagy a proxykiszolgáló címét, amely tartalmazza a tartománynevet.
-* Bármely csoport rendelkezik egy e-mail címet, vagy a proxykiszolgáló címét, amely a tartomány nevét tartalmazza.
-* Az Azure AD bármely alkalmazásnak egy app ID URI, amely a tartomány nevét tartalmazza.
+* Bármely felhasználó rendelkezik egy felhasználónevet, a e-mail cím vagy a proxykiszolgáló címét, amely tartalmazza a hello tartománynevet.
+* Bármely csoport rendelkezik egy e-mail címet, vagy a proxykiszolgáló címét, amely tartalmazza a hello tartománynevet.
+* Az Azure AD bármely alkalmazásnak egy app ID URI, amely tartalmazza a hello tartománynevet.
 
-Módosít, vagy minden ilyen erőforrás törlése az Azure AD-címtárát, az egyéni tartománynév törlése előtt.
+Módosít, vagy minden ilyen erőforrás törlése az Azure AD-címtárát hello egyéni tartománynév törlése előtt.
 
-## <a name="use-powershell-or-graph-api-to-manage-domain-names"></a>Használja a Powershellt vagy a Graph API tartománynevek kezelése
+## <a name="use-powershell-or-graph-api-toomanage-domain-names"></a>PowerShell vagy a Graph API toomanage tartománynevek
 A legtöbb kezelési feladatot az Azure Active Directoryban tartománynevek is elvégezhető, Microsoft PowerShell használatával, vagy az Azure AD Graph API-val programozott módon.
 
-* [Tartománynevek kezelése az Azure AD PowerShell segítségével](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains)
-* [Tartománynevek kezelése az Azure AD Graph API segítségével](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations)
+* [Az Azure AD PowerShell toomanage tartománynevek használatával](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains)
+* [Az Azure AD Graph API toomanage tartománynevek használatával](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations)
 
 ## <a name="next-steps"></a>Következő lépések
 * [Egyéni tartománynevek hozzáadása](add-custom-domain.md)

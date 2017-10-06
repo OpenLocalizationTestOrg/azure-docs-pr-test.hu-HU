@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directory hibrid identitáskezelési elrendezésével kapcsolatos szempontok - incidens rResponse követelmények meghatározása |} Microsoft Docs"
-description: "Határozza meg a figyelési és jelentéskészítési szolgáltatásait a hibrid identitáskezelési megoldás, amely szerint is javítható az informatikai részleg feltételkészleteket azonosításában és kiküszöbölésében potenciális fenyegetések"
+title: "aaaAzure Active Directory hibrid identitáskezelési elrendezésével kapcsolatos szempontok - incidens rResponse követelmények meghatározása |} Microsoft Docs"
+description: "Hello hibrid identitáskezelési megoldás, amely szerint informatikai tootake műveletek tooidentify kihasználható és csökkentik a potenciális fenyegetéseket a figyelési és jelentéskészítési képességekkel meghatározása"
 documentationcenter: 
 services: active-directory
 author: billmath
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 536071ec61d093af243bfd42faa6bb404172fb8e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7084096f318ef461e8331fb6edde1b77d4108466
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="determine-incident-response-requirements-for-your-hybrid-identity-solution"></a>A hibrid identitáskezelési megoldás incidensválasz-követelmények meghatározása
-Közepes vagy nagy szervezetek valószínűleg fog rendelkezni a [biztonsági incidensekre adott reakciók](https://technet.microsoft.com/library/cc700825.aspx) lehetőségét informatikai műveletek ennek megfelelően az incidens szintjére. Az identity management rendszer fontos összetevője a incidensválasz folyamat oka használható végző felhasználók listáját egy bizonyos művelet a célon azonosítása érdekében. A hibrid identitáskezelési megoldás lehet kell biztosítania a figyelési és jelentéskészítési képességekkel, amelyek szerint kihasználható informatikai azonosításához, és a potenciális fenyegetések mérséklésére műveletekre. Egy tipikus incidensválasz tervben a következő fázisok lesz a terv részeként:
+Közepes vagy nagy szervezetek valószínűleg fog rendelkezni a [biztonsági incidensekre adott reakciók](https://technet.microsoft.com/library/cc700825.aspx) a hely toohelp informatikai műveletek ennek megfelelően incidens toohello szintjét. hello identity management rendszer hello incidensválasz folyamat fontos összetevője oka végző felhasználók listáját egy bizonyos művelet hello célon azonosítására használt toohelp lehet. hello hibrid identitáskezelési megoldás képes tooprovide figyelési és jelentéskészítési funkciókat nyújtanak, amelyek informatikai tootake műveletek tooidentify által is javítható, és a potenciális fenyegetések mérséklésére kell lennie. Egy tipikus incidensválasz tervben meg kell hello fázisok hello terv részeként a következő:
 
 1. Kezdeti értékelése.
 2. Incidens kommunikációt.
 3. Kárelhárítási és a kockázat csökkentése érdekében.
 4. Mi azonosítása biztonsági sérülés és a súlyosság volt.
 5. Bizonyító adatok megőrzését.
-6. Megfelelő felek értesítést.
+6. Értesítési tooappropriate felek.
 7. Rendszer-helyreállítás.
 8. Dokumentációját.
 9. Sérülés és a költséghatékonyság értékelése.
 10. Folyamat és a csomag verziójának.
 
-Amit a rendszergazda azonosítása során biztonsági sérülés és a súlyosság fázisú, az, hogy melyik biztonsága sérült, hozzáfért lett, és határozza meg azokat a fájlokat érzékenységének fájlok szükség lesz. A hibrid identitáskezelési rendszer tudják ezeket a módosításokat létrehozó felhasználó azonosításának elősegítése érdekében ezek a követelmények teljesítéséhez. 
+Alatt hello azonosítását, amit a rendszergazda volt a biztonsági sérülés és a súlyosság-fázis, a szükséges tooidentify hello rendszerek biztonsága sérült, hozzáfért lett, és határozza meg azokat a fájlokat hello érzékenységének fájlok lesz. A hibrid identitáskezelési rendszer kell tudni toofulfill ezen követelmények tooassist azonosításának hello módosítást végrehajtó felhasználó, ezeket a módosításokat. 
 
 ## <a name="monitoring-and-reporting"></a>Figyelés és jelentéskészítés
-Az azonosítási rendszer többször is segíthetnek kezdeti felmérési fázisban főleg, ha a rendszer létrehozta a naplózás és a jelentéskészítési képességek. A kezdeti értékelés során kell, hogy a rendszergazda lehet azonosítani a gyanús tevékenységet, vagy a rendszer a feladat egy előre konfigurált automatikusan alapján eseményindító képesnek kell lennie. Számos tevékenység a lehetséges támadások jelezhet, azonban más esetekben a rosszul konfigurált rendszer vezethet a vakriasztások számos egy behatolás-észlelés rendszerben. 
+Sokszor hello identitásrendszere is segíthet kezdeti felmérési fázisban, főleg, ha a naplózási és jelentéskészítési képességek hello rendszer létrehozta. Hello kezdeti értékelés során rendszergazdának kell tudni tooidentify gyanús tevékenységet, vagy hello rendszernek kell lennie a feladat egy előre konfigurált automatikusan alapján képes tootrigger. Számos tevékenység a lehetséges támadások jelezhet, azonban más esetekben a rosszul konfigurált rendszer vakriasztások tooa száma vezethet egy behatolás-észlelés rendszerben. 
 
-Az identity management rendszer segítséget kell IT-rendszergazdák azonosítása és azokat a gyanús tevékenységek jelentése. Ezek a technikai követelmények általában minden rendszerek figyelése és a jelentéskészítési képességet is jelölje ki a lehetséges veszélyforrásokkal szemben, amelyek teljesíthetők. Az alábbi kérdésekre használatával alakítsa ki a hibrid identitáskezelési megoldás incidensválasz-követelmények figyelembe vételével:
+hello identity management rendszer segítséget nyújt az informatikai rendszergazdák tooidentify kell, és a jelentés azokat a gyanús tevékenységek. Ezek a technikai követelmények általában minden rendszerek figyelése és a jelentéskészítési képességet is jelölje ki a lehetséges veszélyforrásokkal szemben, amelyek teljesíthetők. Hello kérdések alatt toohelp alakítson ki az incidensválasz-követelmények figyelembe vételével a hibrid identitáskezelési megoldás:
 
 * Nem a vállalat rendelkezik egy biztonsági incidensekre adott reakciók?
-  * Ha igen, a jelenlegi felügyeleti identitásrendszere szerepel a folyamat részeként?
-* Nem a vállalat kell azonosítani a gyanús bejelentkezési kísérletet a felhasználók különböző eszközökön?
-* Vállalatának meg kell észleli a potenciális feltört felhasználói hitelesítő adatokat?
-* Vállalatának meg kell való naplózását a felhasználó hozzáférési és művelet?
-* Vállalatának meg kell ismernie, amikor a felhasználó a jelszó alaphelyzetbe állítása?
+  * Ha igen, hello identitás jelenlegi felügyeleti rendszerben szerepel hello folyamat részeként?
+* A vállalatának meg kell tooidentify gyanús bejelentkezési kísérletet a felhasználók különböző eszközökön?
+* A vállalatának meg kell toodetect lehetséges feltört felhasználói hitelesítő adatokat?
+* A vállalatának meg kell tooaudit felhasználói hozzáférés és a művelet?
+* A vállalatának meg kell tooknow amikor egy felhasználó a jelszó alaphelyzetbe állítása?
 
 ## <a name="policy-enforcement"></a>Házirendek érvényesítése
-Kárelhárítási és a kockázatot csökkentő-fázis során fontos gyorsan csökkentheti a támadás tényleges és esetleges hatásait. Adott elvégzendő lesz ezen a ponton tehet egy kisebb és nagyobb egy közötti különbség. A tényleges válasz a szervezet és a támadás, amely akkor szembesülhetnek jellegétől függ. Ha a kezdeti assessment arra a következtetésre jutott, hogy a fiók biztonsági szempontból sérült, akkor ez a fiók letiltására vonatkozó szabályzat alkalmazása. Ez mindössze egy példa, ahol az identity management rendszer elkészítéséhez használja. Az alábbi kérdésekre használatával alakítsa ki a hibrid identitáskezelési megoldás tervezése során figyelembe véve, hogyan házirendekkel kényszeríti ki a folyamatban lévő incidens reagálni:
+Kárelhárítási és a kockázatot csökkentő-fázis során fontos tooquickly hello tényleges és lehetséges hatásai a támadás csökkentése. Adott elvégzendő lesz ezen a ponton tehet egy kisebb és nagyobb egy hello különbsége. a szervezet és a hello támadások ellen, amik akkor szembesülhetnek hello jellege hello pontos válasz függ. Ha hello kezdeti assessment arra a következtetésre jutott, hogy a fiók biztonsági szempontból sérült, akkor ez a fiók tooenforce házirend tooblock. Ez mindössze egy példa, ahol hello identity management rendszer elkészítéséhez használja. A hibrid identitáskezelési megoldás tervezése során figyelembe véve, hogyan lesz házirendek kényszerítése tooreact tooan folyamatban lévő incidens toohelp alatt hello kérdések használata:
 
-* Nem rendelkezik a vállalata házirendekkel helyen megtiltják a felhasználók számára a hozzáférés a hálózati szükség?
-  * Ha igen, nem az aktuális megoldás címtárszolgáltatással hibrid identitás felügyeleti rendszerre fogad el kívánja?
-* Vállalatának meg kell karanténba helyezés felhasználók feltételes hozzáférés kényszerítésére? 
+* Nem rendelkezik a vállalata házirendekkel a hely tooblock felhasználók hozzáférési hello hálózatról szükség?
+  * Ha igen, nem hello aktuális megoldás címtárszolgáltatással hello hibrid identitás felügyeleti rendszer, hogy-e folyamatban tooadopt?
+* A vállalatának meg kell tooenforce feltételes hozzáférés a felhasználók számára, amely karanténba? 
 
 > [!NOTE]
-> Ügyeljen arra, hogy minden válaszról jegyzeteket, és megismerheti a válaszok indokait. [Data protection stratégia meghatározása](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) ismerteti a rendelkezésre álló lehetőségeket, illetve az egyes lehetőségek előnyeit és hátrányait.  Ezen kérdések mely leginkább megfelelő lehetőséget az üzleti megválaszolása szükséges.
+> Győződjön meg arról, hogy tootake megjegyzések minden válaszról és hello válasz hello logikája ismertetése. [Data protection stratégia meghatározása](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) hello lehetőségeit és az egyes lehetőségek előnyeit és hátrányait ismerteti.  Ezen kérdések mely leginkább megfelelő lehetőséget az üzleti megválaszolása szükséges.
 > 
 > 
 

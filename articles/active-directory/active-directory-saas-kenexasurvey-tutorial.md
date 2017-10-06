@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directory-integráció a IBM Kenexa felmérés vállalati |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és az IBM Kenexa felmérés vállalati között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és az IBM Kenexa felmérés vállalati között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,156 +13,156 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/30/2017
 ms.author: jeedes
-ms.openlocfilehash: 5c276c23288292a1c54dd9d57177d5072b90c9e3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: cf7ed886b4418ac396ca7056827ee10fd7a19ef1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-ibm-kenexa-survey-enterprise"></a>Oktatóanyag: Azure Active Directory-integráció a IBM Kenexa felmérés vállalati
 
-Ebben az oktatóanyagban elsajátíthatja IBM Kenexa felmérés vállalati integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate IBM Kenexa felmérés vállalati az Azure Active Directoryval (Azure AD).
 
-IBM Kenexa felmérés vállalati integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+IBM Kenexa felmérés vállalati integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Az Azure AD, aki hozzáfér az IBM Kenexa felmérés vállalati szabályozhatja.
-- Engedélyezheti a felhasználók automatikusan jelentkezhetnek be IBM Kenexa felmérés vállalati az Azure AD-fiókok egyszeri bejelentkezés (SSO) használatával.
-- A fiók egyetlen központi helyen kezelheti: az Azure-portálon.
+- Az Azure AD hozzáférési tooIBM Kenexa felmérés vállalati rendelkező szabályozhatja.
+- A felhasználók tooautomatically bejelentkezés tooIBM Kenexa felmérés vállalati engedélyezheti az egyszeri bejelentkezés (SSO) használata az Azure AD-fiókok.
+- A fiók egyetlen központi helyen kezelheti: hello Azure-portálon.
 
-Ha azt szeretné, az Azure AD egy szolgáltatott szoftverként (SaaS) alkalmazás integrációt, tudnia további információért lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval?](active-directory-appssoaccess-whatis.md).
+Ha tooknow szoftverrel kapcsolatos további, az Azure AD egy szolgáltatott szoftverként (SaaS) alkalmazásintegráció, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az Azure AD-integráció konfigurálása a IBM Kenexa felmérés vállalati, a következőkre van szükség:
+az Azure AD integrálása a IBM Kenexa felmérés vállalati tooconfigure, kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - Az IBM Kenexa felmérés vállalati SSO-kompatibilis előfizetéssel
 
 > [!NOTE]
-> Ebben az oktatóanyagban tesztelésekor a lépéseket, azt javasoljuk, hogy nem használ egy éles környezetben.
+> Ebben az oktatóanyagban hello lépéseket tesztelésekor, azt javasoljuk, hogy nem használ egy éles környezetben.
 
-Ez az oktatóanyag lépéseit teszteléséhez hajtsa végre az ezek az ajánlások:
+Ebben az oktatóanyagban tootest hello lépéseit kövesse az alábbi ajánlásokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, akkor [egy hónapos próbaverzió beszerzése](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban a Azure AD SSO tesztkörnyezetben tesztelni. Az oktatóanyag ismertetett forgatókönyvben két fő építőelemeket áll:
+Ebben az oktatóanyagban a Azure AD SSO tesztkörnyezetben tesztelni. hello az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-* IBM Kenexa felmérés vállalati hozzáadása a gyűjteményből
+* IBM Kenexa felmérés vállalati hozzáadása hello gyűjteményből
 * Azure AD egyszeri bejelentkezés tesztelése és konfigurálása
 
-## <a name="add-ibm-kenexa-survey-enterprise-from-the-gallery"></a>IBM Kenexa felmérés vállalati hozzáadása a gyűjteményből
-Az Azure AD integrálása a IBM Kenexa felmérés vállalati megadásához vegye fel IBM Kenexa felmérés vállalati a gyűjteményből a felügyelt SaaS-alkalmazásokhoz.
+## <a name="add-ibm-kenexa-survey-enterprise-from-hello-gallery"></a>Adja hozzá az IBM Kenexa felmérés vállalati hello gyűjteményből
+az Azure AD-be IBM Kenexa felmérés vállalati tooconfigure hello integrációja IBM Kenexa felmérés vállalati hello gyűjteménye tooyour kezelt SaaS-alkalmazások listáját adja hozzá.
 
-A gyűjteményből IBM Kenexa felmérés vállalati hozzáadásához tegye a következőket:
+IBM Kenexa felmérés vállalati hello gyűjteményből tooadd hello a következő:
 
-1. Az a [Azure-portálon](https://portal.azure.com), a bal oldali ablaktáblán kattintson a **Azure Active Directory** gombra. 
+1. A hello [Azure-portálon](https://portal.azure.com), a hello bal oldali panelen, kattintson a hello **Azure Active Directory** gombra. 
 
-    ![Az Azure Active Directory gomb][1]
+    ![hello Azure Active Directory gomb][1]
 
 2. Válassza ki **vállalati alkalmazások**, majd válassza ki **összes alkalmazás**.
 
-    ![A vállalati alkalmazások panel][2]
+    ![hello vállalati alkalmazások panel][2]
     
-3. Hozzáadhat egy alkalmazást, kattintson a **új alkalmazás** gombra.
+3. egy alkalmazáskészletet, tooadd kattintson hello **új alkalmazás** gombra.
 
-    ![Az új alkalmazás gomb][3]
+    ![hello új alkalmazás gomb][3]
 
-4. Írja be a keresőmezőbe, **IBM Kenexa felmérés vállalati**.
+4. Hello keresési mezőbe, írja be a **IBM Kenexa felmérés vállalati**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_search.png)
 
-5. Az eredmények listájában válassza **IBM Kenexa felmérés vállalati**, majd kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. Hello eredmények listájában válassza **IBM Kenexa felmérés vállalati**, majd kattintson a hello **Hozzáadás** tooadd hello alkalmazás gombra.
 
-    ![IBM Kenexa felmérés vállalati az eredménylistában](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_addfromgallery.png)
+    ![IBM Kenexa felmérés vállalati hello eredmények listájában](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_addfromgallery.png)
 
 ##  <a name="configure-and-test-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés tesztelése és konfigurálása
 Ebben a szakaszban konfigurálása és tesztelése az Azure AD SSO IBM Kenexa felmérés vállalati "Britta Simon." nevű tesztfelhasználó alapján
 
-Az egyszeri bejelentkezés működjön az Azure AD az Azure ad-ben az IBM Kenexa felmérés vállalati felhasználó megfelelőjére azonosítania kell. Ez azt jelenti az Azure AD kapcsolatot kell létesítenie egy hivatkozás egy Azure AD-felhasználó és a kapcsolódó felhasználó között IBM Kenexa felmérés vállalati.
+Az SSO toowork az Azure AD tooidentify hello IBM Kenexa felmérés vállalati felhasználó megfelelőjére kell az Azure ad-ben. Ez azt jelenti az Azure AD kapcsolatot kell létesítenie egy hivatkozás egy Azure AD-felhasználó és a kapcsolódó felhasználó között IBM Kenexa felmérés vállalati.
 
-A hivatkozás kapcsolatot létesíteni, rendelje az értékét a **felhasználónév** IBM Kenexa felmérés vállalati értékeként a **felhasználónév** az Azure ad-ben.
+tooestablish hello hivatkozás kapcsolat hozzárendelése hello értékének hello **felhasználónév** IBM Kenexa felmérés vállalati hello hello értékeként **felhasználónév** az Azure ad-ben.
 
-IBM Kenexa felmérés vállalati Azure AD egyszeri bejelentkezés tesztelése és konfigurálása, végezze el az építőelemeket, a következő két szakaszokban.
+tooconfigure és tesztelési Azure AD SSO IBM Kenexa felmérés vállalati, a következő két szakasz hello teljes hello építőelemeit.
 
 ### <a name="configure-azure-ad-sso"></a>Az Azure AD-egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban engedélyezze az Azure AD egyszeri Bejelentkezést az Azure portálon, és egyszeri bejelentkezés konfigurálása az IBM Kenexa felmérés vállalati alkalmazás a következő módon:
+Ebben a szakaszban engedélyezze az Azure AD egyszeri Bejelentkezést a hello Azure-portálon, és egyszeri bejelentkezés konfigurálása az IBM Kenexa felmérés vállalati alkalmazás hello következő tevékenységek végrehajtásával:
 
-1. Az Azure portálon a a **IBM Kenexa felmérés vállalati** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **IBM Kenexa felmérés vállalati** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![IBM Kenexa felmérés vállalati konfigurálása egyszeri bejelentkezés hivatkozás][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédpanel a **mód** mezőben válassza **SAML-alapú bejelentkezés** SSO engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédpanel hello **mód** mezőben válassza **SAML-alapú bejelentkezés** tooenable egyszeri Bejelentkezést.
  
     ![Egyszeri bejelentkezés párbeszédpanel](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_samlbase.png)
 
-3. Az a **IBM Kenexa felmérés vállalati tartomány és az URL-címek** területen tegye a következőket:
+3. A hello **IBM Kenexa felmérés vállalati tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![IBM Kenexa felmérés vállalati tartomány és az URL-címeket az egyszeri bejelentkezés információk](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_url.png)
 
-    a. Az a **azonosító** szövegmezőhöz URL-címet adja meg a következő mintával:`https://surveys.kenexa.com/<companycode>`
+    a. A hello **azonosító** szövegmezőhöz URL-címet adja meg a következő mintát hello:`https://surveys.kenexa.com/<companycode>`
 
-    b. Az a **válasz URL-CÍMEN** szövegmezőhöz URL-címet adja meg a következő mintával:`https://surveys.kenexa.com/<companycode>/tools/sso.asp`
+    b. A hello **válasz URL-CÍMEN** szövegmezőhöz URL-címet adja meg a következő mintát hello:`https://surveys.kenexa.com/<companycode>/tools/sso.asp`
 
     > [!NOTE] 
-    > Az előző értékei nem valódi. A tényleges azonosítójú frissítheti, illetve válasz URL-CÍMÉT. A tényleges értékek beszerzéséhez forduljon a [IBM Kenexa felmérés vállalati támogatási csoport](https://www.ibm.com/support/home/?lnk=fcw).
+    > hello előző értékei nem valódi. Hello tényleges azonosítójú frissítheti, illetve válasz URL-CÍMÉT. tooobtain hello tényleges értékek, a kapcsolattartási hello [IBM Kenexa felmérés vállalati támogatási csoport](https://www.ibm.com/support/home/?lnk=fcw).
 
-4. A **SAML-aláíró tanúsítványa**, kattintson a **tanúsítvány (Base64)**, és mentse a fájlt a számítógépre.
+4. A **SAML-aláíró tanúsítványa**, kattintson a **tanúsítvány (Base64)**, és mentse a hello tanúsítvány fájl tooyour számítógép.
 
-    ![A tanúsítvány (Base64) letöltési hivatkozását](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_certificate.png) 
+    ![hello (Base64) tanúsítvány letöltési hivatkozását](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_certificate.png) 
 
-    Az IBM Kenexa felmérés vállalati alkalmazás vár a biztonsági helyességi feltételek Markup Language (SAML) helyességi feltételek fogadásához egy meghatározott formátumban, amelyek megkövetelik olyan egyéni attribútum-leképezésekhez hozzáadása a SAML-jogkivonat attribútumok konfigurálása. A válaszban a felhasználó-azonosító jogcím értékét meg kell egyeznie az egyszeri bejelentkezési azonosító a Kenexa rendszerben konfigurált. A megfelelő felhasználói azonosítót a szervezetében, egyszeri Bejelentkezéses Internet Datagram Protocol (IDP) megfeleltetéséhez dolgozni a [IBM Kenexa felmérés vállalati támogatási csoport](https://www.ibm.com/support/home/?lnk=fcw). 
+    IBM Kenexa felmérés vállalati alkalmazás hello tooreceive hello biztonsági helyességi feltételek Markup Language (SAML) helyességi feltételek egy meghatározott formátumban, amely akkor tooadd egyéni attribútum hozzárendelések toohello-konfigurációt igényli az SAML-jogkivonat attribútumok vár. hello hello válaszul hello felhasználóazonosítót jogcím értékét meg kell egyeznie hello hello Kenexa rendszerben konfigurált egyszeri bejelentkezési azonosítója. toomap hello a szervezetében, egyszeri Bejelentkezéses Internet Datagram Protocol (IDP) megfelelő felhasználói azonosítót, hello együttműködve [IBM Kenexa felmérés vállalati támogatási csoport](https://www.ibm.com/support/home/?lnk=fcw). 
 
-    Alapértelmezés szerint az Azure AD a felhasználói azonosító a felhasználó egyszerű felhasználónév (UPN) értéket állítja be. Módosíthatja ezt az értéket a **attribútum** lapon, az alábbi képernyőfelvételen látható módon. Az integráció csak a leképezési befejezése után működik megfelelően.
+    Alapértelmezés szerint az Azure AD hello felhasználói azonosító hello felhasználó egyszerű felhasználónév (UPN) értéket állítja be. Módosíthatja ezt az értéket a hello **attribútum** lap, ahogy az alábbi képernyőfelvétel a hello. hello integráció csak az megfelelően leképezési hello befejezése után működik.
     
-    ![A felhasználói attribútumok párbeszédpanel](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_attribute.png)   
+    ![hello felhasználói attribútumok párbeszédpanel](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_attribute.png) 
 
 5. Kattintson a **Save** (Mentés) gombra.
 
-    ![A konfigurálása egyszeri bejelentkezéshez mentési gomb](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_general_400.png)
+    ![hello konfigurálása egyszeri bejelentkezéshez mentési gomb](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_general_400.png)
 
-6. Megnyitásához a **bejelentkezés konfigurálása** ablakban, a **IBM Kenexa felmérés vállalati konfiguráció**, kattintson a **konfigurálása IBM Kenexa felmérés vállalati**. 
+6. tooopen hello **bejelentkezés konfigurálása** ablakban, a **IBM Kenexa felmérés vállalati konfiguráció**, kattintson a **konfigurálása IBM Kenexa felmérés vállalati**. 
  
-    ![A konfigurálása IBM Kenexa felmérés vállalati hivatkozás](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_configure.png)
+    ![hello konfigurálása IBM Kenexa felmérés vállalati hivatkozás](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_configure.png)
 
-7. Másolás a **Sign-Out URL-cím**, **SAML Entitásazonosító**, és **SAML-alapú egyszeri bejelentkezési URL-címe** közötti értéket a **rövid összefoglaló** szakasz.
+7. Másolás hello **Sign-Out URL-cím**, **SAML Entitásazonosító**, és **SAML-alapú egyszeri bejelentkezési URL-címe** hello értékeinek **rövid összefoglaló** szakasz.
 
-8. Az a **bejelentkezés konfigurálása** ablakban, a **rövid összefoglaló**, másolása a **Sign-Out URL-cím**, **SAML Entitásazonosító**, és **SAML-alapú egyszeri bejelentkezési URL-címe** értékeket.
+8. A hello **bejelentkezés konfigurálása** ablakban, a **rövid összefoglaló**, másolása hello **Sign-Out URL-cím**, **SAML Entitásazonosító**, és  **SAML-alapú egyszeri bejelentkezési URL-címe** értékeket.
 
-9. Egyszeri bejelentkezés konfigurálása a **IBM Kenexa felmérés vállalati** oldalán, küldjön a letöltött **tanúsítvány (Base64)**, **Sign-Out URL-cím**, **SAML Entitásazonosító**, és **SAML-alapú egyszeri bejelentkezési URL-címe** értékeit a a [IBM Kenexa felmérés vállalati támogatási csoport](https://www.ibm.com/support/home/?lnk=fcw).
+9. a hello SSO tooconfigure **IBM Kenexa felmérés vállalati** oldalán, letöltött hello küldése **tanúsítvány (Base64)**, **Sign-Out URL-cím**, **SAML Entitásazonosító**, és **SAML-alapú egyszeri bejelentkezési URL-címe** toohello értékek [IBM Kenexa felmérés vállalati támogatási csoport](https://www.ibm.com/support/home/?lnk=fcw).
 
 > [!TIP]
-> Olvassa el ezeket az utasításokat a tömör verzióját a [Azure-portálon](https://portal.azure.com) közben állítja be az alkalmazást. Miután hozzáadta az alkalmazásból a **Active Directory** > **vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapot, és hozzáférhet a beágyazott dokumentáció keresztül a **konfigurációs** szakasz végén. A beágyazott dokumentáció szolgáltatással kapcsolatos további tudnivalókért lásd: [az Azure AD dokumentációjában beágyazott](https://go.microsoft.com/fwlink/?linkid=845985).
+> Olvassa el ezeket az utasításokat a hello tömör verziójának tooa [Azure-portálon](https://portal.azure.com) közben állítja be az hello alkalmazást. A hello hello alkalmazás hozzáadása után **Active Directory** > **vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapot, és hozzáférhet hello beágyazott keresztül hello dokumentáció **konfigurációs** szakasz hello végén. toolearn hello embedded dokumentációjából funkció, bővebben lásd: [az Azure AD dokumentációjában beágyazott](https://go.microsoft.com/fwlink/?linkid=845985).
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Hozzon létre egy Azure AD-teszt felhasználó
-Ez a szakasz az alábbi lépésekkel hoz létre tesztfelhasználó Britta Simon az Azure-portálon:
+Ebben a szakaszban Britta Simon tesztfelhasználó hello Azure-portálon létrehozhat hello következő tevékenységek végrehajtásával:
 
 ![Hozzon létre egy Azure AD-teszt felhasználó][100]
 
-1. Az Azure portálon a bal oldali ablaktáblán kattintson a **Azure Active Directory** gombra.
+1. A hello Azure-portálon, hello bal oldali ablaktáblában kattintson a hello **Azure Active Directory** gombra.
 
-    ![Az Azure Active Directory gomb](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_01.png) 
+    ![hello Azure Active Directory gomb](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok**, és kattintson a **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok**, és kattintson a **minden felhasználó**.
     
-    ![A "felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_02.png) 
+    ![hello "Felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_02.png) 
 
-3. Megnyitásához a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** tetején a **minden felhasználó** párbeszédpanel megnyitásához.
+3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello hello tetején **minden felhasználó** párbeszédpanel megnyitásához.
  
-    ![A Hozzáadás gombra.](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_03.png) 
+    ![hello Hozzáadás gomb](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanelen hajtsa végre az alábbi lépéseket:
+4. A hello **felhasználói** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
  
-    ![A felhasználó párbeszédpanel](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_04.png) 
+    ![hello felhasználó párbeszédpanel](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** mezőbe írja be **BrittaSimon**.
+    a. A hello **neve** mezőbe írja be **BrittaSimon**.
 
-    b. Az a **felhasználónév** mezőbe írja be a felhasználó e-mail címe az Britta Simon.
+    b. A hello **felhasználónév** mezőben, a felhasználó Britta Simon típus hello e-mail címét.
 
-    c. Válassza ki a **megjelenítése jelszó** jelölje be a jelölőnégyzetet, és jegyezze fel a megjelenített érték a **jelszó** mezőbe.
+    c. Jelölje be hello **megjelenítése jelszó** jelölje be a jelölőnégyzetet, és jegyezze fel a hello hello érték **jelszó** mezőbe.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
@@ -170,47 +170,47 @@ Ez a szakasz az alábbi lépésekkel hoz létre tesztfelhasználó Britta Simon 
 
 Ebben a szakaszban Britta Simon meghívta IBM Kenexa felmérés vállalati felhasználó létrehozása. 
 
-A felhasználók létrehozásához az IBM Kenexa felmérés Enterprise rendszerben, és az egyszeri bejelentkezési azonosító hozzárendelését a számukra, használhatja a [IBM Kenexa felmérés vállalati támogatási csoport](https://www.ibm.com/support/home/?lnk=fcw). Ezt az egyszeri bejelentkezési azonosító értéket is kell rendelni a felhasználói azonosító értékét az Azure AD. Módosíthatja az alapértelmezett beállítás a **attribútum** fülre.
+toocreate felhasználók hello IBM Kenexa felmérés Enterprise rendszer és a térkép hello egyszeri bejelentkezési azonosító számukra, dolgozhat hello [IBM Kenexa felmérés vállalati támogatási csoport](https://www.ibm.com/support/home/?lnk=fcw). Ezt az egyszeri bejelentkezési azonosító értéket kell toohello felhasználói azonosító értéket az Azure AD leképezve. Módosíthatja az alapértelmezett beállítás a hello **attribútum** fülre.
 
-### <a name="assign-the-azure-ad-test-user"></a>Rendelje hozzá az Azure AD-teszt felhasználó
+### <a name="assign-hello-azure-ad-test-user"></a>Rendelje hozzá az Azure AD hello tesztfelhasználó számára
 
-Ebben a szakaszban engedélyezze felhasználói Britta Simon által biztosított hozzáférés IBM Kenexa felmérés vállalati Azure SSO használandó.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri Bejelentkezéses felhasználói hozzáférés tooIBM Kenexa felmérés vállalati megadásával engedélyeznie.
 
-![A felhasználói szerepkör hozzárendelése][200] 
+![Hello felhasználói szerepkör hozzárendelése][200] 
 
-Felhasználó Britta Simon hozzárendelése IBM Kenexa felmérés vállalati, tegye a következőket:
+tooassign felhasználói Britta Simon tooIBM Kenexa felmérés vállalati, hello a következő:
 
-1. Az Azure portálon, nyissa meg a **alkalmazások** nézet, keresse fel a **Directory** nézetben jelölje ki **vállalati alkalmazások**, és kattintson a **összes alkalmazás**.
+1. Az Azure-portálon hello, nyissa meg a hello **alkalmazások** toohello megtekintheti **Directory** nézetben jelölje ki **vállalati alkalmazások**, és kattintson a **összes alkalmazások**.
 
-    ![A "Vállalati alkalmazások" és "Összes alkalmazás" hivatkozások][201] 
+    ![hello "vállalati alkalmazások" és "Összes alkalmazás" hivatkozások][201] 
 
-2. Az a **alkalmazások** listáról válassza ki **IBM Kenexa felmérés vállalati**.
+2. A hello **alkalmazások** listáról válassza ki **IBM Kenexa felmérés vállalati**.
 
-    ![Az alkalmazások listáját az IBM Kenexa felmérés vállalati hivatkozás](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_app.png) 
+    ![hello IBM Kenexa felmérés vállalati hivatkozásra hello alkalmazások listája](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_app.png) 
 
-3. Kattintson a bal oldali ablaktáblában **felhasználók és csoportok**.
+3. Hello bal oldali ablaktáblában kattintson **felhasználók és csoportok**.
 
-    ![A "Felhasználók és csoportok" hivatkozásra][202] 
+    ![hello "Felhasználók és csoportok" hivatkozásra.][202] 
 
-4. Kattintson a **Hozzáadás** gombra, majd a a **hozzáadása hozzárendelés** ablaktáblán válassza előbb **felhasználók és csoportok**.
+4. Hello kattintson **Hozzáadás** gombra, majd a hello **hozzáadása hozzárendelés** ablaktáblán válassza előbb **felhasználók és csoportok**.
 
-    ![A hozzárendelés hozzáadása panelen][203]
+    ![hello hozzárendelés hozzáadása panelen][203]
 
-5. Az a **felhasználók és csoportok** párbeszédpanel a **felhasználók** listáról válassza ki **Britta Simon**.
+5. A hello **felhasználók és csoportok** párbeszédpanel hello **felhasználók** listáról válassza ki **Britta Simon**.
 
-6. Az a **felhasználók és csoportok** párbeszédpanel, kattintson a **válasszon** gombra.
+6. A hello **felhasználók és csoportok** párbeszédpanel hello kattintson **válasszon** gombra.
 
-7. Az a **hozzáadása hozzárendelés** párbeszédpanel, kattintson a **hozzárendelése** gombra.
+7. A hello **hozzáadása hozzárendelés** párbeszédpanel hello kattintson **hozzárendelése** gombra.
     
 ### <a name="test-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD SSO konfigurációját a hozzáférési Panel segítségével tesztelheti.
+Ebben a szakaszban az Azure AD SSO konfigurációs hello hozzáférési Panel segítségével tesztelheti.
 
-Amikor rákattint az **IBM Kenexa felmérés vállalati** csempére a hozzáférési panelen, meg kell lennie automatikusan bejelentkeztetjük az IBM Kenexa felmérés vállalati alkalmazás.
+Amikor rákattint hello **IBM Kenexa felmérés vállalati** csempe az hello hozzáférési panelre, akkor érdemes automatikusan megtörténik a tooyour IBM Kenexa felmérés vállalati alkalmazás.
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása toointegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

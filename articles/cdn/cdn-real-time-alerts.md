@@ -1,6 +1,6 @@
 ---
-title: "Az Azure CDN valós idejű riasztások |} Microsoft Docs"
-description: "A Microsoft Azure CDN valós idejű riasztásokat. Valós idejű riasztások adja meg a CDN-profil végpontja teljesítményének kapcsolatos értesítéseket."
+title: "aaaAzure CDN valós idejű riasztások |} Microsoft Docs"
+description: "A Microsoft Azure CDN valós idejű riasztásokat. Valós idejű riasztások adja meg a CDN-profil hello végpontok hello teljesítményével kapcsolatos értesítéseket."
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 6e66eb076ac7220823a848b5047f147d4101cd55
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 269c90437088bbc41bf899a8c02749e8e6f3006c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="real-time-alerts-in-microsoft-azure-cdn"></a>A Microsoft Azure CDN valós idejű riasztások
 [!INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
 ## <a name="overview"></a>Áttekintés
-Ez a dokumentum ismerteti a Microsoft Azure CDN valós idejű riasztásokat. Ez a funkció a CDN-profil végpontja teljesítményének valós idejű értesítések biztosít.  E-mailek vagy a HTTP-riasztások alapján állíthat be:
+Ez a dokumentum ismerteti a Microsoft Azure CDN valós idejű riasztásokat. Ezt a funkciót biztosít a valós idejű értesítések hello teljesítmény hello végpontok a CDN-profilt.  E-mailek vagy a HTTP-riasztások alapján állíthat be:
 
 * Sávszélesség
 * Állapotkódok
@@ -32,67 +32,67 @@ Ez a dokumentum ismerteti a Microsoft Azure CDN valós idejű riasztásokat. Ez 
 * Kapcsolatok
 
 ## <a name="creating-a-real-time-alert"></a>A valós idejű riasztások létrehozása
-1. Az a [Azure Portal](https://portal.azure.com), keresse meg a CDN-profilt.
+1. A hello [Azure Portal](https://portal.azure.com), keresse meg a tooyour CDN-profilt.
    
     ![CDN-profil panelje](./media/cdn-real-time-alerts/cdn-profile-blade.png)
-2. A CDN-profil panelje, kattintson a **kezelése** gombra.
+2. A CDN-profil panelje hello, kattintson a hello **kezelése** gombra.
    
     ![CDN-profil panelje kezelése gomb](./media/cdn-real-time-alerts/cdn-manage-btn.png)
    
-    Megnyitja a CDN-felügyeleti portálon.
-3. Vigye a **Analytics** lapra, és vigye a **valós idejű statisztikák** menü.  Kattintson a **valós idejű riasztások**.
+    Megnyílik a hello CDN felügyeleti portálon.
+3. Hello az egérmutatót **Analytics** fülre, majd az egérmutatót hello **valós idejű statisztikák** menü.  Kattintson a **valós idejű riasztások**.
    
     ![CDN-felügyeleti portálon](./media/cdn-real-time-alerts/cdn-premium-portal.png)
    
-    A meglévő riasztás konfigurációk (ha van ilyen) listája jelenik meg.
-4. Kattintson a **riasztási hozzáadása** gombra.
+    megjelenik a meglévő riasztás konfigurációk (ha van ilyen) hello listája.
+4. Kattintson a hello **riasztási hozzáadása** gombra.
    
     ![Riasztási gomb felvétele](./media/cdn-real-time-alerts/cdn-add-alert.png)
    
     Új riasztás létrehozásához űrlap jelenik meg.
    
     ![Új riasztás űrlap](./media/cdn-real-time-alerts/cdn-new-alert.png)
-5. Ha azt szeretné, hogy ez a riasztás aktív elemre **mentése**, ellenőrizze a **riasztás engedélyezve** jelölőnégyzetet.
-6. Adjon meg egy leíró nevet a riasztással a **neve** mező.
-7. Az a **médiatípus** legördülő menüből válassza **HTTP nagy objektum**.
+5. Ha azt szeretné, a riasztás toobe aktív elemre **mentése**, ellenőrizze a hello **riasztás engedélyezve** jelölőnégyzetet.
+6. Adjon meg egy leíró nevet a riasztáshoz hello **neve** mező.
+7. A hello **médiatípus** legördülő menüből válassza **HTTP nagy objektum**.
    
     ![A kijelölt HTTP nagy objektum adathordozó-típus](./media/cdn-real-time-alerts/cdn-http-large.png)
    
    > [!IMPORTANT]
-   > Ki kell választania **HTTP nagy objektum** , a **médiatípus**.  Az egyéb lehetőségek nem használják **Azure CDN Verizon**.  Válassza ki a hibát **HTTP nagy objektum** , akkor soha nem aktiválódott a riasztást.
+   > Ki kell választania **HTTP nagy objektum** , hello **médiatípus**.  hello egyéb lehetőségek nem használja a **Azure CDN Verizon**.  Hiba tooselect **HTTP nagy objektum** , akkor a riasztás toonever elindul.
    > 
    > 
-8. Hozzon létre egy **kifejezés** kiválasztásával figyelése egy **metrika**, **operátor**, és **érték indítás**.
+8. Hozzon létre egy **kifejezés** toomonitor kiválasztásával egy **metrika**, **operátor**, és **érték indítás**.
    
-   * A **metrika**, válassza ki a figyelt kívánt feltétel típusát.  **Sávszélesség MB/s** a memóriakészletben felhasznált sávszélesség-használat megabit / másodperc.  **Kapcsolatok száma összesen** peremhálózati kiszolgálókról egyidejű HTTP-kapcsolatok száma.  A különböző gyorsítótár állapotok és állapotkódok-definíciók, lásd: [Azure CDN gyorsítótár állapotkódok](https://msdn.microsoft.com/library/mt759237.aspx) és [Azure CDN HTTP-állapotkódok](https://msdn.microsoft.com/library/mt759238.aspx)
-   * **Operátor** a matematikai operátor, amely megteremti a kapcsolatot a metrika és az eseményindítási között.
-   * **Indítás, érték** a küszöbérték, amelyeknek teljesülniük kell ahhoz, egy értesítés küldése.
+   * A **metrika**, válassza ki a kívánt figyelt feltétel hello típusa.  **Sávszélesség MB/s** hello mennyiségű sávszélesség-használat megabit / másodperc.  **Kapcsolatok száma összesen** hello száma párhuzamos HTTP-kapcsolatok tooour peremhálózati kiszolgálóinak van.  Hello definíciójának különböző gyorsítótár állapotok és állapotkódok, lásd: [Azure CDN gyorsítótár állapotkódok](https://msdn.microsoft.com/library/mt759237.aspx) és [Azure CDN HTTP-állapotkódok](https://msdn.microsoft.com/library/mt759238.aspx)
+   * **Operátor** hello matematikai operátor hello hello metrika és hello eseményindító érték közötti kapcsolatot.
+   * **Indítás, érték** van, amelyeknek teljesülniük kell ahhoz, egy értesítés küldése hello küszöbértéket.
      
-     Az az alábbi példában, a létrehozott kifejezés azt jelzi, hogy szeretnék-e értesítést, ha a 404-es állapotkód száma nagyobb, mint 25.
+     Az alábbi példában hello létrehoztam hello kifejezés azt jelzi, hogy értesítést kap, ha 404-es állapotkód hello száma nagyobb, mint 25 toobe szeretném.
      
      ![Valós idejű riasztási mintakifejezés](./media/cdn-real-time-alerts/cdn-expression.png)
-9. A **időköz**, adja meg, hogy milyen gyakran szeretné a kiértékelendő kifejezés.
-10. Az a **értesítés** legördülő menüből válassza, ha szeretne értesítést kapni a kifejezés igaz.
+9. A **időköz**, adja meg, hogy milyen gyakran szeretné hello kiértékelendő kifejezés.
+10. A hello **értesítés** legördülő menüből válassza, ha szeretné toobe értesíti, ha a hello kifejezés értéke true.
     
-    * **A feltétel Start** azt jelzi, hogy értesítést küld, amikor először észlelt a megadott feltételnek.
-    * **A feltétel End** azt jelzi, hogy értesítést küld, amikor a megadott feltétel már nem észlelhető. Ezt az értesítést csak akkor is kiváltódik, miután a hálózatfigyelési rendszer azt észlelte, hogy a megadott állapot fordult elő.
-    * **Folyamatos** azt jelzi, hogy egy értesítést küld minden alkalommal, hogy a hálózatfigyelési rendszer észleli az adott feltételnek. Ne feledje, hogy a hálózatfigyelési rendszer a megadott feltétel időszakonként csak győződik egyszer.
-    * **Az állapot kezdő és záró** azt jelzi, hogy értesítést küld először, hogy a megadott feltétel észlel, és ismét Ha a feltétel már nem észlelhető.
-11. Ha azt szeretné, hogy e-mailben értesítést kapjon, ellenőrizze a **e-mailben értesítse** jelölőnégyzetet.  
+    * **A feltétel Start** azt jelzi, hogy értesítést küld, amikor hello megadott feltétel először észlel.
+    * **A feltétel End** azt jelzi, hogy értesítést küld, amikor hello megadott feltétel már nem észlelhető. Csak akkor is kiváltódik ezt az értesítést, miután a hálózatfigyelési rendszer azt észlelte, hogy a megadott hello állapot fordult elő.
+    * **Folyamatos** azt jelzi, hogy értesítést küld minden alkalommal, amikor hálózati figyelési rendszer hello észleli hello megadott feltétel. Ne feledje, hogy hello hálózatfigyelési rendszer lesz csak ellenőrzés egyszer időszakonként hello a megadott feltétel.
+    * **Az állapot kezdő és záró** azt jelzi, hogy egy értesítést küld-e az első alkalom, hogy a megadott feltétel hello hello észlel, és ismét amikor hello feltétel már nem észlelhető.
+11. Ha azt szeretné, tooreceive értesítéseket e-mailben, ellenőrizze a hello **e-mailben értesítse** jelölőnégyzetet.  
     
     ![E-mailek űrlappal értesítése](./media/cdn-real-time-alerts/cdn-notify-email.png)
     
-    Az a **való** mezőbe írja be az e-mail cím, ha azt szeretné, hogy értesítést küld. A **tulajdonos** és **törzs**, előfordulhat, hogy hagyja meg az alapértelmezett vagy testreszabhatja az üzenet használatával a **elérhető kulcsszavak** lista dinamikusan szúrható be riasztási adatokat, az üzenet elküldésekor.
+    A hello **való** mezőbe írja be a hello e-mail címet, ha azt szeretné, hogy értesítést küldeni. A **tulajdonos** és **törzs**, előfordulhat, hogy hagyja hello alapértelmezett vagy üdvözlőüzenetére hello segítségével szabhatja testre **elérhető kulcsszavak** lista toodynamically riasztási adatok beszúrása során hello üzenetet küld.
     
     > [!NOTE]
-    > Az e-mail értesítés kattintva tesztelheti a **ellenőrző értesítés** gomb, de csak a riasztás konfigurálásában mentését követően.
+    > Hello e-mailben értesítést hello kattintva tesztelheti **ellenőrző értesítés** gomb, de csak hello riasztás konfigurációjának mentése után.
     > 
     > 
-12. Ha azt szeretné, hogy a webkiszolgáló program értesítések, ellenőrizze a **HTTP Post által értesítendő** jelölőnégyzetet.
+12. Ha azt szeretné, hogy a közzétett tooa webkiszolgáló értesítések toobe, ellenőrizze a hello **HTTP Post által értesítendő** jelölőnégyzetet.
     
     ![Közli a HTTP Post képernyő](./media/cdn-real-time-alerts/cdn-notify-http.png)
     
-    Az a **URL-cím** mezőbe írja be az URL-cím, ahol azt szeretné, hogy a HTTP-üzenet közzé. Az a **fejlécek** szövegmező, adja meg a HTTP-fejlécek küldését a kérelemben.  A **törzs** testreszabhatja az üzenet használatával a **elérhető kulcsszavak** lista dinamikusan szúrható be riasztási adatokat, az üzenet elküldésekor.  **Fejlécek** és **törzs** alapértelmezett egy XML-adattartalmat hasonló az alábbi példában.
+    A hello **URL-cím** mezőbe írja be, ha azt szeretné, hogy HTTP üdvözlőüzenetére közzétett hello URL-CÍMÉT. A hello **fejlécek** szövegmezőhöz hello HTTP-fejlécek toobe hello kérelemben küldött adja meg.  A **törzs** szabhatja testre a hello segítségével üdvözlőüzenetére **elérhető kulcsszavak** lista toodynamically beszúrása riasztási adatokat hello üzenet elküldésekor.  **Fejlécek** és **törzs** alapértelmezett tooan XML hasznos hasonló toohello alábbi példában.
     
     ```
     <string xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
@@ -101,10 +101,10 @@ Ez a dokumentum ismerteti a Microsoft Azure CDN valós idejű riasztásokat. Ez 
     ```
     
     > [!NOTE]
-    > A HTTP Post értesítési kattintva tesztelheti a **ellenőrző értesítés** gomb, de csak a riasztás konfigurálásában mentését követően.
+    > Hello HTTP Post értesítési hello kattintva tesztelheti **ellenőrző értesítés** gomb, de csak hello riasztás konfigurációjának mentése után.
     > 
     > 
-13. Kattintson a **mentése** gombra kattintva mentse a riasztás konfigurálásában.  Ha bejelölte **riasztás engedélyezve** 5. lépésben, a riasztás mostantól aktív.
+13. Kattintson a hello **mentése** toosave gombra a riasztás konfigurálásában.  Ha bejelölte **riasztás engedélyezve** 5. lépésben, a riasztás mostantól aktív.
 
 ## <a name="next-steps"></a>Következő lépések
 * Elemezze [Azure CDN valós idejű statisztikák](cdn-real-time-stats.md)

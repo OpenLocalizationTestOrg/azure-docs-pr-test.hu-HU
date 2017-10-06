@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB: Webalkalmazás létrehozása .NET-tel és DocumentDB API-val | Microsoft Docs"
-description: "Egy .NET-es kódmintát mutat be, amellyel csatlakozni lehet az Azure Cosmos DB DocumentDB API-hoz és lekérdezést lehet végezni vele"
+title: "Azure Cosmos DB: A .NET webalkalmazás létrehozása és a DocumentDB API hello |} Microsoft Docs"
+description: "Megadja a .NET kódminta, használhatja a tooconnect tooand lekérdezés hello Azure Cosmos DB DocumentDB API"
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -15,23 +15,23 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: 9bb863261da64c97f99757d4a0cb3474a7755591
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 35517e35d80c48662a51a99814652ffa1121fc5d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-build-a-documentdb-api-web-app-with-net-and-the-azure-portal"></a>Azure Cosmos DB: DocumentDB API-webalkalmazás létrehozása .NET-tel és az Azure Portallal
+# <a name="azure-cosmos-db-build-a-documentdb-api-web-app-with-net-and-hello-azure-portal"></a>Azure Cosmos DB: Hozza létre a DocumentDB API webes alkalmazás a .NET, és hello Azure-portálon
 
-Az Azure Cosmos DB a Microsoft globálisan elosztott többmodelles adatbázis-szolgáltatása. Segítségével gyorsan létrehozhat és lekérdezhet dokumentum-, kulcs/érték és gráf típusú adatbázisokat, melyek mindegyike felhasználja az Azure Cosmos DB középpontjában álló globális elosztási és horizontális skálázhatósági képességeket. 
+Az Azure Cosmos DB a Microsoft globálisan elosztott többmodelles adatbázis-szolgáltatása. Gyorsan hozzon létre, és a dokumentum, a kulcs/érték és a graph adatbázisok, amelyek kihasználhassa hello globális terjesztési és horizontális skálázhatóságot képességekről az Azure-Cosmos adatbázis hello core lekérdezése. 
 
-Ez a rövid útmutató bemutatja, hogyan hozhat létre az Azure Portal segítségével Azure Cosmos DB-fiókot, dokumentum-adatbázist és gyűjteményt. Ezután megtudhatja, hogyan hozhat létre és hogyan helyezhet üzembe egy a [DocumentDB .NET API-n](documentdb-sdk-dotnet.md) alapuló teendőlista-kezelő webalkalmazást. (Lásd az alábbi képernyőfelvételen.) 
+A gyors üzembe helyezési bemutatja, hogyan toocreate Azure Cosmos DB fiókkal, a dokumentum-adatbázis és gyűjtemény használja hello Azure-portálon. Kell majd létrehozása és központi telepítése egy hello épülő teendőlistát megvalósító webes alkalmazás [DocumentDB .NET API](documentdb-sdk-dotnet.md), ahogy az alábbi képernyőfelvétel a hello. 
 
 ![Teendőkezelő alkalmazás mintaadatokkal](./media/create-documentdb-dotnet/azure-comosdb-todo-app-list.png)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Ha nincs telepítve a Visual Studio 2017, letöltheti és használhatja az **ingyenes** [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/)t. Ügyeljen arra, hogy engedélyezze az **Azure Development** használatát a Visual Studio telepítése során.
+Ha még nincs telepítve a Visual Studio 2017, töltse le és használja a hello **szabad** [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/). Győződjön meg arról, hogy engedélyezze **Azure fejlesztési** hello Visual Studio telepítése során.
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
@@ -48,13 +48,13 @@ Ha nincs telepítve a Visual Studio 2017, letöltheti és használhatja az **ing
 <a id="add-sample-data"></a>
 ## <a name="add-sample-data"></a>Mintaadatok hozzáadása
 
-Az Adatkezelő segítségével adatokat adhat hozzá az új gyűjteményhez.
+Most tooyour új adatgyűjtés adatkezelő használatával adhat hozzá.
 
-1. Az új adatbázis az Adatkezelőben a Gyűjtemények ablaktáblán jelenik meg. Bontsa ki a **Feladatok** adatbázist, majd az **Elemek** gyűjteményt, végül kattintson a **Dokumentumok**, majd pedig az **Új dokumentumok** lehetőségre. 
+1. Új adatbázis hello Data Explorer hello Gyűjtemények ablaktáblán jelenik meg. Bontsa ki a hello **feladatok** adatbázisra, és bontsa ki a hello **elemek** gyűjtemény, kattintson a **dokumentumok**, és kattintson a **új dokumentumok**. 
 
-   ![Új dokumentumok létrehozása az Azure Portal Adatkezelőjében](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-new-document.png)
+   ![Hozzon létre új dokumentumok az adatkezelő a hello Azure-portálon](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-new-document.png)
   
-2. Adjon hozzá egy dokumentumot a gyűjteményhez az alábbi struktúrával.
+2. A struktúra a következő hello mostantól hozzáadhatja azok toohello dokumentumgyűjteményt.
 
      ```json
      {
@@ -66,35 +66,35 @@ Az Adatkezelő segítségével adatokat adhat hozzá az új gyűjteményhez.
      }
      ```
 
-3. A JSON hozzáadása után a **Dokumentumok** lapon kattintson a **Mentés** gombra.
+3. Hello json toohello hozzáadása után **dokumentumok** lapra, majd **mentése**.
 
-    ![Másolja át a json-adatokat, és kattintson a Mentés gombra az Adatkezelőben az Azure-portálon](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-save-document.png)
+    ![Másolja át json-adatokat, és kattintson a Mentés gombra az adatok Explorer hello Azure-portálon](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-save-document.png)
 
-4.  Hozzon létre és mentsen még egy dokumentumot, amelyben egyedi értéket szúr be az `id` tulajdonság számára, és tetszés szerint módosítja a többi tulajdonságot. Mivel az Azure Cosmos DB nem kötelezi egy adott adatséma használatára, új dokumentumaihoz bármilyen struktúrát választhat.
+4.  Hozzon létre és mentsen egy egyedi értéket hello helyezze egy további dokumentum `id` tulajdonság, és a változás hello más tulajdonságok, ahogyan szeretné. Mivel az Azure Cosmos DB nem kötelezi egy adott adatséma használatára, új dokumentumaihoz bármilyen struktúrát választhat.
 
-     Az Adatkezelővel így már lekérdezések használatával lekérheti adatait. Az Adatkezelő alapértelmezés szerint a `SELECT * FROM c` lekérdezést használja a gyűjteményben lévő összes dokumentum lekéréséhez, de ezt más [SQL-lekérdezésre](documentdb-sql-query.md) is módosíthatja, például a `SELECT * FROM c ORDER BY c._ts DESC` lekérdezésre, ha azt szeretné, hogy a rendszer a dokumentumokat időbélyegzőik szerint csökkenő sorrendben adja vissza.
+     Használhatja az adatkezelő tooretrieve lekérdezések adatait. Alapértelmezés szerint adatkezelő használja `SELECT * FROM c` összes hello gyűjtemény, de a dokumentumok tooretrieve módosíthatja, hogy különböző tooa [SQL-lekérdezés](documentdb-sql-query.md), például a `SELECT * FROM c ORDER BY c._ts DESC`, csökkenő sorrendben minden hello dokumentum alapján tooreturn az időbélyegző.
  
-     Az Adatkezelővel létrehozhat tárolt eljárásokat is, felhasználói függvényeket és a kiszolgálóoldali üzleti logikákat végrehajtó eseményindítókat, valamint szabályozhatja az átviteli sebességet. Az Adatkezelő hozzáférhetővé teszi az API-k összes beépített, programozható adatelérési funkcióját, és az Azure Portalon tárolt adataihoz is egyszerű hozzáférést biztosít.
+     Is használhatja adatkezelő toocreate tárolt eljárások, felhasználó által megadott függvények és eseményindítók tooperform kiszolgálóoldali üzleti logikát is mint méretezési átviteli sebesség. Adatkezelő mutatja meg az összes hello beépített programozott adatelérési hello API-k érhető el, de hello Azure-portálon található egyszerű a hozzáférés tooyour adatokat biztosít.
 
-## <a name="clone-the-sample-application"></a>A mintaalkalmazás klónozása
+## <a name="clone-hello-sample-application"></a>Klónozza a mintaalkalmazást hello
 
-Most pedig váltsunk át kódok használatára. Klónozunk egy DocumentDB API-alkalmazást a GitHubról, beállítjuk a kapcsolati karakterláncot, és futtatjuk az alkalmazást. Látni fogja, milyen egyszerű az adatokkal programozott módon dolgozni. 
+Most tegyük kapcsoló tooworking kóddal. Most klónozza a Githubból, állítsa be a hello kapcsolati karakterláncot, és futtassa azt a DocumentDB API-alkalmazásba. Láthatja, milyen egyszerűen adatokkal toowork programozott módon. 
 
-1. Nyisson meg egy git terminálablakot, például a git bash eszközt, és a `CD` paranccsal lépjen egy munkakönyvtárba.  
+1. Nyisson meg egy git terminálablakot, például a git bash eszközt, és `CD` tooa munkakönyvtárát.  
 
-2. Futtassa a következő parancsot a mintatárház klónozásához. 
+2. Futtassa a következő parancs tooclone hello minta tárház hello. 
 
     ```bash
     git clone https://github.com/Azure-Samples/documentdb-dotnet-todo-app.git
     ```
 
-3. Ezután nyissa meg a teendő megoldásfájlját a Visual Studióban. 
+3. Ezután nyissa meg az hello todo megoldásfájlt a Visual Studio. 
 
-## <a name="review-the-code"></a>A kód áttekintése
+## <a name="review-hello-code"></a>Tekintse át a hello kódot
 
-Tekintsük át, hogy mi is történik az alkalmazásban. Nyissa meg a DocumentDBRepository.cs fájlt: az itt található kódsorok hozzák létre az Azure Cosmos DB-erőforrásokat. 
+Most Meggyőződünk arról, mi történik a hello app gyors áttekintése. Nyissa meg hello DocumentDBRepository.cs fájlt, és, hogy ezek a sorok, a kód létrehozása hello Azure Cosmos DB erőforrások találhat. 
 
-* A DocumentClient inicializálva van a 73. sorban.
+* hello DocumentClient sor 73 inicializálva van.
 
     ```csharp
     client = new DocumentClient(new Uri(ConfigurationManager.AppSettings["endpoint"]), ConfigurationManager.AppSettings["authKey"]);`
@@ -117,51 +117,51 @@ Tekintsük át, hogy mi is történik az alkalmazásban. Nyissa meg a DocumentDB
 
 ## <a name="update-your-connection-string"></a>A kapcsolati karakterlánc frissítése
 
-Lépjen vissza az Azure Portalra a kapcsolati karakterlánc adataiért, majd másolja be azokat az alkalmazásba.
+Most lépjen vissza az Azure portál tooget toohello kapcsolati karakterlánc adatainak és hello alkalmazásba másolja.
 
-1. Az [Azure Portalon](http://portal.azure.com/) az Azure Cosmos DB-fiókban a bal oldalsávon kattintson a **Kulcsok** elemre, majd kattintson az **Írási/olvasási kulcsok** lehetőségre. A következő lépésben a képernyő jobb oldalán lévő másolási gombokkal másolhatja az URI-t és az elsődleges kulcsot a web.config fájlba.
+1. A hello [Azure-portálon](http://portal.azure.com/), az Azure Cosmos DB a fiókot, kattintson a bal oldali navigációs hello **kulcsok**, és kattintson a **írható-olvasható kulcsok**. Hello másolási gombok hello jobb oldalán hello képernyő toocopy hello URI és elsődleges kulcs hello web.config fájlba hello következő lépésben fogja használni.
 
-    ![Hozzáférési kulcs megtekintése és másolása az Azure Portal Kulcsok panelén](./media/create-documentdb-dotnet/keys.png)
+    ![Megtekintése és másolása egy hozzáférési kulcsot a hello Azure-portálon, a kulcsok panelen](./media/create-documentdb-dotnet/keys.png)
 
-2. Nyissa meg a web.config fájlt a Visual Studio 2017 alkalmazásban. 
+2. Nyissa meg a Visual Studio 2017 hello web.config fájlt. 
 
-3. A másolási gomb használatával másolja ki az URI érteket a Portalról, és azt adja meg a végpont kulcs értékeként a web.config fájlban. 
+3. Az URI értéket másol a portálról hello (hello Másolás gombra), és teszi hello a Web.config fájlban hello végpont kulcs értékét. 
 
     `<add key="endpoint" value="FILLME" />`
 
-4. Ezután másolja ki az ELSŐDLEGES KULCS értékét a Portalról, és azt adja meg az authKey értékeként a web.config fájlban. Az alkalmazás frissítve lett minden olyan információval, amely az Azure Cosmos DB-vel való kommunikációhoz szükséges. 
+4. Ezután másolja az elsődleges kulcs-érték hello portálról, és teszi hello értékének hello authKey a Web.config fájlban. Most már frissítette az alkalmazást az Azure Cosmos DB toocommunicate szükséges összes hello információval. 
 
     `<add key="authKey" value="FILLME" />`
     
-## <a name="run-the-web-app"></a>A webalkalmazás futtatása
-1. A Visual Studióban kattintson a jobb gombbal a projektre a **Megoldáskezelőben**, majd kattintson a **NuGet-csomagok kezelése** elemre. 
+## <a name="run-hello-web-app"></a>Hello webes alkalmazás futtatása
+1. A Visual Studióban, kattintson a jobb gombbal a hello projekt **Megoldáskezelőben** majd **NuGet-csomagok kezelése**. 
 
-2. A NuGet **Tallózás** mezőjébe írja be a *DocumentDB* szöveget.
+2. A hello NuGet **Tallózás** mezőbe írja be *DocumentDB*.
 
-3. Az eredmények közül telepítse a **Microsoft.Azure.DocumentDB** kódtárat. Ez telepíti a Microsoft.Azure.DocumentDB csomagot, valamint annak összes függőségét.
+3. Hello eredmények közül telepítse a hello **Microsoft.Azure.DocumentDB** könyvtárban. Ez telepíti a hello Microsoft.Azure.DocumentDB csomagot, valamint az összes függősége.
 
-4. Az alkalmazás futtatásához nyomja le a CTRL + F5 billentyűkombinációt. Az alkalmazás megjelenik a böngészőben. 
+4. Kattintson a CTRL + F5 toorun hello alkalmazás. Az alkalmazás megjelenik a böngészőben. 
 
-5. Kattintson a **Új létrehozása** lehetőségre a böngészőben, és hozzon létre néhány új feladatot a teendőkezelő alkalmazásban.
+5. Kattintson a **hozzon létre új** a böngésző hello és néhány új feladatot létrehozni az tennivaló alkalmazásban.
 
    ![Teendőkezelő alkalmazás mintaadatokkal](./media/create-documentdb-dotnet/azure-comosdb-todo-app-list.png)
 
-Lépjen vissza az Adatkezelőbe, ahol lekérdezheti és módosíthatja az új adatokat, valamint dolgozhat azokkal. 
+Mostantól tooData Explorer visszaléphet, és tekintse meg a lekérdezés, módosítása, és ezekkel az új adatokkal. 
 
-## <a name="review-slas-in-the-azure-portal"></a>Az SLA-k áttekintése az Azure Portalon
+## <a name="review-slas-in-hello-azure-portal"></a>Tekintse át a szolgáltatásiszint-szerződések a hello Azure-portálon
 
 [!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-resources"></a>Az erőforrások eltávolítása
 
-Ha az alkalmazást már nem használja, akkor a következő lépésekkel a mintaalkalmazás által létrehozott összes erőforrást törölheti az Azure Portalon:
+Toocontinue toouse az alkalmazás nem fog, ha törli az összes erőforrást hozta létre a gyors üzembe helyezés hello az Azure-portálon az alábbi lépésekkel hello:
 
-1. Az Azure Portal bal oldali menüjében kattintson az **Erőforráscsoportok** lehetőségre, majd kattintson a létrehozott erőforrás nevére. 
-2. Az erőforráscsoport lapján kattintson a **Törlés** elemre, írja be a törölni kívánt erőforrás nevét a szövegmezőbe, majd kattintson a **Törlés** gombra.
+1. A hello hello Azure-portálon a bal oldali menüből, kattintson az **erőforráscsoportok** és kattintson a létrehozott hello erőforrás hello nevét. 
+2. Az erőforrás csoport lapján kattintson a **törlése**, írja be a hello szövegmező hello erőforrás toodelete hello nevét, és kattintson **törlése**.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben a rövid útmutatóban megtudtuk, hogyan lehet Azure Cosmos DB-fiókot létrehozni, hogyan lehet az Adatkezelő segítségével gyűjteményt készíteni, és hogyan lehet futtatni a webalkalmazást. Így már további adatokat importálhat a Cosmos DB-fiókba. 
+A gyors üzembe helyezés hogy megtanulta, hogyan toocreate Azure Cosmos DB adatait, hozzon létre egy gyűjteményt hello adatkezelő használatával, és futtassa a webes alkalmazás. További adatok tooyour Cosmos DB fiókot most importálhatja. 
 
 > [!div class="nextstepaction"]
 > [Adatok importálása az Azure Cosmos DB-be](import-data.md)

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Application Gateway több webhelyet |} Microsoft Docs"
-description: "Ezen a lapon konfiguráljon egy meglévő Azure-alkalmazásokban átjárót ugyanahhoz az átjáróhoz, és az Azure portál a több webalkalmazás üzemeltetéséhez utasításokat tartalmaz."
+title: "aaaHost Azure Application Gateway több hely |} Microsoft Docs"
+description: "Ezen a lapon nyújt útmutatást tooconfigure egy meglévő Azure Alkalmazásátjáró üzemeltetéséhez a hello több webalkalmazás az Azure-portálon hello ugyanahhoz az átjáróhoz."
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: gwallace
-ms.openlocfilehash: 84bd62ae17b7f7ba4cd815ef1f9880679607ebce
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2172aa2c80720f6f1ab7dd91745b44654bcaee00
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-an-existing-application-gateway-for-hosting-multiple-web-applications"></a>Konfiguráljon egy meglévő alkalmazás átjárót több webalkalmazás üzemeltetéséhez
 
@@ -28,32 +28,32 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Több helyet üzemeltető lehetővé teszi az ugyanazon Alkalmazásátjáró egynél több webalkalmazás telepítését. Az állomásfejlécnek meghatározni, mely figyelő kapja forgalom a bejövő HTTP-kérelmek jelenlétére támaszkodik. A figyelő majd arra utasítja a megfelelő háttérkészlet-forgalom, be az átjáró szabályok meghatározását. Az SSL engedélyezve van a webes alkalmazásokhoz Alkalmazásátjáró a kiszolgálónév jelzése (SNI) bővítménye válassza ki a megfelelő figyelő a webes forgalom támaszkodik. A közös több hely üzemeltetéséhez rendeltetése különböző webtartományok különböző háttér-kiszolgálófiók tárolókészletekben az érkező kérések elosztása. Az azonos gyökértartomány több altartományt hasonló módon is tárolt alkalmazás ugyanahhoz az átjáróhoz.
+Több helyet üzemeltető lehetővé teszi egy webalkalmazás több toodeploy a hello ugyanazt az Alkalmazásátjáró. Az állomásfejlécnek hello bejövő HTTP-kérelmek, mely figyelő kapja forgalom toodetermine jelenlétére támaszkodik. hello figyelő majd arra utasítja a forgalom tooappropriate háttérkészlet be hello átjáró hello szabályok meghatározását. Az SSL engedélyezve van a webalkalmazások Alkalmazásátjáró hello kiszolgálónév jelzése (SNI) bővítmény toochoose hello megfelelő figyelő hello webes forgalom támaszkodik. Több hely üzemeltetéséhez használatos tooload-érkező kérések elosztása a különböző webes tartományok toodifferent háttér-kiszolgálófiók készletek. Hasonlóképpen a legfelső szintű tartománynak is futhat a hello több altartományt hello ugyanazt az Alkalmazásátjáró.
 
 ## <a name="scenario"></a>Forgatókönyv
 
-A következő példában Alkalmazásátjáró van kiszolgáló a contoso.com és fabrikam.com forgalom a két háttér-kiszolgálófiók rendelkezik: contoso kiszolgálókészlet és a fabrikam kiszolgálókészlethez. Hasonló telepítő állomás altartományok például app.contoso.com és blog.contoso.com használható.
+A következő példa hello, Alkalmazásátjáró van kiszolgáló a contoso.com és fabrikam.com forgalom a két háttér-kiszolgálófiók rendelkezik: contoso kiszolgálókészlet és a fabrikam kiszolgálókészlethez. Hasonló lehet, például app.contoso.com és blog.contoso.com használt toohost altartományokat.
 
 ![többhelyes forgatókönyv][multisite]
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Ebben a forgatókönyvben egy meglévő Alkalmazásátjáró többhelyes támogatást. A forgatókönyv végrehajtásához, meglévő Alkalmazásátjáró kell konfigurálható. Látogasson el [Alkalmazásátjáró létrehozása a portál használatával](application-gateway-create-gateway-portal.md) hogyan egy alapszintű application gateway létrehozása a portálon.
+Ebben a forgatókönyvben a többhelyes támogatás tooan meglévő Alkalmazásátjáró ad hozzá. toocomplete ebben a forgatókönyvben egy meglévő Alkalmazásátjáró toobe elérhető tooconfigure kell. Látogasson el [Alkalmazásátjáró létrehozása hello portál használatával](application-gateway-create-gateway-portal.md) toolearn hogyan toocreate egy alapszintű application gateway hello portálon.
 
-Az Alkalmazásátjáró frissítéséhez szükséges lépéseket a következők:
+hello az alábbiakban hello lépéseket tooupdate hello Alkalmazásátjáró szükséges:
 
-1. Az egyes helyek használandó háttér-címkészletek létrehozása.
+1. Hozzon létre a háttér-készletek toouse minden egyes hely esetében.
 2. Hozzon létre egy figyelőt a helyekhez Alkalmazásátjáró támogatja.
-3. Minden egyes figyelő, amelynek a megfelelő háttér-hozzárendelését szabályokat létrehozni.
+3. Hozzon létre szabályokat toomap minden egyes figyelő hello megfelelő háttér.
 
 ## <a name="requirements"></a>Követelmények
 
-* **Háttér-kiszolgálókészlet:** A háttérkiszolgálók IP-címeinek listája. A listán szereplő IP-címeknek a virtuális hálózat alhálózatához kell tartozniuk, vagy nyilvános/virtuális IP-címnek kell lenniük. Teljes Tartománynevét is használható.
-* **Háttér-kiszolgálókészlet beállításai:** Minden készletnek vannak beállításai, például port, protokoll vagy cookie-alapú affinitás. Ezek a beállítások egy adott készlethez kapcsolódnak, és a készlet minden kiszolgálójára érvényesek.
-* **Előtérbeli port:** Az Application Gateway-en megnyitott nyilvános port. Amikor a forgalom eléri ezt a portot, a port átirányítja az egyik háttérkiszolgálóra.
-* **Figyelő:** A figyelő egy előtérbeli porttal, egy protokollal (Http vagy Https, a kis- és a nagybetűk megkülönböztetésével) és SSL tanúsítványnévvel rendelkezik (SSL-kiszervezés konfigurálásakor). A többhelyes engedélyezett alkalmazásátjárót, állomásnév és SNI mutatók is bekerülnek.
-* **Szabály:** a szabály van kötve a figyelő, a háttér-kiszolgálófiók-vermet, és határozza meg, mely a forgalom legyenek irányítva, amikor az adott figyelő találatok háttér-kiszolgálófiók készlet. Szabályok feldolgozása a sorrendben, és a forgalmat a rendszer kéri az első szabály, amely megfelel a sajátlagossága figyelembe vétele függetlenül keresztül. Például ha egy szabályt egy alapszintű figyelő és egy többhelyes figyelő mindkét ugyanazt a portot használó szabály, a szabály a többhelyes figyelőjével szerepelnie kell a szabály a vártnak megfelelően működik az alapvető figyelő ahhoz, hogy a többhelyes szabály előtt. 
-* **Tanúsítványok:** minden egyes figyelő egy egyedi tanúsítványt igényel, ebben a példában 2 figyelői többhelyes jön létre. Két .pfx-tanúsítványok és azok jelszavait kell létrehozni.
+* **Háttér-kiszolgálófiók készlet:** hello hello háttér-kiszolgálók IP-címek listáját. hello IP-címek felsorolt toohello virtuális hálózati alhálózat vagy kell tartoznia, vagy egy nyilvános IP-cím/VIP kell lennie. Teljes Tartománynevét is használható.
+* **Háttér-kiszolgálókészlet beállításai:** Minden készletnek vannak beállításai, például port, protokoll vagy cookie-alapú affinitás. Ezek a beállítások esetén tooa kapcsolt verem és a hello készlet alkalmazott tooall-kiszolgálók.
+* **Előtér-port:** Ez a port nem hello nyilvános portot, amelyet a hello Alkalmazásátjáró meg van nyitva. Forgalom találatok ezt a portot, és lekérdezi átirányítja tooone hello háttér-kiszolgálók.
+* **Figyelő:** hello figyelő rendelkezik egy előtér-portot, a protokollt (Http vagy Https, ezek az értékek kis-és nagybetűket), és hello SSL tanúsítvány neve (ha az SSL beállításának-kiszervezés). A többhelyes engedélyezett alkalmazásátjárót, állomásnév és SNI mutatók is bekerülnek.
+* **Szabály:** hello szabály van kötve hello figyelő, hello háttér-kiszolgálófiók vermet, és azt határozza meg, mely háttér-kiszolgálófiók készlet hello forgalom irányított toowhen találatok száma a egy adott figyelő. Szabályok feldolgozása hello sorrendben, és a forgalom hello első egyező szabály függetlenül sajátlagossága figyelembe vétele keresztül jutnak. Például ha a szabályt egy alapszintű figyelő és az azonos port, hello szabály hello többhelyes figyelő mindkét használó szabály hello többhelyes figyelő szerepelnie kell a hello szabály előtt hello alapvető figyelőjével ahhoz, hogy hello többhelyes szabály toofunction várt. 
+* **Tanúsítványok:** minden egyes figyelő egy egyedi tanúsítványt igényel, ebben a példában 2 figyelői többhelyes jön létre. Két .pfx-tanúsítványok és a számukra hello jelszavak kell létrehozni toobe.
 
 ## <a name="create-back-end-pools-for-each-site"></a>Minden egyes hely esetében a háttér-címkészletek létrehozása
 
@@ -61,72 +61,72 @@ A háttér-készlet minden egyes hely esetében, hogy szükség van az alkalmaz�
 
 ### <a name="step-1"></a>1. lépés
 
-Nyissa meg az Azure portálon (https://portal.azure.com) meglévő Alkalmazásátjáró. Válassza ki **háttérkészletek** kattintson **hozzáadása**
+Keresse meg a meglévő Alkalmazásátjáró tooan a hello Azure portal (https://portal.azure.com). Válassza ki **háttérkészletek** kattintson **hozzáadása**
 
 ![háttér-készletek hozzáadása][7]
 
 ### <a name="step-2"></a>2. lépés
 
-Írja be az adatokat a háttér-készlet **pool1**, az IP-cím vagy teljes tartománynevek hozzáadása a háttér-kiszolgálókhoz, és kattintson a **OK**
+Töltse ki hello információkat hello háttér-készlet **pool1**, hello IP-cím vagy teljes tartománynevek hozzáadása hello háttér-kiszolgálókhoz, és kattintson a **OK**
 
 ![háttér Készletbeállítások pool1][8]
 
 ### <a name="step-3"></a>3. lépés
 
-A háttér-készletek panelen kattintson a **Hozzáadás** hozzáadása egy további háttér címkészletet **pool2**, az IP-cím vagy teljes TARTOMÁNYNEVEK hozzáadása a háttér-kiszolgálókhoz, és kattintson a **OK**
+Hello háttérkészletek panelen kattintson a **Hozzáadás** tooadd egy további háttér címkészletet **pool2**, hello IP-cím vagy teljes TARTOMÁNYNEVEK hozzáadása hello háttér-kiszolgálókhoz, és kattintson a **OK**
 
 ![háttér alkalmazáskészlet pool2 beállításai][9]
 
 ## <a name="create-listeners-for-each-back-end"></a>Az egyes háttér-figyelők létrehozása
 
-Az Application Gateway a HTTP 1.1-állomásfejlécek segítségével üzemeltet egynél több webhelyet ugyanarról a nyilvános IP-címről és portról. Az alapvető a portálon létrehozott figyelő nem tartalmazza ezt a tulajdonságot.
+Alkalmazásátjáró támaszkodik a HTTP 1.1 egy webhely több állomás fejlécek toohost hello azonos nyilvános IP-cím és port. hello alapvető figyelő hello portálon létrehozott nem tartalmazza ezt a tulajdonságot.
 
 ### <a name="step-1"></a>1. lépés
 
-Kattintson a **figyelői** a meglévő Alkalmazásátjáró, majd kattintson a **többhelyes** hozzáadása az első figyelő.
+Kattintson a **figyelői** a meglévő Alkalmazásátjáró hello, és kattintson a **többhelyes** tooadd hello első figyelő.
 
 ![figyelők áttekintése panel][1]
 
 ### <a name="step-2"></a>2. lépés
 
-Töltse ki a figyelő adatait. Ebben a példában SSL lezárást van konfigurálva, hozzon létre egy új elülső rétegbeli portot. Az SSL-lezárást használandó PFX-tanúsítvány feltöltése. Az egyetlen különbség a panel a szabványos alapvető figyelő panel képest az állomásnevet.
+Töltse ki a hello hello figyelő adatait. Ebben a példában SSL lezárást van konfigurálva, hozzon létre egy új elülső rétegbeli portot. Hello .pfx tanúsítvány toobe használt SSL-lezárást feltöltése. hello csak a standard alapvető figyelő panel képest panel toohello különbség hello állomásnevet.
 
 ![figyelő tulajdonságok panelen][2]
 
 ### <a name="step-3"></a>3. lépés
 
-Kattintson a **többhelyes** , és hozzon létre egy másik figyelő, a második helyet az előző lépésben leírtak szerint. Ügyeljen arra, hogy egy másik tanúsítványt használ a második figyelő. Az egyetlen különbség a panel a szabványos alapvető figyelő panel képest az állomásnevet. A figyelőre, majd kattintson az adatok **OK**.
+Kattintson a **többhelyes** , és hozzon létre egy másik figyelő hello második hely hello előző lépésben leírt módon. Győződjön meg arról, hogy toouse hello második figyelő különböző tanúsítványt. hello csak a standard alapvető figyelő panel képest panel toohello különbség hello állomásnevet. Hello adatok hello figyelő, és kattintson a **OK**.
 
 ![figyelő tulajdonságok panelen][3]
 
 > [!NOTE]
-> Figyelők az Azure portálon az Alkalmazásátjáró létrehozása egy hosszú ideig futó feladatot, a hosszabb ideig tart a két figyelői ebben a forgatókönyvben is eltarthat. Ha végzett a figyelők megjelenítése a portálon, az alábbi képen látható módon:
+> Egy hosszú ideig futó feladat létrehozása az Azure-portálon az Alkalmazásátjáró hello figyelők, eltarthat néhány alkalommal toocreate hello két figyelői ebben a forgatókönyvben. Ha teljes hello figyelők megjelenítése hello portálon hello kép a következő látható:
 
 ![figyelő áttekintése][4]
 
-## <a name="create-rules-to-map-listeners-to-backend-pools"></a>Figyelők hozzárendelése háttérkészletek szabályok létrehozása
+## <a name="create-rules-toomap-listeners-toobackend-pools"></a>Szabályok toomap figyelői toobackend-címkészletek létrehozása
 
 ### <a name="step-1"></a>1. lépés
 
-Nyissa meg az Azure portálon (https://portal.azure.com) meglévő Alkalmazásátjáró. Válassza ki **szabályok** , és válassza a meglévő alapértelmezett szabály **Szabály1** kattintson **szerkesztése**.
+Keresse meg a meglévő Alkalmazásátjáró tooan a hello Azure portal (https://portal.azure.com). Válassza ki **szabályok** és hello meglévő alapértelmezett szabály választása **Szabály1** kattintson **szerkesztése**.
 
 ### <a name="step-2"></a>2. lépés
 
-Töltse ki a szabályok panelt, az alábbi képen látható módon. A figyelő első és az első készlet kiválasztása, és kattintson a **mentése** teljes.
+Töltse ki a hello szabályok panelen a következő kép hello látható módon. Hello első figyelő és első készlet kiválasztása, és kattintson a **mentése** teljes.
 
 ![meglévő szabály szerkesztése][6]
 
 ### <a name="step-3"></a>3. lépés
 
-Kattintson a **alapvető szabály** a második szabály létrehozásához. Töltse ki az űrlapot, a második figyelő, a második háttérkészlet, és kattintson a **OK** mentéséhez.
+Kattintson a **alapvető szabály** toocreate hello második szabály. Töltse ki a hello második figyelő, a második háttérkészlet hello űrlapot, és kattintson a **OK** toosave.
 
 ![hozzáadása alapszintű szabály panel][10]
 
-Ez a forgatókönyv befejezése meglévő Alkalmazásátjáró konfigurálása a többhelyes támogatás az Azure portálon keresztül.
+Ez a forgatókönyv befejezése meglévő Alkalmazásátjáró konfigurálása a többhelyes támogatás hello Azure-portálon keresztül.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ismerje meg, hogyan védi meg a webhelyek [Application Gateway - webalkalmazási tűzfal](application-gateway-webapplicationfirewall-overview.md)
+Megtudhatja, hogyan tooprotect a webhelyek [Application Gateway - webalkalmazási tűzfal](application-gateway-webapplicationfirewall-overview.md)
 
 <!--Image references-->
 [1]: ./media/application-gateway-create-multisite-portal/figure1.png

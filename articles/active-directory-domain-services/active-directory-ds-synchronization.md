@@ -14,69 +14,69 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: 0c9a9a56e1489ee91fcc332beeef36cdc9c93dc1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9be25b61823a6b031906f3576395782e73831fc4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="synchronization-in-an-azure-ad-domain-services-managed-domain"></a>Szinkronizálás az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz
-A következő ábra bemutatja, hogyan szinkronizálási működik az Azure AD tartományi szolgáltatások felügyelt tartományok.
+hello következő diagram azt ábrázolja szinkronizálási működéséről az Azure AD tartományi szolgáltatásokban felügyelt tartományok.
 
 ![Az Azure AD tartományi szolgáltatásokra szinkronizált topológiákkal](./media/active-directory-domain-services-design-guide/sync-topology.png)
 
-## <a name="synchronization-from-your-on-premises-directory-to-your-azure-ad-tenant"></a>Szinkronizálás a helyszíni címtárból az Azure AD-bérlő
-Az Azure AD Connect szinkronizálási szolgáltatás felhasználói fiókok szinkronizálása, csoporttagságok használatával, és a hitelesítő adatok csak az Azure AD-bérlő. Attribútumok a felhasználói fiókok például az egyszerű Felhasználónevet és a helyszíni biztonsági azonosító (security Identifier azonosítót) szinkronizálja a rendszer. Ha az Azure AD tartományi szolgáltatásokat használja, az NTLM és Kerberos hitelesítéshez szükséges a hagyományos hitelesítő kivonatokat is szinkronizálódnak az Azure AD-bérlő.
+## <a name="synchronization-from-your-on-premises-directory-tooyour-azure-ad-tenant"></a>A helyszíni címtár tooyour az Azure AD-bérlő való szinkronizálásra
+Azure AD Connect szinkronizálása használt toosynchronize felhasználói fiókok, csoporttagságot és hitelesítő kivonatok Azure AD tooyour bérlői. Attribútumok a felhasználói fiókok például hello egyszerű felhasználónév és a helyszíni biztonsági azonosító (security Identifier azonosítót) szinkronizálja a rendszer. Ha az Azure AD tartományi szolgáltatásokat használja, az NTLM és Kerberos hitelesítéshez szükséges a hagyományos hitelesítő kivonatokat egyaránt tooyour szinkronizált Azure AD-bérlő.
 
-Késleltetve visszaírt állítja be, ha az Azure AD-címtár változásokat szinkronizálódnak a helyszíni Active Directoryban. Például, ha módosítja a jelszavát, az Azure AD önkiszolgáló jelszó-módosítási funkciókat használ, a módosított jelszó frissül a helyszíni Active Directory-tartománynak.
+Késleltetve visszaírt állítja be, ha az Azure AD-címtár változásokat hátsó tooyour a helyszíni Active Directory szinkronizálva. Például, ha módosítja a jelszavát, az Azure AD önkiszolgáló jelszó-módosítási funkciókat használ, hello módosított jelszó frissül a helyszíni Active Directory-tartománynak.
 
 > [!NOTE]
-> Mindig az Azure AD Connect legújabb verziójának segítségével ellenőrizze, hogy az összes ismert hibákat tartalmaz.
+> Mindig a hello legújabb verzióját használja, az Azure AD Connect tooensure van az összes ismert hibák.
 >
 >
 
-## <a name="synchronization-from-your-azure-ad-tenant-to-your-managed-domain"></a>Az Azure AD-bérlő szinkronizálását a felügyelt tartományra
-Felhasználói fiókok, csoporttagságot és hitelesítő kivonatokat alapján szinkronizálja az Azure AD-bérlő az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz. A szinkronizálási folyamat be nem automatikus. Nem kell konfigurálni, figyelheti vagy a szinkronizálási folyamat kezeléséhez. A könyvtár egyszeri kezdeti szinkronizálás befejezése után, általában a felügyelt tartományok megjelennek az Azure ad-ben végzett módosítások körülbelül 20 percet vesz igénybe. A szinkronizálás időköze jelszómódosítások vonatkozik, vagy attribútumok az Azure ad-ben végrehajtott módosításokat.
+## <a name="synchronization-from-your-azure-ad-tenant-tooyour-managed-domain"></a>Az Azure AD-bérlő tooyour szinkronizálás felügyelt tartományhoz
+Felhasználói fiókok, csoporttagságot és hitelesítő kivonatokat vannak szinkronizálva az Azure AD-bérlő tooyour Azure AD tartományi szolgáltatások által kezelt tartomány. A szinkronizálási folyamat be nem automatikus. Tooconfigure, nem kell figyelni, vagy a szinkronizálási folyamat kezeléséhez. : A címtár kezdeti szinkronizálása egyszeri hello befejezése után, általában az az Azure AD toobe végzett módosítások körülbelül 20 percet vesz igénybe megjelennek a felügyelt tartományok. A szinkronizálás időköze toopassword végzett módosítások alkalmazása, vagy tooattributes Azure AD-ben végrehajtott módosításokat.
 
-A szinkronizálási folyamat akkor is egy-way/egyirányú jellegűek. A felügyelt tartományok írásvédett nagymértékben kivételével minden egyéni szervezeti egységek hoz létre. Ezért nem módosíthatja felhasználói attribútumok, a felhasználói jelszavakat és a csoporttagságot a felügyelt tartományon belül. Ennek eredményeképpen nincs nincs fordított szinkronizálás módosításait a felügyelt tartomány vissza az Azure AD-bérlő.
+hello szinkronizálási folyamat akkor is egy-way/egyirányú jellegűek. A felügyelt tartományok írásvédett nagymértékben kivételével minden egyéni szervezeti egységek hoz létre. Ezért módosítások toouser attribútumok, a felhasználói jelszavakat vagy a csoporttagság nem hajtható végre hello felügyelt tartományon belül. Ennek eredményeképpen nincs nincs fordított a felügyelt tartományra hátsó tooyour Azure AD-bérlő a változások szinkronizálása.
 
 ## <a name="synchronization-from-a-multi-forest-on-premises-environment"></a>Egy helyszíni Többerdős környezetben való szinkronizálásra
-Számos szervezet rendelkezik több fiókerdővel álló elég bonyolult a helyszíni identitás-infrastruktúra. Az Azure AD Connect szinkronizálási felhasználók, csoportok és hitelesítő kivonatokat a többerdős környezetben, az Azure AD-bérlő támogatja.
+Számos szervezet rendelkezik több fiókerdővel álló elég bonyolult a helyszíni identitás-infrastruktúra. Az Azure AD Connect szinkronizálási felhasználók, csoportok és hitelesítő kivonatokat Többerdős környezetben tooyour az Azure AD bérlőhöz támogatja.
 
-Ezzel szemben az Azure AD-bérlő egy sokkal egyszerűbb, és strukturálatlan névtér. Ahhoz, hogy a felhasználók számára az Azure AD által védett alkalmazások megbízható hozzáférése, UPN-ütközések feloldása különböző erdőkben találhatók a felhasználói fiókok között. Az Azure AD tartományi szolgáltatások által kezelt tartomány aránylik zárja be az Azure AD-bérlő hasonlóságot. Ezért a felügyelt tartományok látható egy egyszerű Szervezetiegység-struktúrája. Összes felhasználók és csoportok a "AADDC felhasználók" tárolóban, függetlenül a helyszíni tartományban vagy erdőben, ahol azok lettek szinkronizálva a tárolják. Előfordulhat, hogy konfigurálta a hierarchikus OU helyszíni struktúra. A felügyelt tartományok azonban továbbra is rendelkezik egy egyszerű strukturálatlan Szervezetiegység-struktúrájától.
+Ezzel szemben az Azure AD-bérlő egy sokkal egyszerűbb, és strukturálatlan névtér. tooenable felhasználók tooreliably alkalmazásokat az Azure AD által védett UPN-ütközések feloldása különböző erdőkben találhatók a felhasználói fiókok között. Az Azure AD tartományi szolgáltatások által kezelt tartomány aránylik hasonlóságot tooyour Azure AD-bérlő bezárásához. Ezért a felügyelt tartományok látható egy egyszerű Szervezetiegység-struktúrája. Összes felhasználók és csoportok hello "AADDC felhasználók" tárolóban, függetlenül attól, hello helyszíni tartományban vagy erdőben, ahol azok lettek szinkronizálva a tárolják. Előfordulhat, hogy konfigurálta a hierarchikus OU helyszíni struktúra. A felügyelt tartományok azonban továbbra is rendelkezik egy egyszerű strukturálatlan Szervezetiegység-struktúrájától.
 
-## <a name="exclusions---what-isnt-synchronized-to-your-managed-domain"></a>Kizárások - mi nincs szinkronizálva a felügyelt tartományra
-A következő objektumok és attribútumok szinkronizálása nem Azure AD-bérlőn vagy a felügyelt tartományok:
+## <a name="exclusions---what-isnt-synchronized-tooyour-managed-domain"></a>Kizárások - mi nem szinkronizált tooyour által felügyelt tartományokhoz
+hello következő objektumok és attribútumok nem lettek tooyour szinkronizált Azure AD-bérlő tooyour által kezelt tartomány:
 
-* **Kizárt attribútumok:** dönthet, ha szeretne kizárni a bizonyos attribútumok szinkronizálása az Azure AD-bérlő az Azure AD Connect használatával a helyszíni tartományból. Ezek az attribútumok kizárt nem érhetők el a kezelt tartományban.
-* **Csoportházirendek:** konfigurálva abban a tartományban, a helyszíni csoportházirendek nincsenek szinkronizálva. a felügyelt tartományra.
-* **SYSVOL-megosztás:** hasonlóan a tartalmát a helyi tartomány, a SYSVOL-megosztás nincsenek szinkronizálva. a felügyelt tartományra.
-* **Számítógép-objektumok:** számítógép-objektumok esetében a helyi tartományhoz csatlakozó számítógépek nincsenek szinkronizálva a felügyelt tartományra. Ezeket a számítógépeket a felügyelt tartományok bizalmi kapcsolattal rendelkezik, és nem csak a helyi tartományhoz tartozik. A felügyelt tartományok, a számítógép-objektumok csak olyan számítógépeken, explicit módon tartomány-csatlakozott a felügyelt tartományra található.
-* **A felhasználók és csoportok SidHistory attribútumok:** az elsődleges felhasználója és elsődleges csoport biztonsági azonosítói a helyi tartomány szinkronizálva van a felügyelt tartományra. Azonban a felhasználók és csoportok meglévő SidHistory attribútumok nincsenek szinkronizálva a helyszíni tartományból a felügyelt tartományra.
-* **Szervezeti egység (OU) struktúrák:** a helyszíni tartományi megadott szervezeti egységek ne szinkronizáljon a felügyelt tartományra. A felügyelt tartományok nincsenek két beépített szervezeti egységekhez. Alapértelmezés szerint a felügyelt tartományok rendelkezik egy egyszerű Szervezetiegység-struktúrája. De ki is [hozzon létre egy egyéni szervezeti Egységet a felügyelt tartományok](active-directory-ds-admin-guide-create-ou.md).
+* **Kizárt attribútumok:** tooexclude bizonyos attribútumok közül választhat szinkronizálása az Azure AD Connect használatával a helyszíni tartományból tooyour az Azure AD bérlői. Ezek az attribútumok kizárt nem érhetők el a kezelt tartományban.
+* **Csoportházirendek:** konfigurált a helyszíni tartományi csoport házirendek nincsenek nem szinkronizált tooyour által felügyelt tartományokhoz.
+* **SYSVOL-megosztás:** hasonlóan hello SYSVOL megosztás a helyi tartomány hello tartalma nem szinkronizált tooyour által felügyelt tartományokhoz.
+* **Számítógép-objektumok:** számítógépek illesztett tooyour helyszíni tartományhoz tartozó számítógép-objektumok nincsenek szinkronizált tooyour által felügyelt tartományokhoz. Ezeket a számítógépeket a felügyelt tartományok bizalmi kapcsolattal rendelkezik, és nem tooyour helyszíni csak tartományhoz tartozik. A felügyelt tartomány látnia számítógép-objektumok csak a felügyelt tartomány rendelkezik explicit módon tartományhoz toohello számítógépek esetében.
+* **A felhasználók és csoportok SidHistory attribútumok:** hello elsődleges felhasználó és elsődleges csoport biztonsági azonosítói a helyi tartomány szinkronizált tooyour által felügyelt tartományokhoz. Azonban a felhasználók és csoportok meglévő SidHistory attribútumok nincsenek szinkronizálva a helyszíni tartományi tooyour felügyelt tartomány.
+* **Szervezeti egység (OU) struktúrák:** a helyszíni tartományi megadott szervezeti egységek tooyour által kezelt tartomány nem szinkronizálja. A felügyelt tartományok nincsenek két beépített szervezeti egységekhez. Alapértelmezés szerint a felügyelt tartományok rendelkezik egy egyszerű Szervezetiegység-struktúrája. Azonban dönthet túl[hozzon létre egy egyéni szervezeti Egységet a felügyelt tartományok](active-directory-ds-admin-guide-create-ou.md).
 
-## <a name="how-specific-attributes-are-synchronized-to-your-managed-domain"></a>Hogyan megadott attribútumok szinkronizálva a felügyelt tartományra
-A következő táblázat néhány általános attribútumokkal rendelkeznek, és ismerteti, hogyan akkor a rendszer szinkronizálja a felügyelt tartományra.
+## <a name="how-specific-attributes-are-synchronized-tooyour-managed-domain"></a>Hogyan adott attribútumok szinkronizált tooyour által felügyelt tartományokhoz
+a következő táblázat hello néhány általános attribútumokkal rendelkeznek, és ismerteti, hogyan szinkronizált tooyour által kezelt tartomány.
 
 | A felügyelt tartományok attribútum | Forrás | Megjegyzések |
 |:--- |:--- |:--- |
-| EGYSZERŰ FELHASZNÁLÓNÉV |Felhasználó UPN attribútum az Azure AD-bérlőben |A felügyelt tartományok való szinkronizálása az Azure AD-bérlő az UPN-attribútumot. Ezért a legmegbízhatóbb módszer az, hogy jelentkezzen be a felügyelt tartományok használja az egyszerű felhasználónév. |
-| sAMAccountName |Felhasználó mailNickname az Azure AD-bérlő attribútumnak, vagy automatikusan generált |A SAMAccountName attribútum a mailNickname attribútumot az Azure AD-bérlő származik. Több felhasználói fiók azonos mailNickname attribútuma van, a SAMAccountName, automatikusan generált. Ha a felhasználó mailNickname vagy UPN előtagja hosszabb 20 karakternél, a SAMAccountName jön létre automatikusan a 20 karakter lehet SAMAccountName attribútumok kielégítéséhez. |
+| EGYSZERŰ FELHASZNÁLÓNÉV |Felhasználó UPN attribútum az Azure AD-bérlőben |felügyelt tooyour tartomány szinkronizálása az Azure AD-bérlő hello UPN-attribútumot. Ezért hello legmegbízhatóbb módja toosign tooyour felügyelt tartomány használja az egyszerű felhasználónév. |
+| sAMAccountName |Felhasználó mailNickname az Azure AD-bérlő attribútumnak, vagy automatikusan generált |hello SAMAccountName attribútum hello mailNickname attribútumot az Azure AD-bérlő származik. Ha több felhasználói fiók azonos mailNickname attribútum, hello SAMAccountName az automatikusan létrehozott hello. Hello felhasználó mailNickname vagy UPN előtagja hosszabb 20 karakternél, hello SAMAccountName akkor automatikusan létrehozott toosatisfy hello 20 karakter lehet SAMAccountName attribútumait. |
 | Jelszavak |Az Azure AD-bérlő felhasználói jelszó |Az Azure AD-bérlő (más néven kiegészítő hitelesítő adatok) NTLM vagy Kerberos hitelesítéshez szükséges hitelesítő kivonatokat vannak szinkronizálva. Ha az Azure AD-bérlő a szinkronizált bérlők, ezeket a hitelesítő adatokat a helyszíni tartományból forrása. |
-| Elsődleges felhasználó/csoport biztonsági azonosítója |Automatikusan létrehozott |A felhasználó vagy csoport fiókok elsődleges biztonsági azonosítója jön létre automatikusan a kezelt tartományban. Ez az attribútum nem egyezik az elsődleges felhasználó/csoport SID az objektum a helyszíni Active Directory-tartománynak. Ez az eltérés az oka, hogy a felügyelt tartományra névtérrel rendelkező különböző SID mint a helyszíni tartományban. |
-| A felhasználók és csoportok SID-előzmények |A helyszíni elsődleges felhasználói és csoportos biztonsági azonosítója |A SidHistory attribútum a felhasználók és csoportok a kezelt tartományban a megfelelő elsődleges felhasználó vagy csoport SID a helyszíni tartományi egyezik van beállítva. Ez a funkció segítségével könnyebben növekedési-és-shift a helyszíni alkalmazások a felügyelt tartományra, mert nem kell újra-hozzáférés-vezérlési lista erőforrások. |
+| Elsődleges felhasználó/csoport biztonsági azonosítója |Automatikusan létrehozott |a felhasználó vagy csoport fiókok hello elsődleges biztonsági azonosító jön létre automatikusan a kezelt tartományban. Ez az attribútum nem egyezik meg a hello elsődleges felhasználó/csoport SID hello objektum a helyszíni Active Directory-tartománynak. Ez az eltérés az oka, hogy hello által kezelt tartomány névtérrel rendelkező különböző SID mint a helyszíni tartományban. |
+| A felhasználók és csoportok SID-előzmények |A helyszíni elsődleges felhasználói és csoportos biztonsági azonosítója |hello SidHistory attribútum a felhasználók és csoportok a felügyelt tartomány toomatch hello megfelelő elsődleges felhasználó vagy csoport SID van beállítva a helyszíni tartományban. A szolgáltatás segítségével ellenőrizze növekedési-és-shift a helyszíni alkalmazások toohello által kezelt tartomány egyszerűbb, mivel nincs szükség toore-ACL-erőforrások. |
 
 > [!NOTE]
-> **Jelentkezzen be a felügyelt tartományra az UPN-formátum:** a SAMAccountName attribútum lehet, hogy az egyes felhasználói fiókok a felügyelt tartományok az automatikusan generált. Ha több felhasználó található a azonos mailNickname attribútum, vagy a felhasználók rendelkeznek-e túlságosan hosszú UPN-előtagok, ezek a felhasználók számára a SAMAccountName lehet automatikusan generált. Ezért a SAMAccountName (például CONTOSO100\joeuser) formátuma nem mindig jelentkezzen be a tartomány megbízható módot. Automatikusan létrehozott SAMAccountName a felhasználói UPN előtag eltérhet. Az UPN-formátumban (például "joeuser@contoso100.com") megbízhatóan bejelentkezni a felügyelt tartományra.
+> **Jelentkezzen be toohello által kezelt tartomány hello UPN formátumot használja:** hello SAMAccountName attribútum lehet, hogy az egyes felhasználói fiókok a felügyelt tartományok az automatikusan generált. Ha több felhasználó rendelkezik-e hello azonos mailNickname attribútum vagy felhasználók rendelkeznek-e túl hosszú az UPN-előtagok, hello SAMAccountName ezen felhasználók automatikus-, a rendszer. Ezért hello SAMAccountName (például CONTOSO100\joeuser) formátuma nem mindig egy megbízható módot toosign toohello tartományban. Automatikusan létrehozott SAMAccountName a felhasználói UPN előtag eltérhet. Hello UPN formátum használata (például "joeuser@contoso100.com") a toohello toosign felügyelt tartomány megbízhatóan.
 >
 >
 
 ### <a name="attribute-mapping-for-user-accounts"></a>A felhasználói fiókok címtárattribútum-leképezésben
-A következő táblázat bemutatja, hogyan adott attribútumok a felhasználói objektumok az Azure AD-bérlő a megfelelő attribútumokat a felügyelt tartományok lettek szinkronizálva.
+a következő táblázat hello hogyan adott attribútumok mutatja be, a felhasználói objektumok az Azure AD-bérlőben szinkronizált toocorresponding attribútumokat a felügyelt tartományok.
 
 | Az Azure AD-bérlő felhasználói attribútum | A felügyelt tartományok felhasználói attribútum |
 |:--- |:--- |
-| AccountEnabled |userAccountControl (beállítása vagy a bit ACCOUNT_DISABLED törlése) |
+| AccountEnabled |userAccountControl (be / kikapcsolja a hello ACCOUNT_DISABLED bit) |
 | city |l csomag |
 | Ország |CO |
 | Szervezeti egység |Szervezeti egység |
@@ -90,7 +90,7 @@ A következő táblázat bemutatja, hogyan adott attribútumok a felhasználói 
 | Mobileszköz |Mobileszköz |
 | objektumazonosító |Az msDS-AzureADObjectId |
 | onPremiseSecurityIdentifier |sidHistory |
-| passwordPolicies |userAccountControl (beállítása vagy a bit DONT_EXPIRE_PASSWORD törlése) |
+| passwordPolicies |userAccountControl (be / kikapcsolja a hello DONT_EXPIRE_PASSWORD bit) |
 | physicalDeliveryOfficeName |physicalDeliveryOfficeName |
 | Irányítószám |Irányítószám |
 | preferredLanguage |preferredLanguage |
@@ -101,7 +101,7 @@ A következő táblázat bemutatja, hogyan adott attribútumok a felhasználói 
 | UserPrincipalName |UserPrincipalName |
 
 ### <a name="attribute-mapping-for-groups"></a>A csoportok címtárattribútum-leképezésben
-A következő táblázat bemutatja, hogyan adott attribútumok csoport az Azure AD-bérlő objektumok lettek szinkronizálva a felügyelt tartományok megfelelő attribútumokat.
+a következő táblázat hello hogyan adott attribútumok mutatja be, a csoportobjektumokhoz az Azure AD-bérlőben szinkronizált toocorresponding attribútumokat a felügyelt tartományok.
 
 | Az Azure AD-bérlőben attribútum | A felügyelt tartományok csoport attribútum |
 |:--- |:--- |
@@ -113,8 +113,8 @@ A következő táblázat bemutatja, hogyan adott attribútumok csoport az Azure 
 | onPremiseSecurityIdentifier |sidHistory |
 | SecurityEnabled |GroupType |
 
-## <a name="objects-that-are-not-synchronized-to-your-azure-ad-tenant-from-your-managed-domain"></a>Az Azure AD-bérlő a felügyelt tartomány nem szinkronizált objektumok
-Ez a cikk az előző szakaszban leírtak nincs a felügyelt tartományok vissza az Azure AD-bérlő a Nincs szinkronizálás. Előfordulhat, hogy [hozzon létre egy egyéni szervezeti egységet (OU)](active-directory-ds-admin-guide-create-ou.md) a kezelt tartományban. Létrehozhat további, az egyéb szervezeti egységek, felhasználók, csoportok vagy ezeket egyéni szervezeti egységek belül szolgáltatásfiókok. Nincs egyéni szervezeti egységek belül létrehozott objektumok lettek szinkronizálva vissza az Azure AD-bérlő. Ezek az objektumok csak a felügyelt tartományon belüli használatra érhetők el. Ezért ezek az objektumok ne legyenek láthatók, Azure AD Graph API-t, az Azure AD PowerShell-parancsmagok használatával, vagy használja az Azure AD felügyeleti felhasználói Felületét.
+## <a name="objects-that-are-not-synchronized-tooyour-azure-ad-tenant-from-your-managed-domain"></a>Objektumok, amelyek nem szinkronizált Azure AD-bérlő tooyour a felügyelt tartomány
+Ez a cikk az előző szakaszban leírtak nincs a felügyelt tartományra hátsó tooyour Azure AD-bérlő a Nincs szinkronizálás. Túl dönthet[hozzon létre egy egyéni szervezeti egységet (OU)](active-directory-ds-admin-guide-create-ou.md) a kezelt tartományban. Létrehozhat további, az egyéb szervezeti egységek, felhasználók, csoportok vagy ezeket egyéni szervezeti egységek belül szolgáltatásfiókok. Egyéni szervezeti egységek belül létrehozott hello objektumok egyike szinkronizálva van a háttérben tooyour Azure AD-bérlő. Ezek az objektumok csak a felügyelt tartományon belüli használatra érhetők el. Ezért ezek az objektumok nem láthatók az Azure AD PowerShell-parancsmagokkal, Azure AD Graph API vagy hello Azure AD felügyeleti felhasználói Felületét használja.
 
 ## <a name="related-content"></a>Kapcsolódó tartalom
 * [Szolgáltatások – Azure AD tartományi szolgáltatások](active-directory-ds-features.md)

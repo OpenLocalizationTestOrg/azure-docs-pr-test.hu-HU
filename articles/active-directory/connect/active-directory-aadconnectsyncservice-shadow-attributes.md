@@ -1,5 +1,5 @@
 ---
-title: "Az Azure AD Connect szinkronizálási szolgáltatás árnyékmásolat attribútumok |} Microsoft Docs"
+title: "aaaAzure AD Connect szinkronizálási szolgáltatás árnyékmásolat attribútumok |} Microsoft Docs"
 description: "Ismerteti az árnyékmásolat attribútumok működése az Azure AD Connect szinkronizálási szolgáltatást."
 services: active-directory
 documentationcenter: 
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: 0b6a7f22d744480a40a878c979986cdd7667109c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1b8665e7488c6078b655f8a3e35519145bacd898
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-sync-service-shadow-attributes"></a>Az Azure AD Connect szinkronizálási szolgáltatás árnyékmásolat attribútumok
-A legtöbb attribútumok vannak megadva ugyanúgy Azure AD-ben, mivel ezek a helyszíni Active Directoryban. Azonban néhány attribútum néhány különleges kezelést és az Azure AD-ben attribútumérték eltérhet az Azure AD Connect szinkronizálása.
+A legtöbb attribútumokat hello azonos módon az Azure AD mivel ezek a helyszíni Active Directoryban. De néhány attribútum rendelkezik néhány különleges kezelést és az Azure AD hello attribútumérték eltérhet az Azure AD Connect szinkronizálása.
 
 ## <a name="introducing-shadow-attributes"></a>Árnyékmásolat attribútumok bemutatása
-Egyes attribútumok két felelősséget rendelkezik az Azure ad-ben. A helyszíni érték és a számított érték tárolja. A további attribútumok árnyékmásolat attribútumok nevezzük. A két leggyakoribb attribútumok, ahol megjelenik ez a viselkedés **userPrincipalName** és **proxyAddress**. Az attribútum értékei módosítása történik, ha ezek az attribútumok nem ellenőrzött tartományok jelölő értékek vannak. De a csatlakozás a szinkronizálási motor beolvassa az árnyék attribútum értéke, a szempontjából, az attribútum visszaigazolását Azure ad.
+Egyes attribútumok két felelősséget rendelkezik az Azure ad-ben. Hello helyszíni érték és a számított érték tárolja. A további attribútumok árnyékmásolat attribútumok nevezzük. Ez a viselkedés megtapasztalhatja hello két leggyakoribb attribútumok **userPrincipalName** és **proxyAddress**. Attribútumértékek hello változás történik, ha ezek az attribútumok nem ellenőrzött tartományok jelölő értékek vannak. De hello szinkronizálási motor a csatlakozás hello értéket olvasó hello árnyékmásolat attribútumban, a szempontjából, hello attribútum visszaigazolását Azure ad.
 
-Nem található az árnyékmásolat-attribútumok az Azure portál vagy a PowerShell használatával. De a koncepció ismertetése segít bizonyos elhárításában, ha az attribútum helyszíni eltérő értékek tartoznak, és a felhőben.
+Nem található hello árnyékmásolat attribútumok hello Azure portál vagy a PowerShell használatával. De ismertetése hello koncepció segít meg tootroubleshoot bizonyos esetekben ha hello attribútum különböző érték is a helyszíni és hello felhőben.
 
-Jobb megértése érdekében működését, tekintse meg ebben a példában a Fabrikam:  
+toobetter hello viselkedésének megértése, nézze meg ebben a példában a Fabrikam:  
 ![Tartományok](./media/active-directory-aadconnectsyncservice-shadow-attributes/domains.png)  
 A helyszíni Active Directoryban több egyszerű Felhasználónévi utótagot rendelkeznek, de azok csak ellenőrzését egy.
 
 ### <a name="userprincipalname"></a>UserPrincipalName
-A felhasználó a következő attribútumértékeit a nem ellenőrzött tartomány van:
+A felhasználó rendelkezik-e a következő attribútum értékei nem ellenőrzött tartomány hello:
 
 | Attribútum | Érték |
 | --- | --- |
@@ -41,12 +41,12 @@ A felhasználó a következő attribútumértékeit a nem ellenőrzött tartomá
 | Az Azure AD-shadowUserPrincipalName | lee.sperry@fabrikam.com |
 | Az Azure AD userPrincipalName | lee.sperry@fabrikam.onmicrosoft.com |
 
-A userPrincipalName attribútum a értéke megjelenik, amikor a PowerShell használatával.
+hello userPrincipalName attribútum értéke hello megjelenik, amikor a PowerShell használatával.
 
-Mivel a tényleges helyszíni attribútumérték rendszer az Azure AD, ha ellenőrizte, fabrikam.com tartomány, az Azure AD frissíti a userPrincipalName attribútum a shadowUserPrincipalName értékével. Nincs a módosításokat az frissítenie kell ezeket az értékeket az Azure AD Connect szinkronizálása.
+Mivel a hello valós helyszíni attribútumérték rendszer az Azure AD, ha ellenőrizte, fabrikam.com tartomány hello, az Azure AD hello userPrincipalName attribútum hello shadowUserPrincipalName hello értéket frissíti. Nincs toosynchronize az Azure AD Connect ezen értékek toobe frissítése a módosításokat.
 
 ### <a name="proxyaddresses"></a>proxyAddresses
-Ugyanezt az eljárást csak beleértve az ellenőrzött tartományok esetében is a proxyAddresses, de néhány további logikával következik be. Az ellenőrzött tartományok jelölőnégyzet csak akkor zajlik le postaláda-felhasználók számára. Egy levelezési felhasználó vagy az ügyfél felel meg a felhasználó egy másik Exchange-szervezetben, és adhat hozzá az értékeket a proxyAddresses ezeket az objektumokat.
+hello azonos folyamata csak beleértve az ellenőrzött tartományok is következik be, a proxyAddresses, de néhány további logikát. az ellenőrzött tartományok hello ellenőrzése csak a postaláda felhasználóknak zavartalan. Egy levelezési felhasználó vagy az ügyfél felel meg a felhasználó Exchange-szervezet egy másik, és proxyAddresses toothese objektumok minden olyan értéket adhat hozzá.
 
 Postaláda-felhasználónak, a helyszíni vagy az Exchange Online esetén csak az ellenőrzött tartományok értékek jelennek meg. Az nézhet ki:
 
@@ -57,16 +57,16 @@ Postaláda-felhasználónak, a helyszíni vagy az Exchange Online esetén csak a
 
 Ebben az esetben  **smtp:abbie.spencer@fabrikam.com**  el lett távolítva, mert az adott tartomány nincs ellenőrizve. De adott Exchange  **SIP:abbie.spencer@fabrikamonline.com** . Fabrikam nem használt Lync/Skype a helyszínen, de az Azure AD és az Exchange Online előkészítése.
 
-Ez a módszer a proxyAddresses nevezzük **ProxyCalc**. ProxyCalc minden változás, a felhasználó meghívása során:
+Ez a módszer a proxyAddresses hivatkozott tooas **ProxyCalc**. ProxyCalc minden változás, a felhasználó meghívása során:
 
-- A felhasználói azonosítót, amely tartalmazza az Exchange Online, még akkor is, ha a felhasználó nem rendelkezik licenccel az Exchange service-csomag. Ha például a felhasználó hozzá van rendelve a Office E3 SKU, de csak hozzá volt rendelve a SharePoint Online. Ez igaz, akkor is, ha a postaláda továbbra is a helyszíni.
-- Az attribútum msExchRecipientTypeDetails értéke.
-- Módosítja a proxyAddresses vagy a userPrincipalName.
+- hello felhasználói azonosítót, amely tartalmazza az Exchange Online, még akkor is, ha hello felhasználó nem rendelkezik licenccel az Exchange service-csomag. Például ha hello felhasználó hozzá van rendelve hello Office E3 SKU, de csak SharePoint online-hoz lett rendelve. Ez igaz, akkor is, ha a postaláda továbbra is a helyszíni.
+- hello attribútum msExchRecipientTypeDetails értéke.
+- A módosítás tooproxyAddresses vagy a userPrincipalName elvégezte.
 
-ProxyCalc eltarthat egy ideig, a felhasználó változás feldolgozni, és nem az Azure AD Connect exportálási folyamat szinkronban.
+ProxyCalc is igénybe vehet néhány alkalommal tooprocess módosítását a felhasználó, ezért nem szinkron hello Azure AD Connect exportálási folyamat során.
 
 > [!NOTE]
-> A ProxyCalc logika van néhány további eszközöket nem ebben a témakörben leírt speciális forgatókönyvek esetén. Ez a témakör átláthatja viselkedését, és nem az összes belső logikai dokumentum valósul meg.
+> hello ProxyCalc logika van néhány további eszközöket nem ebben a témakörben leírt speciális forgatókönyvek esetén. Ez a témakör kerül meg toounderstand hello viselkedését, és nem az összes belső logikai dokumentum.
 
 ### <a name="quarantined-attribute-values"></a>Karanténba helyezett attribútumértékek
 Árnyékmásolat attribútumok is használják, amikor ismétlődő attribútum-érték. További információkért lásd: [ismétlődő attribútum rugalmassági](active-directory-aadconnectsyncservice-duplicate-attribute-resiliency.md).

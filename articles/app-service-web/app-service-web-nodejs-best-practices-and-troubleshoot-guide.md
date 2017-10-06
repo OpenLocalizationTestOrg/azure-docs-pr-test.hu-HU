@@ -1,6 +1,6 @@
 ---
-title: "Ajánlott eljárások és hibaelhárítási útmutatójában csomópont alkalmazások Azure-webalkalmazásokban"
-description: "Ismerje meg az ajánlott eljárásokról és a csomópont-alkalmazások az Azure Web Apps hibaelhárítási lépéseket."
+title: "aaaBest eljárásokat és hibaelhárítási útmutatójában csomópont alkalmazások Azure-webalkalmazásokban"
+description: "Ismerje meg, hello ajánlott eljárásokról és a csomópont-alkalmazások az Azure Web Apps hibaelhárítási lépéseket."
 services: app-service\web
 documentationcenter: nodejs
 author: ranjithr
@@ -14,52 +14,52 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 06/06/2016
 ms.author: ranjithr
-ms.openlocfilehash: d820ef3438e13332657641b06b57fa277e79f811
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 975898142a224f14df1091a46d16e9074d9e2831
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="best-practices-and-troubleshooting-guide-for-node-applications-on-azure-web-apps"></a>Ajánlott eljárások és hibaelhárítási útmutatójában csomópont alkalmazások Azure-webalkalmazásokban
 [!INCLUDE [tabs](../../includes/app-service-web-get-started-nav-tabs.md)]
 
-Ebből a cikkből megtudhatja, az ajánlott eljárásokról és a hibaelhárítási lépéseket [csomópont alkalmazások](app-service-web-get-started-nodejs.md) Azure webalkalmazás fut (a [iisnode](https://github.com/azure/iisnode)).
+Ebből a cikkből megtudhatja, hello ajánlott eljárásokról és a hibaelhárítási lépéseket [csomópont alkalmazások](app-service-web-get-started-nodejs.md) Azure webalkalmazás fut (a [iisnode](https://github.com/azure/iisnode)).
 
 > [!WARNING]
-> Körültekintően járjon el, ha a hibaelhárítási lépéseket a munkakörnyezeti helyet. Javasoljuk, hogy például az átmeneti helyet egy nem éles a beállítás az alkalmazás hibaelhárítása, és ha a probléma fennáll, felcserélni az átmeneti rendelkező az éles webalkalmazásra.
+> Körültekintően járjon el, ha a hibaelhárítási lépéseket a munkakörnyezeti helyet. Javasoljuk, tootroubleshoot rendszeren nem éles telepítési például az átmeneti helyet, és hello a probléma fennáll, amikor felcserélni az átmeneti és az éles webalkalmazásra.
 > 
 > 
 
 ## <a name="iisnode-configuration"></a>Az IISNODE konfigurálása
-Ez [sémafájl](https://github.com/Azure/iisnode/blob/master/src/config/iisnode_schema_x64.xml) jeleníti meg az iisnode-hoz konfigurált beállításokat. A beállításokat, akkor lehet hasznos, az alkalmazás a következők:
+Ez [sémafájl](https://github.com/Azure/iisnode/blob/master/src/config/iisnode_schema_x64.xml) összes hello beállításait, amelyek képesek az iisnode-hoz. Az alkalmazás hasznos hello-beállítások a következők:
 
 * nodeProcessCountPerApplication
   
-    Ez a beállítás szabályozza, hogy az IIS alkalmazásonként működését csomópont folyamatok száma. Alapértelmezett értéke 1. Elindíthatja a lehető legtöbb node.exe a virtuális gép magok száma, úgy, hogy ez 0-ra. Javasolt érték 0 a legtöbb alkalmazás, használhatja az összes mag a számítógépen. NODE.exe az egyetlen, egy node.exe fogyaszt legfeljebb 1 mag, valamint kívül az összes mag használatára történő kívánt csomópont alkalmazás maximális teljesítménye érdekében szabadszálas.
+    Ez a beállítás IIS alkalmazásonként működését csomópont folyamatok hello számát szabályozza. Alapértelmezett értéke 1. A virtuális gép core darabszámként annyi node.exe úgy, hogy a too0 indíthatja el. Javasolt érték 0 a legtöbb alkalmazás, használhatja az összes hello magok a számítógépen. NODE.exe az egyetlen, egy node.exe fogyaszt legfeljebb 1 core és tooget maximális teljesítmény kívül a csomópont alkalmazás egyszálas érdemes tooutilize összes mag.
 * nodeProcessCommandLine
   
-    Ez a beállítás szabályozza a node.exe elérési útja. Beállíthatja, hogy ezt az értéket a node.exe verziójára mutasson.
+    Ez a beállítás hello elérési toohello node.exe szabályozza. Az érték toopoint tooyour node.exe verzió állíthatja be.
 * maxConcurrentRequestsPerProcess
   
-    Ez a beállítás minden node.exe iisnode által küldött egyidejű kérelmek maximális számát szabályozza. Az azure webalkalmazás az alapértelmezett érték a végtelen. Nem kell foglalkoznia az ezt a beállítást. Azure webalkalmazás kívül a az alapértelmezett érték: 1024. Érdemes a beállítás attól függően, hogy hány kér az alkalmazás lekérdezi, és hogy milyen gyorsan az alkalmazás minden kérést dolgoz fel.
+    Ez a beállítás hello iisnode tooeach node.exe által küldött egyidejű kérelmek maximális számát szabályozza. Azure webalkalmazás hello alapértelmezett érték a végtelen. Ezzel a beállítással kapcsolatban tooworry nem lesz. Az azure webalkalmazás kívül a hello alapértelmezett érték: 1024. Érdemes tooconfigure Ez attól függően, hogy hány kér az alkalmazás lekérdezi, és hogy milyen gyorsan az alkalmazás minden kérést dolgoz fel.
 * maxNamedPipeConnectionRetry
   
-    Ez a beállítás az iisnode visszaállítja a nevesített csövön keresztül elküldeni a kérelmet node.exe élő kapcsolatot a maximálisan megengedett számú szabályozza. Ez a beállítás namedPipeConnectionRetryDelay együtt meghatározza, hogy az egyes kérelmek iisnode belül a teljes időtúllépés. Alapértelmezett érték 200 található Azure webalkalmazás. Időtúllépés másodpercben teljes = (maxNamedPipeConnectionRetry \* namedPipeConnectionRetryDelay) / 1000
+    Ez a beállítás szabályozza hello maximálisan megengedett számú iisnode visszaállítja a cső toosend hello kérelem nevű toonode.exe keresztül hello élő kapcsolatot. Ez a beállítás namedPipeConnectionRetryDelay együtt az összes kérelem belül iisnode időtúllépés teljes hello határozza meg. Alapértelmezett érték 200 található Azure webalkalmazás. Időtúllépés másodpercben teljes = (maxNamedPipeConnectionRetry \* namedPipeConnectionRetryDelay) / 1000
 * namedPipeConnectionRetryDelay
   
-    Ez a beállítás vezérli ideje (ms) iisnode mennyisége megvárja, hogy minden kérést küldeni az node.exe a nevesített csövön keresztül újrapróbálkozási között. Alapértelmezett érték: 250ms.
+    A beállítás szabályozza hello ennyi ideje (ms) iisnode közötti nevesített cső hello keresztül minden újrapróbálkozási toosend kérelem toonode.exe várakozik. Alapértelmezett érték: 250ms.
     Időtúllépés másodpercben teljes = (maxNamedPipeConnectionRetry \* namedPipeConnectionRetryDelay) / 1000
   
-    Alapértelmezés szerint az iisnode azure webalkalmazás a teljes időtúllépés értéke 200 \* 250ms = 50 másodperc.
+    Alapértelmezés szerint a teljes időtúllépés hello azure webalkalmazás az iisnode 200 \* 250ms = 50 másodperc.
 * logDirectory
   
-    Ez a beállítás szabályozza a könyvtárban, ahol a iisnode stdout/stderr naplózza. Alapértelmezett érték: iisnode, amely relatív a fő parancsfájlba könyvtár (könyvtárat, amelyben fő server.js jelen)
+    Ez a beállítás szabályozza hello könyvtár, ahol a iisnode stdout/stderr naplózza. Alapértelmezett érték: iisnode, amely relatív toohello fő parancsfájlba könyvtár (könyvtárat, amelyben fő server.js jelen)
 * debuggerExtensionDll
   
-    Ez a beállítás határozza meg, melyik verzióját a node-inspector iisnode fogja használni, amikor a csomópont-alkalmazásban. Az iisnode-inspector-0.7.3.dll és az iisnode-inspector.dll jelenleg ez a beállítás csak 2 érvényes értékei. Alapértelmezett érték: az iisnode-inspector-0.7.3.dll. az iisnode-inspector-0.7.3.dll verzió csomópont-inspector-0.7.3 használ, és websocket elemeket, használ, ezért szüksége lesz ahhoz, hogy a jelenlegi verzióját használják az azure webalkalmazás websocket elemeket. Lásd: <http://www.ranjithr.com/?p=98> iisnode az új node-Inspector segítségével történő konfigurálásával kapcsolatos további részletekért.
+    Ez a beállítás határozza meg, melyik verzióját a node-inspector iisnode fogja használni, amikor a csomópont-alkalmazásban. Az iisnode-inspector-0.7.3.dll és az iisnode-inspector.dll jelenleg ez a beállítás érvényes értékei hello csak 2. Alapértelmezett érték: az iisnode-inspector-0.7.3.dll. az iisnode-inspector-0.7.3.dll verzió csomópont-inspector-0.7.3 használ, és websocket elemeket, használ, ezért szüksége lesz tooenable szoftvercsatornák használatával a azure webalkalmazás toouse a jelen verziójában. Lásd: <http://www.ranjithr.com/?p=98> hogyan tooconfigure iisnode toouse hello új a node-inspector olvashat.
 * flushResponse
   
-    Az alapértelmezett IIS működése, hogy azt puffereli érkezett válasz adatait mentése 4 MB kiürítése előtt, illetve a válasz végéig amelyik előbb következik be. az iisnode Ez a viselkedés felülbírálásához a konfigurációs beállításokat kínál: kiüríteni válasz entitástörzsében egy kódrészletet, amint iisnode kap a node.exe, be kell állítani a iisnode/@flushResponse a Web.config fájlban a "true" attribútum:
+    hello alapértelmezett IIS működése, hogy az érkezett válasz adatait too4MB mentése puffereli kiürítése előtt, vagy végéig hello hello választ, amelyik előbb következik be. az iisnode kínál konfigurációs beállítás toooverride ezt a viselkedést: tooflush hello választörzs entitás egy kódrészletet, amint az iisnode kap az node.exe, tooset hello kell iisnode/@flushResponse attribútumot a web.config too'true ":
   
     ```
     <configuration>    
@@ -70,9 +70,9 @@ Ez [sémafájl](https://github.com/Azure/iisnode/blob/master/src/config/iisnode_
     </configuration>
     ```
   
-    Minden válasz entitástörzsében kódrészletet a könyvelési engedélyezése lassítja a, amely csökkenti az átviteli sebessége a rendszer (az v0.1.13), ~ 5 %-kal hatókörének ezt a beállítást csak adatfolyam-választ igénylő végpontok a legjobb (pl. használatával a <location>a Web.config elemben)
+    Engedélyezésével hello válasz entitástörzsében minden kódrészletet a kiürítési, amely csökkenti a hello átviteli hello rendszer (az v0.1.13) ~ 5 %-kal teljesítményigény, ezért ajánlott tooscope ezt a beállítást csak tooendpoints válasz streaming (pl. használatával hello igénylő <location> hello web.config eleme)
   
-    Továbbá a az alkalmazások, akkor is responseBufferLimit az iisnode leíró 0 értékre állítva.
+    Továbbá toothis, az alkalmazások, kell tooalso set responseBufferLimit az iisnode kezelő too0 a.
   
     ```
     <handlers>    
@@ -81,37 +81,37 @@ Ez [sémafájl](https://github.com/Azure/iisnode/blob/master/src/config/iisnode_
     ```
 * watchedFiles
   
-    Ez az fog kell figyelt módosítások fájlok egy pontosvesszővel elválasztott listája. Egy fájl módosításának hatására az alkalmazás újrahasznosítása. Mindegyik bejegyzés egy választható könyvtár nevét és a szükséges fájl nevét, amelyek a könyvtárat, amelyben az alkalmazás fő belépési pont található viszonyítva áll. A fájl neve funkciója csak helyettesítő karakterek megengedettek. Alapértelmezett érték "\*. js;web.config"
+    Ez az fog kell figyelt módosítások fájlok egy pontosvesszővel elválasztott listája. A módosítás tooa fájl hello alkalmazás toorecycle hatására. Mindegyik bejegyzés egy választható könyvtár nevét és a szükséges fájl nevét, amely relatív toohello könyvtárra hello fő belépési pontja áll. Hello fájl neve funkciója csak helyettesítő karakterek megengedettek. Alapértelmezett érték "\*. js;web.config"
 * recycleSignalEnabled
   
-    Alapértelmezett értéke hamis. Ha engedélyezve van, a csomópont alkalmazás csatlakozhat egy nevesített csövet (környezeti változót az IISNODE\_vezérlő\_CSŐ) és "újrahasznosítást" üzenet. Ennek hatására a w3wp szabályosan újrahasznosítása.
+    Alapértelmezett értéke hamis. Ha engedélyezve van, a csomópont alkalmazás csatlakozni tud-e nevesített cső tooa (környezeti változót az IISNODE\_vezérlő\_CSŐ) és "újrahasznosítást" üzenet. Ennek következtében hello w3wp toorecycle szabályosan.
 * idlePageOutTimePeriod
   
-    Alapértelmezett érték 0, ami azt jelenti, hogy ez a funkció le van tiltva. Ha értéke egy értéket 0-nál nagyobbnak, iisnode fog lapon minden gyermek folyamatainak ki minden "idlePageOutTimePeriod" ezredmásodperc. Ha szeretné megtudni, milyen lapon azt jelenti, hogy ki, tekintse meg a [dokumentáció](https://msdn.microsoft.com/library/windows/desktop/ms682606.aspx). Ez a beállítás hasznos, ha alkalmazásokat, amelyek nagy mennyiségű memóriát használnak, és szeretne pageout memória lemezre alkalmanként szabadítson fel némi RAM lesz.
+    Alapértelmezett érték 0, ami azt jelenti, hogy ez a funkció le van tiltva. Ha a beállított toosome értéke nagyobb, mint 0, az iisnode lapon fog ki az összes alárendelt dolgozza fel a minden "idlePageOutTimePeriod" ezredmásodperc. Mi azt jelenti, kimenő lapon toounderstand tekintse meg a toothis [dokumentáció](https://msdn.microsoft.com/library/windows/desktop/ms682606.aspx). Ez a beállítás akkor lehet hasznos, az alkalmazásokat, amelyek nagy mennyiségű memóriát használnak, és szeretné, hogy toopageout memória toodisk alkalmanként fel néhány RAM toofree.
 
 > [!WARNING]
-> Legyen körültekintő, ha engedélyezi az éles környezetben a következő konfigurációs beállításait. Javasoljuk, hogy engedélyezze azokat éles alkalmazásokban.
+> Körültekintően járjon el, ha engedélyezve van a következő konfigurációs beállításokat az üzemi környezetben működő alkalmazásokhoz hello. Javasoljuk, toonot lehetővé teszi az élő éles környezetben.
 > 
 > 
 
 * debugHeaderEnabled
   
-    Az alapértelmezett értéke hamis. Ha értéke igaz, az iisnode felveszi egy HTTP válasz fejléc az iisnode-debug minden HTTP-válasz küld az iisnode-debug fejléc értéke egy URL-címet. Egyes adatra diagnosztikai adatokat is a URL-cím töredéke megtekintésével, de sok jobb képi megjelenítés érik el az URL-cím megnyitása a böngészőben.
+    hello alapértelmezett értéke hamis. Ha tootrue, állítsa be az iisnode egy HTTP-válasz fejléce az iisnode-debug tooevery HTTP válasz küldi hello az iisnode-debug fejléc értéke egy URL-címet ad hozzá. Egyes adatra diagnosztikai adatokat is hello URL-cím töredék megtekintésével, de sok jobb képi megjelenítés hello böngészőben hello URL-cím megnyitásával érhető el.
 * loggingEnabled
   
-    Ez a beállítás az iisnode által az stdout és az stderr naplózását szabályozza. Az Iisnode stdout/stderr csomópont folyamatok elindítja azt rögzíti, és a "logDirectory" beállításban megadott könyvtárban írni. A beállítás engedélyezése, az alkalmazás fogja kell írása naplók a fájlrendszerhez, és attól függően, hogy az alkalmazás által végzett naplózás mennyisége, a teljesítményre gyakorolt hatása lehet.
+    Ez a beállítás az stdout és az stderr hello naplózását szabályozza, iisnode által. Az Iisnode stdout/stderr elindítja azt csomópont folyamatok rögzítése, és a hello "logDirectory" beállításban megadott toohello directory írása. A beállítás engedélyezése, az alkalmazás a naplók toohello fájlrendszer írása lesz, és attól függően, hogy hello alkalmazás által végzett naplózás hello mennyisége, lehetnek teljesítményre gyakorolt hatása.
 * devErrorsEnabled
   
-    Alapértelmezett értéke hamis. Ha értéke igaz, az iisnode megjeleníti a HTTP-állapotkód és a Win32-hibakód: a böngésző. A win32 kódban megoldani a problémákat bizonyos típusú hasznos lesz.
+    Alapértelmezett értéke hamis. Ha beállítása tootrue, iisnode megjeleníti hello HTTP állapotkód és a Win32-hibakód: a böngésző. hello win32 kódban megoldani a problémákat bizonyos típusú hasznos lesz.
 * debuggingEnabled (ne engedélyezze az éles hely)
   
-    Ez a beállítás szabályozza a hibakeresési funkciója. Az Iisnode integrálva van a node-Inspector használatával. Ha engedélyezi ezt a beállítást, engedélyezi a csomópont alkalmazás hibakeresést. Ha engedélyezi ezt a beállítást, a iisnode a csomópont alkalmazás felé irányuló első debug kérelem a "debuggerVirtualDir" könyvtárban található a szükséges a node-inspector fájl lesz elrendezés. A node-inspector betöltése http://yoursite/server.js/debug kérelmet küld. A hibakeresési URL-szegmenseket "debuggerPathSegment" beállítással szabályozható. Alapértelmezett debuggerPathSegment által = "debug". Állíthat egy GUID, például úgy, hogy megnehezíti mások számára felderítését.
+    Ez a beállítás szabályozza a hibakeresési funkciója. Az Iisnode integrálva van a node-Inspector használatával. Ha engedélyezi ezt a beállítást, engedélyezi a csomópont alkalmazás hibakeresést. Ha engedélyezi ezt a beállítást, az iisnode fog elrendezés hello szükséges a node-inspector könyvtárban található fájlok "debuggerVirtualDir" hello első debug kérelem tooyour csomópont alkalmazástól. A kérelem toohttp://yoursite/server.js/debug elküldésével hello a node-inspector be tudják tölteni. Hello hibakeresési URL-szegmenseket "debuggerPathSegment" beállítással szabályozható. Alapértelmezett debuggerPathSegment által = "debug". A GUID tooa például beállíthatja úgy, hogy mások által felderített nehezebb toobe.
   
     Ennek ellenőrzéséhez [hivatkozás](https://tomasz.janczuk.org/2011/11/debug-nodejs-applications-on-windows.html) kapcsolatban további részleteket a hibakeresést.
 
 ## <a name="scenarios-and-recommendationstroubleshooting"></a>Forgatókönyvek és javaslatok/hibaelhárítása
 ### <a name="my-node-application-is-making-too-many-outbound-calls"></a>A csomópont-alkalmazás, hogy így túl sok kimenő hívásokat.
-Számos alkalmazás szeretné kimenő kapcsolatok létrehozása a rendszeres művelet részeként. Például ha a kérelem érkezik, a csomópont app szeretné lépjen kapcsolatba a REST API máshol, és néhány adatra feldolgozni a kérelmet. Szeretné használni kívánt megtartása életben ügynök http vagy https hívása esetén. Például használhatja a agentkeepalive modul a keep-alive megbízottként ezek kimenő hívása esetén. Ez biztosítja, hogy, hogy a sockets újra felhasználja a rendszer a virtuális gép azure webalkalmazás a és a kimenő kérelmek új szoftvercsatornák létrehozásának adódó terhelését. Is ez biztosítja, hogy kevesebb szoftvercsatornák számát segítségével számos kimenő kéréseket, és ezért nem lehet a kiosztott virtuális gépenként maxsocket. Azure-webalkalmazás ajánlást lenne, virtuális gépenként 160 sockets összesen agentKeepAlive maxsocket értékre állítja be. Ez azt jelenti, hogy ha 4 node.exe a virtuális gépen, akkor szeretné beállítása a agentKeepAlive maxsocket node.exe teljes virtuális gépenként 160 pedig 40.
+Számos alkalmazás szeretnének toomake kimenő kapcsolatok a rendszeres művelet részeként. Például kérelem érkezik, amikor a csomópont-alkalmazást ehhez szeretné, hogy a REST API máshol toocontact és néhány információt tooprocess hello kérelmek. Toouse megtartása életben ügynök kívánt http vagy https hívása esetén. Például használhatja hello agentkeepalive modul a keep-alive megbízottként ezek kimenő hívása esetén. Ezzel biztosíthatja, hogy hello sockets újra felhasználja a rendszer a virtuális gép azure webalkalmazás és csökkentése hello terhek új sockets minden kimenő kérelem létrehozása. Emellett ez biztosítja, hogy kevesebb sok kimenő kérelmek, és ezért nem haladhatja meg a virtuális gépenként kiosztott hello maxsocket sockets toomake használt. Azure webalkalmazás ajánlást tooset hello agentKeepAlive maxsocket virtuális gépenként 160 sockets tooa összesen érték lehet. Ez azt jelenti, hogy ha 4 node.exe hello virtuális gép futó, célszerű tooset hello agentKeepAlive maxsocket too40 másodpercenkénti teljes virtuális gépenként 160 egyben node.exe.
 
 Példa [agentKeepALive](https://www.npmjs.com/package/agentkeepalive) konfiguráció:
 
@@ -124,15 +124,15 @@ var keepaliveAgent = new Agent({
 });
 ```
 
-Ez a példa feltételezi, hogy rendelkezik-e a virtuális gépen 4 node.exe. Ha a virtuális gépen node.exe eltérő számú, akkor módosítsa a beállítást ennek megfelelően maxsocket.
+Ez a példa feltételezi, hogy rendelkezik-e a virtuális gépen 4 node.exe. Ha fut a virtuális gép hello node.exe eltérő számú, hogy toomodify hello maxsocket beállítást ennek megfelelően.
 
 ### <a name="my-node-application-is-consuming-too-much-cpu"></a>A csomópont-alkalmazás által felhasznált túl sok CPU.
-A portál magas cpu-felhasználás kapcsolatos az Azure-webalkalmazás valószínűleg kap egy javaslatot. Figyelendő egyes figyelők is beállíthatja [metrikák](web-sites-monitor.md). Ha a CPU-használat ellenőrzése a következőn: a [Azure Portal irányítópult](../application-insights/app-insights-web-monitor-performance.md), tekintse meg a maximális értékek CPU, hogy nem hagy ki ki a maximális értékeket.
-Amennyiben úgy véli, hogy az alkalmazás által felhasznált túl sok CPU, és miért nem ismertetik esetben szüksége lesz profilhoz, a node.js-alkalmazásokban.
+A portál magas cpu-felhasználás kapcsolatos az Azure-webalkalmazás valószínűleg kap egy javaslatot. Is telepítő figyelők toowatch egyes [metrikák](web-sites-monitor.md). Hello CPU-használat a hello ellenőrzésekor [Azure Portal irányítópult](../application-insights/app-insights-web-monitor-performance.md), tekintse meg hello maximális értékek CPU, hogy nem hagy ki ki hello maximális értékeket.
+Azokban az esetekben, ha úgy gondolja, hogy az alkalmazás által felhasznált túl sok CPU, és miért nem ismertetik szüksége lesz tooprofile a node.js-alkalmazásokban.
 
 ### 
 #### <a name="profiling-your-node-application-on-azure-webapps-with-v8-profiler"></a>A csomópont alkalmazás V8-Profilkészítő rendelkező azure webalkalmazás profilkészítés
-Például lehet mondja ki a hello world alkalmazás kívánt profil alább látható módon:
+Például lehet mondja ki a hello world alkalmazás, amelyet tooprofile alább látható módon:
 
 ```
 var http = require('http');    
@@ -153,16 +153,16 @@ http.createServer(function (req, res) {
 }).listen(process.env.PORT);
 ```
 
-Ugrás az scm hely https://yoursite.scm.azurewebsites.net/DebugConsole
+Nyissa meg tooyour scm hely https://yoursite.scm.azurewebsites.net/DebugConsole
 
 Alább látható módon jelenik meg egy parancssort. Nyissa meg a hely/wwwroot könyvtárba
 
 ![](./media/app-service-web-nodejs-best-practices-and-troubleshoot-guide/scm_install_v8.png)
 
-Futtassa a parancsot "npm telepítés v8-Profilkészítő"
+A "npm telepítés v8-Profilkészítő" hello parancs futtatása
 
 Ez telepítse v8-Profilkészítő csomópont alatt\_modulok directory és az összes függősége.
-Most szerkessze a server.js profil az alkalmazáshoz.
+A server.js tooprofile, szerkessze az alkalmazást.
 
 ```
 var http = require('http');    
@@ -188,74 +188,74 @@ http.createServer(function (req, res) {
 }).listen(process.env.PORT);
 ```
 
-A fenti módosítások WriteConsoleLog függvény profilt, és a majd a profil kimeneti írni a hely wwwroot "profile.cpuprofile" fájlt. Az alkalmazás kérelmet küld. A hely wwwroot alapján létrehozott "profile.cpuprofile" fájl jelenik meg.
+hello fent a változtatásokat fog hello WriteConsoleLog függvény profil, és jegyezze hello-profil kimeneti too'profile.cpuprofile "a hely wwwroot fájlt. Egy kérelem tooyour kérelem küldése. A hely wwwroot alapján létrehozott "profile.cpuprofile" fájl jelenik meg.
 
 ![](./media/app-service-web-nodejs-best-practices-and-troubleshoot-guide/scm_profile.cpuprofile.png)
 
-Töltse le a fájlt, és nyissa meg a fájlt a Chrome F12 eszközökkel kell. Kattintson az F12 billentyű lenyomása a chrome, majd kattintson a "Profilok lap". Kattintson a "Load" gombra. Válassza ki az imént letöltött profile.cpuprofile fájlt. Kattintson a profil épp.
+Töltse le a fájlt, és kell tooopen a fájl a Chrome F12 eszközökkel. A Látványelem elérte a F12, majd kattintson a "Profilt" hello. Kattintson a "Load" gombra. Válassza ki az imént letöltött profile.cpuprofile fájlt. Kattintson az épp hello-profil.
 
 ![](./media/app-service-web-nodejs-best-practices-and-troubleshoot-guide/chrome_tools_view.png)
 
-Látni fogja, hogy 95 %-ában felhasznált WriteConsoleLog függvény alább látható módon. Ez azt is bemutatja, a pontos sorok számát és a problémát okozó forrásfájlokat.
+Látni fogja, hogy hello idő 95 % felhasznált WriteConsoleLog függvény alább látható módon. Ez azt is bemutatja, hello pontos sorok számát és a forrásfájlok hello probléma okozhatja.
 
 ### <a name="my-node-application-is-consuming-too-much-memory"></a>A csomópont-alkalmazás által felhasznált túl sok memóriát.
-A portál kapcsolatos leterheli a rendszermemóriát az Azure-webalkalmazás valószínűleg kap egy javaslatot. Figyelendő egyes figyelők is beállíthatja [metrikák](web-sites-monitor.md). Ha a memóriahasználat ellenőrzése a következőn: a [Azure Portal irányítópult](../application-insights/app-insights-web-monitor-performance.md), a memória tartozó maximális értékeket. részletekért tekintse meg, hogy nem hagy ki ki a maximális értékeket.
+A portál kapcsolatos leterheli a rendszermemóriát az Azure-webalkalmazás valószínűleg kap egy javaslatot. Is telepítő figyelők toowatch egyes [metrikák](web-sites-monitor.md). Hello memóriahasználat hello a ellenőrzésekor [Azure Portal irányítópult](../application-insights/app-insights-web-monitor-performance.md), tekintse meg az hello maximális értékek a memória, hogy nem hagy ki ki hello maximális értékeket.
 
 #### <a name="leak-detection-and-heap-diffing-for-nodejs"></a>A node.js felderítését és a halommemória Diffing szivárgás lépett fel
-Használhat [csomópont-memwatch](https://github.com/lloyd/node-memwatch) segítségével azonosíthatja a memória-szivárgást.
-Hasonlóan v8-Profilkészítő memwatch telepítheti, és szerkesztheti a kódot a rögzítési és a különbözeti azonosítására, a memória halommemóriákban-szivárgást az alkalmazásban.
+Használhat [csomópont-memwatch](https://github.com/lloyd/node-memwatch) toohelp azonosíthatja a memória-szivárgást.
+Az alkalmazás telepítése memwatch hasonlóan v8-Profilkészítő és a kód toocapture és a különbözeti halommemória tooidentify hello memóriavesztések szerkesztése.
 
 ### <a name="my-nodeexes-are-getting-killed-randomly"></a>A node.exe vannak első véletlenszerűen leállítása
 Néhány oka miért Ez történhet:
 
-1. Az alkalmazás szűrész nem kezelt kivételek – kérjük ellenőrzés d:\\otthoni\\naplófájlok\\alkalmazás\\a kivétel lépett fel a részletes naplózás-errors.txt fájlt. Ez a fájl rendelkezik a Veremkivonat, így ezt úgy javíthatja ki az alkalmazás ennek alapján.
-2. Az alkalmazás által felhasznált túl sok memóriát, amely érinti a bevezetés más folyamatokkal. Ha az összes virtuális gép memória megközelíti a 100 %-os, a node.exe a folyamat-kezelő ahhoz, hogy más folyamatok néhány munkájuk is sikertelen lehet leállítani. A javítás érdekében győződjön meg arról, hogy az alkalmazás nem memóriaszivárgást, vagy ha alkalmazás valóban nagy mennyiségű memória használatára van szüksége, adjon vertikális felskálázás sokkal több RAM memóriával rendelkező egy nagyobb virtuális géphez.
+1. Az alkalmazás szűrész nem kezelt kivételek – kérjük ellenőrzés d:\\otthoni\\naplófájlok\\alkalmazás\\hello kivétel lépett fel az hello részletes naplózás-errors.txt fájlt. Ez a fájl rendelkezik hello Veremkivonat, így ezt úgy javíthatja ki az alkalmazás ennek alapján.
+2. Az alkalmazás által felhasznált túl sok memóriát, amely érinti a bevezetés más folyamatokkal. Ha hello összes virtuális gép memória Bezárás too100 %, a node.exe megállítása sikerült által hello folyamat manager toolet más folyamatok végezheti egy alkalommal toodo néhány. toofix, vagy győződjön meg arról, hogy az alkalmazás nem memóriaszivárgást, vagy ha akkor alkalmazás valóban toouse nagy mennyiségű memóriát igényel, adjon vertikális felskálázás tooa sokkal több RAM Memóriát a nagyobb méretű.
 
 ### <a name="my-node-application-does-not-start"></a>A csomópont alkalmazás nem indul el
 Az alkalmazás indításkor 500 hibát ad vissza, ha néhány oka lehet:
 
-1. NODE.exe nincs jelen a megfelelő helyen. Jelölje be nodeProcessCommandLine beállítást.
-2. Fő parancsfájl verziója nem található megfelelő helyére. Ellenőrizze a Web.config fájlban, és győződjön meg arról, hogy a kezelők szakaszában a fő parancsfájl neve megegyezik a fő parancsfájlt.
-3. Web.config konfigurációra nincs megfelelő – ellenőrizze a beállításokat neveket és-értékek.
-4. Hidegindítás – az alkalmazás túl sokáig tart el. Ha az alkalmazás tovább tart, mint (maxNamedPipeConnectionRetry \* namedPipeConnectionRetryDelay) / 1000 másodperc, az iisnode 500 hibát ad vissza. Ezeket a beállításokat, az alkalmazás kezdete időtúllépés törlését és az 500 hiba az iisnode megelőzése érdekében kereséséhez értékek növelése.
+1. NODE.exe nincs jelen hello megfelelő helyen. Jelölje be nodeProcessCommandLine beállítást.
+2. Fő parancsfájl nincs jelen hello megfelelő helyen. Ellenőrizze a Web.config fájlban, és győződjön meg arról, hogy hello fő parancsfájl hello nevét hello kezelők szakasz egyezések hello fő parancsfájlba.
+3. Web.config konfigurációra nincs megfelelő – hello beállítások neveket és-értékek ellenőrzése.
+4. Hidegindítás – az alkalmazás toostartup túl sokáig tart. Ha az alkalmazás tovább tart, mint (maxNamedPipeConnectionRetry \* namedPipeConnectionRetryDelay) / 1000 másodperc, az iisnode 500 hibát ad vissza. Ezek az alkalmazás idő tooprevent iisnode indítása az időtúllépés miatt, és vissza hello 500-as hiba beállítások toomatch hello értékének növelése.
 
 ### <a name="my-node-application-crashed"></a>A csomópont alkalmazás összeomlott
-Az alkalmazás szűrész nem kezelt kivételek – kérjük ellenőrzés d:\\otthoni\\naplófájlok\\alkalmazás\\a kivétel lépett fel a részletes naplózás-errors.txt fájlt. Ez a fájl rendelkezik a Veremkivonat, így ezt úgy javíthatja ki az alkalmazás ennek alapján.
+Az alkalmazás szűrész nem kezelt kivételek – kérjük ellenőrzés d:\\otthoni\\naplófájlok\\alkalmazás\\hello kivétel lépett fel az hello részletes naplózás-errors.txt fájlt. Ez a fájl rendelkezik hello Veremkivonat, így ezt úgy javíthatja ki az alkalmazás ennek alapján.
 
-### <a name="my-node-application-takes-too-much-time-to-startup-cold-start"></a>A csomópont alkalmazás túl sok időt vesz igénybe el (Cold indítás)
-Ennek leggyakoribb oka az, hogy az alkalmazás rendelkezik-e nagy mennyiségű csomópontjában fájlok\_modulok és az alkalmazás megkísérli betölteni ezeket a fájlokat a legtöbb indításakor. Alapértelmezés szerint a fájlok találhatók, a hálózati megosztáson lévő Azure webalkalmazás, mivel betöltése sok fájlok némi időbe telhet.
-Néhány megoldások gyorsabb legyen ez a következők:
+### <a name="my-node-application-takes-too-much-time-toostartup-cold-start"></a>A csomópont-alkalmazás tart túl sok idő toostartup (Cold indítás)
+Ennek leggyakoribb oka az, hogy rendelkezik-e nagy mennyiségű hello csomópontban fájlok hello alkalmazás\_modulok és hello alkalmazás záma tooload nagy része a rendszerindítás során ezeket a fájlokat. Alapértelmezés szerint a fájlok találhatók hello hálózati megosztáson lévő Azure webalkalmazás, mivel betöltése sok fájlok némi időbe telhet.
+Néhány megoldások toomake Ez gyorsabb a következők:
 
-1. Ellenőrizze, hogy az egyszerű függőségi struktúra és a nem ismétlődő függőség npm3 használatával telepítse a modulokat.
-2. Lusta változtassa meg a csomópont betöltése\_modulok, és nem indításkor modulok mindegyikének történik. Ez azt jelenti, hogy require('module') hívása ténylegesen szükség esetén próbálja használni a modul a függvényen belülről kell elvégezni.
-3. Az Azure webalkalmazás kínál a helyi gyorsítótár nevezett szolgáltatással. Ez a szolgáltatás másolja át a tartalmat a hálózati megosztáshoz a helyi lemez a virtuális Gépen. Mivel a fájlok helyi, a betöltési idő csomópont\_modulok sokkal gyorsabb. -A [dokumentáció](../app-service/app-service-local-cache.md) használatát a helyi gyorsítótár részletesebben ismerteti.
+1. Ellenőrizze, hogy az egyszerű függőségi struktúra és a nem ismétlődő függőség npm3 tooinstall a modulok használatával.
+2. Próbálja toolazy betöltése a csomópont\_modulok, és nem indításkor hello modulok mindegyikének történik. Ez azt jelenti, hogy hello hívás toorequire('module') kell hajtható végre, ha ténylegesen szükséges hello függvényen belül toouse hello modul meg.
+3. Az Azure webalkalmazás kínál a helyi gyorsítótár nevezett szolgáltatással. Ez a funkció a tartalom hello hálózati megosztás toohello helyi lemez a virtuális gép hello másolja át. Mivel hello fájlok helyi, hello betöltési ideje csomópont\_modulok sokkal gyorsabb. -A [dokumentáció](../app-service/app-service-local-cache.md) azt ismerteti, hogyan toouse a helyi gyorsítótár több részletesen.
 
 ## <a name="iisnode-http-status-and-substatus"></a>Az IISNODE http-állapot és részállapot
-Ez [forrásfájl](https://github.com/Azure/iisnode/blob/master/src/iisnode/cnodeconstants.h) felsorolja az összes hiba esetén a lehetséges állapota/részállapot kombinációja iisnode lépjen vissza.
+Ez [forrásfájl](https://github.com/Azure/iisnode/blob/master/src/iisnode/cnodeconstants.h) hiba esetén lépjen vissza az összes hello lehetséges állapota/részállapot kombinációja iisnode listája.
 
-A win32 hibakód megtekintéséhez az alkalmazás FREB engedélyezése (Ellenőrizze, hogy csak a nem éles helyeken a teljesítményre vonatkozó megfontolásból FREB engedélyezi).
+Az alkalmazás toosee hello win32 hibakód FREB engedélyezése (Ellenőrizze, hogy csak a nem éles helyeken a teljesítményre vonatkozó megfontolásból FREB engedélyezi).
 
 | HTTP-állapot | HTTP-SubStatus | Lehetséges ok? |
 | --- | --- | --- |
-| 500 |1000 |Hiba történt az egyes IISNODE kérelem terjesztéséhez probléma – ellenőrizze, hogy node.exe indult-e. Indításkor node.exe sikerült összeomlott. Ellenőrizze a web.config konfigurációs hibák. |
-| 500 |1001 |-Win32Error 0x2 - alkalmazás az URL-cím nem válaszol. Ellenőrizze az URL-cím átdolgozás szabályok, vagy hogy rendelkezik-e a helyes definiált útvonalak az express alkalmazást. -Win32Error 0x6d – nevesített cső elfoglalva, – Node.exe nem fogad el kérelmeket, mert a cső elfoglalva. Ellenőrizze a nagy cpu-használat. -Más hibák – ellenőrizze, hogy ha node.exe összeomlott. |
+| 500 |1000 |Hiba történt az egyes hello kérelem tooIISNODE terjesztéséhez probléma – ellenőrizze, hogy node.exe indult-e. Indításkor node.exe sikerült összeomlott. Ellenőrizze a web.config konfigurációs hibák. |
+| 500 |1001 |-Win32Error 0x2 - alkalmazás toohello URL-cím nem válaszol. Jelölőnégyzet URL-újraíró, szabályok, vagy ha az express alkalmazást rendelkezik-e definiálva hello helyes útvonalak. -Win32Error 0x6d – nevesített cső elfoglalva, – Node.exe nem fogad el kérelmek mert hello cső foglalt. Ellenőrizze a nagy cpu-használat. -Más hibák – ellenőrizze, hogy ha node.exe összeomlott. |
 | 500 |1002 |NODE.exe összeomlott – d: Ellenőrizze\\otthoni\\naplófájlok\\naplózási-errors.txt Veremkivonat a. |
-| 500 |1003 |Konfigurációs probléma pipe – soha nem kell megjelennie a, de ha így tesz, a nevesített cső konfigurációja nem megfelelő. |
-| 500 |1004-1018 |Néhány hiba történt a kérelem küldésekor, vagy node.exe és a válasz feldolgozását. Ellenőrizze, hogy node.exe összeomlott. Ellenőrizze a d:\\otthoni\\naplófájlok\\naplózási-errors.txt Veremkivonat a. |
-| 503 |1000 |Foglaljon le több nevesített cső kapcsolat nem elegendő memória. Ellenőrizze, hogy miért az alkalmazás nem használ a sok memóriát. Ellenőrizze a maxConcurrentRequestsPerProcess beállítás értékét. Ha nem végtelen, és nagy mennyiségű kérést rendelkezik, a hiba az érték növelése. |
-| 503 |1001 |Kérelem nem sikerült node.exe továbbítani, mert az alkalmazás újrahasznosítása van. Miután az alkalmazás rendelkezik felhasználását, kérelmek általában fel kell dolgozni. |
-| 503 |1002 |Nem sikerült továbbítani a jelölőnégyzet win32 hibakód tényleges okból – kérelem egy node.exe számára. |
+| 500 |1003 |Az adatcsatorna konfigurációs probléma – soha nem kell megjelennie a, de ha így tesz, hello nevű pipe-konfiguráció nem megfelelő. |
+| 500 |1004-1018 |Néhány hiba történt hello kérelem vagy feldolgozási hello válasz belőle node.exe küldése során. Ellenőrizze, hogy node.exe összeomlott. Ellenőrizze a d:\\otthoni\\naplófájlok\\naplózási-errors.txt Veremkivonat a. |
+| 503 |1000 |Nincs elég memória tooallocate több nevű cső kapcsolat. Ellenőrizze, hogy miért az alkalmazás nem használ a sok memóriát. Ellenőrizze a maxConcurrentRequestsPerProcess beállítás értékét. Ha nem végtelen, és rendelkezik a nagy mennyiségű kérést, növelje a érték tooprevent ezt a hibát. |
+| 503 |1001 |Kérelem nem sikerült elküldött toonode.exe, mert hello alkalmazás újrahasznosítása van. Miután hello alkalmazás rendelkezik felhasználását, kérelmek szokásos módon fel kell dolgozni. |
+| 503 |1002 |Jelölőnégyzet win32 hibakód tényleges okból – kérést nem lehetett elküldött tooa node.exe. |
 | 503 |1003 |Nevesített cső jelenleg túl elfoglalt – ellenőrizze, hogy ha a csomópont nem használ-e nagy mennyiségű Processzor |
 
-Egy beállítás belül nevű csomópont NODE.exe\_FÜGGŐBEN\_CSŐ\_példányok. Azure webalkalmazás kívül alapértelmezés szerint ez az érték 4. Ez azt jelenti, hogy node.exe 4 kérés törléshez a nevesített csövön egyszerre. Az Azure-webalkalmazás Ez az érték 5000 van beállítva, és ennek az értéknek kell lennie elég jó azure webalkalmazás futó legtöbb csomópont alkalmazásokhoz. Nem megjelenik 503.1003 azure webalkalmazás mert nagy érték van a csomópont\_FÜGGŐBEN\_CSŐ\_példányok.  |
+Egy beállítás belül nevű csomópont NODE.exe\_FÜGGŐBEN\_CSŐ\_példányok. Azure webalkalmazás kívül alapértelmezés szerint ez az érték 4. Ez azt jelenti, hogy node.exe 4 kérés törléshez a nevesített cső hello egyszerre. Az Azure-webalkalmazás az alapérték too5000, és ez az érték elég jó azure webalkalmazás futó legtöbb csomópont alkalmazások kell lennie. Nem megjelenik 503.1003 azure webalkalmazás mert hello csomópont a magas értéket kell\_FÜGGŐBEN\_CSŐ\_példányok.  |
 
 ## <a name="more-resources"></a>További erőforrások
-Az alábbi hivatkozásokból tudhat meg többet az Azure App Service a node.js-alkalmazások.
+Kövesse a további információk a node.js-alkalmazások hivatkozások toolearn Azure App Service.
 
 * [Ismerkedés a Node.js webalkalmazásokkal az Azure App Service-ben](app-service-web-get-started-nodejs.md)
-* [A Node.js webalkalmazás hibakeresése az Azure App Service-ben](web-sites-nodejs-debug.md)
+* [Hogyan toodebug egy Node.js webalkalmazás az Azure App Service-ben](web-sites-nodejs-debug.md)
 * [A Node.js modulok használata az Azure alkalmazásokkal](../nodejs-use-node-modules-azure-apps.md)
 * [Azure App Service Web Apps: Node.js](https://blogs.msdn.microsoft.com/silverlining/2012/06/14/windows-azure-websites-node-js/)
 * [Node.js fejlesztői központ](../nodejs-use-node-modules-azure-apps.md)
-* [A Szupertitkos Kudu hibakereső konzol felfedezése](https://azure.microsoft.com/documentation/videos/super-secret-kudu-debug-console-for-azure-web-sites/)
+* [Hello Super titkos Kudu hibakereső konzol felfedezése](https://azure.microsoft.com/documentation/videos/super-secret-kudu-debug-console-for-azure-web-sites/)
 

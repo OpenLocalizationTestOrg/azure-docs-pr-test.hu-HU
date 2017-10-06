@@ -1,6 +1,6 @@
 ---
 title: "Active Directory Domain Services: Az Active Directory Domain Services engedélyezése | Microsoft Docs"
-description: "Az Azure Active Directory Domain Services engedélyezése a klasszikus Azure portál használatával"
+description: "Engedélyezze az Azure Active Directory tartományi szolgáltatások hello klasszikus Azure portál használatával"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,84 +14,84 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 06/28/2017
 ms.author: maheshu
-ms.openlocfilehash: ed72325ca9db99405c6173eb882a92f80cd77f47
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6263eb1849808a7c85e572e1046bc9039362dd9f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-azure-active-directory-domain-services-using-the-azure-classic-portal"></a>Az Azure Active Directory Domain Services engedélyezése a klasszikus Azure portál használatával
+# <a name="enable-azure-active-directory-domain-services-using-hello-azure-classic-portal"></a>Engedélyezze az Azure Active Directory tartományi szolgáltatások hello klasszikus Azure portál használatával
 
 ## <a name="task-3-enable-azure-active-directory-domain-services"></a>3. feladat: Az Azure Active Directory Domain Services engedélyezése
-Ennek a feladatnak a keretében engedélyezi az Azure Active Directory Domain Servicest (Azure AD DS) a címtár számára a következő lépések végrehajtásával:
+Ebben a feladatban engedélyezi Azure Active Directory tartományi szolgáltatások (az Azure AD DS) a címtáron a hello lépések végrehajtásával:
 
-1. Nyissa meg a [klasszikus Azure portált](https://manage.windowsazure.com).
-2. A bal oldali panelen válassza az **Active Directory** gombot.
-3. Válassza ki az Azure Active Directory (Azure AD) bérlőt (címtárat), amelyiken engedélyezni kívánja az Azure AD DS szolgáltatásokat.
+1. Nyissa meg toohello [a klasszikus Azure portálon](https://manage.windowsazure.com).
+2. Hello bal oldali ablaktáblában jelöljön ki hello **Active Directory** gombra.
+3. Válassza ki a kívánt Azure Active Directory tartományi szolgáltatások tooenable Azure Active Directory (Azure AD) hello bérlőt (címtárat).
 
     ![Azure AD címtár kiválasztása](./media/active-directory-domain-services-getting-started/select-aad-directory.png)
-4. Az **előzetes verzió** címtár oldalán kattintson a **Konfigurálás** lapra.
+4. A hello **preview directory** hello kattintson **konfigurálása** fülre.
 
     ![Címtár lapjának konfigurálása](./media/active-directory-domain-services-getting-started/configure-tab.png)
-5. A **tartományi szolgáltatások** alatt váltsa át a **Tartományi szolgáltatások engedélyezése a címtáron** beállítást **Igen** értékre.  
-    További Active Directory Domain Services konfigurációs beállítások jelennek meg az oldalon.
+5. A **tartományi szolgáltatások**, hello módosítása **engedélyezése tartományi szolgáltatásokat a címtárhoz** beállítás túl**Igen**.  
+    További Azure Active Directory tartományi szolgáltatások konfigurációs beállítások hello oldalon jelennek meg.
 
     ![Tartományi szolgáltatások engedélyezése](./media/active-directory-domain-services-getting-started/enable-domain-services.png)
 
    > [!NOTE]
-   > Amikor engedélyezi az Active Directory Domain Servicest a bérlő számára, az Azure AD létrehozza és tárolja a felhasználók hitelesítéséhez szükséges Kerberos és NTLM hitelesítő adatok kivonatait.
+   > Ha engedélyezi az Azure Active Directory tartományi szolgáltatások a bérlő számára, az Azure AD hoz létre, és hello Kerberos és NTLM hitelesítő adatok kivonatait felhasználók hitelesítéséhez szükséges tárolja.
    >
    >
-6. Adja meg a **tartományi szolgáltatások DNS-tartománynevét**.
+6. Adja meg a hello **DNS-tartománynevet a tartományi szolgáltatások**.
 
-   * Alapértelmezés szerint a címtár alapértelmezett tartományneve (azaz az **.onmicrosoft.com** utótaggal végződő) lesz kiválasztva.
+   * hello hello címtár alapértelmezett tartományneve (az egy **. onmicrosoft.com** utótag) alapértelmezés szerint engedélyezett.
 
-   * A lista tartalmazza az Azure AD címtárhoz konfigurált összes tartományt, beleértve az ellenőrzött és a nem ellenőrzött tartományokat egyaránt, amelyeket a **Tartományok** lapon konfigurált.
+   * hello lista tartalmazza az Azure AD címtárhoz konfigurált összes tartomány, többek között, mindkét ellenőrzése és a nem ellenőrzött tartományok hello konfigurált **tartományok** fülre.
 
-   * Egy egyéni tartománynevet is megadhat. Ebben a példában az egyéni tartománynév a *contoso100.com*.
+   * Egy egyéni tartománynevet is megadhat. Ebben a példában hello egyéni tartománynév megadása *contoso100.com*.
 
      > [!WARNING]
-     > A megadott tartománynév előtagja (a *contoso100.com* tartománynévben például a *contoso100* tag) legfeljebb 15 karaktert tartalmazhat. Nem hozhat létre olyan Active Directory Domain Services tartományt, amelynek az előtagja 15 karakternél többet tartalmaz.
+     > a megadott tartománynév előtagja hello (például *contoso100* a hello *contoso100.com* tartománynevet) kell tartalmaznia a 15 karaktert. Nem hozhat létre olyan Active Directory Domain Services tartományt, amelynek az előtagja 15 karakternél többet tartalmaz.
      >
      >
-7. Ellenőrizze, hogy a felügyelt tartomány számára választott DNS-tartománynév még nem létezik a virtuális hálózatban. A következőket ellenőrizze:
+7. Győződjön meg arról, hogy hello DNS-tartománynevet választott hello felügyelt tartomány már nem létezik hello virtuális hálózatban. Pontosabban ellenőrizze hogy toosee:
 
-   * Már létezik-e tartomány ugyanezzel a DNS-tartománynévvel a virtuális hálózaton.
+   * Már létezik hello tartomány hello virtuális hálózaton azonos DNS-tartománynevet.
 
-   * A kiválasztott virtuális hálózat rendelkezik-e VPN-kapcsolattal a helyszíni hálózattal, és hogy már létezik-e tartomány ugyanezzel a DNS-tartománynévvel a helyi hálózaton.
+   * hello választott virtuális hálózathoz van a helyszíni hálózat VPN-kapcsolattal, és a tartomány hello rendelkezik a helyszíni hálózaton azonos DNS-tartománynevet.
 
-   * Létezik-e egy már meglévő felhőszolgáltatás ugyanezen a néven a virtuális hálózaton.
-8. Válasszon egy virtuális hálózatot, amelyen szeretné, ha az Active Directory Domain Services elérhető lenne. Válassza ki a létrehozott virtuális hálózatot és a kijelölt alhálózatot a **Tartományi szolgáltatások csatlakoztatása a virtuális hálózathoz** legördülő listában. Ügyeljen a következőkre is:
+   * Hello virtuális hálózaton van ilyen nevű létező felhőalapú szolgáltatást.
+8. Válasszon egy virtuális hálózatot kívánja Azure Active Directory tartományi szolgáltatások toobe érhető el. Válassza ki a hello virtuális hálózat és a dedikált alhálózati hello létrehozott **Connect tartományszolgáltatási toothis virtuális hálózati** legördülő listából. Is vegye figyelembe a következőket hello:
 
-   * Ellenőrizze, hogy a megadott virtuális hálózat az Active Directory Domain Services által támogatott Azure-régióba tartozik-e. Az Azure-régiók listájáért, ahol az Active Directory Domain Services elérhető, lásd: [Azure-szolgáltatások régiónként](https://azure.microsoft.com/regions/#services/).
+   * Győződjön meg arról, Ön által megadott hello virtuális hálózat tartozik tooan Azure-régió, Azure Active Directory tartományi szolgáltatások által támogatott. tooascertain hello Azure-régiók Azure Active Directory tartományi szolgáltatások esetén érhető el, lásd: [Azure-szolgáltatások régiónként](https://azure.microsoft.com/regions/#services/).
 
-   * Az Active Directory Domain Services által nem támogatott régiókba tartozó virtuális hálózatok nem jelennek meg a legördülő listában.
+   * Virtuális hálózatok tartozó tooa régió, ahol nem támogatott az Azure Active Directory tartományi szolgáltatások nem hello legördülő listában jelennek meg.
 
-   * Az Active Directory Domain Serviceshez a virtuális hálózaton belüli kijelölt alhálózatot használjon. *Ne* válassza az átjáró alhálózatot. Lásd: [hálózati szempontok](active-directory-ds-networking.md).
+   * Használjon egy dedikált alhálózati hello virtuális hálózaton belül az Azure Active Directory tartományi szolgáltatásokhoz. Tegye *nem* válasszon hello átjáró-alhálózatot. Lásd: [hálózati szempontok](active-directory-ds-networking.md).
 
-   * Az Azure Resource Manager használatával létrehozott virtuális hálózatok szintén nem jelennek meg a legördülő listában. A Resource Manager-alapú virtuális hálózatokat az Active Directory Domain Services jelenleg nem támogatja.
-9. Az Active Directory Domain Services engedélyezéséhez kattintson a **Mentés** gombra a feladatpanelen a lap alján.
-    * Amíg a rendszer engedélyezi az Active Directory Domain Servicest a címtáron, az oldal *Függőben* állapotot mutat.
+   * Hasonlóképpen Azure Resource Manager használatával létrehozott virtuális hálózatok nem hello legördülő listában jelennek meg. A Resource Manager-alapú virtuális hálózatokat az Active Directory Domain Services jelenleg nem támogatja.
+9. Azure Active Directory tartományi szolgáltatások, tooenable hello munkaablakban hello lapon hello alján kattintson **mentése**.
+    * Azure Active Directory tartományi szolgáltatások engedélyezése a címtáron van, közben hello lap mezőjében a *függőben lévő*.
 
         ![A Tartományi szolgáltatások engedélyezése ablak](./media/active-directory-domain-services-getting-started/enable-domain-services-pendingstate.png)
 
         > [!NOTE]
-        > Az Active Directory Domain Services biztosítja a felügyelt tartományok magas rendelkezésre állását. Miután engedélyezte az Active Directory Domain Servicest, az IP-címek, amelyeken a tartományi szolgáltatások a virtuális hálózaton elérhetők, egyenként jelennek meg. Az első után a második IP-cím is hamarosan megjelenik, amint a szolgáltatás engedélyezi a magas rendelkezésre állást a tartomány számára. Ha a magas rendelkezésre állás konfigurálva van és aktív a tartományon, két IP-címet kell látnia a **Configure** (Konfigurálás) lap **domain services** (tartományi szolgáltatások) szakaszában.
+        > Az Active Directory Domain Services biztosítja a felügyelt tartományok magas rendelkezésre állását. Miután engedélyezte az Azure Active Directory tartományi szolgáltatások, a tartományi szolgáltatások elérhetőek a virtuális hálózati hello hello IP-címek megjelenített egyszerre csak egy. hello második IP-cím jelenik meg hamarosan hello után először, amint hello szolgáltatás lehetővé teszi, hogy magas rendelkezésre állást a tartományra. Ha magas rendelkezésre állás konfigurálva van és aktív a tartományon, megjelenítheti a hello két IP-címek **tartományi szolgáltatások** hello szakasza **konfigurálása** fülre.
         >
         >
-    * Mintegy 20–30 perc múltán a **Konfigurálás** lap **IP-cím** mezőjében láthatja az első IP-címet, amelyen a tartományi szolgáltatások elérhetők a virtuális hálózaton.
+    * Too30 körülbelül 20 perc elteltével hello tartományi szolgáltatások érhetők el a virtuális hálózaton hello az első IP-cím **IP-cím** található hello **konfigurálása** lap.
 
         ![A Tartományi szolgáltatások ablak, rajta az első kiosztott IP-címmel](./media/active-directory-domain-services-getting-started/domain-services-enabled-firstdc-available.png)
-    * Ha a magas rendelkezésre állás működik a tartomány esetén, két IP-cím látható a lapon. A felügyelt tartomány a kiválasztott virtuális hálózaton ezen a két IP-címen érhető el.
+    * Ha magas rendelkezésre állás a tartomány működési, két IP-címek hello oldalon jelennek meg. A felügyelt tartomány a kiválasztott virtuális hálózaton ezen a két IP-címen érhető el.
 
-10. Jegyezze fel a két IP-címet a virtuális hálózat DNS-beállításainak frissítéséhez. Ez lehetővé teszi, hogy a virtuális hálózaton lévő virtuális gépek a tartományhoz kapcsolódhassanak a csatlakozás tartományhoz és hasonló műveletek céljából.
+10. Vegye figyelembe a hello két IP-címet, hogy a virtuális hálózat hello DNS-beállítások segítségével frissítheti. Így lehetővé teszi, hogy a virtuális gépek hello virtuális hálózati tooconnect toohello tartományban műveletek, például a tartományhoz való csatlakozást.
 
     ![A Tartományi szolgáltatások ablak, rajta a két kiosztott IP-címmel](./media/active-directory-domain-services-getting-started/domain-services-enabled-bothdcs-available.png)
 
 > [!NOTE]
-> Az Azure AD-bérlő méretétől (például a felhasználók vagy csoportok számától) függően a felügyelt tartományhoz való szinkronizálás eltarthat egy ideig. Ez a szinkronizálási folyamat a háttérben zajlik. A több tízezer objektumot tartalmazó nagy méretű bérlők esetében az összes felhasználó, csoporttagság és hitelesítő adat szinkronizálása egy vagy két napot is igénybe vehet.
+> Attól függően, hogy az Azure AD-bérlő (például hello száma felhasználókat és csoportokat) hello méretét a szinkronizálás tooyour által kezelt tartomány eltart egy ideig. Ez a szinkronizálási folyamat hello háttérben történik. Az objektumok tízezreit tartalmazó nagy bérlők egy vagy két összes felhasználó, csoporttagságot és hitelesítő adatok toobe szinkronizált napot is eltarthat.
 >
 >
 
 ## <a name="next-step"></a>Következő lépés
-[4. feladat: Az Azure virtuális hálózat DNS-beállításainak frissítése](active-directory-ds-getting-started-update-dns.md)
+[4. feladat: hello hello Azure-beli virtuális hálózat DNS-beállításainak frissítése](active-directory-ds-getting-started-update-dns.md)

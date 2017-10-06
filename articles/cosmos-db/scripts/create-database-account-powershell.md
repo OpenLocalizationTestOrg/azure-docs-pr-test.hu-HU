@@ -1,5 +1,5 @@
 ---
-title: "Az Azure PowerShell parancsfájl-Azure Cosmos DB DocumentDB API-fiók létrehozása |} Microsoft Docs"
+title: "PowerShell parancsfájl-Azure Cosmos DB DocumentDB API-fiók létrehozása aaaAzure |} Microsoft Docs"
 description: "Az Azure PowerShell-parancsfájl minta - Azure Cosmos DB DocumentDB API-fiók létrehozása"
 services: cosmos-db
 documentationcenter: cosmosdb
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: cosmosdb
 ms.workload: database
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: 9b54236ce3446fe1c6a2a30b31f6d91ad43a92d5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f0751faeca3c1de5906b675e736c58f3d5beaea9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-create-a-documentdb-api-account-using-powershell"></a>Az Azure Cosmos DB: PowerShell-lel DocumentDB API-fiók létrehozása
 
@@ -30,11 +30,11 @@ A PowerShell-parancsfájlpélda létrehoz egy Azure Cosmos DB API-fiókot.
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-powershell[fő](../../../powershell_scripts/cosmosdb/create-and-configure-database/create-and-configure-database.ps1?highlight=9,12-15,18,21-23,26-29,32-37 "Azure Cosmos DB-fiók létrehozása")]
+[!code-powershell[main](../../../powershell_scripts/cosmosdb/create-and-configure-database/create-and-configure-database.ps1?highlight=9,12-15,18,21-23,26-29,32-37 "Create an Azure Cosmos DB account")]
 
 ## <a name="clean-up-deployment"></a>Az üzemelő példány eltávolítása
 
-A parancsfájl-minta futtatása után a következő parancs segítségével távolítsa el az erőforráscsoportot és a vele társított összes erőforrást.
+Hello parancsfájl minta futtatása után a következő parancs hello lehet használt tooremove hello erőforráscsoport és a vele társított összes erőforrást.
 
 ```powershell
 Remove-AzureRmResourceGroup -ResourceGroupName "myResourceGroup"
@@ -42,7 +42,7 @@ Remove-AzureRmResourceGroup -ResourceGroupName "myResourceGroup"
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok hello. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
@@ -53,6 +53,6 @@ A parancsfájl a következő parancsokat. Minden egyes parancsa a tábla-parancs
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az Azure PowerShell további információkért lásd: [Azure PowerShell dokumentációs](https://docs.microsoft.com/powershell/).
+Az Azure PowerShell hello további információkért lásd: [Azure PowerShell dokumentációs](https://docs.microsoft.com/powershell/).
 
-További Azure Cosmos DB PowerShell-parancsfájl példák találhatók a [Azure Cosmos DB PowerShell-parancsfájlok](../powershell-samples.md).
+További Azure Cosmos DB PowerShell-parancsfájl példák találhatók hello [Azure Cosmos DB PowerShell-parancsfájlok](../powershell-samples.md).
