@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directory Domain Services dokumentációja – oktatóanyagok | Microsoft Docs"
-description: "Ismerje meg, hogy az Active Directory Domain Services hogyan használható az Azure virtuális gépek tartományhoz csatlakoztatására tartományvezérlő nélkül, és hogyan kezelhetők csoportházirendekkel."
+title: "aaaAzure Active Directory tartományi szolgáltatások dokumentációja – oktatóanyag |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse Active Directory tartományi szolgáltatások toojoin Azure virtuális gépek tartományvezérlők használata nélkül tooa tartományhoz, és kezelheti azokat a csoportházirendek."
 services: active-directory-ds
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 9654ec8791de56c33e4973e8ba20ef6e52780955
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5f1dcc57d92e1e950662c1f0cc1d00252e2fab50
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="active-directory-domain-services-documentation"></a>Active Directory Domain Services – dokumentáció
 
-Ismerje meg, hogy az Active Directory Domain Services hogyan használható az Azure virtuális gépek tartományhoz csatlakoztatására tartományvezérlő nélkül. Az oktatóanyagok és egyéb dokumentációk bemutatják a virtuális gépek csoportházirendekkel végzett kezelését.
+Ismerje meg, hogyan toouse Active Directory tartományi szolgáltatások toojoin Azure virtuális gépek tartományvezérlők használata nélkül tooa tartomány. Oktatóanyagok és egyéb dokumentációt, megtudhatja, hogyan használó virtuális gépek toomanage csoportosítani házirendek.
 
 <ul class="panelContent cardsFTitle">
     <li>

@@ -1,6 +1,6 @@
 ---
-title: "Biztonságos ügyfél API-k az API Management - Azure API Management tanúsítványhitelesítés |} Microsoft Docs"
-description: "Megtudhatja, hogyan biztosíthat biztonságos hozzáférést a az ügyféltanúsítványok API-k"
+title: "API-k aaaSecure ügyféltanúsítvány-alapú hitelesítés használata az API Management - Azure API Management |} Microsoft Docs"
+description: "Ismerje meg, hogyan férhetnek hozzá a toosecure az ügyféltanúsítványok tooAPIs"
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -13,21 +13,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/01/2017
 ms.author: apimpm
-ms.openlocfilehash: d3d51d0575a6d2dacced931601d48eb1e51a4051
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6ff78bda3d429829da79d0dc4d652f19669cc919
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-secure-apis-using-client-certificate-authentication-in-api-management"></a><span data-ttu-id="103e1-103">Az API Management tanúsítványhitelesítés biztonságossá tétele a ügyfél API-k</span><span class="sxs-lookup"><span data-stu-id="103e1-103">How to secure APIs using client certificate authentication in API Management</span></span>
+# <a name="how-toosecure-apis-using-client-certificate-authentication-in-api-management"></a><span data-ttu-id="5365d-103">Hogyan toosecure ügyfél API-k Tanúsítványalapú hitelesítés az API Management</span><span class="sxs-lookup"><span data-stu-id="5365d-103">How toosecure APIs using client certificate authentication in API Management</span></span>
 
-<span data-ttu-id="103e1-104">API-kezelés lehetővé teszi a biztonságos hozzáférés a API-k (azaz ügyfél API-kezelés) ügyfél-tanúsítványok használatával.</span><span class="sxs-lookup"><span data-stu-id="103e1-104">API Management provides the capability to secure access to APIs (i.e., client to API Management) using client certificates.</span></span> <span data-ttu-id="103e1-105">Jelenleg ellenőrizheti a kívánt értékkel ügyféltanúsítvány ujjlenyomata.</span><span class="sxs-lookup"><span data-stu-id="103e1-105">Currently, you can check the thumbprint of a client certificate against a desired value.</span></span> <span data-ttu-id="103e1-106">Ellenőrizheti az ujjlenyomatot, az API Management feltöltött meglévő tanúsítványokkal szemben.</span><span class="sxs-lookup"><span data-stu-id="103e1-106">You can also check the thumbprint against existing certificates uploaded to API Management.</span></span>  
+<span data-ttu-id="5365d-104">API-kezelési hello funkció toosecure hozzáférési tooAPIs (azaz ügyfél tooAPI felügyeleti) biztosítja az ügyféltanúsítványok.</span><span class="sxs-lookup"><span data-stu-id="5365d-104">API Management provides hello capability toosecure access tooAPIs (i.e., client tooAPI Management) using client certificates.</span></span> <span data-ttu-id="5365d-105">Jelenleg a kívánt értékkel ügyféltanúsítvány ujjlenyomata hello ellenőrizheti.</span><span class="sxs-lookup"><span data-stu-id="5365d-105">Currently, you can check hello thumbprint of a client certificate against a desired value.</span></span> <span data-ttu-id="5365d-106">Meglévő tanúsítványokkal szemben hello ujjlenyomat feltöltött tooAPI felügyeleti is ellenőrizheti.</span><span class="sxs-lookup"><span data-stu-id="5365d-106">You can also check hello thumbprint against existing certificates uploaded tooAPI Management.</span></span>  
 
-<span data-ttu-id="103e1-107">További információ a háttér-szolgáltatás, az API-k (azaz API Management háttér-) ügyfél-tanúsítványok használatával biztonságossá tétele: [Tanúsítványalapú hitelesítés biztonságossá tétele a háttér-szolgáltatásaihoz ügyfél használatával](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)</span><span class="sxs-lookup"><span data-stu-id="103e1-107">For information about securing access to the back-end service of an API using client certificates (i.e., API Management to back-end), see [How to secure back-end services using client certificate authentication](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)</span></span>
+<span data-ttu-id="5365d-107">További információ a hozzáférési toohello háttér-szolgáltatás, az API-k az ügyféltanúsítványok (azaz az API Management tooback közötti) biztonságossá tétele: [hogyan toosecure háttér-szolgáltatásaihoz ügyfélprogrammal Tanúsítványalapú hitelesítés](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)</span><span class="sxs-lookup"><span data-stu-id="5365d-107">For information about securing access toohello back-end service of an API using client certificates (i.e., API Management tooback-end), see [How toosecure back-end services using client certificate authentication](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)</span></span>
 
-## <a name="checking-the-expiration-date"></a><span data-ttu-id="103e1-108">A lejárati dátum ellenőrzése</span><span class="sxs-lookup"><span data-stu-id="103e1-108">Checking the expiration date</span></span>
+## <a name="checking-hello-expiration-date"></a><span data-ttu-id="5365d-108">Ellenőrzési hello lejárati dátuma</span><span class="sxs-lookup"><span data-stu-id="5365d-108">Checking hello expiration date</span></span>
 
-<span data-ttu-id="103e1-109">Alább házirendek beállítható úgy, hogy ellenőrizze, hogy ha a tanúsítvány lejárt-e:</span><span class="sxs-lookup"><span data-stu-id="103e1-109">Below policies can be configured to check if the certificate is expired:</span></span>
+<span data-ttu-id="5365d-109">Alább házirendeket lehet konfigurált toocheck Ha hello tanúsítvány lejárt:</span><span class="sxs-lookup"><span data-stu-id="5365d-109">Below policies can be configured toocheck if hello certificate is expired:</span></span>
 
 ```
 <choose>
@@ -39,9 +39,9 @@ ms.lasthandoff: 07/11/2017
 </choose>
 ```
 
-## <a name="checking-the-issuer-and-subject"></a><span data-ttu-id="103e1-110">A kibocsátó és tulajdonos ellenőrzése</span><span class="sxs-lookup"><span data-stu-id="103e1-110">Checking the issuer and subject</span></span>
+## <a name="checking-hello-issuer-and-subject"></a><span data-ttu-id="5365d-110">Hello kibocsátó és tulajdonos ellenőrzése</span><span class="sxs-lookup"><span data-stu-id="5365d-110">Checking hello issuer and subject</span></span>
 
-<span data-ttu-id="103e1-111">Alább házirendek beállítható úgy, hogy ellenőrizze a kibocsátó és egy ügyfél-tanúsítvány tulajdonosának:</span><span class="sxs-lookup"><span data-stu-id="103e1-111">Below policies can be configured to check the issuer and subject of a client certificate:</span></span>
+<span data-ttu-id="5365d-111">Alább házirendeket lehet konfigurált toocheck hello kibocsátó és egy ügyfél-tanúsítvány tulajdonosának:</span><span class="sxs-lookup"><span data-stu-id="5365d-111">Below policies can be configured toocheck hello issuer and subject of a client certificate:</span></span>
 
 ```
 <choose>
@@ -53,9 +53,9 @@ ms.lasthandoff: 07/11/2017
 </choose>
 ```
 
-## <a name="checking-the-thumbprint"></a><span data-ttu-id="103e1-112">Az ujjlenyomat ellenőrzése</span><span class="sxs-lookup"><span data-stu-id="103e1-112">Checking the thumbprint</span></span>
+## <a name="checking-hello-thumbprint"></a><span data-ttu-id="5365d-112">Hello ujjlenyomat ellenőrzése</span><span class="sxs-lookup"><span data-stu-id="5365d-112">Checking hello thumbprint</span></span>
 
-<span data-ttu-id="103e1-113">Alább házirendek beállítható úgy, hogy ellenőrizze az ügyféltanúsítvány ujjlenyomata:</span><span class="sxs-lookup"><span data-stu-id="103e1-113">Below policies can be configured to check the thumbprint of a client certificate:</span></span>
+<span data-ttu-id="5365d-113">Alább házirendeket lehet konfigurált toocheck hello ügyféltanúsítvány ujjlenyomata:</span><span class="sxs-lookup"><span data-stu-id="5365d-113">Below policies can be configured toocheck hello thumbprint of a client certificate:</span></span>
 
 ```
 <choose>
@@ -67,9 +67,9 @@ ms.lasthandoff: 07/11/2017
 </choose>
 ```
 
-## <a name="checking-a-thumbprint-against-certificates-uploaded-to-api-management"></a><span data-ttu-id="103e1-114">A tanúsítványokkal szemben ujjlenyomat ellenőrzése fel van töltve az API Management</span><span class="sxs-lookup"><span data-stu-id="103e1-114">Checking a thumbprint against certificates uploaded to API Management</span></span>
+## <a name="checking-a-thumbprint-against-certificates-uploaded-tooapi-management"></a><span data-ttu-id="5365d-114">A tanúsítványokkal szemben ujjlenyomat ellenőrzése feltöltött tooAPI felügyeleti</span><span class="sxs-lookup"><span data-stu-id="5365d-114">Checking a thumbprint against certificates uploaded tooAPI Management</span></span>
 
-<span data-ttu-id="103e1-115">A következő példa bemutatja, hogyan API Management feltöltött tanúsítványokkal szemben ügyféltanúsítvány ujjlenyomata kereséséhez:</span><span class="sxs-lookup"><span data-stu-id="103e1-115">The following example shows how to check the thumbprint of a client certificate against certificates uploaded to API Management:</span></span> 
+<span data-ttu-id="5365d-115">hello következő példa bemutatja, hogyan toocheck hello tanúsítványokkal szemben ügyféltanúsítvány ujjlenyomata feltöltött tooAPI felügyeleti:</span><span class="sxs-lookup"><span data-stu-id="5365d-115">hello following example shows how toocheck hello thumbprint of a client certificate against certificates uploaded tooAPI Management:</span></span> 
 
 ```
 <choose>
@@ -82,8 +82,8 @@ ms.lasthandoff: 07/11/2017
 
 ```
 
-## <a name="next-step"></a><span data-ttu-id="103e1-116">Következő lépés</span><span class="sxs-lookup"><span data-stu-id="103e1-116">Next step</span></span>
+## <a name="next-step"></a><span data-ttu-id="5365d-116">Következő lépés</span><span class="sxs-lookup"><span data-stu-id="5365d-116">Next step</span></span>
 
-*  [<span data-ttu-id="103e1-117">Tanúsítványalapú hitelesítés biztonságossá tétele a háttér-szolgáltatásaihoz ügyfél használatával</span><span class="sxs-lookup"><span data-stu-id="103e1-117">How to secure back-end services using client certificate authentication</span></span>](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)
-*  [<span data-ttu-id="103e1-118">Tanúsítványok feltöltéséről</span><span class="sxs-lookup"><span data-stu-id="103e1-118">How to upload certificates</span></span>](https://docs.microsoft.com/azure/api-management/api-management-howto-mutual-certificates#a-namestep1-aupload-a-client-certificate)
+*  [<span data-ttu-id="5365d-117">Hogyan toosecure háttér-szolgáltatásaihoz ügyfélprogrammal Tanúsítványalapú hitelesítés</span><span class="sxs-lookup"><span data-stu-id="5365d-117">How toosecure back-end services using client certificate authentication</span></span>](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)
+*  [<span data-ttu-id="5365d-118">Hogyan tooupload tanúsítványok</span><span class="sxs-lookup"><span data-stu-id="5365d-118">How tooupload certificates</span></span>](https://docs.microsoft.com/azure/api-management/api-management-howto-mutual-certificates#a-namestep1-aupload-a-client-certificate)
 

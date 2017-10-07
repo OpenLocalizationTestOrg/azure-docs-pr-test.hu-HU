@@ -1,6 +1,6 @@
 ---
-title: "Az Azure CosmosDB Graph API a .NET SDK & erőforrások |} Microsoft Docs"
-description: "Tudnivalók az Azure CosmosDB Graph API, beleértve a kiadási dátum, a használatból való kivonást dátumot és az egyes verziók között végrehajtott módosításokat."
+title: "aaaAzure CosmosDB Graph API a .NET SDK & erőforrások |} Microsoft Docs"
+description: "Tudnivalók az hello Azure CosmosDB Graph API, beleértve a kiadási dátum, a használatból való kivonást dátumot és az egyes verziók között végrehajtott módosításokat."
 services: cosmos-db
 documentationcenter: .net
 author: rnagpal
@@ -14,32 +14,32 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: 27e24d7a58a7fd9af7a9298d8a7770e80f9b3233
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c6abcb6dfdff3d6e011542ee952868a93056888b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-graph-net-api-download-and-release-notes"></a><span data-ttu-id="a003f-103">Az Azure Cosmos DB Graph API-val .NET: Töltse le és kibocsátási megjegyzések</span><span class="sxs-lookup"><span data-stu-id="a003f-103">Azure Cosmos DB Graph .NET API: Download and release notes</span></span>
+# <a name="azure-cosmos-db-graph-net-api-download-and-release-notes"></a><span data-ttu-id="a57c0-103">Az Azure Cosmos DB Graph API-val .NET: Töltse le és kibocsátási megjegyzések</span><span class="sxs-lookup"><span data-stu-id="a57c0-103">Azure Cosmos DB Graph .NET API: Download and release notes</span></span>
 
 |   |   |
 |---|---|
-|<span data-ttu-id="a003f-104">**SDK letöltése**</span><span class="sxs-lookup"><span data-stu-id="a003f-104">**SDK download**</span></span>|[<span data-ttu-id="a003f-105">NuGet</span><span class="sxs-lookup"><span data-stu-id="a003f-105">NuGet</span></span>](https://aka.ms/acdbgraphnuget)|
-|<span data-ttu-id="a003f-106">**API-JÁNAK dokumentációja**</span><span class="sxs-lookup"><span data-stu-id="a003f-106">**API documentation**</span></span>|[<span data-ttu-id="a003f-107">.NET API-referenciadokumentáció</span><span class="sxs-lookup"><span data-stu-id="a003f-107">.NET API reference documentation</span></span>](https://aka.ms/acdbgraphapiref)|
-|<span data-ttu-id="a003f-108">**Gyors útmutató**</span><span class="sxs-lookup"><span data-stu-id="a003f-108">**Quickstart**</span></span>|[<span data-ttu-id="a003f-109">Az Azure Cosmos DB: .NET és a Graph API segítségével graph-alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="a003f-109">Azure Cosmos DB: Create a graph app using .NET and the Graph API</span></span>](create-graph-dotnet.md)|
-|<span data-ttu-id="a003f-110">**Oktatóanyag**</span><span class="sxs-lookup"><span data-stu-id="a003f-110">**Tutorial**</span></span>|[<span data-ttu-id="a003f-111">Az Azure CosmosDB: Létrehozni egy tárolót a Graph API-hoz</span><span class="sxs-lookup"><span data-stu-id="a003f-111">Azure CosmosDB: Create a container with the Graph API</span></span>](tutorial-develop-graph-dotnet.md)|
-|<span data-ttu-id="a003f-112">**Aktuális támogatott keretrendszer**</span><span class="sxs-lookup"><span data-stu-id="a003f-112">**Current supported framework**</span></span>|[<span data-ttu-id="a003f-113">Microsoft .NET-keretrendszer 4.5</span><span class="sxs-lookup"><span data-stu-id="a003f-113">Microsoft .NET Framework 4.5</span></span>](https://www.microsoft.com/download/details.aspx?id=30653)|
+|<span data-ttu-id="a57c0-104">**SDK letöltése**</span><span class="sxs-lookup"><span data-stu-id="a57c0-104">**SDK download**</span></span>|[<span data-ttu-id="a57c0-105">NuGet</span><span class="sxs-lookup"><span data-stu-id="a57c0-105">NuGet</span></span>](https://aka.ms/acdbgraphnuget)|
+|<span data-ttu-id="a57c0-106">**API-JÁNAK dokumentációja**</span><span class="sxs-lookup"><span data-stu-id="a57c0-106">**API documentation**</span></span>|[<span data-ttu-id="a57c0-107">.NET API-referenciadokumentáció</span><span class="sxs-lookup"><span data-stu-id="a57c0-107">.NET API reference documentation</span></span>](https://aka.ms/acdbgraphapiref)|
+|<span data-ttu-id="a57c0-108">**Gyors útmutató**</span><span class="sxs-lookup"><span data-stu-id="a57c0-108">**Quickstart**</span></span>|[<span data-ttu-id="a57c0-109">Azure Cosmos DB: Hozzon létre egy grafikonon alkalmazást .NET használatával, és a Graph API hello</span><span class="sxs-lookup"><span data-stu-id="a57c0-109">Azure Cosmos DB: Create a graph app using .NET and hello Graph API</span></span>](create-graph-dotnet.md)|
+|<span data-ttu-id="a57c0-110">**Oktatóanyag**</span><span class="sxs-lookup"><span data-stu-id="a57c0-110">**Tutorial**</span></span>|[<span data-ttu-id="a57c0-111">Az Azure CosmosDB: Hozzon létre egy tároló hello Graph API-val</span><span class="sxs-lookup"><span data-stu-id="a57c0-111">Azure CosmosDB: Create a container with hello Graph API</span></span>](tutorial-develop-graph-dotnet.md)|
+|<span data-ttu-id="a57c0-112">**Aktuális támogatott keretrendszer**</span><span class="sxs-lookup"><span data-stu-id="a57c0-112">**Current supported framework**</span></span>|[<span data-ttu-id="a57c0-113">Microsoft .NET-keretrendszer 4.5</span><span class="sxs-lookup"><span data-stu-id="a57c0-113">Microsoft .NET Framework 4.5</span></span>](https://www.microsoft.com/download/details.aspx?id=30653)|
 
-## <a name="release-notes"></a><span data-ttu-id="a003f-114">Kibocsátási megjegyzések</span><span class="sxs-lookup"><span data-stu-id="a003f-114">Release notes</span></span>
+## <a name="release-notes"></a><span data-ttu-id="a57c0-114">Kibocsátási megjegyzések</span><span class="sxs-lookup"><span data-stu-id="a57c0-114">Release notes</span></span>
 
-* <span data-ttu-id="a003f-115">Kezdeti előzetes verziójára.</span><span class="sxs-lookup"><span data-stu-id="a003f-115">Initial preview release.</span></span>
+* <span data-ttu-id="a57c0-115">Kezdeti előzetes verziójára.</span><span class="sxs-lookup"><span data-stu-id="a57c0-115">Initial preview release.</span></span>
 
-## <a name="release--retirement-dates"></a><span data-ttu-id="a003f-116">Kiadás & használatból való kivonást dátumok</span><span class="sxs-lookup"><span data-stu-id="a003f-116">Release & Retirement dates</span></span>
-<span data-ttu-id="a003f-117">Microsoft legalább értesítést küldenek **12 hónapon keresztül** SDK eltávolítása érdekében vagy újabb támogatott verzióra való áttérés előtt.</span><span class="sxs-lookup"><span data-stu-id="a003f-117">Microsoft will provide notification at least **12 months** in advance of retiring an SDK in order to smooth the transition to a newer/supported version.</span></span>
+## <a name="release--retirement-dates"></a><span data-ttu-id="a57c0-116">Kiadás & használatból való kivonást dátumok</span><span class="sxs-lookup"><span data-stu-id="a57c0-116">Release & Retirement dates</span></span>
+<span data-ttu-id="a57c0-117">Microsoft legalább értesítést küldenek **12 hónapon keresztül** előre kivonása az SDK-t rendelés toosmooth hello átmenet tooa vagy újabb támogatott verzióra.</span><span class="sxs-lookup"><span data-stu-id="a57c0-117">Microsoft will provide notification at least **12 months** in advance of retiring an SDK in order toosmooth hello transition tooa newer/supported version.</span></span>
 
-<span data-ttu-id="a003f-118">Új szolgáltatásait és funkcióit és optimalizálás csak hozzá az aktuális SDK, így javasoljuk, hogy mindig a legújabb SDK verzióra frissít legkorábban lehető.</span><span class="sxs-lookup"><span data-stu-id="a003f-118">New features and functionality and optimizations are only added to the current SDK, as such it is recommended that you always upgrade to the latest SDK version as early as possible.</span></span> 
+<span data-ttu-id="a57c0-118">Új szolgáltatásait és funkcióit és optimalizálás csak hozzáadott toohello aktuális SDK-t, így javasolt, hogy Ön mindig frissítési toohello SDK legújabb lehető leghamarabb.</span><span class="sxs-lookup"><span data-stu-id="a57c0-118">New features and functionality and optimizations are only added toohello current SDK, as such it is recommended that you always upgrade toohello latest SDK version as early as possible.</span></span> 
 
-<span data-ttu-id="a003f-119">Bármely Azure Cosmos DB kivont SDK használatával kérelmet a program elutasítja a szolgáltatás.</span><span class="sxs-lookup"><span data-stu-id="a003f-119">Any request to Azure Cosmos DB using a retired SDK will be rejected by the service.</span></span>
+<span data-ttu-id="a57c0-119">A kérelem tooAzure Cosmos DB kivont SDK használatával a program elutasítja hello szolgáltatás.</span><span class="sxs-lookup"><span data-stu-id="a57c0-119">Any request tooAzure Cosmos DB using a retired SDK will be rejected by hello service.</span></span>
 
-## <a name="see-also"></a><span data-ttu-id="a003f-120">Lásd még:</span><span class="sxs-lookup"><span data-stu-id="a003f-120">See also</span></span>
-<span data-ttu-id="a003f-121">Az Azure Cosmos DB Graph API-val kapcsolatos további információkért lásd: [Azure Cosmos DB bemutatása: Graph API](graph-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="a003f-121">To learn more about the Azure Cosmos DB Graph API, see [Introduction to Azure Cosmos DB: Graph API](graph-introduction.md).</span></span> 
+## <a name="see-also"></a><span data-ttu-id="a57c0-120">Lásd még:</span><span class="sxs-lookup"><span data-stu-id="a57c0-120">See also</span></span>
+<span data-ttu-id="a57c0-121">toolearn hello Azure Cosmos DB Graph API-val kapcsolatos további információkért lásd: [bemutatása tooAzure Cosmos DB: Graph API](graph-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="a57c0-121">toolearn more about hello Azure Cosmos DB Graph API, see [Introduction tooAzure Cosmos DB: Graph API](graph-introduction.md).</span></span> 

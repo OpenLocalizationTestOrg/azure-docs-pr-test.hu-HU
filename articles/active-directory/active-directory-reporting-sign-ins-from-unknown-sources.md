@@ -1,6 +1,6 @@
 ---
-title: "Az ismeretlen forrásból származó indított bejelentkezések"
-description: "Ez a jelentés azt jelzi, felhasználók, akik sikeresen bejelentkezett a címtárhoz az egy névtelen proxy IP-cím."
+title: "aaaSign az ismeretlen forrásból származó modulok"
+description: "Ez a jelentés azt jelzi, felhasználók, akik sikeresen bejelentkezett tooyour könyvtárat egy névtelen proxy az IP-címet."
 services: active-directory
 documentationcenter: 
 author: SSalahAhmed
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/04/2016
 ms.author: saah;kenhoff
-ms.openlocfilehash: 90006121e4b3392f6e3ecffb4a56aca330feb02f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b9d16274c0f8d21fc3bdf1ad8b564532d3b02be2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="sign-ins-from-unknown-sources"></a><span data-ttu-id="0106f-103">Az ismeretlen forrásból származó indított bejelentkezések</span><span class="sxs-lookup"><span data-stu-id="0106f-103">Sign ins from unknown sources</span></span>
-<span data-ttu-id="0106f-104">Ez a jelentés azt jelzi, hogy a címtárhoz, amíg az ügyfél IP-címmel, amely egy névtelen proxy IP-címet (például egy Tor IP-cím) a Microsoft által felismert sikeresen bejelentkezett felhasználók.</span><span class="sxs-lookup"><span data-stu-id="0106f-104">This report indicates users who have successfully signed in to your directory while assigned a client IP address that has been recognized by Microsoft as an anonymous proxy IP address (for example, a Tor IP address).</span></span> <span data-ttu-id="0106f-105">Szeretné a számítógép IP-címét, és felhasználhatja a rosszindulatú behatolással szemben a felhasználók által e proxyk gyakran használják.</span><span class="sxs-lookup"><span data-stu-id="0106f-105">These proxies are often used by users that want to hide their computer’s IP address, and may be used for malicious intent.</span></span>
+# <a name="sign-ins-from-unknown-sources"></a><span data-ttu-id="7cc5f-103">Az ismeretlen forrásból származó indított bejelentkezések</span><span class="sxs-lookup"><span data-stu-id="7cc5f-103">Sign ins from unknown sources</span></span>
+<span data-ttu-id="7cc5f-104">Ez a jelentés azt jelzi, amíg az ügyfél IP-címmel, amely egy névtelen proxy IP-címet (például egy Tor IP-cím) a Microsoft által felismert tooyour directory sikeresen bejelentkezett felhasználók.</span><span class="sxs-lookup"><span data-stu-id="7cc5f-104">This report indicates users who have successfully signed in tooyour directory while assigned a client IP address that has been recognized by Microsoft as an anonymous proxy IP address (for example, a Tor IP address).</span></span> <span data-ttu-id="7cc5f-105">Ezek a proxyk általában toohide szeretné, hogy a felhasználók által használt a számítógép IP-címét, és felhasználhatja a rosszindulatú behatolással szemben.</span><span class="sxs-lookup"><span data-stu-id="7cc5f-105">These proxies are often used by users that want toohide their computer’s IP address, and may be used for malicious intent.</span></span>
 
-<span data-ttu-id="0106f-106">Ez a jelentés eredményeinek jelennek meg a szám, ahányszor a felhasználó sikeresen bejelentkezett a címtárhoz az adott és a proxy IP-címet.</span><span class="sxs-lookup"><span data-stu-id="0106f-106">Results from this report will show the number of times a user successfully signed in to your directory from that address and the proxy’s IP address.</span></span>
+<span data-ttu-id="7cc5f-106">Ez a jelentés eredményeinek tooyour könyvtárat az adott és hello proxy IP-címet fogja megjeleníteni az hello szám, ahányszor a felhasználó sikeres volt.</span><span class="sxs-lookup"><span data-stu-id="7cc5f-106">Results from this report will show hello number of times a user successfully signed in tooyour directory from that address and hello proxy’s IP address.</span></span>
 
 ![Az ismeretlen forrásból származó indított bejelentkezések](./media/active-directory-reporting-sign-ins-from-unknown-sources/signInsFromUnknownSources.PNG)
 

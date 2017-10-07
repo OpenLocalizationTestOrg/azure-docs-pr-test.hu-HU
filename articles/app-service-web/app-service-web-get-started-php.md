@@ -1,5 +1,5 @@
 ---
-title: "PHP-webalkalmazás létrehozása az Azure-ban | Microsoft Docs"
+title: "a PHP aaaCreate webalkalmazás az Azure-ban |} Microsoft Docs"
 description: "Percek alatt üzembe helyezheti első Hello World PHP-jét az App Service Web Apps szolgáltatásban."
 services: app-service\web
 documentationcenter: 
@@ -15,53 +15,53 @@ ms.topic: quickstart
 ms.date: 07/21/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 3a78e0b485046ad6228bf4819d3908042c298d1a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8e1022889ca162f8f15ce7435cc9393cc6efef06
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-php-web-app-in-azure"></a><span data-ttu-id="d0f59-103">PHP-webapp létrehozása az Azure-ban</span><span class="sxs-lookup"><span data-stu-id="d0f59-103">Create a PHP web app in Azure</span></span>
+# <a name="create-a-php-web-app-in-azure"></a><span data-ttu-id="5fb19-103">PHP-webapp létrehozása az Azure-ban</span><span class="sxs-lookup"><span data-stu-id="5fb19-103">Create a PHP web app in Azure</span></span>
 
-<span data-ttu-id="d0f59-104">Az [Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatás.</span><span class="sxs-lookup"><span data-stu-id="d0f59-104">[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) provides a highly scalable, self-patching web hosting service.</span></span>  <span data-ttu-id="d0f59-105">Ez a gyorsútmutató a PHP-alkalmazás Azure Web Apps szolgáltatásban történő üzembe helyezésén vezeti végig.</span><span class="sxs-lookup"><span data-stu-id="d0f59-105">This quickstart tutorial shows how to deploy a PHP app to Azure Web Apps.</span></span> <span data-ttu-id="d0f59-106">A Cloud Shellben az [Azure CLI-vel](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) létrehozza a webalkalmazást, a Gittel pedig üzembe helyezi a PHP-mintakódot a webalkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="d0f59-106">You create the web app using the [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) in Cloud Shell, and you use Git to deploy sample PHP code to the web app.</span></span>
+<span data-ttu-id="5fb19-104">Az [Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatás.</span><span class="sxs-lookup"><span data-stu-id="5fb19-104">[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) provides a highly scalable, self-patching web hosting service.</span></span>  <span data-ttu-id="5fb19-105">A gyors üzembe helyezési oktatóanyag bemutatja, hogyan toodeploy egy PHP-alkalmazás tooAzure webalkalmazások.</span><span class="sxs-lookup"><span data-stu-id="5fb19-105">This quickstart tutorial shows how toodeploy a PHP app tooAzure Web Apps.</span></span> <span data-ttu-id="5fb19-106">Létrehozhat hello web app használatával hello [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) a felhő rendszerhéjat, és Git toodeploy minta PHP kód toohello webalkalmazás használatát.</span><span class="sxs-lookup"><span data-stu-id="5fb19-106">You create hello web app using hello [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) in Cloud Shell, and you use Git toodeploy sample PHP code toohello web app.</span></span>
 
-<span data-ttu-id="d0f59-107">![Az Azure-ban futó mintaalkalmazás]](media/app-service-web-get-started-php/hello-world-in-browser.png)</span><span class="sxs-lookup"><span data-stu-id="d0f59-107">![Sample app running in Azure]](media/app-service-web-get-started-php/hello-world-in-browser.png)</span></span>
+<span data-ttu-id="5fb19-107">![Az Azure-ban futó mintaalkalmazás]](media/app-service-web-get-started-php/hello-world-in-browser.png)</span><span class="sxs-lookup"><span data-stu-id="5fb19-107">![Sample app running in Azure]](media/app-service-web-get-started-php/hello-world-in-browser.png)</span></span>
 
-<span data-ttu-id="d0f59-108">Az alábbi lépéseket Mac, Windows vagy Linux rendszert futtató gépen is követheti.</span><span class="sxs-lookup"><span data-stu-id="d0f59-108">You can follow the steps below using a Mac, Windows, or Linux machine.</span></span> <span data-ttu-id="d0f59-109">Az előfeltételek telepítése után a lépések végrehajtása nagyjából öt percet vesz igénybe.</span><span class="sxs-lookup"><span data-stu-id="d0f59-109">Once the prerequisites are installed, it takes about five minutes to complete the steps.</span></span>
+<span data-ttu-id="5fb19-108">A lépésekkel hello Mac, a Windows vagy Linux rendszerű gépek használatának alatt.</span><span class="sxs-lookup"><span data-stu-id="5fb19-108">You can follow hello steps below using a Mac, Windows, or Linux machine.</span></span> <span data-ttu-id="5fb19-109">Hello előfeltételek telepítése után tart, körülbelül öt perc toocomplete hello lépéseket.</span><span class="sxs-lookup"><span data-stu-id="5fb19-109">Once hello prerequisites are installed, it takes about five minutes toocomplete hello steps.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="d0f59-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="d0f59-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="5fb19-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="5fb19-110">Prerequisites</span></span>
 
-<span data-ttu-id="d0f59-111">A gyorsútmutató elvégzéséhez:</span><span class="sxs-lookup"><span data-stu-id="d0f59-111">To complete this quickstart:</span></span>
+<span data-ttu-id="5fb19-111">toocomplete a gyors üzembe helyezés:</span><span class="sxs-lookup"><span data-stu-id="5fb19-111">toocomplete this quickstart:</span></span>
 
-* [<span data-ttu-id="d0f59-112">A Git telepítése</span><span class="sxs-lookup"><span data-stu-id="d0f59-112">Install Git</span></span>](https://git-scm.com/)
-* [<span data-ttu-id="d0f59-113">A PHP telepítése</span><span class="sxs-lookup"><span data-stu-id="d0f59-113">Install PHP</span></span>](https://php.net)
+* [<span data-ttu-id="5fb19-112">A Git telepítése</span><span class="sxs-lookup"><span data-stu-id="5fb19-112">Install Git</span></span>](https://git-scm.com/)
+* [<span data-ttu-id="5fb19-113">A PHP telepítése</span><span class="sxs-lookup"><span data-stu-id="5fb19-113">Install PHP</span></span>](https://php.net)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="download-the-sample-locally"></a><span data-ttu-id="d0f59-114">Minta helyi letöltése</span><span class="sxs-lookup"><span data-stu-id="d0f59-114">Download the sample locally</span></span>
+## <a name="download-hello-sample-locally"></a><span data-ttu-id="5fb19-114">Helyileg hello minta letöltése</span><span class="sxs-lookup"><span data-stu-id="5fb19-114">Download hello sample locally</span></span>
 
-<span data-ttu-id="d0f59-115">Futtassa a következő parancsokat egy terminálablakban.</span><span class="sxs-lookup"><span data-stu-id="d0f59-115">In a terminal window, run the following commands.</span></span> <span data-ttu-id="d0f59-116">Ezzel klónozza a mintaalkalmazást a helyi gépre, és a mintakódot tartalmazó könyvtárba lép.</span><span class="sxs-lookup"><span data-stu-id="d0f59-116">This will clone the sample application to your local machine, and navigate to the directory containing the sample code.</span></span>
+<span data-ttu-id="5fb19-115">Egy terminálablakot futtassa a következő parancsok hello.</span><span class="sxs-lookup"><span data-stu-id="5fb19-115">In a terminal window, run hello following commands.</span></span> <span data-ttu-id="5fb19-116">A hello minta alkalmazás tooyour helyi gép klónozását, és keresse meg a toohello directory hello minta kódot tartalmazó.</span><span class="sxs-lookup"><span data-stu-id="5fb19-116">This will clone hello sample application tooyour local machine, and navigate toohello directory containing hello sample code.</span></span>
 
 ```bash
 git clone https://github.com/Azure-Samples/php-docs-hello-world
 cd php-docs-hello-world
 ```
 
-## <a name="run-the-app-locally"></a><span data-ttu-id="d0f59-117">Az alkalmazás futtatása helyben</span><span class="sxs-lookup"><span data-stu-id="d0f59-117">Run the app locally</span></span>
+## <a name="run-hello-app-locally"></a><span data-ttu-id="5fb19-117">Hello alkalmazás helyi futtatása</span><span class="sxs-lookup"><span data-stu-id="5fb19-117">Run hello app locally</span></span>
 
-<span data-ttu-id="d0f59-118">Az alkalmazás a terminálablak megnyitásával és a `php` parancs használatával helyben futtatható a beépített PHP-webkiszolgáló indításához.</span><span class="sxs-lookup"><span data-stu-id="d0f59-118">Run the application locally by opening a terminal window and using the `php` command to launch the built-in PHP web server.</span></span>
+<span data-ttu-id="5fb19-118">Hello alkalmazás helyi futtatásához nyisson meg egy terminálablakot, és hello segítségével `php` parancs toolaunch hello beépített PHP webkiszolgáló.</span><span class="sxs-lookup"><span data-stu-id="5fb19-118">Run hello application locally by opening a terminal window and using hello `php` command toolaunch hello built-in PHP web server.</span></span>
 
 ```bash
 php -S localhost:8080
 ```
 
-<span data-ttu-id="d0f59-119">Nyisson meg egy webböngészőt, majd keresse meg a mintaalkalmazást a http://localhost:8080. címen.</span><span class="sxs-lookup"><span data-stu-id="d0f59-119">Open a web browser, and navigate to the sample app at http://localhost:8080.</span></span>
+<span data-ttu-id="5fb19-119">Nyisson meg egy webböngészőt, és keresse meg a mintaalkalmazás toohello: 8080.</span><span class="sxs-lookup"><span data-stu-id="5fb19-119">Open a web browser, and navigate toohello sample app at http://localhost:8080.</span></span>
 
-<span data-ttu-id="d0f59-120">Az oldalon látható mintaalkalmazáson ekkor a **Hello World!**</span><span class="sxs-lookup"><span data-stu-id="d0f59-120">You see the **Hello World!**</span></span> <span data-ttu-id="d0f59-121">üzenet jelenik meg.</span><span class="sxs-lookup"><span data-stu-id="d0f59-121">message from the sample app displayed in the page.</span></span>
+<span data-ttu-id="5fb19-120">Megjelenik a hello **Hello World!**</span><span class="sxs-lookup"><span data-stu-id="5fb19-120">You see hello **Hello World!**</span></span> <span data-ttu-id="5fb19-121">hello lapján megjelenő hello mintaalkalmazás üzenetét.</span><span class="sxs-lookup"><span data-stu-id="5fb19-121">message from hello sample app displayed in hello page.</span></span>
 
 ![A helyileg futó mintaalkalmazás](media/app-service-web-get-started-php/localhost-hello-world-in-browser.png)
 
-<span data-ttu-id="d0f59-123">A terminálablakban nyomja le a **Ctrl+C** billentyűkombinációt a webkiszolgálóból történő kilépéshez.</span><span class="sxs-lookup"><span data-stu-id="d0f59-123">In your terminal window, press **Ctrl+C** to exit the web server.</span></span>
+<span data-ttu-id="5fb19-123">A Terminálszolgáltatások ablakában, nyomja le az **Ctrl + C** tooexit hello webkiszolgáló.</span><span class="sxs-lookup"><span data-stu-id="5fb19-123">In your terminal window, press **Ctrl+C** tooexit hello web server.</span></span>
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
@@ -75,15 +75,15 @@ php -S localhost:8080
 
 ![Üres webalkalmazás oldal](media/app-service-web-get-started-php/app-service-web-service-created.png)
 
-<span data-ttu-id="d0f59-125">Ezzel létrehozott egy üres, új webalkalmazást az Azure-ban.</span><span class="sxs-lookup"><span data-stu-id="d0f59-125">You’ve created an empty new web app in Azure.</span></span>
+<span data-ttu-id="5fb19-125">Ezzel létrehozott egy üres, új webalkalmazást az Azure-ban.</span><span class="sxs-lookup"><span data-stu-id="5fb19-125">You’ve created an empty new web app in Azure.</span></span>
 
 [!INCLUDE [Configure local git](../../includes/app-service-web-configure-local-git.md)] 
 
-[!INCLUDE [Push to Azure](../../includes/app-service-web-git-push-to-azure.md)] 
+[!INCLUDE [Push tooAzure](../../includes/app-service-web-git-push-to-azure.md)] 
 
 ```bash
 Counting objects: 2, done.
-Delta compression using up to 4 threads.
+Delta compression using up too4 threads.
 Compressing objects: 100% (2/2), done.
 Writing objects: 100% (2/2), 352 bytes | 0 bytes/s, done.
 Total 2 (delta 1), reused 0 (delta 0)
@@ -102,60 +102,60 @@ remote: Ignoring: .git
 remote: Finished successfully.
 remote: Running post deployment command(s)...
 remote: Deployment successful.
-To https://<app_name>.scm.azurewebsites.net/<app_name>.git
+toohttps://<app_name>.scm.azurewebsites.net/<app_name>.git
    cc39b1e..25f1805  master -> master
 ```
 
-## <a name="browse-to-the-app-locally"></a><span data-ttu-id="d0f59-126">Alkalmazás megkeresése tallózással, helyileg</span><span class="sxs-lookup"><span data-stu-id="d0f59-126">Browse to the app locally</span></span>
+## <a name="browse-toohello-app-locally"></a><span data-ttu-id="5fb19-126">Keresse meg a helyi toohello alkalmazás</span><span class="sxs-lookup"><span data-stu-id="5fb19-126">Browse toohello app locally</span></span>
 
-<span data-ttu-id="d0f59-127">Tallózással keresse meg az üzembe helyezett alkalmazást a webböngésző használatával.</span><span class="sxs-lookup"><span data-stu-id="d0f59-127">Browse to the deployed application using your web browser.</span></span>
+<span data-ttu-id="5fb19-127">Keresse meg a webböngésző segítségével toohello telepített alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="5fb19-127">Browse toohello deployed application using your web browser.</span></span>
 
 ```bash
 http://<app_name>.azurewebsites.net
 ```
 
-<span data-ttu-id="d0f59-128">A PHP mintakód az Azure App Service webalkalmazásban fut.</span><span class="sxs-lookup"><span data-stu-id="d0f59-128">The PHP sample code is running in an Azure App Service web app.</span></span>
+<span data-ttu-id="5fb19-128">hello PHP mintakód fut. Ha az Azure App Service web app alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="5fb19-128">hello PHP sample code is running in an Azure App Service web app.</span></span>
 
 ![Az Azure-ban futó mintaalkalmazás](media/app-service-web-get-started-php/hello-world-in-browser.png)
 
-<span data-ttu-id="d0f59-130">**Gratulálunk!**</span><span class="sxs-lookup"><span data-stu-id="d0f59-130">**Congratulations!**</span></span> <span data-ttu-id="d0f59-131">Elvégezte az első PHP-webapp üzembe helyezését az App Service-ben.</span><span class="sxs-lookup"><span data-stu-id="d0f59-131">You've deployed your first PHP app to App Service.</span></span>
+<span data-ttu-id="5fb19-130">**Gratulálunk!**</span><span class="sxs-lookup"><span data-stu-id="5fb19-130">**Congratulations!**</span></span> <span data-ttu-id="5fb19-131">Az első PHP-alkalmazás tooApp szolgáltatás telepítése után.</span><span class="sxs-lookup"><span data-stu-id="5fb19-131">You've deployed your first PHP app tooApp Service.</span></span>
 
-## <a name="update-locally-and-redeploy-the-code"></a><span data-ttu-id="d0f59-132">A kód frissítése helyileg és ismételt üzembe helyezése</span><span class="sxs-lookup"><span data-stu-id="d0f59-132">Update locally and redeploy the code</span></span>
+## <a name="update-locally-and-redeploy-hello-code"></a><span data-ttu-id="5fb19-132">Frissítés helyben, és telepítse újra a hello kódot</span><span class="sxs-lookup"><span data-stu-id="5fb19-132">Update locally and redeploy hello code</span></span>
 
-<span data-ttu-id="d0f59-133">Egy helyi szövegszerkesztő használatával nyissa meg a `index.php` fájlt a PHP-alkalmazáson belül, majd módosítsa kissé annak szövegét a `echo` melletti karakterláncon belül:</span><span class="sxs-lookup"><span data-stu-id="d0f59-133">Using a local text editor, open the `index.php` file within the PHP app, and make a small change to the text within the string next to `echo`:</span></span>
+<span data-ttu-id="5fb19-133">Egy helyi szövegszerkesztőben nyissa meg hello `index.php` hello PHP alkalmazáson belül, és győződjön szöveg egy kis módosítása toohello hello karakterláncon belüli következő túl`echo`:</span><span class="sxs-lookup"><span data-stu-id="5fb19-133">Using a local text editor, open hello `index.php` file within hello PHP app, and make a small change toohello text within hello string next too`echo`:</span></span>
 
 ```php
 echo "Hello Azure!";
 ```
 
-<span data-ttu-id="d0f59-134">Mentse a módosításokat a Gitben, majd továbbítsa a kód módosításait az Azure-ba.</span><span class="sxs-lookup"><span data-stu-id="d0f59-134">Commit your changes in Git, and then push the code changes to Azure.</span></span>
+<span data-ttu-id="5fb19-134">A Git a változtatások véglegesítése a határidő, és majd leküldéses hello kód módosítások tooAzure.</span><span class="sxs-lookup"><span data-stu-id="5fb19-134">Commit your changes in Git, and then push hello code changes tooAzure.</span></span>
 
 ```bash
 git commit -am "updated output"
 git push azure master
 ```
 
-<span data-ttu-id="d0f59-135">Az üzembe helyezés befejezését követően váltson vissza **Az alkalmazás megkeresése tallózással** lépésben megnyitott böngészőablakra, és frissítse az oldalt.</span><span class="sxs-lookup"><span data-stu-id="d0f59-135">Once deployment has completed, switch back to the browser window that opened in the **Browse to the app** step, and refresh the page.</span></span>
+<span data-ttu-id="5fb19-135">Központi telepítés befejezése után kapcsoló hello megnyitott hátsó toohello böngészőablakban **Tallózás toohello app** lépést, és a frissítési hello lap.</span><span class="sxs-lookup"><span data-stu-id="5fb19-135">Once deployment has completed, switch back toohello browser window that opened in hello **Browse toohello app** step, and refresh hello page.</span></span>
 
 ![Az Azure-ban futó frissített mintaalkalmazás](media/app-service-web-get-started-php/hello-azure-in-browser.png)
 
-## <a name="manage-your-new-azure-web-app"></a><span data-ttu-id="d0f59-137">Az új Azure-webapp kezelése</span><span class="sxs-lookup"><span data-stu-id="d0f59-137">Manage your new Azure web app</span></span>
+## <a name="manage-your-new-azure-web-app"></a><span data-ttu-id="5fb19-137">Az új Azure-webapp kezelése</span><span class="sxs-lookup"><span data-stu-id="5fb19-137">Manage your new Azure web app</span></span>
 
-<span data-ttu-id="d0f59-138">A létrehozott webalkalmazás felügyeletéhez ugorjon az <a href="https://portal.azure.com" target="_blank">Azure Portalra</a>.</span><span class="sxs-lookup"><span data-stu-id="d0f59-138">Go to the <a href="https://portal.azure.com" target="_blank">Azure portal</a> to manage the web app you created.</span></span>
+<span data-ttu-id="5fb19-138">Nyissa meg toohello <a href="https://portal.azure.com" target="_blank">Azure-portálon</a> toomanage hello létrehozott webalkalmazás.</span><span class="sxs-lookup"><span data-stu-id="5fb19-138">Go toohello <a href="https://portal.azure.com" target="_blank">Azure portal</a> toomanage hello web app you created.</span></span>
 
-<span data-ttu-id="d0f59-139">A bal oldali menüben kattintson az **App Services** lehetőségre, majd az Azure-webalkalmazás nevére.</span><span class="sxs-lookup"><span data-stu-id="d0f59-139">From the left menu, click **App Services**, and then click the name of your Azure web app.</span></span>
+<span data-ttu-id="5fb19-139">Hello bal oldali menüben kattintson **alkalmazásszolgáltatások**, majd kattintson az Azure-webalkalmazásban hello nevét.</span><span class="sxs-lookup"><span data-stu-id="5fb19-139">From hello left menu, click **App Services**, and then click hello name of your Azure web app.</span></span>
 
-![Navigálás a portálon az Azure-webapphoz](./media/app-service-web-get-started-php/php-docs-hello-world-app-service-list.png)
+![Portálnavigációjával tooAzure webalkalmazás](./media/app-service-web-get-started-php/php-docs-hello-world-app-service-list.png)
 
-<span data-ttu-id="d0f59-141">Megtekintheti a webalkalmazás Áttekintés oldalát.</span><span class="sxs-lookup"><span data-stu-id="d0f59-141">You see your web app's Overview page.</span></span> <span data-ttu-id="d0f59-142">Itt elvégezhet olyan alapszintű felügyeleti feladatokat, mint a tallózás, leállítás, elindítás, újraindítás és törlés.</span><span class="sxs-lookup"><span data-stu-id="d0f59-142">Here, you can perform basic management tasks like browse, stop, start, restart, and delete.</span></span>
+<span data-ttu-id="5fb19-141">Megtekintheti a webalkalmazás Áttekintés oldalát.</span><span class="sxs-lookup"><span data-stu-id="5fb19-141">You see your web app's Overview page.</span></span> <span data-ttu-id="5fb19-142">Itt elvégezhet olyan alapszintű felügyeleti feladatokat, mint a tallózás, leállítás, elindítás, újraindítás és törlés.</span><span class="sxs-lookup"><span data-stu-id="5fb19-142">Here, you can perform basic management tasks like browse, stop, start, restart, and delete.</span></span>
 
 ![Az App Service panel az Azure Portalon](media/app-service-web-get-started-php/php-docs-hello-world-app-service-detail.png)
 
-<span data-ttu-id="d0f59-144">A bal oldali menü az alkalmazás konfigurálásához biztosít különböző oldalakat.</span><span class="sxs-lookup"><span data-stu-id="d0f59-144">The left menu provides different pages for configuring your app.</span></span> 
+<span data-ttu-id="5fb19-144">hello bal oldali menü különböző oldalain biztosít az alkalmazás konfigurálását.</span><span class="sxs-lookup"><span data-stu-id="5fb19-144">hello left menu provides different pages for configuring your app.</span></span> 
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="d0f59-145">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="d0f59-145">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="5fb19-145">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="5fb19-145">Next steps</span></span>
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="d0f59-146">PHP és MySQL</span><span class="sxs-lookup"><span data-stu-id="d0f59-146">PHP with MySQL</span></span>](app-service-web-tutorial-php-mysql.md)
+> [<span data-ttu-id="5fb19-146">PHP és MySQL</span><span class="sxs-lookup"><span data-stu-id="5fb19-146">PHP with MySQL</span></span>](app-service-web-tutorial-php-mysql.md)

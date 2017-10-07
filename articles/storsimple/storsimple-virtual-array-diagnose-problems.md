@@ -1,6 +1,6 @@
 ---
-title: "A StorSimple virtuális tömb hibaelhárítása |} Microsoft Docs"
-description: "Ismerteti a StorSimple Device Manager funkció felderítésére, és ismerteti a StorSimple virtuális tömb hibaelhárítás céljából."
+title: "a StorSimple virtuális tömb aaaTroubleshoot |} Microsoft Docs"
+description: "Ismerteti, hello StorSimple Device Manager funkció diagnosztizálása, és elmagyarázza, hogyan toouse azt tootroubleshoot a StorSimple virtuális tömbjét."
 services: storsimple
 documentationcenter: 
 author: manuaery
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/21/2016
 ms.author: manuaery
-ms.openlocfilehash: a75e68c84a50977b162ca4d3a4a02936ca78cb6b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5b8e05d5ce6000424830059db450a0e662d19238
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-device-manager-service-to-troubleshoot-the-storsimple-virtual-array"></a><span data-ttu-id="e7979-103">A StorSimple Device Manager szolgáltatással a StorSimple virtuális tömb hibaelhárítása</span><span class="sxs-lookup"><span data-stu-id="e7979-103">Use the StorSimple Device Manager service to troubleshoot the StorSimple Virtual Array</span></span>
-## <a name="overview"></a><span data-ttu-id="e7979-104">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="e7979-104">Overview</span></span>
+# <a name="use-hello-storsimple-device-manager-service-tootroubleshoot-hello-storsimple-virtual-array"></a><span data-ttu-id="f6fe5-103">Hello StorSimple Device Manager szolgáltatás tootroubleshoot hello StorSimple virtuális tömb használata</span><span class="sxs-lookup"><span data-stu-id="f6fe5-103">Use hello StorSimple Device Manager service tootroubleshoot hello StorSimple Virtual Array</span></span>
+## <a name="overview"></a><span data-ttu-id="f6fe5-104">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="f6fe5-104">Overview</span></span>
 
-<span data-ttu-id="e7979-105">A StorSimple Device Manager biztosít egy **Diagnosztizálás és problémák megoldására** belül a szolgáltatás összefoglaló panel, amelyen néhány gyakran előforduló hibát, ami akkor fordulhat elő, a virtuális tömb és azok megoldási történő beállítását.</span><span class="sxs-lookup"><span data-stu-id="e7979-105">The StorSimple Device Manager provides a **Diagnose and solve problems** setting within the service summary blade, which highlights some of the commonly occurring issues that can occur with your virtual array and how to solve them.</span></span> <span data-ttu-id="e7979-106">Ez az oktatóanyag bemutatja a önkiszolgáló hibaelhárítási számára biztosított képesség a StorSimple Device Manager szolgáltatáson belül.</span><span class="sxs-lookup"><span data-stu-id="e7979-106">This tutorial introduces the self-serve troubleshooting capability provided within the StorSimple Device Manager service.</span></span>
+<span data-ttu-id="f6fe5-105">hello StorSimple Device Manager biztosít egy **Diagnosztizálás és problémák megoldására** beállítás belül hello szolgáltatás összefoglaló panel, amely kiemeli a hello gyakran előforduló problémák merülhetnek fel az adott virtuális tömb némelyike és hogyan toosolve őket.</span><span class="sxs-lookup"><span data-stu-id="f6fe5-105">hello StorSimple Device Manager provides a **Diagnose and solve problems** setting within hello service summary blade, which highlights some of hello commonly occurring issues that can occur with your virtual array and how toosolve them.</span></span> <span data-ttu-id="f6fe5-106">Ez az oktatóanyag bemutatja a hello önkiszolgáló hibaelhárítási számára biztosított képesség belül hello StorSimple Device Manager szolgáltatás.</span><span class="sxs-lookup"><span data-stu-id="f6fe5-106">This tutorial introduces hello self-serve troubleshooting capability provided within hello StorSimple Device Manager service.</span></span>
 
 ![Problémák diagnosztizálása és megoldása](./media/storsimple-virtual-array-diagnose-problems/diagnose-problems-main.png)
 
-## <a name="diagnose-and-solve-issues"></a><span data-ttu-id="e7979-108">Diagnosztizálhatja és a problémák megoldásához</span><span class="sxs-lookup"><span data-stu-id="e7979-108">Diagnose and solve issues</span></span>
+## <a name="diagnose-and-solve-issues"></a><span data-ttu-id="f6fe5-108">Diagnosztizálhatja és a problémák megoldásához</span><span class="sxs-lookup"><span data-stu-id="f6fe5-108">Diagnose and solve issues</span></span>
 
-<span data-ttu-id="e7979-109">Megtekintheti a StorSimple virtuális tömbbel rendelkező gyakori problémák és megoldások a StorSimple Device Manager szolgáltatás összefoglaló panelen tekintse át az jobb ismertetünk.</span><span class="sxs-lookup"><span data-stu-id="e7979-109">You can view some of the common problems with the StorSimple Virtual Array and review the solutions to those issues right from your StorSimple Device Manager service summary blade.</span></span>
+<span data-ttu-id="f6fe5-109">Néhány gyakori problémák hello hello StorSimple virtuális tömb tekintheti meg és tekintse át a hello megoldások toothose problémák közvetlenül a a StorSimple Device Manager szolgáltatás összefoglaló panel.</span><span class="sxs-lookup"><span data-stu-id="f6fe5-109">You can view some of hello common problems with hello StorSimple Virtual Array and review hello solutions toothose issues right from your StorSimple Device Manager service summary blade.</span></span>
 
-#### <a name="to-diagnose-an-issue-with-your-virtual-array"></a><span data-ttu-id="e7979-110">A virtuális tömb problémát felderítéséhez</span><span class="sxs-lookup"><span data-stu-id="e7979-110">To diagnose an issue with your virtual array</span></span>
+#### <a name="toodiagnose-an-issue-with-your-virtual-array"></a><span data-ttu-id="f6fe5-110">a virtuális tömb problémát toodiagnose</span><span class="sxs-lookup"><span data-stu-id="f6fe5-110">toodiagnose an issue with your virtual array</span></span>
 
-1. <span data-ttu-id="e7979-111">Kattintson a **Diagnosztizálás és problémák megoldására** beállítása a StorSimple Device Manager szolgáltatás összefoglalás panelről a bal oldali panelen a gyakori problémák listájának megtekintéséhez.</span><span class="sxs-lookup"><span data-stu-id="e7979-111">Click **Diagnose and solve problems** setting in the left pane of your StorSimple Device Manager service summary blade to view a list of common problems.</span></span>
+1. <span data-ttu-id="f6fe5-111">Kattintson a **Diagnosztizálás és problémák megoldására** hello beállítás bal oldali ablaktábláján a StorSimple Device Manager szolgáltatás összefoglaló panel tooview gyakori problémák listáját.</span><span class="sxs-lookup"><span data-stu-id="f6fe5-111">Click **Diagnose and solve problems** setting in hello left pane of your StorSimple Device Manager service summary blade tooview a list of common problems.</span></span>
 
-2. <span data-ttu-id="e7979-112">**Bontsa ki a** meg a probléma áll kapcsolatban tekintse át a tünete **a javasolt lépéseket** támogatási meg a probléma elhárításához.</span><span class="sxs-lookup"><span data-stu-id="e7979-112">**Expand** on the symptom of the issue you are encountering to review **Recommended steps** to aid you in troubleshooting the problem.</span></span> <span data-ttu-id="e7979-113">Ha kívánja, tekintse át további hivatkozás részletes dokumentációt hivatkozásokra.</span><span class="sxs-lookup"><span data-stu-id="e7979-113">If you wish, you can also review the detailed documentation links provided for further reference.</span></span>
+2. <span data-ttu-id="f6fe5-112">**Bontsa ki a** hello tünete hello probléma áll tooreview kapcsolatban **a javasolt lépéseket** tooaid meg hello probléma elhárításához.</span><span class="sxs-lookup"><span data-stu-id="f6fe5-112">**Expand** on hello symptom of hello issue you are encountering tooreview **Recommended steps** tooaid you in troubleshooting hello problem.</span></span> <span data-ttu-id="f6fe5-113">Ha kívánja, tekintse át hello részletes dokumentációt hivatkozásokat követve további referenciaként.</span><span class="sxs-lookup"><span data-stu-id="f6fe5-113">If you wish, you can also review hello detailed documentation links provided for further reference.</span></span>
    
     ![A probléma elhárítása](./media/storsimple-virtual-array-diagnose-problems/diagnose-problems-offline.png)
 
-3. <span data-ttu-id="e7979-115">Nem sikerül, a probléma mutató hivatkozás található vagy nem oldható meg, ha elérhetők a Microsoft Support további segítségért.</span><span class="sxs-lookup"><span data-stu-id="e7979-115">If you are unable to find a reference to your issue or resolve it, reach out to Microsoft Support for further assistance.</span></span>
+3. <span data-ttu-id="f6fe5-115">Ha nem toofind egy hivatkozás tooyour probléma vagy oldható meg, elérhetők a tooMicrosoft támogatás segítségét.</span><span class="sxs-lookup"><span data-stu-id="f6fe5-115">If you are unable toofind a reference tooyour issue or resolve it, reach out tooMicrosoft Support for further assistance.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="e7979-116">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="e7979-116">Next steps</span></span>
-<span data-ttu-id="e7979-117">Megtudhatja, hogyan [egy támogatási jegy naplózása](storsimple-virtual-array-log-support-ticket.md)</span><span class="sxs-lookup"><span data-stu-id="e7979-117">Learn how to [log a support ticket](storsimple-virtual-array-log-support-ticket.md)</span></span>
+## <a name="next-steps"></a><span data-ttu-id="f6fe5-116">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="f6fe5-116">Next steps</span></span>
+<span data-ttu-id="f6fe5-117">Ismerje meg, hogyan túl[egy támogatási jegy naplózása](storsimple-virtual-array-log-support-ticket.md)</span><span class="sxs-lookup"><span data-stu-id="f6fe5-117">Learn how too[log a support ticket](storsimple-virtual-array-log-support-ticket.md)</span></span>
 

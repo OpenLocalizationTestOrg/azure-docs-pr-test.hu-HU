@@ -1,6 +1,6 @@
 ---
-title: "Az Azure AD v2.0 OAuth2.0 a-meghatalmazásos folyamat |} Microsoft Docs"
-description: "Ez a cikk ismerteti a HTTP-üzenetek használata a szolgáltatások közötti hitelesítés használata a OAuth2.0 a-meghatalmazásos folyamat végrehajtásához."
+title: "a-meghatalmazásos folyamat OAuth2.0 aaaAzure AD v2.0 |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan hello OAuth2.0 a-meghatalmazásos folyamat toouse HTTP üzenetek tooimplement tooservice használatával."
 services: active-directory
 documentationcenter: 
 author: navyasric
@@ -15,61 +15,61 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 356083fbaabfcd2ec7581adf319fa22b810df0d3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6063869d07c2544000094db8deea7dce19f14f67
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # Az Azure Active Directory v2.0 és OAuth 2.0 On-Behalf-Of folyamata
-Az OAuth 2.0 On-Behalf-Of folyamat szolgál a használati eset, ahol egy alkalmazás elindítja egy szolgáltatás vagy webes API, amely pedig meg kell hívni egy másik szolgáltatás vagy webes API-t. A lényege való terjesztése, a felhasználó delegált identitása és az engedélyek a kérelem lánc keresztül. A középső rétegbeli szolgáltatás hitelesített kéréseket küld az alárendelt szolgáltatás kell biztonságos hozzáférési tokent az Azure Active Directory (Azure AD), a felhasználó nevében.
+hello OAuth 2.0 On-Behalf-Of folyamat egy másik szolgáltatás vagy webes API hello használati eset ahol hív meg egy alkalmazás, egy szolgáltatás vagy webes API, amely pedig szükséges toocall szolgálja ki. hello lényege toopropagate hello útján megszerezte a felhasználó identitása és azon keresztül hello kérelem lánc engedélyek. Hello középső rétegű toomake hitelesített kérelmek toohello alárendelt szolgáltatás esetén az Azure Active Directory (Azure AD), egy hozzáférési jogkivonatot toosecure hello felhasználó nevében kell.
 
 > [!NOTE]
-> A v2.0-végpontra nem támogatja, minden Azure Active Directory forgatókönyvek és funkciók. Annak megállapításához, hogy a v2.0-végponttal kell használnia, olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
+> hello v2.0-végpontra nem támogatja, minden Azure Active Directory forgatókönyvek és funkciók. toodetermine kell használnia a hello v2.0-végpontra, hogy olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
 >
 >
 
 ## Protokoll diagramja
-Tegyük fel, hogy a felhasználó hitelesítése egy alkalmazást, amely a a [OAuth 2.0 hitelesítési kódot adjon folyamat](active-directory-v2-protocols-oauth-code.md). Ezen a ponton az alkalmazás rendelkezik olyan hozzáférési jogkivonatot (lexikális elem A) a felhasználói jogcímek és beleegyezése a középső rétegbeli webes API-k (API-A) eléréséhez. Most API A kell hitelesített kéréseknél az alsóbb rétegbeli webes API (API-B).
+Tegyük fel, hogy hello a felhasználó hitelesítése a hello használó alkalmazások [OAuth 2.0 hitelesítési kódot adjon folyamat](active-directory-v2-protocols-oauth-code.md). Ezen a ponton hello alkalmazás hello felhasználói jogcímek és hozzájárulási tooaccess hello középső rétegbeli webes API-k (API-A) rendelkezik egy hozzáférési jogkivonatot (lexikális elem A). Most az API A kell toomake egy hitelesített kérelmet toohello alsóbb rétegbeli webes API-t (API-B).
 
-A következő lépések az On-meghatalmazásos folyamat jelent, és segítségével. a következő ábra ismerteti.
+hello lépések hello a-meghatalmazásos folyamat jelent, és magyarázatát olvashatja a következő diagram hello hello segítségével.
 
 ![OAuth2.0 a-meghatalmazásos folyamat](media/active-directory-protocols-oauth-on-behalf-of/active-directory-protocols-oauth-on-behalf-of-flow.png)
 
 
-1. Az ügyfélalkalmazás egy kérést küld API A a jogkivonatok azonosítójához.
-2. API-t A az Azure AD hitelesítési karakterlánc-kiállítási végpont hitelesíti, és API-b eléréséhez jogkivonat-kérelmek
-3. Az Azure AD hitelesítési karakterlánc-kiállítási végpont ellenőrzi az API A jogkivonat A hitelesítő adatokat, és API b (lexikális elem B) állít ki a hozzáférési jogkivonat.
-4. A token B API a b kiszolgálóra a kérés hitelesítési fejlécéhez van megadva
-5. API B. által visszaadott adatok a védett erőforrás
+1. hello ügyfélalkalmazás lehetővé teszi a kérelem tooAPI A hello token A.
+2. API A toohello az Azure AD hitelesítési karakterlánc-kiállítási végpont hitelesíti, és kéri a token tooaccess API a b kiszolgálóra.
+3. hello Azure AD hitelesítési karakterlánc-kiállítási végpont ellenőrzi az API A jogkivonat A hitelesítő adatokat, és problémák hozzáférési jogkivonat hello API B (lexikális elem B).
+4. hello token B értéke hello engedélyezési fejlécének hello kérelem tooAPI a b kiszolgálóra.
+5. Védett erőforrás hello adatokat ad vissza API a b kiszolgálóra.
 
 > [!NOTE]
-> Ebben az esetben a középső rétegbeli szolgáltatás tartozik az beszerzése a felhasználói hozzájárulás az alsóbb rétegbeli API eléréséhez felhasználói beavatkozásra. Ezért a hozzáférési jogot az alsóbb rétegbeli API-t beállítás áll rendelkezésre előzetes megfizetése esetén, a hozzájárulási része. lépés: a hitelesítés során.
+> Ebben a forgatókönyvben a hello középső rétegbeli szolgáltatás nincs felhasználói beavatkozás tooobtain hello felhasználói hozzájárulás tooaccess hello alsóbb rétegbeli API rendelkezik. Ezért hello beállítás toogrant hozzáférés toohello alsóbb rétegbeli API számára jelenik meg a hitelesítés során hello hozzájárulási lépés részeként társaságuk.
 >
 
-## Szolgáltatáskérés hozzáférési jogkivonat szolgáltatás
-Olyan hozzáférési jogkivonatot kérni, a bérlő-specifikus HTTP POST ellenőrizze az Azure AD v2.0-végpontra a következő paraméterekkel.
+## Tooservice access token szolgáltatáskérés
+toorequest hozzáférési tokent, egy HTTP POST toohello bérlői-specifikus az Azure AD v2.0-végponttól ellenőrizze a következő paraméterek hello.
 
 ```
 https://login.microsoftonline.com/<tenant>/oauth2/v2.0/token
 ```
 
-Attól függően, hogy az ügyfélalkalmazás úgy dönt, hogy egy közös titkot, vagy a tanúsítvány védi két esetben van.
+Attól függően, hogy úgy dönt, hogy hello ügyfélalkalmazás egy közös titkot, vagy a tanúsítvány által védett toobe két esetben van.
 
 ### Először. eset: egy közös titkot a hozzáférési token kérelem
-Egy közös titkos kulcs használata esetén a szolgáltatás hozzáférési kérelmek tartalmazza a következő paraméterekkel:
+A közös titkos kulcs használata esetén a szolgáltatás hozzáférési kérelmek tartalmazza a következő paraméterek hello:
 
 | Paraméter |  | Leírás |
 | --- | --- | --- |
-| grant_type |Szükséges | A token kérelem típusa. A kérelmek jwt-t használ, az értéknek kell lennie **urn: ietf:params:oauth:grant-típus: jwt-tulajdonosi**. |
-| client_id |Szükséges | Az alkalmazás azonosítója, amely a [alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) az alkalmazáshoz hozzárendelni. |
-| client_secret |Szükséges | Az alkalmazás titkos kulcs az alkalmazáshoz az alkalmazásregisztrációs portálra a létrehozott. |
-| helyességi feltétel |Szükséges | A jogkivonatot, amelyet a kérés értéke. |
-| Hatókör |Szükséges | Egy szóközzel elválasztott a jogkivonatkérelem hatókört. További információkért lásd: [hatókörök](active-directory-v2-scopes.md).|
-| requested_token_use |Szükséges | Itt adhatja meg, hogyan kell feldolgozni a kérelmet. Az On-meghatalmazásos folyamat, az érték lehet **on_behalf_of**. |
+| grant_type |Szükséges | hello jogkivonatkérelem hello típusa. A kérelmek jwt-t használ, hello értéknek kell lennie **urn: ietf:params:oauth:grant-típus: jwt-tulajdonosi**. |
+| client_id |Szükséges | hello alkalmazás azonosító adott hello [alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) tooyour app rendelve. |
+| client_secret |Szükséges | az alkalmazáshoz a hello alkalmazásregisztrációs portálra létrehozott hello alkalmazáskulcsot. |
+| helyességi feltétel |Szükséges | hello érték, amelyet hello kérés hello jogkivonat. |
+| Hatókör |Szükséges | Egy szóközzel elválasztott hello jogkivonatkérelem hatókört. További információkért lásd: [hatókörök](active-directory-v2-scopes.md).|
+| requested_token_use |Szükséges | Itt adhatja meg, hogyan kell feldolgozni hello kérelmet. A-meghatalmazásos folyamat hello, a hello értéknek kell lennie **on_behalf_of**. |
 
 #### Példa
-A következő HTTP POST kérelmek egy hozzáférési jogkivonat `user.read` https://graph.microsoft.com webes API hatókör.
+a következő HTTP POST hello kér egy hozzáférési jogkivonat `user.read` hello https://graph.microsoft.com webes API-k hatókörét.
 
 ```
 //line breaks for legibility only
@@ -87,22 +87,22 @@ grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer
 ```
 
 ### A második esetben: hozzáférési jogkivonat kérelem tanúsítvánnyal
-Szolgáltatás hozzáférési kérelmek tanúsítvánnyal tartalmazza a következő paraméterekkel:
+Szolgáltatás hozzáférési kérelmek tanúsítvánnyal hello a következő paramétereket tartalmazza:
 
 | Paraméter |  | Leírás |
 | --- | --- | --- |
-| grant_type |Szükséges | A token kérelem típusa. A kérelmek jwt-t használ, az értéknek kell lennie **urn: ietf:params:oauth:grant-típus: jwt-tulajdonosi**. |
-| client_id |Szükséges | Az alkalmazás azonosítója, amely a [alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) az alkalmazáshoz hozzárendelni. |
-| client_assertion_type |Szükséges |Az értéknek kell lennie`urn:ietf:params:oauth:client-assertion-type:jwt-bearer` |
-| client_assertion |Szükséges | Egy helyességi feltétel (egy JSON Web Token) hozzon létre, és írja alá a tanúsítványt igénylő regisztrálta hitelesítő adatként az alkalmazáshoz.  További információ a [tanúsítvány a hitelesítő adatok](active-directory-certificate-credentials.md) megtudhatja, hogyan kell regisztrálni a tanúsítványt, és a helyességi feltétel formátuma.|
-| helyességi feltétel |Szükséges | A jogkivonatot, amelyet a kérés értéke. |
-| requested_token_use |Szükséges | Itt adhatja meg, hogyan kell feldolgozni a kérelmet. Az On-meghatalmazásos folyamat, az érték lehet **on_behalf_of**. |
-| Hatókör |Szükséges | Egy szóközzel elválasztott a jogkivonatkérelem hatókört. További információkért lásd: [hatókörök](active-directory-v2-scopes.md).|
+| grant_type |Szükséges | hello jogkivonatkérelem hello típusa. A kérelmek jwt-t használ, hello értéknek kell lennie **urn: ietf:params:oauth:grant-típus: jwt-tulajdonosi**. |
+| client_id |Szükséges | hello alkalmazás azonosító adott hello [alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) tooyour app rendelve. |
+| client_assertion_type |Szükséges |hello értéknek kell lennie`urn:ietf:params:oauth:client-assertion-type:jwt-bearer` |
+| client_assertion |Szükséges | Egy helyességi feltétel (egy JSON Web Token), hogy toocreate van szüksége, és a jel hello a tanúsítványok, az alkalmazás hitelesítő adatként regisztrálva.  További információ a [tanúsítvány a hitelesítő adatok](active-directory-certificate-credentials.md) toolearn hogyan tooregister hello helyességi feltétel a tanúsítvány és hello formátuma.|
+| helyességi feltétel |Szükséges | hello érték, amelyet hello kérés hello jogkivonat. |
+| requested_token_use |Szükséges | Itt adhatja meg, hogyan kell feldolgozni hello kérelmet. A-meghatalmazásos folyamat hello, a hello értéknek kell lennie **on_behalf_of**. |
+| Hatókör |Szükséges | Egy szóközzel elválasztott hello jogkivonatkérelem hatókört. További információkért lásd: [hatókörök](active-directory-v2-scopes.md).|
 
-Figyelje meg, hogy a paraméterek megegyeznek-szinte közös titkos kulcs kérése gazdabuszadaptereken azzal a különbséggel, hogy a client_secret paraméter helyébe két paramétert: egy client_assertion_type és client_assertion.
+Figyelje meg, hogy hello paraméterei szinte hello ugyanaz, mint hello hello kérelem által megosztott titkot azzal a különbséggel, hogy hello client_secret paraméter helyébe két paramétert: egy client_assertion_type és client_assertion.
 
 #### Példa
-A következő HTTP POST kérelmek egy hozzáférési jogkivonat `user.read` hatókör https://graph.microsoft.com webes API tanúsítvánnyal.
+a következő HTTP POST hello kér egy hozzáférési jogkivonat `user.read` hatókör hello https://graph.microsoft.com Web API tanúsítvánnyal.
 
 ```
 // line breaks for legibility only
@@ -120,19 +120,19 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
 &scope=https://graph.microsoft.com/user.read
 ```
 
-## Szolgáltatás-hozzáférési jogkivonat válasz szolgáltatás
-Sikerességi válasz egy JSON OAuth 2.0 válasz a következő paraméterekkel.
+## Szolgáltatás tooservice hozzáférési jogkivonat válasz
+Sikerességi válasz egy JSON OAuth 2.0 válasz a következő paraméterek hello.
 
 | Paraméter | Leírás |
 | --- | --- |
-| token_type |A jogkivonat típusa értékét jelöli. Az egyetlen típus, amely az Azure AD által támogatott **tulajdonosi**. Tulajdonosi jogkivonatok kapcsolatos további információkért tekintse meg a [OAuth 2.0 hitelesítési keretrendszer: tulajdonosi jogkivonat használati (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt). |
-| Hatókör |Hozzáférést biztosít a jogkivonat körét. |
-| expires_in |Mennyi ideig a hozzáférési jogkivonat érvénytelen (másodpercben). |
-| access_token |A kért hozzáférési jogkivonat. A hívó szolgáltatás a fogadó szolgáltatással való hitelesítésre szolgáló használhatja a token. |
-| refresh_token |A kért hozzáférési jogkivonat frissítési jogkivonat. A hívó szolgáltatás egy új hozzáférési jogkivonat lekérni az aktuális jogkivonat lejárata után is használhatja a token. |
+| token_type |Azt jelzi, hogy hello token objektumtípus-érték. csak olyan típusú, amely az Azure AD által támogatott hello **tulajdonosi**. Tulajdonosi jogkivonatok kapcsolatos további információkért lásd: hello [OAuth 2.0 hitelesítési keretrendszer: tulajdonosi jogkivonat használati (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt). |
+| Hatókör |hozzáférést biztosít a hello token hello hatókörében. |
+| expires_in |idő hello hozzáférési jogkivonat hello hossza (másodpercben) érvényes. |
+| access_token |hello kért hozzáférési jogkivonat. hello hívja service szolgáltatással a token tooauthenticate toohello fogadó. |
+| refresh_token |hello frissítési jogkivonat hello kért hozzáférési jogkivonat. hello szolgáltatás hívása használhatja a token toorequest egy új hozzáférési jogkivonat hello aktuális hozzáférési jogkivonat lejárata után is. |
 
 ### Sikerességi válasz – példa
-A következő példa bemutatja egy olyan hozzáférési jogkivonatot https://graph.microsoft.com webes API kérelemre sikerességi válasz.
+hello következő példa bemutatja egy hozzáférési jogkivonatot hello https://graph.microsoft.com webes API-t a sikeres válasz tooa kérelmet.
 
 ```
 {
@@ -146,12 +146,12 @@ A következő példa bemutatja egy olyan hozzáférési jogkivonatot https://gra
 ```
 
 ### Hiba válasz – példa
-Egy hiba történt egy válasz próbál szerezni hozzáférési tokent az alsóbb rétegbeli API-hoz, például a többtényezős hitelesítés beállítása a feltételes hozzáférési szabályzatot az alsóbb rétegbeli API-e az Azure AD-token végpontja érték érkezett vissza. A középső rétegbeli szolgáltatás kell surface Ez a hiba az ügyfélalkalmazás, így az ügyfélalkalmazás biztosítani tudja teljesíteni a feltételes hozzáférési házirend a felhasználói beavatkozást.
+Egy hibaüzenetet ad vissza az Azure AD-jogkivonat végpontjához hello alsóbb rétegbeli API-hoz, egy hozzáférési jogkivonatot tooacquire közben például többtényezős hitelesítés beállítása a feltételes hozzáférési házirend hello alsóbb rétegbeli API-e. hello középső rétegbeli szolgáltatás kell surface e hiba toohello ügyfélalkalmazást, így hello ügyfélalkalmazás biztosítani tudja hello felhasználói beavatkozás toosatisfy hello feltételes hozzáférési szabályzat.
 
 ```
 {
     "error":"interaction_required",
-    "error_description":"AADSTS50079: Due to a configuration change made by your administrator, or because you moved to a new location, you must enroll in multi-factor authentication to access 'bf8d80f9-9098-4972-b203-500f535113b1'.\r\nTrace ID: b72a68c3-0926-4b8e-bc35-3150069c2800\r\nCorrelation ID: 73d656cf-54b1-4eb2-b429-26d8165a52d7\r\nTimestamp: 2017-05-01 22:43:20Z",
+    "error_description":"AADSTS50079: Due tooa configuration change made by your administrator, or because you moved tooa new location, you must enroll in multi-factor authentication tooaccess 'bf8d80f9-9098-4972-b203-500f535113b1'.\r\nTrace ID: b72a68c3-0926-4b8e-bc35-3150069c2800\r\nCorrelation ID: 73d656cf-54b1-4eb2-b429-26d8165a52d7\r\nTimestamp: 2017-05-01 22:43:20Z",
     "error_codes":[50079],
     "timestamp":"2017-05-01 22:43:20Z",
     "trace_id":"b72a68c3-0926-4b8e-bc35-3150069c2800",
@@ -160,8 +160,8 @@ Egy hiba történt egy válasz próbál szerezni hozzáférési tokent az alsób
 }
 ```
 
-## A védett erőforrások eléréséhez használja a hozzáférési jogkivonat
-Most a középső rétegbeli szolgáltatás használhatja a hitelesített kérelmek legyen az alsóbb rétegbeli webes API-t úgy, hogy a jogkivonat fenti szerzett jogkivonat a `Authorization` fejléc.
+## Védett erőforrás hello access token tooaccess hello használata
+Most hello középső rétegbeli szolgáltatás után használhatja hello token szerzett be a fenti toomake hitelesített kérelmek toohello webes API-t, által hello token beállítása hello `Authorization` fejléc.
 
 ### Példa
 ```
@@ -171,6 +171,6 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJub25jZSI6IkFRQUJBQUFBQUFCbmZpRy1tQTZOVG
 ```
 
 ## Következő lépések
-További információk az OAuth 2.0 protokollt, és úgy is hajtsa végre a szolgáltatások közötti hitelesítési ügyfél hitelesítő adataival.
+További információ a hello OAuth 2.0 protokoll és egy másik módja tooperform szolgáltatás tooservice hitelesítési ügyfél hitelesítő adataival.
 * [OAuth 2.0 ügyfél hitelesítő adatai megadják az Azure AD v2.0](active-directory-v2-protocols-oauth-client-creds.md)
 * [OAuth 2.0, az Azure AD v2.0](active-directory-v2-protocols-oauth-code.md)

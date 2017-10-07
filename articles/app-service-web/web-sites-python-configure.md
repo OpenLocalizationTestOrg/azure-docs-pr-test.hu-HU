@@ -1,5 +1,5 @@
 ---
-title: "Python konfigurálása az Azure App Service Web Apps alkalmazások"
+title: az Azure App Service Web Apps Python aaaConfiguring
 description: "Ez az oktatóanyag leírja a szerzői műveletekhez és az alapszintű webes kiszolgáló átjáró felület (WSGI) kompatibilis Python alkalmazást az Azure App Service Web Apps beállításait."
 services: app-service
 documentationcenter: python
@@ -15,36 +15,36 @@ ms.devlang: python
 ms.topic: article
 ms.date: 02/26/2016
 ms.author: huvalo
-ms.openlocfilehash: 9683a1af13eeff364d3c4714f0b791324fd82659
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 00d49fb01491e9adb4b6fededfb95669a8dbd485
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configuring-python-with-azure-app-service-web-apps"></a><span data-ttu-id="dbf9f-103">Python konfigurálása az Azure App Service Web Apps alkalmazások</span><span class="sxs-lookup"><span data-stu-id="dbf9f-103">Configuring Python with Azure App Service Web Apps</span></span>
-<span data-ttu-id="dbf9f-104">Ez az oktatóanyag ismerteti, szerzői és egy alapszintű Web Server átjáró felület (WSGI) kompatibilis Python alkalmazást beállításának beállítások [Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714).</span><span class="sxs-lookup"><span data-stu-id="dbf9f-104">This tutorial describes options for authoring and configuring a basic Web Server Gateway Interface (WSGI) compliant Python application on [Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714).</span></span>
+# <a name="configuring-python-with-azure-app-service-web-apps"></a><span data-ttu-id="ef828-103">Python konfigurálása az Azure App Service Web Apps alkalmazások</span><span class="sxs-lookup"><span data-stu-id="ef828-103">Configuring Python with Azure App Service Web Apps</span></span>
+<span data-ttu-id="ef828-104">Ez az oktatóanyag ismerteti, szerzői és egy alapszintű Web Server átjáró felület (WSGI) kompatibilis Python alkalmazást beállításának beállítások [Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714).</span><span class="sxs-lookup"><span data-stu-id="ef828-104">This tutorial describes options for authoring and configuring a basic Web Server Gateway Interface (WSGI) compliant Python application on [Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714).</span></span>
 
-<span data-ttu-id="dbf9f-105">Git üzemelő példányt, például a virtuális környezet és a csomag telepítése a requirements.txt használatával további szolgáltatásait ismerteti.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-105">It describes additional features of Git deployment, such as virtual environment and package installation using requirements.txt.</span></span>
+<span data-ttu-id="ef828-105">Git üzemelő példányt, például a virtuális környezet és a csomag telepítése a requirements.txt használatával további szolgáltatásait ismerteti.</span><span class="sxs-lookup"><span data-stu-id="ef828-105">It describes additional features of Git deployment, such as virtual environment and package installation using requirements.txt.</span></span>
 
-## <a name="bottle-django-or-flask"></a><span data-ttu-id="dbf9f-106">Bottle, a Django vagy Flask?</span><span class="sxs-lookup"><span data-stu-id="dbf9f-106">Bottle, Django or Flask?</span></span>
-<span data-ttu-id="dbf9f-107">Az Azure piactéren a Bottle, a Django és a Flask keretrendszerek sablonjait tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-107">The Azure Marketplace contains templates for the Bottle, Django and Flask frameworks.</span></span> <span data-ttu-id="dbf9f-108">Ha az első webalkalmazás az Azure App Service fejleszt, vagy még nem ismeri a Gitet, javasoljuk, hogy ezek az oktatóanyagok, amely részletes utasításokat tartalmaz egy működő alkalmazást a katalógusból Git-telepítés a Windows vagy Mac használatával felépítése egyik kövesse:</span><span class="sxs-lookup"><span data-stu-id="dbf9f-108">If you are developing your first web app in Azure App Service, or you are not familiar with Git, we recommend that you follow one of these tutorials, which include step-by-step instructions for building a working application from the gallery using Git deployment from Windows or Mac:</span></span>
+## <a name="bottle-django-or-flask"></a><span data-ttu-id="ef828-106">Bottle, a Django vagy Flask?</span><span class="sxs-lookup"><span data-stu-id="ef828-106">Bottle, Django or Flask?</span></span>
+<span data-ttu-id="ef828-107">hello Azure piactér hello Bottle, a Django és a Flask keretrendszerek sablonjait tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="ef828-107">hello Azure Marketplace contains templates for hello Bottle, Django and Flask frameworks.</span></span> <span data-ttu-id="ef828-108">Ha az első webalkalmazás az Azure App Service fejleszt, vagy még nem ismeri a Gitet, javasoljuk, hogy ezek az oktatóanyagok, amely részletes utasításokat tartalmaz egy működő alkalmazást Git központi telepítéssel hello gyűjteményből felépítése egyik kövesse a Windows vagy Mac:</span><span class="sxs-lookup"><span data-stu-id="ef828-108">If you are developing your first web app in Azure App Service, or you are not familiar with Git, we recommend that you follow one of these tutorials, which include step-by-step instructions for building a working application from hello gallery using Git deployment from Windows or Mac:</span></span>
 
-* [<span data-ttu-id="dbf9f-109">Webalkalmazások létrehozása a Bottle</span><span class="sxs-lookup"><span data-stu-id="dbf9f-109">Creating web apps with Bottle</span></span>](web-sites-python-create-deploy-bottle-app.md)
-* [<span data-ttu-id="dbf9f-110">Webalkalmazások létrehozása a djangóval</span><span class="sxs-lookup"><span data-stu-id="dbf9f-110">Creating web apps with Django</span></span>](web-sites-python-create-deploy-django-app.md)
-* [<span data-ttu-id="dbf9f-111">Webalkalmazások létrehozása a Flask</span><span class="sxs-lookup"><span data-stu-id="dbf9f-111">Creating web apps with Flask</span></span>](web-sites-python-create-deploy-flask-app.md)
+* [<span data-ttu-id="ef828-109">Webalkalmazások létrehozása a Bottle</span><span class="sxs-lookup"><span data-stu-id="ef828-109">Creating web apps with Bottle</span></span>](web-sites-python-create-deploy-bottle-app.md)
+* [<span data-ttu-id="ef828-110">Webalkalmazások létrehozása a djangóval</span><span class="sxs-lookup"><span data-stu-id="ef828-110">Creating web apps with Django</span></span>](web-sites-python-create-deploy-django-app.md)
+* [<span data-ttu-id="ef828-111">Webalkalmazások létrehozása a Flask</span><span class="sxs-lookup"><span data-stu-id="ef828-111">Creating web apps with Flask</span></span>](web-sites-python-create-deploy-flask-app.md)
 
-## <a name="web-app-creation-on-azure-portal"></a><span data-ttu-id="dbf9f-112">Webalkalmazás létrehozása az Azure portálon</span><span class="sxs-lookup"><span data-stu-id="dbf9f-112">Web app creation on Azure Portal</span></span>
-<span data-ttu-id="dbf9f-113">Ez az oktatóanyag azt feltételezi, hogy egy meglévő Azure-előfizetés és az Azure portál eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-113">This tutorial assumes an existing Azure subscription and access to the Azure Portal.</span></span>
+## <a name="web-app-creation-on-azure-portal"></a><span data-ttu-id="ef828-112">Webalkalmazás létrehozása az Azure portálon</span><span class="sxs-lookup"><span data-stu-id="ef828-112">Web app creation on Azure Portal</span></span>
+<span data-ttu-id="ef828-113">Ez az oktatóanyag azt feltételezi, hogy egy meglévő Azure előfizetés és a hozzáférés toohello Azure portálon.</span><span class="sxs-lookup"><span data-stu-id="ef828-113">This tutorial assumes an existing Azure subscription and access toohello Azure Portal.</span></span>
 
-<span data-ttu-id="dbf9f-114">Ha még nem rendelkezik egy létező webalkalmazása, létrehozhat egyet a [Azure Portal](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="dbf9f-114">If you do not have an existing web app, you can create one from the [Azure Portal](https://portal.azure.com).</span></span>  <span data-ttu-id="dbf9f-115">Kattintson az új gombra a bal felső sarokban, majd **Web + mobil** > **webalkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-115">Click the NEW button in the top left corner, then click **Web + Mobile** > **Web app**.</span></span>
+<span data-ttu-id="ef828-114">Ha még nem rendelkezik egy létező webalkalmazása, létrehozhat egyet a hello [Azure Portal](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="ef828-114">If you do not have an existing web app, you can create one from hello [Azure Portal](https://portal.azure.com).</span></span>  <span data-ttu-id="ef828-115">Új gombjára hello hello bal felső sarokban, majd kattintson a **Web + mobil** > **webalkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="ef828-115">Click hello NEW button in hello top left corner, then click **Web + Mobile** > **Web app**.</span></span>
 
-## <a name="git-publishing"></a><span data-ttu-id="dbf9f-116">Git-közzététel</span><span class="sxs-lookup"><span data-stu-id="dbf9f-116">Git Publishing</span></span>
-<span data-ttu-id="dbf9f-117">Konfigurálja az újonnan létrehozott webalkalmazáshoz tartozó Git-közzétételt a [Local Git Deployment to Azure App Service](app-service-deploy-local-git.md) (Helyi Git-üzembehelyezés az Azure App Service-ben) részben megadott utasítások szerint.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-117">Configure Git publishing for your newly created web app by following the instructions at [Local Git Deployment to Azure App Service](app-service-deploy-local-git.md).</span></span> <span data-ttu-id="dbf9f-118">Ez az oktatóanyag a Git segítségével létrehozására, kezelésére és a Python webalkalmazás közzététele az Azure App Service.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-118">This tutorial uses Git to create, manage, and publish our Python web app to Azure App Service.</span></span>
+## <a name="git-publishing"></a><span data-ttu-id="ef828-116">Git-közzététel</span><span class="sxs-lookup"><span data-stu-id="ef828-116">Git Publishing</span></span>
+<span data-ttu-id="ef828-117">Az újonnan létrehozott webalkalmazáshoz tartozó Git-közzététel konfigurálása: hello utasításokat követve [helyi Git-telepítésének tooAzure App Service](app-service-deploy-local-git.md).</span><span class="sxs-lookup"><span data-stu-id="ef828-117">Configure Git publishing for your newly created web app by following hello instructions at [Local Git Deployment tooAzure App Service](app-service-deploy-local-git.md).</span></span> <span data-ttu-id="ef828-118">Ez az oktatóanyag a Git toocreate használja, kezelése és a Python webes alkalmazás tooAzure App Service közzététele.</span><span class="sxs-lookup"><span data-stu-id="ef828-118">This tutorial uses Git toocreate, manage, and publish our Python web app tooAzure App Service.</span></span>
 
-<span data-ttu-id="dbf9f-119">Git-közzététel beállítása után a Git-tárház létrehozása, és a webalkalmazás társított.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-119">Once Git publishing is set up, a Git repository will be created and associated with your web app.</span></span> <span data-ttu-id="dbf9f-120">A tárház URL-cím fog megjelenni, és ezentúl segítségével küldje le adatokat a helyi fejlesztési környezetet a felhőben.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-120">The repository's URL will be displayed and can henceforth be used to push data from the local development environment to the cloud.</span></span> <span data-ttu-id="dbf9f-121">Git keresztül alkalmazások közzétételét, győződjön meg arról, hogy a Git-ügyfél telepítése, és kövesse az utasításokat, majd a webtartalom-alkalmazás az Azure App Service megadott.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-121">To publish applications via Git, make sure a Git client is also installed and use the instructions provided to push your web app content to Azure App Service.</span></span>
+<span data-ttu-id="ef828-119">Git-közzététel beállítása után a Git-tárház létrehozása, és a webalkalmazás társított.</span><span class="sxs-lookup"><span data-stu-id="ef828-119">Once Git publishing is set up, a Git repository will be created and associated with your web app.</span></span> <span data-ttu-id="ef828-120">hello tárház URL-cím fog megjelenni, és ezentúl hello helyi fejlesztési környezet toohello felhő használt toopush adatait.</span><span class="sxs-lookup"><span data-stu-id="ef828-120">hello repository's URL will be displayed and can henceforth be used toopush data from hello local development environment toohello cloud.</span></span> <span data-ttu-id="ef828-121">toopublish alkalmazások keresztül Git, ellenőrizze, hogy egy Git-ügyfél telepítése és használata hello arra vonatkozó útmutatást toopush a webes alkalmazás tartalom tooAzure App Service.</span><span class="sxs-lookup"><span data-stu-id="ef828-121">toopublish applications via Git, make sure a Git client is also installed and use hello instructions provided toopush your web app content tooAzure App Service.</span></span>
 
-## <a name="application-overview"></a><span data-ttu-id="dbf9f-122">Az alkalmazás áttekintése</span><span class="sxs-lookup"><span data-stu-id="dbf9f-122">Application Overview</span></span>
-<span data-ttu-id="dbf9f-123">A következő szakaszok a következő fájlok jönnek létre.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-123">In the next sections, the following files are created.</span></span> <span data-ttu-id="dbf9f-124">A Git-tárház gyökérkönyvtárában található kerüljön.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-124">They should be placed in the root of the Git repository.</span></span>
+## <a name="application-overview"></a><span data-ttu-id="ef828-122">Az alkalmazás áttekintése</span><span class="sxs-lookup"><span data-stu-id="ef828-122">Application Overview</span></span>
+<span data-ttu-id="ef828-123">A következő szakaszokban hello hello következő fájlok jönnek létre.</span><span class="sxs-lookup"><span data-stu-id="ef828-123">In hello next sections, hello following files are created.</span></span> <span data-ttu-id="ef828-124">Ezek hello hello Git-tárház gyökérkönyvtárában kell helyezni.</span><span class="sxs-lookup"><span data-stu-id="ef828-124">They should be placed in hello root of hello Git repository.</span></span>
 
     app.py
     requirements.txt
@@ -53,10 +53,10 @@ ms.lasthandoff: 07/11/2017
     ptvs_virtualenv_proxy.py
 
 
-## <a name="wsgi-handler"></a><span data-ttu-id="dbf9f-125">WSGI kezelő</span><span class="sxs-lookup"><span data-stu-id="dbf9f-125">WSGI Handler</span></span>
-<span data-ttu-id="dbf9f-126">WSGI egy Python szabvány szerint [EGP 3333](http://www.python.org/dev/peps/pep-3333/) meghatározása a webkiszolgáló és a Python közötti illesztőfelületet szolgáltasson.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-126">WSGI is a Python standard described by [PEP 3333](http://www.python.org/dev/peps/pep-3333/) defining an interface between the web server and Python.</span></span> <span data-ttu-id="dbf9f-127">Egy egységes felületet biztosít írása a webalkalmazások és -keretrendszerek pythonos környezetekben.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-127">It provides a standardized interface for writing various web applications and frameworks using Python.</span></span> <span data-ttu-id="dbf9f-128">Python webes népszerű keretrendszerekre ma használható WSGI.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-128">Popular Python web frameworks today use WSGI.</span></span> <span data-ttu-id="dbf9f-129">Támogatja az ilyen keretrendszerek; az Azure App Service Web Apps által biztosított Ezenkívül advanced-felhasználók is létrehozható a saját mindaddig, amíg a egyéni kezelő követi az WSGI specification útmutatást.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-129">Azure App Service Web Apps gives you support for any such frameworks; in addition, advanced users can even author their own as long as the custom handler follows the WSGI specification guidelines.</span></span>
+## <a name="wsgi-handler"></a><span data-ttu-id="ef828-125">WSGI kezelő</span><span class="sxs-lookup"><span data-stu-id="ef828-125">WSGI Handler</span></span>
+<span data-ttu-id="ef828-126">WSGI egy Python szabvány szerint [EGP 3333](http://www.python.org/dev/peps/pep-3333/) meghatározása hello webkiszolgáló és a Python közötti illesztőfelületet szolgáltasson.</span><span class="sxs-lookup"><span data-stu-id="ef828-126">WSGI is a Python standard described by [PEP 3333](http://www.python.org/dev/peps/pep-3333/) defining an interface between hello web server and Python.</span></span> <span data-ttu-id="ef828-127">Egy egységes felületet biztosít írása a webalkalmazások és -keretrendszerek pythonos környezetekben.</span><span class="sxs-lookup"><span data-stu-id="ef828-127">It provides a standardized interface for writing various web applications and frameworks using Python.</span></span> <span data-ttu-id="ef828-128">Python webes népszerű keretrendszerekre ma használható WSGI.</span><span class="sxs-lookup"><span data-stu-id="ef828-128">Popular Python web frameworks today use WSGI.</span></span> <span data-ttu-id="ef828-129">Támogatja az ilyen keretrendszerek; az Azure App Service Web Apps által biztosított Ezenkívül advanced-felhasználók is létrehozható a saját mindaddig, amíg hello egyéni kezelő a következő hello WSGI specification irányelveket.</span><span class="sxs-lookup"><span data-stu-id="ef828-129">Azure App Service Web Apps gives you support for any such frameworks; in addition, advanced users can even author their own as long as hello custom handler follows hello WSGI specification guidelines.</span></span>
 
-<span data-ttu-id="dbf9f-130">Íme egy példa egy `app.py` , amely meghatározza, hogy egy egyéni kezelő:</span><span class="sxs-lookup"><span data-stu-id="dbf9f-130">Here's an example of an `app.py` that defines a custom handler:</span></span>
+<span data-ttu-id="ef828-130">Íme egy példa egy `app.py` , amely meghatározza, hogy egy egyéni kezelő:</span><span class="sxs-lookup"><span data-stu-id="ef828-130">Here's an example of an `app.py` that defines a custom handler:</span></span>
 
     def wsgi_app(environ, start_response):
         status = '200 OK'
@@ -71,41 +71,41 @@ ms.lasthandoff: 07/11/2017
         httpd = make_server('localhost', 5555, wsgi_app)
         httpd.serve_forever()
 
-<span data-ttu-id="dbf9f-131">Az alkalmazást helyileg is futtathatja `python app.py`, majd tallózással `http://localhost:5555` a böngészőben.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-131">You can run this application locally with `python app.py`, then browse to `http://localhost:5555` in your web browser.</span></span>
+<span data-ttu-id="ef828-131">Az alkalmazást helyileg is futtathatja `python app.py`, majd keresse meg a túl`http://localhost:5555` a böngészőben.</span><span class="sxs-lookup"><span data-stu-id="ef828-131">You can run this application locally with `python app.py`, then browse too`http://localhost:5555` in your web browser.</span></span>
 
-## <a name="virtual-environment"></a><span data-ttu-id="dbf9f-132">Virtuális környezet</span><span class="sxs-lookup"><span data-stu-id="dbf9f-132">Virtual Environment</span></span>
-<span data-ttu-id="dbf9f-133">Bár a fenti példa alkalmazás nincs szükség külső csomagok, valószínű, hogy az alkalmazás néhány szükséges.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-133">Although the example app above doesn't require any external packages, it is likely that your application will require some.</span></span>
+## <a name="virtual-environment"></a><span data-ttu-id="ef828-132">Virtuális környezet</span><span class="sxs-lookup"><span data-stu-id="ef828-132">Virtual Environment</span></span>
+<span data-ttu-id="ef828-133">Bár a fenti hello példa alkalmazás nincs szükség külső csomagok, valószínű, hogy az alkalmazás néhány szükséges.</span><span class="sxs-lookup"><span data-stu-id="ef828-133">Although hello example app above doesn't require any external packages, it is likely that your application will require some.</span></span>
 
-<span data-ttu-id="dbf9f-134">Külső csomagfüggőségek kezelése érdekében a Azure Git-telepítés a virtuális környezetek létrehozását támogatja.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-134">To help manage external package dependencies, Azure Git deployment supports the creation of virtual environments.</span></span>
+<span data-ttu-id="ef828-134">toohelp kezeléséhez külső csomagfüggőségek, Azure Git-telepítés a virtuális környezetek hello létrehozását támogatja.</span><span class="sxs-lookup"><span data-stu-id="ef828-134">toohelp manage external package dependencies, Azure Git deployment supports hello creation of virtual environments.</span></span>
 
-<span data-ttu-id="dbf9f-135">Ha az Azure a requirements.txt észlel a tárház gyökérkönyvtárában található, automatikusan létrehoz egy nevű virtuális környezet `env`.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-135">When Azure detects a requirements.txt in the root of the repository, it automatically creates a virtual environment named `env`.</span></span> <span data-ttu-id="dbf9f-136">Csak az első központi telepítése történik, vagy a telepítést követően a kijelölt Python során futásidejű megváltozott.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-136">This only occurs on the first deployment, or during any deployment after the selected Python runtime has changed.</span></span>
+<span data-ttu-id="ef828-135">Ha Azure hello legfelső szintű hello tárház a Requirements.txt fájlt észlel, automatikusan létrehoz egy nevű virtuális környezet `env`.</span><span class="sxs-lookup"><span data-stu-id="ef828-135">When Azure detects a requirements.txt in hello root of hello repository, it automatically creates a virtual environment named `env`.</span></span> <span data-ttu-id="ef828-136">Ez csak akkor történik hello első üzemelő példányon, vagy hello után bármely központi telepítése során kiválasztott Python-futtatókörnyezet megváltozott.</span><span class="sxs-lookup"><span data-stu-id="ef828-136">This only occurs on hello first deployment, or during any deployment after hello selected Python runtime has changed.</span></span>
 
-<span data-ttu-id="dbf9f-137">Valószínűleg érdemes lehet létrehozni egy helyi fejlesztési virtuális környezetről, de nem adja hozzá a Git-tárházban.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-137">You will probably want to create a virtual environment locally for development, but don't include it in your Git repository.</span></span>
+<span data-ttu-id="ef828-137">Toocreate egy helyi fejlesztési virtuális környezetről, valószínűleg érdemes, de nem adja hozzá a Git-tárházban.</span><span class="sxs-lookup"><span data-stu-id="ef828-137">You will probably want toocreate a virtual environment locally for development, but don't include it in your Git repository.</span></span>
 
-## <a name="package-management"></a><span data-ttu-id="dbf9f-138">Csomagkezelés</span><span class="sxs-lookup"><span data-stu-id="dbf9f-138">Package Management</span></span>
-<span data-ttu-id="dbf9f-139">A requirements.txt fájlban felsorolt csomagok automatikusan települnek a pip használatával a virtuális környezetben.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-139">Packages listed in requirements.txt will be installed automatically in the virtual environment using pip.</span></span> <span data-ttu-id="dbf9f-140">Ez történik, minden üzembe helyezés, de a pip kihagyja a telepítést, ha a csomag már telepítve van.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-140">This happens on every deployment, but pip will skip installation if a package is already installed.</span></span>
+## <a name="package-management"></a><span data-ttu-id="ef828-138">Csomagkezelés</span><span class="sxs-lookup"><span data-stu-id="ef828-138">Package Management</span></span>
+<span data-ttu-id="ef828-139">A requirements.txt fájlban felsorolt csomagok automatikusan települnek a pip használatával hello virtuális környezetben.</span><span class="sxs-lookup"><span data-stu-id="ef828-139">Packages listed in requirements.txt will be installed automatically in hello virtual environment using pip.</span></span> <span data-ttu-id="ef828-140">Ez történik, minden üzembe helyezés, de a pip kihagyja a telepítést, ha a csomag már telepítve van.</span><span class="sxs-lookup"><span data-stu-id="ef828-140">This happens on every deployment, but pip will skip installation if a package is already installed.</span></span>
 
-<span data-ttu-id="dbf9f-141">Példa `requirements.txt`:</span><span class="sxs-lookup"><span data-stu-id="dbf9f-141">Example `requirements.txt`:</span></span>
+<span data-ttu-id="ef828-141">Példa `requirements.txt`:</span><span class="sxs-lookup"><span data-stu-id="ef828-141">Example `requirements.txt`:</span></span>
 
     azure==0.8.4
 
 
-## <a name="python-version"></a><span data-ttu-id="dbf9f-142">Python-verzió</span><span class="sxs-lookup"><span data-stu-id="dbf9f-142">Python Version</span></span>
+## <a name="python-version"></a><span data-ttu-id="ef828-142">Python-verzió</span><span class="sxs-lookup"><span data-stu-id="ef828-142">Python Version</span></span>
 [!INCLUDE [web-sites-python-customizing-runtime](../../includes/web-sites-python-customizing-runtime.md)]
 
-<span data-ttu-id="dbf9f-143">Példa `runtime.txt`:</span><span class="sxs-lookup"><span data-stu-id="dbf9f-143">Example `runtime.txt`:</span></span>
+<span data-ttu-id="ef828-143">Példa `runtime.txt`:</span><span class="sxs-lookup"><span data-stu-id="ef828-143">Example `runtime.txt`:</span></span>
 
     python-2.7
 
 
-## <a name="webconfig"></a><span data-ttu-id="dbf9f-144">Web.config</span><span class="sxs-lookup"><span data-stu-id="dbf9f-144">Web.config</span></span>
-<span data-ttu-id="dbf9f-145">Hozzon létre egy web.config fájlt adhatja meg, hogy a kiszolgáló hogyan kezelje kérelmek lesz szüksége.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-145">You'll need to create a web.config file to specify how the server should handle requests.</span></span>
+## <a name="webconfig"></a><span data-ttu-id="ef828-144">Web.config</span><span class="sxs-lookup"><span data-stu-id="ef828-144">Web.config</span></span>
+<span data-ttu-id="ef828-145">Szüksége lesz egy web.config fájl toospecify toocreate hello kiszolgáló hogyan kezelje a kérelmeket.</span><span class="sxs-lookup"><span data-stu-id="ef828-145">You'll need toocreate a web.config file toospecify how hello server should handle requests.</span></span>
 
-<span data-ttu-id="dbf9f-146">Vegye figyelembe, hogy a beállítást, ha egy web.x.y.config fájlt a tárházban, ahol x megfelel a kiválasztott Python-futtatókörnyezet, majd az Azure automatikusan másolatot készít a megfelelő web.config fájlt.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-146">Note that if you have a web.x.y.config file in your repository, where x.y matches the selected Python runtime, then Azure will automatically copy the appropriate file as web.config.</span></span>
+<span data-ttu-id="ef828-146">Vegye figyelembe, hogy ha egy web.x.y.config fájlt a tárházban, ahol x megegyezik hello kijelölt Python-futtatókörnyezet, majd Azure automatikusan másolatot készít a hello megfelelő web.config fájlt.</span><span class="sxs-lookup"><span data-stu-id="ef828-146">Note that if you have a web.x.y.config file in your repository, where x.y matches hello selected Python runtime, then Azure will automatically copy hello appropriate file as web.config.</span></span>
 
-<span data-ttu-id="dbf9f-147">A következő web.config példák virtuális környezet proxyparancsfájl, amely a következő szakaszban ismertetett támaszkodnak.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-147">The following web.config examples rely on a virtual environment proxy script, which is described in the next section.</span></span>  <span data-ttu-id="dbf9f-148">Ezek a példában használt WSGI kezelő működnek `app.py` felett.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-148">They work with the WSGI handler used in the example `app.py` above.</span></span>
+<span data-ttu-id="ef828-147">hello következő web.config példák használja a virtuális környezet proxyparancsfájl, hello a következő szakaszban ismertetett.</span><span class="sxs-lookup"><span data-stu-id="ef828-147">hello following web.config examples rely on a virtual environment proxy script, which is described in hello next section.</span></span>  <span data-ttu-id="ef828-148">Ezek a működnek hello WSGI kezelő hello példában használt `app.py` felett.</span><span class="sxs-lookup"><span data-stu-id="ef828-148">They work with hello WSGI handler used in hello example `app.py` above.</span></span>
 
-<span data-ttu-id="dbf9f-149">Példa `web.config` Python 2.7-hez:</span><span class="sxs-lookup"><span data-stu-id="dbf9f-149">Example `web.config` for Python 2.7:</span></span>
+<span data-ttu-id="ef828-149">Példa `web.config` Python 2.7-hez:</span><span class="sxs-lookup"><span data-stu-id="ef828-149">Example `web.config` for Python 2.7:</span></span>
 
     <?xml version="1.0"?>
     <configuration>
@@ -155,7 +155,7 @@ ms.lasthandoff: 07/11/2017
     </configuration>
 
 
-<span data-ttu-id="dbf9f-150">Példa `web.config` Python 3.4 esetén:</span><span class="sxs-lookup"><span data-stu-id="dbf9f-150">Example `web.config` for Python 3.4:</span></span>
+<span data-ttu-id="ef828-150">Példa `web.config` Python 3.4 esetén:</span><span class="sxs-lookup"><span data-stu-id="ef828-150">Example `web.config` for Python 3.4:</span></span>
 
     <?xml version="1.0"?>
     <configuration>
@@ -203,28 +203,28 @@ ms.lasthandoff: 07/11/2017
     </configuration>
 
 
-<span data-ttu-id="dbf9f-151">Statikus fájlok kezelik a webkiszolgáló által közvetlenül, Python kódját, javítja a teljesítményt áthaladás nélkül.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-151">Static files will be handled by the web server directly, without going through Python code, for improved performance.</span></span>
+<span data-ttu-id="ef828-151">Statikus fájlok végzi hello webkiszolgáló közvetlenül, Python kódját, javítja a teljesítményt áthaladás nélkül.</span><span class="sxs-lookup"><span data-stu-id="ef828-151">Static files will be handled by hello web server directly, without going through Python code, for improved performance.</span></span>
 
-<span data-ttu-id="dbf9f-152">A fenti példákban a lemezen a statikus fájlokat meg kell felelnie a hely URL-címét.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-152">In the above examples, the location of the static files on disk should match the location in the URL.</span></span> <span data-ttu-id="dbf9f-153">Ez azt jelenti, hogy kérelmet `http://pythonapp.azurewebsites.net/static/site.css` szolgálja ki a fájl a lemezen `\static\site.css`.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-153">This means that a request for `http://pythonapp.azurewebsites.net/static/site.css` will serve the file on disk at `\static\site.css`.</span></span>
+<span data-ttu-id="ef828-152">A fenti példák hello hello statikus fájlok lemezen hello helyének meg kell felelnie az hello hely hello URL-címben.</span><span class="sxs-lookup"><span data-stu-id="ef828-152">In hello above examples, hello location of hello static files on disk should match hello location in hello URL.</span></span> <span data-ttu-id="ef828-153">Ez azt jelenti, hogy kérelmet `http://pythonapp.azurewebsites.net/static/site.css` szolgálja ki hello fájl a lemezen `\static\site.css`.</span><span class="sxs-lookup"><span data-stu-id="ef828-153">This means that a request for `http://pythonapp.azurewebsites.net/static/site.css` will serve hello file on disk at `\static\site.css`.</span></span>
 
-<span data-ttu-id="dbf9f-154">`WSGI_ALT_VIRTUALENV_HANDLER`van, amelyben meg kell határoznia a WSGI kezelő.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-154">`WSGI_ALT_VIRTUALENV_HANDLER` is where you specify the WSGI handler.</span></span> <span data-ttu-id="dbf9f-155">A fenti példákban rendelkezik `app.wsgi_app` , mert a kezelő nevű függvény `wsgi_app` a `app.py` a gyökérmappában.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-155">In the above examples, it's `app.wsgi_app` because the handler is a function named `wsgi_app` in `app.py` in the root folder.</span></span>
+<span data-ttu-id="ef828-154">`WSGI_ALT_VIRTUALENV_HANDLER`van, amelyben meg kell határoznia hello WSGI kezelő.</span><span class="sxs-lookup"><span data-stu-id="ef828-154">`WSGI_ALT_VIRTUALENV_HANDLER` is where you specify hello WSGI handler.</span></span> <span data-ttu-id="ef828-155">A fenti példákban hello rendelkezik `app.wsgi_app` mert hello kezelő nevű függvény `wsgi_app` a `app.py` hello gyökérmappában.</span><span class="sxs-lookup"><span data-stu-id="ef828-155">In hello above examples, it's `app.wsgi_app` because hello handler is a function named `wsgi_app` in `app.py` in hello root folder.</span></span>
 
-<span data-ttu-id="dbf9f-156">`PYTHONPATH`testre szabható, de ha a requirements.txt fájlban megadásával a virtuális környezetben telepíti a függőségek, nem szabad módosítani szeretné azt.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-156">`PYTHONPATH` can be customized, but if you install all your dependencies in the virtual environment by specifying them in requirements.txt, you shouldn't need to change it.</span></span>
+<span data-ttu-id="ef828-156">`PYTHONPATH`testre szabható, de ha a requirements.txt fájlban megadásával hello virtuális környezetben telepíti a függőségek, nem szabad toochange azt.</span><span class="sxs-lookup"><span data-stu-id="ef828-156">`PYTHONPATH` can be customized, but if you install all your dependencies in hello virtual environment by specifying them in requirements.txt, you shouldn't need toochange it.</span></span>
 
-## <a name="virtual-environment-proxy"></a><span data-ttu-id="dbf9f-157">Virtuális környezet Proxy</span><span class="sxs-lookup"><span data-stu-id="dbf9f-157">Virtual Environment Proxy</span></span>
-<span data-ttu-id="dbf9f-158">A következő parancsfájl beolvasni a WSGI kezelő, illetve aktiválja a virtuális környezet és a naplófájlok hibák szolgál.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-158">The following script is used to retrieve the WSGI handler, activate the virtual environment and log errors.</span></span> <span data-ttu-id="dbf9f-159">Általános és módosítások nélkül használható tervezték.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-159">It is designed to be generic and used without modifications.</span></span>
+## <a name="virtual-environment-proxy"></a><span data-ttu-id="ef828-157">Virtuális környezet Proxy</span><span class="sxs-lookup"><span data-stu-id="ef828-157">Virtual Environment Proxy</span></span>
+<span data-ttu-id="ef828-158">a következő parancsfájl hello használt tooretrieve hello WSGI kezelő, illetve aktiválja az hello virtuális környezet és a naplófájlok hibák.</span><span class="sxs-lookup"><span data-stu-id="ef828-158">hello following script is used tooretrieve hello WSGI handler, activate hello virtual environment and log errors.</span></span> <span data-ttu-id="ef828-159">Tervezett toobe általános és módosítások nélkül használható legyen.</span><span class="sxs-lookup"><span data-stu-id="ef828-159">It is designed toobe generic and used without modifications.</span></span>
 
-<span data-ttu-id="dbf9f-160">Tartalmát `ptvs_virtualenv_proxy.py`:</span><span class="sxs-lookup"><span data-stu-id="dbf9f-160">Contents of `ptvs_virtualenv_proxy.py`:</span></span>
+<span data-ttu-id="ef828-160">Tartalmát `ptvs_virtualenv_proxy.py`:</span><span class="sxs-lookup"><span data-stu-id="ef828-160">Contents of `ptvs_virtualenv_proxy.py`:</span></span>
 
      # ############################################################################
      #
      # Copyright (c) Microsoft Corporation. 
      #
-     # This source code is subject to terms and conditions of the Apache License, Version 2.0. A 
-     # copy of the license can be found in the License.html file at the root of this distribution. If 
-     # you cannot locate the Apache License, Version 2.0, please send an email to 
-     # vspython@microsoft.com. By using this source code in any fashion, you are agreeing to be bound 
-     # by the terms of the Apache License, Version 2.0.
+     # This source code is subject tooterms and conditions of hello Apache License, Version 2.0. A 
+     # copy of hello license can be found in hello License.html file at hello root of this distribution. If 
+     # you cannot locate hello Apache License, Version 2.0, please send an email too
+     # vspython@microsoft.com. By using this source code in any fashion, you are agreeing toobe bound 
+     # by hello terms of hello Apache License, Version 2.0.
      #
      # You must not remove this notice, or any other, from this software.
      #
@@ -250,7 +250,7 @@ ms.lasthandoff: 07/11/2017
             return value.encode(sys.getfilesystemencoding())
 
     def log(txt):
-        """Logs fatal errors to a log file if WSGI_LOG env var is defined"""
+        """Logs fatal errors tooa log file if WSGI_LOG env var is defined"""
         log_file = os.environ.get('WSGI_LOG')
         if log_file:
             f = open(log_file, 'a+')
@@ -340,23 +340,23 @@ ms.lasthandoff: 07/11/2017
         return handler
 
 
-## <a name="customize-git-deployment"></a><span data-ttu-id="dbf9f-161">Git-telepítés testreszabása</span><span class="sxs-lookup"><span data-stu-id="dbf9f-161">Customize Git deployment</span></span>
+## <a name="customize-git-deployment"></a><span data-ttu-id="ef828-161">Git-telepítés testreszabása</span><span class="sxs-lookup"><span data-stu-id="ef828-161">Customize Git deployment</span></span>
 [!INCLUDE [web-sites-python-customizing-runtime](../../includes/web-sites-python-customizing-deployment.md)]
 
-## <a name="troubleshooting---package-installation"></a><span data-ttu-id="dbf9f-162">Hibaelhárítás – Csomagok telepítése</span><span class="sxs-lookup"><span data-stu-id="dbf9f-162">Troubleshooting - Package Installation</span></span>
+## <a name="troubleshooting---package-installation"></a><span data-ttu-id="ef828-162">Hibaelhárítás – Csomagok telepítése</span><span class="sxs-lookup"><span data-stu-id="ef828-162">Troubleshooting - Package Installation</span></span>
 [!INCLUDE [web-sites-python-troubleshooting-package-installation](../../includes/web-sites-python-troubleshooting-package-installation.md)]
 
-## <a name="troubleshooting---virtual-environment"></a><span data-ttu-id="dbf9f-163">Hibaelhárítás – Virtuális környezet</span><span class="sxs-lookup"><span data-stu-id="dbf9f-163">Troubleshooting - Virtual Environment</span></span>
+## <a name="troubleshooting---virtual-environment"></a><span data-ttu-id="ef828-163">Hibaelhárítás – Virtuális környezet</span><span class="sxs-lookup"><span data-stu-id="ef828-163">Troubleshooting - Virtual Environment</span></span>
 [!INCLUDE [web-sites-python-troubleshooting-virtual-environment](../../includes/web-sites-python-troubleshooting-virtual-environment.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="dbf9f-164">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="dbf9f-164">Next steps</span></span>
-<span data-ttu-id="dbf9f-165">További információ: [Python fejlesztői központban](/develop/python/).</span><span class="sxs-lookup"><span data-stu-id="dbf9f-165">For more information, see the [Python Developer Center](/develop/python/).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ef828-164">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="ef828-164">Next steps</span></span>
+<span data-ttu-id="ef828-165">További információkért lásd: hello [Python fejlesztői központ](/develop/python/).</span><span class="sxs-lookup"><span data-stu-id="ef828-165">For more information, see hello [Python Developer Center](/develop/python/).</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="dbf9f-166">Ha az Azure App Service-t az Azure-fiók regisztrálása előtt szeretné kipróbálni, ugorjon [Az Azure App Service kipróbálása](https://azure.microsoft.com/try/app-service/) oldalra. Itt azonnal létrehozhat egy ideiglenes, kezdő szintű webalkalmazást az App Service szolgáltatásban.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-166">If you want to get started with Azure App Service before signing up for an Azure account, go to [Try App Service](https://azure.microsoft.com/try/app-service/), where you can immediately create a short-lived starter web app in App Service.</span></span> <span data-ttu-id="dbf9f-167">Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.</span><span class="sxs-lookup"><span data-stu-id="dbf9f-167">No credit cards required; no commitments.</span></span>
+> <span data-ttu-id="ef828-166">Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben.</span><span class="sxs-lookup"><span data-stu-id="ef828-166">If you want tooget started with Azure App Service before signing up for an Azure account, go too[Try App Service](https://azure.microsoft.com/try/app-service/), where you can immediately create a short-lived starter web app in App Service.</span></span> <span data-ttu-id="ef828-167">Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.</span><span class="sxs-lookup"><span data-stu-id="ef828-167">No credit cards required; no commitments.</span></span>
 > 
 > 
 
-## <a name="whats-changed"></a><span data-ttu-id="dbf9f-168">A változások</span><span class="sxs-lookup"><span data-stu-id="dbf9f-168">What's changed</span></span>
-* <span data-ttu-id="dbf9f-169">Információk a Websites szolgáltatásról az App Service-re való váltásról: [Az Azure App Service és a hatása a meglévő Azure-szolgáltatásokra](http://go.microsoft.com/fwlink/?LinkId=529714)</span><span class="sxs-lookup"><span data-stu-id="dbf9f-169">For a guide to the change from Websites to App Service see: [Azure App Service and Its Impact on Existing Azure Services](http://go.microsoft.com/fwlink/?LinkId=529714)</span></span>
+## <a name="whats-changed"></a><span data-ttu-id="ef828-168">A változások</span><span class="sxs-lookup"><span data-stu-id="ef828-168">What's changed</span></span>
+* <span data-ttu-id="ef828-169">Egy útmutató toohello webhelyek tooApp szolgáltatás változás lásd: [Azure App Service és a hatása a meglévő Azure-szolgáltatások](http://go.microsoft.com/fwlink/?LinkId=529714)</span><span class="sxs-lookup"><span data-stu-id="ef828-169">For a guide toohello change from Websites tooApp Service see: [Azure App Service and Its Impact on Existing Azure Services](http://go.microsoft.com/fwlink/?LinkId=529714)</span></span>
 

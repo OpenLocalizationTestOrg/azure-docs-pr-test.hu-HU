@@ -40,7 +40,7 @@
 ### [Nagy sűrűségű üzemeltetés](../app-service/app-service-high-density-hosting.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 ### [WebJobs használata az Azure App Service-ben](../app-service/app-service-webjobs-readme.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 ### [App Service Environment](../app-service-web/app-service-app-service-environment-intro.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-#### [Az App Service Environment dokumentációja](../app-service/app-service-app-service-environments-readme.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+#### [Az App Service-környezet dokumentációja](../app-service/app-service-app-service-environments-readme.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 
 ## Fejlesztés
 ### [API-metaadatok](app-service-api-metadata.md)
@@ -48,20 +48,20 @@
 ### [A Swashbuckle testreszabása](app-service-api-dotnet-swashbuckle-customize.md)
 
 ### Webes feladatok
-#### [Mi az Azure WebJobs SDK?](../app-service-web/websites-dotnet-webjobs-sdk.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+#### [Mi az Azure WebJobs SDK hello](../app-service-web/websites-dotnet-webjobs-sdk.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 #### [.NET WebJobs-feladat létrehozása az Azure App Service-ben](../app-service-web/websites-dotnet-webjobs-sdk-get-started.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-#### [How to use Azure blob storage with the WebJobs SDK (Az Azure Blob Storage használata a WebJobs SDK-val)](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-#### [Az Azure Queue Storage használata a WebJobs SDK-val](../app-service-web/websites-dotnet-webjobs-sdk-storage-queues-how-to.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-#### [Az Azure Service Bus használata a WebJobs SDK-val](../app-service-web/websites-dotnet-webjobs-sdk-service-bus.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-#### [Az Azure Table Storage használata a WebJobs SDK-val](../app-service-web/websites-dotnet-webjobs-sdk-storage-tables-how-to.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+#### [Hogyan toouse Azure blob-tároló hello WebJobs SDK a](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+#### [Hogyan toouse Azure várólista hello WebJobs SDK szolgáltatással](../app-service-web/websites-dotnet-webjobs-sdk-storage-queues-how-to.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+#### [Hogyan toouse Azure Service Bus a hello WebJobs SDK](../app-service-web/websites-dotnet-webjobs-sdk-service-bus.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+#### [Hogyan toouse Azure table storage a hello WebJobs SDK](../app-service-web/websites-dotnet-webjobs-sdk-storage-tables-how-to.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 
 ### App Service-környezet
 #### [Webalkalmazás létrehozása App Service Environment-környezetben](../app-service-web/app-service-web-how-to-create-a-web-app-in-an-ase.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-#### [ILB ASE létrehozása Azure Resource Manager-sablonokkal](../app-service-web/app-service-app-service-environment-create-ilb-ase-resourcemanager.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+#### [Hogyan tooCreate egy ILB ASE használata Azure Resource Manager-sablonok](../app-service-web/app-service-app-service-environment-create-ilb-ase-resourcemanager.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 #### [Belső terheléselosztó használata](../app-service-web/app-service-environment-with-internal-load-balancer.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 
 ## [Üzembe helyezés](../app-service/app-service-deployment-readme.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-### [Üzembe helyezés az App Service-ben](../app-service-web/web-sites-deploy.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+### [TooApp szolgáltatás telepítése](../app-service-web/web-sites-deploy.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 ### [Felhőalapú szinkronizálás üzembe helyezése](../app-service-web/app-service-deploy-content-sync.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 ### [Folyamatos üzembe helyezés](../app-service-web/app-service-continuous-deployment.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 ### [Átmeneti környezetek](../app-service-web/web-sites-staged-publishing.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
@@ -70,8 +70,8 @@
 
 ## [Méretezés](../app-service/app-service-scale-readme.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 ### [Alkalmazás vertikális felskálázása](../app-service-web/web-sites-scale.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-### [App Service Environment](../app-service/app-service-app-service-environments-readme.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-#### [Földrajzi alapú méretezés App Service Environment-környezetekkel](../app-service-web/app-service-app-service-environment-geo-distributed-scale.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+### [App Service-környezet](../app-service/app-service-app-service-environments-readme.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+#### [Földrajzi alapú méretezés App Service-környezetekkel](../app-service-web/app-service-app-service-environment-geo-distributed-scale.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 #### [Alkalmazások méretezése App Service-környezetben](../app-service-web/app-service-web-scale-a-web-app-in-an-app-service-environment.md)
 #### [Automatikus skálázás App Service Environment-környezetben](../app-service/app-service-environment-auto-scale.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 
@@ -93,7 +93,7 @@
 ### [App Service Environment](../app-service/app-service-app-service-environments-readme.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 #### [Konfigurálás](../app-service-web/app-service-web-configure-an-app-service-environment.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 #### [Egyéni konfigurációs beállítások](../app-service-web/app-service-app-service-environment-custom-settings.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-#### [Bejövő forgalom szabályozása](../app-service-web/app-service-app-service-environment-control-inbound-traffic.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+#### [Hogyan toocontrol bejövő forgalom](../app-service-web/app-service-app-service-environment-control-inbound-traffic.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 #### [A hálózati architektúra áttekintése](../app-service-web/app-service-app-service-environment-network-architecture-overview.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 #### [Hálózati konfiguráció részletei az ExpressRoute-tal](../app-service-web/app-service-app-service-environment-network-configuration-expressroute.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 
@@ -118,12 +118,12 @@
 ### App Service-környezet védelme
 #### [Webalkalmazási tűzfal konfigurálása](../app-service-web/app-service-app-service-environment-web-application-firewall.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 #### [Többrétegű biztonsági architektúra megvalósítása](../app-service-web/app-service-app-service-environment-layered-security.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-#### [Biztonságos csatlakozás a háttérerőforrásokhoz](../app-service-web/app-service-app-service-environment-securely-connecting-to-backend-resources.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+#### [Biztonságos kapcsolódás tooBackend erőforrások](../app-service-web/app-service-app-service-environment-securely-connecting-to-backend-resources.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 
 ## Biztonsági mentés
 ### [Alkalmazás biztonsági mentése az Azure-ban](../app-service-web/web-sites-backup.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 ### [Alkalmazás visszaállítása az Azure-ban](../app-service-web/web-sites-restore.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-### [A REST használata App Service-alkalmazások biztonsági mentésére és visszaállítására](../app-service-web/websites-csm-backup.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+### [REST tooback használja, és állítsa vissza az App Service-alkalmazásokhoz](../app-service-web/websites-csm-backup.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 
 ## [Figyelés](../app-service-web/web-sites-monitor.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 ### [Diagnosztikai naplózás engedélyezése](../app-service-web/web-sites-enable-diagnostic-log.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
@@ -144,12 +144,12 @@
 
 ## Integrálás
 ### [Helyszíni erőforrások elérése hibrid kapcsolatokkal](../app-service-web/web-sites-hybrid-connection-get-started.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-### [E-mail küldése a SendGrid és az Azure használatával](../app-service-web/sendgrid-dotnet-how-to-send-email.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-### [Exportálás a PowerAppsbe és a Microsoft Flow-ba](../app-service/app-service-export-api-to-powerapps-and-flow.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+### [Hogyan toosend a levelezéshez SendGrid az Azure-ral](../app-service-web/sendgrid-dotnet-how-to-send-email.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+### [TooPowerApps és a Microsoft Flow exportálása](../app-service/app-service-export-api-to-powerapps-and-flow.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 
 ## Hibaelhárítás
 ### [Diagnosztikai naplózás engedélyezése](../app-service-web/web-sites-enable-diagnostic-log.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
-### [Streamnaplók és a konzol](../app-service-web/web-sites-streaming-logs-and-console.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+### [Folyamatos átviteli naplók és hello konzol](../app-service-web/web-sites-streaming-logs-and-console.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 ### [Hibaelhárítás a Visual Studióval](../app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 
 # Erőforrások

@@ -1,6 +1,6 @@
 ---
-title: "A SharePoint Online összekötőt használata a logic apps |} Microsoft Docs"
-description: "Hozzon létre a logic apps alkalmazást a SharePoint Online Manage listák a SharePoint-összekötővel."
+title: "aaaLearn hogyan toouse hello SharePoint Online-összekötőt a logic apps |} Microsoft Docs"
+description: "Hozzon létre a logic apps hello SharePoint online-hoz csatlakozó toomange listák SharePoint-webhelyre."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,40 +15,40 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 07/19/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 96fc1347604c0c6cc2c2463a5dbd83b560183a16
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fc2f2745f0d174eae6165e84fd8b6656b0aac44b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-sharepoint-online-connector"></a><span data-ttu-id="f29f8-103">A SharePoint Online összekötő az első lépései</span><span class="sxs-lookup"><span data-stu-id="f29f8-103">Get started with the SharePoint Online connector</span></span>
-<span data-ttu-id="f29f8-104">A SharePoint Online összekötő segítségével kezelheti a SharePoint-listát.</span><span class="sxs-lookup"><span data-stu-id="f29f8-104">Use the SharePoint Online connector to manage SharePoint lists.</span></span>  
+# <a name="get-started-with-hello-sharepoint-online-connector"></a><span data-ttu-id="9fabd-103">SharePoint Online hello összekötő az első lépései</span><span class="sxs-lookup"><span data-stu-id="9fabd-103">Get started with hello SharePoint Online connector</span></span>
+<span data-ttu-id="9fabd-104">Hello SharePoint-listák SharePoint online-hoz csatlakozó toomanage használja.</span><span class="sxs-lookup"><span data-stu-id="9fabd-104">Use hello SharePoint Online connector toomanage SharePoint lists.</span></span>  
 
-<span data-ttu-id="f29f8-105">Használandó [a csatlakozókat](apis-list.md), először hozzon létre egy logikai alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="f29f8-105">To use [any connector](apis-list.md), you first need to create a logic app.</span></span> <span data-ttu-id="f29f8-106">Elkezdheti által [logikai alkalmazás létrehozása most](../logic-apps/logic-apps-create-a-logic-app.md).</span><span class="sxs-lookup"><span data-stu-id="f29f8-106">You can get started by [creating a logic app now](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
+<span data-ttu-id="9fabd-105">toouse [a csatlakozókat](apis-list.md), először toocreate logikai alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="9fabd-105">toouse [any connector](apis-list.md), you first need toocreate a logic app.</span></span> <span data-ttu-id="9fabd-106">Elkezdheti által [logikai alkalmazás létrehozása most](../logic-apps/logic-apps-create-a-logic-app.md).</span><span class="sxs-lookup"><span data-stu-id="9fabd-106">You can get started by [creating a logic app now](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
 
-## <a name="connect-to-sharepoint-online"></a><span data-ttu-id="f29f8-107">Csatlakozás a SharePoint online szolgáltatáshoz</span><span class="sxs-lookup"><span data-stu-id="f29f8-107">Connect to SharePoint Online</span></span>
-<span data-ttu-id="f29f8-108">A Logic Apps alkalmazást bármely szolgáltatás hozzáférni, először hozzon létre egy *kapcsolat* a szolgáltatáshoz.</span><span class="sxs-lookup"><span data-stu-id="f29f8-108">Before your logic app can access any service, you first need to create a *connection* to the service.</span></span> <span data-ttu-id="f29f8-109">A [kapcsolat](connectors-overview.md) biztosít a logikai alkalmazás és egy másik szolgáltatás közötti kapcsolat.</span><span class="sxs-lookup"><span data-stu-id="f29f8-109">A [connection](connectors-overview.md) provides connectivity between a logic app and another service.</span></span>  
+## <a name="connect-toosharepoint-online"></a><span data-ttu-id="9fabd-107">TooSharePoint Online csatlakozás</span><span class="sxs-lookup"><span data-stu-id="9fabd-107">Connect tooSharePoint Online</span></span>
+<span data-ttu-id="9fabd-108">A Logic Apps alkalmazást férhetnek hozzá a szolgáltatáshoz, először jóvá kell toocreate egy *kapcsolat* toohello szolgáltatás.</span><span class="sxs-lookup"><span data-stu-id="9fabd-108">Before your logic app can access any service, you first need toocreate a *connection* toohello service.</span></span> <span data-ttu-id="9fabd-109">A [kapcsolat](connectors-overview.md) biztosít a logikai alkalmazás és egy másik szolgáltatás közötti kapcsolat.</span><span class="sxs-lookup"><span data-stu-id="9fabd-109">A [connection](connectors-overview.md) provides connectivity between a logic app and another service.</span></span>  
 
-### <a name="create-a-connection-to-sharepoint-online"></a><span data-ttu-id="f29f8-110">Kapcsolatot létesíthet a SharePoint online-hoz</span><span class="sxs-lookup"><span data-stu-id="f29f8-110">Create a connection to SharePoint Online</span></span>
-> [!INCLUDE [Steps to create a connection to SharePoint](../../includes/connectors-create-api-sharepointonline.md)]
-
-
-## <a name="use-a-sharepoint-online-trigger"></a><span data-ttu-id="f29f8-111">SharePoint Online eseményindítók</span><span class="sxs-lookup"><span data-stu-id="f29f8-111">Use a SharePoint Online trigger</span></span>
-<span data-ttu-id="f29f8-112">Egy eseményindító nem egy eseményt, a logikai alkalmazás definiált munkafolyamat indításához használható.</span><span class="sxs-lookup"><span data-stu-id="f29f8-112">A trigger is an event that can be used to start the workflow defined in a logic app.</span></span> <span data-ttu-id="f29f8-113">[További tudnivalók az eseményindítók](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span><span class="sxs-lookup"><span data-stu-id="f29f8-113">[Learn more about triggers](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span></span>  
-
-> [!INCLUDE [Steps to create a SharePoint Online trigger](../../includes/connectors-create-api-sharepointonline-trigger.md)]
+### <a name="create-a-connection-toosharepoint-online"></a><span data-ttu-id="9fabd-110">Egy kapcsolat tooSharePoint Online létrehozása</span><span class="sxs-lookup"><span data-stu-id="9fabd-110">Create a connection tooSharePoint Online</span></span>
+> [!INCLUDE [Steps toocreate a connection tooSharePoint](../../includes/connectors-create-api-sharepointonline.md)]
 
 
-## <a name="use-a-sharepoint-online-action"></a><span data-ttu-id="f29f8-114">A SharePoint Online művelettel</span><span class="sxs-lookup"><span data-stu-id="f29f8-114">Use a SharePoint Online action</span></span>
-<span data-ttu-id="f29f8-115">Egy művelet során a logikai alkalmazás definiált munkafolyamat által végzett.</span><span class="sxs-lookup"><span data-stu-id="f29f8-115">An action is an operation carried out by the workflow defined in a logic app.</span></span> <span data-ttu-id="f29f8-116">[További információ a műveletek](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span><span class="sxs-lookup"><span data-stu-id="f29f8-116">[Learn more about actions](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span></span>  
+## <a name="use-a-sharepoint-online-trigger"></a><span data-ttu-id="9fabd-111">SharePoint Online eseményindítók</span><span class="sxs-lookup"><span data-stu-id="9fabd-111">Use a SharePoint Online trigger</span></span>
+<span data-ttu-id="9fabd-112">Egy eseményindító nem lehet a logikai alkalmazás definiált használt toostart hello munkafolyamat esemény.</span><span class="sxs-lookup"><span data-stu-id="9fabd-112">A trigger is an event that can be used toostart hello workflow defined in a logic app.</span></span> <span data-ttu-id="9fabd-113">[További tudnivalók az eseményindítók](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span><span class="sxs-lookup"><span data-stu-id="9fabd-113">[Learn more about triggers](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span></span>  
 
-> [!INCLUDE [Steps to create a SharePoint Online action](../../includes/connectors-create-api-sharepointonline-action.md)]
+> [!INCLUDE [Steps toocreate a SharePoint Online trigger](../../includes/connectors-create-api-sharepointonline-trigger.md)]
 
 
-## <a name="connector-specific-details"></a><span data-ttu-id="f29f8-117">Összekötő-specifikus részletei</span><span class="sxs-lookup"><span data-stu-id="f29f8-117">Connector-specific details</span></span>
+## <a name="use-a-sharepoint-online-action"></a><span data-ttu-id="9fabd-114">A SharePoint Online művelettel</span><span class="sxs-lookup"><span data-stu-id="9fabd-114">Use a SharePoint Online action</span></span>
+<span data-ttu-id="9fabd-115">Egy művelet által definiált logikai alkalmazás hello munkafolyamat során.</span><span class="sxs-lookup"><span data-stu-id="9fabd-115">An action is an operation carried out by hello workflow defined in a logic app.</span></span> <span data-ttu-id="9fabd-116">[További információ a műveletek](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span><span class="sxs-lookup"><span data-stu-id="9fabd-116">[Learn more about actions](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).</span></span>  
 
-<span data-ttu-id="f29f8-118">Bármely eseményindítók és a swagger definiált műveletek megtekintése, és semmilyen határnak a Lásd még: a [connector részleteket](/connectors/sharepoint/).</span><span class="sxs-lookup"><span data-stu-id="f29f8-118">View any triggers and actions defined in the swagger, and also see any limits in the [connector details](/connectors/sharepoint/).</span></span>
+> [!INCLUDE [Steps toocreate a SharePoint Online action](../../includes/connectors-create-api-sharepointonline-action.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="f29f8-119">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="f29f8-119">Next Steps</span></span>
-[<span data-ttu-id="f29f8-120">Logikai alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="f29f8-120">Create a logic app</span></span>](../logic-apps/logic-apps-create-a-logic-app.md)
+
+## <a name="connector-specific-details"></a><span data-ttu-id="9fabd-117">Összekötő-specifikus részletei</span><span class="sxs-lookup"><span data-stu-id="9fabd-117">Connector-specific details</span></span>
+
+<span data-ttu-id="9fabd-118">Bármely eseményindítók és hello swagger definiált műveletek megtekintése, és semmilyen határnak hello a Lásd még: [connector részleteket](/connectors/sharepoint/).</span><span class="sxs-lookup"><span data-stu-id="9fabd-118">View any triggers and actions defined in hello swagger, and also see any limits in hello [connector details](/connectors/sharepoint/).</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="9fabd-119">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="9fabd-119">Next Steps</span></span>
+[<span data-ttu-id="9fabd-120">Logikai alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="9fabd-120">Create a logic app</span></span>](../logic-apps/logic-apps-create-a-logic-app.md)
 

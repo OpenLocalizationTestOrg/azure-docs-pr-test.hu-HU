@@ -1,6 +1,6 @@
 ---
-title: "Az első függvény létrehozása az Azure portálon | Microsoft Docs"
-description: "Ismerje meg, hogyan hozhatja létre az első Azure-függvényét kiszolgáló nélküli végrehajtáshoz az Azure Portalon."
+title: "az első függvény eltávolítása hello Azure Portal aaaCreate |} Microsoft Docs"
+description: "Megtudhatja, hogyan kiszolgáló nélküli végrehajtási a függvény az első Azure toocreate hello Azure-portálon."
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -16,71 +16,71 @@ ms.workload: na
 ms.date: 08/07/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 3ec1f278f21d89782137625aff200f07f15fd9fb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 84283d7d4bc6015061946af4589f9a70ae61f36b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-your-first-function-in-the-azure-portal"></a><span data-ttu-id="c03e6-103">Az első függvény létrehozása az Azure portálon</span><span class="sxs-lookup"><span data-stu-id="c03e6-103">Create your first function in the Azure portal</span></span>
+# <a name="create-your-first-function-in-hello-azure-portal"></a><span data-ttu-id="02bb0-103">A hello Azure-portálon az első függvény létrehozása</span><span class="sxs-lookup"><span data-stu-id="02bb0-103">Create your first function in hello Azure portal</span></span>
 
-<span data-ttu-id="c03e6-104">Az Azure Functions lehetővé teszi a kód végrehajtását kiszolgáló nélküli környezetben anélkül, hogy először létre kellene hoznia egy virtuális gépet vagy közzé kellene tennie egy webalkalmazást.</span><span class="sxs-lookup"><span data-stu-id="c03e6-104">Azure Functions lets you execute your code in a serverless environment without having to first create a VM or publish a web application.</span></span> <span data-ttu-id="c03e6-105">Ebben a témakörben megismerheti, hogyan használhatja a Functions szolgáltatást egy „hello world” függvény létrehozására az Azure Portalon.</span><span class="sxs-lookup"><span data-stu-id="c03e6-105">In this topic, learn how to use Functions to create a "hello world" function in the Azure portal.</span></span>
+<span data-ttu-id="02bb0-104">Az Azure Functions lehetővé teszi, hogy a kód egy kiszolgáló nélküli környezetben anélkül, hogy hozzon létre egy virtuális Gépet, vagy tegye közzé a webalkalmazást toofirst hajtható végre.</span><span class="sxs-lookup"><span data-stu-id="02bb0-104">Azure Functions lets you execute your code in a serverless environment without having toofirst create a VM or publish a web application.</span></span> <span data-ttu-id="02bb0-105">Ebben a témakörben elsajátíthatja toouse működését toocreate hello Azure-portálon a "hello world" függvényt.</span><span class="sxs-lookup"><span data-stu-id="02bb0-105">In this topic, learn how toouse Functions toocreate a "hello world" function in hello Azure portal.</span></span>
 
-![Függvényalkalmazás létrehozása az Azure Portalon](./media/functions-create-first-azure-function/function-app-in-portal-editor.png)
+![Függvény-alkalmazás létrehozása az Azure-portálon hello](./media/functions-create-first-azure-function/function-app-in-portal-editor.png)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="log-in-to-azure"></a><span data-ttu-id="c03e6-107">Jelentkezzen be az Azure-ba</span><span class="sxs-lookup"><span data-stu-id="c03e6-107">Log in to Azure</span></span>
+## <a name="log-in-tooazure"></a><span data-ttu-id="02bb0-107">Jelentkezzen be tooAzure</span><span class="sxs-lookup"><span data-stu-id="02bb0-107">Log in tooAzure</span></span>
 
-<span data-ttu-id="c03e6-108">Jelentkezzen be az [Azure portálra](https://portal.azure.com/).</span><span class="sxs-lookup"><span data-stu-id="c03e6-108">Log in to the [Azure portal](https://portal.azure.com/).</span></span>
+<span data-ttu-id="02bb0-108">Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).</span><span class="sxs-lookup"><span data-stu-id="02bb0-108">Log in toohello [Azure portal](https://portal.azure.com/).</span></span>
 
-## <a name="create-a-function-app"></a><span data-ttu-id="c03e6-109">Függvényalkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="c03e6-109">Create a function app</span></span>
+## <a name="create-a-function-app"></a><span data-ttu-id="02bb0-109">Függvényalkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="02bb0-109">Create a function app</span></span>
 
-<span data-ttu-id="c03e6-110">Rendelkeznie kell egy függvényalkalmazással a függvények végrehajtásának biztosításához.</span><span class="sxs-lookup"><span data-stu-id="c03e6-110">You must have a function app to host the execution of your functions.</span></span> <span data-ttu-id="c03e6-111">A függvényalkalmazás lehetővé teszi, hogy logikai egységbe csoportosítsa a függvényeket az erőforrások egyszerűbb felügyelete, telepítése és megosztása érdekében.</span><span class="sxs-lookup"><span data-stu-id="c03e6-111">A function app lets you group functions as a logic unit for easier management, deployment, and sharing of resources.</span></span> 
+<span data-ttu-id="02bb0-110">Rendelkeznie kell egy függvény app toohost hello a függvények végrehajtásához szükséges.</span><span class="sxs-lookup"><span data-stu-id="02bb0-110">You must have a function app toohost hello execution of your functions.</span></span> <span data-ttu-id="02bb0-111">A függvényalkalmazás lehetővé teszi, hogy logikai egységbe csoportosítsa a függvényeket az erőforrások egyszerűbb felügyelete, telepítése és megosztása érdekében.</span><span class="sxs-lookup"><span data-stu-id="02bb0-111">A function app lets you group functions as a logic unit for easier management, deployment, and sharing of resources.</span></span> 
 
 [!INCLUDE [Create function app Azure portal](../../includes/functions-create-function-app-portal.md)]
 
 [!INCLUDE [functions-portal-favorite-function-apps](../../includes/functions-portal-favorite-function-apps.md)]
 
-<span data-ttu-id="c03e6-112">Ezután létrehozhat egy függvényt az új függvényalkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="c03e6-112">Next, you create a function in the new function app.</span></span>
+<span data-ttu-id="02bb0-112">A függvény a következő alkalmazásban hello új függvény létrehozása.</span><span class="sxs-lookup"><span data-stu-id="02bb0-112">Next, you create a function in hello new function app.</span></span>
 
-## <span data-ttu-id="c03e6-113"><a name="create-function"></a>HTTP által aktivált függvény létrehozása</span><span class="sxs-lookup"><span data-stu-id="c03e6-113"><a name="create-function"></a>Create an HTTP triggered function</span></span>
+## <span data-ttu-id="02bb0-113"><a name="create-function"></a>HTTP által aktivált függvény létrehozása</span><span class="sxs-lookup"><span data-stu-id="02bb0-113"><a name="create-function"></a>Create an HTTP triggered function</span></span>
 
-1. <span data-ttu-id="c03e6-114">Bontsa ki az új függvényalkalmazást, majd kattintson a **Függvények** elem melletti **+** gombra.</span><span class="sxs-lookup"><span data-stu-id="c03e6-114">Expand your new function app, then click the **+** button next to **Functions**.</span></span>
+1. <span data-ttu-id="02bb0-114">Bontsa ki az új függvény alkalmazást, majd kattintson az hello  **+**  gomb melletti túl**funkciók**.</span><span class="sxs-lookup"><span data-stu-id="02bb0-114">Expand your new function app, then click hello **+** button next too**Functions**.</span></span>
 
-2.  <span data-ttu-id="c03e6-115">A **Gyors kezdés** lapon kattintson a **WebHook + API** elemre, **válasszon egy nyelvet** a függvény számára, majd kattintson a **Függvény létrehozása** elemre.</span><span class="sxs-lookup"><span data-stu-id="c03e6-115">In the **Get started quickly** page, select **WebHook + API**, **Choose a language** for your function, and click **Create this function**.</span></span> 
+2.  <span data-ttu-id="02bb0-115">A hello **gyorsan** lapon jelölje be **WebHook + API**, **válassza ki a nyelvet** a függvény, és kattintson a **Ez a függvény létrehozása** .</span><span class="sxs-lookup"><span data-stu-id="02bb0-115">In hello **Get started quickly** page, select **WebHook + API**, **Choose a language** for your function, and click **Create this function**.</span></span> 
    
-    ![A függvények gyors létrehozása az Azure Portalon.](./media/functions-create-first-azure-function/function-app-quickstart-node-webhook.png)
+    ![Az Azure-portálon hello Functions gyorsindítójával.](./media/functions-create-first-azure-function/function-app-quickstart-node-webhook.png)
 
-<span data-ttu-id="c03e6-117">A rendszer létrehoz egy függvényt a választott nyelven a HTTP által indított függvények sablonjának használatával.</span><span class="sxs-lookup"><span data-stu-id="c03e6-117">A function is created in your chosen language using the template for an HTTP triggered function.</span></span> <span data-ttu-id="c03e6-118">Az új függvényt egy HTTP-kérelem küldésével futtathatja.</span><span class="sxs-lookup"><span data-stu-id="c03e6-118">You can run the new function by sending an HTTP request.</span></span>
+<span data-ttu-id="02bb0-117">A következő függvényt egy indított HTTP függvény hello sablonnal a választott nyelven jön létre.</span><span class="sxs-lookup"><span data-stu-id="02bb0-117">A function is created in your chosen language using hello template for an HTTP triggered function.</span></span> <span data-ttu-id="02bb0-118">HTTP-kérelem küldésével hello új funkció is futtathatja.</span><span class="sxs-lookup"><span data-stu-id="02bb0-118">You can run hello new function by sending an HTTP request.</span></span>
 
-## <a name="test-the-function"></a><span data-ttu-id="c03e6-119">A függvény tesztelése</span><span class="sxs-lookup"><span data-stu-id="c03e6-119">Test the function</span></span>
+## <a name="test-hello-function"></a><span data-ttu-id="02bb0-119">Hello függvény tesztelése</span><span class="sxs-lookup"><span data-stu-id="02bb0-119">Test hello function</span></span>
 
-1. <span data-ttu-id="c03e6-120">Az új függvényben kattintson a **< /> Függvény URL-címének beolvasása** elemre, válassza a **default (Function key)** (alapértelmezett (funkcióbillentyű)) lehetőséget, majd kattintson a **Másolás** gombra.</span><span class="sxs-lookup"><span data-stu-id="c03e6-120">In your new function, click **</> Get function URL**, select **default (Function key)**, and then click **Copy**.</span></span> 
+1. <span data-ttu-id="02bb0-120">Az új függvényben kattintson a **< /> Függvény URL-címének beolvasása** elemre, válassza a **default (Function key)** (alapértelmezett (funkcióbillentyű)) lehetőséget, majd kattintson a **Másolás** gombra.</span><span class="sxs-lookup"><span data-stu-id="02bb0-120">In your new function, click **</> Get function URL**, select **default (Function key)**, and then click **Copy**.</span></span> 
 
-    ![A függvény URL-címének másolása az Azure portálról](./media/functions-create-first-azure-function/function-app-develop-tab-testing.png)
+    ![Hello függvény URL-Címének másolása az Azure-portálon hello](./media/functions-create-first-azure-function/function-app-develop-tab-testing.png)
 
-2. <span data-ttu-id="c03e6-122">Illessze be a függvény URL-címét a böngésző címsorába.</span><span class="sxs-lookup"><span data-stu-id="c03e6-122">Paste the function URL into your browser's address bar.</span></span> <span data-ttu-id="c03e6-123">Az URL-címhez fűzze hozzá a `&name=<yourname>` lekérdezési karakterláncot, majd nyomja le az `Enter` billentyűt a billentyűzeten a kérés végrehajtásához.</span><span class="sxs-lookup"><span data-stu-id="c03e6-123">Append the query string `&name=<yourname>` to this URL and press the `Enter` key on your keyboard to execute the request.</span></span> <span data-ttu-id="c03e6-124">A következőkben egy példa látható az Edge böngészőben a függvény által visszaadott válaszra:</span><span class="sxs-lookup"><span data-stu-id="c03e6-124">The following is an example of the response returned by the function in the Edge browser:</span></span>
+2. <span data-ttu-id="02bb0-122">Hello függvény URL-cím illessze be a böngésző címsorába.</span><span class="sxs-lookup"><span data-stu-id="02bb0-122">Paste hello function URL into your browser's address bar.</span></span> <span data-ttu-id="02bb0-123">Hello lekérdezési karakterlánc hozzáfűzése `&name=<yourname>` toothis URL-címet, és nyomja le az hello `Enter` kulcs a billentyűzet tooexecute hello kérésre.</span><span class="sxs-lookup"><span data-stu-id="02bb0-123">Append hello query string `&name=<yourname>` toothis URL and press hello `Enter` key on your keyboard tooexecute hello request.</span></span> <span data-ttu-id="02bb0-124">hello az alábbiakban látható egy példa az Edge böngészőben hello hello függvény által visszaadott hello választ:</span><span class="sxs-lookup"><span data-stu-id="02bb0-124">hello following is an example of hello response returned by hello function in hello Edge browser:</span></span>
 
-    ![A függvény által visszaadott válasz a böngészőben.](./media/functions-create-first-azure-function/function-app-browser-testing.png)
+    ![Függvény válasz hello böngészőben.](./media/functions-create-first-azure-function/function-app-browser-testing.png)
 
-    <span data-ttu-id="c03e6-126">A kérelem URL-címe alapértelmezés szerint tartalmazza a függvény HTTP protokollon keresztüli eléréséhez szükséges kulcsot.</span><span class="sxs-lookup"><span data-stu-id="c03e6-126">The request URL includes a key that is required, by default, to access your function over HTTP.</span></span>   
+    <span data-ttu-id="02bb0-126">hello kérelem URL-cím szükséges, alapértelmezés szerint tooaccess kulcsot tartalmaz, a függvény HTTP Protokollon keresztül.</span><span class="sxs-lookup"><span data-stu-id="02bb0-126">hello request URL includes a key that is required, by default, tooaccess your function over HTTP.</span></span>   
 
-3. <span data-ttu-id="c03e6-127">A függvény futásakor a rendszer nyomkövetési adatok ír a naplókba.</span><span class="sxs-lookup"><span data-stu-id="c03e6-127">When your function runs, trace information is written to the logs.</span></span> <span data-ttu-id="c03e6-128">Az előző végrehajtás nyomkövetési adatainak megtekintéséhez térjen vissza a függvényhez a portálon, és a **Naplók** elem kibontásához kattintson a képernyő alján található felfelé mutató nyílra.</span><span class="sxs-lookup"><span data-stu-id="c03e6-128">To see the trace output from the previous execution, return to your function in the portal and click the up arrow at the bottom of the screen to expand **Logs**.</span></span> 
+3. <span data-ttu-id="02bb0-127">A függvény futásakor nyomkövetési adatok írása toohello naplókat.</span><span class="sxs-lookup"><span data-stu-id="02bb0-127">When your function runs, trace information is written toohello logs.</span></span> <span data-ttu-id="02bb0-128">toosee hello nyomkövetési kimenetét hello előző végrehajtási, térjen vissza a tooyour függvény hello portálon, és kattintson a felfelé mutató nyíl hello képernyő tooexpand hello alján hello **naplók**.</span><span class="sxs-lookup"><span data-stu-id="02bb0-128">toosee hello trace output from hello previous execution, return tooyour function in hello portal and click hello up arrow at hello bottom of hello screen tooexpand **Logs**.</span></span> 
 
-   ![A függvények naplómegtekintője az Azure Portalon.](./media/functions-create-first-azure-function/function-view-logs.png)
+   ![Funkciók viewer bejelentkezés hello Azure-portálon.](./media/functions-create-first-azure-function/function-view-logs.png)
 
-## <a name="clean-up-resources"></a><span data-ttu-id="c03e6-130">Az erőforrások eltávolítása</span><span class="sxs-lookup"><span data-stu-id="c03e6-130">Clean up resources</span></span>
+## <a name="clean-up-resources"></a><span data-ttu-id="02bb0-130">Az erőforrások eltávolítása</span><span class="sxs-lookup"><span data-stu-id="02bb0-130">Clean up resources</span></span>
 
 [!INCLUDE [Clean up resources](../../includes/functions-quickstart-cleanup.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="c03e6-131">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="c03e6-131">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="02bb0-131">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="02bb0-131">Next steps</span></span>
 
-<span data-ttu-id="c03e6-132">Létrehozott egy függvényalkalmazást és egy HTTP által aktivált egyszerű függvényt.</span><span class="sxs-lookup"><span data-stu-id="c03e6-132">You have created a function app with a simple HTTP triggered function.</span></span>  
+<span data-ttu-id="02bb0-132">Létrehozott egy függvényalkalmazást és egy HTTP által aktivált egyszerű függvényt.</span><span class="sxs-lookup"><span data-stu-id="02bb0-132">You have created a function app with a simple HTTP triggered function.</span></span>  
 
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-next-steps.md)]
 
-<span data-ttu-id="c03e6-133">További információ: [Azure Functions – HTTP- és webhookkötések](functions-bindings-http-webhook.md).</span><span class="sxs-lookup"><span data-stu-id="c03e6-133">For more information, see [Azure Functions HTTP and webhook bindings](functions-bindings-http-webhook.md).</span></span>
+<span data-ttu-id="02bb0-133">További információ: [Azure Functions – HTTP- és webhookkötések](functions-bindings-http-webhook.md).</span><span class="sxs-lookup"><span data-stu-id="02bb0-133">For more information, see [Azure Functions HTTP and webhook bindings](functions-bindings-http-webhook.md).</span></span>
 
 
 
