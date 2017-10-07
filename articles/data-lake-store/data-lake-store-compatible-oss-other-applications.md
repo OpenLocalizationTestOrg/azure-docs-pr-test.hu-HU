@@ -1,5 +1,5 @@
 ---
-title: "A Data Lake Store kompatibilis big data-alkalmazások |} Microsoft Docs"
+title: "a Data Lake Store kompatibilis aaaBig adatalkalmazások |} Microsoft Docs"
 description: "Azure Data Lake Store a nyílt forráskódú alkalmazások listáját"
 services: data-lake-store
 documentationcenter: 
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: 0570e86c16ff3bc647040c202ab46df535bb2ba1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ad4afd6437412c596c77d6b001478b82ddccf276
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="open-source-big-data-applications-that-work-with-azure-data-lake-store"></a>Nyissa meg az Azure Data Lake Store használható forráskódú Big Data-alkalmazások
-Ez a cikk az Azure Data Lake Store a nyílt forráskódú big data-alkalmazások listája. Az alábbi táblázat az alkalmazások csak az elérhető a felsorolt terjesztési verziók támogatottak. Ezeket az alkalmazásokat mely verziói érhetők el a hdinsight eszközzel kapcsolatos tudnivalókért lásd: [HDInsight-összetevők verziószámozása](../hdinsight/hdinsight-component-versioning.md).
+Ez a cikk hello nyílt forráskódú big data-alkalmazások, amelyek működnek együtt az Azure Data Lake Store sorolja fel. Az alábbi, csak hello hello táblázatban hello alkalmazások érhető el a felsorolt hello terjesztési verziókat támogatja. Ezeket az alkalmazásokat mely verziói érhetők el a hdinsight eszközzel kapcsolatos tudnivalókért lásd: [HDInsight-összetevők verziószámozása](../hdinsight/hdinsight-component-versioning.md).
 
 | Nyílt forráskódú szoftvereket | Disztribúció |
 | --- | --- |

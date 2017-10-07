@@ -1,6 +1,6 @@
 ---
-title: "Gyakori kérdések a Linux virtuális gépek Azure-ban |} Microsoft Docs"
-description: "A Resource Manager modellt létrehozott Linux virtuális gépek kapcsolatos gyakori kérdésekre adott válaszok biztosít."
+title: "Linux virtuális gépek Azure-ban kérdések aaaFrequently |} Microsoft Docs"
+description: "Itt választ toosome hello hello Resource Manager modellt létrehozott Linux virtuális gépek kapcsolatos gyakori kérdéseket."
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,50 +15,50 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: cynthn
-ms.openlocfilehash: 0e06d21bd0b6ef807f38e41dcd50c9cd715607a3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0afd08123dddc408851065c46deedc3146dbec20
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="frequently-asked-question-about-linux-virtual-machines"></a>Linux virtuális gépek kapcsolatos gyakran ismételt kérdések
-Ez a cikk foglalkozik az Azure-ban a Resource Manager üzembe helyezési modellel létrehozott Linux virtuális gépek kapcsolatos gyakori kérdésekre. Ez a témakör a Windows verziója: [gyakran feltett kérdés kapcsolatban a Windows virtuális gépek](../windows/faq.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+Ez a cikk foglalkozik az Azure-ban hello Resource Manager üzembe helyezési modellben létrehozott Linux virtuális gépek kapcsolatos gyakori kérdésekre. Ez a témakör hello Windows verziója: [gyakran feltett kérdés kapcsolatban a Windows virtuális gépek](../windows/faq.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## <a name="what-can-i-run-on-an-azure-vm"></a>Mit futtathatok egy Azure-beli virtuális gépen?
 Minden előfizető kiszolgálószoftvereket futtathat az Azure-beli virtuális gépeken. További információkért lásd: [Azure-Endorsed Terjesztéseket Linux](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="how-much-storage-can-i-use-with-a-virtual-machine"></a>Mennyi tárhelyet használhatok egy virtuális gép esetén?
-Minden adatlemez akár 1 TB méretű is lehet. A használható adatlemezek száma a virtuális gép méretétől függ. Részletek: [Virtuális gépek méretei](sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Minden egyes adatlemez mentése too1 TB lehet. adatlemezek használhatja hello száma hello hello virtuális gép méretétől függ. Részletek: [Virtuális gépek méretei](sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-Az Azure-tárfiók tárhelyet biztosít az operációsrendszer-lemez és bármely adatlemez számára. Minden lemez egy lapblobként tárolt .vhd-fájl. A díjszabás részleteiért lásd [a Storage szolgáltatás díjszabását](https://azure.microsoft.com/pricing/details/storage/).
+Azure-tárfiók tárolási biztosít hello operációsrendszer-lemez és adatlemezeket. Minden lemez egy lapblobként tárolt .vhd-fájl. A díjszabás részleteiért lásd [a Storage szolgáltatás díjszabását](https://azure.microsoft.com/pricing/details/storage/).
 
 ## <a name="how-can-i-access-my-virtual-machine"></a>Hogyan lehet fér hozzá a virtuális géphez?
-Jelentkezzen be a virtuális gépet, a Secure Shell (SSH) használatával történő távoli kapcsolatot létesíteni. Kapcsolódás című [Windows](ssh-from-windows.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) vagy [a Linux és Mac](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Alapértelmezés szerint az SSH legfeljebb 10 párhuzamos kapcsolatot tesz lehetővé. Ezt a számot a konfigurációs fájl szerkesztésével növelheti.
+A távoli kapcsolat toolog toohello virtuális gépen, Secure Shell (SSH) használatával hoz létre. Hello utasításokat meg, hogyan tooconnect [Windows](ssh-from-windows.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) vagy [a Linux és Mac](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Alapértelmezés szerint az SSH legfeljebb 10 párhuzamos kapcsolatot tesz lehetővé. Ezt a számot növelheti hello konfigurációs fájl szerkesztésével.
 
 Ha problémákat tapasztal, tekintse meg [hibaelhárítása Secure Shell (SSH) kapcsolatok](troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-## <a name="can-i-use-the-temporary-disk-devsdb1-to-store-data"></a>Az ideiglenes lemez (/ dev/sdb1) használatával tárolja az adatokat?
-Ne használjon a mennyiségű ideiglenes lemezes (/ dev/sdb1) adatainak tárolásához. Éppen csak átmeneti tárolására. Veszhetnek el, amelyek nem állíthatók vissza adatokat.
+## <a name="can-i-use-hello-temporary-disk-devsdb1-toostore-data"></a>Hello mennyiségű ideiglenes lemezes (/ dev/sdb1) toostore adatok használata
+Ne használjon hello ideiglenes (/ dev/sdb1) toostore lemezadatokat. Éppen csak átmeneti tárolására. Veszhetnek el, amelyek nem állíthatók vissza adatokat.
 
 ## <a name="can-i-copy-or-clone-an-existing-azure-vm"></a>Másolja vagy egy meglévő Azure virtuális gép klónozása?
-Igen. Útmutatásért lásd: [létrehozása Linux virtuális gép másolatát a Resource Manager üzembe helyezési modellel](copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Igen. Útmutatásért lásd: [hogyan egy-egy példányát a Linux virtuális gépek toocreate hello Resource Manager üzembe helyezési modellben](copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 ## <a name="why-am-i-not-seeing-canada-central-and-canada-east-regions-through-azure-resource-manager"></a>Miért nem jelenik meg Kanada központi és Kanada keleti régiók Azure Resource Manageren keresztül?
-A két új régiók Kanada központi és Kanada keleti nem automatikusan regisztrálva van a virtuális gép létrehozásához a meglévő Azure-előfizetések. Ez a regisztráció automatikusan történik, amikor egy virtuális gép telepítése Azure Resource Manager használatával bármely más régióban az Azure portálon keresztül. Bármely más Azure-régió, hogy a virtuális gép telepítése után az új régiók elérhetőknek kell lenniük a következő virtuális gépek.
+hello két új régió Kanada központi és Kanada keleti nem automatikusan regisztrálva van a virtuális gép létrehozásához a meglévő Azure-előfizetések. Ez a regisztráció automatikusan történik, amikor egy virtuális gép telepítve van a hello Azure portál tooany más régióban, Azure Resource Manager használatával. A virtuális gépek után van telepített tooany más Azure-régió, hello új régiók elérhetőknek kell lenniük a következő virtuális gépek.
 
-## <a name="can-i-add-a-nic-to-my-vm-after-its-created"></a>Hozzáadható egy hálózati Adaptert a virtuális gép létrehozása után?
-Igen, ez a lehetőség most. A virtuális gép először meg kell állítani a felszabadított. Majd adja hozzá, vagy távolítsa el a hálózati adapter (kivéve, ha a virtuális gép utolsó hálózati adapter). 
+## <a name="can-i-add-a-nic-toomy-vm-after-its-created"></a>Vehetek fel egy hálózati adapter toomy virtuális gép létrehozása után?
+Igen, ez a lehetőség most. hello virtuális gép első igények toobe felszabadított leállt. Ezt követően adja hozzá, vagy távolítsa el a hálózati adapter (kivéve, ha utolsó hálózati adapterén hello VM hello). 
 
 ## <a name="are-there-any-computer-name-requirements"></a>Vannak-e a számítógép neve követelmények?
-Igen. A számítógép neve legfeljebb 64 karakter hosszúságú lehet. Lásd: [elnevezési konvenciókat szabályokat és korlátozásokat](/architecture/best-practices/naming-conventions#naming-rules-and-restrictions?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) további információt az erőforrások elnevezési körül.
+Igen. hello számítógép neve legfeljebb 64 karakter hosszúságú lehet. Lásd: [elnevezési konvenciókat szabályokat és korlátozásokat](/architecture/best-practices/naming-conventions#naming-rules-and-restrictions?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) további információt az erőforrások elnevezési körül.
 
 ## <a name="are-there-any-resource-group-name-requirements"></a>Vannak-e valamely erőforrás csoport vonatkozó követelményeknek?
-Igen. Az erőforráscsoport neve legfeljebb 90 karakter hosszúságú lehet. Lásd: [elnevezési konvenciókat szabályokat és korlátozásokat](/architecture/best-practices/naming-conventions#naming-rules-and-restrictions?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) erőforráscsoportok további információt.
+Igen. hello az erőforráscsoport neve legfeljebb 90 karakter hosszúságú lehet. Lásd: [elnevezési konvenciókat szabályokat és korlátozásokat](/architecture/best-practices/naming-conventions#naming-rules-and-restrictions?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) erőforráscsoportok további információt.
 
-## <a name="what-are-the-username-requirements-when-creating-a-vm"></a>Virtuális gép létrehozásakor Mik a username követelmények?
+## <a name="what-are-hello-username-requirements-when-creating-a-vm"></a>Virtuális gép létrehozásakor Mik hello username követelmények?
 Felhasználónevek 1 – 64 karakter hosszúságúnak kell lennie.
 
-A következő felhasználónevek nem engedélyezettek:
+a következő felhasználónevek hello nem engedélyezettek:
 
 <table>
     <tr>
@@ -88,15 +88,15 @@ A következő felhasználónevek nem engedélyezettek:
 </table>
 
 
-## <a name="what-are-the-password-requirements-when-creating-a-vm"></a>A jelszavakra vonatkozó követelmények Mik azok a virtuális gép létrehozásakor?
-Jelszavak 6 – 72 karakter hosszúságúnak kell és 3 kívül a következő 4 bonyolultsági megfeleljen:
+## <a name="what-are-hello-password-requirements-when-creating-a-vm"></a>Virtuális gép létrehozásakor Mik hello jelszavakra vonatkozó követelmények?
+Jelszavak 6 – 72 karakter hosszúságúnak kell és felel meg a 3, 4 összetettségi követelményeknek hello kívül:
 
 * Alacsonyabb karaktereket
 * Felső karaktereket
 * Rendelkezik egy számjegy
 * Rendelkezik egy speciális karaktert (reguláris kifejezéssel egyező [\W_])
 
-A következő jelszavak használata nem megengedett:
+a következő jelszavak hello nem engedélyezettek:
 
 <table>
     <tr>

@@ -1,6 +1,6 @@
 ---
-title: "Egy Windows Azure VM csatlakoztatási Azure file storage |} Microsoft Docs"
-description: "Fájl tárolása a felhőben az Azure file storage szolgáltatással, és a felhőalapú fájlmegosztást csatlakoztathatja egy Azure virtuális gép (VM)."
+title: "az Azure file storage egy Windows Azure virtuális gépről aaaMount |} Microsoft Docs"
+description: "Az Azure file storage szolgáltatással hello felhőben tárolja a fájlt, és a felhőalapú fájlmegosztást csatlakoztathatja egy Azure virtuális gép (VM)."
 documentationcenter: 
 author: cynthn
 manager: timlt
@@ -13,62 +13,62 @@ ms.devlang:
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: cynthn
-ms.openlocfilehash: 6ffb2d2da1e2439df6f5da543411e3c2c68d3435
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 965f1c1b3f0d07fec6d86f9312a05e02e8ce7fe0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-azure-file-shares-with-windows-vms"></a>Azure fájlmegosztásokat Windows virtuális gépek használata 
 
-Azure fájlmegosztásokat is tárolhatja és érheti fájlokat a virtuális Gépet is használhatja. Például egy parancsfájl vagy tárolhatja a virtuális gépeinek megosztani kívánt alkalmazáskonfigurációs fájl. Ebben a témakörben megmutatjuk, hogyan hozhat létre, és az Azure fájlmegosztások csatlakoztatása, és hogyan fájlok feltöltését és letöltését.
+Is használhatja az Azure fájlmegosztások egy módon toostore és hozzáférni a fájlokhoz a virtuális gépről. Tárolhatja például a parancsfájl vagy az, hogy szeretné-e a virtuális gépek tooshare konfigurációs fájlját. Ebben a témakörben megmutatjuk, hogyan toocreate és a csatlakoztatási egy Azure-fájlmegosztás, és hogyan tooupload és a letöltési fájlokat.
 
-## <a name="connect-to-a-file-share-from-a-vm"></a>Csatlakoztatja a fájlmegosztást a virtuális gép
+## <a name="connect-tooa-file-share-from-a-vm"></a>Tooa fájlmegosztás csatlakoztatja a virtuális gép
 
-Ez a szakasz azt feltételezi, hogy már rendelkezik egy fájlmegosztást, amelyhez csatlakozni kíván. Ha szeretne létrehozni egyet szüksége, tekintse meg [fájlmegosztás létrehozása](#create-a-file-share) a témakör későbbi részében.
+Ez a szakasz azt feltételezi, hogy már rendelkezik, amelyet a tooconnect fájlmegosztással. Ha egy toocreate van szüksége, tekintse meg [fájlmegosztás létrehozása](#create-a-file-share) a témakör későbbi részében.
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-2. Kattintson a bal oldali menü **tárfiókok**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. A hello bal oldali menüben kattintson **tárfiókok**.
 3. Válassza ki a tárfiókját.
-4. Az a **áttekintése** lap **szolgáltatások**, jelölje be **fájlok**.
+4. A hello **áttekintése** lap **szolgáltatások**, jelölje be **fájlok**.
 5. Válasszon egy fájlmegosztást.
-6. Kattintson a **Connect** megnyit egy olyan lapot, hogy a fájlmegosztás Windows vagy Linux csatlakoztatására parancssori szintaxisát jeleníti meg.
-7. Jelölje ki a parancs szintaxisát, és illessze be a Jegyzettömb vagy valahol máshol ahol könnyedén elérheti azt. 
-8. Szerkessze a szintaxisát, és távolítsa el a bevezető ** > **, és cserélje le *[meghajtó_betűjele]* a meghajtó betűjelével (például **y**) helyének a fájlmegosztás csatlakoztatásához.
-8. Csatlakoztassa a virtuális Gépet, és nyisson meg egy parancssort.
-9. Illessze be a szerkesztett kapcsolat szintaxist, majd nyomja le **Enter**.
-10. Ha a kapcsolat létrejött, a hibaüzenet a **a parancs sikeresen befejeződött.**
-11. Ellenőrizze a kapcsolatot, írja be a meghajtóbetűjelet, amelynek váltson, és írja be **dir** a fájlmegosztás tartalmának megtekintéséhez.
+6. Kattintson a **Connect** tooopen egy oldal, amely hello parancssori szintaxist hello fájlmegosztás csatlakoztatása a Windows vagy Linux jeleníti meg.
+7. Jelöljön ki hello hello parancs szintaxisát, és illessze be a Jegyzettömb vagy valahol máshol ahol könnyedén elérheti azt. 
+8. Hello szintaxis tooremove hello bevezető szerkesztése ** > **, és cserélje le *[meghajtó_betűjele]* hello meghajtóbetűjellel (például **y**) toomount hello fájlmegosztás helyének.
+8. Csatlakozás a virtuális gép tooyour, és nyisson meg egy parancssort.
+9. Illessze be hello kapcsolat szintaxis szerkeszteni, majd nyomja le **Enter**.
+10. Ha hello kapcsolat létrejött, a hibaüzenet hello **hello parancs sikeresen befejeződött.**
+11. Ellenőrizze a hello kapcsolatot írja be a hello meghajtó betűjele tooswitch toothat meghajtó, és írja be **dir** hello fájlmegosztás toosee hello tartalmát.
 
 
 
 ## <a name="create-a-file-share"></a>Fájlmegosztás létrehozása 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-2. Kattintson a bal oldali menü **tárfiókok**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. A hello bal oldali menüben kattintson **tárfiókok**.
 3. Válassza ki a tárfiókját.
-4. Az a **áttekintése** lap **szolgáltatások**, jelölje be **fájlok**.
-5. A fájl szolgáltatás lapján, kattintson a **+ fájlmegosztás** létrehozása az első fájlmegosztását. \
-6. Adja meg a fájlmegosztás neve. A fájlmegosztás neve kisbetűket, számokat és kötőjeleket egyetlen használhatja. A név nem kezdődhet kötőjellel, és nem használható több egymást követő kötőjelet. 
-7. Töltse ki hogyan nagy a fájl lehet, legfeljebb 5120 GB korlátozást.
-8. Kattintson a **OK** központi telepítése a fájlmegosztáshoz.
+4. A hello **áttekintése** lap **szolgáltatások**, jelölje be **fájlok**.
+5. Hello Fájlszolgáltatás oldalon kattintson **+ fájlmegosztás** az első fájlmegosztás toocreate. \
+6. Töltse ki hello fájlmegosztás neve. A fájlmegosztás neve kisbetűket, számokat és kötőjeleket egyetlen használhatja. hello neve nem kezdődhet kötőjellel, és nem használható több egymást követő kötőjelet. 
+7. Adja meg a maximális méretét hello fájl mentése too5120 GB lehet.
+8. Kattintson a **OK** toodeploy hello fájlmegosztást.
    
 ## <a name="upload-files"></a>Fájlok feltöltése
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-2. Kattintson a bal oldali menü **tárfiókok**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. A hello bal oldali menüben kattintson **tárfiókok**.
 3. Válassza ki a tárfiókját.
-4. Az a **áttekintése** lap **szolgáltatások**, jelölje be **fájlok**.
+4. A hello **áttekintése** lap **szolgáltatások**, jelölje be **fájlok**.
 5. Válasszon egy fájlmegosztást.
-6. Kattintson a **feltöltése** megnyitásához a **fájlok feltöltése** lap.
-7. Kattintson a feltöltendő fájl a helyi fájlrendszerben tallózással mappa ikonra.   
-8. Kattintson a **feltöltése** feltölteni a fájlt a fájlmegosztáshoz.
+6. Kattintson a **feltöltése** tooopen hello **fájlok feltöltése** lap.
+7. Kattintson a hello mappa ikon toobrowse egy fájl tooupload a helyi fájlrendszerben.   
+8. Kattintson a **feltöltése** tooupload hello fájl toohello fájlmegosztást.
 
 ## <a name="download-files"></a>Fájlok letöltése
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-2. Kattintson a bal oldali menü **tárfiókok**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. A hello bal oldali menüben kattintson **tárfiókok**.
 3. Válassza ki a tárfiókját.
-4. Az a **áttekintése** lap **szolgáltatások**, jelölje be **fájlok**.
+4. A hello **áttekintése** lap **szolgáltatások**, jelölje be **fájlok**.
 5. Válasszon egy fájlmegosztást.
-6. Kattintson a jobb gombbal a fájlra, és válassza a **letöltése** letöltheti a helyi számítógépre.
+6. Kattintson a jobb gombbal a hello fájlt, és válassza a **letöltése** toodownload azt tooyour helyi számítógép.
    
 
 ## <a name="next-steps"></a>Következő lépések

@@ -1,5 +1,5 @@
 ---
-title: "(elavult) Kudarc_szám Suite - Azure |} Microsoft Docs"
+title: "Azure kudarc_szám Suite - aaa(deprecated) |} Microsoft Docs"
 description: "(elavult) Kudarc_szám csomag"
 services: machine-learning
 documentationcenter: 
@@ -16,67 +16,67 @@ ms.date: 01/06/2017
 ms.author: ireiter
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: 6f0a6d06e7401c8360a92a707a0552f41ff3657c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 6f94436cd19abeb518d179f340c8d4f43fcf4520
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deprecated-binomial-distribution-suite"></a>(elavult) Kudarc_szám csomag
 
 > [!NOTE]
-> A Microsoft DataMarket használatból van, és ez az API már elavult. 
+> a Microsoft DataMarket hello használatból van, és ez az API már elavult. 
 > 
-> Sok hasznos példa kísérletek és API-k a [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). A gyűjtemény kapcsolatos további információkért lásd: [megosztást, és felderítik a Cortana Intelligence Gallery erőforrások](machine-learning-gallery-how-to-use-contribute-publish.md).
+> Sok hasznos példa kísérletek és API-kat az található hello [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). Gyűjteményelem hello kapcsolatos további információkért lásd: [megosztás és a Cortana Intelligence Gallery hello erőforrások felderítéséhez](machine-learning-gallery-how-to-use-contribute-publish.md).
 
-A kudarc_szám Suite egy olyan minta webszolgáltatásokat ([binomiális generátor](https://datamarket.azure.com/dataset/aml_labs/bdg5), [valószínűség Számológép](https://datamarket.azure.com/dataset/aml_labs/bdp4), [ki osztóérték Számológép](https://datamarket.azure.com/dataset/aml_labs/bdq5)), amelyekkel generálásához és binomiális terjesztéseket foglalkozik. A szolgáltatások lehetővé teszik, hogy bármely hossza quantiles kiszámítása kudarc_szám sorozatát generálása kívüli adott valószínűség és számítási valószínűség az egy adott ki osztóérték. A szolgáltatások bocsát ki a kijelölt szolgáltatás alapján különböző kimenetek (lásd az alábbi leírása). A kudarc_szám Suite az R funkciók qbinom, rbinom és pbinom, amelyek szerepelnek az R-statisztikák csomag alapul. 
+hello kudarc_szám Suite egy olyan minta webszolgáltatásokat ([binomiális generátor](https://datamarket.azure.com/dataset/aml_labs/bdg5), [valószínűség Számológép](https://datamarket.azure.com/dataset/aml_labs/bdp4), [ki osztóérték Számológép](https://datamarket.azure.com/dataset/aml_labs/bdq5)), amelyekkel generálásához és binomiális terjesztéseket foglalkozik. hello szolgáltatások engedélyezése bármely hossza quantiles kiszámítása kudarc_szám sorozatát generálása kívüli adott valószínűség és számítási valószínűség az egy adott ki osztóérték. Hello szolgáltatások bocsát ki a kijelölt hello szolgáltatás alapján különböző kimenetek (lásd az alábbi leírása). hello kudarc_szám Suite hello R funkciók qbinom rbinom és pbinom, amely hello R statisztikák csomagban található alapul. 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-> Ezek a webszolgáltatások kell fenntartania felhasználók – potenciálisan közvetlenül a a piactéren keresztül a mobilalkalmazások a webhelyen keresztül, vagy akár a helyi számítógépen, például. De a webszolgáltatás célja is példa bemutatja, hogyan Azure Machine Learning webszolgáltatások fölött R-kód létrehozásához használható kiszolgálásához. Az R-kód csupán néhány sornyi és az Azure Machine Learning Studio egy gombját kattint egy kísérlet hozható létre az R-kód és webszolgáltatásként közzé. A webszolgáltatás majd is az Azure piactéren közzétett és a világ különböző felhasználók és eszközök által felhasznált – kell nincs infrastruktúra beállítani a webszolgáltatás készítője által.
+> Ezek a webszolgáltatások kell fenntartania felhasználók – potenciálisan közvetlenül a hello piactéren keresztül a mobilalkalmazások a webhelyen keresztül, vagy akár a helyi számítógépen, például. De hello hello webszolgáltatás célja is tooserve példa bemutatja, hogyan Azure Machine Learning webszolgáltatások használt toocreate fölött R-kód is lehet. Az R-kód csupán néhány sornyi és az Azure Machine Learning Studio egy gombját kattint egy kísérlet hozható létre az R-kód és webszolgáltatásként közzé. hello webszolgáltatás majd lehet közzétett toohello Azure piactéren, és különböző hello world – felhasználók és eszközök által felhasznált nincs infrastruktúra hello Szerző hello webszolgáltatás kell beállítani.
 > 
 > 
 
 ## <a name="consumption-of-web-service"></a>Felhasználási webszolgáltatás
-A kudarc_szám csomag a következő 3 szolgáltatásokat tartalmazza.
+hello kudarc_szám csomag magában foglalja a következő 3 szolgáltatások hello.
 
 ### <a name="binomial-distribution-quantile-calculator"></a>Kudarc_szám ki osztóérték Számológép
-Ez a szolgáltatás a normális eloszlás 4 argumentumként fogadja, és a társított ki osztóérték számítja ki.
-A bemeneti argumentumok a következők:
+Ez a szolgáltatás a normális eloszlás 4 argumentumként fogadja, és társított hello ki osztóérték számítja ki.
+hello bemeneti argumentumai a következők:
 
 * p - egyetlen összevont több kísérletek valószínűségét.  
-* méret - kísérletek száma.
-* valószínűség - próbaverzió sikeres valószínűségét.
-* Az oldal - L az alsó részén a terjesztési U eloszlását felső oldalán. 
+* méret - hello kísérletek száma.
+* valószínűség - próbaverzió sikeres hello valószínűségét.
+* Az oldal - L hello alsó részén hello terjesztési, U hello hello terjesztési felső oldalán. 
 
-A szolgáltatás a számított ki az adott valószínűséggel társított osztóérték eredménye.
+hello hello szolgáltatás eredménye hello számított ki, amely kapcsolódik az adott valószínűség hello osztóérték.
 
 ### <a name="binomial-distribution-probability-calculator"></a>Kudarc_szám valószínűség Számológép
-Ez a szolgáltatás egy binomiális eloszlás 4 argumentumként fogadja, és kiszámítja a társított valószínűség.
-A bemeneti argumentumok a következők:
+Ez a szolgáltatás egy binomiális eloszlás 4 argumentumként fogadja, és kiszámítja az hello rendelt valószínűség.
+hello bemeneti argumentumai a következők:
 
 * a kérdések - egy egyetlen ki osztóérték kudarc_szám az esemény. 
-* méret - kísérletek száma.
-* valószínűség - próbaverzió sikeres valószínűségét.
-* az oldal - L az alsó részén a terjesztési U a terjesztési vagy egy sikeres egyetlen száma egyenlő E felső oldalán.
+* méret - hello kísérletek száma.
+* valószínűség - próbaverzió sikeres hello valószínűségét.
+* az oldal - L hello alsó részén hello terjesztési U hello terjesztési felső oldalán hello vagy, amely sikeres egyetlen száma egyenlő tooa E.
 
-A szolgáltatás a számított annak valószínűségét, hogy az adott ki osztóérték társított eredménye.
+hello hello szolgáltatás eredménye számított hello annak valószínűségét, hogy a megadott ki osztóérték hello van társítva.
 
 ### <a name="binomial-distribution-generator"></a>Kudarc_szám generátor
-Ez a szolgáltatás egy binomiális eloszlás 3 argumentumként fogadja, és létrehoz egy véletlenszerű számsorozatot binomially elosztott. A következő argumentumok belül a kérelem hozzá kell adni:
+Ez a szolgáltatás egy binomiális eloszlás 3 argumentumként fogadja, és létrehoz egy véletlenszerű számsorozatot binomially elosztott. hello következő szabad megadni típusargumentumot tooit hello kérelem belül:
 
 * n - megfigyelések száma. 
 * méret - kísérletek száma.
 * valószínűség - sikeres valószínűségét.
 
-A szolgáltatás eredménye egy binomiális elosztás alapján az mérete és a valószínűség argumentum hossza n sorozata.
+hello hello szolgáltatás eredménye egy binomiális elosztás alapján hello mérete és a valószínűség argumentum hossza n sorozata.
 
-> Ez a szolgáltatás az Azure piactéren kihelyezett egy OData-szolgáltatás; a POST vagy GET módszerrel elnevezése lehet. 
+> Ez a szolgáltatás az Azure piactér hello kihelyezett egy OData-szolgáltatás; a POST vagy GET módszerrel elnevezése lehet. 
 > 
 > 
 
-Többféleképpen is az automatizált módon a szolgáltatás fel (például alkalmazások olyan itt: [generátor](http://microsoftazuremachinelearning.azurewebsites.net/BinomialDistributionGenerator.aspx), [valószínűség Számológép](http://microsoftazuremachinelearning.azurewebsites.net/BinomialDistributionProbabilityCalculator.aspx), [ki osztóérték Számológép](http://microsoftazuremachinelearning.azurewebsites.net/BinomialDistributionQuantileCalculator)). 
+Többféleképpen is az automatizált módon hello szolgáltatás fel (például alkalmazások olyan itt: [generátor](http://microsoftazuremachinelearning.azurewebsites.net/BinomialDistributionGenerator.aspx), [valószínűség Számológép](http://microsoftazuremachinelearning.azurewebsites.net/BinomialDistributionProbabilityCalculator.aspx), [ki osztóérték Számológép](http://microsoftazuremachinelearning.azurewebsites.net/BinomialDistributionQuantileCalculator)). 
 
 ### <a name="starting-c-code-for-web-service-consumption"></a>C#-kódban a webes szolgáltatások felhasználásához megkezdése:
 ### <a name="binomial-distribution-quantile-calculator"></a>Kudarc_szám ki osztóérték Számológép
@@ -174,7 +174,7 @@ Többféleképpen is az automatizált módon a szolgáltatás fel (például alk
 
 
 ## <a name="creation-of-web-service"></a>Webes szolgáltatás létrehozása
-> Ez a webszolgáltatás Azure Machine Learning segítségével lett létrehozva. Az ingyenes próbaverzió, valamint a bevezető videó kísérletek létrehozásával és [közzétételi webes szolgáltatások](machine-learning-publish-a-machine-learning-web-service.md), lásd: [azure.com/ml](http://azure.com/ml). Az alábbiakban van egy Képernyőkép a kísérlet, amely a webes szolgáltatás, és példa kód létre minden egyes belül modulok.
+> Ez a webszolgáltatás Azure Machine Learning segítségével lett létrehozva. Az ingyenes próbaverzió, valamint a bevezető videó kísérletek létrehozásával és [közzétételi webes szolgáltatások](machine-learning-publish-a-machine-learning-web-service.md), lásd: [azure.com/ml](http://azure.com/ml). Az alábbiakban van egy képernyőfelvétel a hello webes szolgáltatás, és példa kódot az egyes hello modulok hello kísérlet belül létrehozott hello kísérlet.
 > 
 > 
 
@@ -184,7 +184,7 @@ Többféleképpen is az automatizált módon a szolgáltatás fel (például alk
 #### <a name="module-1"></a>1. modul:
     #data schema with example data (replaced with data from web service)
     data.set=data.frame(p=0.1,size=10,prob=.5,side='L');
-    maml.mapOutputPort("data.set"); #send data to output port
+    maml.mapOutputPort("data.set"); #send data toooutput port
 #### <a name="module-2"></a>A modul 2:
     dataset1 <- maml.mapInputPort(1) # class: data.frame
     param = dataset1
@@ -220,7 +220,7 @@ Többféleképpen is az automatizált módon a szolgáltatás fel (például alk
 
     output = as.data.frame(quantile)
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("output");
 
 
@@ -230,7 +230,7 @@ Többféleképpen is az automatizált módon a szolgáltatás fel (például alk
 #### <a name="module-1"></a>1. modul:
     #data schema with example data (replaced with data from web service)
     data.set=data.frame(q=5,size=10,prob=.5,side='L');
-    maml.mapOutputPort("data.set"); #send data to output port
+    maml.mapOutputPort("data.set"); #send data toooutput port
 
 
 #### <a name="module-2"></a>A modul 2:
@@ -256,7 +256,7 @@ Többféleképpen is az automatizált módon a szolgáltatás fel (például alk
 
     output = as.data.frame(prob)
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("output");
 
 ### <a name="binomial-distribution-generator"></a>Kudarc_szám generátor
@@ -265,7 +265,7 @@ Többféleképpen is az automatizált módon a szolgáltatás fel (például alk
 #### <a name="module-1"></a>1. modul:
     #data schema with example data (replaced with data from web service)
     data.set=data.frame(n=50,size=10,p=.5);
-    maml.mapOutputPort("data.set"); #send data to output port
+    maml.mapOutputPort("data.set"); #send data toooutput port
 
 #### <a name="module-2"></a>A modul 2:
     dataset1 <- maml.mapInputPort(1) # class: data.frame
@@ -274,14 +274,14 @@ Többféleképpen is az automatizált módon a szolgáltatás fel (például alk
 
     output = as.data.frame(t(dist))
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("output");
 
 ## <a name="limitations"></a>Korlátozások
-Példák nagyon egyszerű kudarc_szám körülvevő. A fenti példa kódot is látható, mert kevés hiba alatt van megvalósítva.
+Példák nagyon egyszerű hello kudarc_szám körülvevő. Hello példakódot fent is látható, mert kevés hiba alatt van megvalósítva.
 
 ## <a name="faq"></a>GYIK
-Gyakori kérdések a felhasználás a webszolgáltatás vagy az Azure piactéren közzétételt, lásd: [Itt](machine-learning-marketplace-faq.md).
+Gyakori kérdések a felhasználás hello webszolgáltatás vagy az Azure piactér közzétételi toohello, lásd: [Itt](machine-learning-marketplace-faq.md).
 
 [1]: ./media/machine-learning-r-csharp-binomial-distribution/binomial_1.png
 

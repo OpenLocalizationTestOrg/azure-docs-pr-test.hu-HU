@@ -1,6 +1,6 @@
 ---
-title: "Az Orchestrator áttelepítése az Azure Automation |} Microsoft Docs"
-description: "Ismerteti, hogyan telepíthetők át a runbookok és integrációs csomagokat a System Center Orchestrator Azure Automation."
+title: az Orchestrator tooAzure Automation aaaMigrating |} Microsoft Docs
+description: "Ismerteti, hogyan toomigrate runbookokat és az integrációs csomagokat a System Center Orchestrator tooAzure Automation."
 services: automation
 documentationcenter: 
 author: bwren
@@ -14,120 +14,120 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/09/2016
 ms.author: bwren
-ms.openlocfilehash: 457888b4d38875b912ad87d44e96ab727e3ee3ee
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 797b50067ef2aa68470760e99d494b89ab7baacf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrating-from-orchestrator-to-azure-automation-beta"></a>Az Orchestrator áttelepítése az Azure Automation (béta)
-A Runbookok [System Center Orchestrator](http://technet.microsoft.com/library/hh237242.aspx) tevékenységei során az Azure Automation runbookjai Windows PowerShell alapuló kimondottan az orchestrator alkalmazáshoz írt integrációs csomagok alapulnak.  [Grafikus forgatókönyvek](automation-runbook-types.md#graphical-runbooks) az Azure Automationben rendelkezik egy hasonló megjelenési az Orchestrator runbookjai az eszközök, a PowerShell parancsmagok és a runbookok képviselő tevékenységek.
+# <a name="migrating-from-orchestrator-tooazure-automation-beta"></a>Áttelepítés az Orchestrator tooAzure automatizálási (béta)
+A Runbookok [System Center Orchestrator](http://technet.microsoft.com/library/hh237242.aspx) tevékenységei során az Azure Automation runbookjai Windows PowerShell alapuló kimondottan az orchestrator alkalmazáshoz írt integrációs csomagok alapulnak.  [Grafikus forgatókönyvek](automation-runbook-types.md#graphical-runbooks) az Azure Automationben rendelkezik egy hasonló megjelenési tooOrchestrator runbookok azok eszközök, a PowerShell parancsmagok és a runbookok képviselő tevékenységek.
 
-A [System Center Orchestrator áttelepítési eszközkészlet](http://www.microsoft.com/download/details.aspx?id=47323&WT.mc_id=rss_alldownloads_all) segítséget nyújt a runbookok adatelemmé Orchestrator Azure Automation része.  Mellett konvertálása a runbookok magukat, az integrációs csomagokat a tevékenységek a runbookok használó kell konvertálnia integrációs modulok a Windows PowerShell-parancsmagokkal.  
+Hello [System Center Orchestrator áttelepítési eszközkészlet](http://www.microsoft.com/download/details.aspx?id=47323&WT.mc_id=rss_alldownloads_all) eszközök tooassist tartalmazza a runbookok adatelemmé Orchestrator tooAzure Automation.  Ezenkívül tooconverting hello runbookok magukat, kell konvertálnia hello integrációs csomagok hello tevékenységek számára, hogy a runbookokat hello toointegration modulok használata a Windows PowerShell-parancsmagokkal.  
 
-Az alábbiakban az a folyamat alapvetően az Azure Automation az Orchestrator runbookjai átalakításához.  A lépések részletes leírását lásd az alábbi szakaszokban.
+Az alábbiakban az Orchestrator runbookjai tooAzure Automation alakításának hello alapvető folyamat.  A lépések részletes leírását lásd az alábbi szakaszokban hello.
 
-1. Töltse le a [System Center Orchestrator áttelepítési eszközkészlet](http://www.microsoft.com/download/details.aspx?id=47323&WT.mc_id=rss_alldownloads_all) , amely az eszközök és a cikkben szereplő modulok tartalmazza.
+1. Töltse le a hello [System Center Orchestrator áttelepítési eszközkészlet](http://www.microsoft.com/download/details.aspx?id=47323&WT.mc_id=rss_alldownloads_all) , amely hello eszközök és a cikkben szereplő modulok tartalmazza.
 2. Importálás [szokásos tevékenységek modul](#standard-activities-module) az Azure Automation szolgáltatásbeli.  Ez magában foglalja a konvertált runbookok által használható szabványos Orchestrator-tevékenységeket konvertált verzióit.
 3. Importálás [System Center Orchestrator integrációs modulok](#system-center-orchestrator-integration-modules) az adott integrációs csomagok a System Center elérő runbookok által használt Azure Automation-be.
-4. Egyéni és harmadik féltől származó integrációs csomagok használatával alakítsa át a [Integration Pack konverter](#integration-pack-converter) , és importálja az Azure Automation.
-5. A konvertálás Orchestrator runbookok használatával a [Runbook konverter](#runbook-converter) és az Azure Automationben telepítse.
-6. Manuálisan szükséges Orchestrator eszközök létrehozása az Azure Automationben óta a Runbook konverter nem konvertálja a ezeket az erőforrásokat.
-7. Konfigurálja a [hibrid forgatókönyv-feldolgozó](#hybrid-runbook-worker) a helyi adatközpontban, akik hozzáférhetnek a helyi erőforrások konvertált runbookok futtatására.
+4. Alakítsa át az egyéni és harmadik féltől származó integrációs csomagok hello [Integration Pack konverter](#integration-pack-converter) , és importálja az Azure Automation.
+5. Alakítsa át az Orchestrator runbookokat hello segítségével [Runbook konverter](#runbook-converter) és az Azure Automationben telepítse.
+6. Manuálisan szükséges Orchestrator eszközök létrehozása az Azure Automationben óta hello Runbook konverter nem konvertálja a ezeket az erőforrásokat.
+7. Konfigurálja a [hibrid forgatókönyv-feldolgozó](#hybrid-runbook-worker) runbookokban a helyi adatok center toorun konvertálni, akik hozzáférhetnek a helyi erőforrások.
 
 ## <a name="service-management-automation"></a>Automatizált szolgáltatásfelügyelet
-[A Szolgáltatáskezelési automatizálás](http://technet.microsoft.com/library/dn469260.aspx) (SMA) tárolja, és a helyi adatközpontban, például az Orchestrator felelős a runbookok, és az Azure Automation használja az ugyanazon integrációs modulok. A [Runbook konverter](#runbook-converter) konvertálja az Orchestrator runbookjai grafikus forgatókönyvek azonban ami nem támogatott az SMA.  Továbbra is telepíthet a [szabványos tevékenységek modul](#standard-activities-module) és [System Center Orchestrator integrációs modulok](#system-center-orchestrator-integration-modules) az SMA rendszerbe, de manuálisan kell [a runbookok újraírási](http://technet.microsoft.com/library/dn469262.aspx).
+[A Szolgáltatáskezelési automatizálás](http://technet.microsoft.com/library/dn469260.aspx) (SMA) tárolja, és a helyi adatközpontban, például az Orchestrator felelős a runbookok és hello használ, az Azure Automation azonos integrációs modulok. Hello [Runbook konverter](#runbook-converter) alakítja át az Orchestrator runbookjai toographical runbookjai azonban ami nem támogatott az SMA.  Továbbra is telepíthet hello [szabványos tevékenységek modul](#standard-activities-module) és [System Center Orchestrator integrációs modulok](#system-center-orchestrator-integration-modules) az SMA rendszerbe, de manuálisan kell [a runbookok újraírási](http://technet.microsoft.com/library/dn469262.aspx).
 
 ## <a name="hybrid-runbook-worker"></a>hibrid runbook-feldolgozó
-Az Orchestrator Runbookjai egy kiszolgálón tárolja, és futtassa a runbook-kiszolgálók, mind a helyi adatközpontban.  Az Azure Automation Runbookjai az Azure felhőben vannak tárolva, és futtathat a helyi adatok center használatával a [hibrid forgatókönyv-feldolgozó](automation-hybrid-runbook-worker.md).  Ez a hogyan általában fog futni az Orchestrator alakítja át, mivel az a célja, hogy a helyi kiszolgálón futtassa a runbookok.
+Az Orchestrator Runbookjai egy kiszolgálón tárolja, és futtassa a runbook-kiszolgálók, mind a helyi adatközpontban.  Azure Automation Runbookjai hello Azure felhőben vannak tárolva, és futtathat a helyi adatok center a egy [hibrid forgatókönyv-feldolgozó](automation-hybrid-runbook-worker.md).  Ez a hogyan általában fog futni az Orchestrator alakítja át, mert azok a helyi kiszolgálókon tervezett toorun runbookokat.
 
 ## <a name="integration-pack-converter"></a>Integrációs csomag konverter
-Az integrációs csomag átalakító integrációs csomagok használatával létrehozott alakítja át a [Orchestrator Integration Toolkit (oit) használatával Kezdeményezett](http://technet.microsoft.com/library/hh855853.aspx) alapján, hogy importálni lehessen Azure Automation vagy a Szolgáltatáskezelési automatizálás a Windows PowerShell-integrációs modulok.  
+Integrációs csomag konverter hello alakít hello használatával létrehozott integrációs csomagokat [Orchestrator Integration Toolkit (oit) használatával Kezdeményezett](http://technet.microsoft.com/library/hh855853.aspx) toointegration modulok alapján, hogy importálni lehessen Azure Automation Windows PowerShell vagy A Szolgáltatáskezelési automatizálás.  
 
-Az integrációs csomag átalakító futtatásakor megnyílik egy varázsló, amely lehetővé teszi, hogy válassza ki az integrációs csomagot (oip).  A varázsló majd integrációs csomag részeként tevékenységek listája, és választhatja ki, amely át lesz telepítve.  A varázsló befejeződése után, az integrációs modul, amely tartalmazza a megfelelő parancsmag minden az eredeti integrációs csomag tevékenységei hoz létre.
+Integrációs csomag konverter hello futtatásakor megnyílik egy varázsló, amely lehetővé teszi a tooselect egy integrációs csomag (oip) fájlját.  hello varázsló akkor integrációs csomag részeként hello tevékenységek listája, és lehetővé teszi tooselect, amely át lesz telepítve.  Hello varázsló befejeződése után, az integrációs modul, amely tartalmazza a megfelelő parancsmag minden hello eredeti integrációs csomag tevékenységei hello hoz létre.
 
 ### <a name="parameters"></a>Paraméterek
-Az integrációs csomag tevékenység bármely tulajdonságok paramétereit a megfelelő parancsmag az integrációs modul alakulnak.  A Windows PowerShell-parancsmagok rendelkeznek [közös paraméterek](http://technet.microsoft.com/library/hh847884.aspx) , amely az összes parancsmag használható.  Például a - Verbose paraméter hatására a parancsmag kimeneti a működésével kapcsolatos részletes információkat.  Előfordulhat, hogy nincs parancsmag olyan paraméterre, amelynek a neve megegyezik egy közös paraméter.  Ha egy tevékenység rendelkezik közös paraméterként azonos nevű tulajdonsággal, a varázsló kérni fogja, hogy adja meg egy másik nevet a paraméterhez.
+A rendszer hello megfelelő parancsmag hello integrációs modul konvertált tooparameters hello integrációs csomag tevékenység bármely tulajdonságokat.  A Windows PowerShell-parancsmagok rendelkeznek [közös paraméterek](http://technet.microsoft.com/library/hh847884.aspx) , amely az összes parancsmag használható.  Például hello - Verbose paraméter hatására a parancsmag toooutput részletes a működésével kapcsolatos információkat.  Előfordulhat, hogy nincs parancsmag azonos nevet közös paraméterként hello paraméterrel.  Ha egy tevékenység azonos nevet közös paraméterként hello tulajdonságot, hello varázsló kérni fogja azt tooprovide hello paraméter egy másik nevet.
 
 ### <a name="monitor-activities"></a>A figyelő tevékenységek
-Útmutató az Orchestrator runbookjai figyelése egy [figyelése](http://technet.microsoft.com/library/hh403827.aspx) , és futtassa a folyamatosan váró adott esemény hívható.  Azure Automation nem támogatja a figyelő runbookok, így az integrációs csomag figyelő tevékenységeket nem lehet konvertálni.  Ehelyett az integrációs modul, a figyelés tevékenység a helyőrző parancsmag jön létre.  Ez a parancsmag nem funkciókkal rendelkezik, de lehetővé teszi a bármely konvertált telepítendő használó runbookot.  Ez a forgatókönyv nem tudják az Azure Automationben futtatásához, de így módosíthatja is telepíthető.
+Útmutató az Orchestrator runbookjai figyelése egy [figyelése](http://technet.microsoft.com/library/hh403827.aspx) és egy adott esemény által meghívott várakozási toobe folyamatos Futtatás.  Azure Automation szolgáltatásbeli nem támogatja a figyelő runbookok, így hello integrációs csomag figyelő tevékenységeket nem lehet konvertálni.  Ehelyett egy helyőrző parancsmag hello integrációs modul hello figyelése tevékenység jön létre.  Ez a parancsmag nem funkciókkal rendelkezik, de lehetővé teszi bármely konvertált azt használó runbookot toobe telepítve.  Ez a forgatókönyv nem lesz képes toorun az Azure Automationben, de így módosíthatja is telepíthető.
 
 ### <a name="integration-packs-that-cannot-be-converted"></a>Nem konvertálható integrációs csomagok
-OIT nem létrehozott integrációs csomagokat nem lehet konvertálni az integrációs csomag konverternek. Van még néhány eszköz, amely jelenleg nem lehet konvertálni a Microsoft által biztosított integrációs csomagokat.  Ezeket az integrációs csomagokat konvertált verziói lettek [letöltésre](#system-center-orchestrator-integration-modules) , hogy az Azure Automation vagy a Service Management Automation telepíthető.
+OIT nem létrehozott integrációs csomagokat nem lehet konvertálni az integrációs csomag konverter hello. Van még néhány eszköz, amely jelenleg nem lehet konvertálni a Microsoft által biztosított integrációs csomagokat.  Ezeket az integrációs csomagokat konvertált verziói lettek [letöltésre](#system-center-orchestrator-integration-modules) , hogy az Azure Automation vagy a Service Management Automation telepíthető.
 
 ## <a name="standard-activities-module"></a>Szokásos tevékenységek modul
-Az orchestrator készletét tartalmazza [szokásos tevékenységek](http://technet.microsoft.com/library/hh403832.aspx) , amelyek nem szerepelnek az integrációs csomag, de sok runbookok által használt.  A szokásos tevékenységek modul az egyenértékű parancsmag minden ezeket a tevékenységeket tartalmazó integrációs modul létrehozása.  Telepítenie kell az integrációs modul az Azure Automationben szokásos tevékenység használható konvertált runbookokat importálása előtt.
+Az orchestrator készletét tartalmazza [szokásos tevékenységek](http://technet.microsoft.com/library/hh403832.aspx) , amelyek nem szerepelnek az integrációs csomag, de sok runbookok által használt.  hello szokásos tevékenységek modul az egyenértékű parancsmag minden ezeket a tevékenységeket tartalmazó integrációs modul létrehozása.  Telepítenie kell az integrációs modul az Azure Automationben szokásos tevékenység használható konvertált runbookokat importálása előtt.
 
-Mellett konvertált forgatókönyvek támogatása, a szokásos tevékenységek modul parancsmagjai is használható valaki ismeri a Orchestrator hozhat létre új Azure Automation runbookjai.  A szokásos tevékenységeket összes parancsmagokkal hajtható végre, amíg azok másképp működhet.  A konvertált szokásos tevékenységek modul parancsmagjainak ugyanaz, mint a megfelelő tevékenységeket működik, és a ugyanazokkal a paraméterekkel használja.  Ez segít a meglévő Orchestrator-runbook Szerző az áttérés Azure Automation-forgatókönyv.
+Ezenkívül toosupporting alakítja át a runbookok, hello szokásos tevékenységek modulban hello parancsmagok segítségével valaki Orchestrator toobuild új Azure Automation runbookjai ismernie.  Hello funkció az összes hello szokásos tevékenységek parancsmagokkal hajtható végre, amíg azok másképp működhet.  hello parancsmagok hello alakítja át a szokásos tevékenységek modul fog működni a hello azonos módon a megfelelő és felhasználásával hello ugyanazokkal a paraméterekkel.  Ez segítheti a hello meglévő Orchestrator runbook Szerző az átmenet tooAzure Automation-forgatókönyv.
 
 ## <a name="system-center-orchestrator-integration-modules"></a>A System Center Orchestrator integrációs modulok
-A Microsoft biztosít [integrációs csomagok](http://technet.microsoft.com/library/hh295851.aspx) automatizálásához a System Center-összetevők és egyéb termékek runbookok készítéséhez.  Néhány ezeket az integrációs csomagokat a OIT jelenleg alapulnak, de nem jelenleg konvertálható integrációs modulok ismert problémák miatt.  [A System Center Orchestrator integrációs modulok](https://www.microsoft.com/download/details.aspx?id=49555) ezeket az integrációs csomagokat, amelyek az Azure Automation- és Service Management Automation importálható konvertált verzióját tartalmazza.  
+A Microsoft biztosít [integrációs csomagok](http://technet.microsoft.com/library/hh295851.aspx) runbookok tooautomate System Center-összetevők és egyéb termékek készítéséhez.  Néhány ezeket az integrációs csomagokat OIT jelenleg alapulnak, de jelenleg nem lehet konvertált toointegration modulok ismert problémák miatt.  [A System Center Orchestrator integrációs modulok](https://www.microsoft.com/download/details.aspx?id=49555) ezeket az integrációs csomagokat, amelyek az Azure Automation- és Service Management Automation importálható konvertált verzióját tartalmazza.  
 
-Ez az eszköz RTM verzió az integrációs csomag konverternek átalakítható OIT alapján integrációs csomagok frissített verzióit közzé lesz téve.  Útmutatás is nyújtanak segítséget az integrációs csomagok OIT alapuló tevékenységek segítségével runbookokat alakítása.
+Az eszköz hello RTM verzióját által frissített hello integrációs csomagok Integration Pack konverter közzé lesz téve hello az átalakítható OIT alapján verziói.  Útmutatást nyújtanak is runbookokat hello integrációs csomagok tevékenységek segítségével, nem próbálta konvertálni alapján OIT tooassist.
 
 ## <a name="runbook-converter"></a>Runbook konverter
-A Runbook konverter konvertálja az Orchestrator runbookjai [grafikus forgatókönyvek](automation-runbook-types.md#graphical-runbooks) , hogy importálni lehessen Azure Automation.  
+hello Runbook konverter konvertálja az Orchestrator runbookjai [grafikus forgatókönyvek](automation-runbook-types.md#graphical-runbooks) , hogy importálni lehessen Azure Automation.  
 
-Egy parancsmaggal nevű Runbook konverter valósul meg egy PowerShell-modul **ConvertFrom-SCORunbook** , amely az átalakítást hajt végre.  Az eszköz telepítésekor hoz létre egy PowerShell-munkamenetet, amely betölti a parancsmag egy parancsikont.   
+Egy parancsmaggal nevű Runbook konverter valósul meg egy PowerShell-modul **ConvertFrom-SCORunbook** , amely hello konverziót hajt végre.  Hello eszköz telepítésekor egy helyi tooa PowerShell-munkamenetet, amely betölti a hello parancsmag hoz létre.   
 
-Az alábbiakban az a folyamat alapvetően egy Orchestrator-runbook konvertálja és importálja a fájlt az Azure Automation.  A következő szakaszok további részletekkel szolgálnak az eszközzel és konvertált runbookok használatával.
+Következő hello alapvető folyamat tooconvert Orchestrator runbookot, és importálja a fájlt az Azure Automation.  hello következő szakaszokban további részleteket a hello eszközzel és a konvertált runbookok használatával.
 
 1. Az Orchestrator exportálja a runbookokat.
-2. Szerezze be a runbook minden tevékenység integrációs modulok.
-3. Alakítsa át az Orchestrator runbookjai az exportált fájlban.
-4. Tekintse át az átalakítás érvényesítéséhez, és minden szükséges manuális feladatok megállapíthatja a naplókban lévő információk.
+2. Integrációs modulok hello runbook minden tevékenység beszerzése.
+3. Az átalakítás hello Orchestrator runbookokat hello exportált fájlban.
+4. Tekintse át az összes szükséges manuális feladatok naplók toovalidate hello konvertálását és ezek toodetermine információit.
 5. Azure Automation, átalakított runbookokat importálni.
 6. Minden szükséges eszközök létrehozása az Azure Automationben.
-7. Az Azure Automationben szükséges tevékenységeket módosításához a runbook szerkesztése.
+7. Azure Automation toomodify hello runbook szerkesztése szükséges tevékenységeket.
 
 ### <a name="using-runbook-converter"></a>Runbook konverter használatával
-A szintaxisának **ConvertFrom-SCORunbook** a következőképpen történik:
+hello szintaxisának **ConvertFrom-SCORunbook** a következőképpen történik:
 
     ConvertFrom-SCORunbook -RunbookPath <string> -Module <string[]> -OutputFolder <string>
 
-* RunbookPath - tartalmazó alakítsa át a runbookokat exportálás fájl elérési útját.
-* A modul - vesszővel elválasztott a runbookok tevékenységeket tartalmazó integrációs modulok felsorolása.
-* OutputFolder - mappa elérési útját létrehozásához grafikus forgatókönyvek alakítja.
+* RunbookPath - elérési út toohello exportálási fájlt tartalmazó hello runbookok tooconvert.
+* A modul - vesszővel elválasztott runbookokat hello tevékenységeket tartalmazó integrációs modulok felsorolása.
+* OutputFolder - elérési út toohello mappa toocreate grafikus forgatókönyvek alakítja.
 
-A következő példaparancs alakítja át a runbookok nevű exportálási fájlba **MyRunbooks.ois_export**.  Ezek a runbookok használja az Active Directory és a Data Protection Manager integrációs csomagokat.
+a következő példaparancs konvertálja nevű exportálási fájlba a runbookokat hello hello **MyRunbooks.ois_export**.  Ezeknél a runbookoknál hello Active Directory és a Data Protection Manager integrációs csomagok használata.
 
     ConvertFrom-SCORunbook -RunbookPath "c:\runbooks\MyRunbooks.ois_export" -Module c:\ip\SystemCenter_IntegrationModule_ActiveDirectory.zip,c:\ip\SystemCenter_IntegrationModule_DPM.zip -OutputFolder "c:\runbooks"
 
 
 ### <a name="log-files"></a>Naplófájlok
-A Runbook konverter a következő naplófájlokat hoz létre a konvertált runbook ugyanazon a helyen.  Ha a fájlok már léteznek, majd azok felülírja az utolsó átalakítás származó információkkal.
+Runbook konverter hello hoz létre a következő naplófájlokban hello hello hello és ugyanazon a helyen runbook alakítja át.  Ha hello fájlok már léteznek, majd azok felülírja hello utolsó átalakítás származó információkkal.
 
 | Fájl | Tartalom |
 |:--- |:--- |
-| Runbook konverter - Progress.log |Az átalakítás, beleértve a minden egyes tevékenységhez sikeresen konvertálni információkat és minden egyes tevékenységhez konvertálva figyelmeztetés részletes lépéseket. |
-| Runbook konverter - Summary.log |Az utolsó átalakítás, beleértve a figyelmeztetéseket összefoglalását és feladatokat, például létrehozhat egy változó megadása kötelező, a konvertált forgatókönyv végrehajtásához nyomon követéséhez. |
+| Runbook konverter - Progress.log |Részletes utasítások hello átalakítás, beleértve az egyes tevékenységek sikeresen konvertálni információkat és figyelmeztetés minden egyes tevékenységhez konvertálás nem történt. |
+| Runbook konverter - Summary.log |Hello összefoglalása utolsó átalakítás, beleértve a figyelmeztetéseket, és feladatokhoz például létrehozhat egy változó megadása kötelező, konvertálni hello runbook tooperform nyomon követéséhez. |
 
 ### <a name="exporting-runbooks-from-orchestrator"></a>Az Orchestrator runbookok exportálása
-A Runbook konverter működik az Orchestrator, amely tartalmaz egy vagy több runbook exportálási fájlba.  Az exportált fájlban a megfelelő Azure Automation-runbook minden Orchestrator-runbook hoz létre.  
+az Orchestrator, amely tartalmaz egy vagy több runbook exportálási fájlba hello Runbook konverter működik.  A megfelelő Azure Automation-runbook minden Orchestrator runbook hello exportfájl hoz létre.  
 
-Az Orchestrator runbook exportálásához kattintson a jobb gombbal a Runbook Designerben a runbook nevét, és válassza ki **exportálása**.  Szeretné exportálni az összes runbook egy mappát, kattintson a jobb gombbal a mappára, és válassza a neve **exportálása**.
+az Orchestrator, a runbook tooexport hello runbookot a Runbook Designer hello gombbal, és válassza ki **exportálása**.  tooexport hello hello mappa nevét és válassza ki az összes runbook egy mappát, kattintson a jobb gombbal **exportálása**.
 
 ### <a name="runbook-activities"></a>Runbook-tevékenységek
-A Runbook konverter az Orchestrator runbook tevékenységeiről a megfelelő tevékenységet az Azure Automationben alakítja át.  Ezekre a tevékenységekre, amely nem lehet konvertálni egy helyőrző tevékenység a runbookban figyelmeztető szöveg jön létre.  Miután az Azure Automation a konvertált runbookot importál, le kell cserélnie ezek a tevékenységek bármelyike érvényes a szükséges funkciókat ellátó tevékenységek.
+Runbook konverter hello hello az Orchestrator runbook tooa megfelelő tevékenység az Azure Automationben lévő minden tevékenység alakítja át.  Ezekre a tevékenységekre, amely nem lehet konvertálni egy helyőrző tevékenység figyelmeztető szöveg hello runbookban jön létre.  Miután az Azure Automation konvertálni hello runbookot importál, le kell cserélnie ezek a tevékenységek bármelyike érvényes hello szükséges funkciókat ellátó tevékenységek.
 
-Az Orchestrator tevékenységeket a [szabványos tevékenységek modul](#standard-activities-module) konvertálja.  Nincsenek néhány szokásos Orchestrator-tevékenységeket, amelyeken nem ebben a modulban, ha nem történik meg.  Például **Platformesemény küldése** rendelkezik Azure Automation egyenértékű, mivel az esemény egy adott Orchestrator.
+Hello Orchestrator-tevékenységeket [szabványos tevékenységek modul](#standard-activities-module) konvertálja.  Nincsenek néhány szokásos Orchestrator-tevékenységeket, amelyeken nem ebben a modulban, ha nem történik meg.  Például **Platformesemény küldése** rendelkezik Azure Automation egyenértékű, mivel hello esemény adott tooOrchestrator.
 
-[Tevékenységek figyelését](https://technet.microsoft.com/library/hh403827.aspx) nem lettek konvertálva, mert nincs megfelelője számukra az Azure Automationben.  A kivétel figyelő tevékenységek [konvertálni az integrációs csomagok](#integration-pack-converter) , amely a helyőrző tevékenység konvertálja.
+[Tevékenységek figyelését](https://technet.microsoft.com/library/hh403827.aspx) nem lettek konvertálva, mert nincs megfelelő toothem az Azure Automationben.  hello kivétel figyelő tevékenységek [konvertálni az integrációs csomagok](#integration-pack-converter) konvertált toohello Helyőrző tevékenység fogja tárolni.
 
-A tevékenység egy [konvertálni az integrációs csomag](#integration-pack-converter) kívánja megadni a elérési útját az integrációs modul konvertálja a **modulok** paraméter.  A System Center integrációs csomagok használhatják a [System Center Orchestrator integrációs modulok](#system-center-orchestrator-integration-modules).
+A tevékenység egy [konvertálni az integrációs csomag](#integration-pack-converter) konvertálja, ha Ön által hello elérési toohello integrációs modul hello **modulok** paraméter.  A System Center integrációs csomagok használhatják hello [System Center Orchestrator integrációs modulok](#system-center-orchestrator-integration-modules).
 
 ### <a name="orchestrator-resources"></a>Erőforrások az orchestrator programhoz
-A Runbook konverter csak a runbookok, nem más Orchestrator erőforrások, például számlálókat, változókat és kapcsolatok alakítja.  Teljesítményszámlálók az Azure Automationben nem támogatottak.  Változók és a kapcsolatok támogatottak, de manuálisan kell létrehoznia őket.  A naplófájlok fog arról tájékoztatják, ha a runbook igényel ezekhez az erőforrásokhoz, és adja meg a megfelelő erőforrásokra, amelyekre szüksége van az Azure Automationben megfelelően működjenek a konvertált runbook létrehozásához.
+hello Runbook konverter csak a runbookok, nem más Orchestrator erőforrások, például számlálókat, változókat és kapcsolatok alakítja.  Teljesítményszámlálók az Azure Automationben nem támogatottak.  Változók és a kapcsolatok támogatottak, de manuálisan kell létrehoznia őket.  hello naplófájlok fog arról tájékoztatják, ha hello runbooknak szüksége ezekhez az erőforrásokhoz, és adja meg a megfelelő forrásanyagokat, hogy az Azure Automationben toocreate hello runbook toooperate megfelelően konvertálni.
 
-Egy runbook például egy változó egy adott értéket egy tevékenységben feltöltéséhez használhat.  A konvertált runbook konvertálja a tevékenységet, majd adja meg a változó eszköz az Azure Automationben neve megegyezik az Orchestrator változó.  Ez a kísérheti a **Runbook konverter - Summary.log** az átalakítás után létrehozott fájl.  Akkor hozzon létre manuálisan a változóeszköz Azure Automation forgatókönyv használata előtt.
+Egy runbook például egy tevékenység lehet használni egy változó toopopulate egy adott értéket.  hello konvertált runbook konvertálja hello tevékenységet, majd adja meg a változó eszköz az Azure Automation azonos nevet hello Orchestrator változóként hello.  Ez tájékoztat a hello **Runbook konverter - Summary.log** hello átalakítás után létrehozott fájl.  Szüksége lesz toomanually a változó eszköz létrehozása az Azure Automationben hello runbook használata előtt.
 
 ### <a name="input-parameters"></a>A bemeneti paraméterek
-Az Orchestrator Runbookjai a bemeneti paraméterek fogadja el a **adatok inicializálása** tevékenység.  Ha a runbook konvertálni tartalmazza ennek a tevékenységnek, majd egy [bemeneti paraméter](automation-graphical-authoring-intro.md#runbook-input-and-output) az Azure Automation runbook létrehozása a tevékenység mindegyik paraméterére vonatkozóan.  A [munkafolyamat parancsprogram-vezérlők](automation-graphical-authoring-intro.md#activities) tevékenységet hoz létre a konvertált runbook kéri le, és visszaadja az egyes paramétereket.  A tevékenységből származó bármely tevékenységek a runbookban, amelyek egy bemeneti paraméter tekintse meg a kimeneti.
+Az Orchestrator Runbookjai fogadja el a bemeneti paramétereket hello **adatok inicializálása** tevékenység.  Ha konvertálni hello runbook tartalmazza ennek a tevékenységnek, majd egy [bemeneti paraméter](automation-graphical-authoring-intro.md#runbook-input-and-output) hello Azure Automation a runbook létrejön mindegyik paraméterhez hello tevékenységben.  A [munkafolyamat parancsprogram-vezérlők](automation-graphical-authoring-intro.md#activities) tevékenység kéri le, és visszaadja az egyes paramétereket konvertálni hello runbook jön létre.  Hello runbookban levő tevékenységek, amelyek egy bemeneti paraméter a tevékenység toohello kimeneti hivatkoznia.
 
-Az, hogy használja-e ezt a stratégiát azért legjobban tükrözik az Orchestrator runbook funkciók.  Új grafikus forgatókönyvek tevékenységek közvetlenül bemeneti paraméterek, a forgatókönyv bemeneti adatforrást használó utal.
+hello oka, hogy használja-e ezt a stratégiát toobest tükrözött hello funkció hello az Orchestrator runbook.  Új grafikus forgatókönyvek tevékenységek közvetlenül egy Runbook bemeneti adatforrást használó tooinput paraméterek kell hivatkoznia.
 
 ### <a name="invoke-runbook-activity"></a>Runbook meghívása tevékenységhez
-Az Orchestrator Runbookjai elindíthatnak más runbookokat, a **Runbook meghívása** tevékenység. Ha a runbook konvertálni tartalmazza ennek a tevékenységnek és a **Várakozás a befejezésre** beállítás, akkor a runbook-tevékenység az jön létre a konvertált runbook.  Ha a **Várakozás a befejezésre** beállítása, majd a munkafolyamat-parancsprogram-tevékenység hoz létre, amely használja **Start-AzureAutomationRunbook** a runbook elindításához.  Miután az Azure Automation a konvertált runbookot importál, módosítania kell ezt a tevékenységet tevékenységben megadott adatokkal.
+Az Orchestrator Runbookjai elindíthatnak más runbookokat hello rendelkező **Runbook meghívása** tevékenység. Ha konvertálni hello runbook tartalmazza ezt a tevékenységet és hello **Várakozás a befejezésre** beállítás, akkor a runbook-tevékenység létrehozott hozzá konvertálni hello runbookban.  Ha hello **Várakozás a befejezésre** beállítása, majd a munkafolyamat-parancsprogram-tevékenység hoz létre, amely használja **Start-AzureAutomationRunbook** toostart hello runbook.  Miután az Azure Automation konvertálni hello runbookot importál, módosítania kell ezt a tevékenységet hello tevékenység meghatározott hello információkat.
 
 ## <a name="related-articles"></a>Kapcsolódó cikkek
 * [A System Center 2012 – Orchestrator](http://technet.microsoft.com/library/hh237242.aspx)

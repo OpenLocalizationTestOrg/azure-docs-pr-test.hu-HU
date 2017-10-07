@@ -1,6 +1,6 @@
 ---
-title: "A PowerShell segítségével az Azure Media Services fiókok kezelése"
-description: "Útmutató: Azure Media Services-fiókok a PowerShell-parancsmagokkal kezelheti."
+title: "aaaManage Azure Media Services fiókok a PowerShell használatával"
+description: "Ismerje meg, hogyan toomanage Azure Media Services fiókok a PowerShell-parancsmagokkal."
 author: Juliako
 manager: erikre
 editor: 
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: juliako
-ms.openlocfilehash: 3d999d9e27844bc0164cc3572522b9ec022118a1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e8f97bb2393343e45fabf9c437b4fc09f2525dc2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-azure-media-services-accounts-with-powershell"></a>A PowerShell segítségével az Azure Media Services fiókok kezelése
 > [!div class="op_single_selector"]
-> * [Portal](media-services-portal-create-account.md)
+> * [Portál](media-services-portal-create-account.md)
 > * [PowerShell](media-services-manage-with-powershell.md)
 > * [REST](https://docs.microsoft.com/rest/api/media/mediaservice)
 > 
 > [!NOTE]
-> Nem fogja tudni az Azure Media Services-fiók létrehozása, rendelkeznie kell egy Azure-fiókra. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: <a href="http://www.windowsazure.com/pricing/free-trial/?WT.mc_id=A8A8397B5" target="_blank">Ingyenes Azure-fiók létrehozása</a>.
+> toobe képes toocreate Azure Media Services-fiók, rendelkeznie kell egy Azure-fiókra. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: <a href="http://www.windowsazure.com/pricing/free-trial/?WT.mc_id=A8A8397B5" target="_blank">Ingyenes Azure-fiók létrehozása</a>.
 > 
 > 
 
 ## <a name="overview"></a>Áttekintés
-Ez a cikk az Azure Media Services (AMS) tartalmazza az Azure PowerShell-parancsmagok az Azure Resource Manager keretében. A parancsmagok szerepel a **Microsoft.Azure.Commands.Media** névtér.
+Ez a cikk az Azure Media Services (AMS) felsorolja hello Azure PowerShell-parancsmagok hello Azure Resource Manager keretében. hello parancsmagok szerepel hello **Microsoft.Azure.Commands.Media** névtér.
 
 ## <a name="versions"></a>Verziók
 **ApiVersion**: "2015-10-01"
@@ -52,11 +52,11 @@ A paraméterhalmaz: StorageAccountsParamSet
 ### <a name="parameters"></a>Paraméterek
 **-ResourceGroupName &lt;karakterlánc&gt;**
 
-Megadja az erőforráscsoporthoz, amelyhez a media Services tartozik nevét.
+A media Services tartozik hello erőforrás csoport toowhich hello nevét adja meg.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |0 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -64,11 +64,11 @@ Megadja az erőforráscsoporthoz, amelyhez a media Services tartozik nevét.
 
 **-AccountName &lt;karakterlánc&gt;**
 
-Megadja a media Services nevét.
+Megadja a hello hello médiaszolgáltatás nevére.
 
 | Aliasok | Név |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |1 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |hamis |
@@ -76,11 +76,11 @@ Megadja a media Services nevét.
 
 **-Hely &lt;karakterlánc&gt;**
 
-A media Services erőforrás helyét adja meg.
+Hello media service hello erőforrás helyét adja meg.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |2 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -88,14 +88,14 @@ A media Services erőforrás helyét adja meg.
 
 **-StorageAccountId &lt;karakterlánc&gt;**
 
-Meghatározza, hogy a media Services társított elsődleges tárfiók.
+Adja meg, amely hello media service társított elsődleges tárfiók.
 
-* Új tárfiók (Resource Manager API-val létrehozott) csak a támogatott.
-* A tárfiók már léteznie kell, és ugyanazon a helyen, a media szolgáltatással rendelkezik.
+* Új tárfiók (Resource Manager API hello létre) csak a támogatott.
+* hello tárfiók létezése és rendelkezik hello hello media Service ugyanazon a helyen.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |3 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -104,15 +104,15 @@ Meghatározza, hogy a media Services társított elsődleges tárfiók.
 
 **-StorageAccounts &lt;PSStorageAccount\[\]&gt;**
 
-Meghatározza, hogy a media Services társított tárfiókokat.
+Adja meg a társított hello media Services, storage-fiókok.
 
-* Új tárfiók (Resource Manager API-val létrehozott) csak a támogatott.
-* A tárfiók már léteznie kell, és ugyanazon a helyen, a media szolgáltatással rendelkezik.
+* Új tárfiók (Resource Manager API hello létre) csak a támogatott.
+* hello tárfiók létezése és rendelkezik hello hello media Service ugyanazon a helyen.
 * Csak egy tárfiók elsődleges adhat meg.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |3 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -121,13 +121,13 @@ Meghatározza, hogy a media Services társított tárfiókokat.
 
 **-Címkéket &lt;Hashtable&gt;**
 
-Megadja egy kivonattáblát a címkék a media Services társított.
+Megadja egy kivonattáblát a hello media service társított hello címkék.
 
 * Példa: @{"" ="érték1 tag1";" tag2 "=: Érték2"}
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |hamis |
+| Kötelező? |hamis |
 | Hová kerüljön? |nevű |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |hamis |
@@ -135,13 +135,13 @@ Megadja egy kivonattáblát a címkék a media Services társított.
 
 **&lt;CommandParameters&gt;**
 
-Ez a parancsmag a következő általános paramétereket támogatja: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction és -WarningVariable.
+Ez a parancsmag hello általános paramétereket támogatja:-Debug, - ErrorAction, - ErrorVariable, - InformationAction, - InformationVariable, - OutVariable,-OutBuffer, - PipelineVariable, - Verbose, - WarningAction és - WarningVariable.
 
 ### <a name="inputs"></a>Bemenetek
-A bemeneti típus a parancsmagnak átadható objektumok típusa.
+hello bemeneti típus hello hello típusú objektumokat toohello parancsmag is átadhatja.
 
 ### <a name="outputs"></a>kimenetek
-A kimeneti típus a parancsmag által létrehozott objektumok típusa.
+hello kimeneti típus parancsmag hello hello objektumok hello típusú bocsát ki.
 
 ## <a name="set-azurermmediaservice"></a>Set-AzureRmMediaService
 Egy media Services frissíti.
@@ -152,11 +152,11 @@ Egy media Services frissíti.
 ### <a name="parameters"></a>Paraméterek
 **-ResourceGroupName &lt;karakterlánc&gt;**
 
-Megadja az erőforráscsoporthoz, amelyhez a media Services tartozik nevét.
+A media Services tartozik hello erőforrás csoport toowhich hello nevét adja meg.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |0 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -164,11 +164,11 @@ Megadja az erőforráscsoporthoz, amelyhez a media Services tartozik nevét.
 
 **-AccountName &lt;karakterlánc&gt;**
 
-Megadja a media Services nevét.
+Megadja a hello hello médiaszolgáltatás nevére.
 
 | Aliasok | Név |
 | --- | --- |
-| Kötelező megadni? |True (Igaz) |
+| Kötelező? |True (Igaz) |
 | Hová kerüljön? |1 |
 | Alapértelmezett érték |None |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -176,15 +176,15 @@ Megadja a media Services nevét.
 
 **-StorageAccounts &lt;PSStorageAccount\[\]&gt;**
 
-Meghatározza, hogy a media Services társított tárfiókokat.
+Adja meg a társított hello media Services, storage-fiókok.
 
-* Új tárfiók (Resource Manager API-val létrehozott) csak a támogatott.
-* A tárfiók már léteznie kell, és ugyanazon a helyen, a media szolgáltatással rendelkezik.
+* Új tárfiók (Resource Manager API hello létre) csak a támogatott.
+* hello tárfiók létezése és rendelkezik hello hello media Service ugyanazon a helyen.
 * Csak egy tárfiók elsődleges adhat meg.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |hamis |
+| Kötelező? |hamis |
 | Hová kerüljön? |nevű |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -193,13 +193,13 @@ Meghatározza, hogy a media Services társított tárfiókokat.
 
 **-Címkéket &lt;Hashtable&gt;**
 
-Megadja egy kivonattáblát a címkék a media Services társított.
+Megadja egy kivonattáblát a media Services társított hello címkék.
 
-* A media Services társított címkék értékkel az ügyfél által megadott helyett.
+* hello címkék hello media service társított cserélése hello ügyfél által megadott értéket.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |False (Hamis) |
+| Kötelező? |False (Hamis) |
 | Hová kerüljön? |nevű |
 | Alapértelmezett érték |None |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -207,13 +207,13 @@ Megadja egy kivonattáblát a címkék a media Services társított.
 
 **&lt;CommandParameters&gt;**
 
-Ez a parancsmag a következő általános paramétereket támogatja: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction és -WarningVariable.
+Ez a parancsmag hello általános paramétereket támogatja:-Debug, - ErrorAction, - ErrorVariable, - InformationAction, - InformationVariable, - OutVariable,-OutBuffer, - PipelineVariable, - Verbose, - WarningAction és - WarningVariable.
 
 ### <a name="inputs"></a>Bemenetek
-A bemeneti típus a parancsmagnak átadható objektumok típusa.
+hello bemeneti típus hello hello típusú objektumokat toohello parancsmag is átadhatja.
 
 ### <a name="outputs"></a>kimenetek
-A kimeneti típus a parancsmag által létrehozott objektumok típusa.
+hello kimeneti típus parancsmag hello hello objektumok hello típusú bocsát ki.
 
 ## <a name="remove-azurermmediaservice"></a>Remove-AzureRmMediaService
 Egy media Services eltávolítja.
@@ -224,11 +224,11 @@ Egy media Services eltávolítja.
 ### <a name="parameters"></a>Paraméterek
 **-ResourceGroupName &lt;karakterlánc&gt;**
 
-Megadja az erőforráscsoporthoz, amelyhez a media Services tartozik nevét.
+A media Services tartozik hello erőforrás csoport toowhich hello nevét adja meg.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |0 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -236,11 +236,11 @@ Megadja az erőforráscsoporthoz, amelyhez a media Services tartozik nevét.
 
 **-AccountName &lt;karakterlánc&gt;**
 
-Megadja a media Services nevét.
+Megadja a hello hello médiaszolgáltatás nevére.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |2 |
 | Alapértelmezett érték |None |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -248,13 +248,13 @@ Megadja a media Services nevét.
 
 **&lt;CommandParameters&gt;**
 
-Ez a parancsmag a következő általános paramétereket támogatja: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction és -WarningVariable.
+Ez a parancsmag hello általános paramétereket támogatja:-Debug, - ErrorAction, - ErrorVariable, - InformationAction, - InformationVariable, - OutVariable,-OutBuffer, - PipelineVariable, - Verbose, - WarningAction és - WarningVariable.
 
 ### <a name="inputs"></a>Bemenetek
-A bemeneti típus a parancsmagnak átadható objektumok típusa.
+hello bemeneti típus hello hello típusú objektumokat toohello parancsmag is átadhatja.
 
 ### <a name="outputs"></a>kimenetek
-A kimeneti típus a parancsmag által létrehozott objektumok típusa.
+hello kimeneti típus parancsmag hello hello objektumok hello típusú bocsát ki.
 
 ## <a name="get-azurermmediaservice"></a>Get-AzureRmMediaService
 Lekérdezi egy erőforráscsoportban található összes media services vagy egy media Services a megadott névvel.
@@ -271,11 +271,11 @@ ParameterSet: AccountNameParameterSet
 ### <a name="parameters"></a>Paraméterek
 **-ResourceGroupName &lt;karakterlánc&gt;**
 
-Megadja az erőforráscsoporthoz, amelyhez a media Services tartozik nevét.
+A media Services tartozik hello erőforrás csoport toowhich hello nevét adja meg.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |0 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -285,11 +285,11 @@ Helyettesítő karakterek elfogadása?   hamis
 
 **-AccountName &lt;karakterlánc&gt;**
 
-Megadja a media Services nevét.
+Megadja a hello hello médiaszolgáltatás nevére.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |1 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -298,13 +298,13 @@ Megadja a media Services nevét.
 
 **&lt;CommandParameters&gt;**
 
-Ez a parancsmag a következő általános paramétereket támogatja: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction és -WarningVariable.
+Ez a parancsmag hello általános paramétereket támogatja:-Debug, - ErrorAction, - ErrorVariable, - InformationAction, - InformationVariable, - OutVariable,-OutBuffer, - PipelineVariable, - Verbose, - WarningAction és - WarningVariable.
 
 ### <a name="inputs"></a>Bemenetek
-A bemeneti típus a parancsmagnak átadható objektumok típusa.
+hello bemeneti típus hello hello típusú objektumokat toohello parancsmag is átadhatja.
 
 ### <a name="outputs"></a>kimenetek
-A kimeneti típus a parancsmag által létrehozott objektumok típusa.
+hello kimeneti típus parancsmag hello hello objektumok hello típusú bocsát ki.
 
 ## <a name="get-azurermmediaservicekeys"></a>Get-AzureRmMediaServiceKeys
 Lekérdezi a médiaszolgáltatás kulcsokat.
@@ -315,11 +315,11 @@ Lekérdezi a médiaszolgáltatás kulcsokat.
 ### <a name="parameters"></a>Paraméterek
 **-ResourceGroupName &lt;karakterlánc&gt;**
 
-Megadja az erőforráscsoporthoz, amelyhez a media Services tartozik nevét.
+A media Services tartozik hello erőforrás csoport toowhich hello nevét adja meg.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |0 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -327,11 +327,11 @@ Megadja az erőforráscsoporthoz, amelyhez a media Services tartozik nevét.
 
 **-AccountName &lt;karakterlánc&gt;**
 
-Megadja a media Services nevét.
+Megadja a hello hello médiaszolgáltatás nevére.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |1 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -339,13 +339,13 @@ Megadja a media Services nevét.
 
 **&lt;CommandParameters&gt;**
 
-Ez a parancsmag a következő általános paramétereket támogatja: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction és -WarningVariable.
+Ez a parancsmag hello általános paramétereket támogatja:-Debug, - ErrorAction, - ErrorVariable, - InformationAction, - InformationVariable, - OutVariable,-OutBuffer, - PipelineVariable, - Verbose, - WarningAction és - WarningVariable.
 
 ### <a name="inputs"></a>Bemenetek
-A bemeneti típus a parancsmagnak átadható objektumok típusa.
+hello bemeneti típus hello hello típusú objektumokat toohello parancsmag is átadhatja.
 
 ### <a name="outputs"></a>kimenetek
-A kimeneti típus a parancsmag által létrehozott objektumok típusa.
+hello kimeneti típus parancsmag hello hello objektumok hello típusú bocsát ki.
 
 ## <a name="set-azurermmediaservicekey"></a>Set-AzureRmMediaServiceKey
 Egy media Services elsődleges vagy másodlagos kulcs újragenerálása.
@@ -356,11 +356,11 @@ Egy media Services elsődleges vagy másodlagos kulcs újragenerálása.
 ### <a name="parameters"></a>Paraméterek
 **-ResourceGroupName &lt;karakterlánc&gt;**
 
-Megadja az erőforráscsoporthoz, amelyhez a media Services tartozik nevét.
+A media Services tartozik hello erőforrás csoport toowhich hello nevét adja meg.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |0 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -368,11 +368,11 @@ Megadja az erőforráscsoporthoz, amelyhez a media Services tartozik nevét.
 
 **-AccountName &lt;karakterlánc&gt;**
 
-Megadja a media Services nevét.
+Megadja a hello hello médiaszolgáltatás nevére.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |1 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -380,13 +380,13 @@ Megadja a media Services nevét.
 
 **KeyType – &lt;KeyType&gt;**
 
-Megadja a media Services kulcs típusát.
+Adja meg a hello media service hello kulcstípusával.
 
 * Elsődleges vagy másodlagos
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |2 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |hamis |
@@ -394,16 +394,16 @@ Megadja a media Services kulcs típusát.
 
 **&lt;CommandParameters&gt;**
 
-Ez a parancsmag a következő általános paramétereket támogatja: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction és -WarningVariable.
+Ez a parancsmag hello általános paramétereket támogatja:-Debug, - ErrorAction, - ErrorVariable, - InformationAction, - InformationVariable, - OutVariable,-OutBuffer, - PipelineVariable, - Verbose, - WarningAction és - WarningVariable.
 
 ### <a name="inputs"></a>Bemenetek
-A bemeneti típus a parancsmagnak átadható objektumok típusa.
+hello bemeneti típus hello hello típusú objektumokat toothe parancsmag is átadhatja.
 
 ### <a name="outputs"></a>kimenetek
-A kimeneti típus a parancsmag által létrehozott objektumok típusa.
+hello kimeneti típus parancsmag hello hello objektumok hello típusú bocsát ki.
 
 ## <a name="sync-azurermmediaservicestoragekeys"></a>Sync-AzureRmMediaServiceStorageKeys
-A media Services társított storage-fiók tárfiókkulcsainak szinkronizálása.
+Hello media service társított storage-fiók tárfiókkulcsainak szinkronizálása.
 
 ### <a name="syntax"></a>Szintaxis
     Sync-AzureRmMediaServiceStorageKeys [-ResourceGroupName] <string> [-MediaServiceAccountName] <string>    [-StorageAccountId] <string>  [<CommonParameters>]
@@ -411,11 +411,11 @@ A media Services társított storage-fiók tárfiókkulcsainak szinkronizálása
 ### <a name="parameters"></a>Paraméterek
 **-ResourceGroupName &lt;karakterlánc&gt;**
 
-Megadja az erőforráscsoporthoz, amelyhez a media Services tartozik nevét.
+A media Services tartozik hello erőforrás csoport toowhich hello nevét adja meg.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |0 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -423,11 +423,11 @@ Megadja az erőforráscsoporthoz, amelyhez a media Services tartozik nevét.
 
 **-AccountName &lt;karakterlánc&gt;**
 
-Megadja a media Services nevét.
+Megadja a hello hello médiaszolgáltatás nevére.
 
 | Aliasok | Egyik sem |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |1 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -435,11 +435,11 @@ Megadja a media Services nevét.
 
 **-StorageAccountId &lt;karakterlánc&gt;**
 
-Adja meg a tárfiókot, a media Services társított.
+Megadja a hello hello media szolgáltatáshoz tartozó tárfiók.
 
 | Aliasok | Azonosító |
 | --- | --- |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Hová kerüljön? |2 |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |TRUE(ByPropertyName) |
@@ -447,13 +447,13 @@ Adja meg a tárfiókot, a media Services társított.
 
 **&lt;CommandParameters&gt;**
 
-Ez a parancsmag a következő általános paramétereket támogatja: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction és -WarningVariable.
+Ez a parancsmag hello általános paramétereket támogatja:-Debug, - ErrorAction, - ErrorVariable, - InformationAction, - InformationVariable, - OutVariable,-OutBuffer, - PipelineVariable, - Verbose, - WarningAction és - WarningVariable.
 
 ### <a name="inputs"></a>Bemenetek
-A bemeneti típus a parancsmagnak átadható objektumok típusa.
+hello bemeneti típus hello hello típusú objektumokat toohello parancsmag is átadhatja.
 
 ### <a name="outputs"></a>kimenetek
-A kimeneti típus a parancsmag által létrehozott objektumok típusa.
+hello kimeneti típus parancsmag hello hello objektumok hello típusú bocsát ki.
 
 ## <a name="next-step"></a>Következő lépés
 Tekintse meg a Media Services tanulási útvonalai.

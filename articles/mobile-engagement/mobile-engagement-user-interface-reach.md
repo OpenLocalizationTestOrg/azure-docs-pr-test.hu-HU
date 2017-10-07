@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Mobile Engagement felhasználói felület - a Reach"
-description: "Megtudhatja, hogyan érheti el az alkalmazás a felhasználók az Azure Mobile Engagement leküldéses értesítéseket"
+title: "Mobile Engagement felhasználói felület - a Reach aaaAzure"
+description: "Megtudhatja, hogyan tooreach toohello felhasználók az alkalmazás az Azure Mobile Engagement leküldéses értesítéseket"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,67 +14,67 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: ce30456e41ff1a2f4824bcb64246ee115fdd1ef7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 40d5162ddeccec82c2c9f5b0d72b4cb10c9ddc38
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-reach-out-to-the-users-of-your-application-with-push-notifications"></a>Hogyan érheti el a felhasználókkal leküldéses értesítések
-Ez a cikk ismerteti a **ELÉRNI** lapján a **a Mobile Engagement** portálon. Használja a **a Mobile Engagement** portal felügyeletét és kezelését a mobile apps szolgáltatásban. Vegye figyelembe, hogy a portál használatának megkezdéséhez először hozzon létre egy **Azure Mobile Engagement** fiók. További információkért lásd: [Azure Mobile Engagement-fiók létrehozása](mobile-engagement-create.md).
+# <a name="how-tooreach-out-toohello-users-of-your-application-with-push-notifications"></a>Hogyan tooreach toohello felhasználók az alkalmazás a leküldéses értesítések
+Ez a cikk ismerteti a hello **ELÉRNI** hello lapján **a Mobile Engagement** portálon. Hello használata **a Mobile Engagement** portál toomonitor és a mobilalkalmazások kezelése. Vegye figyelembe, hogy először toocreate hello portálon toostart egy **Azure Mobile Engagement** fiók. További információkért lásd: [Azure Mobile Engagement-fiók létrehozása](mobile-engagement-create.md).
 
-A felhasználói felület Reach szakasza a leküldéses kampány felügyeleti eszköz, ahol létrehozása/szerkesztése/aktiválása/Befejezés/figyelő, a következőket teheti, és megtekintheti a statisztikákat a leküldéses értesítési kampányt, és a Reach API (és néhány eleme az alacsony szintű Push API) keresztül is elérhető szolgáltatások . Ne feledje, hogy függetlenül attól, hogy az API-k vagy a felhasználói felület, szüksége lesz integrálni Azure Mobile Engagement és a használata előtt az SDK-val az alkalmazásba, az egyes platformokon Reach elérését a kampányok.
+hello éri el a felhasználói felület hello szakasza hello leküldéses kampány felügyeleti eszköz itt lehetséges létrehozása/szerkesztése/aktiválása/Befejezés/figyelő, és megtekintheti a statisztikákat a leküldéses értesítési kampányt és hello Reach API (és néhány eleme hello alacsony keresztül is elérhető szolgáltatások szint leküldéses API). Ne feledje, függetlenül attól, hogy hello API-k vagy hello felhasználói felület, akkor kell toointegrate Azure Mobile Engagement és a Reach az alkalmazásba, az egyes platformokon hello SDK használata előtt a Reach-kampányok.
 
 > [!NOTE]
-> Sok szakasza a **a Mobile Engagement** portál felhasználói felületének tartalmaz a **megjelenítése SÚGÓ** gombra. Nyomja le az erre a gombra kattintva szakasz környezetfüggő ismertetése.
+> Hello sok szakasza **a Mobile Engagement** portál felhasználói felületének tartalmazhat hello **megjelenítése SÚGÓ** gombra. Nyomja meg a gomb tooget szakasz környezetfüggő tájékozódhat.
 > 
 > 
 
 ## <a name="four-types-of-push-notifications"></a>Leküldéses értesítések négy típusa
-1. Közlemények - lehetővé teszi, hirdetések küldéséhez felhasználók számára, amelyek átirányítja őket egy másik hely belül az alkalmazás vagy egy weblapot, vagy kívül az app store el őket. 
-2. Szavazások - lehetővé teszi információ gyűjtését a végfelhasználók által kérdések kéri a felhasználót.
-3. Adatleküldések - teszik bináris vagy base64 adatok fájl küldése. Található adatokat küld az alkalmazás aktuális élmény a felhasználók az alkalmazás módosításához. Az alkalmazás kell tudni feldolgozni az adatokat található adatokat.
+1. Közlemények - toosend hirdetési üzenetek toousers, amely átirányítja őket az alkalmazás vagy a toosend belül tooanother hely lehetővé teszi őket tooa weblap, vagy az alkalmazás kívül tárolja. 
+2. Szavazások - lehetővé teszi a végfelhasználók toogather adatait által kérdések kéri a felhasználót.
+3. Adatleküldések - lehetővé teszi egy bináris vagy base64 adatfájlt toosend. adatoknak lévő hello információt az alkalmazásban a felhasználók aktuális élmény tooyour alkalmazás toomodify küldött. Az alkalmazás kell toobe képes tooprocess hello adatok található adatokat.
 
 ## <a name="campaign-details"></a>Kampány adatai
-Szerkesztése, klónozzon, törlése, és aktiválja a kampányt, amely rendelkezik még nincs aktiválva a nevek fölé vagy kattintva nyissa meg ezeket. Már aktiválták a nevek fölé kampányok klónozhat, vagy a megnyitásukhoz gombra. Azonban a kampány nem módosítható, miután aktiválva lett.
+Szerkesztése, klónozzon, törlése, és aktiválja a kampányt, amely rendelkezik még nincs aktiválva a nevek fölé vagy tooopen kattintva őket. Már aktiválták a nevek fölé kampányok klónozhat vagy tooopen kattintva őket. Azonban a kampány nem módosítható, miután aktiválva lett.
 
 ![Reach1][18]
 
 ## <a name="reach-feedback"></a>Visszajelzés elérni
-Kattintson a **statisztika** a Reach-kampány a részletek megtekintéséhez. A **egyszerű** nézet nyújt arról, mi történt egy kampány aktiválása után oszlop oszlopdiagramon formájában vizuális megjelenítése. A **speciális** nézet tartalmazza a leküldéses kampány részletesebb adatait. Ezek az adatok nem lesz elérhető, ha egy teszt kampány azaz küld egy vizsgálati eszköz leküldéses. Itt látható, hogyan kell értelmezni ezeket az adatokat:
+Kattintson a **statisztika** toosee hello részletei egy Reach-kampány. Hello **egyszerű** nézet visual reprezentációja arról, mi történt egy kampány aktiválása után oszlop oszlopdiagramon hello formájában. Hello **speciális** nézet tartalmazza hello leküldéses kampány részletesebb adatait. Ezek az adatok nem lesz elérhető, ha a teszt kampány azaz leküldéses elküldött tooa vizsgálati eszköz. Itt látható, hogyan kell értelmezni ezeket az adatokat:
 
-1. **Leküldött** -azt határozza meg az eszközökre leküldött üzenetek száma. Ez a szám a leküldéses kampány létrehozásához a megadott célközönség függ. Ha nem adja meg a célközönség, majd a leküldéses fog el lehet küldeni a regisztrált eszközöket. Minden más leküldéses szolgáltatások, például a Microsoft nem leküldéses értesítéseket közvetlenül az eszközök számára, de ehelyett azok leküldése az adott platform adott leküldéses értesítéseket kezelő szolgáltatása (PNS - APNS/GCM/WNS), hogy ezek az értesítések által biztosított eszközök. 
-2. **I** -azt határozza meg sikeresen érhetők el a pns-sel, hogy az eszköz és a nyugtázott üzenetek száma, mint a Mobile Engagement SDK által fogadott. 
+1. **Leküldött** -azt határozza meg, hogy hello toohello eszközökre leküldött üzenetek száma. Ez a szám hello leküldéses kampány létrehozásához a megadott hello célközönség függ. Ha nem adja meg a célközönség, majd a leküldéses elküldi tooall hello regisztrált eszközökre. Minden más leküldéses szolgáltatások, például a Microsoft nem leküldéses hello értesítések közvetlenül toohello eszközök, de ehelyett küldje le őket toohello adott platform adott leküldéses értesítéseket kezelő szolgáltatása (PNS - APNS/GCM/WNS), hogy azok által biztosított hello értesítések toohello eszközök. 
+2. **I** -azt határozza meg hello sikeresen kézbesítette hello PNS toohello eszköz és a nyugtázott üzenetek száma, mint a Mobile Engagement SDK által fogadott. 
    
    *A kézbesített okait száma kevesebb, mint a megnyomott száma:*
    
-   1. Ha a felhasználó rendelkezik eltávolítja az alkalmazást az eszközről, de a pns-sel kapcsolatos nem ismeri a leküldéses nem küldeni a pns-sel időpontjában az üzenetet a program eltávolítja.
-   2. Ha az eszköz regisztrációját az alkalmazást, de a eszközöktől hosszabb ideig offline állapotban volt, a pns-sel meghiúsul kézbesíteni az üzenetet az eszközt. 
-   3. Ha az üzenet beolvasása juttatni az eszközre, de az alkalmazásban a Mobile Engagement SDK nem ismeri fel az üzenet tartalmát, majd esik az üzenet. Ez akkor fordulhat elő, ha az alkalmazásban az értesítés testreszabási hoz létre egy kivételt, amely azt a catch az SDK-t, és dobja el az üzenetet. Ez akkor is előfordulhat, ha az alkalmazást az eszközön a Mobile Engagement SDK, amely nem érti a platformnak a leküldéses üzenet újabb verziójában a verzióját használja, de ez csak akkor, ha az alkalmazás a t az értesítés elküldése után frissítették. He service platform. A **speciális** lapon megtudhatja, hogy hány üzenetek el lettek dobva. 
-   4. Az iOS-eszközökön üzenetek néha nem kézbesítve vagy az eszköz az alacsony töltöttségű telepre vonatkozó vagy ha az alkalmazás nem használ jelentős részét, távoli értesítések feldolgozása közben. Ez az iOS-eszközök korlátozása.   
-3. **Megjelenített** -azt határozza meg, amelyek sikeresen jelennek meg az értesítési központba leküldéses/out-az-app rendszerértesítőként vagy belül a mobilalkalmazás az alkalmazásbeli értesítések formájában az eszközön az alkalmazás felhasználói üzenetek száma.  A **speciális** lapon megtudhatja, hány volt rendszer értesítéseket és alkalmazáson belüli értesítések. 
+   1. Ha hello felhasználó eltávolította hello app hello eszközről, de hello PNS nem ismeri az hello leküldéses toohello PNS küldünk hello időpontban üdvözlőüzenetére a program eltávolítja.
+   2. Ha hello eszközzel hello alkalmazás van, de a hello eszközöktől hosszabb ideig offline állapotban volt, majd hello PNS nem toodeliver hello üzenet toohello eszköz. 
+   3. Ha üdvözlőüzenetére toohello eszköz kézbesítve, de hello Mobile Engagement SDK hello alkalmazásban nem ismeri fel a üdvözlőüzenetére hello tartalmát, majd esik az üzenet. Ez akkor fordulhat elő, ha hello testreszabási hello értesítés hello App SDK és az vetett hello üdvözlőüzenetére kivételt, amely azt a catch hoz létre. Ez akkor is előfordulhat, ha hello alkalmazást hello eszközön hello platform által küldött hello Mobile Engagement SDK, amely nem tud toounderstand hello újabb verziójával leküldéses üdvözlőüzenetére verzióját használja, de ez csak akkor, ha hello app frissítették hello értesítés után hello service platformról elküldése. Hello **speciális** lapon megtudhatja, hogy hány üzenetek el lettek dobva. 
+   4. Az iOS-eszközökön üzenetek néha nem kézbesítve az alacsony töltöttségű telepre vonatkozó egyik hello eszköz esetén, vagy ha hello app van fel power jelentős mennyiségű, távoli értesítések feldolgozása közben. Ez az iOS-eszközök hello korlátozása.   
+3. **Megjelenített** -azt határozza meg, hogy sikeresen látható toohello alkalmazás felhasználói hello értesítési központ leküldéses/out-az-app rendszerértesítőként vagy egy alkalmazásbeli értesítés belül hello hello űrlapján hello eszközön mobil üzenetek hello száma alkalmazás.  Hello **speciális** lapon megtudhatja, hány volt rendszer értesítéseket és alkalmazáson belüli értesítések. 
    
-   *A megjelenő okait száma kevesebb, mint a kézbesített száma (megjelenítendő várakozási)*
+   *A megjelenő okait száma kevesebb, mint a kézbesített száma (várakozási toobe jelenik meg)*
    
-   1. Az értesítési kampány záródátumot volt, majd esetén előfordulhat, hogy az értesítési lett kézbesítve, de a idő kapott megnyitásához, és megjeleníti azt az alkalmazás felhasználó számára, amikor azt már elévült, a rendszer soha nem jelenik meg.   
-   2. Esetén az értesítés az alkalmazáson belüli értesítések a notification csak akkor látható, ha az alkalmazás felhasználó megnyitja az alkalmazást. Azokban az esetekben, ahol az alkalmazás felhasználói nem nyitotta meg az alkalmazást az SDK jelentést, hogy az értesítés-i, de még nem jelenik meg az alkalmazás már meg van nyitva. 
-   3. Ha az értesítést az alkalmazáson belüli értesítést, és akkor is megjelenik az értesítés, szállított, de még nem kézbesíteni, amikor a felhasználó egy adott tevékenység képernyőn megjelenítendő konfigurált megnyitja az alkalmazás az adott képernyőn. 
-4. **Felhasználói kapcsolati** -azt határozza meg, amely az alkalmazás felhasználói kezelni rendelkezik üzenetek száma és az üzeneteket, amelyek műveletet kiváltó, illetve amelyekből kiléptek. 
+   1. Hello értesítési kampány befejező dátumát volna meg, akkor lehetséges, hogy hello értesítés lett kézbesítve, de amikor hello idő léptek tooopen, és megjeleníti azt toohello alkalmazás felhasználói, ha azt már lejárt, a rendszer soha nem jelenik meg.   
+   2. Ha hello értesítést az alkalmazáson belüli értesítést majd hello értesítési csak jelenik meg hello alkalmazás felhasználói hello alkalmazás megnyitása. Azokban az esetekben, ahol hello alkalmazás felhasználói nem nyitotta meg hello app hello SDK jelentést, hogy hello értesítési kézbesíteni, de még nem jelenik meg hello alkalmazás már meg van nyitva. 
+   3. Ha hello értesítést az alkalmazáson belüli értesítést, és akkor is hello értesítési lesz jelentve szállított egy adott tevékenység/képernyőn megjelenő toobe konfigurálva, de amíg kézbesíteni még nem hello felhasználó megnyit egy adott képernyő hello alkalmazást. 
+4. **Felhasználói kapcsolati** -azt határozza meg, hogy mely hello alkalmazás felhasználói rendelkezik kezelni és hello üzeneteket, amelyek műveletet kiváltó, illetve amelyekből kiléptek üzenetek hello száma. 
    
-   * *Az alkalmazás felhasználói a következő módokon reagálhat egy értesítést az alábbi módon:*
+   * *hello alkalmazás felhasználói a következő módokon reagálhat értesítést hello a következő módszerek valamelyikével:*
      
-     1. Ha az értesítési rendszer/out-az-app értesítést vagy egy csak értesítést küldött, majd az alkalmazás felhasználó kattint az értesítés az alkalmazáson belüli értesítés.
-     2. Ha az értesítést az alkalmazáson belüli értesítést a szöveges vagy webes-nézetet, vagy majd lekérdezi az alkalmazás felhasználó kattint az akciógombra kattinthat, az értesítés.
-     3. Ha az értesítést az alkalmazáson belüli értesítést a web-nézetet majd az alkalmazás felhasználó a hivatkozásra kattint a webes nézet [Android csak] egy URL-cím
-   * *Az alkalmazás felhasználói a következő módokon léphet egy értesítést az alábbi módon:*
+     1. Ha hello értesítési rendszer/out-az-app értesítést vagy csak értesítést küld egy alkalmazásbeli értesítés akkor hello app felhasználó hello értesítési kattint.
+     2. Ha hello értesítést az alkalmazáson belüli értesítést a szöveges vagy webes-nézet vagy szavazások majd hello alkalmazás felhasználói kattint hello hello értesítési művelet gombjára.
+     3. Ha hello értesítés az alkalmazáson belüli értesítések, a webes nézet majd hello app felhasználó kattint hello webes nézetben [Android csak] egy URL-címen
+   * *hello alkalmazás felhasználói a következő módokon léphet a következő módokon hello valamelyikével értesítést:*
      
-     1. Közvetlenül az értesítés Bezárás gombjára kattintva. 
-     2. Lehúzni számítógépnél, vagy törölje az értesítést. 
-     3. Alkalmazáson belüli értesítések szöveges vagy webes tartalom és szavazások esetén általában jelennek meg az alkalmazás felhasználói egy kétlépéses folyamat. Akkor jelenik meg értesítés először, és ha azok kattintson rá, akkor jelenik meg a következő szöveges/webes/lekérdezési tartalmat. Az alkalmazás felhasználói a következő módokon léphet egy értesítést az alábbi lépéseket, és a Speciális nézetben részleteit ez rögzíti. 
-5. **Műveletet kiváltó** -azt határozza meg, amely az alkalmazás felhasználó explicit módon műveletet kiváltó üzenetek száma. Ez az a a legérdekesebb, ez alapján hány alkalmazás felhasználók által az értesítési leküldött üzenet volt interested. 
+     1. Közvetlenül kattintva hello hello értesítési Bezárás gombjára. 
+     2. Lehúzni számítógépnél, vagy törölje a hello értesítést. 
+     3. Alkalmazáson belüli értesítések szöveges vagy webes tartalom és szavazások esetén egy kétlépéses folyamat során általában megjelenített toohello alkalmazás felhasználói. Akkor jelenik meg értesítés először, és azok kattintson rá, ha azok hello későbbi a lekérdezési/szöveges/webes tartalom megtekintését. hello alkalmazás felhasználói a következő módokon léphet egy értesítést az alábbi lépéseket, és hello részletek hello speciális nézetben ez rögzíti. 
+5. **Műveletet kiváltó** -azt határozza meg, hogy hello volt hello app felhasználó explicit módon műveletet kiváltó üzenetek száma. Ez az hello a legérdekesebb számát, ez alapján alkalmazást hány felhasználó által üdvözlőüzenetére hello értesítés leküldött volt interested. 
 
 > [!NOTE]
-> IOS & Windows nyissa meg a platformok, ha a felhasználó rendelkezik-e az alkalmazás és a kampány lett egy "Bármikor" kampány, akkor lehetséges, hogy mindkét kívül és alkalmazáson belüli értesítések jelennek meg egyszerre. Emiatt a magasabb, mint a kézbesített megjelenített számát. Ha a felhasználó kommunikál esetleg műveletek az értesítés, akkor még a felhasználó kapcsolati/Actioned száma nagyobb, mint a kézbesített. 
+> Az iOS és Windows platformra, ha hello felhasználó hello alkalmazást nyitott és hello kampány nem "Bármikor" kampány akkor lehetséges, hogy mindkét kívüli alkalmazás és az alkalmazáson belüli értesítések megjelenítése hello ugyanannyi időt vesz igénybe. Emiatt a magasabb, mint a kézbesített hello megjelenített számát. Ha hello felhasználói együttműködő, vagy a műveletek hello értesítés, még akkor is, majd hello felhasználói interakció/Actioned száma nagyobb, mint a kézbesített lehet. 
 > 
 > 
 

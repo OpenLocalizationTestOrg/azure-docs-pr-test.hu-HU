@@ -1,6 +1,6 @@
 ---
-title: "HDInsight-fürtök - Azure törlése |} Microsoft Docs"
-description: "Információ a különböző módszereket, hogy egy HDInsight-fürt törlése."
+title: "HDInsight-fürtök - Azure aaaHow toodelete |} Microsoft Docs"
+description: "HDInsight-fürtök törlése különböző módokon hello információkat."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,44 +15,44 @@ ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: 65dac529df15d2dd43eec17673d82a2832f7692e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5b9d9a09eecfdcfaed7a1f5ebab440e13bd358b0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="delete-an-hdinsight-cluster-using-your-browser-powershell-or-the-azure-cli"></a>A böngésző, PowerShell vagy az Azure parancssori felület használatával HDInsight-fürtök törlése
+# <a name="delete-an-hdinsight-cluster-using-your-browser-powershell-or-hello-azure-cli"></a>A böngészőben, a PowerShell vagy az hello Azure parancssori felület használatával HDInsight-fürtök törlése
 
-A HDInsight fürt számlázás követően egy fürt jön létre, és leállítja a fürt törlésekor indul. Számlázási, egyenletesen percenként történik, így mindig törölnie kell a fürthöz, amikor már nincs használatban. Ebből a dokumentumból megismerheti, hogyan törlése az Azure portál, Azure PowerShell és az Azure CLI 1.0 egy fürtöt.
+HDInsight-fürt számlázási elindul, miután a fürt jön létre, és leállítja a hello fürt törlésekor. Számlázási, egyenletesen percenként történik, így mindig törölnie kell a fürthöz, amikor már nincs használatban. Ebből a dokumentumból megismerheti, hogyan egy fürt használt toodelete hello Azure-portál, Azure PowerShell és hello Azure CLI 1.0.
 
 > [!IMPORTANT]
-> HDInsight-fürtök törlése nem érinti az Azure Storage-fiókokat, vagy a Data Lake Store a fürthöz rendelt. Ezek a szolgáltatások a jövőben tárolt adatokat is felhasználhatja.
+> HDInsight-fürtök törlése nem érinti hello Azure Storage-fiókokat, vagy a Data Lake Store társított hello fürt. A jövőbeli hello e szolgáltatásokban tárolt adatokat is felhasználhatja.
 
 ## <a name="azure-portal"></a>Azure Portal
 
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com) válassza ki a HDInsight-fürthöz. Ha a HDInsight-fürt nincs rögzítve az irányítópulton, kereshet, használja a keresőmezőt név szerint.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) válassza ki a HDInsight-fürthöz. Ha a HDInsight-fürt nem rögzített toohello irányítópult, kereshet az hello keresési mező nevét.
    
     ![portál keresési](./media/hdinsight-delete-cluster/navbar.png)
 
-2. Ha a panel nyit a fürt számára, jelölje ki a **törlése** ikonra. Amikor a rendszer kéri, válassza ki a **Igen** törölni a fürtöt.
+2. Ha hello panel hello fürt nyit, válassza ki a hello **törlése** ikonra. Amikor a rendszer kéri, válassza ki a **Igen** toodelete hello fürt.
    
     ![Törlés ikonja](./media/hdinsight-delete-cluster/deletecluster.png)
 
 ## <a name="azure-powershell"></a>Azure PowerShell
 
-Egy PowerShell-parancssorból a következő parancs segítségével törölheti a fürtöt:
+Egy PowerShell-parancssorból a következő parancs toodelete hello fürt hello használata:
 
     Remove-AzureRmHDInsightCluster -ClusterName CLUSTERNAME
 
-Cserélje le a **CLUSTERNAME** kifejezést a HDInsight-fürt nevére.
+Cserélje le **CLUSTERNAME** hello nevet, a HDInsight-fürthöz.
 
 ## <a name="azure-cli-10"></a>Azure CLI 1.0
 
-A parancssorba használja a következő törölni a fürtöt:
+A parancssorba használja a következő toodelete hello fürt hello:
 
     azure hdinsight cluster delete CLUSTERNAME
 
-Cserélje le a **CLUSTERNAME** kifejezést a HDInsight-fürt nevére.
+Cserélje le **CLUSTERNAME** hello nevet, a HDInsight-fürthöz.
 
 > [!NOTE]
 > Az Azure CLI 2.0 nem támogatja a HDInsight-fürtök törlése most (2017. július 31.).

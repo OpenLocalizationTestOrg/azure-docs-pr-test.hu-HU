@@ -1,6 +1,6 @@
 ---
-title: "Hogyan lehet lekérdezni az SQL Azure Cosmos DB? | Microsoft Docs"
-description: "Ismerje meg az SQL Azure Cosmos DB DocumentDB adatokkal lekérdezése"
+title: az SQL Azure Cosmos DB tooquery aaaHow? | Microsoft Docs
+description: Ismerje meg az SQL Azure Cosmos DB DocumentDB adatokkal tooquery
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -16,24 +16,24 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: a2a562c06c6302b9548e758b4c6754ec13b6001d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d3dc51acf92cb78d4f4d9dbac7ec54b1382431cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-how-to-query-using-sql"></a>Azure Cosmos DB: Hogyan lekérdezés SQL használatával?
+# <a name="azure-cosmos-db-how-tooquery-using-sql"></a>A Cosmos DB Azure: Hogyan tooquery SQL használatával?
 
-Az Azure Cosmos DB [DocumentDB API](documentdb-introduction.md) SQL használatával dokumentumok lekérdezését támogatja. Ez a cikk ismerteti a minta és két minta az SQL-lekérdezések és dokumentum eredmények.
+hello Azure Cosmos DB [DocumentDB API](documentdb-introduction.md) SQL használatával dokumentumok lekérdezését támogatja. Ez a cikk ismerteti a minta és két minta az SQL-lekérdezések és dokumentum eredmények.
 
-Ez a cikk ismerteti a következő feladatokat: 
+Ez a cikk ismerteti a következő feladatok hello: 
 
 > [!div class="checklist"]
 > * Az SQL adatainak lekérdezése
 
 ## <a name="sample-document"></a>A minta-dokumentum
 
-Ebben a cikkben az SQL-lekérdezések használata a következő minta dokumentumot.
+Ebben a cikkben az SQL-lekérdezések hello használja a következő minta dokumentum hello.
 
 ```json
 {
@@ -65,18 +65,18 @@ Ebben a cikkben az SQL-lekérdezések használata a következő minta dokumentum
 ```
 ## <a name="where-can-i-run-sql-queries"></a>Ahol futtathatja az SQL-lekérdezések?
 
-Az Azure-portálon az adatkezelő használatával keresztül lekérdezéseket is futtathat a [REST API-t és az SDK-k](documentdb-sdk-dotnet.md), és még a [tesztlekérdezéseket](https://www.documentdb.com/sql/demo), amelyen fut az lekérdezések mintaadatok készlet.
+Az Azure portálon keresztül hello hello adatkezelő hello segítségével lekérdezéseket is futtathat [REST API-t és az SDK-k](documentdb-sdk-dotnet.md), és még akkor is, hello [tesztlekérdezéseket](https://www.documentdb.com/sql/demo), amelyen fut az lekérdezések mintaadatok készlet.
 
 Az SQL-lekérdezések kapcsolatos további információkért lásd:
 * [SQL-lekérdezést és SQL-szintaxis](documentdb-sql-query.md)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Ez az oktatóanyag feltételezi, hogy rendelkezik egy olyan Azure Cosmos DB fiókot és a gyűjteményhez. Nem rendelkezik egyetlen, az? Fejezze be a [5 perces gyors üzembe helyezés](create-mongodb-nodejs.md) vagy a [fejlesztői útmutató](tutorial-develop-mongodb.md) egy olyan fiókot és a gyűjtemény létrehozásához.
+Ez az oktatóanyag feltételezi, hogy rendelkezik egy olyan Azure Cosmos DB fiókot és a gyűjteményhez. Nem rendelkezik egyetlen, az? Teljes hello [5 perces gyors üzembe helyezés](create-mongodb-nodejs.md) vagy hello [fejlesztői útmutató](tutorial-develop-mongodb.md) toocreate egy olyan fiókot és a gyűjteményhez.
 
 ## <a name="example-query-1"></a>1. példa lekérdezés
 
-A minta termékcsalád dokumentum fenti megadott, a következő SQL-lekérdezésben adja vissza a dokumentumok Ha az azonosítót tartalmazó mezőt megegyezik `WakefieldFamily`. Mivel ez egy `SELECT *` nyilatkozat, a lekérdezés kimenetét a teljes JSON-dokumentum is:
+Megadott hello minta termékcsalád a dokumentum fenti, a következő SQL-lekérdezés visszaad hello Ha hello id mezője megegyezik `WakefieldFamily`. Mivel ez egy `SELECT *` , hello lekérdezés kimenetét hello utasítás hello teljes JSON-dokumentum:
 
 **Lekérdezés**
 
@@ -117,7 +117,7 @@ A minta termékcsalád dokumentum fenti megadott, a következő SQL-lekérdezés
 
 ## <a name="example-query-2"></a>Példalekérdezés 2
 
-A következő lekérdezés gyermekek minden megadott nevét adja vissza a termékcsalád, amelynek azonosítója megegyezik `WakefieldFamily` a besorolási rendezve.
+hello tovább lekérdezés visszaadja az összes hello nevet kapnak gyermekek hello termékcsalád, amelynek azonosítója megegyezik `WakefieldFamily` a besorolási rendezve.
 
 **Lekérdezés**
 
@@ -137,12 +137,12 @@ A következő lekérdezés gyermekek minden megadott nevét adja vissza a termé
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben az oktatóanyagban ezt a következők:
+Ebben az oktatóanyagban hello következő régebben már kötöttek:
 
 > [!div class="checklist"]
-> * Megtudta, hogyan lekérdezés SQL használatával  
+> * Megtudta, hogyan tooquery SQL használatával  
 
-Most már folytathatja a következő oktatóanyag megtudhatja, miként ossza el az adatokat globális.
+Most már folytathatja toohello következő útmutató toolearn hogyan toodistribute az adatok globálisan.
 
 > [!div class="nextstepaction"]
 > [Az adatok globálisan terjesztése](tutorial-global-distribution-documentdb.md)

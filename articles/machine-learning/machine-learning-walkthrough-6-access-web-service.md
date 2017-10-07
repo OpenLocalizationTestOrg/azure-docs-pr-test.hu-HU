@@ -1,6 +1,6 @@
 ---
-title: "6. lépés: A Machine Learning webszolgáltatás eléréséhez |} Microsoft Docs"
-description: "A prediktív megoldás bemutatóért Develop 6. lépés: egy aktív Azure Machine Learning Web service eléréséhez."
+title: "6. lépés: Hozzáférési hello Machine Learning webszolgáltatás |} Microsoft Docs"
+description: "6. lépésében hello fejlesztése egy prediktív megoldás forgatókönyv: egy aktív Azure Machine Learning Web service eléréséhez."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: garye
-ms.openlocfilehash: d309f6c4749a80c81859b693a2bd5927e8fe0e54
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 211de0294092c6a6b5e6eb608d5d3b88107674c6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="walkthrough-step-6-access-the-azure-machine-learning-web-service"></a>Az útmutató 6. lépése: Hozzáférés az Azure Machine Learning webszolgáltatáshoz
+# <a name="walkthrough-step-6-access-hello-azure-machine-learning-web-service"></a>A forgatókönyv 6. lépés: Hozzáférési hello Azure Machine Learning webszolgáltatás
 
-Ez a forgatókönyv utolsó lépését az [az Azure Machine Learning a prediktív elemzési megoldás fejlesztése](machine-learning-walkthrough-develop-predictive-solution.md)
+Ez az utolsó lépésében hello hello forgatókönyv [az Azure Machine Learning a prediktív elemzési megoldás fejlesztése](machine-learning-walkthrough-develop-predictive-solution.md)
 
 1. [Machine Learning-munkaterület létrehozása](machine-learning-walkthrough-1-create-ml-workspace.md)
 2. [Meglévő adatok feltöltése](machine-learning-walkthrough-2-upload-data.md)
 3. [Új kísérlet létrehozása](machine-learning-walkthrough-3-create-new-experiment.md)
-4. [A modellek betanítása és kiértékelése](machine-learning-walkthrough-4-train-and-evaluate-models.md)
-5. [A webszolgáltatás üzembe helyezése](machine-learning-walkthrough-5-publish-web-service.md)
-6. **Hozzáférés a webszolgáltatáshoz**
+4. [Betanítása és kiértékelése hello modellek](machine-learning-walkthrough-4-train-and-evaluate-models.md)
+5. [Hello webszolgáltatás telepítése](machine-learning-walkthrough-5-publish-web-service.md)
+6. **Hozzáférés hello webszolgáltatás**
 
 - - -
-A forgatókönyv az előző lépésben helyeztünk üzembe egy webszolgáltatás, amelyet a jóváírás kockázat előrejelzési modellt használ. Most felhasználók képesek adatokat küldeni és fogadni az eredményeket. 
+A forgatókönyv hello előző lépésben helyeztünk üzembe egy webszolgáltatás, amelyet a jóváírás kockázat előrejelzési modellt használ. A felhasználók most már tudja toosend adatok tooit és eredményeket. 
 
-A webszolgáltatás egy Azure webes szolgáltatás, amely kaphat, és térjen vissza az adatokat, és REST API-k az alábbi két módszer egyikével:  
+hello webszolgáltatás egy Azure webes szolgáltatás, amely kaphat, és térjen vissza az adatokat, és REST API-k az alábbi két módszer egyikével:  
 
-* **Kérelem/válasz** – a felhasználó küld egy vagy több sornyi adatot jóváírás a szolgáltatás egy HTTP protokoll használatával, és a szolgáltatás válaszol, az eredmények egy vagy több készletet.
-* **Kötegelt végrehajtás** – a felhasználó tárolja egy vagy több sort jóváírás adatok az Azure blob-, és ezután elküldi a blob helyére a szolgáltatás. A szolgáltatás az adatok a sorokat a bemeneti BLOB pontszámaihoz, tárolja az eredményeket egy másik blob és tároló URL-CÍMÉT adja vissza.  
+* **Kérelem/válasz** – hello felhasználó elküldi egy vagy több sornyi jóváírás adatok toohello egy HTTP protokoll használatával szolgáltatásra, és hello szolgáltatás válasza eredményeket egy vagy több készletekkel.
+* **Kötegelt végrehajtás** – hello felhasználói tárolja egy vagy több sort jóváírás adatok az Azure blob-, és ezután elküldi a hello blob hely toohello szolgáltatás. hello szolgáltatás pontszámok összes hello adatsorokat hello bemeneti blob, tárolók hello egy másik blob eredményez, és visszaadja hello tároló URL-CÍMÉT.  
 
-A leggyorsabb és legegyszerűbb módja a klasszikus webes szolgáltatás eléréséhez keresztül történik a [Azure ML kérés-válasz szolgáltatás webalkalmazás](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlaspnettemplateforrrs/) vagy [Azure ML kötegelt végrehajtási szolgáltatás Web App sablon](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/).
+hello keresztül történik egy klasszikus webszolgáltatás leggyorsabb és legegyszerűbb módja tooaccess hello [Azure ML kérés-válasz szolgáltatás webalkalmazás](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlaspnettemplateforrrs/) vagy [Azure ML kötegelt végrehajtási szolgáltatás Web App sablon](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/).
 
-Ezeket a webes alkalmazás sablonokat hozhat létre egy egyéni webalkalmazást, hogy ismeri a webszolgáltatás bemeneti adatokat, és mi ad vissza. Mindössze annyit kell tennie a webszolgáltatás és az adatok eléréséhez, és a sablon elvégzi a többit, azaz.
+Ezeket a webes alkalmazás sablonokat hozhat létre egy egyéni webalkalmazást, hogy ismeri a webszolgáltatás bemeneti adatokat, és mi ad vissza. Toodo szüksége, adja meg a hozzáférés tooyour webszolgáltatás és az adatokat, és hello sablon hello rest.
 
-A webes alkalmazás sablonok használatával kapcsolatos további információkért lásd: [egy Azure Machine Learning Web service web app sablonnal felhasználásához](machine-learning-consume-web-service-with-web-app-template.md).
+Hello web app sablonok használatával kapcsolatos további információkért lásd: [egy Azure Machine Learning Web service web app sablonnal felhasználásához](machine-learning-consume-web-service-with-web-app-template.md).
 
-Is létrehozhat egy egyéni alkalmazást az előírt, R, C# és Python programozási nyelvek starter kód használatával webes szolgáltatás eléréséhez.
+Egy egyéni alkalmazást tooaccess hello webszolgáltatás előírt, R, C# és Python programozási nyelvek starter kód használatával is készíthet.
 
-A teljes részletei [hogyan kell használni az Azure Machine Learning Web service](machine-learning-consume-web-services.md).
+A teljes részletei [hogyan tooconsume az Azure Machine Learning Web service](machine-learning-consume-web-services.md).
 

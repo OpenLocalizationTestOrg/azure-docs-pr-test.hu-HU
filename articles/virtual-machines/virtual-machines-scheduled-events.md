@@ -1,6 +1,6 @@
 ---
-title: "Ütemezett események Azure metaadatok szolgáltatással |} Microsoft Docs"
-description: "Reagálnak Impactful események a virtuális gépen ahhoz, azok fordulhat elő."
+title: "aaaScheduled események Azure metaadatok szolgáltatással |} Microsoft Docs"
+description: "Ahhoz, azok fordulhat elő, reagálni tooImpactful események a virtuális gépen."
 services: virtual-machines-windows, virtual-machines-linux, cloud-services
 documentationcenter: 
 author: zivraf
@@ -15,60 +15,60 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 12/10/2016
 ms.author: zivr
-ms.openlocfilehash: 793803bfc12059a68ec881da9de37116f7a0eb8c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b5c0849958c3ab48fa9c2cbff7db62f2e9d7daf1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-metadata-service---scheduled-events-preview"></a>Az Azure metaadat-szolgáltatás - ütemezett események (előzetes verzió)
 
 > [!NOTE] 
-> Az előzetes verziójú funkciók rendelkezésre álló, feltéve, hogy elfogadja a használati feltételeket. További részletekért lásd: [Kiegészítő használati feltételek a Microsoft Azure előzetes verziójú termékeihez](https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms/).
+> Az előzetes verziójú funkciók elérhető tooyou hello feltétel, hogy elfogadja a használati feltételek toohello készülnek el. További részletekért lásd: [Kiegészítő használati feltételek a Microsoft Azure előzetes verziójú termékeihez](https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms/).
 >
 
-Ütemezett események egyike a subservices alatt az Azure metaadat-szolgáltatás. Felelős felszínre hozza a jövőbeni események kapcsolatos információk (például újraindítás), az alkalmazás előkészítése őket, és korlátozza megszakítása. Érhető el minden Azure virtuális gép esetében, beleértve a PaaS és IaaS. Ütemezett események időpontot a virtuális gép olyan esemény hatás minimalizálása érdekében megelőző feladatok elvégzéséhez. 
+Ütemezett események egyike hello subservices hello Azure metaadat-szolgáltatás alatt. Felelős felszínre hozza a jövőbeni események kapcsolatos információk (például újraindítás), az alkalmazás előkészítése őket, és korlátozza megszakítása. Érhető el minden Azure virtuális gép esetében, beleértve a PaaS és IaaS. Ütemezett események biztosít a virtuális gép idő tooperform megelőző feladatok toominimize hello hatásának egy eseményt. 
 
 ## <a name="introduction---why-scheduled-events"></a>Bevezetés - miért ütemezett eseményeket?
 
-Ütemezett események korlátozhatják a platform-intiated karbantartás vagy felhasználó által kezdeményezett műveletek a szolgáltatás lépéseket is igénybe vehet. 
+Ütemezett események lépéseket toolimit hello hatása platform-intiated karbantartás vagy felhasználó által kezdeményezett műveletek a szolgáltatás. 
 
-Többpéldányos munkaterhelések esetén, amelyek replikációs technikák-állapot karbantartásához, védtelen maradhat a kimaradások esetén több példánya között történik. Pl. kimaradás költséges feladatokat (például újjáépítése indexek) vagy replika adatvesztést is okozhat. 
+Többpéldányos munkaterhelések esetén, amelyek replikációs technikák toomaintain állapota, lehet, hogy sebezhető toooutages több példánya között történik. Pl. kimaradás költséges feladatokat (például újjáépítése indexek) vagy replika adatvesztést is okozhat. 
 
-Sok egyéb esetben a teljes szolgáltatás rendelkezésre állása növelhető a szabályos leállítást sorozat végrehajtásával épp (vagy megszakítás alatt álló) üzenetsoroktól tranzakciók, a többi virtuális gép a fürtben (kézi feladatátvételre) feladatok újbóli, vagy a virtuális gép eltávolítása egy hálózati terheléselosztó-készlet betölteni. 
+Sok más esetben hello a teljes szolgáltatás rendelkezésre állása növelhető a szabályos leállítást sorozat végrehajtásával épp (vagy megszakítás alatt álló) üzenetsoroktól tranzakciók, újbóli feladatok tooother virtuális gépek hello fürt (kézi feladatátvételre), vagy távolítsa el hello A virtuális gép hálózati load balancer készletből. 
 
-Előfordulhatnak olyan esetek, ahol egy jövőbeli eseményről rendszergazda értesítése vagy egy ilyen esemény naplózása érdekében a felhőalapú alkalmazások szervizelhetőségét javítása.
+Előfordulhatnak olyan esetek, ahol a rendszergazda egy jövőbeli eseményről, amely értesíti, vagy ilyen esemény naplózása érdekében hello szervizelhetőségét hello felhőben üzemeltetett alkalmazások fejlesztése.
 
-Az Azure metaadat-szolgáltatás ütemezett események Felfed, a következő esetekben használja:
+Az Azure metaadat-szolgáltatás felületek ütemezett események hello következő esetekben használja:
 -   A platform által kezdeményezett karbantartási (például a gazda operációs Rendszerével Bevezetés)
 -   A felhasználó által kezdeményezett hívások (például felhasználó újraindítja vagy redeploys a virtuális gépek)
 
 
-## <a name="scheduled-events---the-basics"></a>Ütemezett események - az alapok  
+## <a name="scheduled-events---hello-basics"></a>Ütemezett események - hello alapjai  
 
-Azure metaadat-szolgáltatás elérhetővé teszi a virtuális gépek használatával érhető el a virtuális Gépen belül, a REST-végpont futtatásával kapcsolatos információkat. A érhető el információ egy nem átirányítható IP-cím segítségével, hogy nincs felfedve, a virtuális gép kívül.
+Azure metaadat-szolgáltatás REST-végpont belülről érhetők el a virtuális gép hello használata virtuális gépek futtatásával kapcsolatos információkat tesz elérhetővé. hello érhető el információ egy nem átirányítható IP-cím segítségével, hogy nincs felfedve hello VM kívül.
 
 ### <a name="scope"></a>Hatókör
-Ütemezett események illesztett összes virtuális gépet egy felhőalapú szolgáltatás, vagy egy rendelkezésre állási csoportban lévő összes virtuális gépet. Ennek eredményeképpen, jelölje be a `Resources` mező mellett az esemény azonosításához, amely a virtuális gépek is érinthet szeretné. 
+Ütemezett események illesztve tooall felhőszolgáltatásban lévő virtuális gépek vagy virtuális gépek rendelkezésre állási csoport tooall. Ennek eredményeképpen, jelölje be hello `Resources` hello esemény tooidentify, amely a virtuális gépek is érintett toobe mezőbe. 
 
-### <a name="discovering-the-endpoint"></a>A végpont felderítése
-Abban az esetben, ahol a rendszer létrehoz egy virtuális gép egy virtuális hálózatot (VNet), a metaadatok szolgáltatás nem érhető el egy statikus nem irányítható IP-cím, `169.254.169.254`.
-Ha a virtuális gép nem hozza létre a virtuális hálózatról, az alapértelmezett eset felhőalapú szolgáltatásokhoz és a klasszikus virtuális gépeket, további logikát kell használandó végpont felderítése. Tekintse meg ezt a mintát megtudhatja, hogyan [a gazdagép-végpont felderítése](https://github.com/azure-samples/virtual-machines-python-scheduled-events-discover-endpoint-for-non-vnet-vm).
+### <a name="discovering-hello-endpoint"></a>Hello végpont felderítése
+Hello esetében, ahol a rendszer létrehoz egy virtuális gép egy virtuális hálózatot (VNet), hello metaadat-szolgáltatás érhető el a statikus nem irányítható IP-címről `169.254.169.254`.
+Ha a virtuális gép hello hello alapértelmezett esetben felhőszolgáltatások és a klasszikus virtuális gépek, virtuális hálózaton belül nem jön létre további logikát szükséges toodiscover hello végpont toouse. Tekintse meg a toothis minta toolearn hogyan túl[hello gazdagép-végpont felderítése](https://github.com/azure-samples/virtual-machines-python-scheduled-events-discover-endpoint-for-non-vnet-vm).
 
 ### <a name="versioning"></a>Versioning 
-A példány metaadat-szolgáltatás nem rendszerverzióval ellátott. Verziók kötelező, és a jelenlegi verzió: `2017-03-01`.
+hello példány metaadat-szolgáltatás rendszerverzióval ellátott. Verziók kötelező, és hello verziószámának `2017-03-01`.
 
 > [!NOTE] 
-> Előző előzetes kiadásaiban ütemezett események {legújabb} támogatott api-verzióval. Ez a formátum már nem támogatott, és a jövőben elavulttá válik.
+> Előző előzetes kiadásaiban ütemezett események {legújabb} hello api-verziója támogatott. Ez a formátum már nem támogatott, és a jövőbeli hello elavulttá válik.
 
 ### <a name="using-headers"></a>Fejlécek használata
-Ha a metaadat-szolgáltatás, meg kell adnia a fejléc `Metadata: true` annak érdekében, hogy nem szándékos átirányítja a kérést.
+Ha hello metaadat-szolgáltatás, meg kell adnia hello fejléc `Metadata: true` tooensure hello kérést nem volt szándékos átirányítja.
 
 ### <a name="enabling-scheduled-events"></a>Ütemezett események engedélyezése
-Az első alkalommal ütemezett események kérelmet használhat Azure implicit módon lehetővé teszi, hogy a szolgáltatás a virtuális gépen. Ennek eredményeképpen kell késleltetett választ várt akár két perc alatt az első hívásakor.
+hello ütemezett események kérelmet használhat először Azure implicit módon engedélyezi hello szolgáltatást a virtuális gépen. Ennek eredményeképpen kell késleltetett választ várt tootwo perc fel az első hívásakor.
 
 ### <a name="user-initiated-maintenance"></a>Felhasználó által kezdeményezett karbantartás
-Felhasználó kezdeményezte a virtuális gép karbantartási API, CLI-t, az Azure portálon keresztül, vagy PowerShell ütemezett események eredményez. Ez lehetővé teszi, hogy a karbantartási előkészítése logika tesztelni az alkalmazás, és lehetővé teszi, hogy a felhasználó által kezdeményezett karbantartási előkészítése az alkalmazás.
+Felhasználó kezdeményezte a virtuális gép karbantartási hello Azure-portálon API, a parancssori felületen keresztül, vagy PowerShell ütemezett események eredményez. Ez lehetővé teszi az alkalmazás tootest hello karbantartási előkészítése programot, és lehetővé teszi, hogy a felhasználó által kezdeményezett karbantartás alkalmazás tooprepare.
 
 A virtuális gép újraindítása a művelet ütemezi típusú esemény `Reboot`. Újratelepíteni a virtuális gépet a művelet ütemezi típusú esemény `Redeploy`.
 
@@ -78,17 +78,17 @@ A virtuális gép újraindítása a művelet ütemezi típusú esemény `Reboot`
 > [!NOTE] 
 > Felhasználó által kezdeményezett karbantartást ütemezett esemény jelenleg nem konfigurálható. Beállíthatóság tervezünk-e egy későbbi kiadásban.
 
-## <a name="using-the-api"></a>Az API-val
+## <a name="using-hello-api"></a>Hello API használatával
 
 ### <a name="query-for-events"></a>Lekérdezést eseményekhez.
-Ütemezett események alapján is kereshet, egyszerűen azáltal, hogy a következő hívást:
+Ütemezett események egyszerűen azáltal, hogy hello következő hívás lekérdezése:
 
 ```
 curl -H Metadata:true http://169.254.169.254/metadata/scheduledevents?api-version=2017-03-01
 ```
 
 A válasz ütemezett események tömbjét tartalmazza. Üres tömb azt jelenti, hogy nincsenek-e jelenleg ütemezett események.
-Abban az esetben, ahol ütemezett események, a válasz események tömbjét tartalmazza: 
+Hello esetben ahol ütemezett események, hello válasz események tömbjét tartalmazza: 
 ```
 {
     "DocumentIncarnation": {IncarnationID},
@@ -109,14 +109,14 @@ Abban az esetben, ahol ütemezett események, a válasz események tömbjét tar
 |Tulajdonság  |  Leírás |
 | - | - |
 | Eseményazonosító | Ez az esemény globálisan egyedi azonosítóját. <br><br> Példa: <br><ul><li>602d9444-d2cd-49c7-8624-8643e7171297  |
-| Esemény típusa | Ez az esemény hatására hatása. <br><br> Értékek: <br><ul><li> `Freeze`: A virtuális gép felfüggesztése néhány másodpercig van ütemezve. A Processzor fel lesz függesztve, de nincs hatással a memória, a megnyitott fájlokat vagy a hálózati kapcsolatok. <li>`Reboot`: Újraindítás van ütemezve a virtuális gép (nem állandó memória nem vesztek el). <li>`Redeploy`: A virtuális gép áthelyezése egy másik csomópontra van ütemezve (a rövid élettartamú lemezek elvesznek). |
+| Esemény típusa | Ez az esemény hatására hatása. <br><br> Értékek: <br><ul><li> `Freeze`: hello virtuális gép ütemezett toopause néhány másodpercig. hello CPU fel lesz függesztve, de nincs hatással a memória, a megnyitott fájlokat vagy a hálózati kapcsolatok. <li>`Reboot`: virtuális gép az ütemezett újraindítás hello (a nem állandó memória elvész). <li>`Redeploy`: hello virtuális gép ütemezett toomove tooanother csomópont (a rövid élettartamú lemezek elvesznek). |
 | ResourceType | Ez az esemény hatással van erőforrás típusát. <br><br> Értékek: <ul><li>`VirtualMachine`|
-| Erőforrások| Ez az esemény hatással van erőforrások listáját. Ez magában foglalja a gépeket legalább egy garantáltan [frissítési tartomány](windows/manage-availability.md), azonban nem tartalmazhat a UD összes gép. <br><br> Példa: <br><ul><li> ["FrontEnd_IN_0", "BackEnd_IN_0"] |
-| Esemény állapota | Ez az esemény állapotát. <br><br> Értékek: <ul><li>`Scheduled`: Ez az esemény után a megadott ideig történő futásra van ütemezve a `NotBefore` tulajdonság.<li>`Started`: Ez az esemény elindult.</ul> Nem `Completed` vagy hasonló állapot valaha is biztosítja; az esemény már nem adható vissza, ha az esemény befejeződött.
+| Erőforrások| Ez az esemény hatással van erőforrások listáját. Legfeljebb egy ez garantáltan toocontain gépek [frissítési tartomány](windows/manage-availability.md), de nem tartalmazhat a hello UD lévő összes gépen. <br><br> Példa: <br><ul><li> ["FrontEnd_IN_0", "BackEnd_IN_0"] |
+| Esemény állapota | Ez az esemény állapotát. <br><br> Értékek: <ul><li>`Scheduled`: Ez az esemény az ütemezett toostart hello megadott hello idő múlva `NotBefore` tulajdonság.<li>`Started`: Ez az esemény elindult.</ul> Nem `Completed` vagy hasonló állapot valaha is biztosítja; hello esemény már nem adható vissza, ha hello esemény befejeződött.
 | NotBefore| Az idő elteltével kezdheti el ezt az eseményt. <br><br> Példa: <br><ul><li> 2016-09-19T18:29:47Z  |
 
 ### <a name="event-scheduling"></a>Esemény ütemezése
-Minden esemény van ütemezve egy jövőbeli időpontot minimális mennyiségű esemény típusa alapján. Most megjelenik egy esemény `NotBefore` tulajdonság. 
+Minden esemény van ütemezve egy minimális időtartama a jövőbeli hello eseménytípus alapján. Most megjelenik egy esemény `NotBefore` tulajdonság. 
 
 |Esemény típusa  | Minimális értesítés |
 | - | - |
@@ -126,23 +126,23 @@ Minden esemény van ütemezve egy jövőbeli időpontot minimális mennyiségű 
 
 ### <a name="starting-an-event-expedite"></a>Az eseményt (gyorsítása)
 
-Miután egy jövőbeli esemény megtanulta, és a szabályos leállítást logikát befejeződött, a függőben lévő esemény jóváhagyhatja azáltal, hogy egy `POST` az metaadat-ba irányuló hívás a `EventId`. Ez azt jelzi, az Azure-ba, hogy azt a minimális értesítési lerövidíthető (amikor csak lehetséges). 
+Miután egy jövőbeli esemény megtanulta, és a szabályos leállítást logikát befejeződött, függőben lévő esemény hello jóváhagyhatja azáltal, hogy egy `POST` toohello metaadat-bA hello hívás `EventId`. Ez azt jelzi, hogy azt lerövidíthető hello minimális értesítési tooAzure (amikor csak lehetséges). 
 
 ```
 curl -H Metadata:true -X POST -d '{"DocumentIncarnation":"5", "StartRequests": [{"EventId": "f020ba2e-3bc0-4c40-a10b-86575a9eabd5"}]}' http://169.254.169.254/metadata/scheduledevents?api-version=2017-03-01
 ```
 
 > [!NOTE] 
-> Egy esemény igazolása lehetővé teszi az esemény folytatható összes `Resources` abban az esetben, nem csak a virtuális gépet, amely elismeri az esemény. Ezért választhatja, hogy egy vezető összehangolni a nyugtázási, akkor más dolga, mint az első machine kiválasztják a `Resources` mező.
+> Egy esemény igazolása lehetővé teszi hello esemény tooproceed összes `Resources` hello esemény, nem csak hello virtuális gépen, amely elismeri hello esemény. Ezért választhatja, hogy tooelect egy vezető toocoordinate hello nyugtázása, akkor egyszerűen hello első gép hello `Resources` mező.
 
 ## <a name="samples"></a>Példák
 
 ### <a name="powershell-sample"></a>PowerShell-példa 
 
-Az alábbi minta ütemezett események a metaadatok szolgáltatást, és hagyja jóvá a függőben lévő eseményekhez.
+hello alábbi mintalekérdezések hello ütemezett események metaadat-szolgáltatás, és hagyja jóvá a függőben lévő események.
 
 ```PowerShell
-# How to get scheduled events 
+# How tooget scheduled events 
 function GetScheduledEvents($uri)
 {
     $scheduledEvents = Invoke-RestMethod -Headers @{"Metadata"="true"} -URI $uri -Method get
@@ -151,19 +151,19 @@ function GetScheduledEvents($uri)
     return $scheduledEvents
 }
 
-# How to approve a scheduled event
+# How tooapprove a scheduled event
 function ApproveScheduledEvent($eventId, $docIncarnation, $uri)
 {    
-    # Create the Scheduled Events Approval Document
+    # Create hello Scheduled Events Approval Document
     $startRequests = [array]@{"EventId" = $eventId}
     $scheduledEventsApproval = @{"StartRequests" = $startRequests; "DocumentIncarnation" = $docIncarnation} 
     
-    # Convert to JSON string
+    # Convert tooJSON string
     $approvalString = ConvertTo-Json $scheduledEventsApproval
 
-    Write-Host "Approving with the following: `n" $approvalString
+    Write-Host "Approving with hello following: `n" $approvalString
 
-    # Post approval string to scheduled events endpoint
+    # Post approval string tooscheduled events endpoint
     Invoke-RestMethod -Uri $uri -Headers @{"Metadata"="true"} -Method POST -Body $approvalString
 }
 
@@ -174,7 +174,7 @@ function HandleScheduledEvents($scheduledEvents)
 
 ######### Sample Scheduled Events Interaction #########
 
-# Set up the scheduled events URI for a VNET-enabled VM
+# Set up hello scheduled events URI for a VNET-enabled VM
 $localHostIP = "169.254.169.254"
 $scheduledEventURI = 'http://{0}/metadata/scheduledevents?api-version=2017-03-01' -f $localHostIP 
 
@@ -199,7 +199,7 @@ foreach($event in $scheduledEvents.Events)
 
 ### <a name="c-sample"></a>C\# minta 
 
-Az alábbi minta nem egyszerű ügyfél, amely a metaadatokat szolgáltatással kommunikál.
+hello következő minta nem egyszerű ügyfél, amely hello metaadatok szolgáltatással kommunikál.
 
 ```csharp
 public class ScheduledEventsClient
@@ -207,7 +207,7 @@ public class ScheduledEventsClient
     private readonly string scheduledEventsEndpoint;
     private readonly string defaultIpAddress = "169.254.169.254"; 
 
-    // Set up the scheduled events URI for a VNET-enabled VM
+    // Set up hello scheduled events URI for a VNET-enabled VM
     public ScheduledEventsClient()
     {
         scheduledEventsEndpoint = string.Format("http://{0}/metadata/scheduledevents?api-version=2017-03-01", defaultIpAddress);
@@ -236,7 +236,7 @@ public class ScheduledEventsClient
 }
 ```
 
-Ütemezett események jelölhető ki, a következő adatstruktúrák használatával:
+Ütemezett események jelölhető ki, a következő adatstruktúrák hello használata:
 
 ```csharp
 public class ScheduledEventsDocument
@@ -273,7 +273,7 @@ public class StartRequest
 }
 ```
 
-Az alábbi minta ütemezett események a metaadatok szolgáltatást, és hagyja jóvá a függőben lévő eseményekhez.
+hello alábbi mintalekérdezések hello ütemezett események metaadat-szolgáltatás, és hagyja jóvá a függőben lévő események.
 
 ```csharp
 public class Program
@@ -292,7 +292,7 @@ public class Program
             HandleEvents(scheduledEventsDocument.Events);
 
             // Wait for user response
-            Console.WriteLine("Press Enter to approve executing events\n");
+            Console.WriteLine("Press Enter tooapprove executing events\n");
             Console.ReadLine();
 
             // Approve events
@@ -316,7 +316,7 @@ public class Program
                 client.ApproveScheduledEvents(approveEventsJsonDocument);
             }
 
-            Console.WriteLine("Complete. Press enter to repeat\n\n");
+            Console.WriteLine("Complete. Press enter toorepeat\n\n");
             Console.ReadLine();
             Console.Clear();
         }
@@ -331,7 +331,7 @@ public class Program
 
 ### <a name="python-sample"></a>Python-minta 
 
-Az alábbi minta ütemezett események a metaadatok szolgáltatást, és hagyja jóvá a függőben lévő eseményekhez.
+hello alábbi mintalekérdezések hello ütemezett események metaadat-szolgáltatás, és hagyja jóvá a függőben lévő események.
 
 ```python
 #!/usr/bin/python
@@ -375,6 +375,6 @@ if __name__ == '__main__':
 
 ## <a name="next-steps"></a>Következő lépések 
 
-- További információk az elérhető API-kat a [metaadat-szolgáltatás példány](virtual-machines-instancemetadataservice-overview.md).
+- További információk a hello hello elérhető API-k [metaadat-szolgáltatás példány](virtual-machines-instancemetadataservice-overview.md).
 - További tudnivalók [a tervezett karbantartások Windows virtuális gépek Azure-ban](windows/planned-maintenance.md).
 - További tudnivalók [a tervezett karbantartások Linux virtuális gépek Azure-ban](linux/planned-maintenance.md).

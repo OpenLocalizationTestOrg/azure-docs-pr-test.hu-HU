@@ -1,6 +1,6 @@
 ---
-title: "Az Azure SQL oszlopcentrikus index a teljesítmény javítása |} Microsoft Docs"
-description: "Csökkentse a, vagy növelje a szabad memória a maximalizálása érdekében egy oszloptárindex tömöríti az egyes sorcsoport sorok száma."
+title: "aaaImprove oszlopcentrikus index teljesítmény az Azure SQL |} Microsoft Docs"
+description: "Csökkentse a, vagy az oszlopcentrikus index tömöríti az egyes sorcsoport sorok hello rendelkezésre álló memória toomaximize hello számának növeléséhez."
 services: sql-data-warehouse
 documentationcenter: NA
 author: shivaniguptamsft
@@ -15,35 +15,35 @@ ms.workload: data-services
 ms.custom: performance
 ms.date: 6/2/2017
 ms.author: shigu;barbkess
-ms.openlocfilehash: f0e0b839b4a0c216eee2eb5134d43b91d8f83289
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2c5a68435aa200236a2dc8538aa4638b52a59093
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="maximizing-rowgroup-quality-for-columnstore"></a>Az oszlopcentrikus maximalizálva sorcsoport minősége
 
-Sorcsoport minőségi egy sorcsoport sorainak száma határozza meg. Csökkentse a, vagy növelje a szabad memória a maximalizálása érdekében egy oszloptárindex tömöríti az egyes sorcsoport sorok száma.  Ezek a módszerek segítségével növelheti a tömörítési sebességet, és a lekérdezési teljesítmény az oszlopcentrikus indexek.
+Sorcsoport minőségi hello egy sorcsoport sorainak száma határozza meg. Csökkentse a, vagy az oszlopcentrikus index tömöríti az egyes sorcsoport sorok hello rendelkezésre álló memória toomaximize hello számának növeléséhez.  Használja az ezen módszerek tooimprove tömörítési sebességét és a lekérdezési teljesítmény az oszlopcentrikus indexek.
 
-## <a name="why-the-rowgroup-size-matters"></a>A sorcsoport mérete fontossága
-Mert oszlopcentrikus index táblázat egyedi rowgroups oszlop szegmenseinek beolvasásával ellenőrzi, maximalizálva minden sorcsoport sorainak száma fokozza a lekérdezések teljesítményét. Ha rowgroups nagy mennyiségű sort, adattömörítés javítja, ami azt jelenti, hogy kevesebb adat, olvassa el a lemezről.
+## <a name="why-hello-rowgroup-size-matters"></a>Hello sorcsoport mérete fontossága
+Mert oszlopcentrikus index táblázat egyedi rowgroups oszlop szegmenseinek beolvasásával ellenőrzi, maximalizálva hello minden sorcsoport sorainak száma fokozza a lekérdezések teljesítményét. Ha rowgroups nagy mennyiségű sort, adattömörítés javítja, ami azt jelenti, hogy a kevesebb adat tooread lemezről van.
 
 Rowgroups kapcsolatos további információkért lásd: [Oszlopcentrikus indexek útmutató](https://msdn.microsoft.com/library/gg492088.aspx).
 
 ## <a name="target-size-for-rowgroups"></a>Rowgroups célméretet
-A legjobb lekérdezési teljesítmény a célja a kötegenkénti sorok száma az oszlopcentrikus index sorcsoport maximalizálása érdekében. Egy sorcsoport legfeljebb 1 048 576 sort is rendelkezhetnek. Már rendelkezik egy sorcsoport sorok maximális számát. Oszloptárindexek a megfelelő teljesítmény elérése érdekében, ha rowgroups legalább 100 000 sort.
+A legjobb lekérdezési teljesítmény elérése érdekében a hello célja toomaximize hello kötegenkénti sorok száma az oszlopcentrikus index sorcsoport. Egy sorcsoport legfeljebb 1 048 576 sort is rendelkezhetnek. Annak ellenére toonot rendelkezik hello / sorcsoport sorok maximális számát. Oszloptárindexek a megfelelő teljesítmény elérése érdekében, ha rowgroups legalább 100 000 sort.
 
 ## <a name="rowgroups-can-get-trimmed-during-compression"></a>Rowgroups is beolvasása levágja a tömörítés során
 
-A tömeges betöltés vagy oszlopcentrikus index rebuild, során néha nincs elég memória érhető el az egyes sorcsoport kijelölt összes sort tömörítése. Memóriaprobléma esetén oszlopcentrikus indexek sorcsoport mérete vághatja a, az oszloptárindexet a tömörítés sikeres lehet. 
+A tömeges betöltés vagy oszlopcentrikus index rebuild, során néha nem áll rendelkezésre elegendő memória rendelkezésre álló toocompress minden egyes sorcsoport kijelölt sorok hello. Memóriaprobléma esetén, oszlopcentrikus indexek hello sorcsoport méretek vághatja a, tömörítés hello oszlopcentrikus való sikeres lehet. 
 
-Ha nincs elég memória a legalább 10 000 sorok tömörítése minden sorcsoport, az SQL Data Warehouse hibát generál.
+Ha nincs elegendő memória toocompress legalább 10 000 sorokat minden sorcsoport, az SQL Data Warehouse hibát generál.
 
 További információ a tömeges betöltés: [fürtözött oszlopcentrikus index a tömeges betöltés](https://msdn.microsoft.com/en-us/library/dn935008.aspx#Bulk load into a clustered columnstore index).
 
-## <a name="how-to-monitor-rowgroup-quality"></a>Sorcsoport minőségi figyelése
+## <a name="how-toomonitor-rowgroup-quality"></a>Hogyan toomonitor sorcsoport minősége
 
-Nincs DMV (sys.dm_pdw_nodes_db_column_store_row_group_physical_stats), amely elérhetővé teszi a hasznos információk, például a rowgroups, és ha nem lett díszítésre levágási azért sorainak száma. A következő nézetet, hogy a lekérdezés sorcsoport levágási információt lekérni a DMV szerint hozhat létre.
+Nincs a hasznos információk, például a tisztítás rowgroups és hello okát a sorok számát mutatja, ha nem lett díszítésre DMV (sys.dm_pdw_nodes_db_column_store_row_group_physical_stats). Létrehozhat egy hasznos tooquery nézetként következő hello a DMV tooget információk sorcsoport tisztítás.
 
 ```sql
 create view dbo.vCS_rg_physical_stats
@@ -70,18 +70,18 @@ select *
 from cte;
 ```
 
-A trim_reason_desc azt ismerteti, hogy a sorcsoport lett rövidített (trim_reason_desc = NO_TRIM azt jelenti, nem tisztítás történt, és sorcsoport optimális minőségű). A következő vágással kapcsolatos okok miatt jelzi, hogy a sorcsoport korai karakterek:
-- BULKLOAD: A vágás ezért használatos, ha a bejövő a betöltési-sorok kötegét kisebb, mint 1 millió sort foglalnak volt. A motor tömörített sorcsoportok hoz létre, ha nincsenek a nagyobb, mint 100 000 sort beszúrni (ellentétben a különbözeti tároló beszúrása), de a vágás OK BULKLOAD értékűre állítja be. Ebben a forgatókönyvben, érdemes emelni a kötegelt betöltés ablak gyűlik össze a további sorokat. Ezenkívül újra kiértékelje a particionálási sémát, és ellenőrizze, hogy nincs túl részletes, sorcsoportok partícióhatárok nem terjedhet ki.
-- MEMORY_LIMITATION: 1 millió sort foglalnak sorcsoportok létrehozásához, egy bizonyos működő szükséges memória mérete van a motor. Amikor a rendelkezésre álló memória, a betöltés munkamenet nem éri el a szükséges munkát memóriával, sorcsoportok túl korán beolvasása levágja. Az alábbi szakaszok ismertetik, hogyan becsléséhez memóriára van szükség, és több memóriát lefoglalni.
-- DICTIONARY_SIZE: Vágás ezért azt jelzi, hogy sorcsoport tisztítás történt, mert legalább egy karakterlánc-oszlopnak széles és/vagy nagy számosságot karakterláncok történt. A szótár mérete legfeljebb 16 MB memória, és ez a korlát elérésekor a sorcsoport tömörített. Ha ez a helyzet tapasztal, fontolja meg, a problematikus oszlop azoknak egy külön táblába.
+hello trim_reason_desc közli, hogy hello sorcsoport lett rövidített (trim_reason_desc = NO_TRIM azt jelenti, nem tisztítás történt, és sorcsoport optimális minőségű). hello következő vágással kapcsolatos okok miatt jelzi, hogy hello sorcsoport korai karakterek:
+- BULKLOAD: Vágás ezért használatos hello bejövő hello terhelést-sorok kötegét kisebb, mint 1 millió sort foglalnak volna. hello motor tömörített sorcsoportok hoz létre, ha nagyobb, mint 100 000 sort beszúrni (a megakadályozását tooinserting hello különbözeti tárolóba), de beállítása hello vágás OK tooBULKLOAD. Ebben az esetben érdemes megfontolni a kötegelt betöltés ablak tooaccumulate több sort. Ezenkívül újra kiértékelje a particionálási sémát tooensure nincs túl részletes, sorcsoportok partícióhatárok nem terjedhet ki.
+- MEMORY_LIMITATION: hello motor toocreate sorcsoportok az 1 millió sort foglalnak, bizonyos mennyiségű működő memória szükséges. Hello munkamenet betöltése a rendelkezésre álló memória értéke kisebb, mint a hello szükséges memória használata, ha a get túl korán rövidített sorcsoportok. hello a következő szakaszok azt ismertetik, hogyan tooestimate memória szükséges, és több memóriát lefoglalni.
+- DICTIONARY_SIZE: Vágás ezért azt jelzi, hogy sorcsoport tisztítás történt, mert legalább egy karakterlánc-oszlopnak széles és/vagy nagy számosságot karakterláncok történt. hello szótár mérete MB memória, és ez a korlát elérésekor hello sorcsoport tömörített korlátozott too16. Ha ez a helyzet tapasztal, fontolja meg, hello problematikus oszlop azoknak egy külön táblába.
 
-## <a name="how-to-estimate-memory-requirements"></a>Hogyan memória követelményeinek becslése
+## <a name="how-tooestimate-memory-requirements"></a>Hogyan tooestimate memóriára vonatkozó követelményeknek.
 
 <!--
-To view an estimate of the memory requirements to compress a rowgroup of maximum size into a columnstore index, download and run the view [dbo.vCS_mon_mem_grant](). This view shows the size of the memory grant that a rowgroup requires for compression in to the columnstore.
+tooview an estimate of hello memory requirements toocompress a rowgroup of maximum size into a columnstore index, download and run hello view [dbo.vCS_mon_mem_grant](). This view shows hello size of hello memory grant that a rowgroup requires for compression in toohello columnstore.
 -->
 
-A maximális szükséges memória egy sorcsoport tömörítendő körülbelül van
+hello maximális szükséges memória toocompress egy sorcsoport körülbelül van
 
 - 72 MB +
 - \#sorok \* \#oszlopok \* 8 bájt +
@@ -90,43 +90,43 @@ A maximális szükséges memória egy sorcsoport tömörítendő körülbelül v
 
 Ha rövid-karakterlánc-oszlopok használnak, a karakterláncos adattípusokkal < = 32 bájt és karakterláncos adattípusokkal hosszú-karakterlánc-oszlopok használata > 32 bájtban kifejezve.
 
-Hosszú karakterláncok szöveges tömörítés készült tömörítési módszer tömörített. Ez a tömörítés módszer egy *szótár* szövegminták tárolásához. A szótár maximális mérete 16 MB. Nincs a sorcsoport hosszú karakterlánc oszlopainak csak egy szótár.
+Hosszú karakterláncok szöveges tömörítés készült tömörítési módszer tömörített. Ez a tömörítés módszer egy *szótár* toostore szövegminták. hello maximális dictionary mérete 16 MB. Csak egy szótár hello sorcsoport hosszú karakterlánc oszlopainak van.
 
 Részletes ismertető oszlopcentrikus memória követelmények, lásd: a videó [Azure SQL Data Warehouse skálázás: útmutató és konfigurációs](https://myignite.microsoft.com/videos/14822).
 
-## <a name="ways-to-reduce-memory-requirements"></a>Csökkentse a módjai
+## <a name="ways-tooreduce-memory-requirements"></a>Többféleképpen tooreduce memóriára vonatkozó követelményeknek
 
-A következő eljárások használatával rowgroups tömörítés az oszlopcentrikus indexek memóriakövetelményei csökkenthető.
+A következő módszerek tooreduce hello memóriakövetelményei rowgroups tömörítés az oszlopcentrikus indexek hello használata.
 
 ### <a name="use-fewer-columns"></a>Oszlopok
-Ha lehetséges tervezze meg kevesebb oszlopot tartalmazó tábla. Amikor egy sorcsoport az oszloptárindexet a tömörített, az oszloptárindexet külön-külön tömöríti minden oszlop szegmensben. Ezért a egy sorcsoport tömörítését memóriakövetelményeknek oszlopok növeli a számának növeléséhez.
+Ha lehetséges tervezze meg kevesebb oszlopot hello tábla. Amikor egy sorcsoport hello oszlopcentrikus van tömörített, hello oszlopcentrikus index külön-külön tömöríti minden oszlop szegmensben. Ezért hello toocompress egy sorcsoport oszlopok növekszik hello számának növelése memóriára vonatkozó követelményeknek.
 
 
 ### <a name="use-fewer-string-columns"></a>Oszlopok karakterlánc
-String adattípusú oszlopok numerikus-nál több memóriát és dátum adattípus van szükség. Csökkentse a, fontolja meg a karakterlánc típusú oszlopokra eltávolítása a ténytáblák és abba a kisebb dimenziótáblák.
+String adattípusú oszlopok numerikus-nál több memóriát és dátum adattípus van szükség. tooreduce memóriára vonatkozó követelményeknek, vegye figyelembe, karakterlánc típusú oszlopokra eltávolítása a ténytáblák és abba a kisebb dimenziótáblák.
 
 További memóriára vonatkozó követelményeknek karakterlánc tömörítési:
 
-- Legfeljebb 32 karakter hosszúságú karakterlánc adattípusok 32 további bájt értéke lehet szükség.
-- Karakterláncos adattípusokkal legfeljebb 32 karakter hosszú lehet a tömörített szótár módszerekkel.  A szótár létrehozásához minden egyes oszlopának a sorcsoport akár további 16 MB lehet szükség.
+- Karakterláncos adattípusokkal mentése too32 karakterek 32 további bájt értéke lehet szükség.
+- Karakterláncos adattípusokkal legfeljebb 32 karakter hosszú lehet a tömörített szótár módszerekkel.  Minden egyes oszlopának hello sorcsoport tooan további 16 MB toobuild hello szótár fel lehet szükség.
 
 ### <a name="avoid-over-partitioning"></a>Kerülje a túlzott particionálás
 
-Oszlopcentrikus indexek létrehozása egy vagy több rowgroups partíciónként. Az SQL Data Warehouse a partíciók száma nő gyorsan, mert az adatok terjeszt, és minden egyes terjesztési particionálva van. Ha a tábla túl sok partíciókkal rendelkezik, a nem feltétlenül a rowgroups adatlehívást. Sorok hiánya nem hoz létre Memóriaterhelést tömörítés során azonban, hogy ne használjon a legjobb oszlopcentrikus lekérdezési teljesítmény rowgroups vezet.
+Oszlopcentrikus indexek létrehozása egy vagy több rowgroups partíciónként. Az SQL Data Warehouse hello partíciók száma nő gyorsan mert hello adatok terjeszt, és minden egyes terjesztési particionálva van. Ha hello tábla túl sok partíciókkal rendelkezik, a nem feltétlenül elég sorok toofill hello rowgroups. sorok hello hiánya nem hoz létre Memóriaterhelést tömörítés során, de toorowgroups, hogy ne használjon a legjobb oszlopcentrikus lekérdezési teljesítmény hello vezet.
 
-Egy másik túlzott particionálási elkerülése érdekében szükség esetén a particionált tábla oszlopcentrikus index a sorok betöltése a memória. A betöltés során sok partíciót kap a bejövő sorait, amíg mindegyik partíció rendelkezik elég sorok tömöríthetők tartják a memóriában. További memória rendelkező túl sok partíciót hoz létre.
+Egy másik OK tooavoid túlzott particionálás, a memória esetén a particionált tábla oszlopcentrikus index a sorok betöltése. A betöltés során sok partíciót kap a hello bejövő sorok, a memóriában lévő mindaddig, amíg minden partíció elég tömörített sorok toobe rendelkezik. További memória rendelkező túl sok partíciót hoz létre.
 
-### <a name="simplify-the-load-query"></a>A betöltési lekérdezés egyszerűsítése érdekében
+### <a name="simplify-hello-load-query"></a>Hello terhelés lekérdezés egyszerűsítése
 
-Az adatbázis között a lekérdezésben az operátorok lekérdezés memóriabeli ideiglenes megosztja. Ha egy terhelés-lekérdezés összetett típusú és illesztések rendelkezik, a memória a tömörítési csökken.
+hello adatbázis megosztások hello memória biztosítása közötti összes hello operátorok hello lekérdezés lekérdezés. Ha egy terhelés-lekérdezés összetett típusú és illesztések rendelkezik, hello memória tömörítési csökken.
 
-Tervezze meg a betöltési lekérdezés csak összpontosíthat betöltené a lekérdezést. Az adatok átalakítások futtatásához szükséges, ha futtatásukhoz külön, a Betöltés lekérdezésből. Például tesztelése a halommemória táblákban tárolt adatokat, az átalakítás futtatásához és az átmeneti tárolási tábla majd betölthető az oszlopcentrikus indexet. Először is az adatok betöltésére, és az MPP rendszer segítségével átalakíthatja az adatokat.
+Tervezze meg hello terhelés lekérdezés toofocus csak a hello lekérdezés betöltésekor. Ha toorun átalakítások hello adatokra van szüksége, futtatásukhoz külön hello terhelés lekérdezésből. Például a szakasz hello adatok egy halommemóriában tábla hello átalakítások futtassa, és majd betölteni az előkészítési tábla hello oszlopcentrikus indexet a hello. Is először az hello adatok betöltése, és kövesse a hello MPP rendszer tootransform hello adatokat.
 
 ### <a name="adjust-maxdop"></a>MAXDOP beállítása
 
-Minden terjesztési a rowgroups történő párhuzamos oszlopcentrikus tömöríti, ha egynél több Processzormagok eloszlása érhető el. A párhuzamos végrehajtás nagyobb mennyiségű memóriát használ, ami Memóriaterhelést és sorcsoport levágási igényel.
+Minden terjesztési tömöríti rowgroups hello oszlopcentrikus párhuzamosan be, ha egynél több Processzormagok érhető el) eloszlása feladatonként. hello párhuzamossági nagyobb mennyiségű memóriát használ, ami toomemory nyomás és sorcsoport levágási igényel.
 
-Memória csökkentése érdekében a MAXDOP lekérdezés mutató segítségével a load műveletet belül minden terjesztési soros módban való futásra kényszeríti.
+tooreduce Memóriaterhelést, hello MAXDOP lekérdezés mutató tooforce hello load műveletet toorun használhatja belül minden terjesztési soros módban.
 
 ```
 CREATE TABLE MyFactSalesQuota
@@ -135,16 +135,16 @@ AS SELECT * FROM FactSalesQUota
 OPTION (MAXDOP 1);
 ```
 
-## <a name="ways-to-allocate-more-memory"></a>Több memóriát módjai
+## <a name="ways-tooallocate-more-memory"></a>Többféleképpen tooallocate további memória
 
-DWU mérete és a felhasználó erőforrásosztály együtt határozza meg, mennyi memória érhető el a felhasználó lekérdezése. A memóriabeli ideiglenes terhelés lekérdezés növeléséhez dwu-k számának növelése, vagy növelje a erőforrásosztály.
+DWU méretének és hello felhasználói erőforrásosztály együtt határozzák meg, mennyi memória érhető el a felhasználó lekérdezése. tooincrease hello memória hello dwu-k számának növelése vagy hello erőforrásosztály növelje a terhelés lekérdezés megadása.
 
-- A dwu-k növelése érdekében tekintse meg a [hogyan méretezhető teljesítmény?](sql-data-warehouse-manage-compute-overview.md#scale-compute)
-- A lekérdezés erőforrásosztály módosításához lásd [módosíthatja a felhasználói erőforrás osztály példa](sql-data-warehouse-develop-concurrency.md#changing-user-resource-class-example).
+- tooincrease hello dwu-k, lásd: [hogyan méretezhető teljesítmény?](sql-data-warehouse-manage-compute-overview.md#scale-compute)
+- toochange hello erőforrásosztály lekérdezéshez, lásd: [módosíthatja a felhasználói erőforrás osztály példa](sql-data-warehouse-develop-concurrency.md#changing-user-resource-class-example).
 
-Például a DWU 100 smallrc erőforrásosztály felhasználójának használhatja 100 MB memóriát minden egyes terjesztési. A részletekért lásd: [az SQL Data Warehouse párhuzamossági](sql-data-warehouse-develop-concurrency.md).
+Például a DWU 100 hello smallrc erőforrásosztály felhasználójának használhatja 100 MB memóriát minden egyes terjesztési. Hello részletekért lásd: [az SQL Data Warehouse párhuzamossági](sql-data-warehouse-develop-concurrency.md).
 
-Tegyük fel, hogy van-e 700 MB memória kiváló minőségű sorcsoport méretek beolvasása. A példákból látható, hogyan futtathat a terhelés lekérdezés elegendő memóriával.
+Tegyük fel, akkor határozza meg, hogy szükséges-e 700 MB memória tooget kiváló minőségű sorcsoport méretű. Ezek a példák azt szemléltetik, hogyan futtathat hello terhelés lekérdezés elegendő memóriával.
 
 - A DWU 1000 és mediumrc, a memóriabeli ideiglenes 800 MB
 - Használja a DWU 600 és largerc, a memóriabeli ideiglenes tárat, 800 MB.
@@ -152,7 +152,7 @@ Tegyük fel, hogy van-e 700 MB memória kiváló minőségű sorcsoport méretek
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az SQL Data Warehouse teljesítmény javítása érdekében további részleteket talál a [teljesítményének áttekintését](sql-data-warehouse-overview-manage-user-queries.md).
+toofind további módszereket tooimprove teljesítmény az SQL Data Warehouse, lásd: hello [teljesítményének áttekintését](sql-data-warehouse-overview-manage-user-queries.md).
 
 <!--Image references-->
 

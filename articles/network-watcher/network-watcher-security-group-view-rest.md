@@ -1,6 +1,6 @@
 ---
-title: "Hálózati biztonság Azure hálózati figyelő biztonsági csoport láthassák - REST API elemzése |} Microsoft Docs"
-description: "Ez a cikk azt ismerteti, hogyan lehet a virtuális gépek biztonsági biztonsági csoport megtekintése és elemzése a PowerShell használatával."
+title: "aaaAnalyze hálózati biztonság Azure hálózati figyelő biztonsági csoport láthassák - REST API |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan toouse PowerShell tooanalyze a virtuális gépek biztonsági a biztonsági csoport megtekintése."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: afced52b3ae6f3b7f400364f5ec7d049aa166590
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0858a64a9454816e05f06dadb9536ad0c755e90e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-your-virtual-machine-security-with-security-group-view-using-rest-api"></a>A virtuális gép biztonsági biztonsági csoport láthassák REST API használatával elemzése
 
@@ -28,17 +28,17 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-security-group-view-cli.md)
 > - [REST API](network-watcher-security-group-view-rest.md)
 
-Biztonsági csoport megtekintése konfigurált és hatékony hálózati biztonsági szabályok virtuális gép által használt adja vissza. Ez a funkció akkor hasznos, naplózási és diagnosztizálhatja a hálózati biztonsági csoportok és annak érdekében, hogy folyamatban van a forgalom egy virtuális gépen konfigurált szabályok megfelelően engedélyez vagy tilt. Ebben a cikkben megmutatjuk, hogyan lehet lekérni a hatékony és alkalmazott szabályok REST API használatával virtuális géphez
+Biztonsági csoport megtekintése konfigurált és hatékony hálózati biztonsági szabályok, amelyek a virtuális gép alkalmazott tooa adja vissza. Ez a funkció hasznos tooaudit és diagnosztizálhatja a hálózati biztonsági csoportok és a virtuális gépek tooensure forgalma konfigurált szabályok folyamatban van megfelelően engedélyez vagy tilt. Ebben a cikkben megmutatjuk, hogyan tooretrieve hello hatékony és alkalmazott biztonsági szabályok tooa virtuális gépet a REST API használatával
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Ebben az esetben hívható meg a hálózati figyelő Rest API-t a biztonsági csoport nézetet beolvasása a virtuális géphez. A PowerShell használatával REST API hívása ARMclient szolgál. ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient)
+Ebben a forgatókönyvben a virtuális gép meghívja a hello hálózati figyelő Rest API tooget hello biztonsági csoport megtekintése. ARMclient használt toocall hello REST API használatával PowerShell. ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient)
 
-Ez a forgatókönyv azt feltételezi, hogy már követte lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) létrehozása egy hálózati figyelőt. A forgatókönyv feltételezi, hogy létezik-e egy erőforráscsoportot, egy érvényes virtuális géppel használandó.
+Ez a forgatókönyv azt feltételezi, hogy már követte hello lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) toocreate egy hálózati figyelőt. hello is feltételezzük, hogy létezik-e egy érvényes virtuális géppel erőforrás csoport toobe használt.
 
 ## <a name="scenario"></a>Forgatókönyv
 
-A forgatókönyv a cikkben szereplő lekéri a hatékony és alkalmazott szabályok egy adott virtuális géphez.
+a cikkben szereplő hello forgatókönyv hello hatékony és alkalmazott biztonsági szabályok egy adott virtuális gép kéri le.
 
 ## <a name="log-in-with-armclient"></a>Jelentkezzen be ARMClient
 
@@ -48,10 +48,10 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>A virtuális gép beolvasása
 
-Futtassa a következő virtuális machineThe vissza a következő kódot változók van szüksége:
+Futtassa a következő parancsfájl tooreturn virtuális machineThe hello változók van szüksége a következő kódot:
 
-- **a subscriptionId** -előfizetés-azonosító is lehet beolvasni a a **Get-AzureRMSubscription** parancsmag.
-- **resourceGroupName** -virtuális gépeket tartalmazó erőforráscsoport nevét.
+- **a subscriptionId** -hello előfizetés-azonosító is lehet beolvasni a hello **Get-AzureRMSubscription** parancsmag.
+- **resourceGroupName** – hello virtuális gépeket tartalmazó erőforráscsoport nevét.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -60,7 +60,7 @@ $resourceGroupName = '<resource group name>'
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-A szükséges információk a **azonosító** típus szerinti `Microsoft.Compute/virtualMachines` válaszként, az alábbi példában látható módon:
+hello szükséges adatokat az hello **azonosító** a hello típusa `Microsoft.Compute/virtualMachines` válaszként, hello a következő példában látható módon:
 
 ```json
 ...,
@@ -92,7 +92,7 @@ pute/virtualMachines/{vmName}/extensions/CustomScriptExtension"
 
 ## <a name="get-security-group-view-for-virtual-machine"></a>A virtuális gép biztonsági csoport nézet beolvasása
 
-Az alábbi példa kéri a biztonsági csoport Nézet megcélzott virtuális gép. Ebben a példában eredményeinek összehasonlítására, a szabályok és a konfigurációs eltéréseket kereséséhez eredetének által meghatározott biztonsági használható.
+a következő példa hello kérelmek hello biztonsági csoport Nézet megcélzott virtuális gép. Ebben a példában hello eredményeinek használt toocompare toohello szabályok és a konfigurációs eltéréseket hello eredetének toolook által meghatározott biztonsági lehet.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -109,9 +109,9 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/securityGroupView?api-version=2016-12-01" $requestBody -verbose
 ```
 
-## <a name="view-the-response"></a>A válasz megtekintése
+## <a name="view-hello-response"></a>Hello válasz megtekintése
 
-A következő példa az előző parancs válasza. Az eredmények megjelenítése a hatékony és alkalmazott biztonsági szabályokat a virtuális gépen csoportok bontásban **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, és  **EffectiveSecurityRules**.
+a következő minta hello parancs megelőző hello hello válasza. hello eredményeket jelenít meg minden hello hatékony és alkalmazott biztonsági szabályokat csoportok bontásban hello virtuális gépen **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, és  **EffectiveSecurityRules**.
 
 ```json
 
@@ -181,6 +181,6 @@ A következő példa az előző parancs válasza. Az eredmények megjelenítése
 
 ## <a name="next-steps"></a>Következő lépések
 
-Látogasson el [naplózás hálózati biztonsági csoportok (NSG) rendelkező hálózati figyelőt](network-watcher-security-group-view-powershell.md) megtudhatja, hogyan automatizálhatja a hálózati biztonsági csoportok érvényesítése.
+Látogasson el [naplózás hálózati biztonsági csoportok (NSG) rendelkező hálózati figyelőt](network-watcher-security-group-view-powershell.md) toolearn hogyan hálózati biztonsági csoportok tooautomate érvényesítése.
 
 

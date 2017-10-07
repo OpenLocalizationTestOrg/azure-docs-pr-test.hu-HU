@@ -1,6 +1,6 @@
 ---
-title: "Egyéni gyorsítótárazása az Azure API Management"
-description: "Megtudhatja, hogyan gyorsítótárazza a cikkek gombot az Azure API Management"
+title: "aaaCustom gyorsítótárazása az Azure API Management"
+description: Ismerje meg, hogyan toocache elemek gombot az Azure API Management
 services: api-management
 documentationcenter: 
 author: darrelmiller
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: f5d5f44e34fbcd122a10be0ca5b3001760c4c64d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 681380743c8c96af5d0a8e25948a8c0663e9fd35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="custom-caching-in-azure-api-management"></a>Egyéni gyorsítótárazása az Azure API Management
-Az Azure API Management szolgáltatás rendelkezik beépített támogatása [HTTP-válasz gyorsítótár](api-management-howto-cache.md) kulcsa a forrás URL-cím használatával. A kulcs használatával kérelemfejléc módosíthatják a `vary-by` tulajdonságok. Ez akkor hasznos, a teljes HTTP-válaszok (más néven felelősséget) gyorsítótárazáshoz, de egyes esetekben célszerű csak gyorsítótár létrehozása egy részét. Az új [gyorsítótár-keresési-érték](https://msdn.microsoft.com/library/azure/dn894086.aspx#GetFromCacheByKey) és [gyorsítótár-tároló-érték](https://msdn.microsoft.com/library/azure/dn894086.aspx#StoreToCacheByKey) -szabályzatok lehetőséget biztosítanak tárolásához és lekéréséhez belül a házirend-definíciók adatait tetszőleges darabjait képes. Ez a lehetőség is értéket ad hozzá a korábban bevezetett [küldési-kérelmek](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest) házirend mivel most gyorsítótárazhatja a válaszok külső szolgáltatásokból.
+Az Azure API Management szolgáltatás rendelkezik beépített támogatása [HTTP-válasz gyorsítótár](api-management-howto-cache.md) hello erőforrás URL-cím segítségével hello kulcsként. hello kulcs által módosítható hello segítségével kérelemfejléc `vary-by` tulajdonságait. Ez akkor hasznos, a teljes HTTP-válaszok (más néven felelősséget) gyorsítótárazáshoz, de egyes esetekben hasznos toojust gyorsítótár létrehozása egy részét. új hello [gyorsítótár-keresési-érték](https://msdn.microsoft.com/library/azure/dn894086.aspx#GetFromCacheByKey) és [gyorsítótár-tároló-érték](https://msdn.microsoft.com/library/azure/dn894086.aspx#StoreToCacheByKey) házirendek hello lehetőséget nyújtanak toostore és lekérése tetszőleges darabjai belül a házirend-definíciók adatait. Ez a lehetőség is hozzáadja a korábban bemutatott érték toohello [küldési-kérelmek](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest) házirend mivel most gyorsítótárazhatja a válaszok külső szolgáltatásokból.
 
 ## <a name="architecture"></a>Architektúra
-API-kezelés szolgáltatást használ egy megosztott / bérlői adatgyorsítótár, hogy az, akár méretezhető, továbbra is elérhetővé válik a ugyanaz a hozzáférést, a több egység gyorsítótárazott adatokat. Azonban több területi telepítés használatakor vannak független gyorsítótárak belül régióban. Emiatt fontos a gyorsítótár nem tekinti a tárolóban, néhány adat, csak forrását. Ha volt, és később úgy döntött, hogy a több területi telepítési előnyeit, majd haladnak, akik rendelkező ügyfelek is elveszti hozzáférését, hogy a gyorsítótárazott adatokat.
+API-kezelés szolgáltatás egy megosztott / bérlői adatgyorsítótár használ, úgy, hogy, hogy toomultiple egységek méretezése hozzáférés toohello továbbra is megkapja azonos gyorsítótárazott adatokat. Azonban több területi telepítés használatakor vannak független gyorsítótárak belül hello régióban. Esedékes toothis, fontos toonot hello gyorsítótár tekinti a tárolóban, néhány adat, hello csak forrását. Ha volt, és később úgy döntött, hello több területi telepítési tootake előnyeit, haladnak, akik rendelkező ügyfelek hozzáférési toothat gyorsítótárazott adatok elveszhetnek.
 
 ## <a name="fragment-caching"></a>Töredék gyorsítótárazása
-Nincsenek bizonyos esetekben, ha a válaszokat ad vissza, olcsóbbá teszi az határozza meg, és még marad friss elfogadható időn adatok egy részét tartalmazza. Tegyük fel fontolja meg egy szolgáltatás, amely repülési foglalásokat, repülési állapot stb vonatkozó információkat biztosító légitársaság. Ha a felhasználó tagja a légitársaság pontok program, akkor az aktuális állapot és halmozott távolság vonatkozó információkat is. Eltérő tárolódhat, a felhasználóval kapcsolatos adatokat, de lehet foglalja azt repülési állapotáról és foglalások adott vissza. Ezt megteheti egy zónaaláírásnak nevezett töredék gyorsítótárazását. Az elsődleges ábrázolását adhatók vissza a forráskiszolgálóról, és jelzi, ahol a felhasználóval kapcsolatos adatokat beszúrni valamilyen token használatával. 
+Nincsenek bizonyos esetekben, ahol válaszokat ad vissza adatokat, olcsóbbá toodetermine, és még marad friss elfogadható időn néhány részét tartalmazzák. Tegyük fel fontolja meg egy szolgáltatás, amely repülési foglalásokat, repülési állapot stb vonatkozó információkat biztosító légitársaság. Hello felhasználó tagja hello légitársaság pontok program, ha azok kellene tootheir aktuális állapot és halmozott távolság vonatkozó információkat is. Eltérő tárolódhat, a felhasználóval kapcsolatos adatokat, de lehet, hogy a válaszok által visszaadott repülési állapotáról és foglalások kívánatos tooinclude. Ezt megteheti egy zónaaláírásnak nevezett töredék gyorsítótárazását. hello elsődleges ábrázolását adhatók vissza használatával token tooindicate valamilyen ahol hello felhasználóval kapcsolatos adatokat beszúrni toobe hello forráskiszolgálóról. 
 
-Vegye figyelembe a következő JSON-válasz egy API-háttérrendszerből.
+Vegye figyelembe a következő JSON-válasz egy háttérrendszerből API hello.
 
 ```json
 {
@@ -48,7 +48,7 @@ Vegye figyelembe a következő JSON-válasz egy API-háttérrendszerből.
 { "username" : "Bob Smith", "Status" : "Gold" }
 ```
 
-Annak meghatározására, a megfelelő felhasználói adatok közé tartoznak, igazolnia kell a felhasználó, aki azonosításához. Ez a módszer használata függő végrehajtása. Tegyük fel, használom a `Subject` a jogcím egy `JWT` token. 
+A sorrend toodetermine hello megfelelő felhasználói információ tooinclude igazolnia kell a hello felhasználó, aki tooidentify. Ez a módszer használata függő végrehajtása. Tegyük fel, használok hello `Subject` a jogcím egy `JWT` token. 
 
 ```xml
 <set-variable
@@ -56,7 +56,7 @@ Annak meghatározására, a megfelelő felhasználói adatok közé tartoznak, i
   value="@(context.Request.Headers.GetValueOrDefault("Authorization","").Split(' ')[1].AsJwt()?.Subject)" />
 ```
 
-Ez tároljuk `enduserid` későbbi használatra környezeti változó értékét. A következő lépés annak határozzák meg, ha már rendelkezik-e a felhasználói adatok lekérése a korábbi kérelmekre, és a gyorsítótárban tárolt. A használjuk a `cache-lookup-value` házirend.
+Ez tároljuk `enduserid` későbbi használatra környezeti változó értékét. hello következő lépésre toodetermine, ha a korábbi kérelmekre már hello felhasználói adatok beolvasását és hello-gyorsítótárában tárolja azt. A hello használjuk `cache-lookup-value` házirend.
 
 ```xml
 <cache-lookup-value
@@ -64,17 +64,17 @@ key="@("userprofile-" + context.Variables["enduserid"])"
 variable-name="userprofile" />
 ```
 
-Ha nem található bejegyzés a gyorsítótár, a kulcs értékét, akkor a nem megfelelő a `userprofile` környezeti változó jön létre. A sikeres a keresési használatának ellenőrizzük a `choose` adatfolyam házirend szabályozza.
+Ha nem található bejegyzés toohello kulcs értékét, akkor a nem megfelelő hello gyorsítótárában `userprofile` környezeti változó jön létre. Hello segítségével hello keresési hello sikerességének ellenőrizzük `choose` adatfolyam házirend szabályozza.
 
 ```xml
 <choose>
     <when condition="@(!context.Variables.ContainsKey("userprofile"))">
-        <!-- If the userprofile context variable doesn’t exist, make an HTTP request to retrieve it.  -->
+        <!-- If hello userprofile context variable doesn’t exist, make an HTTP request tooretrieve it.  -->
     </when>
 </choose>
 ```
 
-Ha a `userprofile` környezeti változó nem létezik, akkor el kell végeznie egy HTTP-kérelem lekéréséhez fogjuk.
+Ha hello `userprofile` környezeti változó nem létezik, majd folyamatban, amelyet toohave toomake HTTP kérelem tooretrieve azt.
 
 ```xml
 <send-request
@@ -83,7 +83,7 @@ Ha a `userprofile` környezeti változó nem létezik, akkor el kell végeznie e
   timeout="10"
   ignore-error="true">
 
-  <!-- Build a URL that points to the profile for the current end-user -->
+  <!-- Build a URL that points toohello profile for hello current end-user -->
   <set-url>@(new Uri(new Uri("https://apimairlineapi.azurewebsites.net/UserProfile/"),
       (string)context.Variables["enduserid"]).AbsoluteUri)
   </set-url>
@@ -91,7 +91,7 @@ Ha a `userprofile` környezeti változó nem létezik, akkor el kell végeznie e
 </send-request>
 ```
 
-Használjuk a `enduserid` összeállítani a felhasználói profil erőforrás URL-CÍMÉT. Amennyiben van a válasz, azt lekéréses kívül a válasz szövegét, és újra üzembe a környezeti változó tárolja.
+Hello használjuk `enduserid` tooconstruct hello URL-cím toohello felhasználói profil erőforrás. Tudunk hello választ, ha azt lekéréses hello szövegtörzs hello választ ki, és újra üzembe a környezeti változó tárolja.
 
 ```xml
 <set-variable
@@ -99,7 +99,7 @@ Használjuk a `enduserid` összeállítani a felhasználói profil erőforrás U
     value="@(((IResponse)context.Variables["userprofileresponse"]).Body.As<string>())" />
 ```
 
-Velünk, hogy végezze el a HTTP-kérelem újra, ha ugyanaz a felhasználó egy másik kérést kellene elkerüléséhez tároljuk a gyorsítótárban a felhasználói profilt.
+tooavoid velünk, hogy toomake a HTTP-kérelem újra, amikor hello ugyanaz a felhasználó egy másik kérelmet, azt tárolhat hello felhasználói profil hello gyorsítótár.
 
 ```xml
 <cache-store-value
@@ -107,11 +107,11 @@ Velünk, hogy végezze el a HTTP-kérelem újra, ha ugyanaz a felhasználó egy 
     value="@((string)context.Variables["userprofile"])" duration="100000" />
 ```
 
-Az érték, amely azt eredetileg megpróbálta beolvasni a pontos azonos kulcsot használva gyorsítótárában tároljuk. Az érték tárolására választjuk időtartam alapján hogyan gyakran a változtatások és a felhasználók hogyan hibatűrő történik az elavult adatokat. 
+Hello érték hello pontos azonos kulccsal, hogy azt eredetileg megkísérelt tooretrieve hello gyorsítótárában tároljuk azt. hello időtartamot, választjuk toostore hello érték alapján milyen gyakran hello változtatások és hogyan hibatűrő felhasználók is tooout a naprakész információkat. 
 
-Fontos, hogy a gyorsítótár lekérdezése még mindig egy folyamaton kívül, a hálózati kérelmek, és potenciálisan továbbra is felvehetőek több tíz ideje (MS) kérésre megvalósításához. A következő előnyöket határozza meg a felhasználói profillal kapcsolatos információk, amelyek miatt az adatbázis-lekérdezések vagy több biztonsági-végpontok összesített adatait kellene számottevően hosszabb időbe telik meghatározásakor.
+Fontos, hogy hello gyorsítótár lekérése még egy folyamaton kívül, a hálózati kérelmek toorealize és potenciálisan továbbra is felvehetőek ezredmásodperc toohello kérelem több. hello előnyei származnak, amikor meghatározó hello felhasználói profillal kapcsolatos információk hosszabb időbe telik jelentősen, amely megfelelő tooneeding toodo adatbázis-lekérdezést vagy több biztonsági-végpontok összesített adatait.
 
-A folyamat az utolsó lépés a felhasználói profil információkkal frissítenie a visszaadott válaszban.
+hello hello folyamat utolsó lépése tooupdate hello választ a felhasználó profil adataival.
 
 ```xml
 <!-- Update response body with user profile-->
@@ -120,9 +120,9 @@ A folyamat az utolsó lépés a felhasználói profil információkkal frissíte
     to="@((string)context.Variables["userprofile"])" />
 ```
 
-Az idézőjelek a jogkivonat részeként, hogy akkor is, ha nem történik, a csere, a válasz volt-e továbbra is érvényes JSON elfogadása. Ez elsősorban hibakeresési könnyebb annak volt.
+Elfogadása tooinclude hello idézőjelek hello jogkivonat részeként, hogy akkor is, ha a név felülírandó hello nem következik be, hello válasz volt-e továbbra is érvényes JSON-adatokat. Elsősorban hibakeresési könnyebb toomake volt.
 
-Miután együtt egyesíteni ezeket a lépéseket, záró eredménye egy házirendet a következőhöz hasonló a következő egy.
+Együtt egyesíteni ezeket a lépéseket, miután a hello végeredménynek egy olyan házirend, egyet a következő hello tűnik.
 
 ```xml
 <policies>
@@ -132,22 +132,22 @@ Miután együtt egyesíteni ezeket a lépéseket, záró eredménye egy háziren
           name="enduserid"
           value="@(context.Request.Headers.GetValueOrDefault("Authorization","").Split(' ')[1].AsJwt()?.Subject)" />
 
-        <!--Look for userprofile for this user in the cache -->
+        <!--Look for userprofile for this user in hello cache -->
         <cache-lookup-value
           key="@("userprofile-" + context.Variables["enduserid"])"
           variable-name="userprofile" />
 
-        <!-- If we don’t find it in the cache, make a request for it and store it -->
+        <!-- If we don’t find it in hello cache, make a request for it and store it -->
         <choose>
             <when condition="@(!context.Variables.ContainsKey("userprofile"))">
-                <!-- Make HTTP request to get user profile -->
+                <!-- Make HTTP request tooget user profile -->
                 <send-request
                   mode="new"
                   response-variable-name="userprofileresponse"
                   timeout="10"
                   ignore-error="true">
 
-                   <!-- Build a URL that points to the profile for the current end-user -->
+                   <!-- Build a URL that points toohello profile for hello current end-user -->
                     <set-url>@(new Uri(new Uri("https://apimairlineapi.azurewebsites.net/UserProfile/"),(string)context.Variables["enduserid"]).AbsoluteUri)</set-url>
                     <set-method>GET</set-method>
                 </send-request>
@@ -176,22 +176,22 @@ Miután együtt egyesíteni ezeket a lépéseket, záró eredménye egy háziren
 </policies>
 ```
 
-Ez a megközelítés gyorsítótárazási elsősorban a webhelyeken ahol HTML jön létre a kiszolgáló oldalán, hogy egyetlen lapként megjeleníthetők. Azonban ez is hasznos lehet az API-k, ahol az ügyfelek nem ügyfél oldalán található HTTP-gyorsítótárazás, vagy nem kell elhelyezni, amely felelős az ügyfélen.
+Ez a megközelítés gyorsítótárazási elsősorban a webhelyeken ahol HTML állnak hello kiszolgáló oldalán, hogy egyetlen lapként megjeleníthetők. Azonban ez is hasznos lehet az API-k, ahol az ügyfelek nem ügyfél oldalán található HTTP gyorsítótárazását, vagy kívánatos nem tooput hello ügyfél, amely felelős.
 
-A gyorsítótárazás töredék ugyanolyan típusú is elvégezhető a háttér-webkiszolgálók, a Redis gyorsítótár-kiszolgáló használatával, azonban a munkájuk elvégzéséhez az API Management szolgáltatással akkor hasznos, ha a gyorsítótárazott töredék érkező különböző biztonsági ends mint az elsődleges válaszokat.
+A töredék gyorsítótárazás ugyanolyan típusú hello webes a háttérkiszolgálókon lévő a Redis gyorsítótár-kiszolgáló használatával is elvégezhető, azonban hello API-kezelés szolgáltatás tooperform használatával a munkahelyi akkor hasznos, ha különböző biztonsági ends mint hello érkező gyorsítótárazott hello töredék elsődleges válaszokat.
 
 ## <a name="transparent-versioning"></a>Transzparens versioning
-Általános gyakorlat egy API-t, így egyszerre nem támogatott több különböző végrehajtási verziója. Ez lehet, hogy az fejlesztői, tesztelési, éles stb, a különböző környezetek támogatására, vagy lehet támogatására az API-t, hogy API fogyasztók újabb verziókra történő áttelepítéséhez a régebbi verzióit. 
+Általános gyakorlat egy API-toobe támogatott egyszerre több különböző végrehajtási verziója. Ez lehet, hogy toosupport különböző környezetekben, például a fejlesztői, tesztelési, éles, stb., vagy lehet, hogy toosupport hello API toogive idő API fogyasztók toomigrate toonewer verzióihoz régebbi verzióit. 
 
-Ahelyett, hogy az ügyfél fejlesztők számára, hogy módosítsa az URL-címei kezelnek ez egyik módszer `/v1/customers` való `/v2/customers` jelenleg kívánnak használni, és hívja meg a megfelelő háttérkiszolgáló URL-címet a API verziójának a felhasználói profil adatok tárolásához. Annak meghatározására, a megfelelő háttér URL-címet az adott ügyfél hívja, fontos bizonyos konfigurációs adatait. A konfigurációs adatok gyorsítótárazása, azt is lecsökkentheti a teljesítményét, ez a keresés során.
+Ehelyett ez az ügyfél fejlesztők toochange hello URL-címei igénylő egyik módszer toohandling `/v1/customers` túl`/v2/customers` hello felhasználói profil adatok toostore van hello API verziójának azok jelenleg toouse kívánja, és hívja meg hello megfelelő háttérkiszolgáló URL-címe. Rendelés toodetermine hello megfelelő háttér URL-cím toocall egy adott ügyfél számára, hogy a rendszer szükséges tooquery egyes konfigurációs adatokat. A konfigurációs adatok gyorsítótárazása, azt is lecsökkentheti hello teljesítményét, ez a keresés során.
 
-Az első lépés, hogy a kívánt verziójával konfigurálásához használt azonosító meghatározása. Ebben a példában a verziót, hogy a termékkulcs előfizetés társítása elfogadása. 
+hello első lépése a, toodetermine hello azonosítója használt tooconfigure hello kívánt verziójával. Ebben a példában elfogadása tooassociate hello verzió toohello előfizetés termékkulcsot. 
 
 ```xml
 <set-variable name="clientid" value="@(context.Subscription.Key)" />
 ```
 
-Majd végezzük a gyorsítótárban való kereséshez megjelenítéséhez, ha azt már rendelkezik olvassa be a kívánt ügyfél verziója.
+A gyorsítótár keresési toosee azt majd hajtsa végre, ha azt már beolvasását hello kívánt ügyfél verziója.
 
 ```xml
 <cache-lookup-value
@@ -199,7 +199,7 @@ key="@("clientversion-" + context.Variables["clientid"])"
 variable-name="clientversion" />
 ```
 
-Jelenleg így ellenőrizheti, ha azt nem találta azt a gyorsítótárban.
+Ezután toosee azt ellenőrizze, hogy azt nem találta azt a hello gyorsítótárban.
 
 ```xml
 <choose>
@@ -219,7 +219,7 @@ Ha azt nem, akkor nyissa meg azt, és lekéréséhez.
 </send-request>
 ```
 
-A válasz törzsében szöveg kinyerése a választ.
+Hello válasz törzsében szöveg kinyerése hello válasz.
 
 ```xml
 <set-variable
@@ -227,7 +227,7 @@ A válasz törzsében szöveg kinyerése a választ.
       value="@(((IResponse)context.Variables["clientconfiguresponse"]).Body.As<string>())" />
 ```
 
-Vissza tárolása a későbbi használatra a gyorsítótárban.
+Vissza tárolása a későbbi használatra hello gyorsítótár.
 
 ```xml
 <cache-store-value
@@ -236,14 +236,14 @@ Vissza tárolása a későbbi használatra a gyorsítótárban.
       duration="100000" />
 ```
 
-És végül frissítse a háttér-URL-címet, válassza ki a szolgáltatást, az ügyfél által igényelt verziót.
+És végül frissítse hello háttér-URL-cím tooselect hello hello szolgáltatás hello ügyfél szükséges.
 
 ```xml
 <set-backend-service
       base-url="@(context.Api.ServiceUrl.ToString() + "api/" + (string)context.Variables["clientversion"] + "/")" />
 ```
 
-A teljesen házirendet a következőképpen történik.
+hello teljesen házirendet a következőképpen történik.
 
 ```xml
 <inbound>
@@ -251,7 +251,7 @@ A teljesen házirendet a következőképpen történik.
     <set-variable name="clientid" value="@(context.Subscription.Key)" />
     <cache-lookup-value key="@("clientversion-" + context.Variables["clientid"])" variable-name="clientversion" />
 
-    <!-- If we don’t find it in the cache, make a request for it and store it -->
+    <!-- If we don’t find it in hello cache, make a request for it and store it -->
     <choose>
         <when condition="@(!context.Variables.ContainsKey("clientversion"))">
             <send-request mode="new" response-variable-name="clientconfiguresponse" timeout="10" ignore-error="true">
@@ -268,16 +268,16 @@ A teljesen házirendet a következőképpen történik.
 </inbound>
 ```
 
-Sok API versioning problémákat orvosló elegáns megoldás API fogyasztói transzparens módon a háttérrendszer verziószámának ügyfelek anélkül, hogy frissítse és telepítse újra az ügyfelek is hozzáférnek vezérlésére.
+API fogyasztók tootransparently vezérlő melyik háttérrendszer verzió ügyfelek tooupdate és helyezze üzembe újra ügyfelek anélkül is hozzáférnek engedélyezése egy elegáns megoldás, amely sok API versioning vonatkozik.
 
 ## <a name="tenant-isolation"></a>Bérlők elszigetelésére
-A nagyobb, a több-bérlős telepítésekben egyes vállalatok bérlők külön csoportot létre háttér hardver különböző üzemelő példányok esetében. Ez minimalizálja a háttérkiszolgálón a hardver probléma által érintett felhasználók száma. Emellett lehetővé teszi az új szoftververziók való szakaszban állítható. Ideális esetben a háttér-architektúra API-felhasználók számára átlátható legyen. Ez érhető el a transzparens versioning hasonló módon, mert a háttérkiszolgáló URL-CÍMÉT egy API-kulcs konfiguráció állapota kezelésére ugyanaz a technika alapul.  
+A nagyobb, a több-bérlős telepítésekben egyes vállalatok bérlők külön csoportot létre háttér hardver különböző üzemelő példányok esetében. Ez minimalizálja a hello hello háttérkiszolgálón a hardver probléma által érintett felhasználók száma. Emellett lehetővé teszi az új szoftverfrissítési verziók toobe szakaszaiban megkezdődött. Ideális esetben a háttér-architektúra átlátszó tooAPI fogyasztók kell lennie. Ez megvalósítható a egy hasonló módon tootransparent versioning mert hello alapul azonos módszerrel kezelésére hello háttérkiszolgáló URL-címet konfiguráció állapota / API-kulcs használatával.  
 
-Helyett az API a minden előfizetés kulcs egy előnyben részesített verziója, az azonosítója, hogy a bérlő vonatkozik, a hozzárendelt hardvercsoport alakítanák vissza. Ilyen azonosítójú segítségével hozható létre a megfelelő háttérkiszolgáló URL-CÍMÉT.
+Helyett visszaadó API hello minden előfizetés kulcs egy előnyben részesített verziója, a bérlő hozzárendelt toohello hardvercsoport kapcsolódó azonosítót alakítanák vissza. Ilyen azonosítójú használt tooconstruct hello megfelelő háttérkiszolgáló URL-cím lehet.
 
 ## <a name="summary"></a>Összefoglalás
-Szabadon használható az Azure API management gyorsítótár bármilyen típusú adat tárolásához lehetővé teszi, hogy a konfigurációs adatokat, amelyek hatással lehetnek a módszer egy bejövő kérelem feldolgozását hatékonyabbá teszi a hozzáférést. Is használható, amelyek is kiegészítheti a válaszokat, egy háttér-API által visszaadott adatok töredék tárolásához.
+hello szabadsága toouse hello bármilyen típusú adatok tárolásához Azure API management gyorsítótár lehetővé teszi, hogy hatékony hozzáférés tooconfiguration, amelyek hatással lehetnek a hello módja egy bejövő kérelem feldolgozását. Lehet, hogy is kiegészítheti a válaszokat, egy háttér-API által visszaadott használt toostore adatok töredék is.
 
 ## <a name="next-steps"></a>Következő lépések
-Adja meg a visszajelzést a disqus-beszélgetésben teheti szál a témakör Ha egyéb forgatókönyvek, ezek a házirendek, amelyeken engedélyezve van, vagy ha vannak forgatókönyvek szeretné-e elérése, de nem látja a jelenleg lehetségesek.
+Adjon küldjön visszajelzést a hello disqus-beszélgetésben teheti a szál az az ebben a témakörben ha vannak a többi olyan forgatókönyvet, hogy ezeket a házirendeket az Ön engedélyezte, vagy ha vannak forgatókönyvek szeretné tooachieve, de nem érzi, hogy jelenleg lehetségesek.
 

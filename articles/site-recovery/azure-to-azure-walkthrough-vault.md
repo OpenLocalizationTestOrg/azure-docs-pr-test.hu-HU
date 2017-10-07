@@ -1,6 +1,6 @@
 ---
-title: "Állítson be egy Azure virtuális gép repliction tárolót az Azure Site Recovery régiók közötti |} Microsoft Docs"
-description: "Összefoglalja a lépéseket, akkor be kell állítania egy Azure Site Recovery segítségével Azure-régiók közötti Azure replikációs tárolót"
+title: "aaaSet be egy Azure virtuális gép repliction tárolót az Azure Site Recovery régiók közötti |} Microsoft Docs"
+description: "Azure Site Recovery segítségével Azure-régiók közötti Azure replikáció tooset mentése a tárolóba kell hello lépéseket foglalja"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/01/2017
 ms.author: raynew
-ms.openlocfilehash: e03d17992ee0b12049636e40188950bcc4a6f31e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9959c59c7ea57114763f13bf060404ddd267ba80
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-4-set-up-a-vault-for-azure-to-azure-replication"></a>4. lépés: Állítson be egy Azure az Azure-bA replikációs tárolót
+# <a name="step-4-set-up-a-vault-for-azure-tooazure-replication"></a>4. lépés: Azure tooAzure replikációra tárolókba beállítása
 
-Után [hálózatok tervezési](azure-to-azure-walkthrough-network.md), ez a cikk az használatával állítson be egy tárolót az Azure virtuális gépek (VM) esetében, amelyek egy másik Azure-régió, használja a [Azure Site Recovery](site-recovery-overview.md) szolgáltatás az Azure portálon.
+Után [hálózatok tervezési](azure-to-azure-walkthrough-network.md), használja a cikk tooset mentése a tárolóba, az Azure virtuális gépek (VM) replikálása az Azure-régió, tooanother hello segítségével [Azure Site Recovery](site-recovery-overview.md) szolgáltatással hello Azure-portálon.
 
-- A cikk befejezése után állítsa be a Recovery Services-tárolónak kell rendelkeznie.
-- Megjegyzéseket a cikk alján tehet, kérdéseket pedig az [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) teheti fel.
+- Hello cikk befejezése után állítsa be a Recovery Services-tárolónak kell rendelkeznie.
+- Ez a cikk hello alján a megjegyzéseket, vagy kérdései vannak a hello [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
 
@@ -42,9 +42,9 @@ Után [hálózatok tervezési](azure-to-azure-walkthrough-network.md), ez a cikk
 
 >[!NOTE]
 >
-> Azt javasoljuk, hogy a helyen, ahol azt szeretné, hogy a virtuális gépek replikálásához hozzon létre a Recovery Services-tároló. Például, ha a cél elérési útja a központi USA, hozzon létre a tárolót, a **USA középső RÉGIÓJA**.
+> Azt javasoljuk, hogy a hello helyre, ahol a virtuális gépek tooreplicate hozzon létre hello Recovery Services-tároló. Például ha a célhely van hello központi VELÜNK, hozzon létre hello tárolót a **USA középső RÉGIÓJA**.
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ugrás a [5. lépés: replikálás engedélyezése](azure-to-azure-walkthrough-enable-replication.md)
+Nyissa meg túl[5. lépés: replikálás engedélyezése](azure-to-azure-walkthrough-enable-replication.md)

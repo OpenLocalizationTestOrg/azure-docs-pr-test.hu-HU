@@ -1,5 +1,5 @@
 ---
-title: "Azure DevTest Labs egyéni lemezkép létrehozása a PowerShell használatával VHD-fájl |} Microsoft Docs"
+title: "PowerShell-lel VHD-fájl az Azure DevTest Labs egyéni lemezképének aaaCreate |} Microsoft Docs"
 description: "Egyéni lemezképként az Azure DevTest Labs szolgáltatásban, a PowerShell használatával VHD-fájl létrehozásának automatizálása"
 services: devtest-lab,virtual-machines
 documentationcenter: na
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: a4729f70aae80a13233fbe96a5d8a56c0c9d01d3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 39b4005fa46cdf86cf0800ca376128134bcfb650
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-custom-image-from-a-vhd-file-using-powershell"></a>Egyéni lemezkép létrehozása a PowerShell használatával VHD-fájl
 
@@ -30,22 +30,22 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="step-by-step-instructions"></a>Lépésenkénti utasítások
 
-A következő lépések végigvezetik egyéni lemezkép létrehozása a PowerShell használatával VHD-fájlt:
+hello következő lépések végigvezetik egyéni lemezkép létrehozása a PowerShell használatával VHD-fájlt:
 
-1. Egy PowerShell-parancssorba, jelentkezzen be az Azure-fiókjával a következő hívást a **Login-AzureRmAccount** parancsmag.  
+1. Egy PowerShell-parancssorba, jelentkezzen be Azure-fiók tooyour a következő hívást toohello hello **Login-AzureRmAccount** parancsmag.  
     
     ```PowerShell
     Login-AzureRmAccount
     ```
 
-1.  Válassza ki a kívánt Azure-előfizetés meghívásával a **Select-AzureRmSubscription** parancsmag. A következő helyőrzőt cserélje le a **$subscriptionId** változó, egy érvényes Azure-előfizetéssel. 
+1.  Jelölje be hello Azure-előfizetés szükséges hívási hello által **Select-AzureRmSubscription** parancsmag. Cserélje le a következő hello helyőrzője hello **$subscriptionId** változó, egy érvényes Azure-előfizetéssel. 
 
     ```PowerShell
     $subscriptionId = '<Specify your subscription ID here>'
     Select-AzureRmSubscription -SubscriptionId $subscriptionId
     ```
 
-1.  A tesztkörnyezet objektum beolvasása meghívásával a **Get-AzureRmResource** parancsmag. Cserélje le a helyőrzőket a **$labRg** és **$labName** változók a környezetének megfelelő értékekkel. 
+1.  Hello labor objektum lekéréséhez hívó hello **Get-AzureRmResource** parancsmag. Cserélje le a következő hello helyőrzőit hello **$labRg** és **$labName** hello változók a megfelelő értékek környezetnek. 
 
     ```PowerShell
     $labRg = '<Specify your lab resource group name here>'
@@ -53,62 +53,62 @@ A következő lépések végigvezetik egyéni lemezkép létrehozása a PowerShe
     $lab = Get-AzureRmResource -ResourceId ('/subscriptions/' + $subscriptionId + '/resourceGroups/' + $labRg + '/providers/Microsoft.DevTestLab/labs/' + $labName)
     ```
  
-1.  A labor tárolási fiók és a tesztkörnyezet tárolási fiók kulcs értékek lekérése a labor objektumból. 
+1.  Beszerzése hello tesztkörnyezet tárfiókja és a tesztkörnyezet tárfiókja kulcsértékei hello labor objektum. 
 
     ```PowerShell
     $labStorageAccount = Get-AzureRmResource -ResourceId $lab.Properties.defaultStorageAccount 
     $labStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $labStorageAccount.ResourceGroupName -Name $labStorageAccount.ResourceName)[0].Value
     ```
 
-1.  A következő helyőrzőt cserélje le a **$vhdUri** változó pedig a feltöltött VHD-fájl URI-azonosítójú. A VHD-fájl URI lekérheti a tárfiók a blob panel az Azure portálon.
+1.  Cserélje le a következő hello helyőrzője hello **$vhdUri** változó hello URI, tooyour feltöltött VHD-fájlt. Hello VHD fájl URI Azonosítóját az hello tárolási fiók blob panel az Azure-portálon hello kérheti le.
 
     ```PowerShell
-    $vhdUri = '<Specify the VHD URI here>'
+    $vhdUri = '<Specify hello VHD URI here>'
     ```
 
-1.  Az egyéni lemezképet létrehozni a **New-AzureRmResourceGroupDeployment** parancsmag. Cserélje le a helyőrzőket a **$customImageName** és **$customImageDescription** változókat, a környezetnek kifejező nevet.
+1.  Hello egyéni lemezkép létrehozása hello **New-AzureRmResourceGroupDeployment** parancsmag. Cserélje le a következő hello helyőrzőit hello **$customImageName** és **$customImageDescription** változók toomeaningful nevek a környezethez.
 
     ```PowerShell
-    $customImageName = '<Specify the custom image name>'
-    $customImageDescription = '<Specify the custom image description>'
+    $customImageName = '<Specify hello custom image name>'
+    $customImageDescription = '<Specify hello custom image description>'
 
     $parameters = @{existingLabName="$($lab.Name)"; existingVhdUri=$vhdUri; imageOsType='windows'; isVhdSysPrepped=$false; imageName=$customImageName; imageDescription=$customImageDescription}
 
     New-AzureRmResourceGroupDeployment -ResourceGroupName $lab.ResourceGroupName -Name CreateCustomImage -TemplateUri 'https://raw.githubusercontent.com/Azure/azure-devtestlab/master/Samples/201-dtl-create-customimage-from-vhd/azuredeploy.json' -TemplateParameterObject $parameters
     ```
 
-## <a name="powershell-script-to-create-a-custom-image-from-a-vhd-file"></a>PowerShell parancsfájl egyéni lemezkép a VHD-fájl létrehozása
+## <a name="powershell-script-toocreate-a-custom-image-from-a-vhd-file"></a>PowerShell parancsfájl toocreate egy VHD-fájlt egy egyéni lemezkép
 
-A következő PowerShell-parancsfájl segítségével létrehozhat egyéni rendszerképeket a VHD-fájl. Cserélje le a helyőrzőket (kezdő és Záró csúcsos zárójelek rendelkező) az igényeinek megfelelő értékeket. 
+a következő PowerShell-parancsfájl hello használt toocreate egy VHD-fájlt az egyéni kép is lehet. (Kezdő és Záró csúcsos zárójelek rendelkező) hello helyőrzőket cserélje le az igényeinek megfelelő értékeket hello. 
 
 ```PowerShell
-# Log in to your Azure account.  
+# Log in tooyour Azure account.  
 Login-AzureRmAccount
 
-# Select the desired Azure subscription. 
+# Select hello desired Azure subscription. 
 $subscriptionId = '<Specify your subscription ID here>'
 Select-AzureRmSubscription -SubscriptionId $subscriptionId
 
-# Get the lab object.
+# Get hello lab object.
 $labRg = '<Specify your lab resource group name here>'
 $labName = '<Specify your lab name here>'
 $lab = Get-AzureRmResource -ResourceId ('/subscriptions/' + $subscriptionId + '/resourceGroups/' + $labRg + '/providers/Microsoft.DevTestLab/labs/' + $labName)
 
-# Get the lab storage account and lab storage account key values.
+# Get hello lab storage account and lab storage account key values.
 $labStorageAccount = Get-AzureRmResource -ResourceId $lab.Properties.defaultStorageAccount 
 $labStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $labStorageAccount.ResourceGroupName -Name $labStorageAccount.ResourceName)[0].Value
 
-# Set the URI of the VHD file.  
-$vhdUri = '<Specify the VHD URI here>'
+# Set hello URI of hello VHD file.  
+$vhdUri = '<Specify hello VHD URI here>'
 
-# Set the custom image name and description values.
-$customImageName = '<Specify the custom image name>'
-$customImageDescription = '<Specify the custom image description>'
+# Set hello custom image name and description values.
+$customImageName = '<Specify hello custom image name>'
+$customImageDescription = '<Specify hello custom image description>'
 
-# Set up the parameters object.
+# Set up hello parameters object.
 $parameters = @{existingLabName="$($lab.Name)"; existingVhdUri=$vhdUri; imageOsType='windows'; isVhdSysPrepped=$false; imageName=$customImageName; imageDescription=$customImageDescription}
 
-# Create the custom image. 
+# Create hello custom image. 
 New-AzureRmResourceGroupDeployment -ResourceGroupName $lab.ResourceGroupName -Name CreateCustomImage -TemplateUri 'https://raw.githubusercontent.com/Azure/azure-devtestlab/master/Samples/201-dtl-create-customimage-from-vhd/azuredeploy.json' -TemplateParameterObject $parameters
 ```
 
@@ -119,4 +119,4 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $lab.ResourceGroupName -Na
 
 ##<a name="next-steps"></a>Következő lépések
 
-- [A virtuális gépek hozzáadása a tesztkörnyezet](./devtest-lab-add-vm-with-artifacts.md)
+- [Virtuális gép tooyour labor hozzáadása](./devtest-lab-add-vm-with-artifacts.md)

@@ -1,6 +1,6 @@
 ---
-title: "Előfizetés és a Linux virtuális gépek az Azure-fiók |} Microsoft Docs"
-description: "További tudnivalók a főbb tervezési és megvalósítási irányelvek előfizetések és az Azure-fiókok."
+title: "aaaSubscription és a Linux virtuális gépek Azure-ban |} Microsoft Docs"
+description: "Tudnivalók: hello legfontosabb tervezési és megvalósítási előfizetések és a fiókok az Azure-on."
 documentationcenter: 
 services: virtual-machines-linux
 author: iainfoulds
@@ -16,50 +16,50 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 19695a9960d8e8f0dfca4bf0ca10761fe6ae7ff0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9025a40783c008310ebd0f674deb4a9001ae974a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-subscription-and-accounts-guidelines-for-linux-vms"></a>Linux virtuális gépek Azure előfizetés és a fiókok irányelvek
 
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
-Ez a cikk foglalkozik az előfizetés és a fiókok kezelése, a környezet megközelítési alapos ismerete, és a felhasználói bázis növekszik.
+Ez a cikk foglalkozik a megértése, hogyan tooapproach előfizetés és a fiókok kezelése, a környezet és a felhasználói bázis növekszik.
 
 ## <a name="implementation-guidelines-for-subscriptions-and-accounts"></a>Implementációs segédlet előfizetések és-fiókok
 Döntéseket:
 
-* Milyen előfizetések és fiókokat kell az informatikai munkaterhelés vagy az infrastruktúra tárolására beállított?
-* Hogyan szeretné bontani a hierarchiában a szervezet megfelelően?
+* Milyen set előfizetések és a fiókok van szüksége toohost az informatikai munkaterhelés vagy az infrastruktúra?
+* Hogyan toobreak hello hierarchia toofit le a szervezet?
 
 Feladatok:
 
-* Adja meg a logikai szervezeti hierarchia, szerint szeretné egy előfizetési szintről a kezeléshez.
-* Ezt a logikai hierarchiát megfeleltetéséhez szükséges fiókok és minden egyes fiókkal előfizetések megadása.
-* Hozzon létre az előfizetések és az elnevezési fiókokat.
+* Adja meg a logikai szervezeti hierarchia szerint szeretné toomanage azt egy előfizetés szintjéről.
+* toomatch ezt a logikai hierarchiát, adja meg a szükséges hello fiókjaihoz és előfizetéseihez minden egyes fiókkal.
+* Hozzon létre hello előfizetések és az elnevezési fiókokat.
 
 ## <a name="subscriptions-and-accounts"></a>Előfizetések és fiókok
-Azure használatához szükség van egy vagy több Azure-előfizetések. Erőforrások – például virtuális gépek (VM), illetve ezek előfizetések szerepel virtuális hálózatok.
+az Azure-ral toowork, szüksége van egy vagy több Azure-előfizetések. Erőforrások – például virtuális gépek (VM), illetve ezek előfizetések szerepel virtuális hálózatok.
 
-* A vállalati ügyfelek általában rendelkeznek a vállalati beléptetési, amely a childwindow-erőforrás a hierarchiában, és egy vagy több fiókot társítva.
-* A felhasználók és az ügyfelek a vállalati beléptetési nélkül a childwindow-erőforrást az a fiók.
-* Előfizetések tartoznak fiókok, és egy vagy több előfizetés fiókonként is lehet. Az Azure rekordok számlázási adatok az előfizetés szintjén.
+* A vállalati ügyfelek a vállalati beléptetési, amely hello childwindow-erőforrás hello hierarchiában, és társított tooone vagy további fiókok általában rendelkeznek.
+* A felhasználók és az ügyfelek a vállalati beléptetési nélkül a hello childwindow-erőforrás az hello fiók.
+* Előfizetések társított tooaccounts, és egy vagy több előfizetés fiókonként is lehet. Az Azure rekordok számlázási adatokat hello előfizetés szintjén.
 
-A fiók vagy előfizetés kapcsolat két hierarchiaszintekkel legfeljebb miatt fontos az elnevezési fiókok és-előfizetések számlázási igényeihez igazítani. Például ha egy globális vállalat Azure használ, akkor előfordulhat, hogy úgy a egy fiók régiónként, és előfizetések felügyelt rendelkezik a terület szint:
+Lejáró hello/előfizetés kapcsolat két hierarchiaszintekkel toohello korlátot fontos tooalign hello elnevezési konvenciót kell számlázási fiókjaihoz és előfizetéseihez toohello a. Például ha egy globális vállalat Azure használ, előfordulhat, hogy választ toohave egy fiók régiónként, és előfizetések felügyelt rendelkezik régió szint hello:
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub01.png)
 
-Például használhatja az alábbi szerkezettel:
+Használhatja például a következő struktúra hello:
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub02.png)
 
-Egy régiót úgy dönt, hogy egy adott csoporthoz tartozó egynél több előfizetéssel rendelkezik, ha az elnevezési oly módon, a felesleges adatokat a fiók vagy előfizetés nevét a kódolni kell tartalmaznia. Ez a szervezet lehetővé teszi, hogy massaging elszámolási adatok a hierarchia új szintek során számlázási jelentések létrehozásához:
+Ha egy régió egyetlen előfizetéssel társított tooa adott csoport nagyobb toohave úgy dönt, hello elnevezési konvenciót kell tartalmaznia egy módon tooencode hello hello fiókkal vagy hello előfizetés nevét a további adatokat. A szervezet engedélyezi a számlázási toogenerate hello új szintek hierarchia massaging számlázási jelentések során:
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub03.png)
 
-Az alábbi példában a szervezet volt látható:
+hello szervezet a következő példa hello nézhet:
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub04.png)
 

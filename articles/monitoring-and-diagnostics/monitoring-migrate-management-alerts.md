@@ -1,5 +1,5 @@
 ---
-title: "Telepítse át az Azure-riasztások felügyeleti események napló Tevékenységriasztásokat |} Microsoft Docs"
+title: "a felügyeleti események tooActivity napló riasztások Azure riasztások aaaMigrate |} Microsoft Docs"
 description: "A felügyeleti események riasztások eltávolítja a október 1. Készíti áttelepítése meglévő riasztásokat."
 author: johnkemnetz
 manager: orenr
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: johnkem
-ms.openlocfilehash: 08a457029d3721f5c38dbcd2d2aab7d09a241d8f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e00bc4f0bad4e8f97443310770c333d250e343ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-azure-alerts-on-management-events-to-activity-log-alerts"></a>Telepítse át a felügyeleti események Azure riasztások tevékenységnapló riasztások
+# <a name="migrate-azure-alerts-on-management-events-tooactivity-log-alerts"></a>Telepítse át az Azure felügyeleti események tooActivity napló riasztások-riasztások
 
 
 > [!WARNING]
-> A felügyeleti események riasztások ki lesz kapcsolva a következőnél október 1. Az alábbi utasításokat követve segítségével azonosíthatja, ha ezek a riasztások, és át őket, ha így van.
+> A felügyeleti események riasztások ki lesz kapcsolva a következőnél október 1. Ha ezek a riasztások, és át őket, ha igen, használja a hello irányban toounderstand alatt.
 >
 > 
 
 ## <a name="what-is-changing"></a>Mi van módosítása
 
-Az Azure Monitor (korábban Azure Insights) érhető el egy olyan képességet, amely felügyeleti események ki indított és értesítések egy webhook URL-címe vagy e-mail címekre létrehozott riasztás létrehozása. Előfordulhat, hogy létrehozta az egyik riasztást küld, az alábbi módszerek bármelyikét:
-* Az Azure-portálon az egyes erőforrástípusok figyelés -> riasztások-hozzáadása riasztás, ha "Riasztás" értéke "Események" >
-* Az Add-AzureRmLogAlertRule PowerShell-parancsmag futtatásával
-* Közvetlenül a [riasztási REST API](http://docs.microsoft.com/rest/api/monitor/alertrules) rendelkező odata.type = "ManagementEventRuleCondition" és a dataSource.odata.type = "RuleManagementEventDataSource"
+Azure Monitor (korábban Azure Insights) kínált egy funkció toocreate kijelentkezés felügyeleti események elindul, és értesítések tooa webhook URL-cím vagy az e-mail címek generált riasztást. Előfordulhat, hogy létrehozta az egyik riasztást küld, az alábbi módszerek bármelyikét:
+* Hello Azure-portál a bizonyos típusú erőforrások, a figyelés -> riasztások hozzáadása riasztás, ha "Riasztás" értéke túl -> "Események"
+* Futó hello Add-AzureRmLogAlertRule PowerShell-parancsmaggal
+* Közvetlenül a [riasztási REST API hello](http://docs.microsoft.com/rest/api/monitor/alertrules) rendelkező odata.type = "ManagementEventRuleCondition" és a dataSource.odata.type = "RuleManagementEventDataSource"
  
-A következő PowerShell-parancsfájl az összes riasztás listáját, amelyeknek az előfizetés, valamint az egyes riasztások beállítása feltételek felügyeleti események adja vissza.
+hello következő PowerShell-parancsfájl listáját adja vissza az összes riasztás a felügyeleti események, amelyek az előfizetést, valamint a minden riasztás beállítása hello feltételek vannak.
 
 ```powershell
 Login-AzureRmAccount
@@ -54,11 +54,11 @@ foreach ($alert in $alerts) {
 } 
 ```
 
-Felügyeleti események rendelkezik nincs riasztás, ha a fenti PowerShell-parancsmag kimeneteként az alábbihoz hasonló figyelmeztetés üzenetből:
+Felügyeleti események rendelkezik nincs riasztás, ha a fenti hello PowerShell-parancsmag kimeneteként az alábbihoz hasonló figyelmeztetés üzenetből:
 
-`WARNING: The output of this cmdlet will be flattened, i.e. elimination of the properties field, in a future release to improve the user experience.`
+`WARNING: hello output of this cmdlet will be flattened, i.e. elimination of hello properties field, in a future release tooimprove hello user experience.`
 
-A figyelmeztető üzenetek figyelmen kívül hagyható. Ha a felügyeleti események riasztások rendelkezik, a PowerShell parancsmag kimenete a következőképpen jelenik meg:
+A figyelmeztető üzenetek figyelmen kívül hagyható. Ha a felügyeleti események rendelkezik riasztások, hello PowerShell parancsmag kimenete a következőképpen jelenik meg:
 
 ```
 Alert Name: webhookEvent1
@@ -95,22 +95,22 @@ ResourceUri          : /subscriptions/<subscription-id>/resourceGroups/<resource
 ---------------------------------
 ```
 
-Minden riasztás szaggatott vonal választja el egymástól, és a részletek közé tartoznak az erőforrás-azonosítója a riasztás és figyeli az adott szabályra.
+Minden riasztás szaggatott vonal választja el egymástól, és részleteket tartalmaznak hello riasztás és hello adott szabály figyelt hello erőforrás-azonosító.
 
-Ez a funkció átváltott [Azure tevékenység napló riasztások](monitoring-activity-log-alerts.md). Az új értesítések lehetővé teszik a tevékenységnapló események állítson be feltételt, és értesítést kaphat, ha egy új esemény megfelel a következő feltételt. Számos fejlesztést tartalmaz a riasztásokat a management események is biztosítanak:
-* A csoport értesítési címzettek ("műveletek") között számos riasztásokról felhasználhatja [művelet csoportok](monitoring-action-groups.md), módosítása, akik egy riasztást kell fogadnia összetettsége csökkentése.
+Ez a funkció túl lett állítva[Azure tevékenység napló riasztások](monitoring-activity-log-alerts.md). Az új értesítések lehetővé teszik a tooset tevékenységnapló események vonatkozó feltétellel, és értesítést kaphat, ha egy új esemény megfelel hello feltétel. Számos fejlesztést tartalmaz a riasztásokat a management események is biztosítanak:
+* A csoport értesítési címzettek ("műveletek") között számos riasztásokról felhasználhatja [művelet csoportok](monitoring-action-groups.md), módosítása, akik egy riasztást kell fogadnia hello összetettsége csökkentése.
 * Közvetlenül a telefonján a SMS művelet csoportokkal is kap értesítést.
 * Is [Tevékenységriasztásokat napló létrehozása a Resource Manager-sablonok](monitoring-create-activity-log-alerts-with-resource-manager-template.md).
-* Nagyobb rugalmasságot és igény szerinti erősségét feltételek hozhatja létre.
+* Létrehozhat feltételek nagyobb rugalmasságot és összetettsége toomeet igény szerinti.
 * Értesítések a gyorsabban érkeznek.
  
-## <a name="how-to-migrate"></a>Hogyan telepítheti át
+## <a name="how-toomigrate"></a>Hogyan toomigrate
  
-Hozzon létre egy új tevékenység napló értesítés, a következő lehetőségek közül választhat:
-* Hajtsa végre a [útmutatónkban kapcsolatos riasztás létrehozása az Azure-portálon](monitoring-activity-log-alerts.md)
-* Megtudhatja, hogyan [Resource Manager-sablon használatával riasztás létrehozása](monitoring-create-activity-log-alerts-with-resource-manager-template.md)
+Új tevékenység napló értesítés toocreate lehetőségek közül választhat:
+* Hajtsa végre a [az útmutató, hogyan toocreate a riasztás hello Azure-portálon](monitoring-activity-log-alerts.md)
+* Ismerje meg, hogyan túl[Resource Manager-sablon használatával riasztás létrehozása](monitoring-create-activity-log-alerts-with-resource-manager-template.md)
  
-Riasztások a korábban létrehozott felügyeleti események nem lesz automatikusan áttelepítve a tevékenység napló riasztásokat. A fenti PowerShell-parancsfájl segítségével a riasztásokat a felügyeleti események van beállítva, és manuálisan hozza létre őket tevékenység napló riasztásként kell. A október 1, amely után riasztások felügyeleti események a már nem lesznek láthatók az Azure-előfizetése előtt kell végezni. Más típusú Azure riasztások, például Azure metrika riasztások, az Application Insights-riasztások és Naplóelemzési riasztások nem érinti ez a változás. Ha kérdése van, az alábbi megjegyzések fel.
+Riasztások a korábban létrehozott felügyeleti események nem lesz automatikusan áttelepített tooActivity napló riasztásokat. A jelenleg konfigurált, és manuálisan hozza létre őket tevékenység napló riasztásként felügyeleti események PowerShell parancsfájl toolist hello riasztások megelőző toouse hello van szüksége. A október 1, amely után riasztások felügyeleti események a már nem lesznek láthatók az Azure-előfizetése előtt kell végezni. Más típusú Azure riasztások, például Azure metrika riasztások, az Application Insights-riasztások és Naplóelemzési riasztások nem érinti ez a változás. Ha kérdése van, az alábbi hello megjegyzések fel.
 
 
 ## <a name="next-steps"></a>Következő lépések
@@ -118,6 +118,6 @@ Riasztások a korábban létrehozott felügyeleti események nem lesz automatiku
 * További információ [műveletnapló](monitoring-overview-activity-logs.md)
 * Konfigurálása [napló Tevékenységriasztásokat Azure-portálon](monitoring-activity-log-alerts.md)
 * Konfigurálása [Tevékenységriasztásokat napló erőforrás-kezelő használatával](monitoring-create-activity-log-alerts-with-resource-manager-template.md)
-* Tekintse át a [műveletnapló riasztási webhook séma](monitoring-activity-log-alerts-webhook.md)
+* Felülvizsgálati hello [műveletnapló riasztási webhook séma](monitoring-activity-log-alerts-webhook.md)
 * További információ [szolgáltatáshoz értesítést](monitoring-service-notifications.md)
 * További információ [művelet csoportok](monitoring-action-groups.md)

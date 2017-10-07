@@ -1,6 +1,6 @@
 ---
-title: "Megtudhatja, ha egy adott felhasználó tudnak csatlakozni egy alkalmazáshoz |} Microsoft Docs"
-description: "Ha egy különösen fontos felhasználói tudnak csatlakozni egy alkalmazáshoz, a felhasználók átadása az Azure ad szolgáltatással konfigurált megállapítása"
+title: "Amikor egy adott felhasználó lesz-e az alkalmazás képes tooaccess aaaFind |} Microsoft Docs"
+description: "Ha különösen fontos felhasználói kell tudni tooaccess alkalmazás kimenő toofind konfigurációjától felhasználói történő üzembe helyezéséhez az Azure AD"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,37 +13,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: fcefb31904cfb77022db0358e9feee6a0479db81
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bb9520499dcc8bbbe6fae05c5238c8852815ea0a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="find-out-when-a-specific-user-will-be-able-to-access-an-application"></a>Annak megállapítása, ha egy adott felhasználó tudnak csatlakozni egy alkalmazáshoz
+# <a name="find-out-when-a-specific-user-will-be-able-tooaccess-an-application"></a>Egy adott felhasználó mindig tudja tooaccess alkalmazás megállapítása
 Ha automatikus felhasználólétesítés alkalmazással, az Azure AD létesítése és a frissítés felhasználói fiókokat az alkalmazáson belüli alapján automatikusan többek között a [felhasználók és csoportok hozzárendelése](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal) időközönként rendszeresen ütemezett, általában 10 percenként.
 
 ## <a name="how-long-does-it-take"></a>Mennyi időt vesz igénybe?
 
-Úgy kell létrehozni, az adott felhasználó számára szükséges idő elsősorban attól függ-e már megtörtént egy kezdeti "teljes" szinkronizálást.
+az egy adott felhasználó toobe kiépített szükséges hello időtartamát elsősorban attól függ-e már megtörtént egy kezdeti "teljes" szinkronizálást.
 
-Az első szinkronizálás az Azure AD között és az alkalmazások is igénybe vehet 20 percet az Azure AD-címtár és a felhasználók kialakítási hatókörében számát méretétől függően több órát. 
+első szinkronizálás az Azure AD között hello és az alkalmazások is igénybe vehet 20 perc tooseveral óra, hello Azure Active directory és a felhasználók kialakítási hatókörében hello száma hello méretétől függően. 
 
-A kezdeti szinkronizálás után az ezt követő szinkronizálások gyorsabb lehet (pl. 10 percen belül), szerint a létesítési szolgáltatás, amelyben a kezdeti szinkronizálást, és ezt követő szinkronizálások teljesítményének javítása után mindkét állapota egy vízjelek tárolja.
+Ezt követő szinkronizálások után hello kezdeti szinkronizálás lehet gyorsabb (pl. 10 percen belül), mivel hello szolgáltatás kiépítését, amelyek megfelelnek a hello állapot mindkét rendszer hello a kezdeti szinkronizálás ezt követő szinkronizálások teljesítményének javítása után vízjelek tárolja.
 
-## <a name="how-to-check-the-status-of-a-user"></a>A felhasználó állapotának ellenőrzése
+## <a name="how-toocheck-hello-status-of-a-user"></a>Hogyan toocheck hello egy felhasználó állapota
 
-A kijelölt felhasználó a kiépítési állapotát tekintheti meg, tekintse meg a felügyeleti naplók az Azure ad-ben.
+toosee hello kiépítési állapot a kiválasztott felhasználó, tekintse át a hello naplók az Azure AD-ben.
 
-A telepítési naplók érhetők el az Azure portálon, a **Azure Active Directory &gt; vállalati alkalmazások &gt; \[alkalmazásnév\] &gt; vizsgálati naplókban** fülre. A naplók szűrést végezni a **fiók** kategóriát csak az adott alkalmazáshoz létesítési események megjelenítéséhez. A "egyező ID" attribútum-leképezésekhez számukra konfigurált alapján is kereshet. 
+kiépítés naplók hello hello hello Azure portálon érhetők el **Azure Active Directory &gt; vállalati alkalmazások &gt; \[alkalmazásnév\] &gt; vizsgálati naplókban**fülre. Szűrő hello bejelentkezik hello **fiók** kategória tooonly, tekintse meg az adott alkalmazáshoz események kiépítés hello. Felhasználók hello "egyező ID" attribútum-leképezésekhez hello számukra konfigurált alapján is kereshet. 
 
-Például, ha az "egyszerű felhasználónév" vagy "e-mail cím" az Azure AD-oldalán a megfelelő attribútumaként konfigurálva, és a felhasználó nem kiépítés értéke "audrey@contoso.com", majd keresse meg a naplókban talál "audrey@contoso.com", és tekintse át ezt követően eredményt adott vissza.
+Például, ha hello "egyszerű felhasználónév" vagy "e-mail cím" hello Azure AD oldalon attribútum megfelelő hello, konfigurálta, és nem kiépítés hello felhasználó érték "audrey@contoso.com", majd keresési hello auditnaplókat a"audrey@contoso.com", és tekintse át a majd az eredményt adott vissza.
 
-A telepítési naplók jegyezze fel a létesítési szolgáltatás által végzett összes műveletet többek között:
+kiépítés naplózási hello naplózza az összes szolgáltatás, kiépítését hello által végrehajtott műveletek hello rekord többek között:
 
 * Azure ad-val történő üzembe helyezéséhez hatókörébe hozzárendelt felhasználók lekérdezése
-* A cél alkalmazás meglétét azoknak a felhasználóknak az lekérdezése
-* A felhasználói objektum, a rendszer közötti összehasonlítása
-* Hozzáadása, frissítése vagy a felhasználói fiók letiltása a célrendszeren, az összehasonlítás alapján
+* Azoknak a felhasználóknak hello megléte hello cél alkalmazás lekérdezése
+* Hello felhasználói objektum hello rendszer közötti összehasonlítása
+* Hozzáadása, frissítése vagy hello összehasonlítás alapján hello célrendszerben hello felhasználói fiók letiltása
 
 ## <a name="next-steps"></a>Következő lépések
-[Felhasználói kiépítésének és megszüntetésének biztosítása SaaS-alkalmazásokhoz az Azure Active Directoryval történő automatizálásához](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning)".
+[Felhasználói kiépítés és megszüntetés tooSaaS alkalmazásokat az Azure Active Directoryval automatizálásához](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning)".

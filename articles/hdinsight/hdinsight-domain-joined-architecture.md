@@ -1,6 +1,6 @@
 ---
-title: "Tartományhoz csatlakozó Azure HDInsight-architektúra |} Microsoft Docs"
-description: "Útmutató a tartományhoz csatlakoztatott HDInsight tervezéséhez."
+title: "aaaDomain csatlakoztatott Azure HDInsight-architektúra |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooplan tartományhoz HDInsight."
 services: hdinsight
 documentationcenter: 
 author: saurinsh
@@ -16,70 +16,70 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 02/03/2017
 ms.author: saurinsh
-ms.openlocfilehash: 7e34f47f09466a40993b4cc797ff1cad2bdaeafe
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1c3ecedf3739b4f8fa54160225be9c1d6e2ca6cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="plan-azure-domain-joined-hadoop-clusters-in-hdinsight"></a>Azure-tartományhoz csatlakoztatott Hadoop-fürtök tervezése a HDInsightban
 
-A hagyományos Hadoop egy egyfelhasználós fürt. Ez megfelel a legtöbb olyan cégnek, amelyekben kisebb alkalmazásfejlesztő csapatok dolgoznak a nagy adatszámítási feladatok kiépítésén. A Hadoop növekvő népszerűségével, sok vállalat vált olyan modellre, ahol a fürtöket az informatikai csapatok felügyelik, és több alkalmazásfejlesztő csapat is dolgozik ugyanazokon a fürtökön. Így a többfelhasználós fürtöket használó funkció az egyik legtöbbet kért funkció a HDInsightban.
+hello hagyományos Hadoop egyfelhasználós fürt. Ez megfelel a legtöbb olyan cégnek, amelyekben kisebb alkalmazásfejlesztő csapatok dolgoznak a nagy adatszámítási feladatok kiépítésén. A Hadoop növekvő népszerűségével, sok vállalat vált olyan modellre, ahol a fürtöket az informatikai csapatok felügyelik, és több alkalmazásfejlesztő csapat is dolgozik ugyanazokon a fürtökön. Így a funkciói közé tartoznak, amely többfelhasználós fürtök hello Azure hdinsight leginkább kért funkciók.
 
-Helyett a saját többfelhasználós hitelesítési és engedélyezési készítéséhez, a HDInsight legnépszerűbb identitásszolgáltató – Active Directory (AD) alapul. A hatékony biztonsági funkciókat AD hdinsight többfelhasználós engedélyezési kezelésére használható. Az ad-val a HDInsight integrálásával kommunikálhat a fürtök AD hitelesítő adataival. HDInsight van leképezve egy AD-felhasználó a helyi Hadoop-felhasználó, így a szolgáltatás HDInsight (Ambari, kiszolgáló, idejére Spark thrift Hive server és a mások) munkahelyi zökkenőmentesen a hitelesített felhasználó számára.
+Helyett a saját többfelhasználós hitelesítési és engedélyezési felépítése, HDInsight hello legnépszerűbb identitásszolgáltató – Active Directory (AD) alapul. hello hatékony biztonsági funkciókat az ad-ben használt toomanage többfelhasználós engedélyezési hdinsight lehet. Az ad-val a HDInsight integrálásával kommunikálhat hello fürtök AD hitelesítő adataival. HDInsight hozzárendeli egy AD felhasználó tooa helyi Hadoop felhasználót, így az összes hello hdinsighton futó szolgáltatások (Ambari, kiszolgáló, idejére Spark thrift Hive server és a mások) munkahelyi zökkenőmentesen hello hitelesített felhasználó számára.
 
 ## <a name="integrate-hdinsight-with-ad-and-ad-on-iaas-vm"></a>HDInsight integrálása AD és az AD IaaS virtuális gépen
 
-HDInsight integrálása az Azure AD vagy AD Iaas virtuális gépen, a HDInsight-fürtcsomóponton található, a tartományhoz csatlakoztatott egy tartományhoz. HDInsight a Hadoop-szolgáltatások, a fürtben futó szolgáltatásnevekről hoz létre, és az Azure AD vagy ad szolgáltatásokba, az infrastruktúra-szolgáltatási virtuális gép egy adott szervezeti egység (OU) belül helyezi azokat. HDInsight címfeloldási DNS-hozzárendelések is létrehoz a tartomány az IP-címekhez tartozó csomópontot csatlakoznak a tartományhoz.
+HDInsight integrálása az Azure AD vagy AD Iaas virtuális gépen, hello HDInsight-fürtcsomóponton található, a tartományhoz csatlakoztatott tooa tartomány. HDInsight hoz létre a hello szolgáltatásnevekről hello fürtben futó Hadoop-szolgáltatás, és az Azure AD vagy ad szolgáltatásokba, az infrastruktúra-szolgáltatási virtuális gép egy adott szervezeti egység (OU) belül helyezi azokat. HDInsight is létrehoz címfeloldási DNS-hozzárendelések hello hello tartomány, a tartományhoz csatlakoztatott toohello hello csomópontok IP-címét.
 
-Ezt a beállítást többféle architektúra használatával érheti el. Az alábbi architektúrák közül választhat.
+Ezt a beállítást többféle architektúra használatával érheti el. A következő architektúrák hello közül választhat.
 
 **A HDInsight az Azure infrastruktúra-szolgáltatáson futó AD-vel integrált**
 
-Ez a legegyszerűbb architektúra a HDInsight és az Active Directory integrálásához. Az AD-tartományvezérlő egy (vagy több) virtuális gépek (VM) az Azure-ban futó. Ezek a virtuális gépek általában egy virtuális hálózatot alkotnak. Konfigurálni kell egy másik virtuális hálózatot is a HDInsight-fürt számára. HDInsight kell rendelkeznie az Active Directory egy sor a láthatáron, van szüksége a virtuális hálózatok használatával egyenrangú [VNet – VNet társviszony-létesítés](../virtual-network/virtual-network-create-peering.md). Ha az ARM ESZKÖZBEN az Active Directory hoz létre, majd hozhat létre az Active Directory és a HDInsight ugyanazon virtuális, és nem kell tennie társviszony-létesítés. 
+Ez a legegyszerűbb architektúra hello HDInsight integrálható az Active Directoryban. egy (vagy több) virtuális gépek (VM) az Azure AD-tartományvezérlő hello fut. Ezek a virtuális gépek általában egy virtuális hálózatot alkotnak. Állít be egy másik virtuális hálózati hello HDInsight-fürthöz. A HDInsight toohave egy sor a láthatáron tooActive könyvtár, kell toopeer ezek a virtuális hálózatok használatával [VNet – VNet társviszony-létesítés](../virtual-network/virtual-network-create-peering.md). Ha hoz létre az ARM ESZKÖZBEN, az Active Directory hello, akkor létrehozhat hello Active Directory és a HDInsight hello ugyanazt a virtuális hálózatot, és nincs szükség toodo társviszony-létesítés. 
 
 ![Tartományhoz csatlakoztatott HDInsight-fürtök topológiája](./media/hdinsight-domain-joined-architecture/hdinsight-domain-joined-architecture_1.png)
 
 > [!NOTE]
-> Ebben az architektúrában az Azure Data Lake Store és a HDInsight-fürt nem használható együtt.
+> Ebben az architektúrában nem használható az Azure Data Lake Store hello HDInsight-fürthöz.
 
 
 Az Active Directory előfeltételei:
 
-* Létre kell hoznia egy [szervezeti egységet](../active-directory-domain-services/active-directory-ds-admin-guide-create-ou.md), amelyben a HDInsight-fürt virtuális gépeit és a fürt által használt egyszerű szolgáltatásokat helyezi el.
-* [Lightweight Directory Access protokollok](../active-directory-domain-services/active-directory-ds-admin-guide-configure-secure-ldap.md) (LDAPs) be kell állítani a az ad-vel való kommunikációhoz. Az LDAPS konfigurálásához használt tanúsítványnak valódi (nem önaláírt) tanúsítványnak kell lennie.
-* Fordított irányú DNS-zónákat kell létrehoznia a tartományon a HDInsight-alhálózat IP-címtartománya számára (például 10.2.0.0/24 az előző képen).
-* Szükséges egy szolgáltatásfiók vagy egy felhasználói fiók is. Ezt a fiókot a HDInsight-fürt létrehozására használhatja. A fióknak az alábbi engedélyekkel kell rendelkeznie:
+* Egy [szervezeti egység](../active-directory-domain-services/active-directory-ds-admin-guide-create-ou.md) belül kell létrehoznia, amely hová kívánja helyezni a HDInsight-fürt virtuális gépek hello és hello fürt által használt szolgáltatásnevekről hello.
+* [Lightweight Directory Access protokollok](../active-directory-domain-services/active-directory-ds-admin-guide-configure-secure-ldap.md) (LDAPs) be kell állítani a az ad-vel való kommunikációhoz. hello használt tanúsítvány tooset LDAPS be valós tanúsítványnak (nem egy önaláírt tanúsítvány) kell lennie.
+* Névkeresési DNS-zónák hello tartomány hello IP-címtartomány hello HDInsight alhálózat (például az előző ábrán hello 10.2.0.0/24) léteznie kell.
+* Szükséges egy szolgáltatásfiók vagy egy felhasználói fiók is. A fiók toocreate hello HDInsight-fürt használatára. Ennek a fióknak hello a következő engedélyekkel kell rendelkeznie:
 
-    - A szervezeti egységben lévő egyszerű szolgáltatásobjektumok és gépobjektumok létrehozásához szükséges engedélyek
-    - A fordított irányú DNS-proxyszabályok létrehozásához szükséges engedélyek;
-    - A gépeknek az Active Directory-tartományhoz történő csatlakoztatásához szükséges engedélyek
+    - Engedélyek toocreate szolgáltatás egyszerű és gép objektumok belül hello szervezeti egység
+    - Engedélyek toocreate címfeloldási DNS proxy szabályok
+    - Engedélyek toojoin gépek toohello Active Directory-tartomány
 
 **Kizárólag felhőalapú Azure AD-vel integrált HDInsight**
 
-A kizárólag felhőalapú Azure AD esetében konfiguráljon egy tartományvezérlőt, hogy a HDInsight integrálható legyen az Azure AD-vel. Ehhez a [Azure Active Directory tartományi szolgáltatások](../active-directory-domain-services/active-directory-ds-overview.md) (az Azure AD DS). Az Azure AD DS tartományvezérlő gépeket hoz létre a felhőben, és megadja az IP-címeiket. Két tartományvezérlőt hoz létre a magas rendelkezésre állás érdekében.
+A kizárólag felhőalapú Azure AD esetében konfiguráljon egy tartományvezérlőt, hogy a HDInsight integrálható legyen az Azure AD-vel. Ehhez a [Azure Active Directory tartományi szolgáltatások](../active-directory-domain-services/active-directory-ds-overview.md) (az Azure AD DS). Az Azure Active Directory tartományi szolgáltatások tartományvezérlő gépeket tartományt hoz hello felhő, és IP-címek biztosít. Két tartományvezérlőt hoz létre a magas rendelkezésre állás érdekében.
 
-Az Azure AD DS jelenleg kizárólag klasszikus virtuális hálózatokon létezik. Csak a klasszikus Azure-portálon keresztül érhető el. A HDInsight virtuális hálózat az Azure Portalon létezik, amelyet a virtuális hálózatok közötti társviszony-létesítéssel társítani kell a klasszikus virtuális hálózattal.
+Az Azure AD DS jelenleg kizárólag klasszikus virtuális hálózatokon létezik. Csak elérhető hello klasszikus Azure portál használatával. virtuális hálózat szerepel a hello Azure-portálon, amelyekre szüksége van a toobe HDInsight hello a VNet – VNet-társviszony létesítése – társviszonyban hello klasszikus virtuális hálózattal.
 
 > [!NOTE]
-> Egy klasszikus virtuális hálózat és egy Azure Resource Managerbeli virtuális hálózat társításához a két virtuális hálózatnak ugyanabban a régióban kell lennie, és ugyanazon Azure-előfizetés alá kell tartoznia.
+> A klasszikus virtuális hálózatot és a virtuális hálózat szükséges, hogy mindkét virtuális hálózat legyen-e az Azure Resource Manager-társviszony létesítése – hello ugyanabban a régióban, és a hello azonos Azure-előfizetés.
 
 ![Tartományhoz csatlakoztatott HDInsight-fürtök topológiája](./media/hdinsight-domain-joined-architecture/hdinsight-domain-joined-architecture_2.png)
 
 Az Azure AD előfeltételei:
 
-* Létre kell hoznia egy [szervezeti egységet](../active-directory-domain-services/active-directory-ds-admin-guide-create-ou.md), amelyben a HDInsight-fürt virtuális gépeit és a fürt által használt egyszerű szolgáltatásokat helyezi el.
-* Az [LDAPS-t](../active-directory-domain-services/active-directory-ds-admin-guide-configure-secure-ldap.md) is konfigurálni kell az Azure AD DS konfigurálásakor. Az LDAPS konfigurálásához használt tanúsítványnak valódi (nem önaláírt) tanúsítványnak kell lennie.
-* Fordított irányú DNS-zónákat kell létrehoznia a tartományon a HDInsight-alhálózat IP-címtartománya számára (például 10.2.0.0/24 az előző képen).
-* A [jelszókivonatokat](../active-directory-domain-services/active-directory-ds-getting-started-password-sync.md) szinkronizálnia kell az Azure AD-ről az Azure AD DS-re.
-* Szükséges egy szolgáltatásfiók vagy egy felhasználói fiók is. Ezt a fiókot a HDInsight-fürt létrehozására használhatja. A fióknak az alábbi engedélyekkel kell rendelkeznie:
+* Egy [szervezeti egység](../active-directory-domain-services/active-directory-ds-admin-guide-create-ou.md) belül, amely helyezi-e létre kell hozni a HDInsight-fürt virtuális gépek hello és hello fürt által használt szolgáltatásnevekről hello.
+* Az [LDAPS-t](../active-directory-domain-services/active-directory-ds-admin-guide-configure-secure-ldap.md) is konfigurálni kell az Azure AD DS konfigurálásakor. hello használt tanúsítvány tooset LDAPS be valós tanúsítványnak (nem egy önaláírt tanúsítvány) kell lennie.
+* Névkeresési DNS-zónák hello tartomány hello IP-címtartomány hello HDInsight alhálózat (például az előző ábrán hello 10.2.0.0/24) léteznie kell.
+* [Jelszó-kivonatok](../active-directory-domain-services/active-directory-ds-getting-started-password-sync.md) kell szinkronizálva az Azure AD tooAzure Active Directory tartományi Szolgáltatásokban.
+* Szükséges egy szolgáltatásfiók vagy egy felhasználói fiók is. A fiók toocreate hello HDInsight-fürt használatára. Ennek a fióknak hello a következő engedélyekkel kell rendelkeznie:
 
-    - A szervezeti egységben lévő egyszerű szolgáltatásobjektumok és gépobjektumok létrehozásához szükséges engedélyek
-    - A fordított irányú DNS-proxyszabályok létrehozásához szükséges engedélyek;
-    - A gépeknek az Azure AD-tartományhoz történő csatlakoztatásához szükséges engedélyek
+    - Engedélyek toocreate szolgáltatás egyszerű és gép objektumok belül hello szervezeti egység
+    - Engedélyek toocreate címfeloldási DNS proxy szabályok
+    - Engedélyek toojoin gépek toohello az Azure AD-tartomány
 
 ## <a name="next-steps"></a>Következő lépések
-* A tartományhoz csatlakoztatott HDInsight-fürtök konfigurálásához lásd: [Tartományhoz csatlakoztatott HDInsight-fürtök konfigurálása](hdinsight-domain-joined-configure.md).
-* A tartományhoz csatlakoztatott HDInsight-fürtök kezeléséhez lásd: [Tartományhoz csatlakoztatott HDInsight-fürtök kezelése](hdinsight-domain-joined-manage.md).
-* A Hive-házirendek konfigurálásához és a Hive-lekérdezések futtatásához lásd: [Hive-házirendek konfigurálása a tartományhoz csatlakoztatott HDInsight-fürtökben](hdinsight-domain-joined-run-hive.md).
-* Hive-lekérdezések futtatása HDInsight-fürtök tartományhoz az ssh protokoll használatával, lásd: [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
+* tooconfigure egy tartományhoz csatlakozó HDInsight-fürtöt, tekintse meg [konfigurálása tartományhoz a HDInsight-fürtök](hdinsight-domain-joined-configure.md).
+* toomanage tartományhoz a HDInsight-fürtök, lásd: [tartományhoz HDInsight-fürtök kezelése](hdinsight-domain-joined-manage.md).
+* tooconfigure Hive házirendek és a Hive-lekérdezések futtatása [házirendek konfigurálása Hive HDInsight-fürtök tartományhoz](hdinsight-domain-joined-run-hive.md).
+* Hive-lekérdezések toorun SSH segítségével tartományhoz HDInsight-fürtök, lásd: [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).

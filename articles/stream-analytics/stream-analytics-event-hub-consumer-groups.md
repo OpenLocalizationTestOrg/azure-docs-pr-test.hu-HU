@@ -1,5 +1,5 @@
 ---
-title: "Az event hubs érzékelőinek Azure Stream Analytics Debug |} Microsoft Docs"
+title: "az event hubs érzékelőinek Azure Stream Analytics aaaDebug |} Microsoft Docs"
 description: "A lekérdezés ajánlott eljárások az Event Hubs fogyasztói csoportok a Stream Analytics-feladatok figyelembe véve."
 keywords: "Event hub határt, a fogyasztói csoportot"
 services: stream-analytics
@@ -15,34 +15,34 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 04/20/2017
 ms.author: jeffstok
-ms.openlocfilehash: 145981d0b5eff0c574c5012c85f43a6318ba4126
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 89821e6273151de43b5e42d907e547c939e24824
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="debug-azure-stream-analytics-with-event-hub-receivers"></a>Azure Stream Analytics a hibakereséshez event hubs érzékelőinek száma
 
-Használhatja az Azure Event Hubs az Azure Stream Analytics betöltési vagy kimeneti egy feladat adatait. Az Event Hubs használata esetén ajánlott eljárás, hogy több felhasználói csoport használja annak feladat méretezhetőség érdekében. Egyik ok: az, hogy az adott bevitel Stream Analytics-feladat az olvasók számát hatással van az olvasók egyetlen felhasználói csoportokban. A fogadók pontos száma belső megvalósítás részletei kibővített topológia logika alapul. A fogadók száma kívülről nem lesz közzétéve. Az olvasók számát módosíthatja a feladat kezdési időpontban vagy feladat frissítéskor.
+Használhatja az Azure Event Hubs az Azure Stream Analytics tooingest vagy a kimenetet a feladatból. Az Event Hubs használatára vonatkozó ajánlott toouse több fogyasztói csoportok, tooensure feladat méretezhetőséget. Egyik oka, hogy hello Stream Analytics-feladat egy adott bevitel az olvasók számát hello hatással lesz hello olvasók egyetlen felhasználói csoportokban. hello pontos száma fogadók hello kibővített topológia logika belső részleteket alapul. hello száma fogadók kívülről nem lesz közzétéve. hello olvasók számát hello feladat kezdési időpontban vagy feladat frissítéskor módosíthatja.
 
 > [!NOTE]
-> Ha az olvasók számát egy feladat a frissítés során, átmeneti kapcsolatos figyelmeztetések írása a naplók. Stream Analytics-feladatok automatikusan helyreállni ezek átmeneti probléma.
+> Hello olvasók számát egy feladat a frissítés során megváltozásakor átmeneti kapcsolatos figyelmeztetések írása tooaudit naplókat. Stream Analytics-feladatok automatikusan helyreállni ezek átmeneti probléma.
 
 ## <a name="number-of-readers-per-partition-exceeds-event-hubs-limit-of-five"></a>Partíciónként Olvasók száma meghaladja az Event Hubs legfeljebb öt
 
-Forgatókönyvek, amelyben az olvasók partíciónként száma meghaladja az Event Hubs legfeljebb öt közé tartoznak a következők:
+Mely hello az olvasók partíciónként száma meghaladja a hello Event Hubs legfeljebb öt forgatókönyvek hello alábbiakat foglalja magába:
 
-* Több KIVÁLASZTÓ utasítást: Ha több KIVÁLASZTÓ utasítást hivatkozó **azonos** eseményközpont bemeneti, minden KIVÁLASZTÓ utasításhoz hatására létrejön egy új fogadó.
-* Unió: UNION használatához esetén előfordulhat, hogy több bemenet, amely hivatkozik a **azonos** event hub és fogyasztói csoportot.
-* ÖNILLESZTÉS: Automatikus csatlakozás művelet használatakor is lehet hivatkozni a **azonos** eseményközpont több alkalommal.
+* Több KIVÁLASZTÓ utasítást: Ha több KIVÁLASZTÓ utasítást túl hivatkozó**azonos** eseményközpont bemeneti, minden KIVÁLASZTÓ utasításhoz hatására a létrehozott új fogadó toobe.
+* UNION: UNION használatához esetén lehetséges toohave toohello hivatkozó több bemeneti **azonos** event hub és fogyasztói csoportot.
+* ÖNILLESZTÉS: Automatikus csatlakozás művelet használatához esetén lehetséges toorefer toohello **azonos** eseményközpont több alkalommal.
 
 ## <a name="solution"></a>Megoldás
 
-A következő gyakorlati tanácsok segíthet csökkenteni az forgatókönyvek, amelyben az olvasók partíciónként száma meghaladja az Event Hubs legfeljebb öt.
+hello következő bevált gyakorlatát segíthet csökkenteni a mely hello partíciónként Olvasók száma meghaladja a hello Event Hubs legfeljebb öt forgatókönyvek.
 
 ### <a name="split-your-query-into-multiple-steps-by-using-a-with-clause"></a>A lekérdezés felosztása több lépést a WITH záradék használatával
 
-A WITH záradékkal ideiglenes elnevezett eredménykészletet, amely a FROM záradék a lekérdezés hivatkozhat határozza meg. A WITH záradékkal egyetlen SELECT utasítás a végrehajtás hatókörében határozza meg.
+hello WITH záradékban ideiglenes elnevezett eredménykészletet, amely a FROM záradék a lekérdezés hello hivatkozhat. Hello WITH záradékkal egy SELECT utasítás hello végrehajtási hatóköre határozza meg.
 
 Például helyett ezt a lekérdezést:
 
@@ -74,16 +74,16 @@ FROM data
 …
 ```
 
-### <a name="ensure-that-inputs-bind-to-different-consumer-groups"></a>Győződjön meg arról, hogy bemeneti kötése különböző felhasználói csoportokhoz
+### <a name="ensure-that-inputs-bind-toodifferent-consumer-groups"></a>Győződjön meg arról, hogy a bemeneti adatok kötési toodifferent fogyasztói csoportok
 
-A lekérdezések, amelyben legalább három bemeneti adatokat a ugyanazt az Event Hubs fogyasztói csoportot csatlakozik külön felhasználói csoportok létrehozása. Ehhez szükséges további Stream Analytics bemenetek létrehozását.
+A lekérdezések, amelyekben három vagy több bemeneti adatok nem csatlakoztatott toohello ugyanazt az Event Hubs fogyasztói csoportjában külön felhasználói csoportok létrehozása. Ehhez szükséges további Stream Analytics bemenetek hello létrehozását.
 
 
 ## <a name="get-help"></a>Segítségkérés
 Ha további segítségre van szüksége, próbálkozzon a [Azure Stream Analytics-fórumot](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).
 
 ## <a name="next-steps"></a>Következő lépések
-* [A Stream Analytics bemutatása](stream-analytics-introduction.md)
+* [Bevezetés tooStream elemzés](stream-analytics-introduction.md)
 * [A Stream Analytics használatába](stream-analytics-real-time-fraud-detection.md)
 * [Stream Analytics-feladatok méretezése](stream-analytics-scale-jobs.md)
 * [Stream Analytics lekérdezési nyelvi referencia](https://msdn.microsoft.com/library/azure/dn834998.aspx)

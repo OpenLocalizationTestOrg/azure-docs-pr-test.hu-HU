@@ -1,6 +1,6 @@
 ---
-title: "Az Azure App Service telepítési hitelesítő adatok |} Microsoft Docs"
-description: "Ismerje meg, hogyan használható az Azure App Service üzembe helyezési hitelesítő adatokat."
+title: "App Service üzembe helyezési hitelesítő adatok aaaAzure |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse hello Azure App Service üzembe helyezési hitelesítő adatokat."
 services: app-service
 documentationcenter: 
 author: dariagrigoriu
@@ -13,45 +13,45 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 01/05/2016
 ms.author: dariagrigoriu
-ms.openlocfilehash: 86a2cd8ae9f97c606a378452e44eec8941700531
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d6f9f5cc1b62a17c42643266f4c9490f827c63f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-deployment-credentials-for-azure-app-service"></a>Telepítési hitelesítő adatok beállítása az Azure App Service
-[Az Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) támogatja a hitelesítő adatok kétféle [helyi Git-telepítésének](app-service-deploy-local-git.md) és [FTP/S telepítési](app-service-deploy-ftp.md). Ezek olyan nem ugyanaz, mint az Azure Active Directorybeli hitelesítő adatokat.
+[Az Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) támogatja a hitelesítő adatok kétféle [helyi Git-telepítésének](app-service-deploy-local-git.md) és [FTP/S telepítési](app-service-deploy-ftp.md). A rendszer nem hello ugyanaz, mint az Azure Active Directorybeli hitelesítő adatokat.
 
-* **Felhasználói szintű hitelesítő adatokat**: a teljes Azure-fiók hitelesítő adatait egy készletét. Az App Service a telepíteni kívánt alkalmazást, minden előfizetést, az Azure-fiókra van hozzáférése a használható. Ezek az alapértelmezett hitelesítő adatok beállítása, amelyet megadtak a **alkalmazásszolgáltatások** > **&lt;alkalmazás_neve >** > **üzembe helyezési hitelesítő adatok**. Ez egyben az alapértelmezett, amely a grafikus felhasználói Felülettel portálon illesztett van (például a **áttekintése** és **tulajdonságok** az alkalmazás [erőforráspanelen](../azure-resource-manager/resource-group-portal.md#manage-resources)).
+* **Felhasználói szintű hitelesítő adatokat**: egy készletét hello teljes Azure-fiók hitelesítő adatait. A bármely alkalmazás bármely előfizetés, amely az Azure-fiók hello van engedélye tooaccess használt toodeploy tooApp szolgáltatás lehet. Ezek a hello alapértelmezett hitelesítő adatok beállítása, amelyet megadtak **alkalmazásszolgáltatások** > **&lt;alkalmazás_neve >** > **üzembe helyezési hitelesítő adatok**. Ez az alapértelmezés szerint, amely az illesztett hello portálon grafikus felhasználói Felülettel is hello (például hello **áttekintése** és **tulajdonságok** az alkalmazás [erőforráspanelen](../azure-resource-manager/resource-group-portal.md#manage-resources)).
 
     > [!NOTE]
-    > Azure-erőforrások szerepköralapú hozzáférés vezérlés (RBAC) vagy társadminisztrátornak engedélyek hozzáférés delegálásához, ha minden Azure felhasználói, amely fogad egy alkalmazás hozzáférési jogának képes személyes felhasználói szintű hitelesítő adatokat használhatna, amíg hozzáférését visszavonja. A központi telepítési hitelesítő adatokat nem lehet megosztva Azure másokkal.
+    > Delegálja a szerepköralapú hozzáférés vezérlés (RBAC) vagy társadminisztrátornak engedélyek tooAzure erőforrások eléréséhez, ha minden Azure felhasználói, amely megkapja a hozzáférési tooan alkalmazás képes személyes felhasználói szintű hitelesítő adatokat használhatna, amíg hozzáférését visszavonja. A központi telepítési hitelesítő adatokat nem lehet megosztva Azure másokkal.
     >
     >
 
-* **Alkalmazási szintű hitelesítő adatokat**: hitelesítő adatok az egyes alkalmazásokhoz egy készletét. Csak az alkalmazás telepítéséhez használható. A hitelesítő adatokat az egyes alkalmazások a alkalmazás létrehozásakor automatikusan létrejön, és az alkalmazás megtalálható közzétételi profil. Nem lehet manuálisan konfigurálnia a hitelesítő adatokat, de visszaállíthatja őket egy olyan alkalmazáshoz bármikor.
+* **Alkalmazási szintű hitelesítő adatokat**: hitelesítő adatok az egyes alkalmazásokhoz egy készletét. Lehet, hogy a használt toodeploy toothat alkalmazás hátterére van hatással. hello hitelesítő adatokat az egyes alkalmazások a alkalmazás létrehozásakor automatikusan létrejön, és hello alkalmazásban található közzétételi profil. Nem konfigurálhatja manuálisan hello hitelesítő adatokat, de visszaállíthatja őket egy olyan alkalmazáshoz bármikor.
 
     > [!NOTE]
-    > Annak érdekében, hogy illetéktelen személyek számára hozzáférést a hitelesítő adatokat keresztül szerepköralapú hozzáférés vezérlés (RBAC), meg kell győződnie őket közreműködő vagy magasabb a webalkalmazásban. Olvasók nem engedélyezett a közzététel, és ezért nem tudja elérni ezeket a hitelesítő adatokat.
+    > A sorrend toogive valaki hozzáférési toothese hitelesítő adatokat keresztül szerepköralapú hozzáférés vezérlés (RBAC), toomake kell őket közreműködő vagy nagyobb hello Web App. Olvasók toopublish nem engedélyezett, és ezért nem tudja elérni ezeket a hitelesítő adatokat.
     >
     >
 
 ## <a name="userscope"></a>Állítsa be, és a felhasználói szintű hitelesítő adatok alaphelyzetbe állítása
 
-Konfigurálhatja a felhasználói szintű hitelesítő adatokat a bármely alkalmazás [erőforráspanelen](../azure-resource-manager/resource-group-portal.md#manage-resources). Minden alkalmazás és az Azure-fiókjával a előfizetéseket függetlenül melyik alkalmazás konfigurálja ezeket a hitelesítő adatokat, vonatkozik. 
+Konfigurálhatja a felhasználói szintű hitelesítő adatokat a bármely alkalmazás [erőforráspanelen](../azure-resource-manager/resource-group-portal.md#manage-resources). Attól függetlenül történik melyik alkalmazás konfigurálja ezeket a hitelesítő adatokat, tooall alkalmazások vonatkozik, és az Azure-előfizetések minden fiókot. 
 
-A felhasználói szintű hitelesítő adatok konfigurálása:
+tooconfigure a felhasználói szintű hitelesítő adatait:
 
-1. Az a [Azure-portálon](https://portal.azure.com), kattintson az App Service >  **&lt;any_app >** > **üzembe helyezési hitelesítő adatok**.
+1. A hello [Azure-portálon](https://portal.azure.com), kattintson az App Service >  **&lt;any_app >** > **üzembe helyezési hitelesítő adatok**.
 
     > [!NOTE]
-    > A portálon rendelkeznie kell legalább egy alkalmazást a központi telepítési hitelesítő adatok panelt elérése előtt. Azonban a a [Azure CLI](app-service-web-app-azure-resource-manager-xplat-cli.md), konfigurálhatja a felhasználói szintű hitelesítő adatok nélkül egy meglévő alkalmazást.
+    > Hello portálon rendelkeznie kell legalább egy alkalmazás eléréséhez hello telepítési hitelesítő adatok panelt. Azonban a hello [Azure CLI](app-service-web-app-azure-resource-manager-xplat-cli.md), konfigurálhatja a felhasználói szintű hitelesítő adatok nélkül egy meglévő alkalmazást.
 
-2. Konfigurálja a felhasználónevet és jelszót, és kattintson **mentése**.
+2. Konfigurálja a hello felhasználónevét és jelszavát, és kattintson **mentése**.
 
     ![](./media/app-service-deployment-credentials/deployment_credentials_configure.png)
 
-Az üzembe helyezési hitelesítő adatok megadása után található a *Git* az alkalmazás központi telepítési felhasználónév **áttekintése**,
+Az üzembe helyezési hitelesítő adatok megadása után hello található *Git* az alkalmazás központi telepítési felhasználónév **áttekintése**,
 
 ![](./media/app-service-deployment-credentials/deployment_credentials_overview.png)
 
@@ -60,36 +60,36 @@ Az üzembe helyezési hitelesítő adatok megadása után található a *Git* az
 ![](./media/app-service-deployment-credentials/deployment_credentials_properties.png)
 
 > [!NOTE]
-> Azure nem jeleníti meg a felhasználói szintű telepítési jelszavát. Ha elfelejti a jelszavát, nem lehet beolvasni. Azonban, alaphelyzetbe állíthatja a hitelesítő adatok ebben a szakaszban ismertetett lépések szerint.
+> Azure nem jeleníti meg a felhasználói szintű telepítési jelszavát. Ha hello jelszavát, nem lehet beolvasni. Azonban, alaphelyzetbe állíthatja a hitelesítő adatok hello ebben a szakaszban ismertetett lépéseket követve.
 >
 >  
 
 ## <a name="appscope"></a>Első és az alkalmazási szintű hitelesítő adatok alaphelyzetbe állítása
-Minden alkalmazás az App Service-ben, az alkalmazási szintű tárolják a hitelesítő adatokat az XML-közzétételi profil.
+Minden alkalmazás az App Service-ben, az alkalmazási szintű tárolt hitelesítő adatok vannak hello XML közzétételi profil.
 
-Az alkalmazási szintű hitelesítő adatainak lekéréséhez:
+tooget hello alkalmazási szintű hitelesítő adatokat:
 
-1. Az a [Azure-portálon](https://portal.azure.com), kattintson az App Service >  **&lt;any_app >** > **áttekintése**.
+1. A hello [Azure-portálon](https://portal.azure.com), kattintson az App Service >  **&lt;any_app >** > **áttekintése**.
 
 2. Kattintson a **... További** > **Get közzétételi profil**, és elindítja a letöltési egy. PublishSettings-fájl.
 
     ![](./media/app-service-deployment-credentials/publish_profile_get.png)
 
-3. Nyissa meg a. PublishSettings fájlt, és keresse a `<publishProfile>` attribútummal rendelkező címke `publishMethod="FTP"`. Ezt követően az beszerzése a `userName` és `password` attribútumok.
-Ezek azok az alkalmazási szintű hitelesítő adatokat.
+3. Nyissa meg hello. PublishSettings fájlt, és megkeresi hello `<publishProfile>` hello attribútummal rendelkező címke `publishMethod="FTP"`. Ezt követően az beszerzése a `userName` és `password` attribútumok.
+Ezek a hello alkalmazási szintű hitelesítő adatokat.
 
     ![](./media/app-service-deployment-credentials/publish_profile_editor.png)
 
-    A felhasználói szintű hitelesítő adatokat hasonló, az FTP telepítési felhasználónév az formátumban `<app_name>\<username>`, és a Git telepítési felhasználónév az imént `<username>` anélkül, hogy az előző `<app_name>\`.
+    Hasonló toohello felhasználói szintű hitelesítő adatokat, hello FTP telepítési felhasználónév hello formátumban kell `<app_name>\<username>`, és csak akkor lesz hello Git telepítési felhasználónév `<username>` nélkül előző hello `<app_name>\`.
 
-Az alkalmazási szintű hitelesítő adatok alaphelyzetbe állítása:
+tooreset hello alkalmazási szintű hitelesítő adatokat:
 
-1. Az a [Azure-portálon](https://portal.azure.com), kattintson az App Service >  **&lt;any_app >** > **áttekintése**.
+1. A hello [Azure-portálon](https://portal.azure.com), kattintson az App Service >  **&lt;any_app >** > **áttekintése**.
 
-2. Kattintson a **... További** > **a közzétételi profil alaphelyzetbe állítása**. Kattintson a **Igen** az alaphelyzetbe állítás megerősítéséhez.
+2. Kattintson a **... További** > **a közzétételi profil alaphelyzetbe állítása**. Kattintson a **Igen** tooconfirm hello alaphelyzetbe állítása.
 
-    A reset művelet érvényteleníti a korábban letöltött. PublishSettings-fájlok.
+    a korábban letöltött hello a reset művelet érvénytelenné válik. PublishSettings-fájlok.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Megtudhatja, hogyan telepítse az alkalmazást a rendszer ezen hitelesítő adatok segítségével [helyi Git](app-service-deploy-local-git.md) vagy [FTP/S](app-service-deploy-ftp.md).
+Megtudhatja, hogyan toouse ezen hitelesítő adatok toodeploy az alkalmazását [helyi Git](app-service-deploy-local-git.md) vagy [FTP/S](app-service-deploy-ftp.md).

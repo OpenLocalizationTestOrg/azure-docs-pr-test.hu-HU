@@ -1,6 +1,6 @@
 ---
-title: "Hive tevékenység - Azure adatok átalakítása |} Microsoft Docs"
-description: "Ismerje meg, hogyan használhatja a Hive tevékenység egy Azure data factoryban a-igény szerint vagy a saját HDInsight-fürtök a Hive-lekérdezések futtatásához."
+title: "Hive tevékenység - Azure aaaTransform adatok |} Microsoft Docs"
+description: "Ismerje meg, hogy használatát egy az Azure data factory toorun Hive-lekérdezéseket a Hive tevékenység hello egy a-igény szerint vagy a saját HDInsight-fürtre."
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: shlo
-ms.openlocfilehash: a3e9b2d0a8c851939acd228d8086ddfc9f38a4c1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 032400cdb8e8f9873f85b811b4ad7380f4410edf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transform-data-using-hive-activity-in-azure-data-factory"></a>Azure Data Factory használatával Hive tevékenység adatok átalakítása 
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -33,10 +33,10 @@ ms.lasthandoff: 07/11/2017
 > * [Data Lake Analytics U-SQL-tevékenység](data-factory-usql-activity.md)
 > * [.NET egyéni tevékenység](data-factory-use-custom-activities.md)
 
-A HDInsight Hive tevékenység egy adat-előállítóban [csővezeték](data-factory-create-pipelines.md) Hive-lekérdezések végrehajtása a [saját](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) vagy [igény szerinti](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) Windows/Linux-alapú HDInsight-fürthöz. Ez a cikk épít, a [adatok átalakítása tevékenységek](data-factory-data-transformation-activities.md) cikk, amelynek során az adatok átalakítása és a támogatott átalakítása tevékenységek általános áttekintést.
+HDInsight Hive tevékenység egy adat-előállítóban hello [csővezeték](data-factory-create-pipelines.md) Hive-lekérdezések végrehajtása a [saját](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) vagy [igény](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) Windows/Linux-alapú HDInsight-fürthöz. Ez a cikk épít, hello [adatok átalakítása tevékenységek](data-factory-data-transformation-activities.md) cikk, amelynek során az adatok átalakítása és hello támogatott átalakítása tevékenységek általános áttekintést.
 
 > [!NOTE] 
-> Ha most ismerkedik az Azure Data Factory, olvassa végig [Bevezetés az Azure Data Factory](data-factory-introduction.md) hajtsa végre az oktatóanyag: [felépítheti első folyamatát adatok](data-factory-build-your-first-pipeline.md) a cikk elolvasása előtt. 
+> Ha új tooAzure adat-előállítót, olvassa végig [Data Factory bemutatása tooAzure](data-factory-introduction.md) és hello oktatóanyag: [felépítheti első folyamatát adatok](data-factory-build-your-first-pipeline.md) a cikk elolvasása előtt. 
 
 ## <a name="syntax"></a>Szintaxis
 
@@ -72,20 +72,20 @@ A HDInsight Hive tevékenység egy adat-előállítóban [csővezeték](data-fac
 ## <a name="syntax-details"></a>Szintaxis részletei
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| név |A tevékenység neve. |Igen |
-| Leírás |Mire használható a tevékenységet leíró szöveg |Nem |
+| név |Hello tevékenység neve. |Igen |
+| leírás |Milyen hello tevékenységgel a leíró szöveg |Nem |
 | type |HDinsightHive |Igen |
-| Bemenetek |A Hive tevékenység által felhasznált bemeneti |Nem |
-| kimenetek |A Hive tevékenység által létrehozott kimenet |Igen |
-| linkedServiceName |A HDInsight-fürthöz, a Data Factory kapcsolt szolgáltatásként regisztrált mutató hivatkozás |Igen |
-| Parancsfájl |Adja meg a Hive parancsfájl beágyazott |Nem |
-| parancsfájl elérési útja |A Hive-parancsfájl az Azure blob Storage tárolóban tárolja, és adja meg a fájl elérési útját. Használja a "script" vagy "scriptPath" tulajdonságot. Mindkettő nem használható együtt. A fájlnév pedig kis-és nagybetűket. |Nem |
-| határozza meg |Kulcs/érték párok paraméterek meghatározni a Hive-parancsfájl segítségével történő "hiveconf" belül hivatkozik |Nem |
+| Bemenetek |Hello Hive tevékenység által felhasznált bemeneti |Nem |
+| kimenetek |Hello Hive tevékenység által létrehozott kimenet |Igen |
+| linkedServiceName |A Data Factory kapcsolt szolgáltatásként regisztrált hivatkozás toohello HDInsight-fürt |Igen |
+| Parancsfájl |Adja meg a hello Hive parancsfájl beágyazott |Nem |
+| parancsfájl elérési útja |Tároló hello Hive parancsprogram egy Azure blob Storage tárolóban, és adja meg a hello elérési toohello fájlt. Használja a "script" vagy "scriptPath" tulajdonságot. Mindkettő nem használható együtt. hello fájlnév a kis-és nagybetűket. |Nem |
+| határozza meg |Kulcs/érték párok paraméterek meghatározni belül hello Hive parancsfájl segítségével történő "hiveconf" hivatkozik |Nem |
 
 ## <a name="example"></a>Példa
-Mérlegeljük, elemzés, ahol szeretné azonosítani a vállalat által elindított játékok felhasználók fordított idő játék naplók példát. 
+Mérlegeljük, játék például elemzés, ahol azt szeretné, hogy a felhasználók a vállalat által elindított játékok tooidentify hello idő naplózza. 
 
-A következő naplóban minta játék napló, amely vessző (`,`) elválasztva, és a következő mezőket – ProfileID, SessionStart, időtartam, SrcIPAddress és GameType tartalmazza.
+hello következő log utasítás minta játék napló, amely vessző (`,`) elválasztva, és a következő mezők – ProfileID, SessionStart, időtartam, SrcIPAddress és GameType hello tartalmazza.
 
 ```
 1809,2014-05-04 12:04:25.3470000,14,221.117.223.75,CaptureFlag
@@ -95,7 +95,7 @@ A következő naplóban minta játék napló, amely vessző (`,`) elválasztva, 
 .....
 ```
 
-A **Hive parancsprogram** feldolgozni az adatokat:
+Hello **Hive parancsprogram** tooprocess ezeket az adatokat:
 
 ```
 DROP TABLE IF EXISTS HiveSampleIn; 
@@ -122,18 +122,18 @@ Select
 FROM HiveSampleIn Group by ProfileID
 ```
 
-A Hive parancsprogram végrehajtása a Data Factory-folyamathoz, tegye a következőket kell
+a Hive parancsfájl a Data Factory-folyamathoz tooexecute, következőkre lesz szüksége toodo hello
 
-1. Hozzon létre egy kapcsolódó szolgáltatás regisztrálása [saját HDInsight számítási fürt](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) vagy konfigurálása [igény szerinti HDInsight-fürt](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service). Most hívható "HDInsightLinkedService" szolgáltatásnak.
-2. Hozzon létre egy [társított szolgáltatás](data-factory-azure-blob-connector.md) üzemeltető Azure Blob Storage a kapcsolat beállításához. Most a szolgáltatásnak "StorageLinkedService" hívása
-3. Hozzon létre [adatkészletek](data-factory-create-datasets.md) mutat a bemeneti és kimeneti adatokat. Most hívható meg a bemeneti adatkészlet "HiveSampleIn" és "HiveSampleOut" kimeneti adatkészlet
-4. Másolás a Hive-lekérdezést az Azure Blob Storage-fájlként #2. lépésben konfigurált. Ha az adatok tárolásához a tároló eltér a lekérdezés fájlt, hozzon létre egy külön Azure Storage társított szolgáltatást, és a tevékenység hivatkozik rá. Használjon ** scriptPath ** a hive lekérdezés fájljának elérési útja és **scriptLinkedService** adhatja meg, amely tartalmazza a parancsfájl az Azure storage. 
+1. Hozzon létre egy kapcsolódó szolgáltatás tooregister [saját HDInsight számítási fürt](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) vagy konfigurálása [igény szerinti HDInsight-fürt](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service). Most hívható "HDInsightLinkedService" szolgáltatásnak.
+2. Hozzon létre egy [társított szolgáltatás](data-factory-azure-blob-connector.md) tooconfigure hello kapcsolat tooAzure a Blob storage hello adatok üzemeltetéséhez. Most a szolgáltatásnak "StorageLinkedService" hívása
+3. Hozzon létre [adatkészletek](data-factory-create-datasets.md) toohello bemeneti és a hello mutató kimeneti adatokat. Most hívás hello bemeneti adatkészletéből "HiveSampleIn" és a kimeneti adatkészlet "HiveSampleOut" hello
+4. A fájl tooAzure #2. lépésben beállított Blob Storage hello Hive-lekérdezések másolni. Ha hello tárolási hello adatok tárolásához nem hello egyet a lekérdezés fájlt, hozzon létre egy külön Azure tárolás társított szolgáltatása, és tekintse meg a tooit hello tevékenység. Használjon ** scriptPath ** toospecify hello elérési toohive lekérdezésfájl és **scriptLinkedService** toospecify hello hello parancsfájlt tartalmazó az Azure storage. 
    
    > [!NOTE]
-   > A Hive parancsfájl beágyazottan történjen-e a tevékenység definíciójának használatával is megadhatja a **parancsfájl** tulajdonság. A Microsoft nem javasolja ezt a módszert használja, a parancsfájl belül a JSON-dokumentum kell kell megjelölni a speciális karaktereket, és hibakeresési hibákat okozhat. A bevált gyakorlat követéséhez #4. lépés.
+   > Hello Hive parancsfájl beágyazott hello tevékenységdefinícióban hello használatával is megadhatja **parancsfájl** tulajdonság. Nem ajánlott ennek a megközelítésnek speciális karaktereket hello parancsfájlban hello JSON-dokumentum belül kell toobe escape-karakterrel megjelölve, és előfordulhat, hogy OK hibáinak feltárására. hello ajánlott toofollow #4. lépés.
    > 
    > 
-5. Hozzon létre egy folyamatot a HDInsightHive tevékenység. A tevékenység folyamatok/átalakítások az adatokat.
+5. Hozzon létre egy folyamatot hello HDInsightHive tevékenység. hello tevékenység folyamatok/átalakítások hello adatokat.
 
     ```JSON   
     {   
@@ -167,15 +167,15 @@ A Hive parancsprogram végrehajtása a Data Factory-folyamathoz, tegye a követk
         }
     }
     ```
-6. Az adatcsatornát. Lásd: [folyamatok létrehozása](data-factory-create-pipelines.md) cikkben alább. 
-7. A data factory kiszolgálófigyelési és -kezelési nézetek segítségével folyamat figyelésére. Lásd: [figyelése és kezelése az adat-előállító adatcsatornák](data-factory-monitor-manage-pipelines.md) cikkben alább. 
+6. Hello adatcsatornát. Lásd: [folyamatok létrehozása](data-factory-create-pipelines.md) cikkben alább. 
+7. Hello data factory-figyelés használatával hello pipeline és kezelési nézetek figyelése. Lásd: [figyelése és kezelése az adat-előállító adatcsatornák](data-factory-monitor-manage-pipelines.md) cikkben alább. 
 
 ## <a name="specifying-parameters-for-a-hive-script"></a>A Hive parancsprogram paramétereinek megadása
-Ebben a példában játék naplók az Azure Blob Storage naponta okozhatnak, és egy dátum és idő tárolóhelyeinek mappába kerülnek. Szeretné parametrizálja a Hive-parancsfájl és futásidőben dinamikusan adja át a bemeneti mappa helyét és a kimeneti dátum és idő tárolóhelyeinek is készít.
+Ebben a példában játék naplók az Azure Blob Storage naponta okozhatnak, és egy dátum és idő tárolóhelyeinek mappába kerülnek. Szeretné, hogy tooparameterize hello Hive parancsfájlok és a futásidőben dinamikusan adja át a hello bemeneti mappájának helye és hello kimeneti dátum és idő tárolóhelyeinek is készít.
 
-A paraméteres Hive parancsfájl használatára, tegye a következőket
+toouse paraméteres Hive parancsfájlokat, hajtsa végre a következő hello
 
-* Adja meg a paramétereket a **meghatározása**.
+* A hello paramétereit **meghatározása**.
 
     ```JSON  
     {
@@ -213,7 +213,7 @@ A paraméteres Hive parancsfájl használatára, tegye a következőket
       }
     }
     ```
-* A Hive parancsfájl tekintse meg a paraméter használatával **${hiveconf:parameterName}**. 
+* A Hive parancsfájl hello, tekintse meg a toohello paraméter használatával **${hiveconf:parameterName}**. 
   
     ```
     DROP TABLE IF EXISTS HiveSampleIn; 

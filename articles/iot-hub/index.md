@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT Hub dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Ismerje meg, hogyan csatlakoztathatja, figyelheti és irányíthatja az eszközök internetes hálózatához (IoT) csatlakozó eszközök millióit az IoT Hub használatával. Oktatóanyagok, API-referenciák, videók és egyéb dokumentáció."
+title: "IoT Hub-dokumentáció – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse IoT-központ tooconnect figyelése és az eszközök internetes hálózatát eszközök milliárd szabályozzák. Oktatóanyagok, API-referenciák, videók és egyéb dokumentáció."
 services: iot-hub
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: d42045b1c354b7bd5f9299181aefd6d98fda382b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b4d9e66dad55417cff6b9252379cf7265fb542fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="iot-hub-documentation"></a>IoT Hub – dokumentáció 
 
-Ismerje meg, hogyan csatlakoztathatja, figyelheti és irányíthatja az eszközök internetes hálózatához (IoT) csatlakozó eszközök millióit az IoT Hub használatával. Oktatóanyagok, API-referenciák, videók és egyéb dokumentációk segítik az IoT-eszközök és -megoldások közötti megbízható és kétirányú kommunikáció kialakítását. 
+Ismerje meg, hogyan toouse IoT-központ tooconnect figyelése és az eszközök internetes hálózatát eszközök milliárd szabályozzák. Oktatóanyagok, API-referenciák, videók és egyéb dokumentációk segítik az IoT-eszközök és -megoldások közötti megbízható és kétirányú kommunikáció kialakítását. 
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -106,7 +106,7 @@ Ismerje meg, hogyan csatlakoztathatja, figyelheti és irányíthatja az eszköz�
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>A fejlesztői útmutató elolvasása</h3>
+                        <h3>Olvasási hello fejlesztői útmutató</h3>
                     </div>
                 </div>
             </div>

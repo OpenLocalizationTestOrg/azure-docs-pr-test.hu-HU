@@ -1,6 +1,6 @@
 ---
-title: "Apache Cordova beépülő modul használata az Azure Mobile Apps szolgáltatásban"
-description: "Apache Cordova beépülő modul használata az Azure Mobile Apps szolgáltatásban"
+title: "Apache Cordova beépülő modul az Azure Mobile Apps aaaHow tooUse"
+description: "Hogyan tooUse Apache Cordova beépülő modul Azure Mobile Apps-alkalmazáshoz"
 services: app-service\mobile
 documentationcenter: javascript
 author: ggailey777
@@ -14,19 +14,19 @@ ms.devlang: javascript
 ms.topic: article
 ms.date: 10/30/2016
 ms.author: glenga
-ms.openlocfilehash: ebf0e911eeada0e529f908dd3e3430c94edae763
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d3e0639e6478c409132af25304a2fb0f28401e98
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-apache-cordova-client-library-for-azure-mobile-apps"></a>Az Azure Mobile Apps Apache Cordova ügyféloldali kódtár használata
+# <a name="how-toouse-apache-cordova-client-library-for-azure-mobile-apps"></a>Hogyan toouse Apache Cordova ügyféloldali kódtár Azure Mobile Apps-alkalmazáshoz
 [!INCLUDE [app-service-mobile-selector-client-library](../../includes/app-service-mobile-selector-client-library.md)]
 
-Ez az útmutató útmutatást ad teszi a végrehajtását szolgáltatást a legújabb használó általános forgatókönyvhöz [Apache Cordova beépülő modul az Azure Mobile Apps]. Ha most ismerkedik az Azure Mobile Apps, először végezzen [Azure Mobile Apps gyors üzembe helyezés] -háttéralkalmazás létrehozása, hozzon létre egy táblát, és egy előre elkészített Apache Cordova-projekt letöltése. Az útmutató azt összpontosítanak az ügyféloldali Apache Cordova beépülő modul is.
+Ez az útmutató útmutatást ad, hogy tooperform szolgáltatást használó általános forgatókönyvhöz hello legújabb [Apache Cordova beépülő modul az Azure Mobile Apps]. Ha új tooAzure Mobile Apps, először végezzen [Azure Mobile Apps gyors üzembe helyezés] toocreate egy háttér, hozzon létre egy táblát, és egy előre elkészített Apache Cordova-projekt letöltése. Az útmutató azt összpontosítani hello ügyféloldali Apache Cordova beépülő modul.
 
 ## <a name="supported-platforms"></a>A támogatott platformok
-Ez az SDK támogatja az Apache Cordova v6.0.0 és későbbi iOS, Android és Windows eszközökhöz.  A platform támogatása a következőképpen történik:
+Ez az SDK támogatja az Apache Cordova v6.0.0 és későbbi iOS, Android és Windows eszközökhöz.  hello eszközplatform-támogatás a következőképpen történik:
 
 * Android API 19-24 (KitKat nugát keresztül).
 * iOS 8.0-s és újabb verziók.
@@ -34,7 +34,7 @@ Ez az SDK támogatja az Apache Cordova v6.0.0 és későbbi iOS, Android és Win
 * Az univerzális Windows Platform.
 
 ## <a name="Setup"></a>A telepítő és Előfeltételek
-Ez az útmutató feltételezi, hogy létrehozott egy táblát a háttérkiszolgálón. Ez az útmutató feltételezi, hogy rendelkezik-e a tábla a táblák ugyanazon séma ezen oktatóprogram a. Ez az útmutató feltételezi, hogy hozzáadta az Apache Cordova beépülő modul a kódot.  Ha nem tette, előfordulhat, hogy adja hozzá az Apache Cordova beépülő modul a projekthez a parancssorban:
+Ez az útmutató feltételezi, hogy létrehozott egy táblát a háttérkiszolgálón. Ez az útmutató feltételezi, hogy hello táblához hello hello táblák ezen oktatóprogram az azonos sémából. Ez az útmutató feltételezi hozzáadásának hello Apache Cordova beépülő modul tooyour kódot.  Ha nem tette, bővítheti hello Apache Cordova beépülő modul tooyour projekt hello parancssorban:
 
 ```
 cordova plugin add cordova-plugin-ms-azure-mobile-apps
@@ -44,7 +44,7 @@ További létrehozásával kapcsolatos információkat [az első Apache Cordova-
 
 ## <a name="ionic"></a>Ionos v2 alkalmazás beállítása
 
-Megfelelően konfigurálni ionos v2 projektben, hozzon létre egy alapszintű alkalmazást, majd adja hozzá a Cordova beépülő modul:
+tooproperly ionos v2-projekt konfigurálása, hozzon létre egy alapszintű alkalmazást, majd hello Cordova beépülő modul hozzáadása:
 
 ```
 ionic start projectName --v2
@@ -52,78 +52,78 @@ cd projectName
 ionic plugin add cordova-plugin-ms-azure-mobile-apps
 ```
 
-Adja hozzá a következő sorokat `app.component.ts` az ügyfél objektum létrehozásához:
+Adja hozzá az alábbi túl hello`app.component.ts` toocreate hello objektumot:
 
 ```
 declare var WindowsAzure: any;
 var client = new WindowsAzure.MobileServiceClient("https://yoursite.azurewebsites.net");
 ```
 
-Most már létrehozhatja és a projekt futtatását a böngészőben:
+Most már létrehozhatja és futtatását hello projekt hello böngészőben:
 
 ```
 ionic platform add browser
 ionic run browser
 ```
 
-Az Azure Mobile Apps Cordova beépülő modul mindkét ionos v1 és v2 alkalmazásokat támogatja.  Csak az ionos v2 alkalmazásokhoz szükséges további deklaráció található a `WindowsAzure` objektum.
+hello Azure Mobile Apps Cordova beépülő modul mindkét ionos v1 és v2 alkalmazásokat támogatja.  Csak hello ionos v2 alkalmazások a kiegészítő nyilatkozat kérése hello `WindowsAzure` objektum.
 
 [!INCLUDE [app-service-mobile-html-js-library.md](../../includes/app-service-mobile-html-js-library.md)]
 
 ## <a name="auth"></a>Hogyan: hitelesíti a felhasználókat
-Az Azure App Service támogat hitelesítése és engedélyezése a felhasználók alkalmazás különböző külső Identitásszolgáltatók: Facebook, Google, a Microsoft Account és Twitter. A engedélyeket korlátozhatja a hozzáférést a megadott művelet csak a hitelesített felhasználók táblákon. Hitelesített felhasználók identitásának használhatja, ha az engedélyezési szabályok megvalósítását a kiszolgáló parancsfájlokat. További információkért lásd: a [Bevezetés a hitelesítés használatába] oktatóanyag.
+Az Azure App Service támogat hitelesítése és engedélyezése a felhasználók alkalmazás különböző külső Identitásszolgáltatók: Facebook, Google, a Microsoft Account és Twitter. Beállíthatja engedélyeit a táblák toorestrict hozzáférési megadott műveletek tooonly hitelesített felhasználók. Használhatja a hitelesített felhasználók tooimplement az engedélyezési szabályok hello identitás server parancsfájlokban. További információkért lásd: hello [Bevezetés a hitelesítés használatába] oktatóanyag.
 
-Ha hitelesítési Apache Cordova-alkalmazást használ, a következő Cordova beépülő modulok elérhetőnek kell lennie:
+Ha hitelesítési Apache Cordova-alkalmazást használ, a következő Cordova beépülő modulok hello elérhetőnek kell lennie:
 
 * [cordova-beépülőmodul-eszköz]
 * [cordova-beépülőmodul-inappbrowser]
 
-Két hitelesítési forgalom támogatottak: a kiszolgáló folyamata és egy ügyfél folyamatában.  A kiszolgáló folyamata nyújt a legegyszerűbb felhasználói hitelesítés, a szolgáltató webes hitelesítés felület támaszkodnak. Az ügyféltanúsítvány-folyamat lehetővé teszi, hogy szorosabb integrációt eszközspecifikus képességeket például single-sign-on, szolgáltatói eszközspecifikus SDK-k támaszkodnak az.
+Két hitelesítési forgalom támogatottak: a kiszolgáló folyamata és egy ügyfél folyamatában.  hello kiszolgáló folyamata nyújt hello legegyszerűbb hitelesítési élmény hello szolgáltató webes hitelesítés felület támaszkodnak. hello ügyfél folyamata lehetővé teszi, hogy szorosabb integrációt eszközspecifikus képességeket például single-sign-on, szolgáltatói eszközspecifikus SDK-k támaszkodnak az.
 
 [!INCLUDE [app-service-mobile-html-js-auth-library.md](../../includes/app-service-mobile-html-js-auth-library.md)]
 
 ### <a name="configure-external-redirect-urls"></a>Útmutató: a Mobile App Service konfigurálása külső átirányítási URL-címeket.
-Az Apache Cordova-alkalmazások számos különböző egy visszacsatolási funkció segítségével OAuth UI-forgalom kezelésére.  OAuth UI adatfolyamok – localhost problémákat okozhat, mert a hitelesítési szolgáltatás csak tudja, hol használják a szolgáltatás alapértelmezés szerint.  Hibás OAuth UI flow például a következők:
+Az Apache Cordova-alkalmazások számos különböző használja egy visszacsatolási funkció toohandle OAuth UI zajlik.  A localhost OAuth UI-adatfolyamok miatt a problémák, mivel az hello hitelesítési szolgáltatás csak hogyan tooutilize a szolgáltatás alapértelmezés szerint.  Hibás OAuth UI flow például a következők:
 
-* A Fodrozás emulátor.
+* hello Fodrozás emulátor.
 * Élő rendelkező ionos be újra.
-* A mobil-háttéralkalmazást helyileg futó
-* A mobil-háttéralkalmazást fut egy másik Azure App Service, mint a egy olyan hitelesítési.
+* Hello mobil-háttéralkalmazást helyileg futó
+* Egy másik Azure App Service, mint egy olyan hitelesítési hello hello mobil-háttéralkalmazást fut.
 
-Kövesse ezeket az utasításokat a helyi beállításokat hozzáadni a konfigurációhoz:
+Kövesse ezeket az utasításokat tooadd a helyi toohello beállításokat:
 
-1. Jelentkezzen be az [Azure Portalra]
-2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson a mobilalkalmazás nevére.
+1. Jelentkezzen be toohello [Azure-portálon]
+2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson a mobilalkalmazás hello nevére.
 3. Kattintson a **eszközök**
-4. Kattintson a **erőforrás-kezelő** OBSERVE menüben kattintson a **Ugrás**.  Megnyílik egy új ablakot vagy lapot.
-5. Bontsa ki a **config**, **authsettings** a helyhez, a bal oldali navigációs csomópontok.
+4. Kattintson a **erőforrás-kezelő** hello OBSERVE menüben, majd kattintson a **Ugrás**.  Megnyílik egy új ablakot vagy lapot.
+5. Bontsa ki a hello **config**, **authsettings** a hely hello bal oldali navigációs csomópontok.
 6. Kattintson a **szerkesztése**
-7. Keresse meg a "allowedExternalRedirectUrls" elemet.  NULL értékű vagy egy tömböt is beállítható.  Módosítsa az értéket a következő értéket:
+7. Keresse meg hello "allowedExternalRedirectUrls" elemet.  Toonull vagy egy tömböt is beállítható.  A következő érték hello érték toohello módosítása:
 
          "allowedExternalRedirectUrls": [
              "http://localhost:3000",
              "https://localhost:3000"
          ],
 
-    Cserélje le az URL-címeket a szolgáltatás URL-címei.  Például a "http://localhost: 3000" (a Node.js sample szolgáltatás), vagy "http://localhost:4400" (a Fodrozás szolgáltatás).  Azonban ezen URL-címei, példák - a helyzet, beleértve a szolgáltatások a példákban eltérő lehet.
-8. Kattintson a **olvasási/írási** gombra a képernyő jobb felső sarkában.
-9. Kattintson a zöld **PUT** gombra.
+    Cserélje le a szolgáltatás URL-címei hello hello URL-címeket.  Például "http://localhost: 3000" (a hello Node.js sample szolgáltatás), vagy "http://localhost:4400" (a hello Fodrozás szolgáltatás).  Azonban ezen URL-címei, példák - hello szolgáltatások említett hello példák, beleértve a helyzetnek eltérő lehet.
+8. Kattintson a hello **olvasási/írási** hello képernyő jobb felső sarkában hello gombra.
+9. Kattintson a zöld hello **PUT** gombra.
 
-A beállítások mentése ezen a ponton.  Ne zárja be a böngészőablakot amíg tart a beállítások mentése.
-Ezek visszacsatolási URL-címeket is hozzá az App Service CORS-beállítások:
+hello-beállítások mentése ezen a ponton.  Ne zárja be az hello böngészőablakban amíg tart hello-beállítások mentése.
+Ezek visszacsatolási URL-címek toohello CORS-beállítások az App Service is hozzáadhat:
 
-1. Jelentkezzen be az [Azure Portalra]
-2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson a mobilalkalmazás nevére.
-3. A beállítások panelről automatikusan megnyílik.  Ha nem, kattintson a gombra **összes beállítás**.
-4. Kattintson a **CORS** az API menüjében.
-5. A mezőbe a felvenni kívánt URL-cím megadva, és nyomja le az Enter billentyűt.
+1. Jelentkezzen be toohello [Azure-portálon]
+2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson a mobilalkalmazás hello nevére.
+3. hello-beállítások panel automatikusan megnyílik.  Ha nem, kattintson a gombra **összes beállítás**.
+4. Kattintson a **CORS** hello API menüjében.
+5. Meg kívánja hello mezőben megadott tooadd hello URL-címet, és nyomja le az ENTER billentyűt.
 6. Adja meg a további URL-címek, szükség szerint.
-7. Kattintson a **mentése** menti a beállításokat.
+7. Kattintson a **mentése** toosave hello beállításait.
 
-Körülbelül 10 – 15 másodperc az új beállítások érvénybe léptetéséhez vesz igénybe.
+Hello új beállítások tootake hatás körülbelül 10 – 15 másodpercre vesz igénybe.
 
 ## <a name="register-for-push"></a>Útmutató: a leküldéses értesítések regisztrálása
-Telepítse a [phonegap-beépülőmodul-leküldéses] leküldéses értesítések kezeléséhez.  A beépülő modul könnyen segítségével adhatók a `cordova plugin add` parancsot a parancssorban, vagy a Git beépülő modul telepítő Visual Studio segítségével.  A következő kódot az Apache Cordova-alkalmazás regisztrálja az eszközt a leküldéses értesítések:
+Telepítse a hello [phonegap-beépülőmodul-leküldéses] toohandle leküldéses értesítéseket.  A beépülő modul könnyen segítségével adhatók a `cordova plugin add` parancsot a parancssorban hello, vagy hello Git beépülő modul telepítő Visual Studio segítségével.  A következő kódot az Apache Cordova-alkalmazás regisztrálja az eszközt a leküldéses értesítések:
 
 ```
 var pushOptions = {
@@ -142,8 +142,8 @@ pushHandler = PushNotification.init(pushOptions);
 
 pushHandler.on('registration', function (data) {
     registrationId = data.registrationId;
-    // For cross-platform, you can use the device plugin to determine the device
-    // Best is to use device.platform
+    // For cross-platform, you can use hello device plugin toodetermine hello device
+    // Best is toouse device.platform
     var name = 'gcm'; // For android - default
     if (device.platform.toLowerCase() === 'ios')
         name = 'apns';
@@ -153,7 +153,7 @@ pushHandler.on('registration', function (data) {
 });
 
 pushHandler.on('notification', function (data) {
-    // data is an object and is whatever is sent by the PNS - check the format
+    // data is an object and is whatever is sent by hello PNS - check hello format
     // for your particular PNS
 });
 
@@ -162,17 +162,17 @@ pushHandler.on('error', function (error) {
 });
 ```
 
-A Notification Hubs SDK használatával leküldéses értesítéseket küldeni a kiszolgálóról.  Soha ne küldjön leküldéses értesítéseket közvetlenül az ügyfelektől. Ezzel a szolgáltatásmegtagadási támadások elleni Notification hubs használatával vagy a pns-sel való is használható.  A pns-sel sikerült bA a forgalom miatt az ilyen támadásokat.
+Hello Notification Hubs SDK toosend leküldéses értesítések hello kiszolgálóról használja.  Soha ne küldjön leküldéses értesítéseket közvetlenül az ügyfelektől. Ez így használt tootrigger egy szolgáltatásmegtagadási támadások elleni Notification Hubs vagy hello PNS.  hello PNS sikerült bA a forgalom miatt az ilyen támadásokat.
 
 ## <a name="more-information"></a>További információ
 
 A részletes API részletei a [API-JÁNAK dokumentációja](http://azure.github.io/azure-mobile-apps-js-client/).
 
 <!-- URLs. -->
-[Azure Portalra]: https://portal.azure.com
+[Azure-portálon]: https://portal.azure.com
 [Azure Mobile Apps gyors üzembe helyezés]: app-service-mobile-cordova-get-started.md
 [Bevezetés a hitelesítés használatába]: app-service-mobile-cordova-get-started-users.md
-[Add authentication to your app]: app-service-mobile-cordova-get-started-users.md
+[Add authentication tooyour app]: app-service-mobile-cordova-get-started-users.md
 
 [Apache Cordova beépülő modul az Azure Mobile Apps]: https://www.npmjs.com/package/cordova-plugin-ms-azure-mobile-apps
 [az első Apache Cordova-alkalmazás]: http://cordova.apache.org/#getstarted

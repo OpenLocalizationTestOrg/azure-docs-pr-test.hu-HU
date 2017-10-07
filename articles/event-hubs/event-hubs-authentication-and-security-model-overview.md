@@ -1,5 +1,5 @@
 ---
-title: "Azure Event Hubs-hitelesítés és a biztonsági modell áttekintése |} Microsoft Docs"
+title: "Azure Event Hubs-hitelesítés és a biztonsági modell aaaOverview |} Microsoft Docs"
 description: "Event Hubs hitelesítés és a biztonsági modell – áttekintés."
 services: event-hubs
 documentationcenter: na
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: sethm;clemensv
-ms.openlocfilehash: 5abdbf70d4fdb2c7feb0f3537ecc0f2abf0775a0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e57ccda33e5ee20e635487cf91d9e8af594d3bd7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-hubs-authentication-and-security-model-overview"></a>Event Hubs hitelesítés és a biztonsági modell – áttekintés
-Az Azure Event Hubs biztonsági modell megfelel-e a következő követelményeknek:
+hello Azure Event Hubs biztonsági modell megfelel a követelményeknek hello:
 
-* Csak ügyfeleket, hogy érvényes hitelesítő adatokat küldhet egy eseményközpontba.
+* Csak olyan ügyfeleket, hogy érvényes hitelesítő adatokat küldhet adatokat tooan eseményközpont.
 * Egy ügyfél egy másik ügyfél nem tudja megszemélyesíteni.
-* Egy támadó ügyfelet is letiltja a adatok küldése az eseményközpontba.
+* Egy támadó ügyfelet blokkolható tooan eseményközpont adatok elküldését.
 
 ## <a name="client-authentication"></a>Ügyfél-hitelesítés
-Az Event Hubs biztonsági modell kombinációja alapján [közös hozzáférésű Jogosultságkód (SAS)](../service-bus-messaging/service-bus-sas.md) jogkivonatok és *esemény-közzétevők*. Egy esemény-közzétevő határozza meg egy virtuális végpont az eseményközpontban. A közzétevő csak használható küldhet üzeneteket az eseményközpontba. Nincs lehetőség a közzétevők érkező üzenetek fogadására.
+hello Event Hubs biztonsági modell kombinációja alapján [közös hozzáférésű Jogosultságkód (SAS)](../service-bus-messaging/service-bus-sas.md) jogkivonatok és *esemény-közzétevők*. Egy esemény-közzétevő határozza meg egy virtuális végpont az eseményközpontban. hello publisher használt toosend üzenetek tooan eseményközpont csak lehet. Már nem lehetséges tooreceive üzeneteit közzétevő.
 
-Az eseményközpontok általában egy publisher ügyfelenként funkcióit használja. Az eseményközpontok a közzétevők bármelyikét küldött összes üzenet a várólistában levő adott eseményközpont belül. Közzétevők részletes hozzáférés-vezérlés és a szabályozás engedélyezéséhez.
+Az eseményközpontok általában egy publisher ügyfelenként funkcióit használja. Hello közzétevők az event hubs tooany küldött összes üzenet a várólistában levő adott eseményközpont belül. Közzétevők részletes hozzáférés-vezérlés és a szabályozás engedélyezéséhez.
 
-Minden Event Hubs-ügyfél hozzá van rendelve egy egyedi jogkivonatot, amely az ügyfél feltöltődött. A jogkivonatok úgy, hogy mindegyik egyedi token engedélyezi a hozzáférést egy másik egyedi publisher előállítása. Ügyfél, amely rendelkezik egy token csak egy publisher, de nincs más publisher küldhet. Több ügyfelek osztják meg ugyanezt a tokent, ha azok a közzétevők osztja ki.
+Minden Event Hubs-ügyfél hozzá van rendelve egy egyedi jogkivonatot, amely a feltöltött toohello ügyfél. hello jogkivonatok úgy, hogy minden egyedi jogkivonatot biztosít hozzáférést tooa különböző egyedi publisher előállítása. Ügyfél, amely rendelkezik egy token csak küldhet tooone publisher, de nincs más közzétevő. Ha több ügyfelek megosztás hello azonos jogkivonatot, majd azok osztja meg a gyártót.
 
-Bár nem javasolt, akkor lehet jogkivonatokkal eseményközpontokba való közvetlen hozzáférést biztosító eszközök ellátására. Minden olyan eszköz, amely tárolja Ez a token közvetlenül az adott eseményközpont küldhet üzeneteket. Ilyen eszköz sávszélesség-szabályozás nem függvénye. Továbbá az eszköz nem lehet feketelistára teszi, az adott eseményközpont küld.
+Bár nem javasolt, továbbra is lehetséges tooequip eszközök jogkivonatokkal, amely közvetlen hozzáférést tooan eseményközpont adja meg. Minden olyan eszköz, amely tárolja Ez a token közvetlenül az adott eseményközpont küldhet üzeneteket. Ilyen eszköz nem lesz tulajdonos toothrottling. Ezenkívül hello eszköz nem lehet feketelistára teszi, a küldő toothat eseményközpont.
 
-Összes jogkivonatot egy SAS-kulcs van aláírva. Általában minden jogkivonatok aláírt ugyanazzal a kulccsal. Az ügyfelek nem ismerik a kulcsot. Ez megakadályozza, hogy más ügyfelekkel gyártási jogkivonatokat.
+Összes jogkivonatot egy SAS-kulcs van aláírva. Általában minden jogkivonatok aláírva hello ugyanazzal a kulccsal. Az ügyfelek nem ismerik hello kulcsot. Ez megakadályozza, hogy más ügyfelekkel gyártási jogkivonatokat.
 
-### <a name="create-the-sas-key"></a>A SAS-kulcs létrehozása
+### <a name="create-hello-sas-key"></a>Hello SAS-kulcs létrehozása
 
-Az Event Hubs névtér létrehozása, ha a szolgáltatás állít elő, 256 bites SAS-kulcs nevű **RootManageSharedAccessKey**. A kulcs biztosít küldése, figyelésére és a névtérhez jogosultságaik kezelését. További kulcsok is létrehozhat. Javasoljuk, hogy a egy kulcs, küldjön engedélyeket biztosít az adott event hubs eredményez. Ez a témakör hátralévő, feltételezzük, hogy ez a kulcs elnevezett **EventHubSendKey**.
+Az Event Hubs névtér létrehozásakor hello szolgáltatás állít elő, 256 bites SAS-kulcs nevű **RootManageSharedAccessKey**. A kulcs biztosít küldeni, figyelésére és jogok toohello névtér kezelésére. További kulcsok is létrehozhat. Javasoljuk, hogy a egy kulcs, biztosít küldjön engedélyek toohello adott eseményközpont eredményez. Ez a témakör hátralévő hello, feltételezzük, hogy ez a kulcs elnevezett **EventHubSendKey**.
 
-Az alábbi példa létrehoz egy csak küldési kulcsot, az eseményközpont létrehozásakor:
+a következő példa hello egy csak küldési kulcsot hoz létre, hello eseményközpont létrehozásakor:
 
 ```csharp
 // Create namespace manager.
@@ -53,7 +53,7 @@ Uri uri = ServiceBusEnvironment.CreateServiceUri("sb", serviceNamespace, string.
 TokenProvider td = TokenProvider.CreateSharedAccessSignatureTokenProvider(namespaceManageKeyName, namespaceManageKey);
 NamespaceManager nm = new NamespaceManager(namespaceUri, namespaceManageTokenProvider);
 
-// Create event hub with a SAS rule that enables sending to that event hub
+// Create event hub with a SAS rule that enables sending toothat event hub
 EventHubDescription ed = new EventHubDescription("MY_EVENT_HUB") { PartitionCount = 32 };
 string eventHubSendKeyName = "EventHubSendKey";
 string eventHubSendKey = SharedAccessAuthorizationRule.GenerateRandomKey();
@@ -64,46 +64,46 @@ nm.CreateEventHub(ed);
 
 ### <a name="generate-tokens"></a>Rendszer jogkivonatokat hoz létre
 
-Az SAS-kulcsot használó tokenek hozhat létre. Csak egy token ügyfelenként kell eredményez. Jogkivonatok az alábbi módszerrel majd előállított. Minden jogkivonatok segítségével hozhatók létre a **EventHubSendKey** kulcs. A tokenek hozzá van rendelve egy egyedi URI-t.
+Jogkivonatok hello SAS-kulcs használatával hozhat létre. Csak egy token ügyfelenként kell eredményez. Jogkivonatok használatával a következő metódus hello majd előállított. Összes jogkivonatot hello segítségével hozhatók létre **EventHubSendKey** kulcs. A tokenek hozzá van rendelve egy egyedi URI-t.
 
 ```csharp
 public static string SharedAccessSignatureTokenProvider.GetSharedAccessSignature(string keyName, string sharedAccessKey, string resource, TimeSpan tokenTimeToLive)
 ```
 
-Ez a metódus hívásakor az URI Azonosítót kell megadni: `//<NAMESPACE>.servicebus.windows.net/<EVENT_HUB_NAME>/publishers/<PUBLISHER_NAME>`. Minden jogkivonatokat URI megegyezik, kivéve a `PUBLISHER_NAME`, amely nem lehet ugyanaz a minden token. Ideális esetben `PUBLISHER_NAME` , amely megkapja a jogkivonatot az ügyfél Azonosítójának jelöli.
+Ez a metódus meghívásakor hello URI kell megadni: `//<NAMESPACE>.servicebus.windows.net/<EVENT_HUB_NAME>/publishers/<PUBLISHER_NAME>`. Minden jogkivonatokat hello URI megegyezik, hello kivételével `PUBLISHER_NAME`, amely nem lehet ugyanaz a minden token. Ideális esetben `PUBLISHER_NAME` jelöli hello azonosító hello ügyfél, amely megkapja a jogkivonatot.
 
-Ez a módszer létrehoz egy jogkivonatot az alábbi szerkezettel:
+Ez a módszer a következő struktúra hello létrehoz egy jogkivonatot:
 
 ```csharp
 SharedAccessSignature sr={URI}&sig={HMAC_SHA256_SIGNATURE}&se={EXPIRATION_TIME}&skn={KEY_NAME}
 ```
 
-A jogkivonat lejárati ideje másodpercben 1970. január 1. a van megadva. A következő egy példa egy jogkivonatot:
+hello jogkivonat lejárati ideje másodpercben 1970. január 1. a van megadva. hello az alábbiakban látható egy példa egy jogkivonatot:
 
 ```csharp
 SharedAccessSignature sr=contoso&sig=nPzdNN%2Gli0ifrfJwaK4mkK0RqAB%2byJUlt%2bGFmBHG77A%3d&se=1403130337&skn=RootManageSharedAccessKey
 ```
 
-Általában a jogkivonatok élettartama hasonlít, vagy meghaladja az ügyfél élettartamát. Ha az ügyfél új jogkivonat beszerzése képességgel rendelkezik, egy rövidebb élettartamot rendelkező jogkivonatokat használható.
+Általában hello jogkivonatok élettartama hasonlít, vagy meghaladja a hello ügyfél hello élettartamát. Ha hello ügyfél hello funkció tooobtain egy új jogkivonatot, egy rövidebb élettartamot rendelkező jogkivonatokat használható.
 
 ### <a name="sending-data"></a>Adatok küldése
-A jogkivonatok létrehozása után, minden ügyfél a saját egyedi jogkivonattal lett kiépítve.
+Létrehozása után a hello jogkivonatokat, minden ügyfél a saját egyedi jogkivonattal lett kiépítve.
 
-Az ügyfél eseményközpontnak adatokat küld, azt a küldési kérelem a token címkét. Megakadályozza a lehallgatást, és a token ellophassák támadók, hogy az az ügyfél és az event hubs közötti kommunikációra egy titkosított csatornán keresztül.
+Hello ügyfél adatok eseményközpontnak küld, azt a küldési kérelmek hello jogkivonatok címkéket. egy támadó lehallgatás és hello jogkivonat, hello ügyfél és a hello eseményközpont hello kommunikációját ellophassák tooprevent egy titkosított csatornán keresztül kell megtörténnie.
 
 ### <a name="blacklisting-clients"></a>Az ügyfelek letiltott
-A jogkivonat támadók ellopják, a támadó megszemélyesíthet-e az ügyfél, amelynek token ellopott. Letiltott ügyfél jeleníti meg, hogy az ügyfél használhatatlanná amíg nem kap egy új jogkivonatot, amely egy másik közzétevőt használ.
+A jogkivonat támadók ellopják, hello támadó megszemélyesítheti hello ügyfél, amelynek token ellopott. Letiltott ügyfél jeleníti meg, hogy az ügyfél használhatatlanná amíg nem kap egy új jogkivonatot, amely egy másik közzétevőt használ.
 
 ## <a name="authentication-of-back-end-applications"></a>Háttér-alkalmazások hitelesítése
 
-Hitelesítést végezni, amely az adatokat az Event Hubs-ügyfelek által generált háttér-alkalmazások, az Event Hubs egy Service Bus-témakörök használt modell hasonló biztonsági modellt alkalmaz. Az Event Hubs fogyasztói csoportot megegyezik egy Service Bus-témakörbe való előfizetés. Egy ügyfél egy fogyasztói csoportot hozhat létre, ha a felhasználói csoport létrehozására vonatkozó kérelem kíséri jogkivonatot, hogy biztosít kezelése jogosultságokkal az event hubs és a névteret, amelyhez az event hubs tartozik. Egy ügyfél egy felhasználói csoport származó adatok felhasználásához, ha a fogadási kérelem egy jogkivonatot, amely megadja az adott felhasználói csoportban, az event hubs vagy a névteret, amelyhez az event hubs tartozik fogadási jogosultságot kap.
+az Event Hubs Eseményközpontokhoz ügyfelek által generált hello adatokat használó tooauthenticate háttér-alkalmazások biztonsági modell, amely hasonló toohello modell a Service Bus-üzenettémakörök használt alkalmaz. Az Event Hubs fogyasztói csoportot egyenértékű tooa előfizetés tooa Service Bus-témakörbe. Egy ügyfél egy fogyasztói csoportot hozhat létre, ha hello kérelem toocreate hello fogyasztói csoportot egy jogkivonatot biztosít hello eseményközpont tartozó jogosultságok kezelése, vagy a hello névtér toowhich hello eseményközpont tartozik. Egy ügyfél engedélyezett egy fogyasztói csoporton tooconsume adatait hello kérés fogadásához. Ha kíséri jogkivonatot, hogy biztosít fogadni az adott felhasználói csoportban jogok, hello eseményközpont, vagy hello névtér toowhich hello eseményközpont tartozik.
 
-A Service Bus jelenlegi verziója nem támogatja a SAS-szabályokat az egyes előfizetések. Ugyanez érvényes Event Hubs fogyasztói csoportok. SAS-támogatás a jövőben is a szolgáltatások lesz hozzáadva.
+a Service Bus hello jelenlegi verziója nem támogatja az egyes előfizetések SAS szabályok. Ugyanez érvényes Event Hubs fogyasztói csoportok hello. SAS fogja támogatni a jövőbeli hello mindkét szolgáltatások.
 
-Egyéni fogyasztói csoportok SAS hitelesítési hiányában a SAS-kulcs segítségével biztonságos minden felhasználói csoport egy közös kulccsal. Ez a megközelítés lehetővé teszi az alkalmazás bármelyik a fogyasztói csoportok eseményközpontban az adatokat.
+Egyéni fogyasztói csoportok SAS hitelesítési hello hiányában használhat SAS kulcsok toosecure minden felhasználói csoport közös kulccsal. Ez a megközelítés lehetővé teszi, hogy egy alkalmazás tooconsume bármelyik hello fogyasztói csoportok az eseményközpontban.
 
 ## <a name="next-steps"></a>Következő lépések
-Az Event Hubs kapcsolatos további információkért látogasson el a következő témaköröket:
+További információ az Event Hubs toolearn látogasson el a következő témakörök hello:
 
 * [Event Hubs – áttekintés]
 * [Közös hozzáférésű Jogosultságkód áttekintése]

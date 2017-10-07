@@ -1,6 +1,6 @@
 ---
-title: "Azure virtuális gépek biztonsági mentése |} Microsoft Docs"
-description: "Ismerje meg, regisztrálja, és a recovery services-tároló az Azure virtuális gépek mentésére."
+title: "Azure virtuális gépeinek aaaBack |} Microsoft Docs"
+description: "Ismerje meg, és regisztrálja, készítsen biztonsági másolatot az Azure virtuális gépek tooa recovery services-tároló."
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -16,92 +16,92 @@ ms.topic: article
 ms.date: 8/15/2017
 ms.author: trinadhk;jimpark;markgal;
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 40983a3de104238d09b976b5fcf2419da42c1bba
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a204a42726450a7fd89b5563a786b5070578b113
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="back-up-azure-virtual-machines-to-a-recovery-services-vault"></a>Azure-beli virtuális gépek biztonsági mentése Recovery Services-tárolóba
+# <a name="back-up-azure-virtual-machines-tooa-recovery-services-vault"></a>Az Azure virtuális gépek biztonsági mentése tooa Recovery Services tároló
 > [!div class="op_single_selector"]
-> * [Recovery Services-tároló virtuális gépek mentésére](backup-azure-arm-vms.md)
-> * [Biztonsági másolatot a virtuális gépek mentési tárolóba](backup-azure-vms.md)
+> * [Készítsen biztonsági másolatot a virtuális gépek tooRecovery Services-tároló](backup-azure-arm-vms.md)
+> * [Készítsen biztonsági másolatot a virtuális gépek tooBackup tároló](backup-azure-vms.md)
 >
 >
 
-Ez a cikk részletesen biztonsági mentése Azure virtuális gépeken (telepített Resource Manager és klasszikus telepített) a Recovery Services-tároló. Virtuális gépek biztonsági mentéséről a munka nagyobb része a előkészítése. Előtt készítsen biztonsági másolatot, vagy egy virtuális gép védelmét, végre kell hajtania a [Előfeltételek](backup-azure-arm-vms-prepare.md) készítse fel a környezetet a virtuális gépek védelmére. Miután befejezte az előfeltételeket, majd is kezdeményezhető a pillanatképek készítése a virtuális gép biztonsági mentési művelet.
+Ez a cikk részletesen, hogyan mentése Azure virtuális gépeken (telepített Resource Manager és klasszikus telepített) tooa Recovery Services tooback tároló. Virtuális gépek biztonsági mentéséről hello munka nagyobb része hello előkészítése. Készítsen biztonsági másolatot, vagy egy virtuális gép védelme, hajtsa végre a következő hello [Előfeltételek](backup-azure-arm-vms-prepare.md) tooprepare környezetében a virtuális gépek védelmét. Ha az Előfeltételek hello, majd is kezdeményezhető hello biztonsági mentési művelet tootake pillanatképek a virtuális gép.
 
 
 [!INCLUDE [learn about backup deployment models](../../includes/backup-deployment-models.md)]
 
-További információkért tekintse meg a cikkek [az Azure virtuális gép biztonsági mentési infrastruktúrájának megtervezésével](backup-azure-vms-introduction.md) és [Azure virtuális gépek](https://azure.microsoft.com/documentation/services/virtual-machines/).
+További információkért lásd: hello cikkeket a [az Azure virtuális gép biztonsági mentési infrastruktúrájának megtervezésével](backup-azure-vms-introduction.md) és [Azure virtuális gépek](https://azure.microsoft.com/documentation/services/virtual-machines/).
 
-## <a name="triggering-the-backup-job"></a>A biztonsági mentési feladat időt.
-A Recovery Services-tároló társított biztonsági mentési házirend határozza meg, mikor és milyen gyakran fut-e a biztonsági mentési műveletet. Alapértelmezés szerint az első ütemezett biztonsági mentés a kezdeti biztonsági másolatot. A kezdeti biztonsági mentés végrehajtásáig a **Biztonsági mentési feladatok** panelen az Utolsó biztonsági mentés állapota **Figyelmeztetés (kezdeti biztonsági mentés folyamatban)** állapotú.
+## <a name="triggering-hello-backup-job"></a>Eseményindító hello biztonsági mentési feladat
+Recovery Services-tároló hello társított hello biztonsági mentési házirend határozza meg, milyen gyakran és mikor hello biztonsági mentést futtat. Alapértelmezés szerint a hello első ütemezett biztonsági mentés hello kezdeti biztonsági másolatot. Amíg nem történik hello kezdeti biztonsági másolatot, a hello hello utolsó biztonsági mentés állapotának **biztonsági mentési feladatok** panelt jeleníti meg, mint a **figyelmeztetés (függőben lévő kezdeti biztonsági másolatot)**.
 
 ![Biztonsági mentés függőben](./media/backup-azure-vms-first-look-arm/initial-backup-not-run.png)
 
-Hacsak a kezdeti biztonsági mentés kezdete nem a nagyon közeli jövőben van, érdemes futtatni a **Biztonsági másolat készítése** lehetőséget. Az alábbi eljárást a tároló irányítópult elindul. Ez az eljárás szolgálja ki a kezdeti biztonsági mentési feladat futtatásához szükséges előfeltételek maradéktalanul befejezését követően. Ha már futtatta a kezdeti biztonsági mentési feladat, ez az eljárás nem érhető el. A társított biztonsági mentési házirend határozza meg a következő biztonsági mentési feladat.  
+Kivéve, ha a kezdeti biztonsági másolatot esedékes toobegin hamarosan, javasoljuk, hogy **biztonsági másolat készítése**. hello következő eljárás elindul hello tároló irányítópulton. Ez az eljárás a hello kezdeti biztonsági mentési feladat fut, miután végrehajtotta a szükséges előfeltételek maradéktalanul szolgál. Ha már korábban lefutott hello kezdeti biztonsági mentési feladat, ez az eljárás nem érhető el. hello tartozó biztonsági mentési házirend meghatározza, hogy hello következő biztonsági mentési feladat.  
 
-A kezdeti biztonsági mentési feladat futtatása:
+toorun hello kezdeti biztonsági mentési feladat:
 
-1. A tároló irányítópultján kattintson a **Biztonsági mentési elemek** szakaszban található számra, vagy kattintson a **Biztonsági mentési elemek** csempére. <br/>
+1. Az hello tároló irányítópultján kattintson a hello szám alatt **biztonsági mentés elemek**, vagy kattintson a hello **biztonsági mentés elemek** csempe. <br/>
   ![Beállítások ikon](./media/backup-azure-vms-first-look-arm/rs-vault-config-vm-back-up-now-1.png)
 
-  Megnyílik a **Biztonsági mentési elemek** panel.
+  Hello **biztonsági mentés elemek** panel nyílik meg.
 
   ![Elemek biztonsági mentése](./media/backup-azure-vms-first-look-arm/back-up-items-list.png)
 
-2. A **Biztonsági mentési elemek** panelen válassza ki az elemet.
+2. A hello **biztonsági mentés elemek** panelen, jelölje be hello elemet.
 
   ![Beállítások ikon](./media/backup-azure-vms-first-look-arm/back-up-items-list-selected.png)
 
-  Megnyílik a **Biztonsági mentési elemek** listája. <br/>
+  Hello **biztonsági mentés elemek** listában megnyílik. <br/>
 
   ![Biztonsági mentési feladat elindul](./media/backup-azure-vms-first-look-arm/backup-items-not-run.png)
 
-3. A **Biztonsági mentési elemek** listában kattintson a három pontra **...** a helyi menü megnyitásához.
+3. A hello **biztonsági mentés elemek** listában, kattintson a hello folytatást jelző pontokra **...**  tooopen hello helyi menü.
 
   ![Helyi menü](./media/backup-azure-vms-first-look-arm/context-menu.png)
 
-  Megjelenik a Helyi menü.
+  hello helyi menü megjelenik.
 
   ![Helyi menü](./media/backup-azure-vms-first-look-arm/context-menu-small.png)
 
-4. A Helyi menüben kattintson a **Biztonsági mentés** elemre.
+4. Hello helyi menüben, kattintson a **biztonsági mentés most**.
 
   ![Helyi menü](./media/backup-azure-vms-first-look-arm/context-menu-small-backup-now.png)
 
-  Megnyílik a Biztonsági mentés panel.
+  hello biztonsági mentés most panel nyílik meg.
 
-  ![a Biztonsági mentés panel képe](./media/backup-azure-vms-first-look-arm/backup-now-blade-short.png)
+  ![hello biztonsági mentés most panelen látható](./media/backup-azure-vms-first-look-arm/backup-now-blade-short.png)
 
-5. A Biztonsági mentés panelen kattintson a naptár ikonra, használja a naptárvezérlőt annak kiválasztására, hogy meddig kívánja megőrizni a helyreállítási pontot, majd kattintson a **Biztonsági mentés** elemre.
+5. Hello biztonsági mentés most paneljén kattintson hello naptár ikonra, használja a hello Naptár vezérlőelem tooselect hello utolsó napja a helyreállítási pont őrzi meg, és kattintson a **biztonsági mentés**.
 
-  ![adja meg az utolsó napot, ameddig Biztonsági mentés helyreállítási pontját meg kívánja őrizni](./media/backup-azure-vms-first-look-arm/backup-now-blade-calendar.png)
+  ![hello utolsó nap hello biztonsági mentés most őrzi meg a helyreállítási pont beállítása](./media/backup-azure-vms-first-look-arm/backup-now-blade-calendar.png)
 
-  Az üzembehelyezési értesítések értesítik, hogy a biztonsági mentési feladat elindult, és hogy a feladat állapotát a Biztonsági mentési feladatok oldalon figyelheti. A virtuális gép méretétől függően a kezdeti biztonsági mentés létrehozása hosszabb időt vehet igénybe.
+  Központi telepítés értesítések lehetővé teszik, hogy hello biztonsági mentési feladat lett elindítva, és hogy kísérheti hello hello feladat hello biztonsági mentési feladatok lapján. Attól függően, hogy a virtuális gép mérete hello hello kezdeti biztonsági másolatot készít eltarthat egy ideig.
 
-6. A kezdeti biztonsági mentés állapotának megtekintéséhez vagy nyomon követéséhez a tároló irányítópultjának **Biztonsági mentési feladatok** csempéjén kattintson a **Folyamatban** elemre.
+6. hello első biztonsági hello tároló irányítópult hello tooview vagy követése hello állapotának **biztonsági mentési feladatok** csempén kattintson **folyamatban**.
 
   ![Biztonsági mentési feladatok csempe](./media/backup-azure-vms-first-look-arm/open-backup-jobs-1.png)
 
-  Megnyílik a Biztonsági mentési feladatok panel.
+  hello biztonsági mentési feladatok panel nyílik meg.
 
   ![Biztonsági mentési feladatok csempe](./media/backup-azure-vms-first-look-arm/backup-jobs-in-jobs-view-1.png)
 
-  A **Biztonsági mentési feladatok** panelen megtekintheti az összes feladat állapotát. Ellenőrizze, hogy a virtuális gép biztonsági mentése folyamatban van-e, vagy már befejeződött. Amikor a biztonsági mentési feladat befejeződött, az állapota *Befejezve* lesz.
+  A hello **biztonsági mentési feladatok** panelen láthatja, hogy az összes feladat hello állapota. Ellenőrizze, ha még folyamatban van a virtuális gép biztonsági mentési feladata hello, vagy befejeződött. Ha egy biztonsági mentési feladat befejeződött, hello állapota *befejezve*.
 
   > [!NOTE]
-  > A biztonsági mentési művelet részeként az Azure Backup szolgáltatás egy parancsot ad minden virtuális gépre a biztonsági mentési bővítménynek, hogy ürítsen ki minden írást, és készítsen egy egységes pillanatképet.
+  > Hello biztonsági mentési művelet részeként hello Azure Backup szolgáltatás kibocsát egy parancs toohello tartalék mellék minden virtuális gép tooflush ír, és egységes pillanatképet készít a.
   >
   >
 
 ## <a name="troubleshooting-errors"></a>Kapcsolatos hibák elhárítása
-Ha biztonsági során problémákat tapasztal a virtuális gép, tekintse meg a [VM hibaelhárítási cikke](backup-azure-vms-troubleshoot.md) segítségét.
+Ha biztonsági során problémákat tapasztal a virtuális gép, tekintse meg a hello [VM hibaelhárítási cikke](backup-azure-vms-troubleshoot.md) segítségét.
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy a virtuális gép védetté, tekintse meg a Virtuálisgép-felügyeleti feladatokat, és hogyan lehet visszaállítani a virtuális gépek a következő cikkeket.
+Most, hogy a virtuális gép védetté, tekintse meg a következő cikkek toolearn kapcsolatos felügyeleti feladatok VM, hello és hogyan toorestore virtuális gépeket.
 
 * [A virtuális gépek kezelése és figyelése](backup-azure-manage-vms.md)
 * [Virtuális gépek visszaállítása](backup-azure-arm-restore-vms.md)

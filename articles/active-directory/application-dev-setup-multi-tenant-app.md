@@ -1,6 +1,6 @@
 ---
-title: "Egy új több-bérlős alkalmazás konfigurálása |} Microsoft Docs"
-description: "Az alkalmazás konfigurálásával végzett munka során több-bérlős, és hogyan több-bérlős alkalmazásokhoz"
+title: "egy új több-bérlős alkalmazás aaaHow tooconfigure |} Microsoft Docs"
+description: "Ismerje meg, tooconfigure egy alkalmazásra, amely több-bérlős, és hogyan több-bérlős alkalmazások működése"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,20 +13,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 24e7e0d586dab3f77e643197594c3c4462ff997e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: db62ea7a7cc5488961258e07e042bc160dbf92c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-a-new-multi-tenant-application"></a>Egy új több-bérlős alkalmazás konfigurálása
+# <a name="how-tooconfigure-a-new-multi-tenant-application"></a>Hogyan tooconfigure új több-bérlős alkalmazás
 
-További információt a több-bérlős alkalmazásokhoz ajánlott témakörök listája itt található:
+További információk a több-bérlős alkalmazásokhoz ajánlott témakörök toolearn listája itt található:
 
-- Egy általános megértése beolvasása [mit jelent, ha egy több-bérlős alkalmazást kell](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#multi-tenant-application)
-- Egy általános megértése beolvasása [egy alkalmazás több-bérlős konfigurálása](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#configuring-multi-tenant-applications)
-- Részletes áttekintést kaphat [az Azure AD hozzájárulási keretrendszer hozzájárulási végrehajtásához felhasznált](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#overview-of-the-consent-framework), ami azonban szükséges több-bérlős alkalmazásokhoz
-- További mélység, további [hogyan egy több-bérlős alkalmazás van konfigurálva, és végpont kódolt](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview), többek között hogyan kell regisztrálni, használja a "általános" végpontot, megvalósítása "user" és "rendszergazda" hozzájárulás, speciális többrétegű konfigurációkat implementálása
+- Egy általános megértése beolvasása [jelentés toobe egy több-bérlős alkalmazás](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#multi-tenant-application)
+- Egy általános megértése beolvasása [hogyan tooconfigure egy alkalmazás toobe több-bérlős](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#configuring-multi-tenant-applications)
+- Részletes áttekintést kaphat [hogyan használja fel az Azure AD hello hozzájárulási keretrendszer tooimplement hozzájárulási](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#overview-of-the-consent-framework), ami azonban szükséges több-bérlős alkalmazásokhoz
+- További mélység, további [hogyan egy több-bérlős alkalmazás van konfigurálva, és végpont kódolt](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview), többek között a következőket hogyan tooregister, hello "általános" végpont használatát, a "user" és "rendszergazda" hozzájárulási valósítja meg, hogyan tooimplement fejlettebb többrétegű forgatókönyvek
 
 ## <a name="next-steps"></a>Következő lépések
 [AzureAD StackOverflow](http://stackoverflow.com/questions/tagged/azure-active-directory)

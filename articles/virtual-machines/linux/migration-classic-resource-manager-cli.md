@@ -1,6 +1,6 @@
 ---
-title: "Telepítse át a virtuális gépek a Resource Manager Azure parancssori felületével |} Microsoft Docs"
-description: "Ez a cikk végigvezeti a platform által támogatott áttelepítési erőforrások a klasszikus Azure Resource Manager Azure parancssori felület használatával"
+title: "aaaMigrate virtuális gépek tooResource Manager Azure parancssori felületével |} Microsoft Docs"
+description: "Ez a cikk végigvezeti hello platform által támogatott áttelepítési erőforrások klasszikus tooAzure erőforrás-kezelő az Azure parancssori felület használatával"
 services: virtual-machines-linux
 documentationcenter: 
 author: singhkays
@@ -15,177 +15,177 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/30/2017
 ms.author: kasing
-ms.openlocfilehash: a63d758570b09b37b8e51c639267f729521d9ae0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0b11f4bb1b4658b3e88bf7629147ed953b678556
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-iaas-resources-from-classic-to-azure-resource-manager-by-using-azure-cli"></a>Telepítse át IaaS-erőforrásokra a klasszikus Azure Resource Manager Azure parancssori felület használatával
-Ezeket a lépéseket mutatja be az Azure parancssori felület (CLI) parancsok használatával telepítse át az infrastruktúra erőforrásként egy szolgáltatási (IaaS) a klasszikus telepítési modellből az Azure Resource Manager telepítési modellhez. A cikk igényel a [Azure CLI](../../cli-install-nodejs.md).
+# <a name="migrate-iaas-resources-from-classic-tooazure-resource-manager-by-using-azure-cli"></a>IaaS-erőforrásokra át klasszikus tooAzure erőforrás-kezelő Azure parancssori felület használatával
+Ezek a lépések bemutatják, hogyan toouse Azure parancssori felület (CLI) parancsok a szolgáltató (IaaS) erőforrásként hello klasszikus telepítési modell toohello Azure Resource Manager telepítési modellből toomigrate infrastruktúra. hello cikk szükséges hello [Azure CLI](../../cli-install-nodejs.md).
 
 > [!NOTE]
-> Itt leírt műveletek idempotent. Ha a probléma nem támogatott szolgáltatása vagy konfigurációs hiba, azt javasoljuk, hogy a prepare újra, vagy megszakításra műveletet. A platform fog majd próbálja megismételni a műveletet.
+> Az itt ismertetett összes hello művelet idempotent. Ha a probléma nem támogatott szolgáltatása vagy konfigurációs hiba, azt javasoljuk, hogy újra hello előkészítése, megszakítása vagy véglegesítése a műveletet. hello platform fogják megpróbálni hello művelet újrapróbálása.
 > 
 > 
 
 <br>
-Ez a sorrendet, amelyben lépéseket kell végrehajtani az áttelepítési folyamat során azonosításához folyamatábra
+Ez a folyamatábra tooidentify hello sorrendet, amelyben lépést kell végrehajtani az áttelepítési folyamat során toobe
 
-![Képernyőkép a migrálási lépésekről](../windows/media/migration-classic-resource-manager/migration-flow.png)
+![Képernyőkép a hello áttelepítés lépései](../windows/media/migration-classic-resource-manager/migration-flow.png)
 
 ## <a name="step-1-prepare-for-migration"></a>1. lépés: Felkészülés az áttelepítésre
-Az alábbiakban néhány gyakorlati tanácsok, azt javasoljuk, áttelepítése IaaS-erőforrásokra a hagyományos erőforrás-kezelő értékeli:
+Az alábbiakban néhány gyakorlati tanácsok, amely értékeli a klasszikus tooResource Manager áttelepítése IaaS-erőforrásokra, javasoljuk:
 
-* Olvassa végig a [listája nem támogatott konfigurációk vagy szolgáltatások](../windows/migration-classic-resource-manager-overview.md). Ha még nem támogatott konfigurációk vagy szolgáltatások használó virtuális gépek, azt javasoljuk, hogy a szolgáltatás vagy a konfigurációs támogatási bejelentések várja. Alternatív megoldásként távolítsa el a szolgáltatást, vagy helyezze át kívül, hogy a konfigurálás engedélyezze az áttelepítést, ha az igényeinek megfelelő.
-* Ha olyan parancsfájlok, amelyek központi telepítése az infrastruktúra és az alkalmazások ma rendelkezik automatikus, hozzon létre egy hasonló vizsgálat beállítása az áttelepítés ezen parancsfájlok használatával. Másik lehetőségként állíthat be minta környezetekben az Azure portál használatával.
+* Olvassa végig hello [listája nem támogatott konfigurációk vagy szolgáltatások](../windows/migration-classic-resource-manager-overview.md). Ha még nem támogatott konfigurációk vagy szolgáltatások használó virtuális gépek, azt javasoljuk, várja meg a hello szolgáltatást vagy a konfigurációs támogatás toobe jelentette be. Azt is megteheti távolítsa el a szolgáltatást, vagy a konfigurációs tooenable áttelepítést kilépni, ha az igényeknek.
+* Ha olyan parancsfájlok, amelyek központi telepítése az infrastruktúra és az alkalmazások ma rendelkezik automatikus, próbálja toocreate egy hasonló vizsgálat beállítása az áttelepítés ezen parancsfájlok használatával. Másik lehetőségként állíthat be minta környezetek hello Azure-portál használatával.
 
 > [!IMPORTANT]
-> Alkalmazásátjárót jelenleg nem támogatottak az áttelepítéshez a klasszikus az erőforrás-kezelő. A klasszikus virtuális hálózatot az Alkalmazásátjáró át, a hálózati áthelyezése egy előkészítési művelet futtatása előtt távolítsa el az átjáró. Az áttelepítés befejezése után csatlakoztassa újra az átjárót az Azure Resource Manager. 
+> Alkalmazásátjárót jelenleg nem támogatottak az áttelepítést a klasszikus tooResource Manager. toomigrate Alkalmazásátjáró, klasszikus virtuális hálózat hello átjáró előkészítési művelet toomove hello hálózati futtatása előtt távolítsa el. Hello áttelepítés befejezése után újra hello átjáró az Azure Resource Manager. 
 >
->Kapcsolódás egy másik előfizetésben található ExpressRoute-Kapcsolatcsoportok ExpressRoute-átjárók nem telepíthetők át automatikusan. Ebben az esetben távolítsa el az ExpressRoute-átjárót, telepítse át a virtuális hálózaton, és hozza létre újra az átjárót. Ellenőrizze a [áttelepítése ExpressRoute áramkörök, és a Resource Manager üzembe helyezési modellel klasszikus virtuális hálózatok társított](../../expressroute/expressroute-migration-classic-resource-manager.md) további információt.
+>Csatlakozás tooExpressRoute Kapcsolatcsoportok egy másik előfizetésben található ExpressRoute-átjárók nem telepíthetők át automatikusan. Ilyen esetekben hello ExpressRoute-átjáró eltávolítása, telepítse át a virtuális hálózati hello, és hozza létre újra a hello átjáró. Ellenőrizze a [áttelepítése ExpressRoute áramkörök és társított virtuális hálózatokat hello klasszikus toohello Resource Manager üzembe helyezési modellben](../../expressroute/expressroute-migration-classic-resource-manager.md) további információt.
 > 
 > 
 
-## <a name="step-2-set-your-subscription-and-register-the-provider"></a>2. lépés: Állítsa be az előfizetéshez, és regisztrálja a szolgáltatót
-Áttelepítési forgatókönyvek esetén, be kell állítania a környezetet az mindkét klasszikus és Resource Manager. [Az Azure parancssori felület telepítése](../../cli-install-nodejs.md) és [jelölje ki az előfizetését](../../xplat-cli-connect.md).
+## <a name="step-2-set-your-subscription-and-register-hello-provider"></a>2. lépés: Az előfizetés beállítása és hello szolgáltató regisztrálása
+Áttelepítési forgatókönyvek esetén mindkét klasszikus környezet szüksége tooset és erőforrás-kezelő. [Az Azure parancssori felület telepítése](../../cli-install-nodejs.md) és [jelölje ki az előfizetését](../../xplat-cli-connect.md).
 
-Jelentkezzen be fiókjába.
+Bejelentkezési tooyour fiók.
 
     azure login
 
-Válassza ki az Azure-előfizetés a következő parancs használatával.
+Válassza ki a hello Azure-előfizetés hello a következő parancs használatával.
 
     azure account set "<azure-subscription-name>"
 
 > [!NOTE]
-> A regisztráció egy az idő a lépést, de az azért van szükség, egyszer a migrálás megkezdése előtt. Ha nem regisztrálja látni fogja, a következő hibaüzenet 
+> Regisztráció az csak egyszer módosítható. lépés:, de igények toobe migrálás megkísérlése előtt egyszer történik. Regisztrálása nélkül látni fogja a hibaüzenet a következő hello 
 > 
 > *BadRequest: Az előfizetés nincs regisztrálva az áttelepítéshez.* 
 > 
 > 
 
-Az áttelepítés erőforrás-szolgáltató regisztrálása a következő parancs használatával. Vegye figyelembe, hogy néhány esetben ez a parancs végrehajtásának időkorlátja. Azonban a regisztráció sikeres lesz.
+Hello áttelepítési erőforrás-szolgáltató regisztrálása hello a következő parancs használatával. Vegye figyelembe, hogy néhány esetben ez a parancs végrehajtásának időkorlátja. Hello regisztrációs azonban sikeres lesz.
 
     azure provider register Microsoft.ClassicInfrastructureMigrate
 
-Kis türelmet, a regisztráció befejezéséhez öt perc. A jóváhagyási állapotát a következő paranccsal ellenőrizheti. Győződjön meg arról, hogy van-e RegistrationState `Registered` folytatás előtt.
+Kis türelmet hello regisztrációs toofinish öt percet. Hello jóváhagyási hello állapotának hello a következő parancs használatával ellenőrizheti. Győződjön meg arról, hogy van-e RegistrationState `Registered` folytatás előtt.
 
     azure provider show Microsoft.ClassicInfrastructureMigrate
 
-Most a parancssori felület a kapcsoló a `asm` mód.
+Most már a CLI toohello kapcsoló `asm` mód.
 
     azure config mode asm
 
-## <a name="step-3-make-sure-you-have-enough-azure-resource-manager-virtual-machine-cores-in-the-azure-region-of-your-current-deployment-or-vnet"></a>3. lépés: Ellenőrizze, hogy elegendő Azure Resource Manager virtuális gép magok Azure-régióban a jelenlegi üzemelő példány vagy virtuális hálózaton
-Ebben a lépésben kell váltani `arm` mód. Ehhez a következő paranccsal.
+## <a name="step-3-make-sure-you-have-enough-azure-resource-manager-virtual-machine-cores-in-hello-azure-region-of-your-current-deployment-or-vnet"></a>3. lépés: Ellenőrizze, hogy elegendő Azure Resource Manager virtuális gép magok a hello Azure-régió, a jelenlegi üzemelő példány vagy virtuális hálózaton
+Ebben a lépésben szüksége lesz tooswitch túl`arm` mód. Ugyanezt a műveletet a következő parancs hello.
 
 ```
 azure config mode arm
 ```
 
-A következő parancssori parancsot segítségével mag, hogy az Azure Resource Manager aktuális mennyiségének ellenőrzése. Core kvóták kapcsolatos további információkért lásd: [korlátozásai és az Azure erőforrás-kezelő](../../azure-subscription-service-limits.md#limits-and-the-azure-resource-manager)
+A következő parancssori felület parancs toocheck hello aktuális mennyisége az Azure Resource Manager rendelkezik magok hello is használhatja. toolearn kvótákat, az alapvető kapcsolatos további információkért lásd: [korlátozásai és hello Azure Resource Manager](../../azure-subscription-service-limits.md#limits-and-the-azure-resource-manager)
 
 ```
 azure vm list-usage -l "<Your VNET or Deployment's Azure region"
 ```
 
-Miután befejezte ellenőrzése ezt a lépést, is visszavált `asm` mód.
+Miután végzett ezzel a lépéssel ellenőrzése, váltson vissza túl`asm` mód.
 
     azure config mode asm
 
 
 ## <a name="step-4-option-1---migrate-virtual-machines-in-a-cloud-service"></a>4. lépés: 1. lehetőség – a felhőszolgáltatásban található virtuális gépek áttelepítése
-A felhőszolgáltatások listájának lekérdezése a következő paranccsal, és ezután válassza ki a felhőalapú szolgáltatás, amely az áttelepíteni kívánt. Vegye figyelembe, hogy a beállítást, ha a felhőszolgáltatás a virtuális gépek virtuális hálózatban, vagy ha webes vagy feldolgozói szerepköröket, hibaüzenetet kap-e.
+Hello listájának beszerzése felhőszolgáltatások hello a következő parancs használatával, majd mentse hello felhőalapú szolgáltatás, amelyet az toomigrate. Vegye figyelembe, hogy ha hello virtuális gépek hello a felhőszolgáltatásban található egy virtuális hálózatot, vagy webes vagy feldolgozói szerepkörök rendelkeznek, elérhetővé válik egy hibaüzenetet.
 
     azure service list
 
-A következő parancsot a központi telepítés nevét, a felhőszolgáltatás lekérése a részletes kimenet. A legtöbb esetben a telepítés neve megegyezik a felhőszolgáltatás neve.
+Hello hello részletes kimenet tooget hello telepítési parancsnév hello felhőszolgáltatás követően futtassa. A legtöbb esetben hello telepítési neve hello ugyanaz, mint a hello felhőszolgáltatás neve.
 
     azure service show <serviceName> -vv
 
-Először ellenőrzi, hogy áttelepítheti a felhőalapú szolgáltatás, a következő parancsokkal:
+Először ellenőrzi, hogy hello felhőalapú szolgáltatás a következő parancsok hello segítségével telepíthet át:
 
 ```shell
 azure service deployment validate-migration <serviceName> <deploymentName> new "" "" ""
 ```
 
-Készítse elő a virtuális gépek áttelepítése a felhőalapú szolgáltatás. Rendelkezik két lehetőség közül választhat.
+Készítse elő a hello virtuális gépek áttelepítésre hello felhőszolgáltatásban. A két beállítások toochoose rendelkezik.
 
-Ha szeretne áttelepíteni a virtuális gépek platform által létrehozott virtuális hálózathoz, a következő paranccsal.
+Toomigrate hello virtuális gépek tooa platform által létrehozott virtuális hálózaton, használja a következő parancs hello.
 
     azure service deployment prepare-migration <serviceName> <deploymentName> new "" "" ""
 
-Ha szeretné áttelepíteni meglévő virtuális hálózat a Resource Manager üzembe helyezési modellel, az alábbi paranccsal.
+Ha azt szeretné, hogy a meglévő virtuális hálózat hello Resource Manager üzembe helyezési modellel toomigrate tooan, használja a következő parancs hello.
 
     azure service deployment prepare-migration <serviceName> <deploymentName> existing <destinationVNETResourceGroupName> <subnetName> <vnetName>
 
-Az előkészítési művelet befejezését követően a virtuális gépek áttelepítésének állapotát, és győződjön meg arról, hogy vannak-e a részletes kimenet keresztül megtekintheti a `Prepared` állapotát.
+Hello előkészítése után a művelet sikeres, nézze át a hello részletes kimenet tooget hello áttelepítési állapotának hello virtuális gépeket, és győződjön meg arról, hogy vannak-e a hello `Prepared` állapotát.
 
     azure vm show <vmName> -vv
 
-Ellenőrizze a konfigurációt, az előkészített erőforrások CLI vagy az Azure-portál használatával. Ha nem az áttelepítéshez, és térjen vissza a régi állapot szeretne, használja a következő parancsot.
+A parancssori felületen vagy a hello Azure portál segítségével erőforrások előkészített hello hello konfigurációjának ellenőrzése. Ha nem az áttelepítéshez, és azt szeretné, hogy toogo hátsó toohello régi állapot, használja a következő parancs hello.
 
     azure service deployment abort-migration <serviceName> <deploymentName>
 
-Az előkészített konfiguráció megfelelőnek tűnik, ha előre, és véglegesíti az erőforrásokat a következő parancs használatával.
+Ha hello előkészített konfiguráció megfelelőnek tűnik, előre, és véglegesíti hello erőforrások hello a következő parancs használatával.
 
     azure service deployment commit-migration <serviceName> <deploymentName>
 
 
 
 ## <a name="step-4-option-2----migrate-virtual-machines-in-a-virtual-network"></a>4. lépés: 2. lehetőség – a virtuális hálózatban lévő virtuális gépek áttelepítése
-Válassza ki az áttelepíteni kívánt virtuális hálózat. Vegye figyelembe, hogy ha a virtuális hálózat nem támogatott konfigurációjú webes vagy feldolgozói szerepkörök vagy a virtuális gépeket tartalmaz, üzenetet fog kapni egy érvényesítési hiba.
+Mentse hello virtuális hálózatot, hogy szeretné-e toomigrate. Vegye figyelembe, hogy ha hello virtuális hálózati webes vagy feldolgozói szerepköröket és a virtuális gépeken nem támogatott konfigurációjú, üzenetet fog kapni egy érvényesítési hiba.
 
-Az alábbi parancs segítségével könnyebben nyerhet a virtuális hálózatok az előfizetést.
+A következő parancs hello segítségével könnyebben nyerhet hello előfizetés összes hello virtuális hálózatot.
 
     azure network vnet list
 
-A kimenet ehhez hasonló fog kinézni:
+hello kimeneti következőhöz hasonlóan fog kinézni:
 
-![Képernyőkép a kiemelt teljes virtuális hálózat nevét a parancssorban.](../media/virtual-machines-linux-cli-migration-classic-resource-manager/vnet.png)
+![Képernyőfelvétel a hello parancssori hello teljes virtuális hálózati név kiemelve.](../media/virtual-machines-linux-cli-migration-classic-resource-manager/vnet.png)
 
-A fenti példában a **virtualNetworkName** teljes neve **"Csoport classicubuntu16 classicubuntu16"**.
+A fenti példa hello, hello **virtualNetworkName** hello teljes név **"Csoport classicubuntu16 classicubuntu16"**.
 
-Először ellenőrzi, hogy áttelepítheti a virtuális hálózat, a következő parancsot:
+Először ellenőrzi, hogy áttelepítheti a virtuális hálózat hello hello a következő parancs használatával:
 
 ```shell
 azure network vnet validate-migration <virtualNetworkName>
 ```
 
-Az Ön által választott virtuális hálózatot Felkészülés az áttelepítésre az alábbi paranccsal.
+Virtuális hálózati hello az Ön által választott Felkészülés az áttelepítésre hello a következő parancs használatával.
 
     azure network vnet prepare-migration <virtualNetworkName>
 
-Ellenőrizze az előkészített virtuális gépek konfigurációját a CLI vagy az Azure-portál használatával. Ha nem az áttelepítéshez, és térjen vissza a régi állapot szeretne, használja a következő parancsot.
+A virtuális gépek operációs parancssori felületen vagy a hello Azure-portál használatával hello hello konfigurációjának ellenőrzése. Ha nem az áttelepítéshez, és azt szeretné, hogy toogo hátsó toohello régi állapot, használja a következő parancs hello.
 
     azure network vnet abort-migration <virtualNetworkName>
 
-Az előkészített konfiguráció megfelelőnek tűnik, ha előre, és véglegesíti az erőforrásokat a következő parancs használatával.
+Ha hello előkészített konfiguráció megfelelőnek tűnik, előre, és véglegesíti hello erőforrások hello a következő parancs használatával.
 
     azure network vnet commit-migration <virtualNetworkName>
 
 ## <a name="step-5-migrate-a-storage-account"></a>5. lépés: A storage-fiókok áttelepítése
-Miután befejezte a virtuális gépek áttelepítéséhez, azt javasoljuk, telepíti át a tárfiókot.
+Ha elkészült hello virtuális gépeinek áttelepítését, ajánlott hello tárfiók az áttelepítést.
 
-A tárfiók előkészítése az áttelepítésre az alábbi parancs használatával
+Hello tárfiók előkészítése az áttelepítésre hello a következő parancs használatával
 
     azure storage account prepare-migration <storageAccountName>
 
-Ellenőrizze a konfigurációt, az előkészített tárfiók CLI vagy az Azure-portál használatával. Ha nem az áttelepítéshez, és térjen vissza a régi állapot szeretne, használja a következő parancsot.
+A tárfiók parancssori felületen vagy a hello Azure portál segítségével előkészített hello hello konfigurációjának ellenőrzése. Ha nem az áttelepítéshez, és azt szeretné, hogy toogo hátsó toohello régi állapot, használja a következő parancs hello.
 
     azure storage account abort-migration <storageAccountName>
 
-Az előkészített konfiguráció megfelelőnek tűnik, ha előre, és véglegesíti az erőforrásokat a következő parancs használatával.
+Ha hello előkészített konfiguráció megfelelőnek tűnik, előre, és véglegesíti hello erőforrások hello a következő parancs használatával.
 
     azure storage account commit-migration <storageAccountName>
 
 ## <a name="next-steps"></a>Következő lépések
 
-* [IaaS-erőforrásokra a klasszikus Azure Resource Manager platform által támogatott áttelepítésének áttekintése](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [Műszaki részletes bemutatója a platform által támogatott áttelepítési a klasszikus Azure Resource Managerbe](migration-classic-resource-manager-deep-dive.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [Az IaaS-erőforrások klasszikusból Azure Resource Manager-alapú környezetbe való áttelepítésének megtervezése](migration-classic-resource-manager-plan.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [IaaS-erőforrások áttelepítése a klasszikus Azure Resource Manager PowerShell használatával](../windows/migration-classic-resource-manager-ps.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [IaaS-erőforrásokra a klasszikus Azure Resource Manager áttelepítésének védelmével kapcsolatos közösségi eszközök](../windows/migration-classic-resource-manager-community-tools.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [IaaS-erőforrásokra, erőforrás-kezelő klasszikus tooAzure a platform által támogatott áttelepítésének áttekintése](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [Műszaki részletes bemutatója a platform által támogatott áttelepítési a klasszikus tooAzure erőforrás-kezelő](migration-classic-resource-manager-deep-dive.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [IaaS-erőforrásokra, a klasszikus tooAzure erőforrás-kezelő áttelepítésének tervezése](migration-classic-resource-manager-plan.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [PowerShell toomigrate IaaS erőforrásainak klasszikus tooAzure erőforrás-kezelő használata](../windows/migration-classic-resource-manager-ps.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [IaaS-erőforrásokra, a klasszikus tooAzure erőforrás-kezelő áttelepítésének védelmével kapcsolatos közösségi eszközök](../windows/migration-classic-resource-manager-community-tools.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [A leggyakoribb áttelepítési hibák áttekintése](migration-classic-resource-manager-errors.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [A leggyakrabban feltett kérdésekre áttelepítése IaaS-erőforrásokra a klasszikus Azure Resource Manager áttekintése](migration-classic-resource-manager-faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [Felülvizsgálati hello legtöbb kapcsolatos gyakori kérdések a klasszikus tooAzure erőforrás-kezelő áttelepítése IaaS-erőforrásokra](migration-classic-resource-manager-faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

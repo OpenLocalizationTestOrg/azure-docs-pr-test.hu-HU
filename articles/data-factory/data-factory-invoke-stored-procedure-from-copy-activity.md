@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Factory másolási tevékenység tárolt eljárás meghívása |} Microsoft Docs"
-description: "Megtudhatja, hogyan lehet meghívni egy Azure Data Factory másolási tevékenység során az Azure SQL Database vagy az SQL Server tárolt eljárást."
+title: "aaaInvoke tárolt eljárást az Azure Data Factory másolási tevékenység |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooinvoke Azure SQL Database vagy az Azure Data Factory az SQL Server tárolt eljárás másolási tevékenység."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -13,19 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: af6e4a57e726598c266ee766656aa2cc22e374e3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 986377118afb8c08607c2325fcc3ab00b3de9268
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="invoke-stored-procedure-from-copy-activity-in-azure-data-factory"></a>A másolási tevékenység során az Azure Data Factory tárolt eljárás meghívása
-Az adatok másolásakor [SQL Server](data-factory-sqlserver-connector.md) vagy [Azure SQL Database](data-factory-azure-sql-connector.md), konfigurálhatja a **SqlSink** a másolási tevékenység meghívni a tárolt eljárást. Érdemes lehet használni a tárolt eljárást a további feldolgozás (egyesítés oszlopok, keresés, szúrás több táblák, stb.) az adatok a céltáblázatba való beszúrása előtt meg kell adni. Ez a szolgáltatás kihasználja a [Table-Valued paraméterek](https://msdn.microsoft.com/library/bb675163.aspx). 
+Az adatok másolásakor [SQL Server](data-factory-sqlserver-connector.md) vagy [Azure SQL Database](data-factory-azure-sql-connector.md), konfigurálhatja a hello **SqlSink** a másolási tevékenység tooinvoke tárolt eljárást. Érdemes lehet toouse hello tárolt eljárás tooperform adatok beszúrása toohello céltáblázatban előtt minden további feldolgozás (egyesítés oszlopok, keresés, szúrás több táblák, stb.) szükséges. Ez a szolgáltatás kihasználja a [Table-Valued paraméterek](https://msdn.microsoft.com/library/bb675163.aspx). 
 
-A következő példa bemutatja, hogyan hívhatnak meg a Data Factory-folyamathoz (másolási tevékenység) SQL Server-adatbázisban tárolt eljárást:  
+hello a következő példa bemutatja, hogyan tooinvoke tárolt eljárás egy olyan SQL Server-adatbázis a Data Factory-folyamathoz (másolási tevékenység):  
 
 ## <a name="output-dataset-json"></a>JSON kimeneti adatkészlet
-A kimeneti adatkészlet JSON, állítsa be a **típus** való: **SqlServerTable**. Állítsa az értékét **AzureSqlTable** Azure SQL-adatbázis használata. A következő **tableName** tulajdonságának meg kell egyeznie a tárolt eljárás első paraméter neve.  
+Hello kimeneti adatkészlet JSON, állítson be hello **típus** való: **SqlServerTable**. Állítsa be úgy túl**AzureSqlTable** toouse egy Azure SQL-adatbázishoz. a következő hello **tableName** tulajdonságának meg kell egyeznie az első paraméter hello tárolt eljárás hello neve.  
 
 ```json
 {
@@ -45,7 +45,7 @@ A kimeneti adatkészlet JSON, állítsa be a **típus** való: **SqlServerTable*
 ```
 
 ## <a name="sqlsink-section-in-copy-activity-json"></a>A másolási tevékenység JSON SqlSink szakasz
-Adja meg a **SqlSink** a másolási tevékenység során JSON szakasz az alábbiak szerint. A tárolt eljárás hívása közben adatok beszúrása a fogadó vagy a cél-adatbázis, adja meg az értékeket is **SqlWriterStoredProcedureName** és **SqlWriterTableType** tulajdonságait. Ezek a tulajdonságok leírását lásd: [SqlSink szakasz az SQL Server-összekötő cikkben](data-factory-sqlserver-connector.md#sqlsink).
+Adja meg a hello **SqlSink** hello másolási tevékenység JSON szakasz az alábbiak szerint. tooinvoke során adatokat beszúrni hello fogadó vagy a cél adatbázis, a tárolt eljárás mindkét értékeket megadni **SqlWriterStoredProcedureName** és **SqlWriterTableType** tulajdonságait. Ezek a tulajdonságok leírását lásd: [SqlSink szakasz hello SQL Server-összekötő cikkben](data-factory-sqlserver-connector.md#sqlsink).
 
 ```json
 "sink":
@@ -64,7 +64,7 @@ Adja meg a **SqlSink** a másolási tevékenység során JSON szakasz az alábbi
 ```
 
 ## <a name="stored-procedure-definition"></a>Tárolt eljárás meghatározása 
-Az adatbázisban, adja meg a tárolt eljárás neve megegyezik a **SqlWriterStoredProcedureName**. A tárolt eljárás kezeli a forrás adattárból bemeneti adatokat, és adatok beszúrása egy táblázatba a céladatbázisban. Az első paraméter a következő tárolt eljárás nevét meg kell egyeznie a tableName definiálva az adatkészlet JSON (Marketing).
+Az adatbázisban azonos nevet, amint hello hello tárolt eljárás megadása **SqlWriterStoredProcedureName**. hello tárolt eljárás bemeneti adatok forrás adattárból hello kezeli, és adatbeszúrást hello cél adatbázis egyik táblája. hello első paraméter a következő tárolt eljárás hello nevének meg kell egyeznie a hello adatkészlet JSON (Marketing) definiált hello táblanév.
 
 ```sql
 CREATE PROCEDURE spOverwriteMarketing @Marketing [dbo].[MarketingType] READONLY, @stringData varchar(256)
@@ -77,7 +77,7 @@ END
 ```
 
 ## <a name="table-type-definition"></a>Tábla típusának megadása
-Az adatbázisban azonos nevű tábla típusának azonosítására **SqlWriterTableType**. A tábla típusú sémát, meg kell egyeznie a bemeneti adatkészlet sémája.
+Az adatbázis meghatározása hello táblatípus hello azonos nevet, amint a **SqlWriterTableType**. hello séma hello tábla típusú hello bemeneti adatkészlet sémája hello egyeznie kell.
 
 ```sql
 CREATE TYPE [dbo].[MarketingType] AS TABLE(
@@ -87,7 +87,7 @@ CREATE TYPE [dbo].[MarketingType] AS TABLE(
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Tekintse át a következő összekötő, amely annak teljes JSON-példák: 
+Tekintse át a következő összekötő cikket, amely a JSON-példák befejezéséhez hello: 
 
 - [Azure SQL Database](data-factory-azure-sql-connector.md)
 - [SQL Server](data-factory-sqlserver-connector.md)

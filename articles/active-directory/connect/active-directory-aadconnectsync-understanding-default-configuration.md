@@ -1,6 +1,6 @@
 ---
-title: "Azure AD Connect szinkronizálása: az alapértelmezett konfiguráció ismertetése |} Microsoft Docs"
-description: "Ez a cikk ismerteti az Azure AD Connect szinkronizálási szolgáltatás az alapértelmezett konfigurációt."
+title: "Azure AD Connect szinkronizálása: Understanding hello alapértelmezett konfiguráció |} Microsoft Docs"
+description: "Ez a cikk ismerteti az Azure AD Connect szinkronizálási szolgáltatás hello alapértelmezett konfigurációt."
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -14,34 +14,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: 32a693c059a1b4261f33a3d6f50f397365e9dac4
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1cf95759af913cad8a1393839d3a836434e7c9bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-ad-connect-sync-understanding-the-default-configuration"></a>Az Azure AD Connect szinkronizálása: az alapértelmezett konfiguráció ismertetése
-Ez a cikk ismerteti a out-of-box konfigurációs szabályok. Az dokumentumokat, és ezek a szabályok milyen hatással van a konfigurációs szabályok. Azt is bemutatja, hogyan kell az Azure AD Connect szinkronizálási szolgáltatás az alapértelmezett konfigurációját. Az célja, hogy az olvasó együttműködik a deklaratív kiépítés nevű konfigurációs modell egy valós példában alakulását. Ez a cikk feltételezi, hogy már telepített, és állítsa be a telepítési varázsló segítségével az Azure AD Connect sync.
+# <a name="azure-ad-connect-sync-understanding-hello-default-configuration"></a>Azure AD Connect szinkronizálása: Understanding hello alapértelmezett konfigurációja
+Ez a cikk ismerteti a hello out-of-box konfigurációs szabályok. Ez a dokumentumok hello szabályok és hogyan befolyásolja az ezeket a szabályokat a hello konfigurációs. Azt is bemutatja, hogyan hello alapértelmezett beállítása az Azure AD Connect szinkronizálási szolgáltatás. hello célja, hogy hello olvasó együttműködik a hello konfigurációs modell nevű deklaratív kiépítés, egy valós példában alakulását. Ez a cikk feltételezi, hogy már telepített, és állítsa be az Azure AD Connect sync hello telepítővarázslóval.
 
-A konfigurációs modell megértéséhez, olvassa el [ismertetése deklaratív kiépítés](active-directory-aadconnectsync-understanding-declarative-provisioning.md).
+hello konfigurációs modell, olvassa el a toounderstand hello részleteit [ismertetése deklaratív kiépítés](active-directory-aadconnectsync-understanding-declarative-provisioning.md).
 
-## <a name="out-of-box-rules-from-on-premises-to-azure-ad"></a>Az Azure AD helyszíni Out-of-box szabályok
-Az alábbi kifejezések out-of-box konfigurációjában található.
+## <a name="out-of-box-rules-from-on-premises-tooazure-ad"></a>A helyszíni tooAzure AD Out-of-box szabályok
+hello következő kifejezések található hello out-of-box konfigurációban.
 
 ### <a name="user-out-of-box-rules"></a>Felhasználói out-of-box szabályok
-Ezek a szabályok is vonatkoznak az iNetOrgPerson objektumtípus.
+Ezek a szabályok is vonatkoznak toohello iNetOrgPerson objektumtípus.
 
-Olyan felhasználói objektum meg kell felelnie a következő szinkronizálásának engedélyezése:
+Olyan felhasználói objektum meg kell felelnie a következő szinkronizált toobe hello:
 
 * Rendelkeznie kell egy sourceAnchor.
-* Az objektum létrehozása az Azure ad-ben, után sourceAnchor nem módosítható. Módosult a helyi érték esetén az objektum leállítja a szinkronizálása, addig, amíg a sourceAnchor vissza az előző értékre változik.
-* Kell rendelkeznie a accountEnabled (userAccountControl) attribútum feltöltve. A helyszíni Active Directory, az ezt az attribútumot mindig jelen és ki van töltve.
+* Hello után az objektum az Azure ad-ben létrejött, majd a sourceAnchor nem módosítható. Ha hello értéke megváltozott a helyszíni, hello objektum nem szinkronizálása amíg hello sourceAnchor hátsó tooits előző érték nem módosítják.
+* Kell rendelkeznie hello accountEnabled (userAccountControl) attribútum feltöltve. A helyszíni Active Directory, az ezt az attribútumot mindig jelen és ki van töltve.
 
-Az alábbi felhasználói objektumok **nem** szinkronizálva az Azure AD:
+a következő felhasználói objektumok hello vannak **nem** tooAzure AD szinkronizálva:
 
-* `IsPresent([isCriticalSystemObject])`. Sok out-of-box objektumok az Active Directoryban, például a beépített rendszergazdai fiók érdekében nincsenek szinkronizálva.
+* `IsPresent([isCriticalSystemObject])`. Sok out-of-box objektumok az Active Directoryban, például hello beépített rendszergazdai fiók érdekében nincsenek szinkronizálva.
 * `IsPresent([sAMAccountName]) = False`. Győződjön meg arról, nincs sAMAccountName attribútummal rendelkező felhasználói objektumok nincsenek szinkronizálva. Ebben az esetben csak gyakorlatilag történne NT4 verzióról frissített tartományban.
-* `Left([sAMAccountName], 4) = "AAD_"`, `Left([sAMAccountName], 5) = "MSOL_"`. Ne szinkronizáljon az Azure AD Connect szinkronizálási szolgáltatás és a korábbi verziói által használt szolgáltatásfiók.
+* `Left([sAMAccountName], 4) = "AAD_"`, `Left([sAMAccountName], 5) = "MSOL_"`. Ne szinkronizáljon az Azure AD Connect szinkronizálási szolgáltatás és a korábbi verziói által használt szolgáltatásfiók hello.
 * Csatlakoztatás nem működik az Exchange Online Exchange-fiókok nem szinkronizálja.
   * `[sAMAccountName] = "SUPPORT_388945a0"`
   * `Left([mailNickname], 14) = "SystemMailbox{"`
@@ -49,7 +49,7 @@ Az alábbi felhasználói objektumok **nem** szinkronizálva az Azure AD:
   * `(Left([sAMAccountName], 4) = "CAS_" && (InStr([sAMAccountName], "}")> 0))`
 * Csatlakoztatás nem működik az Exchange Online-objektumok nem szinkronizálja.
   `CBool(IIF(IsPresent([msExchRecipientTypeDetails]),BitAnd([msExchRecipientTypeDetails],&H21C07000) > 0,NULL))`  
-  A bitmaszk (& H21C07000) a következő objektumok ki fog szűrni:
+  A következő objektumok hello bitmaszk (& H21C07000) lenne szűrheti:
   * Levelezési nyilvános mappa
   * Rendszer kísérő postaláda
   * Postaláda-adatbázis postaláda (rendszer postaláda)
@@ -59,27 +59,27 @@ Az alábbi felhasználói objektumok **nem** szinkronizálva az Azure AD:
   * Felderítési postaláda
 * `CBool(InStr(DNComponent(CRef([dn]),1),"\\0ACNF:")>0)`. Minden replikációs áldozata objektumok nem szinkronizálja.
 
-A következő attribútum szabályok vonatkoznak:
+a következő attribútum szabályok hello vonatkoznak:
 
-* `sourceAnchor <- IIF([msExchRecipientTypeDetails]=2,NULL,..)`. A sourceAnchor attribútum nem része volt, a csatolt postaládából. Feltételezzük, hogy ha a hivatkozott postafiókkal talált, a tényleges fiók egy tartományhoz később.
-* Exchange kapcsolódó attribútumok csak vannak szinkronizálva, ha az attribútum **mailNickName** értéke.
-* Ha több erdő, majd attribútumok során a következő sorrendben:
-  1. Bejelentkezési kapcsolódó attribútumok (például userPrincipalName) közzé az erdőből engedélyezett fiókkal.
-  2. Az erdő egy Exchange-postaládával közzé attribútumokat, amelyek az Exchange globális Címlista (globális címlista) található.
+* `sourceAnchor <- IIF([msExchRecipientTypeDetails]=2,NULL,..)`. hello sourceAnchor attribútum nem része volt, a csatolt postaládából. Feltételezzük, hogy ha a hivatkozott postafiókkal talált hello tényleges fiók egy tartományhoz később.
+* Exchange kapcsolódó attribútumok csak vannak szinkronizálva, ha hello attribútum **mailNickName** értéke.
+* Ha több erdő, majd attribútumok során sorrend hello:
+  1. Toosign a kapcsolódó attribútumok (a példa userPrincipalName) közzé hello erdőből engedélyezett fiókkal.
+  2. Az Exchange-postaládával hello erdőből közzé attribútumokat, amelyek az Exchange globális Címlista (globális címlista) található.
   3. Ha nincs postaláda található, majd ezek az attribútumok származhatnak bármely erdőben.
-  4. Exchange kapcsolódó attribútumok (nem látható a globális Címlista műszaki attribútumok) közzé az erdőből ahol `mailNickname ISNOTNULL`.
-  5. Ha több erdő, amely kielégítéséhez a szabályokat, az összekötők (erdők) létrehozási sorrendjének (dátum/idő) használatos határozza meg, melyik erdő hozzájárul az attribútumokat.
+  4. Exchange kapcsolódó attribútumok (nem látható a globális Címlista hello műszaki attribútumok) közzé hello erdőből ahol `mailNickname ISNOTNULL`.
+  5. Ha több erdő, amely akkor elégíti ki a szabályokat, majd hello létrehozása (dátum/idő) hello összekötők (erdők) sorrendje használt toodetermine melyik erdő hozzájárul hello attribútumok.
 
 ### <a name="contact-out-of-box-rules"></a>Lépjen kapcsolatba az out-of-box szabályok
-Egy partner objektuma meg kell felelnie a szinkronizálásra a következő:
+Egy partner objektuma meg kell felelnie a következő szinkronizált toobe hello:
 
-* Az ügyfél levelezési kell lennie. A következő szabályokkal igazolható:
-  * `IsPresent([proxyAddresses]) = True)`. A proxyAddresses attribútum ki kell tölteni.
-  * Egy elsődleges e-mail címét vagy a proxyAddresses, vagy a levél attribútum találhatók. A jelenléte egy @ segítségével győződjön meg arról, hogy a tartalmat egy e-mail címet. A két szabályokat igaz értékre kell kiértékelve.
-    * `(Contains([proxyAddresses], "SMTP:") > 0) && (InStr(Item([proxyAddresses], Contains([proxyAddresses], "SMTP:")), "@") > 0))`. Van-e bejegyzés "SMTP:", és ha nincs, egy @ kell a karakterláncban található?
-    * `(IsPresent([mail]) = True && (InStr([mail], "@") > 0)`. A levél attribútum feltöltve, és ha igen, képes egy @ kell a karakterláncban található?
+* hello forduljon levelezési kell lennie. A következő szabályok hello igazolható:
+  * `IsPresent([proxyAddresses]) = True)`. hello proxyAddresses attribútum ki kell tölteni.
+  * Egy elsődleges e-mail címét vagy hello proxyAddresses vagy hello levél attribútum találhatók. hello jelenléte egy @ van használt tooverify, hogy hello tartalma egy e-mail címet. A két szabályokat kiértékelt tooTrue kell lennie.
+    * `(Contains([proxyAddresses], "SMTP:") > 0) && (InStr(Item([proxyAddresses], Contains([proxyAddresses], "SMTP:")), "@") > 0))`. Van-e bejegyzés "SMTP:", és ha nincs, egy @ található hello karakterláncban?
+    * `(IsPresent([mail]) = True && (InStr([mail], "@") > 0)`. Hello feltöltve levél attribútum, és ha igen, képes egy @ található hello karakterláncban?
 
-Az alábbi kapcsolattartási objektumok **nem** szinkronizálva az Azure AD:
+a következő kapcsolattartási objektumok hello vannak **nem** tooAzure AD szinkronizálva:
 
 * `IsPresent([isCriticalSystemObject])`. Győződjön meg arról, lássa el kritikus jelzéssel kapcsolattartási objektumok szinkronizálja a rendszer. Nem lehet bármely, az alapértelmezett beállításokkal.
 * `((InStr([displayName], "(MSOL)") > 0) && (CBool([msExchHideFromAddressLists])))`.
@@ -87,150 +87,150 @@ Az alábbi kapcsolattartási objektumok **nem** szinkronizálva az Azure AD:
 * `CBool(InStr(DNComponent(CRef([dn]),1),"\\0ACNF:")>0)`. Minden replikációs áldozata objektumok nem szinkronizálja.
 
 ### <a name="group-out-of-box-rules"></a>Csoport out-of-box szabályok
-A csoportházirend-objektumot meg kell felelnie a szinkronizálásra a következő:
+Egy objektum meg kell felelnie a következő szinkronizált toobe hello:
 
-* 50 000-nél kevesebb tagot kell rendelkeznie. A számláló értéke a helyi csoport tagjainak számát.
-  * Ha több tagja van, mielőtt megkezdődik az első, a csoport nincs szinkronizálva.
-  * Ha a tagok száma nő, amikor eredeti létrehozása, majd amikor eléri a 50 000 tagok a szinkronizálása, addig, amíg a tagság száma nem 50 000-nél alacsonyabb újra leállítja.
-  * Megjegyzés: Az 50 000 tagsági számát is kényszeríti ki az Azure AD. Nem tudunk csoportok szinkronizálása több tag, még akkor is, ha módosítja vagy szabály eltávolításához.
-* Ha a csoport egy **terjesztési csoport**, majd mail engedélyezve kell lennie. Lásd: [out-of-box szabályok forduljon](#contact-out-of-box-rules) esetében ez a szabály érvényesül.
+* 50 000-nél kevesebb tagot kell rendelkeznie. Ez a szám nem hello a helyi csoportnak a tagjai hello száma.
+  * Ha több tagja van, mielőtt megkezdődik az hello először, hello csoport nincs szinkronizálva.
+  * Ha a tagok száma hello a méretének növelése, ha az eredetileg hoztak létre, majd ha 50 000 tagok leállítja szinkronizálása, addig, amíg újra 50 000-nél alacsonyabb hello tagsági száma nem éri.
+  * Megjegyzés: hello 50 000 tagsági száma is kényszeríti ki az Azure AD. Még nem tud toosynchronize csoportok több taggal rendelkező akkor is, ha módosítja vagy szabály eltávolításához.
+* Ha hello csoport egy **terjesztési csoport**, majd mail engedélyezve kell lennie. Lásd: [out-of-box szabályok forduljon](#contact-out-of-box-rules) esetében ez a szabály érvényesül.
 
-A következő objektum **nem** szinkronizálva az Azure AD:
+a következő objektumok hello vannak **nem** tooAzure AD szinkronizálva:
 
-* `IsPresent([isCriticalSystemObject])`. Sok out-of-box objektumok az Active Directoryban, például a beépített Rendszergazdák csoport érdekében nincsenek szinkronizálva.
+* `IsPresent([isCriticalSystemObject])`. Sok out-of-box objektumok az Active Directoryban, például hello beépített Rendszergazdák csoport érdekében nincsenek szinkronizálva.
 * `[sAMAccountName] = "MSOL_AD_Sync_RichCoexistence"`. A DirSync által használt örökölt csoport.
 * `BitAnd([msExchRecipientTypeDetails],&amp;H40000000)`. Szerepkör-csoport.
 * `CBool(InStr(DNComponent(CRef([dn]),1),"\\0ACNF:")>0)`. Minden replikációs áldozata objektumok nem szinkronizálja.
 
 ### <a name="foreignsecurityprincipal-out-of-box-rules"></a>ForeignSecurityPrincipal out-of-box szabályok
-FSP tartományhoz csatlakoztatott "bármely" (\*) objektum a metaverzumban. A valóságban ezt az összekapcsolást csak akkor fordul elő, a felhasználók és biztonsági csoportok. Ez a konfiguráció biztosítja a erdők közötti tagságát feloldani és képviselt megfelelő Azure AD-ben.
+FSP túl "any" tartományhoz csatlakoztatott (\*) hello metaverse objektumban. A valóságban ezt az összekapcsolást csak akkor fordul elő, a felhasználók és biztonsági csoportok. Ez a konfiguráció biztosítja a erdők közötti tagságát feloldani és képviselt megfelelő Azure AD-ben.
 
 ### <a name="computer-out-of-box-rules"></a>Számítógép out-of-box szabályok
-Számítógép-objektumot meg kell felelnie a szinkronizálásra a következő:
+Számítógép-objektumot meg kell felelnie a következő szinkronizált toobe hello:
 
 * `userCertificate ISNOTNULL`. Csak Windows 10-es számítógépeken feltöltése ehhez az attribútumhoz. Ez az attribútum egy értéket az összes számítógép-objektumok szinkronizálva.
 
-## <a name="understanding-the-out-of-box-rules-scenario"></a>A out-of-box szabályokat forgatókönyvben ismertetése
+## <a name="understanding-hello-out-of-box-rules-scenario"></a>Hello out-of-box szabályokat forgatókönyvben ismertetése
 Ebben a példában egy fiókerdő (A) a telepítésben, egy Erőforráserdő (R) és egy Azure AD-címtár használunk.
 
 ![Forgatókönyv leírása a kép](./media/active-directory-aadconnectsync-understanding-default-configuration/scenario.png)
 
-Ebben a konfigurációban feltételezhető a fiókerdőben engedélyezett fióknak és a letiltott fiók az hivatkozott postafiókkal az erőforráserdőben.
+Ebben a konfigurációban feltételezzük hello fiók erdő engedélyezett fióknak és a hivatkozott postafiókkal hello erőforrás erdő letiltott fiók.
 
-Az alapértelmezett konfigurációnál célunk:
+Hello alapértelmezett konfigurációval célunk:
 
-* Bejelentkezési kapcsolódó attribútumok szinkronizálva az erdőből, az engedélyezett fiókkal.
-* Itt található: a globális Címlista (globális címlista) attribútumok az erdőből a postaládával szinkronizálva. Ha nincs postaláda található, más erdőkben szolgál.
-* Ha hivatkozott postafiókkal található, a csatolt engedélyezett fiók az objektum az Azure ad Szolgáltatásba exportálni kell található.
+* Toosign a kapcsolódó attribútumok hello engedélyezett fiókkal hello erdőből szinkronizálva.
+* Itt található: hello globális Címlista (globális címlista) attribútumok hello postaládával hello erdőből szinkronizálva. Ha nincs postaláda található, más erdőkben szolgál.
+* Ha talál egy hivatkozott postafiókkal, hello csatolt engedélyezett fiókot kell található hello objektum exportált toobe tooAzure AD.
 
 ### <a name="synchronization-rule-editor"></a>Szinkronizálási szabály szerkesztő
-A konfigurációs tekinthetők meg és szinkronizálási szabályok Editor (SRE) eszközzel megváltozott, és a start menüben található egy parancsikont.
+hello konfigurációs tekinthetők meg és szinkronizálási szabályok Editor (SRE) hello eszközzel megváltozott, és egy helyi tooit hello start menüben található.
 
 ![Szinkronizálási szabályok szerkesztő ikon](./media/active-directory-aadconnectsync-understanding-default-configuration/sre.png)
 
-A SRE resource kit eszköz, az Azure AD Connect szinkronizálási szolgáltatás telepítve van. Lesz elindítható, hogy az ADSyncAdmins csoport tagjának kell lennie. Ha kezdődik, megjelenik az alábbihoz hasonló:
+hello SRE resource kit eszköz, az Azure AD Connect szinkronizálási szolgáltatás telepítve van. toobe képes toostart, hello ADSyncAdmins csoport tagjának kell lennie. Ha kezdődik, megjelenik az alábbihoz hasonló:
 
 ![Bejövő szinkronizálási szabály](./media/active-directory-aadconnectsync-understanding-default-configuration/syncrulesinbound.png)
 
-Az ezen az ablaktáblán tekintse meg a konfigurációs létrehozott összes szinkronizálási szabályait. A táblázat minden sora egy szinkronizálási szabály. A szabálytípusok balra, a két különböző felsorolt: bejövő és kimenő. Bejövő és kimenő a metaverzumba nézetéből. Főleg kívánja fókusz Ez az Áttekintés a bejövő szabályok. A szinkronizálási szabályok tényleges listáját az ad-ben az észlelt séma függ. A fenti kép a fiókerdő (fabrikamonline.com) nem rendelkezik a szolgáltatások, például Exchange és a Lync, és a szolgáltatások nem szinkronizálási szabály létrejött. Az erőforrás-erdő (res.fabrikamonline.com) szinkronizálási szabályok keresése a szolgáltatások. A szabályok tartalma észlelt verziójától függően eltérnek. Például az Exchange 2013-as központi telepítés nincsenek további attribútumfolyamok, mint az Exchange 2010/2007 konfigurálva.
+Az ezen az ablaktáblán tekintse meg a konfigurációs létrehozott összes szinkronizálási szabályait. Hello táblázat minden sora egy szinkronizálási szabály. toohello szabálytípusok, két különböző felsorolt hello a bal oldali: bejövő és kimenő. Bejövő és kimenő hello metaverse hello nézetéből. A hello főként folyamatos toofocus áll bejövő szabályok a áttekintésében. hello tényleges szinkronizálási szabályok listáját az Active Directory észlelte hello séma függ. A fenti hello kép (fabrikamonline.com) erdő nem rendelkezik a szolgáltatások, például Exchange és a Lync és szinkronizálási szabályait nem hello fiók ezen szolgáltatások jött létre. Hello Erőforráserdő (res.fabrikamonline.com) a szinkronizálási szabályok keresése a szolgáltatások. hello szabályok hello tartalma különböző észlelt hello verziójától függően. Például az Exchange 2013-as központi telepítés nincsenek további attribútumfolyamok, mint az Exchange 2010/2007 konfigurálva.
 
 ### <a name="synchronization-rule"></a>Szinkronizálási szabály
-A szinkronizálási szabály attribútumok kifelé áramló, ha egy feltétel teljesül-e a konfigurációs objektum. Ismerteti, hogyan viszonyul a kapcsolódási térbe objektumára tartozik a metaverzumba, úgynevezett objektum is szolgál **illesztési** vagy **megfelelő**. A szinkronizálási szabályok rendelkezik egy sorrend érték, amely jelzi, hogyan kapcsolódnak egymáshoz. A szinkronizálási szabály alacsonyabb numerikus értéke magasabb prioritással rendelkezik, és attribútum folyamata ütköznek, a magasabb prioritással wins az ütközések feloldása.
+A szinkronizálási szabály attribútumok kifelé áramló, ha egy feltétel teljesül-e a konfigurációs objektum. Egyúttal az objektumok a kapcsolódási térbe Mitől hello metaverse néven kapcsolódó tooan objektum használt toodescribe **illesztési** vagy **megfelelő**. hello szinkronizálási szabályok arról, hogyan kapcsolódnak-e más tooeach sorrend értékűnek lennie. A szinkronizálási szabály alacsonyabb numerikus értéke magasabb prioritással rendelkezik, és attribútum folyamata ütköznek, magasabb sorrend wins hello ütközésének feloldása.
 
-Tegyük fel, nézze meg a szinkronizálási szabály **a az AD-felhasználó AccountEnabled**. A sor a SRE, és válasszon megjelölése **szerkesztése**.
+Tegyük fel, nézze meg hello szinkronizálási szabály **a az AD-felhasználó AccountEnabled**. Ez a sor hello SRE jel, és válassza ki **szerkesztése**.
 
-Mivel ez a szabály az out-of-box szabály, riasztást küld a szabály megnyitásakor. Nem szabad módosítani a [vált, out-of-box szabályok](active-directory-aadconnectsync-best-practices-changing-default-configuration.md), így a rendszer kéri, hogy Mik azok a céljaira. Ebben az esetben csak megtekinteni kívánt a szabályt. Válassza ki **nem**.
+Mivel ez a szabály az out-of-box szabály, akkor a rendszer figyelmeztetést hello szabály megnyitásakor. Nem szabad módosítani a [tooout beépített szabályok módosítása](active-directory-aadconnectsync-best-practices-changing-default-configuration.md), így a rendszer kéri, hogy Mik azok a céljaira. Ebben az esetben csak szeretné tooview hello szabály. Válassza ki **nem**.
 
 ![Szinkronizálási szabályok figyelmeztetés](./media/active-directory-aadconnectsync-understanding-default-configuration/warningeditrule.png)
 
 A szinkronizálási szabály rendelkezik négy konfigurációs szakasz: hatókörére szűrő illesztési szabályok és átalakítások ismertetését.
 
 #### <a name="description"></a>Leírás
-Az első témakör alapvető információkat, például a nevét és leírását.
+hello első a témakör alapvető információkat, például a nevét és leírását.
 
 ![Leírás szinkronban szabály szerkesztő lap ](./media/active-directory-aadconnectsync-understanding-default-configuration/syncruledescription.png)
 
-Adatokat kaphat mely csatlakoztatott rendszerre vonatkozó Ez a szabály kapcsolódik, amely az objektum típusa a csatlakoztatott rendszer vonatkozik, és a metaverzum-objektum típusaként. A metaverzum-objektum típusaként esetén mindig személy függetlenül a Forrásobjektum-típust adott felhasználó, iNetOrgPerson, vagy lépjen kapcsolatba. A metaverzum-objektum típusaként soha nem kell módosítani, ezért azt a program létrehoz egy általános típus. A kapcsolat típusa csatlakozni, StickyJoin vagy rendelkezés állítható be. Ez a beállítás a csatlakozás szabályok szakasz együtt működik, amelyeket később.
+Adatokat kaphat arról, hogy mely Ez a szabály vonatkozik, amelyek hello objektumtípusra csatlakoztatott rendszer csatlakoztatott rendszer vonatkozik, és hello metaverzum-objektum típusaként. metaverzum-objektum típusaként hello esetén mindig függetlenül személy hello Forrásobjektum-típust adott felhasználó, iNetOrgPerson, vagy lépjen kapcsolatba. metaverzum-objektum típusaként hello soha nem kell módosítani, így azt a program létrehoz egy általános típus. hello kapcsolattípus tooJoin, StickyJoin vagy rendelkezés állítható be. Ez a beállítás hello csatlakozás szabályok szakasz együtt működik, és később vonatkozik.
 
-Láthatja, hogy a szinkronizálási szabály használja a jelszó-szinkronizálást. Ha egy felhasználó a szinkronizálási szabály hatóköre, a jelszó szinkronizálása a helyszíni felhőbe (feltéve, hogy engedélyezte a jelszó-szinkronizálási szolgáltatás).
+Láthatja, hogy a szinkronizálási szabály használja a jelszó-szinkronizálást. Ha egy felhasználó a szinkronizálási szabály hatóköre, hello jelszó szinkronizálása a helyszíni toocloud (feltéve, hogy engedélyezte a jelszó-szinkronizálási szolgáltatás hello).
 
 #### <a name="scoping-filter"></a>Hatókör-beállítási szűrője
-A hatókör-beállítási szűrője szakasz segítségével konfigurálhatja, amikor egy szinkronizálási szabály vonatkozik. Az éppen megtekintett szinkronizálási szabály nevét jelzi, hogy csak az engedélyezett felhasználók kell alkalmazni, mivel a hatókör van konfigurálva, az AD attribútum **userAccountControl** nem a 2 bit be kell. Ha a szinkronizálási motor AD egy felhasználó talál, a szinkronizálás érvényes szabály **userAccountControl** a decimális 512 (engedélyezett normál felhasználói) értékre van beállítva. Nem alkalmazható a szabályt, ha a felhasználó rendelkezik-e **userAccountControl** 514 (letiltott normál felhasználói) értékre.
+hatókör-beállítási szűrője szakasz hello használt tooconfigure esetén egy szinkronizálási szabály vonatkozik. Hello nézi szinkronizálási szabály hello nevét jelzi, hogy csak az engedélyezett felhasználók kell alkalmazni, mivel a hello-hatókör konfigurálva lett-e Igen hello AD attribútum **userAccountControl** kell nem rendelkezik hello bitje 2. Ha hello szinkronizálási motor AD egy felhasználó talál, a szinkronizálás érvényes szabály **userAccountControl** toohello decimális 512 (engedélyezett normál felhasználói) van beállítva. Nem alkalmazható hello szabály amikor hello felhasználó rendelkezik-e **userAccountControl** too514 beállítása (letiltott normál felhasználói).
 
 ![Szinkronizálási szabály szerkesztőben tartalmazó lap ](./media/active-directory-aadconnectsync-understanding-default-configuration/syncrulescopingfilter.png)
 
-A hatókört szűrőre csoportok és záradékokat, amelyek egymásba ágyazható. Csoportban lévő összes záradékok kell teljesülnie ahhoz, hogy a szinkronizálási szabályt alkalmazni. Ha több csoport vannak definiálva, majd legalább egy csoportot kell teljesülnie ahhoz a szabályt alkalmazni. Ez azt jelenti, hogy logikai vagy csoportok és a logikai között történik, és ki lesz értékelve a csoporton belül. Ez a konfiguráció példát a kimenő szinkronizálási szabály található **ki az aad-be – csoport csatlakozás**. Több szinkronizálási szűrő csoportok, például egy, a biztonsági csoportok (`securityEnabled EQUAL True`) és egy terjesztési csoportok (`securityEnabled EQUAL False`).
+hello tartalmazó szűrő csoportok és záradékokat, amelyek egymásba ágyazható rendelkezik. A szinkronizálási szabály tooapply csoportban lévő összes záradékok teljesülniük kell. Ha több csoport vannak definiálva, majd legalább egy csoportot kell teljesülnie hello szabály tooapply. Ez azt jelenti, hogy logikai vagy csoportok és a logikai között történik, és ki lesz értékelve a csoporton belül. Ezt a konfigurációt egy példa található hello kimenő szinkronizálási szabály **tooAAD – csoport csatlakozás kimenő**. Több szinkronizálási szűrő csoportok, például egy, a biztonsági csoportok (`securityEnabled EQUAL True`) és egy terjesztési csoportok (`securityEnabled EQUAL False`).
 
 ![Szinkronizálási szabály szerkesztőben tartalmazó lap ](./media/active-directory-aadconnectsync-understanding-default-configuration/syncrulescopingfilterout.png)
 
-Ez a szabály melyik csoportok kell építhető ki az Azure AD azonosítására szolgál. Terjesztési csoportok mail az Azure ad-vel szinkronizálandó engedélyezve kell lennie, de a biztonsági csoportok egy e-mailt nincs szükség.
+Ez a szabály szerepel a használt toodefine, amely csoportok kiosztott tooAzure AD kell lennie. Terjesztési csoportok az Azure ad-vel szinkronizált engedélyezése levelezési toobe kell lennie, de a biztonsági csoportok egy e-mailt nincs szükség.
 
 #### <a name="join-rules"></a>Csatlakozás a szabályok
-A harmadik szakasz hogyan objektumokat a kapcsolódási térbe kapcsolódnak-e a metaverzumban található objektumok konfigurálására szolgál. A szabály ellenőrizte korábban nem rendelkezik, ehelyett meg kívánja csatlakozás szabályok beállításra **a az AD-felhasználó csatlakozás**.
+hello harmadik szakasz használt tooconfigure milyen objektumokat a kapcsolódási térbe hello áll a hello metaverse tooobjects. hello szabály ellenőrizte korábban nem rendelkezik a csatlakozás szabályok beállításra, helyette a folyamatos toolook áll **a az AD-felhasználó csatlakozás**.
 
 ![Szinkronizálási szabály szerkesztő csatlakozott szabályai lap ](./media/active-directory-aadconnectsync-understanding-default-configuration/syncrulejoinrules.png)
 
-Az illesztési szabály a tartalom a telepítési varázsló megfelelő beállítástól függ. Egy bejövő forgalomra vonatkozó szabály a kiértékelés kezdődik-e az adatforrás kapcsolódási térbe objektumára és feladatütemezési értékeli az illesztés szabályok szereplő valamennyi csoport. Ha egy adatforrás-objektum tartozik a metaverzumba, az illesztési szabályok egyikének használatával pontosan egy objektum kereséséhez, az objektumok kapcsolódnak-e. Ha az összes szabály értékelése, és nincs egyezés, a kapcsolat típusa, a leírás oldalon szolgál. Ha ez a konfiguráció beállítása **rendelkezés**, majd egy új objektum jön létre a célkiszolgálón, a metaverzumba. Új objektum felvételére a metaverzum-hoz is kiépítését **projekt** egy objektumot a metaverzumba.
+hello illesztési szabály hello tartalma hello telepítővarázsló kiválasztott lehetőségnek megfelelő hello függ. Egy bejövő forgalomra vonatkozó szabály hello értékelési kezdődik-e az objektumok hello adatforrás kapcsolódási térbe és hello illesztési szabályok szereplő valamennyi csoport sorrendben történik. Ha egy adatforrás-objektum van kiértékelt toomatch pontosan egy objektum a hello metaverse hello illesztési szabályok egyikének használatával, hello objektumok kapcsolódnak-e. Ha az összes szabály értékelése, és nincs egyezés, hello leírását tartalmazó lapon a kapcsolódás típusa hello szolgál. Ha ez a konfiguráció túl**rendelkezés**, majd egy új objektum hello célkiszolgálón, hello metaverse jön létre. egy új objektum toohello metaverse túl van más néven tooprovision**projekt** egy objektum toohello metaverse.
 
-Az illesztési szabályok csak egyszer kell kiértékelni. Ha egy összekötő terület objektum és a metaverzum-objektum kapcsolódik, akkor maradjanak illesztett mindaddig, amíg a szinkronizálási szabály hatóköre továbbra is eleget.
+hello illesztési szabályok csak egyszer kell kiértékelni. Ha egy összekötő terület objektum és a metaverzum-objektum kapcsolódik, akkor azok maradniuk illesztett hello hello szinkronizálási szabály hatóköre továbbra is eleget.
 
-Szinkronizálási szabályok kiértékelésekor meghatározott illesztési szabályok csak egy szinkronizálási szabály hatókörében kell lennie. Ha több szinkronizálási szabályait illesztési szabályok egy adott objektum található, hiba történt. Ezért az ajánlott eljárás, hogy csak egy szinkronizálási szabály van definiálva, ha több szinkronizálási szabályok hatókörébe az objektum illesztési. Az Azure AD Connect szinkronizálási szolgáltatás out-of-box konfigurációjában, ezek a szabályok alapján a neve található és azokat a Word **csatlakozás** a név végén. Nélkül a megadott illesztési szabályok szinkronizálási szabály az attribútumfolyamok érvényes, ha egy másik szinkronizálási szabály az objektumok összekapcsolódva, vagy egy új objektumot a célzott kiépítve.
+Szinkronizálási szabályok kiértékelésekor meghatározott illesztési szabályok csak egy szinkronizálási szabály hatókörében kell lennie. Ha több szinkronizálási szabályait illesztési szabályok egy adott objektum található, hiba történt. Emiatt hello érdemes csak egy szinkronizálási szabály illesztési meghatározni, ha több szinkronizálási szabályok szerepelnek az objektum hatóköre toohave. Hello out-of-box konfigurációban az Azure AD Connect szinkronizálási szolgáltatás, ezek a szabályok hello neve megtekintésével található és található rendelkező hello word **csatlakozás** hello végén lévő hello nevét. A megadott illesztési szabályok nélkül szinkronizálási szabály hello attribútumfolyamok érvényes, ha egy másik szinkronizálási szabály hello objektumok összekapcsolódva, vagy kiépített hello cél új objektumot.
 
-Ha a fenti kép tekinti meg, akkor láthatja, hogy a szabály próbál csatlakozni, **objectSID** rendelkező **msExchMasterAccountSid** (Exchange) és **msRTCSIP-OriginatorSid** (Lync). Ez az felel meg az elvártnak a fiók-erőforrás erdő topológiájában. Ugyanaz a szabály az összes erdőben található meg. A feltételezi, hogy minden erdőben vagy egy fiókot, vagy az erőforrás erdő lehet. Ez a konfiguráció is működik, ha fiókokat, amelyek az adott erdő live, és nem kell csatlakoztatni.
+A fenti hello kép tekinti meg, ha adott hello szabály próbál toojoin láthatja **objectSID** rendelkező **msExchMasterAccountSid** (Exchange) és **msRTCSIP-OriginatorSid** () Lync), vagyis felel meg az elvártnak a fiók-erőforrás erdő topológiájában. Megkeresi hello ugyanaz a szabály az összes erdőben. hello feltételezi, hogy minden erdőben vagy egy fiókot, vagy az erőforrás erdő lehet. Ez a konfiguráció is működik, ha rendelkezik, az adott erdő live, és nincs csatlakoztatva toobe felhasználói.
 
 #### <a name="transformations"></a>Átalakítás
-Transzformációs szakaszából határozza meg az összes attribútumfolyamok, amelyek érvényesek a célobjektum objektumok tartományhoz csatlakoztatott és a hatókör szűrő teljesül-e. Ha visszalép, hogy a **a az AD-felhasználó AccountEnabled** szinkronizálási szabály található a következő átalakítások:
+hello transzformációs szakaszából határozza meg az összes attribútumfolyamok toohello célobjektum alkalmazhassa hello objektumok tartományhoz csatlakoztatott és hello hatókör szűrő teljesül-e. Ha visszalép toohello **a az AD-felhasználó AccountEnabled** szinkronizálási szabály található a következő átalakítások hello:
 
 ![Átalakítások szinkronban szabály szerkesztő lap ](./media/active-directory-aadconnectsync-understanding-default-configuration/syncruletransformations.png)
 
-Kontextusba helyezni ezt a konfigurációt, fiók-erőforrás-erdő telepítés, várhatóan található engedélyezett fióknak az erdő és a letiltott fiók az erőforráserdőben Exchange és a Lync beállításokkal. Az éppen megtekintett szinkronizálási szabályának tartalmazza a bejelentkezéshez szükséges attribútumok és ezek az attribútumok az erdőben kell haladjanak ahol van egy engedélyezett fiók. Ezek attribútumfolyamok alkotják, több szinkronizálási szabály.
+tooput ezt a konfigurációt, fiók-erőforrás-erdő telepítés, a környezetben várt toofind hello fiók erdő engedélyezett fióknak és a letiltott fiók hello erőforrás erdő Exchange és a Lync beállításokkal. Szinkronizálási szabály nézi hello a bejelentkezéshez szükséges hello attribútumokat tartalmaz, és ezek az attribútumok kell haladjanak hello erdő ahol van egy engedélyezett fiók. Ezek attribútumfolyamok alkotják, több szinkronizálási szabály.
 
 Átalakítás is rendelkezik különböző: állandó, közvetlen és kifejezés.
 
-* Az adatáramlás mindig forgalomáramlás szoftveresen kötött érték. A fenti esetben mindig beállítja az értéket **igaz** a metaverzum-attribútum neve **accountEnabled**.
-* A közvetlen áramlását mindig zajlik a attribútum számára a target attribútummal, mint a forrás-van.
-* A harmadik adatfolyam típusú kifejezés, és lehetővé teszi a speciális konfigurációk.
+* Az adatáramlás mindig forgalomáramlás szoftveresen kötött érték. A fenti hello esetében, mindig egy hello értéket **igaz** hello metaverzum-attribútum neve a **accountEnabled**.
+* A közvetlen áramlását mindig forgalomáramlás hello forrás toohello target attribútummal, hello attribútumának értéke hello-van.
+* hello harmadik adatfolyam típusú kifejezést, és lehetővé teszi a speciális konfigurációk.
 
-A kifejezés nyelve megegyezik a VBA (Visual Basic for Applications), ezért a Microsoft Office élménye rendelkező személyek vagy VBScript felismeri a formátuma. Attribútumok szögletes zárójelbe [attributeName] parancsfájlblokkjában találhatók. Attribútumnevek és függvény nevek kis-és nagybetűket, de a szinkronizálási szabályok szerkesztő kiértékeli a kifejezést, és adjon meg egy figyelmeztetés, ha a kifejezés nem érvényes. Összes kifejezés szerint van megadva, a beágyazott függvények külön sorba. A konfigurációs nyelvi hatványa megjelenítéséhez ez pwdLastSet, de további megjegyzésekkel szúrja be a folyamatot:
+hello kifejezés nyelvi VBA (Visual Basic for Applications), ezért a Microsoft Office élménye rendelkező személyek vagy VBScript felismeri hello formátumban. Attribútumok szögletes zárójelbe [attributeName] parancsfájlblokkjában találhatók. Attribútumnevek és függvény nevek kis-és nagybetűket, de hello szinkronizálási szabályok szerkesztő hello kifejezések kiértékeli, és adja meg a figyelmeztetést, ha a hello kifejezés érvénytelen. Összes kifejezés szerint van megadva, a beágyazott függvények külön sorba. tooshow hello power hello konfigurációs nyelv, ez pwdLastSet, de további megjegyzésekkel beszúrni hello folyamata:
 
 ```
 // If-then-else
 IIF(
-// (The evaluation for IIF) Is the attribute pwdLastSet present in AD?
+// (hello evaluation for IIF) Is hello attribute pwdLastSet present in AD?
 IsPresent([pwdLastSet]),
-// (The True part of IIF) If it is, then from right to left, convert the AD time format to a .Net datetime, change it to the time format used by Azure AD, and finally convert it to a string.
+// (hello True part of IIF) If it is, then from right tooleft, convert hello AD time format tooa .Net datetime, change it toohello time format used by Azure AD, and finally convert it tooa string.
 CStr(FormatDateTime(DateFromNum([pwdLastSet]),"yyyyMMddHHmmss.0Z")),
-// (The False part of IIF) Nothing to contribute
+// (hello False part of IIF) Nothing toocontribute
 NULL
 )
 ```
 
-Lásd: [ismertetése deklaratív kiépítés kifejezések](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md) attribútumfolyamokhoz kifejezés nyelvi további információt.
+Lásd: [ismertetése deklaratív kiépítés kifejezések](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md) hello kifejezés nyelvi attribútumfolyamokhoz olvashat.
 
 ### <a name="precedence"></a>Sorrend
-Most nézett néhány egyes szinkronizálási szabályait, de a szabályok együttműködik a konfigurációban. Bizonyos esetekben egy attribútumérték van hozzájárult több szinkronizálási szabályok az azonos target attribútuma. Attribútumsorrend ebben az esetben az határozza meg, melyik attribútum wins szolgál. Tegyük fel nézze meg a sourceAnchor. Fontos tudni az Azure AD bejelentkezés attribútum erre az attribútumra. Az Attribútumfolyam találhat meg két különböző szinkronizálási szabályok ezt az attribútumot **a az AD-felhasználó AccountEnabled** és **a az AD-felhasználó közös**. Szinkronizálási szabály elsőbbséget, mert a sourceAnchor attribútum van hozzájárult engedélyezett fióknak az erdő első több objektumot csatoltak a metaverzum-objektum esetén. Ha nincsenek engedélyezett fiókok, akkor a szinkronizálási motor által a catch – minden szinkronizálási szabály **a az AD-felhasználó közös**. Ez a konfiguráció biztosítja, hogy még a fiók, továbbra is a sourceAnchor.
+Most nézett néhány egyes szinkronizálási szabályait, de hello szabályok hello konfigurációs működnek együtt. Bizonyos esetekben egy attribútumérték része volt a több szinkronizálási szabályok toohello azonos target attribútuma. Attribútumsorrend ebben az esetben, mely attribútum wins használt toodetermine. Tegyük fel nézze meg a hello attribútum sourceAnchor. Ez az attribútum egy fontos attribútum toobe képes toosign tooAzure AD a rendszer. Az Attribútumfolyam találhat meg két különböző szinkronizálási szabályok ezt az attribútumot **a az AD-felhasználó AccountEnabled** és **a az AD-felhasználó közös**. Lejáró tooSynchronization szabály elsőbbséget hello sourceAnchor attribútum van hozzájárult engedélyezett fiókkal hello erdőből először több objektumok illesztett toohello metaverzum-objektum esetén. Ha nincsenek engedélyezett fiókok, majd hello szinkronizálási motor által használt általános szinkronizálási szabály hello **a az AD-felhasználó közös**. Ez a konfiguráció biztosítja, hogy még a fiók, továbbra is a sourceAnchor.
 
 ![Bejövő szinkronizálási szabály](./media/active-directory-aadconnectsync-understanding-default-configuration/syncrulesinbound.png)
 
-A szinkronizálási szabályok precedenciáját állítja be a csoportok a telepítési varázsló. A csoportban található összes szabály ugyanazon névvel rendelkeznek, de különböző csatlakoztatott könyvtárak csatlakoznak. A telepítési varázsló lehetővé teszi a szabály **a az AD-felhasználó csatlakozás** legmagasabb élvez és azt megismétli over összes AD könyvtárakban csatlakoztatva. Majd folytatja a következő csoportok szabályok egy előre meghatározott sorrendben. Egy csoporton belül a szabályok hozzáadása történik meg a varázsló az összekötők hozzáadott sorrendben. Ha egy másik összekötő a varázsló használatával ad hozzá, a szinkronizálási szabályok rendezi újra, és az új összekötő szabályok utolsó egészül ki minden egyes csoport.
+Szinkronizálási szabályok hello precedenciáját hello telepítővarázsló csoportok van megadva. A csoportban található összes szabály hello rendelkezik ugyanazzal a névvel, de csatlakoztatva csatlakoztatott toodifferent könyvtárak. hello telepítési varázsló lehetővé teszi a hello szabály **a az AD-felhasználó csatlakozás** legmagasabb élvez és azt megismétli over összes AD könyvtárakban csatlakoztatva. Azt a szabályok egy előre meghatározott sorrendben következő csoportját hello majd folytatja. Egy csoporton belüli hello szabályok hozzáadása történik meg a hello rendelés hello hello varázsló hozzáadott összekötők. Ha egy másik összekötő hello varázsló használatával ad hozzá, hello szinkronizálási szabályok rendezi újra, és hello új összekötő szabályok utolsó egészül ki minden egyes csoport.
 
 ### <a name="putting-it-all-together"></a>A teljes kép
-Most már tudjuk elegendő szinkronizálási szabályokat kell a konfigurációt a különböző szinkronizálási szabályait működésének megismerése. Ha egy felhasználó és az attribútumok a metaverzumba hozzájáruló tekinti meg, a szabályok vonatkoznak a következő sorrendben:
+Most már tudjuk elegendő szinkronizálási szabályok toobe képes toounderstand hello konfigurációs működése hello kapcsolatos különböző szinkronizálási szabályait. Ha célszerű figyelni felhasználói és hello attribútumokat, amelyek toohello metaverse hozzájárult, hello szabályok alkalmazása sorrendben következő hello:
 
 | Név | Megjegyzés |
 |:--- |:--- |
 | Az ad-felhasználó illesztési |Összekötő metaverzum-es összekötő terület objektumok szabály. |
-| Az ad-– UserAccount engedélyezve |Bejelentkezés az Azure AD szükséges attribútumok és az Office 365. Azt szeretnénk, ha ezek az attribútumok az engedélyezett fiókkal. |
-| Az ad-felhasználó közös az Exchange-ből |A globális címlista attribútumot. Feltételezzük, hogy a data quality célszerű az erdőben, ahol találtunk, amelyeknek a felhasználó postaládájából. |
-| Az ad-felhasználó közös |A globális címlista attribútumot. Abban az esetben, ha a postaláda nem található, a többi illesztett objektum járulhat attribútum értéke. |
+| Az ad-– UserAccount engedélyezve |A bejelentkezési tooAzure AD és az Office 365 szükséges attribútum. Azt szeretnénk, ha ezek az attribútumok engedélyezve hello fiókból. |
+| Az ad-felhasználó közös az Exchange-ből |A globális címlista hello található attribútum. Feltételezzük, hogy hello az adatminőségi a legcélszerűbb hello erdőben, ahol találtunk, amelyeknek hello felhasználó postaládájához. |
+| Az ad-felhasználó közös |A globális címlista hello található attribútum. Abban az esetben, ha a postaláda nem található, a többi illesztett objektum járulhat hello attribútum értéke. |
 | Az AD-felhasználó Exchange-ből |Ha a rendszer észlelte az Exchange csak létezik. Összes infrastruktúra Exchange attribútum azt zajlik. |
 | Az ad-felhasználó Lync |Ha a rendszer észlelte a Lync csak létezik. Összes infrastruktúra Lync attribútum azt zajlik. |
 
 ## <a name="next-steps"></a>Következő lépések
-* További információk a konfigurációs modell [ismertetése deklaratív kiépítés](active-directory-aadconnectsync-understanding-declarative-provisioning.md).
-* További információk az a kifejezés nyelv [ismertetése deklaratív kiépítés kifejezések](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md).
-* Továbbra is, hogyan működik a out-of-box konfiguráció olvasása [felhasználók és névjegyek](active-directory-aadconnectsync-understanding-users-and-contacts.md)
-* Lásd: how to gyakorlati módosítja a deklaratív kiépítés használatával [hogyan lehet módosítani az alapértelmezett konfiguráció](active-directory-aadconnectsync-change-the-configuration.md).
+* További információk a hello konfigurációs modell [ismertetése deklaratív kiépítés](active-directory-aadconnectsync-understanding-declarative-provisioning.md).
+* További információk a hello kifejezés nyelvi [ismertetése deklaratív kiépítés kifejezések](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md).
+* Továbbra is, hogyan működik hello out-of-box konfiguráció olvasása [felhasználók és névjegyek](active-directory-aadconnectsync-understanding-users-and-contacts.md)
+* Tekintse meg, hogyan toomake egy gyakorlati módosítani, használja a deklaratív kiépítés [hogyan toomake egy módosítás toohello alapértelmezett konfiguráció](active-directory-aadconnectsync-change-the-configuration.md).
 
 **Áttekintő témakör**
 

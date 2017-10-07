@@ -1,6 +1,6 @@
 ---
-title: "Oktatóanyag Java alapú alkalmazásfejlesztéshez Azure Cosmos DB használatával | Microsoft Docs"
-description: "A Java webalkalmazásokra vonatkozó oktatóanyag bemutatja tárolására az Azure Cosmos DB és a DocumentDB API használatával és a hozzáférési adatok Azure Websitesban tárolt Java-alkalmazás."
+title: "Azure Cosmos DB használatával aaaJava alkalmazásfejlesztési oktatóanyag |} Microsoft Docs"
+description: "Ez a Java webalkalmazásokra vonatkozó oktatóanyag bemutatja, hogyan toouse hello Azure Cosmos DB és DocumentDB API toostore hello és elérni az adatokat az Azure websitesban tárolt Java-alkalmazás."
 keywords: "Alkalmazásfejlesztés, adatbázis-oktatóanyag, java-alkalmazás, java-webalkalmazás oktatóanyag, documentdb, azure, Microsoft Azure"
 services: cosmos-db
 documentationcenter: java
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 08/22/2017
 ms.author: denlee
-ms.openlocfilehash: 292115b5603c6f05a5eab3492d4b3e2096b58ed2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e073de23beb0037ee1e37b48a69e8fe7cdc3fc1d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="build-a-java-web-application-using-azure-cosmos-db-and-the-documentdb-api"></a>Azure Cosmos DB és a DocumentDB API-t használó Java-webalkalmazás létrehozása
+# <a name="build-a-java-web-application-using-azure-cosmos-db-and-hello-documentdb-api"></a>Azure Cosmos DB és hello DocumentDB API használatával Java-webalkalmazás létrehozása
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-dotnet-application.md)
 > * [Node.js](documentdb-nodejs-application.md)
@@ -30,88 +30,88 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Ez a Java webalkalmazásokra vonatkozó oktatóanyag bemutatja, hogyan használja a [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) szolgáltatás tárolhatja és érheti el az Azure App Service Web Apps tárolt Java-alkalmazás adatait. A témakörben érintett témák köre:
+Ez a Java webalkalmazásokra vonatkozó oktatóanyag bemutatja, hogyan toouse hello [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) szolgáltatás toostore és hozzáférés az Azure App Service Web Apps tárolt Java-alkalmazás. A témakörben érintett témák köre:
 
-* Megtudhatja, hogyan hozható létre olyan alapszintű JavaServer lapok (JSP) alkalmazás az eclipse-ben.
-* Az Azure Cosmos DB szolgáltatás használata az [Azure Cosmos DB Java SDK-val](https://github.com/Azure/azure-documentdb-java).
+* Hogyan toobuild egy alapszintű JavaServer lapok (JSP) alkalmazást az eclipse-ben.
+* Hogyan toowork hello Azure Cosmos DB a szolgáltatás használatával hello [Azure Cosmos DB Java SDK](https://github.com/Azure/azure-documentdb-java).
 
-Ez a Java-alkalmazásokra vonatkozó oktatóanyag bemutatja, hogyan hozhat létre egy webalapú feladatkezelő alkalmazást, amellyel feladatokat hozhat létre, kérhet le, valamint „kész” jelöléssel láthatja el azokat, ahogyan azt az alábbi illusztráció is mutatja. A rendszer a teendőlistában szereplő összes feladatot JSON-dokumentumként tárolja az Azure Cosmos DB-ben.
+A Java vonatkozó oktatóanyag bemutatja, hogyan toocreate webalapú Feladatkezelő alkalmazást, amely lehetővé teszi, hogy toocreate, lekérése és be van jelölve feladatok el azokat, ahogy az a következő kép hello. Egyes hello feladatokat a teendőlista hello Azure Cosmos DB JSON-dokumentumokként tárolja.
 
 ![Saját teendőlista Java-alkalmazása](./media/documentdb-java-application/image1.png)
 
 > [!TIP]
-> Ez az alkalmazásfejlesztési oktatóanyag feltételezi, hogy rendelkezik korábbi tapasztalattal a Java használatát illetően. Ha még nem ismeri a Javát vagy az [előfeltételt jelentő eszközöket](#Prerequisites), ajánlott letölteni a teljes [teendők](https://github.com/Azure-Samples/documentdb-java-todo-app) projektet a GitHubról, majd lefordítani azt a [jelen cikk végén található utasítások](#GetProject) segítségével. A projekt lefordítása után a cikk áttekintésével betekintést nyerhet a kódba a projekt környezetében.  
+> Ez az alkalmazásfejlesztési oktatóanyag feltételezi, hogy rendelkezik korábbi tapasztalattal a Java használatát illetően. Ha új tooJava vagy hello [előfeltételt jelentő eszközöket](#Prerequisites), érdemes letöltenie a teljes hello [todo](https://github.com/Azure-Samples/documentdb-java-todo-app) projektet a Githubról, majd lefordítani azt [hello hello végén ez utasításokat a cikk](#GetProject). Ha felépítette, hello cikk toogain insight hello kódja hello projekt környezetében hello tekintheti meg.  
 > 
 > 
 
 ## <a id="Prerequisites"></a>A jelen Java-webalkalmazásokra vonatkozó oktatóanyag előfeltételei
-Az alkalmazásfejlesztési oktatóanyag elkezdéséhez az alábbiakkal kell rendelkeznie:
+Az alkalmazásfejlesztési oktatóanyag elkezdéséhez hello következő kell rendelkeznie:
 
 * Aktív Azure-fiók. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További részletekért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/)
 
     VAGY
 
-    Az [Azure Cosmos DB Emulator](local-emulator.md) helyi telepítése.
+    Egy helyi telepítését teszi hello [Azure Cosmos DB emulátor](local-emulator.md).
 * [Java fejlesztői készlet (JDK) 7+](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
 * [Eclipse IDE for Java EE Developers.](http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/lunasr1)
 * [Egy Azure Java-futtatókörnyezettel (pl. Tomcat vagy Jetty) engedélyezve van a webhelyen.](../app-service-web/web-sites-java-get-started.md)
 
-Ha először telepíti ezeket az eszközöket, a coreservlets.com webhelyen megtalálhatja a telepítési folyamat útmutatóját (angol nyelven) az alábbi cikk Quick Start (Gyors üzembe helyezés) szakaszában: [Tutorial: Installing TomCat7 and Using it with Eclipse](http://www.coreservlets.com/Apache-Tomcat-Tutorial/tomcat-7-with-eclipse.html) (Oktatóanyag: A Tomcat7 telepítése és használata az Eclipse-szel).
+Telepítése hello az eszközök először, coreservlets.com webhelyen hello telepítési folyamat hello gyors üzembe helyezés szakaszában a [oktatóanyag: TomCat7 telepítése és használata a Eclipse](http://www.coreservlets.com/Apache-Tomcat-Tutorial/tomcat-7-with-eclipse.html) cikk.
 
 ## <a id="CreateDB"></a>1. lépés: Azure Cosmos DB-fiók létrehozása
-Először hozzon létre egy Azure Cosmos DB-fiókot. Ha már rendelkezik fiókkal vagy az oktatóanyagban az Azure Cosmos DB Emulatort használja, továbbléphet a [2. lépés: Új Java JSP-alkalmazás létrehozása](#CreateJSP) című lépésre.
+Először hozzon létre egy Azure Cosmos DB-fiókot. Ha már rendelkezik fiókkal, vagy használatakor hello Azure Cosmos DB emulátor ehhez az oktatóanyaghoz, ugorjon túl[2. lépés: hello Java JSP-alkalmazás létrehozása](#CreateJSP).
 
 [!INCLUDE [create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
 [!INCLUDE [keys](../../includes/cosmos-db-keys.md)]
 
-## <a id="CreateJSP"></a>2. lépés: Új Java JSP-alkalmazás létrehozása
-JSP-alkalmazás létrehozása:
+## <a id="CreateJSP"></a>2. lépés: Hello Java JSP-alkalmazás létrehozása
+toocreate hello JSP-alkalmazás:
 
-1. Először is hozzon létre egy Java-projektet. Indítsa el az Eclipse-t, kattintson a **File** (Fájl), **New** (Új), majd a **Dynamic Web Projekt** (Dinamikus webes projekt) lehetőségre. Ha nem jelenik meg a **Dynamic Web Projekt** (Dinamikus webes projekt) lehetőség az elérhető projektek között, tegye a következőt: kattintson a **File** (Fájl), **New** (Új), **Project** (Projekt) lehetőségre, bontsa ki a **Web** elemet, majd kattintson a **Dynamic Web Projekt** (Dinamikus webes projekt) elemre, és végül a **Tovább** gombra.
+1. Először is hozzon létre egy Java-projektet. Indítsa el az Eclipse-t, kattintson a **File** (Fájl), **New** (Új), majd a **Dynamic Web Projekt** (Dinamikus webes projekt) lehetőségre. Ha nem lát **dinamikus webes projekt** szerepel a listában az elérhető projektek, a következő hello: kattintson a **fájl**, kattintson a **új**, kattintson a **projekt**..., bontsa ki a **webes**, kattintson a **dinamikus webes projekt**, és kattintson a **következő**.
    
     ![JSP Java-alkalmazások fejlesztése](./media/documentdb-java-application/image10.png)
-2. Adja meg a projekt nevét a **Project name** (Projekt neve) mezőben, majd a **Target Runtime** (Tervezett futásidő) legördülő menüben válasszon ki egy értéket (pl. Apache Tomcat v7.0) (nem kötelező), és kattintson a **Finish** (Befejezés) gombra. A tervezett futásidő megadása lehetővé teszi, hogy helyileg, az Eclipse-ben is futtathassa projektjét.
-3. Az Eclipse Project Explorer (Projektböngésző) nézetében bontsa ki a projektet. Kattintson a jobb gombbal a **WebContent** (Webes tartalom), majd a **New** (Új) elemre, és végül a **JSP File** (JSP-fájl) elemre.
-4. A **New JSP File** (Új JSP-fájl) párbeszédablakban nevezze el a fájlt az alábbi módon: **index.jsp**. A szülőmappa neve maradjon **WebContent**, ahogy azt az alábbi ábra is mutatja, majd kattintson a **Next** (Tovább) lehetőségre.
+2. Adja meg a projekt nevét a hello **projektnevet** mezőbe, és a hello **Target Runtime** legördülő menüben válassza ki (pl. Apache Tomcat v7.0) értéket nem kötelező, és kattintson **Befejezés**. A tervezett futásidőt kiválasztása lehetővé teszi, hogy Ön toorun a projekten helyileg eclipse-ben.
+3. Az eclipse-ben hello Project Explorer nézet, bontsa ki a projektet. Kattintson a jobb gombbal a **WebContent** (Webes tartalom), majd a **New** (Új) elemre, és végül a **JSP File** (JSP-fájl) elemre.
+4. A hello **új JSP-fájl** párbeszédpanelen nevű hello fájl **index.jsp**. Hello fölérendelt mappája, tartsa **WebContent**, ahogy a következő ábra hello, és kattintson a **következő**.
    
     ![Új JSP-fájl létrehozása – Java-alkalmazásokra vonatkozó oktatóanyag](./media/documentdb-java-application/image11.png)
-5. A **Select JSP Template** (JSP-sablon kiválasztása) párbeszédablakban, a jelen oktatóanyag céljából válassza a **New JSP File (html)** (Új JSP-fájl (html)) lehetőséget, majd kattintson a **Finish** (Befejezés) lehetőségre.
-6. Miután megnyílt az index.jsp fájl az Eclipse-ben, adja hozzá a **Hello World!** szöveget a már meglévő <body> elemhez. A frissített <body>-tartalomnak az alábbi kódhoz kell hasonlítania:
+5. A hello **JSP-sablon kiválasztása** párbeszédpanelen hello céllal történik, az oktatóanyag válassza **új JSP-fájl (html)**, és kattintson a **Befejezés**.
+6. Hello index.jsp fájl megnyitásakor az eclipse-ben, vegye fel a szöveges toodisplay **Hello World!** hello meglévő belül <body> elemet. A frissített <body> tartalom a következő kód hello hasonlóan kell kinéznie:
    
         <body>
             <% out.println("Hello World!"); %>
         </body>
-7. Mentse az index.jsp fájlt.
-8. Ha megadta a tervezett futásidőt a 2. lépésben, most rákattinthat a **Project** (Projekt), majd a **Run** (Futtatás) elemre a JSP-alkalmazás helyileg történő futtatásához.
+7. Mentse a hello index.jsp fájlt.
+8. Ha megadta a tervezett futásidőt a 2. lépésben, **projekt** , majd **futtatása** toorun a JSP-alkalmazás helyileg:
    
     ![Hello World – Java-alkalmazásokra vonatkozó oktatóanyag](./media/documentdb-java-application/image12.png)
 
-## <a id="InstallSDK"></a>3. lépés: A DocumentDB Java SDK telepítése
-A DocumentDB Java SDK, valamint annak függőségei a legegyszerűbben az [Apache Maven](http://maven.apache.org/) használatával kérhetők le.
+## <a id="InstallSDK"></a>3. lépés: Hello DocumentDB Java SDK telepítése
+hello legegyszerűbb módja toopull hello DocumentDB Java SDK-t és annak függőségeit van keresztül [Apache Maven](http://maven.apache.org/).
 
-Ehhez át kell konvertálnia a projektet Maven-projektté az alábbi lépések végrehajtásával:
+toodo, szüksége lesz tooconvert a projekt tooa maven project hello lépések végrehajtásával:
 
-1. Kattintson a jobb gombbal a projektre a Project Explorer (Projektböngésző) nézetben, kattintson a **Configure** (Konfigurálás), majd a **Convert to Maven Project** (Konvertálás Maven-projekté) lehetőségre.
-2. A **Create new POM** (Új POM létrehozása) ablakban fogadja el az alapértelmezett beállításokat, majd kattintson a **Finish** (Befejezés) lehetőségre.
-3. A **Project Explorer** (Projektböngésző) nézetben nyissa meg a pom.xml fájlt.
-4. A **Dependencies** (Függőségek) lap **Dependencies** (Függőségek) paneljén kattintson az **Add** (Hozzáadás) lehetőségre.
-5. A **Select Dependency** (Függőség kiválasztása) ablakban tegye a következőket:
+1. Kattintson a jobb gombbal a projektre a Project Explorer hello parancsra **konfigurálása**, kattintson a **tooMaven projekt átalakítása**.
+2. A hello **új POM létrehozása** ablakot, fogadja el hello alapértelmezett beállításokat, és kattintson a **Befejezés**.
+3. A **Project Explorer**, nyissa meg hello pom.xml fájlt.
+4. A hello **függőségek** lap hello **függőségek** ablaktáblán kattintson a **Hozzáadás**.
+5. A hello **függőség kiválasztása** ablakban, a következő hello:
    
-   * Az a **csoportazonosító** mezőbe írja be a következőt: com.microsoft.azure.
-   * Az a **összetevő-azonosító** mezőbe írja be az azure-documentdb.
-   * Az a **verzió** 1.5.1 adja meg.
+   * A hello **csoportazonosító** mezőbe írja be a következőt: com.microsoft.azure.
+   * A hello **összetevő-azonosító** mezőbe írja be az azure-documentdb.
+   * A hello **verzió** 1.5.1 adja meg.
      
    ![A DocumentDB Java Application SDK telepítése](./media/documentdb-java-application/image13.png)
      
-   * Vagy adja hozzá a függőség XML a csoport és összetevő-azonosító közvetlenül a pom.xml fájlhoz egy szövegszerkesztő:
+   * Vagy hello függőség XML hozzáadása csoporthoz és összetevő-azonosító közvetlenül toohello pom.xml fájlhoz egy szövegszerkesztő:
      
         <dependency><groupId>következőt: com.microsoft.azure</groupId> <artifactId>azure-documentdb</artifactId> <version>1.9.1</version></dependency>
-6. Kattintson a **OK** és után a Maven feltelepíti a DocumentDB Java SDK-t.
-7. Mentse a pom.xml fájlt.
+6. Kattintson a **OK** és után a Maven feltelepíti a DocumentDB Java SDK hello.
+7. Mentse a hello pom.xml fájlt.
 
-## <a id="UseService"></a>4. lépés: Az Azure Cosmos DB szolgáltatás használata Java-alkalmazásokban
-1. Először is határozza meg a TodoItem objektum TodoItem.java:
+## <a id="UseService"></a>4. lépés: Hello Azure Cosmos DB szolgáltatás használata Java-alkalmazások
+1. Először is határozza meg hello TodoItem objektum TodoItem.java:
    
         @Data
         @Builder
@@ -122,8 +122,8 @@ Ehhez át kell konvertálnia a projektet Maven-projektté az alábbi lépések v
             private String name;
         }
    
-    Ebben a projektben a [Project Lombok](http://projectlombok.org/) nevű projekt használatával hoztuk létre a konstruktort, a beolvasókat, a beállítókat és a felépítőt. Ezt a kódot kézzel is megírhatja, vagy létrehozhatja azt az IDE használatával.
-2. Az Azure Cosmos DB szolgáltatás elindításához példányosítania kell egy új **DocumentClient**-ügyfelet. Általában érdemes újrafelhasználni a **DocumentClient** ügyfelet ahelyett, hogy minden későbbi kérés esetén új ügyfelet hozna létre. Az ügyfél újrafelhasználásához burkolja be azt egy **DocumentClientFactory** használatával. A DocumentClientFactory.java, itt kell beilleszteni a vágólapra mentett URI és elsődleges kulcs értéke [1. lépés](#CreateDB). Cserélje ki a [YOUR\_ENDPOINT\_HERE] részt az URI-re, a [YOUR\_KEY\_HERE] részt pedig az elsődleges kulcsra.
+    A projekt használatával hoztuk [Project Lombok](http://projectlombok.org/) toogenerate hello konstruktor, beolvasóinak, Setter elemek és a felépítőt. Azt is megteheti, ezzel a kóddal manuálisan írási, vagy rendelkezik hello IDE hozható létre.
+2. tooinvoke hello Azure Cosmos DB szolgáltatás, létre kell hozni egy új **DocumentClient**. Ez általában legjobb tooreuse hello **DocumentClient** - ahelyett, hogy minden későbbi kérés esetén új ügyfelet létre. Hello ügyfél használatával hello ügyfél újrafelhasználásához egy **DocumentClientFactory**. DocumentClientFactory.java, toopaste hello URI és PRIMARY KEY érték tooyour vágólapra mentett kell [1. lépés](#CreateDB). Cserélje ki a [YOUR\_ENDPOINT\_HERE] részt az URI-re, a [YOUR\_KEY\_HERE] részt pedig az elsődleges kulcsra.
    
         private static final String HOST = "[YOUR_ENDPOINT_HERE]";
         private static final String MASTER_KEY = "[YOUR_KEY_HERE]";
@@ -134,45 +134,45 @@ Ehhez át kell konvertálnia a projektet Maven-projektté az alábbi lépések v
         public static DocumentClient getDocumentClient() {
             return documentClient;
         }
-3. Ezután hozzon létre egy Data Access Objectet (DAO-t) a teendők az Azure Cosmos DB szolgáltatásba történő kivonatolásához.
+3. Most hozzon létre egy Data Access objektum (DAO) tooabstract a ToDo elemeket tooAzure Cosmos DB megőrzése.
    
-    Ha menteni szeretné a teendőket egy gyűjteménybe, az ügyfélnek tudnia kell, melyik adatbázisban és gyűjteményben kívánja azt megőrizni (ahogy erre az önhivatkozások is hivatkoznak). Általában érdemes gyorsítótárazni az adatbázist és a gyűjteményt, amennyiben ez lehetséges, így elkerülhető az adatbázissal való fölösleges üzenetváltás.
+    A rendezés toosave ToDo elemeket tooa gyűjtemény, hello ügyfélnek kell tooknow melyik adatbázis és gyűjtemény toopersist túl (által hivatkozott erre az önhivatkozások). Ez általában legjobb toocache hello adatbázist és a gyűjteményt, ha lehetséges tooavoid fölösleges üzenetváltás toohello adatbázis.
    
-    Az alábbi kód bemutatja, hogyan kérheti le az adatbázist és a gyűjteményt, ha azok léteznek, és hogyan hozhat létre újat, ha azok még nem léteznek:
+    hello alábbi kód bemutatja, hogyan tooretrieve az adatbázist és a gyűjteményt, ha létezik, vagy hozzon létre egy újat, ha még nem létezik:
    
         public class DocDbDao implements TodoDao {
-            // The name of our database.
+            // hello name of our database.
             private static final String DATABASE_ID = "TodoDB";
    
-            // The name of our collection.
+            // hello name of our collection.
             private static final String COLLECTION_ID = "TodoCollection";
    
-            // The Azure Cosmos DB Client
+            // hello Azure Cosmos DB Client
             private static DocumentClient documentClient = DocumentClientFactory
                     .getDocumentClient();
    
-            // Cache for the database object, so we don't have to query for it to
+            // Cache for hello database object, so we don't have tooquery for it to
             // retrieve self links.
             private static Database databaseCache;
    
-            // Cache for the collection object, so we don't have to query for it to
+            // Cache for hello collection object, so we don't have tooquery for it to
             // retrieve self links.
             private static DocumentCollection collectionCache;
    
             private Database getTodoDatabase() {
                 if (databaseCache == null) {
-                    // Get the database if it exists
+                    // Get hello database if it exists
                     List<Database> databaseList = documentClient
                             .queryDatabases(
                                     "SELECT * FROM root r WHERE r.id='" + DATABASE_ID
                                             + "'", null).getQueryIterable().toList();
    
                     if (databaseList.size() > 0) {
-                        // Cache the database object so we won't have to query for it
-                        // later to retrieve the selfLink.
+                        // Cache hello database object so we won't have tooquery for it
+                        // later tooretrieve hello selfLink.
                         databaseCache = databaseList.get(0);
                     } else {
-                        // Create the database if it doesn't exist.
+                        // Create hello database if it doesn't exist.
                         try {
                             Database databaseDefinition = new Database();
                             databaseDefinition.setId(DATABASE_ID);
@@ -180,8 +180,8 @@ Ehhez át kell konvertálnia a projektet Maven-projektté az alábbi lépések v
                             databaseCache = documentClient.createDatabase(
                                     databaseDefinition, null).getResource();
                         } catch (DocumentClientException e) {
-                            // TODO: Something has gone terribly wrong - the app wasn't
-                            // able to query or create the collection.
+                            // TODO: Something has gone terribly wrong - hello app wasn't
+                            // able tooquery or create hello collection.
                             // Verify your connection, endpoint, and key.
                             e.printStackTrace();
                         }
@@ -193,7 +193,7 @@ Ehhez át kell konvertálnia a projektet Maven-projektté az alábbi lépések v
    
             private DocumentCollection getTodoCollection() {
                 if (collectionCache == null) {
-                    // Get the collection if it exists.
+                    // Get hello collection if it exists.
                     List<DocumentCollection> collectionList = documentClient
                             .queryCollections(
                                     getTodoDatabase().getSelfLink(),
@@ -201,11 +201,11 @@ Ehhez át kell konvertálnia a projektet Maven-projektté az alábbi lépések v
                                             + "'", null).getQueryIterable().toList();
    
                     if (collectionList.size() > 0) {
-                        // Cache the collection object so we won't have to query for it
-                        // later to retrieve the selfLink.
+                        // Cache hello collection object so we won't have tooquery for it
+                        // later tooretrieve hello selfLink.
                         collectionCache = collectionList.get(0);
                     } else {
-                        // Create the collection if it doesn't exist.
+                        // Create hello collection if it doesn't exist.
                         try {
                             DocumentCollection collectionDefinition = new DocumentCollection();
                             collectionDefinition.setId(COLLECTION_ID);
@@ -214,8 +214,8 @@ Ehhez át kell konvertálnia a projektet Maven-projektté az alábbi lépések v
                                     getTodoDatabase().getSelfLink(),
                                     collectionDefinition, null).getResource();
                         } catch (DocumentClientException e) {
-                            // TODO: Something has gone terribly wrong - the app wasn't
-                            // able to query or create the collection.
+                            // TODO: Something has gone terribly wrong - hello app wasn't
+                            // able tooquery or create hello collection.
                             // Verify your connection, endpoint, and key.
                             e.printStackTrace();
                         }
@@ -225,22 +225,22 @@ Ehhez át kell konvertálnia a projektet Maven-projektté az alábbi lépések v
                 return collectionCache;
             }
         }
-4. A következő lépésben be kell írnia egy kódrészletet a teendők a gyűjteményben való megőrzéséhez. A jelen példában a [Gson](https://code.google.com/p/google-gson/) segítségével szerializáltuk és deszerializáltuk a teendő POJO objektumait JSON-dokumentumokká.
+4. következő lépés hello toowrite van néhány kódot toopersist hello TodoItems toohello gyűjteményben. A jelen példában használjuk [Gson](https://code.google.com/p/google-gson/) tooserialize és deszerializálni a TodoItem teendő Pojo objektumait (POJOs) tooJSON dokumentumok.
    
         // We'll use Gson for POJO <=> JSON serialization for this example.
         private static Gson gson = new Gson();
    
         @Override
         public TodoItem createTodoItem(TodoItem todoItem) {
-            // Serialize the TodoItem as a JSON Document.
+            // Serialize hello TodoItem as a JSON Document.
             Document todoItemDocument = new Document(gson.toJson(todoItem));
    
-            // Annotate the document as a TodoItem for retrieval (so that we can
-            // store multiple entity types in the collection).
+            // Annotate hello document as a TodoItem for retrieval (so that we can
+            // store multiple entity types in hello collection).
             todoItemDocument.set("entityType", "todoItem");
    
             try {
-                // Persist the document using the DocumentClient.
+                // Persist hello document using hello DocumentClient.
                 todoItemDocument = documentClient.createDocument(
                         getTodoCollection().getSelfLink(), todoItemDocument, null,
                         false).getResource();
@@ -251,10 +251,10 @@ Ehhez át kell konvertálnia a projektet Maven-projektté az alábbi lépések v
    
             return gson.fromJson(todoItemDocument.toString(), TodoItem.class);
         }
-5. Csakúgy, mint az Azure Cosmos DB-adatbázisok és -gyűjtemények esetén, a dokumentumok önhivatkozásokkal is hivatkoznak magukra. A következő segédfüggvény lehetővé teszi a dokumentumok az önhivatkozástól eltérő attribútum (pl. „id”) alapján történő lekérését:
+5. Csakúgy, mint az Azure Cosmos DB-adatbázisok és -gyűjtemények esetén, a dokumentumok önhivatkozásokkal is hivatkoznak magukra. hello következő segítő függvény segítségével velünk lekérése dokumentumok egy másik attribútum (pl. "id"), hanem önhivatkozást:
    
         private Document getDocumentById(String id) {
-            // Retrieve the document using the DocumentClient.
+            // Retrieve hello document using hello DocumentClient.
             List<Document> documentList = documentClient
                     .queryDocuments(getTodoCollection().getSelfLink(),
                             "SELECT * FROM root r WHERE r.id='" + id + "'", null)
@@ -266,33 +266,33 @@ Ehhez át kell konvertálnia a projektet Maven-projektté az alábbi lépések v
                 return null;
             }
         }
-6. Az 5. lépésben leírt segédmetódus segítségével lekérheti egy teendő JSON-dokumentumát annak azonosítója alapján, majd deszerializálhatja azt egy POJO-vá.
+6. A Microsoft hello segédmetódus használja az 5. lépés tooretrieve egy teendő JSON-dokumentum-azonosító szerint, és tooa pojo-vá deszerializálni:
    
         @Override
         public TodoItem readTodoItem(String id) {
-            // Retrieve the document by id using our helper method.
+            // Retrieve hello document by id using our helper method.
             Document todoItemDocument = getDocumentById(id);
    
             if (todoItemDocument != null) {
-                // De-serialize the document in to a TodoItem.
+                // De-serialize hello document in tooa TodoItem.
                 return gson.fromJson(todoItemDocument.toString(), TodoItem.class);
             } else {
                 return null;
             }
         }
-7. A DocumentClient ügyfél segítségével szintén lekérheti a teendők gyűjteményét vagy listáját a DocumentDB SQL használatával:
+7. Hello DocumentClient tooget azt is használható, egy gyűjtemény vagy a DocumentDB SQL használatával TodoItems listáját:
    
         @Override
         public List<TodoItem> readTodoItems() {
             List<TodoItem> todoItems = new ArrayList<TodoItem>();
    
-            // Retrieve the TodoItem documents
+            // Retrieve hello TodoItem documents
             List<Document> documentList = documentClient
                     .queryDocuments(getTodoCollection().getSelfLink(),
                             "SELECT * FROM root r WHERE r.entityType = 'todoItem'",
                             null).getQueryIterable().toList();
    
-            // De-serialize the documents in to TodoItems.
+            // De-serialize hello documents in tooTodoItems.
             for (Document todoItemDocument : documentList) {
                 todoItems.add(gson.fromJson(todoItemDocument.toString(),
                         TodoItem.class));
@@ -300,21 +300,21 @@ Ehhez át kell konvertálnia a projektet Maven-projektté az alábbi lépések v
    
             return todoItems;
         }
-8. A DocumentClient ügyfél segítségével számos módon frissítheti a dokumentumokat. A teendőlista alkalmazásában azt szeretnénk, ha beállíthatnánk, hogy elvégeztük-e az egyes teendőket. Ez a dokumentum „complete” (befejezve) attribútumának frissítésével érhető el:
+8. Nincsenek számos módon tooupdate hello DocumentClient rendelkező dokumentumot. A teendőlista alkalmazásában szeretnénk tudni tootoggle toobe e beállíthatnánk. Ez hello hello dokumentum "kész" attribútumának frissítésével érhető el:
    
         @Override
         public TodoItem updateTodoItem(String id, boolean isComplete) {
-            // Retrieve the document from the database
+            // Retrieve hello document from hello database
             Document todoItemDocument = getDocumentById(id);
    
-            // You can update the document as a JSON document directly.
-            // For more complex operations - you could de-serialize the document in
-            // to a POJO, update the POJO, and then re-serialize the POJO back in to
+            // You can update hello document as a JSON document directly.
+            // For more complex operations - you could de-serialize hello document in
+            // tooa POJO, update hello POJO, and then re-serialize hello POJO back in to
             // a document.
             todoItemDocument.set("complete", isComplete);
    
             try {
-                // Persist/replace the updated document.
+                // Persist/replace hello updated document.
                 todoItemDocument = documentClient.replaceDocument(todoItemDocument,
                         null).getResource();
             } catch (DocumentClientException e) {
@@ -324,17 +324,17 @@ Ehhez át kell konvertálnia a projektet Maven-projektté az alábbi lépések v
    
             return gson.fromJson(todoItemDocument.toString(), TodoItem.class);
         }
-9. Végül azt szeretnénk, ha törölhetnénk az egyes teendőket a listából. Ehhez a korábban megírt segédmetódus használatával kérje le az önhivatkozást, majd adja ki a törlés parancsot az ügyfélnek:
+9. Végül azt szeretnénk hello képességét toodelete Beállíthatnánk listájából. toodo, korábban megírt segédmetódus hello használhatjuk tooretrieve hello önhivatkozást, és ezután adja meg az ügyfél toodelete hello azt:
    
         @Override
         public boolean deleteTodoItem(String id) {
-            // Azure Cosmos DB refers to documents by self link rather than id.
+            // Azure Cosmos DB refers toodocuments by self link rather than id.
    
-            // Query for the document to retrieve the self link.
+            // Query for hello document tooretrieve hello self link.
             Document todoItemDocument = getDocumentById(id);
    
             try {
-                // Delete the document by self link.
+                // Delete hello document by self link.
                 documentClient.deleteDocument(todoItemDocument.getSelfLink(), null);
             } catch (DocumentClientException e) {
                 e.printStackTrace();
@@ -344,10 +344,10 @@ Ehhez át kell konvertálnia a projektet Maven-projektté az alábbi lépések v
             return true;
         }
 
-## <a id="Wire"></a>5. lépés: A Java-alkalmazásfejlesztési projekt fennmaradó részeinek összefűzése
-Most, hogy befejeztük a visszatöltött bits - marad csak a lehet létrehozni egy gyors felhasználói felületet, és hozzá kell fűznie azt a DAO legfeljebb.
+## <a id="Wire"></a>5. lépés: A Java-alkalmazásfejlesztési projekt hello hello részeinek együtt huzalozási
+Most, hogy befejeztük hello visszatöltött bits - összes marad toobuild gyors felhasználói felületet, és hozzá kell fűznie azt tooour DAO fel.
 
-1. Először is hozzon létre egy vezérlőt a DAO meghívásához:
+1. Első lépésként kezdjük egy tartományvezérlő toocall DAO felépítése:
    
         public class TodoItemController {
             public static TodoItemController getInstance() {
@@ -389,8 +389,8 @@ Most, hogy befejeztük a visszatöltött bits - marad csak a lehet létrehozni e
             }
         }
    
-    Egy összetettebb alkalmazásban a vezérlő a DAO mellett bonyolult üzleti logikát is tartalmazhat.
-2. Ezután hozzon létre egy servletet, amely továbbítja a HTTP-kéréseket a vezérlőhöz:
+    Egy összetettebb alkalmazásban hello vezérlő bonyolult üzleti logikát is hello DAO mellett.
+2. Ezután létrehozunk egy servlet tooroute HTTP kérelmeket toohello tartományvezérlő:
    
         public class TodoServlet extends HttpServlet {
             // API Keys
@@ -452,7 +452,7 @@ Most, hogy befejeztük a visszatöltött bits - marad csak a lehet létrehozni e
                 doGet(request, response);
             }
         }
-3. Szükség lesz a felhasználó számára megjelenített webes felhasználói felületet. Írja át a korábban létrehozott index.jsp fájlt az alábbi módon:
+3. Szükség lesz egy webes felhasználói felület toodisplay toohello felhasználó. Ideje újra lefuttatni hello index.jsp korábban létrehozott:
     ```html
         <html>
         <head>
@@ -464,7 +464,7 @@ Most, hogy befejeztük a visszatöltött bits - marad csak a lehet létrehozni e
           <link href="//ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
    
           <style>
-            /* Add padding to body for fixed nav bar */
+            /* Add padding toobody for fixed nav bar */
             body {
               padding-top: 50px;
             }
@@ -486,7 +486,7 @@ Most, hogy befejeztük a visszatöltött bits - marad csak a lehet létrehozni e
    
             <hr/>
    
-            <!-- The ToDo List -->
+            <!-- hello ToDo List -->
             <div class = "todoList">
               <table class="table table-bordered table-striped" id="todoItems">
                 <thead>
@@ -534,18 +534,18 @@ Most, hogy befejeztük a visszatöltött bits - marad csak a lehet létrehozni e
    
           </div>
    
-          <!-- Placed at the end of the document so the pages load faster -->
+          <!-- Placed at hello end of hello document so hello pages load faster -->
           <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
           <script src="//ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/bootstrap.min.js"></script>
           <script src="assets/todo.js"></script>
         </body>
         </html>
     ```
-4. És végezetül írjon egy ügyféloldali JavaScript a webes felhasználói felület és a servlet egy egységként kezelhető:
+4. És végezetül ügyféloldali JavaScript tootie hello webes felhasználói felület egyes írási és a servlet együtt hello:
    
         var todoApp = {
           /*
-           * API methods to call Java backend.
+           * API methods toocall Java backend.
            */
           apiEndpoint: "api",
    
@@ -625,7 +625,7 @@ Most, hogy befejeztük a visszatöltött bits - marad csak a lehet létrehozni e
               $(this).text("Updating...");
               $(this).prop("disabled", true);
    
-              // Call api to update todo items.
+              // Call api tooupdate todo items.
               $.each(todoApp.ui_updateId(), function(index, value) {
                 todoApp.updateTodoItem(value.name, value.value);
                 $(value).remove();
@@ -699,7 +699,7 @@ Most, hogy befejeztük a visszatöltött bits - marad csak a lehet létrehozni e
           },
    
           /*
-           * Install the TodoApp
+           * Install hello TodoApp
            */
           install: function() {
             todoApp.bindCreateButton();
@@ -713,47 +713,47 @@ Most, hogy befejeztük a visszatöltött bits - marad csak a lehet létrehozni e
         $(document).ready(function() {
           todoApp.install();
         });
-5. Nagyszerű! Most már csak le kell tesztelni az alkalmazást. Futtassa az alkalmazást helyileg, és adjon hozzá néhány teendőt. Ehhez adja meg az elemek nevét és kategóriáját, majd kattintson az **Add Task** (Feladat hozzáadása) elemre.
-6. Ha megjelent az elem, a jelölőnégyzet bejelölésével, majd az **Update Tasks** (Feladatok frissítése) gombra való kattintással állíthatja be, hogy elvégezte-e már azt.
+5. Nagyszerű! Most, hogy marad az összes alkalmazás, amely tootest hello. Hello alkalmazás helyileg történő futtatása, és adja hozzá az egyes Todo elemeket kitöltése hello elemek nevét és kategóriáját, majd kattintson **feladat hozzáadása**.
+6. Hello elem jelenik meg, miután-e már azt való átváltással hello jelölőnégyzetet, majd frissítheti **feladatok frissítése**.
 
-## <a id="Deploy"></a>6. lépés: A Java-alkalmazás az Azure-webhelyek központi telepítése
+## <a id="Deploy"></a>6. lépés: A Java-alkalmazás tooAzure webhelyek központi telepítése
 Az Azure-webhelyek teszi a Java-alkalmazások telepítését más dolga, mint exportálni az alkalmazást WAR-fájlként, majd feltölteni azt a verziókövetési rendszerrel (pl. Git) vagy FTP segítségével.
 
-1. Az alkalmazás WAR-fájlként történő exportálásához kattintson a jobb gombbal a projektre a **Project Explorer**, kattintson a **exportálása**, és kattintson a **WAR-fájlt**.
-2. A **WAR Export** (WAR-fájl exportálása) ablakban tegye a következőket:
+1. tooexport az alkalmazás WAR-fájlként kattintson a jobb gombbal a projektre a **Project Explorer**, kattintson a **exportálása**, és kattintson a **WAR-fájlt**.
+2. A hello **WAR exportálása** ablakban, a következő hello:
    
-   * A Web project (Webes projekt) mezőben adja meg a következőt: azure-documentdb-java-sample.
-   * A Destination (Cél) mezőben válassza ki, hova szeretné menteni a WAR-fájlt.
+   * Hello webes projekt mezőben adja meg azure-documentdb-java-sample.
+   * Hello cél mezőben válassza ki a cél toosave hello WAR-fájlt.
    * Kattintson a **Befejezés** gombra.
-3. Most, hogy a WAR-fájl jár, egyszerűen feltöltheti azt a a Azure webhely **webapps** könyvtár. Fájlok feltöltésével kapcsolatos útmutatásért lásd: [hozzáadása a Java-alkalmazások az Azure App Service Web Apps](../app-service-web/web-sites-java-add-app.md).
+3. Most, hogy a WAR-fájl jár, egyszerűen feltöltheti azt tooyour Azure webhelyére **webapps** könyvtár. Hello fájl feltöltésével kapcsolatos útmutatásért lásd: [hozzáadása a Java-alkalmazás tooAzure App Service Web Apps](../app-service-web/web-sites-java-add-app.md).
    
-    Miután feltöltötte a WAR-fájlt a webapps könyvtárba, a futtatókörnyezet észleli majd annak hozzáadását, és automatikusan betölti azt.
-4. A kész termék megtekintéséhez keresse meg http://YOUR\_hely\_NAME.azurewebsites.net/azure-java-sample/ és a feladatok hozzáadását start!
+    Ha hello WAR-fájl feltöltése toohello webapps könyvtárba, hello futtatókörnyezet észleli majd annak hozzáadását, és automatikusan betölti azt.
+4. tooview a kész termék, keresse meg a toohttp://YOUR\_hely\_NAME.azurewebsites.net/azure-java-sample/ és a feladatok hozzáadását start!
 
-## <a id="GetProject"></a>A projekt beszerzése a GitHubról
-A jelen oktatóanyag minden példáját megtalálhatja a GitHubról elérhető [todo](https://github.com/Azure-Samples/documentdb-java-todo-app) (teendők) projektben. A teendők projekt Eclipse-be történő importálásához győződjön meg arról, hogy rendelkezik az [Előfeltételek](#Prerequisites) szakaszban ismertetett szoftverekkel és erőforrásokkal, majd tegye a következőket:
+## <a id="GetProject"></a>Hello projekt beszerzése a Githubról
+Összes hello minta ebben az oktatóanyagban szereplő hello [todo](https://github.com/Azure-Samples/documentdb-java-todo-app) projekt a Githubon. tooimport hello teendők projekt eclipse-ben történő ellenőrizze, hogy hello szoftver- és erőforrás hello [Előfeltételek](#Prerequisites) területen, majd a következő hello:
 
-1. Telepítse a [Project Lombok](http://projectlombok.org/) nevű projektet. A projekt konstruktorainak, beolvasóinak, beállítóinak létrehozása a Lombok használatával történik. A lombok.jar fájl letöltése után kattintson rá duplán annak telepítéséhez, vagy telepítse azt a parancssorból.
-2. Ha az Eclipse meg van nyitva, zárja be, és indítsa el újra a Lombok betöltéséhez.
-3. Az Eclipse **File** (Fájl) menüjében kattintson az **Import** (Importálás) elemre.
-4. Az **Import** (Importálás) ablakban kattintson a **Git**, majd a **Projects from Git** (Git-projektek), és végül a **Next** (Tovább) lehetőségre.
-5. A **Select Repository Source** (Tárház forrásának kiválasztása) képernyőn kattintson a **Clone URI** (URI klónozása) lehetőségre.
-6. Az a **forrás Git-tárház** képernyő a **URI** mezőbe, írja be a https://github.com/Azure-Samples/java-todo-app.git, és kattintson **következő**.
-7. A **Branch Selection** (Ág kiválasztása) képernyőn válassza a **master** (fő) lehetőséget, majd kattintson a **Next** (Tovább) gombra.
-8. A **Local Destination** (Helyi cél) képernyőn kattintson a **Browse** (Tallózás) lehetőségre, válassza ki a mappát, ahova a tárházat másolni szeretné, majd kattintson a **Next** (Tovább) gombra.
-9. A **Select a wizard to use for importing projects** (Varázsló kiválasztása a projektek importálásához) képernyőn győződjön meg arról, hogy az **Import existing projects** (Létező projektek importálása) lehetőség van kiválasztva, majd kattintson a **Next** (Tovább) gombra.
-10. Az **Import Projects** (Projektek importálása) képernyőn törölje a **DocumentDB** projekt jelölését, majd kattintson a **Finish** (Befejezés) gombra. A DocumentDB-projekt tartalmazza az Azure Cosmos DB Java SDK, amely adunk hozzá a függőség beállításához helyette.
-11. A **Project Explorer**Azure-documentdb-Java-sample\src\com.microsoft.Azure.documentdb.sample.dao\DocumentClientFactory.Java váltson, és cserélje le a HOST és MASTER_KEY értékeket a URI és PRIMARY KEY a Az Azure Cosmos DB fiókot, és mentse a fájlt. További információ: [1. lépés Egy Azure Cosmos DB adatbázisfiók létrehozása](#CreateDB).
-12. A **Project Explorer** (Projektböngésző) nézetben kattintson a jobb gombbal az **azure-documentdb-java-sample** elemre, majd kattintson a **Build Path** (Fordítás elérési útja), és végül a **Configure Build Path** (Fordítás elérési útjának konfigurálása) lehetőségre.
-13. A **Java Build Path** (Java-verzió elérési útja) képernyő jobb oldalsó paneljén válassza ki a **Libraries** (Könyvtárak) lapot, majd kattintson az **Add External JARs** (Külső JAR-fájlok hozzáadása) lehetőségre. Navigáljon a lombok.jar fájl helyére, kattintson az **Open** (Megnyitás), majd az **OK** gombra.
-14. A 12. lépésben leírtak segítségével nyissa meg ismét a **Properties** (Tulajdonságok) ablakot, majd a bal oldali ablaktáblán kattintson a **Targeted Runtimes** (Tervezett futásidők) elemre.
-15. A **Targeted Runtimes** (Tervezett futásidők) képernyőn kattintson a **New** (Új) elemre, válassza ki az **Apache Tomcat v7.0** lehetőséget, majd kattintson az **OK** gombra.
-16. A 12. lépésben leírtak segítségével nyissa meg ismét a **Properties** (Tulajdonságok) ablakot, majd a bal oldali ablaktáblán kattintson a **Project Facets** (A projekt aspektusai) elemre.
-17. A **Project Facets** (A projekt aspektusai) képernyőn válassza a **Dynamic Web Module** (Dinamikus webmodul), majd a **Java** lehetőséget, és kattintson az **OK** gombra.
-18. A **Servers** (Kiszolgálók) lapon, a képernyő alján, kattintson a jobb gombbal a **Tomcat v7.0 Server at localhost** (Tomcat 7.0-s verziójú kiszolgáló itt: localhost), majd az **Add and Remove** (Hozzáadás és eltávolítás) lehetőségre.
-19. Az **Add and Remove** (Hozzáadás és eltávolítás) ablakban helyezze át az **azure-documentdb-java-sample** kiszolgálót a **Configured** (Konfigurált) mezőbe, majd kattintson a **Finish** (Befejezés) gombra.
-20. Az a **kiszolgálók** lapon kattintson a jobb gombbal **Tomcat v7.0 Server localhost:**, és kattintson a **indítsa újra a**.
-21. Egy böngészőből keresse fel a http://localhost:8080/azure-documentdb-java-sample/ címet, és kezdje el hozzáadni a feladatait a listához. Ügyeljen arra, hogy ha módosította a portok alapértelmezett értékét, akkor a 8080 értéket módosítsa a választott értékre.
-22. Projekt telepítése egy Azure-webhelyre: [6. lépés Telepítheti az alkalmazást az Azure-webhelyek](#Deploy).
+1. Telepítse a [Project Lombok](http://projectlombok.org/) nevű projektet. Lombok használt toogenerate konstruktorainak, beolvasóinak, Setter hello projektben. Hello lombok.jar fájl letöltését követően kattintson rá duplán tooinstall, vagy telepítse a hello parancssorból.
+2. Ha az Eclipse meg nyitva, zárja be, és indítsa újra a tooload Lombok.
+3. Az eclipse-ben, a hello **fájl** menüben kattintson a **importálási**.
+4. A hello **importálási** ablakban kattintson **Git**, kattintson a **Projects from Git**, és kattintson a **tovább**.
+5. A hello **tárház forrásának kijelölése** kattintson **Klónozás URI**.
+6. A hello **forrás Git-tárház** képernyő hello **URI** mezőbe, írja be a https://github.com/Azure-Samples/java-todo-app.git, és kattintson **következő**.
+7. A hello **ág kiválasztása** képernyőn **fő** van kiválasztva, és kattintson **következő**.
+8. A hello **helyi cél** kattintson **Tallózás** tooselect egy mappát, amelyben hello tárház másolhatók, és kattintson a **következő**.
+9. A hello **válassza ki a projektek importálásához varázsló toouse** képernyőn **létező projektek importálása** van kiválasztva, és kattintson **következő**.
+10. A hello **Import Projects** képernyő, visszavonása hello **DocumentDB** projektre, és kattintson a **Befejezés**. hello DocumentDB-projekt tartalmazza hello Azure Cosmos DB Java SDK, amelyre a adunk hozzá a függőség beállításához helyette.
+11. A **Project Explorer**tooazure-documentdb-java-sample\src\com.microsoft.azure.documentdb.sample.dao\DocumentClientFactory.java váltson, és cserélje le hello HOST és MASTER_KEY értékeket hello URI és PRIMARY KEY a Azure Cosmos DB-fiókot, majd mentés hello fájlt. További információ: [1. lépés Egy Azure Cosmos DB adatbázisfiók létrehozása](#CreateDB).
+12. A **Project Explorer**, kattintson jobb gombbal a hello **azure-documentdb-java-sample**, kattintson **Build elérési**, és kattintson a **konfigurálása Build elérési**.
+13. A hello **Java Build elérési** hello jobb oldali ablaktáblában képernyőn válassza hello **szalagtárak** fülre, majd **külső JARs hozzáadása**. Keresse meg a toohello hello lombok.jar fájl helyét, és kattintson a **nyitott**, és kattintson a **OK**.
+14. Használjon 12. lépés tooopen hello **tulajdonságok** ablak újra, majd a hello bal oldali ablaktáblán kattintson **megcélzott futtatókörnyezetek**.
+15. A hello **megcélzott futtatókörnyezetek** kattintson **új**, jelölje be **Apache Tomcat v7.0**, és kattintson a **OK**.
+16. Használjon 12. lépés tooopen hello **tulajdonságok** ablak újra, majd a hello bal oldali ablaktáblán kattintson **Project Facets**.
+17. A hello **Project Facets** képernyőn válassza ki **dinamikus webmodul** és **Java**, és kattintson a **OK**.
+18. A hello **kiszolgálók** üdvözlő képernyőt hello alján lapon kattintson a jobb gombbal **Tomcat v7.0 Server localhost:** majd **hozzáadása és eltávolítása a**.
+19. A hello **hozzáadása és eltávolítása a** ablakban helyezze át **azure-documentdb-java-sample** toohello **beállított** gombra, majd **Befejezés**.
+20. A hello **kiszolgálók** lapon kattintson a jobb gombbal **Tomcat v7.0 Server localhost:**, és kattintson a **indítsa újra a**.
+21. Egy böngészőben nyissa meg a toohttp://localhost:8080 / azure-documentdb-java-sample / és tooyour feladatlista felvételének megkezdése. Figyelje meg, hogy ha módosította az alapértelmezett értékeket, módosítsa a 8080-as toohello értéket választotta.
+22. toodeploy a projekt tooan Azure-webhelyre, lásd: [6. lépés. Az alkalmazás tooAzure webhelyek telepítése](#Deploy).
 
 [1]: media/documentdb-java-application/keys.png

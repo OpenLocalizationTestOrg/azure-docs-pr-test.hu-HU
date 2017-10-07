@@ -1,6 +1,6 @@
 ---
-title: "(Portál – Azure Search) index létrehozása |} Microsoft Docs"
-description: "Az Azure portál használatával index létrehozása."
+title: "AAA \"(portál – Azure Search) index létrehozása |} Microsoft dokumentumok\""
+description: "Hozzon létre hello Azure portál használatával."
 services: search
 manager: jhubbard
 author: heidisteen
@@ -13,13 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 06/20/2017
 ms.author: heidist
-ms.openlocfilehash: a7d98ab0937a7d3f932d5df34c19ae091129804e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4c5d663499bf73a8883690aa9482b6ba59d1ddf6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-azure-search-index-using-the-azure-portal"></a>Az Azure portál használata az Azure Search-index létrehozása
+# <a name="create-an-azure-search-index-using-hello-azure-portal"></a>Hozzon létre egy Azure Search-index hello Azure portál használatával
 > [!div class="op_single_selector"]
 > * [Áttekintés](search-what-is-an-index.md)
 > * [Portál](search-create-index-portal.md)
@@ -28,73 +28,73 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-A beépített index-tervező használata Azure-portálon prototípusként vagy hozzon létre egy [search-index](search-what-is-an-index.md) az Azure Search szolgáltatás futtatásához. 
+Az Azure portál tooprototype hello beépített index designer használja, vagy hozzon létre egy [search-index](search-what-is-an-index.md) toorun meg az Azure Search szolgáltatás. 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 Ez a cikk feltételezi, hogy egy [Azure-előfizetés](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) és [Azure Search szolgáltatás](search-create-service-portal.md).  
 
 ## <a name="find-your-search-service"></a>Keresse meg a keresési szolgáltatáshoz
-1. Jelentkezzen be az Azure portálon, és tekintse át a [keresési az előfizetéshez tartozó szolgáltatások](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices)
+1. Jelentkezzen be az Azure portálon toohello, és tekintse át a hello [keresési az előfizetéshez tartozó szolgáltatások](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices)
 2. Válassza ki az Azure Search szolgáltatást.
 
-## <a name="name-the-index"></a>Az index neve
+## <a name="name-hello-index"></a>Hello index neve
 
-1. Kattintson a **index hozzáadása** gombra a parancssávon az oldal tetején.
+1. Kattintson a hello **index hozzáadása** gombra a parancssávon hello hello oldal hello tetején.
 2. Nevezze el az Azure Search-index. 
    * Betűvel kezdődhet.
    * Csak kisbetűk, számjegyek és kötőjelek használja ("-").
-   * Korlátozza a nevét, 60 karakter hosszúságú lehet.
+   * Korlátozza a hello too60 karaktert.
 
-  Az index neve kapcsolatok használata esetén az index és az Azure Search REST API a HTTP-kérelmek küldéséhez használt végponti URL-Címének részévé válik.
+  hello indexnév hello végponti URL-cím kapcsolatok toohello index és az Azure Search REST API hello HTTP-kérelmek küldéséhez használt részévé válik.
 
-## <a name="define-the-fields-of-your-index"></a>Az index mezők megadása
+## <a name="define-hello-fields-of-your-index"></a>Az index hello mezők megadása
 
-Index összeállítás tartalmaz egy *gyűjtemény mezők* a kereshető adatokat, amely meghatározza az indexben. Pontosabban adja meg azt jelzi, hogy külön-külön feltöltése a struktúra. A mezők gyűjteménybe szükséges és választható mezőket, és a adta-e, annak meghatározásához, hogy miként legyen használható a mező index attribútumokkal.
+Index összeállítás tartalmaz egy *gyűjtemény mezők* hello kereshető adatokat, amely meghatározza az indexben. Pontosabban adja meg azt jelzi, hogy külön-külön feltöltése hello struktúra. hello mezők gyűjteménybe szükséges és választható mezőket, nevű és adta-e, az index attribútumok toodetermine hogyan hello mező használható.
 
-1. A a **Index hozzáadása** panelen kattintson a **mezők >** diák nyitott a mező definition panel. 
+1. A hello **Index hozzáadása** panelen kattintson a **mezők >** tooslide hello mező definition panel megnyitásához. 
 
-2. Fogadja el a létrehozott *kulcs* Edm.String típusú mező. Alapértelmezés szerint a mező neve *azonosító* azonban mindaddig, amíg a karakterlánc megfelel a átnevezheti [elnevezési szabályait](https://docs.microsoft.com/rest/api/searchservice/Naming-rules). A következő kulcsmező minden Azure Search-index esetén kötelező, és karakterláncnak kell lennie.
+2. Fogadja el a generált hello *kulcs* Edm.String típusú mező. Alapértelmezés szerint hello mező neve *azonosító* azonban mindaddig, amíg hello karakterlánc megfelel a átnevezheti [elnevezési szabályait](https://docs.microsoft.com/rest/api/searchservice/Naming-rules). A következő kulcsmező minden Azure Search-index esetén kötelező, és karakterláncnak kell lennie.
 
-3. Adja hozzá a mezőt fel kell töltenie a dokumentumok teljes megadásához. Ha dokumentumok alkotják egy *azonosító*, *Szálloda neve*, *cím*, *Város*, és *régió*, hozzon létre egy megfelelő mező mindegyiknél az index. Tekintse át a [kialakítási útmutató az alábbi részben](#design) segítségre attribútum.
+3. Adja hozzá a mezők toofully fel kell töltenie hello dokumentumok adja meg. Ha dokumentumok áll egy *azonosító*, *Szálloda neve*, *cím*, *Város*, és *régió*, hozzon létre egy megfelelő mező mindegyiknél hello index. Felülvizsgálati hello [kialakítási útmutató az alábbi részben hello](#design) segítségre attribútum.
 
-4. Opcionálisan adja hozzá a mezőket használt belső szűrőkifejezéseket. Zárja ki a mezőket a keresési műveletek attribútumok használatát a mezőben állítható be.
+4. Opcionálisan adja hozzá a mezőket használt belső szűrőkifejezéseket. Attribútumok használatát a hello mező a keresési műveletek tooexclude mezők állítható be.
 
-5. Ha befejezte, kattintson a **OK** mentéséhez, és hozza létre az indexet.
+5. Ha befejezte, kattintson a **OK** toosave és hello index létrehozása.
 
 ## <a name="tips-for-adding-fields"></a>Tippek a mezők hozzáadása
 
-Az index létrehozása a portálon intenzív billentyűzet. Ez a munkafolyamat következő minimalizálása érdekében a lépéseket:
+Az index létrehozása hello portálon intenzív billentyűzet. Ez a munkafolyamat következő minimalizálása érdekében a lépéseket:
 
-1. Először is hozhat létre a mezőlista nevet, és az adattípus beállítása.
+1. Először is hozhat létre hello mezőlista nevet, és az adattípus beállítása.
 
-2. Ezután használja a jelölőnégyzeteket minden tetején attribútumot tömeges engedélyezi a beállítást, minden mezőbe, és szelektív módon törölheti a kevés mezőből áll, amelyek nem igényelnek jelölőnégyzetéből. Például karakterlánc mező kitöltése általában kereshetők. Így előfordulhat, hogy kattintson **lekérhető** és **kereshető** mindkét adja vissza a mező értékének a találatok között, valamint a mező a teljes szöveges keresés engedélyezése. 
+2. A következő hello jelölőnégyzetek használata minden egyes attribútum toobulk hello tetején hello beállítás, minden mezőbe, és szelektív törölje hello jelölőnégyzetéből kevés mezőből áll, amelyek nem igényelnek. Például karakterlánc mező kitöltése általában kereshetők. Így előfordulhat, hogy kattintson **lekérhető** és **kereshető** tooboth hello visszatérési értékei hello mezőben a találatok között, valamint lehetővé teszik a teljes szöveges keresés hello mező. 
 
 <a name="design"></a>
 ## <a name="design-guidance-for-setting-attributes"></a>Tervezési útmutatást nyújt attribútumainak beállítása
 
-Habár bármikor hozzáadhat új mezőket, meglévő mező definíciók zárolta élettartamát az index. Emiatt fejlesztők általában használni a portál egyszerű indexek létrehozása, ötleteket tesztelési vagy a portál lapjai használatával kereshet meg egy beállítást. Egy index terv keresztül gyakori iteráció egy sokkal hatékonyabb, ha a kódalapú megközelítés követi, hogy az index könnyedén létre újra.
+Habár bármikor hozzáadhat új mezőket, meglévő mező definíciók zárolta hello index hello élettartamát. Emiatt fejlesztők általában használó hello portal egyszerű indexek létrehozása, ötleteket tesztelése és hello portál lapjai toolook fel egy beállítás használatával. Egy index terv keresztül gyakori iteráció egy sokkal hatékonyabb, ha a kódalapú megközelítés követi, hogy könnyen használható hello index.
 
-Elemzőkkel és a javaslattevők társítva a mezőket, az index mentése előtt. Ne kattintson végig lapokra nyelvi elemzőkkel és a javaslattevők hozzáadását az index definícióját.
+Elemzőkkel és a javaslattevők társítva a mezőket, hello index mentése előtt. Lehet, hogy tooclick minden lapokra lap tooadd nyelvi elemzőkkel vagy javaslattevők tooyour Indexdefiníció keresztül.
 
 A karakterlánc típusú gyakran fel van tüntetve **kereshető** és **lekérhető**.
 
-Keresési eredmények szűkítéséhez használt mezőkkel következők **rendezhető**, **Filterable**, és **kategorizálható**.
+Használt mezőkkel toonarrow találatok között szerepelnek **rendezhető**, **Filterable**, és **kategorizálható**.
 
-A mező attribútumok határozza meg, hogyan mező használata esetén például, hogy használatba a teljes szöveges keresés, jellemzőalapú navigációs, rendezési műveletet, és így tovább. A következő táblázat ismerteti az összes attribútumot.
+A mező attribútumok határozza meg, hogyan mező használata esetén például, hogy használatba a teljes szöveges keresés, jellemzőalapú navigációs, rendezési műveletet, és így tovább. hello a következő táblázat ismerteti az összes attribútumot.
 
 |Attribútum|Leírás|  
 |---------------|-----------------|  
-|**kereshető**|Teljes szöveges kereshető, például szóhatároló indexelés során lexikális elemzés vonatkoznak. Ha például a "napfényes" értékre van beállítva kereshető mezőt, belső azt lesznek osztva az egyes jogkivonatok "moziba" és "day". További információkért lásd: [hogyan teljes szöveges keresés works](search-lucene-query-architecture.md).|  
-|**szűrhető**|A hivatkozott **$filter** lekérdezések. Típusú szűrhető mezők `Edm.String` vagy `Collection(Edm.String)` nem kerülnek szóhatároló, így csak pontosan megegyezik az összehasonlítást. Például, ha a mező f "moziba Day" `$filter=f eq 'sunny'` megkeresi, nincs találat, de `$filter=f eq 'sunny day'` lesz. |  
-|**rendezhető**|Alapértelmezés szerint a rendszer rendezése az eredmények pontszám, de be lehet állítani a rendezési a a dokumentumokban lévő mezők alapján. Típusú mezők `Collection(Edm.String)` nem lehet **rendezhető**. |  
+|**kereshető**|Teljes szöveges kereshető, tulajdonos toolexical elemzés például szóhatároló indexelés során. Ha például a "napfényes" kereshető mező tooa érték beállításához belső azt lesznek osztva a hello egyedi jogkivonatok "moziba" és "day". További információkért lásd: [hogyan teljes szöveges keresés works](search-lucene-query-architecture.md).|  
+|**szűrhető**|A hivatkozott **$filter** lekérdezések. Típusú szűrhető mezők `Edm.String` vagy `Collection(Edm.String)` nem kerülnek szóhatároló, így csak pontosan megegyezik az összehasonlítást. Például, ha a mező f túl beállítása "napfényes", `$filter=f eq 'sunny'` megkeresi, nincs találat, de `$filter=f eq 'sunny day'` lesz. |  
+|**rendezhető**|Alapértelmezés szerint hello rendszer rendezése az eredmények pontszám, de be lehet állítani a rendezési a hello dokumentumokban lévő mezők alapján. Típusú mezők `Collection(Edm.String)` nem lehet **rendezhető**. |  
 |**kategorizálható**|A keresési eredmények kategória (például egy adott városban szállodák) találati számát tartalmazó bemutató jellemzően használt. Ez a beállítás nem használható típusú mezők `Edm.GeographyPoint`. Típusú mezők `Edm.String` , amelyek **szűrhető**, **rendezhető**, vagy **kategorizálható** legfeljebb 32 kilobájt hosszabb használható. További információkért lásd: [a Create Index (REST API-t)](https://docs.microsoft.com/rest/api/searchservice/create-index).|  
-|**kulcs**|Az index dokumentumokon egyedi azonosítója. Pontosan egy mezőt ki kell választani, a következő kulcsmező és típusúnak kell lennie `Edm.String`.|  
-|**lekérhető**|Meghatározza, hogy a mező a keresési eredmény adhatók vissza. Ez akkor hasznos, ha egy mező használni kívánt (például *nyereség margó*) szűrőként, rendezés, vagy pontozási mechanizmus, de nem szeretné, hogy a végfelhasználók számára megjelenített a mező. Ennek az attribútumnak kell lennie `true` a `key` mezőket.|  
+|**kulcs**|A dokumentumok hello index belül egyedi azonosítója Pontosan egy mezőt ki kell választani, hello kulcsmező és típusúnak kell lennie `Edm.String`.|  
+|**lekérhető**|Meghatározza, hogy a keresési eredmény hello mező adhatók vissza. Ez akkor hasznos, ha azt szeretné, hogy egy mező toouse (például *nyereség margó*) szűrőként, rendezés, vagy pontozási mechanizmussal, de elvégezhető nem kívánt hello mező toobe látható toohello végfelhasználói. Ennek az attribútumnak kell lennie `true` a `key` mezőket.|  
 
-## <a name="create-the-hotels-index-used-in-example-api-sections"></a>Példa API szakaszokban használt szállodák index létrehozása
+## <a name="create-hello-hotels-index-used-in-example-api-sections"></a>Példa API szakaszokban használt hello szállodák index létrehozása
 
-Az Azure Search API dokumentációja tartalmaz egy egyszerű kiemeli kódpéldák *szállodák* index. Az alábbi képernyőfelvételnek tekintse meg az index definícióját, beleértve az index definícióját, során megadott francia nyelvű analyzer amely létrehozhatja a gyakorlat során a portálon.
+Az Azure Search API dokumentációja tartalmaz egy egyszerű kiemeli kódpéldák *szállodák* index. Az alábbi hello képernyőképek, lásd: hello Indexdefiníció, beleértve az index definícióját, során megadott hello francia nyelvi elemzőt amely létrehozhatja a gyakorlat során hello portálon.
 
 ![](./media/search-create-index-portal/field-definitions.png)
 
@@ -102,9 +102,9 @@ Az Azure Search API dokumentációja tartalmaz egy egyszerű kiemeli kódpéldá
 
 ## <a name="next-steps"></a>Következő lépések
 
-Miután létrehozta az Azure Search-index, áthelyezheti a következő lépéssel: [kereshető adatokat feltölteni az indexbe](search-what-is-data-import.md).
+Miután létrehozta az Azure Search-index, áthelyezheti toohello következő lépés: [kereshető adatokat feltölteni hello indexbe](search-what-is-data-import.md).
 
-Másik lehetőségként is készíthet, indexek mélyebb betekintést. Mellett a mezők gyűjteményében index azt is meghatározza, elemzőkkel, a javaslattevők, a pontozási profil és a CORS-beállítások. A portál lapokra lapokat biztosít a leggyakrabban használt elemek meghatározásához: mezők, lekérdezések és javaslattevők. Hozzon létre, és más elemek módosítása, használhatja a REST API-t vagy a .NET SDK-val.
+Másik lehetőségként is készíthet, indexek mélyebb betekintést. Ezenkívül toohello mezők gyűjteményében, index is megadja elemzőkkel, javaslattevők, pontozási profilokat, és a CORS-beállítások. hello portal lapokra lapokat biztosít hello leggyakoribb elemek meghatározásához: mezők, lekérdezések és javaslattevők. toocreate vagy egyéb elemek módosítása, hello REST API-t vagy a .NET SDK-t használja.
 
 ## <a name="see-also"></a>Lásd még:
 

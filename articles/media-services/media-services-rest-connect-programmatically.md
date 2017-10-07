@@ -1,6 +1,6 @@
 ---
-title: "Kapcsolódás a Media Services-fiók REST API használatával |} Microsoft Docs"
-description: "Ebben a témakörben bemutatjuk, hogyan csatlakozhat a Media Services előrejelzése REST API-t."
+title: "aaaConnecting tooMedia Services-fiók REST API használatával |} Microsoft Docs"
+description: "Ez a témakör bemutatja, hogyan tooconnect tooMedia szolgáltatások előrejelzése REST API-t."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,52 +14,52 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
-ms.openlocfilehash: 4feb0eb81823835e8e0b701463d85b27f5598019
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1d5064a3612dc96f5c5ad910d183d84fb70a3b6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connecting-to-media-services-account-using-media-services-rest-api"></a>Kapcsolódás a Media Services-fiók Media Services REST API használatával
+# <a name="connecting-toomedia-services-account-using-media-services-rest-api"></a>Csatlakozás a Media Services REST API használatával Services-fiók tooMedia
 > [!div class="op_single_selector"]
 > * [.NET](media-services-dotnet-connect-programmatically.md)
 > * [REST](media-services-rest-connect-programmatically.md)
 > 
 > 
 
-Ez a témakör ismerteti az beszerzése programozott kapcsolódni a Microsoft Azure Media Services, ha meg vannak programozási Media Services REST API-val.
+Ez a témakör ismerteti, hogyan tooobtain egy Azure Media Services, amikor a rendszer programozás a szoftveres kapcsolatot tooMicrosoft hello Media Services REST API-t.
 
-Két dolog szükség, ha a Microsoft Azure Media Services szolgáltatásainak eléréséhez: egy hozzáférési jogkivonat segítségével Azure Access Control szolgáltatások (ACS), és a Media Services URI magát. Azt szeretné, hogy ezek a kérelmek létrehozásakor, mindaddig, amíg adja meg a megfelelő fejléc értékét, és a hozzáférési jogkivonat megfelelően előhívásakor továbbítsa a Media Services bármilyen módon használhatja.
+Két dolog szükség, ha a Microsoft Azure Media Services szolgáltatásainak eléréséhez: egy hozzáférési jogkivonat segítségével Azure Access Control szolgáltatások (ACS), és a URI Media Services hello magát. Azt szeretné, hogy ezek a kérelmek létrehozásakor, mindaddig, amíg hello megfelelő fejléc értékeket megadni, és a hozzáférési jogkivonat hello megfelelően előhívásakor továbbítsa a Media Services bármilyen módon használhatja.
 
-A következő lépések bemutatják a leggyakrabban használt munkafolyamat, a Media Services REST API való csatlakozáshoz a Media Services használata esetén:
+a lépéseket követve hello hello leggyakoribb munkafolyamat mutatják be, amikor szolgáltatási hello Media Services REST API tooconnect tooMedia használatával:
 
 1. Egy hozzáférési jogkivonat beolvasása 
-2. Csatlakozás a Media Services URI 
+2. Csatlakozás a Media Services URI toohello 
    
    > [!NOTE]
-   > Sikeresen csatlakoztassa a https://media.windows.net, adja meg egy másik Media Services URI 301 átirányítást fog kapni. Meg kell nyitnia az új URI későbbi hívásokat.
-   > A HTTP/1.1 200 választ, amely tartalmazza a ODATA API-metaadatok leírását is megjelenhet.
+   > Toohttps://media.windows.net sikeres csatlakozás után kapni fog egy másik Media Services URI megadása 301 átirányítást. Meg kell nyitnia a további hívások toohello új URI.
+   > A HTTP/1.1 200 válasz hello ODATA API-metaadatok leírását tartalmazó is megjelenhet.
    > 
    > 
-3. Írjon a következő API-hívások új URL-címet. 
+3. Közzététel az ezt követő API hívások toohello új URL-címe. 
    
-    Például ha az próbál csatlakozni, után kapott a következő:
+    Például ha az tooconnect próbálja, után kapott hello következő:
    
         HTTP/1.1 301 Moved Permanently
         Location: https://wamsbayclus001rest-hs.cloudapp.net/api/
    
-    A következő API-hívások https://wamsbayclus001rest-hs.cloudapp.net/api/ tegye meg.
+    A következő API-hívások toohttps://wamsbayclus001rest-hs.cloudapp.net/api/ tegye meg.
 
     >[!NOTE]
-    >A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat. Ha mindig ugyanazokat a napokat/hozzáférési engedélyeket használja (például olyan keresők szabályzatait, amelyek hosszú ideig érvényben maradnak, vagyis nem feltöltött szabályzatokat), a szabályzatazonosítónak is ugyanannak kell lennie. További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.
+    >A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat. Használjon hello azonos házirend-azonosítója mindig használata hello azonos nap / hozzáférési engedélyek, például a lokátorokat, amelyek a helyen tervezett tooremain hosszú ideje (nem feltöltés házirendek) házirendek. További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.
 
 ## <a name="access-control-address"></a>MAC-címe
 A Media Services MAC-címe https://wamsprodglobal001acs.accesscontrol.windows.net, kivéve a Észak Kína régió, ahol https://wamsprodglobal001acs.accesscontrol.chinacloudapi.cn.
 
 ## <a name="getting-an-access-token"></a>Egy hozzáférési jogkivonat beolvasása
-Media Services eléréséhez közvetlenül a REST API-n keresztül, egy hozzáférési jogkivonatot beolvasni az ACS-től, illetve használják során minden HTTP-kérelem elvégezte a szolgáltatásba. A jogkivonat nagyon hasonló a HTTP-kérelem és a OAuth v2 protokollt használó fejlécben megadott hozzáférési jogcímei alapján ACS által biztosított egyéb jogkivonatokat. Media Services való közvetlen csatlakozás előtt nem kell más előfeltételeket.
+tooaccess Media Services közvetlenül hello REST API-t, a hozzáférési jogkivonatot lekérdezni az ACS-től, illetve használják során minden HTTP-kérelem hello szolgáltatásban végez. Ez a jogkivonat nagyon hasonló tooother jogkivonatok HTTP-kérelem és hello OAuth v2 protokollt használó hello fejlécben megadott hozzáférési jogcímei alapján ACS által biztosított. Egyéb előfeltételeket nem kell előtt tooMedia szolgáltatások használatával közvetlenül csatlakozik.
 
-A következő példa bemutatja a HTTP-kérés fejlécének és a szervezet jogkivonat beolvasása.
+hello következő példa bemutatja hello HTTP-kérés fejlécének és használt törzs tooretrieve jogkivonatot.
 
 **Fejléc**:
 
@@ -74,9 +74,9 @@ A következő példa bemutatja a HTTP-kérés fejlécének és a szervezet jogki
 
 **Törzs**:
 
-A kérelem; törzsében client_id és client_secret értékek igazolnia kell client_id és client_secret felel meg az AccountName és az AccountKey értékeket, illetve. Ezek az értékek vannak által biztosított Media Services a fiók beállításakor. 
+Tooprove hello client_id és client_secret hello törzsében a kérelem; értékek van szüksége client_id és client_secret megfelelnek a toohello AccountName és az AccountKey értékeket, illetve. Ezek az értékek tooyou által biztosított Media Services a fiók beállításakor. 
 
-Vegye figyelembe, hogy a Media Services-fiókhoz tartozó AccountKey csak URL-kódolású (lásd: [százalék-kódolás](http://tools.ietf.org/html/rfc3986#section-2.1) azt a hozzáférési token kérelem client_secret beállítás használatakor.
+Vegye figyelembe, hogy hello accountkey elemeket, a Media Services-fiók URL-kódolású kell lennie (lásd: [százalék-kódolás](http://tools.ietf.org/html/rfc3986#section-2.1) azt a hozzáférési token kérés hello client_secret értékként használatakor.
 
     grant_type=client_credentials&client_id=ams_account_name&client_secret=URL_encoded_ams_account_key&scope=urn%3aWindowsAzureMediaServices
 
@@ -86,7 +86,7 @@ Példa:
     grant_type=client_credentials&client_id=amstestaccount001&client_secret=wUNbKhNj07oqjqU3Ah9R9f4kqTJ9avPpfe6Pk3YZ7ng%3d&scope=urn%3aWindowsAzureMediaServices
 
 
-A következő példa bemutatja a HTTP-válasz, amely tartalmazza a hozzáférési jogkivonat a válasz törzsében.
+hello következő példa bemutatja hello HTTP-válasz, amely tartalmazza a hello access token hello válasz törzsében.
 
     HTTP/1.1 200 OK
     Cache-Control: no-cache, no-store
@@ -108,18 +108,18 @@ A következő példa bemutatja a HTTP-válasz, amely tartalmazza a hozzáférés
 
 
 > [!NOTE]
-> Javasoljuk, hogy gyorsítótárazzák a "access_token" és "expires_in" értékek külső tárolóra. A tokenadatforrások később is olvassa be a tároló és a Media Services REST API-hívásokban használt újra. Ez különösen fontos a forgatókönyvek, ahol a token biztonságosan megoszthatók több folyamatok vagy számítógépek között.
+> Ajánlott toocache hello "access_token" és "expires_in" értékek tooan külső tárhelyen. hello tokenadatforrások később is hello tárolási lekért és a Media Services REST API-hívásokban használt újra. Ez különösen fontos a forgatókönyvek, ahol hello token biztonságosan megoszthatók több folyamatok vagy számítógépek között.
 > 
 > 
 
-Ügyeljen arra, hogy a "expires_in" értéket, és a hozzáférési jogkivonat figyelheti és frissítheti a REST API-hívások új jogkivonatokkal, igény szerint.
+Győződjön meg arról, hogy toomonitor hello "expires_in" érték hello hozzáférési jogkivonat, és szükség szerint új jogkivonatokkal frissítse a REST API-hívásokat.
 
-### <a name="connecting-to-the-media-services-uri"></a>Csatlakozás a Media Services URI
-A legfelső szintű URI a Media Services https://media.windows.net/ nem. Először csatlakozzon a URI, és ha 301 átirányítást vissza válaszként, meg kell győződnie későbbi hívások az új URI. Továbbá ne használjon bármely automatikus átirányítási/követhető logika a a kérelmek. HTTP-műveletekre és a kérelem szervek a rendszer nem továbbítja az új URI.
+### <a name="connecting-toohello-media-services-uri"></a>Csatlakozás a Media Services URI toohello
+hello legfelső szintű Media Services URI https://media.windows.net/. Kezdetben a toothis URI kell csatlakoznia, és ha 301 átirányítást vissza válaszként, meg kell győződnie későbbi hívások toohello új URI. Továbbá ne használjon bármely automatikus átirányítási/követhető logika a a kérelmek. HTTP-műveletekre és a kérelem szervek nem továbbítják toohello új URI.
 
-Vegye figyelembe, hogy a legfelső szintű fel-és eszköz fájlok letöltése URI https://yourstorageaccount.blob.core.windows.net/ ahol a tárfiók neve megegyezik egy a Media Services-fiók beállításakor használt.
+Vegye figyelembe, hogy hello legfelső szintű URI feltöltése és eszköz fájlok letöltése https://yourstorageaccount.blob.core.windows.net/ ahol hello tárfiókneve hello azonos egy, a Media Services-fiók beállításakor használt.
 
-A következő példa bemutatja a Media Services legfelső szintű URI (https://media.windows.net/) HTTP-kérelem. A kérelem vissza válaszként 301 átirányítást lekérdezi. A későbbi kérés használja az új URI (https://wamsbayclus001rest-hs.cloudapp.net/api/).     
+a következő példa hello HTTP kérelem toohello Media Services gyökér URI (https://media.windows.net/) mutatja be. hello kérelem 301 átirányítást lekérdezi vissza válaszként. hello későbbi kérés használ hello új URI (https://wamsbayclus001rest-hs.cloudapp.net/api/).     
 
 **HTTP-kérelem**:
 
@@ -143,11 +143,11 @@ A következő példa bemutatja a Media Services legfelső szintű URI (https://m
     Content-Length: 164
 
     <html><head><title>Object moved</title></head><body>
-    <h2>Object moved to <a href="https://wamsbayclus001rest-hs.cloudapp.net/api/">here</a>.</h2>
+    <h2>Object moved too<a href="https://wamsbayclus001rest-hs.cloudapp.net/api/">here</a>.</h2>
     </body></html>
 
 
-**HTTP-kérelem** (új URI segítségével):
+**HTTP-kérelem** (új URI hello használatával):
 
     GET https://wamsbayclus001rest-hs.cloudapp.net/api/ HTTP/1.1
     Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amstestaccount001&urn%3aSubscriptionId=z7f19258-2233-4ca2-b1ae-193798e2c9d8&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1421500579&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=ElVWXOnMVggFQl%2ft9vhdcv1qH1n%2fE8l3hRef4zPmrzg%3d
@@ -176,7 +176,7 @@ A következő példa bemutatja a Media Services legfelső szintű URI (https://m
 
 
 > [!NOTE]
-> Miután az új URI, ez az URI, amely a Media Services folytatott kommunikációhoz használandó. 
+> Miután hello új URI, hello URI, amely a Media Services használt toocommunicate kell lennie. 
 > 
 > 
 

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Resource Manager-sablon működik - tömbállandó és objektumok |} Microsoft Docs"
-description: "A tömbök és objektumok használata az Azure Resource Manager sablon használandó funkcióit ismerteti."
+title: "aaaAzure Resource Manager-sablon működik - tömbállandó és objektumok |} Microsoft Docs"
+description: "Hello funkciók toouse tömbök és objektumok használata az Azure Resource Manager sablon ismerteti."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/12/2017
 ms.author: tomfitz
-ms.openlocfilehash: 0bd9ec41761c9ce575f3bcf4d1f8e8578b83e01c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e5f1a9b2a71039562eae7e48c2474a1fa59a7bea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="array-and-object-functions-for-azure-resource-manager-templates"></a>Az Azure Resource Manager sablonokhoz tárolótömböt és az objektum funkciók 
 
@@ -42,20 +42,20 @@ Erőforrás-kezelő számos funkciókat nyújt, tömbök és objektumok.
 * [hajtsa végre a megfelelő](#take)
 * [a UNION](#union)
 
-Ahhoz, hogy egy érték elválasztott karakterlánc tömböt, lásd: [vágási](resource-group-template-functions-string.md#split).
+egy érték elválasztott karakterlánc-értékek tömbje tooget lásd: [vágási](resource-group-template-functions-string.md#split).
 
 <a id="array" />
 
 ## <a name="array"></a>A tömb
 `array(convertToArray)`
 
-Az érték alakít át tömbbé.
+Hello tooan értéktömb alakítja.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| convertToArray |Igen |int, string, tömb vagy objektum |A tömb átalakítása érték. |
+| convertToArray |Igen |int, string, tömb vagy objektum |hello értéktömb tooconvert tooan. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
@@ -63,7 +63,7 @@ Egy tömb.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan különböző típusú tömb funkcióval.
+hello következő példa bemutatja, hogyan toouse hello különböző típusú tömb függvény.
 
 ```json
 {
@@ -102,35 +102,35 @@ A következő példa bemutatja, hogyan különböző típusú tömb funkcióval.
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
-| intOutput | A tömb | [1] |
-| stringOutput | A tömb | ["a"] |
-| objectOutput | A tömb | [{"a": "b", "c": "d"}] |
+| intOutput | Tömb | [1] |
+| stringOutput | Tömb | ["a"] |
+| objectOutput | Tömb | [{"a": "b", "c": "d"}] |
 
 <a id="coalesce" />
 
 ## <a name="coalesce"></a>Egyesítés
 `coalesce(arg1, arg2, arg3, ...)`
 
-A paraméterek első nem null értéket ad vissza. Üres karakterláncokat, üres tömbök és üres objektumok csak NULL értékű.
+Hello paraméterek első nem null értéket ad vissza. Üres karakterláncokat, üres tömbök és üres objektumok csak NULL értékű.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |int, string, tömb vagy objektum |Az első érték teszteléséhez a NULL értékű. |
-| További argumentum |Nem |int, string, tömb vagy objektum |További értékek tesztelésére null értékű. |
+| arg1 |Igen |int, string, tömb vagy objektum |hello első érték tootest a NULL értékű. |
+| További argumentum |Nem |int, string, tömb vagy objektum |További értékeket tootest a NULL értékű. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Az érték első null értékű paramétert, amely egy karakterlánc, int, tömb vagy objektum lehet. NULL értékű, ha az összes paraméterei null értékű. 
+hello érték hello első null értékű paramétert, amely egy karakterlánc, int, tömb vagy objektum lehet. NULL értékű, ha az összes paraméterei null értékű. 
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja a kimenetét a coalesce különböző használatát.
+hello következő példa bemutatja, coalesce különböző használatát hello kimenetét.
 
 ```json
 {
@@ -176,14 +176,14 @@ A következő példa bemutatja a kimenetét a coalesce különböző használat�
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
 | stringOutput | Karakterlánc | Alapértelmezett |
 | intOutput | int | 1 |
 | objectOutput | Objektum | {"első": "alapértelmezett"} |
-| arrayOutput | A tömb | [1] |
+| arrayOutput | Tömb | [1] |
 | emptyOutput | logikai érték | True (Igaz) |
 
 <a id="concat" />
@@ -191,23 +191,23 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="concat"></a>Concat
 `concat(arg1, arg2, arg3, ...)`
 
-Több tömbök egyesíti, és a összefűzött tömböt ad vissza, vagy több karakterlánc-értékek egyesíti, és a összefűzött karakterláncot ad vissza. 
+Több tömbök és összefűzendő hello tömb értéket ad vissza, vagy több karakterlánc-értékek egyesíti, és összefűzendő hello karakterláncot ad vissza. 
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |a tömb vagy karakterlánc |Az első tömb vagy kapott karakterláncot. |
+| arg1 |Igen |a tömb vagy karakterlánc |hello első tömb vagy kapott karakterláncot. |
 | További argumentumok |Nem |a tömb vagy karakterlánc |További tömbök vagy karakterláncok kapott a sorrendben. |
 
-Ez a funkció tetszőleges számú argumentumot is igénybe vehet, és fogadhat, karakterláncok vagy a tömbök a paraméterek.
+Ez a funkció tetszőleges számú argumentumot is igénybe vehet, és fogadhat, karakterláncok vagy a tömbök hello paraméterekhez.
 
 ### <a name="return-value"></a>Visszatérési érték
 A karakterlánc vagy tömb összefűzött.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan kombinálhatók két tömb.
+hello a következő példa bemutatja, hogyan két toocombine tömbállandó.
 
 ```json
 {
@@ -242,13 +242,13 @@ A következő példa bemutatja, hogyan kombinálhatók két tömb.
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
-| térjen vissza | A tömb | ["1-1", "1-2", "1-3", "2-1", "2-2", "2-3"] |
+| térjen vissza | Tömb | ["1-1", "1-2", "1-3", "2-1", "2-2", "2-3"] |
 
-A következő példa bemutatja, hogyan kombinálhatja a két karakterlánc-értékeket, és olyan összefűzött karakterláncot adja vissza.
+hello a következő példa bemutatja, hogyan toocombine két karakterlánc-értékeket, és térjen vissza olyan összefűzött karakterláncot.
 
 ```json
 {
@@ -270,7 +270,7 @@ A következő példa bemutatja, hogyan kombinálhatja a két karakterlánc-ért�
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -287,16 +287,16 @@ Ellenőrzi, hogy egy tömb értéket tartalmaz, objektum kulcsot tartalmaz, vagy
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| Tároló |Igen |a tömb, objektum vagy karakterlánc |Az érték, amely tartalmazza a keresendő érték. |
-| itemToFind |Igen |karakterlánc- vagy int |Az érték kereséséhez. |
+| Tároló |Igen |a tömb, objektum vagy karakterlánc |hello érték, amely hello érték toofind tartalmazza. |
+| itemToFind |Igen |karakterlánc- vagy int |hello érték toofind. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-**Igaz** Ha az elem található; ellenkező esetben **hamis**.
+**Igaz** Ha hello elem található; ellenkező esetben **hamis**.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan használható különböző típusú tartalmazza:
+hello következő példa bemutatja, hogyan toouse különböző típusú tartalmazza:
 
 ```json
 {
@@ -347,7 +347,7 @@ A következő példa bemutatja, hogyan használható különböző típusú tart
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -363,14 +363,14 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="createarray"></a>createarray
 `createArray (arg1, arg2, arg3, ...)`
 
-A paraméter egy tömb jön létre.
+Létrehoz egy tömb hello paraméterek.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |Karakterlánc, egész szám, a tömb vagy objektum |A tömb első értékét. |
-| További argumentumok |Nem |Karakterlánc, egész szám, a tömb vagy objektum |További a tömbben szereplő értékeket. |
+| arg1 |Igen |Karakterlánc, egész szám, a tömb vagy objektum |hello hello tömb első értékét. |
+| További argumentumok |Nem |Karakterlánc, egész szám, a tömb vagy objektum |További értékeket hello tömbben. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
@@ -378,7 +378,7 @@ Egy tömb.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan különböző createArray használata:
+a következő példa azt mutatja meg hogyan hello toouse createArray különböző típusú:
 
 ```json
 {
@@ -417,14 +417,14 @@ A következő példa bemutatja, hogyan különböző createArray használata:
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
-| stringArray | A tömb | ["a", "b", "c"] |
-| intArray | A tömb | [1, 2, 3] |
-| objectArray | A tömb | [{"egy": "a", "2": "b", "három": "c"}] |
-| arrayArray | A tömb | [["egy", "két", "három"]] |
+| stringArray | Tömb | ["a", "b", "c"] |
+| intArray | Tömb | [1, 2, 3] |
+| objectArray | Tömb | [{"egy": "a", "2": "b", "három": "c"}] |
+| arrayArray | Tömb | [["egy", "két", "három"]] |
 
 <a id="empty" />
 
@@ -438,15 +438,15 @@ Meghatározza, hogy egy tömb, az objektum, vagy a karakterlánc üres.
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| itemToTest |Igen |a tömb, objektum vagy karakterlánc |Ellenőrizze a esetén üres érték. |
+| itemToTest |Igen |a tömb, objektum vagy karakterlánc |hello érték toocheck, ha üres. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Beolvasása **igaz** értéke üres, ha sikertelen, ha **hamis**.
+Beolvasása **igaz** hello értéke üres, ha sikertelen, ha **hamis**.
 
 ### <a name="example"></a>Példa
 
-A következő példa ellenőrzi, hogy egy tömb, az objektumot, és a karakterlánc üres.
+a következő példa hello ellenőrzi, hogy egy tömb, az objektumot, és a karakterlánc üres.
 
 ```json
 {
@@ -485,7 +485,7 @@ A következő példa ellenőrzi, hogy egy tömb, az objektumot, és a karakterl�
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -498,21 +498,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="first"></a>első
 `first(arg1)`
 
-A tömb első eleme, vagy a karakterlánc első karaktere adja vissza.
+Beolvasása hello hello tömb első eleme, vagy hello karakterlánc első karaktere.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |a tömb vagy karakterlánc |Az érték első karakter vagy elem lekéréséhez. |
+| arg1 |Igen |a tömb vagy karakterlánc |hello érték tooretrieve hello első elem vagy karakter. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A típus (karakterlánc, int, tömb vagy objektum) az első elem a tömb vagy karakterlánc első karaktere.
+egy tömb első eleme hello (karakterlánc, int, tömb vagy objektum) típusú hello, vagy egy karakterlánc első karaktere hello.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan használható az első függvényét egy tömb és a karakterlánc.
+hello következő példa bemutatja, hogyan toouse hello tömb és karakterlánc az első függvényét.
 
 ```json
 {
@@ -539,7 +539,7 @@ A következő példa bemutatja, hogyan használható az első függvényét egy 
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -551,23 +551,23 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="intersection"></a>metszetének
 `intersection(arg1, arg2, arg3, ...)`
 
-A paraméterek egy egyetlen tömb vagy objektum a szokványos elemeket adja vissza.
+Hello paraméterek egy egyetlen tömb vagy objektum hello szokványos elemeket adja vissza.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |tömb vagy objektum |Az első értéket közös elemek kereséséhez. |
-| Arg2 |Igen |tömb vagy objektum |A második érték közös elemek kereséséhez használja. |
-| További argumentumok |Nem |tömb vagy objektum |Közös elemek kereséséhez használni kívánt további értékeket. |
+| arg1 |Igen |tömb vagy objektum |hello első érték toouse közös elemek kereséséhez. |
+| Arg2 |Igen |tömb vagy objektum |hello második érték toouse közös elemek kereséséhez. |
+| További argumentumok |Nem |tömb vagy objektum |További értékeket toouse közös elemek kereséséhez. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Tömb vagy objektum a szokványos elemeket.
+Tömb vagy objektum hello szokványos elemeket.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan használható metszetének tömbök és objektumok:
+a következő példa azt mutatja meg, hogyan toouse metszetének rendelkező tömbállandó hello és objektumok:
 
 ```json
 {
@@ -606,12 +606,12 @@ A következő példa bemutatja, hogyan használható metszetének tömbök és o
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
 | objectOutput | Objektum | {"egy": "a", "három": "c"} |
-| arrayOutput | A tömb | ["két", "három"] |
+| arrayOutput | Tömb | ["két", "három"] |
 
 
 ## <a name="json"></a>JSON-ban
@@ -623,16 +623,16 @@ A JSON-objektumot ad vissza.
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |Karakterlánc |Az érték átalakítása JSON. |
+| arg1 |Igen |Karakterlánc |hello érték tooconvert tooJSON. |
 
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A JSON-objektum a megadott karakterlánc vagy egy üres objektum amikor **null** van megadva.
+hello JSON-objektumból származó hello megadott karakterlánc vagy üres objektum, amikor **null** van megadva.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan használható metszetének tömbök és objektumok:
+a következő példa azt mutatja meg, hogyan toouse metszetének rendelkező tömbállandó hello és objektumok:
 
 ```json
 {
@@ -653,7 +653,7 @@ A következő példa bemutatja, hogyan használható metszetének tömbök és o
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -665,21 +665,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="last"></a>utolsó
 `last (arg1)`
 
-A tömb utolsó eleme, vagy a karakterlánc utolsó karakterét adja vissza.
+Beolvasása hello hello tömb utolsó eleme, vagy hello karakterlánc utolsó karaktere.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |a tömb vagy karakterlánc |Az érték utolsó karakter vagy elem lekéréséhez. |
+| arg1 |Igen |a tömb vagy karakterlánc |hello érték tooretrieve hello utolsó eleme vagy karakter. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A típus (karakterlánc, int, tömb vagy objektum) utolsó elemének tömb vagy karakterlánc az utolsó karakter.
+hello típusa (karakterlánc, int, tömb vagy objektum) utolsó eleme hello tömb vagy karakterlánc hello utolsó karaktere.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan használható az utolsó függvény egy tömb és a karakterlánc.
+hello következő példa bemutatja, hogyan toouse hello utolsó függvény egy tömböt és a karakterlánc.
 
 ```json
 {
@@ -706,7 +706,7 @@ A következő példa bemutatja, hogyan használható az utolsó függvény egy t
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -718,13 +718,13 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="length"></a>Hossza
 `length(arg1)`
 
-A tömb, vagy egy karakterlánc karaktereinek elemek számát adja vissza.
+A tömb, vagy egy karakterlánc karaktereinek hello számú elemet ad vissza.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |a tömb vagy karakterlánc |A tömb használni az első elemek, vagy a karakterlánc első karakterek használata. |
+| arg1 |Igen |a tömb vagy karakterlánc |első hello elemek száma a tömb toouse hello, vagy hello karakterlánc toouse kapcsolódnak a hello karakterek száma. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
@@ -732,7 +732,7 @@ Egy egész szám.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan egy tömb és a karakterlánc hossza használhat:
+a következő példa azt mutatja meg hogyan hello toouse hosszúságú tömb és karakterlánc:
 
 ```json
 {
@@ -766,14 +766,14 @@ A következő példa bemutatja, hogyan egy tömb és a karakterlánc hossza hasz
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
 | arrayLength | int | 3 |
 | stringLength | int | 13 |
 
-Ez a funkció a tömb segítségével adja meg az ismétlések száma erőforrások létrehozásakor. A következő példában a paraméter **siteNames** hivatkozna webhelyek létrehozásakor használandó tömbjét.
+E funkció használata egy tömb-toospecify hello az ismétlések száma az erőforrások létrehozásakor. A következő példa hello, hello paraméter **siteNames** nevek toouse tooan tömbjének kellene tekintse meg a hello webhelyek létrehozásakor.
 
 ```json
 "copy": {
@@ -789,21 +789,21 @@ Ez a függvény egy tömb használatával kapcsolatban további információkér
 ## <a name="min"></a>perc
 `min(arg1)`
 
-Egy számokból álló tömb vagy egészek vesszővel elválasztott listáját a minimális értékét adja vissza.
+Beolvasása hello számokból álló tömb vagy egészek vesszővel elválasztott listáját az minimális értékét.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |a tömb egész szám vagy egészek vesszővel elválasztott felsorolása |A gyűjteményt, amelyben a minimális érték beolvasása. |
+| arg1 |Igen |a tömb egész szám vagy egészek vesszővel elválasztott felsorolása |hello gyűjtemény tooget hello minimális érték. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Az int minimális értékét képviselő.
+Az int hello minimális értékét képviselő.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan használható min tömb és az egész számok listáját:
+a következő példa azt mutatja meg hogyan hello toouse min tömb és az egész számok listáját:
 
 ```json
 {
@@ -829,7 +829,7 @@ A következő példa bemutatja, hogyan használható min tömb és az egész sz�
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -841,21 +841,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="max"></a>maximális
 `max(arg1)`
 
-A maximális érték egész számok tömb vagy egészek vesszővel elválasztott listáját adja vissza.
+Beolvasása hello számokból álló tömb vagy egészek vesszővel elválasztott listáját maximális értéket.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |a tömb egész szám vagy egészek vesszővel elválasztott felsorolása |A gyűjteményt, amelyben a legnagyobb érték beolvasása. |
+| arg1 |Igen |a tömb egész szám vagy egészek vesszővel elválasztott felsorolása |hello gyűjtemény tooget hello maximális értéket. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Az int maximális értékét képviselő.
+Az int hello maximális értékét képviselő.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan használható maximum tömb és az egész számok listáját:
+a következő példa azt mutatja meg hogyan hello toouse maximális tömb és az egész számok listáját:
 
 ```json
 {
@@ -881,7 +881,7 @@ A következő példa bemutatja, hogyan használható maximum tömb és az egész
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -899,8 +899,8 @@ Egy számokból álló tömb egy egész kezdő- és néhány elemet tartalmazó 
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| startingInteger |Igen |int |A tömb első egész szám. |
-| numberofElements |Igen |int |A tömb egész számok száma. |
+| startingInteger |Igen |int |hello első egész hello tömbben. |
+| numberofElements |Igen |int |egész számok hello tömb hello száma. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
@@ -908,7 +908,7 @@ Egy számokból álló tömb.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan használja a tartomány funkciót:
+hello a következő példa bemutatja, hogyan toouse hello tartomány függvényben:
 
 ```json
 {
@@ -934,25 +934,25 @@ A következő példa bemutatja, hogyan használja a tartomány funkciót:
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
-| rangeOutput | A tömb | [5, 6, 7] |
+| rangeOutput | Tömb | [5, 6, 7] |
 
 <a id="skip" />
 
 ## <a name="skip"></a>Kihagyása
 `skip(originalValue, numberToSkip)`
 
-A tömb a megadott szám után az összes elem tömböt ad vissza, vagy az összes karakter karakterláncot ad vissza a megadott szám a karakterlánc után.
+Az összes hello elem tömböt ad vissza, miután hello hello tömb a megadott szám, vagy minden hello karakterekkel karakterláncot ad vissza, miután hello hello karakterláncban megadott szám.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| originalValue |Igen |a tömb vagy karakterlánc |A tömb vagy karakterlánc kihagyása használandó. |
-| numberToSkip |Igen |int |Elemek vagy kihagyását karakterek száma. Ha ez az érték 0 vagy kisebb, a elemek vagy az karaktere adott vissza. Ha a tömb vagy karakterlánc hossza nagyobb, üres tömb vagy karakterlánc adja vissza. |
+| originalValue |Igen |a tömb vagy karakterlánc |hello tömb vagy karakterlánc toouse átugrásához. |
+| numberToSkip |Igen |int |elemek vagy karaktereket tooskip hello száma. Ha ez az érték 0 vagy kisebb, az összes elem hello, vagy karakter hello értéket ad vissza. Ha hello hello tömb vagy karakterlánc hossza nagyobb, üres tömb vagy karakterlánc adja vissza. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
@@ -960,7 +960,7 @@ Tömb vagy karakterlánc.
 
 ### <a name="example"></a>Példa
 
-Az alábbi példa kihagyja a megadott számú elemet a tömbben, és a megadott számú karaktert egy karakterláncon belül.
+a következő példa átugrása hello hello hello tömb megadott számú elemet, és hello egy karakterláncban megadott számú karaktert.
 
 ```json
 {
@@ -1002,11 +1002,11 @@ Az alábbi példa kihagyja a megadott számú elemet a tömbben, és a megadott 
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
-| arrayOutput | A tömb | ["három"] |
+| arrayOutput | Tömb | ["három"] |
 | stringOutput | Karakterlánc | két három |
 
 <a id="take" />
@@ -1014,14 +1014,14 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="take"></a>hajtsa végre a megfelelő
 `take(originalValue, numberToTake)`
 
-A tömb, vagy a megadott számú karaktert a karakterlánc elejéről. a karakterlánc kezdetét adja vissza egy tömb a megadott számú elemet.
+Hello elemből álló tömböt megadott elemek számát adja vissza hello start hello tömb, vagy hello egy karakterlánc megadott számú hello karakterlánc kezdetét hello karaktert tartalmaz.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| originalValue |Igen |a tömb vagy karakterlánc |A tömb vagy karakterlánc az elemek érvénybe. |
-| numberToTake |Igen |int |Elemek és érvénybe karakterek száma. Ha ez az érték 0 vagy kisebb, üres tömb vagy karakterlánc adja vissza. Ha a megadott tömb vagy karakterlánc hossza nagyobb, a tömb vagy karakterlánc összes elemet visszaadja a. |
+| originalValue |Igen |a tömb vagy karakterlánc |hello tömb vagy karakterlánc tootake hello elemeit. |
+| numberToTake |Igen |int |elemek vagy karaktereket tootake hello száma. Ha ez az érték 0 vagy kisebb, üres tömb vagy karakterlánc adja vissza. Ha nagyobb, mint a megadott tömb vagy karakterlánc hello hello hosszát, visszaadja a hello tömb vagy karakterlánc összes hello eleme. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
@@ -1029,7 +1029,7 @@ Tömb vagy karakterlánc.
 
 ### <a name="example"></a>Példa
 
-A következő példa a tömb elemei, és a karakterek egy karakterlánc megadott számú vesz igénybe.
+a következő példa vesz hello hello megadott hello tömb elemei, és egy karakterláncból karakterek száma.
 
 ```json
 {
@@ -1071,11 +1071,11 @@ A következő példa a tömb elemei, és a karakterek egy karakterlánc megadott
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
-| arrayOutput | A tömb | ["egy", "két"] |
+| arrayOutput | Tömb | ["egy", "két"] |
 | stringOutput | Karakterlánc | a |
 
 <a id="union" />
@@ -1083,15 +1083,15 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="union"></a>a UNION
 `union(arg1, arg2, arg3, ...)`
 
-A paraméterek egy egyetlen tömb vagy objektum minden elemet adja vissza. Ismétlődő vagy kulcsok vannak csak egyszer tartalmazza.
+Egy egyetlen tömb vagy objektum az összes elem hello paraméterek adja vissza. Ismétlődő vagy kulcsok vannak csak egyszer tartalmazza.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |tömb vagy objektum |Az első érték való csatlakozás elemek. |
-| Arg2 |Igen |tömb vagy objektum |A második érték való csatlakozás elemek. |
-| További argumentumok |Nem |tömb vagy objektum |További értékeket való csatlakozás elemek. |
+| arg1 |Igen |tömb vagy objektum |hello első érték toouse elemek való csatlakozásra. |
+| Arg2 |Igen |tömb vagy objektum |hello második érték toouse elemek való csatlakozásra. |
+| További argumentumok |Nem |tömb vagy objektum |További értékeket toouse elemek való csatlakozásra. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
@@ -1099,7 +1099,7 @@ Tömb vagy objektum.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan használható az union tömbök és objektumok:
+a következő példa azt mutatja meg, hogyan toouse Unió tömbállandó hello és objektumok:
 
 ```json
 {
@@ -1138,16 +1138,16 @@ A következő példa bemutatja, hogyan használható az union tömbök és objek
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
 | objectOutput | Objektum | {"egy": "a", "2": "b", "három": "c", "négy": "d", "5": "e"} |
-| arrayOutput | A tömb | ["egy", "két", "három", "négy"] |
+| arrayOutput | Tömb | ["egy", "két", "három", "négy"] |
 
 ## <a name="next-steps"></a>Következő lépések
-* A szakaszok az Azure Resource Manager-sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
-* Több sablon egyesíteni, lásd: [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).
-* Megadott számú alkalommal felépítésének egy adott típusú erőforrás létrehozása esetén lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
-* A sablon létrehozott központi telepítéséről, olvassa el [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
+* Hello részeiben arról olvashat az Azure Resource Manager sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
+* toomerge több sablonjainak használatáról [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).
+* megadott számú alkalommal tooiterate olyan típusú erőforrások létrehozásakor lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
+* toosee hogyan toodeploy hello sablon létrehozott, lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
 

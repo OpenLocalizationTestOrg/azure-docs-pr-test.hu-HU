@@ -1,6 +1,6 @@
 ---
-title: "A Node.js-webalkalmazás létrehozása az Azure Cosmos DB |} Microsoft Docs"
-description: "A Node.js-oktatóanyag Azure Websitesban tárolt Node.js Express-webalkalmazások használata a Microsoft Azure Cosmos DB tárolására és a hozzáférési adatok ismerteti."
+title: "a Node.js webalkalmazás az Azure Cosmos DB aaaBuild |} Microsoft Docs"
+description: "A Node.js-oktatóanyag azt ismerteti, hogyan toouse Microsoft Azure Cosmos DB toostore és a hozzáférési adatok Node.js Express-webalkalmazások Azure Websitesban tárolt."
 keywords: "Alkalmazásfejlesztés, adatbázis-oktatóanyag, node.js, a node.js-oktatóanyag megismerése"
 services: cosmos-db
 documentationcenter: nodejs
@@ -15,11 +15,11 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: mimig
-ms.openlocfilehash: 1a98509a98bcd2a5de593eb006f905766fe72966
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 31194dccf37eef69d2219b0d8328a88d434f79b9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="_Toc395783175"></a>Node.js-webalkalmazás létrehozása az Azure Cosmos DB használatával
 > [!div class="op_single_selector"]
@@ -30,11 +30,11 @@ ms.lasthandoff: 08/18/2017
 > 
 > 
 
-A Node.js-oktatóanyag bemutatja, hogyan tárolásához Azure Cosmos DB és a DocumentDB API használata és a hozzáférési adatok az Azure Websitesban tárolt Node.js Express-alkalmazás. Olyan egyszerű webalapú teendőkezelő alkalmazást, todo appot fog létrehozni, amellyel feladatokat készíthet, kérhet le, és végezhet el. A feladatokat JSON-dokumentumok formájában tárolja az Azure Cosmos DB. Ez az oktatóanyag bemutatja az alkalmazás létrehozásának és üzembe helyezésének lépéseit, valamint hogy mi történik az egyes kódrészletekben.
+A Node.js-oktatóanyag bemutatja, hogyan toouse Azure Cosmos DB és hello DocumentDB API toostore és a hozzáférési adatok Node.js Express-alkalmazás az Azure Websitesban tárolt. Olyan egyszerű webalapú teendőkezelő alkalmazást, todo appot fog létrehozni, amellyel feladatokat készíthet, kérhet le, és végezhet el. hello feladatok Azure Cosmos DB JSON-dokumentumokként tárolja. Ez az oktatóanyag bemutatja, hogyan hello létrehozásának és telepítésének hello alkalmazás, és bemutatja, mi történik az összes részlet.
 
-![Képernyőfelvétel a jelen Node.js oktatóanyag során készített My Todo List (Saját teendőlista) alkalmazásról](./media/documentdb-nodejs-application/cosmos-db-node-js-mytodo.png)
+![Képernyőfelvétel a hello jelen Node.js oktatóanyag során létrehozott My Todo List alkalmazás](./media/documentdb-nodejs-application/cosmos-db-node-js-mytodo.png)
 
-Nincs ideje elvégezni az oktatóanyagot, és csak hozzá szeretne jutni a teljes megoldáshoz? Semmi gond, a teljes mintamegoldást beszerezheti a [GitHubról][GitHub]. Az alkalmazás futtatásához szükséges útmutatást az [Olvass el](https://github.com/Azure-Samples/documentdb-node-todo-app/blob/master/README.md) fájlban találja.
+Nem rendelkezik idő toocomplete hello oktatóanyag, és most szeretné, hogy tooget hello teljes megoldás? Nem probléma, hogy megkaphassa a hello teljes megoldást a [GitHub][GitHub]. Csak olvasható hello [információs](https://github.com/Azure-Samples/documentdb-node-todo-app/blob/master/README.md) fájl hogyan toorun hello app kapcsolatos utasításokat.
 
 ## <a name="_Toc395783176"></a>Előfeltételek
 > [!TIP]
@@ -42,30 +42,30 @@ Nincs ideje elvégezni az oktatóanyagot, és csak hozzá szeretne jutni a telje
 > 
 > 
 
-A jelen cikkben lévő utasítások követése előtt rendelkeznie kell a következőkkel:
+Ez a cikk hello utasításait követve, előtt győződjön meg, hogy rendelkezik-e hello következő:
 
 * Aktív Azure-fiók. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
 
    VAGY
 
-   Egy helyi telepítését teszi a [Azure Cosmos DB emulátor](local-emulator.md) (csak Windows).
+   Egy helyi telepítését teszi hello [Azure Cosmos DB emulátor](local-emulator.md) (csak Windows).
 * [Node.js][Node.js]-verzió: 0.10.29-es vagy újabb.
 * [Express generátor](http://www.expressjs.com/starter/generator.html) (az `npm install express-generator -g` segítségével telepítheti)
 * [Git][Git].
 
 ## <a name="_Toc395637761"></a>1. lépés: Azure Cosmos DB-adatbázisfiók létrehozása
-Először hozzon létre egy Azure Cosmos DB-fiókot. Ha már rendelkezik fiókkal, vagy az oktatóanyagban az Azure Cosmos DB Emulatort használja, továbbléphet a [2. lépés: Új Node.js-alkalmazás létrehozása](#_Toc395783178) című lépésre.
+Először hozzon létre egy Azure Cosmos DB-fiókot. Ha már rendelkezik fiókkal, vagy használatakor hello Azure Cosmos DB emulátor ehhez az oktatóanyaghoz, ugorjon túl[2. lépés: új Node.js-alkalmazás létrehozása](#_Toc395783178).
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
 [!INCLUDE [cosmos-db-keys](../../includes/cosmos-db-keys.md)]
 
 ## <a name="_Toc395783178"></a>2. lépés: Új Node.js-alkalmazás létrehozása
-Most megtanulhatja, hogyan hozhat létre egy alapszintű Hello World Node.js-projektet az [Express](http://expressjs.com/)-keretrendszer használatával.
+Most megtanulhatja, hogyan toocreate egy alapszintű Hello World Node.js-projektet hello segítségével [Express](http://expressjs.com/) keretrendszer.
 
-1. Nyissa meg kedvenc terminálját, például a Node.js parancssort.
-2. Keresse meg azt a könyvtárat, amelyben tárolni szeretné az új alkalmazást.
-3. Az Express generátor használatával hozzon létre egy új alkalmazást **todo** (teendők) néven.
+1. Nyissa meg kedvenc terminálját, például a hello Node.js parancssort.
+2. Keresse meg, amelyben szeretné toostore hello új alkalmazás toohello könyvtár.
+3. Egy új alkalmazást, hello express generátor toogenerate használja **todo**.
    
         express todo
 4. Nyissa meg az új **todo** könyvtárat, és telepítse a függőségeket.
@@ -75,22 +75,22 @@ Most megtanulhatja, hogyan hozhat létre egy alapszintű Hello World Node.js-pro
 5. Futtassa az új alkalmazást.
    
         npm start
-6. Az új alkalmazás megtekintéséhez navigáljon a böngészőben a következő címre: [http://localhost:3000](http://localhost:3000).
+6. Az új alkalmazás megtekintéséhez navigáljon a böngészőben túl[http://localhost: 3000](http://localhost:3000).
    
-    ![A Node.js megismerése – Képernyőfelvétel a Hello World alkalmazásról egy böngészőablakban](./media/documentdb-nodejs-application/cosmos-db-node-js-express.png)
+    ![Node.js megismerése – képernyőfelvétel a hello Hello World alkalmazásról egy böngészőablakban](./media/documentdb-nodejs-application/cosmos-db-node-js-express.png)
 
-    Ezt követően az alkalmazás leállításához nyomja le a CTRL+C billentyűkombinációt a terminálablakban, majd a kötegelt feladat leállításához kattintson az **y** elemre.
+    Ezt követően toostop hello alkalmazás, nyomja le a CTRL + C hello terminálablakot, és kattintson a **y** tooterminate hello kötegelt.
 
 ## <a name="_Toc395783179"></a>3. lépés: További modulok telepítése
-A **package.json** fájl egyike azon fájloknak, amelyek a projekt gyökérmappájában létrejönnek. Ez a fájl tartalmazza a Node.js-alkalmazáshoz szükséges további modulok listáját. Később amikor az alkalmazás az Azure Websitesra telepíti, a fájllal határozza meg, melyik modulokat kell az Azure támogatásához az alkalmazás telepítésére. A jelen oktatóanyag befejezéséhez még két csomag telepítésére van szükség.
+Hello **package.json** fájl egyike hello projekt gyökerében hello létrehozott hello fájlok. Ez a fájl tartalmazza a Node.js-alkalmazáshoz szükséges további modulok listáját. Később az alkalmazás tooAzure webhelyek központi telepítésekor a fájl használt toodetermine melyik modulokat kell toobe Azure toosupport az alkalmazás telepítve. Továbbra is kell tooinstall két további csomagok ehhez az oktatóanyaghoz.
 
-1. A terminálban telepítse az **async** modult az npm segítségével.
+1. Vissza a Terminálszolgáltatások hello telepítése hello **aszinkron** modult az npm.
    
         npm install async --save
-2. Telepítse a **DocumentDB** modult az npm segítségével. Ez az, hogy a modul, ahol az összes Azure Cosmos DB magic történik.
+2. Telepítse a hello **documentdb** modult az npm. Ez a hello modul, ahol minden hello Azure Cosmos DB magic történik.
    
         npm install documentdb --save
-3. Ha gyorsan megtekinti a **package.json** fájl tartalmát, láthatja is a további modulokat. Ez a fájl utasítja az Azure-t az alkalmazás futtatásakor szükséges csomagok letöltésére és telepítésére. Ennek az alábbi példához hasonlóan kell kinéznie.
+3. A Gyorsellenőrzés hello **package.json** hello alkalmazás fájlt meg kell jelennie hello további modulok. Ez a fájl utasítja az Azure melyik csomagok toodownload, és a telepítse az alkalmazás futtatásakor. Hello az alábbi példa azt kell hasonlítania.
    
         {
           "name": "todo",
@@ -114,14 +114,14 @@ A **package.json** fájl egyike azon fájloknak, amelyek a projekt gyökérmapp�
    
     Ez értesíti a Node-ot (majd később az Azure-t) arról, hogy az alkalmazás ezektől a további moduloktól függ.
 
-## <a name="_Toc395783180"></a>4. lépés: Az Azure Cosmos DB szolgáltatás használata Node.js-alkalmazásokban
-Ezzel a kezdeti beállítás és konfiguráció készen is van. Ideje elkezdeni a kódírást az Azure Cosmos DB használatával.
+## <a name="_Toc395783180"></a>4. lépés: Hello Azure Cosmos DB szolgáltatás használata node.js-alkalmazásokban
+Amely gondoskodik összes hello kezdeti beállítás és konfiguráció, most hozzuk get le toowhy segítünk, és néhány code Azure Cosmos DB használatával toowrite.
 
-### <a name="create-the-model"></a>A modell létrehozása
-1. A projektkönyvtáron belül hozzon létre egy új könyvtárat **models** (modellek) néven, a package.json fájllal egy könyvtárban.
-2. A **models** könyvtárban hozzon létre egy új fájlt **taskDao.js** néven. Ez a fájl tartalmazza majd a modellt az alkalmazás által létrehozott feladatok számára.
-3. Ugyanabban a **models** könyvtárban hozzon létre egy másik új fájlt **docdbUtils.js** néven. Ez a fájl néhány hasznos, újrafelhasználható, az alkalmazás minden területén használt kódot tartalmaz majd. 
-4. Másolja be az alábbi kódot a **docdbUtils.js** fájlba
+### <a name="create-hello-model"></a>Hello modell létrehozása
+1. Hello projektkönyvtárban hozzon létre egy új könyvtárat nevű **modellek** a hello hello package.json fájl könyvtárába.
+2. A hello **modellek** könyvtár, hozzon létre egy új fájlt **taskDao.js**. Ezt a fájlt fogja tartalmazni az alkalmazás által létrehozott hello feladatok hello modelljét.
+3. Az azonos hello **modellek** könyvtár, hozzon létre egy másik új fájlt **docdbUtils.js**. Ez a fájl néhány hasznos, újrafelhasználható, az alkalmazás minden területén használt kódot tartalmaz majd. 
+4. Másolás hello alábbi kódot túl**docdbUtils.js**
    
         var DocumentDBClient = require('documentdb').DocumentClient;
    
@@ -189,12 +189,12 @@ Ezzel a kezdeti beállítás és konfiguráció készen is van. Ideje elkezdeni 
    
         module.exports = DocDBUtils;
    
-5. Mentse és zárja be a **docdbUtils.js** fájlt.
-6. A **taskDao.js** fájl elejéhez adja hozzá a következő kódot a **DocumentDBClient**-ügyfélre és a fentiekben létrehozott **docdbUtils.js** fájlra való hivatkozáshoz:
+5. Mentse és zárja be a hello **docdbUtils.js** fájlt.
+6. Hello hello elején **taskDao.js** fájlt, adja hozzá a következő kód tooreference hello hello **DocumentDBClient** és hello **docdbUtils.js** a fenti létrehozott:
    
         var DocumentDBClient = require('documentdb').DocumentClient;
         var docdbUtils = require('./docdbUtils');
-7. Ezután adja hozzá a feladatobjektum meghatározására és exportálására használt kódot. Ez felelős a feladatobjektum elindításáért, valamint a használni kívánt adatbázis és dokumentumgyűjtemény beállításáért.
+7. Ezután lesz kód toodefine hozzáadása és hello feladat objektum exportálása. Ez felelős a feladatobjektum elindításáért, valamint beállítja a hello adatbázis és dokumentumgyűjtemény fogjuk használni.
    
         function TaskDao(documentDBClient, databaseId, collectionId) {
           this.client = documentDBClient;
@@ -206,7 +206,7 @@ Ezzel a kezdeti beállítás és konfiguráció készen is van. Ideje elkezdeni 
         }
    
         module.exports = TaskDao;
-8. Ezután adja hozzá a következő kódot a feladatobjektumokhoz további metódusok meghatározásához, amelyek lehetővé teszik majd az Azure Cosmos DB-ben tárolt adatokkal folytatott interakciót.
+8. Ezután adja hozzá hello kód toodefine további módszereket követően hello feladatobjektum, amelyek lehetővé teszik az Azure Cosmos DB tárolt adatok interakció.
    
         TaskDao.prototype = {
             init: function (callback) {
@@ -301,11 +301,11 @@ Ezzel a kezdeti beállítás és konfiguráció készen is van. Ideje elkezdeni 
                 });
             }
         };
-9. Mentse és zárja be a **taskDao.js** fájlt. 
+9. Mentse és zárja be a hello **taskDao.js** fájlt. 
 
-### <a name="create-the-controller"></a>A vezérlő létrehozása
-1. A projekt **routes** könyvtárában hozzon létre egy új fájlt **tasklist.js** néven. 
-2. Adja hozzá a következő kódot a **tasklist.js** fájlhoz. Ez betölti a **tasklist.js** fájl által használt DocumentDBClient és async modult. Emellett a **TaskList** (Feladatlista) függvényt is meghatározta, amelyet a rendszer továbbad a **Task** (Feladat) objektum korábban meghatározott példányának:
+### <a name="create-hello-controller"></a>Hello tartományvezérlő létrehozása
+1. A hello **útvonalak** a projekt könyvtárában hozzon létre egy új fájlt **tasklist.js**. 
+2. Adja hozzá a következő kód túl hello**tasklist.js**. Ez betölti a hello DocumentDBClient és async modult, amely által használt **tasklist.js**. Ez is definiálva hello **TaskList** függvény, amelyet hello példányának **feladat** objektum korábban meghatározott:
    
         var DocumentDBClient = require('documentdb').DocumentClient;
         var async = require('async');
@@ -315,7 +315,7 @@ Ezzel a kezdeti beállítás és konfiguráció készen is van. Ideje elkezdeni 
         }
    
         module.exports = TaskList;
-3. Folytassa a **tasklist.js** fájlhoz való hozzáadást a **showTasks, addTasks** és **completeTasks** által használt metódusok hozzáadásával.
+3. Hozzáadja a toohello **tasklist.js** fájl túl használt hello metódusok hozzáadásával**showTasks, Addtasks**, és **completeTasks**:
    
         TaskList.prototype = {
             showTasks: function (req, res) {
@@ -375,38 +375,38 @@ Ezzel a kezdeti beállítás és konfiguráció készen is van. Ideje elkezdeni 
                 });
             }
         };
-4. Mentse és zárja be a **tasklist.js** fájlt.
+4. Mentse és zárja be a hello **tasklist.js** fájlt.
 
 ### <a name="add-configjs"></a>A config.js fájl hozzáadása
 1. A projektkönyvtárban hozzon létre egy új fájlt **config.js** néven.
-2. Adja hozzá a következőket a **config.js** fájlhoz. Ez meghatározza az alkalmazáshoz szükséges konfigurációs beállításokat és értékeket.
+2. Adja hozzá a hello túl a következő**config.js**. Ez meghatározza az alkalmazáshoz szükséges konfigurációs beállításokat és értékeket.
    
         var config = {}
    
-        config.host = process.env.HOST || "[the URI value from the Azure Cosmos DB Keys blade on http://portal.azure.com]";
-        config.authKey = process.env.AUTH_KEY || "[the PRIMARY KEY value from the Azure Cosmos DB Keys blade on http://portal.azure.com]";
+        config.host = process.env.HOST || "[hello URI value from hello Azure Cosmos DB Keys blade on http://portal.azure.com]";
+        config.authKey = process.env.AUTH_KEY || "[hello PRIMARY KEY value from hello Azure Cosmos DB Keys blade on http://portal.azure.com]";
         config.databaseId = "ToDoList";
         config.collectionId = "Items";
    
         module.exports = config;
-3. A **config.js** fájlban frissítse a HOST és az AUTH_KEY értékeket azokkal az értékekkel, amelyeket a [Microsoft Azure Portalon](https://portal.azure.com) lévő Azure Cosmos DB-fiókjának Kulcsok panelén talál.
-4. Mentse és zárja be a **config.js** fájlt.
+3. A hello **config.js** fájl, a frissítés hello értékei HOST és AUTH_KEY hello (kulcsok) panelén hello Azure Cosmos DB fiókjában található hello értékek [Microsoft Azure-portálon](https://portal.azure.com).
+4. Mentse és zárja be a hello **config.js** fájlt.
 
 ### <a name="modify-appjs"></a>Az app.js fájl módosítása
-1. A projekt könyvtárában nyissa meg az **app.js** fájlt. Ez a fájl korábban, az Express-webalkalmazás létrehozásakor jött létre.
-2. Adja hozzá a következő kódot az **app.js** fájl elejéhez
+1. Hello projekt könyvtárában nyissa meg hello **app.js** fájlt. Ez a fájl korábban létrejött hello Express-webalkalmazás létrehozásakor.
+2. Adja hozzá a következő kód toohello felső részén hello **app.js**
    
         var DocumentDBClient = require('documentdb').DocumentClient;
         var config = require('./config');
         var TaskList = require('./routes/tasklist');
         var TaskDao = require('./models/taskDao');
-3. Ez a kód fogja meghatározni a használni kívánt konfigurációs fájlt, és kiolvasni belőle az értékeket néhány változóhoz, amelyekre hamarosan szüksége lesz.
-4. Cserélje ki az **app.js** fájl alábbi két sorát:
+3. Ez a kód hello konfigurációs fájl toobe használt határozza meg, és tooread értékeket abból néhány változó, amelyeket hamarosan használni fog a eltérő lehet.
+4. Cserélje le az alábbi két hello **app.js** fájlt:
    
         app.use('/', index);
         app.use('/users', users); 
    
-      a következő kódtöredékre:
+      a következő kódrészletet hello:
    
         var docDbClient = new DocumentDBClient(config.host, {
             masterKey: config.authKey
@@ -419,14 +419,14 @@ Ezzel a kezdeti beállítás és konfiguráció készen is van. Ideje elkezdeni 
         app.post('/addtask', taskList.addTask.bind(taskList));
         app.post('/completetask', taskList.completeTask.bind(taskList));
         app.set('view engine', 'jade');
-5. Ezek a sorok meghatározzák a **TaskDao** objektum egy új példányát, amely egy új (a **config.js** fájlból kiolvasott értékek felhasználásával létesített) kapcsolattal csatlakozik az Azure Cosmos DB-adatbázishoz. Továbbá ezek inicializálják a feladatobjektumot, majd társítanak űrlapműveleteket a metódusokhoz a **TaskList**-vezérlőn. 
-6. Végül mentse és zárja be az **app.js** fájlt. És már majdnem készen is van.
+5. Ezek a sorok meghatározzák egy új példányt a **TaskDao** objektum, egy új kapcsolat tooAzure Cosmos DB (hello hello értékekkel olvasni **config.js**) hello feladat objektum inicializálása., majd társítanak a toomethods a **TaskList** vezérlő. 
+6. Végül mentse és zárja be a hello **app.js** fájlt, hogy szinte végzett.
 
 ## <a name="_Toc395783181"></a>5. lépés: Felhasználói felület létrehozása
-Most térjünk át a felhasználói felület létrehozására, hogy a felhasználók ténylegesen használatba vehessék az alkalmazást. A létrehozott Express-alkalmazás a **Jade** megjelenítési motort használja. A Jade motorral kapcsolatos további információkért lásd: [http://jade-lang.com/](http://jade-lang.com/).
+Most adjuk a figyelmet toobuilding hello felhasználói felületét, így a felhasználók ténylegesen használatba vehessék az alkalmazást. hello használ létrehozott Express-alkalmazás **Jade** , hello megjelenítési motort. További információ a Jade tekintse meg túl[http://jade-lang.com/](http://jade-lang.com/).
 
-1. A rendszer a **views** (nézetek) könyvtárban található **layout.jade** fájlt használja a többi **.jade** fájl globális sablonjaként. Ebben a lépésben ezt a sablont a [Twitter Bootstrap](https://github.com/twbs/bootstrap) eszközkészletre módosítja majd, amellyel könnyen tervezhet tetszetős webhelyeket. 
-2. Nyissa meg a **views** (nézetek) mappában található **layout.jade** fájlt, és cserélje ki annak tartalmát a következőre:
+1. Hello **Views** hello fájlban **nézetek** directory globális sablonként szolgál az egyéb **.jade** fájlokat. Ebben a lépésben lesz a módosítás toouse [Twitter Bootstrap](https://github.com/twbs/bootstrap), amelyen egy eszközkészlet, így könnyen toodesign egy töltött tetszetős webhelyeket. 
+2. Nyissa meg hello **Views** fájl található a hello **nézetek** hello következőre mappa és a név felülírandó hello tartalma:
 
     ```
     doctype html
@@ -444,11 +444,11 @@ Most térjünk át a felhasználói felület létrehozására, hogy a felhaszná
         script(src='//ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/bootstrap.min.js')
     ```
 
-    Ez gyakorlatilag megmondja a **Jade** motornak, hogy rendereljen HTML-kódot az alkalmazás számára, és létrehoz egy **content** (tartalom) nevű **blokkot**, ahol megadhatja a tartalomoldalak elrendezését.
+    Ez gyakorlatilag megmondja hello **Jade** motor toorender az alkalmazás HTML-kódot, és létrehoz egy **blokk** nevű **tartalom** ahol megadhatja hello elrendezés a tartalomhoz lapok.
 
     Mentse és zárja be a **layout.jade** fájlt.
 
-3. Most nyissa meg az **index.jade** fájlt, az alkalmazás által használt nézetet, és cserélje ki a fájl tartalmát az alábbira:
+3. Most nyissa meg a hello **index.jade** fájlt, az alkalmazás által használható, és cserélje ki hello fájl tartalma hello hello következőre hello megtekintése:
    
         extends layout
         block content
@@ -490,52 +490,52 @@ Most térjünk át a felhasználói felület létrehozására, hogy a felhaszná
              button.btn(type="submit") Add item
    
 
-Ez kibővíti az elrendezést, és tartalmat biztosít a **layout.jade** fájlban az imént látott **content** (tartalom) helyőrző számára.
+Ez kibővíti az elrendezést, és tartalmat biztosít hello **tartalom** imént látott hello helyőrző **Views** korábbi fájlt.
    
 Ebben az elrendezésben két HTML-űrlapot hoztunk létre.
 
-Az első űrlap az adatok táblázatát, valamint egy gombot tartalmaz, amely lehetővé teszi az elemek frissítését úgy, hogy elküldi azokat a vezérlő **/completetask** metódusának.
+hello első űrlap az adatok és a gomb használatával kérdezhetjük túl elhelyezésével tooupdate elemek táblát tartalmaz**/completetask** metódusának.
     
-A második űrlap két beviteli mezőt és egy gombot tartalmaz, amely lehetővé teszi új elemek létrehozását úgy, hogy elküldi azokat a vezérlő **/addtask** metódusának.
+hello második űrlap két beviteli mezőt és egy gombot, amely lehetővé teszi új elem toocreate elhelyezésével túl tartalmaz**/addtask** metódusának.
 
-Az alkalmazás működéséhez csak ennyire van szükség.
+Csak az alkalmazás toowork szükséges.
 
 ## <a name="_Toc395783181"></a>6. lépés: Az alkalmazás helyileg történő futtatása
-1. Ha a helyi gépén szeretné tesztelni az alkalmazást, futtassa az `npm start` parancsot a terminálon az alkalmazás elindításához, majd frissítse a [http://localhost:3000](http://localhost:3000) böngészőoldalt. Az oldalnak most úgy kell kinéznie, ahogy az alábbi képen látható:
+1. tootest hello alkalmazás a helyi számítógépen futni `npm start` a hello terminál toostart az alkalmazást, majd frissítse a [http://localhost: 3000](http://localhost:3000) webböngészőben. hello lap most hello az alábbi képen hasonlóan kell kinéznie:
    
-    ![Képernyőfelvétel a My Todo List (Saját teendőlista) alkalmazásról egy böngészőablakban](./media/documentdb-nodejs-application/cosmos-db-node-js-localhost.png)
+    ![Képernyőfelvétel a hello My ToDo List alkalmazásról egy böngészőablakban](./media/documentdb-nodejs-application/cosmos-db-node-js-localhost.png)
 
     > [!TIP]
-    > Ha olyan hibaüzenetet kap, amely a layout.jade fájlban vagy az index.jade fájlban lévő behúzásra vonatkozik, győződjön meg arról, hogy az első két sor mindkét fájlban balra zárt, és nem tartalmaz szóközt. Ha szóközök kerültek az első két sor elé, távolítsa el őket, mentse mindkét fájlt, és frissítse a böngészőablakot. 
+    > Ha hello Views vagy hello index.jade fájl hello francia kapcsolatos hibaüzenetet kap, akkor győződjön meg arról, hogy mindkét fájl első két sora hello bal oldali indokolt, szóközök nélkül. Ha hello első két sor elé, távolítsa el őket, mentse a fájlt, majd frissítse a böngészőt. 
 
-2. Adjon meg egy új feladatot az Item (Elem), az Item Name (Elem neve) és a Category (Kategória) mezőkben, majd kattintson az **Add Item** (Elem hozzáadása) lehetőségre. Ez egy új dokumentumot hoz létre az Azure Cosmos DB-ben a megadott tulajdonságokkal. 
-3. Az oldal ekkor frissül, és megjeleníti az újonnan létrehozott elemet a teendőlistában.
+2. Hello elemet, az elem neve és a kategória mező tooenter egy új feladatot használja, és kattintson a **elem hozzáadása**. Ez egy új dokumentumot hoz létre az Azure Cosmos DB-ben a megadott tulajdonságokkal. 
+3. hello oldal ekkor frissül, az újonnan létrehozott elemet a teendőlistában hello toodisplay hello.
    
-    ![Képernyőfelvétel az alkalmazásról és a teendőlista új eleméről](./media/documentdb-nodejs-application/cosmos-db-node-js-added-task.png)
-4. A feladatok elvégzéséhez egyszerűen jelölje be a jelölőnégyzetet a Complete (Elvégezve) oszlopban, majd kattintson az **Update tasks** (Feladatok frissítése) lehetőségre. Ez frissíti a már létrehozott dokumentumot.
+    ![Képernyőfelvétel a hello alkalmazás hello teendőlista új eleméről](./media/documentdb-nodejs-application/cosmos-db-node-js-added-task.png)
+4. toocomplete egy feladatot, egyszerűen jelölje be a hello teljes oszlopban hello jelölőnégyzetet, és kattintson a **feladatok frissítése**. Ezzel frissíti a már létrehozott hello dokumentum.
 
-5. Az alkalmazás leállításához nyomja le a CTRL+C billentyűkombinációt a terminálablakban, majd a kötegelt feladat leállításához kattintson az **Y** elemre.
+5. toostop hello alkalmazás, nyomja le a CTRL + C hello terminálablakot, és kattintson a **Y** tooterminate hello kötegelt.
 
-## <a name="_Toc395783182"></a>7. lépés: Az alkalmazásfejlesztési projekt üzembe helyezése az Azure Websites-ban
-1. Ha még nem tette meg, engedélyezzen egy Git-tárházat az Azure Websites számára. Ehhez a következő témakörben találhat útmutatót: [Local Git Deployment to Azure App Service](../app-service-web/app-service-deploy-local-git.md) (Helyi Git-üzembehelyezés az Azure App Service-ben).
+## <a name="_Toc395783182"></a>7. lépés: Az alkalmazás fejlesztési projekt tooAzure webhelyek központi telepítése
+1. Ha még nem tette meg, engedélyezzen egy Git-tárházat az Azure Websites számára. Hogyan találhat útmutatót toodo ezt a hello [helyi Git-telepítésének tooAzure App Service](../app-service-web/app-service-deploy-local-git.md) témakör.
 2. Adja hozzá Azure-webhelyét távoli Git-elemként.
    
         git remote add azure https://username@your-azure-website.scm.azurewebsites.net:443/your-azure-website.git
-3. Helyezze üzembe a tárházat a távoli mappához küldéssel.
+3. Telepítsen toohello távoli küldésével.
    
         git push azure master
 4. Néhány másodpercen belül git befejezi a webalkalmazás közzétételét, és elindít egy böngészőt, ahol láthatja az Azure-beli handiwork!
 
-    Gratulálunk! Létrehozta az első Node.js Express-webalkalmazását az Azure Cosmos DB használatával, és közzétette azt az Azure Websitesban.
+    Gratulálunk! Ebben az esetben az első Node.js Express-webalkalmazását Azure Cosmos DB használatával építve, és közzétette azt tooAzure webhelyek.
 
-    Az oktatóanyaghoz a teljes referenciaalkalmazás letölthető a [GitHubról][GitHub].
+    Ha szeretné, hogy toodownload, vagy tekintse meg a teljes referenciaalkalmazás toohello ehhez az oktatóanyaghoz, le is tölthetők: [GitHub][GitHub].
 
 ## <a name="_Toc395637775"></a>Következő lépések
 
-* Méret- és teljesítménytesztelést szeretne végezni az Azure Cosmos DB használatával? Tekintse meg a következőt: [Teljesítmény- és mérettesztelés az Azure Cosmos DB használatával](performance-testing.md)
-* Ismerje meg, hogyan [figyelhet egy Azure Cosmos DB-fiókot](monitor-accounts.md).
-* Futtasson lekérdezéseket a minta-adatkészleteken a [Query Playground](https://www.documentdb.com/sql/demo) (Tesztlekérdezések) használatával.
-* Tekintse át az [Azure Cosmos DB-dokumentációt](https://docs.microsoft.com/azure/documentdb/).
+* Szeretné, hogy tooperform méretezés és teljesítmény Azure Cosmos DB tesztelték? Tekintse meg a következőt: [Teljesítmény- és mérettesztelés az Azure Cosmos DB használatával](performance-testing.md)
+* Ismerje meg, hogyan túl[figyelése Azure Cosmos DB fiók](monitor-accounts.md).
+* A minta-adatkészleteken hello lekérdezéseinek futtatásához [Tesztlekérdezéseket](https://www.documentdb.com/sql/demo).
+* Fedezze fel hello [Azure Cosmos DB dokumentáció](https://docs.microsoft.com/azure/documentdb/).
 
 [Node.js]: http://nodejs.org/
 [Git]: http://git-scm.com/

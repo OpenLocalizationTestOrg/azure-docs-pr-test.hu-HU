@@ -1,6 +1,6 @@
 ---
-title: "A Visual Studio és a C# - Azure HDInsight alatt futó Apache Storm-topológiák |} Microsoft Docs"
-description: "Ismerje meg a C# Storm-topológiák létrehozása. Hozzon létre egy egyszerű word-count topológiához a Visual Studio által a Hadoop tools for Visual Studio használatával."
+title: "a Visual Studio és a C# - Azure HDInsight Storm-topológiák aaaApache |} Microsoft Docs"
+description: "Ismerje meg, hogy a C# Storm-topológiák toocreate. Hozzon létre egy egyszerű word-count topológiához a Visual Studio által hello Hadoop tools for Visual Studio használatával."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,22 +16,22 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/02/2017
 ms.author: larryfr
-ms.openlocfilehash: 3ee89b6644ba395e0a6c28ecc2c082c2f7393ac8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b3fb01a4dda144fd7fb4141e624e31e667f93753
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="develop-c-topologies-for-apache-storm-by-using-the-data-lake-tools-for-visual-studio"></a>C#-topológiák fejlesztése az Apache Storm által a Data Lake tools for Visual Studio használatával
+# <a name="develop-c-topologies-for-apache-storm-by-using-hello-data-lake-tools-for-visual-studio"></a>C#-topológiák fejlesztése az Apache Storm által hello Data Lake tools for Visual Studio használatával
 
-Megtudhatja, hogyan hozhat létre egy C# Storm-topológia az Azure Data Lake (Hadoop) tools for Visual Studio használatával. Ebből a dokumentumból a folyamatot, amely egy Storm-projekt létrehozása a Visual Studio helyi tesztelés és való az Apache Storm on Azure HDInsight-fürt üzembe helyezése.
+Ismerje meg, hogyan toocreate a C# Storm-topológia hello Azure Data Lake (Hadoop) használatával tools for Visual Studio. Ebből a dokumentumból hello folyamatot, amely egy Storm-projekt létrehozása a Visual Studio helyi tesztelés és tooan alatt futó Apache Storm on Azure HDInsight-fürt üzembe helyezése.
 
-Azt is megtudhatja, hogyan C# és Java összetevők használó hibrid topológiák létrehozásához.
+Azt is megtudhatja, hogyan C#-és Java használó hibrid topológiák toocreate.
 
 > [!NOTE]
-> A jelen dokumentumban leírt lépések a Visual Studio Windows fejlesztői környezetre támaszkodnak, amíg a lefordított projekt küldheti el a Linux vagy a Windows-alapú HDInsight-fürthöz. Csak a Linux-alapú fürtök létrehozása után 28 2016 októberétől kezdve, SCP.NET topológiákat támogatja.
+> Hello jelen dokumentumban leírt lépések a Visual Studio Windows fejlesztői környezetre támaszkodnak, amíg a hello lefordított projekt lehet elküldött tooeither egy Linux vagy a Windows-alapú HDInsight-fürt. Csak a Linux-alapú fürtök létrehozása után 28 2016 októberétől kezdve, SCP.NET topológiákat támogatja.
 
-Egy Linux-alapú fürttel C#-topológiák használatához frissítenie kell a Microsoft.SCP.Net.SDK NuGet-csomagot a projekt által használt 0.10.0.6 verzió vagy újabb. A csomag verziójának a HDInsightban telepített Storm főverziójával is egyeznie kell.
+a Linux-alapú fürt toouse egy C# topológia, frissítenie kell a hello Microsoft.SCP.Net.SDK NuGet-csomagot a projekt tooversion 0.10.0.6 által használt vagy újabb. hello csomag hello verziójának is egyeznie kell telepíteni a HDInsight alatt futó Storm hello főverziója.
 
 | HDInsight-verzió | A Storm verzióját | SCP.NET verzió | Alapértelmezett monó verzió |
 |:-----------------:|:-------------:|:---------------:|:--------------------:|
@@ -41,11 +41,11 @@ Egy Linux-alapú fürttel C#-topológiák használatához frissítenie kell a Mi
 | 3.6 | 1.1.0.x | 1.0.0.x | 4.2.8 |
 
 > [!IMPORTANT]
-> A Linux-alapú fürtök C#-topológiáinak a .NET 4.5-öt kell használnia, és a Mono segítségével futhatnak a HDInsight-fürtön. Ellenőrizze [monó kompatibilitási](http://www.mono-project.com/docs/about-mono/compatibility/) az esetleges kompatibilitási problémák.
+> C#-topológiák Linux-alapú fürtökön kell használni a .NET 4.5, és monó toorun hello HDInsight-fürt használatára. Ellenőrizze [monó kompatibilitási](http://www.mono-project.com/docs/about-mono/compatibility/) az esetleges kompatibilitási problémák.
 
 ## <a name="install-visual-studio"></a>A Visual Studio telepítése
 
-C#-topológiák SCP.NET a Visual Studio következő verzióinak egyikét használva fejleszthet:
+C#-topológiák rendelkező SCP.NET fejleszthet követően a Visual Studio verziójának hello egyikének használatával:
 
 * A Visual Studio 2012 [4. frissítés](http://www.microsoft.com/download/details.aspx?id=39305)
 
@@ -57,19 +57,19 @@ C#-topológiák SCP.NET a Visual Studio következő verzióinak egyikét haszná
 
 ## <a name="install-data-lake-tools-for-visual-studio"></a>Telepítse a Data Lake Visual Studio eszközök
 
-Telepítheti a Data Lake tools for Visual Studio, kövesse a lépéseket a [Ismerkedés a Data Lake tools for Visual Studio használatával](hdinsight-hadoop-visual-studio-tools-get-started.md).
+tooinstall Data Lake tools for Visual Studio kövesse hello [Ismerkedés a Data Lake tools for Visual Studio használatával](hdinsight-hadoop-visual-studio-tools-get-started.md).
 
 ## <a name="install-java"></a>Java telepítése
 
-A Storm-topológia a Visual Studio eszközből elküldésekor SCP.NET állít elő, a topológia és a függőségeit tartalmazó zip-fájl. Java a zip-fájlok létrehozására szolgál, mert több kompatibilis a Linux-alapú fürtökön formátuma nem használ.
+A Storm-topológia a Visual Studio eszközből elküldésekor SCP.NET hello topológia és a függőségek tartalmazó zip-fájl állít elő. Java használt toocreate ezek zip-fájlokhoz, mert több kompatibilis a Linux-alapú fürtökön formátuma nem használ.
 
-1. A Java fejlesztői készlet (JDK) 7 vagy újabb a fejlesztési környezet telepítése. Az Oracle JDK a kaphat [Oracle](http://www.oracle.com/technetwork/java/javase/downloads/index.html). Is [más Java terjesztéseket](http://openjdk.java.net/).
+1. Hello Java fejlesztői készlet (JDK) 7 vagy újabb a fejlesztési környezet telepítése. Kaphat az Oracle JDK hello [Oracle](http://www.oracle.com/technetwork/java/javase/downloads/index.html). Is [más Java terjesztéseket](http://openjdk.java.net/).
 
-2. A `JAVA_HOME` környezeti változó Java tartalmazó könyvtárat kell mutatnia.
+2. Hello `JAVA_HOME` környezeti változó kell pont toohello tartalmazó könyvtár Java.
 
-3. A `PATH` környezeti változó tartalmaznia kell a `%JAVA_HOME%\bin` könyvtár.
+3. Hello `PATH` környezeti változó tartalmaznia kell hello `%JAVA_HOME%\bin` könyvtár.
 
-A következő C# Konzolalkalmazás használatával ellenőrizze, hogy Java és a JDK megfelelően vannak-e telepítve:
+C# console application tooverify, hogy Java és hello JDK helyesen vannak-e telepítve a következő hello használhatja:
 
 ```csharp
 using System;
@@ -105,34 +105,34 @@ namespace ConsoleApplication2
 
 ## <a name="storm-templates"></a>A Storm-sablonok
 
-A Data Lake tools for Visual Studio adja meg a következő sablonokat:
+hello Data Lake tools for Visual Studio adja meg a következő sablonok hello:
 
 | Projekt típusa | Azt mutatja be |
 | --- | --- |
 | Storm-alkalmazás |Egy üres Storm-topológia projektet. |
-| A Storm Azure SQL Writer minta |Megtudhatja, hogyan lehet írni az Azure SQL Database. |
-| A Storm Azure Cosmos DB olvasó minta |How Azure Cosmos DB olvasni. |
-| A Storm Azure Cosmos DB író minta |How Azure Cosmos DB írni. |
-| A Storm EventHub olvasó minta |How Azure Event Hubs olvasni. |
-| A Storm EventHub író minta |How Azure Event Hubs írni. |
-| A Storm HBase olvasó minta |Hogyan lehet olvasni a HBase a HDInsight-fürtökön. |
-| A Storm HBase író minta |Hogyan lehet írni a HBase a HDInsight-fürtökön. |
-| A Storm hibrid minta |Hogyan használható egy Java-összetevő. |
+| A Storm Azure SQL Writer minta |Hogyan toowrite tooAzure SQL-adatbázis. |
+| A Storm Azure Cosmos DB olvasó minta |Hogyan tooread a Azure Cosmos-Adatbázisból. |
+| A Storm Azure Cosmos DB író minta |Hogyan toowrite tooAzure Cosmos DB. |
+| A Storm EventHub olvasó minta |Hogyan Azure Event hubs tooread. |
+| A Storm EventHub író minta |Hogyan toowrite tooAzure Event Hubs. |
+| A Storm HBase olvasó minta |Hogyan tooread a HBase a HDInsight-fürtök. |
+| A Storm HBase író minta |Hogyan toowrite tooHBase a HDInsight-fürtök. |
+| A Storm hibrid minta |Hogyan toouse egy Java-összetevő. |
 | A Storm-minta |Alapszintű word-count topológiához. |
 
 > [!WARNING]
-> Nem minden sablonok a Linux-alapú hdinsight eszközzel fog működni. A sablonok által használt Nuget-csomagok nem lehet monó kompatibilis. Ellenőrizze a [monó kompatibilitási](http://www.mono-project.com/docs/about-mono/compatibility/) dokumentum, és használja a [.NET hordozhatóság Analyzer](hdinsight-hadoop-migrate-dotnet-to-linux.md#automated-portability-analysis) potenciális problémák azonosításához.
+> Nem minden sablonok a Linux-alapú hdinsight eszközzel fog működni. Hello sablonok által használt Nuget-csomagok nem lehet monó kompatibilis. Ellenőrizze a hello [monó kompatibilitási](http://www.mono-project.com/docs/about-mono/compatibility/) hello használata és dokumentálása [.NET hordozhatóság Analyzer](hdinsight-hadoop-migrate-dotnet-to-linux.md#automated-portability-analysis) tooidentify potenciális problémákat.
 
-A jelen dokumentumban leírt lépések segítségével a alapszintű Storm-alkalmazás projekt típus olyan topológiák létrehozását is.
+A jelen dokumentumban leírt lépések hello hello alapszintű Storm-alkalmazás projekt típus toocreate a topológia használja.
 
 ### <a name="hbase-templates-notes"></a>A HBase sablonok megjegyzések
 
-A HBase írási és olvasási szerepkörökhöz sablonok a HBase REST API-t nem a HBase Java API használatával kommunikálnak a HBase a HDInsight-fürthöz.
+hello HBase olvasó és író sablonok használata hello HBase REST API-t nem hello HBase Java API-val a HDInsight-fürt HBase toocommunicate.
 
 ### <a name="eventhub-templates-notes"></a>Az EventHub sablonok megjegyzések
 
 > [!IMPORTANT]
-> A Java-alapú EventHub spout-összetevő az EventHub-olvasó sablon nem feltétlenül Storm on HDInsight 3.5-ös vagy újabb verziója. Ez az összetevő frissített verziója érhető el, [GitHub](https://github.com/hdinsight/hdinsight-storm-examples/tree/master/HDI3.5/lib).
+> Java-alapú EventHub hello spout hello alatt futó Storm példatopológiái 3.5-ös vagy újabb verziója nem működik az EventHub-olvasó sablon részét képező összetevő. Ez az összetevő frissített verziója érhető el, [GitHub](https://github.com/hdinsight/hdinsight-storm-examples/tree/master/HDI3.5/lib).
 
 Ezt példatopológia összetevő, és együttműködik Storm on HDInsight 3.5, lásd: [GitHub](https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub).
 
@@ -140,61 +140,61 @@ Ezt példatopológia összetevő, és együttműködik Storm on HDInsight 3.5, l
 
 1. Nyissa meg a Visual Studio, válassza ki **fájl** > **új**, majd válassza ki **projekt**.
 
-2. Az a **új projekt** ablakában bontsa ki a **telepített** > **sablonok**, és válassza ki **Azure Data Lake**. Válassza ki a listáról a sablonok **Storm-alkalmazás**. Adja meg a képernyő alján **WordCount** az alkalmazás nevével.
+2. A hello **új projekt** ablakában bontsa ki a **telepített** > **sablonok**, és válassza ki **Azure Data Lake**. Válassza ki a sablonok hello listáról **Storm-alkalmazás**. Hello a hello képernyő aljára, adja meg a **WordCount** hello alkalmazás hello neveként.
 
     ![Képernyőfelvétel az új projekt ablakról](./media/hdinsight-storm-develop-csharp-visual-studio-topology/new-project.png)
 
-3. Miután létrehozta a projekt, rendelkeznie kell a következő fájlokat:
+3. Hello projekt létrehozása után rendelkeznie kell a következő fájlok hello:
 
-   * **Program.cs**: A fájl határozza meg a topológia a projekthez. Alapértelmezés szerint létrejön egy alapértelmezett topológia, amely egy spout és egy bolt áll.
+   * **Program.cs**: ezt a fájlt a projekthez hello topológia meghatározása. Alapértelmezés szerint létrejön egy alapértelmezett topológia, amely egy spout és egy bolt áll.
 
    * **Spout.cs**: egy példa spout, amely véletlenszerű számok bocsát ki.
 
-   * **Bolt.cs**: egy példa bolthoz, amely a spout által kibocsátott számok számát követi.
+   * **Bolt.cs**: egy példa bolthoz, amely hello spout által kibocsátott számok számát követi.
 
-     A projekt létrehozásához NuGet letölti a legújabb [SCP.NET csomag](https://www.nuget.org/packages/Microsoft.SCP.Net.SDK/).
+     Hello projekt létrehozásakor NuGet letölti a legújabb hello [SCP.NET csomag](https://www.nuget.org/packages/Microsoft.SCP.Net.SDK/).
 
      [!INCLUDE [scp.net version important](../../includes/hdinsight-storm-scpdotnet-version.md)]
 
-### <a name="implement-the-spout"></a>A spout megvalósítása
+### <a name="implement-hello-spout"></a>Alkalmazzon hello spout
 
-1. Nyissa meg **Spout.cs**. Spoutokkal kapcsolatban használt külső forrásból topológiában adatokat olvasni. Egy spout a fő elemei a következők:
+1. Nyissa meg **Spout.cs**. Spoutokkal kapcsolatban állnak a használt tooread adatok külső forrásból topológiában. egy spout hello fő összetevőket a következők:
 
-   * **NextTuple**: Storm által meghívva, amikor a spout engedélyezett hozható létre új rekordokat.
+   * **NextTuple**: amikor hello spout engedélyezett tooemit új rekordokat Storm hívja.
 
-   * **Nyugtázási** (csak tranzakciós topológia): a nyugtázás a rekordokat a spout küldött topológiájának más összetevői által kezdeményezett kezeli. Egy rekord igazolása lehetővé teszi, hogy a spout tudja, hogy megtörtént a feldolgozása sikeresen alsóbb rétegbeli összetevők.
+   * **Nyugtázási** (csak tranzakciós topológia): a nyugtázás hello topológia hello spout küldött rekordokat más összetevői által kezdeményezett kezeli. Egy rekord igazolása lehetővé teszi, hogy tudja, hogy megtörtént a feldolgozása sikeresen alsóbb rétegbeli összetevők hello spout.
 
-   * **Sikertelen** (csak tranzakciós topológia): rekordokat, amelyek vannak sikertelen – a feldolgozás a topológia más összetevők kezeli. A sikertelen metódusának lehetővé teszi, hogy újra dolgozhatók újra létrehozza a rekordban.
+   * **Sikertelen** (csak tranzakciós topológia): rekordokat, amelyek vannak sikertelen – a feldolgozás más összetevői hello topológia kezeli. A sikertelen metódusának lehetővé teszi a toore-kibocsátás hello rekordot, hogy újból feldolgozva.
 
-2. Cserélje le a tartalmát a **Spout** osztály a következő szöveggel. A spout véletlenszerűen azokat a topológia bocsát ki egy mondat helyett szerepel.
+2. Cserélje le a hello hello tartalmát **Spout** a következő szöveg hello osztályt. A spout véletlenszerűen hello topológia be bocsát ki egy mondat helyett szerepel.
 
     ```csharp
     private Context ctx;
     private Random r = new Random();
     string[] sentences = new string[] {
-        "the cow jumped over the moon",
-        "an apple a day keeps the doctor away",
+        "hello cow jumped over hello moon",
+        "an apple a day keeps hello doctor away",
         "four score and seven years ago",
-        "snow white and the seven dwarfs",
+        "snow white and hello seven dwarfs",
         "i am at two with nature"
     };
 
     public Spout(Context ctx)
     {
-        // Set the instance context
+        // Set hello instance context
         this.ctx = ctx;
 
         Context.Logger.Info("Generator constructor called");
 
         // Declare Output schema
         Dictionary<string, List<Type>> outputSchema = new Dictionary<string, List<Type>>();
-        // The schema for the default output stream is
+        // hello schema for hello default output stream is
         // a tuple that contains a string field
         outputSchema.Add("default", new List<Type>() { typeof(string) });
         this.ctx.DeclareComponentSchema(new ComponentStreamSchema(null, outputSchema));
     }
 
-    // Get an instance of the spout
+    // Get an instance of hello spout
     public static Spout Get(Context ctx, Dictionary<string, Object> parms)
     {
         return new Spout(ctx);
@@ -203,7 +203,7 @@ Ezt példatopológia összetevő, és együttműködik Storm on HDInsight 3.5, l
     public void NextTuple(Dictionary<string, Object> parms)
     {
         Context.Logger.Info("NextTuple enter");
-        // The sentence to be emitted
+        // hello sentence toobe emitted
         string sentence;
 
         // Get a random sentence
@@ -226,22 +226,22 @@ Ezt példatopológia összetevő, és együttműködik Storm on HDInsight 3.5, l
     }
     ```
 
-### <a name="implement-the-bolts"></a>A boltokhoz megvalósítása
+### <a name="implement-hello-bolts"></a>Hello boltokhoz megvalósítása
 
-1. Törölje a meglévő **Bolt.cs** fájlt a projektben.
+1. Törölje a meglévő hello **Bolt.cs** fájl hello projektből.
 
-2. A **Megoldáskezelőben**, kattintson jobb gombbal a projektre, és válassza ki **Hozzáadás** > **új elem**. Válassza ki a listáról, **Storm Bolt**, és írja be **Splitter.cs** neveként. Ismételje meg a folyamat hozzon létre egy második bolt nevű **Counter.cs**.
+2. A **Megoldáskezelőben**, kattintson a jobb gombbal a hello projektet, és válassza ki **Hozzáadás** > **új elem**. Hello listájából válassza ki **Storm Bolt**, és írja be **Splitter.cs** hello neveként. Ismételje meg a második bolt nevű folyamat toocreate **Counter.cs**.
 
    * **Splitter.cs**: egy olyan bolthoz, amely felosztja a mondatok egyedi szót, és megfelelően kibocsát egy új adatfolyam szavak valósítja meg.
 
-   * **Counter.cs**: valósít meg olyan bolthoz, amely megjeleníti minden szó, és megfelelően kibocsát egy új adatfolyam szavak és minden szó számát.
+   * **Counter.cs**: valósít meg olyan bolthoz, amely megjeleníti minden szó, és megfelelően kibocsát egy új adatfolyam szavak és minden szó hello száma.
 
      > [!NOTE]
-     > Ezek boltokhoz írási és olvasási adatfolyamokat, de kommunikálni az adatforrások, például egy adatbázis vagy a szolgáltatás egy olyan bolthoz is használhatja.
+     > Ezek a boltokhoz írási és olvasási toostreams, de egy bolt toocommunicate is használható adatforrások, például egy adatbázis vagy a szolgáltatás.
 
-3. Nyissa meg **Splitter.cs**. Alapértelmezés szerint csak egyetlen módszer van: **Execute**. Az Execute metódus neve feldolgozásra rekordot tartalmaz a bolt fogadásakor. Itt el tudja olvasni és feldolgozni a bejövő rekordokat, és a kibocsátás kimenő rekordokat.
+3. Nyissa meg **Splitter.cs**. Alapértelmezés szerint csak egyetlen módszer van: **Execute**. hello Execute metódus neve feldolgozásra rekordot hello bolt fogadásakor. Itt el tudja olvasni és feldolgozni a bejövő rekordokat, és a kibocsátás kimenő rekordokat.
 
-4. Cserélje le a tartalmát a **elválasztó** osztály az alábbi kódra:
+4. Cserélje le a hello hello tartalmát **elválasztó** hello kód a következő osztályra:
 
     ```csharp
     private Context ctx;
@@ -254,15 +254,15 @@ Ezt példatopológia összetevő, és együttműködik Storm on HDInsight 3.5, l
 
         // Declare Input and Output schemas
         Dictionary<string, List<Type>> inputSchema = new Dictionary<string, List<Type>>();
-        // Input contains a tuple with a string field (the sentence)
+        // Input contains a tuple with a string field (hello sentence)
         inputSchema.Add("default", new List<Type>() { typeof(string) });
         Dictionary<string, List<Type>> outputSchema = new Dictionary<string, List<Type>>();
-        // Outbound contains a tuple with a string field (the word)
+        // Outbound contains a tuple with a string field (hello word)
         outputSchema.Add("default", new List<Type>() { typeof(string) });
         this.ctx.DeclareComponentSchema(new ComponentStreamSchema(inputSchema, outputSchema));
     }
 
-    // Get a new instance of the bolt
+    // Get a new instance of hello bolt
     public static Splitter Get(Context ctx, Dictionary<string, Object> parms)
     {
         return new Splitter(ctx);
@@ -273,7 +273,7 @@ Ezt példatopológia összetevő, és együttműködik Storm on HDInsight 3.5, l
     {
         Context.Logger.Info("Execute enter");
 
-        // Get the sentence from the tuple
+        // Get hello sentence from hello tuple
         string sentence = tuple.GetString(0);
         // Split at space characters
         foreach (string word in sentence.Split(' '))
@@ -287,7 +287,7 @@ Ezt példatopológia összetevő, és együttműködik Storm on HDInsight 3.5, l
     }
     ```
 
-5. Nyissa meg **Counter.cs**, és cserélje ki a osztály tartalmát a következőre:
+5. Nyissa meg **Counter.cs**, és cserélje ki hello osztály tartalmát hello következőre:
 
     ```csharp
     private Context ctx;
@@ -304,11 +304,11 @@ Ezt példatopológia összetevő, és együttműködik Storm on HDInsight 3.5, l
 
         // Declare Input and Output schemas
         Dictionary<string, List<Type>> inputSchema = new Dictionary<string, List<Type>>();
-        // A tuple containing a string field - the word
+        // A tuple containing a string field - hello word
         inputSchema.Add("default", new List<Type>() { typeof(string) });
 
         Dictionary<string, List<Type>> outputSchema = new Dictionary<string, List<Type>>();
-        // A tuple containing a string and integer field - the word and the word count
+        // A tuple containing a string and integer field - hello word and hello word count
         outputSchema.Add("default", new List<Type>() { typeof(string), typeof(int) });
         this.ctx.DeclareComponentSchema(new ComponentStreamSchema(inputSchema, outputSchema));
     }
@@ -324,42 +324,42 @@ Ezt példatopológia összetevő, és együttműködik Storm on HDInsight 3.5, l
     {
         Context.Logger.Info("Execute enter");
 
-        // Get the word from the tuple
+        // Get hello word from hello tuple
         string word = tuple.GetString(0);
-        // Do we already have an entry for the word in the dictionary?
+        // Do we already have an entry for hello word in hello dictionary?
         // If no, create one with a count of 0
         int count = counts.ContainsKey(word) ? counts[word] : 0;
-        // Increment the count
+        // Increment hello count
         count++;
-        // Update the count in the dictionary
+        // Update hello count in hello dictionary
         counts[word] = count;
 
         Context.Logger.Info("Emit: {0}, count: {1}", word, count);
-        // Emit the word and count information
+        // Emit hello word and count information
         this.ctx.Emit(Constants.DEFAULT_STREAM_ID, new List<SCPTuple> { tuple }, new Values(word, count));
         Context.Logger.Info("Execute exit");
     }
     ```
 
-### <a name="define-the-topology"></a>A topológia meghatározása
+### <a name="define-hello-topology"></a>Hello topológia meghatározása
 
-A grafikus, amely meghatározza, hogyan a közötti adatáramlás összetevők spoutokkal kapcsolatban és boltokhoz vannak rendezve. Ez a topológia a diagram a következőképpen történik:
+A grafikus, amely meghatározza, hogyan hello közötti adatáramlás összetevők spoutokkal kapcsolatban és boltokhoz vannak rendezve. Az ebben a topológiában hello graph a következőképpen történik:
 
 ![Hogyan vannak elrendezve összetevők ábrája](./media/hdinsight-storm-develop-csharp-visual-studio-topology/wordcount-topology.png)
 
-A mondatok a spout a kibocsátott, és továbbítja őket a elválasztó bolt példányai. Az elválasztó bolt bontja szavakat, amely továbbítja őket a számláló bolt a mondatok.
+A mondatok hello spout a kibocsátott, és a hello elválasztó bolt elosztott tooinstances. hello elválasztó bolt bontja szavakat, amelyek elosztott toohello számláló bolt hello mondatokat.
 
-Szószámot helyileg használatban van a teljesítményszámláló-példány, mert azt szeretnénk, győződjön meg arról, hogy szavak flow ugyanazon teljesítményszámláló bolt-példányra végzi el. Minden példány nyomon követi a szavakat. Az elválasztó bolt nem tart fenn, mert tényleg nem számít, az elválasztó példányok kap mely mondat helyett szerepel.
+Szószámot helyileg tárolt hello teljesítményszámláló-példány, mert azt szeretnénk, ha meg arról, hogy a szavakat toohello flow toomake számláló bolt példányt. Minden példány nyomon követi a szavakat. Hello elválasztó bolt nem tart fenn, mert tényleg mindegy hello elválasztó példányok kap mely mondat helyett szerepel.
 
-Nyissa meg **Program.cs**. A fontos módszer **GetTopologyBuilder**, amely segítségével meghatározhatja, hogy a topológia elküldött Storm legyen. Cserélje le a tartalmát **GetTopologyBuilder** a fentiekben említett topológia végrehajtásához a következő kóddal:
+Nyissa meg **Program.cs**. hello fontos módszer **GetTopologyBuilder**, ami által használt toodefine hello topológia beküldött tooStorm. Cserélje le a hello tartalmát **GetTopologyBuilder** a következő kód tooimplement hello topológia a fentiekben ismertetett hello:
 
 ```csharp
 // Create a new topology named 'WordCount'
 TopologyBuilder topologyBuilder = new TopologyBuilder("WordCount" + DateTime.Now.ToString("yyyyMMddHHmmss"));
 
-// Add the spout to the topology.
-// Name the component 'sentences'
-// Name the field that is emitted as 'sentence'
+// Add hello spout toohello topology.
+// Name hello component 'sentences'
+// Name hello field that is emitted as 'sentence'
 topologyBuilder.SetSpout(
     "sentences",
     Spout.Get,
@@ -368,12 +368,12 @@ topologyBuilder.SetSpout(
         {Constants.DEFAULT_STREAM_ID, new List<string>(){"sentence"}}
     },
     1);
-// Add the splitter bolt to the topology.
-// Name the component 'splitter'
-// Name the field that is emitted 'word'
-// Use suffleGrouping to distribute incoming tuples
-//   from the 'sentences' spout across instances
-//   of the splitter
+// Add hello splitter bolt toohello topology.
+// Name hello component 'splitter'
+// Name hello field that is emitted 'word'
+// Use suffleGrouping toodistribute incoming tuples
+//   from hello 'sentences' spout across instances
+//   of hello splitter
 topologyBuilder.SetBolt(
     "splitter",
     Splitter.Get,
@@ -383,15 +383,15 @@ topologyBuilder.SetBolt(
     },
     1).shuffleGrouping("sentences");
 
-// Add the counter bolt to the topology.
-// Name the component 'counter'
-// Name the fields that are emitted 'word' and 'count'
-// Use fieldsGrouping to ensure that tuples are routed
-//   to counter instances based on the contents of field
-//   position 0 (the word). This could also have been
+// Add hello counter bolt toohello topology.
+// Name hello component 'counter'
+// Name hello fields that are emitted 'word' and 'count'
+// Use fieldsGrouping tooensure that tuples are routed
+//   toocounter instances based on hello contents of field
+//   position 0 (hello word). This could also have been
 //   List<string>(){"word"}.
-//   This ensures that the word 'jumped', for example, will always
-//   go to the same instance
+//   This ensures that hello word 'jumped', for example, will always
+//   go toohello same instance
 topologyBuilder.SetBolt(
     "counter",
     Counter.Get,
@@ -410,52 +410,52 @@ topologyBuilder.SetTopologyConfig(new Dictionary<string, string>()
 return topologyBuilder;
 ```
 
-## <a name="submit-the-topology"></a>Küldje el a topológia
+## <a name="submit-hello-topology"></a>Küldje el a hello topológia
 
-1. A **Megoldáskezelőben**, kattintson jobb gombbal a projektre, és válassza ki **Submit a HDInsight alatt futó Storm**.
+1. A **Megoldáskezelőben**, kattintson a jobb gombbal a hello projektet, és válassza ki **elküldeni a HDInsight tooStorm**.
 
    > [!NOTE]
-   > Ha a rendszer kéri, adja meg a hitelesítő adatait az Azure-előfizetéshez. Ha egynél több előfizetéssel rendelkezik, jelentkezzen be, amely tartalmazza a Storm on HDInsight-fürt.
+   > Ha a rendszer kéri, adja meg hello hitelesítő adatait az Azure-előfizetéshez. Ha egynél több előfizetéssel rendelkezik, jelentkezzen be a Storm on HDInsight-fürt tartalmazó toohello.
 
-2. Válassza ki a Storm on HDInsight-fürt a a **Storm-fürt** legördülő listából válassza ki, és válassza **Submit**. Ha a küldése sikeres használatával figyelheti a **kimeneti** ablak.
+2. Válassza ki a Storm on HDInsight-fürt hello **Storm-fürt** legördülő listából válassza ki, és válassza **Submit**. Ha hello elküldése sikeres hello segítségével figyelheti **kimeneti** ablak.
 
-3. Ha a topológia küldése sikeres volt, a **Storm-topológiák** megjelenjen-e a fürt számára. Válassza ki a **WordCount** topológia a futó topológiát vonatkozó információk megtekintése a listából.
+3. Amikor hello topológia sikeresen elküldte, hello **Storm-topológiák** a hello fürt megjelenjen-e. Jelölje be hello **WordCount** hello lista tooview információt a futtató topológia hello topológia.
 
    > [!NOTE]
    > Megtekintheti továbbá **Storm-topológiák** a **Server Explorer**. Bontsa ki a **Azure** > **HDInsight**, kattintson a jobb gombbal a Storm on HDInsight-fürt, majd válassza ki **nézet Storm-topológiák**.
 
-    A topológia a összetevőivel kapcsolatos információk megtekintéséhez kattintson duplán a diagramban.
+    hello összetevők hello topológia tooview adatait hello összetevő hello diagramban kattintson duplán.
 
-4. Az a **topológia összegzése** megtekintéséhez kattintson az **Kill** a topológia leállítása.
+4. A hello **topológia összegzése** megtekintéséhez kattintson az **Kill** toostop hello topológia.
 
    > [!NOTE]
-   > Storm-topológiák továbbra is fut, amíg azok inaktiválása, vagy a fürt törlésekor.
+   > Storm-topológiák folytatható toorun, amíg azok inaktiválása vagy hello fürtök törlése.
 
 ## <a name="transactional-topology"></a>Tranzakciós topológia
 
-Az előző topológia nem tranzakciós. Az összetevők a topológia nem valósítja meg a funkciót a üzenetek visszajátszását. Például egy tranzakciós topológia, hozzon létre egy projektet, és válassza **Storm minta** a projekt típusként.
+hello előző topológia nem tranzakciós. hello összetevők hello topológiában nem valósítja meg a funkciók tooreplaying üzeneteket. Például egy tranzakciós topológia, hozzon létre egy projektet, és válassza **Storm minta** hello projekt típusként.
 
-Tranzakciós topológiák valósítja meg a következő adatok ismétlés támogatásához:
+Tranzakciós topológiák valósítja meg a következő adatok toosupport ismétlés hello:
 
-* **Metaadatok gyorsítótárazása**: A spout kell tárolni a metaadatokat, így az adatok lekérése, és újra kibocsátott, ha hiba történik a kibocsátott adatokról. Mivel a minta által kibocsátott adatokról kisméretű, a nyers adatok a táblakonstruktor minden rekordjának a visszajátszás dictionary tárolja.
+* **Metaadatok gyorsítótárazása**: hello spout kell tárolnia, így hello adatokat beolvasni, és újra kibocsátott, ha hiba történik a kibocsátott hello adatokkal kapcsolatos metaadatokat. Mert hello minta által kibocsátott hello adatok kicsi, a táblakonstruktor minden rekordjának hello nyers adatok a visszajátszás dictionary tárolja.
 
-* **Nyugtázási**: minden bolt a topológia meghívhatja `this.ctx.Ack(tuple)` való megerősíti, hogy sikeresen feldolgozta-rekordot. Ha az összes boltokhoz korrektúrák a rekord a `Ack` a spout metódusában meghívták. A `Ack` módszer lehetővé teszi, hogy eltávolítja a visszajátszás gyorsítótárazott adatokat spout.
+* **Nyugtázási**: hello topológiában minden bolt meghívhatja `this.ctx.Ack(tuple)` tooacknowledge, hogy sikeresen feldolgozta-rekordot. Ha az összes boltokhoz korrektúrák hello rekordot, hello `Ack` hello spout metódusában meghívták. Hello `Ack` módszer lehetővé teszi, hogy a hello spout tooremove adatok, amelyek a visszajátszás gyorsítótárazva lett.
 
-* **Sikertelen**: minden bolt meghívhatja `this.ctx.Fail(tuple)` annak jelzésére, hogy a feldolgozás sikertelen volt a rekordot. A hiba propagálás a a `Fail` módja a spout, ahol a rekordot is bejegyzéseit meg kell ismételni a gyorsítótárazott metaadatok.
+* **Sikertelen**: minden bolt meghívhatja `this.ctx.Fail(tuple)` tooindicate a feldolgozása sikertelen volt a rekordot. hello hiba lejjebb toohello `Fail` metódusában hello spout, ahol hello rekordot is bejegyzéseit meg kell ismételni a gyorsítótárazott metaadatok.
 
-* **A feladatütemezési azonosító**: egy rekord kibocsátó, amikor egy egyedi Sorozatazonosító adható meg. Ez az érték a rekord a visszajátszás (Ack és sikertelen) feldolgozás azonosítja. Például a spout a **Storm minta** kibocsátó adatainak használja a következő projekt:
+* **A feladatütemezési azonosító**: egy rekord kibocsátó, amikor egy egyedi Sorozatazonosító adható meg. Ez az érték hello rekordot a visszajátszás (Ack és sikertelen) feldolgozás azonosítja. Például hello a hello spout **Storm minta** projekt hello következő használja, amikor adatokat kibocsátó:
 
         this.ctx.Emit(Constants.DEFAULT_STREAM_ID, new Values(sentence), lastSeqId);
 
-    Ez a kód megfelelően kibocsát egy rekord, amely tartalmazza a feladatütemezési azonosítóérték található alapértelmezett adatfolyam mondat **lastSeqId**. Ehhez a példához **lastSeqId** értéke eggyel növekszik, a kibocsátott minden rekordot.
+    Ez a kód megfelelően kibocsát egy rekord, amely tartalmazza a mondatok toohello alapértelmezett adatfolyam hello feladatütemezési azonosítóérték található **lastSeqId**. Ehhez a példához **lastSeqId** értéke eggyel növekszik, a kibocsátott minden rekordot.
 
-Ahogyan az a **Storm minta** projekt, a tranzakciós-e egy összetevő lehet futásidőben, a konfiguráció alapján állítsa be.
+Ahogyan az hello **Storm minta** projekt, a tranzakciós-e egy összetevő lehet futásidőben, a konfiguráció alapján állítsa be.
 
 ## <a name="hybrid-topology-with-c-and-java"></a>Hibrid C# és Java topológia
 
-Data Lake tools for Visual Studio segítségével hibrid topológiák, ha néhány összetevőt C# és Java.
+Data Lake tools is használhatja a Visual Studio toocreate hibrid topológiák, ha néhány összetevőt C# és Java.
 
-Példa egy hibrid topológia, hozzon létre egy projektet, és jelölje ki **Storm hibrid minta**. Ez a minta-típus a következő fogalmakat mutatja be:
+Példa egy hibrid topológia, hozzon létre egy projektet, és jelölje ki **Storm hibrid minta**. Ez a minta-típus a következő fogalmak hello mutatja be:
 
 * **Java spout** és **C# bolt**: az **HybridTopology_javaSpout_csharpBolt**.
 
@@ -466,62 +466,62 @@ Példa egy hibrid topológia, hozzon létre egy projektet, és jelölje ki **Sto
     * A tranzakciós verzió van megadva **HybridTopologyTx_csharpSpout_javaBolt**.
 
   > [!NOTE]
-  > Ebben a verzióban is bemutatja, hogyan használják ki egy szövegfájlból Clojure kód egy Java-összetevő.
+  > Ebben a verzióban is bemutatja, hogyan toouse Clojure code Java összetevőjeként szövegfájlból.
 
 
-Váltás a topológia, amikor a projekthez használt, egyszerűen helyezze át a `[Active(true)]` nyilatkozatot, így a topológia szeretné használni, a fürt való továbbítás előtt.
+hello projekt elküldésekor használt tooswitch hello topológia egyszerűen át hello `[Active(true)]` utasítás toohello topológiáját toouse, mielőtt elküldi azt toohello fürt.
 
 > [!NOTE]
-> A projekt részeként biztosított összes a Java-fájlokat, amelyek szükségesek a **JavaDependency** mappa.
+> A projekt hello részeként biztosított összes hello Java szükséges fájlok **JavaDependency** mappa.
 
-Amikor létrehozása és elküldése a hibrid topológia, vegye figyelembe a következőket:
+Vegye figyelembe hello következőket létrehozása és elküldése a hibrid topológia:
 
-* Használjon **JavaComponentConstructor** egy spout a Java-osztály példányának létrehozása vagy boltok esetében.
+* Használjon **JavaComponentConstructor** toocreate hello adott spout vagy bolt a Java-osztály példánya.
 
-* Használjon **microsoft.scp.storm.multilang.CustomizedInteropJSONSerializer** adatok szerializálása a virtuális gépbe vagy onnan Pojo objektumait JSON-Java összetevőt.
+* Használjon **microsoft.scp.storm.multilang.CustomizedInteropJSONSerializer** tooserialize virtuális gépbe vagy onnan Java-összetevőt Java-adatobjektumok tooJSON.
 
-* Ha a topológia a kiszolgálóra történő elküldésekor kell használnia a **további konfigurációs** beállítással adhatja meg a **Java elérési utat**. A megadott elérési utat kell lennie a Java-osztályok tartalmazó JAR-fájlokat tartalmazó könyvtárat.
+* Hello topológia toohello server elküldésekor használnia kell a hello **további konfigurációs** beállítás toospecify hello **Java elérési utat**. hello elérési út van megadva a Java-osztályok tartalmazó JAR fájlok hello tartalmazó hello könyvtár kell lennie.
 
 ### <a name="azure-event-hubs"></a>Azure Event Hubs
 
-SCP.NET 0.9.4.203 tartalmazza egy új osztályt és metódus kimondottan az Event Hub spout (a Java spout az Event Hubs olvasó) használata. A topológia egy Event Hub spout használó létrehozásakor az alábbi módszerekkel:
+SCP.NET 0.9.4.203 tartalmazza egy új osztályt és metódus kifejezetten a hello Event Hub spout (a Java spout az Event Hubs olvasó) használata. A topológia egy Event Hub spout használó létrehozásakor a következő módszerek hello használata:
 
-* **EventHubSpoutConfig** osztály: hoz létre egy objektumot, amely tartalmazza a spout összetevő konfigurációját.
+* **EventHubSpoutConfig** osztály: hoz létre egy objektumot, amely hello spout összetevő hello konfigurációját tartalmazza.
 
-* **TopologyBuilder.SetEventHubSpout** módszer: az Event Hub spout összetevő felvétele a topológiát.
+* **TopologyBuilder.SetEventHubSpout** metódus: hello Event Hub spout összetevő toohello topológia hozzáadja.
 
 > [!NOTE]
-> Továbbra is használnia kell a **CustomizedInteropJSONSerializer** szerializálni a spout által visszaadott adatokat.
+> Továbbra is használnia kell hello **CustomizedInteropJSONSerializer** hello spout által létrehozott tooserialize adatok.
 
 ## <a id="configurationmanager"></a>ConfigurationManager használata
 
-Ne használjon **ConfigurationManager** konfigurációs értékek lekérése bolt és összetevők spout. Így okozhat, null mutató által-kivétel. Ehelyett a projekthez konfigurációs átad a a Storm-topológia a topológia környezetben kulcs-érték párban. Minden egyes összetevő, amely támaszkodik a konfigurációs értékeket kell lekérnie őket a környezetben inicializálása során.
+Ne használjon **ConfigurationManager** tooretrieve konfigurációs értékei a boltok és összetevők spout. Így okozhat, null mutató által-kivétel. Ehelyett a projekthez hello konfigurációs átad a Storm-topológia hello hello topológia környezetben kulcs-érték párban. Minden egyes összetevő, amely támaszkodik a konfigurációs értékeket kell kérheti le azokat a hello környezetből inicializálása során.
 
-A következő kód bemutatja, hogyan lehet lekérni a ezeket az értékeket:
+hello következő kód bemutatja, hogyan tooretrieve ezeket az értékeket:
 
 ```csharp
 public class MyComponent : ISCPBolt
 {
-    // To hold configuration information loaded from context
+    // toohold configuration information loaded from context
     Configuration configuration;
     ...
     public MyComponent(Context ctx, Dictionary<string, Object> parms)
     {
-        // Save a copy of the context for this component instance
+        // Save a copy of hello context for this component instance
         this.ctx = ctx;
-        // If it exists, load the configuration for the component
+        // If it exists, load hello configuration for hello component
         if(parms.ContainsKey(Constants.USER_CONFIG))
         {
             this.configuration = parms[Constants.USER_CONFIG] as System.Configuration.Configuration;
         }
-        // Retrieve the value of "Foo" from configuration
+        // Retrieve hello value of "Foo" from configuration
         var foo = this.configuration.AppSettings.Settings["Foo"].Value;
     }
     ...
 }
 ```
 
-Ha egy `Get` metódus egy példány a összetevő visszaadása meg kell győződnie arról, hogy mindkét átadja a `Context` és `Dictionary<string, Object>` a konstruktor paramétereit. A következő példa egy alapvető `Get` módszer, amelynek megfelelően továbbítja ezeket az értékeket:
+Ha egy `Get` metódus tooreturn egy példányát az összetevőt, győződjön meg arról, hogy mindkét hello haladnak `Context` és `Dictionary<string, Object>` paraméterek toohello konstruktor. hello alábbi példa az alapvető `Get` módszer, amelynek megfelelően továbbítja ezeket az értékeket:
 
 ```csharp
 public static MyComponent Get(Context ctx, Dictionary<string, Object> parms)
@@ -530,78 +530,78 @@ public static MyComponent Get(Context ctx, Dictionary<string, Object> parms)
 }
 ```
 
-## <a name="how-to-update-scpnet"></a>SCP.NET frissítése
+## <a name="how-tooupdate-scpnet"></a>Hogyan tooupdate SCP.NET
 
-SCP.NET újabb kiadásaiban a Nugeten keresztül Csomagfrissítés támogatja. Ha egy új frissítés érhető el, egy frissítési értesítést kap. Frissítés manuálisan ellenőrzéséhez kövesse az alábbi lépéseket:
+SCP.NET újabb kiadásaiban a Nugeten keresztül Csomagfrissítés támogatja. Ha egy új frissítés érhető el, egy frissítési értesítést kap. a frissítés keresése toomanually kövesse az alábbi lépéseket:
 
-1. A **Megoldáskezelőben**, kattintson jobb gombbal a projektre, és válassza ki **NuGet-csomagok kezelése**.
+1. A **Megoldáskezelőben**, kattintson a jobb gombbal a hello projektet, és válassza ki **NuGet-csomagok kezelése**.
 
-2. Válassza ki a package manager **frissítések**. Frissítés érhető el, ha szerepel. Kattintson a **frissítés** a csomag telepítéséhez.
+2. Hello Csomagkezelő, válassza ki **frissítések**. Frissítés érhető el, ha szerepel. Kattintson a **frissítés** a hello csomag tooinstall azt.
 
 > [!IMPORTANT]
-> Ha a projekt, amely nem NuGet SCP.NET korábbi verziójával lett létrehozva, újabb verzióra való frissítése a következő lépéseket kell elvégeznie:
+> Ha a projekt, amely nem NuGet SCP.NET korábbi verziójával lett létrehozva, a következő lépéseket tooupdate tooa újabb verzióra hello kell elvégeznie:
 >
-> 1. A **Megoldáskezelőben**, kattintson jobb gombbal a projektre, és válassza ki **NuGet-csomagok kezelése**.
-> 2. Használja a **keresési** mezőben, keresse meg, és adja hozzá, **Microsoft.SCP.Net.SDK** a projekthez.
+> 1. A **Megoldáskezelőben**, kattintson a jobb gombbal a hello projektet, és válassza ki **NuGet-csomagok kezelése**.
+> 2. Hello segítségével **keresési** mezőben, keresse meg, és adja hozzá, **Microsoft.SCP.Net.SDK** toohello projekt.
 
 ## <a name="troubleshoot-common-issues-with-topologies"></a>Topológiák termékkel kapcsolatos gyakori hibák elhárítása
 
 ### <a name="null-pointer-exceptions"></a>NULL mutatót kivételek
 
-C#-topológiák használatakor a Linux-alapú HDInsight-fürthöz boltok és összetevőket spout **ConfigurationManager** olvasni a konfigurációs beállításokat futásidőben adhat vissza null mutatót kivételek.
+C#-topológiák használatakor a Linux-alapú HDInsight-fürthöz boltok és összetevőket spout **ConfigurationManager** tooread konfigurációs beállításokat futásidőben adhat vissza null mutatót kivételek.
 
-A konfiguráció a projekthez átad a Storm-topológia a topológia környezetében kulcs-érték párban. A rendszer inicializálásakor a összetevők átadott szótárobjektum lekérhetők.
+a projekt hello konfigurációs hello Storm-topológia átadott hello topológia környezetben kulcs-érték párban. Tooyour összetevők átadása akkor inicializálásakor hello szótárobjektum lekérhetők.
 
-További információkért lásd: a [ConfigurationManager](#configurationmanager) szakasz ebben a dokumentumban.
+További információkért lásd: hello [ConfigurationManager](#configurationmanager) szakasz ebben a dokumentumban.
 
 ### <a name="systemtypeloadexception"></a>System.TypeLoadException
 
-Amikor egy Linux-alapú HDInsight-fürthöz C#-topológiák használ, a következő hiba merülhetnek fel:
+C#-topológiák használatakor a Linux-alapú HDInsight-fürthöz felmerülhet a következő hiba hello:
 
     System.TypeLoadException: Failure has occurred while loading a type.
 
-Ez akkor fordul elő, ha egy bináris, amely nem kompatibilis a monó támogató .NET verzióját használja.
+Ez a hiba akkor fordul elő, egy bináris, amely nem kompatibilis a monó támogató .NET hello verziójának használatakor.
 
 Linux-alapú HDInsight-fürtök győződjön meg arról, hogy a projekt használ-e a bináris fájlok a .NET 4.5 számára.
 
 ### <a name="test-a-topology-locally"></a>A topológia helyi tesztelése
 
-Egyszerűen a topológia telepíthető a fürtre, néhány esetben azonban szükség lehet a topológia helyi tesztelése. Az alábbi lépések segítségével futtathatja és tesztelheti a példa topológia ebben az oktatóanyagban helyileg a fejlesztői környezetben.
+Könnyen toodeploy topológia tooa fürtökhöz, néhány esetben azonban szükség lehet a topológia helyileg tootest. A következő lépéseket toorun hello használja, és tesztelje a hello példa topológia ebben az oktatóanyagban helyileg a fejlesztői környezetben.
 
 > [!WARNING]
 > Helyi tesztelése csak akkor működik, a basic, a C#-topológiák csak. A hibrid topológiák vagy topológiák több adatfolyam használó helyi tesztelése nem használható.
 
-1. A **Megoldáskezelőben**, kattintson jobb gombbal a projektre, és válassza ki **tulajdonságok**. A projekt tulajdonságait, módosítsa a **kimeneti típus** való **Konzolalkalmazás**.
+1. A **Megoldáskezelőben**, kattintson a jobb gombbal a hello projektet, és válassza ki **tulajdonságok**. A projekt tulajdonságai hello módosítása hello **kimeneti típus** túl**Konzolalkalmazás**.
 
     ![Képernyőfelvétel a projekt tulajdonságait, a kiemelt kimeneti típusú](./media/hdinsight-storm-develop-csharp-visual-studio-topology/outputtype.png)
 
    > [!NOTE]
-   > Ne felejtse el módosítani a **kimeneti típus** vissza **Class Library** a topológia egy fürt központi telepítése előtt.
+   > Ne feledje toochange hello **kimeneti típus** túl biztonsági**Class Library** hello topológia tooa fürt központi telepítése előtt.
 
-2. A **Megoldáskezelőben**, kattintson jobb gombbal a projektre, majd válassza ki **Hozzáadás** > **új elem**. Válassza ki **osztály**, és írja be **LocalTest.cs** osztály neveként. Végezetül kattintson **Hozzáadás**.
+2. A **Megoldáskezelőben**, kattintson a jobb gombbal a hello projektet, és válassza **Hozzáadás** > **új elem**. Válassza ki **osztály**, és írja be **LocalTest.cs** hello osztály neve. Végezetül kattintson **Hozzáadás**.
 
-3. Nyissa meg **LocalTest.cs**, és adja hozzá a következő **használatával** felső utasítást:
+3. Nyissa meg **LocalTest.cs**, és adja hozzá a következő hello **használatával** hello felső utasítást:
 
     ```csharp
     using Microsoft.SCP;
     ```
 
-4. A következő kódot használja, a tartalmát a **LocalTest** osztály:
+4. Hello hello tartalmát kód használata hello következő **LocalTest** osztály:
 
     ```csharp
-    // Drives the topology components
+    // Drives hello topology components
     public void RunTestCase()
     {
         // An empty dictionary for use when creating components
         Dictionary<string, Object> emptyDictionary = new Dictionary<string, object>();
 
-        #region Test the spout
+        #region Test hello spout
         {
             Console.WriteLine("Starting spout");
-            // LocalContext is a local-mode context that can be used to initialize
-            // components in the development environment.
+            // LocalContext is a local-mode context that can be used tooinitialize
+            // components in hello development environment.
             LocalContext spoutCtx = LocalContext.Get();
-            // Get a new instance of the spout, using the local context
+            // Get a new instance of hello spout, using hello local context
             Spout sentences = Spout.Get(spoutCtx, emptyDictionary);
 
             // Emit 10 tuples
@@ -609,55 +609,55 @@ Egyszerűen a topológia telepíthető a fürtre, néhány esetben azonban szük
             {
                 sentences.NextTuple(emptyDictionary);
             }
-            // Use LocalContext to persist the data stream to file
+            // Use LocalContext toopersist hello data stream toofile
             spoutCtx.WriteMsgQueueToFile("sentences.txt");
             Console.WriteLine("Spout finished");
         }
         #endregion
 
-        #region Test the splitter bolt
+        #region Test hello splitter bolt
         {
             Console.WriteLine("Starting splitter bolt");
-            // LocalContext is a local-mode context that can be used to initialize
-            // components in the development environment.
+            // LocalContext is a local-mode context that can be used tooinitialize
+            // components in hello development environment.
             LocalContext splitterCtx = LocalContext.Get();
-            // Get a new instance of the bolt
+            // Get a new instance of hello bolt
             Splitter splitter = Splitter.Get(splitterCtx, emptyDictionary);
 
-            // Set the data stream to the data created by the spout
+            // Set hello data stream toohello data created by hello spout
             splitterCtx.ReadFromFileToMsgQueue("sentences.txt");
-            // Get a batch of tuples from the stream
+            // Get a batch of tuples from hello stream
             List<SCPTuple> batch = splitterCtx.RecvFromMsgQueue();
-            // Process each tuple in the batch
+            // Process each tuple in hello batch
             foreach (SCPTuple tuple in batch)
             {
                 splitter.Execute(tuple);
             }
-            // Use LocalContext to persist the data stream to file
+            // Use LocalContext toopersist hello data stream toofile
             splitterCtx.WriteMsgQueueToFile("splitter.txt");
             Console.WriteLine("Splitter bolt finished");
         }
         #endregion
 
-        #region Test the counter bolt
+        #region Test hello counter bolt
         {
             Console.WriteLine("Starting counter bolt");
-            // LocalContext is a local-mode context that can be used to initialize
-            // components in the development environment.
+            // LocalContext is a local-mode context that can be used tooinitialize
+            // components in hello development environment.
             LocalContext counterCtx = LocalContext.Get();
-            // Get a new instance of the bolt
+            // Get a new instance of hello bolt
             Counter counter = Counter.Get(counterCtx, emptyDictionary);
 
-            // Set the data stream to the data created by splitter bolt
+            // Set hello data stream toohello data created by splitter bolt
             counterCtx.ReadFromFileToMsgQueue("splitter.txt");
-            // Get a batch of tuples from the stream
+            // Get a batch of tuples from hello stream
             List<SCPTuple> batch = counterCtx.RecvFromMsgQueue();
-            // Process each tuple in the batch
+            // Process each tuple in hello batch
             foreach (SCPTuple tuple in batch)
             {
                 counter.Execute(tuple);
             }
-            // Use LocalContext to persist the data stream to file
+            // Use LocalContext toopersist hello data stream toofile
             counterCtx.WriteMsgQueueToFile("counter.txt");
             Console.WriteLine("Counter bolt finished");
         }
@@ -665,17 +665,17 @@ Egyszerűen a topológia telepíthető a fürtre, néhány esetben azonban szük
     }
     ```
 
-    A kód megjegyzéseket keresztül néhány percet igénybe vehet. Ezt a kódot használja **LocalContext** futtatni a a fejlesztési környezetet, és továbbra is fennáll, a szöveges fájlt a helyi meghajtón összetevők közötti adatfolyamban.
+    Eltarthat egy rövid ideig tooread keresztül hello kód megjegyzéseket. Ezt a kódot használja **LocalContext** toorun hello összetevők hello fejlesztési környezetet, és továbbra is fennáll, hello adatfolyam hello helyi meghajtón lévő összetevők tootext fájlok között.
 
-1. Nyissa meg **Program.cs**, és adja hozzá a következőt a **fő** módszert:
+1. Nyissa meg **Program.cs**, és adja hozzá a következő toohello hello **fő** módszert:
 
     ```csharp
     Console.WriteLine("Starting tests");
     System.Environment.SetEnvironmentVariable("microsoft.scp.logPrefix", "WordCount-LocalTest");
-    // Initialize the runtime
+    // Initialize hello runtime
     SCPRuntime.Initialize();
 
-    //If we are not running under the local context, throw an error
+    //If we are not running under hello local context, throw an error
     if (Context.pluginType != SCPPluginType.SCP_NET_LOCAL)
     {
         throw new Exception(string.Format("unexpected pluginType: {0}", Context.pluginType));
@@ -688,60 +688,60 @@ Egyszerűen a topológia telepíthető a fürtre, néhány esetben azonban szük
     Console.ReadKey();
     ```
 
-2. Menti a módosításokat, és kattintson a **F5** , vagy válasszon **Debug** > **Start Debugging** a projekt indításához. A konzolablakban kell jelenik meg, és a tesztek állapotát állapot naplózása. Ha **tesztek befejeződött** jelenik meg, nyomja le bármelyik billentyűt az ablak bezárásához.
+2. Hello módosítások mentéséhez, és kattintson a **F5** , vagy válasszon **Debug** > **Start Debugging** toostart hello projekt. A konzolablakban kell jelenik meg, és állapot naplózása hello tesztek állapotát. Ha **tesztek befejeződött** jelenik meg, nyomja meg bármelyik kulcs tooclose hello ablakban.
 
-3. Használjon **Windows Explorer** kereséséhez a könyvtárban, amely tartalmazza a projekthez. Például: **C:\Users\<your_user_name > \Documents\Visual Studio 2013\Projects\WordCount\WordCount**. Ebben a könyvtárban, nyissa meg a **Bin**, és kattintson a **Debug**. A szövegfájlok, amelyeket a vizsgálatok futtatásakor kell megjelennie: sentences.txt counter.txt és splitter.txt. Nyissa meg minden egyes szöveges fájlt, és vizsgálja meg az adatokat.
+3. Használjon **Windows Explorer** toolocate hello a projektet tartalmazó könyvtárat. Például: **C:\Users\<your_user_name > \Documents\Visual Studio 2013\Projects\WordCount\WordCount**. Ebben a könyvtárban, nyissa meg a **Bin**, és kattintson a **Debug**. Hello szöveges fájlok, amelyeket a hello tesztek futtatásakor kell megjelennie: sentences.txt counter.txt és splitter.txt. Nyissa meg minden egyes szöveges fájlt, és vizsgálja meg a hello adatok.
 
    > [!NOTE]
-   > Karakterlánc típusú adatok továbbra is fennáll, ezeket a fájlokat a decimális értékek ábrázolva. Például \[[97,103,111]] az az **splitter.txt** fájl szó *és*.
+   > Karakterlánc típusú adatok továbbra is fennáll, ezeket a fájlokat a decimális értékek ábrázolva. Például \[[97,103,111]] hello a **splitter.txt** fájl hello word *és*.
 
 > [!NOTE]
-> Meg kell adni a **projekttípus** vissza **Class Library** a Storm on HDInsight-fürt üzembe helyezése előtt.
+> Lehet, hogy tooset hello **projekttípus** túl biztonsági**Class Library** tooa Storm on HDInsight-fürt üzembe helyezése előtt.
 
 ### <a name="log-information"></a>Naplóadatok
 
-Könnyen bejelentkezhet információkat a topológia összetevői használatával `Context.Logger`. Például a következő létrehoz egy tájékoztató naplóbejegyzés:
+Könnyen bejelentkezhet információkat a topológia összetevői használatával `Context.Logger`. Hello következő például egy tájékoztató naplóbejegyzés hoz létre:
 
 ```csharp
 Context.Logger.Info("Component started");
 ```
 
-A naplózott információk is megtekinthetők a **Hadoop Szolgáltatásnaplót**, amely megtalálható **Server Explorer**. Bontsa ki a bejegyzést a Storm on HDInsight-fürt számára, és végül **Hadoop Szolgáltatásnaplót**. Végül válassza ki a naplófájl megtekintése.
+A naplózott információk is megtekinthetők hello **Hadoop Szolgáltatásnaplót**, amely megtalálható **Server Explorer**. Bontsa ki a hello bejegyzést a Storm on HDInsight-fürt számára, és végül **Hadoop Szolgáltatásnaplót**. Végül válassza ki a hello napló fájl tooview.
 
 > [!NOTE]
-> A naplók az Azure storage-fiók, amely a fürt által használt vannak tárolva. A naplók megtekintéséhez a Visual Studio be kell jelentkeznie Azure-előfizetést, amely a tárfiók tulajdonosa számára.
+> hello naplók hello Azure storage-fiók, amely a fürt által használt vannak tárolva. tooview hello naplók a Visual Studio alkalmazásban, be kell jelentkeznie toohello Azure-előfizetéssel, amely hello tárfiók tulajdonosa.
 
 ### <a name="view-error-information"></a>Hiba történt adatainak megtekintése
 
-A futó topológiát a bekövetkezett hibák megtekintéséhez használja a következő lépéseket:
+a futó topológiát az előfordult tooview hibák lépések hello használata:
 
-1. A **Server Explorer**, kattintson a jobb gombbal a Storm on HDInsight-fürt, és válassza ki **nézet Storm-topológiák**.
+1. A **Server Explorer**, kattintson a jobb gombbal a hello Storm on HDInsight-fürt, és válassza ki **nézet Storm-topológiák**.
 
-2. Az a **Spout** és **boltok**, a **utolsó hiba** oszlop az utolsó hiba információkat tartalmaz.
+2. A hello **Spout** és **boltok**, hello **utolsó hiba** oszlop hello utolsó hiba információkat tartalmaz.
 
-3. Válassza ki a **Spout azonosító** vagy **Bolt azonosító** felsorolt hibás összetevő. Amely hiba jelenik meg, további részleteit megjelenítő oldalon információ szerepel a **hibák** szakasz az oldal alján.
+3. Jelölje be hello **Spout azonosító** vagy **Bolt azonosító** hello összetevő, amely rendelkezik a felsorolt hiba. Hello részletes lapon, amely hiba jelenik meg, további információt hello szerepel **hibák** alján hello hello szakasz.
 
-4. További információk beszerzéséhez válassza ki egy **Port** a a **végrehajtója** lap, a munkavégző Storm napló megtekintéséhez az elmúlt néhány perc részében.
+4. tooobtain további információt, jelölje be a **Port** a hello **végrehajtója** hello lap részében, toosee hello Storm munkavégző naplóban hello utolsó néhány percig.
 
 ### <a name="errors-submitting-topologies"></a>Hibák elküldése a topológiák
 
-Ha hibákba ütközik egy HDInsight-topológiát elküldése, naplók a kiszolgálóoldali összetevők, amelyek kezelik a HDInsight-fürt topológiája küldésének találja. Ezek a naplók lekéréséhez használja a következő parancsot a parancssorból:
+Ha hibákba ütközik egy topológia tooHDInsight elküldése, a naplók hello kiszolgálóoldali összetevők, amelyek kezelik a HDInsight-fürt topológiája küldésének is megtalálhatja. tooretrieve ezek naplózza, használjon hello következő parancsot a parancssorból:
 
     scp sshuser@clustername-ssh.azurehdinsight.net:/var/log/hdinsight-scpwebapi/hdinsight-scpwebapi.out .
 
-Cserélje le __sshuser__ a fürthöz SSH felhasználói fiókkal. Cserélje le __clustername__ a HDInsight-fürt nevét. További információk az `scp` és `ssh` a hdinsight eszközzel, lásd: [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
+Cserélje le __sshuser__ a hello hello fürthöz SSH-felhasználói fiókhoz. Cserélje le __clustername__ hello nevű hello HDInsight-fürt. További információk az `scp` és `ssh` a hdinsight eszközzel, lásd: [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
 Több okból sikertelen lehet a jelentések:
 
-* JDK nincs telepítve, vagy az elérési út nem tartalmazza.
-* Java szükséges függőség nem szerepelnek a küldése.
+* JDK nincs telepítve, vagy nincs hello elérési úton.
+* Java szükséges függőség nem szerepelnek a hello küldésének.
 * Nem kompatibilis függőségek.
 * Ismétlődő topológia nevek.
 
-Ha a `hdinsight-scpwebapi.out` a napló tartalmaz egy `FileNotFoundException`, ennek oka lehet az alábbi feltételek:
+Ha hello `hdinsight-scpwebapi.out` a napló tartalmaz egy `FileNotFoundException`, ennek oka lehet a következő feltételek hello:
 
-* A JDK nincs a fejlesztési környezet elérési útját. Győződjön meg arról, hogy a JDK telepítve van-e a fejlesztési környezetet, és hogy `%JAVA_HOME%/bin` az elérési út része.
-* Java függősége hiányzik. Ellenőrizze, hogy a küldése részeként beleértve a minden szükséges .jar fájlt.
+* hello JDK nincs hello fejlesztőkörnyezet hello elérési útját. Győződjön meg arról, hogy hello fejlesztési környezetet, és hogy telepítve van a JDK hello `%JAVA_HOME%/bin` hello elérési út része.
+* Java függősége hiányzik. Győződjön meg arról, beleértve minden szükséges .jar fájlt hello küldésének részeként is.
 
 ## <a name="next-steps"></a>Következő lépések
 
@@ -749,9 +749,9 @@ Például az adatok feldolgozása az Event Hubs, [feldolgozni az eseményeket az
 
 Például egy C#-topológiák, amely felosztja a több adatfolyam adatfolyam-adatokat, lásd: [C# Storm példa](https://github.com/Blackmist/csharp-storm-example).
 
-C#-topológiák létrehozásával kapcsolatos további információk felderítésére, lásd: [GitHub](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/SCPNet-GettingStarted.md).
+toodiscover C#-topológiák, létrehozásával kapcsolatos további információért lásd: [GitHub](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/SCPNet-GettingStarted.md).
 
-További részleteket a HDInsight használata és minták a HDInsight alatt futó Storm további tekintse meg a következő dokumentumokat:
+További módszereket toowork a hdinsight eszközzel, és minták a HDInsight alatt futó Storm további tekintse meg a következő dokumentumok hello:
 
 **Microsoft SCP.NET**
 

@@ -1,6 +1,6 @@
 ---
-title: "Az API Management developer portálon sablonok testreszabása-Azure |} Microsoft Docs"
-description: "Ismerje meg, hogyan szabhatja testre a sablonok használatával Azure API Management fejlesztői portálján."
+title: "aaaCustomize hello API Management fejlesztői portálján sablonokkal-Azure |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocustomize hello Azure API Management fejlesztői portálján sablonok használatával."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,58 +14,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 40d25726d31d2018785b77d169a8811c565316bf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b00d5f1534e9466f30ff3920e7aae048feb8b8c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-customize-the-azure-api-management-developer-portal-using-templates"></a>Az Azure API Management developer portálon sablonok testreszabása
+# <a name="how-toocustomize-hello-azure-api-management-developer-portal-using-templates"></a>Hogyan toocustomize hello Azure API Management fejlesztői portálján sablonokkal
 
-A fejlesztői portál három alapvető módon szabható testre az Azure API Managementben:
+Azure API Management három alapvető módját toocustomize hello fejlesztői portálján szerepelnek:
 
-* [A statikus oldalak tartalmának és oldalelrendezési elemeinek szerkesztése][modify-content-layout]
-* [A teljes fejlesztői portál oldalelemeihez használt stílusok frissítése][customize-styles]
-* [Módosíthatja a sablonokat a portál által létrehozott lapok] [ portal-templates] (Ez az útmutató alapján)
+* [Statikus és elrendezés elemei hello tartalom szerkesztése][modify-content-layout]
+* [Frissítés hello stílusok hello fejlesztői portálján keresztül használt elemei][customize-styles]
+* [Módosíthatja a hello hello portál által létrehozott lapok használt] [ portal-templates] (Ez az útmutató alapján)
 
-Sablonok segítségével testre szabhatja a tartalmát a rendszer fejlesztői portál lapjai (pl. API docs, termékek, felhasználói hitelesítés, stb.). Használatával [DotLiquid](http://dotliquidmarkup.org/) szintaxis és a megadott készlete a honosított karakterlánc-erőforrások, ikonok és Lapvezérlők, konfigurálja a tartalmat, a lapok, ahogyan szeretné nagyfokú rugalmasságot biztosítanak.
+Sablonok használt toocustomize hello tartalmat a rendszer fejlesztői portál lapjai (pl. API docs, termékek, felhasználói hitelesítés, stb.) a rendszer. Használatával [DotLiquid](http://dotliquidmarkup.org/) szintaxis és a megadott készlete a honosított karakterlánc-erőforrások, ikonok és Lapvezérlők, ahogyan szeretné rendelkezik rugalmas lehetőségeket biztosítanak tooconfigure hello hello lapok tartalmát.
 
 ## <a name="developer-portal-templates-overview"></a>Fejlesztői portál sablonok – áttekintés
-A sablonok szerkesztése történik a **fejlesztői portálján** közben rendszergazdaként naplózva. Nincs először nyissa meg az Azure portálon, és kattintson a **Publisher portal** az API Management-példány service eszköztárból.
+Sablonok szerkesztéséhez végezheti el hello **fejlesztői portálján** közben rendszergazdaként bejelentkezve alatt. Nincs tooget először nyissa meg a hello Azure portálon, és kattintson **Publisher portal** hello szolgáltatás eszköztáron az API Management-példány.
 
 ![Közzétevő portál][api-management-management-console]
 
-Ezután kattintson a **Fejlesztői portálra** a jobb felső sarokban. 
+Kattintson a **fejlesztői portálján** a hello jobb felső. 
 
 ![Fejlesztői portál menüjében][api-management-developer-portal-menu]
 
-A fejlesztői portál sablonok eléréséhez kattintson a Testreszabás ikon megjelenítése a testreszabási menü, majd kattintson a bal oldali **sablonok**.
+tooaccess hello fejlesztői portál sablonok, kattintson a hello ikon hello bal oldali toodisplay hello testreszabási menü testreszabása, és kattintson a **sablonok**.
 
 ![Fejlesztői portál sablonok][api-management-customize-menu]
 
-A sablonok listájának számos modulkategória közül a fejlesztői portálra különböző oldalain kiterjedő sablonok jeleníti meg. Minden sablon különböző, de szerkesztheti azokat, és a változtatásokat lépései megegyeznek. A sablon szerkesztéséhez kattintson a sablon nevét.
+hello sablonok listájának kiterjedő hello különböző oldalain hello fejlesztői portálján a sablonok számos kategóriája jeleníti meg. Minden sablon nem egyezik, de hello lépéseket tooedit őket és hello változtatásokat azonos hello. tooedit sablont, kattintson a hello sablon hello nevét.
 
 ![Fejlesztői portál sablonok][api-management-templates-menu]
 
-Kattintson egy sablon megnyitná a fejlesztői portálon, amely testre szabható, hogy a sablon alapján. Ebben a példában a **termékek listáját** sablon jelenik meg. A **termékek listáját** sablon meghatározza a képernyőn, a vörös téglalap jelölik. 
+Kattintson egy sablon viszi toohello developer portálon, amely testre szabható, hogy a sablon alapján. Az ebben a példában hello **termékek listáját** sablon jelenik meg. Hello **termékek listáját** sablon vezérlők hello hello piros téglalap által jelzett üdvözlő képernyőt területének. 
 
 ![Termékek sablon][api-management-developer-portal-templates-overview]
 
-Egyes sablonok, például a **felhasználói profil** sablonok, testreszabása a különböző részei ugyanazon az oldalon. 
+Egyes sablonok, például a hello **felhasználói profil** sablonok testreszabása hello különböző részei ugyanazon az oldalon. 
 
 ![Felhasználói profil sablonok][api-management-user-profile-templates]
 
-Minden egyes fejlesztői portálsablon szerkesztője két részből áll, az oldal alján megjelenik. A bal oldalon a sablon a szerkesztési panelen, valamint a jobb oldali jeleníti meg a sablon az adatmodellt. 
+minden developer portálon sablon hello szerkesztő két részből áll hello aljához hello oldal jelenik meg. hello bal oldali ablaktáblán hello sablon szerkesztése hello, valamint hello jobb oldalán hello adatmodell hello sablon jeleníti meg. 
 
-A sablonszerkesztési ablaktábla a kód, amely szabályozza a Megjelenés és viselkedés a fejlesztői portálra a megfelelő lap tartalmaz. A sablon a jelölés során használja a [DotLiquid](http://dotliquidmarkup.org/) szintaxist. Egy népszerű szerkesztője a DotLiquid [tervezőknek DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers). A sablon szerkesztése során végrehajtott módosítások jelennek meg valós időben a böngészőben, de azok nem láthatók az ügyfelek számára, amíg [mentése](#to-save-a-template) és [közzététele](#to-publish-a-template) a sablont.
+hello sablonszerkesztési panelen, amely a hello megjelenését és viselkedését hello megfelelő oldal hello developer portálon hello markup tartalmazza. hello markup hello sablonban használ hello [DotLiquid](http://dotliquidmarkup.org/) szintaxist. Egy népszerű szerkesztője a DotLiquid [tervezőknek DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers). A végzett módosítások toohello sablon szerkesztése során jelennek meg a valós idejű hello böngészővel, de azok nem látható tooyour ügyfelek amíg [mentése](#to-save-a-template) és [közzététele](#to-publish-a-template) hello sablon.
 
 ![Sablon markup][api-management-template]
 
-A **sablon adatok** ablaktáblán az adatokat az adatmodellbe való biztosít az entitásokat, amelyek egy megadott sablont használható. Ez az útmutató a jelenleg megjelenített a fejlesztői portálra élő adatok megjelenítésével biztosít. A sablon ablaktáblák bővítheti a négyszög jobb felső sarkában kattintson a **sablon adatok** ablaktáblán.
+Hello **sablon adatok** ablaktáblán egy útmutató toohello adatokat biztosít, amelyek egy megadott sablont használható hello entitások modellre. Ez az útmutató biztosít hello hello fejlesztői portálján a jelenleg megjelenített élő adatok megjelenítésével jelzi ezt. Hello sablon ablaktáblák bővítheti hello téglalap hello jobb felső sarkában hello kattintva **sablon adatok** ablaktáblán.
 
 ![Sablon adatmodell][api-management-template-data]
 
-Az előző példában szereplő nincsenek két termékek jelenik meg a fejlesztői portálon megjelenő adatok lettek beolvasva a **sablon adatok** ablaktáblán, a következő példában látható módon.
+Az előző példában hello nincsenek hello developer portálról hello adatokból hello megjelenik eredményező két termék **sablon adatok** ablaktáblán, ahogy az alábbi példa hello.
 
 ```json
 {
@@ -84,7 +84,7 @@ Az előző példában szereplő nincsenek két termékek jelenik meg a fejleszt�
         {
             "Id": "56ec64c380ed850042060001",
             "Title": "Starter",
-            "Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",
+            "Description": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",
             "Terms": "",
             "ProductState": 1,
             "AllowMultipleSubscriptions": false,
@@ -93,7 +93,7 @@ Az előző példában szereplő nincsenek két termékek jelenik meg a fejleszt�
         {
             "Id": "56ec64c380ed850042060002",
             "Title": "Unlimited",
-            "Description": "Subscribers have completely unlimited access to the API. Administrator approval is required.",
+            "Description": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",
             "Terms": null,
             "ProductState": 1,
             "AllowMultipleSubscriptions": false,
@@ -103,7 +103,7 @@ Az előző példában szereplő nincsenek két termékek jelenik meg a fejleszt�
 }
 ```
 
-A kód a **termékek listáját** sablon dolgozza fel a termékek számára megjelenített információk és hivatkozást minden egyes termék iteráció biztosítani a kívánt kimeneti adatokat. Megjegyzés: a `<search-control>` és `<page-control>` elemeinek a jelölés során. Ezek szabályozza, hogy a Keresés és a lap lapozás megjelenítését. `ProductsStrings|PageTitleProducts`honosított karakterlánc hivatkozás, amely tartalmazza a `h2` a fejléc szövege lap. Erőforrásait, Lapvezérlők és fejlesztői portál sablonok használható ikonok listáját lásd: [API Management fejlesztői portál sablonok referenciája](api-management-developer-portal-templates-reference.md).
+a hello hello markup **termékek listáját** sablon folyamatok tooprovide szükséges hello kimeneti adatok hello hello termékek toodisplay információk összegyűjtése és a hivatkozás tooeach egyedileg importált iteráció által. Megjegyzés: hello `<search-control>` és `<page-control>` hello kódkiterjesztési elemek. Ezek szabályozza, hogy a Keresés és a lapozás hello lap hello hello megjelenítését. `ProductsStrings|PageTitleProducts`honosított karakterlánc hivatkozás hello tartalmazó `h2` hello lap a fejléc szövege. Erőforrásait, Lapvezérlők és fejlesztői portál sablonok használható ikonok listáját lásd: [API Management fejlesztői portál sablonok referenciája](api-management-developer-portal-templates-reference.md).
 
 ```html
 <search-control></search-control>
@@ -131,59 +131,59 @@ A kód a **termékek listáját** sablon dolgozza fel a termékek számára megj
 </div>
 ```
 
-## <a name="to-save-a-template"></a>A sablon mentése
-A sablon mentéséhez kattintson a Mentés gombra a sablon-szerkesztőben.
+## <a name="toosave-a-template"></a>a sablon toosave
+toosave sablont, kattintson a Mentés hello sablon szerkesztőben.
 
 ![Sablon mentése][api-management-save-template]
 
-A módosítások mentése nincsenek élő a fejlesztői portálra, amíg azok közzé lettek téve.
+Mindaddig, amíg azok közzé lettek téve, amelyek a módosítások mentése nem élő hello developer portálon.
 
-## <a name="to-publish-a-template"></a>A sablon közzététele
-Mentett sablonok külön-külön vagy együtt tehetők közzé. Közzététele egy egyéni sablont, kattintson a közzététel a sablon-szerkesztőben.
+## <a name="toopublish-a-template"></a>a sablon toopublish
+Mentett sablonok külön-külön vagy együtt tehetők közzé. toopublish egy egyéni sablont, kattintson a közzététel hello sablon szerkesztőben.
 
 ![Sablon közzététele][api-management-publish-template]
 
-Kattintson a **Igen** erősítse meg, és hogy a sablon megtalálható a fejlesztői portálján.
+Kattintson a **Igen** tooconfirm és hello sablon élő hello developer portálon.
 
 ![Erősítse meg közzététele][api-management-publish-template-confirm]
 
-A minden jelenleg közzé nem tett verzióival való közzétételéhez kattintson **közzététel** sablonok listájában. Közzé nem tett sablonok a sablonnevet követő csillag jelölik. Ebben a példában a **termékek listáját** és **termék** sablonok frissítése folyamatban van.
+toopublish jelenleg közzé nem tett verzióival, kattintson a **közzététel** hello sablonok listában. Közzé nem tett sablonok hello sablon nevét a következő csillag jelölik. Ebben a példában hello **termékek listáját** és **termék** sablonok frissítése folyamatban van.
 
 ![Sablonok közzététele][api-management-publish-templates]
 
-Kattintson a **testreszabások közzététele** megerősítéséhez.
+Kattintson a **testreszabások közzététele** tooconfirm.
 
 ![Erősítse meg közzététele][api-management-publish-customizations]
 
-Újonnan közzétett sablonokat is azonnal hatékonyan a fejlesztői portálján.
+Újonnan közzétett sablonokat is azonnal hatékonyan hello fejlesztői portálján.
 
-## <a name="to-revert-a-template-to-the-previous-version"></a>Vissza az előző verzió sablon létrehozása
-Vissza az előző közzétett verzió kívánt sablont, kattintson a sablon szerkesztőben visszaállításához.
+## <a name="toorevert-a-template-toohello-previous-version"></a>a sablon toohello korábbi verziójáról toorevert
+toorevert sablon toohello előző közzétett verziót, kattintson a hello sablon szerkesztőben állítsa vissza.
 
 ![Sablon visszaállítása][api-management-revert-template]
 
-Kattintson a **Yes** (Igen) gombra a megerősítéshez.
+Kattintson a **Igen** tooconfirm.
 
 ![Erősítse meg][api-management-revert-template-confirm]
 
-A korábban közzétett sablont verziója élő a fejlesztői portálra a visszaállítási művelet végrehajtása után.
+hello korábban sablon közzétett változata hello developer portálon live, miután hello állítsa vissza a művelet befejeződött.
 
-## <a name="to-restore-a-template-to-the-default-version"></a>A sablon visszaállítása az alapértelmezett verzió
-Sablonok visszaállítása az alapértelmezett verzió két lépésből áll. Először a sablonok vissza kell állítani, és ezután a visszaállított verziók közzé kell tenni.
+## <a name="toorestore-a-template-toohello-default-version"></a>a sablon toohello alapértelmezett verzió toorestore
+Visszaállítás sablonok tootheir alapértelmezett verziója két lépésből áll. Első hello sablonok vissza kell állítani, és majd vissza hello verziók közzé kell tenni.
 
-Ugyanazt a sablont az alapértelmezett verzió visszaállításához kattintson a visszaállítás sablon-szerkesztőben.
+ugyanazt a sablont toohello alapértelmezett változata toorestore kattintson a visszaállítás hello sablon szerkesztőben.
 
 ![Sablon visszaállítása][api-management-reset-template]
 
-Kattintson a **Yes** (Igen) gombra a megerősítéshez.
+Kattintson a **Igen** tooconfirm.
 
 ![Erősítse meg][api-management-reset-template-confirm]
 
-A alapértelmezett verzióját az összes sablon visszaállításához kattintson **visszaállítása az alapértelmezett sablonok** a sablon listában.
+toorestore összes sablonok tootheir alapértelmezett verzió, kattintson a **visszaállítása az alapértelmezett sablonok** hello sablon listán.
 
 ![Állítsa vissza a sablonok][api-management-restore-templates]
 
-A visszaállított sablonok majd közzé kell tegye a külön-külön és egyszerre lépéseit [a sablon közzététele](#to-publish-a-template).
+hello visszaállított sablonok majd közzé kell tenni külön-külön és egyszerre hello utasításait követve [toopublish sablon](#to-publish-a-template).
 
 ## <a name="next-steps"></a>Következő lépések
 A fejlesztői portál sablonok, erőforrásait, ikonok és Lapvezérlők hivatkozás információkért lásd: [API Management fejlesztői portál sablonok referenciája](api-management-developer-portal-templates-reference.md).

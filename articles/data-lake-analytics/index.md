@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Lake Analytics dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Ismerkedjen meg a big data-elemzéssel a Data Lake Analytics használatával. Az oktatóanyagok bemutatják, hogyan futtathat kötegelt, valós idejű és interaktív elemzéseket, és hogyan írhat U-SQL lekérdezéseket."
+title: "Data Lake Analytics-dokumentáció – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
+description: "Ismerkedjen meg a big data-elemzéssel a Data Lake Analytics használatával. Oktatóanyagok bemutatják, hogyan toorun köteg, valós idejű és az interaktív elemzések, és hogyan toowrite U-SQL lekérdezések."
 services: data-lake-analytics
 author: saveenr
 manager: saveenr
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 050965185c0c4b2d6880b74592e640be85678c06
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 515ad4c2a9023e970f1da05785bf3583d37cfccf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="data-lake-analytics-documentation"></a>Azure Data Lake Analytics – dokumentáció
 
-Ismerje meg, hogyan futtathat big data-elemzési feladatokat a Data Lake Analytics használatával, amelyek akár hatalmas adatkészletekre is skálázhatók. Az oktatóanyagok és az egyéb dokumentáció bemutatják, hogyan hozhat létre és felügyelhet kötegelt, valós idejű és interaktív elemzéseket, és hogyan hajthat végre lekérdezéseket a U-SQL nyelv használatával.
+Ismerje meg, hogyan toouse Data Lake Analytics toorun big Data típusú adatok elemzésére feladatokat, hogy a skála toomassive adatkészletek. Oktatóanyagok és egyéb dokumentációt mutatja be toocreate kötegelt, valós idejű, és interaktív analytics-feladatok és hogyan hello tooquery használata U-SQL nyelv és kezelését.
 
 <ul class="panelContent cardsFTitle">
     <li>

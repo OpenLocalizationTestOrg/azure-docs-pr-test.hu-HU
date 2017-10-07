@@ -1,6 +1,6 @@
 ---
-title: "Az Azure PowerShell-parancsfájl minta - exportálási vagy másolási pillanatképének, virtuális Merevlemezt egy másik régióban található tárfiókot |} Microsoft Docs"
-description: "Az Azure PowerShell-parancsfájl minta - exportálási vagy másolási pillanatképének VHD-t, a tárfiók ugyanabban a különböző régióban"
+title: "PowerShell parancsfájl minta - exportálási vagy másolási pillanatkép, a virtuális merevlemez tooa tárfiók más régióban aaaAzure |} Microsoft Docs"
+description: "Az Azure PowerShell-parancsfájl minta - exportálási vagy másolási pillanatkép VHD tooa tárfiókkal azonos másik régióban található"
 services: virtual-machines-windows
 documentationcenter: storage
 author: ramankumarlive
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 06/05/2017
 ms.author: ramankum
-ms.openlocfilehash: a6bd0686842282ccd7ce0c31bb0152beb30bea66
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c18ad4fa0bf12033fafe941a807e7b4c8d233a30
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="exportcopy-managed-snapshots-as-vhd-to-a-storage-account-in-different-region-with-powershell"></a>Exportálás/másolás felügyelt pillanatfelvételek VHD-t, a tárfiók más régióban a PowerShell használatával
+# <a name="exportcopy-managed-snapshots-as-vhd-tooa-storage-account-in-different-region-with-powershell"></a>Exportálás vagy másolási felügyelt pillanatfelvételek VHD tooa tárfiókkal másik régióban található a PowerShell használatával
 
-Ez a parancsfájl egy másik régióban található tárfiókot felügyelt pillanatkép exportálja. Először hoz létre a SAS URI-jának a pillanatképet, és azt használja egy másik régióban található tárfiókot másolásához. Ez a parancsfájl segítségével biztonsági mentés a felügyelt lemezek vész-helyreállítási másik régióban.  
+Ez a parancsfájl egy felügyelt pillanatkép tooa tárfiók más régióban exportálja. Először hoz létre a hello hello pillanatkép SAS URI-t, és a toocopy használja azt tooa tárfiók más régióban. A parancsfájl toomaintain biztonsági másolat, a kezelt lemezek használható különböző régióban vész-helyreállítási.  
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install.md)]
 
@@ -31,18 +31,18 @@ Ez a parancsfájl egy másik régióban található tárfiókot felügyelt pilla
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-powershell[fő](../../../powershell_scripts/virtual-machine/copy-snapshot-to-storage-account/copy-snapshot-to-storage-account.ps1 "másolási pillanatkép")]
+[!code-powershell[main](../../../powershell_scripts/virtual-machine/copy-snapshot-to-storage-account/copy-snapshot-to-storage-account.ps1 "Copy snapshot")]
 
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-Ez a parancsfájl SAS URI-t a felügyelt pillanatkép létrehozásához a következő parancsok használja, és másolja a pillanatkép SAS URI-t használó tárfiókot. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+Ezt a parancsfájlt használja a következő parancsok toogenerate felügyelt pillanatkép és másolat hello SAS URI-JÁNAK pillanatkép-tooa tárfiók SAS URI-JÁNAK használatával. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
-| [Támogatás-AzureRmSnapshotAccess](/powershell/module/azurerm.compute/New-AzureRmDisk) | A pillanatkép másolja azt a tárfiók használt állít elő, SAS URI-t. |
-| [Új AzureStorageContext](/powershell/module/azure.storage/New-AzureStorageContext) | A tárfiók környezetét a fióknevet és a kulcs segítségével hoz létre. Ebben a környezetben a tárfiók olvasási/írási műveletek végrehajtásához használható. |
-| [Start-AzureStorageBlobCopy](/powershell/module/azure.storage/Start-AzureStorageBlobCopy) | Másolja az alapul szolgáló virtuális merevlemez a pillanatfelvétel a storage-fiók |
+| [Támogatás-AzureRmSnapshotAccess](/powershell/module/azurerm.compute/New-AzureRmDisk) | SAS URI-t hoz létre egy pillanatképet, amely használt toocopy azt tooa tárfiók. |
+| [Új AzureStorageContext](/powershell/module/azure.storage/New-AzureStorageContext) | Létrehoz egy tárfiók környezetét hello fióknevet és kulcsot használ. Ebben a környezetben használt tooperform olvasási/írási műveletek hello storage-fiók is lehet. |
+| [Start-AzureStorageBlobCopy](/powershell/module/azure.storage/Start-AzureStorageBlobCopy) | Másolja a pillanatkép tooa tárfiók alapul szolgáló virtuális merevlemez hello |
 
 ## <a name="next-steps"></a>Következő lépések
 
@@ -50,6 +50,6 @@ Ez a parancsfájl SAS URI-t a felügyelt pillanatkép létrehozásához a követ
 
 [A felügyelt lemezes virtuális gép létrehozása](./virtual-machines-windows-powershell-sample-create-vm-from-managed-os-disks.md?toc=%2fpowershell%2fmodule%2ftoc.json)
 
-Az Azure PowerShell modul további információkért lásd: [Azure PowerShell dokumentációs](/powershell/azure/overview).
+Hello Azure PowerShell modul további információkért lásd: [Azure PowerShell dokumentációs](/powershell/azure/overview).
 
-További virtuális gép PowerShell-parancsfájl példák találhatók a [Azure Windows virtuális dokumentációját](../../app-service-web/app-service-powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+További virtuális gép PowerShell-parancsfájl példák találhatók hello [Azure Windows virtuális dokumentációját](../../app-service-web/app-service-powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).

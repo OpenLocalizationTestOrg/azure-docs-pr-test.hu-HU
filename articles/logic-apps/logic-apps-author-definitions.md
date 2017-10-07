@@ -1,6 +1,6 @@
 ---
-title: Adja meg a JSON - Azure Logic Apps munkafolyamatok |} Microsoft Docs
-description: "Munkafolyamat-definícióhoz írásával a JSON-ban a logic Apps alkalmazások"
+title: a JSON - Azure Logic Apps aaaDefine munkafolyamatok |} Microsoft Docs
+description: "Hogyan toowrite munkafolyamat-definícióhoz a JSON-ban a logic Apps alkalmazások"
 author: jeffhollan
 manager: anneta
 editor: 
@@ -15,23 +15,23 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 03/29/2017
 ms.author: LADocs; jehollan
-ms.openlocfilehash: 7f9e5a10066df8a464c285273e77a85c0d562ebb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0d69d334ecee9c3e7f8684cfde68ef0e85280358
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-workflow-definitions-for-logic-apps-using-json"></a>A logic apps segítségével JSON munkafolyamat-meghatározások létrehozása
 
-A munkafolyamat-definícióhoz hozhat létre [Azure Logic Apps](logic-apps-what-are-logic-apps.md) egyszerű, deklaratív JSON nyelv. Ha még nem tette meg, olvassa el [az első logikai alkalmazás létrehozása a Logic App tervezővel](logic-apps-create-a-logic-app.md). További tájékoztatás a [hivatkozás a Munkafolyamatdefiníciós nyelve a teljes](http://aka.ms/logicappsdocs).
+A munkafolyamat-definícióhoz hozhat létre [Azure Logic Apps](logic-apps-what-are-logic-apps.md) egyszerű, deklaratív JSON nyelv. Ha még nem tette meg, olvassa el [hogyan toocreate az első logikai alkalmazást a Logic App tervezővel](logic-apps-create-a-logic-app.md). Lásd még hello [útmutató hello Munkafolyamatdefiníciós nyelve a teljes](http://aka.ms/logicappsdocs).
 
 ## <a name="repeat-steps-over-a-list"></a>Ismételje meg a során
 
-Olyan tömb, amely legfeljebb 10 000 elem iterációt, és minden elem egy műveletet, használja a [foreach típus](logic-apps-loops-and-scopes.md).
+olyan tömb, amely nem rendelkezik too10, 000 elemek fel és egy műveletet minden elemhez, hello használata révén tooiterate [foreach típus](logic-apps-loops-and-scopes.md).
 
 ## <a name="handle-failures-if-something-goes-wrong"></a>Kijavíthassa a hibákat, ha valamilyen hiba
 
-Általában olyan szeretne hozzáadni egy *szervizelési lépés* – néhány logika, amely végrehajtja a *csak, ha* egy vagy több, a hívás sikertelen. Ebben a példában adatok lekérése a különböző helyek, de a hívás sikertelen lesz, ha azt szeretné-e valahol utáni egy üzenetet, így azt követheti nyomon, hogy hiba le később:  
+Általában érdemes tooinclude egy *szervizelési lépés* – néhány logika, amely végrehajtja a *csak, ha* egy vagy több, a hívás sikertelen. Ez a példa adatok lekérése a különböző helyek, de hello hívás sikertelen lesz, ha azt szeretnénk, egy üzenet tooPOST valahol, azt követheti nyomon, hogy hiba le később:  
 
 ```
 {
@@ -66,13 +66,13 @@ Olyan tömb, amely legfeljebb 10 000 elem iterációt, és minden elem egy műve
 }
 ```
 
-Annak meghatározása, hogy `postToErrorMessageQueue` csak futtat `readData` rendelkezik `Failed`, használja a `runAfter` tulajdonságot, például a lehetséges értékek listáját adja meg, hogy `runAfter` lehet `["Succeeded", "Failed"]`.
+toospecify, amely `postToErrorMessageQueue` csak futtat `readData` rendelkezik `Failed`, hello használata `runAfter` tulajdonság, például toospecify a lehetséges értékek listáját, hogy `runAfter` lehet `["Succeeded", "Failed"]`.
 
-Végül, ez a példa most kezeli a hiba, mert azt már nem jelölje meg a Futtatás mint `Failed`. Mivel azt adja meg a lépés kezelése ebben a példában ez a hiba, rendelkezik-e a Futtatás `Succeeded` bár egy lépésben `Failed`.
+Végül, ebben a példában a hello hiba most kezeli, mivel azt már nem megjelölni futtató hello `Failed`. Hozzáadott hello lépés kezelése ebben a példában ez a hiba, mert rendelkezik-e futtatni hello `Succeeded` bár egy lépésben `Failed`.
 
 ## <a name="execute-two-or-more-steps-in-parallel"></a>Két vagy több lépést végre párhuzamosan
 
-Ezzel párhuzamosan több műveletek futtatására a `runAfter` tulajdonságot meg kell futásidőben. 
+toorun párhuzamosan több művelet hello `runAfter` tulajdonságot meg kell futásidőben. 
 
 ```
 {
@@ -122,13 +122,13 @@ Ezzel párhuzamosan több műveletek futtatására a `runAfter` tulajdonságot m
 }
 ```
 
-Ebben a példában is `branch1` és `branch2` futtatása után értékre van beállítva `readData`. Ennek eredményeképpen a mindkét ágak párhuzamosan futnak. Mindkét ágak időbélyegzője megegyezik.
+Ebben a példában is `branch1` és `branch2` toorun után vannak beállítva `readData`. Ennek eredményeképpen a mindkét ágak párhuzamosan futnak. mindkét ágak hello időbélyegzőjét megegyezik.
 
 ![Párhuzamos](media/logic-apps-author-definitions/parallel.png)
 
 ## <a name="join-two-parallel-branches"></a>Csatlakozás két párhuzamos ág
 
-Két műveletek elemek hozzáadásával párhuzamosan futó beállított csatlakozhat a `runAfter` tulajdonság az előző példában látható módon.
+Csatlakozhat a két elem toohello hozzáadásával toorun beállított párhuzamos műveletek `runAfter` tulajdonság hello előző példában látható módon.
 
 ```
 {
@@ -199,9 +199,9 @@ Két műveletek elemek hozzáadásával párhuzamosan futó beállított csatlak
 
 ![Párhuzamos](media/logic-apps-author-definitions/join.png)
 
-## <a name="map-list-items-to-a-different-configuration"></a>Egy másik konfigurációs listaelemek leképezése
+## <a name="map-list-items-tooa-different-configuration"></a>Térkép elemek tooa különböző konfigurációjának felsorolása
 
-Ezt követően tegyük fel, hogy azt szeretné, hogy a tulajdonság értékének alapján különböző tartalom. Paraméterként létrehozhatunk olyan értékek célhelyekre térképet:  
+Ezt követően tegyük fel, hogy szeretnénk tooget eltérő tartalomra hello tulajdonság értéke alapján. Paraméterként létrehozhatunk olyan értékek toodestinations térképére:  
 
 ```
 {
@@ -271,19 +271,19 @@ Ezt követően tegyük fel, hogy azt szeretné, hogy a tulajdonság értékének
 }
 ```
 
-Ebben az esetben azt először kapnak a cikkek listáját. A paraméterként megadott kategória alapján, a második lépésben használja a térkép kereséséhez a tartalom első URL-CÍMÉT.
+Ebben az esetben azt először kapnak a cikkek listáját. A paraméterként megadott hello kategória alapján, hello második lépésben használ a térkép toolook hello URL-cím mentése hello tartalom beolvasása.
 
-Néhány eset Itt figyelembe venni: 
+Néhány eset toonote itt: 
 
-*   A [ `intersection()` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#intersection) függvény ellenőrzi, hogy a kategória megegyezik-e ismert meghatározott kategóriák közül.
+*   Hello [ `intersection()` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#intersection) függvény ellenőrzi, hogy hello kategória sem felel meg egyik ismert meghatározott kategóriákba hello.
 
-*   Miután azt lekérése a kategóriát, azt is lekéréses szögletes zárójelbe használatával leképezés elem:`parameters[...]`
+*   Után azt lekérése hello kategória, azt is lekéréses hello elem hello leképezés szögletes zárójelbe használatával:`parameters[...]`
 
 ## <a name="process-strings"></a>Folyamat karakterláncok
 
-Különböző funkciókat karakterláncok módosítására használhatja. Tegyük fel például, a karakterlánc, amely azt szeretnénk, hogy egy system van, de jelenleg nem megfelelő kezelését a karakteres kódolási kapcsolatos benne. Egy elem Base64 kódolással. Ez a karakterlánc kódolása. Azonban egy URL-címben escape-karaktersorozat elkerüléséhez fogjuk néhány karakterek. 
+Használhatja a különböző funkciók toomanipulate karakterláncok. Tegyük fel, hogy egy karakterlánc toopass tooa rendszer szeretnénk, de jelenleg nem megfelelő kezelését a karakteres kódolási kapcsolatos biztosnak kell. Egy elem toobase64 Ez a karakterlánc kódolása. Azonban egy URL-címben escape-karaktersorozat tooavoid fogjuk tooreplace néhány karaktert. 
 
-Szeretnénk továbbá rendelés nevének egy részét, mert az első öt karakterek nem használhatók.
+Szeretnénk továbbá hello rendelés nevének egy részét, mert hello első öt karakterek nem használhatók.
 
 ```
 {
@@ -318,23 +318,23 @@ Szeretnénk továbbá rendelés nevének egy részét, mert az első öt karakte
 }
 ```
 
-Munka a belül a kívül:
+Toooutside belül működik:
 
-1. Beolvasása a [ `length()` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#length) a megrendelő megadásához, így azt vissza karakterek száma.
+1. Első hello [ `length()` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#length) hello megrendelő megadásához, így azt vissza hello karakterek összesített száma.
 
 2. Kivonás 5, mert azt szeretnénk, ha egy rövidebb karakterláncot.
 
-3. Ténylegesen, igénybe vehet a [ `substring()` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#substring). Először indexnél `5` és nyissa meg a fennmaradó karakterlánc.
+3. Hello ténylegesen, érvénybe [ `substring()` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#substring). Először indexnél `5` és folytassa a hátralévő részét hello karakterlánc hello.
 
-4. A keresendő karakterláncrészletet átalakítani egy [ `base64()` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#base64) karakterlánc.
+4. Alakítsa át a substring tooa [ `base64()` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#base64) karakterlánc.
 
-5. [`replace()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#replace)minden a `+` karakterből álló `-` karaktereket.
+5. [`replace()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#replace)minden hello `+` karakterből álló `-` karaktereket.
 
-6. [`replace()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#replace)minden a `/` karakterből álló `_` karaktereket.
+6. [`replace()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#replace)minden hello `/` karakterből álló `_` karaktereket.
 
 ## <a name="work-with-date-times"></a>Időpontok használata
 
-Időpontok hasznos lehet, különösen olyan adatforrást, amelynek a természetes nem támogatja olvasnak be adatokat próbál *eseményindítók*. Használhatja a időpontok mennyi ideig számos lépés végzése kereséséhez.
+Időpontok hasznos lehet, különösen olyan adatforrást, amelynek a természetes nem támogatja toopull adatait próbálja *eseményindítók*. Használhatja a időpontok mennyi ideig számos lépés végzése kereséséhez.
 
 ```
 {
@@ -386,18 +386,18 @@ Időpontok hasznos lehet, különösen olyan adatforrást, amelynek a természet
 }
 ```
 
-Ez a példa azt bontsa ki a `startTime` az előző lépésben. Ezután azt beolvasni az aktuális idejét, és egy második kivonása:
+Ebben a példában a Microsoft hello kibontása `startTime` hello előző lépésben. Ezután azt beolvasni hello aktuális idejét, és egy második kivonása:
 
 [`addseconds(..., -1)`](https://msdn.microsoft.com/library/azure/mt643789.aspx#addseconds) 
 
-Például használhatja más időegységekkel `minutes` vagy `hours`. E két érték végül azt is összehasonlíthatja. Ha az első érték kisebb, mint a második érték, akkor több mint egy második megbízást először óta eltelt.
+Például használhatja más időegységekkel `minutes` vagy `hours`. E két érték végül azt is összehasonlíthatja. Ha hello első érték kisebb, mint a második érték hello, akkor több mint egy második hello először megbízást óta eltelt.
 
-Dátumok formázásához karakterlánc is használhatja azt. Például a RFC1123 beszerzéséhez használjuk [ `utcnow('r')` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#utcnow). Dátum formázás, lásd: [Munkafolyamatdefiníciós nyelve](https://msdn.microsoft.com/library/azure/mt643789.aspx#utcnow).
+tooformat dátum, karakterlánc is is használhatók. Például a tooget hello RFC1123, használjuk [ `utcnow('r')` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#utcnow). toolearn dátum formázása, lásd: [Munkafolyamatdefiníciós nyelve](https://msdn.microsoft.com/library/azure/mt643789.aspx#utcnow).
 
 ## <a name="deployment-parameters-for-different-environments"></a>A különböző környezetek üzembe helyezéshez megadott paraméterek
 
-Gyakran központi telepítési életciklusának rendelkezik, a környezet, egy átmeneti és éles környezetben. Például előfordulhat, hogy ugyanazon definíció ezekben a környezetekben használható, de különböző adatbázist használja. Hasonlóképpen érdemes ugyanazon definíció különböző régiókban használja a magas rendelkezésre állású, de szeretné, hogy felvegye a adott régióban adatbázis minden logic app-példány.
-Ebben a forgatókönyvben eltér paraméterek véve *futásidejű* ahol Ehelyett használjon a `trigger()` az előző példában szemléltetett működéséhez.
+Gyakran központi telepítési életciklusának rendelkezik, a környezet, egy átmeneti és éles környezetben. Használhat például hello ugyanazon definíció ezekben a környezetekben, de különböző adatbázist használja. Hasonlóképpen, érdemes toouse ugyanazon definíció hello között különböző régiókban a magas rendelkezésre állású, de szeretné, hogy minden logic app példány tootalk toothat terület adatbázis.
+Ebben a forgatókönyvben eltér paraméterek véve *futásidejű* ahol Ehelyett használjon hello `trigger()` hello előző példában szemléltetett működéséhez.
 
 Kezdésként használhatja az ebben a példában például egy alapszintű definíciója:
 
@@ -429,13 +429,13 @@ Kezdésként használhatja az ebben a példában például egy alapszintű defin
 }
 ```
 
-A tényleges `PUT` kérhetnek a logic apps, megadhatja, hogy a paraméter `uri`. Mivel az alapértelmezett értéke már nem létezik, a logic app forgalma kell ezt a paramétert:
+A tényleges hello `PUT` kérés hello a logic apps, megadhatja a hello paraméter `uri`. Mivel az alapértelmezett értéke már nem létezik, hello logic app hasznos kell ezt a paramétert:
 
 ```
 {
     "properties": {},
         "definition": {
-          // Use the definition from above here
+          // Use hello definition from above here
         },
         "parameters": {
             "connection": {
@@ -447,6 +447,6 @@ A tényleges `PUT` kérhetnek a logic apps, megadhatja, hogy a paraméter `uri`.
 }
 ``` 
 
-Minden környezetben, adjon meg más értéket a a `connection` paraméter. 
+Minden környezetben biztosítható egy másik értéket hello `connection` paraméter. 
 
-Az összes lehetséges, hogy rendelkezik, és logic Apps alkalmazásokat kezeléséhez, tekintse meg a [REST API-dokumentáció](https://msdn.microsoft.com/library/azure/mt643787.aspx). 
+Az összes hello beállításokat kell és logic Apps alkalmazásokat kezeléséhez, a következő témakörben: hello [REST API-dokumentáció](https://msdn.microsoft.com/library/azure/mt643787.aspx). 

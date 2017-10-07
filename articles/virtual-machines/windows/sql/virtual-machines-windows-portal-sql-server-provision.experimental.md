@@ -1,6 +1,6 @@
 ---
-title: "SQL Server-rendszerű virtuális gép kiépítése | Microsoft Docs"
-description: "Az Azure-ban létrehozhat SQL Server rendszerű virtuális gépet, és csatlakozhat hozzá a portál használatával. Ez az oktatóanyag a Resource Manager módot használja."
+title: "egy SQL Server virtuális gép aaaProvision |} Microsoft Docs"
+description: "Hozzon létre, és csatlakoztassa tooa SQL Server virtuális gépet az Azure-ban hello portálon. Ez az oktatóanyag hello Resource Manager módot használja."
 services: virtual-machines-windows
 documentationcenter: na
 author: rothja
@@ -16,57 +16,57 @@ ms.workload: infrastructure-services
 ms.date: 04/03/2017
 ms.author: jroth
 experimental_id: a641df96-f27d-40
-ms.openlocfilehash: c51908058bb785cb33da21de76ba3c956b6b9f1f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aaad422d6ed47f5ca00b1ef484ac270a58e24f99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="provision-a-sql-server-virtual-machine-in-the-azure-portal"></a>SQL Server rendszerű virtuális gép létrehozása az Azure portálon
+# <a name="provision-a-sql-server-virtual-machine-in-hello-azure-portal"></a>Egy SQL Server rendszerű virtuális gép a hello Azure portál
 > [!div class="op_single_selector"]
 > * [Portál](virtual-machines-windows-portal-sql-server-provision.md)
 > * [PowerShell](virtual-machines-windows-ps-sql-create.md)
 > 
 > 
 
-Ez az átfogó oktatóanyag bemutatja, hogyan hozhat létre az SQL Servert futtató virtuális gépet az Azure portál használatával.
+A végpont oktatóanyag bemutatja, hogyan toouse hello Azure Portal tooprovision egy SQL Server rendszerű virtuális gép.
 
-Az Azure virtuálisgép-katalógusában számos olyan rendszerkép található, amely a Microsoft SQL Servert tartalmazza. Mindössze néhány kattintással kiválaszthatja az SQL virtuálisgép-rendszerképek egyikét a katalógusban, és létrehozhatja azt az Azure környezetben.
+hello Azure virtuális gép (VM) számos olyan rendszerkép található, amely tartalmazza a Microsoft SQL Server rendelkezik. Mindössze néhány kattintással jelöljön ki egy hello SQL virtuális gép lemezképek hello gyűjteményből, és építse ki azt az Azure környezetben.
 
 Az oktatóanyag során az alábbi lépéseket fogja végrehajtani:
 
-* [SQL virtuálisgép-rendszerkép kiválasztása a katalógusból](#select-a-sql-vm-image-from-the-gallery)
-* [A virtuális gép konfigurálása és létrehozása](#configure-the-vm)
-* [A virtuális gép megnyitása a távoli asztallal](#open-the-vm-with-remote-desktop)
-* [Távoli csatlakozás az SQL Serverhez](#connect-to-sql-server-remotely)
+* [Válassza ki az SQL Virtuálisgép-rendszerkép hello gyűjteményből](#select-a-sql-vm-image-from-the-gallery)
+* [Konfigurálja és hello virtuális gép létrehozása](#configure-the-vm)
+* [Nyissa meg a virtuális gép hello a távoli asztal](#open-the-vm-with-remote-desktop)
+* [Távoli csatlakozás tooSQL kiszolgáló](#connect-to-sql-server-remotely)
 
-## <a name="select-a-sql-vm-image-from-the-gallery"></a>SQL virtuálisgép-rendszerkép kiválasztása a katalógusból
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com) a saját fiókjával.
+## <a name="select-a-sql-vm-image-from-hello-gallery"></a>Válassza ki az SQL Virtuálisgép-rendszerkép hello gyűjteményből
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) a fiókjával.
 
    > [!NOTE]
    > Ha nem rendelkezik Azure-fiókkal, az [Azure ingyenes próbát](https://azure.microsoft.com/pricing/free-trial/) biztosít.
 
-2. Az Azure Portalon kattintson az **Új** elemre. A portál megnyitja az **Új** panelt. Az SQL Server virtuálisgép-erőforrásai a Marketplace **Számítás** csoportjában találhatók.
-3. Az **Új** panelen kattintson a **Számítás**, majd az **Összes megjelenítése** elemre.
-4. A **Szűrő** szövegmezőbe írja be az SQL Server kifejezést, majd nyomja le az ENTER billentyűt.
+2. A hello Azure-portálon, kattintson **új**. hello portál megnyitja hello **új** panelen. SQL Server Virtuálisgép-erőforrások hello szerepelnek hello **számítási** hello piactér csoportjához.
+3. A hello **új** panelen kattintson a **számítási** majd **láthatja az összes**.
+4. A hello **szűrő** szöveg típusú SQL Server mezőbe, majd nyomja le az ENTER billentyűt hello.
 
    ![Az Azure Virtuális gépek panelje](./media/virtual-machines-windows-portal-sql-server-provision/azure-compute-blade2.png)
 
-5. Tekintse át az elérhető SQL Server-rendszerképeket. Minden rendszerkép egy SQL Server-verziót és egy operációs rendszert azonosít. 
-6. Válassza ki a Windows Server 2016-on futó SQL Server 2016 SP1 Developer rendszerképét.
+5. Tekintse át a hello elérhető SQL Server-lemezképekben. Minden rendszerkép egy SQL Server-verziót és egy operációs rendszert azonosít. 
+6. Hello lemezkép kiválasztása az SQL Server 2016 SP1 fejlesztői a Windows Server 2016.
 
    > [!TIP]
-   > Ez az oktatóanyag azért a Developer kiadást alkalmazza, mert az az SQL Server teljes körű verziója, amely fejlesztési-tesztelési célokra ingyenesen használható. Csak a virtuális gép futtatásával járó költségeket kell kifizetni.
+   > mivel már egy SQL Server fejlesztési, tesztelési célokra számára teljes körű kiadása, ebben az oktatóanyagban használt hello fejlesztői verzióját. Csak a futó virtuális gép hello hello költség fizetnie.
 
    > [!NOTE]
-   > Az SQL-alapú virtuális gépek rendszerképeinek percalapú díjszabása tartalmazza az SQL-kiszolgáló licencelési költségeit (kivéve a Developer és az Express kiadások esetén). Az SQL Server Developer ingyenesen használható fejlesztési/tesztelési célokra (éles környezetben nem), az SQL Express pedig ingyenesen használható kisebb számítási feladatokhoz (1 GB-nál kevesebb memória, 10 GB-nál kevesebb tárhely).
-   > Van egy másik lehetőség is: a saját licenc használata (BYOL), amely esetben csak a virtuális gépért kell fizetni. Az ilyen rendszerképek nevei {BYOL} előtagot kapnak. A lehetőségekkel kapcsolatos további információkért tekintse meg [az SQL Server Azure virtuális gépek díjszabási útmutatóját](virtual-machines-windows-sql-server-pricing-guidance.md).
+   > SQL Virtuálisgép-rendszerképek amit fel lehetne venni hello licencelési költségeket az SQL Server hello hello (kivéve a hello fejlesztői és az Express kiadás) hoz létre virtuális gép árképzése perc. Az SQL Server Developer ingyenesen használható fejlesztési/tesztelési célokra (éles környezetben nem), az SQL Express pedig ingyenesen használható kisebb számítási feladatokhoz (1 GB-nál kevesebb memória, 10 GB-nál kevesebb tárhely).
+   > Egy másik beállítás toobring-a-saját-licenc (használata BYOL), és csak a virtuális gép hello fizetési van. Az ilyen rendszerképek nevei {BYOL} előtagot kapnak. A lehetőségekkel kapcsolatos további információkért tekintse meg [az SQL Server Azure virtuális gépek díjszabási útmutatóját](virtual-machines-windows-sql-server-pricing-guidance.md).
 
-7. Ellenőrizze, hogy a **Telepítési modell kiválasztása** alatt a **Resource Manager** van-e kiválasztva. Az új virtuális gépek esetén az ajánlott üzemi modell a Resource Manager. Kattintson a **Létrehozás** gombra.
+7. Ellenőrizze, hogy a **Telepítési modell kiválasztása** alatt a **Resource Manager** van-e kiválasztva. Erőforrás-kezelő rendszer hello ajánlott az új virtuális gépek telepítési modelljét. Kattintson a **Create** (Létrehozás) gombra.
 
     ![SQL virtuális gép létrehozása a Resource Manager használatával](./media/virtual-machines-windows-portal-sql-server-provision/azure-compute-sql-deployment-model.png)
 
-## <a name="configure-the-vm"></a>A virtuális gép konfigurálása
+## <a name="configure-hello-vm"></a>Virtuális gép hello konfigurálása
 Az SQL Server rendszerű virtuális gépek konfigurálásra öt panel szolgál.
 
 | Lépés | Leírás |
@@ -75,35 +75,35 @@ Az SQL Server rendszerű virtuális gépek konfigurálásra öt panel szolgál.
 | **Méret** |[A virtuális gép méretének kiválasztása](#2-choose-virtual-machine-size) |
 | **Beállítások** |[Választható funkciók konfigurálása](#3-configure-optional-features) |
 | **Az SQL Server beállításai** |[Az SQL Server beállításainak konfigurálása](#4-configure-sql-server-settings) |
-| **Összefoglalás** |[Az összefoglalás áttekintése](#5-review-the-summary) |
+| **Összefoglalás** |[Felülvizsgálati hello összefoglaló](#5-review-the-summary) |
 
 ## <a name="1-configure-basic-settings"></a>1. Az alapvető beállítások konfigurálása
-Az **Alapvető beállítások** panelen adja meg a következő információkat:
+A hello **alapjai** panelen adja meg a következő információ hello:
 
 * Adjon meg egy egyedi **nevet** a virtuális gép számára.
-* Adjon meg egy **felhasználónevet** a virtuális gép helyi rendszergazdai fiókja számára. Ezt a fiókot a szolgáltatás hozzáadja az SQL Server **sysadmin** rögzített kiszolgálói szerepköréhez.
+* Adjon meg egy **felhasználónév** hello VM hello helyi rendszergazdai fiókot. Ez a fiók adott SQL Server toohello **sysadmin** rögzített kiszolgálói szerepkör.
 * Adjon meg egy erős **jelszót**.
-* Ha több előfizetéssel is rendelkezik, ellenőrizze, hogy az új virtuális géphez a helyes előfizetést adta-e meg.
-* Az **Erőforráscsoport** szövegmezőjében adja meg egy új erőforráscsoport nevét. Meglévő erőforráscsoport használatához kattintson a **Meglévő használata** lehetőségre. Az erőforráscsoportok az Azure-ban egymáshoz kapcsolódó erőforrásokból (virtuális gépekből, tárfiókokból, virtuális hálózatokból stb.) álló gyűjtemények.
+* Ha több előfizetéssel, győződjön meg arról, hogy hello előfizetés a megfelelő hello az új virtuális Gépet.
+* A hello **erőforráscsoport** mezőbe írja be az új erőforráscsoport nevét. Másik lehetőségként toouse egy meglévő erőforráscsoportot kattintson **meglévő**. Az erőforráscsoportok az Azure-ban egymáshoz kapcsolódó erőforrásokból (virtuális gépekből, tárfiókokból, virtuális hálózatokból stb.) álló gyűjtemények.
   
   > [!NOTE]
-  > Az Azure szolgáltatásban futó SQL Server üzemelő példányok tesztelésekor vagy a velük való megismerkedéskor érdemes egy új erőforráscsoportot használni. A tesztelés befejezése után törölje az erőforráscsoportot a virtuális gép és az erőforráscsoporthoz társított összes erőforrás automatikus törléséhez. További információ az erőforráscsoportokkal kapcsolatban: [Azure Resource Manager Overview](../../../azure-resource-manager/resource-group-overview.md) (Az Azure Resource Manager áttekintése).
+  > Az Azure szolgáltatásban futó SQL Server üzemelő példányok tesztelésekor vagy a velük való megismerkedéskor érdemes egy új erőforráscsoportot használni. A tesztelés befejezése után törölje a hello erőforrás csoport tooautomatically delete hello virtuális gép és az erőforráscsoporthoz társított összes erőforrás. További információ az erőforráscsoportokkal kapcsolatban: [Azure Resource Manager Overview](../../../azure-resource-manager/resource-group-overview.md) (Az Azure Resource Manager áttekintése).
   > 
   > 
 * Válasszon egy **helyet** az üzemelő példánynak.
-* Kattintson az **OK** gombra a beállítások mentéséhez.
+* Kattintson a **OK** toosave hello beállításait.
   
     ![Alapvető SQL-beállítások panel](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-basic.png)
 
 ## <a name="2-choose-virtual-machine-size"></a>2. A virtuális gép méretének kiválasztása
-A **Méret** lépésben válassza ki a virtuális gép méretét a **Méret kiválasztása** panelen. A panel kezdetben a választott rendszerkép alapján jeleníti meg az ajánlott gépméreteket.
+A hello **mérete** . lépés:, válassza ki a virtuális gép méretét a hello **méret kiválasztása** panelen. hello panel először ajánlott méreteket a kiválasztott hello lemezkép alapján jeleníti meg.
 
 > [!IMPORTANT]
-> A **Méret kiválasztása** panelen megjelenő, becsült havi költségek nem tartalmazzák az SQL Server licencelési költségeit. Ez a becsült havi költség egyedül a virtuális gép költsége. Az SQL Server Express és Developer kiadásai esetében ez a teljes becsült költség. Más kiadások esetében tekintse meg a [Windows rendszerű virtuális gépek árképzését ismertető oldalt](https://azure.microsoft.com/pricing/details/virtual-machines/windows/), és válassza ki az SQL Server megfelelő kiadását. Lásd még [az SQL Server Azure virtuális gépek díjszabási útmutatóját](virtual-machines-windows-sql-server-pricing-guidance.md).
+> hello becsült havi költségét hello megjelenő **méret kiválasztása** panel nem tartalmazza az SQL Server licencelési költségeit. A becsült havi pedig hello önmagában VM hello költségét. Hello Express és Developer kiadásában SQL Server ez pedig hello teljes becsült költség. Más kiadásain, lásd: hello [Windows virtuális gépek díjszabása](https://azure.microsoft.com/pricing/details/virtual-machines/windows/) válassza ki a cél az SQL Server kiadása. Lásd még: hello [útmutatást az SQL Server Azure virtuális gépek díjszabása](virtual-machines-windows-sql-server-pricing-guidance.md).
 
 ![SQL virtuális gépek méretbeállításai](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-vm-choose-a-size.png)
 
-A termelési számítási feladatokhoz ajánlott olyan virtuálisgép-méretet választani, amely támogatja a [Premium Storage](../../../storage/storage-premium-storage.md) tárolást. Ha nincs szüksége ekkora szintű teljesítményre, az **Összes megjelenítés** gombbal megjelenítheti az összes lehetséges gépméretet. Fejlesztési vagy tesztelési környezetben például érdemes kisebb méretű gépet használni.
+A termelési számítási feladatokhoz ajánlott olyan virtuálisgép-méretet választani, amely támogatja a [Premium Storage](../../../storage/storage-premium-storage.md) tárolást. Ha nincs szüksége ekkora szintű teljesítményre, használja a hello **összes** gombbal megjelenítheti az összes lehetséges gépméretet. Fejlesztési vagy tesztelési környezetben például érdemes kisebb méretű gépet használni.
 
 > [!NOTE]
 > További információ a virtuális gépek méretével kapcsolatban: [Virtuális gépek méretei](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Az SQL Server rendszerű virtuális gépek méretével kapcsolatos megfontolások: [Performance best practices for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-performance.md) (Az SQL Server teljesítményéhez kapcsolódó ajánlott eljárások Azure virtuális gépek esetén).
@@ -111,7 +111,7 @@ A termelési számítási feladatokhoz ajánlott olyan virtuálisgép-méretet v
 Válassza ki a virtuális gép méretét, majd kattintson a **Kijelölés** elemre.
 
 ## <a name="3-configure-optional-features"></a>3. Választható funkciók konfigurálása
-A **Beállítások** panelen konfigurálhatja az Azure-tárolót, a hálózatot és a virtuális gép figyelését.
+A hello **beállítások** panelen konfigurálása az Azure tárolási, hálózatkezelési és hello virtuális gép figyelését.
 
 * A **Tárolás** alatt a **Lemez típusa** értékeként adja meg a Standard vagy a Prémium (SSD) lehetőséget. A termelési számítási feladatokhoz a Prémium szintű Storage ajánlott.
 
@@ -120,15 +120,15 @@ A **Beállítások** panelen konfigurálhatja az Azure-tárolót, a hálózatot 
 > 
 > 
 
-* A **Tárfiók** alatt elfogadhatja az automatikusan megadott tárfióknevet. A **Tárfiók** elemre kattintva választhat egy meglévő fiókot is, és konfigurálhatja a tárfiók típusát. Alapértelmezés szerint az Azure egy új fiókot hoz létre helyileg redundáns tárolással. További információ a tárolási lehetőségekről: [Azure Storage replication](../../../storage/storage-redundancy.md) (Az Azure Storage replikációja).
-* A **Hálózat** alatt elfogadhatja az automatikusan kitöltött értékeket. Az egyes funkciókra kattintva manuálisan is konfigurálhatja a **virtuális hálózatot**, az **alhálózatot**, a **nyilvános IP-címet** és a **hálózati biztonsági csoportot**. A jelen oktatóanyag esetén használja az alapértelmezett értékeket.
-* Alapértelmezés szerint az Azure ugyanazzal a tárfiókkal engedélyezi a **Figyelést**, amely a virtuális géphez ki lett jelölve. Ezeket a beállításokat itt módosíthatja.
-* A **Rendelkezésre állási csoport** alatt adjon meg egy rendelkezésre állási csoportot. A jelen oktatóanyag esetén válassza a **Nincs** lehetőséget. Ha SQL AlwaysOn rendelkezésre állási csoportok beállítását tervezi, konfigurálja a rendelkezésre állást, hogy később ne kelljen újra létrehoznia a virtuális gépet.  További információk: [Manage the Availability of Virtual Machines](../manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Virtuális gépek rendelkezésre állásának kezelése).
+* A **tárfiók**, elfogadhatja hello automatikusan tárfióknevet. Is rákattinthat a **tárfiók** toochoose egy meglévő fiókot, és állítsa a hello tárfiók típusa. Alapértelmezés szerint az Azure egy új fiókot hoz létre helyileg redundáns tárolással. További információ a tárolási lehetőségekről: [Azure Storage replication](../../../storage/storage-redundancy.md) (Az Azure Storage replikációja).
+* A **hálózati**, elfogadhatja az automatikusan kitölti a rendszer hello értékeket. Egyes funkciókra kattintva is toomanually hello konfigurálása **virtuális hálózati**, **alhálózati**, **nyilvános IP-cím**, és **hálózati biztonsági csoport**. Ez az oktatóanyag hello céljából tartsa hello alapértelmezett értékeket.
+* Az Azure lehetővé teszi, hogy **figyelés** alapértelmezés szerint a hello hello VM kijelölt ugyanazt a tárfiókot. Ezeket a beállításokat itt módosíthatja.
+* A **Rendelkezésre állási csoport** alatt adjon meg egy rendelkezésre állási csoportot. Ez az oktatóanyag hello céljából, kiválaszthatja a **nincs**. Ha azt tervezi, hogy az SQL AlwaysOn rendelkezésre állási csoportok mentése tooset, hello rendelkezésre állási tooavoid ismételt létrehozás hello virtuális gépeket konfigurálhatja.  További információkért lásd: [kezelése hello virtuális gépek rendelkezésre állási](../manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 Ha végzett a beállítások konfigurálásával, kattintson az **OK** gombra.
 
 ## <a name="4-configure-sql-server-settings"></a>4. Az SQL Server beállításainak konfigurálása
-Az **SQL Server beállításai** panelen konfigurálhatja az SQL Server adott beállításait és optimalizálási lehetőségeit. Az SQL Server konfigurálható beállításai közé az alábbi beállítások tartoznak.
+A hello **SQL Server-beállítások** panelen adott beállításait és optimalizálási lehetőségeit, az SQL Server konfigurálása. hello az SQL Server konfigurálható a következők: a következő beállítások hello.
 
 | Beállítás |
 | --- |
@@ -141,48 +141,48 @@ Az **SQL Server beállításai** panelen konfigurálhatja az SQL Server adott be
 | [R-szolgáltatások](#r-services) |
 
 ### <a name="connectivity"></a>Kapcsolatok
-Az **SQL kapcsolatok** alatt adja meg, milyen típusú hozzáférést szeretne az ezen a virtuális gépen futó SQL Server-példányhoz. A jelen oktatóanyag esetén válassza a **Nyilvános (internet)** lehetőséget, hogy az SQL Serverhez csatlakozhassanak gépek vagy szolgáltatások az interneten keresztül. Ha ezt a lehetőséget választja, az Azure automatikusan úgy konfigurálja a tűzfalat és a hálózati biztonsági csoportot, hogy az 1433-as porton engedélyezve legyen a forgalom.  
+A **SQL-kapcsolat**, hello adja meg a hozzáférés toohello SQL Server-példány a virtuális Gépet szeretne. Ez az oktatóanyag hello céljából, jelölje ki **nyilvános (internet)** tooallow kapcsolatok tooSQL Server gépek és szolgáltatások a hello internet. Ezt a lehetőséget választja, az Azure automatikusan konfigurálja hello tűzfal és hello hálózati biztonsági csoport tooallow forgalom 1433-as portot.  
 
 ![SQL kapcsolati lehetőségek](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-connectivity-alt.png)
 
-Ahhoz, hogy az SQL Serverhez az interneten keresztül csatlakozni lehessen, engedélyeznie kell az SQL Server-hitelesítést is, aminek ismertetését a következő szakaszban olvashatja.
+tooconnect tooSQL kiszolgálón keresztül hello internet, engedélyeznie kell az SQL Server hitelesítést, amely hello a következő szakaszban ismertetett.
 
 > [!NOTE]
-> Az SQL Server rendszerű virtuális gép hálózati kommunikációja többféleképpen is korlátozható. A virtuális gép létrehozása után a hálózati biztonsági csoport szerkesztésével hozzáadhat több korlátozást is. További információ: [What is a Network Security Group (NSG)?](../../../virtual-network/virtual-networks-nsg.md) (Mi az a hálózati biztonsági csoport?).
+> Ez lehetséges tooadd további korlátozásokat hello hálózati kommunikációs tooyour SQL Server virtuális gép van. További korlátozások adhat szerkesztési hello hálózati biztonsági csoport hello virtuális gép létrehozása után. További információ: [What is a Network Security Group (NSG)?](../../../virtual-network/virtual-networks-nsg.md) (Mi az a hálózati biztonsági csoport?).
 > 
 > 
 
-Ha nem szeretné engedélyezni az adatbázis-alrendszerhez az interneten keresztül való csatlakozást, válassza az alábbi lehetőségek valamelyikét:
+Ha inkább toonot engedélyezése kapcsolatok toohello adatbázismotor keresztül hello internet, válasszon egyet az alábbi beállítások hello:
 
-* A **Helyi (csak virtuális gépen belül)** beállítással az SQL Serverhez csak a virtuális gépen belülről lehet csatlakozni.
-* A **Magánjellegű (virtuális hálózaton belül)** beállítással az SQL Serverhez az azonos virtuális hálózaton található gépek és szolgáltatások csatlakozhatnak.
+* **Helyi (belül csak virtuális gép)** tooallow kapcsolatok tooSQL kiszolgálót csak a virtuális gép hello belül.
+* **Magán (virtuális hálózaton belül)** tooallow kapcsolatok tooSQL Server gépek és szolgáltatások hello az azonos virtuális hálózatban.
 
 > [!NOTE]
-> Az SQL Server Express kiadás virtuálisgép-rendszerképe nem engedélyezi automatikusan a TCP/IP-protokollt. Ez még a nyilvános és a magán kapcsolati lehetőségekre is érvényes. Az Express kiadás esetén a virtuális gép létrehozása után [manuálisan kell engedélyezni a TCP/IP-protokollt](#configure-sql-server-to-listen-on-the-tcp-protocol) az SQL Server Configuration Manager használatával.
+> az SQL Server Express edition hello virtuálisgép-lemezkép nem automatikusan hello TCP/IP protokoll engedélyezéséhez. Ez érvényét veszti, még a hello nyilvános és Magánfelhő kapcsolat beállítások. A Express kiadását kell használnia az SQL Server Configuration Manager túl[manuálisan engedélyezi a hello TCP/IP-protokoll](#configure-sql-server-to-listen-on-the-tcp-protocol) hello létrehozása után a virtuális gép.
 > 
 > 
 
-Általánosságban elmondható, hogy a forgatókönyv által lehetővé tett legszigorúbb kapcsolódási korlátozás kiválasztásával növelhető a biztonság. Hálózati biztonsági csoportszabályok és SQL-/Windows-hitelesítés használatával azonban mindegyik lehetőség biztosítható.
+Általában a biztonság fokozása érdekében hello legszigorúbb kapcsolódási, amely lehetővé teszi, hogy a forgatókönyv kiválasztása. Azonban minden hello-beállítások biztonságos hálózati biztonsági csoportszabályok és SQL/Windows-hitelesítés használatával.
 
-A **Port** alapértelmezett beállítás 1433. Megadhat eltérő portszámot is.
-További információ: [Csatlakozás SQL Server rendszerű virtuális géphez (Resource Manager) | Microsoft Azure](virtual-machines-windows-sql-connect.md).
+**Port** too1433 alapértelmezés szerint. Megadhat eltérő portszámot is.
+További információkért lásd: [csatlakozzon az SQL Server virtuális géphez (Resource Manager) tooa |} A Microsoft Azure](virtual-machines-windows-sql-connect.md).
 
-### <a name="authentication"></a>Hitelesítés
+### <a name="authentication"></a>Authentication
 Ha SQL Server-hitelesítésre van szüksége, kattintson az **Engedélyezés** lehetőségre az **SQL-hitelesítés** alatt.
 
 ![SQL Server-hitelesítés](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-authentication.png)
 
 > [!NOTE]
-> Ha az SQL Servert az interneten keresztül tervezi elérni (vagyis a Nyilvános kapcsolódási beállítást választja), akkor itt kell engedélyeznie az SQL-hitelesítést. Az SQL Serverhez való nyilvános hozzáféréshez SQL-hitelesítésre van szükség.
+> Ha azt tervezi, SQL Server tooaccess keresztül hello internet (Ez azt jelenti, hogy hello szövegrészt nyilvános kapcsolódási beállítást választja), engedélyeznie kell az SQL-hitelesítés itt. Nyilvános hozzáférés toohello SQL Server SQL-hitelesítés hello használatát igényli.
 > 
 > 
 
-Ha engedélyezi az SQL Server-hitelesítést, adjon meg egy **bejelentkezési nevet** és egy **jelszót**. Ez a felhasználónevet SQL Server-hitelesítési bejelentkezési névként, és egyben a **sysadmin** rögzített kiszolgálói szerepkör egy tagjaként is konfigurálja a szolgáltatás. További információkat a hitelesítési módokról [a hitelesítési mód kiválasztását leíró](http://msdn.microsoft.com/library/ms144284.aspx) cikkben talál.
+Ha engedélyezi az SQL Server-hitelesítést, adjon meg egy **bejelentkezési nevet** és egy **jelszót**. Ez a felhasználónév beállítás egy SQL Server-hitelesítési bejelentkezési és hello tagja, és **sysadmin** rögzített kiszolgálói szerepkör. További információkat a hitelesítési módokról [a hitelesítési mód kiválasztását leíró](http://msdn.microsoft.com/library/ms144284.aspx) cikkben talál.
 
-Ha nem engedélyezi az SQL Server-hitelesítést, akkor a helyi virtuális gépen lévő rendszergazdai fiók használatával is csatlakozhat az SQL Server-példányhoz.
+Ha nem engedélyezi az SQL Server-hitelesítést, majd használhatja hello helyi rendszergazdai fiók hello VM tooconnect toohello SQL Server-példányon.
 
 ### <a name="storage-configuration"></a>Tároló konfigurálása
-Kattintson a **Tároló konfigurációja** elemre a tárolási követelmények megadásához.
+Kattintson a **tárkonfiguráció** toospecify hello tárolási követelmények érvényesek.
 
 ![SQL-tároló konfigurálása](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-storage.png)
 
@@ -191,21 +191,21 @@ Kattintson a **Tároló konfigurációja** elemre a tárolási követelmények m
 > 
 > 
 
-Megadhat különböző követelményeket, például a kimeneti/bemeneti műveletek másodpercenkénti számát (IOPS), a MB/másodpercben megadott átviteli sebességet, illetve a tárterület teljes méretét. Ezeket az értékeket a csúszkákkal állíthatja be. A portál ezen követelmények alapján automatikusan kiszámítja a lemezek számát.
+Megadhat különböző követelményeket, például a kimeneti/bemeneti műveletek másodpercenkénti számát (IOPS), a MB/másodpercben megadott átviteli sebességet, illetve a tárterület teljes méretét. Hello csúszó méretezik konfigurálja ezeket az értékeket. hello portál automatikusan hello lemezeinek száma miatt ezeket a követelményeket alapján számítja ki.
 
-Alapértelmezés szerint az Azure a tárolót 5000 IOPS értékre, 200 MB/másodperces átviteli sebességre és 1 TB tárterületre optimalizálja. Ezek a tárolóbeállítások a számítási feladatok mennyiségéhez igazodva módosíthatók. A **Storage optimized for** (Tároló optimalizálási módja) területen válasszon az alábbi lehetőségek közül:
+Alapértelmezés szerint Azure 5000 iops teljesítményt, 200 MB és 1 TB tárterületre optimalizálja a tárolási hello. Ezek a tárolóbeállítások a számítási feladatok mennyiségéhez igazodva módosíthatók. A **tárolási optimalizálva**, válasszon egyet az alábbi beállítások hello:
 
-* A **General** (Általános) az alapértelmezett beállítás, amely a legtöbb számítási feladatot támogatja.
-* A **Transactional** (Tranzakciós) feldolgozás a tárolót az adatbázisok hagyományos OLTP számítási feladataira optimalizálja.
-* A **Data warehousing** (Adatraktározás) beállítás elemzési és jelentéskészítési számítási feladatokra optimalizálja a tárolót.
+* **Általános** hello alapértelmezett beállítás, és a legtöbb számítási feladatot támogatja.
+* **Tranzakciós** feldolgozási hello tárhely az adatbázisok hagyományos OLTP számítási optimalizálja.
+* **Az adatraktározás terén** hello tárhely az elemzési és jelentéskészítési számítási optimalizálja.
 
 > [!NOTE]
-> A csúszkák felső határa a virtuális gép választott méretétől függően változik.
+> hello hello csúszkák felső korlátozásait a virtuális gép választott méretétől függ.
 > 
 > 
 
 ### <a name="automated-patching"></a>Automatikus javítás
-Az **Automatikus javítás** alapértelmezés szerint engedélyezve van. Az automatizált javítás lehetővé teszi, hogy az Azure automatikus javításokat alkalmazzon az SQL Serveren és az operációs rendszeren. A karbantartási időszak beállításához adja meg a hét egy napját, egy időpontot és egy időtartamot. Az Azure ebben a karbantartási időszakban végzi el a javításokat. A karbantartási időszak ütemezése a virtuális gép területi beállítása szerinti időt használja. Ha nem szeretné, hogy az Azure automatikusan alkalmazza a javításokat az SQL Serveren és az operációs rendszeren, kattintson a **Letiltás** elemre.  
+Az **Automatikus javítás** alapértelmezés szerint engedélyezve van. Automatizált javítás lehetővé teszi, hogy az Azure tooautomatically javítás az SQL Server és hello operációs rendszer. Adjon meg egy napot hello hét, ideje és időtartama a karbantartási időszak. Az Azure ebben a karbantartási időszakban végzi el a javításokat. hello karbantartási időszak ütemezése hello virtuális gép területi idő használ. Ha nem szeretné, hogy Azure tooautomatically javítás az SQL Server és hello operációs rendszert, kattintson a **letiltása**.  
 
 ![SQL automatikus javítás](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-patching.png)
 
@@ -214,89 +214,89 @@ További információk: [Automated Patching for SQL Server in Azure Virtual Mach
 ### <a name="automated-backup"></a>Automatikus biztonsági mentés
 Az **Automatikus biztonsági mentés** területen engedélyezheti az összes adatbázis automatikus mentését. Az automatikus biztonsági mentés alapértelmezés szerint le van tiltva.
 
-Az SQL automatikus biztonsági mentésének engedélyezésekor konfigurálhatja a következő beállításokat:
+SQL automatikus biztonsági mentésének engedélyezésekor konfigurálhatja hello a következő beállításokat:
 
 * Biztonsági mentések megőrzési ideje (napokban)
-* A biztonsági mentésekhez használt tárfiók
+* Biztonsági másolatok tárolási fiók toouse
 * Titkosítási beállítás és a biztonsági mentések jelszavas védelme
 * Rendszeradatbázisok biztonsági mentése
 * Biztonsági mentések ütemezésének konfigurálása
 
-A biztonsági mentés titkosításához kattintson az **Engedélyezés** elemre. Ezután adja meg a **Jelszót**. Az Azure a biztonsági mentések titkosításához létrehoz egy tanúsítványt, amelyet a megadott jelszóval véd.
+biztonsági másolat, kattintson a tooencrypt hello **engedélyezése**. Majd adja meg a hello **jelszó**. Az Azure létrehoz egy tanúsítványt tooencrypt hello biztonsági mentések, és használja hello megadott jelszó tooprotect tanúsítvány.
 
 ![SQL automatikus biztonsági mentés](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-autobackup2.png)
 
  További információk: [Automated Backup for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-automated-backup.md) (Az SQL Server automatikus biztonsági mentése Azure virtuális gépeken).
 
 ### <a name="azure-key-vault-integration"></a>Azure Key Vault-integráció
-Ha biztonsági titkokat az Azure-ban szeretne titkosítva tárolni, kattintson az **Azure key vault integration** (Azure Key Vault-integráció) elemre, majd az **Enable** (Engedélyezés) elemre.
+toostore biztonsági titkokat az Azure-ban a titkosításhoz, kattintson a **Azure key vault-integráció** kattintson **engedélyezése**.
 
 ![SQL Azure Key Vault-integráció](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-akv.png)
 
-A következő táblázat tartalmazza az Azure Key Vault-integráció konfigurálásához szükséges paramétereket.
+hello következő táblázatban hello paraméterek szükséges tooconfigure Azure Key Vault-integráció.
 
 | PARAMÉTER | LEÍRÁS | PÉLDA |
 | --- | --- | --- |
-| **Key Vault URL** |A Key Vault helye. |https://contosokeyvault.vault.azure.net/ |
-| **Egyszerű név** |Az Azure Active Directory szolgáltatás egyszerű neve. Ezt a nevet ügyfél-azonosítónak is hívják. |fde2b411-33d5-4e11-af04eb07b669ccf2 |
-| **Egyszerű titok** |Az Azure Active Directory szolgáltatás egyszerű titka. Ezt a titkot ügyféltitoknak is hívják. |9VTJSQwzlFepD8XODnzy8n2V01Jd8dAjwm/azF1XDKM= |
-| **Hitelesítő adat neve** |**Hitelesítő adat neve**: Az AKV-integráció létrehoz egy hitelesítő adatot az SQL Serverben, amely hozzáférést biztosít a virtuális gépnek a Key Vaulthoz. Válasszon egy nevet ennek a hitelesítő adatnak. |mycred1 |
+| **Key Vault URL** |hello hello kulcstároló helye. |https://contosokeyvault.vault.azure.net/ |
+| **Egyszerű név** |Az Azure Active Directory szolgáltatás egyszerű neve. Ez a név egyben a hivatkozott tooas hello ügyfél-azonosítót. |fde2b411-33d5-4e11-af04eb07b669ccf2 |
+| **Egyszerű titok** |Az Azure Active Directory szolgáltatás egyszerű titka. Ezt a titkos kulcsot is hivatkozott tooas hello Ügyfélkulcs. |9VTJSQwzlFepD8XODnzy8n2V01Jd8dAjwm/azF1XDKM= |
+| **Hitelesítő adat neve** |**Hitelesítő adat neve**: AKV-integráció hitelesítő adatot hoz létre az SQL Serverben, így hello VM toohave hozzáférés toohello kulcstároló. Válasszon egy nevet ennek a hitelesítő adatnak. |mycred1 |
 
 További információkért lásd: [Configure Azure Key Vault Integration for SQL Server on Azure VMs](virtual-machines-windows-ps-sql-keyvault.md) Az Azure Key Vault-integráció konfigurálása az SQL Serverhez Azure virtuális gépeken.
 
 Amikor végzett az SQL Server beállításainak konfigurálásával, kattintson az **OK** gombra.
 
 ### <a name="r-services"></a>R-szolgáltatások
-Engedélyezheti az [SQL Server R Servicest](https://msdn.microsoft.com/library/mt604845.aspx). Az SQL Server R Services lehetőséget nyújt az SQL Server 2016 továbbfejlesztett elemzéseinek használatára. Kattintson az **Engedélyezés** elemre az **SQL Server beállításai** panelen.
+Engedélyezheti az [SQL Server R Servicest](https://msdn.microsoft.com/library/mt604845.aspx). SQL Server R szolgáltatások lehetővé teszi az SQL Server 2016 toouse advanced analytics. Kattintson a **engedélyezése** a hello **SQL Server beállításai** panelen.
 
 ![Az SQL Server R Services engedélyezése](./media/virtual-machines-windows-portal-sql-server-provision/azure-vm-sql-server-r-services.png)
 
 
-## <a name="5-review-the-summary"></a>5. Összegzés áttekintése
-Az **Összefoglalás** panelen tekintse át az összefoglalást, majd kattintson az **OK** gombra a virtuális géphez megadott SQL Server, erőforráscsoport és erőforrások létrehozásához.
+## <a name="5-review-hello-summary"></a>5. Felülvizsgálati hello összefoglaló
+A hello **összefoglaló** panelt, tekintse át hello összefoglaló, és kattintson **OK** toocreate SQL Server, erőforráscsoport és erőforrások virtuális Géphez megadott.
 
-Az üzemelő példány az Azure portálról felügyelhető. A képernyő felső részén látható **Értesítések** gomb megjeleníti az üzemelő példány állapotának alapvető információit.
-
-> [!NOTE]
-> Az üzembe helyezési idők szemléltetéséhez üzembe helyeztem egy SQL virtuális gépet az USA keleti régiójában az alapértelmezett beállításokkal. Ez az üzembe helyezési teszt összesen 26 percet vett igénybe. A régiótól és a kiválasztott beállításoktól függően Ön ennél rövidebb vagy hosszabb üzembe helyezési időt is tapasztalhat.
-> 
-> 
-
-## <a name="open-the-vm-with-remote-desktop"></a>A virtuális gép megnyitása a távoli asztallal
-A következő lépésekkel csatlakozzon a virtuális géphez a távoli asztalról:
-
-1. Miután az Azure virtuális gép létrejött, az Azure-irányítópulton megjelenik a virtuális gép ikonja. A gépet a meglévő virtuális gépek tallózásával is megkeresheti. Kattintson az új SQL virtuális gépre. A **Virtuális gép** panelen láthatók a virtuális gép részletei.
-2. A **Virtuális gép** panel felső részén kattintson a **Csatlakozás** elemre.
-3. A böngésző letölt egy RDP-fájlt a virtuális géphez. Nyissa meg az RDP-fájlt.
-    ![Távoli asztalról az SQL virtuális géphez](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-vm-remote-desktop.png)
-4. A távoli asztali kapcsolat arról értesíti, hogy a távoli kapcsolat közzétevője nem azonosítható. Kattintson a **Csatlakozás** gombra a folytatáshoz.
-5. A **Windows rendszerbiztonság** párbeszédpanelen kattintson a **Másik fiók használata** elemre.
-6. A **Felhasználónév** mezőbe írja be a **\<felhasználónevet>**, ahol a(z) <user name> az a felhasználónév, amelyet a virtuális gép konfigurálásakor megadott. A név elé egy kezdő fordított perjelet kell tenni.
-7. Írja be a **Jelszót**, amelyet korábban beállított a virtuális géphez, majd kattintson az **OK** gombra a csatlakozáshoz.
-8. Ha egy további **Távoli asztali kapcsolat** párbeszédpanel rákérdez, hogy szeretne-e csatlakozni, kattintson az **Igen** gombra.
-
-Az SQL Server virtuális géphez való csatlakozás után elindíthatja az SQL Server Management Studiót, és a helyi rendszergazdai hitelesítő adataival csatlakozhat Windows-hitelesítés használatával. Ha engedélyezte az SQL Server-hitelesítést, akkor az SQL-hitelesítésen keresztül is csatlakozhat a kiépítés során megadott SQL bejelentkezési azonosítójával és jelszavával.
-
-A géphez való hozzáférés lehetővé teszi, hogy igény szerint közvetlenül módosítsa a gép és az SQL Server beállításait. Például konfigurálhatja a tűzfal beállításait, vagy módosíthatja az SQL Server-konfiguráció beállításait.
-
-## <a name="connect-to-sql-server-remotely"></a>Távoli csatlakozás az SQL Serverhez
-Ebben az útmutatóban **Nyilvános** hozzáférést választottunk a virtuális géphez és **SQL Server-hitelesítéshez**. Ezek a beállítások automatikusan úgy konfigurálták a virtuális gépet, hogy az az internetről bármely ügyfél számára engedélyezi az SQL Serverhez való csatlakozást (feltéve, hogy helyes SQL-bejelentkezési névvel rendelkeznek).
+Hello telepítési hello azure portálról figyelheti. Hello **értesítések** üdvözlő képernyőt hello tetején látható alapszintű hello központi telepítésének állapotát tartalmazza.
 
 > [!NOTE]
-> Ha a kiépítés során nem a Nyilvános hozzáférést választotta, akkor az SQL Server-példány internetes eléréséhez további lépések megtétele szükséges. További információ: [Connect to a SQL Server Virtual Machine](virtual-machines-windows-sql-connect.md) (Csatlakozás SQL Server rendszerű virtuális géphez).
+> tooprovide az üzemelő példányon követelnek meg időkorlátja, szemléltetéséhez üzembe egy SQL virtuális gép toohello USA keleti régiójában az alapértelmezett beállításokkal. Ez az üzembe helyezési teszt összesen 26 percet toocomplete vett igénybe. A régiótól és a kiválasztott beállításoktól függően Ön ennél rövidebb vagy hosszabb üzembe helyezési időt is tapasztalhat.
 > 
 > 
 
-A következő szakaszok bemutatják, hogyan csatlakozhat a virtuális gépén található SQL Server-példányhoz egy másik számítógépről az interneten keresztül.
+## <a name="open-hello-vm-with-remote-desktop"></a>Nyissa meg a virtuális gép hello a távoli asztal
+A következő lépéseket tooconnect toohello virtuális géphez a távoli asztalról hello használata:
 
-> [!INCLUDE [Connect to SQL Server in a VM Resource Manager](../../../../includes/virtual-machines-sql-server-connection-steps-resource-manager.md)]
+1. Hello Azure virtuális gép létrejött, hello hello ikonja után a virtuális gép az Azure irányítópulton jelenik meg. A gépet a meglévő virtuális gépek tallózásával is megkeresheti. Kattintson az új SQL virtuális gépre. A **Virtuális gép** panelen láthatók a virtuális gép részletei.
+2. Hello hello tetején **virtuális gép** panelen kattintson a **Connect**.
+3. hello böngésző letölt egy RDP-fájlt a virtuális gép hello. Nyissa meg hello RDP-fájlt.
+    ![Távoli asztali tooSQL méretű VM](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-vm-remote-desktop.png)
+4. Távoli asztali kapcsolat hello értesíti, hogy hello a távoli kapcsolat közzétevője nem azonosítható. Kattintson a **Connect** toocontinue.
+5. A hello **Windows biztonsági** párbeszédpanel, kattintson a **másik fiók használata**.
+6. A **felhasználónév** típus  **\<felhasználónevet >**, ahol <user name> hello virtuális gép konfigurálásakor megadott hello felhasználónév. Hogy tooadd hello neve előtt egy kezdeti fordított perjel.
+7. Típus hello **jelszó** , amelyet korábban konfigurált a virtuális gép, és kattintson a **OK** tooconnect.
+8. Ha egy másik **távoli asztali kapcsolat** párbeszédpanel rákérdez, hogy tooconnect, kattintson a **Igen**.
+
+Toohello SQL Server virtuális gépen a kapcsolódás után indítsa el az SQL Server Management Studio eszközt, és a helyi rendszergazdai hitelesítő adatokkal Windows-hitelesítéssel csatlakozzon. SQL Server-hitelesítés engedélyezve van, ha elérhetők, SQL-hitelesítéssel hello SQL-bejelentkezési és a kiépítés során megadott jelszót.
+
+Hozzáférés toohello gép lehetővé teszi toodirectly módosítás számítógép és SQL Server-beállítások a követelmények alapján. Például nem hello tűzfal beállításainak konfigurálását, vagy módosítsa az SQL Server-konfigurációs beállítások.
+
+## <a name="connect-toosql-server-remotely"></a>Távoli csatlakozás tooSQL kiszolgáló
+Ebben az oktatóanyagban a jelenleg választott **nyilvános** hozzáférés hello virtuális gép és **SQL Server-hitelesítés**. E beállítások automatikusan konfigurált hello virtuális gép tooallow SQL Serverhez való csatlakozást bármely ügyfél keresztül hello internet (feltéve, hogy hello helyes SQL-bejelentkezési névvel rendelkeznek).
+
+> [!NOTE]
+> Ha nem jelölte be nyilvános telepítése során, akkor további lépésre szükség tooaccess az SQL Server-példány felett hello az interneten. További információkért lásd: [csatlakozzon az SQL Server virtuális gép tooa](virtual-machines-windows-sql-connect.md).
+> 
+> 
+
+hello a következő szakaszok bemutatják, hogyan tooconnect tooyour SQL Server-példány a virtuális gépen keresztül egy másik számítógépről hello internet.
+
+> [!INCLUDE [Connect tooSQL Server in a VM Resource Manager](../../../../includes/virtual-machines-sql-server-connection-steps-resource-manager.md)]
 > 
 > 
 
 ## <a name="next-steps"></a>Következő lépések
-További információ az SQL Server használatáról az Azure-ban: [SQL Server on Azure Virtual Machines](virtual-machines-windows-sql-server-iaas-overview.md) (SQL Server az Azure virtuális gépeken) és [Frequently Asked Questions](virtual-machines-windows-sql-server-iaas-faq.md) (Gyakran ismételt kérdések).
+Egyéb Azure-ban az SQL Server használatával kapcsolatos információkért lásd: [SQL Server Azure virtuális gépeken](virtual-machines-windows-sql-server-iaas-overview.md) és hello [gyakran ismételt kérdések](virtual-machines-windows-sql-server-iaas-faq.md).
 
-Áttekintő videó az SQL Server Azure virtuális gépeken való használatáról: [Azure VM is the best platform for SQL Server 2016](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/Azure-VM-is-the-best-platform-for-SQL-Server-2016) (Az Azure VM a legjobb platform az SQL Server 2016-kiszolgálókhoz).
+Áttekintő videó az SQL Server Azure virtuális gépeken, tekintse meg a [Azure virtuális gép hello legjobb platform az SQL Server 2016](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/Azure-VM-is-the-best-platform-for-SQL-Server-2016).
 
-Az Azure virtuális gépeken futó SQL Server [képzési tervének felfedezése](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/).
+[Fedezze fel hello képzési terv](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/) az SQL Server Azure virtuális gépeken.
 

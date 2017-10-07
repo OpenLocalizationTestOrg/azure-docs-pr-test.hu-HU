@@ -1,6 +1,6 @@
 ---
-title: "Alkalmazások közzététele egyéni felhasználók számára egy Azure RemoteApp-gyűjteményben (előzetes) | Microsoft Docs"
-description: "Ismerje meg, hogyan tehet közzé alkalmazásokat egyéni felhasználók számára a csoportok használata helyett az Azure RemoteAppban."
+title: "aaaPublish alkalmazások tooindividual felhasználók egy Azure RemoteApp-gyűjteményben (előzetes verzió) |} Microsoft Docs"
+description: "Ismerje meg, hogyan közzéteheti alkalmazások tooindividual felhasználók, ahelyett, hogy attól függően, hogy csoportok, az Azure Remoteappban."
 services: remoteapp-preview
 documentationcenter: 
 author: piotrci
@@ -14,92 +14,92 @@ ms.tgt_pltfrm: na
 ms.workload: compute
 ms.date: 11/23/2016
 ms.author: piotrci
-ms.openlocfilehash: c94ffffdec3e46ed08d941ee58dcf17b432e1dad
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 87b435552ddbfc2c6d03aeb01d95a44985e71f9f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="publish-applications-to-individual-users-in-an-azure-remoteapp-collection-preview"></a>Alkalmazások közzététele egyéni felhasználók számára egy Azure RemoteApp-gyűjteményben (előzetes)
+# <a name="publish-applications-tooindividual-users-in-an-azure-remoteapp-collection-preview"></a>Alkalmazások tooindividual felhasználók közzététele egy Azure RemoteApp-gyűjteményben (előzetes verzió)
 > [!IMPORTANT]
-> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. A részletekért olvassa el a [bejelentést](https://go.microsoft.com/fwlink/?linkid=821148).
+> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. Olvasási hello [közlemény](https://go.microsoft.com/fwlink/?linkid=821148) részleteiről.
 > 
 > 
 
-Ez a cikk ismerteti, hogyan tehet közzé alkalmazásokat egyéni felhasználók számára egy Azure RemoteApp-gyűjteményben. Ez az Azure RemoteApp egy új funkciója, amely jelenleg „privát előzetes verzióként”, csak egyes korai támogatók számára érhető el, értékelési célokra.
+Ez a cikk azt ismerteti, hogyan toopublish alkalmazások tooindividual felhasználók egy Azure RemoteApp-gyűjteményben. Ez az új funkció az Azure Remoteappban, jelenleg magán előnézetben és rendelkezésre álló csak tooselect korai támogatókat tesztelési célra.
 
-Az Azure RemoteAppban eredetileg csak egy módja volt az alkalmazások „közzétételének”: a rendszergazda alkalmazásokat tehetett közzé a rendszerképről, amelyek a gyűjteményben lévő összes felhasználó számára láthatók voltak.
+Eredetileg a Azure remoteappban csak egy módja volt az alkalmazás-közzététel: hello rendszergazda hello lemezképből alkalmazásokat tehetett közzé, és azok lenne látható tooall felhasználók hello gyűjteményben.
 
-Egy általános forgatókönyv számos alkalmazás egyetlen rendszerképbe való belefoglalása, és egy gyűjtemény üzembe helyezése a felügyeleti költségek csökkentése érdekében. Gyakran nem minden felhasználónak van szüksége minden alkalmazásra, így a rendszergazdák inkább az egyéni felhasználók számára szeretnének alkalmazásokat közzétenni, hogy ne lássák a szükségtelen alkalmazásokat az alkalmazásfolyamukban.
+Egy általános forgatókönyv számos alkalmazás egyetlen rendszerképet, a rendelés tooreduce felügyeleti költségek egy gyűjtemény üzembe helyezése tooinclude. Gyakran nem minden alkalmazás olyan megfelelő tooall felhasználók – a rendszergazdák inkább toopublish alkalmazások tooindividual felhasználókat, hogy ne lássák a szükségtelen alkalmazásokat az alkalmazásfolyamukban.
 
-Ez mostantól lehetséges az Azure RemoteAppban – jelenleg korlátozott előzetes verzióként. Az új funkció rövid összefoglalása:
+Ez mostantól lehetséges az Azure RemoteAppban – jelenleg korlátozott előzetes verzióként. Íme hello új funkció rövid összefoglalása:
 
 1. Egy gyűjtemény két módba állítható be:
    
-   * az eredeti „gyűjtemény módba”, amelyben egy gyűjtemény minden felhasználója láthatja az összes közzétett alkalmazást. Ez az alapértelmezett mód.
-   * az új „alkalmazás módba”, amelyben a felhasználók csak a kifejezetten hozzájuk rendelt alkalmazásokat láthatják.
-2. Az alkalmazás mód jelenleg csak Azure RemoteApp PowerShell-parancsmagok használatával engedélyezhető.
+   * hello eredeti gyűjtemény módja, ha egy gyűjtemény minden felhasználója láthatja az összes közzétett alkalmazást. Ez az alapértelmezett mód hello.
+   * hello új alkalmazás módja, ha csak látnak explicit módon hozzárendelt toothem alkalmazások
+2. Hello pillanatban hello alkalmazás mód csak akkor engedélyezhető, Azure RemoteApp PowerShell-parancsmagok használatával.
    
-   * Amikor alkalmazás módba állítja be a gyűjteményt, a gyűjtemény felhasználó-hozzárendelése nem kezelhető az Azure Portalon keresztül. A felhasználó-hozzárendelés kezelését PowerShell-parancsmagokon keresztül kell elvégezni.
-3. A felhasználók ekkor csak a közvetlenül a számukra közzétett alkalmazásokat láthatják. Lehetséges azonban, hogy a felhasználók továbbra is elindíthatják a rendszerképen lévő többi alkalmazást, ha közvetlenül az operációs rendszerben férnek hozzájuk.
+   * Ha tooapplication üzemmód beállítása, hello gyűjtemény felhasználó-hozzárendelése nem kezelhető hello Azure-portálon keresztül. Felhasználó-hozzárendelés PowerShell-parancsmagok segítségével kezelt toobe rendelkezik.
+3. A felhasználók csak látni fogják hello alkalmazások közzétett közvetlenül toothem. Azonban továbbra is lehet az egy felhasználói toolaunch hello kép lévő többi alkalmazást hello közvetlenül hello operációs rendszerben férnek hozzájuk.
    
-   * Ez a szolgáltatás nem biztosítja az alkalmazások biztonságos zárolását; csak a láthatóságot korlátozza az alkalmazásfolyamban.
-   * Ha el kell különítenie felhasználókat egyes alkalmazásoktól, különálló gyűjteményeket kell használnia.
+   * Ez a szolgáltatás nem biztosít az alkalmazások; biztonságos zárolását Ez csak a láthatóságot korlátozza az alkalmazásfolyamban hello.
+   * Ha tooisolate felhasználókat egyes alkalmazásoktól, szüksége lesz toouse különálló gyűjteményeket, amelyek.
 
-## <a name="how-to-get-azure-remoteapp-powershell-cmdlets"></a>Az Azure RemoteApp PowerShell-parancsmagok beszerzése
-Az előzetes verzió új funkcióinak kipróbálásához Azure PowerShell-parancsmagokat kell használnia. Az Azure felügyeleti portáljával jelenleg nincs lehetőség az új alkalmazás-közzétételi mód engedélyezésére.
+## <a name="how-tooget-azure-remoteapp-powershell-cmdlets"></a>Hogyan tooget Azure RemoteApp PowerShell-parancsmagok
+tootry hello előzetes verzió új funkcióinak, szüksége lesz a toouse Azure PowerShell-parancsmagokat. Jelenleg nem lehetséges toouse hello Azure felügyeleti portál tooenable hello új alkalmazás-közzétételi mód.
 
-Először győződjön meg róla, hogy telepítve van az [Azure PowerShell modul](/powershell/azure/overview).
+Először ellenőrizze, hogy rendelkezik-e hello [Azure PowerShell modul](/powershell/azure/overview) telepítve.
 
-Ezután indítsa el a PowerShell-konzolt rendszergazdai módban, és futtassa a következő parancsmagot:
+Majd indítsa el a felügyeleti és a következő parancsmag futtatási hello hello PowerShell-konzolon:
 
         Add-AzureAccount
 
-A rendszer felkéri az Azure felhasználói nevének jelszavának megadására. Miután bejelentkezett, futtathatja az Azure RemoteApp-parancsmagokat az Azure-előfizetésén.
+A rendszer felkéri az Azure felhasználói nevének jelszavának megadására. Miután bejelentkezett, szemben az Azure-előfizetések fogja tudni toorun Azure RemoteApp-parancsmagokat.
 
-## <a name="how-to-check-which-mode-a-collection-is-in"></a>Egy gyűjtemény üzemmódjának ellenőrzése
-Futtassa a következő parancsmagot:
+## <a name="how-toocheck-which-mode-a-collection-is-in"></a>Hogyan a egy gyűjtemény üzemmódjának toocheck
+Futtassa a következő parancsmag hello:
 
         Get-AzureRemoteAppCollection <collectionName>
 
-![Ellenőrizze a gyűjtemény használati módját](./media/remoteapp-perapp/araacllelvel.png)
+![Hello fizetési mód ellenőrzése](./media/remoteapp-perapp/araacllelvel.png)
 
-Az AclLevel tulajdonság a következő értékeket veheti fel:
+hello AclLevel tulajdonság hello a következő értékeket veheti fel:
 
-* Collection: az eredeti közzétételi mód. Az összes felhasználó láthat minden közzétett alkalmazást.
-* Alkalmazás: az új közzétételi mód. A felhasználók csak a közvetlenül a számukra közzétett alkalmazásokat látják.
+* Gyűjtemény: hello eredeti közzétételi mód. Az összes felhasználó láthat minden közzétett alkalmazást.
+* Alkalmazás: hello új közzétételi mód. Csak a hello alkalmazásokat közzétenni közvetlenül toothem a felhasználók láthatják.
 
-## <a name="how-to-switch-to-application-publishing-mode"></a>Váltás az alkalmazások közzétételi módja között
-Futtassa a következő parancsmagot:
+## <a name="how-tooswitch-tooapplication-publishing-mode"></a>Hogyan tooswitch tooapplication közzétételi mód
+Futtassa a következő parancsmag hello:
 
         Set-AzureRemoteAppCollection -CollectionName -AclLevel Application
 
-A rendszer megőrzi az alkalmazások közzétételének állapotát: kezdetben az összes felhasználó látni fog minden eredetileg közzétett alkalmazást.
+A rendszer megőrzi az alkalmazások közzétételének állapotát: kezdetben az összes felhasználó látni fog minden eredetileg közzétett alkalmazást hello.
 
-## <a name="how-to-list-users-who-can-see-a-specific-application"></a>Azon felhasználók listázása, akik láthatnak egy adott alkalmazást
-Futtassa a következő parancsmagot:
+## <a name="how-toolist-users-who-can-see-a-specific-application"></a>Hogyan toolist felhasználók, akik láthatnak egy adott alkalmazást
+Futtassa a következő parancsmag hello:
 
         Get-AzureRemoteAppUser -CollectionName <collectionName> -Alias <appAlias>
 
-A parancs megjeleníti az összes felhasználót, aki láthatja az alkalmazást.
+A parancs megjeleníti az összes felhasználó számára látható hello alkalmazás.
 
-Megjegyzés: Az alkalmazások aliasait (a fenti szintaxisban „app alias”) a Get-AzureRemoteAppProgram -CollectionName <collectionName> parancsmag futtatásával jelenítheti meg.
+Megjegyzés: A látható hello alkalmazások aliasait (hello fenti szintaxisban "app alias" elnevezésű) futtassa a Get-AzureRemoteAppProgram - CollectionName <collectionName>.
 
-## <a name="how-to-assign-an-application-to-a-user"></a>Alkalmazás hozzárendelése egy felhasználóhoz
-Futtassa a következő parancsmagot:
+## <a name="how-tooassign-an-application-tooa-user"></a>Hogyan tooassign tooa Alkalmazásfelhasználó
+Futtassa a következő parancsmag hello:
 
         Add-AzureRemoteAppUser -CollectionName <collectionName> -UserUpn <user@domain.com> -Type <OrgId|MicrosoftAccount> -Alias <appAlias>
 
-A felhasználó ekkor látni fogja az alkalmazást az Azure RemoteApp-ügyfélen, és csatlakozni tud hozzá.
+hello felhasználói jelenik meg hello alkalmazás hello Azure RemoteApp-ügyfelet, és képes tooconnect tooit lesz.
 
-## <a name="how-to-remove-an-application-from-a-user"></a>Alkalmazások eltávolítása egy felhasználótól
-Futtassa a következő parancsmagot:
+## <a name="how-tooremove-an-application-from-a-user"></a>Hogyan tooremove az alkalmazás a felhasználó
+Futtassa a következő parancsmag hello:
 
         Remove-AzureRemoteAppUser -CollectionName <collectionName> -UserUpn <user@domain.com> -Type <OrgId|MicrosoftAccount> -Alias <appAlias>
 
 ## <a name="providing-feedback"></a>Visszajelzés küldése
-Nagyra értékeljük visszajelzését és javaslatait az előzetes verzióként elérhető szolgáltatással kapcsolatban. Kérjük, töltse ki a [felmérést](http://www.instant.ly/s/FDdrb), és ossza meg velünk a véleményét.
+Nagyra értékeljük visszajelzését és javaslatait az előzetes verzióként elérhető szolgáltatással kapcsolatban. Töltse ki az hello [felmérés](http://www.instant.ly/s/FDdrb) arról, mit gondol toolet.
 
-## <a name="havent-had-a-chance-to-try-the-preview-feature"></a>Nem volt lehetősége kipróbálni az előzetes verzióként elérhető szolgáltatást?
-Ha még nem használta az előzetes verziót, töltse ki ezt a [felmérést](http://www.instant.ly/s/AY83p) a hozzáférés kéréséhez.
+## <a name="havent-had-a-chance-tootry-hello-preview-feature"></a>Nem volt alkalommal tootry hello előzetes verziójú funkciók?
+Ha nem használta a hello preview még, akkor használja ezt [felmérés](http://www.instant.ly/s/AY83p) toorequest hozzáférést.
 

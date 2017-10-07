@@ -1,6 +1,6 @@
 ---
-title: "SSL-tanúsítványok kötése PowerShell használatával"
-description: "Megtudhatja, hogyan lehet kötést létrehozni az SSL-tanúsítványok a PowerShell használatával webes alkalmazást."
+title: "aaaSSL tanúsítványok kötése a PowerShell használatával"
+description: "Ismerje meg, hogyan toobind SSL-tanúsítványok tooyour web app PowerShell használatával."
 services: app-service\web
 documentationcenter: 
 author: ahmedelnably
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/13/2016
 ms.author: aelnably
-ms.openlocfilehash: a1fcc618fb0c68778e39cc227368a60b008f9401
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 82f0e7c796da99ab50f69f3638ef64d55a94fc8e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-app-service-ssl-certificate-binding-using-powershell"></a>Az Azure App Service SSL-tanúsítvány kötés PowerShell használatával
-A Microsoft Azure PowerShell verziója 1.1.0-ás kiadása egy új parancsmagot, amely ad a felhasználó meglévő vagy új SSL-tanúsítványok kötése egy már meglévő webalkalmazás képes bővült.
+Microsoft Azure PowerShell verziója 1.1.0-ás hozzá lett adva egy új parancsmagot hello kiadása, amely ad hello felhasználói hello képességét toobind meglévő vagy új SSL tanúsítványok tooan meglévő Web App.
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
-Azure Resource Manager-alapú kezelheti a Web Apps ellenőrzése az Azure PowerShell-parancsmagok használatával kapcsolatos további [Azure Resource Manager PowerShell-parancsok alapú Azure webalkalmazás számára](app-service-web-app-azure-resource-manager-powershell.md)
+Azure Resource Manager használatával kapcsolatos toolearn alapú Azure PowerShell-parancsmagok toomanage a Web Apps ellenőrzés [Azure Resource Manager PowerShell-parancsok alapú Azure webalkalmazás számára](app-service-web-app-azure-resource-manager-powershell.md)
 
 ## <a name="uploading-and-binding-a-new-ssl-certificate"></a>Feltöltését és egy új SSL-tanúsítvány kötésének
-Forgatókönyv: A felhasználó szeretné egy SSL-tanúsítványt kötni a webes alkalmazások.
+Forgatókönyv: hello felhasználói toobind egy SSL-tanúsítvány tooone a webes alkalmazások szeretné.
 
-Az erőforráscsoport neve, amely tartalmazza a web app, a webes alkalmazás neve, a tanúsítvány .pfx fájl elérési útját a felhasználó számítógépén, a tanúsítványt, és az egyéni állomásnevet a jelszó ismerete, a következő PowerShell-parancsot, hogy SSL-kötés létrehozásához használhatja azt:
+Hello az erőforráscsoport neve, amely tartalmazza a hello webalkalmazás, hello webalkalmazás nevének, hello tanúsítvány .pfx fájl elérési útja a hello felhasználó, hogy tudnák hello hello tanúsítvány jelszava, hello az egyéni állomásnevet, a következő PowerShell-parancs toocreate hello is használhatók, amelyek SSL-kötés:
 
     New-AzureRmWebAppSSLBinding -ResourceGroupName myresourcegroup -WebAppName mytestapp -CertificateFilePath PathToPfxFile -CertificatePassword PlainTextPwd -Name www.contoso.com
 
-Vegye figyelembe, hogy mielőtt felvenne egy SSL-kötés egy webalkalmazásba, rendelkeznie kell egy állomásnevet (egyéni tartomány) már be van állítva. Ha az állomásnév nem úgy van beállítva, akkor hiba lép fel "állomásnév" nem létezik a New-AzureRmWebAppSSLBinding futtatása során. Az állomásnév-ről a portál vagy az Azure PowerShell használatával is hozzáadhat. A következő PowerShell-részlet lehet az állomásnév konfigurálása a New-AzureRmWebAppSSLBinding futtatása előtt.   
+Vegye figyelembe, hogy mielőtt felvenne egy SSL-kötés tooa webalkalmazást, rendelkeznie kell egy állomásnevet (egyéni tartomány) már be van állítva. Ha hello állomás neve nincs beállítva, akkor hibaüzenetet kap "állomásnév" nem létezik a New-AzureRmWebAppSSLBinding futtatása során. Az állomásnév-ről hello portálon vagy az Azure PowerShell használatával is hozzáadhat. hello következő PowerShell-részlet lehet tooconfigure hello állomásnév New-AzureRmWebAppSSLBinding futtatása előtt.   
 
     $webApp = Get-AzureRmWebApp -Name mytestapp -ResourceGroupName myresourcegroup  
     $hostNames = $webApp.HostNames  
     $HostNames.Add("www.contoso.com")  
     Set-AzureRmWebApp -Name mytestapp -ResourceGroupName myresourcegroup -HostNames $HostNames   
 
-Fontos megérteni, hogy a Set-AzureRmWebApp parancsmag felülírja a gazdagép neve a webalkalmazás számára. Ezért a fenti PowerShell részlet van hozzáfűzése a meglévő lista tartalmazza az állomásnevek a webalkalmazás számára.  
+Fontos, hogy a Set-AzureRmWebApp parancsmag hello toounderstand hello állomásnevek hello webalkalmazás felülírja. Ezért a fent PowerShell részlet hello van fűznek toohello meglévő hello webalkalmazás hello állomásnevek listáját.  
 
 ## <a name="uploading-and-binding-an-existing-ssl-certificate"></a>Feltöltését és a létező SSL-tanúsítvány kötésének
-Forgatókönyv: A felhasználó szeretné a korábban feltöltött SSL-tanúsítványt kötni a webes alkalmazások.
+Forgatókönyv: hello felhasználói toobind a webes alkalmazások korábban feltöltött SSL tanúsítvány tooone szeretné.
 
-Azt is olvashatók a következő paranccsal egy adott erőforráscsoporthoz már feltöltött tanúsítványok listája
+Azt is beolvasása tanúsítványok listájának hello már feltöltött tooa adott erőforráscsoport hello a következő parancs használatával
 
     Get-AzureRmWebAppCertificate -ResourceGroupName myresourcegroup
 
-Vegye figyelembe, hogy a tanúsítványok helyi, egy adott helyen és az erőforráscsoport, a felhasználónak újra töltse fel a tanúsítványt, ha a konfigurált webes alkalmazás egy másik helyre, és erőforráscsoport más, meg kell, hogy a szükséges tanúsítvány 
+Vegye figyelembe, hogy hello tanúsítványok helyi tooa adott elhelyezés vagy erőforrás-csoport, hello felhasználói tanúsítványra van szükség toore-feltöltési hello Ha egy másik helyen konfigurált hello web app és erőforráscsoport más, hogy a hello tanúsítvány szükséges 
 
-Az erőforráscsoport neve, amely tartalmazza a web app, a webes alkalmazás neve, a tanúsítvány ujjlenyomata és az egyéni állomásnevet ismerete, a következő PowerShell-parancsot, hogy SSL-kötés létrehozásához használhatja azt:
+Hello az erőforráscsoport neve, amely tartalmazza a hello web app alkalmazásban ismerete hello webes alkalmazás neve, tanúsítvány-ujjlenyomat hello, és egyéni állomásnév hello, is használhatók a következő PowerShell-parancs toocreate hello adott SSL-kötés:
 
     New-AzureRmWebAppSSLBinding -ResourceGroupName myresourcegroup -WebAppName mytestapp -Thumbprint <certificate thumbprint> -Name www.contoso.com
 
 ## <a name="deleting-an-existing-ssl-binding"></a>Egy létező SSL-kötés törlése
-Forgatókönyv: A felhasználó törölni kívánja egy létező SSL-kötést.
+Forgatókönyv: hello felhasználói szeretné toodelete egy létező SSL-kötést.
 
-Az erőforráscsoport neve, amely tartalmazza a web app, a webes alkalmazás neve és az egyéni állomásnevet ismeretében azt segítségével a következő PowerShell-parancs távolítsa el, hogy SSL-kötést:
+Tudatában hello az erőforráscsoport neve, amely tartalmazza a hello web app alkalmazásban hello webes alkalmazás neve, és egyéni állomásnév hello, is használhatók a következő PowerShell-parancs tooremove hello adott SSL-kötés:
 
     Remove-AzureRmWebAppSSLBinding -ResourceGroupName myresourcegroup -WebAppName mytestapp -Name www.contoso.com
 
-Vegye figyelembe, hogy ha az eltávolított SSL-kötés lett az utolsó kötést adott abban, hogy a hely, a tanúsítvány alapértelmezés szerint törli, ha a felhasználó szeretné megtartani a tanúsítványt a DeleteCertificate beállítást használhat a tanúsítványra
+Vegye figyelembe, hogy ha hello eltávolítani az SSL-kötés lett hello utolsó azon a helyen, tanúsítvány használata kötelező alapértelmezett hello tanúsítvánnyal törlésre kerül, ha hello felhasználói szeretné tookeep hello tanúsítvány használhat hello DeleteCertificate beállítás tookeep hello tanúsítvány
 
     Remove-AzureRmWebAppSSLBinding -ResourceGroupName myresourcegroup -WebAppName mytestapp -Name www.contoso.com -DeleteCertificate $false
 
 ### <a name="references"></a>Referencia
 * [Az Azure Resource Manager-alapú PowerShell-parancsok Azure webalkalmazás számára](app-service-web-app-azure-resource-manager-powershell.md)
-* [Az App Service Environment bemutatása](app-service-app-service-environment-intro.md)
+* [Bevezetés tooApp Service-környezet](app-service-app-service-environment-intro.md)
 * [Az Azure PowerShell használata az Azure Resource Managerrel](../powershell-azure-resource-manager.md)
 

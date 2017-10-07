@@ -1,5 +1,5 @@
 ---
-title: Az Azure Application Insights adatmodell |} Microsoft Docs
+title: Application Insights adatmodell aaaAzure |} Microsoft Docs
 description: "A folyamatos exportálás a JSON-ból exportált, és használhatja tulajdonságait ismerteti."
 services: application-insights
 documentationcenter: 
@@ -13,22 +13,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/21/2016
 ms.author: bwren
-ms.openlocfilehash: a485ddd555f65473d81896effc4a3562bda71410
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5ff3ce7953b91cc69b5d96c0ea9b6d58a6016e61
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-insights-export-data-model"></a>Application Insights exportálási adatmodell
-A következő táblázat által küldött telemetriai tulajdonságainak a [Application Insights](app-insights-overview.md) SDK-k a portálra.
+Ez a táblázat felsorolja az hello által küldött telemetriai hello tulajdonságainak [Application Insights](app-insights-overview.md) SDK-k toohello portálon.
 Látni fogja, ezeket a tulajdonságokat a kimeneti adatok a [a folyamatos exportálás](app-insights-export-telemetry.md).
 Is megjelennek a tulajdonságszűrők [metrika Explorer](app-insights-metrics-explorer.md) és [diagnosztikai keresési](app-insights-diagnostic-search.md).
 
-Vegye figyelembe a következő szempontok:
+Pontok toonote:
 
-* `[0]`Ezek a táblázatok azt jelenti, az elérési út beszúrása index; esetében az ponttá de nem mindig 0.
+* `[0]`Ezek a táblázatok azt jelenti, egy adott esetében tooinsert index; hello elérési ponthoz de nem mindig 0.
 * Idő időtartamok vannak mikroszekundum, így száma 10 000 000 tized == 1 másodperc.
-* Dátum és idő (UTC), és azokról az ISO-formátumban`yyyy-MM-DDThh:mm:ss.sssZ`
+* Dátum és idő (UTC), és azokról hello ISO formátumban`yyyy-MM-DDThh:mm:ss.sssZ`
 
 
 ## <a name="example"></a>Példa
@@ -41,15 +41,15 @@ Vegye figyelembe a következő szempontok:
           "base": "/",
           "hashTag": ""
         },
-        "responseCode": 200, // Sent to client
+        "responseCode": 200, // Sent tooclient
         "success": true, // Default == responseCode<400
-        // Request id becomes the operation id of child events
+        // Request id becomes hello operation id of child events
         "id": "fCOhCdCnZ9I=",  
         "name": "GET Home/Index",
         "count": 1, // 100% / sampling rate
         "durationMetric": {
           "value": 1046804.0, // 10000000 == 1 second
-          // Currently the following fields are redundant:
+          // Currently hello following fields are redundant:
           "count": 1.0,
           "min": 1046804.0,
           "max": 1046804.0,
@@ -75,14 +75,14 @@ Vegye figyelembe a következő szempontok:
       "location": { // derived from client ip
         "continent": "North America",
         "country": "United States",
-        // last octagon is anonymized to 0 at portal:
+        // last octagon is anonymized too0 at portal:
         "clientip": "168.62.177.0",
         "province": "",
         "city": ""
       },
       "data": {
         "isSynthetic": true, // we identified source as a bot
-        // percentage of generated data sent to portal:
+        // percentage of generated data sent tooportal:
         "samplingRate": 100.0,
         "eventTime": "2016-03-21T10:05:45.7334717Z" // UTC
       },
@@ -116,11 +116,11 @@ Telemetria minden típusú környezetben szakasz mellett. Ezek a mezők közül 
 
 | Elérési út | Típus | Megjegyzések |
 | --- | --- | --- |
-| Context.Custom.Dimensions [0] |[objektum] |Kulcs-érték párokat egyéni tulajdonságok paraméter határozza meg. Maximális kulcshossz 100, értékek 1024 karakternél. 100-nál több egyedi értékeket, a tulajdonság kereshető, de nem használható Szegmentálás. Maximális 200 kulcsok ikey száma. |
+| Context.Custom.Dimensions [0] |[objektum] |Kulcs-érték párokat egyéni tulajdonságok paraméter határozza meg. Maximális kulcshossz 100, értékek 1024 karakternél. 100-nál több egyedi értékeket, hello tulajdonság kereshető, de nem használható Szegmentálás. Maximális 200 kulcsok ikey száma. |
 | Context.Custom.Metrics [0] |[objektum] |Kulcs-érték párok egyéni mértékek paraméter és TrackMetrics beállítása. Maximális kulcshossz 100, értékek lehetnek numerikus. |
 | context.data.eventTime |Karakterlánc |UTC SZERINT |
-| context.data.isSynthetic |Logikai érték |Kérelem úgy tűnik, hogy egy botot vagy webes teszt származhat. |
-| context.data.samplingRate |Szám |A portál küldött SDK által generált telemetriai százalékát. Tartomány 0,0-100.0. |
+| context.data.isSynthetic |Logikai érték |Kérelem toocome botot vagy webes tesztből jelenik meg. |
+| context.data.samplingRate |Szám |Hello tooportal küldött SDK által generált telemetriai százalékát. Tartomány 0,0-100.0. |
 | Context.Device |Objektum |Ügyféleszközök |
 | Context.Device.Browser |Karakterlánc |IE Chrome... |
 | context.device.browserVersion |Karakterlánc |Chrome 48.0... |
@@ -136,14 +136,14 @@ Telemetria minden típusú környezetben szakasz mellett. Ezek a mezők közül 
 | Context.Device.Type |Karakterlánc |Számítógép, a böngésző... |
 | Context.Location |Objektum |Ügyfélip származik. |
 | Context.location.City |Karakterlánc |Ügyfélip, származik, ha ismert |
-| Context.location.ClientIP |Karakterlánc |Utolsó nyolcszög anonimizált adatokon alapul, 0-ra. |
+| Context.location.ClientIP |Karakterlánc |Utolsó nyolcszög anonimizált too0. |
 | Context.location.Continent |Karakterlánc | |
 | Context.location.Country |Karakterlánc | |
 | Context.location.province |Karakterlánc |Állam vagy megye |
-| Context.Operation.ID |Karakterlánc |Azonos művelet azonosítóval rendelkező elemek sablonobjektumhoz kapcsolódó elemként megjelennek a portálon. Általában a kérelem azonosítója. |
+| Context.Operation.ID |Karakterlánc |Azonos műveletazonosító hello portálon sablonobjektumhoz kapcsolódó elemként látható hello rendelkező elemek. Általában hello kérelem azonosítója. |
 | Context.Operation.Name |Karakterlánc |URL-cím vagy a kérelem |
 | context.operation.parentId |Karakterlánc |Lehetővé teszi, hogy a beágyazott kapcsolódó elemek. |
-| Context.Session.ID |Karakterlánc |Műveletek ugyanarról a forrásról csoportjának azonosítója. 30 percig művelet nélkül jelzi a munkamenet végén. |
+| Context.Session.ID |Karakterlánc |Hello műveletek csoportjának azonosítója azonos forrásból. 30 percig művelet nélkül munkamenet hello végét jelzi. |
 | context.session.isFirst |Logikai érték | |
 | context.user.accountAcquisitionDate |Karakterlánc | |
 | context.user.anonAcquisitionDate |Karakterlánc | |
@@ -165,7 +165,7 @@ Egyéni események által generált [trackevent() függvény](app-insights-api-c
 | [0] esemény urlData.host |Karakterlánc | |
 
 ## <a name="exceptions"></a>Kivételek
-Jelentések [kivételek](app-insights-asp-net-exceptions.md) a kiszolgálón, valamint a böngészőben.
+Jelentések [kivételek](app-insights-asp-net-exceptions.md) hello kiszolgálón, valamint hello böngészőben.
 
 | Elérési út | Típus | Megjegyzések |
 | --- | --- | --- |
@@ -194,17 +194,17 @@ Jelentések [kivételek](app-insights-asp-net-exceptions.md) a kiszolgálón, va
 | [0] basicException typeName |Karakterlánc | |
 
 ## <a name="trace-messages"></a>Üzenetek nyomon követése
-Által küldött [TrackTrace](app-insights-api-custom-events-metrics.md#tracktrace), és a [naplózási adapterek](app-insights-asp-net-trace-logs.md).
+Által küldött [TrackTrace](app-insights-api-custom-events-metrics.md#tracktrace), és a hello [naplózási adapterek](app-insights-asp-net-trace-logs.md).
 
 | Elérési út | Típus | Megjegyzések |
 | --- | --- | --- |
 | üzenet [0] naplózó_neve |Karakterlánc | |
 | [0] Paraméterek |Karakterlánc | |
-| nyers [0] üzenet |Karakterlánc |A naplóüzenet 10 KB-os karakternél. |
+| nyers [0] üzenet |Karakterlánc |hello naplófájlüzenetre, 10 KB-os karakternél. |
 | üzenet [0] súlyossági szint |Karakterlánc | |
 
 ## <a name="remote-dependency"></a>Távoli függőség
-TrackDependency által küldött. Jelentés teljesítményét és használatának használt [függőségek hívásainak](app-insights-asp-net-dependencies.md) a kiszolgálón, és az AJAX-hívások a böngészőben.
+TrackDependency által küldött. Tooreport teljesítményét és használatának használt [toodependencies meghívja](app-insights-asp-net-dependencies.md) hello kiszolgáló és az AJAX-hívások hello böngészőben.
 
 | Elérési út | Típus | Megjegyzések |
 | --- | --- | --- |
@@ -213,7 +213,7 @@ TrackDependency által küldött. Jelentés teljesítményét és használatána
 | [0] remoteDependency commandName |Karakterlánc |Például "otthoni/index" |
 | [0] remoteDependency száma |egész szám |100 / ([mintavételi](app-insights-sampling.md) sebessége). Például 4 =&gt; 25 %. |
 | [0] remoteDependency dependencyTypeName |Karakterlánc |HTTP, SQL... |
-| [0] remoteDependency durationMetric.value |Szám |A hívás befejezését függőség válasz ideje |
+| [0] remoteDependency durationMetric.value |Szám |A hívás toocompletion függőség válasz ideje |
 | [0] remoteDependency azonosítója |Karakterlánc | |
 | [0] remoteDependency neve |Karakterlánc |URL-címe. Legfeljebb 250. |
 | [0] remoteDependency resultCode |Karakterlánc |a HTTP-függőség |
@@ -225,15 +225,15 @@ TrackDependency által küldött. Jelentés teljesítményét és használatána
 | [0] remoteDependency urlData.host |Karakterlánc |Maximális hossz 200 |
 
 ## <a name="requests"></a>Kérelmek
-Által küldött [TrackRequest](app-insights-api-custom-events-metrics.md#trackrequest). A globális modulok ezzel jelentések kiszolgáló válaszideje, mérni a kiszolgálón.
+Által küldött [TrackRequest](app-insights-api-custom-events-metrics.md#trackrequest). hello globális modulok használata a tooreports kiszolgáló válaszideje, mért hello kiszolgálón.
 
 | Elérési út | Típus | Megjegyzések |
 | --- | --- | --- |
 | [0] kérelmek száma |egész szám |100 / ([mintavételi](app-insights-sampling.md) sebessége). Például: 4 =&gt; 25 %. |
-| kérelem [0] durationMetric.value |Szám |A válasz érkező kérelmek időpontját. 1e7 == 1s |
+| kérelem [0] durationMetric.value |Szám |Kérelem érkező tooresponse időpontját. 1e7 == 1s |
 | a kérelemazonosító [0] |Karakterlánc |A művelet azonosítója |
 | [0] kérelem neve |Karakterlánc |GET/POST + alap URL-je.  Legfeljebb 250 |
-| kérelem [0] responseCode |egész szám |Az ügyfélnek küldött HTTP-válasz |
+| kérelem [0] responseCode |egész szám |HTTP-választ küldött tooclient |
 | [0] kérés sikeres |Logikai érték |Alapértelmezett == (responseCode &lt; 400) |
 | [0] kérelem URL-címe |Karakterlánc |Nem többek között a gazdagépen |
 | kérelem [0] urlData.base |Karakterlánc | |
@@ -241,18 +241,18 @@ TrackDependency által küldött. Jelentés teljesítményét és használatána
 | kérelem [0] urlData.host |Karakterlánc | |
 
 ## <a name="page-view-performance"></a>Teljesítmény nézet
-A böngésző által küldött. Egy oldal, a felhasználó a kérés (kivéve az aszinkron AJAX-hívások) teljes megjelenítendő kezdeményezése feldolgozni időt méri.
+Hello böngészője által küldött. Intézkedések hello idő tooprocess egy oldal, felhasználói kezdeményező hello kérelem toodisplay teljes (kivéve a aszinkron AJAX-hívások).
 
 Ügyfél OS és böngészőverzió környezetben értékek megjelenítése
 
 | Elérési út | Típus | Megjegyzések |
 | --- | --- | --- |
-| [0] clientPerformance clientProcess.value |egész szám |Megjelenítésére fognak az oldal HTML befogadására záró időpontját. |
+| [0] clientPerformance clientProcess.value |egész szám |Hello HTML toodisplaying hello oldal fogadása végének időpontját. |
 | [0] clientPerformance neve |Karakterlánc | |
-| [0] clientPerformance networkConnection.value |egész szám |A hálózati kapcsolat létrehozásához szükséges idő. |
-| [0] clientPerformance receiveRequest.value |egész szám |Küldi a kérelmet a válaszban fogadásával HTML végének időpontját. |
-| [0] clientPerformance sendRequest.value |egész szám |Az idő-e a HTTP-kérelem küldése. |
-| [0] clientPerformance total.value |egész szám |Elküldeni a kérelmet a lap megjelenítése kezdési időpontot. |
+| [0] clientPerformance networkConnection.value |egész szám |Igénybe vett idő tooestablish a hálózati kapcsolat. |
+| [0] clientPerformance receiveRequest.value |egész szám |Vége hello kérelem tooreceiving hello HTML a válaszban küldése időpontját. |
+| [0] clientPerformance sendRequest.value |egész szám |Idő tett toosend hello HTTP-kérelemből. |
+| [0] clientPerformance total.value |egész szám |Toosend hello kérelem toodisplaying hello lap kezdési időpontot. |
 | [0] clientPerformance URL-címe |Karakterlánc |A kérelem URL-címe |
 | [0] clientPerformance urlData.base |Karakterlánc | |
 | [0] clientPerformance urlData.hashTag |Karakterlánc | |
@@ -265,7 +265,7 @@ TrackPageView() által küldött vagy [stopTrackPage](app-insights-api-custom-ev
 | Elérési út | Típus | Megjegyzések |
 | --- | --- | --- |
 | [0] számának megtekintése |egész szám |100 / ([mintavételi](app-insights-sampling.md) sebessége). Például 4 =&gt; 25 %. |
-| [0] durationMetric.value megtekintése |egész szám |Értéke nem kötelezően trackPageView() vagy startTrackPage() - stopTrackPage(). Nem ugyanaz, mint clientPerformance értékeket. |
+| [0] durationMetric.value megtekintése |egész szám |Értéke nem kötelezően trackPageView() vagy startTrackPage() - stopTrackPage(). Nem hello azonos clientPerformance értékként. |
 | [0] nézet neve |Karakterlánc |Lap címe.  Legfeljebb 250 |
 | [0] nézet URL-címe |Karakterlánc | |
 | [0] urlData.base megtekintése |Karakterlánc | |
@@ -294,7 +294,7 @@ Jelentések [webteszt rendelkezésre állási](app-insights-monitor-web-app-avai
 ## <a name="metrics"></a>Mérőszámok
 A trackmetric() függvény által létrehozott.
 
-A metrika érték megtalálható context.custom.metrics[0]
+hello metrika érték megtalálható context.custom.metrics[0]
 
 Példa:
 
@@ -335,13 +335,13 @@ Metrika értékek, mind a metrika és a máshol, szabványos objektum struktúr�
         "sampledValue": 468.71603053650279
       }
 
-Jelenleg -, ha ez megváltozhatnak a jövőben - az összes értéket jelentett SDK modulban `count==1` és csak a `name` és `value` mezők lehetnek hasznosak. Az egyetlen eset, ahol azok eltérő lenne a lenne, ha a saját TrackMetric hívás írási amely csoportban a többi paraméter.
+Jelenleg -, ha ez előfordulhat, hogy módosítja a jövőbeli - hello szabványos SDK modulok jelentett összes értékek hello `count==1` és csak hello `name` és `value` mezők lehetnek hasznosak. hello csak olyan esetben, ha azok eltérő lenne a lenne, ha a saját TrackMetric hívások írt amely beállított hello más paramétereket az.
 
-A többi mező az a célja, hogy lehetővé tegye a mérni kívánt összesíteni az SDK-t, a portál forgalom csökkentése érdekében. Például több egymást követő értékek sikerült átlagos minden metrika jelentés elküldése előtt. Majd ehhez kiszámítása a min, max, szórás és összesített értékét (sum vagy átlagos) és count beállítva a jelentés által képviselt értékek száma.
+cél hello hello más mezők az tooallow metrikák toobe hello SDK, tooreduce forgalom toohello portal összesíteni. Például több egymást követő értékek sikerült átlagos minden metrika jelentés elküldése előtt. Majd kívánja kiszámítani hello min, max, szórás és összesített értékét (sum vagy átlag), majd hello jelentés által képviselt értékek száma toohello számának megadása.
 
-A fenti táblázatokban igazolnia kell nincs megadva a ritkán használt mezők számát, min, max, szórás és sampledValue.
+A fenti hello táblázatokban hogy rendelkezik nincs megadva hello ritkán használt mezők számát, min, max, szórás és sampledValue.
 
-Előre összesítése metrikák helyett használhat [mintavételi](app-insights-sampling.md) Ha telemetriai adatok mennyisége csökkenteni kell.
+Előre összesítése metrikák helyett használhat [mintavételi](app-insights-sampling.md) Ha telemetriai adatok mennyisége tooreduce hello van szüksége.
 
 ### <a name="durations"></a>Időtartamok
 Jelzés hiányában időtartamok vannak megadva a mikroszekundum tized, hogy 10000000.0 azt jelenti, hogy 1 másodperc.

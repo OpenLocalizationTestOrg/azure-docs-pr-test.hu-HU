@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Event Hubs Capture engedélyezése a portálon keresztül | Microsoft Docs"
-description: "Engedélyezze az Event Hubs Capture funkciót az Azure Portal használatával."
+title: "Event Hubs rögzítése aaaAzure portálon keresztül engedélyezése |} Microsoft Docs"
+description: "Hello Azure-portál használatával hello Event Hubs rögzítése funkció engedélyezéséhez."
 services: event-hubs
 documentationcenter: 
 author: sethmanheim
@@ -14,60 +14,60 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/28/2017
 ms.author: sethm
-ms.openlocfilehash: 0cbf45dce922647f2996f929d2c7cf885a2f4db4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 27c7528552c497a4d98873a22bd56a991c66247c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-event-hubs-capture-using-the-azure-portal"></a>Az Event Hubs Capture engedélyezése az Azure Portal használatával
+# <a name="enable-event-hubs-capture-using-hello-azure-portal"></a>Engedélyezze az Event Hubs rögzítése hello Azure-portál használatával
 
-A Capture-t konfigurálhatja az eseményközpont létrehozásakor az [Azure-portálon](https://portal.azure.com). Az adatokat Azure [Blob Storage](https://azure.microsoft.com/services/storage/blobs/)-tárolóban vagy [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/)-fiókban is rögzítheti.
+Létrehozáskor hello event hub hello segítségével konfigurálhatja a rögzítési [Azure-portálon](https://portal.azure.com). Akkor is, vagy rögzítési hello adatok tooan Azure [Blob-tároló](https://azure.microsoft.com/services/storage/blobs/) tároló vagy tooan [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/) fiók.
 
-## <a name="capture-data-to-an-azure-storage-account"></a>Adatok rögzítése Azure Storage-fiókba  
+## <a name="capture-data-tooan-azure-storage-account"></a>Adatok tooan Azure Storage-fiókjának rögzítése  
 
-Amikor létrehoz egy eseményközpontot, rögzítési kattintva engedélyezheti a **a** gombra a **Eseményközpont létrehozása** portál panel. Ezután a **Capture-szolgáltató** mező **Azure Storage** gombjára kattintva adhatja meg a Storage-fiókot és -tárolót. Mivel az Event Hubs Capture szolgáltatások közötti hitelesítést használ a tárolóval, nem kell megadnia egy tárfiók kapcsolati sztringjét. Az erőforrás-választó automatikusan kiválasztja az erőforrás URI-azonosítóját a tárfiókhoz. Az Azure Resource Manager használatakor explicit módon meg kell adnia ezt az URI-t karakterláncként.
+Amikor létrehoz egy eseményközpontot, rögzítési hello kattintva engedélyezheti **a** hello gombjára **Eseményközpont létrehozása** portál panel. Majd adja meg a Tárfiók és tároló kattintva **Azure Storage** a hello **rögzítése szolgáltató** mezőbe. Mivel az Event Hubs rögzítése használja a szolgáltatások közötti hitelesítés tárolóval, nem kell toospecify egy tárolási kapcsolati karakterlánc. hello erőforrás objektumválasztó hello erőforrás URI azonosítója a tárfiók automatikusan kijelöli. Az Azure Resource Manager használatakor explicit módon meg kell adnia ezt az URI-t karakterláncként.
 
-Az időkeret alapértelmezett értéke 5 perc. A minimális értéke 1, a maximális 15. A **Méret** ablak 10–500 MB tartománnyal rendelkezik.
+időkerete hello alapértelmezett érték 5 perc. minimális hello értéke-1, maximális 15 hello. Hello **mérete** ablak tartománnyal rendelkező 10 – 500 MB.
 
 ![][1]
 
-## <a name="capture-data-to-an-azure-data-lake-store-account"></a>Adatok rögzítése egy Azure Data Lake Store-fiókba
+## <a name="capture-data-tooan-azure-data-lake-store-account"></a>Rögzítése adatok tooan Azure Data Lake Store-fiók
 
-Az adatok Azure Data Lake Store-ban történő rögzítéséhez létre kell hoznia egy Data Lake Store-fiókot és egy eseményközpontot:
+toocapture adatok tooAzure Data Lake Store, létrehozhat egy Data Lake Store-fiókot, és az eseményközpontok:
 
 ### <a name="create-an-azure-data-lake-store-account-and-folders"></a>Azure Data Lake Store-fiók és -mappák létrehozása
 
-1. A Data Lake Store-fiók létrehozásához kövesse [Az Azure Data Lake Store használatának első lépései az Azure Portal használatával](../data-lake-store/data-lake-store-get-started-portal.md) című témakör utasításait. 
-2. Hozzon létre egy mappát ebben a fiókban a [Mappák létrehozása az Azure Data Lake Store-fiókban](../data-lake-store/data-lake-store-get-started-portal.md#createfolder) szakasz útmutatásai szerint.
-3. A Data Lake Store-fiók panelen kattintson a **adatkezelő**.
+1. Hozzon létre egy Data Lake Store-fiókot, hello utasításait követve [Ismerkedés az Azure Data Lake Store használatának hello Azure-portálon](../data-lake-store/data-lake-store-get-started-portal.md). 
+2. Hozzon létre egy mappát, ezzel a fiókkal, hello hello utasításait követve [mappák létrehozása az Azure Data Lake Store-fiók](../data-lake-store/data-lake-store-get-started-portal.md#createfolder) szakasz.
+3. Hello Data Lake Store-fiók panelen kattintson a **adatkezelő**.
 4. Kattintson a **Hozzáférés** elemre.
 5. Kattintson az **Add** (Hozzáadás) parancsra.
-6. A **Keresés név vagy e-mail-cím alapján** mezőbe írja be a **Microsoft.EventHubs** kifejezést, majd válassza ki ezt a beállítást. 
-7. Megjelenik az **Engedélyek** lap. Állítsa be az engedélyeket az alábbi ábrán látható módon:
+6. A hello **Keresés név vagy e-mail** mezőbe írja be **Microsoft.EventHubs** , és válassza ki ezt a beállítást. 
+7. Hello **engedélyek** lap jelenik meg. Hello engedélyek beállítása a hello a következő ábrán látható módon:
 
     ![][6]
 
 8. Kattintson az **OK** gombra.
-9. Most hozzon létre egy mappát a gyökérmappában. Ehhez navigáljon a célmappához, és kattintson a mappa nevére.
+9. Most hozzon létre egy mappát hello gyökérmappában toohello Célmappa tallózása, majd kattintson a hello mappa neve.
 10. Kattintson a **Hozzáférés** elemre.
 11. Kattintson az **Add** (Hozzáadás) parancsra.
-12. A **Keresés név vagy e-mail-cím alapján** mezőbe írja be a **Microsoft.EventHubs** kifejezést, majd válassza ki ezt a beállítást.
-13. Ekkor újra megjelenik az **Engedélyek** lap. Állítsa be az engedélyeket az alábbi ábrán látható módon:
+12. A hello **Keresés név vagy e-mail** mezőbe írja be **Microsoft.EventHubs** , és válassza ki ezt a beállítást.
+13. Hello **engedélyek** lap jelenik meg újra. Hello engedélyek beállítása a hello a következő ábrán látható módon:
 
     ![][5]
 
 ### <a name="create-an-event-hub"></a>Eseményközpont létrehozása
 
-1. Vegye figyelembe, hogy az eseményközpontnak ugyanabban az Azure-előfizetésben kell lennie, mint amelyben az imént létrehozott Azure Data Lake Store van. Az event hubs gombra kattintva hozzon létre a **a** gombra kattint, a **rögzítése** a a **Eseményközpont létrehozása** portál panel. 
-2. Az a **Eseményközpont létrehozása** portál panel, jelölje be **Azure Data Lake Store** a a **rögzítése szolgáltató** mezőbe.
-3. A **Data Lake Store kiválasztása** mezőben adja meg a korábban létrehozott Data Lake Store-fiókot, a **Data Lake elérési útja** mezőben pedig a létrehozott adatmappa elérési útját.
+1. Vegye figyelembe, hogy hello eseményközpont kell lennie a hello hello Azure Data Lake Store imént létrehozott, azonos Azure-előfizetés. Hozzon létre hello eseményközpont, hello kattintva **a** gombra kattint, a **rögzítése** a hello **Eseményközpont létrehozása** portál panel. 
+2. A hello **Eseményközpont létrehozása** portál panel, jelölje be **Azure Data Lake Store** a hello **rögzítése szolgáltató** mezőbe.
+3. A **válasszon Data Lake Store**, adja meg a korábban, és hello létrehozott Data Lake Store-fiókot hello **elérési utat a Data Lake** mezőbe írja be a hello elérési toohello adatok létrehozott mappába.
 
     ![][3]
 
 ## <a name="add-or-configure-capture-on-an-existing-event-hub"></a>A Capture hozzáadása vagy konfigurálása egy meglévő eseményközponton
 
-A Capture-t olyan meglévő eseményközpontokon konfigurálhatja, amelyek az Event Hubs-névterekben találhatók. A Capture meglévő eseményközpontban történő engedélyezéséhez, vagy a Capture beállításainak módosításához kattintson a névtérre az **Alapvető szolgáltatások** panel betöltéséhez, majd kattintson arra az eseményközpontra, amelyet engedélyezni kíván, vagy amelyhez módosítani szeretné a Capture-beállítást. Végül kattintson a **tulajdonságok** szakasz nyissa meg a penge és szerkessze a rögzítési beállítások, a következő ábrákon látható módon:
+A Capture-t olyan meglévő eseményközpontokon konfigurálhatja, amelyek az Event Hubs-névterekben találhatók. tooenable egy meglévő eseményközpont, vagy toochange rögzíti a rögzítési beállításokat, kattintson a hello névtér tooload hello **Essentials** panelen, majd kattintson a hello eseményközpont, amelynek szeretné, hogy tooenable vagy hello rögzítési beállítás módosításával. Végül kattintson a hello **tulajdonságok** hello szakasza panel megnyitásához, és hello rögzítési beállításait, majd szerkessze a hello a következő ábrán látható módon:
 
 ### <a name="azure-blob-storage"></a>Azure Blob Storage
 

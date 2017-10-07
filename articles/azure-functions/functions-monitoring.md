@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Functions figyelése |} Microsoft Docs"
-description: "Útmutató az Azure Functions."
+title: az Azure Functions aaaMonitoring |} Microsoft Docs
+description: Megtudhatja, hogyan toomonitor az Azure Functions.
 services: functions
 documentationcenter: na
 author: wesmc7777
@@ -16,30 +16,30 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 11/03/2016
 ms.author: wesmc
-ms.openlocfilehash: b70214593b1417265387f42306a633bb0df2920e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 254348d1cefce925654bd9532715b6def571e0ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitoring-azure-functions"></a>Az Azure Functions figyelése
 
 ## <a name="overview"></a>Áttekintés 
 
 
-A **figyelő** lapján minden funkció lehetővé teszi, hogy tekintse át a függvény minden egyes végrehajtása.
+Hello **figyelő** minden funkció lehetővé teszi tooreview lapján minden egyes egy függvény végrehajtása.
 
 ![Az Azure Functions figyelés lapján](./media/functions-monitoring/monitor-tab.png) 
 
-Kattintson egy végrehajtását lehetővé teszi, hogy tekintse át az időtartam, a bemeneti adatok, a hibák és a kapcsolódó naplófájlok. Ez egy hasznos Hibakeresés és teljesítményének hangolása függvényeit.
+Kattintson egy végrehajtását lehetővé teszi, hogy Ön tooreview hello időtartama, a bemeneti adatok, a hibák és a kapcsolódó naplófájlok. Ez egy hasznos Hibakeresés és teljesítményének hangolása függvényeit.
 
 
 > [!IMPORTANT]
-> Használatakor a [üzemeltetési terv fogyasztás](functions-overview.md#pricing) az Azure Functions a **figyelés** az függvény áttekintése panelen a csempe nem jelenik meg az adatokat. Ennek az az oka a platform dinamikusan méretezi és számítási példányokért kezeli, úgy, hogy ezeket a mérési nem értelmezhető fogyasztás tervezze. A függvény alkalmazások megfigyeléséhez, Ehelyett használjon útmutatás ebben a cikkben.
+> Hello használatakor [üzemeltetési terv fogyasztás](functions-overview.md#pricing) Azure Functions hello **figyelés** hello függvény App áttekintése panelen csempe nem jelenik meg az adatokat. Ennek az az oka hello platform dinamikusan méretezi és számítási példányokért kezeli, úgy, hogy ezeket a mérési nem értelmezhető fogyasztás tervezze. Függvény alkalmazásai toomonitor hello használata, inkább használjon hello útmutatást ebben a cikkben.
 > 
-> Az alábbi képernyőfelvételen egy példát mutat be:
+> a következő képernyőfelvétel hello példáját mutatja be:
 > 
-> ![A fő erőforráspanelen figyelése](./media/functions-monitoring/app-service-overview-monitoring.png)
+> ![Hello fő erőforráspanelen figyelése](./media/functions-monitoring/app-service-overview-monitoring.png)
 
 
 
@@ -47,24 +47,24 @@ Kattintson egy végrehajtását lehetővé teszi, hogy tekintse át az időtarta
 
 Valós idejű figyelés kattintva érhető **élő esemény adatfolyam** alább látható módon. 
 
-![A figyelés lapján élő esemény adatfolyam beállítása](./media/functions-monitoring/monitor-tab-live-event-stream.png)
+![Az élő esemény adatfolyam beállítást hello figyelő lap](./media/functions-monitoring/monitor-tab-live-event-stream.png)
 
-Az élő esemény adatfolyam fog graphed be egy új böngészőlapon, alább látható módon. 
+élő hello eseményfelhasználó fog graphed be egy új böngészőlapon, alább látható módon. 
 
 ![Az élő esemény adatfolyam – példa](./media/functions-monitoring/live-event-stream.png)
 
 
 > [!NOTE]
-> Nincs egy ismert probléma, amelyek az adatok nem tölthetők fel okozhatnak. Ez tapasztal, esetleg zárja be az élő esemény folyamot tartalmazó böngészőlapon, és kattintson a **élő esemény adatfolyam** újra, hogy engedélyezi az esemény-adatfolyam adatok megfelelően feltöltéséhez. 
+> Nincs egy ismert probléma, amelyek az adatok toofail toobe feltöltve okozhatnak. Ha ez tapasztal, szükség lehet a tooclose hello böngésző lapon tartalmazó hello élő esemény adatfolyam, és kattintson **élő esemény adatfolyam** újra tooallow azt tooproperly az esemény-adatfolyam adatok feltöltése. 
 
-Az élő esemény adatfolyam fog diagramot a függvény a következő adatokat:
+élő hello eseményfelhasználó fog diagramot hello statisztikáit. a függvény a következő:
 
 * A másodpercenként elindított végrehajtások
 * Végrehajtások másodpercenként befejezett
 * Végrehajtások másodpercenként sikertelen
 * Átlagos végrehajtási idő, ezredmásodpercben megadva.
 
-Ezeket a statisztikákat a valós idejű, de a tényleges megjelenítés a végrehajtási adatok esetleg késés körülbelül 10 másodperc.
+Ezeket a statisztikákat a valós idejű, de a tényleges hello végrehajtási adatok grafikonozás hello esetleg késés körülbelül 10 másodperc.
 
 
 
@@ -74,53 +74,53 @@ Ezeket a statisztikákat a valós idejű, de a tényleges megjelenítés a végr
 ## <a name="monitoring-log-files-from-a-command-line"></a>A parancssorból naplófájlok figyelése
 
 
-Naplófájlokat, hogy egy parancssori munkamenetet egy helyi munkaállomáson az Azure parancssori felület (CLI) vagy a PowerShell használatával is adatfolyam.
+Napló fájlok tooa parancssori munkamenetet egy helyi munkaállomáson hello Azure parancssori felület (CLI) vagy a PowerShell használatával is adatfolyam.
 
-### <a name="monitoring-function-app-log-files-with-the-azure-cli"></a>Figyelési funkció alkalmazások naplófájljainak az Azure parancssori felülettel
+### <a name="monitoring-function-app-log-files-with-hello-azure-cli"></a>Figyelési funkció alkalmazások naplófájljainak a hello Azure parancssori felület
 
-A kezdéshez [az Azure parancssori felület telepítése](../cli-install-nodejs.md)
+elindult, tooget [hello Azure parancssori felület telepítése](../cli-install-nodejs.md)
 
-Jelentkezzen be az Azure-fiókjával az alábbi parancsot, vagy az egyéb beállításokat tárgyalja, [jelentkezzen be az Azure-bA az Azure parancssori felületen](../xplat-cli-connect.md).
+Jelentkezzen be az Azure-fiókjával hello alábbi parancsot, vagy bármely más beállításokat tárgyalja, hello [jelentkezzen be az Azure CLI hello tooAzure](../xplat-cli-connect.md).
 
     azure login
 
-Azure CLI szolgáltatás kezelési (ASM) mód engedélyezéséhez a következő paranccsal:.
+Használjon hello következő parancsot a tooenable Azure CLI szolgáltatás kezelési (ASM) mód:.
 
     azure config mode asm
 
-Ha több előfizetéssel rendelkezik, az alábbi parancsokkal az előfizetés, a függvény alkalmazást tartalmazó listában az előfizetések és az aktuális előfizetésben.
+Ha több előfizetéssel rendelkezik, használja a következő parancsok toolist hello az előfizetések és -készlet hello aktuális előfizetés toohello előfizetést, amely tartalmazza az függvény alkalmazás.
 
     azure account list
     azure account set <subscriptionNameOrId>
 
-A következő parancsot fog adatfolyam a naplófájlok, a függvény alkalmazás, a parancssorba:
+hello következő parancs fog adatfolyam a függvény app toohello parancssor hello naplófájlokat:
 
     azure site log tail -v <function app name>
 
 ### <a name="monitoring-function-app-log-files-with-powershell"></a>Figyelési funkció alkalmazások naplófájljainak a PowerShell használatával
 
-A kezdéshez [Azure PowerShell telepítése és konfigurálása](/powershell/azure/overview).
+elindult, tooget [Azure PowerShell telepítése és konfigurálása](/powershell/azure/overview).
 
-A következő parancs futtatásával adja hozzá az Azure-fiókjával:
+Adja hozzá az Azure-fiókjával hello a következő parancs futtatásával:
 
     PS C:\> Add-AzureAccount
 
-Ha több előfizetéssel rendelkezik, listázhatja azokat a következő paranccsal, hogy a megfelelő előfizetés a kijelölt alapján nevű `IsCurrent` tulajdonság:
+Ha több előfizetéssel rendelkezik, listázhatja azokat név szerint a következő parancs toosee, ha a megfelelő előfizetés kijelölve hello hello alapján hello `IsCurrent` tulajdonság:
 
     PS C:\> Get-AzureSubscription
 
-Ha az aktív előfizetéssel beállítása a egy, a függvény alkalmazást tartalmazó van szüksége, használja a következő parancsot:
+Ha tooset hello aktív előfizetéssel toohello egyet a függvény alkalmazást tartalmazó van szüksége, használja a következő parancs hello:
 
     PS C:\> Get-AzureSubscription -SubscriptionName "MyFunctionAppSubscription" | Select-AzureSubscription
 
-Adatfolyamként küldje el a naplókat a PowerShell-munkamenetet a következő parancsot:
+Az adatfolyam hello naplók tooyour PowerShell-munkamenetet a következő parancs hello:
 
     PS C:\> Get-AzureWebSiteLog -Name MyFunctionApp -Tail
 
-További információt talál [hogyan: adatfolyam-naplókat web Apps](../app-service-web/web-sites-enable-diagnostic-log.md#streamlogs). 
+További információt talál a túl[hogyan: adatfolyam-naplókat web Apps](../app-service-web/web-sites-enable-diagnostic-log.md#streamlogs). 
 
 ## <a name="next-steps"></a>Következő lépések
-További információkért lásd a következőket:
+További információkért tekintse meg a következő erőforrások hello:
 
 * [A függvény tesztelése](functions-test-a-function.md)
 * [Egy függvény méretezése](functions-scale.md)

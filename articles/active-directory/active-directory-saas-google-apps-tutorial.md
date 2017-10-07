@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directory-integráció a Google Apps, az Azure-ban |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és a Google alkalmazások között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és a Google alkalmazások között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,131 +13,131 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: jeedes
-ms.openlocfilehash: 065841d6b4fe50e953f01bba4d3f23de82b82726
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2093b5ab605ec0d7bbefe7a78e1eede34d756f53
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-google-apps"></a>Oktatóanyag: Azure Active Directory-integráció a Google Apps
 
-Ebben az oktatóanyagban elsajátíthatja Google alkalmazások integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Google Apps, az Azure Active Directoryval (Azure AD).
 
-Google Apps alkalmazások integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+Google Apps alkalmazások integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Megadhatja a Google Apps hozzáféréssel rendelkező Azure AD-ben
-- Az Azure AD-fiókok a engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a Google Apps (egyszeri bejelentkezés)
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Megadhatja a hozzáférés tooGoogle alkalmazások rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooGoogle (egyszeri bejelentkezés) alkalmazásokat a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha szeretné tudni, hogy az Azure AD SaaS integrálásáról további információt, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha szeretne tooknow az Azure AD SaaS integrálásáról további információt, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az Azure AD-integráció konfigurálása a Google Apps, a következőkre van szükség:
+tooconfigure az Azure AD integrálása a Google Apps, a következő elemek hello kell:
 
 - Az Azure AD szolgáltatásra
 - A Google Apps egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió Itt kaphat: [próbaverzió ajánlat](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="video-tutorial"></a>Oktatóvideó
-Útmutató 2 percet az egyszeri bejelentkezés Google alkalmazások engedélyezése:
+Hogyan tooEnable egyszeri bejelentkezés tooGoogle alkalmazások két percen belül:
 
 > [!VIDEO https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Enable-single-sign-on-to-Google-Apps-in-2-minutes-with-Azure-AD/player]
 
 ## <a name="frequently-asked-questions"></a>Gyakori kérdések
 1. **K: Chromebooks és egyéb Chrome eszközök kompatibilisek legyenek az Azure AD az egyszeri bejelentkezés?**
    
-    V: Igen, a felhasználók jelentkezhetnek be a Azure AD hitelesítő adataik használatával Chromebook eszközeiket. Ez [Google alkalmazások támogatják a cikk](https://support.google.com/chrome/a/answer/6060880) információt arról, hogy miért felhasználók lehet kérni a hitelesítő adatok kétszer.
+    A: felhasználók Igen, képes toosign be a Azure AD hitelesítő adataik használatával Chromebook eszközeik. Ez [Google alkalmazások támogatják a cikk](https://support.google.com/chrome/a/answer/6060880) információt arról, hogy miért felhasználók lehet kérni a hitelesítő adatok kétszer.
 
-2. **Kérdés: Ha az egyszeri bejelentkezés engedélyezése felhasználók fogja tudni az Azure AD hitelesítő adatai segítségével jelentkezzen be Google bármely termék, például a Google osztályteremben, GMail, Google meghajtó, YouTube stb?**
+2. **Kérdés: Ha az egyszeri bejelentkezés engedélyezése a felhasználók fog tudni toouse kell az Azure AD hitelesítő adatait toosign történő bármely Google termék, például a Google osztályteremben, GMail, Google meghajtó, YouTube stb?**
    
-    V: Igen, attól függően [mely Google apps](https://support.google.com/a/answer/182442?hl=en&ref_topic=1227583) úgy dönt, hogy engedélyezi vagy letiltja a szervezet számára.
+    V: Igen, attól függően [mely Google apps](https://support.google.com/a/answer/182442?hl=en&ref_topic=1227583) tooenable válasszon, vagy tiltsa le a szervezet számára.
 
 3. **K: engedélyezhető az egyszeri bejelentkezéshez csak egy része a Google Apps-alkalmazások felhasználók számára?**
    
-    A: nem bekapcsolásával egyszeri bejelentkezés azonnal minden a Google Apps felhasználótól megköveteli a hitelesítést az Azure AD hitelesítő adatait. Google Apps nem támogatja több identitás-szolgáltatóktól rendelkező, mert az identitásszolgáltató a Google Apps környezetnek lehet az Azure AD vagy Google –, de nem mindkettőt egyszerre.
+    A: nem bekapcsolásával egyszeri bejelentkezés azonnal szükséges összes a Google Apps felhasználók tooauthenticate az Azure AD hitelesítő adataikkal. Google Apps nem támogatja több identitás-szolgáltatóktól rendelkező, mert a Google Apps környezetnek hello identitásszolgáltató lehet az Azure AD vagy Google –, de egyszerre csak hello ugyanannyi időt vesz igénybe.
 
-4. **K:, ha van bejelentkezett felhasználó Windows keresztül, azok automatikusan hitelesíteniük kell Google Apps első kéri a jelszót nélkül?**
+4. **K:, ha van bejelentkezett felhasználó Windows keresztül,, azok automatikusan tooGoogle alkalmazások használata nélkül végezzen hitelesítést a rendszer első jelszót?**
    
-    A: Ez a forgatókönyv engedélyezésének két lehetőség áll rendelkezésre. Először sikerült jelentkeznek be Windows 10-eszközöket az [Azure Active Directory csatlakozási](active-directory-azureadjoin-overview.md). Azt is megteheti, sikerült jelentkeznek be Windows-eszközök, amelyek a tartományhoz, amely az egyszeri bejelentkezés az Azure AD-keresztül engedélyezve van a helyszíni Active Directory egy [Active Directory összevonási szolgáltatások (AD FS)](active-directory-aadconnect-user-signin.md) központi telepítés. Mindkét lehetőség kell ahhoz, hogy az egyszeri bejelentkezés az Azure AD között az alábbi oktatóanyag hajtsa végre a lépéseket és a Google Apps.
+    A: Ez a forgatókönyv engedélyezésének két lehetőség áll rendelkezésre. Először sikerült jelentkeznek be Windows 10-eszközöket az [Azure Active Directory csatlakozási](active-directory-azureadjoin-overview.md). Azt is megteheti, sikerült jelentkeznek be Windows-eszközök, amelyek tooan tartományhoz a helyszíni Active Directoryban, amely az egyszeri bejelentkezés tooAzure AD keresztül engedélyezve van egy [Active Directory összevonási szolgáltatások (AD FS)](active-directory-aadconnect-user-signin.md) központi telepítés. Mindkét lehetőség kell tooperform hello lépéseit az oktatóanyag tooenable egyszeri bejelentkezés az Azure AD között a következő hello és a Google Apps.
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. Google Apps hozzáadása a gyűjteményből
+1. Google Apps hozzáadása hello gyűjteményből
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-google-apps-from-the-gallery"></a>Google Apps hozzáadása a gyűjteményből
-Az Azure AD integrálása a Google Apps konfigurálásához kell hozzáadnia Google Apps a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-google-apps-from-hello-gallery"></a>Google Apps hozzáadása hello gyűjteményből
+tooconfigure hello integráció a Google Apps, az Azure AD-be, meg kell tooadd Google Apps hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**Adja hozzá a Google Apps a gyűjteményből, hajtsa végre az alábbi lépéseket:**
+**tooadd Google Apps hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
+3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **Google Apps**.
+4. Hello keresési mezőbe, írja be a **Google Apps**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_search.png)
 
-5. Az eredmények panelen válassza ki a **Google Apps**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. A hello eredmények panelen válassza ki a **Google Apps**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, tesztelése és konfigurálása az Azure AD egyszeri bejelentkezést a Google Apps "Britta Simon." nevű tesztfelhasználó alapján
 
-Az egyszeri bejelentkezés működéséhez az Azure AD számára a Google Apps a partner felhasználót egy felhasználó számára az Azure AD kell. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a Google Apps közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználói a Google Apps tooa felhasználó az Azure ad-ben. Ez azt jelenti hello kapcsolódó felhasználó a Google Apps és az Azure AD-felhasználó közötti kapcsolat kapcsolatot kell létrehozni toobe.
 
-Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a Google Apps.
+Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** a Google Apps.
 
-Az Azure AD az egyszeri bejelentkezés Google alkalmazások tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés Google Apps-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[Google Apps tesztfelhasználó létrehozása](#creating-a-google-apps-test-user)**  - való Britta Simon egy megfelelője a Google Apps, amely csatolva van a felhasználó az Azure AD-ábrázolását.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[Google Apps tesztfelhasználó létrehozása](#creating-a-google-apps-test-user)**  -toohave egy megfelelője a Britta Simon a Google Apps, amely a felhasználó csatolt toohello az Azure AD-ábrázolása.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és a Google Apps-alkalmazás az egyszeri bejelentkezés konfigurálása.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és a Google Apps-alkalmazás az egyszeri bejelentkezés konfigurálása.
 
-**Konfigurálja az Azure AD egyszeri bejelentkezést a Google Apps, hajtsa végre az alábbi lépéseket:**
+**az Azure AD tooconfigure egyszeri bejelentkezést a Google Apps, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure portálon a a **Google Apps** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **Google Apps** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_samlbase.png)
 
-3. Az a **Google Apps tartományi és URL-címek** területen tegye a következőket:
+3. A hello **Google Apps tartományi és URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_url.png)
 
-    Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://mail.google.com/a/<yourdomain>`
+    A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://mail.google.com/a/<yourdomain>`
 
     > [!NOTE] 
-    > Ez az érték nincs valós. Frissítse az értéket a tényleges bejelentkezési URL-címet. Lépjen kapcsolatba a [Google támogatási csoport](https://www.google.com/contact/).
+    > Ez az érték nincs valós. Frissítse a hello érték hello tényleges bejelentkezési URL-CÍMÉT. Lépjen kapcsolatba a hello [Google támogatási csoport](https://www.google.com/contact/).
  
-4. Az a **SAML-aláíró tanúsítványa** kattintson **tanúsítvány** , és mentse a tanúsítványt a számítógépen.
+4. A hello **SAML-aláíró tanúsítványa** kattintson **tanúsítvány** , és mentse a hello tanúsítvány a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_certificate.png) 
 
@@ -145,94 +145,94 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-google-apps-tutorial/tutorial_general_400.png)
 
-6. Az a **Google Apps konfigurációs** területen kattintson **konfigurálása Google Apps** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **Sign-Out URL-címet, a SAML-alapú egyszeri bejelentkezési URL-címe és a módosítás jelszó URL-cím** a a **rövid összefoglaló szakasz.**
+6. A hello **Google Apps konfigurációs** területén kattintson **konfigurálása Google Apps** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **Sign-Out URL-címet, a SAML-alapú egyszeri bejelentkezési URL-címe és a módosítás jelszó URL-cím** a hello **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_configure.png) 
 
-7. Új lap megnyitása a böngészőben, és jelentkezzen be a [Google Apps felügyeleti konzol](http://admin.google.com/) a rendszergazdai fiók használatával.
+7. Új lap megnyitása a böngészőben, és jelentkezzen be a hello [Google Apps felügyeleti konzol](http://admin.google.com/) a rendszergazdai fiók használatával.
 
-8. Kattintson a **biztonsági**. Ha nem látja a hivatkozásra, akkor előfordulhat, hogy rejtve alatt a **további vezérlők** menü a képernyő alján.
+8. Kattintson a **biztonsági**. Ha hello hivatkozás nem látható, akkor előfordulhat, hogy rejtve a hello **további vezérlők** menü üdvözlő képernyőt hello alján.
    
     ![Kattintson a Security (Biztonság) elemre.][10]
 
-9. Az a **biztonsági** kattintson **beállítása az egyszeri bejelentkezés (SSO).**
+9. A hello **biztonsági** kattintson **beállítása az egyszeri bejelentkezés (SSO).**
    
     ![Kattintson az egyszeri Bejelentkezést.][11]
 
-10. Hajtsa végre a következő konfigurációs módosításokat:
+10. Hajtsa végre a következő konfigurációs módosításainak hello:
    
     ![Egyszeri bejelentkezés konfigurálása][12]
    
     a. Válassza ki **külső identitásszolgáltatótól telepítő SSO**.
 
-    b. A a **bejelentkezési URL-címe** Google Apps mezőbe illessze be az értékét **egyszeri bejelentkezési URL-címe**, amely az Azure-portálon másolta.
+    b. A a **bejelentkezési URL-címe** Google Apps mezőbe illessze be a hello értékének **egyszeri bejelentkezési URL-címe**, amely az Azure-portálon másolta.
 
-    c. Az a **kijelentkezési URL-címe** Google Apps mezőbe illessze be az értékét **Sign-Out URL-cím**, amely az Azure-portálon másolta. 
+    c. A hello **kijelentkezési URL-címe** Google Apps mezőbe illessze be a hello értékének **Sign-Out URL-cím**, amely az Azure-portálon másolta. 
 
-    d. Az a **Módosítsa jelszavát URL-címet** Google Apps mezőbe illessze be az értékét **Módosítsa jelszavát URL-címet**, amely az Azure-portálon másolta. 
+    d. A hello **Módosítsa jelszavát URL-címet** Google Apps mezőbe illessze be a hello értékének **Módosítsa jelszavát URL-címet**, amely az Azure-portálon másolta. 
 
-    e. A Google Apps az a **ellenőrző tanúsítvány**, az Azure-portálról letöltött tanúsítvány feltöltése.
+    e. A Google Apps, az hello **ellenőrző tanúsítvány**, az Azure-portálról letöltött feltöltés hello tanúsítványt.
 
     f. Kattintson a **módosítások mentése**.
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
  
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-google-apps-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-google-apps-tutorial/create_aaduser_02.png) 
 
-3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
+3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-google-apps-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-google-apps-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-google-apps-test-user"></a>Google Apps tesztfelhasználó létrehozása
 
-Ez a szakasz célja a Google Apps szoftver Britta Simon nevű felhasználót kell létrehozni. Google Apps támogatja az Automatikus kiépítés, amely alapértelmezés szerint van engedélyezve. Nincs olyan művelet, ebben a szakaszban. Ha a felhasználó nem létezik a Google Apps szoftver, egy új jön létre, Google Apps szoftver elérésére tett kísérlet során.
+hello ebben a szakaszban célja toocreate a Google Apps szoftver Britta Simon nevű felhasználó. Google Apps támogatja az Automatikus kiépítés, amely alapértelmezés szerint van engedélyezve. Nincs olyan művelet, ebben a szakaszban. Ha a felhasználó nem létezik a Google Apps szoftver, egy új tooaccess Google Apps szoftver tett kísérlet során jön létre.
 
 >[!NOTE] 
->Ha a felhasználó manuális létrehozása, forduljon a [Google támogatási csoport](https://www.google.com/contact/).
+>Ha egy felhasználó toocreate manuálisan kell, lépjen kapcsolatba a hello [Google támogatási csoport](https://www.google.com/contact/).
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban Britta Simon hozzáférést biztosít a Google Apps által használandó Azure egyszeri bejelentkezés engedélyezése.
+Ebben a szakaszban Azure egyszeri bejelentkezés Britta Simon toouse tooGoogle alkalmazásokat nyújtó engedélyezi.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Google Apps Britta Simon rendel, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooGoogle alkalmazások, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **Google Apps**.
+2. Hello alkalmazások listában válassza ki a **Google Apps**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -240,7 +240,7 @@ Ebben a szakaszban Britta Simon hozzáférést biztosít a Google Apps által ha
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -248,11 +248,11 @@ Ebben a szakaszban Britta Simon hozzáférést biztosít a Google Apps által ha
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ez a szakasz az egyszeri bejelentkezés beállításainak ellenőrzéséhez nyissa meg a hozzáférési panelre a [https://myapps.microsoft.com](active-directory-saas-access-panel-introduction.md), majd jelentkezzen be a fiókot, és kattintson a **Google Apps** csempére a hozzáférési panelen.
+Ebben a szakaszban a egyszeri bejelentkezés beállításokat, nyissa meg a hozzáférési panelre a hello tootest [https://myapps.microsoft.com](active-directory-saas-access-panel-introduction.md), majd bejelentkezés a hello teszt fiókba, és kattintson **Google Apps** hello hozzáférési Panel csempére.
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 * [A felhasználók átadása konfigurálása](active-directory-saas-google-apps-provisioning-tutorial.md)
 

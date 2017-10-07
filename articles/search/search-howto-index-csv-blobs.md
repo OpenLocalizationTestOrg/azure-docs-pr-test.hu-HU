@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Search-indexelőt, blob CSV blobok indexelő |} Microsoft Docs"
-description: Megtudhatja, hogyan CSV BLOB az Azure Search index
+title: "az Azure Search-indexelőt, blob blobok aaaIndexing CSV |} Microsoft Docs"
+description: Ismerje meg, hogyan tooindex CSV-blobok az Azure Search
 services: search
 documentationcenter: 
 author: chaosrealm
@@ -14,30 +14,30 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 12/15/2016
 ms.author: eugenesh
-ms.openlocfilehash: af9da85c37211d2436c23cc05400031c661ef51e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f2b1ce824e62c5b3f6155c6e88887897cf1a8eae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="indexing-csv-blobs-with-azure-search-blob-indexer"></a>Az Azure Search-indexelőt, blob CSV blobok indexelő
-Alapértelmezés szerint [blob Azure Search-indexelőt](search-howto-indexing-azure-blob-storage.md) elemez szöveg blobok szöveg egyetlen adattömb jelölik. Azonban a CSV-adatokat tartalmazó BLOB, gyakran szeretné kezelni a blob, különálló dokumentumként soronként. Például adja a következő tagolt szöveget: 
+Alapértelmezés szerint [blob Azure Search-indexelőt](search-howto-indexing-azure-blob-storage.md) elemez szöveg blobok szöveg egyetlen adattömb jelölik. Azonban a CSV-adatokat tartalmazó BLOB, érdemes tootreat hello blob minden sora egy különálló dokumentumként. A megadott hello például a következő tagolt szöveg: 
 
     id, datePublished, tags
     1, 2016-01-12, "azure-search,azure,cloud" 
     2, 2016-07-07, "cloud,mobile" 
 
-érdemes elemezni a 2-dokumentumok esetében az egyes "id", "datePublished" és "címkék" mezőket tartalmazó.
+érdemes tooparse azt a 2-dokumentumok esetében minden egyes tartalmazó "id", "datePublished" és "címkék" mezőket.
 
-Ebben a cikkben megismerheti, hogyan elemzése az Azure Search blob indexelő CSV blobok lesz. 
+Ebben a cikkben megtudhatja, hogyan tooparse CSV-blobok az Azure Search blob indexelőt. 
 
 > [!IMPORTANT]
-> Ez a funkció jelenleg előzetes verzió. Csak a REST API verziójával érhető el **2015-02-28-előzetes**. Adjon ne feledje, az előzetes API-k tesztelésében és értékelésében készült, és nem használható üzemi környezetben. 
+> Ez a funkció jelenleg előzetes verzió. Csak a hello REST API verziójával **2015-02-28-előzetes**. Adjon ne feledje, az előzetes API-k tesztelésében és értékelésében készült, és nem használható üzemi környezetben. 
 > 
 > 
 
 ## <a name="setting-up-csv-indexing"></a>Fürt megosztott kötetei szolgáltatás indexelő beállítása
-A CSV-blobok index, definíció létrehozása vagy módosítása egy indexelő rendelkező a `delimitedText` elemzése mód:  
+tooindex CSV blobot definíció létrehozása vagy módosítása egy indexelő a hello `delimitedText` elemzése mód:  
 
     {
       "name" : "my-csv-indexer",
@@ -45,22 +45,22 @@ A CSV-blobok index, definíció létrehozása vagy módosítása egy indexelő r
       "parameters" : { "configuration" : { "parsingMode" : "delimitedText", "firstLineContainsHeaders" : true } }
     }
 
-Hozzon létre indexelő API további részletekért tekintse meg [létrehozása indexelő](search-api-indexers-2015-02-28-preview.md#create-indexer).
+További részleteket a hello indexelő API létrehozása, tekintse meg [létrehozása indexelő](search-api-indexers-2015-02-28-preview.md#create-indexer).
 
-`firstLineContainsHeaders`azt jelzi, hogy az első sort (kötelező) minden egyes blob tartalmaz-e a fejléceket.
-Blobok nem tartalmaznak egy kezdeti fejlécsort, ha a fejlécek az indexelő konfigurációban kell megadni: 
+`firstLineContainsHeaders`azt jelzi, hogy minden egyes blob hello első (kötelező) sort tartalmaz-e a fejlécek.
+Blobok nem tartalmaznak egy kezdeti fejlécsort, ha hello fejlécek hello indexelő konfigurációban kell megadni: 
 
     "parameters" : { "configuration" : { "parsingMode" : "delimitedText", "delimitedTextHeaders" : "id,datePublished,tags" } } 
 
-Jelenleg csak az UTF-8 kódolást használata támogatott. Továbbá csak a vesszővel `','` utasításként támogatott, az elválasztó karaktert. Ha segítségre más kódolások vagy elválasztó karaktert, tudassa velünk, a [a UserVoice webhelyén](https://feedback.azure.com/forums/263029-azure-search).
+Jelenleg az egyetlen hello UTF-8 kódolást támogatja. Emellett csak hello vesszővel `','` , hello elválasztó karakter támogatott. Ha segítségre más kódolások vagy elválasztó karaktert, tudassa velünk, a [a UserVoice webhelyén](https://feedback.azure.com/forums/263029-azure-search).
 
 > [!IMPORTANT]
-> A tagolt szövegfájl elemzése mód használata esetén Azure Search azt feltételezi, hogy az adatforrás összes BLOB lesz-e a fürt megosztott kötetei szolgáltatás. Ha támogatja a megosztott Fürtkötet, valamint nem CSV-blobok vegyesen ugyanarra az adatforrásra van szüksége, tudassa velünk, a [a UserVoice webhelyén](https://feedback.azure.com/forums/263029-azure-search).
+> Hello tagolt szöveges módot, az Azure Search elemzés használata esetén azt feltételezi, hogy az adatforrás összes BLOB lesz-e a fürt megosztott kötetei szolgáltatás. Ha toosupport CSV vegyesen van szüksége, és ugyanazt a hello blobok nem CSV-adatforrás, adjon ossza meg velünk a [a UserVoice webhelyén](https://feedback.azure.com/forums/263029-azure-search).
 > 
 > 
 
 ## <a name="request-examples"></a>Példák
-Ez minden üzembe együtt, az alábbiakban a teljes adattartalmat példák. 
+Ez minden üzembe együtt, az alábbiakban hello teljes adattartalmat példák. 
 
 Adatforrás: 
 
@@ -89,5 +89,5 @@ Az indexelő:
     }
 
 ## <a name="help-us-make-azure-search-better"></a>Segítsen az Azure Search továbbfejlesztésében
-Ha a szolgáltatás-kérelmek vagy ötleteket javításai, lépjen kapcsolatba velünk a a [UserVoice webhelyén](https://feedback.azure.com/forums/263029-azure-search/).
+Ha a szolgáltatás-kérelmek vagy ötleteket javításai, lépjen kapcsolatba a toous a [UserVoice webhelyén](https://feedback.azure.com/forums/263029-azure-search/).
 

@@ -1,6 +1,6 @@
 ---
-title: "Engedélyezze a Virtuálisgép-ügynök az Azure Security Centerben |} Microsoft Docs"
-description: "Ez a dokumentum azt ismerteti, hogyan valósítja meg az Azure Security Center ajánlás ** engedélyezése VM ügynök **."
+title: "aaaEnable Virtuálisgép-ügynök az Azure Security Centerben |} Microsoft Docs"
+description: "Ez a dokumentum bemutatja, hogyan tooimplement hello Azure Security Center javaslat ** engedélyezése VM ügynök **."
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,38 +14,38 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: terrylan
-ms.openlocfilehash: 337a7adfd93c76882a749685702bea6d1524c96a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9bd71e638b020780537da25fd4cf7baf34d3e11a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-vm-agent-in-azure-security-center"></a>Az Azure Security Centerben Virtuálisgép-ügynök engedélyezése
-A virtuális gép ügynököt telepíteni kell a virtuális gépek (VM) annak érdekében, hogy [az adatgyűjtést](security-center-enable-data-collection.md).  Az Azure Security Center köszönhetően láthatja mely virtuális gépek a Virtuálisgép-ügynök igényelnek, és azt javasolja, hogy engedélyezi-e a Virtuálisgép-ügynököt a virtuális gépek.
+hello VM ügynököt telepíteni kell a virtuális gépek (VM) sorrendben túl[az adatgyűjtést](security-center-enable-data-collection.md).  Az Azure Security Center lehetővé teszi, hogy Ön toosee virtuális gépek igénylő hello Virtuálisgép-ügynök, és azt javasolja, hogy engedélyezze a virtuális gépek Virtuálisgép-ügynök hello.
 
-Az Azure Marketplace-ről üzembe helyezett virtuális gépek esetében a virtuálisgép-ügynök alapértelmezés szerint telepítve van. A virtuálisgép-ügynök telepítéséről a [Virtuális gép-ügynök és -bővítmények – 2. rész](https://azure.microsoft.com/blog/vm-agent-and-extensions-part-2/) cikkben talál információkat.
+Virtuálisgép-ügynök hello alapértelmezés szerint telepítve van a hello Azure Piactérről származó központilag telepített virtuális gépekhez. hello cikk [ügynök és Virtuálisgép-bővítmények – 2. rész](https://azure.microsoft.com/blog/vm-agent-and-extensions-part-2/) bemutatja, hogyan tooinstall hello Virtuálisgép-ügynök.
 
 > [!NOTE]
-> Ez a dokumentum egy üzembe helyezést szemléltető példa segítségével mutatja be a szolgáltatást. A dokumentum nem tartalmaz lépésenkénti útmutatót.
+> Ez a dokumentum hello szolgáltatás telepítését bemutató példát használatával vezet be. A dokumentum nem tartalmaz lépésenkénti útmutatót.
 >
 >
 
-## <a name="implement-the-recommendation"></a>A javaslat megvalósítása
-1. Az a **javaslatok panel**, jelölje be **Virtuálisgép-ügynök engedélyezése**.
+## <a name="implement-hello-recommendation"></a>Hello javaslat megvalósítása
+1. A hello **javaslatok panel**, jelölje be **Virtuálisgép-ügynök engedélyezése**.
    ![Virtuálisgép-ügynök engedélyezése][1]
-2. Ekkor megnyílik a panel **VM hiányzik vagy nem válaszol**. Ezen a panelen a virtuális gépeket, a Virtuálisgép-ügynök igénylő sorolja fel. A panel a Virtuálisgép-ügynök telepítéséhez kövesse az utasításokat.
+2. Ekkor megnyílik hello panel **VM hiányzik vagy nem válaszol**. Ezen a panelen hello hello Virtuálisgép-ügynök igénylő virtuális gépek sorolja fel. Hello utasításokat kövesse hello panel tooinstall hello Virtuálisgép-ügynök.
    ![Hiányzik a Virtuálisgép-ügynök][2]
 
 ## <a name="see-also"></a>Lásd még:
-A Security Centerrel kapcsolatos további információkért olvassa el a következőket:
+További információ a Security Center toolearn hello következő lásd:
 
-* [Biztonsági házirendek beállítása az Azure Security Centerben](security-center-policies.md) – Annak bemutatása, hogy miként konfigurálhat biztonsági házirendeket Azure-előfizetéseihez és az erőforráscsoportokhoz.
+* [Biztonsági szabályzatok beállítása az Azure Security Center](security-center-policies.md)– megtudhatja, hogyan tooconfigure biztonsági házirendek az Azure-előfizetések és az erőforráscsoportokat.
 * [Biztonsági javaslatok kezelése az Azure Security Centerben](security-center-recommendations.md) – Miként könnyítik meg a javaslatok az Azure-erőforrások védelmét?
-* [Biztonsági állapotmonitorozás az Azure Security Centerben](security-center-monitoring.md) – Útmutató az Azure-erőforrások állapotának monitorozásához.
-* [Biztonsági riasztások kezelése és reagálás a riasztásokra az Azure Security Centerben](security-center-managing-and-responding-alerts.md) – A biztonsági riasztások kezelése és az azokra való reagálás.
-* [Partneri megoldások monitorozása az Azure Security Centerrel](security-center-partner-solutions.md) – Útmutató a partneri megoldások biztonsági állapotának monitorozásához.
-* [Azure Security Center – gyakran ismételt kérdések](security-center-faq.md) – Gyakran ismételt kérdések a szolgáltatás használatával kapcsolatban.
-* [Azure biztonsági blog](http://blogs.msdn.com/b/azuresecurity/) – Tájékozódás az Azure biztonságával kapcsolatos legfrissebb hírekről és információkról.
+* [Biztonsági állapotfigyelés az Azure Security Center](security-center-monitoring.md)– megtudhatja, hogyan toomonitor hello az Azure-erőforrások állapotát.
+* [Az Azure Security Centerben riasztások kezelése és válaszol toosecurity](security-center-managing-and-responding-alerts.md)– megtudhatja, hogyan toomanage és válaszoljon toosecurity riasztásokat.
+* [Partnermegoldások figyelése az Azure Security Center](security-center-partner-solutions.md) – megtudhatja, hogyan toomonitor hello partneri megoldások biztonsági állapotát.
+* [Azure Security Center: GYIK](security-center-faq.md)– gyakran ismételt kérdések hello szolgáltatás használatával kapcsolatban.
+* [Az Azure biztonsági blog](http://blogs.msdn.com/b/azuresecurity/)– hello legújabb Azure biztonsági hírek és információ lekérése.
 
 <!--Image references-->
 [1]: ./media/security-center-enable-vm-agent/enable-vm-agent.png

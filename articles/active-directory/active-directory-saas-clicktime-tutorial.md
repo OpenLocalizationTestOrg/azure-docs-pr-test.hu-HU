@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált ClickTime |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és ClickTime között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és ClickTime között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,225 +14,225 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: jeedes
-ms.openlocfilehash: 0e0123a40d52dfd7a2e29c29cb2239e979089ca9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a0259e31164cad6c6c77ed8aac1c50cd9a3e46ce
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-clicktime"></a>Oktatóanyag: Azure Active Directoryval integrált ClickTime
 
-Ebben az oktatóanyagban elsajátíthatja ClickTime integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate ClickTime az Azure Active Directoryval (Azure AD).
 
-ClickTime integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+ClickTime integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Megadhatja a ClickTime hozzáféréssel rendelkező Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett ClickTime (egyszeri bejelentkezés) számára a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Megadhatja a hozzáférés tooClickTime rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooClickTime (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs ClickTime, a következőkre van szükség:
+az Azure AD integrálása ClickTime tooconfigure, kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - Egy ClickTime egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, akkor [egy hónapos próbaverzió beszerzése](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A gyűjteményből ClickTime hozzáadása
+1. Hello gyűjteményből ClickTime hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-clicktime-from-the-gallery"></a>A gyűjteményből ClickTime hozzáadása
-Az Azure AD integrálása a ClickTime konfigurálásához kell hozzáadnia ClickTime a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-clicktime-from-hello-gallery"></a>Hello gyűjteményből ClickTime hozzáadása
+tooconfigure hello integrációja ClickTime az Azure AD-be, meg kell tooadd ClickTime hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A gyűjteményből ClickTime hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd ClickTime hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
-    ![Az Azure Active Directory gomb][1]
+    ![hello Azure Active Directory gomb][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
-    ![A vállalati alkalmazások panel][2]
+    ![hello vállalati alkalmazások panel][2]
     
-3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
+3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
 
-    ![Az új alkalmazás gomb][3]
+    ![hello új alkalmazás gomb][3]
 
-4. Írja be a keresőmezőbe, **ClickTime**, jelölje be **ClickTime** eredmény panelen kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+4. Hello keresési mezőbe, írja be a **ClickTime**, jelölje be **ClickTime** eredmény panelen kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
-    ![Az eredménylistában ClickTime](./media/active-directory-saas-clicktime-tutorial/tutorial_clicktime_addfromgallery.png)
+    ![Hello eredménylistában ClickTime](./media/active-directory-saas-clicktime-tutorial/tutorial_clicktime_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés tesztelése és konfigurálása
 
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján ClickTime.
 
-Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó ClickTime a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a ClickTime közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó ClickTime tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello ClickTime közötti kapcsolat kapcsolatot kell létrehozni toobe.
 
-ClickTime, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
+ClickTime, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
 
-Az Azure AD egyszeri bejelentkezést a ClickTime tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés ClickTime-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configure-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Hozzon létre egy Azure AD-teszt felhasználó](#create-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[ClickTime tesztfelhasználó létrehozása](#create-a-clicktime-test-user)**  - való Britta Simon valami ClickTime, amely csatolva van a felhasználó az Azure AD-ábrázolását.
-4. **[Rendelje hozzá az Azure AD-teszt felhasználó](#assign-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#test-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configure-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Hozzon létre egy Azure AD-teszt felhasználó](#create-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[ClickTime tesztfelhasználó létrehozása](#create-a-clicktime-test-user)**  -toohave egy megfelelője a Britta Simon a ClickTime, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
+4. **[Rendelje hozzá az Azure AD hello tesztfelhasználó](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#test-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az ClickTime alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az ClickTime alkalmazásban.
 
-**Konfigurálása az Azure AD az egyszeri bejelentkezés ClickTime, hajtsa végre az alábbi lépéseket:**
+**az Azure AD tooconfigure egyszeri bejelentkezést a ClickTime, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure portálon a a **ClickTime** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **ClickTime** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés kapcsolat konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![Egyszeri bejelentkezés párbeszédpanel](./media/active-directory-saas-clicktime-tutorial/tutorial_clicktime_samlbase.png)
 
-3. Az a **ClickTime tartomány és az URL-címek** területen tegye a következőket:
+3. A hello **ClickTime tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![Az egyszeri bejelentkezés információk ClickTime tartomány és az URL-címek](./media/active-directory-saas-clicktime-tutorial/tutorial_clicktime_url.png)
 
-    a. Az a **azonosító** szövegmező, adja meg az URL-címet:`https://app.clicktime.com/sp/`
+    a. A hello **azonosító** szövegmező, adja meg az URL-címet:`https://app.clicktime.com/sp/`
     
-    b. Az a **válasz URL-CÍMEN** szövegmezőhöz URL-címet a következő minták használatával írja be: 
+    b. A hello **válasz URL-CÍMEN** szövegmező, írja be egy URL-CÍMÉT a következő hello mintákra: 
 
     | |
     |--|
     | `https://app.clicktime.com/Login/` |
     | `https://app.clicktime.com/App/Login/Consume.aspx` |
 
-4. Az a **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a tanúsítványfájlt, a számítógépen.
+4. A hello **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a hello tanúsítványfájlt a számítógépen.
 
-    ![A tanúsítvány letöltési hivatkozását](./media/active-directory-saas-clicktime-tutorial/tutorial_clicktime_certificate.png) 
+    ![hello tanúsítvány letöltési hivatkozását](./media/active-directory-saas-clicktime-tutorial/tutorial_clicktime_certificate.png) 
 
 5. Kattintson a **mentése** gombra.
 
     ![Egyszeri bejelentkezés Mentés gombra konfigurálása](./media/active-directory-saas-clicktime-tutorial/tutorial_general_400.png)
 
-6. A a **ClickTime konfigurációs** kattintson **konfigurálása ClickTime** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
+6. A hello **ClickTime konfigurációs** kattintson **konfigurálása ClickTime** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
 
     ![ClickTime konfiguráció](./media/active-directory-saas-clicktime-tutorial/tutorial_clicktime_configure.png) 
 
 7. Egy másik webes böngészőablakban jelentkezzen be a ClickTime vállalati webhely rendszergazdaként.
 
-8. A felső eszköztáron kattintson **beállítások**, és kattintson a **biztonsági beállítások**.
+8. Hello hello felső eszköztárán kattintson **beállítások**, és kattintson a **biztonsági beállítások**.
 
-9. Az a **egyszeri bejelentkezési beállítások** konfigurációs szakaszban, hajtsa végre a következő lépéseket:
+9. A hello **egyszeri bejelentkezési beállítások** konfigurációs szakaszban, hajtsa végre az alábbi lépésekkel hello:
    
     ![Biztonsági beállítások](./media/active-directory-saas-clicktime-tutorial/tic777280.png "biztonsági beállítások")
    
     a.  Válassza ki **engedélyezése** jelentkezzen be egyszeri bejelentkezés (SSO) használatával **az Azure AD**.
    
-    b. Az a **identitás szolgáltatói végpont** szövegmezőhöz Beillesztés **SAML-alapú egyszeri bejelentkezési URL-címe** ami Azure-portálon másolta.
+    b. A hello **identitás szolgáltatói végpont** szövegmezőhöz Beillesztés **SAML-alapú egyszeri bejelentkezési URL-címe** ami Azure-portálon másolta.
    
-    c.  Nyissa meg a **base-64 kódolású tanúsítvány** az Azure portálról letöltött **Jegyzettömb**, és másolja a tartalmat, majd illessze be azt a **X.509 tanúsítvány** szövegmező.
+    c.  Nyissa meg hello **base-64 kódolású tanúsítvány** az Azure portálról letöltött **Jegyzettömb**hello tartalmat másolja és illessze be hello **X.509 tanúsítvány** szövegmező.
    
     d.  Kattintson a **Save** (Mentés) gombra.
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="create-an-azure-ad-test-user"></a>Hozzon létre egy Azure AD-teszt felhasználó
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Hozzon létre egy Azure AD-teszt felhasználó][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az Azure portálon a bal oldali ablaktáblán kattintson a **Azure Active Directory** gombra.
+1. A hello Azure-portálon, hello bal oldali ablaktáblában kattintson a hello **Azure Active Directory** gombra.
 
-    ![Az Azure Active Directory gomb](./media/active-directory-saas-clicktime-tutorial/create_aaduser_01.png) 
+    ![hello Azure Active Directory gomb](./media/active-directory-saas-clicktime-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok**, és kattintson a **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok**, és kattintson a **minden felhasználó**.
     
-    ![A "felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-clicktime-tutorial/create_aaduser_02.png) 
+    ![hello "Felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-clicktime-tutorial/create_aaduser_02.png) 
 
-3. Megnyitásához a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** tetején a **minden felhasználó** párbeszédpanel megnyitásához.
+3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello hello tetején **minden felhasználó** párbeszédpanel megnyitásához.
  
-    ![A Hozzáadás gombra.](./media/active-directory-saas-clicktime-tutorial/create_aaduser_03.png) 
+    ![hello Hozzáadás gomb](./media/active-directory-saas-clicktime-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanelen hajtsa végre az alábbi lépéseket:
+4. A hello **felhasználói** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:
  
-    ![A felhasználó párbeszédpanel](./media/active-directory-saas-clicktime-tutorial/create_aaduser_04.png) 
+    ![hello felhasználó párbeszédpanel](./media/active-directory-saas-clicktime-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="create-a-clicktime-test-user"></a>ClickTime tesztfelhasználó létrehozása
 
-Ahhoz, hogy az Azure AD-felhasználók ClickTime bejelentkezni, akkor ki kell építenie ClickTime be.  
-ClickTime, ha egy kézi tevékenység.
+A sorrend tooenable az Azure AD felhasználók toolog ClickTime be azok ki kell építenie ClickTime be.  
+ClickTime hello esetben egy kézi tevékenység.
 
 > [!NOTE]
-> Bármely más ClickTime felhasználói fiók létrehozása eszközök vagy ClickTime kiépíteni az Azure AD-felhasználói fiókok által nyújtott API-k.
+> Bármely más ClickTime felhasználói fiók létrehozása eszközök vagy ClickTime tooprovision által nyújtott API-kat az Azure AD felhasználói fiókokat.
 
-**Felhasználói fiók létrehozásához hajtsa végre az alábbi lépéseket:**
-1. Jelentkezzen be a **ClickTime** bérlő.
-2. A felső eszköztáron kattintson **vállalati**, és kattintson a **személyek**.
+**tooprovision egy felhasználói fiókot, hajtsa végre a következő lépéseket hello:**
+1. Jelentkezzen be tooyour **ClickTime** bérlő.
+2. Hello hello felső eszköztárán kattintson **vállalati**, és kattintson a **személyek**.
    
     ![Személyek](./media/active-directory-saas-clicktime-tutorial/tic777282.png "személyek")
 3. Kattintson a **személy hozzáadása**.
    
     ![Adja hozzá a személy](./media/active-directory-saas-clicktime-tutorial/tic777283.png "személy hozzáadása")
-4. Új személy csoportjában hajtsa végre az alábbi lépéseket:
+4. Az új személy szakasz hello hajtsa végre a lépéseket követve hello:
    
     ![Személyek](./media/active-directory-saas-clicktime-tutorial/tic777284.png "személyek")
    
-    a.  Az a **teljes név** szövegmező, például a felhasználó teljes név típusa **Britta Simon**. 
+    a.  A hello **teljes név** szövegmező, például a felhasználó teljes név típusa **Britta Simon**. 
   
-    b.  Az a **e-mail cím** szövegmezőben, az e-mailt a felhasználó típusát, például  **brittasimon@contoso.com** .
+    b.  A hello **e-mail cím** szövegmezőhöz: hello e-mail felhasználó például  **brittasimon@contoso.com** .
        
     > [!NOTE]
-    > Ha szeretné, beállíthatja az új személy objektum további tulajdonságokat.
+    > Ha szeretné, beállíthatja a további tulajdonságok hello új személy objektum.
    
     c.  Kattintson a **Save** (Mentés) gombra.
 
-### <a name="assign-the-azure-ad-test-user"></a>Rendelje hozzá az Azure AD-teszt felhasználó
+### <a name="assign-hello-azure-ad-test-user"></a>Rendelje hozzá az Azure AD hello tesztfelhasználó számára
 
-Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés ClickTime Azure egyszeri bejelentkezéshez használandó.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooClickTime megadásával engedélyeznie.
 
-![A felhasználói szerepkör hozzárendelése][200] 
+![Hello felhasználói szerepkör hozzárendelése][200] 
 
-**Britta Simon hozzárendelése ClickTime, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooClickTime, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **ClickTime**.
+2. Hello alkalmazások listában válassza ki a **ClickTime**.
 
-    ![Az alkalmazások listáját a ClickTimne hivatkozás](./media/active-directory-saas-clicktime-tutorial/tutorial_clicktime_app.png) 
+    ![Hello alkalmazások listáját a ClickTimne hivatkozás](./media/active-directory-saas-clicktime-tutorial/tutorial_clicktime_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
-    ![A "Felhasználók és csoportok" hivatkozásra][202] 
+    ![hello "Felhasználók és csoportok" hivatkozásra.][202] 
 
 4. Kattintson a **Hozzáadás** gombra. Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.
 
-    ![A hozzárendelés hozzáadása panelen][203]
+    ![hello hozzárendelés hozzáadása panelen][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -240,14 +240,14 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
     
 ### <a name="test-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-Ha a hozzáférési panelen ClickTime csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az ClickTime alkalmazására.
-A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
+Ha a hozzáférési Panel hello hello ClickTime csempe gombra kattint, automatikusan bejelentkezett tooyour ClickTime alkalmazás szerezheti be.
+A hozzáférési Panel kapcsolatos további információkért lásd: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

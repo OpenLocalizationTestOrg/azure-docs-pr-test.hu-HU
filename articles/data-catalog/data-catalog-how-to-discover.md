@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Catalog adatforrások felfedezése |} Microsoft Docs"
-description: "Ez a cikk emel ki, hogyan találhat meg regisztrált adategységeket az Azure Data Catalog, beleértve a Keresés és szűrés és az Azure Data Catalog-portál a találati kijelölő képességeivel."
+title: "Azure Data Catalog aaaHow toodiscover adatforrások |} Microsoft Docs"
+description: "Ez a cikk emel ki, hogyan toodiscover regisztrált adategységeket Azure Data Catalog, beleértve a Keresés és szűrés, majd hello segítségével nyomja le a hello Azure Data Catalog-portál kijelölő képességeit."
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,54 +15,54 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: 9ff67dcb5ecb00440f73f979fd8d2b79a570c674
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 624834b8895dd50c8931c9d3e6f8dc217927c617
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-discover-data-sources-in-azure-data-catalog"></a>Az Azure Data Catalog adatforrások felfedezése
+# <a name="how-toodiscover-data-sources-in-azure-data-catalog"></a>Hogyan toodiscover adatforrás az Azure Data Catalog
 ## <a name="introduction"></a>Bevezetés
-Az Azure Data Catalog egy teljes körűen felügyelt felhőszolgáltatás, amely a regisztráció és a vállalati adatforrások felderítését a rendszer funkcionál. Más szóval a Data Catalog segít személyek felderítése, megismeréséhez és használatához adatforrások, és segít a szervezeteknek több érték lekérése a meglévő adatokat. A Data Catalog egy adatforrás regisztrálása után a metaadatait indexelik a szolgáltatást, így könnyen kereshet felderítéséhez szükséges adatok.
+Az Azure Data Catalog egy teljes körűen felügyelt felhőszolgáltatás, amely a regisztráció és a vállalati adatforrások felderítését a rendszer funkcionál. Más szóval a Data Catalog segít személyek felderítése, megismeréséhez és használatához adatforrások, és segít a szervezeteknek több érték lekérése a meglévő adatokat. A Data Catalog egy adatforrás regisztrálása után a metaadatait indexelik hello szolgáltatást, így könnyen kereshet toodiscover hello adatokat kell.
 
 ## <a name="searching-and-filtering"></a>A Keresés és szűrés
 A Data Catalog felderítési két elsődleges mechanizmus használja: a Keresés és szűrés.
 
-A keresés nem csupán magától értetődő, de rendkívül hatékony is. Alapértelmezés szerint a keresőkifejezéseket a rendszer összeveti a katalógusban szereplő összes tulajdonsággal, még a felhasználók által beírt dekorációkkal is.
+Tervezett toobe elsajátítható és hatékony keresést. Alapértelmezés szerint a keresési feltételek elleni hello katalógusban, beleértve a felhasználó által megadott jegyzetek egyik tulajdonságnak sem teljesül.
 
-A szűrés a keresést hivatott kiegészíteni. Kiválaszthatja, hogy adott jellemzőiket, például a szakértők, adatforrástípust, objektumtípus és címkék. Csak megfelelő adategységeket megtekintheti, és korlátozhatja a keresési eredményeket annak megfelelő eszközökkel.
+Szűrés úgy van kialakítva, toocomplement keresése. Kiválaszthatja, hogy adott jellemzőiket, például a szakértők, adatforrástípust, objektumtípus és címkék. Csak megfelelő adategységeket megtekintheti, és korlátozhatja a keresési eredmények toomatching eszközök.
 
-A Keresés és szűrés együttes használatával a Data Catalog kell adatforrások felfedezése regisztrált adatforrások gyorsan lépjen.
+A Keresés és szűrés együttes használatával a Data Catalog toodiscover hello adatforrások kell regisztrált adatforrások hello gyorsan lépjen.
 
 ## <a name="search-syntax"></a>Keresési szintaxis
-Bár az alapértelmezett szabad szöveges keresés egyszerű és intuitív, is használható a Data Catalog keresési szintaxisának nagyobb mértékben vezérelheti a keresési eredmények között. Data Catalog keresési a következő módszereket támogatja:
+Bár az hello alapértelmezett szabad szöveges keresés egyszerű és intuitív, is használható a Data Catalog keresési szintaxisának nagyobb mértékben vezérelheti a hello keresési eredmények között. Data Catalog keresési támogatja hello a következő módszerek:
 
 | Módszer | Használat | Példa |
 | --- | --- | --- |
-| Az egyszerű keresés |Az egyszerű keresés által használt egy vagy több keresési feltételeket. A eredményei bármely eszközök, amelyek megfelelnek egy vagy több meghatározott egyik tulajdonságnak sem. |`sales data` |
-| Tulajdonság keresése |Csak az adatforrások, ahol a keresési kifejezés egyeztetve van-e a megadott tulajdonság visszaadása. |`name:finance` |
+| Az egyszerű keresés |Az egyszerű keresés által használt egy vagy több keresési feltételeket. A eredményei bármely eszközök, amelyek megfelelnek egy vagy több megadott hello feltételek egyik tulajdonságnak sem. |`sales data` |
+| Tulajdonság keresése |Ha hello keresési kifejezés egyeztetve van-e hello visszatérési csak adatforrások megadva tulajdonság. |`name:finance` |
 | Logikai operátorok |Bővíthetők, vagy a megadásával szűkíthető, a Keresés logikai műveletekkel. |`finance NOT corporate` |
-| Csoportosítás zárójelekkel |A lekérdezés csoport részei zárójelekkel segítségével logikai elkülönítés érdekében, különösen a logikai operátorokkal együtt használva. |`name:finance AND (tags:Q1 OR tags:Q2)` |
+| Csoportosítás zárójelekkel |Használjon kerek zárójeleket tartalmazhatnak toogroup részei hello lekérdezés tooachieve logikai elkülönítés érdekében, különösen a logikai operátorokkal együtt használva. |`name:finance AND (tags:Q1 OR tags:Q2)` |
 | Összehasonlító operátorok |Nem egyenlő összehasonlítások is használni azokhoz a tulajdonságokhoz, szám és adat adattípusúak. |`modifiedTime > "11/05/2014"` |
 
-A Data Catalog keresési kapcsolatos további információkért tekintse meg a [Azure Data Catalog](https://msdn.microsoft.com/library/azure/mt267594.aspx) cikk.
+A Data Catalog keresési kapcsolatos további információkért lásd: hello [Azure Data Catalog](https://msdn.microsoft.com/library/azure/mt267594.aspx) cikk.
 
 ## <a name="hit-highlighting"></a>Találatok kiemelése
-Amikor megtekinti a keresési eredmények között, minden megjelenített tulajdonságok (például az adatok eszköz neve, leírása és címkék) a megadott keresési feltételeknek megfelelő vannak kiemelve abba, hogy könnyebben azonosíthatja, ezért a megadott eszköz által visszaadott egy adott keresési.
+Keresési eredmények között, bármely jelenik meg, amelyek megfelelnek a megadott hello tulajdonságok keresési feltételek (például hello adatok eszköz neve, leírása és címkék) kiemelve toomake, miért adta vissza egy adott adategységet egy adott keresési könnyebb tooidentify.
 
 > [!NOTE]
-> A találatok kiemelése kikapcsolásához használja a **kiemelése** kapcsoló számára a Data Catalog-portált.
+> ki kiemelésének használata hello találat tooturn **kiemelése** hello Data Catalog-portál kapcsoló.
 >
 >
 
-Amikor a keresési eredmények között, nem mindig lehet nyilvánvaló ezért egy adategységet megtalálható, még akkor is kiemeléssel találati engedélyezve van. Az összes tulajdonság figyelembe veszi a keresésnél alapértelmezés szerint, mert egy adategységet esetleg visszaadott egyezés miatt az oszlopszintű tulajdonság. És több felhasználó megjegyzéseket fűzhet regisztrált adategységeket saját címkéket és leírásokat, mert nem minden metaadat előfordulhat jelenik meg a keresési eredmények listájában.
+Amikor a keresési eredmények között, nem mindig lehet nyilvánvaló ezért egy adategységet megtalálható, még akkor is kiemeléssel találati engedélyezve van. Az összes tulajdonság figyelembe veszi a keresésnél alapértelmezés szerint, mert egy adategységet esetleg visszaadott egyezés miatt az oszlopszintű tulajdonság. És több felhasználó megjegyzéseket fűzhet regisztrált adategységeket saját címkéket és leírásokat, mert nem minden metaadat előfordulhat jelenik meg a keresési eredmények hello listája.
 
-Az alapértelmezett mozaik elrendezés nézet, minden egyes csempe jelenik meg a keresési eredmények tartalmaz egy **nézet keresési kifejezés megegyezik** ikonra, így gyorsan megtekintheti a találatok és a helyét, valamint ugrani rájuk, ha azt szeretné.
+Hello alapértelmezett mozaik elrendezés nézetben minden egyes hello keresési eredmények megjelenített mozaik tartalmaz egy **nézet keresési kifejezés megegyezik** ikonra, így gyorsan megtekintheti hello egyező helyen, és toojump toothem Ha azt szeretné.
 
- ![Találati kiemelve, és megkeresi a megadott Azure Data Catalog-portálon](./media/data-catalog-how-to-discover/search-matches.png)
+ ![Kattintson a kijelölés, és megkeresi a megadott hello Azure Data Catalog-portál](./media/data-catalog-how-to-discover/search-matches.png)
 
 ## <a name="summary"></a>Összefoglalás
-Mivel a Data Catalog egy adatforrás regisztrálása másolja szerkezeti és leíró metaadatok az adatforrásból a katalógus szolgáltatáshoz, az adatforrás könnyebben megtalálhatóvá és értelmezhetővé válik. Egy adatforrás regisztrálása után tudja azt deríteni szűrés használatával, és a keresni a Data Catalog-portált.
+Mert az adatforrás regisztrálása a Data Catalog másolatok szerkezeti és leíró metaadatok hello adatokból forrás toohello katalógusszolgáltatás, hello adatforrás toodiscover egyszerűbbé válik és ismertetése. Egy adatforrás regisztrálása után észleléséhez szűrésének használata, és a Data Catalog-portál hello keresni.
 
 ## <a name="next-steps"></a>Következő lépések
-* További adatforrások felfedezése kapcsolatos részletes információkért lásd: [Ismerkedés az Azure Data Catalog](data-catalog-get-started.md).
+* Részletes részletei toodiscover adatforrások, lásd: [Ismerkedés az Azure Data Catalog](data-catalog-get-started.md).

@@ -1,6 +1,6 @@
 ---
-title: "Azure Backup-kiszolgáló SharePoint-farm mentésére az Azure-bA |} Microsoft Docs"
-description: "Azure Backup Server használatával készítsen biztonsági másolatot, és a SharePoint-adatok helyreállítása. A cikkben az adatokat a SharePoint-farm konfigurálásához, hogy a kívánt adatokat tárolhatja az Azure-ban. Védett SharePoint-adatok visszaállíthatja a lemezről, vagy az Azure-ból."
+title: aaaUse Azure Backup server tooback be egy SharePoint-farm tooAzure |} Microsoft Docs
+description: "Azure Backup Server tooback használja, és a SharePoint-adatok helyreállítása. A cikkben hello információk tooconfigure a SharePoint-farm, hogy a kívánt adatokat tárolhatja az Azure-ban. Védett SharePoint-adatok visszaállíthatja a lemezről, vagy az Azure-ból."
 services: backup
 documentationcenter: 
 author: pvrk
@@ -14,120 +14,120 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: pullabhk
-ms.openlocfilehash: 3ed000affd326eb1bd7c99773ec021ad6e03cc3b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 350c1ac0f3518f400062f3b586bbe9710a79915a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="back-up-a-sharepoint-farm-to-azure"></a>SharePoint-farm biztonsági mentése az Azure-ba
-Akkor készítsen biztonsági másolatot egy SharePoint-farm Microsoft Azure hasonlóan, amely a biztonsági mentést más adatforrások a Microsoft Azure Backup Server (MABS) használatával. Azure biztonsági mentés naponta létrehozásához a biztonsági mentés ütemezése rugalmasságot biztosít, heti, havi vagy éves biztonsági mentést mutat, és lehetővé teszi az adatmegőrzési házirend-beállítások a különféle biztonsági mentési pontok. Helyi lemez másolat gyors helyreállítási idő célkitűzés (RTO) tárolására és gazdaságos, hosszú távú megőrzési Azure másolat tárolására is tartalmazza.
+# <a name="back-up-a-sharepoint-farm-tooazure"></a>Készítsen biztonsági másolatot egy SharePoint-farm tooAzure
+Biztonsági másolatot egy SharePoint-farm tooMicrosoft Azure mennyi hello a Microsoft Azure Backup Server (MABS) használatával biztonsági másolatot készíteni más adatforrások ugyanúgy. Azure biztonsági mentés napi, heti, havi vagy éves biztonsági mentési pontok hello biztonsági mentés ütemezése toocreate rugalmasságot biztosít, és lehetővé teszi az adatmegőrzési házirend-beállítások a különféle biztonsági mentési pontok. Gyors helyreállítási idő célkitűzés (RTO) hello funkció toostore helyi lemez másolatot is biztosít, és toostore másolja a gazdaságos, hosszú távú megőrzési tooAzure.
 
 ## <a name="sharepoint-supported-versions-and-related-protection-scenarios"></a>SharePoint támogatott verziója, és a kapcsolódó védelmi forgatókönyvek
-Azure biztonsági mentés a DPM a következő szituációkat ismerteti:
+Azure biztonsági mentés a DPM támogatja a következő forgatókönyvek hello:
 
 | Számítási feladat | Verzió | A SharePoint központi telepítés | Védelem és helyreállítás |
 | --- | --- | --- | --- | --- | --- |
 | SharePoint |A SharePoint 2013, SharePoint 2007, 2010 SharePoint SharePoint 3.0 |A fizikai kiszolgálóként vagy Hyper-V vagy VMware virtuális gépeket telepített SharePoint <br> -------------- <br> Az SQL AlwaysOn | Helyreállítási beállítások SharePoint-Farm védelme: a helyreállítási farm, adatbázis és a lemezes helyreállítási pontok a fájl vagy listaelem.  Adatbázis és a farm helyreállítási Azure helyreállítási pontokból. |
 
 ## <a name="before-you-start"></a>Előkészületek
-Néhány dolgot győződjön meg arról, előtt készítsen biztonsági másolatot az Azure-bA SharePoint-farm.
+Néhány dolgot előtt készítsen biztonsági másolatot egy SharePoint-farm tooAzure tooconfirm kell.
 
 ### <a name="prerequisites"></a>Előfeltételek
-Mielőtt továbblépne, győződjön meg arról, hogy rendelkezik [telepítve, és az Azure Backup Server előkészített](backup-azure-microsoft-azure-backup.md) munkaterhelések védelme érdekében.
+Mielőtt továbblépne, győződjön meg arról, hogy rendelkezik [telepítve, és előkészített hello Azure Backup Server](backup-azure-microsoft-azure-backup.md) tooprotect munkaterhelések.
 
 ### <a name="protection-agent"></a>Védelmi ügynök
-A védelmi ügynököt telepíteni kell a SharePoint, az SQL Server rendszert futtató kiszolgálók és más a SharePoint-farm részét képező kiszolgálók futtató kiszolgálón. A védelmi ügynök beállítása kapcsolatos további információkért lásd: [telepítő védelmi ügynök](https://technet.microsoft.com/library/hh758034\(v=sc.12\).aspx).  Az egyetlen kivétel ez alól, hogy az ügynököt telepít csak egy egyetlen (WFE) előtér-webkiszolgálóján. DPM-nek az ügynök egy ELŐTÉR-webkiszolgálón csak a védelem belépési pontként szolgál.
+hello védelmi ügynököt telepíteni kell a SharePoint, az SQL Server rendszert futtató kiszolgálók hello és egyéb hello SharePoint-farm részét képező kiszolgálók futtató kiszolgálón hello. További információ tooset be hello védelmi ügynököt, lásd: [telepítő védelmi ügynök](https://technet.microsoft.com/library/hh758034\(v=sc.12\).aspx).  hello egyetlen kivétel ez alól, hogy hello ügynököt telepít csak egy egyetlen (WFE) előtér-webkiszolgálóján. DPM-nek egy előtér-Webkiszolgálón kiszolgáló csak tooserve hello ügynök védelemre hello belépési pontként.
 
 ### <a name="sharepoint-farm"></a>SharePoint-farm
-A farm minden 10 millió eleme, a legalább 2 GB lemezterületet a köteten, ahol a MABS mappában kell lennie. Ez a terület szükség a katalógus előállításához. Katalógus-előállítás MABS elemeket (webhelycsoportok, webhelyek, listák, dokumentumtárak, mappák, egyes dokumentumok és listaelemek) helyreállítása, létrehoz az egyes tartalom-adatbázisokban tárolt URL-címek listáját. A helyreállítható elemek ablaktáblán lévő URL-címek listáját megtekintheti a **helyreállítási** MABS felügyeleti konzol feladatterületén.
+A hello farm minden 10 millió eleme legalább 2 GB lemezterület hello köteten, ahol hello MABS mappa kell lennie. Ez a terület szükség a katalógus előállításához. MABS toorecover elemeket (webhelycsoportok, webhelyek, listák, dokumentumtárak, mappák, egyes dokumentumok és listaelemek), a katalógus-előállítás hoz létre minden egyes tartalom-adatbázist belüli hello URL-címek listáját. Megtekintheti az URL-listák hello hello helyreállítható elem paneljén hello **helyreállítási** MABS felügyeleti konzol feladatterületén.
 
 ### <a name="sql-server"></a>SQL Server
-MABS rendszerfiókként fut. SQL Server-adatbázisok biztonsági mentéséhez MABS kell, hogy a fiók rendszergazdai jogosultságokkal az SQL Servert futtató kiszolgáló. NT AUTHORITY\SYSTEM beállítása *sysadmin* a kiszolgálón, amelyen SQL Server előtt készítsen biztonsági másolatot.
+MABS rendszerfiókként fut. SQL Server-adatbázisok tooback, MABS hello kiszolgáló SQL Server rendszert futtató fiók rendszergazdai jogosultságokkal szüksége van. Állítsa be a NT AUTHORITY\SYSTEM túl*sysadmin* hello kiszolgálón, amelyen SQL Server előtt készítsen biztonsági másolatot.
 
-Ha a SharePoint-farm SQL Server-aliasokkal használt konfigurált SQL Server-adatbázisok, telepítse az SQL Server ügyfél összetevőit MABS által védendő előtér-webkiszolgáló.
+Ha hello SharePoint-farm SQL Server-aliasokkal használt konfigurált SQL Server-adatbázisok, telepíthető hello előtér-webkiszolgálón, amely védeni fogja a MABS hello SQL Server ügyféloldali összetevőit.
 
 ### <a name="sharepoint-server"></a>SharePoint Server
 Amíg teljesítmény például a SharePoint-farm méret számos tényezőtől függ, általános útmutatásként egy MABS is 25 TB SharePoint-farm védelméhez.
 
 ### <a name="whats-not-supported"></a>Nem támogatott műveletek
-* Egy SharePoint-farm védelme MABS nem nyújt védelmet a keresési indexek vagy szolgáltatás adatbázisai. Ezeknek az adatbázisoknak a védelmét külön-külön konfigurálni kell.
+* Egy SharePoint-farm védelme MABS nem nyújt védelmet a keresési indexek vagy szolgáltatás adatbázisai. Ezek az adatbázisok védelméről tooconfigure hello külön-külön kell.
 * MABS ad üzemeltetett SharePoint SQL Server-adatbázisok biztonsági mentése (SOFS) kibővíthető fájlkiszolgáló-megosztásokat.
 
 ## <a name="configure-sharepoint-protection"></a>SharePoint-védelem beállítása
-MABS védelme a SharePoint használata előtt konfigurálnia kell a SharePoint VSS-író szolgáltatás (WSS-író szolgáltatás) használatával **ConfigureSharePoint.exe**.
+MABS tooprotect SharePoint használata előtt konfigurálnia kell hello SharePoint VSS-író szolgáltatást (WSS-író szolgáltatás) használatával **ConfigureSharePoint.exe**.
 
-Található **ConfigureSharePoint.exe** előtér-webkiszolgálón [MABS telepítési elérési út] \bin mappában. Ezt az eszközt biztosít a SharePoint-farm hitelesítő adataival, a védelmi ügynök. Futtatja egy WFE-kiszolgálón. Ha több ELŐTÉR-webkiszolgáló, csak egyet válasszon ki egy védelmi csoport konfigurálásakor.
+Található **ConfigureSharePoint.exe** hello [MABS telepítési elérési út] \bin mappában hello előtér-webkiszolgálón. Ez az eszköz biztosít hello SharePoint-farm hello védelmi ügynök hello hitelesítő adatokkal. Futtatja egy WFE-kiszolgálón. Ha több ELŐTÉR-webkiszolgáló, csak egyet válasszon ki egy védelmi csoport konfigurálásakor.
 
-### <a name="to-configure-the-sharepoint-vss-writer-service"></a>A SharePoint VSS-író szolgáltatás konfigurálása
-1. Az ELŐTÉR-webkiszolgálón, a parancssorban navigáljon a [MABS telepítés helye] \bin\
+### <a name="tooconfigure-hello-sharepoint-vss-writer-service"></a>tooconfigure hello SharePoint VSS-író szolgáltatás
+1. Hello ELŐTÉR-webkiszolgálón, a parancssorban lépjen túl [MABS telepítés helye] \bin\
 2. Adja meg a ConfigureSharePoint - EnableSharePointProtection.
-3. Adja meg a farm rendszergazdai hitelesítő adatait. Ez a fiók a WFE-kiszolgálón a helyi Rendszergazdák csoport tagjának kell lennie. Ha a farm rendszergazdája nem helyi rendszergazda adja meg a következő engedélyeket az ELŐTÉR-webkiszolgálón:
-   * A WSS_Admin_WPG csoportnak teljes hozzáférést a DPM mappát (% Program Files%\Microsoft Azure Backup\DPM).
-   * A WSS_Admin_WPG csoportnak olvasási engedélyt a DPM beállításkulcsot (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft Data Protection Manager).
+3. Adja meg a hello farm rendszergazdai hitelesítő adatait. Ez a fiók tagja a helyi rendszergazdák csoportjának hello hello ELŐTÉR-webkiszolgálón kell lennie. Ha hello farm rendszergazdája nem egy helyi rendszergazda grant hello alábbi engedélyek hello ELŐTÉR-webkiszolgálón:
+   * Hello WSS_Admin_WPG csoportnak teljes hozzáférés biztosítása toohello DPM mappájához (% Program Files%\Microsoft Azure Backup\DPM).
+   * Adja meg a hello WSS_Admin_WPG csoportnak olvasási hozzáférés toohello DPM beállításkulcsot (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft Data Protection Manager).
 
 > [!NOTE]
-> Futtassa újra a ConfigureSharePoint.exe, amikor megváltozik a SharePoint-farm rendszergazdai hitelesítő adatait a lesz szüksége.
+> Toorerun ConfigureSharePoint.exe lesz szüksége, amikor megváltozik a hello SharePoint-farm rendszergazdai hitelesítő adatait.
 >
 >
 
 ## <a name="back-up-a-sharepoint-farm-by-using-mabs"></a>Készítsen biztonsági másolatot egy SharePoint-farm MABS
-Miután konfigurálta a MABS és a SharePoint-farm, amint azt korábban, a SharePoint védi őket MABS.
+Miután konfigurálta a MABS és hello korábban leírtak szerint SharePoint-farm, SharePoint védi őket MABS.
 
-### <a name="to-protect-a-sharepoint-farm"></a>Egy SharePoint-farm védelme
-1. A a **védelmi** lapon kattintson a MABS felügyeleti konzol **új**.
+### <a name="tooprotect-a-sharepoint-farm"></a>egy SharePoint-farm tooprotect
+1. A hello **védelmi** hello MABS felügyeleti konzol lapján kattintson a **új**.
     ![Új védelem lap](./media/backup-azure-backup-sharepoint/dpm-new-protection-tab.png)
-2. Az a **védelmi csoport típusának kiválasztása** oldalán a **új védelmi csoport létrehozása** varázsló, jelölje be **kiszolgálók**, és kattintson a **következő**.
+2. A hello **védelmi csoport típusának kiválasztása** hello oldalán **új védelmi csoport létrehozása** varázsló, jelölje be **kiszolgálók**, és kattintson a **következő** .
 
     ![Válassza ki a védelmi csoport típusa](./media/backup-azure-backup-sharepoint/select-protection-group-type.png)
-3. Az a **csoporttagok kiválasztása** jelölje be a SharePoint-kiszolgáló védelmére, és kattintson a jobb **következő**.
+3. A hello **csoporttagok kiválasztása** képernyő, jelölje be hello jelölőnégyzetet hello SharePoint server tooprotect ki, majd kattintson a **következő**.
 
     ![Csoporttagok kiválasztása](./media/backup-azure-backup-sharepoint/select-group-members2.png)
 
    > [!NOTE]
-   > A védelmi ügynök telepítve tekintse meg a kiszolgáló, a varázsló. MABS látható struktúrája. ConfigureSharePoint.exe futtatta, mert a MABS kommunikál a SharePoint VSS-író szolgáltatás és a megfelelő SQL Server-adatbázisok, és felismeri a SharePoint-farm struktúráját, a kapcsolódó tartalom-adatbázisok és a megfelelő elemeket.
+   > Hello védelmi ügynök telepítve lásd: hello server hello varázslóban. MABS látható struktúrája. Mivel ConfigureSharePoint.exe futtatta, MABS hello SharePoint VSS-író szolgáltatás és a megfelelő SQL Server-adatbázisok kommunikál, és felismeri a SharePoint-farm struktúráját hello, hello tartozó megfelelő elemeit, valamint a tartalom-adatbázisok.
    >
    >
-4. Az a **adatvédelmi módszer kiválasztása** lapján adja meg a **védelmi csoport**, és válassza ki a kívánt *védelmi módszert*. Kattintson a **Tovább** gombra.
+4. A hello **adatvédelmi módszer kiválasztása** lapján adjon meg hello hello **védelmi csoport**, és válassza ki a kívánt *védelmi módszert*. Kattintson a **Tovább** gombra.
 
     ![Adatvédelmi módszer kiválasztása](./media/backup-azure-backup-sharepoint/select-data-protection-method1.png)
 
    > [!NOTE]
-   > A lemez adatvédelmi módszer segítségével rövid helyreállítási idő céljai.
+   > hello lemez védelmi módszert toomeet rövid helyreállítási idő célok segítségével.
    >
    >
-5. Az a **rövid távú célok megadása** lapon, válassza ki a kívánt **megőrzési időtartam** , és azonosíthatja, ha azt szeretné, hogy a biztonsági mentések.
+5. A hello **rövid távú célok megadása** lapon, válassza ki a kívánt **megőrzési időtartam** , és azonosíthatja, ha azt szeretné, hogy a biztonsági mentések toooccur.
 
     ![Rövid távú célok megadása](./media/backup-azure-backup-sharepoint/specify-short-term-goals2.png)
 
    > [!NOTE]
-   > Általában szükség, amely öt napnál régebbi adatok, mert jelenleg kijelölt lemezen öt napnyi megőrzési időtartamot, és biztosítani, hogy a biztonsági mentés nem éles órában, ehhez a példához történik.
+   > Általában szükség, amely öt napnál régebbi adatok, mert jelenleg kijelölt lemezen öt napnyi megőrzési időtartamot, és biztosítani a biztonsági mentését végző hello történik, nem éles órában, ehhez a példához.
    >
    >
-6. Tekintse át a tárolókészletben lefoglalt lemezterület a védelmi csoport, és majd **következő**.
-7. Az összes védelmi csoportra MABS foglal le a hely a lemezen tárolja, és a replikák kezelése. Ezen a ponton MABS létre kell hoznia a kijelölt adatok másolatát. Válassza ki, hogyan és mikor szeretne létrehozni a replikát, és kattintson **következő**.
+6. Tekintse át a hello tárolási tárolókészletben lefoglalt lemezterületet hello védelmi csoporthoz, majd kattintson **következő**.
+7. Az összes védelmi csoportra MABS szabad terület toostore foglal le, és a replikák kezelése. Ezen a ponton MABS hello kiválasztott adatok másolatának kell létrehoznia. Válassza ki, hogyan és mikor szeretne létrehozni hello replika, és kattintson **következő**.
 
     ![A replika-létrehozási módszer kiválasztása](./media/backup-azure-backup-sharepoint/choose-replica-creation-method.png)
 
    > [!NOTE]
-   > Győződjön meg arról, hogy a hálózati forgalom nem történik, válassza ki a megfelelő üzemi a munkaidőn kívül.
+   > toomake meg arról, hogy a hálózati forgalom nem történik meg, válassza ki a megfelelő üzemi a munkaidőn kívül.
    >
    >
-8. MABS érdekében végezzen konzisztencia-ellenőrzést a replika az adatok integritásának biztosítja. Kétféleképpen érhető el. Végezzen konzisztencia-ellenőrzést a kívánt ütemezést adhat meg, vagy a DPM is végezzen konzisztencia-ellenőrzést a replikán automatikusan, amikor inkonzisztenssé válik. Válassza ki a kívánt beállítást, és kattintson a **következő**.
+8. MABS érdekében végezzen konzisztencia-ellenőrzést a replika hello az adatok integritásának biztosítja. Kétféleképpen érhető el. Megadhat egy ütemezést toorun konzisztencia-ellenőrzéseket, vagy a DPM is végezzen konzisztencia-ellenőrzést automatikusan hello replikán, amikor inkonzisztenssé válik. Válassza ki a kívánt beállítást, és kattintson a **következő**.
 
     ![Konzisztencia-ellenőrzés](./media/backup-azure-backup-sharepoint/consistency-check.png)
-9. Az a **Online védelem adatainak megadása** lapon, válassza ki a SharePoint-farm védelmét, és kattintson a kívánt **következő**.
+9. A hello **Online védelem adatainak megadása** lapon, válassza ki, hogy szeretné, hogy tooprotect, és kattintson a hello SharePoint-farm **következő**.
 
     ![A DPM SharePoint Protection1](./media/backup-azure-backup-sharepoint/select-online-protection1.png)
-10. Az a **Online biztonsági mentési ütemezés megadása** lapon válassza ki a kívánt ütemezést, és kattintson a **következő**.
+10. A hello **Online biztonsági mentési ütemezés megadása** lapon válassza ki a kívánt ütemezést, és kattintson a **következő**.
 
     ![Online_backup_schedule](./media/backup-azure-backup-sharepoint/specify-online-backup-schedule.png)
 
     > [!NOTE]
-    > MABS biztosít két napi biztonsági mentések maximum Azure majd elérhető legújabb lemez biztonsági mentési pont számára. Azure biztonsági mentés WAN sávszélességet, amely alkalmas a biztonsági másolatok maximális és kevesen használatával is szabályozhatja [Azure biztonsági mentési hálózati sávszélesség-szabályozás](https://azure.microsoft.com/documentation/articles/backup-configure-vault/#enable-network-throttling).
+    > MABS két napi biztonsági mentések tooAzure a hello majd elérhető legfrissebb lemez biztonsági mentési pont legfeljebb biztosít. Azure biztonsági mentés is meghatározhatja, alkalmas a biztonsági másolatok maximális és kevesen a WAN sávszélesség mennyiségét hello [Azure biztonsági mentési hálózati sávszélesség-szabályozás](https://azure.microsoft.com/documentation/articles/backup-configure-vault/#enable-network-throttling).
     >
     >
-11. Attól függően, hogy a kiválasztott, a biztonsági mentés ütemezése a **Online adatmegőrzési szabály megadása** lapon, válassza ki az adatmegőrzési napi, heti, havi vagy éves biztonsági mentési pontok.
+11. Attól függően, hogy a biztonsági mentés ütemezése hello kiválasztott, hello **Online adatmegőrzési szabály megadása** lapon, jelölje be hello adatmegőrzési napi, heti, havi vagy éves biztonsági mentési pontok.
 
     ![Online_retention_policy](./media/backup-azure-backup-sharepoint/specify-online-retention.png)
 
@@ -135,106 +135,106 @@ Miután konfigurálta a MABS és a SharePoint-farm, amint azt korábban, a Share
     > MABS egy szerzett-édesapja-fia megőrzési séma, amelyben a különböző adatmegőrzési választható ki a másik biztonsági mentési pontok használja.
     >
     >
-12. Hasonló lemezre, kezdeti hivatkozás pont replikájának kell létrehozni az Azure-ban. Válassza ki a kívánt beállítást, hozzon létre egy kezdeti biztonsági másolatot az Azure-ba, és kattintson **következő**.
+12. Hasonló toodisk kezdeti hivatkozás pont replikájának kell az Azure-ban létrehozott toobe. Válassza ki a kívánt beállítást toocreate egy kezdeti biztonsági másolatot tooAzure, és kattintson a **következő**.
 
     ![Online_replica](./media/backup-azure-backup-sharepoint/online-replication.png)
-13. Tekintse át a beállításokat a a **összegzés** lapon, majd **csoport létrehozása**. Egy sikeres üzenet jelenik meg a védelmi csoport létrehozása után.
+13. Tekintse át a beállításokat a hello **összegzés** lapon, majd **csoport létrehozása**. Látni fogja a sikerről szóló üzenetet hello védelmi csoport létrehozása után.
 
     ![Összefoglalás](./media/backup-azure-backup-sharepoint/summary.png)
 
 ## <a name="restore-a-sharepoint-item-from-disk-by-using-mabs"></a>Egy SharePoint-elem visszaállítása a lemezről MABS használatával
-A következő példában a *helyreállítás SharePoint-elem* véletlenül törölve lett, és helyre szeretné állítani.
+A következő példa hello, hello *helyreállítás SharePoint-elem* véletlenül törölve lett, és a helyreállított toobe kell.
 ![MABS SharePoint Protection4](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection5.png)
 
-1. Nyissa meg a **DPM felügyeleti konzol**. Minden DPM által védett SharePoint-farmok megjelennek-e a **védelmi** fülre.
+1. Nyissa meg hello **DPM felügyeleti konzol**. Minden DPM által védett SharePoint-farmok megjelennek-e hello **védelmi** fülre.
 
     ![MABS SharePoint Protection3](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection4.png)
-2. Első lépéseként állítsa helyre az elemet, válassza ki a **helyreállítási** fülre.
+2. toobegin toorecover hello elem, jelölje be hello **helyreállítási** fülre.
 
     ![MABS SharePoint Protection5](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection6.png)
 3. A SharePoint kereshet *helyreállítás SharePoint-elem* kereséssel egy helyettesítő karakteres alapú belül egy helyreállítási pontot a tartományon.
 
     ![MABS SharePoint Protection6](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection7.png)
-4. Válassza ki a megfelelő helyreállítási pont a keresési eredmények, kattintson a jobb gombbal az elemet, és válassza **helyreállítása**.
-5. Tallózzon a különböző helyreállítási pontokat is, és válasszon egy adatbázist vagy elem helyreállítása. Válassza ki **dátum > helyreállításkor**, és válassza ki a megfelelő **adatbázis > SharePoint-farm > helyreállítási pont > elem**.
+4. Válassza ki a megfelelő helyreállítási pont hello hello a keresési eredmények, kattintson a jobb gombbal a hello elemet, és válassza **helyreállítása**.
+5. Tallózzon a különböző helyreállítási pontok is, majd válassza ki az adatbázis vagy elem toorecover. Válassza ki **dátum > helyreállításkor**, majd válassza ki a megfelelő hello **adatbázis > SharePoint-farm > helyreállítási pont > elem**.
 
     ![MABS SharePoint Protection7](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection8.png)
-6. Kattintson a jobb gombbal az elemet, majd válassza ki **helyreállítása** megnyitásához a **helyreállítási varázsló**. Kattintson a **Tovább** gombra.
+6. Kattintson a jobb gombbal a hello elemet, majd válassza ki **helyreállítása** tooopen hello **helyreállítási varázsló**. Kattintson a **Tovább** gombra.
 
     ![Helyreállítási beállítások áttekintése](./media/backup-azure-backup-sharepoint/review-recovery-selection.png)
-7. Válassza ki a végrehajtani, és kattintson a kívánt helyreállítási **következő**.
+7. Válassza ki, hogy szeretné, hogy tooperform, és kattintson a helyreállítási hello típusú **következő**.
 
     ![Helyreállítási típus](./media/backup-azure-backup-sharepoint/select-recovery-type.png)
 
    > [!NOTE]
-   > A kijelölt **visszaállítás az eredeti** példában helyreállítja a cikk az eredeti SharePoint-webhelyre.
+   > a kijelölés hello **toooriginal helyreállítása** hello példa hello elem toohello eredeti SharePoint hely helyreállítására szolgál..
    >
    >
-8. Válassza ki a **helyreállítási folyamat** használni kívánt.
+8. Jelölje be hello **helyreállítási folyamat** , amelyet az toouse.
 
-   * Válassza ki **helyreállítás helyreállítási farm nélkül** Ha a SharePoint-farm nem változott, és ugyanaz, mint a helyreállítási pont, amely visszaállítása folyamatban van.
-   * Válassza ki **helyreállításához a helyreállítási farm** Ha a SharePoint-farm megváltozott a helyreállítási pont létrehozása óta.
+   * Válassza ki **helyreállítás helyreállítási farm nélkül** Ha hello SharePoint-farm nem változott, és megegyezik az hello helyreállítási pont, amely hello visszaállítása folyamatban van.
+   * Válassza ki **helyreállításához a helyreállítási farm** Ha hello SharePoint-farm megváltozott a hello helyreállítási pont létrehozása óta.
 
      ![A helyreállítási folyamat](./media/backup-azure-backup-sharepoint/recovery-process.png)
-9. Állítsa helyre az adatbázist ideiglenesen egy SQL Server átmeneti helyét, és átmeneti fájlmegosztás MABS és a SharePoint-elem helyreállítása futtató kiszolgálón.
+9. Adjon meg egy átmeneti SQL Server példány hely toorecover hello adatbázis átmenetileg, és adjon meg egy átmeneti fájlmegosztást MABS és hello futtató kiszolgáló esetében SharePoint toorecover hello elem a.
 
     ![Átmeneti Location1](./media/backup-azure-backup-sharepoint/staging-location1.png)
 
-    MABS csatolja a tartalom-adatbázist, amelyen a SharePoint-elem az ideiglenes SQL Server-példányhoz. A tartalom-adatbázist azt állítja helyre az elemet, és az átmeneti tárolási helye a MABS helyezi. A helyreállított elem, amely az ideiglenes helyet most az ideiglenes helyet azon a SharePoint-farmon exportálni kell.
+    MABS hello tartalom-adatbázist, amelyen az hello SharePoint elem toohello ideiglenes SQL Server-példányhoz csatolja. Hello tartalom-adatbázist akkor hello elem helyreállítása és átmeneti tárolási helye a MABS hello helyezi. hello elem, amely a hello most átmeneti helyre kell exportált toobe toohello átmeneti helyre hello SharePoint-farm helyreállítása.
 
     ![Átmeneti Location2](./media/backup-azure-backup-sharepoint/staging-location2.png)
-10. Válassza ki **helyreállítási beállítások megadása**, és a SharePoint-farm biztonsági beállítások alkalmazása, vagy a helyreállítási pont biztonsági beállításainak alkalmazása. Kattintson a **Tovább** gombra.
+10. Válassza ki **helyreállítási beállítások megadása**, és alkalmazza a biztonsági beállítások toohello SharePoint-farm vagy hello hello helyreállítási pont biztonsági beállításainak alkalmazása. Kattintson a **Tovább** gombra.
 
     ![Helyreállítási beállítások](./media/backup-azure-backup-sharepoint/recovery-options.png)
 
     > [!NOTE]
-    > Ha szeretné, a hálózati sávszélesség használatának szabályozását. Ez minimalizálja az üzemi kiszolgálón történő éles órában.
+    > Kiválaszthatja a toothrottle hello sávszélesség-használat. Ez minimalizálja a hatás toohello az üzemi kiszolgáló éles órában.
     >
     >
-11. Ellenőrizze az összefoglaló információkat, és kattintson a **helyreállítása** fájl helyreállítási megkezdéséhez.
+11. Tekintse át hello összefoglaló információit, és kattintson a **helyreállítása** toobegin helyreállítási hello fájl.
 
     ![A helyreállítási összefoglaló](./media/backup-azure-backup-sharepoint/recovery-summary.png)
-12. Most válassza ki a **figyelés** lapra a **MABS felügyeleti konzol** megtekintéséhez a **állapot** a helyreállítási.
+12. Immár hello **figyelés** hello lapján **MABS felügyeleti konzol** tooview hello **állapot** hello helyreállítási.
 
     ![Helyreállítási állapota](./media/backup-azure-backup-sharepoint/recovery-monitoring.png)
 
     > [!NOTE]
-    > A fájl már vissza. A SharePoint-webhelyre a visszaállított fájl is frissítheti.
+    > hello fájl most helyreáll. Hello SharePoint webhely toocheck hello visszaállított fájl is frissítheti.
     >
     >
 
 ## <a name="restore-a-sharepoint-database-from-azure-by-using-dpm"></a>Egy SharePoint-adatbázis visszaállítása az Azure-ból a DPM használatával
-1. Egy SharePoint tartalom-adatbázis helyreállításához tallózzon a különböző helyreállítási pontokat (ahogy korábban), és válassza ki a visszaállítani kívánt helyreállítási pontot.
+1. toorecover egy SharePoint tartalom-adatbázist, tallózzon a különböző helyreállítási pontokat (ahogy korábban), és válassza ki, hogy szeretné-e toorestore hello helyreállítási pontot.
 
     ![MABS SharePoint Protection8](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection9.png)
-2. Kattintson duplán a SharePoint helyreállítási pont megjelenítése a elérhető SharePoint-katalógus adatait.
+2. Kattintson duplán a hello SharePoint helyreállítási pont tooshow hello elérhető SharePoint katalógus adatait.
 
    > [!NOTE]
-   > A SharePoint-farm hosszú távú megőrzési az Azure-ban a védett, mert a MABS nincs katalógus információkkal (metaadatokkal) érhető el. Ennek eredményeképpen időpontban a SharePoint tartalom-adatbázist kell a helyre kell állítani, amikor kell a SharePoint-farm katalógus újra.
+   > Hello SharePoint-farm hosszú távú megőrzési az Azure-ban a védett, mert a MABS nincs katalógus információkkal (metaadatokkal) érhető el. Ennek eredményeképpen időpontban a SharePoint tartalom-adatbázis helyreállítása toobe van szüksége, amikor szüksége toocatalog hello SharePoint-farm újra.
    >
    >
 3. Kattintson a **újrakatalogizáláshoz**.
 
     ![MABS SharePoint Protection10](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection12.png)
 
-    A **felhő Újrakatalogizálni** állapotkezelő ablak nyílik meg.
+    Hello **felhő Újrakatalogizálni** állapotkezelő ablak nyílik meg.
 
     ![MABS SharePoint Protection11](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection13.png)
 
-    Katalogizálni befejezése után a állapota *sikeres*. Kattintson a **Bezárás** gombra.
+    Katalogizálni befejezése után hello állapota túl*sikeres*. Kattintson a **Bezárás** gombra.
 
     ![MABS SharePoint Protection12](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection14.png)
-4. Kattintson a SharePoint-objektum a MABS látható **helyreállítási** lapot a tartalom-adatbázist-struktúrában. Kattintson a jobb gombbal az elemet, és kattintson **helyreállítása**.
+4. Hello SharePoint objektum hello MABS látható **helyreállítási** tooget hello tartalom-adatbázist struktúra fülre. Kattintson a jobb gombbal a hello elemet, és kattintson **helyreállítása**.
 
     ![MABS SharePoint Protection13](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection15.png)
-5. Ezen a ponton, kövesse a [helyreállítási lépések az ebben a cikkben](#restore-a-sharepoint-item-from-disk-using-dpm) a lemezről egy SharePoint tartalom-adatbázis helyreállításához.
+5. Ezen a ponton, kövesse az hello [helyreállítási lépések az ebben a cikkben](#restore-a-sharepoint-item-from-disk-using-dpm) toorecover a lemezről egy SharePoint tartalmi adatbázist.
 
 ## <a name="faqs"></a>Gyakori kérdések
-K: helyreállíthatók a SharePoint-elem az eredeti helyre, ha SharePoint (a védelem a lemezen) az SQL AlwaysOn használatára van konfigurálva?<br>
-V: Igen, az elem állíthatók helyre az eredeti SharePoint-webhelyre.
+K: helyreállíthatók egy SharePoint elem toohello eredeti helyre, ha SharePoint (a védelem a lemezen) az SQL AlwaysOn használatára van konfigurálva?<br>
+A: Igen hello elem lehet helyreállított toohello eredeti SharePoint-webhelyen.
 
-K: helyreállíthatók a SharePoint-adatbázist az eredeti helyre, ha a SharePoint SQL AlwaysOn használatára van konfigurálva?<br>
-V:, mert a SharePoint-adatbázisok vannak konfigurálva az SQL AlwaysOn, ezeket nem lehet módosítani kivéve, ha a rendelkezésre állási csoport eltávolítása. Ennek eredményeképpen az MABS nem tudja visszaállítani az adatbázis az eredeti helyre. Helyreállíthatja az SQL Server-adatbázis egy másik SQL Server-példányhoz.
+K: helyreállíthatók egy SharePoint adatbázis toohello eredeti helyre, ha a SharePoint SQL AlwaysOn használatára van konfigurálva?<br>
+V:, mert a SharePoint-adatbázisok az SQL AlwaysOn vannak konfigurálva, akkor csak módosíthatók hello rendelkezésre állási csoport eltávolítása. Ennek eredményeképpen MABS nem állítható vissza egy adatbázis toohello eredeti helyre. Helyreállíthatja az SQL Server adatbázis tooanother SQL Server-példányt.
 
 ## <a name="next-steps"></a>Következő lépések
 * További tudnivalók a SharePoint védelme MABS – lásd [videó sorozat - a SharePoint védelme a DPM](http://channel9.msdn.com/Series/Azure-Backup/Microsoft-SCDPM-Protection-of-SharePoint-1-of-2-How-to-create-a-SharePoint-Protection-Group)

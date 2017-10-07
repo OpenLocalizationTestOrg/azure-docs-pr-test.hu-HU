@@ -1,6 +1,6 @@
 ---
-title: ".NET-alkalmazás létrehozása a Service Fabric |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozzon létre egy alkalmazást az ASP.NET Core előtér- és egy megbízható szolgáltatás állapot-nyilvántartó háttér-alkalmazás és központi telepítését a fürthöz."
+title: "a Service Fabric .NET-alkalmazás aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, hogyan a toocreate az alkalmazás az ASP.NET Core előtér- és egy megbízható állapot-nyilvántartó háttér-szolgáltatás, és hello alkalmazás tooa fürt központi telepítése."
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,57 +14,57 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/09/2017
 ms.author: ryanwi, mikhegn
-ms.openlocfilehash: ef50adf3af19bce494c3256308b443c8eaccdcea
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bab331b9f8616c50a2794b6c048aace15579c8b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-deploy-an-application-with-an-aspnet-core-web-api-front-end-service-and-a-stateful-back-end-service"></a>Hozzon létre és telepítsen egy alkalmazást az ASP.NET Core Web API előtér- és egy állapotalapú háttér-szolgáltatás
-Ez az oktatóanyag egy sorozat része.  Megtudhatja, hogyan egy Azure Service Fabric-alkalmazás létrehozása az ASP.NET Core Web API előtér és állapot-nyilvántartó háttér-szolgáltatás az adatok tárolásához. Amikor végzett, hogy a szavazóalkalmazást az ASP.NET Core webes előtér-állapot-nyilvántartó háttér-szolgáltatás a fürt szavazó eredmények takarít meg, amely a. Ha nem szeretné manuálisan létrehozni a szavazóalkalmazást, akkor [töltse le a forráskód](https://github.com/Azure-Samples/service-fabric-dotnet-quickstart/) a kész alkalmazás, és ugorjon előre [végezze el a szavazó mintaalkalmazás](#walkthrough_anchor).
+Ez az oktatóanyag egy sorozat része.  Megtudhatja, hogyan toocreate az ASP.NET Core Web API első Azure Service Fabric alkalmazás befejezését, majd egy állapotalapú háttérszolgáltatásnak toostore adatait. Amikor végzett, hogy a szavazóalkalmazást az ASP.NET Core webes előtér-egy állapotalapú háttérszolgáltatásnak hello fürt szavazó eredmények takarít meg, amely a. Ha nem szeretné, hogy toomanually hello szavazás alkalmazás létrehozása, érdemes [hello forráskód letöltése](https://github.com/Azure-Samples/service-fabric-dotnet-quickstart/) hello befejeződött a alkalmazást, és hagyja ki azokat, amelyek túl[mintaalkalmazás szavazás hello bízná](#walkthrough_anchor).
 
 ![Alkalmazásdiagram](./media/service-fabric-tutorial-create-dotnet-app/application-diagram.png)
 
-A rész az adatsorozatok megismerheti, hogyan:
+Egyik hello sorozat része, a megismerheti, hogyan:
 
 > [!div class="checklist"]
 > * Állapot-nyilvántartó megbízható szolgáltatásként az ASP.NET Core webes API-szolgáltatás létrehozása
 > * Állapot nélküli webszolgáltatásként ASP.NET Core webalkalmazás-szolgáltatás létrehozása
-> * A fordított proxy segítségével kommunikál az állapotalapú szolgáltatással
+> * Fordított proxy toocommunicate hello használata hello állapotalapú szolgáltatással
 
 Az oktatóanyag adatsorozat elsajátíthatja, hogyan:
 > [!div class="checklist"]
 > * A .NET Service Fabric-alkalmazás létrehozása
-> * [Telepítse központilag az alkalmazást egy távoli fürthöz](service-fabric-tutorial-deploy-app-to-party-cluster.md)
+> * [Hello alkalmazás tooa távoli fürt központi telepítése](service-fabric-tutorial-deploy-app-to-party-cluster.md)
 > * [Konfigurálja a CI/CD Visual Studio Team Services használatával](service-fabric-tutorial-deploy-app-with-cicd-vsts.md)
 
 ## <a name="prerequisites"></a>Előfeltételek
 Ez az oktatóanyag elkezdéséhez:
 - Ha nem rendelkezik Azure-előfizetéssel, hozzon létre egy [ingyenes fiókot](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)
-- [Telepítse a Visual Studio 2017](https://www.visualstudio.com/) és telepítse a **Azure fejlesztési** és **ASP.NET és a webes fejlesztési** munkaterhelések.
-- [A Service Fabric SDK telepítése](service-fabric-get-started.md)
+- [Telepítse a Visual Studio 2017](https://www.visualstudio.com/) és hello telepítése **Azure fejlesztési** és **ASP.NET és a webes fejlesztési** munkaterhelések.
+- [Hello Service Fabric SDK telepítése](service-fabric-get-started.md)
 
 ## <a name="create-an-aspnet-web-api-service-as-a-reliable-service"></a>Megbízható szolgáltatásként ASP.NET Web API-szolgáltatás létrehozása
-Először hozza létre a webes előtér-, az ASP.NET Core segítségével szavazóalkalmazást. Az ASP.NET Core egy egyszerűsített, platformfüggetlen webes fejlesztési keretrendszer, amely a webes API-k és modern webes felhasználói felület létrehozása segítségével. Ahhoz, hogy a teljes ismertetése, hogy az ASP.NET Core hogyan integrálható a Service Fabric, mindenképpen olvassa a [ASP.NET Core a Service Fabric Reliable Services](service-fabric-reliable-services-communication-aspnetcore.md) cikk. Most hajtsa végre ezt az oktatóanyagot gyorsan. Az ASP.NET Core kapcsolatos további tudnivalókért tekintse meg a [ASP.NET Core dokumentációja](https://docs.microsoft.com/aspnet/core/).
+Először hozzon létre hello webes előtér-, az ASP.NET Core segítségével alkalmazás szavazás hello. Az ASP.NET Core egy egyszerűsített, platformfüggetlen webes fejlesztési keretrendszer, hogy toocreate modern webes felhasználói Felületét használja, és webes API-khoz. a teljes ismertetése, hogy az ASP.NET Core hogyan integrálható a Service Fabric tooget, mindenképpen olvassa keresztül hello [ASP.NET Core a Service Fabric Reliable Services](service-fabric-reliable-services-communication-aspnetcore.md) cikk. Most hajtsa végre az oktatóanyag tooget gyorsan. További információ az ASP.NET Core toolearn lásd: hello [ASP.NET Core dokumentációja](https://docs.microsoft.com/aspnet/core/).
 
 > [!NOTE]
-> Ez az oktatóanyag alapul a [ASP.NET Core eszközei Visual Studio 2017](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/start-mvc). A .NET Core eszközöket a Visual Studio 2015 már nem frissítés alatt álló.
+> Ez az oktatóanyag hello alapuló [ASP.NET Core eszközei Visual Studio 2017](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/start-mvc). a Visual Studio 2015 hello .NET Core eszközök már nem frissítés alatt álló.
 
 1. Indítsa el a Visual Studiót **rendszergazdaként**.
 
 2. A projekt létrehozása **fájl**->**új**->**projekt**
 
-3. Az **Új projekt** párbeszédpanelen válassza a **Felhő > Service Fabric-alkalmazás** elemet.
+3. A hello **új projekt** párbeszédpanelen válasszon **felhő > Service Fabric-alkalmazás**.
 
-4. Adjon nevet az alkalmazásnak **Voting** nyomja le az ENTER **OK**.
+4. Hello alkalmazás neve **Voting** nyomja le az ENTER **OK**.
 
    ![A Visual Studio Új projekt párbeszédpanelje](./media/service-fabric-tutorial-create-dotnet-app/new-project-dialog.png)
 
-5. Az a **új Service Fabric-szolgáltatás** lapon, válassza ki **állapotmentes ASP.NET Core**, és a szolgáltatás **VotingWeb**.
+5. A hello **új Service Fabric-szolgáltatás** lapon, válassza ki **állapotmentes ASP.NET Core**, és a szolgáltatás **VotingWeb**.
    
-   ![ASP.NET webszolgáltatás kiválasztása az új service párbeszédpanelen](./media/service-fabric-tutorial-create-dotnet-app/new-project-dialog-2.png) 
+   ![ASP.NET webszolgáltatás kiválasztásával hello új szolgáltatás párbeszédpanelje](./media/service-fabric-tutorial-create-dotnet-app/new-project-dialog-2.png) 
 
-6. A következő oldalon biztosít az ASP.NET Core projektsablonjai. A jelen oktatóanyag esetében válassza ki a **webalkalmazás**. 
+6. hello következő oldal biztosít az ASP.NET Core projektsablonjai. A jelen oktatóanyag esetében válassza ki a **webalkalmazás**. 
    
    ![ASP.NET-projekt típusának kiválasztása](./media/service-fabric-tutorial-create-dotnet-app/vs-new-aspnet-project-dialog.png)
 
@@ -72,8 +72,8 @@ Először hozza létre a webes előtér-, az ASP.NET Core segítségével szavaz
 
    ![A megoldáskezelő ASP.NET alapvető szolgáltatás webes API-alkalmazás létrehozása]( ./media/service-fabric-tutorial-create-dotnet-app/solution-explorer-aspnetcore-service.png)
 
-### <a name="add-angularjs-to-the-votingweb-service"></a>A VotingWeb szolgáltatás AngularJS hozzáadása
-Adja hozzá [AngularJS](http://angularjs.org/) a szolgáltatáshoz a beépített [Bower támogatási](/aspnet/core/client-side/bower). Nyissa meg *bower.json* szögben kifejezett és szögben kifejezett rendszerindítási bejegyzés hozzáadása, majd mentse a módosításokat.
+### <a name="add-angularjs-toohello-votingweb-service"></a>AngularJS toohello VotingWeb szolgáltatás hozzáadása
+Adja hozzá [AngularJS](http://angularjs.org/) tooyour szolgáltatást hello beépített [Bower támogatási](/aspnet/core/client-side/bower). Nyissa meg *bower.json* szögben kifejezett és szögben kifejezett rendszerindítási bejegyzés hozzáadása, majd mentse a módosításokat.
 
 ```json
 {
@@ -89,10 +89,10 @@ Adja hozzá [AngularJS](http://angularjs.org/) a szolgáltatáshoz a beépített
   }
 }
 ```
-Mentéskor a *bower.json* fájl, Angular telepítve van a projekt *wwwroot/lib* mappát. Ezenkívül szerepel a listán belül a *függőségek/Bower* mappa.
+Hello mentése után *bower.json* fájl, Angular telepítve van a projekt *wwwroot/lib* mappát. Ezenkívül szerepel a listán belül hello *függőségek/Bower* mappa.
 
-### <a name="update-the-sitejs-file"></a>A site.js fájl frissítése
-Nyissa meg a *wwwroot/js/site.js* fájlt.  Cserélje ki annak tartalmát a JavaScript a kezdőlap nézetek által használt:
+### <a name="update-hello-sitejs-file"></a>Hello site.js fájl frissítése
+Nyissa meg hello *wwwroot/js/site.js* fájlt.  Cserélje ki annak tartalmát hello hello otthoni nézetek által használt JavaScript:
 
 ```javascript
 var app = angular.module('VotingApp', ['ui.bootstrap']);
@@ -131,8 +131,8 @@ app.controller('VotingAppController', ['$rootScope', '$scope', '$http', '$timeou
 }]);
 ```
 
-### <a name="update-the-indexcshtml-file"></a>A Index.cshtml fájl frissítése
-Nyissa meg a *Views/Home/Index.cshtml* fájl, a nézet a kezdőlap vezérlő jellemző.  Cserélje ki annak tartalmát a következőt, majd a változtatások mentéséhez.
+### <a name="update-hello-indexcshtml-file"></a>Hello Index.cshtml fájl frissítése
+Nyissa meg hello *Views/Home/Index.cshtml* fájl, hello adott toohello otthoni nézetvezérlő.  Cserélje ki annak tartalmát hello következőre, majd mentse a módosításokat.
 
 ```html
 @{
@@ -167,7 +167,7 @@ Nyissa meg a *Views/Home/Index.cshtml* fájl, a nézet a kezdőlap vezérlő jel
             <div class="col-xs-8 col-xs-offset-2">
                 <div class="row">
                     <div class="col-xs-4">
-                        Click to vote
+                        Click toovote
                     </div>
                 </div>
                 <div class="row top-buffer" ng-repeat="vote in votes.data">
@@ -194,8 +194,8 @@ Nyissa meg a *Views/Home/Index.cshtml* fájl, a nézet a kezdőlap vezérlő jel
 </div>
 ```
 
-### <a name="update-the-layoutcshtml-file"></a>A _Layout.cshtml fájl frissítése
-Nyissa meg a *Views/Shared/_Layout.cshtml* fájlt, az ASP.NET-alkalmazás alapértelmezett elrendezését.  Cserélje ki annak tartalmát a következőt, majd a változtatások mentéséhez.
+### <a name="update-hello-layoutcshtml-file"></a>Hello _Layout.cshtml fájl frissítése
+Nyissa meg hello *Views/Shared/_Layout.cshtml* fájl, hello alapértelmezett elrendezési hello ASP.NET alkalmazás.  Cserélje ki annak tartalmát hello következőre, majd mentse a módosításokat.
 
 ```html
 <!DOCTYPE html>
@@ -225,8 +225,8 @@ Nyissa meg a *Views/Shared/_Layout.cshtml* fájlt, az ASP.NET-alkalmazás alapé
 </html>
 ```
 
-### <a name="update-the-votingwebcs-file"></a>A VotingWeb.cs fájl frissítése
-Nyissa meg a *VotingWeb.cs* fájlt, amely létrehozza az ASP.NET Core WebHost az állapot nélküli-szolgáltatást a WebListener webkiszolgáló belül.  Adja hozzá a `using System.Net.Http;` irányelv a fájl elejéhez.  Cserélje le a `CreateServiceInstanceListeners()` és a következő működni, akkor a módosítások mentéséhez.
+### <a name="update-hello-votingwebcs-file"></a>Hello VotingWeb.cs fájl frissítése
+Nyissa meg hello *VotingWeb.cs* fájlt, amely az ASP.NET Core WebHost hello belül hello állapotmentes szolgáltatások hello WebListener webkiszolgáló használatával hoz létre.  Adja hozzá a hello `using System.Net.Http;` irányelv toohello hello fájl elejéhez.  Cserélje le a hello `CreateServiceInstanceListeners()` hello következő működik, akkor a módosítások mentéséhez.
 
 ```csharp
 protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
@@ -254,8 +254,8 @@ protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceLis
 }
 ```
 
-### <a name="add-the-votescontrollercs-file"></a>Adja hozzá a VotesController.cs
-Vegyen fel egy vezérlőt, amely meghatározza a szavazó műveletek. Kattintson a jobb gombbal a a **tartományvezérlők** mappát, majd válassza ki **Hozzáadás -> Új elem -> osztály**.  A fájl neve "VotesController.cs", és kattintson a **Hozzáadás**.  Cserélje ki a fájl tartalmát a következőt, majd a változtatások mentéséhez.  A későbbi [VotesController.cs fájl frissíthető](#updatevotecontroller_anchor), ezt a fájlt úgy módosítjuk, hogy olvasási és írási szavazó adatok a háttér-szolgáltatás.  A lépést a tartományvezérlő nézetbe statikus karakterlánc adatokat ad vissza.
+### <a name="add-hello-votescontrollercs-file"></a>Hello VotesController.cs fájl hozzáadása
+Vegyen fel egy vezérlőt, amely meghatározza a szavazó műveletek. Kattintson a jobb gombbal a hello **tartományvezérlők** mappát, majd válassza ki **Hozzáadás -> Új elem -> osztály**.  Hello fájl "VotesController.cs" nevet, és kattintson a **Hozzáadás**.  Cserélje ki hello következő hello fájl tartalmát, majd mentse a módosításokat.  A későbbi [hello VotesController.cs frissítésfájl](#updatevotecontroller_anchor), ezt a fájlt a rendszer módosított tooread, majd szavazó adatírás hello háttér-szolgáltatás.  Most hello vezérlő statikus karakterlánc toohello adatnézet adja vissza.
 
 ```csharp
 using System;
@@ -296,36 +296,36 @@ namespace VotingWeb.Controllers
 
 
 
-### <a name="deploy-and-run-the-application-locally"></a>Telepítheti és futtathatja az alkalmazást helyileg
-Most lépjen tovább, és futtassa az alkalmazást. Nyomja le az `F5` billentyűt a Visual Studióban, hogy üzembe helyezze az alkalmazást a hibakereséshez. `F5`sikertelen lesz, ha nem korábban nyissa meg a Visual Studióban **rendszergazda**.
+### <a name="deploy-and-run-hello-application-locally"></a>Központi telepítése és hello alkalmazás helyileg történő futtatása
+Ezután lépjen tovább és hello alkalmazás futtatásához. A Visual Studio, nyomja le a `F5` toodeploy hello alkalmazást a hibakereséshez. `F5`sikertelen lesz, ha nem korábban nyissa meg a Visual Studióban **rendszergazda**.
 
 > [!NOTE]
-> Az alkalmazás első helyi történő üzembe helyezésekor a Visual Studio létrehoz egy helyi hibakeresési fürtöt.  A fürt létrehozása eltarthat egy ideig. A fürt létrehozási állapota a Visual Studio kimeneti ablakában jelenik meg.
+> hello első alkalommal futtatja, és hello-alkalmazás központi telepítése helyileg, a Visual Studio hibakeresési egy helyi fürtöt hoz létre.  A fürt létrehozása eltarthat egy ideig. hello fürt létrehozási állapota hello Visual Studio kimeneti ablakában jelenik meg.
 
 Ezen a ponton a webalkalmazás kell kinéznie:
 
 ![Az ASP.NET Core előtér-](./media/service-fabric-tutorial-create-dotnet-app/debug-front-end.png)
 
-Az alkalmazás hibakeresését végzi leállításához vissza a Visual Studio, és nyomja le az **Shift + F5**.
+toostop hello alkalmazásban, lépjen vissza a tooVisual Studio, és nyomja le az **Shift + F5**.
 
-## <a name="add-a-stateful-back-end-service-to-your-application"></a>Állapot-nyilvántartó háttér-szolgáltatás hozzáadása az alkalmazáshoz
-Most, hogy az ASP.NET Web API-szolgáltatás fut az alkalmazás, lépjen tovább, és adja hozzá egy állapotalapú megbízható szolgáltatást, hogy néhány adat tárolása az alkalmazás.
+## <a name="add-a-stateful-back-end-service-tooyour-application"></a>Állapot-nyilvántartó háttérszolgáltatásnak tooyour alkalmazás felvétele
+Most, hogy az ASP.NET Web API-szolgáltatás fut az alkalmazás, lépjen tovább, és adja hozzá egy állapotalapú szolgáltatás toostore egyes adatokat az alkalmazás.
 
-A Service Fabric következetesen és megbízhatóan tárolja az adatok jobb belül a szolgáltatás megbízható gyűjtemények segítségével teszi lehetővé. Megbízható gyűjtemények olyan magas rendelkezésre állású és megbízható gyűjteményosztály, amelyek bárki, aki használta a C# gyűjtemények számára.
+A Service Fabric tooconsistently lehetővé teszi, és megbízhatóan tárolja az adatok jobb belül a szolgáltatás megbízható gyűjtemények használatával. Megbízható gyűjtemények olyan magas rendelkezésre állású és megbízható gyűjteményosztály, amelyek a megszokott tooanyone, akik C# gyűjtemények használatban van.
 
 Ebben az oktatóanyagban létrehoz egy szolgáltatás, amely egy megbízható gyűjtemény egy számláló értékét tárolja.
 
-1. A Megoldáskezelőben kattintson a jobb gombbal **szolgáltatások** az alkalmazásban le, és válassza a **Hozzáadás > új Service Fabric-szolgáltatás**.
+1. A Megoldáskezelőben kattintson a jobb gombbal **szolgáltatások** belül hello projektet, és válassza a **Hozzáadás > új Service Fabric-szolgáltatás**.
    
-    ![Egy új szolgáltatás hozzáadása meglévő alkalmazáshoz](./media/service-fabric-tutorial-create-dotnet-app/vs-add-new-service.png)
+    ![Új szolgáltatás tooan meglévő alkalmazás hozzáadása](./media/service-fabric-tutorial-create-dotnet-app/vs-add-new-service.png)
 
-2. Az a **új Service Fabric-szolgáltatás** párbeszédpanelen válasszon **állapotalapú alkalmazások és szolgáltatások ASP.NET Core**, és a szolgáltatás **VotingData** nyomja le az ENTER **OK**.
+2. A hello **új Service Fabric-szolgáltatás** párbeszédpanelen válasszon **állapotalapú alkalmazások és szolgáltatások ASP.NET Core**, és hello szolgáltatást **VotingData** nyomja le az ENTER **OK**.
 
     ![A Visual Studio Új szolgáltatás párbeszédpanelje](./media/service-fabric-tutorial-create-dotnet-app/add-stateful-service.png)
 
-    A service-projekt létrehozása után a felhasználó két szolgáltatást az alkalmazásban. Továbbra is építenie az alkalmazást, mert a szolgáltatás ugyanúgy is hozzáadhat. Minden egyes lehet függetlenül rendszerverzióval ellátott és frissített.
+    A service-projekt létrehozása után a felhasználó két szolgáltatást az alkalmazásban. Az alkalmazás továbbra toobuild, adhat hozzá további szolgáltatások hello azonos módon. Minden egyes lehet függetlenül rendszerverzióval ellátott és frissített.
 
-3. A következő oldalon biztosít az ASP.NET Core projektsablonjai. A jelen oktatóanyag esetében válassza ki a **Web API**.
+3. hello következő oldal biztosít az ASP.NET Core projektsablonjai. A jelen oktatóanyag esetében válassza ki a **Web API**.
 
     ![ASP.NET-projekt típusának kiválasztása](./media/service-fabric-tutorial-create-dotnet-app/vs-new-aspnet-project-dialog2.png)
 
@@ -333,9 +333,9 @@ Ebben az oktatóanyagban létrehoz egy szolgáltatás, amely egy megbízható gy
 
     ![Megoldáskezelő](./media/service-fabric-tutorial-create-dotnet-app/solution-explorer-aspnetcore-service.png)
 
-### <a name="add-the-votedatacontrollercs-file"></a>Adja hozzá a VoteDataController.cs
+### <a name="add-hello-votedatacontrollercs-file"></a>Hello VoteDataController.cs fájl hozzáadása
 
-A a **VotingData** projekt kattintson a jobb gombbal a **tartományvezérlők** mappát, majd válassza ki **Hozzáadás -> Új elem -> osztály**. A fájl neve "VoteDataController.cs", és kattintson a **Hozzáadás**. Cserélje ki a fájl tartalmát a következőt, majd a változtatások mentéséhez.
+A hello **VotingData** projektben kattintson jobb gombbal a hello **tartományvezérlők** mappát, majd válassza ki **Hozzáadás -> Új elem -> osztály**. Hello fájl "VoteDataController.cs" nevet, és kattintson a **Hozzáadás**. Cserélje ki hello következő hello fájl tartalmát, majd mentse a módosításokat.
 
 ```csharp
 using System;
@@ -424,17 +424,17 @@ namespace VotingData.Controllers
 ```
 
 
-## <a name="connect-the-services"></a>Csatlakozás a szolgáltatások
-A következő lépésben rendszer összekapcsolja a két szolgáltatásokat és ellenőrizze az előtér-webkiszolgálók alkalmazás beolvasása és beállítása a szavazás a háttér-szolgáltatás adatait.
+## <a name="connect-hello-services"></a>Connect hello szolgáltatások
+A következő lépésben rendszer összekapcsolja a hello két szolgáltatásokat és ellenőrizze a hello előtér-webkiszolgáló alkalmazás beolvasása és beállítása a szavazás hello háttér-szolgáltatás adatait.
 
-A Service Fabric hogyan kommunikáljanak megbízható szolgáltatások teljes rugalmasságot biztosít. Egyetlen alkalmazásban lehetséges, hogy TCP-n keresztül elérhető szolgáltatások. Elképzelhető, hogy egy HTTP REST API-n keresztül érhető el, hogy más szolgáltatások és egyéb szolgáltatások továbbra is lehet webes szoftvercsatornák keresztül érhető el. A rendelkezésre álló lehetőségeket, és a mellékhatásokkal jár a háttérben, lásd: [szolgáltatások folytatott kommunikáció](service-fabric-connect-and-communicate-with-services.md).
+A Service Fabric hogyan kommunikáljanak megbízható szolgáltatások teljes rugalmasságot biztosít. Egyetlen alkalmazásban lehetséges, hogy TCP-n keresztül elérhető szolgáltatások. Elképzelhető, hogy egy HTTP REST API-n keresztül érhető el, hogy más szolgáltatások és egyéb szolgáltatások továbbra is lehet webes szoftvercsatornák keresztül érhető el. Háttér hello lehetőségeit és hello mellékhatásokkal jár, lásd: [szolgáltatások folytatott kommunikáció](service-fabric-connect-and-communicate-with-services.md).
 
 Ebben az oktatóanyagban használjuk [ASP.NET Core Web API](service-fabric-reliable-services-communication-aspnetcore.md).
 
 <a id="updatevotecontroller" name="updatevotecontroller_anchor"></a>
 
-### <a name="update-the-votescontrollercs-file"></a>A VotesController.cs fájl frissítése
-Az a **VotingWeb** projektben nyissa meg a *Controllers/VotesController.cs* fájlt.  Cserélje le a `VotesController` definíciójának tartalma a következő osztályt, majd mentse a módosításokat.
+### <a name="update-hello-votescontrollercs-file"></a>Hello VotesController.cs fájl frissítése
+A hello **VotingWeb** projektet, nyissa meg hello *Controllers/VotesController.cs* fájlt.  Cserélje le a hello `VotesController` osztály hello következőre definíciójának tartalma, akkor a módosítások mentéséhez.
 
 ```csharp
     public class VotesController : Controller
@@ -504,59 +504,59 @@ Az a **VotingWeb** projektben nyissa meg a *Controllers/VotesController.cs* fáj
 ```
 <a id="walkthrough" name="walkthrough_anchor"></a>
 
-## <a name="walk-through-the-voting-sample-application"></a>Végezze el a szavazó mintaalkalmazás
-A szavazó alkalmazás két szolgáltatásból áll:
-- Webes előtér-szolgáltatás (VotingWeb) – az ASP.NET Core webes előtér-szolgáltatás, a weblap szolgál, és tesz elérhetővé webes API-khoz a háttér-szolgáltatással való kommunikációra.
-- Háttér-szolgáltatás (VotingData)-az ASP.NET Core webszolgáltatáshoz, amely közzétesz egy API-t, a megbízható szótárban az szavazattal eredmények tárolásához a lemezen maradnak.
+## <a name="walk-through-hello-voting-sample-application"></a>Szavazás mintaalkalmazás hello bízná
+hello szavazás alkalmazás két szolgáltatásból áll:
+- Webes előtér-szolgáltatás (VotingWeb) – az ASP.NET Core webes előtér-szolgáltatás, hello weblap szolgál, és tesz elérhetővé webes API-k toocommunicate a hello háttérszolgáltatásban.
+- Háttér-szolgáltatás (VotingData)-az ASP.NET Core a webszolgáltatást tesz elérhetővé, az API toostore hello szavazattal megbízható dictionary eredményezi a lemezen maradnak.
 
 ![Alkalmazásdiagram](./media/service-fabric-tutorial-create-dotnet-app/application-diagram.png)
 
-Amikor az alkalmazás szavaz a következők történnek:
-1. A JavaScript a szavazás kérést küld egy HTTP PUT-kérelmet, a a webes API-t a webes előtér-szolgáltatás.
+Amikor szavaz a hello alkalmazás hello a következő események következnek be:
+1. JavaScript hello webes előtér-szolgáltatás hello szavazattal kérelem toohello webes API-t, egy HTTP PUT-kérelmet küld.
 
-2. A webes előtér-szolgáltatás egy proxy használatával keresse meg és a háttér-szolgáltatás egy HTTP PUT-kérelmet továbbítja.
+2. hello webes előtér-szolgáltatás egy proxy toolocate használ, és továbbítja a HTTP PUT kérés toohello háttér-szolgáltatásnak.
 
-3. A háttér-szolgáltatás időt vesz igénybe a bejövő kérelem, és tárolja a frissített eredmény megbízható szótár, amely lekérdezi a fürt több csomópontja replikálása, és a lemezen maradnak. Az alkalmazás adatokat tárolja a fürt így adatbázis szükséges.
+3. hello háttérszolgáltatásnak hello bejövő kérelem vesz igénybe, és a tárolók hello frissítve megbízható szótár, amely hello fürt csomópontja replikált toomultiple kap, és a lemezen tárolt eredményt. Minden hello alkalmazásadatok hello fürt tárolja, így nincs adatbázis szükséges.
 
 ## <a name="debug-in-visual-studio"></a>A Visual Studio hibakeresési
-A Visual Studio alkalmazás nyomkövetésére használ egy helyi Service Fabric-fejlesztési fürtöt. Lehetősége van úgy, hogy adott esetben a hibakeresési felhasználói élmény. Ebben az alkalmazásban tároljuk adatok a háttér-szolgáltatásban egy megbízható szótár használatával. A Visual Studio eltávolítja az alkalmazás alapértelmezés szerint a hibakereső leállítása. Az alkalmazás eltávolítása azt eredményezi, az adatok a háttér-szolgáltatás is el kell távolítani. Az adatok között munkamenetek hibakeresés megőrizni, módosíthatja a **alkalmazás hibakeresési módban** meg tulajdonságként a **Voting** projektre a Visual Studio.
+A Visual Studio alkalmazás nyomkövetésére használ egy helyi Service Fabric-fejlesztési fürtöt. A hibakeresési élmény tooyour környezettel rendelkezik hello beállítás tooadjust. Ebben az alkalmazásban tároljuk adatok a háttér-szolgáltatásban egy megbízható szótár használatával. A Visual Studio hello alkalmazás alapértelmezés szerint eltávolítja a hello hibakereső leállítása. Hello adatok hello alkalmazás eltávolítása hatására a hello háttér-szolgáltatás tooalso el kell távolítani. toopersist hello adatok hibakeresés a munkamenetek között, módosíthatja hello **alkalmazás hibakeresési módban** hello meg tulajdonságként **Voting** projektre a Visual Studióban.
 
-Nézze meg mi történik, a kódban, végezze el a következő lépéseket:
-1. Nyissa meg a **VotesController.cs** fájlt, és állítson be egy töréspontot a webes API **Put** metódus (sor: 47) – a fájlt a Visual studióban a Solution Explorer kereshet.
+toolook, mi történik, a lépéseket követve teljes hello hello kódban:
+1. Nyissa meg hello **VotesController.cs** fájlt, és állítson be egy töréspontot hello webes API **Put** metódus (sor: 47) – hello fájlra a Visual Studio Solution Explorer hello kereshet.
 
-2. Nyissa meg a **VoteDataController.cs** fájlt, és állítson be egy töréspontot ezen webes API **Put** metódus (sor 50).
+2. Nyissa meg hello **VoteDataController.cs** fájlt, és állítson be egy töréspontot ezen webes API **Put** metódus (sor 50).
 
-3. Lépjen vissza a böngésző és szavazó lehetőségre, vagy adja hozzá egy új szavazó lehetőséget. A webalkalmazás első-a befejezési tartozó api-vezérlőben első töréspont kattint.
+3. Lépjen vissza toohello böngésző és szavazó lehetőségre, vagy adja hozzá egy új szavazó beállítás. Kattintson az első töréspont hello hello webes első-end api-vezérlőben.
     
-    1. Ez azért, ahol a JavaScript a böngészőben egy kérést küld a webes API-vezérlőben az előtér-szolgáltatás.
+    1. Ez azért, ahol hello böngészőjében JavaScript hello küldi hello előtér-szolgáltatás egy kérelem toohello webes API-vezérlőben.
     
     ![Szavazás előtér-szolgáltatás hozzáadása](./media/service-fabric-tutorial-create-dotnet-app/addvote-frontend.png)
 
-    2. Először a háttér-szolgáltatás URL-CÍMÉT a ReverseProxy azt összeállításához **(1)**.
-    3. Ezt követően nem küldeni a HTTP PUT kérés a ReverseProxy **(2)**.
-    4. Végül a rendszer visszaadja a már a válasz a háttér-szolgáltatásból az ügyfélnek **(3)**.
+    2. Először a háttér-szolgáltatás hello URL-cím toohello ReverseProxy azt összeállításához **(1)**.
+    3. Ezt követően kapni hello HTTP PUT kérés toohello ReverseProxy **(2)**.
+    4. Végül hello a rendszer visszaadja a hello válasz hello háttérszolgáltatásnak toohello ügyfélről **(3)**.
 
-4. Nyomja le az **F5** folytatja
-    1. Ekkor a számítógép a töréspontot a háttér-szolgáltatásban.
+4. Nyomja le az **F5** toocontinue
+    1. Ekkor a számítógép hello töréspontot hello háttér-szolgáltatás.
     
     ![Szavazás háttér-szolgáltatás hozzáadása](./media/service-fabric-tutorial-create-dotnet-app/addvote-backend.png)
 
-    2. A metódus első sorában **(1)** használjuk a `StateManager` nevű megbízható szótár felvétele, illetve `counts`.
+    2. Hello metódus első sorában hello **(1)** hello használjuk `StateManager` tooget nevű megbízható szótár felvétele vagy `counts`.
     3. A megbízható szótárban értékek minden interakció tranzakció, a használatával szükséges utasítás **(2)** hoz létre, hogy a tranzakció.
-    4. A tranzakció frissítjük majd a szavazó beállítás értékének a megfelelő kulcs értékét és véglegesíti a művelet **(3)**. Amikor a véglegesítési mód értéket ad vissza, az adatok frissítése a szótárban és replikálja a fürt többi tagján. Az adatok immár biztonságosan tárolja a fürt, és a háttér-szolgáltatás átveheti más csomópontokat, a rendelkezésre álló adatok továbbra is fennáll.
-5. Nyomja le az **F5** folytatja
+    4. Hello tranzakcióban, majd frissítjük hello megfelelő kulcs a szavazás beállítás hello hello értékét, és véglegesíti hello művelet **(3)**. Hello véglegesítése után metódus ad vissza, hello adatok hello szótárban frissül, és a replikált tooother hello fürt csomópontja. hello adatok immár biztonságosan tárolja hello fürtben, és hello háttérszolgáltatásnak átveheti tooother csomópontok, adatok hello továbbra is fennáll.
+5. Nyomja le az **F5** toocontinue
 
-A hibakeresési munkamenetben leállításához nyomja le az **Shift + F5**.
+hibakeresési munkamenetben, nyomja meg az toostop hello **Shift + F5**.
 
 
 ## <a name="next-steps"></a>Következő lépések
-Az oktatóanyag ezen része megtanulta, hogyan:
+Hello oktatóanyag ezen része megtanulta, hogyan:
 
 > [!div class="checklist"]
 > * Állapot-nyilvántartó megbízható szolgáltatásként az ASP.NET Core webes API-szolgáltatás létrehozása
 > * Állapot nélküli webszolgáltatásként ASP.NET Core webalkalmazás-szolgáltatás létrehozása
-> * A fordított proxy segítségével kommunikál az állapotalapú szolgáltatással
+> * Fordított proxy toocommunicate hello használata hello állapotalapú szolgáltatással
 
-Előzetes következő oktatóanyagot:
+Előzetes toohello következő oktatóanyaga:
 > [!div class="nextstepaction"]
-> [Telepítse központilag az alkalmazást az Azure-bA](service-fabric-tutorial-deploy-app-to-party-cluster.md)
+> [Hello alkalmazás tooAzure telepítése](service-fabric-tutorial-deploy-app-to-party-cluster.md)

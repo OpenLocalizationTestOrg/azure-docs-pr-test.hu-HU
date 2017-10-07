@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT - lecke 1 Connect Raspberry pi (C): eszközök (macOS) beszerzése |} Microsoft Docs"
-description: "Töltse le és telepítse a szükséges eszközöket és a szoftver az első mintaalkalmazás pi macOS."
+title: "Connect Raspberry pi (C) tooAzure IoT - lecke 1: eszközök (macOS) beszerzése |} Microsoft Docs"
+description: "Töltse le és hello szükséges eszközök és szoftverek hello első mintaalkalmazás Pi telepítéséhez macOS."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,74 +17,74 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 64db77040ef3482f213bd622320fdb5df243fa93
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 68ee44945dd69edcdf61ab3da4c80379c0ef955d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-the-tools-macos-1010"></a>Eszközök beszerzése (macOS 10.10)
+# <a name="get-hello-tools-macos-1010"></a>Hello eszközök (macOS 10.10) beolvasása
 > [!div class="op_single_selector"]
 > * [Windows 7 vagy újabb](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-win32.md)
 > * [Ubuntu 16.04](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-ubuntu.md)
 > * [macOS 10.10](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-mac.md)
 
 ## <a name="what-you-will-do"></a>Mit fog
-Töltse le a fejlesztői eszközök és a szoftver a málna Pi 3 első minta alkalmazásához. Ha bármilyen problémába ütközik, tekintse meg a megoldások a [oldal hibaelhárítási](iot-hub-raspberry-pi-kit-c-troubleshooting.md).
+Hello Fejlesztőeszközök és hello első mintaalkalmazást a málna Pi 3 hello szoftver letöltése. Ha bármilyen problémába ütközik, keressen megoldásokat a hello [oldal hibaelhárítási](iot-hub-raspberry-pi-kit-c-troubleshooting.md).
 
 > [!NOTE]
-> Bár a programozási nyelv, a fő logikájának C, Node.js eszközök használata a megszerzett az eszközök, és felépítéséhez és minta alkalmazások központi telepítése.
+> Bár programozási nyelv hello fő logikájának hello C, Node.js eszközök szerepelnek hello során tapasztalatokat toodiscover eszközök, és hozza létre, és minta alkalmazások központi telepítése.
 
 ## <a name="what-you-will-learn"></a>Amiről tanulni fog
 Ebből a cikkből megtudhatja:
 
-* Hogyan kell telepíteni a Git és Node.js.
-  * [Git](https://git-scm.com) van egy nyílt forráskódú elosztott verziókezelő rendszer. Ez a cikk a mintaalkalmazás Git tárolja.
+* Hogyan tooinstall a Git szoftver, Node.js.
+  * [Git](https://git-scm.com) van egy nyílt forráskódú elosztott verziókezelő rendszer. Ez a cikk hello-mintaalkalmazás Git tárolja.
   * [NODE.js](https://nodejs.org/en/) van a JavaScript futásidejű és gazdag csomag-ökoszisztéma.
-* Hogyan további Node.js fejlesztői eszközök telepítése az NPM segítségével.
-  * A Node.js minimálisan szükséges verziója a 4.5-ös LTS.
-  * [NPM](https://www.npmjs.com) a csomag kezelők, a Node.js egyike.
+* Hogyan toouse NPM tooinstall további Node.js fejlesztői eszközök.
+  * hello minimálisan szükséges verziója Node.js 4.5-ös LTS.
+  * [NPM](https://www.npmjs.com) egyike hello Node.js csomag feletteseit.
 
 ## <a name="what-you-need"></a>Mi szükséges
-A művelet elvégzéséhez szüksége lesz:
+toocomplete ennél a műveletnél, szüksége lesz:
 
-* A fejlesztői eszközök és a szoftverfrissítések letöltése az internethez.
+* Az Internet kapcsolat toodownload hello Fejlesztőeszközök és hello szoftver.
 * MacOS Yosemite (10.10) futtató Mac vagy újabb.
 
 ## <a name="install-git-and-nodejs"></a>Telepítse a Git szoftver, Node.js
-A Git szoftver, Node.js telepítéséhez használja a [Homebrew](http://brew.sh) segédprogramja csomag a következő lépések végrehajtásával:
+tooinstall Git és a Node.js, használja a hello [Homebrew](http://brew.sh) segédprogramja csomag a következő lépések végrehajtásával:
 
-1. Telepítse a Homebrew. Ha már telepített Homebrew, folytassa a 2.
+1. Telepítse a Homebrew. Ha már telepített Homebrew, nyissa meg toostep 2.
    
-   1. Nyomja le az `Cmd + Space` , és írja be `Terminal` egy terminált megnyitásához.
-   2. Futtassa az alábbi parancsot:
+   1. Nyomja le az `Cmd + Space` , és írja be `Terminal` tooopen egy terminált.
+   2. Futtassa a következő parancs hello:
       
       ```bash
       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
       ```
-2. Telepítse a Git és a Node.js, a következő parancs futtatásával:
+2. Telepítse a Git és Node.js hello a következő parancs futtatásával:
    
    ```bash
    brew install node git
    ```
 
 ## <a name="install-additional-nodejs-development-tools"></a>További Node.js fejlesztői eszközök telepítése
-Használjon [gulp.js](http://gulpjs.com) a mintaalkalmazást a Pi való telepítésének automatizálásához. Használja a [cli-eszköz-felderítési](https://github.com/Azure/device-discovery-cli) az IoT-eszközök hálózati adatainak lekérésére.
+Használjon [gulp.js](http://gulpjs.com) hello minta alkalmazás tooyour Pi tooautomate hello központi telepítését. Használjon hello [cli-eszköz-felderítési](https://github.com/Azure/device-discovery-cli) tooretrieve hálózati adatokat az IoT-eszközökről.
 
-Telepítés `gulp` és `device-discovery-cli` a terminálban a következő parancs futtatásával:
+Telepítés `gulp` és `device-discovery-cli` hello hello terminálban parancs a következő futtatásával:
 
 ```bash
 sudo npm install -g device-discovery-cli gulp
 ```
 
-Ha problémák macOS Node.js és a további fejlesztői eszközök telepítése, lásd: a [hibaelhárítási útmutatója](iot-hub-raspberry-pi-kit-c-troubleshooting.md) gyakori problémák megoldásainak.
+Ha problémák macOS Node.js és a további fejlesztői eszközök telepítése, lásd: hello [hibaelhárítási útmutatója](iot-hub-raspberry-pi-kit-c-troubleshooting.md) a megoldások toocommon problémákat.
 
 ## <a name="install-visual-studio-code"></a>Visual Studio Code telepítése
-[Töltse le](https://code.visualstudio.com/docs/setup/osx) és a Visual Studio Code telepítése. A Visual Studio Code a Windows, Linux és macOS egy egyszerűsített, de hatékony forráskód szerkesztőjében. A mintakód szerkesztése a szerkesztő használata az oktatóanyag későbbi részében.
+[Töltse le](https://code.visualstudio.com/docs/setup/osx) és a Visual Studio Code telepítése. A Visual Studio Code a Windows, Linux és macOS egy egyszerűsített, de hatékony forráskód szerkesztőjében. A szerkesztő később hello oktatóanyag tooedit hello mintakód használható.
 
 ## <a name="summary"></a>Összefoglalás
-A szükséges fejlesztői eszközök és az első mintaalkalmazás szoftver telepítése. A következő feladat létrehozásához, telepítéséhez és futtassa a mintaalkalmazást a Pi-hoz.
+Szükséges hello fejlesztői eszközök és szoftverek hello első mintaalkalmazás telepítése. hello tovább feladat toocreate, telepítése, és futtassa a hello mintaalkalmazást a Pi.
 
 ## <a name="next-steps"></a>Következő lépések
-[A villogóalkalmazás elkészítése és üzembe helyezése](iot-hub-raspberry-pi-kit-c-lesson1-deploy-blink-app.md)
+[Hello villogási alkalmazás létrehozását és telepítését](iot-hub-raspberry-pi-kit-c-lesson1-deploy-blink-app.md)
 

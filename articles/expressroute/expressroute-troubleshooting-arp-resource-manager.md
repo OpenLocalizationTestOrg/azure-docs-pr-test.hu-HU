@@ -1,6 +1,6 @@
 ---
 title: "ARP-tábla beolvasása: erőforrás-kezelő: Azure ExpressRoute-hibaelhárítási |} Microsoft Docs"
-description: "Ezen a lapon utasításokkal szolgál az ExpressRoute-kapcsolatcsoportot az ARP tábla beolvasása"
+description: "Ezen a lapon útmutatás beolvasásakor hello ARP táblák az ExpressRoute-kapcsolatcsoportot"
 documentationcenter: na
 services: expressroute
 author: ganesr
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/30/2017
 ms.author: ganesr
-ms.openlocfilehash: a65b1ba2998eae33b3e73bd2492fbbf025eb5946
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c386b031814d40ef6ea3ce5e0eaaab9634470e8f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="getting-arp-tables-in-the-resource-manager-deployment-model"></a>A Resource Manager üzembe helyezési modellel tábla ARP beolvasása
+# <a name="getting-arp-tables-in-hello-resource-manager-deployment-model"></a>Hello Resource Manager üzembe helyezési modellel tábla ARP beolvasása
 > [!div class="op_single_selector"]
 > * [PowerShell – Resource Manager](expressroute-troubleshooting-arp-resource-manager.md)
 > * [PowerShell – Klasszikus](expressroute-troubleshooting-arp-classic.md)
 > 
 > 
 
-Ez a cikk végigvezeti az ExpressRoute-kapcsolatcsoportot ARP táblázatokban további lépéseket. 
+Ez a cikk bemutatja, hogyan hello lépéseket toolearn hello ARP táblák az ExpressRoute-kapcsolatcsoport esetében. 
 
 > [!IMPORTANT]
-> Ez a dokumentum olyan egyszerű problémák megoldásában segítséget. Nem célja a helyettesítheti a Microsoft támogatási szolgálatához. Meg kell nyitnia a támogatási jegy [Microsoft támogatási szolgálatához](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) Ha nem tudja megoldani a problémát az alább ismertetett útmutatás.
+> Ez a dokumentum tervezett toohelp diagnosztizálhatja és egyszerű problémák megoldásával kapcsolatban. Már nem tervezett toobe helyettesíti a Microsoft támogatási szolgálatához. Meg kell nyitnia a támogatási jegy [Microsoft támogatási szolgálatához](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) nem toosolve hello problémát az alább ismertetett hello útmutatást esetén.
 > 
 > 
 
 ## <a name="address-resolution-protocol-arp-and-arp-tables"></a>Cím Resolution Protocol (ARP) és a ARP
-Address Resolution Protocol (ARP) definiálva a 2. réteg protokoll [RFC 826](https://tools.ietf.org/html/rfc826). ARP szolgál az Ethernet-cím (MAC-cím) IP-címet hozzárendelni.
+Address Resolution Protocol (ARP) definiálva a 2. réteg protokoll [RFC 826](https://tools.ietf.org/html/rfc826). ARP használt toomap hello Ethernet-címe (MAC-cím) IP-címmel.
 
-A táblázat ARP az ipv4-cím és MAC-címet adott társviszony-létesítés leképezéseket. Egy ExpressRoute-kapcsolatcsoport társviszonyt ARP táblázatban a következő információkkal csatolóhoz (elsődleges és másodlagos)
+ARP-táblázat hello biztosítja a leképezést hello IPv4-cím és MAC-címet adott társviszony-létesítés. egy ExpressRoute-kapcsolatcsoport társviszonyt az ARP-táblázat hello biztosít hello a következő információkat az egyes csatolókra (elsődleges és másodlagos)
 
-1. A helyi útválasztó illesztő IP-címet a MAC-cím hozzárendelése
-2. ExpressRoute útválasztó illesztő IP-címet a MAC-cím hozzárendelése
-3. A leképezési korát
+1. A helyi útválasztó illesztő ip cím toohello MAC-cím hozzárendelése
+2. Az ExpressRoute útválasztó illesztő IP-cím toohello MAC címe leképezése
+3. Hello leképezési korát
 
 ARP-táblázatok érvényesíteni a 2. réteg segítségével, és alapvető hibaelhárítási réteg 2 kapcsolódási problémák. 
 
@@ -53,21 +53,21 @@ Példa ARP-táblázat:
           0 Microsoft         10.0.0.2   aaaa.bbbb.cccc
 
 
-A következő szakasz tájékoztatást nyújt a láthatók az ExpressRoute peremhálózati útválasztók ARP-táblázatok megtekintésének. 
+hello következő részben megtudhatja hogyan megtekintheti hello szerinti hello ExpressRoute peremhálózati útválasztók ARP-táblázatok. 
 
 ## <a name="prerequisites-for-learning-arp-tables"></a>ARP-táblázatok tanulási előfeltételei
-Győződjön meg arról, hogy rendelkezik a következő, mielőtt további előrehaladás
+Gondoskodjon arról, hogy további előrehaladás hello követően
 
-* Egy érvényes ExpressRoute-kapcsolatcsoportot legalább egy társviszony-létesítés konfigurálva. A kapcsolatcsoport teljesen kell beállítani a kapcsolat szolgáltatóját. Ön (vagy a kapcsolat szolgáltatóját) kell konfigurálni kell a társviszony (Azure saját, az Azure nyilvános és a Microsoft) közül legalább egy ebben a kapcsolatcsoportban.
-* A társviszony (Azure saját, az Azure nyilvános és a Microsoft) konfigurálásához használt IP-címtartományok. Tekintse át az ip-cím hozzárendelés szereplő példák a [ExpressRoute útválasztási követelmények lapon](expressroute-routing.md) megértéséhez hogyan IP-címek vannak leképezve az ügyféloldali és az ExpressRoute oldalán felületek segítségével. A társviszony-létesítési konfiguráció tájékoztatást kaphat megtekintésével a [ExpressRoute-társviszony-létesítési konfiguráció lapon](expressroute-howto-routing-arm.md).
-* A hálózati csoport adatait / ezek IP-címekkel rendelkező használt adapterek MAC-címet a kapcsolat szolgáltatóját.
-* A legújabb PowerShell-modult az Azure-ba (1,50 vagy újabb verzió) kell rendelkeznie.
+* Egy érvényes ExpressRoute-kapcsolatcsoportot legalább egy társviszony-létesítés konfigurálva. hello áramkör a hello kapcsolat szolgáltatójánál teljesen kell konfigurálni. Ön (vagy a kapcsolat szolgáltatóját) kell konfigurált hello esetében (Azure saját, az Azure nyilvános és a Microsoft) közül legalább egy ebben a kapcsolatcsoportban.
+* IP-címtartományok hello esetében (Azure saját, az Azure nyilvános és a Microsoft) konfigurálására használható. Tekintse át a hello ip cím hozzárendelés példák hello [ExpressRoute útválasztási követelmények lapon](expressroute-routing.md) tooget megismerhesse, milyen IP-címek vannak leképezve az ügyféloldali és hello ExpressRoute ügyféloldali toointerfaces. Hello társviszony-létesítési konfiguráció tájékoztatást kaphat hello megtekintésével [ExpressRoute-társviszony-létesítési konfiguráció lapon](expressroute-howto-routing-arm.md).
+* A hálózati csoport adatait / ezek IP-címekkel rendelkező használt hello adapterek MAC-címek a kapcsolat szolgáltatóját.
+* Hello legújabb PowerShell-modult az Azure-ba (1,50 vagy újabb verzió) kell rendelkeznie.
 
-## <a name="getting-the-arp-tables-for-your-expressroute-circuit"></a>Az ExpressRoute-kapcsolatcsoportot az ARP tábla beolvasása
-Ez a szakasz utasításokat biztosít a ARP-táblázatok / társviszony a PowerShell használatával megtekinteni. Ön vagy a kapcsolat szolgáltatójánál úgy kell konfigurálnia a társviszony-létesítés mielőtt elmélyedne a további. Minden kapcsolat van két elérési útnak (elsődleges és másodlagos). Az egyes elérési utakat ARP-táblázat egymástól függetlenül ellenőrizheti.
+## <a name="getting-hello-arp-tables-for-your-expressroute-circuit"></a>Az ExpressRoute-kapcsolatcsoportot hello ARP tábla beolvasása
+A szakasz ismerteti, hogyan megtekintheti utasításokat hello ARP-táblázatok / társviszony a PowerShell használatával. Ön vagy a kapcsolat szolgáltatójánál úgy kell konfigurálnia hello mielőtt elmélyedne a további társviszony-létesítés. Minden kapcsolat van két elérési útnak (elsődleges és másodlagos). ARP-táblázat az egyes elérési utakat hello egymástól függetlenül ellenőrizheti.
 
 ### <a name="arp-tables-for-azure-private-peering"></a>Az Azure magánhálózati társviszony-létesítés ARP-táblázatok
-A következő parancsmag biztosít az ARP táblák Azure magánhálózati társviszony-létesítés
+a következő parancsmag hello biztosít hello ARP táblák Azure magánhálózati társviszony-létesítés
 
         # Required Variables
         $RG = "<Your Resource Group Name Here>"
@@ -79,7 +79,7 @@ A következő parancsmag biztosít az ARP táblák Azure magánhálózati társv
         # ARP table for Azure private peering - Secodary path
         Get-AzureRmExpressRouteCircuitARPTable -ResourceGroupName $RG -ExpressRouteCircuitName $Name -PeeringType AzurePrivatePeering -DevicePath Secondary 
 
-Az elérési utak közül legalább egy alább minta kimenet
+Minta kimenet hello elérési utak közül legalább egy alább láthatók
 
         Age InterfaceProperty IpAddress  MacAddress    
         --- ----------------- ---------  ----------    
@@ -88,7 +88,7 @@ Az elérési utak közül legalább egy alább minta kimenet
 
 
 ### <a name="arp-tables-for-azure-public-peering"></a>Az Azure nyilvános társviszony ARP-táblázatok
-A következő parancsmag biztosít az ARP táblák az Azure nyilvános társviszony-létesítés
+a következő parancsmag hello biztosít hello ARP táblák az Azure nyilvános társviszony-létesítés
 
         # Required Variables
         $RG = "<Your Resource Group Name Here>"
@@ -101,7 +101,7 @@ A következő parancsmag biztosít az ARP táblák az Azure nyilvános társvisz
         Get-AzureRmExpressRouteCircuitARPTable -ResourceGroupName $RG -ExpressRouteCircuitName $Name -PeeringType AzurePublicPeering -DevicePath Secondary 
 
 
-Az elérési utak közül legalább egy alább minta kimenet
+Minta kimenet hello elérési utak közül legalább egy alább láthatók
 
         Age InterfaceProperty IpAddress  MacAddress    
         --- ----------------- ---------  ----------    
@@ -110,7 +110,7 @@ Az elérési utak közül legalább egy alább minta kimenet
 
 
 ### <a name="arp-tables-for-microsoft-peering"></a>A Microsoft társviszony-létesítéshez ARP-táblázatok
-A következő parancsmag biztosít az ARP táblák Microsoft társviszony-létesítés
+a következő parancsmag hello biztosít hello ARP táblák Microsoft társviszony-létesítés
 
         # Required Variables
         $RG = "<Your Resource Group Name Here>"
@@ -123,7 +123,7 @@ A következő parancsmag biztosít az ARP táblák Microsoft társviszony-létes
         Get-AzureRmExpressRouteCircuitARPTable -ResourceGroupName $RG -ExpressRouteCircuitName $Name -PeeringType MicrosoftPeering -DevicePath Secondary 
 
 
-Az elérési utak közül legalább egy alább minta kimenet
+Minta kimenet hello elérési utak közül legalább egy alább láthatók
 
         Age InterfaceProperty IpAddress  MacAddress    
         --- ----------------- ---------  ----------    
@@ -131,14 +131,14 @@ Az elérési utak közül legalább egy alább minta kimenet
           0 Microsoft         65.0.0.2   aaaa.bbbb.cccc
 
 
-## <a name="how-to-use-this-information"></a>Ezek az információk használata
-A társviszony ARP-táblázat segítségével határozza meg 2. réteg konfiguráció és a kapcsolat ellenőrzése. Ez a szakasz áttekintést ARP-táblázatok megjelenését a különböző helyzetekben.
+## <a name="how-toouse-this-information"></a>Hogyan toouse ezt az információt
+hello ARP-táblázat társviszony használható toodetermine 2. réteg konfiguráció és a kapcsolat ellenőrzése. Ez a szakasz áttekintést ARP-táblázatok megjelenését a különböző helyzetekben.
 
 ### <a name="arp-table-when-a-circuit-is-in-operational-state-expected-state"></a>ARP-táblázat Ha expressroute-kapcsolatcsoporthoz működési állapot (várt állapot)
-* ARP-táblázat egy bejegyzést a helyszíni oldalon egy érvényes IP-cím és MAC-cím és egy hasonló bejegyzést a Microsoft oldalon lesz. 
-* A helyi IP-cím utolsó oktettje mindig lesz páratlan szám.
-* A Microsoft IP-cím utolsó oktettje mindig lesz páros szám.
-* Az azonos MAC-cím jelenik meg a Microsoft oldalon az összes 3 társviszony (elsődleges / másodlagos). 
+* hello ARP-táblázat egy bejegyzést a hello helyszíni oldalon egy érvényes IP-cím és MAC-cím és egy hasonló bejegyzést hello Microsoft ügyféloldali lesz. 
+* hello hello a helyi IP-cím utolsó oktettje mindig lesz páratlan szám.
+* Microsoft IP-cím hello hello utolsó oktettje mindig lesz páros szám.
+* azonos MAC-cím fog megjelenni minden 3 társviszony (elsődleges / másodlagos) a Microsoft ügyféloldali hello hello. 
 
         Age InterfaceProperty IpAddress  MacAddress    
         --- ----------------- ---------  ----------    
@@ -146,7 +146,7 @@ A társviszony ARP-táblázat segítségével határozza meg 2. réteg konfigur�
           0 Microsoft         65.0.0.2   aaaa.bbbb.cccc
 
 ### <a name="arp-table-when-on-premises--connectivity-provider-side-has-problems"></a>ARP táblából helyszíni / szolgáltató kiszolgálóoldali csatlakozási problémák vannak
-Ha a helyszíni problémák vagy láthatja, hogy vagy csak egy bejegyzés az ARP-táblázat vagy a helyszíni MAC-cím fog megjelenni a kapcsolat szolgáltatójánál hiányos jelennek meg. Ez megjeleníti a MAC-cím és a Microsoft oldal használt IP-cím közötti leképezést. 
+Ha a helyszíni hello problémák vannak, vagy megjelenik, hogy a kapcsolat szolgáltatójánál láthatja, hogy vagy csak egy bejegyzés megjelenik hello ARP tábla vagy hello helyszíni MAC-cím nem teljes. Ez azt mutatja majd hello leképezési hello MAC-cím és a Microsoft ügyféloldali hello használt IP-cím között. 
   
        Age InterfaceProperty IpAddress  MacAddress    
        --- ----------------- ---------  ----------    
@@ -161,20 +161,20 @@ vagy
 
 
 > [!NOTE]
-> A kapcsolat szolgáltatójánál, az ilyen problémák hibakeresését támogatási kérést nyithat. Ha az ARP-táblázat nem rendelkezik a MAC-címek hozzárendelve felületek IP-címét, áttekintheti a következőket:
+> Nyisson meg egy támogatási kérést a kapcsolat szolgáltató toodebug ezek a problémák. Ha hello ARP-táblázat nem rendelkezik a hello felületek IP-címek hozzárendelt tooMAC címeket, felülvizsgálati hello a következő információkat:
 > 
-> 1. Ha az első IP-címét a/30-as alhálózat hozzárendelt MSEE-PR és MSEE közötti kapcsolat MSEE-PR. felületén használja a rendszer Azure mindig MSEEs a második IP-címet használja.
-> 2. Győződjön meg arról, ha az ügyfél (C-címke) és a VLAN-címkék szolgáltatás (S-címke) felel meg a MSEE-PR és MSEE pár mindkét.
+> 1. Ha hello hivatkozás közötti hozzárendelt első IP-cím hello hello/30-as alhálózat MSEE-PR hello és MSEE MSEE-PR. hello felületén szolgál Azure mindig MSEEs hello második IP-címet használja.
+> 2. Győződjön meg arról, ha hello ügyfél (C-címke) és VLAN-címkék szolgáltatás (S-címke) felel meg a MSEE-PR és MSEE pár mindkét.
 > 
 
 ### <a name="arp-table-when-microsoft-side-has-problems"></a>Ha a Microsoft ügyféloldali problémák vannak az ARP-táblázat
-* Nem látják az ARP-táblázat társviszony-létesítés Ha problémák vannak a Microsoft oldalán látható. 
+* Nem látják az ARP-táblázat társviszony-létesítés Ha problémák vannak a hello Microsoft oldalán látható. 
 * A támogatási jegy megnyitása [Microsoft támogatási szolgálatához](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade). Adja meg, hogy rendelkezik-e 2. rétegbeli kapcsolatot kapcsolatos problémát. 
 
 ## <a name="next-steps"></a>Következő lépések
 * Ellenőrizze a ExpressRoute-kapcsolatcsoportot 3. rétegbeli konfigurációi
-  * A BGP-munkamenetek állapotának megállapításához ellenőrizze az összefoglaló lekérése útvonal 
-  * Annak meghatározásához, hogy mely előtagok ExpressRoute között van-e hirdetve útvonaltábla beolvasása
+  * Útvonal összefoglaló toodetermine hello BGP-munkamenetek állapotának beolvasása 
+  * Útválasztási táblázat toodetermine mely előtagok ExpressRoute között van-e hirdetve beolvasása
 * Be- / kimeneti bájt megtekintésével adatátvitel ellenőrzése
 * A támogatási jegy megnyitása [Microsoft támogatási szolgálatához](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) Ha továbbra is problémákat tapasztal.
 

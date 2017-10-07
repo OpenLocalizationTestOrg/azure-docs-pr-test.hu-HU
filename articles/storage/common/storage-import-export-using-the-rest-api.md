@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Import/Export szolgáltatás REST API használatával |} Microsoft Docs"
-description: "Ismerje meg, hol találhatók erőforrások az Azure Import/Export szolgáltatás REST API-t, beleértve az útmutató és a referenciaanyagot használatával."
+title: "aaaUsing hello Azure Import/Export szolgáltatás REST API |} Microsoft Docs"
+description: "Ismerje meg, ahol toofind erőforrások használatának hello Azure Import/Export szolgáltatás REST API-t, beleértve a mindkét hogyan-tooand referenciaanyag."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: b780385ad0af34bcb15639683d1aa5d689b38b50
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fc7e1007ad632cf6f771c2545644f8de43c8f181
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-azure-importexport-service-rest-api"></a>Az Azure Import/Export szolgáltatás REST API-jának használata
+# <a name="using-hello-azure-importexport-service-rest-api"></a>Hello Azure Import/Export szolgáltatás REST API használatával
 
-A Microsoft Azure Import/Export szolgáltatás közzétesz egy REST API, hogy az importálási/exportálási feladatok programozott hozzáférést. A REST API segítségével elvégzik az importálási/exportálási műveleteket hajthat végre a a [Azure-portálon](https://portal.azure.com/). Emellett a REST API használatával bizonyos a részletes műveletek, például egy feladatot, amely már nem érhető el a klasszikus Azure portálon százalékos megvalósításának lekérdezése.
+hello Microsoft Azure Import/Export szolgáltatás közzétesz egy REST API tooenable programozott vezérlő az importálási/exportálási feladatok. Használhatja a hello REST API tooperform összes hello importálási/exportálási műveleteket hajthat végre a hello [Azure-portálon](https://portal.azure.com/). Emellett használhatja hello REST API tooperform bizonyos a részletes műveletek, például egy feladatot, amely már nem érhető el a klasszikus Azure portálon hello hello százalékos megvalósításának lekérdezése.
 
-Lásd: [adatok átviteléhez a Blob Storage a Microsoft Azure Import/Export szolgáltatás használata](../storage-import-export-service.md) az Import/Export szolgáltatás és mutatja be a klasszikus portál segítségével történő létrehozása és kezelése az importálás és exportálni a feladatokat áttekintését.
+Lásd: [hello Microsoft Azure Import/Export szolgáltatás tooTransfer adatok tooBlob Storage használatával](../storage-import-export-service.md) hello Import/Export szolgáltatás és mutatja be, hogyan toouse klasszikus portál toocreate hello és kezelése az importálási áttekintését és exportálni a feladatokat.
 
 ## <a name="service-endpoints"></a>Szolgáltatás-végpontok
 
-Az Azure Import/Export szolgáltatás egy erőforrás-szolgáltató az Azure Resource Manager és importálási/exportálási feladatok kezelése a REST API-készlet a következő HTTPS-végpont biztosít:
+hello Azure Import/Export szolgáltatás egy erőforrás-szolgáltató az Azure Resource Manager és a REST API-k, a következő importálási/exportálási feladatok kezelésére a HTTPS-végpont hello biztosít:
 
 ```
 https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.ImportExport/jobs/<job-name>
@@ -36,7 +36,7 @@ https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<res
 
 ## <a name="versioning"></a>Versioning
 
-Az Import/Export szolgáltatás kéréseknek meg kell határozniuk a `api-version` paraméter, és állítsa be az értékét `2016-11-01`.
+Kérelmek toohello Import/Export szolgáltatás kell megadnia a hello `api-version` paraméter, és állítsa be az értékét túl`2016-11-01`.
 
 ## <a name="importexport-service-operations"></a>Importálási/exportálási szolgáltatási műveletek
 

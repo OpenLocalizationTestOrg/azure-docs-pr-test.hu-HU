@@ -1,6 +1,6 @@
 ---
-title: "Riasztás létrehozása, a metrika a Resource Manager sablonnal |} Microsoft Docs"
-description: "Megtudhatja, hogyan metrika riasztás értesítéseket e-mailben vagy a webhook létrehozása egy Resource Manager-sablon használatával."
+title: "a Resource Manager sablonnal metrika riasztások aaaCreate |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse a Resource Manager sablon toocreate metrika tooreceive értesítéseket e-mailben vagy webhook riasztást."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 6/21/2017
 ms.author: johnkem
-ms.openlocfilehash: ac12605636d21fd0b5c89512c454ef2d899ef6dc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dcf92b189f56a8389fff007c82197527239b96b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-metric-alert-with-a-resource-manager-template"></a>Metrikariasztás létrehozása Resource Manager-sablonnal
-Ez a cikk bemutatja, hogyan használható egy [Azure Resource Manager sablon](../azure-resource-manager/resource-group-authoring-templates.md) Azure metrika riasztások konfigurálása. Ez lehetővé teszi, hogy automatikusan riasztásokat állíthat be az erőforrások annak érdekében, hogy helyesen legyen-e figyelve erőforrások létrehozásakor.
+Ez a cikk bemutatja, hogyan használható egy [Azure Resource Manager sablon](../azure-resource-manager/resource-group-authoring-templates.md) tooconfigure Azure metrika riasztásokat. Ez lehetővé teszi tooautomatically riasztásokat állíthat be az erőforrásokat, hogy minden erőforrás megfelelően legyen-e figyelve tooensure létrehozásakor.
 
-Az alapvető lépések a következők:
+hello alapvető lépések a következők:
 
-1. Hozzon létre egy sablont, amely leírja a riasztás létrehozása, JSON-fájlként.
-2. [A sablon bármely olyan telepítési módszerrel telepítéséhez](../azure-resource-manager/resource-group-template-deploy.md).
+1. Hozzon létre egy sablont, amely leírja, hogyan toocreate hello riasztás JSON-fájlként.
+2. [Bármely olyan telepítési módszerrel hello sablon üzembe helyezése](../azure-resource-manager/resource-group-template-deploy.md).
 
-Az alábbiakban azt ismertetjük Resource Manager-sablonok létrehozásához először riasztás egyedül a riasztást egy másik erőforrás létrehozása közben.
+Az alábbiakban azt írják le hogyan toocreate egy Resource Manager-sablon, először a riasztás egyedül a riasztást egy másik erőforrás hello létrehozása során.
 
 ## <a name="resource-manager-template-for-a-metric-alert"></a>A metrika riasztások Resource Manager-sablon
-Hozzon létre egy riasztást, a Resource Manager-sablonnal, hozzon létre egy típusú erőforrást `Microsoft.Insights/alertRules` , és töltse ki az összes kapcsolódó tulajdonságok. Az alábbiakban van a sablont, amely egy riasztási szabályt hoz létre.
+típusú erőforrás létrehozása toocreate Resource Manager-sablon használatával riasztást, `Microsoft.Insights/alertRules` , és töltse ki az összes kapcsolódó tulajdonságok. Az alábbiakban van a sablont, amely egy riasztási szabályt hoz létre.
 
 ```json
 {
@@ -62,14 +62,14 @@ Hozzon létre egy riasztást, a Resource Manager-sablonnal, hozzon létre egy t�
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "Resource ID of the resource emitting the metric that will be used for the comparison."
+                "description": "Resource ID of hello resource emitting hello metric that will be used for hello comparison."
             }
         },
         "metricName": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "Name of the metric used in the comparison to activate the alert."
+                "description": "Name of hello metric used in hello comparison tooactivate hello alert."
             }
         },
         "operator": {
@@ -82,14 +82,14 @@ Hozzon létre egy riasztást, a Resource Manager-sablonnal, hozzon létre egy t�
                 "LessThanOrEqual"
             ],
             "metadata": {
-                "description": "Operator comparing the current value with the threshold value."
+                "description": "Operator comparing hello current value with hello threshold value."
             }
         },
         "threshold": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "The threshold value at which the alert is activated."
+                "description": "hello threshold value at which hello alert is activated."
             }
         },
         "aggregation": {
@@ -103,35 +103,35 @@ Hozzon létre egy riasztást, a Resource Manager-sablonnal, hozzon létre egy t�
                 "Total"
             ],
             "metadata": {
-                "description": "How the data that is collected should be combined over time."
+                "description": "How hello data that is collected should be combined over time."
             }
         },
         "windowSize": {
             "type": "string",
             "defaultValue": "PT5M",
             "metadata": {
-                "description": "Period of time used to monitor alert activity based on the threshold. Must be between five minutes and one day. ISO 8601 duration format."
+                "description": "Period of time used toomonitor alert activity based on hello threshold. Must be between five minutes and one day. ISO 8601 duration format."
             }
         },
         "sendToServiceOwners": {
             "type": "bool",
             "defaultValue": true,
             "metadata": {
-                "description": "Specifies whether alerts are sent to service owners"
+                "description": "Specifies whether alerts are sent tooservice owners"
             }
         },
         "customEmailAddresses": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "Comma-delimited email addresses where the alerts are also sent"
+                "description": "Comma-delimited email addresses where hello alerts are also sent"
             }
         },
         "webhookUrl": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "URL of a webhook that will receive an HTTP POST when the alert activates."
+                "description": "URL of a webhook that will receive an HTTP POST when hello alert activates."
             }
         }
     },
@@ -178,10 +178,10 @@ Hozzon létre egy riasztást, a Resource Manager-sablonnal, hozzon létre egy t�
 }
 ```
 
-Riasztási szabály a séma és a Tulajdonságok magyarázatot [érhető el itt](https://msdn.microsoft.com/library/azure/dn933805.aspx).
+Riasztási szabály hello séma és a Tulajdonságok magyarázatot [érhető el itt](https://msdn.microsoft.com/library/azure/dn933805.aspx).
 
 ## <a name="resource-manager-template-for-a-resource-with-an-alert"></a>Riasztás erőforrás Resource Manager-sablon
-A Resource Manager-sablon riasztást általában akkor hasznos, ha létre riasztást erőforrás létrehozása közben. Például, érdemes lehet ahhoz, hogy a "CPU % > 80-as" szabály be van állítva, minden alkalommal, amikor a virtuális gép telepítése. Ehhez adja hozzá a riasztási szabály a erőforrás tömbben erőforrásként a Virtuálisgép-sablonhoz, és adja hozzá a függőség használatával a `dependsOn` tulajdonságot a VM erőforrás-azonosító. Ez egy teljes példa, amely egy Windows virtuális Gépet hoz létre, és hozzáadja egy riasztást, mely előfizetés rendszergazdái értesítése, ha a CPU-kihasználtsága a 80 % fölé megy.
+A Resource Manager-sablon riasztást általában akkor hasznos, ha létre riasztást erőforrás létrehozása közben. Például az tooensure érdemes lehet, hogy a "CPU % > 80" szabály be van állítva, minden alkalommal, amikor a virtuális gép telepítése. toodo, vegye fel a riasztási szabály hello hello erőforrás tömbben erőforrásként a Virtuálisgép-sablonhoz, és hozzáadjon egy függőséget hello segítségével `dependsOn` tulajdonság toohello VM erőforrás-azonosító. Ez egy teljes példa, amely egy Windows virtuális Gépet hoz létre, és hozzáadja egy riasztást, mely előfizetés rendszergazdái értesítése, ha a CPU-felhasználás hello 80 % fölé megy.
 
 ```json
 {
@@ -191,25 +191,25 @@ A Resource Manager-sablon riasztást általában akkor hasznos, ha létre riaszt
         "newStorageAccountName": {
             "type": "string",
             "metadata": {
-                "Description": "The name of the storage account where the VM disk is stored."
+                "Description": "hello name of hello storage account where hello VM disk is stored."
             }
         },
         "adminUsername": {
             "type": "string",
             "metadata": {
-                "Description": "The name of the administrator account on the VM."
+                "Description": "hello name of hello administrator account on hello VM."
             }
         },
         "adminPassword": {
             "type": "securestring",
             "metadata": {
-                "Description": "The administrator account password on the VM."
+                "Description": "hello administrator account password on hello VM."
             }
         },
         "dnsNameForPublicIP": {
             "type": "string",
             "metadata": {
-                "Description": "The name of the public IP address used to access the VM."
+                "Description": "hello name of hello public IP address used tooaccess hello VM."
             }
         }
     },
@@ -402,5 +402,5 @@ A Resource Manager-sablon riasztást általában akkor hasznos, ha létre riaszt
 
 ## <a name="next-steps"></a>Következő lépések
 * [Tudjon meg többet a riasztások](insights-receive-alert-notifications.md)
-* [Diagnosztikai beállítások hozzáadása](monitoring-enable-diagnostic-logs-using-template.md) a Resource Manager sablonhoz
+* [Diagnosztikai beállítások hozzáadása](monitoring-enable-diagnostic-logs-using-template.md) tooyour Resource Manager-sablon
 

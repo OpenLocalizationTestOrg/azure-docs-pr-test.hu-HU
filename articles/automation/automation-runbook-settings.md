@@ -1,6 +1,6 @@
 ---
-title: "Runbookok beállításainak |} Microsoft Docs"
-description: "Azure Automation és módosítsa őket az Azure felügyeleti portálon és a Windows PowerShell használatával az egyes runbookok konfigurációs beállításokat ismerteti."
+title: "aaaRunbook beállítások |} Microsoft Docs"
+description: "Bemutatja az Azure Automationben runbook hello konfigurációs beállításait, és hogyan szolgáltatást is használja azokat az Azure felügyeleti portálon és a Windows PowerShell hello toochange."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,38 +14,38 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 11/11/2016
 ms.author: bwren
-ms.openlocfilehash: 20ecbc270e61d234e026e6ba2634c7aad63b3355
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6f0ef09c148355a351464424c22c33df9300f0dd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="runbook-settings"></a>Runbook beállításai
-Azure Automation minden egyes runbookja több beállítással, amelyek segítenek azonosítani és módosítani annak naplózási viselkedését rendelkezik. Egyes beállítások alábbiakban módosításukhoz szükséges eljárások leírását.
+Az Azure Automationben minden runbook rendelkezik, amelyek segítenek azonosítani toobe és toochange több beállításokat annak naplózási viselkedését. Ezek a beállítások leírását alább módosításukhoz szükséges eljárások hogyan toomodify őket.
 
 ## <a name="settings"></a>Beállítások
 ### <a name="name-and-description"></a>Név és leírás
-A runbook a neve nem módosítható, miután lett létrehozva. A leírás megadása nem kötelező, és legfeljebb 512 karakterből állhat.
+Egy runbook hello neve nem módosítható, miután lett létrehozva. hello leírás megadása nem kötelező, és be too512 karakter lehet.
 
 ### <a name="tags"></a>Címkék
-A címkék lehetővé teszik önálló szavak és kifejezések runbook azonosításához hozzárendelni. Ha például a runbook elküldeni a [PowerShell-galériában](https://www.powershellgallery.com/), megadhatja az adott címkék szerepelnie kell a runbook kategóriák azonosításához. Megadhat egy runbook több címkék vesszővel elválasztva őket.
+A címkék lehetővé tooassign önálló szavak és kifejezések toohelp azonosítani egy runbookot. Ha például a runbook-toohello nyújt [PowerShell-galériában](https://www.powershellgallery.com/), megadhatja, hogy adott címkék tooidentify kategóriák hello runbook fel kell sorolni. Megadhat egy runbook több címkék vesszővel elválasztva őket.
 
 ### <a name="logging"></a>Naplózás
-Alapértelmezés szerint részletes és az állapot rekord nem szerepel a feladatelőzményekben. Módosíthatja az egyes runbookok beállításait, és ezeket a rekordokat naplózzák. Rekordokkal kapcsolatos további információkért lásd: [Runbook-kimenet és üzenetek](automation-runbook-output-and-messages.md).
+Alapértelmezés szerint részletes és az állapot rekord nem szerepel toojob előzményeit. Egy adott runbookhoz toolog hello beállításait módosíthatja ezeket a rekordokat. Rekordokkal kapcsolatos további információkért lásd: [Runbook-kimenet és üzenetek](automation-runbook-output-and-messages.md).
 
 ## <a name="changing-runbook-settings"></a>Runbookok beállításainak módosítása
 
-### <a name="changing-runbook-settings-with-the-azure-portal"></a>Az Azure-portálon runbookok beállításainak módosítása
-Az Azure-portálon az egyes runbookok beállításait módosíthatja a **beállítások** panel a runbook.
+### <a name="changing-runbook-settings-with-hello-azure-portal"></a>Azure-portálon hello runbookok beállításainak módosítása
+Hello Azure-portálon az egyes runbookok beállításait hello módosítható **beállítások** hello runbook panelen.
 
-1. Válassza ki az Azure-portálon **Automation** és majd kattintson az automation-fiók nevét.
-2. Válassza ki a **Runbookok** fülre.
-3. Kattintson a nevére, a runbook, és a program kéri, hogy a beállítások panelről a runbook. Itt adja meg vagy módosíthatja a címkék, a forgatókönyv leírása, naplózási és nyomkövetési beállítások konfigurálása és problémák megoldásához támogatási eszközök eléréséhez.     
+1. Hello Azure-portálon, válassza ki **Automation** és majd kattintson az automation-fiók hello nevére.
+2. Jelölje be hello **Runbookok** fülre.
+3. Kattintson a runbook hello nevére és irányított toohello beállítások panel hello runbook. Itt megadhatja vagy címkék módosítása, hello forgatókönyv leírása, naplózási és nyomkövetési beállítások konfigurálása, és támogatási eszközök toohelp előforduló problémák megoldásához eléréséhez.     
 
 ### <a name="changing-runbook-settings-with-windows-powershell"></a>A Windows PowerShell segítségével a runbookok beállításainak módosítása
-Használhatja a [Set-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603786.aspx) parancsmag használatával módosíthatja az egyes runbookok beállításait. Ha azt szeretné, több címkék adhatók meg, vagy megadhatja egy tömb vagy egy karakterláncot a címkék paraméter vesszővel tagolt értékeket tartalmazó. Az aktuális címkék kaphat a [Get-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603728.aspx).
+Használhatja a hello [Set-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603786.aspx) parancsmag toochange hello egyes runbookok beállításait. Ha azt szeretné, toospecify több címke, vagy megadhatja egy tömb vagy egy karakterláncot vesszővel tagolt értékek toohello címkék paraméterrel. Hello aktuális címkék hello kaphat [Get-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603728.aspx).
 
-Az alábbi Példaparancsok szemléltetik egy runbook tulajdonságainak beállításához. Ez a minta három címkék hozzáadása a meglévő címkét, és határozza meg, hogy részletes rekordok legyenek naplózva.
+hello a következő mintaparancsok bemutatják, hogyan tooset hello egy runbook tulajdonságainak. Ez a minta ad három címkék toohello meglévő címkét, és határozza meg, hogy részletes rekordok legyenek naplózva.
 
     $automationAccountName = "MyAutomationAccount"
     $runbookName = "Sample-TestRunbook"
@@ -56,6 +56,6 @@ Az alábbi Példaparancsok szemléltetik egy runbook tulajdonságainak beállít
     –AutomationAccountName $automationAccountName –Name $runbookName –LogVerbose $true –Tags $tags
 
 ## <a name="next-steps"></a>Következő lépések
-* Megtudhatja, hogyan hozhat létre és runbook-kimenet és a hiba üzeneteket beolvasni, lásd: [Runbook-kimenet és üzenetek](automation-runbook-output-and-messages.md) 
-* Annak megértése, hogyan hozzáadása egy runbookot, amely már fejlesztette ki a közösségi vagy más forrásból, és a saját runbook létrehozásáról [létrehozása vagy egy Runbook importálása](automation-creating-importing-runbook.md) 
+* Hogyan toocreate és lekérése kimenet és a hiba a runbookok, kapcsolatban lásd: toolearn [Runbook-kimenet és üzenetek](automation-runbook-output-and-messages.md) 
+* Hogyan tooadd már fejlesztette ki hello közösségi forrás, illetve más toocreate saját runbook runbook: toounderstand [létrehozása vagy egy Runbook importálása](automation-creating-importing-runbook.md) 
 

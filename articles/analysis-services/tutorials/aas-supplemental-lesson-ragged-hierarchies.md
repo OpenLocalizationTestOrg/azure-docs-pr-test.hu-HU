@@ -1,46 +1,29 @@
 ---
-title: "Azure Analysis Services oktatóanyag – kiegészítő lecke: Hézagos hierarchiák | Microsoft Docs"
-description: "Ismerteti a hézagos hierarchiák javításának módját az Azure Analysis Services oktatóanyagában."
-services: analysis-services
-documentationcenter: 
-author: minewiskan
-manager: erikre
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 05/26/2017
-ms.author: owend
-ms.openlocfilehash: 0f02ff73eb126cc397312e87bde50b3ee2d6ce53
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.translationtype: MT
-ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+cím: aaa "Azure Analysis Services útmutató kiegészítő lecke: hierarchiák rendezetlen |} Microsoft Docs"Leírás: ismerteti, hogyan toofix rendezetlen hello Azure Analysis Services-oktatóanyag hierarchiákat.
+szolgáltatások: analysis-szolgáltatások documentationcenter: "Szerző: minewiskan manager: erikre szerkesztőben:" címkék: "
+
+MS.AssetId: ms.service: analysis-szolgáltatások ms.devlang: NA ms.topic: get-started-article ms.tgt_pltfrm: NA ms.workload: na ms.date: 05/26/2017 ms.author: owend
 ---
 # <a name="supplemental-lesson---ragged-hierarchies"></a>Kiegészítő lecke – Hézagos hierarchiák
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
-Ebben a kiegészítő leckében a különböző szinteken üres értékéket (tagokat) tartalmazó hierarchiák kimutatásokba való felvételének gyakori problémáját oldhatja meg. Például egy szervezetnél, ahol egy magas szintű vezető közvetlen beosztottjai közé részlegvezetők és nem vezető beosztású alkalmazottak is tartoznak. Vagy azok az ország-régió-város földrajzi hierarchiák, ahol egyes városoknak nincs szülőállama vagy megyéje, mint például Washington D.C. vagy Vatikánváros esetében. Ha egy hierarchia üres tagokkal rendelkezik, gyakran különböző vagy hézagos szinteket eredményez.
+Ebben a kiegészítő leckében a különböző szinteken üres értékéket (tagokat) tartalmazó hierarchiák kimutatásokba való felvételének gyakori problémáját oldhatja meg. Például egy szervezetnél, ahol egy magas szintű vezető közvetlen beosztottjai közé részlegvezetők és nem vezető beosztású alkalmazottak is tartoznak. Vagy azok az ország-régió-város földrajzi hierarchiák, ahol egyes városoknak nincs szülőállama vagy megyéje, mint például Washington D.C. vagy Vatikánváros esetében. Ha a hierarchiában az üres tagok, gyakran toodifferent aljának, illetve rendezetlen, szintek.
 
 ![aas-lesson-detail-ragged-hierarchies-table](../tutorials/media/aas-lesson-detail-ragged-hierarchies-table.png)
 
-A táblázatos modellek az 1400-as kompatibilitási szinten egy további **Tagok elrejtése** tulajdonsággal rendelkeznek a hierarchiákhoz. Az **Alapértelmezett** beállítás feltételezi, hogy egyik szinten sincsenek üres tagok. Az **Üres tagok elrejtése** beállítás kizárja az üres tagokat a hierarchiából a kimutatáshoz vagy jelentéshez való hozzáadáskor.  
+Hello 1 400 kompatibilitási szinttel rendelkező táblázatos modellek rendelkezik egy további **elrejtése tagok** hierarchiákhoz tulajdonság. Hello **alapértelmezett** beállítás feltételezi, hogy üres tagok bármely szinten. Hello **üres tagok elrejtése** beállítás nem tartalmazza az üres tagok felvételekor hello hierarchiából tooa kimutatás vagy a jelentés.  
   
-A lecke elvégzésének várható időtartama: **20 perc**.  
+Becsült idő toocomplete Ez a lecke: **20 perc**  
   
 ## <a name="prerequisites"></a>Előfeltételek  
-Ez a kiegészítőlecke-témakör a táblázatos modellezésről szóló oktatóanyag része. Az ebben a kiegészítő leckében található feladatok végrehajtása előtt be kell fejeznie minden előző leckét, vagy rendelkeznie kell egy befejezett Adventure Works internetes értékesítési minta modellprojekttel. 
+Ez a kiegészítőlecke-témakör a táblázatos modellezésről szóló oktatóanyag része. Ez a kiegészítő lecke hello feladatok elvégzése előtt kell befejeződött az összes korábbi során tapasztalatokat, vagy egy befejezett Adventure Works Internet értékesítési minta jelentésmodell-projekt. 
 
-Ha az oktatóanyag részeként hozta létre az AW internetes értékesítési projektet, a modell még nem tartalmaz hézagos adatokat vagy hierarchiákat. A kiegészítő lecke teljesítéséhez először létre kell hoznia a problémát néhány további táblázat hozzáadásával, kapcsolatok, számított oszlopok, egy mérték és egy új szervezeti hierarchia létrehozásával. Ez a rész nagyjából 15 percet vesz igénybe. Ezután néhány perc alatt megoldhatja a problémát.  
+Hello AW Internet értékesítési projekt hello oktatóanyag részeként létrehozott, ha a modell nem még tartalmaz adatokat vagy, amelyek az egyenetlen szélű hierarchiákat. toocomplete Ez a kiegészítő lecke, először azt kell toocreate probléma hello néhány további táblákon való hozzáadásával, kapcsolatok, számított oszlopokban, egy mérték és egy új szervezeti hierarchia létrehozása. Ez a rész nagyjából 15 percet vesz igénybe. Ezt követően toosolve kap, néhány perc múlva.  
 
 ## <a name="add-tables-and-objects"></a>Táblázatok és objektumok hozzáadása
   
-### <a name="to-add-new-tables-to-your-model"></a>Új táblázatok hozzáadása a modellhez
+### <a name="tooadd-new-tables-tooyour-model"></a>tooadd új táblák tooyour modell
   
 1.  A Tabular Model Explorerben bontsa ki az **Adatforrások** szakaszt, és kattintson a jobb gombbal a kapcsolatra, majd pedig az **Új táblázatok importálása** gombra.
   
@@ -48,7 +31,7 @@ Ha az oktatóanyag részeként hozta létre az AW internetes értékesítési pr
 
 3.  A Lekérdezésszerkesztőben kattintson az **Importálás** lehetőségre
 
-4.  Hozza létre a következő [kapcsolatokat](../tutorials/aas-lesson-4-create-relationships.md):
+4.  Hozza létre a következőket hello [kapcsolatok](../tutorials/aas-lesson-4-create-relationships.md):
 
     | 1. táblázat           | Oszlop       | Szűrés iránya   | 2. táblázat     | Oszlop      | Aktív |
     |-------------------|--------------|--------------------|-------------|-------------|--------|
@@ -56,9 +39,9 @@ Ha az oktatóanyag részeként hozta létre az AW internetes értékesítési pr
     | FactResellerSales | DueDate      | Alapértelmezett            | DimDate     | Dátum        | Nem     |
     | FactResellerSales | ShipDateKey  | Alapértelmezett            | DimDate     | Dátum        | Nem     |
     | FactResellerSales | ProductKey   | Alapértelmezett            | DimProduct  | ProductKey  | Igen    |
-    | FactResellerSales | EmployeeKey  | Mindkét táblázathoz | DimEmployee | EmployeeKey | Igen    |
+    | FactResellerSales | EmployeeKey  | tooBoth táblák | DimEmployee | EmployeeKey | Igen    |
 
-5. Hozza létre a következő [Számított oszlopokat](../tutorials/aas-lesson-5-create-calculated-columns.md) a **DimEmployee** táblában: 
+5. A hello **DimEmployee** table, hozza létre a következőket hello [számított oszlopok](../tutorials/aas-lesson-5-create-calculated-columns.md): 
 
     **Elérési út** 
     ```
@@ -95,23 +78,23 @@ Ha az oktatóanyag részeként hozta létre az AW internetes értékesítési pr
     =LOOKUPVALUE(DimEmployee[FullName],DimEmployee[EmployeeKey],PATHITEM([Path],1,5)) 
     ```
 
-6.  A **DimEmployee** táblában hozzon létre egy **Szervezet** nevű [hierarchiát](../tutorials/aas-lesson-9-create-hierarchies.md). Adja meg a következő oszlopokat a megadott sorrendben: **Level1**, **Level2**, **Level3**, **Level4**, **Level5**.
+6.  A hello **DimEmployee** tábla, hozzon létre egy [hierarchia](../tutorials/aas-lesson-9-create-hierarchies.md) nevű **szervezet**. Adja hozzá a következő oszlopok sorrendben hello: **Level1**, **Level2**, **Level3**, **Level4**, **Level5**.
 
-7.  Hozza létre a következő [mértékeket](../tutorials/aas-lesson-6-create-measures.md) a **FactResellerSales** táblában:
+7.  A hello **FactResellerSales** table, hozza létre a következőket hello [mérték](../tutorials/aas-lesson-6-create-measures.md):
 
     ```
     ResellerTotalSales:=SUM([SalesAmount])
     ```
 
-8.  Használja az [Elemzés az Excelben](../tutorials/aas-lesson-12-analyze-in-excel.md) lehetőséget az Excel megnyitásához és egy kimutatás automatikus létrehozásához.
+8.  Használjon [elemzés az Excelben](../tutorials/aas-lesson-12-analyze-in-excel.md) tooopen Excel, majd automatikusan létrehoz egy kimutatást.
 
-9.  A **Kimutatás mezők** részben adja hozzá a **Szervezet** hierarchiát a **DimEmployee** táblából a **Sorokhoz**, valamint a **ResellerTotalSales** mértéket a **FactResellerSales** táblából az **Értékekhez**.
+9.  A **kimutatástábla mezői**, adja hozzá a hello **szervezet** hello hierarchia **DimEmployee** túl tábla**sorok**, és hello **ResellerTotalSales** hello mértéket **FactResellerSales** túl tábla**értékek**.
 
     ![aas-lesson-detail-ragged-hierarchies-pivottable](../tutorials/media/aas-lesson-detail-ragged-hierarchies-pivottable.png)
 
-    Ahogy a kimutatásban látható, a hierarchia megjeleníti a hézagos sorokat. Több sor is látható, amely üres tagokat tartalmaz.
+    Ahogy látja, a hello kimutatás, hello hierarchia sorokat, amelyek egyenetlen jeleníti meg. Több sor is látható, amely üres tagokat tartalmaz.
 
-## <a name="to-fix-the-ragged-hierarchy-by-setting-the-hide-members-property"></a>A hézagos hierarchia javítása a Tagok elrejtése tulajdonság beállításával
+## <a name="toofix-hello-ragged-hierarchy-by-setting-hello-hide-members-property"></a>toofix hello hierarchia rendezetlen tulajdonság hello elrejtése tagok beállításával.
 
 1.  A **Táblázatos modelltallózóban** bontsa ki a következőt: **Táblák** > **DimEmployee** > **Hierarchiák** > **Szervezet**.
 
@@ -119,7 +102,7 @@ Ha az oktatóanyag részeként hozta létre az AW internetes értékesítési pr
 
     ![aas-lesson-detail-ragged-hierarchies-hidemembers](../tutorials/media/aas-lesson-detail-ragged-hierarchies-hidemembers.png)
 
-3.  Frissítse a kimutatást az Excelben. 
+3.  Vissza az Excel programban frissítse a kimutatást hello. 
 
     ![aas-lesson-detail-ragged-hierarchies-pivottable-refresh](../tutorials/media/aas-lesson-detail-ragged-hierarchies-pivottable-refresh.png)
 

@@ -1,6 +1,6 @@
 ---
-title: "A felhőalapú m0: lágyított M0 Wi-Fi csatlakozni az Azure IoT Hub |} Microsoft Docs"
-description: "Megtudhatja, hogyan állítson be és Adafruit lágyított M0 Wi-Fi csatlakozni az Azure IoT Hub adatokat küldeni az Azure felhőalapú platform ebben az oktatóanyagban."
+title: "M0 toocloud: csatlakozás lágyított M0 Wi-Fi tooAzure IoT-központ |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooset össze, és csatlakozzon a Adafruit lágyított M0 Wi-Fi tooAzure IoT-központ toosend toohello Azure felhőalapú adatplatform ebben az oktatóanyagban."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -15,49 +15,49 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 8/16/2017
 ms.author: xshi
-ms.openlocfilehash: 0dcf6b46a4c6c743c713d24ce7844e801b278dcf
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 6aabeb961a50ba5d3934f77eb1ccda4af1bf64c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-adafruit-feather-m0-wifi-to-azure-iot-hub-in-the-cloud"></a>Csatlakozás Adafruit lágyított M0 Wi-Fi Azure IoT Hub a felhőben
+# <a name="connect-adafruit-feather-m0-wifi-tooazure-iot-hub-in-hello-cloud"></a>Csatlakozás Adafruit lágyított M0 Wi-Fi tooAzure hello felhőben az IoT-központ
 [!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
 ![Egy BME280 lágyított M0 Wi-Fi és az IoT-központ közötti kapcsolat](media/iot-hub-adafruit-feather-m0-wifi-get-started/1_connection-m0-feather-m0-iot-hub.png)
 
-Ebben az oktatóanyagban akkor először tanulás alapjainak a Arduino board használatifeltétel. Majd megtudhatja, hogyan kapcsolódhat zökkenőmentesen az eszközök a felhőbe [Azure IoT Hub](iot-hub-what-is-iot-hub.md).
+Ebben az oktatóanyagban meg először a Arduino board használatifeltétel hello alapjait tanulási. Majd megismerheti, hogyan tooseamlessly összekapcsolni használatával eszközök toohello felhőalapú [Azure IoT Hub](iot-hub-what-is-iot-hub.md).
 
 ## <a name="what-you-do"></a>Mit
 
-Az IoT-központ az Ön által létrehozott Adafruit lágyított M0 Wi-Fi csatlakozni. Majd futtassa a mintaalkalmazást a hőmérséklet és a páratartalom adatokat gyűjteni a BME280 M0 Wi-Fi a. Végezetül az érzékelő adatokat küldött az IoT hub.
+Csatlakozás Adafruit lágyított M0 Wi-Fi tooan IoT-központ az Ön által létrehozott. Akkor futtassa a mintaalkalmazást M0 Wi-Fi toocollect hello hőmérséklet és a páratartalom adatok egy BME280. Végül el kell küldenie hello érzékelő adatokat tooyour IoT-központot.
 
 
 ## <a name="what-you-learn"></a>Ismertetett témák
 
-* Létrehoz egy IoT-központot, és lágyított M0 Wi-Fi az eszköz regisztrálása
-* Wi-Fi M0 lágyított az érzékelő és a számítógép összekapcsolása
-* Futtatja a mintaalkalmazás lágyított M0 Wi-Fi érzékelői adatok gyűjtéséről
-* Útmutató az érzékelő adatokat küldeni az IoT hub
+* Hogyan toocreate az IoT-központ és az eszköz regisztrálása az lágyított M0 WiFi
+* Hogyan tooconnect lágyított M0 Wi-Fi hello érzékelő és a számítógép
+* Hogyan toocollect érzékelőadatait lágyított M0 Wi-Fi mintaalkalmazás futtatásával
+* Hogyan toosend hello érzékelő adatokat tooyour IoT-központ
 
 ## <a name="what-you-need"></a>Mi szükséges
 
-![Az oktatóanyaghoz szükség részei](media/iot-hub-adafruit-feather-m0-wifi-get-started/2_parts-needed-for-the-tutorial.png)
+![Hello oktatóanyaghoz szükség részei](media/iot-hub-adafruit-feather-m0-wifi-get-started/2_parts-needed-for-the-tutorial.png)
 
-A művelet végrehajtásához a következő részek a lágyított M0 Wi-Fi Starter Kit kell:
+toocomplete Ez a művelet következő részek a lágyított M0 Wi-Fi Starter Kit hello szüksége:
 
-* A Wi-Fi M0 lágyított tábla
-* A típus egy USB-kábel Micro USB
+* hello lágyított M0 Wi-Fi tábla
+* Egy Micro USB tooType egy USB-kábellel
 
-A fejlesztési környezetet is kell a következőket:
+A fejlesztési környezet dolgok következő hello is szüksége lesz:
 
 * Aktív Azure-előfizetés. Ha az Azure-fiók nem rendelkezik [hozzon létre egy Azure próbafiókot](https://azure.microsoft.com/free/) csak néhány perc múlva.
 * A Mac vagy Windows vagy az Ubuntu rendszert futtató számítógép.
-* Vezeték nélküli hálózat lágyított M0 Wi-Fi való csatlakozáshoz.
-* A kiszolgálókonfigurációs eszköz letöltéséhez internetkapcsolat.
-* [Arduino IDE](https://www.arduino.cc/en/main/software) 1.6.8 verzió vagy újabb. Az Azure IoT Hub könyvtár korábbi verziói nem működik.
+* A Wi-Fi M0 lágyított tooconnect vezeték nélküli hálózat.
+* Az internetes kapcsolat toodownload hello konfigurációs eszközt.
+* [Arduino IDE](https://www.arduino.cc/en/main/software) 1.6.8 verzió vagy újabb. A korábbi hello Azure IoT Hub szalagtár nem működik.
 
-Ha az érzékelő nincs, a következő elemek nem kötelező. Akkor is szimulált érzékelőadatait használatát:
+Ha nem rendelkezik érzékelő, a következő elemek hello opcionálisak. Akkor is hello beállítással, szimulált érzékelő adatokat:
 
 * BME280 hőmérséklet és a páratartalom érzékelő
 * Egy breadboard
@@ -65,17 +65,17 @@ Ha az érzékelő nincs, a következő elemek nem kötelező. Akkor is szimulál
 
 [!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
-## <a name="connect-feather-m0-wifi-with-the-sensor-and-your-computer"></a>Csatlakozás lágyított M0 Wi-Fi az érzékelő és a számítógép
-Ebben a szakaszban csatlakozhat az érzékelők a tábla. Majd a eszközt csatlakoztat a számítógéphez további használatra.
+## <a name="connect-feather-m0-wifi-with-hello-sensor-and-your-computer"></a>Csatlakozás lágyított M0 Wi-Fi hello érzékelő és a számítógép
+Ebben a szakaszban hello érzékelők tooyour board csatlakozzon. Majd csatlakoztassa a eszköz tooyour számítógép további használatra.
 
-### <a name="connect-a-dht22-temperature-and-humidity-sensor-to-feather-m0-wifi"></a>Csatlakozás DHT22 hőmérséklet és a páratartalom érzékelő lágyított M0 WiFi
+### <a name="connect-a-dht22-temperature-and-humidity-sensor-toofeather-m0-wifi"></a>Csatlakozás egy DHT22 hőmérséklet és a páratartalom érzékelő tooFeather M0 WiFi
 
-Használják a breadboard és átkötés a kapcsolathoz. Ha még nem rendelkezik érzékelő, ez a szakasz kihagyása, mert a szimulált érzékelő adatokat helyette használhatja.
+Hello breadboard és átkötés fenyegetéseknek toomake hello kapcsolat használata. Ha még nem rendelkezik érzékelő, ez a szakasz kihagyása, mert a szimulált érzékelő adatokat helyette használhatja.
 
 ![Kapcsolatok referencia](media/iot-hub-adafruit-feather-m0-wifi-get-started/3_connections_on_breadboard.png)
 
 
-PIN-kód érzékelő használja a következő vezetékezést:
+Érzékelő PIN-kód használja a következő vezetékezést hello:
 
 
 | Kezdő (érzékelő)           | Záró (tábla)            | Kábel szín   |
@@ -95,88 +95,88 @@ Most már a lágyított M0 Wi-Fi kell csatlakoztatni a működő érzékelő.
 
 ![Csatlakozás DHT22 lágyított Huzzah](media/iot-hub-adafruit-feather-m0-wifi-get-started/4_connect-bme280-feather-m0-wifi.png)
 
-### <a name="connect-feather-m0-wifi-to-your-computer"></a>Wi-Fi M0 lágyított kapcsolódni a számítógéphez
+### <a name="connect-feather-m0-wifi-tooyour-computer"></a>Wi-Fi M0 lágyított tooyour számítógép
 
-A típus egy USB-kábel Micro USB való csatlakozáskor használandó lágyított M0 Wi-Fi a számítógép látható módon:
+Használjon hello Micro USB tooType A USB kábel tooconnect lágyított M0 Wi-Fi tooyour számítógépet, látható módon:
 
-![Lágyított Huzzah kapcsolódni a számítógéphez](media/iot-hub-adafruit-feather-m0-wifi-get-started/5_connect-feather-m0-wifi-computer.png)
+![Lágyított Huzzah tooyour számítógép](media/iot-hub-adafruit-feather-m0-wifi-get-started/5_connect-feather-m0-wifi-computer.png)
 
 ### <a name="add-serial-port-permissions-ubuntu-only"></a>Adja hozzá a soros port engedélyek (csak Ubuntu)
 
-Ha Ubuntu használ, győződjön meg arról a engedélye ahhoz, hogy a lágyított M0 WiFi USB port működik. Soros port engedélyek hozzáadásához kövesse az alábbi lépéseket:
+Ubuntu használatakor ellenőrizze, rendelkezik hello engedélyek toooperate a hello USB port a lágyított M0 Wi-Fi-e. tooadd soros port engedélyek, kövesse az alábbi lépéseket:
 
 
-1. A terminálon futtassa a következő parancsokat:
+1. A terminálon futtassa a következő parancsok hello:
 
    ```bash
    ls -l /dev/ttyUSB*
    ls -l /dev/ttyACM*
    ```
 
-   A következő kimenetek egyik beolvasása:
+   A következő kimenetek hello egyik beolvasása:
 
    * crw-rw---1 legfelső szintű uucp xxxxxxxx
    * crw-rw---1 legfelső szintű kitárcsázáshoz xxxxxxxx
 
-   Figyelje meg, hogy a kimenet `uucp` vagy `dialout` a csoport tulajdonosának neve az USB-porttal.
+   Figyelje meg, hogy hello kimenet `uucp` vagy `dialout` hello csoport tulajdonos neve hello USB-porttal.
 
-2. A felhasználó hozzáadása a csoporthoz, a következő parancsot:
+2. tooadd hello toohello felhasználócsoportra, és futtassa a következő parancs hello:
 
    ```bash
    sudo usermod -a -G <group-owner-name> <username>
    ```
 
-   Az előző lépésben beszerzett a csoport tulajdonosának neve `<group-owner-name>`. Ubuntu felhasználónév `<username>`.
+   Hello előző lépésben beszerzett hello csoport tulajdonos neve `<group-owner-name>`. Ubuntu felhasználónév `<username>`.
 
-3. A módosítás jelenik meg jelentkezzen ki Ubuntu, és jelentkezzen be újból.
+3. Hello módosítás tooappear, az Ubuntu kijelentkezni, és jelentkezzen be újra.
 
-## <a name="collect-sensor-data-and-send-it-to-your-iot-hub"></a>Érzékelő adatokat gyűjteni, és küldje el az IoT hub
+## <a name="collect-sensor-data-and-send-it-tooyour-iot-hub"></a>Érzékelő adatokat gyűjteni, és elküldi a tooyour IoT-központ
 
-Ebben a szakaszban telepítése, és futtassa a mintaalkalmazást a lágyított M0 Wi-Fi. A mintaalkalmazás az LED villogási lágyított M0 Wi-Fi teszi. Ezután elküldi a hőmérséklet és a páratartalom gyűjtött adatokat a BME280 érzékelő az IoT hubhoz is.
+Ebben a szakaszban telepítése, és futtassa a mintaalkalmazást a lágyított M0 Wi-Fi. hello mintaalkalmazás teszi hello LED pislogás lágyított M0 Wi-Fi be. Majd küldi hello hőmérséklet és a páratartalom adatgyűjtés hello BME280 érzékelő tooyour az IoT-központ.
 
-### <a name="get-the-sample-application-from-github-and-prepare-the-arduino-ide"></a>A mintaalkalmazás beszerzése a Githubról, és készítse elő a Arduino IDE
+### <a name="get-hello-sample-application-from-github-and-prepare-hello-arduino-ide"></a>Hello mintaalkalmazás beszerzése a Githubról és hello Arduino IDE előkészítése
 
-A mintaalkalmazás tárolja a Githubon. Klónozza a minta-tárház, amely tartalmazza a mintaalkalmazást a Githubról. A minta-tárház klónozása, kövesse az alábbi lépéseket:
+hello mintaalkalmazást a Githubon található. Klónozás hello minta tárház, amely tartalmazza a Githubról hello mintaalkalmazást. tooclone hello minta tárház, kövesse az alábbi lépéseket:
 
 1. Nyisson meg egy parancssort vagy terminálablakot.
 
-2. Nyissa meg a mappát, ahol a mintaalkalmazáshoz történő tárolását.
-3. Futtassa az alábbi parancsot:
+2. Nyissa meg a tooa mappára, ahol hello minta alkalmazás toobe tárolja.
+3. Futtassa a következő parancs hello:
 
    ```bash
    git clone https://github.com/Azure-Samples/iot-hub-Feather-M0-WiFi-client-app.git
    ```
 
-### <a name="install-the-package-for-feather-m0-wifi-in-the-arduino-ide"></a>A csomag telepítése lágyított M0 Wi-Fi a Arduino ide
+### <a name="install-hello-package-for-feather-m0-wifi-in-hello-arduino-ide"></a>Hello csomag telepítése a lágyított M0 Wi-Fi hello Arduino IDE
 
-1. Nyissa meg a mappát, ahol a mintaalkalmazás tárolja.
+1. Nyissa meg a mintaalkalmazás hello tároló hello mappát.
 
-2. Nyissa meg a app.ino fájlt a Arduino ide app mappában.
+2. Nyissa meg a hello app.ino fájlt hello Arduino IDE hello alkalmazás mappájában.
 
-   ![Nyissa meg a mintaalkalmazás Arduino IDE](media/iot-hub-adafruit-feather-m0-wifi-get-started/6_arduino-ide-open-sample-app.png)
+   ![Nyissa meg a mintaalkalmazás hello Arduino IDE](media/iot-hub-adafruit-feather-m0-wifi-get-started/6_arduino-ide-open-sample-app.png)
 
 
-1. Kattintson a **fájl** > **beállítások** (Windows/Linux) vagy **Arduino** > **beállítások** (Mac), másolja és illessze be az alábbi hivatkozásra a **további modulok Manager URL-címet** a Arduino IDE beállítások lehetőséget.
+1. Kattintson a **fájl** > **beállítások** (Windows/Linux) vagy **Arduino** > **beállítások** (Mac), másolja és hello csatolás alatt a hello **további modulok Manager URL-címet** hello Arduino IDE beállítások lehetőséget.
    
    ```
    https://adafruit.github.io/arduino-board-index/package_adafruit_index.json, https://adafruit.github.io/arduino-board-index/package_adafruit_index.json
    ```
 
-1. Kattintson a **eszközök** > **Board** > **modulok Manager**, majd telepítse a `Arduino SAMD Boards` verzió `1.6.2` vagy újabb. 
+1. Kattintson a **eszközök** > **Board** > **modulok Manager**, és telepítse a hello `Arduino SAMD Boards` verzió `1.6.2` vagy újabb. 
 
-1. Az azonos ablakban telepítse `Adafruit SAMD Boards` csomag hozzáadása a tábla fájl definíciókat.
+1. Ezt a hello ugyanazon ablakra, telepítse `Adafruit SAMD Boards` csomag tooadd hello board fájl definíciókat.
 
-   ![A esp8266 csomag telepítve van](media/iot-hub-adafruit-feather-m0-wifi-get-started/7_arduino-ide-package-url.png)
+   ![hello esp8266 csomag telepítve van](media/iot-hub-adafruit-feather-m0-wifi-get-started/7_arduino-ide-package-url.png)
 
 4. Kattintson a **eszközök** > **Board** > **Adafruit M0 Wi-Fi**.
 
-5. Illesztőprogramok telepítéséhez (csak Windows). Csatlakoztatásakor lágyított M0 Wi-Fi, szükség lehet illesztőprogramot telepíteni. Kattintson a [a letöltési hivatkozás a weblapon](https://github.com/adafruit/Adafruit_Windows_Drivers/releases/download/1.1/adafruit_drivers.exe) az illesztőprogram-telepítő letöltéséhez. Kövesse a kívánt illesztőprogramok telepítéséhez.
+5. Illesztőprogramok telepítéséhez (csak Windows). Csatlakoztatásakor lágyított M0 Wi-Fi, szükség lehet a tooinstall illesztőprogramot. Kattintson a [hello letöltési hivatkozás hello weblapon](https://github.com/adafruit/Adafruit_Windows_Drivers/releases/download/1.1/adafruit_drivers.exe) toodownload hello illesztőprogram telepítő. Hajtsa végre a hello lépéseket tooinstall hello illesztőprogramokat.
 
 ### <a name="install-necessary-libraries"></a>Szükséges kódtárak telepítése
 
-1. Kattintson a Arduino ide **vázlat** > **közé tartozik könyvtár** > **szalagtárak kezelése**.
+1. Hello Arduino IDE, kattintson **vázlat** > **közé tartozik könyvtár** > **szalagtárak kezelése**.
 
-2. Keresse meg a következő könyvtár nevek egyenként. Az egyes tárak talált, kattintson a **telepítése**:
+2. Keresse meg a következő könyvtár nevek egyenként hello. Az egyes tárak talált, kattintson a **telepítése**:
 
    * `RTCZero`
    * `NTPClient`
@@ -187,55 +187,55 @@ A mintaalkalmazás tárolja a Githubon. Klónozza a minta-tárház, amely tartal
    * `Adafruit BME280 Library`
    * `Adafruit Unified Sensor`
 
-3. Telepítse manuálisan `Adafruit_WINC1500`. Nyissa meg a [ezen a webhelyen](https://github.com/adafruit/Adafruit_WINC1500) kattintson **Klónozás vagy letöltési** > **töltse le a ZIP-**. A Arduino ide, folytassa a **vázlat** > **közé tartozik könyvtár** > **.zip könyvtár hozzáadása** , és adja hozzá a zip-fájl.
+3. Telepítse manuálisan `Adafruit_WINC1500`. Nyissa meg túl[ezen a webhelyen](https://github.com/adafruit/Adafruit_WINC1500) kattintson **Klónozás vagy letöltési** > **töltse le a ZIP-**. A Arduino ide folytassa túl**vázlat** > **közé tartozik könyvtár** > **.zip könyvtár hozzáadása** , és adja hozzá a hello zip-fájl.
 
-### <a name="use-the-sample-application-if-you-dont-have-a-real-bme280-sensor"></a>A mintaalkalmazás használja, ha nincs valós BME280 érzékelő
+### <a name="use-hello-sample-application-if-you-dont-have-a-real-bme280-sensor"></a>Hello mintaalkalmazás használja, ha nincs valós BME280 érzékelő
 
-Ha egy valódi BME280 érzékelő nincs, a mintaalkalmazást szimulálhatja hőmérséklet és a páratartalom adatok. Állítsa be a mintaalkalmazást szimulált adatokat, kövesse az alábbi lépéseket:
+Ha nincs valós BME280 érzékelő, hello mintaalkalmazás szimulálhatja hőmérséklet és a páratartalom adatokat. tooset hello minta alkalmazás szimulált toouse adatokat, kövesse az alábbi lépéseket:
 
-1. Nyissa meg a `config.h` fájlt a `app` mappát.
+1. Nyissa meg hello `config.h` hello fájlban `app` mappát.
 
-2. Keresse meg a következő kódsort, és módosítsa az értéket `false` való `true`:
+2. Keresse meg a következő kódsort hello, és módosítsa hello értéket `false` túl`true`:
 
    ```c
    define SIMULATED_DATA true
    ```
-   ![Konfigurálja a mintaalkalmazás szimulált adatok használata](media/iot-hub-adafruit-feather-m0-wifi-get-started/8_arduino-ide-configure-app-use-simulated-data.png)
+   ![Hello mintaadatok alkalmazás szimulált toouse konfigurálása](media/iot-hub-adafruit-feather-m0-wifi-get-started/8_arduino-ide-configure-app-use-simulated-data.png)
 
-3. Mentse a fájlt a `Control-s`.
+3. Mentse a fájlt hello `Control-s`.
 
-### <a name="deploy-the-sample-application-to-feather-m0-wifi"></a>A mintaalkalmazás az lágyított M0 Wi-Fi telepítése
+### <a name="deploy-hello-sample-application-toofeather-m0-wifi"></a>Hello minta alkalmazás tooFeather M0 Wi-Fi telepítése
 
-1. Kattintson a Arduino ide **eszköz** > **Port**, majd kattintson a soros port a lágyított M0 Wi-Fi.
+1. Kattintson Arduino IDE hello, **eszköz** > **Port**, majd kattintson a lágyított M0 Wi-Fi hello soros port.
 
-2. Kattintson a **vázlat** > **feltöltése** felépítéséhez és az lágyított M0 Wi-Fi minta alkalmazást telepíti.
+2. Kattintson a **vázlat** > **feltöltése** toobuild és hello minta alkalmazás tooFeather M0 Wi-Fi telepítése.
 
 ### <a name="enter-your-credentials"></a>Adja meg hitelesítő adatait
 
-Ha sikeresen befejeződött a feltöltés, kövesse az alábbi lépéseket a hitelesítő adatok megadását:
+Ha sikeresen befejeződött a feltöltés hello, kövesse ezeket a lépéseket tooenter a hitelesítő adatait:
 
-1. Kattintson a Arduino ide **eszközök** > **soros figyelő**.
+1. Kattintson Arduino IDE hello, **eszközök** > **soros figyelő**.
 
-2. Válassza ki a soros figyelő ablak jobb alsó sarkában **nincs sor befejezési** a legördülő listában, a bal oldalon.
-3. Válassza ki **115200 átviteli** jobb legördülő listáról.
-4. A beviteli mezőbe, a bal felső, adja meg az az alábbi adatokat, ha megkérdezi, adja meg, és kattintson **küldése**:
+2. Hello soros figyelő ablak hello jobb alsó sarkában, válassza ki a **nincs sor befejezési** hello bal oldali hello legördülő listában.
+3. Válassza ki **115200 átviteli** hello legördülő listában a megfelelő hello.
+4. Hello hello felső beviteli mezőbe, írja be a következő adatokat, ha Ön hello tooprovide kéri, majd kattintson **küldése**:
 
    * Wi-Fi SSID
    * Wi-Fi jelszó
    * Eszköz kapcsolati karakterlánc
 
 > [!Note]
-> A hitelesítő adatokat a lágyított EEPROM M0 WiFi tárolódik. Ha a Wi-Fi M0 lágyított táblán a Visszaállítás gombra kattint, a mintaalkalmazást megkérdezi, hogy szeretné-e használni a. Adja meg `Y` törlésére az adatokat. Megkérdezi, hogy az adatok még egyszer.
+> hello hitelesítő adatok hello EEPROM a lágyított M0 Wi-Fi tárolódik. Ha hello lágyított M0 Wi-Fi board hello Visszaállítás gombra kattint, hello mintaalkalmazás megkérdezi tooerase hello információkat. Adja meg `Y` tooerase hello információkat. Megkérdezi, hogy tooprovide hello információ még egyszer.
 
-### <a name="verify-that-the-sample-application-is-running-successfully"></a>Győződjön meg arról, hogy a mintaalkalmazás sikeresen fut.
+### <a name="verify-that-hello-sample-application-is-running-successfully"></a>Győződjön meg arról, hogy a hello mintaalkalmazás sikeresen fut.
 
-Ha látható a következő kimeneti a soros figyelő ablakból és a villogó LED lágyított M0 Wi-Fi, a mintaalkalmazás sikeresen fut:
+Ha a hello soros figyelő ablakból parancskimenet hello és hello villogó LED a lágyított M0 Wi-Fi, hello mintaalkalmazás sikeresen fut:
 
 ![Végső kimenetet a Arduino IDE](media/iot-hub-adafruit-feather-m0-wifi-get-started/9_arduino-ide-final-output.png)
 
 ## <a name="next-steps"></a>Következő lépések
 
-Sikeresen csatlakoztatva az IoT hub lágyított M0 Wi-Fi és a rögzített érzékelő adatokat küldött az IoT hub. 
+Sikeresen csatlakoztatva lágyított M0 Wi-Fi tooyour IoT hub és rögzített hello érzékelő adatokat tooyour IoT-központ küldött. 
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
 

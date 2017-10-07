@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Resource Manager sablonfüggvényei - numerikus |} Microsoft Docs"
-description: "Az Azure Resource Manager-sablonok segítségével számok dolgozni funkcióit ismerteti."
+title: "aaaAzure Resource Manager sablonfüggvényei - numerikus |} Microsoft Docs"
+description: "Ismerteti az Azure Resource Manager sablon toowork a hello funkciók toouse számokkal."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/13/2017
 ms.author: tomfitz
-ms.openlocfilehash: ae0261134b8d4a934048f58d6c679a48a904950b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 855d5b354d094b9815edc160e3d72efbfd36ba77
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="numeric-functions-for-azure-resource-manager-templates"></a>Az Azure Resource Manager sablonokhoz numerikus funkciók
 
-Erőforrás-kezelő a következő funkciókat nyújt egész számok használata:
+A Resource Manager biztosít a következő funkciók egész számok való munkához hello:
 
 * [hozzáadása](#add)
 * [copyIndex](#copyindex)
@@ -40,22 +40,22 @@ Erőforrás-kezelő a következő funkciókat nyújt egész számok használata:
 ## <a name="add"></a>Hozzáadása
 `add(operand1, operand2)`
 
-A két megadott egész számok összegét adja vissza.
+Beolvasása hello hello két megadott egész számok összege.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- | 
-|operand1 |Igen |int |Első számú hozzáadásához. |
-|operand2 |Igen |int |Adja hozzá a második szám. |
+|operand1 |Igen |int |Első számú tooadd. |
+|operand2 |Igen |int |Második szám tooadd. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Egész szám, amely tartalmazza a paraméterek számának összege.
+Egész szám, amely hello összege hello paramétereket tartalmaz.
 
 ### <a name="example"></a>Példa
 
-A következő példakóddal felveheti a két paramétert.
+a következő példa hello két paramétereket ad.
 
 ```json
 {
@@ -66,14 +66,14 @@ A következő példakóddal felveheti a két paramétert.
             "type": "int",
             "defaultValue": 5,
             "metadata": {
-                "description": "First integer to add"
+                "description": "First integer tooadd"
             }
         },
         "second": {
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Second integer to add"
+                "description": "Second integer tooadd"
             }
         }
     },
@@ -88,7 +88,7 @@ A következő példakóddal felveheti a két paramétert.
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -99,26 +99,26 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="copyindex"></a>copyIndex
 `copyIndex(loopName, offset)`
 
-Egy iteráció hurok indexét adja vissza. 
+Értéket ad vissza egy iteráció hurok index hello. 
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| loopName | Nem | Karakterlánc | Neve a ciklus ismétléseinek beolvasásakor. |
-| Az offset |Nem |int |Az a szám, a nulla alapú ismétlési érték hozzáadása. |
+| loopName | Nem | Karakterlánc | hello neve hello hurok hello iterációs beolvasásakor. |
+| Az offset |Nem |int |hello tooadd toohello nulla alapú iterációs számértéket. |
 
 ### <a name="remarks"></a>Megjegyzések
 
-Ez a funkció mindig használatos a **másolási** objektum. Ha nincs érték megadva, a **eltolás**, az aktuális iterációs értéket adja vissza. Az ismétlési érték nulla kezdődik.
+Ez a funkció mindig használatos a **másolási** objektum. Ha nincs érték megadva, a **eltolás**, hello aktuális iterációs értéket adja vissza. hello ismétlési érték nulla kezdődik.
 
-A **loopName** tulajdonság lehetővé teszi adja meg, hogy copyIndex erőforrás iterációs vagy tulajdonság iterációs hivatkozik. Ha nincs érték megadva, a **loopName**, az aktuális erőforrás-típus iteráció szolgál. Adjon meg egy értéket a **loopName** amikor léptetés tulajdonság alapján. 
+Hello **loopName** tulajdonság lehetővé teszi toospecify e copyIndex tooa erőforrás iterációs vagy tulajdonság iterációs hivatkozik. Ha nincs érték megadva, a **loopName**, hello aktuális erőforrás típusa iterációs szolgál. Adjon meg egy értéket a **loopName** amikor léptetés tulajdonság alapján. 
  
 Teljes leírását az használatának **copyIndex**, lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja a másolási ciklust és az értéket a neve tartalmazza. 
+hello következő példa bemutatja a másolási hurok és hello indexértéket hello neve tartalmazza. 
 
 ```json
 "resources": [ 
@@ -136,29 +136,29 @@ A következő példa bemutatja a másolási ciklust és az értéket a neve tart
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Jelző egész számot az iteráció aktuális indexét.
+Az aktuális index hello hello iterációs jelző egész számot.
 
 <a id="div" />
 
 ## <a name="div"></a>DIV
 `div(operand1, operand2)`
 
-A két megadott egész számok egész szám hányadosának adja vissza.
+Adja vissza egész osztás hello két megadott egész számok hello.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| operand1 |Igen |int |Az a szám felosztják. |
-| operand2 |Igen |int |Az a szám, amellyel osztani. Nem lehet 0. |
+| operand1 |Igen |int |felosztják hello számát. |
+| operand2 |Igen |int |hello szám használt toodivide. Nem lehet 0. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Egy osztás jelző egész számot.
+Egy egész számot jelölő hello osztás.
 
 ### <a name="example"></a>Példa
 
-A következő példa egy másik paraméterrel egy paraméter osztja.
+a következő példa hello felosztja egy másik paraméterrel egy paramétert.
 
 ```json
 {
@@ -176,7 +176,7 @@ A következő példa egy másik paraméterrel egy paraméter osztja.
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Integer used to divide"
+                "description": "Integer used toodivide"
             }
         }
     },
@@ -191,7 +191,7 @@ A következő példa egy másik paraméterrel egy paraméter osztja.
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -202,20 +202,20 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="float"></a>Lebegőpontos
 `float(arg1)`
 
-Konvertálja az értéket lebegőpontos számnak. Ez a függvény csak ha egyéni paraméterek átadása egy alkalmazást, például a logikai alkalmazás használja.
+Lebegőpontos szám hello érték tooa alakítja. Ez a függvény csak ha egyéni paraméterek átadása tooan alkalmazás, például a logikai alkalmazás használja.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |karakterlánc- vagy int |Az érték átalakítása lebegőpontos számnak. |
+| arg1 |Igen |karakterlánc- vagy int |hello érték tooconvert tooa lebegőpontos szám. |
 
 ### <a name="return-value"></a>Visszatérési érték
 Lebegőpontos szám.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan lebegőpontos használandó paraméterek átadása egy logikai alkalmazást:
+hello a következő példa bemutatja, hogyan toouse lebegőpontos toopass paraméterek tooa logikai alkalmazást:
 
 ```json
 {
@@ -236,21 +236,21 @@ A következő példa bemutatja, hogyan lebegőpontos használandó paraméterek 
 ## <a name="int"></a>int
 `int(valueToConvert)`
 
-A megadott érték konvertálása egy egész számot.
+Hello megadott érték tooan egész számra konvertál.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| valueToConvert |Igen |karakterlánc- vagy int |Az érték egész számra konvertálni. |
+| valueToConvert |Igen |karakterlánc- vagy int |hello érték tooconvert tooan egész szám. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Az átalakított érték egész szám.
+Hello konvertálni érték egész szám.
 
 ### <a name="example"></a>Példa
 
-Az alábbi példa a felhasználó által megadott paraméter értékének egész számra konvertál.
+hello alábbi példa konvertál hello felhasználó által megadott paraméter értéke toointeger.
 
 ```json
 {
@@ -273,7 +273,7 @@ Az alábbi példa a felhasználó által megadott paraméter értékének egész
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -285,21 +285,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="min"></a>perc
 `min (arg1)`
 
-Egy számokból álló tömb vagy egészek vesszővel elválasztott listáját a minimális értékét adja vissza.
+Beolvasása hello számokból álló tömb vagy egészek vesszővel elválasztott listáját az minimális értékét.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |a tömb egész szám vagy egészek vesszővel elválasztott felsorolása |A gyűjteményt, amelyben a minimális érték beolvasása. |
+| arg1 |Igen |a tömb egész szám vagy egészek vesszővel elválasztott felsorolása |hello gyűjtemény tooget hello minimális érték. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Jelző egész számot minimális érték a gyűjteményből.
+A minimális érték hello gyűjteményből jelző egész számot.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan használható min tömb és az egész számok listáját:
+a következő példa azt mutatja meg hogyan hello toouse min tömb és az egész számok listáját:
 
 ```json
 {
@@ -325,7 +325,7 @@ A következő példa bemutatja, hogyan használható min tömb és az egész sz�
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -337,21 +337,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="max"></a>maximális
 `max (arg1)`
 
-A maximális érték egész számok tömb vagy egészek vesszővel elválasztott listáját adja vissza.
+Beolvasása hello számokból álló tömb vagy egészek vesszővel elválasztott listáját maximális értéket.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |a tömb egész szám vagy egészek vesszővel elválasztott felsorolása |A gyűjteményt, amelyben a legnagyobb érték beolvasása. |
+| arg1 |Igen |a tömb egész szám vagy egészek vesszővel elválasztott felsorolása |hello gyűjtemény tooget hello maximális értéket. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Jelző egész számot a maximális érték a gyűjteményből.
+Jelző egész számot hello maximális érték hello gyűjteményből.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan használható maximum tömb és az egész számok listáját:
+a következő példa azt mutatja meg hogyan hello toouse maximális tömb és az egész számok listáját:
 
 ```json
 {
@@ -377,7 +377,7 @@ A következő példa bemutatja, hogyan használható maximum tömb és az egész
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -389,21 +389,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="mod"></a>MOD
 `mod(operand1, operand2)`
 
-Használja a két megadott egész szám hányadosának egész a maradékot adja vissza.
+Hello egész osztály használatával hello két megadott egész számok hello maradékot adja vissza.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| operand1 |Igen |int |Az a szám felosztják. |
-| operand2 |Igen |int |A szám, amellyel osztani, nem lehet 0. |
+| operand1 |Igen |int |felosztják hello számát. |
+| operand2 |Igen |int |használt toodivide hello szám nem lehet 0. |
 
 ### <a name="return-value"></a>Visszatérési érték
-Egy további jelző egész számot.
+Egy egész számot jelölő hello maradékot.
 
 ### <a name="example"></a>Példa
 
-A következő példa egy másik paraméterrel egy paraméter felosztása adja eredményül.
+hello alábbi példa maradékot adja vissza hello felosztása egy paraméter egy másik paraméterrel.
 
 ```json
 {
@@ -421,7 +421,7 @@ A következő példa egy másik paraméterrel egy paraméter felosztása adja er
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Integer used to divide"
+                "description": "Integer used toodivide"
             }
         }
     },
@@ -436,7 +436,7 @@ A következő példa egy másik paraméterrel egy paraméter felosztása adja er
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -447,22 +447,22 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="mul"></a>MUL számú
 `mul(operand1, operand2)`
 
-A két megadott egész számok szorzás adja vissza.
+Értéket ad vissza a szorzás hello két megadott egész számok hello.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| operand1 |Igen |int |A szorzási első szám. |
-| operand2 |Igen |int |A szorzási második szám. |
+| operand1 |Igen |int |Első számú toomultiply. |
+| operand2 |Igen |int |Második szám toomultiply. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A szorzás jelölő egész.
+Egy egész számot jelölő hello szorzást végezhet.
 
 ### <a name="example"></a>Példa
 
-Az alábbi példa szorozza meg egy másik paraméterrel egy paramétert.
+a következő példa hello szorozza meg egy másik paraméterrel egy paramétert.
 
 ```json
 {
@@ -473,14 +473,14 @@ Az alábbi példa szorozza meg egy másik paraméterrel egy paramétert.
             "type": "int",
             "defaultValue": 5,
             "metadata": {
-                "description": "First integer to multiply"
+                "description": "First integer toomultiply"
             }
         },
         "second": {
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Second integer to multiply"
+                "description": "Second integer toomultiply"
             }
         }
     },
@@ -495,7 +495,7 @@ Az alábbi példa szorozza meg egy másik paraméterrel egy paramétert.
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -506,21 +506,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="sub"></a>Sub
 `sub(operand1, operand2)`
 
-A kivonás a két megadott egész számokat adja vissza.
+Értéket ad vissza a két megadott egészek hello kivonás hello.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| operand1 |Igen |int |A szám, amelyet a program levonja az. |
-| operand2 |Igen |int |A szám, amelyet a program levonja. |
+| operand1 |Igen |int |a program levonja az hello száma. |
+| operand2 |Igen |int |a program levonja hello száma. |
 
 ### <a name="return-value"></a>Visszatérési érték
-Egy a kivonásnak jelző egész számot.
+Egy egész számot jelölő hello kivonás.
 
 ### <a name="example"></a>Példa
 
-A következő példa egy paraméter és egy másik paraméter kivonja.
+a következő példa hello kivonja másik paraméter egy paramétert.
 
 ```json
 {
@@ -538,7 +538,7 @@ A következő példa egy paraméter és egy másik paraméter kivonja.
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Integer to subtract"
+                "description": "Integer toosubtract"
             }
         }
     },
@@ -553,15 +553,15 @@ A következő példa egy paraméter és egy másik paraméter kivonja.
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
 | subResult | int | 4 |
 
 ## <a name="next-steps"></a>Következő lépések
-* A szakaszok az Azure Resource Manager-sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
-* Több sablon egyesíteni, lásd: [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).
-* Megadott számú alkalommal felépítésének egy adott típusú erőforrás létrehozása esetén lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
-* A sablon létrehozott központi telepítéséről, olvassa el [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
+* Hello részeiben arról olvashat az Azure Resource Manager sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
+* toomerge több sablonjainak használatáról [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).
+* megadott számú alkalommal tooiterate olyan típusú erőforrások létrehozásakor lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
+* toosee hogyan toodeploy hello sablon létrehozott, lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
 

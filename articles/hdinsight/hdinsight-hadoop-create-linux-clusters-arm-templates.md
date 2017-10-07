@@ -1,6 +1,6 @@
 ---
-title: "Sablonokkal - Azure HDInsight Hadoop-fürtök létrehozása |} Microsoft Docs"
-description: "Ismerje meg a fürt létrehozása HDInsight Resource Manager-sablonok segítségével"
+title: aaaCreate Hadoop-sablonokkal - Azure HDInsight clusters |} Microsoft Docs
+description: "Ismerje meg, hogyan toocreate fürtöket a HDInsight Resource Manager-sablonok segítségével"
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -16,21 +16,21 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/30/2017
 ms.author: jgao
-ms.openlocfilehash: b2cdc954530daea2a641599c946ce3787149e762
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 92a6c1d888e401a11537dba34f188245ac17f448
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-hadoop-clusters-in-hdinsight-by-using-resource-manager-templates"></a>Hadoop-fürtök létrehozása a Hdinsightban Resource Manager-sablonok használatával
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
-Ebből a cikkből megismerheti az Azure Resource Manager-sablonok Azure HDInsight-fürtök létrehozásának számos módja. További információkért lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](../azure-resource-manager/resource-group-template-deploy.md). Más fürt létrehozása eszközeivel és szolgáltatásaival kapcsolatos információkért kattintson az ezen a lapon lévő lapválasztót, vagy tekintse meg [Fürtlétrehozási módszerekhez](hdinsight-hadoop-provision-linux-clusters.md#cluster-setup-methods).
+Ebből a cikkből megismerheti többféleképpen toocreate Azure HDInsight-fürtök az Azure Resource Manager-sablonok. További információkért lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](../azure-resource-manager/resource-group-template-deploy.md). toolearn más fürt létrehozása eszközöket és szolgáltatásokat, kattintson a hello lapon választó hello legfelső lap vagy a további részletekért lásd a [Fürtlétrehozási módszerekhez](hdinsight-hadoop-provision-linux-clusters.md#cluster-setup-methods).
 
 ## <a name="prerequisites"></a>Előfeltételek
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-Ez a cikk útmutatását, lesz szüksége:
+Ez a cikk toofollow hello utasításait, szüksége lesz:
 
 * Egy [Azure-előfizetés](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 * Az Azure PowerShell és/vagy Azure CLI-t.
@@ -38,42 +38,42 @@ Ez a cikk útmutatását, lesz szüksége:
 [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell-and-cli.md)]
 
 ### <a name="resource-manager-templates"></a>Resource Manager-sablonok
-A Resource Manager-sablon megkönnyíti, hogy egyetlen, koordinált műveletben a következő alkalmazás létrehozásához:
-* A HDInsight-fürtök és a tőle függő erőforrások (például az alapértelmezett tárfiók)
-* További erőforrások (például az Azure SQL Database Apache Sqoop használatával)
+A Resource Manager-sablon lehetővé teszi az alkalmazás egyetlen, koordinált műveletben a következő egyszerű toocreate hello:
+* A HDInsight-fürtök és a tőle függő erőforrások (például hello alapértelmezett tárfiók)
+* További erőforrások (például az Azure SQL Database toouse Apache Sqoop)
 
-A sablon határozza meg az erőforrásokat, amelyek szükségesek az alkalmazás. Is meg az üzembe helyezéshez megadott paraméterek a felhasználótól a különböző környezetekhez tartozó értékeket. A sablon JSON és az üzemelő példány értékeit összeállításához használt kifejezések áll.
+Hello sablonban hello alkalmazáshoz szükséges erőforrások hello határozza meg. Telepítési paraméterek tooinput értékeket különböző környezetekben is megadni. hello sablon JSON és, hogy a központi telepítés tooconstruct értéket használ kifejezések áll.
 
-HDInsight sablon minták található [Azure gyors üzembe helyezési sablonokat](https://azure.microsoft.com/resources/templates/?term=hdinsight). Használja a platformok közötti [Visual Studio Code](https://code.visualstudio.com/#alt-downloads) rendelkező a [erőforrás-kezelő bővítmény](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools) vagy egy szövegszerkesztőben, hogy menti a sablont egy fájlba a munkaállomáson. Megismerheti, hogyan hívhatja meg a sablont más módszerekkel.
+HDInsight sablon minták található [Azure gyors üzembe helyezési sablonokat](https://azure.microsoft.com/resources/templates/?term=hdinsight). Használja a platformok közötti [Visual Studio Code](https://code.visualstudio.com/#alt-downloads) a hello [erőforrás-kezelő bővítmény](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools) vagy szöveges szerkesztő toosave hello sablont egy fájlba a munkaállomáson. Megtudhatja, hogyan toocall hello más módszerekkel sablont.
 
-Erőforrás-kezelő sablonokkal kapcsolatos további információkért tekintse meg a következő cikkeket:
+Erőforrás-kezelő sablonokkal kapcsolatos további információkért tekintse meg a következő cikkek hello:
 
 * [Szerző Azure Resource Manager-sablonok](../azure-resource-manager/resource-group-authoring-templates.md)
 * [Alkalmazás üzembe helyezése az Azure Resource Manager-sablonok](../azure-resource-manager/resource-group-template-deploy.md)
 
 ## <a name="generate-templates"></a>Sablonok készítése
 
-Az Azure portál használatával állítsa be a fürt összes tulajdonságait, és mentse a sablon üzembe helyezése előtt. A sablon majd felhasználhatja.
+Hello Azure-portál használatával konfigurálja a fürt összes hello tulajdonságait, és mentse hello sablon üzembe helyezése előtt. Ezután újra felhasználhatja hello sablont.
 
-**Egy sablon létrehozása az Azure portál használatával**
+**toogenerate sablon hello Azure-portál használatával**
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-2. Kattintson a **új** kattintson a bal oldali menü **Eszközintelligencia + analitika**, és kattintson a **HDInsight**.
-3. Kövesse az útmutatást követve adja meg az tulajdonságait. Választhatja a **Gyorslétrehozás** vagy a **egyéni** lehetőséget.
-4. Az a **összegzés** lapra, majd **töltse le a sablon és a paraméterek**:
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. Kattintson a **új** hello bal oldali menüben kattintson **Eszközintelligencia + analitika**, és kattintson a **HDInsight**.
+3. Hajtsa végre a hello utasításokat tooenter tulajdonságait. Használhatja bármelyik hello **Gyorslétrehozás** vagy hello **egyéni** lehetőséget.
+4. A hello **összegzés** lapra, majd **töltse le a sablon és a paraméterek**:
 
     ![HDInsight Hadoop létrehozása a fürt Resource Manager sablon letöltése](./media/hdinsight-hadoop-create-linux-clusters-arm-templates/hdinsight-create-cluster-resource-manager-template-download.png)
 
-    A sablonfájl paraméterfájl és a sablon telepítéséhez használt mintakódok listájának megtekintéséhez:
+    Hello sablonfájl paraméterfájl és kód használt minták toodeploy hello sablon listájának megtekintéséhez:
 
     ![HDInsight Hadoop-fürt létrehozása Resource Manager sablon letöltési beállítások](./media/hdinsight-hadoop-create-linux-clusters-arm-templates/hdinsight-create-cluster-resource-manager-template-download-options.png)
 
-    Itt a sablon letöltése, mentse a sablont a könyvtárban, vagy a sablon telepítéséhez.
+    Itt hello sablon letöltése, mentse tooyour Sablonkönyvtár vagy hello sablon üzembe helyezése.
 
-    Egy sablont a könyvtárban eléréséhez kattintson **további szolgáltatások** a bal oldali menüben, majd kattintson a **sablonok** (alatt a **más** kategória).
+    tooaccess egy sablont a könyvtárban kattintson **további szolgáltatások** hello bal oldali menüben, majd kattintson a **sablonok** (alatt hello **más** kategória).
 
     > [!Note]
-    > A sablon és a paraméterek fájl együtt kell használni. Ellenkező esetben előfordulhat, hogy eredményt el nem várt. Például az alapértelmezett **clusterKind** tulajdonság értéke mindig **hadoop**, annak ellenére, hogy milyen, adja meg a sablon letöltése előtt.
+    > hello sablon és a paraméterek fájl együtt kell használni. Ellenkező esetben előfordulhat, hogy eredményt el nem várt. Például az alapértelmezett hello **clusterKind** tulajdonság értéke mindig **hadoop**, annak ellenére, hogy milyen, adja meg a hello sablon letöltése előtt.
 
 
 
@@ -81,9 +81,9 @@ Az Azure portál használatával állítsa be a fürt összes tulajdonságait, �
 
 Ez az eljárás egy Hadoop-fürt hdinsightban hoz létre.
 
-1. A JSON-fájl mentése a [függelék](#appx-a-arm-template) a munkaállomásra. A PowerShell-parancsfájlt, a fájl neve: `C:\HDITutorials-ARM\hdinsight-arm-template.json`.
-2. Ha szükséges, állítsa a paramétereket és változókat.
-3. A sablon futtassa a következő PowerShell-parancsfájl használatával:
+1. Hello JSON-fájl mentése hello [függelék](#appx-a-arm-template) tooyour munkaállomásra. Hello PowerShell-parancsfájlt, hello fájl neve: `C:\HDITutorials-ARM\hdinsight-arm-template.json`.
+2. Ha szükséges, állítsa a hello paramétereket és változókat.
+3. Hello sablon futtassa a következő PowerShell-parancsfájl hello használatával:
 
         ####################################
         # Set these variables
@@ -110,10 +110,10 @@ Ez az eljárás egy Hadoop-fürt hdinsightban hoz létre.
         #endregion
 
         ####################################
-        # Connect to Azure
+        # Connect tooAzure
         ####################################
-        #region - Connect to Azure subscription
-        Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+        #region - Connect tooAzure subscription
+        Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
         try{Get-AzureRmContext}
         catch{Login-AzureRmAccount}
         #endregion
@@ -121,7 +121,7 @@ Ez az eljárás egy Hadoop-fürt hdinsightban hoz létre.
         # Create a resource group
         New-AzureRmResourceGroup -Name $resourceGroupName -Location $Location
 
-        # Create cluster and the dependent storage account
+        # Create cluster and hello dependent storage account
         $parameters = @{clusterName="$hdinsightClusterName"}
 
         New-AzureRmResourceGroupDeployment `
@@ -133,53 +133,53 @@ Ez az eljárás egy Hadoop-fürt hdinsightban hoz létre.
         # List cluster
         Get-AzureRmHDInsightCluster -ResourceGroupName $resourceGroupName -ClusterName $hdinsightClusterName
 
-    A PowerShell-parancsfájl a csak a fürt nevét konfigurálja. A tárfiók neve nem változtatható a sablonban. A fürt felhasználói jelszó megadására kéri. (Az alapértelmezett felhasználónév az **admin**.) Is kéri az SSH-felhasználói jelszó. (Az alapértelmezett SSH-felhasználónév **sshuser**.)  
+    PowerShell parancsfájl hello csak hello fürt nevét konfigurálja. hello tárfiók neve nem változtatható hello sablonban. Biztosan felszólító tooenter hello fürt felhasználói jelszavát. (hello alapértelmezett felhasználónév az **admin**.) Biztosan is felszólító tooenter hello SSH felhasználói jelszavát. (alapértelmezett SSH-felhasználónév hello **sshuser**.)  
 
 További információkért lásd: [telepítés a következő PowerShell](../azure-resource-manager/resource-group-template-deploy.md#deploy-local-template).
 
 ## <a name="deploy-with-cli"></a>A parancssori felület telepítése
-Az alábbi példában az Azure parancssori felület (CLI). A fürt és a függő tárfiókot és a tároló létrehoz egy Resource Manager-sablon meghívásával:
+a következő minta hello Azure parancssori felület (CLI) használja. A fürt és a függő tárfiókot és a tároló létrehoz egy Resource Manager-sablon meghívásával:
 
     azure login
     azure config mode arm
     azure group create -n hdi1229rg -l "East US"
     azure group deployment create --resource-group "hdi1229rg" --name "hdi1229" --template-file "C:\HDITutorials-ARM\hdinsight-arm-template.json"
 
-Adja meg kéri:
-* A fürt nevét.
-* A fürt felhasználói jelszavát. (Az alapértelmezett felhasználónév az **admin**.)
-* Az SSH-felhasználói jelszavát. (Az alapértelmezett SSH-felhasználónév **sshuser**.)
+Rákérdezéses tooenter áll:
+* hello fürt neve.
+* hello fürt felhasználói jelszavát. (hello alapértelmezett felhasználónév az **admin**.)
+* hello SSH felhasználói jelszavát. (alapértelmezett SSH-felhasználónév hello **sshuser**.)
 
-Az alábbi kód beágyazott paraméterek szolgál:
+a következő kód hello beágyazott paramétereket tartalmazza:
 
     azure group deployment create --resource-group "hdi1229rg" --name "hdi1229" --template-file "c:\Tutorials\HDInsightARM\create-linux-based-hadoop-cluster-in-hdinsight.json" --parameters '{\"clusterName\":{\"value\":\"hdi1229\"},\"clusterLoginPassword\":{\"value\":\"Pass@word1\"},\"sshPassword\":{\"value\":\"Pass@word1\"}}'
 
-## <a name="deploy-with-the-rest-api"></a>A REST API-t központi telepítése
-Lásd: [REST API-val telepítése](../azure-resource-manager/resource-group-template-deploy-rest.md).
+## <a name="deploy-with-hello-rest-api"></a>Hello REST API-t üzembe helyezéséhez
+Lásd: [Deploy a REST API hello](../azure-resource-manager/resource-group-template-deploy-rest.md).
 
 ## <a name="deploy-with-visual-studio"></a>Üzembe helyezés a Visual Studióval
- Visual Studio használatával hozzon létre egy erőforráscsoport-projekt, és telepítse az Azure a felhasználói felületen keresztül. Milyen típusú erőforrásokat tartalmazza a projekt választja. Ezeket az erőforrásokat a rendszer automatikusan hozzáadja a Resource Manager-sablon. A projekt a sablon telepítéséhez PowerShell parancsfájlt is tartalmaz.
+ Visual Studio toocreate egy erőforráscsoport-projekt használja, és telepítse azt tooAzure hello felhasználói felületen keresztül. A projekt hello típusú erőforrások tooinclude lehetőséget választja. Ezeket az erőforrásokat automatikusan toohello Resource Manager-sablon. hello projekt PowerShell parancsfájl toodeploy hello sablont is tartalmaz.
 
-Visual Studio használatával az erőforráscsoportokhoz bemutatása, lásd: [létrehozása és telepítése a Visual Studio használatával Azure erőforráscsoport-sablonok a](../azure-resource-manager/vs-azure-tools-resource-groups-deployment-projects-create-deploy.md).
+Egy bevezető toousing Visual Studio az erőforráscsoportokhoz, lásd: [létrehozása és telepítése a Visual Studio használatával Azure erőforráscsoport-sablonok a](../azure-resource-manager/vs-azure-tools-resource-groups-deployment-projects-create-deploy.md).
 
 ## <a name="troubleshoot"></a>Hibaelhárítás
 
 Ha problémába ütközik a HDInsight-fürtök létrehozása során, tekintse meg [a hozzáférés-vezérlésre vonatkozó követelményeket](hdinsight-administer-use-portal-linux.md#create-clusters).
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben a cikkben megtanulta rendelkezik többféle módon hozhat létre HDInsight-fürtöt. További tudnivalókért tekintse meg a következő cikkeket:
+Ebben a cikkben megtanulta rendelkezik számos módon toocreate HDInsight-fürtöt. toolearn több, tekintse meg a következő cikkek hello:
 
-* Például a .NET ügyféloldali kódtár erőforrásoknak történő telepítésének, [erőforrások telepíteni a .NET-kódtárakra és egy sablon](../virtual-machines/windows/csharp-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* Például egy keresztül hello .NET ügyféloldali kódtár erőforrásokat üzembe helyezi, lásd: [erőforrások telepíteni a .NET-kódtárakra és egy sablon](../virtual-machines/windows/csharp-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 * Részletes példa az alkalmazások központi telepítése, lásd: [kiépítése és mikroszolgáltatások kiszámítható módon tudja az Azure-ban telepítheti](../app-service-web/app-service-deploy-complex-application-predictably.md).
-* Útmutató a megoldások különböző környezetekben történő telepítéséhez: [Fejlesztési és tesztelési környezetek a Microsoft Azure eszközben](../solution-dev-test-environments.md).
-* A szakaszok az Azure Resource Manager sablon kapcsolatos további tudnivalókért lásd: [sablonok készítése](../azure-resource-manager/resource-group-authoring-templates.md).
-* Az Azure Resource Manager-sablonokban használható függvények listáját lásd: [sablonfüggvényei](../azure-resource-manager/resource-group-template-functions.md).
+* A megoldás toodifferent környezetei telepítésével kapcsolatos útmutatásért lásd: [a Microsoft Azure-ban fejlesztési és tesztkörnyezetek](../solution-dev-test-environments.md).
+* toolearn hello szakaszai hello Azure Resource Manager-sablon, lásd: [sablonok készítése](../azure-resource-manager/resource-group-authoring-templates.md).
+* Az Azure Resource Manager-sablonokban használható hello függvények listáját lásd: [sablonfüggvényei](../azure-resource-manager/resource-group-template-functions.md).
 
-## <a name="appendix-resource-manager-template-to-create-a-hadoop-cluster"></a>A függelék: Resource Manager-sablon egy Hadoop-fürt létrehozása
-A következő Azure Resource Manager-sablon egy Linux-alapú Hadoop-fürt a függő Azure storage-fiókot hoz létre.
+## <a name="appendix-resource-manager-template-toocreate-a-hadoop-cluster"></a>A függelék: Resource Manager sablon toocreate Hadoop-fürthöz
+hello következő Azure Resource Manager sablonnal hoz létre egy Linux-alapú Hadoop-fürt hello függő Azure storage-fiók.
 
 > [!NOTE]
-> Ez a minta Hive metaadattárhoz és az Oozie metaadattárhoz konfigurációs információkat tartalmazza. Távolítsa el a szakasz, vagy konfigurálja a szakasz a sablon használata előtt.
+> Ez a minta Hive metaadattárhoz és az Oozie metaadattárhoz konfigurációs információkat tartalmazza. Távolítsa el a hello szakaszban, vagy hello szakasz hello sablon használata előtt konfigurálnia.
 >
 >
 
@@ -190,33 +190,33 @@ A következő Azure Resource Manager-sablon egy Linux-alapú Hadoop-fürt a füg
         "clusterName": {
         "type": "string",
         "metadata": {
-            "description": "The name of the HDInsight cluster to create."
+            "description": "hello name of hello HDInsight cluster toocreate."
         }
         },
         "clusterLoginUserName": {
         "type": "string",
         "defaultValue": "admin",
         "metadata": {
-            "description": "These credentials can be used to submit jobs to the cluster and to log into cluster dashboards."
+            "description": "These credentials can be used toosubmit jobs toohello cluster and toolog into cluster dashboards."
         }
         },
         "clusterLoginPassword": {
         "type": "securestring",
         "metadata": {
-            "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
+            "description": "hello password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
         }
         },
         "sshUserName": {
         "type": "string",
         "defaultValue": "sshuser",
         "metadata": {
-            "description": "These credentials can be used to remotely access the cluster."
+            "description": "These credentials can be used tooremotely access hello cluster."
         }
         },
         "sshPassword": {
         "type": "securestring",
         "metadata": {
-            "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
+            "description": "hello password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
         }
         },
         "location": {
@@ -238,7 +238,7 @@ A következő Azure Resource Manager-sablon egy Linux-alapú Hadoop-fürt a füg
             "Australia Southeast"
         ],
         "metadata": {
-            "description": "The location where all azure resources will be deployed."
+            "description": "hello location where all azure resources will be deployed."
         }
         },
         "clusterType": {
@@ -251,14 +251,14 @@ A következő Azure Resource Manager-sablon egy Linux-alapú Hadoop-fürt a füg
             "spark"
         ],
         "metadata": {
-            "description": "The type of the HDInsight cluster to create."
+            "description": "hello type of hello HDInsight cluster toocreate."
         }
         },
         "clusterWorkerNodeCount": {
         "type": "int",
         "defaultValue": 2,
         "metadata": {
-            "description": "The number of nodes in the HDInsight cluster."
+            "description": "hello number of nodes in hello HDInsight cluster."
         }
         }
     },
@@ -382,11 +382,11 @@ A következő Azure Resource Manager-sablon egy Linux-alapú Hadoop-fürt a füg
     }
     }
 
-## <a name="appendix-resource-manager-template-to-create-a-spark-cluster"></a>A függelék: Resource Manager-sablon a Spark-fürt létrehozása
+## <a name="appendix-resource-manager-template-toocreate-a-spark-cluster"></a>A függelék: Resource Manager sablon toocreate Spark-fürt
 
-Ez a témakör a Resource Manager-sablon egy HDInsight Spark-fürt létrehozására használható. Ez a sablon tartalmazza konfigurációi `spark-defaults` és `spark-thrift-sparkconf` (az 1.6-os Spark-fürtök) és `spark2-defaults` és `spark2-thrift-sparkconf` (a Spark 2-fürtök). Továbbá a HDInsight számítja ki, és beállítja, mint a konfigurációk `spark.executor.instances`, `spark.executor.memory`, és `spark.executor.cores` a fürt mérete alapján. 
+Ez a témakör a Resource Manager-sablon használható toocreate egy HDInsight Spark-fürt. Ez a sablon tartalmazza konfigurációi `spark-defaults` és `spark-thrift-sparkconf` (az 1.6-os Spark-fürtök) és `spark2-defaults` és `spark2-thrift-sparkconf` (a Spark 2-fürtök). Ezenkívül toothis, HDInsight számítja ki, és beállítja konfigurációk például `spark.executor.instances`, `spark.executor.memory`, és `spark.executor.cores` hello fürt mérete alapján. 
 
-Bármely egy paraméter értéke a szakasz a sablonba részeként, HDInsight nélkül kiszámításához, a többi paraméter szakaszában azonos. Például paraméter `spark.executor.instances` szerepel a `spark-defaults` konfigurációs. Egy másik paraméter értéke (például `spark.yarn.exector.memoryOverhead`) található a `spark-defaults` konfigurációs, HDInsight nélkül kiszámításához, a `spark.executor.instances` paramétert is.
+Bármely egy paraméter értéke a szakasz hello sablonba részeként, HDInsight nélkül kiszámításához, hello más paramétereket az hello ugyanabban a szakaszban. Például paraméter `spark.executor.instances` hello van `spark-defaults` konfigurációs. Egy másik paraméter értéke (például `spark.yarn.exector.memoryOverhead`) a hello `spark-defaults` konfigurációs, HDInsight nélkül kiszámításához, hello `spark.executor.instances` paramétert is.
 
     {
     "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
@@ -395,27 +395,27 @@ Bármely egy paraméter értéke a szakasz a sablonba részeként, HDInsight né
         "clusterName": {
             "type": "string",
             "metadata": {
-                "description": "The name of the HDInsight cluster to create."
+                "description": "hello name of hello HDInsight cluster toocreate."
             }
         },
         "clusterLoginUserName": {
             "type": "string",
             "defaultValue": "admin",
             "metadata": {
-                "description": "These credentials can be used to submit jobs to the cluster and to log into cluster dashboards."
+                "description": "These credentials can be used toosubmit jobs toohello cluster and toolog into cluster dashboards."
             }
         },
         "clusterLoginPassword": {
             "type": "securestring",
             "metadata": {
-                "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
+                "description": "hello password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
             }
         },
         "location": {
             "type": "string",
             "defaultValue": "southcentralus",
             "metadata": {
-                "description": "The location where all azure resources will be deployed."
+                "description": "hello location where all azure resources will be deployed."
             }
         },
         "clusterVersion": {
@@ -429,27 +429,27 @@ Bármely egy paraméter értéke a szakasz a sablonba részeként, HDInsight né
             "type": "int",
             "defaultValue": 4,
             "metadata": {
-                "description": "The number of nodes in the HDInsight cluster."
+                "description": "hello number of nodes in hello HDInsight cluster."
             }
         },
         "clusterKind": {
             "type": "string",
             "defaultValue": "SPARK",
             "metadata": {
-                "description": "The type of the HDInsight cluster to create."
+                "description": "hello type of hello HDInsight cluster toocreate."
             }
         },
         "sshUserName": {
             "type": "string",
             "defaultValue": "sshuser",
             "metadata": {
-                "description": "These credentials can be used to remotely access the cluster."
+                "description": "These credentials can be used tooremotely access hello cluster."
             }
         },
         "sshPassword": {
             "type": "securestring",
             "metadata": {
-                "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
+                "description": "hello password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
             }
         }
     },

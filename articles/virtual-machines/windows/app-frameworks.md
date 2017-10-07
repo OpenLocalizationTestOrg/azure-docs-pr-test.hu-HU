@@ -1,6 +1,6 @@
 ---
-title: "Alkalmazás-keretrendszerek számára a Windows Azure virtuális gépek telepítése |} Microsoft Docs"
-description: "Hozzon létre Windows-alapú virtuális gépek Azure Resource Manager-sablonok segítségével telepítse az Active Directory, Docker és sok más népszerű alkalmazás-keretrendszerek számára."
+title: "alkalmazás-keretrendszerbeli aaaDeploy a Windows-alapú virtuális gépek Azure-ban |} Microsoft Docs"
+description: "Hozzon létre Windows-alapú virtuális gépek Azure Resource Manager sablonok tooinstall Active Directory, a Docker és sok más népszerű alkalmazás-keretrendszerek számára."
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: dlepow
@@ -16,15 +16,15 @@ ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 275342413c6f4a9efc7a056bdc80b6489536576f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: cfc7f044cca36b7743d9acc25a27e2d589e866c7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-popular-application-frameworks-on-windows-using-azure-resource-manager-templates"></a>A Windows Azure Resource Manager-sablonok használatával népszerű alkalmazás-keretrendszerek számára telepítése 
 
-A munkaterhelések általában tervezési megfelelően működik a legtöbb erőforrást igényelnek. Az Azure Resource Manager-sablonok lehetővé teszik, hogy nem csak határozzák meg, milyen alkalmazások vannak konfigurálva, de is hogyan vannak telepítve az erőforrások alkalmazások támogatását konfigurálva. Ez a cikk bemutatja a legnépszerűbb sablonok a katalógusban, és lehetővé teszi az adatokat az Azure portálon, az Azure parancssori felület vagy a PowerShell használatával történő központi telepítésére.
+A munkaterhelések általában sok erőforrást toofunction toodesign szerint igényelnek. Az Azure Resource Manager sablonok lehetővé teszi számára akkor toonot csak határozza meg, milyen alkalmazások vannak konfigurálva, de is hogyan hello erőforrások telepített toosupport konfigurált alkalmazások. Ez a cikk bemutatja toohello Legnépszerűbb sablonok hello gyűjteményben, és lehetővé teszi az hello Azure-portálon, az Azure parancssori felület vagy a PowerShell toodeploy használatával kapcsolatos információkat őket.
 
 [!INCLUDE [virtual-machines-common-app-frameworks](../../../includes/virtual-machines-common-app-frameworks.md)]
 

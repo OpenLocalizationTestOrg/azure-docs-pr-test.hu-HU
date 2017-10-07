@@ -1,6 +1,6 @@
 ---
-title: "A Mobile Apps használata a .NET-háttérrendszer server SDK |} Microsoft Docs"
-description: "Megtudhatja, hogyan használható a .NET-háttérrendszer server SDK az Azure App Service Mobile Apps a."
+title: "aaaHow toowork hello .NET háttérrendszer kiszolgálóval a Mobile Apps SDK |} Microsoft Docs"
+description: "Ismerje meg, hogyan toowork az Azure App Service Mobile Apps háttérkiszolgáló .NET SDK hello."
 keywords: "az App service, a azure app service, a mobilalkalmazás, a mobilszolgáltatást, a méretezési, méretezhető, központi telepítését, az azure app alkalmazástelepítés"
 services: app-service\mobile
 documentationcenter: 
@@ -15,61 +15,61 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 657fea16e47c15efd262c86d6a150a721476134a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2946c5ba4424565ac764e2ce5597bf42362fcedf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="work-with-the-net-backend-server-sdk-for-azure-mobile-apps"></a>Az Azure Mobile Appshoz készült .NET háttérkiszolgáló-SDK használata
+# <a name="work-with-hello-net-backend-server-sdk-for-azure-mobile-apps"></a>Az Azure Mobile Apps hello .NET háttérkiszolgáló SDK használata
 [!INCLUDE [app-service-mobile-selector-server-sdk](../../includes/app-service-mobile-selector-server-sdk.md)]
 
-Ez a témakör bemutatja, hogyan használhatja a .NET háttérkiszolgáló SDK az Azure App Service Mobile Apps főbb forgatókönyvek. Az Azure Mobile Apps SDK segítséget nyújt az ASP.NET-alkalmazás a mobil ügyfelek dolgozni.
+Ez a témakör bemutatja, hogyan toouse hello .NET háttérkiszolgáló SDK az Azure App Service Mobile Apps főbb forgatókönyvek. hello Azure Mobile Apps SDK segítséget nyújt az ASP.NET-alkalmazás a mobil ügyfelek dolgozni.
 
 > [!TIP]
-> A [.NET server az Azure Mobile Apps SDK] [ 2] nyílt forráskódú a Githubon. A tárház tartalmazza az összes többek között a teljes kiszolgáló SDK egység tesztcsomag és néhány mintaprojektjeit.
+> Hello [.NET server az Azure Mobile Apps SDK] [ 2] nyílt forráskódú a Githubon. hello tárház tartalmazza az összes hello teljes server SDK egység tesztcsomag és néhány mintaprojektjeit beleértve.
 >
 >
 
 ## <a name="reference-documentation"></a>Segédanyagok
-A kiszolgáló SDK dokumentációját a következő helyen található: [Azure Mobile Apps .NET hivatkozás][1].
+hello server SDK hello referenciadokumentációt tartalmaz a következő helyen található: [Azure Mobile Apps .NET hivatkozás][1].
 
 ## <a name="create-app"></a>Hogyan: .NET Mobile Apps-háttéralkalmazás létrehozása
-Ha a számítógépet egy új projektet, létrehozhat egy App Service alkalmazás segítségével a [Azure-portálon] vagy a Visual Studio. Az App Service alkalmazás helyileg történő futtatása, vagy a projekt közzététele a felhőalapú App Service mobilalkalmazáshoz.
+Ha a számítógépet egy új projektet, létrehozhat egy App Service-alkalmazást vagy hello [Azure-portálon] vagy a Visual Studio. Hello App Service alkalmazás helyileg történő futtatása, vagy hello projekt tooyour felhőalapú App Service mobile alkalmazás közzététele.
 
-Ha egy meglévő projektjébe hozzáadni mobil funkciókkal, tekintse meg a [töltse le és inicializálja az SDK-](#install-sdk) szakasz.
+Ha mobil funkciókkal tooan létező projekt hozzáadni, lásd: hello [töltse le és hello SDK inicializálása](#install-sdk) szakasz.
 
-### <a name="create-a-net-backend-using-the-azure-portal"></a>Az Azure portál használatával a .NET-háttéralkalmazás létrehozása
-Az App Service mobil-háttéralkalmazás létrehozása, vagy hajtsa végre a [gyors üzembe helyezési útmutató] [ 3] vagy kövesse az alábbi lépéseket:
+### <a name="create-a-net-backend-using-hello-azure-portal"></a>Hello Azure-portál használatával a .NET-háttéralkalmazás létrehozása
+az App Service mobil-háttéralkalmazást toocreate, vagy hajtsa végre a hello [gyors üzembe helyezési útmutató] [ 3] vagy kövesse az alábbi lépéseket:
 
 [!INCLUDE [app-service-mobile-dotnet-backend-create-new-service-classic](../../includes/app-service-mobile-dotnet-backend-create-new-service-classic.md)]
 
-Vissza a *Ismerkedés* panelen, a **tábla API létrehozása**, válassza a **C#** , a **háttéralkalmazás-nyelv**. Kattintson a **letöltése**, bontsa ki a tömörített projektfájlokat a helyi számítógépen, és nyissa meg a megoldást a Visual Studio.
+Vissza a hello *Ismerkedés* panelen, a **tábla API létrehozása**, válassza a **C#** , a **háttéralkalmazás-nyelv**. Kattintson a **letöltése**, bontsa ki a tömörített project fájlok tooyour helyi számítógépen, és nyissa meg a hello megoldást a Visual Studióban.
 
 ### <a name="create-a-net-backend-using-visual-studio-2013-and-visual-studio-2015"></a>Visual Studio 2013 és a Visual Studio 2015-öt használó .NET-háttéralkalmazás létrehozása
-Telepítse a [Azure SDK for .NET] [ 4] (2.9.0 verzió vagy újabb) az Azure Mobile Apps-projekt létrehozása a Visual Studióban. Az SDK telepítése után az alábbi lépéseket követve ASP.NET-alkalmazás létrehozása:
+Telepítse a hello [Azure SDK for .NET] [ 4] (2.9.0 verzió vagy újabb) toocreate egy Azure Mobile Apps-projektet a Visual Studio. Hello SDK telepítése után hozzon létre egy ASP.NET alkalmazást hello a következő lépéseket:
 
-1. Nyissa meg a **új projekt** párbeszédpanelen (a *fájl* > **új** > **projekt …** ).
+1. Nyissa meg hello **új projekt** párbeszédpanelen (a *fájl* > **új** > **projekt …** ).
 2. Bontsa ki a **sablonok** > **Visual C#**, és válassza ki **webes**.
 3. Válassza ki **ASP.NET webalkalmazás**.
-4. Töltse ki a projekt nevét. Ezután kattintson az **OK** gombra.
-5. A *ASP.NET 4.5.2 sablont*, jelölje be **Azure Mobile Apps**. Ellenőrizze **a felhőben lévő gazdagéphez** a mobil-háttéralkalmazás létrehozása, amelyre a projekt közzéteheti a felhőben.
+4. Töltse ki hello projekt nevét. Ezután kattintson az **OK** gombra.
+5. A *ASP.NET 4.5.2 sablont*, jelölje be **Azure Mobile Apps**. Ellenőrizze **hello felhőben lévő gazdagéphez** toocreate hello a mobil-háttéralkalmazást cloud toowhich közzéteheti ebben a projektben.
 6. Kattintson az **OK** gombra.
 
-## <a name="install-sdk"></a>Hogyan: Töltse le és inicializálja az SDK
-Az SDK nem érhető el a [NuGet.org]. Ez a csomag tartalmazza az SDK használatának megkezdéséhez szükséges alapvető funkciót. Inicializálja az SDK, elvégezheti a kapcsolódó műveleteket kell a **HttpConfiguration** objektum.
+## <a name="install-sdk"></a>Hogyan: Töltse le és hello SDK inicializálása
+hello SDK nem érhető el a [NuGet.org]. Ez a csomag hello szükséges alapvető funkciók tooget hello SDK használatának tartalmazza. tooinitialize hello SDK, hello tooperform műveleteket kell **HttpConfiguration** objektum.
 
-### <a name="install-the-sdk"></a>Az SDK telepítése
-Az SDK telepítéséhez kattintson a jobb gombbal a kiszolgáló projektre a Visual Studio, válassza ki a **NuGet-csomagok kezelése**, keresse meg a [Microsoft.Azure.Mobile.Server] csomagot, majd kattintson az **telepítése** .
+### <a name="install-hello-sdk"></a>Hello SDK telepítése
+tooinstall hello SDK-t, kattintson a jobb gombbal a hello server projektre a Visual Studio kiválasztása **NuGet-csomagok kezelése**, keressen a hello [Microsoft.Azure.Mobile.Server] csomagot, majd kattintson az  **Telepítés**.
 
-### <a name="server-project-setup"></a>A projekt inicializálása
-Egy .NET-háttérrendszer kiszolgálóprojektet inicializálva van más ASP.NET projektek hasonló OWIN indítási osztály-ot. Győződjön meg arról, hogy rendelkezik-e hivatkozott a NuGet-csomag `Microsoft.Owin.Host.SystemWeb`. Ez az osztály a Visual Studio hozzáadásához kattintson a jobb gombbal a kiszolgáló projektre, és válassza ki **Hozzáadás** >
-**új elem**, majd **webes**  >  ** Általános** > **OWIN indítási osztály**.  Egy osztály hoz létre a következő attribútumot:
+### <a name="server-project-setup"></a>Hello kiszolgálóprojektet inicializálása
+Egy .NET-háttérrendszer kiszolgálóprojektet inicializált hasonló tooother ASP.NET projektek, az OWIN indítási osztály-ot. Győződjön meg arról, hogy rendelkezik-e hivatkozott hello NuGet-csomag `Microsoft.Owin.Host.SystemWeb`. tooadd Ez az osztály a Visual Studióban, kattintson a jobb gombbal a kiszolgáló-projektet, majd válassza ki a **Hozzáadás** >
+**új elem**, majd **webes**  >  ** Általános** > **OWIN indítási osztály**.  Egy osztály hoz létre a következő attribútum hello:
 
     [assembly: OwinStartup(typeof(YourServiceName.YourStartupClassName))]
 
-Az a `Configuration()` az OWIN indítási osztályt, használja a metódus egy **HttpConfiguration** objektum az Azure Mobile Apps-környezet konfigurálása.
-Az alábbi példa inicializálja a projekt nem hozzáadott szolgáltatásokkal:
+A hello `Configuration()` az OWIN indítási osztályt, használja a metódus egy **HttpConfiguration** objektum tooconfigure hello Azure Mobile Apps-környezetben.
+a következő példa hello inicializálja hello kiszolgálóprojektet semmilyen hozzáadott szolgáltatásokkal:
 
     // in OWIN startup class
     public void Configuration(IAppBuilder app)
@@ -83,60 +83,60 @@ Az alábbi példa inicializálja a projekt nem hozzáadott szolgáltatásokkal:
         app.UseWebApi(config);
     }
 
-Egyes funkciók engedélyezéséhez meg kell hívnia kiterjesztésmetódusok a **MobileAppConfiguration** hívása előtt objektum **ApplyTo**. Például a következő kódot hozzáadja az alapértelmezett útvonalakat a attribútummal rendelkező összes API-vezérlő `[MobileAppController]` inicializálása közben:
+tooenable egyes funkciókat, meg kell hívnia kiterjesztésmetódusok a hello **MobileAppConfiguration** hívása előtt objektum **ApplyTo**. Például létrehozza a következő kód hello hello alapértelmezett útvonalak tooall API tartományvezérlők hello attribútummal rendelkező `[MobileAppController]` inicializálása közben:
 
     new MobileAppConfiguration()
         .MapApiControllers()
         .ApplyTo(config);
 
-A kiszolgáló gyors üzembe helyezés az Azure portál hívást **UseDefaultConfiguration()**. Ez egyenértékű a következő telepítési:
+hello server gyors üzembe helyezés az Azure portál hívások hello **UseDefaultConfiguration()**. A telepítő a következő egyenértékű toohello:
 
         new MobileAppConfiguration()
-            .AddMobileAppHomeController()             // from the Home package
+            .AddMobileAppHomeController()             // from hello Home package
             .MapApiControllers()
-            .AddTables(                               // from the Tables package
+            .AddTables(                               // from hello Tables package
                 new MobileAppTableConfiguration()
                     .MapTableControllers()
-                    .AddEntityFramework()             // from the Entity package
+                    .AddEntityFramework()             // from hello Entity package
                 )
-            .AddPushNotifications()                   // from the Notifications package
-            .MapLegacyCrossDomainController()         // from the CrossDomain package
+            .AddPushNotifications()                   // from hello Notifications package
+            .MapLegacyCrossDomainController()         // from hello CrossDomain package
             .ApplyTo(config);
 
-A bővítmény használt módszerek a következők:
+használt hello kiegészítő módszerek a következők:
 
-* `AddMobileAppHomeController()`az alapértelmezett Azure Mobile Apps kezdőlap biztosít.
-* `MapApiControllers()`WebAPI tartományvezérlők attribútummal rendelkező egyéni API képességeket nyújt a `[MobileAppController]` attribútum.
-* `AddTables()`egy táblázatot a biztosít a `/tables` tábla tartományvezérlők végpontok.
-* `AddTablesWithEntityFramework()`egy rövid az aktuális leképezés van a `/tables` használó Entity Framework végpontok alapú tartományvezérlők.
+* `AddMobileAppHomeController()`hello alapértelmezett Azure Mobile Apps kezdőlap biztosít.
+* `MapApiControllers()`egyéni API képességeket biztosít a hello attribútummal WebAPI tartományvezérlők `[MobileAppController]` attribútum.
+* `AddTables()`biztosítja a leképezést, hello `/tables` végpontok tootable tartományvezérlők.
+* `AddTablesWithEntityFramework()`leképezési hello egy rövid aktuális van `/tables` használó Entity Framework végpontok alapú tartományvezérlők.
 * `AddPushNotifications()`eszközök regisztrálása a Notification Hubs egy egyszerű módszert kínál.
 * `MapLegacyCrossDomainController()`standard CORS fejlécek biztosít helyi fejlesztési.
 
 ### <a name="sdk-extensions"></a>SDK-bővítmények
-A következő NuGet-alapú bővítmény csomagok az alkalmazás által használható különböző mobil funkciókat biztosítanak. Bővítmények inicializálásakor használatával engedélyezheti a **MobileAppConfiguration** objektum.
+a következő NuGet-alapú bővítménycsomagok hello adja meg az alkalmazás által használható különböző mobil funkciókat. Bővítmények inicializálásakor használatával engedélyezheti hello **MobileAppConfiguration** objektum.
 
-* [Microsoft.Azure.Mobile.Server.Quickstart] a Mobile Apps alapbeállítások támogatja. Meghívásával része a konfigurációnak a **UseDefaultConfiguration** kiterjesztésmetódus inicializálása során. Ezt a bővítményt tartalmazza a következő kiterjesztések: értesítések, a hitelesítés, az entitás, a táblák, a tartományok közötti és otthoni csomagok. Ez a csomag használja a Mobile Apps gyors üzembe helyezés az Azure portálon.
-* [Microsoft.Azure.Mobile.Server.Home](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Home/) valósítja meg az alapértelmezett *a mobilalkalmazás megfelelően működik, és lap* a webhely gyökeréhez. Meghívásával hozzáadni a konfigurációhoz a **AddMobileAppHomeController** kiterjesztésmetódus.
-* [Microsoft.Azure.Mobile.Server.Tables](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Tables/) adatok osztályokat tartalmazza, és a készlet létrehozása az adatok feldolgozási sor. Meghívásával hozzáadni a konfigurációhoz a **AddTables** kiterjesztésmetódus.
-* [Microsoft.Azure.Mobile.Server.Entity](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Entity/) lehetővé teszi, hogy az entitás-keretrendszer access adatokat az SQL-adatbázisban. Meghívásával hozzáadni a konfigurációhoz a **AddTablesWithEntityFramework** kiterjesztésmetódus.
-* [Microsoft.Azure.Mobile.Server.Authentication] engedélyezi a hitelesítést és a készlet létrehozása az OWIN köztes jogkivonatainak érvényesítéséhez használt. Meghívásával hozzáadni a konfigurációhoz a **AddAppServiceAuthentication** és **IAppBuilder**. **UseAppServiceAuthentication** kiterjesztésmetódusok.
-* [Microsoft.Azure.Mobile.Server.Notifications] lehetővé teszi a leküldéses értesítések és egy leküldéses regisztrációs végpontot határozza meg. Meghívásával hozzáadni a konfigurációhoz a **AddPushNotifications** kiterjesztésmetódus.
-* [Microsoft.Azure.Mobile.Server.CrossDomain](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.CrossDomain/) egy tartományvezérlőre, amely az adatok a mobileszköz-alkalmazás is szolgál az örökölt webböngészők hoz létre. Meghívásával hozzáadni a konfigurációhoz a **MapLegacyCrossDomainController** kiterjesztésmetódus.
-* [Microsoft.Azure.Mobile.Server.Login] a AppServiceLoginHandler.CreateToken() metódust biztosít, amelyet egy egyéni hitelesítési forgatókönyvek során használt statikus metódus.
+* [Microsoft.Azure.Mobile.Server.Quickstart] támogatja hello alapvető Mobile Apps beállítási. Hívó hello által hozzáadott toohello konfigurációs **UseDefaultConfiguration** kiterjesztésmetódus inicializálása során. Ezt a bővítményt tartalmazza a következő kiterjesztések: értesítések, a hitelesítés, az entitás, a táblák, a tartományok közötti és otthoni csomagok. Ez a csomag hello Mobile Apps gyorsindítási hello Azure-portálon elérhető használják.
+* [Microsoft.Azure.Mobile.Server.Home](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Home/) hello alapértelmezett megvalósítja *a mobilalkalmazás megfelelően működik, és lap* hello webhely gyökér. Meghívásával toohello konfiguráció hozzáadása a **AddMobileAppHomeController** kiterjesztésmetódus.
+* [Microsoft.Azure.Mobile.Server.Tables](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Tables/) adatok és a készletek felfelé hello adatok csővezeték való munkához osztályokat tartalmazza. Toohello konfigurációs hozzá hívó hello **AddTables** kiterjesztésmetódus.
+* [Microsoft.Azure.Mobile.Server.Entity](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Entity/) lehetővé teszi, hogy hello Entity Framework tooaccess hello SQL-adatbázis található. Toohello konfigurációs hozzá hívó hello **AddTablesWithEntityFramework** kiterjesztésmetódus.
+* [Microsoft.Azure.Mobile.Server.Authentication] lehetővé teszi, hogy hitelesítést és a készletek felfelé hello OWIN köztes használt toovalidate jogkivonatokat. Toohello konfigurációs hozzá hívó hello **AddAppServiceAuthentication** és **IAppBuilder**. **UseAppServiceAuthentication** kiterjesztésmetódusok.
+* [Microsoft.Azure.Mobile.Server.Notifications] lehetővé teszi a leküldéses értesítések és egy leküldéses regisztrációs végpontot határozza meg. Toohello konfigurációs hozzá hívó hello **AddPushNotifications** kiterjesztésmetódus.
+* [Microsoft.Azure.Mobile.Server.CrossDomain](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.CrossDomain/) hoz létre, amely adatok toolegacy szolgál a Mobile Apps a webböngésző vezérlő. Meghívásával toohello konfiguráció hozzáadása a **MapLegacyCrossDomainController** kiterjesztésmetódus.
+* [Microsoft.Azure.Mobile.Server.Login] egyéni hitelesítési forgatókönyvek során használt statikus metódus hello AppServiceLoginHandler.CreateToken() módszert biztosít.
 
-## <a name="publish-server-project"></a>Útmutató: a kiszolgáló-projekt közzététele
-Ez a szakasz bemutatja, hogyan tehet közzé a Visual Studio .NET-háttérprojekt. A háttérprojekt Git használatával is telepítheti, vagy a más módszereket ismerteti a [Azure App Service üzembe helyezési dokumentációja](../app-service-web/web-sites-deploy.md).
+## <a name="publish-server-project"></a>Hogyan: hello server projekt közzététele
+Ez a szakasz bemutatja, hogyan toopublish a .NET-háttérrendszer-projektet a Visual Studio. A háttérprojekt Git használatával is telepítheti, vagy bármely más hello ismertetett módszerek hello [Azure App Service üzembe helyezési dokumentációja](../app-service-web/web-sites-deploy.md).
 
-1. A Visual Studio NuGet-csomagok visszaállítására a projekt újraépítése.
-2. A Megoldáskezelőben kattintson a jobb gombbal a projektre, kattintson a **közzététel**. Beállíthatja, először kell a közzétételi profil meghatározásához. Ha már rendelkezik egy definiált profil, válassza ki azt, és kattintson a **közzététel**.
-3. A közzétételi célként válassza ki, kattintson **Microsoft Azure App Service** > **következő**, majd (ha szükséges) jelentkezzen be Azure hitelesítő adatait.
+1. A Visual Studio újraépítése hello projekt toorestore NuGet-csomagok.
+2. A Megoldáskezelőben kattintson a jobb gombbal hello projektben kattintson **közzététel**. hello közzéteszi, amikor első alkalommal kell toodefine egy közzétételi profilt. Ha már rendelkezik egy definiált profil, válassza ki azt, és kattintson a **közzététel**.
+3. Tooselect egy közzétételi célként, kattintson az **Microsoft Azure App Service** > **következő**, majd (ha szükséges) jelentkezzen be Azure hitelesítő adatait.
    A Visual Studio letölti és tárolja biztonságos helyen a közzétételi beállítások közvetlenül az Azure-ból.
 
     ![](./media/app-service-mobile-dotnet-backend-how-to-use-server-sdk/publish-wizard-1.png)
 4. Válassza ki a **előfizetés**, jelölje be **erőforrástípus** a **nézet**, bontsa ki a **mobilalkalmazás**, és kattintson a mobil-háttéralkalmazást, majd **OK**.
 
     ![](./media/app-service-mobile-dotnet-backend-how-to-use-server-sdk/publish-wizard-2.png)
-5. Ellenőrizze a közzétételi profil adatait, és kattintson a **közzététel**.
+5. Ellenőrizze a hello profiladatok közzététele, és kattintson a **közzététel**.
 
     ![](./media/app-service-mobile-dotnet-backend-how-to-use-server-sdk/publish-wizard-3.png)
 
@@ -145,10 +145,10 @@ Ez a szakasz bemutatja, hogyan tehet közzé a Visual Studio .NET-háttérprojek
     ![](./media/app-service-mobile-dotnet-backend-how-to-use-server-sdk/publish-success.png)
 
 ## <a name="define-table-controller"></a>Útmutató: egy tábla vezérlő megadása
-Adja meg egy tábla vezérlő teszi közzé a mobil ügyfelek SQL tábla.  Egy tábla Controller konfigurálása három lépésből áll:
+Adja meg egy tábla vezérlő tooexpose egy SQL-tábla toomobile ügyfelek.  Egy tábla Controller konfigurálása három lépésből áll:
 
 1. Hozzon létre egy adatok átvitele objektum (DTO) osztályt.
-2. Adja meg a Mobile DbContext osztályt a táblahivatkozás.
+2. Adja meg egy táblahivatkozás hello Mobile DbContext osztályt.
 3. Hozzon létre egy tábla tartományvezérlőre.
 
 Egy adatok átvitele objektum (DTO) mező egy egyszerű C#-objektum, amely örökli `EntityData`.  Példa:
@@ -159,7 +159,7 @@ Egy adatok átvitele objektum (DTO) mező egy egyszerű C#-objektum, amely örö
         public bool Complete {get; set;}
     }
 
-A DTO a tábla az SQL-adatbázis azonosítására szolgál.  Az adatbázis-bejegyzés létrehozása, vegye fel a `DbSet<>` használ DbContext tulajdonságot.  Az Azure Mobile Apps alapértelmezett projektsablon a DbContext neve `Models\MobileServiceContext.cs`:
+hello DTO használt toodefine hello tábla hello SQL-adatbázis belül.  toocreate hello bejegyzés adatbázisra, és adja hozzá a `DbSet<>` hello használata DbContext tulajdonságot.  A hello alapértelmezett projekt sablon az Azure Mobile Apps, hello DbContext nevezik `Models\MobileServiceContext.cs`:
 
     public class MobileServiceContext : DbContext
     {
@@ -180,73 +180,73 @@ A DTO a tábla az SQL-adatbázis azonosítására szolgál.  Az adatbázis-bejeg
         }
     }
 
-Ha az Azure SDK telepítve van, most létrehozhat egy sablont table vezérlő az alábbiak szerint:
+Ha hello Azure SDK telepítve van, most létrehozhat egy sablont table vezérlő az alábbiak szerint:
 
-1. Kattintson a jobb gombbal a tartományvezérlők mappára, és válassza ki **Hozzáadás** > **vezérlő...** .
-2. Válassza ki a **Azure Mobile Apps Table vezérlő** lehetőséget, majd kattintson az **Hozzáadás**.
-3. Az a **adja hozzá a tartományvezérlő** párbeszédpanel:
-   * Az a **Model class** legördülő menüben válassza ki az új DTO.
-   * Az a **DbContext** legördülő menüben válassza ki a Mobile Service DbContext osztályt.
-   * A tartományvezérlő neve akkor jön létre.
+1. Kattintson a jobb gombbal a hello, tartományvezérlői mappa, és válassza ki **Hozzáadás** > **vezérlő...** .
+2. Jelölje be hello **Azure Mobile Apps Table vezérlő** lehetőséget, majd kattintson az **Hozzáadás**.
+3. A hello **adja hozzá a tartományvezérlő** párbeszédpanel:
+   * A hello **Model class** legördülő menüben válassza ki az új DTO.
+   * A hello **DbContext** legördülő menüben válassza hello Mobile Service DbContext osztályt.
+   * hello vezérlőnév akkor jön létre.
 4. Kattintson az **Add** (Hozzáadás) parancsra.
 
-A gyors üzembe helyezés kiszolgálóprojektet egy egyszerű példa tartalmaz **TodoItemController**.
+hello gyors üzembe helyezés kiszolgálóprojektet egy egyszerű példa tartalmaz **TodoItemController**.
 
-### <a name="adjust-pagesize"></a>Útmutató: a tábla a lapozófájl méretének módosítása
-Alapértelmezés szerint az Azure Mobile Apps kérelmenként 50 bejegyzést ad vissza.  Lapozófájl biztosítja, hogy az ügyfél nem nagy terhelést jelent a felhasználói felület szálán, sem a kiszolgáló túl sokáig a jó felhasználói élményt biztosítva. Módosítsa a táblázat a lapozófájl méretét, növelje a kiszolgálóoldali "engedélyezett a lekérdezés mérete", és az ügyféloldali oldalméret a kiszolgálóoldali "engedélyezett a lekérdezés mérete" úgy kell beállítani, használja a `EnableQuery` attribútum:
+### <a name="adjust-pagesize"></a>Hogyan: hello tábla a lapozófájl méretének módosítása
+Alapértelmezés szerint az Azure Mobile Apps kérelmenként 50 bejegyzést ad vissza.  Lapozófájl biztosítja, hogy hello az ügyfél nem köti a felhasználói felület és a szál nem hello kiszolgáló túl sokáig a jó felhasználói élményt biztosítva. toochange hello táblázat a lapozófájl méretét, növelje hello kiszolgálóoldali "engedélyezett lekérdezés mérete", és hello ügyféloldali oldal méretét hello kiszolgálóoldali "engedélyezett a lekérdezés mérete" módosul hello segítségével `EnableQuery` attribútum:
 
     [EnableQuery(PageSize = 500)]
 
-Győződjön meg arról a pageSize együttes értéke azonos vagy nagyobb, mint az ügyfél által kért méret.  Tekintse meg az adott ügyfél útmutató dokumentációjában talál részletes információt az ügyfél Oldalméret módosítása.
+Helyezze a pageSize értékének hello hello azonos vagy nagyobb hello hello ügyfél által kért.  Hello ügyfél Oldalméret módosítása a részletekért tekintse meg a toohello adott ügyfél útmutató dokumentációját.
 
 ## <a name="how-to-define-a-custom-api-controller"></a>Hogyan: Adja meg egy egyéni API-vezérlő
-Az egyéni API-vezérlőben a Mobile Apps-háttéralkalmazás a legalapvetőbb lehetőségeket kínál a jelentkezik, mintha a végpont. Egy mobileszköz-specifikus API-vezérlőben, a [MobileAppController] attribútum használatával regisztrálhatja. A `MobileAppController` attribútum regisztrálja az útvonal, a Mobile Apps JSON-szerializáló beállítja és bekapcsolja a [ügyfél verzióellenőrzés](app-service-mobile-client-and-server-versioning.md).
+hello egyéni API-vezérlőben hello legalapvetőbb funkció tooyour Mobile Apps-háttéralkalmazás jelentkezik, mintha a végpont biztosítja. A mobileszköz-specifikus API-vezérlőben hello [MobileAppController] attribútum használatával regisztrálhatja. Hello `MobileAppController` attribútum hello útvonal regisztrálja, hello Mobile Apps JSON szerializáló beállítja és bekapcsolja a [ügyfél verzióellenőrzés](app-service-mobile-client-and-server-versioning.md).
 
-1. A Visual Studióban, kattintson a jobb gombbal a tartományvezérlők mappát, majd kattintson **Hozzáadás** > **vezérlő**, jelölje be **Web API 2-es vezérlőhöz&mdash;üres** és Kattintson a **Hozzáadás**.
+1. A Visual Studióban, kattintson a jobb gombbal hello tartományvezérlők mappát, majd kattintson a **Hozzáadás** > **vezérlő**, jelölje be **Web API 2-es vezérlőhöz&mdash;üres** és Kattintson a **Hozzáadás**.
 2. Adjon meg egy **tartományvezérlő neve**, például `CustomController`, és kattintson a **Hozzáadás**.
-3. Az új tartományvezérlő osztály fájlban adja hozzá a következő using utasítást:
+3. Hello új tartományvezérlő osztály fájlban adja hozzá a hello következő using utasítást:
 
         using Microsoft.Azure.Mobile.Server.Config;
-4. Alkalmazza a **[MobileAppController]** attribútum segítségével az API vezérlő osztálydefiníciót, az alábbi példában látható módon:
+4. Hello alkalmazása **[MobileAppController]** toohello API vezérlő osztálydefiníció, mint például a következő hello attribútum:
 
         [MobileAppController]
         public class CustomController : ApiController
         {
               //...
         }
-5. App_Start/Startup.MobileApp.cs fájlban adja hozzá a következőt hívja a **MapApiControllers** kiterjesztésmetódus, az alábbi példában látható módon:
+5. App_Start/Startup.MobileApp.cs fájlban adja hozzá a hívás toohello **MapApiControllers** kiterjesztésmetódus, mint például a következő hello:
 
         new MobileAppConfiguration()
             .MapApiControllers()
             .ApplyTo(config);
 
-Használhatja a `UseDefaultConfiguration()` kiterjesztésmetódus helyett `MapApiControllers()`. Minden futtassa, amelynek nincs **MobileAppControllerAttribute** alkalmazza az ügyfelek által továbbra is elérhető, de előfordulhat, hogy nem megfelelően védelmekor ügyfelek bármely Mobile Apps-ügyfél SDK használatával.
+Is használhatja a hello `UseDefaultConfiguration()` kiterjesztésmetódus helyett `MapApiControllers()`. Minden futtassa, amelynek nincs **MobileAppControllerAttribute** alkalmazza az ügyfelek által továbbra is elérhető, de előfordulhat, hogy nem megfelelően védelmekor ügyfelek bármely Mobile Apps-ügyfél SDK használatával.
 
 ## <a name="how-to-work-with-authentication"></a>Útmutató: hitelesítés
-Az Azure Mobile Apps használja az App Service hitelesítési / engedélyezési biztonságossá tételéhez a mobil-háttéralkalmazást.  Ez a szakasz bemutatja, hogyan hajthat végre a következő hitelesítési kapcsolatos feladatokat a .NET server háttérprojekt:
+Az Azure Mobile Apps használja az App Service hitelesítés / engedélyezés toosecure a mobil-háttéralkalmazást.  Ez a szakasz bemutatja, hogyan tooperform hello hitelesítési modulhoz kapcsolódó feladatokat a .NET háttérrendszer kiszolgálóprojektet a következő:
 
-* [Útmutató: hitelesítés hozzáadása egy kiszolgálóprojektet](#add-auth)
+* [Útmutató: hitelesítés tooa projekt hozzáadása](#add-auth)
 * [Útmutató: az alkalmazás egyéni hitelesítés használata](#custom-auth)
 * [Hogyan: lekérése hitelesített felhasználói adatok](#user-info)
 * [Útmutató: a jogosult felhasználók adatokhoz való hozzáférést](#authorize)
 
-### <a name="add-auth"></a>Útmutató: hitelesítés hozzáadása egy kiszolgálóprojektet
-Kiterjesztésével server projektjéhez hitelesítési is hozzáadhat a **MobileAppConfiguration** objektum és OWIN köztes konfigurálása. Amikor telepíti a [Microsoft.Azure.Mobile.Server.Quickstart] csomag- és hívás a **UseDefaultConfiguration** kiterjesztésmetódus, ugorjon a 3. lépés.
+### <a name="add-auth"></a>Útmutató: hitelesítés tooa projekt hozzáadása
+Hello kiterjesztésével is hozzáadhat a hitelesítési tooyour kiszolgálóprojektet **MobileAppConfiguration** objektum és OWIN köztes konfigurálása. Hello telepítésekor [Microsoft.Azure.Mobile.Server.Quickstart] csomag- és hívás hello **UseDefaultConfiguration** kiterjesztésmetódus, kihagyhatja a toostep 3.
 
-1. A Visual Studio telepíti a [Microsoft.Azure.Mobile.Server.Authentication] csomag.
-2. A Startup.cs projekt fájlban adja hozzá a következő kódsort elején a **konfigurációs** módszert:
+1. A Visual Studio telepítése hello [Microsoft.Azure.Mobile.Server.Authentication] csomag.
+2. Hello Startup.cs projekt fájlban adja hozzá a következő kódsort hello hello elején hello **konfigurációs** módszert:
 
         app.UseAppServiceAuthentication(config);
 
-    Az OWIN köztes összetevő ellenőrzi a társított App Service-átjáró által kiállított jogkivonatokat.
-3. Adja hozzá a `[Authorize]` bármely tartományvezérlő vagy a metódust, amelyhez hitelesítés szükséges.
+    Az OWIN köztes összetevő hello tartozó App Service-átjáró által kiállított jogkivonatokat ellenőrzi.
+3. Adja hozzá a hello `[Authorize]` attribútum tooany vezérlő vagy metódust, amelyhez hitelesítés szükséges.
 
-Hitelesíti az ügyfeleket a Mobile Apps-háttéralkalmazásának kapcsolatos további tudnivalókért lásd: [hitelesítés hozzáadása az alkalmazáshoz](app-service-mobile-ios-get-started-users.md).
+arról, hogyan toolearn tooauthenticate ügyfelek tooyour Mobile Apps-háttéralkalmazás, lásd: [Add authentication tooyour alkalmazás](app-service-mobile-ios-get-started-users.md).
 
 ### <a name="custom-auth"></a>Útmutató: az alkalmazás egyéni hitelesítés használata
-Ha nem szeretné az App Service hitelesítési/engedélyezési szolgáltatók egyikét kell használnia, a saját bejelentkezési rendszer valósíthat meg. Telepítse a [Microsoft.Azure.Mobile.Server.Login] csomag elősegítve ezzel a hitelesítési jogkivonatok létrehozásához.  Adja meg a saját kódot a felhasználó hitelesítő adatainak ellenőrzése. Például ellenőrizze sózott és kivonatolt jelszavakat adatbázisban ellen. Az alábbi példában a `isValidAssertion()` (határozni) metódus felelős az ellenőrzést.
+Ha nem kíván toouse hello App Service hitelesítési/engedélyezési szolgáltatók egyikét, a saját bejelentkezési rendszer valósíthat meg. Telepítse a hello [Microsoft.Azure.Mobile.Server.Login] csomag tooassist a hitelesítési jogkivonatok létrehozásához.  Adja meg a saját kódot a felhasználó hitelesítő adatainak ellenőrzése. Például ellenőrizze sózott és kivonatolt jelszavakat adatbázisban ellen. Hello az alábbi példában a hello `isValidAssertion()` (határozni) metódus felelős az ellenőrzést.
 
-Az egyéni hitelesítési fel van fedve egy ApiController létrehozásával, és az ilyen `register` és `login` műveletek. Az ügyfél által használandó egyéni felhasználói Felületet a Információgyűjtés a felhasználótól.  Az információkat majd szabványos HTTP POST hívja az API számára. Ha a kiszolgáló ellenőrzi a helyességi feltétel, jogkivonat használatával kiadott a `AppServiceLoginHandler.CreateToken()` metódust.  A ApiController **nem kell** használja a `[MobileAppController]` attribútum.
+egyéni hitelesítési hello tesz elérhetővé, és adjon meg egy ApiController létrehozása `register` és `login` műveletek. hello ügyfélnek használnia kell, egy egyéni felhasználói felületi toocollect hello információ hello felhasználótól.  hello információt nem egy normál HTTP POST az elküldött toohello API hívása. Miután hello kiszolgáló hello helyességi feltétel érvényesíti, jogkivonat használatával hello kiadott `AppServiceLoginHandler.CreateToken()` metódust.  hello ApiController **nem kell** hello használata `[MobileAppController]` attribútum.
 
 Példa `login` művelet:
 
@@ -271,7 +271,7 @@ Példa `login` művelet:
             }
         }
 
-Az előző példában a LoginResult és LoginResultUser kötelező tulajdonságok feltáró szerializálható objektumok. Az ügyfél vár a válaszokat, vissza kell adni az űrlap JSON-objektumként:
+A fenti példa hello LoginResult és LoginResultUser a szükséges tulajdonságok feltáró szerializálható objektumok. hello ügyfél bejelentkezési válaszok toobe adja vissza a JSON-objektumok hello űrlap vár:
 
         {
             "authenticationToken": "<token>",
@@ -280,87 +280,87 @@ Az előző példában a LoginResult és LoginResultUser kötelező tulajdonságo
             }
         }
 
-A `AppServiceLoginHandler.CreateToken()` metódust tartalmaz egy *célközönség* és egy *kibocsátó* paraméter. Mindkét paraméter beállítása az URL-CÍMÉT az alkalmazás gyökereként, a HTTPS protokollt használ. Hasonló módon állítsa be *secretKey* kell lennie az értéket az alkalmazás csomagazonosítóját aláírási kulcs. Az aláírási kulcs ügyfélprogram ne ossza el a kulcsok Mentaízű és megszemélyesíthet felhasználókat is használható. Ezt úgy szerezheti be az aláírási kulcs közben Vezérlőpultjának az App Service-ben üzemeltetett a *webhely\_AUTH\_aláírás\_kulcs* környezeti változó. Ha szükséges a helyi hibakeresési környezetben, kövesse az utasításokat a a [hitelesítéssel helyi hibakeresés](#local-debug) lekérni a kulcsot, és alkalmazás-beállítás szerint tárolja a szakaszban található.
+Hello `AppServiceLoginHandler.CreateToken()` metódust tartalmaz egy *célközönség* és egy *kibocsátó* paraméter. Mindkét paraméter beállított toohello URL-CÍMÉT az alkalmazás gyökérkönyvtára hello HTTPS protokollt használ. Hasonló módon állítsa be *secretKey* toobe hello értéket az alkalmazás csomagazonosítóját aláírási kulcs. Ne ossza el a hello aláírókulcsának ügyfélprogram használt toomint kulcsok kell és felhasználók megszemélyesítéséhez. Ezt úgy szerezheti be aláírókulcsának közben hello Vezérlőpultjának az App Service-ben üzemeltetett hello *webhely\_AUTH\_aláírás\_kulcs* környezeti változó. Szükség esetén egy helyi hibakeresési környezetben – kövesse a hello hello utasításait [hitelesítéssel helyi hibakeresés](#local-debug) tooretrieve hello kulcs szakaszt, és tárolja, az alkalmazás-beállítás.
 
-A kibocsátott jogkivonat más jogcímeket és lejárati dátummal is.  A minimális követelmény, a kibocsátott jogkivonat tartalmaznia kell a tulajdonos (**sub**) jogcímek.
+hello kiállított jogkivonat más jogcímeket és lejárati dátummal is.  A minimális követelmény, hello kiállított jogkivonat tartalmaznia kell a tulajdonos (**sub**) jogcímek.
 
-A szabványos ügyfél támogathatja `loginAsync()` metódus által a hitelesítési útvonal terhelve.  Ha az ügyfél meghívja a `client.loginAsync('custom');` a bejelentkezéshez, az útvonal lehet `/.auth/login/custom`.  Beállíthatja, hogy az egyéni vezérlő használatával útvonal `MapHttpRoute()`:
+Hello szabványos ügyfél támogathatja `loginAsync()` metódus által túl van terhelve hello hitelesítési útvonal.  Ha a hello ügyfél `client.loginAsync('custom');` a toolog, az útvonal lehet `/.auth/login/custom`.  Hello útvonal a hello egyéni vezérlő használatával állíthatja be `MapHttpRoute()`:
 
     config.Routes.MapHttpRoute("custom", ".auth/login/custom", new { controller = "CustomAuth" });
 
 > [!TIP]
-> Használja a `loginAsync()` megközelítés biztosítja, hogy a hitelesítési jogkivonat csatolva van-e a szolgáltatás minden ezt követő hívásakor.
+> Hello segítségével `loginAsync()` megközelítés biztosítja, hogy hello hitelesítésére szolgáló jogkivonat csatolt tooevery későbbi hívás toohello szolgáltatás.
 >
 >
 
 ### <a name="user-info"></a>Hogyan: lekérése hitelesített felhasználói adatok
-Amikor a felhasználó hitelesítése az App Service, a hozzárendelt felhasználói Azonosítót és egyéb információkat hozzáférhet a .NET-háttérrendszer kódban. A felhasználói adatok használható hitelesítési döntések meghozatala során a háttérben. A következő kódot a felhasználói Azonosítóját a kérelemhez társított szerzi be:
+Amikor a felhasználó hitelesítése az App Service, hozzárendelt felhasználói Azonosítót és egyéb információkat a .NET-háttéralkalmazás kódjának hello végezheti el. hello felhasználói adatok a hitelesítési döntések meghozatala során a hello háttérbeli használhatók. hello alábbira szerzi be a kérelemhez társított hello Felhasználóazonosító:
 
-    // Get the SID of the current user.
+    // Get hello SID of hello current user.
     var claimsPrincipal = this.User as ClaimsPrincipal;
     string sid = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-A SID származó szolgáltatói felhasználói Azonosítóját, és egy adott felhasználó és a bejelentkezés-szolgáltató statikus.  A SID értéke érvénytelen a hitelesítési tokenek null.
+hello SID hello szolgáltatóhoz tartozó felhasználói azonosító származik, és egy adott felhasználó és a bejelentkezés-szolgáltató statikus.  hello SID értéke érvénytelen a hitelesítési tokenek null.
 
-App Service lehetővé teszi a bejelentkezési szolgáltató által adott jogcímek igénylésére. Minden egyes identitásszolgáltató az identitásszolgáltató SDK használatával további információk megadására.  Például használhatja a Facebook Graph API-t ismerősök információt.  A szolgáltató panel az Azure portálon is megadhat igényelt jogcímeket. Egyes jogcímek a identitásszolgáltatóval további beállításokra van szükség.
+App Service lehetővé teszi a bejelentkezési szolgáltató által adott jogcímek igénylésére. Minden egyes identitásszolgáltató az identitásszolgáltató SDK használatával további információk megadására.  Például ismerősök információt hello Facebook Graph API-t is használhatja.  Hello szolgáltató panel az Azure-portálon hello igényelt jogcímeket adhat meg. Egyes jogcímek hello identitásszolgáltatóval további beállításokra van szükség.
 
-A következő kódot a hívások a **GetAppServiceIdentityAsync** kiterjesztésmetódus a bejelentkezési hitelesítő adatokat, többek között a hozzáférési jogkivonatának beszerzéséhez szükséges kéréseket a meghatározott a Facebook Graph API:
+hello következő hívások hello kódot **GetAppServiceIdentityAsync** bővítmény metódus tooget hello bejelentkezési hitelesítő adatok, többek között hello hozzáférési jogkivonat szükséges toomake kérelmek hello Facebook Graph API szemben:
 
-    // Get the credentials for the logged-in user.
+    // Get hello credentials for hello logged-in user.
     var credentials =
         await this.User
         .GetAppServiceIdentityAsync<FacebookCredentials>(this.Request);
 
     if (credentials.Provider == "Facebook")
     {
-        // Create a query string with the Facebook access token.
+        // Create a query string with hello Facebook access token.
         var fbRequestUrl = "https://graph.facebook.com/me/feed?access_token="
             + credentials.AccessToken;
 
         // Create an HttpClient request.
         var client = new System.Net.Http.HttpClient();
 
-        // Request the current user info from Facebook.
+        // Request hello current user info from Facebook.
         var resp = await client.GetAsync(fbRequestUrl);
         resp.EnsureSuccessStatusCode();
 
-        // Do something here with the Facebook user information.
+        // Do something here with hello Facebook user information.
         var fbInfo = await resp.Content.ReadAsStringAsync();
     }
 
-Adja hozzá egy utasítást `System.Security.Principal` biztosításához a **GetAppServiceIdentityAsync** kiterjesztésmetódus.
+Adja hozzá egy utasítást `System.Security.Principal` tooprovide hello **GetAppServiceIdentityAsync** kiterjesztésmetódus.
 
 ### <a name="authorize"></a>Útmutató: a jogosult felhasználók adatokhoz való hozzáférést
-Az előző szakaszban azt bemutatta, hogyan lehet lekérni a hitelesített felhasználók felhasználói Azonosítóját. Adatokhoz és más erőforrások, ez az érték alapján korlátozhatja a hozzáférést. Például userId oszlop hozzáadásával táblák és a lekérdezés eredményeit a felhasználói azonosító szűrés módja a egyszerű visszaadott adatok csak a jogosult felhasználókra korlátozzák. A következő kódot adja vissza adatok csak akkor, ha a biztonsági azonosítója megegyezik-e a TodoItem tábla UserId oszlopban:
+Hello előző szakaszban azt lehet bemutatta, hogyan tooretrieve hello egy hitelesített felhasználó felhasználói azonosító. Korlátozhatja a hozzáférést toodata és más erőforrások, ez az érték alapján. Például egy userId oszlop tootables hozzáadása, és a szűrés hello lekérdezési eredmények hello felhasználói azonosító nem egy adott vissza az adatokat csak tooauthorized felhasználók egyszerűen toolimit. hello alábbira sorát adja vissza adatok csak akkor, ha hello biztonsági azonosítója megegyezik-e a hello UserId oszlopban hello TodoItem tábla:
 
-    // Get the SID of the current user.
+    // Get hello SID of hello current user.
     var claimsPrincipal = this.User as ClaimsPrincipal;
     string sid = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-    // Only return data rows that belong to the current user.
+    // Only return data rows that belong toohello current user.
     return Query().Where(t => t.UserId == sid);
 
-A `Query()` metódus értéket ad vissza egy `IQueryable` , kezelni a szűrés LINQ kezelhetők.
+Hello `Query()` metódus értéket ad vissza egy `IQueryable` , amely a LINQ-toohandle szűréssel kezelhetők.
 
-## <a name="how-to-add-push-notifications-to-a-server-project"></a>Hogyan: adhat leküldéses értesítések küldéséhez egy kiszolgálóprojektet
-Leküldéses értesítések hozzáadása a projekt kiterjesztésével a **MobileAppConfiguration** objektum és a Notification Hubs ügyfelet hoz létre.
+## <a name="how-to-add-push-notifications-tooa-server-project"></a>Hogyan: leküldéses értesítések tooa server projekt hozzáadása
+Adja hozzá a leküldéses értesítések tooyour kiszolgálóprojektet hello kiterjesztésével **MobileAppConfiguration** objektum és a Notification Hubs ügyfelet hoz létre.
 
-1. A Visual Studióban, kattintson a jobb gombbal a projekt, és kattintson a **NuGet-csomagok kezelése**, keressen `Microsoft.Azure.Mobile.Server.Notifications`, majd kattintson a **telepítése**.
-2. Telepítse ezt a lépést ismételje meg a `Microsoft.Azure.NotificationHubs` csomag, amely tartalmazza a Notification Hubs ügyféloldali kódtárára.
-3. A App_Start/Startup.MobileApp.cs és adjon hozzá egy a **AddPushNotifications()** kiterjesztésmetódus inicializálása közben:
+1. A Visual Studióban, kattintson a jobb gombbal a projekt hello, és kattintson **NuGet-csomagok kezelése**, keressen `Microsoft.Azure.Mobile.Server.Notifications`, majd kattintson a **telepítése**.
+2. Ismételje meg ezt a lépést tooinstall hello `Microsoft.Azure.NotificationHubs` csomagot, amely tartalmazza a Notification Hubs ügyfélkódtár hello.
+3. A App_Start/Startup.MobileApp.cs és adja hozzá a hívás toohello **AddPushNotifications()** kiterjesztésmetódus inicializálása közben:
 
         new MobileAppConfiguration()
             // other features...
             .AddPushNotifications()
             .ApplyTo(config);
-4. Az alábbi kódot, amely létrehozza a Notification Hubs-ügyfél hozzáadása:
+4. Adja hozzá a következő kódot, amely létrehozza a Notification Hubs-ügyfél hello:
 
-        // Get the settings for the server project.
+        // Get hello settings for hello server project.
         HttpConfiguration config = this.Configuration;
         MobileAppSettingsDictionary settings =
             config.GetMobileAppSettingsProvider().GetMobileAppSettings();
 
-        // Get the Notification Hubs credentials for the Mobile App.
+        // Get hello Notification Hubs credentials for hello Mobile App.
         string notificationHubName = settings.NotificationHubName;
         string notificationHubConnection = settings
             .Connections[MobileAppSettingsKeys.NotificationHubConnectionString].ConnectionString;
@@ -369,15 +369,15 @@ Leküldéses értesítések hozzáadása a projekt kiterjesztésével a **Mobile
         NotificationHubClient hub = NotificationHubClient
             .CreateClientFromConnectionString(notificationHubConnection, notificationHubName);
 
-A Notification Hubs-ügyfél leküldéses értesítések küldésére regisztrált eszközöket használhatja. További információkért lásd: [leküldéses értesítések hozzáadása az alkalmazáshoz](app-service-mobile-ios-get-started-push.md). Notification hubs használatával kapcsolatos további információkért lásd: [Notification Hubs – áttekintés](../notification-hubs/notification-hubs-push-notification-overview.md).
+Most már használhatja a hello Notification Hubs toosend leküldéses értesítések tooregistered ügyféleszközökön. További információkért lásd: [Hozzáadás leküldéses értesítések tooyour app](app-service-mobile-ios-get-started-push.md). toolearn Notification hubs használatával kapcsolatos további információkért lásd: [Notification Hubs – áttekintés](../notification-hubs/notification-hubs-push-notification-overview.md).
 
 ## <a name="tags"></a>Hogyan: engedélyezése megcélzott ügyfélleküldéses címkék használatával
-A Notification Hubs lehetővé teszi célzott értesítések küldése adott regisztrációk címkék használatával. Több címkék jönnek létre automatikusan:
+A Notification Hubs lehetővé teszi a címkék segítségével toospecific regisztrációk célzott értesítéseket küldeni. Több címkék jönnek létre automatikusan:
 
-* A telepítési azonosító azonosítja az adott eszköz.
-* A felhasználói azonosítóját, a hitelesített SID azonosítója alapján azonosítja az egy adott felhasználó.
+* Telepítési Azonosítót hello azonosítja az egy adott eszközhöz.
+* hello felhasználói azonosító alapján hitelesített hello SID azonosítja egy megadott felhasználó.
 
-A telepítési azonosító érhetők el a **végrehajtott** tulajdonságát a **MobileServiceClient**.  A következő példa bemutatja, hogyan használja a telepítési Azonosítót a Notification Hubs egy adott telepítési egy címke hozzáadása:
+telepítési azonosító hello elérhető hello **végrehajtott** hello tulajdonságának **MobileServiceClient**.  hello következő példa bemutatja, hogyan egy telepítési azonosító tooadd használatára egy címke tooa adott telepítési a Notification hubs használatával:
 
     hub.PatchInstallation("my-installation-id", new[]
     {
@@ -389,27 +389,27 @@ A telepítési azonosító érhetők el a **végrehajtott** tulajdonságát a **
         }
     });
 
-Leküldéses értesítés regisztrálása során az ügyfél által megadott címkéket figyelmen kívül hagyja a kiszolgáló létrehozása a telepítés során. Ahhoz, hogy egy ügyfél címkék hozzáadása a telepítés, létre kell hoznia egy egyéni API-t, amely az előző minta használatával címkék.
+Hello ügyfél leküldéses értesítési regisztráció során megadott címkéket figyelmen kívül hagyják hello háttér hello telepítési létrehozásakor. egy ügyfél tooadd tooenable toohello telepítési címkéket, létre kell hoznia egy egyéni API-t, amely mintát megelőző hello segítségével címkék.
 
-Lásd: [ügyfél által hozzáadott leküldéses értesítések címkék] [ 5] például egy App Service Mobile Apps befejezett gyors üzembe helyezési minta.
+Lásd: [ügyfél által hozzáadott leküldéses értesítések címkék] [ 5] hello App Service Mobile Apps befejezett gyors üzembe helyezési minta példát.
 
-## <a name="push-user"></a>Hogyan: leküldéses értesítések küldése a hitelesített felhasználó
-Amikor a hitelesített felhasználó regisztrálja a leküldéses értesítések, a felhasználói azonosító címke automatikusan hozzáadódik a regisztráció. Ezt a címkét használatával leküldéses értesítéseket küldhet az adott személy által regisztrált összes eszközre. Az alábbi kód lekérdezi a kérelmező felhasználó biztonsági azonosítója és minden eszközregisztráció személyre sablon leküldéses értesítést küld:
+## <a name="push-user"></a>Hogyan: küldés leküldéses értesítések tooan hitelesített felhasználó
+Amikor a hitelesített felhasználó regisztrálja a leküldéses értesítések, a felhasználói azonosító címke automatikusan kerül toohello regisztrációs. Ezt a címkét használatával küldhet leküldéses értesítések tooall eszközök adott személy által regisztrált. hello alábbira lekérdezi a kérelmező felhasználó biztonsági azonosítója hello és elküldi a sablon leküldéses értesítési tooevery eszközregisztráció személyre:
 
-    // Get the current user SID and create a tag for the current user.
+    // Get hello current user SID and create a tag for hello current user.
     var claimsPrincipal = this.User as ClaimsPrincipal;
     string sid = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value;
     string userTag = "_UserId:" + sid;
 
-    // Build a dictionary for the template with the item message text.
+    // Build a dictionary for hello template with hello item message text.
     var notification = new Dictionary<string, string> { { "message", item.Text } };
 
-    // Send a template notification to the user ID.
+    // Send a template notification toohello user ID.
     await hub.SendTemplateNotificationAsync(notification, userTag);
 
-Amikor regisztrál egy hitelesített ügyfél leküldéses értesítésekhez, győződjön meg arról, hogy a hitelesítési teljes regisztrációs megkísérlése előtt. További információkért lásd: [felhasználók leküldése] [ 6] .NET-háttérrendszer az App Service Mobile Apps befejezett gyors üzembe helyezési minta.
+Amikor regisztrál egy hitelesített ügyfél leküldéses értesítésekhez, győződjön meg arról, hogy a hitelesítési teljes regisztrációs megkísérlése előtt. További információkért lásd: [toousers leküldéses] [ 6] hello App Service Mobile Apps befejezett gyors üzembe helyezési minta .NET-háttérrendszer.
 
-## <a name="how-to-debug-and-troubleshoot-the-net-server-sdk"></a>Hogyan: hibakeresését és a .NET Server SDK hibáinak elhárítása
+## <a name="how-to-debug-and-troubleshoot-hello-net-server-sdk"></a>Hogyan: Hibakeresés és hibaelhárítás hello .NET SDK-kiszolgáló
 Az Azure App Service számos Hibakeresés és hibaelhárítási módszerekről az ASP.NET-alkalmazások biztosítja:
 
 * [Az Azure App Service figyelése](../app-service-web/web-sites-monitor.md)
@@ -417,27 +417,27 @@ Az Azure App Service számos Hibakeresés és hibaelhárítási módszerekről a
 * [A Visual Studio egy Azure App Service hibaelhárítása](../app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md)
 
 ### <a name="logging"></a>Naplózás
-App Service diagnosztikai naplók írni az ASP.NET nyomkövetési írását normál használatával. Ahhoz, hogy a naplókba, engedélyeznie kell a Mobile Apps-háttéralkalmazás diagnosztika.
+Írhat tooApp szolgáltatás diagnosztikai naplók hello szabványos az ASP.NET nyomkövetési írás használatával. Ahhoz, hogy toohello naplókat, engedélyeznie kell a Mobile Apps-háttéralkalmazás diagnosztika.
 
-Diagnosztika engedélyezése, és a naplófájlok írásához:
+tooenable diagnostics és az írási toohello naplói:
 
-1. Kövesse a [diagnosztika engedélyezésével](../app-service-web/web-sites-enable-diagnostic-log.md#enablediag).
-2. Adja hozzá a következő using utasítást a kód fájlban:
+1. Hello kövesse [hogyan tooenable diagnosztika](../app-service-web/web-sites-enable-diagnostic-log.md#enablediag).
+2. Adja hozzá hello következő using utasítást a kód fájlban:
 
         using System.Web.Http.Tracing;
-3. Hozzon létre egy nyomkövetési író írni a .NET-háttérrendszer a diagnosztikai naplók, az alábbiak szerint:
+3. Hozzon létre egy nyomkövetési író toowrite hello .NET háttérrendszer toohello diagnosztikai naplók, a az alábbiak szerint:
 
         ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();
         traceWriter.Info("Hello, World");
-4. A projekt közzé, és hozzáférni a Mobile Apps-háttéralkalmazás a kód útvonalat a naplózási végrehajtásához.
-5. Töltse le és kiértékelheti a naplókat, a [hogyan: naplók letöltéséhez](../app-service-web/web-sites-enable-diagnostic-log.md#download).
+4. A projekt ismételt közzététele, és elérési hello mobilalkalmazás háttér tooexecute hello kód hello naplózással.
+5. Töltse le és hello naplókat, kiértékelheti a [hogyan: naplók letöltéséhez](../app-service-web/web-sites-enable-diagnostic-log.md#download).
 
 ### <a name="local-debug"></a>Helyi hitelesítéssel hibakeresés
-Az alkalmazás helyileg tesztelje a módosításokat a felhő közzététel előtt is futtathatja. Nyomja le az Azure Mobile Apps-háttérkiszolgálókon legtöbb, *F5* a Visual Studio során. Van azonban néhány további szempontok hitelesítése során.
+Az alkalmazás futtatása helyben tootest toohello felhő közzététel előtt változik. Nyomja le az Azure Mobile Apps-háttérkiszolgálókon legtöbb, *F5* a Visual Studio során. Van azonban néhány további szempontok hitelesítése során.
 
-Rendelkeznie kell egy felhőalapú mobilalkalmazást az App Service hitelesítési/engedélyezési konfigurálva, és az ügyfél a megadott másodlagos bejelentkezési állomásaként felhő végpontot kell rendelkeznie. A szükséges lépéseit ügyfélplatform dokumentációjában olvashatók.
+Rendelkeznie kell egy felhőalapú mobilalkalmazást az App Service hitelesítési/engedélyezési konfigurálva, és az ügyfél hello másodlagos bejelentkezési gazdagépként megadott hello felhő végpontot kell rendelkeznie. Hello lépéseit szükséges ügyfélplatform hello dokumentációjában talál.
 
-Győződjön meg arról, hogy rendelkezik-e a mobil-háttéralkalmazást [Microsoft.Azure.Mobile.Server.Authentication] telepítve. Ezt követően az alkalmazás OWIN indítási osztályt, adja hozzá a következő után `MobileAppConfiguration` telepítve van a `HttpConfiguration`:
+Győződjön meg arról, hogy rendelkezik-e a mobil-háttéralkalmazást [Microsoft.Azure.Mobile.Server.Authentication] telepítve. Ezt követően az alkalmazás OWIN indítási osztályt, adja hozzá hello következő után `MobileAppConfiguration` lett alkalmazott tooyour `HttpConfiguration`:
 
         app.UseAppServiceAuthentication(new AppServiceAuthenticationOptions()
         {
@@ -447,15 +447,15 @@ Győződjön meg arról, hogy rendelkezik-e a mobil-háttéralkalmazást [Micros
             TokenHandler = config.GetAppServiceTokenHandler()
         });
 
-A fenti példában, konfigurálnia kell a *authAudience* és *authIssuer* Alkalmazásbeállítások belül a Web.config fájl az egyes URL-CÍMÉT az alkalmazás gyökereként használja a HTTPS sémát kell. Hasonló módon állítsa be *authSigningKey* kell lennie az értéket az alkalmazás csomagazonosítóját aláírási kulcs.
-Az aláírási kulcs beszerzése:
+A fenti példa hello, konfigurálnia kell a hello *authAudience* és *authIssuer* Alkalmazásbeállítások belül a Web.config fájl tooeach kell az URL-CÍMÉT az alkalmazás gyökérkönyvtára hello HTTPS használatával a rendszer. Hasonló módon állítsa be *authSigningKey* toobe hello értéket az alkalmazás csomagazonosítóját aláírási kulcs.
+tooobtain hello aláírási kulcs:
 
-1. Keresse meg az alkalmazás belül a [Azure-portálon]
+1. Keresse meg a tooyour app belül hello [Azure-portálon]
 2. Kattintson a **eszközök**, **Kudu**, **Ugrás**.
-3. A Kudu felügyeleti hely, kattintson a **környezet**.
-4. Keresse meg az értéket a *webhely\_AUTH\_aláírás\_kulcs*.
+3. Hello Kudu felügyeleti hely, kattintson a **környezet**.
+4. Keresse meg a hello értéket *webhely\_AUTH\_aláírás\_kulcs*.
 
-Az aláírási kulcs használata a *authSigningKey* paraméter a helyi alkalmazások Config.  A mobil-háttéralkalmazást most már rendelkezik a érvényesíthet jogkivonatokat, a helyi futtatás során, amelyek az ügyfél a felhőalapú végpontról a jogkivonat szerzik be.
+Aláírási kulcs hello használata hello *authSigningKey* paraméter a helyi alkalmazások Config.  A mobil-háttéralkalmazást már felszerelt toovalidate jogkivonatokat, a helyi futtatás során, mely hello ügyfél kapja hello token hello felhőalapú végpont.
 
 [1]: https://msdn.microsoft.com/library/azure/dn961176.aspx
 [2]: https://github.com/Azure/azure-mobile-apps-net-server

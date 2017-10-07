@@ -1,6 +1,6 @@
 ---
-title: "Webalkalmazás létrehozása az Azure-ban, amely virtuális gépen futó MongoDB-csatlakozással rendelkezik"
-description: "Egy oktatóanyag, amely útmutatást ad meg egy ASP.NET alkalmazás telepítése az Azure App Service, a Git segítségével csatlakozik a MongoDB egy Azure virtuális gép."
+title: "egy webalkalmazást az Azure virtuális gépen futó tooMongoDB csatlakozó aaaCreate"
+description: "Egy oktatóanyag, amely útmutatást ad, hogy hogyan toouse Git toodeploy egy ASP.NET alkalmazás tooAzure App Service-ben csatlakoztatva tooMongoDB egy Azure virtuális gépen."
 tags: azure-portal
 services: app-service\web, virtual-machines
 documentationcenter: .net
@@ -15,26 +15,26 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 02/29/2016
 ms.author: cephalin
-ms.openlocfilehash: a3f289ed9c764d0859573de4f834e042d0f103c6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1f5f42c28c3c294d92c9ebf1499374931d47c010
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-web-app-in-azure-that-connects-to-mongodb-running-on-a-virtual-machine"></a>Webalkalmazás létrehozása az Azure-ban, amely virtuális gépen futó MongoDB-csatlakozással rendelkezik
-Git használatával telepítheti is az ASP.NET-alkalmazások az Azure App Service Web Apps. Ebben az oktatóanyagban egy egyszerű előtér-ASP.NET MVC feladat csatlakozik a MongoDB-adatbázist, az Azure virtuális gépen futó alkalmazást fog létrehozni.  [MongoDB] [ MongoDB] van egy népszerű nyílt forráskódú, nagy teljesítményű NoSQL-adatbázis. Után fut, és az ASP.NET-alkalmazást a fejlesztési számítógépen tesztelése, fel kell töltenie az alkalmazás az App Service Web Apps Git használatával.
+# <a name="create-a-web-app-in-azure-that-connects-toomongodb-running-on-a-virtual-machine"></a>A webalkalmazás létrehozása az Azure virtuális gépen futó tooMongoDB csatlakozó
+A Git, telepíthet egy ASP.NET alkalmazás tooAzure App Service Web Apps. Ebben az oktatóanyagban egy egyszerű előtér-ASP.NET MVC feladat lista alkalmazás, amely összeköti az Azure virtuális gépen futó tooa MongoDB-adatbázist fog létrehozni.  [MongoDB] [ MongoDB] van egy népszerű nyílt forráskódú, nagy teljesítményű NoSQL-adatbázis. Után fut, és a fejlesztési számítógépen hello ASP.NET alkalmazás tesztelése, fel kell töltenie hello alkalmazás tooApp Service Web Apps Git használatával.
 
 > [!NOTE]
-> Ha az Azure App Service-t az Azure-fiók regisztrálása előtt szeretné kipróbálni, ugorjon [Az Azure App Service kipróbálása](https://azure.microsoft.com/try/app-service/) oldalra. Itt azonnal létrehozhat egy ideiglenes, kezdő szintű webalkalmazást az App Service szolgáltatásban. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
+> Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
 > 
 > 
 
 ## <a name="background-knowledge"></a>Háttér Tudásbázis
-A következő ismerete akkor hasznos, ebben az oktatóanyagban azonban nem kötelező:
+A Tudásbázis következő hello akkor hasznos, ebben az oktatóanyagban azonban nem kötelező:
 
-* A C# MongoDB illesztőprogramját. A fejleszt alkalmazásokat C# MongoDB további információkért lásd: a MongoDB [CSharp nyelvű Center][MongoC#LangCenter]. 
-* Az ASP .NET webes keretrendszer. Megismerheti az összes a a [ASP.net-webhely][ASP.NET].
-* Az ASP .NET MVC webes keretrendszer. Megismerheti az összes a a [ASP.NET MVC webhely][MVCWebSite].
+* mongodb-protokolltámogatással hello C#-illesztőprogram. A fejleszt alkalmazásokat C# MongoDB további információkért lásd: hello MongoDB [CSharp nyelvű Center][MongoC#LangCenter]. 
+* hello ASP.NET webszolgáltatás alkalmazás-keretrendszer. Megismerheti az összes hello a [ASP.net-webhely][ASP.NET].
+* hello ASP .NET MVC webes alkalmazás-keretrendszer. Megismerheti az összes hello a [ASP.NET MVC webhely][MVCWebSite].
 * Azure-t. Ismerkedés a olvasása [Azure][WindowsAzure].
 
 ## <a name="prerequisites"></a>Előfeltételek
@@ -47,58 +47,58 @@ A következő ismerete akkor hasznos, ebben az oktatóanyagban azonban nem köte
 <a id="virtualmachine"></a> 
 
 ## <a name="create-a-virtual-machine-and-install-mongodb"></a>Hozzon létre egy virtuális gépet, és a MongoDB telepítése
-Ez az oktatóanyag feltételezi, hogy létrehozott egy virtuális gépet az Azure-ban. A virtuális gép létrehozása után kell a MongoDB telepítése a virtuális gépen:
+Ez az oktatóanyag feltételezi, hogy létrehozott egy virtuális gépet az Azure-ban. Hello virtuális gép létrehozása után kell tooinstall MongoDB hello virtuális gépen:
 
-* Windows virtuális gép létrehozása, és telepítse a MongoDB, [MongoDB telepítése a Windows Server rendszert futtató Azure virtuális gépen][InstallMongoOnWindowsVM].
+* toocreate Windows virtuális gépek és a telepítés MongoDB, lásd: [MongoDB telepítése a Windows Server rendszert futtató Azure virtuális gépen][InstallMongoOnWindowsVM].
 
-Miután létrehozta a virtuális gépet az Azure-ban, és a MongoDB telepített, ne felejtse el a virtuális gép ("testlinuxvm.cloudapp.net", például) és a külső portra DNS-nevét, amelyet a végpont a mongodb-protokolltámogatással.  Ezt az információt az oktatóanyag későbbi részében szüksége lesz.
+Hello virtuális gép létrehozása az Azure-ban, és MongoDB telepítése után meg arról, hogy tooremember hello DNS-neve lesz hello virtuális gép ("testlinuxvm.cloudapp.net", például) és a külső portra hello hello végpont megadott mongodb-protokolltámogatással.  Erre az információra hello oktatóanyag későbbi részében.
 
 <a id="createapp"></a>
 
-## <a name="create-the-application"></a>Az alkalmazás létrehozása
-Ebben a szakaszban létrehoz egy ASP.NET alkalmazás "Saját feladatlista" nevű Visual Studio használatával, és hajtsa végre egy kezdeti üzembe helyezése az Azure App Service Web Apps. Futtatja az alkalmazást helyileg, de a virtuális gépet az Azure csatlakozni, és nem használja a MongoDB-példány létrehozott.
+## <a name="create-hello-application"></a>Hello alkalmazás létrehozása
+Ebben a szakaszban létrehoz egy ASP.NET alkalmazás "Saját feladatlista" nevű Visual Studio használatával, és hajtsa végre egy kezdeti telepítési tooAzure App Service Web Apps. Hello alkalmazás helyileg fogja futtatni, de csatlakoztassa tooyour virtuális gépet az Azure-on, és létrehozott hello MongoDB-példány nem használható.
 
 1. A Visual Studióban kattintson **új projekt**.
    
     ![Lap új projekt indítása][StartPageNewProject]
-2. Az a **új projekt** ablakban a bal oldali panelen, jelölje be **Visual C#**, majd válassza ki **webes**. A középső ablaktáblán válassza ki a **ASP.NET Web Application**. A lap alján, a projekt "MyTaskListApp" nevet, és kattintson a **OK**.
+2. A hello **új projekt** ablakban hello bal oldali panelen, jelölje be az **Visual C#**, majd válassza ki **webes**. Hello középső ablaktábláján válassza ki **ASP.NET Web Application**. Hello lap alján, a projekt "MyTaskListApp" nevet, és kattintson **OK**.
    
     ![Új projekt párbeszédpanel][NewProjectMyTaskListApp]
-3. Az a **új ASP.NET projekt** párbeszédpanelen jelölje ki **MVC**, és kattintson a **OK**.
+3. A hello **új ASP.NET projekt** párbeszédpanelen jelölje ki **MVC**, és kattintson a **OK**.
    
     ![MVC-sablon kiválasztása][VS2013SelectMVCTemplate]
-4. Ha még nem jelentkezett be a Microsoft Azure, kérni fogja a bejelentkezéshez. Kövesse az utasításokat, Azure-ba való bejelentkezéshez.
-5. Ha be van jelentkezve, indítsa el az App Service webalkalmazás konfigurálása. Adja meg a **Web App name**, **App Service-csomag**, **erőforráscsoport**, és **régió**, majd kattintson a **létrehozása**.
+4. Ha még nem jelentkezett be a Microsoft Azure, a kért toosign fogja. Hello kér toosign kövesse az Azure.
+5. Ha be van jelentkezve, indítsa el az App Service webalkalmazás konfigurálása. Adja meg a hello **Web App name**, **App Service-csomag**, **erőforráscsoport**, és **régió**, majd kattintson **létrehozása**.
    
     ![](./media/web-sites-dotnet-store-data-mongodb-vm/VSConfigureWebAppSettings.png)
-6. A projekt létrehozása után várjon, amíg a webalkalmazás az Azure App Service-ben létrehozni a **Azure App Service-tevékenység** ablak. Kattintson a **most ezt a webes alkalmazás közzététele MyTaskListApp**.
+6. Hello projekt létrehozása után várja hello web app toobe hello az Azure App Service-ben létrehozott **Azure App Service-tevékenység** ablak. Kattintson a **közzététele MyTaskListApp toothis webalkalmazás most**.
 7. Kattintson a **Publish** (Közzététel) gombra.
    
     ![](./media/web-sites-dotnet-store-data-mongodb-vm/VSPublishWeb.png)
    
-    Miután az alapértelmezett ASP.NET-alkalmazás közzé van téve az Azure App Service Web Apps, akkor indul el a böngészőben.
+    Ha az alapértelmezett ASP.NET-alkalmazás közzétett tooAzure App Service Web Apps, hello böngészőben elindul.
 
-## <a name="install-the-mongodb-c-driver"></a>Telepítse a MongoDB C# illesztőprogramját
-MongoDB a C#-alkalmazások pedig egy illesztőprogram, amelyen telepítenie kell a helyi fejlesztési számítógépen ügyféloldali támogatást nyújt. A C# illesztőprogram Nugeten keresztül érhető el.
+## <a name="install-hello-mongodb-c-driver"></a>Hello MongoDB C# illesztőprogram telepítése
+MongoDB C#-alkalmazások pedig egy illesztőprogram, amely szükséges az ügyféloldali támogatást nyújt a helyi fejlesztési számítógépen tooinstall. hello C# illesztőprogram a Nugeten keresztül érhető el.
 
-A MongoDB C# illesztőprogram telepítése:
+tooinstall hello MongoDB C# illesztőprogram:
 
-1. A **Megoldáskezelőben**, kattintson a jobb gombbal a **MyTaskListApp** projektre, és válassza ki **kezelése NuGetPackages**.
+1. A **Megoldáskezelőben**, kattintson a jobb gombbal hello **MyTaskListApp** projektre, és válassza ki **kezelése NuGetPackages**.
    
     ![NuGet-csomagok kezelése][VS2013ManageNuGetPackages]
-2. Az a **NuGet-csomagok kezelése** ablakban a bal oldali ablaktáblán kattintson a **Online**. Az a **keresési Online** a jobb oldali mezőbe írja be a "mongodb.driver".  Kattintson a **telepítése** az illesztőprogram telepítéséhez.
+2. A hello **NuGet-csomagok kezelése** ablakban hello bal oldali ablaktáblában kattintson a **Online**. A hello **keresési Online** a jobb oldali hello mezőbe írja be a "mongodb.driver".  Kattintson a **telepítése** tooinstall hello illesztőprogram.
    
     ![MongoDB C# illesztőprogram keresése][SearchforMongoDBCSharpDriver]
-3. Kattintson a **elfogadom** 10gen, Inc. feltételeinek elfogadására.
-4. Kattintson a **Bezárás** Ha az illesztőprogram telepítve van.
+3. Kattintson a **elfogadom** tooaccept hello 10gen, Inc. a licencfeltételeket.
+4. Kattintson a **Bezárás** Ha hello illesztőprogram telepítve van.
     ![MongoDB-C# illesztőprogram][MongoDBCsharpDriverInstalled]
 
-A MongoDB C# illesztőprogram most már telepítve van.  Hivatkozása a **MongoDB.Bson**, **MongoDB.Driver**, és **MongoDB.Driver.Core** szalagtárak lettek hozzáadva a projekthez.
+hello MongoDB C# illesztőprogram telepítve van.  Hivatkozások toohello **MongoDB.Bson**, **MongoDB.Driver**, és **MongoDB.Driver.Core** szalagtárak toohello projekt lettek hozzáadva.
 
 ![MongoDB C# illesztőprogram hivatkozások][MongoDBCSharpDriverReferences]
 
 ## <a name="add-a-model"></a>Modell hozzáadása
-A **Megoldáskezelőben**, kattintson a jobb gombbal a *modellek* mappa és **Hozzáadás** egy új **osztály** és adjon neki nevet *TaskModel.cs*.  A *TaskModel.cs*, cserélje le a meglévő kódot az alábbira:
+A **Megoldáskezelőben**, kattintson a jobb gombbal hello *modellek* mappa és **Hozzáadás** egy új **osztály** és adjon neki nevet *TaskModel.cs* .  A *TaskModel.cs*, cserélje le a következő kód hello hello meglévő kódot:
 
     using System;
     using System.Collections.Generic;
@@ -130,8 +130,8 @@ A **Megoldáskezelőben**, kattintson a jobb gombbal a *modellek* mappa és **Ho
         }
     }
 
-## <a name="add-the-data-access-layer"></a>Adja hozzá az adatelérési réteg
-A **Megoldáskezelőben**, kattintson a jobb gombbal a *MyTaskListApp* projekt és **Hozzáadás** egy **új mappa** nevű *DAL*.  Kattintson a jobb gombbal a *DAL* mappa és **Hozzáadás** egy új **osztály**. Nevezze el az osztály fájlt *Dal.cs*.  A *Dal.cs*, cserélje le a meglévő kódot az alábbira:
+## <a name="add-hello-data-access-layer"></a>Hello az adatelérési réteg hozzáadása
+A **Megoldáskezelőben**, kattintson a jobb gombbal hello *MyTaskListApp* projekt és **Hozzáadás** egy **új mappa** nevű *DAL*.  Kattintson a jobb gombbal hello *DAL* mappa és **Hozzáadás** egy új **osztály**. Nevű hello osztály fájl *Dal.cs*.  A *Dal.cs*, cserélje le a következő kód hello hello meglévő kódot:
 
     using System;
     using System.Collections.Generic;
@@ -150,13 +150,13 @@ A **Megoldáskezelőben**, kattintson a jobb gombbal a *MyTaskListApp* projekt �
             private MongoServer mongoServer = null;
             private bool disposed = false;
 
-            // To do: update the connection string with the DNS name
+            // toodo: update hello connection string with hello DNS name
             // or IP address of your server. 
             //For example, "mongodb://testlinux.cloudapp.net"
             private string connectionString = "mongodb://mongodbsrv20151211.cloudapp.net";
 
             // This sample uses a database named "Tasks" and a 
-            //collection named "TasksList".  The database and collection 
+            //collection named "TasksList".  hello database and collection 
             //will be automatically created if they don't already exist.
             private string dbName = "Tasks";
             private string collectionName = "TasksList";
@@ -166,7 +166,7 @@ A **Megoldáskezelőben**, kattintson a jobb gombbal a *MyTaskListApp* projekt �
             {
             }
 
-            // Gets all Task items from the MongoDB server.        
+            // Gets all Task items from hello MongoDB server.        
             public List<MyTask> GetAllTasks()
             {
                 try
@@ -180,7 +180,7 @@ A **Megoldáskezelőben**, kattintson a jobb gombbal a *MyTaskListApp* projekt �
                 }
             }
 
-            // Creates a Task and inserts it into the collection in MongoDB.
+            // Creates a Task and inserts it into hello collection in MongoDB.
             public void CreateTask(MyTask task)
             {
                 var collection = GetTasksCollectionForEdit();
@@ -239,7 +239,7 @@ A **Megoldáskezelőben**, kattintson a jobb gombbal a *MyTaskListApp* projekt �
     }
 
 ## <a name="add-a-controller"></a>Vezérlő hozzáadása
-Nyissa meg a *Controllers\HomeController.cs* fájlt **Megoldáskezelőben** , és cserélje le a meglévő kódot a következőre:
+Nyissa meg hello *Controllers\HomeController.cs* fájlt **Megoldáskezelőben** , és cserélje le a meglévő kódot hello hello alábbira:
 
     using System;
     using System.Collections.Generic;
@@ -319,12 +319,12 @@ Nyissa meg a *Controllers\HomeController.cs* fájlt **Megoldáskezelőben** , é
         }
     }
 
-## <a name="set-up-the-styles"></a>A stílusok beállítása
-Az oldal tetején a cím módosításához nyissa meg a *Views\Shared\\_Layout.cshtml* fájlt **Megoldáskezelőben** és cserélje le a "Alkalmazás neve" a navigációs sávja fejlécében a "saját feladatlista Alkalmazás"úgy tűnik, hogy az informatikai, ez például:
+## <a name="set-up-hello-styles"></a>Hello stílusok beállítása
+toochange hello cím hello oldal, nyissa meg hello hello tetején *Views\Shared\\_Layout.cshtml* fájlt **Megoldáskezelőben** és cserélje le a "Alkalmazás neve" hello navigációs sávja fejlécében a "saját feladat Lista alkalmazás"így néz ki:
 
      @Html.ActionLink("My Task List Application", "Index", "Home", null, new { @class = "navbar-brand" })
 
-A feladatlista menü beállításához nyissa meg a *\Views\Home\Index.cshtml* fájlt, és cserélje le a meglévő kódot az alábbira:
+Az order tooset hello feladatlista menü, nyissa meg a hello *\Views\Home\Index.cshtml* fájlt, és cserélje le a következő kód hello hello meglévő kódot:
 
     @model IEnumerable<MyTaskListApp.Models.MyTask>
 
@@ -361,7 +361,7 @@ A feladatlista menü beállításához nyissa meg a *\Views\Home\Index.cshtml* f
     <div>  @Html.Partial("Create", new MyTaskListApp.Models.MyTask())</div>
 
 
-Hozzáadása egy új feladatot létrehozni, kattintson a jobb gombbal a *Views\Home\\*  mappa és **Hozzáadás** egy **nézet**.  A nézet neve *létrehozása*. Cserélje le a kód a következő:
+tooadd hello képességét toocreate új tevékenység, kattintson a jobb gombbal a hello *Views\Home\\*  mappa és **Hozzáadás** egy **nézet**.  Hello nézet neve *létrehozása*. Cserélje le a hello kód hello alábbira:
 
     @model MyTaskListApp.Models.MyTask
 
@@ -408,42 +408,42 @@ Hozzáadása egy új feladatot létrehozni, kattintson a jobb gombbal a *Views\H
 
 ![Megoldáskezelő][SolutionExplorerMyTaskListApp]
 
-## <a name="set-the-mongodb-connection-string"></a>A MongoDB-kapcsolati karakterlánc beállítása
-A **Megoldáskezelőben**, nyissa meg a *DAL/Dal.cs* fájlt. Keresse meg a következő kódsort:
+## <a name="set-hello-mongodb-connection-string"></a>Hello MongoDB kapcsolati karakterlánc beállítása
+A **Megoldáskezelőben**, nyissa meg hello *DAL/Dal.cs* fájlt. Keresse meg a következő kódsort hello:
 
     private string connectionString = "mongodb://<vm-dns-name>";
 
-Cserélje le `<vm-dns-name>` a DNS-névvel, a MongoDB létrehozott futtató virtuális gép a [hozzon létre egy virtuális gépet, és telepítse a MongoDB] [ Create a virtual machine and install MongoDB] . lépését Ez az oktatóanyag.  A DNS-neve, a virtuális gép található, nyissa meg az Azure portálon, válassza ki a **virtuális gépek**, és keresse meg **DNS-név**.
+Cserélje le `<vm-dns-name>` hello DNS-névvel fut hello létrehozott MongoDB hello virtuális gép [hozzon létre egy virtuális gépet, és telepítse a MongoDB] [ Create a virtual machine and install MongoDB] . lépését Ez az oktatóanyag.  toofind hello DNS-nevét a virtuális gépet, nyissa meg toohello Azure portált, válassza ki **virtuális gépek**, és keresse meg **DNS-név**.
 
-Ha a DNS-neve, a virtuális gép "testlinuxvm.cloudapp.net" és az alapértelmezett porton 27017 MongoDB figyel, a kapcsolati karakterlánc kódsort hasonlóan fog kinézni:
+Ha hello virtuális gép hello DNS-neve "testlinuxvm.cloudapp.net", és a MongoDB hello 27017 alapértelmezett porton figyel, hello kapcsolati karakterlánc kódsort hasonlóan fog kinézni:
 
     private string connectionString = "mongodb://testlinuxvm.cloudapp.net";
 
-Ha a virtuális gép végpontjának mongodb határoz meg egy másik külső portot, a következőket teheti meg a kapcsolati karakterláncban a port:
+Ha hello virtuális gép végpontjának mongodb egy másik külső portot határozza meg, akkor meg hello port hello kapcsolati karakterlánc:
 
      private string connectionString = "mongodb://testlinuxvm.cloudapp.net:12345";
 
 A MongoDB-kapcsolati karakterláncok további információkért lásd: [kapcsolatok][MongoConnectionStrings].
 
-## <a name="test-the-local-deployment"></a>A helyi központi telepítés tesztelése
-Futtassa az alkalmazást a fejlesztési számítógépen, válassza ki **Start Debugging** a a **Debug** menü vagy találat **F5**. Az IIS Express elindul, és a böngészőben megnyílik, és elindítja az alkalmazás kezdőlapját.  Hozzáadhat egy új feladatot, amelyek nem kerülnek be az Azure-ban, a virtuális gépen futó MongoDB-adatbázist.
+## <a name="test-hello-local-deployment"></a>Hello helyi központi telepítés tesztelése
+toorun az alkalmazást a fejlesztési számítógépen, válassza ki **Start Debugging** a hello **Debug** menü vagy nyomja le **F5**. Az IIS Express elindul, és a böngészőben megnyílik, és betölti az hello alkalmazás kezdőlapját.  Hozzáadhat egy új feladatot, amely megjelenik az Azure-ban, a virtuális gépen futó toohello MongoDB-adatbázist.
 
 ![A feladat alkalmazásában][TaskListAppBlank]
 
-## <a name="publish-to-azure-app-service-web-apps"></a>Az Azure App Service Web Apps alkalmazások közzététele
-Ebben a szakaszban az Azure App Service Web Apps tesznek közzé a módosításokat.
+## <a name="publish-tooazure-app-service-web-apps"></a>TooAzure App Service Web Apps közzététele
+Ebben a szakaszban a módosítások tooAzure App Service Web Apps tesznek közzé.
 
 1. A Megoldáskezelőben kattintson a jobb gombbal **MyTaskListApp** újra kattintson **közzététel**.
 2. Kattintson a **Publish** (Közzététel) gombra.
    
-    Most látnia kell a webalkalmazás fut az Azure App Service-ben, és a MongoDB adatbázis Azure virtuális gépek elérése.
+    Most látnia kell a webalkalmazás fut az Azure App Service-ben, és hello MongoDB adatbázis Azure virtuális gépek elérése.
 
 ## <a name="summary"></a>Összefoglalás
-Most már sikeresen telepítette az Azure App Service Web Apps ASP.NET alkalmazást. A webes alkalmazás megtekintése:
+Most már sikeresen telepítette az ASP.NET alkalmazás tooAzure App Service Web Apps. tooview hello webalkalmazáshoz:
 
-1. Jelentkezzen be az Azure portálon.
+1. Jelentkezzen be hello Azure portálon.
 2. Kattintson a **webalkalmazások**. 
-3. Válassza ki a webalkalmazás a **webalkalmazások** listája.
+3. Válassza ki a webalkalmazás hello **webalkalmazások** listája.
 
 A fejleszt alkalmazásokat C# MongoDB további információkért lásd: [CSharp nyelvű Center][MongoC#LangCenter]. 
 
@@ -483,6 +483,6 @@ A fejleszt alkalmazásokat C# MongoDB további információkért lásd: [CSharp 
 
 <!-- TOC BOOKMARKS -->
 [Create a virtual machine and install MongoDB]: #virtualmachine
-[Create and run the My Task List ASP.NET application on your development computer]: #createapp
+[Create and run hello My Task List ASP.NET application on your development computer]: #createapp
 [Create an Azure web site]: #createwebsite
-[Deploy the ASP.NET application to the web site using Git]: #deployapp
+[Deploy hello ASP.NET application toohello web site using Git]: #deployapp

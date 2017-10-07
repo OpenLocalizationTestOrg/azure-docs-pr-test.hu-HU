@@ -1,6 +1,6 @@
 ---
-title: "Az Azure tevékenységnapló archiválására |} Microsoft Docs"
-description: "Útmutató az Azure tevékenységnapló a hosszú távú megőrzési tárfiókokban archiválja."
+title: "aaaArchive hello Azure tevékenységnapló |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooarchive az Azure tevékenység keresse meg a hosszú távú megőrzési tárfiókokban."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/09/2016
 ms.author: johnkem
-ms.openlocfilehash: 0e3a5b84f57eac96249430fa1c2c4cc076c2926a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 58c6d3a3a31398287f66f76999d48f2942ab5109
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="archive-the-azure-activity-log"></a>Az Azure tevékenységnapló archiválása
-Ebben a cikkben megmutatjuk használatát az Azure portálon, a PowerShell-parancsmagokkal vagy a platformfüggetlen parancssori felület archiválására a [ **Azure tevékenységnapló** ](monitoring-overview-activity-logs.md) tárfiókokban. Ez a beállítás akkor hasznos, ha azt szeretné, hogy megőrzi a naplózási, statikus elemzési vagy biztonsági mentése (a teljes hozzáféréssel az adatmegőrzési) 90 napnál hosszabb tevékenységnapló. Ha csak szeretné megőrizni az események 90 napig, vagy kevesebb nem kell beállítása archiválási tárfiókba, mert tevékenységnapló események kerülnek be az Azure platformon 90 napig engedélyezése archiválás nélkül.
+# <a name="archive-hello-azure-activity-log"></a>Archív hello Azure tevékenységnapló
+Ebben a cikkben megmutatjuk, hogyan használhatja a hello Azure-portálon, a PowerShell-parancsmagokkal vagy a platformfüggetlen parancssori felület tooarchive a [ **Azure tevékenységnapló** ](monitoring-overview-activity-logs.md) tárfiókokban. Ez a beállítás akkor hasznos, ha azt szeretné, hogy a hosszabb, mint 90 napra (a teljes hozzáféréssel hello adatmegőrzési) tevékenységnapló naplózásához statikus elemzés, vagy biztonsági mentési tooretain. Ha csak tooretain 90 napig, vagy kevesebb, mint az események nem kell tooset archiválási tooa storage-fiók mentése óta tevékenységnapló események kerülnek be az Azure platformon hello 90 napig engedélyezése archiválás nélkül.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Kezdés előtt kell [hozzon létre egy tárfiókot](../storage/common/storage-create-storage-account.md#create-a-storage-account) , amelyhez a tevékenységnapló archiválhatók. Erősen ajánlott, hogy nem használja a benne tárolt, így jobban szabályozhatja a hozzáférést a figyelési adatok, amelyeket más, nem figyelési adatokat tartalmazó meglévő tárfiókot. Azonban ha is archiválás diagnosztikai naplók és a metrikák egy tárfiókba, logikus összes figyelési adatot elhelyez egy központi helyen, hogy a tevékenységnapló tárfiók használatával. A storage-fiók használata egy általános célú tárfiókkal, nem a blob storage-fiók kell lennie. A tárfiók nem kell ugyanazt az előfizetést, mint az előfizetés naplók kibocsátó mindaddig, amíg a beállítás konfigurálása felhasználó hozzáfér megfelelő RBAC mindkét előfizetéshez lehet.
+Kezdés előtt kell túl[hozzon létre egy tárfiókot](../storage/common/storage-create-storage-account.md#create-a-storage-account) úgy archiválhatók a tevékenységnapló toowhich. Erősen ajánlott, hogy nem használja a benne tárolt, így jobban szabályozhatja a hozzáférést toomonitoring adatok más, nem figyelési adatokat tartalmazó meglévő tárfiókot. Azonban is archiválás diagnosztikai naplók és a metrikák tooa tárfiókot, ha azt is ellenőrizze logika toouse, hogy a tárfiók a tevékenység-e jelentkezni, valamint tookeep összes figyelési adatok egy központi helyen. hello tárfiókot használ egy általános célú tárfiókkal, nem a blob storage-fiók kell lennie. hello storage-fiók nem rendelkezik toobe hello hello előfizetési naplók kibocsátó mindaddig, amíg hello beállítás konfiguráló hello felhasználó rendelkezik-e megfelelő hozzáférési tooboth előfizetéseket a Szerepalapú tárolóként ugyanazt az előfizetést.
 
 ## <a name="log-profile"></a>Napló-profil
-Az alábbi módszerekkel történő tevékenységnapló archiválására, állítsa be a **napló profil** az előfizetéshez. A napló profil határozza meg az eseményeket, amelyek tárolt vagy a folyamatos átviteli és a kimenetek – tárolási fiók és/vagy az event hub. A storage-fiókban tárolt eseményeket az adatmegőrzési (a megőrizni kívánt napok száma) is meghatároz. Ha az adatmegőrzési nullára van beállítva, események határozatlan ideig tárolja. Ellenkező esetben ez állítható 1 és 2147483647 között bármilyen érték. Adatmegőrzési alkalmazott napi,, így napi (UTC) szerint naplókat, amelyik most már a megőrzési túl napjától végén házirend törlődni fog. Például ha egy nap adatmegőrzési, mai nap kezdetén a napló, a nap előtt tegnap törlése akkor történik meg. [Részletesebb naplófájl kapcsolatos profilok Itt](monitoring-overview-activity-logs.md#export-the-activity-log-with-a-log-profile). 
+hello beállítása tooarchive hello hello módszereket az alábbi tevékenységnapló, **napló profil** az előfizetéshez. hello napló profil meghatározza az eseményeket, amelyek tárolt vagy a folyamatos átviteli hello típusát és kimenetek hello – tárolási fiók és/vagy az event hub. A storage-fiókban tárolt események hello adatmegőrzési (tooretain napok száma) is meghatároz. Ha hello adatmegőrzési toozero, események határozatlan ideig tárolja. Ellenkező esetben ez állítható tooany értékének 1 és 2147483647 között. Adatmegőrzési alkalmazott napi, így: hello napi (UTC) szerint végét naplózza, amelyik most már túl hello adatmegőrzési hello nap törlődni fog. Például ha egy nap adatmegőrzési, ma hello nap hello elején hello hello nap előtt tegnapi naplók törlése akkor történik meg. [Részletesebb naplófájl kapcsolatos profilok Itt](monitoring-overview-activity-logs.md#export-the-activity-log-with-a-log-profile). 
 
-## <a name="archive-the-activity-log-using-the-portal"></a>A tevékenység naplót, a portál használatával
-1. A portálon kattintson a **tevékenységnapló** a bal oldali navigációs hivatkozásra kattintva. Ha a tevékenység napló hivatkozás nem látható, kattintson a **több szolgáltatások** először hivatkozásra.
+## <a name="archive-hello-activity-log-using-hello-portal"></a>Archív hello tevékenységnapló hello portál használatával
+1. Hello portálon kattintson hello **tevékenységnapló** hello bal oldali navigációs hivatkozásra kattintva. Ha egy hivatkozást a hello tevékenységnapló nem látható, kattintson a hello **több szolgáltatások** először hivatkozásra.
    
-    ![Navigáljon a tevékenységnapló panel](media/monitoring-archive-activity-log/act-log-portal-navigate.png)
-2. Kattintson a panel tetején **exportálása**.
+    ![Keresse meg a tooActivity napló panel](media/monitoring-archive-activity-log/act-log-portal-navigate.png)
+2. Hello hello panel felső részén kattintson **exportálása**.
    
-    ![Kattintson az Exportálás gomb](media/monitoring-archive-activity-log/act-log-portal-export-button.png)
-3. A megjelenő panelen, jelölje be a **tárfiókba exportálása** , és válasszon egy tárfiókot.
+    ![Hello Exportálás gombra.](media/monitoring-archive-activity-log/act-log-portal-export-button.png)
+3. Hello paneljén megjelenő jelölőnégyzetet hello a **tooa tárfiók exportálása** , és válasszon egy tárfiókot.
    
     ![A storage-fiók beállítása](media/monitoring-archive-activity-log/act-log-portal-export-blade.png)
-4. A vagy a csúszka definiálja, amelynek tevékenységnapló események kell tartani a tárfiókban lévő napok számát. Ha szeretné adatait őrzi meg a tárfiók határozatlan ideig, ez az érték nullára.
+4. A hello csúszkát vagy szövegmező definiálja, amelynek tevékenységnapló események kell tartani a tárfiókban lévő napok számát. Az adatok határozatlan ideig őrzi hello tárfiók toohave tetszés szerint állítsa be az a szám toozero.
 5. Kattintson a **Save** (Mentés) gombra.
 
-## <a name="archive-the-activity-log-via-powershell"></a>A műveletnapló PowerShell archiválása
+## <a name="archive-hello-activity-log-via-powershell"></a>Archív hello tevékenységnapló PowerShell használatával
 ```
 Add-AzureRmLogProfile -Name my_log_profile -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -Locations global,westus,eastus -RetentionInDays 180 -Categories Write,Delete,Action
 ```
 
 | Tulajdonság | Szükséges | Leírás |
 | --- | --- | --- |
-| StorageAccountId |Nem |Erőforrás-azonosító a tárfiók tevékenységi naplóit mentésére. |
-| Helyek |Igen |Régiók, amelynek szeretné tevékenységnapló eseményeinek gyűjtése vesszővel tagolt listája. Megtekintheti az összes régiók listáját [ezen a lapon felkeresésével](https://azure.microsoft.com/en-us/regions) vagy használatával [az Azure felügyeleti REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx). |
-| retentionInDays |Igen |Az eseményeket meg kell őrizni, 1 és 2147483647 közötti napok számát. A nulla érték a naplók határozatlan ideig tárolja (végtelen). |
+| StorageAccountId |Nem |Erőforrás-azonosítója hello Tárfiók toowhich tevékenységi naplóit, mentésére. |
+| Helyek |Igen |Régiók, amelynek szeretné toocollect tevékenységnapló események vesszővel tagolt listája. Megtekintheti az összes régiók listáját [ezen a lapon felkeresésével](https://azure.microsoft.com/en-us/regions) vagy használatával [hello Azure szolgáltatásfelügyelet REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx). |
+| retentionInDays |Igen |Az eseményeket meg kell őrizni, 1 és 2147483647 közötti napok számát. A nulla érték hello naplók határozatlan ideig tárolja (végtelen). |
 | Kategóriák |Igen |Be kell esemény kategóriák vesszővel tagolt listája. Lehetséges értékek a következők: Olvasás, törlés és művelet. |
 
-## <a name="archive-the-activity-log-via-cli"></a>A tevékenység naplót parancssori felület használatával
+## <a name="archive-hello-activity-log-via-cli"></a>Archív hello tevékenységnapló parancssori felület használatával
 ```
 azure insights logprofile add --name my_log_profile --storageId /subscriptions/s1/resourceGroups/insights-integration/providers/Microsoft.Storage/storageAccounts/my_storage --locations global,westus,eastus,northeurope --retentionInDays 180 –categories Write,Delete,Action
 ```
@@ -62,13 +62,13 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 | Tulajdonság | Szükséges | Leírás |
 | --- | --- | --- |
 | név |Igen |A napló profil neve. |
-| storageId |Nem |Erőforrás-azonosító a tárfiók tevékenységi naplóit mentésére. |
-| Helyek |Igen |Régiók, amelynek szeretné tevékenységnapló eseményeinek gyűjtése vesszővel tagolt listája. Megtekintheti az összes régiók listáját [ezen a lapon felkeresésével](https://azure.microsoft.com/en-us/regions) vagy használatával [az Azure felügyeleti REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx). |
-| retentionInDays |Igen |Az eseményeket meg kell őrizni, 1 és 2147483647 közötti napok számát. A nulla érték határozatlan ideig tárolja a naplók (végtelen). |
+| storageId |Nem |Erőforrás-azonosítója hello Tárfiók toowhich tevékenységi naplóit, mentésére. |
+| Helyek |Igen |Régiók, amelynek szeretné toocollect tevékenységnapló események vesszővel tagolt listája. Megtekintheti az összes régiók listáját [ezen a lapon felkeresésével](https://azure.microsoft.com/en-us/regions) vagy használatával [hello Azure szolgáltatásfelügyelet REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx). |
+| retentionInDays |Igen |Az eseményeket meg kell őrizni, 1 és 2147483647 közötti napok számát. A nulla érték határozatlan ideig tárolandó hello naplók (végtelen). |
 | Kategóriák |Igen |Be kell esemény kategóriák vesszővel tagolt listája. Lehetséges értékek a következők: Olvasás, törlés és művelet. |
 
-## <a name="storage-schema-of-the-activity-log"></a>A műveletnapló tárolási séma
-Miután állított be archiválási, tárolót létrejön a tárfiók, amint tevékenységnapló esemény következik be. A tárolóban található blobok kövesse ugyanazt a formátumot minden tevékenységnapló és diagnosztikai naplókat. A blobok szerkezete van:
+## <a name="storage-schema-of-hello-activity-log"></a>Hello tevékenységnapló tároló sémája
+Miután állított be archiválási, tárolót létrejön hello tárfiókot, amint tevékenységnapló esemény bekövetkezésekor. hello blobok hello tárolóban kövesse hello hello tevékenységnapló és diagnosztikai naplók formátuma azonos. a blobok hello szerkezete van:
 
 > insights-működési-naplók/name = alapértelmezett/resourceId = / SUBSCRIPTIONS / {előfizetés-azonosító} / y = {négyjegyű numerikus year} / m = {kétjegyű numerikus month} / d {kétjegyű számozott napja} = / h = {kétjegyű 24 órás hour}/m=00/PT1H.json
 > 
@@ -80,9 +80,9 @@ A blob neve lehet, például:
 > 
 > 
 
-Minden egyes PT1H.json blob tartalmaz a blob URL-címben megadott órán belül előforduló eseményeket a JSON blob (pl. h = 12). A jelenlegi órán belül események lesz hozzáfűzve a PT1H.json fájl azok bekövetkezésekor. A perc értéket (m = 00) mindig 00, mivel tevékenységnapló események óránként egyes blobok van felosztva.
+Minden egyes PT1H.json blob tartalmazza a hello blob URL-címben megadott hello órán belül előforduló eseményeket JSON blob (pl. h = 12). Hello jelen óra, során eseményeket hozzáfűzött toohello PT1H.json fájlt is, azok bekövetkezésekor. hello perc (m = 00) mindig 00, mivel tevékenységnapló események óránként egyes blobok van felosztva.
 
-PT1H.json fájlon belül mindegyik esemény tárolja a "rekordok" tömb, a következő formátumban:
+Hello PT1H.json fájlban tárolja minden esemény hello "rekordok" tömb, a következő formátumban:
 
 ```
 {
@@ -143,28 +143,28 @@ PT1H.json fájlon belül mindegyik esemény tárolja a "rekordok" tömb, a köve
 
 | Elem neve | Leírás |
 | --- | --- |
-| time |Az esemény az esemény megfelelő a kérés feldolgozása az Azure-szolgáltatás által kiváltott idejét jelző időbélyegző. |
-| resourceId |Erőforrás-azonosító az érintett erőforrás. |
-| operationName |A művelet neve. |
-| category |A művelet kategória eg. Írási, olvassa el, a műveletet. |
-| resultType |Az eredmény típusú eg. Sikeres, sikertelen, kezdő |
-| resultSignature |Az erőforrástípus függ. |
-| durationMs |A művelet ezredmásodpercben időtartama |
-| callerIpAddress |Felhasználó rendelkezik a művelet, a jogcím vagy a rendelkezésre állás alapján SPN jogcím IP-címe. |
-| correlationId |Általában egy GUID Azonosítót a karakterlánc formátuma. Az eseményeket, amelyek megosztása a correlationId ugyanazon uber művelet tartozik. |
-| identity |Az engedélyezési és a jogcímek leíró JSON-blob. |
-| Engedélyezési |Az esemény tulajdonságainak RBAC BLOB. Az "action", "szerepkör" és "hatókör" Tulajdonságok általában tartalmazza. |
-| szint |Az esemény szintje. A következő értékek egyikét: "Kritikus", "Error", "Figyelmeztetés", "Tájékoztató" és "Részletes" |
-| location |A hely történt (vagy globális) régióban. |
-| properties |Állítsa be a `<Key, Value>` az esemény részleteit leíró párok (azaz szótárában). |
+| time |Hello esemény lett létrehozva, amikor hello Azure szolgáltatás feldolgozása hello idejét jelző időbélyegző megfelelő hello esemény kérelmet. |
+| resourceId |Erőforrás-azonosítója, hello érintett erőforrás. |
+| operationName |Hello művelet neve. |
+| category |Kategória hello művelet, például. Írási, olvassa el, a műveletet. |
+| resultType |eg hello hello eredményének típusa. Sikeres, sikertelen, kezdő |
+| resultSignature |Hello erőforrás típusától függ. |
+| durationMs |Ezredmásodpercben hello művelet időtartama |
+| callerIpAddress |IP-cím hello felhasználó hello művelet, a jogcím vagy a rendelkezésre állás alapján SPN jogcím hajtott végre. |
+| correlationId |Általában egy GUID Azonosítót a hello karakterlánc-formátum. Az eseményeket, amelyek megosztása a correlationId tartozik toohello uber műveletet. |
+| identity |JSON-blob: hello engedélyezési és a jogcímeket. |
+| Engedélyezési |A BLOB RBAC tulajdonságok hello esemény. Hello "action", "szerepkör" és "hatókör" Tulajdonságok általában tartalmazza. |
+| szint |Hello esemény szintje. Hello a következő értékek egyikét: "Kritikus", "Error", "Figyelmeztetés", "Tájékoztató" és "Részletes" |
+| location |A régióban mely hello helyen történt (vagy globális). |
+| properties |Állítsa be a `<Key, Value>` hello esemény részleteinek hello leíró párok (azaz szótárában). |
 
 > [!NOTE]
-> A tulajdonságok és ezek a tulajdonságok használatát eltérőek lehetnek attól függően, hogy az erőforrás.
+> hello tulajdonságai és használatának azokat a tulajdonságokat a hello erőforrás függően változhat.
 > 
 > 
 
 ## <a name="next-steps"></a>Következő lépések
 * [Elemzés blobok letöltése](../storage/blobs/storage-dotnet-how-to-use-blobs.md#download-blobs)
-* [Az Event hubs tevékenységnapló adatfolyam](monitoring-stream-activity-logs-event-hubs.md)
-* [További tudnivalók a műveletnapló](monitoring-overview-activity-logs.md)
+* [Adatfolyam-hello tevékenységnapló tooEvent hubok](monitoring-stream-activity-logs-event-hubs.md)
+* [Tudjon meg többet a hello műveletnapló](monitoring-overview-activity-logs.md)
 

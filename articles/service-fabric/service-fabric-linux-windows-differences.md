@@ -1,6 +1,6 @@
 ---
-title: "Különbségek az Azure Service Fabric Linux- és Windows-verziója között | Microsoft Docs"
-description: "Az Azure Service Fabric előzetes verzió Linux- és Windows-verziója közötti különbségek."
+title: "a Service Fabric aaaAzure különbségek attól függnek, Linux és a Windows között |} Microsoft Docs"
+description: "Hello Azure Service Fabric előnézete a Linux és a Windows Azure Service Fabric közötti különbségeket."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: 7b80bb7d4a4e6a1b4cf47ce87200f47339785c53
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7a16a440dfc8d9006e274f46951be1562e6f10d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="differences-between-service-fabric-on-linux-preview-and-windows-generally-available"></a>A Service Fabric Linux (előzetes verziójú) és Windows (általánosan elérhető) rendszerhez készült verziója közötti különbségek
 
-Mivel a Service Fabric Linux rendszeren még előzetes verzióban van, ezért néhány szolgáltatás csak Windows rendszeren támogatott, Linuxon nem. Idővel ugyanazok a szolgáltatások lesznek elérhetőek, amikor a Service Fabric általánosan elérhetővé válik Linux rendszeren. A jövőbeli kiadásokban a funkciók eltérései egyre csekélyebbé válnak. A legújabb elérhető kiadások (Windows rendszeren 5.6, Linuxon 5.5) között az alábbi eltérések állnak fenn: 
+Mivel a Service Fabric Linux rendszeren még előzetes verzióban van, ezért néhány szolgáltatás csak Windows rendszeren támogatott, Linuxon nem. Végül hello szolgáltatáskészletek lesz paritásos amikor Linux Service Fabric általánosan elérhetővé válik. A jövőbeli kiadásokban a funkciók eltérései egyre csekélyebbé válnak. hello következő különbségek vannak hello legújabb elérhető kiadásai között (Ez azt jelenti, hogy verziója 5.6 Windows és Linux 5.5-ös verzió): 
 
 * Reliable Collections (és a Reliable Stateful Services) 
 * ReverseProxy 
 * Önálló telepítő 
 * Jegyzékfájlok XML-sémaérvényesítése 
 * Konzol-átirányítás 
-* Fault Analysis Service (FAS)
+* hello tartalék Analysis Service (eszközök)
 * Docker compose, kötet- és naplózási illesztők tárolókhoz 
 * Tárolók és szolgáltatások erőforrás-szabályozása 
 * DNS-szolgáltatás
 * Azure Active Directory-támogatás
 * Egyes PowerShell-parancsok parancssori felületi megfelelője 
-* Csak a PowerShell-parancsok egy része futtatható Linux-fürtökön (a következő szakaszban leírtak szerint).
+* Powershell-parancsokat csak egy részét is futtathatók a Linux-fürt (a kibontott hello a következő szakaszban).
 
 >[!NOTE]
 >A konzolátirányítás nem támogatott éles fürtökben, még Windows rendszeren sem.
@@ -106,4 +106,4 @@ A fejlesztői eszközök eltérnek Windows és Linux rendszeren. Windows rendsze
 * [Az első Service Fabric Java-alkalmazás létrehozása és üzembe helyezése Linux rendszeren Yeoman használatával](service-fabric-create-your-first-linux-application-with-java.md)
 * [Az első Service Fabric Java-alkalmazás létrehozása és üzembe helyezése Linux rendszeren az Eclipse Service Fabric beépülő modul használatával](service-fabric-get-started-eclipse.md)
 * [Az első CSharp-alkalmazás létrehozása Linuxon](service-fabric-create-your-first-linux-application-with-csharp.md)
-* [A Service Fabric parancssori felület használata az alkalmazások kezeléséhez](service-fabric-application-lifecycle-sfctl.md)
+* [Hello Service Fabric CLI toomanage az alkalmazások használata](service-fabric-application-lifecycle-sfctl.md)

@@ -1,6 +1,6 @@
 ---
-title: "Apache Sqoop feladatok futtatása az Azure HDInsight (Hadoop) |} Microsoft Docs"
-description: "Ismerje meg, hogyan használható az Azure PowerShell munkaállomásról futtatása Sqoop importálása és exportálása egy Hadoop-fürt és az Azure SQL-adatbázis között."
+title: az Azure HDInsight (Hadoop) feladatok aaaRun Apache Sqoop |} Microsoft Docs
+description: "Ismerje meg, hogyan egy munkaállomás toorun Sqoop az Azure PowerShell toouse importálása és exportálása egy Hadoop-fürt és az Azure SQL-adatbázis között."
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -17,34 +17,34 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: 8e77153493b6f37f5f48116b86bad6b25a50d1a1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bdac507704937d77921c9c13d70aa2434c7e3be4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-sqoop-with-hadoop-in-hdinsight"></a>Sqoop használata a hadooppal a Hdinsightban
 [!INCLUDE [sqoop-selector](../../includes/hdinsight-selector-use-sqoop.md)]
 
-Ismerje meg a Sqoop használata a Hdinsightban történő importálására és exportálására HDInsight-fürt és Azure SQL database vagy az SQL Server-adatbázis között.
+Megtudhatja, hogyan toouse Sqoop HDInsight tooimport és exportálás a HDInsight-fürt és Azure SQL database vagy az SQL Server-adatbázis között.
 
-Hadoop természetes téve a feldolgozása a strukturálatlan és félig strukturált adatok, például a naplókat, valamint fájlt, azonban a is lehet a relációs adatbázisok tárolt strukturált adatok feldolgozása érdekében.
+Hadoop természetes téve a feldolgozása a strukturálatlan és félig strukturált adatok, például a naplókat, valamint fájlt, azonban a is lehet a szükséges strukturált tooprocess relációs adatbázisokban tárolt adatokat.
 
-[Sqoop] [ sqoop-user-guide-1.4.4] az eszköz a Hadoop-fürtök és a relációs adatbázisok közötti adattovábbításra. Adatok importálása egy relációs adatbázis-kezelő rendszerének (RDBMS), például az SQL Server, MySQL, vagy a Hadoop elosztott fájlrendszer (HDFS), az Oracle átalakíthatja az adatokat a Hadoop MapReduce vagy a Hive, majd az adatok exportálása vissza egy RDBMS használhatja. Ebben az oktatóanyagban egy SQL Server adatbázist használ a relációs adatbázis.
+[Sqoop] [ sqoop-user-guide-1.4.4] van egy eszköz tootransfer adatokat Hadoop-fürtök és a relációs adatbázisok között. Használható a relációs adatbázis-kezelő rendszerének (RDBMS) tooimport adatokat például SQL Server, MySQL vagy hello Hadoop elosztott fájlrendszer (HDFS), az Oracle hello adatok a Hadoop MapReduce vagy a Hive, majd exportálja újra hello adatok egy RDBMS. Ebben az oktatóanyagban egy SQL Server adatbázist használ a relációs adatbázis.
 
-A HDInsight-fürtökön támogatott Sqoop verzióiért lásd: [What's new in HDInsight által biztosított fürt verziók?][hdinsight-versions]
+A HDInsight-fürtökön támogatott Sqoop verzióiért lásd: [What's new in HDInsight által biztosított hello fürt verziók?][hdinsight-versions]
 
-## <a name="understand-the-scenario"></a>A forgatókönyv ismertetése
+## <a name="understand-hello-scenario"></a>Hello forgatókönyv ismertetése
 
-HDInsight-fürtök néhány adatot tartalmaz. A következő két mintát használ:
+HDInsight-fürtök néhány adatot tartalmaz. A következő két minta hello használhatja:
 
-* A log4j naplófájlt, amely itt található: */example/data/sample.log*. A következő fájl kibontása a következő naplók kapcsolódnak:
+* A log4j naplófájlt, amely itt található: */example/data/sample.log*. a következő naplók hello kinyert hello fájlt:
   
         2012-02-03 18:35:34 SampleClass6 [INFO] everything normal for id 577725851
         2012-02-03 18:35:34 SampleClass4 [FATAL] system problem at id 1991281254
         2012-02-03 18:35:34 SampleClass3 [DEBUG] detail for id 1304807656
         ...
-* Nevű Hive tábla *hivesampletable*, amely hivatkozik az adatok fájlba */hive/warehouse/hivesampletable*. A táblázat tartalmaz néhány mobileszköz adat. 
+* Nevű Hive tábla *hivesampletable*, amely hivatkozások hello adatok fájlba */hive/warehouse/hivesampletable*. hello táblázat tartalmaz néhány mobileszköz adat. 
   
   | Mező | Adattípus |
   | --- | --- |
@@ -60,86 +60,86 @@ HDInsight-fürtök néhány adatot tartalmaz. A következő két mintát haszná
   | munkamenet-azonosító |bigint |
   | sessionpagevieworder |bigint |
 
-Először exportálnia *sample.log* és *hivesampletable* az Azure SQL database vagy az SQL Server és a mobileszközök adatait tartalmazó tábla biztonsági a HDInsight a következő elérési út használatával, majd importálja:
+Először exportálnia *sample.log* és *hivesampletable* toohello Azure SQL-adatbázist vagy kiszolgáló tooSQL, majd hello mobileszköz adat tartalmazó hello tábla importálása biztonsági tooHDInsight hello használatával következő elérési úton:
 
     /tutorials/usesqoop/importeddata
 
 ## <a name="create-cluster-and-sql-database"></a>Fürt és az SQL-adatbázis létrehozása
-Ez a szakasz bemutatja, hogyan fürt SQL-adatbázis, az SQL adatbázis sémák és futtatásához az oktatóanyag az Azure-portál és az Azure Resource Manager-sablon létrehozásához. A sablonban található [Azure gyors üzembe helyezési sablonokat](https://azure.microsoft.com/resources/templates/101-hdinsight-linux-with-sql-database/). A Resource Manager-sablon meghívja a táblasémákat telepítendő SQL-adatbázis bacpac csomag.  A következő nyilvános blobtárolóban https://hditutorialdata.blob.core.windows.net/usesqoop/SqoopTutorial-2016-2-23-11-2.bacpac a bacpac csomag található. Ha azt szeretné, személyes tároló használata a bacpac-fájlok, a sablon a következő értékeket használja:
+Ez a szakasz bemutatja, hogyan toocreate fürt SQL-adatbázis, hello SQL adatbázis-sémák és futó hello oktatóanyag használatára vonatkozó hello Azure-portál és az Azure Resource Manager-sablon. hello sablon található [Azure gyors üzembe helyezési sablonokat](https://azure.microsoft.com/resources/templates/101-hdinsight-linux-with-sql-database/). hello Resource Manager-sablon toodeploy hello tábla sémái tooSQL adatbázis bacpac csomag hívja.  a következő nyilvános blobtárolóban https://hditutorialdata.blob.core.windows.net/usesqoop/SqoopTutorial-2016-2-23-11-2.bacpac hello bacpac csomag található. Egy személyes tárolót toouse hello bacpac-fájlok, használja a következő értékek hello sablonban hello:
    
         "storageKeyType": "Primary",
         "storageKey": "<TheAzureStorageAccountKey>",
 
-Ha inkább az Azure PowerShell használatával a fürt és az SQL-adatbázis létrehozása című [függelék](#appendix-a---a-powershell-sample).
+Ha jobban szeret toouse Azure PowerShell toocreate hello fürt és hello SQL-adatbázis, lásd: [függelék](#appendix-a---a-powershell-sample).
 
-1. Kattintson az alábbi képre kattintva nyissa meg a Resource Manager-sablon az Azure portálon.         
+1. Kattintson a következő kép tooopen hello Azure-portálon a Resource Manager sablon hello.         
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-sql-database%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-use-sqoop/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-sql-database%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-use-sqoop/deploy-to-azure.png" alt="Deploy tooAzure"></a>
    
 
-2. Adja meg a következő tulajdonságokkal:
+2. Adja meg a következő tulajdonságai hello:
 
     - **Előfizetés**: Adja meg az Azure-előfizetéshez.
     - **Erőforráscsoport**: hozzon létre egy új Azure-erőforráscsoportot, vagy válasszon ki egy meglévő erőforráscsoportot.  Egy erőforráscsoport egy felügyeleti célból.  Objektumok tárolója.
     - **Hely**: Válasszon ki egy régiót.
-    - **ClusterName**: Adja meg a Hadoop-fürt nevét.
-    - **A fürt bejelentkezési neve és jelszava**: Az alapértelmezett bejelentkezési név az admin.
+    - **ClusterName**: hello Hadoop-fürt nevét adja meg.
+    - **A fürt bejelentkezési nevet és jelszót**: hello alapértelmezett bejelentkezési név az admin.
     - **SSH-felhasználónév és -jelszó**.
     - **SQL adatbázis-bejelentkezési nevet és jelszót**.
-    - **hely _artifacts**: az alapértelmezett értéket használja, kivéve, ha egy másik helyen található saját backpac fájlt használja.
+    - **hely _artifacts**: hello alapértelmezett értéket használja, kivéve, ha szeretné, hogy toouse saját backpac fájl egy másik helyen.
     - **hely Sas tokent _artifacts**: hagyja üresen a mezőt.
-    - **Bacpac Fájlnév**: az alapértelmezett értéket használja, kivéve, ha szeretné használni a saját backpac fájlt.
+    - **Bacpac Fájlnév**: hello alapértelmezett értéket használja, kivéve, ha szeretné, hogy toouse saját backpac fájl.
      
-     A következő értékek a következők név szoftveresen kötött a sablonváltozók szakaszban:
+     a következő értékek hello szoftveresen kötött hello változók szakaszban:
      
      | Alapértelmezett tárfiók neve | <CluterName>tároló |
      | --- | --- |
      | Az Azure SQL adatbázis-kiszolgáló neve |<ClusterName>dbserver |
      | Az Azure SQL-adatbázis neve |<ClusterName>DB |
      
-     Jegyezze fel ezeket az értékeket.  Az oktatóanyag későbbi részében szüksége lesz rájuk.
+     Jegyezze fel ezeket az értékeket.  Már szükség hello oktatóanyag későbbi részében.
 
-3. Kattintson az **OK** gombra a paraméterek mentéséhez.
+3. Kattintson **OK** toosave hello paraméterek.
 
-4. A **Custom deployment** (Egyéni üzembe helyezés) panelen kattintson a **Resource group** (Erőforráscsoport) legördülő listára, majd a **New** (Új) lehetőségre egy új erőforráscsoport létrehozásához. Az erőforráscsoport egy olyan tároló, amely csoportosítja a fürtöt, a függő tárfiókot és egyéb kapcsolt erőforrásokat.
+4 a hello **egyéni központi telepítés** panelen kattintson **erőforráscsoport** legördülő mezőben, és kattintson **új** toocreate egy új erőforráscsoportot. hello erőforráscsoport egy olyan tároló, amely csoportosítja hello fürtöt, hello függő tárfiókot és egyéb kapcsolt erőforrásokat.
 
 5. Kattintson a **Legal terms** (Jogi feltételek), majd a **Create** (Létrehozás) gombra.
 
-6. Kattintson a **Create** (Létrehozás) gombra. Megjelenik egy új csempe jelenik meg Submitting deployment sablon központi telepítéshez. A fürt és az SQL-adatbázis létrehozása nagyjából 20 percet vesz igénybe.
+6. Kattintson a **Create** (Létrehozás) gombra. Megjelenik egy új csempe jelenik meg Submitting deployment sablon központi telepítéshez. Körülbelül 20 percet toocreate hello fürt és az SQL-adatbázis vesz igénybe.
 
-Ha úgy dönt, hogy a meglévő Azure SQL adatbázis vagy a Microsoft SQL Server használata
+Ha úgy dönt, hogy toouse meglévő Azure SQL adatbázis vagy a Microsoft SQL Server
 
-* **Az Azure SQL adatbázis**: konfigurálnia kell egy tűzfalszabályt az Azure SQL adatbázis-kiszolgáló számára engedélyezi a hozzáférést a munkaállomáson. Egy Azure SQL-adatbázis létrehozása, és a tűzfalon konfigurálásával kapcsolatos útmutatásért lásd: [Azure SQL-adatbázis használatának első][sqldatabase-get-started]. 
+* **Az Azure SQL adatbázis**: hello Azure SQL adatbázis-kiszolgáló tooallow hozzáférési egy tűzfalszabályt konfigurálnia kell a munkaállomáson. Egy Azure SQL-adatbázis létrehozása, és hello tűzfal konfigurálásával kapcsolatos útmutatásért lásd: [Azure SQL-adatbázis használatának első][sqldatabase-get-started]. 
   
   > [!NOTE]
-  > Alapértelmezés szerint az Azure SQL adatbázis Azure-szolgáltatások, például az Azure HDInsight kapcsolatokat engedélyez. Ha a tűzfal beállítás le van tiltva, engedélyezze az Azure portálról szeretné. További információk az Azure SQL-adatbázis létrehozása és a tűzfalszabályok konfigurálása, lásd: [létrehozása és konfigurálása az SQL-adatbázis][sqldatabase-create-configue].
+  > Alapértelmezés szerint az Azure SQL adatbázis Azure-szolgáltatások, például az Azure HDInsight kapcsolatokat engedélyez. Ha a tűzfal beállítás le van tiltva, akkor kell-e tooenable azt hello Azure-portálon. További információk az Azure SQL-adatbázis létrehozása és a tűzfalszabályok konfigurálása, lásd: [létrehozása és konfigurálása az SQL-adatbázis][sqldatabase-create-configue].
   > 
   > 
-* **SQL Server**: Ha a HDInsight-fürt ugyanazt a virtuális hálózatot az Azure SQL-kiszolgálóként, segítségével a lépéseket a cikkben adatok importálása és exportálása az SQL Server-adatbázishoz.
+* **SQL Server**: Ha a HDInsight-fürt hello ugyanazt a virtuális hálózatot az Azure SQL-kiszolgálóként, lépésekkel hello Ez a cikk tooimport és exportálási adatok tooa SQL Server adatbázisban.
   
   > [!NOTE]
   > HDInsight támogatja a csak helyalapú virtuális hálózatokat, és jelenleg nem működik az affinitáscsoport-alapú virtuális hálózatokon.
   > 
   > 
   
-  * Hozzon létre, és egy virtuális hálózat konfigurálására, [hozzon létre egy virtuális hálózatot az Azure portál használatával](../virtual-network/virtual-networks-create-vnet-arm-pportal.md).
+  * toocreate és virtuális hálózat konfigurálása, lásd: [hello Azure-portál virtuális hálózat létrehozása](../virtual-network/virtual-networks-create-vnet-arm-pportal.md).
     
-    * SQL Server használatakor az adatközpontban található konfigurálnia kell a virtuális hálózaton: *pont-pont* vagy *pont-pont*.
+    * SQL Server használatakor az adatközpontban található konfigurálnia kell a virtuális hálózatban hello *pont-pont* vagy *pont-pont*.
       
       > [!NOTE]
-      > A **pont-pont** virtuális hálózatok, az SQL Server futnia kell a VPN-ügyfél konfigurációs alkalmazás, amely elérhető a a **irányítópult** az Azure-beli virtuális hálózat konfigurációját.
+      > A **pont-pont** virtuális hálózatok, az SQL Server futnia kell az hello VPN-ügyfél konfigurációs alkalmazás, amely elérhető a hello **irányítópult** az Azure-beli virtuális hálózat konfigurációját.
       > 
       > 
-    * Használatakor az SQL Server Azure virtuális géphez, virtuális hálózati konfigurációt is használható, ha a virtuális gépet üzemeltető SQL Server a HDInsight megegyező virtuális hálózatban tagja.
-  * HDInsight-fürtök létrehozása a virtuális hálózaton: [létrehozása Hadoop-fürtök a Hdinsightban egyéni beállításokkal](hdinsight-hadoop-provision-linux-clusters.md)
+    * Használatakor az SQL Server Azure virtuális géphez, virtuális hálózati konfigurációt használható, ha hello virtuális gépet üzemeltető SQL Server hello tagja HDInsight megegyező virtuális hálózatban.
+  * a virtuális hálózaton, HDInsight-fürtök toocreate lásd: [létrehozása Hadoop-fürtök a Hdinsightban egyéni beállításokkal](hdinsight-hadoop-provision-linux-clusters.md)
     
     > [!NOTE]
-    > SQL Server hitelesítési is lehetővé kell tenni. Ebben a cikkben lépéseinek végrehajtásához egy SQL Server bejelentkezési fiókot kell használnia.
+    > SQL Server hitelesítési is lehetővé kell tenni. Bejelentkezési toocomplete hello ebben a cikkben ismertetett visszaállítási lépésekkel SQL-kiszolgálót kell használnia.
     > 
     > 
 
 ## <a name="run-sqoop-jobs"></a>Sqoop feladatok futtatása
-HDInsight Sqoop feladatok futtatásához számos módszer használatával. A következő táblázat segítségével döntse el, melyik módszert részesíti az Ön számára legmegfelelőbb, majd kövesse a hivatkozást útmutatást.
+HDInsight Sqoop feladatok futtatásához számos módszer használatával. Használja a következő tábla toodecide, melyik módszert részesíti az Ön számára legmegfelelőbb hello, majd kövesse az útmutatást hello hivatkozásra.
 
 | **Ezzel** Ha azt szeretné... | .. .an **interaktív** rendszerhéj | ... **kötegelt** feldolgozása | és mivel ez **fürt operációs rendszer** | .. .from ez **ügyfél operációs rendszer** |
 |:--- |:---:|:---:|:--- |:--- |
@@ -148,26 +148,26 @@ HDInsight Sqoop feladatok futtatásához számos módszer használatával. A kö
 | [Azure PowerShell](hdinsight-hadoop-use-sqoop-powershell.md) |&nbsp; |✔ |Linux- vagy Windows |Windows |
 
 ## <a name="limitations"></a>Korlátozások
-* Tömeges export - a Linux-alapú HDInsight, a Sqoop összekötő használt Microsoft SQL Server vagy az Azure SQL Database adatainak exportálása jelenleg nem támogatja a tömeges beszúrások.
-* Kötegelés - és a Linux-alapú HDInsight együttes használata esetén a `-batch` beszúrása végrehajtásakor kapcsoló, a Sqoop több beszúrás helyett a beszúrási műveletek kötegelése hajt végre.
+* Tömeges export - a Linux-alapú HDInsight, hello Sqoop használt tooexport adatok tooMicrosoft SQL Server vagy az Azure SQL Database jelenleg nem támogatja a tömeges beszúrások.
+* Kötegelés – a Linux-alapú hdinsight eszközzel, hello használatakor `-batch` Beszúrások végrehajtásakor kapcsoló, a Sqoop hajt végre több Beszúrások hello beszúrási műveletek kötegelése helyett.
 
 ## <a name="next-steps"></a>Következő lépések
-Most megtanulhatta, hogyan használható a Sqoop. További tudnivalókért lásd:
+Most megtanulta, hogyan toouse Sqoop. toolearn több, lásd:
 
 * [A Hive használata a HDInsightban](hdinsight-use-hive.md)
 * [A Pig használata a HDInsightban](hdinsight-use-pig.md)
 * [Oozie használata a HDInsight][hdinsight-use-oozie]: egy Oozie munkafolyamat használja Sqoop műveletét.
-* [HDInsight eszközzel repülési késleltetés adatok elemzése][hdinsight-analyze-flight-data]: használja struktúra elemzése repülési késleltetés az adatok, és a Sqoop segítségével exportál adatokat az Azure SQL-adatbázis.
-* [Adatok feltöltése a HDInsight][hdinsight-upload-data]: található adatok feltöltése a HDInsight vagy az Azure Blob storage más módszerrel.
+* [HDInsight eszközzel repülési késleltetés adatok elemzése][hdinsight-analyze-flight-data]: tooanalyze felhőszolgáltató közötti átviteléhez használja Hive késleltetés az adatok, és majd a Sqoop tooexport tooan Azure SQL-adatbázis használata.
+* [Töltse fel az adatok tooHDInsight][hdinsight-upload-data]: található adatok tooHDInsight vagy az Azure Blob storage feltöltése más módszerrel.
 
 ## <a name="appendix-a---a-powershell-sample"></a>A melléklet – PowerShell-példa
-A PowerShell-példa a következő lépéseket végzi el:
+hello PowerShell-példa hello a következő lépéseket végzi el:
 
-1. Csatlakozás az Azure-bA.
+1. Csatlakozás tooAzure.
 2. Azure-erőforráscsoport létrehozása További információkért lásd: [az Azure PowerShell használata Azure Resource Managerrel](../powershell-azure-resource-manager.md)
 3. Hozzon létre egy Azure SQL adatbázis-kiszolgáló, az Azure SQL-adatbázis és a két tábla. 
    
-    Ha ehelyett SQL Servert használja, a táblák létrehozásához használja az alábbi utasításokat:
+    Ha ehelyett SQL Servert használja, használja a következő utasítások toocreate hello táblák hello:
    
         CREATE TABLE [dbo].[log4jlogs](
          [t1] [nvarchar](50),
@@ -191,41 +191,41 @@ A PowerShell-példa a következő lépéseket végzi el:
          [sessionid] [bigint],
          [sessionpagevieworder][bigint])
    
-    A vizsgálata, az adatbázis és a táblák legkönnyebben Visual Studio használata. Az adatbázis-kiszolgáló és az adatbázis megfelel az Azure portál használatával.
+    hello legegyszerűbb módja tooexamine hello adatbázis és a táblák nem toouse Visual Studio. hello adatbázis és adatbázis-kiszolgáló hello megvizsgálhatók hello Azure-portál használatával.
 4. HDInsight-fürtök létrehozása.
    
-    Vizsgálja meg a fürt, használhatja az Azure portálon vagy az Azure PowerShell.
-5. Előre feldolgozzák a forrásadatfájlok.
+    tooexamine hello fürt, használhatja hello Azure-portálon vagy az Azure PowerShell.
+5. Előre feldolgozzák a hello forrásadatfájlok.
    
-    Ebben az oktatóanyagban exportálhatja egy log4j naplófájl (tagolt fájl) és a Hive tábla Azure SQL-adatbázishoz. A tagolt fájl neve */example/data/sample.log*. Az oktatóanyag korábbi részében látott néhány minták log4j naplók. A naplófájlban van néhány üres sorok és az egyes sorok alábbiakhoz hasonló:
+    Ebben az oktatóanyagban kell exportálnia a log4j naplófájl (tagolt fájl), és a Hive tábla tooan Azure SQL-adatbázis. hello tagolt fájl neve */example/data/sample.log*. Hello az oktatóanyagban a korábbi látott néhány minták log4j naplók. Hello naplófájlban van néhány üres sorok és az egyes sorok hasonló toothese:
    
         java.lang.Exception: 2012-02-03 20:11:35 SampleClass2 [FATAL] unrecoverable system problem at id 609774657
             at com.osa.mocklogger.MockLogger$2.run(MockLogger.java:83)
    
-    Ennek megfelelően működik, ezeket az adatokat használó más példák, de azt el kell távolítania az ilyen kivételek ahhoz, hogy importálja az Azure SQL database vagy az SQL Server. Sqoop exportálás sikertelen lesz, ha üres karakterlánc vagy egy kevesebb sort van definiálva az Azure SQL-adatbázistáblában szereplő mezők elemet. A log4jlogs tábla 7 karakterlánc típusú mezőket tartalmaz.
+    Ennek megfelelően működik, ezeket az adatokat használó más példák, de azt előtt el kell távolítani ezeket a kivételeket azt importálnia hello Azure SQL database vagy az SQL Server. Sqoop exportálás sikertelen lesz, ha van egy üres karakterlánc vagy egy kevesebb sort hello Azure SQL adatbázis táblázatban definiált mezők hello száma elemet. hello log4jlogs táblához 7 karakterlánc típusú mezőket.
    
-    Ez az eljárás létrehoz egy új fájlt a fürt: tutorials/usesqoop/data/sample.log. Tekintse meg a módosított adatok fájlt, használhatja az Azure-portálon, az Azure Storage explorer eszköz vagy az Azure PowerShell. [Ismerkedés a HDInsight] [ hdinsight-get-started] rendelkezik egy példakód az Azure PowerShell használatával töltse le a fájlt, és megjeleníti a fájl tartalma.
-6. Az Azure SQL-adatbázis egy adatfájlt exportálja.
+    Ez az eljárás létrehoz egy új fájlt hello fürt: tutorials/usesqoop/data/sample.log. tooexamine hello módosított adatfájlt, használhat hello Azure-portálon, az Azure Storage explorer eszköz vagy az Azure PowerShell. [Ismerkedés a HDInsight] [ hdinsight-get-started] minta az Azure PowerShell toodownload egy fájl segítségével, és megjeleníti a hello fájl tartalma kódot tartalmaz.
+6. Exportálja az adatokat fájl toohello Azure SQL-adatbázis.
    
-    A forrásfájl tutorials/usesqoop/data/sample.log. A tábla, ahol az adatok exportálása az log4jlogs nevezik.
+    hello forrásfájl tutorials/usesqoop/data/sample.log. ahol hello adatok az exportált toois hello tábla log4jlogs nevezik.
    
    > [!NOTE]
-   > Eltérő kapcsolati karakterlánc információt a jelen szakaszban szereplő lépéseket az Azure SQL-adatbázis, vagy az SQL Server kell működnie. Ezeket a lépéseket a következő konfigurációval teszteltük:
+   > Eltérő kapcsolati karakterlánc információt ebben a szakaszban található lépéseket hello Azure SQL-adatbázis, vagy az SQL Server kell működnie. Ezeket a lépéseket teszteltük hello konfiguráció a következő használatával:
    > 
-   > * **Azure-beli virtuális hálózat pont-hely konfigurációs**: virtuális hálózat a HDInsight-fürthöz csatlakozik egy SQL Server egy privát adatközpontban. Lásd: [pont-pont VPN konfigurálásához a kezelési portál](../vpn-gateway/vpn-gateway-point-to-site-create.md) további információt.
+   > * **Azure-beli virtuális hálózat pont-hely konfigurációs**: egy virtuális hálózathoz csatlakozó hello HDInsight fürt tooa SQL Server egy privát adatközpontban. Lásd: [pont-pont VPN konfigurálásához a kezelési portál hello](../vpn-gateway/vpn-gateway-point-to-site-create.md) további információt.
    > * **Az Azure HDInsight 3.1**: lásd: [létrehozása Hadoop-fürtök a Hdinsightban egyéni beállításokkal](hdinsight-hadoop-provision-linux-clusters.md) információ a fürt létrehozása a virtuális hálózaton.
-   > * **Az SQL Server 2014**: konfigurált ahhoz, hogy hitelesítést és fut a VPN-ügyfél konfigurációs csomag biztonságosan a virtuális hálózathoz csatlakozni.
+   > * **Az SQL Server 2014**: tooallow hitelesítési és futó hello VPN ügyfél konfigurációs csomag tooconnect biztonságosan konfigurált virtuális hálózati toohello.
    > 
    > 
-7. Hive tábla exportálása az Azure SQL adatbázishoz.
-8. A mobiledata tábla importálása a HDInsight-fürthöz.
+7. Exportálja a Hive tábla toohello Azure SQL-adatbázis.
+8. Importálja a hello mobiledata tábla toohello HDInsight-fürthöz.
    
-    Tekintse meg a módosított adatok fájlt, használhatja az Azure-portálon, az Azure Storage explorer eszköz vagy az Azure PowerShell.  [Ismerkedés a HDInsight] [ hdinsight-get-started] rendelkezik egy kódminta Azure PowerShell használatával töltse le a fájlt, és megjeleníti a fájl tartalma.
+    tooexamine hello módosított adatfájlt, használhat hello Azure-portálon, az Azure Storage explorer eszköz vagy az Azure PowerShell.  [Ismerkedés a HDInsight] [ hdinsight-get-started] Azure PowerShell toodownload fájl használatáról sample és hello fájl tartalom megjelenítése egy kódot.
 
-### <a name="the-powershell-sample"></a>A PowerShell-példa
-    # Prepare an Azure SQL database to be used by the Sqoop tutorial
+### <a name="hello-powershell-sample"></a>hello PowerShell-példa
+    # Prepare an Azure SQL database toobe used by hello Sqoop tutorial
 
-    #region - provide the following values
+    #region - provide hello following values
 
     $subscriptionID = "<Enter your Azure Subscription ID>"
 
@@ -292,8 +292,8 @@ A PowerShell-példa a következő lépéseket végzi el:
     # Treat all errors as terminating
     $ErrorActionPreference = "Stop"
 
-    #region - Connect to Azure subscription
-    Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+    #region - Connect tooAzure subscription
+    Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
     catch{Login-AzureRmAccount}
     #endregion
@@ -334,8 +334,8 @@ A PowerShell-példa a következő lépéseket végzi el:
             -StartIpAddress $workstationIPAddress `
             -EndIpAddress $workstationIPAddress
 
-        #To allow other Azure services to access the server add a firewall rule and set both the StartIpAddress and EndIpAddress to 0.0.0.0. 
-        #Note that this allows Azure traffic from any Azure subscription to access the server.
+        #tooallow other Azure services tooaccess hello server add a firewall rule and set both hello StartIpAddress and EndIpAddress too0.0.0.0. 
+        #Note that this allows Azure traffic from any Azure subscription tooaccess hello server.
         New-AzureRmSqlServerFirewallRule `
             -ResourceGroupName $resourceGroupName `
             -ServerName $sqlDatabaseServerName `
@@ -368,13 +368,13 @@ A PowerShell-példa a következő lépéseket végzi el:
     #endregion
 
     #region - Create tables
-    Write-Host "Creating the log4jlogs table and the mobiledata table ..." -ForegroundColor Green
+    Write-Host "Creating hello log4jlogs table and hello mobiledata table ..." -ForegroundColor Green
 
     $conn = New-Object System.Data.SqlClient.SqlConnection
     $conn.ConnectionString = $sqlDatabaseConnectionString
     $conn.Open()
 
-    # Create the log4jlogs table and index
+    # Create hello log4jlogs table and index
     $cmd = New-Object System.Data.SqlClient.SqlCommand
     $cmd.Connection = $conn
     $cmd.CommandText = $cmdCreateLog4jTable
@@ -382,7 +382,7 @@ A PowerShell-példa a következő lépéseket végzi el:
     $cmd.CommandText = $cmdCreateLog4jClusteredIndex
     $cmd.ExecuteNonQuery()
 
-    # Create the mobiledata table and index
+    # Create hello mobiledata table and index
     $cmd.CommandText = $cmdCreateMobileTable
     $cmd.ExecuteNonQuery()
     $cmd.CommandText = $cmdCreateMobileDataClusteredIndex
@@ -395,16 +395,16 @@ A PowerShell-példa a következő lépéseket végzi el:
 
     #region - Create HDInsight cluster
 
-    Write-Host "Creating the HDInsight cluster and the dependent services ..." -ForegroundColor Green
+    Write-Host "Creating hello HDInsight cluster and hello dependent services ..." -ForegroundColor Green
 
-    # Create the default storage account
+    # Create hello default storage account
     New-AzureRmStorageAccount `
         -ResourceGroupName $resourceGroupName `
         -Name $defaultStorageAccountName `
         -Location $location `
         -Type Standard_LRS
 
-    # Create the default Blob container
+    # Create hello default Blob container
     $defaultStorageAccountKey = (Get-AzureRmStorageAccountKey `
                                     -ResourceGroupName $resourceGroupName `
                                     -Name $defaultStorageAccountName)[0].Value
@@ -415,7 +415,7 @@ A PowerShell-példa a következő lépéseket végzi el:
         -Name $defaultBlobContainerName `
         -Context $defaultStorageAccountContext 
 
-    # Create the HDInsight cluster
+    # Create hello HDInsight cluster
     $pw = ConvertTo-SecureString -String $httpPassword -AsPlainText -Force
     $httpCredential = New-Object System.Management.Automation.PSCredential($httpUserName,$pw)
 
@@ -431,47 +431,47 @@ A PowerShell-példa a következő lépéseket végzi el:
         -DefaultStorageAccountKey $defaultStorageAccountKey `
         -DefaultStorageContainer $defaultBlobContainerName 
 
-    # Validate the cluster
+    # Validate hello cluster
     Get-AzureRmHDInsightCluster -ClusterName $hdinsightClusterName
     #endregion
 
-    #region - pre-process the source file
+    #region - pre-process hello source file
 
-    Write-Host "Preprocessing the source file ..." -ForegroundColor Green
+    Write-Host "Preprocessing hello source file ..." -ForegroundColor Green
 
     # This procedure creates a new file with $destBlobName
     $sourceBlobName = "example/data/sample.log"
     $destBlobName = "tutorials/usesqoop/data/sample.log"
 
-    # Define the connection string
+    # Define hello connection string
     $storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=$defaultStorageAccountName;AccountKey=$defaultStorageAccountKey"
 
-    # Create block blob objects referencing the source and destination blob.
+    # Create block blob objects referencing hello source and destination blob.
     $storageAccount = [Microsoft.WindowsAzure.Storage.CloudStorageAccount]::Parse($storageConnectionString)
     $storageClient = $storageAccount.CreateCloudBlobClient();
     $storageContainer = $storageClient.GetContainerReference($defaultBlobContainerName)
     $sourceBlob = $storageContainer.GetBlockBlobReference($sourceBlobName)
     $destBlob = $storageContainer.GetBlockBlobReference($destBlobName)
 
-    # Define a MemoryStream and a StreamReader for reading from the source file
+    # Define a MemoryStream and a StreamReader for reading from hello source file
     $stream = New-Object System.IO.MemoryStream
     $stream = $sourceBlob.OpenRead()
     $sReader = New-Object System.IO.StreamReader($stream)
 
-    # Define a MemoryStream and a StreamWriter for writing into the destination file
+    # Define a MemoryStream and a StreamWriter for writing into hello destination file
     $memStream = New-Object System.IO.MemoryStream
     $writeStream = New-Object System.IO.StreamWriter $memStream
 
-    # Pre-process the source blob
+    # Pre-process hello source blob
     $exString = "java.lang.Exception:"
     while(-Not $sReader.EndOfStream){
         $line = $sReader.ReadLine()
         $split = $line.Split(" ")
 
-        # remove the "java.lang.Exception" from the first element of the array
+        # remove hello "java.lang.Exception" from hello first element of hello array
         # for example: java.lang.Exception: 2012-02-03 19:11:02 SampleClass8 [WARN] problem finding id 153454612
         if ($split[0] -eq $exString){
-            #create a new ArrayList to remove $split[0]
+            #create a new ArrayList tooremove $split[0]
             $newArray = [System.Collections.ArrayList] $split
             $newArray.Remove($exString)
 
@@ -480,23 +480,23 @@ A PowerShell-példa a következő lépéseket végzi el:
             $line = $newArray -join(" ")
         }
 
-        # remove the lines that has less than 7 elements
+        # remove hello lines that has less than 7 elements
         if ($split.count -ge 7){
             write-host $line
             $writeStream.WriteLine($line)
         }
     }
 
-    # Write to the destination blob
+    # Write toohello destination blob
     $writeStream.Flush()
     $memStream.Seek(0, "Begin")
     $destBlob.UploadFromStream($memStream)
 
     #endregion
 
-    #region - export a log file from the cluster to the SQL database
+    #region - export a log file from hello cluster toohello SQL database
 
-    Write-Host "Preprocessing the source file ..." -ForegroundColor Green
+    Write-Host "Preprocessing hello source file ..." -ForegroundColor Green
 
     $tableName_log4j = "log4jlogs"
 

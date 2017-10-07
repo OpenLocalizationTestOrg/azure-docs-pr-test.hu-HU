@@ -1,6 +1,6 @@
 ---
-title: "Elemzés platformok: Stream Analytics alatt futó Apache Storm összehasonlítása |} Microsoft Docs"
-description: "Útmutató a felhőalapú analytics platform kiválasztása az Apache Storm összehasonlítás Stream Analytics segítségével beolvasása. Szolgáltatások és különbségek megértése."
+title: "Elemzés platformok: Apache Storm összehasonlító tooStream Analytics |} Microsoft Docs"
+description: "Útmutató a felhőalapú analytics platform kiválasztása az Apache Storm összehasonlító tooStream Analytics segítségével beolvasása. Szolgáltatások és különbségek megértése."
 keywords: "elemzési platformot, analytics platform, elemzés felhőplatform, storm összehasonlítása"
 services: stream-analytics
 documentationcenter: 
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/27/2017
 ms.author: samacha
-ms.openlocfilehash: 97044cb5d7b0b3fcb3b85328df618a265bc59b61
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5a0ec5b2439596f0da962f04b776472031660062
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="choosing-a-streaming-analytics-platform-comparing-apache-storm-and-azure-stream-analytics"></a>A folyamatos átviteli analytics platform kiválasztása: az Apache Storm és az Azure Stream Analytics összehasonlítása
-Azure adatfolyam-továbbítási adatok elemzése több megoldást nyújt: [Azure Streaming Analytics](https://docs.microsoft.com/azure/stream-analytics/) és [Azure HDInsight alatt futó Apache Storm](https://azure.microsoft.com/services/hdinsight/apache-storm/). Mindkét analytics platform előnyei a PaaS megoldást. Azonban a platformok jelentős eltérések képességeit, valamint hogyan konfigurálhatja és kezelheti azokat. 
+Azure adatfolyam-továbbítási adatok elemzése több megoldást nyújt: [Azure Streaming Analytics](https://docs.microsoft.com/azure/stream-analytics/) és [Azure HDInsight alatt futó Apache Storm](https://azure.microsoft.com/services/hdinsight/apache-storm/). Mindkét analytics platform előnyei hello a PaaS megoldás. De hello platformok jelentős eltérések képességeit, valamint hogyan konfigurálhatja és kezelheti azokat. 
 
-Ez a cikk ismerteti a szolgáltatások segítségével válassza ki az Apache Storm és Azure Stream Analytics felhő analytics platformként között egymás melletti összehasonlítása. 
+Ez a cikk választhat alatt futó Apache Storm és Azure Stream Analytics felhő analytics platformként között szolgáltatások toohelp egymás melletti összehasonlítását tartalmazza. 
 
 ## <a name="general-features"></a>Általános szolgáltatások
 
@@ -121,14 +121,14 @@ Felhasználók központi telepítése, és figyelje az egész fürt, amelyek tö
             </td>
             <td width="204" valign="top">
                 <p>
-Áron által feldolgozott adatokat és a szükséges, hogy fut-e a feladat óránként streamelési egységek számát. 
+Által feldolgozott adatmennyiség áron és hello adatfolyam-továbbítási egységek száma óránként szükséges hello feladat fut-e. 
                 </p>
                     <p>További információkért lásd: <a href="http://azure.microsoft.com/pricing/details/stream-analytics/">Stream Analytics Díjszabásáról</a>.</p>
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-A vásárlás fürt-alapú, és fel van töltve, a rendszer fut a fürtön, független telepített feladatok ideje alapján.
+hello beszerzési fürt-alapú, és hello fürt fut, független telepített feladatok hello idővel feladata alapján.
                 </p>
                 <p>
 További információkért lásd: <a href="http://azure.microsoft.com/pricing/details/hdinsight/">HDInsight árképzési</a>.
@@ -189,7 +189,7 @@ Ablakos összesítéseket és az időalapú illesztéseket alapértelmezés szer
             </td>
             <td width="246" valign="top">
                 <p>
-Az ideiglenes operátorok a felhasználónak kell végrehajtania.
+Az ideiglenes operátorok hello felhasználónak kell végrehajtania.
                 </p>
             </td>
         </tr>
@@ -201,12 +201,12 @@ Az ideiglenes operátorok a felhasználónak kell végrehajtania.
             </td>
             <td width="204" valign="top">
                 <p>
-Felhasználók létrehozása, hibakeresési, és figyelje a feladatokat az Azure-portálon keresztül mintaadatok származó élő adatfolyam használata.
+Felhasználók létrehozása, hibakeresési, és figyelje a feladatokat a hello Azure-portálon keresztül mintaadatok származó élő adatfolyam használata.
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-Felhasználók a .NET fejlesztés, hibakeresését és figyelése a Visual Studio alkalmazással. Java vagy más nyelvű felhasználók használhatják az általuk választott IDE.
+Felhasználók a .NET fejlesztés, hibakeresését és figyelése a Visual Studio alkalmazással. Java vagy egyéb nyelvek felhasználók használhatják az általuk választott IDE hello.
                 </p>
             </td>
         </tr>
@@ -218,12 +218,12 @@ Felhasználók a .NET fejlesztés, hibakeresését és figyelése a Visual Studi
             </td>
             <td width="204" valign="top">
                 <p>
-Alapszintű állapotának és műveleteinek feladatnaplóit elérhetők segítségére hibakeresésben. A Stream Analytics jelenleg megadásakor a felhasználók nem adja meg a tartalmat, vagy mekkora a tartalom megtalálható a naplók (azaz részletes üzemmód).
+Alapszintű állapotának és műveleteinek feladatnaplóit elérhető toohelp hibakeresési. A Stream Analytics jelenleg megadásakor a felhasználók nem adja meg a tartalmat, vagy mekkora a tartalom megtalálható hello naplók (azaz részletes üzemmód).
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-Részletes naplózási érhetők el. A felhasználók naplók a Visual Studio vagy jelentkezik be a fürt és a naplók elérése közvetlenül.
+Részletes naplózási érhetők el. A felhasználók naplók a Visual Studio vagy toohello fürt naplózás és hello naplók elérése közvetlenül.
                 </p>
             </td>
         </tr>
@@ -388,7 +388,7 @@ Figyelése Azure portál és a REST API-k segítségével történik. Felhaszná
             </td>
             <td width="246" valign="top">
                 <p>
-Figyelés a Storm felhasználói felület és a REST API-k segítségével történik.
+Figyelési hello Storm felhasználói felülete és a REST API-k segítségével történik.
                 </p>
             </td>
         </tr>
@@ -400,12 +400,12 @@ Figyelés a Storm felhasználói felület és a REST API-k segítségével tört
             </td>
             <td width="204" valign="top">
                 <p>
-Méretezhetőség minden folyamatos átviteli egységek (SUs) számát határozza meg. Folyamatos átviteli egységenként legfeljebb 1 MB/másodperc, a maximális 50 egységek dolgozza fel. További információkért lásd: <a href="https://docs.microsoft.com/azure/stream-analytics/stream-analytics-scale-jobs">átviteli sebesség növelése méretezési</a>.
+Méretezhetőség hello minden folyamatos átviteli egységek (SUs) számát határozza meg. Minden Streaming Unit dolgozza fel a too1 mentése MB/másodperc, a maximális 50 egységek használatával. További információkért lásd: <a href="https://docs.microsoft.com/azure/stream-analytics/stream-analytics-scale-jobs">méretezési tooincrease átviteli</a>.
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-Méretezhetőség a HDInsight alatt futó Storm-fürt a csomópontok száma határozza meg. A felhasználó Azure kvóta határozza meg a csomópontok száma a felső korlátot.
+Méretezhetőség hello hello HDInsight alatt futó Storm-fürt a csomópontok száma határozza meg. hello felső korlátot hello csomópontok hello felhasználói Azure kvóta határozzák meg.
                 </p>
             </td>
         </tr>
@@ -417,7 +417,7 @@ Méretezhetőség a HDInsight alatt futó Storm-fürt a csomópontok száma hat�
             </td>
             <td width="204" valign="top">
                 <p>
-A felhasználók növelheti az adatok feldolgozása vagy növelésével vagy csökkentésével a Streaming Units számát és a felső korlátja 1 GB/s optimalizálni a költségeket.
+Felhasználók növelheti az adatok feldolgozása vagy optimalizálni a költségeket növelésével vagy csökkentésével hello és a felső korlátja 1 GB/s Streaming Units számát.
                 </p>
             </td>
             <td width="246" valign="top">
@@ -475,10 +475,10 @@ Automatikus javítás állásidő nélkül.
             </td>
             <td width="246" valign="top">
                 <p>
-Szolgáltatásiszint-szerződésben garantált 99,9 %-os üzemidőt a Storm-fürt. 
+Szolgáltatásiszint-szerződésben garantált 99,9 %-os üzemidőt hello Storm-fürt. 
                 </p>
                 <p>
-Apache Storm egy hibatűrő adatfolyam platform. Azonban a felhasználó felelőssége, hogy győződjön meg arról, hogy a folyamatos átviteli feladat futtatása folyamatos.
+Apache Storm egy hibatűrő adatfolyam platform. Azonban, hogy a folyamatos átviteli feladatok folyamatos Futtatás hello felhasználó felelőssége tooensure.
                 </p>
             </td>
         </tr>
@@ -519,7 +519,7 @@ Beépített konfigurálható házirendek események sorrendjének módosításá
             </td>
             <td width="246" valign="top">
                 <p>
-Felhasználók logika ebben a forgatókönyvben kezeléséhez meg kell valósítania.
+Felhasználók meg kell valósítania logika toohandle ebben a forgatókönyvben.
                 </p>
             </td>
         </tr>
@@ -531,7 +531,7 @@ Felhasználók logika ebben a forgatókönyvben kezeléséhez meg kell valósít
             </td>
             <td width="204" valign="top">
                 <p>
-Az Azure Blob storage egy legfeljebb 100 MB memória gyorsítótárának referenciaadatok érhető el. Hivatkozás az adatok a szolgáltatás frissítése.
+Az Azure Blob storage egy legfeljebb 100 MB memória gyorsítótárának referenciaadatok érhető el. Referenciaadatok hello szolgáltatás által frissül.
                 </p>
             </td>
             <td width="246" valign="top">

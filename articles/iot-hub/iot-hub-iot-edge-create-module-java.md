@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre egy Azure IoT peremhálózati modul Java |} Microsoft Docs"
-description: "Ez az oktatóanyag a legújabb Azure IoT peremhálózati Maven-csomagok használata BLA adatok konverter modul írásával bővíthető."
+title: "egy Azure IoT peremhálózati modul Java aaaCreate |} Microsoft Docs"
+description: "Ez az oktatóanyag bővíthető, hogyan egy BLA konverter modul használatával végzett toowrite hello legújabb Azure IoT peremhálózati Maven-csomagokat."
 services: iot-hub
 author: junyi
 manager: timlt
@@ -11,53 +11,53 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: junyi
-ms.openlocfilehash: 0c430272225d79737baec2be15ed7c93991cdeac
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: abb560933d13d133ae9a1da08b503d5735b230e0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-iot-edge-module-with-java"></a>Hozzon létre egy Azure IoT peremhálózati modul Java
 
 Ez az oktatóanyag bővíthető, hogyan egy előfordulhat, hogy olyan modul létrehozása az Azure IoT peremhálózati Java nyelven.
 
-Ebben az oktatóanyagban végigvezetjük környezetben való telepítés és írásával egy [Gedélyezése](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) adatok konverter moduljának használatával. a legújabb Azure IoT peremhálózati Maven-csomagokat.
+Ebben az oktatóanyagban végigvezetjük azon környezetet, és hogyan toowrite egy [Gedélyezése](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) adatok konverter modul hello legújabb Azure IoT peremhálózati Maven-csomagok használata.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Ebben a szakaszban a IoT peremhálózati modul fejlesztői környezetben fog beállítani. Ez egyaránt vonatkozik *64 bites Windows* és *64 bites Linux (8 Ubuntu/Debian)* operációs rendszerek.
+Ebben a szakaszban a IoT peremhálózati modul fejlesztői környezetben fog beállítani. Ez a kategória tooboth *64 bites Windows* és *64 bites Linux (8 Ubuntu/Debian)* operációs rendszerek.
 
-A következő szoftvereket is szükséges:
+a következő szoftver hello szükség:
 
 * [Git ügyfél](https://git-scm.com/downloads).
 * [**x64** JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 * [Maven](https://maven.apache.org/install.html).
 
-Nyisson meg egy parancssori terminálablakot, és a következő tárház klónozása:
+Nyisson meg egy parancssori terminál ablakot, és a Klónozás hello a következő tárházat:
 
 1. `git clone https://github.com/Azure-Samples/iot-edge-samples.git`.
 2. `cd iot-edge-samples/java/simulated_ble`
 
 ## <a name="overall-architecture"></a>Általános architektúrája
 
-Az Azure IoT peremhálózati platform fokozottan elfogadja a [Von Neumann architektúra](https://en.wikipedia.org/wiki/Von_Neumann_architecture). Ami azt jelenti, hogy a teljes Azure IoT-biztonsági architektúrája a rendszer, amely feldolgozza a bemeneti és a kimenetet; és győződjön meg arról, hogy minden egyes modul is egy nagyon kicsi bemeneti / kimeneti alrendszer. Az oktatóanyag azt vezeti be a következő két modulok:
+hello Azure IoT peremhálózati platform fokozottan fogad hello [Von Neumann architektúra](https://en.wikipedia.org/wiki/Von_Neumann_architecture). Ez azt jelenti, hogy hello teljes Azure IoT peremhálózati architektúra egy rendszer, amely feldolgozza a bemeneti és a kimenetet; és győződjön meg arról, hogy minden egyes modul is egy nagyon kicsi bemeneti / kimeneti alrendszer. Az oktatóanyag azt vezeti be a következő két modulok hello:
 
 1. A modul, amely fogadja a szimulált [Gedélyezése](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) jelezze, és konvertálja azt egy formázott [JSON](https://en.wikipedia.org/wiki/JSON) üzenet.
-2. A modult, amely a fogadott kinyomtatja [JSON](https://en.wikipedia.org/wiki/JSON) üzenet.
+2. A modult, amely a fogadott hello kinyomtatja [JSON](https://en.wikipedia.org/wiki/JSON) üzenet.
 
-Az alábbi kép az ebben a projektben tipikus végpont adatfolyamban jeleníti meg:
+hello példánycsoportokat jeleníti meg a projekt hello tipikus végpont adatfolyamban:
 
 ![Három modulok között Adatfolyamblokk](media/iot-hub-iot-edge-create-module/dataflow.png "bemenet: szimulált BLA modul; Processzor: Konverter modul; Kimenete: Nyomtató modul")
 
-## <a name="understanding-the-code"></a>A kód ismertetése
+## <a name="understanding-hello-code"></a>Hello kód ismertetése
 
 ### <a name="maven-project-structure"></a>Maven project struktúra
 
-Mivel az Azure IoT peremhálózati csomagok Maven alapulnak, létre kell hoznunk egy tipikus Maven project struktúra, amely tartalmazza a `pom.xml` fájlt.
+Mivel az Azure IoT peremhálózati csomagok Maven alapulnak, igazolnia kell toocreate egy tipikus Maven project struktúra, amely tartalmazza a `pom.xml` fájlt.
 
-A POM örökli a `com.microsoft.azure.gateway.gateway-module-base` csomagot, amely a függőségeket, beleértve a futásidejű bináris fájljait, az átjáró konfigurációs fájl elérési útját és végrehajtási viselkedésének modul projekthez szükséges összes deklarál. Ez menti, rengeteg időt, és szükségtelenné teszik írásához és sornyi kód több száz újraírási többször.
+hello POM örököl hello `com.microsoft.azure.gateway.gateway-module-base` csomagot, amely az összes hello futásidejű bináris fájljait, hello átjáró konfigurációs fájl elérési útját és hello végrehajtási viselkedésének modul projekthez szükséges hello függőséggel deklarál. Ez menti, rengeteg időt hello kell toowrite megszüntetéséhez és sornyi kód több száz újraírási többször.
 
-A pom.xml fájlt is deklarálni kell a szükséges függőségek/beépülő modulok és a neve, ahogy az a következő kódrészletet a modul által használandó konfigurációs fájljának frissíteni kell.
+Tooupdate a pom.xml fájlt is hello szükséges függőségek/beépülő modulok és a modul által használt, ahogy az a következő kódrészletet hello hello konfigurációs fájl toobe hello nevét deklarálni kell.
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -77,7 +77,7 @@ A pom.xml fájlt is deklarálni kell a szükséges függőségek/beépülő modu
   <version>1.0</version>
   <packaging>jar</packaging>
 
-  <!-- Set the filename of the Azure IoT Edge configuration located
+  <!-- Set hello filename of hello Azure IoT Edge configuration located
        under ./src/main/resources/gateway/ which is used in parent -->
   <properties>
     <gw.config.fileName>gw-config.json</gw.config.fileName>
@@ -123,13 +123,13 @@ A pom.xml fájlt is deklarálni kell a szükséges függőségek/beépülő modu
 
 Egy Azure IoT Edge-modul is kezelheti, amelynek a feladata, feldolgozónak: fogadja, feldolgozni azt és eredménye.
 
-Lehet, hogy a bemeneti hardverek (például egy mozgásérzékelő) adatait, az egyéb modulok vagy bármely más (például egy időzítő rendszeresen generálja véletlenszerűen) üzenet.
+hello bemeneti hardverek (például egy mozgásérzékelő) adatait, egy üzenet más modulok, vagy bármi más (például egy időzítő rendszeresen generálja véletlenszerűen) lehet.
 
-A kimenet a bemeneti hasonló, hogy elindíthatja hardver viselkedés (például a villogó LED), egy üzenetet, amely más modulok vagy bármely más (például a konzol nyomtatás).
+hello kimeneti hasonló toohello bemeneti, hogy elindíthatja hardver viselkedés (például LED villogó hello), egy üzenet tooother modulok vagy bármi más (például a nyomtatási toohello konzol).
 
-Modulok kommunikálnak egymással használatával `com.microsoft.azure.gateway.messaging.Message` osztály. A **tartalom** , egy `Message` bájt tömb, amely bármilyen típusú adatok, például képes. **Tulajdonságok** is elérhetők a `Message` és egyszerűen egy karakterlánc-karakterlánc leképezése. Elképzelhető, hogy a **tulajdonságok** , a fejléceket a HTTP-kérelem és a fájl metaadatait.
+Modulok kommunikálnak egymással használatával `com.microsoft.azure.gateway.messaging.Message` osztály. Hello **tartalom** , egy `Message` bájt tömb, amely bármilyen típusú adatok, például képes. **Tulajdonságok** is rendelkezésre állnak a hello `Message` és egyszerűen egy karakterlánc-karakterlánc leképezése. Elképzelhető, hogy a **tulajdonságok** hello fejlécként HTTP-kérelem vagy hello metaadat-fájl.
 
-Egy Azure IoT Edge-modul a Java elkészítéséhez hozzon létre egy új modul osztályt, amely örökli kell `com.microsoft.azure.gateway.core.GatewayModule` és a szükséges absztrakt metódusok végrehajtása `receive()` és `destroy()`. Ezen a ponton is választhatja, hogy a nem kötelező végrehajtásához `start()` vagy `create()` módszerek is. A következő kódrészletet Ismerkedés az Azure IoT peremhálózati modul szerzői mutatja.
+Rendelés toodevelop egy Azure IoT Edge-modul a Java, egy új modul osztály, amely örökli toocreate kell `com.microsoft.azure.gateway.core.GatewayModule` és megvalósításához szükséges hello absztrakt metódusok `receive()` és `destroy()`. Ezen a ponton is választhatja, hogy tooimplement hello választható `start()` vagy `create()` módszerek is. a következő kódrészletet hello bemutatja, hogyan tooget el az Azure IoT peremhálózati modul szerzői.
 
 ```java
 import com.microsoft.azure.gateway.core.Broker;
@@ -138,29 +138,29 @@ import com.microsoft.azure.gateway.messaging.Message;
 
 public class MyEdgeModule extends GatewayModule {
   public MyEdgeModule(long address, Broker broker, String configuration) {
-    /* Let the GatewayModule do the dirty work of initialization. It's also
-       a good time to parse your own configuration defined in Azure IoT Edge
+    /* Let hello GatewayModule do hello dirty work of initialization. It's also
+       a good time tooparse your own configuration defined in Azure IoT Edge
        configuration file (typically ./src/main/resources/gateway/gw-config.json) */
     super(address, broker, configuration);
   }
 
   @Override
   public void start() {
-    /* Acquire the resources you need. If you don't
+    /* Acquire hello resources you need. If you don't
        need any resources, you may omit this method. */
   }
 
   @Override
   public void destroy() {
-    /* It's time to release all resources. This method is required. */
+    /* It's time toorelease all resources. This method is required. */
   }
 
   @Override
   public void receive(Message message) {
-    /* Logic to process the input message. This method is required. */
+    /* Logic tooprocess hello input message. This method is required. */
     // ...
-    /* Use publish() method to do the output. You are
-       allowed to publish your new Message instance. */
+    /* Use publish() method toodo hello output. You are
+       allowed toopublish your new Message instance. */
     this.publish(message);
   }
 }
@@ -172,7 +172,7 @@ public class MyEdgeModule extends GatewayModule {
 | ------------------------ | -------------------------------------- | ---------------------- | ---------------------- |
 | Hőmérséklet-adatok üzenet | Elemzése és létrehozni egy új JSON-üzenet | Struktúra JSON üzenet | `ConverterModule.java` |
 
-Ez a modul az egy tipikus Azure IoT peremhálózati modul. Hőmérséklet-üzenetek származó adatok elfogad (hardveres modult, vagy ilyen esetben a szimulált BLA modul); és majd normalizálja az hőmérséklet üzenet (beleértve a Hozzáfűzés az Üzenetazonosító, hogy igazolnia kell a hőmérséklet figyelmeztetést, és így tovább tulajdonságának beállítása) strukturált JSON-üzenethez.
+Ez a modul az egy tipikus Azure IoT peremhálózati modul. Hőmérséklet-üzenetek származó adatok elfogad (hardveres modult, vagy ilyen esetben a szimulált BLA modul); és majd normalizálja hőmérséklet üdvözlőüzenetére strukturált tooa JSON üzenet (beleértve a fűznek hello Üzenetazonosítója hello tulajdonságának e igazolnia kell tootrigger hello hőmérséklet riasztást, és így tovább).
 
 ```java
 @Override
@@ -202,9 +202,9 @@ public void receive(Message message) {
 
 | Input (Bemenet)                          | Processzor | Kimenet                     | Forrásfájl          |
 | ------------------------------ | --------- | -------------------------- | -------------------- |
-| Bármely más modulok érkezett üzenetet: | N/A       | Az üzenet naplózása konzolhoz | `PrinterModule.java` |
+| Bármely más modulok érkezett üzenetet: | N/A       | Hello üzenet tooconsole naplózása | `PrinterModule.java` |
 
-Ez az egy egyszerű, értetődő, modult, amely a fogadott üzenetek a terminálablakot kimenete.
+Ez az egy egyszerű, értetődő, modult, amely hello fogadott üzenetek toohello terminálablakot kimenete.
 
 ```java
 @Override
@@ -215,9 +215,9 @@ public void receive(Message message) {
 
 ### <a name="azure-iot-edge-configuration"></a>Azure IoT peremhálózati konfigurálása
 
-Az utolsó lépés a modulok futtatása előtt a konfigurálása az Azure IoT él és a kapcsolatot létrehozni a modulok között.
+hello utolsó lépés előtt futó hello modulok tooconfigure hello Azure IoT peremhálózati és tooestablish hello kapcsolatok modulok között.
 
-Először a Java betöltő (óta Azure IoT peremhálózati támogatja betöltők különböző nyelvű) amely sikerült hivatkozhat deklarálnia kell annak `name` ezt követően a szakaszokban.
+Először igazolnia kell toodeclare a Java betöltő (óta Azure IoT peremhálózati támogatja betöltők különböző nyelvű) sikerült hivatkozhat, amely a `name` hello szakaszok ezt követően.
 
 ```json
 "loaders": [{
@@ -231,7 +231,7 @@ Először a Java betöltő (óta Azure IoT peremhálózati támogatja betöltők
 }]
 ```
 
-Miután a betöltők rendelkezik deklaráltuk, azt is kell a modulok, valamint deklarálja. Hasonló a betöltők deklaráló, azokat is hivatkozhat a `name` attribútum. Egy modul deklaráló, azt kell adnia a betöltő azt kell használnia (amely az legyen előtt meghatározott) és a belépési pont (a normalizált osztály neve a modul kellene lennie) minden modulhoz. A `simulated_device` modul az egy natív modult, amely az Azure IoT peremhálózati core runtime csomagban található. Meg kell adnia `args` a JSON-ban a fájl akkor is, ha `null`.
+Miután a betöltők rendelkezik deklaráltuk, azt is kell toodeclare, valamint a modulok. Hasonló toodeclaring hello betöltők, azokat is hivatkozhat a `name` attribútum. Ha egy modul deklaráló, igazolnia kell a toospecify hello betöltő azt kell használnia (amely előtt meghatározott egyik hello kellene lennie) és a belépési pont (kell lennie a modul hello normalizált osztály neve) minden modul hello. Hello `simulated_device` modul az hello Azure IoT peremhálózati core runtime csomag részét képező natív modul. Meg kell adnia `args` hello JSON fájl, akkor is, ha a `null`.
 
 ```json
 "modules": [
@@ -273,7 +273,7 @@ Miután a betöltők rendelkezik deklaráltuk, azt is kell a modulok, valamint d
 ]
 ```
 
-A konfigurációs végén kapcsolatot létesítünk a kapcsolatokat. Minden kapcsolat van kifejezve `source` és `sink`. Kell mindkét hivatkozó egy előre definiált modul. A kimeneti üzenetét `source` modul a rendszer továbbítja a bemeneti `sink` modul.
+Hello konfigurációs hello végén a Microsoft hello-kapcsolatok létesítéséhez. Minden kapcsolat van kifejezve `source` és `sink`. Kell mindkét hivatkozó egy előre definiált modul. a kimeneti üdvözlőüzenetére `source` modul továbbítják toohello bemeneti `sink` modul.
 
 ```json
 "links": [
@@ -288,14 +288,14 @@ A konfigurációs végén kapcsolatot létesítünk a kapcsolatokat. Minden kapc
 ]
 ```
 
-## <a name="running-the-modules"></a>A modulok fut
+## <a name="running-hello-modules"></a>Hello modulok fut
 
-Használjon `mvn package` mindent történő létrehozásához a `target/` mappát. `mvn clean package`össze is ajánlott.
+Használjon `mvn package` toobuild mindent be hello `target/` mappát. `mvn clean package`össze is ajánlott.
 
-Használjon `mvn exec:exec` futhatnak az Azure IoT él, és figyelnie kell-e az hőmérséklet és a Tulajdonságok nyomtatott rögzített alapján a konzolhoz.
+Használjon `mvn exec:exec` toorun hello Azure IoT él, és figyelnie kell-e, hogy hello hőmérséklet adatok és az összes hello tulajdonság-e a rögzített kulcs nyomtatott toohello konzol.
 
-Ha azt szeretné, az alkalmazás befejezéséhez nyomja le az `<Enter>` kulcs.
+Ha azt szeretné, hogy tooterminate hello alkalmazás, nyomja meg az `<Enter>` kulcs.
 
 > [!IMPORTANT]
-> Nem ajánlott a Ctrl + C használatával az IoT-peremhálózati átjáró alkalmazás befejezéséhez. Mivel ez a folyamat rendellenesen eredményezheti.
+> Nem ajánlott toouse Ctrl + C tooterminate hello IoT peremhálózati átjáró alkalmazás. Mivel ez hello folyamat tooterminate rendellenesen okozhatja.
 

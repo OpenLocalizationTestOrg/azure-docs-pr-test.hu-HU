@@ -1,6 +1,6 @@
 ---
-title: "U-SQL felhasználói operátorok (udo-k) kidolgozása |} Microsoft Docs"
-description: "Megtudhatja, hogyan kell használni, és fel újra a Data Lake Analytics-feladatok felhasználói operátorok fejlesztése. "
+title: "U-SQL aaaDevelop felhasználói operátorok (udo-k) |} Microsoft Docs"
+description: "Ismerje meg, és hogyan lehet toodevelop operátorok felhasználói toobe használja fel újra a Data Lake Analytics feladatok. "
 services: data-lake-analytics
 documentationcenter: 
 author: edmacauley
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
-ms.openlocfilehash: fdee02fb60b633c26704fc1774dfc3a7825b5e0d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6b86618efd3751cd9a5e91875879d7dd6d6a7b02
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="develop-u-sql-user-defined-operators-udos"></a>U-SQL felhasználói operátorok (udo-k) fejlesztése
-Ismerje meg, hogyan fejleszthet operátorok felhasználói fel adatokat a U-SQL-feladatot.
+Ismerje meg, hogyan toodevelop felhasználói operátorok tooprocess adatok a U-SQL feladatok.
 
 Általános célú szerelvényeket a U-SQL fejlesztésével, további információkért lásd: [fejlesztése U-SQL-szerelvények Azure Data Lake Analytics-feladatok](data-lake-analytics-u-sql-develop-assemblies.md)
 
 ## <a name="define-and-use-a-user-defined-operator-in-u-sql"></a>A felhasználó által definiált operátor használata U-SQL és megadása
-**Létrehozásához és elküldéséhez a U-SQL-feladatot:**
+**toocreate, és küldje el a U-SQL-feladatot:**
 
-1. A Visual Studio válassza **fájl > Új > Projekt > U-SQL projekt**.
+1. Válassza ki a Visual Studio hello **fájl > Új > Projekt > U-SQL projekt**.
 2. Kattintson az **OK** gombra. A Visual Studio létrehoz egy megoldást Script.usql fájllal.
 3. A **Megoldáskezelőben**, bontsa ki a Script.usql, és kattintson duplán **Script.usql.cs**.
-4. A fájlba illessze be a következő kódot:
+4. Illessze be a kódot hello fájlba a következő hello:
 
         using Microsoft.Analytics.Interfaces;
         using System.Collections.Generic;
@@ -88,7 +88,7 @@ Ismerje meg, hogyan fejleszthet operátorok felhasználói fel adatokat a U-SQL-
                 }
             }
         }
-6. Nyissa meg **Script.usql**, és illessze be az alábbi U-SQL parancsfájlt:
+6. Nyissa meg **Script.usql**, és a Beillesztés hello alábbi U-SQL-parancsfájlt:
 
         @drivers =
             EXTRACT UserID      string,
@@ -115,21 +115,21 @@ Ismerje meg, hogyan fejleszthet operátorok felhasználói fel adatokat a U-SQL-
             USING new USQL_UDO.CountryName();    
 
         OUTPUT @drivers_CountryName
-            TO "/Samples/Outputs/Drivers.csv"
+            too"/Samples/Outputs/Drivers.csv"
             USING Outputters.Csv(Encoding.Unicode);
-7. Adja meg a Data Lake Analytics-fiókot, -adatbázist és -sémát.
+7. Adja meg a hello Data Lake Analytics-fiók, adatbázis és séma.
 8. A **Solution Explorer** eszközben kattintson a jobb gombbal a **Script.usql** fájlra, majd kattintson a **Build Script** (Parancsfájl létrehozása) elemre.
 9. A **Solution Explorer** eszközben kattintson a jobb gombbal a **Script.usql** fájlra, majd kattintson a **Submit Script** (Parancsfájl elküldése) lehetőségre.
-10. Ha még nem kapcsolódik az Azure-előfizetéssel, kérni fogja az Azure-fiók hitelesítő adatait.
-11. Kattintson a **nyújt**. Után az eredmények és a feladatra mutató hivatkozás esetén érhetők el az eredmények ablakában az elküldés.
-12. Kattintson a **frissítése** gombra kattintva megtekintheti a legutóbbi feladat állapota, és frissítse a képernyőt.
+10. Ha még nem csatlakozott tooyour Azure-előfizetéssel, akkor lesz felszólító tooenter kell az Azure-fiók hitelesítő adatait.
+11. Kattintson a **nyújt**. Után az eredmények és a feladatra mutató hivatkozás esetén érhetők el a találatokat tartalmazó ablakot hello hello elküldés.
+12. Kattintson a hello **frissítése** gomb toosee hello legújabb feladat állapotát és a frissítési üdvözlő képernyőt.
 
-**A kimenet megtekintéséhez**
+**toosee hello kimeneti**
 
-1. A **Server Explorer**, bontsa ki a **Azure**, bontsa ki a **Data Lake Analytics**, bontsa ki a Data Lake Analytics-fiókjait, bontsa ki a **Tárfiókok**, kattintson a jobb gombbal az alapértelmezett tároló, és kattintson a **Explorer**.
+1. A **Server Explorer**, bontsa ki a **Azure**, bontsa ki a **Data Lake Analytics**, bontsa ki a Data Lake Analytics-fiókjait, bontsa ki a **Storage-fiókok**, kattintson a jobb gombbal a hello alapértelmezett tárolási, és kattintson a **Explorer**.
 2. Bontsa ki a mintákat, bontsa ki a kimenetek, és kattintson duplán **Drivers.csv**.
 
 ## <a name="see-also"></a>Lásd még:
 * [A Data Lake Analytics PowerShell használatának első lépései](data-lake-analytics-get-started-powershell.md)
-* [Ismerkedés a Data Lake Analytics az Azure portál használatával](data-lake-analytics-get-started-portal.md)
+* [Ismerkedés a Data Lake Analytics használatának hello Azure-portálon](data-lake-analytics-get-started-portal.md)
 * [Használja a Data Lake Tools for Visual Studio a U-SQL-alkalmazások fejlesztésével](data-lake-analytics-data-lake-tools-get-started.md)

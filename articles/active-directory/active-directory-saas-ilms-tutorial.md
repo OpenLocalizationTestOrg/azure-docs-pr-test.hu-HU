@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált iLMS |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és iLMS között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és iLMS között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,126 +13,126 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/13/2017
 ms.author: jeedes
-ms.openlocfilehash: 22c72020200138e78835ed7dd2661f18b824c785
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: da0936de23afcd5a4213aa6f699165f9bfa82c35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-ilms"></a>Oktatóanyag: Azure Active Directoryval integrált iLMS
 
-Ebben az oktatóanyagban elsajátíthatja iLMS integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate iLMS az Azure Active Directoryval (Azure AD).
 
-ILMS integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+ILMS integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Megadhatja a iLMS hozzáféréssel rendelkező Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a iLMS (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Megadhatja a hozzáférés tooiLMS rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooiLMS (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs iLMS, a következőkre van szükség:
+az Azure AD integrálása iLMS tooconfigure, kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - Egy iLMS egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, ha ez nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A gyűjteményből iLMS hozzáadása
+1. Hello gyűjteményből iLMS hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-ilms-from-the-gallery"></a>A gyűjteményből iLMS hozzáadása
-Az Azure AD integrálása a iLMS konfigurálásához kell hozzáadnia iLMS a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-ilms-from-hello-gallery"></a>Hello gyűjteményből iLMS hozzáadása
+tooconfigure hello integrációja iLMS az Azure AD-be, meg kell tooadd iLMS hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A gyűjteményből iLMS hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd iLMS hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** gombra a párbeszédpanel tetején.
+3. Új alkalmazás tooadd, kattintson a **új alkalmazás** hello párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **iLMS**.
+4. Hello keresési mezőbe, írja be a **iLMS**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-ilms-tutorial/tutorial_ilms_search.png)
 
-5. Az eredmények panelen válassza ki a **iLMS**, majd kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. Hello eredmények panelen, jelölje ki a **iLMS**, majd kattintson a **hozzáadása** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-ilms-tutorial/tutorial_ilms_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján iLMS.
 
-Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó iLMS a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a iLMS közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó iLMS tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello iLMS közötti kapcsolat kapcsolatot kell létrehozni toobe.
 
-Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** iLMS a.
+Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** a iLMS.
 
-Az Azure AD egyszeri bejelentkezést a iLMS tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés iLMS-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[Egy iLMS tesztfelhasználó létrehozása](#creating-an-ilms-test-user)**  - kell rendelkeznie egy Britta Simon megfelelője a iLMS, amely csatolva van rá, hogy az Azure AD ábrázolása.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[Egy iLMS tesztfelhasználó létrehozása](#creating-an-ilms-test-user)**  -toohave Britta Simon iLMS, amely az Azure AD csatolt toohello ábrázolása rá, hogy az egy megfelelője.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az iLMS alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az iLMS alkalmazásban.
 
-**Konfigurálása az Azure AD az egyszeri bejelentkezés iLMS, hajtsa végre az alábbi lépéseket:**
+**az Azure AD tooconfigure egyszeri bejelentkezést a iLMS, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure portálon a a **iLMS** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **iLMS** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ilms-tutorial/tutorial_ilms_samlbase.png)
 
-3. Az a **iLMS tartomány és az URL-címek** területen tegye a következőket, ha szeretne beállítani az alkalmazás **IDP** kezdeményezett mód:
+3. A hello **iLMS tartomány és az URL-címek** csoportjában hajtsa végre a következő lépéseket, ha tooconfigure hello alkalmazás hello **IDP** kezdeményezett mód:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ilms-tutorial/tutorial_ilms_url.png)
 
-    a. Az a **azonosítója** szövegmező, illessze be a **azonosítója** értéket másol a **szolgáltató** iLMS felügyeleti portál SAML-beállítások szakasza.
+    a. A hello **azonosítója** szövegmezőhöz Beillesztés hello **azonosítója** értéket másol a **szolgáltató** iLMS felügyeleti portál SAML-beállítások szakaszban.
 
-    b. Az a **válasz URL-CÍMEN** szövegmező, illessze be a **végpont URL-** értéket másol a **szolgáltató** szakasz iLMS felügyeleti portál, hogy a következő mintát SAML-beállítások`https://www.inspiredlms.com/Login/<instanceName>/consumer.aspx`
+    b. A hello **válasz URL-CÍMEN** szövegmezőhöz Beillesztés hello **végpont URL-** értéket másol a **szolgáltató** szakasz hello következő rendelkező iLMS felügyeleti portál SAML-beállítások minta`https://www.inspiredlms.com/Login/<instanceName>/consumer.aspx`
 
     >[!Note]
     >Ez 123456 példa érték azonosító.
 
-4. Ellenőrizze **megjelenítése speciális URL-beállításainak**, ha szeretne beállítani az alkalmazás **SP** kezdeményezett mód:
+4. Ellenőrizze **megjelenítése speciális URL-beállításainak**, ha tooconfigure hello alkalmazás **SP** kezdeményezett mód:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ilms-tutorial/tutorial_ilms_url1.png)
 
-    Az a **bejelentkezési URL-cím** szövegmező, illessze be a **végpont URL-** értéket másol a **szolgáltató** szakasz iLMS felügyeleti portálon SAML-beállítások`https://www.inspiredlms.com/Login/<instanceName>/consumer.aspx`     
+    A hello **bejelentkezési URL-cím** szövegmezőhöz Beillesztés hello **végpont URL-** értéket másol a **szolgáltató** szakasz iLMS felügyeleti portálon SAML-beállítások`https://www.inspiredlms.com/Login/<instanceName>/consumer.aspx`     
 
-5. Igény szerinti kiépítés engedélyezéséhez iLMS alkalmazás vár a SAML helyességi feltételek egy meghatározott formátumban. A következő jogcímek alkalmazás konfigurálása. Ezek az attribútumok értékének kezelheti a **felhasználói attribútumok** szakasz alkalmazás integráció lapján. Az alábbi képernyőfelvételen látható egy példa a.
+5. a JIT-kiépítés, iLMS alkalmazás vár hello SAML helyességi feltételek egy meghatározott formátumban tooenable. Az alkalmazás jogcímek a következő hello konfigurálása. Ezek az attribútumok értékének hello kezelheti hello **felhasználói attribútumok** szakasz alkalmazás integráció lapján. a következő képernyőkép hello ezen mutat egy példát.
     
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ilms-tutorial/4.png)
     
-    Hozzon létre **részleg, régió** és **osztás** attribútumok közül, adja hozzá ezek az attribútumok nevét iLMS. A fent látható összes attribútum megadása kötelező.  
+    Hozzon létre **részleg, régió** és **osztás** attribútumok közül, iLMS hello név attribútum hozzáadásához. A fent látható összes attribútum megadása kötelező.    
 
     > [!NOTE] 
-    > Engedélyezni kell **Un-recognized felhasználói fiók létrehozása** a iLMS ezek az attribútumok hozzárendelését. Kövesse az utasításokat [Itt](http://support.inspiredelearning.com/customer/portal/articles/2204526) attribútumok konfigurálása képet kapjon.
+    > Tooenable rendelkezik **Un-recognized felhasználói fiók létrehozása** a iLMS toomap ezek az attribútumok. Útmutatás alapján hello [Itt](http://support.inspiredelearning.com/customer/portal/articles/2204526) tooget hello attribútumok konfiguráció képet.
 
-6. A a **felhasználói attribútumok** a szakasz a **egyszeri bejelentkezés** párbeszédpanelen konfigurálja a SAML-jogkivonat attribútum, a fenti ábrán látható módon, és hajtsa végre a következő lépéseket:
+6. A hello **felhasználói attribútumok** hello című szakaszban **egyszeri bejelentkezés** párbeszédpanelen konfigurálja a SAML-jogkivonat attribútum fenti hello ábrán látható módon, és hajtsa végre az alábbi lépésekkel hello:
     
     | Attribútum neve | Attribútum-érték |
     | ---------------| --------------- |    
@@ -140,19 +140,19 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
     | Régió | User.state |
     | Szervezeti egység | User.jobtitle |
 
-    a. Kattintson a **Hozzáadás attribútum** megnyitásához a **attribútum hozzáadása** párbeszédpanel.
+    a. Kattintson a **Hozzáadás attribútum** tooopen hello **attribútum hozzáadása** párbeszédpanel.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ilms-tutorial/tutorial_ilms_04.png)
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ilms-tutorial/tutorial_ilms_05.png)
     
-    b. Az a **neve** szövegmező, írja be az adott sorhoz feltüntetett attribútumot nevét.
+    b. A hello **neve** szövegmezőben, az adott sorhoz feltüntetett hello attribútum neve.
     
-    c. Az a **érték** kilistázásához írja be a sorhoz látható attribútum értéke.
+    c. A hello **érték** listájában, hello attribútuma Típusérték az adott sorhoz feltüntetett.
     
     d. Kattintson a **Ok**
 
-7. Az a **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse az XML-fájlt a számítógépen.
+7. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello XML-fájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ilms-tutorial/tutorial_ilms_certificate.png) 
 
@@ -160,130 +160,130 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-iLMS-tutorial/tutorial_general_400.png)
 
-9. Egy másik webes böngészőablakban, jelentkezzen be a **iLMS felügyeleti portál** rendszergazdaként.
+9. Egy másik webes böngészőablakban, jelentkezzen be tooyour **iLMS felügyeleti portál** rendszergazdaként.
 
-10. Kattintson a **SSO:SAML** alatt **beállítások** lapon nyissa meg a SAML-beállítások, és hajtsa végre a következő lépéseket:
+10. Kattintson a **SSO:SAML** alatt **beállítások** tooopen SAML beállítások lapra, és hajtsa végre az alábbi lépésekkel hello:
     
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ilms-tutorial/1.png) 
 
-    a. Bontsa ki a **szolgáltató** szakaszt, és másolja a **azonosító** és **végpont URL-** érték.
+    a. Bontsa ki a hello **szolgáltató** szakaszt, és másolja hello **azonosító** és **végpont URL-** érték.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ilms-tutorial/2.png) 
 
     b. A **identitásszolgáltató** kattintson **metaadatok importálása**.
     
-    c. Válassza ki a **metaadatok** az Azure-portálról letöltött fájl **SAML-aláíró tanúsítványa** szakasz.
+    c. Jelölje be hello **metaadatok** az Azure-portálról letöltött fájl **SAML-aláíró tanúsítványa** szakasz.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ilms-tutorial/tutorial_ilms_ssoconfig1.png) 
 
-    d. Ha később engedélyezni kívánja történő iLMS fiókokat hozhat létre a un JIT-ismeri fel a felhasználók, kövesse az alábbi lépéseket:
+    d. Ha azt szeretné, hogy tooenable JIT-kiépítés toocreate iLMS tartozó fiókok un-ismeri fel a felhasználók, kövesse az alábbi lépéseket:
         
        - Ellenőrizze **nem felismerhető felhasználói fiók létrehozása**.
        
        ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ilms-tutorial/tutorial_ilms_ssoconfig2.png)
 
-       -  Az attribútumok hozzárendelését iLMS attribútumokat az Azure AD-ben. Az attribútum oszlopának adja meg az attribútumok nevét vagy az alapértelmezett értéket.
+       -  Hello attribútumok megfeleltetése hello attribútumokkal iLMS az Azure AD-ben. Hello attribútum oszlopában adja meg a hello attribútumok nevét vagy hello alapértelmezett értékét.
 
-    e. Ugrás a **üzleti szabályok** lapra, és hajtsa végre a következő lépéseket: 
+    e. Nyissa meg túl**üzleti szabályok** lapra, és hajtsa végre az alábbi lépésekkel hello: 
         
        ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ilms-tutorial/5.png)
 
-       - Ellenőrizze **Un-recognized régiók létrehozása, az osztályok és a szervezeti egységek** régiók, osztályok és szervezeti egységek, amely már létezik az egyszeri bejelentkezés időpontjában létrehozásához.
+       - Ellenőrizze **Un-recognized régiók létrehozása, az osztályok és a szervezeti egységek** toocreate régiókban, osztályok és szervezeti egységek, már létező helyreállításkor hello egyszeri bejelentkezést.
         
-       - Ellenőrizze **frissítés felhasználói profil során bejelentkezés** adhatja meg, hogy a profil frissül minden egyszeri bejelentkezést. 
+       - Ellenőrizze **frissítés felhasználói profil során bejelentkezés** toospecify e hello profil frissül az egyes egyszeri bejelentkezést. 
         
-       - Ha a **"Frissítés üres értékek a nem kötelező mezők a felhasználói profil"** beállítás be van jelölve, a nem kötelező profil mező üres lesz a bejelentkezés után is iLMS profil üres értékek mezőket tartalmaz.
+       - Ha hello **"Frissítés üres értékek a nem kötelező mezők a felhasználói profil"** beállítás be van jelölve, a nem kötelező profil mező üres lesz a bejelentkezés után is hello iLMS profil toocontain üres értékek tekinthetők.
         
-       - Ellenőrizze **hiba értesítő E-mail küldése** és adja meg a felhasználó e-mail címét, ahol szeretne kapni a hiba értesítő e-mailt.
+       - Ellenőrizze **hiba értesítő E-mail küldése** és tooreceive hello hiba értesítő e-mailt, ahová hello e-mail hello felhasználó adja meg.
 
-11. Kattintson a **mentése** gombra a beállítások mentéséhez.
+11. Kattintson a **mentése** toosave hello-beállítások gombra.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ilms-tutorial/save.png)
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
     
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-ilms-tutorial/create_aaduser_01.png) 
 
-2. Ugrás a **felhasználók és csoportok** kattintson **minden felhasználó** azon felhasználók listájának megjelenítéséhez.
+2. Nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó** toodisplay hello azoknak a felhasználóknak.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-ilms-tutorial/create_aaduser_02.png) 
 
-3. Kattintson a párbeszédpanel tetején **Hozzáadás** megnyitásához a **felhasználói** párbeszédpanel.
+3. Hello párbeszédpanel hello tetején kattintson **Hozzáadás** tooopen hello **felhasználói** párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-ilms-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-ilms-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-an-ilms-test-user"></a>Egy iLMS tesztfelhasználó létrehozása
 
-Alkalmazás támogatja a csak az idő a felhasználók átadása, miután a felhasználók hitelesítésére az alkalmazás automatikusan létrejönnek. Igény szerinti fog működni, ha rákattint a **Un-recognized felhasználói fiók létrehozása** jelölőnégyzet során iLMS felügyeleti portál a SAML-alapú konfigurációs beállítást.
+Alkalmazás támogatja a csak az idő a felhasználók átadása, miután a felhasználók hitelesítésére hello alkalmazás automatikusan létrejönnek. Igény szerinti fog működni, ha akkor kattintott hello **Un-recognized felhasználói fiók létrehozása** jelölőnégyzet során iLMS felügyeleti portál a SAML-alapú konfigurációs beállítást.
 
-Ha manuálisan hozzon létre egy felhasználó van szüksége, majd hajtsa végre a következő lépések:
+Ha egy felhasználó toocreate manuálisan kell, majd hajtsa végre a következő lépések:
 
-1. Jelentkezzen be rendszergazdaként a iLMS vállalati webhely.
+1. Jelentkezzen be tooyour iLMS vállalati hely rendszergazdaként.
 
-2. Kattintson a **"Felhasználó regisztrálása"** alatt **felhasználók** elemére kattintva nyissa meg **regisztrálása felhasználói** lap. 
+2. Kattintson a **"Felhasználó regisztrálása"** alatt **felhasználók** tooopen lapon **regisztrálása felhasználói** lap. 
    
    ![Alkalmazott hozzáadása](./media/active-directory-saas-ilms-tutorial/3.png)
 
-3. Az a **"Felhasználó regisztrálása"** lapon, a következő lépésekkel.
+3. A hello **"Felhasználó regisztrálása"** lapon, hajtsa végre az alábbi lépésekkel hello.
 
     ![Alkalmazott hozzáadása](./media/active-directory-saas-ilms-tutorial/create_testuser_add.png)
 
-    a. Az a **Keresztnév** szövegmezőhöz Britta az első típusnév.
+    a. A hello **Keresztnév** szövegmezőhöz hello első típusnév Britta.
    
-    b. Az a **Vezetéknév** szövegmező, írja be a vezetéknevet Simon.
+    b. A hello **Vezetéknév** szövegmezőhöz típus hello Vezetéknév Simon.
 
-    c. Az a **E-mail azonosító** szövegmezőhöz Britta Simon fiók e-mail címét.
+    c. A hello **E-mail azonosító** szövegmezőhöz típus hello Britta Simon fiókhoz tartozó e-mail cím.
 
-    d. Az a **régió** legördülő menüben válassza ki a régiót értékét.
+    d. A hello **régió** legördülő menüben válassza hello érték régióhoz.
 
-    e. Az a **osztás** legördülő menüben válassza ki a részleg értékét.
+    e. A hello **osztás** legördülő menüben válassza hello értéknek nullával.
 
-    f. Az a **részleg** legördülő menüben válassza ki a részleg értékét.
+    f. A hello **részleg** legördülő menüben válassza hello érték részleg számára.
 
     g. Kattintson a **Save** (Mentés) gombra.
 
     > [!NOTE] 
-    > Elküldheti regisztrációs mail felhasználói kiválasztásával **regisztrációs üzenet küldése** jelölőnégyzetet.
+    > Regisztrációs mail toouser kiválasztásával elküldheti **regisztrációs üzenet küldése** jelölőnégyzetet.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban engedélyezze Britta Simon Azure egyszeri bejelentkezéshez használandó saját iLMS való hozzáférés biztosítása.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés saját hozzáférés tooiLMS megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon hozzárendelése iLMS, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooiLMS, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **iLMS**.
+2. Hello alkalmazások listában válassza ki a **iLMS**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-ilms-tutorial/tutorial_ilms_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -291,7 +291,7 @@ Ebben a szakaszban engedélyezze Britta Simon Azure egyszeri bejelentkezéshez h
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -299,13 +299,13 @@ Ebben a szakaszban engedélyezze Britta Simon Azure egyszeri bejelentkezéshez h
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-Ha a hozzáférési panelen iLMS csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az iLMS alkalmazására.
+Hello iLMS hello hozzáférési Panel csempére kattintva kapja meg automatikusan bejelentkezett tooyour iLMS alkalmazás.
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

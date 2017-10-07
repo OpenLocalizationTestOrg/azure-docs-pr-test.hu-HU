@@ -1,5 +1,5 @@
 ---
-title: "Az App Service-környezetek többrétegű biztonsági architektúrája"
+title: "aaaLayered az App Service Environment-környezetek biztonsági architektúrája"
 description: "Az App Service Environment-környezetek egy többrétegű biztonsági architektúra megvalósítása."
 services: app-service
 documentationcenter: 
@@ -14,83 +14,83 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/30/2016
 ms.author: stefsch
-ms.openlocfilehash: 0fb02c13f99a8f4a46e0142c20da3b152c809b6b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0627ba6fa849908506fe62c451c888c147cabc03
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="implementing-a-layered-security-architecture-with-app-service-environments"></a>Az App Service-környezetek egy többrétegű biztonsági architektúra megvalósítása
 ## <a name="overview"></a>Áttekintés
 App Service Environment-környezetek adjon meg egy virtuális hálózatot helyezett izolált futtatókörnyezetben, mivel a fejlesztők egy többrétegű biztonsági architektúra eltérő szintű hálózati hozzáférést biztosít az egyes fizikai alkalmazás rétegek hozhat létre.
 
-A közös desire API vissza-végpontok általános Internet-hozzáférés elrejtéséhez, és csak a felsőbb rétegbeli webes alkalmazások által használt hívása API-k engedélyezése.  [Hálózati biztonsági csoportokkal (NSG-k)] [ NetworkSecurityGroups] nyilvános hozzáférés korlátozása API-alkalmazások App Service Environment-környezetek tartalmazó alhálózatok használható.
+Egy közös desire toohide API vissza-végpontok általános Internet-hozzáférés, és csak a felsőbb rétegbeli webes alkalmazások által meghívott API-k toobe engedélyezése.  [Hálózati biztonsági csoportokkal (NSG-k)] [ NetworkSecurityGroups] App Service Environment-környezetek toorestrict nyilvános tooAPI alkalmazásokat tartalmazó alhálózatok is használhatók.
 
-Az alábbi ábrán egy példa architektúra látható, az App Service-környezetek telepített WebAPI-alapú alkalmazáshoz.  Három különálló webes alkalmazás-példányt, három különálló App Service Environment-környezetek, a háttér-hívások indítása WebAPI ugyanahhoz az alkalmazáshoz.
+az alábbi ábrán hello egy példa architektúra látható, az App Service-környezetek telepített WebAPI-alapú alkalmazáshoz.  Három külön web app-példányt, a három különálló App Service Environment-környezetek, ellenőrizze a háttér-hívások toohello WebAPI ugyanahhoz az alkalmazáshoz.
 
 ![Fogalmi architektúra][ConceptualArchitecture] 
 
-A zöld plusz jel jelzi, hogy engedélyezi-e a hálózati biztonsági csoportot az "apiase" tartalmazó alhálózat bejövő hívások a felsőbb rétegbeli webes alkalmazásokból, jól hívások magából.  Azonban a hálózati biztonsági csoporton kifejezetten megtagadja általános bejövő forgalom az internethez való hozzáférést. 
+hello zöld plusz jel jelzi, hogy hello hálózati biztonsági csoportot tartalmazó "apiase" hello alhálózaton lehetővé teszi, hogy hello érkező bejövő hívások felsőbb rétegbeli webes alkalmazásokhoz, mint magából jól hívások.  Azonban az azonos hálózati biztonsági csoport kifejezetten megtagadja hello toogeneral elérni bejövő hello internetes forgalmát. 
 
-Ez a témakör további része végigvezeti a lépéseken, amelyekkel a hálózati biztonsági csoport konfigurálása "apiase" tartalmazó alhálózaton.
+Ez a témakör további része hello tartalmazó "apiase" hello alhálózaton végigvezeti a hello lépéseket szükséges tooconfigure hello hálózati biztonsági csoport.
 
-## <a name="determining-the-network-behavior"></a>A hálózati probléma meghatározása
-Ahhoz, hogy tudja, milyen hálózati biztonsági szabályok szükségesek, meg kell határoznia, melyik hálózati ügyfelek részére engedélyezve lesz az App Service-környezet, az API-alkalmazást tartalmazó elérni, és mely ügyfelek le lesz tiltva.
+## <a name="determining-hello-network-behavior"></a>Hello hálózati viselkedésének meghatározása
+Rendelés tooknow milyen hálózati biztonsági szabályok van szükség, akkor kell toodetermine mely hálózati ügyfelek részére engedélyezett tooreach hello App Service Environment-környezet tartalmazó hello API-alkalmazást, és mely ügyfelek le lesz tiltva.
 
-Mivel [hálózati biztonsági csoportokkal (NSG-k)] [ NetworkSecurityGroups] alkalmazott alhálózatok, és az App Service Environment-környezetek alhálózatokra vannak telepítve, egy NSG foglalt szabályok vonatkoznak **összes** alkalmazások az App Service-környezetek futnak.  Használja a mintaarchitektúrája ebben a cikkben után a hálózati biztonsági csoport van alkalmazva tartalmazó "apiase", "apiase" App Service Environment-környezet futó minden alkalmazás fogja védeni az ugyanazokat a biztonsági szabályok. 
+Mivel a [hálózati biztonsági csoportokkal (NSG-k)] [ NetworkSecurityGroups] alkalmazott toosubnets, és telepítve vannak az App Service Environment-környezetek alhálózatokra, egy NSG hello szabályaival alkalmazása közé tartoznak túl**összes** az App Service-környezetek futó alkalmazásokra.  Hello mintaarchitektúrája ebben a cikkben után a hálózati biztonsági csoport "apiase" hello "apiase" App Service Environment-környezet hello védelemmel látja el futó összes alkalmazást tartalmazó alkalmazott toohello alhálózati azonos számítógépen állítsa be a biztonsági szabályok. 
 
-* **Határozza meg a felsőbb rétegbeli hívók kimenő IP-cím:** Mi az az IP-címeket a felsőbb rétegbeli hívók?  Ezeket a címeket kell explicit módon hozzáférhessen az NSG.  App Service Environment-környezetek közötti hívások "Internet" hívások minősülnek, mivel ez azt jelenti, a kimenő IP-címet hozzárendelni a három felsőbb szintű App Service-környezetek mindegyikének kell az NSG az "apiase" alhálózat hozzáférése engedélyezett.   A kimenő IP-cím meghatározása egy App Service Environment-környezetben futó alkalmazásokhoz című vonatkozó részletes információért a [hálózati architektúra] [ NetworkArchitecture] a cikk áttekintése.
-* **A háttér-API-alkalmazásba kell hívnia magának?**  Néha kihagyott és finom pont a forgatókönyvet, ahol a háttér-alkalmazást kell hívhatja saját magát.  Ha egy háttér-API-alkalmazás az App Service-környezetek hívható meg magának kell, ez is kezeli az "Internet" hívásként.  A minta-architektúrában ehhez a kimenő IP-címét a "apiase" App Service Environment-környezet, valamint a hozzáférés.
+* **Határozza meg a felsőbb rétegbeli hívóknak hello kimenő IP-címe:** hello IP-címeket hello fölérendelt hívók újdonságai?  Ezeknél a címeknél kifejezetten engedélyezett hozzáférési hello NSG toobe lesz szüksége.  App Service Environment-környezetek közötti hívások "Internet" hívások minősülnek, mivel ez azt jelenti, hello kimenő IP cím tooeach a hello három felsőbb szintű App Service Environment-környezetek igényeinek toobe hozzáférhetnek a hello NSG hello "apiase" alhálózathoz.   Kapcsolatban további részleteket a hello kimenő IP-cím meghatározása egy App Service Environment-környezetben futó alkalmazásokhoz című hello [hálózati architektúra] [ NetworkArchitecture] a cikk áttekintése.
+* **Háttér-API-alkalmazás hello kell magát toocall?**  Egyes esetekben kihagyott és finom pont a amikor hello háttéralkalmazás kell magát toocall hello lehetőséget.  Ha egy háttér-API-alkalmazás az App Service-környezetek toocall magának kell, ez is kezeli az "Internet" hívásként.  Hello mintaarchitektúrája ehhez hello kimenő IP-címről hello "apiase" App Service Environment-környezet, valamint a hozzáférés.
 
-## <a name="setting-up-the-network-security-group"></a>A hálózati biztonsági csoport
-Amennyiben az ismert kimenő IP-címek készlete, a következő lépésre hálózati biztonsági csoport létrehozásához.  Hálózati biztonsági csoportok mindkét Resource Manager-alapú virtuális hálózatokon, valamint a klasszikus virtuális hálózatok hozhatók létre.  Az alábbi példák bemutatják, létrehozása és konfigurálása egy NSG-t egy Powershell-lel klasszikus virtuális hálózaton.
+## <a name="setting-up-hello-network-security-group"></a>Hálózati biztonsági csoport hello beállítása
+Ha hello a kimenő IP-címek ismert, hello tovább lépés tooconstruct hálózati biztonsági csoport.  Hálózati biztonsági csoportok mindkét Resource Manager-alapú virtuális hálózatokon, valamint a klasszikus virtuális hálózatok hozhatók létre.  hello az alábbi példák létrehozásához és konfigurálásához egy NSG-t egy Powershell-lel klasszikus virtuális hálózaton.
 
-Minta architektúrájának a környezetben található déli középső Régiójában, egy üres NSG az adott régióban jön létre:
+Hello minta architektúra hello környezetben található déli középső Régiójában, egy üres NSG az adott régióban jön létre:
 
     New-AzureNetworkSecurityGroup -Name "RestrictBackendApi" -Location "South Central US" -Label "Only allow web frontend and loopback traffic"
 
-Először egy explicit engedélyezése a szabály szerepel-e az Azure felügyeleti infrastruktúrát a a cikkben leírtaknak megfelelően [bejövő forgalom] [ InboundTraffic] App Service Environment-környezetek számára.
+Először egy explicit módon engedélyezze szabály hello Azure felügyeleti infrastruktúra a hello cikkben leírtaknak megfelelően a rendszer hozzá [bejövő forgalom] [ InboundTraffic] App Service Environment-környezetek számára.
 
     #Open ports for access by Azure management infrastructure
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW AzureMngmt" -Type Inbound -Priority 100 -Action Allow -SourceAddressPrefix 'INTERNET' -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '454-455' -Protocol TCP
 
-A következő két szabály hozzáadódnak engedélyezze a HTTP és HTTPS hívásokat a az első felsőbb szintű App Service Environment-környezet ("fe1ase").
+A következő két szabályok hozzáadása történik meg tooallow HTTP és HTTPS hívásait hello első felsőbb szintű App Service Environment-környezet ("fe1ase").
 
-    #Grant access to requests from the first upstream web front-end
+    #Grant access toorequests from hello first upstream web front-end
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP fe1ase" -Type Inbound -Priority 200 -Action Allow -SourceAddressPrefix '65.52.xx.xyz'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS fe1ase" -Type Inbound -Priority 300 -Action Allow -SourceAddressPrefix '65.52.xx.xyz'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
 
-Le, és ismételje meg a második és harmadik felsőbb szintű App Service Environment-környezetek ("fe2ase" és "fe3ase").
+Rinse, és ismételje meg a hello második és harmadik felsőbb szintű App Service Environment-környezetek ("fe2ase" és "fe3ase").
 
-    #Grant access to requests from the second upstream web front-end
+    #Grant access toorequests from hello second upstream web front-end
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP fe2ase" -Type Inbound -Priority 400 -Action Allow -SourceAddressPrefix '191.238.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS fe2ase" -Type Inbound -Priority 500 -Action Allow -SourceAddressPrefix '191.238.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
 
-    #Grant access to requests from the third upstream web front-end
+    #Grant access toorequests from hello third upstream web front-end
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP fe3ase" -Type Inbound -Priority 600 -Action Allow -SourceAddressPrefix '23.98.abc.xyz'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS fe3ase" -Type Inbound -Priority 700 -Action Allow -SourceAddressPrefix '23.98.abc.xyz'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
 
-Végül hozzáférést a háttér-API App Service Environment-környezet kimenő IP-címét, hogy vissza tudja hívja az magát.
+Hozzáférés toohello kimenő IP-cím hello háttér-API App Service Environment-környezet végül adja meg, hogy vissza tudja hívja az magát.
 
-    #Allow apps on the apiase environment to call back into itself
+    #Allow apps on hello apiase environment toocall back into itself
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP apiase" -Type Inbound -Priority 800 -Action Allow -SourceAddressPrefix '70.37.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS apiase" -Type Inbound -Priority 900 -Action Allow -SourceAddressPrefix '70.37.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
 
-Nincs más hálózati biztonsági szabály be kell állítani, mert minden NSG tartozik egy alapértelmezett szabályokkal, amelyeket az internetről bejövő hozzáférésének letiltására alapértelmezés szerint.
+Nincs más hálózati biztonsági szabály kell konfigurálni, mert minden NSG tartozik egy alapértelmezett szabályokat, amelyek blokkolják a bejövő hozzáférést a hello Internet alapértelmezés szerint toobe.
 
-A hálózati biztonsági csoport szabályainak teljes listája az alábbiakban tekintheti meg.  Vegye figyelembe, hogyan letiltja az az utolsó szabályt, amely ki van jelölve, a bejövő elérését az összes hívó eltérő azokat, amelyek kifejezetten hozzáférést kapott.
+hello hello hálózati biztonsági csoport szabályainak teljes listája az alábbiakban tekintheti meg.  Vegye figyelembe, hogyan letiltja az hello utolsó szabályt, amely ki van jelölve, a bejövő elérését az összes hívó eltérő azokat, amelyek kifejezetten hozzáférést kapott.
 
 ![NSG-konfiguráció][NSGConfiguration] 
 
-Az utolsó lépés, hogy az NSG alkalmazása az alhálózatot, amely tartalmazza a "apiase" App Service Environment-környezet.  
+utolsó lépésként hello tooapply hello NSG toohello alhálózatot, amely tartalmazza a hello "apiase" App Service Environment-környezet.  
 
-     #Apply the NSG to the backend API subnet
+     #Apply hello NSG toohello backend API subnet
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityGroupToSubnet -VirtualNetworkName 'yourvnetnamehere' -SubnetName 'API-ASE-Subnet'
 
-Az NSG alkalmazva, az csak a három felsőbb szintű App Service Environment-környezetek, és az App Service-környezet, az API-háttér tartalmazó engedélyezettek hívni a "apiase" környezetbe.
+Hello alkalmazott NSG toohello alhálózattal csak hello három felsőbb szintű App Service Environment-környezetek és hello App Service Environment-környezet tartalmazó hello API-háttér engedélyezettek toocall hello "apiase" környezetbe.
 
 ## <a name="additional-links-and-information"></a>További hivatkozások és információk
-Összes cikket, és hogyan-a következőre az App Service Environment-környezetek érhetők el a [alkalmazásszolgáltatási környezetek – fontos fájl](../app-service/app-service-app-service-environments-readme.md).
+Összes cikket, és hogyan-a következőre az App Service Environment-környezetek érhetők el hello [alkalmazásszolgáltatási környezetek – fontos fájl](../app-service/app-service-app-service-environments-readme.md).
 
 Információ a [hálózati biztonsági csoportok](../virtual-network/virtual-networks-nsg.md). 
 

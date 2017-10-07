@@ -1,6 +1,6 @@
 ---
-title: "A Mobile Apps használata a Node.js háttérkiszolgáló SDK |} Microsoft Docs"
-description: "Megtudhatja, hogyan használható a Node.js háttérkiszolgáló SDK az Azure App Service Mobile Apps a."
+title: "aaaHow toowork hello Node.js háttérrendszer kiszolgálóval a Mobile Apps SDK |} Microsoft Docs"
+description: "Ismerje meg, hogyan toowork az Azure App Service Mobile Apps Node.js háttérkiszolgáló SDK hello."
 services: app-service\mobile
 documentationcenter: 
 author: ggailey777
@@ -14,50 +14,50 @@ ms.devlang: node
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 1d3aa7a0089279a8eafeb0ded951a5238e189eaa
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2b1ea5fda6f6ca422b92fe29ff8d16bf035018d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-azure-mobile-apps-nodejs-sdk"></a>Az Azure Mobile Apps Node.js SDK használatával
+# <a name="how-toouse-hello-azure-mobile-apps-nodejs-sdk"></a>Hogyan toouse hello Azure Mobile Apps Node.js SDK
 [!INCLUDE [app-service-mobile-selector-server-sdk](../../includes/app-service-mobile-selector-server-sdk.md)]
 
-Ez a cikk ismerteti a részletes útmutatást és példákat bemutatja, hogyan használható az Azure App Service Mobile Apps Node.js-háttéralkalmazáshoz.
+Ez a cikk ismerteti a részletes útmutatást és példákat megjelenítő hogyan toowork az Azure App Service Mobile Apps a Node.js-háttéralkalmazáshoz.
 
 ## <a name="Introduction"></a>Bevezetés
-Az Azure App Service Mobile Apps lehetővé teszi a mobil optimalizált adatelérési Web API hozzáadása egy webalkalmazást.  Az ASP.NET és a Node.js webes alkalmazásokhoz az Azure App Service Mobile Apps SDK valósul meg.  Az SDK tartalmazza a következő műveleteket:
+Az Azure App Service Mobile Apps hello funkció mobile optimalizált tooadd adatelérési Web API tooa webalkalmazás biztosít.  az ASP.NET és a Node.js webes alkalmazásokhoz, Azure App Service Mobile Apps SDK hello valósul meg.  hello SDK tartalmazza a következő műveletek hello:
 
 * Az adatelérési tábla műveletek (olvasás, Insert, Update, Delete)
 * Egyéni API-műveletek
 
 Mindkét műveletek Azure App Service, beleértve a közösségi Identitásszolgáltatók például a Facebookhoz, Twitter, Google és a Microsoft, valamint Azure Active Directory vállalati identitás által engedélyezett összes Identitásszolgáltatók biztosít a hitelesítéshez.
 
-Minták találhat meg minden esetben használja a [minták directory a Githubon].
+Minták minden egyes felhasználási eseténél a hello található [minták directory a Githubon].
 
 ## <a name="supported-platforms"></a>A támogatott platformok
-Az Azure Mobile Apps csomópont SDK támogatja a jelenlegi LTS verzió, csomópont és újabb verziók.  Frissítésétől írást, a legújabb LTS verzió a csomópont v4.5.0.  A csomópont más verzióiban előfordulhat, hogy működik, de nem támogatottak.
+hello Azure Mobile Apps csomópont SDK aktuális LTS kiadási csomópont, és később hello támogatja.  Től írást, hello legújabb LTS verzió a csomópont v4.5.0.  A csomópont más verzióiban előfordulhat, hogy működik, de nem támogatottak.
 
-Az Azure Mobile Apps csomópont SDK két adatbázis-illesztőprogram támogatja, mert a csomópont-mssql illesztőprogram támogatja az SQL Azure és a helyi SQL Server-példányokat.  A sqlite3 illesztőprogram csak egyetlen példányán SQLite adatbázisokat támogatja.
+Azure Mobile Apps csomópont SDK hello támogatja a két adatbázis illesztőprogram - hello csomópont-mssql illesztőprogram támogatja az SQL Azure és a helyi SQL Server-példányokat.  hello sqlite3 illesztőprogram csak egyetlen példányán SQLite adatbázisokat támogatja.
 
-### <a name="howto-cmdline-basicapp"></a>Útmutató: a parancssor használatával alapszintű Node.js-háttéralkalmazás létrehozása
-Minden Azure App Service Mobile App Node.js-háttéralkalmazáshoz ExpressJS alkalmazásként indul.  ExpressJS a legnépszerűbb web service keretrendszer Node.js érhető el.  Létrehozhat egy alapszintű [Express] alkalmazás az alábbiak szerint:
+### <a name="howto-cmdline-basicapp"></a>Hogyan: hozzon létre egy alapszintű Node.js-háttéralkalmazáshoz hello parancssor használatával
+Minden Azure App Service Mobile App Node.js-háttéralkalmazáshoz ExpressJS alkalmazásként indul.  ExpressJS hello legnépszerűbb web service keretrendszer Node.js érhető el.  Létrehozhat egy alapszintű [Express] alkalmazás az alábbiak szerint:
 
 1. Egy parancs vagy a PowerShell-ablakot hozzon létre egy könyvtárat a projekthez.
 
         mkdir basicapp
-2. A csomag struktúra inicializálása npm init futtassa.
+2. Futtassa az npm init tooinitialize hello csomag struktúra.
 
         cd basicapp
         npm init
 
-    Az npm init parancs kéri a projekt inicializálása kérdésekre.  Tekintse meg a példa az alábbiakat:
+    hello npm init parancs kérdések tooinitialize hello projekt készlete kéri.  Lásd: hello egy példa a kimenetre:
 
-    ![A npm init kimenet][0]
-3. Telepítse a sürgős és az azure-mobilalkalmazások könyvtárak összetevőtárházat npm.
+    ![hello npm init kimeneti][0]
+3. Telepítse a hello expressz és az azure-mobilalkalmazások szalagtárak adattárból hello npm.
 
         npm install --save express azure-mobile-apps
-4. A kiszolgáló alapszintű mobil végrehajtásához app.js fájl létrehozása.
+4. Az app.js fájl tooimplement hello alapvető mobil kiszolgáló létrehozása.
 
         var express = require('express'),
             azureMobileApps = require('azure-mobile-apps');
@@ -68,13 +68,13 @@ Minden Azure App Service Mobile App Node.js-háttéralkalmazáshoz ExpressJS alk
         // Define a TodoItem table
         mobile.tables.add('TodoItem');
 
-        // Add the mobile API so it is accessible as a Web API
+        // Add hello mobile API so it is accessible as a Web API
         app.use(mobile);
 
         // Start listening on HTTP
         app.listen(process.env.PORT || 3000);
 
-Ez az alkalmazás egy végpontot hoz létre egy mobile optimalizált WebAPI (`/tables/TodoItem`), amely egy dinamikus sémával alapul szolgáló SQL adattároló nem hitelesített hozzáférést biztosít.  Alkalmas az ügyfél szalagtár gyors üzembe helyezések a következő:
+Ez az alkalmazás egy végpontot hoz létre egy mobile optimalizált WebAPI (`/tables/TodoItem`), amely biztosítja, nem hitelesített hozzáférést tooan az alapul szolgáló SQL-adattár egy dinamikus sémáját használja.  Alkalmas az ügyfél szalagtár gyors üzembe helyezések a következő:
 
 * [Android ügyfél gyors üzembe helyezés]
 * [Apache Cordova-ügyfél gyors üzembe helyezés]
@@ -84,29 +84,29 @@ Ez az alkalmazás egy végpontot hoz létre egy mobile optimalizált WebAPI (`/t
 * [Xamarin.Android ügyfél gyors üzembe helyezés]
 * [Xamarin.Forms-ügyfél gyors üzembe helyezés]
 
-Ezen alapszintű alkalmazás találja a kódot a [basicapp mintát a Githubon].
+Ezen alapszintű hello alkalmazás hello kód található [basicapp mintát a Githubon].
 
 ### <a name="howto-vs2015-basicapp"></a>Útmutató: a Visual Studio 2015 csomópont-háttéralkalmazás létrehozása
-Visual Studio 2015-öt bővítménye belül az IDE Node.js-alkalmazások fejlesztéséhez szükséges.  Indítsa el, telepítse a [Node.js eszközök 1.1 a Visual Studio].  A Node.js Tools for Visual Studio telepítése után hozzon létre egy Express 4.x alkalmazást:
+Visual Studio 2015-öt egy bővítmény toodevelop Node.js-alkalmazások hello IDE belül van szükség.  toostart, telepítés hello [Node.js eszközök 1.1 a Visual Studio].  Hello Node.js Tools for Visual Studio telepítése után hozzon létre egy Express 4.x alkalmazást:
 
-1. Nyissa meg a **új projekt** párbeszédpanelen (a **fájl** > **új** > **projekt …** ).
+1. Nyissa meg hello **új projekt** párbeszédpanelen (a **fájl** > **új** > **projekt …** ).
 2. Bontsa ki a **sablonok** > **JavaScript** > **Node.js**.
-3. Válassza ki a **alapszintű Azure Node.js Express 4 alkalmazás**.
-4. Töltse ki a projekt nevét.  Kattintson az *OK* gombra.
+3. Jelölje be hello **alapszintű Azure Node.js Express 4 Application**.
+4. Töltse ki hello projekt nevét.  Kattintson az *OK* gombra.
 
     ![Visual Studio 2015-öt új projekt][1]
-5. Kattintson a jobb gombbal a **npm** csomópont, és válassza **telepítése új npm csomagok...** .
-6. Szükség lehet az npm-katalógus az első Node.js-alkalmazás létrehozása a frissítése.  Kattintson a **frissítése** szükség esetén.
-7. Adja meg *azure-mobilalkalmazások* be a keresőmezőbe.  Kattintson a **azure-mobileszköz-alkalmazások 2.0.0** csomagot, majd kattintson az **csomagtelepítés**.
+5. Kattintson a jobb gombbal hello **npm** csomópont, és válassza **telepítése új npm csomagok...** .
+6. Szükség lehet toorefresh hello npm katalógus az első Node.js-alkalmazás létrehozása.  Kattintson a **frissítése** szükség esetén.
+7. Adja meg *azure-mobilalkalmazások* hello Keresés mezőbe.  Kattintson a hello **azure-mobileszköz-alkalmazások 2.0.0** csomagot, majd kattintson az **csomagtelepítés**.
 
     ![Új npm-csomagok][2]
 8. Kattintson a **Bezárás** gombra.
-9. Nyissa meg a *app.js* fájl az Azure Mobile Apps SDK támogatásához.  Sor 6 at alsó részén a könyvtárban található utasítások szükséges, adja hozzá a következő kódot:
+9. Nyissa meg hello *app.js* tooadd támogatás az Azure Mobile Apps SDK hello.  Sor 6 at hello aljához hello könyvtár utasítás szükséges, adja hozzá a következő kód hello:
 
         var bodyParser = require('body-parser');
         var azureMobileApps = require('azure-mobile-apps');
 
-    Körülbelül sor 27 után az egyéb app.use utasítások adja hozzá a következő kódot:
+    Egyéb app.use utasítások körülbelül sor 27 hello után adja hozzá a hello a következő kódot:
 
         app.use('/users', users);
 
@@ -115,68 +115,68 @@ Visual Studio 2015-öt bővítménye belül az IDE Node.js-alkalmazások fejlesz
         mobile.tables.add('TodoItem');
         app.use(mobile);
 
-    Mentse a fájlt.
-10. Futtassa az alkalmazást helyileg (az API-t kiszolgált a http://localhost: 3000), vagy közzététele az Azure-bA.
+    Hello fájl mentéséhez.
+10. Futtassa helyileg hello alkalmazást (hello API kiszolgált a http://localhost: 3000), vagy tooAzure közzététele.
 
-### <a name="create-node-backend-portal"></a>Útmutató: az Azure portál használata Node.js-háttéralkalmazás létrehozása
-A Mobile Apps háttér közvetlenül hozhat létre a [Azure-portálon]. Kövesse az alábbi lépéseket, vagy hozzon létre egy ügyfél és kiszolgáló együtt a [mobilalkalmazás létrehozása](app-service-mobile-ios-get-started.md) oktatóanyag. Az oktatóanyag tartalmazza ezeket az utasításokat egy egyszerűsített verziója és a projektek a koncepció igazolása.
+### <a name="create-node-backend-portal"></a>Útmutató: Azure-portálon hello használata Node.js-háttéralkalmazás létrehozása
+Létrehozhat egy mobilalkalmazás-háttérrendszer jobb hello [Azure-portálon]. Következő lépések, vagy hozzon létre egy ügyfél és kiszolgáló együtt a következő hello hello vagy követésével [mobilalkalmazás létrehozása](app-service-mobile-ios-get-started.md) oktatóanyag. hello oktatóanyag tartalmazza ezeket az utasításokat egy egyszerűsített verziója és a projektek a koncepció igazolása.
 
 [!INCLUDE [app-service-mobile-dotnet-backend-create-new-service-classic](../../includes/app-service-mobile-dotnet-backend-create-new-service-classic.md)]
 
-Vissza a *Ismerkedés* panelen, a **tábla API létrehozása**, válassza a **Node.js** , a **háttéralkalmazás-nyelv**.
-Jelölje be a "**tudomásul veszem, hogy ezzel a művelettel felülírja az összes hely tartalmának.**", majd kattintson a **TodoItem tábla létrehozása**.
+Vissza a hello *Ismerkedés* panelen, a **tábla API létrehozása**, válassza a **Node.js** , a **háttéralkalmazás-nyelv**.
+Hello jelölőnégyzetet, a "**tudomásul veszem, hogy ezzel a művelettel felülírja az összes hely tartalmának.**", majd kattintson a **TodoItem tábla létrehozása**.
 
-### <a name="download-quickstart"></a>Hogyan: Töltse le a Node.js háttérrendszer gyors üzembe helyezés kód projekt Git használatával
-Ha Node.js Mobile Apps-háttéralkalmazás létrehozása a portál használatával **gyors üzembe helyezési** panelen, egy Node.js-projektet, létrehozása és telepítése a helyen. Adja hozzá a táblák és API-kat, és a Node.js-háttéralkalmazáshoz a portálon tartozó kódfájlok szerkesztése. Különböző központi telepítési eszközök segítségével is letölti a háttéralkalmazás-projekt hozzáadása vagy módosítása a táblák és API-k, majd a projekt közzé. További információkért lásd: a [Azure App Service telepítési útmutató]. az alábbi eljárás egy Git-tárház használatával töltse le a gyors üzembe helyezési projekt kódját.
+### <a name="download-quickstart"></a>Hogyan: letöltési hello Node.js háttérrendszer gyors üzembe helyezés kód projekt Git használatával
+Ha Node.js Mobile Apps-háttéralkalmazás létrehozása hello portál használatával **gyors üzembe helyezési** panelen, egy Node.js-projektet hoz létre, és központilag telepített tooyour hely. Adja hozzá a táblák és API-kat, és Node.js-háttéralkalmazáshoz hello hello portálon tartozó kódfájlok szerkesztése. Különböző központi telepítési eszközök toodownload hello háttéralkalmazás-projekt, hogy hozzáadása vagy módosítása a táblák és API-k, majd közzé hello projekt is használható. További információkért lásd: a [Azure App Service telepítési útmutató]. hello következő eljárás használja a Git tárház toodownload hello gyors üzembe helyezési projekt kódját.
 
-1. Ha még nem tette, telepítse a Git esetében. A Git telepítéséhez szükséges lépések eltérőek, operációs rendszerek között. Lásd: [telepítése Git](http://git-scm.com/book/en/Getting-Started-Installing-Git) az operációsrendszer-specifikus disztribúcióiról, valamint a telepítési útmutatót.
-2. Kövesse a [engedélyezése az App Service alkalmazás tárház](../app-service-web/app-service-deploy-local-git.md#Step3) ahhoz, hogy a háttér-helyhez, és jegyezze fel a központi telepítés felhasználónevet és jelszót a Git-tárházba.
-3. A mobilalkalmazás háttérrendszerének panelen, jegyezze fel a **Git-klón URL-cím** beállítást.
-4. Hajtsa végre a `git clone` parancsot a Git használatával klón URL-CÍMÉT, írja be a jelszót, ha szükséges, az alábbi példában látható módon:
+1. Ha még nem tette, telepítse a Git esetében. hello lépéseket szükséges tooinstall Git eltérő operációs rendszerek között. Lásd: [telepítése Git](http://git-scm.com/book/en/Getting-Started-Installing-Git) az operációsrendszer-specifikus disztribúcióiról, valamint a telepítési útmutatót.
+2. Hello kövesse [engedélyezése hello App Service alkalmazás tárház](../app-service-web/app-service-deploy-local-git.md#Step3) tooenable hello Git-tárház háttér webhelyét, és jegyezze fel hello telepítési felhasználónevet és jelszót.
+3. A mobilalkalmazás háttérrendszerének hello panelen, jegyezze fel a hello **Git-klón URL-cím** beállítást.
+4. Hello végrehajtása `git clone` parancs használatával hello Git klón URL-címet írja be a jelszót, ha szükséges, az alábbi példában látható módon:
 
         $ git clone https://username@todolist.scm.azurewebsites.net:443/todolist.git
-5. Keresse meg a helyi könyvtárba, amely az előző példában /todolist, és figyelje meg, hogy project fájlok le vannak töltve. Keresse meg a `todoitem.json` fájlt a `/tables` könyvtár.  Ez a fájl engedélyeit a tábla határozza meg.  Is megtalálhatja a `todoitem.js` fájl ugyanabban a könyvtárban, amely meghatározza, hogy CRUD művelet a következő táblázatban a parancsfájlok.
-6. Project fájlok módosult, miután hajtható végre a következő parancsok futtatásával adja hozzá, véglegesítése, majd töltse fel a módosításokat a helyhez:
+5. Tallózás toolocal könyvtár, amely a fenti példa hello /todolist, és figyelje meg, hogy a projektfájlok le vannak töltve. Keresse meg a hello `todoitem.json` hello fájlban `/tables` könyvtár.  Ez a fájl engedélyeit a tábla határozza meg.  Is megkeresi a hello `todoitem.js` hello fájlt azonos könyvtárban, amely meghatározza, hogy a CRUD művelet parancsfájlok hello tábla.
+6. Módosításokat végzett tooproject fájlokat, miután hajtható végre a következő parancsok tooadd, véglegesítése, majd töltse fel a változások toohello hely hello:
 
-        $ git commit -m "updated the table script"
+        $ git commit -m "updated hello table script"
         $ git push origin master
 
-    Amikor új fájlok hozzáadása a projekthez, először kell végrehajtani a `git add .` parancsot.
+    Amikor új fájlok toohello projekt, először tooexecute hello `git add .` parancsot.
 
-A hely minden alkalommal, amikor egy új készletét véglegesíti a rendszer előkészítésre továbbít a webhely ismételt közzététele.
+hello webhely minden alkalommal, amikor véglegesíti az új készlet fejlesztőre toohello webhely ismételt közzététele.
 
-### <a name="howto-publish-to-azure"></a>Útmutató: a Node.js-háttéralkalmazáshoz közzététele az Azure-bA
-A Microsoft Azure az Azure szolgáltatásban az Azure App Service Mobile Apps Node.js háttérrendszer közzétételéhez számos mechanizmust biztosít.  Ezek közé tartozik a központi telepítési eszközöket a Visual Studio integrált, parancssori eszközök és verziókövetési alapuló folyamatos üzembe helyezés beállítások használatával.  A témakörrel kapcsolatos további információkért lásd: a [Azure App Service telepítési útmutató].
+### <a name="howto-publish-to-azure"></a>Útmutató: a Node.js háttérrendszer tooAzure közzététele
+Microsoft Azure közzététel az Azure App Service Mobile Apps Node.js-háttéralkalmazását az Azure szolgáltatás hello számos mechanizmust biztosít.  Ezek közé tartozik a központi telepítési eszközöket a Visual Studio integrált, parancssori eszközök és verziókövetési alapuló folyamatos üzembe helyezés beállítások használatával.  A témakörrel kapcsolatos további információkért lásd: a [Azure App Service telepítési útmutató].
 
 Az Azure App Service a Node.js-alkalmazás üzembe helyezése előtt tekintse át a konkrét útmutatásért rendelkezik:
 
-* Hogyan [a csomópont verzió megadása]
-* Hogyan [csomópont modulok használata]
+* Hogyan túl[hello csomópont verzió megadása]
+* Hogyan túl[csomópont modulok használata]
 
 ### <a name="howto-enable-homepage"></a>Útmutató: az alkalmazás kezdőlapját engedélyezése
-Számos alkalmazás webes és mobilalkalmazások és ExpressJS keretében teszi lehetővé a két értékkorlátozás kombinálhatók.  Egyes esetekben azonban Kezdésként csak valósítja meg a mobil illesztőfelületet.  Ez akkor hasznos, annak érdekében, az app service egy kezdőlapja megfelelően működik, és így.  Adja meg a saját kezdőlapján, vagy egy ideiglenes kezdőlap engedélyezése.  Ahhoz, hogy egy ideiglenes kezdőlapját, használja a következő példányának létrehozása az Azure Mobile Apps:
+Számos alkalmazás webes és mobilalkalmazások és hello ExpressJS keretrendszer lehetővé teszi a két toocombine értékkorlátozást.  Egyes esetekben azonban Kezdésként tooonly alkalmazzon egy mobil felületet.  Egy követően lap tooensure hello alkalmazásszolgáltatás megfelelően működik, és hasznos tooprovide.  Adja meg a saját kezdőlapján, vagy egy ideiglenes kezdőlap engedélyezése.  egy ideiglenes kezdőlapján tooenable hello tooinstantiate Azure Mobile Apps a következő használja:
 
     var mobile = azureMobileApps({ homePage: true });
 
-Ha csak ez a beállítás érhető el helyi fejlesztésekor, ezzel a beállítással adhat hozzá a `azureMobile.js` fájlt.
+Ha csak ez a beállítás érhető el helyi fejlesztésekor, ez a beállítás tooyour adhat hozzá `azureMobile.js` fájlt.
 
 ## <a name="TableOperations"></a>Tábla műveletek
-Az azure-mobilalkalmazások Node.js Server SDK teszi közzé az Azure SQL Database, a WebAPI tárolt adattáblák mechanizmust biztosít.  Öt műveleti rendelkezésre állnak.
+hello azure-mobilalkalmazások Node.js Server SDK mechanizmusok tooexpose adatokat biztosít az Azure SQL Database, a WebAPI tárolja.  Öt műveleti rendelkezésre állnak.
 
 | Művelet | Leírás |
 | --- | --- |
-| GET /tables/*táblanév* |A tábla összes rekord beolvasása |
-| GET /tables/*tablename*/:id |Egy adott rekord a táblázatban beolvasása |
-| POST /tables/*táblanév* |A tábla rekord létrehozása |
-| JAVÍTÁS /tables/*tablename*/:id |Módosítani egy rekordot a tábla |
-| TÖRLÉS /tables/*tablename*/:id |A tábla rekord törlése |
+| GET /tables/*táblanév* |Az összes rekord hello tábla beolvasása |
+| GET /tables/*tablename*/:id |Egy megadott rekord hello tábla beolvasása |
+| POST /tables/*táblanév* |Hozzon létre egy bejegyzést a hello tábla |
+| JAVÍTÁS /tables/*tablename*/:id |Módosítani egy rekordot hello tábla |
+| TÖRLÉS /tables/*tablename*/:id |Hello tábla rekord törlése |
 
-Támogatja a WebAPI [OData] és bővíti a következő tábla sémáját támogatásához [offline adatszinkronizálás].
+Támogatja a WebAPI [OData] és kiterjesztik az hello tábla séma toosupport [offline adatszinkronizálás].
 
 ### <a name="howto-dynamicschema"></a>Hogyan: Adja meg a táblák egy dinamikus séma használata
-Egy tábla használt, meg kell határozni.  Táblák (ahol a fejlesztői definiálja a séma oszlopaira) statikus séma vagy dinamikusan adható meg (ha az SDK szabályozza a séma, a bejövő kérések alapján). Emellett a fejlesztői szabályozhatja a WebAPI bizonyos aspektusainak Javascript-kód hozzáadása a definíciót.
+Egy tábla használt, meg kell határozni.  Táblák meghatározása (ahol hello fejlesztői meghatározása hello oszlopok hello sémáján belül) statikus séma vagy dinamikusan (ahol hello SDK szabályozza a bejövő kérések alapján hello séma). Ezenkívül hello fejlesztői irányítani tudja adott aspektusait hello WebAPI Javascript-kód toohello definition hozzáadásával.
 
-Ajánlott eljárásként akkor kell mindegyik tábla a táblák könyvtárban Javascript-fájlt ad meg, majd a tables.import() metódus használatával importálhatja a táblákat.  Az alkalmazáson belüli basic kiterjesztése esetén az app.js fájl ki kell igazítani:
+Ajánlott eljárásként akkor kell mindegyik tábla hello táblák könyvtárban Javascript-fájlt ad meg, majd a tables.import() metódus tooimport hello táblázatot használnak.  Hello basic alkalmazáson belüli kiterjesztése esetén hello app.js fájl ki kell igazítani:
 
     var express = require('express'),
         azureMobileApps = require('azure-mobile-apps');
@@ -184,41 +184,41 @@ Ajánlott eljárásként akkor kell mindegyik tábla a táblák könyvtárban Ja
     var app = express(),
         mobile = azureMobileApps();
 
-    // Define the database schema that is exposed
+    // Define hello database schema that is exposed
     mobile.tables.import('./tables');
 
     // Provide initialization of any tables that are statically defined
     mobile.tables.initialize().then(function () {
-        // Add the mobile API so it is accessible as a Web API
+        // Add hello mobile API so it is accessible as a Web API
         app.use(mobile);
 
         // Start listening on HTTP
         app.listen(process.env.PORT || 3000);
     });
 
-Adja meg a táblázatban szereplő. / tables/TodoItem.js:
+Adja meg a hello tábla. vagy tables/TodoItem.js:
 
     var azureMobileApps = require('azure-mobile-apps');
 
     var table = azureMobileApps.table();
 
-    // Additional configuration for the table goes here
+    // Additional configuration for hello table goes here
 
     module.exports = table;
 
-Táblák alapértelmezés szerint dinamikus séma használja.  Dinamikus séma globálisan kikapcsolásához állítsa be az Alkalmazásbeállítás **MS_DynamicSchema** false értékre az Azure portálon.
+Táblák alapértelmezés szerint dinamikus séma használja.  dinamikus séma ki tooturn globálisan, állítsa be a hello Alkalmazásbeállítás **MS_DynamicSchema** toofalse hello Azure-portálon belül.
 
-A teljes példáját megtalálhatja a [todo mintát a Githubon].
+Teljes példa található hello [todo mintát a Githubon].
 
 ### <a name="howto-staticschema"></a>Hogyan: Adja meg a táblák egy statikus séma használata
-Explicit módon határozhatja meg a WebAPI keresztül teszi közzé az oszlopokat.  Az azure-mobilalkalmazások Node.js SDK automatikusan hozzáadja a listához, Ön által biztosított offline adatszinkronizálás szükséges további oszlopokat.  Például a gyors üzembe helyezés ügyfélalkalmazások szükséges két oszlopokkal rendelkező táblát: text (szöveg) (logikai) hajtsa végre.  
-A tábla a tábla definícióját JavaScript-fájlt (a táblák könyvtárban található) az alábbiak szerint lehet meghatározni:
+Explicit módon meghatározhatja hello oszlopok tooexpose hello WebAPI keresztül.  hello azure-mobilalkalmazások Node.js SDK automatikusan hozzáadja a kapcsolat nélküli szinkronizálás toohello lista, amely megadja a szükséges további oszlopokat.  Például a gyors üzembe helyezés ügyfélalkalmazások szükséges két oszlopokkal rendelkező táblát: text (szöveg) (logikai) hajtsa végre.  
+hello tábla hello tábla definícióját JavaScript-fájlt (hello táblák könyvtárában található) az alábbiak szerint lehet meghatározni:
 
     var azureMobileApps = require('azure-mobile-apps');
 
     var table = azureMobileApps.table();
 
-    // Define the columns within the table
+    // Define hello columns within hello table
     table.columns = {
         "text": "string",
         "complete": "boolean"
@@ -229,73 +229,73 @@ A tábla a tábla definícióját JavaScript-fájlt (a táblák könyvtárban ta
 
     module.exports = table;
 
-Ha statikusan határozza meg a táblák, majd kell is a tables.initialize() metódust hívja az adatbázisséma indításkor létrehozásához.  A tables.initialize() metódus visszaadja a [ígéret] , hogy a webszolgáltatás nem teljesíti a kérelmeket az adatbázis inicializálása előtt.
+Ha statikusan határozza meg a táblák, majd kell is meghívja a hello tables.initialize() metódus toocreate hello adatbázisséma indításakor.  hello tables.initialize() metódus visszaadja a [ígéret] , hogy hello webszolgáltatás nem teljesíti a kérelmeket hello adatbázis inicializálása előtt.
 
 ### <a name="howto-sqlexpress-setup"></a>Hogyan: használja az SQL Express fejlesztési adattárként a helyi számítógépen
-Az Azure Mobile Apps a AzureMobile alkalmazások csomópont SDK kiszolgáló kívül a mezőbe a három lehetőséget kínál: SDK kiszolgáló kívül a mezőbe a három lehetőséget kínál:
+hello Azure Mobile Apps hello AzureMobile alkalmazások csomópont SDK három lehetőséget kínál a kiszolgáló hello kezdő verzióról: SDK hello kezdő verzióról kiszolgáló három lehetőséget biztosít:
 
-* Használja a **memória** nem állandó példa áruházbeli-illesztőprogrammal
-* Használja a **mssql** adja meg az SQL Express adattárat fejlesztési-illesztőprogram
-* Használja a **mssql** adjon meg egy Azure SQL Database adattároló üzemi-illesztőprogram
+* Használjon hello **memória** illesztőprogramtárába egy nem állandó tooprovide – példa
+* Használjon hello **mssql** illesztőprogram tooprovide fejlesztési SQL Express adattárat
+* Használjon hello **mssql** illesztőprogram tooprovide egy Azure SQL Database adattároló termelési környezetben
 
-Az Azure Mobile Apps Node.js SDK-t használ a [mssql Node.js csomag] létrehozásához és az SQL Express és SQL-adatbázis kapcsolat használatára.  A csomag igényli-e, hogy az SQL Express-példány TCP-kapcsolatok engedélyezése.
+hello Azure Mobile Apps Node.js SDK-t használ a hello [mssql Node.js csomag] tooestablish és az SQL Express kapcsolat tooboth és SQL-adatbázis használata.  A csomag igényli-e, hogy az SQL Express-példány TCP-kapcsolatok engedélyezése.
 
 > [!TIP]
-> A memória illesztőprogram nem biztosít tesztelési létesítményekben teljes készletét.  Ha a háttéralkalmazást helyileg tesztelni kívánt, SQL Express adattárat és az mssql illesztőprogram használatát javasoljuk.
+> hello memória illesztőprogram nem biztosít tesztelési létesítményekben teljes készletét.  Ha a tootest a háttéralkalmazást helyileg, azt egy SQL Express adattárból hello használatát javasoljuk, és hello mssql illesztőprogram.
 >
 >
 
-1. Töltse le és telepítse [Microsoft SQL Server 2014 Express].  Győződjön meg arról, telepíti az SQL Server 2014 Express eszközök kiadásával.  Ha 64 bites támogatás kifejezetten szüksége a 32 bites kevesebb memóriát igényel, futtatásakor.
-2. Futtassa az SQL Server 2014 Configuration Manager.
+1. Töltse le és telepítse [Microsoft SQL Server 2014 Express].  Ügyeljen arra, SQL Server 2014 Express hello eszközök kiadásával telepítse.  Ha 64 bites támogatás kifejezetten szüksége hello 32 bites verziója kevesebb memóriát igényel, futtatásakor.
+2. Futtassa az SQL Server 2014 Configuration Manager hello.
 
-   1. Bontsa ki a **SQL Server hálózati konfigurációja** csomópontot a bal oldali fában menüben.
+   1. Bontsa ki a hello **SQL Server hálózati konfigurációja** hello bal oldali fában menü csomópontja.
    2. Kattintson a **SQLEXPRESS protokollok**.
-   3. Kattintson a jobb gombbal **TCP/IP** válassza **engedélyezése**.  Kattintson a **OK** az előugró párbeszédpanelen.
+   3. Kattintson a jobb gombbal **TCP/IP** válassza **engedélyezése**.  Kattintson a **OK** hello előugró párbeszédpanelen.
    4. Kattintson a jobb gombbal **TCP/IP** válassza **tulajdonságok**.
-   5. Kattintson a **IP-címek** fülre.
-   6. Keresés a **IPAll** csomópont.  Az a **TCP-Port** mezőbe írja be **1433**.
+   5. Kattintson a hello **IP-címek** fülre.
+   6. Hello található **IPAll** csomópont.  A hello **TCP-Port** mezőbe írja be **1433**.
 
           ![Configure SQL Express for TCP/IP][3]
-   7. Kattintson az **OK** gombra.  Kattintson a **OK** az előugró párbeszédpanelen.
-   8. Kattintson a **SQL Server Services** a bal oldali fában menüben.
+   7. Kattintson az **OK** gombra.  Kattintson a **OK** hello előugró párbeszédpanelen.
+   8. Kattintson a **SQL Server Services** hello bal oldali fában menüben.
    9. Kattintson a jobb gombbal **SQL Server (SQLEXPRESS)** válassza **újraindítása**
-   10. Zárja be az SQL Server 2014 Configuration Manager.
-3. Futtassa az SQL Server 2014 Management Studio, és csatlakozzon a helyi SQL Express-példány
+   10. Zárja be az SQL Server 2014 Configuration Manager hello.
+3. Futtassa az SQL Server 2014 Management Studio hello, és csatlakozzon a helyi SQL Express példány tooyour
 
-   1. Kattintson a jobb gombbal az Object Explorer-példány, és válassza ki **tulajdonságai**
-   2. Válassza ki a **biztonsági** lap.
-   3. Győződjön meg arról a **SQL Server és a Windows-hitelesítés üzemmód** van kijelölve
+   1. Kattintson a jobb gombbal az Object Explorer hello a példányát, és válassza ki **tulajdonságai**
+   2. Jelölje be hello **biztonsági** lap.
+   3. Győződjön meg arról hello **SQL Server és a Windows-hitelesítés üzemmód** van kijelölve
    4. Kattintson az **OK** gombra
 
           ![Configure SQL Express Authentication][4]
-   5. Bontsa ki a **biztonsági** > **bejelentkezések** az Object Explorer
+   5. Bontsa ki a **biztonsági** > **bejelentkezések** az Object Explorer hello
    6. Kattintson a jobb gombbal **bejelentkezések** válassza **új bejelentkezés...**
-   7. Adja meg a bejelentkezési nevet.  Kattintson az **SQL Server-hitelesítés** lehetőségre.  Adjon meg egy jelszót, majd írja be ugyanezt a jelszót **jelszó megerősítése**.  A jelszónak meg kell felelnie a Windows bonyolultsági követelményeknek.
+   7. Adja meg a bejelentkezési nevet.  Kattintson az **SQL Server-hitelesítés** lehetőségre.  Adjon meg egy jelszót, majd adja meg a hello ugyanezt a jelszót **jelszó megerősítése**.  hello jelszónak meg kell felelnie a Windows bonyolultsági követelményeknek.
    8. Kattintson az **OK** gombra
 
-          ![Add a new user to SQL Express][5]
+          ![Add a new user tooSQL Express][5]
    9. Kattintson a jobb gombbal az új bejelentkezési adatait, és válassza ki **tulajdonságai**
-   10. Válassza ki a **kiszolgálói szerepkörök** lap
-   11. Mellett jelölje be a jelölőnégyzetet a **dbcreator** kiszolgálói szerepkör
+   10. Jelölje be hello **kiszolgálói szerepkörök** lap
+   11. Ellenőrizze hello mezőben következő toohello **dbcreator** kiszolgálói szerepkör
    12. Kattintson az **OK** gombra
-   13. Zárja be az SQL Server 2015 Management Studio
+   13. Zárja be az SQL Server 2015 Management Studio hello
 
-Győződjön meg arról, a felhasználónév és a megadott jelszó rögzítéséhez.  Szükség lehet további kiszolgálói szerepkörök vagy engedélyek attól függően, hogy az adott adatbázis követelményeit.
+Győződjön meg arról, hogy rekord hello felhasználónév és jelszó választotta.  A megadott adatbázis követelményeitől függően esetleg tooassign további kiszolgálói szerepkörök vagy engedélyek.
 
-A Node.js-alkalmazás olvasása a **SQLCONNSTR_MS_TableConnectionString** környezeti változó a kapcsolati karakterlánc ehhez az adatbázishoz.  A változó beállított a környezetben.  Például a PowerShell segítségével a környezeti változót:
+Node.js-alkalmazás hello beolvassa hello **SQLCONNSTR_MS_TableConnectionString** környezeti változó hello kapcsolati karakterláncot kell megadnia ehhez az adatbázishoz.  A változó beállított a környezetben.  Például használhatja PowerShell tooset e környezeti változó:
 
     $env:SQLCONNSTR_MS_TableConnectionString = "Server=127.0.0.1; Database=mytestdatabase; User Id=azuremobile; Password=T3stPa55word;"
 
-TCP/IP-kapcsolaton keresztül érik el az adatbázist, és adjon meg egy felhasználónevet és jelszót a kapcsolat.
+TCP/IP-kapcsolaton keresztül érik el hello adatbázist, és adjon meg egy felhasználónevet és jelszót hello kapcsolat.
 
 ### <a name="howto-config-localdev"></a>Útmutató: a helyi fejlesztési projekt konfigurálása
-Az Azure Mobile Apps beolvassa a JavaScript-fájl neve *azureMobile.js* helyi objektumot.  Ne használja ezt a fájlt az Azure Mobile Apps SDK konfigurálásához éles környezetben, – használja az alkalmazásbeállítások belül a [Azure-portálon] helyette.  A *azureMobile.js* fájlba exportálja a konfigurációs objektum.  A leggyakrabban használt beállítások a következők:
+Az Azure Mobile Apps beolvassa a JavaScript-fájl neve *azureMobile.js* hello helyi FileSystem.  Nem használja a fájl tooconfigure hello Azure Mobile Apps SDK üzemi - Alkalmazásbeállítások használható hello [Azure-portálon] helyette.  Hello *azureMobile.js* fájlba exportálja a konfigurációs objektum.  hello leggyakrabban használt beállítások a következők:
 
 * Adatbázis-beállítások
 * Diagnosztikai naplózás beállításait
 * Alternatív CORS-beállítások
 
-Példa *azureMobile.js* az előző adatbázis-beállítások megvalósításához fájl a következő:
+Példa *azureMobile.js* fájl végrehajtási hello megelőző adatbázis beállítások követi:
 
     module.exports = {
         cors: {
@@ -313,30 +313,30 @@ Példa *azureMobile.js* az előző adatbázis-beállítások megvalósításáho
         }
     };
 
-Javasoljuk, hogy adja hozzá *azureMobile.js* számára a *.gitignore* fájlt (vagy más verziókövetési figyelmen kívül hagyja a fájlt) a felhőben tárolt jelszavak megelőzése érdekében.  Mindig adja meg az üzemi beállításait az alkalmazás beállításairól a [Azure-portálon].
+Javasoljuk, hogy adja hozzá *azureMobile.js* tooyour *.gitignore* fájlt (vagy más verziókövetési figyelmen kívül hagyja a fájlt) hello felhőben tárolt tooprevent jelszavakat.  Mindig adja meg az üzemi beállításait Alkalmazásbeállítások belül hello [Azure-portálon].
 
 ### <a name="howto-appsettings"></a>Útmutató: A mobilalkalmazás-beállításainak konfigurálása
-A legtöbb beállítását a *azureMobile.js* fájl rendelkezik egyenértékű Alkalmazásbeállítás a [Azure-portálon].  Az alábbi lista segítségével állítsa be alkalmazását az alkalmazás beállításai:
+A legtöbb beállításai a hello *azureMobile.js* fájl rendelkezik egyenértékű Alkalmazásbeállítás hello [Azure-portálon].  A következő lista tooconfigure hello az alkalmazás használata beállítást:
 
 | Alkalmazás beállítása | *azureMobile.js* beállítás | Leírás | Érvényes értékek |
 |:--- |:--- |:--- |:--- |
-| **MS_MobileAppName** |név |Az alkalmazás nevét |Karakterlánc |
-| **MS_MobileLoggingLevel** |Logging.level |Naplózandó üzenetek minimális naplózási szint |Hiba, figyelmeztetés, információ, részletes, hibakeresési silly |
+| **MS_MobileAppName** |név |hello hello alkalmazás nevét |Karakterlánc |
+| **MS_MobileLoggingLevel** |Logging.level |Az üzenetek toolog minimális naplózási szint |Hiba, figyelmeztetés, információ, részletes, hibakeresési silly |
 | **MS_DebugMode** |Hibakeresési |Engedélyezés vagy letiltás hibakeresési mód |IGAZ, hamis |
 | **MS_TableSchema** |Data.Schema |SQL-táblák alapértelmezett séma neve |karakterlánc (alapértelmezett: dbo) |
 | **MS_DynamicSchema** |data.dynamicSchema |Engedélyezés vagy letiltás hibakeresési mód |IGAZ, hamis |
-| **MS_DisableVersionHeader** |verzió (a nem definiált beállítása) |Az X-ZUMO-kiszolgáló-Version fejlécnek letiltása |IGAZ, hamis |
-| **MS_SkipVersionCheck** |skipversioncheck |Letiltja az ügyfél API-verziójának ellenőrzése |IGAZ, hamis |
+| **MS_DisableVersionHeader** |verzió (set tooundefined) |Letiltja az X-ZUMO-kiszolgálóverzió hello fejléc |IGAZ, hamis |
+| **MS_SkipVersionCheck** |skipversioncheck |Letiltja a hello ügyfél API-verziójának ellenőrzése |IGAZ, hamis |
 
-Egy Alkalmazásbeállítás beállítása:
+egy Alkalmazásbeállítás tooset:
 
-1. Jelentkezzen be az [Azure-portálon].
-2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson a mobilalkalmazás nevére.
-3. Alapértelmezés szerint a beállítások panel nyílik meg. Ha nem, kattintson a gombra **beállítások**.
-4. Kattintson a **Alkalmazásbeállítások** az általános menüjében.
-5. Görgessen az alkalmazásbeállítások szakaszhoz.
-6. Ha az alkalmazás, beállítás már létezik, kattintson az Alkalmazásbeállítás értéke pedig az az érték szerkesztéséhez.
-7. Ha az alkalmazás nem létezik, adja meg az Alkalmazásbeállítás a kulcs és az érték mezőben megadott érték.
+1. Jelentkezzen be toohello [Azure-portálon].
+2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson a mobilalkalmazás hello nevére.
+3. Alapértelmezés szerint hello-beállítások panel nyílik meg. Ha nem, kattintson a gombra **beállítások**.
+4. Kattintson a **Alkalmazásbeállítások** hello általános menüben.
+5. Görgessen toohello App Settings szakasz.
+6. Ha az alkalmazás, beállítás már létezik, kattintson a hello app tooedit hello beállításérték hello értékét.
+7. Ha az alkalmazás nem létezik, adja meg a hello Alkalmazásbeállítás hello kulcs és hello érték hello érték mezőbe.
 8. Ha befejeződött, kattintson a **mentése**.
 
 A legtöbb alkalmazás beállításainak módosítása a szolgáltatás újraindítását igényli.
@@ -344,50 +344,50 @@ A legtöbb alkalmazás beállításainak módosítása a szolgáltatás újraind
 ### <a name="howto-use-sqlazure"></a>Útmutató: az üzemi adattároló SQL-adatbázis használata
 <!--- ALTERNATE INCLUDE - we can't use ../includes/app-service-mobile-dotnet-backend-create-new-service.md - slightly different semantics -->
 
-Az Azure SQL Database adattárként használata azonos Azure App Service-alkalmazás összes típusa. Ha még nem tette meg, kövesse az alábbi lépéseket a mobilalkalmazás háttérrendszerének létrehozásához.
+Az Azure SQL Database adattárként használata azonos Azure App Service-alkalmazás összes típusa. Ha még nem tette meg, kövesse ezeket a lépéseket toocreate a Mobile Apps-háttéralkalmazás.
 
-1. Jelentkezzen be az [Azure-portálon].
-2. A felső bal oldali ablak, kattintson a **+ új** gomb > **Web + mobil** > **mobilalkalmazás**, majd adjon meg egy nevet a mobilalkalmazás háttérrendszerének.
-3. Az a **erőforráscsoport** mezőbe írja be a néven az alkalmazáshoz.
-4. Az alapértelmezett App Service-csomag van kiválasztva.  Ha úgy szeretné módosítani az App Service-csomag, akkor megteheti az App Service-csomag kattintva > **+ új**.  Adja meg az új App Service-csomag nevét, és válasszon egy megfelelő helyet.  Kattintson a tarifacsomag, és válasszon egy megfelelő tarifacsomagot a szolgáltatáshoz. Válassza ki **összes** több, mint az beállítások árképzési nézetre **szabad** és **megosztott**.  Miután kiválasztotta a tarifacsomagot, kattintson a **válasszon** gombra.  Vissza a **App Service-csomag** panelen kattintson a **OK**.
-5. Kattintson a **Create** (Létrehozás) gombra. A Mobile Apps-háttéralkalmazás kiépítés néhány percet is igénybe vehet.  Miután a Mobile Apps-háttéralkalmazás ki van építve, a portál megnyitja a **beállítások** panel a mobilalkalmazás háttérrendszerének.
+1. Jelentkezzen be toohello [Azure-portálon].
+2. A hello bal felső részén hello ablak, kattintson a hello **+ új** gomb > **Web + mobil** > **mobilalkalmazás**, majd adjon meg egy nevet a mobilalkalmazás háttérrendszerének.
+3. A hello **erőforráscsoport** mezőbe írja be a hello ugyanazt a nevet az alkalmazáshoz.
+4. hello alapértelmezett App Service-csomag van kiválasztva.  Ha toochange App Service-csomag, azt is megteheti hello App Service-csomag kattintva > **+ új**.  Adjon meg egy nevet az új App Service-csomag hello, és válasszon egy megfelelő helyet.  Kattintson a hello tarifacsomag, és válasszon egy megfelelő tarifacsomagot hello szolgáltatáshoz. Válassza ki **összes** több, mint az beállítások árképzési tooview **szabad** és **megosztott**.  Miután kiválasztotta a tarifacsomagot, kattintson a hello **válasszon** gombra.  Vissza a hello **App Service-csomag** panelen kattintson a **OK**.
+5. Kattintson a **Create** (Létrehozás) gombra. A Mobile Apps-háttéralkalmazás kiépítés néhány percet is igénybe vehet.  Hello Mobile Apps-háttéralkalmazás kiépítését, követően hello portál megnyitása hello **beállítások** hello Mobile Apps-háttéralkalmazás paneljét.
 
-A Mobile Apps-háttéralkalmazás létrehozása után ha szeretné, vagy egy meglévő SQL-adatbázis csatlakoztatása a Mobile Apps-háttéralkalmazás, vagy hozzon létre egy új SQL-adatbázis.  Ebben a szakaszban a Microsoft SQL-adatbázis létrehozása.
+Hello Mobile Apps-háttéralkalmazás létrehozása után dönthet úgy, tooeither csatlakozzon egy létező SQL adatbázis tooyour mobil-háttéralkalmazást, vagy hozzon létre egy új SQL-adatbázis.  Ebben a szakaszban a Microsoft SQL-adatbázis létrehozása.
 
 > [!NOTE]
-> Ha már rendelkezik adatbázissal ugyanazon a helyen, a mobil-háttéralkalmazást, választhatja **meglévő adatbázis használata** , és válassza ki, hogy az adatbázis. Egy másik helyen található adatbázis használata nem ajánlott miatt magasabb késések fordulnak elő.
+> Ha már rendelkezik adatbázissal hello hello mobil-háttéralkalmazás és ugyanazon a helyen, választhatja **meglévő adatbázis használata** , és válassza ki, hogy az adatbázis. egy adatbázist egy másik helyen lévő hello használata nem ajánlott magasabb késések miatt.
 >
 >
 
-1. Kattintson az új Mobile Apps-háttéralkalmazás **beállítások** > **mobilalkalmazás** > **adatok** > **+ Hozzáadás**.
-2. Az a **adatkapcsolat hozzáadása** panelen kattintson a **SQL adatbázis - kötelező beállítások konfigurálása** > **hozzon létre egy új adatbázist**.  Adja meg az új adatbázis nevét a **neve** mező.
-3. Kattintson a **Server**.  Az a **új kiszolgáló** panelen adjon meg egy egyedi kiszolgálónevet a a **kiszolgálónév** mezőben, majd adjon meg egy megfelelő **kiszolgáló-rendszergazdai bejelentkezés** és **jelszó**.  Győződjön meg arról **azure-szolgáltatások kiszolgálói hozzáférésének engedélyezése** be van jelölve.  Kattintson az **OK** gombra.
+1. Hello új mobil-háttéralkalmazást, kattintson **beállítások** > **mobilalkalmazás** > **adatok** > **+ Hozzáadás**.
+2. A hello **adatkapcsolat hozzáadása** panelen kattintson a **SQL adatbázis - kötelező beállítások konfigurálása** > **hozzon létre egy új adatbázist**.  Adja meg az új adatbázis hello hello nevét a hello **neve** mező.
+3. Kattintson a **Server**.  A hello **új kiszolgáló** panelen adjon meg egy egyedi kiszolgálónevet a hello **kiszolgálónév** mezőben, majd adjon meg egy megfelelő **kiszolgáló-rendszergazdai bejelentkezés** és **jelszó**.  Győződjön meg arról **engedélyezése az azure szolgáltatások tooaccess server** be van jelölve.  Kattintson az **OK** gombra.
 
     ![Egy Azure SQL-adatbázis létrehozása][6]
-4. Az a **új adatbázis** panelen kattintson a **OK**.
-5. Vissza a **adatkapcsolat hozzáadása** panelen válassza **kapcsolati karakterlánc**, adja meg a bejelentkezési és az adatbázis létrehozásakor megadott jelszót.  Ha egy meglévő adatbázist használ, a bejelentkezési hitelesítő adatok megadása, hogy az adatbázis.  Ha a megadott, kattintson **OK**.
-6. Vissza a **adatkapcsolat hozzáadása** újra, kattintson a panel **OK** létrehozni az adatbázist.
+4. A hello **új adatbázis** panelen kattintson a **OK**.
+5. Vissza a hello **adatkapcsolat hozzáadása** panelen válassza **kapcsolati karakterlánc**, adja meg hello bejelentkezési és hello adatbázis létrehozásakor megadott jelszót.  Ha a meglévő adatbázis használata hello bejelentkezési hitelesítő adatok megadása, hogy az adatbázis.  Ha a megadott, kattintson **OK**.
+6. Vissza a hello **adatkapcsolat hozzáadása** újra, kattintson a panel **OK** toocreate hello adatbázis.
 
 <!--- END OF ALTERNATE INCLUDE -->
 
-Az adatbázis létrehozása néhány percet is igénybe vehet.  Használja a **értesítések** kell figyelni a telepítés előrehaladását.  Nem folytatódni mindaddig, amíg az adatbázis sikeresen telepítve lett.  Miután sikeresen telepítve központilag, egy kapcsolati karakterláncot a mobil-háttéralkalmazást Alkalmazásbeállítások az SQL-adatbázispéldány jön létre.  A app beállítás látható a **beállítások** > **Alkalmazásbeállítások** > **kapcsolati karakterláncok**.
+Hello adatbázisának létrehozása eltarthat néhány percig.  Használjon hello **értesítések** terület toomonitor hello hello központi telepítés végrehajtási állapotát.  Nem folytatódni mindaddig, amíg hello adatbázis sikeresen telepítve lett.  Amennyiben sikeresen telepített, hello SQL Database-példányt a mobil-háttéralkalmazást alkalmazás beállításaiban szereplő kapcsolati karakterláncot jön létre.  Láthatja, hogy ez a hello Alkalmazásbeállítás **beállítások** > **Alkalmazásbeállítások** > **kapcsolati karakterláncok**.
 
-### <a name="howto-tables-auth"></a>Útmutató: hitelesítés megkövetelése a hozzáféréshez táblákhoz
-Ha szeretne az App Service-hitelesítés használatára a táblák végpont, konfigurálnia kell a App Service hitelesítés a [Azure-portálon] első.  Az Azure App Service hitelesítés konfigurálásával kapcsolatos további részletekért tekintse át a konfigurációs útmutató szeretne használni az identitásszolgáltató számára:
+### <a name="howto-tables-auth"></a>Útmutató: hitelesítés megkövetelése a hozzáférési tootables
+Ha a toouse App Service hitelesítés hello táblák végponttal, konfigurálnia kell App Service hitelesítés hello [Azure-portálon] első.  A hitelesítés beállítása az Azure App Service szolgáltatásban kapcsolatos további részletekért tekintse át a konfigurációs útmutató hello hello identitásszolgáltató az toouse szeretné:
 
-* [Azure Active Directory-hitelesítés konfigurálása]
-* [Facebook-hitelesítés konfigurálása]
-* [Google-hitelesítés konfigurálása]
-* [A Microsoft Authentication konfigurálása]
-* [Twitter-hitelesítés konfigurálása]
+* [Hogyan tooconfigure Azure Active Directory-hitelesítés]
+* [Hogyan tooconfigure Facebook-hitelesítés]
+* [Hogyan tooconfigure Google-hitelesítés]
+* [Hogyan tooconfigure Microsoft Authentication]
+* [Hogyan tooconfigure Twitter hitelesítés]
 
-Minden tábla tulajdonsága hozzáférés táblájához való hozzáférés vezérlésére használható.  Az alábbi minta-hitelesítés használatához a statikusan megadott táblát tartalmazza.
+Minden tábla tulajdonsága hozzáférés használt toocontrol access toohello tábla használható.  a következő minta hello hitelesítés szükséges a statikusan megadott táblát tartalmazza.
 
     var azureMobileApps = require('azure-mobile-apps');
 
     var table = azureMobileApps.table();
 
-    // Define the columns within the table
+    // Define hello columns within hello table
     table.columns = {
         "text": "string",
         "complete": "boolean"
@@ -396,23 +396,23 @@ Minden tábla tulajdonsága hozzáférés táblájához való hozzáférés vez�
     // Turn off dynamic schema
     table.dynamicSchema = false;
 
-    // Require authentication to access the table
+    // Require authentication tooaccess hello table
     table.access = 'authenticated';
 
     module.exports = table;
 
-A hozzáférés tulajdonságot is igénybe vehet, értékek egyike
+hello hozzáférés tulajdonságot is igénybe vehet, értékek egyike
 
-* *Névtelen* azt jelzi, hogy az ügyfélalkalmazás hitelesítés nélkül-adatok olvasása
-* *hitelesített* azt jelzi, hogy az ügyfélalkalmazás egy érvényes hitelesítési jogkivonatot a kérelmet kell küldenie
+* *Névtelen* azt jelzi, hogy hello ügyfélalkalmazás tooread adatok hitelesítés nélkül
+* *hitelesített* azt jelzi, hogy hello ügyfélalkalmazás kell küldenie egy érvényes hitelesítési jogkivonat hello kérelemhez
 * *letiltott* azt jelzi, hogy ez a táblázat jelenleg le van tiltva
 
-Ha a hozzáférési tulajdonság nincs definiálva, nem hitelesített elérését.
+Ha a hello access tulajdonság nincs meghatározva, nem hitelesített elérését.
 
 ### <a name="howto-tables-getidentity"></a>Útmutató: hitelesítés jogcímek a táblák használata
-Beállíthat különböző hitelesítési beállításakor igényelt jogcímeket.  Ezeket a jogcímeket amelyek általában telepítéseinél nem használhatók a `context.user` objektum.  Azonban azokat lekérheti használatával a `context.user.getIdentity()` metódust.  A `getIdentity()` metódus, amely egy objektum ígéret ad vissza.  Az objektum van kulccsal (facebook, google, twitter, microsoftaccount vagy aad-ben) hitelesítési módszerrel.
+Beállíthat különböző hitelesítési beállításakor igényelt jogcímeket.  Ezeket a jogcímeket nem általában keresztül érhetők hello `context.user` objektum.  Azonban azokat lekérheti hello segítségével `context.user.getIdentity()` metódust.  Hello `getIdentity()` metódus, amely tooan objektum ígéret ad vissza.  hello objektum kulccsal van ellátva, a hitelesítési módszerrel (facebook, google, twitter, microsoftaccount vagy aad-ben).
 
-Például ha korábban beállított Microsoft Account hitelesítése és a kérés e-mail cím jogcím, adhat hozzá az e-mail cím a rekord, a következő táblázat a tartományvezérlő:
+Például beállította a Microsoft Account hitelesítésének és kérelem hello e-mail cím jogcímet, ha adhat hozzá hello e-mail cím toohello rekord, a következő táblázat a tartományvezérlő hello:
 
     var azureMobileApps = require('azure-mobile-apps');
 
@@ -428,8 +428,8 @@ Például ha korábban beállított Microsoft Account hitelesítése és a kér�
     table.access = 'authenticated';
 
     /**
-    * Limit the context query to those records with the authenticated user email address
-    * @param {Context} context the operation context
+    * Limit hello context query toothose records with hello authenticated user email address
+    * @param {Context} context hello operation context
     * @returns {Promise} context execution Promise
     */
     function queryContextForEmail(context) {
@@ -440,9 +440,9 @@ Például ha korábban beállított Microsoft Account hitelesítése és a kér�
     }
 
     /**
-    * Adds the email address from the claims to the context item - used for
+    * Adds hello email address from hello claims toohello context item - used for
     * insert operations
-    * @param {Context} context the operation context
+    * @param {Context} context hello operation context
     * @returns {Promise} context execution Promise
     */
     function addEmailToContext(context) {
@@ -452,32 +452,32 @@ Például ha korábban beállított Microsoft Account hitelesítése és a kér�
         });
     }
 
-    // Configure specific code when the client does a request
-    // READ - only return records belonging to the authenticated user
+    // Configure specific code when hello client does a request
+    // READ - only return records belonging toohello authenticated user
     table.read(queryContextForEmail);
 
-    // CREATE - add or overwrite the userId based on the authenticated user
+    // CREATE - add or overwrite hello userId based on hello authenticated user
     table.insert(addEmailToContext);
 
-    // UPDATE - only allow updating of record belong to the authenticated user
+    // UPDATE - only allow updating of record belong toohello authenticated user
     table.update(queryContextForEmail);
 
-    // DELETE - only allow deletion of records belong to the authenticated uer
+    // DELETE - only allow deletion of records belong toohello authenticated uer
     table.delete(queryContextForEmail);
 
     module.exports = table;
 
-Milyen jogcímeket érhetők el, használja a webböngésző megtekintéséhez a `/.auth/me` végpont a webhely.
+toosee milyen jogcímek elérhető, hogy egy webes böngésző tooview hello használata `/.auth/me` végpont a webhely.
 
-### <a name="howto-tables-disabled"></a>Útmutató: bizonyos táblájához műveletek való hozzáférés letiltása
-Mellett a táblázatban szereplő, az access tulajdonság segítségével szabályozhatja az egyes műveletek.  Nincsenek négy műveletet:
+### <a name="howto-tables-disabled"></a>Hogyan: toospecific tábla műveletek letiltása
+Továbbá tooappearing hello táblán, a hello hozzáférés tulajdonság használt toocontrol műveletenként is lehet.  Nincsenek négy műveletet:
 
-* *olvassa el* a RESTful BEOLVASNI művelet a táblán
-* *Helyezze be* a RESTful POST művelet a táblázat
-* *frissítés* a RESTful javítás művelet a táblán
-* *Törlés* a RESTful DELETE művelet a táblán van
+* *olvassa el* hello hello tábla RESTful BEOLVASNI művelet
+* *Helyezze be* hello RESTful POST művelet hello tábla
+* *frissítés* hello tábla hello RESTful javítás művelet
+* *Törlés* hello RESTful DELETE művelet hello táblán van
 
-Például Kezdésként érdemes lehet egy olyan írásvédett nem hitelesített táblázat:
+Például előfordulhat, hogy kívánja tooprovide egy csak olvasható nem hitelesített táblázatot:
 
     var azureMobileApps = require('azure-mobile-apps');
 
@@ -491,14 +491,14 @@ Például Kezdésként érdemes lehet egy olyan írásvédett nem hitelesített 
 
     module.exports = table;
 
-### <a name="howto-tables-query"></a>Hogyan: módosítsa a táblázat műveletek használt lekérdezés
-Kötelező megadni a tábla műveletek arra, hogy az adatok korlátozott nézete.  Például előfordulhat, hogy adjon meg egy táblát, amely a hitelesített felhasználói azonosítóval van megjelölve, hogy csak olvasható vagy a saját rekordok frissítése.  A következő tábla definícióját tartalmazza ezt a funkciót:
+### <a name="howto-tables-query"></a>Útmutató: a tábla műveletekkel használható hello lekérdezés beállítása
+Kötelező megadni a tábla műveletek tooprovide hello adatok korlátozott nézete.  Megadhat például hello címkéje tábla hitelesített felhasználói Azonosítóját, hogy csak olvasható vagy a saját rekordok frissítése.  a következő tábla definíciójában hello ezt a szolgáltatást biztosítja:
 
     var azureMobileApps = require('azure-mobile-apps');
 
     var table = azureMobileApps.table();
 
-    // Define a static schema for the table
+    // Define a static schema for hello table
     table.columns = {
         "userId": "string",
         "text": "string",
@@ -509,13 +509,13 @@ Kötelező megadni a tábla műveletek arra, hogy az adatok korlátozott nézete
     // Require authentication for this table
     table.access = 'authenticated';
 
-    // Ensure that only records for the authenticated user are retrieved
+    // Ensure that only records for hello authenticated user are retrieved
     table.read(function (context) {
         context.query.where({ userId: context.user.id });
         return context.execute();
     });
 
-    // When adding records, add or overwrite the userId with the authenticated user
+    // When adding records, add or overwrite hello userId with hello authenticated user
     table.insert(function (context) {
         context.item.userId = context.user.id;
         return context.execute();
@@ -523,18 +523,18 @@ Kötelező megadni a tábla műveletek arra, hogy az adatok korlátozott nézete
 
     module.exports = table;
 
-Műveletek általában a lekérdezés végrehajtása rendelkezik egy lekérdezés tulajdonságot, amelynek módosíthatja, a where záradékban. A lekérdezés tulajdonság egy [QueryJS] egy OData-lekérdezés konvertálása valamilyen, amely képes az adatok háttérbeli használt objektum.  Egyszerű egyenlőség esetekben (például az előző) térképre használhatók. SQL záradékokat is hozzáadhat:
+Műveletek általában a lekérdezés végrehajtása rendelkezik egy lekérdezés tulajdonságot, amelynek módosíthatja, a where záradékban. hello lekérdezés tulajdonság egy [QueryJS] objektum, amely egy OData-lekérdezés toosomething, amely az adatok háttérbeli hello használt tooconvert tud feldolgozni.  Egyszerű egyenlőség esetekben (például egy megelőző hello) térképre használhatók. SQL záradékokat is hozzáadhat:
 
     context.query.where('myfield eq ?', 'value');
 
 ### <a name="howto-tables-softdelete"></a>Útmutató: egy helyreállítható törlésre konfigurálása
-Helyreállítható törlésre ténylegesen nem törli a rekordok.  Ehelyett azt jelöli meg azokat a törölt oszlop true értékre állításával az adatbázis törlése.  Az Azure Mobile Apps SDK automatikusan eltávolítja helyreállíthatóan törölt rekordok eredmények, kivéve, ha a mobileszköz ügyfél SDK IncludeDeleted() használja.  Egy helyreállítható törlésre tábla konfigurálásához állítsa a `softDelete` tulajdonság a tábla szolgáltatásdefiníciós fájlban:
+Helyreállítható törlésre ténylegesen nem törli a rekordok.  Ehelyett azt jelöli meg azokat úgy, hogy törölte hello oszlop tootrue hello adatbázis törlése.  hello Azure Mobile Apps SDK automatikusan eltávolítja helyreállíthatóan törölt rekordok eredmények, kivéve, ha hello Mobile ügyfél SDK-t használ IncludeDeleted().  az ideiglenes tábla törléséhez tooconfigure hello beállítása `softDelete` tulajdonság hello tábla szolgáltatásdefiníciós fájlban:
 
     var azureMobileApps = require('azure-mobile-apps');
 
     var table = azureMobileApps.table();
 
-    // Define the columns within the table
+    // Define hello columns within hello table
     table.columns = {
         "text": "string",
         "complete": "boolean"
@@ -546,7 +546,7 @@ Helyreállítható törlésre ténylegesen nem törli a rekordok.  Ehelyett azt 
     // Turn on Soft Delete
     table.softDelete = true;
 
-    // Require authentication to access the table
+    // Require authentication tooaccess hello table
     table.access = 'authenticated';
 
     module.exports = table;
@@ -554,13 +554,13 @@ Helyreállítható törlésre ténylegesen nem törli a rekordok.  Ehelyett azt 
 Létre kell hoznia egy olyan mechanizmus kiürítése rekordok - vagy a ügyfélalkalmazás keresztül webjobs-feladat, Azure-függvény, vagy egy egyéni API-n keresztül.
 
 ### <a name="howto-tables-seeding"></a>Útmutató: az adatbázis adatokkal magtípusú leképezést
-Amikor egy új alkalmazást hoz létre, érdemes rendezi az adatokat tartalmazó táblát.  Ezt megteheti a tábla definícióját JavaScript-fájlon belüli az alábbiak szerint:
+Amikor egy új alkalmazást hoz létre, Kezdésként tooseed adatokat tartalmazó táblát.  Ezt megteheti belül hello tábla definícióját JavaScript-fájlt az alábbiak szerint:
 
     var azureMobileApps = require('azure-mobile-apps');
 
     var table = azureMobileApps.table();
 
-    // Define the columns within the table
+    // Define hello columns within hello table
     table.columns = {
         "text": "string",
         "complete": "boolean"
@@ -573,76 +573,76 @@ Amikor egy új alkalmazást hoz létre, érdemes rendezi az adatokat tartalmazó
     // Turn off dynamic schema
     table.dynamicSchema = false;
 
-    // Require authentication to access the table
+    // Require authentication tooaccess hello table
     table.access = 'authenticated';
 
     module.exports = table;
 
-Az adatok összehangolása csak végre, ha az Azure Mobile Apps SDK hozta létre a tábla.  Ha a tábla már létezik az adatbázisban, a program a táblába beszúrta nincsenek adatok.  Ha dinamikus séma be van kapcsolva, majd a séma van következtetni a kiemelt adatokat.
+Az adatok összehangolása csak történik hello Azure Mobile Apps SDK hello tábla létrehozásakor.  Hello tábla már létezik hello adatbázison belül, ha a program hello táblába beszúrta nincsenek adatok.  Ha dinamikus séma be van kapcsolva, akkor a séma táblanévhez rendezés hello adatokból.
 
-Azt javasoljuk, hogy explicit módon meghívja a `tables.initialize()` metódus fut a szolgáltatás indulásakor a tábla létrehozásához.
+Azt javasoljuk, hogy explicit módon hívjon hello `tables.initialize()` metódus toocreate hello tábla hello szolgáltatás elindul.
 
 ### <a name="Swagger"></a>Útmutató: a Swagger-támogatás engedélyezése
-Az Azure App Service Mobile Apps mellékelt beépített [Swagger] támogatja.  A Swagger-támogatásának engedélyezése, először telepítenie kell a swagger felhasználói felület a függőség beállításához:
+Az Azure App Service Mobile Apps mellékelt beépített [Swagger] támogatja.  tooenable Swagger-támogatást, először telepítenie hello swagger-ui a függőség beállításához:
 
     npm install --save swagger-ui
 
-A telepítést követően engedélyezheti a Swagger-támogatás az Azure Mobile Apps-konstruktor:
+A telepítést követően engedélyezheti a Swagger támogatását hello Azure Mobile Apps konstruktorban:
 
     var mobile = azureMobileApps({ swagger: true });
 
-Ön valószínűleg csak szeretné fejlesztési kiadásai Swagger-támogatás engedélyezése.  Ehhez felügyelniük a `NODE_ENV` Alkalmazásbeállítás:
+Ön valószínűleg csak kívánt tooenable Swagger támogatási fejlesztési kiadásában.  Ehhez felügyelniük a `NODE_ENV` Alkalmazásbeállítás:
 
     var mobile = azureMobileApps({ swagger: process.env.NODE_ENV !== 'production' });
 
-A swagger-végpont nem található: http://*yoursite*.azurewebsites.net/swagger.  A Swagger felhasználói felületén keresztül érheti el a `/swagger/ui` végpont.  Ha a teljes alkalmazás közötti hitelesítés szükséges, a Swagger hibát hoz létre.  A legjobb eredmények elérése érdekében válassza ki, hogy lehetővé tegyék a nem hitelesített kérelmek használatával az Azure App Service Authentication / engedélyezési beállításait, majd vezérlőt használatával a `table.access` tulajdonság.
+hello swagger-végpont itt található: http://*yoursite*.azurewebsites.net/swagger.  Swagger felhasználói felület hello hello keresztül érheti el `/swagger/ui` végpont.  Ha a teljes alkalmazás közötti toorequire hitelesítés, a Swagger hiba hoz létre.  A legjobb eredmények elérése érdekében válassza ki a hitelesítés nélküli tooallow kérelmeket keresztül hello Azure App Service Authentication / engedélyezési beállításait, majd vezérlőt hitelesítéssel hello `table.access` tulajdonság.
 
-A Swagger beállítással is hozzáadhat a `azureMobile.js` fájlt, ha azt szeretné csak Swagger támogatási helyileg fejlesztése során.
+Azt is megteheti hello Swagger beállítás tooyour `azureMobile.js` fájlt, ha azt szeretné csak Swagger támogatási helyileg fejlesztése során.
 
 ## <a name="a-namepushpush-notifications"></a><a name="push">Leküldéses értesítések
-Mobile Apps integrálja az Azure Notification Hubs ahhoz, hogy célzott leküldéses értesítések küldésére eszközök millióira minden fő platformon. A Notification Hubs használatával leküldéses értesítéseket küldhet az iOS, Android és Windows rendszerű eszközökhöz. A Notification hubs használatával elvégezhető az összes kapcsolatos további információkért lásd: [Notification Hubs – áttekintés](../notification-hubs/notification-hubs-push-notification-overview.md).
+Mobile Apps integrálódik az Azure Notification Hubs tooenable, toosend célzott leküldéses értesítések toomillions eszközök minden fő platformon. A Notification Hubs használatával küldhet leküldéses értesítések tooiOS, Android és Windows rendszerű eszközökhöz. További információk az akkor lehet elvégezni a segítségével toolearn Notification hubs használatával, lásd: [Notification Hubs – áttekintés](../notification-hubs/notification-hubs-push-notification-overview.md).
 
 ### </a><a name="send-push"></a>Hogyan: leküldéses értesítések küldése
-A következő kód bemutatja, hogyan küldhet leküldéses objektum leküldéses értesítések a regisztrált iOS-eszközök:
+a következő kód hello látható toouse hello leküldéses objektum toosend közvetítés a leküldéses értesítési tooregistered iOS-eszközök:
 
     // Create an APNS payload.
     var payload = '{"aps": {"alert": "This is an APNS payload."}}';
 
-    // Only do the push if configured
+    // Only do hello push if configured
     if (context.push) {
         // Send a push notification using APNS.
         context.push.apns.send(null, payload, function (error) {
             if (error) {
-                // Do something or log the error.
+                // Do something or log hello error.
             }
         });
     }
 
-Az ügyfél egy sablon leküldéses regisztrációs létrehozásával is inkább egy sablon leküldéses üzenetet küld eszközök az összes támogatott platformon. A következő kód bemutatja, hogyan sablon értesítést küldhet:
+Hozzon létre egy sablon leküldéses regisztrációs hello ügyfélről, ehelyett küldhet egy sablon leküldéses üzenet toodevices az összes támogatott platformon. a következő kód bemutatja hogyan hello toosend sablon értesítést:
 
-    // Define the template payload.
+    // Define hello template payload.
     var payload = '{"messageParam": "This is a template payload."}';
 
-    // Only do the push if configured
+    // Only do hello push if configured
     if (context.push) {
         // Send a template notification.
         context.push.send(null, payload, function (error) {
             if (error) {
-                // Do something or log the error.
+                // Do something or log hello error.
             }
         });
     }
 
 
-### <a name="push-user"></a>Útmutató: egy hitelesített felhasználó számára címkék használatával leküldéses értesítések küldése
-Amikor a hitelesített felhasználó regisztrálja a leküldéses értesítések, a felhasználói azonosító címke automatikusan hozzáadódik a regisztráció. Ezt a címkét használatával küldhet leküldéses értesítéseket egy adott felhasználó által regisztrált összes eszközt. Az alábbi kód lekérdezi a kérelmező felhasználó biztonsági azonosítója és minden eszköz regisztrálása az adott felhasználó sablon leküldéses értesítést küld:
+### <a name="push-user"></a>Hogyan: küldés leküldéses értesítések tooan hitelesített felhasználó címkék használatával
+Amikor a hitelesített felhasználó regisztrálja a leküldéses értesítések, a felhasználói azonosító címke automatikusan kerül toohello regisztrációs. Ezt a címkét használatával küldhet leküldéses értesítések tooall eszközök egy adott felhasználó regisztrálja. hello alábbira lekérdezi hello hello kérelmező felhasználó biztonsági azonosítója és a hozzájuk a sablon leküldéses értesítés tooevery eszköz regisztrálása, hogy a felhasználó:
 
-    // Only do the push if configured
+    // Only do hello push if configured
     if (context.push) {
-        // Send a notification to the current user.
+        // Send a notification toohello current user.
         context.push.send(context.user.id, payload, function (error) {
             if (error) {
-                // Do something or log the error.
+                // Do something or log hello error.
             }
         });
     }
@@ -651,23 +651,23 @@ Amikor regisztrál egy hitelesített ügyfél leküldéses értesítésekhez, gy
 
 ## <a name="CustomAPI"></a>Egyéni API-k
 ### <a name="howto-customapi-basic"></a>Hogyan: Adja meg egy egyéni API
-Az adatok hozzáférésének API a /tables végpont, mellett Azure Mobile Apps is biztosít egyéni API.  Egyéni API-k a definíciói hasonló módon határozza meg, és hozzáférhet ugyanazokat létesítményekben, például a hitelesítés.
+Ezenkívül toohello adatokat érhetnek el hello /tables végpont API, Azure Mobile Apps is biztosít egyéni API.  Egyéni API-k egy hasonló módon toohello definíciói vannak definiálva, és elérheti hello ugyanazokat a lehetőségeket, például a hitelesítés.
 
-Ha szeretné használni az App Service hitelesítés egy egyéni API-t, konfigurálnia kell a App Service hitelesítés a [Azure-portálon] első.  Az Azure App Service hitelesítés konfigurálásával kapcsolatos további részletekért tekintse át a konfigurációs útmutató szeretne használni az identitásszolgáltató számára:
+Ha a toouse App Service hitelesítés egy egyéni API-t, konfigurálnia kell App Service hitelesítés hello [Azure-portálon] első.  A hitelesítés beállítása az Azure App Service szolgáltatásban kapcsolatos további részletekért tekintse át a konfigurációs útmutató hello hello identitásszolgáltató az toouse szeretné:
 
-* [Azure Active Directory-hitelesítés konfigurálása]
-* [Facebook-hitelesítés konfigurálása]
-* [Google-hitelesítés konfigurálása]
-* [A Microsoft Authentication konfigurálása]
-* [Twitter-hitelesítés konfigurálása]
+* [Hogyan tooconfigure Azure Active Directory-hitelesítés]
+* [Hogyan tooconfigure Facebook-hitelesítés]
+* [Hogyan tooconfigure Google-hitelesítés]
+* [Hogyan tooconfigure Microsoft Authentication]
+* [Hogyan tooconfigure Twitter hitelesítés]
 
-Egyéni API-k sokkal ugyanúgy, mint a táblák API vannak definiálva.
+Egyéni API-k meghatározott nagy hello azonos módon hello táblák API.
 
 1. Hozzon létre egy **api** könyvtár
-2. Az API definition JavaScript fájl létrehozása a **api** könyvtár.
-3. Az importálás módszer használatával importálja a **api** könyvtár.
+2. Hozzon létre egy API definition JavaScript fájlt hello **api** könyvtár.
+3. Használjon hello importálás módszer tooimport hello **api** könyvtár.
 
-Ez a korábbi használtuk az alkalmazáson belüli basic minta alapján prototípus api-definíció.
+Itt található hello prototípus api definition korábbi használtuk hello basic alkalmazáson belüli minta alapján.
 
     var express = require('express'),
         azureMobileApps = require('azure-mobile-apps');
@@ -675,16 +675,16 @@ Ez a korábbi használtuk az alkalmazáson belüli basic minta alapján prototí
     var app = express(),
         mobile = azureMobileApps();
 
-    // Import the Custom API
+    // Import hello Custom API
     mobile.api.import('./api');
 
-    // Add the mobile API so it is accessible as a Web API
+    // Add hello mobile API so it is accessible as a Web API
     app.use(mobile);
 
     // Start listening on HTTP
     app.listen(process.env.PORT || 3000);
 
-Vegyünk egy példát a kiszolgálóra dátum történő visszaadó API a *Date.now()* metódust.  A api/date.js fájl itt található:
+Vegyünk egy példát hello server dátumot hello visszaadó API *Date.now()* metódust.  Hello api/date.js fájl itt található:
 
     var api = {
         get: function (req, res, next) {
@@ -695,10 +695,10 @@ Vegyünk egy példát a kiszolgálóra dátum történő visszaadó API a *Date.
 
     module.exports = api;
 
-Egyes paraméterek egyike a szabványos RESTful HTTP-parancsokat - GET, POST, javítását vagy törlése.  A metódus egy szabványos [ExpressJS köztes] függvény, amelyet a kimeneti küld.
+Minden paraméter hello szabványos RESTful műveletek egyike - GET, POST, javítását vagy törlése.  hello metódus szabványos [ExpressJS köztes] függvény által küldött szükséges hello kimeneti.
 
-### <a name="howto-customapi-auth"></a>Útmutató: hitelesítés egy egyéni API eléréséhez szükséges
-Az Azure Mobile Apps SDK hitelesítés a táblák végpont és az egyéni API-k ugyanúgy valósítja meg.  Hitelesítés hozzáadása az előző szakaszban létrehozott API-hoz, vegye fel egy **hozzáférés** tulajdonság:
+### <a name="howto-customapi-auth"></a>Útmutató: hitelesítés szükséges hozzáférési tooa egyéni API-hoz.
+Az Azure Mobile Apps SDK megvalósítja a hitelesítési hello a megszokott módon hello táblák végpont és egyéni API-k.  Hitelesítési toohello API hello előző szakaszban létrehozott felvételéhez adja hozzá egy **hozzáférés** tulajdonság:
 
     var api = {
         get: function (req, res, next) {
@@ -719,15 +719,15 @@ A konkrét műveletek is hitelesítési adhatja meg:
             res.status(200).type('application/json').send(date);
         }
     };
-    // The GET methods must be authenticated.
+    // hello GET methods must be authenticated.
     api.get.access = 'authenticated';
 
     module.exports = api;
 
-Ugyanezt a tokent a táblák végpont használt hitelesítést igénylő, egyéni API-kat kell használni.
+hello ugyanezt a tokent hello táblák végpont használt kell használni a hitelesítést igénylő, egyéni API-k.
 
 ### <a name="howto-customapi-auth"></a>Hogyan: nagy fájlfeltöltéseket kezelése
-Az Azure Mobile Apps SDK-t használ a [törzs-elemző köztes](https://github.com/expressjs/body-parser) elfogadásához és dekódolási törzs tartalma a jelentkezést.  Törzs-elemző nagyobb fájlfeltöltések fogadásához előre konfigurálhatja:
+Az Azure Mobile Apps SDK-t használ a hello [törzs-elemző köztes](https://github.com/expressjs/body-parser) tooaccept és dekódolási törzs tartalma a jelentkezést.  Törzs-elemző tooaccept nagyobb fájlfeltöltéseket előre konfigurálhatja:
 
     var express = require('express'),
         bodyParser = require('body-parser'),
@@ -740,27 +740,27 @@ Az Azure Mobile Apps SDK-t használ a [törzs-elemző köztes](https://github.co
     app.use(bodyParser.json({ limit: '50mb' }));
     app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
-    // Import the Custom API
+    // Import hello Custom API
     mobile.api.import('./api');
 
-    // Add the mobile API so it is accessible as a Web API
+    // Add hello mobile API so it is accessible as a Web API
     app.use(mobile);
 
     // Start listening on HTTP
     app.listen(process.env.PORT || 3000);
 
-A fájl nem base-64 kódolású továbbítás előtt.  Ez növeli a tényleges feltöltés méretét (és így mérete figyelembe kell venni).
+hello fájl base-64 kódolású továbbítás előtt.  Ez növeli a hello tényleges feltöltés hello méretét (és figyelembe kell venni mérete ezért hello).
 
 ### <a name="howto-customapi-sql"></a>Útmutató: egyéni SQL-utasítások végrehajtása
-Az Azure Mobile Apps SDK lehetővé teszi a hozzáférést a teljes környezet a request objektumon keresztül lehetővé téve a paraméteres SQL utasítást, hogy az adott szolgáltató egyszerűen hajtható végre:
+hello Azure Mobile Apps SDK lehetővé teszi, hogy a hozzáférés toohello teljes környezetben keresztül hello request objektumon, így tooexecute paraméteres SQL utasítás toohello meghatározott adatszolgáltató könnyen:
 
     var api = {
         get: function (request, response, next) {
-            // Check for parameters - if not there, pass on to a later API call
+            // Check for parameters - if not there, pass on tooa later API call
             if (typeof request.params.completed === 'undefined')
                 return next();
 
-            // Define the query - anything that can be handled by the mssql
+            // Define hello query - anything that can be handled by hello mssql
             // driver is allowed.
             var query = {
                 sql: 'UPDATE TodoItem SET complete=@completed',
@@ -769,8 +769,8 @@ Az Azure Mobile Apps SDK lehetővé teszi a hozzáférést a teljes környezet a
                 }]
             };
 
-            // Execute the query.  The context for Azure Mobile Apps is available through
-            // request.azureMobile - the data object contains the configured data provider.
+            // Execute hello query.  hello context for Azure Mobile Apps is available through
+            // request.azureMobile - hello data object contains hello configured data provider.
             request.azureMobile.data.execute(query)
             .then(function (results) {
                 response.json(results);
@@ -783,48 +783,48 @@ Az Azure Mobile Apps SDK lehetővé teszi a hozzáférést a teljes környezet a
 
 ## <a name="Debugging"></a>Hibakeresés, könnyen táblák és egyszerű API-k
 ### <a name="howto-diagnostic-logs"></a>Hogyan: hibakeresési, diagnosztizálása és elhárítása az Azure Mobile apps
-Az Azure App Service számos Hibakeresés és hibaelhárítási módszerekről a Node.js-alkalmazások biztosít.
-Ismerkedés a Node.js mobil-háttéralkalmazás elhárításához a következő cikkekben talál:
+hello Azure App Service számos Hibakeresés és hibaelhárítási módszerekről a Node.js-alkalmazások biztosít.
+Tekintse meg a következő lépések során a Node.js mobil-háttéralkalmazás cikkek tooget toohello:
 
 * [Az Azure App Service figyelése]
 * [Az Azure App Service diagnosztikai naplózás engedélyezése]
 * [A Visual Studio egy Azure App Service hibaelhárítása]
 
-NODE.js-alkalmazások hozzáférhetnek a diagnosztikai naplófájl eszközök széles skáláját.  Belsőleg, az Azure Mobile Apps Node.js SDK használ [Winston] diagnosztikai naplózás.  Automatikusan naplózását hibakeresési mód engedélyezésével, illetve a **MS_DebugMode** Alkalmazásbeállítás igaz értékű a [Azure-portálon]. A diagnosztikai naplók létrehozott naplók jelennek meg a [Azure-portálon].
+NODE.js-alkalmazások hozzáférhetnek tooa diagnosztikai naplófájl eszközök széles skáláját.  Belsőleg, az Azure Mobile Apps Node.js SDK-t használ hello [Winston] diagnosztikai naplózás.  Automatikusan naplózását hibakeresési mód engedélyezése vagy hello beállítása **MS_DebugMode** hello az alkalmazás-beállítás tootrue [Azure-portálon]. Létrehozott naplók jelennek meg a hello diagnosztikai naplók hello [Azure-portálon].
 
-### <a name="in-portal-editing"></a><a name="work-easy-tables"></a>Útmutató: egyszerű táblák használata az Azure-portálon
-Egyszerű táblák a portálon lehetővé teszik, hogy létrehozása és használata táblákat közvetlenül a portálon. Az App Service-szerkesztővel tábla műveletek akár szerkesztheti is.
+### <a name="in-portal-editing"></a><a name="work-easy-tables"></a>Útmutató: egyszerű táblák munkához hello Azure-portálon
+Hello portálon könnyen táblák lehetővé teszik, hogy létrehozása és használata táblákat közvetlenül hello portálon. Tábla műveletekbe hello App Service-szerkesztő akár szerkesztheti is.
 
-Amikor rákattint **könnyen táblák** a háttér-webhely beállításai hozzáadása, módosítása és törlése egy tábla. Megtekintheti a tábla adatai is.
+Amikor rákattint **könnyen táblák** a háttér-webhely beállításai hozzáadása, módosítása és törlése egy tábla. Hello tábla is megtekinthető.
 
 ![A könnyen táblázatok használata](./media/app-service-mobile-node-backend-how-to-use-server-sdk/mobile-apps-easy-tables.png)
 
-Az alábbi parancsokat a táblázat parancssávon érhetők el:
+hello következő parancsok is elérhetők hello parancssávon táblázat:
 
-* **Engedélyek módosítása** - módosítási olvasási engedéllyel, beszúrása, frissítése és törlési műveletek a táblában.
-  Is, hogy engedélyezze a névtelen hozzáférést, a hitelesítés szükséges, vagy tiltsa le a műveletet az elérésére.
-* **Parancsfájl szerkesztése** -a parancsfájl a következő táblázatban a App Service-szerkesztőben van megnyitva.
-* **Séma kezelése** - hozzáadása vagy oszlopok törlése vagy a tábla index módosítása.
-* **Törölje a jelet tábla** -csonkolja a meglévő tábla kell az összes adat sorok törléséhez, de a séma hagyja változatlanul.
+* **Engedélyek módosítása** - olvasási engedély hello módosítás, Beszúrás, frissítése és törlési műveletek hello táblán.
+  Beállítások a következők tooallow névtelen hozzáférés, toorequire hitelesítési vagy toodisable minden hozzáférési toohello műveletet.
+* **Parancsfájl szerkesztése** -hello parancsfájl hello tábla az App Service-szerkesztő hello van megnyitva.
+* **Séma kezelése** - hozzáadása vagy oszlopok törlése vagy hello tábla index módosítása.
+* **Törölje a jelet tábla** -csonkolja a meglévő tábla kell az összes adat sorok törléséhez, de hello séma hagyja változatlanul.
 * **Sorok törlése** -egyedi sornyi adatot törli.
-* **A folyamatos átviteli naplók megtekintése** -csatlakoztatja a helyhez a folyamatos átviteli naplózási szolgáltatás.
+* **A folyamatos átviteli naplók megtekintése** -összeköttetést toohello adatfolyam-naplózási szolgáltatás a helyhez.
 
-### <a name="work-easy-apis"></a>Útmutató: egyszerű API-k használata az Azure-portálon
-A portál egyszerű API-k lehetővé teszik, hogy létrehozása és használata egyéni API-k közvetlenül a portálon. Az App Service-szerkesztővel API parancsfájlok szerkesztheti.
+### <a name="work-easy-apis"></a>Útmutató: egyszerű API-k munkához hello Azure-portálon
+Hello portal egyszerű API-k lehetővé teszik, hogy létrehozása és használata egyéni API-k közvetlenül hello portálon. API-parancsfájlok hello App Service-szerkesztő használatával módosíthatja.
 
 Amikor rákattint **egyszerű API-k** a háttér-webhely beállításai hozzáadása, módosítása és egy egyéni API-végpont törlése.
 
 ![Egyszerű API-khoz](./media/app-service-mobile-node-backend-how-to-use-server-sdk/mobile-apps-easy-apis.png)
 
-A portál egy adott HTTP-művelet hozzáférési engedélyeinek módosítása, az API-parancsfájlt a App Service-szerkesztőben szerkesztheti vagy a folyamatos átviteli naplók megtekintése.
+Hello portálon egy adott HTTP-művelet hello hozzáférési engedélyeinek módosítása, hello API parancsfájlt a App Service-szerkesztőben szerkesztheti vagy hello folyamatos átviteli naplók megtekintése.
 
-### <a name="online-editor"></a>Útmutató: a App Service-szerkesztőben kód szerkesztése
-Az Azure portál segítségével anélkül, hogy a projekt letöltése a helyi számítógépen a Node.js háttérrendszer parancsprogramok a App Service-szerkesztőben szerkesztheti. Az online szerkesztő parancsfájlok szerkesztése:
+### <a name="online-editor"></a>Hogyan: hello App Service-szerkesztő kód szerkesztése
+hello Azure-portál lehetővé teszi a Node.js háttérrendszer parancsfájlok hello App Service-szerkesztő szerkesztése hello projekt tooyour helyi számítógép letöltése nélkül. a parancsfájlok tooedit hello online szerkesztőben:
 
-1. A mobilalkalmazás-háttérrendszer paneljén kattintson **összes beállítás** > vagy **könnyen táblák** vagy **egyszerű API-k**, egy táblázatot vagy API-t, majd **parancsfájl szerkesztése**. A parancsfájl a App Service-szerkesztőben van megnyitva.
+1. A mobilalkalmazás-háttérrendszer paneljén kattintson **összes beállítás** > vagy **könnyen táblák** vagy **egyszerű API-k**, egy táblázatot vagy API-t, majd **parancsfájl szerkesztése**. hello parancsfájlt az App Service-szerkesztő hello van megnyitva.
 
     ![App Service-szerkesztő](./media/app-service-mobile-node-backend-how-to-use-server-sdk/mobile-apps-visual-studio-editor.png)
-2. A módosításokat a kódfájl online-szerkesztőben. Változások automatikusan mentése közben.
+2. Végezze el a módosításokat toohello kódfájl hello online szerkesztő. Változások automatikusan mentése közben.
 
 <!-- Images -->
 [0]: ./media/app-service-mobile-node-backend-how-to-use-server-sdk/npm-init.png
@@ -845,16 +845,16 @@ Az Azure portál segítségével anélkül, hogy a projekt letöltése a helyi s
 [A Windows Store ügyfél gyors üzembe helyezés]: app-service-mobile-windows-store-dotnet-get-started.md
 [HTML/Javascript Client QuickStart]: app-service-html-get-started.md
 [offline adatszinkronizálás]: app-service-mobile-offline-data-sync.md
-[Azure Active Directory-hitelesítés konfigurálása]: app-service-mobile-how-to-configure-active-directory-authentication.md
-[Facebook-hitelesítés konfigurálása]: app-service-mobile-how-to-configure-facebook-authentication.md
-[Google-hitelesítés konfigurálása]: app-service-mobile-how-to-configure-google-authentication.md
-[A Microsoft Authentication konfigurálása]: app-service-mobile-how-to-configure-microsoft-authentication.md
-[Twitter-hitelesítés konfigurálása]: app-service-mobile-how-to-configure-twitter-authentication.md
+[Hogyan tooconfigure Azure Active Directory-hitelesítés]: app-service-mobile-how-to-configure-active-directory-authentication.md
+[Hogyan tooconfigure Facebook-hitelesítés]: app-service-mobile-how-to-configure-facebook-authentication.md
+[Hogyan tooconfigure Google-hitelesítés]: app-service-mobile-how-to-configure-google-authentication.md
+[Hogyan tooconfigure Microsoft Authentication]: app-service-mobile-how-to-configure-microsoft-authentication.md
+[Hogyan tooconfigure Twitter hitelesítés]: app-service-mobile-how-to-configure-twitter-authentication.md
 [Azure App Service telepítési útmutató]: ../app-service-web/web-sites-deploy.md
 [Az Azure App Service figyelése]: ../app-service-web/web-sites-monitor.md
 [Az Azure App Service diagnosztikai naplózás engedélyezése]: ../app-service-web/web-sites-enable-diagnostic-log.md
 [A Visual Studio egy Azure App Service hibaelhárítása]: ../app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md
-[a csomópont verzió megadása]: ../nodejs-specify-node-version-azure-apps.md
+[hello csomópont verzió megadása]: ../nodejs-specify-node-version-azure-apps.md
 [csomópont modulok használata]: ../nodejs-use-node-modules-azure-apps.md
 [Create a new Azure App Service]: ../app-service-web/
 [azure-mobile-apps]: https://www.npmjs.com/package/azure-mobile-apps

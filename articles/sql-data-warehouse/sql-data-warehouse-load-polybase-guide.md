@@ -1,5 +1,5 @@
 ---
-title: "A PolyBase használatával az SQL Data Warehouse útmutatója |} Microsoft Docs"
+title: az SQL Data Warehouse PolyBase az aaaGuide |} Microsoft Docs
 description: "Irányelvek és javaslatok a PolyBase az SQL Data Warehouse forgatókönyvekben."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,36 +15,36 @@ ms.workload: data-services
 ms.date: 6/5/2016
 ms.custom: loading
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 6938b92d8e5b46d908dc5b2155bdfdc89bb1dc8c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b05e4c5d528f2fe1c60d6855b5333065f0c908ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="guide-for-using-polybase-in-sql-data-warehouse"></a>Útmutató az SQL Data Warehouse PolyBase használatával
 Ez az útmutató az SQL Data Warehouse PolyBase használatára vonatkozó gyakorlati információkat biztosít.
 
-Első lépésként tekintse meg a [adatok betöltése a PolyBase] [ Load data with PolyBase] oktatóanyag.
+tooget indult el, lásd: hello [adatok betöltése a PolyBase] [ Load data with PolyBase] oktatóanyag.
 
 ## <a name="rotating-storage-keys"></a>Tárolási kulcsok elforgatása
-Időről időre lesz módosítani szeretné a hozzáférési kulcsot a blob Storage biztonsági okokból.
+Az idő tootime érdemes biztonsági okokból toochange hello hozzáférési kulcs tooyour blob-tároló.
 
-A legtöbb elegáns a feladat végrehajtásához módja kövesse "a kulcsok elforgatása" néven ismert folyamat. Talán észrevette, hogy két kulccsal is rendelkezik tárolási a blob storage-fiók esetében. Ez azért, hogy, hogy térjen át
+Ez a feladat a "hello kulcsok elforgatása" néven ismert folyamat toofollow legtöbb elegáns módon tooperform hello. Talán észrevette, hogy két kulccsal is rendelkezik tárolási a blob storage-fiók esetében. Ez azért, hogy, hogy térjen át
 
 Az Azure tárfiókkulcsok elforgatása rendkívül egyszerű három lépést folyamat
 
-1. A másodlagos tárelérési kulcs alapján második adatbázishoz kötődő hitelesítő adatok létrehozása
+1. Második adatbázishoz kötődő hitelesítő adatok alapján hello másodlagos tárelérési kulcs létrehozása
 2. Ki az új hitelesítőadat-alapú második külső adatforrás létrehozása
-3. Dobja el, és a külső táblák, mutasson az új külső adatforrás létrehozása
+3. Dobja el és létrehozni a hello külső toohello új külső adatforrás mutat
 
-Ha áttelepítette a külső táblák az új külső adatforráshoz, majd az eltávolítási feladatokat hajthat végre:
+Ha áttelepítette az összes külső táblák toohello új külső adatforrás majd végezhet hello feladatok törlése:
 
 1. Első külső adatforrásból eldobási
-2. Első adatbázis kötődő hitelesítő adatok az elsődleges tárelérési kulcs alapján
-3. Jelentkezzen be Azure és az készen áll a következő elsődleges elérési kulcs újragenerálása
+2. Első adatbázis kötődő hitelesítő adatok hello elsődleges tárelérési kulcs alapján
+3. Jelentkezzen be Azure, majd újra létrehozza a készen áll a hello hello elsődleges elérési kulcsot következő indításakor
 
 ## <a name="query-azure-blob-storage-data"></a>Az Azure blob storage-adatok lekérdezése
-Külső táblák lekérdezéseket egyszerűen használja a táblázat nevét, mintha egy relációs tábla volt.
+Külső táblák lekérdezéseket egyszerűen használja hello táblanév, mintha egy relációs tábla volt.
 
 ```sql
 -- Query Azure storage resident data via external table.
@@ -53,21 +53,21 @@ SELECT * FROM [ext].[CarSensor_Data]
 ```
 
 > [!NOTE]
-> A külső tábla a lekérdezés sikertelen lehet a hibával *"lekérdezés végrehajtása megszakadt – a maximális elutasítás küszöbérték elérésekor külső forrásból történő beolvasás során"*. Ez azt jelzi, hogy a külső adatokat tartalmaz *inkonzisztencia* rögzíti. Rekord "hibás" tekintendő, ha a tényleges adatok típusok/oszlopok száma nem egyezik az oszlopdefiníciók a külső tábla, vagy ha az adatok nem felelnek meg a megadott külső fájlformátum. A javítás érdekében győződjön meg arról, hogy a külső tábla és a külső fájlformátum-meghatározások helyességéről, valamint a külső adatokat megfelel e definíciókat. Abban az esetben, ha egy külső rekordok részét inkonzisztencia, dönthet úgy, hogy ezeket a rekordokat, a lekérdezések utasítsa el az alkalmazást a külső tábla létrehozása DDL.
+> A külső tábla is sikertelenek hello hiba *"lekérdezés végrehajtása megszakadt – hello maximális elutasítás küszöbérték elérte a külső forrásból történő beolvasás során"*. Ez azt jelzi, hogy a külső adatokat tartalmaz *inkonzisztencia* rögzíti. Rekord "hibás" tekintendő, ha hello tényleges adatokat típusok/oszlopok száma nem egyezik a hello oszlopdefiníciók hello külső tábla, vagy ha hello adatai nem felelnek meg a megadott külső fájlformátum toohello. toofix, győződjön meg arról, hogy a külső tábla és a külső fájlformátum-meghatározások helyességéről, valamint a külső adatokat megfelel toothese definíciókat. Abban az esetben, ha egy külső rekordok részét inkonzisztencia, kiválaszthatja tooreject ezeket a rekordokat a lekérdezések a külső tábla létrehozása DDL hello elutasítás beállítások használatával.
 > 
 > 
 
 ## <a name="load-data-from-azure-blob-storage"></a>Adatok betöltése az Azure Blob Storage-ből
-Ebben a példában az Azure blob storage adatokat tölt az SQL Data Warehouse-adatbázishoz.
+Ez a példa adatokat tölt az Azure blob storage tooSQL az operatív adatbázisból.
 
-Az adatátviteli idő lekérdezések adattárolás közvetlenül eltávolítja. Adattárolás egy oszloptárindexet tartalmazó növeli a lekérdezési teljesítményt, ha a akár 10 x elemzési lekérdezések.
+Adattárolás közvetlenül eltávolítja hello adatátviteli idő lekérdezések. Adattárolás egy oszloptárindexet tartalmazó növeli a lekérdezési teljesítmény elemzési lekérdezések által too10x fel.
 
-Ebben a példában a CREATE TABLE AS SELECT utasítást használja az adatok betöltése. Az új táblázat örökli a lekérdezésben szereplő oszlopokat. Ezek az oszlopok adattípusai az örökli a külső tábla definíciójában.
+A példa hello CREATE TABLE AS SELECT utasítás tooload adatokat. Új tábla hello örökli hello hello lekérdezésben szereplő oszlopokat. Ezek az oszlopok adattípusai hello örököl hello külső tábla definíciójában.
 
-CREATE TABLE AS SELECT a magas performant Transact-SQL-utasítást az SQL Data Warehouse összes számítási csomópont párhuzamosan az adatok betöltésekor.  A nagymértékben párhuzamos feldolgozási (MPP) motor az Analytics Platform System eredetileg, és jelenleg az SQL Data Warehouse.
+CREATE TABLE AS SELECT a magas performant Transact-SQL utasítást, amely a párhuzamos tooall hello hello adatokat tölt számítási csomópontok az SQL Data warehouse.  A hello nagymértékben párhuzamos feldolgozási (MPP) motor az Analytics Platform System eredetileg, és jelenleg az SQL Data Warehouse.
 
 ```sql
--- Load data from Azure blob storage to SQL Data Warehouse
+-- Load data from Azure blob storage tooSQL Data Warehouse
 
 CREATE TABLE [dbo].[Customer_Speed]
 WITH
@@ -84,7 +84,7 @@ FROM   [ext].[CarSensor_Data]
 Lásd: [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)].
 
 ## <a name="create-statistics-on-newly-loaded-data"></a>Statisztika létrehozása újonnan betöltött adatokról
-Az Azure SQL Data Warehouse még nem támogatja a statisztikák automatikus létrehozását és frissítését.  A legjobb lekérdezési teljesítmény eléréséhez fontos létrehozni statisztikákat a táblák összes oszlopához az első betöltés után, illetve az adatok minden lényeges módosítását követően.  A statisztika részletes ismertetését a Fejlesztés témakörcsoport [Statisztika][Statistics] témakörében találja.  Alább egy gyors példát létrehozására a táblázatos ebben a példában betöltött van.
+Az Azure SQL Data Warehouse még nem támogatja a statisztikák automatikus létrehozását és frissítését.  A sorrend tooget hello legjobb teljesítmény elérése érdekében a lekérdezéseket a fontos létrehozni statisztikákat a táblák összes oszlopához hello első betöltés után, vagy hello adatok minden lényeges módosítását fordul elő.  A statisztika részletes ismertetése, lásd: hello [statisztika] [ Statistics] hello fejlesztés témakörcsoport témakörében.  Az alábbiakban látható egy gyors példa hogyan előterjesztett hello toocreate statisztikák ebben a példában betöltött.
 
 ```sql
 create statistics [SensorKey] on [Customer_Speed] ([SensorKey]);
@@ -94,10 +94,10 @@ create statistics [Speed] on [Customer_Speed] ([Speed]);
 create statistics [YearMeasured] on [Customer_Speed] ([YearMeasured]);
 ```
 
-## <a name="export-data-to-azure-blob-storage"></a>Exportálja az adatokat az Azure blob storage
-Ez a szakasz bemutatja, hogyan exportál adatokat az SQL Data Warehouse az Azure blob Storage tárolóban. A példa létrehozása külső TABLE AS SELECT egy magas performant Transact-SQL-utasítást az adatok párhuzamos exportálása a számítási csomópontok egyben.
+## <a name="export-data-tooazure-blob-storage"></a>Adatok tooAzure blob-tároló exportálása
+Ez a szakasz bemutatja, hogyan tooexport adatait az SQL Data Warehouse tooAzure blob-tároló. A példa létrehozása külső tábla AS válassza ki azt a magas performant Transact-SQL utasítás tooexport hello adatokat az összes hello számítási csomópont párhuzamosan.
 
-Az alábbi példa létrehoz egy külső tábla Weblogs2014 oszlopdefiníciók és dbo adatait. Webes naplók tábla. A külső tábla definíciójának SQL Data Warehouse tárolja, és a SELECT utasítás eredményét exportálják a "/ / log2014/archiválására" az adatforrás által megadott blob tároló könyvtárat. Az adatok exportálása a megadott szöveg formátumban.
+hello alábbi példa létrehoz egy külső tábla Weblogs2014 oszlopdefiníciók és dbo adatait. Webes naplók tábla. hello külső tábla definíciójának SQL Data Warehouse tárolja, és hello hello SELECT utasítás eredményei exportált toohello hello adatforrás által meghatározott hello blob tároló "/ / log2014/archiválására" könyvtárat. hello adatok exportálása hello megadott szöveg formátumban.
 
 ```sql
 CREATE EXTERNAL TABLE Weblogs2014 WITH
@@ -118,21 +118,21 @@ WHERE
     AND DateRequested < '01/01/2015';
 ```
 ## <a name="isolate-loading-users"></a>Különítse el a felhasználók betöltésekor
-Gyakran szükség van egy SQL DW adatok betölthetnek több felhasználó számára. Mivel a [CREATE TABLE AS SELECT (Transact-SQL)] [ CREATE TABLE AS SELECT (Transact-SQL)] VEZÉRLÉSI engedélyekkel kell rendelkeznie az adatbázis kat, az elérés több felhasználóval rendelkező összes keresztül. Ez korlátozza, a MEGTAGADÁSI vezérlő utasítás is használhat.
+Nincs gyakran egy szükséges toohave adatok betölthetnek egy SQL DW több felhasználó. Mivel hello [CREATE TABLE AS SELECT (Transact-SQL)] [ CREATE TABLE AS SELECT (Transact-SQL)] VEZÉRLÉSI engedélyekkel kell rendelkeznie a hello adatbázis kat, az elérés több felhasználóval rendelkező összes keresztül. toolimit, hello ellenőrzési MEGTAGADÁSI utasítással.
 
 Példa: Fontolja meg adatbázis sémák schema_A az osztály A, és a részleg B segítségével adatbázis felhasználók user_A schema_B és user_B felhasználóknak PolyBase betöltése az osztály A és B, illetve a. Mindkettő rendelkezik vezérlő adatbázis-engedélyek.
-Séma A és B most zárolás creators le, hogy a sémáikat MEGTAGADÁS használatával:
+hello creators séma A és B most zárolását, hogy a sémáikat MEGTAGADÁS használatával:
 
 ```sql
-   DENY CONTROL ON SCHEMA :: schema_A TO user_B;
-   DENY CONTROL ON SCHEMA :: schema_B TO user_A;
+   DENY CONTROL ON SCHEMA :: schema_A toouser_B;
+   DENY CONTROL ON SCHEMA :: schema_B toouser_A;
 ```   
- Ennek user_A és user_B most zárolja a más osztály séma.
+ Ennek, user_A és user_B most zárolja a hello más osztály sémáját.
  
 
 
 ## <a name="next-steps"></a>Következő lépések
-Adatok áthelyezése az SQL Data Warehouse kapcsolatos további tudnivalókért tekintse meg a [adatok áttelepítése – áttekintés][data migration overview].
+toolearn áthelyezése adatok tooSQL Data Warehouse kapcsolatos további információkért lásd: hello [adatok áttelepítése – áttekintés][data migration overview].
 
 <!--Image references-->
 

@@ -1,6 +1,6 @@
 ---
-title: "VPN-integráció az Azure MFA használata a hálózati házirend-kiszolgáló bővítmény |} Microsoft Docs"
-description: "A cikk ismerteti a VPN-infrastruktúra integrálása az Azure MFA használata a hálózati házirend-kiszolgáló (NPS) bővítmény a Microsoft Azure."
+title: "az Azure MFA használata a hálózati házirend-kiszolgáló bővítmény aaaVPN integrációs |} Microsoft Docs"
+description: "A cikk ismerteti a VPN-infrastruktúra integrálása az Azure MFA hello hálózati házirend-kiszolgáló (NPS) bővítmény a Microsoft Azure használatával."
 services: active-directory
 keywords: "Az Azure MFA integrálja a VPN-, Azure Active Directoryban, hálózati házirend-kiszolgáló bővítmény"
 documentationcenter: 
@@ -16,58 +16,58 @@ ms.date: 08/15/2017
 ms.author: kgremban
 ms.reviewer: jsnow
 ms.custom: it-pro
-ms.openlocfilehash: 3dfcf25856ede50266336c2ebb057dd3f7b8897e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5e120f7633121385d9cc5d7bec97ecaa1ec7cf19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="integrate-your-vpn-infrastructure-with-azure-multi-factor-authentication-mfa-using-the-network-policy-server-nps-extension-for-azure"></a>A VPN-infrastruktúra integrálása az Azure multi-factor Authentication (MFA) a hálózati házirend-kiszolgáló (NPS) bővítményének használatával az Azure-bA
+# <a name="integrate-your-vpn-infrastructure-with-azure-multi-factor-authentication-mfa-using-hello-network-policy-server-nps-extension-for-azure"></a>A VPN-infrastruktúra integrálása az Azure multi-factor Authentication (MFA) Azure-beli hello hálózati házirend-kiszolgáló (NPS) bővítményének használatával
 
 ## <a name="overview"></a>Áttekintés
 
-A hálózati házirend-szolgáltatás (NPS) az Azure-bővítmény lehetővé teszi a szervezetek védelme távoli Authentication Dial-In User Service (RADIUS) ügyfél-hitelesítéshez felhőalapú [Azure multi-factor Authentication (MFA)](multi-factor-authentication-get-started-server-rdg.md), amely biztosítja a kétlépéses ellenőrzést.
+az Azure-hálózat szolgáltatás házirend-bővítmény hello segítségével a szervezetek toosafeguard távoli Authentication Dial-In User Service (RADIUS) ügyfél-hitelesítéshez felhőalapú [Azure multi-factor Authentication (MFA)](multi-factor-authentication-get-started-server-rdg.md), amely biztosítja a kétlépéses ellenőrzést.
 
-Ez a cikk ismerteti a hálózati házirend-kiszolgáló infrastruktúra integrálása az Azure MFA használatával a hálózati házirend-kiszolgáló az Azure-bővítmény engedélyezése a felhasználóknak a hálózathoz egy VPN-kapcsolattal biztonságos kétlépéses ellenőrzést. 
+Ez a cikk ismerteti hello NPS infrastruktúra integrálása az Azure MFA hello hálózati házirend-kiszolgáló bővítményében Azure tooenable biztonságos kétlépéses ellenőrzéshez a felhasználóknak tooconnect tooyour hálózathoz egy VPN-kapcsolattal. 
 
-A hálózati házirend- és hozzáférés-szolgáltatások (NPS) révén a szervezetek az alábbi képességek:
+hello hálózati házirend- és hozzáférés-szolgáltatások (NPS) által biztosított szervezetek hello képességek a következő:
 
-* Adja meg a felügyeleti és adhatja meg a kapcsolódást, mely napszakokban kapcsolatok engedélyezve legyenek, a kapcsolatok időtartama, és az ügyfeleket használata a csatlakozáshoz, és így tovább biztonsági szint kérelmek irányítását központi helyét. Helyett adja meg, ezek a szabályzatok minden VPN vagy a távoli asztal (RD) átjáró kiszolgálón, ezek a házirendek egyszer adható meg egy központi helyen. A RADIUS protokollal segítségével biztosít a központosított hitelesítési, engedélyezési és nyilvántartási (AAA). 
-* Állítson be, és kényszeríteni a hálózatvédelem (NAP) ügyfél állapotházirendeket, amelyek meghatározzák, hogy eszközök hálózati erőforrások korlátozás nélküli vagy korlátozott hozzáférést kapnak.
-* Olyan hitelesítési és engedélyezési 802.1 hozzáférés kényszerítésére biztosít x-kompatibilis vezeték nélküli hozzáférési pontok és Ethernet-kapcsolók.    
+* Adja meg a központi helyét hello felügyeleti és vezérelhető a hálózati kérelmek toospecify csatlakozó, mely napszakokban kapcsolatainak engedélyezését, kapcsolatok hello időtartamát és hello szintű biztonságot, hogy az ügyfeleket tooconnect használja, és így tovább. Helyett adja meg, ezek a szabályzatok minden VPN vagy a távoli asztal (RD) átjáró kiszolgálón, ezek a házirendek egyszer adható meg egy központi helyen. hello RADIUS protokollt használja tooprovide hello központosított hitelesítési, engedélyezési és nyilvántartási (AAA). 
+* Állítson be és Hálózatvédelem (NAP) ügyfél állapotházirendeket, amelyek meghatározzák, hogy eszközök kapnak korlátozás nélküli vagy korlátozott hozzáférés toonetwork erőforrások kényszerítéséhez.
+* Adja meg azt jelenti, hogy tooenforce hitelesítési és engedélyezési hozzáférési too802.1x-kompatibilis vezeték nélküli hozzáférési pontok és Ethernet-kapcsolók.    
 
 További információkért lásd: [hálózati házirend-kiszolgáló (NPS)](https://docs.microsoft.com/windows-server/networking/technologies/nps/nps-top). 
 
-Növelje a biztonságot, és magas szintű megfelelőség, a szervezetek integrálható az Azure MFA Használatát annak érdekében, hogy a felhasználók a kétlépéses ellenőrzést tenni használja a hálózati házirend-kiszolgáló csatlakozzon a virtuális port a VPN-kiszolgálón. A felhasználók számára a hozzáférést meg kell adniuk a felhasználónév/jelszó kombináció, amely a felhasználó rendelkezik-e a vezérlőben adatokkal. Ezeket az információkat megbízható kell, és a rendszer egyszerűen nem lettek duplikálva, például a mobiltelefonszám, a vezetékes számát, a kérelem egy mobileszközön, és így tovább.
+tooenhance biztonsági és magas szintű való megfelelőség, a szervezetek integrálhatók a hálózati házirend-kiszolgáló a felhasználók a kétlépéses ellenőrzést használó Azure MFA tooensure toobe képes kapcsolódhat toohello virtuális port hello VPN-kiszolgálón. A felhasználók toobe hozzáférést meg kell adniuk a felhasználónév/jelszó kombináció hello felhasználói adatokkal rendelkezik-e a vezérlő. Ezeket az információkat megbízható kell, és a rendszer egyszerűen nem lettek duplikálva, például a mobiltelefonszám, a vezetékes számát, a kérelem egy mobileszközön, és így tovább.
 
-A bővítmény rendelkezésre állását a hálózati házirend-kiszolgáló az Azure-ba, mielőtt az ügyfelek, akik az integrált hálózati házirend-kiszolgáló és az Azure MFA környezetek kétlépéses ellenőrzés végrehajtásához szükséges kellett konfigurálnia és karbantartania egy külön MFA kiszolgáló a helyszíni környezetben, ahogy Távoli asztali átjáró és Azure multi-factor Authentication kiszolgáló RADIUS használata.
+Előzetes toohello rendelkezésre állását hello hálózati házirend-kiszolgáló, az Azure-bővítmény, az ügyfelek, akik szükséges a kétlépéses ellenőrzést tooimplement integrált hálózati házirend-kiszolgáló, és az Azure MFA-környezetek tooconfigure kellett, és hello a helyszíni környezetben, külön MFA kiszolgáló karbantartása Távoli asztali átjáró és az Azure multi-factor Authentication kiszolgáló RADIUS használata ismertetését.
 
-A bővítmény rendelkezésre állását a hálózati házirend-kiszolgáló az Azure lehetőséget nyújt a szervezetek biztonságos RADIUS-ügyfél-hitelesítés vagy egy helyszíni MFA-megoldását, vagy egy MFA felhőalapú megoldás telepítendő választás.
+az Azure-hello hálózati házirend-kiszolgáló bővítmény hello rendelkezésre állását lehetőséget nyújt a szervezetek hello választott toodeploy vagy egy helyszíni MFA-megoldását, vagy felhőalapú MFA megoldás toosecure RADIUS ügyfél-hitelesítés.
  
 ## <a name="authentication-flow"></a>Hitelesítési folyamat
-Amikor egy felhasználó csatlakozik egy virtuális port a VPN-kiszolgálón, először hitelesítenie kell különböző protokollok, amelyek lehetővé teszik a felhasználónév és jelszó és a tanúsítványalapú hitelesítési módszerek használatát. 
+Amikor egy felhasználó kapcsolódott a virtuális port tooa VPN-kiszolgálón, először hitelesítenie kell protokollok, amelyek lehetővé teszik a felhasználónév és jelszó és a tanúsítványalapú hitelesítési módszerek használatát hello számos használatát. 
 
-A hitelesítés és identitás ellenőrzése mellett a felhasználók a megfelelő-e tárcsázni engedélyekkel kell rendelkeznie. Olyan egyszerű megvalósításokhoz, a ezek betárcsázási engedélyek, amelyek lehetővé teszik a hozzáférést az Active Directory-felhasználói objektumok közvetlenül a vannak beállítva. 
+Továbbá tooauthenticating és identitás ellenőrzése, a felhasználónak rendelkeznie kell a megfelelő engedélyek betárcsázási hello. Az olyan egyszerű megvalósításokhoz, ezek betárcsázási engedélyek, amelyek lehetővé teszik a hozzáférést legyenek beállítva közvetlenül hello Active Directory-felhasználói objektumok. 
 
  ![Felhasználói tulajdonságok](./media/nps-extension-vpn/image1.png)
 
 Olyan egyszerű megvalósításokhoz a VPN-kiszolgáló engedélyezi vagy megtagadja a hozzáférést minden helyi VPN-kiszolgálón meghatározott házirendek alapján.
 
-Nagyobb és több méretezhető implementációk esetén a házirendeket, hogy engedélyezze vagy megtagadják a VPN-hozzáférésre van központi RADIUS-kiszolgálókon. Ebben az esetben a VPN-kiszolgáló működik egy hozzáférési (RADIUS-ügyfél), amely továbbítja a csatlakozási kérelmek és egy RADIUS-kiszolgáló fiók üzenetek. Szeretne csatlakozni a virtuális port a VPN-kiszolgálón, a felhasználók kell hitelesíteni, és a RADIUS-kiszolgálók központilag meghatározott feltételeknek. 
+Nagyobb és több méretezhető implementációkban hello házirendeket, hogy engedélyezze vagy tagadhatja meg VPN-hozzáférésre van központi RADIUS-kiszolgálókon. Ebben az esetben hello VPN-kiszolgáló egy kiszolgáló (RADIUS-ügyfél), amely kapcsolatkérelmeket és a fiók üzenetek tooa RADIUS-kiszolgáló működik. tooconnect toohello virtuális port hello VPN-kiszolgálón, a felhasználók kell hitelesíteni, és a RADIUS-kiszolgálók központilag meghatározott hello feltételeknek. 
 
-Ha a hálózati házirend-kiszolgáló az Azure-bővítmény integrálva van a hálózati házirend-kiszolgáló, a sikeres hitelesítési folyamat következőképpen történik:
+Ha az Azure NPS-bővítmény hello hello hálózati házirend-kiszolgáló integrálva van, hello sikeres hitelesítési folyamat következőképpen történik:
 
-1. A VPN-kiszolgáló-hitelesítési kérést kap egy VPN-felhasználó, amely tartalmazza a felhasználónévvel és jelszóval való csatlakozás erőforráshoz, például a távoli asztali munkamenetet. 
-2. Egy RADIUS-ügyfél, VPN-kiszolgáló alakítja át a kérelem egy RADIUS-kérést üzenet és az üzenet küldése (a jelszó titkosított) a RADIUS (NPS) a kiszolgálóra, amelyen telepítve van-e a hálózati házirend-kiszolgáló bővítmény. 
-3. A felhasználónév és jelszó kombinációjával ellenőrzése az Active Directoryban. Ha a felhasználónév / jelszó érvénytelen, a RADIUS-kiszolgáló hozzáférés-utasítsa el az üzenetet küld. 
-4. Ha a hálózati házirend-kiszolgáló kapcsolódási kérelem és a hálózati házirendek meghatározott feltételek mindegyike teljesül (például időpont vagy csoport tagsági korlátozások), a hálózati házirend-kiszolgáló bővítményt váltja ki az Azure MFA másodlagos hitelesítési kérelmet. 
-5. Az Azure MFA kommunikál az Azure Active Directory, lekéri a felhasználó adatait, és végrehajtja a másodlagos hitelesítést (SMS-üzenet, mobilalkalmazás és így tovább) a felhasználó által beállított metódussal. 
-6. Az MFA-kérdést sikeres, akkor az Azure MFA kommunikál a hálózati házirend-kiszolgáló bővítmény eredménye.
-7. Miután a kapcsolódási kísérlet is hitelesítése és engedélyezése, a hálózati házirend-kiszolgáló, amelyen telepítve van-e a bővítmény RADIUS Access-Accept üzenetet küld a VPN-kiszolgáló (RADIUS-ügyfél).
-8. A felhasználó hozzáférést kap a virtuális port a VPN-kiszolgálón, és egy titkosított VPN-alagutat hoz létre.
+1. hello VPN-kiszolgáló hitelesítési kérelmet kap, amely tartalmazza az hello felhasználónév és jelszó tooconnect tooa erőforrás, például a távoli asztali munkamenetet VPN felhasználó. 
+2. Egy RADIUS-ügyfél működött, VPN-kiszolgáló RADIUS-kérést tooa hello kérelemüzenet alakítja át, és küld hello üzenet (jelszó titkosított) toohello RADIUS (NPS) kiszolgáló, amelyen telepítve van a hálózati házirend-kiszolgáló bővítmény hello. 
+3. hello felhasználónév és jelszó kombináció ellenőrzése az Active Directoryban. Ha hello felhasználónév / jelszó nem megfelelő, hello RADIUS-kiszolgáló hozzáférés-utasítsa el az üzenetet küld. 
+4. Ha minden feltételek szerint megadva, a hálózati házirend-kiszolgáló kapcsolódási kérelem hello és -e a hálózati házirendek (például időpont vagy csoport tagsági korlátozások), hálózati házirend-kiszolgáló bővítmény hello elindítja az Azure MFA másodlagos hitelesítési kérelmet. 
+5. Az Azure MFA kommunikál az Azure Active Directory hello felhasználó adatait kéri le és hello (SMS-üzenet, mobilalkalmazás és így tovább) hello felhasználó által beállított hello metódussal másodlagos hitelesítést hajt végre. 
+6. Hello MFA-kérdést sikeres, akkor az Azure MFA hello eredmény toohello hálózati házirend-kiszolgáló bővítmény kommunikál.
+7. Miután hello kapcsolódási kísérlet is hitelesítése és engedélyezése, a hello hálózati házirend-kiszolgáló, amelyen telepítve van-e az hello bővítmény elküldi a RADIUS Access-Accept üzenet toohello VPN-kiszolgáló (RADIUS-ügyfél).
+8. hello felhasználó hozzáférési toohello virtuális port a VPN-kiszolgáló kap, és egy titkosított VPN-alagutat hoz létre.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ez a szakasz részletesen az Azure MFA integrálása a távoli asztali átjáró előtt szükséges előfeltételeket. Mielőtt hozzákezd, rendelkeznie kell a következő előfeltételek teljesülését helyen.
+Ez a szakasz részletesen hello Előfeltételek előtt az Azure MFA integrálása hello távoli asztali átjáró szükséges. Mielőtt elkezdené, a következő előfeltételek teljesülése hello kell rendelkeznie.
 
 * VPN-infrastruktúra
 * Hálózati házirend- és hozzáférés-szolgáltatások (NPS) szerepkör
@@ -78,188 +78,188 @@ Ez a szakasz részletesen az Azure MFA integrálása a távoli asztali átjáró
 * Az Azure Active Directory GUID azonosítója
 
 ### <a name="vpn-infrastructure"></a>VPN-infrastruktúra
-Ez a cikk feltételezi, hogy rendelkezik-e a Microsoft Windows Server 2016 használatával helyen működő VPN-infrastruktúra és, hogy a VPN-kiszolgáló nincs beállítva továbbítási kapcsolat kéréseket egy RADIUS-kiszolgáló. A VPN-infrastruktúra egy központi RADIUS-kiszolgáló használatára a jelen útmutató konfigurál.
+Ez a cikk feltételezi, hogy a Microsoft Windows Server 2016 használatával helyen működő VPN-infrastruktúrával rendelkezik, és hello VPN-kiszolgálóhoz jelenleg nem konfigurált tooforward csatlakozási kérelmek tooa RADIUS-kiszolgáló. A jelen útmutató konfigurál majd hello VPN infrastruktúra toouse központi RADIUS-kiszolgálóra.
 
-Ha nem rendelkeznek olyan működő infrastruktúra helyen, gyorsan hozhat létre az infrastruktúra számos VPN telepítő oktatóanyagok található a Microsoft és a külső webhelyek által megadott utasítások szerint. 
+Ha nem rendelkeznek olyan működő infrastruktúra helyen, gyorsan létrehozhatja az infrastruktúra számos VPN telepítő oktatóanyagok található hello Microsoft és a külső helyek következő hello útmutató. 
 
 ### <a name="network-policy-and-access-services-nps-role"></a>Hálózati házirend- és hozzáférés-szolgáltatások (NPS) szerepkör
 
-Az NPS szerepkör-szolgáltatást a RADIUS-kiszolgáló és az ügyfél funkciókat biztosít. Ez a cikk feltételezi, hogy telepítette az NPS szerepkör a tagkiszolgáló vagy tartományvezérlő a környezetben. A jelen útmutató egy VPN-konfiguráció RADIUS konfigurálja. Telepítse az NPS szerepkör a kiszolgálón _más_ mint a VPN-kiszolgáló.
+hálózati házirend-kiszolgáló szerepkör-szolgáltatás hello hello RADIUS-kiszolgáló és ügyfél biztosít. Ez a cikk feltételezi, hogy telepítette hello NPS szerepkör a tagkiszolgáló vagy tartományvezérlő a környezetben. A jelen útmutató egy VPN-konfiguráció RADIUS konfigurálja. Hello hálózati házirend-kiszolgáló szerepkör telepítése a kiszolgálóra _más_ mint a VPN-kiszolgáló.
 
-A hálózati házirend-kiszolgáló szerepkör telepítésével kapcsolatos információt szolgáltatás a Windows Server 2012 vagy újabb rendszerre, lásd: [a NAP állapotházirend-kiszolgáló telepítése](https://technet.microsoft.com/library/dd296890.aspx). Hálózati házirend (NAP) elavult a Windows Server 2016. Ajánlott eljárások a hálózati házirend-kiszolgáló, beleértve a hálózati házirend-kiszolgáló telepítése tartományvezérlőn, az ajánlás leírását lásd: [ajánlott eljárások a hálózati házirend-kiszolgáló](https://technet.microsoft.com/library/cc771746).
+Hello hálózati házirend-kiszolgáló szerepkör telepítésével kapcsolatos információt szolgáltatás Windows Server 2012 vagy újabb rendszerre, lásd: [a NAP állapotházirend-kiszolgáló telepítése](https://technet.microsoft.com/library/dd296890.aspx). Hálózati házirend (NAP) elavult a Windows Server 2016. Ajánlott eljárások a hálózati házirend-kiszolgáló, többek között a következőket hello ajánlás tooinstall hálózati házirend-kiszolgáló egy tartományvezérlőn leírását lásd: [ajánlott eljárások a hálózati házirend-kiszolgáló](https://technet.microsoft.com/library/cc771746).
 
 ### <a name="licenses"></a>Licencek
 
-A licenc szükség van az Azure MFA számára, amely elérhető az Azure AD Premium, nagyvállalati mobilitási és biztonsági (EMS) vagy az MFA szolgáltatásra. További információkért lásd: [beolvasásával Azure multi-factor Authentication](multi-factor-authentication-versions-plans.md). Tesztelési célokra használható a próba-előfizetést.
+A licenc szükség van az Azure MFA számára, amely elérhető az Azure AD Premium, nagyvállalati mobilitási és biztonsági (EMS) vagy az MFA szolgáltatásra. További információkért lásd: [hogyan tooget Azure multi-factor Authentication](multi-factor-authentication-versions-plans.md). Tesztelési célokra használható a próba-előfizetést.
 
 ### <a name="software"></a>Szoftver
 
-A hálózati házirend-kiszolgáló-bővítményhez olyan Windows Server 2008 R2 SP1 vagy újabb, az NPS szerepkör-szolgáltatás telepítve. Ez az útmutató lépései a Windows Server 2016 végeztek.
+hálózati házirend-kiszolgáló bővítmény hello van szükség a Windows Server 2008 R2 SP1 vagy újabb a hello NPS szerepkör-szolgáltatás telepítve. Ez az útmutató hello lépéseket a Windows Server 2016 végeztek.
 
 ### <a name="libraries"></a>Szalagtárak
 
-Az alábbi két kódtárak szükségesek:
+a következő két szalagtárak hello szükség:
 
 * [Visual C++ újraterjeszthető csomag a Visual Studio 2013 (X64)](https://www.microsoft.com/download/details.aspx?id=40784)
-* _Microsoft Active Directory modul Windows Powershellhez készült Azure verzió 1.1.166.0_ vagy újabb verzióját. A legújabb kiadására és telepítési utasításokat: [Microsoft Azure Active Directory PowerShell modul kiadási korábbi verzióinak](https://social.technet.microsoft.com/wiki/contents/articles/28552.microsoft-azure-active-directory-powershell-module-version-release-history.aspx).
+* _Microsoft Active Directory modul Windows Powershellhez készült Azure verzió 1.1.166.0_ vagy újabb verzióját. Hello legújabb kiadására és telepítési utasításokat lásd: [Microsoft Azure Active Directory PowerShell modul kiadási korábbi verzióinak](https://social.technet.microsoft.com/wiki/contents/articles/28552.microsoft-azure-active-directory-powershell-module-version-release-history.aspx).
 
-Ezek a könyvtárak nem vannak csomagolva, a hálózati házirend-kiszolgáló bővítmény telepítőfájlokkal (verzió: 0.9.1.2), annak ellenére, hogy a meglévő dokumentáció, amely mást. Minimális telepítenie kell a Visual C++ újraterjeszthető csomag Visual Studio 2013. A Microsoft Active Directory modul Windows Powershellhez készült Azure telepítve van, ha még nincs jelen, a telepítési folyamat részeként futtatja konfigurációs parancsfájl használatával. Nincs szükség a modul időben telepítésére, ha még nincs telepítve.
+Ezek a könyvtárak nem hello hálózati házirend-kiszolgáló bővítmény telepítőfájlokkal (verzió: 0.9.1.2), annak ellenére, hogy a meglévő dokumentáció, amely mást vannak csomagolva. Legalább a Visual Studio 2013 hello Visual C++ újraterjeszthető csomag kell telepítenie. Microsoft Active Directory modul Windows Powershellhez készült Azure hello telepítve van, ha még nincs jelen, keresztül egy konfigurációs parancsfájl hello beállítási folyamatának részeként futtatja. Nincs nincs szükség tooinstall Ez a modul időben Ha még nincs telepítve.
 
 ### <a name="azure-active-directory-synched-with-on-premises-active-directory"></a>A helyszíni Active Directoryval szinkronizálva az Azure Active Directory 
 
-A hálózati házirend-kiszolgáló kiterjesztés használatára, a helyszíni felhasználók kell az Azure Active Directoryval szinkronizált és a többtényezős hitelesítés engedélyezve van. Ez az útmutató feltételezi, hogy a helyszíni felhasználók az Azure AD Connect használatával Active Directoryval van szinkronizálva. Így a felhasználók a multi-factor Authentication tartozó utasításokat alatt.
+toouse hello hálózati házirend-kiszolgáló kiterjesztése a helyszíni felhasználók kell az Azure Active Directoryval szinkronizált és a többtényezős hitelesítés engedélyezve van. Ez az útmutató feltételezi, hogy a helyszíni felhasználók az Azure AD Connect használatával Active Directoryval van szinkronizálva. Így a felhasználók a multi-factor Authentication tartozó utasításokat alatt.
 Információk az Azure AD connect című [integrálása a helyszíni címtárakat az Azure Active Directoryval](../active-directory/connect/active-directory-aadconnect.md). 
 
 ### <a name="azure-active-directory-guid-id"></a>Az Azure Active Directory GUID azonosítója 
-A hálózati házirend-kiszolgáló telepítéséhez, kell tudni, hogy az Azure Active Directory GUID-azonosítója. A GUID-azonosítója az Azure Active Directory-kereséshez utasításokat a következő szakaszban.
+tooinstall hello hálózati házirend-kiszolgáló esetén kell, hogy tooknow hello hello Azure Active Directory GUID Azonosítóját. A hello GUID-hello Azure Active Directory-kereséshez utasításokat hello a következő szakaszban.
 
 ## <a name="configure-radius-for-vpn-connections"></a>A VPN-kapcsolatok RADIUS konfigurálása
 
-Ha már telepítette a hálózati házirend-kiszolgáló kiszolgálói szerepkör azon a tagkiszolgálón, hitelesítéséhez és engedélyezéséhez a VPN-ügyfél adott kérelem VPN-kapcsolatok konfigurálni szeretné. 
+Ha telepítette a hello hálózati házirend-kiszolgáló kiszolgálói szerepkör azon a tagkiszolgálón, tooconfigure tooauthenticate kell, és VPN-ügyfél, amely a VPN-kapcsolatok hitelesítéséhez. 
 
-Ez a szakasz azt feltételezi, hogy a hálózati házirend-kiszolgálói szerepkörrel telepített, de nem konfigurált, használja a infrastruktúrában.
+Ez a szakasz azt feltételezi, hogy telepített hello hálózati házirend-kiszolgáló szerepkört, de nem konfigurált, használja a infrastruktúrában.
 
 >[!NOTE]
 >Ha már van egy működő VPN-kiszolgáló egy központi RADIUS-kiszolgálót használ, ez a szakasz kihagyhatja.
 >
 
 ### <a name="register-server-in-active-directory"></a>Kiszolgáló regisztrálása az Active Directoryban
-Ebben a forgatókönyvben megfelelően működni, a hálózati házirend-kiszolgáló regisztrálva kell lennie az Active Directoryban.
+toofunction megfelelően az ebben a forgatókönyvben, meg kell regisztrálni az Active Directory toobe hello hálózati házirend-kiszolgáló.
 
 1. Nyissa meg a Kiszolgálókezelőt.
 2. A Kiszolgálókezelőben kattintson **eszközök**, és kattintson a **hálózati házirend-kiszolgáló**. 
-3. A hálózati házirend-kiszolgáló konzol, kattintson a jobb gombbal **hálózati házirend-kiszolgáló (helyi)**, és kattintson a **kiszolgáló regisztrálása az Active Directoryban**. Kattintson a **OK** kétszer.
+3. Hello hálózati házirend-kiszolgáló konzol, kattintson a jobb gombbal **hálózati házirend-kiszolgáló (helyi)**, és kattintson a **kiszolgáló regisztrálása az Active Directoryban**. Kattintson a **OK** kétszer.
 
  ![Hálózati házirend-kiszolgáló](./media/nps-extension-vpn/image2.png)
 
-4. Hagyja nyitva a következő eljárással a konzolt.
+4. Hagyja nyitva a következő eljárással hello hello konzol.
 
-### <a name="use-wizard-to-configure-radius-server"></a>RADIUS-kiszolgáló konfigurálása varázsló segítségével
-Használhatja a szabványos (varázsló-alapú) vagy speciális konfigurációs beállítás konfigurálása a RADIUS-kiszolgáló. Ez a szakasz azt feltételezi, hogy a varázsló alapú szabványos konfigurációs beállítás használatát.
+### <a name="use-wizard-tooconfigure-radius-server"></a>Használja a varázsló tooconfigure RADIUS-kiszolgáló
+Használhatja a szabványos (varázsló-alapú) vagy speciális konfigurációs beállítás tooconfigure hello RADIUS-kiszolgáló. Ez a szakasz azt feltételezi, hogy a hello hello szabványos konfigurációs varázsló alapú beállítás használatát.
 
-1. Kattintson a hálózati házirend-kiszolgáló konzolon **hálózati házirend-kiszolgáló (helyi)**.
+1. A hálózati házirend-kiszolgáló konzolján hello, kattintson az **hálózati házirend-kiszolgáló (helyi)**.
 2. Standard beállítás csoportban **RADIUS-kiszolgáló telefonos vagy VPN-kapcsolatok**, és kattintson a **konfigurálása VPN vagy a telefonos**.
 
  ![Konfigurálja a VPN](./media/nps-extension-vpn/image3.png)
 
-3. Válassza ki a telefonos vagy virtuális magánhálózati kapcsolatok hálózattípus lapon jelölje be **virtuális magánhálózati kapcsolatok**, és kattintson a **következő**.
+3. Hello válassza telefonos vagy virtuális magánhálózati kapcsolatok hálózattípus lapon jelölje be **virtuális magánhálózati kapcsolatok**, és kattintson a **következő**.
 
  ![Virtuális magánhálózat](./media/nps-extension-vpn/image4.png)
 
-4. Adja meg a telefonos vagy VPN-kiszolgáló lapon kattintson a **Hozzáadás**.
-5. Az a **új RADIUS-ügyfél** párbeszédpanelen adjon meg egy rövid nevet, adja meg a VPN-kiszolgáló IP-cím vagy feloldható nevét, és adjon meg egy megosztott titkos jelszót. Győződjön meg a közös titkos jelszó hosszú és összetett. Jegyezze fel ezt a jelszót, csak a következő szakasz lépéseit.
+4. Hello meg telefonos vagy VPN-kiszolgáló lapon kattintson **Hozzáadás**.
+5. A hello **új RADIUS-ügyfél** párbeszédpanelen adjon meg egy rövid nevet, írja be a hello feloldható nevét vagy IP-cím hello VPN-kiszolgáló, és adjon meg egy megosztott titkos jelszót. Győződjön meg a közös titkos jelszó hosszú és összetett. Jegyezze fel ezt a jelszót, csak a hello a következő szakaszban található lépéseket.
 
  ![Új RADIUS-ügyfél](./media/nps-extension-vpn/image5.png)
 
 6. Kattintson a **OK**, majd **következő**.
-7. Az a **hitelesítési módszerek konfigurálása** lap, fogadja el az alapértelmezésként beállított elemet (Microsoft titkosított hitelesítés 2 (MS-CHAPv2) vagy más lehetőséget választ, és kattintson a **következő**.
+7. A hello **hitelesítési módszerek konfigurálása** lap, fogadja el az alapértelmezésként beállított elemet hello (Microsoft titkosított hitelesítés 2 (MS-CHAPv2) vagy más lehetőséget választ, és kattintson a **következő**.
 
   >[!NOTE]
   >Ha konfigurálja az Extensible Authentication Protocol (EAP), MS-CHAPv2 vagy PEAP kell használnia. Nincs más EAP esetén támogatott.
  
-8. Adja meg a felhasználói csoportok lapon kattintson **Hozzáadás** , majd válasszon egy megfelelő, ha van ilyen. Ellenkező esetben hagyja meg az üres hozzáférést minden felhasználó számára.
+8. Hello adja meg felhasználói csoportok lapon kattintson a **Hozzáadás** , majd válasszon egy megfelelő, ha van ilyen. Ellenkező esetben hagyja meg hello üres toogrant hozzáférés tooall felhasználók.
 
  ![Adja meg a felhasználói csoportok](./media/nps-extension-vpn/image7.png)
 
 9. Kattintson a **Tovább** gombra.
-10. Az IP-szűrők megadása lapon kattintson a **következő**.
-11. Adja meg a titkosítási beállítások lapon fogadja el az alapértelmezett beállításokat, és kattintson a **következő**.
+10. Hello IP-szűrők megadása lapon kattintson **következő**.
+11. Hello adja meg a titkosítási beállítások lapon fogadja el a hello alapértelmezett beállításokat, és kattintson a **következő**.
 
  ![Adja meg az Encryption](./media/nps-extension-vpn/image8.png)
 
-12. A tartománynév megadása, fogadja el a neve üres, elfogadja az alapértelmezett beállítást, és kattintson **következő**.
+12. Hello adja meg a tartománynév, a hello neve üresen hagyja, elfogadja hello alapértelmezett beállítást, és kattintson a **következő**.
 
  ![Tartománynév megadása](./media/nps-extension-vpn/image9.png)
 
-13. Az új befejezése telefonos vagy virtuális magánhálózati kapcsolatok és a RADIUS-ügyfelek lapot, kattintson a **Befejezés**.
+13. Hello új befejezése telefonos vagy virtuális magánhálózati kapcsolatok és a RADIUS-ügyfelek lapot, kattintson a **Befejezés**.
 
  ![Fejezze be a kapcsolatok száma](./media/nps-extension-vpn/image10.png)
 
 ### <a name="verify-radius-configuration"></a>A RADIUS konfigurálásának ellenőrzése
-Ez a szakasz részletesen a konfiguráció varázsló segítségével létrehozott.
+Ez a szakasz részletesen hello konfigurációs hello varázslóval létrehozott.
 
-1. A hálózati házirend-kiszolgálón, a hálózati házirend-kiszolgáló (helyi) konzolon bontsa ki a RADIUS-ügyfelek, és válassza **RADIUS-ügyfelek**.
-2. A részleteket tartalmazó ablaktáblán kattintson a jobb gombbal a RADIUS-ügyfél varázslóval létrehozott, és kattintson a **tulajdonságok**. A tulajdonságok a RADIUS-ügyfél (a VPN-kiszolgáló) hasonló a lent látható módon kell lennie.
+1. Hello hálózati házirend-kiszolgálón, hello hálózati házirend-kiszolgáló (helyi) konzolon bontsa ki a RADIUS-ügyfelek, és válassza **RADIUS-ügyfelek**.
+2. Hello részleteket tartalmazó ablaktáblában kattintson a jobb gombbal hello RADIUS-ügyfél varázslóval létrehozott, és kattintson a **tulajdonságok**. a RADIUS-ügyfél (hello VPN-kiszolgáló) hello tulajdonságait kell hasonló toothose alább látható.
 
  ![VPN-tulajdonságai](./media/nps-extension-vpn/image11.png)
 
 3. Kattintson a **Mégse**.
-4. A hálózati házirend-kiszolgálón, a hálózati házirend-kiszolgáló (helyi) konzolon bontsa ki a **házirendek**, és válassza ki **kapcsolatkérelem-házirendek**. A VPN-kapcsolatok házirendet, amely hasonlít az alábbi képen kell megjelennie.
+4. Hello hálózati házirend-kiszolgálón, hello hálózati házirend-kiszolgáló (helyi) konzolon bontsa ki a **házirendek**, és válassza ki **kapcsolatkérelem-házirendek**. Az alábbi képen hello levő hello VPN-kapcsolatok házirend kell megjelennie.
 
  ![Csatlakozási kérések](./media/nps-extension-vpn/image12.png)
 
-5. Válassza ki a házirend, **hálózati házirendek**. Az alábbi képen levő virtuális magánhálózati (VPN) kapcsolatok házirend akkor.
+5. Válassza ki a házirend, **hálózati házirendek**. Az alábbi képen hello levő virtuális magánhálózati (VPN) kapcsolatok házirend akkor.
 
  ![Hálózat tulajdonságai](./media/nps-extension-vpn/image13.png)
 
-## <a name="configure-vpn-server-to-use-radius-authentication"></a>Konfigurálja a VPN-kiszolgáló RADIUS-hitelesítés használata
-Ez a szakasz a VPN-kiszolgáló RADIUS-hitelesítés használatára konfigurálja. Ez a szakasz azt feltételezi, hogy VPN-kiszolgáló működő konfigurációval rendelkezik, de nem konfigurálta a VPN-kiszolgáló RADIUS-hitelesítés használata. A VPN-kiszolgáló konfigurálása után, győződjön meg arról, hogy a várt módon működik-e a konfiguráció.
+## <a name="configure-vpn-server-toouse-radius-authentication"></a>VPN-kiszolgáló toouse RADIUS-hitelesítés konfigurálása
+Ebben a szakaszban hello VPN server toouse RADIUS-hitelesítés konfigurálása. Ez a szakasz azt feltételezi, hogy VPN-kiszolgáló működő konfigurációval rendelkezik, de nem konfigurált hello VPN server toouse RADIUS-hitelesítés. Miután hello VPN-kiszolgáló, akkor győződjön meg arról, hogy a várt módon működik-e a konfigurációs.
 
 >[!NOTE]
 >Ha már van egy működő VPN-kiszolgáló beállítása, amely a RADIUS-hitelesítést használ, ez a szakasz kihagyhatja.
 >
 
 ### <a name="configure-authentication-provider"></a>Hitelesítésszolgáltató konfigurálása
-1. A VPN-kiszolgálón nyissa meg a Kiszolgálókezelőt.
+1. Hello VPN-kiszolgálón nyissa meg a Kiszolgálókezelőt.
 2. A Kiszolgálókezelőben kattintson **eszközök**, majd **Útválasztás és távelérés**.
-3. Az Útválasztás és távelérés konzolon kattintson a jobb gombbal  **\[kiszolgálónév\] (helyi)**, és kattintson a **tulajdonságok**.
+3. Hello Útválasztás és távelérés konzolon kattintson a jobb gombbal  **\[kiszolgálónév\] (helyi)**, és kattintson a **tulajdonságok**.
 
  ![Útválasztás és távelérés](./media/nps-extension-vpn/image14.png)
  
-4. Az a **[kiszolgálónév} (helyi) tulajdonságok** párbeszédpanel, kattintson a **biztonsági** fülre. 
-5. Az a **biztonsági** lapon a hitelesítésszolgáltató, kattintson a **RADIUS-hitelesítés**, majd **konfigurálása**.
+4. A hello **[kiszolgálónév} (helyi) tulajdonságok** párbeszédpanelen kattintson hello **biztonsági** lapon. 
+5. A hello **biztonsági** lapon a hitelesítésszolgáltató, kattintson a **RADIUS-hitelesítés**, majd **konfigurálása**.
 
  ![RADIUS-hitelesítés](./media/nps-extension-vpn/image15.png)
  
-6. A RADIUS-hitelesítés párbeszédpanelen kattintson a **Hozzáadás**.
-7. A RADIUS-kiszolgáló hozzáadása, a kiszolgáló nevét adja hozzá a nevét vagy a RADIUS-kiszolgáló, az előzőekben konfigurált IP-címét.
-8. Kattintson a közös titok **módosítás** és adja meg a közös titkos jelszót létrehozni, és korábban rögzített.
-9. Időtúllépés (másodpercben), módosítsa az értéket közötti értékre **30** és **60**. Erre akkor szükség, hagyjon elegendő időt a második hitelesítési tényezővel befejezéséhez.
+6. A RADIUS-hitelesítés hello párbeszédpanel, kattintson **Hozzáadás**.
+7. A hello RADIUS-kiszolgáló hozzáadása a kiszolgálónév, hello nevét vagy hello IP-cím az előző szakaszban hello konfigurált hello RADIUS-kiszolgáló hozzáadása.
+8. Kattintson a közös titok **módosítása** , és adja hozzá a hello megosztott titkos jelszót létrehozni, és korábban rögzített.
+9. Időtúllépés (másodpercben), módosítsa hello tooa érték közötti **30** és **60**. Ez az szükséges tooallow elegendő idő toocomplete hello második hitelesítési tényezőt.
  
  ![RADIUS-kiszolgáló hozzáadása](./media/nps-extension-vpn/image16.png)
  
 10. Kattintson a **OK** összes párbeszédpanel bezárásával végrehajtásáig.
 
 ### <a name="test-vpn-connectivity"></a>VPN-kapcsolat tesztelése
-Ebben a szakaszban, győződjön meg arról, hogy a VPN-ügyfél hitelesítése és engedélyezése a RADIUS-kiszolgáló csatlakozni a virtuális port VPN tett kísérlet során. Ez a szakasz feltételezi, hogy a Windows 10 és a VPN-ügyfélként. 
+Ebben a szakaszban, győződjön meg arról, hogy hello VPN-ügyfél hitelesítése és engedélyezése hello RADIUS-kiszolgáló által tooconnect tooVPN virtuális port tett kísérlet során. Ez a szakasz feltételezi, hogy a Windows 10 és a VPN-ügyfélként. 
 
 >[!NOTE]
->Ha már konfigurált egy VPN-ügyfél a VPN-kiszolgálóhoz való csatlakozáshoz, és mentette a beállítások, konfigurálása és mentése egy VPN-kapcsolati objektum kapcsolatos lépéseket kihagyhatja.
+>Ha már konfigurált egy VPN-ügyfél tooconnect toohello VPN-kiszolgálót, és mentette hello-beállítások, kihagyhatja a hello lépéseket kapcsolódó tooconfiguring és mentése egy VPN-kapcsolat objektumot.
 >
 
 1. A VPN-ügyfél számítógépen kattintson **Start**, majd **beállítások** (fogaskerék ikonra).
 2. Kattintson az ablak-beállítások **hálózat és Internet**.
 3. Kattintson a **VPN**.
 4. Kattintson a **egy VPN-kapcsolat hozzáadása**.
-5. A VPN-kapcsolat, adjon meg Windows (beépített) a VPN-szolgáltatóként, majd végezze el a többi mező, szükség esetén, és kattintson **mentése**. 
+5. A VPN-kapcsolat, adjon meg Windows (beépített), a VPN-szolgáltató, akkor a mezőket, szükség esetén hátralévő teljes hello hello, és kattintson a **mentése**. 
 
  ![VPN-kapcsolat hozzáadása](./media/nps-extension-vpn/image17.png)
  
-6. Nyissa meg a **hálózati és megosztási központ** a Vezérlőpulton.
+6. Nyissa meg hello **hálózati és megosztási központ** a Vezérlőpulton.
 7. Kattintson a **Adapterbeállítások módosítása**.
 
  ![Adapterbeállítások módosítása](./media/nps-extension-vpn/image18.png)
 
-8. Kattintson a jobb gombbal a VPN-hálózati kapcsolat, és kattintson a Tulajdonságok elemre. 
+8. Kattintson a jobb gombbal a hello VPN-hálózati kapcsolat, és kattintson a Tulajdonságok elemre. 
 
  ![VPN-hálózati tulajdonságok](./media/nps-extension-vpn/image19.png)
 
-9. A VPN-tulajdonságai párbeszédpanelen kattintson a **biztonsági** fülre. 
-10. A biztonság lapon győződjön meg arról, hogy csak **Microsoft CHAP 2-es Version (MS-CHAP v2)** van kiválasztva, és kattintson az OK gombra.
+9. Hello VPN tulajdonságai párbeszédpanel, kattintson a hello **biztonsági** fülre. 
+10. Hello biztonság lapon győződjön meg arról, hogy csak **Microsoft CHAP 2-es Version (MS-CHAP v2)** van kiválasztva, és kattintson az OK gombra.
 
  ![Protokollok engedélyezése](./media/nps-extension-vpn/image20.png)
 
-11. Kattintson a jobb gombbal a VPN-kapcsolatot, és kattintson a **Connect**.
-12. Kattintson a beállítások lap **Connect**.
+11. Kattintson a jobb gombbal a hello VPN-kapcsolatot, és kattintson a **Connect**.
+12. Hello beállítások lapján kattintson a **Connect**.
 
-A sikeres kapcsolat megjelenik a RADIUS-kiszolgálón Event ID 6272, mint a biztonsági napló alább látható módon.
+A sikeres kapcsolat megjelenik hello biztonsági naplóba hello RADIUS-kiszolgáló Event ID 6272, mint a lent látható módon.
 
  ![Esemény tulajdonságai](./media/nps-extension-vpn/image21.png)
 
 ## <a name="troubleshoot-guide"></a>Az útmutató hibaelhárítása
-Tegyük fel, hogy a VPN-konfiguráció dolgozott előtt konfigurálta a VPN-kiszolgáló egy központi RADIUS-kiszolgáló használatára a hitelesítéshez és engedélyezéshez. Ebben az esetben valószínű, hogy a probléma oka lehet egy helytelen konfigurálása a RADIUS-kiszolgáló vagy egy érvénytelen felhasználónév vagy jelszó használata. Például, ha a felhasználónév az alternatív UPN-utótagot használja, a bejelentkezési kísérlet sikertelen lehet (kell használnia a fiók néven a legjobb eredmények elérése érdekében). 
+Tegyük fel, hogy a VPN-konfiguráció dolgozott előtt konfigurálta hello VPN-kiszolgáló toouse egy központi RADIUS-kiszolgálót a hitelesítéshez és engedélyezéshez. Ebben az esetben valószínű, hogy hello probléma okozhatja hello RADIUS-kiszolgáló vagy hello használata érvénytelen felhasználónév vagy jelszó helytelen beállítása. Például, ha hello felhasználónév hello alternatív UPN-utótagot használja, hello bejelentkezési kísérlet sikertelen lehet (használjon a legjobb eredmények elérése érdekében azonos fióknév hello). 
 
-Ezek a problémák elhárításához egy ideális kiindulási, a RADIUS-kiszolgáló biztonsági eseménynaplók vizsgálata. Mentése ideje eseményeket keres, akár is használhatja a szerepkör-alapú hálózati házirend- és kiszolgáló egyéni nézet az eseménynaplóban, az alábbi megjelenítése. A 6273-as Azonosítójú esemény azt jelzi, hogy eseményeket, ahol a hálózati házirend-kiszolgáló megtagadta a hozzáférést egy felhasználó. 
+Ezeket a problémákat, egy ideális hely toostart megtalálható tooexamine hello and Security event logs tootroubleshoot hello RADIUS-kiszolgáló. toosave idő keresése események, is használhatja hello szerepkör-alapú hálózati házirend- és kiszolgáló egyéni megtekintése az eseménynaplóban, az alábbi megjelenítése. A 6273-as Azonosítójú esemény azt jelzi, hogy hol hello hálózati házirend-kiszolgáló megtagadta a hozzáférést tooa felhasználói események. 
 
  ![Eseménynapló](./media/nps-extension-vpn/image22.png)
  
@@ -267,28 +267,28 @@ Ezek a problémák elhárításához egy ideális kiindulási, a RADIUS-kiszolg�
 A szakasz ismerteti, így a felhasználók a multi-factor Authentication és a kétlépéses ellenőrzéshez fiókok beállításával kapcsolatos utasításokat. 
 
 ### <a name="enable-multi-factor-authentication"></a>A többtényezős hitelesítés engedélyezése
-Ebben a szakaszban az Azure AD-fiókok a multi-factor Authentication engedélyezése. Használja a **klasszikus portál** engedélyezése a felhasználók a multi-factor Authentication. 
+Ebben a szakaszban az Azure AD-fiókok a multi-factor Authentication engedélyezése. Használjon hello **klasszikus portál** tooenable felhasználók a multi-factor Authentication. 
 
-1. Nyisson meg egy böngészőt, és navigáljon a [https://manage.windowsazure.com](https://manage.windowsazure.com). 
-2. Jelentkezzen be rendszergazdaként.
-3. Kattintson a portálon a bal oldali navigációs **ACTIVE DIRECTORY**.
+1. Nyisson meg egy böngészőt, és keresse meg a túl[https://manage.windowsazure.com](https://manage.windowsazure.com). 
+2. Hello rendszergazdaként jelentkezzen be.
+3. Hello portálon hello bal oldali navigációs, kattintson **ACTIVE DIRECTORY**.
 
  ![Alapértelmezett könyvtár](./media/nps-extension-vpn/image23.png)
 
-4. A Név oszlopban kattintson **alapértelmezett címtárat** (vagy egy másik címtárban, ha szükséges).
-5. Kattintson a gyors üzembe helyezés lap **konfigurálása**.
+4. A hello neve oszlopban kattintson **alapértelmezett címtárat** (vagy egy másik címtárban, ha szükséges).
+5. Hello gyors kezdés lapon kattintson **konfigurálása**.
 
  ![Alapértelmezett konfigurálása](./media/nps-extension-vpn/image24.png)
 
-6. A KONFIGURÁLÁS oldalon görgessen lefelé, és a többtényezős hitelesítés területen kattintson a **szolgáltatás beállításainak kezelése**.
+6. Hello KONFIGURÁLÁSA lapon görgessen lefelé, és hello többtényezős hitelesítés területen kattintson **szolgáltatás beállításainak kezelése**.
 
  ![Többtényezős hitelesítés beállításainak kezelése](./media/nps-extension-vpn/image25.png)
  
-7. A multi-factor Authentication hitelesítés lapon tekintse át a szolgáltatás alapértelmezett beállításait, és kattintson **felhasználók**. 
+7. Hello többtényezős hitelesítés oldalon tekintse át hello szolgáltatás alapértelmezett beállításait, majd **felhasználók**. 
 
  ![MFA Users (MFA-felhasználók)](./media/nps-extension-vpn/image26.png)
  
-8. A felhasználók oldalon válassza a felhasználók a multi-factor Authentication engedélyezése, és kattintson a kívánt **engedélyezése**.
+8. Hello felhasználók lapon válassza ki a hello felhasználók tooenable kívánja az MFA szolgáltatásra, és kattintson **engedélyezése**.
 
  ![Tulajdonságok](./media/nps-extension-vpn/image27.png)
  
@@ -297,28 +297,28 @@ Ebben a szakaszban az Azure AD-fiókok a multi-factor Authentication engedélyez
  ![Többtényezős hitelesítés engedélyezése](./media/nps-extension-vpn/image28.png)
  
 10. Kattintson a **Bezárás** gombra. 
-11. Frissítse az oldalt. A többtényezős hitelesítés állapota engedélyezve.
+11. Frissítse a hello lapot. hello többtényezős hitelesítés állapota megváltozott tooEnabled.
 
-A felhasználók a multi-factor Authentication engedélyezéséről további információért lásd: [Ismerkedés az Azure multi-factor Authentication a felhőben](multi-factor-authentication-get-started-cloud.md). 
+Információ tooenable felhasználók a multi-factor Authentication [Ismerkedés az Azure multi-factor Authentication hello felhőben](multi-factor-authentication-get-started-cloud.md). 
 
 ### <a name="configure-accounts-for-two-step-verification"></a>A kétlépéses ellenőrzéshez fiókok beállítása
-Amennyiben a fiók engedélyezve van az MFA szolgáltatásra, a felhasználók nem rendelkeznek használva jelentkezhet be a többtényezős hitelesítési szabályzat által szabályozott, amíg sikeresen konfigurálta a második hitelesítési tényező, hogy kétlépéses ellenőrzés használandó megbízható eszköz erőforrások.
+Ha a fiók engedélyezve van az MFA szolgáltatásra, felhasználók nem képes toosign hello többtényezős hitelesítési szabályzat szabályozzák, amíg sikeresen konfigurálta a hello második hitelesítési tényező, hogy kétlépéses ellenőrzés egy megbízható eszköz toouse tooresources a.
 
-Ebben a szakaszban egy megbízható eszköz konfigurál a kétlépéses ellenőrzéshez használttal. Többféle módon is konfigurálásukkal, többek között a következőket:
+Ebben a szakaszban egy megbízható eszköz konfigurál a kétlépéses ellenőrzéshez használttal. Többféle módon, tooconfigure elérhető ezek hello következőket beleértve:
 
-* **Mobilalkalmazás**. A Microsoft Authenticator alkalmazást telepít egy Windows Phone, Android vagy iOS-eszközön. Attól függően, hogy a szervezet házirendjeit szükségesek az alkalmazás használatát a két mód egyikében: kapnak értesítést az ellenőrzések (értesítés leküldeni az eszközre) vagy (a következőket kell végrehajtania a ellenőrző kódot, amely frissíti az ellenőrző kód használata 30 másodpercenként). 
-* **Mobiltelefon hívást vagy SMS**. Az automatizált telefonhívást vagy SMS-üzenet vagy fogadni. A telefonhívás kapcsolóval a hívás, majd nyomja meg a # jelet hitelesítéséhez. A szöveg beállítással válaszoljon az üzenetre, vagy a bejelentkezési felületen meg kell adnia az ellenőrző kódot.
-* **Irodai telefon hívása**. Ez a folyamat megegyezik, amelyek a fenti automatikus telefonhívásokat.
+* **Mobilalkalmazás**. A Windows Phone, Android vagy iOS eszközön hello Microsoft Authenticator alkalmazás telepítése. Attól függően, hogy a szervezet házirendjeit, amelyek szükséges toouse hello alkalmazás két mód egyikében: kapnak értesítést az ellenőrzések (értesítés fejlesztőre tooyour eszköz) vagy ellenőrző kód használata (a következőket kell végrehajtania tooenter egy ellenőrző kód 30 másodpercenként frissíti). 
+* **Mobiltelefon hívást vagy SMS**. Az automatizált telefonhívást vagy SMS-üzenet vagy fogadni. Hello telefonhívás opcióval hello hívás választ, majd nyomja meg a hello # bejelentkezési tooauthenticate. Hello szöveg opcióval toohello szöveges üzenet válasz vagy hello ellenőrzőkódot hello bejelentkezési felületen meg kell adnia.
+* **Irodai telefon hívása**. Ez a folyamat ugyanaz, mint az automatikus telefonhívásokat fent leírt van hello.
 
-Kövesse ezeket az utasításokat, az eszköz beállítása a mobilalkalmazás használatára az ellenőrzéshez a leküldéses értesítések fogadásához.
+A következő lépések követésével egy eszköz toouse hello tooreceive leküldéses értesítést a mobilalkalmazásban ellenőrzés beállításához.
 
-1. Jelentkezzen be [https://aka.ms/mfasetup](https://aka.ms/mfasetup) vagy egyetlen helyen, például a [https://portal.azure.com](https://portal.azure.com), amely szükséges az MFA-kompatibilis hitelesítő adatokkal végezhessenek hitelesítést. 
-2. Bejelentkezés a felhasználónevét és jelszavát, akkor lehetősége lesz kéri, hogy további biztonsági ellenőrzés a fiók beállítása képernyő.
+1. Jelentkezzen be túl[https://aka.ms/mfasetup](https://aka.ms/mfasetup) vagy egyetlen helyen, például a [https://portal.azure.com](https://portal.azure.com), amely szükséges a tooauthenticate MFA-kompatibilis hitelesítő adataival. 
+2. Bejelentkezés a felhasználónevét és jelszavát, akkor lehetősége lesz egy további biztonsági ellenőrzési hello fiókot tooset kérő képernyőn.
 
  ![További biztonsági](./media/nps-extension-vpn/image29.png)
 
 3. Kattintson a **most beállítása**.
-4. A további biztonsági ellenőrzési lapot válassza a kapcsolattartó típusa (hitelesítéshez megadott telefonját, irodai telefon vagy mobilalkalmazás). Válasszon olyan országban vagy régióban, majd válasszon ki egy módszert. A módszer függ a kapcsolattartási típust választja. Például ha a mobilalkalmazás lehetőséget választja, kiválaszthatja hogy az ellenőrzési értesítések fogadásához, vagy egy ellenőrző kód használata. A következő lépések azt feltételezik, hogy úgy dönt, **mobilalkalmazás** kapcsolattartási típusként.
+4. Hello további biztonsági ellenőrzési lapot válassza a kapcsolattartó típusa (hitelesítéshez megadott telefonját, irodai telefon vagy mobilalkalmazás). Válasszon olyan országban vagy régióban, majd válasszon ki egy módszert. hello metódus kapcsolattartási típustól függ. Például, ha a mobilalkalmazás lehetőséget választja, kiválaszthatja e tooreceive értesítések ellenőrzése vagy toouse ellenőrző kódot. hello következő lépések azt feltételezik, hogy úgy dönt, **mobilalkalmazás** hello, lépjen kapcsolatba a típusát.
 
  ![Telefonos hitelesítési](./media/nps-extension-vpn/image30.png)
 
@@ -326,150 +326,150 @@ Kövesse ezeket az utasításokat, az eszköz beállítása a mobilalkalmazás h
 
  ![Mobilalkalmazás ellenőrzése](./media/nps-extension-vpn/image31.png)
  
-6. Ha még nem tette meg, telepítse a authenticator mobilalkalmazás az eszközön. 
-7. Kövesse az utasításokat a bemutatott vonalkód beolvasása, vagy adja meg manuálisan az adatokat, és kattintson a mobilalkalmazás **végzett**.
+6. Ha még nem tette meg, a saját eszközére telepített hello authenticator mobilalkalmazás. 
+7. Hello mobilalkalmazás tooscan hello jelenik meg a vonalkód hello utasításokat követve vagy hello információk manuális megadása, és kattintson **végzett**.
 
  ![Mobilalkalmazás konfigurálása](./media/nps-extension-vpn/image32.png)
 
-8. A további biztonsági ellenőrzési lapot, kattintson **forduljon me** és értesítést küld az eszköz választ.
-9. A további biztonsági ellenőrzési lapon adja meg egy számot, ha megszakadna a mobilalkalmazással, és kattintson a **következő**.
+8. A hello további biztonsági ellenőrzési lapot, kattintson **forduljon me** és választ küldött toonotification tooyour eszköz.
+9. Hello további biztonsági ellenőrzési lapon adja meg egy számot, ha elveszti a hozzáférést toohello mobilalkalmazás, és kattintson a **következő**.
 
  ![Mobiltelefonszám](./media/nps-extension-vpn/image33.png)
  
-10. Kattintson a további biztonsági ellenőrzést **végzett**.
+10. A további biztonsági ellenőrzés hello, kattintson **végzett**.
 
-Az eszköz konfigurálva van egy második ellenőrzési módszert biztosít. A kétlépéses ellenőrzéshez fiókok beállításával kapcsolatos információkért lásd: [a kétlépéses ellenőrzéshez a fiók beállítása](./end-user/multi-factor-authentication-end-user-first-time.md).
+hello eszköz már konfigurált tooprovide a második ellenőrzési módszert. A kétlépéses ellenőrzéshez fiókok beállításával kapcsolatos információkért lásd: [a kétlépéses ellenőrzéshez a fiók beállítása](./end-user/multi-factor-authentication-end-user-first-time.md).
 
 ## <a name="install-and-configure-nps-extension"></a>Telepítse és konfigurálja a hálózati házirend-kiszolgáló bővítmény
 
-Ez a szakasz ismerteti VPN konfigurálása az Azure MFA használata az ügyfél-hitelesítéshez a VPN-kiszolgálóval.
+Ez a szakasz ismerteti az ügyfél-hitelesítéshez az Azure MFA VPN toouse hello VPN-kiszolgáló konfigurálása.
 
-Miután telepítése és konfigurálása a hálózati házirend-kiszolgáló bővítményt, a kiszolgáló által feldolgozott összes RADIUS-alapú ügyfél-hitelesítés Azure MFA használatához szükséges. Ha nem a VPN-felhasználók az Azure MFA-ban regisztrált, akkor állíthat be egy másik RADIUS-kiszolgáló hitelesíti a felhasználókat, akik nem MFA használatára vannak konfigurálva. Vagy hozhat létre egy beállításjegyzékbeli bejegyzést, amely lehetővé teszi egy második hitelesítési tényezővel kifogásolt megadását, csak akkor, ha léptetheti be többtényezős Hitelesítést. 
+Miután telepítése és konfigurálása a hálózati házirend-kiszolgáló bővítmény hello, ez a kiszolgáló által feldolgozott összes RADIUS-alapú ügyfél-hitelesítés szükséges toouse Azure MFA. Ha nem a VPN-felhasználók az Azure MFA-ban regisztrált, beállíthat egy másik RADIUS kiszolgáló tooauthenticate felhasználókat, akik nem konfigurált toouse MFA. Vagy egy beállításjegyzékbeli bejegyzést, amely lehetővé teszi, hogy a kifogásolt felhasználók tooprovide egy második hitelesítési tényezővel hozhat létre, csak ha léptetheti be többtényezős Hitelesítést. 
 
-Hozzon létre egy új karakterláncértéket _a HKLM\SOFTWARE\Microsoft\AzureMfa REQUIRE_USER_MATCH_, majd az értékét állítsa igaz vagy HAMIS eredményt ad. 
+Hozzon létre egy új karakterláncértéket _a HKLM\SOFTWARE\Microsoft\AzureMfa REQUIRE_USER_MATCH_, és állítsa be a hello érték tooTRUE vagy HAMIS eredményt ad. 
 
  ![Felhasználóegyeztetés megkövetelése](./media/nps-extension-vpn/image34.png)
  
-Ha az értéke igaz értékre kell beállítani, vagy nincs beállítva, minden hitelesítési kérelemre vonatkoznak az MFA-kérdést. Ha a beállítás értéke FALSE, MFA kihívást csak azoknak a felhasználóknak a többtényezős hitelesítés regisztrált adják ki. Csak akkor használja a FALSE beállítást tesztelési vagy üzemi környezetben bevezetési időszak alatt.
+Ha hello érték beállítása tooTRUE vagy nincs megadva, minden hitelesítési kérelemre tulajdonos tooan MFA-kérdést. Ha hello értéke tooFALSE, MFA kihívást csak az MFA-ban regisztrált toousers adják ki. Csak a hello FALSE beállítással tesztelési vagy üzemi környezetben egy bevezetési időszakban használható.
 
 ### <a name="acquire-azure-active-directory-guid-id"></a>Szerezzen be az Azure Active Directory GUID azonosítója
 
-A hálózati házirend-kiszolgáló bővítmény konfigurációjának részeként kell megadnia a rendszergazdai hitelesítő adatokat és az Azure Active Directory-azonosítója az Azure AD-bérlő. Az alábbi lépéseket mutatja be a bérlői azonosító beszerzése
+Hello hálózati házirend-kiszolgáló bővítmény hello konfigurációjának részeként kell toosupply rendszergazdai hitelesítő adataival és hello Azure Active Directory-azonosítója az Azure AD-bérlő. az alábbi hello lépésekből megtudhatja, hogyan tooget hello bérlői azonosító.
 
-1. Jelentkezzen be az Azure portálon, a [https://portal.azure.com](https://portal.azure.com) az Azure-bérlőhöz globális rendszergazdájaként.
-2. A bal oldali navigációs, kattintson a **Azure Active Directory** ikonra.
+1. Az Azure portálon, a bejelentkezés toohello [https://portal.azure.com](https://portal.azure.com) hello globális rendszergazdájaként hello Azure bérlői.
+2. A bal oldali navigációs hello, kattintson a hello **Azure Active Directory** ikonra.
 3. Kattintson a **Tulajdonságok** elemre.
-4. A könyvtár-azonosítója a vágólapra másolásához jelölje ki a **másolási** ikonra.
+4. toocopy a könyvtár-azonosítója toohello vágólap, jelölje be hello **másolási** ikonra.
  
  ![Könyvtár-azonosítója](./media/nps-extension-vpn/image35.png)
 
-### <a name="install-the-nps-extension"></a>A hálózati házirend-kiszolgáló-kiterjesztés telepítése
-A hálózati házirend-kiszolgáló bővítmény telepítve kell lennie egy kiszolgálót, amely a hálózati házirend- és hozzáférés-szolgáltatások (NPS) szerepkör telepítve van és a funkciók kialakításában RADIUS-kiszolgálóként. Ne telepítse az NPS-bővítmény a távoli asztal-kiszolgálón.
+### <a name="install-hello-nps-extension"></a>Hello NPS-kiterjesztés telepítése
+hálózati házirend-kiszolgáló bővítmény hello kell telepítve a kiszolgálón, amelyen a hálózati házirend hello toobe és Access Services (NPS) szerepkör telepítése és a funkciók kialakításában hello RADIUS-kiszolgálóként. Hello hálózati házirend-kiszolgáló bővítmény ne telepítse a távoli asztal-kiszolgálón.
 
-1. Töltse le a hálózati házirend-kiszolgáló bővítményt a [https://aka.ms/npsmfa](https://aka.ms/npsmfa). 
-2. Másolja a végrehajtható fájl (NpsExtnForAzureMfaInstaller.exe) a hálózati házirend-kiszolgáló.
-3. A hálózati házirend-kiszolgálón kattintson duplán a **NpsExtnForAzureMfaInstaller.exe**. Ha a rendszer kéri, kattintson a **futtatása**.
-4. Az Azure MFA párbeszédpanel NPS-bővítményben, tekintse át a szoftverlicenc-szerződést, ellenőrizze **elfogadom a licencfeltételeket és a feltételek**, és kattintson a **telepítése**.
+1. Töltse le a hálózati házirend-kiszolgáló bővítmény hello [https://aka.ms/npsmfa](https://aka.ms/npsmfa). 
+2. Másolás hello beállítása végrehajtható fájl (NpsExtnForAzureMfaInstaller.exe) toohello hálózati házirend-kiszolgáló.
+3. Hello hálózati házirend-kiszolgáló, kattintson duplán a **NpsExtnForAzureMfaInstaller.exe**. Ha a rendszer kéri, kattintson a **futtatása**.
+4. A hálózati házirend-kiszolgáló bővítmény hello Azure MFA párbeszédpanel, tekintse át a hello szoftverlicenc-feltételeket, ellenőrizze **elfogadom a licencfeltételeket toohello**, és kattintson a **telepítése**.
 
  ![Hálózati házirend-kiszolgáló bővítmény](./media/nps-extension-vpn/image36.png)
  
-5. A hálózati házirend-kiszolgáló bővítmény, az Azure MFA párbeszédpanel, kattintson **Bezárás**.  
+5. A hálózati házirend-kiszolgáló bővítmény hello Azure MFA párbeszédpanel, kattintson **Bezárás**.  
 
  ![A telepítő sikeres](./media/nps-extension-vpn/image37.png) 
  
-### <a name="configure-certificates-for-use-with-the-nps-extension-using-a-powershell-script"></a>A hálózati házirend-kiszolgáló PowerShell-parancsfájl használatával kiterjesztésű használt tanúsítványok konfigurálása
-Győződjön meg arról, biztonságos kommunikációt, és biztosítani, az NPS-kiterjesztés által használt tanúsítványok konfigurálása kell. A hálózati házirend-kiszolgáló összetevői az alábbiak a Windows PowerShell-parancsfájlt, amely beállítja a hálózati házirend-kiszolgáló egy önaláírt tanúsítványt. 
+### <a name="configure-certificates-for-use-with-hello-nps-extension-using-a-powershell-script"></a>PowerShell parancsfájl használatával hello hálózati házirend-kiszolgáló kiterjesztésű használt tanúsítványok konfigurálása
+tooensure biztonságos kommunikációt, és biztosítani kell tooconfigure tanúsítványok használatra hello NPS-kiterjesztés által. hello hálózati házirend-kiszolgáló összetevői az alábbiak a Windows PowerShell-parancsfájlt, amely beállítja a hálózati házirend-kiszolgáló egy önaláírt tanúsítványt. 
 
-A parancsfájl a következő műveleteket hajtja végre:
+hello parancsfájl hello a következő műveleteket hajtja végre:
 
 * Létrehoz egy önaláírt tanúsítványt
-* Társítja az egyszerű szolgáltatásnév az Azure AD a tanúsítvány nyilvános kulcsa
-* A tanúsítvány a helyi számítógép tárolójában tárolja
-* A tanúsítvány titkos kulcsa a hálózati felhasználók számára a hozzáférést
+* Társítja az Azure ad-val egyszerű tanúsítvány-tooservice nyilvános kulcs
+* Tárolók hello cert hello helyi számítógép tárolójában
+* Hozzáférési toohello tanúsítvány titkos kulcs toohello hálózati felhasználó
 * Hálózati házirend-kiszolgáló szolgáltatás újraindítása
 
-Ha azt szeretné, a saját tanúsítványok használatára, szüksége a szolgáltatás alapvetően a tanúsítvány nyilvános társítsa Azure ad-val, és így tovább.
-A parancsfájl használatát, adja meg az Azure Active Directory rendszergazdai hitelesítő adatokat és az Azure Active Directory-Bérlőazonosító korábban kimásolt a bővítményt. Futtassa a parancsfájlt minden hálózati házirend-kiszolgálón, ahol az NPS-bővítményének telepítése.
+Ha azt szeretné, toouse saját tanúsítványok, a tanúsítvány toohello szolgáltatás elv tooassociate hello nyilvános Azure ad-val kell, és így tovább.
+toouse hello parancsfájl, hello bővítmény biztosít az Azure Active Directory rendszergazdai hitelesítő adatokkal, és hello Azure Active Directory-bérlőazonosító beszerzése korábban kimásolt. Futtassa a parancsfájlt hello minden hálózati házirend-kiszolgálón, ahol hello NPS-bővítményének telepítése.
 
 1. Nyisson meg egy felügyeleti Windows PowerShell-parancssort.
-2. A PowerShell-parancssorba írja be a _cd "c:\Program Files\Microsoft\AzureMfa\Config"_, és nyomja le az ENTER **ENTER**.
+2. Hello PowerShell parancssorába írja be a _cd "c:\Program Files\Microsoft\AzureMfa\Config"_, és nyomja le az ENTER **ENTER**.
 3. Típus _.\AzureMfsNpsExtnConfigSetup.ps1_, és nyomja le az ENTER **ENTER**. 
- * A parancsfájl ellenőrzi, hogy ha az Azure Active Directory PowerShell-modul telepítve van-e. Ha nincs telepítve, a parancsfájl telepíti a modult.
+ * hello parancsfájl toosee ellenőrzi, hogy a hello Azure Active Directory PowerShell-modul telepítve van. Ha nincs telepítve, hello parancsfájl telepíti hello modul.
  
  ![PowerShell](./media/nps-extension-vpn/image38.png)
  
-4. Miután a parancsfájl a PowerShell-modul ellenőrzi, az Azure Active Directory PowerShell modul párbeszédpanel jelenik meg. A párbeszédpanelen adja meg a Azure AD rendszergazdai hitelesítő adatait, és a jelszót, és kattintson **bejelentkezés**. 
+4. Miután hello parancsfájl ellenőrzi a hello hello PowerShell-modult, hello Azure Active Directory PowerShell modul párbeszédpanel jelenik meg. Hello párbeszédpanelen adja meg a Azure AD rendszergazdai hitelesítő adatait, és a jelszót, és kattintson **bejelentkezés**. 
  
  ![PowerShell-bejelentkezés](./media/nps-extension-vpn/image39.png)
  
-5. Amikor a rendszer kéri, illessze be a vágólapra korábban kimásolt Bérlőazonosító, és nyomja le az ENTER **ENTER**. 
+5. Amikor a rendszer kéri, illessze be a korábban kimásolt toohello vágólapra hello Bérlőazonosító, és nyomja le az ENTER **ENTER**. 
 
  ![Bérlőazonosító](./media/nps-extension-vpn/image40.png)
 
-6. A parancsfájl létrehoz egy önaláírt tanúsítványt, és más konfigurációs módosításokat hajt végre. A kimeneti olyan, mint az alább látható kép.
+6. hello parancsfájl létrehoz egy önaláírt tanúsítványt, és más konfigurációs módosításokat hajt végre. hello eredménye például hello kép alább látható.
 
  ![Önaláírt tanúsítvány](./media/nps-extension-vpn/image41.png)
 
-7. Indítsa újra a kiszolgálót.
+7. Hello kiszolgáló újraindul.
  
 ### <a name="verify-configuration"></a>Konfiguráció ellenőrzése
-A konfiguráció ellenőrzése, szükség VPN-kiszolgáló egy új VPN-kapcsolatot létrehozni. Belépéskor sikeresen megtörtént a hitelesítő adatait az elsődleges hitelesítéshez, a VPN-kapcsolatot vár a másodlagos hitelesítés sikeres, a kapcsolat létrejötte előtt alább látható módon. 
+tooverify hello konfigurációban kell tooestablish egy új VPN-kapcsolatot a VPN-kiszolgáló. Belépéskor sikeresen megtörtént a hitelesítő adatait az elsődleges hitelesítéshez, VPN-kapcsolat hello hello másodlagos hitelesítés toosucceed előtt megvárja hello kapcsolat létrejött, alább látható módon. 
 
  ![Konfiguráció ellenőrzése](./media/nps-extension-vpn/image42.png)
 
-Sikeres hitelesítést az Azure MFA korábban konfigurált másodlagos hitelesítési módszert, ha csatlakozik a erőforrás. Ha a másodlagos hitelesítés nem sikeres, azonban vannak erőforráshoz való hozzáférés megtagadva. 
+Ha sikeresen hello másodlagos ellenőrzési módszer korábban már konfigurálta az Azure MFA hitelesítést, csatlakoztatott toohello erőforrás áll. Ha másodlagos hitelesítés hello nem sikeres, hozzáférési tooresource sem kap. 
 
-Az alábbi példában a hitelesítő alkalmazás Windows Phone-eszközön segítségével adja meg a másodlagos hitelesítést.
+Hello példában az alábbi hello hitelesítő alkalmazást Windows Phone-eszközön használt tooprovide hello másodlagos hitelesítés.
 
  ![Fiók ellenőrzése](./media/nps-extension-vpn/image43.png)
 
-Miután sikeresen hitelesítette a másodlagos metódussal, akkor a virtuális port a VPN-kiszolgálón hozzáférési engedéllyel. Azonban Ön volt egy másodlagos hitelesítési módszer használatával, ha megbízható eszközt használatához szükséges, mert a bejelentkezési folyamat biztonságosabb, mint azt kellene használatával csak a felhasználónév / jelszó kombináció.
+Miután sikeresen hitelesítette hello másodlagos metódussal, kapnak a hozzáférési toohello virtuális port hello VPN-kiszolgálón. Mivel volt szükséges toouse egy másodlagos hitelesítési módszer használatával, ha megbízható eszközt, hello bejelentkezési folyamat biztonságosabb, mint azt kellene használatával csak a felhasználónév / jelszó kombináció.
 
 ### <a name="view-event-viewer-logs-for-successful-logon-events"></a>Eseménynaplók sikeres bejelentkezési események megtekintése
-A Windows eseménynaplójában a sikeres bejelentkezési események megtekintéséhez a következő Windows PowerShell-parancsot a Windows biztonsági naplónak a hálózati házirend-kiszolgáló lekérdezéséhez adhat ki.
+tooview hello sikeres bejelentkezési események hello Windows Eseménynapló-naplókban, kiadhatja hello a következő Windows PowerShell parancs tooquery hello Windows biztonsági naplóba hello hálózati házirend-kiszolgálón.
 
-A biztonsági eseménynapló sikeres bejelentkezés eseményeinek lekérdezéséhez használja a következő parancsot,
+tooquery sikeres bejelentkezési események hello biztonsági eseménynapló, használja a következő parancsot, hello
 * _Get-WinEvent - naplónév biztonsági_ |} ahol {$_.ID - eq "6272"} |} FL 
 
  ![Biztonsági eseménynapló](./media/nps-extension-vpn/image44.png)
  
-Megtekintheti a biztonsági napló vagy a hálózati házirend- és elérési szolgáltatások egyéni nézet alább látható módon:
+Alább látható módon hello biztonsági naplóban vagy hello hálózati házirend- és elérési szolgáltatások egyéni nézet, is megtekintheti:
 
  ![Hálózati házirend-hozzáférés](./media/nps-extension-vpn/image45.png)
 
-A kiszolgálón, amelyen a hálózati házirend-kiszolgáló-bővítmény telepítése az Azure MFA található alkalmazás eseménynaplók adott, a bővítmény **alkalmazások és szolgáltatások Logs\Microsoft\AzureMfa**. 
+Hello hálózati házirend-kiszolgáló bővítmény telepítési az Azure MFA hello kiszolgálón található alkalmazás eseménynaplók, adott toohello bővítmény **alkalmazások és szolgáltatások Logs\Microsoft\AzureMfa**. 
 
 * _Get-WinEvent - naplónév biztonsági_ |} ahol {$_.ID - eq "6272"} |} FL
 
  ![Események (event) száma](./media/nps-extension-vpn/image46.png)
 
 ## <a name="troubleshoot-guide"></a>Az útmutató hibaelhárítása
-A konfiguráció nem a várt módon működik, ha egy remek kezdőpont elhárítása ellenőrzése, hogy a felhasználó Azure MFA használatára van konfigurálva. A felhasználó csatlakozni [https://portal.azure.com](https://portal.azure.com). Ha a rendszer kéri a másodlagos hitelesítés, és sikeresen be tud hitelesíti, megszüntetheti az Azure MFA helytelen konfigurációban.
+Hello konfigurációs nem a várt módon működik, ha egy remek toostart tootroubleshoot, amely a felhasználó hello tooverify konfigurált toouse Azure MFA. Csatlakozás túl hello felhasználó[https://portal.azure.com](https://portal.azure.com). Ha a rendszer kéri a másodlagos hitelesítés, és sikeresen be tud hitelesíti, megszüntetheti az Azure MFA helytelen konfigurációban.
 
-Ha a felhasználó Azure MFA szolgáltatás működik, tekintse át a megfelelő eseménynaplóit. Ezek közé tartozik, a biztonsági esemény, az átjáró működik és az előző szakaszban tárgyalt Azure MFA-naplókat. 
+Ha az Azure MFA hello felhasználó(k) szolgáltatás működik, tekintse át hello vonatkozó eseménynaplók. Ezek közé tartozik a hello biztonsági esemény, az átjáró működik és az Azure MFA naplók hello előző szakaszban tárgyalt. 
 
 Alább egy példa kimenet megjeleníti a sikertelen bejelentkezési esemény (Event ID 6273) a biztonsági napló van:
 
  ![Biztonsági napló](./media/nps-extension-vpn/image47.png)
 
-Alább az a AzureMFA naplókból kapcsolódó esemény:
+Alább az hello AzureMFA naplókból kapcsolódó esemény:
 
  ![Az Azure MFA-naplók](./media/nps-extension-vpn/image48.png)
 
-Végrehajtásához advanced beállítások elhárításával kapcsolatos tudnivalókat tekintse meg a hálózati házirend-kiszolgáló naplófájlok ahol a hálózati házirend-kiszolgáló szolgáltatás telepítve van. Ezekben a naplófájlokban létrejönnek _%SystemRoot%\System32\Logs_ vesszővel tagolt szövegfájlok mappában. Ezek leírását naplófájlok című [értelmezhetők hálózati házirend-kiszolgáló naplófájlok](https://technet.microsoft.com/library/cc771748.aspx). 
+Speciális tooperform beállítások, tájékoztatást hello hálózati házirend-kiszolgáló naplófájlok hello NPS szolgáltatást futtató hibaelhárítása. Ezekben a naplófájlokban létrejönnek _%SystemRoot%\System32\Logs_ vesszővel tagolt szövegfájlok mappában. Ezek leírását naplófájlok című [értelmezhetők hálózati házirend-kiszolgáló naplófájlok](https://technet.microsoft.com/library/cc771748.aspx). 
 
-Ezekben a naplófájlokban szereplő bejegyzések nehezen nélkül importálja őket egy táblázatot vagy egy adatbázis értelmezhetők. IAS elemzők online segítség nyújtása a naplófájlok értelmezése számos található. Az alábbiakban van a kimenet egy ilyen letölthető [shareware alkalmazás](http://www.deepsoftware.com/iasviewer): 
+hello ezekben a naplófájlokban bejegyzései nehéz toointerpret nélkül importálja őket egy táblázatot vagy egy adatbázisban. Egy szám található IAS elemzők online tooassist a naplófájlok értelmezése a hello. Az alábbiakban egy a hello kimenet egy ilyen letölthető [shareware alkalmazás](http://www.deepsoftware.com/iasviewer): 
 
  ![Shareware alkalmazás](./media/nps-extension-vpn/image49.png)
 
-Végezetül, a további beállítások elhárításával kapcsolatos tudnivalókat is használhat, például a Wireshark protokollelemző vagy [Microsoft Message Analyzert](https://technet.microsoft.com/library/jj649776.aspx). Wireshark az alábbi ábrán a RADIUS-üzenetek a VPN-kiszolgáló és a hálózati házirend-kiszolgáló között.
+Végezetül, a további beállítások elhárításával kapcsolatos tudnivalókat is használhat, például a Wireshark protokollelemző vagy [Microsoft Message Analyzert](https://technet.microsoft.com/library/jj649776.aspx). hello Wireshark az alábbi képen látható RADIUS köszönőüzenetei hello VPN-kiszolgáló és a hello hálózati házirend-kiszolgáló között.
 
  ![Microsoft Message Analyzert](./media/nps-extension-vpn/image50.png)
 
 További információkért lásd: [a meglévő hálózati házirend-kiszolgáló infrastruktúra integrálása az Azure multi-factor Authentication](multi-factor-authentication-nps-extension.md).  
 
 ## <a name="next-steps"></a>Következő lépések
-[Az Azure Multi-Factor Authentication beszerzése](multi-factor-authentication-versions-plans.md)
+[Hogyan tooget Azure multi-factor Authentication](multi-factor-authentication-versions-plans.md)
 
 [Távoli asztali átjáró és RADIUS-t használó Azure Multi-Factor Authentication-kiszolgáló](multi-factor-authentication-get-started-server-rdg.md)
 

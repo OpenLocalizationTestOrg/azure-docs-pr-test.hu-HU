@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Lake Store használatának első lépései az Azure 2.0-s verziójú parancssori felületével | Microsoft Docs"
-description: "Data Lake Store-fiók létrehozása és alapszintű műveletek végrehajtása az Azure 2.0-s verziójú, platformfüggetlen parancssorával"
+title: "az Azure parancssori 2.0 aaaUse felület tooget Azure Data Lake Store használatába |} Microsoft Docs"
+description: "Használja az Azure platformfüggetlen parancssori 2.0 toocreate Data Lake Store-fiók és alapszintű műveletek végrehajtása"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: ed78d25f2bac0a9996f1796ee503f31a36940977
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 374dcd6cdbc13ad19f6c65502329986ecae60ef2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-store-using-azure-cli-20"></a>Az Azure Data Lake Store használatának első lépései az Azure CLI 2.0 használatával
 > [!div class="op_single_selector"]
@@ -33,13 +33,13 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Ismerje meg, hogyan hozhat létre Azure Data Lake Store-fiókot az Azure CLI 2.0 használatával, illetve hogyan végezhet el olyan alapvető műveleteket, mint például mappák létrehozása, adatfájlok le- és feltöltése, fiók törlése stb. További információk a Data Lake Store-ról: [Overview of Data Lake Store](data-lake-store-overview.md) (A Data Lake Store áttekintése).
+Ismerje meg, hogyan toouse Azure CLI 2.0 toocreate egy Azure Data Lake tárolásához fiók és alapvető műveleteket, mint például mappák létrehozása, és feltöltése adatfájlok le, a fiók törlése stb. További információk a Data Lake Store-ról: [Overview of Data Lake Store](data-lake-store-overview.md) (A Data Lake Store áttekintése).
 
-Az Azure CLI 2.0 az Azure új parancssori felülete, amely Azure-erőforrások felügyeletére szolgál. A szolgáltatás macOS, Linux és Windows rendszereken használható. További információért lásd: [Az Azure CLI 2.0 áttekintése](https://docs.microsoft.com/cli/azure/overview). A parancsok és a szintaxis teljes listája az [Azure Data Lake Store CLI 2.0 dokumentációjában](https://docs.microsoft.com/cli/azure/dls) található.
+hello Azure CLI 2.0 Azure új parancssori felületet Azure-erőforrások kezeléséhez. A szolgáltatás macOS, Linux és Windows rendszereken használható. További információért lásd: [Az Azure CLI 2.0 áttekintése](https://docs.microsoft.com/cli/azure/overview). Is megtalálhatja hello [Azure Data Lake Store CLI 2.0 hivatkozás](https://docs.microsoft.com/cli/azure/dls) teljes listáját a parancsokat és szintaxist.
 
 
 ## <a name="prerequisites"></a>Előfeltételek
-A cikk elkezdéséhez az alábbiakkal kell rendelkeznie:
+Ez a cikk elkezdéséhez hello következő kell rendelkeznie:
 
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
 
@@ -47,10 +47,10 @@ A cikk elkezdéséhez az alábbiakkal kell rendelkeznie:
 
 ## <a name="authentication"></a>Authentication
 
-Ez a cikk egy egyszerűbb hitelesítési módszert használ a Data Lake Store-ral, ahol Ön végfelhasználóként jelentkezik be. Ezután a Data Lake Store-fiókhoz és a fájlrendszerhez való hozzáférés szintje a bejelentkezett felhasználó hozzáférési szintjétől függ. Azonban a Data Lake Store-ral más módokon is lehet hitelesíteni. Ezek a következők: **végfelhasználói hitelesítés** vagy **szolgáltatások közötti hitelesítés**. Útmutatás a hitelesítéshez és további tudnivalók a [Végfelhasználói hitelesítés](data-lake-store-end-user-authenticate-using-active-directory.md) vagy a [Szolgáltatások közötti hitelesítés](data-lake-store-authenticate-using-active-directory.md) című témakörben.
+Ez a cikk egy egyszerűbb hitelesítési módszert használ a Data Lake Store-ral, ahol Ön végfelhasználóként jelentkezik be. hello hozzáférési szint tooData Lake Store fiók és a fájl rendszer majd hello hozzáférési szint a bejelentkezett felhasználó hello szabályozza. Van azonban más megoldások jól tooauthenticate a Data Lake Store, mint amelyek **végfelhasználói hitelesítési** vagy **szolgáltatások közötti hitelesítési**. További információt és útmutatást tooauthenticate, lásd: [végfelhasználói hitelesítési](data-lake-store-end-user-authenticate-using-active-directory.md) vagy [szolgáltatások közötti hitelesítési](data-lake-store-authenticate-using-active-directory.md).
 
 
-## <a name="log-in-to-your-azure-subscription"></a>Bejelentkezés az Azure-előfizetésbe
+## <a name="log-in-tooyour-azure-subscription"></a>Jelentkezzen be tooyour Azure-előfizetés
 
 1. Jelentkezzen be az Azure-előfizetésébe.
 
@@ -58,9 +58,9 @@ Ez a cikk egy egyszerűbb hitelesítési módszert használ a Data Lake Store-ra
     az login
     ```
 
-    Kap egy kódot a következő lépésben való használatra. A webböngészővel nyissa meg a https://aka.ms/devicelogin oldalt, és a hitelesítéshez adja meg a kódot. A rendszer kéri a hitelesítési adatokkal való bejelentkezést.
+    A kód toouse hello következő lépésben kapott. Egy webes böngésző tooopen hello lap https://aka.ms/devicelogin használata, és írja be a hello kód tooauthenticate. A hitelesítő adataival felszólító toolog áll.
 
-2. Bejelentkezés után az ablakban megjelenő listában találhatók a fiókhoz társított Azure-előfizetések. Az alábbi paranccsal használhat egy adott előfizetést.
+2. Jelentkezzen be, miután hello ablak felsorolja az összes hello Azure-fiókjához társított előfizetéseket. A következő parancs toouse adott előfizetés hello használata.
    
     ```azurecli
     az account set --subscription <subscription id> 
@@ -68,13 +68,13 @@ Ez a cikk egy egyszerűbb hitelesítési módszert használ a Data Lake Store-ra
 
 ## <a name="create-an-azure-data-lake-store-account"></a>Azure Data Lake Store-fiók létrehozása
 
-1. Hozzon létre egy új erőforráscsoportot. Az alábbi parancsban adja meg a használni kívánt paraméterértékeket. Ha a hely neve tartalmaz szóközöket, használjon idézőjeleket. Például: „USA 2. keleti régiója”. 
+1. Hozzon létre egy új erőforráscsoportot. A következő parancs hello adja meg hello toouse kívánt paraméterértékeket. Ha hello a hely neve szóközt tartalmaz, tegye idézőjelek közé foglalt. Például: „USA 2. keleti régiója”. 
    
     ```azurecli
     az group create --location "East US 2" --name myresourcegroup
     ```
 
-2. Hozza létre a Data Lake Store-fiókot.
+2. Hello Data Lake Store-fiók létrehozása.
    
     ```azurecli
     az dls account create --account mydatalakestore --resource-group myresourcegroup
@@ -82,42 +82,42 @@ Ez a cikk egy egyszerűbb hitelesítési módszert használ a Data Lake Store-ra
 
 ## <a name="create-folders-in-a-data-lake-store-account"></a>Mappák létrehozása Data Lake Store-fiókban
 
-Mappákat hozhat létre az Azure Data Lake Store-fiókjában az adatok kezelése és tárolása céljából. Az alábbi parancs segítségével hozzon létre egy **mynewfolder** nevű mappát a Data Lake Store gyökérmappájában.
+Mappák létrehozása az Azure Data Lake Store-fiók toomanage alatt, és adatok tárolásához. A következő parancs toocreate nevű egy mappát használja hello **mynewfolder** : hello hello Data Lake Store gyökérmappájában.
 
 ```azurecli
 az dls fs create --account mydatalakestore --path /mynewfolder --folder
 ```
 
 > [!NOTE]
-> A `--folder` paraméter gondoskodik arról, hogy a parancs egy mappát hozzon létre. Ha a paraméter hiányzik, a parancs egy mynewfolder nevű üres fájlt hoz létre a Data Lake Store-fiók gyökérmappájában.
+> Hello `--folder` paraméter biztosítja, hogy hello parancs létrehoz egy mappát. Ha ez a paraméter nincs megadva, hello parancs létrehoz egy üres nevű mynewfolder: hello hello Data Lake Store-fiók gyökérkönyvtárában.
 > 
 >
 
-## <a name="upload-data-to-a-data-lake-store-account"></a>Adatok feltöltése a Data Lake Store-fiókba
+## <a name="upload-data-tooa-data-lake-store-account"></a>Töltse fel az adatok tooa Data Lake Store-fiók
 
-Az adatokat közvetlenül a Data Lake Store gyökérmappájába vagy a fiókban létrehozott egyik mappába töltheti fel. Az alábbi kódtöredékek bemutatják, hogyan tölthet fel néhány adatot az előző szakaszban létrehozott mappába (**mynewfolder**).
+Feltöltheti tooData Lake adattárban közvetlenül gyökérmappában hello szint vagy tooa hello fiókon belül létrehozott. hello alábbi kódtöredékek bemutatják, hogyan tooupload néhány minta toohello Adatmappa (**mynewfolder**) hello előző szakaszban létrehozott.
 
-Ha feltölthető mintaadatokra van szüksége, használhatja az [Azure Data Lake Git-tárában](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData) található **Ambulance Data** mappát. Töltse le a fájlt, és tárolja a számítógépén egy helyi könyvtárban (pl. C:\sampledata).
+Néhány példa adatok tooupload keres, ha kaphat a hello **Ambulance Data** hello mappát [Azure Data Lake Git-tárház](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData). Töltse le a hello fájlt, és a számítógépre, például C:\sampledata\ egy helyi könyvtárban tárolja.
 
 ```azurecli
 az dls fs upload --account mydatalakestore --source-path "C:\SampleData\AmbulanceData\vehicle1_09142014.csv" --destination-path "/mynewfolder/vehicle1_09142014.csv"
 ```
 
 > [!NOTE]
-> Célként adja meg a teljes elérési utat, beleértve a fájlnevet is.
+> Hello cél hello teljes elérési útját együtt hello fájlnevet kell megadnia.
 > 
 >
 
 
 ## <a name="list-files-in-a-data-lake-store-account"></a>A Data Lake Store-fiók fájljainak listázása
 
-Az alábbi parancs segítségével kilistázhatja a Data Lake Store-fiók fájljait.
+Használja a következő parancs toolist hello fájlok egy Data Lake Store-fiókban hello.
 
 ```azurecli
 az dls fs list --account mydatalakestore --path /mynewfolder
 ```
 
-A kimenet az alábbihoz hasonló lesz:
+hello kimenet az hasonló toohello következő legyen:
 
     [
         {
@@ -139,30 +139,30 @@ A kimenet az alábbihoz hasonló lesz:
 
 ## <a name="rename-download-and-delete-data-from-a-data-lake-store-account"></a>A Data Lake Store-fiókban lévő adatok átnevezése, letöltése és törlése 
 
-* **Fájlok átnevezéséhez** használja az alábbi parancsot:
+* **a fájl toorename**, a következő parancs hello használata:
   
     ```azurecli
     az dls fs move --account mydatalakestore --source-path /mynewfolder/vehicle1_09142014.csv --destination-path /mynewfolder/vehicle1_09142014_copy.csv
     ```
 
-* **Fájlok letöltéséhez** használja az alábbi parancsot: Ügyeljen arra, hogy a megadott cél elérési útja egy létező hely legyen.
+* **a fájl toodownload**, használja a következő parancs hello. Győződjön meg arról, hogy hello cél elérési út már létezik.
   
     ```azurecli     
     az dls fs download --account mydatalakestore --source-path /mynewfolder/vehicle1_09142014_copy.csv --destination-path "C:\mysampledata\vehicle1_09142014_copy.csv"
     ```
 
     > [!NOTE]
-    > A parancs létrehozza a célmappát, ha az nem létezik.
+    > hello parancs hello célmappa hoz létre, ha nem létezik.
     > 
     >
 
-* **Fájlok törléséhez** használja az alábbi parancsot:
+* **a fájl toodelete**, a következő parancs hello használata:
   
     ```azurecli
     az dls fs delete --account mydatalakestore --path /mynewfolder/vehicle1_09142014_copy.csv
     ```
 
-    Ha egyetlen paranccsal szeretné törölni a **mynewfolder** nevű mappát és a **vehicle1_09142014_copy.csv** nevű fájlt, használja a --recurse paramétert
+    Ha azt szeretné, hogy toodelete hello mappa **mynewfolder** és hello fájl **vehicle1_09142014_copy.csv** együtt egy parancsban, használjon hello – recurse paraméter
 
     ```azurecli
     az dls fs delete --account mydatalakestore --path /mynewfolder --recurse
@@ -170,27 +170,27 @@ A kimenet az alábbihoz hasonló lesz:
 
 ## <a name="work-with-permissions-and-acls-for-a-data-lake-store-account"></a>A Data Lake Store-fiókhoz tartozó engedélyek és a hozzáférés-vezérlési listák használata
 
-Ebben a szakaszban a hozzáférés-vezérlési listák és az engedélyek Azure CLI 2.0-beli felügyeletét ismerheti meg. A hozzáférés-vezérlési listák Azure Data Lake Store-beli használatának részletes leírásáért lásd: [Az Azure Data Lake Store szolgáltatásban található hozzáférés-vezérlés](data-lake-store-access-control.md).
+Ebben a szakaszban, megtudhatja, hogyan toomanage hozzáférés-vezérlési listák és az engedélyek az Azure CLI 2.0 verziót használja. A hozzáférés-vezérlési listák Azure Data Lake Store-beli használatának részletes leírásáért lásd: [Az Azure Data Lake Store szolgáltatásban található hozzáférés-vezérlés](data-lake-store-access-control.md).
 
-* **Egy fájl/mappa tulajdonosának frissítését** az alábbi paranccsal végezheti el:
+* **egy fájl vagy mappa tulajdonosának tooupdate hello**, a következő parancs hello használata:
 
     ```azurecli
     az dls fs access set-owner --account mydatalakestore --path /mynewfolder/vehicle1_09142014.csv --group 80a3ed5f-959e-4696-ba3c-d3c8b2db6766 --owner 6361e05d-c381-4275-a932-5535806bb323
     ```
 
-* **Egy fájl/mappa engedélyeinek frissítését** az alábbi paranccsal végezheti el:
+* **egy fájl vagy mappa engedélyeit tooupdate hello**, a következő parancs hello használata:
 
     ```azurecli
     az dls fs access set-permission --account mydatalakestore --path /mynewfolder/vehicle1_09142014.csv --permission 777
     ```
     
-* **Adott elérési úthoz tartozó hozzáférés-vezérlési listák beolvasását** az alábbi paranccsal végezheti el:
+* **a megadott elérési út a hozzáférés-vezérlési listák tooget hello**, a következő parancs hello használata:
 
     ```azurecli
     az dls fs access show --account mydatalakestore --path /mynewfolder/vehicle1_09142014.csv
     ```
 
-    A kimenet az alábbihoz hasonló lesz:
+    hello kimeneti hasonló toohello következő legyen:
 
         {
             "entries": [
@@ -204,38 +204,38 @@ Ebben a szakaszban a hozzáférés-vezérlési listák és az engedélyek Azure 
           "stickyBit": false
         }
 
-* **Egy hozzáférés-vezérlési listához tartozó bejegyzés beállítását** az alábbi paranccsal végezheti el:
+* **egy bejegyzést a hozzáférés-vezérlési Listában tooset**, a következő parancs hello használata:
 
     ```azurecli
     az dls fs access set-entry --account mydatalakestore --path /mynewfolder --acl-spec user:6360e05d-c381-4275-a932-5535806bb323:-w-
     ```
 
-* **Egy hozzáférés-vezérlési listához tartozó bejegyzés eltávolítását** az alábbi paranccsal végezheti el:
+* **egy bejegyzést a hozzáférés-vezérlési Listában tooremove**, a következő parancs hello használata:
 
     ```azurecli
     az dls fs access remove-entry --account mydatalakestore --path /mynewfolder --acl-spec user:6360e05d-c381-4275-a932-5535806bb323
     ```
 
-* **Egy alapértelmezett teljes hozzáférés-vezérlési lista eltávolítását** az alábbi paranccsal végezheti el:
+* **egy teljes alapértelmezett hozzáférés-vezérlési lista tooremove**, a következő parancs hello használata:
 
     ```azurecli
     az dls fs access remove-all --account mydatalakestore --path /mynewfolder --default-acl
     ```
 
-* **Egy nem alapértelmezett teljes hozzáférés-vezérlési lista eltávolítását** az alábbi paranccsal végezheti el:
+* **egy teljes nem alapértelmezett ACL tooremove**, a következő parancs hello használata:
 
     ```azurecli
     az dls fs access remove-all --account mydatalakestore --path /mynewfolder
     ```
     
 ## <a name="delete-a-data-lake-store-account"></a>Data Lake Store-fiók törlése
-Az alábbi parancs segítségével törölheti a Data Lake Store-fiókját.
+A következő parancs toodelete Data Lake Store-fiók hello használata.
 
 ```azurecli
 az dls account delete --account mydatalakestore
 ```
 
-Ha a rendszer rákérdez, írja be az **Y** karaktert a fiók törléséhez.
+Amikor a rendszer kéri, adja meg a **Y** toodelete hello fiók.
 
 ## <a name="next-steps"></a>Következő lépések
 

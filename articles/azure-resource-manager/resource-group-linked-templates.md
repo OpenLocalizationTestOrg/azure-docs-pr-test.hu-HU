@@ -1,6 +1,6 @@
 ---
-title: "Hivatkozás a sablonokat az Azure-telepítés |} Microsoft Docs"
-description: "Ismerteti az Azure Resource Manager sablon kapcsolt sablonok segítségével moduláris sablon megoldás létrehozása. Bemutatja, hogyan továbbítsa a paraméterértéket, adja meg a paraméter fájlt, és dinamikusan létrehozott URL-címeket."
+title: "az Azure-telepítés aaaLink sablonok |} Microsoft Docs"
+description: "Ismerteti, hogyan toouse társított sablonok az Azure Resource Manager sablon toocreate moduláris sablon megoldást. Bemutatja, hogyan toopass paraméterek értékét, adja meg a paraméter-fájlt, és dinamikusan létrejön az URL-címeket."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/31/2017
 ms.author: tomfitz
-ms.openlocfilehash: 8b58a83ffd473500dd3f76c09e251f9208527d4f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b935b1810db5ce894d009403cd4bb945cab34ba7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-linked-templates-when-deploying-azure-resources"></a>Azure-erőforrások telepítésekor kapcsolt sablonok használata
-A belül egy Azure Resource Manager sablon hozzákapcsolhatja egy másik sablont, amely lehetővé teszi, hogy a központi telepítés egy felbontani megcélzott, cél-specifikus sablonok. Csakúgy, mint egy alkalmazás több kód osztályokba decomposing, a felbontás ellen tesztelése, újbóli és olvashatóság előnyt kínál.  
+A belül egy Azure Resource Manager-sablon, társíthatja tooanother sablont, amely lehetővé teszi a toodecompose célzott konkrét, Célspecifikus sablonok készletére a központi telepítés. Csakúgy, mint egy alkalmazás több kód osztályokba decomposing, a felbontás ellen tesztelése, újbóli és olvashatóság előnyt kínál.  
 
-Átadhatók fő sablonból paraméterek csatolt sablont, és ezeket a paramétereket közvetlenül hozzárendelhető paraméterek és változók jelennek meg, ha a hívó sablont. A csatolt sablont is eltelhet egy kimeneti változó vissza a Forrássablon a sablonok között kétirányú adatcsere engedélyezése.
+Paraméterek átadhatók egy fő sablont tooa csatolt sablonból, és ezeket a paramétereket közvetlenül hozzárendelhető tooparameters vagy hello hívja a sablon által elérhetővé tett változók. hello csatolt sablon is eltelhet egy kimeneti változó hátsó toohello Forrássablon, sablonok közötti kétirányú adatcsere engedélyezése.
 
-## <a name="linking-to-a-template"></a>A sablon csatolása
-Létrehozhat egy hivatkozást a fő sablont, amely a csatolt sablon mutat található központi telepítési erőforráshoz hozzáadásával két sablonok között. Beállíthatja a **templateLink** URI-azonosítója a csatolt sablon tulajdonságot. A csatolt sablon közvetlenül a sablonban vagy egy paraméterfájl biztosítható a paraméterértékek. Az alábbi példában a **paraméterek** tulajdonságot közvetlenül adja meg a paraméter értékét.
+## <a name="linking-tooa-template"></a>Hivatkozási tooa sablon
+Létrehozhat egy hivatkozást hello fő sablon található központi telepítési erőforráshoz pontok toohello csatolt sablon hozzáadásával két sablonok között. Beállíthatja a hello **templateLink** tulajdonság toohello hello csatolt sablon URI. Hello csatolt sablon közvetlenül a sablonban vagy egy paraméterfájl biztosítható a paraméterértékek. hello alábbi példában hello **paraméterek** tulajdonság toospecify közvetlenül a paraméter értékét.
 
 ```json
 "resources": [ 
@@ -48,13 +48,13 @@ Létrehozhat egy hivatkozást a fő sablont, amely a csatolt sablon mutat talál
 ] 
 ```
 
-Más típusú erőforrások, például a csatolt sablont és egyéb erőforrások közti függőségeket is beállíthatja. Ezért ha más erőforrásokhoz szükséges egy kimeneti értéket, a csatolt sablonból, biztosíthatja, a csatolt sablon előtt történik. Vagy a csatolt sablon más erőforrások támaszkodik, ha biztos lehet benne, más erőforrások telepítése előtt a csatolt sablont. Egy érték beolvasható egy csatolt sablon a következő szintaxissal:
+Más típusú erőforrások, például a hello csatolt sablon és egyéb erőforrások közti függőségeket is beállíthatja. Ezért ha más erőforrásokhoz szükséges hello csatolt sablonból egy kimeneti értéket, biztosíthatja, hello csatolt sablon előtt történik. Vagy hello csatolt sablon más erőforrások támaszkodik, ha biztos lehet benne, más erőforrások telepítése előtt hello csatolt sablont. Csatolt sablonból értéket kérheti le a hello a következő szintaxist:
 
 ```json
 "[reference('linkedTemplate').outputs.exampleProperty.value]"
 ```
 
-Az erőforrás-kezelő szolgáltatás eléréséhez a csatolt sablon képesnek kell lennie. Nem adhat meg egy helyi fájl vagy a fájl, amely csak akkor érhető el a csatolt sablon a helyi hálózaton. Csak adja meg, amely tartalmazza az vagy URI érték **http** vagy **https**. Egy elem helyezze el a csatolt sablon egy tárfiókot, és az URI használata, hogy az elem, például az alábbi példában látható módon:
+Erőforrás-kezelő szolgáltatás hello képes tooaccess hello csatolt sablon kell lennie. Egy helyi fájl vagy a fájl, amely csak akkor érhető el a helyi hálózaton hello csatolt sablon nem adható meg. Csak adja meg, amely tartalmazza az vagy URI érték **http** vagy **https**. Egy elem tooplace egy tárfiókot, és használni a csatolt sablon hello URI, hogy az elem, például a következő példa hello látható:
 
 ```json
 "templateLink": {
@@ -63,9 +63,9 @@ Az erőforrás-kezelő szolgáltatás eléréséhez a csatolt sablon képesnek k
 }
 ```
 
-Bár a csatolt sablon külsőleg elérhetőnek kell lennie, nem kell lennie a nyilvános általánosan elérhető. A sablon a személyes storage-fiók, amely csak a fiók tulajdonosa számára hozzáférhető is hozzáadhat. Ezután hozzon létre egy közös hozzáférésű jogosultságkód (SAS) token hozzáférés engedélyezése a telepítés során. A SAS-token hozzáadása az URI a csatolt sablon. A sablont a storage-fiók beállítása és SAS-token létrehozása lépéseiért lásd: [erőforrások a Resource Manager-sablonok és Azure PowerShell telepítése](resource-group-template-deploy.md) vagy [erőforrások a Resource Manager-sablonok és az Azure parancssori felület telepítése](resource-group-template-deploy-cli.md). 
+Bár a hello csatolt sablon külsőleg elérhetőnek kell lennie, nem kell toobe általánosan elérhető toohello nyilvános. A sablon tooa titkos tárfiókja, amely elérhető tooonly hello tárfiók tulajdonosa adhat hozzá. Ezután létrehozhat egy közös hozzáférésű jogosultságkód (SAS) token tooenable hozzáférés üzembe helyezése során. A SAS-token toohello URI, hello csatolt sablon hozzáadása A sablont a storage-fiók beállítása és SAS-token létrehozása lépéseiért lásd: [erőforrások a Resource Manager-sablonok és Azure PowerShell telepítése](resource-group-template-deploy.md) vagy [erőforrások a Resource Manager-sablonok és az Azure parancssori felület telepítése](resource-group-template-deploy-cli.md). 
 
-A következő példa bemutatja a szülő sablon egy másik sablon mutató. A csatolt sablon paraméterként átadott SAS-jogkivonat segítségével érhető el.
+a következő példa hello szülő sablon hivatkozások tooanother sablon jeleníti meg. hello csatolt sablon paraméterként átadott SAS-jogkivonat segítségével érhető el.
 
 ```json
 "parameters": {
@@ -87,14 +87,14 @@ A következő példa bemutatja a szülő sablon egy másik sablon mutató. A csa
 ],
 ```
 
-Annak ellenére, hogy a jogkivonat érték az átadott egy biztonságos karakterláncot, URI-azonosítója a csatolt sablon, beleértve a SAS-jogkivonat a telepítési műveleteket rögzíti. Korlátozható a támadóknak, beállíthatja a egy lejárati idejét, a jogkivonat esetében.
+Annak ellenére, hogy hello token érték az átadott egy biztonságos karakterláncot, hello hello csatolt sablon, többek között a hello SAS-jogkivonat URI naplózott hello üzembe helyezési műveleteket. toolimit kapta, beállíthatja a hello jogkivonat egy lejárati idejét.
 
-Erőforrás-kezelő ennek egy külön központi telepítés minden egyes csatolt sablon kezeli. A központi telepítési előzmények ahhoz az erőforráscsoporthoz tekintse meg a szülő és a beágyazott sablonok külön központi telepítése.
+Erőforrás-kezelő ennek egy külön központi telepítés minden egyes csatolt sablon kezeli. Hello üzembe helyezési előzményeket hello erőforráscsoport külön központi telepítéseinek hello szülő és a beágyazott sablonok látható.
 
 ![telepítési előzmények](./media/resource-group-linked-templates/linked-deployment-history.png)
 
-## <a name="linking-to-a-parameter-file"></a>A paraméterfájl csatolása
-A következő példában a **parametersLink** tulajdonság egy paraméter fájlra való hivatkozáshoz.
+## <a name="linking-tooa-parameter-file"></a>Tooa paraméter fájl csatolása
+hello következő példában hello **parametersLink** tulajdonság toolink tooa paraméterfájl.
 
 ```json
 "resources": [ 
@@ -117,12 +117,12 @@ A következő példában a **parametersLink** tulajdonság egy paraméter fájlr
 ] 
 ```
 
-A csatolt paraméterfájl URI értéke nem lehet egy helyi fájl, és tartalmaznia kell vagy **http** vagy **https**. A paraméterfájl is lehet korlátozni a SAS-jogkivonat-en keresztüli hozzáférés.
+hello URI érték hello csatolt paraméterfájl nem lehet egy helyi fájl, és tartalmaznia kell vagy **http** vagy **https**. hello paraméterfájl keresztül egy SAS-tokennel korlátozott tooaccess is lehet.
 
-## <a name="using-variables-to-link-templates"></a>Változók használata sablonok
-Az előző példák azt szemléltették, hogy a sablon hivatkozások kódolt URL-cím értékeket. Ez a módszer egy egyszerű sablon esetében is működik, de nem működik jól, ha nagy számú moduláris sablonok használata. Ehelyett hozzon létre egy statikus változó, amely tárolja a fő sablon alap URL-címet, és majd hozható létre dinamikusan URL-címeket az alap URL-címet a kapcsolt sablonok. Ez a megközelítés előnye, egyszerűen áthelyezheti vagy oszthatja ketté a sablont, mert csak módosítani szeretné a statikus változó a fő sablonban. A fő sablont a megfelelő URI-k teljes lebontott sablon továbbítja.
+## <a name="using-variables-toolink-templates"></a>Változók toolink sablonokkal
+hello előző példák azt szemléltették URL-cím értékeit kódolt hello sablon hivatkozásokat. Ez a módszer egy egyszerű sablon esetében is működik, de nem működik jól, ha nagy számú moduláris sablonok használata. Ehelyett statikus változó, amely tárolja az alap URL-cím hello fő sablon létrehozása és majd hozható létre dinamikusan URL-címek kapcsolódó hello sablonok az alap URL-címet. hello előnye, hogy ez a megközelítés ez is könnyen áthelyezése vagy elágazás hello sablon, mivel csak szüksége toochange hello statikus változó hello fő sablonban. hello fő sablon hello megfelelő URI-k teljes hello kiválasztott sablon továbbítja.
 
-A következő példa bemutatja, hogyan két URL-címéből kapcsolt sablonok létrehozásához használja az alap URL-cím (**sharedTemplateUrl** és **vmTemplate**). 
+hello következő példa bemutatja, hogyan toouse egy alap URL-cím toocreate két URL-címet, a kapcsolódó sablonok (**sharedTemplateUrl** és **vmTemplate**). 
 
 ```json
 "variables": {
@@ -132,7 +132,7 @@ A következő példa bemutatja, hogyan két URL-címéből kapcsolt sablonok lé
 }
 ```
 
-Is [deployment()](resource-group-template-functions-deployment.md#deployment) az alap URL-CÍMÉT az aktuális sablon, és azt használja az URL-cím lekérésére más sablonok ugyanazon a helyen. Ez a módszer akkor hasznos, ha a sablon helye megváltozik (lehet, hogy miatt versioning), vagy el szeretné kerülni a merevlemez kódolási URL-címek a sablon fájlban. 
+Is [deployment()](resource-group-template-functions-deployment.md#deployment) tooget hello hello aktuális sablon alap URL-címet, és egyéb sablonok a hello tooget hello URL-címet használja ugyanazt a helyet. Ez a módszer akkor hasznos, ha a sablon helye megváltozik (lehet, hogy esedékes tooversioning) vagy a kívánt tooavoid rögzített kódolási hello sablonfájl URL-címeit. 
 
 ```json
 "variables": {
@@ -141,9 +141,9 @@ Is [deployment()](resource-group-template-functions-deployment.md#deployment) az
 ```
 
 ## <a name="complete-example"></a>Teljes példa
-Az alábbi példa sablonok kapcsolt sablonok egyszerűsített elrendezésének, több cikkben fogalmak szemléltetésére megjelenítése. Azt feltételezi, hogy a sablonok lettek hozzáadva a tárfiók ugyanabban a tárolóban, hozzáférésű ki van kapcsolva. A csatolt sablon értéket átadja vissza a fő-sablon a **kimenete** szakasz.
+a következő példa sablonok hello megjelenítése kapcsolt sablonok tooillustrate egyszerűsített elrendezésének hello fogalmak számos ebben a cikkben. Azt feltételezi, hogy hello sablonok toohello ugyanabban a tárolóban, hozzáférésű tárfiókokban ki van kapcsolva lettek hozzáadva. hello csatolt sablon érték hátsó toohello fő sablont továbbítja a hello **kimenete** szakasz.
 
-A **parent.json** fájl áll:
+Hello **parent.json** fájl áll:
 
 ```json
 {
@@ -175,7 +175,7 @@ A **parent.json** fájl áll:
 }
 ```
 
-A **helloworld.json** fájl áll:
+Hello **helloworld.json** fájl áll:
 
 ```json
 {
@@ -193,7 +193,7 @@ A **helloworld.json** fájl áll:
 }
 ```
 
-PowerShell, a szolgáltatáshitelesítést egy token ahhoz a tárolóhoz, és telepítse központilag a sablon is van:
+PowerShell, a szolgáltatáshitelesítést egy token hello tároló, és léptethet érvénybe hello sablon is van:
 
 ```powershell
 Set-AzureRmCurrentStorageAccount -ResourceGroupName ManageGroup -Name storagecontosotemplates
@@ -202,7 +202,7 @@ $url = (Get-AzureStorageBlob -Container templates -Blob parent.json).ICloudBlob.
 New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup -TemplateUri ($url + $token) -containerSasToken $token
 ```
 
-Az Azure CLI 2.0 szolgáltatáshitelesítést egy token ahhoz a tárolóhoz, és telepítse központilag a sablonok a következő kóddal:
+Az Azure CLI 2.0 szolgáltatáshitelesítést egy token hello tároló, és a következő kód hello hello sablonok telepítése:
 
 ```azurecli
 expiretime=$(date -u -d '30 minutes' +%Y-%m-%dT%H:%MZ)
@@ -226,6 +226,6 @@ az group deployment create --resource-group ExampleGroup --template-uri $url?$to
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-* A telepítési sorrendet, az erőforrások meghatározása, lásd: [függőségek meghatározása az Azure Resource Manager-sablonok](resource-group-define-dependencies.md)
-* Adja meg egy erőforrást, de több példányát létrehozni, lásd: [erőforrások több példányát az Azure Resource Manager létrehozása](resource-group-create-multiple.md)
+* toolearn hello telepítési ahhoz, hogy az erőforrások meghatározása hello kapcsolatban lásd: [függőségek meghatározása az Azure Resource Manager-sablonok](resource-group-define-dependencies.md)
+* toolearn hogyan toodefine egy erőforrás de hozzon létre több példányát, lásd: [erőforrások több példányát az Azure Resource Manager létrehozása](resource-group-create-multiple.md)
 

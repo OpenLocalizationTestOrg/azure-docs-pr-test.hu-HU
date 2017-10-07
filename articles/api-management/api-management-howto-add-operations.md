@@ -1,6 +1,6 @@
 ---
-title: "Műveletek felvétele az Azure API Management API |} Microsoft Docs"
-description: "Útmutató tevékenységek hozzáadása az Azure API Management API."
+title: "aaaHow tooadd műveletek tooan API az Azure API Management |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooadd műveletek tooan API az Azure API Management."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,124 +14,124 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 105fc51c2d1152a40a5757985da47330e0b7b8cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d57fa59a2b0ceb392cde23150a0cbb326e52d27d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-add-operations-to-an-api-in-azure-api-management"></a>Műveletek hozzáadása egy API-t az Azure API Management
-Egy API-t az API Management használata előtt hozzá kell adni műveletek. Ez az útmutató bemutatja, hogyan hozzáadása és konfigurálása a különböző típusú műveletek az API-k az API Management.
+# <a name="how-tooadd-operations-tooan-api-in-azure-api-management"></a>Hogyan tooadd műveletek tooan API az Azure API Management
+Egy API-t az API Management használata előtt hozzá kell adni műveletek. Ez útmutató bemutatja hogyan tooadd és műveletek tooan API különböző típusú konfigurálhatja az API Management.
 
 ## <a name="add-operation"></a>Művelet hozzáadása
-Műveletek felvétele, illetve egy API-t, a közzétevő portálon konfigurálva. A közzétevő portál eléréséhez kattintson **Publisher portal** az Azure portálon az API Management szolgáltatás.
+Műveletek bekerülnek és tooan API a hello publisher portálon. tooaccess hello publisher portálon kattintson **Publisher portal** a hello Azure portál, az API Management szolgáltatás.
 
 ![Közzétevő portál][api-management-management-console]
 
-> Ha még nem hozott létre API Management szolgáltatáspéldányt, tekintse meg az [Ismerkedés az Azure API Management szolgáltatással][Get started with Azure API Management] oktatóanyag [API Management szolgáltatáspéldány létrehozása][Create an API Management service instance] című szakaszát.
+> Ha még nem hozott létre az API Management szolgáltatáspéldány, lásd: [hozzon létre egy API-kezelés szolgáltatás példányt] [ Create an API Management service instance] a hello [Ismerkedés az Azure API Management] [ Get started with Azure API Management] oktatóanyag.
 > 
 > 
 
-Válassza ki a kívánt API a közzétevő portálon, és válassza ki a **műveletek** fülre. 
+Hello jelölje be a keresett API hello publisher portálon, és jelölje ki hello **műveletek** fülre. 
 
 ![Műveletek][api-management-operations]
 
-Kattintson a **művelet hozzáadása** hozzáadása egy új művelet. A **új művelet** jelenik meg, és a **aláírás** alapértelmezett kiválasztása lapon.
+Kattintson a **művelet hozzáadása** tooadd új művelet. Hello **új művelet** jelenik meg, és hello **aláírás** alapértelmezett kiválasztása lapon.
 
 ![A művelet hozzáadása][api-management-add-operation]
 
-Adja meg a **HTTP-műveletet** válassza ki a legördülő listából.
+Adja meg a hello **HTTP-műveletet** hello legördülő listából válassza ki.
 
 ![HTTP-metódus][api-management-http-method]
 
 <a name="url-template"></a>
 
-Az URL-cím sablon URL-cím elérési út egy vagy több szegmensek és nulla vagy több lekérdezési karakterláncot paraméterek töredékkel URL-CÍMÉT, írja be. Az URL-cím sablon, az alap URL-címet a API fűzött azonosítja egy egyetlen HTTP-műveletből. Tartalmazhat egy vagy több nevű változó részeit, amelyek nincsenek azonosítva kapcsos zárójelek. Változó részei Sablonparaméterek hívják, és dinamikusan kiosztott értékeket kinyert a kérelem URL-címe, ha a kérés feldolgozása folyamatban van az API Management platformon.
+Sablon hello URL-CÍMÉT, írja be egy vagy több URL-cím elérési út szegmensek és nulla vagy több lekérdezési karakterláncot paraméterek URL-cím töredéket. hello URL-cím sablon hozzáfűzött toohello alap URL-CÍMÉT hello API-t egyetlen HTTP-művelet azonosítja. Tartalmazhat egy vagy több nevű változó részeit, amelyek nincsenek azonosítva kapcsos zárójelek. Változó részei Sablonparaméterek hívják, és dinamikusan kiosztott értékeket kinyert hello kérelem URL-címe, ha hello kérés feldolgozása folyamatban van hello API platformja.
 
-> Az URL-cím sablon helyettesítő mintákat tartalmazhat. Például megadó `/*` előre minden belépési kérelmet, hogy a biztonsági HTTP-metódus véget ér szolgáltatás.
+> hello URL-cím sablon helyettesítő mintákat tartalmazhat. Például megadó `/*` előre, hogy HTTP metódus toohello vissza az összes kérelem véget ér szolgáltatás.
 
 ![URL-cím sablon][api-management-url-template]
 
 <a name="rewrite-url-template"></a>
 
-Ha szükséges, adja meg a **URL-cím újraírása sablon**. Ez lehetővé teszi, hogy a szabványos URL-cím sablon használata az előtér-a bejövő kérelmeket feldolgozó a háttér-keresztül konvertált URL-címet a átdolgozás sablon alapján hívása közben. Az URL-cím sablonból sablon paramétereket a átdolgozás sablonban kell használni. A következő példa bemutatja, hogyan tartalomtípus elérésiút-szegmens az webszolgáltatás az előző példából az API Management platform, az URL-sablonokkal keresztül közzétett API egy lekérdezési paraméterben meghatározott kódolású.
+Ha szükséges, adja meg a hello **URL-cím újraírása sablon**. Ez lehetővé teszi toouse hello szabványos URL-cím sablon az előtér-hello beérkező kérelmek feldolgozásához, hello háttér-egy toohello szerint konvertált URL-CÍMEN keresztül hívása közben újraírási sablont. Sablonparaméterek hello URL-cím sablonból hello átdolgozás sablonban kell használni. hello következő példa bemutatja, hogyan tartalomtípus, elérésiút-szegmens hello webszolgáltatás hello előző példa megadható egy lekérdezés paramétere hello hello keresztül közzétett API hello URL-cím sablonok segítségével az API Management platform kódolású.
 
 ![Sablon átdolgozás URL-címe][api-management-url-template-rewrite]
 
-A művelet hívók fogják használni a `/customers?customerid=ALFKI` és ez lesz rendelve `/Customers('ALFKI')` amikor meghívták a háttér-szolgáltatás.
+Hívóknak toohello műveletet fogják használni hello `/customers?customerid=ALFKI` és ez túl rendelendő`/Customers('ALFKI')` amikor meghívták hello háttér-szolgáltatás.
 
-**Megjelenítési** nevét és **leírás** adja meg a művelet leírását, és biztosítja a dokumentáció a a fejlesztők számára az API használatával a fejlesztői portálra.
+**Megjelenítési** nevét és **leírás** hello művelet leírását adhatja meg, és használt tooprovide dokumentáció toohello fejlesztők számára az API használatával hello developer portálon.
 
 ![Leírás][api-management-description]
 
-A művelet leírást adhat meg egyszerű szöveges vagy a HTML a **leírás** szövegmezőben.
+hello művelet leírását is megadni egyszerű szöveg-vagy HTML hello **leírás** szövegmezőben.
 
 ## <a name="operation-caching"></a>Művelet gyorsítótárazása
-Válasz gyorsítótárazását csökkenti a késést API fogyasztók, csökkenti a sávszélesség-használat és csökken a terhelés HTTP webes szolgáltatás végrehajtási az API által érzékelt. 
+Válasz gyorsítótárazását csökkenti a késést érzékelt hello API fogyasztó, csökkenti a sávszélesség-használat és csökkenő hello terhelése hello HTTP webes szolgáltatás végrehajtási hello API. 
 
-Egyszerűen és gyorsan gyorsítótárazása a művelethez, válassza ki a **gyorsítótárazását** fülre és ellenőrizze a **engedélyezése** jelölőnégyzetet.
+tooeasily és gyorsan gyorsítótárazása hello a művelethez, jelölje be hello **gyorsítótárazását** fülre és ellenőrizze a hello **engedélyezése** jelölőnégyzetet.
 
 ![Gyorsítótárazás][api-management-caching-tab]
 
-**Időtartam** megadja az időtartamot, amelynek során a művelet választ a gyorsítótárban marad. Az alapértelmezett érték 3600 másodperc, vagyis 1 óra.
+**Időtartam** megadja hello időszak során melyik hello művelet válasz hello gyorsítótárában marad. hello alapértelmezett értéke 3600 másodperc, vagyis 1 óra.
 
-Gyorsítótár-kulcsok segítségével válaszok különböztetheti meg, hogy a választ, minden más gyorsítótárkulcshoz megfelelő saját külön gyorsítótárazott értéket kap. Szükség esetén adja meg a megadott lekérdezési karakterlánc paraméterek és/vagy HTTP-fejlécek gyorsítótár értékeit számítástechnikai használandó a **lekérdezési karakterlánc paraméterei Vary** és **Vary fejléc által** szövegdobozok kulcsattribútumokkal. Ha nincs megadott, teljes kérelem URL-CÍMÉT, és a következő HTTP-fejléc értékei használt a gyorsítótár Kulcslétrehozási: **elfogadás** és **Accept-Charset**.
+Gyorsítótár kulcsai között válaszok használt toodifferentiate, hogy a megfelelő tooeach különböző gyorsítótárkulcshoz hello választ kap a saját külön gyorsítótárazott érték. Szükség esetén adja meg a megadott lekérdezési karakterlánc paraméterek és/vagy a gyorsítótár-értékeit hello számítástechnikai használt HTTP-fejlécek toobe **lekérdezési karakterlánc paraméterei Vary** és **Vary fejléc által** szövegdobozok kulcsattribútumokkal. Ha nincs megadott, teljes kérelem URL-CÍMÉT, és a következő HTTP-fejléc értékei hello használt gyorsítótár Kulcslétrehozási: **elfogadás** és **Accept-Charset**.
 
-> A és a házirendek gyorsítótárazást további információkért lásd: [gyorsítótárazásának művelet eredménye az Azure API Management][How to cache operation results in Azure API Management].
+> A és a házirendek gyorsítótárazást további információkért lásd: [hogyan toocache művelet eredménye az Azure API Management][How toocache operation results in Azure API Management].
 > 
 > 
 
 ## <a name="request-parameters"></a>Kérelem paraméterei
-A Paraméterek lapon felügyelt művelet paramétereit. A megadott paraméterek a **URL-cím sablon** a a **aláírás** lapon a rendszer automatikusan hozzáadja, és csak az URL-cím sablon szerkesztésével módosíthatja. További paraméterek manuálisan is megadhatók.
+Művelet paramétereit felügyelt hello paraméterek lapon. Hello megadott paraméterek **URL-cím sablon** a hello **aláírás** lapon a rendszer automatikusan hozzáadja, és csak a hello URL-cím sablon szerkesztésével módosíthatja. További paraméterek manuálisan is megadhatók.
 
-Egy új lekérdezési paraméter hozzáadásához kattintson **lekérdezési paraméter hozzáadása** , és írja be a következő információkat:
+Kattintson egy új lekérdezési paraméter tooadd **lekérdezési paraméter hozzáadása** , és írja be a következő információ hello:
 
 * **Név** -paraméter neve.
-* **Leírás** -rövid leírását tartalmazza (választható) paraméter.
-* **Típus** -paraméter típusa, az vetett kiválasztott le.
-* **Értékek** -értékeket, amelyeket ez a paraméter lehet hozzárendelni. Az értékek egyike lehet állítani alapértelmezettként (nem kötelező).
-* **Szükséges** -paraméter kötelezővé teheti a jelölőnégyzet bejelölésével. 
+* **Leírás** -hello paraméter (választható) rövid leírása.
+* **Típus** -paramétertípus hello legördülő lista a kijelölt.
+* **Értékek** -értékeket, amelyeket toothis paraméter lehet hozzárendelni. Hello értékek egyike lehet állítani alapértelmezettként (nem kötelező).
+* **Szükséges** -hello paraméter hello jelölőnégyzet bejelölésével kötelezővé tételéhez. 
 
 ![A kérelemben szereplő paraméterek][api-management-request-parameters]
 
 ## <a name="request-body"></a>Kérelem törzse
-Ha a művelet lehetővé teszi, hogy (pl. PUT, POST) és egy szervezet például az összes támogatott ábrázolását formátumot (pl. json, XML) által biztosított igényel. 
+Ha hello művelet lehetővé teszi, hogy (pl. PUT, POST), és előfordulhat, hogy adja meg például az összes hello törzs támogatott ábrázolását formátumokban (pl. json, XML) igényel. 
 
-> A kérelem törzsében csak dokumentáció célokat szolgál, és nincs érvényesítve.
+> hello kérelemtörzset csak dokumentáció célokat szolgál, és nincs érvényesítve.
 > 
 > 
 
-Adjon meg egy kérelemtörzset, térjen át a **törzs** fülre.
+a kérelem törzsében tooenter kapcsoló toohello **törzs** lapon.
 
-Kattintson a **ábrázolását adja hozzá**, elkezdi beírni kívánt tartalom típusa nevét (például application/json), a legördülő listán válassza ki és illessze be a kívánt kérelem törzse példa a kijelölt formátumú szöveget. 
+Kattintson a **ábrázolását adja hozzá**, írjon be a kívánt típus neve (például application/json), jelölje ki a legördülő lista hello és beillesztés hello szükséges kérelem törzse példa hello kijelölt formátumban hello szövegmezőbe. 
 
 ![Kérés törzsében][api-management-request-body]
 
-A további képviseletein, azt is megadhatja a egy nem kötelező leírás a **leírás** szövegmezőben.
+A további toorepresentations is megadható egy nem kötelező leírás a hello **leírás** szövegmezőben.
 
 ## <a name="responses"></a>Válaszok
-Ajánlott a művelet készíthet összes állapotkódokat válaszok példákat. Előfordulhat, hogy az egyes állapotkód egynél több válasz törzsében példa, minden támogatott tartalomtípusokat. 
+Egy célszerű tooprovide példák hello művelet készíthet összes állapotkódokat a válaszokat. Előfordulhat, hogy minden állapotkód egynél több válasz törzsében példa, minden hello támogatott tartalomtípusokat. 
 
-A válasz hozzáadásához kattintson **Hozzáadás** és kezdje el begépelni az kívánt állapotkódot. Ebben a példában az állapotkód akkor **200 OK**. Követően a kód jelenik meg a legördülő listán, válassza ki azt, és ez a válaszkód létrehozza és hozzáadja a művelethez.
+tooadd választ, kattintson a **Hozzáadás** és kezdje el begépelni szükséges hello állapotkódot. Példa hello állapota kódja: **200 OK**. Miután hello legördülő hello kód jelenik meg, válassza ki azt, és hello válaszkód létrehozott és a hozzáadott tooyour műveletet.
 
 ![Válaszkód][api-management-response-code]
 
-Kattintson a **ábrázolását adja hozzá**elkezdi beírni a kívánt tartalom típusa nevét (például application/json), majd válassza ki az vetett le.
+Kattintson a **ábrázolását adja hozzá**, kezdje el begépelni hello kívánt típus neve (például application/json), és jelölje ki azt a hello legördülő listán.
 
 ![Törzs tartalom típusa][api-management-response-body-content-type]
 
-Illessze be a válasz törzsében példa a kijelölt formátumú szöveg. 
+Illessze be hello válasz törzsében példa hello kijelölt formátumban hello szövegmezőben. 
 
 ![Választörzs][api-management-response-body]
 
-Tetszés szerint megadhat egy leírást, azokat a **leírás** szövegmezőben.
+Ha szükséges, megadhat egy leírást, a hello **leírása** szövegmezőben.
 
-Ha a művelet már konfigurálva van, kattintson a **mentése**.
+Ha konfigurálva van a hello műveletet, kattintson a **mentése**.
 
-## <a name="next-steps"> </a>Következő lépések
-Miután a műveletek bekerülnek az API-k, a következő lépés, hogy rendelje hozzá az API-t a termék és közzéteszi az, hogy a fejlesztők meghívhatja a műveleteket.
+## <a name="next-steps"></a>Következő lépések
+Miután hello műveletek bekerülnek a tooan API, hello tovább tooassociate hello API termékkel rendelkező és közzéteszi az, hogy a fejlesztők meghívhatja a műveleteket.
 
-* [Hogyan hozhat létre, és a termék közzététele][How to create and publish a product]
+* [Hogyan toocreate és a termék közzététele][How toocreate and publish a product]
 
 [api-management-management-console]: ./media/api-management-howto-add-operations/api-management-management-console.png
 [api-management-operations]: ./media/api-management-howto-add-operations/api-management-operations.png
@@ -166,6 +166,6 @@ Miután a műveletek bekerülnek az API-k, a következő lépés, hogy rendelje 
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to create and publish a product]: api-management-howto-add-products.md
-[How to cache operation results in Azure API Management]: api-management-howto-cache.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How toocreate and publish a product]: api-management-howto-add-products.md
+[How toocache operation results in Azure API Management]: api-management-howto-cache.md

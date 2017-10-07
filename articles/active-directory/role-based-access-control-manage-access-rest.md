@@ -1,6 +1,6 @@
 ---
-title: "Szerepköralapú hozzáférés-vezérlés REST - az Azure AD |} Microsoft Docs"
-description: "A REST API szerepköralapú hozzáférés-vezérlés kezelése"
+title: "Hozzáférés-vezérlés aaaRole alapú REST - az Azure AD |} Microsoft Docs"
+description: "Hello REST API szerepköralapú hozzáférés-vezérlés kezelése"
 services: active-directory
 documentationcenter: na
 author: andredm7
@@ -14,41 +14,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: andredm
-ms.openlocfilehash: a5c19fd87ce1ae3e199bf1dfc8cf82f5653baac2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ccd402fd4fe4583288076cac23753dd067694681
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-role-based-access-control-with-the-rest-api"></a>A REST API szerepköralapú hozzáférés-vezérlés kezelése
+# <a name="manage-role-based-access-control-with-hello-rest-api"></a>Szerepköralapú hozzáférés-vezérlés a REST API hello kezelése
 > [!div class="op_single_selector"]
 > * [PowerShell](role-based-access-control-manage-access-powershell.md)
 > * [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 > * [REST API](role-based-access-control-manage-access-rest.md)
 
-Szerepköralapú hozzáférés-vezérlés (RBAC) az Azure portálon, és az Azure Resource Manager API segítségével kezelhetők az előfizetés és a minden részletre kiterjedő szinten erőforrásokhoz való hozzáférését. Ez a szolgáltatás egyes szerepkörök hozzárendelése el egy adott hatókörhöz szerint engedélyezheti a hozzáférést az Active Directory felhasználók, csoportok vagy szolgáltatásnevekről.
+Szerepköralapú hozzáférés-vezérlés (RBAC) a hello Azure-portálon, és az Azure Resource Manager API segítségével felügyelheti a hozzáférési tooyour előfizetés és a minden részletre kiterjedő szinten erőforrásokat. Ez a szolgáltatás egyes szerepkörök toothem egy adott hatókör hozzárendelése szerint engedélyezheti a hozzáférést az Active Directory felhasználók, csoportok vagy szolgáltatásnevekről.
 
 ## <a name="list-all-role-assignments"></a>Az összes szerepkör-hozzárendelések felsorolása
-Megjeleníti a megadott hatókör és subscopes szerepkör-hozzárendelések.
+Listák összes hello szerepkör-hozzárendelések a megadott hello hatókörét, és subscopes.
 
-A szerepkör-hozzárendelések listáját hozzáféréssel kell rendelkeznie `Microsoft.Authorization/roleAssignments/read` műveletet a hatókörben. A beépített szerepkörök művelet számára hozzáférést kapnak. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
+szerepkör-hozzárendelések toolist, hozzá kell férnie túl`Microsoft.Authorization/roleAssignments/read` művelet hello hatókörben. Minden hello beépített szerepkörök kapnak hozzáférést toothis műveletet. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Kérés
-Használja a **beolvasása** metódus a következő URI-azonosítóhoz:
+Használjon hello **beolvasása** hello URI a következő metódust:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments?api-version={api-version}&$filter={filter}
 
-Az URI belül győződjön testre szabhatja a kérelem a következő helyettesítések hozzáadása:
+Belül hello URI ellenőrizze a következő helyettesítések toocustomize hello a kérést:
 
-1. Cserélje le *{hatókör}* a hatókörben, amelynek kívánja a szerepkör-hozzárendelések listáját. A következő példák bemutatják, hogyan adhatja meg a különböző szintű hatóköre:
+1. Cserélje le *{hatókör}* hello hatókörrel, amelynek kívánja toolist hello szerepkör-hozzárendelések. hello a következő példák bemutatják, hogyan toospecify hello különböző szintű hatóköre:
 
    * Előfizetés: /subscriptions/ {előfizetés-azonosító}  
    * Erőforráscsoport: /subscriptions/ {előfizetés-azonosító} / resourceGroups/myresourcegroup1  
    * Erőforrás: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 2. Cserélje le *{api-version}* a 2015-07-01.
-3. Cserélje le *{szűrő}* azzal a feltétellel, amelyet meg kíván alkalmazni a szerepkör-hozzárendelés csoportlista szűréséhez:
+3. Cserélje le *{szűrő}* hello feltétellel, hogy kívánja-e tooapply toofilter hello szerepkör társításának listája:
 
-   * Szerepkör-hozzárendelések csak a megadott hatókör, a nem az a szerepkör-hozzárendelések subscopes, beleértve a listában:`atScope()`    
+   * Lista szerepkör-hozzárendelések csak hello megadva hatókör, nem a szerepkör-hozzárendelések hello subscopes, beleértve:`atScope()`    
    * Egy adott felhasználó, csoport vagy alkalmazás szerepkör-hozzárendelések listában:`principalId%20eq%20'{objectId of user, group, or service principal}'`  
    * Egy adott felhasználó, például csoportokból örökölt szerepkör-hozzárendelések lista |}`assignedTo('{objectId of user}')`
 
@@ -79,23 +79,23 @@ Az URI belül győződjön testre szabhatja a kérelem a következő helyettesí
 ```
 
 ## <a name="get-information-about-a-role-assignment"></a>Szerepkör-hozzárendelés adatainak beolvasása
-A szerepkör-hozzárendelés azonosítója által megadott egyetlen szerepkör-hozzárendelés információ lekérése.
+Egyetlen szerepkör-hozzárendelés hello szerepkör-hozzárendelés azonosítója által megadott információ lekérése.
 
-Szerepkör-hozzárendelés adatainak beolvasása, hozzáféréssel kell rendelkeznie `Microsoft.Authorization/roleAssignments/read` műveletet. A beépített szerepkörök művelet számára hozzáférést kapnak. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
+szerepkör-hozzárendelés tooget információt, hozzá kell férnie túl`Microsoft.Authorization/roleAssignments/read` műveletet. Minden hello beépített szerepkörök kapnak hozzáférést toothis műveletet. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Kérés
-Használja a **beolvasása** metódus a következő URI-azonosítóhoz:
+Használjon hello **beolvasása** hello URI a következő metódust:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-Az URI belül győződjön testre szabhatja a kérelem a következő helyettesítések hozzáadása:
+Belül hello URI ellenőrizze a következő helyettesítések toocustomize hello a kérést:
 
-1. Cserélje le *{hatókör}* a hatókörben, amelynek kívánja a szerepkör-hozzárendelések listáját. A következő példák bemutatják, hogyan adhatja meg a különböző szintű hatóköre:
+1. Cserélje le *{hatókör}* hello hatókörrel, amelynek kívánja toolist hello szerepkör-hozzárendelések. hello a következő példák bemutatják, hogyan toospecify hello különböző szintű hatóköre:
 
    * Előfizetés: /subscriptions/ {előfizetés-azonosító}  
    * Erőforráscsoport: /subscriptions/ {előfizetés-azonosító} / resourceGroups/myresourcegroup1  
    * Erőforrás: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. Cserélje le *{szerepkör-hozzárendelés-azonosító}* azon szerepkör-hozzárendelés GUID azonosítóval.
+2. Cserélje le *{szerepkör-hozzárendelés-azonosító}* hello szerepkör-hozzárendelés hello GUID azonosítója.
 3. Cserélje le *{api-version}* a 2015-07-01.
 
 ### <a name="response"></a>Válasz
@@ -120,26 +120,26 @@ Az URI belül győződjön testre szabhatja a kérelem a következő helyettesí
 ```
 
 ## <a name="create-a-role-assignment"></a>Szerepkör-hozzárendelés létrehozása
-Szerepkör-hozzárendelés létrehozása a megadott rendszerbiztonsági tag a megadott szerepkör megadása a megadott hatókörben.
+Szerepkör létrehozása hello megadott egyszerű támogatást nyújtó hello megadott szerepkörhöz megadott hello-hozzárendelés hatókörét.
 
-Szerepkör-hozzárendelés létrehozása, hozzáférést kell biztosítani `Microsoft.Authorization/roleAssignments/write` műveletet. A beépített szerepkörök, csak *tulajdonos* és *felhasználói hozzáférés adminisztrátora* férhetnek hozzá ezt a műveletet. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
+szerepkör-hozzárendelés toocreate, hozzá kell férnie túl`Microsoft.Authorization/roleAssignments/write` műveletet. Hello beépített szerepkörök, csak *tulajdonos* és *felhasználói hozzáférés adminisztrátora* kapnak hozzáférést toothis műveletet. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Kérés
-Használja a **PUT** metódus a következő URI-azonosítóhoz:
+Használjon hello **PUT** hello URI a következő metódust:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-Az URI belül győződjön testre szabhatja a kérelem a következő helyettesítések hozzáadása:
+Belül hello URI ellenőrizze a következő helyettesítések toocustomize hello a kérést:
 
-1. Cserélje le *{hatókör}* a hatókörben, ahol létre szeretne hozni a szerepkör-hozzárendeléseket. Szerepkör-hozzárendelés létrehozása a szülő hatókörben, minden gyermekhatókörében örökli a azonos szerepkör-hozzárendelés. A következő példák bemutatják, hogyan adhatja meg a különböző szintű hatóköre:
+1. Cserélje le *{hatókör}* hello hatókörrel, amellyel kívánja toocreate hello szerepkör-hozzárendelések. Ha a szerepkör-hozzárendelés létrehozása a szülő hatókörben, minden gyermekhatókörében öröklése hello azonos szerepkör-hozzárendelés. hello a következő példák bemutatják, hogyan toospecify hello különböző szintű hatóköre:
 
    * Előfizetés: /subscriptions/ {előfizetés-azonosító}  
    * Erőforráscsoport: /subscriptions/ {előfizetés-azonosító} / resourceGroups/myresourcegroup1   
    * Erőforrás: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. Cserélje le *{szerepkör-hozzárendelés-azonosító}* egy új GUID, amely válik az új szerepkör-hozzárendelés GUID azonosítóját.
+2. Cserélje le *{szerepkör-hozzárendelés-azonosító}* egy új GUID, amely válik hello új szerepkör-hozzárendelés hello GUID azonosítója.
 3. Cserélje le *{api-version}* a 2015-07-01.
 
-A kérelem törzsében adja meg az értékeket a következő formátumban:
+Hello kérelemtörzset adja meg a hello hello formátuma a következő értékeket:
 
 ```
 {
@@ -153,8 +153,8 @@ A kérelem törzsében adja meg az értékeket a következő formátumban:
 
 | Elem neve | Szükséges | Típus | Leírás |
 | --- | --- | --- | --- |
-| roledefinitionid-értékkel |Igen |Karakterlánc |A szerepkör azonosítóját. Az azonosító formátuma:`{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id-guid}` |
-| principalId |Igen |Karakterlánc |objectId az Azure AD rendszerbiztonsági tag (felhasználó, csoport vagy egyszerű szolgáltatásneve), amely a szerepkör hozzá van rendelve. |
+| roledefinitionid-értékkel |Igen |Karakterlánc |hello szerepkör hello azonosítója hello hello azonosító formátuma:`{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id-guid}` |
+| principalId |Igen |Karakterlánc |az Azure AD hello rendszerbiztonsági tag (felhasználó, csoport vagy egyszerű szolgáltatásnév) objectId toowhich hello szerepkör van hozzárendelve. |
 
 ### <a name="response"></a>Válasz
 Állapotkód: 201-et
@@ -178,23 +178,23 @@ A kérelem törzsében adja meg az értékeket a következő formátumban:
 ```
 
 ## <a name="delete-a-role-assignment"></a>Szerepkör-hozzárendelés törlése
-Szerepkör-hozzárendelés törlése a megadott hatókörből.
+Hello szerepkör-hozzárendelés törlése a megadott hatókörben.
 
-Szerepkör-hozzárendelés törlése, hozzáféréssel kell rendelkeznie a `Microsoft.Authorization/roleAssignments/delete` műveletet. A beépített szerepkörök, csak *tulajdonos* és *felhasználói hozzáférés adminisztrátora* férhetnek hozzá ezt a műveletet. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
+szerepkör-hozzárendelés toodelete, rendelkeznie kell hozzáféréssel toohello `Microsoft.Authorization/roleAssignments/delete` műveletet. Hello beépített szerepkörök, csak *tulajdonos* és *felhasználói hozzáférés adminisztrátora* kapnak hozzáférést toothis műveletet. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Kérés
-Használja a **törlése** metódus a következő URI-azonosítóhoz:
+Használjon hello **törlése** hello URI a következő metódust:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-Az URI belül győződjön testre szabhatja a kérelem a következő helyettesítések hozzáadása:
+Belül hello URI ellenőrizze a következő helyettesítések toocustomize hello a kérést:
 
-1. Cserélje le *{hatókör}* a hatókörben, ahol létre szeretne hozni a szerepkör-hozzárendeléseket. A következő példák bemutatják, hogyan adhatja meg a különböző szintű hatóköre:
+1. Cserélje le *{hatókör}* hello hatókörrel, amellyel kívánja toocreate hello szerepkör-hozzárendelések. hello a következő példák bemutatják, hogyan toospecify hello különböző szintű hatóköre:
 
    * Előfizetés: /subscriptions/ {előfizetés-azonosító}  
    * Erőforráscsoport: /subscriptions/ {előfizetés-azonosító} / resourceGroups/myresourcegroup1  
    * Erőforrás: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. Cserélje le *{szerepkör-hozzárendelés-azonosító}* a GUID azonosító.
+2. Cserélje le *{szerepkör-hozzárendelés-azonosító}* a hello GUID azonosító.
 3. Cserélje le *{api-version}* a 2015-07-01.
 
 ### <a name="response"></a>Válasz
@@ -219,27 +219,27 @@ Az URI belül győződjön testre szabhatja a kérelem a következő helyettesí
 ```
 
 ## <a name="list-all-roles"></a>Az összes szerepkör felsorolása
-A megadott hatókörben kiosztására használható összes szerepköröket sorolja fel.
+Felsorolja az összes hello szerepkör-hozzárendelés megadott hello elérhető hatókör.
 
-A lista szerepkörökhöz hozzáféréssel kell rendelkeznie `Microsoft.Authorization/roleDefinitions/read` műveletet a hatókörben. A beépített szerepkörök művelet számára hozzáférést kapnak. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
+toolist szerepkörök, hozzá kell férnie túl`Microsoft.Authorization/roleDefinitions/read` művelet hello hatókörben. Minden hello beépített szerepkörök kapnak hozzáférést toothis műveletet. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Kérés
-Használja a **beolvasása** metódus a következő URI-azonosítóhoz:
+Használjon hello **beolvasása** hello URI a következő metódust:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions?api-version={api-version}&$filter={filter}
 
-Az URI belül győződjön testre szabhatja a kérelem a következő helyettesítések hozzáadása:
+Belül hello URI ellenőrizze a következő helyettesítések toocustomize hello a kérést:
 
-1. Cserélje le *{hatókör}* a hatókörben, amelynek meg szeretné össze a szerepkörök listáját. A következő példák bemutatják, hogyan adhatja meg a különböző szintű hatóköre:
+1. Cserélje le *{hatókör}* , amelynek kívánja toolist hello szerepkörök hello hatókörrel. hello a következő példák bemutatják, hogyan toospecify hello különböző szintű hatóköre:
 
    * Előfizetés: /subscriptions/ {előfizetés-azonosító}  
    * Erőforráscsoport: /subscriptions/ {előfizetés-azonosító} / resourceGroups/myresourcegroup1  
    * Erőforrás /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 2. Cserélje le *{api-version}* a 2015-07-01.
-3. Cserélje le *{szűrő}* azzal a feltétellel, akkor a szerepkörök szűréséhez alkalmazni kíván:
+3. Cserélje le *{szűrő}* hello feltétellel, hogy kívánja-e tooapply toofilter hello szerepkörök listája:
 
-   * Lista szerepkörökhöz rendelhető hozzá a megadott hatókörben és bármely gyermek hatóköréhez tartozó:`atScopeAndBelow()`
-   * Keresse meg egy szerepkör használatával pontos megjelenített név: `roleName%20eq%20'{role-display-name}'`. Az URL-kódolású képernyőn a pontos megjelenített névbe, a szerepkör. Például`$filter=roleName%20eq%20'Virtual%20Machine%20Contributor'` |
+   * Lista szerepkörökhöz rendelhető hozzá hello megadott hatókörrel és a gyermekhatókör bármelyikét:`atScopeAndBelow()`
+   * Keresse meg egy szerepkör használatával pontos megjelenített név: `roleName%20eq%20'{role-display-name}'`. Képernyőn hello URL-kódolású hello pontos megjelenített névbe hello szerepkör. Például`$filter=roleName%20eq%20'Virtual%20Machine%20Contributor'` |
 
 ### <a name="response"></a>Válasz
 Állapotkód: 200
@@ -251,7 +251,7 @@ Az URI belül győződjön testre szabhatja a kérelem a következő helyettesí
       "properties": {
         "roleName": "Virtual Machine Contributor",
         "type": "BuiltInRole",
-        "description": "Lets you manage virtual machines, but not access to them, and not the virtual network or storage account they\u2019re connected to.",
+        "description": "Lets you manage virtual machines, but not access toothem, and not hello virtual network or storage account they\u2019re connected to.",
         "assignableScopes": [
           "/"
         ],
@@ -302,23 +302,23 @@ Az URI belül győződjön testre szabhatja a kérelem a következő helyettesí
 ```
 
 ## <a name="get-information-about-a-role"></a>Egy szerepkör adatainak beolvasása
-A szerepkör-definíció azonosítója által megadott egyetlen szerepkör információ lekérése. Ahhoz, hogy a megjelenített név megadásával egyetlen szerepkör információt, lásd: [listában az összes szerepkör](role-based-access-control-manage-access-rest.md#list-all-roles).
+Egyetlen szerepkör hello szerepkör-definíció azonosítója által megadott információ lekérése. a megjelenített név megadásával egyetlen szerepkör tooget információkat lásd: [listában az összes szerepkör](role-based-access-control-manage-access-rest.md#list-all-roles).
 
-Egy szerepkör adatainak beolvasása, hozzáféréssel kell rendelkeznie `Microsoft.Authorization/roleDefinitions/read` műveletet. A beépített szerepkörök művelet számára hozzáférést kapnak. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
+egy szerepkör tooget információt, hozzá kell férnie túl`Microsoft.Authorization/roleDefinitions/read` műveletet. Minden hello beépített szerepkörök kapnak hozzáférést toothis műveletet. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Kérés
-Használja a **beolvasása** metódus a következő URI-azonosítóhoz:
+Használjon hello **beolvasása** hello URI a következő metódust:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-Az URI belül győződjön testre szabhatja a kérelem a következő helyettesítések hozzáadása:
+Belül hello URI ellenőrizze a következő helyettesítések toocustomize hello a kérést:
 
-1. Cserélje le *{hatókör}* a hatókörben, amelynek kívánja a szerepkör-hozzárendelések listáját. A következő példák bemutatják, hogyan adhatja meg a különböző szintű hatóköre:
+1. Cserélje le *{hatókör}* hello hatókörrel, amelynek kívánja toolist hello szerepkör-hozzárendelések. hello a következő példák bemutatják, hogyan toospecify hello különböző szintű hatóköre:
 
    * Előfizetés: /subscriptions/ {előfizetés-azonosító}  
    * Erőforráscsoport: /subscriptions/ {előfizetés-azonosító} / resourceGroups/myresourcegroup1  
    * Erőforrás: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. Cserélje le *{szerepkör-definíció-azonosító}* a szerepkör-definíció GUID azonosítóval.
+2. Cserélje le *{szerepkör-definíció-azonosító}* hello szerepkör-definíció hello GUID azonosítója.
 3. Cserélje le *{api-version}* a 2015-07-01.
 
 ### <a name="response"></a>Válasz
@@ -331,7 +331,7 @@ Az URI belül győződjön testre szabhatja a kérelem a következő helyettesí
       "properties": {
         "roleName": "Virtual Machine Contributor",
         "type": "BuiltInRole",
-        "description": "Lets you manage virtual machines, but not access to them, and not the virtual network or storage account they\u2019re connected to.",
+        "description": "Lets you manage virtual machines, but not access toothem, and not hello virtual network or storage account they\u2019re connected to.",
         "assignableScopes": [
           "/"
         ],
@@ -384,24 +384,24 @@ Az URI belül győződjön testre szabhatja a kérelem a következő helyettesí
 ## <a name="create-a-custom-role"></a>Egyéni szerepkör létrehozása
 Hozzon létre egy egyéni biztonsági szerepkört.
 
-Hozzon létre egy egyéni biztonsági szerepkört, hozzáférést kell biztosítani `Microsoft.Authorization/roleDefinitions/write` minden műveletet a `AssignableScopes`. A beépített szerepkörök, csak *tulajdonos* és *felhasználói hozzáférés adminisztrátora* férhetnek hozzá ezt a műveletet. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
+toocreate egy egyéni biztonsági szerepkört, hozzá kell férnie túl`Microsoft.Authorization/roleDefinitions/write` összes hello művelet `AssignableScopes`. Hello beépített szerepkörök, csak *tulajdonos* és *felhasználói hozzáférés adminisztrátora* kapnak hozzáférést toothis műveletet. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Kérés
-Használja a **PUT** metódus a következő URI-azonosítóhoz:
+Használjon hello **PUT** hello URI a következő metódust:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-Az URI belül győződjön testre szabhatja a kérelem a következő helyettesítések hozzáadása:
+Belül hello URI ellenőrizze a következő helyettesítések toocustomize hello a kérést:
 
-1. Cserélje le *{hatókör}* az első *AssignableScope* az egyéni szerepkör. A következő példák bemutatják, hogyan határozhatja meg a különböző szintű hatókörét.
+1. Cserélje le *{hatókör}* hello az első *AssignableScope* hello egyéni szerepkör. hello a következő példák bemutatják, hogyan toospecify hello különböző szintű hatóköre.
 
    * Előfizetés: /subscriptions/ {előfizetés-azonosító}  
    * Erőforráscsoport: /subscriptions/ {előfizetés-azonosító} / resourceGroups/myresourcegroup1  
    * Erőforrás: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. Cserélje le *{szerepkör-definíció-azonosító}* egy új GUID, amely válik az új egyéni szerepkör GUID azonosítóját.
+2. Cserélje le *{szerepkör-definíció-azonosító}* egy új GUID, amely válik hello új egyéni szerepkör hello GUID azonosítója.
 3. Cserélje le *{api-version}* a 2015-07-01.
 
-A kérelem törzsében adja meg az értékeket a következő formátumban:
+Hello kérelemtörzset adja meg a hello hello formátuma a következő értékeket:
 
 ```
 {
@@ -436,13 +436,13 @@ A kérelem törzsében adja meg az értékeket a következő formátumban:
 
 | Elem neve | Szükséges | Típus | Leírás |
 | --- | --- | --- | --- |
-| név |Igen |Karakterlánc |Az egyéni szerepkör GUID azonosítója |
-| properties.roleName |Igen |Karakterlánc |Az egyéni szerepkör nevét jeleníti meg. Legfeljebb 128 karakter. |
-| Properties.Description |Nem |Karakterlánc |Az egyéni szerepkör leírása Maximális méret 1024 karakternél. |
-| Properties.Type |Igen |Karakterlánc |Állítsa be a "CustomRole." |
-| Properties.permissions.Actions |Igen |String] |Adja meg az egyéni szerepkör által biztosított műveletek művelet karakterláncokból álló tömb. |
-| properties.permissions.notActions |Nem |String] |Ha szeretne kizárni a műveletek az egyéni szerepkör által biztosított műveletek művelet karakterláncokkal tömbjét. |
-| properties.assignableScopes |Igen |String] |A tömb hatókörök, amelyben az egyéni biztonsági szerepkört is használható. |
+| név |Igen |Karakterlánc |Egyéni szerepkör hello GUID azonosítója |
+| properties.roleName |Igen |Karakterlánc |Hello egyéni szerepkör nevét jeleníti meg. Legfeljebb 128 karakter. |
+| Properties.Description |Nem |Karakterlánc |Hello egyéni szerepkör leírása Maximális méret 1024 karakternél. |
+| Properties.Type |Igen |Karakterlánc |Állítsa be a túl "CustomRole." |
+| Properties.permissions.Actions |Igen |String] |A művelet tömbjét karakterláncok hello egyéni szerepkör által biztosított megadását hello műveletek. |
+| properties.permissions.notActions |Nem |String] |Hello műveletek tooexclude hello egyéni szerepkör által biztosított hello műveletekből művelet karakterláncokkal tömbjét. |
+| properties.assignableScopes |Igen |String] |A mely hello egyéni biztonsági szerepkört is használható hatókörök tömbjét. |
 
 ### <a name="response"></a>Válasz
 Állapotkód: 201-et
@@ -487,24 +487,24 @@ A kérelem törzsében adja meg az értékeket a következő formátumban:
 ## <a name="update-a-custom-role"></a>Frissítés egy egyéni biztonsági szerepkört
 Módosítani egy egyéni biztonsági szerepkört.
 
-Módosítja egy egyéni biztonsági szerepkört, hozzáféréssel kell rendelkeznie `Microsoft.Authorization/roleDefinitions/write` minden műveletet a `AssignableScopes`. A beépített szerepkörök, csak *tulajdonos* és *felhasználói hozzáférés adminisztrátora* férhetnek hozzá ezt a műveletet. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
+toomodify egy egyéni biztonsági szerepkört, hozzá kell férnie túl`Microsoft.Authorization/roleDefinitions/write` összes hello művelet `AssignableScopes`. Hello beépített szerepkörök, csak *tulajdonos* és *felhasználói hozzáférés adminisztrátora* kapnak hozzáférést toothis műveletet. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Kérés
-Használja a **PUT** metódus a következő URI-azonosítóhoz:
+Használjon hello **PUT** hello URI a következő metódust:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-Az URI belül győződjön testre szabhatja a kérelem a következő helyettesítések hozzáadása:
+Belül hello URI ellenőrizze a következő helyettesítések toocustomize hello a kérést:
 
-1. Cserélje le *{hatókör}* az első *AssignableScope* az egyéni szerepkör. A következő példák bemutatják, hogyan adhatja meg a különböző szintű hatóköre:
+1. Cserélje le *{hatókör}* hello az első *AssignableScope* hello egyéni szerepkör. hello a következő példák bemutatják, hogyan toospecify hello különböző szintű hatóköre:
 
    * Előfizetés: /subscriptions/ {előfizetés-azonosító}  
    * Erőforráscsoport: /subscriptions/ {előfizetés-azonosító} / resourceGroups/myresourcegroup1  
    * Erőforrás: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. Cserélje le *{szerepkör-definíció-azonosító}* az egyéni szerepkör GUID azonosítóval.
+2. Cserélje le *{szerepkör-definíció-azonosító}* hello egyéni szerepkör hello GUID azonosítója.
 3. Cserélje le *{api-version}* a 2015-07-01.
 
-A kérelem törzsében adja meg az értékeket a következő formátumban:
+Hello kérelemtörzset adja meg a hello hello formátuma a következő értékeket:
 
 ```
 {
@@ -539,13 +539,13 @@ A kérelem törzsében adja meg az értékeket a következő formátumban:
 
 | Elem neve | Szükséges | Típus | Leírás |
 | --- | --- | --- | --- |
-| név |Igen |Karakterlánc |Az egyéni szerepkör GUID azonosítója |
-| properties.roleName |Igen |Karakterlánc |A frissített egyéni szerepkör nevét jeleníti meg. |
-| Properties.Description |Nem |Karakterlánc |A frissített egyéni szerepkör leírása |
-| Properties.Type |Igen |Karakterlánc |Állítsa be a "CustomRole." |
-| Properties.permissions.Actions |Igen |String] |Adja meg a frissített egyéni biztonsági szerepkört, amelyhez engedélyezi a hozzáférést a műveletek művelet karakterláncokból álló tömb. |
-| properties.permissions.notActions |Nem |String] |Adja meg a műveleteket, így a frissített egyéni szerepkörök műveletekről kizárása művelet karakterláncokból álló tömb. |
-| properties.assignableScopes |Igen |String] |A tömb hatókörök, amelyben a frissített egyéni biztonsági szerepkört is használható. |
+| név |Igen |Karakterlánc |Egyéni szerepkör hello GUID azonosítója |
+| properties.roleName |Igen |Karakterlánc |Hello frissített egyéni szerepkör nevét jeleníti meg. |
+| Properties.Description |Nem |Karakterlánc |Hello leírása frissítve egyéni biztonsági szerepkört. |
+| Properties.Type |Igen |Karakterlánc |Állítsa be a túl "CustomRole." |
+| Properties.permissions.Actions |Igen |String] |Hello műveletek toowhich hello megadása művelet karakterláncok frissítése egyéni szerepkör engedélyezi a hozzáférést. |
+| properties.permissions.notActions |Nem |String] |Művelet tömbje karakterláncok megadását hello műveletek tooexclude hello műveletek, melyik hello frissítése egyéni szerepkör biztosít. |
+| properties.assignableScopes |Igen |String] |A tömb hatókörök mely hello a frissített egyéni biztonsági szerepkört is használható. |
 
 ### <a name="response"></a>Válasz
 Állapotkód: 201-et
@@ -590,21 +590,21 @@ A kérelem törzsében adja meg az értékeket a következő formátumban:
 ## <a name="delete-a-custom-role"></a>Egyéni szerepkör törléséhez
 Egyéni szerepkör törléséhez.
 
-Egyéni szerepkör törléséhez hozzáféréssel kell rendelkeznie `Microsoft.Authorization/roleDefinitions/delete` minden műveletet a `AssignableScopes`. A beépített szerepkörök, csak *tulajdonos* és *felhasználói hozzáférés adminisztrátora* férhetnek hozzá ezt a műveletet. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
+toodelete egy egyéni biztonsági szerepkört, hozzá kell férnie túl`Microsoft.Authorization/roleDefinitions/delete` összes hello művelet `AssignableScopes`. Hello beépített szerepkörök, csak *tulajdonos* és *felhasználói hozzáférés adminisztrátora* kapnak hozzáférést toothis műveletet. További információ a szerepkör-hozzárendelések és az Azure-erőforrások kezelése hozzáférés: [átruházásához hozzáférés-vezérlés](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Kérés
-Használja a **törlése** metódus a következő URI-azonosítóhoz:
+Használjon hello **törlése** hello URI a következő metódust:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-Az URI belül győződjön testre szabhatja a kérelem a következő helyettesítések hozzáadása:
+Belül hello URI ellenőrizze a következő helyettesítések toocustomize hello a kérést:
 
-1. Cserélje le *{hatókör}* , amelyen a szerepkör-definíció törölni kívánt hatókörű. A következő példák bemutatják, hogyan adhatja meg a különböző szintű hatóköre:
+1. Cserélje le *{hatókör}* hello hatókörrel, amellyel toodelete hello szerepkör-definíció kívánja. hello a következő példák bemutatják, hogyan toospecify hello különböző szintű hatóköre:
 
    * Előfizetés: /subscriptions/ {előfizetés-azonosító}  
    * Erőforráscsoport: /subscriptions/ {előfizetés-azonosító} / resourceGroups/myresourcegroup1  
    * Erőforrás: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. Cserélje le *{szerepkör-definíció-azonosító}* a GUID azonosító az egyéni szerepkör.
+2. Cserélje le *{szerepkör-definíció-azonosító}* a hello GUID szerepkör-definíció azonosítója hello egyéni szerepkör.
 3. Cserélje le *{api-version}* a 2015-07-01.
 
 ### <a name="response"></a>Válasz

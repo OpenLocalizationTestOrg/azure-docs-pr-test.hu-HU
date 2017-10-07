@@ -1,6 +1,6 @@
 ---
-title: "Mire használható az Azure Machine Learning funkciója? | Microsoft Docs"
-description: "Ismerteti a felhőalapú Machine Learning alapvető fogalmait, az alkalmazási területeket, valamint a Machine Learning kifejezéseit."
+title: aaaWhat Azure Machine Learning? | Microsoft Docs
+description: "Gépi tanulási hello felhő alapvető fogalmait ismerteti, és azt ismerteti, mire használható a machine learning kifejezések meghatározása."
 keywords: "mi az a machine learning,machine learning-kifejezések,prediktív,mi az a prediktív elemzés,machine learning-kifejezések"
 services: machine-learning
 documentationcenter: 
@@ -15,49 +15,49 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/12/2017
 ms.author: cgronlun
-ms.openlocfilehash: 179a0d3696c6044ffb5b9e377effa30dda54ba7f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4cd9ad0a0fd9c573e78f28603bb9bf7b361d3faa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-machine-learning-in-the-azure-cloud"></a>Bevezetés az Azure-felhőalapú Machine Learning használatába
+# <a name="introduction-toomachine-learning-in-hello-azure-cloud"></a>Bevezetés tooMachine tanulás hello Azure cloud
 
 ## <a name="what-is-machine-learning"></a>Mit jelent a gépi tanulás funkció?
-A Machine Learning egy olyan adatelemzési módszer, amely lehetővé teszi, hogy a számítógépek a meglévő adatokból tanulva jövőbeni viselkedéseket, kimeneteket és trendeket jelezhessenek előre. A gépi tanulással a számítógépek konkrét programozás nélkül tanulhatnak. 
+Gépi tanulás egy adatok tudományos technika, amely lehetővé teszi a számítógépek toouse meglévő adatok tooforecast jövőbeli történéseket, eredményeket vagy trendeket. A gépi tanulással a számítógépek konkrét programozás nélkül tanulhatnak. 
 
-A gépi tanulás a mesterséges intelligencia (AI) egyik alkategóriája. A gépi tanulás által biztosított előrejelzéseket felhasználva intelligensebbé tehetők az alkalmazások és az eszközök. Ha például online vásárlói felületeknél alkalmazzák, a gépi tanulás képes a korábban megvásárolt cikkek alapján olyan termékeket ajánlani, amelyek esetleg szintén érdekelhetik Önt. A Machine Learning a bankkártya minden lehúzásakor összeveti az adott tranzakciót az adatbázisban található tranzakciókkal, így segít a csalások felismerésében. Ha robotporszívóra bízza a szoba kitakarítását, a Machine Learning segít eldönteni, hogy a feladat el lett-e végezve.
+A gépi tanulás a mesterséges intelligencia (AI) egyik alkategóriája. A gépi tanulás által biztosított előrejelzéseket felhasználva intelligensebbé tehetők az alkalmazások és az eszközök. Ha például online vásárlói felületeknél alkalmazzák, a gépi tanulás képes a korábban megvásárolt cikkek alapján olyan termékeket ajánlani, amelyek esetleg szintén érdekelhetik Önt. Amikor hitelkártyával vásárol, gépi tanulás hello tranzakció tooa adatbázis tranzakciók hasonlítja össze, és segítséget nyújt a csalások felderítésére. A robot porszívó vacuums egy helyet, ha a gépi tanulás képes, döntse el, hogy hello történik.
 
-Az [Adatelemzés kezdőknek](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) videósorozat rövid áttekintést ad ezekről a témákról. Az Adatelemzés kezdőknek sorozat szakzsargon vagy matematikai kifejezések használata nélkül ismerteti meg a Machine Learning használatával, és vezeti végig egy egyszerű prediktív modellen.
+Rövid áttekintést, próbálja ki hello videósorozat [Adattudomány kezdőknek](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md). Az Adatelemzés kezdőknek sorozat szakzsargon vagy matematikai kifejezések használata nélkül ismerteti meg a Machine Learning használatával, és vezeti végig egy egyszerű prediktív modellen.
 
-## <a name="what-is-machine-learning-in-the-microsoft-azure-cloud"></a>Mi a Microsoft Azure-felhő Machine Learning funkciója?
+## <a name="what-is-machine-learning-in-hello-microsoft-azure-cloud"></a>A Microsoft Azure felhőbe hello mekkora a Machine Learning?
 
-![Mit jelent a gépi tanulás funkció? A prediktív elemzés működésbe léptetésének alapvető munkafolyamata az Azure Machine Learning szolgáltatásban.](./media/machine-learning-what-is-machine-learning/machine-learning-service-parts-and-workflow.png)
+![Mit jelent a gépi tanulás funkció? Alapszintű munkafolyamat toooperationalize prediktív elemzési Azure Machine Learning szolgáltatásban.](./media/machine-learning-what-is-machine-learning/machine-learning-service-parts-and-workflow.png)
 
-Az Azure Machine Learning egy felhőalapú prediktív elemzési szolgáltatás, amely lehetővé teszi elemzési megoldásként használható prediktív modellek gyors létrehozását és üzembe helyezését.
+Az Azure Machine Learning egy felhőalapú prediktív elemzési szolgáltatás, amely megkönnyíti a lehetséges tooquickly létrehozása és üzembe prediktív modelleket elemzési megoldásként.
 
-A használatra kész algoritmusok tárából dolgozhat, az algoritmusokat modellek létrehozására használhatja internetkapcsolattal rendelkező számítógépeken, és a prediktív elemzési megoldást gyorsan üzembe helyezheti. Kezdje a munkát a [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/) használatra kész példáival és megoldásaival.
+Dolgozhassanak egy használatra kész algoritmusok tárát tartalmazza, amelyekkel toocreate modellek egy internetkapcsolattal rendelkező számítógépen, és gyorsan üzembe helyezheti prediktív megoldásait. Indítsa el használatra kész példát és megoldást hello [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/).
 
-Az Azure Machine Learning nem csupán eszközöket biztosít a modellek prediktív elemzéséhez, de teljes körűen felügyelt szolgáltatást is nyújt, amelynek segítségével felhasználásra kész webszolgáltatásként üzembe helyezheti prediktív modelljeit.
+Az Azure Machine Learning nem csupán a prediktív elemzés toomodel az eszközöket biztosít, de egy teljes körűen felügyelt szolgáltatást is biztosít az használható toodeploy a prediktív modellek felhasználásához felhasználásra kész webszolgáltatásként.
 
 ## <a name="what-is-predictive-analytics"></a>Mi az a prediktív elemzés?
-A prediktív elemzések különböző matematikai képleteket, úgynevezett algoritmusokat használnak a korábbi és a jelenlegi adatok elemzéséhez, amelyekben a jövőbeni események előrejelzését segítő mintázatokat vagy trendeket azonosítanak.
+A prediktív elemzés rendelés tooforecast jövőbeni események elemezheti az algoritmusok korábbi nevű matematikai képletek vagy az aktuális adatok tooidentify szabályszerűségeket vagy a trendeket használja.
 
-## <a name="tools-to-build-complete-machine-learning-solutions-in-the-cloud"></a>Eszközök teljes körű gépi tanulási megoldások létrehozásához a felhőben
-Az Azure Machine Learning szolgáltatásban minden megtalálható, amire szüksége lehet a teljes körű prediktív elemzési megoldások létrehozásához a felhőben: nagy méretű algoritmustár, létrehozási modelleket tartalmazó stúdió, a modellek webszolgáltatásként való üzembe helyezését megkönnyítő funkciók és még számos hasznos lehetőség. Prediktív modelleket hozhat létre, amelyeket könnyedén tesztelhet, működésbe léptethet, és felügyelhet.
+## <a name="tools-toobuild-complete-machine-learning-solutions-in-hello-cloud"></a>Eszközök toobuild teljes gépi tanulási megoldások hello felhőben
+Az Azure Machine Learning tartalmaz mindent, amire szüksége hello felhőben, az nagy méretű algoritmustár, létrehozási modelleket tooan egyszerűen toodeploy a modell webszolgáltatásként tooa studio toocreate teljes prediktív elemzési megoldásokat. Prediktív modelleket hozhat létre, amelyeket könnyedén tesztelhet, működésbe léptethet, és felügyelhet.
 
 ### <a name="machine-learning-studio-create-predictive-models"></a>Machine Learning Studio: Prediktív modellek létrehozása
 Húzással és modulok csatlakoztatásával gyorsan létrehozhat prediktív modelleket a [Machine Learning Studióban](machine-learning-what-is-ml-studio.md). Kísérletezhet a különböző kombinációkkal, amelyeket [ingyenesen ki is próbálhat](https://studio.azureml.net/?selectAccess=true&o=2).
 
-* A [Cortana Intelligence Galleryben](machine-learning-gallery-how-to-use-contribute-publish.md) mások által kifejlesztett elemzési megoldásokat próbálhat ki, vagy létrehozhatja a sajátját. A közösség szívesen segít választ találni kísérletekkel kapcsolatos kérdéseire vagy megjegyzéseire. A kísérletekre mutató hivatkozásait különféle közösségi hálózatokon (például LinkedInen vagy Twitteren) is megoszthatja.
+* A [Cortana Intelligence Galleryben](machine-learning-gallery-how-to-use-contribute-publish.md) mások által kifejlesztett elemzési megoldásokat próbálhat ki, vagy létrehozhatja a sajátját. Kérdéseire vagy megjegyzéseire vonatkozó kísérletek toohello közösségi, vagy megosztja hivatkozások tooexperiments közösségi hálózatokon, például Linkedinen vagy Twitteren.
 
   ![Kipróbálhatja mások prediktív kísérleteit, vagy feltöltheti sajátjait az Azure Cortana Intelligence Gallerybe.](./media/machine-learning-what-is-machine-learning/machine-learning-cortana-intelligence-gallery.png)
-* A Machine Learning Studióban olyan [Machine Learning-algoritmusok és -modulok](https://msdn.microsoft.com/library/azure/f5c746fd-dcea-4929-ba50-2a79c4c067d7) gazdag tára áll rendelkezésre, amelyek jelentősen felgyorsítják a prediktív modell létrehozását. Mintakísérletek, R- és Python-csomagok, valamint olyan kategóriavezető Microsoft-algoritmusok közül választhat, mint az Xbox és a Bing. A Studio moduljait saját [R-](machine-learning-extend-your-experiment-with-r.md) és [Python-](machine-learning-execute-python-scripts.md)parancsprogramjaival bővítheti ki.
+* A gazdag tára [gépi tanulási algoritmusok és a modulok](https://msdn.microsoft.com/library/azure/f5c746fd-dcea-4929-ba50-2a79c4c067d7) a Machine Learning Studio toojump-start helyezheti prediktív modelljeit. Mintakísérletek, R- és Python-csomagok, valamint olyan kategóriavezető Microsoft-algoritmusok közül választhat, mint az Xbox és a Bing. A Studio moduljait saját [R-](machine-learning-extend-your-experiment-with-r.md) és [Python-](machine-learning-execute-python-scripts.md)parancsprogramjaival bővítheti ki.
 
   ![A prediktív elemzés bemutatása: prediktív elemzési kísérlet bemutatása az Azure Machine Learning Studióban](./media/machine-learning-what-is-machine-learning/azure-machine-learning-studio-predictive-score-experiment.png)
 
 ### <a name="operationalize-predictive-analytics-solutions-by-publishing-your-own"></a>Prediktív elemzési megoldások működésbe léptetése saját megoldások közzétételével
-Az alábbi oktatóanyagok ismertetik a prediktív elemzési modellek működtetését:
+hello alábbi oktatóanyagok bemutatják, hogyan toooperationalize prediktív elemzési modelljeit:
 
  * [Webszolgáltatások üzembe helyezése](machine-learning-publish-a-machine-learning-web-service.md)
  * [A modellek újratanítása API-k segítségével](machine-learning-retrain-models-programmatically.md)
@@ -66,51 +66,51 @@ Az alábbi oktatóanyagok ismertetik a prediktív elemzési modellek működtet�
  * [Webszolgáltatások felhasználása](machine-learning-consume-web-services.md)
 
 ## <a name="key-machine-learning-terms-and-concepts"></a>A Machine Learning legfontosabb kifejezései és fogalmai
-A Machine Learning kifejezéseinek jelentése nem mindig egyértelmű. Segítségül az alábbiakban ismertetjük a legfontosabb kifejezések meghatározását. Az ezek alatt található megjegyzés rovatban kérdezhet rá olyan további kifejezésekre, amelyek meghatározására kíváncsi.
+A Machine Learning kifejezéseinek jelentése nem mindig egyértelmű. Az alábbiakban a legfontosabb kifejezések toohelp meghatározását meg. A megjegyzésekkel tootell következő velünk, milyen bármely másik kifejezésnél kapcsolatos definiálva.
 
 ### <a name="data-exploration-descriptive-analytics-and-predictive-analytics"></a>Az adatok feltárása, deskriptív elemzés és prediktív elemzés
 
-Az **adatok feltárásának** azt a folyamatot nevezzük, amikor egy nagy és általában nem strukturált adathalmaz adatait összegyűjtve megkeressük a részletesebb elemzéshez felhasználható általános jellemzőket.
+**Az adatok feltárása** hello folyamat sorrendje toofind jellemzői a részletesebb elemzéshez nagy és általában nem strukturált adathalmaz adatait.
 
-Az **adatbányászat** kifejezés az adatfeltárás automatizált formájára utal.
+**Adatbányászat** tooautomated adatfeltárás hivatkozik.
 
-**Deskriptív elemzésnek nevezzük**, amikor az adathalmaz elemzésével azt szeretnénk megkapni, hogy pontosan mi történt az adatokkal. Az üzleti elemzések nagy része (például az értékesítési jelentések, webes metrikák és közösségihálózat-elemzések) deskriptív elemzésnek számít.
+**Deskriptív elemzésnek nevezzük** az hello folyamat sorrendje toosummarize az adathalmaz elemzésével, mi történt. Üzleti elemzés – például az értékesítési jelentések, webes metrikák és közösségihálózat analysis - hello többsége leíró.
 
-**Prediktív elemzésnek** azt a folyamatot nevezzük, amikor előzményadatok vagy aktuális adatok alapján modelleket hozunk létre, amelyek segítségével előre lehet jelezni valamilyen jövőbeli eredményt.
+**A prediktív elemzés** hello folyamata felépíthetők a modellek előzményadatok vagy aktuális adatok sorrendben tooforecast jövőbeli eredményt.
 
 ### <a name="supervised-and-unsupervised-learning"></a>Felügyelt és nem felügyelt tanítás
- A **felügyelt tanítással** képzett algoritmusokat címkézett adatokkal, azaz a kívánt válaszokat példázó adatokkal tanítják. A rosszindulatú bankkártyahasználatot azonosító modellt például már ismert rosszindulatú és érvényes terhelések címkézett adatpontjait tartalmazó adatkészletből kell betanítani. A gépi tanulás általában felügyelt módon történik.
+ **Felügyelt tanítással** képzett algoritmusokat címkézett adatokkal – Ez azt jelenti, adatok kívánta hello válaszok példái magában foglalja. A rosszindulatú bankkártyahasználatot azonosító modellt például már ismert rosszindulatú és érvényes terhelések címkézett adatpontjait tartalmazó adatkészletből kell betanítani. A gépi tanulás általában felügyelt módon történik.
 
- A **nem felügyelt tanítást** címkéket nem tartalmazó adatokon alkalmazzák, és a folyamat célja, hogy megtalálja az adathalmazon belüli összefüggéseket. Ez akkor hasznos, ha például vásárlói körében hasonló vásárlási szokásokat követő csoportokat szeretne felállítani.
+ **Felügyelt tanítást** címkéket nem tartalmazó adatokon használt és hello célja toofind kapcsolatok hello adataiban. Ügyfél demográfiai a hasonló vásárlásának szokásait toofind csoportosításain például szükség lehet.
 
 ### <a name="model-training-and-evaluation"></a>A modellek betanítása és kiértékelése
-A gépi tanulási modell a megválaszolandó kérdések vagy az előre jelezni kívánt eredmények absztrakciója. A modellek tanítását és kiértékelését meglévő adatok alapján lehet elvégezni.
+A gépi tanulási modell hello megválaszolandó absztrakciós toopredict kívánt tooanswer vagy hello eredménye. A modellek tanítását és kiértékelését meglévő adatok alapján lehet elvégezni.
 
 #### <a name="training-data"></a>Betanítási adatok
-A modellek adatokból történő betanításakor használhat egy már ismert adatkészletet, majd a legpontosabb válaszok érdekében az adatjellemzők alapján módosíthatja a modellt. Az Azure Machine Learning szolgáltatásban egy, a tanítási adatokat feldolgozó algoritmusmodul, illetve funkcionális modulok, például pontozási modulok szükségek a modell létrehozásához.
+Ha az adatokból egy modell betanításához ismert adatkészlet használ, és módosításának toohello modell hello adatok jellemzőit tooget hello legpontosabb válasz alapján ellenőrizze. Az Azure Machine Learning szolgáltatásban egy, a tanítási adatokat feldolgozó algoritmusmodul, illetve funkcionális modulok, például pontozási modulok szükségek a modell létrehozásához.
 
-Felügyelt tanítás során, például a csalásészlelő modell tanítása esetén egy tranzakciókat tartalmazó halmazt fog használni, amelyben minden tranzakciónál meg van jelölve, hogy az csalási célú vagy érvényes. Az adathalmazt ilyenkor véletlenszerűen fel kell darabolni: az egyik rész a modell betanítására, a másik a modell kiértékelésére való.
+Felügyelt tanítás során, például a csalásészlelő modell tanítása esetén egy tranzakciókat tartalmazó halmazt fog használni, amelyben minden tranzakciónál meg van jelölve, hogy az csalási célú vagy érvényes. Ossza fel a adatkészlet véletlenszerűen, és a rész tootrain hello modell és rész tootest vagy hello modell kiértékelése.
 
 #### <a name="evaluation-data"></a>Az adatok kiértékelése
-Ha elvégezte a modell betanítását, a fennmaradó tesztadatok segítségével értékelje ki a modellt. Ilyenkor olyan adatokat kell használni, amelyeknél tisztában van az eredményekkel, mivel így állapítható meg, hogy milyen pontosságú előrejelzésre képes a modell.
+Ha elvégezte a modell betanítását, értékelje ki a hello modell hello fennmaradó tesztadatok segítségével. Adatok már ismeri a hello eredményekkel, így állapítható meg, hogy a modell előrejelzésre használja.
 
 ## <a name="other-common-machine-learning-terms"></a>A gépi tanulás tárgykörében gyakran használt egyéb kifejezések
-* **algoritmus**: A szabályok olyan önálló készlete, amely adatfeldolgozás, matematikai műveletek vagy automatikus indoklás alkalmazásával segít a problémák megoldásában.
+* **algoritmus**: önálló meghatározott szabályok használt adatfeldolgozási, matematikai vagy automatikus indoklást toosolve problémákat.
 * **anomáliaészlelés**: Olyan modell, amely képes a szokatlan események vagy értékek megjelölésére, és így segíti a problémák észlelését. A rosszindulatú bankkártyahasználat észlelése során például a rendszer szokatlan vásárlásokat keres.
 * **kategorizált adatok**: különböző kategóriákba sorolt, és különféle csoportokra osztható adatok. Egy gépjárműveket tartalmazó kategorizált adathalmazban például meg van adva a gyártás éve, a márka, a típus és az ár.
 * **besorolás**: az adatpontok kategóriákba sorolására használható modell, amely egy kategóriacsoportokkal már ellátott adathalmazt vesz alapul.
-* **jellemzőkiemelés**: az a folyamat, amikor bizonyos jellemzőket kinyerünk vagy kiválasztunk egy adathalmazból az adathalmaz és az eredmények minőségének javítása érdekében. A repülőjegyárakra vonatkozó adatokat például a hét napjainak és a munkaszüneti napoknak a kiemelésével lehet javítani. További információk: [Feature selection and engineering in Azure Machine Learning](machine-learning-feature-selection-and-engineering.md) (Jellemzőkiválasztás és -kiemelés az Azure Machine Learngingben).
-* **modul**: A Machine Learning Studio-modell funkcionális része, például az Enter Data (Adatbevitel) modul, amely kis adatkészletek bevitelét és szerkesztését teszi lehetővé. A Machine Learning Studióban az algoritmusok is a modulok egyik típusának számítanak.
-* **modell**: Egy Machine Learning-kísérlet eredményeként létrejövő felügyelt tanítási modell, amely betanítási adatokból, algoritmusmodulból és különböző funkcionális modulokból (például a Score Model (Modell pontozása) modul) áll.
-* **numerikus adatok**: mérésekként (folytonos adatok) vagy megszámlált értékekként (diszkrét adatok) értelmezhető adatok. A numerikus adatokat *kvantitatív adatoknak* is nevezzük.
-* **particionálás**: az a folyamat, amikor az adatokat mintákra osztjuk. További információk: [Partition and Sample](https://msdn.microsoft.com/library/azure/dn905960.aspx) (Particionálás és minták létrehozása).
-* **előrejelzés**: a gépi tanulási modellek által előrejelzett értékeket előrejelzéseknek nevezzük. Az „előrejelzett pontszám” kifejezés is előfordulhat. Az előrejelzett pontszámok azonban nem a modellek végső kimenetei. A modell értékelése a pontszám alapján történik.
-* **regresszió**: Olyan modell, amely a különböző értékek előrejelzését független változók alapján végzi el, például egy autó árát annak gyártási éve és márkája alapján becsüli meg.
-* **pontszám**: betanított besorolási vagy regressziós modell által, a Machine Learning Studio [Score Model](https://msdn.microsoft.com/library/azure/dn905995.aspx) (Modell pontozása) modulja segítségével generált előre jelzett érték. A besorolási modell az előre jelzett érték valószínűségét jelző pontszámot is visszaad. Ha a modell már alkalmas pontszámok generálására, ellenőrizze a modell pontosságát az [Evaluate Model](https://msdn.microsoft.com/library/azure/dn905915.aspx) (Modell kiértékelése) modul segítségével.
-* **minta**: az adathalmaz olyan része, amely az adathalmaz egészére vonatkozóan is reprezentatívnak tekinthető. A mintát kiválaszthatja véletlenszerűen vagy az adathalmaz konkrét jellemzői alapján.
+* **jellemzőkiemelés**: hello folyamata kinyerünk vagy kiválasztunk szolgáltatások kapcsolódó rendelés tooenhance beállított tooa adatok hello adatkészlet, és eredmények minőségének javítása. A repülőjegyárakra vonatkozó adatokat például hello hét napjainak és a munkaszüneti napoknak a kiemelésével lehet javítani. További információk: [Feature selection and engineering in Azure Machine Learning](machine-learning-feature-selection-and-engineering.md) (Jellemzőkiválasztás és -kiemelés az Azure Machine Learngingben).
+* **a modul**: a Machine Learning Studio modellben, például hello adatbevitel modul, amely lehetővé teszi a bevitelét és szerkesztését kisebb adatkészletek működési része. A Machine Learning Studióban az algoritmusok is a modulok egyik típusának számítanak.
+* **modell**: egy felügyelt tanítás során modell a gépi tanulási kísérlet eredménye betanítási adatok, az algoritmusmodult és funkcionális modulok, például a Score Model-modul hello szorzatát.
+* **numerikus adatok**: mérésekként (folytonos adatok) vagy megszámlált értékekként (diszkrét adatok) értelmezhető adatok. Más néven tooas *kvantitatív adatoknak*.
+* **partíció**: hello módszer, amellyel meg adatokat mintákra osztjuk. További információk: [Partition and Sample](https://msdn.microsoft.com/library/azure/dn905960.aspx) (Particionálás és minták létrehozása).
+* **előrejelzés**: a gépi tanulási modellek által előrejelzett értékeket előrejelzéseknek nevezzük. Is láthatja a hello kifejezés "előre jelzett pontszám." Azonban előre jelzett pontszámok nem a modell végső eredményére hello. A következő hello pontszám hello modell értékelését.
+* **regressziós**: gyártási év és a márka alapján érték független változók, például a hello egy autó árának előrejelzése alapján előrejelzésére szolgáló modell.
+* **pontszám**: A besorolási vagy regressziós modell betanítását, hello segítségével generált előre jelzett érték [Score Model-modul](https://msdn.microsoft.com/library/azure/dn905995.aspx) a Machine Learning Studióban. A besorolási modell pontszámot is visszaad a hello hello valószínűségét előre jelzett érték. Miután pontszámok a modell létrehozását, hello modell pontosságát hello segítségével kiértékelheti [modell kiértékelése modul](https://msdn.microsoft.com/library/azure/dn905915.aspx).
+* **a minta**: adatkészlet része hello képviselő toobe teljes készült. Minták véletlenszerűen kiválasztott, vagy hello adathalmaz konkrét jellemzői alapján.
 
 ## <a name="next-steps"></a>Következő lépések
-A prediktív elemzés és a gépi tanulás alapjainak megismeréséhez használja [részletes oktatóanyagainkat](machine-learning-create-experiment.md) vagy [bővíthető mintáinkat](machine-learning-sample-experiments.md).  
+Akkor is hello alapvető prediktív elemzés és a gépi tanulás használatával egy [részletes oktatóanyagainkat](machine-learning-create-experiment.md) és [bővíthető mintáinkat](machine-learning-sample-experiments.md).  
 
 <!-- Module References -->
 [learning-with-counts]: https://msdn.microsoft.com/library/azure/81c457af-f5c0-4b2d-922c-fdef2274413c/

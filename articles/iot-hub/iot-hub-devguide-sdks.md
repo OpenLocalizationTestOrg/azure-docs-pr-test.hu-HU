@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT SDK-k ismertetése |} Microsoft Docs"
-description: "Fejlesztői útmutató - információk és hivatkozások a különböző Azure IoT eszköz és a szolgáltatás SDK-k, amelyek segítségével eszközön futó alkalmazások és a háttér-alkalmazásokat hozhat létre."
+title: aaaUnderstand hello Azure IoT SDK |} Microsoft Docs
+description: "Fejlesztői útmutató - információk és hivatkozások toohello különböző Azure IoT eszköz és a szolgáltatás SDK-k használható toobuild eszköz és háttér-alkalmazások."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -15,50 +15,50 @@ ms.workload: na
 ms.date: 06/16/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: bcbf4b9633f58293edb19aeb33dec6602ac4ec8f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e319451ca97876666e1c011ee0e1a73d0a0f1ed1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-and-use-azure-iot-sdks"></a>Megismeréséhez és használatához Azure IoT SDK-k
 
 Az IoT-központ való munkához SDK három kategóriába sorolhatók:
 
-* **Eszközoldali SDK-k** lehetővé teszik az IoT-eszközök futó alkalmazások. Ezek az alkalmazások telemetriai adatokat küldeni az IoT hub, és opcionálisan az IoT hub-üzeneteket fogadjon.
+* **Eszközoldali SDK-k** lehetővé teszik az IoT-eszközök futó toobuild alkalmazások. Ezek az alkalmazások telemetriai tooyour IoT-központ küldeni, és opcionálisan az IoT hub-üzeneteket fogadjon.
 
-* **Szolgáltatás SDK-k** lehetővé teszik az IoT hub kezelését, és opcionálisan az üzenetek küldése az IoT-eszközök.
+* **Szolgáltatás SDK-k** meg toomanage engedélyezése az IoT hub, és opcionálisan tooyour az IoT-eszközök az üzeneteket küldeni.
 
-* **Az Azure IoT peremhálózati** ahhoz, hogy az eszközök, amelyek a támogatott protokollok, vagy nem kell tennie a peremhálózaton lévő üzenetek feldolgozásához átjárók létrehozását teszi lehetővé.
+* **Az Azure IoT peremhálózati** lehetővé teszi a toobuild átjárók tooenable eszközök hello támogatott protokollok, amelyek nem használnak, vagy ha tooprocess üzenetek hello oldal van szükség.
 
-SDK-k több programozási nyelv támogatása biztosított.
+SDK-k vannak megadva toosupport több programozási nyelv.
 
 ## <a name="azure-iot-device-sdks"></a>Az Azure SDK-k IoT-eszközök
 
-A Microsoft Azure IoT-eszközök SDK-k, amely elősegíti a épület eszközök és alkalmazások és szolgáltatások Azure IoT-központ által kezelt-kódot tartalmaz.
+Microsoft Azure IoT eszközoldali SDK-k hello kódot tartalmaznak, amely elősegíti a épület eszközök és alkalmazások, amelyek tooand Azure IoT-központ szolgáltatás által kezelt.
 
-A következő Azure IoT-eszközök SDK-k is letölthetők a Githubról:
+hello következő Azure IoT eszközoldali SDK-k a Githubról elérhető toodownload:
 
-* [Az Azure IoT-eszközök SDK c] [ lnk-c-device-sdk] írt adatok hordozhatóságára és széles körű platformkompatibilitásra ANSI C (C99). Nincsenek a két eszköz ügyféloldali kódtáraknál c, az alacsony szintű **iothub_client** és a **szerializáló**.
+* [Az Azure IoT-eszközök SDK c] [ lnk-c-device-sdk] írt adatok hordozhatóságára és széles körű platformkompatibilitásra ANSI C (C99). Nincsenek C, két eszköz ügyféloldali kódtáraknál hello alacsony szintű **iothub_client** és hello **szerializáló**.
 * [Az Azure IoT-eszközök SDK a .NET-hez][lnk-dotnet-device-sdk]
 * [Az Azure IoT-eszközök SDK Java][lnk-java-device-sdk]
 * [Az Azure IoT-eszközök SDK for Node.js][lnk-node-device-sdk]
 * [Az Azure IoT-eszközök SDK Python-hez][lnk-python-device-sdk]
 
 > [!NOTE]
-> Tekintse meg a GitHub-adattárak readme fájljaiban találhat használatáról nyelvet és a platform-specifikus csomag kezelők bináris fájljait és a függőségek telepítése a fejlesztési számítógépén.
+> Lásd: hello információs fájl hello GitHub-adattárak az információt a nyelvi és a platform-specifikus csomag kezelők tooinstall bináris fájljait és a függőségek a fejlesztési számítógépén.
 > 
 > 
 
 ### <a name="os-platform-and-hardware-compatibility"></a>Az operációs rendszer platform és hardver kompatibilitása
 
-Bizonyos hardvereszközök kompatibilisek SDK kapcsolatos további információkért tekintse meg a [Azure IoT eszköz katalógus hitelesített][lnk-certified].
+Bizonyos hardvereszközök kompatibilisek SDK kapcsolatos további információkért lásd: hello [Azure IoT eszköz katalógus hitelesített][lnk-certified].
 
 ## <a name="azure-iot-service-sdks"></a>Az Azure IoT szolgáltatás SDK-k
 
-Az Azure IoT szolgáltatás SDK-k lehetővé teszi az épület alkalmazásokat közvetlenül az IoT-központ kezelheti az eszközöket és a biztonsági kódot tartalmazhatnak.
+hello Azure IoT szolgáltatás SDK-k alkalmazások közvetlenül kommunikáló IoT Hub toomanage eszközöket és a biztonsági kódot toofacilitate tartalmaz.
 
-A következő Azure IoT-szolgáltatás SDK-k is letölthetők a Githubról:
+hello következő Azure IoT szolgáltatás SDK-k a Githubról elérhető toodownload:
 
 * [Az Azure IoT szolgáltatás SDK a .NET-hez][lnk-dotnet-service-sdk]
 * [Az Azure IoT szolgáltatás SDK for Node.js][lnk-node-service-sdk]
@@ -67,17 +67,17 @@ A következő Azure IoT-szolgáltatás SDK-k is letölthetők a Githubról:
 * [Az Azure IoT szolgáltatás SDK C-hez][lnk-c-service-sdk]
 
 > [!NOTE]
-> Tekintse meg a GitHub-adattárak readme fájljaiban találhat használatáról nyelvet és a platform-specifikus csomag kezelők bináris fájljait és a függőségek telepítése a fejlesztési számítógépén.
+> Lásd: hello információs fájl hello GitHub-adattárak az információt a nyelvi és a platform-specifikus csomag kezelők tooinstall bináris fájljait és a függőségek a fejlesztési számítógépén.
 
 ## <a name="azure-iot-edge"></a>Azure IoT Edge
 
-Azure IoT peremhálózati infrastruktúra és az IoT-átjáró megoldások létrehozásához modulok tartalmazza. Bővítheti IoT peremhálózati olyan végpont forgatókönyv igazított átjárók létrehozására.
+Az Azure IoT peremhálózati hello infrastruktúra és a modulok toocreate IoT átjáró megoldásait tartalmazza. Az IoT-Edge toocreate átjárók szabott tooany végpont forgatókönyvet kibővítheti a.
 
 Letöltheti a [Azure IoT peremhálózati] [ lnk-iot-edge] a Githubról.
 
 ## <a name="online-api-reference-documentation"></a>Online API referenciadokumentációt tartalmaz
 
-Az alábbi lista tartalmazza az Azure IoT eszköz, a szolgáltatás és az átjáró szalagtárak online API referenciadokumentációt tartalmaz hivatkozásokat:
+hello alábbi lista hivatkozások tooonline API referenciadokumentációt tartalmaz Azure IoT eszköz, a szolgáltatás és az átjáró szalagtárak.
 
 * [Az eszközök internetes hálózata (IoT) .NET][lnk-dotnet-ref]
 * [Az IoT Hub REST][lnk-rest-ref]

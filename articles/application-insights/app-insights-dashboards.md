@@ -1,5 +1,5 @@
 ---
-title: "Irányítópultok és az Azure Application Insights navigációs |} Microsoft Docs"
+title: "aaaDashboards és navigációs hello Azure Application Insights |} Microsoft Docs"
 description: "A kulcs APM diagramok és a lekérdezések nézetek létrehozása."
 services: application-insights
 documentationcenter: 
@@ -13,95 +13,95 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bwren
-ms.openlocfilehash: 9987f04e7e71df5fe10c8bc209a390cb940ec4f2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 58811388205643bb672e0405b3226f12d0f447a9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="navigation-and-dashboards-in-the-application-insights-portal"></a>Navigációs és az Application Insights portálon irányítópultok
-Miután [Application Insights beállítása a projekten](app-insights-overview.md), az alkalmazás teljesítmény- és használati telemetriai adatokat fog megjelenni az Application Insights-erőforrás a projekt a [Azure-portálon](https://portal.azure.com).
+# <a name="navigation-and-dashboards-in-hello-application-insights-portal"></a>Navigációs és irányítópultok a hello Application Insights portál
+Miután [Application Insights beállítása a projekten](app-insights-overview.md), az alkalmazás teljesítmény- és használati telemetriai adatokat jelennek meg a projekt Application Insights-erőforrás a hello [Azure-portálon](https://portal.azure.com).
 
 ## <a name="find-your-telemetry"></a>A telemetriai adat található
-Jelentkezzen be a [Azure-portálon](https://portal.azure.com) , és keresse meg az Application Insights-erőforrást, amelyet az alkalmazás hozott létre.
+Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) , és keresse meg a toohello Application Insights-erőforrást, amelyet az alkalmazás hozott létre.
 
 ![Kattintson a Tallózás gombra, válassza ki az Application Insights, majd az alkalmazást.](./media/app-insights-dashboards/00-start.png)
 
-Az Áttekintés panel (oldal) az alkalmazás az alkalmazás fő diagnosztikai metrikáinak összegzését jeleníti meg, és egy átjárót a portál más szolgáltatásokhoz.
+hello áttekintése panelen (oldal) az alkalmazás hello diagnosztikai alapvető metrikákat az alkalmazás összegzését jeleníti meg, és egy átjáró toohello hello portál egyéb szolgáltatásokat.
 
-![A telemetriai adatok megtekintéséhez fő útvonalak](./media/app-insights-dashboards/010-oview.png)
+![A fő útvonalak tooview a telemetria](./media/app-insights-dashboards/010-oview.png)
 
-Testre szabhatja a diagramok és rácsok és irányítópulton rögzítheti őket. Ily módon helyezheti együtt a kulcs telemetriai adatokat más alkalmazásokból központi irányítópulton.
+Testre szabhatja hello diagramok és rácsok és tooa irányítópulton rögzítheti őket. Ily módon helyezheti együtt hello kulcs telemetriai adatokat a különböző alkalmazások az központi irányítópulton.
 
 ## <a name="dashboards"></a>Irányítópultok
-Először is látni való bejelentkezés után a [Microsoft Azure-portálon](https://portal.azure.com) olyan irányítópult. Itt helyezheti együtt a diagramok, amelyek számára fontos összes az Azure-erőforrások, például a telemetriai adatok között [Azure Application Insights](app-insights-overview.md).
+hello thing először megjelenik a bejelentkezést toohello [Microsoft Azure-portálon](https://portal.azure.com) olyan irányítópult. Itt helyezheti együtt hello diagramok, amelyek a legfontosabb tooyou közötti összes az Azure-erőforrások, például a telemetriai [Azure Application Insights](app-insights-overview.md).
 
 ![Személyre szabott irányítópultot.](./media/app-insights-dashboards/31.png)
 
-1. **Navigáljon a konkrét erőforrásokat** például az alkalmazás az Application Insightsban: a bal oldali sávon használja.
-2. **Térjen vissza az aktuális irányítópulton**, vagy más használt nézetek váltani: a legördülő menü bal felső használatát.
-3. **Váltás az irányítópultok**: a legördülő menü használatát az irányítópult-cím
-4. **Létrehozására, szerkesztésére és irányítópultok megosztása** irányítópult eszköztárán.
-5. **Az irányítópult szerkesztése**: rámutat egy csempe majd a felső sávon használatával helyezze át, testre, illetve nem távolítható el.
+1. **Keresse meg a toospecific erőforrások** például az alkalmazás az Application Insightsban: használata hello bal oldali sávon.
+2. **Visszatérési toohello aktuális irányítópult**, vagy váltson tooother használt nézetek: használata hello a bal felső legördülő menü.
+3. **Váltás az irányítópultok**: használata hello legördülő menüjének hello irányítópult cím
+4. **Létrehozására, szerkesztésére és irányítópultok megosztása** hello irányítópult eszköztáron.
+5. **Hello irányítópult szerkesztése**: rámutat egy csempére, majd a felső menüsoron toomove, testreszabása, illetve nem távolítható el.
 
-## <a name="add-to-a-dashboard"></a>Irányítópult felvétele
-A panel vagy diagramok készletét, amely különösen fontos van szüksége, amikor rögzíthető egy másolatát az irányítópulton. Megjelenik a legközelebb van vissza.
+## <a name="add-tooa-dashboard"></a>Adja hozzá a tooa irányítópult
+Egy panel vagy diagramok készletét, amely különösen fontos van szüksége, amikor toohello irányítópult egy példányát is rögzíti. Megjelenik a legközelebb van vissza.
 
-![PIN-kód egy diagram, akkor mutat, és kattintson a "...", a fejlécben.](./media/app-insights-dashboards/33.png)
+![toopin diagramot, akkor mutat, és kattintson a "..." hello fejlécben.](./media/app-insights-dashboards/33.png)
 
-1. PIN-kód a diagram az irányítópulton. A diagram másolata megjelenik az irányítópulton.
-2. PIN-kód a teljes panelen az irányítópult - csempe, amely keresztül kattintson az irányítópulton megjelenő.
-3. Kattintson a bal felső az aktuális irányítópulton való visszatéréshez. A legördülő menü segítségével majd térjen vissza az aktuális nézet.
+1. PIN-kód diagram toodashboard. Hello diagram másolata hello irányítópulton megjelenik.
+2. PIN-kód hello teljes panel toohello irányítópult - megjelenő hello irányítópult csempe, amely keresztül is kattinthat.
+3. Kattintson a hello bal felső sarokban tooreturn toohello aktuális irányítópulton. Majd hello legördülő menü tooreturn toohello aktuális nézet használható.
 
-Figyelje meg, hogy diagramok csempék vannak csoportosítva: egy csempe tartalmazhat egynél több diagram. A teljes csempe az irányítópulton rögzíti.
+Figyelje meg, hogy diagramok csempék vannak csoportosítva: egy csempe tartalmazhat egynél több diagram. Hello teljes csempe toohello irányítópult rögzíti.
 
-A rendszer automatikusan frissíti a diagram, amelyek elengedhetetlenek az időtartományt a diagram gyakorisággal:
+a rendszer automatikusan frissíti hello diagram, amelyek elengedhetetlenek az hello diagram időtartomány gyakorisággal:
 
-* Idő legfeljebb 1 óra között: 5 percenként frissítése
+* Időtartománynak be az too1: 5 percenként frissítése
 * 1-24 óránként időtartománynak: 15 percenként frissítése
 * 24 óra fent időtartománynak: (időtartománynak) 60.
 
 ### <a name="pin-any-query-in-analytics"></a>A lekérdezés Analytics PIN-kód
-Is [PIN-kód Analytics](app-insights-analytics-using.md#pin-to-dashboard) a diagramok egy [megosztott](#share-dashboards-with-your-team) irányítópult. Ez lehetővé teszi, hogy bármilyen tetszőleges lekérdezés mellé a standard metrikák diagramokat hozzáadni. 
+Emellett [PIN-kód Analytics](app-insights-analytics-using.md#pin-to-dashboard) diagramok tooa [megosztott](#share-dashboards-with-your-team) irányítópult. Ez lehetővé teszi bármilyen tetszőleges lekérdezés mellett hello szabványos metrikák tooadd diagramokat. 
 
-Automatikusan újraszámítás óránként. Kattintson a diagram hatására újraszámította az azonnal frissítési ikonjára. (Böngésző frissítési nem újraszámítása.)
+Automatikusan újraszámítás óránként. Kattintson a hello frissítési ikonjára hello diagram toorecalculate azonnal. (Böngésző frissítési nem újraszámítása.)
 
-## <a name="adjust-a-tile-on-the-dashboard"></a>Egy csempe az irányítópulton beállítása
-Ha egy csempére az irányítópulton, beállíthatja azt.
+## <a name="adjust-a-tile-on-hello-dashboard"></a>Állítsa be a hello Irányítópulton egy csempére
+Ha egy csempére hello irányítópulton, beállíthatja azt.
 
-![Ahhoz, hogy szerkesztheti a diagram mutasson.](./media/app-insights-dashboards/36.png)
+![Mutasson a rendelés tooedit diagram azt.](./media/app-insights-dashboards/36.png)
 
-1. A diagram hozzáadása a csempén.
-2. Állítsa be a metrika, csoportosítási dimenzió és diagram stílusát (táblázat, diagramhoz).
-3. Húzza a diagram a nagyításhoz; keresztül a visszavonási gombra a timespan; a csempére a diagramok szűrő tulajdonságainak beállítása.
+1. Adjon hozzá egy diagram toohello követ.
+2. Hello metrika, csoportosítási dimenzió és egy diagram stílusát (táblázat, diagramhoz) beállítása.
+3. Húzza keresztül hello diagram toozoom Kattintson a hello visszavonási gomb tooreset hello timespan; a hello csempére hello diagramok szűrő tulajdonságainak beállítása.
 4. Állítsa be a csempe neve.
 
 Az Áttekintés panelen szolgáltatásból rögzített mozaiklapok-nál több szerkesztési lehetősége van a metrika explorer paneleken szolgáltatásból rögzített mozaiklapok.
 
-Az eredeti csempét rögzített folyamatot nem befolyásolja a módosításokat.
+hello eredeti csempét rögzített folyamatot nem befolyásolja a módosításokat.
 
 ## <a name="switch-between-dashboards"></a>Irányítópultok közötti váltáshoz
-Egynél több irányítópult mentése és a kettő közötti váltás. A diagram vagy a panel rögzíti, amikor azok az aktuális irányítópulton van adva.
+Egynél több irányítópult mentése és a kettő közötti váltás. Amikor a diagram vagy a panelen, azokat a toohello aktuális irányítópult éppen hozzáadni.
 
-![Irányítópultok közötti váltáshoz kattintson az irányítópulton, és válasszon ki egy mentett irányítópultot. Hozzon létre, és mentse az új irányítópult, kattintson az új gombra. Átrendezését, kattintson a Szerkesztés gombra.](./media/app-insights-dashboards/32.png)
+![tooswitch közötti irányítópultok, irányítópulton kattintson, és válasszon ki egy mentett irányítópultot. toocreate és egy új irányítópult mentése, kattintson az új gombra. toorearrange, kattintson a Szerkesztés.](./media/app-insights-dashboards/32.png)
 
-Például lehetséges, hogy a teljes képernyős megjelenő a csapat helyiségben, és egy másik általános fejlesztési egy irányítópultot.
+Például lehetséges, hogy a teljes képernyős megjelenő hello team helyet, és egy másik általános fejlesztési egy irányítópultot.
 
-Az irányítópult egy panel csempe jelenik meg: a gombra kattintva nyissa meg a paneljét. A diagram a diagram az eredeti helyére replikálja.
+Hello irányítópult panelek csempe jelenik meg: toogo toohello panelen kattintson rá. A diagram hello diagram az eredeti helyére replikálja.
 
-![Nyissa meg a panelt, amely egy csempére kattint](./media/app-insights-dashboards/35.png)
+![Kattintson egy csempe tooopen hello panel képviseli](./media/app-insights-dashboards/35.png)
 
 ## <a name="share-dashboards"></a>Irányítópultok megosztása
 Ha létrehozott egy irányítópultot, más felhasználókkal megoszthatja azt.
 
-![Az irányítópult-fejlécben kattintson a megosztás](./media/app-insights-dashboards/41.png)
+![Hello irányítópult fejlécben kattintson a megosztás](./media/app-insights-dashboards/41.png)
 
 További tudnivalók [szerepkörök és hozzáférés-vezérlés](app-insights-resources-roles-access-control.md).
 
 ## <a name="app-navigation"></a>Alkalmazás navigációs
-Az Áttekintés panel az alkalmazással kapcsolatos további információkat az átjárót.
+hello áttekintése panel hello átjáró toomore információkat az alkalmazásról.
 
-* **A diagram vagy a csempe** – kattintson a csempére vagy a diagramon megjelenő információk kapcsolatos részletek megtekintéséhez.
+* **A diagram vagy a csempe** – kattintson a csempére vagy diagram toosee megjelenő információk további részleteit.
 
 ### <a name="overview-blade-buttons"></a>Áttekintés panel gombok
 ![Áttekintés panel felső navigációs sáv](./media/app-insights-dashboards/app-overview-top-nav.png)
@@ -109,8 +109,8 @@ Az Áttekintés panel az alkalmazással kapcsolatos további információkat az 
 * [**Metrikaböngésző** ](app-insights-metrics-explorer.md) -teljesítményt és a használati saját diagramokat.
 * [**Keresési** ](app-insights-diagnostic-search.md) - vizsgálja meg az esemény, például a kérelmekről, kivételek, olyan specifikus példányai, vagy a nyomkövetési naplófájl.
 * [**Elemzés** ](app-insights-analytics.md) -hatékony a lekérdezések a telemetriai adatokat.
-* **Időtartománynak** -állítsa be a a panelen a diagramok szerint jelenik meg.
-* **Törlés** -törli az Application Insights-erőforrást az alkalmazáshoz. Meg kell is távolítsa el az Application Insights csomagokat az alkalmazás kódját, vagy szerkesztheti a [instrumentation kulcs](app-insights-create-new-resource.md#copy-the-instrumentation-key) át tudja irányítani a telemetria bekapcsolásával egy másik Application Insights-erőforrást az alkalmazásban.
+* **Időtartománynak** -megjeleníti azokat az összes hello diagramok hello panelen állítsa be hello.
+* **Törlés** -hello Application Insights-erőforrást az alkalmazás törlése. Meg kell is távolítsa el az Application Insights csomagok hello az alkalmazás kódját, vagy hello szerkesztése [instrumentation kulcs](app-insights-create-new-resource.md#copy-the-instrumentation-key) a az alkalmazás toodirect telemetriai tooa különböző Application Insights-erőforrást.
 
 ### <a name="essentials-tab"></a>Alapvető erőforrások lapon
 * [Instrumentation kulcs](app-insights-create-new-resource.md#copy-the-instrumentation-key) -azonosítja az alkalmazás-erőforrást.
@@ -119,18 +119,18 @@ Az Áttekintés panel az alkalmazással kapcsolatos további információkat az 
 ### <a name="app-navigation-bar"></a>Alkalmazás navigációs sáv
 ![Bal oldali navigációs sáv](./media/app-insights-dashboards/app-left-nav-bar.png)
 
-* **Áttekintés** – térjen vissza az Áttekintés panelen.
+* **Áttekintés** -visszatérési toohello áttekintése panelen.
 * **Tevékenységnapló** -riasztások és az Azure felügyeleti események.
-* [**Hozzáférés-vezérlés** ](app-insights-resources-roles-access-control.md) -hozzáférést biztosítson a csoport tagjai, míg más.
-* [**Címkék** ](../azure-resource-manager/resource-group-using-tags.md) -címkék használata az alkalmazás másokkal csoportosításához.
+* [**Hozzáférés-vezérlés** ](app-insights-resources-roles-access-control.md) -hozzáférés tooteam tagok és mások számára.
+* [**Címkék** ](../azure-resource-manager/resource-group-using-tags.md) -címkéket toogroup mások az alkalmazás használatát.
 
 VIZSGÁLJA MEG
 
-* [**Alkalmazás-hozzárendelés** ](app-insights-app-map.md) -Active térkép, amely az alkalmazás összetevői a függőségi adatokat származik.
+* [**Alkalmazás-hozzárendelés** ](app-insights-app-map.md) -Active térkép, amely az alkalmazás összetevői hello származó hello függőségi adatokat.
 * [**Észlelési intelligens** ](app-insights-proactive-diagnostics.md) -tekintse át a legutóbbi teljesítményével kapcsolatos riasztások.
 * [**Élő Stream** ](app-insights-live-stream.md) – A rögzített szinte azonnali mérőszámokat, akkor hasznos, ha egy új build telepítése vagy a hibakeresést.
-* [**Rendelkezésre állás / a webalkalmazás-tesztek** ](app-insights-monitor-web-app-availability.md) -rendszeres kérelmeket küldeni a webalkalmazás a world.* körül
-* [**Hibák, a teljesítmény** ](app-insights-web-monitor-performance.md) -kivételek, hiba díjszabás és válaszidejének a kéréseket az alkalmazáshoz, és az alkalmazásnak, hogy a érkező kéréseket [függőségek](app-insights-asp-net-dependencies.md).
+* [**Rendelkezésre állás / a webalkalmazás-tesztek** ](app-insights-monitor-web-app-availability.md) -küldési kérelmek rendszeres tooyour webalkalmazást az hello world.* körül
+* [**Hibák, a teljesítmény** ](app-insights-web-monitor-performance.md) -kivételek, a hiba sebességét és a válasz alkalommal kérelmek tooyour alkalmazás és az alkalmazás a érkező kéréseket túl[függőségek](app-insights-asp-net-dependencies.md).
 * [**Teljesítmény** ](app-insights-web-monitor-performance.md) -válaszidőt, függőség válaszidejét.
 * [Kiszolgálók](app-insights-web-monitor-performance.md) -teljesítményszámlálókat. Ha elérhető, [Állapotmonitor telepítése](app-insights-monitor-performance-live-website-now.md).
 * **Böngésző** -nézet és AJAX teljesítmény lapon. Ha elérhető, [állíthatnak be a weblapok](app-insights-javascript.md).
@@ -141,16 +141,16 @@ KONFIGURÁLÁSA
 * **Első lépések** -beágyazott oktatóanyag.
 * **Tulajdonságok** -instrumentation kulcs, az előfizetés és az erőforrás-azonosító.
 * [Riasztások](app-insights-alerts.md) -riasztási konfigurációja.
-* [A folyamatos exportálás](app-insights-export-telemetry.md) -konfigurálása az Azure storage telemetriai adatainak exportálása.
+* [A folyamatos exportálás](app-insights-export-telemetry.md) -exportálási telemetriai tooAzure tárolás konfigurálása.
 * [A teljesítmény tesztelése](app-insights-monitor-web-app-availability.md#performance-tests) -állítsa be a webhely szintetikus terhelése.
 * [Kvóta és árképzési](app-insights-pricing.md) és [adatfeldolgozást mintavételi](app-insights-sampling.md).
-* **API-hozzáférés** -létrehozása [kiadási jegyzetek](app-insights-annotations.md) és az adatok hozzáférés az API-hoz.
-* [**Munkaelemek** ](app-insights-diagnostic-search.md#create-work-item) -nyomkövetési rendszer, így hibák telemetriai vizsgálatakor hozhat létre a munkájukhoz való csatlakozásban.
+* **API-hozzáférés** -létrehozása [kiadási jegyzetek](app-insights-annotations.md) és hello Data Access API számára.
+* [**Munkaelemek** ](app-insights-diagnostic-search.md#create-work-item) -nyomkövetési rendszer, így Ön hibák telemetriai vizsgálatakor tooa munkahelyi csatlakozás.
 
 BEÁLLÍTÁSOK
 
 * [**Zárolja** ](../azure-resource-manager/resource-group-lock-resources.md) -Azure-erőforrások zárolása
-* [**Automatizálási parancsfájl** ](app-insights-powershell.md) -exportálása olyan az Azure erőforrás-definícióval, így használhatja a sablont létrehozni az új erőforrásokat.
+* [**Automatizálási parancsfájl** ](app-insights-powershell.md) -exportálása hello Azure-erőforrás meghatározását, hogy a sablon toocreate új erőforrásként használja.
 
 
 ## <a name="video"></a>Videó

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure SQL adatbázis memórián belüli technológiák |} Microsoft Docs"
-description: "Az Azure SQL adatbázis memórián belüli technológiák jelentősen javítja a tranzakciós teljesítményét és elemzés munkaterhelések. Útmutató: ezek a technológiák előnyeit."
+title: "aaaAzure SQL adatbázis memórián belüli technológiák |} Microsoft Docs"
+description: "Az Azure SQL adatbázis memórián belüli technológiák jelentősen javítja a tranzakciós hello teljesítményét és elemzés munkaterhelések. Ismerje meg, hogy ezek a technológiák tootake előnyeit."
 services: sql-database
 documentationCenter: 
 author: jodebrui
@@ -15,138 +15,138 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/24/2017
 ms.author: jodebrui
-ms.openlocfilehash: 4cb45551c486263f26947e5684d54b4f2ecc7410
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1bacd7297b2f9b018853088eabf2a2ee66a9cb43
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="optimize-performance-by-using-in-memory-technologies-in-sql-database"></a>A memórián belüli technológiái az SQL-adatbázis teljesítményének optimalizálása
 
-A memórián belüli technológiái az Azure SQL Database, a különböző munkaterhelések teljesítménynövekedést érhet el: tranzakciós (online tranzakciós feldolgozási (OLTP)), elemzés (online analitikus feldolgozási (OLAP)), és a vegyes (hibrid tranzakció / analitikus feldolgozási (HTAP)). Hatékonyabb lekérdezés és a tranzakció-feldolgozást memórián belüli technológiák is segítséget költségeinek csökkentése. Általában nem kell teljesítménynövekedéshez eléréséhez az adatbázis árképzési szintjének frissítése. Néhány esetben is előfordulhat közben továbbra sem szűnik meg a memórián belüli szolgáltatáshoz. a teljesítménnyel kapcsolatos fejlesztések az árképzési szint csökkentése.
+A memórián belüli technológiái az Azure SQL Database, a különböző munkaterhelések teljesítménynövekedést érhet el: tranzakciós (online tranzakciós feldolgozási (OLTP)), elemzés (online analitikus feldolgozási (OLAP)), és a vegyes (hibrid tranzakció / analitikus feldolgozási (HTAP)). Mert hello hatékonyabb lekérdezés és a tranzakció-feldolgozást, a memórián belüli technológiák is segítséget tooreduce költség. Általában nem szükséges tooupgrade hello tarifacsomag hello adatbázis tooachieve teljesítménynövekedést érhet el. Bizonyos esetekben is lehet, csökkentse az IP-címek, miközben továbbra sem szűnik meg a memórián belüli szolgáltatáshoz. a teljesítménnyel kapcsolatos fejlesztések hello.
 
-Az alábbiakban a két példa hogyan segített a memórián belüli online Tranzakciófeldolgozási jelentősen fejleszti a teljesítményt:
+Az alábbiakban a két példa hogyan memórián belüli online Tranzakciófeldolgozási segített a teljesítmény javítása toosignificantly:
 
-- A memórián belüli online Tranzakciófeldolgozási, [kvórum üzleti megoldások tudta 70 %-kal dtu-k fokozása mellett az alkalmazások és szolgáltatások duplán](https://customers.microsoft.com/story/quorum-doubles-key-databases-workload-while-lowering-dtu-with-sql-database).
+- A memórián belüli online Tranzakciófeldolgozási, [kvórum üzleti megoldások történt képes toodouble a munkaterhelés dtu-k javítása 70 %-kal](https://customers.microsoft.com/story/quorum-doubles-key-databases-workload-while-lowering-dtu-with-sql-database).
     - DTU azt jelenti, hogy *adatbázis-átviteli egység*, és egy az erőforrás-felhasználás mesurement tartalmazza.
-- A következő videó bemutatja az erőforrás-felhasználást egy példa munkaterhelés jelentős fejlesztéseket: [memórián belüli online Tranzakciófeldolgozási az Azure SQL adatbázis Video](https://channel9.msdn.com/Shows/Data-Exposed/In-Memory-OTLP-in-Azure-SQL-DB).
-    - További részletekért lásd a következő blogbejegyzésben: [memórián belüli online Tranzakciófeldolgozási az Azure SQL adatbázis Blog utáni](https://azure.microsoft.com/blog/in-memory-oltp-in-azure-sql-database/)
+- hello következő videó bemutatja az erőforrás-felhasználást egy példa munkaterhelés jelentős fejlesztéseket: [memórián belüli online Tranzakciófeldolgozási az Azure SQL adatbázis Video](https://channel9.msdn.com/Shows/Data-Exposed/In-Memory-OTLP-in-Azure-SQL-DB).
+    - További részletekért lásd: hello blogbejegyzést: [memórián belüli online Tranzakciófeldolgozási az Azure SQL adatbázis Blog utáni](https://azure.microsoft.com/blog/in-memory-oltp-in-azure-sql-database/)
 
-A memóriában technológiák minden adatbázisa prémium tarifacsomagra, beleértve az adatbázisok prémium rugalmas készletek érhetők el.
+A memóriában technológiák minden adatbázisa hello prémium csomagban, beleértve az adatbázisok prémium rugalmas készletek érhetők el.
 
-A következő videó ismerteti a lehetséges teljesítménynövekedést érhet el, a memórián belüli szolgáltatáshoz. az Azure SQL-adatbázis. Ne feledje, hogy jobb a teljesítménye, hogy mindig számos tényezőtől függ, többek között a munkaterhelés és adatok, az adatbázis minták, és így tovább.
+hello következő videó ismerteti lehetséges teljesítménynövekedést érhet el, a memórián belüli szolgáltatáshoz. az Azure SQL-adatbázis. Ne feledje, hogy hello jobb teljesítménye, hogy mindig számos tényezőtől függ, például hello jellege hello munkaterhelési adatok hozzáférési mintázatát hello adatbázis, és így tovább.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-SQL-Database-In-Memory-Technologies/player]
 >
 >
 
-Az Azure SQL-adatbázis a következő memórián belüli technológiákat rendelkezik:
+Az Azure SQL Database a következő memórián belüli technológiák hello rendelkezik:
 
 - *A memórián belüli online Tranzakciófeldolgozási* növeli az adatátviteli sebességet, és csökkenti a késést tranzakció feldolgozásra. A memórián belüli online Tranzakciófeldolgozási előnyeit kihasználó forgatókönyvek a következők: nagy átviteli tranzakció, például kereskedelmi és játékokban, adatfeldolgozást események vagy az IoT-eszközök, gyorsítótárazás, az adatok betöltését, és az ideiglenes tábla és a tábla változó forgatókönyvek feldolgozása.
-- *Fürtözött oszlopcentrikus indexek* csökkenti a tárolási erőforrásigényét (legfeljebb 10-szer) és a jelentéskészítési és elemzési lekérdezések teljesítményének javítása. Segítségével azt a ténytáblák az adatpiac jelenti az igényei több adatot az adatbázishoz, és javíthatja a teljesítményt. Is segítségével, és az előzmények az operatív adatbázis archivált, és akár 10-szer több adat lekérdezése.
-- *Nem fürtözött oszloptárindex* HTAP segítséget kaphat a valós idejű az operatív adatbázis közvetlen lekérdezése, olcsóbbá kivonatot futtatásának szükségessége nélkül a vállalatra vonatkozó átalakító, és (ETL) folyamat betölteni, és várja meg a az adatraktár kell feltöltenie. Nem fürtözött oszloptárindex OLTP adatbázis nagyon gyorsan elemzési lekérdezések végrehajtása közben csökkenti a működési munkaterhelés gyakorolt hatás engedélyezése.
-- A oszlopcentrikus indexszel rendelkező memóriaoptimalizált táblák kombinációja is lehet. Ez a kombináció lehetővé teszi a rendkívül gyors tranzakció-feldolgozást, és a *egyidejűleg* elemzési lekérdezések nagyon gyorsan futtatnak ugyanazokat az adatokat.
+- *Fürtözött oszlopcentrikus indexek* csökkenti a tárolási erőforrásigényét (felfelé too10 alkalommal) és a jelentéskészítési és elemzési lekérdezések teljesítményének javítása. Használhatja a ténytáblák az adatok jelenti toofit további adatokat az adatbázisban, és a teljesítmény javításához. Is használatát és az előzmények az operatív adatbázis tooarchive, és képes tooquery too10 alkalommal be kell több adatot.
+- *Nem fürtözött oszloptárindex* HTAP segítségét, toogain valós idejű működési hello lekérdezése a vállalatra betekintést hello kell toorun nélkül egy drága kinyerési, átalakítási és betöltési (ETL) folyamat közvetlenül, adatbázis, és várjon, amíg a hello data warehouse toobe feltöltve. Nem fürtözött oszloptárindex hello OLTP adatbázis, nagyon gyorsan elemzési lekérdezések végrehajtása közben csökkenhet az hello működési munkaterhelés hello gyakorolt engedélyezése.
+- A oszlopcentrikus indexszel rendelkező memóriaoptimalizált táblák hello kombinációja is lehet. Ez a kombináció lehetővé teszi a tooperform nagyon gyorsan tranzakció-feldolgozásra, és túl*egyidejűleg* futtatási analytics lévő kérdezi le, nagyon gyorsan hello azonos adatokat.
 
-Oszlopcentrikus indexek és a memórián belüli online Tranzakciófeldolgozási óta SQL Server termékhez 2012 és a 2014, illetve. Az Azure SQL Database és SQL Server megosztani a memórián belüli technológiák azonos végrehajtására. Következő lépésként ezek a technológiák új lehetőségek kiadott az Azure SQL Database először előtt a SQL Server.
+Oszlopcentrikus indexek és a memórián belüli online Tranzakciófeldolgozási óta része hello SQL Server 2012 és a 2014-re kulcsattribútumokkal. Az Azure SQL Database és SQL Server megosztása hello memórián belüli technológiák azonos végrehajtását. Következő lépésként ezek a technológiák új lehetőségek kiadott az Azure SQL Database először előtt a SQL Server.
 
-Ez a témakör a memórián belüli online Tranzakciófeldolgozási és oszlopcentrikus indexek, az Azure SQL Database vonatkozó szempontokat ismerteti, és minták is tartalmazza:
-- A tárolási és adatok méretkorlátait látni fogja, ezek a technológiák hatását.
-- Láthatja, hogy ezek a technológiák között a különböző árképzési szinteket használó adatbázisok mozgása kezelése.
-- Látni fogja, hogy bemutassa a memórián belüli online Tranzakciófeldolgozási, valamint az Azure SQL Database oszlopcentrikus indexek használata két minta.
+Ez a témakör ismerteti, amelyek adott tooAzure SQL-adatbázis a memórián belüli online Tranzakciófeldolgozási és oszlopcentrikus indexek aspektusait, és minták is tartalmazza:
+- A tárolási és adatok méretkorlátait látni fogja, ezek a technológiák hello hatását.
+- Láthatja, hogyan toomanage hello ezek a technológiák között különböző tarifacsomagjainak hello használó adatbázisok mozgása.
+- Látni fogja, amelyek a memórián belüli online Tranzakciófeldolgozási, valamint az Azure SQL Database oszlopcentrikus indexek használata hello szemléltetik két minta.
 
-További információ a következő forrásanyagokban talál.
+Hello erőforrások további információt a következő témakörben talál.
 
-A technológiákkal kapcsolatos részletesebb információk:
+Hello technológiákkal kapcsolatos részletesebb információk:
 
-- [Memórián belüli online Tranzakciófeldolgozási áttekintése és a használati forgatókönyvek](https://msdn.microsoft.com/library/mt774593.aspx) (tartalmazza a felhasználói esettanulmányok és információk első lépések)
+- [Memórián belüli online Tranzakciófeldolgozási áttekintése és a használati forgatókönyvek](https://msdn.microsoft.com/library/mt774593.aspx) (tartalmazza a toocustomer esettanulmányok hivatkozások és információk tooget lépések)
 - [A memórián belüli online Tranzakciófeldolgozási dokumentációja](http://msdn.microsoft.com/library/dn133186.aspx)
 - [Oszlopcentrikus indexek útmutató](https://msdn.microsoft.com/library/gg492088.aspx)
 - Hibrid tranzakciós/analitikus feldolgozási (HTAP), más néven [valós idejű működési elemzés](https://msdn.microsoft.com/library/dn817827.aspx)
 
-Gyors segítséget nyújthat a memórián belüli online Tranzakciófeldolgozási: [Quick Start 1: memórián belüli online Tranzakciófeldolgozási technológiák gyorsabb a T-SQL teljesítmény](http://msdn.microsoft.com/library/mt694156.aspx) (segítségével egy másik cikkben első lépések)
+Gyors segítséget nyújthat a memórián belüli online Tranzakciófeldolgozási: [Quick Start 1: memórián belüli online Tranzakciófeldolgozási technológiák gyorsabb a T-SQL teljesítmény](http://msdn.microsoft.com/library/mt694156.aspx) (egy másik cikkben toohelp első lépések)
 
-Részletes videók technológiákkal kapcsolatos:
+Részletes videók hello technológiákkal kapcsolatos:
 
-- [Memórián belüli online Tranzakciófeldolgozási az Azure SQL Database](https://channel9.msdn.com/Shows/Data-Exposed/In-Memory-OTLP-in-Azure-SQL-DB) (amely tartalmazza a bemutató jobb teljesítményt nyújt, és ezekkel az eredményekkel saját kezűleg reprodukálásához szükséges lépések)
-- [Memórián belüli online Tranzakciófeldolgozási videók: Mi van, és ha/hogyan a használatára](https://blogs.msdn.microsoft.com/sqlserverstorageengine/2016/10/03/in-memory-oltp-video-what-it-is-and-whenhow-to-use-it/)
+- [Memórián belüli online Tranzakciófeldolgozási az Azure SQL Database](https://channel9.msdn.com/Shows/Data-Exposed/In-Memory-OTLP-in-Azure-SQL-DB) (amely tartalmazza a teljesítmény bemutató előnyökkel jár a és lépéseket tooreproduce ezekkel az eredményekkel saját kezűleg)
+- [Memórián belüli online Tranzakciófeldolgozási videók: Mi van, és ha/hogyan toouse azt](https://blogs.msdn.microsoft.com/sqlserverstorageengine/2016/10/03/in-memory-oltp-video-what-it-is-and-whenhow-to-use-it/)
 - [Az Oszloptárindex: A memórián belüli Analytics videók Ignite 2016](https://blogs.msdn.microsoft.com/sqlserverstorageengine/2016/10/04/columnstore-index-in-memory-analytics-i-e-columnstore-index-videos-from-ignite-2016/)
 
 ## <a name="storage-and-data-size"></a>Tárolás és az adatok mérete
 
 ### <a name="data-size-and-storage-cap-for-in-memory-oltp"></a>A memórián belüli online Tranzakciófeldolgozási az adatok méretét és a tárolási cap
 
-A memórián belüli online Tranzakciófeldolgozási memóriaoptimalizált táblákkal, felhasználói adatok tárolásához használt tartalmazza. Ezek a táblázatok memóriában szükségesek. Kezelheti a memória közvetlenül az SQL Database szolgáltatásban, mert a felhasználói adatok egy kvótát fogalmát van. Ezzel az ötlettel nevezzük *memórián belüli online Tranzakciófeldolgozási tárolási*.
+A memórián belüli online Tranzakciófeldolgozási memóriaoptimalizált táblákkal, felhasználói adatok tárolásához használt tartalmazza. Ezek a táblázatok a memóriában szükséges toofit. Kezelheti közvetlenül az SQL Database szolgáltatás hello memória, mert van felhasználói adatok egy kvótát hello fogalmát. Ezzel az ötlettel hivatkozott tooas *memórián belüli online Tranzakciófeldolgozási tárolási*.
 
-Minden tarifacsomag és minden rugalmas készlet árképzési szint támogatott önálló adatbázis bizonyos mennyiségű memórián belüli online Tranzakciófeldolgozási tárolási tartalmazza. Írásának időpontjában a tárolási gigabájt minden 125 adatbázis-tranzakciós egységek (dtu-i) vagy a rugalmas adatbázis-tranzakciós egységek (edtu-k) beolvasása.
+Minden tarifacsomag és minden rugalmas készlet árképzési szint támogatott önálló adatbázis bizonyos mennyiségű memórián belüli online Tranzakciófeldolgozási tárolási tartalmazza. Hello írásának időpontjában kap egy gigabájtos méretű tárhely minden 125 adatbázis-tranzakciós egységek (dtu-i) vagy a rugalmas adatbázis tranzakciós egységek (edtu-k).
 
-A [SQL adatbázis szolgáltatásszintjeinek](sql-database-service-tiers.md) cikk rendelkezik a memórián belüli online Tranzakciófeldolgozási elérhető tároló minden támogatott önálló adatbázis és a rugalmas készlet árképzési szint hivatalos listája.
+Hello [SQL adatbázis szolgáltatásszintjeinek](sql-database-service-tiers.md) cikk rendelkezik hello hello memórián belüli online Tranzakciófeldolgozási elérhető tároló minden támogatott önálló adatbázis és a rugalmas készlet árképzési szint hivatalos listája.
 
-A következő elemek felé a memórián belüli online Tranzakciófeldolgozási tároló maximális száma:
+a következő elemek száma a memórián belüli online Tranzakciófeldolgozási tárolási cap felé hello:
 
-- A memóriaoptimalizált táblák és Táblaváltozók adatsorok aktív felhasználónként. Vegye figyelembe, hogy a régi sor verziók száma nem a kap felé.
+- A memóriaoptimalizált táblák és Táblaváltozók adatsorok aktív felhasználónként. Vegye figyelembe, hogy a régi sor verziók száma nem hello cap felé.
 - A memóriaoptimalizált táblák indexei.
 - Az ALTER TABLE műveletek működési munkaterhelés.
 
-Elérte a kap, ha ki a kvóta hibaüzenetet kap, és már nem tudunk beszúrásához vagy frissítéséhez adatokat. Ez a hiba elhárítása érdekében, törli az adatokat, vagy növelje az adatbázis vagy a készlet tarifacsomagját.
+Találati hello kap, ha ki a kvóta hibaüzenetet kap, és már nem képes adatok tooinsert vagy frissítés áll. toomitigate Ez a hiba törli az adatokat, vagy növelje a hello adatbázis vagy a készlet tarifacsomagjának hello.
 
-További információk a tárhely kihasználtságát a memórián belüli online Tranzakciófeldolgozási figyelése és a riasztások konfigurálása, ha majdnem elérte a maximális: [figyelő memórián belüli tároló](sql-database-in-memory-oltp-monitoring.md).
+További információk a tárhely kihasználtságát a memórián belüli online Tranzakciófeldolgozási figyelése és riasztások konfigurálása, ha majdnem elérte hello cap: [figyelő memórián belüli tároló](sql-database-in-memory-oltp-monitoring.md).
 
 #### <a name="about-elastic-pools"></a>Tudnivalók a rugalmas készletek
 
-A rugalmas készletek a memórián belüli online Tranzakciófeldolgozási tárolási a készletben lévő összes adatbázisok által megosztott. Ezért a használata egy adatbázis hatással lehet más adatbázisok. Ez a két megoldást a következők:
+A rugalmas készletek hello memórián belüli online Tranzakciófeldolgozási tároló összes adatbázis hello készletben által megosztott. Ezért egy adatbázis hello használata hatással lehet más adatbázisok. Ez a két megoldást a következők:
 
-- Állítsa a Max-edtu-k az adatbázisok, amely kisebb, mint egy teljes készlet edtu-k számát. A maximális caps a memórián belüli online Tranzakciófeldolgozási tárhely kihasználtságát, a készlet méretét, amely megfelel az edtu-k száma bármely adatbázisban.
-- Állítsa a Min-edtu-k, amely nagyobb, mint 0. Ez a minimum garantálja, hogy a készlet minden egyes adatbázis rendelkezik-e elérhető a memórián belüli online Tranzakciófeldolgozási tárolókapacitást, amely megfelel a konfigurált minimális eDTU.
+- Állítsa a Max-edtu-k az adatbázisok, amely kisebb, mint hello adatbáziskészlet egészét hello edtu-k száma. A maximális caps hello memórián belüli online Tranzakciófeldolgozási tárhely kihasználtságát, bármely adatbázis hello készletben, toohello méretének megfelelő toohello edtu-k száma.
+- Állítsa a Min-edtu-k, amely nagyobb, mint 0. A minimális garantálja, hogy rendelkezik-e a memórián belüli online Tranzakciófeldolgozási tárolóhellyel toohello megfelelő mennyiségű hello hello készlet minden egyes adatbázis konfigurált minimális-edtu-ra.
 
 ### <a name="data-size-and-storage-for-columnstore-indexes"></a>Adatok mérete és az oszlopcentrikus indexek tároló
 
-Oszlopcentrikus indexek nem szükséges a memóriában. A csak kap az indexek mérete ezért a maximális általános adatbázis méretet, amelyet dokumentációja a [SQL adatbázis szolgáltatásszintjeinek](sql-database-service-tiers.md) cikk.
+Oszloptárindexek nem szükséges toofit a memóriában. Ezért a csak a hello indexek hello mérete cap hello általános adatbázis maximális méretet, amelyet hello ismertetett hello [SQL adatbázis szolgáltatásszintjeinek](sql-database-service-tiers.md) cikk.
 
-Fürtözött oszlopcentrikus indexek használata esetén a oszlopos tömörítési alaptábla tárolására szolgál. Ez a fajta tömörítés jelentősen csökkenti a tárolási kezdjen a felhasználói adatok, ami azt jelenti, hogy több adatot elfér az adatbázisban. A tömörítés további növelni a [oszlopos archiválási tömörítési](https://msdn.microsoft.com/library/cc280449.aspx#Using Columnstore and Columnstore Archive Compression). Az adatok jellegétől függ érhet el tömörítés mértéke, de 10-szer a tömörítés nem ritka.
+Fürtözött oszlopcentrikus indexek használata esetén oszlopos tömörítési hello alaptábla tárolására szolgál. Ez a fajta tömörítés jelentősen csökkenti hello tárolási kezdjen a felhasználói adatok, ami azt jelenti, hogy több adatot is elférjen hello adatbázisban. Hello tömörítési további növelni a [oszlopos archiválási tömörítési](https://msdn.microsoft.com/library/cc280449.aspx#Using Columnstore and Columnstore Archive Compression). hello-mel elérhető tömörítési mértékét hello jellege hello adatokat, de 10-szer hello tömörítés nem ritka.
 
-Például ha egy adatbázist, mely legfeljebb 1 terabájtnál (TB) és a tömörítést 10-szer oszlopcentrikus indexek használatával érhetők el, is elférjen összesen 10 TB-nyi felhasználói adatokat az adatbázisban.
+Például ha olyan adatbázist 1 terabájtnál (TB) maximális mérettel és 10-szer hello tömörítési oszlopcentrikus indexek használatával érhetők el, is elférjen 10 TB-nyi felhasználói adatok összesen hello adatbázisban.
 
-Fürtözetlen oszlopcentrikus indexek használata esetén a következő alaptáblában továbbra is a hagyományos sortárindex formátum tárolódik. Ezért a tárhely-megtakarítást, nagy, mint a fürtözött oszlopcentrikus indexek nem. Azonban ha egy hagyományos fürtözött indexek száma a egyetlen oszlopcentrikus indexszel rendelkező, továbbra is láthatja a tárolási kezdjen a következő táblázatban található az általános megtakarítások.
+Fürtözetlen oszlopcentrikus indexek használata esetén hello alaptábla továbbra is tárolódik hello hagyományos sortárindex formátumban. Ezért hello tárhely-megtakarítást, nagy, mint a fürtözött oszlopcentrikus indexek nem. Azonban ha egy hagyományos fürtözött indexek száma a egyetlen oszlopcentrikus indexszel rendelkező, is látható hello tárolási erőforrásigényét hello tábla egy átfogó megtakarítását.
 
 ## <a name="moving-databases-that-use-in-memory-technologies-between-pricing-tiers"></a>A memóriában technológiák közötti árképzési szinteket használó adatbázisok áthelyezése
 
-Nincsenek soha nem azonosított inkompatibilitásokat vagy egyéb problémák történő frissítésekor egy magasabb szintű tarifacsomagban használható, többek között a Premium szabvány. Az elérhető funkciókat és erőforrások csak növelni.
+Nincsenek soha nem azonosított inkompatibilitásokat vagy egyéb probléma magasabb tarifacsomagra, többek között a szabványos tooPremium tooa frissítésekor. hello elérhető funkciókat és erőforrások csak növelni.
 
-De alacsonyabb verziójúra változtatása az árképzési szint negatív hatással lehet az adatbázis. A hatás különösen kétségtelenül, amikor Ön visszaminősítését prémiumról alapszintű vagy Standard amikor az adatbázis memórián belüli online Tranzakciófeldolgozási objektumokat tartalmaz. Memóriaoptimalizált táblákkal, és oszlopcentrikus indexek esetében nem érhetők el az alacsonyabb szintre való visszalépést után (még akkor is, ha akkor is látható maradjon,). Ugyanazok a feltételek vonatkoznak, amikor egy rugalmas készlet árképzési szintjének csökkentése, vagy egy adatbázis áthelyezése a szolgáltatáshoz. A memóriában, alapszintű vagy Standard rugalmas készlet.
+De tarifacsomag visszaminősítés hello negatívan befolyásolhatja az adatbázis. hello hatás különösen akkor látható, ha Ön a prémium szintű tooStandard visszaminősítését vagy alapvető akkor, ha az adatbázis memórián belüli online Tranzakciófeldolgozási objektumokat tartalmaz. A memóriaoptimalizált táblák és oszlopcentrikus indexek esetében nem érhetők el hello alacsonyabb szintre való visszalépést után (még akkor is, ha akkor is látható maradjon,). hello ugyanazok a feltételek vonatkoznak hello rugalmas készlet tarifacsomagjának, vagy az adatbázis áthelyezése a szolgáltatáshoz. A memóriában, alapszintű vagy Standard rugalmas készletet éppen csökkentését.
 
 ### <a name="in-memory-oltp"></a>Memóriabeli OLTP
 
-*A Basic vagy Standard alacsonyabb verziójúra változtatása*: memórián belüli online Tranzakciófeldolgozási a Standard vagy alapszintű rétegben adatbázisokban nem támogatott. Emellett nem lehet áthelyezni egy adatbázist, amelynek a Standard vagy Basic réteghez memórián belüli online Tranzakciófeldolgozási objektumokat.
+*Alacsonyabb verziójúra változtatása tooBasic/Standard*: memórián belüli online Tranzakciófeldolgozási hello Standard vagy a Basic szint-adatbázisokban nem támogatott. Ezenkívül nem lehetséges toomove egy adatbázist, amelynek a memórián belüli online Tranzakciófeldolgozási objektumok toohello Standard vagy a Basic szint.
 
-Előtt visszaminősítését az adatbázis Standard/egyszerű, távolítsa el az összes memóriaoptimalizált táblák és táblatípusokban, valamint a T-SQL minden natív módon lefordított modulok.
+Mielőtt visszaminősítését hello adatbázis tooStandard/egyszerű, távolítsa el az összes memóriaoptimalizált táblák és táblatípusokban, valamint a T-SQL minden natív módon lefordított modulok.
 
-Nincs olyan tudni, hogy egy adott adatbázisnak támogatja-e a memórián belüli online Tranzakciófeldolgozási programozott módon. A következő Transact-SQL-lekérdezés hajthat végre:
+A programozott módon toounderstand van e egy adott adatbázisnak támogatja a memórián belüli online Tranzakciófeldolgozási. A következő Transact-SQL-lekérdezések hello hajthat végre:
 
 ```
 SELECT DatabasePropertyEx(DB_NAME(), 'IsXTPSupported');
 ```
 
-Ha a lekérdezés visszaadja az **1**, a memórián belüli online Tranzakciófeldolgozási támogatott ebben az adatbázisban.
+Ha hello lekérdezés visszaadja az **1**, a memórián belüli online Tranzakciófeldolgozási támogatott ebben az adatbázisban.
 
 
-*Egy alacsonyabb prémium csomagra alacsonyabb verziójúra változtatása*: memóriaoptimalizált táblázatok adatait hozzá kell férnie a memórián belüli online Tranzakciófeldolgozási tárolóban, amely az adatbázis árképzési szintjének társított vagy érhető el a rugalmas készletben. Ha kísérli meg az árképzési szint csökkentése, vagy az adatbázist áthelyezi az a készletbe, amely nem rendelkezik elegendő memórián belüli online Tranzakciófeldolgozási tárolóhellyel, a művelet sikertelen lesz.
+*Alacsonyabb verziójúra változtatása tooa alacsonyabb prémium csomagban*: memóriaoptimalizált táblázatok adatait, amely kapcsolódik az IP-címek hello adatbázis hello vagy nem áll rendelkezésre hello rugalmas hello memórián belüli online Tranzakciófeldolgozási tárolási kell férnie. Ha hello adatbázis áthelyezésének vagy IP-címek toolower hello próbálja készletbe, amely nem rendelkezik elegendő memórián belüli online Tranzakciófeldolgozási rendelkezésre álló tár, hello művelet sikertelen lesz.
 
 ### <a name="columnstore-indexes"></a>Oszlopcentrikus indexek
 
-*Basic vagy Standard visszaminősítése*: Oszlopcentrikus indexek használata támogatott, csak a prémium tarifacsomag, nem pedig a Standard vagy Basic rétegek. Amikor visszaminősítését alapszintű vagy Standard az adatbázist, az oszlopcentrikus index nem érhető el. A rendszer megőrzi az oszlopcentrikus index, de soha ne használja a az index. Ha később frissíteni vissza Premium, az oszlopcentrikus index azonnal készen áll a újra javítható.
+*Alacsonyabb verziójúra változtatása tooBasic vagy Standard*: Oszlopcentrikus indexek használata támogatott, csak a hello prémium tarifacsomag, és nem a hello Standard vagy Basic rétegek. Ha Ön megállapításában, az adatbázis tooStandard vagy alapszintű kiadásra, az oszlopcentrikus index nem érhető el. hello rendszer fenntartja az oszlopcentrikus index, de soha ne használja a hello index. Később vissza tooPremium, az oszlopcentrikus index nem frissíthető azonnal készen toobe újra alkalmazhatók.
 
-Ha rendelkezik egy **fürtözött** oszlopcentrikus indexet, az egész tábla nem érhető el réteg alacsonyabb szintre való visszalépést után. Ezért ajánlott minden drop *fürtözött* oszlopcentrikus indexeket előtt meg megállapításában, hogy az adatbázis alatt prémium tarifacsomagra.
+Ha rendelkezik egy **fürtözött** oszlopcentrikus index hello egész tábla nem érhető el réteg alacsonyabb szintre való visszalépést után. Ezért ajánlott minden drop *fürtözött* oszlopcentrikus indexeket, az alábbi hello prémium csomagban adatbázis visszaminősítését előtt.
 
-*Egy alacsonyabb prémium csomagra alacsonyabb verziójúra változtatása*: az alacsonyabb szintre való visszalépést sikeres lesz, ha a teljes adatbázis megfelel a cél IP-címek a maximális méretét, vagy a rendelkezésre álló tár az a rugalmas készlet belül. Nincs az oszlopcentrikus indexek az adott hatással.
+*Alacsonyabb verziójúra változtatása tooa alacsonyabb prémium csomagban*: az alacsonyabb szintre való visszalépést sikeres lesz, ha hello teljes adatbázis megfelelő hello cél IP-címek hello adatbázis maximális méretét, vagy belül hello rendelkezésre álló tár hello a rugalmas készletben. Nincs a hello oszlopcentrikus indexek adott hatással.
 
 
 <a id="install_oltp_manuallink" name="install_oltp_manuallink"></a>
 
 &nbsp;
 
-## <a name="1-install-the-in-memory-oltp-sample"></a>1. A memórián belüli online Tranzakciófeldolgozási minta telepítése
+## <a name="1-install-hello-in-memory-oltp-sample"></a>1. Hello memórián belüli online Tranzakciófeldolgozási minta telepítése
 
-A AdventureWorksLT mintaadatbázis mindössze néhány kattintással hozhatja létre a [Azure-portálon](https://portal.azure.com/). A jelen szakaszban szereplő lépéseket, majd azt ismertetik, hogyan a memórián belüli online Tranzakciófeldolgozási objektumok AdventureWorksLT adatbázis kiegészítése, és bemutatják a teljesítménybeli előnyökben.
+Hello AdventureWorksLT mintaadatbázis hello mindössze néhány kattintással létrehozhat [Azure-portálon](https://portal.azure.com/). Ezt követően hello részben ebben a szakaszban megtudhatja, hogyan a memórián belüli online Tranzakciófeldolgozási objektumok AdventureWorksLT adatbázis kiegészítése és teljesítménybeli előnyökben bemutatása.
 
 A több simplistic, de több tetszetős teljesítmény bemutató a memórián belüli online Tranzakciófeldolgozási lásd:
 
@@ -155,13 +155,13 @@ A több simplistic, de több tetszetős teljesítmény bemutató a memórián be
 
 #### <a name="installation-steps"></a>Telepítés lépései
 
-1. Az a [Azure-portálon](https://portal.azure.com/), Premium adatbázis létrehozása a kiszolgálón. Állítsa be a **forrás** AdventureWorksLT minta adatbázisba. Részletes útmutatásért lásd: [az első Azure SQL-adatbázis létrehozása](sql-database-get-started-portal.md).
+1. A hello [Azure-portálon](https://portal.azure.com/), Premium adatbázis létrehozása a kiszolgálón. Set hello **forrás** toohello AdventureWorksLT mintaadatbázis. Részletes útmutatásért lásd: [az első Azure SQL-adatbázis létrehozása](sql-database-get-started-portal.md).
 
-2. Kapcsolódni az adatbázishoz az SQL Server Management Studio [(SSMS.exe)](http://msdn.microsoft.com/library/mt238290.aspx).
+2. Csatlakozás SQL Server Management Studio toohello adatbázis [(SSMS.exe)](http://msdn.microsoft.com/library/mt238290.aspx).
 
-3. Másolás a [memórián belüli online Tranzakciófeldolgozási Transact-SQL parancsfájl](https://raw.githubusercontent.com/Microsoft/sql-server-samples/master/samples/features/in-memory/t-sql-scripts/sql_in-memory_oltp_sample.sql) a vágólapra. A T-SQL parancsfájlt a szükséges memórián belüli objektumok a AdventureWorksLT mintaadatbázis az 1. lépésben létrehozott hoz létre.
+3. Másolás hello [memórián belüli online Tranzakciófeldolgozási Transact-SQL parancsfájl](https://raw.githubusercontent.com/Microsoft/sql-server-samples/master/samples/features/in-memory/t-sql-scripts/sql_in-memory_oltp_sample.sql) tooyour vágólapra. hello T-SQL parancsfájlt hoz létre hello szükséges memórián belüli objektumok hello AdventureWorksLT példaadatbázisát, amelyet az 1. lépésben létrehozott.
 
-4. Illessze be a T-SQL parancsfájl SSMS, és majd végrehajtani a parancsprogramot. A `MEMORY_OPTIMIZED = ON` záradék CREATE TABLE utasítás fontosságúak. Példa:
+4. Hello T-SQL parancsfájl beillesztése SSMS és hajthat végre hello parancsfájl. Hello `MEMORY_OPTIMIZED = ON` záradék CREATE TABLE utasítás fontosságúak. Példa:
 
 
 ```
@@ -175,7 +175,7 @@ CREATE TABLE [SalesLT].[SalesOrderHeader_inmem](
 #### <a name="error-40536"></a>Hiba 40536
 
 
-Ha hiba 40536 a T-SQL parancsfájl futtatásakor, futtassa a következő T-SQL parancsfájlt, és győződjön meg arról, hogy az adatbázis támogatja-e a memóriában lévő:
+Ha hiba 40536 hello T-SQL parancsfájl futtatásakor, futtassa a következő T-SQL parancsfájl tooverify, hogy hello adatbázis támogatja a memórián belüli hello:
 
 
 ```
@@ -183,12 +183,12 @@ SELECT DatabasePropertyEx(DB_Name(), 'IsXTPSupported');
 ```
 
 
-Eredménye **0** azt jelenti, hogy a memóriában nem támogatott, és **1** azt jelenti, hogy esetén támogatott. A probléma diagnosztizálása érdekében győződjön meg arról, hogy az adatbázis, a prémium szolgáltatásszintet.
+Eredménye **0** azt jelenti, hogy a memóriában nem támogatott, és **1** azt jelenti, hogy esetén támogatott. toodiagnose hello probléma, győződjön meg arról, hogy hello az adatbázis jelenleg hello prémium szolgáltatásszintet.
 
 
-#### <a name="about-the-created-memory-optimized-items"></a>A létrehozott memóriaoptimalizált elemek kapcsolatos
+#### <a name="about-hello-created-memory-optimized-items"></a>Hello kapcsolatos létre memóriaoptimalizált elemek
 
-**Táblák**: A minta a következő memóriaoptimalizált táblákat tartalmaz:
+**Táblák**: hello minta tartalmaz a következő memóriaoptimalizált táblák hello:
 
 - SalesLT.Product_inmem
 - SalesLT.SalesOrderHeader_inmem
@@ -197,10 +197,10 @@ Eredménye **0** azt jelenti, hogy a memóriában nem támogatott, és **1** azt
 - Demo.DemoSalesOrderDetailSeed
 
 
-A memóriaoptimalizált táblák keresztül vizsgálhatja meg a **Object Explorer** szolgáltatáshoz az ssms. Kattintson a jobb gombbal **táblák** > **szűrő** > **beállítások szűrése** > **Memóriaoptimalizált**. Az érték 1.
+Memóriaoptimalizált táblák keresztül hello vizsgálhatja **Object Explorer** szolgáltatáshoz az ssms. Kattintson a jobb gombbal **táblák** > **szűrő** > **beállítások szűrése** > **Memóriaoptimalizált**. hello értéke 1.
 
 
-Vagy a katalógus nézetek, például:
+Vagy hello katalógusnézetekre, például:
 
 
 ```
@@ -222,33 +222,33 @@ SELECT uses_native_compilation, OBJECT_NAME(object_id), definition
 
 &nbsp;
 
-### <a name="run-the-sample-oltp-workload"></a>A minta OLTP-munkaterhelés futtatása
+### <a name="run-hello-sample-oltp-workload"></a>Hello minta OLTP-munkaterhelés futtatása
 
-Az egyetlen különbség a következő két *tárolt eljárások* , hogy az első eljárás használja verziók memóriaoptimalizált táblák esetén a második eljárás a lemezen tábláit használja:
+csak a következő két hello közötti különbség hello *tárolt eljárások* , hogy hello első eljárás hello táblák memóriaoptimalizált verzióját használja, akkor közben hello második eljárás hello lemezen tábláit használja:
 
 - SalesLT**.** usp_InsertSalesOrder**_inmem**
 - SalesLT**.** usp_InsertSalesOrder**_ondisk**
 
 
-Ez a szakasz használata a hasznos látható **ostress.exe** segédprogram stressful szinten két tárolt eljárások végrehajtása. Összehasonlíthatja mennyi ideig tart a két magas terhelés kísérletekhez befejezéséhez.
+Ebben a szakaszban láthatja, hogyan toouse hello hasznos **ostress.exe** segédprogram tooexecute hello stressful szinten két tárolt eljárásokat. Mennyi ideig tart a hello két magas terhelés futtatása toofinish is összehasonlíthatja.
 
 
-Ostress.exe futtatásakor azt javasoljuk, hogy sikeresen lezajlott-e az alábbi tervezett paraméterértékek:
+Ostress.exe futtatásakor azt javasoljuk, hogy mindkét hello alábbi tervezett paraméterértékek át:
 
 - Futtassa a nagyszámú egyidejű kapcsolatok segítségével - n100.
 - Minden kapcsolat hurok több száz időpontokban, a rendelkezik használatával - r500.
 
 
-Érdemes azonban, például - n10 és - r 50 sokkal kisebb értékekkel indítására győződjön meg arról, hogy minden működik.
+Azonban érdemes toostart sokkal kisebb értékekkel, például - n10 és - r 50 tooensure, amely minden működik.
 
 
 ### <a name="script-for-ostressexe"></a>Ostress.exe parancsfájl
 
 
-Ez a szakasz a T-SQL-parancsfájl a ostress.exe parancssori beágyazott jeleníti meg. A parancsfájl a korábban telepített a T-SQL-parancsfájl által létrehozott elemek.
+Ez a szakasz a ostress.exe parancssori beágyazott hello T-SQL-parancsfájl megjeleníti. a parancsfájl hello hello korábban telepített T-SQL-parancsfájl által létrehozott elemek.
 
 
-A következő parancsfájl egy minta értékesítési sorrendben öt sor elemekhez szúr be a következő memóriaoptimalizált *táblák*:
+hello következő parancsfájl illeszt be egy minta értékesítési sorrendben öt sor elemekhez memóriaoptimalizált hello következő *táblák*:
 
 - SalesLT.SalesOrderHeader_inmem
 - SalesLT.SalesOrderDetail_inmem
@@ -278,27 +278,27 @@ end
 ```
 
 
-Annak a *_ondisk* az előző T-SQL-parancsfájlt ostress.exe verziója, cserélje a mindkét előfordulását a *_inmem* a karakterláncrészletre *_ondisk*. A csere hatással a táblák és tárolt eljárások neve.
+toomake hello *_ondisk* verziója hello ostress.exe előző T-SQL-parancsfájlt, cserélje a hello mindkét előfordulását *_inmem* a karakterláncrészletre *_ondisk*. Ezek cserékhez hatással vannak a táblák és tárolt eljárások hello nevét.
 
 
 ### <a name="install-rml-utilities-and-ostress"></a>RML segédprogramok és ostress telepítése
 
 
-Ideális esetben tenné szeretné futtatni ostress.exe egy Azure virtuális gépen (VM). Akkor kell létrehoznia egy [Azure virtuális gép](https://azure.microsoft.com/documentation/services/virtual-machines/) a azonos Azure földrajzi régióban, ahol a AdventureWorksLT adatbázis található. De futtathatja ostress.exe inkább a laptopján.
+Ideális esetben egy Azure virtuális gépen (VM) toorun ostress.exe volna tervezi. Akkor kell létrehoznia egy [Azure virtuális gép](https://azure.microsoft.com/documentation/services/virtual-machines/) a hello a AdventureWorksLT adatbázis tartalmazó azonos Azure földrajzi régióban. De futtathatja ostress.exe inkább a laptopján.
 
 
-A virtuális Gépet, vagy bármilyen üzemeltetéséhez, akkor válassza, a visszajátszás Markup Language (RML) segédprogramokat telepíthet. A segédprogramok ostress.exe tartalmazza.
+Hello VM, vagy bármilyen üzemeltetéséhez, akkor válassza, hello ismétlési Markup Language (RML) segédprogramokat telepíthet. hello segédprogramok ostress.exe tartalmazza.
 
 További információkért lásd:
-- A ostress.exe vitafórum [memórián belüli online Tranzakciófeldolgozási adatbázist](http://msdn.microsoft.com/library/mt465764.aspx).
+- hello ostress.exe vitafórum [memórián belüli online Tranzakciófeldolgozási adatbázist](http://msdn.microsoft.com/library/mt465764.aspx).
 - [A memórián belüli online Tranzakciófeldolgozási adatbázis minta](http://msdn.microsoft.com/library/mt465764.aspx).
-- A [ostress.exe telepítésének blog](http://blogs.msdn.com/b/psssql/archive/2013/10/29/cumulative-update-2-to-the-rml-utilities-for-microsoft-sql-server-released.aspx).
+- Hello [ostress.exe telepítésének blog](http://blogs.msdn.com/b/psssql/archive/2013/10/29/cumulative-update-2-to-the-rml-utilities-for-microsoft-sql-server-released.aspx).
 
 
 
 <!--
 dn511655.aspx is for SQL 2014,
-[Extensions to AdventureWorks to Demonstrate In-Memory OLTP]
+[Extensions tooAdventureWorks tooDemonstrate In-Memory OLTP]
 (http://msdn.microsoft.com/library/dn511655&#x28;v=sql.120&#x29;.aspx)
 
 whereas for SQL 2016+
@@ -308,13 +308,13 @@ whereas for SQL 2016+
 
 
 
-### <a name="run-the-inmem-stress-workload-first"></a>Futtassa a *_inmem* emelje ki először munkaterhelés
+### <a name="run-hello-inmem-stress-workload-first"></a>Futtassa a hello *_inmem* emelje ki először munkaterhelés
 
 
-Használhat egy *RML Cmd Rákérdezés* ablakban a ostress.exe parancssort futtathat. A parancssori paraméterek ostress való közvetlen:
+Használhat egy *RML Cmd Rákérdezés* ablak toorun a ostress.exe parancssor. hello parancssori paraméterek ostress való közvetlen:
 
 - 100 kapcsolatok egyidejű futtatását (-n100).
-- Minden kapcsolat 50 alkalommal a T-SQL-parancsfájl futtatása (-r 50).
+- Minden kapcsolat hello T-SQL-parancsfájl futtatása 50 alkalommal (-r 50).
 
 
 ```
@@ -322,18 +322,18 @@ ostress.exe -n100 -r50 -S<servername>.database.windows.net -U<login> -P<password
 ```
 
 
-A fenti ostress.exe parancssor futtatása:
+toorun hello megelőző ostress.exe parancssorban:
 
 
-1. Alaphelyzetbe állítja az adatbázis az adatok tartalmának szolgáltatáshoz az ssms, az minden korábbi futtatása által beszúrt adatok törléséhez a következő parancs futtatásával:
+1. Futtassa a következő parancs szolgáltatáshoz az ssms, toodelete hello összes hello adatok bármely korábbi futtatása által beszúrt hello adatbázis adatok tartalmának alaphelyzetbe állítása:
 
     ``` tsql
     EXECUTE Demo.usp_DemoReset;
     ```
 
-2. A fenti ostress.exe parancssor szövegét másolja a vágólapra.
+2. Másolja át a megelőző ostress.exe parancssori tooyour vágólapra hello hello szövegét.
 
-3. Cserélje le a `<placeholders>` a paraméterek -S - U -P - d a megfelelő valós értékekkel.
+3. Cserélje le a hello `<placeholders>` hello paraméterek -S - U -P - d a hello javítsa ki a tényleges értékek.
 
 4. A szerkesztett parancssor futtatása a egy RML Cmd ablakot.
 
@@ -341,7 +341,7 @@ A fenti ostress.exe parancssor futtatása:
 #### <a name="result-is-a-duration"></a>Eredménye egy időtartam
 
 
-Ostress.exe befejezése után, a kimenet a végső sorként futtatási időtartama ír a RML Cmd ablakot. Például egy rövidebb vizsgálat tartott körülbelül 1,5 percet:
+Ostress.exe befejezésekor időtartama futtató kimeneti hello RML Cmd ablakban a végső üzletági hello ír. Például egy rövidebb vizsgálat tartott körülbelül 1,5 percet:
 
 `11/12/15 00:35:00.873 [0x000030A8] OSTRESS exiting normally, elapsed time: 00:01:31.867`
 
@@ -349,93 +349,93 @@ Ostress.exe befejezése után, a kimenet a végső sorként futtatási időtarta
 #### <a name="reset-edit-for-ondisk-then-rerun"></a>Alaphelyzetbe állítja, a Szerkesztés *_ondisk*, majd futtassa újra a
 
 
-Miután kapott eredmény az *_inmem* futnak, hajtsa végre az alábbi lépéseket a *_ondisk* futtatása:
+Miután hello hello eredményt *_inmem* futnak, hajtsa végre a következő lépéseket a hello hello *_ondisk* futtatása:
 
 
-1. Az adatbázis visszaállítása a szolgáltatáshoz az ssms az adatok törléséhez a korábbi futtatás által beszúrt a következő parancs futtatásával:
+1. Hello adatbázis visszaállítása a következő parancs az SSMS toodelete hello összes hello adatok hello előző futtatása által beszúrt futtatásával:
 ```
 EXECUTE Demo.usp_DemoReset;
 ```
 
-2. Szerkessze a ostress.exe parancs cseréjét *_inmem* rendelkező *_ondisk*.
+2. Hello ostress.exe parancssori tooreplace összes szerkesztése *_inmem* rendelkező *_ondisk*.
 
-3. Futtassa újra a második ostress.exe, és rögzítse a duration eredménye.
+3. Futtassa újra a hello ostress.exe még egyszer, és rögzítse hello időtartama eredménye.
 
-4. Ebben az esetben alaphelyzetbe állítása az adatbázis (az osztott törlése, mi is vizsgálati adatok nagy mennyiségű lehet).
+4. Ebben az esetben alaphelyzetbe állítása hello adatbázis (Mi lehet a Tesztadatok nagy mennyiségű osztott törlése).
 
 
 #### <a name="expected-comparison-results"></a>Várt összehasonlítás eredménye
 
-A memóriában tesztek kimutatták, hogy javítja a teljesítményt **kilenc alkalommal** a simplistic munkaterhelés, a ostress ugyanabban a régióban Azure-adatbázisként egy Azure virtuális gépen.
+A memóriában tesztek kimutatták, hogy javítja a teljesítményt **kilenc alkalommal** simplistic munkaterhelés, a ostress rendelkező a egy Azure virtuális Gépen futó hello azonos Azure-régiót hello adatbázisként.
 
 <a id="install_analytics_manuallink" name="install_analytics_manuallink"></a>
 
 &nbsp;
 
-## <a name="2-install-the-in-memory-analytics-sample"></a>2. A memórián belüli Analytics minta telepítése
+## <a name="2-install-hello-in-memory-analytics-sample"></a>2. Hello memórián belüli Analytics minta telepítése
 
 
-Ebben a szakaszban összehasonlítja az IO és a statisztika eredményeket oszlopcentrikus index és egy hagyományos b-fa index használatakor.
+Ebben a szakaszban összehasonlítja hello IO és a statisztika eredmények oszlopcentrikus index és egy hagyományos b-fa index használatakor.
 
 
-Az OLTP-munkaterhelés valós idejű elemzés célszerű gyakran egy nem fürtözött oszloptárindex használatára. További információkért lásd: [Oszlopcentrikus indexek leírt](http://msdn.microsoft.com/library/gg492088.aspx).
+Az OLTP-munkaterhelés a valós idejű elemzési esetén gyakran legjobb toouse egy fürtözetlen oszlopcentrikus indexet. További információkért lásd: [Oszlopcentrikus indexek leírt](http://msdn.microsoft.com/library/gg492088.aspx).
 
 
 
-### <a name="prepare-the-columnstore-analytics-test"></a>Készítse elő a oszlopcentrikus analytics teszt
+### <a name="prepare-hello-columnstore-analytics-test"></a>Készítse elő a hello oszlopcentrikus analytics tesztelése
 
 
-1. Az Azure-portál használatával hozható létre a minta egy friss AdventureWorksLT adatbázis.
+1. Hello Azure portál toocreate hello minta egy friss AdventureWorksLT adatbázisát használja.
  - Használja ezt a teljes nevet.
  - Válassza ki a prémium szolgáltatásszintet.
 
-2. Másolás a [sql_in-memory_analytics_sample](https://raw.githubusercontent.com/Microsoft/sql-server-samples/master/samples/features/in-memory/t-sql-scripts/sql_in-memory_analytics_sample.sql) a vágólapra.
- - A T-SQL parancsfájlt a szükséges memórián belüli objektumok a AdventureWorksLT mintaadatbázis az 1. lépésben létrehozott hoz létre.
- - A parancsfájl a dimenziótáblában és két ténytáblák hoz létre. A ténytáblák feltöltött 3.5 millió sort.
- - A parancsfájl elvégzéséhez 15 percig is eltarthat.
+2. Másolás hello [sql_in-memory_analytics_sample](https://raw.githubusercontent.com/Microsoft/sql-server-samples/master/samples/features/in-memory/t-sql-scripts/sql_in-memory_analytics_sample.sql) tooyour vágólapra.
+ - hello T-SQL parancsfájlt hoz létre hello szükséges memórián belüli objektumok hello AdventureWorksLT példaadatbázisát, amelyet az 1. lépésben létrehozott.
+ - hello parancsfájl hello dimenziótáblában és két ténytáblák hoz létre. hello ténytáblák feltöltött 3.5 millió sort.
+ - hello parancsfájl toocomplete 15 percig is eltarthat.
 
-3. Illessze be a T-SQL parancsfájl SSMS, és majd végrehajtani a parancsprogramot. A **OSZLOPCENTRIKUS** kulcsszót a **a CREATE INDEX** utasítás elengedhetetlen, mint:<br/>`CREATE NONCLUSTERED COLUMNSTORE INDEX ...;`
+3. Hello T-SQL parancsfájl beillesztése SSMS és hajthat végre hello parancsfájl. Hello **OSZLOPCENTRIKUS** hello kulcsszót **a CREATE INDEX** utasítás elengedhetetlen, mint:<br/>`CREATE NONCLUSTERED COLUMNSTORE INDEX ...;`
 
-4. Állítsa be AdventureWorksLT 130 kompatibilitási szintje:<br/>`ALTER DATABASE AdventureworksLT SET compatibility_level = 130;`
+4. AdventureWorksLT toocompatibility szint 130 beállítása:<br/>`ALTER DATABASE AdventureworksLT SET compatibility_level = 130;`
 
-    Szint 130 nem közvetlenül kapcsolódik a memóriával kapcsolatos szolgáltatásainak. De szint 130 általában gyorsabb lekérdezési teljesítményt, mint 120.
+    Szint 130 nem közvetlenül kapcsolódó tooIn-memóriával kapcsolatos szolgáltatásainak. De szint 130 általában gyorsabb lekérdezési teljesítményt, mint 120.
 
 
 #### <a name="key-tables-and-columnstore-indexes"></a>Kulcs táblák és az oszlopcentrikus indexek
 
 
-- dbo. FactResellerSalesXL_CCI fürtözött oszlopcentrikus index, amely továbbfejlesztett tömörítés a táblának a *adatok* szintjét.
+- dbo. FactResellerSalesXL_CCI táblának fürtözött oszlopcentrikus index, amely továbbfejlesztett tömörítés: hello *adatok* szintjét.
 
-- dbo. FactResellerSalesXL_PageCompressed táblának egyenértékű rendszeres fürtözött indexet, amely csak a rendszer tömöríti a *lap* szintjét.
-
-
-#### <a name="key-queries-to-compare-the-columnstore-index"></a>Az oszloptárindex összehasonlítandó kulcs lekérdezések
+- dbo. FactResellerSalesXL_PageCompressed táblának egyenértékű rendszeres fürtözött indexet, amely csak a hello tömörített *lap* szintjét.
 
 
-Nincsenek [T-SQL lekérdezés számos különböző futtatható](https://raw.githubusercontent.com/Microsoft/sql-server-samples/master/samples/features/in-memory/t-sql-scripts/clustered_columnstore_sample_queries.sql) teljesítménnyel kapcsolatos fejlesztések megjelenítéséhez. A 2 a T-SQL parancsfájl a lekérdezések pár figyelmet fordítania. Csak egy sorban különböznek:
+#### <a name="key-queries-toocompare-hello-columnstore-index"></a>Kulcs toocompare hello oszlopcentrikus index lekérdezése
+
+
+Nincsenek [T-SQL lekérdezés számos különböző futtatható](https://raw.githubusercontent.com/Microsoft/sql-server-samples/master/samples/features/in-memory/t-sql-scripts/clustered_columnstore_sample_queries.sql) toosee teljesítménynövekedést. T-SQL parancsfájl hello a 2 nagy figyelmet toothis pár lekérdezések. Csak egy sorban különböznek:
 
 
 - `FROM FactResellerSalesXL_PageCompressed a`
 - `FROM FactResellerSalesXL_CCI a`
 
 
-Fürtözött oszlopcentrikus index szerepel a FactResellerSalesXL\_közösségi koordináló intézet tábla.
+Fürtözött oszlopcentrikus index van hello FactResellerSalesXL\_közösségi koordináló intézet tábla.
 
-A következő T-SQL parancsfájl cikkből statisztika IO és a lekérdezés minden tábla idő nyomtatása.
+hello következő T-SQL parancsfájl cikkből kinyomtatja statisztika IO és hello lekérdezések minden tábla ideje.
 
 
 ```
 /*********************************************************************
 Step 2 -- Overview
 -- Page Compressed BTree table v/s Columnstore table performance differences
--- Enable actual Query Plan in order to see Plan differences when Executing
+-- Enable actual Query Plan in order toosee Plan differences when Executing
 */
 -- Ensure Database is in 130 compatibility mode
 ALTER DATABASE AdventureworksLT SET compatibility_level = 130
 GO
 
--- Execute a typical query that joins the Fact Table with dimension tables
--- Note this query will run on the Page Compressed table, Note down the time
+-- Execute a typical query that joins hello Fact Table with dimension tables
+-- Note this query will run on hello Page Compressed table, Note down hello time
 SET STATISTICS IO ON
 SET STATISTICS TIME ON
 GO
@@ -460,8 +460,8 @@ SET STATISTICS TIME OFF
 GO
 
 
--- This is the same Prior query on a table with a clustered columnstore index CCI
--- The comparison numbers are even more dramatic the larger the table is (this is an 11 million row table only)
+-- This is hello same Prior query on a table with a clustered columnstore index CCI
+-- hello comparison numbers are even more dramatic hello larger hello table is (this is an 11 million row table only)
 SET STATISTICS IO ON
 SET STATISTICS TIME ON
 GO
@@ -486,7 +486,7 @@ SET STATISTICS TIME OFF
 GO
 ```
 
-A P2 tarifacsomag adatbázisban körülbelül kilenc alkalommal a jobb teljesítménye ehhez a lekérdezéshez számíthat a fürtözött oszlopcentrikus index összehasonlítja a hagyományos index használatával. P15, a várhatóan hamarosan 57 alkalommal a jobb teljesítménye az oszlopcentrikus index használatával.
+Hello P2 tarifacsomag adatbázisban várhatóan hamarosan kilenc alkalommal a jobb teljesítménye hello a ehhez a lekérdezéshez hello hagyományos index képest hello fürtözött oszlopcentrikus index használatával. A P15 körülbelül 57 alkalommal hello jobb teljesítménye számíthat hello oszlopcentrikus index használatával.
 
 
 

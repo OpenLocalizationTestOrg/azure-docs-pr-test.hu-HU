@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure IoT Hub eszköz twins (.NET/.NET) |} Microsoft Docs"
-description: "Hogyan használható az Azure IoT Hub eszköz twins címkéket, majd az IoT Hub-lekérdezést. Az Azure IoT-eszközök a .NET SDK használatával valósítja meg a szimulált eszköz alkalmazás és az Azure IoT szolgáltatás SDK for .NET egy szolgáltatás-alkalmazást, amely hozzáadja a címkéket és az IoT Hub-lekérdezés futtatása végrehajtásához."
+title: "aaaGet Azure IoT Hub eszköz twins (.NET/.NET) használatába |} Microsoft Docs"
+description: "Hogyan toouse Azure IoT Hub eszköz twins tooadd címkéket, majd az IoT Hub-lekérdezést. Hello Azure IoT-eszközök SDK használata .NET tooimplement hello szimulált eszköz alkalmazásának és hello Azure IoT szolgáltatás SDK .NET tooimplement egy szolgáltatás-alkalmazást, amely hello címkék hozzáadása, és az IoT-központ lekérdezés hello futtatja."
 services: iot-hub
 documentationcenter: node
 author: dsk-2015
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: dkshir
-ms.openlocfilehash: 6073d594117e69676b753a1e3af25fffa3583a2b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7fa73ac896c44e79c6522d252cd1515bd6e7bb2b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-device-twins-netnet"></a>Ismerkedés az eszköz twins (.NET/.NET)
 [!INCLUDE [iot-hub-selector-twin-get-started](../../includes/iot-hub-selector-twin-get-started.md)]
 
-Ez az oktatóanyag végén a konzol .NET alkalmazások lesz:
+Ez az oktatóanyag végén hello hogy ezen .NET konzol alkalmazások:
 
-* **CreateDeviceIdentity**, ilyenkor létrejön egy eszközidentitás és a biztonsági kulcs a szimulált eszköz alkalmazás csatlakoztatása .NET-alkalmazás.
+* **CreateDeviceIdentity**, a .NET-alkalmazások ilyenkor létrejön egy eszközidentitás és a biztonsági kulcs tooconnect a szimulált eszköz alkalmazás.
 * **AddTagsAndQuery**, egy háttér-.NET-alkalmazás, amely címkét ad hozzá, és lekérdezi az eszköz twins.
-* **ReportConnectivity**, egy eszköz .NET-alkalmazás, amely olyan eszköz, amely kapcsolódik a korábban létrehozott eszközidentitás az IoT hub szimulálja, és jelenti a kapcsolat állapotát.
+* **ReportConnectivity**, egy eszköz .NET-alkalmazás, amely olyan eszköz, amely tooyour IoT-központ a korábban létrehozott hello eszközidentitás szimulálja, és jelenti a kapcsolat állapotát.
 
 > [!NOTE]
-> A cikk [Azure IoT SDK-k] [ lnk-hub-sdks] használható eszközt és a háttér-alkalmazások az Azure IoT SDK-k információt nyújt.
+> hello cikk [Azure IoT SDK-k] [ lnk-hub-sdks] információkat nyújt azokról hello Azure IoT SDK-k toobuild használt eszköz és a háttér-alkalmazásokat.
 > 
 > 
 
-Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban hello a következőkre lesz szüksége:
 
 * Visual Studio 2015 vagy Visual Studio 2017.
 * Aktív Azure-fiók. (Ha nincs fiókja, létrehozhat egy [ingyenes fiókot][lnk-free-trial] néhány perc alatt.)
@@ -43,26 +43,26 @@ Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
 
 [!INCLUDE [iot-hub-get-started-create-device-identity-portal](../../includes/iot-hub-get-started-create-device-identity-portal.md)]
 
-Ha szeretne létrehozni az eszközidentitást programozott módon helyette, olvassa el a megfelelő részt a [a szimulált eszköz csatlakoztatása az IoT hub .NET használatával] [ lnk-device-identity-csharp] cikk.
+Ha azt szeretné toocreate hello eszközidentitás programozott módon helyette, olvassa el a megfelelő szakasz hello hello [csatlakoztassa a szimulált eszköz tooyour IoT hubot .NET használatával] [ lnk-device-identity-csharp] cikk.
 
-## <a name="create-the-service-app"></a>A service-alkalmazás létrehozása
-Ebben a szakaszban egy .NET-Konzolalkalmazás (használatával C#) a társított eszközök a két hely metaadatok hozzáadó létrehozása **myDeviceId**. Ezután lekérdezi az eszköz twins tárolja az IoT hub, az eszközök az Egyesült Államok, és a gazdarendszerhez a mobilhálózat kapcsolat jelentett kiválasztása.
+## <a name="create-hello-service-app"></a>Hello service-alkalmazás létrehozása
+Ebben a szakaszban egy .NET-Konzolalkalmazás (használatával C#), amely hely metaadatok toohello eszköz iker társított létrehozása **myDeviceId**. Ezután hello eszköz twins hello IoT-központ hello található hello eszközök kiválasztása tárolja SZÁMUNKRA, és majd hello azokon, mobilhálózat kapcsolatot jelentett lekérdezések.
 
-1. A Visual Studióban adjon hozzá egy Visual C# nyelvű Windows klasszikus asztalialkalmazás-projektet az aktuális megoldáshoz a **Console Application** (Konzolalkalmazás) projektsablonnal. Nevet a projektnek **AddTagsAndQuery**.
+1. A Visual Studio, a Visual C# klasszikus Windows asztal projekt toohello aktuális megoldás hozzáadása hello segítségével **Konzolalkalmazás** projektsablon. Név hello projekt **AddTagsAndQuery**.
    
     ![Új Visual C# Windows klasszikus asztalialkalmazás-projekt][img-createapp]
-1. A Megoldáskezelőben kattintson a jobb gombbal a **AddTagsAndQuery** projektre, és kattintson a **NuGet-csomagok kezelése...** .
-1. Az a **NuGet-Csomagkezelő** ablakban válassza ki **Tallózás** keresse meg a **microsoft.azure.devices**. Válassza ki **telepítése** telepítéséhez a **Microsoft.Azure.Devices** csomagot, majd fogadja el a használati feltételeket. Ez az eljárás letölti és telepíti az [Azure IoT Service SDK][lnk-nuget-service-sdk] (Azure IoT szolgáltatás SDK) NuGet-csomagot és annak függőségeit, valamint hozzáad egy rá mutató hivatkozást is.
+1. A Megoldáskezelőben kattintson a jobb gombbal hello **AddTagsAndQuery** projektre, és kattintson a **NuGet-csomagok kezelése...** .
+1. A hello **NuGet-Csomagkezelő** ablakban válassza ki **Tallózás** keresse meg a **microsoft.azure.devices**. Válassza ki **telepítése** tooinstall hello **Microsoft.Azure.Devices** csomagot, majd fogadja el hello használati feltételeket. Ez az eljárás tölti le, telepíti, és hozzáad egy hivatkozást toohello [Azure IoT szolgáltatás SDK] [ lnk-nuget-service-sdk] NuGet csomag és annak függőségeit.
    
     ![NuGet Package Manager (NuGet-csomagkezelő) ablak][img-servicenuget]
-1. Adja hozzá a következő `using` utasításokat a **Program.cs** fájl elejéhez:
+1. Adja hozzá a következő hello `using` hello hello tetején utasítások **Program.cs** fájlt:
    
         using Microsoft.Azure.Devices;
-1. Adja hozzá a **Program** osztályhoz a következő mezőket: A helyőrző értékét cserélje le az előző szakaszban létrehozott IoT Hub kapcsolati karakterláncra.
+1. Adja hozzá a következő mezők toohello hello **Program** osztály. Hello helyőrző értékét lecserélheti egy hello hello hub hello előző szakaszban létrehozott IoT-központ kapcsolati karakterláncot.
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
-1. Adja hozzá a **Program** osztályhoz a következő módszert:
+1. Adja hozzá a következő metódus toohello hello **Program** osztály:
    
         public static async Task AddTagsAndQuery()
         {
@@ -87,54 +87,54 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás (használatával C#) a társított
             Console.WriteLine("Devices in Redmond43 using cellular network: {0}", string.Join(", ", twinsInRedmond43UsingCellular.Select(t => t.DeviceId)));
         }
    
-    A **RegistryManager** osztály eszköz twins a szolgáltatás együttműködhet szükséges összes módszert mutatja. Az előző kód először inicializálja a **registryManager** objektumot, majd beolvassa az eszköz iker a **myDeviceId**, és végül frissíti a címkék a kívánt helyre információkkal.
+    Hello **RegistryManager** osztály összes hello módszerek szükséges toointeract az eszköz twins hello szolgáltatás elérhetővé teszi. hello előző kód először inicializálja hello **registryManager** objektumot, majd beolvassa az eszköz iker hello **myDeviceId**, és végül frissíti a címkék szükséges hello helyére vonatkozó információkat.
    
-    Miután frissített, két lekérdezést hajt végre: az első csak az eszköz twins található eszközök kiválasztja a **Redmond43** gépek és a második rendszerint a lekérdezést csak azokat az eszközöket is keresztül mobilhálózati kapcsolódó kiválasztásához.
+    Miután frissített, két lekérdezést hajt végre: először a választ csak hello eszköz twins hello található eszközök hello **Redmond43** gépek és hello második refines hello lekérdezés tooselect csak hello csatlakozó eszközöket is keresztül mobilhálózati.
    
-    Vegye figyelembe, hogy az előző kód, amikor létrehozza a **lekérdezés** objektumazonosító, a visszaadott dokumentumok maximális számát határozza meg. A **lekérdezés** objektum tartalmaz egy **HasMoreResults** logikai tulajdonság, amely segítségével meghívni a **GetNextAsTwinAsync** módszerek több alkalommal fordult elő az összes eredmények beolvasásához. A metódus hívása **GetNextAsJson** eredmények, amelyek például nem eszköz twins, összesítési-lekérdezések eredményének érhető el.
-1. Végül adja a következő sorokat a **Main** metódushoz:
+    Vegye figyelembe, hogy hello előző kóddal, amikor hello létrehozza **lekérdezés** objektumazonosító, a visszaadott dokumentumok maximális számát határozza meg. Hello **lekérdezés** objektum tartalmaz egy **HasMoreResults** használható tooinvoke hello logikai tulajdonság **GetNextAsTwinAsync** módszerek többször tooretrieve összes eredmények. A metódus hívása **GetNextAsJson** eredmények, amelyek például nem eszköz twins, összesítési-lekérdezések eredményének érhető el.
+1. Végül adja hozzá a következő sorokat toohello hello **fő** módszert:
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
         AddTagsAndQuery().Wait();
-        Console.WriteLine("Press Enter to exit.");
+        Console.WriteLine("Press Enter tooexit.");
         Console.ReadLine();
 
-1. A Solution Explorerben nyissa meg a **állítsa be indítási projektek...**  , és győződjön meg arról, hogy a **művelet** a **AddTagsAndQuery** projekt **Start**. A megoldás felépítéséhez.
-1. Az alkalmazás futtatásához a jobb gombbal a **AddTagsAndQuery** projektet, majd válassza **Debug**, utána pedig **Start új példányt**. Megjelenik az eredmények között egy eszközön a lekérdezés kérni a minden eszköz a mappában lévő **Redmond43** és a lekérdezés, amely korlátozza az eredmények mobilhálózati használó eszközök sem.
+1. A Solution Explorer hello, nyissa meg a hello **állítsa be indítási projektek...**  , és győződjön meg arról, hogy hello **művelet** a **AddTagsAndQuery** projekt **Start**. Hello megoldás felépítéséhez.
+1. Az alkalmazás futtatásához kattintson a jobb gombbal a hello **AddTagsAndQuery** projektet, majd válassza **Debug**, utána pedig **Start új példány**. A hello eredményei egy eszközhöz hello lekérdezés kérése minden eszköz a mappában lévő kell megjelennie **Redmond43** nincs hello lekérdezés, amely korlátozza a hello mobilhálózati használó toodevices elkészítéséig.
    
     ![Lekérdezés eredményei ablakban][img-addtagapp]
 
-A következő szakaszban hozzon létre egy eszköz alkalmazást, amely a kapcsolódási adatokat, és módosítja az előző szakaszban a lekérdezés eredménye.
+Hello a következő szakaszban létrehoz egy eszköz-alkalmazást, amely hello kapcsolati információ jelent, és módosításokat hello hello előző szakaszban hello lekérdezés eredménye.
 
-## <a name="create-the-device-app"></a>Az eszköz-alkalmazás létrehozása
-Ebben a szakaszban egy .NET-Konzolalkalmazás, amely kapcsolódik a hub, létrehozhat **myDeviceId**, majd frissíti a jelentett tulajdonságait, hogy mobilhálózat használata csatlakozik a információkat tartalmazzák.
+## <a name="create-hello-device-app"></a>Hello eszköz alkalmazás létrehozása
+Ebben a szakaszban egy .NET-Konzolalkalmazás, amely a tooyour hub, létrehozhat **myDeviceId**, majd frissíti a jelentésben szereplő tulajdonságok toocontain hello adatait, hogy használatával mobilhálózathoz csatlakozik.
 
-1. A Visual Studióban adjon hozzá egy Visual C# nyelvű Windows klasszikus asztalialkalmazás-projektet az aktuális megoldáshoz a **Console Application** (Konzolalkalmazás) projektsablonnal. Nevet a projektnek **ReportConnectivity**.
+1. A Visual Studio, a Visual C# klasszikus Windows asztal projekt toohello aktuális megoldás hozzáadása hello segítségével **Konzolalkalmazás** projektsablon. Név hello projekt **ReportConnectivity**.
    
     ![Új Visual C# klasszikus Windows-eszköz alkalmazás][img-createdeviceapp]
     
-1. A Megoldáskezelőben kattintson a jobb gombbal a **ReportConnectivity** projektre, és kattintson a **NuGet-csomagok kezelése...** .
-1. Az a **NuGet-Csomagkezelő** ablakban válassza ki **Tallózás** keresse meg a **microsoft.azure.devices.client**. Válassza ki **telepítése** telepítéséhez a **Microsoft.Azure.Devices.Client** csomagot, majd fogadja el a használati feltételeket. Ez az eljárás tölti le, telepíti, és hozzáad egy hivatkozást a [Azure IoT-eszközök SDK] [ lnk-nuget-client-sdk] NuGet csomag és annak függőségeit.
+1. A Megoldáskezelőben kattintson a jobb gombbal hello **ReportConnectivity** projektre, és kattintson a **NuGet-csomagok kezelése...** .
+1. A hello **NuGet-Csomagkezelő** ablakban válassza ki **Tallózás** keresse meg a **microsoft.azure.devices.client**. Válassza ki **telepítése** tooinstall hello **Microsoft.Azure.Devices.Client** csomagot, majd fogadja el hello használati feltételeket. Ez az eljárás tölti le, telepíti, és hozzáad egy hivatkozást toohello [Azure IoT-eszközök SDK] [ lnk-nuget-client-sdk] NuGet csomag és annak függőségeit.
    
     ![NuGet-Csomagkezelő ablak ügyfélalkalmazás][img-clientnuget]
-1. Adja hozzá a következő `using` utasításokat a **Program.cs** fájl elejéhez:
+1. Adja hozzá a következő hello `using` hello hello tetején utasítások **Program.cs** fájlt:
    
         using Microsoft.Azure.Devices.Client;
         using Microsoft.Azure.Devices.Shared;
         using Newtonsoft.Json;
 
-1. Adja hozzá a **Program** osztályhoz a következő mezőket: Cserélje le a helyőrző értékét az előző szakaszban feljegyzett eszköz kapcsolati karakterlánccal.
+1. Adja hozzá a következő mezők toohello hello **Program** osztály. Hello helyőrző értékét lecserélheti egy hello eszköz kapcsolati karakterláncot, amely az előző szakaszban hello feljegyzett.
    
         static string DeviceConnectionString = "HostName=<yourIotHubName>.azure-devices.net;DeviceId=<yourIotDeviceName>;SharedAccessKey=<yourIotDeviceAccessKey>";
         static DeviceClient Client = null;
 
-1. Adja hozzá a **Program** osztályhoz a következő módszert:
+1. Adja hozzá a következő metódus toohello hello **Program** osztály:
 
        public static async void InitClient()
         {
             try
             {
-                Console.WriteLine("Connecting to hub");
+                Console.WriteLine("Connecting toohub");
                 Client = DeviceClient.CreateFromConnectionString(DeviceConnectionString, TransportType.Mqtt);
                 Console.WriteLine("Retrieving twin");
                 await Client.GetTwinAsync();
@@ -146,9 +146,9 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás, amely kapcsolódik a hub, létreh
             }
         }
 
-    A **ügyfél** vezérlőnek az eszköz twins az eszközről interaktív szükséges összes módszert. A fent látható kód inicializálja a **ügyfél** objektumot, és majd beolvassa az eszköz iker a **myDeviceId**.
+    Hello **ügyfél** vezérlőnek minden hello módszerek toointeract van szüksége az eszköz twins hello eszközről. a fent látható kód hello inicializál hello **ügyfél** objektumot, és lekéri hello eszköz iker a **myDeviceId**.
 
-1. Adja hozzá a **Program** osztályhoz a következő módszert:
+1. Adja hozzá a következő metódus toohello hello **Program** osztály:
    
         public static async void ReportConnectivity()
         {
@@ -170,9 +170,9 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás, amely kapcsolódik a hub, létreh
             }
         }
 
-   A fenti frissítések kódot **myDeviceId**által jelentett tulajdonságot, amelyben a kapcsolati információ.
+   frissítések fenti kódot hello **myDeviceId**által jelentett hello kapcsolati információ tulajdonság.
 
-1. Végül adja a következő sorokat a **Main** metódushoz:
+1. Végül adja hozzá a következő sorokat toohello hello **fő** módszert:
    
        try
        {
@@ -184,27 +184,27 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás, amely kapcsolódik a hub, létreh
             Console.WriteLine();
             Console.WriteLine("Error in sample: {0}", ex.Message);
        }
-       Console.WriteLine("Press Enter to exit.");
+       Console.WriteLine("Press Enter tooexit.");
        Console.ReadLine();
 
-1. A Solution Explorerben nyissa meg a **állítsa be indítási projektek...**  , és győződjön meg arról, hogy a **művelet** a **ReportConnectivity** projekt **Start**. A megoldás felépítéséhez.
-1. Az alkalmazás futtatásához a jobb gombbal a **ReportConnectivity** projektet, majd válassza **Debug**, utána pedig **Start új példányt**. A kettős adatainak lekérése, és elküldi a kapcsolattípust láthatja a *tulajdonság jelentett*.
+1. A Solution Explorer hello, nyissa meg a hello **állítsa be indítási projektek...**  , és győződjön meg arról, hogy hello **művelet** a **ReportConnectivity** projekt **Start**. Hello megoldás felépítéséhez.
+1. Az alkalmazás futtatásához kattintson a jobb gombbal a hello **ReportConnectivity** projektet, majd válassza **Debug**, utána pedig **Start új példány**. Hello iker adatainak lekérése, és elküldi a kapcsolattípust láthatja a *tulajdonság jelentett*.
    
-    ![Eszköz-alkalmazás futtatása jelentés kapcsolatához][img-rundeviceapp]
+    ![Futtassa az alkalmazást tooreport eszközkapcsolatok][img-rundeviceapp]
     
     
-1. Most, hogy az eszköz jelentette a kapcsolat adatait, akkor mindkét lekérdezések meg kell jelennie. Futtassa a .NET **AddTagsAndQuery** alkalmazásnak, hogy futtassa újból a lekérdezést. Most **myDeviceId** mindkét lekérdezési eredmények jelenjenek meg.
+1. Most, hogy hello eszköz jelentette a kapcsolati információ meg kell jelennie mindkét lekérdezések. Futtassa a hello .NET **AddTagsAndQuery** app toorun hello le újra. Most **myDeviceId** mindkét lekérdezési eredmények jelenjenek meg.
    
     ![Sikeresen jelentett eszközkapcsolatok][img-tagappsuccess]
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóanyagban egy új IoT Hubot konfigurált az Azure-portálon, majd létrehozott egy eszközidentitást az IoT Hub identitásjegyzékében. Fel van véve eszköz metaadatait címkék egy háttér-alkalmazásból, és a szimulált eszköz alkalmazásának megírt az eszköz a két jelentés eszköz kapcsolódási adatok. Megtudta, ezt az információt az SQL-szerű IoT Hub lekérdezési nyelv lekérdezése is.
+Ebben az oktatóanyagban egy új IoT hub konfigurálva hello Azure-portálon, és hozza létre a hello IoT hub identitásjegyzékhez egy eszközidentitás. Eszköz metaadatait címkeként felvett egy háttér-alkalmazást, és a szimulált eszköz kapcsolat app tooreport eszközadatokat megírt hello eszköz iker a. Azt is megtanulta, hogyan tooquery ezt az információt hello SQL-szerű IoT Hub lekérdezési nyelv.
 
-A következő források segítségével megtudhatja, hogyan:
+A következő erőforrások toolearn hogyan használja hello számára:
 
-* telemetriai adatokat küldhet az eszközökről a [Ismerkedés az IoT-központ] [ lnk-iothub-getstarted] oktatóanyagban
-* eszköz iker kívánt tulajdonságokkal rendelkező eszközök konfigurálása a [használata szükséges eszközök tulajdonságok] [ lnk-twin-how-to-configure] oktatóanyagban
-* az interaktív (például egy felhasználó által felügyelt alkalmazásból ventilátor bekapcsolása) eszközeinek vezérléséhez a [közvetlen módszerekkel] [ lnk-methods-tutorial] oktatóanyag.
+* telemetriai adatokat küldhet a hello eszközökről [Ismerkedés az IoT-központ] [ lnk-iothub-getstarted] oktatóanyagban
+* eszközök, eszköz iker kívánt tulajdonságok használata hello konfigurálása [használata szükséges tulajdonságok tooconfigure eszközök] [ lnk-twin-how-to-configure] oktatóanyagban
+* interaktív (például egy felhasználó által felügyelt alkalmazásból ventilátor bekapcsolása) eszközeinek vezérléséhez a hello [közvetlen módszerekkel] [ lnk-methods-tutorial] oktatóanyag.
 
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-csharp-twin-getstarted/servicesdknuget.png

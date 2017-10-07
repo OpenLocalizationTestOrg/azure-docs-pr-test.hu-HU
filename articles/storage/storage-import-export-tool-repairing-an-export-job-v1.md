@@ -1,6 +1,6 @@
 ---
-title: "Javítása Azure Import/Export exportálási feladat - 1-es verzió |} Microsoft Docs"
-description: "Megtudhatja, hogyan javítsa ki, hogy létrejött, de az Azure Import/Export szolgáltatás használatával futtassa exportálási feladat."
+title: "aaaRepairing Azure Import/Export exportálási feladat - 1-es verzió |} Microsoft Docs"
+description: "Ismerje meg, hogyan toorepair lett létrehozva, és futtassa az exportálási feladatot hello Azure Import/Export szolgáltatás."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 30ca0f8d06cb1927c19e66035ff485db0fc09e5a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 96c674fc7c697c37882fb2980c340303896ac6c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="repairing-an-export-job"></a>Exportálási feladat javítása
-Miután exportálási feladat befejeződött, a Microsoft Azure Import/Export eszköz helyszíni is futtathatja:  
+Exportálási feladat befejezése után a Microsoft Azure Import/Export eszköz helyszíni hello is futtathatja:  
   
-1.  Töltse le azokat a fájlokat, az Azure Import/Export szolgáltatás nem tudta exportálni.  
+1.  Töltse le a fájlokat, hogy hello Azure Import/Export szolgáltatás nem tooexport volt-e.  
   
-2.  Ellenőrizze, hogy a meghajtón lévő fájlokat helyesen lettek-e exportálva.  
+2.  Ellenőrizze, hogy helyesen lettek-e exportálva hello hello meghajtón.  
   
-A funkció használatához Azure-tárhellyel létesített kapcsolat kell rendelkeznie.  
+Ez a funkció kapcsolat tooAzure tárolási toouse kell rendelkeznie.  
   
-A parancs az importálási feladat javítási **RepairExport**.
+az importálási feladat javítási hello parancs **RepairExport**.
 
 ## <a name="repairexport-parameters"></a>RepairExport paraméterek
 
-A következő paraméterekkel rendelkező adható meg **RepairExport**:  
+hello következő paraméterek adható **RepairExport**:  
   
 |Paraméter|Leírás|  
 |---------------|-----------------|  
-|**r: < RepairFile\>**|Szükséges. A fájl elérési útját javítása, amely nyomon követi a folyamatot, a javítási, és lehetővé teszi az megszakított javítását folytatása. Minden olyan meghajtó meg kell adni egy javítási fájlt. Egy adott meghajtó javítás indításakor meg fogja továbbítani az elérési út egy javítási fájlt, amely még nem létezik. Az megszakított javítását folytatásához meglévő javítási fájl nevében kell átadni. A célmeghajtó megfelelő javítási fájlt mindig meg kell adni.|  
-|**/ logdir: < LogDirectory\>**|Választható. A naplózási könyvtár. Ez a könyvtár részletes naplófájlok fog szerepelni. Ha nincs naplókönyvtár meg van adva, a naplózási könyvtár az aktuális könyvtár lesz.|  
-|**/ d: < TargetDirectory\>**|Szükséges. Ellenőrizze és javítsa ki a könyvtárat. Ez általában az Exportálás meghajtó gyökérkönyvtárában, de sikerült is kell egy hálózati fájlmegosztásra tartalmazó az exportált fájlokat egy példányát.|  
-|**/BK: < BitLockerKey\>**|Választható. A BitLocker kulcsot kell megadnia, ha azt szeretné, hogy az eszköz zárolásának feloldásához egy titkosított az exportált fájlok tárolására.|  
-|**/sn: < StorageAccountName\>**|Szükséges. Az exportálási feladat a tárfiók nevét.|  
-|**/SK: < StorageAccountKey\>**|**Szükséges** csak, ha a tároló SAS nincs megadva. A fiók az exportálási feladat a tárfiók kulcsa.|  
-|**/csas: < ContainerSas\>**|**Szükséges** csak, ha nincs megadva a tárfiók kulcsára. A tároló SAS az exportálási feladat társított BLOB eléréséhez.|  
-|**/ CopyLogFile: < DriveCopyLogFile\>**|Szükséges. A naplófájl elérési útja a meghajtó másolása. A fájlt a Windows Azure Import/Export szolgáltatás által generált és tölthető le: a feladathoz társított blob-tároló. A napló fájl másolása sikertelen blobokkal vagy a fájlokat, amelyek javítani kell információkat tartalmaz.|  
-|**/ ManifestFile: < DriveManifestFile\>**|Választható. Az Exportálás meghajtó Alkalmazásjegyzék-fájl elérési útja. Ezt a fájlt a Windows Azure Import/Export szolgáltatás által létrehozott és exportálás a meghajtón, és szükség esetén egy blobba a feladathoz társított tárfiókban tárolja.<br /><br /> Az Exportálás meghajtón a fájlok tartalmának fogja ellenőrizni a ebben a fájlban található MD5-kivonatok. Azokat a fájlokat, sérült határozza meg a rendszer letölti és a cél könyvtárak írni.|  
+|**r: < RepairFile\>**|Kötelező. Elérési út toohello javítási fájl, amely hello javítási hello előrehaladását követi nyomon, és lehetővé teszi a tooresume az megszakított javítását. Minden olyan meghajtó meg kell adni egy javítási fájlt. Amikor elindít egy adott meghajtó javítása, át lesz fájlban hello elérési tooa javítás még nem létezik. tooresume az megszakított javítását, meg kell adjon át egy meglévő javítási fájl hello neve. hello javítási fájl megfelelő toohello célmeghajtó mindig meg kell adni.|  
+|**/ logdir: < LogDirectory\>**|Választható. hello naplókönyvtár. Részletes naplófájlok toothis directory lesz írva. Ha nincs naplókönyvtár meg van adva, hello aktuális könyvtárhoz hello naplókönyvtár lesz.|  
+|**/ d: < TargetDirectory\>**|Kötelező. hello directory toovalidate és javítása. Ez általában hello hello exportálási meghajtó gyökérkönyvtárába, de sikerült is kell egy hálózati fájlmegosztásra tartalmazó hello exportált fájlokat egy példányát.|  
+|**/BK: < BitLockerKey\>**|Választható. Hello BitLocker kulcsot kell megadnia, ha azt szeretné, hogy hello eszköz toounlock egy titkosított amikor hello exportált fájlokat tárolja.|  
+|**/sn: < StorageAccountName\>**|Kötelező. hello hello hello storage-fiók nevét a feladat exportálja.|  
+|**/SK: < StorageAccountKey\>**|**Szükséges** csak, ha a tároló SAS nincs megadva. hello fiók kulcsának hello hello a feladat exportálja.|  
+|**/csas: < ContainerSas\>**|**Szükséges** csak, ha nincs megadva hello tárfiók kulcsa. hello tároló SAS hello exportálási feladat társított hello blobok eléréséhez.|  
+|**/ CopyLogFile: < DriveCopyLogFile\>**|Kötelező. hello elérési toohello meghajtó másolása naplófájlt. hello fájl hello Windows Azure Import/Export szolgáltatás által generált és tölthető le: hello hello feladattal társított blob-tároló. hello napló-fájl másolása sikertelen blobokkal vagy a fájlokat, amelyek javítani toobe információkat tartalmaz.|  
+|**/ ManifestFile: < DriveManifestFile\>**|Választható. elérési út toohello exportálási meghajtó jegyzékfájl hello. Ez a fájl hello Windows Azure Import/Export szolgáltatás által létrehozott és hello exportálási meghajtón, és szükség esetén egy blobba hello feladattal társított hello tárfiókban tárolja.<br /><br /> hello hello exportálási meghajtón lévő fájlokat a rendszer ellenőrzi az ebben a fájlban található hello MD5 kivonatok hello tartalmát. Sérült meghatározott toobe fájlokon letöltött és egy átírt toohello cél könyvtárak lesz.|  
   
-## <a name="using-repairexport-mode-to-correct-failed-exports"></a>Javítsa ki a hibás kivitel RepairExport mód használata  
-Az Azure Import/Export eszköz segítségével, amely nem sikerült exportálni a fájlok letöltése. A másolási naplófájlt fogja tartalmazni, amely nem sikerült exportálni a fájlok listáját.  
+## <a name="using-repairexport-mode-toocorrect-failed-exports"></a>RepairExport használatával mód toocorrect kivitel sikertelen  
+Nem sikerült tooexport hello Azure Import/Export eszköz toodownload fájlok is használhatja. hello másolási naplófájlt fogja tartalmazni, melyeknél nem sikerült tooexport fájlok listáját.  
   
-Exportálási hiba okai a következő lehetőségek állnak rendelkezésére:  
+hello exportálási hiba okai hello a következő lehetőségeket:  
   
 -   Sérült meghajtók  
   
--   A tárfiók hívóbetűjét módosult az átvitel során  
+-   tárfiók kulcsa hello hello átviteli folyamat során megváltozott  
   
-Az eszköz futtatásához **RepairExport** mód, először a meghajtót, amely tartalmazza az exportált fájlokat a számítógépre. Ezután futtassa az Azure Import/Export eszköz, az elérési út megadását, hogy a meghajtót, amelyen a `/d` paraméter. Meg kell adnia a naplófájl elérési útja a meghajtó másolása letöltött is. A következő parancsot az alábbi példa használatával javítsa ki azokat a fájlokat, nem sikerült exportálni az eszköz fut:  
+toorun hello eszköz **RepairExport** mód, először tooconnect hello meghajtóján hello exportált fájlokat tooyour számítógép. Ezután futtassa az Azure Import/Export eszköz hello elérési toothat meghajtó megadása a hello hello `/d` paraméter. Meg kell toospecify hello elérési toohello meghajtó másolása naplófájl letöltött is. hello következő parancssor például az alábbi futtató hello eszköz toorepair azokat a fájlokat, tooexport sikertelen:  
   
 ```  
 WAImportExport.exe RepairExport /r:C:\WAImportExport\9WM35C3U.rep /d:G:\ /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /CopyLogFile:C:\WAImportExport\9WM35C3U.log  
 ```  
   
-A következő egy példa bemutatja, hogy egy blokk a BLOB másolási naplófájlt nem tudott exportálni:  
+hello következő másolási naplófájl jeleníti meg, hogy egy blokk hello meghiúsult tooexport példája:  
   
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
@@ -81,20 +81,20 @@ A következő egy példa bemutatja, hogy egy blokk a BLOB másolási naplófájl
 </DriveLog>  
 ```  
   
-A másolási naplófájl azt jelzi, hogy hiba történt a Windows Azure Import/Export szolgáltatás lett letöltését a blob blokkok egyikét a fájlt az exportálási meghajtón. A többi összetevő a fájl letöltése sikeresen befejeződött, és a fájl hosszát helyesen be lett állítva. Ebben az esetben az eszköz nyissa meg a fájlt a meghajtón, a blokk letöltését a tárfiók, és írja a 65536 értékű eltolás hosszúságú 65536-től kezdődő fájl tartománynak.  
+hello másolási naplófájl azt jelzi, hogy hiba történt a Windows Azure Import/Export szolgáltatás hello lett letöltése egyik hello blob blokkok toohello hello exportálási meghajtón. hello más összetevők hello fájl letöltése sikeresen befejeződött, és hello fájl hosszát helyesen be lett állítva. Ebben az esetben hello eszköz hello meghajtón hello fájl megnyitása, letölthesse hello blokk hello tárfiókból, és írja a 65536 értékű eltolás hosszúságú 65536-től kezdődő toohello fájl tartományon.  
   
-## <a name="using-repairexport-to-validate-drive-contents"></a>RepairExport segítségével ellenőrzi a meghajtó tartalmát  
-Használhatja az Azure Import/Export a **RepairExport** lehetőséget a meghajtón a tartalmát érvényesíteni helyesek. A jegyzékfájl minden exportálási meghajtón MD5s a meghajtó tartalmát tartalmazza.  
+## <a name="using-repairexport-toovalidate-drive-contents"></a>RepairExport toovalidate meghajtó-tartalmak segítségével  
+Azure Import/Export is használható hello **RepairExport** beállítás toovalidate hello tartalma hello meghajtón helyesek. minden exportálási meghajtón hello jegyzékfájl MD5s hello meghajtó hello tartalmát tartalmazza.  
   
-Az Azure Import/Export szolgáltatás is mentheti a jegyzékfájlt tárfiókba az exportálási folyamat során. Fájlok helye keresztül érhető el a [Get Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) műveletet, amikor a feladat befejeződött. Lásd: [Import/Export service Manifest fájlformátum](storage-import-export-file-format-metadata-and-properties.md) meghajtó jegyzékfájl formátuma további információt.  
+hello Azure Import/Export szolgáltatás is mentheti hello jegyzékfájlt tooa tárfiók hello exportálási folyamat során. hello hello fájlok helye elérhető hello [Get Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) műveletet, amikor a hello feladat befejeződött. Lásd: [Import/Export service Manifest fájlformátum](storage-import-export-file-format-metadata-and-properties.md) meghajtó jegyzékfájl hello formátumban olvashat.  
   
-A következő példa bemutatja, hogyan együtt az Azure Import/Export eszköz futtatásához a **/ManifestFile** és **/CopyLogFile** paraméterek:  
+hello következő példa bemutatja, hogyan toorun hello-Azure Import/Export eszköz hello **/ManifestFile** és **/CopyLogFile** paraméterek:  
   
 ```  
 WAImportExport.exe RepairExport /r:C:\WAImportExport\9WM35C3U.rep /d:G:\ /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /CopyLogFile:C:\WAImportExport\9WM35C3U.log /ManifestFile:G:\9WM35C3U.manifest  
 ```  
   
-A következő egy példa a jegyzékfájlt:  
+hello az alábbiakban látható egy példa a jegyzékfájlt:  
   
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
@@ -131,7 +131,7 @@ A következő egy példa a jegyzékfájlt:
 </DriveManifest>  
 ``` 
   
-A javítási folyamat végén, az eszköz olvassa végig a jegyzékfájl hivatkozott minden fájl és a fájl integritását a MD5 kivonatok ellenőrzése. A jegyzékfájl felett, a hibaállapotba kerül, a következő összetevők keresztül.  
+Hello javítási folyamat befejeződik, miután hello eszköz olvassa végig a minden fájl hello jegyzékfájl hivatkozik, és ellenőrizze a hello MD5 kivonatok hello fájl integritását. A fenti hello jegyzék hibaállapotba kerül, a következő összetevők hello keresztül.  
 
 ```  
 G:\pictures\city\redmond.jpg, offset 0, length 3584  
@@ -153,12 +153,12 @@ G:\pictures\wild\canyon.jpg, offset 8163, length 2721
 G:\pictures\wild\canyon.jpg.properties  
 ```
 
-Az ellenőrzés sikertelen összetevők közül bármelyik a eszköz által letöltődik és írni a meghajtón ugyanazt a fájlt.  
+Hello ellenőrzése sikertelen összetevők közül bármelyik hello eszköz letöltődik és írni toohello ugyanazon fájl hello meghajtón.  
   
 ## <a name="next-steps"></a>Következő lépések
  
-* [Az Azure Import/Export eszköz beállítása](storage-import-export-tool-setup-v1.md)   
+* [Hello Azure Import/Export eszköz beállítása](storage-import-export-tool-setup-v1.md)   
 * [Merevlemezek előkészítése importálási feladatokhoz](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
 * [Feladatok állapotának áttekintése a másolási naplófájlok segítségével](storage-import-export-tool-reviewing-job-status-v1.md)   
 * [Importálási feladat javítása](storage-import-export-tool-repairing-an-import-job-v1.md)   
-* [Az Azure Import/Export eszköz hibaelhárítása](storage-import-export-tool-troubleshooting-v1.md)
+* [Hibaelhárítási hello Azure Import/Export eszköz](storage-import-export-tool-troubleshooting-v1.md)

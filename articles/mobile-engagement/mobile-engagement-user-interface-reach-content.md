@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Mobile Engagement felhasználói felület - a Reach-tartalom"
-description: "Az Azure Mobile Engagement leküldéses értesítéses kampányokkal különböző típusú egyedi tartalom kezelése"
+title: "aaaAzure Mobile Engagement felhasználói felület - tartalom eléréséhez"
+description: "Ismerje meg, hogyan toomanage hello egyedi tartalom hello különböző típusú leküldéses értesítés kampányokra, az Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 3741a43b74af5846e95e42d8a7b533621e780f2d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: de389eb4368d986ef00135036c26e26a2464663e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-the-unique-content-of-the-different-types-of-push-notification-campaigns"></a>A különböző típusú leküldéses értesítéses kampányokkal egyedi tartalmának kezelése
-Egy új reach-kampány tartalomszakasz segítségével módosíthatja a közlemények, szavazások, Adatleküldések és Csempék (csak Windows Phone) tartalmát. A tartalom leküldéses kampányokra lehet kampány típusának. 
+# <a name="how-toomanage-hello-unique-content-of-hello-different-types-of-push-notification-campaigns"></a>Hogyan toomanage hello hello különböző típusú leküldéses értesítéses kampányokkal egyedi tartalom
+Hello tartalmi szakasz tartalmának egy új reach kampány toomodify hello a közlemények, szavazások, Adatleküldések és Csempék (csak Windows Phone) is használhatja. hello tartalom leküldéses kampányokra érték kampány adott toohello típusát. 
 
 ### <a name="content-types"></a>Tartalom típusa:
 * Bejelentések
@@ -32,26 +32,26 @@ Egy új reach-kampány tartalomszakasz segítségével módosíthatja a közlem�
 ## <a name="content-of-announcements"></a>Közlemények tartalma
  ![Reach-Content1][30] 
 
-### <a name="choose-the-type-of-your-announcement"></a>Hirdetmény típusának kiválasztása:
-* Csak értesítés: egy egyszerű standard szintű értesítési. Azt jelenti, hogy ha a felhasználó kattint, további nézet nélkül jelenik meg, de csak a hozzá tartozó műveletet hajtja végre.
-* Szöveg közlemény: egy értesítés, amely kapcsolatba lép a felhasználó számára a szöveges nézet, tekintse meg a legyen.
-* Webes hirdetmény: egy értesítés, amely kapcsolatba lép a felhasználó számára, tekintse meg a következő a webes nézet.
+### <a name="choose-hello-type-of-your-announcement"></a>Válassza ki a hello hirdetmény típusának kiválasztása:
+* Csak értesítés: egy egyszerű standard szintű értesítési. Ami azt jelenti, hogy ha a felhasználó kattint, további nézet nélkül jelenik meg, de csak hello művelet társított tooit történik.
+* Szöveg közlemény: egy értesítés, amely kapcsolatba lép a hello felhasználói toohave egy pillantást a szöveges nézet.
+* Webes hirdetmény: egy értesítés, amely kapcsolatba lép a hello felhasználói toohave egy pillantást a webes nézet.
 
 ### <a name="see-also"></a>Lásd még:
 * [A reach - hogyan Tos - közlemények][Link 3] 
 
 ### <a name="about-web-view-announcements"></a>Vonatkozó webes nézetre mutató hirdetmények:
-Előforduló "{deviceid}" a HTML-kódot vagy JavaScript-kód itt automatikusan felülírja a közlemény megjelenítő eszköz azonosítója. Ez az Azure Mobile Engagement-eszközazonosítók a üzemeltetett külső webszolgáltatásokból a beolvasandó egyszerűen.
-Ha teljes képernyős webes nézetet szeretne létrehozni (az alapértelmezett akciógombok és kilépési gombok nélkül), a webes hirdetmény JavaScript-kódjában szereplő következő funkciókat használhatja: 
+Hello mintát "{deviceid}" hello HTML vagy JavaScript-kódban itt előfordulását automatikusan helyébe hello közlemény megjelenítő hello eszköz hello azonosítója. Ez az, hogy egy egyszerűen tooretrieve Azure Mobile Engagement-eszközazonosítók a külső webes az üzemeltetett szolgáltatás.
+Ha azt szeretné, hogy toocreate teljes képernyőn webes nézet (hello alapértelmezett akciógombok és kilépési gombok nélkül) használhatja a következő funkciók a webes hirdetmény JavaScript-kódjában hello: 
 
-* a hirdetményművelet végrehajtása: ReachContent.actionContent()
-* Kilépés a hirdetményből: ReachContent.exitContent()
+* hello hirdetményművelet végrehajtása: ReachContent.actionContent()
+* Kilépés a hello közlemény: ReachContent.exitContent()
 
 ### <a name="choose-your-action"></a>Válassza ki a műveletet:
 ### <a name="about-action-urls"></a>Kapcsolatos művelet URL-címek:
 A megcélzott eszköz operációs rendszere által értelmezhető valamennyi URL-cím használható műveleti URL-címként.
-Az alkalmazása által támogatott dedikált URL-címek (köztük azok, amelyek egy adott képernyőre irányítják a felhasználót) szintén használhatók műveleti URL-címként.
-A {deviceid} minta összes előfordulásának automatikusan cseréli le a műveletet végrehajtó eszköz azonosítója. Ez egyszerűen beolvashatók az Azure Mobile Engagement-eszközazonosítók a üzemeltetett külső webszolgáltatáson keresztül is használható.
+Dedikált URL-címet, előfordulhat, hogy az alkalmazás támogatási (pl. toomake felhasználók tooa adott képernyőre irányítják) is használható műveleti URL-címként.
+{Deviceid} hello minta összes előfordulásának automatikusan helyébe hello művelet végrehajtása hello eszköz hello azonosítója. Ez lehet használt tooeasily olvashatók be az Azure Mobile Engagement eszközazonosítók a üzemeltetett külső webszolgáltatáson keresztül.
 
 * **Android + iOS műveletek**
   * Weblap megnyitása
@@ -67,14 +67,14 @@ A {deviceid} minta összes előfordulásának automatikusan cseréli le a művel
   * Tel:\[-telefonszám\] 
   * Példa: tel:2125551212
 * **Android csak műveletek**
-  * Alkalmazás letöltése a Play Áruházból
+  * Play Store hello alkalmazás letöltése
   * Market://details?ID=\[alkalmazáscsomag\] 
   * Példa: market://details?id=com.microsoft.office.word
   * Geolokációs keresés indítása
   * GEO:0, 0? q =\[keresési lekérdezés\] 
   * Példa: geo:0, 0? q = starbucks, Párizsi
 * **csak iOS-műveletek**
-  * Alkalmazás letöltése az App Store-ból
+  * Alkalmazás-áruház hello alkalmazás letöltése
   * http://iTunes.apple.com/ [Ország] /app/ [alkalmazás neve] /id [alkalmazás azonosítója]? mt = 8 
   * Példa: http://itunes.apple.com/fr/app/briquet-virtuel/id430154748?mt=8
   * Windows-műveletek
@@ -90,7 +90,7 @@ A {deviceid} minta összes előfordulásának automatikusan cseréli le a művel
   * Telefonszám tárcsázása (az Áruházból letölthető Skype alkalmazás szükséges hozzá)
   * Tel:\[-telefonszám\] 
   * Példa: tel:2125551212
-  * Alkalmazás letöltése a Play Áruházból
+  * Play Store hello alkalmazás letöltése
   * MS-windows-tároló: PDP? PFN =\[app Csomagazonosító\] 
   * Példa: ms-windows-tároló: PDP? PFN 4d91298a-07cb-40fb-aecc-4cb5615d53c1 =
   * Keresés a Bing Térképek szolgáltatásban
@@ -104,10 +104,10 @@ A {deviceid} minta összes előfordulásának automatikusan cseréli le a művel
   * Example:myfolderdata.txt
 
 ### <a name="build-a-tracking-url"></a>A követési URL-cím összeállítása:
-* A "Beállítások" című része a <UI Documentation> az utasítás felépítésével egy követési URL-címet, amely segítségével a felhasználók az egyéb alkalmazások letöltéséhez.
+* Lásd: hello "Beállítások" szakasza hello <UI Documentation> az utasítás felépítésével egy követési URL-címet, amely lehetővé teszi felhasználók toodownload a más alkalmazások közül.
 
-### <a name="define-the-texts-of-your-announcement"></a>Hirdetmény szövegeinek kiválasztása
-Adja meg a cím, a tartalom és a hirdetmény szövegeinek kiválasztása gombra. A felhasználók hogyan válaszolt a kampány reach visszajelzések alapján jövőbeli kampány közönség célba. Célközönség kiválasztását, hogy a kampány lett csak leküldött, megválaszolt, műveletet kiváltó, illetve amelyekből kiléptek visszajelzést is alapulhat.
+### <a name="define-hello-texts-of-your-announcement"></a>Hirdetmény szövegeinek hello meghatározása
+Töltse ki a hello cím, a tartalom és a hirdetmény szövegeinek kiválasztása gombra. Olyan célközönségnek juttathatja el, hogy a felhasználók válaszolt toothis kampány hello reach visszajelzések alapján jövőbeli kampány célba. Célközönség-e a kampány lett csak leküldött, megválaszolt, műveletet kiváltó, illetve amelyekből kiléptek hello visszajelzését alapulhatnak.
 
 ### <a name="see-also"></a>Lásd még:
 * [Felhasználói felület - a Reach - dokumentáció új leküldéses feltétel][Link 28]
@@ -115,8 +115,8 @@ Adja meg a cím, a tartalom és a hirdetmény szövegeinek kiválasztása gombra
 ## <a name="content-of-polls"></a>Szavazások tartalma
 ![Reach-Content2][31] 
 
-Töltse ki a címét, leírását és hirdetmény szövegeinek kiválasztása gombra. Adja hozzá a kérdések és a kérdésekre adott válaszokat lehetőségeit.
-A felhasználók hogyan válaszolt a kampány reach visszajelzések alapján jövőbeli kampány közönség célba. Célközönség-e a kampány lett csak leküldött, megválaszolt, műveletet kiváltó, illetve amelyekből kiléptek is alapulhat. A lekérdezési válasz visszajelzést, ahol a kérdés és válasz választott használt feltételként is alapulhat célközönség kiválasztását.
+Töltse ki hello címét, leírását és hirdetmény szövegeinek kiválasztása gombra. Adja hozzá a kérdések és hello válaszok tooyour kérdések lehetőségeit.
+Olyan célközönségnek juttathatja el, hogy a felhasználók válaszolt toothis kampány hello reach visszajelzések alapján jövőbeli kampány célba. Célközönség-e a kampány lett csak leküldött, megválaszolt, műveletet kiváltó, illetve amelyekből kiléptek is alapulhat. Célközönség kiválasztását is alapulhat a lekérdezési válasz visszajelzést, ahol hello kérdés és válasz választott feltételként használják.
 
 ### <a name="see-also"></a>Lásd még:
 * [Felhasználói felület - a Reach - dokumentáció új leküldéses feltétel][Link 28]
@@ -124,15 +124,15 @@ A felhasználók hogyan válaszolt a kampány reach visszajelzések alapján jö
 ## <a name="content-of-data-pushes"></a>Adatleküldések tartalma
 ![Reach-Content3][32] 
 
-### <a name="choose-the-type-of-your-data"></a>Az adatok típusának kiválasztása:
+### <a name="choose-hello-type-of-your-data"></a>Az adatok hello típusának kiválasztása:
 * Szöveg
 * Bináris adatok
 * A Base64 adatok
 
-### <a name="define-the-content-of-your-data"></a>Az adatok tartalmának meghatározása
-* Kijelölt szöveg adatokat küldeni, ha másolja és illessze be a "tartalom" jelölőnégyzetet.
-* Ha bináris vagy base64 adatok leküldéses választotta, a "a fájl feltöltése" gomb segítségével feltölteni a fájlt.
-* A felhasználók hogyan válaszolt a kampány reach visszajelzések alapján jövőbeli kampány közönség célba. Célközönség-e a kampány lett csak leküldött, megválaszolt, műveletet kiváltó, illetve amelyekből kiléptek is alapulhat.
+### <a name="define-hello-content-of-your-data"></a>Hello az adatok tartalmának meghatározása
+* Ha toopush szöveges adatok választotta, másolja be hello szöveg hello "tartalom" mezőbe.
+* Ha a kiválasztott toopush bináris vagy base64 adatok hello "a fájl feltöltése" gomb tooupload a fájl használatára.
+* Olyan célközönségnek juttathatja el, hogy a felhasználók válaszolt toothis kampány hello reach visszajelzések alapján jövőbeli kampány célba. Célközönség-e a kampány lett csak leküldött, megválaszolt, műveletet kiváltó, illetve amelyekből kiléptek is alapulhat.
 
 ### <a name="see-also"></a>Lásd még:
 * [Felhasználói felület - a Reach - dokumentáció új leküldéses feltétel][Link 28]
@@ -140,9 +140,9 @@ A felhasználók hogyan válaszolt a kampány reach visszajelzések alapján jö
 ## <a name="content-of-tiles-windows-phone-only"></a>Tartalom csempék (csak Windows Phone)
 ![Reach-Content4][33]
 
-### <a name="define-the-content-of-your-tile"></a>A csempe tartalmának meghatározása
-A csempe payload az alkalmazás a Windows Phone-eszközökön a csempén megjelenő szöveg.
-Egy mozaik leküldéses a Windows Phone natív leküldéses a Microsoft leküldéses értesítési szolgáltatásának (MPNS) verziója telepítve. A csempe leküldéses típus csak akkor leküldéses, amelynek nincs választ, és így jövőbeli kampányok célközönségét nem hozható létre, az eredmények a csempe leküldéses kampány. 
+### <a name="define-hello-content-of-your-tile"></a>Hello a csempe tartalmának meghatározása
+hello csempe payload hello szöveg toobe hello csempe az alkalmazás a Windows Phone-eszközökön jelenik meg.
+Egy mozaik leküldéses a Windows Phone natív leküldéses hello a Microsoft leküldéses értesítési szolgáltatásának (MPNS) verziója telepítve. hello csempetípus leküldéses hello csak leküldéses típus, amely nem rendelkezik a válasz, és így a jövőbeli kampányok hello célközönség nem építhető hello eredmények a csempe leküldéses kampány. 
 
 ### <a name="see-also"></a>Lásd még:
 * [API - a Reach API - dokumentáció natív leküldéssel][Link 4]

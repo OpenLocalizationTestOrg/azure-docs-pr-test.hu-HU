@@ -1,6 +1,6 @@
 ---
-title: "Az Azure-ból betöltése az Azure data warehouse-blob |} Microsoft Docs"
-description: "Útmutató az Azure blob storage adatok betöltése az SQL Data Warehouse PolyBase segítségével. A nyilvános adatok a Contoso kereskedelmi adatraktár sémába néhány táblák betöltése."
+title: "az Azure blob tooAzure adatraktárból aaaLoad |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse PolyBase tooload adatok Azure blob-tároló az SQL Data Warehouse. A nyilvános adatok hello Contoso kereskedelmi adatraktár sémába néhány táblák betöltése."
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 2859c1144f72fd685af89f83024df1409902ab0c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4b4978ccefa4d55ff5c89fba84c5e705422ddbb7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="load-data-from-azure-blob-storage-into-sql-data-warehouse-polybase"></a>Adatok betöltése az Azure blob storage az SQL Data warehouse-ba (PolyBase)
 > [!div class="op_single_selector"]
@@ -28,37 +28,37 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Adatok betöltése az Azure blob storage az Azure SQL Data Warehouse PolyBase és T-SQL-parancsok segítségével 
+Az Azure SQL Data Warehouse PolyBase és T-SQL parancsokkal tooload adatokat az Azure blob storage használata 
 
-Legyen egyszerű, hogy ez az oktatóanyag tölti be a két tábla az egy nyilvános Azure Storage-Blobból a Contoso kereskedelmi adatraktár sémába. A teljes adatkészlet betöltéséhez futtassa a példa [betölteni a teljes Contoso kereskedelmi adatraktár] [ Load the full Contoso Retail Data Warehouse] a Microsoft SQL Server minták tárházból.
+egyszerű, ez az oktatóanyag betölti a két tábla az egy nyilvános Azure Storage-Blobból hello Contoso kereskedelmi adatraktár sémába tookeep. tooload hello teljes adatkészlet, futtassa a hello példa [terhelés hello teljes Contoso kereskedelmi adatraktár] [ Load hello full Contoso Retail Data Warehouse] adattárból hello Microsoft SQL Server minták.
 
 Az oktatóanyag tartalma:
 
-1. Az Azure blob storage betöltése a PolyBase konfigurálása
+1. Az Azure blob storage PolyBase tooload konfigurálása
 2. Nyilvános adatok betöltése az adatbázisba
-3. Hajtsa végre a optimalizálást, a betöltés befejezése után.
+3. Hajtsa végre a optimalizálásokat hello betöltése után.
 
 ## <a name="before-you-begin"></a>Előkészületek
-Ez az oktatóanyag elindításához Azure-fiókot, amely már rendelkezik egy SQL Data Warehouse-adatbázis kell. Ha még nem rendelkezik ezzel, lásd: [SQL Data Warehouse létrehozása][Create a SQL Data Warehouse].
+toorun ebben az oktatóanyagban kell Azure-fiókot, amely már rendelkezik egy SQL Data Warehouse-adatbázis. Ha még nem rendelkezik ezzel, lásd: [SQL Data Warehouse létrehozása][Create a SQL Data Warehouse].
 
-## <a name="1-configure-the-data-source"></a>1. Konfigurálja az adatforrást
-A polybase külső T-SQL-objektumok a hely és a külső adatokra vonatkozó attribútumok megadhatók. A külső objektum az SQL Data Warehouse tárolja. Maga az adat a külsőleg tárolódik.
+## <a name="1-configure-hello-data-source"></a>1. Hello adatforrás konfigurálása
+A polybase T-SQL külső objektumok toodefine hello helyét és hello külső adatokra vonatkozó attribútumok. hello külső objektum tárolja az SQL Data Warehouse. hello maga tárolja kívülről.
 
 ### <a name="11-create-a-credential"></a>1.1. Hitelesítő adatok létrehozása
-**Kihagyhatja ezt a lépést** Ha a Contoso nyilvános adatokat tölt be. A nyilvános adataihoz való biztonságos hozzáférés nem szükséges, mert már bárki hozzáférhet.
+**Kihagyhatja ezt a lépést** Ha hello Contoso nyilvános adatokat tölt be. Biztonságos hozzáférés toohello nyilvános adatok nem szükséges, mert az már elérhető tooanyone.
 
-**Ne hagyja ki ezt a lépést** használata ebben az oktatóanyagban sablonként a saját adatok feltöltését. Adatok eléréséhez a hitelesítő adatokat, használja a következő parancsfájl egy adatbázishoz kötődő hitelesítő adatok létrehozása, és majd használatra, ha az adatforrás helyének meghatározása.
+**Ne hagyja ki ezt a lépést** használata ebben az oktatóanyagban sablonként a saját adatok feltöltését. hitelesítő adatokat, a következő használatát hello tooaccess adatokat parancsfájl toocreate egy adatbázishoz kötődő hitelesítő adatok, és használja azt hello adatforrás hello helyét meghatározásakor.
 
 ```sql
 -- A: Create a master key.
 -- Only necessary if one does not already exist.
--- Required to encrypt the credential secret in the next step.
+-- Required tooencrypt hello credential secret in hello next step.
 
 CREATE MASTER KEY;
 
 
 -- B: Create a database scoped credential
--- IDENTITY: Provide any string, it is not used for authentication to Azure storage.
+-- IDENTITY: Provide any string, it is not used for authentication tooAzure storage.
 -- SECRET: Provide your Azure storage account key.
 
 
@@ -70,9 +70,9 @@ WITH
 
 
 -- C: Create an external data source
--- TYPE: HADOOP - PolyBase uses Hadoop APIs to access data in Azure blob storage.
+-- TYPE: HADOOP - PolyBase uses Hadoop APIs tooaccess data in Azure blob storage.
 -- LOCATION: Provide Azure storage account name and blob container name.
--- CREDENTIAL: Provide the credential created in the previous step.
+-- CREDENTIAL: Provide hello credential created in hello previous step.
 
 CREATE EXTERNAL DATA SOURCE AzureStorage
 WITH (
@@ -82,10 +82,10 @@ WITH (
 );
 ```
 
-Ugorjon a 2.
+Kihagyás toostep 2.
 
-### <a name="12-create-the-external-data-source"></a>1.2. A külső adatforrás létrehozása
-Ezzel [külső ADATFORRÁS létrehozása] [ CREATE EXTERNAL DATA SOURCE] parancs a helyét, valamint az adatok, milyen típusú adatok tárolásához. 
+### <a name="12-create-hello-external-data-source"></a>1.2. Hello külső adatforrás létrehozása
+Ezzel [külső ADATFORRÁS létrehozása] [ CREATE EXTERNAL DATA SOURCE] toostore hello helyét, valamint hello adatok hello típusú adatok parancsot. 
 
 ```sql
 CREATE EXTERNAL DATA SOURCE AzureStorage_west_public
@@ -97,12 +97,12 @@ WITH
 ```
 
 > [!IMPORTANT]
-> Ha arra, hogy az azure blob storage tárolók nyilvánosságra választja, ne feledje, hogy az adatok tulajdonosa fizetnie kell adatok kilépő díjak amikor adatok elhagyja az Adatközpont. 
+> Ha úgy dönt, toomake az azure blob storage tárolók nyilvános, ne feledje, hogy hello adatok tulajdonosaként fizetnie kell adatok kilépő díjak adatok elhagyásakor hello adatközpont. 
 > 
 > 
 
 ## <a name="2-configure-data-format"></a>2. Az adatformátum konfigurálása
-Az adatok szöveg fájlok az Azure blob Storage tárolóban tárolják, és minden mező elválasztóval választja el egymástól. Ez [külső FÁJLFORMÁTUM létrehozása] [ CREATE EXTERNAL FILE FORMAT] parancs használatával adja meg az adatok formátumának a szövegfájlok. A Contoso adatok tömörítetlen és az adatcsatorna tagolt.
+hello adatok tárolódnak az Azure blob storage szövegfájlok, és minden mező elválasztóval választja el egymástól. Ez [külső FÁJLFORMÁTUM létrehozása] [ CREATE EXTERNAL FILE FORMAT] hello adatok hello szövegfájlok, és a parancs toospecify hello formátuma. hello Contoso adatok tömörítetlen, és az adatcsatorna tagolt.
 
 ```sql
 CREATE EXTERNAL FILE FORMAT TextFileFormat 
@@ -116,21 +116,21 @@ WITH
 );
 ``` 
 
-## <a name="3-create-the-external-tables"></a>3. A külső táblák létrehozása
-Most, hogy a megadott forrás- és a fájl adatformátum, készen áll a külső táblák létrehozására. 
+## <a name="3-create-hello-external-tables"></a>3. Hello külső táblák létrehozása
+Most, hogy a megadott hello forrás- és a fájl formátuma, készen áll a toocreate hello külső táblák áll. 
 
-### <a name="31-create-a-schema-for-the-data"></a>3.1. Hozzon létre egy sémát.
-A hely, a Contoso adatokat az adatbázisban tárolni, hozzon létre egy séma.
+### <a name="31-create-a-schema-for-hello-data"></a>3.1. Hozzon létre egy séma hello adatok.
+toocreate egy hely toostore hello Contoso adatokat az adatbázisban séma létrehozása.
 
 ```sql
 CREATE SCHEMA [asb]
 GO
 ```
 
-### <a name="32-create-the-external-tables"></a>3.2. Hozza létre a külső táblákat.
-Futtassa ezt a parancsfájlt a DimProduct és FactOnlineSales külső tábla létrehozásához. Csak azt is itt az oszlopneveket és adattípusokat meghatározása, és a kötése a hely és az Azure blob storage fájlok formátuma. A definíció SQL Data Warehouse tárolja, és az adatok továbbra is megtalálható az Azure Storage-Blobba.
+### <a name="32-create-hello-external-tables"></a>3.2. Hello külső táblák létrehozása.
+Futtassa a parancsfájl toocreate hello DimProduct és FactOnlineSales külső táblákon. Csak azt is itt az oszlopneveket és adattípusokat meghatározása, és kötelező toohello helyét és hello Azure blob storage fájlok formátuma. hello definition SQL Data Warehouse tárolja és hello adatok továbbra is a hello Azure Storage-Blobba.
 
-A **hely** paraméter megadása a mappa alatt az Azure Storage-Blobba gyökérmappáját. Minden tábla másik mappában van.
+Hello **hely** paraméter hello gyökérmappáját hello Azure Storage-Blobba hello mappát. Minden tábla másik mappában van.
 
 ```sql
 
@@ -215,23 +215,23 @@ WITH
 ;
 ```
 
-## <a name="4-load-the-data"></a>4. Az adatok betöltése
-Külső adatok eléréséhez különböző módon van.  Adatok közvetlenül a külső tábla lekérdezése, az adatok betöltése az új adatbázistáblák vagy külső adatok hozzáadása a meglévő táblák.  
+## <a name="4-load-hello-data"></a>4. Hello adatok betöltése
+Nincs elérhető különböző módokon tooaccess külső adat.  Kérdezhet le adatokat közvetlenül a hello külső tábla, hello adatok betöltése az új adatbázistáblák, vagy vegye fel a külső adatokat tooexisting adatbázistáblák.  
 
 ### <a name="41-create-a-new-schema"></a>4.1. Hozzon létre egy új sémát
-CTAS új táblát hoz létre, amely adatokat tartalmaz.  Először hozzon létre egy contoso sémát.
+CTAS új táblát hoz létre, amely adatokat tartalmaz.  Először hozzon létre egy séma hello contoso adatok.
 
 ```sql
 CREATE SCHEMA [cso]
 GO
 ```
 
-### <a name="42-load-the-data-into-new-tables"></a>4.2. Az adatok betöltése az új táblák
-Adatok betöltése az Azure blob storage és mentse a munkafüzetet egy táblát az adatbázis belül használja a [CREATE TABLE AS SELECT (Transact-SQL)] [ CREATE TABLE AS SELECT (Transact-SQL)] utasítást. A CTAS betöltése kihasználja az imént létrehozott szigorú típusmegadású külső táblákra. Adatok betöltése az új táblák, segítségével [CTAS] [ CTAS] táblánként utasítást. 
+### <a name="42-load-hello-data-into-new-tables"></a>4.2. Új hello adatok betöltése
+tooload adatokat az Azure blob-tároló, és mentse azt egy tábla belül az adatbázis, használja a hello [CREATE TABLE AS SELECT (Transact-SQL)] [ CREATE TABLE AS SELECT (Transact-SQL)] utasítást. A CTAS betöltése használja hello erős típusmegadású külső táblák csak created.tooload hello adatok új táblába, használjon egy [CTAS] [ CTAS] táblánként utasítást. 
  
-CTAS új táblát hoz létre, és feltölti a select utasítás a eredményekkel. CTAS határozza meg az új tábla ugyanazon oszlopok és adattípusok rendelkezik, mint a select utasítás eredményét. Ha minden oszlop egy külső tábla, az új táblázat lesz a külső tábla az adattípusokat és az oszlopok egy replikát.
+CTAS új táblát hoz létre, és feltölti a select utasítás hello eredményekkel. CTAS meghatározása hello új tábla toohave azonos oszlopok és adattípusok hello hello hello eredményeit válasszon ki az utasítást. Ha minden hello oszlop egy külső tábla, hello új tábla hello oszlopok és típusok adatok replikáját hello külső tábla lesz.
 
-Ebben a példában azt hozni a dimenzió, illetve a ténytábla, elosztott táblák kivonat. 
+Ebben a példában létrehozhatunk hello dimenzió és a hello ténytábla, elosztott táblák kivonat. 
 
 ```sql
 SELECT GETDATE();
@@ -241,20 +241,20 @@ CREATE TABLE [cso].[DimProduct]            WITH (DISTRIBUTION = HASH([ProductKey
 CREATE TABLE [cso].[FactOnlineSales]       WITH (DISTRIBUTION = HASH([ProductKey]  ) ) AS SELECT * FROM [asb].[FactOnlineSales]        OPTION (LABEL = 'CTAS : Load [cso].[FactOnlineSales]        ');
 ```
 
-### <a name="43-track-the-load-progress"></a>4.3 a folyamat előrehaladását betöltése
-A dinamikus felügyeleti nézetekkel (dinamikus felügyeleti nézetek) betöltési állapotának nyomon követheti. 
+### <a name="43-track-hello-load-progress"></a>4.3 nyomon hello betöltése folyamatban
+Nyomon követheti a dinamikus felügyeleti nézetekkel (dinamikus felügyeleti nézetek) betöltési hello előrehaladását. 
 
 ```sql
--- To see all requests
+-- toosee all requests
 SELECT * FROM sys.dm_pdw_exec_requests;
 
--- To see a particular request identified by its label
+-- toosee a particular request identified by its label
 SELECT * FROM sys.dm_pdw_exec_requests as r
 WHERE r.[label] = 'CTAS : Load [cso].[DimProduct]             '
       OR r.[label] = 'CTAS : Load [cso].[FactOnlineSales]        '
 ;
 
--- To track bytes and files
+-- tootrack bytes and files
 SELECT
     r.command,
     s.request_id,
@@ -278,9 +278,9 @@ ORDER BY
 ```
 
 ## <a name="5-optimize-columnstore-compression"></a>5. Oszlopcentrikus tömörítés optimalizálása
-Alapértelmezés szerint az SQL Data Warehouse tárolja a tábla fürtözött oszlopcentrikus index. A betöltés befejezése után az adatsorok némelyike esetleg nem tömörítse össze az oszlopcentrikus.  Miért Ez akkor fordulhat elő, ennek több van. További tudnivalókért lásd: [oszlopcentrikus Indexek kezelése][manage columnstore indexes].
+Alapértelmezés szerint az SQL Data Warehouse tárolja hello tábla fürtözött oszlopcentrikus index. A betöltés befejezése után néhány hello adatsorok előfordulhat, hogy nem lehet tömörített hello oszlopcentrikus.  Miért Ez akkor fordulhat elő, ennek több van. több, lásd: toolearn [oszlopcentrikus Indexek kezelése][manage columnstore indexes].
 
-Optimalizálható a teljesítmény-küszöbérték és a betöltés után oszlopcentrikus tömörítés, építse újra az oszloptárindexet az összes sor tömörítendő kényszerítése a tábla. 
+toooptimize lekérdezési teljesítmény és a betöltés után oszlopcentrikus tömörítési építse újra hello tábla tooforce hello oszlopcentrikus index toocompress hello összes sort. 
 
 ```sql
 SELECT GETDATE();
@@ -290,14 +290,14 @@ ALTER INDEX ALL ON [cso].[DimProduct]               REBUILD;
 ALTER INDEX ALL ON [cso].[FactOnlineSales]          REBUILD;
 ```
 
-Az oszlopcentrikus indexek fenntartása További információkért lásd: a [oszlopcentrikus Indexek kezelése] [ manage columnstore indexes] cikk.
+Az oszlopcentrikus indexek fenntartása További információkért lásd: hello [oszlopcentrikus Indexek kezelése] [ manage columnstore indexes] cikk.
 
 ## <a name="6-optimize-statistics"></a>6. Statisztika optimalizálása
-Érdemes a betöltés után azonnal létrehozza a egyoszlopos statisztikát. Nincsenek néhány statisztikai lehetőségeit. Például ha egyoszlopos statisztikát hoz létre minden egyes oszlophoz a statisztika, hogy hosszú ideig eltarthat. Ha ismeri az egyes oszlopok nem tervezi, hogy a lekérdezés predikátumok kell, kihagyhatja a statisztikák létrehozása az ilyen oszlopokat.
+A betöltés után azonnal is ajánlott toocreate egyoszlopos statisztikát. Nincsenek néhány statisztikai lehetőségeit. Például ha egyoszlopos statisztikát hoz létre minden egyes oszlophoz eltarthat egy hosszú ideig toorebuild összes hello statisztikáját. Ha ismeri az egyes oszlopok nem fog az lekérdezés predikátumokban toobe, kihagyhatja a statisztikák létrehozása az ilyen oszlopokat.
 
-Ha egy oszlop statisztikákat létrehozni minden tábla minden egyes oszlophoz, használhatja a tárolt eljárás kódminta `prc_sqldw_create_stats` a a [statisztika] [ statistics] cikk.
+Ha úgy dönt, hogy minden tábla minden egyes oszlophoz a toocreate egyoszlopos statisztikát, használhatja a hello tárolt eljárás kódminta `prc_sqldw_create_stats` a hello [statisztika] [ statistics] cikk.
 
-A következő példa: statisztikák létrehozása az jó kiindulási pont. Minden egyes oszlopának a dimenziótáblában és a ténytáblák csatlakozó oszlopainak egyoszlopos statisztikát hoz. Mindig hozzáadhat egy vagy több oszlop statisztikai más tény táblaoszlopok később.
+a következő példa hello statisztikák létrehozása az jó kiindulási pont. Egyoszlopos statisztikát hoz hello dimenzió tábla összes oszlopa, és minden hello ténytáblák csatlakozó oszlopában. Bármikor hozzáadhat egy vagy több oszlop statisztika tooother tény táblaoszlopok később.
 
 ```sql
 CREATE STATISTICS [stat_cso_DimProduct_AvailableForSaleDate] ON [cso].[DimProduct]([AvailableForSaleDate]);
@@ -344,7 +344,7 @@ CREATE STATISTICS [stat_cso_FactOnlineSales_StoreKey] ON [cso].[FactOnlineSales]
 ## <a name="achievement-unlocked"></a>Zárolása feloldva elérésének!
 Az Azure SQL Data Warehouse nyilvános adatok sikeresen töltött. Remek munka!
 
-Most elindíthatja a lekérdezésekkel például a következő táblázatok lekérdezése:
+Most elindíthatja a lekérdezésekkel hasonló hello hello táblák lekérdezése:
 
 ```sql
 SELECT  SUM(f.[SalesAmount]) AS [sales_by_brand_amount]
@@ -355,7 +355,7 @@ GROUP BY p.[BrandName]
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-A teljes Contoso kereskedelmi Data Warehouse-adatok betöltése, a parancsfájl használata további fejlesztési tippek. További információ: [SQL Data Warehouse fejlesztői áttekintés][SQL Data Warehouse development overview].
+tooload hello teljes Contoso kereskedelmi Data Warehouse-adatok, parancsfájllal hello a további fejlesztési tippek című [SQL Data Warehouse fejlesztői áttekintés][SQL Data Warehouse development overview].
 
 <!--Image references-->
 
@@ -377,4 +377,4 @@ A teljes Contoso kereskedelmi Data Warehouse-adatok betöltése, a parancsfájl 
 
 <!--Other Web references-->
 [Microsoft Download Center]: http://www.microsoft.com/download/details.aspx?id=36433
-[Load the full Contoso Retail Data Warehouse]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md
+[Load hello full Contoso Retail Data Warehouse]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md

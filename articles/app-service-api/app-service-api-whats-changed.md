@@ -1,5 +1,5 @@
 ---
-title: "Az App Service API Apps - változások |} Microsoft Docs"
+title: "Service API Apps - változások aaaApp |} Microsoft Docs"
 description: "Ismerje meg az új API-alkalmazások az Azure App Service-ben."
 services: app-service\api
 documentationcenter: .net
@@ -14,35 +14,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: rachelap
-ms.openlocfilehash: e4e25f2cd1d39bb0113e3fe2bc37120f92227b28
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 79df54f1dae91d7c5d3b66d208d0d1c1d7d55ae9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="app-service-api-apps---whats-changed"></a>Az App Service API Apps - változások
-A 2015. November csatlakozás esemény fejlesztései az Azure App Service számos voltak [bejelentette](https://azure.microsoft.com/blog/azure-app-service-updates-november-2015/). Ezen fejlesztések közé tartoznak az alapul szolgáló API-alkalmazások jobban megfelel-e a mobileszköz és a Web Apps, koncepció számának csökkentését, és központi telepítési és futásidejű teljesítményének javítása módosításait. 2015. November 30 új API-alkalmazások indítása hoz létre az Azure felügyeleti portál használatával, vagy a legújabb tooling változik meg ezeket a módosításokat. Ez a cikk ismerteti ezeket a módosításokat, valamint azt, hogyan újratelepíteni a lehetőségeinek kihasználásához a meglévő alkalmazásokat.
+A 2015. November hello csatlakozás esetben fejlesztései tooAzure App Service számos voltak [bejelentette](https://azure.microsoft.com/blog/azure-app-service-updates-november-2015/). Ezen fejlesztések közé tartoznak az alapul szolgáló módosítások tooAPI alkalmazások toobetter megfelel-e a mobileszköz és a Web Apps, koncepció számának csökkentése és a központi telepítési és futásidejű teljesítményének növelése. 2015. November 30 új API-alkalmazások indítása létrehozásakor hello Azure felügyeleti portált használja, vagy hello legújabb tooling változik meg ezeket a módosításokat. Ez a cikk ismerteti ezeket a változásokat, valamint módjáról tooredeploy meglévő alkalmazások tootake előnyeit hello képességeit.
 
 ## <a name="feature-changes"></a>A szolgáltatás módosításait
-Közvetlenül az App Service API Apps – hitelesítés, és az API CORS metaadatai – a kulcsfontosságú szolgáltatásokat került át. Ez a változás a szolgáltatások elérhetőek a webes, mobil és API-alkalmazások között. Valójában, mind a három megosztása azonos **Microsoft.Web/sites** erőforrás típusa az erőforrás-kezelőben. Az API Apps átjáró már nem szükséges vagy API-alkalmazásokkal való kínál. Is így könnyebben Azure API Management használni, mert csak az egyetlen API Management átjáró lesz.
+közvetlenül az App Service API-alkalmazások – hitelesítés, a CORS és API-metaadatok – hello kulcsfunkciói került át. Ez a változás hello szolgáltatások elérhetőek a webes, mobil és API-alkalmazások között. Tulajdonképpen minden három megosztás hello azonos **Microsoft.Web/sites** erőforrás típusa az erőforrás-kezelőben. hello API-alkalmazások átjáró van szükség, vagy már nem érhető el az API Apps. Is így egyszerűbb toouse Azure API Management mivel csak hello egyetlen API Management gateway készül.
 
 ![API Apps áttekintése](./media/app-service-api-whats-changed/api-apps-overview.png)
 
-A tervezési funkciókat az API Apps frissítéssel ahhoz, hogy az API-t, mivel a választott nyelven van kapcsolja.  Ha az API-webalkalmazást vagy mobilalkalmazást már telepítve van, nem rendelkezik telepítse újra az alkalmazást az új szolgáltatások előnyeinek kihasználása érdekében. Ha Ön jelenleg a API-alkalmazások Preview-ban, áttelepítési útmutató részleteit az alábbiakban láthatja.
+A tervezési funkciókat az API-alkalmazások frissítéséhez hello tooenable toobring, mint az API-t a választott nyelven van.  Ha az API-webalkalmazást vagy mobilalkalmazást már telepítve van, nincs tooredeploy az alkalmazás tootake hasznos hello szolgáltatásait. Ha Ön jelenleg a API-alkalmazások Preview-ban, áttelepítési útmutató részleteit az alábbiakban láthatja.
 
 ### <a name="authentication"></a>Authentication
-A meglévő kulcsrakész API-alkalmazások, a Mobile Services/alkalmazásokhoz és a Web Apps hitelesítési szolgáltatások rendelkezik lett egyesített, és elérhető a felügyeleti portálon egyetlen Azure App Service hitelesítés panelen. Megismerkedhet a hitelesítési szolgáltatások, az App Service szolgáltatásban, lásd: [bővülő App Service hitelesítés / engedélyezés](https://azure.microsoft.com/blog/announcing-app-service-authentication-authorization/).
+hello meglévő kulcsrakész API-alkalmazások, a Mobile Services/alkalmazásokhoz és a Web Apps hitelesítési szolgáltatások rendelkezik lett egyesített és egy egyetlen Azure App Service hitelesítés panelen hello felügyeleti portálon. Bevezetés tooauthentication szolgáltatás az App Service szolgáltatásban, lásd: [bővülő App Service hitelesítés / engedélyezés](https://azure.microsoft.com/blog/announcing-app-service-authentication-authorization/).
 
 API-forgatókönyvek esetén számos vonatkozó új képességeit:
 
-* **Közvetlenül az Azure Active Directoryval támogatása**, anélkül, hogy a munkamenet-jogkivonat AAD-tokent exchange kellene Ügyfélkód: az ügyfél csak felvehető az AAD-jogkivonatokat Authorization fejlécet a tulajdonosi jogkivonat specifikációnak megfelelően. Ez azt is jelenti nincs App Service-specifikus SDK szükséges az ügyfél vagy kiszolgáló oldalán. 
-* **Szolgáltatás vagy a "Belső" hozzáférési**: Ha valamilyen démonfolyamat vagy egy másik ügyfélen, anélkül, hogy API-k egy felület nélkül, kérjen egy AAD-szolgáltatásnév segítségével tokent, és adja át azt az App Service-val történő hitelesítéshez a az alkalmazás.
-* **Engedélyezési késleltetett**: számos alkalmazás rendelkezik az alkalmazás különböző részeit különböző hozzáférési korlátozásokat. Lehet, hogy azt szeretné, hogy nyilvánosan elérhető, míg más bejelentkezési egyes API-k. Az eredeti hitelesítési/engedélyezési szolgáltatás lett mindent, a bejelentkezési igénylő teljes hellyel. Ez a beállítás létezik, de azt is megteheti engedélyezheti az alkalmazás kódjában hozzáférés döntések leképezése után az App Service hitelesítette a felhasználót.
+* **Közvetlenül az Azure Active Directoryval támogatása**, tooexchange hello AAD-tokent a munkamenet jogkivonatából rendelkező ügyfél kód nélkül: az ügyfél csak felvehető hello AAD jogkivonatok hello Authorization fejlécet, toohello tulajdonosi jogkivonattal szerint meghatározása. Ez azt is jelenti nincs App Service-specifikus SDK szükséges hello ügyfél vagy kiszolgáló oldalán. 
+* **Szolgáltatás vagy a "Belső" hozzáférési**: Ha valamilyen démonfolyamat vagy egy másik ügyfélen kellene hozzáférés tooAPIs egy felület nélkül, kérjen egy AAD-szolgáltatásnév segítségével tokent, és adja át a hitelesítési szolgáltatás tooApp rendelkező a az alkalmazás.
+* **Engedélyezési késleltetett**: számos alkalmazás rendelkezik hello alkalmazás különböző részeit különböző hozzáférési korlátozásokat. Lehet, hogy kívánt egyes API-k toobe nyilvánosan elérhető, míg más bejelentkezési. hello eredeti hitelesítési/engedélyezési szolgáltatás lett mindent, bejelentkezési igénylő hello teljes hellyel. Ez a beállítás létezik, de azt is megteheti engedélyezheti az alkalmazás kódjában toorender hozzáférés döntések után App Service hitelesítette hello felhasználó.
 
-Az új hitelesítési funkciókkal kapcsolatos további információkért lásd: [hitelesítése és engedélyezése az Azure App Service API Apps](app-service-api-authentication.md). További információ a meglévő API-alkalmazások áttelepítése az előző API apps modellből az újjal: [áttelepítése meglévő API-alkalmazások](#migrating-existing-api-apps) című cikkben.
+Hello új hitelesítési funkciókkal kapcsolatos további információkért lásd: [hitelesítése és engedélyezése az Azure App Service API Apps](app-service-api-authentication.md). További információ a hogyan toomigrate meglévő API-alkalmazásokat hello előző API apps modell toohello új egy, lásd: [áttelepítése meglévő API-alkalmazások](#migrating-existing-api-apps) című cikkben.
 
 ### <a name="cors"></a>CORS
-Vesszővel tagolt helyett **MS_CrossDomainOrigins** app beállításnál már létezik egy panelt a CORS konfigurálása az Azure felügyeleti portálján. Másik lehetőségként beállítható például az Azure Powershellt, CLI tooling eszköz erőforrás-kezelő használatával vagy [erőforrás-kezelő](https://resources.azure.com/). Állítsa be a **cors** tulajdonságát a **Microsoft.Web/sites/config** erőforrás típusa a  **&lt;helynév&gt;/webes** erőforrás. Példa:
+Vesszővel tagolt helyett **MS_CrossDomainOrigins** app beállításnál már létezik egy panel hello Azure felügyeleti portálján a CORS konfigurálása. Másik lehetőségként beállítható például az Azure Powershellt, CLI tooling eszköz erőforrás-kezelő használatával vagy [erőforrás-kezelő](https://resources.azure.com/). Set hello **cors** hello tulajdonságának **Microsoft.Web/sites/config** erőforrás típusát a  **&lt;helynév&gt;/webes** erőforrás. Példa:
 
     {
         "cors": {
@@ -53,7 +53,7 @@ Vesszővel tagolt helyett **MS_CrossDomainOrigins** app beállításnál már l�
     } 
 
 ### <a name="api-metadata"></a>API-metaadatok
-Az API definition panel már elérhető a webes, mobil és API-alkalmazások között. A felügyeleti portálon vagy egy relatív URL-címet, vagy egy abszolút URL-t, a végpont az API-t, hogy a Swagger 2.0-s gazdagépeken ábrázolását is megadhat. Másik lehetőségként beállítható tooling erőforrás-kezelő használatával. Állítsa be a **apiDefinition** tulajdonságát a **Microsoft.Web/sites/config** erőforrás típusa a  **&lt;helynév&gt;/webes** erőforrás. Példa:
+hello API definition panel már elérhető a webes, mobil és API-alkalmazások között. Hello felügyeleti portálon vagy egy relatív URL-címet, vagy egy tooan végpont az API-t, hogy a Swagger 2.0-s gazdagépeken ábrázolását mutató abszolút URL-címet is megadhat. Másik lehetőségként beállítható tooling erőforrás-kezelő használatával. Set hello **apiDefinition** hello tulajdonságának **Microsoft.Web/sites/config** erőforrás típusát a  **&lt;helynév&gt;/webes** erőforrás. Példa:
 
     {
         "apiDefinition":
@@ -62,62 +62,62 @@ Az API definition panel már elérhető a webes, mobil és API-alkalmazások kö
         }
     }
 
-Ilyenkor a metaadat-végpontjához kell lennie a nyilvánosan elérhető, számos alárendelt ügyfelek (például a Visual Studio REST API-ügyfél generációs és PowerApps "API hozzáadása" folyamata) szokásokra is hitelesítés nélkül. Ez a jelenti azt, ha az App Service-hitelesítést használ, és szeretne közzétenni az alkalmazásban, maga az API-definíció, szüksége lesz a korábban leírt úgy, hogy az útvonal a Swagger-metaadatok nyilvános késleltetett hitelesítési beállítás használata.
+Ilyenkor hello metaadat-végpontjához igényeihez toobe nyilvánosan elérhető hitelesítés nélkül számos alárendelt ügyfelek (például a Visual Studio REST API ügyfél és a PowerApps "API hozzáadása" folyamata) tooconsume azt. Ez a jelenti azt, ha az App Service-hitelesítést használ, és szeretné, hogy maga az alkalmazáson belül tooexpose hello API-definíció, szüksége lesz a toouse hello késleltetett hitelesítési lehetőséget a korábban ismertetett, így a hello útvonal tooyour Swagger-metaadatok nem nyilvános.
 
 ## <a name="management-portal"></a>Felügyeleti portál
-Kiválasztása **új > Web + mobil > API-alkalmazás** a portálon létrehoz tükrözik a cikkben ismertetett új funkciók API-alkalmazások. **Tallózás > API-alkalmazások** fog csak ezen új API-alkalmazások. Keresse meg az API-alkalmazásba, ha a panel közösen használja az azonos elrendezés és funkciókkal rendelkeznek, mint azok a webkiszolgálók és a Mobile Apps. Csak a következők: gyors üzembe helyezés tartalom és a beállítások sorrendje.
+Kiválasztása **új > Web + mobil > API-alkalmazás** hello portál létrehoz tükrözik hello hello cikkben ismertetett új funkciók API-alkalmazások. **Tallózás > API-alkalmazások** fog csak ezen új API-alkalmazások. Keresse meg az API-alkalmazásba, miután hello panel megosztások hello elrendezés és a webes és mobilalkalmazások mint képességei azonosak. hello csak különbségek a gyors üzembe helyezés tartalom és a beállítások sorrendje.
 
-Meglévő API-alkalmazások (vagy készített Logic Apps Marketplace API-alkalmazások) az a korábbi előzetes verziójú képességeket is látható lesz a Logic Apps-tervezőben, mind összes erőforrást erőforráscsoportban böngészésekor.
+Meglévő API-alkalmazások (vagy készített Logic Apps Marketplace API-alkalmazások) hello a korábbi előzetes verziójának képességeivel is látható lesz hello Logic Apps-tervezőben, mind összes erőforrást erőforráscsoportban böngészésekor.
 
 ## <a name="visual-studio"></a>Visual Studio
-Legtöbb webalkalmazások tooling új API-alkalmazásokkal való fog működni, mivel a ugyanazt az alapul szolgáló közös **Microsoft.Web/sites** erőforrástípus. A Visual Studio Azure, tooling eszköz, azonban kell vagy újabb verzió 2.8.1-es verziójának frissített óta számos képességet jellemző API-k teszi elérhetővé. Az SDK letöltése a [Azure letöltési oldalon](https://azure.microsoft.com/downloads/).
+A legtöbb, tooling új API-alkalmazásokkal való fog működni, mert a közös webalkalmazások hello ugyanazt az alapul szolgáló **Microsoft.Web/sites** erőforrástípus. hello Azure Visual Studio tooling eszköz, azonban frissített tooversion 2.8.1-es verziójának vagy újabb, mert egy adott tooAPIs képességek számát mutatja. Hello SDK letöltése hello [Azure letöltési oldalon](https://azure.microsoft.com/downloads/).
 
-Az App Service típusok ésszerűsítés, közzététele is az az egységes **közzététel > Microsoft Azure App Service**:
+A hello ésszerűsítés az App Service-típusok hello, közzététele is az az egységes **közzététel > Microsoft Azure App Service**:
 
 ![API-alkalmazások közzététele](./media/app-service-api-whats-changed/api-apps-publish.png)
 
-SDK 2.8.1-es verziójának kapcsolatos további tudnivalókért olvassa el a közlemény [blogbejegyzés](https://azure.microsoft.com/blog/announcing-azure-sdk-2-8-1-for-net/).
+További információk az SDK 2.8.1-es verziójának, olvasási hello közlemény toolearn [blogbejegyzés](https://azure.microsoft.com/blog/announcing-azure-sdk-2-8-1-for-net/).
 
-Közzététel engedélyezése a kezelési portálon, a közzétételi profil manuálisan importálhatja. Azonban Cloud Explorer, a kód generálása és az API kiválasztása vagy létrehozása esetén a SDK 2.8.1-es verziójának vagy újabb verzióját.
+Azt is megteheti, hogy manuális módszerrel importálja hello közzétételi profil hello felügyeleti portál tooenable a közzététele. Azonban Cloud Explorer, a kód generálása és az API kiválasztása vagy létrehozása esetén a SDK 2.8.1-es verziójának vagy újabb verzióját.
 
 ## <a name="migrating-existing-api-apps"></a>Meglévő API-alkalmazások áttelepítése
-Ha az egyéni API-t a korábbi előzetes verzióját API-alkalmazások központi telepítése, minden kért, hogy telepítse át az új modell API-alkalmazások által 2015. December 31. Mind a régi és az új modell az App Service szolgáltatásban futó webes API-k alapján, mert a legtöbb, a meglévő kódot felhasználhatók.
+Ha az egyéni API előzetes verziót telepített toohello az API Apps, minden kért, hogy az áttelepített toohello új modell API-alkalmazások által 2015. December 31. Mind a régi és az új modell hello az App Service szolgáltatásban futó webes API-k alapján, mert a meglévő kódot hello többsége felhasználhatók.
 
 ### <a name="hosting-and-redeployment"></a>Üzemeltetési és újbóli üzembe helyezése
-Az ismételt üzembe helyezéssel lépéseit ugyanazok, mint az App Service meglévő Web API-k telepítésével. lépéseket:
+hello lépéseket újratelepítéséhez vannak hello ugyanaz, mint a meglévő Web API tooApp szolgáltatás telepítését. lépéseket:
 
-1. Üres API-alkalmazás létrehozása. Ezt megteheti az új portálon > API-alkalmazást, a Visual Studio közzététel vagy a Resource Manager eszközt használunk erre. Erőforrás-kezelő tooling vagy a sablon használatával, ha a **jellegű** egy érték **api** a a **Microsoft.Web/sites** adja meg a quickstarts és a beállítások a API-forgatókönyvek bővítik a felügyeleti portálon.
-2. Csatlakozás és az üres API-alkalmazás az App Service által támogatott központi telepítési módszerek bármelyikével a projekt telepítése. Olvasási [Azure App Service üzembe helyezési dokumentációja](../app-service-web/web-sites-deploy.md) további. 
+1. Üres API-alkalmazás létrehozása. Ezt megteheti az új hello portálon > API-alkalmazást, a Visual Studio közzététel vagy a Resource Manager eszközt használunk erre. Erőforrás-kezelő tooling vagy sablonok használata esetén állítsa be a hello **jellegű** érték túl**api** a hello **Microsoft.Web/sites** erőforrás típusa toohave hello quickstarts és beállítások hello kezelési portál API forgatókönyvek bővítik.
+2. Csatlakozás és a projekt toohello üres API-alkalmazás az App Service által támogatott hello mechanizmusok használatával telepítheti. Olvasási [Azure App Service üzembe helyezési dokumentációja](../app-service-web/web-sites-deploy.md) további toolearn. 
 
 ### <a name="authentication"></a>Authentication
-Az App Service hitelesítési szolgáltatások ugyanazokat a képességeket voltak elérhetők a korábbi API-alkalmazások modellt támogatja. Ha a munkamenet-jogkivonatokat használ, és szükséges az SDK-k, használja az alábbi ügyfél- és SDK-k:
+hello App Service authentication szolgáltatások támogatási hello ugyanazokat a képességeket, melyeket hello előző API-alkalmazások modellben érhető el. Ha munkamenet jogkivonatokat használ, és szükséges az SDK-k, használja a következő ügyfél- és SDK-k hello:
 
 * Ügyfél: [Azure mobil ügyfél SDK](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Client/)
 * Server: [Microsoft Azure mobilalkalmazás .NET hitelesítési kiterjesztés](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Authentication/) 
 
-Ha inkább az App Service alpha SDK-k, ezek elavultak:
+Ha ehelyett hello App Service alpha SDK-k, ezek elavultak:
 
 * Ügyfél: [Microsoft Azure App Service SDK](http://www.nuget.org/packages/Microsoft.Azure.AppService)
 * Server: [Microsoft.Azure.AppService.ApiApps.Service](http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service)
 
-Különösen az Azure Active Directoryval, azonban nincs App Service-specifikus szükség, ha közvetlenül az AAD-tokent használ.
+Különösen az Azure Active Directoryval, azonban nincs App Service-specifikus szükség, ha közvetlenül hello AAD-tokent használ.
 
 ### <a name="internal-access"></a>Belső hozzáférés
-Az előző API-alkalmazások egy beépített belső hozzáférési szint foglalt. Ez szükséges az SDK használatának kérelmek aláírásra. Már ismertetett, az új API-alkalmazások modell AAD szolgáltatásnevekről használható alternatív szolgáltatások közötti hitelesítés anélkül, hogy egy App Service-specifikus SDK. További információ: [szolgáltatás egyszerű hitelesítés az Azure App Service API Apps](app-service-api-dotnet-service-principal-auth.md).
+hello előző API-alkalmazások foglalt egy beépített belső hozzáférési szintet. Az aláírási kérelem hello SDK használatának a szükséges. Már ismertetett, hello új API-alkalmazások modell AAD szolgáltatásnevekről használható alternatív szolgáltatások közötti hitelesítéshez anélkül, hogy egy App Service-specifikus SDK. További információ: [szolgáltatás egyszerű hitelesítés az Azure App Service API Apps](app-service-api-dotnet-service-principal-auth.md).
 
 ### <a name="discovery"></a>Felderítés
-Az előző API Apps-modell API-k más API-alkalmazások ugyanabban az erőforráscsoportban mögött ugyanahhoz az átjáróhoz a futási időben felderítéséhez volna. Ez különösen fontos, amelyek megvalósítják az mikroszolgáltatási minták architektúrákban. Amíg ez nem közvetlenül támogatott, több lehetőség érhetők el:
+előző API-alkalmazások modell kellett API-k más API-alkalmazások a futási időben felderítéséhez hello ugyanabban az erőforráscsoportban mögött hello hello ugyanahhoz az átjáróhoz. Ez különösen fontos, amelyek megvalósítják az mikroszolgáltatási minták architektúrákban. Amíg ez nem közvetlenül támogatott, több lehetőség érhetők el:
 
-1. Az Azure Resource Manager API használja a felderítéshez.
+1. Hello Azure Resource Manager API használja a felderítéshez.
 2. Azure API Management az App Service által üzemeltetett API-kat elé helyezze el. Az Azure API Management egy homlokzati funkcionál, és egy stabil külső irányuló URL-címet is adja meg, akkor is, ha a belső topológia megváltozik.
-3. Hozza létre a saját felderítési API-alkalmazást, és más API-alkalmazások, a felderítés alkalmazás következő indításakor regisztrálni kell.
-4. A központi telepítéskor feltöltése az összes API-alkalmazások (és az ügyfelek) az alkalmazás beállításaiban a többi API Apps végpontokon. Ez az kivitelezhető, a sablon telepítések, és mivel API-alkalmazások mostantól csoportjai az URL-cím ellenőrzése.
+3. Hozza létre a saját felderítési API-alkalmazást, és más API-alkalmazások hello felderítési alkalmazás következő indításakor regisztrálni kell.
+4. A központi telepítéskor feltöltése hello Alkalmazásbeállítások az összes hello API apps (és az ügyfelek) hello végpontokon hello az API-alkalmazások. Ez a kivitelezhető, a sablon telepítések, és mivel API-alkalmazások mostantól biztosítanak hello URL-cím ellenőrzése.
 
 ## <a name="using-api-apps-with-logic-apps"></a>A Logic Apps API-alkalmazások használata
-Az új API-alkalmazások modell jól működik [Logic Apps 2015-08-01 sémaverzió](../logic-apps/logic-apps-schema-2015-08-01.md).
+hello új API apps modell jól működik [Logic Apps 2015-08-01 sémaverzió](../logic-apps/logic-apps-schema-2015-08-01.md).
 
 ## <a name="next-steps"></a>Következő lépések
-További tudnivalókért olvassa el a cikkek a [API Apps dokumentáció](https://azure.microsoft.com/documentation/services/app-service/api/). Az új modell API-alkalmazások megfelelően frissültek. Ezenkívül érheti el a további részletek vagy az áttelepítési útmutató fórumokban:
+toolearn több, olvassa el a hello hello cikkek [API Apps dokumentáció](https://azure.microsoft.com/documentation/services/app-service/api/). Frissített tooreflect hello új modelljének API-alkalmazások voltak. Ezenkívül érheti el a további részletek vagy az áttelepítési útmutató hello fórumokban:
 
 * [MSDN-fórum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureAPIApps)
 * [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-api-apps)

@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Work.com |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Work.com között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Work.com között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,108 +14,108 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: jeedes
-ms.openlocfilehash: 7cfec8e9ac12d43095483696a15c0580776d3114
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dcdc51c884abd78c945b649de99f942d32373cf6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-workcom"></a>Oktatóanyag: Azure Active Directoryval integrált Work.com
 
-Ebben az oktatóanyagban elsajátíthatja Work.com integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Work.com az Azure Active Directoryval (Azure AD).
 
-Work.com integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+Work.com integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Megadhatja a Work.com hozzáféréssel rendelkező Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett Work.com (egyszeri bejelentkezés) számára a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Megadhatja a hozzáférés tooWork.com rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooWork.com (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs Work.com, a következőkre van szükség:
+az Azure AD integrálása Work.com tooconfigure, kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - Egy Work.com egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, akkor [egy hónapos próbaverzió beszerzése](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. Adja hozzá a Work.com a gyűjteményből
+1. Adja hozzá a Work.com hello gyűjteményből
 2. Az Azure AD az egyszeri bejelentkezés tesztelése és konfigurálása
 
-## <a name="add-workcom-from-the-gallery"></a>Adja hozzá a Work.com a gyűjteményből
-Az Azure AD integrálása a Work.com konfigurálásához kell hozzáadnia Work.com a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="add-workcom-from-hello-gallery"></a>Adja hozzá a Work.com hello gyűjteményből
+tooconfigure hello integrációja Work.com az Azure AD-be, meg kell tooadd Work.com hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A gyűjteményből Work.com hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd Work.com hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
+3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **Work.com**, jelölje be **Work.com** eredmények panelen kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+4. Hello keresési mezőbe, írja be a **Work.com**, jelölje be **Work.com** eredmények panelen kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Adja hozzá a gyűjteményből](./media/active-directory-saas-work-com-tutorial/tutorial_work-com_addfromgallery.png)
 
 ##  <a name="configure-and-test-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés tesztelése és konfigurálása
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján Work.com.
 
-Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Work.com a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a Work.com közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Work.com tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello Work.com közötti kapcsolat kapcsolatot kell létrehozni toobe.
 
-Work.com, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
+Work.com, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
 
-Az Azure AD egyszeri bejelentkezést a Work.com tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés Work.com-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configure-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Hozzon létre egy Azure AD-teszt felhasználó](#create-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[Work.com tesztfelhasználó létrehozása](#create-a-workcom-test-user)**  - való Britta Simon valami Work.com, amely csatolva van a felhasználó az Azure AD-ábrázolását.
-4. **[Rendelje hozzá az Azure AD-teszt felhasználó](#assign-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#test-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configure-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Hozzon létre egy Azure AD-teszt felhasználó](#create-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[Work.com tesztfelhasználó létrehozása](#create-a-workcom-test-user)**  -toohave egy megfelelője a Britta Simon a Work.com, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
+4. **[Rendelje hozzá az Azure AD hello tesztfelhasználó](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#test-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az Work.com alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az Work.com alkalmazásban.
 
 >[!NOTE]
->Egyszeri bejelentkezés beállításához szüksége egy Work.com egyéni tartománynév beállítása még. Adja meg legalább egy tartomány nevét, a tartománynév tesztelése és telepíteni kell a teljes szervezet kell.
+>tooconfigure egyszeri bejelentkezést, kell toosetup egy Work.com egyéni tartománynév még. Toodefine legalább egy tartományhoz kell neve, a tartománynév tesztelése és telepítheti azt tooyour teljes szervezet számára.
 
-**Konfigurálása az Azure AD az egyszeri bejelentkezés Work.com, hajtsa végre az alábbi lépéseket:**
+**az Azure AD tooconfigure egyszeri bejelentkezést a Work.com, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure portálon a a **Work.com** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **Work.com** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![SAML-alapú bejelentkezés](./media/active-directory-saas-work-com-tutorial/tutorial_work-com_samlbase.png)
 
-3. Az a **Work.com tartomány és az URL-címek** területen tegye a következőket:
+3. A hello **Work.com tartomány és az URL-címek** területen hello következőket hajthatja végre:
 
     ![Work.com tartomány és az URL-címek szakasz](./media/active-directory-saas-work-com-tutorial/tutorial_work-com_url.png)
 
-    Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`http://<companyname>.my.salesforce.com`
+    A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`http://<companyname>.my.salesforce.com`
 
     > [!NOTE] 
-    > Ez az érték nincs valós. Frissítse ezt az értéket a tényleges bejelentkezési URL-címet. Ügyfél [Work.com ügyfél-támogatási csoport](https://help.salesforce.com/articleView?id=000159855&type=3) lekérni ezt az értéket. 
+    > Ez az érték nincs valós. Frissítse ezt az értéket hello tényleges bejelentkezési URL-CÍMÉT. Ügyfél [Work.com ügyfél-támogatási csoport](https://help.salesforce.com/articleView?id=000159855&type=3) tooget ezt az értéket. 
 
-4. A a **SAML-aláíró tanúsítványa** kattintson **tanúsítvány (Base64)** , és mentse a tanúsítványfájlt, a számítógépen.
+4. A hello **SAML-aláíró tanúsítványa** kattintson **tanúsítvány (Base64)** , és mentse a hello tanúsítványfájlt a számítógépen.
 
     ![SAML-aláíró tanúsítványa szakasz](./media/active-directory-saas-work-com-tutorial/tutorial_work-com_certificate.png) 
 
@@ -123,34 +123,34 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Mentés gomb](./media/active-directory-saas-work-com-tutorial/tutorial_general_400.png)
 
-6. A a **Work.com konfigurációs** kattintson **konfigurálása Work.com** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **Sign-Out URL-címet, a SAML entitás azonosítója és a SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
+6. A hello **Work.com konfigurációs** kattintson **konfigurálása Work.com** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **Sign-Out URL-címet, a SAML entitás azonosítója és a SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
 
     ![Work.com konfigurációs szakasz](./media/active-directory-saas-work-com-tutorial/tutorial_work-com_configure.png) 
-7. Jelentkezzen be rendszergazdaként a Work.com bérlő.
+7. Jelentkezzen be tooyour Work.com Bérlői rendszergazda.
 
-8. Ugrás a **telepítő**.
+8. Nyissa meg túl**telepítő**.
    
     ![A telepítő](./media/active-directory-saas-work-com-tutorial/ic794108.png "beállítása")
 
-9. A bal oldali navigációs panelen a a **Administer** kattintson **tartományok** bontsa ki a kapcsolódó szakaszt, és kattintson **saját tartomány** megnyitásához a **saját tartomány** lap. 
+9. A hello bal oldali navigációs panelen, a hello **Administer** kattintson **tartományok** tooexpand hello kapcsolódó szakaszt, és kattintson a **saját tartomány** tooopen hello  **Saját tartomány** lap. 
    
     ![Saját tartomány](./media/active-directory-saas-work-com-tutorial/ic767825.png "saját tartomány")
 
-10. Győződjön meg arról, hogy a tartomány megfelelően van beállítva, győződjön meg arról, hogy "**4. lépés telepíti a felhasználók számára**", és tekintse át a "**saját tartománybeállítások**".
+10. amely a tartomány megfelelően be van állítva tooverify győződjön meg arról, hogy "**lépés 4 telepített tooUsers**", és tekintse át a "**saját tartománybeállítások**".
    
-    ![A tartományi felhasználó számára központilag telepített](./media/active-directory-saas-work-com-tutorial/ic784377.png "tartományi felhasználó számára központilag telepített")
+    ![Tartományban üzembe helyezett tooUser](./media/active-directory-saas-work-com-tutorial/ic784377.png "tartományban telepített tooUser")
 
-11. Jelentkezzen be a Work.com bérlő.
+11. Jelentkezzen be tooyour Work.com bérlő.
 
-12. Ugrás a **telepítő**.
+12. Nyissa meg túl**telepítő**.
     
     ![A telepítő](./media/active-directory-saas-work-com-tutorial/ic794108.png "beállítása")
 
-13. Bontsa ki a **biztonsági vezérlők** menüben, majd kattintson **egyszeri bejelentkezési beállítások**.
+13. Bontsa ki a hello **biztonsági vezérlők** menüben, majd kattintson **egyszeri bejelentkezési beállítások**.
     
     ![Az egyszeri bejelentkezés beállítások](./media/active-directory-saas-work-com-tutorial/ic794113.png "az egyszeri bejelentkezés beállításai")
 
-14. Az a **egyszeri bejelentkezési beállítások** párbeszédpanel lapon, a következő lépésekkel:
+14. A hello **egyszeri bejelentkezési beállítások** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
     
     ![A SAML engedélyezett](./media/active-directory-saas-work-com-tutorial/ic781026.png "SAML engedélyezett")
     
@@ -158,90 +158,90 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
     
     b. Kattintson az **Új** lehetőségre.
 
-15. Az a **SAML-alapú egyszeri bejelentkezés beállítások** területen tegye a következőket:
+15. A hello **SAML-alapú egyszeri bejelentkezés beállítások** csoportjában hajtsa végre az alábbi lépésekkel hello:
     
     ![SAML-alapú egyszeri bejelentkezés beállítása](./media/active-directory-saas-work-com-tutorial/ic794114.png "SAML-alapú egyszeri bejelentkezés beállítása")
     
-    a. Az a **neve** szövegmező, adja meg a konfiguráció nevét.  
+    a. A hello **neve** szövegmező, adja meg a konfiguráció nevét.  
        
     > [!NOTE]
-    > Értéket biztosító **neve** automatikusan feltölti a **API-név** szövegmező.
+    > Értéket biztosító **neve** automatikusan feltölti a hello **API-név** szövegmező.
     
-    b. A **kibocsátó** szövegmezőhöz illessze be az értékét **SAML Entitásazonosító** ami Azure-portálon másolta.
+    b. A **kibocsátó** szövegmezőhöz Beillesztés hello értékének **SAML Entitásazonosító** ami Azure-portálon másolta.
     
-    c. Az Azure-portálról letöltött tanúsítvány feltöltése, kattintson a **Tallózás**.
+    c. az Azure-portálon tooupload letöltött hello tanúsítványát kattintson **Tallózás**.
     
-    d. Az a **entitásazonosító** szövegmezőhöz típus `https://salesforce-work.com`.
+    d. A hello **entitásazonosító** szövegmezőhöz típus `https://salesforce-work.com`.
     
-    e. Mint **SAML identitástípus**, jelölje be **helyességi feltételt tartalmaz az összevonási azonosító felhasználó**.
+    e. Mint **SAML identitástípus**, jelölje be **helyességi feltételt tartalmaz hello összevonási azonosító hello felhasználói objektum**.
     
-    f. Mint **SAML-alapú identitás hely**, jelölje be **identitás a tulajdonos utasítás NameIdentfier elemében van**.
+    f. Mint **SAML-alapú identitás hely**, jelölje be **identitás hello tulajdonos utasítás hello NameIdentfier elemében van**.
     
-    g. A **Identity Provider bejelentkezési URL-cím** szövegmezőhöz illessze be az értékét **SAML-alapú egyszeri bejelentkezési URL-címe** ami Azure-portálon másolta.
+    g. A **Identity Provider bejelentkezési URL-cím** szövegmezőhöz Beillesztés hello értékének **SAML-alapú egyszeri bejelentkezési URL-címe** ami Azure-portálon másolta.
 
-    h. A **Identity Provider kijelentkezési URL-cím** szövegmezőhöz illessze be az értékét **Sign-Out URL-cím** ami Azure-portálon másolta.
+    h. A **Identity Provider kijelentkezési URL-cím** szövegmezőhöz Beillesztés hello értékének **Sign-Out URL-cím** ami Azure-portálon másolta.
     
     i. Mint **szolgáltató által kezdeményezett kérelem Szolgáltatáskötés**, jelölje be **HTTP Post**.
     
     j. Kattintson a **Save** (Mentés) gombra.
 
-16. Kattintson a bal oldali navigációs panelen a Work.com klasszikus portál **tartományok** bontsa ki a kapcsolódó szakaszt, és kattintson **saját tartomány** megnyitásához a **saját tartomány** lap. 
+16. A Work.com klasszikus portál, a hello bal oldali navigációs panelen, kattintson a **tartományok** tooexpand hello kapcsolódó szakaszt, és kattintson a **saját tartomány** tooopen hello **saját tartomány**lap. 
     
     ![Saját tartomány](./media/active-directory-saas-work-com-tutorial/ic794115.png "saját tartomány")
 
-17. Az a **saját tartomány** lap a **bejelentkezési oldal vállalati arculata** kattintson **szerkesztése**.
+17. A hello **saját tartomány** lap hello **bejelentkezési oldal vállalati arculata** kattintson **szerkesztése**.
     
     ![Bejelentkezési oldal vállalati arculatán alkalmazott](./media/active-directory-saas-work-com-tutorial/ic767826.png "bejelentkezési oldal vállalati arculatán alkalmazott")
 
-14. Az a **bejelentkezési oldal vállalati arculata** lap a **hitelesítési szolgáltatás** részben, a neve a **SAML SSO beállítások** jelenik meg. Válassza ki azt, és kattintson **mentése**.
+14. A hello **bejelentkezési oldal vállalati arculata** lap hello **hitelesítési szolgáltatás** szakaszban, hello nevét a **SAML SSO beállítások** jelenik meg. Válassza ki azt, és kattintson **mentése**.
     
     ![Bejelentkezési oldal vállalati arculatán alkalmazott](./media/active-directory-saas-work-com-tutorial/ic784366.png "bejelentkezési oldal vállalati arculatán alkalmazott")
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Hozzon létre egy Azure AD-teszt felhasználó
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-work-com-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Felhasználók és csoportok -> minden felhasználó](./media/active-directory-saas-work-com-tutorial/create_aaduser_02.png) 
 
-3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
+3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
  
     ![Hozzáadás](./media/active-directory-saas-work-com-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![A felhasználó párbeszédpanel lap](./media/active-directory-saas-work-com-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="create-a-workcom-test-user"></a>Work.com tesztfelhasználó létrehozása
-Az Azure Active Directory-felhasználók jelentkezhetnek be kell hogy ki kell építenie Work.com. Work.com, ha egy kézi tevékenység.
+Az Azure Active Directory felhasználók toobe képes toosign a kiosztott tooWork.com kell lenniük. Work.com hello esetben egy kézi tevékenység.
 
-### <a name="to-configure-user-provisioning-perform-the-following-steps"></a>Adja meg a felhasználók átadása, hajtsa végre az alábbi lépéseket:
-1. Jelentkezzen be rendszergazdaként a Work.com vállalati webhely.
+### <a name="tooconfigure-user-provisioning-perform-hello-following-steps"></a>tooconfigure felhasználók átadásához, hajtsa végre a lépéseket követve hello:
+1. Bejelentkezés tooyour Work.com vállalati hely rendszergazdaként.
 
-2. Ugrás a **telepítő**.
+2. Nyissa meg túl**telepítő**.
    
     ![A telepítő](./media/active-directory-saas-work-com-tutorial/IC794108.png "beállítása")
-3. Ugrás a **felhasználók kezelése \> felhasználók**.
+3. Nyissa meg túl**felhasználók kezelése \> felhasználók**.
    
     ![Felhasználók kezelése](./media/active-directory-saas-work-com-tutorial/IC784369.png "felhasználók kezelése")
 
@@ -249,48 +249,48 @@ Az Azure Active Directory-felhasználók jelentkezhetnek be kell hogy ki kell é
    
     ![Minden felhasználó](./media/active-directory-saas-work-com-tutorial/IC794117.png "minden felhasználó")
 
-5. A felhasználó szerkesztése a szakaszban a következő lépésekkel, az attribútumok egy érvényes Azure AD-fiókot szeretné azokat a kapcsolódó szövegmezők rendelkezni:
+5. Hello szakasz felhasználó szerkesztése, hajtsa végre a következő lépéseket a egy érvényes Azure attribútumait hello tooprovision a kívánt hello AD fiókhoz kapcsolódó szövegmezők:
    
     ![Felhasználó szerkesztése](./media/active-directory-saas-work-com-tutorial/ic794118.png "felhasználó szerkesztése")
    
-    a. Az a **Utónév** szövegmezőhöz típusa a **Utónév** felhasználó **Britta**.
+    a. A hello **Utónév** szövegmezőhöz típus hello **Utónév** hello felhasználó **Britta**.
     
-    b. Az a **Vezetéknév** szövegmezőhöz típusa a **Vezetéknév** felhasználó **Simon**.
+    b. A hello **Vezetéknév** szövegmezőhöz típus hello **Vezetéknév** hello felhasználó **Simon**.
     
-    c. Az a **Alias** szövegmezőhöz típusa a **neve** felhasználó **BrittaS**.
+    c. A hello **Alias** szövegmezőhöz típus hello **neve** hello felhasználó **BrittaS**.
     
-    d. Az a **E-mail** szövegmezőhöz típusa a **e-mail cím** felhasználó  **Brittasimon@contoso.com** .
+    d. A hello **E-mail** szövegmezőhöz típus hello **e-mail cím** felhasználó  **Brittasimon@contoso.com** .
     
-    e. Az a **felhasználónév** szövegmező, írja be például a felhasználó a felhasználónév  **Brittasimon@contoso.com** .
+    e. A hello **felhasználónév** szövegmező, írja be például a felhasználó a felhasználónév  **Brittasimon@contoso.com** .
     
-    f. Az a **becenév** szövegmező, adjon meg egy **becenév** felhasználó **Simon**.
+    f. A hello **becenév** szövegmező, adjon meg egy **becenév** felhasználó **Simon**.
     
     g. Válassza ki **szerepkör**, **felhasználói licenc**, és **profil**.
     
     h. Kattintson a **Save** (Mentés) gombra.  
       
     > [!NOTE]
-    > Az Azure AD fióktulajdonos kap egy e-mailt hivatkozással erősítse meg a fiókot, mielőtt aktívvá válik.
+    > az Azure AD fióktulajdonos hello kap egy e-mailt egy hivatkozás tooconfirm hello fiókot is beleértve, mielőtt aktívvá válik.
     > 
     > 
 
-### <a name="assign-the-azure-ad-test-user"></a>Rendelje hozzá az Azure AD-teszt felhasználó
+### <a name="assign-hello-azure-ad-test-user"></a>Rendelje hozzá az Azure AD hello tesztfelhasználó számára
 
-Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés Work.com Azure egyszeri bejelentkezéshez használandó.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooWork.com megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon hozzárendelése Work.com, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooWork.com, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **Work.com**.
+2. Hello alkalmazások listában válassza ki a **Work.com**.
 
     ![Alkalmazás listában Work.com](./media/active-directory-saas-work-com-tutorial/tutorial_work-com_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -298,7 +298,7 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -306,14 +306,14 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
     
 ### <a name="test-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-Ha a hozzáférési panelen Work.com csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az Work.com alkalmazására.
-A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
+Ha a hozzáférési Panel hello hello Work.com csempe gombra kattint, automatikusan bejelentkezett tooyour Work.com alkalmazás szerezheti be.
+További információ a hozzáférési Panel hello: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

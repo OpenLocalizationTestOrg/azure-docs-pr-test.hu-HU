@@ -1,6 +1,6 @@
 ---
 title: "3. lépés:, Hozzon létre egy új gépi tanulási kísérlet |} Microsoft Docs"
-description: "A prediktív megoldás bemutatóért Develop 3. lépés: az Azure Machine Learning Studióban hozzon létre egy új tanítási kísérletet."
+description: "3. lépésében hello fejlesztése egy prediktív megoldás bemutató: az Azure Machine Learning Studióban hozzon létre egy új tanítási kísérletet."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,123 +14,123 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: garye
-ms.openlocfilehash: cd410316910bce76f5c915c06e83b24c034481b7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4697d461a205c50c8d2aa6a3bd56697840cb30f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="walkthrough-step-3-create-a-new-azure-machine-learning-experiment"></a>Az útmutató 3. lépése: Új Azure Machine Learning-kísérlet létrehozása
-Ez a forgatókönyv harmadik lépése az [az Azure Machine Learning a prediktív elemzési megoldás fejlesztése](machine-learning-walkthrough-develop-predictive-solution.md)
+Ez az hello harmadik lépése annak hello forgatókönyv [az Azure Machine Learning a prediktív elemzési megoldás fejlesztése](machine-learning-walkthrough-develop-predictive-solution.md)
 
 1. [Machine Learning-munkaterület létrehozása](machine-learning-walkthrough-1-create-ml-workspace.md)
 2. [Meglévő adatok feltöltése](machine-learning-walkthrough-2-upload-data.md)
 3. **Új kísérlet létrehozása**
-4. [A modellek betanítása és kiértékelése](machine-learning-walkthrough-4-train-and-evaluate-models.md)
-5. [A webszolgáltatás üzembe helyezése](machine-learning-walkthrough-5-publish-web-service.md)
-6. [Hozzáférés a webszolgáltatáshoz](machine-learning-walkthrough-6-access-web-service.md)
+4. [Betanítása és kiértékelése hello modellek](machine-learning-walkthrough-4-train-and-evaluate-models.md)
+5. [Hello webszolgáltatás telepítése](machine-learning-walkthrough-5-publish-web-service.md)
+6. [Hozzáférés hello webszolgáltatás](machine-learning-walkthrough-6-access-web-service.md)
 
 - - -
-A forgatókönyv a következő lépés, ha a kísérlet a Machine Learning Studióban az adatkészlet jelenleg feltöltött használó.  
+Ez a forgatókönyv hello következő lépése toocreate egy kísérletben a Machine Learning Studióban feltöltése a Microsoft hello adatkészletet használó.  
 
-1. A Studióban kattintson **+ új** az ablak alján.
+1. A Studióban kattintson **+ új** hello ablak hello alján.
 2. Válassza ki **kísérlet**, majd válassza az "Üres kísérlet". 
 
     ![Új kísérlet létrehozása][0]
 
-2. Válassza ki a kísérlet alapértelmezett nevét a vászon tetején, és módosítsa valami értelmesebbre.
+2. SELECT hello alapértelmezett neve hello vásznon a hello tetején kísérletezhet, és adjon neki jelentéssel bíró toosomething.
 
     ![Nevezze át a kísérlet][5]
    
    > [!TIP]
-   > Tanácsos töltse ki **összegzés** és **leírás** a kísérleti fázisú funkciókat a a **tulajdonságok** ablaktáblán. Ezeket a tulajdonságokat arra, hogy a dokumentum a kísérletet, hogy bárki, aki ellenőrzi, hogy az azt később megértse a célok és módszert biztosítanak.
+   > Van egy célszerű toofill **összegzés** és **leírás** hello kísérleti fázisú funkciókat a hello **tulajdonságok** ablaktáblán. E tulajdonságok adjon alkalommal toodocument hello kísérlet hello, így bárki, aki ellenőrzi, hogy az azt később megértse a célok és módszert.
    > 
    > ![Kísérlet tulajdonságai][6]
    > 
-3. Bontsa ki a modulpalettán bal oldalán a kísérletvászonra, **mentett adatkészletek**.
-4. Az adatkészlet alapján létrehozott található **saját adatkészletek** és a vászonra húzva. A név beírásával is tájékozódhat az adatkészletet a **keresési** a paletta fölött.  
+3. A hello modul paletta toohello bal oldalán hello kísérletvászonra, bontsa ki a **mentett adatkészletek**.
+4. Keresés hello adatkészlet alapján létrehozott **saját adatkészletek** , és húzza rá hello vászonra. Hello dataset hello hello név beírásával is megtalálhatja **keresési** hello paletta fölött.  
 
-    ![Az adatkészlet hozzáadása a kísérlet][7]
+    ![Hello dataset toohello kísérlet hozzáadása][7]
 
-## <a name="prepare-the-data"></a>Adatok előkészítése
-Megtekintheti az első 100 sor az adatok és néhány statisztikai adatok a teljes adatkészlet: kattintson a kimeneti portra, az adatkészlet (a kis kör a lap alján), és válassza ki **Visualize**.  
+## <a name="prepare-hello-data"></a>Hello adatok előkészítése
+Megtekintheti hello első 100 adatsorokat és néhány statisztikai adatot hello teljes adatkészlet hello: hello kimeneti port hello adatkészlet (hello vonatkozó kis kör hello lap alján) gombra, és válassza ki **Visualize**.  
 
-Az adatfájl nem kapott oszlopának fejlécére kattintva rendezhető, mert Studio általános fejlécére kattintva rendezhető nyújtott (Oszlop1, Col2, *stb*). Jó fejlécek nem alapvető fontosságú a modell létrehozása, de azok egyszerűbb legyen az adatokat a kísérletben. Is ha azt végül közzéteheti a egy webszolgáltatás-bővítmény, a fejlécére kattintva rendezhető azonosításához az oszlopok a felhasználónak a szolgáltatás.  
+Hello adatfájl nem kapott oszlopának fejlécére kattintva rendezhető, mert Studio általános fejlécére kattintva rendezhető nyújtott (Oszlop1, Col2, *stb*). Jó fejlécek nem alapvető toocreating modell, de teszik könnyebben toowork hello adatokkal hello kísérletben. Is ha azt végül közzéteheti egy webszolgáltatás, hello fejlécére kattintva rendezhető azonosításához hello oszlopok toohello felhasználói hello szolgáltatást.  
 
-Azt is hozzáadhat oszlopának fejlécére kattintva rendezhető, használja a [szerkesztése metaadatok] [ edit-metadata] modul.
-Használja a [szerkesztése metaadatok] [ edit-metadata] modul módosítása a DataSet adatkészlet társított metaadatokat. Ebben az esetben használjuk az oszlopfejlécek további rövid nevét. 
+Azt is hozzáadhat oszlopának fejlécére kattintva rendezhető, hello segítségével [szerkesztése metaadatok] [ edit-metadata] modul.
+Hello használata [szerkesztése metaadatok] [ edit-metadata] társított dataset modul toochange metaadatai. Ebben az esetben használjuk, további rövid nevek tooprovide oszlopfejlécek. 
 
-Használandó [szerkesztése metaadatok][edit-metadata], először (ebben az esetben az összes azokat.) a módosítandó oszlopok megadásához Ezt követően adja meg az ilyen oszlopokat (ebben az esetben az oszlopfejlécek módosítása.) kell elvégezni a műveletet
+toouse [szerkesztése metaadatok][edit-metadata], akkor először adja meg, mely oszlopok toomodify (ebben az esetben az összes azokat.) Ezt követően adja meg az hello művelet toobe végre ezek az oszlopok (ebben az esetben az oszlopfejlécek módosítása.)
 
-1. A modulpalettán, írja be az "metaadatok" a a **keresési** mezőbe. A [szerkesztése metaadatok] [ edit-metadata] modul listájában jelenik meg.
+1. A hello modulpalettán, írja be a "metaadatok" hello **keresési** mezőbe. Hello [szerkesztése metaadatok] [ edit-metadata] hello modul listájában jelenik meg.
 
-2. Kattintással és húzással vigye a [szerkesztése metaadatok] [ edit-metadata] modult a vászonra, és helyezze a korábban hozzáadott adatkészlet alatt.
+2. Kattintással és húzással vigye a hello [szerkesztése metaadatok] [ edit-metadata] alakzatot hello modult, és helyezze a korábban hozzáadott hello dataset alatt.
 
-3. A DataSet adatkészletben, hogy csatlakozzon a [metaadatok szerkesztése][edit-metadata]: kattintson a kimeneti portra, az adatkészlet (DataSet alján a kis kör), húzza a bemeneti portját a [szerkesztése metaadatok] [ edit-metadata] (a felső részén a modul a kis kör), az oszlopfejlécen. A DataSet adatkészlet és a modul csatlakoztatva tartani akkor is, ha Ön Navigálás vagy a vásznon.
+3. Csatlakozás hello dataset toohello [szerkesztése metaadatok][edit-metadata]: hello kimeneti port hello adatkészlet (hello vonatkozó kis kör hello dataset hello alján) gombra, húzza toohello bemeneti portját a [metaadatok szerkesztése ] [ edit-metadata] (hello kis kör hello modul hello tetején), majd engedje fel hello egérgombot. hello dataset és modul csatlakoztatva tartani akkor is, ha Ön Navigálás vagy hello vászonra.
    
-   A kísérlet most hasonlóan kell kinéznie ezt:  
+   hello kísérlet most hasonlóan kell kinéznie ezt:  
    
    ![Szerkesztés metaadatok hozzáadása][1]
    
-   A piros felkiáltójel azt jelenti, hogy jelenleg még nem ez a modul tulajdonságainak még. Igazolnia kell végeznie, hogy a Tovább gombra.
+   hello piros felkiáltójel azt jelenti, hogy jelenleg még nem ez a modul hello tulajdonságainak még. Igazolnia kell végeznie, hogy a Tovább gombra.
    
    > [!TIP]
-   > A modulokhoz megjegyzéseket adhat. Ehhez kattintson duplán a kívánt modulra, majd gépelje be a megjegyzés szövegét. Így egyetlen pillantással felmérheti, hogy mire szolgál az adott modul a kísérletben. Ebben az esetben kattintson duplán a [szerkesztése metaadatok] [ edit-metadata] modul és a Megjegyzés "Add oszlopának fejlécére kattintva rendezhető" típusú. Kattintson a bárhol máshol a vásznon, a szöveg bezárásához. A megjegyzés megjelenítéséhez kattintson a lefelé mutató nyílra a modul.
+   > A Megjegyzés tooa modul duplán hello modul és a belépés szöveget adhat hozzá. Ez segít gyorsan áttekintse milyen hello modul a kísérletben végez műveletet. Ebben az esetben kattintson duplán a hello [szerkesztése metaadatok] [ edit-metadata] modul és a típus hello Megjegyzés "Add oszlopának fejlécére kattintva rendezhető". Kattintson a bárhol máshol a hello vászonra tooclose hello szövegmezőben. toodisplay hello megjegyzést, hello lefelé mutató nyílra hello modulon.
    > 
    > ![Megjegyzés hozzáadása a metaadatok modul szerkesztése][8]
    > 
-4. Válassza ki [szerkesztése metaadatok][edit-metadata], majd a a **tulajdonságok** panelen a vászontól jobbra kattintson **Oszlopválasztás**.
+4. Válassza ki [szerkesztése metaadatok][edit-metadata], és a hello **tulajdonságok** ablaktábla toohello jog a vásznon a hello, kattintson a **Oszlopválasztás**.
 
-5. Az a **egy oszlopot válasszon ki** párbeszédpanelen válassza ki az összes sort **elérhető oszlopok** kattintson > helyezze el őket a **kijelölt oszlopok**.
-   A párbeszédpanel kell kinéznie:
+5. A hello **egy oszlopot válasszon ki** párbeszédpanelen válassza ki az összes hello sorainak **elérhető oszlopok** kattintson > toomove őket túl**kijelölt oszlopok**.
+   hello párbeszédpanel kell kinéznie:
 
    ![Az összes kijelölt oszlopok Oszlopválasztó][2]
 
-6. Kattintson a **OK** pipára.
+6. Kattintson a hello **OK** pipára.
 
-7. Vissza a **tulajdonságok** ablaktáblán keresse meg a **új oszlopnevek** paraméter. Ebben a mezőben adja meg az adatkészlet, egymástól vesszővel és az oszlopok sorrendjét 21 oszlopok neveinek listáját. Ezt úgy szerezheti be az oszlopok nevét a dataset dokumentációs a UCI webhelyen, vagy a kényelem másolja és illessze be az alábbi listában:  
+7. Vissza a hello **tulajdonságok** ablaktáblán keresse meg hello **új oszlopnevek** paraméter. Ebben a mezőben adja meg a neveket hello 21 oszlopok hello adatkészletben, egymástól vesszővel és az oszlopok sorrendjét. Hello dataset dokumentáció hello UCI webhelyen szerezhet be hello oszlopok nevét, vagy a kényelem másolja és illessze be a következő lista hello:  
    
        Status of checking account, Duration in months, Credit history, Purpose, Credit amount, Savings account/bond, Present employment since, Installment rate in percentage of disposable income, Personal status and sex, Other debtors, Present residence since, Property, Age in years, Other installment plans, Housing, Number of existing credits, Job, Number of people providing maintenance for, Telephone, Foreign worker, Credit risk  
    
-   A Tulajdonságok panelen így néz ki:
+   hello tulajdonságok panelen így néz ki:
    
    ![A Szerkesztés metaadatok tulajdonságai][3]
 
 > [!TIP]
-> Ha szeretné ellenőrizni a oszlopának fejlécére kattintva rendezhető, futtassa a kísérletet (kattintson **futtatása** a kísérletvászon alatt). Amikor futása (zöld pipa jelenik meg [szerkesztése metaadatok][edit-metadata]), kattintson a kimeneti portra, a [metaadatok szerkesztése] [ edit-metadata] modul, és válassza ki **Visualize**. Bármely modul kimenete az adatok a kísérlet állapotának megtekintéséhez azonos módon tekintheti meg.
+> Ha azt szeretné, hogy tooverify hello oszlopának fejlécére kattintva rendezhető, futtassa a hello kísérlet (kattintson **futtatása** hello kísérletvászon alatt). Amikor futása (zöld pipa jelenik meg [metaadatok szerkesztése][edit-metadata]), kattintson hello kimeneti portjára hello [metaadatok szerkesztése] [ edit-metadata] a modul, és válassza ki **Visualize**. Bármely modul kimenete hello megtekintheti a hello azonos módon tooview hello folyamatban hello hello kísérlet az adatok.
 > 
 > 
 
 ## <a name="create-training-and-test-datasets"></a>Képzés és az adatkészletek
-Igazolnia kell, és az egyes tesztek bizonyos adatok a modell betanításához.
-Így a következő lépésben a kísérlet, azt a dataset felosztása két külön adatkészletek: egy a képzési tekinthetők, és egy tesztelési azt.
+Néhány tootrain hello adatmodell, és néhány tootest kell azt.
+Így hello a következő lépésben hello kísérlet, a Microsoft hello dataset felosztása két külön adatkészletek: egy a képzési tekinthetők, és egy tesztelési azt.
 
-Ehhez használjuk a [Split Data] [ split] modul.  
+toodo, hello használjuk [Split Data] [ split] modul.  
 
-1. Keresés a [Split Data] [ split] modult a vászonra húzva, és kösse össze a [szerkesztése metaadatok] [ edit-metadata] modul.
+1. Hello található [Split Data] [ split] modul, hello vászonra húzva azt, és csatlakoztassa toohello [szerkesztése metaadatok] [ edit-metadata] modul.
 
-2. Alapértelmezés szerint a megosztási arány érték 0,5 és a **Randomized vegyes** paraméter értéke. Ez azt jelenti, hogy az adatok véletlen fél kimeneti az egyik porton keresztül a [Split Data] [ split] modul, és az egyéb fele. Beállíthatja, hogy ezeket a paramétereket, valamint a **véletlenszerű kezdőérték** paraméter, módosíthatja a felosztás modell betanítására és tesztelésére adatok között. Ebben a példában azt hagyja azokat-van.
+2. Alapértelmezés szerint hello megosztási arány 0,5 és hello **Randomized vegyes** paraméter értéke. Ez azt jelenti, hogy hello adatok véletlenszerű fél egy hello-porton keresztül kimeneti [Split Data] [ split] modul, és fele a hello más. Akkor is állítsa be ezeket a paramétereket, valamint hello **véletlenszerű kezdőérték** paraméter, toochange hello elosztva a modell betanítására és tesztelésére adatokat. Ebben a példában azt hagyja azokat-van.
    
    > [!TIP]
-   > A tulajdonság **az első kimeneti adatkészletnél a sorok** meghatározza, hogy mekkora az adatok kimenetét a *bal oldali* kimeneti port. Például 0,7 állítja be a készlethez, majd 70 %-át az adatokat esetén a bal oldali porton keresztül kimeneti – 30 % a jobb oldali porton keresztül.  
+   > hello tulajdonság **hello sorok először kimeneti adatkészlet** meghatározza, hogy mennyi hello adatok keresztül hello kimeneti *bal oldali* kimeneti port. Például ha hello arány too0.7, majd hello adatok 70 %-át egy kimenet keresztül hello port – 30 % balra hello jobb porton keresztül.  
    > 
    > 
 
-3. Kattintson duplán a [Split Data] [ split] modul, és adja meg a megjegyzést, "képzési/tesztelési adatok felosztása 50 %". 
+3. Kattintson duplán a hello [Split Data] [ split] modul, és írjon hello megjegyzést, "képzési/tesztelési adatok felosztása 50 %". 
 
-A kimenetének is használhatók a [Split Data] [ split] modul azonban azt hasonló, de most használata mellett dönt a bal oldali kimeneti betanítási adatok, és a jobb oldali kimeneti, tesztelési adatokat.  
+Használhatunk hello hello kimenetének [Split Data] [ split] modul azonban azt hasonló, de most válasszon toouse hello bal oldali kimeneti adatok betanítási adatok, és jobb hello kimeneti, tesztelési adatai.  
 
-Ahogyan az a [előző lépésben](machine-learning-walkthrough-2-upload-data.md), alacsony, magas hitelkockázat misclassifying költsége ötször magasabb, mint egy alacsony hitelkockázat, nagy misclassifying költségét. Ez a fiók, azt létrehozni, amely tükrözi a költség függvény új adatkészlet. Új adatkészlet egyes magas kockázatú példa replikálja a rendszer ötször, amíg alacsony kockázat példákban a rendszer nem replikálja.   
+A hello [előző lépésben](machine-learning-walkthrough-2-upload-data.md), alacsony, magas hitelkockázat misclassifying hello költségét értéke ötször magasabb, mint egy alacsony hitelkockázat, nagy misclassifying hello költségét. a tooaccount, azt létrehozni, amely tükrözi a költség függvény új adatkészlet. Hello új adatkészlet minden magas kockázatú példa replikálja a rendszer ötször, amíg minden alacsony kockázat például a rendszer nem replikálja.   
 
 A replikáció tehetünk ennek R-kód használatával:  
 
-1. Keresse meg, és húzza a [R-parancsfájl végrehajtása] [ execute-r-script] modul a kísérlet vászonra. 
+1. Keresse meg, és húzza hello [R-parancsfájl végrehajtása] [ execute-r-script] modul hello kísérlet vászonra. 
 
-2. A bal oldali kimeneti portjára csatlakozzon a [Split Data] [ split] első bemeneti portját ("Dataset1") modult a [R-parancsfájl végrehajtása] [ execute-r-script] modul.
+2. Csatlakozás a bal oldali kimeneti portjára hello hello [Split Data] [ split] modul toohello első bemenet port ("Dataset1") a hello [R-parancsfájl végrehajtása] [ execute-r-script] a modul.
 
-3. Kattintson duplán a [R-parancsfájl végrehajtása] [ execute-r-script] modul, és írja be a Megjegyzés "Set költség helyesbítése".
+3. Kattintson duplán a hello [R-parancsfájl végrehajtása] [ execute-r-script] modul, és írja be a hello Megjegyzés "Set költség helyesbítése".
 
-4. Az a **tulajdonságok** panelen, törölje az alapértelmezett szöveget a **R-parancsfájl** paraméter, és írja be ezt a parancsfájlt:
+4. A hello **tulajdonságok** panelen, törölje hello alapértelmezett szöveg hello **R-parancsfájl** paraméter, és írja be ezt a parancsfájlt:
    
        dataset1 <- maml.mapInputPort(1)
        data.set<-dataset1[dataset1[,21]==1,]
@@ -138,20 +138,20 @@ A replikáció tehetünk ennek R-kód használatával:
        for (i in 1:5) data.set<-rbind(data.set,pos)
        maml.mapOutputPort("data.set")
 
-    ![Az R-parancsfájl végrehajtása modul R-parancsfájl][9]
+    ![R-parancsfájl hello R-parancsfájl végrehajtása modul][9]
 
-Igazolnia kell a replikálási műveletet minden egyes kimenetéhez tegye a [Split Data] [ split] modul, hogy a képzés és tesztelési adatokat ugyanazon költség módosítása. Ennek a legegyszerűbb módja másolásával az [R-parancsfájl végrehajtása] [ execute-r-script] most végzett modul, és csatlakozik a másik kimeneti portját a [Split Data] [ split] modul.
+Igazolnia kell toodo replikációs műveletet minden egyes kimeneti a hello [Split Data] [ split] modul, a modell betanítására és tesztelésére adatok hello rendelkezik hello azonos költségű módosítása. Ez az hello másolásával legegyszerűbb módja toodo hello [R-parancsfájl végrehajtása] [ execute-r-script] modul azt végzett és csatlakoztatásával toohello más kimeneti portot a hello [Split Data] [ split] modul.
 
-1. Kattintson a jobb gombbal a [R-parancsfájl végrehajtása] [ execute-r-script] modul, és válassza ki **másolási**.
+1. Kattintson a jobb gombbal hello [R-parancsfájl végrehajtása] [ execute-r-script] modul, és válassza ki **másolási**.
 
-2. Kattintson a jobb gombbal a kísérletvászonra, és válassza ki **Beillesztés**.
+2. Kattintson a jobb gombbal a hello kísérletvászonra, és válassza ki **Beillesztés**.
 
-3. Új modul húzzon egy helyen, és csatlakoztassa a jobb oldali kimeneti portját a [Split Data] [ split] modul az első bemeneti porthoz ezen új [R-parancsfájl végrehajtása] [ execute-r-script] modul. 
+3. Új modul hello húzzon egy helyen, és csatlakoztassa a jobb oldali kimeneti portjára hello hello [Split Data] [ split] modul toohello először az új port a bemeneti [R-parancsfájl végrehajtása] [ execute-r-script] modul. 
 
-4. Kattintson a vászon alján **futtatása**. 
+4. Hello vásznon a hello alján kattintson **futtatása**. 
 
 > [!TIP]
-> Az R-parancsfájl végrehajtása modul másolatát tartalmazza ugyanazt a parancsfájlt, az eredeti modulként. Másolja és illessze be egy modult a vásznon, a másolat megőrzi az eredeti összes tulajdonságát.  
+> hello R-parancsfájl végrehajtása modul hello példányát azonos parancsfájl hello eredeti modulként hello tartalmazza. Másolja és illessze be egy modult a vásznon a hello, hello másolási eredeti hello hello tulajdonságainak megmaradnak.  
 > 
 > 
 
@@ -161,7 +161,7 @@ A kísérletben most már a következőhöz hasonló:
 
 Az R parancsfájlok használata a kísérleti további információkért lásd: [kiterjesztése az r kísérletbe](machine-learning-extend-your-experiment-with-r.md).
 
-**Következő: [tanítási és a modell kiértékelése](machine-learning-walkthrough-4-train-and-evaluate-models.md)**
+**Következő: [tanítási és hello modellek kiértékelése](machine-learning-walkthrough-4-train-and-evaluate-models.md)**
 
 [0]: ./media/machine-learning-walkthrough-3-create-new-experiment/create-new-experiment.png
 [5]: ./media/machine-learning-walkthrough-3-create-new-experiment/rename-experiment.png

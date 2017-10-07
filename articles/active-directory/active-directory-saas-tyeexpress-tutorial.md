@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directory-integráció a T & E Express |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és a T & E Express között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és a T & E Express között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/03/2017
 ms.author: jeedes
-ms.openlocfilehash: 869e5284c71904fcc817ceee0f39d94fab1bc6f3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9a568ace8dbc75fadbf37554996b1b597a813d56
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-te-express"></a>Oktatóanyag: Azure Active Directory-integráció a T & E Express
 
-Ebben az oktatóanyagban elsajátíthatja a & E Express integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate T & E Express, az Azure Active Directoryval (Azure AD).
 
-T & E Express integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+T & E Express integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Szabályozhatja, aki hozzáfér a & E Express Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan lekérni bejelentkezett történő T & E Express (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure felügyeleti portálon
+- Szabályozhatja, hogy az Azure AD hozzáférési eszköz rendelkező & E Express
+- Az Azure AD-fiókok a engedélyezheti a felhasználók tooautomatically get bejelentkezett eszköz & E Express (egyszeri bejelentkezés)
+- Kezelheti a fiókokat, egy központi helyen - hello Azure felügyeleti portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az Azure AD-integráció konfigurálása a T & E Express, az alábbi elemek szükségesek:
+az Azure AD integrálása a T & E Express tooconfigure, kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - A T & E Express egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, ha ez nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. T & E Express hozzáadása a gyűjteményből
+1. T & E Express hozzáadása hello gyűjteményből
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-te-express-from-the-gallery"></a>T & E Express hozzáadása a gyűjteményből
-Az Azure AD integrálása a T & E Express konfigurálásához kell hozzáadnia a & E Express a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-te-express-from-hello-gallery"></a>T & E Express hozzáadása hello gyűjteményből
+tooconfigure hello integrációs olyan példá & E Express, az Azure AD-be, szükség tooadd T & E Express a hello gyűjteménye tooyour kezelt SaaS-alkalmazások listáját.
 
-**T & E Express hozzáadása a gyűjteményből, hajtsa végre az alábbi lépéseket:**
+**tooadd T & E Express hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure felügyeleti portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure felügyeleti portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Kattintson a **Hozzáadás** gombra a párbeszédpanel tetején.
+3. Kattintson a **Hozzáadás** hello párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **T & E Express**.
+4. Hello keresési mezőbe, írja be a **T & E Express**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-tyeexpress-tutorial/tutorial_tyeexpress_search.png)
 
-5. Az eredmények panelen válassza ki a **T & E Express**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. A hello eredmények panelen válassza ki a **T & E Express**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-tyeexpress-tutorial/tutorial_tyeexpress_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, tesztelése és konfigurálása az Azure AD egyszeri bejelentkezést a T & E Express "Britta Simon" nevű tesztfelhasználó alapján.
 
-Az egyszeri bejelentkezés működéséhez az Azure AD számára a T & E Express a partner felhasználó egy felhasználó számára az Azure AD kell. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a T & E Express közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználói a T & E Express tooa felhasználó az Azure ad-ben. Más szóval hivatkozás közötti kapcsolat egy Azure AD-felhasználó és a kapcsolódó felhasználói hello a T & E Express igények toobe létrehozott.
 
-Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a T & E Express.
+Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** a T & E Express.
 
-Az Azure AD egyszeri bejelentkezést a T & E Express tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és tesztelése az Azure AD egyszeri bejelentkezést a T & E Express, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[T & E Express tesztfelhasználó létrehozása](#creating-a-te-express-test-user)**  - kell rendelkeznie a megfelelője a Britta Simon a T & E Express, amely csatolva van rá, hogy az Azure AD ábrázolása.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[T & E Express tesztfelhasználó létrehozása](#creating-a-te-express-test-user)**  -toohave Britta Simon a T & E Express, az Azure AD csatolt toohello ábrázolása rá, hogy valami.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure felügyeleti portálon, és a T & E Express alkalmazást az egyszeri bejelentkezés konfigurálása.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel hello Azure felügyeleti portálon, és a T & E Express alkalmazást az egyszeri bejelentkezés konfigurálása.
 
-**T & E Express konfigurálása az Azure AD egyszeri bejelentkezést, hajtsa végre az alábbi lépéseket:**
+**T & E Express, az Azure AD az egyszeri bejelentkezés tooconfigure hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure felügyeleti portálján a a **T & E Express** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Hello Azure felügyeleti portálon, a hello **T & E Express** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A a **egyszeri bejelentkezés** párbeszédpanel, mint **mód** kiválasztása **SAML-alapú bejelentkezés** a engedélyezése az egyszeri bejelentkezéshez.
+2. A hello **egyszeri bejelentkezés** párbeszédpanel, mint **mód** kiválasztása **SAML-alapú bejelentkezés** tooenable az egyszeri bejelentkezés.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-tyeexpress-tutorial/tutorial_tyeexpress_samlbase.png)
 
-3. Az a **& E Express tartományi és URL-címek** területen tegye a következőket:
+3. A hello **& E Express tartományi és URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-tyeexpress-tutorial/tutorial_tyeexpress_url.png)
 
-    a. Az a **azonosító** szövegmező, írja be az értéket, mint:`https://<domain>.tyeexpress.com`
+    a. A hello **azonosító** szövegmezőhöz hello érték típusa:`https://<domain>.tyeexpress.com`
 
-    b. Az a **válasz URL-CÍMEN** szövegmező, adja meg a következő minta használatával URL-címe:`https://<domain>.tyeexpress.com/authorize/samlConsume.aspx`
+    b. A hello **válasz URL-CÍMEN** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<domain>.tyeexpress.com/authorize/samlConsume.aspx`
 
     > [!NOTE] 
-    > Ne feledje, hogy ezek nincsenek a valódi értékek. Akkor kell frissíteni ezeket az értékeket a tényleges azonosítóját és válasz URL-CÍMEN. Itt javasoljuk, hogy az azonosító a karakterlánc egyedi értéket használja. Ügyfél [T & E Express támogatási csoport](http://www.tyeexpress.com/contacto.aspx) beolvasni ezeket az értékeket.
+    > Ne feledje, hogy ezek nincsenek hello valódi értékek. Tooupdate rendelkezik ezekkel az értékekkel rendelkező hello tényleges azonosítója és válasz URL-címet. Itt javasoljuk, hogy Ön toouse hello egyedi karakterlánc értéke a hello azonosítója. Ügyfél [T & E Express támogatási csoport](http://www.tyeexpress.com/contacto.aspx) tooget ezeket az értékeket.
 
-5. Az a **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse az XML-fájlt a számítógépen.
+5. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello XML-fájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-tyeexpress-tutorial/tutorial_tyeexpress_certificate.png) 
 
@@ -125,91 +125,91 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-tyeexpress-tutorial/tutorial_general_400.png)
 
-8. Egyszeri bejelentkezés konfigurálása **T & E expressz** ügyféloldali, jelentkezzen be a T & ztés használata az express SAML-alapú egyszeri bejelentkezési anélkül, hogy a rendszergazda hitelesítő adataival.
+8. tooconfigure egyszeri bejelentkezést a **T & E expressz** ügyféloldali, bejelentkezési toohello T & E express alkalmazás nélkül SAML-alapú egyszeri bejelentkezés a rendszergazdai hitelesítő adataival.
 
-9. Az a **Admin** lapra, kattintson a **SAML tartomány** a SAML-beállítások lap megnyitásához.
+9. A hello **Admin** lapra, kattintson a **SAML tartomány** tooOpen hello SAML beállítások lapon.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-tyeexpress-tutorial/tye-SAML.png)
 
-10. Válassza ki a **Activar(Activate)** parancsát **nem** való **SI(Yes)**. Az a **Identity Provider metaadatok** szövegmezőhöz illessze be a metaadatok XML, amelyekre donwloaded Azure-portálon.
+10. Jelölje be hello **Activar(Activate)** parancsát **nem** túl**SI(Yes)**. A hello **Identity Provider metaadatok** szövegmezőhöz Beillesztés hello metaadatok XML, amelyekre donwloaded Azure-portálon.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-tyeexpress-tutorial/tyeAdmin.png)
 
-11. Kattintson a **Guardar(Save)** gombra a beállítások mentéséhez. 
+11. Kattintson a hello **Guardar(Save)** toosave hello-beállítások gombra. 
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure felügyeleti portálján Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate tesztfelhasználó Britta Simon nevű hello Azure felügyeleti portálon.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure Management portal**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure Management portal**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-tyeexpress-tutorial/create_aaduser_01.png) 
 
-2. Ugrás a **felhasználók és csoportok** kattintson **minden felhasználó** azon felhasználók listájának megjelenítéséhez.
+2. Nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó** toodisplay hello azoknak a felhasználóknak.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-tyeexpress-tutorial/create_aaduser_02.png) 
 
-3. Kattintson a párbeszédpanel tetején **Hozzáadás** megnyitásához a **felhasználói** párbeszédpanel.
+3. Hello párbeszédpanel hello tetején kattintson **Hozzáadás** tooopen hello **felhasználói** párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-tyeexpress-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-tyeexpress-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-te-express-test-user"></a>T & E Express tesztfelhasználó létrehozása
 
-Ahhoz, hogy az Azure AD-felhasználók jelentkezzen be a & E Express, akkor ki kell építenie történő T & E Express.  
+A sorrend tooenable az Azure AD felhasználók toolog történő T & E Express azok ki kell építenie történő T & E Express.  
 T & E Express, ha egy kézi tevékenység.
 
-**A felhasználói fiókok létrehozásához hajtsa végre az alábbi lépéseket:**
+**tooprovision felhasználói fiókok, hajtsa végre hello a következő lépéseket:**
 
-1. Jelentkezzen be rendszergazdaként a T & E Express vállalati webhely.
+1. Jelentkezzen be a tooyour T & E Express vállalati hely rendszergazdaként.
 
-2. Admin címke kattintson a felhasználók számára a felhasználók fő lap megnyitásához.
+2. Admin címke alatt kattintson a felhasználók tooopen hello felhasználók fő lapon.
 
     ![Alkalmazott hozzáadása](./media/active-directory-saas-tyeexpress-tutorial/tye-adminusers.png)
 
-3. A kezdőlapon, kattintson a  **+**  a felhasználókat vehessen fel.
+3. A hello kezdőlapján kattintson a  **+**  tooadd hello felhasználók.
 
     ![Alkalmazott hozzáadása](./media/active-directory-saas-tyeexpress-tutorial/tye-usershome.png)
 
-4. Itt adhatja meg a kötelező részleteit a formában, és kattintson a Mentés gombra kattintva mentse a részletek kéri.
+4. Itt adhatja meg minden hello kötelező adatai hello formában kéri, és kattintson a Mentés gombra toosave hello részletek hello.
 
     ![Alkalmazott hozzáadása](./media/active-directory-saas-tyeexpress-tutorial/tye-usersadd.png)
 
     ![Alkalmazott hozzáadása](./media/active-directory-saas-tyeexpress-tutorial/tye-userssave.png)
 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban Britta Simon saját hozzáférést biztosít a T & E Express által használandó Azure egyszeri bejelentkezés engedélyezése.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés saját hozzáférés eszköz & E Express megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**T & E Express Britta Simon rendeléséhez hajtsa végre az alábbi lépéseket:**
+**Britta Simon eszköz tooassign & E Express, hajtsa végre az alábbi lépésekkel hello:**
 
-1. Az Azure felügyeleti portálra, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Hello Azure felügyeleti portálján, nyissa meg a hello alkalmazások megtekintése, majd toohello könyvtár nézetben keresse meg, és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **T & E Express**.
+2. Hello alkalmazások listában válassza ki a **T & E Express**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-tyeexpress-tutorial/tutorial_tyeexpress_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -217,7 +217,7 @@ Ebben a szakaszban Britta Simon saját hozzáférést biztosít a T & E Express 
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -225,13 +225,13 @@ Ebben a szakaszban Britta Simon saját hozzáférést biztosít a T & E Express 
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-Ha a hozzáférési panelen a T & E Express csempére kattint, akkor kell beolvasása automatikusan bejelentkezett a T & E Express alkalmazásra.
+Hello T & E Express csempe a hozzáférési Panel hello kattintáskor automatikusan bejelentkezett tooyour T & E Express alkalmazás szerezheti be.
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

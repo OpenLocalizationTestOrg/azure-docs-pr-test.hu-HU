@@ -1,7 +1,7 @@
 ---
 title: "Az Active Directory csatlakoztatása az Azure Active Directoryhoz | Microsoft Docs"
-description: "Az Azure AD Connect integrálja a helyszíni címtárakat az Azure Active Directoryval. Így közös identitást biztosíthat az Azure AD-vel integrált Office 365-, Azure- és SaaS-alkalmazásokhoz."
-keywords: "az Azure AD Connect bemutatása, az Azure AD Connect áttekintése, mi az Azure AD Connect, az Active Directory telepítése"
+description: "Az Azure AD Connect integrálja a helyszíni címtárakat az Azure Active Directoryval. Ez lehetővé teszi az Azure ad-vel integrált Office 365, az Azure és az SaaS-alkalmazásokhoz közös identitás tooprovide."
+keywords: "Bevezetés tooAzure AD Connect, az Azure AD Connect áttekintése, mi az Azure AD Connect telepítése az active directory"
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,63 +15,63 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: 97f89cd6cf37d92ac50f149336e1d1143de991ec
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e49f2af4b67e9ed3ad093888541da7c82af0e052
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="integrate-your-on-premises-directories-with-azure-active-directory"></a>A helyszíni címtárak integrálása az Azure Active Directoryval
-Az Azure AD Connect integrálja a helyszíni címtárakat az Azure Active Directoryval. Így közös identitást biztosíthat a felhasználóinak az Azure AD-vel integrált Office 365-, Azure- és SaaS-alkalmazásokhoz. Ez a témakör végigvezeti a tervezéshez, üzembe helyezéshez és működtetéshez szükséges lépéseken. Az anyag a jelen témakörhöz kapcsolódó hivatkozások gyűjteményét is tartalmazza.
+Az Azure AD Connect integrálja a helyszíni címtárakat az Azure Active Directoryval. Ez lehetővé teszi az Azure ad-vel integrált Office 365, az Azure és az SaaS-alkalmazások a felhasználók közös identitás tooprovide. Ez a témakör végigvezeti hello tervezési, telepítési és működtetéshez szükséges lépéseken. Hivatkozások toohello témakörök kapcsolódó toothis terület gyűjteménye.
 
 > [!IMPORTANT]
-> [Az Azure AD Connect a legjobb megoldás, ha a helyszíni címtárat az Azure AD-hez és az Office 365-höz szeretné csatlakoztatni. Itt az ideje, hogy Azure AD Connectre frissítsen a Microsoft Azure Active Directory Sync (DirSync) vagy az Azure AD Sync eszközről, mivel ezek elavultak, és a támogatásuk 2017. április 13-ától megszűnik.](active-directory-aadconnect-dirsync-deprecated.md)
+> [Az Azure AD Connect van hello a legjobb módja tooconnect a helyszíni címtár és az Azure AD és az Office 365. Ez az egy ideje tooupgrade tooAzure AD-csatlakozás a Windows Azure Active Directory-szinkronizálás (DirSync) vagy az Azure AD Sync mivel ezek az eszközök most elavult és támogatásuk 2017. április 13 megszűnik.](active-directory-aadconnect-dirsync-deprecated.md)
 > 
 > 
 
 ![Mi az az Azure AD Connect?](media/active-directory-aadconnect/arch.png)
 
 ## <a name="why-use-azure-ad-connect"></a>Miért érdemes az Azure AD Connect megoldást használni?
-A helyszíni címtárak és az Azure AD integrálása révén a felhasználók munkája hatékonyabbá válik, mivel a felhőalapú és a helyszíni erőforrások hozzáféréséhez közös identitás áll a rendelkezésükre. A felhasználók és a szervezetek az alábbi előnyöket élvezhetik:
+A helyszíni címtárak és az Azure AD integrálása révén a felhasználók munkája hatékonyabbá válik, mivel a felhőalapú és a helyszíni erőforrások hozzáféréséhez közös identitás áll a rendelkezésükre. Felhasználók és a szervezetek kihasználhatják a hello következő:
 
-* A felhasználók egyetlen identitással férhetnek hozzá olyan helyszíni alkalmazásokhoz és felhőszolgáltatásokhoz, mint például az Office 365.
-* Mivel egyetlen eszközről van szó, a szinkronizáláshoz és bejelentkezéshez használt rendszer üzembe helyezése egyszerűen végrehajtható.
-* Többféle alkalmazási helyzethez is biztosítja az elérhető legújabb képességeket. Az Azure AD Connect olyan identitásintegrációs eszközök régebbi verzióit váltja fel, mint például a DirSync és az Azure AD Sync. További információk: [Hybrid Identity directory integration tools comparison](../active-directory-hybrid-identity-design-considerations-tools-comparison.md) (Hibrid identitás: a címtár-integrációs eszközök összehasonlítása).
+* A felhasználók használni egy egyetlen identitást tooaccess helyszíni alkalmazásokhoz és felhőszolgáltatásokhoz, mint például az Office 365.
+* Egyetlen eszköz tooprovide a szinkronizálást, és jelentkezzen be egy egyszerű üzembe helyezését.
+* Az esetek hello elérhető legújabb képességeket biztosít. Az Azure AD Connect olyan identitásintegrációs eszközök régebbi verzióit váltja fel, mint például a DirSync és az Azure AD Sync. További információk: [Hybrid Identity directory integration tools comparison](../active-directory-hybrid-identity-design-considerations-tools-comparison.md) (Hibrid identitás: a címtár-integrációs eszközök összehasonlítása).
 
 ### <a name="how-azure-ad-connect-works"></a>Az Azure AD Connect működése
-Az Azure Active Directory Connect három elsődleges összetevőből épül fel: a szinkronizálási szolgáltatásokból, az elhagyható Active Directory összevonási szolgáltatásokból és az [Azure AD Connect Health](../connect-health/active-directory-aadconnect-health.md) nevű megfigyelési összetevőből.
+Az Azure Active Directory Connect három elsődleges összetevőből készül: hello szinkronizálási szolgáltatások, az Active Directory összevonási szolgáltatások összetevők hello és hello nevű megfigyelési összetevőből [az Azure AD Connect Health](../connect-health/active-directory-aadconnect-health.md) .
 
 <center>![Az Azure AD Connect-verem](./media/active-directory-aadconnect-how-it-works/AADConnectStack2.png)
 </center>
 
-* Szinkronizálás – ez az összetevő a felhasználók, csoportok és egyéb objektumok létrehozásáért felelős. Segítségével arról is meggyőződhet, hogy a helyszíni felhasználókhoz és csoportokhoz tartozó identitásadatok megegyeznek a felhőben található hasonló adatokkal.
-* AD FS – az összevonás az Azure AD Connect elhagyható összetevője, amelynek segítségével helyszíni AD FS-infrastruktúrát használó hibrid környezetet konfigurálhat. Ezt a szolgáltatást a szervezetek összetett üzembe helyezések (például tartomány-csatlakoztatási SSO, AD bejelentkezési házirend kényszerítése, intelligens kártya vagy külső féltől származó MFA) kezeléséhez használhatják.
-* Állapotfigyelés – az Azure AD Connect Health hatékony megfigyelési képességgel rendelkezik, valamint egy központi helyet biztosít az Azure portálon az ilyen tevékenységek megtekintéséhez. További információk: [Azure Active Directory Connect Health](../connect-health/active-directory-aadconnect-health.md).
+* Szinkronizálás – ez az összetevő a felhasználók, csoportok és egyéb objektumok létrehozásáért felelős. Is felelős arról, hogy a helyi felhasználók és csoportok identitásinformációi van megfelelő hello felhő.
+* Az AD FS - összevonási egy Azure AD Connect elhagyható összetevője, és lehet használt tooconfigure egy hibrid környezetben helyszíni AD FS infrastruktúra. Ez a szervezetek tooaddress összetett telepítések, például a tartomány-csatlakoztatási SSO, AD bejelentkezési házirend, és az intelligens kártya és a 3. fél MFA által is használható.
+* Állapotfigyelés – az Azure AD Connect Health hatékony megfigyelési képességgel rendelkezik, és adja meg a központi helyet hello Azure portál tooview ezt a tevékenységet. További információk: [Azure Active Directory Connect Health](../connect-health/active-directory-aadconnect-health.md).
 
 ## <a name="install-azure-ad-connect"></a>Az Azure AD Connect telepítése
-Az Azure AD Connect a [Microsoft letöltőközpontból](http://go.microsoft.com/fwlink/?LinkId=615771) tölthető le.
+Az Azure AD Connect hello letöltési található [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=615771).
 
 | Megoldás | Forgatókönyv |
 | --- | --- |
-| Előkészületek – [Hardverkövetelmények és előfeltételek](active-directory-aadconnect-prerequisites.md) |<li>Az Azure AD Connect telepítése előtt végrehajtandó lépések.</li> |
-| [Gyorsbeállítások](active-directory-aadconnect-get-started-express.md) |<li>Ennek a lehetőségnek a használata akkor ajánlott, ha egyerdős AD-vel rendelkezik.</li> <li>Felhasználói bejelentkezés egyetlen jelszóval, jelszó-szinkronizálás segítségével.</li> |
+| Előkészületek – [Hardverkövetelmények és előfeltételek](active-directory-aadconnect-prerequisites.md) |<li>Lépéseket toocomplete tooinstall az Azure AD Connect megkezdése előtt.</li> |
+| [Gyorsbeállítások](active-directory-aadconnect-get-started-express.md) |<li>Ha egyerdős AD majd ez hello ajánlott beállítás toouse.</li> <li>Felhasználói bejelentkezés hello ugyanaz a jelszó-szinkronizálás jelszó.</li> |
 | [Testreszabott beállítások](active-directory-aadconnect-get-started-custom.md) |<li>Több erdő megléte esetén használatos. Számos helyszíni [topológiát](active-directory-aadconnect-topologies.md) támogat.</li> <li>Testre szabhatja a bejelentkezést, például ADFS-t állíthat be az összevonáshoz, vagy külső féltől származó identitásszolgáltatót használhat.</li> <li>Testre szabhatja a szinkronizálási funkciókat, például a szűrést és a visszaírást.</li> |
 | [Frissítés a DirSync szolgáltatásról](active-directory-aadconnect-dirsync-upgrade-get-started.md) |<li>Akkor használatos, ha már rendelkezik működő DirSync-kiszolgálóval.</li> |
 | [Frissítés Azure AD Sync-ről vagy Azure AD Connectről](active-directory-aadconnect-upgrade-previous-version.md) |<li>Igény szerint számos különböző módszer áll rendelkezésére.</li> |
 
-[A telepítést követően](active-directory-aadconnect-whats-next.md) ellenőrizze a megfelelő működést, és rendeljen licenceket a felhasználókhoz.
+[A telepítés után](active-directory-aadconnect-whats-next.md) ellenőriznünk kell a megfelelő működést, és a szükséges licencek kiosztása a felhasználók toohello.
 
-### <a name="next-steps-to-install-azure-ad-connect"></a>Az Azure AD Connect telepítésének következő lépései
+### <a name="next-steps-tooinstall-azure-ad-connect"></a>Az Azure AD Connect tooInstall további lépések
 |Témakör |Hivatkozás|  
 | --- | --- |
 |Az Azure AD Connect letöltése | [Az Azure AD Connect letöltése](http://go.microsoft.com/fwlink/?LinkId=615771)|
 |Telepítés gyorsbeállítások használatával | [Az Azure AD Connect gyorstelepítése](./active-directory-aadconnect-get-started-express.md)|
 |Telepítés testreszabott beállítások használatával | [Az Azure AD Connect testreszabott telepítése](./active-directory-aadconnect-get-started-custom.md)|
 |Frissítés a DirSync szolgáltatásról | [Frissítés az Azure AD szinkronizáló eszközéről (DirSync)](./active-directory-aadconnect-dirsync-upgrade-get-started.md)|
-|A telepítést követően | [A telepítés ellenőrzése és licencek hozzárendelése](active-directory-aadconnect-whats-next.md)|
+|A telepítést követően | [Hello telepítésének ellenőrzése és licencek hozzárendelése](active-directory-aadconnect-whats-next.md)|
 
 ### <a name="learn-more-about-install-azure-ad-connect"></a>További információk az Azure AD Connect telepítésével kapcsolatban
-Az [üzemeltetéssel](active-directory-aadconnectsync-operations.md) kapcsolatban felmerülő kérdések kezelésére is érdemes felkészülni. [Vészhelyzet](active-directory-aadconnectsync-operations.md#disaster-recovery) esetére megfontolhatja egy készenléti kiszolgáló üzembe állítását. Ha gyakori konfigurációs módosításokat tervez, egy [átmeneti üzemmódú](active-directory-aadconnectsync-operations.md#staging-mode) kiszolgáló beállításán is elgondolkodhat.
+Szeretné a tooprepare [működési](active-directory-aadconnectsync-operations.md) vonatkozik. A készenléti kiszolgáló toohave, akkor egyszerűen tartalék is esetén érdemes egy [katasztrófa](active-directory-aadconnectsync-operations.md#disaster-recovery). Ha azt tervezi, toomake gyakori konfigurációs módosításokat, tervezze meg a [átmeneti módban](active-directory-aadconnectsync-operations.md#staging-mode) kiszolgáló.
 
 |Témakör |Hivatkozás|  
 | --- | --- |
@@ -84,19 +84,19 @@ Az [üzemeltetéssel](active-directory-aadconnectsync-operations.md) kapcsolatba
 ## <a name="configure-sync-features"></a>A szinkronizálási funkciók konfigurálása
 Az Azure AD Connect számos, szükség szerint bekapcsolható vagy alapértelmezés szerint engedélyezett funkcióval rendelkezik. Bizonyos forgatókönyvek és topológiák esetén ezen funkciók némelyike további konfigurációs beállítások megadását igényli.
 
-[Szűrés](active-directory-aadconnectsync-configure-filtering.md) használatára akkor van szükség, ha korlátozni kívánja az Azure AD-vel szinkronizálandó objektumok körét. Alapértelmezés szerint valamennyi felhasználó, névjegy és Windows 10 rendszert használó számítógép szinkronizálva van. A szűrési beállítások tartományok, szervezeti egységek vagy attribútumok szerint módosíthatók.
+[Szűrés](active-directory-aadconnectsync-configure-filtering.md) használatos, ha azt szeretné, hogy mely objektumok érhetők toolimit tooAzure AD szinkronizálva. Alapértelmezés szerint valamennyi felhasználó, névjegy és Windows 10 rendszert használó számítógép szinkronizálva van. Hello szűrési beállítások tartományok, szervezeti egységek vagy attribútumok módosíthatja.
 
-A [jelszó-szinkronizálás](active-directory-aadconnectsync-implement-password-synchronization.md) az Active Directory jelszókivonatát szinkronizálja az Azure AD-vel. A végfelhasználó ugyanazt a jelszót használhatja a helyszíni alkalmazásban és a felhőben, de csak az egyik helyen kezelheti. Mivel ez a funkció szolgáltatóként a helyszíni Active Directoryt használja, saját jelszóházirendjét is alkalmazhatja.
+[A jelszó-szinkronizálás](active-directory-aadconnectsync-implement-password-synchronization.md) hello Jelszókivonat az Active Directory tooAzure AD szinkronizálja. hello végfelhasználói használhatja ugyanazt a jelszót a helyi és hello felhőben, de csak az adatbázis felügyeletét az egyik helyen hello. Mivel a helyszíni Active Directory hello szolgáltatóként használ, saját jelszóházirendjét is használhatja.
 
-A [jelszóvisszaíró](../active-directory-passwords-getting-started.md) szolgáltatás lehetővé teszi a felhasználók számára jelszavak módosítását és visszaállítását a felhőben, valamint a helyszíni jelszóházirend alkalmazását.
+[A jelszóvisszaírás](../active-directory-passwords-getting-started.md) engedélyezése a felhasználók toochange és visszaállíthassák a jelszavukat hello felhőben, és rendelkezik a helyszíni alkalmazott jelszóházirendnek.
 
-Az [eszközvisszaíró](active-directory-aadconnect-feature-device-writeback.md) szolgáltatás lehetővé teszi egy regisztrált Azure AD-eszköz visszaírását a helyszíni Active Directoryra, így ott feltételes hozzáféréssel használható.
+[Eszközvisszaíró](active-directory-aadconnect-feature-device-writeback.md) lehetővé teszi egy eszköz regisztrálva az Azure AD toobe visszaírását tooon helyszíni Active Directory, a feltételes hozzáférés is használható.
 
-A [véletlen törlések megakadályozása](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md) szolgáltatás alapértelmezés szerint be van kapcsolva, és a felhőcímtárat védi az egy időben végrehajtott többszörös törlésektől. Alapértelmezés szerint futtatásonként 500 törlést tesz lehetővé. Ezt a beállítást szervezetének mérete alapján módosíthatja.
+Hello [véletlen törlések megakadályozása](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md) funkció alapértelmezés szerint be van kapcsolva, és a felhőcímtárat: hello számos törli a ugyanannyi időt vesz igénybe. Alapértelmezés szerint futtatásonként 500 törlést tesz lehetővé. Ezt a beállítást szervezetének mérete alapján módosíthatja.
 
-Az [automatikus frissítés](active-directory-aadconnect-feature-automatic-upgrade.md) szolgáltatás alapértelmezés szerint engedélyezve van a gyorsbeállításokkal végrehajtott telepítéseknél, és gondoskodik arról, hogy az Azure AD Connect mindig a legújabb kiadásra frissüljön.
+[Automatikus frissítés](active-directory-aadconnect-feature-automatic-upgrade.md) a gyorsbeállításokkal végrehajtott telepítéseknél alapértelmezés szerint engedélyezve van, és biztosítja az Azure AD Connect mindig be toodate hello legújabb verziójában.
 
-### <a name="next-steps-to-configure-sync-features"></a>A szinkronizálási funkciók konfigurálásának következő lépései
+### <a name="next-steps-tooconfigure-sync-features"></a>Következő lépések tooconfigure szinkronizálási szolgáltatások
 |Témakör |Hivatkozás|  
 | --- | --- |
 |A szűrés konfigurálása | [Az Azure AD Connect szinkronizálása: a szűrés konfigurálása](active-directory-aadconnectsync-configure-filtering.md)|
@@ -107,30 +107,30 @@ Az [automatikus frissítés](active-directory-aadconnect-feature-automatic-upgra
 |Automatikus frissítés | [Azure AD Connect: automatikus frissítés](active-directory-aadconnect-feature-automatic-upgrade.md)|
 
 ## <a name="customize-azure-ad-connect-sync"></a>Az Azure AD Connect szinkronizálásának testreszabása
-Az Azure AD Connect-szinkronizálás alapértelmezett konfigurációja a legtöbb ügyfél és topológia számára megfelelő. Mindig akadnak azonban olyan helyzetek, amikor az alapértelmezett konfiguráció nem használható, és módosítást igényel. A módosítások végrehajtása a jelen szakaszban és a hivatkozott témakörökben leírtak szerint támogatott.
+Azure AD Connect szinkronizálása származik, amely a legtöbb ügyfél és topológia tervezett toowork alapértelmezett konfigurációja. Azonban mindig hello alapértelmezett konfigurációja nem működik, és úgy kell beállítani. A jelen szakaszban és a csatolt témakörökben leírtak szerint támogatott toomake módosításokat is.
 
-Amennyiben korábban nem dolgozott szinkronizált topológiákkal, ismerkedjen meg a [technikai kulcsfogalmakkal](active-directory-aadconnectsync-technical-concepts.md) foglalkozó részben leírt alapismeretekkel és kifejezésekkel. Az Azure AD Connect az MIIS2003, az ILM2007 és az FIM2010 továbbfejlesztése. Még ha egyes elemek azonosak is, számos módosításra került sor.
+Ha korábban nem dolgozott szinkronizált topológiákkal szeretné, hogy toostart toounderstand hello alapjai és kifejezések jegyzékét lásd: hello hello előtt [technikai kulcsfogalmak](active-directory-aadconnectsync-technical-concepts.md). Az Azure AD Connect MIIS2003 ILM2007 és FIM2010 hello fejlődéséhez. Még ha egyes elemek azonosak is, számos módosításra került sor.
 
-Az [alapértelmezett konfiguráció](active-directory-aadconnectsync-understanding-default-configuration.md) azt feltételezi, hogy egynél több erdő is lehet a konfigurációban. Ezekben a topológiákban a felhasználói objektumok kapcsolattartóként is megjelenhetnek egy másik erdőben. A felhasználók rendelkezhetnek hivatkozott postafiókkal is egy másik erőforráserdőben. Az alapértelmezett konfiguráció viselkedésének leírása a [felhasználókkal és kapcsolattartókkal](active-directory-aadconnectsync-understanding-users-and-contacts.md) foglalkozó részben található meg.
+Hello [alapértelmezett konfiguráció](active-directory-aadconnectsync-understanding-default-configuration.md) azt feltételezi, hogy lehet egynél több erdő hello konfigurációban. Ezekben a topológiákban a felhasználói objektumok kapcsolattartóként is megjelenhetnek egy másik erdőben. hello felhasználó már nem hivatkozott postafiókkal egy másik erőforráserdőben. hello hello alapértelmezett konfiguráció viselkedésének leírása [felhasználók és névjegyek](active-directory-aadconnectsync-understanding-users-and-contacts.md).
 
-A szinkronizálás során alkalmazott konfigurációs modell neve: [deklaratív kiépítés](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md). A speciális attribútumfolyamok [függvényeket](active-directory-aadconnectsync-functions-reference.md) használnak az attribútumok gyors átalakításához. Az Azure AD Connectben elérhető eszközök segítségével a teljes konfiguráció megtekintésére és vizsgálatára van lehetőség. Amennyiben konfigurációs módosításokat kíván végrehajtani, támaszkodjon az [ajánlott eljárásokra](active-directory-aadconnectsync-best-practices-changing-default-configuration.md), így könnyebben használatba veheti az új kiadásokat.
+hello konfigurációs modell szinkronban nevezik [deklaratív kiépítés](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md). hello speciális attribútumfolyamok [funkciók](active-directory-aadconnectsync-functions-reference.md) tooexpress attribútum átalakításokat. Tekintse át, és vizsgálja meg a hello teljes konfigurációs eszközök használatával az Azure AD Connect amely. Ha toomake konfigurációs módosítások van szüksége, ellenőrizze, hogy hajtsa végre a hello [ajánlott eljárások](active-directory-aadconnectsync-best-practices-changing-default-configuration.md) , hogy könnyebben tooadopt új kiadásokat.
 
-### <a name="next-steps-to-customize-azure-ad-connect-sync"></a>Az Azure AD Connect-szinkronizálás testreszabásának következő lépései
+### <a name="next-steps-toocustomize-azure-ad-connect-sync"></a>További lépések toocustomize az Azure AD Connect szinkronizálási szolgáltatás
 |Témakör |Hivatkozás|  
 | --- | --- |
 |Az Azure AD Connect-szinkronizáláshoz kapcsolódó összes cikk | [Az Azure AD Connect szinkronizálása](active-directory-aadconnectsync-whatis.md)|
 |Technikai kulcsfogalmak | [Az Azure AD Connect szinkronizálása: technikai kulcsfogalmak](active-directory-aadconnectsync-technical-concepts.md)|
-|Az alapértelmezett konfiguráció ismertetése | [Az Azure AD Connect szinkronizálása: az alapértelmezett konfiguráció ismertetése](active-directory-aadconnectsync-understanding-default-configuration.md)|
+|Understanding hello alapértelmezett konfigurációja | [Azure AD Connect szinkronizálása: Understanding hello alapértelmezett konfigurációja](active-directory-aadconnectsync-understanding-default-configuration.md)|
 |A felhasználók és a kapcsolattartók ismertetése | [Az Azure AD Connect szinkronizálása: a felhasználók és a kapcsolattartók ismertetése](active-directory-aadconnectsync-understanding-users-and-contacts.md)|
 |Deklaratív kiépítés | [Az Azure AD Connect szinkronizálása: a deklaratív kiépítés kifejezéseinek ismertetése](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md)|
-|Az alapértelmezett konfiguráció módosítása | [Az alapértelmezett konfiguráció módosításának ajánlott eljárásai](active-directory-aadconnectsync-best-practices-changing-default-configuration.md)|
+|Hello alapértelmezett konfigurációjának módosítása | [Hello alapértelmezett konfiguráció módosításának ajánlott eljárásai](active-directory-aadconnectsync-best-practices-changing-default-configuration.md)|
 
 ## <a name="configure-federation-features"></a>Az összevonási funkciók konfigurálása
-Az ADFS [több tartomány](active-directory-aadconnect-multiple-domains.md) támogatására is konfigurálható. Előfordulhat például, hogy több legfelső szintű tartományt kell használnia az összevonáshoz.
+Az AD FS lehet konfigurált toosupport [több tartomány](active-directory-aadconnect-multiple-domains.md). Például lehetséges, hogy több legfelső szintű tartományt kell toouse az összevonáshoz.
 
-Ha az ADFS-kiszolgáló még nem lett konfigurálva az Azure AD-tanúsítványok automatikus frissítésére, vagy ha nem ADFS rendszerű megoldást alkalmaz, értesítést kap, amikor [frissítenie kell a tanúsítványokat](active-directory-aadconnect-o365-certs.md).
+Ha az ADFS-kiszolgáló nem lett konfigurálva tooautomatically tanúsítványok frissítése az Azure AD, vagy ha nem ADFS rendszerű megoldást használ, majd értesítést fog kapni Ha túl[tanúsítványok frissítése](active-directory-aadconnect-o365-certs.md).
 
-### <a name="next-steps-to-configure-federation-features"></a>Az összevonási funkciók konfigurálásának következő lépései
+### <a name="next-steps-tooconfigure-federation-features"></a>Következő lépések tooconfigure az összevonási funkciók
 |Témakör |Hivatkozás|  
 | --- | --- |
 |Minden AD FS-cikk | [Azure AD Connect és összevonás](active-directory-aadconnectfed-whatis.md)|
@@ -151,7 +151,7 @@ Ha az ADFS-kiszolgáló még nem lett konfigurálva az Azure AD-tanúsítványok
 
 **További források**
 
-Az Ignite 2015 bemutatója a helyszíni címtárak felhőbe történő kiterjesztéséhez.
+Az ignite 2015 bemutatója a kiterjesztése a helyszíni címtárak toohello felhő.
 
 > [!VIDEO https://channel9.msdn.com/Events/Ignite/2015/BRK3862/player]
 > 

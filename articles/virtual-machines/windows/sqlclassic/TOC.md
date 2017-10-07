@@ -4,21 +4,21 @@
 ## [Gyakori kérdések](../sql/virtual-machines-windows-sql-server-iaas-faq.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 
 # Első lépések
-## [Virtuális gép létrehozása az Azure Portalon](../sql/virtual-machines-windows-portal-sql-server-provision.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
+## [Egy virtuális Gépet az Azure portál hello kiépítése](../sql/virtual-machines-windows-portal-sql-server-provision.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 ## [Virtuális gép létrehozása az Azure PowerShell használatával](virtual-machines-windows-classic-ps-sql-create.md)
-## [Kapcsolódás virtuális géphez](virtual-machines-windows-classic-sql-connect.md)
+## [Csatlakozás a virtuális gép tooa](virtual-machines-windows-classic-sql-connect.md)
 ## [Microsoft SQL Server-adatbázis áttelepítése](../sql/virtual-machines-windows-migrate-sql.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 
 # Útmutató
 ## Magas rendelkezésre állás konfigurálása
 ### [Magas rendelkezésre állású lehetőségek](../sql/virtual-machines-windows-sql-high-availability-dr.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json) 
-### [AlwaysOn rendelkezésre állási csoport konfigurálása a klasszikus portálon](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
+### [Always On rendelkezésre állási csoport konfigurálása hello klasszikus portál](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
 ### [AlwaysOn rendelkezésre állási csoport konfigurálása PowerShellel](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
 ### [Belső figyelő konfigurálása rendelkezésre állási csoporthoz](virtual-machines-windows-classic-ps-sql-int-listener.md)
 ### [Külső figyelő konfigurálása rendelkezésre állási csoporthoz](virtual-machines-windows-classic-ps-sql-ext-listener.md)
-### [Helyi rendelkezésre állási csoport kiterjesztése az Azure-ba](virtual-machines-windows-classic-sql-onprem-availability.md)
+### [A helyi rendelkezésre állási csoport tooAzure kiterjesztése](virtual-machines-windows-classic-sql-onprem-availability.md)
 ## Kezelés
-### [Microsoft SQL Server IaaS-ügynök bővítmény használata](virtual-machines-windows-classic-sql-server-agent-extension.md)
+### [SQL Server infrastruktúra-szolgáltatási ügynök bővítmény hello használata](virtual-machines-windows-classic-sql-server-agent-extension.md)
 ### [Automatikus javítás](virtual-machines-windows-classic-sql-automated-patching.md)
 ### [Azure Key Vault-integráció konfigurálása](virtual-machines-windows-classic-ps-sql-keyvault.md)
 ### [Premium Storage használata](virtual-machines-windows-classic-sql-server-premium-storage.md)
@@ -30,7 +30,7 @@
 ## Üzleti intelligencia
 ### [SQL Server Business Intelligence az Azure virtuális gépeken](virtual-machines-windows-classic-ps-sql-bi.md)
 ### [A ReportViewer használata az Azure-ban üzemeltetett webhelyeken](virtual-machines-windows-classic-sql-server-reportviewer.md)
-### [Jelentéskészítő kiszolgálóval rendelkező Azure virtuális gép létrehozása PowerShell használatával](virtual-machines-windows-classic-ps-sql-report.md)
+### [PowerShell toocreate egy Azure virtuális gép használata a jelentéskészítő kiszolgálón](virtual-machines-windows-classic-ps-sql-report.md)
 ## [A teljesítménnyel kapcsolatos ajánlott eljárások](../sql/virtual-machines-windows-sql-performance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 ## [Alkalmazásminták](../sql/virtual-machines-windows-sql-server-app-patterns-dev-strategies.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 

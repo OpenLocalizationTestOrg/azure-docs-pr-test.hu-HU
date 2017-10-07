@@ -1,5 +1,5 @@
 ---
-title: "A TRAFFIC Manager-végpont típusú |} Microsoft Docs"
+title: "aaaTraffic Manager Végponttípusok |} Microsoft Docs"
 description: "Ez a cikk ismerteti a különböző használható az Azure Traffic Manager-végpontok"
 services: traffic-manager
 documentationcenter: 
@@ -14,79 +14,79 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/29/2017
 ms.author: kumud
-ms.openlocfilehash: 792712e3e529d77ff20a7603b5fbf028ca60f8c8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 787412ac6207f76791bf3ff753d1df2767b1a964
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="traffic-manager-endpoints"></a>Traffic Manager-végpontok
-A Microsoft Azure Traffic Manager lehetővé teszi, hogy hogyan a hálózati forgalom különböző adatközpontokban futó alkalmazások telepítése esetén elosztott vezérlését. Minden alkalmazás központi telepítésének egy végpontként a Traffic Manager konfigurálása. Ha a Traffic Manager DNS-kérelmet kap, térjen vissza a DNS-válasz egy elérhető végpontot úgy dönt. A TRAFFIC manager végpont aktuális állapota és a forgalom-útválasztási módszer választása alapjait. További információkért lásd: [Traffic Manager működése](traffic-manager-how-traffic-manager-works.md).
+Microsoft Azure Traffic Manager lehetővé teszi hálózati forgalom Mitől toocontrol elosztott tooapplication központi telepítések futtató különböző adatközpontokban. Minden alkalmazás központi telepítésének egy végpontként a Traffic Manager konfigurálása. Traffic Manager DNS-kérelmet kap, ha azt választja ki egy elérhető végpontot tooreturn hello DNS-választ. A TRAFFIC manager hello választott hello aktuális végpont állapota és a forgalom-útválasztási módszer hello alapjait. További információkért lásd: [Traffic Manager működése](traffic-manager-how-traffic-manager-works.md).
 
 Traffic Manager által támogatott végpont három típusa van:
 * **Azure-végpontok** Azure-ban üzemeltetett szolgáltatásokhoz tartoznak.
 * **Külső végpontok száma** a szolgáltatások üzemeltetett külső Azure, a helyi vagy egy másik szolgáltató használata.
-* **A beágyazott végpontok** kombinálhatja a Traffic Manager-profilok létrehozása rugalmasabb forgalom-útválasztási rendszerek nagyobb, összetettebb telepítések igényeinek támogatására használhatók.
+* **A beágyazott végpontok** használt toocombine Traffic Manager-profilok toocreate rugalmasabb forgalom-útválasztási sémák toosupport hello igényeinek nagyobb, összetettebb központi telepítéseket is.
 
 Hogyan van összevonva különböző típusú végpontok egy Traffic Manager-profil nincs korlátozva van. Az egyes profilok típusú végpontok esetében bármilyen kombinációját is tartalmazhat.
 
-A következő szakaszok ismertetik az egyes alaposabb típusú végpont.
+a következő szakaszok hello minden alaposabb típusú végpont ismertetik.
 
 ## <a name="azure-endpoints"></a>Azure-végpontok
 
-Azure-végpontok Azure-alapú szolgáltatásokhoz a Traffic Manager tartoznak. A következő Azure erőforráscsoport-típusok támogatottak:
+Azure-végpontok Azure-alapú szolgáltatásokhoz a Traffic Manager tartoznak. a következő Azure erőforrástípusok hello támogatottak:
 
 * A felhőalapú szolgáltatások "Klasszikus" infrastruktúra-szolgáltatási virtuális gépeknél és PaaS.
 * Web Apps
-* Nyilvános erőforrásokat (virtuális gépek is csatlakoztathatók közvetlenül, vagy egy Azure Load Balancer). A nyilvános rendelkeznie kell egy DNS-nevet hozzárendelni a Traffic Manager-profil használható.
+* Nyilvános erőforrások (amely lehet csatlakoztatott tooVMs közvetlenül, vagy egy Azure Load Balancer). hello publicIpAddress rendelkeznie kell egy DNS-nevet a Traffic Manager-profil használt toobe rendelve.
 
-Nyilvános erőforrásokhoz olyan erőforrások, Azure Resource Manager. A klasszikus üzembe helyezési modellel azok nem léteznek. Így azok csak a támogatott Traffic Manager Azure Resource Manager lép. A más típusú végpontok esetében az erőforrás-kezelő és a klasszikus telepítési modellel keresztül támogatottak.
+Nyilvános erőforrásokhoz olyan erőforrások, Azure Resource Manager. Hello klasszikus üzembe helyezési modellel azok nem léteznek. Így azok csak a támogatott Traffic Manager Azure Resource Manager lép. hello más típusú végpontok esetében támogatottak Resource Manager és a hello klasszikus üzembe helyezési modellel keresztül.
 
-Azure-végpontok használata esetén a Traffic Manager észleli, ha a "Klasszikus" IaaS virtuális gépek, a felhőalapú szolgáltatás vagy a webes alkalmazás leáll, majd elindítani. Ez az állapot a végpont állapota is megjelenik. Lásd: [Traffic Manager-végpont figyelési](traffic-manager-monitoring.md#endpoint-and-profile-status) részleteiről. Az alapul szolgáló szolgáltatás leáll, amikor a Traffic Manager nem végez végpont állapotellenőrzést vagy a végpont közvetlen forgalmat. A leállított példány számlázási Traffic Manager-események nem fordulhat elő. A szolgáltatás újraindításakor számlázási folytatása és a a végpont nem jogosult forgalom fogadására. Az észlelés nem vonatkozik a nyilvános végpontok.
+Azure-végpontok használata esetén a Traffic Manager észleli, ha a "Klasszikus" IaaS virtuális gépek, a felhőalapú szolgáltatás vagy a webes alkalmazás leáll, majd elindítani. Ez az állapot hello végpont állapota is megjelenik. Lásd: [Traffic Manager-végpont figyelési](traffic-manager-monitoring.md#endpoint-and-profile-status) részleteiről. Hello az alapul szolgáló szolgáltatás leállítását követően a Traffic Manager nem végez végpont állapotellenőrzést vagy közvetlen forgalom toohello végpontot. Nincs a Traffic Manager számlázási események fordulnak elő a hello leállította a példányt. Amikor hello szolgáltatás újraindítása, folytatása számlázási és hello végpont jogosult tooreceive forgalmat. Az észlelés nem érvényes tooPublicIpAddress végpontok.
 
 ## <a name="external-endpoints"></a>Külső végpontok száma
 
-Külső végpontok száma a Azure-on kívüli szolgáltatáshoz használt. Például egy szolgáltatást a helyben tárolt vagy másik szolgáltatóhoz. Külső végpontok száma külön-külön használja, vagy együtt az Azure-végpontok a Traffic Manager-profilt. Külső végpontok száma az Azure-végpontok kombinálásával lehetővé teszi, hogy a különböző forgatókönyvekben:
+Külső végpontok száma a Azure-on kívüli szolgáltatáshoz használt. Például egy szolgáltatást a helyben tárolt vagy másik szolgáltatóhoz. Külső végpontok száma használt külön-külön vagy együtt az Azure-végpontok a hello ugyanazt a Traffic Manager-profilt. Külső végpontok száma az Azure-végpontok kombinálásával lehetővé teszi, hogy a különböző forgatókönyvekben:
 
-* Vagy az aktív-aktív vagy aktív-passzív feladatátvevő modell használható Azure ad egy meglévő nagyobb redundancia helyszíni alkalmazás megadására.
-* A felhasználók számára a világ különböző alkalmazás késés csökkentése érdekében terjesztheti ki egy meglévő helyszíni alkalmazást további földrajzi helyek, az Azure-ban. További információkért lásd: ["Teljesítmény" Traffic Manager forgalom-útválasztás](traffic-manager-routing-methods.md#performance).
-* A további kapacitás egy létező használata Azure a helyszíni alkalmazás, folyamatosan vagy egy "kapacitásnövelés felhő" megoldás egy csúcs az igények kielégítéséhez.
+* Vagy az aktív-aktív vagy aktív-passzív feladatátvevő modell használjon nagyobb Azure tooprovide redundancia egy meglévő helyszíni alkalmazást.
+* tooreduce alkalmazás várakozási ideje a felhasználók hello világ, egy meglévő helyszíni alkalmazás tooadditional földrajzi helyeken az Azure-ban kiterjesztése. További információkért lásd: ["Teljesítmény" Traffic Manager forgalom-útválasztás](traffic-manager-routing-methods.md#performance).
+* Folyamatosan vagy egy "kapacitásnövelés felhő" megoldás toomeet egy csúcs az igények, használja a Azure tooprovide további kapacitást meglévő helyszíni alkalmazás esetén.
 
-Bizonyos esetekben célszerű hivatkozhasson rá az Azure-szolgáltatások használatához a külső végpontok száma (példákért lásd a [gyakran ismételt kérdések](traffic-manager-faqs.md#traffic-manager-endpoints)). Állapot-ellenőrzési eredményeire számlázása ebben az esetben az Azure-végpontok díj nem külső végpontok száma másodpercenként. Azonban eltérően az Azure-végpontok, leállítása vagy törlése a mögöttes szolgáltatás állapotának ellenőrzése számlázási továbbra is fennáll, addig, amíg letiltása, vagy törölni a Traffic Manager-végpontot.
+Bizonyos esetekben hasznos toouse külső végpontok száma tooreference Azure szolgáltatások (tekintse meg a hello [gyakran ismételt kérdések](traffic-manager-faqs.md#traffic-manager-endpoints)). Ebben az esetben állapotellenőrzést amelyekért hello Azure-végpontok arány nem hello külső végpontok száma sebessége. Azure-végpontok, eltérően leállítása vagy törlése az alapul szolgáló szolgáltatás, hello állapotfigyelő vizsgálja, számlázási továbbra is fennáll, addig, amíg letiltása, vagy törölni a Traffic Manager-hello végpontot.
 
 ## <a name="nested-endpoints"></a>Beágyazott végpontok
 
-Beágyazott végpontok több Traffic Manager-profilok létrehozása a rugalmas forgalom-útválasztási sémák, és kielégítse az összetett, nagyobb méretű telepítések össze. Beágyazott végpontokon "child" profil profilhoz van adva, a végpont egy "parent". A gyermek és szülő profilok tartalmazhat bármilyen típusú, beleértve a más beágyazott profilok végpontja. További információkért lásd: [Traffic Manager-profilok beágyazott](traffic-manager-nested-profiles.md).
+Beágyazott végpontok több Traffic Manager profilok toocreate rugalmas forgalom-útválasztási sémák egyesítése, és támogatja a nagyobb, összetett központi telepítések hello igényeinek. Beágyazott végpontokon "child" profil meg van adva egy végpont tooa "parent" profil. Mindkét hello gyermek és szülő profil tartalmazhat bármilyen típusú, beleértve a más beágyazott profilok végpontja. További információkért lásd: [Traffic Manager-profilok beágyazott](traffic-manager-nested-profiles.md).
 
 ## <a name="web-apps-as-endpoints"></a>Web Apps végpontként
 
 További vegye figyelembe a következőket: a Traffic Manager végpontként webalkalmazások konfigurálásakor:
 
-1. Csak a "Standard" SKU vagy meghaladja a webalkalmazások jogosultak a Traffic Managerrel történő használathoz. A webes alkalmazás egy alacsonyabb metódust felvételére irányuló kísérletek sikertelenek. A Traffic Manager már nem olyan adatforgalmat küldenie, hogy a webes alkalmazás alacsonyabb verziójúra változtatása egy már meglévő webalkalmazás Termékváltozata eredménye.
-2. Amikor a végpont egy HTTP-kérelem érkezik, az a "" állomásfejléc a kérelemben meghatározásához mely webalkalmazás kell feldolgozni a kérelmet. Az állomásfejléc tartalmazza a DNS-név, amelyről a kérést, például "contosoapp.azurewebsites.net". A webalkalmazás egy másik DNS-név használatához regisztrálni kell a DNS-nevet az alkalmazás az egyéni tartomány nevét. Egy webalkalmazás végpont Azure végpontjaként hozzáadásakor a Traffic Manager-profil DNS-neve automatikusan regisztrálja az alkalmazást. Ez a regisztráció automatikusan törlődik, amikor a végpontja törölve.
-3. Minden egyes Traffic Manager-profil legfeljebb egy webalkalmazás-végpontot rendelkezhet minden Azure-régióban. Az ennél a határértéknél megoldása érdekében webalkalmazás is létrehozható, amely egy külső végpont. További információkért lásd: a [gyakran ismételt kérdések](traffic-manager-faqs.md#traffic-manager-endpoints).
+1. Csak Web Apps hello "Standard" SKU vagy annál újabb jogosultak a Traffic Managerrel történő használathoz. Próbálja meg tooadd egy webalkalmazást az alsó SKU-sikertelen. Alacsonyabb verziójúra változtatása hello egy már meglévő webalkalmazás Termékváltozata eredmények a Traffic Manager forgalom toothat webalkalmazás már nem küld.
+2. Amikor a végpont egy HTTP-kérelem érkezik, az hello "fogadó" fejléc a következő hello kérelem toodetermine mely Web App service hello igényeljen. hello állomásfejléc hello DNS használt név tooinitiate hello kérelmet, például "contosoapp.azurewebsites.net" tartalmaz. egy másik DNS-nevet a webalkalmazással, hello DNS-név toouse hello alkalmazást az egyéni tartomány nevét regisztrálva kell lennie. A webes alkalmazás végpont Azure végpontjaként felvételekor hello Traffic Manager-profil DNS-név a rendszer automatikusan regisztrálja az hello App. Ez a regisztráció automatikusan törlődik, ha hello végpontja törölve.
+3. Minden egyes Traffic Manager-profil legfeljebb egy webalkalmazás-végpontot rendelkezhet minden Azure-régióban. az ennél a határértéknél körül toowork, beállíthat egy webalkalmazás külső végpont. További információkért lásd: hello [gyakran ismételt kérdések](traffic-manager-faqs.md#traffic-manager-endpoints).
 
 ## <a name="enabling-and-disabling-endpoints"></a>Engedélyezése és letiltása a végpontok száma
 
-A Traffic Manager végpont letiltása traffic ideiglenesen eltávolítása a karbantartási mód vagy újratelepítés alatt álló végpontok hasznos lehet. Ha a végpont újra fut, újra engedélyezni lehet.
+A Traffic Manager végpont letiltása lehet, hogy a karbantartási módban, vagy újratelepítés alatt álló végpontok hasznos tootemporarily remove-forgalmat. Ha hello végpont újra fut, újra engedélyezni lehet.
 
-Végpontok engedélyezve van, és le van tiltva a Traffic Manager-portál, PowerShell, a parancssori felületen vagy a REST API-t olyan erőforrás-kezelő és a klasszikus üzembe helyezési modellel is támogatottak.
+Végpontok engedélyezve van, és tiltja, hogy hello Traffic Manager portal, PowerShell, a parancssori felületen vagy a REST API-t olyan erőforrás-kezelő és a hello klasszikus üzembe helyezési modellel is támogatottak.
 
 > [!NOTE]
-> Az Azure a végpont letiltása rendelkezik köze az Azure rendszerbeli üzembe helyezési állapotát. Az Azure-szolgáltatások (például egy virtuális gép vagy a webes alkalmazás továbbra is fut, és akkor is, ha le van tiltva a Traffic Manager forgalom fogadására alkalmasak. Forgalom is kezelhetők, közvetlenül a szolgáltatáspéldány számára, nem pedig a Traffic Manager-profil DNS-név használatával. További információkért lásd: [Traffic Manager működése](traffic-manager-how-traffic-manager-works.md).
+> Nem rendelkezik Azure végpont letiltása toodo rendszerbeli üzembe helyezési állapotát az Azure-ban. Az Azure-szolgáltatás (például egy virtuális gép vagy a webes alkalmazás továbbra is fut, és képes tooreceive forgalom akkor is, ha le van tiltva a Traffic Manager. Forgalom közvetlen toohello szolgáltatás példány helyett keresztül hello Traffic Manager DNS-név profile lehet megoldani. További információkért lásd: [Traffic Manager működése](traffic-manager-how-traffic-manager-works.md).
 
-Az aktuális való jogosultságát, mindegyik végpont forgalom fogadására a következő tényezőktől függ:
+hello aktuális való jogosultságát, mindegyik végpont tooreceive forgalom hello a következő tényezőktől függ:
 
-* A profil állapota (engedélyezett vagy letiltott)
-* A végpont állapota (engedélyezett vagy letiltott)
-* Az eredmények a rendszerállapot ellenőrzi, hogy a végpont
+* hello-profil állapota (engedélyezett vagy letiltott)
+* hello végpont állapota (engedélyezett vagy letiltott)
+* hello állapotellenőrzést használó hello eredményei
 
 További információkért lásd: [Traffic Manager-végpont figyelési](traffic-manager-monitoring.md#endpoint-and-profile-status).
 
 > [!NOTE]
-> A Traffic Manager DNS szintjén működik, mert nem tudja befolyásolni a tetszőleges végpontot meglévő kapcsolatok. A végpont nem érhető el, ha a Traffic Manager irányítja új kapcsolatot egy másik elérhető végpontot. A gazdagép a letiltott vagy nem megfelelő végpont mögött azonban továbbra is meglévő kapcsolatokon keresztül forgalom fogadására, amíg a munkamenetek leállítása van. Alkalmazások a munkamenet időtartama a meglévő kapcsolatok kiürítésére forgalom engedélyezésére kell korlátoznia.
+> A Traffic Manager DNS szint hello működik, mert már nem tooinfluence meglévő kapcsolatok tooany végpont. A végpont nem érhető el, ha a Traffic Manager irányítja új kapcsolatok tooanother elérhető végpontot. Azonban hello állomás hello le van tiltva vagy nem megfelelő végpont mögött továbbra is meglévő kapcsolatokon keresztül tooreceive forgalom mindaddig, amíg a munkamenetek megszűnik. Alkalmazások hello munkamenet időtartama tooallow forgalom toodrain a meglévő kapcsolatok kell korlátoznia.
 
-Ha egy profil végpontjai le vannak tiltva, vagy ha a profil le van tiltva, majd a Traffic Manager "NXDOMAIN" választ küld egy új DNS-lekérdezést.
+Ha egy profil végpontjai le vannak tiltva, vagy maga hello-profil le van tiltva, a Traffic Manager egy "NXDOMAIN" válasz tooa új DNS-lekérdezést küld.
 
 
 ## <a name="next-steps"></a>Következő lépések

@@ -1,6 +1,6 @@
 ---
-title: "A Xamarin Blob Storage használata |} Microsoft Docs"
-description: "Az Azure Storage ügyféloldali kódtára a Xamarin segítségével a fejlesztők a saját felhasználói felülettel rendelkező iOS, Android és Windows Áruházbeli alkalmazások létrehozásához. Ez az oktatóanyag bemutatja, hogyan hozzon létre egy Azure Blob Storage tárolót használó alkalmazást a Xamarin segítségével."
+title: "Blob Storage-ának Xamarin aaaHow toouse |} Microsoft Docs"
+description: "hello Azure Storage ügyféloldali kódtára a Xamarin lehetővé teszi a fejlesztők toocreate iOS, Android és Windows Áruházbeli alkalmazások a a saját felhasználói felülethez. Ez az oktatóanyag bemutatja, hogyan toouse Xamarin toocreate Azure Blob Storage tárolót használó alkalmazások."
 services: storage
 documentationcenter: xamarin
 author: michaelhauss
@@ -14,36 +14,36 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: michaelhauss
-ms.openlocfilehash: 5ff4d86082c03dcd7098743a984a97aa70232d1d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 688484fc560b5c89ed1692f5cbf5713aa8fc90a4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-blob-storage-from-xamarin"></a>A Xamarin Blob Storage használata
+# <a name="how-toouse-blob-storage-from-xamarin"></a>Hogyan toouse Blob Storage-ának Xamarin
 [!INCLUDE [storage-selector-blob-include](../../../includes/storage-selector-blob-include.md)]
 
 ## <a name="overview"></a>Áttekintés
-Xamarin-fejlesztők számára lehetővé teszi, hogy használatára a megosztott C# iOS, Android és Windows Áruházbeli alkalmazások létrehozása a natív felhasználói felületeket a kódbázis. Ez az oktatóanyag bemutatja, hogyan Azure Blob storage használata a Xamarin-alkalmazás. Ha azt szeretné, további Azure Storage-ról a kód előtt kapcsolatos információkért tekintse meg [Microsoft Azure Storage bemutatása](../common/storage-introduction.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json).
+Xamarin lehetővé teszi, hogy a fejlesztők toouse megosztott C# kódbázis toocreate iOS, Android és Windows Áruházbeli alkalmazások a a saját felhasználói felülethez. Az oktatóanyag bemutatja, hogyan toouse Xamarin-alkalmazás az Azure Blob Storage tárolóban. Ha azt szeretné, hogy Azure Storage-ról további toolearn hello kód ról előtt, tekintse meg a [Azure Storage bemutatása tooMicrosoft](../common/storage-introduction.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json).
 
 [!INCLUDE [storage-create-account-include](../../../includes/storage-create-account-include.md)]
 
 [!INCLUDE [storage-mobile-authentication-guidance](../../../includes/storage-mobile-authentication-guidance.md)]
 
 ## <a name="create-a-new-xamarin-application"></a>Új Xamarin-alkalmazás létrehozása
-Ebben az oktatóanyagban azt fogja létrehozni egy alkalmazást, amelynek célja az Android, iOS és Windows. Az alkalmazás egyszerűen tárolókat hozhat létre, és egy blob feltöltése a tárolóba. Windows rendszeren Visual Studio használatával, de a azonos learnings alkalmazhatók a Xamarin Studio segítségével macOS az alkalmazás létrehozásakor.
+Ebben az oktatóanyagban azt fogja létrehozni egy alkalmazást, amelynek célja az Android, iOS és Windows. Az alkalmazás egyszerűen tárolókat hozhat létre, és egy blob feltöltése a tárolóba. Fogjuk használni a Visual Studio a Windows, de hello azonos learnings alkalmazhatók a Xamarin Studio segítségével macOS az alkalmazás létrehozásakor.
 
-Kövesse az alábbi lépéseket az alkalmazás létrehozásához:
+Kövesse ezeket a lépéseket toocreate az alkalmazást:
 
 1. Ha még nem tette, töltse le és telepítse [Visual Studio Xamarin](https://www.xamarin.com/download).
 2. Nyissa meg a Visual Studio, és hozzon létre egy üres alkalmazás (natív hordozható): **fájl > Új > Projekt > platformfüggetlen > üres App(Native Portable)**.
-3. Kattintson a jobb gombbal a megoldás a Solution Explorer ablaktáblában, és válassza ki **NuGet-csomagok kezelése megoldáshoz**. Keresse meg **windowsazure.Storage kifejezésre** és telepítse a legújabb stabil verzióját az összes projektet a megoldásban.
+3. Kattintson a jobb gombbal a megoldás hello Solution Explorer ablaktáblában, és válassza ki **NuGet-csomagok kezelése megoldáshoz**. Keresse meg **windowsazure.Storage kifejezésre** és telepítse a legújabb stabil verzióját tooall projektek hello a megoldásban.
 4. Hozza létre, és futtatja a projektet.
 
-Most rendelkeznie kell egy alkalmazás, amely lehetővé teszi egy gombra, ami növeli a számlálót.
+Most rendelkeznie kell egy alkalmazás, amely lehetővé teszi a gomb, ami növeli a számlálót tooclick.
 
 ## <a name="create-container-and-upload-blob"></a>Tároló létrehozása és feltöltése a blob
-Ezután bontsa a `(Portable)` projektben fogja hozzáadni bizonyos kód futtatásával `MyClass.cs`. Ez a kód létrehoz egy tárolót, és feltölt egy blobot a tárolóba. `MyClass.cs`a következő hasonlóan kell kinéznie:
+Ezután bontsa a `(Portable)` projekt, néhány kódot túl fogja hozzáadni`MyClass.cs`. Ez a kód létrehoz egy tárolót, és feltölt egy blobot a tárolóba. `MyClass.cs`hello hasonlóan kell kinéznie:
 
 ```csharp
 using Microsoft.WindowsAzure.Storage;
@@ -63,28 +63,28 @@ namespace XamarinApp
             // Retrieve storage account from connection string.
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=your_account_name_here;AccountKey=your_account_key_here");
 
-            // Create the blob client.
+            // Create hello blob client.
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-            // Retrieve reference to a previously created container.
+            // Retrieve reference tooa previously created container.
             CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
-            // Create the container if it doesn't already exist.
+            // Create hello container if it doesn't already exist.
             await container.CreateIfNotExistsAsync();
 
-            // Retrieve reference to a blob named "myblob".
+            // Retrieve reference tooa blob named "myblob".
             CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob");
 
-            // Create the "myblob" blob with the text "Hello, world!"
+            // Create hello "myblob" blob with hello text "Hello, world!"
             await blockBlob.UploadTextAsync("Hello, world!");
         }
     }
 }
 ```
 
-Ügyeljen arra, hogy a "your_account_name_here" és "your_account_key_here" cserélje a tényleges fiók nevét és a fiókkulcsot. 
+Győződjön meg arról, hogy tooreplace "your_account_name_here" és "your_account_key_here" a tényleges fióknevet és a fiókkulcsot. 
 
-Az iOS, Android és Windows Phone-projektek összes rendelkezik a hordozható projekt – azaz írhat összes megosztott kódot egy hivatkozást elhelyezni, és használja az összes projektben. A következő kódsort most már minden olyan projekthez indítására, előnyeinek kihasználása adhat hozzá:`MyClass.performBlobOperation()`
+Az iOS, Android és Windows Phone-projektek összes rendelkezik hivatkozások tooyour hordozható projekt – azaz írhat összes megosztott kódot egy helyezze el, és használja az összes projektben. Mostantól hozzáadhatja a következő kód tooeach projekt toostart kihasználva üzletági hello:`MyClass.performBlobOperation()`
 
 ### <a name="xamarinappdroid--mainactivitycs"></a>XamarinApp.Droid > MainActivity.cs
 
@@ -104,11 +104,11 @@ namespace XamarinApp.Droid
         {
             base.OnCreate (bundle);
 
-            // Set our view from the "main" layout resource
+            // Set our view from hello "main" layout resource
             SetContentView (Resource.Layout.Main);
 
-            // Get our button from the layout resource,
-            // and attach an event to it
+            // Get our button from hello layout resource,
+            // and attach an event tooit
             Button button = FindViewById<Button> (Resource.Id.myButton);
 
             button.Click += delegate {
@@ -149,7 +149,7 @@ namespace XamarinApp.iOS
             public override async void ViewDidLoad ()
             {
                 base.ViewDidLoad ();
-                // Perform any additional setup after loading the view, typically from a nib.
+                // Perform any additional setup after loading hello view, typically from a nib.
                 Button.AccessibilityIdentifier = "myButton";
                 Button.TouchUpInside += delegate {
                     var title = string.Format ("{0} clicks!", count++);
@@ -175,12 +175,12 @@ namespace XamarinApp.iOS
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
+// hello Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
 namespace XamarinApp.WinPhone
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// An empty page that can be used on its own or navigated toowithin a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
     {
@@ -194,10 +194,10 @@ namespace XamarinApp.WinPhone
         }
 
         /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
+        /// Invoked when this page is about toobe displayed in a Frame.
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
+        /// This parameter is typically used tooconfigure hello page.</param>
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             int count = 1;
@@ -210,18 +210,18 @@ namespace XamarinApp.WinPhone
             }
 
             /// <summary>
-            /// Invoked when this page is about to be displayed in a Frame.
+            /// Invoked when this page is about toobe displayed in a Frame.
             /// </summary>
             /// <param name="e">Event data that describes how this page was reached.
-            /// This parameter is typically used to configure the page.</param>
+            /// This parameter is typically used tooconfigure hello page.</param>
             protected override async void OnNavigatedTo(NavigationEventArgs e)
             {
                 // TODO: Prepare page for display here.
 
                 // TODO: If your application contains multiple pages, ensure that you are
-                // handling the hardware Back button by registering for the
+                // handling hello hardware Back button by registering for the
                 // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
-                // If you are using the NavigationHelper provided by some templates,
+                // If you are using hello NavigationHelper provided by some templates,
                 // this event is handled for you.
                 Button.Click += delegate {
                     var title = string.Format("{0} clicks!", count++);
@@ -235,13 +235,13 @@ namespace XamarinApp.WinPhone
 }
 ```
 
-## <a name="run-the-application"></a>Az alkalmazás futtatása
-Most futtathatja az alkalmazást egy Android- vagy Windows Phone-emulátoron. Ez az alkalmazás egy iOS-emulátoron is futtatható, de ehhez az szükséges, Mac A konkrét utasításokat ebben az esetben olvassa el a dokumentációja [csatlakozik a Visual Studio Mac](https://developer.xamarin.com/guides/ios/getting_started/installation/windows/connecting-to-mac/)
+## <a name="run-hello-application"></a>Hello alkalmazás futtatása
+Most futtathatja az alkalmazást egy Android- vagy Windows Phone-emulátoron. Ez az alkalmazás egy iOS-emulátoron is futtatható, de ehhez az szükséges, Mac Hogyan toodo, olvassa el az hello dokumentációjában kapcsolatos tudnivalókat [Visual Studio tooa Mac csatlakozás](https://developer.xamarin.com/guides/ios/getting_started/installation/windows/connecting-to-mac/)
 
-Az alkalmazás futtatása után hoz létre a tároló `mycontainer` tárfiókba. A blob tartalmaznia kell `myblob`, amely rendelkezik a dokumentum szövegét, `Hello, world!`. Ennek segítségével ellenőrizheti a [Microsoft Azure Tártallózó](http://storageexplorer.com/).
+Az alkalmazás futtatása után hello tároló hoz létre `mycontainer` tárfiókba. Hello blob tartalmaznia kell `myblob`, hello szöveget tartalmaz `Hello, world!`. Hello segítségével ellenőrizheti a [Microsoft Azure Tártallózó](http://storageexplorer.com/).
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóprogramban megismerte a platformfüggetlen alkalmazások létrehozása az Azure Storage Blob Storage egy forgatókönyv kifejezetten előtérbe használó Xamarin. Azonban végezhet sokkal több nem csak a Blob Storage a, hanem a tábla, a fájl és a Queue Storage. Vegye ki az alábbi cikkekből tudhat meg többet:
+Ebben az oktatóanyagban megtanulta, hogyan toocreate egy platformfüggetlen-alkalmazást a Xamarin használó Azure Storage Blob Storage egy forgatókönyv kifejezetten előtérbe. Azonban végezhet sokkal több nem csak a Blob Storage a, hanem a tábla, a fájl és a Queue Storage. Ellenőrizze a következő cikkek toolearn további hello ki:
 
 * [Az Azure Blob Storage használatának első lépései a .NET-keretrendszerrel](storage-dotnet-how-to-use-blobs.md)
 * [Az Azure Table Storage használatának első lépései a .NET-keretrendszerrel](../../cosmos-db/table-storage-how-to-use-dotnet.md)

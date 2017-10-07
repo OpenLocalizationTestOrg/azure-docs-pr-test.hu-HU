@@ -1,6 +1,6 @@
 ---
-title: "Virtuális hálózat konfigurálása a Premium Azure Redis gyorsítótár |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozhatja létre és kezelheti a Premium szint Azure Redis Cache példány virtuális hálózati támogatása"
+title: "egy virtuális hálózatot egy prémium szintű Azure Redis Cache aaaConfigure |} Microsoft Docs"
+description: "Megtudhatja, hogyan toocreate és kezelheti a Premium szint Azure Redis Cache példány virtuális hálózati támogatása"
 services: redis-cache
 documentationcenter: 
 author: steved0x
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: sdanie
-ms.openlocfilehash: 59d46990e02c0719d2b4df01e216a97fd649c509
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: fab715f4d9365ee4c2f8b89d2e2e58768c25b671
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-virtual-network-support-for-a-premium-azure-redis-cache"></a>Virtuális hálózati támogatásának konfigurálása prémium szintű Azure Redis Cache
-Azure Redis Cache rendelkezik másik gyorsítótármappa ajánlatokat, amelyek gyorsítótár mérete és a funkciót, beleértve a prémium réteg szolgáltatások, például a fürtszolgáltatás, az adatmegőrzésre és a virtuális hálózat támogatásának rugalmasságot biztosítanak. A virtuális hálózat egy magánhálózaton a felhőben. Azure Redis Cache példány konfigurálásakor a virtuális hálózaton nincs nyilvánosan megcímezhető, és csak érhetők el a virtuális gépek és az alkalmazások a Vneten belül. Ez a cikk ismerteti a premium Azure Redis Cache példányt virtuális hálózat támogatásának konfigurálása.
+# <a name="how-tooconfigure-virtual-network-support-for-a-premium-azure-redis-cache"></a>Hogyan tooconfigure a virtuális hálózati egy prémium szintű Azure Redis Cache támogatása
+Azure Redis Cache rendelkezik másik gyorsítótármappa ajánlatokat, amelyek hello választott gyorsítótár mérete és a funkciót, beleértve a prémium réteg szolgáltatások, például a fürtszolgáltatás, az adatmegőrzésre és a virtuális hálózat támogatásának rugalmasságot biztosítanak. A virtuális hálózat egy magánhálózaton hello felhőben. Egy Vnetet az Azure Redis Cache példány van beállítva, amikor nincs nyilvánosan megcímezhető, és csak a virtuális gépek és az alkalmazások hello virtuális hálózaton belül érhető el. Ez a cikk bemutatja, hogyan támogatják a virtuális hálózati tooconfigure a premium Azure Redis Cache példány.
 
 > [!NOTE]
 > Azure Redis Cache támogatja mindkét klasszikus és Resource Manager Vnetek.
 > 
 > 
 
-Más prémium gyorsítótár funkciókról további információért lásd: [az Azure Redis Cache prémium szintjének bemutatása](cache-premium-tier-intro.md).
+Más prémium gyorsítótár funkciókról további információért lásd: [bemutatása toohello Azure Redis Cache prémium szintjének](cache-premium-tier-intro.md).
 
 ## <a name="why-vnet"></a>Miért virtuális hálózatot?
-[Az Azure Virtual Network (VNet)](https://azure.microsoft.com/services/virtual-network/) telepítés biztosítja, magasabb védelmet és elszigeteltséget az Azure Redis Cache, valamint a alhálózatok, hozzáférés-vezérlési házirendeket, és további egyéb szolgáltatások elérésének korlátozása.
+[Az Azure Virtual Network (VNet)](https://azure.microsoft.com/services/virtual-network/) telepítés biztosítja a fokozott biztonságot és az Azure Redis Cache, valamint a alhálózatok, hozzáférés-vezérlési házirendeket, elkülönítési és egyéb szolgáltatások toofurther korlátozhatja a hozzáférést.
 
 ## <a name="virtual-network-support"></a>Virtuális hálózati támogatása
-Virtual Network (VNet) támogatása konfigurálva van a **új Redis Cache** panel gyorsítótár létrehozása során. 
+Virtual Network (VNet) támogatása konfigurált hello **új Redis Cache** panel gyorsítótár létrehozása során. 
 
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-premium-create.md)]
 
-Miután kiválasztotta a prémium tarifacsomag, beállíthatja a Redis virtuális integráció egy Vnetet, amely ugyanazt az előfizetést és a gyorsítótár helyének kiválasztásával. Egy új virtuális hálózat használatához először hozza létre azt a lépések [hozzon létre egy virtuális hálózatot az Azure portál használatával](../virtual-network/virtual-networks-create-vnet-arm-pportal.md) vagy [(klasszikus) virtuális hálózat létrehozása az Azure portál használatával](../virtual-network/virtual-networks-create-vnet-classic-pportal.md) és térjen vissza a **Új Redis Cache** létrehozása és beállítása a prémium szintű gyorsítótára panel.
+Miután kiválasztotta a prémium tarifacsomag, konfigurálhatja a virtuális hálózat, amely hello kiválasztásával Redis virtuális integráció azonos előfizetés és a gyorsítótár. új virtuális hálózatot, toouse először hozza létre azt hello utasításait követve [hello Azure-portál virtuális hálózat létrehozása](../virtual-network/virtual-networks-create-vnet-arm-pportal.md) vagy [hozzon létre egy virtuális hálózat (klasszikus) hello Azure-portál használatával](../virtual-network/virtual-networks-create-vnet-classic-pportal.md) , és visszatér a toohello **Új Redis Cache** panel toocreate és a prémium szintű gyorsítótár konfigurálása.
 
-Az új gyorsítótár hálózatok konfigurálásához kattintson **virtuális hálózati** a a **új Redis Cache** panelt, és válassza ki a kívánt VNet a legördülő listából.
+Kattintson az új gyorsítótár, a virtuális hálózat tooconfigure hello **virtuális hálózati** a hello **új Redis Cache** panelen, és jelölje be hello virtuális hálózat szükséges hello legördülő listából.
 
 ![Virtuális hálózat][redis-cache-vnet]
 
-Jelölje ki a kívánt alhálózatot a **alhálózati** legördülő listában, és adja meg a kívánt **statikus IP-cím**. Ha a klasszikus virtuális hálózatot használ a **statikus IP-cím** mező kitöltése nem kötelező, és ha nincs megadva, egy kiválasztotta a kiválasztott alhálózatnak.
+Válassza ki a kívánt alhálózatot a hello hello **alhálózati** legördülő listában, és adja meg a szükséges hello **statikus IP-cím**. Ha használja a klasszikus virtuális hálózat hello **statikus IP-cím** mező kitöltése nem kötelező, és ha nincs megadva, egy kijelölt hello alhálózatból választja.
 
 > [!IMPORTANT]
-> Az Azure Redis Cache egy erőforrás-kezelő virtuális hálózaton történő telepítéskor a gyorsítótár az Azure Redis Cache példány kivételével nincs más erőforrásokat tartalmazó dedikált alhálózat kell lennie. Ha központi telepítése egy Azure Redis Cache egy erőforrás-kezelő virtuális hálózat alhálózathoz tett kísérlet, amely más erőforrások, a központi telepítés sikertelen lesz.
+> Az Azure Redis Cache tooa erőforrás-kezelő virtuális hálózat telepítésekor hello gyorsítótár, amely tartalmazza az Azure Redis Cache példány kívül más erőforrások dedikált alhálózat kell lennie. Ha toodeploy tett kísérlet az Azure Redis Cache tooa más erőforrások, az hello telepítését tartalmazó erőforrás-kezelő virtuális hálózat tooa alhálózati sikertelen lesz.
 > 
 > 
 
 ![Virtuális hálózat][redis-cache-vnet-ip]
 
 > [!IMPORTANT]
-> Azure fenntartja az egyes IP-címek minden alhálózaton belül, és ezeknél a címeknél nem használható. Az első és utolsó IP-címek alhálózatok protokoll megfelelési, valamint három további címek az Azure-szolgáltatásokhoz használt számára vannak fenntartva. További információkért lásd: [vannak-e bármilyen korlátozás belül ezek alhálózatok IP-címeket használnak?](../virtual-network/virtual-networks-faq.md#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets)
+> Azure fenntartja az egyes IP-címek minden alhálózaton belül, és ezeknél a címeknél nem használható. hello hello alhálózatok első és utolsó IP-címek számára fenntartott protokoll megfelelési, valamint három további címek az Azure-szolgáltatásokhoz használt. További információkért lásd: [vannak-e bármilyen korlátozás belül ezek alhálózatok IP-címeket használnak?](../virtual-network/virtual-networks-faq.md#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets)
 > 
-> Mellett az IP-címeit az Azure virtuális hálózat infrastruktúra minden egyes Redis példány / shard alhálózati használja a két IP-címek és egy további IP-címet a terheléselosztóhoz. Egy nem fürtözött gyorsítótár egy shard tekinthető.
+> Továbbá a hello Azure virtuális hálózat infrastruktúra által használt toohello IP-címek, a minden egyes Redis példány hello alhálózati használja a két IP-címek / shard és egy további IP-cím hello terheléselosztóhoz. Egy nem fürtözött gyorsítótár toohave egy shard minősül.
 > 
 > 
 
-A gyorsítótár létrehozása után meg kattintva megtekintheti a VNet konfigurációját **virtuális hálózati** a a **erőforrás menü**.
+Hello gyorsítótár létrehozása után megtekintheti kattintva hello VNet konfigurációja hello **virtuális hálózati** a hello **erőforrás menü**.
 
 ![Virtuális hálózat][redis-cache-vnet-info]
 
-Csatlakozni az Azure Redis cache példány egy virtuális hálózat használatával, adja meg a gyorsítótár állomás nevét a kapcsolati karakterláncban a következő példában látható módon:
+tooconnect tooyour Azure Redis cache példány egy Vnetet használatakor hello kapcsolati karakterláncban adja meg a gyorsítótár hello állomásnevét, ahogy az alábbi példa hello:
 
     private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
     {
@@ -80,20 +80,20 @@ Csatlakozni az Azure Redis cache példány egy virtuális hálózat használatá
     }
 
 ## <a name="azure-redis-cache-vnet-faq"></a>Azure Redis Cache VNet – gyakori kérdések
-A következő lista az Azure Redis Cache skálázás gyakran feltett kérdésekre adott válaszokat tartalmazza.
+a következő lista hello hello Azure Redis Cache méretezésével kapcsolatos kérdések válaszok toocommonly tartalmazza.
 
 * [Mik azok a gyakori hiba a konfiguráció problémákat az Azure Redis Cache és Vnetekhez?](#what-are-some-common-misconfiguration-issues-with-azure-redis-cache-and-vnets)
 * [Hogyan ellenőrizhetem, hogy működik-e a gyorsítótár a VNETEN belül?](#how-can-i-verify-that-my-cache-is-working-in-a-vnet)
 * [Használható alapszintű vagy standard gyorsítótárával Vnetekhez?](#can-i-use-vnets-with-a-standard-or-basic-cache)
 * [Miért nem a Redis gyorsítótár létrehozása sikertelen lesz az egyes alhálózatok, de nem mások?](#why-does-creating-a-redis-cache-fail-in-some-subnets-but-not-others)
-* [Mik azok az alhálózati kapcsolatos követelmények?](#what-are-the-subnet-address-space-requirements)
+* [Mik azok a hello alhálózati kapcsolatos követelmények?](#what-are-the-subnet-address-space-requirements)
 * [Működnek-e minden gyorsítótár-funkciók egy VNETET a gyorsítótárhoz esetén?](#do-all-cache-features-work-when-hosting-a-cache-in-a-vnet)
 
 ## <a name="what-are-some-common-misconfiguration-issues-with-azure-redis-cache-and-vnets"></a>Mik azok a gyakori hiba a konfiguráció problémákat az Azure Redis Cache és Vnetekhez?
-Azure Redis Cache a Vneten belül helyezkedik el, amikor a rendszer az alábbi táblázatban a portokat használja. 
+Azure Redis Cache a Vneten belül helyezkedik el, amikor a rendszer a következő táblák hello hello portokat használja. 
 
 >[!IMPORTANT]
->Ha blokkolja az alábbi táblázatban a portokat, előfordulhat, hogy a gyorsítótár nem működik megfelelően. Rendelkezik egy vagy több ezeket a portokat, blokkolja a leggyakrabban használt helytelen konfiguráció probléma használata esetén egy Vnetet az Azure Redis Cache.
+>Ha a következő táblák hello hello portjainak blokkolja, előfordulhat, hogy hello gyorsítótár nem működik megfelelően. Rendelkezik egy vagy több ezeket a portokat blokkolva hello leggyakoribb helytelen konfiguráció probléma használata esetén egy Vnetet az Azure Redis Cache.
 > 
 > 
 
@@ -104,9 +104,9 @@ Azure Redis Cache a Vneten belül helyezkedik el, amikor a rendszer az alábbi t
 
 Nincsenek hét kimenő port.
 
-- Ha a kívánt, az összes kimenő kapcsolatok az interneten keresztül módosítható egy ügyfél a helyszíni naplózási eszköz.
-- Azure-végpontok Azure Storage és az Azure DNS-karbantartási forgalom átirányítása három port.
-- A fennmaradó porttartományok és a belső Redis alhálózati kommunikációhoz. Nincs alhálózat NSG-szabályok a belső Redis alhálózati kommunikációhoz szükségesek.
+- Ha szükséges, minden kimenő kapcsolatok toohello internet létrehozható egy ügyfélen keresztül helyszíni naplózási eszköz.
+- Három hello portok útvonal-forgalom tooAzure végpontok karbantartási Azure Storage és az Azure DNS-ben.
+- porttartományok fennmaradó hello és a belső Redis alhálózati kommunikációhoz. Nincs alhálózat NSG-szabályok a belső Redis alhálózati kommunikációhoz szükségesek.
 
 | Port(ok) | Irány | Átviteli protokoll | Cél | Helyi IP | Távoli IP |
 | --- | --- | --- | --- | --- | --- |
@@ -121,89 +121,89 @@ Nincsenek hét kimenő port.
 
 ### <a name="inbound-port-requirements"></a>Bejövő portokra vonatkozó követelmények
 
-Nincsenek nyolc bejövő port tartományon. Bejövő kérelmek ezen tartományok, vagy más, ugyanazon virtuális üzemeltetett szolgáltatások bejövő vagy belső a Redis alhálózati kommunikáció.
+Nincsenek nyolc bejövő port tartományon. A bejövő kérések ezen tartományok használata vagy bejövő más hello üzemeltetett szolgáltatások ugyanazt a virtuális Hálózatot, vagy a belső toohello Redis alhálózati kommunikáció.
 
 | Port(ok) | Irány | Átviteli protokoll | Cél | Helyi IP | Távoli IP |
 | --- | --- | --- | --- | --- | --- |
-| 6379, 6380 |Bejövő |TCP |Ügyfél-kommunikációt kíván Redis, Azure terheléselosztás | (Redis alhálózati) |Virtuális hálózat, az Azure terheléselosztó |
+| 6379, 6380 |Bejövő |TCP |Ügyfél-kommunikáció tooRedis, Azure terheléselosztás | (Redis alhálózati) |Virtuális hálózat, az Azure terheléselosztó |
 | 8443 |Bejövő |TCP |Belső Redis-kommunikáció | (Redis alhálózati) |(Redis alhálózati) |
 | 8500 |Bejövő |TCP/UDP |Az Azure terheléselosztás | (Redis alhálózati) |Azure Load Balancer |
 | 10221-10231 |Bejövő |TCP |Belső Redis-kommunikáció | (Redis alhálózati) |(Redis alhálózati), Azure Load Balancer |
-| 13000-13999 |Bejövő |TCP |Ügyfél-kommunikáció Redis-fürtök, Azure terheléselosztás | (Redis alhálózati) |Virtuális hálózat, az Azure terheléselosztó |
-| 15000-15999 |Bejövő |TCP |Ügyfél-kommunikáció Redis-fürtök, Azure betöltése terheléselosztás | (Redis alhálózati) |Virtuális hálózat, az Azure terheléselosztó |
+| 13000-13999 |Bejövő |TCP |Ügyfél-kommunikáció tooRedis fürtök, Azure terheléselosztás | (Redis alhálózati) |Virtuális hálózat, az Azure terheléselosztó |
+| 15000-15999 |Bejövő |TCP |Ügyfél-kommunikáció tooRedis fürtök, Azure terheléselosztás | (Redis alhálózati) |Virtuális hálózat, az Azure terheléselosztó |
 | 16001 |Bejövő |TCP/UDP |Az Azure terheléselosztás | (Redis alhálózati) |Azure Load Balancer |
 | 20226 |Bejövő |TCP |Belső Redis-kommunikáció | (Redis alhálózati) |(Redis alhálózati) |
 
 ### <a name="additional-vnet-network-connectivity-requirements"></a>További virtuális hálózat hálózati kapcsolat követelmények
 
-Nincsenek hálózati kapcsolat az Azure Redis Cache, előfordulhat, hogy kezdetben jutott virtuális hálózatban. Azure Redis Cache-gyorsítótár a következő elemek megfelelően működnek, ha a virtuális hálózaton belül van szükség.
+Nincsenek hálózati kapcsolat az Azure Redis Cache, előfordulhat, hogy kezdetben jutott virtuális hálózatban. Azure Redis Cache szükséges összes hello a következő elemek toofunction megfelelően, ha a virtuális hálózaton belül.
 
-* Azure Storage végpontok világszerte kimenő hálózati kapcsolatot. Ez magában foglalja a végpontok Azure Redis Cache példányt ugyanabban a régióban található, valamint tárolási végpontok található **más** Azure-régiók. Azure Storage-végpontok oldja meg a következő DNS-tartományok alatt: *table.core.windows.net*, *blob.core.windows.net*, *queue.core.windows.net*, és *file.core.windows.net*. 
-* Kimenő hálózati kapcsolattal *ocsp.msocsp.com*, *mscrl.microsoft.com*, és *crl.microsoft.com*. Ez az összekapcsolhatóság SSL támogatásához van szükség.
-* A DNS-beállításait a virtuális hálózat összes végpontok és a korábbi pontban tartományok megoldásának képesnek kell lennie. A DNS-követelmények érheti el, egy érvényes DNS-infrastruktúra van beállítva, és a virtuális hálózat megmarad biztosításával.
-* Kimenő hálózati kapcsolata a következő Azure figyelési végpontok, amelyek alapján a következő DNS-tartományok megoldásához: shoebox2-black.shoebox2.metrics.nsatc.net, Észak-prod2.prod2.metrics.nsatc.net, azglobal-black.azglobal.metrics.nsatc.net , shoebox2-red.shoebox2.metrics.nsatc.net, kelet-prod2.prod2.metrics.nsatc.net, azglobal-red.azglobal.metrics.nsatc.net.
+* Kimenő hálózati kapcsolat tooAzure tárolási végpontok világszerte. Ez magában foglalja a végpontok hello található hello Azure Redis Cache példány, valamint tárolási végpontok található, és ugyanabban a régióban **más** Azure-régiók. Azure Storage-végpontok oldja meg a következő DNS-tartományok hello: *table.core.windows.net*, *blob.core.windows.net*, *queue.core.windows.net*, és *file.core.windows.net*. 
+* Kimenő hálózati kapcsolatra túl*ocsp.msocsp.com*, *mscrl.microsoft.com*, és *crl.microsoft.com*. Ez az összekapcsolhatóság szükséges toosupport SSL funkció.
+* hello virtuális hálózat DNS-konfiguráció hello megoldásának hello végpontok képesnek kell lennie, és a tartományok említett hello korábbi pontok. A DNS-követelmények érheti el, egy érvényes DNS-infrastruktúra hello virtuális hálózat megmarad és konfigurált biztosításával.
+* Kimenő hálózati kapcsolat toohello Azure figyelési végpontok, amelyek alapján a következő DNS-tartományok hello feloldani a következő: shoebox2-black.shoebox2.metrics.nsatc.net, Észak-prod2.prod2.metrics.nsatc.net, azglobal-black.azglobal.metrics.nsatc.net, shoebox2-red.shoebox2.metrics.nsatc.net, kelet-prod2.prod2.metrics.nsatc.net, azglobal-red.azglobal.metrics.nsatc.net.
 
 ### <a name="how-can-i-verify-that-my-cache-is-working-in-a-vnet"></a>Hogyan ellenőrizhetem, hogy működik-e a gyorsítótár a VNETEN belül?
 
 >[!IMPORTANT]
->Amikor egy virtuális hálózat alkotóelem Azure Redis Cache példány csatlakozik, a gyorsítótárazási ügyfelek számára ugyanazon virtuális, beleértve az alkalmazások tesztelése vagy diagnosztikai pingelés eszközök kell lennie.
+>Ha egy virtuális hálózat alkotóelem tooan Azure Redis Cache példány, a gyorsítótár-ügyfeleknek kell lenniük a hello ugyanazt a virtuális Hálózatot, beleértve az alkalmazások tesztelése vagy diagnosztikai pingelés eszközök.
 >
 >
 
-Az előző szakaszban leírtak a portokra vonatkozó követelmények konfigurálása után ellenőrizheti, hogy működik-e a gyorsítótár a következő lépések elvégzésével.
+Hello előző szakaszban leírtak szerint hello portokra vonatkozó követelmények konfigurálása után ellenőrizheti, hogy működik-e a gyorsítótár hello lépések elvégzésével.
 
-- [Újraindítás](cache-administration.md#reboot) minden gyorsítótár-csomópont. Ha az összes szükséges gyorsítótár-függőségeit nem érhető el (ahogy [portokra vonatkozó követelmények bejövő](cache-how-to-premium-vnet.md#inbound-port-requirements) és [kimenő portokra vonatkozó követelmények](cache-how-to-premium-vnet.md#outbound-port-requirements)), a gyorsítótár nem fog tudni újraindítása sikeresen megtörtént.
-- Ha a gyorsítótár-csomópontok (mint a gyorsítótár állapotát, az Azure portálon által jelentett) újraindítása, a következő teszteket hajthat végre:
-  - Pingelje meg a gyorsítótár végpont (port 6380) a gép, amely ugyanazt a virtuális Hálózatot, mint a gyorsítótár belül használatával [tcping](https://www.elifulkerson.com/projects/tcping.php). Példa:
+- [Újraindítás](cache-administration.md#reboot) összes hello gyorsítótár csomópontok. Ha az összes hello szükséges gyorsítótár-függőségeit nem érhető el (leírtak [portokra vonatkozó követelmények bejövő](cache-how-to-premium-vnet.md#inbound-port-requirements) és [kimenő portokra vonatkozó követelmények](cache-how-to-premium-vnet.md#outbound-port-requirements)), hello gyorsítótár sikeresen nem fogja tudni toorestart.
+- Hello gyorsítótár-csomópontok (a hello gyorsítótár állapotát hello Azure-portál által jelentett) újraindítása, ha a következő tesztek hello végezheti el:
+  - Pingelje hello gyorsítótár végpontjához (használja a portot 6380), a gép, amely hello belül ugyanazt a virtuális Hálózatot, hello gyorsítótár használata [tcping](https://www.elifulkerson.com/projects/tcping.php). Példa:
     
     `tcping.exe contosocache.redis.cache.windows.net 6380`
     
-    Ha a `tcping` eszköz jelzi, hogy a port meg nyitva, a gyorsítótár érhető el a virtuális hálózaton lévő ügyfelek közötti kapcsolat.
+    Ha hello `tcping` eszköz jelzi, hogy hello port meg nyitva, illetve hello gyorsítótár kapcsolat hello virtuális hálózaton lévő ügyfelek számára elérhető.
 
-  - Tesztelheti egy másik módja, ha a teszt gyorsítótárügyfél (amely lehet egy egyszerű konzolalkalmazást StackExchange.Redis használatával), amely a gyorsítótár csatlakozik, és hozzáadja, és néhány elemet lekéri a gyorsítótárból. A mintaalkalmazás ügyfél, amely ugyanazt a virtuális Hálózatot, mint a gyorsítótárban, és futtassa ellenőrzésére a gyorsítótár-kiszolgálóra telepítse.
+  - Egy másik módja tootest egy teszt gyorsítótárügyfél toocreate (amely lehet egy egyszerű konzolalkalmazást StackExchange.Redis használatával), amely toohello gyorsítótár csatlakozik, és hozzáadja, és néhány elemet lekéri hello gyorsítótárból. Ügyfél mintaalkalmazás hello alakzatot, amely a virtuális gép telepítése hello hello gyorsítótár, ugyanazt a virtuális Hálózatot, és futtassa azt tooverify kapcsolat toohello gyorsítótár.
 
 
 ### <a name="can-i-use-vnets-with-a-standard-or-basic-cache"></a>Használható alapszintű vagy standard gyorsítótárával Vnetekhez?
 Vnetek csak prémium szintű gyorsítótárak használható.
 
 ### <a name="why-does-creating-a-redis-cache-fail-in-some-subnets-but-not-others"></a>Miért nem a Redis gyorsítótár létrehozása sikertelen lesz az egyes alhálózatok, de nem mások?
-Ha telepíti az Azure Redis Cache egy erőforrás-kezelő virtuális hálózatba, a gyorsítótár nincs más erőforrástípus tartalmazó dedikált alhálózat kell lennie. Ha központi telepítése egy Azure Redis Cache erőforrás-kezelő virtuális hálózat alhálózathoz tett kísérlet, amely más erőforrások, a telepítés sikertelen lesz. Egy új Redis gyorsítótár létrehozása előtt törölnie kell a meglévő erőforrásokat az alhálózaton belül.
+Ha telepít egy Azure Redis Cache tooa erőforrás-kezelő virtuális hálózatot, hello gyorsítótár nincs más erőforrástípus tartalmazó dedikált alhálózat kell lennie. Ha toodeploy tett kísérlet az Azure Redis Cache tooa más erőforrások, az hello telepítését tartalmazó erőforrás-kezelő virtuális hálózat alhálózati sikertelen lesz. Egy új Redis gyorsítótár létrehozása előtt törölnie kell az hello meglévő erőforrásokat hello alhálózaton belül.
 
-Telepítene többféle típusú erőforrások egy klasszikus virtuális hálózatot, amíg elegendő elérhető IP-cím van.
+Telepíthet több típust az erőforrások tooa klasszikus virtuális hálózatot, amíg meg vannak-e elegendő IP-címek érhető el.
 
-### <a name="what-are-the-subnet-address-space-requirements"></a>Mik azok az alhálózati kapcsolatos követelmények?
-Azure fenntartja az egyes IP-címek minden alhálózaton belül, és ezeknél a címeknél nem használható. Az első és utolsó IP-címek alhálózatok protokoll megfelelési, valamint három további címek az Azure-szolgáltatásokhoz használt számára vannak fenntartva. További információkért lásd: [vannak-e bármilyen korlátozás belül ezek alhálózatok IP-címeket használnak?](../virtual-network/virtual-networks-faq.md#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets)
+### <a name="what-are-hello-subnet-address-space-requirements"></a>Mik azok a hello alhálózati kapcsolatos követelmények?
+Azure fenntartja az egyes IP-címek minden alhálózaton belül, és ezeknél a címeknél nem használható. hello hello alhálózatok első és utolsó IP-címek számára fenntartott protokoll megfelelési, valamint három további címek az Azure-szolgáltatásokhoz használt. További információkért lásd: [vannak-e bármilyen korlátozás belül ezek alhálózatok IP-címeket használnak?](../virtual-network/virtual-networks-faq.md#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets)
 
-Mellett az IP-címeit az Azure virtuális hálózat infrastruktúra minden egyes Redis példány / shard alhálózati használja a két IP-címek és egy további IP-címet a terheléselosztóhoz. Egy nem fürtözött gyorsítótár egy shard tekinthető.
+Továbbá a hello Azure virtuális hálózat infrastruktúra által használt toohello IP-címek, a minden egyes Redis példány hello alhálózati használja a két IP-címek / shard és egy további IP-cím hello terheléselosztóhoz. Egy nem fürtözött gyorsítótár toohave egy shard minősül.
 
 ### <a name="do-all-cache-features-work-when-hosting-a-cache-in-a-vnet"></a>Működnek-e minden gyorsítótár-funkciók egy VNETET a gyorsítótárhoz esetén?
-Ha a gyorsítótár egy virtuális hálózat része, csak a virtuális hálózaton lévő ügyfelek is gyorsítótár-hozzáféréshez. Ennek eredményeképpen a következő gyorsítótár-felügyeleti funkciók jelenleg nem működnek.
+Ha a gyorsítótár egy virtuális hálózat része, csak a virtuális hálózat hello ügyfelek hello gyorsítótár férhet hozzá. Ennek eredményeképpen hello következő gyorsítótár-kezelési funkciók nem működnek most.
 
-* Konzol redis - konzol Redis fut a helyi böngészőben, amely a virtuális hálózaton kívül, mert nem tud kapcsolódni a gyorsítótárhoz.
+* Konzol redis - konzol Redis fut a helyi böngészőben, amely hello virtuális hálózaton kívül, mert tooyour gyorsítótár nem tud kapcsolódni.
 
 ## <a name="use-expressroute-with-azure-redis-cache"></a>Azure Redis gyorsítótár ExpressRoute használata
-Az ügyfelek kapcsolódhatnak egy [Azure ExpressRoute](https://azure.microsoft.com/services/expressroute/) kapcsolat a virtuális hálózati infrastruktúrára, így kiterjesztése a helyszíni hálózat az Azure-bA. 
+Az ügyfelek kapcsolódhatnak egy [Azure ExpressRoute](https://azure.microsoft.com/services/expressroute/) áramkör tootheir virtuális hálózati infrastruktúra, így kiterjesztése a helyszíni hálózati tooAzure. 
 
-Alapértelmezés szerint egy újonnan létrehozott ExpressRoute-kapcsolatcsoport nem végzi el a kényszerített bújtatás (az alapértelmezett útvonal hirdetmény 0.0.0.0/0) egy virtuális hálózaton. Ennek eredményeképpen kimenő internetkapcsolat engedélyezett a VNET-ről és ügyfélalkalmazások csatlakozni más Azure-végpontok Azure Redis Cache beleértve.
+Alapértelmezés szerint egy újonnan létrehozott ExpressRoute-kapcsolatcsoport nem végzi el a kényszerített bújtatás (az alapértelmezett útvonal hirdetmény 0.0.0.0/0) egy virtuális hálózaton. Ennek eredményeképpen kimenő internetkapcsolat közvetlenül a virtuális hálózat hello engedélyezett, és ügyfélalkalmazások képes tooconnect tooother Azure végpontok, beleértve az Azure Redis Cache.
 
-Azonban egy közös felhasználói konfigurálása, hogy használja kényszerített bújtatás (az alapértelmezett útvonal hirdetése) amely arra kényszeríti a kimenő Internet forgalmat inkább a helyszíni. A forgalom áramlását a kimenő forgalom esetén az Azure Redis Cache kapcsolat megsérti, majd a helyszíni blokkolva, például úgy, hogy az Azure Redis Cache példány nem tud kommunikálni a függőségeit.
+Azonban ez a gyakori ügyfél-konfigurációs a kényszerített bújtatás toouse (az alapértelmezett útvonal hirdetése) amely arra kényszeríti a kimenő Internet forgalom tooinstead folyamata a helyszíni. A forgalom áramlását hello kimenő forgalom esetén megsérti Azure Redis Cache kapcsolatot, majd helyszíni blokkolva, például úgy, hogy hello Azure Redis Cache példány nem tud toocommunicate és annak függőségeit.
 
-A megoldás, hogy egy (vagy több) felhasználó által definiált útvonalak (udr-EK) adja meg az alhálózatot, amely tartalmazza az Azure Redis Cache. Egy UDR helyett az alapértelmezett útvonal szembeni szerződéses kötelezettségeket vonatkozó alhálózati útvonalakat határozza meg.
+egy (vagy több) toodefine felhasználó által definiált útvonalak (udr-EK), amely tartalmazza az Azure Redis Cache hello hello alhálózaton hello megoldás. Egy UDR hello alapértelmezett útvonal helyett szembeni szerződéses kötelezettségeket vonatkozó alhálózati útvonalakat határozza meg.
 
-Ha lehetséges javasoljuk, hogy az alábbi konfigurációt használja:
+Ha lehetséges a következő konfigurációs toouse hello ajánlott:
 
-* Az ExpressRoute konfigurációs hirdeti 0.0.0.0/0, és alapértelmezés szerint kényszerített bújtatja minden kimenő forgalom helyszíni.
-* Az alhálózatot, amely tartalmazza az Azure Redis Cache alkalmazott UDR a TCP/IP-forgalmat olyan működő útvonalat a 0.0.0.0/0 meghatározása a nyilvános internethez; például az beállítása a következő ugrás típusa "Internet".
+* hello ExpressRoute konfigurációs hirdeti 0.0.0.0/0, és alapértelmezés szerint kényszerített bújtatja minden kimenő forgalom helyszíni.
+* hello alkalmazott UDR toohello alhálózat hello Azure Redis Cache tartalmazó határoz meg egy TCP/IP-forgalom toohello működő útvonalat a 0.0.0.0/0 nyilvános internethez. például hello beállítása szerint a következő ugrás típusa too'Internet ".
 
-A kombinált hatását, hogy ezeket a lépéseket az, hogy az alhálózat-szintű UDR elsőbbséget élvez az ExpressRoute kényszerített bújtatás, biztosítva ezzel kimenő internetkapcsolattal az Azure Redis Cache.
+hello kombinált hatását, hogy ezeket a lépéseket az, hogy a hello alhálózat-szintű UDR elsőbbséget élvez az ExpressRoute kényszerített bújtatás, biztosítva ezzel kimenő Internet-hozzáférést a hello Azure Redis Cache hello.
 
-Azure Redis Cache példány csatlakozik egy helyszíni alkalmazásból ExpressRoute segítségével nincs tipikus használati eset miatt teljesítmény érdekében (a legjobb teljesítmény érdekében Azure Redis Cache-ügyfelek és az Azure Redis Cache ugyanabban a régióban kell lennie).
+ExpressRoute segítségével helyszíni alkalmazásból összekötő tooan Azure Redis Cache példány nincs egy tipikus használati eset tooperformance okok miatt (a legjobb teljesítmény érdekében az Azure Redis Cache ügyfelek kell hello hello Azure Redis Cache és ugyanabban a régióban).
 
 >[!IMPORTANT] 
->Egy UDR definiált útvonalak **kell** kellően specifikus elsőbbséget élveznek a bármely az ExpressRoute-konfiguráció által hirdetett útvonalakat. A következő példa a széles körű 0.0.0.0/0 címtartományt használja, és ilyen potenciálisan véletlenül felülbírálhatja útvonal-hirdetéseinek pontosabb címtartomány segítségével.
+>egy UDR definiált útvonalak hello **kell** elég konkrétan fogalmaz ahhoz tootake sorrend lehet bármely hello ExpressRoute-konfiguráció által hirdetett útvonalakat keresztül. hello alábbi példa hello széleskörű 0.0.0.0/0 címtartományt használja, és így potenciálisan véletlenül felülbírálhatja útvonal-hirdetéseinek pontosabb címtartományai használatával.
 
 >[!WARNING]  
->Azure Redis Cache ExpressRoute-konfigurációk használata nem támogatott, amelyek **helytelenül kereszt-hirdetményt a magánhálózati társviszony-létesítési elérési utat a nyilvános társviszony-létesítési elérési útvonalak**. ExpressRoute konfigurációkat, amelyek rendelkeznek a nyilvános társviszony konfigurálva, a Microsoft Azure IP-címtartományok számos útvonal-hirdetéseinek kapni a Microsofttól. Ha a címtartomány helytelenül határokon meghirdetett a magánhálózati társviszony-létesítési útvonalon, az eredménye, hogy minden kimenő hálózati rendszer érkező csomagokat, az Azure Redis Cache példány alhálózati helytelenül kényszerített-tunneled az ügyfél a helyi hálózati infrastruktúra . A hálózati folyamata Azure Redis Cache megszakad. Ez a probléma megoldása, hogy állítsa le a kereszt-hirdetési útvonalak a nyilvános társviszony-létesítési elérési útról a magánhálózati társviszony-létesítési elérési utat.
+>Azure Redis Cache ExpressRoute-konfigurációk használata nem támogatott, amelyek **helytelenül hello nyilvános társviszony-létesítési elérési toohello magánhálózati társviszony-létesítési elérési útvonalak határokon hirdetési**. ExpressRoute konfigurációkat, amelyek rendelkeznek a nyilvános társviszony konfigurálva, a Microsoft Azure IP-címtartományok számos útvonal-hirdetéseinek kapni a Microsofttól. Ha a címtartomány helytelenül határokon meghirdetett hello magánhálózati társviszony-létesítési elérési úton, hello eredménye, hogy minden kimenő hálózati csomagok hello Azure Redis Cache példány alhálózatból-e a kényszerített bújtatott helytelenül tooa az ügyfél helyszíni hálózat infrastruktúra. A hálózati folyamata Azure Redis Cache megszakad. hello megoldás toothis probléma a toostop cross-hirdetési útvonalak hello nyilvános társviszony-létesítési elérési toohello magánhálózati társviszony-létesítési elérési útról.
 
 
 Háttér-információkat a felhasználó által definiált útvonalak érhető el ezen [áttekintése](../virtual-network/virtual-networks-udr-overview.md).
@@ -211,9 +211,9 @@ Háttér-információkat a felhasználó által definiált útvonalak érhető e
 ExpressRoute kapcsolatos további információkért lásd: [ExpressRoute műszaki áttekintés](../expressroute/expressroute-introduction.md).
 
 ## <a name="next-steps"></a>Következő lépések
-Megtudhatja, hogyan további premium gyorsítótár-funkciók használatára.
+Ismerje meg, hogyan több premium toouse gyorsítótár szolgáltatásokat.
 
-* [Az Azure Redis Cache prémium szintjének bemutatása](cache-premium-tier-intro.md)
+* [Bevezetés toohello Azure Redis Cache prémium szintjének](cache-premium-tier-intro.md)
 
 <!-- IMAGES -->
 

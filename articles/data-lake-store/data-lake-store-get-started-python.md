@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Lake Store használatának első lépései Python SDK használatával | Microsoft Docs"
-description: "Ebből a cikkből megtudhatja, hogyan használhatja a Python SDK-t a Data Lake Store-fiókokkal és a fájlrendszerrel végzett munkához."
+title: "aaaUse hello Python SDK tooget Azure Data Lake Store használatába |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse Python SDK toowork Data Lake Store-fiókok és hello fájlrendszer."
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: 375a603360ac249fc1b08923a94c85652390a3fc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7061fdf25ef607608bab618a20ddd3d6fc7af01d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-store-using-python"></a>Az Azure Data Lake Store használatának első lépései a Python használatával
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-A cikkből megtudhatja, hogyan végezhet el olyan alapvető műveleteket a Python SDK for Azure és az Azure Data Lake Store segítségével, mint például mappák létrehozása vagy adatfájlok le- és feltöltése. További információk a Data Lake-ről: [Azure Data Lake Store](data-lake-store-overview.md).
+Ismerje meg, hogyan toouse hello Python SDK az Azure és az Azure Data Lake Store tooperform alapvető műveleteket, mint mappák létrehozása, le- és feltöltése az adatfájlok stb. További információk a Data Lake-ről: [Azure Data Lake Store](data-lake-store-overview.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -42,17 +42,17 @@ A cikkből megtudhatja, hogyan végezhet el olyan alapvető műveleteket a Pytho
 
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
 
-* **Egy Azure Active Directory-alkalmazás létrehozása**. A Data Lake Store alkalmazás Azure AD-val történő hitelesítéséhez az Azure AD alkalmazást kell használni. Az Azure AD-val többféle módon is lehet hitelesíteni. Ezek a következők: **végfelhasználói hitelesítés** vagy **szolgáltatások közötti hitelesítés**. Útmutatás a hitelesítéshez és további tudnivalók a [Végfelhasználói hitelesítés](data-lake-store-end-user-authenticate-using-active-directory.md) vagy a [Szolgáltatások közötti hitelesítés](data-lake-store-authenticate-using-active-directory.md) című témakörben.
+* **Egy Azure Active Directory-alkalmazás létrehozása**. Hello Azure AD alkalmazás tooauthenticate hello Data Lake Store-alkalmazás használhatja az Azure ad-val. Nincsenek különböző szempontok tooauthenticate az Azure ad-vel, amelyek **végfelhasználói hitelesítési** vagy **szolgáltatások közötti hitelesítési**. További információt és útmutatást tooauthenticate, lásd: [végfelhasználói hitelesítési](data-lake-store-end-user-authenticate-using-active-directory.md) vagy [szolgáltatások közötti hitelesítési](data-lake-store-authenticate-using-active-directory.md).
 
-## <a name="install-the-modules"></a>A modulok telepítése
+## <a name="install-hello-modules"></a>Hello modulok telepítése
 
-A Data Lake Store a Pythonnal való használatához három modult kell telepítenie.
+a Data Lake Store pythonos környezetekben toowork, tooinstall három modulok kell.
 
-* Az `azure-mgmt-resource` modult. Ez további Azure-modulokat tartalmaz az Active Directoryhoz és más eszközökhöz.
-* Az `azure-mgmt-datalake-store` modult. Ez az Azure Data Lake Store fiókkezelési műveleteit tartalmazza. További információkat erről a modulról [az Azure Data Lake Store kezelési moduljához készült referenciaanyagban](http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-datalake-store.html) talál.
-* Az `azure-datalake-store` modult. Ez az Azure Data Lake Store fájlrendszer-műveleteit tartalmazza. További információkat erről a modulról [az Azure Data Lake Store fájlrendszermoduljához készült referenciaanyagban](http://azure-datalake-store.readthedocs.io/en/latest/) talál.
+* Hello `azure-mgmt-resource` modul. Ez további Azure-modulokat tartalmaz az Active Directoryhoz és más eszközökhöz.
+* Hello `azure-mgmt-datalake-store` modul. Ez magában foglalja a hello Azure Data Lake Store fiókkezelési műveletekhez. További információkat erről a modulról [az Azure Data Lake Store kezelési moduljához készült referenciaanyagban](http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-datalake-store.html) talál.
+* Hello `azure-datalake-store` modul. Ez magában foglalja a hello Azure Data Lake Store fájlrendszer-műveletekhez. További információkat erről a modulról [az Azure Data Lake Store fájlrendszermoduljához készült referenciaanyagban](http://azure-datalake-store.readthedocs.io/en/latest/) talál.
 
-A modulok telepítéséhez használja a következő parancsokat.
+A következő parancsok tooinstall hello modulok hello használata.
 
 ```
 pip install azure-mgmt-resource
@@ -62,9 +62,9 @@ pip install azure-datalake-store
 
 ## <a name="create-a-new-python-application"></a>Új Python-alkalmazás létrehozása
 
-1. A választott IDE-ben hozzon létre egy új Python-alkalmazást, például **mysample.py** néven.
+1. Az Ön által választott IDE hello hozzon létre egy új Python-alkalmazás, például **mysample.py**.
 
-2. Adja hozzá a következő sorokat a szükséges modulok importálásához.
+2. A következő sorokat tooimport szükséges hello modulok hello hozzáadása
 
     ```
     ## Use this only for Azure AD service-to-service authentication
@@ -91,11 +91,11 @@ pip install azure-datalake-store
     import logging, getpass, pprint, uuid, time
     ```
 
-3. Mentse a mysample.py módosításait.
+3. Mentse a módosításokat toomysample.py.
 
-## <a name="authentication"></a>Hitelesítés
+## <a name="authentication"></a>Authentication
 
-Ebben a szakaszban az Azure AD-hitelesítés különböző módjait tárgyaljuk. Az elérhető lehetőségek:
+Ez a szakasz a döntésről bővebben hello különböző módokon tooauthenticate az Azure ad-val. elérhető hello lehetőségek a következők:
 
 * Végfelhasználói hitelesítés
 * Szolgáltatások közötti hitelesítés
@@ -105,39 +105,39 @@ Ezeket a hitelesítési módokat kell használnia a fiókkezelési és a fájlre
 
 ### <a name="end-user-authentication-for-account-management"></a>Végfelhasználói hitelesítés fiókkezeléshez
 
-Használja ezt az eljárást az Azure AD-val való hitelesítésre a fiókkezelési műveleteknél (Data Lake Store-fiók létrehozása/törlése stb). Az Azure AD-felhasználók számára meg kell adni egy felhasználónevet és egy jelszót. Ügyeljen arra, hogy a felhasználókat ne többtényezős hitelesítéssel konfigurálja.
+A tooauthenticate használja az Azure ad-val fiók felügyeleti műveleteket (Létrehozás/törlés Data Lake Store-fiókba, stb.). Az Azure AD-felhasználók számára meg kell adni egy felhasználónevet és egy jelszót. Vegye figyelembe, hogy hello a felhasználó nem a multi-factor authentication kell beállítani.
 
-    user = input('Enter the user to authenticate with that has permission to subscription: ')
+    user = input('Enter hello user tooauthenticate with that has permission toosubscription: ')
     password = getpass.getpass()
 
     credentials = UserPassCredentials(user, password)
 
 ### <a name="end-user-authentication-for-filesystem-operations"></a>Végfelhasználói hitelesítés fájlrendszerműveletekhez
 
-Használja ezt az eljárást az Azure AD-val való hitelesítésre a fájlrendszerműveleteknél (mappa létrehozása, fájl feltöltése stb). Egy meglévő **natív Azure AD-ügyfélalkalmazással** használja. Az Azure AD-felhasználót a hitelesítő adatok kiosztása során ne többtényezős hitelesítéssel konfigurálja.
+A tooauthenticate használja az Azure ad-val fájlrendszer-műveleteket (létrehozni a mappát, a feltöltött fájlt, stb.). Egy meglévő **natív Azure AD-ügyfélalkalmazással** használja. azokat a hitelesítő adatokat hello Azure AD-felhasználó nem a multi-factor authentication kell beállítani.
 
     tenant_id = 'FILL-IN-HERE'
     client_id = 'FILL-IN-HERE'
-    user = input('Enter the user to authenticate with that has permission to subscription: ')
+    user = input('Enter hello user tooauthenticate with that has permission toosubscription: ')
     password = getpass.getpass()
 
     token = lib.auth(tenant_id, user, password, client_id)
 
 ### <a name="service-to-service-authentication-with-client-secret-for-account-management"></a>Szolgáltatások közötti, titkos ügyfélkulccsal történő hitelesítés a fiókkezeléshez
 
-Használja ezt az eljárást az Azure AD-val való hitelesítésre a fiókkezelési műveleteknél (Data Lake Store-fiók létrehozása/törlése stb). A következő kódrészlet használható az alkalmazás nem interaktív hitelesítéséhez, az alkalmazás/egyszerű szolgáltatás titkos ügyfélkódjának használatával. Ezt meglévő „webes” Azure AD-alkalmazással használhatja.
+A tooauthenticate használja az Azure ad-val fiók felügyeleti műveleteket (Létrehozás/törlés Data Lake Store-fiókba, stb.). következő részlet hello lehet használt tooauthenticate az alkalmazás nem interaktív, egy alkalmazás / szolgáltatás egyszerű hello ügyfélkulcs használja. Ezt meglévő „webes” Azure AD-alkalmazással használhatja.
 
     credentials = ServicePrincipalCredentials(client_id = 'FILL-IN-HERE', secret = 'FILL-IN-HERE', tenant = 'FILL-IN-HERE')
 
 ### <a name="service-to-service-authentication-with-client-secret-for-filesystem-operations"></a>Szolgáltatások közötti, titkos ügyfélkulccsal történő hitelesítés a fájlrendszerműveletekhez
 
-Használja ezt az eljárást az Azure AD-val való hitelesítésre a fájlrendszerműveleteknél (mappa létrehozása, fájl feltöltése stb). A következő kódrészlet használható az alkalmazás nem interaktív hitelesítéséhez, az alkalmazás/egyszerű szolgáltatás titkos ügyfélkódjának használatával. Ezt meglévő „webes” Azure AD-alkalmazással használhatja.
+A tooauthenticate használja az Azure ad-val fájlrendszer-műveleteket (létrehozni a mappát, a feltöltött fájlt, stb.). következő részlet hello lehet használt tooauthenticate az alkalmazás nem interaktív, egy alkalmazás / szolgáltatás egyszerű hello ügyfélkulcs használja. Ezt meglévő „webes” Azure AD-alkalmazással használhatja.
 
     token = lib.auth(tenant_id = 'FILL-IN-HERE', client_secret = 'FILL-IN-HERE', client_id = 'FILL-IN-HERE')
 
 ### <a name="multi-factor-authentication-for-account-management"></a>Többtényezős hitelesítés fiókkezeléshez
 
-Használja ezt az eljárást az Azure AD-val való hitelesítésre a fiókkezelési műveleteknél (Data Lake Store-fiók létrehozása/törlése stb). A következő kódrészlet használható az alkalmazás többtényezős hitelesítés használatával történő hitelesítéséhez. Ezt meglévő „webes” Azure AD-alkalmazással használhatja.
+A tooauthenticate használja az Azure ad-val fiók felügyeleti műveleteket (Létrehozás/törlés Data Lake Store-fiókba, stb.). hello következő kódrészlettel lehet használt tooauthenticate a többtényezős hitelesítést használó alkalmazások. Ezt meglévő „webes” Azure AD-alkalmazással használhatja.
 
     authority_host_url = "https://login.microsoftonline.com"
     tenant = "FILL-IN-HERE"
@@ -154,13 +154,13 @@ Használja ezt az eljárást az Azure AD-val való hitelesítésre a fiókkezel�
 
 ### <a name="multi-factor-authentication-for-filesystem-management"></a>Többtényezős hitelesítés fájlrendszerkezeléshez
 
-Használja ezt az eljárást az Azure AD-val való hitelesítésre a fájlrendszerműveleteknél (mappa létrehozása, fájl feltöltése stb). A következő kódrészlet használható az alkalmazás többtényezős hitelesítés használatával történő hitelesítéséhez. Ezt meglévő „webes” Azure AD-alkalmazással használhatja.
+A tooauthenticate használja az Azure ad-val fájlrendszer-műveleteket (létrehozni a mappát, a feltöltött fájlt, stb.). hello következő kódrészlettel lehet használt tooauthenticate a többtényezős hitelesítést használó alkalmazások. Ezt meglévő „webes” Azure AD-alkalmazással használhatja.
 
     token = lib.auth(tenant_id='FILL-IN-HERE')
 
 ## <a name="create-an-azure-resource-group"></a>Azure-erőforráscsoport létrehozása
 
-Azure-erőforráscsoport létrehozásához használja a következő kódrészletet:
+A következő kód részlet toocreate Azure-erőforráscsoport hello használata:
 
     ## Declare variables
     subscriptionId= 'FILL-IN-HERE'
@@ -183,7 +183,7 @@ Azure-erőforráscsoport létrehozásához használja a következő kódrészlet
 
 ## <a name="create-clients-and-data-lake-store-account"></a>Ügyfelek és Data Lake Store-fiókok létrehozása
 
-Az alábbi kódrészlet először a Data Lake Store-fiókügyfelet hozza létre. Az ügyfélobjektum használatával hoz majd létre egy Data Lake Store-fiókot. Végül pedig létrehoz egy fájlrendszerügyfél-objektumot.
+először a következő kódrészletet hello hello Data Lake Store-fiók ügyfél hoz létre. Hello ügyfél objektum toocreate egy Data Lake Store-fiókot használ. Végezetül hello részlet objektumot hoz létre filesystem ügyfél.
 
     ## Declare variables
     subscriptionId = 'FILL-IN-HERE'
@@ -204,9 +204,9 @@ Az alábbi kódrészlet először a Data Lake Store-fiókügyfelet hozza létre.
     ## Create a filesystem client object
     adlsFileSystemClient = core.AzureDLFileSystem(token, store_name=adlsAccountName)
 
-## <a name="list-the-data-lake-store-accounts"></a>A Data Lake Store-fiókok kilistázása
+## <a name="list-hello-data-lake-store-accounts"></a>Hello Data Lake Store-fiókok listázása
 
-    ## List the existing Data Lake Store accounts
+    ## List hello existing Data Lake Store accounts
     result_list_response = adlsAcctClient.account.list()
     result_list = list(result_list_response)
     for items in result_list:

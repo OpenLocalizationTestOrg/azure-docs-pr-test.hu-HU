@@ -1,94 +1,76 @@
 ---
-title: "Azure Analysis Services oktatóanyag - 6. lecke: Mértékek létrehozása | Microsoft Docs"
-description: "A lecke a mértékek létrehozását ismerteti az Azure Analysis Services oktatóprojektjében."
-services: analysis-services
-documentationcenter: 
-author: minewiskan
-manager: erikre
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 06/01/2017
-ms.author: owend
-ms.openlocfilehash: 90833fa9744eac298b0da82cd3d12f27cc237510
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.translationtype: MT
-ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+cím: aaa "Azure Analysis Services-oktatóanyag lecke 6: mértékek létrehozása |} Microsoft Docs"Leírás: ismerteti, hogyan toocreate hello Azure Analysis Services-oktatóanyag projektben méri. szolgáltatások: analysis-szolgáltatások documentationcenter: "Szerző: minewiskan manager: erikre szerkesztőben:" címkék: "
+
+MS.AssetId: ms.service: analysis-szolgáltatások ms.devlang: NA ms.topic: get-started-article ms.tgt_pltfrm: NA ms.workload: na ms.date: 06/01/2017 ms.author: owend
 ---
 # <a name="lesson-6-create-measures"></a>6. lecke: Mértékek létrehozása
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
-Ebben a leckében a modellbe foglalandó mértékeket hoz majd létre. A létrehozott számított oszlopokhoz hasonlóan a mérték is egy DAX-képlet használatával készített számítás. A számított oszlopokkal ellentétben azonban a mértékek kiértékelése a felhasználó által kiválasztott *szűrőkkel* történik. Például egy kimutatás Sorfeliratok mezőjéhez adott oszloppal vagy szeletelővel. Az alkalmazott mérték a szűrő mindegyik cellájára számít egy értéket. A mértékek hatékony, rugalmas számítások, amelyeket szinte minden táblázatos modellbe érdemes bevenni, ha dinamikus számítások numerikus adatokon történő végrehajtására van szükség. További tudnivalókért lásd a [mértékek](https://docs.microsoft.com/sql/analysis-services/tabular-models/measures-ssas-tabular) ismertetését.
+Ez a lecke a modellben szereplő mértékek toobe hoz létre. Hasonló toohello számított oszlopok létrehozott, a mérték létrehozása DAX-képlet használatával számítás. A számított oszlopokkal ellentétben azonban a mértékek kiértékelése a felhasználó által kiválasztott *szűrőkkel* történik. Például egy adott oszlopban szeletelő hozzá vagy toohello sorfeliratok mező egy kimutatásban. Minden hello szűrő cella értékét majd hello alkalmazott mérték kiszámítása. A mértékek általában hatékony, rugalmas számítások, amelyet az tooinclude szinte minden táblázatos modellek tooperform dinamikus számítások numerikus adatokon. több, lásd: toolearn [intézkedések](https://docs.microsoft.com/sql/analysis-services/tabular-models/measures-ssas-tabular).
   
-A mértékek létrehozásához a *Mérték rácsot* használhatja. Alapértelmezés szerint mindegyik tábla rendelkezik egy üres mérték ráccsal, azonban általában nem mindegyik táblához szokás mértéket létrehozni. A mérték rács a modellszerkesztő adatnézetében a tábla alatt látható. Az egyes táblákhoz tartozó mérték rácsok elrejtéséhez vagy megjelenítéséhez kattintson a **Tábla** menüre, majd a **Mérték rács megjelenítése** parancsra.  
+toocreate intézkedések használata hello *mérték rács*. Alapértelmezés szerint mindegyik tábla rendelkezik egy üres mérték ráccsal, azonban általában nem mindegyik táblához szokás mértéket létrehozni. hello mérték rács hello modellek tervezőjében adatok nézetben táblához alatt jelenik meg. vagy az toohide hello mérték rács egy táblához, kattintson a hello **tábla** menüben, majd kattintson **mérték rácsvonalak megjelenítése**.  
   
-Mérték létrehozásához kattintson a mérték rács egy üres cellájára, majd írja be a DAX-képletet a szerkesztőlécbe. Amikor lenyomja az ENTER billentyűt, a mérték megjelenik a cellában. Mértékek standard aggregátumfüggvényekkel is létrehozhatók valamely oszlopra, majd az eszköztáron az AutoSzum gombra (**∑**) kattintva. Az AutoSzum függvénnyel létrehozott mértékek közvetlenül a mérték rács az oszlop alatt lévő cellájában jelennek meg, azonban innen áthelyezhetők.  
+Egy üres cella hello mérték rácsban, majd írja be egy DAX-képlet hello képletsávba is létrehoz egy mértéket. Ha ENTER toocomplete hello képlet, hello mérték kattintson, majd hello cella jelenik meg. Intézkedések oszlop a szabványos aggregátumfüggvény használatával is létrehozhat, és kattintson hello AutoSzum gombbal (**∑**) hello eszköztáron. Hello AutoSzum funkció használatával létrehozott intézkedések hello mérték cellában hello oszlop közvetlenül alatt jelenik meg, de lehet áthelyezni.  
   
-Ebben a leckében mértékeket hoz létre DAX-képletek megadásával a szerkesztőlécben vagy az AutoSzum függvény használatával.  
+Ez a lecke létrehozhat mértékeket mindkét írjon be egy DAX-képlet hello képletsávba, és hello AutoSzum funkció használatával.  
   
-A lecke elvégzésének várható időtartama: **30 perc**.  
+Becsült idő toocomplete Ez a lecke: **30 perc**  
   
 ## <a name="prerequisites"></a>Előfeltételek  
-Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét képezi, amelyet a megfelelő sorrendben kell elvégezni. A leckében foglalt feladatok végrehajtása előtt el kell végeznie az előző leckét ([5. lecke: Számított oszlopok létrehozása](../tutorials/aas-lesson-5-create-calculated-columns.md)).  
+Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét képezi, amelyet a megfelelő sorrendben kell elvégezni. Ez a lecke hello feladatok elvégzése előtt kell befejeződött hello előző lecke: [lecke 5: számított oszlopok létrehozása](../tutorials/aas-lesson-5-create-calculated-columns.md).  
   
 ## <a name="create-measures"></a>Mértékek létrehozása  
   
-#### <a name="to-create-a-dayscurrentquartertodate-measure-in-the-dimdate-table"></a>DaysCurrentQuarterToDate mérték létrehozása a DimDate táblában  
+#### <a name="toocreate-a-dayscurrentquartertodate-measure-in-hello-dimdate-table"></a>hello DimDate tábla DaysCurrentQuarterToDate mérték toocreate  
   
-1.  A modelltervezőben kattintson a **DimDate** táblára.  
+1.  A hello modellek tervezőjében, kattintson a hello **DimDate** tábla.  
   
-2.  A mértékrácson kattintson a bal felső üres cellára.  
+2.  Hello mérték rácsban kattintson a bal felső üres cella hello.  
   
-3.  A képletsávban gépelje be a következő képletet:  
+3.  Hello képletsávba írja be a következő képlet hello:  
   
     ```
     DaysCurrentQuarterToDate:=COUNTROWS( DATESQTD( 'DimDate'[Date])) 
     ```
   
-    Láthatja, hogy a bal felső cella most egy mérték nevét tartalmazza (**DaysCurrentQuarterToDate**), amelyet egy eredmény követ (**92**).
+    Értesítés hello bal felső cella már tartalmaz egy mérték neve **DaysCurrentQuarterToDate**, utána pedig hello eredmény **92**.
     
       ![aas-lesson6-newmeasure](../tutorials/media/aas-lesson6-newmeasure.png) 
     
-    A számított oszlopoktól eltérően a mértékek képletei esetén beírhatja a mérték nevét, majd kettőspontot követően magát a képletet.
+    Számított oszlop, ellentétben a mérték képletekkel adhatja meg hello mérték nevét kettősponttal, hello képlet kifejezés követi.
 
   
-#### <a name="to-create-a-daysincurrentquarter-measure-in-the-dimdate-table"></a>DaysInCurrentQuarter mérték létrehozása a DimDate táblában  
+#### <a name="toocreate-a-daysincurrentquarter-measure-in-hello-dimdate-table"></a>hello DimDate tábla DaysInCurrentQuarter mérték toocreate  
   
-1.  Miközben a **DimDate** tábla még aktív a modellszerkesztőben, a mérték rácsban kattintson egy üres cellára a létrehozott mérték alatt.  
+1.  A hello **DimDate** tábla még mindig aktív hello modell Designer hello mérték rácsban, kattintson az üres cella hello alatt létrehozott hello mérték.  
   
-2.  A képletsávban gépelje be a következő képletet:  
+2.  Hello képletsávba írja be a következő képlet hello:  
   
     ```
     DaysInCurrentQuarter:=COUNTROWS( DATESBETWEEN( 'DimDate'[Date], STARTOFQUARTER( LASTDATE('DimDate'[Date])), ENDOFQUARTER('DimDate'[Date])))
     ```
   
-    Egy hiányos időszak és a megelőző időszak közötti összehasonlítási arány létrehozásakor. A képletnek ki kell számítania az időszak az időszakból eltelt rész arányát, és össze kell vetnie azt a megelőző időszak azonos arányú részével. Ebben az esetben a [DaysCurrentQuarterToDate]/[DaysInCurrentQuarter] képlet adja meg az aktuális időszak már eltelt részének arányát.  
+    Amikor hoz létre egy teljes időtartam és a hello összehasonlítás aránya előző időszak. hello képlet kell hello eltelt hello időszak arányának kiszámításához, és hasonlítsa össze azokat toohello azonos arányban hello az előző időszak. Ez az eset, [DaysCurrentQuarterToDate] / [DaysInCurrentQuarter] által biztosított hello arányban eltelt hello jelenlegi időszakhoz.  
   
-#### <a name="to-create-an-internetdistinctcountsalesorder-measure-in-the-factinternetsales-table"></a>InternetDistinctCountSalesOrder mérték létrehozása a FactInternetSales táblában  
+#### <a name="toocreate-an-internetdistinctcountsalesorder-measure-in-hello-factinternetsales-table"></a>toocreate hello FactInternetSales táblának InternetDistinctCountSalesOrder intézkedésként  
   
-1.  Kattintson a **FactInternetSales** táblára.   
+1.  Kattintson a hello **FactInternetSales** tábla.   
   
-2.  Kattintson a **SalesOrderNumber** oszlop fejlécére.  
+2.  Kattintson a hello **SalesOrderNumber** oszlop fejlécére.  
   
-3.  Az eszköztáron kattintson a lefelé mutató nyílra az AutoSzum (**∑**) gomb mellett, majd válassza a **DistinctCount** elemet.  
+3.  Hello eszköztáron kattintson a Tovább hello lefelé mutató nyíl toohello AutoSzum (**∑**) gombra, és válassza **DistinctCount**.  
   
-    Az AutoSzum függvény automatikusan létrehoz egy mértéket a választott oszlophoz a DistinctCount standard aggregátumképlet használatával.  
+    hello AutoSzum funkció automatikusan létrehoz egy mértéket hello kiválasztott oszlop hello DistinctCount szabványos összesítési képlet szerint.  
     
        ![aas-lesson6-newmeasure2](../tutorials/media/aas-lesson6-newmeasure2.png)
   
-4.  A mérték rácsban kattintson az új mértékre, majd a **Tulajdonságok** ablak **Mérték neve** mezőjében nevezze át a mértéket az **InternetDistinctCountSalesOrder** névre. 
+4.  Hello mérték rácsban, kattintson az új mérték hello, majd a hello **tulajdonságok** ablakban, a **mérték neve**, nevezze át a hello mérték túl**InternetDistinctCountSalesOrder**. 
  
   
-#### <a name="to-create-additional-measures-in-the-factinternetsales-table"></a>További mértékek létrehozása a FactInternetSales táblában  
+#### <a name="toocreate-additional-measures-in-hello-factinternetsales-table"></a>hello FactInternetSales táblának toocreate további intézkedések  
   
-1.  Az AutoSzum függvény használatával hozza létre és nevezze el az alábbi mértékeket:  
+1.  Hello AutoSzum funkcióval, hozzon létre, és a következő intézkedéseket hello neve:  
 
     |Oszlop|Mérték neve|AutoSzum (∑)|Képlet|  
     |----------------|----------|-----------------|-----------|  
@@ -101,7 +83,7 @@ Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét k
     |TaxAmt|InternetTotalTaxAmt|Összeg|=SZUM([TaxAmt])|  
     |Freight|InternetTotalFreight|Összeg|=SZUM([Freight])|  
   
-2.  Kattintson a mérték rács egy üres cellájára, és a szerkesztőléc segítségével hozza létre és nevezze el az alábbi mértékeket sorrendben:  
+2.  Egy üres cella hello mérték rácsban, és hello képletsávba, a Létrehozás elemre kattintva, és neve hello következő intézkedéseket sorrendben:  
   
       ```
       InternetPreviousQuarterMargin:=CALCULATE([InternetTotalMargin],PREVIOUSQUARTER('DimDate'[Date]))
@@ -127,7 +109,7 @@ Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét k
       InternetPreviousQuarterSalesProportionToQTD:=[InternetPreviousQuarterSales]*([DaysCurrentQuarterToDate]/[DaysInCurrentQuarter])
       ```
   
-A FactInternetSales táblához létrehozott mértékek használatával elemezhetők az olyan kiemelten fontos információk, mint az értékesítések, a költségek és nyereségek a felhasználó által kiválasztott szűrőben meghatározott tételekhez.  
+Hello FactInternetSales táblának készült intézkedések lehet használt tooanalyze kritikus pénzügyi adatok, például értékesítési, a költségek és a nyereség margó hello kijelölt Felhasználószűrő által meghatározott elemek.  
   
 ## <a name="whats-next"></a>A következő lépések
 [7. lecke: Fő teljesítménymutatók létrehozása](../tutorials/aas-lesson-7-create-key-performance-indicators.md)  

@@ -1,6 +1,6 @@
 ---
-title: "Több hely üzemeltetéséhez Alkalmazásátjáró létrehozása |} Microsoft Docs"
-description: "Ez a lap létrehozásához, konfiguráljon egy Azure-alkalmazásokban átjárót ugyanahhoz az átjáróhoz a több webalkalmazás üzemeltetéséhez utasításokat tartalmaz."
+title: "több hely üzemeltetéséhez Alkalmazásátjáró aaaCreate |} Microsoft Docs"
+description: "Ezen a lapon nyújt útmutatást toocreate, konfiguráljon egy Azure-alkalmazásokban átjárót a hello több webalkalmazás üzemeltetéséhez ugyanahhoz az átjáróhoz."
 documentationcenter: na
 services: application-gateway
 author: amsriva
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 12/12/2016
 ms.author: amsriva
-ms.openlocfilehash: d42efa7d359f5c87c14afbfd138328b37c8ae6c2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bad9a76be0a73a7026a770630fa7156f6e5940c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-application-gateway-for-hosting-multiple-web-applications"></a>Hozzon létre egy alkalmazás több webalkalmazás üzemeltetéséhez
 
@@ -26,52 +26,52 @@ ms.lasthandoff: 07/11/2017
 > * [Azure Portal](application-gateway-create-multisite-portal.md)
 > * [Azure Resource Manager PowerShell](application-gateway-create-multisite-azureresourcemanager-powershell.md)
 
-Több helyet üzemeltető lehetővé teszi az ugyanazon Alkalmazásátjáró egynél több webalkalmazás telepítését. Az állomásfejlécnek meghatározni, mely figyelő kapja forgalom a bejövő HTTP-kérelmek jelenlétére támaszkodik. A figyelő majd arra utasítja a megfelelő háttérkészlet-forgalom, be az átjáró szabályok meghatározását. Az SSL engedélyezve van a webes alkalmazásokhoz Alkalmazásátjáró a kiszolgálónév jelzése (SNI) bővítménye válassza ki a megfelelő figyelő a webes forgalom támaszkodik. A közös több hely üzemeltetéséhez rendeltetése különböző webtartományok különböző háttér-kiszolgálófiók tárolókészletekben az érkező kérések elosztása. Az azonos gyökértartomány több altartományt hasonló módon is tárolt alkalmazás ugyanahhoz az átjáróhoz.
+Több helyet üzemeltető lehetővé teszi egy webalkalmazás több toodeploy a hello ugyanazt az Alkalmazásátjáró. Az állomásfejlécnek hello bejövő HTTP-kérelmek, mely figyelő kapja forgalom toodetermine jelenlétére támaszkodik. hello figyelő majd arra utasítja a forgalom tooappropriate háttérkészlet be hello átjáró hello szabályok meghatározását. Az SSL engedélyezve van a webalkalmazások Alkalmazásátjáró hello kiszolgálónév jelzése (SNI) bővítmény toochoose hello megfelelő figyelő hello webes forgalom támaszkodik. Több hely üzemeltetéséhez használatos tooload-érkező kérések elosztása a különböző webes tartományok toodifferent háttér-kiszolgálófiók készletek. Hasonlóképpen a legfelső szintű tartománynak is futhat a hello több altartományt hello ugyanazt az Alkalmazásátjáró.
 
 ## <a name="scenario"></a>Forgatókönyv
 
-A következő példában Alkalmazásátjáró van kiszolgáló a contoso.com és fabrikam.com forgalom a két háttér-kiszolgálófiók rendelkezik: contoso kiszolgálókészlet és a fabrikam kiszolgálókészlethez. Hasonló telepítő állomás altartományok például app.contoso.com és blog.contoso.com használható.
+A következő példa hello, Alkalmazásátjáró van kiszolgáló a contoso.com és fabrikam.com forgalom a két háttér-kiszolgálófiók rendelkezik: contoso kiszolgálókészlet és a fabrikam kiszolgálókészlethez. Hasonló lehet, például app.contoso.com és blog.contoso.com használt toohost altartományokat.
 
 ![imageURLroute](./media/application-gateway-create-multisite-azureresourcemanager-powershell/multisite.png)
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-1. Telepítse az Azure PowerShell-parancsmagok legújabb verzióját a Webplatform-telepítővel. A [Letöltések lap](https://azure.microsoft.com/downloads/) **Windows PowerShell** szakaszából letöltheti és telepítheti a legújabb verziót.
-2. Az alkalmazás átjáró használatához a háttér-készlethez hozzáadott kiszolgálók léteznie kell, különben a végpontokat hozott létre vagy egy külön alhálózatot vagy egy nyilvános IP-cím/VIP hozzárendelése a virtuális hálózatban.
+1. Webplatform-telepítő hello segítségével hello hello Azure PowerShell-parancsmagok legújabb verzióját telepítse. Töltse le, és telepítse hello legújabb verziót a hello **Windows PowerShell** hello szakasza [letöltési oldalon](https://azure.microsoft.com/downloads/).
+2. hello kiszolgálók toohello háttér-készlet toouse hello Alkalmazásátjáró kell lennie, különben a végpontokat hozott létre vagy hello virtuális hálózatban egy külön alhálózatot, vagy egy nyilvános IP-cím/VIP rendelt hozzá.
 
 ## <a name="requirements"></a>Követelmények
 
-* **Háttér-kiszolgálókészlet:** A háttérkiszolgálók IP-címeinek listája. A listán szereplő IP-címeknek a virtuális hálózat alhálózatához kell tartozniuk, vagy nyilvános/virtuális IP-címnek kell lenniük. Teljes Tartománynevét is használható.
-* **Háttér-kiszolgálókészlet beállításai:** Minden készletnek vannak beállításai, például port, protokoll vagy cookie-alapú affinitás. Ezek a beállítások egy adott készlethez kapcsolódnak, és a készlet minden kiszolgálójára érvényesek.
-* **Előtérbeli port:** Az Application Gateway-en megnyitott nyilvános port. Amikor a forgalom eléri ezt a portot, a port átirányítja az egyik háttérkiszolgálóra.
-* **Figyelő:** A figyelő egy előtérbeli porttal, egy protokollal (Http vagy Https, a kis- és a nagybetűk megkülönböztetésével) és SSL tanúsítványnévvel rendelkezik (SSL-kiszervezés konfigurálásakor). A többhelyes engedélyezett alkalmazásátjárót, állomásnév és SNI mutatók is bekerülnek.
-* **Szabály:** a szabály van kötve a figyelő, a háttér-kiszolgálófiók-vermet, és határozza meg, mely a forgalom legyenek irányítva, amikor az adott figyelő találatok háttér-kiszolgálófiók készlet. Szabályok feldolgozása a sorrendben, és a forgalmat a rendszer kéri az első szabály, amely megfelel a sajátlagossága figyelembe vétele függetlenül keresztül. Például ha egy szabályt egy alapszintű figyelő és egy többhelyes figyelő mindkét ugyanazt a portot használó szabály, a szabály a többhelyes figyelőjével szerepelnie kell a szabály a vártnak megfelelően működik az alapvető figyelő ahhoz, hogy a többhelyes szabály előtt.
+* **Háttér-kiszolgálófiók készlet:** hello hello háttér-kiszolgálók IP-címek listáját. hello IP-címek felsorolt toohello virtuális hálózati alhálózat vagy kell tartoznia, vagy egy nyilvános IP-cím/VIP kell lennie. Teljes Tartománynevét is használható.
+* **Háttér-kiszolgálókészlet beállításai:** Minden készletnek vannak beállításai, például port, protokoll vagy cookie-alapú affinitás. Ezek a beállítások esetén tooa kapcsolt verem és a hello készlet alkalmazott tooall-kiszolgálók.
+* **Előtér-port:** Ez a port nem hello nyilvános portot, amelyet a hello Alkalmazásátjáró meg van nyitva. Forgalom találatok ezt a portot, és lekérdezi átirányítja tooone hello háttér-kiszolgálók.
+* **Figyelő:** hello figyelő rendelkezik egy előtér-portot, a protokollt (Http vagy Https, ezek az értékek kis-és nagybetűket), és hello SSL tanúsítvány neve (ha az SSL beállításának-kiszervezés). A többhelyes engedélyezett alkalmazásátjárót, állomásnév és SNI mutatók is bekerülnek.
+* **Szabály:** hello szabály van kötve hello figyelő, hello háttér-kiszolgálófiók vermet, és azt határozza meg, mely háttér-kiszolgálófiók készlet hello forgalom irányított toowhen találatok száma a egy adott figyelő. Szabályok feldolgozása hello sorrendben, és a forgalom hello első egyező szabály függetlenül sajátlagossága figyelembe vétele keresztül jutnak. Például ha a szabályt egy alapszintű figyelő és az azonos port, hello szabály hello többhelyes figyelő mindkét használó szabály hello többhelyes figyelő szerepelnie kell a hello szabály előtt hello alapvető figyelőjével ahhoz, hogy hello többhelyes szabály toofunction várt.
 
 ## <a name="create-an-application-gateway"></a>Application Gateway létrehozása
 
-Az Alkalmazásátjáró létrehozásához szükséges lépéseket a következők:
+hello az alábbiakban hello lépéseket toocreate Alkalmazásátjáró szükséges:
 
 1. Egy erőforráscsoport létrehozása a Resource Manager számára.
-2. Hozzon létre egy virtuális hálózatot, alhálózatok és az alkalmazás átjáró nyilvános IP-cím.
+2. Hozzon létre egy virtuális hálózatot, alhálózatok és hello alkalmazás átjáró nyilvános IP-cím.
 3. Egy Application Gateway konfigurációs objektum létrehozása.
 4. Egy Application Gateway erőforrás létrehozása.
 
 ## <a name="create-a-resource-group-for-resource-manager"></a>Erőforráscsoport létrehozása a Resource Managerhez
 
-Ügyeljen arra, hogy az Azure PowerShell legújabb verzióját használja. További információt [Windows PowerShell használata a Resource Manager](../powershell-azure-resource-manager.md).
+Győződjön meg arról, hogy azok be hello Azure PowerShell legújabb verzióját. További információt [Windows PowerShell használata a Resource Manager](../powershell-azure-resource-manager.md).
 
 ### <a name="step-1"></a>1. lépés
 
-Jelentkezzen be az Azure-ba
+Jelentkezzen be tooAzure
 
 ```powershell
 Login-AzureRmAccount
 ```
-A rendszer kérni fogja a hitelesítő adatokkal történő hitelesítést.
+A hitelesítő adataival felszólító tooauthenticate áll.
 
 ### <a name="step-2"></a>2. lépés
 
-Keresse meg a fiókot az előfizetésekben.
+Hello előfizetések hello fiók ellenőrzése.
 
 ```powershell
 Get-AzureRmSubscription
@@ -79,7 +79,7 @@ Get-AzureRmSubscription
 
 ### <a name="step-3"></a>3. lépés
 
-Válassza ki, hogy melyik Azure előfizetést fogja használni.
+Válassza ki, amely az Azure-előfizetések toouse.
 
 ```powershell
 Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
@@ -99,27 +99,27 @@ Másik lehetőségként az Alkalmazásátjáró erőforráscsoport címkéket is
 $resourceGroup = New-AzureRmResourceGroup -Name appgw-RG -Location "West US" -Tags @{Name = "testtag"; Value = "Application Gateway multiple site"}
 ```
 
-Az Azure Resource Manager megköveteli, hogy minden erőforráscsoport megadjon egy helyet. Ez a hely lesz az erőforráscsoport erőforrásainak alapértelmezett helye. Győződjön meg arról, hogy minden parancs Alkalmazásátjáró létrehozása ugyanabban az erőforráscsoportban.
+Az Azure Resource Manager megköveteli, hogy minden erőforráscsoport megadjon egy helyet. Ezen a helyen az erőforráscsoport erőforrások lesz hello alapértelmezett helye. Győződjön meg arról, hogy az összes parancsok toocreate egy alkalmazás átjáró használata hello ugyanabban az erőforráscsoportban.
 
-A fenti példában létrehozott nevű erőforráscsoport **appgw-RG** a hellyel rendelkező **USA nyugati régiója**.
+A hello a fenti példában létrehozott nevű erőforráscsoport **appgw-RG** a hellyel rendelkező **USA nyugati régiója**.
 
 > [!NOTE]
-> Ha egy egyéni mintát kell konfigurálnia az Application Gateway számára: [Application Gateway létrehozása egyéni mintákkal a PowerShell használatával](application-gateway-create-probe-ps.md). Látogasson el [egyéni mintavételt és az állapotfigyelés](application-gateway-probe-overview.md) további információt.
+> Ha egy egyéni mintavételt tooconfigure az Alkalmazásátjáró van szüksége, tekintse meg [PowerShell használatával hozzon létre olyan átjárót egyéni mintavételt](application-gateway-create-probe-ps.md). Látogasson el [egyéni mintavételt és az állapotfigyelés](application-gateway-probe-overview.md) további információt.
 
 ## <a name="create-a-virtual-network-and-subnets"></a>Hozzon létre egy virtuális hálózatot és alhálózatok
 
-Az alábbi példa bemutatja, hogyan hozhat létre virtuális hálózatot a Resource Manager használatával. Két alhálózat ebben a lépésben jönnek létre. Az első alhálózat van az Alkalmazásátjáró magát. Alkalmazásátjáró saját alhálózatba a példányok tárolásához szükséges. Csak más alkalmazásátjárót alhálózat is telepíthető. A második alhálózat alkalmazás háttérkiszolgálók tárolására szolgál.
+a következő példa azt mutatja meg hogyan hello toocreate erőforrás-kezelő használatával egy virtuális hálózatot. Két alhálózat ebben a lépésben jönnek létre. hello első alhálózat van az hello Alkalmazásátjáró magát. Alkalmazásátjáró saját alhálózati toohold a példányok van szükség. Csak más alkalmazásátjárót alhálózat is telepíthető. hello második alhálózat használt toohold hello alkalmazás háttérkiszolgálók.
 
 ### <a name="step-1"></a>1. lépés
 
-Rendelje hozzá a cím tartomány 10.0.0.0/24 alhálózat változó az Alkalmazásátjáró tárolására használandó.
+Rendelje hozzá a hello cím tartomány 10.0.0.0/24 toohello alhálózati változó toobe használt toohold hello Alkalmazásátjáró.
 
 ```powershell
 $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name appgatewaysubnet -AddressPrefix 10.0.0.0/24
 ```
 ### <a name="step-2"></a>2. lépés
 
-Rendelje hozzá a cím tartomány 10.0.1.0/24 a háttérkészlet használandó Alhalozat_2 változó.
+Rendelje hozzá a hello cím tartomány 10.0.1.0/24 toohello Alhalozat_2 változó toobe hello háttérkészletek használatos.
 
 ```powershell
 $subnet2 = New-AzureRmVirtualNetworkSubnetConfig -Name backendsubnet -AddressPrefix 10.0.1.0/24
@@ -127,7 +127,7 @@ $subnet2 = New-AzureRmVirtualNetworkSubnetConfig -Name backendsubnet -AddressPre
 
 ### <a name="step-3"></a>3. lépés
 
-Hozzon létre egy virtuális hálózatot nevű **appgwvnet** erőforráscsoportban **appgw-rg** az USA nyugati régiója régió a előtag 10.0.0.0/16 használata a 10.0.0.0/24 alhálózat, és 10.0.1.0/24.
+Hozzon létre egy virtuális hálózatot nevű **appgwvnet** erőforráscsoportban **appgw-rg** hello USA nyugati régiójában hello előtag 10.0.0.0/16 használata a 10.0.0.0/24 alhálózat, és 10.0.1.0/24.
 
 ```powershell
 $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-RG -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $subnet,$subnet2
@@ -135,30 +135,30 @@ $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-RG -L
 
 ### <a name="step-4"></a>4. lépés
 
-Rendelje hozzá egy olyan átjárót hoz létre, amely alhálózati változó a következő lépéseket.
+Rendeljen hozzá egy alhálózati változóval hello további lépéseket, ami olyan átjárót hoz létre.
 
 ```powershell
 $appgatewaysubnet = Get-AzureRmVirtualNetworkSubnetConfig -Name appgatewaysubnet -VirtualNetwork $vnet
 $backendsubnet = Get-AzureRmVirtualNetworkSubnetConfig -Name backendsubnet -VirtualNetwork $vnet
 ```
 
-## <a name="create-a-public-ip-address-for-the-front-end-configuration"></a>Nyilvános IP-cím létrehozása az előtérbeli konfigurációhoz
+## <a name="create-a-public-ip-address-for-hello-front-end-configuration"></a>A nyilvános IP-cím hello előtér-konfiguráció létrehozása
 
-Hozzon létre egy **publicIP01** nevű, nyilvános IP-címhez tartozó erőforrást az **appgw-rg** nevű erőforráscsoportban, az USA nyugati régiójában.
+Hozzon létre egy nyilvános IP-erőforrás **publicIP01** erőforráscsoportban **appgw-rg** hello USA nyugati régiójában.
 
 ```powershell
 $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-RG -name publicIP01 -location "West US" -AllocationMethod Dynamic
 ```
 
-Amikor a szolgáltatás elindul, egy IP-cím lesz kiosztva az Application Gatewaynek.
+IP-cím hozzá van rendelve toohello Alkalmazásátjáró hello szolgáltatás elindulásakor.
 
 ## <a name="create-application-gateway-configuration"></a>Alkalmazás átjáró-konfiguráció létrehozása
 
-Az Application Gateway létrehozása előtt minden konfigurációs elemet be kell állítania. Az alábbi lépések létrehozzák az Application Gateway erőforráshoz szükséges konfigurációs elemeket.
+Összes konfigurációs elemek mentése tooset hello Alkalmazásátjáró létrehozása előtt van. hello lépések hello konfigurációs elemek létrehozását, amelyek szükségesek az alkalmazás átjáró-erőforráshoz.
 
 ### <a name="step-1"></a>1. lépés
 
-Hozzon létre egy **gatewayIP01** nevű Application Gateway IP-konfigurációt. Alkalmazásátjáró indításakor szerzi be a konfigurált alhálózat IP-címeit és hálózati forgalom átirányítása a háttér IP-címkészlet IP-címek. Ne feledje, hogy minden példány egy IP-címet vesz fel.
+Hozzon létre egy **gatewayIP01** nevű Application Gateway IP-konfigurációt. Alkalmazásátjáró indításakor szerzi be hello alhálózati konfigurált IP-címeit, és útvonal-hello háttér IP-készletet a hálózati forgalom toohello IP-címek. Ne feledje, hogy minden példány egy IP-címet vesz fel.
 
 ```powershell
 $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Subnet $appgatewaysubnet
@@ -166,18 +166,18 @@ $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Sub
 
 ### <a name="step-2"></a>2. lépés
 
-Konfigurálja a háttér IP-címkészletet nevű **pool01** és **pool2** IP-címekkel rendelkező **134.170.185.46**, **134.170.188.221**, **134.170.185.50** a **pool1** és **134.170.186.46**, **134.170.189.221**, **134.170.186.50** a **pool2**.
+Konfigurálja hello háttér IP-címkészletet nevű **pool01** és **pool2** IP-címekkel rendelkező **134.170.185.46**, **134.170.188.221**, **134.170.185.50** a **pool1** és **134.170.186.46**, **134.170.189.221**, **134.170.186.50**  a **pool2**.
 
 ```powershell
 $pool1 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 10.0.1.100, 10.0.1.101, 10.0.1.102
 $pool2 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool02 -BackendIPAddresses 10.0.1.103, 10.0.1.104, 10.0.1.105
 ```
 
-Ebben a példában azonban két háttér-készletek a hálózati forgalmat a kért hely alapján. Egy készlet a "contoso.com" hely származó forgalmat megkapja és egyéb készlet hely "fabrikam.com" származó forgalmat megkapja. Cserélje le a fenti IP-címek hozzáadása a saját alkalmazás IP-cím végpontokat kell. Belső IP-címek, helyett is használhatja nyilvános IP-címek, FQDN vagy a virtuális gép hálózati háttér-példányok. A PowerShell használata IP-cím helyett teljes tartományneveket adja meg "-BackendFQDNs" paraméter.
+Ebben a példában a rendszer két háttér-készletek tooroute hálózati forgalom hello kért hely alapján. Egy készlet a "contoso.com" hely származó forgalmat megkapja és egyéb készlet hely "fabrikam.com" származó forgalmat megkapja. IP-címek tooadd saját alkalmazás IP-cím végpontok megelőző tooreplace hello rendelkezik. Belső IP-címek, helyett is használhatja nyilvános IP-címek, FQDN vagy a virtuális gép hálózati háttér-példányok. PowerShell használt teljes tartománynevek helyett IP-címek toospecify "-BackendFQDNs" paraméter.
 
 ### <a name="step-3"></a>3. lépés
 
-Alkalmazásbeállítás átjáró konfigurálása **poolsetting01** és **poolsetting02** az elosztott terhelésű hálózati forgalmat a háttér-készletben. Ebben a példában a háttér-készletek különböző háttér-készlet beállításait konfigurálja. Mindegyik háttérkészlet saját háttérkészlet-beállításokkal rendelkezhet.
+Alkalmazásbeállítás átjáró konfigurálása **poolsetting01** és **poolsetting02** hello terhelésű hálózati forgalmára hello háttér-készlet. Ebben a példában ehhez beállításokat lehet megadni másik háttér címkészletet hello háttér-készletek. Mindegyik háttérkészlet saját háttérkészlet-beállításokkal rendelkezhet.
 
 ```powershell
 $poolSetting01 = New-AzureRmApplicationGatewayBackendHttpSettings -Name "besetting01" -Port 80 -Protocol Http -CookieBasedAffinity Disabled -RequestTimeout 120
@@ -186,7 +186,7 @@ $poolSetting02 = New-AzureRmApplicationGatewayBackendHttpSettings -Name "besetti
 
 ### <a name="step-4"></a>4. lépés
 
-Konfigurálja az előtérbeli IP-portot egy nyilvános IP-címvégponttal.
+Nyilvános IP-végponton hello előtér-IP konfigurálja.
 
 ```powershell
 $fipconfig01 = New-AzureRmApplicationGatewayFrontendIPConfig -Name "frontend1" -PublicIPAddress $publicip
@@ -194,7 +194,7 @@ $fipconfig01 = New-AzureRmApplicationGatewayFrontendIPConfig -Name "frontend1" -
 
 ### <a name="step-5"></a>5. lépés
 
-Konfigurálja az előtérbeli portot egy Application Gatewayhez.
+Hello előtér-port konfigurálása az Alkalmazásátjáró.
 
 ```powershell
 $fp01 = New-AzureRmApplicationGatewayFrontendPort -Name "fep01" -Port 443
@@ -202,7 +202,7 @@ $fp01 = New-AzureRmApplicationGatewayFrontendPort -Name "fep01" -Port 443
 
 ### <a name="step-6"></a>6. lépés
 
-Konfigurálja a két SSL-tanúsítványok esetében a két webhely támogatja az ebben a példában fogjuk. Egy tanúsítvány a contoso.com forgalmat, a másik fabrikam.com forgalom. Ezeket a tanúsítványokat a webhelyeknek a tanúsítványokat kiadó hitelesítésszolgáltató kell lennie. Önaláírt tanúsítványok támogatottak, de nem javasolt éles forgalom.
+Két SSL-tanúsítványok konfigurálása ebben a példában toosupport fogjuk hello két webhelyekhez. Egy tanúsítvány a contoso.com forgalmat pedig más hello fabrikam.com forgalom. Ezeket a tanúsítványokat a webhelyeknek a tanúsítványokat kiadó hitelesítésszolgáltató kell lennie. Önaláírt tanúsítványok támogatottak, de nem javasolt éles forgalom.
 
 ```powershell
 $cert01 = New-AzureRmApplicationGatewaySslCertificate -Name contosocert -CertificateFile <file path> -Password <password>
@@ -211,7 +211,7 @@ $cert02 = New-AzureRmApplicationGatewaySslCertificate -Name fabrikamcert -Certif
 
 ### <a name="step-7"></a>7. lépés
 
-Ebben a példában két figyelők a két webhelyek konfigurálása Ez a lépés konfigurál a nyilvános IP-cím, port és a bejövő forgalom fogadására szolgáló gazdagép figyelők. Állomásnév paraméter több webhely támogatásához szükséges, és jelölje meg a megfelelő webhelyen, amelynek a forgalom érkezik. RequireServerNameIndication paraméter meg igaz a webhelyeket, amelyeket a támogatásra van szüksége az SSL több állomás esetén. Ha SSL támogatására szükség, akkor is meg kell adnia az SSL-tanúsítvány, amely védi a webalkalmazáshoz tartozó forgalmat a. A FrontendIPConfiguration FrontendPort és állomásnév kombinációja egy figyelő egyedinek kell lennie. Minden egyes figyelő több tanúsítvány is támogatja.
+Ebben a példában két figyelői hello két webhelyek konfigurálása Ez a lépés konfigurál hello figyelői nyilvános IP-cím, port és gazdagép használt tooreceive bejövő forgalmat. Állomásnév paraméter több webhely támogatásához szükséges, és legyen beállítva toohello megfelelő webhely mely hello a forgalom érkezik. RequireServerNameIndication paraméter tootrue az webhely SSL-t, a több gazdagépen forgatókönyvek kell támogatnia kell állítani. Ha az SSL támogatására szükség, akkor is szükség toospecify hello SSL tanúsítvány, amely az adott webes alkalmazáshoz használt toosecure forgalmat. FrontendIPConfiguration FrontendPort és állomásnév hello kombinációjának egyedi tooa figyelő kell lennie. Minden egyes figyelő több tanúsítvány is támogatja.
 
 ```powershell
 $listener01 = New-AzureRmApplicationGatewayHttpListener -Name "listener01" -Protocol Https -FrontendIPConfiguration $fipconfig01 -FrontendPort $fp01 -HostName "contoso11.com" -RequireServerNameIndication true  -SslCertificate $cert01
@@ -220,7 +220,7 @@ $listener02 = New-AzureRmApplicationGatewayHttpListener -Name "listener02" -Prot
 
 ### <a name="step-8"></a>8. lépés
 
-Hozzon létre két szabály beállítást a két webes alkalmazásokhoz, ebben a példában. Egy szabály kötelékek együtt, figyelők, a háttérkészlet és a HTTP-beállításait. Ez a lépés konfigurál az Alkalmazásátjáró alapvető útválasztási szabály, egy minden webhelyre vonatkozóan. Minden webhelyre irányuló forgalom érkezik a beállított figyelő, és a beállított háttérkészlet, a backendhttpsettings beállítások megadott tulajdonságok a rendszer ekkor átirányítja.
+Hozzon létre beállítása hello két webes alkalmazások ebben a példában két szabályt. Egy szabály kötelékek együtt, figyelők, a háttérkészlet és a HTTP-beállításait. Ez a lépés hello alkalmazás átjáró toouse alapvető útválasztási szabályokat konfigurálja, egy minden webhelyre vonatkozóan. Forgalom tooeach webhelyet a beállított figyelő fogad, és a rendszer ekkor átirányítja tooits konfigurált háttérkészlet, a backendhttpsettings beállítások hello megadott hello tulajdonságokkal.
 
 ```powershell
 $rule01 = New-AzureRmApplicationGatewayRequestRoutingRule -Name "rule01" -RuleType Basic -HttpListener $listener01 -BackendHttpSettings $poolSetting01 -BackendAddressPool $pool1
@@ -229,7 +229,7 @@ $rule02 = New-AzureRmApplicationGatewayRequestRoutingRule -Name "rule02" -RuleTy
 
 ### <a name="step-9"></a>9. lépés
 
-Konfigurálja az Application Gatewayben a példányok számát és a méretet.
+Példányok és hello Alkalmazásátjáró mérete hello számának konfigurálása.
 
 ```powershell
 $sku = New-AzureRmApplicationGatewaySku -Name "Standard_Medium" -Tier Standard -Capacity 2
@@ -237,20 +237,20 @@ $sku = New-AzureRmApplicationGatewaySku -Name "Standard_Medium" -Tier Standard -
 
 ## <a name="create-application-gateway"></a>Alkalmazásátjáró létrehozása
 
-Hozzon létre egy alkalmazást az előző lépéseket az összes konfigurációs objektumok.
+Hozzon létre egy alkalmazást az előző lépésekben hello összes konfigurációs objektumok.
 
 ```powershell
 $appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-RG -Location "West US" -BackendAddressPools $pool1,$pool2 -BackendHttpSettingsCollection $poolSetting01, $poolSetting02 -FrontendIpConfigurations $fipconfig01 -GatewayIpConfigurations $gipconfig -FrontendPorts $fp01 -HttpListeners $listener01, $listener02 -RequestRoutingRules $rule01, $rule02 -Sku $sku -SslCertificates $cert01, $cert02
 ```
 
 > [!IMPORTANT]
-> Alkalmazás átjáró kiépítése hosszú ideig futó művelet, és eltarthat egy ideig.
+> Alkalmazás átjáró kiépítése hosszú ideig futó művelet, és némi időt toocomplete is igénybe vehet.
 > 
 > 
 
 ## <a name="get-application-gateway-dns-name"></a>Az Application Gateway DNS-nevének beszerzése
 
-Az átjáró létrehozása után a következő lépés a kommunikációra szolgáló előtér konfigurálása. Nyilvános IP-cím esetén az Application Gateway használatához dinamikusan hozzárendelt DNS-névre van szükség, amely nem valódi név. Ha szeretné, hogy a végfelhasználók elérjék az Application Gatewayt, használjon egy Application Gateway nyilvános végpontjára mutató CNAME-rekordot. [Egyéni tartománynév konfigurálása az Azure-ban](../cloud-services/cloud-services-custom-domain-name-portal.md). A művelet végrehajtásához az Application Gateway részleteinek beszerzésére és a kapcsolódó IP/DNS-név lekérésére van szükség az Application Gatewayhez csatolt PublicIPAddress használatával. Az Application Gateway DNS-nevének használatával létrehozhat egy CNAME rekordot, amely a két webalkalmazást erre a DNS-névre irányítja. Az A-bejegyzések használata nem javasolt, mivel a virtuális IP-cím változhat az Application Gateway újraindításakor.
+Hello átjáró létrehozása után hello következő lépésre tooconfigure hello előtér-kommunikációhoz. Nyilvános IP-cím esetén az Application Gateway használatához dinamikusan hozzárendelt DNS-névre van szükség, amely nem valódi név. tooensure a végfelhasználók is találati hello Alkalmazásátjáró, egy olyan CNAME rekordot is használt toopoint toohello nyilvános végpontot hello Alkalmazásátjáró. [Egyéni tartománynév konfigurálása az Azure-ban](../cloud-services/cloud-services-custom-domain-name-portal.md). toodo a, hello Alkalmazásátjáró és a társított IP-/ DNS-nevét, hello PublicIPAddress elem csatolt toohello Alkalmazásátjáró beolvasása részleteit. hello alkalmazás átjáró DNS-névnek kell lennie a használt toocreate egy olyan CNAME rekordot pontok hello két webes alkalmazások toothis DNS-név. A-rekordok hello használata nem javasolt, mert hello VIP módosíthatja az Alkalmazásátjáró újra kell indítani.
 
 ```powershell
 Get-AzureRmPublicIpAddress -ResourceGroupName appgw-RG -Name publicIP01
@@ -280,5 +280,5 @@ DnsSettings              : {
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ismerje meg, hogyan védi meg a webhelyek [Application Gateway - webalkalmazási tűzfal](application-gateway-webapplicationfirewall-overview.md)
+Megtudhatja, hogyan tooprotect a webhelyek [Application Gateway - webalkalmazási tűzfal](application-gateway-webapplicationfirewall-overview.md)
 

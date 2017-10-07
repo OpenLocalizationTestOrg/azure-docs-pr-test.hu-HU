@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Service Fabric mintákat és forgatókönyvek |} Microsoft Docs"
-description: "Gyakorlati tanácsokat és bizonyítása, újrahasznosítható minták megtervezésére, fejleszthet, és a Service Fabric a mikroszolgáltatások működnek."
+title: "a Service Fabric aaaAzure mintákat és forgatókönyvek |} Microsoft Docs"
+description: "Ismerje meg az ajánlott eljárások és bizonyítása, újrahasznosítható minták toodesign fejleszthet, és a Service Fabric a mikroszolgáltatások működnek."
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/16/2017
 ms.author: ryanwi
-ms.openlocfilehash: fb2fa495758433e357722427b1c162420935955d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3811420eb53d9a49e490dd2e2e5319d8dea5629c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-patterns-and-scenarios"></a>A Service Fabric mintákat és forgatókönyvek
-Ha felépítése az Azure Service Fabric használatával a nagyméretű mikroszolgáltatások tartózkodik, ismerje meg, a szakértők, akik erre a platformra beépített szolgáltatásként (PaaS), és a. Ismerkedés a megfelelő architektúra, és majd megtudhatja, hogyan optimalizálható az erőforrások az alkalmazáshoz. A [Service Fabric minták és gyakorlatok](https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=mudwqISGD_6005167344) működés során a leggyakrabban ismételt valós ügyfelek Service Fabric forgatókönyvek és alkalmazási területek kérdésekre.
+Tartózkodik felépítése az Azure Service Fabric használatával a nagyméretű mikroszolgáltatások létrehozására, ha további hello szakértők számára készült és ezen a platformon beépített szolgáltatásként (PaaS). Ismerkedés a megfelelő architektúra, és ezután megtudhatja, hogyan toooptimize erőforrások az alkalmazáshoz. Hello [Service Fabric minták és gyakorlatok](https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=mudwqISGD_6005167344) működés során leggyakrabban ismételt valós ügyfelek Service Fabric forgatókönyvek és alkalmazási területek hello kérdésekre ad választ.
  
-Megtudhatja, hogyan lehet a Service Fabricben mikroszolgáltatásokat megtervezni, fejleszteni és működtetni, és ehhez ajánlott eljárásokat és kipróbált, újrahasznosítható mintákat is kap. A Service Fabric áttekintést kaphat, és ezután alaposabban tanulmányozhatja a mély témakörök, amelyek közé tartozik a fürt optimalizálása és a biztonsági, örökölt alkalmazások áttelepítése léptékű játék motorok és egyéb üzemeltetési IoT. Nézze meg a különböző munkaterhelések folyamatos kézbesítési, és a Linux-támogatás és a tárolók a részleteket még beolvasása. 
+Ismerje meg toodesign, hogyan fejleszthet, és működik a mikroszolgáltatások a Service Fabric használatával ajánlott eljárásairól és mintáiról bevált, újrafelhasználható. A Service Fabric áttekintést kaphat, és ezután alaposabban tanulmányozhatja a mély témakörök, amelyek közé tartozik a fürt optimalizálása és a biztonsági, örökölt alkalmazások áttelepítése léptékű játék motorok és egyéb üzemeltetési IoT. Nézze meg a különböző munkaterhelések folyamatos kézbesítési és még a Linux-támogatás és tárolók hello részletek elérése. 
 
 ## <a name="introduction"></a>Bevezetés
-Gyakorlati tanácsok vizsgálatát, és Sajátítsa el kiválasztására vonatkozó platform (PaaS) szolgáltatás keresztül infrastruktúra (IaaS) szolgáltatás. Ismerje meg a részleteket a következő bevált alkalmazás tervezési alapelvek.
+Gyakorlati tanácsok vizsgálatát, és Sajátítsa el kiválasztására vonatkozó platform (PaaS) szolgáltatás keresztül infrastruktúra (IaaS) szolgáltatás. Ezzel a hello adatokat a következő bevált alkalmazás tervezési alapelvek.
 
 <table><tr><th>Videó</th><th>PowerPoint fedélzet</th></tr>
 <tr><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=N2KwbbSGD_6405167344">
 <img src="./media/service-fabric-patterns-and-scenarios/intro.png" WIDTH="360" HEIGHT="244">
-</a></td><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=mudwqISGD_6005167344">A Service Fabric bemutatása</a></td></tr>
+</a></td><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=mudwqISGD_6005167344">Bevezetés tooService háló</a></td></tr>
 </table>
 
 ## <a name="cluster-planning-and-management"></a>Tervezési és a felügyeleti fürtön
@@ -53,7 +53,7 @@ Körül kapacitású webalkalmazás rendelkezésre állásának és megbízható
 </table>
 
 ## <a name="iot"></a>IoT
-Megismerkedhet a az eszközök internetes hálózatát (IoT) Azure Service Fabric, beleértve az Azure IoT folyamat, a több-bérlős és a IoT léptékű környezetében.
+Megismerkedhet az eszközök internetes hálózatát (IoT) hello Azure Service Fabric, beleértve a hello Azure IoT csővezeték, több-bérlős és IoT léptékű hello környezetében.
 
 <table><tr><th>Videó</th><th>PowerPoint fedélzet</th></tr>
 <tr><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=naFUVeSGD_1505167344">
@@ -80,7 +80,7 @@ Megismerkedhet a fogalmakat, beleértve a Visual Studio Team Services, a munkafo
 </table>
 
 ## <a name="migration"></a>Migrálás
-Ismerje meg az áttelepítés egy felhőalapú szolgáltatás, az örökölt alkalmazások áttelepítése mellett.
+További információk a áttelepítése egy felhőalapú szolgáltatás, továbbá az örökölt alkalmazások toomigration.
 
 <table><tr><th>Videó</th><th>PowerPoint fedélzet</th></tr>
 <tr><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=hd1cMgSGD_5605167344">
@@ -89,7 +89,7 @@ Ismerje meg az áttelepítés egy felhőalapú szolgáltatás, az örökölt alk
 </table>
 
 ## <a name="containers-and-linux-support"></a>Tárolók és a Linux-támogatás
-A válasz a kérdésre "Miért tárolók?" További tudnivalók a Windows-tárolók, támogatja a Linux és Linux tárolók vezénylési előzetes verzióját. Valamint megtudhatja, hogyan telepíthetők át a .NET Core alkalmazások Linux.
+Hello válasz toohello kérdés beolvasása "Miért tárolók?" További információk a Windows tárolók, támogatja a Linux és a Linux tárolók vezénylési hello előzetes verzióját. Továbbá, megtudhatja, hogyan toomigrate .NET Core alkalmazások tooLinux.
 
 <table><tr><th>Videó</th><th>PowerPoint fedélzet</th></tr>
 <tr><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=V1ERJhSGD_305167344">
@@ -98,4 +98,4 @@ A válasz a kérdésre "Miért tárolók?" További tudnivalók a Windows-tárol
 </table>
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy megismerte a Service Fabric mintákat és forgatókönyvek, további tudnivalókat arról, hogy hogyan [létrehozása és kezelése a fürtök](service-fabric-deploy-anywhere.md), [Felhőszolgáltatások alkalmazásokat telepíthet át a Service Fabric](service-fabric-cloud-services-migration-worker-role-stateless-service.md), [folyamatos kézbesítési beállítása](service-fabric-set-up-continuous-integration.md), és [tároló üzembe helyezése](service-fabric-containers-overview.md).
+Most, hogy megismerte a Service Fabric mintákat és forgatókönyvek, tudjon meg többet az hogyan túl[létrehozása és kezelése a fürtök](service-fabric-deploy-anywhere.md), [Felhőszolgáltatások alkalmazások tooService háló áttelepítése](service-fabric-cloud-services-migration-worker-role-stateless-service.md), [beállítása folyamatos kézbesítési](service-fabric-set-up-continuous-integration.md), és [tároló üzembe helyezése](service-fabric-containers-overview.md).

@@ -1,6 +1,6 @@
 ---
-title: "Ügyféloldali ads beszúrása |} Microsoft Docs"
-description: "Ez a témakör azt ismerteti, hogyan ügyféloldali ads beszúrása."
+title: "hello ügyféloldalon aaaInserting ads |} Microsoft Docs"
+description: "Ez a témakör bemutatja, hogyan tooinsert ads a hello ügyféloldali."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
-ms.openlocfilehash: 52ba731f88c630830560e3cf8406ba2e9613c8a5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e6eab4aa92918ad734db8ac3a4e7818d02ed7fe4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="inserting-ads-on-the-client-side"></a>Ügyféloldali ads beszúrása
-Ez a témakör az ügyféloldalon ads különböző típusú beszúrása információkat tartalmaz.
+# <a name="inserting-ads-on-hello-client-side"></a>Hello ügyféloldalon ads beszúrása
+Ez a témakör ismerteti tooinsert hello ügyféloldalon ads különböző típusú.
 
 Az élő adatfolyam-továbbítási videók lezárt feliratok és az ad támogatásával kapcsolatos további információkért lásd: [támogatott kódolt feliratok és Ad beszúrási szabványok](media-services-live-streaming-with-onprem-encoders.md#cc_and_ads).
 
@@ -31,15 +31,15 @@ Az élő adatfolyam-továbbítási videók lezárt feliratok és az ad támogat�
 > 
 
 ## <a id="insert_ads_into_media"></a>A Media Ads beszúrása
-Az Azure Media Services támogatást nyújt a Windows Media platformon keresztül ad beszúrási: lejátszó-Keretrendszerekhez. Ad-támogatással rendelkező lejátszó-keretrendszerekhez Windows 8, a Silverlight, a Windows Phone 8 és az iOS-eszközök érhetők el. Minden egyes player keretrendszer mintakód bemutatja, hogy a lejátszóalkalmazás megvalósításához tartalmazza. Nincsenek media: listájába szúrhatók ads három különböző típusú.
+Az Azure Media Services támogatást nyújt a Windows Media Platform hello keresztül ad beszúrási: lejátszó-Keretrendszerekhez. Ad-támogatással rendelkező lejátszó-keretrendszerekhez Windows 8, a Silverlight, a Windows Phone 8 és az iOS-eszközök érhetők el. Minden egyes player keretrendszer minta kódot tartalmaz, amely bemutatja, hogyan tooimplement a lejátszóalkalmazás. Nincsenek media: listájába szúrhatók ads három különböző típusú.
 
-* **Lineáris** – teljes keret hirdetések felfüggeszti a fő videó.
-* **Nem lineáris** – jelennek meg a fő videó lejátszása hirdetések átmeneti területre, általában embléma vagy egyéb statikus kép kerül a Windows Media player belül.
-* **Kiegészítő** – kívül a Windows Media player megjelenített ads.
+* **Lineáris** – teljes keret hirdetések hello fő videó felfüggesztése.
+* **Nem lineáris** – jelennek meg hello fő videó lejátszása hirdetések átmeneti területre, általában embléma vagy egyéb statikus kép elhelyezett hello player belül.
+* **Kiegészítő** – hello player kívül megjelenített ads.
 
-A fő videó idősorán bármikor ADs helyezhető. A Windows Media player kell arról, mikor számára, hogy az ad és számára, hogy mely hirdetések. Ebben az esetben a szabványos XML alapú fájlok készletből: videó Ad szolgáltatás sablon (VAST), a digitális videót több Ad lista (VMAP), a Media absztrakt alkalmazás-előkészítés sablon (OSZLOPOS) és a digitális videót Player Ad felület Definition (VPAID). NAGY fájlok adja meg, milyen ads megjelenítéséhez. VMAP fájlok idejére különböző ads lejátszásához és HATALMAS XML kódot tartalmaz. A fájlok OSZLOPOS feladatütemezési ads is tartalmazó túlnyomó XML másik módja van. VPAID fájlok határozza meg azt a videólejátszó és az ad vagy ad-kiszolgáló közötti illesztőfelületet szolgáltasson.
+ADs hello fő videó idősorán bármikor helyezhető. Meg kell állapítani, hogy hello player amikor tooplay hello ad, és amely ads tooplay. Ebben az esetben a szabványos XML alapú fájlok készletből: videó Ad szolgáltatás sablon (VAST), a digitális videót több Ad lista (VMAP), a Media absztrakt alkalmazás-előkészítés sablon (OSZLOPOS) és a digitális videót Player Ad felület Definition (VPAID). NAGY fájlok adja meg, milyen ads toodisplay. VMAP fájlok adja meg, mikor tooplay különböző hirdetések és HATALMAS XML kódot tartalmaz. A fájlok OSZLOPOS egy másik módja toosequence ads is tartalmazó túlnyomó XML. VPAID fájlok meghatározása hello videólejátszó és hello ad vagy ad-kiszolgáló közötti illesztőfelületet szolgáltasson.
 
-Minden egyes player keretrendszer eltérő módon működik, és minden egyes saját témakör tárgyalja. Ez a témakör ismerteti az alapvető módszerek segítségével szúrják be az ads. Videólejátszó alkalmazások ads kérhet egy ad-kiszolgáló. Az ad-kiszolgáló többféle módon válaszolhat:
+Minden egyes player keretrendszer eltérő módon működik, és minden egyes saját témakör tárgyalja. Ez a témakör ismerteti, hello használt alapvető mechanizmusok tooinsert ads. Videólejátszó alkalmazások ads kérhet egy ad-kiszolgáló. hello ad kiszolgáló többféle módon válaszolhat:
 
 * Térjen vissza a túlnyomó fájl
 * Térjen vissza a VMAP fájlt (a beágyazott VAST)
@@ -47,7 +47,7 @@ Minden egyes player keretrendszer eltérő módon működik, és minden egyes sa
 * Térjen vissza a VPAID ads túlnyomó fájl
 
 ### <a name="using-a-video-ad-service-template-vast-file"></a>Videó Ad szolgáltatás sablon (VAST) fájl használatával
-Egy túlnyomó fájlt határozza meg, milyen ad vagy ads megjelenítéséhez. A következő XML-kódja egy lineáris ad túlnyomó fájl például:
+Egy túlnyomó fájlt határozza meg, milyen ad vagy ads toodisplay. hello következő XML-kódja egy túlnyomó fájlt egy lineáris ad példát:
 
     <VAST version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="oxml.xsd">
       <Ad id="115571748">
@@ -91,9 +91,9 @@ Egy túlnyomó fájlt határozza meg, milyen ad vagy ads megjelenítéséhez. A 
       </Ad>
     </VAST>
 
-A lineáris ad le a <**lineáris**> elemet. Azt adja meg az ad időtartama, nyomon követés, átkattintással, követési kattintson, és számos **MediaFile** elemek. Nyomkövetési események belül vannak megadva a <**TrackingEvents**> elemet, és teszi lehetővé egy ad-kiszolgáló az ad megtekintése közben előforduló különféle események nyomon követéséhez. Ebben az esetben a kezdő középpont, befejeződött, és bontsa ki a események nyomon követi. Az ad jelenik meg a kezdő esemény következik be. A középpont esemény következik be, legalább 50 %-a az ad idősor már megtekintett. Az ad a befejezési futott a teljes esemény következik be. A kibontott esemény következik be, amikor a felhasználó a videólejátszó bővíti a teljes képernyős. Clickthroughs vannak megadva, a <**Átkattintós**> elemen belül egy <**VideoClicks**> elemet, és adja meg egy erőforrás URI-t jelenítsen meg, ha a felhasználó kattint az ad. ClickTracking van megadva egy <**ClickTracking**> elem, belül is a <**VideoClicks**> elemet, és adja meg a Windows Media Player kérése, amikor a felhasználó kattint az ad követési erőforrás . A <**MediaFile**> elemek adjon meg egy adott kódolását, az ad információt. Ha egynél több <**MediaFile**> elem, a videólejátszó kiválaszthatja a platform legjobb kódolást. 
+hello lineáris ad hello le <**lineáris**> elemet. Hello ad hello időtartama határoz meg, nyomon követés, átkattintással, követési kattintson, és számos **MediaFile** elemek. Nyomkövetési események hello belül vannak megadva <**TrackingEvents**> elemet, és teszi lehetővé az Active server tootrack hello ad megtekintése közben előforduló különféle események. Ebben az esetben hello start, középpont, befejeződött, és bontsa ki a események nyomon követi. hello start esemény következik be, amikor hello ad megjelenik. hello középpont esemény következik be, legalább 50 % hello ad idősor már megtekintett. hello befejeződésének eseményét hello ad toohello end futtatásakor következik be. hello felhasználói bővíti hello videólejátszó toofull képernyő hello kibontott esemény következik be. Clickthroughs vannak megadva, a <**Átkattintós**> elemen belül egy <**VideoClicks**> elemet, és egy URI tooa erőforrás toodisplay határozza meg, ha hello felhasználó hello ad kattint. ClickTracking van megadva a <**ClickTracking**> elemet, is hello <**VideoClicks**> elem és hello player toorequest követési erőforrás határozza meg, amikor hello felhasználó kattint a hello ad.hello <**MediaFile**> elemek adjon meg egy adott kódolását, az ad információt. Ha egynél több <**MediaFile**> elem, hello videólejátszó választhat hello legjobb kódolásának hello platform. 
 
-Lineáris ads megjeleníthető a megadott sorrendben. Ehhez adja hozzá további <Ad> a VAST elemek fájlt, majd adja meg a feladatütemezési attribútum használatával. A következő példa ezt mutatja be:
+Lineáris ads megjeleníthető a megadott sorrendben. toodo, adja hozzá a további <Ad> elemek toohello VAST fájlt, és adja meg a hello rendelés hello feladatütemezési attribútum használatával. hello a következő példa ezt mutatja be:
 
     <VAST version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="oxml.xsd">
       <Ad id="1" sequence="0">
@@ -138,7 +138,7 @@ Lineáris ads megjeleníthető a megadott sorrendben. Ehhez adja hozzá további
       </Ad>
     </VAST>
 
-Nem lineáris ads megadott egy <Creative> elemet is. Az alábbi példa mutatja egy <Creative> elem az lineáris ad.
+Nem lineáris ads megadott egy <Creative> elemet is. a következő példa azt mutatja meg hello egy <Creative> elem az lineáris ad.
 
     <Creative id="video" sequence="1" AdID="">
       <NonLinearAds>
@@ -154,20 +154,20 @@ Nem lineáris ads megadott egy <Creative> elemet is. Az alábbi példa mutatja e
     </Creative>
 
 
-A <**NonLinearAds**> elem tartalmazhat egy vagy több <**NonLinear**> elemek, amelyek leírhatja lineáris ad. A <**NonLinear**> elem meghatározza a lineáris ad erőforrás. Az erőforrás lehet egy <**StaticResouce**>, <**IFrameResource**>, vagy egy <**HTMLResouce**>. <**StaticResource**> nem HTML erőforrás ismerteti, és arról, hogyan jelenjen meg az erőforrás egy creativeType attribútum határozza meg:
+hello <**NonLinearAds**> elem tartalmazhat egy vagy több <**NonLinear**> elemek, amelyek leírhatja lineáris ad. hello <**NonLinear**> elem hello erőforrás hello lineáris ad határozza meg. hello erőforrás lehet egy <**StaticResouce**>, <**IFrameResource**>, vagy egy <**HTMLResouce**>. <**StaticResource**> nem HTML erőforrás ismerteti, és határozza meg a creativeType attribútum, amely meghatározza, hogyan hello erőforrás jelenik meg:
 
-Kép/gif, a kép/jpeg, a lemezkép vagy png – HTML jelenik meg az erőforrás <**img**> címke.
+Kép/gif, a kép/jpeg, a lemezkép vagy png – hello erőforrás megjelenik egy HTML <**img**> címke.
 
-Alkalmazás/x-javascript – HTML jelenik meg az erőforrás <**parancsfájl**> címke.
+Alkalmazás/x-javascript – hello erőforrás megjelenik egy HTML <**parancsfájl**> címke.
 
-Alkalmazás/x-shockwave-flash – az erőforrás egy Flash player jelenik meg.
+Alkalmazás/x-shockwave-flash – hello erőforrás Flash player jelenik meg.
 
-**IFrameResource** egy HTML-erőforrás IFRAME megjeleníthető ismerteti. **HTMLResource** szúrhatók be egy weblap, HTML-kódja egy adat ismerteti. **TrackingEvents** adja meg a nyomkövetési események és az URI-t kérése az esemény akkor következik be. Ez a példa a acceptInvitation és összecsukása események követi. További információ a **NonLinearAds** elem és a gyermekek, lásd: IAB.NET/VAST. Vegye figyelembe, hogy a **TrackingEvents** elem a helyen belüli a **NonLinearAds** elem helyett a **NonLinear** elemet.
+**IFrameResource** egy HTML-erőforrás IFRAME megjeleníthető ismerteti. **HTMLResource** szúrhatók be egy weblap, HTML-kódja egy adat ismerteti. **TrackingEvents** adja meg a nyomkövetési események és URI toorequest hello hello esemény bekövetkezésekor. Ez a minta hello acceptInvitation és összecsukása események követi. További információ a hello **NonLinearAds** elem és a gyermekek, lásd: IAB.NET/VAST. Vegye figyelembe, hogy hello **TrackingEvents** elem a helyen belüli hello **NonLinearAds** hello helyett elem **NonLinear** elemet.
 
-Kiegészítő ads meghatározott egy <CompanionAds> elemet. A <CompanionAds> elem tartalmazhat egy vagy több <Companion> elemek. Minden egyes <Companion> elem egy kiegészítő ad ismerteti, és tartalmazhat egy <StaticResource>, <IFrameResource>, vagy <HTMLResource> amely lineáris ad a megszokott módon vannak megadva. A túlnyomó is tartalmazhatnak, több kiegészítő ads, és a lejátszóalkalmazás kiválaszthatja a megjelenítendő legmegfelelőbb ad. VAST kapcsolatos további információkért lásd: [túlnyomó 3.0](http://www.iab.net/media/file/VASTv3.0.pdf).
+Kiegészítő ads meghatározott egy <CompanionAds> elemet. Hello <CompanionAds> elem tartalmazhat egy vagy több <Companion> elemek. Minden egyes <Companion> elem egy kiegészítő ad ismerteti, és tartalmazhat egy <StaticResource>, <IFrameResource>, vagy <HTMLResource> amely meg van határozva a hello azonos módon, egy lineáris az ad-ben. A túlnyomó is tartalmazhatnak, több kiegészítő ads, és hello lejátszóalkalmazás hello legmegfelelőbb ad toodisplay választhat. VAST kapcsolatos további információkért lásd: [túlnyomó 3.0](http://www.iab.net/media/file/VASTv3.0.pdf).
 
 ### <a name="using-a-digital-video-multiple-ad-playlist-vmap-file"></a>Egy digitális videót több Ad-lista (VMAP) fájl használatával
-Egy VMAP fájl lehetővé teszi annak megadását, amikor ad oldaltörések fordulhat elő, mennyi ideig egyes szünetek, hány ads belül szünet jeleníthető meg, és ads típusú lehet megszakítás alatt jelenik meg. A következő egy példa VMAP fájl, amely meghatározza egy egyetlen ad break:
+Egy VMAP fájl lehetővé teszi a toospecify ad oldaltörések esetén, mennyi ideig egyes szünetek, hány ads belül szünet jeleníthető meg, és ads típusú lehet megszakítás alatt jelenik meg. a következő egy példa VMAP fájl, amely meghatározza egy egyetlen ad break hello:
 
     <vmap:VMAP xmlns:vmap="http://www.iab.net/vmap-1.0" version="1.0">
       <vmap:AdBreak breakType="linear" breakId="mypre" timeOffset="start">
@@ -216,34 +216,34 @@ Egy VMAP fájl lehetővé teszi annak megadását, amikor ad oldaltörések ford
       </vmap:AdBreak>
     </vmap:VMAP>
 
-Egy VMAP fájl kezdődik egy <VMAP> elem, amely tartalmazza egy vagy több <AdBreak> elemek, egy ad break meghatározása. Minden ad break határozza meg, egy break típusát, a sortörés azonosítója és a idő eltolódását. A breakType attribútum határozza meg a során a szünet lejátszható ad: lineáris, nem lineáris, vagy megjelenítése. Ads térkép megjelenítése túlnyomó kiegészítő ads. Egynél több ad-típus (szóközök nélkül) vesszővel elválasztott listában adható meg. A breakID pedig az ad azonosítója, amelyet a nem kötelező. A timeOffset határozza meg, ha az ad üzenetnek kell megjelennie. Azt is megadhatók a következő módszerek valamelyikével:
+Egy VMAP fájl kezdődik egy <VMAP> elem, amely tartalmazza egy vagy több <AdBreak> elemek, egy ad break meghatározása. Minden ad break határozza meg, egy break típusát, a sortörés azonosítója és a idő eltolódását. hello breakType attribútum meghatározza során hello break lejátszható ad hello típusát: lineáris, nem lineáris, vagy megjelenítése. Megjelenítési ads tooVAST kiegészítő ads hozzárendelését. Egynél több ad-típus (szóközök nélkül) vesszővel elválasztott listában adható meg. hello breakID pedig hello ad azonosítója, amelyet a nem kötelező. hello timeOffset határozza meg, amikor hello ad üzenetnek kell megjelennie. Ez a következő módokon hello egyikében adható meg:
 
-1. Idő óó: pp: vagy hh:mm:ss.mmm formátumban, ahol .mmm az ezredmásodperc. Ez az attribútum értékét megadja azt az időtartamot, a videó ütemterv kezdetétől a az ad-break elejére.
-2. Százalékos – n % formátumban ahol n az százaléka a videó ütemterv számára, hogy az ad lejátszás előtt
-3. Kezdő és záró – Megadja, hogy egy ad üzenetnek kell megjelennie, előtt vagy után a videó meg lett jelenítve.
-4. Helyezze – ad oldaltörések sorrendje határozza meg, ha az ad oldaltörések időzítése ismeretlen, például élő Stream továbbítása. Minden ad break sorrendjét a #n formátumban, ahol n az 1 vagy nagyobb egész szám van megadva. 1 azt jelzi, hogy az ad lejátszani az első adandó 2 azt jelzi, hogy az ad lejátszani a második alkalommal és így tovább.
+1. Idő óó: pp: vagy hh:mm:ss.mmm formátumban, ahol .mmm az ezredmásodperc. Ez az attribútum értékének hello hello idejét hello videó ütemterv toohello elejére hello ad break hello kezdetén határozza meg.
+2. Százalékos – n % formátumban, ahol n az hello ad lejátszás előtt hello videó ütemterv tooplay hello százaléka
+3. Kezdő és záró – Megadja, hogy egy ad üzenetnek kell megjelennie, előtt vagy után hello videó meg lett jelenítve.
+4. Helyezze – hello ad oldaltörések hello időzítése ismeretlen, például az élő adatfolyam-esetén adja meg a ad oldaltörések hello sorrendjét. minden ad break hello sorrendjének hello #n formátumban, ahol n az 1 vagy nagyobb egész szám van megadva. 1 fiókoldala hello ad lejátszani hello első alkalommal, 2 fiókoldala hello ad lejátszani hello második lehetőség, és így tovább.
 
-Belül a <**AdBreak**> elem nem lehet az egyik <**AdSource**> elemet. A <**AdSource**> elem tartalmazza-e a következő attribútumokat:
+Hello belül <**AdBreak**> elem nem lehet az egyik <**AdSource**> elemet. hello <**AdSource**> elem tartalmazza-e a következő attribútumok hello:
 
-1. Azonosító – meghatározza az ad-forrás azonosítója
-2. allowMultipleAds – egy logikai érték, amely meghatározza, hogy több ads is megjelenjen-e az ad-break során
-3. followRedirects – egy választható logikai érték, amely meghatározza, hogy ha a videólejátszó kell tiszteletben átirányítja a felhasználókat egy ad választ belül
+1. Azonosító – Megadja hello ad forrás azonosítója
+2. allowMultipleAds – egy logikai érték, amely meghatározza, hogy több ads is megjelenjen-e hello ad break során
+3. followRedirects – egy választható logikai érték, amely meghatározza, hogy ha hello videólejátszó kell tiszteletben átirányítja a felhasználókat egy ad választ belül
 
-A <**AdSource**> elem biztosít a Windows Media player egy beágyazott ad választ vagy egy ad választ mutató hivatkozás. Az alábbi elemek egyikét tartalmazhat:
+hello <**AdSource**> elem biztosít hello player egy beágyazott ad választ, vagy hivatkozás tooan ad választ. A következő elemek hello egyik tartalmazhat:
 
-* <VASTAdData>azt jelzi, hogy a VMAP fájlon belüli beágyazott túlnyomó ad választ
+* <VASTAdData>azt jelzi, hogy túlnyomó ad választ hello VMAP fájlban van beágyazva.
 * <AdTagURI>URI, amely egy ad választ hivatkozik másik rendszerről
 * <CustomAdData>– egy tetszőleges karakterlánc, adott respresents nem túlnyomó választ
 
-Ebben a példában egy beágyazott ad választ meg van adva egy <VASTAdData> elem, amely tartalmazza a túlnyomó ad választ. Más elemeivel kapcsolatos további információkért lásd: [VMAP](http://www.iab.net/guidelines/508676/digitalvideo/vsuite/vmap).
+Ebben a példában egy beágyazott ad választ meg van adva egy <VASTAdData> elem, amely tartalmazza a túlnyomó ad választ. További információ hello más elemek: [VMAP](http://www.iab.net/guidelines/508676/digitalvideo/vsuite/vmap).
 
-A <**AdBreak**> elem is tartalmazhat egy <**TrackingEvents**> elemet. A <**TrackingEvents**> elem lehetővé teszi, hogy nyomon követheti a kezdeti vagy egy ad break vagy e hiba történ a ad break végét. A <**TrackingEvents**> elem tartalmaz egy vagy több <**követési**> elemek, amelyek mindegyike egy nyomkövetési esemény és egy követési URI adja meg. A lehetséges nyomkövetési események állnak:
+hello <**AdBreak**> elem is tartalmazhat egy <**TrackingEvents**> elemet. hello <**TrackingEvents**> elem lehetővé teszi a tootrack hello kezdeti vagy záró egy ad break vagy e hiba történ hello ad sortörés. hello <**TrackingEvents**> elem tartalmaz egy vagy több <**követési**> elemek, amelyek mindegyike egy nyomkövetési esemény és egy követési URI adja meg. hello lehetséges nyomkövetési események a következők:
 
-1. breakStart – nyomon követi az ad-break kezdete
-2. breakEnd – egy ad break megvalósításának nyomon követése
-3. Hiba – nyomon követi a ad break bekövetkezett hiba
+1. breakStart – nyomon követi az ad-break hello kezdete
+2. breakEnd – egy ad break hello befejezésének nyomon követése
+3. Hiba – hello ad break bekövetkezett hiba követi nyomon.
 
-A következő példa bemutatja, amely meghatározza a nyomkövetési események VMAP fájl
+a következő példa hello jeleníti meg, amely meghatározza a nyomkövetési események VMAP fájl
 
     <vmap:VMAP xmlns:vmap="http://www.iab.net/vmap-1.0" version="1.0">
       <vmap:AdBreak breakType="linear" breakId="mypre" timeOffset="start">
@@ -266,10 +266,10 @@ A következő példa bemutatja, amely meghatározza a nyomkövetési események 
       </vmap:AdBreak>
     </vmap:VMAP>
 
-További információt a <**TrackingEvents**> elem és a gyermekek, lásd: http://iab.org/VMAP.pdf
+További információ a hello <**TrackingEvents**> elem és a gyermekek, lásd: http://iab.org/VMAP.pdf
 
 ### <a name="using-a-media-abstract-sequencing-template-mast-file"></a>Egy Media absztrakt alkalmazás-előkészítés sablonfájl (OSZLOPOS) használatával
-Egy OSZLOPOS fájlt adja meg, amelyek meghatározzák, hogy mikor jelenik meg az ad eseményindítók teszi lehetővé. Egy példa egy előtti összegző ad, egy közepes összegző ad és a utáni összegző ad eseményindítók tartalmazó OSZLOPOS fájlt a következő:
+Egy OSZLOPOS fájl lehetővé teszi toospecify eseményindítókat, amelyek meghatározzák, ha az ad jelenik meg. hello az alábbiakban látható egy példa egy előtti összegző ad, egy közepes összegző ad és a utáni összegző ad eseményindítók tartalmazó OSZLOPOS fájlt.
 
     <MAST xsi:schemaLocation="http://openvideoplayer.sf.net/mast http://openvideoplayer.sf.net/mast/mast.xsd" xmlns="http://openvideoplayer.sf.net/mast" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <triggers>
@@ -290,7 +290,7 @@ Egy OSZLOPOS fájlt adja meg, amelyek meghatározzák, hogy mikor jelenik meg az
           </startConditions>
           <endConditions>
             <condition type="event" name="OnItemEnd"/>
-            <!--This 'resets' the trigger for the next clip-->
+            <!--This 'resets' hello trigger for hello next clip-->
           </endConditions>
           <sources>
             <source uri="http://smf.blob.core.windows.net/samples/win8/ads/vast_linear.xml" format="vast">
@@ -314,16 +314,16 @@ Egy OSZLOPOS fájlt adja meg, amelyek meghatározzák, hogy mikor jelenik meg az
 
 
 
-Egy OSZLOPOS fájl kezdődik egy **OSZLOPOS** elem, amely egy **eseményindítók** elemet. A <triggers> egy vagy több elemet tartalmaz **eseményindító** határozza meg, ha az ad lejátszani. 
+Egy OSZLOPOS fájl kezdődik egy **OSZLOPOS** elem, amely egy **eseményindítók** elemet. Hello <triggers> egy vagy több elemet tartalmaz **eseményindító** határozza meg, ha az ad lejátszani. 
 
-A **eseményindító** elem tartalmazza-e egy **startConditions** elem, amelynek adja meg, ha az ad számára, hogy kezdjen. A **startConditions** egy vagy több elemet tartalmaz <condition> elemek. Ha minden <condition> igaz eseményindító kezdeményezett, vagy visszavonták, attól függően, hogy a <condition> magában foglal egy **startConditions** vagy **endConditions** elem kulcsattribútumokkal. Ha több <condition> elem is szerepel, azokat egy implicit vagy számít, a feltétel kiértékelése igaz, akkor az eseményindító kezdeményezéséhez. <condition>elemek egymásba ágyazható. Ha gyermek <condition> elemek előre be van állítva, akkor számít egy implicit és, minden feltétel ki kell értékelnie az eseményindító kezdeményezése igaz. A <condition> elem tartalmazza-e a következő attribútumok, amelyek meghatározzák a következő feltételt: 
+Hello **eseményindító** elem tartalmazza-e egy **startConditions** elem, amelynek adja meg, ha az ad tooplay kell kezdődnie. Hello **startConditions** egy vagy több elemet tartalmaz <condition> elemek. Ha minden <condition> tootrue eseményindító kezdeményezett, vagy visszavonták, attól függően, hogy kiértékeli hello <condition> magában foglal egy **startConditions** vagy **endConditions** elem kulcsattribútumokkal. Ha több <condition> elem is szerepel, azokat egy implicit vagy számít, a feltétel kiértékelése tootrue hatására hello eseményindító tooinitiate. <condition>elemek egymásba ágyazható. Ha gyermek <condition> elemek előre be van állítva, akkor számít egy implicit és, minden feltétel ki kell értékelnie, hogy a hello eseményindító tooinitiate tootrue. Hello <condition> elem tartalmazza-e a következő attribútum is definiál hello feltétel hello: 
 
-1. **típus** – meghatározza az állapot, esemény vagy tulajdonság típusát
-2. **név** – a következő tulajdonság vagy esemény kiértékelés során használandó neve
-3. **érték** – az értéket, amelyet a tulajdonság értékelni
-4. **operátor** – a kiértékelés során használandó művelet: EQ (egyenlő), a NEQ (nem egyenlő), a GTR (nagyobb), a GEQ (nagyobb vagy egyenlő), a LT (kisebb), LEQ (kisebb vagy egyenlő), MOD ELEMET (Maradékos osztás)
+1. **típus** – hello adja meg az állapot, esemény vagy tulajdonság
+2. **név** – hello kiértékelés során használt hello tulajdonság vagy esemény toobe neve
+3. **érték** – hello érték, amely egy tulajdonság értékelni
+4. **operátor** – hello művelet toouse kiértékelése közben: EQ (egyenlő), a NEQ (nem egyenlő), a GTR (nagyobb), a GEQ (nagyobb vagy egyenlő), a LT (kisebb), LEQ (kisebb vagy egyenlő), MOD ELEMET (Maradékos osztás)
 
-**endConditions** is tartalmazhat, <condition> elemek. Ha a feltétel igaz az eseményindító alaphelyzetbe áll. A <trigger> elem is tartalmaz egy <sources> elem, amely tartalmazza egy vagy több <source> elemek. A <source> elemek a ad választ, és milyen típusú ad választ az URI határozza meg. Ebben a példában egy URI túlnyomó választ kapja. 
+**endConditions** is tartalmazhat, <condition> elemek. Ha a feltétel tootrue hello eseményindító-e reset.hello <trigger> elem is tartalmaz egy <sources> elem, amely tartalmazza egy vagy több <source> elemek. Hello <source> elemek hello URI toohello ad választ és ad válasz hello típusának megadása. Ebben a példában egy URI tooa túlnyomó választ kap. 
 
     <trigger id="postroll" description="postroll"  >
       <startConditions>
@@ -338,39 +338,39 @@ A **eseményindító** elem tartalmazza-e egy **startConditions** elem, amelynek
 
 
 ### <a name="using-video-player-ad-interface-definition-vpaid"></a>Videó Player Ad felületdefiníció (VPAID) használatával
-VPAID az API-k engedélyezésének végrehajtható ad egység egy videólejátszó folytatott kommunikációhoz. Ez lehetővé teszi a magas interaktív ad lép. A felhasználók beavatkozhatnak-e az ad-val, és az ad válaszolhassanak a megjelenítő végrehajtott műveleteket. Például az ad megjelenítésére gombok, amelyek lehetővé teszik a felhasználó hosszabb verzióját az ad vagy további információk megtekintéséhez. A videólejátszó támogatnia kell a VPAID API-t, és a végrehajtható ad meg kell valósítania az API-t. Ha egy player kísérel meg a kiszolgáló ad-kiszolgálóról ad túlnyomó választ, amely tartalmaz egy VPAID ad jelenhetnek meg.
+VPAID az API-k engedélyezésének végrehajtható ad egységek toocommunicate videó lejátszóval. Ez lehetővé teszi a magas interaktív ad lép. hello felhasználók beavatkozhatnak-hello ad-val, és hello ad válaszolhassanak tooactions hello megjelenítő venni. Például az ad gombok, amelyek lehetővé teszik a hello felhasználói tooview hello ad hosszabb verzióját vagy további információk megjelenítésére. hello videólejátszó támogatnia kell a hello VPAID API, és hello végrehajtható ad meg kell valósítania az hello API. Ha egy player kéri le az Active server hello kiszolgáló az ad jelenhetnek meg, amely tartalmaz egy VPAID ad túlnyomó választ.
 
-Egy végrehajtható ad Adobe Flash™ vagy a webböngészőben végrehajtható JavaScript futásidejű környezetben kell végrehajtani kód jön létre. Egy ad-kiszolgáló egy olyan VPAID ad tartalmazó túlnyomó választ ad vissza, ha a apiFramework értékének attribútumnak a <MediaFile> elemnek kell lennie a "VPAID". Ez az attribútum Megadja, hogy az abban található ad VPAID végrehajtható ad. Az attribútum a MIME-típusát a végrehajtható fájljához, amilyen például az "application/x-shockwave-flash" vagy "application/x-javascript" értékre kell állítani. A következő XML-részlet mutatja a <MediaFile> VPAID végrehajtható ad tartalmazó túlnyomó választ elemét. 
+Egy végrehajtható ad Adobe Flash™ vagy a webböngészőben végrehajtható JavaScript futásidejű környezetben kell végrehajtani kód jön létre. Ha egy ad-kiszolgáló egy VPAID ad tartalmazó túlnyomó választ ad vissza, hello hello hello apiFramework attribútumának értéke <MediaFile> elemnek kell lennie a "VPAID". Ez az attribútum határozza meg, hogy tartalmazott hello ad VPAID végrehajtható ad. hello típusú attribútum értéke toohello MIME-típusát hello végrehajtható, például az "application/x-shockwave-flash" vagy "application/x-javascript". hello következő XML-részletet látható hello <MediaFile> VPAID végrehajtható ad tartalmazó túlnyomó választ elemét. 
 
     <MediaFiles>
        <MediaFile id="1" delivery="progressive" type=”application/x-shockwaveflash”
                   width=”640” height=”480” apiFramework=”VPAID”>
-           <!-- CDATA wrapped URI to executable ad -->
+           <!-- CDATA wrapped URI tooexecutable ad -->
        </MediaFile>
     </MediaFiles>
 
 
-Egy végrehajtható ad használatával inicializálhatók a <AdParameters> elemet a <Linear> vagy <NonLinear> elemek túlnyomó választ. További információ a <AdParameters> elem, lásd: [túlnyomó 3.0](http://www.iab.net/media/file/VASTv3.0.pdf). A VPAID API-val kapcsolatos további információkért lásd: [VPAID 2.0](http://www.iab.net/media/file/VPAID_2.0_Final_04-10-2012.pdf).
+Egy végrehajtható ad hello inicializálhatók <AdParameters> hello elemet <Linear> vagy <NonLinear> elemek túlnyomó választ. További információ a hello <AdParameters> elem, lásd: [túlnyomó 3.0](http://www.iab.net/media/file/VASTv3.0.pdf). Hello VPAID API kapcsolatos további információkért lásd: [VPAID 2.0](http://www.iab.net/media/file/VPAID_2.0_Final_04-10-2012.pdf).
 
 ## <a name="implementing-a-windows-or-windows-phone-8-player-with-ad-support"></a>A Windows vagy Windows Phone 8 Player Ad-támogatással rendelkező megvalósítása
-A Microsoft Media Platform: Player keretrendszer Windows 8 és Windows Phone 8 tartalmaz alkalmazásokra, amelyek bemutatják a keretrendszerrel videólejátszó alkalmazások végrehajtásához. Letöltheti a Player keretrendszer és a minták [Player keretrendszer Windows 8 és Windows Phone 8](https://playerframework.codeplex.com).
+Microsoft Media Platform hello: Player keretrendszer Windows 8 és Windows Phone 8-alkalmazásokra, amelyek bemutatják, hogyan videólejátszó alkalmazások használatával tooimplement hello keretrendszer gyűjteményét tartalmazza. Letöltheti a hello Player keretrendszer és hello mintákat az [Player keretrendszer Windows 8 és Windows Phone 8](https://playerframework.codeplex.com).
 
-A Microsoft.PlayerFramework.Xaml.Samples megoldás megnyitásakor látni fogja a mappák a projekt számát. A hirdetés mappa létrehozása egy videólejátszó ad-támogatással rendelkező kapcsolódik mintakód tartalmazza. A hirdetés belül az mappa az XAML/cs fájlok száma, amelyek bemutatják, hogyan ads beszúrása más módon. Az alábbi lista ismerteti:
+Hello Microsoft.PlayerFramework.Xaml.Samples megoldás megnyitásakor látni fogja a mappák hello projekten belül több. hello hirdetési mappa hello minta kód megfelelő toocreating egy ad-támogatással rendelkező videólejátszó tartalmazza. Belső hello hirdetési mappa egy XAML/cs fájljainak száma minden mely megjelenítése hogyan tooinsert ads eltérő módon. a következő lista hello ismerteti:
 
-* AdPodPage.xaml bemutatja, hogyan egy ad pod megjelenítéséhez.
-* AdSchedulingPage.xaml bemutatja, hogyan ads ütemezni.
-* FreeWheelPage.xaml ads ütemezni a FreeWheel beépülő modul használatával jeleníti meg.
-* MastPage.xaml bemutatja, hogyan ads ütemezése egy OSZLOPOS fájllal.
-* ProgrammaticAdPage.xaml programozott módon ütemezhet egy videóban ads mutatja be.
-* ScheduleClipPage.xaml bemutatja, hogyan ütemezése egy ad túlnyomó fájl nélkül.
-* VastLinearCompanionPage.xaml beszúrása egy lineáris és kiegészítő ad jeleníti meg.
-* VastNonLinearPage.xaml bemutatja, hogyan lehet beszúrni egy nem lineáris ad.
-* VmapPage.xaml bemutatja, hogyan adhatja meg a hirdetések VMAP fájllal.
+* AdPodPage.xaml bemutatja, hogyan toodisplay ad pod.
+* AdSchedulingPage.xaml bemutatja hogyan tooschedule ads.
+* FreeWheelPage.xaml bemutatja, hogyan toouse hello FreeWheel beépülő modul tooschedule ads.
+* MastPage.xaml bemutatja hogyan tooschedule ads OSZLOPOS fájllal.
+* ProgrammaticAdPage.xaml bemutatja, hogyan tooprogrammatically ütemezni a videóban ads.
+* ScheduleClipPage.xaml bemutatja hogyan tooschedule egy ad túlnyomó fájl nélkül.
+* VastLinearCompanionPage.xaml bemutatja hogyan egy lineáris tooinsert és kiegészítő ad.
+* VastNonLinearPage.xaml bemutatja hogyan tooinsert nem lineáris ad.
+* VmapPage.xaml bemutatja hogyan toospecify ads VMAP fájllal.
 
-Ezeket a mintákat mindegyikének használ a Media Player határozzák meg a player keretrendszer. A legtöbb minták beépülő modulok, amelyek különböző ad választ formátumban támogatásához használja. A ProgrammaticAdPage minta programokon keresztül kommunikál egy MediaPlayer-példányt.
+Ezeket a mintákat mindegyikének használ hello Media Player hello player keretrendszer határozzák meg. A legtöbb minták beépülő modulok, amelyek különböző ad választ formátumban támogatásához használja. hello ProgrammaticAdPage minta programokon keresztül kommunikál a Media Player példánya.
 
 ### <a name="adpodpage-sample"></a>AdPodPage minta
-Ez a minta a AdSchedulerPlugin megadására az ad megjelenítéséhez használ. Ebben a példában egy közepes összegző hirdetmény 5 másodperc után lejátszandó van ütemezve. Ad fogyasztanak (ads sorrendben megjelenítendő csoportja) egy ad-kiszolgáló által visszaadott túlnyomó fájlban van megadva. Az URI-t a túlnyomó fájl van megadva a <RemoteAdSource> elemet.
+Ezt a mintát használ hello AdSchedulerPlugin toodefine amikor toodisplay ad. Ebben a példában egy közepes összegző hirdetmény ütemezett toobe lejátszott 5 másodpercen belül. hello ad pod (ads toodisplay sorrendben csoportja) egy ad-kiszolgáló által visszaadott túlnyomó fájlban van megadva. hello megadva hello URI toohello túlnyomó fájl <RemoteAdSource> elemet.
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
 
@@ -390,10 +390,10 @@ Ez a minta a AdSchedulerPlugin megadására az ad megjelenítéséhez használ. 
         </mmppf:MediaPlayer.Plugins>
     </mmppf:MediaPlayer>
 
-A AdSchedulerPlugin kapcsolatos további információkért lásd: [hirdetési Player keretében a Windows 8 és Windows Phone 8](http://playerframework.codeplex.com/wikipage?title=Advertising&referringTitle=Windows%208%20Player%20Documentation)
+Hello AdSchedulerPlugin kapcsolatos további információkért lásd: [reklám a hello Player keretrendszer a Windows 8 és Windows Phone 8](http://playerframework.codeplex.com/wikipage?title=Advertising&referringTitle=Windows%208%20Player%20Documentation)
 
 ### <a name="adschedulingpage"></a>AdSchedulingPage
-Ez a minta a AdSchedulerPlugin is használ. Három ads, egy előtti összegző ad, egy közepes összegző ad és a utáni összegző ad ütemezés. Az URI-t az egyes hirdetések VAST van megadva egy <RemoteAdSource> elemet.
+Ez a minta hello AdSchedulerPlugin is használ. Három ads, egy előtti összegző ad, egy közepes összegző ad és a utáni összegző ad ütemezés. hello URI toohello VAST, az egyes ad van megadva egy <RemoteAdSource> elemet.
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
                 <mmppf:MediaPlayer.Plugins>
@@ -426,7 +426,7 @@ Ez a minta a AdSchedulerPlugin is használ. Három ads, egy előtti összegző a
 
 
 ### <a name="freewheelpage"></a>FreeWheelPage
-Ez a minta a FreeWheelPlugin, amely meghatározza a forrásattribútumot, amely meghatározza az URI, amely egy SmartXML fájlra mutat, amely meghatározza a tartalom ad, valamint az ütemezési információkat ad használja.
+Ez a minta hello FreeWheelPlugin, amely meghatározza a forrásattribútumot, amely meghatározza a pontok tooa SmartXML fájlt ad tartalmat, valamint ad ütemezési adatait megadó URI használja.
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
                 <mmppf:MediaPlayer.Plugins>
@@ -436,7 +436,7 @@ Ez a minta a FreeWheelPlugin, amely meghatározza a forrásattribútumot, amely 
             </mmppf:MediaPlayer>
 
 ### <a name="mastpage"></a>MastPage
-Ez a minta a MastSchedulerPlugin, amely lehetővé teszi egy OSZLOPOS fájl használja. Az adatforrás-attribútum meghatározza a OSZLOPOS fájl helyét.
+Ezt a mintát használja, amely lehetővé teszi egy OSZLOPOS fájl toouse MastSchedulerPlugin hello. hello forrásattribútum hello OSZLOPOS fájl hello helyét adja meg.
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
                 <mmppf:MediaPlayer.Plugins>
@@ -446,11 +446,11 @@ Ez a minta a MastSchedulerPlugin, amely lehetővé teszi egy OSZLOPOS fájl hasz
             </mmppf:MediaPlayer>
 
 ### <a name="programmaticadpage"></a>ProgrammaticAdPage
-Ez a minta a Media Player programokon keresztül kommunikál. A ProgrammaticAdPage.xaml fájl elindítja a Media Player:
+Ez a minta hello MediaPlayer programokon keresztül kommunikál. hello ProgrammaticAdPage.xaml fájl hello Media Player példányosítja:
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4"/>
 
-A ProgrammaticAdPage.xaml.cs fájlt hoz létre egy AdHandlerPlugin ad meg egy TimelineMarker ad üzenetnek kell megjelennie, és betölti a RemoteAdSource túlnyomó fájlba URI megadása, és az ad majd játszik MarkerReached eseménynél kezelőtársítást ad majd hozzá.
+hello ProgrammaticAdPage.xaml.cs fájl veszi fel egy TimelineMarker toospecify, amikor az ad üzenetnek kell megjelennie, majd a hello MarkerReached esemény, amely betölti a RemoteAdSource URI tooa túlnyomó fájl megadása, és majd játszik kezelőtársítást ad hozzá, létrehoz egy AdHandlerPlugin hello ad.
 
     public sealed partial class ProgrammaticAdPage : Microsoft.PlayerFramework.Samples.Common.LayoutAwarePage
         {
@@ -481,7 +481,7 @@ A ProgrammaticAdPage.xaml.cs fájlt hoz létre egy AdHandlerPlugin ad meg egy Ti
             }
 
 ### <a name="scheduleclippage"></a>ScheduleClipPage
-Ez a minta egy közepes összegző ad ütemezése egy .wmv-fájlt, amely tartalmazza az ad megadásával a AdSchedulerPlugin használja.
+Ez a minta egy .wmv-fájlt, amely tartalmazza a hello ad megadásával hello AdSchedulerPlugin tooschedule egy közepes összegző ad használja.
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.cloudapp.net/html5/media/bigbuck.mp4">
                 <mmppf:MediaPlayer.Plugins>
@@ -505,7 +505,7 @@ Ez a minta egy közepes összegző ad ütemezése egy .wmv-fájlt, amely tartalm
             </mmppf:MediaPlayer>
 
 ### <a name="vastlinearcompanionpage"></a>VastLinearCompanionPage
-Ez a minta bemutatja, hogyan használja a AdSchedulerPlugin ütemezése egy közepes összegző lineáris ad egy kiegészítő ad-val. A <RemoteAdSource> elem a túlnyomó fájl helyét adja meg.
+Ez a minta bemutatja, hogyan toouse hello AdSchedulerPlugin tooschedule egy közepes összegző lineáris ad egy kiegészítő ad-val. Hello <RemoteAdSource> elem hello túlnyomó fájl hello helyét adja meg.
 
     <mmppf:MediaPlayer Grid.Row="1"  x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
                 <mmppf:MediaPlayer.Plugins>
@@ -525,7 +525,7 @@ Ez a minta bemutatja, hogyan használja a AdSchedulerPlugin ütemezése egy köz
             </mmppf:MediaPlayer>
 
 ### <a name="vastlinearnonlinearpage"></a>VastLinearNonLinearPage
-Ez a minta egy lineáris ütemezése AdSchedulerPlugin és egy nem lineáris ad használja. A nagy fájl helye van megadva a <RemoteAdSource> elemet.
+A példa egy lineáris és egy nem lineáris ad a hello AdSchedulerPlugin tooschedule használja. hello túlnyomó fájl helye meg van adva hello <RemoteAdSource> elemet.
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
                 <mmppf:MediaPlayer.Plugins>
@@ -545,7 +545,7 @@ Ez a minta egy lineáris ütemezése AdSchedulerPlugin és egy nem lineáris ad 
             </mmppf:MediaPlayer>
 
 ### <a name="vmappage"></a>VMAPPage
-A minták VMAP fájllal ads ütemezni a VmapSchedulerPlugin használja. Az URI-t a VMAP fájl forrásattribútumának van megadva a <VmapSchedulerPlugin> elemet.
+Ezt a mintát használ hello VmapSchedulerPlugin tooschedule ads VMAP fájl használatával. hello URI toohello VMAP fájl van megadva a hello forrásattribútumának hello <VmapSchedulerPlugin> elemet.
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
                 <mmppf:MediaPlayer.Plugins>
@@ -555,13 +555,13 @@ A minták VMAP fájllal ads ütemezni a VmapSchedulerPlugin használja. Az URI-t
             </mmppf:MediaPlayer>
 
 ## <a name="implementing-an-ios-video-player-with-ad-support"></a>IOS rendszerű Ad-támogatással rendelkező videó Player megvalósítása
-A Microsoft Media Platform: Player keretrendszer IOS-alkalmazásokat, amelyek bemutatják a keretrendszerrel videólejátszó alkalmazások végrehajtásához gyűjteményét tartalmazza. Letöltheti a Player keretrendszer és a minták [Azure Media Player keretrendszer](https://github.com/Azure/azure-media-player-framework). A github-oldalon tartalmaz egy hivatkozást egy Wiki player keretében további adatokat tartalmazó és a player minta bemutatása: [Azure Media Player Wiki](https://github.com/Azure/azure-media-player-framework/wiki/How-to-use-Azure-media-player-framework).
+Microsoft Media Platform hello: Player keretrendszer az iOS-alkalmazásokra, amelyek bemutatják, hogyan videólejátszó alkalmazások használatával tooimplement hello keretrendszer gyűjteményét tartalmazza. Letöltheti a hello Player keretrendszer és hello mintákat az [Azure Media Player keretrendszer](https://github.com/Azure/azure-media-player-framework). hello github-oldalon tartalmaz egy hivatkozást tooa hello player keretrendszer és a bevezetés toohello player minta kiegészítő tudnivalókat tartalmazó Wiki: [Azure Media Player Wiki](https://github.com/Azure/azure-media-player-framework/wiki/How-to-use-Azure-media-player-framework).
 
 ### <a name="scheduling-ads-with-vmap"></a>VMAP hirdetések ütemezése
-A következő példa bemutatja, hogyan VMAP fájllal ads ütemezni.
+a következő példa azt mutatja meg hogyan hello tooschedule ads VMAP fájl használatával.
 
-    // How to schedule an Ad using VMAP.
-    //First download the VMAP manifest
+    // How tooschedule an Ad using VMAP.
+    //First download hello VMAP manifest
 
     if (![framework.adResolver downloadManifest:&manifest withURL:[NSURL URLWithString:@"http://portalvhdsq3m25bf47d15c.blob.core.windows.net/vast/PlayerTestVMAP.xml"]])
             {
@@ -569,7 +569,7 @@ A következő példa bemutatja, hogyan VMAP fájllal ads ütemezni.
             }
             else
             {
-                // Schedule a list of ads using the downloaded VMAP manifest
+                // Schedule a list of ads using hello downloaded VMAP manifest
                 if (![framework scheduleVMAPWithManifest:manifest])
                 {
                     [self logFrameworkError];
@@ -577,17 +577,17 @@ A következő példa bemutatja, hogyan VMAP fájllal ads ütemezni.
             }
 
 ### <a name="scheduling-ads-with-vast"></a>VAST hirdetések ütemezése
-A következő példa bemutatja, hogyan ütemezni a késői kötés túlnyomó ad.
+hello alábbi példa azt mutatja be hogyan tooschedule egy késői kötés túlnyomó ad.
 
-    //Example:3 How to schedule a late binding VAST ad.
-    // set the start time for the ad
+    //Example:3 How tooschedule a late binding VAST ad.
+    // set hello start time for hello ad
     adLinearTime.startTime = 13;
     adLinearTime.duration = 0;
-    // Specify the URI of the VAST file
+    // Specify hello URI of hello VAST file
     NSString *vastAd1=@"http://portalvhdsq3m25bf47d15c.blob.core.windows.net/vast/PlayerTestVAST.xml";
     // Create an AdInfo object
      AdInfo *vastAdInfo1 = [[[AdInfo alloc] init] autorelease];
-    // set URL to VAST file
+    // set URL tooVAST file
     vastAdInfo1.clipURL = [NSURL URLWithString:vastAd1];
     // set running time of ad
     vastAdInfo1.mediaTime = [[[MediaTime alloc] init] autorelease];
@@ -604,8 +604,8 @@ A következő példa bemutatja, hogyan ütemezni a késői kötés túlnyomó ad
         [self logFrameworkError];
     }
 
-   A következő példa bemutatja, hogyan ütemezése egy korai kötés túlnyomó ad.
-Példa: 4 ütemezés korai kötés túlnyomó ad-//Download a VAST fájlt, ha (! [ framework.adResolver downloadManifest: & jegyzék withURL: [által igényelt NSURL URLWithString: @"http://portalvhdsq3m25bf47d15c.blob.core.windows.net/vast/PlayerTestVAST.xml"]]) {[self logFrameworkError];} else {adLinearTime.startTime = 7; adLinearTime.duration = 0;
+   hello alábbi példa azt mutatja be hogyan tooschedule egy korai kötés túlnyomó ad.
+Példa: 4 ütemezés egy korai kötés túlnyomó ad //Download hello VAST fájlt, ha (! [ framework.adResolver downloadManifest: & jegyzék withURL: [által igényelt NSURL URLWithString: @"http://portalvhdsq3m25bf47d15c.blob.core.windows.net/vast/PlayerTestVAST.xml"]]) {[self logFrameworkError];} else {adLinearTime.startTime = 7; adLinearTime.duration = 0;
 
         // Create AdInfo instance
         AdInfo *vastAdInfo2 = [[[AdInfo alloc] init] autorelease];
@@ -621,9 +621,9 @@ Példa: 4 ütemezés korai kötés túlnyomó ad-//Download a VAST fájlt, ha (!
         }
     }
 
-A következő példa bemutatja, hogyan hirdetések nyers Kivágás szerkesztése (RCE) használatával
+hello alábbi példa azt mutatja be hogyan tooinsert egy ad nyers Kivágás szerkesztése (RCE) használatával
 
-    //Example:1 How to use RCE.
+    //Example:1 How toouse RCE.
     // specify manifest for ad content
     NSString *secondContent=@"http://wamsblureg001orig-hs.cloudapp.net/6651424c-a9d1-419b-895c-6993f0f48a26/The%20making%20of%20Microsoft%20Surface-m3u8-aapl.ism/Manifest(format=m3u8-aapl)";
 
@@ -637,18 +637,18 @@ A következő példa bemutatja, hogyan hirdetések nyers Kivágás szerkesztése
         [self logFrameworkError];
     }
 
-A következő példa bemutatja, hogyan egy ad pod ütemezni.
+hello következő példa bemutatja, hogyan tooschedule ad pod.
 
     //Example:5 Schedule an ad Pod.
     // Set start time for ad
     adLinearTime.startTime = 23;
     adLinearTime.duration = 0;
 
-    // Specify URL to content
+    // Specify URL toocontent
     NSString *adpodSt1=@"https://portalvhdsq3m25bf47d15c.blob.core.windows.net/asset-e47b43fd-05dc-4587-ac87-5916439ad07f/Windows%208_%20Cliffjumpers.mp4?st=2012-11-28T16%3A31%3A57Z&se=2014-11-28T16%3A31%3A57Z&sr=c&si=2a6dbb1e-f906-4187-a3d3-7e517192cbd0&sig=qrXYZBekqlbbYKqwovxzaVZNLv9cgyINgMazSCbdrfU%3D";
     // Create an AdInfo instance
     AdInfo *adpodInfo1 = [[[AdInfo alloc] init] autorelease];
-    // set URI to ad content
+    // set URI tooad content
     adpodInfo1.clipURL = [NSURL URLWithString:adpodSt1];
     // Set ad running time
     adpodInfo1.mediaTime = [[[MediaTime alloc] init] autorelease];
@@ -665,10 +665,10 @@ A következő példa bemutatja, hogyan egy ad pod ütemezni.
         [self logFrameworkError];
     }
 
-A következő példa bemutatja, hogyan ütemezése a nem kapcsolódó közepes összegző ad. A nem kapcsolódó ad csak lejátszott, miután függetlenül bármilyen keresést az használatával hajtja végre.
+a következő példa azt mutatja meg hogyan hello tooschedule a nem kapcsolódó közepes összegző ad. A nem kapcsolódó ad csak lejátszása után függetlenül bármilyen pozicionálási hello viewer hajt végre.
 
     //Example:6 Schedule a single non sticky mid roll Ad
-    // specify URL to content
+    // specify URL toocontent
     NSString *oneTimeAd=@"http://wamsblureg001orig-hs.cloudapp.net/5389c0c5-340f-48d7-90bc-0aab664e5f02/Windows%208_%20You%20and%20Me%20Together-m3u8-aapl.ism/Manifest(format=m3u8-aapl)";
 
     // create an AdInfo instance
@@ -692,13 +692,13 @@ A következő példa bemutatja, hogyan ütemezése a nem kapcsolódó közepes �
         [self logFrameworkError];
     }
 
-A következő példa bemutatja, hogyan egy állandóságát közepes összegző ad ütemezni. A kapcsolódó ad fog megjelenni minden alkalommal, amikor az adott pont a videó idősoron éri el.
+a következő példa azt mutatja meg hogyan hello tooschedule egy állandóságát közepes összegző ad. A kapcsolódó ad fog megjelenni minden alkalommal, amikor hello megadott hello videó idősoron pont elérésekor.
 
     //Example:7 Schedule a single sticky mid roll Ad
     NSString *stickyAd=@"http://wamsblureg001orig-hs.cloudapp.net/2e4e7d1f-b72a-4994-a406-810c796fc4fc/The%20Surface%20Movement-m3u8-aapl.ism/Manifest(format=m3u8-aapl)";
     // create AdInfo instance
     AdInfo *stickyAdInfo = [[[AdInfo alloc] init] autorelease];
-    // set URI to ad
+    // set URI tooad
     stickyAdInfo.clipURL = [NSURL URLWithString:stickyAd];
     stickyAdInfo.mediaTime = [[[MediaTime alloc] init] autorelease];
     stickyAdInfo.mediaTime.clipBeginMediaTime = 0;
@@ -717,7 +717,7 @@ A következő példa bemutatja, hogyan egy állandóságát közepes összegző 
     }
 
 
-A következő példa bemutatja, hogyan ütemezése egy utáni összegző ad.
+hello alábbi példa azt mutatja be hogyan tooschedule egy utáni összegző ad.
 
     //Example:8 Schedule Post Roll Ad
     NSString *postAdURLString=@"http://wamsblureg001orig-hs.cloudapp.net/aa152d7f-3c54-487b-ba07-a58e0e33280b/wp-m3u8-aapl.ism/Manifest(format=m3u8-aapl)";
@@ -737,7 +737,7 @@ A következő példa bemutatja, hogyan ütemezése egy utáni összegző ad.
         [self logFrameworkError];
     }
 
-A következő példa bemutatja, hogyan ütemezése egy előtti összegző ad.
+hello alábbi példa azt mutatja be hogyan tooschedule egy előtti összegző ad.
 
     //Example:9 Schedule Pre Roll Ad
     NSString *adURLString = @"http://wamsblureg001orig-hs.cloudapp.net/2e4e7d1f-b72a-4994-a406-810c796fc4fc/The%20Surface%20Movement-m3u8-aapl.ism/Manifest(format=m3u8-aapl)";
@@ -757,7 +757,7 @@ A következő példa bemutatja, hogyan ütemezése egy előtti összegző ad.
         [self logFrameworkError];
     }
 
-A következő példa bemutatja, hogyan ütemezése egy közepes összegző átfedő ad.
+a következő minta hello bemutatja, hogyan tooschedule közepes összegző átfedő ad.
 
     // Example10: Schedule a Mid Roll overlay Ad
     NSString *adURLString = @"https://portalvhdsq3m25bf47d15c.blob.core.windows.net/asset-e47b43fd-05dc-4587-ac87-5916439ad07f/Windows%208_%20Cliffjumpers.mp4?st=2012-11-28T16%3A31%3A57Z&se=2014-11-28T16%3A31%3A57Z&sr=c&si=2a6dbb1e-f906-4187-a3d3-7e517192cbd0&sig=qrXYZBekqlbbYKqwovxzaVZNLv9cgyINgMazSCbdrfU%3D";

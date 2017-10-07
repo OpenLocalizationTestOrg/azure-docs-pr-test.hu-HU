@@ -1,6 +1,6 @@
 ---
-title: "Betöltése kiegyenlítheti a Linux virtuális gépek Azure-ban |} Microsoft Docs"
-description: "Az Azure load balancer használata magas rendelkezésre állású és biztonságos-alkalmazás létrehozásának három Linux virtuális gépek között"
+title: "aaaHow tooload egyenleg Linux virtuális gépek Azure-ban |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse hello Azure betölteni a terheléselosztó toocreate egy magas rendelkezésre állású és biztonságos alkalmazás három Linux virtuális gépek között"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -16,50 +16,50 @@ ms.workload: infrastructure
 ms.date: 08/11/2017
 ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 7b3a089d2f6386afcc46cbc4377594be0d758fc6
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f01752c3caec3489ee13e63000775769f3236e11
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-load-balance-linux-virtual-machines-in-azure-to-create-a-highly-available-application"></a>Betöltése kiegyenlítheti a Linux virtuális gépek magas rendelkezésre állású alkalmazás létrehozása az Azure-ban
-Terheléselosztás biztosít a rendelkezésre állási magasabb szintű bejövő kérelmek elosztásával el több virtuális gépre. Ebben az oktatóanyagban elsajátíthatja az Azure load balancer különböző összetevőit, ossza el a forgalmat, és magas rendelkezésre állás biztosításához. Az alábbiak végrehajtásának módját ismerheti meg:
+# <a name="how-tooload-balance-linux-virtual-machines-in-azure-toocreate-a-highly-available-application"></a>Hogyan tooload egyenleg Linux virtuális gépek Azure toocreate a magas rendelkezésre állású alkalmazások
+Terheléselosztás biztosít a rendelkezésre állási magasabb szintű bejövő kérelmek elosztásával el több virtuális gépre. Ebben az oktatóanyagban elsajátíthatja hello különböző összetevőkről hello Azure terheléselosztó ossza el a forgalmat, és magas rendelkezésre állás biztosításához. Az alábbiak végrehajtásának módját ismerheti meg:
 
 > [!div class="checklist"]
 > * Hozzon létre egy Azure terheléselosztó
 > * A health terheléselosztói mintavétel létrehozása
 > * Terheléselosztó forgalomra vonatkozó szabályok létrehozása
-> * Egy alapszintű Node.js-alkalmazás létrehozásához használja a felhő inicializálás
-> * Virtuális gépek létrehozása és csatolása a terheléselosztó
+> * Használja a felhő inicializálás toocreate egy alapszintű Node.js alkalmazást
+> * Virtuális gépek létrehozása és csatolása tooa terheléselosztó
 > * A művelet egy terhelés-kiegyenlítő megtekintése
 > * Adja hozzá, és távolítsa el a virtuális gépek a terheléselosztó
 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Telepítése és a parancssori felület helyileg használata mellett dönt, ha ez az oktatóanyag van szükség, hogy futnak-e az Azure parancssori felület 2.0.4 verzió vagy újabb. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, ez az oktatóanyag van szükség, hogy verzióját hello Azure CLI 2.0.4 vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
 
 ## <a name="azure-load-balancer-overview"></a>Az Azure load balancer áttekintése
-Egy Azure terheléselosztó a réteg-4 (TCP, UDP) terheléselosztóhoz, amely a magas rendelkezésre állást biztosít azáltal, hogy a bejövő forgalom kifogástalan állapotú virtuális gépek között. Terheléselosztói állapotfigyelő mintavétel az egyes virtuális gépek egy adott portot figyeli, és csak osztja el a forgalmat egy operatív virtuális gépre.
+Egy Azure terheléselosztó a réteg-4 (TCP, UDP) terheléselosztóhoz, amely a magas rendelkezésre állást biztosít azáltal, hogy a bejövő forgalom kifogástalan állapotú virtuális gépek között. Terheléselosztói állapotfigyelő mintavétel az egyes virtuális gépek egy adott portot figyeli, és csak osztja el a forgalmat tooan működési virtuális gép.
 
-Egy előtér-IP-konfigurációja, amely tartalmaz egy vagy több nyilvános IP-címeket adhat meg. Az előtér-IP-konfiguráció lehetővé teszi, hogy a terheléselosztó és az alkalmazások elérhetők lesznek az interneten keresztül. 
+Egy előtér-IP-konfigurációja, amely tartalmaz egy vagy több nyilvános IP-címeket adhat meg. Az előtér-IP-konfiguráció lehetővé teszi, hogy a load balancer és az alkalmazások toobe elérhető hello interneten keresztül. 
 
-Virtuális gépek csatlakozni a virtuális hálózati kártya (NIC) használatával egy terheléselosztó. A virtuális gépek felé irányuló forgalom terjesztéséhez, egy háttér címkészletet tartalmaz az IP-cím, a virtuális (NIC) címét csatlakozik a terheléselosztóhoz.
+Virtuális gépek csatlakozni a virtuális hálózati kártya (NIC) használatával tooa terheléselosztóhoz. toodistribute forgalom toohello virtuális gépeket, egy háttér címkészletet hello IP-címek hello virtuális (NIC) csatlakoztatott toohello terheléselosztó tartalmazza.
 
-A forgalmat szabályozásához adhat meg terhelés terheléselosztó szabályt adott portok és protokollok, amelyek a virtuális gépekre van leképezve.
+forgalom toocontrol hello áramló, megadhatja a terheléselosztási szabály az adott portok és protokollok, amelyek kapcsolódnak tooyour virtuális gépek.
 
-Ha követte az előző oktatóanyag [hozzon létre egy virtuálisgép-méretezési csoport](tutorial-create-vmss.md), a terheléselosztó lett létrehozva. Ezek az összetevők lettek konfigurálva, a méretezési csoport részeként.
+Ha túl követte az oktatóanyag előző hello[hozzon létre egy virtuálisgép-méretezési csoport](tutorial-create-vmss.md), a terheléselosztó lett létrehozva. Ezeket az összetevőket az Ön hello méretezési részeként lettek konfigurálva.
 
 
 ## <a name="create-azure-load-balancer"></a>Az Azure terheléselosztó létrehozása
-Ez a szakasz részletesen, hogyan hozhat létre, és minden összetevője a terheléselosztó konfigurálásához. A terheléselosztó létrehozása előtt hozzon létre egy erőforráscsoportot, a [az csoport létrehozása](/cli/azure/group#create). Az alábbi példa létrehoz egy erőforráscsoportot *myResourceGroupLoadBalancer* a a *eastus* helye:
+Ez a szakasz részletesen, hogyan hozhat létre, és minden egyes összetevő hello terheléselosztó konfigurálása. A terheléselosztó létrehozása előtt hozzon létre egy erőforráscsoportot, a [az csoport létrehozása](/cli/azure/group#create). hello alábbi példa létrehoz egy erőforráscsoportot *myResourceGroupLoadBalancer* a hello *eastus* helye:
 
 ```azurecli-interactive 
 az group create --name myResourceGroupLoadBalancer --location eastus
 ```
 
 ### <a name="create-a-public-ip-address"></a>Hozzon létre egy nyilvános IP-címet
-Az alkalmazás az Internet eléréséhez a terheléselosztó szükség van egy nyilvános IP-cím. Hozzon létre egy nyilvános IP-cím [létrehozása az hálózati nyilvános ip-](/cli/azure/network/public-ip#create). Az alábbi példa létrehoz egy nyilvános IP-cím nevű *myPublicIP* a a *myResourceGroupLoadBalancer* erőforráscsoport:
+tooaccess rendszeren hello Internet, egy nyilvános IP-címet kell hello terheléselosztóhoz. Hozzon létre egy nyilvános IP-cím [létrehozása az hálózati nyilvános ip-](/cli/azure/network/public-ip#create). hello alábbi példa létrehoz egy nyilvános IP-cím nevű *myPublicIP* a hello *myResourceGroupLoadBalancer* erőforráscsoport:
 
 ```azurecli-interactive 
 az network public-ip create \
@@ -68,7 +68,7 @@ az network public-ip create \
 ```
 
 ### <a name="create-a-load-balancer"></a>Terheléselosztó létrehozása
-Hozzon létre egy terheléselosztót, [az hálózati terheléselosztó létrehozása](/cli/azure/network/lb#create). Az alábbi példa létrehoz egy terhelés-kiegyenlítő nevű *myLoadBalancer* és hozzárendeli a *myPublicIP* címét, hogy az előtér-IP-konfiguráció:
+Hozzon létre egy terheléselosztót, [az hálózati terheléselosztó létrehozása](/cli/azure/network/lb#create). hello alábbi példa létrehoz egy terhelés-kiegyenlítő nevű *myLoadBalancer* és rendel hello *myPublicIP* cím toohello előtér-IP-konfiguráció:
 
 ```azurecli-interactive 
 az network lb create \
@@ -80,11 +80,11 @@ az network lb create \
 ```
 
 ### <a name="create-a-health-probe"></a>Hozzon létre egy állapotmintáihoz
-Ahhoz, hogy a terheléselosztó a figyelheti az alkalmazás állapotát, használja a állapotmintáihoz. A állapotmintáihoz dinamikusan eltávolítása vagy virtuális gépek állapotát ellenőrzi a válasz alapján terhelés terheléselosztó elforgatási. Alapértelmezés szerint a virtuális gép törlődik a terheléselosztó terheléselosztási 15 másodperces időközönként két egymást követő hibák után. Létrehozhat egy állapotmintáihoz protokoll vagy egy meghatározott állapottal ellenőrzése lapon, az alkalmazás alapján. 
+tooallow hello terheléselosztó toomonitor hello állapotához az alkalmazás, használhat egy állapotmintáihoz. hello állapotmintáihoz dinamikusan eltávolítása vagy virtuális gépek hello terhelés terheléselosztó Elforgatás a válasz toohealth ellenőrzések alapján. Alapértelmezés szerint a virtuális gépek terheléselosztó terheléselosztási hello 15 másodperces időközönként két egymást követő hibák után törlődik. Létrehozhat egy állapotmintáihoz protokoll vagy egy meghatározott állapottal ellenőrzése lapon, az alkalmazás alapján. 
 
-Az alábbi példa létrehoz egy TCP-Hálózatfigyelővel. Egyéni HTTP mintavételt további részletes állapotának ellenőrzésére is létrehozhat. Ha egy egyéni HTTP-vizsgálatot, létre kell hoznia az állapot ellenőrzése lapon, például a *healthcheck.js*. A mintavétel kell visszaadnia egy **HTTP 200 OK** válasz megtartja a gazdagép Elforgatás a terheléselosztóhoz.
+a következő példa hello egy TCP-Hálózatfigyelővel hoz létre. Egyéni HTTP mintavételt további részletes állapotának ellenőrzésére is létrehozhat. Ha egy egyéni HTTP-vizsgálatot, létre kell hoznia hello állapotának ellenőrzése lapon, például a *healthcheck.js*. hello mintavételi kell visszaadnia egy **HTTP 200 OK** hello terhelés terheléselosztó tookeep hello állomás Elforgatás válasz.
 
-A TCP állapotmintáihoz létrehozásához használhatja [az hálózati lb mintavétel létrehozása](/cli/azure/network/lb/probe#create). Az alábbi példa létrehoz egy nevű állapotmintáihoz *myHealthProbe*:
+a TCP állapotmintáihoz toocreate, használhat [az hálózati lb mintavétel létrehozása](/cli/azure/network/lb/probe#create). hello alábbi példa létrehoz egy nevű állapotmintáihoz *myHealthProbe*:
 
 ```azurecli-interactive 
 az network lb probe create \
@@ -96,9 +96,9 @@ az network lb probe create \
 ```
 
 ### <a name="create-a-load-balancer-rule"></a>Hozzon létre olyan terheléselosztó szabályhoz
-Olyan terheléselosztó szabályhoz hogyan adatforgalom elosztása a virtuális gépek azonosítására szolgál. Megadhatja az előtér-IP-konfigurációjának megadása a bejövő forgalom és a háttér IP-címkészlet, valamint a megfelelő forrás és cél portot forgalom fogadására. Győződjön meg arról, hogy csak a megfelelő virtuális gépek forgalom fogadására, hogy is megadhatja a használandó állapotmintáihoz.
+Olyan terheléselosztó szabályhoz használt toodefine forgalom Mitől elosztott toohello virtuális gépeket. Hello előtér-IP-konfiguráció hello bejövő forgalom és hello háttér-IP-készlet tooreceive hello forgalom, valamint hello szükséges forrás- és a célport adhat meg. a toomake meg arról, hogy csak a megfelelő virtuális gépek forgalom fogadására, is definiálhat hello állapotfigyelő mintavételi toouse.
 
-Hozzon létre olyan terheléselosztó szabályhoz rendelkező [az hálózati terheléselosztó szabály létrehozása](/cli/azure/network/lb/rule#create). Az alábbi példa létrehoz egy nevű szabályt *myLoadBalancerRule*, használja a *myHealthProbe* állapotmintáihoz és porton kiegyensúlyozza forgalom *80*:
+Hozzon létre olyan terheléselosztó szabályhoz rendelkező [az hálózati terheléselosztó szabály létrehozása](/cli/azure/network/lb/rule#create). hello alábbi példa létrehoz egy nevű szabályt *myLoadBalancerRule*, használ hello *myHealthProbe* állapotmintáihoz és porton kiegyensúlyozza forgalom *80*:
 
 ```azurecli-interactive 
 az network lb rule create \
@@ -115,10 +115,10 @@ az network lb rule create \
 
 
 ## <a name="configure-virtual-network"></a>Virtuális hálózat konfigurálása
-Mielőtt központilag az egyes virtuális gépek, és tesztelheti a terheléselosztó, hozzon létre a támogató virtuális hálózati erőforrásokat. Virtuális hálózatok kapcsolatos további információkért tekintse meg a [Azure virtuális hálózatok kezelése](tutorial-virtual-network.md) oktatóanyag.
+Mielőtt központilag az egyes virtuális gépek, és tesztelheti a terheléselosztó, hozzon létre virtuális hálózati erőforrások támogató hello. Virtuális hálózatok kapcsolatos további információkért lásd: hello [Azure virtuális hálózatok kezelése](tutorial-virtual-network.md) oktatóanyag.
 
 ### <a name="create-network-resources"></a>Hálózati erőforrások létrehozása
-A virtuális hálózat létrehozása [az hálózati vnet létrehozása](/cli/azure/network/vnet#create). Az alábbi példa létrehoz egy virtuális hálózatot nevű *myVnet* nevű alhálózattal *mySubnet*:
+A virtuális hálózat létrehozása [az hálózati vnet létrehozása](/cli/azure/network/vnet#create). hello alábbi példa létrehoz egy virtuális hálózatot nevű *myVnet* nevű alhálózattal *mySubnet*:
 
 ```azurecli-interactive 
 az network vnet create \
@@ -127,7 +127,7 @@ az network vnet create \
     --subnet-name mySubnet
 ```
 
-Hálózati biztonsági csoport hozzáadása, használhat [az hálózati nsg létrehozása](/cli/azure/network/nsg#create). Az alábbi példakód létrehozza a hálózati biztonsági csoport nevű *myNetworkSecurityGroup*:
+használja a hálózati biztonsági csoport tooadd, [az hálózati nsg létrehozása](/cli/azure/network/nsg#create). hello alábbi példakód létrehozza a hálózati biztonsági csoport nevű *myNetworkSecurityGroup*:
 
 ```azurecli-interactive 
 az network nsg create \
@@ -135,7 +135,7 @@ az network nsg create \
     --name myNetworkSecurityGroup
 ```
 
-A hálózati biztonsági csoport szabály létrehozása [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create). Az alábbi példa létrehoz egy hálózati biztonsági szabály nevű *myNetworkSecurityGroupRule*:
+A hálózati biztonsági csoport szabály létrehozása [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create). hello alábbi példa létrehoz egy hálózati biztonsági szabály nevű *myNetworkSecurityGroupRule*:
 
 ```azurecli-interactive 
 az network nsg rule create \
@@ -147,7 +147,7 @@ az network nsg rule create \
     --destination-port-range 80
 ```
 
-Virtuális hálózati adapter jönnek létre [az hálózat összevont hálózati létrehozása](/cli/azure/network/nic#create). Az alábbi példakód létrehozza a három virtuális hálózati adapter. (Az egyes virtuális gépek virtuális hálózati adapter egy hoz létre az alkalmazáshoz az alábbi lépéseket a). További virtuális hálózati adapterek és virtuális gépek létrehozása tetszőleges időpontban, és adja hozzá a terheléselosztó:
+Virtuális hálózati adapter jönnek létre [az hálózat összevont hálózati létrehozása](/cli/azure/network/nic#create). hello alábbi példakód létrehozza három virtuális hálózati adapter. (Az egyes virtuális gépek virtuális hálózati adapter egy hoz létre a az alkalmazást a következő hello lépések). További virtuális hálózati adapterek és virtuális gépek létrehozása tetszőleges időpontban, és azok hozzáadása toohello terheléselosztó:
 
 ```bash
 for i in `seq 1 3`; do
@@ -165,9 +165,9 @@ done
 ## <a name="create-virtual-machines"></a>Virtuális gépek létrehozása
 
 ### <a name="create-cloud-init-config"></a>Felhő inicializálás konfiguráció létrehozása
-Az oktatóanyag előző [első indításakor Linux virtuális gépek testreszabása](tutorial-automate-vm-deployment.md), megtudta, hogyan automatizálható a felhő inicializálás a virtuális gép testreszabása. Az azonos felhő inicializálás konfigurációs fájl segítségével NGINX telepítheti és futtathatja egy egyszerű "Hello, World" Node.js alkalmazást.
+Az oktatóanyag előző [hogyan toocustomize egy Linux virtuális gép első indításakor](tutorial-automate-vm-deployment.md), akkor megtanulta, hogyan tooautomate virtuális gép testreszabása a felhő inicializálás. Használhatja ugyanazon felhő inicializálás konfigurációs fájl tooinstall NGINX hello és egy egyszerű "Hello World" Node.js-alkalmazás futtatása.
 
-Hozzon létre egy fájlt az aktuális rendszerhéjban *felhő-init.txt* , majd illessze be a következő konfigurációt. A felhő rendszerhéj nem a helyi számítógépen hozzon létre például a fájlt. Adja meg `sensible-editor cloud-init.txt` hozza létre a fájlt, és elérhető szerkesztők listájának megtekintéséhez. Győződjön meg arról, hogy az egész felhő inicializálás fájl megfelelően lett lemásolva különösen az első sor:
+Hozzon létre egy fájlt az aktuális rendszerhéjban *felhő-init.txt* és a Beillesztés hello a következő konfigurációs. A felhő rendszerhéj hello nem a helyi számítógépen hozzon létre például hello fájlt. Adja meg `sensible-editor cloud-init.txt` toocreate hello fájlt, és elérhető szerkesztők listájának megtekintéséhez. Győződjön meg arról, hogy hello egész felhő inicializálás fájl megfelelően lett lemásolva, különösen az első sor hello:
 
 ```yaml
 #cloud-config
@@ -212,9 +212,9 @@ runcmd:
 ```
 
 ### <a name="create-virtual-machines"></a>Virtuális gépek létrehozása
-Az alkalmazás a magas rendelkezésre állás javítása érdekében helyezze a virtuális gépek rendelkezésre állási csoportba. További információ a rendelkezésre állási csoportok: a korábbi [magas rendelkezésre állású virtuális gépek létrehozása](tutorial-availability-sets.md) oktatóanyag.
+tooimprove hello magas rendelkezésre állás az alkalmazás a virtuális gépeket helyez egy rendelkezésre állási csoportot. Rendelkezésre állási készletek kapcsolatos további információkért lásd az előző hello [hogyan toocreate magas rendelkezésre állású virtuális gépek](tutorial-availability-sets.md) oktatóanyag.
 
-Állítsa be a rendelkezésre állási létrehozása [az virtuális gép rendelkezésre állási-csoport létrehozása](/cli/azure/vm/availability-set#create). Az alábbi példakód létrehozza a rendelkezésre állási készlet elnevezett *myAvailabilitySet*:
+Állítsa be a rendelkezésre állási létrehozása [az virtuális gép rendelkezésre állási-csoport létrehozása](/cli/azure/vm/availability-set#create). hello alábbi példakód létrehozza rendelkezésre állási készlet elnevezett *myAvailabilitySet*:
 
 ```azurecli-interactive 
 az vm availability-set create \
@@ -222,7 +222,7 @@ az vm availability-set create \
     --name myAvailabilitySet
 ```
 
-Most a virtuális gépek is létrehozhat [az virtuális gép létrehozása](/cli/azure/vm#create). Az alábbi példában három virtuális gépeket hoz létre, és SSH-kulcsokat generál, ha még nem léteznek:
+Most a virtuális gépek hello hozhat létre [az virtuális gép létrehozása](/cli/azure/vm#create). hello alábbi példa létrehoz három virtuális gépek és SSH-kulcsokat generál, ha még nem léteznek:
 
 ```bash
 for i in `seq 1 3`; do
@@ -239,11 +239,11 @@ for i in `seq 1 3`; do
 done
 ```
 
-Nincsenek háttérfeladatok, hogy végezze el az Azure parancssori felület visszatér a parancssorba. A `--no-wait` paraméter nem Várjon, amíg befejeződik a feladatokat. Elképzelhető, hogy egy másik néhány percet, mielőtt hozzáférhetne az alkalmazáshoz. A load balancer állapotmintáihoz automatikusan észleli, ha az alkalmazás futtatása az egyes virtuális gépek. A webalkalmazás működik, ha a terheléselosztó szabályhoz forgalom terjeszteni elindul.
+Nincsenek háttérfeladatok, hogy toorun után hello Azure CLI-t adja vissza, akkor toohello kérdés. Hello `--no-wait` paraméter nem várja meg az összes hello feladatok toocomplete. Elképzelhető, hogy egy másik néhány perc alatt hello alkalmazás eléréséhez. hello terheléselosztó automatikusan észleli, ha egyes virtuális gépek hello az alkalmazás fut.. Miután hello alkalmazás fut, a hello terheléselosztási szabály elindít toodistribute forgalmat.
 
 
 ## <a name="test-load-balancer"></a>Teszt terheléselosztó
-Szerezze be a terheléselosztó a nyilvános IP-címe [az hálózati nyilvános ip-megjelenítése](/cli/azure/network/public-ip#show). Az alábbi példa beolvassa az IP-címek *myPublicIP* korábban létrehozott:
+Hello nyilvános IP-cím a terheléselosztó az beszerzése [az hálózati nyilvános ip-megjelenítése](/cli/azure/network/public-ip#show). hello alábbi példa beszerzi hello IP-címet *myPublicIP* korábban létrehozott:
 
 ```azurecli-interactive 
 az network public-ip show \
@@ -253,18 +253,18 @@ az network public-ip show \
     --output tsv
 ```
 
-Beírhatja a nyilvános IP-címet a webböngésző. Ne feledje - néhány percet vesz igénybe a készen álljon a terheléselosztó terjesztéséhez azokat felé irányuló forgalom megkezdése előtt a virtuális gépeket. Az alkalmazás megjelenik, beleértve az állomásnevet, a virtuális gép, amelyek a terheléselosztó felé irányuló forgalom az alábbi példában látható módon:
+Majd tooa webböngészőben hello nyilvános IP-címet adhat meg. Ne feledje, mert néhány perc hello hello virtuális gépek toobe készen áll a szükséges hello terheléselosztó toodistribute forgalom toothem megkezdése előtt. hello alkalmazásokról, beleértve a virtuális gép hello hello állomásnevét adott hello terheléselosztó forgalom tooas hello a következő példa az elosztott:
 
 ![Futó Node.js-alkalmazás](./media/tutorial-load-balancer/running-nodejs-app.png)
 
-Tekintse meg a terheléselosztó forgalom szét az alkalmazást futtató összes három virtuális gépet, akkor is kényszerített frissítési a webböngésző.
+toosee hello terheléselosztó forgalom szét az alkalmazást futtató összes három virtuális gépet, a kényszerített-frissítési a webböngésző is.
 
 
 ## <a name="add-and-remove-vms"></a>Hozzá és távolíthat el a virtuális gépek
-Szükség lehet a az alkalmazás, például az operációs rendszer frissítéseinek telepítése futó virtuális gépeket karbantartásához. Az alkalmazás megnövekedett forgalom kezelésére, szükség lehet további virtuális gépek hozzáadása. Ez a szakasz bemutatja, hogyan távolítsa el, vagy adja hozzá a virtuális gépek a terheléselosztóról.
+Szükség lehet az alkalmazás, például az operációs rendszer frissítéseinek telepítése futó virtuális gépeket hello tooperform karbantartása. toodeal megnövekedett forgalom tooyour alkalmazással, szükség lehet tooadd további virtuális gépeket. Ez a szakasz bemutatja, hogyan tooremove, vagy adja hozzá a virtuális gépek hello terheléselosztóról.
 
-### <a name="remove-a-vm-from-the-load-balancer"></a>A virtuális gép eltávolítása a terheléselosztó
-A virtuális gép eltávolítása a háttér-címkészlet, amely [az hálózati hálózati adapter ip-config-címkészlet eltávolítása](/cli/azure/network/nic/ip-config/address-pool#remove). A következő példában eltávolítjuk a virtuális hálózati Adapternek **myVM2** a *myLoadBalancer*:
+### <a name="remove-a-vm-from-hello-load-balancer"></a>Távolítsa el a virtuális gépek hello terheléselosztó
+A virtuális gép eltávolítása hello háttér-címkészlet, amely [az hálózati hálózati adapter ip-config-címkészlet eltávolítása](/cli/azure/network/nic/ip-config/address-pool#remove). a következő példa eltávolítja hello hello virtuális hálózati Adapternek **myVM2** a *myLoadBalancer*:
 
 ```azurecli-interactive 
 az network nic ip-config address-pool remove \
@@ -275,10 +275,10 @@ az network nic ip-config address-pool remove \
     --address-pool myBackEndPool 
 ```
 
-Tekintse meg a terheléselosztó elosztják a forgalom a fennmaradó két futó virtuális gépeket az alkalmazás akkor is kényszerített frissítési a webböngésző. Karbantartási is képes lemezvizsgálatok elvégzésére, hogy a virtuális Gépen, például az operációs rendszer frissítéseinek telepítése vagy a virtuális gép újraindítása végrehajtása.
+toosee hello terheléselosztó forgalom szét a másik két hello az alkalmazást futtató virtuális gépek akkor is kényszerített frissítési a webböngésző. Karbantartási is képes lemezvizsgálatok elvégzésére, hogy a virtuális gép, például az operációs rendszer frissítéseinek telepítése vagy a virtuális gép újraindítása végrehajtása hello.
 
-### <a name="add-a-vm-to-the-load-balancer"></a>A virtuális gépek hozzáadása a terheléselosztó
-Virtuális gép karbantartásának végrehajtása után, vagy ha szüksége kapacitás bővítése céljából, adhat hozzá egy virtuális Gépet a háttér-címkészlet, amely [az hálózati hálózati adapter ip-config-címkészlet hozzáadása](/cli/azure/network/nic/ip-config/address-pool#add). A következő példakóddal felveheti a virtuális hálózati Adapternek **myVM2** való *myLoadBalancer*:
+### <a name="add-a-vm-toohello-load-balancer"></a>Virtuális gép toohello terheléselosztó felvétele
+Virtuális gép karbantartásának végrehajtása után, vagy ha tooexpand kapacitás, hozzáadhat egy virtuális gép toohello háttér-címkészlet, amely [az hálózati hálózati adapter ip-config-címkészlet hozzáadása](/cli/azure/network/nic/ip-config/address-pool#add). hello következő példakóddal felveheti a hello virtuális hálózati Adapternek **myVM2** túl*myLoadBalancer*:
 
 ```azurecli-interactive 
 az network nic ip-config address-pool add \
@@ -291,18 +291,18 @@ az network nic ip-config address-pool add \
 
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóanyagban egy terhelés-kiegyenlítő létrehozott és a virtuális gépek csatolva. Megtudta, hogyan, hogy:
+Ebben az oktatóanyagban egy terhelés-kiegyenlítő létrehozott, és csatolt virtuális gépek tooit. Megismerte, hogyan végezheti el az alábbi műveleteket:
 
 > [!div class="checklist"]
 > * Hozzon létre egy Azure terheléselosztó
 > * A health terheléselosztói mintavétel létrehozása
 > * Terheléselosztó forgalomra vonatkozó szabályok létrehozása
-> * Egy alapszintű Node.js-alkalmazás létrehozásához használja a felhő inicializálás
-> * Virtuális gépek létrehozása és csatolása a terheléselosztó
+> * Használja a felhő inicializálás toocreate egy alapszintű Node.js alkalmazást
+> * Virtuális gépek létrehozása és csatolása tooa terheléselosztó
 > * A művelet egy terhelés-kiegyenlítő megtekintése
 > * Adja hozzá, és távolítsa el a virtuális gépek a terheléselosztó
 
-További információt az Azure virtuális hálózati összetevők a következő oktatóanyag továbblépés.
+Előzetes toohello következő útmutató toolearn további információk az Azure-beli virtuális hálózat összetevői.
 
 > [!div class="nextstepaction"]
 > [Virtuális gépek és virtuális hálózatok kezelése](tutorial-virtual-network.md)

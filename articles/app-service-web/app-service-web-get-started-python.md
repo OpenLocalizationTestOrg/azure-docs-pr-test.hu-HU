@@ -1,5 +1,5 @@
 ---
-title: "Python-webalkalmazás létrehozása az Azure-ban | Microsoft Docs"
+title: "a Python webalkalmazás az Azure-ban aaaCreate |} Microsoft Docs"
 description: "Percek alatt üzembe helyezheti első Hello World Python-alkalmazását az Azure App Service Web Apps szolgáltatásban."
 services: app-service\web
 documentationcenter: 
@@ -15,22 +15,22 @@ ms.topic: quickstart
 ms.date: 03/17/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 119f9770097c010cc360e0e204d06a307a268814
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 42178d490d8aa8eaf93710667aad598794c62c8f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-python-web-app-in-azure"></a>Python-webapp létrehozása az Azure-ban
 
-Az [Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatás.  Ez a gyorsútmutató a Python-alkalmazások Azure Web Apps szolgáltatásban történő fejlesztésén és üzembe helyezésén vezeti végig. Az [Azure CLI-vel](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) létrehozhatja a webalkalmazást, a Gittel pedig üzembe helyezheti a Python-mintakódot a webalkalmazásban.
+Az [Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatás.  A gyors üzembe helyezési útmutató végigvezeti toodevelop és a Python alkalmazást tooAzure webalkalmazások telepítését. Hello segítségével hello-webalkalmazás létrehozása [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli), és a Git toodeploy minta Python kódját toohello webes alkalmazás használatát.
 
 ![Az Azure-ban futó mintaalkalmazás](media/app-service-web-get-started-python/hello-world-in-browser.png)
 
-Az alábbi lépéseket Mac, Windows vagy Linux rendszert futtató gépen is követheti. Az előfeltételek telepítése után a lépések végrehajtása nagyjából öt percet vesz igénybe.
+A lépésekkel hello Mac, a Windows vagy Linux rendszerű gépek használatának alatt. Hello előfeltételek telepítése után tart, körülbelül öt perc toocomplete hello lépéseket.
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az oktatóanyag elvégzéséhez:
+toocomplete Ez az oktatóanyag:
 
 1. [A Git telepítése](https://git-scm.com/)
 1. [Telepítse a Pythont](https://www.python.org/downloads/)
@@ -39,47 +39,47 @@ Az oktatóanyag elvégzéséhez:
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-Ha a CLI helyi telepítését és használatát választja, akkor ehhez a témakörhöz az Azure CLI 2.0-s vagy újabb verziójára lesz szükség. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, ebben a témakörben van szükség, hogy hello Azure CLI verzióját futtatja, 2.0-s vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
 
-## <a name="download-the-sample"></a>A minta letöltése
+## <a name="download-hello-sample"></a>Hello minta letöltése
 
-Egy terminálablakban futtassa a következő parancsot a mintaalkalmazás-tárház helyi számítógépre történő klónozásához.
+Egy terminálablakot futtassa a következő parancs tooclone hello sample app tárház tooyour helyi számítógép hello.
 
 ```bash
 git clone https://github.com/Azure-Samples/python-docs-hello-world
 ```
 
-Ezt a terminálablakot használhatja az összes parancs gyorsútmutatóban történő futtatásához.
+Használható a terminálablakot toorun minden hello parancsot a gyors üzembe helyezés.
 
-Váltson arra a könyvtárra, amelyben a mintakód megtalálható.
+Módosítsa a hello mintakódot tartalmazó toohello könyvtár.
 
 ```bash
 cd Python-docs-hello-world
 ```
 
-## <a name="run-the-app-locally"></a>Az alkalmazás futtatása helyben
+## <a name="run-hello-app-locally"></a>Hello alkalmazás helyi futtatása
 
-Telepítse a szükséges csomagokat a(z) `pip` használatával.
+Szükséges hello csomagok használatával `pip`.
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Az alkalmazás a terminálablak megnyitásával és a `Python` parancs használatával helyben futtatható a beépített Python-webkiszolgáló indításához.
+Hello alkalmazás helyi futtatásához nyisson meg egy terminálablakot, és hello segítségével `Python` parancs toolaunch hello beépített Python webalkalmazás-kiszolgáló.
 
 ```bash
 python main.py
 ```
 
-Nyisson meg egy webböngészőt, majd keresse meg a mintaalkalmazást a http://localhost:5000 címen.
+Nyisson meg egy webböngészőt, és keresse meg a http://localhost:5000 toohello minta alkalmazást.
 
-Az oldalon látható mintaalkalmazáson ekkor a **Hello World** üzenetnek kell megjelennie.
+Megtekintheti a hello **Hello World** üzenetet kapott hello mintaalkalmazás hello oldal jelenik meg.
 
 ![A helyileg futó mintaalkalmazás](media/app-service-web-get-started-python/localhost-hello-world-in-browser.png)
 
-A terminálablakban nyomja le a **Ctrl+C** billentyűkombinációt a webkiszolgálóból történő kilépéshez.
+A Terminálszolgáltatások ablakában, nyomja le az **Ctrl + C** tooexit hello webkiszolgáló.
 
-[!INCLUDE [Log in to Azure](../../includes/login-to-azure.md)] 
+[!INCLUDE [Log in tooAzure](../../includes/login-to-azure.md)] 
 
 [!INCLUDE [Configure deployment user](../../includes/configure-deployment-user.md)] 
 
@@ -93,24 +93,24 @@ A terminálablakban nyomja le a **Ctrl+C** billentyűkombinációt a webkiszolg�
 
 Ezzel létrehozott egy üres, új webalkalmazást az Azure-ban.
 
-## <a name="configure-to-use-python"></a>A Python használatának konfigurálása
+## <a name="configure-toouse-python"></a>Toouse Python konfigurálása
 
-A Python `3.4` verziójának használatához futtassa az [az webapp config set](/cli/azure/webapp/config#set) parancsot a webalkalmazás konfigurálásához.
+Használjon hello [az webapp konfiguráció](/cli/azure/webapp/config#set) parancs tooconfigure hello webes alkalmazás toouse Python verziója `3.4`.
 
 ```azurecli-interactive
 az webapp config set --python-version 3.4 --name <app_name> --resource-group myResourceGroup
 ```
 
 
-A Python-verzió ezen konfigurációja a platform által biztosított alapértelmezett tárolót használja. Ha saját tárolót szeretne használni, tekintse meg az [az webapp config container set](/cli/azure/webapp/config/container#set) parancs CLI-referenciáját.
+Egy hello platform által biztosított alapértelmezett tároló hello Python verziója ezzel a módszerrel beállítást használja. toouse saját tárolót, lásd: hello hello parancssori felület referenciája [az webapp tároló konfiguráció](/cli/azure/webapp/config/container#set) parancsot.
 
 [!INCLUDE [Configure local git](../../includes/app-service-web-configure-local-git.md)] 
 
-[!INCLUDE [Push to Azure](../../includes/app-service-web-git-push-to-azure.md)] 
+[!INCLUDE [Push tooAzure](../../includes/app-service-web-git-push-to-azure.md)] 
 
 ```bash
 Counting objects: 18, done.
-Delta compression using up to 4 threads.
+Delta compression using up too4 threads.
 Compressing objects: 100% (16/16), done.
 Writing objects: 100% (18/18), 4.31 KiB | 0 bytes/s, done.
 Total 18 (delta 4), reused 0 (delta 0)
@@ -146,56 +146,56 @@ remote:         1 file(s) copied.
 remote: Finished successfully.
 remote: Running post deployment command(s)...
 remote: Deployment successful.
-To https://<app_name>.scm.azurewebsites.net/<app_name>.git
+toohttps://<app_name>.scm.azurewebsites.net/<app_name>.git
  * [new branch]      master -> master
 ```
 
-## <a name="browse-to-the-app"></a>Az alkalmazás megkeresése tallózással
+## <a name="browse-toohello-app"></a>Keresse meg a toohello alkalmazás
 
-Tallózással keresse meg az üzembe helyezett alkalmazást a webböngésző használatával.
+Keresse meg a webböngésző segítségével toohello telepített alkalmazás.
 
 ```bash
 http://<app_name>.azurewebsites.net
 ```
 
-A Python-mintakód az Azure App Service-webalkalmazásban fut.
+Python mintakód hello fut. Ha az Azure App Service web app alkalmazásban.
 
 ![Az Azure-ban futó mintaalkalmazás](media/app-service-web-get-started-python/hello-world-in-browser.png)
 
-**Gratulálunk!** Elvégezte az első Python-webapp üzembe helyezését az App Service-ben.
+**Gratulálunk!** Az első Python-alkalmazás tooApp szolgáltatás telepítése után.
 
-## <a name="update-and-redeploy-the-code"></a>A kód frissítése és ismételt üzembe helyezése
+## <a name="update-and-redeploy-hello-code"></a>Frissítse, és telepítse újra a hello kódot
 
-Egy helyi szövegszerkesztővel nyissa meg a `main.py` fájlt a Python-alkalmazásban, majd módosítsa kissé annak szövegét a `return` utasítás mellett:
+Egy helyi szövegszerkesztőben nyissa meg hello `main.py` hello Python alkalmazásban, és egy kis változást toohello szöveg következő toohello győződjön `return` utasítást:
 
 ```python
 return 'Hello, Azure!'
 ```
 
-Mentse a módosításokat a Gitben, majd továbbítsa a kód módosításait az Azure-ba.
+A Git a változtatások véglegesítése a határidő, és majd leküldéses hello kód módosítások tooAzure.
 
 ```bash
 git commit -am "updated output"
 git push azure master
 ```
 
-Az üzembe helyezés befejezését követően váltson vissza [Az alkalmazás megkeresése tallózással](#browse-to-the-app) lépésben megnyitott böngészőablakra, és frissítse az oldalt.
+Központi telepítés befejezése után kapcsoló hello megnyitott hátsó toohello böngészőablakban [Tallózás toohello app](#browse-to-the-app) lépést, és a frissítési hello lap.
 
 ![Az Azure-ban futó frissített mintaalkalmazás](media/app-service-web-get-started-python/hello-azure-in-browser.png)
 
 ## <a name="manage-your-new-azure-web-app"></a>Az új Azure-webapp kezelése
 
-A létrehozott webalkalmazás felügyeletéhez ugorjon az <a href="https://portal.azure.com" target="_blank">Azure Portalra</a>.
+Nyissa meg toohello <a href="https://portal.azure.com" target="_blank">Azure-portálon</a> toomanage hello létrehozott webalkalmazás.
 
-A bal oldali menüben kattintson az **App Services** lehetőségre, majd az Azure-webalkalmazás nevére.
+Hello bal oldali menüben kattintson **alkalmazásszolgáltatások**, majd kattintson az Azure-webalkalmazásban hello nevét.
 
-![Navigálás a portálon az Azure-webapphoz](./media/app-service-web-get-started-nodejs-poc/nodejs-docs-hello-world-app-service-list.png)
+![Portálnavigációjával tooAzure webalkalmazás](./media/app-service-web-get-started-nodejs-poc/nodejs-docs-hello-world-app-service-list.png)
 
 Megtekintheti a webalkalmazás Áttekintés oldalát. Itt elvégezhet olyan alapszintű felügyeleti feladatokat, mint a tallózás, leállítás, elindítás, újraindítás és törlés. 
 
 ![Az App Service panel az Azure Portalon](media/app-service-web-get-started-nodejs-poc/nodejs-docs-hello-world-app-service-detail.png)
 
-A bal oldali menü az alkalmazás konfigurálásához biztosít különböző oldalakat. 
+hello bal oldali menü különböző oldalain biztosít az alkalmazás konfigurálását. 
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 

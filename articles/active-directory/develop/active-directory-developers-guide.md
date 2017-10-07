@@ -1,5 +1,5 @@
 ---
-title: "Azure Active Directory fejlesztők számára | Microsoft Docs"
+title: "a fejlesztők számára az Active Directory aaaAzure |} Microsoft Docs"
 description: "Ez a cikk áttekintést ad a munkahelyi és iskolai Microsoft-fiókokba az Azure Active Directory használatával történő bejelentkezésről."
 services: active-directory
 author: dstrockis
@@ -14,22 +14,22 @@ ms.workload: identity
 ms.date: 04/07/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: dce813b885d492343428428056a2e8aada27b461
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4dbbea6c1e0b8a70c0c36ddd1caec5658130a003
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-for-developers"></a>Azure Active Directory fejlesztők számára
-Az Azure Active Directory egy olyan felhőalapú identitásszolgáltatás, amely lehetővé teszi a fejlesztők számára bármely munkahelyi vagy iskolai Microsoft-fiókkal rendelkező felhasználó biztonságos bejelentkeztetését.  E dokumentációban megtekintheti, hogyan történik az Azure AD-támogatás hozzáadása az alkalmazásához iparági szabvány szerinti hitelesítési protokollok (OAuth és OpenID Connect) használatával.
+Az Azure Active Directory egy identitás felhőszolgáltatás, amely lehetővé teszi a fejlesztők toosecurely bejelentkezés a Microsoft által támogatott minden munkahelyi vagy iskolai fiókkal rendelkező felhasználó.  Itt hello dokumentációja bemutatja, hogyan támogatják a különböző tooadd az Azure AD tooyour alkalmazás iparági szabvány hitelesítési protokollok, OAuth & OpenID Connect használatával.
 
 | | |
 | --- | --- |
-|[A hitelesítés alapjai](active-directory-authentication-scenarios.md) | Bevezetés az Azure AD-vel történő hitelesítés használatába |
-|[Alkalmazástípusok](active-directory-authentication-scenarios.md#application-types-and-scenarios) | Áttekintés az Azure AD által támogatott hitelesítési forgatókönyvekről |                                
+|[A hitelesítés alapjai](active-directory-authentication-scenarios.md) | Egy bevezető tooauthentication az Azure ad szolgáltatással |
+|[Alkalmazástípusok](active-directory-authentication-scenarios.md#application-types-and-scenarios) | Azure AD által támogatott hello hitelesítési forgatókönyvek áttekintése |                                
                                                                               
 ## <a name="get-started"></a>Bevezetés
-Az alábbi irányított beállítási folyamatok végigvezetik az Azure Active Directory-felhasználók saját hitelesítési könyvtárának használatával történő bejelentkeztetési folyamatán.
+Ezen az interaktív beállításokhoz végigvezetik Önt az Azure Active Directory-felhasználók a hitelesítési könyvtárak toosign használatával.
 
 |  |  |  |  |
 | --- | --- | --- | --- |
@@ -40,13 +40,13 @@ Az alábbi irányított beállítási folyamatok végigvezetik az Azure Active D
 | <center>![Szolgáltatások közötti](./media/active-directory-developers-guide/Service_App.png)<br />Szolgáltatások közötti</center> | [Áttekintés](active-directory-authentication-scenarios.md#daemon-or-server-application-to-web-api)<br /><br />[.NET](active-directory-code-samples.md#server-or-daemon-application-to-web-api)<br /><br />[OAuth 2.0-ügyfél hitelesítő adatai](active-directory-protocols-oauth-service-to-service.md) |  |
 
 ## <a name="guides"></a>Útmutatók
-Ebből a cikkből megtudhatja, hogyan hajthat végre gyakori feladatokat az Azure Active Directory használatával.
+Ezek a cikkek arról tájékoztatják, hogyan tooperform gyakori feladatokat az Azure Active Directoryban.
 
 |                                                                           |  |
 |---------------------------------------------------------------------------| --- |
-|[Alkalmazásregisztráció](active-directory-integrating-applications.md)           | Alkalmazás regisztrálása az Azure AD-ben |
-|[Több-bérlős alkalmazások](active-directory-devhowto-multi-tenant-overview.md)    | Belépés bármely munkahelyi Microsoft-fiókba |
-|[OAuth és OpenID Connect](active-directory-protocols-openid-connect-code.md)| Felhasználók beléptetése és webes API-k hívása a modern hitelesítési protokolljaink használatával |
+|[Alkalmazásregisztráció](active-directory-integrating-applications.md)           | Hogyan tooregister egy alkalmazást az Azure ad-ben |
+|[Több-bérlős alkalmazások](active-directory-devhowto-multi-tenant-overview.md)    | Fiók bármely Microsoft toosign működése |
+|[OAuth és OpenID Connect](active-directory-protocols-openid-connect-code.md)| Hogyan toosign a felhasználók és a hívás webes API-k használatával a modern hitelesítési protokollok |
 |[További útmutatók…](active-directory-developers-guide-index.md#guides)        |     |
 
 ## <a name="reference"></a>Referencia
@@ -54,13 +54,13 @@ Ezekben a cikkekben az API-król, a protokollüzenetekről és az Azure Active D
 
 |                                                                                   | |
 | ----------------------------------------------------------------------------------| --- |
-| [Hitelesítési tárak (ADAL)](active-directory-authentication-libraries.md)   | Áttekintés az Azure AD által támogatott tárakról és SDK-król |
+| [Hitelesítési tárak (ADAL)](active-directory-authentication-libraries.md)   | Hello szalagtárak & SDK az Azure AD által biztosított áttekintése |
 | [Kódminták](active-directory-code-samples.md)                                  | Az Azure AD összes kódmintáját tartalmazó lista |
 | [Szószedet](active-directory-dev-glossary.md)                                      | A jelen dokumentációban használt fogalmak terminológiája és meghatározásai |
 | [További referenciaanyagok…](active-directory-developers-guide-index.md#reference)|     |
 
 ## <a name="help--support"></a>Súgó és támogatás
-Az Azure Active Directoryban történő fejlesztéshez ezeken a helyeken találhat segítséget.
+Ezek a hello legjobb helyen tooget segítségre fejlesztése az Azure Active Directoryban.
 
 |  |  
 |---|
@@ -71,4 +71,4 @@ Az Azure Active Directoryban történő fejlesztéshez ezeken a helyeken találh
 <br />
 
 > [!NOTE]
-> Ha szeretne bejelentkezni a személyes Microsoft-fiókjaiba, érdemes megfontolnia az [Azure AD v2.0-végpont](active-directory-appmodel-v2-overview.md) használatát.  Az Azure AD v2.0-végpont egyetlen hitelesítési rendszerben egyesíti a személyes és munkahelyi Microsoft-fiókjait (az Azure AD-ből).
+> Ha toosign Microsoft személyes fiókok, érdemes lehet a hello segítségével tooconsider [az Azure AD v2.0-végponttól](active-directory-appmodel-v2-overview.md).  hello Azure AD v2.0-végponttól hello egyesítése személyes Microsoft-fiókok és a Microsoft munkahelyi fiókok (az Azure AD) egyetlen hitelesítési rendszerbe.

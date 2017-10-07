@@ -1,6 +1,6 @@
 ---
-title: "Kiállító neve és a BizTalk szolgáltatások Issuer Key |} Microsoft Docs"
-description: "Ismerje meg, hogyan lehet lekérni a kibocsátó neve és Issuer Key Service Bus vagy Access Control (ACS) a BizTalk szolgáltatások. MABS, WABS"
+title: "aaaIssuer nevét és a BizTalk szolgáltatások Issuer Key |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooretrieve Kiállítónevet és Issuer Key Service Bus vagy Access Control (ACS) a BizTalk szolgáltatások. MABS, WABS"
 services: biztalk-services
 documentationcenter: 
 author: MandiOhlinger
@@ -14,45 +14,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-ms.openlocfilehash: b9fd985c23558596408e78eadae00dd0f95c4214
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cc84c2820724ae3e7fc7c40ddbcd83a169add911
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="biztalk-services-issuer-name-and-issuer-key"></a>BizTalk Services: Kiállító neve és kiállító kulcsa
 
 > [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
 
-Azure BizTalk-szolgáltatásokat használja, a Service Bus kibocsátó neve és Issuer Key, és a hozzáférés-vezérlő Kibocsátónév és Issuer Key. Konkrétan:
+Az Azure BizTalk szolgáltatások hello Service Bus kibocsátó neve és Issuer Key és hello Access Control kibocsátó neve és Issuer Key használja. Konkrétan:
 
 | Tevékenység | Mely kibocsátó neve és Issuer Key |
 | --- | --- |
 | A Visual Studio az alkalmazás telepítéséhez |Hozzáférés-vezérlő Kibocsátónév és Issuer Key |
-| Az Azure BizTalk szolgáltatások portál konfigurálása |Hozzáférés-vezérlő Kibocsátónév és Issuer Key |
-| LOB-továbbítók létrehozása a Visual Studio BizTalk Adapter szolgáltatásokkal |Service Bus kibocsátó neve és Issuer Key |
+| Hello Azure BizTalk szolgáltatások portál konfigurálása |Hozzáférés-vezérlő Kibocsátónév és Issuer Key |
+| LOB-továbbítók hello BizTalk Adapter szolgáltatások a Visual Studio létrehozása |Service Bus kibocsátó neve és Issuer Key |
 
-Ez a témakör a kibocsátó neve és Issuer Key beolvasandó lépéseit sorolja fel. 
+Ez a témakör a hello lépéseket tooretrieve hello kibocsátó neve és Issuer Key sorolja fel. 
 
 ## <a name="access-control-issuer-name-and-issuer-key"></a>Hozzáférés-vezérlő Kibocsátónév és Issuer Key
-A hozzáférés-vezérlő Kibocsátónév és Issuer Key használnak a következő:
+hello Access Control kibocsátó neve és Issuer Key hello következő használják:
 
-* Az Azure BizTalk szolgáltatás alkalmazás létrehozása a Visual Studio: sikeres telepítéséhez a BizTalk szolgáltatás alkalmazást a Visual Studio Azure Access Control kibocsátó neve és Issuer Key adja meg. 
-* Az Azure BizTalk szolgáltatások portálon: BizTalk szolgáltatás létrehozása, és nyissa meg a BizTalk szolgáltatások portált, a hozzáférés-vezérlő Kibocsátónév és Issuer Key automatikusan regisztrálva vannak a hozzáférés-vezérlés értékeitől telepítések esetén.
+* Az Azure BizTalk szolgáltatás alkalmazás létrehozása a Visual Studio: toosuccessfully a Visual Studio tooAzure BizTalk szolgáltatás alkalmazást helyezi üzembe, adja meg a hozzáférés-vezérlő Kibocsátónév hello és Issuer Key. 
+* hello Azure BizTalk szolgáltatások portálja: BizTalk szolgáltatás létrehozása, és nyissa meg a hello BizTalk Services portálra, a hozzáférés-vezérlési kibocsátó neve és Issuer Key automatikusan be vannak jegyezve a telepítések esetén a hello értékeitől hozzáférés-vezérlést.
 
-### <a name="get-the-access-control-issuer-name-and-issuer-key"></a>A hozzáférés-vezérlő kibocsátó neve és a kiállító kulcs beszerzése
+### <a name="get-hello-access-control-issuer-name-and-issuer-key"></a>Első Access Control kibocsátó neve és Issuer Key hello
 
-ACS használata a hitelesítéshez, és a kiállító nevével és Issuer Key értékek, az általános lépések az alábbiak:
+a hitelesítés és a get toouse ACS hello kibocsátó neve és Issuer Key értékek, hello általános lépéseket tartalmazza:
 
-1. Telepítse a [Azure Powershell-parancsmagok](https://azure.microsoft.com/documentation/articles/powershell-install-configure/).
+1. Telepítse a hello [Azure Powershell-parancsmagok](https://azure.microsoft.com/documentation/articles/powershell-install-configure/).
 2. Adja hozzá az Azure-fiókjával:`Add-AzureAccount`
 3. Az előfizetés nevét adja vissza:`get-azuresubscription`
 4. Jelölje ki az előfizetését:`select-azuresubscription <name of your subscription>` 
-5. Új névtér létrehozása:`new-azuresbnamespace <name for the service bus> "Location" -CreateACSNamespace $true -NamespaceType Messaging`
+5. Új névtér létrehozása:`new-azuresbnamespace <name for hello service bus> "Location" -CreateACSNamespace $true -NamespaceType Messaging`
 
     Példa:`new-azuresbnamespace biztalksbnamespace "South Central US" -CreateACSNamespace $true -NamespaceType Messaging`
       
-5. Létrehozásakor az új ACS-névtér (amely több percet is igénybe vehet), a kiállító nevével és Issuer Key értékek listáját a kapcsolati karakterlánc: 
+5. Hello új ACS névtér (amely több percet is igénybe vehet) jön létre, amikor hello kibocsátó neve és Issuer Key értékek listáját hello kapcsolati karakterlánc: 
 
     ```
     Name                  : biztalksbnamespace
@@ -66,34 +66,34 @@ ACS használata a hitelesítéshez, és a kiállító nevével és Issuer Key é
     NamespaceType         : Messaging
     ```
 
-Összefoglalásképpen:  
+toosummarize:  
 Kiállító neve = SharedSecretIssuer  
 Kiállító kulcsát = SharedSecretKey
 
-A több a [New-AzureSBNamespace](https://msdn.microsoft.com/library/dn495165.aspx) parancsmag. 
+A hello további [New-AzureSBNamespace](https://msdn.microsoft.com/library/dn495165.aspx) parancsmag. 
 
 ## <a name="service-bus-issuer-name-and-issuer-key"></a>Service Bus kibocsátó neve és Issuer Key
-Service Bus kibocsátó neve és Issuer Key BizTalk Adapter szolgáltatások használják. BizTalk szolgáltatások projektre a Visual Studio, a segítségével a BizTalk Adapter szolgáltatások egy helyszíni üzletági (LOB) rendszerhez való csatlakozás. Szeretne csatlakozni, a LOB-továbbítási létrehozása, és adja meg a LOB-rendszer részleteit. Ennek során azt is adja meg a Service Bus kibocsátó neve és Issuer Key.
+Service Bus kibocsátó neve és Issuer Key BizTalk Adapter szolgáltatások használják. BizTalk szolgáltatások projektre a Visual Studio, a hello BizTalk Adapter szolgáltatások tooconnect tooan helyszíni üzletági (LOB) rendszert használ. tooconnect, hello LOB Relay létrehozásához, és adja meg a LOB-rendszer részleteit. Ennek során is be hello Service Bus kibocsátó neve és Issuer Key.
 
-### <a name="to-retrieve-the-service-bus-issuer-name-and-issuer-key"></a>A Service Bus kibocsátó neve és Issuer Key beolvasása
-1. Jelentkezzen be a [klasszikus Azure portálra](http://go.microsoft.com/fwlink/p/?LinkID=213885).
-2. A bal oldali navigációs ablakból válassza **Service Bus**.
-3. Válassza ki a névteret. A tálcán válassza **kapcsolatadatok**. Ez megjeleníti a **alapértelmezett kibocsátó** (kibocsátó neve) és **alapértelmezett kulcs** (Issuer Key). Az értékekre másolhatók.  
+### <a name="tooretrieve-hello-service-bus-issuer-name-and-issuer-key"></a>Service Bus Kibocsátónév tooretrieve hello és Issuer Key
+1. Jelentkezzen be toohello [a klasszikus Azure portálon](http://go.microsoft.com/fwlink/p/?LinkID=213885).
+2. Hello bal oldali navigációs panelen, jelölje ki a **Service Bus**.
+3. Válassza ki a névteret. Hello tálcán, válassza ki a **kapcsolatadatok**. Ez megjeleníti a hello **alapértelmezett kibocsátó** (kibocsátó neve) és **alapértelmezett kulcs** (Issuer Key). Az értékekre másolhatók.  
 
-Összefoglalásképpen:  
+toosummarize:  
 Kiállító neve alapértelmezett kibocsátó =  
 Kiállító kulcsát alapértelmezett kulcs =
 
 ## <a name="next"></a>Következő lépés
 További Azure BizTalk szolgáltatások témakörök:
 
-* [Az Azure BizTalk szolgáltatások SDK telepítése](http://go.microsoft.com/fwlink/p/?LinkID=241589)<br/>
+* [Hello Azure BizTalk szolgáltatások SDK telepítése](http://go.microsoft.com/fwlink/p/?LinkID=241589)<br/>
 * [Oktatóanyag: Azure BizTalk szolgáltatások](http://go.microsoft.com/fwlink/p/?LinkID=236944)<br/>
-* [Hogyan kezdhetem el az Azure BizTalk Services SDK használatát](http://go.microsoft.com/fwlink/p/?LinkID=302335)<br/>
+* [Hogyan tudom használata hello Azure BizTalk szolgáltatások SDK-t](http://go.microsoft.com/fwlink/p/?LinkID=302335)<br/>
 * [Az Azure BizTalk szolgáltatások](http://go.microsoft.com/fwlink/p/?LinkID=303664)<br/>
 
 ## <a name="see-also"></a>Lásd még:
-* [Hogyan: ACS felügyeleti szolgáltatás segítségével a szolgáltatás-identitások konfigurálása](http://go.microsoft.com/fwlink/p/?LinkID=303942)<br/>
+* [Hogyan: használata ACS felügyeleti szolgáltatás tooConfigure szolgáltatás-identitások](http://go.microsoft.com/fwlink/p/?LinkID=303942)<br/>
 * [BizTalk szolgáltatások: Fejlesztői, Basic, Standard és prémium kiadás diagram](http://go.microsoft.com/fwlink/p/?LinkID=302279)<br/>
 * [BizTalk szolgáltatások: Kiépítés használata Azure klasszikus portál](http://go.microsoft.com/fwlink/p/?LinkID=302280)<br/>
 * [BizTalk Services: Kiépítési állapot diagramja](http://go.microsoft.com/fwlink/p/?LinkID=329870)<br/>

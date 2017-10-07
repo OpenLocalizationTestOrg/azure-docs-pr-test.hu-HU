@@ -1,6 +1,6 @@
 ---
-title: "A Service Fabric-alkalmazások titkos kulcsok kezelése |} Microsoft Docs"
-description: "A cikkből megtudhatja, mennyire biztonságos a Service Fabric-alkalmazás titkos értékeit."
+title: "a Service Fabric-alkalmazások aaaManaging titkok |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan toosecure titkos értékei a Service Fabric-alkalmazás."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,59 +14,59 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: d71924cda8bb3bffbe221946d80dba150359e38e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b8cafcb681d95aaa1b8e9a1afaac78ba5b7f58b0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-secrets-in-service-fabric-applications"></a>A Service Fabric-alkalmazások titkos kulcsok kezelése
-Ez az útmutató végigvezeti a Service Fabric-alkalmazás a titkos kulcsok kezelése. Titkos kulcsok lehet bármely bizalmas adatokat, például a tárolási kapcsolati karakterláncok, jelszavak és egyéb értékek, amelyek nem egyszerű szöveges kezelje.
+Ez az útmutató végigvezeti hello felügyelete titkos kulcsokat a Service Fabric-alkalmazás. Titkos kulcsok lehet bármely bizalmas adatokat, például a tárolási kapcsolati karakterláncok, jelszavak és egyéb értékek, amelyek nem egyszerű szöveges kezelje.
 
-Ez az útmutató az Azure Key Vault használatával kulcsokat és titkos kódokat. Azonban *használatával* egy alkalmazás titkos kulcsainak van cloud platform-független bárhol üzemeltetett fürt központilag telepített alkalmazások. 
+Ez az útmutató az Azure Key Vault toomanage kulcsok és titkos kulcsokat használ. Azonban *használatával* egy alkalmazás titkos kulcsainak felhő platform-független tooallow alkalmazások toobe telepített tooa fürt üzemeltetett tetszőleges helyre. 
 
 ## <a name="overview"></a>Áttekintés
-Az ajánlott módszer a szolgáltatás konfigurációs beállítások kezeléséhez van keresztül [szolgáltatás konfigurációs csomagok][config-package]. Konfigurációs csomagok a következők: rendszerverzióval ellátott és a rendszerállapot-érvényesítési és automatikus visszaállítási felügyelt közbeni keresztül frissíthető. Ez az előnyben részesített a globális konfigurációs, mivel csökkenti a veszélyét annak, hogy a globális szolgáltatáskimaradás. Titkosított titkokat sem kivétel. A Service Fabric titkosítására és visszafejtésére értékek a tanúsítvány titkosítással konfigurációs csomag Settings.xml fájlban beépített lehetőséggel rendelkezik.
+hello ajánlott toomanage szolgáltatás konfigurációs beállításait van keresztül [szolgáltatás konfigurációs csomagok][config-package]. Konfigurációs csomagok a következők: rendszerverzióval ellátott és a rendszerállapot-érvényesítési és automatikus visszaállítási felügyelt közbeni keresztül frissíthető. Ez az előnyben részesített tooglobal konfigurációs, mivel csökkenti a globális szolgáltatáskimaradás hello esélyét. Titkosított titkokat sem kivétel. A Service Fabric titkosítására és visszafejtésére értékek a tanúsítvány titkosítással konfigurációs csomag Settings.xml fájlban beépített lehetőséggel rendelkezik.
 
-A következő ábra szemlélteti a titkos kezelése a Service Fabric-alkalmazás általános folyamata:
+hello alábbi ábrán látható, a Service Fabric-alkalmazás titkos felügyeleti hello általános folyamata:
 
 ![titkos – áttekintés][overview]
 
 Ez a folyamat négy fő lépésből áll:
 
 1. Adatok rejtjelezése tanúsítványának beszerzése.
-2. Telepítse a tanúsítványt a fürtön.
-3. Titkosítani a titkos értékek, a tanúsítvány az alkalmazás telepítésekor, és azokat behelyezése egy szolgáltatás Settings.xml konfigurációs fájlt.
-4. Olvassa el a titkosított értékeket abból Settings.xml visszafejti rejtjelezése ugyanazzal a tanúsítvánnyal. 
+2. Hello tanúsítvány telepítése a fürtön.
+3. Titkosítani a titkos értékek hello tanúsítvánnyal alkalmazások telepítésekor, és azokat behelyezése egy szolgáltatás Settings.xml konfigurációs fájlt.
+4. Olvassa el a titkosított értékeket abból Settings.xml visszafejti a hello rejtjelezése ugyanazt a tanúsítványt. 
 
-[Az Azure Key Vault] [ key-vault-get-started] itt történik, a tanúsítványok biztonságos tárolási helyeként, valamint az Azure Service Fabric-fürtök telepített tanúsítványok lekérése is. Ha nem telepíti az Azure-ba, nem kell Key Vault segítségével kezelheti a Service Fabric-alkalmazások a titkos kulcsok.
+[Az Azure Key Vault] [ key-vault-get-started] itt történik, a tanúsítványok biztonságos tárolási helyként, valamint egy módon tooget, az Azure Service Fabric-fürtök telepített tanúsítványok. Ha nem telepít tooAzure, nem kell a Service Fabric-alkalmazások toouse Key Vault toomanage titkos kulcsok.
 
 ## <a name="data-encipherment-certificate"></a>Adatok rejtjelezése tanúsítvány
-Adatok rejtjelezése tanúsítvány szigorúan titkosítást használja és konfigurációs visszafejtése egy szolgáltatás Settings.xml értékei, és nem a hitelesítéshez használt vagy aláírási titkosított szöveg. A tanúsítvány a következő követelményeknek kell megfelelniük:
+Adatok rejtjelezése tanúsítvány szigorúan titkosítást használja és konfigurációs visszafejtése egy szolgáltatás Settings.xml értékei, és nem a hitelesítéshez használt vagy aláírási titkosított szöveg. hello tanúsítvány hello követelményeknek kell megfelelniük:
 
-* A tanúsítványnak tartalmaznia kell egy titkos kulccsal.
-* A kulcscseréhez használt, a személyes információcsere (.pfx) fájl exportálható léteznie kell a tanúsítványt.
-* A tanúsítvány kulcshasználati adattitkosítás (10) kell tartalmaznia, és nem tartalmazhat kiszolgálóhitelesítés vagy ügyfél-hitelesítéshez. 
+* hello tanúsítványnak tartalmaznia kell egy titkos kulccsal.
+* a kulcscsere, exportálható tooa személyes információcsere (.pfx) fájlt hello tanúsítványt kell létrehozni.
+* hello tanúsítvány kulcshasználat adattitkosítás (10) kell tartalmaznia, és nem tartalmazhat kiszolgálóhitelesítés vagy ügyfél-hitelesítéshez. 
   
-  Például, amikor a powershellel, önaláírt tanúsítvány létrehozása a `KeyUsage` jelzőt kell beállítani `DataEncipherment`:
+  Például, amikor a PowerShell használatával önaláírt tanúsítvány létrehozása, hello `KeyUsage` jelző túl meg kell`DataEncipherment`:
   
   ```powershell
   New-SelfSignedCertificate -Type DocumentEncryptionCert -KeyUsage DataEncipherment -Subject mydataenciphermentcert -Provider 'Microsoft Enhanced Cryptographic Provider v1.0'
   ```
 
-## <a name="install-the-certificate-in-your-cluster"></a>A tanúsítvány telepítése a fürt
-Ez a tanúsítvány a fürt minden csomópontján telepítenie kell. Ez használható futásidőben visszafejteni a szolgáltatás Settings.xml tárolt értékek. Lásd: [hogyan hozhat létre egy fürtöt, Azure Resource Manager használatával] [ service-fabric-cluster-creation-via-arm] a telepítési utasításokat. 
+## <a name="install-hello-certificate-in-your-cluster"></a>A fürt hello tanúsítvány telepítése
+Ez a tanúsítvány hello fürt minden csomópontján telepítenie kell. Egy szolgáltatás Settings.xml tárolt futásidejű toodecrypt értéken lesz. Lásd: [hogyan toocreate Azure Resource Manager használatával fürt] [ service-fabric-cluster-creation-via-arm] a telepítési utasításokat. 
 
 ## <a name="encrypt-application-secrets"></a>Alkalmazás titkos kulcsok titkosítása
-A Service Fabric SDK beépített titkos titkosítási és visszafejtési funkciókkal rendelkezik. Titkos értékek is kell beépített időpontban titkosított visszafejti és programozott módon olvassa el a szolgáltatáskód hibáit. 
+Service Fabric SDK hello beépített titkos titkosítási és visszafejtési funkciókkal rendelkezik. Titkos értékek is kell beépített időpontban titkosított visszafejti és programozott módon olvassa el a szolgáltatáskód hibáit. 
 
-A következő PowerShell-parancsot a titkos kulcs titkosítására szolgál. Ez a parancs csak titkosítja a érték; létezik **nem** a titkosított szöveg aláírásához. Titkosított szöveg titkos értékek létrehozásához a fürtben telepített azonos rejtjelezése tanúsítványt kell használnia:
+a következő PowerShell-paranccsal hello használt tooencrypt titkos kulcs. Ez a parancs csak titkosítja hello érték; létezik **nem** hello titkosított szöveg aláírásához. Hello segítségével kell ugyanazt a rejtjelezése tanúsítványt, amely telepítve van-e a fürt tooproduce titkosított szöveg titkos értékeket:
 
 ```powershell
 Invoke-ServiceFabricEncryptText -CertStore -CertThumbprint "<thumbprint>" -Text "mysecret" -StoreLocation CurrentUser -StoreName My
 ```
 
-Az eredményül kapott base-64 karakterláncot tartalmaz, mind a titkos titkosított szöveg, valamint a titkosításhoz használt tanúsítvány adatait.  A base-64 kódolású karakterlánc szúrhatók be, a szolgáltatás Settings.xml tartalmazó konfigurációs fájl egyik paraméterének a `IsEncrypted` attribútum értékének beállítása `true`:
+hello eredményül kapott base-64 kódolású karakterlánc tartalmazza a hello titkos titkosított szöveg, valamint hello tanúsítvány, de a használt tooencrypt adatait azt.  hello base-64 kódolású karakterlánc szúrhatók be, a szolgáltatás Settings.xml konfigurációs fájl hello egyik paraméterének `IsEncrypted` attribútum értéke túl`true`:
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -78,10 +78,10 @@ Az eredményül kapott base-64 karakterláncot tartalmaz, mind a titkos titkosí
 ```
 
 ### <a name="inject-application-secrets-into-application-instances"></a>Az alkalmazáspéldányok alkalmazás titkos kulcsok behelyezése
-Ideális esetben kell lennie az automatizált lehető különböző környezetekben történő telepítéséhez. A titkos végrehajtása build környezetben, és a titkosított titkos kulcsok megadásával paraméterként, alkalmazáspéldányok létrehozásakor kell elvégezni.
+Ideális esetben kell lennie az automatizált lehető telepítési toodifferent környezetekben. A titkos végrehajtása build környezetben, és hello titkosított titkos kulcsok megadásával paraméterként, alkalmazáspéldányok létrehozásakor lehet elvégezni.
 
 #### <a name="use-overridable-parameters-in-settingsxml"></a>Felülbírálható paraméterekkel Settings.xml használata
-A Settings.xml konfigurációs fájl lehetővé teszi, hogy az alkalmazás létrehozáskor megadható felülbírálható paramétereket. Használja a `MustOverride` attribútum helyett egy érték megadása az egyik paraméter:
+hello Settings.xml konfigurációs fájl lehetővé teszi, hogy az alkalmazás létrehozáskor megadható felülbírálható paramétereket. Használjon hello `MustOverride` attribútum helyett egy érték megadása az egyik paraméter:
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -92,7 +92,7 @@ A Settings.xml konfigurációs fájl lehetővé teszi, hogy az alkalmazás létr
 </Settings>
 ```
 
-A Settings.xml érték felülírására deklarál egy felülbíráló paraméter ApplicationManifest.xml szolgáltatása esetében:
+toooverride értékek Settings.xml, deklarál egy felülbíráló paraméter ApplicationManifest.xml hello szolgáltatása esetében:
 
 ```xml
 <ApplicationManifest ... >
@@ -113,9 +113,9 @@ A Settings.xml érték felülírására deklarál egy felülbíráló paraméter
   </ServiceManifestImport>
  ```
 
-Most a értéket adhat meg egy *alkalmazás paraméter* az alkalmazás példányának létrehozásakor. Az alkalmazáspéldány létrehozása parancsfájlalapú lehet powershellel, vagy az egyszerű integráció az összeállítási folyamat a C#, verziójához.
+Most hello értéket adhat meg egy *alkalmazás paraméter* hello alkalmazás példányának létrehozásakor. Az alkalmazáspéldány létrehozása parancsfájlalapú lehet powershellel, vagy az egyszerű integráció az összeállítási folyamat a C#, verziójához.
 
-PowerShell használatával, a paraméter van megadva a a `New-ServiceFabricApplication` parancs, mint egy [kivonattábla](https://technet.microsoft.com/library/ee692803.aspx):
+PowerShell használatával, a hello paraméter megadott toohello `New-ServiceFabricApplication` parancs, mint egy [kivonattábla](https://technet.microsoft.com/library/ee692803.aspx):
 
 ```powershell
 PS C:\Users\vturecek> New-ServiceFabricApplication -ApplicationName fabric:/MyApp -ApplicationTypeName MyAppType -ApplicationTypeVersion 1.0.0 -ApplicationParameter @{"MySecret" = "I6jCCAeYCAxgFhBXABFxzAt ... gNBRyeWFXl2VydmjZNwJIM="}
@@ -140,9 +140,9 @@ await fabricClient.ApplicationManager.CreateApplicationAsync(applicationDescript
 ```
 
 ## <a name="decrypt-secrets-from-service-code"></a>Szolgáltatás kódból titkos kulcsok visszafejtéséhez
-A Service Fabric szolgáltatások alapértelmezés szerint a Windows hálózati szolgáltatás alatt futnak, és nem férnek hozzá a csomópont egy külön beállítások elvégzése nélkül telepített tanúsítványok.
+Szolgáltatások a Service Fabric futtathatók hálózati szolgáltatás alapértelmezés szerint a Windows, és nem rendelkezik hozzáférési toocertificates csomóponton telepített hello néhány külön beállítások elvégzése nélkül.
 
-Ha adatok rejtjelezése tanúsítványt használ, meg kell győződnie, hogy a hálózati szolgáltatás, vagy tetszőleges felhasználói fiókot a szolgáltatás fut. a tanúsítvány titkos kulcsához hozzáfér. A Service Fabric fogja kezelni, a szolgáltatás-hozzáférés automatikusan engedélyezése, ha úgy állítja be ehhez. Ez a konfiguráció ApplicationManifest.xml felhasználók és biztonsági házirendeket a tanúsítványok megadásával teheti. A következő példában a hálózati szolgáltatás fiók olvasás való hozzáférése annak ujjlenyomata által definiált tanúsítványt:
+Adatok rejtjelezése tanúsítványt használ, meg kell toomake meg arról, hogy a hálózati szolgáltatás vagy bármely felhasználói fiók hello szolgáltatás hozzáférés toohello tanúsítvány titkos kulccsal rendelkezik. A Service Fabric hozzáférést a szolgáltatás automatikusan Ha konfigurálja toodo úgy fogja kezelni. Ez a konfiguráció ApplicationManifest.xml felhasználók és biztonsági házirendeket a tanúsítványok megadásával teheti. A következő példa hello a hálózati szolgáltatás fiók hello adott van olvasási hozzáférési tooa tanúsítvány határozzák meg az ujjlenyomatot:
 
 ```xml
 <ApplicationManifest … >
@@ -163,12 +163,12 @@ Ha adatok rejtjelezése tanúsítványt használ, meg kell győződnie, hogy a h
 ```
 
 > [!NOTE]
-> Amikor másol egy tanúsítvány-ujjlenyomata a tanúsítvány tároló beépülő modul a Windows, egy láthatatlan karakter el van helyezve az ujjlenyomat karakterlánc elején. Ez láthatatlan karakter hibát okozhat, keresse meg a tanúsítvány ujjlenyomata által, ezért ügyeljen arra, hogy törli ezt a felesleges karaktert közben.
+> A tanúsítvány-ujjlenyomat másolásakor hello tanúsítványból tárolására beépülő modul a Windows, egy láthatatlan karakter el van helyezve a hello ujjlenyomat karakterlánc hello elején. Ez láthatatlan karakter okozhat hiba toolocate közben a tanúsítvány ujjlenyomatát, ezért lehet, hogy toodelete ezt a felesleges karaktert.
 > 
 > 
 
 ### <a name="use-application-secrets-in-service-code"></a>Alkalmazás titkos kulcsok használata szolgáltatáskódot
-A konfigurációs értékek Settings.xml eléréséhez a konfigurációs csomag API lehetővé teszi, hogy az értékek, amelyek könnyen visszafejtése a `IsEncrypted` attribútum értékének beállítása `true`. Mivel a titkosított szöveg tartalmazza-e a titkosításhoz használt tanúsítvány adatait, nem kell manuálisan található a tanúsítvány. A tanúsítvány csak a szolgáltatás fut a csomóponton telepítenie kell. Egyszerűen hívja a `DecryptValue()` metódusának segítéségével lekérheti az eredeti titkos érték:
+hello API Settings.xml konfigurációs értékeket eléréséhez a konfigurációs csomag lehetővé teszi, hogy könnyen visszafejtése értékek, amelyek hello `IsEncrypted` attribútum értéke túl`true`. Hello titkosított szöveg tartalmazza-e a titkosításhoz használt hello tanúsítvány adatait, mert nem kell toomanually keresés hello tanúsítványt. hello szolgáltatást futtató hello csomóponton telepített toobe ugyanúgy kell hello tanúsítványt. Egyszerűen hívás hello `DecryptValue()` metódus tooretrieve hello eredeti titkos érték:
 
 ```csharp
 ConfigurationPackage configPackage = this.Context.CodePackageActivationContext.GetConfigurationPackageObject("Config");

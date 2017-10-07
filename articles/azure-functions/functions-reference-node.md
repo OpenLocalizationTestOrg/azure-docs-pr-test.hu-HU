@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Functions JavaScript-fejlesztői útmutatója |} Microsoft Docs"
-description: "Megtudhatja, hogyan fejleszthet függvények JavaScript használatával."
+title: "az Azure Functions aaaJavaScript fejlesztői útmutatója |} Microsoft Docs"
+description: "Ismerje meg, hogyan toodevelop működik-e a JavaScript használatával."
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: glenga
-ms.openlocfilehash: 7ea81ed47f391fbce1432c2b11ac176ab6c04ae0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6220b42f965b6ee2463341aaf270836623fdf7fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-javascript-developer-guide"></a>Az Azure Functions JavaScript fejlesztői útmutató
 > [!div class="op_single_selector"]
@@ -30,17 +30,17 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Az Azure Functions JavaScript élményét megkönnyíti, hogy egy függvénynek, amely szerint átadott exportálása egy `context` objektum kommunikál a futtatókörnyezet és fogadása és adatküldés kötéseken keresztül.
+hello JavaScript tapasztalattal az Azure Functions segítségével könnyen tooexport egy függvénynek, amely szerint átadása egy `context` objektum hello futásidejű való kommunikációhoz és fogadása és adatküldés kötéseken keresztül.
 
-Ez a cikk feltételezi, hogy Ön már elolvasta a [Azure Functions fejlesztői segédanyagai](functions-reference.md).
+Ez a cikk feltételezi, hogy Ön már elolvasta hello [Azure Functions fejlesztői segédanyagai](functions-reference.md).
 
 ## <a name="exporting-a-function"></a>Egy függvény exportálása
-Minden JavaScript-funkcióként kell exportálnia az egyetlen `function` keresztül `module.exports` található a függvény, majd futtassa a futási időben. Ez a funkció mindig tartalmaznia kell egy `context` objektum.
+Minden JavaScript-funkcióként kell exportálnia az egyetlen `function` keresztül `module.exports` hello futási időben toofind hello függvény, és futtassa azt. Ez a funkció mindig tartalmaznia kell egy `context` objektum.
 
 ```javascript
 // You must include a context, but other arguments are optional
 module.exports = function(context) {
-    // Additional inputs can be accessed by the arguments property
+    // Additional inputs can be accessed by hello arguments property
     if(arguments.length === 4) {
         context.log('This function has 4 inputs');
     }
@@ -51,16 +51,16 @@ module.exports = function(context, myTrigger, myInput, myOtherInput) {
 };
 ```
 
-A kötések `direction === "in"` függvény argumentumaként, ami azt jelenti, amelyeket felhasználhat továbbítódnak [ `arguments` ](https://msdn.microsoft.com/library/87dw3w1k.aspx) dinamikusan kezelje az új bemeneti adatokat (például használatával `arguments.length` az ismétlés a bemeneti adatok). Ez a funkció esetén kényelmes csak egy eseményindító és nincs további bevitel, mivel nélkül hivatkozó kiszámítható hozzáfér az eseményindítóra vonatkozó információt a `context` objektum.
+Kötések `direction === "in"` függvény argumentumaként, ami azt jelenti, amelyeket felhasználhat továbbítódnak [ `arguments` ](https://msdn.microsoft.com/library/87dw3w1k.aspx) toodynamically kezelni új bemeneti adatokat (például használatával `arguments.length` tooiterate keresztül a bemeneti adatok). Ez a funkció esetén kényelmes csak egy eseményindító és nincs további bevitel, mivel nélkül hivatkozó kiszámítható hozzáfér az eseményindítóra vonatkozó információt a `context` objektum.
 
-Az argumentumok mindig továbbítódnak a sorrendben történik a függvény *function.json*, még akkor is, ha nem adja meg azokat a kivitel utasításban. Például, ha rendelkezik `function(context, a, b)` és módosítsa úgy, hogy `function(context, a)`, továbbra is használhatja a értékének `b` szakaszra függvény kódban `arguments[3]`.
+hello argumentumok mindig továbbítódnak toohello függvény hello sorrendben történik a *function.json*, még akkor is, ha nem adja meg azokat a kivitel utasításban. Például, ha van `function(context, a, b)` módosítsa azt túl`function(context, a)`, továbbra is használhatja a hello értékének `b` túl hivatkozással függvény kódban`arguments[3]`.
 
-Összes kötését, irány, attól függetlenül is továbbítódnak a `context` (lásd a következő parancsfájl) objektum. 
+Összes kötését, irány, attól függetlenül is továbbítódnak a hello `context` (lásd a következő parancsfájl hello) objektum. 
 
 ## <a name="context-object"></a>környezeti objektumot
-A futtatókörnyezet használ egy `context` objektum és a függvény az adatok, és lehetővé teszik, hogy a futtatókörnyezet kommunikálni.
+hello futásidejű használ egy `context` objektum toopass adatok tooand a függvény és kommunikálhat a hello futásidejű toolet.
 
-A környezeti objektumot mindig a függvény az első paraméter, és szerepelnie kell függvénykötésnek mert metódusok, mint `context.done` és `context.log`, amelyek ahhoz, hogy a futtatókörnyezet helyesen használni. Nevezze el az lehet az objektum függetlenül szeretné (például `ctx` vagy `c`).
+hello környezeti objektumot mindig hello első tooa függvény és szerepeljen, mert a metódusok, mint `context.done` és `context.log`, szükséges toouse hello futásidejű ezek megfelelően. Nevére hello objektum függetlenül szeretné (például `ctx` vagy `c`).
 
 ```javascript
 // You must include a context, but other arguments are optional
@@ -74,7 +74,7 @@ module.exports = function(context) {
 ```
 context.bindings
 ```
-Egy elnevezett objektum beállítása/beolvasása, amely a bemeneti és kimeneti adatokat tartalmaz. Például a következő kötés meghatározást a *function.json* megadható, hogy a várólista tartalmának eléréséhez a `context.bindings.myInput` objektum. 
+Egy elnevezett objektum beállítása/beolvasása, amely a bemeneti és kimeneti adatokat tartalmaz. Például a következő kötés-definíciójában hello a *function.json* megadható, hogy van-hozzáférési hello hello hello várólista tartalmát `context.bindings.myInput` objektum. 
 
 ```json
 {
@@ -86,7 +86,7 @@ Egy elnevezett objektum beállítása/beolvasása, amely a bemeneti és kimeneti
 ```
 
 ```javascript
-// myInput contains the input data, which may have properties such as "name"
+// myInput contains hello input data, which may have properties such as "name"
 var author = context.bindings.myInput.name;
 // Similarly, you can set your output data
 context.bindings.myOutput = { 
@@ -99,17 +99,17 @@ context.bindings.myOutput = {
 context.done([err],[propertyBag])
 ```
 
-Figyelmeztet, hogy a kód befejezte a futtatókörnyezet. Meg kell hívnia `context.done`, vagy ellenkező esetben a futásidejű soha nem tudja, hogy a függvény befejeződött, és végrehajtása időtúllépést okoz. 
+Arról tájékoztatja, hogy a kód befejezte hello futásidejű. Meg kell hívnia `context.done`, vagy más hello futásidejű soha nem tudja, hogy a függvény befejeződött, és hello végrehajtása időtúllépést okoz. 
 
-A `context.done` módszer lehetővé teszi a átadása vissza mindkét egy felhasználó által definiált hiba történt a futtatókörnyezet és tulajdonságai egy tulajdonságcsomagot, amelyek felülírják a tulajdonságok a `context.bindings` objektum.
+Hello `context.done` módszer lehetővé teszi, hogy toopass biztonsági másolatot a felhasználó által definiált hiba toohello futásidejű és a felülírási hello hello tulajdonságainak tulajdonságok tulajdonságcsomag `context.bindings` objektum.
 
 ```javascript
-// Even though we set myOutput to have:
+// Even though we set myOutput toohave:
 //  -> text: hello world, number: 123
 context.bindings.myOutput = { text: 'hello world', number: 123 };
-// If we pass an object to the done function...
+// If we pass an object toohello done function...
 context.done(null, { myOutput: { text: 'hello there, world', noNumber: true }});
-// the done method will overwrite the myOutput binding to be: 
+// hello done method will overwrite hello myOutput binding toobe: 
 //  -> text: hello there, world, noNumber: true
 ```
 
@@ -118,26 +118,26 @@ context.done(null, { myOutput: { text: 'hello there, world', noNumber: true }});
 ```
 context.log(message)
 ```
-Lehetővé teszi a adatfolyam, a nyomkövetési szint konzolnaplófájlokban írni. A `context.log`, további naplózási módszerek elérhetőek, amelyek lehetővé teszik a konzol naplófájlba más nyomkövetési szinten:
+Lehetővé teszi a toowrite toohello konzol streamnaplókba hello alapértelmezett nyomkövetési szinten. A `context.log`, további naplózási módszerek elérhetőek, amelyek lehetővé teszik a toohello konzolbeli naplóit más nyomkövetési szinten írni:
 
 
 | Módszer                 | Leírás                                |
 | ---------------------- | ------------------------------------------ |
-| **Hiba (_üzenet_)**   | Naplózás vagy alacsonyabb hibaszintet ír.   |
-| **Figyelmeztetés (_üzenet_)**    | Figyelmeztetési szintű naplózás vagy alacsonyabb ír. |
-| **Info (_üzenet_)**    | Információ szintet naplózás vagy alacsonyabb ír.    |
-| **részletes (_üzenet_)** | A részletes szint naplózás ír.           |
+| **Hiba (_üzenet_)**   | Írja a naplózás vagy alacsonyabb tooerror szintjét.   |
+| **Figyelmeztetés (_üzenet_)**    | Írja a naplózás vagy alacsonyabb toowarning szintjét. |
+| **Info (_üzenet_)**    | Írja a naplózás vagy alacsonyabb tooinfo szintjét.    |
+| **részletes (_üzenet_)** | Webhelyszintű naplózás tooverbose ír.           |
 
-A következő példa ír a figyelmeztetési nyomkövetési szint a konzolhoz:
+hello alábbi példa ír toohello konzol hello figyelmeztetés nyomkövetési szint:
 
 ```javascript
 context.log.warn("Something has happened."); 
 ```
-Állítsa be a nyomkövetési szintű küszöbértéke a host.json fájl van bejelentkezve, vagy kapcsolja ki.  A naplókba írásával kapcsolatban további információkért tekintse meg a következő szakaszban.
+Állítsa be a nyomkövetési szintű küszöbértéke hello hello host.json fájl van bejelentkezve, vagy kapcsolja ki.  Hogyan naplózza az toowrite toohello kapcsolatos további információkért lásd a hello következő szakaszt.
 
 ## <a name="binding-data-type"></a>Kötési adattípus
 
-Egy bemeneti kötése adattípusát megadásához használja a `dataType` tulajdonság kötése definíciójában. Olvassa el a tartalom HTTP-kérések bináris formátumú, például típust használjon `binary`:
+toodefine hello adattípus egy bemeneti kötése használja hello `dataType` hello kötés definícióban tulajdonság. Például tooread hello bináris formátumú HTTP-kérelem tartalma, hello típust használjon `binary`:
 
 ```json
 {
@@ -150,48 +150,48 @@ Egy bemeneti kötése adattípusát megadásához használja a `dataType` tulajd
 
 Más beállításokat a `dataType` vannak `stream` és `string`.
 
-## <a name="writing-trace-output-to-the-console"></a>A konzol nyomkövetés írása 
+## <a name="writing-trace-output-toohello-console"></a>Írás a nyomkövetési kimeneti toohello konzol 
 
-A Funkciók, használja a `context.log` módszerek nyomkövetés írni a konzolt. Ezen a ponton nem használható `console.log` írni a konzolt.
+A funkciók hello használja `context.log` módszerek toowrite nyomkövetési kimeneti toohello konzolt. Ezen a ponton nem használható `console.log` toowrite toohello konzol.
 
-A hívás esetén `context.log()`, az üzenetet a nyomkövetési szint, amely a konzol ír a _info_ nyomkövetési szint. A következő kódot ír az információ a nyomkövetési szintet a konzolhoz:
+A hívás esetén `context.log()`, az üzenet írása hello alapértelmezett nyomkövetési szint, amely hello toohello a konzol _info_ nyomkövetési szint. hello következő kódot ír toohello konzol hello információ a nyomkövetési szint:
 
 ```javascript
 context.log({hello: 'world'});  
 ```
 
-Az előzőekben látható kód értéke megegyezik a következő kódot:
+hello előző kód egyenértékű toohello a következő kódot:
 
 ```javascript
 context.log.info({hello: 'world'});  
 ```
 
-A következő kódot ír a hibaszintet a konzolhoz:
+hello következő kódot ír toohello konzol hello hiba szinten:
 
 ```javascript
 context.log.error("An error has occurred.");  
 ```
 
-Mivel _hiba_ a legmagasabb nyomkövetési szint a nyomkövetési ír a kimeneti minden nyomkövetési szintű mindaddig, amíg naplózás engedélyezve van.  
+Mivel _hiba_ hello legmagasabb nyomkövetési szint a nyomkövetési adatok íródnak toohello kimeneti minden nyomkövetési szintű mindaddig, amíg naplózás engedélyezve van.  
 
 
-Minden `context.log` módszerek támogatják a paraméter formátuma a Node.js által támogatott [util.format metódus](https://nodejs.org/api/util.html#util_util_format_format). Vegye figyelembe az alábbi kód, amely a konzol ír az alapértelmezett nyomkövetési szint használatával:
+Minden `context.log` módszerek támogatják hello azonos paraméter formátuma hello Node.js által támogatott [util.format metódus](https://nodejs.org/api/util.html#util_util_format_format). Vegye figyelembe a következő kódot, amely toohello konzol írja hello alapértelmezett nyomkövetési szint használatával hello:
 
 ```javascript
 context.log('Node.js HTTP trigger function processed a request. RequestUri=' + req.originalUrl);
 context.log('Request Headers = ' + JSON.stringify(req.headers));
 ```
 
-Ugyanazt a kódot is kiírhatja a következő formátumban:
+További lehetőségek írási hello azonos hello formátuma a következő kódot:
 
 ```javascript
 context.log('Node.js HTTP trigger function processed a request. RequestUri=%s', req.originalUrl);
 context.log('Request Headers = ', JSON.stringify(req.headers));
 ```
 
-### <a name="configure-the-trace-level-for-console-logging"></a>A nyomkövetési szint konzol naplózás konfigurálása
+### <a name="configure-hello-trace-level-for-console-logging"></a>Hello nyomkövetési szint konzol naplózás konfigurálása
 
-Funkciók lehetővé teszi a küszöbérték nyomkövetési szint írásra, a konzolt, amely megkönnyíti a módon nyomkövetési adatokat a konzoljára írt a funkciók a vezérlő meghatározása. Összes adat konzolon küszöbértéke beállításához használja a `tracing.consoleLevel` tulajdonság a host.json fájlban. A függvény alkalmazás összes funkciójának alkalmazza a beállítást. A következő példa a küszöbértéket nyomkövetési részletes naplózás engedélyezése:
+Funkciók lehetővé teszi a nyomkövetési küszöbértéket hello toohello konzol, így könnyen toocontrol hello módon nyomkövetések az a funkciók írt toohello konzol írásra meghatározása. tooset hello küszöbértéke toohello konzol használata hello írt minden nyomkövetési `tracing.consoleLevel` tulajdonság a hello host.json fájlban. Ez a beállítás az függvény alkalmazásban tooall funkciók vonatkozik. hello alábbi mintakód hello nyomkövetési küszöbérték tooenable részletes naplózás:
 
 ```json
 { 
@@ -201,58 +201,58 @@ Funkciók lehetővé teszi a küszöbérték nyomkövetési szint írásra, a ko
 }  
 ```
 
-Az értékek **consoleLevel** nevének felel meg a `context.log` módszerek. A konzol összes nyomkövetési naplózás letiltásához állítsa **consoleLevel** való _ki_. A host.json fájllal kapcsolatos további információkért lásd: a [host.json referencia-témakör](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json).
+Az értékek **consoleLevel** hello toohello nevei megegyeznek `context.log` módszerek. toodisable minden nyomkövetési naplózás toohello konzol beállítása **consoleLevel** too_off_. Hello host.json fájllal kapcsolatos további információkért lásd: hello [host.json referencia-témakör](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json).
 
 ## <a name="http-triggers-and-bindings"></a>HTTP-eseményindítók és kötések
 
-A HTTP és a webhook eseményindítók és a HTTP kimeneti kötések kérés- és -objektumok segítségével határoz meg a HTTP-üzenetküldést.  
+A HTTP és a webhook eseményindítók és a HTTP kimeneti kötések kérés és válasz objektumok toorepresent hello HTTP üzenetküldési használhatják.  
 
 ### <a name="request-object"></a>Kérelem objektum
 
-A `request` objektum tulajdonságai a következők:
+Hello `request` objektumnak hello következő tulajdonságai:
 
 | Tulajdonság      | Leírás                                                    |
 | ------------- | -------------------------------------------------------------- |
-| _törzs_        | A kérelem törzsét tartalmazó objektum.               |
-| _fejlécek_     | A kérelem fejlécében tartalmazó objektum.                   |
-| _módszer_      | A kérelem HTTP-metódust.                                |
-| _originalUrl_ | A kérelem URL-CÍMÉT.                                        |
-| _paraméterei_      | A kérés útválasztási paramétereit tartalmazó objektum. |
-| _lekérdezés_       | Egy objektum, amely tartalmazza a lekérdezési paramétereket.                  |
-| _rawBody_     | A karakterlánc az üzenet törzsét.                           |
+| _törzs_        | Egy objektum, amely tartalmazza a hello hello kérelem törzse.               |
+| _fejlécek_     | Egy objektum, amely tartalmazza a hello kérelemfejlécekben.                   |
+| _módszer_      | hello hello kérelem HTTP-metódus.                                |
+| _originalUrl_ | hello hello kérelem URL-címe                                        |
+| _paraméterei_      | Egy objektum, amely tartalmazza a hello hello kérés útválasztási paramétereivel. |
+| _lekérdezés_       | Egy objektum, amely tartalmazza a hello lekérdezési paramétereket.                  |
+| _rawBody_     | hello üzenet karakterláncként hello törzsét.                           |
 
 
 ### <a name="response-object"></a>Válasz objektum
 
-A `response` objektum tulajdonságai a következők:
+Hello `response` objektumnak hello következő tulajdonságai:
 
 | Tulajdonság  | Leírás                                               |
 | --------- | --------------------------------------------------------- |
-| _törzs_    | A választörzs tartalmazó objektum.         |
-| _fejlécek_ | Egy objektum, amely tartalmazza a response fejlécekkel együtt.             |
-| _isRaw_   | Azt jelzi, hogy formázás ki van kapcsolva a választ.    |
-| _állapot_  | A HTTP-állapotkód: a válasz.                     |
+| _törzs_    | Hello válasz hello törzsét tartalmazó objektum.         |
+| _fejlécek_ | Egy objektum, amely tartalmazza a hello response fejlécekkel együtt.             |
+| _isRaw_   | Azt jelzi, hogy formázás ki van kapcsolva hello válasz.    |
+| _állapot_  | hello HTTP-állapotkód: hello válasz.                     |
 
-### <a name="accessing-the-request-and-response"></a>A kérelem és válasz elérése 
+### <a name="accessing-hello-request-and-response"></a>Hello kérés és válasz elérése 
 
-HTTP-eseményindítók használata során is elérheti HTTP kérelem-válasz objektumok három módokon:
+Ha HTTP-eseményindítók használata esetén elérhető hello HTTP kérelem-válasz három módokon objektumok:
 
-+ Az elnevezett bemeneti és kimeneti kötések. Ezzel a módszerrel a HTTP-eseményindítóval és kötések működik ugyanaz, mint bármely más kötés. A következő példa egy elnevezett használatával állítja be a válasz objektum `response` kötés: 
++ A hello nevű bemeneti és kimeneti kötéseket. Ily módon mint bármely más kötésnél hello HTTP-eseményindítóval és kötések munkahelyi hello azonos. hello alábbi mintakód hello válasz objektum használatával elnevezett `response` kötés: 
 
     ```javascript
     context.bindings.response = { status: 201, body: "Insert succeeded." };
     ```
 
-+ A `req` és `res` tulajdonságainak a `context` objektum. Ily módon használhatja a hagyományos mintát fér hozzá a HTTP adatokhoz a context objektumot, a teljes használata helyett a `context.bindings.name` mintát. A következő példa bemutatja, hogyan férhet hozzá a `req` és `res` az objektumokat a `context`:
++ A `req` és `res` hello tulajdonságainak `context` objektum. Ily módon használhatja hello hagyományos mintát tooaccess HTTP adatait hello környezeti objektumot, ahelyett, hogy teljes toouse hello `context.bindings.name` mintát. a következő példa azt mutatja meg hogyan hello tooaccess hello `req` és `res` hello objektumok `context`:
 
     ```javascript
-    // You can access your http request off the context ...
+    // You can access your http request off hello context ...
     if(context.req.body.emoji === ':pizza:') context.log('Yay!');
     // and also set your http response
     context.res = { status: 202, body: 'You successfully ordered more coffee!' }; 
     ```
 
-+ Meghívásával `context.done()`. HTTP-kötés olyan különleges visszaadja a választ, átadott a `context.done()` metódust. A következő HTTP kimeneti kötése definiál egy `$return` kimeneti paraméterként:
++ Meghívásával `context.done()`. HTTP-kötés olyan különleges toohello átadott hello választ ad vissza `context.done()` metódust. a következő HTTP hello kimeneti kötés határozza meg a `$return` kimeneti paraméterként:
 
     ```json
     {
@@ -261,7 +261,7 @@ HTTP-eseményindítók használata során is elérheti HTTP kérelem-válasz obj
       "name": "$return"
     }
     ``` 
-    A kimeneti kötés vár, amelyen meg kell adnia a válasz hívásakor `done()`, az alábbiak szerint:
+    A kimeneti kötés vár, toosupply hello válasz hívásakor `done()`, az alábbiak szerint:
 
     ```javascript
      // Define a valid response object.
@@ -270,24 +270,24 @@ HTTP-eseményindítók használata során is elérheti HTTP kérelem-válasz obj
     ```  
 
 ## <a name="node-version-and-package-management"></a>Csomópont verziója és a felügyeleti csomag
-A csomópont verziója jelenleg zárolva van `6.5.0`. Jelenleg vizsgálja a további verziók támogatása, és így konfigurálható.
+hello csomópont verziója jelenleg zárolva van `6.5.0`. Jelenleg vizsgálja a további verziók támogatása, és így konfigurálható.
 
-Az alábbi lépéseket lehetővé teszik, hogy a csomagok tartalmazzák a függvény alkalmazásban: 
+a lépéseket követve hello lehetővé teszik, hogy a csomagok tartalmazzák a függvény alkalmazásban: 
 
-1. Nyissa meg a következőt: `https://<function_app_name>.scm.azurewebsites.net`.
+1. Nyissa meg túl`https://<function_app_name>.scm.azurewebsites.net`.
 
 2. Kattintson a **konzol Debug** > **CMD**.
 
-3. Ugrás a `D:\home\site\wwwroot`, majd húzza a package.json fájlt a **wwwroot** mappát a a lap felső részén.  
-    Feltöltheti fájlok az függvény alkalmazásban más módokon is. További információkért lásd: [függvény alkalmazásfájlok frissítése](functions-reference.md#fileupdate). 
+3. Nyissa meg túl`D:\home\site\wwwroot`, majd húzza a package.json fájl toohello **wwwroot** mappát a hello hello lap felső részén.  
+    Fájlok tooyour függvény app más módokon is feltöltheti. További információkért lásd: [hogyan tooupdate működni az alkalmazás fájljai](functions-reference.md#fileupdate). 
 
-4. Miután a package.json fájl feltöltése, futtassa a `npm install` parancsot a **Kudu távoli végrehajtás konzol**.  
-    Ez a művelet letölti a csomagot a package.json fájlban jelzett, és a függvény alkalmazás újraindul.
+4. Hello package.json fájl feltöltése, után futtassa a hello `npm install` hello parancsot **Kudu távoli végrehajtás konzol**.  
+    Ez a művelet hello package.json fájlban jelzett hello csomagok letölti és hello függvény alkalmazás újraindul.
 
-Miután telepítette a szükséges csomagokat, importálja a fájlokat a függvény meghívásával `require('packagename')`, az alábbi példa szerint:
+Hello szükséges csomagok telepítése után importálja a fájlokat a tooyour függvény meghívásával `require('packagename')`, a példában a következő hello:
 
 ```javascript
-// Import the underscore.js library
+// Import hello underscore.js library
 var _ = require('underscore');
 var version = process.version; // version === 'v6.5.0'
 
@@ -297,10 +297,10 @@ module.exports = function(context) {
         .where(context.bindings.myInput.names, {first: 'Carla'});
 ```
 
-Meg kell határozni egy `package.json` fájl, a függvény alkalmazás gyökérmappájában. Ennek révén a legjobb teljesítmény érdekében az azonos gyorsítótárazott csomagok megosztani az alkalmazásban funkciók meghatározása a fájl segítségével. Ha verziószáma, hogyan oldható meg hozzáadásával egy `package.json` fájl a mappában, egy adott funkció.  
+Meg kell határozni egy `package.json` fájlban a következő hello legfelső szintű függvény alkalmazása. Definiáló hello fájl lehetővé teszi, hogy az összes funkciójának hello app megosztás hello azonos gyorsítótárazott csomagok, ami hello lehető legjobb teljesítményt. Ha verziószáma, hogyan oldható meg hozzáadásával egy `package.json` hello fájlban egy adott funkció.  
 
 ## <a name="environment-variables"></a>Környezeti változók
-Egy környezeti változó vagy olyan alkalmazás, beállítás értékét, amelyet `process.env`, ahogy az az alábbi példakód:
+tooget egy környezeti változó vagy egy alkalmazás beállításérték, használjon `process.env`, ahogy az alábbi kódpéldát hello:
 
 ```javascript
 module.exports = function (context, myTimer) {
@@ -320,17 +320,17 @@ function GetEnvironmentVariable(name)
 ```
 ## <a name="considerations-for-javascript-functions"></a>JavaScript-funkcióként szempontjai
 
-JavaScript-funkcióként használatakor figyelembe a következő két szakaszban ismertetett szempontok alapján.
+JavaScript-funkcióként használatakor a következő két szakasz hello hello szempontok figyelembe.
 
 ### <a name="choose-single-core-app-service-plans"></a>Válasszon egy mag App Service-csomagokról
 
-Egy függvény alkalmazást, amely használja az App Service-csomag létrehozásakor azt javasoljuk, hogy kiválassza a több mag terv helyett egy egymagos terv. Napjainkban funkciók fut JavaScript-funkcióként hatékonyabban egymagos virtuális gépeken, és nagyobb virtuális gépek használata nem eredményez a várt teljesítménynövekedést. Szükség esetén manuálisan méretezheti ki további egymagos Virtuálisgép-példányok hozzáadásával, vagy engedélyezheti az automatikus skálázása. További információkért lásd: [méretezése példányszám manuális vagy automatikus](../monitoring-and-diagnostics/insights-how-to-scale.md?toc=%2fazure%2fapp-service-web%2ftoc.json).    
+Egy függvény alkalmazás által használt hello App Service-csomag létrehozásakor azt javasoljuk, hogy kiválassza a több mag terv helyett egy egymagos terv. Napjainkban funkciók fut JavaScript-funkcióként hatékonyabban egymagos virtuális gépeken, és nagyobb virtuális gépek használata nem eredményez várt hello teljesítménynövekedést. Szükség esetén manuálisan méretezheti ki további egymagos Virtuálisgép-példányok hozzáadásával, vagy engedélyezheti az automatikus skálázása. További információkért lásd: [méretezése példányszám manuális vagy automatikus](../monitoring-and-diagnostics/insights-how-to-scale.md?toc=%2fazure%2fapp-service-web%2ftoc.json).    
 
 ### <a name="typescript-and-coffeescript-support"></a>Géppel és CoffeeScript támogatása
-Közvetlen támogatási még nem létezik automatikus fordítása géppel vagy CoffeeScript a futtatókörnyezet keresztül, mert az ilyen támogatás kezelendő kívül a futtatókörnyezetet, a központi telepítéskor. 
+Közvetlen támogatási még nem létezik automatikus fordítása géppel vagy CoffeeScript hello futásidejű keresztül, mert az ilyen támogatás kell a központi telepítéskor hello futásidejű kívül kezelt toobe. 
 
 ## <a name="next-steps"></a>Következő lépések
-További információkért lásd a következőket:
+További információkért tekintse meg a következő erőforrások hello:
 
 * [Azure Functions – ajánlott eljárások](functions-best-practices.md)
 * [Az Azure Functions fejlesztői segédanyagai](functions-reference.md)

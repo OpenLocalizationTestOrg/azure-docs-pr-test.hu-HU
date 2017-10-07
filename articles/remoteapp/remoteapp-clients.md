@@ -1,6 +1,6 @@
 ---
-title: "Az alkalmazások bármely eszközről elérése |} Microsoft Docs"
-description: "Ismerje meg, milyen ügyfelek használhatók az Azure RemoteApp és az alkalmazások elérését."
+title: "aaaAccessing az alkalmazások bármely eszközről |} Microsoft Docs"
+description: "Ismerje meg, hogy mely ügyfelek Azure RemoteApp támogatja, és hogyan tooaccess az alkalmazásokat."
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,24 +13,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 10a5be6251765b59fac92a33120cedcf8091a677
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 15985b40d870e3155d4132063bf5b9677ff9afed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="accessing-your-apps-in-azure-remoteapp"></a>Az alkalmazások elérése az Azure RemoteAppban
 > [!IMPORTANT]
-> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. A részletekért olvassa el a [bejelentést](https://go.microsoft.com/fwlink/?linkid=821148).
+> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. Olvasási hello [közlemény](https://go.microsoft.com/fwlink/?linkid=821148) részleteiről.
 > 
 > 
 
-Az Azure RemoteApp beauties egyike, hogy elérhető alkalmazások bármely eszközén. Még jobban dolgozni egy eszközön, és majd zökkenőmentesen átmenet egy második eszköz és jobb átvételéhez, ahol abbahagyta. Első lépésként töltse le a megfelelő ügyféloldali az eszközhöz, és jelentkezzen be a szolgáltatás kell.
+Az Azure RemoteApp hello beauties egyike, hogy elérhető alkalmazások bármely eszközén. Még jobban dolgozni az eszközöket és zökkenőmentesen átmenet tooa második eszköz és jobb átvételéhez, ahol abbahagyta. tooget lépések akkor toodownload hello megfelelő ügyfél szükséges az eszközt, és jelentkezzen be toohello szolgáltatás.
 
-Ebben a témakörben azt áttekinti a jelenleg támogatott ügyfelek és letöltése őket, mielőtt I bemutatják az egyes ügyfelek a RemoteApp bejelentkezni.
+Ez a témakör azt áttekinti jelenleg támogatott hello ügyfelek és hogyan toodownload őket előtt I mutatja be az egyes hello ügyfelek tooRemoteApp toosign.
 
 ## <a name="supported-clients"></a>Támogatott kliensek
-Használja az alábbi lépéseket, ha az eszköz fut a következő operációs rendszerek RemoteApp érhető el:
+Az alábbi hello lépéseket követve, ha az eszköz fut a következő operációs rendszerek RemoteApp érhető el:
 
 * Windows 10 
 * Windows 8.1
@@ -41,136 +41,136 @@ Használja az alábbi lépéseket, ha az eszköz fut a következő operációs r
 * Mac OS X
 * Android
 
- Mi a helyzet a vékony ügyfeleket? A következő Windows Embedded vékony ügyfelek támogatottak:
+ Mi a helyzet a vékony ügyfeleket? a következő Windows Embedded vékony ügyfelek támogatottak hello:
 
 * Windows Embedded Standard 7
 * Windows Embedded 8 Standard
 * Windows Embedded 8.1 Industry Pro
 * Windows 10 IoT Enterprise
 
-## <a name="downloading-the-client"></a>Az ügyfél letöltése
-Függetlenül attól, milyen platformot használ, az ügyfél RemoteApp eléréséhez szükséges található meg a [távoli asztali ügyfél letöltési](https://www.remoteapp.windowsazure.com/ClientDownload/AllClients.aspx) lap.
+## <a name="downloading-hello-client"></a>Hello ügyfél letöltése
+Függetlenül attól, milyen platformot használ, a RemoteApp hello található tooaccess kell hello ügyfél [távoli asztali ügyfél letöltési](https://www.remoteapp.windowsazure.com/ClientDownload/AllClients.aspx) lap.
 
-A különböző hivatkozásokra kattintva fog vagy közvetlenül az ügyfél letöltése vagy elküld az ügyfélnek letöltése az app Store-ból a platformhoz való lap. A képernyőn megjelenő utasításokat követve telepítse az ügyfelet.
+Hello gombra kattintva másik hivatkozások fog vagy közvetlenül hello ügyfél letöltése vagy megküldeni toohello ügyfélprogram letöltési oldaláról hello app Store-ból a platformhoz való. Hello ügyfél telepítése az üdvözlő képernyőt hello utasításokat követve.
 
-Miután telepítette az ügyfelet az eszközön, és elindítja azt, hogyan RemoteApp, hogy az ügyfél jelentkezzen be az alábbi megfelelő szakaszra ugorhat.
+Miután hello ügyfél telepített az eszközön, és akkor indul el, jump toohello megfelelő című szakaszt toolearn hogyan tooRemoteApp az, hogy az ügyfél a toosign.
 
 ## <a name="android"></a>Android
-A Google Play áruházból a Microsoft távoli asztal alkalmazás telepítése után megtalálja az alkalmazáslistában alatt **távoli asztal**.
+A Google Play áruház hello hello Microsoft távoli asztal alkalmazás telepítése után megtalálja az alkalmazáslistában alatt **távoli asztal**.
 
-1. Elindítani az alkalmazást számos lehetőséget kínál, egy üres kapcsolat középre, kivéve, ha már használja az alkalmazást. Ismerkedés az Azure RemoteApp, koppintson a Hozzáadás gombra **"" +""** koppintson **Azure RemoteApp**.    
+1. Indító hello app biztosít tooan üres csatlakozási központ, kivéve, ha már eddig használt hello alkalmazást. az Azure RemoteApp lépései tooget, koppintson a hello Hozzáadás gomb **"" +""** koppintson **Azure RemoteApp**.    
    
      ![Üres csatlakozási központ](./media/remoteapp-clients/Android1.png)
-2. Jelentkezzen be az e-mail címét, a szolgáltatás eléréséhez szükség. Koppintson a **Ismerkedés**.
+2. Az e-mail cím tooaccess hello szolgáltatást be kell toosign. Koppintson a **Ismerkedés**.
    
     ![Jelentkezzen be a parancssorba](./media/remoteapp-clients/Android2.png)
-3. A következő oldalon írja be a **e-mail cím** koppintson **Folytatás**. Ezzel megkezdődik a bejelentkezési folyamat az Azure Active Directoryval.
+3. Hello következő lapon írja be a **e-mail cím** koppintson **Folytatás**. Ezzel megkezdődik a hello bejelentkezési folyamat az Azure Active Directoryval.
    
     ![Első Azure Active Directory lap](./media/remoteapp-clients/Android3.png)
-4. Kövesse a képernyőn jelentkezzen be a Microsoft-fiók (korábbi nevén a "Live ID") vagy a szervezeti azonosítóval. Miután bejelentkezett, típusától kapott minden meghívókat felsoroló lapot. Ha, válassza ki a megbízható, és koppintson a meghívókat **végzett**.    
+4. Hello utasításokat kövesse a megjelenő hello képernyő toosign be a Microsoft-fiók (korábbi nevén a "Live ID") vagy a szervezeti azonosítóval. Miután bejelentkezett, típusától felsoroló összes hello meghívót kapott lapot. Ha, válassza ki a hello meghívókat megbízik, és koppintson **végzett**.    
    
     ![Meghívókat lap](./media/remoteapp-clients/Android4.png)
-5. Miután elfogadja a meghívót, Ön hozzáférhet az alkalmazások listáját az eszközre letöltődik és szeretné elérhetővé tenni a kapcsolódási Center. Koppintson az alkalmazások indításához használja azt.
+5. A meghívót, az alkalmazások listájának hello elfogadása után hozzáférést toowill letöltött tooyour eszköz kell rendelkeznie, és azt a csatlakozási központ hello. Koppintson a hello alkalmazások toostart használja azt.
    
     ![A hírcsatorna csatlakozási központ](./media/remoteapp-clients/Android5.png)
-6. Ha nincs meghívót, de a szolgáltatás továbbra is kipróbálhatja. Ehhez koppintson **ingyenes Ugrás** megjelenésekor.
+6. Ha nem rendelkezik még meghívót, továbbra is kipróbálása hello szolgáltatást. toodo tehát koppintson **toofree próbaverzió Ugrás** megjelenésekor.
    
     ![Kérdezzen rá hírcsatorna bemutató](./media/remoteapp-clients/Android6.png)
-7. Ez fogja hozzáférést biztosít egy alapvető házirendcsoport első RemoteApp-alkalmazások.
+7. Ekkor kap hozzáférés tooa alapvető alkalmazások tooget RemoteApp-t elindította.
    
     ![Azure RemoteApp-hírcsatorna bemutató](./media/remoteapp-clients/Android7.png)
 
 ## <a name="ios"></a>iOS
-Miután telepítette a Microsoft távoli asztal alkalmazás az App store-ból, megtalálhatja az alkalmazáslistában alatt **távoli asztali ügyfél**.
+Hello App store-ból hello Microsoft távoli asztal alkalmazás telepítése után megtalálja az alkalmazáslistában alatt **távoli asztali ügyfél**.
 
-1. Elindítani az alkalmazást számos lehetőséget kínál, egy üres kapcsolat középre, kivéve, ha már használja az alkalmazást. Ismerkedés az Azure RemoteApp, koppintson a Hozzáadás gombra **"" +""** koppintson **adja hozzá az Azure RemoteApp**.
+1. Indító hello app biztosít tooan üres csatlakozási központ, kivéve, ha már eddig használt hello alkalmazást. az Azure RemoteApp lépései tooget, koppintson a hello Hozzáadás gomb **"" +""** koppintson **adja hozzá az Azure RemoteApp**.
    
     ![Üres csatlakozási központ](./media/remoteapp-clients/IOS1.png)
-2. Meg kell bejelentkezni az e-mail címét, a folyamat elindításához a szolgáltatás eléréséhez írja be a **e-mail cím** koppintson **Folytatás**.
+2. Szüksége toosign be az e-mail cím tooaccess hello szolgáltatást, toostart folyamat, írja be a **e-mail cím** koppintson **Folytatás**.
    
     ![Jelentkezzen be a parancssorba](./media/remoteapp-clients/picture1.png)
-3. Kövesse a képernyőn a Microsoft-fiók (Live ID) vagy a szervezeti azonosítójával. Jelentkezzen be Miután bejelentkezett, típusától kapott minden meghívókat felsoroló lapot. Ha, válassza ki a megbízható, és koppintson a meghívókat **végzett**.
+3. Hello utasításokat kövesse a megjelenő hello képernyő toosign be a Microsoft-fiók (Live ID) vagy a szervezeti azonosítójával. Miután bejelentkezett, típusától felsoroló összes hello meghívót kapott lapot. Ha, válassza ki a hello meghívókat megbízik, és koppintson **végzett**.
    
     ![Meghívókat lap](./media/remoteapp-clients/IOS3.png)
-4. Miután elfogadja a meghívót, Ön hozzáférhet az alkalmazások listáját az eszközre letöltődik és szeretné elérhetővé tenni a kapcsolódási Center. Koppintson az alkalmazás elindításához és használatba egyikére.
+4. A meghívót, az alkalmazások listájának hello elfogadása után hozzáférést toowill letöltött tooyour eszköz kell rendelkeznie, és azt a csatlakozási központ hello. Koppintson a hello alkalmazások toolaunch egyikére, majd újrakezdi a használja azt.
    
     ![A hírcsatorna csatlakozási központ](./media/remoteapp-clients/IOS4.png)
-5. Ha nincs meghívót, de a szolgáltatás továbbra is kipróbálhatja. Ehhez koppintson **ingyenes Ugrás** megjelenésekor.
+5. Ha nem rendelkezik még meghívót, továbbra is kipróbálása hello szolgáltatást. toodo tehát koppintson **toofree próbaverzió Ugrás** megjelenésekor.
    
     ![Kérdezzen rá hírcsatorna bemutató](./media/remoteapp-clients/IOS5.png)
-6. Ez fogja hozzáférést biztosít egy alapvető házirendcsoport első RemoteApp-alkalmazások.
+6. Ekkor kap hozzáférés tooa alapvető alkalmazások tooget RemoteApp-t elindította.
    
     ![Azure RemoteApp-hírcsatorna bemutató](./media/remoteapp-clients/IOS6.png)
 
 ## <a name="mac-os-x"></a>Mac OS X
-Miután telepítette a Microsoft távoli asztal alkalmazás az App store-ból, megtalálhatja az alkalmazáslistában alatt **Microsoft távoli asztal**.
+Hello App store-ból hello Microsoft távoli asztal alkalmazás telepítése után megtalálja az alkalmazáslistában alatt **Microsoft távoli asztal**.
 
-1. Elindítani az alkalmazást számos lehetőséget kínál, egy üres kapcsolat középre, kivéve, ha már használja az alkalmazást. Ismerkedés az Azure RemoteApp, kattintson a **Azure RemoteApp** gombra.
+1. Indító hello app biztosít tooan üres csatlakozási központ, kivéve, ha már eddig használt hello alkalmazást. az Azure RemoteApp lépései tooget kattintson hello **Azure RemoteApp** gombra.
    
     ![Üres csatlakozási központ](./media/remoteapp-clients/Mac1.png)
-2. Meg kell bejelentkezni az e-mail címét, a folyamat elindításához a szolgáltatás eléréséhez koppintson **Ismerkedés**.
+2. Toosign kell be az e-mail cím tooaccess hello szolgáltatás, toostart feldolgozó, koppintson **Ismerkedés**.
    
     ![Jelentkezzen be a parancssorba](./media/remoteapp-clients/Mac2.png)
-3. A következő oldalon írja be a **e-mail cím** koppintson **Folytatás**. Ezzel megkezdődik a bejelentkezési folyamat során az Azure Active Directoryval.
+3. Hello következő lapon írja be a **e-mail cím** koppintson **Folytatás**. Ezzel megkezdődik a hello bejelentkezési folyamat során az Azure Active Directoryval.
    
     ![Első Azure Active Directory lap](./media/remoteapp-clients/picture2.png)
-4. Kövesse a képernyőn a Microsoft-fiók (Live ID) vagy a szervezeti azonosítójával. Jelentkezzen be Miután bejelentkezett, típusától kapott minden meghívókat felsoroló lapot. Ha, válassza ki a meghívót, megbízható, és zárja be a párbeszédpanelt.
+4. Hello utasításokat kövesse a megjelenő hello képernyő toosign be a Microsoft-fiók (Live ID) vagy a szervezeti azonosítójával. Miután bejelentkezett, típusától felsoroló összes hello meghívót kapott lapot. Ha, válassza ki a megbízható, és zárja be a párbeszédpanelt hello hello meghívókat.
    
     ![Meghívókat lap](./media/remoteapp-clients/Mac4.png)
-5. Miután elfogadja a meghívót, Ön hozzáférhet az alkalmazások listáját az eszközre letöltődik és szeretné elérhetővé tenni a kapcsolódási Center. Kattintson duplán az alkalmazás elindításához és használatba egyikét.
+5. A meghívót, az alkalmazások listájának hello elfogadása után hozzáférést toowill letöltött tooyour eszköz kell rendelkeznie, és azt a csatlakozási központ hello. Kattintson duplán a hello alkalmazások toolaunch majd újrakezdi a használja azt.
    
     ![A hírcsatorna csatlakozási központ](./media/remoteapp-clients/Mac5.png)
-6. Ha nincs meghívót, de a szolgáltatás továbbra is kipróbálhatja. Ehhez kattintson **ingyenes Ugrás** megjelenésekor.
+6. Ha nem rendelkezik még meghívót, továbbra is kipróbálása hello szolgáltatást. toodo kattintson **toofree próbaverzió Ugrás** megjelenésekor.
    
     ![Kérdezzen rá hírcsatorna bemutató](./media/remoteapp-clients/Mac6.png)
-7. Ez fogja hozzáférést biztosít egy alapvető házirendcsoport első RemoteApp-alkalmazások.
+7. Ekkor kap hozzáférés tooa alapvető alkalmazások tooget RemoteApp-t elindította.
    
     ![Azure RemoteApp-hírcsatorna bemutató](./media/remoteapp-clients/Mac7.png)
 
 ## <a name="windows-all-supported-versions-except-windows-phone"></a>Windows (Windows Phone kivételével az összes támogatott verzió)
-Az ügyfél automatikusan elindul a telepítés, azonban ha való hozzáférésre van szüksége később azt található neve alatt az alkalmazáslistában művelet befejeződése után **Azure RemoteApp**.
+hello ügyfél automatikusan elindul telepíti, azonban ha tooaccess kell azt újra később, található az alkalmazáslistában hello néven művelet befejeződése után **Azure RemoteApp**.
 
-1. Az ügyfél, az első képernyőn látható elindításához ésőbb Üdvözli az Azure Remoteapphoz. A folytatáshoz kattintson a **Ismerkedés**.
+1. Hello ügyfél, hello első képernyőn látható elindításához ésőbb üdvözlőlapjának tooAzure RemoteApp. tooproceed, kattintson a **Ismerkedés**.
    
-    ![Az Azure RemoteApp-ügyfélen kezdőlapja](./media/remoteapp-clients/Windows1.png)
-2. A következő oldalon indítja el a bejelentkezési folyamat az Azure RemoteApp az Azure Active Directoryval. Ez a folyamat ismerős, ha van Microsoft-szolgáltatásokkal a múltban kell kinéznie. Beírásával indítsa el a **e-mail cím** kattintson **Folytatás**.
+    ![Hello Azure RemoteApp-ügyfélen kezdőlapja](./media/remoteapp-clients/Windows1.png)
+2. hello következő elindul a hello bejelentkezési folyamat során az Azure RemoteApp az Azure Active Directoryval. Ez a folyamat ismerős, ha van Microsoft-szolgáltatásokkal a múltbeli hello kell kinéznie. Beírásával indítsa el a **e-mail cím** kattintson **Folytatás**.
    
     ![Első Azure Active Directory-kérés](./media/remoteapp-clients/Windows2.png)
-3. Kövesse a képernyőn a Microsoft-fiók (Live ID) vagy a szervezeti azonosítójával. Jelentkezzen be Miután bejelentkezett, típusától kapott minden meghívókat felsoroló lapot. Ha, válassza ki a megbízható, és kattintson a meghívókat **végzett**.
+3. Hello utasításokat kövesse a megjelenő hello képernyő toosign be a Microsoft-fiók (Live ID) vagy a szervezeti azonosítójával. Miután bejelentkezett, típusától felsoroló összes hello meghívót kapott lapot. Ha, válassza ki a hello meghívókat megbízik, és kattintson a **végzett**.
    
-    ![Az Azure RemoteApp-ügyfélen meghívókat lapja](./media/remoteapp-clients/Windows3.png)
-4. Miután elfogadja a meghívót, Ön hozzáférhet az alkalmazások listáját az eszközre letöltődik és szeretné elérhetővé tenni a kapcsolódási Center. Kattintson duplán az alkalmazás elindításához és használatba egyikét.
+    ![Hello Azure RemoteApp-ügyfélen meghívókat lapja](./media/remoteapp-clients/Windows3.png)
+4. A meghívót, az alkalmazások listájának hello elfogadása után hozzáférést toowill letöltött tooyour eszköz kell rendelkeznie, és azt a csatlakozási központ hello. Kattintson duplán a hello alkalmazások toolaunch majd újrakezdi a használja azt.
    
-    ![Az Azure RemoteApp ügyfél csatlakozási központ](./media/remoteapp-clients/Windows4.png)
-5. Ha nem küldött meghívót még, ne aggódjon van, a kezelt! Ön továbbra is elérheti a bemutató gyűjteményhez, amellyel tesztelheti, a szolgáltatás.
+    ![Kapcsolat Center hello Azure RemoteApp ügyfél](./media/remoteapp-clients/Windows4.png)
+5. Ha nem küldött meghívót még, ne aggódjon van, a kezelt! Hozzáférés tooa bemutató gyűjtemény, amellyel tesztelheti, hello szolgáltatás továbbra is kell.
    
     ![Azure RemoteApp-hírcsatorna bemutató](./media/remoteapp-clients/Windows5.png)
 
 ## <a name="windows-phone-81"></a>Windows Phone 8.1
-Miután telepítette a Microsoft távoli asztal alkalmazással a Windows Phone 8.1-tárolóból, megtalálhatja az alkalmazáslistában alatt **távoli asztal**.
+Windows Phone 8.1 hello áruházból hello Microsoft távoli asztal alkalmazás telepítése után megtalálja az alkalmazáslistában alatt **távoli asztal**.
 
-1. Elindítani az alkalmazást biztosítható a az Ön közvetlenül egy üres csatlakozási központ, kivéve, ha már használja az alkalmazást. Ismerkedés az Azure RemoteApp, koppintson a Hozzáadás gombra **"" +""** a képernyő alján.
+1. Indító hello alkalmazás számos lehetőséget kínál, közvetlenül tooan üres csatlakozási központ, kivéve, ha már eddig használt hello alkalmazást. az Azure RemoteApp lépései tooget, koppintson a hello Hozzáadás gomb **"" +""** üdvözlő képernyőt hello alján.
    
     ![Üres csatlakozási központ](./media/remoteapp-clients/WinPhone1.png)
 2. A következő koppintson **Azure RemoteApp**.
    
     ![Konfigurációelem-weblap hozzáadása](./media/remoteapp-clients/WinPhone2.png)
-3. Meg kell bejelentkezni az e-mail címét, a folyamat elindításához a szolgáltatás eléréséhez koppintson **csatlakozás**.
+3. Toosign kell be az e-mail cím tooaccess hello szolgáltatás, toostart feldolgozó, koppintson **csatlakozás**.
    
     ![Jelentkezzen be a parancssorba](./media/remoteapp-clients/WinPhone3.png)
-4. A következő oldalon írja be a **e-mail cím** koppintson **Folytatás**. Ezzel megkezdődik a bejelentkezési folyamat során az Azure Active Directoryval.
+4. Hello következő lapon írja be a **e-mail cím** koppintson **Folytatás**. Ezzel megkezdődik a hello bejelentkezési folyamat során az Azure Active Directoryval.
    
     ![Első Azure Active Directory lap](./media/remoteapp-clients/WinPhone4.png)
-5. Kövesse a képernyőn a Microsoft-fiók (Live ID) vagy a szervezeti azonosítójával. Jelentkezzen be Miután bejelentkezett, típusától kapott minden meghívókat felsoroló lapot. Ha, válassza ki a megbízható, és koppintson a meghívókat **mentése**.
+5. Hello utasításokat kövesse a megjelenő hello képernyő toosign be a Microsoft-fiók (Live ID) vagy a szervezeti azonosítójával. Miután bejelentkezett, típusától felsoroló összes hello meghívót kapott lapot. Ha, válassza ki a hello meghívókat megbízik, és koppintson **mentése**.
    
     ![Meghívókat lap](./media/remoteapp-clients/WinPhone5.png)
-6. Miután elfogadja a meghívót, Ön hozzáférhet az alkalmazások listáját az eszközre letöltődik és szeretné elérhetővé tenni a kapcsolódási Center. Koppintson az alkalmazás elindításához és használatba egyikére.
+6. A meghívót, az alkalmazások listájának hello elfogadása után hozzáférést toowill letöltött tooyour eszköz kell rendelkeznie, és azt a csatlakozási központ hello. Koppintson a hello alkalmazások toolaunch egyikére, majd újrakezdi a használja azt.
    
     ![A hírcsatorna csatlakozási központ](./media/remoteapp-clients/WinPhone6.png)
-7. Ha nincs meghívót, de a szolgáltatás továbbra is kipróbálhatja. Ehhez koppintson **Igen** megjelenésekor.
+7. Ha nem rendelkezik még meghívót, továbbra is kipróbálása hello szolgáltatást. Igen, koppintson toodo **Igen** megjelenésekor.
    
     ![Kérdezzen rá hírcsatorna bemutató](./media/remoteapp-clients/WinPhone7.png)
-8. Ez fogja hozzáférést biztosít egy alapvető házirendcsoport első RemoteApp-alkalmazások.
+8. Ekkor kap hozzáférés tooa alapvető alkalmazások tooget RemoteApp-t elindította.
    
     ![Azure RemoteApp-hírcsatorna bemutató](./media/remoteapp-clients/WinPhone8.png)
 

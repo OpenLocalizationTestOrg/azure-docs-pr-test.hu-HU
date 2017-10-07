@@ -1,6 +1,6 @@
 ---
-title: "Data Factory Azure másolása varázsló |} Microsoft Docs"
-description: "Ismerje meg az adatokat másolni a támogatott adatforrások mosdók a Data Factory Azure másolása varázsló használatával kapcsolatban."
+title: "aaaData gyári Azure másolása varázsló |} Microsoft Docs"
+description: "További információk a hogyan toouse hello adatok támogatott forrásokból toosinks Data Factory Azure másolása varázsló toocopy adatait."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,77 +14,77 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: spelluru
-ms.openlocfilehash: 53eaa650308979bc0953a6403baf1fd1b86f7420
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 188b3ae15f937b84a58aec1b979347ac8090abf9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-data-factory-copy-wizard"></a>Az Azure Data Factory másolása varázsló
-Az Azure Data Factory másolása varázsló megkönnyíti a folyamat választásával dolgozhat fel adatokat, amely általában az első lépés egy végpont integrációs forgatókönyvet. Az Azure Data Factory másolása varázsló áthaladás, ha nem kell bármely JSON-definíciók társított szolgáltatások, adathalmazok és adatcsatornák ismertetése. A varázsló automatikusan létrehozza a kijelölt adatforrás adatainak másolása a kiválasztott cél csővezeték. Ezenkívül másolása varázsló segít a szerzői időpontjában okozhatnak alatt álló adatok érvényesítéséhez. Ezzel időt takaríthat meg különösen ha meg vannak adatok bevitele először az adatforrásból. A varázsló elindításához kattintson a **adatok másolása** csempét a data factory kezdőlapján.
+hello Azure Data Factory másolása varázsló megkönnyíti a választásával dolgozhat fel adatokat, amely általában az első lépés egy végpont integrációs forgatókönyvet hello folyamatán. Amikor hello Azure Data Factory másolása varázsló keresztül haladó, nem kell toounderstand bármely JSON-definíciók társított szolgáltatások, adathalmazok és adatcsatornák. hello varázsló automatikusan hoz létre a folyamat toocopy adatok hello kijelölt adatok forrás toohello kiválasztott cél. Ezenkívül hello másolása varázsló segít toovalidate hello adatok azoknak a szerzői hello időpontban alatt okozhatnak. Ezzel időt takaríthat meg különösen ha meg vannak adatok bevitele hello az első alkalommal hello adatforrásból. toostart hello másolása varázsló, kattintson a hello **adatok másolása** hello kezdőlapján a data factory csempére.
 
 ![Másolás varázsló](./media/data-factory-copy-wizard/copy-data-wizard.png)
 
 ## <a name="designed-for-big-data"></a>A big data tervezett
-Ez a varázsló lehetővé teszi, hogy könnyedén helyezhetik át adatokat különböző forrásokból célhelyekre perc múlva. Után, nyissa meg a varázsló használatával, a másolási tevékenység során a folyamat automatikusan létrejön, függő Data Factory-entitások (társított szolgáltatások és adatkészletek) együtt. Nincsenek további lépéseket kell végrehajtani a folyamatot létrehozni.   
+Ez a varázsló lehetővé teszi számos forrásból toodestinations tooeasily áthelyezés adatait percben. Után hello varázsló en keresztül halad, a másolási tevékenység során a folyamat automatikusan létrejön, függő Data Factory-entitások (társított szolgáltatások és adatkészletek) együtt. További lépésekre nincs szükség toocreate hello folyamat.   
 
 ![Adatforrás kiválasztása](./media/data-factory-copy-wizard/select-data-source-page.png)
 
 > [!NOTE]
-> Részletes útmutatás egy minta folyamat adatok másolása az Azure blob-Azure SQL Database táblához, tekintse meg a [másolása varázsló az oktatóanyag](data-factory-copy-data-wizard-tutorial.md).
+> Részletes útmutatás toocreate egy folyamat toocopy mintaadatokat az Azure blob tooan Azure SQL Database táblából, lásd: hello [másolása varázsló az oktatóanyag](data-factory-copy-data-wizard-tutorial.md).
 >
 >
 
-A varázsló a big Data típusú adatok szem előtt, támogatja a különböző adatok és az Objektumtípusok Start úgy van kialakítva. Adat-előállító adatcsatornák, helyezze át a mappát, a fájlok vagy a táblák több száz hozhat létre. A varázsló támogatja az automatikus adatelőnézet, séma rögzítési és leképezés és az adatok szűrése.
+hello varázsló úgy van kialakítva, a big Data típusú adatok hello Start és támogatja a különböző adatok és az Objektumtípusok szem előtt. Adat-előállító adatcsatornák, helyezze át a mappát, a fájlok vagy a táblák több száz hozhat létre. hello varázsló támogatja az automatikus adatelőnézet, séma rögzítési és leképezés és az adatok szűrése.
 
 ## <a name="automatic-data-preview"></a>Automatikus megtekintés
-Ahhoz, hogy ellenőrizze, hogy az adatokat másolni kívánt megtekintheti a kijelölt adatforrásból származó adatok egy részét. Ezenkívül ha az adatok a fájlt, a varázsló a szövegfájlt a sor- és határolójel és séma automatikusan további elemzi.
+Megtekintheti a kijelölt adatforrás hello rendelés toovalidate hello adatok egy részét, hogy hello adatok mit toocopy. Emellett ha hello forrásadatok szövegfájl, hello másolása varázsló elemez hello szöveg toolearn hello sor és oszlop határolójel és séma automatikusan.
 
 ![Fájl formázási beállítások](./media/data-factory-copy-wizard/file-format-settings.png)
 
 ## <a name="schema-capture-and-mapping"></a>Séma rögzítési és -leképezés
-A séma, bemeneti adatokat előfordulhat, hogy a kimeneti adatokat egyes esetekben sémája nem egyezik meg. Ebben a forgatókönyvben kell hozzárendelni a cél séma oszlopok a forrás séma oszlopokat.
+a bemeneti adatok hello séma előfordulhat, hogy nem felel meg a hello sémának bizonyos esetekben a kimeneti adatok. Ebben az esetben kell hello forrás séma toocolumns hello cél séma toomap oszlopokat.
 
 > [!TIP]
-> A Másolás az SQL Server vagy az Azure SQL Database az Azure SQL Data Warehouse, ha a tábla nem létezik a céltár a Data Factory támogatják az adatforrás séma használatával automatikus tábla létrehozásához. A további [helyezze át az adatokat, és az Azure SQL Data Warehouse Azure Data Factory használatával](./data-factory-azure-sql-data-warehouse-connector.md).
+> Ha SQL Server vagy az Azure SQL Database az Azure SQL Data Warehouse, ha hello tábla nem létezik hello céltár, adat-előállító az adatok másolását támogatja adatforrás séma használatával automatikus tábla létrehozásához. A további [adatok tooand áthelyezése az Azure SQL Data Warehouse Azure Data Factory használatával](./data-factory-azure-sql-data-warehouse-connector.md).
 >
 
-A legördülő lista használatával olyan oszlopot válasszon ki a cél sémában oszlop leképezése a forrás-séma. A varázsló megpróbálja a mintát oszlopleképezés ismertetése. Érvényes ugyanilyen mintájú a többi oszlop, így nem kell kiválasztania a séma-hozzárendelése egyenként befejezéséhez oszlopokhoz. Ha szeretné, felülbírálhatja a leképezések az oszlopait egyenként a legördülő listák segítségével. A minta még pontosabb további oszlopok leképez válik. A varázsló folyamatosan frissíti a mintát, és végső soron a megfelelő mintáját megvalósítására oszlopleképezés eléri.     
+A legördülő lista tooselect hello séma toomap tooa forrásoszlop oszlopának hello cél séma használja. hello másolása varázsló megpróbál toounderstand oszlopleképezés a mintát. Azonos mintát toohello rest-hello oszlopok hello vonatkozik, hogy tooselect minden hello oszlopok nem kell külön-külön toocomplete hello séma-hozzárendelése. Ha szeretné, felülbírálhatja a leképezések hello legördülő listákból toomap hello oszlopok egyenként használatával. hello mintát még pontosabb további oszlopok leképez válik. hello másolása varázsló folyamatosan frissíti a hello mintát, és végső soron eléri hello jobb mintát hello oszlopleképezés meg szeretné-e tooachieve.     
 
 ![Séma-hozzárendelése](./media/data-factory-copy-wizard/schema-mapping.png)
 
 ## <a name="filtering-data"></a>Adatok szűrése
-Szűrheti a forrásadatok csak, amelyet a fogadó adattárba másolni kívánt adatok kiválasztásához. Szűrés csökkenti a fogadó adattárba másolandó adatok mennyiségét, és ezért javítja a teljesítményt, a másolási művelet. Egy relációs adatbázisban lévő adatok szűrése rugalmas lehetőséget biztosít az SQL-lekérdezési nyelv használatával, vagy az Azure blob mappában a fájlok [adat-előállító funkciók és változók](data-factory-functions-variables.md).   
+Adatok tooselect csak hello forrásadatokban másolt toobe toohello fogadó adattár jeleníthetők meg. Szűrés csökkenti a hello adatok toobe másolt toohello fogadó adatokat tárolja, és ezért javítja a hello átviteli hello másolási műveletek hello mennyiségét. Lehetővé teszi egy rugalmasan toofilter adatokat egy relációs adatbázisban hello SQL lekérdezési nyelv használatával, vagy egy Azure blob mappában a fájlok [adat-előállító funkciók és változók](data-factory-functions-variables.md).   
 
 ### <a name="filtering-of-data-in-a-database"></a>Egy adatbázis adatok szűrése
-Az alábbi képernyőfelvételen látható egy SQL lekérdezés használata a `Text.Format` függvény és `WindowStart` változó.
+hello alábbi képernyőfelvételen látható egy SQL-lekérdezést használ hello `Text.Format` függvény és `WindowStart` változó.
 
 ![Kifejezések ellenőrzése](./media/data-factory-copy-wizard/validate-expressions.png)
 
 ### <a name="filtering-of-data-in-an-azure-blob-folder"></a>Az adatok Azure blob mappában szűrése
-Adatok másolása egy mappába, amely alapján futásidőben határozza meg a mappa elérési változók is használhatja [rendszerváltozók](data-factory-functions-variables.md#data-factory-system-variables). A támogatott értékek: **{year}**, **{month}**, **{day}**, **{óra}**, **{perc}**, és **{egyéni}**. Például: inputfolder / {year} / {month} / {day}.
+Hello mappa elérési útja toocopy adatait tartalmazó mappa, amely alapján futásidőben határozza meg a változókat is használhat [rendszerváltozók](data-factory-functions-variables.md#data-factory-system-variables). hello támogatott értékek: **{year}**, **{month}**, **{day}**, **{óra}**, **{perc}**, és **{egyéni}**. Például: inputfolder / {year} / {month} / {day}.
 
-Tegyük fel, hogy rendelkezik-e bemeneti mappák a következő formátumban:
+Tegyük fel, hogy rendelkezik-e bemeneti hello formátuma a következő mappák:
 
     2016/03/01/01
     2016/03/01/02
     2016/03/01/03
     ...
 
-Kattintson a **Tallózás** gombra kattint, a **fájl vagy mappa**, keresse meg az egyik mappát (például 2016 -> 03 -> 01 -> 02), és kattintson a **válasszon**. Megtekintheti az `2016/03/01/02` a szövegmezőben. Most, cserélje le **2016** rendelkező **{year}**, **03** rendelkező **{month}**, **01** rendelkező **{day}** , és **02** rendelkező **{óra}**, és nyomja le az ENTER a **lapon** kulcs. Legördülő lista használatával válassza ki a formátumot az alábbi négy változók kell megjelennie:
+Hello kattintson **Tallózás** gombra kattint, a **fájl vagy mappa**, keresse meg a mappa tooone (például 2016 -> 03 -> 01 -> 02), és kattintson **válasszon**. Megtekintheti az `2016/03/01/02` hello szövegmezőben. Most, cserélje le **2016** rendelkező **{year}**, **03** rendelkező **{month}**, **01** rendelkező **{day}** , és **02** rendelkező **{óra}**, és nyomja le az hello **lapon** kulcs. Legördülő listák tooselect hello formátum négy változókhoz kell megjelennie:
 
 ![Rendszer változók használata](./media/data-factory-copy-wizard/blob-standard-variables-in-folder-path.png)   
 
-Ahogy az az alábbi képernyőfelvételen, használhatja a **egyéni** változó, és bármilyen [támogatott formázási karakterláncok](https://msdn.microsoft.com/library/8kb3ddd4.aspx). Válasszon egy mappát a struktúra, használja a **Tallózás** először gombra. Ezután cserélje le a értékét **{egyéni}**, és nyomja le az ENTER a **lapon** billentyűt megnyomva megtekintheti a szövegmezőben, ahová beírhatja a Formátum-karakterlánc.     
+Ahogy az alábbi képernyőfelvétel a hello, használhatja a **egyéni** változó és a [támogatott formázási karakterláncok](https://msdn.microsoft.com/library/8kb3ddd4.aspx). egy mappa struktúra, használjon hello tooselect **Tallózás** először gombra. Ezután cserélje le a értékét **{egyéni}**, és nyomja le az hello **lapon** kulcs toosee hello mezőbe írható hello formázó karakterlánc.     
 
 ![Egyéni változóval](./media/data-factory-copy-wizard/blob-custom-variables-in-folder-path.png)
 
 ## <a name="scheduling-options"></a>Ütemezési beállítások
-Futtathatja a másolási művelet egyszer vagy ütemezés (óránként, naponta, és így tovább). Mindkét lehetőség használható a hardverekről az összekötők környezetek, beleértve a helyszíni, a felhő és a helyi asztali példány között.
+Futtathatja hello másolási művelet egyszer vagy ütemezés (óránként, naponta, és így tovább). Mindkét lehetőség használható hello mélysége hello összekötők környezetek, beleértve a helyszíni, a felhő és a helyi asztali példány között.
 
-Egy egyszeri másolási művelet lehetővé teszi, hogy egy célra forrásból adatmozgás csak egyszer. Érvényes adatok bármilyen méretű és bármely támogatott formátumra. Az ütemezett másolatát lehetővé teszi, hogy az előírt ismétlődése adatokat másolhat. Gazdag beállításaihoz (például az újra gombra, időtúllépés és riasztások) segítségével konfigurálhatja az ütemezett másolatát.
+Egy egyszeri másolási művelet lehetővé teszi, hogy a forrás tooa cél az adatátvitel csak egyszer. Érvényes toodata tetszőleges méretű és bármely támogatott formátumra. ütemezett hello másolási lehetővé teszi toocopy adatok az előírt ismétlődése. Gazdag beállításaihoz (például az újra gombra, időtúllépés és riasztások) is használhat tooconfigure hello ütemezett másolása.
 
 ![Ütemezési tulajdonságok](./media/data-factory-copy-wizard/scheduling-properties.png)
 
 ## <a name="next-steps"></a>Következő lépések
-A Data Factory másolása varázsló segítségével hozzon létre egy folyamatot másolási tevékenység az első útmutatást lásd: [oktatóanyag: hozzon létre egy folyamatot, a másolása varázslóval](data-factory-copy-data-wizard-tutorial.md).
+A másolási tevékenység hello Data Factory másolása varázsló toocreate folyamat használatával gyorsan útmutatást lásd: [oktatóanyag: hozzon létre egy folyamatot, hello másolása varázsló használatával](data-factory-copy-data-wizard-tutorial.md).

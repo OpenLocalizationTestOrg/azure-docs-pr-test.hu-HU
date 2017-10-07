@@ -1,5 +1,5 @@
 ---
-title: "(elavult) Azure - ETS + STL - előrejelzés |} Microsoft Docs"
+title: "Azure - ETS + STL - előrejelzés aaa(deprecated) |} Microsoft Docs"
 description: "(elavult) Az előrejelzés - ETS + STL"
 services: machine-learning
 documentationcenter: 
@@ -16,38 +16,38 @@ ms.date: 01/06/2017
 ms.author: yijichen
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: a575af931a41b7a55eb2102f3553640a16099146
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 550d423898d46564936fdcfbf05b7c88d2e292c2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deprecated-forecasting---ets--stl"></a>(elavult) Az előrejelzés - ETS + STL
 
 > [!NOTE]
-> A Microsoft DataMarket használatból van, és ez az API már elavult. 
+> a Microsoft DataMarket hello használatból van, és ez az API már elavult. 
 > 
-> Sok hasznos példa kísérletek és API-k a [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). A gyűjtemény kapcsolatos további információkért lásd: [megosztást, és felderítik a Cortana Intelligence Gallery erőforrások](machine-learning-gallery-how-to-use-contribute-publish.md).
+> Sok hasznos példa kísérletek és API-kat az található hello [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). Gyűjteményelem hello kapcsolatos további információkért lásd: [megosztás és a Cortana Intelligence Gallery hello erőforrások felderítéséhez](machine-learning-gallery-how-to-use-contribute-publish.md).
 
-Ez [webszolgáltatás](https://datamarket.azure.com/dataset/aml_labs/demand_forecast) megvalósítja határozza Trend felbontás ellen (STL) és exponenciális simítás (ETS) modellek előrejelzéseket, a felhasználó által megadott korábbi adatok alapján történő létrehozásához. A termék igény szerinti növeli az év? Is szeretnék előre jelezni az értékesítés a Karácsony szezon az, hogy I hatékonyan megtervezheti a készlet? Előrejelzési modellek alkalmasak ilyen kérdések megoldására. A régebbi adatokat adott meg, ezek a modellek vizsgálja meg, rejtett trendek és a szezonalitás értékének előre jelezni jövőbeli trendeket. 
+Ez [webszolgáltatás](https://datamarket.azure.com/dataset/aml_labs/demand_forecast) implements határozza Trend felbontás ellen (STL) és exponenciális simítás (ETS) modellek tooproduce előrejelzéseket hello előzményadatokat hello felhasználó által megadott alapján. Az év adott termék növekedést igény szerint lesz hello? Is szeretnék előre jelezni a hello az értékesítés Karácsony szezon, így I hatékonyan megtervezheti a készlet? Előrejelzési modellek apt tooaddress vannak ilyen kérdéseket. Hello megadott múltbeli adatok, ezek a modellek vizsgálja meg, rejtett trendeket és a szezonalitás értékének toopredict jövőbeli trendeket. 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-> Ez a webszolgáltatás kell fenntartania – potenciálisan végig a mobilalkalmazások a webhelyen keresztül, vagy akár a helyi számítógépen, a felhasználókat például. De a webszolgáltatás célja is példa bemutatja, hogyan Azure Machine Learning webszolgáltatások fölött R-kód létrehozásához használható kiszolgálásához. Az R-kód csupán néhány sornyi és az Azure Machine Learning Studio egy gombját kattint egy kísérlet hozható létre az R-kód és webszolgáltatásként közzé. A webszolgáltatás majd közzé az Azure piactéren, és felhasználók és eszközök által felhasznált világszerte a szerző, a webszolgáltatás által infrastruktúra beállítás nélkül.  
+> Ez a webszolgáltatás kell fenntartania – potenciálisan végig a mobilalkalmazások a webhelyen keresztül, vagy akár a helyi számítógépen, a felhasználókat például. De hello hello webszolgáltatás célja is tooserve példa bemutatja, hogyan Azure Machine Learning webszolgáltatások használt toocreate fölött R-kód is lehet. Az R-kód csupán néhány sornyi és az Azure Machine Learning Studio egy gombját kattint egy kísérlet hozható létre az R-kód és webszolgáltatásként közzé. hello webszolgáltatás majd lehet közzétett toohello Azure piactéren, és a felhasználók és eszközök által felhasznált között hello world hello Szerző hello webszolgáltatás infrastruktúra beállítás nélkül.  
 > 
 > 
 
 ## <a name="consumption-of-web-service"></a>Felhasználási webszolgáltatás
-Ez a szolgáltatás 4 argumentumként fogadja, és kiszámítja az előrejelzések.
-A bemeneti argumentumok a következők:
+Ez a szolgáltatás 4 argumentumként fogadja, és hello előrejelzések számítja ki.
+hello bemeneti argumentumai a következők:
 
-* Gyakoriság - azt jelzi, hogy a nyers adatokat (napi vagy heti vagy havi/negyedéves/évente) gyakoriságát.
+* Gyakoriság - hello nyers adatok (napi vagy heti vagy havi/negyedéves/évente) hello gyakoriságát jelzi.
 * Horizon - jövőbeli előrejelzési időkereten belül.
-* Dátum - idő adja hozzá az új idő adatsorozat adatainak.
-* Érték – adja hozzá az új idő adatok sorozatértékek.
+* Dátum - adatok hozzáadása a hello új idő sorozat ideje.
+* Érték – hello új idő adatok sorozatértékek adja hozzá.
 
-A szolgáltatás a számított előre jelzett értékek eredménye.
+hello hello szolgáltatás eredménye hello előre jelzett értékek kiszámítása.
 
 A minta bemeneti lehet: 
 
@@ -56,11 +56,11 @@ A minta bemeneti lehet:
 * Dátum - 1/15/2012; 2/15/2012; 3 15/2012; 4/15/2012; 2012-5-15; 6/15/2012; 15/7/2012; 8 / 15/2012; a 9/15/2012; a 10/15/2012; a 11/15/2012; a 12/15/2012; 1/15/2013; 2/15/2013; 3/15/2013; 4/15/2013; 5 vagy 15/2013; 6/15/2013; 7/15/2013; 8 / 15/2013; 9/15/2013; 10/15/2013; 11/15/2013; 12/15/2013; 1/15/2014; 2/15/2014; 3/15/2014; 4/15/2014; 5 vagy 15/2014; 6/15/2014; 7/15/2014; 8 / 15/2014; 9/15/2014
 * Érték - 3.479; 3.68; 3.832; 3.941; 3.797; 3.586; 3.508; 3.731; 3.915; 3.844; 3.634; 3.549; 3.557; 3.785; 3.782; 3.601; 3.544; 3.556; 3.65; 3.709; 3.682; 3.511; 3.429; 3.51; 3.523; 3.525; 3.626; 3.695; 3.711; 3.711; 3.693; 3.571; 3.509
 
-> Ez a szolgáltatás az Azure piactéren kihelyezett egy OData-szolgáltatás; a POST vagy GET módszerrel elnevezése lehet. 
+> Ez a szolgáltatás az Azure piactér hello kihelyezett egy OData-szolgáltatás; a POST vagy GET módszerrel elnevezése lehet. 
 > 
 > 
 
-Többféleképpen is az automatizált módon a szolgáltatás fel (egy példa alkalmazás [Itt](http://microsoftazuremachinelearning.azurewebsites.net/StlEtsForecasting.aspx)).
+Többféleképpen is az automatizált módon hello szolgáltatás fel (egy példa alkalmazás [Itt](http://microsoftazuremachinelearning.azurewebsites.net/StlEtsForecasting.aspx)).
 
 ### <a name="starting-c-code-for-web-service-consumption"></a>C#-kódban a webes szolgáltatások felhasználásához megkezdése:
     public class Input
@@ -93,17 +93,17 @@ Többféleképpen is az automatizált módon a szolgáltatás fel (egy példa al
 
 
 ## <a name="creation-of-web-service"></a>Webes szolgáltatás létrehozása
-> Ez a webszolgáltatás Azure Machine Learning segítségével lett létrehozva. Az ingyenes próbaverzió, valamint a bevezető videó kísérletek létrehozásával és [közzétételi webes szolgáltatások](machine-learning-publish-a-machine-learning-web-service.md), lásd: [azure.com/ml](http://azure.com/ml). Az alábbiakban van egy Képernyőkép a kísérlet, amely a webes szolgáltatás, és példa kód létre minden egyes belül modulok.
+> Ez a webszolgáltatás Azure Machine Learning segítségével lett létrehozva. Az ingyenes próbaverzió, valamint a bevezető videó kísérletek létrehozásával és [közzétételi webes szolgáltatások](machine-learning-publish-a-machine-learning-web-service.md), lásd: [azure.com/ml](http://azure.com/ml). Az alábbiakban van egy képernyőfelvétel a hello webes szolgáltatás, és példa kódot az egyes hello modulok hello kísérlet belül létrehozott hello kísérlet.
 > 
 > 
 
-Azure Machine Learning belül egy új üres kísérlet létrehozásához. A minta bemeneti adatok feltöltése egy előre meghatározott adatkapcsolatú sémával. Az adatok kapcsolódó sémája egy [R-parancsfájl végrehajtása] [ execute-r-script] modul, amely STL és ETS előrejelzési modellek "stl", "ets" használatával hoz létre, és az r "előrejelzési" működik 
+Azure Machine Learning belül egy új üres kísérlet létrehozásához. A minta bemeneti adatok feltöltése egy előre meghatározott adatkapcsolatú sémával. Csatolt toohello adatok sémája egy [R-parancsfájl végrehajtása] [ execute-r-script] modul, amely STL és ETS előrejelzési modellek "stl", "ets" használatával hoz létre, és az r "előrejelzési" működik 
 
 ### <a name="experiment-flow"></a>Kísérlet folyamata:
 ![Kísérlet folyamata][2]
 
 #### <a name="module-1"></a>1. modul:
-    # Add in the CSV file with the data in the format shown below 
+    # Add in hello CSV file with hello data in hello format shown below 
 ![Mintaadatok][3]    
 
 #### <a name="module-2"></a>A modul 2:
@@ -134,10 +134,10 @@ Azure Machine Learning belül egy új üres kísérlet létrehozásához. A mint
     maml.mapOutputPort("data.forecast");
 
 ## <a name="limitations"></a>Korlátozások
-Ez egy nagyon egyszerű példa ETS + STL az előrejelzéshez. A fenti példa kódot is látható, nincs hiba alatt van megvalósítva, és a szolgáltatás feltételezi, hogy a változók értékei folyamatos/pozitív és a gyakoriság 1-nél nagyobb egész számnak kell lennie. A dátum és az érték vektorok hosszának meg kell egyeznie, és a idősorozat hosszabbnak kell lennie mint 2 * gyakoriságát. A dátum változó "hh/nn/éééé" formátumban kell felelnie.
+Ez egy nagyon egyszerű példa ETS + STL az előrejelzéshez. A fenti példa kódot hello is látható, nincs hiba alatt van megvalósítva, és hello szolgáltatás feltételezi, hogy minden hello változók értékei folyamatos/pozitív és hello gyakoriság 1-nél nagyobb egész számnak kell lennie. hello hello dátum és az érték vektorok hosszának kell hello azonos, és hello idősorozat hello hosszabbnak kell lennie mint 2 * gyakoriságát. hello dátum változó toohello formátum "hh/nn/éééé" kell igazodnia.
 
 ## <a name="faq"></a>GYIK
-Gyakori kérdések a felhasználás a webszolgáltatás vagy az Azure piactéren közzétételt, lásd: [Itt](machine-learning-marketplace-faq.md).
+Gyakori kérdések a felhasználás hello webszolgáltatás vagy az Azure piactér közzétételi toohello, lásd: [Itt](machine-learning-marketplace-faq.md).
 
 [1]: ./media/machine-learning-r-csharp-retail-demand-forecasting/retail-img1.png
 [2]: ./media/machine-learning-r-csharp-retail-demand-forecasting/retail-img2.png

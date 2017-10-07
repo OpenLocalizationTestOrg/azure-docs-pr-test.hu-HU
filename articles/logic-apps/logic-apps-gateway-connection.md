@@ -1,6 +1,6 @@
 ---
-title: "A helyszíni adatforrások elérése az Azure Logic Apps |} Microsoft Docs"
-description: "A helyszíni adatátjáró beállítása, a helyszíni adatforrások eléréséhez a logic Apps alkalmazásokból"
+title: "az Azure Logic Apps helyszíni kiszolgálón tárolt olyan adatforrások aaaAccess |} Microsoft Docs"
+description: "Hello helyszíni adatátjáró beállítása, hogy hozzáférhessen a helyszíni adatforrások a logic Apps alkalmazásokból"
 keywords: "adatok, a helyszíni, az adatok átvitele, a titkosítás és a adatforrások eléréséhez"
 services: logic-apps
 author: jeffhollan
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 07/13/2017
 ms.author: LADocs; dimazaid; estfan
-ms.openlocfilehash: 24793b83ca284fe9510fe21bc2d13b0589209d36
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1d3deaac5a095316ce78e224dab0c08559bc2ff2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="access-data-sources-on-premises-from-logic-apps-with-the-on-premises-data-gateway"></a>Hozzáférés a helyszíni a logic Apps alkalmazásokból, a helyszíni adatok átjáróval adatforrásokhoz
+# <a name="access-data-sources-on-premises-from-logic-apps-with-hello-on-premises-data-gateway"></a>Hozzáférés a helyszíni a logic Apps alkalmazásokból hello a helyszíni adatok átjáróval adatforrásokhoz
 
-A helyszíni adatforrások eléréséhez a logic Apps alkalmazásokat, egy helyszíni adatátjáró, támogatott összekötők logic Apps alkalmazásokat használhat beállítása. Az átjáró működik hídként, amelyen a gyors adatátvitel és a helyszíni adatforrások és a logic Apps alkalmazások között. Az átjáró továbbítja a titkosított csatornákon keresztül az Azure Service Bus helyszíni forrásból származó adatokat. Az összes forgalom származik, az átjáró ügynök biztonságos kimenő forgalmát. További információ [az átjáró működése](logic-apps-gateway-install.md#gateway-cloud-service). 
+a logic apps a helyi kiszolgálón tárolt olyan adatforrások tooaccess állítson be egy helyszíni adatátjárót, támogatott összekötők logic Apps alkalmazásokat használhat. hello átjáró működik hídként, amelyen a gyors adatátvitel és a helyszíni adatforrások és a logic Apps alkalmazások között. hello átjáró továbbítja a titkosított csatornákon keresztül hello Azure Service Bus helyszíni forrásból származó adatokat. Az összes forgalom származik, mint hello átjáró ügynök biztonságos kimenő forgalmát. További információ [hello adatátjáró működése](logic-apps-gateway-install.md#gateway-cloud-service). 
 
-Az átjáró a helyszíni e adatforrásokkal létesített kapcsolatokat is támogatja:
+hello átjárót a helyszíni kapcsolatok toothese adatforrások támogatja:
 
 *   BizTalk Server 2016
 *   DB2  
@@ -41,9 +41,9 @@ Az átjáró a helyszíni e adatforrásokkal létesített kapcsolatokat is támo
 *   SQL Server
 *   Teradata
 
-Ezeket a lépéseket a helyszíni adatátjáró beállítása a logic apps használható szemléltetik. További információ a támogatott összekötők: [az Azure Logic Apps összekötők](../connectors/apis-list.md). 
+Ezeket a lépéseket hogyan tooset hello fel a helyszíni adatok átjáró toowork a a logic apps megjelenítése. További információ a támogatott összekötők: [az Azure Logic Apps összekötők](../connectors/apis-list.md). 
 
-Az átjáró más szolgáltatásokkal való használatával kapcsolatos információkért lásd: ezek a cikkek:
+Hogyan toouse hello átjáró más szolgáltatásokkal kapcsolatos információkért lásd: ezek a cikkek:
 
 *   [Microsoft Power BI helyszíni adatátjáró](https://powerbi.microsoft.com/documentation/powerbi-gateway-onprem/)
 *   [Az Azure Analysis Services helyi adatátjáró](../analysis-services/analysis-services-gateway.md)
@@ -52,111 +52,111 @@ Az átjáró más szolgáltatásokkal való használatával kapcsolatos informá
 
 ## <a name="requirements"></a>Követelmények
 
-* Már rendelkeznie kell [az átjáró telepítve a helyi számítógép](logic-apps-gateway-install.md).
+* Már rendelkeznie kell [hello adatátjáró telepítve a helyi számítógép](logic-apps-gateway-install.md).
 
-* Amikor bejelentkezik az Azure portálra, akkor alkalmazza, ugyanazzal a munkahelyi vagy iskolai fiókkal, de a használt [telepítse a helyszíni adatátjáró](logic-apps-gateway-install.md#requirements). A bejelentkezési fiók is rendelkeznie kell Azure-előfizetés létrehozásakor egy átjáró-erőforráshoz az Azure-portálon az átjáró telepítéséhez használandó.
+* Bejelentkezéskor toohello Azure-portálon, hogy rendelkezik-e toouse hello ugyanazzal a munkahelyi vagy iskolai fiókkal, amely túl lett megadva[hello helyszíni adatátjáró telepítése](logic-apps-gateway-install.md#requirements). A bejelentkezési fiók is rendelkeznie kell egy Azure-előfizetés toouse létrehozásakor egy átjáró-erőforráshoz hello Azure-portálon az átjáró telepítéséhez.
 
-* Az átjáró telepítése már nem engedte, hogy az Azure átjáró-erőforráshoz. Az átjáró telepítésének csak egy Azure átjáró-erőforráshoz lehet társítani. Jogcím történik, ha az átjáró erőforrás létrehozása, hogy a telepítés nem érhető el az egyéb erőforrások.
+* Az átjáró telepítése már nem engedte, hogy az Azure átjáró-erőforráshoz. Az átjáró telepítési tooonly egy Azure átjáró-erőforráshoz lehet társítani. Hozza létre a hello átjáró erőforrás hello telepítési nem érhető el az egyéb erőforrások jogcím történik.
 
-## <a name="set-up-the-data-gateway-connection"></a>Az átjáró-kapcsolat beállítása
+## <a name="set-up-hello-data-gateway-connection"></a>Hello data gateway kapcsolat beállítása
 
-### <a name="1-install-the-on-premises-data-gateway"></a>1. A helyszíni adatátjáró telepítése
+### <a name="1-install-hello-on-premises-data-gateway"></a>1. Hello helyszíni adatátjáró telepítése
 
-Ha még nem tette meg, kövesse a [az helyszíni átjáró telepítésének lépéseit](logic-apps-gateway-install.md). A többi lépés a folytatás előtt győződjön meg arról, hogy az átjáró a helyi számítógépen telepítve.
+Ha még nem tette meg, kövesse a hello [lépéseket tooinstall hello helyszíni adatátjáró](logic-apps-gateway-install.md). Hello folytatása előtt más lépéseket, győződjön meg arról, hogy a helyi számítógépen telepítve hello adatátjáró.
 
 <a name="create-gateway-resource"></a>
-### <a name="2-create-an-azure-resource-for-the-on-premises-data-gateway"></a>2. Hozzon létre egy Azure-erőforrás a helyszíni adatok átjáró
+### <a name="2-create-an-azure-resource-for-hello-on-premises-data-gateway"></a>2. Hozzon létre egy Azure-erőforrás hello a helyszíni adatok átjáró
 
-Miután telepítette az átjárót a helyi számítógépen, létre kell hoznia az Ön data gateway elemmel olyan erőforrásként az Azure-ban. Ebben a lépésben az Azure-előfizetéshez is társítja az átjáró-erőforráshoz.
+Telepítése után hello átjáró a helyi számítógépen, létre kell hoznia az Ön data gateway, az Azure-ban erőforrásként. Ebben a lépésben az Azure-előfizetéshez is társítja az átjáró-erőforráshoz.
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com "Azure Portal") Győződjön meg arról, hogy az Azure ugyanazzal a munkahelyi vagy iskolai e-mail címet az átjáró telepítéséhez használt.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com "Azure-portálon"). Győződjön meg arról, hogy toouse hello Azure ugyanazzal a munkahelyi vagy iskolai e-mail címét használja a tooinstall hello átjáró.
 
-2. Az Azure-ban a bal oldali menüben válassza a **új** > **vállalati integrációs** > **helyszíni adatátjáró** itt látható módon:
+2. Hello bal oldali menüben az Azure-ban, válassza ki a **új** > **vállalati integrációs** > **helyszíni adatátjáró** itt látható módon:
 
    !["A helyszíni adatok gateway" található](./media/logic-apps-gateway-connection/find-on-premises-data-gateway.png)
 
-3. Az a **kapcsolat átjáró létrehozása** panelen meg az alábbi adatokat a data gateway erőforrás létrehozása:
+3. A hello **kapcsolat átjáró létrehozása** panelen adja meg a részleteket toocreate a data gateway erőforrás:
 
     * **Név**: Adjon meg egy nevet az átjáró-erőforráshoz. 
 
-    * **Előfizetés**: válassza ki az Azure-előfizetés társítása az átjáró-erőforráshoz. 
-    Ehhez az előfizetéshez kell lennie a Logic Apps alkalmazást tárolóként ugyanazt az előfizetést.
+    * **Előfizetés**: Válasszon hello Azure-előfizetés tooassociate az átjáró-erőforráshoz. 
+    Ehhez az előfizetéshez kell hello a Logic Apps alkalmazást tárolóként ugyanazt az előfizetést.
    
-      Az alapértelmezett előfizetés bejelentkezéshez használt Azure-fiók alapul.
+      hello alapértelmezett előfizetés hello Azure-fiókot, amelyet a toosign használt alapul.
 
     * **Erőforráscsoport**: hozzon létre egy erőforráscsoportot, vagy válasszon ki egy meglévő erőforráscsoportot üzembe helyezéséhez az átjáró-erőforráshoz. 
     Erőforráscsoportok segítségével gyűjteményként kapcsolódó Azure eszközöket kezelheti.
 
-    * **Hely**: Azure korlátozza a hely esetében az átjáró felhőszolgáltatáshoz során kiválasztott ugyanabban a régióban [átjáró telepítésének](logic-apps-gateway-install.md). 
+    * **Hely**: Azure korlátozza a hely toohello ugyanabban a régióban hello átjáró felhőszolgáltatás során kiválasztott [átjáró telepítésének](logic-apps-gateway-install.md). 
 
       > [!NOTE]
-      > Győződjön meg arról, hogy az átjáró erőforrás helye megegyezik-e az átjáró felhőalapú szolgáltatás helyét. Ellenkező esetben az átjáró telepítése nem jelenik meg, hogy a következő lépésben válassza ki a telepített átjárót listájában.
+      > Győződjön meg arról, hogy hello átjáró erőforrás helye megegyezik-e a hello átjáró felhőalapú szolgáltatás helyét. Ellenkező esetben az átjáró telepítése nem jelenik meg az Ön tooselect hello telepített átjárók listában hello következő lépésben.
       > 
       > Különböző régiókban is használhatja, az átjáró erőforrás és a logikai alkalmazásnak.
 
-    * **Telepítési neve**: Ha nincs kiválasztva, akkor az átjáró telepítésének, válassza ki a korábban telepített átjárót. 
+    * **Telepítési neve**: Ha nincs kiválasztva, akkor az átjáró telepítésének, válassza ki a korábban telepített hello átjáró. 
 
-    Az átjáró erőforrás hozzáadása az Azure irányítópultra, válassza a **rögzítés az irányítópulton**. 
+    tooadd hello átjáró erőforrás tooyour Azure irányítópultot, válassza a **PIN-kód toodashboard**. 
     Amikor elkészült, válassza ki a **létrehozása**.
 
     Példa:
 
-    ![Adja meg a helyszíni data gateway létrehozásához szükséges adatok](./media/logic-apps-gateway-connection/createblade.png)
+    ![Adja meg a részleteket toocreate a helyszíni adatátjáró](./media/logic-apps-gateway-connection/createblade.png)
 
-    Található, vagy tekintse meg az Ön data gateway fő Azure bal oldali menüjében, bármikor Ugrás **több szolgáltatások** > **vállalati integrációs** > **a helyszíni adatokhoz Átjárók**.
+    toofind vagy nézet, az Ön data gateway bármikor hello fő Azure bal oldali menüben lépjen túl **több szolgáltatások** > **vállalati integrációs** > **a helyszíni adatokhoz Átjárók**.
 
-    ![Ugrás a "Szolgáltatás", "Vállalati integrációs", "a helyszíni Data Gateways"](./media/logic-apps-gateway-connection/find-on-premises-data-gateway-enterprise-integration.png)
+    ![Nyissa meg túl "Szolgáltatás", "Vállalati integrációs", "A helyszíni Data Gateways"](./media/logic-apps-gateway-connection/find-on-premises-data-gateway-enterprise-integration.png)
 
 <a name="connect-logic-app-gateway"></a>
-### <a name="3-connect-your-logic-app-to-the-on-premises-data-gateway"></a>3. A Logic Apps alkalmazást csatlakozni a helyszíni adatátjáró
+### <a name="3-connect-your-logic-app-toohello-on-premises-data-gateway"></a>3. Csatlakozás a logic app toohello helyszíni adatátjáró
 
-Most, hogy a data gateway erőforrás elkészítette és az Azure-előfizetéshez társított erőforrás, a Logic Apps alkalmazást és az átjáró közötti kapcsolat létrehozása.
+Most, hogy a data gateway erőforrás elkészítette és az Azure-előfizetéshez társított erőforrás, a logic app és hello data gateway közötti kapcsolat létrehozása.
 
 > [!NOTE]
-> Az átjáró kapcsolódási helyet léteznie kell a Logic Apps alkalmazást ugyanabban a régióban, de használhatja a data gateway már egy másik régióban.
+> Az átjáró kapcsolódási helyet már léteznie kell hello azonos régióban legyen, mint a Logic Apps alkalmazást, de használhatja a data gateway már egy másik régióban.
 
-1. Az Azure-portálon hozzon létre, vagy nyissa meg a Logic Apps alkalmazást a Logic App tervezőben.
+1. Hozzon létre hello Azure-portálon, vagy nyissa meg a Logic Apps alkalmazást a Logic App tervezőben.
 
 2. Adjon hozzá egy összekötőt, amely támogatja a helyi kapcsolatokat, például az SQL Server.
 
-3. Válassza ki a következő sorrendben történik, **keresztül, a helyszíni adatátjáró**, adjon meg egy egyedi kapcsolatnevet és a szükséges adatokat, és válassza ki a használni kívánt adatok átjáró-erőforráshoz. Amikor elkészült, válassza ki a **létrehozása**.
+3. Válassza ki a következő hello sorrendben, **keresztül, a helyszíni adatátjáró**, adjon meg egy egyedi kapcsolatnevet hello szükséges információkat, és válassza a hello data gateway erőforrás, amelyet az toouse. Amikor elkészült, válassza ki a **létrehozása**.
 
    > [!TIP]
-   > Egy egyedi kapcsolatnevet segítségével könnyen később, hogy a kapcsolat azonosítására, különösen akkor, ha több kapcsolatot is létrehozhat. Ha alkalmazható, tartalmazzák a tartománynevet a felhasználónévhez. 
+   > Egy egyedi kapcsolatnevet segítségével könnyen később, hogy a kapcsolat azonosítására, különösen akkor, ha több kapcsolatot is létrehozhat. Ha alkalmazható, tartalmazzák a felhasználónévhez hello tartománynév. 
 
    ![Logic app és az adatok átjáró közötti kapcsolat létrehozása](./media/logic-apps-gateway-connection/blankconnection.png)
 
-Gratulálunk, az átjáró kapcsolat készen áll a használatára a Logic Apps alkalmazást.
+Gratulálunk, az átjáró kapcsolat készen áll a a logic app toouse.
 
 ## <a name="edit-your-gateway-connection-settings"></a>Az átjáró kapcsolat beállításainak szerkesztése
 
-Miután egy gateway-kapcsolatot hoz létre a Logic Apps alkalmazást, érdemes később frissíteni a beállításait, hogy adott kapcsolat.
+Miután gateway-kapcsolatot hoz létre a Logic Apps alkalmazást, érdemes lehet toolater frissítési hello beállításait, hogy adott kapcsolat.
 
-1. Az átjárókapcsolathoz megkeresése:
+1. toofind hello gateway-kapcsolatot:
 
-   * A logic app panelen a **Fejlesztőeszközök**, jelölje be **API kapcsolatok**. 
+   * A logic app panelen hello alatt **Fejlesztőeszközök**, jelölje be **API kapcsolatok**. 
    
-     A **API kapcsolatok** ablaktábla megjeleníti azokat a Logic Apps alkalmazást, beleértve az átjáró kapcsolatokat társított összes API kapcsolat.
+     Hello **API kapcsolatok** ablaktábla megjeleníti azokat a Logic Apps alkalmazást, beleértve az átjáró kapcsolatokat társított összes API kapcsolat.
 
-     ![Nyissa meg a logikai alkalmazáshoz, jelölje be a "API-kapcsolatok"](./media/logic-apps-gateway-connection/logic-app-find-api-connections.png)
+     ![Nyissa meg tooyour logikai alkalmazást, jelölje be a "API-kapcsolatok"](./media/logic-apps-gateway-connection/logic-app-find-api-connections.png)
 
-   * Vagy a fő Azure bal oldali menüben Ugrás **több szolgáltatások** > **webes & Mobile Services** > **API kapcsolatok** minden API-kapcsolatok esetén többek között a következőket átjárókapcsolatokhoz, az Azure-előfizetéshez társított. 
+   * Vagy hello fő Azure bal oldali menüben nyissa meg túl **több szolgáltatások** > **webes & Mobile Services** > **API kapcsolatok** minden API-kapcsolatok esetén többek között a következőket átjárókapcsolatokhoz, az Azure-előfizetéshez társított. 
 
-   * Vagy a fő Azure bal oldali menüben Ugrás **összes erőforrás** minden API-kommunikációhoz, beleértve az átjáró kapcsolatokat, az Azure-előfizetéshez társított.
+   * Vagy a hello fő Azure bal oldali menüben nyissa meg túl**összes erőforrás** minden API-kommunikációhoz, beleértve az átjáró kapcsolatokat, az Azure-előfizetéshez társított.
 
-2. Válassza ki a megtekintése, szerkesztése és válassza a kívánt átjáró kapcsolatot **szerkesztése API-kapcsolat**.
+2. Válassza ki a hello gateway-kapcsolatot, hogy szeretné, hogy tooview vagy Szerkesztés, és válassza **szerkesztése API-kapcsolat**.
 
    > [!TIP]
-   > Ha a frissítések nem lép érvénybe, próbálja meg [leállításával és újraindításával az átjáró Windows-szolgáltatás](./logic-apps-gateway-install.md#restart-gateway).
+   > Ha a frissítések nem lép érvénybe, próbálja meg [hello átjáró Windows-szolgáltatás leállításával és újraindításával](./logic-apps-gateway-install.md#restart-gateway).
 
 <a name="change-delete-gateway-resource"></a>
 ## <a name="switch-or-delete-your-on-premises-data-gateway-resource"></a>Váltás, vagy a helyszíni adatok átjáró erőforrás törlése
 
-Hozzon létre egy másik átjáró erőforrást, rendelje hozzá az átjárót egy másik erőforráscsoportban, vagy távolítsa el az átjáró-erőforráshoz, törölheti az átjáró-erőforráshoz az átjáró telepítésének befolyásolása nélkül. 
+toocreate egy másik átjáró-erőforráshoz, rendelje hozzá az átjárót egy másik erőforráscsoportban, vagy távolítsa el a hello átjáró-erőforráshoz, az nem befolyásolja a hello átjáró telepítésének hello átjáró erőforrás törlése. 
 
-1. A fő Azure bal oldali menüben Ugrás **összes erőforrás**. 
+1. Hello fő Azure bal oldali menüben nyissa meg túl**összes erőforrás**. 
 2. Keresse meg és jelölje ki az adatok átjáró-erőforráshoz.
-3. Válasszon **helyszíni Data Gateway**, és az erőforrás eszköztáron válassza **törlése**.
+3. Válasszon **helyszíni Data Gateway**, és a hello erőforrás eszköztárában kattintson **törlése**.
 
 <a name="faq"></a>
 ## <a name="frequently-asked-questions"></a>Gyakori kérdések

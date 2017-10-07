@@ -1,6 +1,6 @@
 ---
 title: "Azure-portálon: SQL Database georeplikációja |} Microsoft Docs"
-description: "A georeplikáció konfigurálása az Azure SQL Database az Azure-portálon és kezdeményezhet feladatátvételi"
+description: "Georeplikáció konfigurálása az Azure SQL Database hello Azure-portálon és kezdeményezhet feladatátvevő"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -15,85 +15,85 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 03/06/2016
 ms.author: carlrab
-ms.openlocfilehash: db90fad2fe397f0c8466db6bdc1bd8c8d1cf8f15
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 09cbbdb040f36c42593e3be87ce6db2238f36656
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-active-geo-replication-for-azure-sql-database-in-the-azure-portal-and-initiate-failover"></a>Aktív georeplikáció konfigurálása az Azure SQL Database az Azure-portálon és kezdeményezhet feladatátvételi
+# <a name="configure-active-geo-replication-for-azure-sql-database-in-hello-azure-portal-and-initiate-failover"></a>Aktív georeplikáció konfigurálása az Azure SQL Database hello Azure-portálon és kezdeményezhet feladatátvételi
 
-Ez a cikk bemutatja, hogyan aktív georeplikáció konfigurálja az SQL-adatbázis a [Azure-portálon](http://portal.azure.com) és a feladatátvétel kezdeményezése.
+Ez a cikk bemutatja, hogyan tooconfigure aktív georeplikáció SQL-adatbázis a hello [Azure-portálon](http://portal.azure.com) és tooinitiate feladatátvételi.
 
-Kezdeményezze a feladatátvételt az Azure portálon, lásd: [kezdeményezzen tervezett vagy nem tervezett feladatátvételt az Azure SQL Database és az Azure portál](sql-database-geo-replication-portal.md).
+hello Azure-portálon tooinitiate feladatátvétel lásd [kezdeményezze a tervezett vagy nem tervezett feladatátvétel az Azure SQL Database hello Azure-portálon](sql-database-geo-replication-portal.md).
 
-Aktív georeplikáció konfigurálása az Azure-portál használatával, a következő erőforrás van szükség:
+tooconfigure aktív georeplikáció hello Azure-portál használatával, a következő erőforrás hello kell:
 
-* Azure SQL-adatbázis: az elsődleges adatbázis egy másik földrajzi régióban replikálni kívánt.
+* Azure SQL-adatbázis: hello elsődleges adatbázis, amelyet az tooreplicate tooa különböző földrajzi régióban.
 
 > [!Note]
-Aktív georeplikáció ugyanahhoz az előfizetéshez adatbázisok között kell lennie.
+Aktív georeplikáció hello adatbázisok közé kell esnie ugyanahhoz az előfizetéshez.
 
 ## <a name="add-a-secondary-database"></a>A másodlagos adatbázis hozzáadása
-Az alábbi lépéseket a georeplikáció együttműködve hozzon létre egy új másodlagos adatbázis.  
+hello lépések hozzon létre egy új másodlagos adatbázis egy georeplikáció együttműködve.  
 
-Vegye fel a másodlagos adatbázist, az előfizetés tulajdonosa vagy a társtulajdonos kell lennie.
+egy másodlagos adatbázis tooadd hello előfizetés tulajdonosa vagy a társtulajdonos kell lennie.
 
-A másodlagos adatbázis ugyanaz a neve, mint az elsődleges adatbázissal, és alapértelmezés szerint rendelkezik ugyanazt a szolgáltatási szint. A másodlagos adatbázis egy adatbázis vagy a rugalmas készletekben található adatbázis lehet. További információkért lásd: [szolgáltatásszintek](sql-database-service-tiers.md).
-Miután a másodlagos létrehozták, és a rendezés, adatok kezdődik, az új másodlagos adatbázis replikálása az elsődleges adatbázisból.
+hello másodlagos adatbázis hello azonos nevet hello elsődleges adatbázisként van, és alapértelmezés szerint rendelkezik, hello azonos. hello másodlagos adatbázis egy adatbázis vagy a rugalmas készletekben található adatbázis lehet. További információkért lásd: [szolgáltatásszintek](sql-database-service-tiers.md).
+Miután másodlagos hello létrehozták, és a rendezés, az adatok kezdete hello elsődleges adatbázis toohello új másodlagos adatbázis replikálásához.
 
 > [!NOTE]
-> A parancs futása sikertelen, ha a partner adatbázis már létezik (például miatt leállítja egy előző georeplikáció kapcsolat).
+> Ha hello partner adatbázis már létezik (például miatt leállítja egy előző georeplikáció kapcsolat) hello parancs sikertelen lesz.
 > 
 
-1. Az a [Azure-portálon](http://portal.azure.com), keresse meg az adatbázis, amelyet a georeplikációért beállítása.
-2. Az SQL-adatbázis oldalon válassza ki a **georeplikáció**, majd válassza ki a régiót, a másodlagos adatbázis létrehozásához. Kiválaszthatja a régió eltérő a régió, az elsődleges adatbázist üzemeltető, de ajánlott a [párosított régió](../best-practices-availability-paired-regions.md).
+1. A hello [Azure-portálon](http://portal.azure.com), keresse meg, hogy szeretné-e az georeplikáció szolgáltatáshoz tooset toohello adatbázis.
+2. Hello SQL-adatbázis lapján válassza ki a **georeplikáció**, majd válassza ki a hello régió toocreate hello másodlagos adatbázist. Kiválaszthatja, hogy minden régióban hello régió hello elsődleges adatbázist üzemeltető, de azt javasoljuk, hogy hello [párosított régió](../best-practices-availability-paired-regions.md).
    
     ![Aktív georeplikáció konfigurálása](./media/sql-database-geo-replication-portal/configure-geo-replication.png)
-3. Válasszon, vagy adja meg a kiszolgáló és a másodlagos adatbázis tarifacsomagjának.
+3. Válassza ki, vagy konfigurálja a kiszolgáló hello és hello másodlagos adatbázis tarifacsomagjának.
    
     ![Másodlagos konfigurálása](./media/sql-database-geo-replication-portal/create-secondary.png)
-4. Opcionálisan hozzáadhat egy másodlagos adatbázis rugalmas készlethez. A másodlagos adatbázis létrehozása a készletben, kattintson a **rugalmas készlet** , és válasszon ki egy készletet, a célkiszolgálón. Egy készlet már léteznie kell a célkiszolgálón. Ez a munkafolyamat nem hoz létre a készletet.
-5. Kattintson a **létrehozása** hozzáadása a másodlagos.
-6. A másodlagos adatbázis jön létre, és az index-összehangolási folyamat megkezdése.
+4. Ha szükséges egy másodlagos adatbázis-tooan rugalmas készletet is hozzáadhat. toocreate hello másodlagos adatbázis egy tárolókészletben, kattintson a **rugalmas készlet** , és válasszon ki egy készletet hello cél kiszolgálón. Egy készlet hello célkiszolgálón már léteznie kell. Ez a munkafolyamat nem hoz létre a készletet.
+5. Kattintson a **létrehozása** tooadd hello másodlagos.
+6. hello másodlagos adatbázis jön létre, és a folyamat összehangolása hello kezdődik.
    
     ![Másodlagos konfigurálása](./media/sql-database-geo-replication-portal/seeding0.png)
-7. Ha az index-összehangolási folyamat befejeződik, a másodlagos adatbázis állapotát jeleníti meg.
+7. Hello összehangolása a folyamat befejeződése után a hello másodlagos adatbázis állapotát jeleníti meg.
    
     ![Teljes összehangolása](./media/sql-database-geo-replication-portal/seeding-complete.png)
 
 ## <a name="initiate-a-failover"></a>Kezdeményezzen feladatátvételt
 
-A másodlagos adatbázist már kapcsolható legyen, az elsődleges.  
+hello másodlagos adatbázis elsődleges kapcsolt toobecome hello lehet.  
 
-1. Az a [Azure-portálon](http://portal.azure.com), keresse meg az elsődleges adatbázis a georeplikáció együttműködve.
-2. SQL-adatbázis paneljén válassza **összes beállítás** > **georeplikáció**.
-3. Az a **másodlagos** listára, válassza ki az adatbázist az új elsődleges válik, és kattintson a kívánt **feladatátvételi**.
+1. A hello [Azure-portálon](http://portal.azure.com), keresse meg az elsődleges adatbázis toohello hello georeplikáció együttműködve.
+2. Hello SQL-adatbázis paneljén válassza **összes beállítás** > **georeplikáció**.
+3. A hello **másodlagos** lista, jelölje be hello adatbázis toobecome hello új elsődleges, és kattintson a **feladatátvételi**.
    
     ![feladatátvétel](./media/sql-database-geo-replication-failover-portal/secondaries.png)
-4. Kattintson a **Igen** megkezdéséhez a feladatátvételt.
+4. Kattintson a **Igen** toobegin hello feladatátvételi.
 
-A parancs azonnal vált, a másodlagos adatbázist az elsődleges szerepkör. 
+hello parancs azonnal kapcsolók hello másodlagos adatbázis hello elsődleges szerepkörhöz. 
 
-Egy rövid időre időintervalluma (terabájtok rendelése 0-25 másodpercig) nem érhető el, amíg a szerepkörök bekapcsolt állapotban van. Ha az elsődleges adatbázis több másodlagos adatbázist, a parancs automatikusan újrakonfigurálja a más másodlagos adatbázist az új elsődleges való kapcsolódáshoz. A teljes műveletet kell végrehajtani egy percen belül befejeződik normál körülmények között. 
+Egy rövid időszak során, ami két adatbázis nem érhető el (a 0 too25 másodperc hello sorrendben) közben hello szerepkörök bekapcsolt állapotban van. Ha a hello elsődleges adatbázis több másodlagos adatbázist, hello parancs automatikusan Átkonfigurálás hello más másodlagos tooconnect toohello új elsődleges. hello teljes műveletet kell végrehajtani kisebb, mint egy perc toocomplete normál körülmények között. 
 
 > [!NOTE]
-> Ez a parancs a gyors helyreállítás az adatbázis egy esetleges leállás esetén szolgál. Elindítja a feladatátvétel (kényszerített feladatátvételi) adatok szinkronizálás nélkül.  Ha az elsődleges online állapotban, és a tranzakciók végrehajtása, ha a parancs kiadása adatvesztést fordulhat elő. 
+> Ez a parancs a gyors helyreállításának hello adatbázis egy esetleges leállás esetén szolgál. Elindítja a feladatátvétel (kényszerített feladatátvételi) adatok szinkronizálás nélkül.  Ha elsődleges hello online állapotban, és a tranzakciók véglegesítése, amikor hello parancs adatvesztést fordulhat elő. 
 > 
 > 
 
 ## <a name="remove-secondary-database"></a>Távolítsa el a másodlagos adatbázis
-Ez a művelet végleg leáll a replikálás, a másodlagos adatbázishoz, és a szerepkör a másodlagos vált rendszeres írható-olvasható adatbázis. Ha a másodlagos adatbázis-kapcsolata megszakad, a parancs végrehajtása sikeres, de a másodlagos nem írható-olvasható kapcsolat után nem lett helyreáll.  
+Ez a művelet végleg megszakítja hello replikációs toohello másodlagos adatbázis, és módosításokat hello hello másodlagos tooa rendszeres olvasási és írási adatbázis szerepe. Ha hello kapcsolat toohello másodlagos adatbázis nem működő, hello parancs sikeresen befejeződik, de hello másodlagos biztosítja, nem lett írható-olvasható, amíg a kapcsolat helyreállítását követő rögzítésénél.  
 
-1. Az a [Azure-portálon](http://portal.azure.com), keresse meg az elsődleges adatbázis a georeplikáció együttműködve.
-2. Az SQL-adatbázis oldalon válassza ki a **georeplikáció**.
-3. Az a **másodlagos** listára, válassza ki a georeplikáció partnerség eltávolítása kívánt adatbázist.
+1. A hello [Azure-portálon](http://portal.azure.com), keresse meg az elsődleges adatbázis toohello hello georeplikáció együttműködve.
+2. Hello SQL-adatbázis lapján válassza ki a **georeplikáció**.
+3. A hello **másodlagos** lista, jelölje be hello adatbázis tooremove hello georeplikáció partneri kapcsolat áll fenn a kívánt.
 4. Kattintson a **állítsa le a replikációt**.
    
     ![Távolítsa el a másodlagos](./media/sql-database-geo-replication-portal/remove-secondary.png)
-5. Megnyílik egy ablak. Kattintson a **Igen** az adatbázis eltávolítása a georeplikáció partneri kapcsolat áll fenn. (Állítsa írható-olvasható adatbázis nem része semmilyen replikációs.)
+5. Megnyílik egy ablak. Kattintson a **Igen** tooremove hello adatbázis hello georeplikáció partneri kapcsolat áll fenn. (Állítani tooa olvasási és írási adatbázis nem része semmilyen replikációs.)
 
 ## <a name="next-steps"></a>Következő lépések
-* Aktív georeplikáció kapcsolatos további információkért lásd: [aktív georeplikáció](sql-database-geo-replication-overview.md).
+* További információ az aktív georeplikáció, toolearn lásd [aktív georeplikáció](sql-database-geo-replication-overview.md).
 * Egy üzleti folytonosság – áttekintés és forgatókönyvek: [üzleti folytonosság – áttekintés](sql-database-business-continuity.md).
 

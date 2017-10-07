@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Event Hubs rögzítése forgatókönyv |} Microsoft Docs"
-description: "Az Event Hubs rögzítése funkció használata bemutatása az Azure Python SDK-t használó mintaalkalmazás."
+title: "Event Hubs rögzítése forgatókönyv aaaAzure |} Microsoft Docs"
+description: "A minta által használt hello Azure Python SDK toodemonstrate hello Event Hubs rögzítése funkció használata."
 services: event-hubs
 documentationcenter: 
 author: djrosanova
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: darosa;sethm
-ms.openlocfilehash: a764a116755c20f60e92e553bd7c896425272b85
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1737dcca283711d863aa970db0e80ae71814e666
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-hubs-capture-walkthrough-python"></a>Event Hubs rögzítése forgatókönyv: Python
 
-Event Hubs rögzítése rendszerben, amely lehetővé teszi, hogy automatikusan a streamelési adatok az eseményközpont számára egy Azure Blob storage-fiókot az Ön által választott az Event hubs szolgáltatás. Ez a funkció megkönnyíti, hogy a valós idejű streamelési adatok kötegfeldolgozási végrehajtásához. A cikkből megtudhatja, hogyan használható az Event Hubs rögzítése a Python. További információ az Event Hubs rögzítése: a [a cikk áttekintése](event-hubs-archive-overview.md).
+Event Hubs rögzítése egyik funkciója, amely lehetővé teszi, hogy tooautomatically Event Hubs biztosítanak az event hub tooan az Ön által választott Azure Blob storage-fiók adatainak streaming hello. Ez a funkció lehetővé teszi a valós idejű streamelési adatok könnyen tooperform kötegfeldolgozási. Ez a cikk ismerteti, hogyan toouse Event Hubs rögzítése a Python. Event Hubs rögzítése kapcsolatos további információkért lásd: hello [a cikk áttekintése](event-hubs-archive-overview.md).
 
-Ebben a példában a [Azure Python SDK](https://azure.microsoft.com/develop/python/) a rögzítése funkció bemutatásához. A sender.py program elküldi szimulált környezeti telemetriai Event Hubs JSON formátumban. Az event hubs blob-tároló kötegekben telepítse ezeket az adatokat írni az rögzítése funkció használatára van konfigurálva. A capturereader.py app majd beolvassa a blobok eszközönként egy hozzáfűző fájlt hoz létre, majd írja az adatokat .csv fájlokba.
+Ezt a mintát használ hello [Azure Python SDK](https://azure.microsoft.com/develop/python/) toodemonstrate hello rögzítése funkció. hello sender.py program tooEvent hubok elküldi szimulált környezeti telemetriai adatok JSON formátumban. hello eseményközpont beállításai toouse hello rögzítése funkció toowrite az adattárolás tooblob kötegekben. hello capturereader.py app majd beolvassa a blobok és eszközönként egy hozzáfűző fájlt hoz létre, majd írja az hello adatokat .csv fájlok.
 
 ## <a name="what-will-be-accomplished"></a>Az oktatóanyag célja
 
-1. Hozzon létre egy Azure Blob Storage-fiókot és egy blob tároló belül, az Azure portál használatával.
-2. Hozzon létre egy Eseményközpontba névtér, az Azure portál használatával.
-3. Létrehoz egy eseményközpontot a rögzítési szolgáltatás engedélyezve van, az Azure portál használatával.
-4. Adatok küldése az event hubs egy Python-parancsfájl.
-5. Olvassa be a fájlok rögzítését, illetve dolgozza fel őket másik Python-parancsfájl.
+1. Hozzon létre egy Azure Blob Storage-fiókot és egy blob tároló belül, hello Azure-portál használatával.
+2. Hozzon létre egy Eseményközpontba névtér hello Azure-portál használatával.
+3. Hozzon létre egy eseményközpontba hello rögzítési szolgáltatás engedélyezve van, hello Azure-portál használatával.
+4. Adatok toohello event hubs egy Python-parancsfájl küldése.
+5. Hello fájlok olvasásának hello rögzítési és dolgozza fel őket másik Python-parancsfájl.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -43,18 +43,18 @@ Ebben a példában a [Azure Python SDK](https://azure.microsoft.com/develop/pyth
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
 ## <a name="create-an-azure-storage-account"></a>Azure Storage-fiók létrehozása
-1. Jelentkezzen be az [Azure Portalra][Azure portal].
-2. A portál bal oldali navigációs ablaktábláján kattintson **új**, majd kattintson a **tárolási**, és kattintson a **Tárfiók**.
-3. Töltse ki a mezőket a storage-fiók panelen, és kattintson a **létrehozása**.
+1. Jelentkezzen be toohello [Azure-portálon][Azure portal].
+2. Hello portal hello bal oldali navigációs ablaktábláján kattintson **új**, majd kattintson a **tárolási**, és kattintson a **Tárfiók**.
+3. Töltse ki a storage-fiók panelen hello hello mezőket, és kattintson a **létrehozása**.
    
    ![][1]
-4. Miután meggyőződött arról a **központi telepítések sikeres** üzenet, kattintson a nevére, az új tárfiók és a a **Essentials** panelen kattintson a **Blobok**. Ha a **Blob szolgáltatás** panel nyílik meg, kattintson a **+ tároló** tetején. A tároló neve **rögzítése**, majd zárja be a **Blob szolgáltatás** panelen.
-5. Kattintson a **hívóbetűk** a bal oldali panelen, és másolja a tárfiók nevét és értékét a **key1**. Ezeket az értékeket a Jegyzettömb vagy más ideiglenes helyre mentse.
+4. Miután meggyőződött arról, hogy hello **központi telepítések sikeres** üzenetet, kattintson az új tárfiók hello és hello hello neve **Essentials** panelen kattintson a **Blobok**. Ha hello **Blob szolgáltatás** panel nyílik meg, kattintson a **+ tároló** hello tetején. Név hello tároló **rögzítése**, majd zárja be hello **Blob szolgáltatás** panelen.
+5. Kattintson a **hívóbetűk** a hello bal oldali panelen, és másolja hello hello tárolási fiók nevét és értékét hello **key1**. Ezen értékek tooNotepad vagy más ideiglenes helyre mentse.
 
-## <a name="create-a-python-script-to-send-events-to-your-event-hub"></a>A Python-parancsfájl események küldése az eseményközpont létrehozása
+## <a name="create-a-python-script-toosend-events-tooyour-event-hub"></a>A Python parancsfájl toosend események tooyour eseményközpont létrehozása
 1. Nyissa meg a kedvenc Python-szerkesztőt, például a [Visual Studio Code][Visual Studio Code].
-2. Hozzon létre nevű parancsfájl **sender.py**. Ez a parancsfájl 200 események küldése az eseményközpont. Elküldött JSON egyszerű környezeti értékek.
-3. Az alábbi kód beillesztése sender.py:
+2. Hozzon létre nevű parancsfájl **sender.py**. Ez a parancsfájl 200 események tooyour eseményközpont küld. Elküldött JSON egyszerű környezeti értékek.
+3. Illessze be a következő kódot a sender.py hello:
    
   ```python
   import uuid
@@ -75,13 +75,13 @@ Ebben a példában a [Azure Python SDK](https://azure.microsoft.com/develop/pyth
           sbs.send_event('INSERT YOUR EVENT HUB NAME', s)
       print y
   ```
-4. A névtér nevét, a kulcs értéke és az eseményközpont neveként az Event Hubs névtér létrehozása után beszerzett az előzőekben látható kód frissítése.
+4. Hello megelőző kód toouse, a névtér nevét, a kulcs értékét és a eseményközpont neveként beolvasott hello Event Hubs névtér létrehozása után frissítse.
 
-## <a name="create-a-python-script-to-read-your-capture-files"></a>A rögzítési fájljainak olvasása a Python-parancsfájl létrehozása
+## <a name="create-a-python-script-tooread-your-capture-files"></a>Hozzon létre egy Python-parancsfájl tooread a rögzítési fájlok
 
-1. Töltse ki a panelen, majd kattintson **létrehozása**.
-2. Hozzon létre nevű parancsfájl **capturereader.py**. Ez a parancsfájl beolvassa a rögzített fájlok, és létrehoz egy fájlt eszközönként csak az eszköznek adatokat írni.
-3. Az alábbi kód beillesztése capturereader.py:
+1. Töltse ki a hello panelt, és kattintson a **létrehozása**.
+2. Hozzon létre nevű parancsfájl **capturereader.py**. Ez a parancsfájl beolvassa a hello rögzített fájlok, és létrehoz egy fájlt egy eszköz toowrite hello adatok kizárólag az eszköznek.
+3. Illessze be a következő kódot a capturereader.py hello:
    
   ```python
   import os
@@ -125,10 +125,10 @@ Ebben a példában a [Azure Python SDK](https://azure.microsoft.com/develop/pyth
           block_blob_service.delete_blob(container, blob.name)
   startProcessing('YOUR STORAGE ACCOUNT NAME', 'YOUR KEY', 'capture')
   ```
-4. Ügyeljen arra, hogy illessze be a megfelelő értékeket a tárfiók nevét és a kulcs hívásában `startProcessing`.
+4. Lehet, hogy toopaste hello megfelelő értékeket a tárfiók nevét és a kulcsot a hello hívás túl`startProcessing`.
 
-## <a name="run-the-scripts"></a>A parancsfájlok futtatása
-1. Nyisson meg egy parancssort, a Python a elérési úttal, és futtassa az előfeltételként szükséges Python-csomagok parancsok:
+## <a name="run-hello-scripts"></a>Hello parancsfájlok futtatása
+1. Nyisson meg egy parancssort, a Python a elérési útvonalát a, és futtassa a parancsokat tooinstall Python-csomagokat:
    
   ```
   pip install azure-storage
@@ -136,35 +136,35 @@ Ebben a példában a [Azure Python SDK](https://azure.microsoft.com/develop/pyth
   pip install avro
   ```
    
-  Ha egy korábbi vagy az azure-tároló, vagy az azure, szükség lehet használni a **--frissítése** beállítás
+  Ha egy korábbi vagy az azure-tároló, vagy az azure, szükség lehet a toouse hello **--frissítése** beállítás
    
-  Előfordulhat, hogy szükség futtassa a következő (a legtöbb rendszeren nem szükséges):
+  Szükség esetén toorun hello követve (a legtöbb rendszeren nem szükséges):
    
   ```
   pip install cryptography
   ```
-2. Módosítsa a könyvtárat, ahol csak menteni szeretné sender.py és capturereader.py, és futtassa a parancsot:
+2. Módosítsa a directory toowherever sender.py és capturereader.py mentette, majd futtassa ezt a parancsot:
    
   ```
   start python sender.py
   ```
    
-  Ez a parancs futtatásához a küldő új Python folyamat elindul.
-3. Most Várjon néhány percet a rögzítési futtatásához. Írja be a következő parancsot az eredeti parancs ablakba:
+  Egy új Python folyamat toorun hello küldő indítja el.
+3. Most Várjon néhány percet a hello rögzítési toorun. Írja be a következő parancsot az eredeti parancs ablakba hello:
    
    ```
    python capturereader.py
    ```
 
-   A rögzítési processzor a helyi címtárszolgáltatásban töltheti le a fiókot vagy a tároló összes blobjának használja. Feldolgozza azokat, amelyek nem üres, és kiírja az eredményeket a .csv fájlok a helyi könyvtárba.
+   A rögzítési processzor használ hello helyi könyvtár toodownload hello fiók vagy a tároló az összes hello BLOB. Feldolgozza azokat, amelyek nem üres, és kiírja a hello eredményeket csv-fájlként hello helyi könyvtárba.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az alábbi webhelyeken további információt talál az Event Hubsról:
+További információ az Event Hubs érhetők el a következő hivatkozások hello:
 
 * [Az Event hubs – áttekintés rögzítése][Overview of Event Hubs Capture]
 * [Az Event Hubsot használó teljes mintaalkalmazás][sample application that uses Event Hubs].
-* Az [eseményfeldolgozás horizontális felskálázása az Event Hubs használatával][Scale out Event Processing with Event Hubs] – példa.
+* Hello [esemény feldolgozása az Event Hubs kibővítési] [ Scale out Event Processing with Event Hubs] minta.
 * [Event Hubs – áttekintés][Event Hubs overview]
 
 [Azure portal]: https://portal.azure.com/

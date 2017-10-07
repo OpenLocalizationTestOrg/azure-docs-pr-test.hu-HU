@@ -1,5 +1,5 @@
 ---
-title: "(elavult) Normális eloszlás Web Service Suite - Azure |} Microsoft Docs"
+title: "aaa(deprecated) normális eloszlás Web Service Suite - Azure |} Microsoft Docs"
 description: "(elavult) Normális eloszlás Web Service-csomag"
 services: machine-learning
 documentationcenter: 
@@ -16,69 +16,69 @@ ms.date: 01/06/2017
 ms.author: ireiter
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: 79d1621330ad56b0c62ca46cfac424c2306e371f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 8bdb5afd9fee88587f548d7c5299480f64289bbe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deprecated-normal-distribution-suite"></a>(elavult) Normál terjesztési csomag
 
 > [!NOTE]
-> A Microsoft DataMarket használatból van, és ez az API már elavult. 
+> a Microsoft DataMarket hello használatból van, és ez az API már elavult. 
 > 
-> Sok hasznos példa kísérletek és API-k a [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). A gyűjtemény kapcsolatos további információkért lásd: [megosztást, és felderítik a Cortana Intelligence Gallery erőforrások](machine-learning-gallery-how-to-use-contribute-publish.md).
+> Sok hasznos példa kísérletek és API-kat az található hello [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). Gyűjteményelem hello kapcsolatos további információkért lásd: [megosztás és a Cortana Intelligence Gallery hello erőforrások felderítéséhez](machine-learning-gallery-how-to-use-contribute-publish.md).
 
-A normál terjesztési Suite egy olyan minta webszolgáltatások ([generátor](https://datamarket.azure.com/dataset/aml_labs/ndg7), [ki osztóérték Számológép](https://datamarket.azure.com/dataset/aml_labs/ndq5), [valószínűség Számológép](https://datamarket.azure.com/dataset/aml_labs/ndp5)), amely megkönnyíti a létrehozása és kezelése normál terjesztési. A szolgáltatások lehetővé teszik, egy normál terjesztési feladatütemezési hossza, az adott valószínűséggel quantiles kiszámítása, és az egy adott ki osztóérték valószínűség kiszámítása létrehozásakor. A szolgáltatások bocsát ki a kijelölt szolgáltatás alapján különböző kimenetek (lásd az alábbi leírása). A normál terjesztési Suite az R funkciók qnorm, rnorm és pnorm, amely R statisztikák csomagban található alapul.
+hello normális eloszlás Suite egy olyan minta webszolgáltatásokat ([generátor](https://datamarket.azure.com/dataset/aml_labs/ndg7), [ki osztóérték Számológép](https://datamarket.azure.com/dataset/aml_labs/ndq5), [valószínűség Számológép](https://datamarket.azure.com/dataset/aml_labs/ndp5)), amelyekkel létrehozása és kezelése normál terjesztési. hello szolgáltatások lehetővé teszik, hogy egy normál terjesztési feladatütemezési hossza, az adott valószínűséggel quantiles kiszámítása, és az egy adott ki osztóérték valószínűség kiszámítása létrehozásakor. Hello szolgáltatások bocsát ki a kijelölt hello szolgáltatás alapján különböző kimenetek (lásd az alábbi leírása). hello normális eloszlás Suite hello R funkciók qnorm rnorm és pnorm, amely R statisztikák csomagban található alapul.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-> Ez a webszolgáltatás kell fenntartania – potenciálisan végig a mobilalkalmazások a webhelyen keresztül, vagy akár a helyi számítógépen, a felhasználókat például. De a webszolgáltatás célja is példa bemutatja, hogyan Azure Machine Learning webszolgáltatások fölött R-kód létrehozásához használható kiszolgálásához. Az R-kód csupán néhány sornyi és az Azure Machine Learning Studio egy gombját kattint egy kísérlet hozható létre az R-kód és webszolgáltatásként közzé. A webszolgáltatás majd közzé az Azure piactéren, és felhasználók és eszközök által felhasznált világszerte a szerző, a webszolgáltatás által infrastruktúra beállítás nélkül.  
+> Ez a webszolgáltatás kell fenntartania – potenciálisan végig a mobilalkalmazások a webhelyen keresztül, vagy akár a helyi számítógépen, a felhasználókat például. De hello hello webszolgáltatás célja is tooserve példa bemutatja, hogyan Azure Machine Learning webszolgáltatások használt toocreate fölött R-kód is lehet. Az R-kód csupán néhány sornyi és az Azure Machine Learning Studio egy gombját kattint egy kísérlet hozható létre az R-kód és webszolgáltatásként közzé. hello webszolgáltatás majd lehet közzétett toohello Azure piactéren, és a felhasználók és eszközök által felhasznált között hello world hello Szerző hello webszolgáltatás infrastruktúra beállítás nélkül.  
 > 
 > 
 
 ## <a name="consumption-of-web-service"></a>Felhasználási webszolgáltatás
-A normál terjesztési csomag a következő 3 szolgáltatásokat tartalmazza.
+hello normális eloszlás csomag magában foglalja a következő 3 szolgáltatások hello.
 
 ### <a name="normal-distribution-quantile-calculator"></a>Normális eloszlás ki osztóérték Számológép
-Ez a szolgáltatás a normális eloszlás 4 argumentumként fogadja, és a társított ki osztóérték számítja ki.
+Ez a szolgáltatás a normális eloszlás 4 argumentumként fogadja, és társított hello ki osztóérték számítja ki.
 
-A bemeneti argumentumok a következők:
+hello bemeneti argumentumai a következők:
 
 * p - egy egyetlen, a normális eloszlás esemény valószínűségét. 
-* Közepes – normális eloszlás középértékét.
-* SD - normális eloszlás szórását. 
-* Ügyféloldali - L alsó részén a telepítési és a terjesztési felső oldalán U.
+* Közepes – hello normális eloszlás értékeinek középértéke.
+* SD - hello normális eloszlás szórás. 
+* Ügyféloldali - L hello alsó részén hello terjesztési és U hello hello terjesztési felső oldalán.
 
-A szolgáltatás a számított ki az adott valószínűséggel társított osztóérték eredménye.
+hello hello szolgáltatás eredménye hello számított ki, amely kapcsolódik az adott valószínűség hello osztóérték.
 
 ### <a name="normal-distribution-probability-calculator"></a>Normális eloszlás valószínűség Számológép
-Ez a szolgáltatás a normális eloszlás 4 argumentumként fogadja, és kiszámítja a társított valószínűség.
+Ez a szolgáltatás a normális eloszlás 4 argumentumként fogadja, és kiszámítja az hello rendelt valószínűség.
 
-A bemeneti argumentumok a következők:
+hello bemeneti argumentumai a következők:
 
 * q - a normál terjesztési esemény egy egyetlen ki azt osztóérték. 
-* Közepes – normális eloszlás középértékét.
-* SD - normális eloszlás szórását. 
-* Ügyféloldali - L alsó részén a telepítési és a terjesztési felső oldalán U.
+* Közepes – hello normális eloszlás értékeinek középértéke.
+* SD - hello normális eloszlás szórás. 
+* Ügyféloldali - L hello alsó részén hello terjesztési és U hello hello terjesztési felső oldalán.
 
-A szolgáltatás a számított annak valószínűségét, hogy az adott ki osztóérték társított eredménye.
+hello hello szolgáltatás eredménye számított hello annak valószínűségét, hogy a megadott ki osztóérték hello van társítva.
 
 ### <a name="normal-distribution-generator"></a>Normális eloszlás generátor
-Ez a szolgáltatás fogadja el a normális eloszlás 3 argumentum, és általában elosztott véletlenszerű számsorozatot állít elő. A következő argumentumok belül a kérelem hozzá kell adni:
+Ez a szolgáltatás fogadja el a normális eloszlás 3 argumentum, és általában elosztott véletlenszerű számsorozatot állít elő. hello következő szabad megadni típusargumentumot tooit hello kérelem belül:
 
-* n - megfigyelések száma. 
-* Közepes – normális eloszlás középértékét.
-* SD - normális eloszlás szórását. 
+* n - megfigyelések hello száma. 
+* Közepes – hello normális eloszlás értékeinek középértéke.
+* SD - hello normális eloszlás szórás. 
 
-A szolgáltatás eredménye alapján a középérték és sd argumentumok normális eloszlás a hossza n sorozata.
+hello hello szolgáltatás eredménye alapján hello középérték és sd argumentumok normális eloszlás a hossza n sorozata.
 
-> Ez a szolgáltatás az Azure piactéren kihelyezett egy OData-szolgáltatás; a POST vagy GET módszerrel elnevezése lehet. 
+> Ez a szolgáltatás az Azure piactér hello kihelyezett egy OData-szolgáltatás; a POST vagy GET módszerrel elnevezése lehet. 
 > 
 > 
 
-Többféleképpen is az automatizált módon a szolgáltatás fel (például alkalmazások olyan itt: [generátor](http://microsoftazuremachinelearning.azurewebsites.net/NormalDistributionGenerator.aspx), [valószínűség Számológép](http://microsoftazuremachinelearning.azurewebsites.net/NormalDistributionProbabilityCalculator.aspx), [ki osztóérték Számológép](http://microsoftazuremachinelearning.azurewebsites.net/NormalDistributionQuantileCalculator.aspx)).
+Többféleképpen is az automatizált módon hello szolgáltatás fel (például alkalmazások olyan itt: [generátor](http://microsoftazuremachinelearning.azurewebsites.net/NormalDistributionGenerator.aspx), [valószínűség Számológép](http://microsoftazuremachinelearning.azurewebsites.net/NormalDistributionProbabilityCalculator.aspx), [ki osztóérték Számológép](http://microsoftazuremachinelearning.azurewebsites.net/NormalDistributionQuantileCalculator.aspx)).
 
 ### <a name="starting-c-code-for-web-service-consumption"></a>C#-kódban a webes szolgáltatások felhasználásához megkezdése:
 ### <a name="normal-distribution-quantile-calculator"></a>Normális eloszlás ki osztóérték Számológép
@@ -177,7 +177,7 @@ Többféleképpen is az automatizált módon a szolgáltatás fel (például alk
 > 
 > 
 
-Az alábbiakban van egy Képernyőkép a kísérlet, amely a webes szolgáltatás, és példa kód létre minden egyes belül modulok.
+Az alábbiakban van egy képernyőfelvétel a hello webes szolgáltatás, és példa kódot az egyes hello modulok hello kísérlet belül létrehozott hello kísérlet.
 
 ### <a name="normal-distribution-quantile-calculator"></a>Normális eloszlás ki osztóérték Számológép
 Kísérlet folyamata:
@@ -186,9 +186,9 @@ Kísérlet folyamata:
 
     #Data schema with example data (replaced with data from web service)
     data.set=data.frame(p=0.1,mean=0,sd=1,side='L');
-    maml.mapOutputPort("data.set"); #send data to output port
+    maml.mapOutputPort("data.set"); #send data toooutput port
 
-    # Map 1-based optional input ports to variables
+    # Map 1-based optional input ports toovariables
     dataset1 <- maml.mapInputPort(1) # class: data.frame
 
     param = dataset1
@@ -211,7 +211,7 @@ Kísérlet folyamata:
 
     output = as.data.frame(q)
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("output");
 
 ### <a name="normal-distribution-probability-calculator"></a>Normális eloszlás valószínűség Számológép
@@ -221,9 +221,9 @@ Kísérlet folyamata:
 
      #Data schema with example data (replaced with data from web service)
     data.set=data.frame(q=-1,mean=0,sd=1,side='L');
-    maml.mapOutputPort("data.set"); #send data to output port
+    maml.mapOutputPort("data.set"); #send data toooutput port
 
-    # Map 1-based optional input ports to variables
+    # Map 1-based optional input ports toovariables
     dataset1 <- maml.mapInputPort(1) # class: data.frame
 
     param = dataset1
@@ -241,7 +241,7 @@ Kísérlet folyamata:
 
     output = as.data.frame(prob)
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("output");
 
 ### <a name="normal-distribution-generator"></a>Normális eloszlás generátor
@@ -251,9 +251,9 @@ Kísérlet folyamata:
 
     #Data schema with example data (replaced with data from web service)
     data.set=data.frame(n=50,mean=0,sd=1);
-    maml.mapOutputPort("data.set"); #send data to output port
+    maml.mapOutputPort("data.set"); #send data toooutput port
 
-    # Map 1-based optional input ports to variables
+    # Map 1-based optional input ports toovariables
     dataset1 <- maml.mapInputPort(1) # class: data.frame
 
     param = dataset1
@@ -261,14 +261,14 @@ Kísérlet folyamata:
 
     output = as.data.frame(t(dist))
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("output");
 
 ## <a name="limitations"></a>Korlátozások
-Példák nagyon egyszerű körülvevő a normális eloszlás. A fenti példa kódot is látható, mert kevés hiba alatt van megvalósítva.
+Példák nagyon egyszerű körülvevő hello normális eloszlás. Hello példakódot fent is látható, mert kevés hiba alatt van megvalósítva.
 
 ## <a name="faq"></a>GYIK
-Gyakori kérdések a felhasználás a webszolgáltatás vagy az Azure piactéren közzétételt, lásd: [Itt](machine-learning-marketplace-faq.md).
+Gyakori kérdések a felhasználás hello webszolgáltatás vagy az Azure piactér közzétételi toohello, lásd: [Itt](machine-learning-marketplace-faq.md).
 
 [1]: ./media/machine-learning-r-csharp-normal-distribution/normal-img1.png
 [2]: ./media/machine-learning-r-csharp-normal-distribution/normal-img2.png

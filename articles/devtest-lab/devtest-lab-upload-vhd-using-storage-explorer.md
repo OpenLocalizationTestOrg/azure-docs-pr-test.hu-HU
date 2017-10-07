@@ -1,6 +1,6 @@
 ---
-title: "VHD-fájl feltöltése az Azure DevTest Labs segítségével a Microsoft Azure Tártallózó |} Microsoft Docs"
-description: "Használatával a Microsoft Azure Tártallózó tesztlabor a tárfiók VHD-fájl feltöltése"
+title: "virtuális merevlemez aaaUpload fájl tooAzure DevTest Labs segítségével a Microsoft Azure Tártallózó |} Microsoft Docs"
+description: "Töltse fel a Microsoft Azure Tártallózó használó virtuális merevlemez fájl toolab tárfiókot"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 502e2536fb0fd2e9dfc4c7b85a6fb4e18202f38f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 686691e3676cea4b2d7cd8bf045bc43a792c667e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upload-vhd-file-to-labs-storage-account-using-microsoft-azure-storage-explorer"></a>Használatával a Microsoft Azure Tártallózó tesztlabor a tárfiók VHD-fájl feltöltése
+# <a name="upload-vhd-file-toolabs-storage-account-using-microsoft-azure-storage-explorer"></a>Töltse fel a Microsoft Azure Tártallózó használó virtuális merevlemez fájl toolab tárfiókot
 
 [!INCLUDE [devtest-lab-upload-vhd-selector](../../includes/devtest-lab-upload-vhd-selector.md)]
 
-Azure DevTest Labs szolgáltatásban, a VHD-fájlok segítségével hozzon létre egyéni képek, amelyek segítségével virtuális gépeket. Ez a cikk bemutatja, hogyan használandó [Microsoft Azure Tártallózó](../vs-azure-tools-storage-manage-with-storage-explorer.md) egy VHD-fájlt feltölteni a tesztkörnyezet tárfiókja. Miután a VHD-fájl feltöltött a [további lépések szakaszt](#next-steps) felsorolja az egyes cikkeket, amelyek bemutatják, hogyan lehet a feltöltött VHD-fájl létrehozása egyéni lemezkép. További információ a lemezek és a VHD-ken az Azure-ban: [lemezek és a virtuális merevlemezek a virtuális gépek](../virtual-machines/linux/about-disks-and-vhds.md)
+Az Azure DevTest Labs szolgáltatásban a VHD-fájlokat lehet használt toocreate egyéni képek, amelyek használt tooprovision virtuális gépek. Ez a cikk bemutatja, hogyan toouse [Microsoft Azure Tártallózó](../vs-azure-tools-storage-manage-with-storage-explorer.md) tooupload egy VHD-fájl tooa tesztkörnyezet tárfiókja. A VHD-fájl feltöltése után hello [további lépések szakaszt](#next-steps) felsorolja az egyes cikkeket, amelyek bemutatják, hogyan toocreate hello egy egyéni lemezkép feltöltése a VHD-fájlt. További információ a lemezek és a VHD-ken az Azure-ban: [lemezek és a virtuális merevlemezek a virtuális gépek](../virtual-machines/linux/about-disks-and-vhds.md)
 
 ## <a name="step-by-step-instructions"></a>Lépésenkénti utasítások
 
-A következő lépések végigvezetik a VHD-fájl feltöltése a DevTest Labs segítségével [Microsoft Azure Tártallózó](../vs-azure-tools-storage-manage-with-storage-explorer.md).
+következő lépések bejárása le a virtuális merevlemez feltöltése fájl használatával tooDevTest Labs hello [Microsoft Azure Tártallózó](../vs-azure-tools-storage-manage-with-storage-explorer.md).
 
-1. [Töltse le és telepítse a legújabb verzióját a Microsoft Azure Tártallózó](http://www.storageexplorer.com).
+1. [Töltse le és telepítse a Microsoft Azure Tártallózó hello legújabb verziójának hello](http://www.storageexplorer.com).
 
-1. Töltse le az Azure portál használatával a tesztkörnyezet tárfiókja nevét:
+1. Hello Azure-portál használatával hello tesztkörnyezet tárfiókja nevére hello beolvasása:
 
-    1. Jelentkezzen be az [Azure Portalra](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+    1. Jelentkezzen be toohello [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040).
     
-    1. Válassza a **További szolgáltatások**, majd a **DevTest Labs** elemet a listából.
+    1. Válassza ki **további szolgáltatások**, majd válassza ki **DevTest Labs** hello listából.
     
-    1. Válassza ki a kívánt labor labs listájának megtekintéséhez.  
+    1. Labs hello listában jelölje ki hello kívánt labor.  
     
-    1. A labor paneljén válassza **konfigurációs**. 
+    1. Hello labor paneljén válassza **konfigurációs**. 
     
-    1. A tesztlabor a **konfigurációs** panelen válassza **egyéni lemezképeket (VHD)**.
+    1. A tesztkörnyezet hello **konfigurációs** panelen válassza **egyéni lemezképeket (VHD)**.
     
-    1. Az a **egyéni lemezképek** panelen válasszon ki **+ Hozzáadás**. 
+    1. A hello **egyéni lemezképek** panelen válasszon ki **+ Hozzáadás**. 
     
-    1. Az a **egyéni lemezkép** panelen válassza **VHD**.
+    1. A hello **egyéni lemezkép** panelen válassza **VHD**.
     
-    1. Az a **VHD** panelen válassza **a PowerShell használatával virtuális merevlemez feltöltéséhez**.
+    1. A hello **VHD** panelen válassza **a PowerShell használatával virtuális merevlemez feltöltéséhez**.
     
         ![Töltse fel a virtuális merevlemez a PowerShell használatával][0]
     
-    1. A **PowerShell-lel lemezkép feltöltése a** csempe megjeleníti hívása a **Add-AzureVhd** parancsmag. Az első paraméter (*cél*) tartalmazza a tárfiók nevét a labor a következő formátumban:
+    1. Hello **PowerShell-lel lemezkép feltöltése a** panelt jeleníti meg a hívás toohello **Add-AzureVhd** parancsmag. az első paraméter hello (*cél*) hello a tárfióknév hello labor hello a következő formátumban tartalmazza:
     
         https://<STORAGE-ACCOUNT-Name>.BLOB.Core.Windows.NET/uploads/... 
 
-    1. Jegyezze meg a tárfiók nevét, a későbbi lépésekben használatban van.
+    1. Jegyezze fel a hello tárfiók neve, a későbbi lépésekben használatban van.
     
-1. Csatlakozás Azure-előfizetés fiókhoz Tártallózó használatával.
+1. Csatlakozás tooan Tártallózó Azure-előfizetés fiókot.
 
     > [!TIP] 
     > 
-    > A Tártallózó kapcsolati beállításokat támogatja. Ez a szakasz mutatja be, az Azure-előfizetéshez társított storage-fiókhoz való csatlakozást. A Tártallózó által támogatott más kapcsolati beállítások megtekintéséhez tekintse meg a cikk [Ismerkedés a Tártallózó](../vs-azure-tools-storage-manage-with-storage-explorer.md).
+    > A Tártallózó kapcsolati beállításokat támogatja. Ez a rész az Azure-előfizetéshez társított csatlakozó tooa tárfiók mutat. toosee hello egyéb Tártallózó által támogatott kapcsolódási beállítások, tekintse meg a toohello cikk [Ismerkedés a Tártallózó](../vs-azure-tools-storage-manage-with-storage-explorer.md).
  
     1. Nyissa meg a Tártallózót.
     
@@ -70,59 +70,59 @@ A következő lépések végigvezetik a VHD-fájl feltöltése a DevTest Labs se
     
         ![Azure-fiók beállításai][1]
     
-    1. A bal oldali ablaktáblán, a Microsoft-fiókkal bejelentkezett meg. Egy másik fiókhoz csatlakozáshoz válassza a **Fiók hozzáadása** lehetőséget, és a párbeszédpanelek útmutatásait követve jelentkezzen be egy olyan Microsoft-fiókkal, amely legalább egy aktív Azure-előfizetéssel társítva van.
+    1. hello bal oldali ablaktáblán hello Microsoft-fiókkal bejelentkezett azt jeleníti meg. tooconnect tooanother fiókját, válassza **vegyen fel egy fiókot**, és hajtsa végre a hello párbeszédpanelek toosign be legalább egy aktív Azure-előfizetéssel társított Microsoft-fiókkal.
     
         ![Fiók hozzáadása][2]
     
-    1. Amint sikeresen bejelentkezett egy Microsoft-fiókkal, a bal oldali ablaktáblán megjelenik a fiókhoz társított összes Azure-előfizetés. Válassza ki azt az Azure-előfizetést amellyel dolgozni szeretne, majd válassza az **Alkalmaz** lehetőséget. (Kiválasztásával **előfizetéseket** ki-és a kiválasztott összes vagy egyik sem a felsorolt Azure-előfizetést.)
+    1. Miután sikeresen bejelentkezett egy Microsoft-fiókkal, hello bal oldali ablaktáblán tölti fel hello fiókhoz társított Azure-előfizetések. Válassza ki az Azure-előfizetést, amelyhez szeretné, hogy toowork, és válassza hello **alkalmaz**. (Kiválasztásával **előfizetéseket** megjelenítése és elrejtése az összes kijelölt hello, vagy nincs hello felsorolt Azure-előfizetések.)
     
         ![Azure-előfizetések kiválasztása][3]
     
-    1. A bal oldali ablaktábla megjeleníti a kiválasztott Azure-előfizetésekhez társított összes tárfiókot.
+    1. hello bal oldali panelen kiválasztott hello Azure-előfizetéssel társított tárfiókokat hello jeleníti meg.
     
         ![Kiválasztott Azure-előfizetések][4]
 
-1. Keresse meg a tesztkörnyezet tárfiókja:
+1. Keresse meg a hello tesztkörnyezet tárfiókja:
 
-    1. A Tártallózó bal oldali ablaktáblán keresse meg, és bontsa ki a csomópontot az Azure-előfizetés, amely a tesztkörnyezet tulajdonosa.
+    1. Hello Tártallózó bal oldali ablaktáblán keresse meg, és bontsa ki az Azure-előfizetés hello labor birtokló hello hello csomópontot.
     
-    1. Az előfizetési csomópontot, bontsa ki a **Tárfiókok**.
+    1. Hello előfizetési csomópontot, bontsa ki a **Tárfiókok**.
 
-    1. Bontsa ki a labor tárolási fiók csomópontot, hogy láthatóvá váljon a csomópontok **Blobtárolók**, **fájlmegosztások**, **várólisták**, és **táblák**.
+    1. Bontsa ki a hello labor tárolási fiók csomópont tooreveal csomópontok a **Blobtárolók**, **fájlmegosztások**, **várólisták**, és **táblák**.
     
-    1. Bontsa ki a **Blobtárolók** csomópont.
+    1. Bontsa ki a hello **Blobtárolók** csomópont.
     
-    1. A tartalom megjelenítéséhez a jobb oldali ablaktáblában a feltöltések blob-tároló választása.
+    1. Válasszon hello feltöltések blob tároló toodisplay tartalmának hello jobb oldali ablaktáblán.
         
         ![Directory feltöltése][5]
 
-1. Töltse fel a VHD-fájlt a Tártallózó:
+1. A Tártallózóval hello VHD-fájl feltöltése:
 
-    1. A Tártallózó jobb oldali ablaktáblában kell megjelennie a blobok a lista tartalmazza a **feltölt** blob tároló a tesztkörnyezet tárfiókja. Válassza a blob-szerkesztő eszköztár **feltöltése** 
+    1. Hello Tártallózó jobb oldali ablaktáblában kell megjelennie a hello hello BLOB listáját **feltölt** hello tesztkörnyezet tárfiókja blob tároló. Válassza hello blob szerkesztő eszköztár **feltöltése** 
         
         ![Töltse fel gomb][6]
     
-    1. Az a **feltöltése** legördülő menüben válassza **fájlok feltöltése...** .
+    1. A hello **feltöltése** legördülő menüben válassza **fájlok feltöltése...** .
     
-    1. Az a **fájlok feltöltése** párbeszédpanelen válassza ki a három pont.
+    1. A hello **fájlok feltöltése** párbeszédpanelen jelölje be hello három ponttal.
         
         ![Fájl kiválasztása][8]  
 
-    1. A a **válassza ki a feltöltendő fájlt** párbeszédpanelen keresse meg a kívánt VHD-fájlt, jelölje ki, majd válassza ki **nyitott**.
+    1. A hello **válassza fájlok tooupload** párbeszédpanelen Tallózás toohello VHD-fájl szükséges, válassza ki azt, és válassza **nyitott**.
     
-    1. Amikor visszatér a **fájlok feltöltése** párbeszédpanelen módosítsa **Blob-típusú** való **oldalakra vonatkozó Blob**.
+    1. Ha a visszaadott toohello **fájlok feltöltése** párbeszédpanelen módosítsa **Blob-típusú** túl**oldalakra vonatkozó Blob**.
     
     1. Válassza a **Feltöltés** lehetőséget.
 
         ![Fájl kiválasztása][9]  
     
-    1. A Tártallózó **tevékenységnapló** ablaktábla megjeleníti azokat a letöltés állapota (együtt megszakítani a feltöltést mutató). A folyamat egy VHD-fájl feltöltése megnőhet méretét a VHD-fájlt és a kapcsolat sebességétől függően. 
+    1. a Tártallózó hello **tevékenységnapló** ablaktábla megjeleníti azokat a hello letöltés állapota (valamint hivatkozások toocancel hello feltöltés). a VHD-fájl feltöltése hello folyamat megnőhet hello hello VHD-fájl méretétől és a kapcsolat sebességétől függően. 
 
         ![Fájlfeltöltés állapot][10]  
 
 ## <a name="next-steps"></a>Következő lépések
 
-- [Létrehozhat egyéni rendszerképeket a VHD-fájl az Azure portál használata az Azure DevTest Labs szolgáltatásban](devtest-lab-create-template.md)
+- [Hozzon létre egy egyéni lemezképet egy VHD-fájlt hello Azure-portálon az Azure DevTest Labs szolgáltatásban](devtest-lab-create-template.md)
 - [Egyéni lemezkép létrehozása a PowerShell használatával VHD-fájl az Azure DevTest Labs szolgáltatásban](devtest-lab-create-custom-image-from-vhd-using-powershell.md)
 
 [0]: ./media/devtest-lab-upload-vhd-using-storage-explorer/upload-image-using-psh.png

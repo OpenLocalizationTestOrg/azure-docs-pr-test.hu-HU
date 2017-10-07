@@ -1,6 +1,6 @@
 ---
-title: "A virtuális hálózattal - Azure HDInsight kiterjesztése |} Microsoft Docs"
-description: "Azure virtuális hálózat használata a HDInsight csatlakozni más felhőalapú erőforrásokat, vagy az adatközpontban lévő erőforrások"
+title: "a virtuális hálózattal - Azure HDInsight aaaExtend |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse Azure Virtual Network tooconnect HDInsight tooother felhőalapú erőforrásokat, vagy az adatközpontban lévő erőforrások"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,173 +15,173 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/23/2017
 ms.author: larryfr
-ms.openlocfilehash: 380423ec42ad4905c73fcd57501102e9f7062e81
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ba80be4d9f280c6c62fa8acc996ef5f921acdbbd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="extend-azure-hdinsight-using-an-azure-virtual-network"></a>Azure virtuális hálózat használatával Azure HDInsight kiterjesztése
 
-A HDInsight használata egy [Azure Virtual Network](../virtual-network/virtual-networks-overview.md). Azure virtuális hálózat használatával lehetővé teszi, hogy a következő esetekben:
+Megtudhatja, hogyan toouse HDInsight a egy [Azure Virtual Network](../virtual-network/virtual-networks-overview.md). Azure virtuális hálózat használatával lehetővé teszi, hogy a következő forgatókönyvek hello:
 
-* HDInsight csatlakozik egy helyszíni hálózatról.
+* Csatlakozás tooHDInsight közvetlenül a helyi hálózatról.
 
-* A HDInsight-adatokhoz való kapcsolódásról tárolja egy Azure virtuális hálózatot.
+* Egy Azure virtuális hálózatra csatlakozó HDInsight toodata tárolja.
 
-* Közvetlen hozzáférés a Hadoop-szolgáltatás által nem biztosított nyilvánosan az interneten keresztül. Például Kafka API-k vagy a HBase Java API-t.
+* Közvetlen elérése során Hadoop-szolgáltatásokat nem érhető el több mint nyilvánosan hello internet. Például Kafka API-k vagy hello HBase Java API.
 
 > [!WARNING]
-> A jelen dokumentumban szereplő információk megértéséhez a TCP/IP-hálózat igényel. Ha nem ismeri a TCP/IP-hálózat, meg kell felkereshetők a rendszer éles hálózati környezetben módosítások végrehajtása előtt.
+> a dokumentumban szereplő információk hello kell a TCP/IP-hálózat érteni. Ha nem ismeri a TCP/IP-hálózat, meg kell felkereshetők a személy, aki módosításainak tooproduction hálózatok elvégzése előtt.
 
 ## <a name="planning"></a>Tervezés
 
-A kérdésekre kell válaszolnia a HDInsight telepítése egy virtuális hálózat tervezése során a következők:
+Az alábbiakban hello válaszolnia kell a virtuális hálózatban HDInsight tooinstall tervezésekor hello kérdésekre kaphat választ:
 
-* HDInsight telepíthető át egy meglévő virtuális hálózathoz kell? Új hálózat létrehozása vagy?
+* HDInsight tooinstall létrehozni meglévő virtuális hálózatban kell? Új hálózat létrehozása vagy?
 
-    Ha egy meglévő virtuális hálózatot használ, szükség lehet a hálózati konfiguráció módosításához a HDInsight telepítése előtt. További információkért lásd: a [HDInsight hozzáadása egy meglévő virtuális hálózatot](#existingvnet) szakasz.
+    Ha egy meglévő virtuális hálózatot használ, szükség lehet toomodify hello hálózati konfiguráció HDInsight telepítése előtt. További információkért lásd: hello [HDInsight tooan meglévő virtuális hálózat hozzáadása](#existingvnet) szakasz.
 
-* Végrehajtja a virtuális hálózat egy másik virtuális hálózati vagy a helyszíni hálózat HDInsight tartalmazó?
+* Tooconnect hello virtuális hálózati tartalmazó HDInsight tooanother virtuális hálózat vagy a helyszíni hálózat van szüksége?
 
-    Segítségével egyszerűen dolgozhat erőforrások hálózatok között, szükség lehet hozzon létre egy egyéni DNS- és DNS-továbbító konfigurálása. További információkért lásd: a [kapcsolódó több hálózatok](#multinet) szakasz.
+    tooeasily munkahelyi erőforrások hálózatok között, előfordulhat, hogy egy egyéni DNS toocreate kell és DNS-továbbító konfigurálása. További információkért lásd: hello [kapcsolódó több hálózatok](#multinet) szakasz.
 
-* Szeretné korlátozni/átirányítás HDInsight bejövő vagy kimenő forgalom?
+* Szeretné, hogy toorestrict/átirányítás bejövő vagy kimenő forgalom tooHDInsight?
 
-    A HDInsight az IP-címek az Azure-adatközpontban kommunikálni kell üzemmódban. Van még számos portot, az ügyfél-kommunikációhoz tűzfalon keresztül kell engedélyezni. További információkért lásd: a [hálózati forgalom vezérlése](#networktraffic) szakasz.
+    A HDInsight az IP-címek hello Azure-adatközpontban kommunikálni kell üzemmódban. Van még számos portot, az ügyfél-kommunikációhoz tűzfalon keresztül kell engedélyezni. További információkért lásd: hello [hálózati forgalom vezérlése](#networktraffic) szakasz.
 
-## <a id="existingvnet"></a>HDInsight hozzáadása egy meglévő virtuális hálózathoz
+## <a id="existingvnet"></a>HDInsight tooan meglévő virtuális hálózat hozzáadása
 
-Ebben a szakaszban a lépések segítségével egy új HDInsight hozzáadása egy meglévő Azure virtuális hálózat felderítése.
+Ez a szakasz toodiscover hello lépéseket használata útmutató tooadd egy új HDInsight tooan meglévő Azure-beli virtuális hálózathoz.
 
 > [!NOTE]
 > Nem adhat hozzá egy meglévő HDInsight-fürt virtuális hálózatba.
 
-1. Használja a klasszikus és Resource Manager üzembe helyezési modellben a virtuális hálózat?
+1. Használja a klasszikus és Resource Manager üzembe helyezési modellben hello virtuális hálózat?
 
     HDInsight 3.4 és nagyobb erőforrás-kezelő virtuális hálózat szükséges. A HDInsight korábbi verzióiban a klasszikus virtuális hálózatot szükséges.
 
-    Ha a meglévő hálózat a klasszikus virtuális hálózatot, majd kell erőforrás-kezelő virtuális hálózat létrehozása és a két csatlakozzon. [A hagyományos Vneteket kapcsolódás új Vnetekhez](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md).
+    Ha a meglévő hálózat a klasszikus virtuális hálózatot, majd kell létrehozni egy erőforrás-kezelő virtuális hálózat és két hello csatlakozzon. [Csatlakozás a hagyományos Vneteket toonew Vnetek](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md).
 
-    Miután csatlakozott, erőforrás-kezelő hálózatán telepített HDInsight kezelheti a hagyományos hálózati erőforrásokhoz.
+    Miután csatlakozott, HDInsight hello erőforrás-kezelő hálózatán telepített kezelheti hello hagyományos hálózati erőforrásokhoz.
 
-2. Használja a kényszerített bújtatás? A kényszerített bújtatás az alhálózat-beállítással, amely arra kényszeríti a kimenő internetforgalom a vizsgálathoz eszközökre és a naplózás. A HDInsight nem támogatja a kényszerített bújtatást. Távolítsa el a kényszerített bújtatás HDInsight egy alhálózatba telepítése előtt, vagy hozzon létre egy új alhálózatot a HDInsight.
+2. Használja a kényszerített bújtatás? A kényszerített bújtatás az alhálózat-beállítással, amely kényszeríti a kimenő Internet forgalom tooa eszköz a vizsgálat és naplózás. A HDInsight nem támogatja a kényszerített bújtatást. Távolítsa el a kényszerített bújtatás HDInsight egy alhálózatba telepítése előtt, vagy hozzon létre egy új alhálózatot a HDInsight.
 
-3. Használ hálózati biztonsági csoportok, a felhasználó által definiált útvonalak és a virtuális hálózati berendezések korlátozzák a forgalmat a virtuális gépbe vagy onnan a virtuális hálózat számára?
+3. Használhatók a hálózati biztonsági csoportok, felhasználó által definiált útvonalak és virtuális hálózati berendezések toorestrict forgalom virtuális gépbe vagy onnan hello virtuális hálózatot?
 
-    Felügyelt szolgáltatásként HDInsight az Azure-adatközpont több IP-címeivel korlátlan hozzáférést igényel. Engedélyezi a kommunikációt a IP-címekkel rendelkező, a meglévő hálózati biztonsági csoport vagy felhasználó által definiált útvonalak frissítése.
+    Felügyelt szolgáltatásként HDInsight korlátlan hozzáférést tooseveral IP-címek hello Azure-adatközpontban van szükség. tooallow kommunikációt a következő IP-címek, a meglévő hálózati biztonsági csoport vagy felhasználó által definiált útvonalak frissítése.
 
-    HDInsight tároló több szolgáltatásokat, amelyek különféle portokat. Nem blokkolására ezeket a portokat. Engedélyezi a virtuális készülék tűzfalon keresztüli portok listája, tekintse meg a [biztonsági](#security) szakasz.
+    HDInsight tároló több szolgáltatásokat, amelyek különféle portokat. Nem forgalom toothese portok blokkolása. Virtuális készülék tűzfalon keresztüli portok tooallow listáját lásd: hello [biztonsági](#security) szakasz.
 
-    A meglévő biztonsági beállítások megkereséséhez használja a következő Azure PowerShell vagy Azure CLI parancsokat:
+    toofind a meglévő biztonsági konfiguráció, a következő Azure PowerShell vagy Azure CLI parancsok használata hello:
 
     * Network security groups (Hálózati biztonsági csoportok)
 
         ```powershell
-        $resourceGroupName = Read-Input -Prompt "Enter the resource group that contains the virtual network used with HDInsight"
+        $resourceGroupName = Read-Input -Prompt "Enter hello resource group that contains hello virtual network used with HDInsight"
         get-azurermnetworksecuritygroup -resourcegroupname $resourceGroupName
         ```
 
         ```azurecli-interactive
-        read -p "Enter the name of the resource group that contains the virtual network: " RESOURCEGROUP
+        read -p "Enter hello name of hello resource group that contains hello virtual network: " RESOURCEGROUP
         az network nsg list --resource-group $RESOURCEGROUP
         ```
 
-        További információkért lásd: a [hibaelhárítása a hálózati biztonsági csoportok](../virtual-network/virtual-network-nsg-troubleshoot-portal.md) dokumentum.
+        További információkért lásd: hello [hibaelhárítása a hálózati biztonsági csoportok](../virtual-network/virtual-network-nsg-troubleshoot-portal.md) dokumentum.
 
         > [!IMPORTANT]
-        > Hálózati biztonsági csoportszabályok szabály prioritási sorrendben alkalmazza. Az első szabály, amely a forgalom bizonyos mintázatnak megfelelő vonatkozik, és nincs más erre a forgalomra alkalmazza. Szabályok a leghatékonyabb a legkevésbé megengedő. További információkért lásd: a [hálózati forgalmat hálózati biztonsági csoportokkal](../virtual-network/virtual-networks-nsg.md) dokumentum.
+        > Hálózati biztonsági csoportszabályok szabály prioritási sorrendben alkalmazza. hello első szabály hello forgalom bizonyos mintázatnak megfelelő érvényes, és nincs más erre a forgalomra alkalmazza. A leghatékonyabb tooleast megengedő szabályok. További információkért lásd: hello [hálózati forgalmat hálózati biztonsági csoportokkal](../virtual-network/virtual-networks-nsg.md) dokumentum.
 
     * Felhasználó által megadott útvonalak
 
         ```powershell
-        $resourceGroupName = Read-Input -Prompt "Enter the resource group that contains the virtual network used with HDInsight"
+        $resourceGroupName = Read-Input -Prompt "Enter hello resource group that contains hello virtual network used with HDInsight"
         get-azurermroutetable -resourcegroupname $resourceGroupName
         ```
 
         ```azurecli-interactive
-        read -p "Enter the name of the resource group that contains the virtual network: " RESOURCEGROUP
+        read -p "Enter hello name of hello resource group that contains hello virtual network: " RESOURCEGROUP
         az network route-table list --resource-group $RESOURCEGROUP
         ```
 
-        További információkért lásd: a [útvonalak hibaelhárítása](../virtual-network/virtual-network-routes-troubleshoot-portal.md) dokumentum.
+        További információkért lásd: hello [útvonalak hibaelhárítása](../virtual-network/virtual-network-routes-troubleshoot-portal.md) dokumentum.
 
-4. HDInsight-fürtök létrehozása és konfigurálása során az Azure virtuális hálózatot választ. A következő dokumentumok a lépésekkel Fürtlétrehozási folyamatának ismertetése:
+4. HDInsight-fürtök létrehozása és hello Azure virtuális hálózat konfigurálása során. Kövesse a következő dokumentumok toounderstand hello fürtlétrehozás hello hello lépéseket:
 
-    * [HDInsight létrehozása az Azure Portalon](hdinsight-hadoop-create-linux-clusters-portal.md)
+    * [Hozzon létre a HDInsight a hello Azure-portálon](hdinsight-hadoop-create-linux-clusters-portal.md)
     * [HDInsight létrehozása az Azure PowerShell-lel](hdinsight-hadoop-create-linux-clusters-azure-powershell.md)
     * [A HDInsight használata az Azure CLI 1.0 létrehozása](hdinsight-hadoop-create-linux-clusters-azure-cli.md)
     * [HDInsight használata az Azure Resource Manager-sablon létrehozása](hdinsight-hadoop-create-linux-clusters-arm-templates.md)
 
   > [!IMPORTANT]
-  > HDInsight hozzáadása egy virtuális hálózathoz egy opcionális konfigurációs lépésre. Győződjön meg arról, megadhatja a virtuális hálózaton, amikor a fürt konfigurálása.
+  > HDInsight hozzáadása tooa virtuális hálózat egy opcionális konfigurációs lépésre. Lehet, hogy tooselect hello virtuális hálózati hello fürt konfigurálásakor.
 
 ## <a id="multinet"></a>Több hálózatok csatlakoztatása
 
-A legnagyobb kihívás a több hálózati konfiguráció a hálózatok közötti névfeloldás.
+hello legnagyobb kihívás a több hálózati konfiguráció névfeloldás hello hálózatok között.
 
-Azure névfeloldást biztosít az Azure virtuális hálózatban telepített szolgáltatások. A beépített névfeloldás lehetővé teszi, hogy a HDInsight egy teljesen minősített tartománynevét (FQDN) használatával a következő erőforrások eléréséhez:
+Azure névfeloldást biztosít az Azure virtuális hálózatban telepített szolgáltatások. A beépített névfeloldás lehetővé teszi, hogy a HDInsight tooconnect toohello erőforrások egy teljesen minősített tartománynevét (FQDN) használatával a következő:
 
-* Bármely erőforrása, amely az interneten érhető el. Ha például a Microsoft.com webhelyre mutat, google.com.
+* Minden erőforrás elérhető internet hello. Ha például a Microsoft.com webhelyre mutat, google.com.
 
-* Az azonos Azure virtuális hálózatban lévő összes erőforrást a __belső DNS-név__ az erőforrás. Például ha az alapértelmezett név feloldása, a következők példa HDInsight munkavégző csomópontokhoz rendelt belső DNS-nevek:
+* Bármely erőforrása, amely a rendszer a hello azonos Azure virtuális hálózatban, hello segítségével __belső DNS-név__ hello erőforrás. Például hello alapértelmezett névhozzárendelés használatakor hello a következők példa belső DNS nevek hozzárendelt tooHDInsight feldolgozó csomópontok:
 
     * wn0-hdinsi.0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net
     * wn2-hdinsi.0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net
 
     Mindkét ezeket a csomópontokat közvetlenül kommunikálhatnak egymással, és a Hdinsightban, más csomópontok belső DNS-nevek használatával.
 
-Az alapértelmezett név feloldása does __nem__ engedélyezése a HDInsight a feloldani az erőforrások hálózatokban, amelyek a virtuális hálózathoz csatlakozik. Például esetében gyakori, a helyszíni hálózat a virtuális hálózathoz csatlakozni. Csak az alapértelmezett a névfeloldás HDInsight neve nem tud hozzáférni a helyszíni hálózati erőforrásokhoz. A fordítottja is igaz, a helyszíni hálózati erőforrások neve nem tud hozzáférni a virtuális hálózatán lévő erőforrásokat.
+hello alapértelmezett névhozzárendelés does __nem__ illesztett toohello virtuális hálózatokon lévő erőforrások hello nevének HDInsight tooresolve engedélyezése. Például közös toojoin a helyszíni hálózati toohello virtuális hálózat. Csak hello alapértelmezett a névfeloldás HDInsight nem tud hozzáférni a hello a helyszíni hálózati erőforrások neve. Ellenkező hello igaz is, a helyszíni hálózati erőforrások neve nem tud hozzáférni hello virtuális hálózatán lévő erőforrásokat.
 
 > [!WARNING]
-> Az egyéni DNS-kiszolgáló létrehozása és a virtuális hálózat a használatára a HDInsight-fürt létrehozása előtt konfigurálnia kell.
+> Hello egyéni DNS-kiszolgáló létrehozása és hello virtuális hálózati toouse konfigurálnia kell, mielőtt létrehozná hello HDInsight-fürthöz.
 
-Ahhoz, hogy a névfeloldás a virtuális hálózat és a csatlakoztatott hálózatokon lévő erőforrások között, el kell végeznie a következő műveleteket:
+a névfeloldás tooenable hello virtuális hálózat és a csatlakoztatott hálózatokon lévő erőforrások között, végezze el a következő műveletek hello:
 
-1. Hozzon létre egy egyéni DNS-kiszolgáló az Azure Virtual Network, ahol HDInsight telepítését tervezi.
+1. Hozzon létre egy egyéni DNS-kiszolgáló hello Azure Virtual Network tooinstall HDInsight tervezett.
 
-2. A virtuális hálózatot az egyéni DNS-kiszolgáló használatára konfigurálni.
+2. Hello virtuális hálózati toouse hello egyéni DNS-kiszolgáló konfigurálása.
 
-3. Megállapítja, hogy az Azure hozzárendelése a virtuális hálózat DNS-utótagot. Ez az érték hasonlít `0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net`. Az a DNS-utótag megkereséséről további információkért lásd: a [példa: egyéni DNS](#example-dns) szakasz.
+3. Megkeresi a hello Azure hozzárendelése a virtuális hálózat DNS-utótagot. Ez az érték túl hasonló`0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net`. Az hello DNS-utótag megkereséséről további információkért lásd: hello [példa: egyéni DNS](#example-dns) szakasz.
 
-4. Konfigurálja a DNS-kiszolgálók között. A konfiguráció a távoli hálózati típusú függ.
+4. Konfigurálja a továbbítási hello DNS-kiszolgálók között. hello konfigurációs távoli hálózati hello típusától függ.
 
-    * Ha a távoli hálózati egy a helyszíni hálózat, konfigurálja a DNS az alábbiak szerint:
+    * Ha hello távoli hálózati egy a helyszíni hálózat, konfigurálja a DNS az alábbiak szerint:
         
-        * __Egyéni DNS__ (a virtuális hálózaton):
+        * __Egyéni DNS__ (a virtuális hálózati hello):
 
-            * A DNS-utótag, hogy az Azure rekurzív feloldó (168.63.129.16) a virtuális hálózat továbbítási kérelmek száma. Azure virtuális hálózatban erőforrásokra vonatkozó kéréseket kezeli
+            * Továbbítási kérelmek hello DNS-utótag az hello virtuális hálózati toohello Azure rekurzív feloldó (168.63.129.16). Azure virtuális hálózat hello erőforrásokra vonatkozó kéréseket kezeli
 
-            * A helyi DNS-kiszolgáló minden más kérelemhez továbbítja. A helyszíni DNS kezeli az összes többi feloldási kérések, még akkor is, kérelmek az internetes erőforrásokhoz, például a Microsoft.com webhelyre mutat.
+            * Továbbítsa az összes többi kérelmek toohello a helyi DNS-kiszolgáló. hello helyszíni DNS kezeli az összes többi feloldási kérések, még akkor is, kérelmek az internetes erőforrásokhoz, például a Microsoft.com webhelyre mutat.
 
-        * __A helyi DNS__: kérelmeket a virtuális hálózat DNS-utótag az egyéni DNS-kiszolgálóra továbbítja. Az egyéni DNS-kiszolgáló majd továbbítja az Azure rekurzív feloldó.
+        * __A helyi DNS__: hello virtuális hálózat DNS-utótag toohello egyéni DNS kiszolgáló kérelmeket továbbítja. hello egyéni DNS-kiszolgáló majd toohello Azure rekurzív feloldó továbbítja.
 
-        A konfigurációs útvonalak kérelmek teljes tartománynevek, amelyek tartalmazzák az egyéni DNS-kiszolgáló a virtuális hálózat DNS-utótagját. Minden más kérelemhez (akár még a nyilvános internet címek) a helyi DNS-kiszolgáló kezeli.
+        A konfigurációs útvonalak kérelmek teljes tartománynevek DNS-utótagja hello hello virtuális hálózati toohello egyéni DNS-kiszolgáló tartalmazó. (Még a nyilvános internet címek) minden más kérelemhez hello a helyi DNS-kiszolgáló kezeli.
 
-    * Ha a távoli hálózati egy másik Azure Virtual Network, konfigurálja a DNS az alábbiak szerint:
+    * Ha hello távoli hálózat egy másik Azure virtuális hálózatnak, konfigurálja a DNS az alábbiak szerint:
 
         * __Egyéni DNS__ (az egyes virtuális hálózati):
 
-            * A virtuális hálózatok a DNS-utótag kérelmeket a rendszer az egyéni DNS-kiszolgálókra továbbítja. Az egyes virtuális hálózati DNS felelős megoldása érdekében a hálózati erőforrásokat.
+            * Hello DNS-utótag hello virtuális hálózatok kérelmeket a rendszer továbbítja toohello egyéni DNS-kiszolgálók. az egyes virtuális hálózati DNS hello felelős megoldása érdekében a hálózati erőforrásokat.
 
-            * Minden más kérelemhez továbbítja az Azure rekurzív feloldó. A rekurzív feloldó felelős helyi feloldására és az internetes erőforrásokban.
+            * Minden más kérelmek toohello Azure rekurzív feloldó továbbítja. hello rekurzív feloldó felelős helyi feloldására és az internetes erőforrásokban.
 
-        A DNS-kiszolgáló az egyes hálózati továbbítja a másikra, kérelmek alapján DNS-utótagot. Más kérések használata az Azure rekurzív feloldó segítségével.
+        hello DNS-kiszolgáló minden hálózat továbbítja a kérelmek toohello más, a DNS-utótagot. Küldött egyéb kérések hello Azure rekurzív feloldó használatával oldja fel.
 
-    Minden egyes konfigurációs példáért lásd: a [példa: egyéni DNS](#example-dns) szakasz.
+    Minden egyes konfigurációs példát lásd: hello [példa: egyéni DNS](#example-dns) szakasz.
 
-További információkért lásd: a [névfeloldás virtuális gépek és a Szerepkörpéldányok](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server) dokumentum.
+További információkért lásd: hello [névfeloldás virtuális gépek és a Szerepkörpéldányok](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server) dokumentum.
 
-## <a name="directly-connect-to-hadoop-services"></a>Közvetlenül csatlakozik a Hadoop-szolgáltatás
+## <a name="directly-connect-toohadoop-services"></a>Közvetlen csatlakozás tooHadoop szolgáltatások
 
-A legtöbb dokumentáció a HDInsight feltételezi, hogy rendelkezik-e a fürt eléréséhez az interneten keresztül. Például, hogy a fürthöz https://CLUSTERNAME.azurehdinsight.net kapcsolódhat. A cím használja a nyilvános átjáró, amely nem érhető el, ha már használta az NSG-k vagy udr-EK hozzáférés korlátozása az internetről.
+A legtöbb dokumentáció a HDInsight feltételezi, hogy rendelkezik-e hozzáférési toohello fürt keresztül hello internet. Például, hogy csatlakozhasson https://CLUSTERNAME.azurehdinsight.net toohello fürthöz. A cím hello nyilvános átjárón, amely esetén nem érhető el, használja az NSG-k vagy udr-EK toorestrict a hozzáférést a hello internet használja.
 
-Ambari és más weblapok a virtuális hálózaton keresztül csatlakozhat, tegye a következőket:
+tooconnect tooAmbari és más weblapok hello virtuális hálózaton keresztül, használja a következő lépéseket hello:
 
-1. Annak megállapításához, a belső teljes tartománynevek (FQDN), a HDInsight-fürtcsomóponton, használja a következő módszerek egyikét:
+1. toodiscover hello belső teljes tartománynév (FQDN) hello HDInsight fürtcsomópont nevét, a hello a következő módszerek valamelyikével:
 
     ```powershell
-    $resourceGroupName = "The resource group that contains the virtual network used with HDInsight"
+    $resourceGroupName = "hello resource group that contains hello virtual network used with HDInsight"
 
     $clusterNICs = Get-AzureRmNetworkInterface -ResourceGroupName $resourceGroupName | where-object {$_.Name -like "*node*"}
 
@@ -200,44 +200,44 @@ Ambari és más weblapok a virtuális hálózaton keresztül csatlakozhat, tegye
     az network nic list --resource-group <resourcegroupname> --output table --query "[?contains(name,'node')].{NICname:name,InternalIP:ipConfigurations[0].privateIpAddress,InternalFQDN:dnsSettings.internalFqdn}"
     ```
 
-    A visszaadott csomópontok közül a teljes Tartománynevet az átjárócsomópontokkal található, és a teljes tartománynevek használatával Ambari és egyéb webes szolgáltatásokhoz való csatlakozás. Tegyük fel például, `http://<headnode-fqdn>:8080` Ambari eléréséhez.
+    Hello csomópontlista visszaadott hello FQDN található hello átjárócsomópontokkal és használja a hello teljes tartománynevek tooconnect tooAmbari és egyéb webszolgáltatások. Tegyük fel például, `http://<headnode-fqdn>:8080` tooaccess Ambari.
 
     > [!IMPORTANT]
-    > Az átjárócsomópontokkal tárolt egyes szolgáltatások aktívak csak az egyik csomópont egyszerre. Próbálja meg egy központi csomóponton szolgáltatások elérésére és a 404-es hibaüzenetet ad vissza, ha a többi átjárócsomópont váltani.
+    > Egyes hello átjárócsomópontokkal üzemeltetett szolgáltatások aktívak csak az egyik csomópont egyszerre. Próbálja meg egy központi csomóponton szolgáltatások elérésére és a 404-es hibaüzenetet ad vissza, ha Váltás más átjárócsomópont toohello.
 
-2. A csomópont és a portot, amelyet a szolgáltatás elérhető megállapításához lásd: a [a HDInsight Hadoop-szolgáltatás által használt portok](./hdinsight-hadoop-port-settings-for-services.md) dokumentum.
+2. toodetermine hello csomópont és a portot, amelyet a szolgáltatás érhető el, lásd: hello [a HDInsight Hadoop-szolgáltatás által használt portok](./hdinsight-hadoop-port-settings-for-services.md) dokumentum.
 
 ## <a id="networktraffic"></a>Hálózati forgalom vezérlése
 
-Egy Azure virtuális hálózatot a hálózati forgalmat a következő módszerekkel is vezérelhető:
+Egy Azure virtuális hálózatot a hálózati forgalmat a következő módszerek hello vezérelhető:
 
-* **Hálózati biztonsági csoportok** (NSG) lehetővé teszi a bejövő és kimenő forgalmat a hálózathoz. További információkért lásd: a [hálózati forgalmat hálózati biztonsági csoportokkal](../virtual-network/virtual-networks-nsg.md) dokumentum.
+* **Hálózati biztonsági csoportok** (NSG) lehetővé teszik toofilter bejövő és kimenő forgalom toohello hálózati. További információkért lásd: hello [hálózati forgalmat hálózati biztonsági csoportokkal](../virtual-network/virtual-networks-nsg.md) dokumentum.
 
     > [!WARNING]
     > A HDInsight nem támogatja a kimenő forgalom korlátozása.
 
-* **Felhasználó által definiált útvonalak** (UDR) határozza meg, hogyan a forgalom között a hálózati erőforrásokhoz. További információkért lásd: a [felhasználó által definiált útvonalak és IP-továbbítás](../virtual-network/virtual-networks-udr-overview.md) dokumentum.
+* **Felhasználó által definiált útvonalak** (UDR) határozza meg, hogyan a forgalom között hello hálózatán lévő erőforrásokat. További információkért lásd: hello [felhasználó által definiált útvonalak és IP-továbbítás](../virtual-network/virtual-networks-udr-overview.md) dokumentum.
 
-* **Virtuális készülékekre** például tűzfalak és az útválasztókat eszközök működésével replikálni. További információkért lásd: a [hálózati berendezések](https://azure.microsoft.com/solutions/network-appliances) dokumentum.
+* **Virtuális készülékekre** replikálja az eszközök, például a tűzfalak és az útválasztók hello funkcióit. További információkért lásd: hello [hálózati berendezések](https://azure.microsoft.com/solutions/network-appliances) dokumentum.
 
-Felügyelt szolgáltatásként HDInsight Azure felhőben Azure állapotát és a felügyeleti szolgáltatások nem korlátozott hozzáférésre van szüksége. Az NSG-k és udr-EK használata esetén győződjön meg róla, hogy a HDInsight ezen szolgáltatások továbbra is kommunikál a HDInsight.
+Felügyelt szolgáltatásként HDInsight korlátlan hozzáférést tooAzure állapotát és a felügyeleti szolgáltatások hello Azure felhőben igényel. Az NSG-k és udr-EK használata esetén győződjön meg róla, hogy a HDInsight ezen szolgáltatások továbbra is kommunikál a HDInsight.
 
-HDInsight szolgáltatások számos portot teszi elérhetővé. Ha egy virtuális készülékre tűzfalat használ, engedélyeznie kell a forgalom a portokon folyik a szolgáltatások. További információkért lásd: a [szükséges portok] szakaszban.
+HDInsight szolgáltatások számos portot teszi elérhetővé. Ha egy virtuális készülékre tűzfalat használ, engedélyeznie kell a hello forgalmat mely portokon folyik a szolgáltatások. További információkért lásd: hello [szükséges portok] szakasz.
 
 ### <a id="hdinsight-ip"></a>A hálózati biztonsági csoportok és a felhasználó által definiált útvonalak HDInsight
 
-Ha a kíván használni **hálózati biztonsági csoportok** vagy **felhasználó által definiált útvonalak** szabályozza a hálózati forgalmat, HDInsight telepítése előtt a következő műveleteket:
+Ha a kíván használni **hálózati biztonsági csoportok** vagy **felhasználó által definiált útvonalak** toocontrol hálózati forgalom, hajtsa végre a hello műveletek HDInsight telepítése előtt a következő:
 
-1. Azonosítsa a HDInsight használni kívánt Azure-régiót.
+1. Azonosítsa a hello toouse tervezi a HDInsight az Azure-régió.
 
-2. A HDInsight által megkövetelt IP-címek azonosításához. További információkért lásd: a [HDInsight által megkövetelt IP-címek](#hdinsight-ip) szakasz.
+2. Azonosítsa a HDInsight által igényelt hello IP-címek. További információkért lásd: hello [HDInsight által megkövetelt IP-címek](#hdinsight-ip) szakasz.
 
-3. Hozzon létre, vagy módosítsa a hálózati biztonsági csoportok vagy a felhasználó által definiált útvonalak az alhálózat, amely a HDInsight telepítését tervezi.
+3. Létrehozhat vagy módosíthat hello hálózati biztonsági csoport vagy felhasználó által definiált útvonalak tooinstall HDInsight megtervezni hello alhálózat be.
 
-    * __Hálózati biztonsági csoportok__: engedélyezése __bejövő__ porton forgalom __443-as__ IP-címek.
-    * __Felhasználó által definiált útvonalak__: hozzon létre egy olyan útvonalat, minden IP-címre, és állítsa be a __a következő ugrás típusa__ való __Internet__.
+    * __Hálózati biztonsági csoportok__: engedélyezése __bejövő__ porton forgalom __443-as__ hello IP-címről.
+    * __Felhasználó által definiált útvonalak__: hozzon létre egy útvonal tooeach IP-címet, és állítsa be a hello __a következő ugrás típusa__ too__Internet__.
 
-Hálózati biztonsági csoport vagy felhasználó által definiált útvonalak további információkért lásd az alábbi dokumentáció:
+A hálózati biztonsági csoport vagy felhasználó által definiált útvonalak további információkért lásd: a következő dokumentáció hello:
 
 * [Hálózati biztonsági csoport](../virtual-network/virtual-networks-nsg.md)
 
@@ -245,18 +245,18 @@ Hálózati biztonsági csoport vagy felhasználó által definiált útvonalak t
 
 #### <a name="forced-tunneling"></a>Alagúthasználat kényszerítése
 
-A kényszerített bújtatás a beállítás a felhasználói útválasztási ahol alhálózatból származó összes forgalmat egy adott hálózaton vagy a helyre, például a helyszíni hálózat kényszeríti. HDInsight does __nem__ támogatási kényszerített bújtatást.
+Kényszerített bújtatás a beállítás a felhasználói útválasztási ahol alhálózatból származó összes forgalmat, de kényszerített tooa adott hálózati helyre, például a helyszíni hálózat. HDInsight does __nem__ támogatási kényszerített bújtatást.
 
 ## <a id="hdinsight-ip"></a>Szükséges IP-címek
 
 > [!IMPORTANT]
-> Azure-állapot és a felügyeleti szolgáltatás képes kommunikálni a HDInsight kell lennie. A hálózati biztonsági csoport vagy felhasználó által definiált útvonalakat, ha ezen szolgáltatások HDInsight eléréséhez az IP-címekről érkező forgalom engedélyezésére.
+> hello Azure állapotát, és szolgáltatások a hdinsight eszközzel képes toocommunicate kell lennie. Ha hálózati biztonsági csoport vagy felhasználó által definiált útvonalak, hello érkező forgalom engedélyezése ezen szolgáltatások tooreach HDInsight IP-címet.
 >
-> Ha a forgalmat hálózati biztonsági csoport vagy felhasználó által definiált útvonalak nem használja, figyelmen kívül hagyhatja ebben a szakaszban.
+> Ha hálózati biztonsági csoport vagy felhasználó által definiált útvonalak toocontrol forgalom nem használ, figyelmen kívül hagyhatja ebben a szakaszban.
 
-Ha hálózati biztonsági csoport vagy felhasználó által definiált útvonalak, engedélyeznie kell a forgalmat az Azure állapot- és felügyeleti szolgáltatással HDInsight eléréséhez. Az alábbi lépések segítségével engedélyezni kell az IP-címek keresése:
+Ha a hálózati biztonsági csoport vagy felhasználó által definiált útvonalak, engedélyeznie kell a hello Azure állapotát és a felügyeleti szolgáltatások tooreach HDInsight-forgalmat. Használja a következő lépéseket toofind hello IP-címek, engedélyezni kell az hello:
 
-1. Mindig engedélyeznie kell a következő IP-címekről érkező adatforgalmat:
+1. Mindig engedélyeznie kell a következő IP-címek hello érkező forgalmat:
 
     | IP-cím | Engedélyezett port | Irány |
     | ---- | ----- | ----- |
@@ -265,10 +265,10 @@ Ha hálózati biztonsági csoport vagy felhasználó által definiált útvonala
     | 168.61.48.131 | 443 | Bejövő |
     | 138.91.141.162 | 443 | Bejövő |
 
-2. Ha a HDInsight-fürthöz a következő területek közül, majd engedélyeznie kell a forgalmat a régió felsorolt IP-címekről:
+2. Ha a HDInsight-fürt hello a következő területek közül, majd engedélyeznie kell a felsorolt hello régió hello IP-címekről érkező forgalmat:
 
     > [!IMPORTANT]
-    > Ha nem szerepel az Azure-régió használ, csak használja az 1. lépés négy IP-címeket.
+    > Ha hello használata az Azure-régió nem szerepel a listában, majd csak hello négy IP-címek használatára 1. lépésben.
 
     | Ország | Régió | Engedélyezett IP-címek | Engedélyezett port | Irány |
     | ---- | ---- | ---- | ---- | ----- |
@@ -297,15 +297,15 @@ Ha hálózati biztonsági csoport vagy felhasználó által definiált útvonala
     | &nbsp; | USA nyugati középső régiója | 52.161.23.15</br>52.161.10.167 | 443 | Bejövő |
     | &nbsp; | USA nyugati régiója, 2. | 52.175.211.210</br>52.175.222.222 | 443 | Bejövő |
 
-    Az IP-címek az Azure Government használandó információkért lásd: a [Azure Government Eszközintelligencia + analitika](https://docs.microsoft.com/azure/azure-government/documentation-government-services-intelligenceandanalytics) dokumentum.
+    Információk hello IP-címek toouse az Azure Government, lásd: hello [Azure Government Eszközintelligencia + analitika](https://docs.microsoft.com/azure/azure-government/documentation-government-services-intelligenceandanalytics) dokumentum.
 
-3. Ha egy egyéni DNS-kiszolgáló használ a virtuális hálózat, is engedélyeznie kell a hozzáférést a __168.63.129.16__. Ez a cím az Azure rekurzív feloldó. További információkért lásd: a [virtuális gépek és a szerepkör névfeloldását példányok](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md) dokumentum.
+3. Ha egy egyéni DNS-kiszolgáló használ a virtuális hálózat, is engedélyeznie kell a hozzáférést a __168.63.129.16__. Ez a cím az Azure rekurzív feloldó. További információkért lásd: hello [virtuális gépek és a szerepkör névfeloldását példányok](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md) dokumentum.
 
-További információkért lásd: a [hálózati forgalom vezérlése](#networktraffic) szakasz.
+További információkért lásd: hello [hálózati forgalom vezérlése](#networktraffic) szakasz.
 
 ## <a id="hdinsight-ports"></a>Szükséges portok
 
-Ha a hálózat használatával kíván **virtuális készülék tűzfal** megvédi a virtuális hálózatot, engedélyeznie kell a kimenő adatforgalmat a következő portokat:
+Ha a hálózat használatával kíván **virtuális készülék tűzfal** toosecure hello virtuális hálózat, engedélyeznie kell a kimenő forgalmat a következő portok hello:
 
 * 53
 * 443
@@ -313,44 +313,44 @@ Ha a hálózat használatával kíván **virtuális készülék tűzfal** megvé
 * 11000-11999
 * 14000-14999
 
-A portok adott szolgáltatások listájáért lásd: a [a HDInsight Hadoop-szolgáltatás által használt portok](hdinsight-hadoop-port-settings-for-services.md) dokumentum.
+A portok adott szolgáltatások listájáért lásd: hello [a HDInsight Hadoop-szolgáltatás által használt portok](hdinsight-hadoop-port-settings-for-services.md) dokumentum.
 
-A virtuális készülékek vonatkozó tűzfalszabályok további információkért lásd: a [virtuális berendezésre telepítik](../virtual-network/virtual-network-scenario-udr-gw-nva.md) dokumentum.
+A virtuális készülékek vonatkozó tűzfalszabályok további információkért lásd: hello [virtuális berendezésre telepítik](../virtual-network/virtual-network-scenario-udr-gw-nva.md) dokumentum.
 
 ## <a id="hdinsight-nsg"></a>Példa: hálózati biztonsági csoportok a hdinsight eszközzel
 
-Ebben a szakaszban szereplő példák bemutatják, hogyan lehet létrehozni a hálózati biztonsági csoportszabályok, amelyek lehetővé teszik a HDInsight az Azure felügyeleti szolgáltatásokkal kommunikálni. A példák használatához állítsa be úgy az IP-címek az Azure-régiót használ megfelelően. Ezt az információt találja a [HDInsight a hálózati biztonsági csoportok és a felhasználó által definiált útvonalak](#hdinsight-ip) szakasz.
+Ebben a szakaszban hello példák bemutatják, hogyan toocreate hálózati biztonsági csoport szabályokat, amelyek engedélyezik a HDInsight toocommunicate hello az Azure szolgáltatások. Példák hello használatához állítsa be úgy a hello IP címek toomatch hello néhányat a meglévők közül hello használata Azure-régiót. Ez az információ az hello található [HDInsight a hálózati biztonsági csoportok és a felhasználó által definiált útvonalak](#hdinsight-ip) szakasz.
 
 ### <a name="azure-resource-management-template"></a>Az Azure erőforrás-kezelés sablon
 
-A következő erőforrás-kezelés sablon egy bejövő forgalmát, de lehetővé teszi, hogy a HDInsight által megkövetelt IP-címekről érkező forgalom virtuális hálózatot hoz létre. Ez a sablon is létrehoz egy HDInsight-fürt a virtuális hálózat.
+hello következő erőforrás-kezelés sablonnal hoz létre egy virtuális hálózatot, amely korlátozza a bejövő forgalmat, de lehetővé teszi, hogy a HDInsight által igényelt hello IP-címekről érkező forgalom. Ez a sablon is létrehoz egy HDInsight-fürt hello virtuális hálózatban.
 
 * [A biztonságos Azure virtuális hálózat és egy HDInsight Hadoop-fürt központi telepítése](https://azure.microsoft.com/resources/templates/101-hdinsight-secure-vnet/)
 
 > [!IMPORTANT]
-> Módosítsa a megfelelő Azure-régiót használ ebben a példában használt IP-címek. Ezt az információt találja a [HDInsight a hálózati biztonsági csoportok és a felhasználó által definiált útvonalak](#hdinsight-ip) szakasz.
+> A példa toomatch hello Azure-régió, használja a használt hello IP-címek módosítása Ez az információ az hello található [HDInsight a hálózati biztonsági csoportok és a felhasználó által definiált útvonalak](#hdinsight-ip) szakasz.
 
 ### <a name="azure-powershell"></a>Azure PowerShell
 
-A következő PowerShell-parancsfájl segítségével hozzon létre egy virtuális hálózatot, amely korlátozza a bejövő forgalmat, és lehetővé teszi, hogy az IP-címet az Észak-Európa régió forgalmát.
+A következő PowerShell-parancsfájl toocreate bejövő forgalmát, és lehetővé teszi, hogy a forgalom hello IP-címek hello Észak-Európa régió virtuális hálózat hello használata.
 
 > [!IMPORTANT]
-> Módosítsa a megfelelő Azure-régiót használ ebben a példában használt IP-címek. Ezt az információt találja a [HDInsight a hálózati biztonsági csoportok és a felhasználó által definiált útvonalak](#hdinsight-ip) szakasz.
+> A példa toomatch hello Azure-régió, használja a használt hello IP-címek módosítása Ez az információ az hello található [HDInsight a hálózati biztonsági csoportok és a felhasználó által definiált útvonalak](#hdinsight-ip) szakasz.
 
 ```powershell
 $vnetName = "Replace with your virtual network name"
-$resourceGroupName = "Replace with the resource group the virtual network is in"
-$subnetName = "Replace with the name of the subnet that you plan to use for HDInsight"
-# Get the Virtual Network object
+$resourceGroupName = "Replace with hello resource group hello virtual network is in"
+$subnetName = "Replace with hello name of hello subnet that you plan toouse for HDInsight"
+# Get hello Virtual Network object
 $vnet = Get-AzureRmVirtualNetwork `
     -Name $vnetName `
     -ResourceGroupName $resourceGroupName
-# Get the region the Virtual network is in.
+# Get hello region hello Virtual network is in.
 $location = $vnet.Location
-# Get the subnet object
+# Get hello subnet object
 $subnet = $vnet.Subnets | Where-Object Name -eq $subnetName
 # Create a Network Security Group.
-# And add exemptions for the HDInsight health and management services.
+# And add exemptions for hello HDInsight health and management services.
 $nsg = New-AzureRmNetworkSecurityGroup `
     -Name "hdisecure" `
     -ResourceGroupName $resourceGroupName `
@@ -432,9 +432,9 @@ $nsg = New-AzureRmNetworkSecurityGroup `
         -Access Deny `
         -Priority 500 `
         -Direction Inbound
-# Set the changes to the security group
+# Set hello changes toohello security group
 Set-AzureRmNetworkSecurityGroup -NetworkSecurityGroup $nsg
-# Apply the NSG to the subnet
+# Apply hello NSG toohello subnet
 Set-AzureRmVirtualNetworkSubnetConfig `
     -VirtualNetwork $vnet `
     -Name $subnetName `
@@ -443,9 +443,9 @@ Set-AzureRmVirtualNetworkSubnetConfig `
 ```
 
 > [!IMPORTANT]
-> Ez a példa bemutatja, hogyan engedélyezze a bejövő forgalmat a szükséges IP-címek a szabályok hozzáadása. Egy szabályt, amely a más forrásokból bejövő hozzáférés korlátozása nem tartalmaz.
+> Ez a példa bemutatja, hogyan tooadd szabályok tooallow bejövő adatforgalmat a szükséges hello IP-címek. A szabály toorestrict nem tartalmaz más forrásokból hozzáférés bejövő.
 >
-> A következő példa bemutatja az internetről SSH-hozzáférés engedélyezése:
+> hello a következő példa bemutatja, hogy tooenable SSH hogyan férhetnek hozzá az internethez hello:
 >
 > ```powershell
 > Add-AzureRmNetworkSecurityRuleConfig -Name "SSH" -Description "SSH" -Protocol "*" -SourcePortRange "*" -DestinationPortRange "22" -SourceAddressPrefix "*" -DestinationAddressPrefix "VirtualNetwork" -Access Allow -Priority 306 -Direction Inbound
@@ -453,20 +453,20 @@ Set-AzureRmVirtualNetworkSubnetConfig `
 
 ### <a name="azure-cli"></a>Azure CLI
 
-Az alábbi lépések segítségével hozzon létre egy virtuális hálózatot, amely korlátozza a bejövő forgalmat, de lehetővé teszi, hogy a HDInsight által megkövetelt IP-címekről érkező forgalmat.
+A következő lépéseket toocreate bejövő forgalmát, de lehetővé teszi, hogy a HDInsight által igényelt hello IP-címekről érkező forgalom virtuális hálózat hello használata.
 
-1. Az alábbi parancs segítségével hozzon létre egy új hálózati biztonsági csoport nevű `hdisecure`. Cserélje le **RESOURCEGROUPNAME** a erőforráscsoporttal, amely tartalmazza az Azure virtuális hálózat. Cserélje le **hely** , amely a csoport létrehozásának a helyét (régió).
+1. A következő parancs toocreate új hálózati biztonsági csoport nevű használata hello `hdisecure`. Cserélje le **RESOURCEGROUPNAME** hello erőforráscsoporttal, amely tartalmazza a hello Azure-beli virtuális hálózathoz. Cserélje le **hely** hello helyen lévő (régió) hello csoport jött létre.
 
     ```azurecli
     az network nsg create -g RESOURCEGROUPNAME -n hdisecure -l LOCATION
     ```
 
-    A csoport létrehozása után az új csoport tájékoztatást kapni.
+    Hello csoport létrehozása után megjelenik a hello új csoport adatai.
 
-2. Használja a következő szabályok hozzáadása az új hálózati biztonsági csoportot, amely az Azure HDInsight állapotát és a felügyeleti szolgáltatás a 443-as portot a bejövő kommunikáció. Cserélje le **RESOURCEGROUPNAME** az erőforráscsoport, amely tartalmazza az Azure virtuális hálózat nevével.
+2. A következő tooadd szabályok toohello új hálózati biztonsági csoportot, amely hello Azure HDInsight állapotát és a felügyeleti szolgáltatás a 443-as portot a bejövő kommunikáció hello használata. Cserélje le **RESOURCEGROUPNAME** hello Azure Virtual Network tartalmazó erőforráscsoport hello hello névvel.
 
     > [!IMPORTANT]
-    > Módosítsa a megfelelő Azure-régiót használ ebben a példában használt IP-címek. Ezt az információt találja a [HDInsight a hálózati biztonsági csoportok és a felhasználó által definiált útvonalak](#hdinsight-ip) szakasz.
+    > A példa toomatch hello Azure-régió, használja a használt hello IP-címek módosítása Ez az információ az hello található [HDInsight a hálózati biztonsági csoportok és a felhasználó által definiált útvonalak](#hdinsight-ip) szakasz.
 
     ```azurecli
     az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule1 --protocol "*" --source-port-range "*" --destination-port-range "443" --source-address-prefix "52.164.210.96" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 300 --direction "Inbound"
@@ -478,30 +478,30 @@ Az alábbi lépések segítségével hozzon létre egy virtuális hálózatot, a
     az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n block --protocol "*" --source-port-range "*" --destination-port-range "*" --source-address-prefix "Internet" --destination-address-prefix "VirtualNetwork" --access "Deny" --priority 500 --direction "Inbound"
     ```
 
-3. A hálózati biztonsági csoport egyedi azonosítója lekéréséhez használja a következő parancsot:
+3. tooretrieve hello a hálózati biztonsági csoport egyedi azonosítója, a következő parancs hello használata:
 
     ```azurecli
     az network nsg show -g RESOURCEGROUPNAME -n hdisecure --query 'id'
     ```
 
-    Ez a parancs értéket ad vissza az alábbihoz hasonló:
+    Ez a parancs visszaadja a szöveg a következő érték hasonló toohello:
 
         "/subscriptions/SUBSCRIPTIONID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure"
 
-    Ha nem a kívánt eredmény elérése érdekében használja a dupla-azonosító idézőjelbe elemet a parancsban.
+    Használjon a hello parancs azonosítója dupla idézőjelbe, ha a várt hello eredmények nem jelenik.
 
-4. A következő paranccsal egy alhálózatot a hálózati biztonsági csoport vonatkoznak. Cserélje le a __GUID__ és __RESOURCEGROUPNAME__ az értékeket az előző lépésben adja vissza. Cserélje le __VNETNAME__ és __SUBNETNAME__ a virtuálishálózat-névnek és a létrehozni kívánt alhálózat neve.
+4. A következő parancs tooapply hello hálózati biztonsági csoport tooa alhálózati hello használata. Cserélje le a hello __GUID__ és __RESOURCEGROUPNAME__ hello előző lépésben által visszaadott értékek hello néhányat a meglévők közül. Cserélje le __VNETNAME__ és __SUBNETNAME__ hello virtuálishálózat-névnek és alhálózat neve, amelyet az toocreate.
 
     ```azurecli
     az network vnet subnet update -g RESOURCEGROUPNAME --vnet-name VNETNAME --name SUBNETNAME --set networkSecurityGroup.id="/subscriptions/GUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure"
     ```
 
-    Ez a parancs után telepítheti a HDInsight a virtuális hálózathoz.
+    Ez a parancs után a HDInsight a virtuális hálózati hello is telepítheti.
 
 > [!IMPORTANT]
-> Ezeket a lépéseket csak nyissa meg az Azure felhőalapú HDInsight állapotát és a felügyeleti szolgáltatás elérését. A virtuális hálózaton kívül a HDInsight-fürt bármely más hozzáférését blokkolja. Ahhoz, hogy a virtuális hálózaton kívülről való eléréshez, azonban további hálózati biztonsági csoport szabályokat kell hozzáadnia.
+> Ezeket a lépéseket csak nyissa meg a toohello HDInsight állapotát és a felügyeleti szolgáltatás a hello Azure felhőben. Bármely más hozzáférési toohello HDInsight-fürt a virtuális hálózaton kívül hello le van tiltva. tooenable hozzáférés a külső hello virtuális hálózatról, hozzá kell adnia a további hálózati biztonsági csoportszabályok.
 >
-> A következő példa bemutatja az internetről SSH-hozzáférés engedélyezése:
+> hello a következő példa bemutatja, hogy tooenable SSH hogyan férhetnek hozzá az internethez hello:
 >
 > ```azurecli
 > az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule5 --protocol "*" --source-port-range "*" --destination-port-range "22" --source-address-prefix "*" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 306 --direction "Inbound"
@@ -511,50 +511,50 @@ Az alábbi lépések segítségével hozzon létre egy virtuális hálózatot, a
 
 ### <a name="name-resolution-between-a-virtual-network-and-a-connected-on-premises-network"></a>Névfeloldás egy virtuális és a csatlakoztatott helyszíni hálózat között
 
-Ebben a példában a következő feltételek teszi:
+Ebben a példában a következő feltételek hello teszi:
 
-* Rendelkezik egy Azure virtuális hálózatot, amely egy VPN-átjáró használatával a helyszíni hálózathoz csatlakozik.
+* Rendelkezik egy Azure virtuális hálózatot, amely csatlakoztatott tooan a helyszíni hálózat VPN-átjáró használatával.
 
-* Az egyéni DNS-kiszolgáló a virtuális hálózat fut. Linux vagy Unix operációs rendszert.
+* hello egyéni DNS-kiszolgáló hello virtuális hálózat futtató Linux vagy Unix hello operációs rendszer.
 
-* [Kötési](https://www.isc.org/downloads/bind/) az egyéni DNS-kiszolgálóra van telepítve.
+* [Kötési](https://www.isc.org/downloads/bind/) hello egyéni DNS-kiszolgálón telepítve van.
 
-Az egyéni DNS-kiszolgálón a virtuális hálózat:
+Hello egyéni DNS-kiszolgálón a virtuális hálózati hello:
 
-1. Azure PowerShell vagy az Azure CLI segítségével a virtuális hálózat DNS-utótagját található:
+1. Azure PowerShell vagy az Azure CLI toofind hello DNS-utótagjának használata hello virtuális hálózat:
 
     ```powershell
-    $resourceGroupName = Read-Input -Prompt "Enter the resource group that contains the virtual network used with HDInsight"
+    $resourceGroupName = Read-Input -Prompt "Enter hello resource group that contains hello virtual network used with HDInsight"
     $NICs = Get-AzureRmNetworkInterface -ResourceGroupName $resourceGroupName
     $NICs[0].DnsSettings.InternalDomainNameSuffix
     ```
 
     ```azurecli-interactive
-    read -p "Enter the name of the resource group that contains the virtual network: " RESOURCEGROUP
+    read -p "Enter hello name of hello resource group that contains hello virtual network: " RESOURCEGROUP
     az network nic list --resource-group $RESOURCEGROUP --query "[0].dnsSettings.internalDomainNameSuffix"
     ```
 
-2. Az egyéni DNS-kiszolgálón a virtuális hálózat, használja a következő szöveget a tartalmát a `/etc/bind/named.conf.local` fájlt:
+2. Hello egyéni DNS-kiszolgálón hello virtuális hálózat, használja a szöveg hello hello tartalmát, a következő hello `/etc/bind/named.conf.local` fájlt:
 
     ```
-    // Forward requests for the virtual network suffix to Azure recursive resolver
+    // Forward requests for hello virtual network suffix tooAzure recursive resolver
     zone "0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net" {
         type forward;
         forwarders {168.63.129.16;}; # Azure recursive resolver
     };
     ```
 
-    Cserélje le a `0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net` értéket a virtuális hálózat DNS-utótagját.
+    Cserélje le a hello `0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net` hello DNS-utótagját, a virtuális hálózat értéket.
 
-    Ez a konfiguráció összes DNS-kéréseket a virtuális hálózat DNS-utótag az Azure rekurzív feloldó irányítja.
+    Ez a konfiguráció hello DNS-utótag hello virtuális hálózati toohello Azure rekurzív feloldó az összes DNS-kérelmek irányítja.
 
-2. Az egyéni DNS-kiszolgálón a virtuális hálózat, használja a következő szöveget a tartalmát a `/etc/bind/named.conf.options` fájlt:
+2. Hello egyéni DNS-kiszolgálón hello virtuális hálózat, használja a szöveg hello hello tartalmát, a következő hello `/etc/bind/named.conf.options` fájlt:
 
     ```
-    // Clients to accept requests from
-    // TODO: Add the IP range of the joined network to this list
+    // Clients tooaccept requests from
+    // TODO: Add hello IP range of hello joined network toothis list
     acl goodclients {
-        10.0.0.0/16; # IP address range of the virtual network
+        10.0.0.0/16; # IP address range of hello virtual network
         localhost;
         localnets;
     };
@@ -566,75 +566,75 @@ Az egyéni DNS-kiszolgálón a virtuális hálózat:
 
             allow-query { goodclients; };
 
-            # All other requests are sent to the following
+            # All other requests are sent toohello following
             forwarders {
-                192.168.0.1; # Replace with the IP address of your on-premises DNS server
+                192.168.0.1; # Replace with hello IP address of your on-premises DNS server
             };
 
             dnssec-validation auto;
 
-            auth-nxdomain no;    # conform to RFC1035
+            auth-nxdomain no;    # conform tooRFC1035
             listen-on { any; };
     };
     ```
     
-    * Cserélje le a `10.0.0.0/16` érték és az IP-címtartomány a virtuális hálózat. Ez a bejegyzés lehetővé teszi, hogy a név feloldása kérelmek címek ebbe a tartományba.
+    * Cserélje le a hello `10.0.0.0/16` hello IP-címtartomány a virtuális hálózat értéket. Ez a bejegyzés lehetővé teszi, hogy a név feloldása kérelmek címek ebbe a tartományba.
 
-    * A helyszíni hálózat az IP-címtartomány hozzáadása a `acl goodclients { ... }` szakasz.  bejegyzés lehetővé teszi, hogy a források névfeloldási a helyszíni hálózat.
+    * Hello IP-címtartomány a hello a helyszíni hálózati toohello hozzáadása `acl goodclients { ... }` szakasz.  bejegyzés lehetővé teszi, hogy a források névfeloldási hello a helyi hálózaton.
     
-    * Cserélje le a értékét `192.168.0.1` a helyi DNS-kiszolgáló IP-címmel. Ez a bejegyzés a helyi DNS-kiszolgáló más DNS-kérelmek irányítja.
+    * Cserélje le a hello érték `192.168.0.1` a helyi DNS-kiszolgáló hello IP-címmel. Ez a bejegyzés minden más DNS kérelmek toohello a helyi DNS-kiszolgáló irányítja.
 
-3. A konfigurációt használja, indítsa újra a kötés. Például: `sudo service bind9 restart`.
+3. toouse hello konfigurációs, indítsa újra a kötés. Például: `sudo service bind9 restart`.
 
-4. A feltételes továbbítók hozzáadása a helyi DNS-kiszolgáló. A feltételes továbbító számára, hogy az 1. lépésben a DNS-utótag kérelmeket küldeni az egyéni DNS-kiszolgáló konfigurálása.
+4. Feltételes továbbítók toohello a helyi DNS-kiszolgáló hozzáadása. Konfigurálhatja a hello feltételes továbbítók toosend kérések hello DNS-utótag lépés 1 toohello egyéni DNS-kiszolgálóról.
 
     > [!NOTE]
-    > A dokumentációban a DNS-szoftver arról, hogyan adhat a feltételes továbbítók.
+    > Hello dokumentációjából tájékozódhat arról, hogy miként a DNS-szoftver tooadd feltételes továbbítót.
 
-A lépések elvégzése után csatlakozhat vagy teljes tartománynevét (FQDN) használatával hálózatán lévő erőforrásokat. Most már telepítheti HDInsight létrehozni a virtuális hálózatban.
+A lépések elvégzése után tooresources vagy a hálózat teljes tartománynevek (FQDN) használatával is elérheti. Most már telepítheti HDInsight hello virtuális hálózathoz.
 
 ### <a name="name-resolution-between-two-connected-virtual-networks"></a>Két csatlakoztatott virtuális hálózatok közötti névfeloldás
 
-Ebben a példában a következő feltételek teszi:
+Ebben a példában a következő feltételek hello teszi:
 
 * VPN-átjáró használatával, vagy a társviszony-létesítés csatlakoztatott két Azure virtuális hálózat rendelkezik.
 
-* Az egyéni DNS-kiszolgáló mindkét hálózatokban fut. Linux vagy Unix operációs rendszert.
+* mindkét hálózat hello egyéni DNS-kiszolgáló fut. Linux vagy Unix hello operációs rendszert.
 
-* [Kötési](https://www.isc.org/downloads/bind/) az egyéni DNS-kiszolgálókon telepítve van.
+* [Kötési](https://www.isc.org/downloads/bind/) hello egyéni DNS-kiszolgálókon telepítve van.
 
-1. Azure PowerShell vagy az Azure CLI segítségével mindkét virtuális hálózat DNS-utótagját található:
+1. Azure PowerShell vagy az Azure CLI toofind hello DNS-utótagját, mindkét virtuális hálózat használata:
 
     ```powershell
-    $resourceGroupName = Read-Input -Prompt "Enter the resource group that contains the virtual network used with HDInsight"
+    $resourceGroupName = Read-Input -Prompt "Enter hello resource group that contains hello virtual network used with HDInsight"
     $NICs = Get-AzureRmNetworkInterface -ResourceGroupName $resourceGroupName
     $NICs[0].DnsSettings.InternalDomainNameSuffix
     ```
 
     ```azurecli-interactive
-    read -p "Enter the name of the resource group that contains the virtual network: " RESOURCEGROUP
+    read -p "Enter hello name of hello resource group that contains hello virtual network: " RESOURCEGROUP
     az network nic list --resource-group $RESOURCEGROUP --query "[0].dnsSettings.internalDomainNameSuffix"
     ```
 
-2. Használja a következő szöveget a tartalmát a `/etc/bind/named.config.local` fájlt az egyéni DNS-kiszolgálón. Ennek a módosításnak mindkét virtuális hálózat egyéni DNS-kiszolgálón.
+2. Szöveg hello hello tartalmát, a következő használatát hello `/etc/bind/named.config.local` fájl hello egyéni DNS-kiszolgálón. Adja meg ezt a módosítást az egyéni DNS-kiszolgáló hello mindkét virtuális hálózat.
 
     ```
-    // Forward requests for the virtual network suffix to Azure recursive resolver
+    // Forward requests for hello virtual network suffix tooAzure recursive resolver
     zone "0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net" {
         type forward;
-        forwarders {10.0.0.4;}; # The IP address of the DNS server in the other virtual network
+        forwarders {10.0.0.4;}; # hello IP address of hello DNS server in hello other virtual network
     };
     ```
 
-    Cserélje le a `0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net` értéket a DNS-utótagja a __más__ virtuális hálózat. Ez a bejegyzés az egyéni DNS-sel kapcsolatban, hogy a hálózati kérések a távoli hálózati DNS-utótag irányítja.
+    Cserélje le a hello `0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net` hello DNS-utótagja hello értékének __más__ virtuális hálózat. Ez a bejegyzés irányítja a DNS-utótagja hello hello távoli hálózati toohello vonatkozó egyéni DNS-ét erre a hálózatra.
 
-3. Az egyéni DNS-kiszolgálókon mindkét virtuális hálózatban, használja a következő szöveget a tartalmát, a `/etc/bind/named.conf.options` fájlt:
+3. Hello egyéni DNS-kiszolgálókon mindkét virtuális hálózatban, használja a szöveg hello hello tartalmát, a következő hello `/etc/bind/named.conf.options` fájlt:
 
     ```
-    // Clients to accept requests from
+    // Clients tooaccept requests from
     acl goodclients {
-        10.1.0.0/16; # The IP address range of one virtual network
-        10.0.0.0/16; # The IP address range of the other virtual network
+        10.1.0.0/16; # hello IP address range of one virtual network
+        10.0.0.0/16; # hello IP address range of hello other virtual network
         localhost;
         localnets;
     };
@@ -652,24 +652,24 @@ Ebben a példában a következő feltételek teszi:
 
             dnssec-validation auto;
 
-            auth-nxdomain no;    # conform to RFC1035
+            auth-nxdomain no;    # conform tooRFC1035
             listen-on { any; };
     };
     ```
     
-    * Cserélje le a `10.0.0.0/16` és `10.1.0.0/16` értékeket az IP-címtartományok a virtuális hálózatok. Ez a bejegyzés lehetővé teszi a DNS-kiszolgálók kérelem létrehozására minden egyes hálózati erőforrások.
+    * Cserélje le a hello `10.0.0.0/16` és `10.1.0.0/16` értékek hello IP-címtartományok a virtuális hálózatok. Ez a bejegyzés lehetővé teszi, hogy minden hálózati erőforrások toomake kérelmek hello DNS-kiszolgálók.
 
-    Minden kérést, nem a virtuális hálózatok (Fontos) DNS-utótagokat az Azure rekurzív feloldó kezeli.
+    Minden kérést, amelyek nincsenek a hello DNS-utótagok hello virtuális hálózatok (Fontos) hello Azure rekurzív feloldó kezeli.
 
-4. A konfigurációt használja, indítsa újra a kötés. Például `sudo service bind9 restart` mindkét DNS-kiszolgálókon.
+4. toouse hello konfigurációs, indítsa újra a kötés. Például `sudo service bind9 restart` mindkét DNS-kiszolgálókon.
 
-Ezek a lépések végrehajtását követően csatlakozhat a teljes tartománynevek (FQDN) használatával virtuális hálózatán lévő erőforrásokat. Most már telepítheti HDInsight létrehozni a virtuális hálózatban.
+A lépések elvégzése után tooresources hello virtuális hálózatban, teljes tartománynevek (FQDN) használatával is elérheti. Most már telepítheti HDInsight hello virtuális hálózathoz.
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Például egy végpontok közötti egy a helyszíni hálózathoz való kapcsolódáshoz a HDInsight konfigurálása, lásd: [egy a helyszíni hálózathoz való csatlakozás HDInsight](./connect-on-premises-network.md).
+* Például egy végpontok közötti HDInsight tooconnect tooan a helyszíni hálózat konfigurálása, lásd: [csatlakozás HDInsight tooan a helyszíni hálózat](./connect-on-premises-network.md).
 
-* Azure virtuális hálózataihoz további információkért tekintse meg a [Azure Virtual Network áttekintése](../virtual-network/virtual-networks-overview.md).
+* Egy Azure virtuális hálózatot további információkért lásd: hello [Azure Virtual Network áttekintése](../virtual-network/virtual-networks-overview.md).
 
 * Hálózati biztonsági csoportokkal kapcsolatos további információkért lásd: [hálózati biztonsági csoportok](../virtual-network/virtual-networks-nsg.md).
 

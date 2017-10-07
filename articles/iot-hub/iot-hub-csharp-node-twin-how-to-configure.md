@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub eszköz iker tulajdonságait (.NET/csomópont) |} Microsoft Docs"
-description: "Hogyan használható az Azure IoT Hub eszköz twins eszközök konfigurálásához. Az Azure IoT-eszközök SDK for Node.js használatával valósítja meg a szimulált eszköz alkalmazások és az Azure IoT szolgáltatás SDK for .NET egy szolgáltatás-alkalmazást, amely módosítja a használatával egy eszközt a két eszköz konfigurációs végrehajtásához."
+title: "aaaUse Azure IoT Hub iker tulajdonságai (.NET/csomópont) |} Microsoft Docs"
+description: "Hogyan toouse Azure IoT Hub eszköz twins tooconfigure eszközök. Hello Azure IoT-eszközök SDK a Node.js tooimplement a szimulált eszköz alkalmazásának és hello Azure IoT szolgáltatás SDK .NET tooimplement egy szolgáltatás-alkalmazást, amely módosítja a használatával egy eszközt a két eszköz konfigurációs használja."
 services: iot-hub
 documentationcenter: .net
 author: fsautomata
@@ -14,53 +14,53 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/30/2017
 ms.author: elioda
-ms.openlocfilehash: 78b4523fa7d0c056f84214429730a5df1bcdcef7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 840a1b2e45f4763131299577583aa89015dcdd1d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-desired-properties-to-configure-devices"></a>Használni kívánt tulajdonságokat eszközök konfigurálása
+# <a name="use-desired-properties-tooconfigure-devices"></a>Használja a kívánt tulajdonságokkal tooconfigure eszközök
 [!INCLUDE [iot-hub-selector-twin-how-to-configure](../../includes/iot-hub-selector-twin-how-to-configure.md)]
 
-Ez az oktatóanyag végén hogy két konzol alkalmazások:
+Ez az oktatóanyag végén hello hogy két konzol alkalmazások:
 
-* **SimulateDeviceConfiguration.js**, a szimulált eszköz alkalmazás, amely megvárja-e a szükséges konfiguráció frissítése a jelentést készít egy szimulált konfigurációs frissítési folyamat állapotát.
-* **SetDesiredConfigurationAndQuery**, .NET-háttér-alkalmazás, amely beállítja a kívánt konfiguráció egy eszközön, és lekérdezi a konfigurációs frissítési folyamat.
+* **SimulateDeviceConfiguration.js**, a szimulált eszköz alkalmazás, amely megvárja-e a szükséges konfiguráció frissítése a jelentést készít egy szimulált konfigurációs frissítési folyamat állapotának hello.
+* **SetDesiredConfigurationAndQuery**, a .NET-háttér-alkalmazás, amely hello szükséges konfigurációs egy eszközön, és lekérdezések hello konfigurációs frissítési folyamat.
 
 > [!NOTE]
-> A cikk [Azure IoT SDK-k] [ lnk-hub-sdks] használható eszközt és a háttér-alkalmazások az Azure IoT SDK-k információt nyújt.
+> hello cikk [Azure IoT SDK-k] [ lnk-hub-sdks] információkat nyújt azokról hello Azure IoT SDK-k toobuild használt eszköz és a háttér-alkalmazásokat.
 > 
 > 
 
-Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban hello a következőkre lesz szüksége:
 
 * Visual Studio 2015 vagy Visual Studio 2017.
 * A Node.js 0.10.x vagy újabb verziója.
 * Aktív Azure-fiók. Ha nincs fiókja, néhány perc alatt létrehozhat egy [ingyenes fiókot][lnk-free-trial].
 
-Ha követte a [Ismerkedés az eszköz twins] [ lnk-twin-tutorial] oktatóanyagban már rendelkezik egy IoT-központot, és egy eszközidentitás nevű **myDeviceId**. Ebben az esetben ugorjon a [a szimulált eszköz-alkalmazás létrehozása] [ lnk-how-to-configure-createapp] szakasz.
+Ha követte hello [Ismerkedés az eszköz twins] [ lnk-twin-tutorial] oktatóanyagban már rendelkezik egy IoT-központot, és egy eszközidentitás nevű **myDeviceId**. Ebben az esetben kihagyhatja toohello [létrehozás hello szimulált eszköz alkalmazásának] [ lnk-how-to-configure-createapp] szakasz.
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
 <a id="#create-the-simulated-device-app"></a>
-## <a name="create-the-simulated-device-app"></a>A szimulált eszköz-alkalmazás létrehozása
-Ebben a szakaszban egy Node.js-Konzolalkalmazás, amely kapcsolódik a hub, létrehozhat **myDeviceId**megvárja-e a szükséges konfiguráció frissítése a, majd jelentést készít a frissítések szimulált konfigurációs frissítési folyamat.
+## <a name="create-hello-simulated-device-app"></a>Hello szimulált eszköz alkalmazás létrehozása
+Ebben a szakaszban egy Node.js-Konzolalkalmazás, amely a tooyour hub, létrehozhat **myDeviceId**megvárja-e a szükséges konfiguráció frissítése a, majd jelentést készít a frissítések a szimulált hello konfigurációs frissítési folyamat.
 
-1. Hozzon létre egy új üres nevű **simulatedeviceconfiguration**. Az a **simulatedeviceconfiguration** mappa, hozzon létre egy új package.json fájlt parancsot a parancssorba az alábbi parancs segítségével. Fogadja el az alapértelmezett beállításokat.
+1. Hozzon létre egy új üres nevű **simulatedeviceconfiguration**. A hello **simulatedeviceconfiguration** mappa, hozzon létre egy új package.json fájlt a következő parancsot a parancssorba hello segítségével. Fogadja el az összes hello alapértelmezett értéket.
    
     ```
     npm init
     ```
-1. A parancssorba a **simulatedeviceconfiguration** mappa telepítéséhez a következő parancsot a **azure iot-eszközök** és **azure-iot-eszközök – mqtt** csomagok:
+1. A parancssorban hello **simulatedeviceconfiguration** mappa, futtassa a következő parancs tooinstall hello hello **azure iot-eszközök** és **azure-iot-eszközök – mqtt**csomagok:
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-1. Egy szövegszerkesztő használatával hozzon létre egy új **SimulateDeviceConfiguration.js** fájlt a **simulatedeviceconfiguration** mappa.
-1. Adja hozzá a következő kódot a **SimulateDeviceConfiguration.js** fájlt, és lecserélni a **{eszköz kapcsolati karakterlánc}** helyőrző az eszköz kapcsolati karakterlánccal létrehozása után másolja a **myDeviceId** eszközidentitás:
+1. Egy szövegszerkesztő használatával hozzon létre egy új **SimulateDeviceConfiguration.js** hello fájlban **simulatedeviceconfiguration** mappa.
+1. Adja hozzá a következő kód toohello hello **SimulateDeviceConfiguration.js** fájlt, és helyettesítő hello **{eszköz kapcsolati karakterlánc}** helyőrzőt kimásolt mikor hello eszköz kapcsolati karakterláncot, hello létrehozott **myDeviceId** eszközidentitás:
    
         'use strict';
         var Client = require('azure-iot-device').Client;
@@ -94,15 +94,15 @@ Ebben a szakaszban egy Node.js-Konzolalkalmazás, amely kapcsolódik a hub, lét
             }
         });
    
-    A **ügyfél** vezérlőnek az eszközről eszköz twins együttműködhet szükséges összes módszert. Ez a kód inicializálja a **ügyfél** objektumazonosító, beolvassa az eszköz iker a **myDeviceId**, és a frissítés kezelőjét a *tulajdonságok szükséges*. A kezelő ellenőrzi, hogy egy tényleges Helykonfiguráció-változtatási kérelem a configIds összehasonlításával, akkor hív meg, olyan módszer, amelyik elindul a konfigurációs módosítást.
+    Hello **ügyfél** vezérlőnek minden hello módszerek szükséges toointeract az eszköz twins hello eszközről. Ez a kód inicializálja hello **ügyfél** objektum beolvassa az eszköz iker hello **myDeviceId**, és a kezelő hello frissítés a *tulajdonságok szükséges*. hello kezelő ellenőrzi, hogy egy tényleges Helykonfiguráció-változtatási kérelem hello configIds összehasonlításával, akkor hív meg, amely elindítja a hello konfigurációváltozás metódus.
    
-    Vegye figyelembe, hogy az egyszerűség kedvéért, ez a kód egy kódolt alapértelmezett értéket használja, a kezdeti konfiguráció. Egy valós alkalmazás valószínűleg szeretné, hogy a konfigurálás betöltése a helyi tárterület.
+    Vegye figyelembe, hogy hello szakét az egyszerűség, ezt a kódot használja a kódolt alapértelmezett hello kezdeti konfiguráció. Egy valós alkalmazás valószínűleg szeretné, hogy a konfigurálás betöltése a helyi tárterület.
    
    > [!IMPORTANT]
-   > Kívánt tulajdonság állapotváltozási események mindig egyszer kibocsátott eszköz csatlakozáskor. Győződjön meg arról, hogy ellenőrizze, hogy van-e egy tényleges módosítása a kívánt tulajdonságaiban bármilyen művelet végrehajtása előtt.
+   > Kívánt tulajdonság állapotváltozási események mindig egyszer kibocsátott eszköz csatlakozáskor. Győződjön meg arról, hogy nincs-e egy tényleges módosítása a hello toocheck szükséges tulajdonságok bármilyen művelet végrehajtása előtt.
    > 
    > 
-1. Adja hozzá a következő metódusokat előtt a `client.open()` hívása:
+1. Adja hozzá a következő módszerek előtt hello hello `client.open()` hívása:
    
         var initConfigChange = function(twin) {
             var currentTelemetryConfig = twin.properties.reported.telemetryConfig;
@@ -143,40 +143,40 @@ Ebben a szakaszban egy Node.js-Konzolalkalmazás, amely kapcsolódik a hub, lét
             });
         };
    
-    A **initConfigChange** módszer a jelentett a helyi eszközön a két objektum tulajdonságainak frissítése a konfigurációs frissítési kérelmet az állapota, **függőben lévő**, majd frissíti az eszköz a két szolgáltatás. Miután sikeresen frissített a eszköz iker, egy hosszú ideig tartó folyamatot, amely végrehajtása során szimulálja **completeConfigChange**. Ez a módszer az állapot helyi jelentett tulajdonságainak frissítése **sikeres** és eltávolítása a **pendingConfig** objektum. Ezután frissíti az eszköz a két szolgáltatás.
+    Hello **initConfigChange** metódus frissítések hello jelentett hello helyi eszköz a két objektum hello konfiguráció tulajdonságainak túl kérelem és a készletek hello állapotának frissítése**függőben lévő**, majd a frissítések hello hello szolgáltatásban iker eszköz. Miután sikeresen frissített hello eszköz két, a hosszú ideig futó folyamat. a hello végrehajtásának leállítása szimulálja **completeConfigChange**. Ez a módszer frissíti hello helyi jelentett tulajdonságok hello állapotának beállításakor túl**sikeres** és hello eltávolítása **pendingConfig** objektum. Majd frissíti a hello eszköz iker hello szolgáltatásban.
    
-    Megjegyzés: a, hogy a sávszélességet, hogy csak a módosítani kívánt tulajdonságok megadásával tulajdonságának frissítésekor (nevű **javítás** a fenti kódban), a teljes dokumentum felülírása helyett.
+    Megjegyzés: a toosave sávszélesség, hogy csak a hello tulajdonságok toobe módosított megadásával tulajdonságának frissítésekor (nevű **javítás** hello kód fent található), teljes dokumentum hello felülírása helyett.
    
    > [!NOTE]
-   > Ez az oktatóanyag nem szimulálása egyidejű keresni minden olyan esetben. Néhány konfigurációs frissítési folyamat közben fut-e a frissítés, néhány lehet a várólistába helyezni őket, és néhány sikerült hibát elutasítása a célként megadott konfigurációs módosítások befogadásához lehet. Ügyeljen arra, hogy fontolja meg a kívánt viselkedés, a konfigurációs folyamat, és adja hozzá a megfelelő logikai kezdeményezése a konfiguráció módosítása előtt.
+   > Ez az oktatóanyag nem szimulálása egyidejű keresni minden olyan esetben. Néhány konfigurációs frissítési folyamat előfordulhat, hogy képes tooaccommodate módosításainak konfigurációjához hello frissítés futása közben, előfordulhat, hogy rendelkeznek őket, és néhány sikerült utasítsa el azokat a hibaállapotot tooqueue. Győződjön meg arról, hogy tooconsider hello kívánt viselkedés, a konfigurációs folyamat, és adja hozzá a megfelelő logika hello hello konfigurációváltozás kezdeményezése előtt.
    > 
    > 
-1. Az eszköz alkalmazás futtatása:
+1. Hello eszköz alkalmazás futtatása:
    
         node SimulateDeviceConfiguration.js
    
-    Az üzenet `retrieved device twin`. Tartsa meg az alkalmazás futását.
+    Hello üzenet `retrieved device twin`. Folyamatosan futó hello alkalmazást.
 
-## <a name="create-the-service-app"></a>A service-alkalmazás létrehozása
-Ebben a szakaszban egy .NET-Konzolalkalmazás, amely frissíti hoz létre a *szükséges tulajdonságok* meg az eszköz a két társított **myDeviceId** új telemetriai configuration objektummal. Ezután lekérdezi az eszköz twins az IoT hub tárolja, és a kívánt és jelentett konfigurációkat, az eszköz közötti különbséget szemlélteti.
+## <a name="create-hello-service-app"></a>Hello service-alkalmazás létrehozása
+Ez a szakasz során létrehoz egy .NET-Konzolalkalmazás, hogy a frissítések hello *szükségeskonfiguráció-tulajdonságok* a hello eszköz iker társított **myDeviceId** új telemetria-konfigurációs objektum. Ezután hello eszköz twins hello IoT-központ tárolt lekérdezi és hello hello különbségének szükséges, és a jelentett hello eszköz konfigurációját jeleníti meg.
 
-1. A Visual Studióban adjon hozzá egy Visual C# nyelvű Windows klasszikus asztalialkalmazás-projektet az aktuális megoldáshoz a **Console Application** (Konzolalkalmazás) projektsablonnal. Nevet a projektnek **SetDesiredConfigurationAndQuery**.
+1. A Visual Studio, a Visual C# klasszikus Windows asztal projekt toohello aktuális megoldás hozzáadása hello segítségével **Konzolalkalmazás** projektsablon. Név hello projekt **SetDesiredConfigurationAndQuery**.
    
     ![Új Visual C# Windows klasszikus asztalialkalmazás-projekt][img-createapp]
-1. A Megoldáskezelőben kattintson a jobb gombbal a **SetDesiredConfigurationAndQuery** projektre, és kattintson a **NuGet-csomagok kezelése...** .
-1. A **NuGet Package Manager** (NuGet-csomagkezelő) ablakban válassza a **Browse** (Tallózás) lehetőséget, keresse meg a **microsoft.azure.devices** csomagot, válassza a **Install** (Telepítés) lehetőséget a **Microsoft.Azure.Devices** csomag telepítéséhez, és fogadja el a használati feltételeket. Ez az eljárás letölti és telepíti az [Azure IoT Service SDK][lnk-nuget-service-sdk] (Azure IoT szolgáltatás SDK) NuGet-csomagot és annak függőségeit, valamint hozzáad egy rá mutató hivatkozást is.
+1. A Megoldáskezelőben kattintson a jobb gombbal hello **SetDesiredConfigurationAndQuery** projektre, és kattintson a **NuGet-csomagok kezelése...** .
+1. A hello **NuGet-Csomagkezelő** ablakban válassza ki **Tallózás**, keressen **microsoft.azure.devices**, jelölje be **telepítése** tooinstall Hello **Microsoft.Azure.Devices** csomagot, majd fogadja el hello használati feltételeket. Ez az eljárás tölti le, telepíti, és hozzáad egy hivatkozást toohello [Azure IoT szolgáltatás SDK] [ lnk-nuget-service-sdk] NuGet csomag és annak függőségeit.
    
     ![NuGet Package Manager (NuGet-csomagkezelő) ablak][img-servicenuget]
-1. Adja hozzá a következő `using` utasításokat a **Program.cs** fájl elejéhez:
+1. Adja hozzá a következő hello `using` hello hello tetején utasítások **Program.cs** fájlt:
    
         using Microsoft.Azure.Devices;
         using System.Threading;
         using Newtonsoft.Json;
-1. Adja hozzá a **Program** osztályhoz a következő mezőket: A helyőrző értékét cserélje le az előző szakaszban létrehozott IoT Hub kapcsolati karakterláncra.
+1. Adja hozzá a következő mezők toohello hello **Program** osztály. Hello helyőrző értékét lecserélheti egy hello hello hub hello előző szakaszban létrehozott IoT-központ kapcsolati karakterláncot.
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
-1. Adja hozzá a **Program** osztályhoz a következő módszert:
+1. Adja hozzá a következő metódus toohello hello **Program** osztály:
    
         static private async Task SetDesiredConfigurationAndQuery()
         {
@@ -217,37 +217,37 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás, amely frissíti hoz létre a *sz�
             }
         }
    
-    A **beállításjegyzék** vezérlőnek eszköz twins a szolgáltatás együttműködhet szükséges összes módszert. Ezzel a kóddal inicializálja a **beállításjegyzék** objektumazonosító, beolvassa az eszköz iker a **myDeviceId**, majd frissíti a kívánt tulajdonságát egy új telemetriai configuration objektummal.
-    Ezt követően azt lekérdezi az eszköz twins tárolja az IoT hub 10 másodpercenként, és kiírja a kívánt és jelentett telemetriai konfigurációkat. Tekintse meg a [IoT-központ lekérdezési nyelv] [ lnk-query] további információt az eszközök közötti hatékony jelentések létrehozásához.
+    Hello **beállításjegyzék** vezérlőnek minden hello módszerek szükséges toointeract az eszköz twins hello szolgáltatásból. Ez a kód inicializálja hello **beállításjegyzék** objektum beolvassa az eszköz iker hello **myDeviceId**, majd frissíti a kívánt tulajdonságát egy új telemetriai configuration objektummal.
+    Ezt követően hello eszköz twins tárolt hello IoT-központ 10 másodpercenként kérdezi le, és megrendelése hello szükséges, és telemetriai konfigurációk jelentett. Tekintse meg a toohello [IoT-központ lekérdezési nyelv] [ lnk-query] toolearn hogyan toogenerate gazdag jelent az eszközön.
    
    > [!IMPORTANT]
-   > Ez az alkalmazás lekérdezi az IoT-központ 10 másodpercenként szemléltetési célokat szolgál. Lekérdezésekkel számos eszközön keresztül a felhasználók számára is elérhető jelentések létrehozásához, és nem észleli a módosításokat. Ha a megoldás a valós idejű értesítések eszköz események van szüksége, [iker értesítések][lnk-twin-notifications].
+   > Ez az alkalmazás lekérdezi az IoT-központ 10 másodpercenként szemléltetési célokat szolgál. Használja több eszközt, és nem toodetect módosítások toogenerate felhasználók számára is elérhető jelentések lekérdezi. Ha a megoldás a valós idejű értesítések eszköz események van szüksége, [iker értesítések][lnk-twin-notifications].
    > 
    > 
-1. Végül adja a következő sorokat a **Main** metódushoz:
+1. Végül adja hozzá a következő sorokat toohello hello **fő** módszert:
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
         SetDesiredConfigurationAndQuery().Wait();
-        Console.WriteLine("Press any key to quit.");
+        Console.WriteLine("Press any key tooquit.");
         Console.ReadLine();
-1. A Solution Explorerben nyissa meg a **állítsa be indítási projektek...**  , és győződjön meg arról, hogy a **művelet** a **SetDesiredConfigurationAndQuery** projekt **Start**. A megoldás felépítéséhez.
-1. A **SimulateDeviceConfiguration.js** a .NET-alkalmazás fut, futtassa a Visual Studio használatával **F5** és megjelenítheti a jelentésben szereplő konfigurációs módosítást a **sikeres** való **függőben lévő** való **sikeres** újra az új aktív küldés 24 óra helyett öt perces gyakoriságot.
+1. A Solution Explorer hello, nyissa meg a hello **állítsa be indítási projektek...**  , és győződjön meg arról, hogy hello **művelet** a **SetDesiredConfigurationAndQuery** projekt **Start**. Hello megoldás felépítéséhez.
+1. A **SimulateDeviceConfiguration.js** hello .NET-alkalmazás fut, futtassa a Visual Studio használatával **F5** és megtekintheti az hello jelentett konfigurációs módosítást a **sikeres** túl**függőben lévő** túl**sikeres** újra hello új aktív küldés 24 óra helyett öt perces gyakoriságot.
 
  ![Eszköz sikeresen konfigurálva][img-deviceconfigured]
    
    > [!IMPORTANT]
-   > Nincs késleltetést legfeljebb egy percet, az eszköz jelentés művelet és a lekérdezési eredmények között. Ez a nagyon nagy méretekben működéséhez a lekérdezés infrastruktúra engedélyezéséhez. Egy egyetlen eszközt iker használati konzisztens nézetek beolvasása a **getDeviceTwin** metódust a **beállításjegyzék** osztály.
+   > Nincs késleltetést mentése tooa perc közötti hello eszköz jelentés művelet és hello lekérdezés eredménye. Ez a tooenable hello lekérdezés infrastruktúra toowork nagyon nagy méretekben. egy egyetlen eszközt iker tooretrieve konzisztens nézeteinek hello használata **getDeviceTwin** metódus a hello **beállításjegyzék** osztály.
    > 
    > 
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóanyagban egy szabványoskonfiguráció mint beállítása *szükséges tulajdonságok* a megoldásban való háttér, és egy eszköz alkalmazás észleli a változást, és egy többlépéses frissítési folyamat állapotának jelentett tulajdonságai reporting szimulálása megírt.
+Ebben az oktatóanyagban egy szabványoskonfiguráció mint beállítása *szükséges tulajdonságok* hello megoldásból háttér, és egy eszköz alkalmazás toodetect, módosítása és annak állapotát a jelentett hello reporting többlépéses frissítési folyamat szimulálása megírt tulajdonságok.
 
-A következő források segítségével megtudhatja, hogyan:
+A következő erőforrások toolearn hogyan használja hello számára:
 
-* telemetriai adatokat küldhet az eszközökről a [Ismerkedés az IoT-központ] [ lnk-iothub-getstarted] oktatóanyagban
-* ütemezett vagy műveleteket hajtson végre a nagy mennyiségű eszközök lásd: a [ütemezés és a szórásos feladatok] [ lnk-schedule-jobs] oktatóanyag.
-* az interaktív (például bekapcsolásával a felhasználó által felügyelt alkalmazásból ventilátor), eszközök szabályozásának a [közvetlen módszerekkel] [ lnk-methods-tutorial] oktatóanyag.
+* telemetriai adatokat küldhet a hello eszközökről [Ismerkedés az IoT-központ] [ lnk-iothub-getstarted] oktatóanyagban
+* ütemezhet, vagy hajtsa végre műveleteket a eszközök nagy mennyiségű, lásd: hello [ütemezés és a szórásos feladatok] [ lnk-schedule-jobs] oktatóanyag.
+* interaktív (például bekapcsolásával a felhasználó által felügyelt alkalmazásból ventilátor), eszközeinek vezérléséhez a hello [közvetlen módszerekkel] [ lnk-methods-tutorial] oktatóanyag.
 
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-node-twin-how-to-configure/servicesdknuget.png

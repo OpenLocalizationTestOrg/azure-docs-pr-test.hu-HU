@@ -1,6 +1,6 @@
 ---
-title: "Létrehozása és feltöltése az Azure-ban SUSE Linux virtuális merevlemez"
-description: "Ismerje meg, létrehozása és feltöltése az Azure virtuális merevlemez (VHD), amely tartalmazza a SUSE Linux operációs rendszert."
+title: "aaaCreate és feltöltése az Azure-ban SUSE Linux virtuális merevlemez"
+description: "Toocreate ismerje meg, és töltse fel az Azure virtuális merevlemez (VHD) a SUSE Linux operációs rendszert tartalmazó."
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,58 +15,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/24/2016
 ms.author: szark
-ms.openlocfilehash: c829f5d9a90b4260c6f41b2d9e511a0c6cb48f18
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9185c7e67279357f00db0f43e944e96c58f0dd60
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="prepare-a-sles-or-opensuse-virtual-machine-for-azure"></a>SLES- vagy openSUSE-alapú virtuális gép előkészítése Azure-beli használatra
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ez a cikk feltételezi, hogy már telepítve van egy SUSE vagy openSUSE Linux operációs rendszer egy virtuális merevlemez. Több különféle eszköz található .vhd fájlok, például egy például a Hyper-V virtualizálási megoldás létrehozása. Útmutatásért lásd: [a Hyper-V szerepkör telepítése és konfigurálása a virtuális gépek](http://technet.microsoft.com/library/hh846766.aspx).
+Ez a cikk feltételezi, hogy már telepítve van a SUSE vagy openSUSE Linux operációs rendszer tooa virtuális merevlemez. Több különféle eszköz toocreate .vhd fájlok, például egy hálózatvirtualizálási megoldás például a Hyper-V létezik. Útmutatásért lásd: [hello Hyper-V szerepkör telepítése és konfigurálása a virtuális gépek](http://technet.microsoft.com/library/hh846766.aspx).
 
 ### <a name="sles--opensuse-installation-notes"></a>SLES / openSUSE telepítési megjegyzések
 * Is lásd: [általános Linux telepítési jegyzetek](create-upload-generic.md#general-linux-installation-notes) kapcsolatos további információkat az Azure Linux előkészítése.
-* A VHDX formátum nem támogatott az Azure csak **rögzített VHD**.  Átválthat a lemez VHD formátumú Hyper-V kezelője vagy a convert-vhd-parancsmag segítségével.
-* A Linux rendszer telepítésekor LVM (gyakran sok telepítés alapértelmezett), hanem szabványos partíciók használata ajánlott. LVM neve ütközik a klónozott virtuális gépek, így elkerülhető, különösen akkor, ha egy operációsrendszer-lemez legalább egyszer meg kell hibaelhárítási egy másik virtuális géphez csatlakoztatható. [LVM](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) vagy [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) Ha előnyben részesített adatlemezek használható.
-* Ne konfiguráljon egy swap partíciót az operációsrendszer-lemezképet. A Linux-ügynök beállítható úgy, hogy az ideiglenes erőforrás lemezen a lapozófájl létrehozásához.  További információk a megtalálhatók az alábbi lépéseket.
-* Összes, a virtuális merevlemezeket kell rendelkeznie, amely többszörösei 1 MB méretű.
+* hello VHDX formátum nem támogatott az Azure csak **rögzített VHD**.  Alakítsa át a Hyper-V kezelőjével hello tooVHD formátummal, vagy convert-vhd parancsmag hello.
+* Hello Linux rendszer telepítésekor LVM (gyakran hello alapértelmezett sok telepítés), hanem szabványos partíciók használata ajánlott. LVM neve ütközik a klónozott virtuális gépek, így elkerülhető, különösen akkor, ha egy operációs rendszer lemezén legalább egyszer kell csatolt toobe tooanother VM hibaelhárításhoz. [LVM](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) vagy [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) Ha előnyben részesített adatlemezek használható.
+* Ne konfiguráljon egy swap partíció hello operációsrendszer-lemezzel. Linux-ügynök hello konfigurált toocreate hello ideiglenes erőforrás lemezen a lapozófájl lehet.  További információk a hello lépéseket találhatók.
+* Az összes hello virtuális merevlemezeket kell rendelkeznie, amely többszörösei 1 MB méretű.
 
 ## <a name="use-suse-studio"></a>SUSE studióval
-[SUSE Studio](http://www.susestudio.com) könnyen létrehozása és a SLES és openSUSE lemezképek kezelése az Azure és a Hyper-V. Ez az az ajánlott módszer a saját SLES és openSUSE lemezképek testreszabásához.
+[SUSE Studio](http://www.susestudio.com) könnyen létrehozása és a SLES és openSUSE lemezképek kezelése az Azure és a Hyper-V. Ez az ajánlott megközelítést alkalmazva a saját SLES és openSUSE lemezképek testreszabása a hello.
 
-A saját virtuális merevlemez létrehozása helyett, SUSE is közzéteszi (Bring Your saját előfizetés) saját lemezképek a következő SLES [VMDepot](https://vmdepot.msopentech.com/User/Show?user=1007).
+Egy alternatív toobuilding, a saját virtuális merevlemez, SUSE is közzéteszi (Bring Your saját előfizetés) saját lemezképek a következő SLES [VMDepot](https://vmdepot.msopentech.com/User/Show?user=1007).
 
 ## <a name="prepare-suse-linux-enterprise-server-11-sp4"></a>SUSE Linux Enterprise Server 11 SP4 előkészítése
-1. A középső ablaktáblán a Hyper-V kezelőjében válassza ki a virtuális gépet.
-2. Kattintson a **Connect** a virtuális gép ablak megnyitásához.
-3. Regisztrálja a SUSE Linux Enterprise rendszer engedélyezze a frissítések letöltése és telepítése a csomagokat.
-4. Frissítés a rendszer, amely a legújabb javítások:
+1. Hyper-V kezelője hello középső ablaktáblában jelölje ki a hello virtuális gépet.
+2. Kattintson a **Connect** tooopen hello ablak hello virtuális géphez.
+3. A SUSE Linux Enterprise rendszer tooallow regisztrálja azt toodownload frissítések és a csomagok telepítése.
+4. Hello rendszer frissítése a legújabb javítások hello:
    
         # sudo zypper update
-5. Az Azure Linux ügynök telepítése a SLES tárházból:
+5. Hello Azure Linux ügynök telepítése SLES adattárból hello:
    
         # sudo zypper install WALinuxAgent
-6. Ha waagent van-e állítva az "on" beadása chkconfig, és ha nem, engedélyezze az automatikus indítás:
+6. Annak ellenőrzése, ha a waagent túl van-e beállítva "on" a chkconfig, és ha nem, engedélyezze az automatikus indítása:
    
         # sudo chkconfig waagent on
 7. Ellenőrizze, hogy a waagent-szolgáltatás fut, és ha nem, indítsa el: 
    
         # sudo service waagent start
-8. Módosítsa a kernel rendszerindító sor lárvajárat konfigurációs kiegészítő rendszermag paraméterek az Azure-bA felvenni. Ehhez a Megnyitás "/ boot/grub/menu.lst" egy szövegszerkesztőben, és győződjön meg arról, hogy az alapértelmezett kernel az alábbi paramétereket tartalmazza:
+8. Hello kernel rendszerindító sor a lárvajárat konfigurációs tooinclude kiegészítő rendszermag paraméterek módosítása az Azure-bA. a nyitott toodo "/ boot/grub/menu.lst" egy szövegszerkesztőben, és győződjön meg arról, hogy hello alapértelmezett kernel tartalmazza a következő paraméterek hello:
    
         console=ttyS0 earlyprintk=ttyS0 rootdelay=300
    
-    Ezzel biztosíthatja, hogy minden konzol küldi el az első soros port, amely segít az Azure által támogatott hibáinak feltárására.
-9. Győződjön meg arról, hogy /boot/grub/menu.lst és /etc/fstab is hivatkoznak a lemez az UUID (által-uuid) helyett a Lemezazonosítót (-azonosító szerint). 
+    Ezzel biztosíthatja, hogy minden konzol üzenetküldés toohello első soros port, amely segít az Azure által támogatott hibáinak feltárására.
+9. Ellenőrizze, hogy /boot/grub/menu.lst és a/etc/fstab mindkét hivatkozás hello lemez az UUID (által-uuid) helyett hello Lemezazonosítót (-azonosító szerint). 
    
     Lemezek UUID azonosítója beolvasása
    
         # ls /dev/disk/by-uuid/
    
-    Ha /dev/disk/by-id / /boot/grub/menu.lst mind a/etc/fstab használ, frissítse a megfelelő által-uuid-értékkel rendelkező
+    Ha /dev/disk/by-id / hello megfelelő által-uuid-értékkel rendelkező /boot/grub/menu.lst mind a/etc/fstab használt, frissítése
    
     Változás előtt
    
@@ -75,34 +75,34 @@ A saját virtuális merevlemez létrehozása helyett, SUSE is közzéteszi (Brin
     Módosítás után
    
         root=/dev/disk/by-uuid/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-10. Az Ethernet-adaptert statikus szabályainak elkerülése érdekében udev szabályok módosítása. Ezek a szabályok problémákat okozhat, ha a Microsoft Azure- vagy Hyper-v virtuális gép klónozása
+10. Módosítsa a udev szabályok tooavoid hello Ethernet adaptert statikus szabályainak létrehozásakor. Ezek a szabályok problémákat okozhat, ha a Microsoft Azure- vagy Hyper-v virtuális gép klónozása
     
         # sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
         # sudo rm -f /etc/udev/rules.d/70-persistent-net.rules
-11. A fájl szerkesztése ajánlott "/ etc/sysconfig/hálózati/dhcp", és módosítsa a `DHCLIENT_SET_HOSTNAME` a következő paramétert:
+11. Ajánlott tooedit hello fájl "/ etc/sysconfig/hálózati/dhcp", és módosítsa a hello `DHCLIENT_SET_HOSTNAME` paraméter toohello következő:
     
      DHCLIENT_SET_HOSTNAME = "nem"
-12. A "/ etc/sudoers" megjegyzéssé, vagy ha vannak ilyenek, távolítsa el a következő sorokat:
+12. A "/ etc/sudoers" megjegyzéssé, vagy távolítsa el az alábbi sorokat, ha vannak ilyenek hello:
     
-     Alapértelmezés szerint targetpw # kérje meg a jelszót, azaz legfelső szintű összes ALL=(ALL) minden célként megadott felhasználó # figyelmeztetés! Csak ezzel együtt a 'Alapértelmezett targetpw'!
-13. Győződjön meg arról, hogy az SSH-kiszolgálót telepítse és konfigurálja a rendszerindítás elindításához.  Ez általában az alapértelmezett beállítás.
-14. Ne hozzon létre az operációsrendszer-lemezképet a lapozóterület.
+     Alapértelmezés szerint targetpw # hello célként megadott felhasználó összes ALL=(ALL) összes azaz gyökér hello jelszó kérése # figyelmeztetés! Csak ezzel együtt a 'Alapértelmezett targetpw'!
+13. Győződjön meg arról, hogy hello SSH kiszolgáló telepítve van, és rendszerindítás toostart konfigurálva.  Ez általában akkor hello alapértelmezett.
+14. Ne hozzon létre a hello operációsrendszer-lemez lapozóterület.
     
-    Az Azure Linux ügynök automatikusan konfigurálhatók a lapozóterület használata a helyi erőforrás lemezt a virtuális Géphez csatolt Azure kiépítése után. Vegye figyelembe, hogy a helyi erőforrás lemez egy *ideiglenes* lemezre, és előfordulhat, hogy szerepelnek, ha a virtuális gép van platformelőfizetés. Az Azure Linux ügynök telepítése után (lásd az előző lépésben), annak megfelelően módosítsa a /etc/waagent.conf a következő paraméterekkel:
+    hello Azure Linux ügynök automatikusan konfigurálhatók a lapozóterület használata hello helyi erőforrás lemezhez csatolt toohello VM Azure kiépítése után. Vegye figyelembe, hogy hello helyi erőforrás lemez egy *ideiglenes* lemezre, és előfordulhat, hogy üríteni, megszüntetett hello virtuális gép esetén. Miután telepítette a hello Azure Linux ügynök (lásd az előző lépésben), módosítsa megfelelően a következő paraméterek a /etc/waagent.conf hello:
     
-     ResourceDisk.Format=y ResourceDisk.Filesystem=ext4 ResourceDisk.MountPoint=/mnt/resource ResourceDisk.EnableSwap=y ResourceDisk.SwapSizeMB=&#2048;# Megjegyzés: állítsa függetlenül esetleg szükség lenne rá kell lennie.
-15. A virtuális gép kiosztásának megszüntetése, és előkészíti az Azure-on történő üzembe helyezéséhez a következő parancsok futtatásával:
+     ResourceDisk.Format=y ResourceDisk.Filesystem=ext4 ResourceDisk.MountPoint=/mnt/resource ResourceDisk.EnableSwap=y ResourceDisk.SwapSizeMB=&#2048;# Megjegyzés: a szükséges toobe toowhatever beállítása.
+15. Futtassa a következő parancsok toodeprovision hello virtuális gép hello, és előkészíti az Azure-on történő üzembe helyezéséhez:
     
     # <a name="sudo-waagent--force--deprovision"></a>sudo waagent-force - deprovision
     # <a name="export-histsize0"></a>exportálja a HISTSIZE = 0
     # <a name="logout"></a>Kijelentkezés
-16. Kattintson a **művelet le -> leállítási** a Hyper-V kezelőjében. A Linux virtuális merevlemez az Azure-bA feltölteni kívánt készen áll.
+16. Kattintson a **művelet le -> leállítási** a Hyper-V kezelőjében. A Linux virtuális merevlemez most készen áll a toobe feltöltött tooAzure van.
 
 - - -
 ## <a name="prepare-opensuse-131"></a>OpenSUSE 13.1 + előkészítése
-1. A középső ablaktáblán a Hyper-V kezelőjében válassza ki a virtuális gépet.
-2. Kattintson a **Connect** a virtuális gép ablak megnyitásához.
-3. Futtassa a parancsot a rendszerhéj "`zypper lr`". Ha ez a parancs visszaadja kimenet az alábbihoz hasonló, akkor a tárolóhelyekkel konfigurált elvárt – módosítás nélkül szükség (vegye figyelembe, hogy a verziószáma változhat):
+1. Hyper-V kezelője hello középső ablaktáblában jelölje ki a hello virtuális gépet.
+2. Kattintson a **Connect** tooopen hello ablak hello virtuális géphez.
+3. Hello rendszerhéj parancsot hello "`zypper lr`". Ha ez a parancs visszaadja a kimeneti hasonló toohello követve, majd várt a módosítás nélkül szükségesek hello adattárak vannak konfigurálva (vegye figyelembe, hogy verziószáma változhat):
    
         # | Alias                 | Name                  | Enabled | Refresh
         --+-----------------------+-----------------------+---------+--------
@@ -110,54 +110,54 @@ A saját virtuális merevlemez létrehozása helyett, SUSE is közzéteszi (Brin
         2 | openSUSE_13.1_OSS     | openSUSE_13.1_OSS     | Yes     | Yes
         3 | openSUSE_13.1_Updates | openSUSE_13.1_Updates | Yes     | Yes
    
-    Ha a parancs visszaadja a "Nincs definiálva... adattárak" használja az alábbi parancsokat a repók hozzáadása:
+    Ha hello parancs visszaadja a "Nincs definiálva... adattárak" használja a következő parancsok tooadd hello ezek repók:
    
         # sudo zypper ar -f http://download.opensuse.org/repositories/Cloud:Tools/openSUSE_13.1 Cloud:Tools_13.1
         # sudo zypper ar -f http://download.opensuse.org/distribution/13.1/repo/oss openSUSE_13.1_OSS
         # sudo zypper ar -f http://download.opensuse.org/update/13.1 openSUSE_13.1_Updates
    
-    Ezután ellenőrizheti a tárolóhelyekkel lettek hozzáadva a parancs futtatásával "`zypper lr`" újra. Abban az esetben, ha egy, a megfelelő frissítési adattárak nincs engedélyezve, engedélyezze a következő paranccsal:
+    Ezután ellenőrizheti hello adattárak hello parancs futtatásával hozzáadott "`zypper lr`" újra. Abban az esetben, ha egy hello vonatkozó update adattárak nincs engedélyezve, engedélyezze a következő paranccsal:
    
         # sudo zypper mr -e [NUMBER OF REPOSITORY]
-4. Frissítés a legújabb elérhető verziójára kernel:
+4. Hello kernel toohello elérhető legújabb verzióra frissíteni:
    
         # sudo zypper up kernel-default
    
-    Vagy a rendszer frissítése a legújabb javítások:
+    Vagy tooupdate hello rendszer hello legújabb javításokat:
    
         # sudo zypper update
-5. Az Azure Linux ügynök telepítése.
+5. Hello Azure Linux ügynök telepítése.
    
    # <a name="sudo-zypper-install-walinuxagent"></a>sudo zypper telepítés WALinuxAgent
-6. Módosítsa a kernel rendszerindító sor lárvajárat konfigurációs kiegészítő rendszermag paraméterek az Azure-bA felvenni. Ehhez nyissa meg a "/ boot/grub/menu.lst" egy szövegszerkesztőben, és győződjön meg arról, hogy az alapértelmezett kernel az alábbi paramétereket tartalmazza:
+6. Hello kernel rendszerindító sor a lárvajárat konfigurációs tooinclude kiegészítő rendszermag paraméterek módosítása az Azure-bA. toodo a, nyissa meg "/ boot/grub/menu.lst" egy szövegszerkesztőben, és győződjön meg arról, hogy hello alapértelmezett kernel tartalmazza a következő paraméterek hello:
    
      konzol ttyS0 earlyprintk = ttyS0 rootdelay = = 300
    
-   Ezzel biztosíthatja, hogy minden konzol küldi el az első soros port, amely segít az Azure által támogatott hibáinak feltárására. A következő paraméterek ezenkívül eltávolítása a kernel rendszerindító sor, ha vannak ilyenek:
+   Ezzel biztosíthatja, hogy minden konzol üzenetküldés toohello első soros port, amely segít az Azure által támogatott hibáinak feltárására. Ezenkívül távolítsa el a következő paraméterek hello kernel rendszerindító sor, ha vannak ilyenek hello:
    
      libata.atapi_enabled=0 tartalék = 0x1f0, 0x8
-7. A fájl szerkesztése ajánlott "/ etc/sysconfig/hálózati/dhcp", és módosítsa a `DHCLIENT_SET_HOSTNAME` a következő paramétert:
+7. Ajánlott tooedit hello fájl "/ etc/sysconfig/hálózati/dhcp", és módosítsa a hello `DHCLIENT_SET_HOSTNAME` paraméter toohello következő:
    
      DHCLIENT_SET_HOSTNAME = "nem"
-8. **Fontos:** "/ etc/sudoers", a megjegyzéssé, vagy ha vannak ilyenek, távolítsa el a következő sorokat:
+8. **Fontos:** "/ etc/sudoers", a megjegyzéssé, vagy távolítsa el az alábbi sorokat, ha vannak ilyenek hello:
    
-     Alapértelmezés szerint targetpw # kérje meg a jelszót, azaz legfelső szintű összes ALL=(ALL) minden célként megadott felhasználó # figyelmeztetés! Csak ezzel együtt a 'Alapértelmezett targetpw'!
-9. Győződjön meg arról, hogy az SSH-kiszolgálót telepítse és konfigurálja a rendszerindítás elindításához.  Ez általában az alapértelmezett beállítás.
-10. Ne hozzon létre az operációsrendszer-lemezképet a lapozóterület.
+     Alapértelmezés szerint targetpw # hello célként megadott felhasználó összes ALL=(ALL) összes azaz gyökér hello jelszó kérése # figyelmeztetés! Csak ezzel együtt a 'Alapértelmezett targetpw'!
+9. Győződjön meg arról, hogy hello SSH kiszolgáló telepítve van, és rendszerindítás toostart konfigurálva.  Ez általában akkor hello alapértelmezett.
+10. Ne hozzon létre a hello operációsrendszer-lemez lapozóterület.
     
-    Az Azure Linux ügynök automatikusan konfigurálhatók a lapozóterület használata a helyi erőforrás lemezt a virtuális Géphez csatolt Azure kiépítése után. Vegye figyelembe, hogy a helyi erőforrás lemez egy *ideiglenes* lemezre, és előfordulhat, hogy szerepelnek, ha a virtuális gép van platformelőfizetés. Az Azure Linux ügynök telepítése után (lásd az előző lépésben), annak megfelelően módosítsa a /etc/waagent.conf a következő paraméterekkel:
+    hello Azure Linux ügynök automatikusan konfigurálhatók a lapozóterület használata hello helyi erőforrás lemezhez csatolt toohello VM Azure kiépítése után. Vegye figyelembe, hogy hello helyi erőforrás lemez egy *ideiglenes* lemezre, és előfordulhat, hogy üríteni, megszüntetett hello virtuális gép esetén. Miután telepítette a hello Azure Linux ügynök (lásd az előző lépésben), módosítsa megfelelően a következő paraméterek a /etc/waagent.conf hello:
     
-     ResourceDisk.Format=y ResourceDisk.Filesystem=ext4 ResourceDisk.MountPoint=/mnt/resource ResourceDisk.EnableSwap=y ResourceDisk.SwapSizeMB=&#2048;# Megjegyzés: állítsa függetlenül esetleg szükség lenne rá kell lennie.
-11. A virtuális gép kiosztásának megszüntetése, és előkészíti az Azure-on történő üzembe helyezéséhez a következő parancsok futtatásával:
+     ResourceDisk.Format=y ResourceDisk.Filesystem=ext4 ResourceDisk.MountPoint=/mnt/resource ResourceDisk.EnableSwap=y ResourceDisk.SwapSizeMB=&#2048;# Megjegyzés: a szükséges toobe toowhatever beállítása.
+11. Futtassa a következő parancsok toodeprovision hello virtuális gép hello, és előkészíti az Azure-on történő üzembe helyezéséhez:
     
     # <a name="sudo-waagent--force--deprovision"></a>sudo waagent-force - deprovision
     # <a name="export-histsize0"></a>exportálja a HISTSIZE = 0
     # <a name="logout"></a>Kijelentkezés
-12. Győződjön meg arról, az Azure Linux ügynök a indításakor fut:
+12. Ellenőrizze, hogy hello Azure Linux ügynök fut, a rendszer indításakor:
     
         # sudo systemctl enable waagent.service
-13. Kattintson a **művelet le -> leállítási** a Hyper-V kezelőjében. A Linux virtuális merevlemez az Azure-bA feltölteni kívánt készen áll.
+13. Kattintson a **művelet le -> leállítási** a Hyper-V kezelőjében. A Linux virtuális merevlemez most készen áll a toobe feltöltött tooAzure van.
 
 ## <a name="next-steps"></a>Következő lépések
-Most már készen áll a SUSE Linux virtuális merevlemez segítségével új virtuális gépek létrehozása az Azure-ban. Ha az első alkalommal, hogy van-e a .vhd fájl feltöltése az Azure, tekintse meg a 2. és 3 [létrehozása és feltöltése, a Linux operációs rendszert tartalmazó virtuális merevlemez](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
+Ön éppen most már készen áll a toouse a SUSE Linux virtuális merevlemez toocreate új virtuális gépeket az Azure-ban. Ha ez hello első alkalom, hogy feltöltendő hello .vhd fájl tooAzure, tekintse meg a 2. és 3 [létrehozása és feltöltése hello Linux operációs rendszert tartalmazó virtuális merevlemez](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
 

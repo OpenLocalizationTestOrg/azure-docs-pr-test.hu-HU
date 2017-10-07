@@ -1,6 +1,6 @@
 ---
-title: "Python UDF az Apache Hive és a sertésfelmérés – az Azure HDInsight |} Microsoft Docs"
-description: "Ismerje meg, Python felhasználó definiált függvény (UDF) a Hive és a Pig használata a Hdinsightban, a Hadoop technológiai területekre az Azure-on."
+title: "az Apache Hive és a Pig - Azure HDInsight UDF aaaPython |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse Python felhasználó definiált függvény (UDF) a Hive és a hdinsight Hadoop technológia hello Pig verem az Azure-on."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,37 +16,37 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: 9b67ded05a52f1e68580434667495cf6cf939871
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 26d8160cc6ed7fc22c3f06f7c1c9954c224b2366
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-python-user-defined-functions-udf-with-hive-and-pig-in-hdinsight"></a>Használjon Python felhasználói függvény (UDF), a Hive és a Pig a Hdinsightban
 
-Útmutató Apache Hive és az Azure hdinsight Hadoop Pig Python felhasználói függvény (UDF) használhat.
+Ismerje meg, hogyan toouse Python felhasználói függvény (UDF) Apache Hive és az Azure hdinsight Hadoop Pig.
 
 ## <a name="python"></a>A HDInsight Python
 
-A HDInsight 3.0-s és újabb verziók alapértelmezés szerint telepítve van a Python2.7. Apache Hive használható ebben a Python adatfolyam feldolgozásra. Adatfolyam feldolgozása mechanizmusok adatok átadására a Hive és a UDF között használja az STDOUT és STDIN.
+A HDInsight 3.0-s és újabb verziók alapértelmezés szerint telepítve van a Python2.7. Apache Hive használható ebben a Python adatfolyam feldolgozásra. Az adatfolyam feldolgozása STDOUT és STDIN toopass struktúra és adatok hello UDF használja.
 
-HDInsight is Jython, amely a Java nyelven írt Python megvalósítása. Jython közvetlenül a Java virtuálisgép fut, és nem használja a streaming. Jython a javasolt Python értelmező esetén a Pig használata a Python.
+HDInsight is Jython, amely a Java nyelven írt Python megvalósítása. Jython közvetlenül hello Java virtuális gép fut, és nem használja a streaming. Jython hello Python parancsértelmező ajánlott, ha a Pig használata a Python.
 
 > [!WARNING]
-> A jelen dokumentumban leírt lépések hajtsa végre a következő előfeltételek: 
+> jelen dokumentumban leírt lépések hello hajtsa végre a következő feltételek hello: 
 >
-> * A helyi fejlesztési környezet a Python parancsfájlok hoz létre.
-> * A parancsfájlok HDInsight segítségével töltse fel a `scp` parancsot a helyi Bash munkamenet, vagy a megadott PowerShell-parancsfájlt.
+> * Létrehozhat hello Python-parancsfájlok helyi fejlesztési környezetben.
+> * Hello parancsfájlok tooHDInsight vagy hello segítségével feltölti `scp` egy helyi Bash vagy hello PowerShell-parancsfájl a megadott parancsot.
 >
-> Ha szeretné használni a [Azure Cloud rendszerhéj (bash)](https://docs.microsoft.com/azure/cloud-shell/overview) preview működéséhez a hdinsight eszközzel, majd be kell:
+> Ha azt szeretné, hogy toouse hello [Azure Cloud rendszerhéj (bash)](https://docs.microsoft.com/azure/cloud-shell/overview) toowork a hdinsight eszközzel, tekintse meg kell majd:
 >
-> * Hozzon létre a parancsfájlok a felhő rendszerhéj környezeten belül.
-> * Használjon `scp` HDInsight a felhő rendszerhéjból a fájlok feltöltéséhez.
-> * Használjon `ssh` a felhő rendszerhéjból HDInsight csatlakozni, és futtassa a példákat.
+> * Hozzon létre hello parancsfájlok hello felhő rendszerhéj környezeten belül.
+> * Használjon `scp` tooupload hello fájlok hello felhőalapú rendszerhéj tooHDInsight.
+> * Használjon `ssh` hello felhő rendszerhéj tooconnect tooHDInsight és futtatási hello példák.
 
 ## <a name="hivepython"></a>Hive UDF-ben
 
-Python változtatás nélkül használhatók a HiveQL a Hive a egy UDF `TRANSFORM` utasítást. Például a következő HiveQL meghívja a `hiveudf.py` a fürt az alapértelmezett Azure Storage-fiókban tárolt fájl.
+Python használható egy UDF a Hive hello HiveQL keresztül `TRANSFORM` utasítást. Például a következő HiveQL hello hív hello `hiveudf.py` hello alapértelmezett Azure Storage-fiók hello fürt a tárolt fájl.
 
 **Linux-alapú HDInsight**
 
@@ -73,20 +73,20 @@ ORDER BY clientid LIMIT 50;
 ```
 
 > [!NOTE]
-> Windows-alapú HDInsight-fürtök a `USING` záradék python.exe teljes elérési útja kell megadnia.
+> A Windows-alapú HDInsight-fürtökön, hello `USING` záradék hello teljes elérési útja toopython.exe kell megadnia.
 
 Ez a példa funkciója:
 
-1. A `add file` a fájl elején utasítás hozzáadja a `hiveudf.py` az elosztott gyorsítótáras, így a fürt összes csomópontja által elérhető fájlt.
-2. A `SELECT TRANSFORM ... USING` utasítás kiválasztja az adatokat a `hivesampletable`. A clientid, devicemake és devicemodel értékeket is átadja a `hiveudf.py` parancsfájl.
-3. A `AS` záradék által visszaadott mezőket ismerteti `hiveudf.py`.
+1. Hello `add file` utasítás hello elején hello fájl hozzáadása hello `hiveudf.py` fájl toohello elosztott gyorsítótár, így hello fürt összes csomópontja által elérhető.
+2. Hello `SELECT TRANSFORM ... USING` utasítás adatok kiválaszt hello `hivesampletable`. Hello clientid devicemake és devicemodel értékek toohello is átadja `hiveudf.py` parancsfájl.
+3. Hello `AS` záradék által visszaadott hello mezők ismerteti `hiveudf.py`.
 
 <a name="streamingpy"></a>
 
-### <a name="create-the-hiveudfpy-file"></a>A hiveudf.py fájl létrehozása
+### <a name="create-hello-hiveudfpy-file"></a>Hello hiveudf.py fájl létrehozása
 
 
-A fejlesztési környezetet hozzon létre egy szövegfájlt nevű `hiveudf.py`. A fájl tartalmát az alábbira használata:
+A fejlesztési környezetet hozzon létre egy szövegfájlt nevű `hiveudf.py`. Kód hello hello fájl tartalmát, a következő hello használata:
 
 ```python
 #!/usr/bin/env python
@@ -105,34 +105,34 @@ while True:
     print "\t".join([clientid, phone_label, hashlib.md5(phone_label).hexdigest()])
 ```
 
-Ezt a parancsfájlt a következő műveleteket hajtja végre:
+Ez a parancsfájl hello a következő műveleteket hajtja végre:
 
 1. Egy adatsort STDIN olvasni.
-2. A záró soremelés karaktert segítségével távolítja el `string.strip(line, "\n ")`.
-3. Az adatfolyam feldolgozása során egy sorba tabulátor minden érték közötti minden a értékeket tartalmaz. Ezért `string.split(line, "\t")` segítségével ossza fel a bemenet minden egyes lapját, csak a mezőket ad vissza.
-4. Ha feldolgozása befejeződött, a kimenetet kell írni STDOUT sortörés, egy lap a mezők között. Például: `print "\t".join([clientid, phone_label, hashlib.md5(phone_label).hexdigest()])`.
-5. A `while` hurok ismétlődik, amíg nem `line` olvasható.
+2. Új sor karaktereket hello segítségével távolítja el `string.strip(line, "\n ")`.
+3. Adatfolyam feldolgozása során egy sorba a tabulátor minden érték közötti minden hello értékeket tartalmaz. Ezért `string.split(line, "\t")` használt toosplit hello adjon meg minden lapjának csak hello mezők vissza is lehet.
+4. Ha feldolgozása befejeződött, hello kimeneti úgy kell megírni tooSTDOUT sortörés, egy lap a mezők között. Például: `print "\t".join([clientid, phone_label, hashlib.md5(phone_label).hexdigest()])`.
+5. Hello `while` hurok ismétlődik, amíg nem `line` olvasható.
 
-Parancsfájl eredménye a bemeneti érték a összefűzése `devicemake` és `devicemodel`, és a összefűzött érték kivonatát.
+hello parancsfájl eredménye a bemeneti értékek hello összefűzése `devicemake` és `devicemodel`, és hello kivonatát összefűzendő érték.
 
-Lásd: [fut a példák](#running) ebben a példában a HDInsight-fürt futtatására.
+Lásd: [hello példák futtató](#running) arról, hogyan toorun ebben a példában a HDInsight-fürtre.
 
 ## <a name="pigpython"></a>Pig UDF-ben
 
-A Python-parancsfájl egy UDF a Pig keresztül használható a `GENERATE` utasítást. A parancsfájl Jython vagy C Python segítségével is futtathatja.
+A Python-parancsfájl használható egy UDF a Pig keresztül hello `GENERATE` utasítást. Jython vagy C Python hello parancsfájl futtatása.
 
-* Jython a JVM-et futtatja, és a Pig natív módon kell meghívni.
-* C Python egy külső folyamatban, így a Pig a JVM-et a adatait egy Python folyamatban futó parancsfájl által kiküldött. A Python-parancsfájl újra üzembe a Pig zajlik.
+* Jython hello JVM fut, és a Pig natív módon kell meghívni.
+* C Python egy külső folyamatban, így a hello adatait Pig hello a JVM által kiküldött toohello parancsfájl Python folyamatokhoz. hello Python-parancsfájl kimenete hello újra üzembe a Pig zajlik.
 
-Adja meg a Python értelmező `register` való hivatkozáskor a Python-parancsfájl. Az alábbi példák mint a Pig parancsfájlok regisztrálása `myfuncs`:
+toospecify hello Python parancsértelmező használata `register` való hivatkozáskor hello Python-parancsfájl. hello alábbi példák regisztrálása parancsfájlok, a Pig `myfuncs`:
 
-* **Jython használandó**:`register '/path/to/pigudf.py' using jython as myfuncs;`
-* **C Python használandó**:`register '/path/to/pigudf.py' using streaming_python as myfuncs;`
+* **toouse Jython**:`register '/path/to/pigudf.py' using jython as myfuncs;`
+* **C Python toouse**:`register '/path/to/pigudf.py' using streaming_python as myfuncs;`
 
 > [!IMPORTANT]
-> Jython használata esetén a fájl elérési útját pig_jython lehet-e, vagy helyi elérési utat, vagy a WASB: / / elérési út. C Python használata esetén egy fájlt a helyi fájlrendszerben, a csomópont, Ön által használt elküldeni a Pig feladatot kell hivatkoznia.
+> Jython használatakor a hello elérési toohello pig_jython fájl lehet-e, vagy helyi elérési utat, vagy a WASB: / / elérési út. C Python használata esetén a fájl hello helyi fájlrendszerben toosubmit hello Pig feladatot használt hello csomópont kell hivatkoznia.
 
-Egyszer túli regisztráció, a Pig Latin ehhez a példához megegyezik a is:
+Amint túli regisztrációs, ebben a példában a Pig Latin hello hello azonos mindkét:
 
 ```pig
 LOGS = LOAD 'wasb:///example/data/sample.log' as (LINE:chararray);
@@ -143,19 +143,19 @@ DUMP DETAILS;
 
 Ez a példa funkciója:
 
-1. Az első sor betölti a mintaadatfájlokat `sample.log` történő `LOGS`. Mint minden rekordot is meghatározza egy `chararray`.
-2. A következő sorban kiszűri a null értékeket, tárolja a művelet eredményét `LOG`.
-3. A következő megismétli a blobban található rekordok keresztül `LOG` , és `GENERATE` meghívni a `create_structure` tölti be a Python/Jython parancsfájlban szereplő `myfuncs`. `LINE`a függvény az aktuális rekord átadására szolgál.
-4. Végezetül a kimenetek vannak kiírt STDOUT való használata a `DUMP` parancsot. A parancs megjeleníti az eredményeket, a művelet befejeződése után.
+1. első sor hello betölti hello mintaadatfájlokat `sample.log` történő `LOGS`. Mint minden rekordot is meghatározza egy `chararray`.
+2. hello következő sor kiszűri a null értékeket, tárolja a hello művelet hello eredményét `LOG`.
+3. A következő megismétli a hello rekordokat `LOG` , és `GENERATE` tooinvoke hello `create_structure` hello Python/Jython parancsfájlban szereplő tölti be `myfuncs`. `LINE`nem használt toopass hello aktuális rekord toohello függvény.
+4. Végezetül hello kimenetek hello segítségével dömpingelt tooSTDOUT `DUMP` parancsot. Ez a parancs hello eredményeit jeleníti meg, hello művelet befejeződése után.
 
-### <a name="create-the-pigudfpy-file"></a>A pigudf.py fájl létrehozása
+### <a name="create-hello-pigudfpy-file"></a>Hello pigudf.py fájl létrehozása
 
-A fejlesztési környezetet hozzon létre egy szövegfájlt nevű `pigudf.py`. A fájl tartalmát az alábbira használata:
+A fejlesztési környezetet hozzon létre egy szövegfájlt nevű `pigudf.py`. Kód hello hello fájl tartalmát, a következő hello használata:
 
 <a name="streamingpy"></a>
 
 ```python
-# Uncomment the following if using C Python
+# Uncomment hello following if using C Python
 #from pig_util import outputSchema
 
 @outputSchema("log: {(date:chararray, time:chararray, classname:chararray, level:chararray, detail:chararray)}")
@@ -166,61 +166,61 @@ def create_structure(input):
     return date, time, classname, level, detail
 ```
 
-A Pig Latin példában meghatározott a `LINE` adjon meg egy chararray, mert nincs a bemeneti konzisztens séma. A Python-parancsfájl az adatok átalakítja a kimeneti konzisztens marad.
+Hello a Pig Latin példában hello meghatározott `LINE` adjon meg egy chararray, mivel nincs egységes séma hello bemeneti. hello Python-parancsfájl hello adatok átalakítja a kimeneti konzisztens marad.
 
-1. A `@outputSchema` nyilatkozat meghatározása a Pig számára visszaadott adatok formátuma. Ebben az esetben van egy **adatok tulajdonságcsomag**, amely a Pig adattípus. A csomagban van, amelyek mindegyike chararray (karakterláncok), a következő mezőket tartalmazza:
+1. Hello `@outputSchema` utasítás meghatározása hello formátuma hello tooPig visszaadott adatokat. Ebben az esetben van egy **adatok tulajdonságcsomag**, amely a Pig adattípus. hello tulajdonságcsomag tartalmazza, amelyek mindegyike chararray (karakterláncok), a mezők a következő hello:
 
-   * dátum - naplófájlbejegyzést létrehozásának dátuma
-   * idő - naplófájlbejegyzést létrehozásának időpontja
-   * osztálynév - az osztály nevét a bejegyzés lett létrehozva
-   * szint – a naplózási szint
-   * Részletek - részletes adatait a naplóbejegyzés
+   * dátum - hello dátum hello naplóbejegyzés lett létrehozva
+   * idő – hello létrehozásakor hello naplóbejegyzés
+   * osztálynév - hello osztály hello bejegyzése lett létrehozva
+   * szint – hello naplózási szint
+   * Részletek - hello részletes adatainak bejegyzést naplóz az olyan
 
-2. Ezt követően a `def create_structure(input)` azt a Pig kapott sor elemek függvényt.
+2. A következő hello `def create_structure(input)` hello függvény Pig kapott sor elemek határozza meg.
 
-3. A példaadatokat `sample.log`, főleg megfelel-e a dátum, idő, osztálynév szint, és részletesen sémát kell visszaadnia. Azonban tartalmaz néhány kezdődő sorok `*java.lang.Exception*`. Ezek a sorok felel meg a sémának módosítani kell. A `if` utasítás ellenőrzi azok számára, majd a bemeneti adatok áthelyezése massages a `*java.lang.Exception*` karakterlánc végén, mihamarabb elérhetővé tenni az adatok beágyazott a várt kimeneti sémával.
+3. Példa adatok hello `sample.log`, főleg toohello dátum, idő, osztálynév szint megfelel, és szeretnénk tooreturn séma részletességi. Azonban tartalmaz néhány kezdődő sorok `*java.lang.Exception*`. Ezek a sorok módosított toomatch hello sémát kell lennie. Hello `if` utasítás ellenőrzi azok számára, majd masszázs hello bemeneti adatok toomove hello `*java.lang.Exception*` karakterlánc toohello célból kapcsolásának hello adatok beágyazott a várt kimeneti sémával.
 
-4. Ezt követően a `split` parancs segítségével az adatok, az első négy karaktereket. A kimeneti hozzá van rendelve, a `date`, `time`, `classname`, `level`, és `detail`.
+4. A következő hello `split` parancs: használt toosplit hello adatok hello első négy karaktereket. hello kimeneti hozzá van rendelve, a `date`, `time`, `classname`, `level`, és `detail`.
 
-5. Végül az értékek Pig visszatér.
+5. Végezetül hello értékek tooPig is megjelennek.
 
-Amikor adatokat küld vissza a Pig, a rendelkezik konzisztens marad a `@outputSchema` utasítást.
+Hello adat tooPig, amikor a hello rendelkezik konzisztens marad `@outputSchema` utasítást.
 
-## <a name="running"></a>Töltse fel, és futtassa a példák
+## <a name="running"></a>Töltse fel, és futtassa a hello példák
 
 > [!IMPORTANT]
-> A **SSH** csak a lépések egy Linux-alapú HDInsight-fürthöz. A **PowerShell** lépéseket egy Linux vagy a Windows-alapú HDInsight-fürthöz működik, de a Windows-ügyfél szükséges.
+> Hello **SSH** csak a lépések egy Linux-alapú HDInsight-fürthöz. Hello **PowerShell** lépéseket egy Linux vagy a Windows-alapú HDInsight-fürthöz működik, de a Windows-ügyfél szükséges.
 
 ### <a name="ssh"></a>SSH
 
 További információ az SSH használatával, lásd: [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-1. Használjon `scp` átmásolni a fájlokat a HDInsight-fürthöz. Például a következő parancsot a másolja a fájlokat egy fürt nevű **sajátfürt**.
+1. Használjon `scp` toocopy hello fájlok tooyour HDInsight-fürthöz. Például a következő másolatok hello fájlok tooa fürt nevű parancs hello **sajátfürt**.
 
     ```bash
     scp hiveudf.py pigudf.py myuser@mycluster-ssh.azurehdinsight.net:
     ```
 
-2. SSH használatával csatlakozhat a fürthöz.
+2. SSH tooconnect toohello-fürt használatára.
 
     ```bash
     ssh myuser@mycluster-ssh.azurehdinsight.net
     ```
 
-3. Az SSH-munkamenetet a python-fájlok a fürt WASB tárolóhelyét korábban feltöltött hozzá.
+3. Hello SSH-munkamenetet hozzá hello python fájlok korábban feltöltött toohello WASB hello fürt tárolóhelyét.
 
     ```bash
     hdfs dfs -put hiveudf.py /hiveudf.py
     hdfs dfs -put pigudf.py /pigudf.py
     ```
 
-A fájlok feltöltése után az alábbi lépések segítségével a Hive és a Pig feladatok futtatása.
+Hello fájlok feltöltése után használata hello következő toorun hello Hive és a Pig-feladatokhoz szükséges lépések.
 
-#### <a name="use-the-hive-udf"></a>Az UDF-ben a Hive használata
+#### <a name="use-hello-hive-udf"></a>Hive UDF hello használata
 
-1. Használja a `hive` parancs használatával indítsa el a hive rendszerhéjat. Megjelenik egy `hive>` után betöltötte a rendszerhéj kérni.
+1. Használjon hello `hive` toostart hello hive parancsrendszerhéjában. Megjelenik egy `hive>` kérni, ha hello rendszerhéj be van töltve.
 
-2. Adja meg a következő lekérdezés: a `hive>` parancssorba:
+2. Adja meg a következő lekérdezést: hello hello `hive>` parancssorba:
 
    ```hive
    add file wasb:///hiveudf.py;
@@ -231,7 +231,7 @@ A fájlok feltöltése után az alábbi lépések segítségével a Hive és a P
    ORDER BY clientid LIMIT 50;
    ```
 
-3. Után utolsó sora bevitelét, a feladat elindul. Ha a feladat befejeződik, azt kimenetet visszaadja a következőhöz hasonló:
+3. Után utolsó sora hello bevitelét, hello feladat elindul. Miután hello feladat befejeződött, a következő példa kimenet hasonló toohello adja vissza:
 
         100041    RIM 9650    d476f3687700442549a83fac4560c51c
         100041    RIM 9650    d476f3687700442549a83fac4560c51c
@@ -239,11 +239,11 @@ A fájlok feltöltése után az alábbi lépések segítségével a Hive és a P
         100042    Apple iPhone 4.2.x    375ad9a0ddc4351536804f1d5d0ea9b9
         100042    Apple iPhone 4.2.x    375ad9a0ddc4351536804f1d5d0ea9b9
 
-#### <a name="use-the-pig-udf"></a>A Pig UDF használata
+#### <a name="use-hello-pig-udf"></a>A Pig UDF hello használata
 
-1. Használja a `pig` parancsot a rendszerhéj elindításához. Megjelenik egy `grunt>` után betöltötte a rendszerhéj kérni.
+1. Használjon hello `pig` toostart hello parancsrendszerhéjában. Megjelenik egy `grunt>` kérni, ha hello rendszerhéj be van töltve.
 
-2. Adja meg az alábbi utasításokat a `grunt>` parancssorba:
+2. Adja meg a következő utasításokat hello hello `grunt>` parancssorba:
 
    ```pig
    Register wasb:///pigudf.py using jython as myfuncs;
@@ -253,7 +253,7 @@ A fájlok feltöltése után az alábbi lépések segítségével a Hive és a P
    DUMP DETAILS;
    ```
 
-3. Írja be a következő parancsot, miután a feladat elindul. Ha a feladat befejeződik, az-kimenet visszaadása hasonló a következő adatokat:
+3. A következő sor hello bevitele, után hello feladat kell kezdődnie. Miután hello feladat befejeződött, kimeneti hasonló toohello a következő adatokat adja vissza:
 
         ((2012-02-03,20:11:56,SampleClass5,[TRACE],verbose detail for id 990982084))
         ((2012-02-03,20:11:56,SampleClass7,[TRACE],verbose detail for id 1560323914))
@@ -261,21 +261,21 @@ A fájlok feltöltése után az alábbi lépések segítségével a Hive és a P
         ((2012-02-03,20:11:56,SampleClass3,[TRACE],verbose detail for id 1718828806))
         ((2012-02-03,20:11:56,SampleClass3,[INFO],everything normal for id 530537821))
 
-4. Használjon `quit` kattintva lépjen ki a Grunt rendszerhéjat, és a következők segítségével szerkesztheti a pigudf.py fájlt a helyi fájlrendszerben:
+4. Használjon `quit` tooexit hello Grunt rendszerhéjat, és a következő tooedit hello pigudf.py fájl hello helyi fájlrendszerben hello:
 
     ```bash
     nano pigudf.py
     ```
 
-5. Egyszer-szerkesztőben, állítsa vissza ezt a következő sor eltávolításával a `#` karakter eltávolítása a sor elejére:
+5. Egyszer hello szerkesztő, állítsa vissza a következő sor hello eltávolításával hello `#` karakter eltávolítása hello sor elejére hello:
 
     ```bash
     #from pig_util import outputSchema
     ```
 
-    A változás nem lett végrehajtva, ha a Ctrl + X segítségével zárja be a szerkesztőt. Válassza ki az Y, és írja be a módosítások mentéséhez.
+    Miután hello változás nem lett végrehajtva, használja a Ctrl + X tooexit hello szerkesztő. Válassza ki az Y, és írja be toosave hello módosításokat.
 
-6. Használja a `pig` indítsa újra a rendszerhéj parancsot. Miután a a `grunt>` kérni, használja a következő a Python-parancsfájl használata a C Python értelmező futtatásához.
+6. Használjon hello `pig` parancsfelület toostart hello újra. Miután a hello `grunt>` kérni, használja a következő toorun hello Python-parancsfájl használatával hello C Python parancsértelmező hello.
 
    ```pig
    Register 'pigudf.py' using streaming_python as myfuncs;
@@ -285,17 +285,17 @@ A fájlok feltöltése után az alábbi lépések segítségével a Hive és a P
    DUMP DETAILS;
    ```
 
-    Miután a feladat befejeződik, megtekintheti az azonos kimenethez, ha korábban már futtatta a parancsfájl segítségével történő Jython.
+    Miután a feladat befejeződik, megtekintheti az azonos kimeneti hello, ha korábban már futtatta hello parancsfájl segítségével történő Jython.
 
-### <a name="powershell-upload-the-files"></a>PowerShell: A fájl feltöltése
+### <a name="powershell-upload-hello-files"></a>PowerShell: Hello fájlokat
 
-PowerShell segítségével töltse fel a fájlokat a HDInsight-kiszolgálóra. A következő parancsfájl használata a Python fájlok feltöltéséhez:
+PowerShell tooupload hello fájlok toohello HDInsight-kiszolgáló is használhatja. Használja a következő parancsfájl tooupload hello Python fájlok hello:
 
 > [!IMPORTANT] 
-> A jelen szakaszban szereplő lépéseket használhatja az Azure Powershellt. További információ az Azure PowerShell használatával, lásd: [telepítése és konfigurálása az Azure PowerShell](/powershell/azure/overview).
+> Ebben a szakaszban található lépéseket hello Azure PowerShell használata. További információ az Azure PowerShell használatával, lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview).
 
 ```powershell
-# Login to your Azure subscription
+# Login tooyour Azure subscription
 # Is there an active Azure subscription?
 $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
 if(-not($sub))
@@ -304,8 +304,8 @@ if(-not($sub))
 }
 
 # Get cluster info
-$clusterName = Read-Host -Prompt "Enter the HDInsight cluster name"
-# Change the path to match the file location on your system
+$clusterName = Read-Host -Prompt "Enter hello HDInsight cluster name"
+# Change hello path toomatch hello file location on your system
 $pathToStreamingFile = "C:\path\to\hiveudf.py"
 $pathToJythonFile = "C:\path\to\pigudf.py"
 
@@ -317,7 +317,7 @@ $storageAccountKey=(Get-AzureRmStorageAccountKey `
     -Name $storageAccountName `
 -ResourceGroupName $resourceGroup)[0].Value
 
-#Create a storage content and upload the file
+#Create a storage content and upload hello file
 $context = New-AzureStorageContext `
     -StorageAccountName $storageAccountName `
     -StorageAccountKey $storageAccountKey
@@ -335,22 +335,22 @@ Set-AzureStorageBlobContent `
     -Context $context
 ```
 > [!IMPORTANT]
-> Módosítsa a `C:\path\to` értéket a fejlesztési környezetet a fájlok elérési útját.
+> Változás hello `C:\path\to` toohello elérési toohello fájlokat a fejlesztési környezet érték.
 
-Ezt a parancsfájlt a HDInsight-fürthöz adatainak beolvasása majd kibontja a fiók és az alapértelmezett tárfiók kulcsa, és feltölti a fájlok a tároló, a legfelső szintű.
+Ezt a parancsfájlt a HDInsight-fürt adatait kéri le, majd kinyeri hello fiók és a kulcs hello alapértelmezett tárfiók, és feltöltések hello fájlok toohello legfelső szintű hello tároló.
 
 > [!NOTE]
-> Fájlok feltöltésével kapcsolatos további információkért lásd: a [feltölteni az adatokat a HDInsight Hadoop-feladatok](hdinsight-upload-data.md) dokumentum.
+> Fájlok feltöltésével kapcsolatos további információkért lásd: hello [feltölteni az adatokat a HDInsight Hadoop-feladatok](hdinsight-upload-data.md) dokumentum.
 
-#### <a name="powershell-use-the-hive-udf"></a>PowerShell: A Hive UDF használata
+#### <a name="powershell-use-hello-hive-udf"></a>PowerShell: Hello Hive UDF használata
 
-PowerShell távolról ugyanúgy futtathatják a Hive-lekérdezéseket is használható. A következő PowerShell-parancsfájl segítségével használó Hive-lekérdezések futtatása **hiveudf.py** parancsfájlt:
+PowerShell futtatásához használt tooremotely Hive-lekérdezéseket is lehet. A következő PowerShell-parancsfájl toorun használó Hive-lekérdezések használata hello **hiveudf.py** parancsfájlt:
 
 > [!IMPORTANT]
-> Előtt fut, a parancsprogram kéri a HTTPs/rendszergazdai fiók adatait a HDInsight-fürthöz.
+> Előtt fut, hello parancsfájl kéri hello HTTPs/rendszergazdai fiók adatait a HDInsight-fürthöz.
 
 ```powershell
-# Login to your Azure subscription
+# Login tooyour Azure subscription
 # Is there an active Azure subscription?
 $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
 if(-not($sub))
@@ -359,10 +359,10 @@ if(-not($sub))
 }
 
 # Get cluster info
-$clusterName = Read-Host -Prompt "Enter the HDInsight cluster name"
-$creds=Get-Credential -Message "Enter the login for the cluster"
+$clusterName = Read-Host -Prompt "Enter hello HDInsight cluster name"
+$creds=Get-Credential -Message "Enter hello login for hello cluster"
 
-# If using a Windows-based HDInsight cluster, change the USING statement to:
+# If using a Windows-based HDInsight cluster, change hello USING statement to:
 # "USING 'D:\Python27\python.exe hiveudf.py' AS " +
 $HiveQuery = "add file wasb:///hiveudf.py;" +
                 "SELECT TRANSFORM (clientid, devicemake, devicemodel) " +
@@ -378,25 +378,25 @@ $job = Start-AzureRmHDInsightJob `
     -ClusterName $clusterName `
     -JobDefinition $jobDefinition `
     -HttpCredential $creds
-Write-Host "Wait for the Hive job to complete ..." -ForegroundColor Green
+Write-Host "Wait for hello Hive job toocomplete ..." -ForegroundColor Green
 Wait-AzureRmHDInsightJob `
     -JobId $job.JobId `
     -ClusterName $clusterName `
     -HttpCredential $creds
-# Uncomment the following to see stderr output
+# Uncomment hello following toosee stderr output
 # Get-AzureRmHDInsightJobOutput `
 #   -Clustername $clusterName `
 #   -JobId $job.JobId `
 #   -HttpCredential $creds `
 #   -DisplayOutputType StandardError
-Write-Host "Display the standard output ..." -ForegroundColor Green
+Write-Host "Display hello standard output ..." -ForegroundColor Green
 Get-AzureRmHDInsightJobOutput `
     -Clustername $clusterName `
     -JobId $job.JobId `
     -HttpCredential $creds
 ```
 
-A kimenet a **Hive** feladatot az alábbi példához hasonlóan kell megjelennie:
+hello kimenetének hello **Hive** feladat a következő példa hasonló toohello kell megjelennie:
 
     100041    RIM 9650    d476f3687700442549a83fac4560c51c
     100041    RIM 9650    d476f3687700442549a83fac4560c51c
@@ -406,13 +406,13 @@ A kimenet a **Hive** feladatot az alábbi példához hasonlóan kell megjelennie
 
 #### <a name="pig-jython"></a>Pig (Jython)
 
-PowerShell is használható a Pig Latin feladatok futtatásához. A Pig Latin feladat által használt futtatásához a **pigudf.py** parancsfájl, a következő PowerShell-parancsfájl:
+PowerShell is használható toorun Pig Latin feladatok. a Pig Latin feladat által használt hello toorun **pigudf.py** parancsfájl, a következő PowerShell-parancsfájl hello használata:
 
 > [!NOTE]
-> Ha távolról elküld egy PowerShell-lel feladatot, nincs lehetőség a értelmező C Python használandó.
+> Egy feladat PowerShell használatával távolról elküldése esetén nem lehetséges toouse C Python hello parancsértelmező szerint.
 
 ```powershell
-# Login to your Azure subscription
+# Login tooyour Azure subscription
 # Is there an active Azure subscription?
 $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
 if(-not($sub))
@@ -421,8 +421,8 @@ if(-not($sub))
 }
 
 # Get cluster info
-$clusterName = Read-Host -Prompt "Enter the HDInsight cluster name"
-$creds=Get-Credential -Message "Enter the login for the cluster"
+$clusterName = Read-Host -Prompt "Enter hello HDInsight cluster name"
+$creds=Get-Credential -Message "Enter hello login for hello cluster"
 
 $PigQuery = "Register wasb:///pigudf.py using jython as myfuncs;" +
             "LOGS = LOAD 'wasb:///example/data/sample.log' as (LINE:chararray);" +
@@ -437,25 +437,25 @@ $job = Start-AzureRmHDInsightJob `
     -JobDefinition $jobDefinition `
     -HttpCredential $creds
 
-Write-Host "Wait for the Pig job to complete ..." -ForegroundColor Green
+Write-Host "Wait for hello Pig job toocomplete ..." -ForegroundColor Green
 Wait-AzureRmHDInsightJob `
     -Job $job.JobId `
     -ClusterName $clusterName `
     -HttpCredential $creds
-# Uncomment the following to see stderr output
+# Uncomment hello following toosee stderr output
 # Get-AzureRmHDInsightJobOutput `
 #    -Clustername $clusterName `
 #    -JobId $job.JobId `
 #    -HttpCredential $creds `
 #    -DisplayOutputType StandardError
-Write-Host "Display the standard output ..." -ForegroundColor Green
+Write-Host "Display hello standard output ..." -ForegroundColor Green
 Get-AzureRmHDInsightJobOutput `
     -Clustername $clusterName `
     -JobId $job.JobId `
     -HttpCredential $creds
 ```
 
-A kimenet a **Pig** feladat a következő adatok hasonlóan kell megjelennie:
+hello kimenetének hello **Pig** feladat a következő adatok hasonló toohello kell megjelennie:
 
     ((2012-02-03,20:11:56,SampleClass5,[TRACE],verbose detail for id 990982084))
     ((2012-02-03,20:11:56,SampleClass7,[TRACE],verbose detail for id 1560323914))
@@ -467,13 +467,13 @@ A kimenet a **Pig** feladat a következő adatok hasonlóan kell megjelennie:
 
 ### <a name="errors-when-running-jobs"></a>Ha a futó feladatok hibák
 
-A hive-feladatokban futtatásakor találkozhat az alábbihoz hasonló hiba:
+Hello hive feladat futtatásakor a következő szöveg egy hiba hasonló toohello merülhetnek fel:
 
-    Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: [Error 20001]: An error occurred while reading or writing to your custom script. It may have crashed with an error.
+    Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: [Error 20001]: An error occurred while reading or writing tooyour custom script. It may have crashed with an error.
 
-Ez a probléma a sorvégződések a Python-fájl okozhatja. Az CRLF a sor befejezési, de a Linux-alkalmazások általában számos Windows szerkesztők alapértelmezett LF várt.
+Ez a probléma hello sorvégződések hello Python-fájl okozhatja. Számos Windows szerkesztők toousing CRLF alapértelmezett befejezési hello sorként, de általában a várt LF Linux alkalmazások.
 
-A következő PowerShell-utasítások segítségével a CR karakter eltávolítása előtt a fájl feltöltése a HDInsight:
+Hello PowerShell utasítások tooremove hello CR karakter után hello fájl tooHDInsight feltöltés előtt használható:
 
 ```powershell
 $original_file ='c:\path\to\hiveudf.py'
@@ -483,7 +483,7 @@ $text = [IO.File]::ReadAllText($original_file) -replace "`r`n", "`n"
 
 ### <a name="powershell-scripts"></a>PowerShell-parancsfájlok
 
-A példa a példák futtatásához használt PowerShell-parancsfájlok tartalmazniuk jeleníti meg a feladat kimenetének hiba megjegyzésként sorra. Ha nem Ön a feladat várható kimenete, állítsa vissza a következő sort, és tekintse meg, ha a hiba adataival kapcsolatos problémát jelez.
+Mindkét hello példában PowerShell-parancsfájlok toorun hello példákat tartalmaz megjegyzésként sorokkal hello feladat hiba kimenet megjelenítése. Ha nem Ön hello feladathoz tartozó várt hello kimeneti, állítsa vissza a hello alábbi. sor, és tekintse meg, ha hello hibainformációk kapcsolatos problémát jelez.
 
 ```powershell
 # Get-AzureRmHDInsightJobOutput `
@@ -493,18 +493,18 @@ A példa a példák futtatásához használt PowerShell-parancsfájlok tartalmaz
         -DisplayOutputType StandardError
 ```
 
-A hibával kapcsolatos információk (STDERR) és a feladat (STDOUT) eredménye is bekerül a HDInsight-tárolóba.
+hello hibainformációk (STDERR) és hello feladat (STDOUT) hello eredménye egyaránt naplózott tooyour HDInsight-tárolóba.
 
-| A feladat... | Nézze meg ezeket a fájlokat a blob a tárolóban |
+| A feladat... | Nézze meg a fájlok hello blob a tárolóban |
 | --- | --- |
 | Hive |/ HivePython/stderr<p>/ HivePython/stdout |
 | Pig |/ PigPython/stderr<p>/ PigPython/stdout |
 
 ## <a name="next"></a>Következő lépések
 
-Ha alapértelmezés szerint nem biztosított Python-modulok betöltése szüksége, tekintse meg [központi telepítése egy modul Azure HDInsight](http://blogs.msdn.com/b/benjguin/archive/2014/03/03/how-to-deploy-a-python-module-to-windows-azure-hdinsight.aspx).
+Ha alapértelmezés szerint nem biztosított tooload Python-modulok van szüksége, tekintse meg [hogyan toodeploy egy modul tooAzure HDInsight](http://blogs.msdn.com/b/benjguin/archive/2014/03/03/how-to-deploy-a-python-module-to-windows-azure-hdinsight.aspx).
 
-Más használatának módjai sertésfelmérés, struktúra, és a MapReduce használatával kapcsolatos további tudnivalókért lásd a következő dokumentumokat:
+Más módokon toouse Pig, a Hive és a toolearn MapReduce használatáról tekintse meg a következő dokumentumok hello:
 
 * [A Hive használata a HDInsightban](hdinsight-use-hive.md)
 * [A Pig használata a HDInsightban](hdinsight-use-pig.md)

@@ -1,6 +1,6 @@
 ---
-title: "Resource Manager és klasszikus telepítési |} Microsoft Docs"
-description: "A Resource Manager üzembe helyezési modellben és a klasszikus közötti különbségeket mutatja (vagy szolgáltatásfelügyelet) üzembe helyezési modellben."
+title: "aaaResource Manager és klasszikus üzembe helyezési |} Microsoft Docs"
+description: "Hello hello Resource Manager üzembe helyezési modellben és a klasszikus hello (vagy szolgáltatásfelügyelet) közötti különbségeket telepítési modell ismerteti."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,55 +14,55 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/09/2017
 ms.author: tomfitz
-ms.openlocfilehash: 060680fd4a7ce6e0cde406cc4a8f6f3a21d3c588
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fbf1959991b100547a459bf88a29c0afbc8592e8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-resource-manager-vs-classic-deployment-understand-deployment-models-and-the-state-of-your-resources"></a>Az Azure Resource Manager és klasszikus üzembe helyezési: üzembe helyezési modellek és az erőforrások állapota
-Ebben a témakörben megismerkedhet a Azure Resource Manager és klasszikus üzembe helyezési modellel, az erőforrások állapotát, és ezért az erőforrások közül egy vagy egyéb üzembe helyezése. A Resource Manager és klasszikus üzembe helyezési modellek határoz meg két különböző módokat telepítése és kezelése az Azure megoldások. Különböző API kétféle módon működik velük, és a telepített erőforrások tartalmazhat fontos különbség. A két modell nem teljesen kompatibilis egymással. Ez a témakör ismerteti azokat a különbségeket.
+# <a name="azure-resource-manager-vs-classic-deployment-understand-deployment-models-and-hello-state-of-your-resources"></a>Az Azure Resource Manager és klasszikus üzembe helyezési: üzembe helyezési modellel megértéséhez, valamint az erőforrások állapotát hello
+Ebben a témakörben megismerkedhet a Azure Resource Manager és klasszikus üzembe helyezési modellel, az erőforrások hello állapotát, és ezért az erőforrások közül egy vagy többi hello üzembe helyezése. hello Resource Manager és klasszikus üzembe helyezési modellek határoz meg két különböző módokat telepítése és kezelése az Azure megoldások. Különböző API kétféle módon működik velük, és hello telepített erőforrások tartalmazhat fontos különbség. hello két modell nincsenek teljesen kompatibilis egymással. Ez a témakör ismerteti azokat a különbségeket.
 
-Egyszerűbbé teheti a telepítése és az erőforrások kezelése, a Microsoft javasolja, hogy Resource Manager az összes új erőforrás. Ha lehetséges a Microsoft azt javasolja, hogy a meglévő erőforrásokat Resource Manageren keresztül telepíteni.
+toosimplify hello telepítése és az erőforrások kezelése, a Microsoft azt javasolja, hogy minden új erőforrások erőforrás-kezelő használjon. Ha lehetséges a Microsoft azt javasolja, hogy a meglévő erőforrásokat Resource Manageren keresztül telepíteni.
 
-Ha most ismerkedik az erőforrás-kezelő, érdemes lehet olvassa el a meghatározott terminológia a [Azure Resource Manager áttekintése](resource-group-overview.md).
+Ha új tooResource kezelő, érdemes lehet a toofirst felülvizsgálati hello terminológia hello definiált [Azure Resource Manager áttekintése](resource-group-overview.md).
 
-## <a name="history-of-the-deployment-models"></a>Az üzembe helyezési modellekről előzményei
-Azure eredetileg csak a klasszikus üzembe helyezési modell tartalmaz. Ebben a modellben minden erőforrás már létezett a egymástól függetlenül; nem lehetett kapcsolódó erőforrások csoportosítása. Ehelyett kellett manuálisan nyomon követése a megoldás vagy az alkalmazáshoz készült erőforrásokat, és ne felejtse el összehangolt kezelheti őket. A megoldás telepítéséhez kellett létrehozni az egyes erőforrások egyenként a klasszikus portálon keresztül, vagy hozzon létre olyan parancsfájlt, amely a megfelelő sorrendben az erőforrások telepítése. Megoldás törlése, az egyes erőforrások törlése külön-külön kellett. Akkor lehetett könnyen nem vonatkoznak, és kapcsolódó erőforrások hozzáférés-vezérlési házirendek frissítése. Végül, akkor nem alkalmazható a következő címkék a erőforrásokhoz, hogy lássa el a feltételeket, amelyek segítenek az erőforrások figyelése és kezelése.
+## <a name="history-of-hello-deployment-models"></a>Hello üzembe helyezési modellel előzményei
+Azure eredetileg csak a hello klasszikus üzembe helyezési modellben megadott. Ebben a modellben minden erőforrás már létezett a egymástól függetlenül; nem lehetett toogroup kapcsolódó erőforrások együtt. Ehelyett toomanually nyomon követése áll a megoldás vagy az alkalmazás mely erőforrásokat, és ne feledje toomanage kellett a összehangolt őket. toodeploy megoldást, tooeither hozzon létre az egyes erőforrások külön-külön hello klasszikus portálon keresztül, vagy hozzon létre olyan parancsfájlt, amely minden hello erőforrások hello megfelelő sorrendben telepítve volt. toodelete megoldást, kellett toodelete az egyes erőforrások külön-külön. Akkor lehetett könnyen nem vonatkoznak, és kapcsolódó erőforrások hozzáférés-vezérlési házirendek frissítése. Végül akkor nem alkalmazható a következő címkék tooresources toolabel azokat a feltételeket, amelyek segítenek az erőforrások figyelése és kezelése.
 
-A 2014-re az Azure erőforrás-kezelő, amely hozzá, az erőforráscsoport fogalmát vezette be. Erőforráscsoport egy olyan tároló, amelyek egy közös életciklussal erőforrások. A Resource Manager üzembe helyezési modellel számos előnyt kínál:
+A 2014-re az Azure erőforrás-kezelő, amely erőforráscsoport hello fogalma hozzá vezette be. Erőforráscsoport egy olyan tároló, amelyek egy közös életciklussal erőforrások. hello Resource Manager üzembe helyezési modellben számos előnyt kínál:
 
-* Ezt központi telepítése, kezelése, és figyelheti a megoldás a szolgáltatások csoportosan helyett külön-külön szolgáltatások ezek kezelése.
+* Központi telepítése, kezelése és figyelése a megoldás összes hello szolgáltatást egy csoportot, hanem külön-külön kezelése ezeket a szolgáltatásokat.
 * Ismételten a teljes életciklus megoldás üzembe helyezése, és lehet abban, hogy az erőforrások telepítése konzisztens lesz.
-* Az erőforráscsoportban összes erőforrásokhoz való hozzáférés-vezérlés is alkalmazhat, és ezek a házirendek automatikusan alkalmazza, amikor új erőforrásokat ad az erőforráscsoportot.
-* Címkékkel láthatja el az erőforrásokat, így logikusan rendszerezhető az előfizetés összes erőforrása.
-* JavaScript Object Notation (JSON) segítségével határozza meg az infrastruktúra megoldást. A JSON-fájlt egy Resource Manager-sablon néven ismert.
-* Meghatározhatja az erőforrások közti függőségeket, hogy azok a megfelelő sorrendben legyenek telepítve.
+* Access control tooall erőforrások az erőforráscsoportban alkalmazhat, és ezek a házirendek automatikusan alkalmazzák, amikor új erőforrásokat ad toohello erőforráscsoport.
+* Címkékkel láthatja tooresources toologically rendszerezése összes hello erőforrást az előfizetésében.
+* A megoldás JavaScript Object Notation (JSON) toodefine hello infrastruktúra is használhatja. a Resource Manager sablonként ismert hello JSON-fájlt.
+* Megadhatja, hogy hello függőségek között erőforrásokat, hogy azok hello megfelelő sorrendben legyenek telepítve.
 
-Erőforrás-kezelő hozzáadásakor, alapértelmezett erőforráscsoportok visszamenőleges hozzáadott összes erőforrást. Most a klasszikus üzembe helyezési keresztül erőforrás hoz létre, ha az erőforrás automatikusan létrejön, hogy a szolgáltatás alapértelmezett erőforráscsoporton belül, annak ellenére, hogy nem adta meg a központi telepítés erőforráscsoporthoz. Azonban csak meglévő erőforráscsoporton belül nem jelenti azt, hogy az erőforrás a Resource Manager modellt lett konvertálva. Megnézzük, hogyan minden egyes szolgáltatás kezeli a két üzembe helyezési modellel, a következő szakaszban. 
+Erőforrás-kezelő lett hozzáadva, ha az összes erőforrás visszamenőleges lett felvéve a toodefault erőforráscsoportok. Ha most a klasszikus üzembe helyezési keresztül egy erőforrás létrehozásához hello erőforrás automatikusan létrejön, hogy a szolgáltatás alapértelmezett erőforráscsoporton belül annak ellenére, hogy nem adta meg a központi telepítés erőforráscsoport. Azonban csak meglévő erőforráscsoporton belül nem jelenti azt, hogy a hello erőforrás megtörtént-e a konvertált toohello Resource Manager modellt. Megnézzük, hogyan kezeli az egyes szolgáltatások a hello két üzembe helyezési modellel hello a következő szakaszban. 
 
-## <a name="understand-support-for-the-models"></a>A modellek támogatása ismertetése
-Amikor arról dönt, hogy mely erőforrások használandó telepítési modell, nincsenek tisztában lenni a három forgatókönyv:
+## <a name="understand-support-for-hello-models"></a>Hello modellek támogatása ismertetése
+Amikor eldönti, milyen központi telepítési modell toouse erőforrások, számos három forgatókönyvek toobe tudomást.
 
-1. A szolgáltatás támogatja az erőforrás-kezelő, és csak egyetlen típusra biztosítja.
-2. A szolgáltatás támogatja az erőforrás-kezelő, de két típus - biztosít egy Resource Manager és klasszikus. Ez a forgatókönyv csak a virtuális hálózatok, virtuális gépek és tárfiókok vonatkozik.
-3. A szolgáltatás nem támogatja az erőforrás-kezelő.
+1. hello szolgáltatás erőforrás-kezelő támogatja, és csak egyetlen típusra biztosítja.
+2. hello szolgáltatás Resource Manager támogatja, de két típus - biztosít egy Resource Manager és klasszikus. Ez a forgatókönyv csak a toovirtual gépek, a storage-fiókok és a virtuális hálózatok vonatkozik.
+3. hello szolgáltatás nem támogatja a Resource Manager.
 
-Annak megállapításához, hogy a szolgáltatás támogatja-e az erőforrás-kezelő, lásd: [erőforrás-szolgáltatók és típusok](resource-manager-supported-services.md).
+toodiscover, hogy a szolgáltatás támogatja az erőforrás-kezelő, lásd: [erőforrás-szolgáltatók és típusok](resource-manager-supported-services.md).
 
-Ha szeretné használni a szolgáltatás nem támogatja az erőforrás-kezelő, a klasszikus üzembe helyezési használatával kell folytatja.
+Ha toouse kívánja hello szolgáltatás nem támogatja az erőforrás-kezelő, a klasszikus üzembe helyezési használatával kell folytatja.
 
-Ha a szolgáltatás támogatja az erőforrás-kezelő és **nem** egy virtuális gépet, a tárfiókhoz vagy a virtuális hálózati erőforrás-kezelő bármely komplikációk nélkül is használható.
+Ha hello szolgáltatást támogatja az erőforrás-kezelő és **nem** egy virtuális gépet, a tárfiókhoz vagy a virtuális hálózati erőforrás-kezelő bármely komplikációk nélkül is használható.
 
-A virtuális gépek, a storage-fiókok és a virtuális hálózatok Ha az erőforrás hozták létre, klasszikus telepítési kell továbbra is működik rajta, klasszikus műveletek révén. Ha a virtuális gép, a tárfiók, vagy a virtuális hálózati erőforrás-kezelő központi jött létre, továbbra is kell erőforrás-kezelő műveletekkel. Ezt a különbséget zavaró kaphat, ha az előfizetése tartalmazza majd a Resource Manager és klasszikus üzembe helyezési létrejött erőforrásokat kombinációját. Ez a kombináció erőforrások váratlan eredményeket hozhat létre, mert a források nem támogatják a ugyanazokat a műveleteket.
+A virtuális gépek, a storage-fiókok és a virtuális hálózatok klasszikus telepítési hello erőforrás hozták létre, ha továbbra is kell toooperate rajta klasszikus műveletek révén. Ha hello virtuális gépet, a storage-fiók vagy a virtuális hálózati erőforrás-kezelő központi jött létre, továbbra is kell erőforrás-kezelő műveletekkel. Ezt a különbséget zavaró kaphat, ha az előfizetése tartalmazza majd a Resource Manager és klasszikus üzembe helyezési létrejött erőforrásokat kombinációját. Ez a kombináció erőforrások nem várt eredményeket hozhat létre, mivel nem támogatják a hello erőforrások hello ugyanazokat a műveleteket.
 
-Bizonyos esetekben egy erőforrás-kezelő parancs kérheti le a klasszikus üzembe helyezési létre erőforrásra vonatkozó adatokat, vagy egy hagyományos erőforrás áthelyezése egy másik erőforráscsoportban például felügyeleti feladatot hajthat végre. Azonban ezekben az esetekben a benyomást, hogy a típus támogatja-e az erőforrás-kezelő műveletek számára. Tegyük fel például, a klasszikus üzembe helyezési hoztak létre virtuális gépet tartalmazó erőforráscsoport. A következő erőforrás-kezelő PowerShell-parancs futtatásával:
+Bizonyos esetekben egy erőforrás-kezelő parancs kérheti le a klasszikus üzembe helyezési létre erőforrásra vonatkozó adatokat, vagy egy hagyományos erőforrás tooanother erőforráscsoport áthelyezésével felügyeleti feladatot hajthat végre. Azonban ezekben az esetekben hello benyomást, hogy hello típus támogatja-e az erőforrás-kezelő műveletek számára. Tegyük fel például, a klasszikus üzembe helyezési hoztak létre virtuális gépet tartalmazó erőforráscsoport. Ha futtatja a Resource Manager PowerShell-parancsot a következő hello:
 
 ```powershell
 Get-AzureRmResource -ResourceGroupName ExampleGroup -ResourceType Microsoft.ClassicCompute/virtualMachines
 ```
 
-Azt jelzi, hogy a virtuális gépet:
+Virtuális gép hello adja vissza:
 
 ```powershell
 Name              : ExampleClassicVM
@@ -74,61 +74,61 @@ Location          : westus
 SubscriptionId    : {guid}
 ```
 
-Azonban az erőforrás-kezelő parancsmag **Get-AzureRmVM** csak a Resource Manager használatával telepített virtuális gépek adja vissza. A következő parancs nem ad vissza a klasszikus üzembe helyezési használatával létrehozott virtuális gépek.
+Azonban az erőforrás-kezelő parancsmag hello **Get-AzureRmVM** csak a Resource Manager használatával telepített virtuális gépek adja vissza. hello következő parancs nem ad vissza a klasszikus üzembe helyezési létrehozott hello virtuális géphez.
 
 ```powershell
 Get-AzureRmVM -ResourceGroupName ExampleGroup
 ```
 
-Csak erőforrások erőforrás-kezelő támogatási címkék segítségével létrehozott. Hagyományos erőforrások nem címkékkel.
+Csak erőforrások erőforrás-kezelő támogatási címkék segítségével létrehozott. Címkék tooclassic erőforrások nem alkalmazható.
 
 ## <a name="resource-manager-characteristics"></a>Erőforrás-kezelő jellemzői
-Megismerheti a két modell, tekintsük át, az erőforrás-kezelő típusok jellemzői:
+két hello tisztában toohelp modellek, tekintsük át az erőforrás-kezelő típusok hello jellemzői:
 
-* Létre a [Azure-portálon](https://portal.azure.com/).
+* Hello segítségével létrehozott [Azure-portálon](https://portal.azure.com/).
   
      ![Azure Portal](./media/resource-manager-deployment-model/portal.png)
   
-     A számítási, tárolási és hálózati erőforrások lehetősége van az erőforrás-kezelő vagy a klasszikus telepítési használatával. Válassza ki **erőforrás-kezelő**.
+     A számítási, tárolási és hálózati erőforrások lehetősége van hello erőforrás-kezelő vagy a klasszikus telepítési használatával. Válassza ki **erőforrás-kezelő**.
   
      ![Erőforrás-kezelő telepítése](./media/resource-manager-deployment-model/select-resource-manager.png)
-* Az Azure PowerShell-parancsmagok a Resource Manager verziójával létrehozott. Ezek a parancsok a formátumuk *ige-AzureRmNoun*.
+* Az Azure PowerShell-parancsmagok hello hello erőforrás-kezelő verziójával létrehozott. Ezek a parancsok hello formátumuk *ige-AzureRmNoun*.
 
   ```powershell
   New-AzureRmResourceGroupDeployment
   ```
 
-* Létre a [Azure Resource Manager REST API](https://docs.microsoft.com/rest/api/resources/) REST-műveletek.
-* Futtassa Azure parancssori felület parancsait létre a **arm** mód.
+* Hello segítségével létrehozott [Azure Resource Manager REST API](https://docs.microsoft.com/rest/api/resources/) REST-műveletek.
+* Hello futtatható Azure parancssori felület parancsait létre **arm** mód.
   
   ```azurecli
   azure config mode arm
   azure group deployment create
   ```
 
-* Az erőforrástípus nem tartalmaz **(klasszikus)** nevében. A következő kép bemutatja a típus **tárfiók**.
+* hello erőforrástípus nem tartalmaz **(klasszikus)** hello nevében. hello következő kép bemutatja hello típusú **tárfiók**.
   
     ![webalkalmazásra](./media/resource-manager-deployment-model/resource-manager-type.png)
 
 ## <a name="classic-deployment-characteristics"></a>Klasszikus üzembe helyezési jellemzői
-A klasszikus üzembe helyezési modellel is előfordulhat, hogy tudja, a szolgáltatás felügyeleti modell.
+Előfordulhat, hogy ismernie is hello klasszikus üzembe helyezési modellel hello szolgáltatás felügyeleti modell.
 
-A klasszikus üzembe helyezési modellel létrehozott erőforrások rendelkezik a következő jellemzőkkel:
+Erőforrások létrehozása hello klasszikus telepítési modell megosztás hello a következő jellemzőkkel:
 
-* Létre a [klasszikus portál](https://manage.windowsazure.com)
+* Hello segítségével létrehozott [klasszikus portál](https://manage.windowsazure.com)
   
      ![klasszikus portál](./media/resource-manager-deployment-model/classic-portal.png)
   
-     Az Azure-portálon, és megadhat **klasszikus** központi telepítését (számítási, tárolási és hálózati).
+     Vagy, hello Azure-portálon, és adja meg, hogy **klasszikus** központi telepítését (számítási, tárolási és hálózati).
   
      ![Klasszikus üzembe helyezési](./media/resource-manager-deployment-model/select-classic.png)
-* A Service Management verzióját az Azure PowerShell-parancsmagok használatával létre. A parancs nevek formátumuk *ige-AzureNoun*.
+* Hello szolgáltatásfelügyelet verziója hello Azure PowerShell-parancsmagok használatával létre. A parancs nevek hello formátumuk *ige-AzureNoun*.
 
   ```powershell
   New-AzureVM
   ```
 
-* Létre a [szolgáltatásfelügyelet REST API](https://msdn.microsoft.com/library/azure/ee460799.aspx) REST-műveletek.
+* Hello segítségével létrehozott [szolgáltatásfelügyelet REST API](https://msdn.microsoft.com/library/azure/ee460799.aspx) REST-műveletek.
 * Futtassa Azure parancssori felület parancsait létre **asm** mód.
 
   ```azurecli
@@ -136,85 +136,85 @@ A klasszikus üzembe helyezési modellel létrehozott erőforrások rendelkezik 
   azure vm create
   ```
    
-* Az erőforrástípus tartalmaz **(klasszikus)** nevében. A következő kép bemutatja a típus **(klasszikus) tárfiókot**.
+* hello erőforrástípus tartalmaz **(klasszikus)** hello nevében. hello következő kép bemutatja hello típusú **(klasszikus) tárfiókot**.
   
     ![klasszikus típusa](./media/resource-manager-deployment-model/classic-type.png)
 
-Az Azure portál segítségével kezelheti az erőforrásokat, amelyek klasszikus üzembe helyezési keresztül lettek létrehozva.
+Használhatja a hello Azure portál toomanage erőforrásokat, amelyek klasszikus üzembe helyezési keresztül lettek létrehozva.
 
 ## <a name="changes-for-compute-network-and-storage"></a>A számítási, hálózati és tárolási változások
-A következő diagram megjeleníti a számítási, hálózati és adattárolási erőforrásokat a Resource Manager használatával telepített.
+hello alábbi ábrán látható, számítási, hálózati és adattárolási erőforrásokat a Resource Manager használatával telepített.
 
 ![Erőforrás-kezelői architektúra](./media/resource-manager-deployment-model/arm_arch3.png)
 
-Vegye figyelembe a következő, az erőforrások közötti kapcsolatokat:
+Megjegyzés: hello hello erőforrások közötti kapcsolatok követően:
 
-* Az erőforrások erőforráscsoporton belül található.
-* A virtuális gép egy adott tárfiókot a Storage erőforrás-szolgáltató a lemezek tárolni a blob storage (kötelező) definiált függ.
-* A virtuális gép hivatkozik egy adott hálózati adapter a hálózati erőforrás-szolgáltató (kötelező) és a rendelkezésre állási készlet számítási erőforrás-szolgáltató az (nem kötelező).
-* A hálózati Adaptert a virtuális gép hozzárendelt IP-cím (kötelező), az alhálózat a virtuális hálózat a virtuális gép (kötelező), és a hálózati biztonsági csoport (nem kötelező) hivatkozik.
-* A virtuális hálózaton belül az alhálózat egy hálózati biztonsági csoportot (nem kötelező) hivatkozik.
-* A betöltési terheléselosztó példány hivatkozik a háttérbeli IP-címkészletet, amely tartalmazza a hálózati Adaptert egy virtuális gép (nem kötelező), és hivatkozik arra a terhelés terheléselosztó nyilvános vagy privát IP-cím (nem kötelező).
+* Minden hello erőforrás létezik erőforráscsoporton belül.
+* hello virtuális gép attól függ, hogy a megadott tárfiók hello Storage erőforrás-szolgáltató toostore definiált annak lemezeit a blob storage (kötelező).
+* hello virtuális gép hivatkozik egy adott hálózati adapter hello hálózati erőforrás-szolgáltató (kötelező) és a rendelkezésre állási készlet hello számítási erőforrás-szolgáltató az (nem kötelező).
+* hello NIC hivatkozások hello virtuális gép IP-címmel (kötelező), hello alhálózati hello virtuális hálózat hello virtuális gép (kötelező), és tooa hálózati biztonsági csoport (nem kötelező).
+* a virtuális hálózaton belül hello alhálózat egy hálózati biztonsági csoportot (nem kötelező) hivatkozik.
+* hello load balancer példány hello háttérbeli IP-címkészletet, amely tartalmazza az hello hálózati adapter a virtuális gép (nem kötelező) hivatkozik, és a betöltés terheléselosztó nyilvános vagy privát IP-cím (nem kötelező) hivatkozik.
 
-Az alábbiakban az összetevőket, és azok a klasszikus üzembe helyezési:
+Az alábbiakban hello összetevőket, és azok a klasszikus üzembe helyezési:
 
 ![klasszikus architektúrája](./media/resource-manager-deployment-model/arm_arch1.png)
 
-A klasszikus megoldást egy virtuális gépet szolgáltató tartalmazza:
+hello klasszikus megoldás a virtuális gépek üzemeltetéséhez tartalmaz:
 
-* Egy szükséges felhőalapú szolgáltatás, amely a virtuális gépeket (számítást) tárolója. Virtuális gépek automatikusan kapnak egy hálózati kártya (NIC), és az Azure által kiosztott IP-címet. Ezenkívül a felhőalapú szolgáltatás tartalmazza-e a külső terheléselosztási terheléselosztó példány, egy nyilvános IP-cím és alapértelmezett végpontok, hogy a távoli asztali és a távoli PowerShell Windows-alapú virtuális gépek és a Secure Shell (SSH) forgalomnak a Linux-alapú virtuális gépek.
-* Egy szükséges tárfiókot, amely a virtuális merevlemezek egy virtuális géphez, beleértve a rendszert, ideiglenes, és további adatlemezt (tárolás) tárolja.
-* Egy nem kötelező, úgy működik, mint egy további tárolót, amelyben alhálózati struktúra létrehozása és kijelölése az alhálózaton, amelyre a virtuális gép is található virtuális hálózat (hálózati).
+* Egy szükséges felhőalapú szolgáltatás, amely a virtuális gépeket (számítást) tárolója. Virtuális gépek automatikusan kapnak egy hálózati kártya (NIC), és az Azure által kiosztott IP-címet. Emellett hello felhőszolgáltatás tartalmazza-e a külső terheléselosztási terheléselosztó példány, egy nyilvános IP-cím és alapértelmezett végpontok tooallow távoli és távoli asztal PowerShell Windows-alapú virtuális gépek és a Secure Shell (SSH) forgalomnak a Linux-alapú virtuális gépek.
+* A tárolók, hogy virtuális merevlemezek egy virtuális gép, beleértve a hello operációs rendszer, ideiglenes, és további adatlemezt (tárolás) hello szükséges storage-fiók.
+* Egy nem kötelező, úgy működik, mint egy további tárolót, amelyben alhálózati struktúra létrehozása és kijelölése hello alhálózat mely hello a virtuális gép is található virtuális hálózat (hálózati).
 
-A következő táblázat ismerteti, hogyan működnek együtt a számítási, hálózati és Tárolóerőforrás-szolgáltatók változásai:
+hello a következő táblázat ismerteti, hogyan működnek együtt a számítási, hálózati és Tárolóerőforrás-szolgáltatók változásai:
 
 | Elem | Klasszikus | Resource Manager |
 | --- | --- | --- |
-| Felhőszolgáltatás a virtuális gépekhez |A Cloud Service egy tároló volt a virtuális gépekhez, amely platform és a terheléselosztás Rendelkezésre állását is igényelte. |Az új modell használatával a Cloud Service már nem szükséges objektum egy virtuális gép létrehozásához. |
-| Virtuális hálózatok |Virtuális hálózat nem kötelező megadni a virtuális gép. Ha tartalmazza, a virtuális hálózat nem állítható rendszerbe a Resource Manager. |A virtuális gépeknek a Resource Manager központilag telepített virtuális hálózat. |
-| Tárfiókok |A virtuális géphez, amely tárolja a virtuális merevlemezeket az operációs rendszer, ideiglenes, és további adatlemezt tárfiók szükséges. |A virtuális géphez szükséges egy tárfiókot, a lemezek a blob Storage tárolóban tárolni. |
-| Rendelkezésre állási csoportok |A platform felé való rendelkezésre állást azonos „AvailabilitySetName” konfigurálásával lehetett jelezni a virtuális gépeken. A tartalék tartományok maximális száma 2 volt. |A Rendelkezésre állási csoport egy Microsoft.Compute szolgáltató által közzétett erőforrás. A nagy rendelkezésre állást igénylő virtuális gépeket szerepeltetni kell a Rendelkezésre állási csoportban. A tartalék tartományok maximális száma mostantól 3. |
-| Affinitáscsoportok |Virtuális hálózatok létrehozásához szükség volt Affinitáscsoportokra. A regionális virtuális hálózatok bevezetésével erre már nem volt szükség. |Egyszerűbben fogalmazva az Azure Resource Manageren keresztül közzétett API-kban nem létezik az Affinitáscsoportok koncepciója. |
-| Terheléselosztás |Egy felhőszolgáltatás létrehozása egy implicit terheléselosztót biztosít a telepített virtuális gépekhez. |A Load Balancer egy Microsoft.Network szolgáltató által közzétett erőforrás. A terheléselosztást igénylő virtuális gépek elsődleges hálózati adapterének hivatkoznia kell a terheléselosztóra. Egy terheléselosztó lehet külső vagy belső. A betöltési terheléselosztó példánya hivatkozik a háttérbeli IP-címkészletet, amely tartalmazza a hálózati Adaptert egy virtuális gép (nem kötelező), és hivatkozik arra a terhelés terheléselosztó nyilvános vagy privát IP-cím (nem kötelező). [További információk.](../virtual-network/resource-groups-networking.md) |
-| Virtuális IP-cím |Cloud Services egy alapértelmezett VIP-t (virtuális IP-cím) jelenik meg, ha egy virtuális Gépet hozzáadnak egy felhőalapú szolgáltatás. A Virtuális IP-cím az implicit terheléselosztóhoz társított cím. |A nyilvános IP-cím egy Microsoft.Network szolgáltató által közzétett erőforrás. Egy nyilvános IP-cím lehet Statikus (Fenntartott) vagy Dinamikus. A dinamikus nyilvános IP-címek hozzárendelhetők egy terheléselosztóhoz. A nyilvános IP-címek védelme biztonsági csoportok segítségével biztosítható. |
-| Fenntartott IP-címek |Az Azure-ban fenntarthat egy IP-címet, és társíthatja egy felhőszolgáltatáshoz, hogy biztosítsa az IP-cím állandóságát. |A nyilvános IP-címek létrehozhatók „Statikus” módban, amely ugyanazokat a képességeket biztosítja, mint a „Fenntartott IP-cím”. A statikus nyilvános IP-címek jelenleg csak terheléselosztóhoz rendelhetők hozzá. |
-| Virtuális gépenként megadott nyilvános IP-cím (PIP) |Nyilvános IP-címeket is hozzárendelhet egy virtuális géphez közvetlenül. |A nyilvános IP-cím egy Microsoft.Network szolgáltató által közzétett erőforrás. Egy nyilvános IP-cím lehet Statikus (Fenntartott) vagy Dinamikus. Jelenleg azonban csak dinamikus nyilvános IP-címek rendelhetők hozzá hálózati adapterekhez, hogy virtuális gépenként legyen meghatározva egy nyilvános IP-cím. |
-| Végpontok |A virtuális gépen konfigurálni kell a bemeneti végpontokat, hogy bizonyos portok csatlakoztathatóvá váljanak. A virtuális gépekhez való csatlakozás egyik legelterjedtebb módja a bemeneti végpontok beállítása. |A bejövő NAT-szabályok konfigurálhatók a terheléselosztókon, így azonos képességek érhetők el a végpontok engedélyezésére adott portokon a virtuális gépekhez való csatlakozás céljából. |
-| DNS-név |Egy felhőszolgáltatás egy implicit globálisan egyedi DNS-nevet kap. Például: `mycoffeeshop.cloudapp.net`. |A DNS-nevek opcionális paraméterek, amelyek egy nyilvános IP-cím erőforráson adhatók meg. Az FQDN-je a következő formátumban - `<domainlabel>.<region>.cloudapp.azure.com`. |
-| Hálózati illesztők |Az elsődleges és másodlagos hálózati adapter és tulajdonságai egy virtuális gép hálózati konfigurációjaként voltak megadva. |A hálózati adapter egy Microsoft.Network szolgáltató által közzétett erőforrás. A hálózati adapter életciklusa nincs a virtuális géphez kötve. A virtuális gép hozzárendelt IP-cím (kötelező), az alhálózat a virtuális hálózat a virtuális gép (kötelező), és a hálózati biztonsági csoport (nem kötelező) hivatkozik. |
+| Felhőszolgáltatás a virtuális gépekhez |A felhőalapú szolgáltatás hello platform és a terheléselosztás rendelkezésre állását is igényelte hello virtuális gépek egy tároló volt. |A felhőalapú szolgáltatás már nem szükséges a virtuális gépek hello új modelljének létrehozását objektum. |
+| Virtuális hálózatok |Virtuális hálózat nem kötelező hello virtuális géphez. Ha tartalmazza, hello virtuális hálózat nem állítható rendszerbe a Resource Manager. |A virtuális gépeknek a Resource Manager központilag telepített virtuális hálózat. |
+| Tárfiókok |hello a virtuális gépeknek, amelyek hello operációs rendszerhez, ideiglenes, és további adatlemezt hello VHD-k tárolja. |hello virtuális gép igényel a tárolási fiók toostore annak lemezeit a blob Storage tárolóban. |
+| Rendelkezésre állási csoportok |Úgy konfigurálja a rendelkezésre állási toohello platform jelzett azonos "AvailabilitySetName" a virtuális gépek hello hello. hello tartalék tartományok maximális száma 2 volt. |A Rendelkezésre állási csoport egy Microsoft.Compute szolgáltató által közzétett erőforrás. Magas rendelkezésre állást igénylő virtuális gépek rendelkezésre állási csoport hello kell szerepelnie. hello tartalék tartományok maximális száma mostantól 3. |
+| Affinitáscsoportok |Virtuális hálózatok létrehozásához szükség volt Affinitáscsoportokra. Azonban a regionális virtuális hálózatokba hello bevezetése, amely már nem volt szükség. |toosimplify, hello Affinitáscsoportok koncepciója hello Azure Resource Manageren keresztül közzétett API-kban nem létezik. |
+| Terheléselosztás |Egy felhőalapú szolgáltatás létrehozása egy implicit terheléselosztót biztosít hello telepített virtuális gépeket. |hello Load Balancer egy olyan hello Microsoft.Network szolgáltató által közzétett erőforrás. hello toobe terhelésű igénylő virtuális gépek elsődleges hálózati adapterének hello a hello terheléselosztó kell hivatkozik. Egy terheléselosztó lehet külső vagy belső. A terhelés terheléselosztó példánya hello háttérbeli IP-címkészletet, amely tartalmazza az hello hálózati adapter a virtuális gép (nem kötelező) hivatkozik, és a betöltés terheléselosztó nyilvános vagy privát IP-cím (nem kötelező) hivatkozik. [További információk.](../virtual-network/resource-groups-networking.md) |
+| Virtuális IP-cím |Cloud Services egy alapértelmezett VIP-t (virtuális IP-cím) jelenik meg, ha egy virtuális Gépet hozzáadnak tooa felhőalapú szolgáltatás. Virtuális IP-cím hello az hello implicit terheléselosztóhoz társított hello cím. |Nyilvános IP-cím hello Microsoft.Network szolgáltató által közzétett erőforrás. Egy nyilvános IP-cím lehet Statikus (Fenntartott) vagy Dinamikus. Dinamikus nyilvános IP-címek tooa terheléselosztóhoz rendelhetők hozzá. A nyilvános IP-címek védelme biztonsági csoportok segítségével biztosítható. |
+| Fenntartott IP-címek |Azure-ban és azt egy felhőalapú szolgáltatás tooensure, amely hello IP-cím állandóságát társítható IP-cím foglalhat. |Nyilvános IP-cím létrehozhatók "Statikus" módban, és azt ajánlatok hello egy "fenntartott IP-címet" funkció. Statikus nyilvános IP-címek csak hozzárendelhető tooa terheléselosztó most. |
+| Virtuális gépenként megadott nyilvános IP-cím (PIP) |Nyilvános IP-címeket is lehet társítva tooa virtuális gép közvetlenül. |Nyilvános IP-cím hello Microsoft.Network szolgáltató által közzétett erőforrás. Egy nyilvános IP-cím lehet Statikus (Fenntartott) vagy Dinamikus. Azonban csak dinamikus nyilvános IP-címek nem hozzárendelt tooa hálózati illesztő tooget nyilvános IP-cím, virtuális gépenként most. |
+| Végpontok |Egy virtuális gép toobe konfigurált bemeneti végpontok szükséges toobe kapcsolat bizonyos portok megnyitása. Az egyik hello legelterjedtebb módja a bemeneti végpontok beállítása toovirtual gépekhez csatlakozó. |Bejövő NAT-szabályok konfigurálhatók a Terheléselosztókon tooachieve hello azonos képességek toohello virtuális gépek csatlakozni adott portok végpontok engedélyezésére. |
+| DNS-név |Egy felhőszolgáltatás egy implicit globálisan egyedi DNS-nevet kap. Például: `mycoffeeshop.cloudapp.net`. |A DNS-nevek opcionális paraméterek, amelyek egy nyilvános IP-cím erőforráson adhatók meg. hello FQDN-je hello alábbi-formátum – `<domainlabel>.<region>.cloudapp.azure.com`. |
+| Hálózati illesztők |Az elsődleges és másodlagos hálózati adapter és tulajdonságai egy virtuális gép hálózati konfigurációjaként voltak megadva. |A hálózati adapter egy Microsoft.Network szolgáltató által közzétett erőforrás. hello életciklusát hello hálózati adapter nincs virtuális gép tooa kötődik. Hello virtuális géphez hozzárendelt IP-cím (kötelező), hello alhálózat virtuális hálózat hello hello virtuális gép (kötelező), és tooa hálózati biztonsági csoport (nem kötelező) hivatkozik. |
 
-Virtuális hálózatok csatlakoztatása a különböző üzembe helyezési modellel kapcsolatos további tudnivalókért lásd: [csatlakoztatja a virtuális hálózatok a különböző üzembe helyezési modellel, a portál](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md).
+toolearn különböző üzembe helyezési modellel, a virtuális hálózatok csatlakoztatása kapcsolatban lásd: [csatlakoztatja a virtuális hálózatok a különböző üzembe helyezési modellel hello portálon](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md).
 
-## <a name="migrate-from-classic-to-resource-manager"></a>Az erőforrás-kezelő a klasszikus áttelepítése
-Ha készen áll az erőforrások erőforrás-kezelő telepítési klasszikus üzembe helyezési telepíthetők át, lásd:
+## <a name="migrate-from-classic-tooresource-manager"></a>Klasszikus tooResource Manager áttelepítése
+Ha készen áll a toomigrate áll az erőforrások a klasszikus üzembe helyezési tooResource Manager telepítése, lásd:
 
-1. [Műszaki részletes bemutatója a platform által támogatott áttelepítési a klasszikus Azure Resource Managerbe](../virtual-machines/windows/migration-classic-resource-manager-deep-dive.md)
-2. [Támogatott platformon IaaS-erőforrásokra a klasszikus Azure Resource Manager áttelepítése](../virtual-machines/windows/migration-classic-resource-manager-overview.md)
-3. [Telepítse át IaaS-erőforrásokra a klasszikus Azure Resource Manager Azure PowerShell használatával](../virtual-machines/windows/migration-classic-resource-manager-ps.md)
-4. [Telepítse át IaaS-erőforrásokra a klasszikus Azure Resource Manager Azure parancssori felület használatával](../virtual-machines/virtual-machines-linux-cli-migration-classic-resource-manager.md)
+1. [Műszaki részletes bemutatója a platform által támogatott áttelepítési a klasszikus tooAzure erőforrás-kezelő](../virtual-machines/windows/migration-classic-resource-manager-deep-dive.md)
+2. [IaaS-erőforrásokra, a klasszikus tooAzure erőforrás-kezelő áttelepítésének támogatott platform](../virtual-machines/windows/migration-classic-resource-manager-overview.md)
+3. [IaaS-erőforrásokra át klasszikus tooAzure erőforrás-kezelő Azure PowerShell használatával](../virtual-machines/windows/migration-classic-resource-manager-ps.md)
+4. [IaaS-erőforrásokra át klasszikus tooAzure erőforrás-kezelő Azure parancssori felület használatával](../virtual-machines/virtual-machines-linux-cli-migration-classic-resource-manager.md)
 
 ## <a name="frequently-asked-questions"></a>Gyakori kérdések
-**Létrehozhat egy virtuális gép Azure Resource Manager használatával történő telepítéséhez a klasszikus üzembe helyezési használatával létrehozott virtuális hálózatban?**
+**A virtuális gépek Azure Resource Manager toodeploy klasszikus üzembe helyezési használatával létrehozott virtuális hálózatban hozhat létre?**
 
-Ez nem támogatott. Azure Resource Manager használatával nem virtuális gép telepítése a klasszikus üzembe helyezési használatával létrehozott virtuális hálózatba.
+Ez nem támogatott. Klasszikus üzembe helyezési használatával létrehozott virtuális hálózatba Azure Resource Manager toodeploy egy virtuális gép nem használható.
 
-**Létrehozhat egy virtuális gép az Azure Resource Manager az Azure szolgáltatásfelügyeleti API használatával létrehozott felhasználói rendszerképből?**
+**Hozható létre a virtuális gépek hello Azure Resource Manager hello Azure szolgáltatásfelügyeleti API használatával létrehozott felhasználói rendszerképből?**
 
-Ez nem támogatott. Azonban a VHD-fájlok másolása a szolgáltatásfelügyeleti API használatával létrehozott tárfiók, és adja hozzá egy új fiókot, Azure Resource Manageren keresztül.
+Ez nem támogatott. Azonban hello VHD-fájlok másolása a hello szolgáltatásfelügyeleti API használatával létrehozott tárfiókból, és vegye fel őket tooa új fiók létrehozása az Azure Resource Manageren keresztül.
 
-**Mi az az előfizetéshez tartozó kvóta gyakorolt hatás?**
+**Mi az az előfizetésem hello kvótája hello gyakorolt?**
 
-A virtuális gépek, virtuális hálózatok és az Azure Resource Manager használatával létrehozott storage-fiókok kvótái nem azonosak a más kvótákat. Minden előfizetés lekérdezi a kvótákat létrehozni az új API-kkal erőforrásokat. A további kvótákról [itt](../azure-subscription-service-limits.md) talál részletes információkat.
+hello hello virtuális gépek, virtuális hálózatok és hello Azure Resource Manager segítségével létrehozott storage-fiókok kvótái nem azonosak a más kvótákat. Minden előfizetés lekérdezi a kvóták toocreate hello-erőforrások hello új API-k. További hello további kvótákról [Itt](../azure-subscription-service-limits.md).
 
-**Használhatom továbbra is az automatizált parancsfájljaimat virtuális gépek, a virtuális hálózatok és a storage-fiókok a Resource Manager API-k segítségével történő üzembe helyezéséhez?**
+**Használhatom továbbra toouse a virtuális gépeket, a virtuális hálózatok és a storage-fiókok hello Resource Manager API-k segítségével történő üzembe helyezéséhez automatizált parancsfájlokat?**
 
-Az automatizálás és a már létrehozott parancsfájlokat is a meglévő virtuális gépek, az Azure szolgáltatásfelügyelet módban létrehozott virtuális hálózatokat működik. Azonban a parancsfájlok létrehozásához a Resource Manager módra ugyanazon erőforrásoknak az új séma használatához frissítenie kell rendelkeznie.
+Minden hello automatizálási és parancsfájlok, már létrehozott továbbra is toowork hello meglévő virtuális gépek, hello Azure szolgáltatásfelügyelet módban létrehozott virtuális hálózatokat. Azonban hello parancsfájlok sémája toobe frissített toouse hello új hello hello Resource Manager módra ugyanazon erőforrásoknak létrehozásához.
 
 **Hol találhatok példákat az Azure Resource Manager-sablonok?**
 
 Széles választékát kezdősablont található [Azure Resource Manager gyorsindítási sablonok](https://azure.microsoft.com/documentation/templates/).
 
 ## <a name="next-steps"></a>Következő lépések
-* A sablont, amely meghatározza egy virtuális gépet, a tárfiók és a virtuális hálózat létrehozása bízná, lásd: [Resource Manager sablonokhoz](resource-manager-template-walkthrough.md).
-* A parancsok a sablonok telepítésével kapcsolatos információk: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
+* a sablont, amely meghatározza egy virtuális gépet, a tárfiók és a virtuális hálózat, lásd: hello létrehozása toowalk [Resource Manager sablonokhoz](resource-manager-template-walkthrough.md).
+* a sablonok telepítésével toosee hello parancsok lásd [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
 

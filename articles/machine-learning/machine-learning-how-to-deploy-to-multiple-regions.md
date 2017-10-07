@@ -1,6 +1,6 @@
 ---
-title: "A webszolgáltatás üzembe helyezése több régióba |} Microsoft Docs"
-description: "(Másolás) egy új webszolgáltatás-bővítmény más régiókban telepítésének lépéseit."
+title: "egy webszolgáltatás-bővítmény aaaHow toodeploy toomultiple régiók |} Microsoft Docs"
+description: "Lépéseket toodeploy (Másolás) egy új webszolgáltatás tooother régiók."
 services: machine-learning
 documentationcenter: 
 author: vDonGlover
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: v-donglo
-ms.openlocfilehash: 3895537bbca72e687838ff5013c291dfee3be707
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 21fcdb96f118c60ed98b60b1b2df833766c7c8bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-deploy-a-web-service-to-multiple-regions"></a>Webszolgáltatás üzembe helyezése több régióban
-Az új Azure Web Services engedélyezi, hogy könnyen telepíthető egy webszolgáltatás-bővítmény több régióba több előfizetések vagy munkaterületek anélkül. 
+# <a name="how-toodeploy-a-web-service-toomultiple-regions"></a>Hogyan toodeploy egy webszolgáltatás-bővítmény toomultiple régiók
+Új Azure Web Services hello lehetővé teszik tooeasily telepítése egy webes szolgáltatás toomultiple régiók több előfizetések vagy munkaterületek anélkül. 
 
-Tarifacsomag az régió adott, ezért meg kell adnia egy számlázási csomagot minden egyes régió, amelyben a webszolgáltatást telepíti.
+Tarifacsomag az régió adott, ezért meg kell adnia mindegyik régióhoz fog üzembe helyezésének hello webszolgáltatás egy számlázási csomagot.
 
-## <a name="to-create-a-plan-in-another-region"></a>Egy másik régióban terv létrehozásához
+## <a name="toocreate-a-plan-in-another-region"></a>a csomag egy másik régióban toocreate
 1. Jelentkezzen be a [Microsoft Azure Machine Learning webszolgáltatások](https://services.azureml.net/).
-2. Kattintson a **tervek** menüjét.
-3. A csomagok keresztül nézet lap, kattintson a **új**.
-4. Az a **előfizetés** legördülő menüben válassza ki az előfizetést, amelyben létre kívánja hozni az új tervet.
-5. Az a **régió** legördülő menüben válasszon ki egy régiót az új csomag. A terv beállításait a kiválasztott régióban jelenítse meg a **beállítások megtervezése** lap részében.
-6. Az a **erőforráscsoport** legördülő menüben válassza egy erőforráscsoport, a terv. További információ az erőforráscsoportokkal látható [Azure Resource Manager áttekintése](../azure-resource-manager/resource-group-overview.md).
-7. A **neve** írja be a csomag nevét.
-8. A **terv beállítások**, kattintson az új csomag számlázási szintjét.
+2. Kattintson a hello **tervek** menüjét.
+3. Hello csomagok keresztül nézet lap, kattintson a **új**.
+4. A hello **előfizetés** legördülő menüben válassza hello előfizetés mely hello új terv legyen elhelyezve.
+5. A hello **régió** legördülő menüben válasszon ki egy régiót hello új csomag. hello beállítások megtervezése hello kijelölt terület jelennek majd meg hello **beállítások megtervezése** hello lap szakasza.
+6. A hello **erőforráscsoport** legördülő menüben válassza a erőforráscsoport hello terv. További információ az erőforráscsoportokkal látható [Azure Resource Manager áttekintése](../azure-resource-manager/resource-group-overview.md).
+7. A **neve** hello terv hello típusnév.
+8. A **terv beállítások**, hello számlázási szint hello új csomag gombra.
 9. Kattintson a **Create** (Létrehozás) gombra.
 
-## <a name="deploying-the-web-service-to-another-region"></a>A webszolgáltatás egy másik régióban üzembe helyezni
-1. Kattintson a **webszolgáltatások** menüjét.
-2. Válassza ki a webszolgáltatás új régióban üzembe helyezni.
+## <a name="deploying-hello-web-service-tooanother-region"></a>Hello web service tooanother régióban üzembe helyezése
+1. Kattintson a hello **webszolgáltatások** menüjét.
+2. Válassza ki a hello webszolgáltatás tooa új régió telepít.
 3. Kattintson a **másolási**.
-4. A **webszolgáltatás neve**, adjon meg egy új nevet a webszolgáltatáshoz.
-5. A **szolgáltatásleírás webes**, írja be a webszolgáltatás leírását.
-6. Az a **előfizetés** legördülő menüben válassza ki az előfizetést, amely az új webszolgáltatás legyen elhelyezve.
-7. Az a **erőforráscsoport** legördülő menüben válassza a erőforráscsoport a webszolgáltatáshoz. További információ az erőforráscsoportokkal látható [Azure Resource Manager áttekintése](../azure-resource-manager/resource-group-overview.md).
-8. Az a **régió** legördülő menüben válassza ki azt a régiót, amelyben a webszolgáltatás telepítése.
-9. Az a **tárfiók** legördülő menüben válassza ki a megfelelő tárolási fiók, amely a webszolgáltatás tárolja.
-10. Az a **ár terv** legördülő menüben válasszon ki egy tervet a 8. lépésben kiválasztott régióban.
+4. A **webszolgáltatás neve**, adjon meg egy új nevet hello webszolgáltatáshoz.
+5. A **szolgáltatásleírás webes**, hello webszolgáltatás leírását.
+6. A hello **előfizetés** legördülő menüben válassza hello előfizetés mely hello új webszolgáltatás legyen elhelyezve.
+7. A hello **erőforráscsoport** legördülő menüben válassza a erőforráscsoport hello webszolgáltatáshoz. További információ az erőforráscsoportokkal látható [Azure Resource Manager áttekintése](../azure-resource-manager/resource-group-overview.md).
+8. A hello **régió** legördülő menüben válassza hello régióban mely toodeploy hello webszolgáltatás.
+9. A hello **tárfiók** legördülő menüben válassza a tárfiókokat mely toostore hello webes szolgáltatás.
+10. A hello **ár terv** legördülő menüben válasszon ki egy tervet a 8. lépésben kiválasztott hello régióban.
 11. Kattintson a **másolási**.
 

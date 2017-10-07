@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Stream Analytics és a gépi tanulás integrációs |} Microsoft Docs"
-description: "A felhasználó által definiált függvény és a Machine Learning használatáról a Stream Analytics-feladatok"
+title: "a Stream Analytics és a gépi tanulás integrációs aaaAzure |} Microsoft Docs"
+description: "Hogyan toouse egy felhasználó által definiált függvény és a gépi tanulás a Stream Analytics-feladatok"
 keywords: 
 documentationcenter: 
 services: stream-analytics
@@ -15,166 +15,166 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 07/06/2017
 ms.author: jeffstok
-ms.openlocfilehash: 023033d5479fcf0e2dff168b6604431eef283d3b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e1ba7ab51ece80719839793e1320a7666cfc4181
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="performing-sentiment-analysis-by-using-azure-stream-analytics-and-azure-machine-learning"></a>Azure Stream Analytics és az Azure Machine Learning segítségével véleményeket elemzések végrehajtását
-Ez a cikk ismerteti, hogyan gyorsan beállíthat egy egyszerű Azure Stream Analytics-feladat, amely az Azure Machine Learning. Akkor használhatja Machine Learning véleményeket analytics a Cortana Intelligence Gallery a streamadatok szöveg elemzésére és valós időben a céggel kapcsolatos véleményeket pontszám meghatározásához. A Cortana Intelligence Suite használata lehetővé teszi ennek a feladatnak anélkül, hogy a menő a céggel kapcsolatos véleményeket elemzési modell létrehozásának bemutatása.
+Ez a cikk ismerteti, hogyan lehet a tooquickly egy egyszerű Azure Stream Analytics-feladat, amely az Azure Machine Learning beállítani. Hello Cortana Intelligence Gallery tooanalyze szöveg streamadatok a Machine Learning véleményeket analytics modellt használnak, és határozza meg a hello véleményeket pontszám valós időben. A Cortana Intelligence Suite hello használata lehetővé teszi ennek a feladatnak anélkül, hogy a céggel kapcsolatos véleményeket elemzési modell kialakításának menő hello bemutatása.
 
-Amiről tanulni az ebben a cikkben az ehhez hasonló helyzeteknek alkalmazhatja:
+Ez a cikk tooscenarios ehhez hasonló helyzeteknek megismert alkalmazhatja:
 
 * Valós idejű véleményeket folyamatos Twitter-adatok elemzése.
 * A felhasználói rekordok elemzése csevegés a támogató személyzete számára.
 * Megjegyzések a videók, fórumok és blogok kiértékelése. 
 * Sok más valós idejű, a prediktív pontozási forgatókönyvek.
 
-Egy valós forgatókönyv esetén az adatok közvetlenül a Twitter adatfolyam visszajelzést kap. Egyszerűbbé teheti az oktatóanyag azt már megírta azt, hogy a Streaming Analytics-feladat Twitter-üzeneteket lekérdezi az Azure Blob storage CSV-fájlból. Létrehozhat saját CSV-fájl, vagy egy CSV-mintafájlt, a következő ábrán látható módon használhatja:
+Egy valós forgatókönyv esetén közvetlenül a Twitter adatfolyam hello adatok visszajelzést kap. toosimplify hello oktatóanyagban azt már megírta azt, hogy hello Streaming Analytics-feladat beolvasása Twitter-üzeneteket az Azure Blob storage CSV-fájlból. Létrehozhat saját CSV-fájl, vagy egy CSV-mintafájlt, ahogy az a következő kép hello használhatja:
 
 ![a CSV-fájlban szereplő minta Twitter-üzenetek](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-figure-2.png)  
 
-A Streaming Analytics-feladat az Ön által létrehozott lesz a céggel kapcsolatos véleményeket elemzési modell egy felhasználói függvény (UDF) rajta a mintaadatokra szöveget a blob-tárolóból. A kimenet (a céggel kapcsolatos véleményeket elemzés eredménye) ugyanarra a blob-tároló egy másik CSV-fájl írása. 
+az Ön által létrehozott hello Streaming Analytics-feladat lesz hello véleményeket elemzési modell egy felhasználói függvény (UDF) hello minta szöveges adatokon hello blob tárolóból. hello kimeneti (hello véleményeket elemzés eredménye hello) írása toohello ugyanarra a blob tároló egy másik CSV-fájlban. 
 
-A következő ábra bemutatja, ezt a konfigurációt. Amint több reális forgatókönyvek esetében a blob storage lecserélheti Twitter-adatok az Azure Event Hubs bemeneti adatfolyam. Emellett sikerült készít egy [Microsoft Power BI](https://powerbi.microsoft.com/) valós idejű megjelenítésével kapcsolatos a összesített céggel kapcsolatos véleményeket.    
+hello. a következő ábra azt mutatja be ezt a konfigurációt. Amint több reális forgatókönyvek esetében a blob storage lecserélheti Twitter-adatok az Azure Event Hubs bemeneti adatfolyam. Emellett sikerült készít egy [Microsoft Power BI](https://powerbi.microsoft.com/) valós idejű megjelenítésével kapcsolatos hello összesített céggel kapcsolatos véleményeket.    
 
 ![Stream Analytics a Machine Learning integrációjának áttekintése](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-figure-1.png)  
 
 ## <a name="prerequisites"></a>Előfeltételek
-Mielőtt elkezdené, győződjön meg arról, hogy a következő:
+Megkezdése előtt győződjön meg arról, hogy a következő hello:
 
 * Aktív Azure-előfizetés.
-* Néhány adatot a CSV-fájlból. Letöltheti a fájlt a korábban bemutatott [GitHub](https://github.com/Azure/azure-stream-analytics/blob/master/Sample%20Data/sampleinput.csv), vagy létrehozhat saját fájlt. Ez a cikk feltételezzük, hogy a fájl a Githubról használ.
+* Néhány adatot a CSV-fájlból. Letöltheti a korábban bemutatott hello fájl [GitHub](https://github.com/Azure/azure-stream-analytics/blob/master/Sample%20Data/sampleinput.csv), vagy létrehozhat saját fájlt. Ez a cikk feltételezzük, hogy a Githubról hello fájlt használ.
 
-Magas szinten a feladatokat, ebben a cikkben bemutatott, tegye a következőket:
+Magas szinten ebben a cikkben bemutatott toocomplete hello feladatok meg hello a következő:
 
-1. Hozzon létre egy Azure storage-fiókot és egy blob storage tárolót, és egy CSV-formátumú bemeneti fájl feltöltése a tárolóba.
-3. A Cortana Intelligence Gallery a céggel kapcsolatos véleményeket elemzési modell felvétele az Azure Machine Learning munkaterülettel, és ez a modell rendszerbe állítása a Machine Learning-munkaterület webszolgáltatásként.
-5. Hozzon létre egy Stream Analytics-feladat, amely behívja a webszolgáltatás függvényében annak meghatározására, a bemeneti szöveg céggel kapcsolatos véleményeket.
-6. Indítsa el a Stream Analytics-feladat, és ellenőrizze a kimeneti.
+1. Hozzon létre egy Azure storage-fiókot és egy blob storage tárolót, és töltse fel a CSV-formátumú bemeneti fájl toohello tároló.
+3. Adja hozzá a céggel kapcsolatos véleményeket elemzési modell hello Cortana Intelligence Gallery tooyour Azure Machine Learning munkaterülettel, és ez a modell rendszerbe állítása a Machine Learning-munkaterület hello webszolgáltatásként.
+5. Hozzon létre egy Stream Analytics-feladat, amely ennek a webszolgáltatásnak a rendelés toodetermine véleményeket függvényében hello szöveges bevitel hívásokat.
+6. Hello Stream Analytics-feladat indítása és hello kimeneti ellenőrzése.
 
-## <a name="create-a-storage-container-and-upload-the-csv-input-file"></a>Hozzon létre egy tárolót, és a bemeneti CSV-fájl feltöltése
-Ezt a lépést minden CSV-fájl, például a rendelkezésre álló a Githubból is használhatja.
+## <a name="create-a-storage-container-and-upload-hello-csv-input-file"></a>A tároló létrehozása és hello CSV bemeneti fájl feltöltése
+Ebben a lépésben a CSV-fájl, például egy a Githubról elérhető hello is használhatja.
 
-1. Az Azure portálon kattintson **új** &gt; **tárolási** &gt; **tárfiók**.
+1. Hello Azure-portálon, kattintson **új** &gt; **tárolási** &gt; **tárfiók**.
 
    ![új tárfiók létrehozása](./media/stream-analytics-machine-learning-integration-tutorial/azure-portal-create-storage-account.png)
 
-2. Adjon meg egy nevet (`samldemo` a példában). A név csak kisbetűket és számokat használható, és Azure között egyedinek kell lennie. 
+2. Adjon meg egy nevet (`samldemo` hello példában). hello neve csak kisbetűket és számokat használhatja, és az Azure között egyedinek kell lennie. 
 
-3. Adjon meg egy létező erőforráscsoportot, és adjon meg egy helyet. Hely azt javasoljuk, hogy ebben az oktatóanyagban létrehozott összes erőforrást használja-e ugyanazon a helyen.
+3. Adjon meg egy létező erőforráscsoportot, és adjon meg egy helyet. Helyét, javasoljuk, hogy az oktatóanyag használatban létrehozott összes hello erőforrások hello azonos helyen.
 
     ![Adja meg a tárfiókadatok](./media/stream-analytics-machine-learning-integration-tutorial/create-sa1.png)
 
-4. Az Azure portálon válassza ki a tárfiókot. A storage-fiók panelen kattintson **tárolók** majd  **+ &nbsp;tároló** blob-tároló létrehozásához.
+4. Hello Azure-portálon válassza ki a tárfiók hello. Hello storage-fiók panelen kattintson **tárolók** majd  **+ &nbsp;tároló** toocreate blob Storage tárolóban.
 
     ![A blob-tároló létrehozása](./media/stream-analytics-machine-learning-integration-tutorial/create-sa2.png)
 
-5. Adja meg a tároló nevét (`azuresamldemoblob` a példában), és ellenőrizze, hogy **hozzáférési típus** értéke **Blob**. Ha végzett, kattintson az **OK** gombra.
+5. Adjon meg egy nevet hello tároló (`azuresamldemoblob` hello példában), és ellenőrizze, hogy **hozzáférési típus** értéke túl**Blob**. Ha végzett, kattintson az **OK** gombra.
 
     ![Adja meg a blob-tároló adatait](./media/stream-analytics-machine-learning-integration-tutorial/create-sa3.png)
 
-6. Az a **tárolók** panelen jelölje ki az új tárolót, amely tároló panel nyílik meg.
+6. A hello **tárolók** panelen, jelölje be hello új tároló, tároló hello paneljének megnyitása, amelyen.
 
 7. Kattintson a **Feltöltés** gombra.
 
     ![Egy tároló "Feltöltés" gomb](./media/stream-analytics-machine-learning-integration-tutorial/create-sa-upload-button.png)
 
-8. Az a **feltöltése a blob** panelen adja meg a jelen oktatóanyag használni kívánt CSV-fájl. A **Blob-típusú**, jelölje be **blokkblob** , és a blokkméret 4 MB, amely elegendő-e ez az oktatóanyag.
+8. A hello **feltöltése a blob** panelen adja meg a hello CSV-fájl, amelyet az toouse ehhez az oktatóanyaghoz. A **Blob-típusú**, jelölje be **blokkblob** és set hello blokk too4 MB, amely elegendő-e ez az oktatóanyag méretezés.
 
     ![a blob-fájl feltöltése](./media/stream-analytics-machine-learning-integration-tutorial/create-sa4.png)
 
-9. Kattintson a **feltöltése** gomb a panel alján.
+9. Kattintson a hello **feltöltése** hello hello panel alsó részén gombra.
 
-## <a name="add-the-sentiment-analytics-model-from-the-cortana-intelligence-gallery"></a>Adja hozzá a céggel kapcsolatos véleményeket elemzési modell a Cortana Intelligence Gallery
+## <a name="add-hello-sentiment-analytics-model-from-hello-cortana-intelligence-gallery"></a>A Cortana Intelligence Gallery hello hello véleményeket elemzési modell hozzáadása
 
-Most, hogy a mintaadatokat egy blobba, engedélyezheti a céggel kapcsolatos véleményeket elemzési modellek a Cortana Intelligence Gallery.
+Most, hogy hello mintaadatokat egy blobba, engedélyezheti a Cortana Intelligence Gallery hello véleményeket elemzési modellt.
 
-1. Lépjen a [véleményeket prediktív elemzési modell](https://gallery.cortanaintelligence.com/Experiment/Predictive-Mini-Twitter-sentiment-analysis-Experiment-1) a Cortana Intelligence Gallery lapján.  
+1. Nyissa meg toohello [véleményeket prediktív elemzési modell](https://gallery.cortanaintelligence.com/Experiment/Predictive-Mini-Twitter-sentiment-analysis-Experiment-1) oldal a Cortana Intelligence Gallery hello.  
 
 2. Kattintson a **Megnyitás a Studióban**.  
    
    ![A Stream Analytics Machine Learning, nyissa meg a Machine Learning Studio](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-open-ml-studio.png)  
 
-3. Jelentkezzen be a munkaterületen. Válasszon ki egy helyet.
+3. Jelentkezzen be toogo toohello munkaterületen. Válasszon ki egy helyet.
 
-4. Kattintson a **futtatása** az oldal alján. A folyamat fut, amely egy percet vesz igénybe.
+4. Kattintson a **futtatása** hello lap hello alján. hello folyamat fut, amely egy percet vesz igénybe.
 
    ![Futtassa a kísérletben a Machine Learning Studióban](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-run-experiment.png)  
 
-5. Miután a folyamat sikeresen lefutott, válassza ki **webes szolgáltatás telepítése** az oldal alján.
+5. Miután hello folyamat végrehajtása sikeresen befejeződött, válassza ki a **webes szolgáltatás telepítése** alján hello hello.
 
    ![egy webszolgáltatás telepítése a kísérletben a Machine Learning Studióban](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-deploy-web-service.png)  
 
-6. Ellenőrizze, hogy a céggel kapcsolatos véleményeket elemzési modell használatra kész, kattintson a **teszt** gombra. Adja meg például a "Tetszik Microsoft" bemeneti szöveget. 
+6. amely a céggel kapcsolatos véleményeket elemzési modell kész toouse hello toovalidate kattintson hello **teszt** gombra. Adja meg például a "Tetszik Microsoft" bemeneti szöveget. 
 
    ![teszt kísérletben a Machine Learning Studióban](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-test.png)  
 
-    A vizsgálat működik, az alábbi példához hasonló eredményt jelenik meg:
+    Hello teszt működik, a következő példa egy eredmény hasonló toohello jelenik meg:
 
    ![a vizsgálati eredmények a Machine Learning Studióban](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-test-results.png)  
 
-7. Az a **alkalmazások** oszlop, kattintson a **Excel 2010 vagy korábbi munkafüzet** egy Excel-munkafüzet letöltésére mutató hivatkozás. A munkafüzet tartalmazza az API-kulcs és az URL-címet, akkor később be kell állítania a Stream Analytics-feladat.
+7. A hello **alkalmazások** oszlopban kattintson hello **Excel 2010 vagy korábbi munkafüzet** hivatkozás toodownload egy Excel-munkafüzet. hello munkafüzet hello egy API-kulcs és, hogy kell-e újabb tooset hello Stream Analytics-feladat mentése hello URL-címet tartalmazza.
 
     ![Stream Analytics-Machine Learning, gyors áttekintő](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-quick-glance.png)  
 
 
-## <a name="create-a-stream-analytics-job-that-uses-the-machine-learning-model"></a>A gépi tanulási modellt használó Stream Analytics-feladat létrehozása
+## <a name="create-a-stream-analytics-job-that-uses-hello-machine-learning-model"></a>A Stream Analytics-feladat által használt hello gépi tanulási modell létrehozása
 
-Mostantól létrehozhat egy Stream Analytics-feladat, a minta Twitter-üzeneteket olvasó a CSV-fájlból a blob Storage tárolóban. 
+Mostantól létrehozhat egy Stream Analytics-feladat hello minta Twitter-üzeneteket olvasó hello CSV-fájlból a blob Storage tárolóban. 
 
-### <a name="create-the-job"></a>A feladat létrehozása
+### <a name="create-hello-job"></a>Hello feladat létrehozása
 
-1. Nyissa meg az [Azure Portal](https://portal.azure.com).  
+1. Nyissa meg toohello [Azure-portálon](https://portal.azure.com).  
 
 2. Kattintson a **új** > **az eszközök internetes hálózatát** > **Stream Analytics-feladat**. 
 
-   ![Egy új Stream Analytics-feladathoz kapcsolódnak az Azure portál elérési útja](./media/stream-analytics-machine-learning-integration-tutorial/azure-portal-new-iot-sa-job.png)
+   ![Az Azure portál elérési tooa új Stream Analytics-feladat beolvasása](./media/stream-analytics-machine-learning-integration-tutorial/azure-portal-new-iot-sa-job.png)
    
-3. A feladat neve `azure-sa-ml-demo`, adja meg az előfizetés, adjon meg egy meglévő erőforráscsoportot vagy hozzon létre egy újat, és válassza ki azt a helyet, a feladat.
+3. Név hello feladat `azure-sa-ml-demo`, adja meg az előfizetés, adjon meg egy meglévő erőforráscsoportot, vagy hozzon létre egy újat és válasszon hello helyet hello feladat.
 
    ![új Stream Analytics-feladat beállításainak megadása](./media/stream-analytics-machine-learning-integration-tutorial/create-job-1.png)
    
 
-### <a name="configure-the-job-input"></a>A feladat bemeneti konfigurálása
-A feladat lekérdezi a bemeneti blob-tároló korábban feltöltött CSV-fájlból.
+### <a name="configure-hello-job-input"></a>Hello feladat bemeneti konfigurálása
+hello feladat lekérdezi a bemeneti hello CSV-fájlból, hogy a korábbi tooblob tárolási feltöltve.
 
-1. A feladat létrehozása után, a **feladat topológia** a feladat panelen kattintson a **bemenetek** mezőbe.  
+1. Hello feladat létrehozása után, a **feladat topológia** hello feladat panelen, kattintson a hello **bemenetek** mezőbe.  
    
    !["Bemenetek" Stream Analytics-feladat panelen párbeszédpanel](./media/stream-analytics-machine-learning-integration-tutorial/create-job-add-input.png)  
 
-2. Az a **bemenetek** panelen kattintson a **+ Hozzáadás**.
+2. A hello **bemenetek** panelen kattintson a **+ Hozzáadás**.
 
-   !["Hozzáadás" a Stream Analytics-feladat bemenete hozzáadására szolgáló gomb](./media/stream-analytics-machine-learning-integration-tutorial/create-job-add-input-button.png)  
+   !["Hozzáadás" bemeneti toohello Stream Analytics-feladat hozzáadására szolgáló gomb](./media/stream-analytics-machine-learning-integration-tutorial/create-job-add-input-button.png)  
 
-3. Töltse ki a **új bemeneti** panel ezekkel az értékekkel:
+3. Töltse ki a hello **új bemeneti** panel ezekkel az értékekkel:
 
-    * **A bemeneti alias**: a nevet használja `datainput`.
+    * **A bemeneti alias**: hello név használata `datainput`.
     * **Adatforrás típusa**: válasszon **adatfolyam**.
     * **Forrás**: válasszon **Blob-tároló**.
     * **Beállítás importálása**: válasszon **használja a jelenlegi előfizetés blob-tároló**. 
-    * **A tárfiók**. Válassza ki a korábban létrehozott tárfiókot.
-    * **Tároló**. Válassza ki a korábban létrehozott tároló (`azuresamldemoblob`).
+    * **A tárfiók**. Válassza ki a korábban létrehozott hello tárfiókot.
+    * **Tároló**. A korábban létrehozott válassza hello tároló (`azuresamldemoblob`).
     * **Esemény szerializálási formátum**. Válassza ki **CSV**.
 
     ![Új feladat bemeneti beállításai](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-create-sa-input-new-portal.png)
 
 4. Kattintson a **Create** (Létrehozás) gombra.
 
-### <a name="configure-the-job-output"></a>A feladat kimenetére konfigurálása
-A feladat küldése eredmények ugyanazt a blob-tároló ahol lekérdezi a bemeneti. 
+### <a name="configure-hello-job-output"></a>Hello feladatkiemenetét konfigurálása
+hello feladat küld eredmények toohello azonos blob-tároló, amikor lekérdezi a bemeneti. 
 
-1. A **feladat topológia** a feladat panelen kattintson a **kimenetek** mezőbe.  
+1. A **feladat topológia** hello feladat panelen, kattintson a hello **kimenetek** mezőbe.  
   
    ![Új kimeneti Streaming Analytics-feladat létrehozása](./media/stream-analytics-machine-learning-integration-tutorial/create-output.png)  
 
-2. Az a **kimenetek** panelen kattintson a **+ Hozzáadás**, majd adja hozzá a egy kimenet `datamloutput`. 
+2. A hello **kimenetek** panelen kattintson a **+ Hozzáadás**, majd adja hozzá egy hello kimenet `datamloutput`. 
 
-3. A **gyűjtése**, jelölje be **Blob-tároló**. Majd adja meg a többi az azonos értékekkel, amelyet a bemeneti blob-tároló használt kimeneti beállítás:
+3. A **gyűjtése**, jelölje be **Blob-tároló**. Majd adja meg a többi hello hello kimeneti a beállításokat a hello ugyanazokat az értékeket, amelyet használt beviteli hello blob-tároló:
 
-    * **A tárfiók**. Válassza ki a korábban létrehozott tárfiókot.
-    * **Tároló**. Válassza ki a korábban létrehozott tároló (`azuresamldemoblob`).
+    * **A tárfiók**. Válassza ki a korábban létrehozott hello tárfiókot.
+    * **Tároló**. A korábban létrehozott válassza hello tároló (`azuresamldemoblob`).
     * **Esemény szerializálási formátum**. Válassza ki **CSV**.
 
    ![Új feladat kimenet beállításai](./media/stream-analytics-machine-learning-integration-tutorial/create-output2.png) 
@@ -182,41 +182,41 @@ A feladat küldése eredmények ugyanazt a blob-tároló ahol lekérdezi a bemen
 4. Kattintson a **Create** (Létrehozás) gombra.   
 
 
-### <a name="add-the-machine-learning-function"></a>A Machine Learning-függvény hozzáadása 
-Korábban közzétett a gépi tanulási modell webszolgáltatáshoz. A mi esetünkben az adatfolyam állapotelemzési feladat futtatásakor küldené minden egyes minta tweetet a céggel kapcsolatos véleményeket elemzés a webszolgáltatás bemenete. A Machine Learning webszolgáltatás adja vissza a céggel kapcsolatos véleményeket (`positive`, `neutral`, vagy `negative`) és egy pozitív tweetet valószínűségét. 
+### <a name="add-hello-machine-learning-function"></a>Hello Machine Learning-függvény hozzáadása 
+Korábban közzétett egy gépi tanulási modell tooa webszolgáltatás-bővítmény. A mi esetünkben hello adatfolyam állapotelemzési feladat futtatásakor küldené minden egyes minta tweetet webszolgáltatásból hello bemeneti toohello véleményeket elemzés céljából. Gépi tanulás webszolgáltatás hello adja vissza a céggel kapcsolatos véleményeket (`positive`, `neutral`, vagy `negative`) és egy pozitív hello tweetet valószínűségét. 
 
-Az oktatóanyag ezen részében adja meg az adatfolyam állapotelemzési feladat egy függvényt. A függvény küldjön egy tweetet, a webszolgáltatás és a válasz segítségnyújtáshoz hívható meg. 
+Hello oktatóanyag ezen részében adja meg egy hello adatfolyam állapotelemzési feladat függvényt. hello függvény meghívott toosend lehetnek egy tweetet toohello webszolgáltatás és hello válasz visszaszerzésében. 
 
-1. Győződjön meg arról, hogy a webes szolgáltatás URL-CÍMÉT és API-kulcsát az Excel-munkafüzetben korábban letöltött.
+1. Győződjön meg arról, hogy hello webes szolgáltatás URL-CÍMÉT és API-kulcsát korábban letöltött hello Excel-munkafüzet.
 
-2. Térjen vissza a feladathoz – áttekintés panelen.
+2. Visszatérési toohello feladat áttekintése panelen.
 
 3. A **beállítások**, jelölje be **funkciók** majd **+ Hozzáadás**.
 
-   ![A Stream Analytics-feladathoz egy függvény hozzáadása](./media/stream-analytics-machine-learning-integration-tutorial/create-function1.png) 
+   ![Egy függvény toohello Stream Analytics-feladat hozzáadása](./media/stream-analytics-machine-learning-integration-tutorial/create-function1.png) 
 
-4. Adja meg `sentiment` függvény aliasa és kitöltésének meg a többi ezeket az értékeket használó panel:
+4. Adja meg `sentiment` hello másként funkciót alias, és adja meg ezeket az értékeket használó hello panel hello többi:
 
     * **Típus működéséhez**: válasszon **Azure ML**.
-    * **Beállítás importálása**: válasszon **egy másik előfizetésben található Importálás**. Ez lehetővé teszi egy alkalommal a URL-címet és egy kulcs.
-    * **URL-cím**: illessze be a webalkalmazás URL-címe.
-    * **Kulcs**: illessze be az API-kulcsot.
+    * **Beállítás importálása**: válasszon **egy másik előfizetésben található Importálás**. Ez lehetővé teszi egy alkalommal tooenter hello URL-cím és a kulcsot.
+    * **URL-cím**: illessze be hello webes szolgáltatás URL-CÍMÉT.
+    * **Kulcs**: hello API-kulcs a beillesztés.
   
-    ![A Machine Learning-függvény hozzáadása a Stream Analytics-feladat beállításai](./media/stream-analytics-machine-learning-integration-tutorial/add-function.png)  
+    ![A Machine Learning-függvény toohello Stream Analytics-feladat hozzáadására szolgáló beállítások](./media/stream-analytics-machine-learning-integration-tutorial/add-function.png)  
     
 5. Kattintson a **Create** (Létrehozás) gombra.
 
-### <a name="create-a-query-to-transform-the-data"></a>Az adatok átalakítására lekérdezés létrehozása
+### <a name="create-a-query-tootransform-hello-data"></a>Hozzon létre egy tootransform hello adatait kérdezi le.
 
-A Stream Analytics lekérdezéssel deklaratív, az SQL-alapú vizsgálja meg a bemeneti és dolgozza fel. Ebben a szakaszban egy lekérdezést, amely a bemeneti olvassa be az egyes tweetet, majd meghívja az véleményeket elemzés végrehajtásához a Machine Learning függvény hoz létre. A lekérdezés az eredmény ezután elküldi a kimeneti (blob-tároló) definiálását.
+A Stream Analytics egy deklaratív, az SQL-alapú lekérdezés tooexamine hello bemeneti használ, és dolgozza fel. Ebben a szakaszban egy lekérdezést, amely a bemeneti olvassa be az egyes tweetet, majd meghívja az hello gépi tanulás funkció tooperform véleményeket elemzés hoz létre. hello lekérdezés ezután elküldi a hello eredmény toohello kimeneti (blob-tároló) definiálását.
 
-1. Térjen vissza a feladathoz – áttekintés panelen.
+1. Visszatérési toohello feladat áttekintése panelen.
 
-2.  A **feladat topológia**, kattintson a **lekérdezés** mezőbe.
+2.  A **feladat topológia**, kattintson a hello **lekérdezés** mezőben.
 
     ![A lekérdezés Streaming Analytics-feladat létrehozása](./media/stream-analytics-machine-learning-integration-tutorial/create-query.png)  
 
-3. Adja meg a következő lekérdezést:
+3. Adja meg a következő lekérdezés hello:
 
     ```
     WITH sentiment AS (  
@@ -228,50 +228,50 @@ A Stream Analytics lekérdezéssel deklaratív, az SQL-alapú vizsgálja meg a b
     From sentiment  
     ```    
 
-    A lekérdezés meghívja a korábban létrehozott függvényt (`sentiment`) ahhoz, hogy a bemeneti adatok minden tweetet véleményeket elemzést. 
+    hello lekérdezés meghívja a korábban létrehozott hello függvényt (`sentiment`) sorrendben tooperform véleményeket elemzés a minden egyes tweetet hello bemeneti adatok. 
 
-4. Kattintson a **mentése** a lekérdezés mentéséhez.
+4. Kattintson a **mentése** toosave hello lekérdezés.
 
 
-## <a name="start-the-stream-analytics-job-and-check-the-output"></a>A Stream Analytics-feladat indítása és a kimeneti ellenőrzése
+## <a name="start-hello-stream-analytics-job-and-check-hello-output"></a>Hello Stream Analytics-feladat indítása és hello kimeneti ellenőrzése
 
-Most elindíthatja a Stream Analytics-feladat.
+Most elindíthatja hello Stream Analytics-feladat.
 
-### <a name="start-the-job"></a>Indítsa el a feladatot
-1. Térjen vissza a feladathoz – áttekintés panelen.
+### <a name="start-hello-job"></a>Hello feladat indítása
+1. Visszatérési toohello feladat áttekintése panelen.
 
-2. Kattintson a **Start** a panel tetején.
+2. Kattintson a **Start** hello panel hello tetején.
 
     ![A lekérdezés Streaming Analytics-feladat létrehozása](./media/stream-analytics-machine-learning-integration-tutorial/start-job.png)  
 
-3. Az a **indítási feladat**, jelölje be **egyéni**, majd válassza ki az előtt, amikor a CSV-fájl feltöltése a blob storage egy nap. Amikor elkészült, kattintson a **Start**.  
+3. A hello **indítási feladat**, jelölje be **egyéni**, majd válassza ki egy nap előzetes toowhen hello CSV fájltároló tooblob feltöltött. Amikor elkészült, kattintson a **Start**.  
 
 
-### <a name="check-the-output"></a>A kimeneti ellenőrzése
-1. A pár percet, amíg megjelenik a tevékenység futtatása feladat lehetővé teszik a **figyelés** mezőbe. 
+### <a name="check-hello-output"></a>Hello kimeneti ellenőrzése
+1. Néhány percig, amíg megjelenik a tevékenység hello futtatása lehetővé hello feladat **figyelés** mezőbe. 
 
-2. Ha egy eszköz, amellyel normál esetben a blob-tároló tartalmának vizsgálata, hogy vizsgálata eszközzel a `azuresamldemoblob` tároló. Alternatív megoldásként hajtsa végre az alábbi lépéseket az Azure-portálon:
+2. Ha egy eszköz általában a blob storage tooexamine hello tartalmát használja, használja az adott eszköz tooexamine hello `azuresamldemoblob` tároló. Másik lehetőségként hello lépései hello Azure-portálon:
 
-    1. Keresse meg a portál a `samldemo` tárolási fiókot, és a fiókban található a `azuresamldemoblob` tároló. Megjelenik a tároló két fájlt: a minta Twitter-üzeneteket tartalmazó fájlt, és a Stream Analytics-feladat által létrehozott CSV-fájlból.
-    2. Kattintson a jobb gombbal a létrehozott fájl, és válassza ki **letöltése**. 
+    1. Hello portálon található hello `samldemo` tárolási fiókot, és hello fiókon belül található hello `azuresamldemoblob` tároló. Két fájlt hello tárolóban látja: hello hello minta Twitter-üzeneteket tartalmazó fájlt, és hello Stream Analytics-feladat által létrehozott CSV-fájlból.
+    2. Kattintson a jobb gombbal a létrehozott hello fájlt, és válassza ki **letöltése**. 
 
    ![A Blob-tároló CSV-feladat kimeneti letöltése](./media/stream-analytics-machine-learning-integration-tutorial/download-output-csv-file.png)  
 
-3. Nyissa meg a létrehozott CSV-fájlt. Megjelenik az alábbihoz hasonlót:  
+3. Nyissa meg hello CSV-fájl jön létre. A következő példa hello hasonlót lásd:  
    
    ![Stream Analytics Machine Learning, CSV megtekintése](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-csv-view.png)  
 
 
 ### <a name="view-metrics"></a>Nézet metrikák
-Azure Machine Learning-függvény vonatkozó metrikáinak is megtekintheti. A következő függvény kapcsolódó metrikák jelennek meg a **figyelés** mezőbe a feladat panelen:
+Azure Machine Learning-függvény vonatkozó metrikáinak is megtekintheti. hello jelennek meg a következő függvény vonatkozó metrikáinak hello **figyelés** hello feladat panelen mezőben:
 
-* **Kérelmek működéséhez** a Machine Learning webszolgáltatásba küldött kérelmek számát jelzi.  
-* **Események működéséhez** a kérelemben szereplő események számát jelzi. Alapértelmezés szerint a Machine Learning webszolgáltatásba az egyes kérelmek legfeljebb 1000 eseményeket tartalmazza.  
+* **Kérelmek működéséhez** küldött kérelmek tooa Machine Learning webszolgáltatásba hello számát jelzi.  
+* **Események működéséhez** hello kérelem események hello számát jelzi. Alapértelmezés szerint minden kérelem tooa Machine Learning webszolgáltatásba too1, 000 események másolatot tartalmazza.  
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-* [Az Azure Stream Analytics bemutatása](stream-analytics-introduction.md)
+* [A Stream Analytics bemutatása tooAzure](stream-analytics-introduction.md)
 * [Azure Stream Analytics Query Language Reference](https://msdn.microsoft.com/library/azure/dn834998.aspx) (Referencia az Azure Stream Analytics lekérdezési nyelvhez)
 * [Integrálható a REST API-t és a gépi tanulás](stream-analytics-how-to-configure-azure-machine-learning-endpoints-in-stream-analytics.md)
 * [Az Azure Stream Analytics felügyeleti REST API referenciája](https://msdn.microsoft.com/library/azure/dn835031.aspx)

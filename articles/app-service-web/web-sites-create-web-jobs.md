@@ -1,6 +1,6 @@
 ---
-title: "Háttérfeladatok futtatása WebJobs-feladatokkal"
-description: "Útmutató az Azure web apps háttér feladatok futtatásához."
+title: "a webjobs-feladatok aaaRun háttérfeladatok"
+description: "Ismerje meg, hogyan toorun háttérfeladatok az Azure-webalkalmazások."
 services: app-service
 documentationcenter: 
 author: ggailey777
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/27/2016
 ms.author: glenga
-ms.openlocfilehash: 3f8ae748e3d9c6b4e342536926a52b4e8f37ee51
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 96a3d977a806e7192207f0f4da79dfd248694336
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-background-tasks-with-webjobs"></a>Háttérfeladatok futtatása WebJobs-feladatokkal
 ## <a name="overview"></a>Áttekintés
-Programok vagy parancsfájlok futtathatók a webjobs-feladatok a [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) webalkalmazás háromféleképpen: az igény szerinti folyamatosan, vagy ütemezés szerint. Nincs webjobs-feladatok használandó további költség nélkül.
+Programok vagy parancsfájlok futtathatók a webjobs-feladatok a [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) webalkalmazás háromféleképpen: az igény szerinti folyamatosan, vagy ütemezés szerint. Nincs nem jelent többletköltséget toouse webjobs-feladatok.
 
 [!INCLUDE [app-service-web-webjobs-corenote](../../includes/app-service-web-webjobs-corenote.md)]
 
-Ez a cikk bemutatja, hogyan telepíthetők a webjobs-feladatok segítségével a [Azure Portal](https://portal.azure.com). A Visual Studio vagy egy folyamatos kézbesítési folyamatának telepítésével kapcsolatos információkért lásd: [Azure WebJobs központi telepítése a Web Apps hogyan](websites-dotnet-deploy-webjobs.md).
+Ez a cikk bemutatja, hogyan toodeploy webjobs-feladatok használatával hello [Azure Portal](https://portal.azure.com). További információ a Visual Studio vagy egy folyamatos kézbesítési folyamatának toodeploy lásd [hogyan tooDeploy Azure webjobs-feladatok tooWeb alkalmazások](websites-dotnet-deploy-webjobs.md).
 
-Az Azure WebJobs SDK egyszerűbbé teszi a sok WebJobs-programozási feladathoz. További információkért lásd: [Mi az a WebJobs SDK](websites-dotnet-webjobs-sdk.md).
+hello Azure WebJobs SDK számos programozási WebJobs-feladatok egyszerűbbé teszi. További információkért lásd: [hello WebJobs SDK Újdonságok](websites-dotnet-webjobs-sdk.md).
 
- Az Azure Functions segítségével más programok és parancsfájlok futtathatók, vagy egy kiszolgáló nélküli környezetben vagy egy App Service-alkalmazást. További információkért lásd: [Azure Functions áttekintése](../azure-functions/functions-overview.md).
+ Az Azure Functions biztosít egy másik módja toorun programokat és parancsfájlokat vagy a kiszolgáló nélküli környezetekben, illetve egy App Service-alkalmazást. További információkért lásd: [Azure Functions áttekintése](../azure-functions/functions-overview.md).
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="acceptablefiles"></a>Elfogadható fájltípusait ismerteti programok és parancsfájlok
-A következő típusú elfogadottak:
+a következő fájltípusokat hello elfogadottak:
 
 * .cmd, .bat, .exe (a windows parancssori eszközzel)
 * .ps1 (a powershell használatával)
@@ -45,42 +45,42 @@ A következő típusú elfogadottak:
 * .js (a csomópont használatával)
 * a .JAR fájlt (a java)
 
-## <a name="CreateOnDemand"></a>Az on igény szerinti webjobs-feladat létrehozása a portálon
-1. A a **Web App** panelen található a [Azure Portal](https://portal.azure.com), kattintson a **összes beállítás > WebJobs** megjelenítése a **WebJobs** panelen.
+## <a name="CreateOnDemand"></a>Hozzon létre egy on igény szerinti webjobs-feladat hello portálon
+1. A hello **Web App** panelen található hello [Azure Portal](https://portal.azure.com), kattintson a **összes beállítás > webjobs-feladatok** tooshow hello **webjobs-feladatok** panelen.
    
     ![Webjobs-feladat panelen](./media/web-sites-create-web-jobs/wjblade.png)
-2. Kattintson az **Add** (Hozzáadás) parancsra. A **hozzáadása webjobs-feladat** párbeszédpanel jelenik meg.
+2. Kattintson az **Add** (Hozzáadás) parancsra. Hello **hozzáadása webjobs-feladat** párbeszédpanel jelenik meg.
    
     ![Adja hozzá a webjobs-feladat panelen](./media/web-sites-create-web-jobs/addwjblade.png)
-3. A **neve**, adja meg a webjobs-feladat nevét. A név betűvel vagy számmal kell kezdődnie, és nem tartalmazhat különleges karaktereket eltérő "-" és "_".
-4. Az a **Futtatás hogyan** válassza **igény szerint futtatható**.
-5. Az a **fájlfeltöltés** mezőben, a mappa ikonra, és keresse meg a parancsfájlt tartalmazó zip fájlt. A zip-fájl a végrehajtható fájl (.exe .cmd .bat .sh .php .py .js) kell tartalmaznia, valamint minden kiegészítő fájlt, a program vagy parancsfájl futtatásához szükséges.
-6. Ellenőrizze **létrehozása** töltse fel a parancsfájlt a webes alkalmazás. 
+3. A **neve**, adjon meg egy nevet hello webjobs-feladat. hello nevének betűvel vagy számmal kell kezdődnie, és nem tartalmazhat különleges karaktereket eltérő "-" és "_".
+4. A hello **hogyan tooRun** válassza **igény szerint futtatható**.
+5. A hello **fájlfeltöltés** mezőben, hello mappa ikonra, és keresse meg a parancsfájlt tartalmazó toohello zip-fájl. hello zip-fájl tartalmaznia kell a végrehajtható fájl (.exe .cmd .bat .sh .php .py .js) és minden kiegészítő fájlt szükséges toorun hello program vagy parancsfájl.
+6. Ellenőrizze **létrehozása** tooupload hello parancsfájl tooyour webalkalmazás. 
    
-    A név megadott a listában megjelenik a webjobs-feladat a **WebJobs** panelen.
-7. A webjobs-feladat futtatásához kattintson a jobb gombbal a nevét a listában, és kattintson a **futtatása**.
+    hello hello webjobs-feladat a megadott néven jelennek meg hello listáján a hello **WebJobs** panelen.
+7. toorun hello webjobs-feladat, kattintson a jobb gombbal a nevére hello listán, és kattintson a **futtatása**.
    
     ![Webjobs-feladat futtatása](./media/web-sites-create-web-jobs/runondemand.png)
 
 ## <a name="CreateContinuous"></a>Egy folyamatosan futó webjobs-feladat létrehozása
-1. Folyamatosan futó webjobs-feladat létrehozásához kövesse a lépéseket a webjobs-feladat létrehozása, amely csak egyszer fut, de a a **Futtatás hogyan** válassza **folyamatos**.
-2. Indítsa el, vagy egy folyamatos webjobs-feladat leállítása, kattintson a jobb gombbal a webjobs-feladat, a listában, és kattintson a **Start** vagy **leállítása**.
+1. toocreate folyamatosan futó webjobs-feladat, hajtsa végre az azonos lépések a webjobs-feladat létrehozása, amely csak egyszer fut, de a hello hello **hogyan tooRun** válassza **folyamatos**.
+2. toostart vagy állítsa le a folyamatos webjobs-feladat, kattintson a jobb gombbal hello listán, és kattintson a webjobs-feladat hello **Start** vagy **leállítása**.
 
 > [!NOTE]
 > Ha egynél több példány a webalkalmazás fut, folyamatosan futó webjobs-feladat fut az összes olyan saját példányait. Igény szerinti és az ütemezett webjobs-feladatok futtatása a Microsoft Azure terheléselosztást kijelölt egyetlen példányán.
 > 
-> A folyamatos webjobs-feladatok futtatásához, megbízható és összes példánya, engedélyezze az Always On * konfigurációs beállítást a webalkalmazás nem lehet leállítani a módban való futáskor az SCM állomás hely le lett üresjárati idő túl hosszú.
+> A folyamatos webjobs-feladatok toorun megbízhatóan és összes példánya lehetővé teszik a mindig bekapcsolva hello * hello webalkalmazás egyéb azok leállíthatja, ha túl sokáig üresjáratban hello SCM állomás hely konfigurációs beállítást.
 > 
 > 
 
 ## <a name="CreateScheduledCRON"></a>Hozzon létre egy ütemezett webjobs-feladat CRON-kifejezés használata
-Ez a módszer a Basic, Standard vagy prémium módban futó webalkalmazások érhető el, és van szükség a **mindig a** beállítást engedélyezni kell az alkalmazást.
+Ezzel a technikával Basic, Standard vagy prémium módban futó elérhető tooWeb alkalmazásokat, és hello igényel **mindig a** toobe hello alkalmazás engedélyezve beállítás.
 
-Kapcsolja be az az igény szerinti webjobs-feladat az ütemezett webjobs-feladat, egyszerűen közé tartozik egy `settings.job` fájl a webjobs-feladat zip-fájl gyökerében. A JSON-fájl tartalmaznia kell egy `schedule` tulajdonság egy [CRON-kifejezés](https://en.wikipedia.org/wiki/Cron), az alábbi példában egy.
+tooturn egy az igény szerinti webjobs-feladat az ütemezett webjobs-feladat, egyszerűen közé tartozik egy `settings.job` fájlban a következő hello a webjobs-feladat zip-fájl gyökerében. A JSON-fájl tartalmaznia kell egy `schedule` tulajdonság egy [CRON-kifejezés](https://en.wikipedia.org/wiki/Cron), az alábbi példában egy.
 
-A CRON-kifejezés áll 6 mezők: `{second} {minute} {hour} {day} {month} {day of the week}`.
+hello CRON-kifejezés áll 6 mezők: `{second} {minute} {hour} {day} {month} {day of hello week}`.
 
-Például elindítható a webjobs-feladat 15 percenként a `settings.job` kellene lennie:
+Például tootrigger a webjobs-feladat 15 percenként a `settings.job` kellene lennie:
 
 ```json
 {
@@ -90,90 +90,90 @@ Például elindítható a webjobs-feladat 15 percenként a `settings.job` kellen
 
 Más CRON-ütemezését példák:
 
-* Minden órában (azaz mindig, amikor a perc száma 0):`0 0 * * * *` 
-* Minden órában a Reggel 9 a délután 5 óra:`0 0 9-17 * * *` 
+* Minden órában (azaz mindig, amikor perc hello száma 0):`0 0 * * * *` 
+* A Reggel 9 too5 óránként PM:`0 0 9-17 * * *` 
 * A 9:30 AM minden nap:`0 30 9 * * *`
 * A 9:30 AM hét naponta:`0 30 9 * * 1-5`
 
-**Megjegyzés:**: a Visual Studio eszközből webjobs-feladat telepítésekor ügyeljen arra, hogy jelölje meg a `settings.job` fájl tulajdonságai "Ha újabb másolatát".
+**Megjegyzés:**: a Visual Studio eszközből webjobs-feladat való telepítésekor, győződjön meg arról, hogy toomark a `settings.job` fájl tulajdonságai "Ha újabb másolatát".
 
-## <a name="CreateScheduled"></a>Az Azure-ütemező használatával ütemezett webjobs-feladat létrehozása
-A következő alternatív módszer lehetővé teszi, az Azure Scheduler használatát. Ebben az esetben a webjobs-feladat nem rendelkezik az ütemezés közvetlen ismerete. Ehelyett az Azure Scheduler lekérdezi úgy, hogy aktiválja a webjobs-feladat ütemezés szerint. 
+## <a name="CreateScheduled"></a>Hello Azure Scheduler használatával ütemezett webjobs-feladat létrehozása
+a következő alternatív módszer hello hello Azure Scheduler használ. Ebben az esetben a webjobs-feladat nincs hello ütemezés közvetlen ismerete. Ehelyett hello Azure Scheduler lekérdezi konfigurált tootrigger a webjobs-feladat ütemezés szerint. 
 
-Az Azure portálon még nem kapott képes létrehozni az ütemezett webjobs-feladat, de amíg nincs hozzáadva a szolgáltatást is elvégezheti a a [klasszikus portál](http://manage.windowsazure.com).
+hello Azure portálon még nem kapott hello képességét toocreate ütemezett webjobs-feladat, de amíg nincs hozzáadva a szolgáltatást is elvégezheti a hello [klasszikus portál](http://manage.windowsazure.com).
 
-1. Az a [klasszikus portál](http://manage.windowsazure.com) nyissa meg a webjobs-feladat a lapon, majd kattintson a **Hozzáadás**.
-2. Az a **Futtatás hogyan** válassza **ütemezhető**.
+1. A hello [klasszikus portál](http://manage.windowsazure.com) lépjen toohello webjobs-feladat lapra, és kattintson **Hozzáadás**.
+2. A hello **hogyan tooRun** válassza **ütemezhető**.
    
     ![Új ütemezett feladatot][NewScheduledJob]
-3. Válassza ki a **Feladatütemező régió** a feladat, majd kattintson a jobb alsó sarkában folytassa a következő képernyőn a párbeszédpanelen látható nyílra.
-4. Az a **feladat létrehozása** párbeszédpanelen válassza ki a **ismétlődési** kívánt: **egyszeri feladat** vagy **ismétlődő feladat**.
+3. Válassza ki a hello **Feladatütemező régió** a feladat, majd hello hello jobb alsó sarkában hello párbeszédpanel tooproceed toohello következő képernyőn látható nyílra.
+4. A hello **feladat létrehozása** párbeszédpanelen válassza ki, hello típusú **ismétlődési** kívánt: **egyszeri feladat** vagy **ismétlődő feladat**.
    
     ![Ismétlődés ütemezése][SchdRecurrence]
 5. Kiválaszthat egy **indítása** idő: **most** vagy **adott időpontban**.
    
     ![Kezdő időpontjának ütemezése][SchdStart]
-6. Ha el szeretné indítani a megadott időpontban, válassza ki a kezdési idő értékei alapján **indítása a**.
+6. Ha toostart adott időpontban, válassza ki a kezdési idő értékei alapján **indítása a**.
    
     ![Egy adott időpontban ütemezés kezdési][SchdStartOn]
-7. Ha úgy dönt, hogy ismétlődő feladat, hogy a **Ismétlődés minden** beállítással adhatja meg a előfordulási gyakoriságát és a **befejezési a** beállítással adhatja meg a befejezési időpontot.
+7. Ha úgy dönt, hogy ismétlődő feladat, hogy hello **Ismétlődés minden** toospecify hello gyakorisága előfordulási és hello lehetőséget **befejezési a** beállítás toospecify befejezési időpont.
    
     ![Ismétlődés ütemezése][SchdRecurEvery]
-8. Ha úgy dönt, **hét**, kiválaszthatja a **az egy adott ütemezés** és adja meg a napokat a hét, amelyet a feladat futtatásához.
+8. Ha úgy dönt, **hét**, kiválaszthatja a hello **az egy adott ütemezés** és adja meg a hello napot hello kívánt hello feladat toorun.
    
-    ![A hét napjai ütemezése][SchdWeeksOnParticular]
-9. Ha úgy dönt, **hónap** válassza ki a **az egy adott ütemezés** mezőben állíthatja be a feladat futtatásának számozott adott **nap** az adott hónapban. 
+    ![Hello hét napjai ütemezése][SchdWeeksOnParticular]
+9. Ha úgy dönt, **hónap** és select hello **az egy adott ütemezés** mezőben állíthatja be hello feladat toorun számozott adott **nap** hello hónapban. 
    
-    ![A hónap adott dátumok ütemezése][SchdMonthsOnPartDays]
-10. Ha úgy dönt, **hét napjai**, mely a napot vagy a hét napjai kiválaszthatja az szeretné futtatni a feladatot az adott hónapban.
+    ![Hello hónapban az adott dátumok ütemezése][SchdMonthsOnPartDays]
+10. Ha úgy dönt, **hét napjai**, mely nap vagy hello hét napjai kiválaszthatja az azt szeretné, hogy a feladat toorun hello hello hónap.
     
      ![A hónap adott hét napjai ütemezése][SchdMonthsOnPartWeekDays]
-11. Végezetül is használhatja a **előfordulások** beállítást adja meg a hónap hányadik hetére (először, a második, harmadik stb.) a feladatot a megadott hét napjai futtatni szeretné.
+11. Végezetül is használhatja hello **előfordulások** beállítás toochoose hello hónap hányadik hetére (először, a második, harmadik stb.) hello feladat toorun hello a hét napjai megadott szeretné.
     
     ![A hónap adott héten adott hét napjai ütemezése][SchdMonthsOnPartWeekDaysOccurences]
-12. Egy vagy több feladat létrehozását követően a nevük azok állapotát, az ütemezés típusa és egyéb információkat a webjobs-feladatok lapon jelenik meg. Az utolsó 30 webjobs-feladatok az előzményadatok megmarad.
+12. Egy vagy több feladat létrehozását követően a nevük azok állapotát, az ütemezés típusa és egyéb információkat hello webjobs-feladatok lapon jelenik meg. Korábbi hello utolsó 30 webjobs-feladatok a tárolt adatok.
     
     ![Feladatok listája][WebJobsListWithSeveralJobs]
 
 ### <a name="Scheduler"></a>Ütemezett feladatok és az Azure Scheduler
-Ütemezett feladatok Azure Scheduler lapján további konfigurálható a [klasszikus portál](http://manage.windowsazure.com).
+Ütemezett feladatok további konfigurálásra hello Azure Scheduler lapján hello [klasszikus portál](http://manage.windowsazure.com).
 
-1. A webjobs-feladatok lapon kattintson a feladat **ütemezés** navigáljon az Azure Scheduler portállapon mutató hivatkozást. 
+1. Hello webjobs-feladatok lapon kattintson a hello feladat **ütemezés** hivatkozás toonavigate toohello Azure Scheduler portálon. 
    
-   ![Azure Schedulerrel mutató hivatkozás][LinkToScheduler]
-2. A Feladatütemező lapon kattintson a feladatra.
+   ![Hivatkozás tooAzure Feladatütemező][LinkToScheduler]
+2. Hello Feladatütemező lapján kattintson a hello feladat.
    
-    ![A Feladatütemező portál lapján feladat][SchedulerPortal]
-3. A **Feladatművelet** lap megnyitásakor, ahol további konfigurálhatja a feladatot. 
+    ![Feladat hello Feladatütemező portál lapján][SchedulerPortal]
+3. Hello **Feladatművelet** lap megnyitásakor, ahol további konfigurálható hello feladat. 
    
     ![Feladatművelet PageInScheduler][JobActionPageInScheduler]
 
-## <a name="ViewJobHistory"></a>A feladat előzményeinek megtekintése
-1. A feladat, többek között a WebJobs SDK-val létrehozott feladatok végrehajtási előzményeinek megtekintéséhez kattintson a alatt a megfelelő hivatkozásra a **naplók** oszlop a webjobs-feladatok panelről. (Használhatja a vágólapra ikonra a napló fájl lap URL-CÍMÉT a vágólapra másolni, ha.)
+## <a name="ViewJobHistory"></a>Hello-feladat előzményeinek megtekintése
+1. tooview hello futtatási előzményei feladat, többek között a WebJobs SDK hello létrehozott feladatokat, kattintson a megfelelő hivatkozásra a hello **naplók** oszlop hello WebJobs panelről. (Használhatja hello vágólapra ikon toocopy hello URL-címet a hello napló fájl lap toohello vágólap Ha.)
    
     ![Naplók hivatkozás](./media/web-sites-create-web-jobs/wjbladelogslink.png)
-2. A hivatkozásra kattintva megnyílik a részleteit megjelenítő oldalon a webjobs-feladat. Ezen a lapon látható a neve a parancs futtatása, a legutóbbi alkalommal lefutott, és a sikeres vagy sikertelen volt. A **legutóbbi feladat futtatása**, egy időpontot további részletek megtekintéséhez kattintson.
+2. Gombra kattintva hello a hivatkozás megnyitja hello részleteit megjelenítő oldalon hello webjobs-feladat. A lap tartalmazza, akkor hello neve hello parancs futtatása, a legutóbbi alkalommal lefutott, és annak sikerességét vagy sikertelenségét hello. A **legutóbbi feladat futtatása**, kattintson a idő toosee további részleteket.
    
     ![WebJobDetails][WebJobDetails]
-3. A **webjobs-feladat futtatása részletek** lap jelenik meg. Kattintson a **váltása kimeneti** a naplók tartalmáról szöveg. A kimeneti naplót szöveg formátumban van. 
+3. Hello **webjobs-feladat futtatása részletek** lap jelenik meg. Kattintson a **váltása kimeneti** hello naplók tartalmáról toosee hello szövegét. hello kimeneti naplót szöveg formátumban van. 
    
     ![Webes feladat futtatása részletei][WebJobRunDetails]
-4. A kimeneti szöveg. egy külön böngészőablakban megtekintéséhez kattintson a **letöltése** hivatkozásra. A szöveg betűméretét letöltéséhez kattintson a jobb gombbal a hivatkozásra, és mentse a fájl tartalmát a böngésző beállításait használja.
+4. toosee hello kimeneti szöveg egy külön böngészőablakban kattintson hello **letöltése** hivatkozásra. toodownload hello szöveg magát, kattintson a jobb gombbal a hello hivatkozásra, és használja a böngésző beállításai toosave hello fájl tartalmát.
    
     ![Töltse le a kimenet][DownloadLogOutput]
-5. A **WebJobs** az oldal tetején a webjobs-feladatok listája az előzmények irányítópult eléréséhez kényelmes megoldást kínál.
+5. Hello **WebJobs** hivatkozás hello oldal hello tetején a webjobs-feladatok kényelmesen tooget tooa listáját tartalmazza hello előzmények irányítópulton.
    
-    ![Webjobs-feladatok listája csatolása][WebJobsLinkToDashboardList]
+    ![Hivatkozás tooWebJobs listája][WebJobsLinkToDashboardList]
    
     ![Webjobs-feladatok előzményeinek irányítópulton listája][WebJobsListInJobsDashboard]
    
-    Kattintson az alábbi hivatkozások megnyitná a webjobs-feladat részleteit megjelenítő oldalon a kijelölt feladat.
+    Kattintson az alábbi hivatkozások viszi toohello webjobs-feladat részletei lapon kiválasztott hello feladat.
 
 ## <a name="WHPNotes"></a>Megjegyzések
-* Webalkalmazások szabad módban is túllépi az időkorlátot, miután 20 perc, ha nincsenek kérelmek nem az scm (telepítés) hely és a webalkalmazás-portál nem nyitható meg az Azure-ban. A tényleges helyet kérelmek nem állítja vissza a.
-* Folyamatos feladat kód ki kellene írni a végtelen ciklus futtatásához.
-* Folyamatos feladatok folyamatosan futnak, csak akkor, ha a webalkalmazás működik-e.
-* Egyszerű és szabványos mód ajánlat az Always On funkció, amellyel engedélyezésekor megakadályozza a webalkalmazások tétlenné.
+* Webalkalmazások szabad módban a túllépi az időkorlátot 20 perc után is, ha nincs kérelmek toohello scm (telepítés) helyen, és hello web app portal nincs megnyitva az Azure-ban. Kérelmek toohello tényleges hely ez nem alaphelyzetbe állnak.
+* Folyamatos feladat kódot kell toobe toorun írt ki végtelen ciklus.
+* Folyamatos feladatok folyamatosan futnak, csak akkor, ha hello a webalkalmazás működik-e.
+* Alapszintű és a szabványos mód ajánlat hello mindig a beállítást, amely, ha engedélyezve van, megakadályozza a webalkalmazások tétlenné.
 * Folyamatosan futó webjobs-feladatok csak hibakeresési. Ütemezett vagy igény szerinti WebJobs-hibakeresés nem támogatott.
 
 ## <a name="NextSteps"></a>Következő lépések

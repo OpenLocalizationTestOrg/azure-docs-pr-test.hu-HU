@@ -1,5 +1,5 @@
 ---
-title: "Az Azure DNS az Azure CLI 1.0 használata DNS-rekordok kezelése |} Microsoft Docs"
+title: "az Azure DNS használatával aaaManage DNS-rekordok hello Azure CLI 1.0 |} Microsoft Docs"
 description: "DNS-rekordhalmazok és az Azure DNS-rekordok kezelése esetén az Azure DNS-tartomány. Minden CLI 1.0 parancsok rekordhalmazokat és rekordokat műveleteket."
 services: dns
 documentationcenter: na
@@ -13,13 +13,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 12/20/2016
 ms.author: jonatul
-ms.openlocfilehash: 307b327e4c04a0461e39930114eb193791cbda9a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1f01450b0839f712cb1d96be318766bac581fea1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-dns-records-in-azure-dns-using-the-azure-cli-10"></a>Az Azure DNS az Azure CLI 1.0 használata DNS-rekordok kezelése
+# <a name="manage-dns-records-in-azure-dns-using-hello-azure-cli-10"></a>Az Azure DNS-hello Azure CLI 1.0 használata DNS-rekordok kezelése
 
 > [!div class="op_single_selector"]
 > * [Azure Portal](dns-operations-recordsets-portal.md)
@@ -27,20 +27,20 @@ ms.lasthandoff: 07/11/2017
 > * [Azure CLI 2.0](dns-operations-recordsets-cli.md)
 > * [PowerShell](dns-operations-recordsets.md)
 
-Ez a cikk bemutatja, hogyan DNS-rekordokat a DNS-zóna kezelése a platformok közötti Azure parancssori felület (CLI), amely megtalálható a Windows, Mac és Linux használatával. A DNS-rekordok segítségével is kezelheti [Azure PowerShell](dns-operations-recordsets.md) vagy a [Azure-portálon](dns-operations-recordsets-portal.md).
+Ez a cikk bemutatja, hogyan toomanage DNS-rekordokat a DNS-zóna használatával hello platformfüggetlen Azure parancssori felület (CLI), amely megtalálható a Windows, Mac és Linux. A DNS-rekordok segítségével is kezelheti [Azure PowerShell](dns-operations-recordsets.md) vagy hello [Azure-portálon](dns-operations-recordsets-portal.md).
 
-## <a name="cli-versions-to-complete-the-task"></a>A feladat befejezéséhez használható CLI-verziók
+## <a name="cli-versions-toocomplete-hello-task"></a>Parancssori felület verziók toocomplete hello feladat
 
-A következő CLI-verziók egyikével elvégezheti a feladatot:
+Hello feladat a következő parancssori felület verziók hello egyikével hajthatja végre:
 
-* [Azure CLI 1.0](dns-operations-recordsets-cli-nodejs.md) – parancssori felületünk a klasszikus és a Resource Management üzemi modellekhez.
-* [Azure CLI 2.0](dns-operations-recordsets-cli.md) – a Resource Management üzemi modellhez tartozó parancssori felületek következő generációját képviseli.
+* [Az Azure CLI 1.0](dns-operations-recordsets-cli-nodejs.md) -hello klasszikus és resource management üzembe helyezési modellel a parancssori felületen.
+* [Az Azure CLI 2.0](dns-operations-recordsets-cli.md) -a következő generációs CLI hello erőforrás felügyeleti telepítési modell.
 
-Ebben a cikkben szereplő példák azt feltételezik, hogy már rendelkezik [az Azure CLI 1.0-s jelentkezik be, és a DNS-zóna létrehozásakor](dns-operations-dnszones-cli-nodejs.md).
+a cikkben szereplő példák hello során feltételezzük, hogy már [hello Azure CLI 1.0-s jelentkezik be, és a DNS-zóna létrehozásakor](dns-operations-dnszones-cli-nodejs.md).
 
 ## <a name="introduction"></a>Bevezetés
 
-Mielőtt létrehozná a DNS-rekordokat Azure DNS-ben, tisztában kell lennie azzal, hogyan rendezi az Azure DNS DNS-rekordhalmazokba a DNS-rekordokat.
+DNS-rekordok létrehozása az Azure DNS-, előtt először toounderstand miként Azure DNS rendezi a DNS-rekordhalmazok DNS-rekordokat.
 
 [!INCLUDE [dns-about-records-include](../../includes/dns-about-records-include.md)]
 
@@ -48,21 +48,21 @@ Az Azure DNS DNS-rekordjaival kapcsolatos további információért tekintse meg
 
 ## <a name="create-a-dns-record"></a>DNS-rekord létrehozása
 
-DNS-rekordokat az `azure network dns record-set add-record` paranccsal lehet létrehozni. További segítségért lásd: `azure network dns record-set add-record -h`.
+egy DNS-rekord toocreate hello használata `azure network dns record-set add-record` parancsot. További segítségért lásd: `azure network dns record-set add-record -h`.
 
-Egy rekord létrehozásakor meg kell adni az erőforráscsoport, a zóna és a rekordhalmaz nevét, a rekordtípust és a létrehozandó rekord részletes adatait. A megadott rekordhalmaz nevének kell lennie egy *relatív* neve, ami azt jelenti, azt kell zárnia a zóna nevét.
+Rekord létrehozásakor toospecify hello erőforráscsoport-nevet, zónanév van szüksége, a rekordhalmaz nevét, a hello rekord típusát és a létrehozandó hello rekord hello részleteit. hello megadott rekordhalmaz nevének kell lennie egy *relatív* nevét, azaz kell zárnia a hello zóna neve.
 
-Ha a rekordhalmaz még nem létezik, akkor a parancs létrehozza. Ha a rekordkészlet már létezik, a parancs adda a meg kell adnia a meglévő rekord rekordhalmaz.
+Ha hello rekordkészlet már nem létezik, ezzel a paranccsal létrejön az Ön. Ha hello rekordkészlet már létezik, a parancs adda hello toohello meglévő rekordhalmaz megadott rekord.
 
-Új rekordhalmaz létrehozásakor az alapértelmezett élettartam (time-to-live, TTL) értéke 3600 lesz. Különböző TTLs használatával, lásd: [DNS rekordhalmaz létrehozása](#create-a-dns-record-set).
+Új rekordhalmaz létrehozásakor az alapértelmezett élettartam (time-to-live, TTL) értéke 3600 lesz. Hogyan toouse különböző TTLs: kapcsolatos utasításokat [DNS rekordhalmaz létrehozása](#create-a-dns-record-set).
 
-Az alábbi példaparancs a *MyResourceGroup* erőforráscsoport *contoso.com* zónájában egy *www* nevű, „A” típusú rekordot hoz létre. Az „A” rekord IP-címe: *1.2.3.4*.
+hello alábbi példa létrehoz egy A rekordot nevű *www* hello zónában *contoso.com* hello erőforráscsoportban *MyResourceGroup*. IP-címét egy rekord hello hello *1.2.3.4*.
 
 ```azurecli
 azure network dns record-set add-record MyResourceGroup contoso.com www A -a 1.2.3.4
 ```
 
-A zóna tetején a rekord létrehozásához (ebben az esetben "a contoso.com"), használja az "@", idézőjelekkel együtt:
+toocreate rekord hello csúcs hello zóna (ebben az esetben "a contoso.com"), hello rekord nevet "@", hello idézőjelekkel együtt:
 
 ```azurecli
 azure network dns record-set add-record MyResourceGroup contoso.com "@" A -a 1.2.3.4
@@ -70,19 +70,19 @@ azure network dns record-set add-record MyResourceGroup contoso.com "@" A -a 1.2
 
 ## <a name="create-a-dns-record-set"></a>A DNS-rekordhalmaz létrehozása
 
-A fenti példák a DNS-rekord vagy adtak hozzá egy meglévő rekordhalmaz, vagy a rekordhalmaz létrehozásának *implicit módon*. A rekordhalmaz is létrehozhat *explicit módon* rekordok hozzáadása előtt. Az Azure DNS támogatja az "empty" rekordhalmazok, amely működhet, és egy helyőrző lefoglalhat egy DNS-nevet a DNS-rekordok létrehozása előtt. Üres rekordhalmazok az Azure DNS-vezérlő vezérlősík látható, de nem jelennek meg az Azure DNS névkiszolgálóit.
+Hello DNS-rekord fenti példák hello, vagy meglévő rekordhalmazt hozzáadott tooan volt, vagy hello rekordhalmaz létrehozásának *implicit módon*. Hello rekordhalmaz is létrehozhat *explicit módon* előtt tooit hozzáadása rögzíti. Az Azure DNS támogatja az "empty" rekordhalmazok, amely működhet, és egy helyőrző tooreserve egy DNS-név DNS-rekordok létrehozása előtt. Üres rekordhalmazok legyenek láthatók a hello Azure DNS vezérlősík vezérlőként, de nem szerepelnek a hello Azure DNS névkiszolgálóit.
 
-Rekordhalmazok használatával hozhatók létre a `azure network dns record-set create` parancsot. További segítségért lásd: `azure network dns record-set create -h`.
+Rekordhalmazok hello használatával hozhatók létre `azure network dns record-set create` parancsot. További segítségért lásd: `azure network dns record-set create -h`.
 
-Explicit módon a rekordhalmaz létrehozása lehetővé teszi annak megadását, a rekordhalmaz tulajdonságok, mint a [idő-Élettartam (TTL)](dns-zones-records.md#time-to-live) és metaadatokat. [A rekordhalmaz metaadatok](dns-zones-records.md#tags-and-metadata) rendelje hozzá az alkalmazás-specifikus adatok minden rekordhalmaz, a kulcs-érték párként használható.
+Be explicit módon hello rekord létrehozása lehetővé teszi a toospecify rekordhalmaz tulajdonságait, például hello [idő-Élettartam (TTL)](dns-zones-records.md#time-to-live) és metaadatokat. [A rekordhalmaz metaadatok](dns-zones-records.md#tags-and-metadata) kulcs-érték párként minden rekordhalmaz használt tooassociate az alkalmazás-specifikus adatok is lehetnek.
 
-Az alábbi példa létrehoz egy üres rekordhalmaz 60 másodperces TTL, segítségével a `--ttl` paraméter (rövid alak `-l`):
+hello alábbi példa létrehoz egy üres rekordhalmaz 60 másodperces TTL, hello segítségével `--ttl` paraméter (rövid alak `-l`):
 
 ```azurecli
 azure network dns record-set create MyResourceGroup contoso.com www A --ttl 60
 ```
 
-Az alábbi példa létrehoz két metaadat-bejegyzést, rekordkészlet "osztály pénzügyi =" és "környezet éles =", segítségével a `--metadata` paraméter (rövid alak `-m`):
+hello alábbi példa létrehoz két metaadat-bejegyzést, rekordkészlet "osztály pénzügyi =" és "környezet éles =", hello segítségével `--metadata` paraméter (rövid alak `-m`):
 
 ```azurecli
 azure network dns record-set create MyResourceGroup contoso.com www A --metadata "dept=finance;environment=production"
@@ -92,13 +92,13 @@ Egy üres rekordhalmaz hozunk létre, rekordok segítségével adhatók `azure n
 
 ## <a name="create-records-of-other-types"></a>Más típusú rekordok létrehozása
 
-Hogy látott részletesen "A" rekordok létrehozása, a következő példák szemléltetik Azure DNS által támogatott más rekord típusú rekordot kell létrehozni.
+Hogy látott részletesen hogyan toocreate "A" rögzíti, hello a következő példák szemléltetik, hogyan toocreate rekord egyéb típusú bejegyzés a támogatott Azure DNS által.
 
-A rekordadatok megadásához használt paraméterek a rekord típusától függnek. Az „A” típusú rekordok esetén például a `-a <IPv4 address>` paraméterrel lehet megadni az IPv4-címet. A különböző rekordtípusú paramétereinek is listázva lehet használatával `azure network dns record-set add-record -h`.
+hello paraméterek használt toospecify hello rekord adatok hello típusú rekord lehet hello függenek. Az "A" típusú rekord, akkor adja meg például hello IPv4-cím hello paraméterrel `-a <IPv4 address>`. hello paraméterek, a különböző rekordtípusú is listázva lehet használatával `azure network dns record-set add-record -h`.
 
-Minden esetben azt mutatják be egyetlen rekordot kell létrehozni. A bejegyzés kerül a meglévő rekordkészlet vagy implicit módon létrehozott rekordhalmaz. További információ a rekordhalmazok létrehozásához, és definiáló rekordot paraméter explicit módon, olvassa el [DNS rekordhalmaz létrehozása](#create-a-dns-record-set).
+Minden esetben megmutatjuk, hogyan toocreate egyetlen rekordot. hello rekord rekordhalmaz meglévő hozzáadott toohello, vagy rekordhalmaz implicit módon létrehozva. További információ a rekordhalmazok létrehozásához, és definiáló rekordot paraméter explicit módon, olvassa el [DNS rekordhalmaz létrehozása](#create-a-dns-record-set).
 
-Egy példa egy SOA típusú rekordhalmaz létrehozása óta SOAs jönnek létre nem felállításához és minden DNS-zóna törlődik, és nem hozható létre vagy törölt külön-külön. Azonban [módosíthatják a SOA, egy újabb példában látható módon](#to-modify-an-SOA-record).
+Nem ad egy példa toocreate egy SOA típusú rekordhalmaz SOAs elkészítése és minden DNS-zóna törlődik, és nem hozható létre vagy törölt külön-külön. Azonban [SOA módosítható, egy újabb példában látható módon hello](#to-modify-an-SOA-record).
 
 ### <a name="create-an-aaaa-record"></a>Az AAAA-rekord létrehozása
 
@@ -109,7 +109,7 @@ azure network dns record-set add-record MyResourceGroup contoso.com test-aaaa AA
 ### <a name="create-a-cname-record"></a>Hozzon létre egy CNAME rekordot
 
 > [!NOTE]
-> A DNS-szabványokból nem teszik lehetővé a CNAME rekordot a zóna tetején (`-Name "@"`), és nem teszik egynél több rekordot tartalmazó rekordhalmazok.
+> hello DNS-szabványokból nem teszik lehetővé a CNAME rekordot a zóna hello csúcsán (`-Name "@"`), és nem teszik egynél több rekordot tartalmazó rekordhalmazok.
 > 
 > További információkért lásd: [CNAME rekordok](dns-zones-records.md#cname-records).
 
@@ -119,7 +119,7 @@ azure network dns record-set add-record  MyResourceGroup contoso.com  test-cname
 
 ### <a name="create-an-mx-record"></a>Az MX-rekord létrehozása
 
-Ebben a példában a „@” rekordhalmaznevet használjuk az MX-rekord zóna felső pontjánál történő létrehozásához (amely ebben az esetben: contoso.com).
+Ebben a példában hello rekordhalmaznevet használjuk "@" toocreate hello MX rekord: hello zóna felső pontja (ebben az esetben "a contoso.com").
 
 ```azurecli
 azure network dns record-set add-record MyResourceGroup contoso.com  "@" MX --exchange mail.contoso.com --preference 5
@@ -133,7 +133,7 @@ azure network dns record-set add-record MyResourceGroup  contoso.com  test-ns NS
 
 ### <a name="create-a-ptr-record"></a>A PTR típusú rekord létrehozása
 
-Ebben az esetben "my-arpa-zónában (Zone.com)" a ARPA zóna az IP-címtartomány képviselő jelöli. A zóna minden PTR típusú rekordhalmaza az IP-címtartomány egyik IP-címének felel meg.  A rekordnév a "10" Ez a bejegyzés által képviselt IP-címtartományon belül az IP-cím utolsó oktett.
+Ebben az esetben "my-arpa-zónában (Zone.com)" jelöli hello ARPA zóna képviselő az IP-címtartományt. Minden egyes PTR típusú rekord a zóna tooan IP-címet az IP-címtartományon belül felel meg.  hello rekordjának neve "10" hello utolsó oktett hello IP-cím, ez a bejegyzés által képviselt IP-címtartományon belül.
 
 ```azurecli
 azure network dns record-set add-record MyResourceGroup my-arpa-zone.com "10" PTR --ptrdname "myservice.contoso.com"
@@ -141,7 +141,7 @@ azure network dns record-set add-record MyResourceGroup my-arpa-zone.com "10" PT
 
 ### <a name="create-an-srv-record"></a>Az SRV rekord létrehozása
 
-Létrehozásakor egy [SRV-rekordhalmaz](dns-zones-records.md#srv-records), adja meg a  *\_szolgáltatás* és  *\_protokoll* a rekordhalmaz-neve. Nincs szükség közé tartoznak a "@" a rekordhalmaz nevében, ha a zóna felső pontja az SRV rekord létrehozása beállítva.
+Létrehozásakor egy [SRV-rekordhalmaz](dns-zones-records.md#srv-records), adja meg a hello  *\_szolgáltatás* és  *\_protokoll* hello a rekordhalmaz neveként. Nincs szükség tooinclude van "@" hello a rekordhalmaz neveként az SRV rekord létrehozása beállításakor: hello zóna felső pontja.
 
 ```azurecli
 azure network dns record-set add-record MyResourceGroup contoso.com  "_sip._tls" SRV --priority 10 --weight 5 --port 8080 --target "sip.contoso.com"
@@ -149,7 +149,7 @@ azure network dns record-set add-record MyResourceGroup contoso.com  "_sip._tls"
 
 ### <a name="create-a-txt-record"></a>TXT-rekord létrehozása
 
-A következő példa bemutatja, hogyan TXT rekord létrehozásához. A maximális hossz támogatja a TXT-rekord kapcsolatos további információkért lásd: [TXT rekord](dns-zones-records.md#txt-records).
+hello következő példa bemutatja, hogyan toocreate egy TXT rögzíti. További információ a támogatott TXT rekord hello karakterlánc maximális hossza: [TXT rekord](dns-zones-records.md#txt-records).
 
 ```azurecli
 azure network dns record-set add-record MyResourceGroup contoso.com test-txt TXT --text "This is a TXT record"
@@ -157,11 +157,11 @@ azure network dns record-set add-record MyResourceGroup contoso.com test-txt TXT
 
 ## <a name="get-a-record-set"></a>Rekordkészlet beolvasása
 
-Egy meglévő rekordhalmaz lekéréséhez használja `azure network dns record-set show`. További segítségért lásd: `azure network dns record-set show -h`.
+Használjon egy meglévő rekordhalmaz tooretrieve `azure network dns record-set show`. További segítségért lásd: `azure network dns record-set show -h`.
 
-Rekord vagy rekordhalmaz létrehozása, ha a megadott rekordhalmaz nevének kell lennie egy *relatív* neve, ami azt jelenti, azt kell zárnia a zóna nevét. Meg kell adnia a rekordtípust, a rekordhalmaz és a zóna tartalmazó erőforráscsoportot tartalmazó zóna is.
+Egy rekord és a rekordhalmaz létrehozásakor hello rekord állíthat be, a megadott név lehet a *relatív* nevét, azaz kell zárnia a hello zóna neve. Szükség toospecify hello rekordtípust, hello rekordot tartalmazó hello zóna beállítása, hello hello zóna tartalmazó erőforráscsoport.
 
-A következő példa a rekordot be *www* , adjon meg egy zónából *contoso.com* erőforráscsoportban *MyResourceGroup*:
+hello alábbi példa hello rekordot be *www* , adjon meg egy zónából *contoso.com* erőforráscsoportban *MyResourceGroup*:
 
 ```azurecli
 azure network dns record-set show MyResourceGroup contoso.com www A
@@ -169,37 +169,37 @@ azure network dns record-set show MyResourceGroup contoso.com www A
 
 ## <a name="list-record-sets"></a>Lista rekordhalmazok
 
-Minden rekordot a DNS-zónák használatával listázhatja a `azure network dns record-set list` parancsot. További segítségért lásd: `azure network dns record-set list -h`.
+Minden rekordot a DNS-zónák hello segítségével listázhatja `azure network dns record-set list` parancsot. További segítségért lásd: `azure network dns record-set list -h`.
 
-Ez a példa adja vissza az összes rekordot a zónában beállítja *contoso.com*, erőforráscsoportban *MyResourceGroup*, név vagy rekordtípus függetlenül:
+Ebben a példában adja vissza az összes rekordhalmazok hello zónában *contoso.com*, erőforráscsoportban *MyResourceGroup*, név vagy rekordtípus függetlenül:
 
 ```azurecli
 azure network dns record-set list MyResourceGroup contoso.com
 ```
 
-Ebben a példában, amelyek megfelelnek a megadott rekordtípus (ebben az esetben az "A" rekordok) minden rekordkészletet ad vissza:
+Ebben a példában, amelyek megfelelnek a megadott rekordtípus (ebben az esetben az "A" rekordok) hello minden rekordkészletet ad vissza:
 
 ```azurecli
 azure network dns record-set list MyResourceGroup contoso.com --type A
 ```
 
-## <a name="add-a-record-to-an-existing-record-set"></a>Rekord hozzáadása egy meglévő rekordkészlete
+## <a name="add-a-record-tooan-existing-record-set"></a>A meglévő rekordhalmazt rekord tooan hozzáadása
 
-Használhat `azure network dns record-set add-record` mindkét új Rekordkészletben lévő rekordot kell létrehozni vagy hozzáadni egy rekordot egy meglévő rekordhalmaz.
+Használhat `azure network dns record-set add-record` mindkét toocreate egy új rekordot a rekordhalmaz vagy tooadd rekord tooan meglévő rekordhalmaz.
 
 További információkért lásd: [hozzon létre egy DNS-rekord](#create-a-dns-record) és [más típusú rekordok létrehozásának](#create-records-of-other-types) felett.
 
 ## <a name="remove-a-record-from-an-existing-record-set"></a>Távolítsa el a rekord egy meglévő rekordhalmaz.
 
-Egy meglévő rekordkészlet a DNS-rekord eltávolításához használja `azure network dns record-set delete-record`. További segítségért lásd: `azure network dns record-set delete-record -h`.
+meglévő rekordhalmaz használata tooremove egy DNS-bejegyzést `azure network dns record-set delete-record`. További segítségért lásd: `azure network dns record-set delete-record -h`.
 
-Törli a DNS-rekordot a rekordhalmaz. A utolsó rekordját a rekordhalmaz törlése, ha van-e a rekordhalmaz maga **nem** törölték. Ehelyett egy üres rekordhalmaz marad. Ehelyett a rekordhalmaz törlése, lásd: [rekordhalmaz törlése](#delete-a-record-set).
+Törli a DNS-rekordot a rekordhalmaz. Utolsó rekordját hello a rekordkészlet törlésekor hello rekordhalmaz maga van **nem** törölték. Ehelyett egy üres rekordhalmaz marad. toodelete hello rekordhalmaz helyett, lásd: [rekordhalmaz törlése](#delete-a-record-set).
 
-Meg kell adni a törölni kívánt rekordot, és a zóna törölni kell, a telepítést, azonos paraméterekkel, egy rekord segítségével létrehozásakor `azure network dns record-set add-record`. Ezek a paraméterek ismertetett [DNS-rekord létrehozása](#create-a-dns-record) és [más típusú rekordok létrehozásának](#create-records-of-other-types) fent.
+Toospecify kell hello törölt rekord toobe és azt törölni kell, használatával hello zóna hello ugyanazokkal a paraméterekkel, egy rekord segítségével létrehozásakor `azure network dns record-set add-record`. Ezek a paraméterek ismertetett [DNS-rekord létrehozása](#create-a-dns-record) és [más típusú rekordok létrehozásának](#create-records-of-other-types) fent.
 
-Ez a parancs felszólítja megerősítést kér. Ez a kérdés is letiltja, használja a `--quiet` váltás (rövid alak `-q`).
+Ez a parancs felszólítja megerősítést kér. Ez a kérdés hello letilthatók `--quiet` váltás (rövid alak `-q`).
 
-A következő példa törli az A rekordot "1.2.3.4" a rekordból beállítása a nevesített értékű *www* a zónában *contoso.com*, erőforráscsoportban *MyResourceGroup*. A megerősítést kérő le van tiltva.
+a következő példa törlések hello hello "1.2.3.4" hello rekordból beállítása a nevesített értékű egy olyan rekordot *www* hello zónában *contoso.com*, hello erőforráscsoportban *MyResourceGroup*. hello megerősítési kérés le van tiltva.
 
 ```azurecli
 azure network dns record-set delete-record MyResourceGroup contoso.com www A -a 1.2.3.4 --quiet
@@ -207,69 +207,69 @@ azure network dns record-set delete-record MyResourceGroup contoso.com www A -a 
 
 ## <a name="modify-an-existing-record-set"></a>Módosíthatja egy meglévő rekordkészlete
 
-Minden rekordhalmaz tartalmaz egy [idő-Élettartam (TTL)](dns-zones-records.md#time-to-live), [metaadatok](dns-zones-records.md#tags-and-metadata), és a DNS-rekordokat. Az alábbi szakaszok ismertetik, hogyan módosíthatja a ezeket a tulajdonságokat.
+Minden rekordhalmaz tartalmaz egy [idő-Élettartam (TTL)](dns-zones-records.md#time-to-live), [metaadatok](dns-zones-records.md#tags-and-metadata), és a DNS-rekordokat. hello alábbi szakaszok azt ismertetik, hogyan toomodify minden ezeket a tulajdonságokat.
 
-### <a name="to-modify-an-a-aaaa-mx-ns-ptr-srv-or-txt-record"></a>A, AAAA, MX, NS, PTR, SRV és TXT-rekord módosítása
+### <a name="toomodify-an-a-aaaa-mx-ns-ptr-srv-or-txt-record"></a>az A, AAAA, MX, NS, PTR, SRV és TXT rekord toomodify
 
-Adjon meg egy, AAAA, MX, NS, PTR, SRV és TXT meglévő bejegyzés módosításához kell először adjon hozzá egy új rekordot, és ezután törölje a meglévő. Részletes útmutatást a Törlés és rekordok hozzáadásához Ez a cikk a korábbi szakaszban talál.
+Adjon meg egy, AAAA, MX, NS, PTR, SRV és TXT meglévő bejegyzés toomodify, először adjon egy új rekordot, és a delete hello meglévő rekord. Részletes útmutatást toodelete és rekordok hozzáadásához, tekintse meg a cikk korábbi szakaszaiban hello.
 
-A következő példa bemutatja, hogyan lehet módosítani az "A" rekord, a következő IP-1.2.3.4 5.6.7.8 IP-cím:
+hello a következő példa bemutatja, hogyan toomodify az "A" rekord, az IP-cím 1.2.3.4 tooIP cím 5.6.7.8:
 
 ```azurecli
 azure network dns record-set add-record MyResourceGroup contoso.com www A -a 5.6.7.8
 azure network dns record-set delete-record MyResourceGroup contoso.com www A -a 1.2.3.4
 ```
 
-### <a name="to-modify-a-cname-record"></a>Egy CNAME rekord módosítása
+### <a name="toomodify-a-cname-record"></a>egy olyan CNAME rekordot toomodify
 
-Egy olyan CNAME rekordot módosításához használható `azure network dns record-set add-record` hozzáadása az új rekord értéket. Egyéb típusú bejegyzés eltérően a CNAME rekordkészlete csak egyetlen rekordot tartalmazhat. A meglévő rekord ezért *helyett* amikor az új rekordban kerül, és nem kell külön-külön kell hagyni.  Kérni fogja a csere fogadásához.
+egy olyan CNAME rekordot toomodify használja `azure network dns record-set add-record` tooadd hello új rekord értéket. Egyéb típusú bejegyzés eltérően a CNAME rekordkészlete csak egyetlen rekordot tartalmazhat. Hello meglévő rekord ezért *helyett* amikor hello új rekord kerül, és nem kell külön-külön törölt toobe.  Akkor lesz felszólító tooaccept a csere.
 
-A példa módosítja a CNAME rekord *www* a zónában *contoso.com*, erőforráscsoportban *MyResourceGroup*, mutasson a "www.fabrikam.net" helyett a meglévő értéket:
+hello példa módosítja hello CNAME rekordkészlete *www* hello zónában *contoso.com*, erőforráscsoportban *MyResourceGroup*, toopoint túl "www.fabrikam.net" helyett a meglévő érték:
 
 ```azurecli
 azure network dns record-set add-record MyResourceGroup contoso.com www CNAME --cname www.fabrikam.net
 ``` 
 
-### <a name="to-modify-an-soa-record"></a>Egy SOA-rekord módosítása
+### <a name="toomodify-an-soa-record"></a>egy SOA rekordot toomodify
 
-Használjon `azure network dns record-set set-soa-record` módosítása a megadott DNS-zónák SOA. További segítségért lásd: `azure network dns record-set set-soa-record -h`.
+Használjon `azure network dns record-set set-soa-record` toomodify hello SOA a megadott DNS-zónák. További segítségért lásd: `azure network dns record-set set-soa-record -h`.
 
-A következő példa bemutatja, hogyan állítsa be a "e-mail" tulajdonságot a SOA-rekord a zóna *contoso.com* erőforráscsoportban *MyResourceGroup*:
+hello következő példa bemutatja, hogyan hello SOA tooset hello "e-mail" tulajdonságának hello zóna rekordja *contoso.com* hello erőforráscsoportban *MyResourceGroup*:
 
 ```azurecli
 azure network dns record-set set-soa-record rg1 contoso.com --email admin.contoso.com
 ```
 
 
-### <a name="to-modify-ns-records-at-the-zone-apex"></a>A zóna felső pontja a Névkiszolgálói rekordok módosítása
+### <a name="toomodify-ns-records-at-hello-zone-apex"></a>hello zóna felső pontja toomodify Névkiszolgálói rekordok
 
-Állítsa be a zóna felső pontja NS-rekord automatikusan létrejön minden DNS-zóna. Az Azure DNS névkiszolgálóit, a zóna nevét tartalmazza.
+Állítsa be megfelelően hello zóna felső pontja hello NS-rekord automatikusan hozza létre minden DNS-zóna. Hello Azure DNS-név kiszolgálók hozzárendelt toohello zóna hello szerepel benne.
 
-Hozzáadhat további névhez a kiszolgálók e NS-rekord, támogatja a párhuzamos üzemeltetési tartományok egynél több DNS-szolgáltatónál. A TTL-t és a metaadatok a rekordhalmaz is módosíthatók. Azonban nem lehet eltávolítani, vagy módosítsa az előre megadott Azure DNS névkiszolgálóit.
+Hozzáadhat további neve kiszolgálók toothis NS rekordhalmaz, toosupport közös futtató tartományok egynél több DNS-szolgáltatónál. Hello TTL-t és a rekordhalmaz metaadatait is módosíthatja. Azonban nem lehet eltávolítani vagy módosítani hello előre megadott Azure DNS névkiszolgálóit.
 
-Vegye figyelembe, hogy csak vonatkozik az NS típusú rekordhalmaz zóna tetején. A zónában (a használt gyermekzónákhoz delegálása) más NS-rekordhalmazok lehet módosítani, korlátozás nélkül.
+Vegye figyelembe, hogy ez érvényes csak toohello NS rekord beállított hello zóna felső pontja. Más NS rekordhalmazok, amelyek a zónához (a használt toodelegate gyermekzónákhoz) korlátozás nélkül lehet módosítani.
 
-A következő példa bemutatja, hogyan hozzáadása egy további nevét, a zóna felső pontja Névkiszolgálói rekordhalmazt:
+hello a következő példa bemutatja, hogyan tooadd további neve server toohello NS-rekord állítják hello zóna felső pontja:
 
 ```azurecli
 azure network dns record-set add-record MyResourceGroup contoso.com "@" --nsdname ns1.myotherdnsprovider.com 
 ```
 
-### <a name="to-modify-the-ttl-of-an-existing-record-set"></a>A TTL-t egy meglévő rekordkészlet módosítása
+### <a name="toomodify-hello-ttl-of-an-existing-record-set"></a>egy meglévő bejegyzés TTL toomodify hello beállítása
 
-A TTL-t egy meglévő rekordkészlet módosításához használható `azure network dns record-set set`. További segítségért lásd: `azure network dns record-set set -h`.
+toomodify hello TTL-t egy meglévő bejegyzés megadásához használja `azure network dns record-set set`. További segítségért lásd: `azure network dns record-set set -h`.
 
-A következő példa bemutatja, hogyan lehet módosítani egy rekordhalmaz TTL, ebben az esetben 60 másodperc:
+hello a következő példa bemutatja, hogyan toomodify rekordhalmaz TTL-t, ez az eset too60 másodperc:
 
 ```azurecli
 azure network dns record-set set MyResourceGroup contoso.com www A --ttl 60
 ```
 
-### <a name="to-modify-the-metadata-of-an-existing-record-set"></a>Egy meglévő rekordhalmaz metaadatainak módosítása
+### <a name="toomodify-hello-metadata-of-an-existing-record-set"></a>egy meglévő rekordkészlet toomodify hello metaadatai
 
-[A rekordhalmaz metaadatok](dns-zones-records.md#tags-and-metadata) rendelje hozzá az alkalmazás-specifikus adatok minden rekordhalmaz, a kulcs-érték párként használható. A metaadatok egy meglévő rekordkészlet módosításához használható `azure network dns record-set set`. További segítségért lásd: `azure network dns record-set set -h`.
+[A rekordhalmaz metaadatok](dns-zones-records.md#tags-and-metadata) kulcs-érték párként minden rekordhalmaz használt tooassociate az alkalmazás-specifikus adatok is lehetnek. egy meglévő bejegyzés toomodify hello metaadatok megadásához használja `azure network dns record-set set`. További segítségért lásd: `azure network dns record-set set -h`.
 
-A következő példa bemutatja, hogyan lehet módosítani egy rekordot a két metaadat-bejegyzést, "osztály pénzügyi =" és "környezet éles =", segítségével a `--metadata` paraméter (rövid alak `-m`). Vegye figyelembe, hogy a meglévő metaadatokat *helyett* által megadott értéket.
+hello következő példa bemutatja, hogyan toomodify nevű rekordhalmaz két metaadat-bejegyzést, "osztály pénzügyi =" és "környezet éles =", hello segítségével `--metadata` paraméter (rövid alak `-m`). Vegye figyelembe, hogy a meglévő metaadatokat *helyett* által hello értékekből.
 
 ```azurecli
 azure network dns record-set set MyResourceGroup contoso.com www A --metadata "dept=finance;environment=production"
@@ -277,21 +277,21 @@ azure network dns record-set set MyResourceGroup contoso.com www A --metadata "d
 
 ## <a name="delete-a-record-set"></a>A rekordhalmaz törlése
 
-Rekordhalmazok használatával törölheti a `azure network dns record-set delete` parancsot. További segítségért lásd: `azure network dns record-set delete -h`. A rekordhalmaz összes rekordján is rekordhalmaz törlése törli.
+Rekordhalmazok hello segítségével törölhetők `azure network dns record-set delete` parancsot. További segítségért lásd: `azure network dns record-set delete -h`. Rekordhalmaz törlése is törli az összes rekordján hello rekordhalmaz.
 
 > [!NOTE]
-> Nem lehet törölni a SOA és NS-rekord beállítja a zóna felső pontja (`-Name "@"`).  Ezek automatikusan létrejönnek a zóna mikor jött létre, és a zóna törlésekor automatikusan törlődik.
+> Nem lehet törölni hello SOA és NS rekordhalmazok hello zóna csúcsán (`-Name "@"`).  Ezek automatikusan létrejönnek hello zóna mikor jött létre, és hello zóna törlésekor automatikusan törlődik.
 
-A következő példa törli a rekordhalmaz elnevezett *www* típus a zónából származó *contoso.com* erőforráscsoportban *MyResourceGroup*:
+hello alábbi példa törli hello rekordhalmaz elnevezett *www* , adjon meg egy hello zónából *contoso.com* erőforráscsoportban *MyResourceGroup*:
 
 ```azurecli
 azure network dns record-set delete MyResourceGroup contoso.com www A
 ```
 
-A delete művelet megerősítését kéri. Ne jelenjen meg többé ez a kérdés, használja a `--quiet` váltás (rövid alak `-q`).
+Biztosan felszólító tooconfirm hello törlési műveletet. a parancssorba toosuppress hello használata `--quiet` váltás (rövid alak `-q`).
 
 ## <a name="next-steps"></a>Következő lépések
 
 További információ [zónák és az Azure DNS-rekordok](dns-zones-records.md).
 <br>
-Megtudhatja, hogyan [védelme a zóna és a rekordok](dns-protect-zones-recordsets.md) Azure DNS használata esetén.
+Ismerje meg, hogyan túl[védelme a zóna és a rekordok](dns-protect-zones-recordsets.md) Azure DNS használata esetén.

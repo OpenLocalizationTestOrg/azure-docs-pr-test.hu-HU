@@ -1,6 +1,6 @@
 ---
-title: "Azure Web Apps analitikai adatok megtekintése |} Microsoft Docs"
-description: "Használhatja az Azure Web Apps elemzési megoldások kapcsolódva információt kaphat a Azure Web Apps kapcsolatos különböző metrikák begyűjtenie az Azure-webalkalmazás-erőforrások között."
+title: Azure Web Apps analitikus adatok aaaView |} Microsoft Docs
+description: "Hello Azure Web Apps Analytics megoldás toogain insights használhatja az Azure Web Apps kapcsolatos különböző metrikák gyűjtése az Azure-webalkalmazás-erőforrások között."
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: banders
-ms.openlocfilehash: f480188c46f16473bf294c857cd07e3cec5dc0ba
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7e9725f95c9faf01da89184975ad5444dd19ff95
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-analytic-data-for-metrics-across-all-your-azure-web-app-resources"></a>Az Azure-webalkalmazás-erőforrások között metrikáihoz analitikai adatok megtekintése
 
 ![Web Apps szimbólum](./media/log-analytics-azure-web-apps-analytics/azure-web-apps-analytics-symbol.png)  
-Az Azure Web Apps Analytics (előzetes verzió) megoldás betekintést biztosít a [Azure Web Apps](../app-service-web/app-service-web-overview.md) különböző metrikák begyűjtenie az Azure-webalkalmazás-erőforrások között. A megoldás elemezheti és web app erőforrás metrika adatok kereséséhez.
+hello Azure Web Apps Analytics (előzetes verzió) megoldást nyújt betekintést az [Azure Web Apps](../app-service-web/app-service-web-overview.md) különböző metrikák begyűjtenie az Azure-webalkalmazás-erőforrások között. Hello megoldással elemzése, és keresse meg a webes alkalmazás erőforrás metrika értékét.
 
-A segítségével megtekintheti a:
+Hello megoldással, megtekintheti a:
 
-- A legmagasabb válaszidő felső webalkalmazások
+- Hello legmagasabb válaszidő felső webalkalmazások
 - A webes alkalmazások között, beleértve a sikeres és sikertelen kérelmek kérelmek száma
 - A legmagasabb bejövő és kimenő forgalmat felső webalkalmazások
 - A magas Processzor- és memóriafelhasználását felső szolgáltatáscsomagok
@@ -35,27 +35,27 @@ A segítségével megtekintheti a:
 
 ## <a name="connected-sources"></a>Összekapcsolt források
 
-Legtöbb egyéb Naplóelemzési megoldásoktól eltérően adatokat nem gyűjtötte be a Azure Web Apps-ügynökök által. A megoldás által használt összes adatok származnak, közvetlenül az Azure-ból.
+Legtöbb egyéb Naplóelemzési megoldásoktól eltérően adatokat nem gyűjtötte be a Azure Web Apps-ügynökök által. Hello megoldás által használt összes adatok származnak, közvetlenül az Azure-ból.
 
 | Összekapcsolt forrás | Támogatott | Leírás |
 | --- | --- | --- |
-| [Windows-ügynökök](log-analytics-windows-agents.md) | Nem | A megoldás a Windows-ügynökök nem gyűjt adatokat. |
-| [Linux-ügynökök](log-analytics-linux-agents.md) | Nem | A megoldás a Linux-ügynökök nem gyűjt adatokat. |
-| [SCOM felügyeleti csoport](log-analytics-om-agents.md) | Nem | A megoldás nem gyűjt adatokat az ügynökök a csatlakoztatott SCOM felügyeleti csoport. |
-| [Azure Storage-fiók](log-analytics-azure-storage.md) | Nem | A megoldás nem az Azure storage nem gyűjtemény adatait. |
+| [Windows-ügynökök](log-analytics-windows-agents.md) | Nem | hello megoldás a Windows-ügynökök nem gyűjt adatokat. |
+| [Linux-ügynökök](log-analytics-linux-agents.md) | Nem | hello megoldás a Linux-ügynökök nem gyűjt adatokat. |
+| [SCOM felügyeleti csoport](log-analytics-om-agents.md) | Nem | hello megoldás az ügynökök a csatlakoztatott SCOM felügyeleti csoport nem gyűjt adatokat. |
+| [Azure Storage-fiók](log-analytics-azure-storage.md) | Nem | hello megoldás nem az Azure storage nem gyűjtemény adatait. |
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Azure Web Apps metrika erőforrásadatok eléréséhez Azure-előfizetéssel kell rendelkeznie.
+- Azure Web Apps metrika erőforrásadatok tooaccess, rendelkeznie kell Azure-előfizetéssel.
 
 ## <a name="configuration"></a>Konfiguráció
 
-Hajtsa végre a következő lépésekkel állíthatja be az Azure Web Apps Analytics megoldás a munkaterületek.
+Hajtsa végre a következő lépéseket tooconfigure hello Azure Web Apps elemzési megoldások a munkaterületek hello.
 
-1. Engedélyezze az Azure Web Apps Analytics megoldást [Azure piactér](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.AzureWebAppsAnalyticsOMS?tab=Overview) vagy ismertetett folyamatot követve [hozzáadni a Naplóelemzési megoldások a megoldások gyűjteményből](log-analytics-add-solutions.md).
-2. [Az OMS Szolgáltatáshoz a PowerShell használatával Azure erőforráscsoport metrikák naplózását](https://blogs.technet.microsoft.com/msoms/2017/01/17/enable-azure-resource-metrics-logging-using-powershell).
+1. Hello Azure Web Apps elemzési megoldások a engedélyezése [Azure piactér](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.AzureWebAppsAnalyticsOMS?tab=Overview) vagy ismertetett folyamatot hello segítségével [hozzáadni a Naplóelemzési megoldásokat az hello megoldások gyűjtemény](log-analytics-add-solutions.md).
+2. [Engedélyezze a PowerShell használatával Azure erőforráscsoport metrikák naplózási tooOMS](https://blogs.technet.microsoft.com/msoms/2017/01/17/enable-azure-resource-metrics-logging-using-powershell).
 
-Az Azure Web Apps elemzési megoldások metrikák két készletét gyűjti az Azure-ból:
+hello Azure Web Apps elemzési megoldások metrikák két készletét gyűjti az Azure-ból:
 
 - Az Azure Web Apps metrikák
   - Munkakészlet átlagos memória
@@ -72,59 +72,59 @@ Az Azure Web Apps elemzési megoldások metrikák két készletét gyűjti az Az
   - HTTP-várólista hossza
   - Memóriahasználat (%)
 
-App Service-csomag metrikái összegyűjtése csak egy dedikált service-csomag használata. Ez nem vonatkozik ingyenes vagy közös App Service-csomagokról.
+App Service-csomag metrikái összegyűjtése csak egy dedikált service-csomag használata. Ez nem vonatkozik a toofree vagy közös App Service-csomagokról.
 
-A megoldás az OMS-portálon való hozzáadásakor a következő csempe láthatja. Kell [az OMS Szolgáltatáshoz a PowerShell használatával Azure erőforráscsoport metrikák naplózását](https://blogs.technet.microsoft.com/msoms/2017/01/17/enable-azure-resource-metrics-logging-using-powershell).
+Hello megoldás használatával hello OMS-portálon való hozzáadásakor láthatja hello következő csempére. Túl kell[engedélyezése a PowerShell használatával Azure erőforráscsoport metrikák naplózási tooOMS](https://blogs.technet.microsoft.com/msoms/2017/01/17/enable-azure-resource-metrics-logging-using-powershell).
 
 ![Értékelés értesítési végrehajtása](./media/log-analytics-azure-web-apps-analytics/performing-assessment.png)
 
-Miután konfigurálta a megoldás, adatokat kell kezdődnie, 15 percen belül a munkaterület halad.
+Miután konfigurálta a hello megoldás, adatokat kell kezdődnie, áramló tooyour munkaterület 15 percen belül.
 
-## <a name="using-the-solution"></a>A megoldás használata
+## <a name="using-hello-solution"></a>Hello megoldással
 
-Az Azure Web Apps elemzési megoldások a munkaterülethez való hozzáadásakor a **Azure Web Apps Analytics** csempe hozzáadódik az áttekintő irányítópulthoz. Ez a csempe, hogy a megoldás fér hozzá az Azure-előfizetéshez az Azure Web Apps számát jeleníti meg.
+Hello Azure Web Apps Analytics megoldás tooyour munkaterület felvételekor hello **Azure Web Apps Analytics** csempe kerül tooyour áttekintő irányítópulthoz. Ez a csempe az Azure Web Apps, hogy hello megoldás rendelkezik hozzáférési tooin az Azure-előfizetéshez hello száma számát jeleníti meg.
 
 ![Az Azure Web Apps Analytics csempe](./media/log-analytics-azure-web-apps-analytics/azure-web-apps-analytics-tile.png)
 
 ### <a name="view-azure-web-apps-analytics-information"></a>Azure Web Apps Analytics adatainak megtekintése
 
-Kattintson a **Azure Web Apps Analytics** csempére kattintva nyissa meg a **Azure Web Apps Analytics** irányítópult. Az irányítópult a paneleket az alábbi táblázat tartalmazza. Minden panel adott panelhez feltételeknek, a megadott hatókör és időtartomány legfeljebb tíz elemeket sorolja fel. A napló keresési, amely visszaadja az összes rekord kattintva futtathatja **láthatja az összes** alján a panelről, vagy kattintson a panel fejléc.
+Kattintson a hello **Azure Web Apps Analytics** csempe tooopen hello **Azure Web Apps Analytics** irányítópult. hello irányítópult hello paneleken hello a következő táblázat tartalmazza. Minden egyes panel be, hogy a panel a feltételek hello megadva hatókör és a kívánt időtartományt megfelelő tooten elemeket sorolja fel. A napló keresési, amely visszaadja az összes rekord kattintva futtathatja **láthatja az összes** hello panel vagy hello panel fejléc kattintva hello alján.
 
 [!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
 | Oszlop | Leírás |
 | --- | --- |
 | Az Azure-webalkalmazás |   |
-| Web Apps kérelem trendek | A kijelölt dátumtartomány webalkalmazások kérelem trendje sor látható, és a felső tíz webes kérelmek listáját tartalmazza. Kattintson a vonaldiagram futtatásához napló keresése<code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"* (MetricName=Requests OR MetricName=Http*) &#124; measure avg(Average) by MetricName interval 1HOUR</code> <br>Kattintson egy webes kérelem elem a napló keresése a webes kérelem metrika trend kérő futtatásához. |
-| Web Apps válaszidő | A kijelölt időtartományban webalkalmazások válaszidő sor diagramot ábrázol. Is felső listája listájának megjelenítése tíz webes alkalmazások response alkalommal fordult elő. Kattintson a diagram futtatásához napló keresése<code>Type:AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"* MetricName="AverageResponseTime" &#124; measure avg(Average) by Resource interval 1HOUR</code><br> Kattintson a válaszidők vissza a webalkalmazáshoz tartozó napló keresés futtatásához egy webalkalmazást. |
-| Webes alkalmazások forgalom | A Web Apps-forgalmat, vonaldiagram mutatja MB-ban, és webalkalmazások forgalom felső sorolja fel. Kattintson a diagram futtatásához napló keresése<code>Type:AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"*  MetricName=BytesSent OR BytesReceived &#124; measure sum(Average) by Resource interval 1HOUR</code><br> Azt az elmúlt percben forgalom minden webalkalmazások jelennek meg. Kattintson a napló keresés kapott, és a webalkalmazás számára küldött bájtok megjelenítő futtatásához a webes alkalmazás. |
+| Web Apps kérelem trendek | Webalkalmazások kérelem trendje kijelölt dátumtartomány hello hello sor látható, és egy hello felső tíz webes kérelmek listáját jeleníti meg. Kattintson a hello sor diagram toorun napló keresése<code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"* (MetricName=Requests OR MetricName=Http*) &#124; measure avg(Average) by MetricName interval 1HOUR</code> <br>Kattintson egy webes kérelem elem toorun hello webes kérelem metrika trend kérő napló keresése. |
+| Web Apps válaszidő | Hello webalkalmazások válaszidő hello dátumtartományon belül a kiválasztott vonaldiagram jeleníti meg. Is hello listája listájának megjelenítése felső tíz webes alkalmazások response alkalommal fordult elő. Kattintson a diagram toorun hello napló keresése<code>Type:AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"* MetricName="AverageResponseTime" &#124; measure avg(Average) by Resource interval 1HOUR</code><br> Kattintson az egy webalkalmazás toorun hello webalkalmazás válaszidejét adatszolgáltató napló keresést. |
+| Webes alkalmazások forgalom | A Web Apps-forgalmat, vonaldiagram mutatja MB-ban, és hello felső webalkalmazások forgalom sorolja fel. Kattintson a diagram toorun hello napló keresése<code>Type:AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"*  MetricName=BytesSent OR BytesReceived &#124; measure sum(Average) by Resource interval 1HOUR</code><br> Webalkalmazások összes forgalom az elmúlt percben hello jeleníti meg. Kattintson a webalkalmazás toorun bájt megjelenítő napló keresés fogadott és küldött hello Web App. |
 | Az Azure App Service-csomagok |   |
-| App Service-csomagok a CPU-felhasználás &gt; 80 %-át | App Service-csomagok, amelyek CPU-kihasználtsága 80 %-nál nagyobb teljes számát jeleníti meg, és felsorolja a CPU-kihasználtság szerinti a felső 10 App Service-csomagok. Kattintson a napló keresése futtatásához teljes terület<code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SERVERFARMS/"* MetricName=CpuPercentage &#124; measure Avg(Average) by Resource</code><br> Ez az App Service-csomagok és az átlagos processzorhasználat listáját tartalmazza. Kattintson egy App Service-csomag az átlagos processzorhasználat megjelenítő napló keresés futtatásához. |
-| App Service-csomagok memóriahasználata a &gt; 80 %-át | App Service-csomagok, amelyek memória kihasználtsága 80 %-nál nagyobb teljes számát jeleníti meg, és felsorolja a memóriahasználat által a felső 10 App Service-csomagok. Kattintson a napló keresése futtatásához teljes terület<code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SERVERFARMS/"* MetricName=MemoryPercentage &#124; measure Avg(Average) by Resource</code><br> Ez az App Service-csomagok és az átlagos memóriafelhasználás a listáját jeleníti meg. Kattintson egy App Service-csomag megjelenítő, az átlagos memóriafelhasználás a napló keresés futtatásához. |
+| App Service-csomagok a CPU-felhasználás &gt; 80 %-át | Hello összesített számát mutatja App Service-csomag, amely nagyobb, mint a 80 %-os és listák hello első 10 App Service-csomagok CPU-kihasználtság szerinti CPU-kihasználtsága. Kattintson a teljes terület toorun hello napló keresése<code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SERVERFARMS/"* MetricName=CpuPercentage &#124; measure Avg(Average) by Resource</code><br> Ez az App Service-csomagok és az átlagos processzorhasználat listáját tartalmazza. Kattintson egy App Service-csomag toorun az átlagos processzorhasználat megjelenítő napló keresést. |
+| App Service-csomagok memóriahasználata a &gt; 80 %-át | Hello összesített számát mutatja App Service-csomagok, amelyek memória kihasználtsága meghaladja a 80 %-os és listák hello első 10 App Service-csomagok memóriahasználata által. Kattintson a teljes terület toorun hello napló keresése<code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SERVERFARMS/"* MetricName=MemoryPercentage &#124; measure Avg(Average) by Resource</code><br> Ez az App Service-csomagok és az átlagos memóriafelhasználás a listáját jeleníti meg. Kattintson egy App Service-csomag toorun megjelenítő, az átlagos memóriafelhasználás a napló keresést. |
 | Az Azure Web Apps tevékenységi naplóit |   |
-| Az Azure Web Apps tevékenység naplózása | Webalkalmazások teljes számát jeleníti meg [tevékenységi naplóit](log-analytics-activity.md) és az első 10 tevékenység napló műveleteinek listázása. Kattintson a napló keresése futtatásához teljes terület<code>Type=AzureActivity ResourceProvider= "Azure Web Sites" &#124; measure count() by OperationName</code><br> Ez a tevékenység napló műveletek listáját jeleníti meg. Kattintson a napló-keresés, amely tartalmazza a rekordok a művelet futtatásához egy tevékenység log műveletet. |
+| Az Azure Web Apps tevékenység naplózása | Azt mutatja be hello webalkalmazások száma [tevékenységi naplóit](log-analytics-activity.md) és listák hello első 10 tevékenység napló műveletek. Kattintson a teljes terület toorun hello napló keresése<code>Type=AzureActivity ResourceProvider= "Azure Web Sites" &#124; measure count() by OperationName</code><br> Az tevékenység napló műveleteket mutat hello listáját. Egy tevékenység napló művelet toorun hello rekordok hello a művelethez felsoroló napló Keresés gombra. |
 
 
 
 ### <a name="azure-web-apps"></a>Azure Web Apps
 
-Az irányítópult részletezve további webhelynaplókat a Web Apps metrikákat. Ez először állítsa a paneleken megjelenítése a tendencia, a Web Apps kérések számát hibák (például HTTP404), a forgalom és az átlagos válaszidő adott idő alatt. Különböző Web Apps e metrikák részletes információkat is látható.
+Hello irányítópulton részletezve tooget a Web Apps metrikákat további betekintést. A paneleken első készlete hello trend hello webalkalmazások kérelmek száma a hibák (például HTTP404), a forgalom és az átlagos válaszidő időbeli megjelenítése. Különböző Web Apps e metrikák részletes információkat is látható.
 
 ![Az Azure webalkalmazás panelen](./media/log-analytics-azure-web-apps-analytics/web-apps-dash01.png)
 
-Egy elsődleges adatok jelennek meg, hogy adott oka, hogy magas válaszidő segítségével azonosíthatók a webes alkalmazás, és ellenőrizze, hogy az alapvető okát. Annak érdekében, hogy könnyen azonosítható kapcsolatos problémákkal rendelkező megfelelően is vonatkozik egy küszöbértéket.
+Egy elsődleges adatok jelennek meg, hogy adott oka, hogy a webes alkalmazás magas válaszidő segítségével azonosíthatók, és vizsgálja ki toofind hello alapvető okát. Egy küszöbértéket egyben alkalmazott toohelp hello több könnyen azonosíthatja azokat a problémákat.
 
 - Webalkalmazások vörösen láthatók rendelkezik válaszidő magasabb, mint 1 másodperc.
 - Web Apps narancssárga látható válaszidejének 0,7 második és kisebb, mint 1 másodperc nagyobbnak.
 - Webalkalmazások zölden láthatók második rendelkezik 0,7-nál kisebb a válaszidőt.
 
-Az alábbi ábrán napló keresési példa, láthatja, hogy a *anugup3* webalkalmazás kellett egy sokkal nagyobb válaszideje, mint a más webes alkalmazásokat.
+Hello napló keresése Példa kép a következő, láthatja, hogy hello *anugup3* webalkalmazás kellett egy sokkal nagyobb válaszideje, mint más webes alkalmazásokat hello.
 
 ![naplófájl-keresési példa](./media/log-analytics-azure-web-apps-analytics/web-app-search-example.png)
 
 ### <a name="app-service-plans"></a>App Service-csomagok
 
-Dedikált Service-csomagok használ, ha az App Service-csomagok esetében is begyűjtheti a metrikák. Ebben a nézetben látható az App Service-csomagok és magas CPU és memória kihasználtsága (&gt; 80 %-ot). Bemutatja azt is, a felső alkalmazásszolgáltatások magas memóriát és CPU-kihasználtsága a. Hasonlóképpen egy küszöbértéket annak érdekében, hogy könnyen azonosítható kapcsolatos problémákkal rendelkező megfelelően vonatkozik.
+Dedikált Service-csomagok használ, ha az App Service-csomagok esetében is begyűjtheti a metrikák. Ebben a nézetben látható az App Service-csomagok és magas CPU és memória kihasználtsága (&gt; 80 %-ot). Bemutatja azt is, a magas memóriát és CPU-kihasználtság felső alkalmazásszolgáltatások hello. Egy küszöbértéket hasonlóan alkalmazott toohelp hello több könnyen azonosíthatja azokat a problémákat is.
 
 - App Service-csomagok vörösen láthatók a Processzor/memória kihasználtsága 80 %-nál nagyobb lehet.
 - App Service-csomagokról narancssárga látható memóriakihasználtsága a CPU/magasabb, mint 60 % és 80 %-nál kisebb.
@@ -134,11 +134,11 @@ Dedikált Service-csomagok használ, ha az App Service-csomagok esetében is beg
 
 ## <a name="azure-web-apps-log-searches"></a>Az Azure Web Apps napló keresések
 
-A **lista a népszerű Azure Web Apps keresési lekérdezések** elsajátíthatja, hogy a kapcsolódó tevékenység naplókat Web Apps, amely a webalkalmazások erőforrásokon végrehajtott műveletek betekintést biztosít. A kapcsolódó műveleteket és a sor került ilyenre hányszor is tartalmazza.
+Hello **lista a népszerű Azure Web Apps keresési lekérdezések** elsajátíthatja, hogy minden hello kapcsolatos tevékenység naplókat Web Apps, amely a webalkalmazások erőforrásokon végrehajtott műveletek hello betekintést biztosít. Azt is tartalmazza az összes hello kapcsolatos műveletek és hello ennyiszer azok történt.
 
-Használja a naplófájl-keresési lekérdezések kiindulási pontként, könnyedén létrehozhat egy riasztást. Például előfordulhat, hogy szeretné egy riasztás létrehozása, ha egy metrika az átlagos válaszidő érték nagyobb, mint 1 másodpercenként.
+Bármely hello napló keresési lekérdezések használatával kiindulási pontként, egyszerűen létrehozhat egy riasztást. Érdemes például toocreate riasztást, ha egy metrika az átlagos válaszidő érték nagyobb, mint 1 másodpercenként.
 
 ## <a name="next-steps"></a>Következő lépések
 
 - Hozzon létre egy [riasztás](log-analytics-alerts-creating.md) az adott metrika.
-- Használjon [naplófájl-keresési](log-analytics-log-searches.md) a tevékenységi naplóit a részletes információk megtekintéséhez.
+- Használjon [naplófájl-keresési](log-analytics-log-searches.md) tooview részletes adatait a tevékenységi naplóit.

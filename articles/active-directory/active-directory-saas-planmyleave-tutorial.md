@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált PlanMyLeave |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és PlanMyLeave között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és PlanMyLeave között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,71 +13,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/01/2017
 ms.author: jeedes
-ms.openlocfilehash: ba418a641b339a0d94a3c7b2596d37fbd88a30c5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 44a6782e44ef22fc957544960be1742f9eed6e51
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-planmyleave"></a>Oktatóanyag: Azure Active Directoryval integrált PlanMyLeave
 
-Ebben az oktatóanyagban elsajátíthatja PlanMyLeave integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate PlanMyLeave az Azure Active Directoryval (Azure AD).
 
-PlanMyLeave integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+PlanMyLeave integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Megadhatja a PlanMyLeave hozzáféréssel rendelkező Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett PlanMyLeave (egyszeri bejelentkezés) számára a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure felügyeleti portálon
+- Megadhatja a hozzáférés tooPlanMyLeave rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooPlanMyLeave (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure felügyeleti portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs PlanMyLeave, a következőkre van szükség:
+az Azure AD integrálása PlanMyLeave tooconfigure, kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - Egy PlanMyLeave egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, ha ez nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A gyűjteményből PlanMyLeave hozzáadása
+1. Hello gyűjteményből PlanMyLeave hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
 
-## <a name="adding-planmyleave-from-the-gallery"></a>A gyűjteményből PlanMyLeave hozzáadása
-Az Azure AD integrálása a PlanMyLeave konfigurálásához kell hozzáadnia PlanMyLeave a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-planmyleave-from-hello-gallery"></a>Hello gyűjteményből PlanMyLeave hozzáadása
+tooconfigure hello integrációja PlanMyLeave az Azure AD-be, meg kell tooadd PlanMyLeave hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A gyűjteményből PlanMyLeave hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd PlanMyLeave hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure felügyeleti portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure felügyeleti portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Kattintson a **Hozzáadás** gombra a párbeszédpanel tetején.
+3. Kattintson a **Hozzáadás** hello párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **PlanMyLeave**.
+4. Hello keresési mezőbe, írja be a **PlanMyLeave**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-planmyleave-tutorial/tutorial_planmyleave_001.png)
 
-5. Az eredmények panelen válassza ki a **PlanMyLeave**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. A hello eredmények panelen válassza ki a **PlanMyLeave**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-planmyleave-tutorial/tutorial_planmyleave_0001.png)
 
@@ -85,64 +85,64 @@ Az Azure AD integrálása a PlanMyLeave konfigurálásához kell hozzáadnia Pla
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján PlanMyLeave.
 
-Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó PlanMyLeave a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a PlanMyLeave közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó PlanMyLeave tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello PlanMyLeave közötti kapcsolat kapcsolatot kell létrehozni toobe.
 
-Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** PlanMyLeave a.
+Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** a PlanMyLeave.
 
-Az Azure AD egyszeri bejelentkezést a PlanMyLeave tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés PlanMyLeave-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[PlanMyLeave tesztfelhasználó létrehozása](#creating-a-planmyleave-test-user)**  - való Britta Simon valami PlanMyLeave, amely csatolva van rá, hogy az Azure AD ábrázolása.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[PlanMyLeave tesztfelhasználó létrehozása](#creating-a-planmyleave-test-user)**  -toohave Britta Simon PlanMyLeave, amely az Azure AD csatolt toohello ábrázolása rá, hogy az egy megfelelője.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure felügyeleti portálon, és konfigurálása egyszeri bejelentkezéshez az PlanMyLeave alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel hello Azure felügyeleti portálon, és konfigurálása egyszeri bejelentkezéshez az PlanMyLeave alkalmazásban.
 
-**Konfigurálása az Azure AD az egyszeri bejelentkezés PlanMyLeave, hajtsa végre az alábbi lépéseket:**
+**az Azure AD tooconfigure egyszeri bejelentkezést a PlanMyLeave, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure felügyeleti portálján a a **PlanMyLeave** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Hello Azure felügyeleti portálon, a hello **PlanMyLeave** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. A a **egyszeri bejelentkezés** párbeszédpanel lapon, **mód** kiválasztása **SAML-alapú bejelentkezés** a engedélyezése az egyszeri bejelentkezéshez.
+2. A hello **egyszeri bejelentkezés** párbeszédpanel lap, **mód** kiválasztása **SAML-alapú bejelentkezés** tooenable az egyszeri bejelentkezés.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-planmyleave-tutorial/tutorial_planmyleave_01.png)
 
-3. Az a **PlanMyLeave tartomány és az URL-címek** területen tegye a következőket:
+3. A hello **PlanMyLeave tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-planmyleave-tutorial/tutorial_planmyleave_02.png)
 
-    a. Az a **URL-cím bejelentkezési** szövegmező, adja meg a következő minta használatával URL-címe:`https://<company-name>.planmyleave.com/Login.aspx`
+    a. A hello **URL-cím bejelentkezési** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<company-name>.planmyleave.com/Login.aspx`
     
-    b. Az a **azonosítóját** szövegmező, adja meg a következő minta használatával URL-címe:`https://<company-name>.planmyleave.com`
+    b. A hello **azonosítóját** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<company-name>.planmyleave.com`
 
     > [!NOTE] 
-    > Ne feledje, hogy ezek nincsenek a valódi értékek. Akkor frissítheti ezeket az értékeket, és a tényleges URL-cím bejelentkezési azonosítója. Ügyfél [PlanMyLeave támogatási csoport](mailto:support@planmyleave.com) beolvasni ezeket az értékeket.
+    > Ne feledje, hogy ezek nincsenek hello valódi értékek. Ezeket az értékeket a tényleges hello bejelentkezési URL-cím és azonosító tooupdate rendelkezik. Ügyfél [PlanMyLeave támogatási csoport](mailto:support@planmyleave.com) tooget ezeket az értékeket.
 
-4. Az a **SAML-aláíró tanúsítványa** kattintson **hozzon létre új tanúsítvány**.
+4. A hello **SAML-aláíró tanúsítványa** kattintson **hozzon létre új tanúsítvány**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-planmyleave-tutorial/tutorial_planmyleave_03.png)     
 
-5. A a **új tanúsítvány létrehozása** párbeszédpanel, kattintson a naptár ikonra, és válasszon egy **lejárati dátum**. Kattintson a **mentése** gombra.
+5. A hello **új tanúsítvány létrehozása** párbeszédpanelen hello naptár ikonra, és válassza ki az **lejárati dátum**. Kattintson a **mentése** gombra.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-planmyleave-tutorial/tutorial_general_300.png)
 
-6. Az a **SAML-aláíró tanúsítványa** szakaszban jelölje be **új tanúsítvány aktiválásához** kattintson **mentése** gombra.
+6. A hello **SAML-aláíró tanúsítványa** szakaszban jelölje be **új tanúsítvány aktiválásához** kattintson **mentése** gombra.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-planmyleave-tutorial/tutorial_planmyleave_04.png)
 
-7. Az előugró **helyettesítő tanúsítvány** ablak, kattintson a **OK**.
+7. A hello előugró ablak **helyettesítő tanúsítvány** ablak, kattintson a **OK**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-planmyleave-tutorial/tutorial_general_400.png)
 
-8. A a **SAML-aláíró tanúsítványa** kattintson **tanúsítvány (base64)** , és mentse a tanúsítványfájlt, a számítógépen.
+8. A hello **SAML-aláíró tanúsítványa** kattintson **tanúsítvány (base64)** , és mentse a hello tanúsítványfájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-planmyleave-tutorial/tutorial_planmyleave_05.png) 
 
-9. A a **PlanMyLeave konfigurációs** kattintson **konfigurálása PlanMyLeave** megnyitásához **bejelentkezés konfigurálása** ablak.
+9. A hello **PlanMyLeave konfigurációs** kattintson **konfigurálása PlanMyLeave** tooopen **bejelentkezés konfigurálása** ablak.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-planmyleave-tutorial/tutorial_planmyleave_06.png) 
 
@@ -150,56 +150,56 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
 10. Egy másik webes böngészőablakban bejelentkezni a PlanMyLeave Bérlői rendszergazda.
 
-11. Ugrás a **rendszerbeállítás**. Végül a a **biztonságkezelés** szakaszban kattintson **vállalati SAML beállítások** .
+11. Nyissa meg túl**rendszerbeállítás**. Végül a hello **biztonságkezelés** szakaszban kattintson **vállalati SAML beállítások** .
 
     ![Alkalmazás ügyféloldali egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-planmyleave-tutorial/tutorial_planmyleave_002.png) 
 
-12. Az a **SAML beállítások** területen kattintson a szerkesztőben ikonra.
+12. A hello **SAML beállítások** területen kattintson a szerkesztőben ikonra.
 
     ![Alkalmazás ügyféloldali egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-planmyleave-tutorial/tutorial_planmyleave_003.png)
 
-13. Az a **SAML beállítások** területen tegye a következőket:
+13. A hello **SAML beállítások** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![Alkalmazás ügyféloldali egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-planmyleave-tutorial/tutorial_planmyleave_004.png)
 
-    a.  Az a **bejelentkezési URL-cím** szövegmező, írja be az értéket a **SAML-alapú egyszeri bejelentkezési URL-címe** az Azure AD alkalmazás-konfigurációs ablakban.
+    a.  A hello **bejelentkezési URL-cím** szövegmező, írja be a hello értéket **SAML-alapú egyszeri bejelentkezési URL-címe** az Azure AD alkalmazás-konfigurációs ablakban.
 
-    b.  Nyissa meg a Jegyzettömbben a letöltött fájl tartalmának másolása a csak közötti---megkezdéséhez tanúsítvány---és---vége tanúsítványát---azt a vágólapra, majd illessze be azt a **tanúsítvány** szövegmező.
+    b.  Nyissa meg a letöltött fájlt a Jegyzettömbben. csak hello tartalom közötti hello---megkezdéséhez tanúsítvány---és---vége tanúsítvány---azt a vágólapra másolja, majd illessze be toohello **tanúsítvány** szövegmező.
 
-    c. Állítsa be "**engedélyezése van**"záró"**Igen**".
+    c. Állítsa be"**engedélyezése van**"túl"**Igen**".
 
     d. Kattintson a **Save** (Mentés) gombra.
 
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure felügyeleti portálján Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate tesztfelhasználó Britta Simon nevű hello Azure felügyeleti portálon.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure Management portal**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure Management portal**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-planmyleave-tutorial/create_aaduser_01.png) 
 
-2. Ugrás a **felhasználók és csoportok** kattintson **minden felhasználó** azon felhasználók listájának megjelenítéséhez.
+2. Nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó** toodisplay hello azoknak a felhasználóknak.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-planmyleave-tutorial/create_aaduser_02.png) 
 
-3. Kattintson a párbeszédpanel tetején **Hozzáadás** megnyitásához a **felhasználói** párbeszédpanel.
+3. Hello párbeszédpanel hello tetején kattintson **Hozzáadás** tooopen hello **felhasználói** párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-planmyleave-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-planmyleave-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra. 
 
@@ -207,32 +207,32 @@ Ez a szakasz célja a tesztfelhasználó létrehozása az Azure felügyeleti por
 
 ### <a name="creating-a-planmyleave-test-user"></a>PlanMyLeave tesztfelhasználó létrehozása
 
-Ez a szakasz célja PlanMyLeave Britta Simon nevű felhasználót létrehozni. PlanMyLeave támogatja just-in-time kiosztást, amely alapértelmezés szerint van engedélyezve.
+hello ebben a szakaszban célja toocreate PlanMyLeave Britta Simon nevű felhasználó. PlanMyLeave támogatja just-in-time kiosztást, amely alapértelmezés szerint van engedélyezve.
 
-Nincs ebben a szakaszban az Ön művelet elem. Új felhasználó jön létre az PlanMyLeave elérésére, ha még nem létezik tett kísérlet során.
+Nincs ebben a szakaszban az Ön művelet elem. Új felhasználó létrejön egy kísérlet tooaccess PlanMyLeave során, ha még nem létezik.
 
 > [!NOTE]
-> Ha hozzon létre manuálisan egy felhasználó van szüksége, forduljon a kell [PlanMyLeave támogatási csoport](mailto:support@planmyleave.com).
+> Ha egy felhasználó toocreate manuálisan kell, toocontact kell [PlanMyLeave támogatási csoport](mailto:support@planmyleave.com).
 
 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban engedélyezze Britta Simon által biztosított a hozzáférés PlanMyLeave Azure egyszeri bejelentkezéshez használandó.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés saját hozzáférés tooPlanMyLeave megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon hozzárendelése PlanMyLeave, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooPlanMyLeave, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure felügyeleti portálra, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Hello Azure felügyeleti portálján, nyissa meg a hello alkalmazások megtekintése, majd toohello könyvtár nézetben keresse meg, és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **PlanMyLeave**.
+2. Hello alkalmazások listában válassza ki a **PlanMyLeave**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-planmyleave-tutorial/tutorial_planmyleave_50.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -240,7 +240,7 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított a hozzáféré
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -250,14 +250,14 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított a hozzáféré
 
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-Ha a hozzáférési panelen PlanMyLeave csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az PlanMyLeave alkalmazására.
+Ha a hozzáférési Panel hello hello PlanMyLeave csempe gombra kattint, automatikusan bejelentkezett tooyour PlanMyLeave alkalmazás szerezheti be.
 
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

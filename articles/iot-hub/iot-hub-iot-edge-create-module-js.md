@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre egy Azure IoT peremhálózati modul Node.js |} Microsoft Docs"
-description: "Ez az oktatóanyag bővíthető adatok BLA konverter moduljának használatával. a legújabb Azure IoT peremhálózati NPM-csomagok és Yeoman írásával generátor."
+title: "egy Azure IoT peremhálózati modul Node.js aaaCreate |} Microsoft Docs"
+description: "Ez az oktatóanyag bővíthető hogyan egy BLA konverter modul használatával végzett toowrite hello-e a legújabb Azure IoT peremhálózati NPM csomagokat és Yeoman generátor."
 services: iot-hub
 author: sushi
 manager: timlt
@@ -11,23 +11,23 @@ ms.devlang: js
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: sushi
-ms.openlocfilehash: ba466f47e157d805600c41fa3d84ed5a0363969c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d3e696b5a310377ffb8e99998ff0714bf7c0bb41
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-iot-edge-module-with-nodejs"></a>Hozzon létre egy Azure IoT peremhálózati modul Node.js
 
-Ez az oktatóanyag egy modul létrehozása az Azure IoT szegélyt JS bővíthető.
+Ez az oktatóanyag bővíthető hogyan toocreate egy modul a JS Azure IoT szegélyt.
 
-Az oktatóanyag azt bízná környezetben való telepítés és írásával egy [Gedélyezése](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) adatok konverter moduljának használatával. a legújabb Azure IoT peremhálózati NPM-csomagokat.
+Az oktatóanyag azt bízná környezetet, és hogyan toowrite egy [Gedélyezése](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) adatok konverter modul hello legújabb Azure IoT peremhálózati NPM-csomagok használata.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Ebben a szakaszban, állítsa be a IoT peremhálózati modul fejlesztési környezetet. Ez egyaránt vonatkozik *64 bites Windows* és *(Ubuntu 14 +) 64 bites Linux* operációs rendszerek.
+Ebben a szakaszban, állítsa be a IoT peremhálózati modul fejlesztési környezetet. Ez a kategória tooboth *64 bites Windows* és *64 bites Linux (Ubuntu 14 +)* operációs rendszerek.
 
-A következő szoftvereket is szükséges:
+a következő szoftver hello szükség:
 * [Git ügyfél](https://git-scm.com/downloads).
 * [Csomópont LTS](https://nodejs.org).
 * `npm install -g yo`.
@@ -35,41 +35,41 @@ A következő szoftvereket is szükséges:
 
 ## <a name="architecture"></a>Architektúra
 
-Az Azure IoT peremhálózati platform fokozottan elfogadja a [Von Neumann architektúra](https://en.wikipedia.org/wiki/Von_Neumann_architecture). Ami azt jelenti, hogy a teljes Azure IoT peremhálózati architektúra egy rendszer, amely feldolgozza a bemeneti és a kimenetet; és győződjön meg arról, hogy minden egyes modul is egy nagyon kicsi bemeneti / kimeneti alrendszer. Ebben az oktatóanyagban a következő két modulok bemutatása után:
+hello Azure IoT peremhálózati platform fokozottan fogad hello [Von Neumann architektúra](https://en.wikipedia.org/wiki/Von_Neumann_architecture). Ez azt jelenti, hogy hello teljes Azure IoT peremhálózati architektúra egy rendszer, amely feldolgozza a bemeneti és a kimenetet; és győződjön meg arról, hogy minden egyes modul is egy nagyon kicsi bemeneti / kimeneti alrendszer. Ebben az oktatóanyagban bemutatása után a következő két modulok hello:
 
 1. A modul, amely fogad egy szimulált [Gedélyezése](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) jelezze, és konvertálja azt egy formázott [JSON](https://en.wikipedia.org/wiki/JSON) üzenet.
-2. A modul, amely a fogadott kinyomtatja [JSON](https://en.wikipedia.org/wiki/JSON) üzenet.
+2. A modul, amely a fogadott hello kinyomtatja [JSON](https://en.wikipedia.org/wiki/JSON) üzenet.
 
-Az alábbi képen a tipikus végpontok közötti adatfolyam ebben a projektben jeleníti meg:
+hello következő képet jeleníti meg hello tipikus end tooend adatfolyamblokk ebben a projektben:
 
 ![Három modulok között Adatfolyamblokk](media/iot-hub-iot-edge-create-module/dataflow.png "bemenet: szimulált BLA modul; Processzor: Konverter modul; Kimenete: Nyomtató modul")
 
-## <a name="set-up-the-environment"></a>A környezet beállítása
-Az alábbiakban azt mutatja be gyorsan környezet beállítása az első táblázat konverter modul JS írni elindításához.
+## <a name="set-up-hello-environment"></a>Hello környezet beállítása
+Az alábbiakban azt jelzik, hogy hogyan tooquickly beállítása környezet toostart toowrite JS az első táblázat konverter modul.
 
 ### <a name="create-module-project"></a>A modul-projekt létrehozása
 1. Nyisson meg egy parancssori ablakot, futtassa `yo az-iot-gw-module`.
-2. Kövesse a képernyőn, a modul projekt az inicializálás befejezéséhez.
+2. Hello lépésekkel hello képernyő toofinish hello inicializálásakor a modul projekt.
 
 ### <a name="project-structure"></a>Projektstruktúra
-Egy JS modul projektet a következő összetevőkből áll:
+A következő összetevők hello JS modul projekt foglalja magában:
 
-`modules`-A testreszabott JS modul forrásfájlokat. Cserélje le az alapértelmezett `sensor.js` és `printer.js` saját modul fájlokkal.
+`modules`-hello testreszabott JS modul forrásfájlokat. Cserélje le a hello alapértelmezett `sensor.js` és `printer.js` saját modul fájlokkal.
 
-`app.js`-Bejegyzés fájl a peremhálózati példány elindítása.
+`app.js`-hello bejegyzés fájl toostart hello peremhálózati példány.
 
-`gw.config.json`-A konfigurációs fájl testreszabása a modulokat Edge által betölteni.
+`gw.config.json`-Edge által betöltött hello konfigurációs fájl toocustomize hello modulok toobe.
 
-`package.json`-A metaadat-információi modul projekt.
+`package.json`-hello modul projekt metaadat-információit.
 
-`README.md`-A modul projekt alapvető dokumentációját.
+`README.md`-hello modul projekt alapvető dokumentációját.
 
 
 ### <a name="package-file"></a>A csomagfájl
 
-Ez `package.json` deklarál, amely tartalmazza a név, verzió, bejegyzést, parancsfájlok, futásidejű és fejlesztési függőségek modul projekthez szükséges minden metaadat-információkat.
+Ez `package.json` deklarál, amely tartalmazza az hello név, verzió, bejegyzést, parancsfájlok, futásidejű és fejlesztési függőségek modul projekthez szükséges összes hello metaadatait.
 
-Következő kódrészletet BLA konverter mintaprojektet konfigurálása jeleníti meg.
+Következő kódrészletben látható kód hogyan BLA konverter tooconfigure mintát a projektet.
 ```json
 {
   "name": "converter",
@@ -95,7 +95,7 @@ Következő kódrészletet BLA konverter mintaprojektet konfigurálása jelenít
 
 
 ### <a name="entry-file"></a>Bejegyzés fájl
-A `app.js` határozza meg a inicializálni az edge-példány. Itt végezheti el semmilyen módosítást nem szükséges.
+Hello `app.js` hello módon tooinitialize hello peremhálózati példány meghatározása. Itt nem szükséges toomake bármi is módosul.
 
 ```javascript
 (function() {
@@ -117,13 +117,13 @@ A `app.js` határozza meg a inicializálni az edge-példány. Itt végezheti el 
 ### <a name="interface-of-module"></a>Felület modul
 Egy Azure IoT Edge-modul is kezelheti, amelynek a feladata, feldolgozónak: fogadja, feldolgozni azt és eredménye.
 
-Lehet, hogy a bemeneti hardverek (például egy mozgásérzékelő) adatait, az egyéb modulok vagy bármely más (például egy időzítő rendszeresen generálja véletlenszerűen) üzenet.
+hello bemeneti hardverek (például egy mozgásérzékelő) adatait, egy üzenet más modulok, vagy bármi más (például egy időzítő rendszeresen generálja véletlenszerűen) lehet.
 
-A kimenet a bemeneti hasonló, hogy elindíthatja hardver viselkedés (például a villogó LED), egy üzenetet, amely más modulok vagy bármely más (például a konzol nyomtatás).
+hello kimeneti hasonló toohello bemeneti, hogy elindíthatja hardver viselkedés (például LED villogó hello), egy üzenet tooother modulok vagy bármi más (például a nyomtatási toohello konzol).
 
-Modulok kommunikálnak egymással használatával `message` objektum. A **tartalom** , egy `message` van, amely képes bármilyen típusú adatok, például egy bájttömböt. **Tulajdonságok** is elérhetők a `message` és egyszerűen egy karakterlánc-karakterlánc leképezése. Elképzelhető, hogy a **tulajdonságok** , a fejléceket a HTTP-kérelem és a fájl metaadatait.
+Modulok kommunikálnak egymással használatával `message` objektum. Hello **tartalom** , egy `message` van, amely képes bármilyen típusú adatok, például egy bájttömböt. **Tulajdonságok** is rendelkezésre állnak a hello `message` és egyszerűen egy karakterlánc-karakterlánc leképezése. Elképzelhető, hogy a **tulajdonságok** hello fejlécként HTTP-kérelem vagy hello metaadat-fájl.
 
-Egy Azure IoT peremhálózati modulja JS elkészítéséhez hozzon létre egy új module objektum, amely megvalósítja a szükséges módszereket kell `receive()`. Ezen a ponton is választhatja, hogy a nem kötelező végrehajtásához `create()` vagy `start()`, vagy `destroy()` módszerek is. A következő kódrészletet a állványok JS modul objektum jeleníti meg.
+Rendelés toodevelop JS egy Azure IoT peremhálózati modulja, egy új module objektum, amely szükséges hello módszerek toocreate kell `receive()`. Ezen a ponton is választhatja, hogy tooimplement hello választható `create()` vagy `start()`, vagy `destroy()` módszerek is. a következő kódrészletet hello jeleníti meg, akkor hello szerkezetet JS modul objektum.
 
 ```javascript
 'use strict';
@@ -158,16 +158,16 @@ module.exports = {
 | ------------------------ | -------------------------------------- | ---------------------- | ---------------------- |
 | Hőmérséklet-adatok üzenet | Elemzése és létrehozni egy új JSON-üzenet | Struktúra JSON üzenet | `converter.js` |
 
-Ez a modul az egy tipikus Azure IoT peremhálózati modul. Hőmérséklet-üzenetek származó adatok elfogad (hardveres modult, vagy ilyen esetben a szimulált BLA modul); és majd normalizálja az hőmérséklet üzenet (beleértve a Hozzáfűzés az Üzenetazonosító, hogy igazolnia kell a hőmérséklet figyelmeztetést, és így tovább tulajdonságának beállítása) strukturált JSON-üzenethez.
+Ez a modul az egy tipikus Azure IoT peremhálózati modul. Hőmérséklet-üzenetek származó adatok elfogad (hardveres modult, vagy ilyen esetben a szimulált BLA modul); és majd normalizálja hőmérséklet üdvözlőüzenetére strukturált tooa JSON üzenet (beleértve a fűznek hello Üzenetazonosítója hello tulajdonságának e igazolnia kell tootrigger hello hőmérséklet riasztást, és így tovább).
 
 ```javascript
 receive: function (message) {
-  // Initialize the messageCount in global object at first time.
+  // Initialize hello messageCount in global object at first time.
   if (!global.messageCount) {
     global.messageCount = 0;
   }
 
-  // Read the content and properties objects from message.
+  // Read hello content and properties objects from message.
   let rawContent = JSON.parse(Buffer.from(message.content).toString('utf8'));
   let rawProperties = message.properties;
 
@@ -185,7 +185,7 @@ receive: function (message) {
     temperature: rawContent.temperature
   };
 
-  // Publish the new message to broker.
+  // Publish hello new message toobroker.
   this.broker.publish(
     {
       properties: newProperties,
@@ -198,9 +198,9 @@ receive: function (message) {
 ### <a name="printer-module"></a>Nyomtató modul
 | Input (Bemenet)                          | Processzor | Kimenet                     | Forrásfájl          |
 | ------------------------------ | --------- | -------------------------- | -------------------- |
-| Bármely más modulok érkezett üzenetet: | N/A       | Az üzenet naplózása konzolhoz | `printer.js` |
+| Bármely más modulok érkezett üzenetet: | N/A       | Hello üzenet tooconsole naplózása | `printer.js` |
 
-A modul az egyszerű, értetődő, amely a fogadott üzenetek (tulajdonság, tartalom) kiírja a Terminálszolgáltatások ablakra.
+Ez a modul az egyszerű, értetődő, amelyek kimenete hello fogadott üzenetek (tulajdonság, tartalom) toohello terminálablakot.
 
 ```javascript
 receive: function (message) {
@@ -213,9 +213,9 @@ receive: function (message) {
 ```
 
 ### <a name="configuration"></a>Konfiguráció
-Az utolsó lépés a modulok futtatása előtt a konfigurálása az Azure IoT él és a kapcsolatot létrehozni a modulok között.
+hello utolsó lépés előtt futó hello modulok tooconfigure hello Azure IoT peremhálózati és tooestablish hello kapcsolatok modulok között.
 
-Először kell deklarálnia az `node` betöltő (óta Azure IoT peremhálózati támogatja betöltők különböző nyelvű) sikerült hivatkozhat, amely a `name` ezt követően a szakaszokban.
+Először toodeclare kell a `node` betöltő (óta Azure IoT peremhálózati támogatja betöltők különböző nyelvű) sikerült hivatkozhat, amely a `name` hello szakaszok ezt követően.
 
 ```json
 "loaders": [
@@ -226,7 +226,7 @@ Először kell deklarálnia az `node` betöltő (óta Azure IoT peremhálózati 
 ]
 ```
 
-A betöltők rendelkezik deklaráltuk, miután is, valamint a modulok deklarálnia kell. Hasonló a betöltők deklaráló, azokat is hivatkozhat a `name` attribútum. Egy modul deklaráló, azt kell adnia a betöltő azt kell használnia (amely az legyen előtt meghatározott) és a belépési pont (a normalizált osztály neve a modul kellene lennie) minden modulhoz. A `simulated_device` modul az egy natív modul, amely az Azure IoT peremhálózati core runtime csomagban található. Tartalmaznak `args` a JSON-ban a fájl akkor is, ha `null`.
+Miután a betöltők rendelkezik deklaráltuk, azt is kell toodeclare, valamint a modulok. Hasonló toodeclaring hello betöltők, azokat is hivatkozhat a `name` attribútum. Ha egy modul deklaráló, igazolnia kell a toospecify hello betöltő azt kell használnia (amely előtt meghatározott egyik hello kellene lennie) és a belépési pont (kell lennie a modul hello normalizált osztály neve) minden modul hello. Hello `simulated_device` modul az egy natív modul, amely hello Azure IoT peremhálózati core runtime csomagban található. Tartalmaznak `args` hello JSON fájl, akkor is, ha a `null`.
 
 ```json
 "modules": [
@@ -266,7 +266,7 @@ A betöltők rendelkezik deklaráltuk, miután is, valamint a modulok deklaráln
 ]
 ```
 
-A konfigurációs végén kapcsolatot létesítünk a kapcsolatokat. Minden kapcsolat van kifejezve `source` és `sink`. Kell mindkét hivatkozó egy előre definiált modul. A kimeneti üzenetét `source` modul továbbíthatja a rendszer a bemeneti `sink` modul.
+Hello konfigurációs hello végén a Microsoft hello-kapcsolatok létesítéséhez. Minden kapcsolat van kifejezve `source` és `sink`. Kell mindkét hivatkozó egy előre definiált modul. a kimeneti üdvözlőüzenetére `source` modul továbbíthatja a rendszer toohello bemeneti `sink` modul.
 
 ```json
 "links": [
@@ -281,11 +281,11 @@ A konfigurációs végén kapcsolatot létesítünk a kapcsolatokat. Minden kapc
 ]
 ```
 
-## <a name="running-the-modules"></a>A modulok fut
+## <a name="running-hello-modules"></a>Hello modulok fut
 1. `npm install`
 2. `npm start`
 
-Ha azt szeretné, az alkalmazás befejezéséhez nyomja le az `<Enter>` kulcs.
+Ha azt szeretné, hogy tooterminate hello alkalmazás, nyomja meg az `<Enter>` kulcs.
 
 > [!IMPORTANT]
-> Nem ajánlott a Ctrl + C használatával az IoT-Edge alkalmazás befejezéséhez. Mivel így a folyamat rendellenesen eredményezheti.
+> Nem ajánlott toouse Ctrl + C tooterminate hello IoT peremhálózati alkalmazás. Mivel így rendellenesen hello folyamat tooterminate okozhat.

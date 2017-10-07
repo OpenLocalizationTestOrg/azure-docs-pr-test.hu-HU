@@ -1,6 +1,6 @@
 ---
-title: "Az ASP.NET Web API kommunikáció szolgáltatás |} Microsoft Docs"
-description: "Az ASP.NET Web API OWIN önálló üzemeltető a megbízható szolgáltatások API használatával valósítja meg a szolgáltatások közötti kommunikáció részletes tudnivalók."
+title: "ASP.NET Web API hello aaaService kommunikáció |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooimplement szolgáltatások közötti kommunikáció részletes használatával hello az OWIN önálló üzemeltető hello megbízható szolgáltatások API az ASP.NET Web API."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -15,35 +15,35 @@ ms.workload: required
 ms.date: 02/10/2017
 ms.author: vturecek
 redirect_url: /azure/service-fabric/service-fabric-reliable-services-communication-aspnetcore
-ms.openlocfilehash: 73b7e1c0cb93ae7c54780a3aab837b0e5bcdb0a0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3fb18fcb141ada0d79a0acda3dccbc7fb044346d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-service-fabric-web-api-services-with-owin-self-hosting"></a>Első lépések: az OWIN futtató önálló Service Fabric Web API szolgáltatások
-Az Azure Service Fabric helyezi a power a beavatkozás nélküli, amikor eldönti, hogyan szeretné a szolgáltatásokat, hogy és egymással kommunikáló felhasználók. Ez az oktatóanyag végzett szolgáltatások közötti kommunikáció ASP.NET Web API-t használja az Open Web Interface .NET (OWIN) önálló tárolásához a Service Fabric megbízható szolgáltatások API megvalósítására koncentrál. Azt fogja elmélyedhet mélyen a Reliable Services moduláris kommunikációs API. Használjuk Web API is részletes példa mutatjuk be, hogyan állíthat be egy egyéni kommunikációs figyelő.
+Az Azure Service Fabric hello power helyezi el a beavatkozás nélküli Amikor eldönti, hogy hogyan kívánja a szolgáltatások toocommunicate felhasználóival és egymással. Ez az oktatóanyag végzett szolgáltatások közötti kommunikáció ASP.NET Web API-t használja az Open Web Interface .NET (OWIN) önálló tárolásához a Service Fabric megbízható szolgáltatások API megvalósítására koncentrál. Azt fogja elmélyedhet mélyen hello Reliable Services moduláris kommunikációs API. Egy részletes példa tooshow a Web API is használjuk, hogyan tooset be egy egyéni kommunikációs figyelő.
 
-## <a name="introduction-to-web-api-in-service-fabric"></a>Bevezetés a Service Fabric a webes API-hoz
-ASP.NET webes API-t egy népszerű és erőteljes környezet HTTP API-k létrehozásához a .NET-keretrendszer. Ha még nem már ismeri a keretében, lásd: [Ismerkedés az ASP.NET Web API 2](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api) további.
+## <a name="introduction-tooweb-api-in-service-fabric"></a>Bevezetés tooWeb API a Service Fabric
+ASP.NET webes API-t egy népszerű és erőteljes környezet HTTP API-k hello .NET-keretrendszer felett. Ha még nem már ismeri a hello keretrendszer, lásd: [Ismerkedés az ASP.NET Web API 2](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api) további toolearn.
 
-Webes API-t a Service Fabric az azonos ASP.NET Web API megszokott és kedvelt. A különbség a hogyan meg *állomás* egy webes API-alkalmazást. Nem fogja használni a Microsoft Internet Information Services (IIS). Jobb megértése érdekében a különbség, most felosztása, két részből áll:
+Webes API-t a Service Fabric rendszer hello azonos ASP.NET Web API megszokott és kedvelt. hello különbség a hogyan meg *állomás* egy webes API-alkalmazást. Nem fogja használni a Microsoft Internet Information Services (IIS). toobetter hello különbség ismertetése, most felosztása két részből áll:
 
-1. A webes API-alkalmazás (beleértve a tartományvezérlőket és -modellek)
-2. A gazdagép (a webkiszolgáló, általában az IIS)
+1. hello webes API-alkalmazás (beleértve a tartományvezérlőket és -modellek)
+2. hello állomás (hello webkiszolgáló, általában az IIS)
 
-Egy magát webes API-alkalmazás nem változik. Helyzetet teremt, mintha a webes API-alkalmazások írt kap a múltban, és meg kell az alkalmazás kódjában többsége egyszerűen átvitele. Azonban ha azt korábban futtató IIS-kiszolgálón, ahol az alkalmazás állomás kissé eltér az éppen használt lehet. Után azt beolvasni a birtokosi részére, kezdjük valami további ismerős: a webes API-alkalmazás.
+Egy magát webes API-alkalmazás nem változik. Elmúlt hello előfordulhat, hogy írt webes API-alkalmazások nem más, és el tudja toosimply áthelyezés alatt az alkalmazás kódjában a legtöbb. Ha Ön már lett üzemeltető IIS-kiszolgálón, ahol hello alkalmazás működteti, de miről használt kissé eltérő lehet. Előtt tartalmazó rész toohello beszerzéséhez azt kezdjük valami további ismerős: hello webes API-alkalmazás.
 
-## <a name="create-the-application"></a>Az alkalmazás létrehozása
+## <a name="create-hello-application"></a>Hello alkalmazás létrehozása
 Először hozzon létre egy új Service Fabric-alkalmazás egy állapot nélküli szolgáltatásnak a Visual Studio 2015-öt.
 
-A webes API-jával állapotmentes szolgáltatások Visual Studio sablonját is elérhetők. Ebben az oktatóanyagban azt, hogy milyen visszajelzést kap, ha a kiválasztott sablon eredménye teljesen új webes API a projekt fogja létrehozása.
+A webes API-jával állapotmentes szolgáltatások Visual Studio sablonját elérhető tooyou. Ebben az oktatóanyagban azt, hogy milyen visszajelzést kap, ha a kiválasztott sablon eredménye teljesen új webes API a projekt fogja létrehozása.
 
-Válasszon ki egy üres állapotmentes szolgáltatások projektet megtudhatja, hogyan hozhat létre egy teljesen új webes API-projektet, vagy indítsa el az állapotmentes szolgáltatások webes API-sablonhoz, és egyszerűen követéséhez.  
+Válasszon egy üres állapotmentes szolgáltatások projekt toolearn hogyan toobuild teljesen, vagy a Web API-projektet hello állapotmentes szolgáltatások Web API sablon kezdődhet és egyszerűen követéséhez.  
 
-Az első lépés néhány NuGet-csomagok a webes API le tudja. A csomag használandó szeretnénk Microsoft.AspNet.WebApi.OwinSelfHost. Ez a csomag tartalmazza a szükséges webes API-csomagok és a *állomás* csomagok. Ez lesz fontos később.
+hello első lépés az egyes NuGet-csomagok webes API toopull. azt szeretnénk, ha toouse hello csomag Microsoft.AspNet.WebApi.OwinSelfHost. Ez a csomag tartalmazza az összes hello szükséges webes API-csomagok és hello *állomás* csomagok. Ez lesz fontos később.
 
-A csomagok telepítése után megkezdheti a webes API-projekt alapszintű struktúrát létrehozására. Ha már használta a webes API-t, a projekt struktúra tisztában kell kinéznie. Először vegyen fel egy `Controllers` könyvtár és egy egyszerű érték tartományvezérlő:
+Hello csomagok telepítése után megkezdheti az épület kimenő hello alapszintű webes API projektet struktúrát. Ha már használta a Web API, hello szerkezetének tisztában kell kinéznie. Először vegyen fel egy `Controllers` könyvtár és egy egyszerű érték tartományvezérlő:
 
 **ValuesController.cs**
 
@@ -86,7 +86,7 @@ namespace WebService.Controllers
 
 ```
 
-A következő indítási osztály hozzáadása a projekt legfelső szintű regisztrálni az útvonal is és bármely egyéb konfigurációs beállítása. Ez egyben ahol Web API csatlakoztatja az való a *állomás*, amely fog kell javított változat újra később. 
+A következő indítási osztály hozzáadása hello projekt legfelső szintű tooregister hello útválasztási is és egyéb konfigurációs beállítása. Ez egyben ahol Web API csatlakozik toohello *állomás*, amely fog kell javított változat újra később. 
 
 **Startup.cs**
 
@@ -115,12 +115,12 @@ namespace WebService
 }
 ```
 
-Ez az alkalmazás részére. Ezen a ponton létrehoztunk hogy csak az alapszintű webes API projektet elrendezés. Eddig akkor nem jelenik meg sokkal írt kap a múltban Web API-projektet, illetve az egyszerű webes API-sablon Az üzleti logikát a megszokott módon végrehajtja a tartományvezérlők és modellek.
+Ez a hello alkalmazás rész. Ezen a ponton azt beállítása csak hello alapszintű webes API projektet elrendezés. Az eddigi azt nem szabad különbség hello korábbi lehet, hogy írt webes API-projektet, illetve hello egyszerű webes API-sablon. Az üzleti logikát a megszokott módon kerül hello, tartományvezérlői és modellek.
 
 Most mi a teendő-k üzemeltetésére szolgál, hogy azt ténylegesen futtatható?
 
 ## <a name="service-hosting"></a>Üzemeltető szolgáltatáshoz
-A Service Fabric, a szolgáltatás fut a *gazdafolyamat szolgáltatás*, egy végrehajtható fájl, amely a szolgáltatáskód hibáit futtatja. A megbízható szolgáltatások API-jával írásakor szolgáltatás szolgáltatásprojektre csak egy végrehajtható fájl, amely a szolgáltatás típusának regisztrálja, és a kód futtatása lefordítja. Ez igaz a legtöbb esetben a szolgáltatás a Service Fabric a .NET írásakor. Az állapotmentes szolgáltatások projekt Program.cs megnyitásakor kell megjelennie:
+A Service Fabric, a szolgáltatás fut a *gazdafolyamat szolgáltatás*, egy végrehajtható fájl, amely a szolgáltatáskód hibáit futtatja. Írásakor szolgáltatás hello megbízható szolgáltatások API használatával, a projekt csak akkor tooan végrehajtható fájl, a szolgáltatás típusának regisztrálja, és futtatja a kódot. Ez igaz a legtöbb esetben a szolgáltatás a Service Fabric a .NET írásakor. Hello állapotmentes szolgáltatások projekt Program.cs megnyitásakor kell megjelennie:
 
 ```csharp
 using System;
@@ -152,22 +152,22 @@ internal static class Program
 
 ```
 
-Ha, amely a következőképpen néz gyanúsan a belépési pont számára egy konzolalkalmazást, mert van.
+Ha, amely a következőképpen néz gyanúsan hello belépési pont tooa Konzolalkalmazás, mert van.
 
-A szolgáltatás gazdafolyamat és a szolgáltatás regisztrációs kapcsolatos részletes adatok nem térnek Ez a cikk. De fontos tudni, hogy a most, hogy *a szolgáltatáskód hibáit külön folyamatban fut.*.
+Kapcsolatos részletes adatok hello szolgáltatás gazdafolyamat és szolgáltatás regisztrációs Ez a cikk hello terjed. A fontos tooknow, de most, hogy *a szolgáltatáskód hibáit külön folyamatban fut.*.
 
 ## <a name="self-host-web-api-with-an-owin-host"></a>Önálló gazdagép Web API egy OWIN állomás
-Figyelembe véve, hogy a webes API-alkalmazás kódja egy külön folyamatban, hogyan tegye meg kapcsolja legfeljebb egy webkiszolgáló? Adja meg [OWIN](http://owin.org/). OWIN: egyszerűen egy szerződés .NET webes alkalmazások és a webkiszolgálók között. Hagyományosan az ASP.NET (max. MVC 5) használata esetén a webes alkalmazás szorosan csatlakoztatott IIS System.Web keresztül. Azonban a Web API OWIN, megvalósítja, az azt üzemeltető webkiszolgáló írhat egy webes alkalmazás, amely le van. Ebből kifolyólag használhatja egy *önállóan üzemel* OWIN webkiszolgálón, amelyek a saját folyamat megkezdése. Ez tökéletesen csak ismerteti a Service Fabric üzemeltetési modell illeszkedik.
+Fényében, hogy a webes API-alkalmazás kódja egy külön folyamatban, hogyan tegye meg a számítógéphez, tooa webkiszolgáló? Adja meg [OWIN](http://owin.org/). OWIN: egyszerűen egy szerződés .NET webes alkalmazások és a webkiszolgálók között. Hagyományosan az ASP.NET (felfelé tooMVC 5) használatakor a hello webalkalmazás, szorosan összekapcsolt tooIIS System.Web keresztül. Azonban a Web API OWIN, megvalósítja, az azt üzemeltető webkiszolgáló hello írhat egy webes alkalmazás, amely le van. Ebből kifolyólag használhatja egy *önállóan üzemel* OWIN webkiszolgálón, amelyek a saját folyamat megkezdése. Ez tökéletesen hello Service Fabric üzemeltetési modell csak leírt illeszkedik.
 
-Ebben a cikkben Katana használjuk az OWIN gazdagépként a webes API-alkalmazáshoz. Katana egy nyílt forráskódú OWIN állomás implementáció épülő [System.Net.HttpListener](https://msdn.microsoft.com/library/system.net.httplistener.aspx) és a Windows [HTTP-kiszolgáló API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx).
+Ebben a cikkben Katana használjuk hello OWIN gazdagépként hello webes API-alkalmazás számára. Katana egy nyílt forráskódú OWIN állomás implementáció épülő [System.Net.HttpListener](https://msdn.microsoft.com/library/system.net.httplistener.aspx) és a hello Windows [HTTP-kiszolgáló API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx).
 
 > [!NOTE]
-> Katana kapcsolatos további tudnivalókért keresse fel a [Katana hely](http://www.asp.net/aspnet/overview/owin-and-katana/an-overview-of-project-katana). Önálló gazdagép Web API Katana használatával történő gyors áttekintést, lásd: [használja OWIN Self-Host ASP.NET Web API 2](http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api).
+> További információk Katana, nyissa meg toohello toolearn [Katana hely](http://www.asp.net/aspnet/overview/owin-and-katana/an-overview-of-project-katana). A gyors áttekintést a toouse Katana tooself-állomás Web API, lásd: [használata OWIN tooSelf-állomás ASP.NET Web API 2](http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api).
 > 
 > 
 
-## <a name="set-up-the-web-server"></a>A webalkalmazás-kiszolgáló beállítása
-A megbízható szolgáltatások API biztosít egy kommunikációs belépési pontot, amelyen csatlakoztathatja a kommunikációs verem, amelyek lehetővé teszik a felhasználók és az ügyfelek kapcsolódni a szolgáltatáshoz:
+## <a name="set-up-hello-web-server"></a>Hello webkiszolgáló beállítása
+hello megbízható szolgáltatások API csatlakoztatható, ahol a kommunikációs verem, amelyek lehetővé teszik a felhasználók és az ügyfelek tooconnect toohello szolgáltatás kommunikációs belépési pontot biztosít:
 
 ```csharp
 
@@ -178,7 +178,7 @@ protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceLis
 
 ```
 
-A webalkalmazás-kiszolgáló (és más kommunikációs verem például websocket elemek használata a jövőben,) kell ICommunicationListener felületet használ megfelelően integrálása a rendszer. Ennek az oka a következő lépésekben több nyilvánvaló lesz.
+hello web server (és más kommunikációs verem használhatja a későbbi, mint például a websocket elemek hello) kell használni, hello ICommunicationListener felület toointegrate megfelelően hello. hello okai az az alábbi lépésekkel hello több nyilvánvalóvá vált.
 
 Először hozzon létre egy osztályt, amely megvalósítja az ICommunicationListener OwinCommunicationListener:
 
@@ -213,13 +213,13 @@ namespace WebService
 }
 ```
 
-A ICommunicationListener felület kezelheti a szolgáltatás kommunikációs figyelő három módszert kínál:
+hello ICommunicationListener felületet biztosít a három módszer toomanage kommunikációs figyelő a szolgáltatás:
 
 * *OpenAsync*. Indítsa el a kérések figyelését.
 * *CloseAsync*. Állítsa le a kérések figyelését, Befejezés bármilyen az üzenetsoroktól kérelmeket és leállítása.
 * *Megszakítás*. Minden megszakítja, és azonnal leállítja.
 
-Első lépésként adja hozzá a titkos osztálytagjaihoz dolgot a figyelő működéséhez kell. Ezek és felhasználandó inicializálja a konstruktor, valamint később a figyelő URL-cím beállításakor.
+tooget indult el, adja hozzá a titkos osztálytagok, a dolgok hello figyelő toofunction kell. Ezek és felhasználandó hello konstruktor inicializálja, valamint később hello figyelő URL-cím beállításakor.
 
 ```csharp
 internal class OwinCommunicationListener : ICommunicationListener
@@ -274,12 +274,12 @@ internal class OwinCommunicationListener : ICommunicationListener
 ```
 
 ## <a name="implement-openasync"></a>OpenAsync megvalósítása
-A webkiszolgáló beállításához két adatra van szükség:
+mint hello webkiszolgálót tooset, kétféle információt kell:
 
-* *Egy URL-cím elérési út előtag*. Bár ez nem kötelező, ahhoz, hogy beállítaniuk ezt most, hogy biztonságosan jó gazdagép több webszolgáltatásból az alkalmazásban.
+* *Egy URL-cím elérési út előtag*. Bár nem kötelező, továbbra is meg tooset ideális ez akár most, hogy biztonságosan tárolhatja, webes szolgáltatásokat az alkalmazásban.
 * *A port*.
 
-Mielőtt port lekérése a webkiszolgálón, fontos, hogy megértette, hogy a Service Fabric, amely az alkalmazás és az általa futtatott operációs rendszer közötti pufferként alkalmazás réteget biztosít. Konfigurálása módszert kínál, a Service Fabric *végpontok* a szolgáltatásokhoz. A Service Fabric biztosítja, hogy végpontok érhető el a szolgáltatást. Ezzel a módszerrel nem kell konfigurálásuk saját magának az alapul szolgáló operációs rendszer környezetében. A Service Fabric-alkalmazás különböző környezetekben könnyen tárolhatja, anélkül, hogy ne módosítsa az alkalmazás számára. (Például tárolhatja, ugyanazt az alkalmazást az Azure-ban vagy a saját adatközpont.)
+Mielőtt hello web Server port kap, fontos, hogy megértette, hogy a Service Fabric, amely az alkalmazás- és hello alapul szolgáló operációs rendszer, amely az fut közötti pufferként alkalmazás réteget biztosít. A Service Fabric tartalmaz egy módja tooconfigure *végpontok* a szolgáltatásokhoz. A Service Fabric biztosítja, hogy végpontok száma a szolgáltatás toouse érhető el. Ezzel a módszerrel nem kell tooconfigure őket az alapul szolgáló operációs rendszer környezet hello. A Service Fabric-alkalmazás különböző környezetekben könnyen tárolhatja, anélkül, hogy toomake módosítások tooyour alkalmazásokat. (Például tárolhatja, ugyanazt az alkalmazást az Azure-ban vagy a saját adatközpont hello.)
 
 HTTP-végponttal PackageRoot\ServiceManifest.xml konfigurálása:
 
@@ -292,9 +292,9 @@ HTTP-végponttal PackageRoot\ServiceManifest.xml konfigurálása:
 
 ```
 
-Ez a lépés fontos, mert a gazdagép-folyamat futtatja korlátozott credentials (a Windows hálózati szolgáltatás). Ez azt jelenti, hogy a szolgáltatás nem állíthat be egy HTTP-végpont a saját hozzáférést. A végpont-konfiguráció használatával a Service Fabric tudni fogja, hogy a megfelelő hozzáférés-vezérlési lista (ACL) beállítása az URL-címhez, amely a szolgáltatás figyelni fogja. A Service Fabric is itt szabványos végpontok beállítása.
+Ez a lépés fontos, mert hello szolgáltatás gazdafolyamat futtatja korlátozott credentials (a Windows hálózati szolgáltatás). Ez azt jelenti, hogy a szolgáltatás nem hozzáférés tooset be HTTP-végponttal rendelkezik önállóan. Hello végpont-konfiguráció használatával a Service Fabric tooset hello megfelelő hozzáférés-vezérlési lista (ACL) fel tudja hello hello szolgáltatás URL-címet figyelni fogja a. A Service Fabric is itt szabványos tooconfigure végpontok.
 
-Vissza OwinCommunicationListener.cs, akkor kezdhet OpenAsync megvalósítása. Ez az az először a webkiszolgálón. Először a végpont-információkat lekérni, és az URL-címet, a szolgáltatás figyelni fogja létrehozni. Az URL-cím attól függően, hogy a figyelő használatban van egy állapotmentes szolgáltatások vagy egy állapotalapú szolgáltatás eltérőek lesznek. A figyelő egy állapotalapú szolgáltatás kell minden állapotalapú szolgáltatási replika elkezdi figyelni a egyedi cím létrehozása. Az állapotmentes szolgáltatások a cím jóval egyszerűbb lehet. 
+Vissza OwinCommunicationListener.cs, akkor kezdhet OpenAsync megvalósítása. Ez az az először hello webkiszolgáló. Először hello végpont információért, és hozzon létre hello szolgáltatás figyelni fogja hello URL-CÍMÉT. hello URL-címe eltérő, attól függően, hogy hello figyelő használatban van egy állapotmentes szolgáltatások vagy egy állapotalapú szolgáltatás lesz. Egy állapotalapú szolgáltatás hello figyelő kell egy egyedi címét minden állapotalapú szolgáltatási replika azt figyeli a toocreate. Az állapotmentes szolgáltatások hello cím jóval egyszerűbb lehet. 
 
 ```csharp
 public Task<string> OpenAsync(CancellationToken cancellationToken)
@@ -339,11 +339,11 @@ public Task<string> OpenAsync(CancellationToken cancellationToken)
 
 ```
 
-Vegye figyelembe, hogy a "http://+" Itt nem használja. Ez a, győződjön meg arról, hogy a webkiszolgáló összes elérhető címek, beleértve a localhost, teljes tartománynév és a gép IP-figyeli.
+Vegye figyelembe, hogy a "http://+" Itt nem használja. Ez a toomake meg arról, hogy az összes elérhető címek, beleértve a localhost, a teljes tartománynév és a hello gép IP-hello webkiszolgálóra figyeli.
 
-OpenAsync végrehajtására a legfontosabb okai miért a webalkalmazás-kiszolgáló (vagy bármely kommunikációs verem) megvalósítása egy ICommunicationListener, hanem csak azt közvetlenül a nyílt `RunAsync()` a szolgáltatásban. A visszatérési érték a OpenAsync a címet, hogy a webkiszolgáló nem. Ezt a címet a rendszer küld vissza, ha regisztrálja azokat a cím a szolgáltatással. A Service Fabric biztosít az API-k, amely lehetővé teszi az ügyfelek és egyéb szolgáltatások majd feltenni ehhez a címhez szolgáltatás neve. Ez azért fontos, mert a szolgáltatás-cím nem statikus. Szolgáltatások helyezi át a fürt erőforrás és a rendelkezésre állás céljából. Azt a mechanizmust, amely lehetővé teszi az ügyfelek fel tudják oldani a figyelő cím egy szolgáltatás számára.
+hello OpenAsync a megvalósítása hello miért hello web server (vagy bármely kommunikációs verem) megvalósítása közvetlenül a nyílt egy ICommunicationListener, hanem csak az egyik legfontosabb okok valamelyike miatt `RunAsync()` hello szolgáltatásban. hello visszatérési érték a OpenAsync a webkiszolgáló hello hello címet figyeli. Ez a cím toohello rendszer ad vissza, ha regisztrálja azokat hello cím hello szolgáltatásban. A Service Fabric biztosít az API-k, amely lehetővé teszi az ügyfelek és egyéb szolgáltatások toothen feltenni ehhez a címhez szolgáltatás neve. Ez azért fontos, mert hello szolgáltatás cím nem statikus. Szolgáltatások hello fürt erőforrás és a rendelkezésre állási célokra helyezi át. Ez az hello mechanizmus, amely lehetővé teszi az ügyfelek tooresolve hello cím egy szolgáltatás figyeli.
 
-Vele szem előtt a OpenAsync a webkiszolgáló elindul, és visszahelyezi a címet, amely a figyeléshez. Vegye figyelembe, hogy elkezdi figyelni a "http://+", de még mielőtt OpenAsync visszahelyezi a címet, a "+" cseréli az IP- vagy a jelenleg a csomópont teljesen minősített Tartománynevét. Ez a metódus által visszaadott cím esetén milyen regisztrálva van a rendszer. Akkor is ügyfelek és egyéb szolgáltatások látják, ha a szolgáltatás címét, hogy kérni. Az ügyfelek számára, hogy megfelelően csatlakozik azok kell egy tényleges IP vagy FQDN Formátumban a címben.
+Vele szem előtt OpenAsync hello webkiszolgáló elindul, és adja vissza, amely figyeli a hello cím. Vegye figyelembe, hogy a "http://+" figyeli, de OpenAsync hello címét adja meg, mielőtt hello "+" hello IP vagy FQDN-jét hello csomópont jelenleg a rendszer lecseréli. Mi hello rendszer regisztrálva van-e metódus által visszaadott hello cím tartozik. Akkor is ügyfelek és egyéb szolgáltatások látják, ha a szolgáltatás címét, hogy kérni. Az ügyfelek toocorrectly csatlakozni a tooit, egy tényleges IP vagy FQDN Formátumban kell hello címét.
 
 ```csharp
     ...
@@ -362,7 +362,7 @@ Vele szem előtt a OpenAsync a webkiszolgáló elindul, és visszahelyezi a cím
     }
     catch (Exception ex)
     {
-        this.eventSource.Message("Web server failed to open endpoint {0}. {1}", this.endpointName, ex.ToString());
+        this.eventSource.Message("Web server failed tooopen endpoint {0}. {1}", this.endpointName, ex.ToString());
 
         this.StopWebServer();
 
@@ -372,12 +372,12 @@ Vele szem előtt a OpenAsync a webkiszolgáló elindul, és visszahelyezi a cím
 
 ```
 
-Vegye figyelembe, hogy ez a konstruktor OwinCommunicationListener továbbított indítási osztályra hivatkozik. Ez a példány indítási szolgál a webkiszolgáló bootstrap a webes API-alkalmazás.
+Vegye figyelembe, hogy ez hivatkozik, amely toohello OwinCommunicationListener hello konstruktorban átadott hello indítási osztály. Ez a példány indítási hello web server toobootstrap hello webes API-alkalmazás használja.
 
-A `ServiceEventSource.Current.Message()` sor megjelennek a diagnosztikai események ablak később, győződjön meg arról, hogy a webalkalmazás-kiszolgáló sikeresen elindult-e az alkalmazás futtatásakor.
+Hello `ServiceEventSource.Current.Message()` sor hello diagnosztikai események ablakban jelenik később futtatásakor hello alkalmazás tooconfirm hello webkiszolgálóra sikeresen elindult.
 
 ## <a name="implement-closeasync-and-abort"></a>Alkalmazzon CloseAsync és Abort
-Végezetül megvalósítása CloseAsync és a megszakítási leállítja a webkiszolgálón. A webkiszolgáló a kiszolgáló leíró OpenAsync során létrehozott ártalmatlanítása által állítható le.
+Végezetül megvalósítása CloseAsync és a megszakítási toostop hello webkiszolgáló. hello webkiszolgáló hello server leíró OpenAsync során létrehozott ártalmatlanítása által állítható le.
 
 ```csharp
 public Task CloseAsync(CancellationToken cancellationToken)
@@ -412,10 +412,10 @@ private void StopWebServer()
 }
 ```
 
-A megvalósítás példában CloseAsync és a megszakítási egyszerűen állítsa le a webkiszolgálón. Úgy is dönthet, hajtsa végre a webkiszolgáló több szabályosan koordinált leállítási CloseAsync. Például a leállítási sikerült Várjon, amíg az üzenetsoroktól kérelem végrehajtása előtt a visszatérési.
+A megvalósítás példában CloseAsync és a megszakítási egyszerűen állítsa le hello webkiszolgáló. Úgy is dönthet, tooperform hello webkiszolgálón CloseAsync több szabályosan koordinált leállítására. Például hello leállítási sikerült Várjon, amíg az üzenetsoroktól kérelmek toobe előtt hello vissza.
 
-## <a name="start-the-web-server"></a>Indítsa el a webkiszolgálón
-Most már készen áll létrehozásához, és térjen vissza a webkiszolgáló elindításához OwinCommunicationListener példánya. Vissza a szolgáltatásosztály (WebService.cs), bírálja felül a `CreateServiceInstanceListeners()` módszert:
+## <a name="start-hello-web-server"></a>Indítsa el a hello webkiszolgáló
+Most már készen áll a toocreate, és térjen vissza a OwinCommunicationListener toostart hello web server-példányt. Vissza a hello szolgáltatás osztály (WebService.cs), bírálja felül a hello `CreateServiceInstanceListeners()` módszert:
 
 ```csharp
 protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
@@ -429,12 +429,12 @@ protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceLis
 }
 ```
 
-Ez akkor, ha a webes API *alkalmazás* és az OWIN *állomás* végül felel meg. A gazdagép (OwinCommunicationListener) kap egy példányát a *alkalmazás* (webes API) keresztül az indítási osztályt. A Service Fabric majd annak életciklusát felügyeli. Ebben a mintában általában a bármely kommunikációs verem kell követni.
+Amennyiben ez van hello Web API *alkalmazás* és hello OWIN *állomás* végül felel meg. hello állomás (OwinCommunicationListener) kap hello példányának *alkalmazás* (webes API) keresztül hello indítási osztályt. A Service Fabric majd annak életciklusát felügyeli. Ebben a mintában általában a bármely kommunikációs verem kell követni.
 
 ## <a name="put-it-all-together"></a>Az alkalmazás összeállítása
-Ebben a példában, nem kell semmit a `RunAsync()` metódust, így az adott felülbírálás egyszerűen távolítható el.
+Ebben a példában a semmi a hello toodo nem kell `RunAsync()` metódust, így az adott felülbírálás egyszerűen távolítható el.
 
-Kell, hogy a végső szolgáltatás megvalósítása nagyon egyszerű. Csak a kommunikációs figyelő létrehozásához szükséges:
+hello végső szolgáltatás megvalósítása nagyon egyszerű kell lennie. Csak toocreate hello kommunikációs figyelő van szüksége:
 
 ```csharp
 using System;
@@ -466,7 +466,7 @@ namespace WebService
 }
 ```
 
-A teljes `OwinCommunicationListener` osztály:
+teljes hello `OwinCommunicationListener` osztály:
 
 ```csharp
 using System;
@@ -579,7 +579,7 @@ namespace WebService
             }
             catch (Exception ex)
             {
-                this.eventSource.Message("Web server failed to open endpoint {0}. {1}", this.endpointName, ex.ToString());
+                this.eventSource.Message("Web server failed tooopen endpoint {0}. {1}", this.endpointName, ex.ToString());
 
                 this.StopWebServer();
 
@@ -621,22 +621,22 @@ namespace WebService
 }
 ```
 
-Most, hogy Ön vezettek minden a helyére, a projekt egy tipikus webes API-alkalmazás megbízható szolgáltatások API belépési pontok és egy OWIN állomás kell hasonlítania.
+Most, hogy Ön vezettek összes hello kódrészletek, a projekt egy tipikus webes API-alkalmazás megbízható szolgáltatások API belépési pontok és egy OWIN állomás kell hasonlítania.
 
 ## <a name="run-and-connect-through-a-web-browser"></a>Futtassa, és csatlakozzon egy webböngészőn keresztül
 Ha még nem tette, [beállította a fejlesztőkörnyezetet](service-fabric-get-started.md).
 
-Most hozza létre és telepítse a szolgáltatást. Nyomja le az **F5** felépítéséhez és az alkalmazás központi telepítése a Visual Studio. A diagnosztikai ablakban kell megjelennie, amely jelzi, hogy a webkiszolgáló megnyitott http://localhost:8281 üzenet /.
+Most hozza létre és telepítse a szolgáltatást. Nyomja le az **F5** a Visual Studio toobuild hello alkalmazás és központi telepítését. Hello diagnosztikai események ablakában kell megjelennie a http://localhost:8281 megnyitott hello webkiszolgálóra jelző üzenet /.
 
 > [!NOTE]
-> Ha a port már nyitva van a számítógépen egy másik folyamat, itt hiba jelenhet meg. Ez azt jelzi, hogy a figyelő nem nyitható meg. Ha ez a helyzet, próbálkozzon egy másik portot használ a végpont-konfiguráció a ServiceManifest.xml.
+> Ha hello port a számítógépen egy másik folyamat már meg van nyitva, itt hiba jelenhet meg. Ez azt jelzi, hogy hello figyelő nem nyitható meg. Ha hello esetben próbálkozzon egy másik portot használ a ServiceManifest.xml hello végpont-konfiguráció.
 > 
 > 
 
-Ha a szolgáltatás fut, nyisson meg egy böngészőt, és keresse meg [http://localhost:8281/api/értékek](http://localhost:8281/api/values) tesztek.
+Miután hello szolgáltatás fut, nyisson meg egy böngészőt, és keresse meg a túl[http://localhost:8281/api/értékek](http://localhost:8281/api/values) tootest azt.
 
 ## <a name="scale-it-out"></a>Méretezhető végrehajtását
-Állapot nélküli webalkalmazások kiterjesztése általában azt jelenti, hogy további gépek hozzáadása és a webalkalmazások rajtuk dolgozik. A Service Fabric vezénylő alrendszer ehhez, amikor új csomópontokat ad hozzá egy fürt. Állapot nélküli szolgáltatás példányának létrehozásakor megadhatja a létrehozandó példányok száma. A Service Fabric a példányok száma a fürtben lévő csomópontok helyezi. És biztosítja, hogy nem hozható létre egynél több példány bármely csomópontjára. Azt is beállíthatja, hogy a Service Fabric mindig hozzon létre egy példányát minden egyes csomópontjára megadásával **-1** a példányok számát. Ez biztosítja, hogy, hogy terjessze ki a fürt a csomópontok hozzáadásakor az állapot nélküli szolgáltatás egy példánya létrejön az új csomópontján. Ez az érték a szolgáltatáspéldány tulajdonsága, úgy van beállítva a példány létrehozásakor. Ez a Powershellen keresztül teheti meg:
+Állapot nélküli webalkalmazások kiterjesztése általában azt jelenti, hogy további gépek hozzáadása és hello webalkalmazások rajtuk dolgozik. A Service Fabric vezénylő alrendszer ehhez, amikor új csomópontokat ad hozzá tooa fürt. Állapot nélküli szolgáltatás példányának létrehozásakor megadhatja a hello szám példányok toocreate szeretné. A Service Fabric helyezi a példányok száma hello fürt csomópontja. Biztosítja azt, és nem toocreate egynél több példány bármely egyik csomópontján. Azt is beállíthatja, hogy a Service Fabric tooalways hozzon létre egy példányát minden egyes csomópontjára megadásával **-1** hello példányok számát. Ez biztosítja, hogy, hogy ki a fürt csomópontjai tooscale ad hozzá, amikor az állapot nélküli szolgáltatás egy példánya létrejön hello új csomópontján. Ez az érték hello szolgáltatáspéldány, tulajdonsága, úgy van beállítva a példány létrehozásakor. Ez a Powershellen keresztül teheti meg:
 
 ```powershell
 
@@ -658,7 +658,7 @@ Is ehhez amikor állapotmentes szolgáltatások Visual Studio-projekt megadhat e
 
 ```
 
-Alkalmazás és szolgáltatás példányainak létrehozásával kapcsolatos további információkért lásd: [alkalmazás üzembe helyezése](service-fabric-deploy-remove-applications.md).
+További információt a hogyan toocreate alkalmazás és szolgáltatás példányainak: [alkalmazás üzembe helyezése](service-fabric-deploy-remove-applications.md).
 
 ## <a name="next-steps"></a>Következő lépések
 [A Service Fabric-alkalmazás hibakeresése a Visual Studio használatával](service-fabric-debugging-your-application.md)

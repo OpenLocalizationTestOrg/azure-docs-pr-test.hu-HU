@@ -1,6 +1,6 @@
 ---
-title: "Mobilszolgáltatások telepítenek át egy App Service mobilalkalmazás"
-description: "Útmutató: a Mobile Services alkalmazás az App Service Mobile Apps könnyen áttelepítése"
+title: a Mobile Services tooan App Service Mobile Apps aaaMigrate
+description: "Ismerje meg, hogyan tooeasily át a Mobile Services alkalmazás tooan App Service Mobile Apps"
 services: app-service\mobile
 documentationcenter: 
 author: ggailey777
@@ -14,69 +14,69 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: glenga
-ms.openlocfilehash: 16cf05f62602e494affed49e466209b68413e53a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: cd2e8d98595703389300b79da9bf51cdcefe7b40
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="article-top"></a>A meglévő Azure Mobile szolgáltatás áttelepítése az Azure App Service
-Az a [Azure App Service általános rendelkezésre állását], Azure Mobile Services-webhelyek könnyen áttelepíthető helyi előnyeit az Azure App Service összes funkcióját.  Ez a dokumentum azt ismerteti, mi történik, ha az Azure App Service telepítheti át webhelyét az Azure Mobile Services.
+# <a name="article-top"></a>Telepítse át a meglévő Azure Mobile Services mobilszolgáltatás tooAzure App Service
+A hello [Azure App Service általános rendelkezésre állását], Azure Mobile Services helyek lehetnek könnyen áttelepített helyi tootake előnyeit hello Azure App Service összes funkcióját.  Ez a dokumentum ismerteti a milyen tooexpect, a webhely az App Service Azure Mobile Services tooAzure áttelepítésekor.
 
-## <a name="what-does-migration-do"></a>Mire áttelepítési? és a hely számára
-Az Azure Mobile szolgáltatás kapcsolja be a Mobile Service egy [Azure App Service] app anélkül, hogy befolyásolná a kódot.  A Notification Hubs, SQL adatkapcsolat, hitelesítési beállításai, ütemezett feladatokat, és tartománynév változatlanok maradnak.  Az Azure Mobile szolgáltatással mobil ügyfelek továbbra is megfelelően működik.  Áttelepítési újraindítja a szolgáltatást, miután a rendszer áthelyezi az Azure App Service.
+## <a name="what-does-migration-do"></a>Mire áttelepítési? tooyour hely
+Az Azure Mobile szolgáltatás kapcsolja be a Mobile Service egy [Azure App Service] app hello kód módosítása nélkül.  A Notification Hubs, SQL adatkapcsolat, hitelesítési beállításai, ütemezett feladatokat, és tartománynév változatlanok maradnak.  Az Azure Mobile szolgáltatással mobil ügyfelek általában a toooperate továbbra is.  Áttelepítés a szolgáltatás újraindul, miután átvitt tooAzure App Service.
 
 [!INCLUDE [app-service-mobile-migrate-vs-upgrade](../../includes/app-service-mobile-migrate-vs-upgrade.md)]
 
 ## <a name="why-migrate"></a>Miért át kell telepítenie a webhely
-Microsoft van javasolja, hogy az áttelepített az Azure Mobile szolgáltatás számára, hogy kihasználja az Azure App Service, beleértve a szolgáltatásait:
+Microsoft van javasolja, hogy az áttelepített hello funkciók az Azure App Service, beleértve az Azure Mobile Services mobilszolgáltatás tootake mértékben:
 
 * Új üzemeltetési funkciók, például [WebJobs] és [egyéni tartománynevek].
-* A helyszíni erőforrásokhoz való kapcsolódás [VNet] kívül [hibrid kapcsolatok].
+* Kapcsolat tooyour a helyszíni erőforrásokhoz [VNet] továbbá túl[hibrid kapcsolatok].
 * Figyelés és hibaelhárítás az új New Relic vagy [Application Insights].
 * Beépített DevOps tooling, beleértve a [átmeneti üzembe helyezési ponti]visszaállítási és az éles tesztelése.
 * [Automatikus méretezése], terheléselosztás, és [teljesítményfigyelés].
 
-Az Azure App Service előnyeiről további információkért lásd: a [Mobile Services vs. App Service] témakör.
+Az Azure App Service hello előnyeit a további információkért lásd: hello [Mobile Services vs. App Service] témakör.
 
 ## <a name="before-you-begin"></a>Előkészületek
 A webhely fő munka megkezdése előtt készítsen biztonsági másolatot a Mobile Service parancsfájlok és az SQL-adatbázis.
 
 ## <a name="migrating-site"></a>A helyek áttelepítése
-Az áttelepítési folyamat minden hely egyetlen Azure-régión belül áttelepíti.
+hello áttelepítési folyamat során minden hely egyetlen Azure-régión belül áttelepíti.
 
-A webhely áttelepítése:
+toomigrate webhelyét:
 
-1. Jelentkezzen be a [a klasszikus Azure portálon].
-2. Válassza ki a Mobile Service áttelepíteni kívánt régiót.
-3. Kattintson a **áttelepítése az App Service** gombra.
+1. Jelentkezzen be toohello [klasszikus Azure portál].
+2. Válassza ki a Mobile Service hello régióban toomigrate kívánja.
+3. Kattintson a hello **tooApp szolgáltatás áttelepítése** gombra.
 
-   ![Az áttelepítés gomb][0]
-4. Az áttelepítés az App Service párbeszédpanelen.
-5. Adja meg a Mobile Service nevét található megfelelő mezőbe.  Ha a tartomány neve contoso.azure-mobile.net, majd írja be például *contoso* található megfelelő mezőbe.
-6. Az osztásjelek gombra.
+   ![hello áttelepítése gomb][0]
+4. Hello áttelepítése tooApp Service párbeszédpanelen olvasható.
+5. Adja meg a Mobile Service hello nevét található hello mezőbe.  Ha a tartomány neve contoso.azure-mobile.net, majd írja be például *contoso* található hello mezőbe.
+6. Hello osztásjelek gombra.
 
-A tevékenység figyelése az áttelepítés állapotának figyelése. A webhely jelenik meg, *áttelepítése* a klasszikus Azure-portálon.
+Hello áttelepítési hello tevékenység figyelőben hello állapotának figyelése. A webhely jelenik meg, *áttelepítése* a klasszikus Azure portál hello.
 
   ![Áttelepítési tevékenység figyelése][1]
 
-Minden áttelepítési is igénybe vehet 3 az áttelepítés alatt álló mobilszolgáltatás 15 percig.  A webhely az áttelepítés közben elérhető marad.
-Az áttelepítési folyamat végén a webhely újraindítása.  A hely nem érhető el az újraindítási folyamatot, amely lehet akár egy néhány másodperc alatt.
+A mobilszolgáltatáshoz az áttelepítés alatt álló 3 too15 percig minden áttelepítési is igénybe vehet.  A webhely hello áttelepítés közben elérhető marad.
+A webhely újraindítása hello hello áttelepítési folyamat végén.  hello újraindítási folyamatot, amely lehet akár egy néhány másodperc alatt hello helyhez nem érhető el.
 
-## <a name="finalizing-migration"></a>Az áttelepítés befejezése
-Tervezze meg a webhely egy mobil ügyfél lezárásakor az áttelepítési folyamat tesztelése.  Gondoskodjon arról, hogy minden közös Ügyfélműveletek a mobil ügyfél módosítása nélkül végezheti el.  
+## <a name="finalizing-migration"></a>Áttelepítési hello véglegesítése
+Tervezze meg a webhely egy mobil ügyfél hello megkötése hello áttelepítési folyamat a tootest.  Gondoskodjon arról, hogy minden közös Ügyfélműveletek módosítások toohello mobil ügyfélalkalmazás nélkül végezheti el.  
 
 ### <a name="update-app-service-tier"></a>Válassza ki a megfelelő IP-címek alkalmazásszolgáltatás
-Miután áttelepítette az Azure App Service díjszabás több beleszólása van.
+Miután áttelepítette a tooAzure App Service díjszabás több beleszólása van.
 
-1. Jelentkezzen be az [Azure portálra].
-2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile szolgáltatás nevét.
-3. Alapértelmezés szerint a beállítások panel nyílik meg.
-4. Kattintson a **App Service-csomag** a beállítások menüben.
-5. Kattintson a **Tarifacsomagot** csempére.
-6. Kattintson a csempére a követelményeinek megfelelő, majd **válasszon**.  Kattintson esetleg **összes** az elérhető árképzési szinteket megjelenítéséhez.
+1. Jelentkezzen be toohello [Azure-portálon].
+2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile Service hello nevére.
+3. Alapértelmezés szerint hello-beállítások panel nyílik meg.
+4. Kattintson a **App Service-csomag** hello-beállítások menüjében.
+5. Kattintson a hello **Tarifacsomagot** csempére.
+6. Hello csempe megfelelő tooyour követelményeinek, majd **válasszon**.  Szükség lehet a tooClick **összes** toosee hello rendelkezésre tarifacsomag szükséges.
 
-Kiindulási pontként a következő rétegek javasoljuk:
+Kiindulási pontként a következő rétegek hello javasoljuk:
 
 | Mobilszolgáltatás Tarifacsomagot | Az App Service Tarifacsomagot |
 |:--- |:--- |
@@ -84,89 +84,89 @@ Kiindulási pontként a következő rétegek javasoljuk:
 | Basic |A K1 Basic |
 | Standard |S1 – Standard |
 
-Nincs rugalmasan kiválasztani a tarifacsomag az alkalmazáshoz.  Tekintse meg [App Service szolgáltatás díjszabása] az új App Service díjszabás teljes leírását.
+Nincs rugalmasan hello jobb tarifacsomag az alkalmazás kiválasztása.  Tekintse meg a túl[App Service szolgáltatás díjszabása] hello díjszabása az új App Service teljes leírását.
 
 > [!TIP]
-> App Service Standard csomagra tartalmaz számos funkciók, előfordulhat, hogy szeretne használni, beleértve a [átmeneti üzembe helyezési ponti], automatikus biztonsági mentésekhez, és az automatikus skálázást.  Tekintse meg az új képességek, amíg hiba nem!
+> hello App Service Standard csomag tartalmaz hozzáférési toomany funkciókat, amelyeknél felmerülhet toouse, beleértve a [átmeneti üzembe helyezési ponti], automatikus biztonsági mentésekhez, és az automatikus skálázást.  Tekintse meg a hello új képességeit, amíg nincs!
 >
 >
 
-### <a name="review-migration-scheduler-jobs"></a>Tekintse át az áttelepített Feladatütemező feladatai
-A Feladatütemező szolgáltatás körülbelül 30 percet az áttelepítés után nem látható lesz.  Ütemezett feladatok továbbra is fut a háttérben.
-Után szeretné megtekinteni az ütemezett feladatok jelenjenek újra:
+### <a name="review-migration-scheduler-jobs"></a>Tekintse át a hello át a Feladatütemező szolgáltatás
+A Feladatütemező szolgáltatás körülbelül 30 percet az áttelepítés után nem látható lesz.  Ütemezett feladatok toorun hello háttérben továbbra is.
+tooview az ütemezett feladatok után azokat újra be nem látható:
 
-1. Jelentkezzen be az [Azure portálra].
-2. Válassza ki **Tallózás >**, adja meg **ütemezés** a a *szűrő* mezőbe, majd válassza ki **Feladatütemező gyűjtemények**.
+1. Jelentkezzen be toohello [Azure-portálon].
+2. Válassza ki **Tallózás >**, adja meg **ütemezés** a hello *szűrő* mezőbe, majd válassza ki **Feladatütemező gyűjtemények**.
 
-Ingyenes scheduler feladatok érhető el az áttelepítést követő korlátozott számú van.  Tekintse át a használati és a [Azure Scheduler tervek].
+Ingyenes scheduler feladatok érhető el az áttelepítést követő korlátozott számú van.  Tekintse át a használati és hello [Azure Scheduler tervek].
 
 ### <a name="configure-cors"></a>A CORS konfigurálása, ha szükséges
-Eltérő eredetű erőforrások megosztása a engedélyezi a webhely egy másik tartományban Web API eléréséhez technika.  Ha az Azure Mobile Services webhelyekhez használ, majd kell a CORS konfigurálása az áttelepítés részeként.  Azure Mobile Services kizárólag a mobileszközök érnek el, ha majd CORS nem kell bizonyos ritkán előforduló esetekben kivéve kell konfigurálni.
+Eltérő eredetű erőforrások megosztása a technika tooallow egy webhely tooaccess egy webes API-t egy másik tartományban.  Ha Azure Mobile Services webhelyekhez használ, akkor szüksége tooconfigure CORS hello áttelepítés részeként.  Azure Mobile Services kizárólag a mobileszközök érnek el, ha majd CORS nem ritka esetekben kivéve konfigurált toobe kell.
 
-Az áttelepített CORS-beállítások állnak rendelkezésre, a **MS_CrossDomainWhitelist** Alkalmazásbeállítás.  A webhely áttelepítése az App Service CORS-létesítményt a személyes:
+Az áttelepített CORS-beállítások állnak rendelkezésre, hello **MS_CrossDomainWhitelist** Alkalmazásbeállítás.  toomigrate a hely toohello App Service CORS létesítmény:
 
-1. Jelentkezzen be az [Azure portálra].
-2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile szolgáltatás nevét.
-3. Alapértelmezés szerint a beállítások panel nyílik meg.
-4. Kattintson a **CORS** az API menüjében.
-5. Adjon meg egy engedélyezett eredetet található megfelelő mezőbe, minden egyes után nyomja le az ENTER billentyűt.
-6. Ha az engedélyezett Eredeteket listája helyes-e, kattintson a Mentés gombra.
+1. Jelentkezzen be toohello [Azure-portálon].
+2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile Service hello nevére.
+3. Alapértelmezés szerint hello-beállítások panel nyílik meg.
+4. Kattintson a **CORS** hello API menüben.
+5. Adjon meg egy engedélyezett eredetet hello mezőben megadott, minden egyes után nyomja le az ENTER billentyűt.
+6. Ha az engedélyezett Eredeteket listája helyes-e, kattintson a hello Mentés gombra.
 
 > [!TIP]
-> Az Azure App Service előnyei egyik futtathatja a mobilszolgáltatás és a webhely ugyanazon a helyen.  További információkért lásd: a [lépések](#next-steps) szakasz.
+> Az Azure App Service használatának előnyei hello egyik, hogy futtathatja a mobilszolgáltatás és a webhely hello ugyanazon a helyen.  További információkért lásd: hello [lépések](#next-steps) szakasz.
 >
 >
 
 ### <a name="download-publish-profile"></a>Egy új közzétételi profil letöltése
-A közzétételi profil a webhely megváltozik, miközben az Azure App Service áttelepítése.  Ha azt tervezi, a webhely a Visual Studio közzététele, egy új közzétételi profilt kell.  Az új közzétételi profil letöltése:
+hello közzétételi profilt, amely a webhely az App Service tooAzure áttelepítésekor módosul.  Ha azt tervezi, toopublish Visual Studio a helyet, új közzétételi profil kell.  toodownload hello új közzétételi profil:
 
-1. Jelentkezzen be az [Azure portálra].
-2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile szolgáltatás nevét.
+1. Jelentkezzen be toohello [Azure-portálon].
+2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile Service hello nevére.
 3. Kattintson a **Get közzétételi profil**.
 
-A PublishSettings-fájl a számítógép letölti.  Általában nevezik *sitename*. PublishSettings.  A közzétételi beállítások importálása a létező projekt:
+hello PublishSettings-fájl az letöltött tooyour számítógép.  Általában nevezik *sitename*. PublishSettings.  Importálás hello közzétételi beállítások a meglévő projektben:
 
 1. Nyissa meg a Visual Studio és az Azure Mobile Services mobilszolgáltatás-projektet.
-2. Kattintson a jobb gombbal a projektre a a **Megoldáskezelőben** válassza **közzététel...**
+2. Kattintson a jobb gombbal a projektre a hello **Megoldáskezelőben** válassza **közzététel...**
 3. Kattintson a **importálása**
 4. Kattintson a **Tallózás** válassza ki a letöltött közzététele beállításfájl.  Kattintson az **OK** gombra
-5. Kattintson a **kapcsolat ellenőrzése** a közzétételi beállítások munkahelyi biztosításához.
-6. Kattintson a **közzététel** a webhely közzététele.
+5. Kattintson a **kapcsolat ellenőrzése** tooensure hello közzététele a munkahelyi beállításokat.
+6. Kattintson a **közzététel** toopublish a helyen.
 
 ## <a name="working-with-your-site"></a>Az áttelepítés utáni webhely használata
-Az új App Service a munka megkezdéséhez a [Azure portálra] áttelepítés utáni.  Az alábbiakban néhány Megjegyzés a konkrét műveletek végrehajtásához használt a [a klasszikus Azure portálon]App Service-megfelelőjükkel együtt,.
+Az új App Service hello a munka megkezdéséhez [Azure-portálon] áttelepítés utáni.  hello az alábbiakban néhány Megjegyzés a konkrét műveletek tooperform szerepel hello [klasszikus Azure portál]App Service-megfelelőjükkel együtt,.
 
 ### <a name="publishing-your-site"></a>Töltsön le és az áttelepített hely közzététele
-A webhely git- vagy ftp segítségével érhető el, és képes különböző különböző mechanizmusokkal, beleértve a WebDeploy, TFS, Mercurial, GitHub vagy FTP újból közzé.  Az üzembe helyezési hitelesítő adatok áttelepítése a hely többi részének.  Ha nem állított az üzembe helyezési hitelesítő adatok, vagy nem tárolja őket, visszaállíthatja őket:
+A webhely git- vagy ftp segítségével érhető el, és képes különböző különböző mechanizmusokkal, beleértve a WebDeploy, TFS, Mercurial, GitHub vagy FTP újból közzé.  a webhely többi hello hello üzembe helyezési hitelesítő adatok áttelepítése.  Ha nem állított az üzembe helyezési hitelesítő adatok, vagy nem tárolja őket, visszaállíthatja őket:
 
-1. Jelentkezzen be az [Azure portálra].
-2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile szolgáltatás nevét.
-3. Alapértelmezés szerint a beállítások panel nyílik meg.
-4. Kattintson a **üzembe helyezési hitelesítő adatok** a közzététel a menüben.
-5. Adja meg az új üzembe helyezési hitelesítő adatok a megfelelő mezőkbe, majd kattintson a Mentés gombra.
+1. Jelentkezzen be toohello [Azure-portálon].
+2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile Service hello nevére.
+3. Alapértelmezés szerint hello-beállítások panel nyílik meg.
+4. Kattintson a **üzembe helyezési hitelesítő adatok** a közzététel menü hello.
+5. Adja meg a hello új üzembe helyezési hitelesítő adatok a hello mezőkbe, majd kattintson a hello Mentés gombra.
 
-Ezek a hitelesítő adatok segítségével klónozza a hely a gitet, vagy állítsa be automatikus telepítések a Githubból, TFS vagy Mercurial.  További információkért lásd: a [Azure App Service üzembe helyezési dokumentációja].
+Ezen hitelesítő adatok tooclone hello hely használata a git, vagy állítsa be automatikus telepítések a Githubból, TFS vagy Mercurial.  További információkért lásd: hello [Azure App Service üzembe helyezési dokumentációja].
 
 ### <a name="appsettings"></a>Alkalmazásbeállítások
-A legtöbb beállítások áttelepített mobilszolgáltatás Alkalmazásbeállítások keresztül érhetők el.  Kaphat az alkalmazás beállítások listáját a [Azure portálra].
-Megtekintéséhez, vagy az alkalmazás beállításainak módosítása:
+A legtöbb beállítások áttelepített mobilszolgáltatás Alkalmazásbeállítások keresztül érhetők el.  Hello Alkalmazásbeállítások listájának lekérése hello [Azure-portálon].
+tooview vagy az alkalmazás beállításainak módosítása:
 
-1. Jelentkezzen be az [Azure portálra].
-2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile szolgáltatás nevét.
-3. Alapértelmezés szerint a beállítások panel nyílik meg.
-4. Kattintson a **Alkalmazásbeállítások** az általános menüjében.
-5. Görgessen az alkalmazásbeállítások szakaszhoz, és keresse meg az alkalmazásbeállításhoz.
-6. Kattintson az Alkalmazásbeállítás értéke pedig az az érték szerkesztéséhez.  Kattintson a **mentése** mentheti az értéket.
+1. Jelentkezzen be toohello [Azure-portálon].
+2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile Service hello nevére.
+3. Alapértelmezés szerint hello-beállítások panel nyílik meg.
+4. Kattintson a **Alkalmazásbeállítások** hello általános menüben.
+5. Görgessen toohello App beállítások szakaszban, és keresse meg az Alkalmazásbeállítás.
+6. Kattintson a hello app tooedit hello beállításérték hello értékét.  Kattintson a **mentése** toosave hello érték.
 
-Egyszerre több alkalmazás beállításai frissítheti.
+Több alkalmazás beállításai hello frissítheti ugyanannyi időt vesz igénybe.
 
 > [!TIP]
-> Nincsenek két Alkalmazásbeállítások ugyanarra az értékre.  Például előfordulhat, hogy látja *ApplicationKey* és *MS\_ApplicationKey*.  Mindkét Alkalmazásbeállítások frissítése egy időben.
+> Hello a két alkalmazás-beállítások ugyanazt az értéket.  Például előfordulhat, hogy látja *ApplicationKey* és *MS\_ApplicationKey*.  Mindkét alkalmazás beállításai hello frissítése ugyanannyi időt vesz igénybe.
 >
 >
 
 ### <a name="authentication"></a>Hitelesítés
-Minden hitelesítési beállítások állnak rendelkezésre, a áttelepített hely Alkalmazásbeállítások.  Frissítse a hitelesítési beállításokat, meg kell változtatnia a megfelelő alkalmazás beállításai.  Az alábbi táblázat a hitelesítésszolgáltató a megfelelő alkalmazás beállításait:
+Minden hitelesítési beállítások állnak rendelkezésre, a áttelepített hely Alkalmazásbeállítások.  tooupdate a hitelesítési beállításokat kell módosítania a megfelelő alkalmazás beállításai.  hello következő táblázatban a hitelesítésszolgáltató hello megfelelő alkalmazás beállításait:
 
 | Szolgáltató | Ügyfél-azonosító | Ügyfélkulcs | Egyéb beállítások |
 |:--- |:--- |:--- |:--- |
@@ -176,108 +176,108 @@ Minden hitelesítési beállítások állnak rendelkezésre, a áttelepített he
 | Google |**MS\_GoogleClientID** |**MS\_GoogleClientSecret** | |
 | Azure AD |**MS\_AadClientID** | |**MS\_AadTenants** |
 
-Megjegyzés: **MS\_AadTenants** bérlői tartományok (a "Engedélyezett bérlők" mezőket a Mobile Services portálon) vesszővel tagolt listáját tárolja.
+Megjegyzés: **MS\_AadTenants** bérlői tartományok ("Engedélyezett bérlők" mezők hello hello Mobile Services portálon) vesszővel tagolt listáját tárolja.
 
 > [!WARNING]
-> **Ne használja a beállítási menüben a hitelesítési mechanizmusok**
+> **Ne használjon hello hitelesítési mechanizmusok hello beállítási menüben**
 >
-> Az Azure App Service biztosít egy külön "no-kód" hitelesítési és engedélyezési rendszer alatt a *hitelesítési / engedélyezési* menüpontra, és a (elavult) *Mobile hitelesítési* beállítás a beállítások menüben.  Ezek a beállítások nem kompatibilisek egy áttelepített Azure Mobile Service.  Is [a hely frissítése](app-service-mobile-net-upgrading-from-mobile-services.md) az Azure App Service hitelesítés előnyeinek kihasználása érdekében.
+> Az Azure App Service biztosít egy külön "no-kód" hitelesítési és engedélyezési rendszer hello *hitelesítési / engedélyezési* beállítások menü és hello (elavult) *Mobile hitelesítési* a beállítás hello-beállítások menüjében.  Ezek a beállítások nem kompatibilisek egy áttelepített Azure Mobile Service.  Is [a hely frissítése](app-service-mobile-net-upgrading-from-mobile-services.md) hello Azure App Service hitelesítés tootake előnyeit.
 >
 >
 
 ### <a name="easytables"></a>Adatok
-A *adatok* a Mobile Servicesben lap váltotta *könnyen táblák* az Azure portálon.  Egyszerű táblák elérése:
+Hello *adatok* a Mobile Servicesben lap váltotta *könnyen táblák* hello Azure-portálon belül.  tooaccess könnyen táblák:
 
-1. Jelentkezzen be az [Azure portálra].
-2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile szolgáltatás nevét.
-3. Alapértelmezés szerint a beállítások panel nyílik meg.
-4. Kattintson a **könnyen táblák** a mobil menüben.
+1. Jelentkezzen be toohello [Azure-portálon].
+2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile Service hello nevére.
+3. Alapértelmezés szerint hello-beállítások panel nyílik meg.
+4. Kattintson a **könnyen táblák** hello mobil menüben.
 
-Egy tábla kattintva vehet fel a **Hozzáadás** gombra kattint, vagy nem érhető el a létező táblák gombra kattintva egy tábla nevét.  Ezen a panelen elvégezhető különböző műveletek többek között:
+Egy tábla hello kattintva vehet fel **Hozzáadás** gombra kattint, vagy nem érhető el a létező táblák gombra kattintva egy tábla nevét.  Ezen a panelen elvégezhető különböző műveletek többek között:
 
 * Tábla engedélyek módosítása
-* A működési parancsfájlok szerkesztése
-* A következő tábla sémáját kezelése
-* A tábla törlése
-* Tartalom törlése
-* A táblázat sorait törlése
+* Hello működési parancsfájlok szerkesztése
+* Hello táblaséma kezelése
+* Hello tábla törlése
+* Hello táblázat tartalmának törlése
+* Hello tábla sorait törlése
 
 ### <a name="easyapis"></a>API
-A *API* a Mobile Servicesben lap váltotta *egyszerű API-k* az Azure portálon.  Egyszerű API-k elérésére:
+Hello *API* a Mobile Servicesben lap váltotta *egyszerű API-k* hello Azure-portálon belül.  Egyszerű API-k tooaccess:
 
-1. Jelentkezzen be az [Azure portálra].
-2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile szolgáltatás nevét.
-3. Alapértelmezés szerint a beállítások panel nyílik meg.
-4. Kattintson a **egyszerű API-k** a mobil menüben.
+1. Jelentkezzen be toohello [Azure-portálon].
+2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile Service hello nevére.
+3. Alapértelmezés szerint hello-beállítások panel nyílik meg.
+4. Kattintson a **egyszerű API-k** hello mobil menüben.
 
-Az áttelepített API-kat már szerepel a panelt.  Azt is megteheti az API-k ezen a panelen.  Egy adott API kezeléséhez kattintson az API-t.
-Új paneljén módosítsa az engedélyeket, és a parancsfájlok szerkesztése az API-hoz.
+Az áttelepített API-kat már szereplő hello panelen.  Azt is megteheti az API-k ezen a panelen.  egy adott API toomanage hello API kattintson.
+Hello új panelen hello engedélyek igazítása, és hello parancsfájl-hello API szerkesztése.
 
 ### <a name="on-demand-jobs"></a>Feladatütemező feladatai
-Az összes Feladatütemező feladatai a Scheduler Feladatgyűjteményei szakasz keresztül érhetők el.  A Feladatütemező szolgáltatás eléréséhez:
+A Feladatütemező összes feladat hello Scheduler Feladatgyűjteményei szakasz keresztül érhetők el.  tooaccess a Feladatütemező feladatok:
 
-1. Jelentkezzen be az [Azure portálra].
-2. Válassza ki **Tallózás >**, adja meg **ütemezés** a a *szűrő* mezőbe, majd válassza ki **Feladatütemező gyűjtemények**.
-3. Válassza ki a Feladatgyűjtemény a helyhez.  A neve *sitename*-feladatokat.
+1. Jelentkezzen be toohello [Azure-portálon].
+2. Válassza ki **Tallózás >**, adja meg **ütemezés** a hello *szűrő* mezőbe, majd válassza ki **Feladatütemező gyűjtemények**.
+3. Válassza ki a webhely Feladatgyűjtemény hello.  A neve *sitename*-feladatokat.
 4. Kattintson a **beállítások**.
 5. Kattintson a **ütemezőjének** felügyelete alatt.
 
-Ütemezett feladatok szerepelnek, az áttelepítés előtt megadott gyakorisággal.  Igény szerinti feladatok le vannak tiltva.  Egy igény szerinti feladat futtatásához:
+Ütemezett feladatok szerepel a listában megadott áttelepítés előtt hello gyakoriságát.  Igény szerinti feladatok le vannak tiltva.  egy igény szerinti feladat toorun:
 
-1. Válassza ki a futtatni kívánt feladat.
-2. Szükség esetén kattintson **engedélyezése** engedélyezni a feladatot.
+1. Jelölje ki a kívánt toorun hello feladatot.
+2. Szükség esetén kattintson **engedélyezése** tooenable hello feladat.
 3. Kattintson a **beállítások**, majd **ütemezés**.
 4. Válassza ki a ismétlődése **egyszer**, majd kattintson a **mentése**
 
-Az igény szerinti feladatok találhatók `App_Data/config/scripts/scheduler post-migration`.  Azt javasoljuk, hogy az összes igény szerinti feladatok átalakítása [WebJobs] vagy [funkciók].  Új Feladatütemező feladatok írási [WebJobs] vagy [funkciók].
+Az igény szerinti feladatok találhatók `App_Data/config/scripts/scheduler post-migration`.  Javasoljuk, hogy az összes igény szerinti feladatok túl átalakítása[WebJobs] vagy [funkciók].  Új Feladatütemező feladatok írási [WebJobs] vagy [funkciók].
 
 ### <a name="notification-hubs"></a>A Notification Hubs
-A Mobile Services Notification Hubs leküldéses értesítések használ.  A következő beállításokkal segítségével csatolja az értesítési központnak a Mobile Service áttelepítés után:
+A Mobile Services Notification Hubs leküldéses értesítések használ.  a következő beállítások hello használt toolink hello értesítési központ tooyour Mobile Service az áttelepítés után:
 
 | Alkalmazás-beállítás | Leírás |
 |:--- |:--- |
-| **MS\_PushEntityNamespace** |A Notification Hub Namespace |
-| **MS\_NotificationHubName** |Az értesítési központ nevét |
-| **MS\_NotificationHubConnectionString** |Az értesítési központ kapcsolati karakterlánc |
+| **MS\_PushEntityNamespace** |Értesítési központ Namespace hello |
+| **MS\_NotificationHubName** |hello az értesítési központ neve |
+| **MS\_NotificationHubConnectionString** |Értesítési központ kapcsolati karakterlánc hello |
 | **MS\_NamespaceName** |Egy aliast MS_PushEntityNamespace |
 
-Az értesítési központ kezeli a [Azure portálra].  Vegye figyelembe az értesítési központ nevét (található ez az alkalmazás beállításokkal):
+Az értesítési központ kezeli hello [Azure-portálon].  Jegyezze fel a hello értesítési központ nevét (található ez hello App beállításokkal):
 
-1. Jelentkezzen be az [Azure portálra].
+1. Jelentkezzen be toohello [Azure-portálon].
 2. Válassza ki **Tallózás**> elemre, majd válassza **értesítési központok**
-3. Kattintson a mobilszolgáltatáshoz kapcsolódó értesítési központ nevére.
+3. Kattintson a hello mobilszolgáltatás társított hello értesítési központ nevét.
 
 > [!NOTE]
-> Ha az értesítési központ egy "Mixed" típust, nincs látható.  "Mixed" írja be a notification hubs Notification Hubs és a korábbi Service Bus-funkciók használatára.  [Alakítsa át a vegyes névterek] folytatása előtt.  Az átalakítás befejeződése után az értesítési központ megjelenik a [Azure portálra].
+> Ha az értesítési központ egy "Mixed" típust, nincs látható.  "Mixed" írja be a notification hubs Notification Hubs és a korábbi Service Bus-funkciók használatára.  [Alakítsa át a vegyes névterek] folytatása előtt.  Hello átalakítás befejeződése után hello megjelenik az értesítési központ [Azure-portálon].
 >
 >
 
-További információkért tekintse át a [Notification Hubs] dokumentációját.
+További információkért tekintse át a hello [Notification Hubs] dokumentációját.
 
 > [!TIP]
-> Notification Hubs felügyeleti szolgáltatásai a [Azure portálra] továbbra is a képen vannak.  A [a klasszikus Azure portálon] továbbra is elérhető a Notification Hubs kezeléséhez.
+> Notification Hubs-felügyeleti funkciókat hello [Azure-portálon] továbbra is a képen vannak.  Hello [klasszikus Azure portál] továbbra is elérhető a Notification Hubs kezeléséhez.
 >
 >
 
 ### <a name="legacy-push"></a>A hagyományos leküldéses beállításai
-Ha a mobilszolgáltatást, a Notification Hubs megjelenése előtt a leküldéses konfigurált, az *örökölt leküldéses*.  Ha leküldéses használ, és nem jelenik meg egy értesítési központot, szerepel a konfigurációs, akkor valószínűleg használ *örökölt leküldéses*.  Ez a szolgáltatás az összes többi szolgáltatás áttelepítése.  Azt javasoljuk azonban, hogy frissítsen a Notification Hubs hamarosan az áttelepítés befejezése után.
+Ha a mobilszolgáltatáshoz előtt hello bemutatása a Notification Hubs leküldéses konfigurált, az *örökölt leküldéses*.  Ha leküldéses használ, és nem jelenik meg egy értesítési központot, szerepel a konfigurációs, akkor valószínűleg használ *örökölt leküldéses*.  Ez a szolgáltatás az összes többi szolgáltatás áttelepítése.  Javasoljuk azonban, hogy frissítse tooNotification hubok, amint hello áttelepítés befejezése után.
 
-Az idő alatt (kivétellel a figyelmet a jelentősebb az APN szolgáltatás tanúsítványát) örökölt leküldéses beállítások érhetők alkalmazás beállításaiban.  Az APNS-tanúsítvány frissítése azáltal, hogy a fájlrendszer a megfelelő fájlt.
+A ideiglenes hello minden hello örökölt leküldéses beállítás (kivétellel hello figyelmet a jelentősebb hello APNS-tanúsítvány) érhetők el az alkalmazás beállításai.  Frissítés hello APNS-tanúsítványt azáltal, hogy a megfelelő fájlt hello hello fájlrendszer.
 
 ### <a name="app-settings"></a>Egyéb beállítások
-A következő további beállításokkal: áttelepített Mobile szolgáltatás és a rendelkezésre álló *beállítások* > *Alkalmazásbeállítások*:
+További beállítások a következő hello: áttelepített Mobile szolgáltatás és a rendelkezésre álló *beállítások* > *Alkalmazásbeállítások*:
 
 | Alkalmazás-beállítás | Leírás |
 |:--- |:--- |
-| **MS\_MobileServiceName** |Az alkalmazás neve |
-| **MS\_MobileServiceDomainSuffix** |A megadott tartománynév előtagja. Egytényezős Azure-mobile.net |
+| **MS\_MobileServiceName** |az alkalmazás hello neve |
+| **MS\_MobileServiceDomainSuffix** |hello tartománynév előtagja. Egytényezős Azure-mobile.net |
 | **MS\_ApplicationKey** |Az alkalmazás kulcs |
 | **MS\_főkulcsos** |Az alkalmazás főkulcs |
 
-Az alkalmazás kulcs és a főkulcs megegyeznek az alkalmazás kulcsok eredeti Mobile szolgáltatás.  Különösen az Alkalmazáskulcsot által küldött mobil ügyfelek használatát a mobil API érvényesítéséhez.
+hello alkalmazáskulcsot és a főkulcs is azonos toohello alkalmazás kulcsok eredeti Mobile szolgáltatás.  Különösen hello Alkalmazáskulcsot küldi el mobil ügyfelek toovalidate hello mobil API használatát.
 
 ### <a name="cliequivalents"></a>Parancssori megfelelője
-Már használhatja a *mobil azure* parancs az Azure Mobile Services hely kezeléséhez.  Ehelyett számos funkciót helyett a *azure hely* parancsot.  A következő táblázat segítségével alakokat található általános jellegű parancsok:
+Már használhatja a hello *mobil azure* toomanage parancsot az Azure Mobile Services-webhelyre.  Számos funkciót hello helyett inkább *azure hely* parancsot.  A következő tábla toofind megfelelője általános jellegű parancsok hello használata:
 
 | *Az Azure Mobile* parancs | Egyenértékű *Azure Site* parancs |
 |:--- |:--- |
@@ -300,37 +300,37 @@ Már használhatja a *mobil azure* parancs az Azure Mobile Services hely kezelé
 | mobil appsetting törlése *neve* *kulcs* |hely appsetting törlése *kulcs* *neve* |
 | mobil appsetting megjelenítése *neve* *kulcs* |hely appsetting törlése *kulcs* *neve* |
 
-A megfelelő alkalmazás-beállítás frissítésével hitelesítés vagy a leküldéses értesítési beállításainak frissítése
+Frissítési beállítások frissítésével hello megfelelő alkalmazás-beállítás hitelesítés vagy a leküldéses értesítés.
 Szerkesztheti a fájlokat, és tegye közzé a webhely, ftp vagy git.
 
 ### <a name="diagnostics"></a>Diagnosztika és naplózás
-Diagnosztikai naplózás általában le van tiltva, az Azure App Service-ben.  Diagnosztikai naplózás engedélyezése:
+Diagnosztikai naplózás általában le van tiltva, az Azure App Service-ben.  diagnosztikai naplózás tooenable:
 
-1. Jelentkezzen be az [Azure portálra].
-2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile szolgáltatás nevét.
-3. Alapértelmezés szerint a beállítások panel nyílik meg.
-4. Válassza ki **diagnosztikai naplók** szolgáltatások menüjében.
-5. Kattintson a **ON** esetében a következő naplók kapcsolódnak: **Alkalmazásnaplózást (fájlrendszer)**, **a részletes hibaüzeneteket**, és **sikertelen kérelmek nyomkövetése**
+1. Jelentkezzen be toohello [Azure-portálon].
+2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile Service hello nevére.
+3. Alapértelmezés szerint hello-beállítások panel nyílik meg.
+4. Válassza ki **diagnosztikai naplók** hello szolgáltatások menüjében.
+5. Kattintson a **ON** a naplók a következő hello: **Alkalmazásnaplózást (fájlrendszer)**, **a részletes hibaüzeneteket**, és **sikertelen kérelmek nyomkövetése**
 6. Kattintson a **fájlrendszer** Web server naplózás
 7. Kattintson a **mentése**
 
-A naplók megtekintéséhez:
+tooview hello naplói:
 
-1. Jelentkezzen be az [Azure portálra].
-2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile szolgáltatás nevét.
-3. Kattintson a **eszközök** gomb
-4. Válassza ki **naplófolyamot** OBSERVE menüjében.
+1. Jelentkezzen be toohello [Azure-portálon].
+2. Válassza ki **összes erőforrás** vagy **alkalmazásszolgáltatások** kattintson az áttelepített Mobile Service hello nevére.
+3. Kattintson a hello **eszközök** gomb
+4. Válassza ki **naplófolyamot** hello OBSERVE menüjében.
 
-Naplók az ablakban jelennek meg, akkor jönnek létre.  Emellett letöltheti a naplók az üzembe helyezési hitelesítő adatok használatával újabb elemzés céljából. További információkért lásd: a [naplózás] dokumentációját.
+Naplók hello ablakban jelennek meg, akkor jönnek létre.  Az üzembe helyezési hitelesítő adatok használatával későbbi elemzési naplókat hello is letöltheti. További információkért lásd: hello [naplózás] dokumentációját.
 
 ## <a name="known-issues"></a>Ismert problémák
 ### <a name="deleting-a-migrated-mobile-app-clone-causes-a-site-outage"></a>Egy hely leállás Mobile App át másolat törlése okoz.
-Az Azure PowerShell használatával áttelepített mobilszolgáltatás klónozza, majd törölje a klónozás, a DNS-bejegyzést a termelési service távolítja el.  A webhely már nem elérhető az internetről.  
+Az Azure PowerShell, majd törölje hello Klónozás használatával áttelepített mobilszolgáltatás a klón hello DNS-bejegyzést a termelési service távolítja el.  A webhely már nem érhető el a hello Internet.  
 
-Megoldás: Ha a webhely klónozza, ehhez a portálon keresztül.
+Megoldás: Ha a tooclone a helyen, ehhez hello portálon keresztül.
 
 ### <a name="changing-webconfig-does-not-work"></a>Web.config módosítása nem működik
-Az ASP.NET webhely van, ha módosítja a `Web.config` fájl nem érvényben.  Az Azure App Service összeállít egy megfelelő `Web.config` fájl a Mobile Services futásidejű támogatásához rendszerindítás során.  Egyes beállítások (például egyéni fejlécek) felülbírálhatja egy XML-transzformációs fájl használatával.  Hozzon létre egy fájlt a nevű `applicationHost.xdt` -ezt a fájlt a kell végződnie a `D:\home\site` könyvtárhoz, az Azure szolgáltatásban.  Töltse fel a `applicationHost.xdt` fájlt egy egyéni telepítési parancsfájl használatával, vagy közvetlenül a Kudu használatával.  Az alábbiakban látható egy példa a dokumentum:
+Ha egy ASP.NET-webhely, megváltozik a toohello `Web.config` fájl nem érvényben.  hello Azure App Service összeállít egy megfelelő `Web.config` fájl indítási toosupport hello Mobile Services futásidőben.  Egyes beállítások (például egyéni fejlécek) felülbírálhatja egy XML-transzformációs fájl használatával.  Hozzon létre egy fájlt a nevű `applicationHost.xdt` -ezt a fájlt kell végződnie hello `D:\home\site` hello Azure szolgáltatás könyvtárába.  Töltse fel a `applicationHost.xdt` fájlt egy egyéni telepítési parancsfájl használatával, vagy közvetlenül a Kudu használatával.  hello következő egy példa a dokumentum bemutatja:
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -349,23 +349,23 @@ Az ASP.NET webhely van, ha módosítja a `Web.config` fájl nem érvényben.  Az
 </configuration>
 ```
 
-További információkért lásd: a [XDT átalakítási minták] dokumentációnkat a Githubon.
+További információkért lásd: hello [XDT átalakítási minták] dokumentációnkat a Githubon.
 
-### <a name="migrated-mobile-services-cannot-be-added-to-traffic-manager"></a>Áttelepített Mobile Services nem adható hozzá a Traffic Manager
-Traffic Manager-profil létrehozásakor a profilhoz áttelepített mobilszolgáltatás közvetlenül nem választható.  Használja a "külső végpont."  A külső végpont nem vehető Powershellen keresztül.  További információkért lásd: a [Traffic Manager-oktatóanyag](https://azure.microsoft.com/blog/azure-traffic-manager-external-endpoints-and-weighted-round-robin-via-powershell/).
+### <a name="migrated-mobile-services-cannot-be-added-tootraffic-manager"></a>Áttelepített Mobile Services nem vehető fel kezelő tooTraffic
+Traffic Manager-profil létrehozásakor egy áttelepített mobilszolgáltatás toohello profil közvetlenül nem választható.  Használja a "külső végpont."  A külső végpont nem vehető Powershellen keresztül.  További információkért lásd: a [Traffic Manager-oktatóanyag](https://azure.microsoft.com/blog/azure-traffic-manager-external-endpoints-and-weighted-round-robin-via-powershell/).
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy az alkalmazás az App Service át van még több szolgáltatást is használhatja:
+Most, hogy az alkalmazás áttelepített tooApp szolgáltatás, nincsenek még több szolgáltatást is használhatja:
 
-* Központi telepítési [átmeneti üzembe helyezési ponti] engedélyezi, hogy a webhely változásainak tesztelése, és végezze el A / B tesztelés.
+* Központi telepítési [átmeneti üzembe helyezési ponti] toostage módosítások tooyour hely lehetővé teszi, és végezze el A / B tesztelés.
 * [WebJobs] pótlásáról igény ütemezett feladatokhoz.
-* Is [folyamatosan telepítése] GitHub, a TFS vagy Mercurial létrehozhatja, ha a webhely-webhelyét.
-* Használhat [Application Insights] a webhely figyelésére.
-* A webhely és a mobil API ugyanazt a kódot a szolgálnak.
+* Is [folyamatosan telepítése] létrehozhatja, ha a hely tooGitHub, TFS vagy Mercurial webhelyét.
+* Használhat [Application Insights] toomonitor a helyen.
+* A webhely szolgálnak és a mobil API a hello ugyanazt a kódot.
 
-### <a name="upgrading-your-site"></a>Az Azure Mobile Apps SDK a Mobile Services hely frissítése
-* Node.js-alapú kiszolgáló-projektekhez az új [Mobile Apps Node.js SDK] számos új szolgáltatást nyújt. Például mostantól helyi fejlesztési és hibakeresés, bármely fent 0.10 Node.js verziójával, és az összes Express.js köztes testreszabása.
-* A. A NET-alapú kiszolgáló-projektek, az új [Mobile Apps SDK NuGet-csomagok](https://www.nuget.org/packages/Microsoft.Azure.Mobile.Server/) NuGet függőségekkel több beleszólása van.  Ezeket a csomagokat az új App Service-hitelesítését támogatja, és bármely ASP.NET-projekt állítható össze. Történő frissítéssel kapcsolatos további tudnivalókért lásd: [frissítse a meglévő .NET Mobile szolgáltatást az App Service](app-service-mobile-net-upgrading-from-mobile-services.md).
+### <a name="upgrading-your-site"></a>A Mobile Services webhely tooAzure Mobile Apps SDK frissítése
+* Node.js-alapú kiszolgáló-projektekhez hello új [Mobile Apps Node.js SDK] számos új szolgáltatást nyújt. Például mostantól helyi fejlesztési és hibakeresés, bármely fent 0.10 Node.js verziójával, és az összes Express.js köztes testreszabása.
+* A. A NET-alapú kiszolgáló-projektek, új hello [Mobile Apps SDK NuGet-csomagok](https://www.nuget.org/packages/Microsoft.Azure.Mobile.Server/) NuGet függőségekkel több beleszólása van.  Ezeket a csomagokat hello új App Service hitelesítés támogatásához, és bármely ASP.NET-projekt állítható össze. Történő frissítéssel kapcsolatos további tudnivalókért lásd: [frissítse a meglévő .NET Mobile Service tooApp szolgáltatás](app-service-mobile-net-upgrading-from-mobile-services.md).
 
 <!-- Images -->
 [0]: ./media/app-service-mobile-migrating-from-mobile-services/migrate-to-app-service-button.PNG
@@ -378,8 +378,8 @@ Most, hogy az alkalmazás az App Service át van még több szolgáltatást is h
 [Automatikus méretezése]: ../app-service-web/web-sites-scale.md
 [Azure App Service]: ../app-service/app-service-value-prop-what-is.md
 [Azure App Service üzembe helyezési dokumentációja]: ../app-service-web/web-sites-deploy.md
-[a klasszikus Azure portálon]: https://manage.windowsazure.com
-[Azure portálra]: https://portal.azure.com
+[klasszikus Azure portál]: https://manage.windowsazure.com
+[Azure-portálon]: https://portal.azure.com
 [Azure Region]: https://azure.microsoft.com/en-us/regions/
 [Azure Scheduler tervek]: ../scheduler/scheduler-plans-billing.md
 [folyamatosan telepítése]: ../app-service-web/app-service-continuous-deployment.md

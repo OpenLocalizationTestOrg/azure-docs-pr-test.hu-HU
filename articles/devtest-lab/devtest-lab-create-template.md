@@ -1,6 +1,6 @@
 ---
-title: "A VHD-fájl Azure DevTest Labs egyéni lemezkép létrehozása |} Microsoft Docs"
-description: "Útmutató egyéni lemezkép létrehozása a Azure DevTest Labs szolgáltatásban a VHD-fájl az Azure portál használatával"
+title: "erről a VHD-fájl egy Azure DevTest Labs egyéni lemezképet aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate egyéni lemezképként az Azure DevTest Labs szolgáltatásban virtuális merevlemez fájl használatával hello Azure-portálon"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 9983ea9b847f44ed18a6169a4bdb224b63626a64
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 80af8ea1cb72380f868df0a76c4a0dcd92e63cf5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-custom-image-from-a-vhd-file"></a>Létrehozhat egyéni rendszerképeket a VHD-fájl
 
@@ -30,41 +30,41 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="step-by-step-instructions"></a>Lépésenkénti utasítások
 
-A következő lépések végigvezetik a VHD-fájl az Azure portál használatával egyéni lemezkép létrehozása:
+hello következő lépések végigvezetik a VHD-fájlt hello Azure-portálon az egyéni lemezkép létrehozása:
 
-1. Jelentkezzen be az [Azure Portalra](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Jelentkezzen be toohello [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. Válassza a **További szolgáltatások**, majd a **DevTest Labs** elemet a listából.
+1. Válassza ki **további szolgáltatások**, majd válassza ki **DevTest Labs** hello listából.
 
-1. Válassza ki a kívánt labor labs listájának megtekintéséhez.  
+1. Labs hello listában jelölje ki hello kívánt labor.  
 
-1. A labor paneljén válassza **konfigurációs**. 
+1. Hello labor paneljén válassza **konfigurációs**. 
 
-1. A tesztlabor a **konfigurációs** panelen válassza **egyéni lemezképeket (VHD)**.
+1. A tesztkörnyezet hello **konfigurációs** panelen válassza **egyéni lemezképeket (VHD)**.
 
-1. Az a **egyéni lemezképek** panelen válassza **+ Hozzáadás**.
+1. A hello **egyéni lemezképek** panelen válassza **+ Hozzáadás**.
 
     ![Egyéni lemezkép hozzáadása](./media/devtest-lab-create-template/add-custom-image.png)
 
-1. Adja meg az egyéni lemezkép nevét. Ez a név alap képek listájának a virtuális gép létrehozásakor.
+1. Adjon meg egyéni lemezkép hello hello nevét. Ez a név alap képek hello listája jelenik meg a virtuális gépek létrehozásakor.
 
-1. Adja meg az egyéni lemezkép leírását. A leírást alap képek listája jelenik meg a virtuális gépek létrehozásakor.
+1. Adja meg a hello egyéni lemezkép hello leírását. A leírást alap képek hello listája jelenik meg a virtuális gépek létrehozásakor.
 
 1. Válassza ki **VHD**.
 
-1. Az a **VHD** panelen válassza ki a kívánt VHD-fájlt.
+1. A hello **VHD** panelen, a select hello kívánt VHD-fájlt.
 
-1. Válassza ki **OK** bezárásához a **VHD** panelen.
+1. Válassza ki **OK** tooclose hello **VHD** panelen.
 
 1. Válassza ki **operációs rendszer konfigurációja**.
 
-1. Az a **operációs rendszer konfigurációja** lapra, válassza ki vagy **Windows** vagy **Linux**.
+1. A hello **operációs rendszer konfigurációja** lapra, válassza ki vagy **Windows** vagy **Linux**.
 
-1. Ha **Windows** van jelölve, adja meg a jelölőnégyzet keresztül e *Sysprep* már futtatták azon a gépen. 
+1. Ha **Windows** van jelölve, adja meg a hello jelölőnégyzet keresztül e *Sysprep* hello gépen futott. 
 
-1. Válassza ki **OK** bezárásához a **operációs rendszer konfigurációja** panelen.
+1. Válassza ki **OK** tooclose hello **operációs rendszer konfigurációja** panelen.
 
-1. Válassza ki **OK** egyéni lemezkép létrehozásához.
+1. Válassza ki **OK** toocreate hello egyéni lemezképet.
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
@@ -75,4 +75,4 @@ A következő lépések végigvezetik a VHD-fájl az Azure portál használatáv
 
 ##<a name="next-steps"></a>Következő lépések
 
-- [A virtuális gépek hozzáadása a tesztkörnyezet](./devtest-lab-add-vm-with-artifacts.md)
+- [Virtuális gép tooyour labor hozzáadása](./devtest-lab-add-vm-with-artifacts.md)

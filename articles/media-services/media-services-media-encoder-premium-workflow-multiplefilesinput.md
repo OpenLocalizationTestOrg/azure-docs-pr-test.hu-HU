@@ -1,6 +1,6 @@
 ---
-title: "Több bemeneti fájlok és a prémium szintű kódolás - Azure összetevő tulajdonságai |} Microsoft Docs"
-description: "Ez a témakör azt ismerteti, hogyan setRuntimeProperties segítségével több bemeneti fájlt használja, és egyéni adatok továbbítását a Media Encoder prémium munkafolyamat media processzor."
+title: "aaaMultiple bemeneti fájlok és a prémium szintű kódolás - Azure összetevő tulajdonságai |} Microsoft Docs"
+description: "Ez a témakör azt ismerteti, hogyan toouse setRuntimeProperties toouse több bemeneti fájl, és adja át egyéni adatok toohello Media Encoder prémium munkafolyamat media processzor."
 services: media-services
 documentationcenter: 
 author: xpouyat
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: xpouyat;anilmur;juliako
-ms.openlocfilehash: df1ee5089a0af6ffce1431b658843fcb34a66ce5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e14d10fbf9669e0b88e5ba1c519f1ba5e0bafdd4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-multiple-input-files-and-component-properties-with-premium-encoder"></a>A prémium szintű kódolás több bemeneti fájlok és összetevő tulajdonságai használja
 ## <a name="overview"></a>Áttekintés
-Forgatókönyv, ahol előfordulhat, hogy testreszabásához szükséges összetevő tulajdonságai, adja meg a klip lista XML-tartalom, vagy több bemeneti fájl küld, ha a feladat elküldése a **Media Encoder prémium munkafolyamat** media processzor. Néhány példa:
+Forgatókönyv, ahol szükség lehet a toocustomize összetevő tulajdonságai, adja meg a klip lista XML-tartalom, vagy több bemeneti fájlok küldése hello kötegazonosítójú feladat elküldése **Media Encoder prémium munkafolyamat** media processzor. Néhány példa:
 
-* Szöveg felirataként videó-és a szöveges értéket (például az aktuális dátum) beállítása az egyes bemeneti videó futásidőben.
-* Testreszabása az klip lista XML-(adjon meg egy vagy több forrásfájlokat, függetlenül a tisztítás, stb.).
-* A bemeneti videóhoz a egy embléma felirataként, amíg a videó.
+* A videó szöveg felirataként és hello szöveges érték (például a jelenlegi dátum hello) beállítása az egyes bemeneti videó futásidőben.
+* Testreszabás hello klip lista XML (toospecify egy vagy több forrás-fájlok, vagy anélkül díszítésre stb.).
+* Egy embléma felirataként hello bemeneti videóhoz, miközben hello videó.
 * Több hang nyelvi kódolást.
 
-Ahhoz, hogy a **Media Encoder prémium munkafolyamat** tudja, hogy néhány tulajdonság a munkafolyamat több bemeneti fájlküldésre vagy a feladat létrehozásakor módosítani, kell használni, amely tartalmazza a konfigurációs karakterlánc **setRuntimeProperties** és/vagy **transcodeSource**. Ez a témakör azt ismerteti, hogyan is használhatja őket.
+toolet hello **Media Encoder prémium munkafolyamat** tudja, hogy néhány tulajdonság hello munkafolyamat módosítani hello feladat létrehozásakor, vagy több bemeneti fájlok küldése telepítette, toouse tartalmazó konfigurációs karakterlánc  **setRuntimeProperties** és/vagy **transcodeSource**. Ez a témakör azt ismerteti, hogyan toouse őket.
 
 ## <a name="configuration-string-syntax"></a>Konfigurációs karakterlánc-formátum:
-A konfigurációs karakterláncot a kódolási feladat használja az XML-dokumentum, amely a következőképpen néz ki:
+hello konfigurációs karakterlánc tooset a kódolási feladat hello használja az XML-dokumentum, amely a következőképpen néz ki:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -45,7 +45,7 @@ A konfigurációs karakterláncot a kódolási feladat használja az XML-dokumen
 </transcodeRequest>
 ```
 
-A következő egy C#-kódban, amely fájlból olvassa be az XML-konfiguráció, a jobb oldali videó fájlnév frissíti, és átadja a feladatot a feladatok:
+hello következő hello C# kóddal, amely hello XML konfigurációs fájlból olvassa be, frissítse hello jobb videó fájlnév, és továbbítja azokat a feladatok toohello feladat:
 
 ```c#
 string premiumConfiguration = ReadAllText(@"D:\home\site\wwwroot\Presets\SetRuntime.xml").Replace("VideoFileName", myVideoFileName);
@@ -53,33 +53,33 @@ string premiumConfiguration = ReadAllText(@"D:\home\site\wwwroot\Presets\SetRunt
 // Declare a new job.
 IJob job = _context.Jobs.Create("Premium Workflow encoding job");
 
-// Get a media processor reference, and pass to it the name of the 
-// processor to use for the specific task.
+// Get a media processor reference, and pass tooit hello name of hello 
+// processor toouse for hello specific task.
 IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Premium Workflow");
 
-// Create a task with the encoding details, using a string preset.
+// Create a task with hello encoding details, using a string preset.
 ITask task = job.Tasks.AddNew("Premium Workflow encoding task",
                               processor,
                               premiumConfiguration,
                               TaskOptions.None);
 
-// Specify the input assets
+// Specify hello input assets
 task.InputAssets.Add(workflow); // workflow asset
 task.InputAssets.Add(video); // video asset with multiple files
 
-// Add an output asset to contain the results of the job. 
+// Add an output asset toocontain hello results of hello job. 
 // This output is specified as AssetCreationOptions.None, which 
-// means the output asset is not encrypted. 
+// means hello output asset is not encrypted. 
 task.OutputAssets.AddNew("Output asset", AssetCreationOptions.None);
 ```
 
 ## <a name="customizing-component-properties"></a>Összetevő tulajdonságai testreszabása
 ### <a name="property-with-a-simple-value"></a>Egyszerű értéke
-Bizonyos esetekben célszerű egy összetevő tulajdonság, és a munkafolyamat-fájlt, amelyet szeretne hajthatják végre a Media Encoder prémium munkafolyamat testreszabása.
+Bizonyos esetekben hasznos toocustomize együtt hello munkafolyamat fájl, amelyet hajtja végre a Media Encoder prémium munkafolyamat toobe összetevő tulajdonság.
 
-Tegyük fel, akkor a munkafolyamat átfedések szöveg a videók, és a következő futtatási állítható be a szöveget (például az aktuális dátum) kellene. Ehhez a kódolási feladat a állítható be az új értéket az átmeneti területre összetevő text tulajdonságához szöveg küldésével. A mechanizmus segítségével más egy összetevő (például pozícióját vagy az átmeneti területre színe, az átviteli AVC kódoló, stb.) a munkafolyamat tulajdonságainak módosítása.
+Tegyük fel, a munkafolyamat átfedések szöveg a videók, és a következő hello szöveg (például a jelenlegi dátum hello) toobe set kellene futásidőben. Ehhez hello szöveg toobe hello text tulajdonságához hello átfedő összetevő hello új értéket állítja be a kódolási feladat hello küldésével. A mechanizmus toochange egyéb tulajdonságok használhatók az összetevő hello munkafolyamatban (például hello pozícióját vagy hello felirat színét, hello sávszélességű hello AVC kódoló, stb.).
 
-**setRuntimeProperties** felül a munkafolyamat-összetevők tulajdonság.
+**setRuntimeProperties** használt toooverride hello munkafolyamat hello összetevői tulajdonság értéke.
 
 Példa:
 
@@ -89,13 +89,13 @@ Példa:
     <setRuntimeProperties>
       <property propertyPath="Media File Input/filename" value="MyInputVideo.mp4" />
       <property propertyPath="/primarySourceFile" value="MyInputVideo.mp4" />
-      <property propertyPath="Optional Text Overlay/Text To Image Converter/text" value="Today is Friday the 13th of May, 2016"/>
+      <property propertyPath="Optional Text Overlay/Text tooImage Converter/text" value="Today is Friday hello 13th of May, 2016"/>
   </setRuntimeProperties>
 </transcodeRequest>
 ```
 
 ### <a name="property-with-an-xml-value"></a>Az XML-értéke tulajdonság
-Olyan tulajdonságon, amely vár egy XML-érték beállításához foglalják magukban a `<![CDATA[ and ]]>`.
+tooset vár egy XML-érték tulajdonság használatával beágyazására `<![CDATA[ and ]]>`.
 
 Példa:
 
@@ -129,47 +129,47 @@ Példa:
 ```
 
 > [!NOTE]
-> Ügyeljen arra, hogy nem kocsivissza visszatérési put után csak `<![CDATA[`.
+> Győződjön meg arról, hogy nem tooput kocsivissza csak után térjen vissza `<![CDATA[`.
 
 ### <a name="propertypath-value"></a>a propertyPath érték
-A fenti példákban a propertyPath lett "/ Media File bemeneti/fájlnév" vagy "/ inactiveTimeout" vagy "clipListXml".
-Ez az általános, az összetevő neve, majd a tulajdonságnevet kell megadni. Az elérési út is van több vagy kevesebb, mint "/ primarySourceFile" (mert a tulajdonság a munkafolyamat gyökerében) vagy "/ videó feldolgozási/kép átfedő/átlátszatlanság" (mivel az átmeneti területre csoportban).    
+Az előző példákban hello hello propertyPath lett "/ Media File bemeneti/filename" vagy "/ inactiveTimeout" vagy "clipListXml".
+Ez az általában hello hello összetevő neve, majd hello tulajdonság hello nevét. hello elérési utat is van több vagy kevesebb, mint "/ primarySourceFile" (mert hello tulajdonság hello gyökerében hello munkafolyamat) vagy "/ videó feldolgozási/kép átfedő/átlátszatlanság" (mert átfedő hello csoportban).    
 
-Ellenőrizze az elérési út és a tulajdonság nevét, használja az akciógombra kattinthat, amely közvetlenül mellett minden egyes tulajdonsága. A művelet gombra kattintva, és válassza ki **szerkesztése**. Ez azt mutatja majd, a tényleges nevét, a tulajdonság, és azonnal felette, a névtér.
+toocheck hello elérési útját és a tulajdonság nevét, használja hello akciógombra kattinthat, amely közvetlenül mellett minden egyes tulajdonsága. A művelet gombra kattintva, és válassza ki **szerkesztése**. Ez azt mutatja majd, hello tényleges név: hello tulajdonság, és azonnal felette, hello névtér.
 
 ![A művelet/szerkesztése](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture6_actionedit.png)
 
 ![Tulajdonság](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture7_viewproperty.png)
 
 ## <a name="multiple-input-files"></a>Több bemeneti fájl
-Minden tevékenység elküldött a **Media Encoder prémium munkafolyamat** két eszközök igényel:
+Egyes feladatokat, hogy elküldését toohello **Media Encoder prémium munkafolyamat** két eszközök igényel:
 
-* Az első egy egy *munkafolyamat eszköz* , amely a munkafolyamat-fájlt tartalmaz. Munkafolyamat-fájlok segítségével megtervezheti a [munkafolyamat-Tervező](media-services-workflow-designer.md).
-* A második érték van egy *Media eszköz* , amely tartalmazza a media (oka) t, amelyet szeretne kódolni.
+* hello először még egy *munkafolyamat eszköz* , amely a munkafolyamat-fájlt tartalmaz. Hello segítségével megtervezheti a munkafolyamat-fájlok [munkafolyamat-Tervező](media-services-workflow-designer.md).
+* hello második van egy *Media eszköz* hello media (oka) t, amelyet az tooencode tartalmazza.
 
-Ha több médiafájlok küldjük a **Media Encoder prémium munkafolyamat** kódoló, a következő korlátozások vonatkoznak:
+Ha több adathordozó fájlok toohello küldjük **Media Encoder prémium munkafolyamat** kódoló, hello a következő korlátozások vonatkoznak:
 
-* A médiafájlokat kell lennie ugyanazon *Media eszköz*. Több adathordozó eszközök használata nem támogatott.
-* Meg kell adnia az elsődleges fájlnak a Media eszköz (ideális esetben azt a fő videofájl, amely a kódoló kapcsolatba kell feldolgozni).
-* Szükséges konfigurációs adatok, amely tartalmazza a **setRuntimeProperties** és/vagy **transcodeSource** elemben, amely a processzor.
-  * **setRuntimeProperties** felül a filename tulajdonságban vagy az összetevők a munkafolyamat egy másik tulajdonságot.
-  * **transcodeSource** klip lista XML-tartalom szolgál.
+* Fájlok kell lennie minden hello media hello azonos *Media eszköz*. Több adathordozó eszközök használata nem támogatott.
+* Meg kell adnia hello elsődleges fájl a Media eszköz (ideális esetben ez a hello kódoló hello fő videofájl kapcsolatba tooprocess).
+* Hello tartalmazó toopass szükséges konfigurációs adatok **setRuntimeProperties** és/vagy **transcodeSource** elem toohello processzor.
+  * **setRuntimeProperties** használt toooverride hello filename tulajdonságban vagy a hello összetevők hello munkafolyamat egy másik tulajdonság.
+  * **transcodeSource** használt toospecify hello klip lista XML-tartalom.
 
-A munkafolyamat kapcsolatok:
+Hello munkafolyamat kapcsolatok:
 
-* Ha egy vagy több adathordozó fájl bemeneti összetevőket használnak, és tervezi használni az **setRuntimeProperties** adja meg a fájlnevet, majd nem csatlakozzon az elsődleges fájl összetevő PIN-kód őket. Győződjön meg arról, hogy nincs-e az elsődleges fájl objektum és az adathordozó fájl Input(s) közötti kapcsolat.
-* Ha szeretné használni a klip lista XML és egy forrás-adathordozó összetevőt, majd összekapcsolhatja mindkét együtt.
+* Ha egy vagy több adathordozó fájl bemeneti összetevőket használnak, és tervezze meg toouse **setRuntimeProperties** toospecify hello fájl nevét, majd hello elsődleges fájl összetevő PIN-kód toothem csatlakoztatásának mellőzése. Győződjön meg arról, hogy nincs-e hello elsődleges fájl objektum és hello Media fájl Input(s) közötti kapcsolat.
+* Ha jobban szeret toouse klip lista XML és egy forrás-adathordozó összetevőt, majd csatlakozhat mindkét együtt.
 
-![Nincs kapcsolat elsődleges forrásfájlból Media fájl bemeneti](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture0_nopin.png)
+![Nincs elsődleges forrásfájl tooMedia fájl bemeneti közötti kapcsolat](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture0_nopin.png)
 
-*Nincs Media fájl bemeneti elemét/elemeit az elsődleges fájlnak a kapcsolat beállítása a filename tulajdonságban setRuntimeProperties használatakor.*
+*Nincs kapcsolat hello elsődleges fájl tooMedia fájl bemeneti elemét/elemeit az setRuntimeProperties tooset hello filename tulajdonságban használatakor.*
 
-![XML-forráslista levágása klip listából kapcsolat](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture1_pincliplist.png)
+![Klip lista XML tooClip forráslista közötti kapcsolat](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture1_pincliplist.png)
 
-*Forrás-adathordozó klip lista XML csatlakozni, és transcodeSource használja.*
+*Forrás klip lista XML tooMedia csatlakozhat, és transcodeSource használja.*
 
 ### <a name="clip-list-xml-customization"></a>Lista XML testreszabási levágása
-Megadhatja a klip lista XML futásidőben a munkafolyamatban használatával **transcodeSource** konfigurációjában karakterlánc XML. Ehhez a klip lista XML PIN-kódot kell csatlakoztatni a forrás-adathordozó összetevő a munkafolyamatban.
+Megadhat hello klip lista XML hello munkafolyamat futásidőben használatával **transcodeSource** hello konfigurációban karakterlánc XML. Ehhez a hello klip lista XML PIN-kód csatlakoztatott toobe toohello forrás-adathordozó összetevő hello munkafolyamatban.
 
 ```xml
 <?xml version="1.0" encoding="utf-16"?>
@@ -197,7 +197,7 @@ Megadhatja a klip lista XML futásidőben a munkafolyamatban használatával **t
   </transcodeRequest>
 ```
 
-Ha meg szeretné határozni /primarySourceFile használni ezt a tulajdonságot "Kifejezések" használatával, a kimeneti fájlok nevét, akkor javasoljuk, hogy átadja a klip lista XML-tulajdonságként *után* a /primarySourceFile tulajdonság kívánja kerülni a /primarySourceFile beállításával bírálható klip listájában.
+Ha azt szeretné, hogy ez a tulajdonság tooname hello kimeneti fájlok "Kifejezések" segítségével toospecify /primarySourceFile toouse, akkor javasoljuk, hogy átadja hello klip lista XML-tulajdonságként *után* hello /primarySourceFile tulajdonság, tooavoid hello rendelkező klip lista felülbírálnia hello /primarySourceFile beállítást.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -267,14 +267,14 @@ A további keret pontos tisztítás:
   </transcodeRequest>
 ```
 
-## <a name="example-1--overlay-an-image-on-top-of-the-video"></a>1. példa: Átfedő fölött a videó kép
+## <a name="example-1--overlay-an-image-on-top-of-hello-video"></a>1. példa: Átfedő fölött videó hello kép
 
 ### <a name="presentation"></a>Bemutató
-Vegye figyelembe például szeretné egy embléma lemezképét a bemeneti videóhoz átfedő, amíg a videó. Ebben a példában a bemeneti videó "Microsoft_HoloLens_Possibilities_816p24.mp4" nevű, és az embléma neve "logo.png". Az alábbi lépéseket kell végrehajtani:
+Tekintse meg egy példát kívánt toooverlay egy embléma hello bemeneti videóhoz közben hello videó. Ebben a példában hello bemeneti videó "Microsoft_HoloLens_Possibilities_816p24.mp4" nevű és hello embléma neve "logo.png". Végre kell hajtania az alábbi lépésekkel hello:
 
-* Hozzon létre egy munkafolyamat-eszközt a a munkafolyamat-fájlt (lásd a következő példát).
-* Hozzon létre egy adathordozó eszköz, amely két fájlt tartalmaz: az elsődleges fájl és MyLogo.png MyInputVideo.mp4.
-* A feladat elküldése a Media Encoder prémium munkafolyamat media processzor, a fenti bemeneti eszközök, és adja meg a következő konfigurációs karakterlánc.
+* Hozzon létre egy munkafolyamat-eszközt a hello munkafolyamat fájlt (lásd a következő példa hello).
+* Hozzon létre egy adathordozó eszköz, amely két fájlt tartalmaz: MyInputVideo.mp4, az elsődleges fájl- és MyLogo.png hello.
+* Egy feladat toohello Media Encoder prémium munkafolyamat media processzor, a fenti hello bemeneti eszközök küldése, és adja meg a következő konfigurációs karakterlánc hello.
 
 A konfiguráció:
 
@@ -289,17 +289,17 @@ A konfiguráció:
   </transcodeRequest>
 ```
 
-A fenti példában a videó fájl neve elküldi az adathordozó fájl bemeneti összetevő és a primarySourceFile tulajdonság. Az embléma fájl nevét, amely a grafikus átfedő összetevő kapcsolódik egy másik Media fájl bemeneti zajlik.
+Hello a fenti példában a hello videofájl hello neve küldött toohello Media fájl bemeneti összetevő és hello primarySourceFile tulajdonság. hello embléma fájl neve hello tooanother Media fájl bemeneti csatlakoztatott toohello grafikus átfedő összetevő által küldött.
 
 > [!NOTE]
-> A videó fájlnév nem jut hozzá a primarySourceFile tulajdonság. A hiba okát is használják ezt a tulajdonságot a munkafolyamat készítéséhez a megfelelő kimeneti fájl nevét kifejezésekkel, például.
+> hello videó fájlnév küldött toohello primarySourceFile tulajdonság. Ennek az oka hello toouse hello munkafolyamat készítéséhez hello megfelelő kimeneti fájl nevét kifejezésekkel, például a tulajdonság értéke.
 
 ### <a name="step-by-step-workflow-creation"></a>A munkafolyamat részletes létrehozása
-Az alábbiakban olyan munkafolyamatot, amely két fájlt fogadja bemeneti adatként létrehozásának lépései: videó és lemezképet. A kép fölött a videó azt fogja átfedő.
+Az alábbiakban hello lépéseket toocreate olyan munkafolyamatot, amely két fájlt fogadja bemeneti adatként: videó és lemezképet. Akkor lesz átfedő hello kép videó hello felett.
 
 Nyissa meg **munkafolyamat-Tervező** válassza **fájl** > **új munkaterület** > **átkódolására tervezetének**.
 
-Az új munkafolyamat három elemeit tartalmazza:
+Új munkafolyamat hello három elemeit tartalmazza:
 
 * Elsődleges forrásfájl
 * XML klip listázása
@@ -309,23 +309,23 @@ Az új munkafolyamat három elemeit tartalmazza:
 
 *Új kódolási munkafolyamat*
 
-Ahhoz, hogy fogadja el a bemeneti médiafájl, első lépésként adja hozzá az adathordozó fájl bemeneti összetevőt. Vegyen fel összetevőt a munkafolyamathoz, keresse meg azt a tárház keresési mezőbe, és a kívánt bejegyzés húzza a Tervező ablak.
+Rendelés tooaccept hello bemeneti adathordozófájlba első lépésként adja hozzá az adathordozó fájl bemeneti összetevőt. tooadd összetevő toohello munkafolyamat keressen hello tárház keresési mezőbe, majd szükséges hello bejegyzés húzza hello Tervező ablak.
 
-Ezután adja hozzá a video-fájl a munkafolyamat tervezéséhez. Ehhez az szükséges, kattintson a háttér panelre munkafolyamat-tervezővel, és keresse meg az elsődleges forrásfájl tulajdonság, a jobb oldali tulajdonság panelen. A mappa ikonra, és válassza ki a megfelelő video-fájlt.
+Ezután adja hozzá a munkafolyamat tervezéséhez használt hello videofájl toobe. toodo tehát hello háttér ablaktábla munkafolyamat-tervezőben kattintson, és keresse meg hello elsődleges forrásfájl tulajdonság a hello tulajdonság jobb oldali panelen. Hello mappa ikonra, és válassza ki a megfelelő videofájl hello.
 
 ![Elsődleges fájl forrás](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture10_primaryfile.png)
 
 *Elsődleges fájl forrás*
 
-Ezt követően adja meg a videofájl a Media fájl bemeneti összetevő.   
+Adja meg a következő hello videofájl hello Media fájl bemeneti összetevő.   
 
 ![A médiafájl bemeneti forrása](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture11_mediafileinput.png)
 
 *A médiafájl bemeneti forrása*
 
-Amint ez történik, az adathordozó fájl bemeneti összetevő vizsgálhatja meg a fájl, és a kimeneti PIN-kód megfelelően a fájlt, amely megvizsgálja az feltöltése.
+Amint ez történik, hello Media fájl bemeneti összetevő hello fájl vizsgálata, és a kimeneti PIN-kódok tooreflect hello fájl, amely megvizsgálja az feltöltése.
 
-A következő lépés hozzáadása egy "videó adatok típusa Frissítőjének" adhatja meg a Rec.709 szín terület. Adja hozzá a "videó konverter" adatok elrendezés/elrendezés típusra van állítva = síkbeli konfigurálható. Ez a video-adatfolyamot átalakítása átvihető az átmeneti területre összetevő forrásaként formátumú.
+hello következő lépés egy "Videó adatok típusa Frissítőjének" toospecify hello szín terület tooRec.709 tooadd. Adja hozzá a "videó konverter" tooData elrendezés/típusának beállított = síkbeli konfigurálható. A művelet konvertálja hello video-adatfolyamot tooa formátum hello átfedő összetevő forrásaként lehet tenni.
 
 ![videó típusú frissítési adatok és konverter](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture12_formatconverter.png)
 
@@ -335,34 +335,34 @@ A következő lépés hozzáadása egy "videó adatok típusa Frissítőjének" 
 
 *Elrendezés típus síkbeli konfigurálható:*
 
-A következő videó átfedő összetevő hozzáadása, és a (tömörítetlen) video PIN-kód csatlakozzon a media fájl bemeneti (tömörítetlen) video PIN kódját.
+A következő videó átfedő összetevőt, és csatlakozzon a hello (tömörítetlen) video PIN-kód toohello (tömörítetlen) video PIN-kód hello media fájl bemeneti.
 
-Egy másik Media fájl bemenete (betölteni az embléma fájlt), vegye fel ezt az összetevőt parancsára, és nevezze át a "Media fájl bemeneti embléma", és jelölje ki a képfájl (például .png fájl) a fájl tulajdonság. A tömörített kép PIN-kód csatlakozni a tömörített kép PIN-kódot az átfedés.
+Adja hozzá egy másik Media fájl bemeneti (tooload hello embléma fájl), kattintson a ezt az összetevőt, és nevezze át túl "Media fájl bemeneti embléma", és válassza a hello fájltulajdonság lemezkép (.png fájl például). Csatlakozás hello átfedő hello tömörítetlen lemezkép tömörített kép PIN-kód toohello PIN kódját.
 
 ![Összetevő- és képfájlok forrásfájlt átfedő](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture13_overlay.png)
 
 *Összetevő- és képfájlok forrásfájlt átfedő*
 
-Ha a pozíciót a videót a módosítani kívánt (például érdemes helyezze el a 10 százaléka ki a videó bal felső sarkában), törölje a jelet az "Manuális bevitel" jelölőnégyzetből. Ez végezhető el, mert egy Media fájl bemeneti segítségével adja meg az átmeneti területre összetevőre embléma fájlját.
+Ha azt szeretné, hogy toomodify hello pozíciója a hello videó hello embléma (például érdemes tooposition 10 százalékát hello felső ki a bal oldali hello videó sarkában), törölje a jelet hello "Manuális bevitel" jelölőnégyzetet. Ez végezhető el, mert a média fájl bemeneti tooprovide hello embléma fájl toohello átfedő összetevőt használ.
 
 ![Átfedő pozíciója](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture14_overlay_position.png)
 
 *Átfedő pozíciója*
 
-A video-adatfolyamot H.264 kódolására, adja hozzá a AVC Videókódoló és AAC kódoló összetevőket a Tervező felületére. Csatlakoztassa a PIN-kód.
-Állítsa be a AAC kódoló, és válassza ki a hang formátum konverziós/készlet: 2.0 (L, R).
+tooencode hello video-adatfolyamot tooH.264, vegye fel a hello AVC Videókódoló és AAC kódoló összetevők toohello Tervező felületére. Csatlakozás hello PIN-kód.
+Hello AAC kódoló beállítását, és hang formátum konverziós/készlet kiválasztása: 2.0 (L, R).
 
 ![Hang- és kódolók](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture15_encoders.png)
 
 *Hang- és kódolók*
 
-Ezután adja hozzá a **ISO Mpeg-4 Multiplexer** és **kimeneti fájl** összetevők és csatlakoztassa a PIN-kód.
+Ezután adja hozzá a hello **ISO Mpeg-4 Multiplexer** és **kimeneti fájl** összetevők és csatlakoztassa hello PIN-kód.
 
 ![MP4 multiplexer és a kimeneti fájl](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture16_mp4output.png)
 
 *MP4 multiplexer és a kimeneti fájl*
 
-Állítsa be a kimeneti fájl nevét kell. Kattintson a **kimeneti fájl** összetevő és a kifejezést a fájl szerkesztése:
+Meg kell tooset hello hello kimeneti fájl nevét. Kattintson a hello **kimeneti fájl** hello fájl összetevő és a Szerkesztés hello kifejezése:
 
     ${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_withoverlay.mp4
 
@@ -370,33 +370,33 @@ Ezután adja hozzá a **ISO Mpeg-4 Multiplexer** és **kimeneti fájl** összete
 
 *Kimeneti fájlnév*
 
-A munkafolyamat győződjön meg arról, hogy megfelelően fut-e el helyileg is futtathatja.
+Hello munkafolyamat futtatása helyileg toocheck, hogy fut-e megfelelően.
 
 Miután a Befejezés után futtatható Azure Media Services.
 
-Először készítsen egy eszköz két fájlokat az Azure Media Services: a videofájl és az emblémát. Ehhez a .NET vagy a REST API használatával. Is ehhez az Azure portál használatával vagy [Azure Media Services Explorer](https://github.com/Azure/Azure-Media-Services-Explorer) (AMSE).
+Először készítsen egy eszköz két fájlokat az Azure Media Services: hello videofájl és hello embléma. Ehhez hello .NET vagy a REST API használatával. Is ehhez hello Azure-portál használatával vagy [Azure Media Services Explorer](https://github.com/Azure/Azure-Media-Services-Explorer) (AMSE).
 
-Ez az oktatóanyag bemutatja, hogyan AMSE rendelkező eszközök kezeléséhez. Fájlok hozzáadása egy eszköz két módja van:
+Az oktatóanyag bemutatja, hogyan AMSE toomanage eszközöket. Két módon tooadd fájlok tooan eszköz van:
 
-* Hozzon létre egy helyi mappát, másolja a két fájlt, és húzással a mappát a **eszköz** fülre.
-* Eszközként a videofájl feltöltése, az eszköz adatait jeleníti meg, lépjen a fájlok lapra és töltse fel egy további fájlt (embléma).
+* Hozzon létre egy helyi mappát, másolja hello két fájlokat, és áthúzása hello mappa toohello **eszköz** fülre.
+* Eszközként hello videofájl feltöltése hello eszköz információk megjelenítése, nyissa meg toohello fájlok fülre, és töltse fel egy további fájlt (embléma).
 
 > [!NOTE]
-> Feltétlenül állítson be egy elsődleges fájl az adategységben (a fő videofájl).
+> Győződjön meg arról, hogy tooset elsődleges fájl hello eszközt (hello fő videofájl).
 
 ![Az AMSE eszköz fájlok](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture18_assetinamse.png)
 
 *Az AMSE eszköz fájlok*
 
-Válassza ki az objektumot, és válassza a prémium szintű kódolás kódolása. Töltse fel a munkafolyamat, és válassza ki azt.
+Válassza ki a hello eszközt, és válassza ki a tooencode a prémium szintű kódolás. Töltse fel a hello munkafolyamat, és válassza ki azt.
 
-A gombra kattintva adatokat adnak át a processzor, és adja hozzá a következő XML futásidejű tulajdonságainak beállításához:
+Hello toohello gomb toopass adatfeldolgozó kattintson, és adja hozzá a következő XML-tooset hello futásidejű tulajdonságok hello:
 
 ![Prémium szintű kódolás az AMSE](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture19_amsepremium.png)
 
 *Prémium szintű kódolás az AMSE*
 
-Majd illessze be a következő XML-adataiban. Meg kell adnia a videó fájl nevét az adathordozó fájl bemeneti és a primarySourceFile. Adja meg a fájl neve az embléma túl.
+Majd illessze be a következő XML-adatok hello. Hello videofájl toospecify hello neve hello Media fájl bemeneti és primarySourceFile is szükség van. Adja meg hello hello embléma hello fájlnév túl.
 
 ```xml
 <?xml version="1.0" encoding="utf-16"?>
@@ -413,37 +413,37 @@ Majd illessze be a következő XML-adataiban. Meg kell adnia a videó fájl nev�
 
 *setRuntimeProperties*
 
-Ha a .NET SDK használatával hozzon létre, és futtatni a feladatot, az XML-adatok ki lesznek átadva, a konfigurációs karakterláncból.
+Ha hello .NET SDK toocreate használja, és hello feladat futtatása az XML-adatok toobe átadott hello konfigurációs karakterláncban.
 
 ```c#
 public ITask AddNew(string taskName, IMediaProcessor mediaProcessor, string configuration, TaskOptions options);
 ```
 
-A feladat befejezése után a kimeneti adategységen MP4 fájlban megjeleníti az átmeneti területre!
+Hello feladat befejezése után a hello MP4-fájlt a hello kimeneti eszköz megjeleníti hello átfedő!
 
-![A videó az átfedő](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture21_resultoverlay.png)
+![A videó hello átfedő](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture21_resultoverlay.png)
 
-*A videó az átfedő*
+*A videó hello átfedő*
 
-Letöltheti a minta-munkafolyamat [GitHub](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows/).
+Letöltheti a minta-munkafolyamat hello [GitHub](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows/).
 
 ## <a name="example-2--multiple-audio-language-encoding"></a>2. példa: Több nyelvi hang kódolás
 
 Példa kódolási workfkow érhető el több hang nyelvi [GitHub](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows/MultilanguageAudioEncoding).
 
-Ez a mappa tartalmaz egy minta-munkafolyamat egy többszörös MP4 fájlok eszköz több zeneszámok MXF fájlt kódolni használható.
+Ez a mappa tartalmaz egy minta-munkafolyamat egy MXF fájl tooa multi MP4 fájlok eszköz több zeneszámok használt tooencode lesz.
 
-A munkafolyamat azt feltételezi, hogy a MXF fájl tartalmazza-e egy hang követése; a további zeneszámok (WAV vagy MP4...) külön hang fájlokként kell átadni.
+Ez a munkafolyamat azt feltételezi, hogy hello MXF fájl tartalmaz egy hang követése; hello további zeneszámok (WAV vagy MP4...) külön hang fájlokként kell átadni.
 
-Kódolására, tegye a következőket:
+tooencode, kövesse az alábbi lépéseket:
 
-* Hozzon létre egy Media Services eszköz a MXF, és a hang fájlokat (0 – 18 hangfájlok).
-* Győződjön meg arról, hogy a MXF fájl be van állítva az elsődleges fájl.
-* Hozzon létre egy feladatot, és egy feladatot, a prémium szintű munkafolyamat kódolás processzor használatával. A megadott munkafolyamat (MultiMP4-1080p-19audio-v1.workflow) használja.
-* A setruntime.xml adatokat adnak át a feladat (Azure Media Services Explorer használatakor használja az "XML-adatok átadása a munkafolyamat" gombot).
-  * Frissítse a helyes nevek és nyelvek címkék adhatók meg az XML-adatok.
-  * A munkafolyamat hang 18-ra hang 1 nevű hang részből áll.
-  * A nyelvcímkének RFC5646 esetén támogatott.
+* Hozzon létre egy Media Services eszközt a hello MXF fájl- és hello hang fájlok (0 too18 hang).
+* Győződjön meg arról, hogy hello MXF fájl elsődleges fájl be van állítva.
+* Hozzon létre egy feladat- és a prémium szintű munkafolyamat kódolás processzor hello segítségével. A megadott (MultiMP4-1080p-19audio-v1.workflow) hello munkafolyamat használja.
+* (Ha használja az Azure Media Services Explorer, használata hello "XML-adatok toohello munkafolyamata átadni" gombot), adja át hello setruntime.xml adatok toohello feladat.
+  * Frissítse a hello XML-adatok toospecify hello megfelelő fájl nevét és nyelvek címkék.
+  * hello munkafolyamat nevű hang 1 tooAudio 18 hang részből áll.
+  * RFC5646 nyelvcímkének hello támogatott.
 
 ```xml
 <?xml version="1.0" encoding="utf-16"?>
@@ -462,11 +462,11 @@ Kódolására, tegye a következőket:
 </transcodeRequest>
 ```
 
-* A kódolt objektumhoz több nyelv zeneszámok fogja tartalmazni, és ezek nyomon követi az Azure Media Player választható kell lennie.
+* hello kódolású eszköz több nyelv zeneszámok fogja tartalmazni, és ezek nyomon követi az Azure Media Player választható kell lennie.
 
 ## <a name="see-also"></a>Lásd még:
 * [Prémium szintű kódolás az Azure Media Services bemutatása](http://azure.microsoft.com/blog/2015/03/05/introducing-premium-encoding-in-azure-media-services)
-* [Azure Media Services használata a prémium szintű kódolás](http://azure.microsoft.com/blog/2015/03/06/how-to-use-premium-encoding-in-azure-media-services)
+* [Hogyan prémium szintű Azure Media Services kódolási toouse](http://azure.microsoft.com/blog/2015/03/06/how-to-use-premium-encoding-in-azure-media-services)
 * [Az Azure Media Services kódolási igény tartalom](media-services-encode-asset.md#media-encoder-premium-workflow)
 * [Media Encoder prémium szintű munkafolyamat-formátumok és kodekek](media-services-premium-workflow-encoder-formats.md)
 * [Minta munkafolyamat-fájlok](https://github.com/AzureMediaServicesSamples/Encoding-Presets/tree/master/VoD/MediaEncoderPremiumWorkfows)

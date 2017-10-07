@@ -1,6 +1,6 @@
 ---
-title: Az Operations Management Suite (OMS) SDK |} Microsoft Docs
-description: "Ez a cikk a dokumentációs és egyéb erőforrásai az OMS és az Azure portálon kívül OMS-szolgáltatások eléréséhez szükséges sorolja fel.  Ez REST API magában foglalja a hozzáférést a különböző alkalmazásprogramozási felületek és például a PowerShell parancsfájl-végrehajtók"
+title: "Felügyeleti csomag (OMS) SDK aaaOperations |} Microsoft Docs"
+description: "Ez a cikk felsorolja hello dokumentáció és egyéb erőforrásai kívül hello OMS OMS-szolgáltatások és az Azure portál eléréséhez.  Ez REST API magában foglalja a hozzáférést a különböző alkalmazásprogramozási felületek és például a PowerShell parancsfájl-végrehajtók"
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/01/2017
 ms.author: bwren
-ms.openlocfilehash: 03e0f5b6fa26806083cd7852e123495c898bcf0c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7144f10bba70a8f08cc97cec45b4b0a148892c90
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="operations-management-suite-oms-sdk"></a>Az Operations Management Suite (OMS) SDK
-[Az Operations Management Suite (OMS)](operations-management-suite-overview.md) a Microsoft felhőalapú informatikai felügyeleti megoldás, amely segít a kezelése és védelme a helyszíni és felhőalapú infrastruktúra.  Ez a cikk a dokumentációs és egyéb erőforrásai az OMS és az Azure portálon kívül OMS-szolgáltatások eléréséhez szükséges sorolja fel.  Ez magában foglalja REST API különböző alkalmazásprogramozási felületek és például a PowerShell parancsfájl-végrehajtók való hozzáférést. 
+[Az Operations Management Suite (OMS)](operations-management-suite-overview.md) a Microsoft felhőalapú informatikai felügyeleti megoldás, amely segít a kezelése és védelme a helyszíni és felhőalapú infrastruktúra.  Ez a cikk felsorolja hello dokumentáció és egyéb erőforrásai kívül hello OMS OMS-szolgáltatások és az Azure portál eléréséhez.  Ez magában foglalja REST API különböző alkalmazásprogramozási felületek és például a PowerShell parancsfájl-végrehajtók való hozzáférést. 
 
 ## <a name="automation"></a>Automatizálás
 * [Azure Automation-dokumentáció](http://azure.microsoft.com/documentation/services/automation)
@@ -33,7 +33,7 @@ ms.lasthandoff: 07/11/2017
 * [Az Azure biztonsági mentés dokumentációja](http://azure.microsoft.com/documentation/services/backup)
 * [Biztonsági mentési PowerShell-parancsmagok](https://msdn.microsoft.com/library/mt619253.aspx)
 * [Biztonsági mentési REST API-n](https://msdn.microsoft.com/library/azure/mt772375.aspx)
-* [Központi telepítése és kezelése az Azure a Windows Server és Windows-ügyfél PowerShell használatával történő biztonsági mentés](../backup/backup-client-automation.md)
+* [Központi telepítése és kezelése a biztonsági mentési tooAzure Windows Server és Windows-ügyfél PowerShell használatával](../backup/backup-client-automation.md)
 
 ## <a name="log-analytics"></a>Log Analytics
 * [Napló Analytics dokumentációja](http://azure.microsoft.com/documentation/services/log-analytics)
@@ -51,10 +51,10 @@ ms.lasthandoff: 07/11/2017
 ## <a name="site-recovery"></a>Site Recovery
 * [Site Recovery PowerShell-parancsmagok](https://msdn.microsoft.com/library/mt637930.aspx)
 * [A Site Recovery REST API-n](https://msdn.microsoft.com/library/azure/mt750497.aspx)
-* [Azure Automation-runbook hozzáadása a helyreállítási terv](../site-recovery/site-recovery-runbook-automation.md)
+* [Azure Automation runbookjai toorecovery csomagok hozzáadása](../site-recovery/site-recovery-runbook-automation.md)
 * [PowerShell és az Azure Resource Manager használatával a helyszíni Hyper-V virtuális gépek és az Azure közötti replikáció](../site-recovery/site-recovery-deploy-with-powershell-resource-manager.md)
 
 ## <a name="next-steps"></a>Következő lépések
-* Olvassa el a különböző lehetőségek [integrálása a MOBILE services](operations-management-suite-integration.md).
+* Információk a különböző lehetőségek hello [integrálása a MOBILE services](operations-management-suite-integration.md).
 * Hozzon létre egy [az OMS egyéni megoldás](operations-management-suite-solutions-creating.md).
 

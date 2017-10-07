@@ -1,6 +1,6 @@
 ---
-title: "Oktatóanyag: A felhőben BC Azure Active Directoryval integrált |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és BC között a felhőben."
+title: "Oktatóanyag: Azure Active Directory integrációja a felhő hello BC |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és a BC hello felhő."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/1/2017
 ms.author: jeedes
-ms.openlocfilehash: ebc95d600eca1027331cd92cfe481d0c3ee833a5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e81ffb522b2c96c7e9b2919abd8d3b199c295eb1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-bc-in-the-cloud"></a>Oktatóanyag: Azure Active Directory-integrációval rendelkező BC a felhőben
+# <a name="tutorial-azure-active-directory-integration-with-bc-in-hello-cloud"></a>Oktatóanyag: Azure Active Directory integrációja a felhő hello BC
 
-Ebben az oktatóanyagban elsajátíthatja BC integrálása az Azure Active Directory (Azure AD) a felhőben.
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate BC a hello felhőalapú Azure Active Directory (Azure AD).
 
-BC a felhőben az Azure AD integrálása lehetővé teszi a következő előnyöket biztosítja:
+A felhőalapú Azure AD-val hello BC integrálása lehetővé teszi a következő előnyöket hello:
 
-- Szabályozhatja, aki hozzáfér a felhőben BC Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a BC a felhőben (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Megadhatja a hozzáférés tooBC rendelkező hello felhő az Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooBC a hello felhő (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az Azure AD rendszerrel történő integráció konfigurálása BC a felhőben, szüksége van a következőkre:
+tooconfigure BC hello felhő az Azure AD integrálása, a következő elemek hello kell:
 
 - Az Azure AD szolgáltatásra
-- A felhő egyszeri bejelentkezés engedélyezve van az előfizetésben a egy BC
+- Egy BC hello felhő egyszeri bejelentkezés engedélyezve van az előfizetésben található
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A felhőben a gyűjteményből BC hozzáadása
+1. A felhő hello gyűjteményből hello BC hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-bc-in-the-cloud-from-the-gallery"></a>A felhőben a gyűjteményből BC hozzáadása
-BC integrálása az Azure AD-be a felhőben konfigurálásához kell hozzáadnia BC a felhőben a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-bc-in-hello-cloud-from-hello-gallery"></a>A felhő hello gyűjteményből hello BC hozzáadása
+tooconfigure hello integrációja BC a hello felhő az Azure AD-be, meg kell tooadd BC a felhő hello hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A felhőben a gyűjteményből BC hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd BC hello felhő hello gyűjteményből a hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás hozzáadásához kattintson **Hozzáadás** párbeszédpanel tetején gombra.
+3. Új alkalmazás tooadd, kattintson **Hozzáadás** párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **a felhőben BC**.
+4. Hello keresési mezőbe, írja be a **a felhő hello BC**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-bcinthecloud-tutorial/tutorial_bcinthecloud_search.png)
 
-5. Az eredmények panelen válassza ki a **a felhőben BC**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. Hello eredmények panelen, jelölje ki a **a felhő hello BC**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-bcinthecloud-tutorial/tutorial_bcinthecloud_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
-Ebben a szakaszban, tesztelése és konfigurálása az Azure AD egyszeri bejelentkezést a BC "Britta Simon." nevű tesztfelhasználó alapján a felhőben
+Ebben a szakaszban, tesztelése és konfigurálása az Azure AD egyszeri bejelentkezést a BC a felhő alapján "Britta Simon." nevű tesztfelhasználó hello
 
-Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó BC a felhőben a felhasználó Azure AD-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a BC a felhőben közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork, az Azure AD kell tooknow milyen hello a felhő hello BC megfelelőjére felhasználó tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a felhő hello BC hello kapcsolódó felhasználó közötti kapcsolat kapcsolatot kell létrehozni toobe.
 
-A felhőben BC, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
+A felhő hello BC, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
 
-A felhőben az Azure AD egyszeri bejelentkezést a BC tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD egyszeri bejelentkezést a felhő hello BC-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[A felhő tesztfelhasználó létrehozása egy BC](#creating-a-bc-in-the-cloud-test-user)**  - való egy megfelelője a Britta Simon BC a felhőben, amely csatolva van a felhasználó az Azure AD-ábrázolását.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[Egy BC létrehozása a hello felhő tesztfelhasználó](#creating-a-bc-in-the-cloud-test-user)**  -toohave Britta Simon a felhőbe, amely a felhasználó csatolt toohello az Azure AD ábrázolása hello BC a valami.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és a felhő alkalmazásban a BC egyszeri bejelentkezés konfigurálása.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és a BC hello felhő alkalmazásban az egyszeri bejelentkezés konfigurálása.
 
-**Konfigurálása az Azure AD az egyszeri bejelentkezés BC a felhőben, hajtsa végre az alábbi lépéseket:**
+**tooconfigure az Azure AD egyszeri bejelentkezést a BC a hello felhő, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure portálon a a **a felhőben BC** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **a felhő hello BC** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-bcinthecloud-tutorial/tutorial_bcinthecloud_samlbase.png)
 
-3. Az a **felhő tartományban és URL-címek BC** területen tegye a következőket:
+3. A hello **hello felhőalapú tartományt és URL-címek BC** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-bcinthecloud-tutorial/tutorial_bcinthecloud_url.png)
 
-    a. Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://app.bcinthecloud.com/router/loginSaml/<customerid>`
+    a. A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://app.bcinthecloud.com/router/loginSaml/<customerid>`
 
-    b. Az a **azonosító** szövegmező, adja meg az URL-címet:`https://app.bcinthecloud.com`
+    b. A hello **azonosító** szövegmező, adja meg az URL-címet:`https://app.bcinthecloud.com`
 
     > [!NOTE] 
-    > Ez az érték nincs valós. Frissítse ezt az értéket a tényleges bejelentkezési URL-címet. Ügyfél [BC a felhőalapú ügyfél-támogatási csoport](https://www.bcinthecloud.com/supportcenter/) lekérni ezt az értéket. 
+    > Ez az érték nincs valós. Frissítse ezt az értéket hello tényleges bejelentkezési URL-CÍMÉT. Ügyfél [a hello felhőalapú ügyfél-támogatási csoport BC](https://www.bcinthecloud.com/supportcenter/) tooget ezt az értéket. 
  
-4. Az a **SAML-aláíró tanúsítványa** területen kattintson **metaadatainak XML-kódja** és mentse a metaadat-fájlt a számítógépen.
+4. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello metaadatait tartalmazó fájl a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-bcinthecloud-tutorial/tutorial_bcinthecloud_certificate.png) 
 
@@ -125,64 +125,64 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-bcinthecloud-tutorial/tutorial_general_400.png)
 
-6. Egyszeri bejelentkezés konfigurálása **a felhőben BC** oldalon kell küldeniük a letöltött **metaadatainak XML-kódja** való [a felhőben BC támogatási csoport](https://www.bcinthecloud.com/supportcenter/).
+6. tooconfigure egyszeri bejelentkezést a **a felhő hello BC** oldalon kell letöltött toosend hello **metaadatainak XML-kódja** túl[hello felhő támogatási csoport BC](https://www.bcinthecloud.com/supportcenter/).
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-bcinthecloud-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-bcinthecloud-tutorial/create_aaduser_02.png) 
 
-3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
+3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-bcinthecloud-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-bcinthecloud-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
-### <a name="creating-a-bc-in-the-cloud-test-user"></a>Egy BC felhő tesztfelhasználó létrehozása
+### <a name="creating-a-bc-in-hello-cloud-test-user"></a>Egy BC hello felhő tesztfelhasználó létrehozása
 
-Ebben a szakaszban hoz létre a felhasználó BC Britta Simon meghívta a felhőben. Együttműködve [BC a felhőalapú ügyfél-támogatási csoport](https://www.bcinthecloud.com/supportcenter/) felhasználót is hozzáadhat a felhő alkalmazása BC. Felhasználók kell létrehoznia és aktiválni az egyszeri bejelentkezés használata előtt. 
+Ebben a szakaszban egy Britta Simon meghívta BC hello felhő a felhasználói hoz létre. Együttműködve [BC a hello felhőalapú ügyfél-támogatási csoport](https://www.bcinthecloud.com/supportcenter/) felhasználót is hozzáadhat hello hello BC a hello felhőalapú alkalmazásnál. Felhasználók kell létrehoznia és aktiválni az egyszeri bejelentkezés használata előtt. 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés a felhőben BC Azure egyszeri bejelentkezéshez használandó.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooBC a hello felhő megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon hozzárendelése BC a felhőben, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooBC a hello felhő, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **a felhőben BC**.
+2. Hello alkalmazások listában válassza ki a **a felhő hello BC**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-bcinthecloud-tutorial/tutorial_bcinthecloud_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -190,7 +190,7 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -198,13 +198,13 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
- Ha a hozzáférési panelen a felhő csempén BC gombra kattint, akkor kell beolvasása automatikusan bejelentkezett a BC a felhőalapú alkalmazásokban való. A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
+ Hello BC hello felhő csempén a hozzáférési Panel hello gombra automatikusan bejelentkezett tooyour BC szerezheti be a hello felhőalapú alkalmazásnál. A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

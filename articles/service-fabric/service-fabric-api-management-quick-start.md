@@ -1,6 +1,6 @@
 ---
-title: "Az API Management – első lépések az Azure Service Fabric |} Microsoft Docs"
-description: "Ez az útmutató bemutatja, hogyan gyorsan Ismerkedés az Azure API Management és a Service Fabric."
+title: "a Service Fabric aaaAzure az API Management – első lépések |} Microsoft Docs"
+description: "Ez az útmutató bemutatja, hogyan tooquickly el az Azure API Management és a Service Fabric."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/01/2017
 ms.author: vturecek
-ms.openlocfilehash: e9f44d8a43d274768f43261fea68f0da9c681ae1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f76f3f39a92f89892d6a02ecaab1ec3d343fe2a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-with-azure-api-management-quick-start"></a>A Service Fabric az Azure API Management – első lépések
 
-Ez az útmutató bemutatja, hogyan Azure API Management a Service Fabric beállítása és konfigurálása az első API művelet forgalmat küldeni a Service Fabric háttér-szolgáltatásaihoz. A Service Fabric Azure API Management-forgatókönyvekkel kapcsolatos további tudnivalókért tekintse meg a [áttekintése](service-fabric-api-management-overview.md) cikk. 
+Ez az útmutató bemutatja, hogyan tooset Azure API Management a Service Fabric össze, és az első API művelet toosend forgalom tooback-szolgáltatások konfigurálása a Service Fabric. További információ az Azure API Management-forgatókönyvet az Service Fabric toolearn lásd: hello [áttekintése](service-fabric-api-management-overview.md) cikk. 
 
-## <a name="deploy-api-management-and-service-fabric-to-azure"></a>Az Azure API Management és a Service Fabric telepítése
+## <a name="deploy-api-management-and-service-fabric-tooazure"></a>Az API Management és a Service Fabric tooAzure telepítése
 
-Az első lépés egy megosztott virtuális hálózatot az Azure API Management és a Service Fabric-fürt központi telepítése. Ez lehetővé teszi az API Management és közvetlenül kommunikáljanak a Service Fabric ezért szolgáltatásészlelés, a szolgáltatás partíció megoldása és a forgalom közvetlenül által a háttérszolgáltatáshoz képes végezni a Service Fabric.
+első lépés hello toodeploy API Management és a Service Fabric-fürt tooAzure egy megosztott virtuális hálózaton. Ez lehetővé teszi az API Management toocommunicate közvetlenül a Service Fabric, így műveleteket hajthat végre a szolgáltatásészlelés, a szolgáltatás partíció megoldása és a forgalom közvetlen tooany háttér a Service Fabric szolgáltatás.
 
 ### <a name="topology"></a>topológia
 
-Ez az útmutató a következő topológia telepíti az Azure-ba, amelyben az API Management és a Service Fabric-alhálózataihoz az azonos virtuális hálózatban szerepelnek:
+Ez az útmutató hello következő telepíti, amelyben az API Management és a Service Fabric is alhálózatain topológia tooAzure hello ugyanazon a virtuális hálózaton:
 
  ![Képfelirat][sf-apim-topology-overview]
 
-Gyorsan és egyszerűen a Resource Manager-sablonok minden központi telepítési lépés áll rendelkezésre:
+tooget gyorsan lépéseket, Resource Manager-sablonok áll rendelkezésre egyes telepítési lépéseket:
 
  - Hálózati topológia:
     - [Network.JSON][network-arm]
@@ -46,11 +46,11 @@ Gyorsan és egyszerűen a Resource Manager-sablonok minden központi telepítés
     - [APIM.JSON][apim-arm]
     - [APIM.Parameters.JSON][apim-parameters-arm]
 
-### <a name="sign-in-to-azure-and-select-your-subscription"></a>Jelentkezzen be az Azure-ba, és jelölje ki az előfizetését
+### <a name="sign-in-tooazure-and-select-your-subscription"></a>Jelentkezzen be tooAzure, és jelölje ki az előfizetését
 
-Ez az útmutató használ [Azure PowerShell][azure-powershell]. Amikor egy új PowerShell-munkamenetet indít el, jelentkezzen be az Azure-fiókjával, és jelölje ki az előfizetését, Azure parancsok végrehajtása előtt.
+Ez az útmutató használ [Azure PowerShell][azure-powershell]. Amikor egy új PowerShell-munkamenetet indít el, jelentkezzen be Azure-fiók tooyour, és jelölje ki az előfizetését, Azure parancsok végrehajtása előtt.
  
-Jelentkezzen be az Azure-fiókjával:
+Bejelentkezés tooyour Azure-fiók:
 
 ```powershell
 PS > Login-AzureRmAccount
@@ -71,42 +71,42 @@ Hozzon létre egy új erőforráscsoportot az üzembe helyezéshez. Adjon neki e
 PS > New-AzureRmResourceGroup -Name <my-resource-group> -Location westus
 ```
 
-### <a name="deploy-the-network-topology"></a>A hálózati topológia központi telepítéséhez
+### <a name="deploy-hello-network-topology"></a>Hello hálózati topológia központi telepítéséhez
 
-Az első lépés, hogy a hálózati topológia, amely az API Management és a Service Fabric-fürt telepítése beállítása. A [network.json] [ network-arm] Resource Manager-sablon létrehozása egy virtuális hálózatot (VNET) két alhálózat és két hálózati biztonsági csoportok (NSG) van konfigurálva. 
+hello első lépéseként tooset mentése hello hálózati topológia toowhich API Management és hello Service Fabric-fürt lesz telepítve. Hello [network.json] [ network-arm] Resource Manager-sablon olyan virtuális hálózatot (VNET), két alhálózattal és két hálózati biztonsági csoportok (NSG) konfigurált toocreate. 
 
-A [network.parameters.json] [ network-parameters-arm] paraméterek fájl tartalmazza az alhálózatok és a telepítendő API Management és a Service Fabric az NSG-ket nevét. Ez az útmutató a paraméterértékek nem kell módosítani. Az API Management és a Service Fabric Resource Manager sablonok használata ezek érték található, ezért ha itt módosításuk, módosítania kell azokat a többi Resource Manager sablon ennek megfelelően. 
+Hello [network.parameters.json] [ network-parameters-arm] paraméterfájl hello alhálózatok és a telepítendő API Management és a Service Fabric az NSG-ket hello nevét tartalmazza. Ez az útmutató hello paraméterértékeket nem szükséges módosítani toobe. hello API Management és a Service Fabric Resource Manager sablonok használja ezeket az értékeket, így ha itt módosításuk, módosítania kell azokat hello más Resource Manager-sablonok ennek megfelelően. 
 
- 1. Töltse le a következő Resource Manager sablon és a Paraméterek:
+ 1. Töltse le a következő Resource Manager sablon és a paraméterek fájl hello:
 
     - [Network.JSON][network-arm]
     - [Network.Parameters.JSON][network-parameters-arm]
 
- 2. A következő PowerShell-parancs segítségével a hálózat beállítása a Resource Manager sablonnal és paraméterfájlokkal fájlok telepítése:
+ 2. A következő PowerShell toodeploy hello Resource Manager sablonnal és paraméterfájlokkal parancsfájlok hello hálózati telepítő hello használata:
 
     ```powershell
     PS > New-AzureRmResourceGroupDeployment -ResourceGroupName <my-resource-group> -TemplateFile .\network.json -TemplateParameterFile .\network.parameters.json -Verbose
     ```
 
-### <a name="deploy-the-service-fabric-cluster"></a>A Service Fabric-fürt központi telepítése
+### <a name="deploy-hello-service-fabric-cluster"></a>Hello Service Fabric-fürt központi telepítése
 
-Ha a hálózati erőforrások végzett központi telepítése, a következő lépés a Service Fabric-fürt központi telepítése a virtuális hálózat, az alhálózat és a Service Fabric-fürt számára kijelölt NSG. Ebben az oktatóanyagban a Service Fabric Resource Manager-sablon a virtuális Hálózatot, alhálózatot és az előző lépésben beállított NSG-neveket használja az előre konfigurálva. 
+Hello hálózati erőforrások végzett telepítését, miután hello következő lépésre toodeploy a Service Fabric fürt toohello VNET hello alhálózati és NSG hello Service Fabric-fürt jelöltek ki. Ebben az oktatóanyagban hello Service Fabric Resource Manager-sablon előre konfigurált toouse hello nevek hello virtuális Hálózatot, alhálózatot és hello előző lépésben beállított NSG. 
 
-A Service Fabric-fürt Resource Manager sablon hozzon létre egy biztonságos fürtöt a biztonsági tanúsítvány van konfigurálva. Ezzel a tanúsítvánnyal a fürt a csomópontok kommunikáció biztosításához és a Service Fabric-fürt felhasználói hozzáférésének kezelése. Az API Management ezt a tanúsítványt használja a Service Fabric-szolgáltatás a szolgáltatás felderítése eléréséhez.
+Service Fabric fürt Resource Manager-sablon hello konfigurált toocreate tanúsítvány biztonsági használó biztonságos fürtök. hello tanúsítványok is használt toosecure csomópontok kommunikáció a fürt és a toomanage felhasználói hozzáférés tooyour Service Fabric-fürt. Az API Management szolgáltatás felderítése a tanúsítvány tooaccess hello Service Fabric-szolgáltatás használ.
 
 Ez a lépés szükséges tanúsítvánnyal rendelkező Key Vault a fürt biztonsági. Key Vault használó biztonságos fürtök beállításával kapcsolatos további információkért lásd: [Ez az útmutató a fürt létrehozása az Azure Resource Manager használatával](service-fabric-cluster-creation-via-arm.md)
 
 > [!NOTE]
-> Azure Active Directory-hitelesítés mellett a hozzáférés a fürthöz használt tanúsítvány adhat hozzá. Az Azure Active Directory felhasználói hozzáférése a Service Fabric-fürt kezeléséhez ajánlott módja, de nincs szükség az oktatóanyag elvégzéséhez. Egy tanúsítványra szükség mindkét módszer fürt a csomópontok biztonság és az Azure API Management hitelesítést, amely jelenleg nem támogatja az Azure Active Directoryban a Service Fabric háttérkiszolgáló hitelesítéséhez.
+> A hozzáférés a fürthöz használt hozzáadása toohello tanúsítvány hozzáadhatja Azure Active Directory-hitelesítés. Az Azure Active Directory hello ajánlott módja toomanage felhasználói hozzáférés tooyour Service Fabric-fürt, de nem szükséges toocomplete Ez az oktatóanyag. Egy tanúsítványra szükség mindkét módszer fürt a csomópontok biztonság és az Azure API Management hitelesítést, amely jelenleg nem támogatja az Azure Active Directoryban a Service Fabric háttérkiszolgáló hitelesítéséhez.
 
- 1. Töltse le a következő Resource Manager sablon és a Paraméterek:
+ 1. Töltse le a következő Resource Manager sablon és a paraméterek fájl hello:
  
     - [cluster.JSON][cluster-arm]
     - [cluster.Parameters.JSON][cluster-parameters-arm]
 
- 2. Adja meg az üres paraméterei a `cluster.parameters.json` fájl az üzembe helyezés többek között a [Key Vault információk](service-fabric-cluster-creation-via-arm.md#set-up-a-key-vault) a fürt tanúsítvány.
+ 2. Töltse ki a hello üres paraméterek között hello `cluster.parameters.json` fájl a telepítéshez, beleértve a hello [Key Vault információk](service-fabric-cluster-creation-via-arm.md#set-up-a-key-vault) a fürt tanúsítvány.
 
- 3. A következő PowerShell-parancs segítségével a Resource Manager sablonnal és paraméterfájlokkal fájlokat, hogy a Service Fabric-fürt központi telepítése:
+ 3. A következő PowerShell parancs toodeploy hello Resource Manager sablonnal és paraméterfájlokkal fájlok toocreate hello Service Fabric-fürt hello használata:
 
     ```powershell
     PS > New-AzureRmResourceGroupDeployment -ResourceGroupName <my-resource-group> -TemplateFile .\cluster.json -TemplateParameterFile .\cluster.parameters.json -Verbose
@@ -114,18 +114,18 @@ Ez a lépés szükséges tanúsítvánnyal rendelkező Key Vault a fürt biztons
 
 ### <a name="deploy-api-management"></a>Az API Management telepítése
 
-Végezetül az alhálózat a virtuális hálózat és az API Management kijelölt NSG API Management központi telepítését. Nem kell a Service Fabric fürt üzembe helyezés befejeződik az API Management üzembe helyezése előtt várja meg. 
+Végezetül telepítése az API Management toohello VNET hello az alhálózaton, és az API Management kijelölt NSG. Toowait hello Service Fabric fürt telepítési toofinish az API Management telepítése előtt nem kell. 
 
-Ebben az oktatóanyagban az API Management Resource Manager-sablon a virtuális Hálózatot, alhálózatot és az előző lépésben beállított NSG-neveket használja az előre konfigurálva. 
+Ebben az oktatóanyagban hello API Management Resource Manager-sablon előre konfigurált toouse hello nevek hello virtuális Hálózatot, alhálózatot és hello előző lépésben beállított NSG. 
 
- 1. Töltse le a következő Resource Manager sablon és a Paraméterek:
+ 1. Töltse le a következő Resource Manager sablon és a paraméterek fájl hello:
  
     - [APIM.JSON][apim-arm]
     - [APIM.Parameters.JSON][apim-parameters-arm]
 
- 2. Adja meg az üres paraméterei a `apim.parameters.json` az üzembe helyezéshez.
+ 2. Töltse ki a hello üres paraméterek között hello `apim.parameters.json` az üzembe helyezéshez.
 
- 3. A következő PowerShell-parancs segítségével a Resource Manager sablonnal és paraméterfájlokkal fájlok telepítése az API Management:
+ 3. Használja a következő PowerShell parancs toodeploy hello Resource Manager sablonnal és paraméterfájlokkal fájlok az API Management hello:
 
     ```powershell
     PS > New-AzureRmResourceGroupDeployment -ResourceGroupName <my-resource-group> -TemplateFile .\apim.json -TemplateParameterFile .\apim.parameters.json -Verbose
@@ -133,43 +133,43 @@ Ebben az oktatóanyagban az API Management Resource Manager-sablon a virtuális 
 
 ## <a name="configure-api-management"></a>API-kezelés konfigurálása
 
-Után az API Management és a Service Fabric-fürt vannak telepítve, a Service Fabric háttér állíthatja be az API Management. Ez lehetővé teszi, hogy a szabályzatban háttér szolgáltatás forgalmat küld a Service Fabric-fürt.
+Után az API Management és a Service Fabric-fürt vannak telepítve, a Service Fabric háttér állíthatja be az API Management. Ez lehetővé teszi egy háttér szolgáltatás házirend által küldött forgalmat tooyour Service Fabric-fürt toocreate.
 
 ### <a name="api-management-security"></a>API Management biztonsági
 
-A Service Fabric háttér konfigurálásához először API biztonsági beállítások megadásához. A biztonsági beállítások konfigurálása, nyissa meg az API Management szolgáltatás az Azure portálon.
+tooconfigure hello Service Fabric háttér, először tooconfigure API Management biztonsági beállításait. tooconfigure biztonsági beállításait, lépjen a tooyour API Management szolgáltatásba a hello Azure-portálon.
 
-#### <a name="enable-the-api-management-rest-api"></a>Az API Management REST API engedélyezése
+#### <a name="enable-hello-api-management-rest-api"></a>Hello API Management REST API engedélyezése
 
-Az API Management REST API jelenleg az egyetlen lehetőség a háttér-szolgáltatás konfigurálásához. Az első lépés, hogy engedélyezze az API Management REST API-t és a biztonság.
+hello API Management REST API jelenleg hello csak úgy tooconfigure egy háttérszolgáltatáshoz. első lépés hello tooenable hello API Management REST API-t, és biztosíthatja.
 
- 1. Válassza ki az API Management szolgáltatásban **felügyeleti API - előzetes** alatt **biztonsági**.
- 2. Ellenőrizze a **engedélyezése API Management REST API** jelölőnégyzetet.
- 3. Megjegyzés: a felügyeleti API URL-CÍMÉT – Ez az URL-cím később fogjuk használni a Service Fabric-háttérrendszer beállítása
- 4. Generate egy **hozzáférési tokent** kiválasztásával lejárati dátummal és a kulcsot, majd kattintson a **Generate** gombra az oldal alján.
- 5. Másolás a **hozzáférési jogkivonat** és mentheti – Ez a következő lépésekben fogjuk használni. Vegye figyelembe, hogy ez különbözik az elsődleges és másodlagos kulcsot.
+ 1. Hello API-kezelés szolgáltatás, válassza ki **felügyeleti API - előzetes** alatt **biztonsági**.
+ 2. Ellenőrizze a hello **engedélyezése API Management REST API** jelölőnégyzetet.
+ 3. Vegye figyelembe a hello felügyeleti API URL-CÍMÉT – ez használjuk fel hello Service Fabric háttér újabb tooset hello URL-címe
+ 4. Generate egy **hozzáférési tokent** kiválasztásával lejárati dátummal és a kulcsot, majd kattintson az hello **Generate** gomb hello lap alján hello felé.
+ 5. Másolás hello **hozzáférési jogkivonat** és mentheti – Ez a következő lépéseket hello fogjuk használni. Vegye figyelembe, hogy ez nem azonos a hello elsődleges és másodlagos kulcsot.
 
 #### <a name="upload-a-service-fabric-client-certificate"></a>A Service Fabric ügyfél-tanúsítvány feltöltése
 
-A szolgáltatás felderítése használ a fürt eléréséhez használt tanúsítványt a Service Fabric-fürt API-kezelés kell hitelesíteni. Az egyszerűség kedvéért ez az oktatóanyag a Service Fabric-fürt, amely alapértelmezés szerint a fürt eléréséhez használható létrehozásakor megadott ugyanazt a tanúsítványt használja.
+A Service Fabric-fürtöt használ, amely rendelkezik hozzáférési tooyour fürt tanúsítványt szolgáltatásészlelés az API Management kell hitelesíteni. Az egyszerűség kedvéért a oktatóanyag használ a fürt hello hello Service Fabric-fürt, amely alapértelmezés szerint használt tooaccess lehet létrehozásakor megadott ugyanazt a tanúsítványt.
 
- 1. Válassza ki az API Management szolgáltatásban **ügyféltanúsítványok - előzetes** alatt **biztonsági**.
- 2. Kattintson a **+ Hozzáadás** gomb
- 2. Válassza ki a titkos kulcs fájlját (.pfx) a fürt tanúsítvány, a Service Fabric-fürt létrehozásakor megadott, adjon neki egy nevet, és adja meg a titkos kulcs jelszava.
-
-> [!NOTE]
-> Ez az oktatóanyag az ügyfél-hitelesítés és a fürt-csomópontok biztonsági ugyanazt a tanúsítványt használja. Külön ügyfél-tanúsítványt használhatja, ha van a Service Fabric-fürt elérésére.
-
-### <a name="configure-the-backend"></a>A háttérkiszolgáló beállítása
-
-Most, hogy az API Management a biztonsági beállítások konfigurálása a Service Fabric háttér konfigurálhatja. A Service Fabric háttérkiszolgálókon a Service Fabric-fürt esetén a háttér ahelyett, hogy egy adott Service Fabric-szolgáltatás. Ez lehetővé teszi egy útvonalat a fürt több szolgáltatás egyetlen házirendet.
-
-Ebben a lépésben az előző lépésben az API Management feltöltött a fürt tanúsítványt igényel a hozzáférési jogkivonat korábban létrehozott és az ujjlenyomat.
+ 1. Hello API-kezelés szolgáltatás, válassza ki **ügyféltanúsítványok - előzetes** alatt **biztonsági**.
+ 2. Kattintson a hello **+ Hozzáadás** gomb
+ 2. Hello titkos kulcs fájlja (.pfx) a Service Fabric-fürt létrehozásakor megadott hello fürt tanúsítvány kiválasztása, adjon neki egy nevet, és adja meg a hello titkos kulcs jelszava.
 
 > [!NOTE]
-> Az API Management az előző lépésben használt külön ügyfél-tanúsítványt, ha az ügyféltanúsítványt a fürt tanúsítvány ujjlenyomata ebben a lépésben mellett kell az ujjlenyomat.
+> Ez az oktatóanyag hello ugyanaz a tanúsítvány az ügyfél-hitelesítés és a fürt-csomópontok biztonsági használja. Ha a Service Fabric-fürt rendelkezik egy konfigurált tooaccess, hogy külön ügyfél-tanúsítványt használhatja.
 
-A következő HTTP PUT kérelmek az API Management API URL-címet korábban feljegyzett, ha engedélyezi az API Management REST API-t konfigurálja a Service Fabric háttérszolgáltatáshoz küldése Megjelenik egy `HTTP 201 Created` választ, ha a parancs sikeres. Minden mező további információkért lásd: az API Management [háttér-API referenciadokumentációt](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-contract-reference#a-namebackenda-backend).
+### <a name="configure-hello-backend"></a>Hello háttér konfigurálása
+
+Most, hogy az API Management a biztonsági beállítások konfigurálása hello Service Fabric háttér konfigurálhatja. A Service Fabric háttérkiszolgálókon hello Service Fabric-fürt esetén hello háttér ahelyett, hogy egy adott Service Fabric-szolgáltatás. Ez lehetővé teszi, hogy a szabályzatban tooroute toomore, mint egy szolgáltatás hello fürtben.
+
+Ez a lépés hello hozzáférési jogkivonat korábban létrehozott igényel, és hello tooAPI felügyeleti hello előző lépésben töltött fel a fürt-tanúsítványának ujjlenyomata.
+
+> [!NOTE]
+> Az API Management hello előző lépésben használt külön ügyfél-tanúsítványt, ha szüksége hello ujjlenyomat hello ügyféltanúsítvánnyal hozzáadása toohello fürt tanúsítvány ujjlenyomata ebben a lépésben.
+
+A következő HTTP PUT kérés toohello API Management API URL korábban feljegyzett hello API Management REST API tooconfigure hello Service Fabric háttérszolgáltatást engedélyezésekor hello küldése. Megjelenik egy `HTTP 201 Created` választ, ha a hello parancs sikeres. Minden mező további információkért lásd: hello API Management [háttér-API referenciadokumentációt](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-contract-reference#a-namebackenda-backend).
 
 HTTP-parancs és az URL-címe:
 ```http
@@ -200,9 +200,9 @@ A kérelem törzse:
 }
 ```
 
-A **URL-cím** itt paraméter értéke a teljes szolgáltatás a szolgáltatás nevét a a fürt összes kérelem átirányított alapértelmezés szerint ha a háttérkiszolgáló házirendben megadott szolgáltatásnév nem. Használhat egy hamis nevét, például a "fabric: / hamis/szolgáltatás" Ha nem tervezi, hogy a tartalék szolgáltatást.
+Hello **URL-cím** itt paraméter egy teljesen minősített nevét a fürt összes kérelmet, a szolgáltatás tooby alapértelmezett irányítva, ha a háttérkiszolgáló házirendben megadott szolgáltatásnév nem. Használhat egy hamis nevét, például a "fabric: / hamis/szolgáltatás" Ha nem kívánja toohave tartalék szolgáltatás.
 
-Tekintse meg az API Management [háttér-API referenciadokumentációt](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-contract-reference#a-namebackenda-backend) kapcsolatban további részleteket a minden mező.
+Tekintse meg az API Management toohello [háttér-API referenciadokumentációt](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-contract-reference#a-namebackenda-backend) kapcsolatban további részleteket a minden mező.
 
 #### <a name="example"></a>Példa
 
@@ -229,11 +229,11 @@ Content-Type: application/json
 
 ## <a name="deploy-a-service-fabric-back-end-service"></a>A Service Fabric háttér-szolgáltatás telepítése
 
-Most, hogy a Service Fabric egy háttéralkalmazását az API Management konfigurálva, az API-k esetében, amelyek forgalmat küldeni a Service Fabric-szolgáltatásokhoz hozhat létre a háttér-házirendeket. De először meg kell a Service Fabric-kérelmek fogadásához futó szolgáltatásban.
+Most, hogy a Service Fabric konfigurálva, egy háttér tooAPI felügyeleti hello, az API-k esetében, amelyek forgalmat küldeni a Service Fabric-szolgáltatások tooyour hozhat létre a háttér-házirendeket. De először meg kell a Service Fabric tooaccept kérelmek futó szolgáltatásban.
 
 ### <a name="create-a-service-fabric-service-with-an-http-endpoint"></a>A Service Fabric-szolgáltatás egy HTTP-végpont létrehozása
 
-Ebben az oktatóanyagban létrehozunk egy alapszintű állapotmentes ASP.NET Core megbízható szolgáltatás az alapértelmezett webes API projektet sablon használatával. Ezzel létrehoz egy HTTP-végpont a szolgáltatás, amely akkor lesz Azure API Management elérhetővé:
+Ebben az oktatóanyagban létrehozunk egy egyszerű állapot nélküli ASP.NET Core megbízható szolgáltatás hello alapértelmezett webes API projektsablon használatával. Ezzel létrehoz egy HTTP-végpont a szolgáltatás, amely akkor lesz Azure API Management elérhetővé:
 
 ```
 /api/values
@@ -244,10 +244,10 @@ Első lépésként [állítja be a fejlesztési környezetet az ASP.NET Core fej
 Miután beállította a fejlesztőkörnyezetet, indítsa el a Visual Studio rendszergazdaként, és az ASP.NET Core szolgáltatás létrehozása:
 
  1. A Visual Studio alkalmazásban válassza ki a fájl -> Új projekt.
- 2. Válassza ki a Cloud Service Fabric-alkalmazás sablont, és adjon neki nevet **"ApiApplication"**.
- 3. Válassza ki az ASP.NET Core szolgáltatás sablont, és a nevet a projektnek **"WebApiService"**.
- 4. Válassza a webes API-t az ASP.NET Core 1.1 projekt sablont.
- 5. A projekt létrehozása után nyissa meg a `PackageRoot\ServiceManifest.xml` , és távolítsa el a `Port` attribútumot a végpont erőforrás-konfiguráció:
+ 2. Válassza ki a felhő hello Service Fabric-alkalmazás sablont, és nevezze el **"ApiApplication"**.
+ 3. Válassza ki az ASP.NET Core Szolgáltatássablon hello és name hello projekt **"WebApiService"**.
+ 4. Válassza ki a webes API-t az ASP.NET Core 1.1 hello projekt sablont.
+ 5. Hello projekt létrehozása után nyissa meg a `PackageRoot\ServiceManifest.xml` , és távolítsa el a hello `Port` attribútumot hello végpont erőforrás-konfiguráció:
  
     ```xml
     <Resources>
@@ -257,54 +257,54 @@ Miután beállította a fejlesztőkörnyezetet, indítsa el a Visual Studio rend
     </Resources>
     ```
 
-    Ez lehetővé teszi, hogy a Service Fabric az alkalmazás porttartományát, amelyet azt a hálózati biztonsági csoport révén a fürt Resource Manager sablon keresztülhaladó forgalmat felé haladjanak API Management megnyitni a dinamikus port megadásához.
+    Ez lehetővé teszi a Service Fabric toospecify egy portjával dinamikusan hello alkalmazás porttartományát, amely azt nyitják meg a hálózati biztonsági csoport hello hello fürt Resource Manager-sablon, a forgalom tooflow tooit engedélyezi az API Management.
  
- 6. Nyomja le az F5 ellenőrzése a webes API-t a Visual Studio helyileg nem érhető el. 
+ 6. Nyomja le az F5 a Visual Studio tooverify hello webes API-t helyileg nem érhető el. 
 
-    Nyissa meg Service Fabric Explorer és megtekintheti az egyes egy adott példányt az ASP.NET Core szolgáltatás alapcímét megjelenítéséhez a szolgáltatás figyeli. Adja hozzá `/api/values` alap történő címet, majd nyissa meg a böngészőben. Ez elindítja a ValuesController a webes API-sablonban a Get metódust. A sablon által biztosított alapértelmezett választ, egy JSON-tömb, amely tartalmazza a két karakterláncot adja vissza:
+    Nyissa meg a Service Fabric Explorerben talál, és részletekbe menően tárhatják tooa ASP.NET Core toosee hello alapcímnek hello szolgáltatást figyel a következőn: hello adott példánya. Adja hozzá `/api/values` toohello cím kiinduló, majd nyissa meg a böngészőben. Ez elindítja a hello hello ValuesController hello webes API-sablonban a Get metódust. Hello alapértelmezett válasz hello sablon, egy JSON-tömb két karakterláncot tartalmazó által biztosított adja vissza:
 
     ```json
     ["value1", "value2"]`
     ```
 
-    Ez a végpont fogjuk az Azure API Management keresztül teszi ki.
+    Ez a hello végpontot, amely akkor lesz az Azure API Management elérhetővé.
 
- 7. Végül telepítse az alkalmazást az Azure-ban a fürthöz. [Visual Studio használatával](service-fabric-publish-app-remote-cluster.md#to-publish-an-application-using-the-publish-service-fabric-application-dialog-box), kattintson a jobb gombbal a projektet, és válassza ki **közzététel**. Adja meg a fürt végpontja (például `mycluster.westus.cloudapp.azure.com:19000`) az alkalmazás számára az Azure Service Fabric-fürt központi telepítése.
+ 7. Végezetül telepíteni hello alkalmazás tooyour fürtöket az Azure-ban. [Visual Studio használatával](service-fabric-publish-app-remote-cluster.md#to-publish-an-application-using-the-publish-service-fabric-application-dialog-box), kattintson a jobb gombbal a hello projektet, és válassza ki **közzététel**. Adja meg a fürt végpontja (például `mycluster.westus.cloudapp.azure.com:19000`) toodeploy hello alkalmazás tooyour Service Fabric-fürt az Azure-ban.
 
 Az ASP.NET Core állapotmentes szolgáltatások nevű `fabric:/ApiApplication/WebApiService` most futnia kell a Service Fabric-fürt az Azure-ban.
 
 ## <a name="create-an-api-operation"></a>Hozzon létre egy API-művelet
 
-Most még az API Management külső ügyfelek által használt szolgáltatással való kommunikációra az ASP.NET Core állapotmentes a Service Fabric-fürt fut egy művelet létrehozására alkalmas.
+Most már készen áll a toocreate az API Management egy műveletet a rendszer az adott külső ügyfelek használata toocommunicate hello hello Service Fabric-fürt futtatja az ASP.NET Core állapotmentes szolgáltatások.
 
- 1. Jelentkezzen be az Azure-portálon, és keresse meg az API Management szolgáltatás központi telepítése.
- 2. Az API Management szolgáltatás panelen válassza ki a **API-k – előzetes**
- 3. Egy olyan új API hozzáadni, kattintson a **üres API** mezőbe, majd töltse ki a párbeszédpanelen:
+ 1. Jelentkezzen be Azure-portálon toohello, és keresse meg a tooyour API-kezelés szolgáltatás telepítését.
+ 2. Hello API-kezelés szolgáltatás panelen válassza ki a **API-k – előzetes**
+ 3. Adja hozzá egy új API hello kattintva **üres API** mezőbe, majd kitöltésével hello párbeszédpanel:
 
      - **Webszolgáltatás URL-címe**: A Service Fabric háttérkiszolgálókon, ez az URL-cím érték nem használható. Bármely érték itt helyezhet el. A jelen oktatóanyag esetében használja: `http://servicefabric`.
      - **Név**: bármely nevezze el az API-t. A jelen oktatóanyag esetében használja `Service Fabric App`.
      - **URL-séma**: jelölje be a HTTP, HTTPS vagy mindkettőt. A jelen oktatóanyag esetében használja `both`.
      - **API URL-cím utótag**: Adjon meg egy utótagot az API felületen. A jelen oktatóanyag esetében használja `myapp`.
  
- 4. Az API létrehozása után kattintson **+ Hozzáadás művelet** hozzáadása egy előtér-API-művelet. Töltse ki az értékeket:
+ 4. Hello API létrehozása után kattintson **+ Hozzáadás művelet** tooadd egy előtér-API műveletet. Töltse ki hello értékeket:
     
-     - **URL-cím**: válasszon `GET` , és adjon meg egy URL-címet a API-t. A jelen oktatóanyag esetében használja `/api/values`.
+     - **URL-cím**: válasszon `GET` , és adjon meg egy URL-címe hello API. A jelen oktatóanyag esetében használja `/api/values`.
      
-       Alapértelmezés szerint a URL-címet itt megadott URL-címet kap a háttérkiszolgálón Service Fabric-szolgáltatás. Ha azonos URL-címet Itt a szolgáltatás által használt, ebben az esetben `/api/values`, majd a művelet további módosítás nélkül működik. Megadhat egy URL-címe itt, amely eltér a Service Fabric-szolgáltatás háttéralkalmazása által használt URL-címet, ebben az esetben is szüksége lesz később adjon meg egy elérési utat módosítsa úgy a művelet házirend.
-     - **Megjelenített név**: bármely nevezze el az API-t. A jelen oktatóanyag esetében használja `Values`.
+       Alapértelmezés szerint a hello URL-címe itt megadott toohello Service Fabric háttérszolgáltatást küldött hello URL-címe. Ha hello azonos URL-címe Itt a szolgáltatás által használt, ebben az esetben `/api/values`, majd a hello művelet további módosítás nélkül működik. Megadhat egy URL-címe itt háttéralkalmazásának Service Fabric-szolgáltatás által használt hello URL-címe eltérő ebben az esetben a program elérési újraírási kell toospecify a művelet házirend később.
+     - **Megjelenített név**: Adjon meg egy tetszőleges nevet hello API. A jelen oktatóanyag esetében használja `Values`.
 
 ## <a name="configure-a-backend-policy"></a>Háttér-házirend konfigurálása
 
-A háttérrendszer házirend kötelékek mindent együtt. Ez azért, ahol konfigurálhatja a Service Fabric háttérszolgáltatáshoz rendszer kérést átirányítja. Ezt a házirendet alkalmazhat API-művelet. A [háttérkonfiguráció a Service Fabric](https://docs.microsoft.com/azure/api-management/api-management-transformation-policies#SetBackendService) biztosít a következő kérés útválasztási vezérlők: 
- - A Service Fabric szolgáltatás példány neve, vagy szoftveresen kötött megadásával példány kiválasztása szolgáltatás (például `"fabric:/myapp/myservice"`) vagy a HTTP-kérelem generált (például `"fabric:/myapp/users/" + context.Request.MatchedParameters["name"]`).
+hello háttér házirend kötelékek mindent együtt. Ez a szolgáltatás toowhich rendszer kérést átirányítja a Service Fabric hello háttér konfigurálására szolgáló. A házirend tooany API művelet is alkalmazhatja. Hello [háttérkonfiguráció a Service Fabric](https://docs.microsoft.com/azure/api-management/api-management-transformation-policies#SetBackendService) hello következő kérelem útválasztási vezérlők biztosítja: 
+ - Példány kiválasztása szolgáltatás a Service Fabric szolgáltatás példány neve, vagy szoftveresen kötött megadásával (például `"fabric:/myapp/myservice"`), és létre hello HTTP-kérelem (például `"fabric:/myapp/users/" + context.Request.MatchedParameters["name"]`).
  - A Service Fabric particionálási sémát használó partíciós kulcs létrehozása általi megoldása partíció.
  - Állapotalapú szolgáltatások replika kiválasztása.
- - Megoldási újrapróbálkozási feltételeket, amelyek segítségével adhatja meg a feltételeket újra feloldani a helyét, és küldje el újra a kérelmet.
+ - Megoldási ismételje meg a feltételeket, amelyek lehetővé teszik toospecify hello feltételek újra feloldani a helyét, és küldje el újra a kérelmet.
 
-Ebben az oktatóanyagban a szabályzatban háttér közvetlenül kérelmeket továbbítja a korábban telepített ASP.NET Core állapotmentes szolgáltatások:
+A jelen oktatóanyag esetében győződjön meg arról, hogy útvonalak közvetlenül toohello ASP.NET Core állapotmentes szolgáltatások korábban telepített kérelmek háttér szabályzat létrehozása:
 
- 1. Válassza ki, és szerkesztheti a **házirendek bejövő** a a `Values` ehhez kattintson a Szerkesztés ikonra, és jelölje be a művelet **kódnézetben**.
- 2. A kód házirendszerkesztő, adja hozzá a `set-backend-service` házirend a bejövő házirendek, ahogy az itt látható, és kattintson a **mentése** gombra:
+ 1. Válassza ki, és szerkesztheti a hello **házirendek bejövő** a hello `Values` hello Szerkesztés ikonra kattint, és jelölje be a művelet **kódnézetben**.
+ 2. A kód hello házirendszerkesztő, adjon hozzá egy `set-backend-service` házirend a bejövő házirendek, ahogy az itt látható, és kattintson a hello **mentése** gombra:
     
     ```xml
     <policies>
@@ -324,33 +324,33 @@ Ebben az oktatóanyagban a szabályzatban háttér közvetlenül kérelmeket tov
     </policies>
     ```
 
-A Service Fabric háttér-házirend attribútumainak teljes készletét, tekintse meg a [API Management háttér-dokumentáció](https://docs.microsoft.com/azure/api-management/api-management-transformation-policies#SetBackendService)
+A Service Fabric háttér-házirend attribútumainak teljes készletét, tekintse meg a toohello [API Management háttér-dokumentáció](https://docs.microsoft.com/azure/api-management/api-management-transformation-policies#SetBackendService)
 
-### <a name="add-the-api-to-a-product"></a>A termék adja hozzá az API-t. 
+### <a name="add-hello-api-tooa-product"></a>Hello API tooa termék hozzáadása. 
 
-Az API hívása előtt azt hozzá kell adni egy termékre, ahol hozzáférést biztosíthat a felhasználóknak. 
+Hello API hívása előtt, ahol biztosíthat hozzáférést toousers tooa termék hozzá kell adni. 
 
- 1. Válassza ki az API Management szolgáltatásban **termékek - előzetes**.
- 2. Alapértelmezés szerint az API Management szolgáltatók két termékek: alapszintű és a korlátlan. Jelölje ki a korlátlan terméket.
+ 1. Hello API-kezelés szolgáltatás, válassza ki **termékek - előzetes**.
+ 2. Alapértelmezés szerint az API Management szolgáltatók két termékek: alapszintű és a korlátlan. Válassza ki a hello korlátlan terméket.
  3. Válassza ki az API-k.
- 4. Kattintson a **+ Hozzáadás** gombra.
- 5. Válassza ki a `Service Fabric App` a fenti lépéseket, majd kattintson a létrehozott API a **válasszon** gombra.
+ 4. Kattintson a hello **+ Hozzáadás** gombra.
+ 5. Jelölje be hello `Service Fabric App` API hello előző lépésekben létrehozott, és kattintson a hello **válasszon** gombra.
 
 ### <a name="test-it"></a>Tesztelheti
 
-Most megpróbálhatja egy kérést küld a háttér-szolgáltatás a Service Fabric API Management keresztül közvetlenül az Azure portálról.
+Most megpróbálhatja üzenetet küld egy kérelem tooyour háttér-szolgáltatás a Service Fabric API Management keresztül közvetlenül hello Azure-portálon.
 
- 1. Válassza ki az API Management szolgáltatásban **API - előzetes**.
- 2. Az a `Service Fabric App` létrehozta az előző lépéseket, jelölje be az API a **teszt** fülre.
- 3. Kattintson a **küldése** gombra kattintva a háttérszolgáltatáshoz tesztelési kérelem küldése.
+ 1. Hello API-kezelés szolgáltatás, válassza ki **API - előzetes**.
+ 2. A hello `Service Fabric App` hello előző lépésekben létrehozott API kiválasztása hello **teszt** fülre.
+ 3. Kattintson a hello **küldése** gomb toosend tesztelési kérelem toohello háttérszolgáltatás.
 
 ## <a name="next-steps"></a>Következő lépések
 
 Ezen a ponton rendelkeznie kell egy egyszerű telepítése a Service Fabric- és API-kezelés.
 
-Ez az oktatóanyag segítségével gyorsan beállíthatja alapvető a tanúsítvány alapú hitelesítést a Service Fabric-fürt használja. A Service Fabric-fürt speciális felhasználóhitelesítést célszerű a [Azure Active Directory hitelesítési](service-fabric-cluster-creation-via-arm.md#set-up-azure-active-directory-for-client-authentication). 
+Ez az oktatóanyag a Service Fabric-fürt beállítása gyorsan tooget alapvető tanúsítvány alapú hitelesítést használ. A Service Fabric-fürt speciális felhasználóhitelesítést célszerű a [Azure Active Directory hitelesítési](service-fabric-cluster-creation-via-arm.md#set-up-azure-active-directory-for-client-authentication). 
 
-Ezt követően [létrehozása és speciális termékbeállítások konfigurálása az Azure API Management](https://docs.microsoft.com/azure/api-management/api-management-howto-product-with-rules) valós forgalom az alkalmazás előkészítése.
+Ezt követően [létrehozása és speciális termékbeállítások konfigurálása az Azure API Management](https://docs.microsoft.com/azure/api-management/api-management-howto-product-with-rules) tooprepare az alkalmazás a valós életben-forgalmat.
 
 <!-- links -->
 [azure-powershell]:https://azure.microsoft.com/documentation/articles/powershell-install-configure/

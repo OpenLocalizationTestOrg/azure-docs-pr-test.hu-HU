@@ -1,6 +1,6 @@
 ---
-title: "Rendelkezésre állási készletek oktatóanyag Windows virtuális gépek Azure-ban |} Microsoft Docs"
-description: "További tudnivalók a rendelkezésre állási csoportok Windows virtuális gépek Azure-ban."
+title: "aaaAvailability beállítja az oktatóanyag a Windows-alapú virtuális gépek Azure-ban |} Microsoft Docs"
+description: "További információk a hello rendelkezésre állási készletek a Windows virtuális gépek Azure-ban."
 documentationcenter: 
 services: virtual-machines-windows
 author: cynthn
@@ -16,15 +16,15 @@ ms.topic: article
 ms.date: 05/08/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: d918362106ef93cf47620e0018d363cd510884b0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 853775c5f126dd815c1933f9d71d2274a75ea661
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-availability-sets"></a>Rendelkezésre állási készletek használata
+# <a name="how-toouse-availability-sets"></a>Hogyan toouse rendelkezésre állási beállítása
 
-Ebben az oktatóanyagban, megtudhatja, hogyan a rendelkezésre állása és megbízhatósága szempontjából a virtuális gép megoldások Azure-ban egy rendelkezésre állási készletek nevű képesség növelésére. Rendelkezésre állási készletek győződjön meg arról, hogy a telepített Azure virtuális gépek több elkülönített hardver fürt különböző pontjain. Ez biztosítja, hogy ha az Azure hardveres vagy szoftveres hiba akkor fordul elő, csak a virtuális gépek alárendelt meghatározott csökkenhet, és, amely a teljes megoldás elérhető és az azt használó ügyfelek szemszögéből működési marad. 
+Ebből az oktatóanyagból megtudhatja, hogyan tooincrease hello rendelkezésre állása és megbízhatósága szempontjából a virtuális gép megoldások Azure-ban egy képesség nevű rendelkezésre állási készletek. Rendelkezésre állási készletek győződjön meg arról, hogy több elkülönített hardver fürt központi telepítése az Azure virtuális gépek elosztott hello. Ez biztosítja, hogy ha az Azure hardveres vagy szoftveres hiba akkor fordul elő, csak a virtuális gépek alárendelt meghatározott csökkenhet, és, amely a teljes megoldás elérhető és az azt használó ügyfelek hello szempontjából működési marad. 
 
 Eben az oktatóanyagban az alábbiakkal fog megismerkedni:
 
@@ -33,19 +33,19 @@ Eben az oktatóanyagban az alábbiakkal fog megismerkedni:
 > * Hozzon létre egy virtuális gép rendelkezésre állási csoportba
 > * Ellenőrizze a rendelkezésre álló Virtuálisgép-méretek
 
-Az oktatóanyaghoz az Azure PowerShell-modul 3.6-os vagy újabb verziójára lesz szükség. A verzió azonosításához futtassa a következőt: ` Get-Module -ListAvailable AzureRM`. Ha frissítenie kell, lásd: [telepítése Azure PowerShell modul](/powershell/azure/install-azurerm-ps).
+Ez az oktatóanyag hello Azure PowerShell 3,6 vagy újabb verziója szükséges. Futtatás ` Get-Module -ListAvailable AzureRM` toofind hello verziója. Ha tooupgrade van szüksége, tekintse meg [telepítése Azure PowerShell modul](/powershell/azure/install-azurerm-ps).
 
 ## <a name="availability-set-overview"></a>Rendelkezésre állási csoport – áttekintés
 
-Rendelkezésre állási csoport egy olyan logikai jellegű csoportosítását képességgel, győződjön meg arról, hogy a Virtuálisgép-erőforrások helyezi-e benne el különítve egymástól belül egy Azure-adatközpontban telepítésekor használhatja az Azure-ban. Azure biztosítja, hogy a virtuális gépek elhelyezésekor belül egy rendelkezésre állási készlet több fizikai kiszolgálón futtassa, például rackszekrények, a tárolási egység és a hálózati kapcsolók számítási. Ez biztosítja, hogy hardver vagy Azure szoftverhiba lép fel, csökkenhet a virtuális gépek csak egy részét, és az alkalmazás általános mentése marad, és továbbra is elérhetők az ügyfeleknek. Ha létrehozhatnak megbízható felhőalapú megoldásokat szeretne használni az alapvető magasabb rendelkezésre állási csoportokkal.
+A logikai csoportosításhoz képessége, amelyik használható rendelkezésre állási csoport megtalálható, hogy hello Virtuálisgép-erőforrások helyezi-e benne el különítve egymástól belül egy Azure-adatközpontban telepítésekor Azure tooensure. Azure biztosítja, hogy hello helyezi-e belül egy rendelkezésre állási készlet több fizikai kiszolgálókon futó virtuális gépek, a számítási, például rackszekrények, a tárolási egység és a hálózati kapcsolók. Ez biztosítja, hogy hello eseményben hardver vagy Azure szoftverhiba lép fel, csökkenhet a virtuális gépek csak egy részét, és az alkalmazás általános mentése marad, és továbbra is toobe elérhető tooyour ügyfelek. Az alapvető funkció tooleverage rendelkezésre állási csoportokkal akkor, ha azt szeretné, hogy megbízható toobuild megoldások.
 
-Mérlegeljük, ahol például 4 előtér-webkiszolgáló, és 2 háttér-virtuális gép egy adatbázist az tipikus Virtuálisgép-alapú megoldás. Az Azure-szeretné a virtuális gépek telepítése előtt határozza meg a két rendelkezésre állási csoportok: egy rendelkezésre állási készletét, a "web" réteg és a rendelkezésre állási csoporthoz az "adatbázis" szinthez. Amikor létrehoz egy új virtuális Gépet, majd megadhatja a rendelkezésre állási csoport egy paramétert az virtuális gép létrehozása parancs, és az Azure automatikusan biztosítja, hogy a virtuális gépeket hoz létre a rendelkezésre álló halmazában munkakönyvtárral több fizikai hardver-erőforrások között. Ez azt jelenti, hogy a fizikai hardverrel, az egyik webkiszolgálón vagy adatbázis-kiszolgáló virtuális gépeken futó probléma van, ha tudja, hogy a webkiszolgáló és az adatbázis virtuális gépek más példányát fogja futhat részletes mert másik hardveren.
+Mérlegeljük, ahol például 4 előtér-webkiszolgáló, és 2 háttér-virtuális gép egy adatbázist az tipikus Virtuálisgép-alapú megoldás. Az Azure-érdemes toodefine két rendelkezésre állási csoportok csak a virtuális gépekre telepítheti: egy rendelkezésre állási készlet hello "web" réteg és a rendelkezésre állási csoporthoz hello "adatbázis" szinthez. Egy új virtuális Gépet, majd megadhatja a hello a rendelkezésre állási csoportban paraméter toohello az virtuális gép létrehozása parancs, és az Azure automatikusan biztosítja, hogy hello belül elérhető hello hoz létre virtuális gépek létrehozásakor a készlet több fizikai hardver-erőforrások között munkakönyvtárral. Ez azt jelenti, hogy hello fizikai hardver, az egyik webkiszolgálón vagy adatbázis-kiszolgáló virtuális gépeken futó hibásan működik, ha tudja, hogy hello a webkiszolgáló és az adatbázis virtuális gépek más példányai marad futó részletes mert másik hardveren.
 
-Rendelkezésre állási készletek mindig használjon, ha megbízható Virtuálisgép-alapú megoldások Azure-ban telepíteni szeretné.
+Rendelkezésre állási készletek mindig használjon, ha azt szeretné, hogy toodeploy megbízható Virtuálisgép-alapú megoldások Azure-ban.
 
 ## <a name="create-an-availability-set"></a>Rendelkezésre állási csoport létrehozása
 
-Rendelkezésre állási készlet használatával hozhat létre [New-AzureRmAvailabilitySet](/powershell/module/azurerm.compute/new-azurermavailabilityset). Ebben a példában mindkét, frissítés és a tartalék tartományok számának hivatott *2* esetében a rendelkezésre állási csoportot elnevezett *myAvailabilitySet* a a *myResourceGroupAvailability* erőforráscsoportot.
+Rendelkezésre állási készlet használatával hozhat létre [New-AzureRmAvailabilitySet](/powershell/module/azurerm.compute/new-azurermavailabilityset). Ebben a példában a frissítés és a tartalék tartományok mindkét hello száma hivatott *2* a hello rendelkezésre állási csoport elnevezett *myAvailabilitySet* a hello *myResourceGroupAvailability*erőforráscsoportot.
 
 Hozzon létre egy erőforráscsoportot.
 
@@ -66,20 +66,20 @@ New-AzureRmAvailabilitySet `
 
 ## <a name="create-vms-inside-an-availability-set"></a>Hozzon létre virtuális gépek rendelkezésre állási csoportok belül
 
-Virtuális gépek létre kívánja hozni a rendelkezésre állási készletét, győződjön meg arról, hogy a hardver megfelelően vannak elosztva a belül. Rendelkezésre állási készlet létrehozása után nem lehet hozzáadni egy meglévő virtuális Gépre. 
+Virtuális gépek kell toobe hello rendelkezésre állási készlet toomake meg arról, hogy helyesen hello hardver vannak elosztva jött létre. Meglévő virtuális gép tooan rendelkezésre állási készlet létrehozása után nem vehető fel. 
 
-A hardver egy helyen több frissítési tartományt és a tartalék tartományok tagolódik. Egy **frissítési tartomány** egy csoport a virtuális gépek és a mögöttes fizikai hardver, amely egy időben újra kell indítani. Virtuális gépek ugyanazon **tartalék tartomány** közös tárolási, valamint egy közös forrás- és hálózati kikapcsolás megosztani. 
+egy helyen hello hardver toomultiple frissítési tartományok és a tartalék tartományok oszlik meg. Egy **frissítési tartomány** virtuális gépek és a mögöttes fizikai hardver, hogy újra kell indítani a hello csoportja ugyanannyi időt vesz igénybe. A virtuális gépek azonos hello **tartalék tartomány** közös tárolási, valamint egy közös forrás- és hálózati kikapcsolás megosztani. 
 
-Amikor létrehoz egy virtuális gép konfigurációs használatával [New-AzureRMVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig) a rendelkezésre állási csoportot a használatával megadhatja a `-AvailabilitySetId` paraméterrel adhatja meg a rendelkezésre állási csoport azonosítója.
+Amikor létrehoz egy virtuális gép konfigurációs használatával [New-AzureRMVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig) hello a rendelkezésre állási csoportban hello segítségével megadhat `-AvailabilitySetId` paraméter toospecify hello azonosító hello rendelkezésre állási csoport.
 
-A 2 virtuális gép létrehozása [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm) a rendelkezésre állási csoport.
+A 2 virtuális gép létrehozása [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm) hello rendelkezésre állási csoport.
 
 ```powershell
 $availabilitySet = Get-AzureRmAvailabilitySet `
     -ResourceGroupName myResourceGroupAvailability `
     -Name myAvailabilitySet
 
-$cred = Get-Credential -Message "Enter a username and password for the virtual machine."
+$cred = Get-Credential -Message "Enter a username and password for hello virtual machine."
 
 $subnetConfig = New-AzureRmVirtualNetworkSubnetConfig `
     -Name mySubnet `
@@ -125,7 +125,7 @@ for ($i=1; $i -le 2; $i++)
         -PublicIpAddressId $pip.Id `
         -NetworkSecurityGroupId $nsg.Id
 
-   # Here is where we specify the availability set
+   # Here is where we specify hello availability set
    $vm = New-AzureRmVMConfig `
         -VMName myVM$i `
         -VMSize Standard_D1 `
@@ -158,11 +158,11 @@ for ($i=1; $i -le 2; $i++)
 
 ```
 
-Hozzon létre, és mindkét virtuális gépek néhány percet vesz igénybe. Ha elkészült, 2 virtuális gép a mögöttes hardver pontjain fog rendelkezni. 
+Néhány perc toocreate vesz igénybe, és mindkét virtuális gépek. Ha elkészült, 2 virtuális gépek az alapul szolgáló hardver hello pontjain fog rendelkezni. 
 
 ## <a name="check-for-available-vm-sizes"></a>Ellenőrizze az elérhető Virtuálisgép-méretek 
 
-A rendelkezésre állási csoportot később adhat hozzá további virtuális gépek, de milyen Virtuálisgép-méretek állnak rendelkezésre a hardver tudnia kell. Használjon [Get-AzureRMVMSize](/powershell/module/azurerm.compute/get-azurermvmsize) listázza az összes hardveren elérhető méretek fürtön a rendelkezésre állási csoport számára.
+További virtuális gépek toohello rendelkezésre állási csoportban később adhat hozzá, de kell tooknow milyen Virtuálisgép-méretek hello hardveren érhetők el. Használjon [Get-AzureRMVMSize](/powershell/module/azurerm.compute/get-azurermvmsize) toolist hello rendelkezésre állási csoport fürt összes hello elérhető méretek hello hardveren.
 
 ```powershell
 Get-AzureRmVMSize `
@@ -179,7 +179,7 @@ Ez az oktatóanyag bemutatta, hogyan végezheti el az alábbi műveleteket:
 > * Hozzon létre egy virtuális gép rendelkezésre állási csoportba
 > * Ellenőrizze a rendelkezésre álló Virtuálisgép-méretek
 
-Virtuálisgép-méretezési csoportok olvashat a következő oktatóanyag továbblépés.
+Előzetes toohello oktatóanyag következő toolearn kapcsolatos virtuálisgép-méretezési készlet.
 
 > [!div class="nextstepaction"]
 > [Virtuálisgép-méretezési csoport létrehozása](tutorial-create-vmss.md)

@@ -1,6 +1,6 @@
 ---
-title: "Adatok másolása az Azure SQL Database |} Microsoft Docs"
-description: "Útmutató: Azure SQL Database szolgáltatáshoz Azure Data Factory és a-adatok másolása."
+title: az Azure SQL Database aaaCopy adatok |} Microsoft Docs
+description: "Megtudhatja, hogyan toocopy adatokat az Azure SQL adatbázis Azure Data Factory használatával."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/04/2017
 ms.author: jingwang
-ms.openlocfilehash: a64d13fa7dc5f50c259b98774be80b603dce400a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d2ff16191afb028da75699c5e4d0bb310538db0f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="copy-data-to-and-from-azure-sql-database-using-azure-data-factory"></a>Másolja az adatokat, és az Azure SQL adatbázis Azure Data Factory használatával
-Ez a cikk ismerteti, hogyan a másolási tevékenység során az Azure Data Factory és az Azure SQL Database áthelyezni az adatokat. Buildekről nyújtanak a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk, amelynek során adatátvitel a másolási tevékenység az általános áttekintést.  
+# <a name="copy-data-tooand-from-azure-sql-database-using-azure-data-factory"></a>Adatok tooand másolása az Azure SQL adatbázis Azure Data Factory használatával
+Ez a cikk azt ismerteti, hogyan toouse hello Azure Data Factory toomove adatok tooand az Azure SQL Database a másolási tevékenység. -Buildekről nyújtanak a hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikket, amely adatmozgás általános áttekintést hello másolási tevékenység során.  
 
 ## <a name="supported-scenarios"></a>Támogatott helyzetek
-Adatokat másolhat **az Azure SQL Database** tárolja a következő adatokat:
+Adatokat másolhat **az Azure SQL Database** toohello a következő adatokat tárolja:
 
 [!INCLUDE [data-factory-supported-sinks](../../includes/data-factory-supported-sinks.md)]
 
-Adatok másolása a következő adatokat tárolja **az Azure SQL Database**:
+Adatok másolása a következő adatokat tárolja hello **tooAzure SQL-adatbázis**:
 
 [!INCLUDE [data-factory-supported-sources](../../includes/data-factory-supported-sources.md)]
 
@@ -38,68 +38,68 @@ Az Azure SQL Database-összekötő az egyszerű hitelesítést támogatja.
 ## <a name="getting-started"></a>Bevezetés
 A másolási tevékenység, amely helyezi át az adatokat belőle egy Azure SQL Database különböző eszközök/API-k használatával létrehozhat egy folyamatot.
 
-Hozzon létre egy folyamatot a legegyszerűbb módja használatára a **másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) létrehozásával egy folyamatot, az adatok másolása varázsló segítségével gyorsan útmutatást.
+hello legegyszerűbb módja toocreate adatcsatorna toouse hello **másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) hello másolása adatok varázslóval adatcsatorna létrehozásával gyors útmutatást.
 
-Az alábbi eszközöket használhatja a folyamatokat létrehozni: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager sablon**, **.NET API**, és **REST API**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) hozzon létre egy folyamatot a másolási tevékenység részletes útmutatóját. 
+Használhatja a következő eszközök toocreate adatcsatorna hello: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager-sablon** , **.NET API**, és **REST API-t**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) részletesen toocreate a másolási tevékenység az adatcsatorna számára. 
 
-Akár az eszközök vagy API-k, hajtsa végre a következő lépésekkel hozza létre egy folyamatot, amely mozgatja az adatokat a forrás-tárolóban a fogadó tárolóban: 
+Akár hello eszközök vagy API-k, hajtsa végre a következő lépéseket toocreate egy folyamatot, amely áthelyezi a forrásadatok az adattároló tooa fogadó adattár hello: 
 
 1. Hozzon létre egy **adat-előállító**. Egy adat-előállító tartalmazhat egy vagy több folyamatok. 
-2. Hozzon létre **összekapcsolt szolgáltatások** bemeneti és kimeneti adatok csatolásához tárolja a a data factory. Például ha a másolt adatok az az Azure blob storage Azure SQL-adatbázishoz, hoz létre az Azure storage-fiók és az Azure SQL adatbázis összekapcsolása a data factory két összekapcsolt szolgáltatások. Az Azure SQL Database jellemző csatolt szolgáltatás tulajdonságait, lásd: [szolgáltatástulajdonságok kapcsolódó](#linked-service-properties) szakasz. 
-3. Hozzon létre **adatkészletek** a másolási művelet bemeneti és kimeneti adatok. A példában az előző lépésben említett hozzon létre egy adatkészlet adja meg a blob-tároló és a bemeneti adatokat tartalmazó mappát. És hoz létre, ha meg szeretné adni az SQL-tábla az Azure SQL-adatbázis, amely tárolja az adatokat a blob-tároló átmásolja egy másik DataSet adatkészletben. Azure Data Lake Store adott adatkészlet tulajdonságai, lásd: [adatkészlet tulajdonságai](#dataset-properties) szakasz.
-4. Hozzon létre egy **csővezeték** , amely fogad egy bemeneti adatkészlet és egy kimeneti adatkészletet másolási tevékenységgel. A korábban említett példában BlobSource forrás-és SqlSink akár használhatja a fogadó a másolási tevékenységhez. Ehhez hasonlóan az Azure SQL Database az Azure Blob Storage másolása, használható SqlSource és BlobSink a másolási tevékenység. Az Azure SQL Database adott tevékenység Tulajdonságok másolása, lásd: [tevékenység Tulajdonságok másolása](#copy-activity-properties) szakasz. További részletek a tárolóban használatáról a forrás vagy a fogadó a hivatkozásra a adattároló az előző szakaszban.
+2. Hozzon létre **összekapcsolt szolgáltatások** toolink bemeneti és kimeneti adatok tárolók tooyour adat-előállítóban. Adatok másolása az Azure blob storage tooan Azure SQL-adatbázis, akkor hozzon létre például két összekapcsolt szolgáltatások toolink az Azure storage-fiók és az Azure SQL adatbázis tooyour adat-előállítóban. Csatolt szolgáltatás tulajdonságait, amelyek adott tooAzure SQL-adatbázis, lásd: [szolgáltatástulajdonságok kapcsolódó](#linked-service-properties) szakasz. 
+3. Hozzon létre **adatkészletek** toorepresent bemeneti és kimeneti adatok hello a másolási művelet. Hello utolsó lépésében említett hello például létrehoz egy adatkészlet toospecify hello blobtárolót és hello bemeneti adatokat tartalmazó mappát. És egy másik dataset toospecify hello SQL táblázat hello blob-tároló átmásolva hello adatokat tartalmazó hello Azure SQL-adatbázis létrehozása. Adatkészlet tulajdonságai, amelyek adott tooAzure Data Lake Store, lásd: [adatkészlet tulajdonságai](#dataset-properties) szakasz.
+4. Hozzon létre egy **csővezeték** , amely fogad egy bemeneti adatkészlet és egy kimeneti adatkészletet másolási tevékenységgel. A korábban említett hello példában BlobSource forrás-és SqlSink akár használhatja a fogadó hello másolási tevékenységhez. Hasonlóképpen a Blob Storage Azure SQL Database tooAzure másolása, használható SqlSource és BlobSink hello másolási tevékenység. A másolási tevékenység tulajdonságait, amelyek adott tooAzure SQL-adatbázis, lásd: [tevékenység Tulajdonságok másolása](#copy-activity-properties) szakasz. További információkért hogyan toouse egy adatok tárolót, mint a forrás- és a fogadó hivatkozásra hello az adattároló hello előző szakaszban.
 
-A varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és a feldolgozási sor) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások a JSON formátum használatával.  Adatok másolása az Azure SQL adatbázis használandó adat-előállító entitások JSON-definíciók minták, lásd: [JSON példák](#json-examples-for-copying-data-to-and-from-sql-database) című szakaszát. 
+Hello varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és hello pipeline) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások hello JSON formátumban.  Az adat-előállító entitások, amelyek az Azure SQL adatbázis használt toocopy adatok JSON-definíciók minták, lásd: [JSON példák](#json-examples-for-copying-data-to-and-from-sql-database) című szakaszát. 
 
-A következő szakaszok részletesen bemutatják az Azure SQL Database Data Factory tartozó entitások meghatározásához használt JSON tulajdonságokat: 
+a következő szakaszok hello JSON-tulajdonságok esetében használt toodefine adat-előállító entitások adott tooAzure SQL-adatbázis részleteit tartalmazzák: 
 
 ## <a name="linked-service-properties"></a>A kapcsolódószolgáltatás-tulajdonságok
-Egy Azure SQL Azure SQL-adatbázis kapcsolódó a szolgáltatás hivatkozások a data factory. Az alábbi táblázatban az adott Azure SQL társított szolgáltatásnak JSON-elemek leírását.
+Egy Azure SQL társított szolgáltatás hivatkozások egy Azure SQL adatbázis tooyour adat-előállítóban. a következő táblázat hello biztosít leírását a megadott JSON-elemek tooAzure SQL társított szolgáltatásnak.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| type |A type tulajdonságot kell beállítani: **AzureSqlDatabase** |Igen |
-| connectionString |Adja meg az Azure SQL Database-példányt a connectionString tulajdonság való kapcsolódáshoz szükséges adatokat. Csak az alapszintű hitelesítést is támogatja. |Igen |
+| type |hello type tulajdonságot kell beállítani: **AzureSqlDatabase** |Igen |
+| connectionString |Adjon meg információt hello connectionString tulajdonság szükséges tooconnect toohello Azure SQL Database-példányt. Csak az alapszintű hitelesítést is támogatja. |Igen |
 
 > [!IMPORTANT]
-> Konfigurálása [Azure SQL Database-tűzfal](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure) az adatbázis-kiszolgálót [a kiszolgálóhoz való hozzáféréshez Azure-szolgáltatások engedélyezése](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure). Ezenkívül az adatokat az Azure SQL Database a külső Azure többek között a helyszíni adatforrásokból a data factory átjáróval másolása, az IP-címtartományt a gép, amely adatokat küld az Azure SQL Database konfigurálni.
+> Konfigurálása [Azure SQL Database-tűzfal](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure) adatbázis-kiszolgáló túl hello[engedélyezése az Azure-szolgáltatások tooaccess hello server](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure). Emellett külső Azure többek között a data factory átjáró a helyszíni adatforrásokból származó adatok tooAzure SQL-adatbázis másolása, beállítható, megfelelő IP-címtartomány hello gép küldő adatok tooAzure SQL-adatbázis.
 
 ## <a name="dataset-properties"></a>Adatkészlet tulajdonságai
-Adja meg a bemeneti vagy kimeneti adatok Azure SQL adatbázis dataset, állítsa be a adatkészlet type tulajdonsága: **AzureSqlTable**. Állítsa be a **linkedServiceName** tulajdonsághoz a DataSet adatkészlet neve az Azure SQL társított szolgáltatásnak.  
+a dataset toorepresent toospecify hello adatkészlet hello type tulajdonsága bemeneti vagy kimeneti adatok Azure SQL adatbázis beállítása: **AzureSqlTable**. Set hello **linkedServiceName** tulajdonság hello dataset toohello nevének hello Azure SQL társított szolgáltatásnak.  
 
-Szakaszok & meghatározása adatkészletek esetében elérhető tulajdonságok teljes listáját lásd: a [adatkészletek létrehozása](data-factory-create-datasets.md) cikk. Például struktúra, a rendelkezésre állás és a házirend a DataSet adatkészlet JSON hasonlítanak minden adatkészlet esetében (Azure SQL, az Azure blob, Azure-tábla, stb.).
+Szakaszok & meghatározása adatkészletek esetében elérhető tulajdonságok teljes listáját lásd: hello [adatkészletek létrehozása](data-factory-create-datasets.md) cikk. Például struktúra, a rendelkezésre állás és a házirend a DataSet adatkészlet JSON hasonlítanak minden adatkészlet esetében (Azure SQL, az Azure blob, Azure-tábla, stb.).
 
-A typeProperties szakasz más adatkészlet egyes típusai és információkat nyújt azokról az adattárban adatok helyét. A **typeProperties** szakasz az adatkészlet típusú **AzureSqlTable** tulajdonságai a következők:
+hello typeProperties szakasz más adatkészlet egyes típusai és hello adattár hello adatok hello helyét ismerteti. Hello **typeProperties** típusú hello adatkészlet szakasz **AzureSqlTable** rendelkezik hello következő tulajdonságai:
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |A tábla vagy nézet társított szolgáltatásnak Azure SQL Database-példány neve hivatkozik. |Igen |
+| tableName |Hello tábla vagy nézet hello Azure SQL Database-példányt, amelyre a társított szolgáltatás neve hivatkozik. |Igen |
 
 ## <a name="copy-activity-properties"></a>Másolási tevékenység tulajdonságai
-Szakaszok & rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: a [létrehozása folyamatok](data-factory-create-pipelines.md) cikk. Például a nevét, leírását, valamint bemeneti és kimeneti táblák és házirend tulajdonságai minden típusú tevékenységek érhetők el.
+Szakaszok & rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: hello [létrehozása folyamatok](data-factory-create-pipelines.md) cikk. Például a nevét, leírását, valamint bemeneti és kimeneti táblák és házirend tulajdonságai minden típusú tevékenységek érhetők el.
 
 > [!NOTE]
-> A másolási tevékenység során csak egy bemenettel rendelkezik, és csak egy kimenetet.
+> hello másolási tevékenység során csak egy bemenettel rendelkezik, és csak egy kimenetet.
 
-Mivel a tulajdonságok érhetők el a **typeProperties** szakasz a tevékenység tevékenységek minden típusának függenek. A másolási tevékenység során két érték források és mosdók típusától függően.
+Mivel tulajdonságok érhetők el hello **typeProperties** hello tevékenység szakasza tevékenységek minden típusának függenek. A másolási tevékenység során két érték források és mosdók hello típusától függően.
 
-Ha adatokat az Azure SQL-adatbázis, a másolási tevékenység beállítása a forrástípus **SqlSource**. Hasonlóképpen, ha adatait Azure SQL-adatbázishoz, beállítása a fogadó típusa a másolási tevékenység **SqlSink**. Ez a témakör SqlSource és SqlSink által támogatott tulajdonságokról.
+Ha adatokat az Azure SQL-adatbázis, beállítása hello forrástípus hello másolási tevékenység túl**SqlSource**. Hasonlóképpen, ha az tooan Azure SQL-adatbázist, beállítása hello a fogadó típusa hello másolási tevékenység túl**SqlSink**. Ez a témakör SqlSource és SqlSink által támogatott tulajdonságokról.
 
 ### <a name="sqlsource"></a>SqlSource
-A másolási tevékenység, ha az adatforrás típusú **SqlSource**, a következő tulajdonságok érhetők el **typeProperties** szakasz:
+A másolási tevékenység, ha hello adatforrás típusú **SqlSource**, hello a következő tulajdonságok érhetők el **typeProperties** szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| sqlReaderQuery |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Példa: `select * from MyTable`. |Nem |
-| sqlReaderStoredProcedureName |A tárolt eljárás, amely adatokat olvas a forrástábla neve. |A tárolt eljárás neve. Az utolsó SQL-utasítás a következő tárolt eljárást a SELECT utasítással kell lennie. |Nem |
-| storedProcedureParameters |A tárolt eljárás paramétereit. |A név/érték párok. Nevét és a kis-és a paraméterek meg kell egyeznie a nevek és a kis-és nagybetűhasználat a tárolt eljárás paramétereit. |Nem |
+| sqlReaderQuery |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Példa: `select * from MyTable`. |Nem |
+| sqlReaderStoredProcedureName |Hello neve tárolt eljárást, amely hello forrástábla olvassa be az adatokat. |Hello neve tárolt eljárást. hello utolsó SQL-utasítás hello tárolt eljárás SELECT utasítással kell lennie. |Nem |
+| storedProcedureParameters |Hello paramétereinek tárolt eljárást. |A név/érték párok. Nevek és a kis-és paraméterek meg kell egyeznie hello nevét és a kis-és nagybetűhasználat hello tárolt eljárás paramétereit. |Nem |
 
-Ha a **sqlReaderQuery** van megadva a SqlSource, a másolási tevékenység fut ez a lekérdezés az adatok lekérdezése az Azure SQL Database forrása. Másik lehetőségként megadhat tárolt eljárás megadásával a **sqlReaderStoredProcedureName** és **storedProcedureParameters** (Ha a tárolt eljárás paraméterek fogadja el).
+Ha hello **sqlReaderQuery** megadott hello SqlSource, hello másolási tevékenység során ez a lekérdezés futtatása hello Azure SQL Database forrás tooget hello adatok alapján. Másik lehetőségként megadhat tárolt eljárás hello megadásával **sqlReaderStoredProcedureName** és **storedProcedureParameters** (ha hello tárolt eljárás paraméterek fogadja el).
 
-Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, az adatkészlet JSON struktúrában szakaszában meghatározott oszlopokat-lekérdezés összeállításához használt (`select column1, column2 from mytable`) az Azure SQL-adatbázis futtatásához. Az adatkészlet-definícióban nem rendelkezik a struktúra, ha minden kiválasztott oszlop. a táblából.
+Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, hello adatkészlet JSON hello struktúra szakaszban meghatározott hello oszlopok-e a használt toobuild lekérdezés (`select column1, column2 from mytable`) toorun hello Azure SQL Database ellen. Hello adatkészlet definíciója nem rendelkezik hello struktúra, ha minden kiválasztott oszlop. a hello táblából.
 
 > [!NOTE]
-> Amikor **sqlReaderStoredProcedureName**, továbbra is meg kell adnia egy értéket a **tableName** az adatkészlet JSON tulajdonság. Nincs érvényesítést hajt végre ezt a táblázatot, ha van.
+> Használata esetén **sqlReaderStoredProcedureName**, továbbra is szükséges toospecify értéket hello **tableName** hello adatkészlet JSON tulajdonság. Nincs érvényesítést hajt végre ezt a táblázatot, ha van.
 >
 >
 
@@ -116,7 +116,7 @@ Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, az adatkészlet 
 }
 ```
 
-**A tárolt eljárás definíciója:**
+**hello tárolt eljárás definíciója:**
 
 ```SQL
 CREATE PROCEDURE CopyTestSrcStoredProcedureWithParameters
@@ -136,17 +136,17 @@ GO
 ```
 
 ### <a name="sqlsink"></a>SqlSink
-**SqlSink** támogatja a következő tulajdonságokkal:
+**SqlSink** következő tulajdonságai hello támogatja:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| writeBatchTimeout |Várakozási idő a kötegelt beszúrási művelet befejezését, mielőtt azt az időkorlátot. |A TimeSpan<br/><br/> Példa: "00: 30:00" (30 perc). |Nem |
-| WriteBatchSize |Szúr be az SQL-tábla adatokat, amikor a puffer mérete eléri writeBatchSize. |Egész szám (sorok száma) |Nem (alapértelmezett: 10000) |
-| sqlWriterCleanupScript |Adja meg egy lekérdezést a másolási tevékenység végrehajtása úgy, hogy egy adott szelet adatait. További információkért lásd: [ismételhető másolási](#repeatable-copy). |A lekérdezési utasítást. |Nem |
-| sliceIdentifierColumnName |Adja meg a másolási tevékenység során automatikusan létrejön szelet azonosítóval, amely távolítja el az adatokat egy adott szelet, amikor futtassa újra a kitöltésének oszlop nevét. További információkért lásd: [ismételhető másolási](#repeatable-copy). |Egy oszlop binary(32) adattípusú oszlop neve. |Nem |
-| sqlWriterStoredProcedureName |A tárolt eljárás neve a cél táblázatba upserts (frissítés/Beszúrás) adatok. |A tárolt eljárás neve. |Nem |
-| storedProcedureParameters |A tárolt eljárás paramétereit. |A név/érték párok. Nevét és a kis-és a paraméterek meg kell egyeznie a nevek és a kis-és nagybetűhasználat a tárolt eljárás paramétereit. |Nem |
-| sqlWriterTableType |Adjon meg egy tábla típus a következő tárolt eljárás használható. Másolási tevékenység elérhetővé teszi az adatok áthelyezése egy ideiglenes táblát, amely a táblatípus. Tárolt eljárás kódot is majd egyesítheti az adatokat, a meglévő adatok másolásának. |Egy tábla környezettípus nevét. |Nem |
+| writeBatchTimeout |Várnia kell az hello kötegelt beszúrási művelet toocomplete előtt azt az időkorlátot. |A TimeSpan<br/><br/> Példa: "00: 30:00" (30 perc). |Nem |
+| WriteBatchSize |Amikor hello puffer mérete eléri writeBatchSize adatok beillesztése hello SQL táblázat. |Egész szám (sorok száma) |Nem (alapértelmezett: 10000) |
+| sqlWriterCleanupScript |Adja meg a másolási tevékenység tooexecute vonatkozó lekérdezést úgy, hogy egy adott szelet adatait. További információkért lásd: [ismételhető másolási](#repeatable-copy). |A lekérdezési utasítást. |Nem |
+| sliceIdentifierColumnName |Adja meg oszlop nevét, a másolási tevékenység toofill szelet azonosító automatikusan létrejön, vagyis amikor futtassa újra a megadott szelet adatainak használt tooclean. További információkért lásd: [ismételhető másolási](#repeatable-copy). |Egy oszlop binary(32) adattípusú oszlop neve. |Nem |
+| sqlWriterStoredProcedureName |Hello nevét (frissítés/Beszúrás) upserts adatok tárolt eljárás hello cél táblába. |Hello neve tárolt eljárást. |Nem |
+| storedProcedureParameters |Hello paramétereinek tárolt eljárást. |A név/érték párok. Nevek és a kis-és paraméterek meg kell egyeznie hello nevét és a kis-és nagybetűhasználat hello tárolt eljárás paramétereit. |Nem |
+| sqlWriterTableType |Adjon meg egy tábla Típus neve toobe hello tárolt eljárásban használt. Másolási tevékenység elérhetővé teszi hello adatok éppen áthelyezik egy ideiglenes táblát, amely a táblatípus. Tárolt eljárás kód majd egyesítheti a meglévő adatok másolásának hello adatokat. |Egy tábla környezettípus nevét. |Nem |
 
 #### <a name="sqlsink-example"></a>SqlSink – példa
 
@@ -165,11 +165,11 @@ GO
 }
 ```
 
-## <a name="json-examples-for-copying-data-to-and-from-sql-database"></a>Adatok másolása és az SQL-adatbázis a JSON példák
-Az alábbi példák megadják minta JSON-definíciókat tartalmazzon, segítségével hozzon létre egy folyamatot [Azure-portálon](data-factory-copy-activity-tutorial-using-azure-portal.md) vagy [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) vagy [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Adatok másolása az Azure SQL Database és az Azure Blob Storage mutatnak. Azonban az adatok átmásolhatók **közvetlenül** a forrásokban, sem a megadott nyelő [Itt](data-factory-data-movement-activities.md#supported-data-stores-and-formats) a másolási tevékenység során az Azure Data Factory használatával.
+## <a name="json-examples-for-copying-data-tooand-from-sql-database"></a>JSON Példák adatok tooand SQL-adatbázis másolása
+hello alábbi példák megadják minta JSON-definíciók használható toocreate folyamat használatával [Azure-portálon](data-factory-copy-activity-tutorial-using-azure-portal.md) vagy [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) vagy [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Azok hogyan toocopy adatok tooand az Azure SQL Database és az Azure Blob Storage tárolóban. Azonban az adatok átmásolhatók **közvetlenül** bármelyik megadott hello nyelő források tooany [Itt](data-factory-data-movement-activities.md#supported-data-stores-and-formats) másolási tevékenység során az Azure Data Factory használatával hello.
 
-### <a name="example-copy-data-from-azure-sql-database-to-azure-blob"></a>Példa: Adatok másolása az Azure SQL Database az Azure-Blobba
-A következő adat-előállító entitások azonos meghatározása:
+### <a name="example-copy-data-from-azure-sql-database-tooazure-blob"></a>Példa: Adatok másolása az Azure SQL Database tooAzure Blob
+hello azonos meghatározza, hogy a következő adat-előállító entitások hello:
 
 1. A társított szolgáltatás típusa [AzureSqlDatabase](#linked-service-properties).
 2. A társított szolgáltatás típusa [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -177,7 +177,7 @@ A következő adat-előállító entitások azonos meghatározása:
 4. Egy kimeneti [dataset](data-factory-create-datasets.md) típusú [Azure Blob](data-factory-azure-blob-connector.md#dataset-properties).
 5. A [csővezeték](data-factory-create-pipelines.md) , a másolási tevékenység által használt [SqlSource](#copy-activity-properties) és [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-A minta idősorozat adatainak másolása (óránként, naponta, stb.) az Azure SQL-adatbázis egy táblából egy blobba óránként. A mintákat a következő szakaszok ismertetik ezeket a mintákat használt JSON-tulajdonságok.  
+hello minta idősorozat adatainak másolása (óránként, naponta, stb.) az Azure SQL adatbázis tooa blob egy táblázatban minden órában. Ezeket a mintákat használt hello JSON-tulajdonságok hello mintát a következő szakaszok ismertetik.  
 
 **A társított szolgáltatásnak Azure SQL Database:**
 
@@ -192,7 +192,7 @@ A minta idősorozat adatainak másolása (óránként, naponta, stb.) az Azure S
   }
 }
 ```
-Tekintse meg a [Azure SQL társított szolgáltatást](#linked-service) szolgáltatásnak által támogatott tulajdonságokról szakasza listája.
+Lásd: hello [Azure SQL társított szolgáltatást](#linked-service) hello lista szakasza a társított szolgáltatás által támogatott tulajdonságokról.
 
 **Az Azure Blob storage társított szolgáltatásnak:**
 
@@ -207,14 +207,14 @@ Tekintse meg a [Azure SQL társított szolgáltatást](#linked-service) szolgál
   }
 }
 ```
-Tekintse meg a [Azure Blob](data-factory-azure-blob-connector.md#azure-storage-linked-service) cikkében listája a társított szolgáltatás által támogatott tulajdonságokról.
+Lásd: hello [Azure Blob](data-factory-azure-blob-connector.md#azure-storage-linked-service) cikkében hello listát a társított szolgáltatás által támogatott tulajdonságokról.
 
 
 **Az Azure SQL bemeneti adatkészlet:**
 
-A minta azt feltételezi, hogy létrehozott egy tábla "MyTable" Azure SQL, egy "timestampcolumn" nevű adatsorozat időadatok oszlopot tartalmaz.
+hello minta azt feltételezi, hogy létrehozott egy tábla "MyTable" Azure SQL, egy "timestampcolumn" nevű adatsorozat időadatok oszlopot tartalmaz.
 
-"External" beállítása: "true" arról értesíti az Azure Data Factory szolgáltatásnak, hogy az adatkészlet data factoryval való külső, és egy tevékenység adat-előállító nem hozzák.
+"External" beállítása: "true" tájékoztatja hello Azure Data Factory szolgáltatásnak, hogy hello dataset külső toohello adat-előállítót, és egy tevékenység hello adat-előállítóban nem hozzák.
 
 ```JSON
 {
@@ -241,11 +241,11 @@ A minta azt feltételezi, hogy létrehozott egy tábla "MyTable" Azure SQL, egy 
 }
 ```
 
-Tekintse meg a [Azure SQL dataset típustulajdonságokat](#dataset) ehhez az adathalmaztípushoz által támogatott tulajdonságokról szakasza listája.  
+Lásd: hello [Azure SQL dataset típustulajdonságokat](#dataset) ehhez az adathalmaztípushoz által támogatott tulajdonságokról szakasza hello listáját.  
 
 **Az Azure Blob kimeneti adatkészlet:**
 
-Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1). A mappa elérési útját a BLOB a szelet által feldolgozott kezdési ideje alapján dinamikusan történik. A mappa elérési útját használja, év, hónap, nap és a kezdési idő órában részeit.
+Adatot ír tooa új blob minden órában (gyakoriság: óra, időköz: 1). hello mappa elérési útja hello BLOB dinamikusan értékeli hello szelet által feldolgozott hello kezdési ideje alapján. hello mappa elérési útja hello kezdési ideje év, hónap, nap és óra részét használja.
 
 ```JSON
 {
@@ -302,11 +302,11 @@ Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1). A mapp
   }
 }
 ```
-Tekintse meg a [Azure-Blob adatkészletet típustulajdonságokat](data-factory-azure-blob-connector.md#dataset-properties) ehhez az adathalmaztípushoz által támogatott tulajdonságokról szakasza listája.  
+Lásd: hello [Azure-Blob adatkészletet típus tulajdonságainak](data-factory-azure-blob-connector.md#dataset-properties) hello lista szakasza ehhez az adathalmaztípushoz által támogatott tulajdonságokról.  
 
 **A másolási tevékenység során az SQL-forrás és fogadó Blob egy folyamaton belül:**
 
-A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és kimeneti adatkészletek használatára van konfigurálva, és óránkénti futásra nem ütemezték. Az adatcsatorna JSON-definícióból a **forrás** típusúra **SqlSource** és **fogadó** típusúra **BlobSink**. A megadott SQL-lekérdezést a **SqlReaderQuery** tulajdonság kiválasztása az adatok másolása az elmúlt órában.
+hello folyamat másolatot tevékenységet tartalmaz, amely konfigurált toouse hello bemeneti és kimeneti adatkészletek és ütemezett toorun óránként. Hello adatcsatorna JSON-definícióból, hello **forrás** típusuk értéke túl**SqlSource** és **fogadó** típusuk értéke túl**BlobSink**. hello SQL-lekérdezésben megadott hello **SqlReaderQuery** tulajdonság jelöli ki hello adatok hello toocopy óránként túlra.
 
 ```JSON
 {  
@@ -354,14 +354,14 @@ A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és
    }
 }
 ```
-A példában **sqlReaderQuery** a SqlSource van megadva. A másolási tevékenység fut ez a lekérdezés az adatok lekérdezése az Azure SQL Database forrása. Másik lehetőségként megadhat tárolt eljárás megadásával a **sqlReaderStoredProcedureName** és **storedProcedureParameters** (Ha a tárolt eljárás paraméterek fogadja el).
+Hello példában **sqlReaderQuery** hello SqlSource van megadva. hello másolási tevékenység fut ez a lekérdezés hello Azure SQL Database forrásadatok tooget hello. Másik lehetőségként megadhat tárolt eljárás hello megadásával **sqlReaderStoredProcedureName** és **storedProcedureParameters** (ha hello tárolt eljárás paraméterek fogadja el).
 
-Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, az adatkészlet JSON struktúrában szakaszában meghatározott oszlopokat futtatni az Azure SQL adatbázis-lekérdezés összeállításához használt. Például: `select column1, column2 from mytable`. Az adatkészlet-definícióban nem rendelkezik a struktúra, ha minden kiválasztott oszlop. a táblából.
+Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, hello adatkészlet JSON hello struktúra szakaszban meghatározott hello oszlopok használt toobuild egy lekérdezés toorun elleni hello Azure SQL Database. Például: `select column1, column2 from mytable`. Hello adatkészlet definíciója nem rendelkezik hello struktúra, ha minden kiválasztott oszlop. a hello táblából.
 
-Tekintse meg a [Sql-forrás](#sqlsource) szakasz és [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties) SqlSource és BlobSink által támogatott tulajdonságok listája.
+Lásd: hello [Sql-forrás](#sqlsource) szakasz és [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties) SqlSource és BlobSink által támogatott tulajdonságokról hello listáját.
 
-### <a name="example-copy-data-from-azure-blob-to-azure-sql-database"></a>Példa: Adatok másolása az Azure Blob az Azure SQL adatbázis
-A minta a következő adat-előállító entitások határozza meg:  
+### <a name="example-copy-data-from-azure-blob-tooazure-sql-database"></a>Példa: Adatok másolása az Azure Blob tooAzure SQL-adatbázis
+hello minta meghatározza, hogy a következő adat-előállító entitások hello:  
 
 1. A társított szolgáltatás típusa [AzureSqlDatabase](#linked-service-properties).
 2. A társított szolgáltatás típusa [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -369,7 +369,7 @@ A minta a következő adat-előállító entitások határozza meg:
 4. Egy kimeneti [dataset](data-factory-create-datasets.md) típusú [AzureSqlTable](#dataset-properties).
 5. A [csővezeték](data-factory-create-pipelines.md) a másolási tevékenység által használt [BlobSource](data-factory-azure-blob-connector.md#copy-activity-properties) és [SqlSink](#copy-activity-properties).
 
-A minta másolatok idősorozat adatok (óránként, naponta, stb.) az Azure blob-egy táblához, az Azure SQL adatbázis-óránként. A mintákat a következő szakaszok ismertetik ezeket a mintákat használt JSON-tulajdonságok.
+hello minta idősorozat adatainak másolása (óránként, naponta, stb.) az Azure SQL database az Azure blob tooa táblából óránként. Ezeket a mintákat használt hello JSON-tulajdonságok hello mintát a következő szakaszok ismertetik.
 
 **Az Azure SQL társított szolgáltatásnak:**
 
@@ -384,7 +384,7 @@ A minta másolatok idősorozat adatok (óránként, naponta, stb.) az Azure blob
   }
 }
 ```
-Tekintse meg a [Azure SQL társított szolgáltatást](#linked-service) szolgáltatásnak által támogatott tulajdonságokról szakasza listája.
+Lásd: hello [Azure SQL társított szolgáltatást](#linked-service) hello lista szakasza a társított szolgáltatás által támogatott tulajdonságokról.
 
 **Az Azure Blob storage társított szolgáltatásnak:**
 
@@ -399,12 +399,12 @@ Tekintse meg a [Azure SQL társított szolgáltatást](#linked-service) szolgál
   }
 }
 ```
-Tekintse meg a [Azure Blob](data-factory-azure-blob-connector.md#azure-storage-linked-service) cikkében listája a társított szolgáltatás által támogatott tulajdonságokról.
+Lásd: hello [Azure Blob](data-factory-azure-blob-connector.md#azure-storage-linked-service) cikkében hello listát a társított szolgáltatás által támogatott tulajdonságokról.
 
 
 **Az Azure Blob bemeneti adatkészletet:**
 
-Adatok van felvett egy új blobból minden órában (gyakoriság: óra, időköz: 1). A mappa elérési útját és nevét a BLOB dinamikusan értékeli ki a kezdési időt a szelet által feldolgozott alapján. A mappa elérési útját használja év, hónap és nap részét kezdési idejét, valamint fájl nevét a kezdő időpontja óra részét. "external": "true" beállítás arról értesíti az, hogy ezt a táblázatot az adat-előállítóban külső, és egy tevékenység adat-előállító nem hozzák a Data Factory szolgáltatásnak.
+Adatok van felvett egy új blobból minden órában (gyakoriság: óra, időköz: 1). hello mappa elérési útját és nevét hello blob dinamikusan értékeli ki a rendszer által feldolgozott hello szelet hello kezdési ideje alapján. hello mappa elérési útját használja év, hónap és nap részét hello kezdési ideje, valamint fájlnév hello kezdő időpontja óra részét hello. "external": "true" beállítás arról értesíti az, hogy ez a táblázat külső toohello adat-előállító és hello adat-előállítóban tevékenység nem hozzák hello Data Factory szolgáltatásnak.
 
 ```JSON
 {
@@ -470,11 +470,11 @@ Adatok van felvett egy új blobból minden órában (gyakoriság: óra, időköz
   }
 }
 ```
-Tekintse meg a [Azure-Blob adatkészletet típustulajdonságokat](data-factory-azure-blob-connector.md#dataset-properties) ehhez az adathalmaztípushoz által támogatott tulajdonságokról szakasza listája.
+Lásd: hello [Azure-Blob adatkészletet típus tulajdonságainak](data-factory-azure-blob-connector.md#dataset-properties) hello lista szakasza ehhez az adathalmaztípushoz által támogatott tulajdonságokról.
 
 **Az Azure SQL Database kimeneti adatkészlet:**
 
-A minta másolja az adatokat az Azure SQL "MyTable" nevű tábla. A tábla létrehozása az azonos számú oszlopot az Azure SQL-ben a Blob CSV-fájl tartalmazza a várt módon. Új sorok hozzáadásakor a tábla minden órában.
+hello minta másolja át a "MyTable" Azure SQL-nevű tooa adattábla. Hello tábla létrehozása az Azure SQL azonos számú oszlopot hello hello Blob CSV-fájl toocontain várt. Új sorok hozzáadásakor toohello tábla óránként.
 
 ```JSON
 {
@@ -492,11 +492,11 @@ A minta másolja az adatokat az Azure SQL "MyTable" nevű tábla. A tábla létr
   }
 }
 ```
-Tekintse meg a [Azure SQL dataset típustulajdonságokat](#dataset) ehhez az adathalmaztípushoz által támogatott tulajdonságokról szakasza listája.
+Lásd: hello [Azure SQL dataset típustulajdonságokat](#dataset) ehhez az adathalmaztípushoz által támogatott tulajdonságokról szakasza hello listáját.
 
 **A másolási tevékenység során a Blob-forrás és fogadó SQL-feldolgozási folyamat:**
 
-A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és kimeneti adatkészletek használatára van konfigurálva, és óránkénti futásra nem ütemezték. Az adatcsatorna JSON-definícióból a **forrás** típusúra **BlobSource** és **fogadó** típusúra **SqlSink**.
+hello folyamat másolatot tevékenységet tartalmaz, amely konfigurált toouse hello bemeneti és kimeneti adatkészletek és ütemezett toorun óránként. Hello adatcsatorna JSON-definícióból, hello **forrás** típusuk értéke túl**BlobSource** és **fogadó** típusuk értéke túl**SqlSink**.
 
 ```JSON
 {  
@@ -544,10 +544,10 @@ A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és
    }
 }
 ```
-Tekintse meg a [Sql fogadó](#sqlsink) szakasz és [BlobSource](data-factory-azure-blob-connector.md#copy-activity-properties) SqlSink és BlobSource által támogatott tulajdonságok listája.
+Lásd: hello [Sql fogadó](#sqlsink) szakasz és [BlobSource](data-factory-azure-blob-connector.md#copy-activity-properties) SqlSink és BlobSource által támogatott tulajdonságokról hello listáját.
 
-## <a name="identity-columns-in-the-target-database"></a>A céladatbázis azonosító oszlop
-Ez a szakasz egy példát biztosít arra az adatok másolása a forrástábla nélkül azonosító oszlop azonosító oszlopot tartalmazó táblát.
+## <a name="identity-columns-in-hello-target-database"></a>Azonosító oszlop hello céladatbázis
+Ez a szakasz egy példát biztosít arra az adatok másolása a forrástábla egy azonosító oszlop tooa céltábla azonosító oszlopot tartalmazó nélkül.
 
 **Forrástábla:**
 
@@ -568,7 +568,7 @@ create table dbo.TargetTbl
        age int
 )
 ```
-Figyelje meg, hogy a céltábla rendelkezik-e az azonosító oszlop.
+Figyelje meg, hogy hello céltábla tartalmaz azonosító oszlopot.
 
 **Forrás adatkészlet JSON-definícióból**
 
@@ -615,18 +615,18 @@ Figyelje meg, hogy a céltábla rendelkezik-e az azonosító oszlop.
 }
 ```
 
-Figyelje meg, hogy a forrás és cél táblázatként különböző sémája (cél rendelkezik egy olyan további oszlop identitású). Ilyen esetben meg kell adnia **struktúra** tulajdonság az a tároló adatkészlet-definícióban, amely nem tartalmazza az identitásoszlop.
+Figyelje meg, hogy a forrás és cél táblázatként különböző sémája (cél rendelkezik egy olyan további oszlop identitású). Ebben az esetben szüksége toospecify **struktúra** hello tároló adatkészlet-definícióban, amely nem tartalmazza a hello azonosító oszlop tulajdonsága.
 
 ## <a name="invoke-stored-procedure-from-sql-sink"></a>A fogadó SQL tárolt eljárás meghívása
 A folyamat a másolási tevékenység SQL fogadó egy tárolt eljárás végrehajtásával hívásának példáért lásd: [fogadó SQL tárolt eljárás meghívása a másolási tevékenység](data-factory-invoke-stored-procedure-from-copy-activity.md) cikk. 
 
 ## <a name="type-mapping-for-azure-sql-database"></a>Írja be az Azure SQL Database leképezése
-Ahogyan az a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk másolási tevékenység az eseményforrás-típusnak gyűjtése módszert használja a következő 2. lépés típusok automatikus típuskonverziók hajtja végre:
+A hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk másolási tevékenység az automatikus típuskonverziók származó típusok toosink típusait a 2. lépés – a módszert követve hello hajtja végre:
 
-1. A natív eseményforrás-típusnak átalakítása .NET-típusa
-2. .NET-típus konvertálása natív a fogadó típusa
+1. Natív típusok too.NET forrástípus konvertálása
+2. .NET típusú toonative a fogadó típusa konvertálása
 
-Ha az adatok mozgatása az Azure SQL Database, a következő megfeleltetéseket használ az SQL-típus a .NET-típus, és ez fordítva is igaz. Leképezése nem ugyanaz, mint az SQL Server adattípus-hozzárendelése az ADO.NET.
+Ha adatok tooand tér át Azure SQL Database, hello következő megfeleltetéseket használ SQL too.NET típusának, és ez fordítva is igaz. hello ugyanaz, mint az SQL Server adattípus-hozzárendelése az ADO.NET hello lesz.
 
 | SQL Server adatbázismotor típusa | .NET-keretrendszer típusa |
 | --- | --- |
@@ -663,13 +663,13 @@ Ha az adatok mozgatása az Azure SQL Database, a következő megfeleltetéseket 
 | varchar |Karakterlánc, Char] |
 | xml |XML |
 
-## <a name="map-source-to-sink-columns"></a>Térkép forrás oszlopok gyűjtése
-A forrás oszlop szerepel a fogadó dataset adatkészlet leképezési oszlopok, lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
+## <a name="map-source-toosink-columns"></a>A forrásoszlopokat toosink leképezése
+toolearn leképezési oszlopok az forrás adatkészlet toocolumns fogadó adatkészletben, lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
 
 ## <a name="repeatable-copy"></a>Ismételhető másolása
-Amikor adat másolása az SQL Server-adatbázis, a másolási tevékenység hozzáfűzi adatokat a fogadó tábla alapértelmezés szerint. Ehelyett egy UPSERT végrehajtásához tekintse meg [Repeatable írni SqlSink](data-factory-repeatable-copy.md#repeatable-write-to-sqlsink) cikk. 
+Adatok tooSQL Server-adatbázis másolásakor hello másolási tevékenység hozzáfűzi toohello fogadó adattábla alapértelmezés szerint. egy UPSERT tooperform helyett, lásd: [ismételhető írási tooSqlSink](data-factory-repeatable-copy.md#repeatable-write-to-sqlsink) cikk. 
 
-Ha az adatok másolását a relációs adatokat tárol, ismételhetőség tartsa szem előtt, nem kívánt eredmények elkerülése érdekében. Az Azure Data Factoryben futtathatja a szelet manuálisan. Beállíthatja úgy is egy adatkészlet újrapróbálkozási házirendje, hogy a szelet akkor fut újra, ha hiba történik. A szelet akkor fut újra, vagy módon, ha győződjön meg arról, hogy ugyanazokat az adatokat olvasható függetlenül attól, hogy a szelet futtatása hány alkalommal kell. Lásd: [relációs források olvasni Repeatable](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
+Amikor az adatok másolása relációs adattároló, tartsa ismételhetőség szem előtt tartva tooavoid nem kívánt eredmények. Az Azure Data Factoryben futtathatja a szelet manuálisan. Beállíthatja úgy is egy adatkészlet újrapróbálkozási házirendje, hogy a szelet akkor fut újra, ha hiba történik. A szelet akkor fut újra, vagy módon, ha van szüksége arról, hogy ugyanazokat az adatokat hello toomake hogyan olvasható függetlenül attól, hogy hányszor a szelet futtatása. Lásd: [relációs források olvasni Repeatable](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
 
 ## <a name="performance-and-tuning"></a>Teljesítmény- és hangolása
-Lásd: [másolási tevékenység teljesítmény- és hangolása útmutató](data-factory-copy-activity-performance.md) tájékozódhat az kulcsfontosságú szerepet játszik adatátvitelt jelölik a (másolási tevékenység során) az Azure Data Factory és különböző módokon optimalizálhatja azt, hogy hatás teljesítményét.
+Lásd: [másolási tevékenység teljesítmény- és hangolása útmutató](data-factory-copy-activity-performance.md) kulcsról toolearn tényezők az adatátvitelt jelölik a (másolási tevékenység során) az Azure Data Factory és különböző módokon toooptimize hatás teljesítmény azt.

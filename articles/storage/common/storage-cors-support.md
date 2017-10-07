@@ -1,6 +1,6 @@
 ---
-title: "Eltérő eredetű erőforrások megosztása (CORS) támogatást |} Microsoft Docs"
-description: "Ismerje meg a CORS-támogatás engedélyezése a Microsoft Azure tárolási szolgáltatásokhoz."
+title: "aaaCross eredetű erőforrás-megosztás (CORS) támogatást |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooenable CORS-támogatás a Microsoft Azure Storage szolgáltatásainak hello."
 services: storage
 documentationcenter: .net
 author: cbrooksmsft
@@ -14,16 +14,16 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 2/22/2017
 ms.author: cbrooks
-ms.openlocfilehash: 8d189d3ec3e6081dd37b912824f287cd75f39b35
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0a6ec3bf6999c5faa7f0912dc2a47921aa01d3d4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="cross-origin-resource-sharing-cors-support-for-the-azure-storage-services"></a>Eltérő eredetű erőforrások megosztása (CORS) támogatása az Azure Storage szolgáltatások
-2013-08-15 verziójával kezdve az Azure storage szolgáltatások támogatja az eltérő eredetű erőforrások megosztása (CORS) a Blob, Table, várólista és fájl számára. A CORS az HTTP szolgáltatása: lehetővé teszi, hogy a webalkalmazás fut egy tartomány egy másik tartományban lévő erőforrások eléréséhez. Webböngészők néven ismert biztonsági korlátozások megvalósítása [azonos eredetű házirend](http://www.w3.org/Security/wiki/Same_Origin_Policy) , amely megakadályozza, hogy egy másik tartományban; hívási API-weblap A CORS engedélyezése tartománya (a forrástartomány) API-k hívására egy másik tartományban biztonságos lehetőséget biztosít. Tekintse meg a [CORS specification](http://www.w3.org/TR/cors/) CORS leírását.
+# <a name="cross-origin-resource-sharing-cors-support-for-hello-azure-storage-services"></a>Hello Azure Storage szolgáltatásainak Cross-Origin Resource Sharing (CORS) támogatása
+2013-08-15 verziójával kezdve hello Azure storage szolgáltatások támogatja az eltérő eredetű erőforrások megosztása (CORS) hello Blob, Table, várólista és fájl számára. A CORS egy HTTP-szolgáltatás, amely lehetővé teszi egy webalkalmazást az egyik tartomány tooaccess erőforrásainak fut egy másik tartományban. Webböngészők néven ismert biztonsági korlátozások megvalósítása [azonos eredetű házirend](http://www.w3.org/Security/wiki/Same_Origin_Policy) , amely megakadályozza, hogy egy másik tartományban; hívási API-weblap A CORS biztosít egy biztonságos módon tooallow tartománya (hello forrástartományt) toocall API-k egy másik tartományban. Lásd: hello [CORS specification](http://www.w3.org/TR/cors/) CORS leírását.
 
-A CORS szabályainak beállítása külön-külön az egyes tárolási szolgáltatások meghívásával [Blob szolgáltatás tulajdonságainak beállítása](https://msdn.microsoft.com/library/hh452235.aspx), [várólista-tulajdonságok beállítása](https://msdn.microsoft.com/library/hh452232.aspx), és [Table szolgáltatás tulajdonságainak beállítása](https://msdn.microsoft.com/library/hh452240.aspx). Ha egyszer már megadta a CORS-szabályokat a szolgáltatáshoz, majd más tartományokból a szolgáltatásra szóló megfelelően hitelesített kérelem kiértékelendő annak meghatározásához, hogy a megadott szabályok szerint engedélyezett.
+A CORS szabályainak beállítása külön-külön az egyes hello tárolási szolgáltatások meghívásával [Blob szolgáltatás tulajdonságainak beállítása](https://msdn.microsoft.com/library/hh452235.aspx), [várólista-tulajdonságok beállítása](https://msdn.microsoft.com/library/hh452232.aspx), és [Table szolgáltatás tulajdonságainak beállítása](https://msdn.microsoft.com/library/hh452240.aspx). Ha elvégezte a hello CORS-szabályokat hello szolgáltatást, majd más tartományokból hello szolgáltatásra szóló megfelelően hitelesített kérelem lesz kiértékelt toodetermine e toohello szabályokkal, amelyeket megfelelően engedélyezve van.
 
 > [!NOTE]
 > Vegye figyelembe, hogy a CORS nem olyan hitelesítési módszert. Kérését a tároló egyik erőforrásához szemben ha engedélyezve van a CORS rendelkeznie kell a megfelelő hitelesítési aláírás, vagy egy nyilvános erőforrás elleni kell tenni.
@@ -33,27 +33,27 @@ A CORS szabályainak beállítása külön-külön az egyes tárolási szolgált
 ## <a name="understanding-cors-requests"></a>A CORS kérelmek ismertetése
 A CORS kérelem származási tartományból két külön kérelmet állhat:
 
-* A elővizsgálati kérelmet, amely lekérdezi a CORS korlátozásai a szolgáltatást. Az ellenőrzési kérés szükség, ha a kérelem a módszer egy [egyszerű módszer](http://www.w3.org/TR/cors/), ami azt jelenti, GET, HEAD vagy POST.
-* A tényleges kérést, a kívánt erőforrás ellen.
+* A elővizsgálati kérelmet, amely lekérdezi a hello CORS korlátozásai hello szolgáltatást. hello ellenőrzési kérés szükség, ha hello kérelem metódus egy [egyszerű módszer](http://www.w3.org/TR/cors/), ami azt jelenti, GET, HEAD vagy POST.
+* a keresett erőforrás hello tényleges kérelem hello ellen.
 
 ### <a name="preflight-request"></a>Ellenőrzési kérés
-Az ellenőrzési kérés lekérdezéseket a CORS-korlátozások, amely a fiók tulajdonosa által a társzolgáltatás létrehozva. A webböngésző (vagy egyéb felhasználói ügynök) küld, amely tartalmazza a kérelemfejléc, metódus és a forrás tartományi beállítások kérelmet. A tároló szolgáltatás értékeli ki a kívánt műveletet a CORS-szabályokat, amelyek adja meg, melyik eredettartományból, a kérelem metódusok és a kérelem fejlécében a tároló egyik erőforrásához egy tényleges kérelmet a adható meg előre beállított készlete alapján.
+hello ellenőrzési kérés lekérdezések hello CORS korlátozások hello fiók tulajdonosának hello társzolgáltatás létrehoztak. webböngésző hello (vagy egyéb felhasználói ügynök) küld egy beállítások hello kérelemfejléc, tartalmazó metódus és a forrás tartományát. hello társzolgáltatás szánt hello művelet CORS-szabályokat, amelyek adja meg, melyik eredettartományból, módszerek kérelem előre konfigurált készlete alapján kiértékeli, és kérelemfejléc adható meg a tároló egyik erőforrásához egy tényleges kérelmet.
 
-CORS engedélyezve van a szolgáltatáshoz, és van, amely megfelel az ellenőrzési kérés CORS szabály, ha a szolgáltatás válaszol, állapotkód: 200 (OK), és tartalmazza a szükséges hozzáférési fejlécek a válaszban.
+Ha CORS hello szolgáltatás engedélyezve van, és a CORS szabályt, amely megegyezik a hello ellenőrzési kérés, hello szolgáltatás válaszol, állapotkód: 200 (OK), és hello szükséges hozzáférési fejlécek hello válaszként.
 
-Ha a szolgáltatás számára nem engedélyezett a CORS, vagy nincs CORS szabály megegyezik az ellenőrzési kérés, a szolgáltatás válaszol, állapotkód: 403 (tiltott).
+Ha CORS hello szolgáltatás számára nem engedélyezett, vagy nincs CORS szabály megegyezik a hello ellenőrzési kérés, hello szolgáltatás válaszol, állapotkód: 403 (tiltott).
 
-Ha a beállítások kérelem nem tartalmazza a szükséges CORS fejléceket (a forrás- és hozzáférés-vezérlési-kérelem-metódus fejlécekkel együtt), a szolgáltatás válaszol, állapotkód: 400 (hibás kérés).
+Ha hello beállítások kérelem nem tartalmazza a szükséges CORS fejlécek (hello származási és hozzáférés-vezérlési-kérelem-metódus fejlécekkel együtt) hello, hello szolgáltatás válaszol, állapotkód: 400 (hibás kérés).
 
-Vegye figyelembe, hogy az ellenőrzési kérés ki lesz értékelve a szolgáltatás (Blob, Queue és Table) és nem a kért erőforrás elleni. A fiók tulajdonosának kell engedélyezte a CORS ahhoz, hogy a kérelem sikeres fióktulajdonságok szolgáltatás részeként.
+Vegye figyelembe, hogy az ellenőrzési kérés ki lesz értékelve hello szolgáltatás (Blob, Queue és Table) és hello elleni nem kért erőforrás. hello fiók tulajdonosának kell engedélyezte a CORS szolgáltatást fióktulajdonságok hello ahhoz, hogy hello kérelem toosucceed részeként.
 
 ### <a name="actual-request"></a>Tényleges kérelem
-Miután az ellenőrzés kérelem elfogadása, és a választ ad vissza, a böngésző csatolva az a tárolási erőforrások tényleges kérelmet. A böngésző megtagadja a tényleges azonnal kérése, ha az ellenőrzés vonatkozó kérés elutasítva.
+Miután hello elővizsgálati kérelem elfogadása és hello választ ad vissza, hello böngésző csatolva az hello hello tárolási erőforrások tényleges kérelmet. hello böngésző megtagadja hello tényleges kérelem azonnal Ha hello elővizsgálati vonatkozó kérés elutasítva.
 
-A tényleges kérelmet a rendszer a társzolgáltatás normál kérelmet. A forrás-fejléc jelzi, hogy a kérelem CORS kérelmet, és a szolgáltatás ellenőrzi a megfelelő CORS-szabályokat. Ha a program egyezést talál, a hozzáférés-vezérlő fejlécekkel együtt a válaszhoz felvétele, illetve az ügyfélnek küldött. Nem található egyezés, ha a CORS hozzáférési fejlécek nem lehet megjeleníteni.
+hello tényleges kérelem hello társzolgáltatás normál kérelmet a rendszer. hello származási fejléc hello jelenléte azt jelzi, hogy hello kérelme, mert a CORS kérelem hello szolgáltatás ellenőrzi a megfeleltetési szabályokról a CORS hello. Ha van egyezés, hello hozzáférési fejlécek felvett toohello választ, és hátsó toohello ügyfél küldött. Nem található egyezés, ha hello CORS hozzáférési fejlécek nem lehet megjeleníteni.
 
-## <a name="enabling-cors-for-the-azure-storage-services"></a>A CORS engedélyezése az Azure Storage szolgáltatás
-CORS-szabályokat úgy van beállítva, a szolgáltatás szintjén engedélyezhető vagy tiltható le a CORS az egyes szolgáltatásokhoz (Blob, várólista és tábla) kell külön-külön. A CORS minden egyes szolgáltatás alapértelmezés szerint le van tiltva. CORS engedélyezéséhez állítsa be a megfelelő szolgáltatásra tulajdonságokat verziójával 2013-08-15 kell vagy újabb verzióját, és adja hozzá a CORS-szabályokat a szolgáltatás tulajdonságai. Engedélyezheti vagy tilthatja le részletei CORS szolgáltatás és beállítása a CORS-szabályokat, tekintse meg [Blob szolgáltatás tulajdonságainak beállítása](https://msdn.microsoft.com/library/hh452235.aspx), [várólista-tulajdonságok beállítása](https://msdn.microsoft.com/library/hh452232.aspx), és [Table szolgáltatás beállítása Tulajdonságok](https://msdn.microsoft.com/library/hh452240.aspx).
+## <a name="enabling-cors-for-hello-azure-storage-services"></a>A CORS engedélyezése hello Azure Storage szolgáltatás
+CORS-szabályokat úgy van beállítva, hello szolgáltatás szintjén kell tooenable, vagy tiltsa le a CORS az egyes szolgáltatásokhoz (Blob, várólista és tábla) külön-külön. A CORS minden egyes szolgáltatás alapértelmezés szerint le van tiltva. tooset hello megfelelő szolgáltatástulajdonságok verziójával 2013-08-15 szüksége tooenable CORS, vagy újabb verzióját, és adja hozzá a CORS szabályok toohello szolgáltatás tulajdonságait. Részletes információt tooenable vagy tiltsa le a CORS egy szolgáltatáshoz, és hogyan tooset CORS szabályok, adjon tekintse meg a túl[Blob szolgáltatás tulajdonságainak beállítása](https://msdn.microsoft.com/library/hh452235.aspx), [várólista-tulajdonságok beállítása](https://msdn.microsoft.com/library/hh452232.aspx), és [tábla beállítása Szolgáltatás tulajdonságait,](https://msdn.microsoft.com/library/hh452240.aspx).
 
 Itt látható egy minta egy CORS szabályt, a szolgáltatás tulajdonságainak beállítása művelet keresztül:
 
@@ -69,39 +69,39 @@ Itt látható egy minta egy CORS szabályt, a szolgáltatás tulajdonságainak b
 <Cors>
 ```
 
-A CORS szabályban foglalt egyes elemei az alábbiakban olvasható:
+Minden elem hello CORS szabály szerepel az alábbiakban olvasható:
 
-* **AllowedOrigins**: A eredettartományból, szemben a társzolgáltatás keresztül CORS kérés számára. A forrástartomány a tartományhoz, ahonnan a kérés származik. Vegye figyelembe, hogy a forrás a forrás, amely a felhasználói kora küld a szolgáltatásnak a kis-és nagybetűket pontosan egyeznie kell lennie. A helyettesítő karakter is használható ' *' minden eredettartományból kéréseket a CORS segítségével történő engedélyezéséhez. A fenti példában, a tartományok [http://www.contoso.com](http://www.contoso.com) és [http://www.fabrikam.com](http://www.fabrikam.com) kéréseiket a CORS használatával szolgáltatásra.
-* **AllowedMethods**: A (HTTP-kérelem műveletek) használó metódusok a forrástartomány előfordulhat, hogy a CORS-kérelemre. A fenti példában csak a PUT és a GET kérelmek engedélyezettek.
-* **AllowedHeaders**: A kérelem fejlécében, hogy a forrástartomány adhatnak meg a CORS kérésre. A fenti példában az x-ms-metaadatok, x-ms-metaadat-tároló és az x-ms-meta-abc kezdve minden metaadat fejléc engedélyezett. Vegye figyelembe, hogy a helyettesítő karakter "*" jelzi, hogy engedélyezve van-e a-tól kezdődően fejlécben megadott előtag.
-* **ExposedHeaders**: a CORS-kérelemre válaszként küldött és jelennek meg, ha a böngésző számára a kérelmet kibocsátó response fejlécekkel együtt. A fenti példában az a böngésző teszi közzé a-tól kezdődően fejléc x-ms-meta arra utasította.
-* **MaxAgeInSeconds**: kérése a maximális időt, hogy a böngésző kell gyorsítótárazza az ellenőrzési beállítások.
+* **AllowedOrigins**: hello eredettartományból toomake engedélyezett egy kérelmet hello tárolási szolgáltatás CORS keresztül. hello forrástartományt az hello tartomány mely hello a kérelem származik. Vegye figyelembe, hogy hello származási hello forrása, hogy a hello felhasználói kora toohello szolgáltatás elküldi a kis-és nagybetűket pontosan egyeznie kell lennie. Hello helyettesítő karakter is használható ' *' tooallow minden eredet tartományok toomake kérelmek CORS keresztül. Hello a fenti példában a hello tartományok [http://www.contoso.com](http://www.contoso.com) és [http://www.fabrikam.com](http://www.fabrikam.com) kéréseket a meghatározott hello szolgáltatást a CORS használatával végezheti.
+* **AllowedMethods**: hello módszert (HTTP-kérelem műveletek), hogy hello forrástartományt használhatja a CORS kérelmek. A hello a fenti példában csak a PUT és a GET kérelmek engedélyezettek.
+* **AllowedHeaders**: hello kérelemfejléc adott hello forrástartományt adhatnak meg hello CORS kérésre. Hello a fenti példában az x-ms-metaadatok, x-ms-metaadat-tároló és az x-ms-meta-abc kezdve minden metaadat fejléc engedélyezett. Vegye figyelembe, hogy hello helyettesítő karakter "*" azt jelzi, hogy bármely hello fejléc kezdődő megadott előtag engedélyezett.
+* **ExposedHeaders**: hello válaszfejlécek hello válasz toohello CORS kérelemben küldött és hello böngésző toohello kérelmet kibocsátó által elérhetővé tett tárolókra. A fenti hello böngésző hello példában van bármely x-ms-meta fejléc kezdődő utasításai tooexpose.
+* **MaxAgeInSeconds**: hello maximális ideje, hogy a böngésző hello ellenőrzési beállítások kérelem kell gyorsítótárazza.
 
-Az Azure storage szolgáltatásainak megadását oszloplistájában fejlécek támogatja mind a **AllowedHeaders** és **ExposedHeaders** elemek. Ahhoz, hogy egy kategóriát a fejlécek, egy közös kategória-előtagot is megadhat. Például megadó *x-ms-meta** oszloplistájában fejléc alapján lesznek meghatározva azok egy szabályt, amely az összes fejléc x-ms-meta kezdődő fog egyezni.
+hello Azure storage szolgáltatások támogatása megadását oszloplistájában fejlécek mindkét hello **AllowedHeaders** és **ExposedHeaders** elemek. tooallow egy kategóriát a fejlécek, megadhat egy közös előtag toothat kategóriát. Például megadó *x-ms-meta** oszloplistájában fejléc alapján lesznek meghatározva azok egy szabályt, amely az összes fejléc x-ms-meta kezdődő fog egyezni.
 
-CORS-szabályokat a következő korlátozások vonatkoznak:
+a következő korlátozások hello tooCORS szabályok vonatkoznak:
 
-* Tárolási szolgáltatás (Blob, Table és Queue) esetében legfeljebb öt CORS-szabályokat is megadhat.
-* Összes CORS szabályok beállítása a kérés XML-címkék nélkül maximális mérete legfeljebb 2 KB lehet.
-* Egy engedélyezett fejléc, kitett fejléc vagy eredet engedélyezett hosszát nem lehet hosszabb 256 karakternél.
+* Másolatot toofive megadhat tárolási szolgáltatás (Blob, Table és Queue) esetében a CORS-szabályokat.
+* minden CORS szabályok beállítások hello kérés XML-címkék nélkül hello maximális mérete nem haladhatja meg a 2 KB lehet.
+* engedélyezett fejléc, kitett fejléc, vagy engedélyezett származási hello hossza nem haladhatja meg a 256 karaktert.
 * Megengedett fejlécek és elérhetőségi fejlécek lehetnek:
-  * Literális fejlécek, ahol a pontos fejlécnév valósul meg, például a **x-ms-meta-feldolgozott**. A kérésre egy legfeljebb 64 literális fejlécek adható meg.
-  * Fejlécek, ahol a fejléc előtag valósul meg, például a következő előtaggal **x-ms-metaadatok***. Adja meg a előtag ily módon lehetővé teszi, és elérhetővé teszi a fejlécet, amely a megadott előtaggal kezdődik. A kérésre legfeljebb két oszloplistájában fejléc adható meg.
-* A módszerek (vagy a HTTP-műveletek) szerepel a **AllowedMethods** elemet meg kell felelnie az Azure storage szolgáltatás API-k által támogatott módszerek. Támogatott módszereket törlése, GET, HEAD, egyesítési, POST, beállítások és a PUT.
+  * Literális fejlécek, ahol hello pontos fejlécnév valósul meg, például a **x-ms-meta-feldolgozott**. Legfeljebb 64 literális fejlécek hello kérésre adható meg.
+  * Fejlécek, ahol hello fejléc előtag valósul meg, például a következő előtaggal **x-ms-metaadatok***. Adja meg a előtag ily módon lehetővé teszi, hogy, és elérhetővé teszi a bármely fejlécet, amely a megadott előtag hello kezdődik. Legfeljebb két oszloplistájában fejléc hello kérésre adható meg.
+* a hello megadott módszerek (vagy HTTP-műveletek) hello **AllowedMethods** elemet meg kell felelnie az Azure storage szolgáltatás API-k által támogatott toohello módszerek. Támogatott módszereket törlése, GET, HEAD, egyesítési, POST, beállítások és a PUT.
 
 ## <a name="understanding-cors-rule-evaluation-logic"></a>CORS értékelési szabálylogikával ismertetése
-Egy tároló szolgáltatás előzetes vagy tényleges kérelmet kap, ha a kérésre a CORS-szabályokat a szolgáltatás a megfelelő szolgáltatás tulajdonságainak beállítása művelet keresztül létesítése alapján értékeli ki. CORS-szabályokat, amelyben a kérés törzsében a szolgáltatás tulajdonságainak beállítása művelet voltak beállítva sorrendben értékeli ki a rendszer.
+Egy tároló szolgáltatás előzetes vagy tényleges kérelmet kap, ha a kérésre hello szolgáltatás keresztül hello szolgáltatás tulajdonságainak beállítása művelet létesítése hello CORS szabályok alapján értékeli ki. CORS-szabályokat, amelyben voltak beállítva a kérelem törzse hello hello szolgáltatás tulajdonságainak beállítása művelet hello sorrendben értékeli ki a rendszer.
 
 CORS-szabályokat az alábbiak szerint értékeli:
 
-1. Először a kérelem a forrástartomány felsorolt tartományok összeveti a **AllowedOrigins** elemet. Ha a forrástartomány szerepel a listában, vagy minden engedélyezett és a helyettesítő karakter "*", majd a kiértékelési hibákra vonatkozó szabályokat. Ha a forrástartomány nincs megadva, akkor a kérelem sikertelen lesz.
-2. A következő a kérelem metódus (vagy HTTP-műveletet) ellenőrizi módszert a **AllowedMethods** elemet. Ha a metódus szerepel a listában, majd szabályok értékelésének folytatja; Ha nem, akkor a kérés nem teljesíthető.
-3. Ha a kérelem megfelel egy szabályt a forrástartomány és az metódust, ez a szabály feldolgozni a kérelmet, és nincsenek további szabályok kiértékelése az van kiválasztva. Mielőtt a kérelem sikeres, azonban a kérésben megadott fejléc veti össze a fejlécek szerepelnek a **AllowedHeaders** elemet. Ha az elküldött fejlécek nem egyezik a megengedett fejlécek, a kérelem sikertelen lesz.
+1. Első lépésként hello forrástartományt hello kérelem hello felsorolt hello tartományok ellenőrizi **AllowedOrigins** elemet. Ha hello forrástartományt szerepel hello listájában, illetve minden engedélyezett hello helyettesítő karakterrel ' *', majd a kiértékelési hibákra vonatkozó szabályokat. Ha hello forrástartományt nincs megadva, akkor hello kérelem sikertelen lesz.
+2. A következő metódus hello (vagy HTTP-műveletet) hello kérelem ellenőrizi hello felsorolt hello módszerek **AllowedMethods** elemet. Ha hello metódus szerepel hello listájában, majd szabályok értékelésének folytatja; Ha nem, akkor a hello kérelem sikertelen lesz.
+3. Hello kérelem megfelel egy szabályt a forrástartomány és az metódust, ha ez a szabály kijelölt tooprocess hello kérelem és nincsenek további szabályok kiértékelése. Mielőtt hello kérés sikeres lehet, azonban bármely hello kérésre megadott fejlécek veti össze hello felsorolt hello fejléceket **AllowedHeaders** elemet. Ha küldi hello fejlécek nem felelnek meg a fejléc engedélyezett hello, hello kérelem sikertelen lesz.
 
-Mivel a szabályok feldolgozása a ahhoz, azok a kérés törzsében szerepelnek, a bevált gyakorlat része, hogy a szigorúbb szabályok források először meg a listában, hogy ezek értékeli ki a rendszer először. Adja meg a szabályokat, amelyek kevésbé korlátozó – például egy szabályt, amely engedélyezi az összes források – a lista végére.
+Hello szabályok feldolgozása hello ahhoz, azok szerepelnek a hello kérelemtörzset, mivel a bevált gyakorlat része, meg kell adnia hello szigorúbb szabályaival tiszteletben tooorigins először hello listájában, így ezek értékeli ki a rendszer először. Adja meg a szabályokat, amelyek kevésbé korlátozó – például egy szabály tooallow minden eredet – hello lista hello végén.
 
 ### <a name="example--cors-rules-evaluation"></a>Példa – CORS szabályok kiértékelése
-A következő példa bemutatja a tárolási szolgáltatások CORS-szabályokat állíthat be a művelet egy részleges kérés törzsében. Lásd: [Blob szolgáltatás tulajdonságainak beállítása](https://msdn.microsoft.com/library/hh452235.aspx), [várólista-tulajdonságok beállítása](https://msdn.microsoft.com/library/hh452232.aspx), és [Table szolgáltatás tulajdonságainak beállítása](https://msdn.microsoft.com/library/hh452240.aspx) talál részletes információt hozhat létre a kérelmet.
+hello következő példa bemutatja egy részleges kérelemtörzset egy művelet tooset CORS szabályok hello tárolási szolgáltatásokhoz. Lásd: [Blob szolgáltatás tulajdonságainak beállítása](https://msdn.microsoft.com/library/hh452235.aspx), [várólista-tulajdonságok beállítása](https://msdn.microsoft.com/library/hh452232.aspx), és [Table szolgáltatás tulajdonságainak beállítása](https://msdn.microsoft.com/library/hh452240.aspx) hello kérés létrehozásával kapcsolatos részletekért.
 
 ```xml
 <Cors>
@@ -129,7 +129,7 @@ A következő példa bemutatja a tárolási szolgáltatások CORS-szabályokat �
 </Cors>
 ```
 
-Ezt követően vegye figyelembe a következő CORS kérelmeket:
+Ezt követően vegye figyelembe a következő CORS kérelmek hello:
 
 | Kérés |  |  | Válasz |  |
 | --- | --- | --- | --- | --- |
@@ -138,36 +138,36 @@ Ezt követően vegye figyelembe a következő CORS kérelmeket:
 | **GET** |http://www.contoso.com |x-ms-blob-tartalomtípus |Második szabály |Sikeres |
 | **GET** |http://www.contoso.com |x-ms-client-request-id |Második szabály |Hiba |
 
-Az első kérelem megfelel az első szabály – a forrástartomány megegyezik az engedélyezett eredetet, a metódus felel meg az engedélyezett metódusok és a fejléc megegyezik az engedélyezett fejlécek – és így sikeres lesz.
+hello első kérelem megfelel az első szabály hello – hello forrástartományt megegyezik az engedélyezett eredeteket hello hello metódus felel meg módszerek engedélyezett hello és hello fejléc engedélyezett fejlécek – hello megegyezik, és így képes lesz.
 
-A második kérelem nem egyezik az első szabály, mert a metódus nem egyezik meg az engedélyezett metódusok. Azonban egyezik a második szabálynak, így ez sikeres.
+mivel hello metódus nem felel meg a módszerek engedélyezett hello hello második kérelem nem egyezik meg hello első szabály. Azonban egyezik hello második szabály, ezért ez sikeres.
 
-A harmadik kérelem megfelel a forrástartomány és metódus, a második szabálynak, így nincsenek további szabályok kiértékelése. Azonban a *x-ms-client-request-id fejléc* nem engedélyezett a második szabály, ezért a kérelem sikertelen lesz, annak ellenére, hogy a harmadik szabály szemantikáját használhatott volna sikeres.
+hello harmadik távelérésének hello második szabály forrástartományt és metódust, így nincsenek további szabályok kiértékelése. Azonban hello *x-ms-client-request-id fejléc* , hello kérés nem teljesíthető, hogy hello harmadik szabály hello szemantikáját használhatott volna toosucceed hello ellenére hello második szabály, nem engedélyezi.
 
 > [!NOTE]
-> Bár ez a példa bemutatja egy kevésbé korlátozó szabály szigorúbb egy előtt, az ajánlott eljárás általában listázásához először a szigorúbb szabályokat.
+> Bár ez a példa bemutatja egy kevésbé korlátozó szabály szigorúbb egy előtt általában hello ajánlott toolist hello szigorúbb szabályok először.
 > 
 > 
 
-## <a name="understanding-how-the-vary-header-is-set"></a>Hogyan van beállítva a Vary fejléce ismertetése
-A *Vary* fejléc olyan készlete, amely tájékoztatja a böngésző vagy a felhasználói ügynök a feltételeket, amelyek a kérelem feldolgozása a kiszolgáló által kiválasztott vonatkozó kérelem fejlécmezők álló szabványos HTTP/1.1 fejléc. A *Vary* fejléc főleg a gyorsítótárazáshoz proxyk, a böngésző támogatja, és a tartalomtovábbító, amelyek segítségével határozza meg, hogyan kell gyorsítótárazza a választ. További információkért lásd: a előírása a [Vary fejléce](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
+## <a name="understanding-how-hello-vary-header-is-set"></a>Hogyan van beállítva a hello Vary fejléce ismertetése
+Hello *Vary* fejléc tanácsadás hello böngésző vagy felhasználói ügynök hello tooprocess hello kiszolgálókérése kiválasztott hello feltételeket vonatkozó kérelem fejlécmezők készlete álló szabványos HTTP/1.1 fejléc. Hello *Vary* fejléc főleg használható gyorsítótárazás proxyk, a böngésző támogatja, és a tartalomtovábbító, amely toodetermine használják, hogyan hello válasz gyorsítótárazza. További információkért lásd: hello hello előírása [Vary fejléce](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
 
-A böngésző vagy egy másik felhasználói ügynök gyorsítótárazza a CORS kérelmet kapott válasz, ha a forrástartomány gyorsítótárazza, mint az engedélyezett forrása. Ha a második tartomány ki a tároló-erőforrások esetében a kérésben, amíg a gyorsítótár aktív, a felhasználói ügynök lekéri a gyorsítótárazott forrástartományt. A második tartománya nem felel meg a gyorsítótárazott tartományifiók, ezért a kérelem sikertelen lesz, ha más módon járnak. Bizonyos esetekben az Azure Storage állítja be a Vary fejléce **származási** arra utasítani a felhasználói ügynök CORS kérést küld a szolgáltatást, amikor a kérést küldő tartomány eltér a gyorsítótárazott forrás.
+Hello böngésző vagy egy másik felhasználói ügynök gyorsítótárazza a CORS kérelmet hello válaszát, amikor a rendszer gyorsítótárazza a hello forrástartományt, eredet engedélyezett hello. Ha egy második problémáira hello kérésben tárolási erőforrásokhoz, amíg aktív hello gyorsítótár, hello felhasználói ügynök lekéri hello gyorsítótárazott forrástartományt. hello második tartomány nem felel meg hello gyorsítótárazott tartományifiók, így hello kérelem sikertelen lesz, ha más módon járnak. Bizonyos esetekben Azure Storage úgy állítja be az hello Vary fejléce túl**származási** tooinstruct hello felhasználói ügynök toosend hello későbbi CORS kérelem toohello szolgáltatás Ha a kért tartomány különbözik hello hello gyorsítótárazva forrása.
 
-Az Azure Storage-készletek a *Vary* fejlécének **származási** a tényleges GET vagy HEAD kérelem a következő esetekben:
+Az Azure Storage beállítja hello *Vary* fejléc túl**származási** vonatkozó tényleges GET vagy HEAD kérelmek hello a következő esetekben:
 
-* Ha a kérelem származási pontosan megegyezik az engedélyezett forrása a CORS szabály szerint. Pontosan egyeznie kell a CORS szabály nem tartalmazhatnak meg a helyettesítő karakter "*" karaktert.
-* Nincs a kérelem származási egyező szabály, de a CORS engedélyezve van a tároló szolgáltatást.
+* Ha a hello kérelem származási pontosan egyezik hello forrása a CORS szabály szerint engedélyezett. toobe pontos egyezés, hello CORS szabály nem tartalmazhat helyettesítő karakter "*" karaktert.
+* Nincs szabály egyező hello kérelem származási van, de a CORS hello tároló szolgáltatás engedélyezve van.
 
-Abban az esetben, ha egy GET vagy HEAD kérelem megfelel-e a CORS szabályt, amely lehetővé teszi, hogy minden eredet a válasz azt jelzi, hogy minden eredet engedélyezett, a felhasználói ügynök gyorsítótár lehetővé teszi bármely forrástartományt érkező későbbi kérelmeket, amíg a gyorsítótár aktív.
+Ha egy GET vagy HEAD kérelem megfelel-e a CORS szabályt, amely lehetővé teszi, hogy minden eredet hello esetben hello válasz azt jelzi, hogy minden eredet engedélyezett, hello felhasználói ügynök gyorsítótár lehetővé teszi bármely forrástartományt érkező későbbi kérelmeket, amíg aktív hello gyorsítótár.
 
-Vegye figyelembe, hogy a módszerekkel nem GET vagy HEAD kérelmek, a tárolási szolgáltatások nem állítja be a Vary fejléce, mivel ezek a módszerek válaszokat nem gyorsítótárazzák a felhasználói ügynök.
+Vegye figyelembe, hogy a GET vagy HEAD eltérő módszerekkel kéréseket, hello tárolási szolgáltatások nem állítja be hello Vary fejléce, mivel válaszok toothese módszerek nem kerülnek a gyorsítótárba felhasználói ügynök.
 
-Az alábbi táblázat tartalmazza az Azure storage a korábban említett eset alapján GET vagy HEAD kérésére válaszolni fog:
+hello alábbi táblázat tartalmazza az Azure storage tooGET/HEAD kérelem hello alapján korábban említett eset válaszol:
 
 | Kérés | Fiók beállítás és a szabály kiértékelés eredménye |  |  | Válasz |  |  |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Megtalálható a kérelem származási fejléc** |**Ez a szolgáltatás számára megadott CORS szabályok** |**Létezik egyező szabály, amely lehetővé teszi minden eredet (*)** |**Létezik egyező szabály forrás pontos egyezés** |**Válasz Vary fejléce forrás beállítása tartalmazza** |**Válasz tartalmazza a hozzáférés-vezérlési-engedélyezett-forrása: "*"** |**Válasz tartalmazza a hozzáférés-vezérlési-kitett-fejlécek** |
+| **Megtalálható a kérelem származási fejléc** |**Ez a szolgáltatás számára megadott CORS szabályok** |**Létezik egyező szabály, amely lehetővé teszi minden eredet (*)** |**Létezik egyező szabály forrás pontos egyezés** |**Válasz Vary fejléce set tooOrigin tartalmazza** |**Válasz tartalmazza a hozzáférés-vezérlési-engedélyezett-forrása: "*"** |**Válasz tartalmazza a hozzáférés-vezérlési-kitett-fejlécek** |
 | Nem |Nem |Nem |Nem |Nem |Nem |Nem |
 | Nem |Igen |Nem |Nem |Igen |Nem |Nem |
 | Nem |Igen |Igen |Nem |Nem |Igen |Igen |
@@ -177,7 +177,7 @@ Az alábbi táblázat tartalmazza az Azure storage a korábban említett eset al
 | Igen |Igen |Igen |Nem |Nem |Igen |Igen |
 
 ## <a name="billing-for-cors-requests"></a>A CORS kérelmek számlázási
-Sikeres ellenőrzés kéri, ha engedélyezte a fiók a tárolási szolgáltatások bármelyikéhez CORS számlázása (meghívásával [Blob szolgáltatás tulajdonságainak beállítása](https://msdn.microsoft.com/library/hh452235.aspx), [várólista-tulajdonságok beállítása](https://msdn.microsoft.com/library/hh452232.aspx), vagy [Tábla szolgáltatás tulajdonságainak beállítása](https://msdn.microsoft.com/library/hh452240.aspx)). Költségek minimalizálása érdekében fontolja meg a beállítás a **MaxAgeInSeconds** eleme a CORS-szabályok nagy értéket, hogy a felhasználói ügynök gyorsítótárazza a kérelmet.
+Sikeres ellenőrzés kéri, ha engedélyezte a fiók hello tárolási szolgáltatások bármelyikéhez CORS számlázása (meghívásával [Blob szolgáltatás tulajdonságainak beállítása](https://msdn.microsoft.com/library/hh452235.aspx), [várólista-tulajdonságok beállítása](https://msdn.microsoft.com/library/hh452232.aspx), vagy [ Table szolgáltatás tulajdonságainak beállítása](https://msdn.microsoft.com/library/hh452240.aspx)). toominimize költségek, vegye figyelembe, hogy hello beállítása **MaxAgeInSeconds** a CORS elemének szabályok tooa nagy érték, így hello felhasználói ügynök gyorsítótárazza hello kérelem.
 
 Sikertelen ellenőrzés kérelmek nem lesz terhelve.
 

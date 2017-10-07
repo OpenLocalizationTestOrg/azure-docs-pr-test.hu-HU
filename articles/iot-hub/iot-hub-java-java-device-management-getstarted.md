@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure IoT Hub kezelés (Java) |} Microsoft Docs"
-description: "Hogyan használható az Azure IoT Hub kezelés távoli eszköz újraindítás kezdeményezése. Az Azure IoT-eszközök SDK Java segítségével valósítja meg a szimulált eszköz alkalmazást, amely közvetlen módszer és az Azure IoT szolgáltatást megvalósítása, amely a közvetlen módszer hívja service-alkalmazást Java SDK tartalmazza."
+title: "aaaGet Azure IoT Hub kezelés (Java) használatába |} Microsoft Docs"
+description: "Hogyan toouse Azure IoT Hub eszköz felügyeleti tooinitiate egy távoli eszköz újraindul. A szimulált eszköz alkalmazást, amely magában foglalja a közvetlen módszer és hello Azure IoT szolgáltatás SDK Java tooimplement, amely hello közvetlen metódust hívja service-alkalmazást Java tooimplement hello Azure IoT-eszközök SDK használ."
 services: iot-hub
 documentationcenter: .java
 author: dominicbetts
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: c75635f366f5ced4bf91792d1a905dd6aab8ed79
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7aaeda9d4ff7002e5c66adfd61e2dfd5bcea964f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-device-management-java"></a>Eszközkezelés (Java) az első lépései
 
@@ -25,57 +25,57 @@ ms.lasthandoff: 08/18/2017
 
 Ez az oktatóanyag a következőket mutatja be:
 
-* Az Azure-portál használatával létrehoz egy IoT-központot, és az IoT hub hozzon létre egy eszközidentitás.
-* Létrehoz egy szimulált eszköz alkalmazást, amely az eszköz újraindítását közvetlen módszer. Közvetlen módszerek a felhőből hívják.
-* Hozzon létre egy alkalmazást, amely a szimulált eszköz alkalmazásának keresztül az IoT hub újraindítás közvetlen metódust hívja. Ezt az alkalmazást az eszközről, tekintse meg az újraindítás művelet befejezésekor jelentett tulajdonságok figyeli.
+* Az Azure portál toocreate az IoT-központ hello használata, és az IoT hub hozzon létre egy eszközidentitás.
+* Létrehoz egy szimulált eszköz alkalmazást, amely megvalósítja a közvetlen módszer tooreboot hello eszköz. Közvetlen módszerek hello felhőből hívják.
+* Hozzon létre egy alkalmazást, amely hívja meg hello újraindítás közvetlen módszer az IoT hub keresztül hello szimulált eszköz alkalmazásban. Ez app majd figyelők hello hello eszköz toosee jelentett tulajdonságait, ha hello újraindítás művelete befejeződött.
 
-Ez az oktatóanyag végén két Java konzol alkalmazások közül választhat:
+Ez az oktatóanyag végén hello két Java konzol alkalmazások közül választhat:
 
 **Szimulált eszköz**. Ezt az alkalmazást:
 
-* Az IoT hub csatlakozik a korábban létrehozott eszközidentitás.
+* A korábban létrehozott hello eszközidentitás tooyour IoT-központ kapcsolódik.
 * Újraindítás közvetlen módszer hívást kap.
 * A fizikai számítógép újraindítása szimulálja.
-* A jelentés az utolsó újraindítás jelentett tulajdonságon keresztül idején.
+* Jelentések hello idő az utolsó újraindítás hello jelentett tulajdonságon keresztül.
 
 **eseményindító-újraindítás**. Ezt az alkalmazást:
 
-* A közvetlen módszer meghívja a szimulált eszköz alkalmazásban.
-* Megjeleníti a közvetlen módszer hívásához a szimulált eszköz által küldött válasz
-* Megjeleníti a módosított tulajdonságok jelentett.
+* Meghívja a közvetlen módszer hello szimulált eszköz alkalmazásban.
+* Hello válasz toohello közvetlen metódus hívása hello szimulált eszköz által küldött jeleníti meg
+* Frissített megjeleníti hello jelentett tulajdonságok.
 
 > [!NOTE]
-> Az SDK-k használó alkalmazások futtatásához eszközökön és a megoldás háttérrendszeréhez kapcsolatos információkért lásd: [Azure IoT SDK-k][lnk-hub-sdks].
+> Használható toobuild alkalmazások toorun eszközökön és a megoldás háttérrendszeréhez hello SDK-kkal kapcsolatos információk: [Azure IoT SDK-k][lnk-hub-sdks].
 
-Az oktatóanyag elvégzéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban szüksége:
 
-* Java SE 8. <br/> [A fejlesztési környezet előkészítését][lnk-dev-setup] ismertető cikk leírja, hogyan telepítheti a Javát ehhez az oktatóanyaghoz Windows vagy Linux rendszeren.
-* Maven 3  <br/> [A fejlesztési környezet előkészítését][lnk-dev-setup] ismertető cikk leírja, hogyan telepítheti a [Mavent][lnk-maven] ehhez az oktatóanyaghoz Windows vagy Linux rendszeren.
+* Java SE 8. <br/> [A fejlesztőkörnyezet előkészítése] [ lnk-dev-setup] ismerteti, hogyan tooinstall Java ebben az oktatóanyagban a Windows vagy Linux.
+* Maven 3  <br/> [A fejlesztőkörnyezet előkészítése] [ lnk-dev-setup] ismerteti, hogyan tooinstall [Maven] [ lnk-maven] ebben az oktatóanyagban a Windows vagy Linux.
 * [NODE.js-verzió 0.10.0-s vagy újabb](http://nodejs.org).
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="trigger-a-remote-reboot-on-the-device-using-a-direct-method"></a>Az eszközön, a közvetlen módszer használatával távoli újraindítás eseményindító
+## <a name="trigger-a-remote-reboot-on-hello-device-using-a-direct-method"></a>Eseményindító közvetlen metódussal hello eszközön távoli újraindítás
 
 Ebben a szakaszban hoz létre egy Java-Konzolalkalmazás, amely:
 
-1. Meghívja a szimulált eszköz alkalmazásának újraindítás közvetlen metódust.
-1. A válasz megjeleníti.
-1. Szavazások a jelentésben szereplő tulajdonságok az eszköz számára küldött határozza meg, ha az újraindítás befejeződött.
+1. Meghívja a hello újraindítás közvetlen módszer hello szimulált eszköz alkalmazásban.
+1. Hello válasz jeleníti meg.
+1. Szavazások hello tulajdonságok hello eszköz toodetermine küldött hello újraindítás befejezésekor jelentett.
 
-A Konzolalkalmazás csatlakozik az IoT Hub meghívni a közvetlen metódust, és a jelentett tulajdonságainak olvasása.
+A Konzolalkalmazás csatlakozik az IoT-központ tooyour tooinvoke hello közvetlen módszer és olvasási hello jelentett tulajdonságait.
 
 1. Hozzon létre egy üres nevű dm-get-started.
 
-1. A dm-get-started mappában hozzon létre egy Maven project nevű **eseményindító-újraindítás** parancsot a parancssorba az alábbi parancs segítségével. Az alábbiakban látható egy egyetlen, hosszú parancsot:
+1. A dm-get-started hello mappában nevű Maven-projekt létrehozása **eseményindító-újraindítás** a következő parancsot a parancssorba hello segítségével. hello következő egyetlen, hosszú parancs jeleníti meg:
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=trigger-reboot -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. A parancssorban keresse meg az eseményindító-újraindítás mappát.
+1. A parancssorban keresse meg a toohello eseményindító-újraindítás mappa.
 
-1. Egy szövegszerkesztővel nyissa meg a pom.xml fájlt az eseményindító-újraindítás mappában, és adja hozzá a következő függőség a **függőségek** csomópont. A függőség lehetővé teszi, hogy az iot-szolgáltatás-ügyfélcsomag az alkalmazás kommunikáljon az IoT hub:
+1. Egy szövegszerkesztőben nyissa hello pom.xml fájlt hello eseményindító-újraindítás mappában, és adja hozzá a következő függőségi toohello hello **függőségek** csomópont. A függőség lehetővé teszi, hogy Ön toouse hello iot-szolgáltatás-ügyfélcsomagját a app toocommunicate az IoT hubbal:
 
     ```xml
     <dependency>
@@ -87,9 +87,9 @@ A Konzolalkalmazás csatlakozik az IoT Hub meghívni a közvetlen metódust, és
     ```
 
     > [!NOTE]
-    > Az **iot-service-client** legújabb verzióját a [Maven keresési funkciójával][lnk-maven-service-search] tekintheti meg.
+    > Ellenőrizze, hogy hello legújabb verziójának **iot-szolgáltatásügyfél** használatával [Maven keresési][lnk-maven-service-search].
 
-1. Adja hozzá a következő **build** csomópont után a **függőségek** csomópont. Ez a konfiguráció arra utasítja a Java 1.8 az lehetővé teszi az alkalmazás Maven:
+1. Adja hozzá a következő hello **build** után hello csomópont **függőségek** csomópont. Ez a konfiguráció arra utasítja a Maven toouse Java 1,8 toobuild hello alkalmazást:
 
     ```xml
     <build>
@@ -107,11 +107,11 @@ A Konzolalkalmazás csatlakozik az IoT Hub meghívni a közvetlen metódust, és
     </build>
     ```
 
-1. Mentse és zárja be a pom.xml fájlt.
+1. Mentse és zárja be a hello pom.xml fájlt.
 
-1. Egy szövegszerkesztőben nyissa meg a trigger-reboot\src\main\java\com\mycompany\app\App.java forrásfájl.
+1. Egy szövegszerkesztőben nyissa meg hello trigger-reboot\src\main\java\com\mycompany\app\App.java forrásfájl.
 
-1. Adja hozzá a következő **importálási** utasításokat a fájlhoz:
+1. Adja hozzá a következő hello **importálása** utasítások toohello fájlt:
 
     ```java
     import com.microsoft.azure.sdk.iot.service.devicetwin.DeviceMethod;
@@ -126,7 +126,7 @@ A Konzolalkalmazás csatlakozik az IoT Hub meghívni a közvetlen metódust, és
     import java.util.concurrent.ExecutorService;
     ```
 
-1. Adja hozzá a következő osztályszintű változókat az **App** osztályhoz. Cserélje le `{youriothubconnectionstring}` az IoT hub kapcsolati karakterlánccal feljegyzett a *létrehoz egy IoT-központot* szakasz:
+1. Adja hozzá a következő osztály változók toohello hello **App** osztály. Cserélje le `{youriothubconnectionstring}` az IoT hub kapcsolati karakterlánccal hello feljegyzett *létrehoz egy IoT-központot* szakasz:
 
     ```java
     public static final String iotHubConnectionString = "{youriothubconnectionstring}";
@@ -137,7 +137,7 @@ A Konzolalkalmazás csatlakozik az IoT Hub meghívni a közvetlen metódust, és
     private static final Long connectTimeout = TimeUnit.SECONDS.toSeconds(5);
     ```
 
-1. A szál, amely a jelentésben szereplő tulajdonságok beolvassa az eszköz kettős 10 másodpercenként alkalmazásához adja hozzá a következő beágyazott osztály a **App** osztály:
+1. a szál hello olvasó tooimplement jelentett tulajdonságok hello eszköz kettős 10 másodpercenként hozzá hello következő beágyazott osztály toohello **App** osztály:
 
     ```java
     private static class ShowReportedProperties implements Runnable {
@@ -158,7 +158,7 @@ A Konzolalkalmazás csatlakozik az IoT Hub meghívni a közvetlen metódust, és
     }
     ```
 
-1. A rendszer újraindítása a szimulált eszköz közvetlen metódus meghívásához, adja hozzá az alábbi kódot a **fő** módszert:
+1. tooinvoke hello újraindítás közvetlen módszer hello szimulált eszköz, adja hozzá a következő kód toohello hello **fő** módszert:
 
     ```java
     System.out.println("Starting sample...");
@@ -183,7 +183,7 @@ A Konzolalkalmazás csatlakozik az IoT Hub meghívni a közvetlen metódust, és
     }
     ```
 
-1. És kérdezze le a jelentett tulajdonságok a szimulált eszköz eltávolítása a szálat indítani, adja hozzá az alábbi kódot a **fő** módszert:
+1. toostart hello szál toopoll hello hello szimulált eszköz jelentett tulajdonságait, adja hozzá a következő kód toohello hello **fő** módszert:
 
     ```java
     ShowReportedProperties showReportedProperties = new ShowReportedProperties();
@@ -191,32 +191,32 @@ A Konzolalkalmazás csatlakozik az IoT Hub meghívni a közvetlen metódust, és
     executor.execute(showReportedProperties);
     ```
 
-1. Ahhoz, hogy állítsa le az alkalmazást, adja hozzá a következő kódot a **fő** módszert:
+1. tooenable toostop hello alkalmazást, adja hozzá a következő kód toohello hello **fő** módszert:
 
     ```java
-    System.out.println("Press ENTER to exit.");
+    System.out.println("Press ENTER tooexit.");
     System.in.read();
     executor.shutdownNow();
     System.out.println("Shutting down sample...");
     ```
 
-1. Mentse és zárja be a trigger-reboot\src\main\java\com\mycompany\app\App.java fájlt.
+1. Mentse és zárja be hello trigger-reboot\src\main\java\com\mycompany\app\App.java fájlt.
 
-1. Build a **eseményindító-újraindítás** háttér-alkalmazást, és kijavíthatja az esetleges hibákat. A parancssorban keresse meg az eseményindító-újraindítás mappát, és futtassa a következő parancsot:
+1. Build hello **eseményindító-újraindítás** háttér-alkalmazást, és kijavíthatja az esetleges hibákat. A parancssorban lépjen a toohello eseményindító-újraindítás mappa és a következő parancs futtatása hello:
 
     `mvn clean package -DskipTests`
 
 ## <a name="create-a-simulated-device-app"></a>Szimulált eszközalkalmazás létrehozása
 
-Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az eszköz szimulálja. Az alkalmazás figyeli, az újraindítást követően a közvetlen metódus hívása az IoT hub, és azonnal válaszol-e, hogy a hívást. A alkalmazást, majd a alszik egy ideig, hogy újraindítás szimulálja értesíteni jelentett tulajdonság használata előtt a **eseményindító-újraindítás** háttér-alkalmazást, hogy az újraindítás befejeződött.
+Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az eszköz szimulálja. hello app hello újraindítás közvetlen metódus hívását az IoT hub figyeli, és azonnal válaszol toothat hívás. alkalmazást, majd egy ideig alszik hello toosimulate hello újraindítás folyamat egy jelentett tulajdonság toonotify hello használata előtt **eseményindító-újraindítás** háttér-alkalmazást, amely hello újraindítás befejeződött.
 
-1. A dm-get-started mappában hozzon létre egy Maven project nevű **szimulált eszköz** parancsot a parancssorba az alábbi parancs segítségével. A következő egy olyan nagyméretű, sok parancs:
+1. A dm-get-started hello mappában nevű Maven-projekt létrehozása **szimulált eszköz** a következő parancsot a parancssorba hello segítségével. hello az alábbiakban olvashat egy egyetlen, hosszú parancsot:
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=simulated-device -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. A parancssorban lépjen a simulated-device mappára.
+1. A parancssorban lépjen a toohello szimulált eszköz mappában.
 
-1. Egy szövegszerkesztővel nyissa meg a pom.xml fájlt a szimulált eszköz mappában, és adja hozzá a következő függőség a **függőségek** csomópont. A függőség lehetővé teszi, hogy az iot-szolgáltatás-ügyfélcsomag az alkalmazás kommunikáljon az IoT hub:
+1. Egy szövegszerkesztőben nyissa hello pom.xml fájlt hello szimulált eszköz mappában, és adja hozzá a következő függőségi toohello hello **függőségek** csomópont. A függőség lehetővé teszi, hogy Ön toouse hello iot-szolgáltatás-ügyfélcsomagját a app toocommunicate az IoT hubbal:
 
     ```xml
     <dependency>
@@ -227,9 +227,9 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az eszköz sz
     ```
 
     > [!NOTE]
-    > Az **iot-device-client** legújabb verzióját a [Maven keresési funkciójával][lnk-maven-device-search] tekintheti meg.
+    > Ellenőrizze, hogy hello legújabb verziójának **iot-eszközügyfél** használatával [Maven keresési][lnk-maven-device-search].
 
-1. Adja hozzá a következő **build** csomópont után a **függőségek** csomópont. Ez a konfiguráció arra utasítja a Java 1.8 az lehetővé teszi az alkalmazás Maven:
+1. Adja hozzá a következő hello **build** után hello csomópont **függőségek** csomópont. Ez a konfiguráció arra utasítja a Maven toouse Java 1,8 toobuild hello alkalmazást:
 
     ```xml
     <build>
@@ -247,11 +247,11 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az eszköz sz
     </build>
     ```
 
-1. Mentse és zárja be a pom.xml fájlt.
+1. Mentse és zárja be a hello pom.xml fájlt.
 
-1. Egy szövegszerkesztőben nyissa meg a simulated-device\src\main\java\com\mycompany\app\App.java forrásfájl.
+1. Egy szövegszerkesztőben nyissa meg hello simulated-device\src\main\java\com\mycompany\app\App.java forrásfájl.
 
-1. Adja hozzá a következő **importálási** utasításokat a fájlhoz:
+1. Adja hozzá a következő hello **importálása** utasítások toohello fájlt:
 
     ```java
     import com.microsoft.azure.sdk.iot.device.*;
@@ -265,7 +265,7 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az eszköz sz
     import java.util.HashSet;
     ```
 
-1. Adja hozzá a következő osztályszintű változókat az **App** osztályhoz. Cserélje le `{yourdeviceconnectionstring}` feljegyzett eszköz kapcsolati karakterlánccal rendelkező a *hozzon létre egy eszközidentitás* szakasz:
+1. Adja hozzá a következő osztály változók toohello hello **App** osztály. Cserélje le `{yourdeviceconnectionstring}` hello eszköz kapcsolati karakterlánccal hello feljegyzett *hozzon létre egy eszközidentitás* szakasz:
 
     ```java
     private static final int METHOD_SUCCESS = 200;
@@ -276,31 +276,31 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az eszköz sz
     private static DeviceClient client;
     ```
 
-1. Egy visszahívás-kezelő, a közvetlen módszer állapoteseményeit alkalmazásához adja hozzá a következő beágyazott osztályt a **App** osztály:
+1. egy visszahívás-kezelő, a közvetlen módszer állapoteseményeit, tooimplement adja hozzá a hello következő beágyazott osztály toohello **App** osztály:
 
     ```java
     protected static class DirectMethodStatusCallback implements IotHubEventCallback
     {
       public void execute(IotHubStatusCode status, Object context)
       {
-        System.out.println("IoT Hub responded to device method operation with status " + status.name());
+        System.out.println("IoT Hub responded toodevice method operation with status " + status.name());
       }
     }
     ```
 
-1. Egy visszahívás-kezelő eszköz iker állapoteseményeit a alkalmazásához adja hozzá a következő beágyazott osztályt a **App** osztály:
+1. egy visszahívás-kezelő eszköz iker állapoteseményeit, a tooimplement adja hozzá a hello következő beágyazott osztály toohello **App** osztály:
 
     ```java
     protected static class DeviceTwinStatusCallback implements IotHubEventCallback
     {
         public void execute(IotHubStatusCode status, Object context)
         {
-            System.out.println("IoT Hub responded to device twin operation with status " + status.name());
+            System.out.println("IoT Hub responded toodevice twin operation with status " + status.name());
         }
     }
     ```
 
-1. Egy visszahívás-kezelő tulajdonság események alkalmazásához adja hozzá a következő beágyazott osztályt a **App** osztály:
+1. egy visszahívás-kezelő tulajdonság események tooimplement adja hozzá a hello következő beágyazott osztály toohello **App** osztály:
 
     ```java
     protected static class PropertyCallback implements PropertyCallBack<String, String>
@@ -313,7 +313,7 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az eszköz sz
     }
     ```
 
-1. A szál az eszköz újraindítás szimulálásához alkalmazásához adja hozzá a következő beágyazott osztályt a **App** osztály. A szál öt másodpercenként alvó állapotba kerül, és ezután beállítja a **lastReboot** tulajdonság jelentette:
+1. tooimplement szál toosimulate hello eszköz újraindítás, adja hozzá a hello következő beágyazott osztály toohello **App** osztály. hello szál öt másodpercenként alvó állapotba kerül, és ezután beállítja az hello **lastReboot** tulajdonság jelentette:
 
     ```java
     protected static class RebootDeviceThread implements Runnable {
@@ -334,7 +334,7 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az eszköz sz
     }
     ```
 
-1. Az eszközön a közvetlen módszer alkalmazásához adja hozzá a következő beágyazott osztály a **App** osztály. Ha a szimulált alkalmazások a hívást kap a **újraindítás** közvetlen módszer azt nyugtázást visszatér a hívó, majd elindítja az újraindítás feldolgozására szolgáló szálat:
+1. tooimplement hello közvetlen módszer hello eszközön, adja hozzá a hello következő beágyazott osztály toohello **App** osztály. Ha hello szimulált app kap egy hívás toohello **újraindítás** közvetlen módszer adja vissza egy nyugtázási toohello hívó és majd elindul egy szál tooprocess hello újraindítás:
 
     ```java
     protected static class DirectMethodCallback implements com.microsoft.azure.sdk.iot.device.DeviceTwin.DeviceMethodCallback
@@ -366,20 +366,20 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az eszköz sz
     }
     ```
 
-1. Aláírását, valamint módosíthatja a **fő** metódust kell küldeni a következő kivételekkel:
+1. Hello hello aláírása módosítása **fő** metódus toothrow hello kivételek a következő:
 
     ```java
     public static void main(String[] args) throws IOException, URISyntaxException
     ```
 
-1. Példányt létrehozni egy **DeviceClient**, adja hozzá a következő kódot a **fő** módszert:
+1. tooinstantiate egy **DeviceClient**, adja hozzá a következő kód toohello hello **fő** módszert:
 
     ```java
     System.out.println("Starting device client sample...");
     client = new DeviceClient(connString, protocol);
     ```
 
-1. Megkezdeni a figyelést közvetlen metódushívások, adja hozzá a következő kódot a **fő** módszert:
+1. figyeli a közvetlen metódushívások esetén toostart adja hozzá a következő kód toohello hello **fő** módszert:
 
     ```java
     try
@@ -387,7 +387,7 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az eszköz sz
       client.open();
       client.subscribeToDeviceMethod(new DirectMethodCallback(), null, new DirectMethodStatusCallback(), null);
       client.startDeviceTwin(new DeviceTwinStatusCallback(), null, new PropertyCallback(), null);
-      System.out.println("Subscribed to direct methods and polling for reported properties. Waiting...");
+      System.out.println("Subscribed toodirect methods and polling for reported properties. Waiting...");
     }
     catch (Exception e)
     {
@@ -397,10 +397,10 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az eszköz sz
     }
     ```
 
-1. Állítsa le az eszköz szimulátor, adja hozzá az alábbi kódot a **fő** módszert:
+1. tooshut le hello eszköz szimulátor, adja hozzá a következő kód toohello hello **fő** módszert:
 
     ```java
-    System.out.println("Press any key to exit...");
+    System.out.println("Press any key tooexit...");
     Scanner scanner = new Scanner(System.in);
     scanner.nextLine();
     scanner.close();
@@ -408,31 +408,31 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az eszköz sz
     System.out.println("Shutting down...");
     ```
 
-1. Mentse és zárja be a simulated-device\src\main\java\com\mycompany\app\App.java fájlt.
+1. Mentse és zárja be hello simulated-device\src\main\java\com\mycompany\app\App.java fájlt.
 
-1. Build a **szimulált eszköz** háttér-alkalmazást, és kijavíthatja az esetleges hibákat. A parancssorban keresse meg a szimulált eszköz mappát, és futtassa a következő parancsot:
+1. Build hello **szimulált eszköz** háttér-alkalmazást, és kijavíthatja az esetleges hibákat. A parancssorban lépjen a toohello szimulált eszköz mappa és a következő parancs futtatása hello:
 
     `mvn clean package -DskipTests`
 
-## <a name="run-the-apps"></a>Az alkalmazások futtatása
+## <a name="run-hello-apps"></a>Hello alkalmazások futtatása
 
-Most már készen áll az alkalmazások futtatására.
+Most már áll készen toorun hello alkalmazásokat.
 
-1. Parancsot egy parancssorba a szimulált eszköz mappában futtassa a következő parancsot az IoT hub az újraindítás metódushívások figyelését:
-
-    `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
-
-    ![Java IoT Hub szimulált eszköz alkalmazás figyelését, indítsa újra közvetlen metódushívások][1]
-
-1. A parancssorba az eseményindító-újraindítás mappában futtassa a következő parancsot a rendszer újraindítása metódusát hívja a szimulált eszköz az IoT hub:
+1. Parancsot egy parancssorba hello szimulált eszköz mappában futtassa a következő parancs toobegin újraindítás metódushívások az IoT-központ figyel hello:
 
     `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
 
-    ![Java IoT-központ szolgáltatás alkalmazásnak, hogy a rendszer újraindítása közvetlen metódus hívása][2]
+    ![Java IoT Hub szimulált eszköz alkalmazás toolisten újraindítás közvetlen metódushívások][1]
 
-1. A szimulált eszköz válaszol-e a rendszer újraindítása közvetlen metódus hívása:
+1. Parancsot egy parancssorba hello eseményindító-újraindítás mappában futtassa a szimulált eszköz parancs toocall hello újraindítás metódus követően az IoT hub hello:
 
-    ![Java IoT Hub szimulált eszköz alkalmazásának válaszol-e a közvetlen metódus hívása][3]
+    `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
+
+    ![Java IoT-központ szolgáltatás app toocall hello indítsa újra a közvetlen módszer][2]
+
+1. hello szimulált eszköz válaszol toohello újraindítás közvetlen metódus hívása:
+
+    ![Java IoT Hub szimulált eszköz alkalmazásának válaszol toohello közvetlen metódus hívása][3]
 
 [!INCLUDE [iot-hub-dm-followup](../../includes/iot-hub-dm-followup.md)]
 

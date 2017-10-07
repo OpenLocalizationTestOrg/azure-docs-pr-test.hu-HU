@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric parancssori felület használatával Azure Service Fabric-alkalmazások kezelése"
-description: "Ismerje meg, hogyan helyezhet üzembe és alkalmazások eltávolítása egy Azure Service Fabric-fürt Azure Service Fabric parancssori felület használatával"
+title: "aaaManage Azure Service Fabric-alkalmazások Azure Service Fabric parancssori felület használatával"
+description: "Ismerje meg, hogyan toodeploy és eltávolítás alkalmazások az Azure Service Fabric fürt Azure Service Fabric parancssori felület használatával"
 services: service-fabric
 author: samedder
 manager: timlt
@@ -8,78 +8,78 @@ ms.service: service-fabric
 ms.topic: article
 ms.date: 08/22/2017
 ms.author: edwardsa
-ms.openlocfilehash: c3a2eb3e6e54f952ef963bb2a0292d9ad7b53bc5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d9f98cee1d70f71a2aab68ff556956619910e4fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-an-azure-service-fabric-application-by-using-azure-service-fabric-cli"></a>Az Azure Service Fabric-alkalmazás kezelése az Azure Service Fabric parancssori felület használatával
 
-Ismerje meg, hogyan hozhat létre, és törölnie kell az Azure Service Fabric-fürt futó alkalmazásokat.
+Megtudhatja, hogyan toocreate és törli az alkalmazást, hogy az Azure Service Fabric-fürt.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 * A Service Fabric parancssori felület telepítése. Ezután válassza ki a Service Fabric-fürt. További információkért lásd: [Ismerkedés a Service Fabric CLI](service-fabric-cli.md).
 
-* A Service Fabric alkalmazáscsomagok telepítésre kész rendelkezik. Szerző és csomagot alkalmazássá kapcsolatos további információkért olvassa el a [Service Fabric-alkalmazás modell](service-fabric-application-model.md).
+* A Service Fabric application csomag készen toobe telepítve van. További információ tooauthor és a csomag egy alkalmazást, olvassa el hello [Service Fabric-alkalmazás modell](service-fabric-application-model.md).
 
 ## <a name="overview"></a>Áttekintés
 
-Egy új alkalmazás központi telepítése, végezze el ezeket a lépéseket:
+toodeploy egy új alkalmazást, végezze el az alábbi lépéseket:
 
-1. Alkalmazáscsomag feltöltése a Service Fabric lemezképtárolóhoz.
+1. Töltse fel az alkalmazás csomag toohello Service Fabric lemezképtárolóhoz.
 2. Az alkalmazástípus kiépítéséhez.
 3. Adja meg, és hozzon létre egy alkalmazást.
 4. Adja meg, és a szolgáltatások létrehozására.
 
-Távolítsa el a meglévő alkalmazás, végezze el ezeket a lépéseket:
+tooremove egy meglévő alkalmazást, kövesse ezeket a lépéseket:
 
-1. Az alkalmazás törlése.
-2. A társított alkalmazások típus leépítése.
-3. A lemezképet tároló tartalom törlése.
+1. Hello alkalmazás törlése.
+2. Leépíteni hello társított alkalmazás típusa.
+3. Hello lemezképet tároló tartalom törlése.
 
 ## <a name="deploy-a-new-application"></a>Egy új alkalmazás központi telepítése
 
-Új alkalmazás központi telepítéséhez hajtsa végre a következőket:
+toodeploy egy új alkalmazást, a következő feladatok teljes hello:
 
-### <a name="upload-a-new-application-package-to-the-image-store"></a>Az image store egy új alkalmazáscsomag feltöltése
+### <a name="upload-a-new-application-package-toohello-image-store"></a>Egy új alkalmazás csomag toohello lemezképtárolóhoz feltöltése
 
-Hoz létre egy alkalmazást, mielőtt az alkalmazáscsomag feltöltése a Service Fabric lemezképtárolóhoz.
+Az alkalmazás létrehozása előtt töltse fel a hello alkalmazás csomag toohello Service Fabric lemezképtárolóhoz.
 
-Például, ha az alkalmazás csomagot a `app_package_dir` könyvtár, töltse fel a könyvtár a következő parancsokkal:
+Például, ha a alkalmazáscsomag hello `app_package_dir` directory, a következő parancsok tooupload hello directory használata hello:
 
 ```azurecli
 sfctl application upload --path ~/app_package_dir
 ```
 
-Nagy alkalmazáscsomagok esetén megadhatja a `--show-progress` a feltöltés állapotának megjelenítése lehetőséget.
+Nagy alkalmazáscsomagok esetén megadhatja hello `--show-progress` toodisplay hello előrehaladását hello feltöltés lehetőséget.
 
-### <a name="provision-the-application-type"></a>Az alkalmazástípus kiépítése
+### <a name="provision-hello-application-type"></a>Kiépítés hello alkalmazás típusa
 
-A feltöltés befejeződése után telepíteni az alkalmazást. Az alkalmazás telepítéséhez, a következő paranccsal:
+Hello feltöltés befejezését követően használhatók a hello alkalmazás. tooprovision hello alkalmazás, a következő parancs használata hello:
 
 ```azurecli
 sfctl application provision --application-type-build-path app_package_dir
 ```
 
-A következő `application-type-build-path` a könyvtárban, ahol az alkalmazáscsomag feltöltött neve.
+a következő hello `application-type-build-path` hello neve, ahol feltöltött alkalmazáscsomag hello könyvtár.
 
 ### <a name="create-an-application-from-an-application-type"></a>Alkalmazástípusok az alkalmazás létrehozása
 
-Az alkalmazás kiépítése után a következő paranccsal nevet, és az alkalmazás létrehozása:
+Hello alkalmazás kiépítése után a következő parancs tooname hello használja, és az alkalmazás létrehozása:
 
 ```azurecli
 sfctl application create --app-name fabric:/TestApp --app-type TestAppType --app-version 1.0
 ```
 
-`app-name`Ez a név az alkalmazáspéldány használni szeretne. További paraméterek lekérheti az előzőleg létrehozott alkalmazás jegyzékében.
+`app-name`hello nevét, amelyet az toouse hello alkalmazás példány van. További paraméterek lekérheti az előzőleg létrehozott alkalmazás jegyzékében.
 
-Az alkalmazás nevét a előtaggal kell kezdődnie `fabric:/`.
+hello alkalmazásnév hello előtaggal kell kezdődnie `fabric:/`.
 
-### <a name="create-services-for-the-new-application"></a>Szolgáltatások az új alkalmazás létrehozása
+### <a name="create-services-for-hello-new-application"></a>Szolgáltatások hello új alkalmazás létrehozása
 
-Miután létrehozott egy alkalmazást, a szolgáltatások létrehozására az alkalmazásból. A következő példában azt hozzon létre egy új állapotmentes az alkalmazásból. A szolgáltatásokat, amelyeket létrehozhat egy alkalmazást a korábban kiépített alkalmazáscsomagban szolgáltatás jegyzékfájl vannak definiálva.
+Miután létrehozott egy alkalmazást, a szolgáltatások létrehozására hello alkalmazásból. A következő példa hello hogy hozzon létre egy új állapot nélküli az alkalmazásból. hello szolgáltatásokat hozhat létre egy alkalmazást a korábban kiépített alkalmazáscsomag hello szolgáltatás jegyzékfájl vannak definiálva.
 
 ```azurecli
 sfctl service create --app-id TestApp --name fabric:/TestApp/TestSvc --service-type TestServiceType \
@@ -88,14 +88,14 @@ sfctl service create --app-id TestApp --name fabric:/TestApp/TestSvc --service-t
 
 ## <a name="verify-application-deployment-and-health"></a>Alkalmazások üzembe helyezését és állapotának ellenőrzése
 
-Minden épségének ellenőrzése, hogy az alábbi parancsokkal állapotát:
+tooverify mindent kifogástalan állapotú, használja a következő állapotfigyelő parancsok hello:
 
 ```azurecli
 sfctl application list
 sfctl service list --application-id TestApp
 ```
 
-Győződjön meg arról, hogy a szolgáltatás nem működik megfelelően, hasonló parancsok segítségével a szolgáltatás és az alkalmazás állapotának beolvasása:
+tooverify, hogy hello szolgáltatás állapota megfelelő, hasonló parancsok tooretrieve hello állapotát a hello szolgáltatás, és az alkalmazás használata:
 
 ```azurecli
 sfctl application health --application-id TestApp
@@ -106,62 +106,62 @@ Kifogástalan szolgáltatások és alkalmazások egy `HealthState` értékének 
 
 ## <a name="remove-an-existing-application"></a>Távolítsa el a meglévő alkalmazás
 
-Az alkalmazás eltávolításához hajtsa végre a következő feladatokat:
+tooremove egy alkalmazást, a következő feladatok teljes hello:
 
-### <a name="delete-the-application"></a>Az alkalmazás törlése
+### <a name="delete-hello-application"></a>Hello alkalmazás törlése
 
-Az alkalmazás törléséhez használja a következő parancsot:
+toodelete hello alkalmazás, a következő parancs használata hello:
 
 ```azurecli
 sfctl application delete --application-id TestEdApp
 ```
 
-### <a name="unprovision-the-application-type"></a>Az alkalmazástípus leépíteni a következőt:
+### <a name="unprovision-hello-application-type"></a>Leépíteni a következőt: hello alkalmazás típusa
 
-Az alkalmazás törlése után is leválasztja az alkalmazástípus, ha már nincs szüksége. Az alkalmazástípus leépítése, a következő paranccsal:
+Hello alkalmazás törlése után is leépítése hello alkalmazás típusa, ha már nincs szüksége. toounprovision hello alkalmazástípusok, a következő parancs használata hello:
 
 ```azurecli
 sfctl application unprovision --application-type-name TestAppTye --application-type-version 1.0
 ```
 
-A típus neve és típusa verziója meg kell egyeznie a nevét és verzióját az előzőleg létrehozott alkalmazásjegyzékben.
+hello típus nevét és típusát meg kell egyeznie hello neve és verziója hello korábban kiosztott alkalmazásjegyzékben.
 
-### <a name="delete-the-application-package"></a>Az alkalmazáscsomag törlése
+### <a name="delete-hello-application-package"></a>Hello alkalmazáscsomag törlése
 
-Miután az alkalmazástípus rendelkezik leépítette a következő, törölheti az alkalmazáscsomag az image store Ha már nincs szüksége. Alkalmazás csomagok törlésével szabadítson fel lemezterületet segítségével. 
+Miután hello alkalmazástípus rendelkezik leépítette a következő, törölheti hello alkalmazáscsomag hello lemezképtárolóhoz Ha már nincs szüksége. Alkalmazás csomagok törlésével szabadítson fel lemezterületet segítségével. 
 
-Az image store alkalmazáscsomag törléséhez használja a következő parancsot:
+hello-alkalmazáscsomag toodelete hello kép Store áruházból, a következő parancs használata hello:
 
 ```azurecli
 sfctl store delete --content-path app_package_dir
 ```
 
-`content-path`annak a könyvtárnak az alkalmazás létrehozásakor feltöltött nevének kell lennie.
+`content-path`hello directory hello alkalmazás létrehozásakor feltöltött hello nevének kell lennie.
 
 ## <a name="upgrade-application"></a>Alkalmazás frissítése
 
-Miután létrehozta az alkalmazást, ismételje meg ugyanazokat a lépéseket egy második verziója az alkalmazás telepítéséhez. Ezt követően a Service Fabric-alkalmazás frissítését, is átmenet az alkalmazás a második verzióját. További információkért lásd: a dokumentáció a [Service Fabric az alkalmazásfrissítéseket](service-fabric-application-upgrade.md).
+Miután létrehozta az alkalmazást, megismételhető hello ugyanazokat a lépéseket tooprovision az alkalmazás egy másik verziója. Ezt követően a Service Fabric-alkalmazás frissítését dönthet, hogy átvált toorunning hello második hello alkalmazás verziója. További információ: hello dokumentációja a [Service Fabric az alkalmazásfrissítéseket](service-fabric-application-upgrade.md).
 
-A frissítés végrehajtásához először az alkalmazás azt korábban az használja ugyanazokat a parancsokat a következő verziójában kiépítése:
+első rendelkezés hello következő verziójára hello alkalmazás használja a frissítés tooperform azt korábban hello ugyanazokat a parancsokat:
 
 ```azurecli
 sfctl application upload --path ~/app_package_dir_2
 sfctl application provision --application-type-build-path app_package_dir_2
 ```
 
-Ajánlott majd, végezheti el a figyelt automatikus frissítése a frissítés a következő parancs futtatásával:
+Javasoljuk, majd tooperform egy figyelt automatikus frissítését, indítsa el a hello frissítés hello a következő parancs futtatásával:
 
 ```azurecli
 sfctl application upgrade --app-id TestApp --app-version 2.0.0 --parameters "{\"test\":\"value\"}" --mode Monitored
 ```
 
-Frissítések bírálja felül a meglévő paramétereket bármilyen készlet van megadva. Alkalmazás paraméterei kell átadni argumentumként a frissítési parancs, ha szükséges. Alkalmazás paraméterei kell kódolható egy JSON-objektum.
+Frissítések bírálja felül a meglévő paramétereket bármilyen készlet van megadva. Alkalmazás paraméterei kell adhatók át argumentumok toohello frissítési parancs, ha szükséges. Alkalmazás paraméterei kell kódolható egy JSON-objektum.
 
-Korábban a megadott paraméterek lekéréséhez használja a `sfctl application info` parancsot.
+tooretrieve minden korábban megadott paraméterek, használhatja a hello `sfctl application info` parancsot.
 
-Ha egy alkalmazás frissítése folyamatban van, az állapot lekérhető használatával a `sfctl application upgrade-status` parancsot.
+Ha egy alkalmazás frissítése folyamatban van, hello állapot lekérhető használatával a `sfctl application upgrade-status` parancsot.
 
-Végül, ha egy frissítés folyamatát, és hozzá lehet megszakítani, használhatja a `sfctl application upgrade-rollback` vissza tudják állítani a frissítést.
+Végül, ha a frissítés folyamatban van, és meg kell szakítani toobe, használhat hello `sfctl application upgrade-rollback` tooroll vissza hello frissítését.
 
 ## <a name="next-steps"></a>Következő lépések
 

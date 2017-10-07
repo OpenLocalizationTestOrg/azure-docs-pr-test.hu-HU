@@ -1,6 +1,6 @@
 ---
-title: SQL Data Warehouse Transact-SQL referencia |} Microsoft Docs
-description: "A Transact-SQL témaköröket, használja az SQL Data Warehouse referenciatartalmat mutató hivatkozásokat."
+title: "adatraktár Transact-SQL referencia aaaSQL |} Microsoft Docs"
+description: "Hivatkozások tooreference tartalom hello Transact-SQL témaköröket az SQL Data Warehouse használják."
 services: sql-data-warehouse
 documentationcenter: NA
 author: kevinvngo
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: reference
 ms.date: 10/31/2016
 ms.author: kevin;barbkess
-ms.openlocfilehash: d6ad9db8eae0dc35580194f2ffbf02eeab6b70d2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b4b3c6cf666e9572a910784c39fd1f7c473d8821
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transact-sql-topics"></a>Transact-SQL kapcsolatos témakörök
 ## <a name="data-definition-language-ddl-statements"></a>Adatok Definition nyelvi (DDL) utasítás

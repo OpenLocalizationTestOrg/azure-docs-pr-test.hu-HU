@@ -1,6 +1,6 @@
 ---
-title: "Alkalmazás visszaállítása az Azure-ban"
-description: "Útmutató: az alkalmazás visszaállítása biztonsági másolatból."
+title: "aaaRestore egy alkalmazást az Azure-ban"
+description: "Megtudhatja, hogyan toorestore az alkalmazás egy biztonsági másolatból."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,73 +14,73 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/06/2016
 ms.author: cephalin
-ms.openlocfilehash: 5fe74d992edb7028fa4a2500e427013d98ebc250
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4b54029a9197064f990f29a3c4558c8322668714
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="restore-an-app-in-azure"></a>Alkalmazás visszaállítása az Azure-ban
-A cikkből megtudhatja, hogyan lehet visszaállítani az alkalmazásban [Azure App Service](../app-service/app-service-value-prop-what-is.md) korábban biztonsági (lásd: [készítsen biztonsági másolatot az alkalmazás az Azure-ban](web-sites-backup.md)). Az alkalmazás a csatolt adatbázisok az igény a visszaállítás egy korábbi állapotára, vagy hozzon létre egy új alkalmazást, az eredeti alkalmazás biztonsági mentési valamelyike alapján. Az Azure App Service a következő adatbázisok biztonsági mentését és helyreállítását támogatja:
+Ez a cikk bemutatja, hogyan egy alkalmazás toorestore [Azure App Service](../app-service/app-service-value-prop-what-is.md) korábban biztonsági (lásd: [készítsen biztonsági másolatot az alkalmazás az Azure-ban](web-sites-backup.md)). Az alkalmazás a csatolt adatbázisok igény szerinti tooa korábbi állapotának visszaállításához, vagy hozzon létre egy új alkalmazást, az eredeti alkalmazás biztonsági mentési valamelyike alapján. Az Azure App Service adatbázisok biztonsági mentéséhez és visszaállításához a következő hello támogatja:
 - [SQL Database](https://azure.microsoft.com/en-us/services/sql-database/)
 - [A MySQL (előzetes verzió) Azure-adatbázis](https://azure.microsoft.com/en-us/services/mysql)
 - [Azure-adatbázis PostgreSQL (előzetes verzió)](https://azure.microsoft.com/en-us/services/postgres)
 - [ClearDB MySQL](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/SuccessBricksInc.ClearDBMySQLDatabase?tab=Overview)
 - [MySQL alkalmazásbeli](https://blogs.msdn.microsoft.com/appserviceteam/2017/03/06/announcing-general-availability-for-mysql-in-app)
 
-Futó alkalmazások számára elérhető visszaállítása biztonsági másolatból rendszer **szabványos** és **prémium** réteg. Az alkalmazás vertikális felskálázásával kapcsolatos információkért lásd: [vertikális felskálázás az Azure alkalmazásban](web-sites-scale.md). **Prémium szintű** réteg lehetővé teszi, hogy a napi biztonsági mentését, mint nagyobb számú **szabványos** réteg.
+Visszaállítása biztonsági másolatból a rendszer fut rendelkezésre álló tooapps **szabványos** és **prémium** réteg. Az alkalmazás vertikális felskálázásával kapcsolatos információkért lásd: [vertikális felskálázás az Azure alkalmazásban](web-sites-scale.md). **Prémium szintű** réteg lehetővé teszi, hogy a napi biztonsági mentések toobe végre, mint nagyobb számú **szabványos** réteg.
 
 <a name="PreviousBackup"></a>
 
 ## <a name="restore-an-app-from-an-existing-backup"></a>Egy alkalmazás meglévő biztonsági másolaton visszaállítása
-1. Az a **beállítások** panelen található az alkalmazás az Azure portálon kattintson **biztonsági mentések** megjelenítéséhez a **biztonsági mentések** panelen. Kattintson a **visszaállítása**.
+1. A hello **beállítások** panelen található az alkalmazáshoz a hello Azure portál, kattintson a **biztonsági mentések** toodisplay hello **biztonsági mentések** panelen. Kattintson a **visszaállítása**.
    
     ![Válassza ki a visszaállítási most][ChooseRestoreNow]
-2. Az a **visszaállítása** panelen, először válassza ki a biztonsági mentési forrását.
+2. A hello **visszaállítása** panelen, először válassza hello biztonsági mentési forrás.
    
     ![](./media/web-sites-restore/021ChooseSource1.png)
    
-    A **alkalmazás biztonsági mentési** beállítást választja, megjelenik az összes meglévő biztonsági mentését az aktuális alkalmazás, és egyszerűen kiválaszthatja az egyik.
-    A **tárolási** beállítás lehetővé teszi bármely biztonsági mentési ZIP-fájl válasszon a meglévő Azure Storage-fiók és tároló az előfizetésben.
-    Ha próbál biztonsági másolatát egy másik alkalmazás használja a **tárolási** lehetőséget.
-3. Ezt követően adja meg az alkalmazás visszaállításához **visszaállítási célhelyének ellenőrzése**.
+    Hello **alkalmazás biztonsági mentési** beállítást választja, megjelenik az összes hello hello aktuális alkalmazás létező biztonsági másolatai, és egyszerűen kiválaszthatja az egyik.
+    Hello **tárolási** beállítás lehetővé teszi bármely biztonsági mentési ZIP-fájl válasszon a meglévő Azure Storage-fiók és tároló az előfizetésben.
+    Ha azt egy másik alkalmazás biztonsági toorestore, használja a hello **tárolási** lehetőséget.
+3. Ezt követően adja a hello alkalmazás visszaállításához hello céljának **visszaállítási célhelyének ellenőrzése**.
    
     ![](./media/web-sites-restore/022ChooseDestination1.png)
    
    > [!WARNING]
-   > Ha úgy dönt, **felülírása**, az összes meglévő adatok az aktuális alkalmazás törlése, és írja felül. Kattintás előtt **OK**, győződjön meg arról, hogy pontosan mit kíván tenni.
+   > Ha úgy dönt, **felülírása**, az összes meglévő adatok az aktuális alkalmazás törlése, és írja felül. Kattintás előtt **OK**, győződjön meg arról, hogy pontosan mit toodo.
    > 
    > 
    
-    Kiválaszthatja **meglévő App** alkalmazás biztonsági másolat visszaállítása a azonos resoure csoport egy másik alkalmazásnak. Mielőtt ezt a beállítást használja, kell már létrehozott egy másik alkalmazás a tükrözési adatbázis konfigurációja egy alkalmazás biztonsági mentési definiálva az erőforráscsoportban. Létrehozhat egy **új** app visszaállítani a tartalmat.
+    Kiválaszthatja **meglévő App** toorestore hello alkalmazás biztonsági mentési tooanother alkalmazás hello resoure ugyanabban a csoportban. Mielőtt ezt a beállítást használja, kell már létrehozott egy másik alkalmazás a tükrözés adatbázis konfigurációs toohello több hello alkalmazás biztonsági mentése van definiálva az erőforráscsoportban. Létrehozhat egy **új** app toorestore a tartalmat.
 
 4. Kattintson az **OK** gombra.
 
 <a name="StorageAccount"></a>
 
 ## <a name="download-or-delete-a-backup-from-a-storage-account"></a>Töltse le, illetve törölhet egy biztonsági mentés a storage-fiók
-1. A fő **Tallózás** panel az Azure portálon, válassza a **tárfiókok**. A meglévő tárfiókok listája jelenik meg.
-2. Válassza ki a kívánt letöltheti és törölheti a biztonsági másolatot tartalmazó tárfiókot. A storage-fiók panelen jelenik meg.
-3. A storage-fiók panelen válassza ki a kívánt tároló
+1. A fő hello **Tallózás** hello Azure portálon, válassza a panel **tárfiókok**. A meglévő tárfiókok listája jelenik meg.
+2. Válassza ki a kívánt hello tárfiók toodownload vagy delete.hello panel jelenik meg hello biztonsági másolatot tartalmazó hello tárfiók.
+3. A hello storage-fiók panelen válassza ki a kívánt hello tároló
    
     ![Nézet tárolók][ViewContainers]
-4. Válassza ki a biztonságimásolat-fájl letöltése vagy törölni szeretné.
+4. Válassza ki a biztonságimásolat-fájl szeretné, hogy toodownload vagy törlése.
    
     ![ViewContainers](./media/web-sites-restore/03ViewFiles.png)
-5. Kattintson a **letöltése** vagy **törlése** attól függően, hogy mit kíván tenni.  
+5. Kattintson a **letöltése** vagy **törlése** attól függően, hogy milyen azt szeretné, hogy toodo.  
 
 <a name="OperationLogs"></a>
 
 ## <a name="monitor-a-restore-operation"></a>A figyelő a visszaállítási művelet
-A sikeres vagy sikertelen volt-e az alkalmazás-visszaállítási művelet részleteinek megtekintéséhez lépjen a **tevékenységnapló** panel az Azure portálon.  
+toosee adatait hello sikerességét vagy sikertelenségét hello app visszaállítási műveletet, nyissa meg a toohello **tevékenységnapló** panel az Azure-portálon hello.  
  
 
-Megtekintéséhez görgessen le a kívánt visszaállítási műveletet, és kattintással jelölje ki azt.
+Görgessen le a szükséges hello visszaállítási művelet, és kattintson tooselect toofind azt.
 
-A részleteket tartalmazó panelt jeleníti meg a rendelkezésre álló információkat a visszaállítási művelethez kapcsolódó.
+hello Részletek panel információit jeleníti meg hello elérhető kapcsolatos toohello visszaállítási művelet.
 
 ## <a name="next-steps"></a>Következő lépések
-Biztonsági mentéshez, és állítsa vissza az App Service apps REST API használatával (lásd: [biztonsági mentése és visszaállítása az App Service apps használata REST](websites-csm-backup.md)).
+Biztonsági mentéshez, és állítsa vissza az App Service apps REST API használatával (lásd: [használata REST tooback össze, és állítsa vissza az App Service apps](websites-csm-backup.md)).
 
 
 <!-- IMAGES -->

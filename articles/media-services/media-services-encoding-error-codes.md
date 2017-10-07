@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Media Services kódolási hibakódok |} Microsoft Docs"
-description: "Ez a témakör felsorolja a abban az esetben, ha hiba történt a kódolási feladat a végrehajtás során visszatérő hibakódok..."
+title: "aaaAzure Media Services kódolási hibakódok |} Microsoft Docs"
+description: "Ez a témakör felsorolja a abban az esetben, ha hiba történt a feladat a végrehajtás kódolás hello során visszatérő hibakódok..."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: f4fd2212d19f89148dde08c75c5a48cdd322d029
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b69b6abee797c40c9b8b8f23bf2398273c170e7f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="encoding-error-codes"></a>Kódolási hibakódok
 
-A következő táblázat sorolja fel, ha hiba történt a kódolási feladat a végrehajtás során visszatérő hibakódok.  Hiba legutolsó részletes adatai a .NET-kódban, amelyet a [hiba részletei](http://msdn.microsoft.com/library/microsoft.windowsazure.mediaservices.client.errordetail.aspx) osztály. Hiba legutolsó részletes adatai a REST-kódban, amelyet a [ErrorDetail](https://msdn.microsoft.com/library/jj853026.aspx) REST API-t.
+hello következő táblázat sorolja fel, ha hiba történt a feladat a végrehajtás kódolás hello során visszatérő hibakódok.  tooget hiba részletes adatait, a .NET-kódot, a hello használata [hiba részletei](http://msdn.microsoft.com/library/microsoft.windowsazure.mediaservices.client.errordetail.aspx) osztály. tooget hiba részletes adatait, a többi kódban hello használata [ErrorDetail](https://msdn.microsoft.com/library/jj853026.aspx) REST API-t.
 
 | ErrorDetail.Code | Hiba lehetséges okai |
 | --- | --- |
-| Ismeretlen |Ismeretlen hiba történt a feladat végrehajtása |
+| Ismeretlen |Hello feladat végrehajtása közben ismeretlen hiba |
 | ErrorDownloadingInputAssetMalformedContent |Kategória hibák, amely lefedi a hibák például rossz fájlneveket, nulla hosszúságú fájlok, a hibás bemeneti eszköz letöltése a formázza és így tovább. |
-| ErrorDownloadingInputAssetServiceFailure |Kategória hibák szolgáltatás oldalán - letöltése közben hálózati vagy tárolási hibák példa problémákat ismerteti. |
-| ErrorParsingConfiguration |A hibák kategória ahol feladat <see cref="MediaTask.PrivateData"/> (konfiguráció) érvénytelen, például a konfiguráció nem érvényes rendszerrel előre, vagy érvénytelen XML-kódot tartalmaz. |
-| ErrorExecutingTaskMalformedContent |Hol található a bemeneti médiafájljait okozza hiba a tevékenység végrehajtása közben hibákat kategóriáját. |
-| ErrorExecutingTaskUnsupportedFormat |Kategória hibák, ahol a media feldolgozója nem képes feldolgozni a megadott fájlok - adathordozó formázása nem támogatott, vagy nem felel meg a konfigurációt. Egy eszköz, amelynek csak videó csak kimenete létrehozásához például közben |
-| ErrorProcessingTask |Más hibák, amelyek a tevékenység feldolgozása során találkozik az adathordozó processzor tartalom nem kapcsolt kategóriáját. |
-| ErrorUploadingOutputAsset |A hibák feltöltésekor a rendszer a kimeneti adategységen kategória |
-| ErrorCancelingTask |Kategória fedik le a hibák, a feladat megszakítására tett próbálkozás során hibák |
-| TransientError |Kategória hibák, amelyek átmeneti probléma (például) ideiglenes hálózati probléma az Azure Storage szolgáltatással) |
+| ErrorDownloadingInputAssetServiceFailure |Kategória hibák hello szolgáltatás oldalán - letöltése közben hálózati vagy tárolási hibák példa problémákat ismerteti. |
+| ErrorParsingConfiguration |A hibák kategória ahol feladat <see cref="MediaTask.PrivateData"/> (konfiguráció) érvénytelen, például hello konfigurációja nem érvényes rendszerrel előre, vagy érvénytelen XML-kódot tartalmaz. |
+| ErrorExecutingTaskMalformedContent |Ahol problémák belül hello bemeneti médiafájlok hiba következtében hello feladat hello végrehajtása során hibák kategóriáját. |
+| ErrorExecutingTaskUnsupportedFormat |Kategória hibák, ahol hello media feldolgozója nem képes feldolgozni a megadott hello fájlok - adathordozó formázása nem támogatott, vagy nem felel meg a konfigurációs hello. Például próbált tooproduce egy eszköz, amelynek csak videó csak kimenete |
+| ErrorProcessingTask |Más hibák media processzor hello kategória észlel, amelyek nem kapcsolódó toocontent hello feladat hello feldolgozása során. |
+| ErrorUploadingOutputAsset |A hibák hello kimeneti adategységen feltöltésekor kategória |
+| ErrorCancelingTask |A hibák toocover hibákat megkísérlésekor. a feladat toocancel hello kategória |
+| TransientError |Kategória hibák toocover átmeneti problémákat (például) ideiglenes hálózati probléma az Azure Storage szolgáltatással) |
 
-A Súgó a **Media Services** team, nyissa meg a [támogatja a jegy](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
+a hello tooget súgó **Media Services** team, nyissa meg a [támogatja a jegy](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
 
 ## <a name="media-services-learning-paths"></a>Media Services képzési tervek
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

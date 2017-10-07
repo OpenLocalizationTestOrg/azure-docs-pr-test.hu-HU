@@ -1,5 +1,5 @@
 ---
-title: "HD-alapú költséghatékony Standard tárolási és az Azure virtuális gépek lemezei |} Microsoft Docs"
+title: "költséghatékony Standard tárolási aaaHD-alapú és az Azure virtuális gépek lemezei |} Microsoft Docs"
 description: "Standard költséghatékony tárolás és a nem felügyelt és felügyelt virtuális gépek lemezei ismertetik."
 services: storage
 documentationcenter: 
@@ -14,52 +14,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: yuemlu
-ms.openlocfilehash: cdcc06844dce5df09b50a9a5f6a97a7a96a9ef48
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c454c61254c6b160bdf2cd39ea3319452e3e4898
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cost-effective-standard-storage-and-unmanaged-and-managed-azure-vm-disks"></a>Költséghatékony, Standard szintű tárolást és a felügyelt és nem felügyelt Azure virtuális gépek lemezei
 
-Azure standard szintű tárolást nyújt a virtuális gépek megbízható, alacsony költségű lemeztámogatás késésre nem érzékeny munkaterheket futtatnak. Blobok, táblák, üzenetsorok és fájlokat is támogatja. Standard szintű tárolóval az adatok tárolási a merevlemezes (HDD) meghajtók. Virtuális gépek használatakor a szabványos tárolólemezek szolgáltatásának fejlesztési/tesztelési és a kisebb kritikus fontosságú munkaterhelésekhez és a prémium szintű storage lemezek az üzletmenet szempontjából kritikus fontosságú éles környezetben is használhatja. Standard szintű tárolót minden Azure-régió nem áll rendelkezésre. 
+Azure standard szintű tárolást nyújt a virtuális gépek megbízható, alacsony költségű lemeztámogatás késésre nem érzékeny munkaterheket futtatnak. Blobok, táblák, üzenetsorok és fájlokat is támogatja. Standard szintű tárolóval hello tárolja merevlemezes (HDD) meghajtók. Virtuális gépek használatakor a szabványos tárolólemezek szolgáltatásának fejlesztési/tesztelési és a kisebb kritikus fontosságú munkaterhelésekhez és a prémium szintű storage lemezek az üzletmenet szempontjából kritikus fontosságú éles környezetben is használhatja. Standard szintű tárolót minden Azure-régió nem áll rendelkezésre. 
 
-Ez a cikk összpontosítanak szabványos tárolás méretű lemezek használatát. A BLOB, táblák, üzenetsorok és fájlokat a tárhely használatával kapcsolatos további információkért tekintse meg a [Storage bemutatása](storage-introduction.md).
+Ez a cikk hello használata virtuális gépek lemezei standard tárolási összpontosítanak. A BLOB, táblák, üzenetsorok és fájlokat a tárhely hello használata kapcsolatos további információkért tekintse meg az toohello [bemutatása tooStorage](storage-introduction.md).
 
 ## <a name="disk-types"></a>Meghajtótípusok
 
-Azure virtuális gépek a standard lemezek létrehozásához két módja van:
+Két módon toocreate standard lemezek Azure virtuális gépek esetén:
 
-**Nem felügyelt lemezek**: Ez az eredeti metódus a VHD-fájlokat, hogy a Virtuálisgép-lemezek tárolására használt tárfiókok kezelhetik. VHD-fájlok, blobok a tárfiókokban tárolódnak. Nem felügyelt lemezek bármely Azure virtuális gép méretét, beleértve a virtuális gépeket, amely elsősorban az prémium szintű Storage, például a DSv2 és GS adatsorozat csatolható. Azure virtuális gépek támogatja több standard lemezek, így akár 256 TB-nyi tárhelyre virtuális gépenként.
+**Nem felügyelt lemezek**: Ez az eredeti metódus hello hello tárolási használt fiókok toostore hello VHD-fájlokat, amelyek megfelelnek a virtuális gépek lemezei toohello kezelhetik. VHD-fájlok, blobok a tárfiókokban tárolódnak. Nem felügyelt lemezek csatolt tooany Azure virtuális gép méretét, beleértve, amely elsősorban az prémium szintű Storage, például a hello DSv2 és GS adatsorozat hello virtuális gépek is lehet. Azure virtuális gépek támogatja az több standard lemezek, így too256 TB-nyi tárhelyre virtuális gépenként fel.
 
-[**Azure-lemezeket felügyelt**](storage-managed-disks-overview.md): Ez a szolgáltatás kezeli a storage-fiókok, a virtuális gép lemezeivel használható. A (prémium és Standard) típusát és méretét adja meg lemez van szüksége, és Azure hoz létre, és az Ön kezeli a lemezt. Nem kell aggódnia helyezi el a lemezek több tárfiókok között, ugyanakkor a tárfiókok méretezhetőségének korlátai belül – Azure kezeli, amely az Ön biztosítása érdekében.
+[**Azure-lemezeket felügyelt**](storage-managed-disks-overview.md): Ez a funkció használt hello méretű lemezek hello tárfiókok kezeli. Adja meg a (prémium és Standard) hello típusú és bármekkora méretű lemez van szüksége, és Azure hoz létre, és kezeli a hello lemez meg. Nincs több tárfiókok között szereplő sorrendben tooensure hello tárfiókok hello méretezhetőségi korlátok maradhat hello lemezek elhelyezésével kapcsolatos tooworry – Azure kezeli, amely meg.
 
-Annak ellenére, hogy mindkét típusú lemezek elérhetők, sok szolgáltatásaik előnyeit felügyelt lemezek használatát javasoljuk.
+Annak ellenére, hogy mindkét típusú lemezek elérhetők, a sok szolgáltatásainak tootake előnyeit kezelt lemezek használatát javasoljuk.
 
-Ismerkedés az Azure standard szintű Storage, látogasson el a [elkezdheti használni az ingyenes](https://azure.microsoft.com/pricing/free-trial/). 
+az Azure standard szintű Storage, tooget látogasson el [elkezdheti használni az ingyenes](https://azure.microsoft.com/pricing/free-trial/). 
 
-Egy virtuális gép létrehozása kezelt lemezzel kapcsolatos lásd: a következő cikkekben.
+Hogyan toocreate egy virtuális Gépet, a felügyelt lemezek esetében lásd: a következő hello egyik kapcsolatos cikkeket.
 
 * [Virtuális gép létrehozása a Resource Manager és a PowerShell használatával](../virtual-machines/virtual-machines-windows-ps-create.md)
-* [Linux-alapú virtuális gép létrehozása az Azure CLI 2.0-s verziójával](../virtual-machines/linux/quick-create-cli.md)
+* [Linux virtuális gép létrehozása Azure CLI 2.0 hello](../virtual-machines/linux/quick-create-cli.md)
 
 ## <a name="standard-storage-features"></a>Standard tárolási szolgáltatásokkal 
 
-Vessen egy pillantást, néhány funkciója standard szintű. További részletekért lásd: [Azure Storage bemutatása](storage-introduction.md).
+Vessen egy pillantást, néhány szokásos tárolási hello szolgáltatást. További részletekért lásd: [bemutatása tooAzure tárolási](storage-introduction.md).
 
-**Standard szintű tárolást**: Azure standard szintű Storage támogatja az Azure-lemezeket, Azure BLOB, Azure File storage, Azure-táblák és Azure várólisták. Standard szintű Storage szolgáltatást használ, indítsa el a [hozzon létre egy Azure Storage-fiók](storage-create-storage-account.md#create-a-storage-account).
+**Standard szintű tárolást**: Azure standard szintű Storage támogatja az Azure-lemezeket, Azure BLOB, Azure File storage, Azure-táblák és Azure várólisták. toouse szabványos tárolószolgáltatások, kezdje [hozzon létre egy Azure Storage-fiók](storage-create-storage-account.md#create-a-storage-account).
 
-**Standard tárolólemezek:** szabványos tárolólemezek csatolható beleértve megadva prémium szintű Storage, például a DSv2 és GS adatsorozat mérete sorozatú virtuális gépek Azure virtuális gépeken. Egy standard tárolási lemez csak egy virtuális géphez csatlakoztatható. Azonban csatolhat egy vagy több lemezt a következő virtuális gép, akár a maximális száma az adott VM-méret meghatározás. A következő szakaszban a szabványos tárolás méretezhetőségének és teljesítménycéloknak azt ismerteti részletesen specifikációk. 
+**Standard tárolólemezek:** , a Standard lemezek lehet tárolónak kapcsolódnia tooall Azure virtuális gépeken, beleértve a prémium szintű Storage például hello DSv2 és GS adatsorozat használt mérete sorozatú virtuális gépek. Egy standard tárolási lemez csatolt tooone VM csak lehet. Csatolhat azonban legalább egy, a lemezek tooa VM, toohello maximális száma az adott VM-méret meghatározás fel. A következő szakasz a szabványos tárolás méretezhetőségének és Performance Targets hello hello specifikációk részletesebben ismerteti azt. 
 
-**Standard oldalakra vonatkozó blob**: szabványos lapblobokat állandó lemezek virtuális gépek tárolására szolgálnak, és közvetlenül az Azure BLOB más típusú például REST is elérhető. [Lapblobok](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs) véletlenszerű olvasási és írási műveletek optimalizálva 512 bájtos lapok gyűjteménye. 
+**Standard oldalakra vonatkozó blob**: szabványos lapblobokat használt toohold állandó lemezek virtuális gépekhez, és közvetlenül más Azure-BLOB típusú például REST is elérhető. [Lapblobok](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs) véletlenszerű olvasási és írási műveletek optimalizálva 512 bájtos lapok gyűjteménye. 
 
-**Tárolóreplikálást:** a legtöbb régióban, egy szabványos tárfiókban lévő adatokat lehet helyileg replikált vagy georeplikált több adatközpont között. A négy elérhető replikációs helyileg redundáns tárolás (LRS), a Zónaredundáns tárolás (ZRS), a Georedundáns tárolás (GRS) és az írásvédett Georedundáns tárolás (RA-GRS). Standard szintű tárolást kezelt lemezeken jelenleg támogatja a helyileg redundáns tárolás (LRS) csak. További információkért lásd: [Tárolóreplikálást](storage-redundancy.md).
+**Tárolóreplikálást:** a legtöbb régióban, egy szabványos tárfiókban lévő adatokat lehet helyileg replikált vagy georeplikált több adatközpont között. hello négy elérhető replikációs helyileg redundáns tárolás (LRS), a Zónaredundáns tárolás (ZRS), a Georedundáns tárolás (GRS) és az írásvédett Georedundáns tárolás (RA-GRS). Standard szintű tárolást kezelt lemezeken jelenleg támogatja a helyileg redundáns tárolás (LRS) csak. További információkért lásd: [Tárolóreplikálást](storage-redundancy.md).
 
 ## <a name="scalability-and-performance-targets"></a>Méretezhetőségi és teljesítménycélok
 
-Ez a szakasz azt ismerteti, a méretezhetőségi és Teljesítménycélok figyelembe kell vennie, Standard szintű storage használata esetén.
+Ez a szakasz azt ismerteti, hello méretezhetőségi és Teljesítménycélok tooconsider szüksége, Standard szintű storage használata esetén.
 
-### <a name="account-limits--does-not-apply-to-managed-disks"></a>Vonatkoznak – nem vonatkozik a felügyelt lemezek
+### <a name="account-limits--does-not-apply-toomanaged-disks"></a>Vonatkoznak – nem érvényes toomanaged lemezek
 
 | **Erőforrás** | **Alapértelmezett korlát** |
 |--------------|-------------------|
@@ -68,51 +68,51 @@ Ez a szakasz azt ismerteti, a méretezhetőségi és Teljesítménycélok figyel
 | Maximális kilépő<sup>1</sup> tárolási fiókonként (US régió) | 20 GB/s engedélyezésekor RA-GRS vagy GRS/ZRS az LRS 30 GB/s |
 | Maximális érkező<sup>1</sup> / storage-fiók (ázsiai régiók és európai) | 5 GB/s engedélyezésekor Georedundáns/ZRS az LRS 10 GB/s |
 | Maximális kilépő<sup>1</sup> / storage-fiók (ázsiai régiók és európai) | 10 GB/s engedélyezésekor RA-GRS vagy GRS/ZRS az LRS 15 GB/s |
-| Teljes kérelmek gyakorisága (feltéve, hogy 1 KB objektum mérete) storage-fiók / | Legfeljebb 20 000 IOPS, entitások másodpercenként vagy üzenetek / másodperc |
+| Teljes kérelmek gyakorisága (feltéve, hogy 1 KB objektum mérete) storage-fiók / | Készíthet too20, 000 IOPS, másodpercenként entitásokat és üzenetek száma másodpercenként |
 
-<sup>1</sup> érkező összes (kérelmek) küldött adatok mennyisége tárfiókba hivatkozik. Kimenő forgalom tárfiók fogadott összes adat (válasz) hivatkozik.
+<sup>1</sup> érkező tooall (kérelmek) küldött adatok mennyisége tooa tárfiók hivatkozik. Kimenő forgalom tárfiókból kapott tooall adatokat (válasz) hivatkozik.
 
 További információkért lásd: [Azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md).
 
-Ha az alkalmazás igényeinek túllépi a méretezhetőségi célok egyetlen tárfiók, hozzon létre az alkalmazás számára több tárfiókot használja, és az adatok particionálása adott tárfiókok között. Alternatív megoldásként Azure felügyelt lemezek is, és Azure fogja kezelni, a particionálás és az adatok az Ön elhelyezését.
+Ha hello kell az alkalmazás meghaladja hello méretezhetőségi célok egyetlen tárfiók, az alkalmazás toouse több tárfiókok létrehozása, és az adatok particionálása adott tárfiókok között. Alternatív megoldásként Azure felügyelt lemezek is, és Azure hello particionálás és elhelyezését az adatok akkor felügyelni.
 
 ### <a name="standard-disks-limits"></a>Standard lemezek korlátok
 
-Ellentétben a Premium lemezek a / másodperc (IOPS) és átviteli sebessége (sávszélesség), a Standard lemezek bemeneti/kimeneti műveletek nem törlődnek. A Virtuálisgép-méretet, a lemez csatolva van, hogy a lemez mérete nem függ a standard lemezek teljesítményét. Az alábbi táblázatban felsorolt teljesítményszint legfeljebb eléréséhez számíthat.
+Premium lemezek eltérően hello bemeneti/kimeneti műveletek száma másodpercenként (IOPS) és átviteli sebessége (sávszélesség), a Standard lemezek nem törlődnek. hello standard lemezek teljesítményét művelettől hello virtuális gép mérete toowhich hello lemez csatlakoztatva van, nem toohello hello lemez méretét. Hello az alábbi táblázatban felsorolt toohello teljesítményszint mentése tooachieve számíthat.
 
 **Standard lemezek korlátok (felügyelt és nem felügyelt)**
 
 | **Virtuálisgép-réteg**            | **Az alapszintű csomag méretű VM** | **Standard szint méretű VM** |
 |------------------------|-------------------|----------------------|
 | A lemez maximális mérete          | 4095 GB           | 4095 GB              |
-| Maximális 8 KB-os lemezenként iops teljesítményt nyújtanak | 300         | Legfeljebb 500            |
-| Maximális sávszélesség lemezenként | Legfeljebb 60 MB/s     | Legfeljebb 60 MB/s        |
+| Maximális 8 KB-os lemezenként iops teljesítményt nyújtanak | Too300 mentése         | Too500 mentése            |
+| Maximális sávszélesség lemezenként | Másolatot too60 MB/s     | Másolatot too60 MB/s        |
 
-Ha a számítási feladatok nagy teljesítményű, alacsony késésű lemez támogatását igényli, érdemes prémium szintű Storage használ. Prémium szintű Storage további előnyei ismeri, látogasson el a [prémium szintű Storage nagy teljesítményű és az Azure virtuális gépek lemezei](storage-premium-storage.md). 
+Ha a számítási feladatok nagy teljesítményű, alacsony késésű lemez támogatását igényli, érdemes prémium szintű Storage használ. tooknow további előnyei a prémium szintű Storage, látogasson el [prémium szintű Storage nagy teljesítményű és az Azure virtuális gépek lemezei](storage-premium-storage.md). 
 
 ## <a name="snapshots-and-copy-blob"></a>A pillanatképek és a blob másolása
 
-A VHD-fájlt a társzolgáltatás nem oldalakra vonatkozó blob. Pillanatképek készítése a lapblobokat, és másolja őket egy másik helyre, például egy másik tárolási fiókot.
+toohello társzolgáltatás, hello VHD-fájlt az oldalakra vonatkozó blob. Pillanatképek készítése a lapblobokat, és másolja őket tooanother helyre, például egy másik tárolási fiókot.
 
 ### <a name="unmanaged-disks"></a>Nem felügyelt lemezek
 
-Létrehozhat [növekményes pillanatképek](storage-incremental-snapshots.md) ugyanúgy nem felügyelt standard lemezekhez standard szintű tárolóval használhatja pillanatképeket. Azt javasoljuk, hogy pillanatképeket, és majd másolja ezeket a pillanatképeket egy standard georedundáns tárfiókot, ha a forrás lemez helyileg redundáns tárfiókokban. További információkért lásd: [Azure tárolási redundancia lehetőségek](storage-redundancy.md).
+Létrehozhat [növekményes pillanatképek](storage-incremental-snapshots.md) a nem kezelt szabványos lemezeit hello azonos módon teszi lehetővé a pillanatképek standard szintű tárolóval. Azt javasoljuk, pillanatképeket, és ezeket a pillanatképek tooa standard georedundáns tárolás fiók majd másolása, ha a forrás lemez helyileg redundáns tárfiókokban. További információkért lásd: [Azure tárolási redundancia lehetőségek](storage-redundancy.md).
 
-Ha egy lemezt a virtuális Géphez van csatolva, bizonyos API műveletek nem engedélyezettek a lemezeken. Például nem hajtható végre egy [másolási Blob](/rest/api/storageservices/Copy-Blob) , hogy a blob, amíg a lemez csatolva van egy virtuális Gépen a műveletet. Ehelyett először létre kell hoznia egy pillanatképet, hogy a blob használatával a [pillanatkép Blob](/rest/api/storageservices/Snapshot-Blob) REST API-metódusra, és utána végezze el a [másolási Blob](/rest/api/storageservices/Copy-Blob) másolni a csatlakoztatott lemez a pillanatkép. Alternatív megoldásként válassza le a lemezt, és végezze el a szükséges műveleteket.
+Ha a lemez csatlakoztatott tooa VM, bizonyos API műveletek nem engedélyezettek hello lemezeken. Például nem hajtható végre egy [másolási Blob](/rest/api/storageservices/Copy-Blob) , hogy a blob amennyiben hello lemez művelet csatolt tooa virtuális gép. Ehelyett először létre kell hoznia, hogy a blob pillanatképe hello segítségével [pillanatkép Blob](/rest/api/storageservices/Snapshot-Blob) REST API-metódusra, és hajtsa végre a hello [másolási Blob](/rest/api/storageservices/Copy-Blob) hello pillanatkép toocopy hello a csatlakoztatott lemezen. Másik lehetőségként hello lemezt leválasztani, és végezze el a szükséges műveleteket.
 
-A pillanatképek georedundáns másolatait átmásolhatja pillanatképek helyileg redundáns tárfiók egy standard georedundáns tárfiókot az AzCopy vagy a Blob másolása. További információkért lásd: [adatátvitel az AzCopy parancssori segédprogram a](storage-use-azcopy.md) és [másolási Blob](/rest/api/storageservices/Copy-Blob).
+a pillanatfelvételek másolatait georedundáns toomaintain, átmásolhatja a pillanatképek a helyileg redundáns tárolás tooa standard georedundáns tárolás fiókok AzCopy vagy a Blob másolása. További információkért lásd: [adatátvitel az AzCopy parancssori segédprogram hello](storage-use-azcopy.md) és [másolási Blob](/rest/api/storageservices/Copy-Blob).
 
 Standard tárfiókokban elleni lapblobokat REST műveleteinek végrehajtásával részletes információkért lásd: [Azure Storage szolgáltatások REST API felülete](/rest/api/storageservices/Azure-Storage-Services-REST-API-Reference).
 
 ### <a name="managed-disks"></a>Felügyelt lemezek
 
-A felügyelt lemezes pillanatképet egy standard szintű felügyelt lemezes tárolja a kezelt lemezen csak olvasható másolatát. Növekményes pillanatképek felügyelt lemezek jelenleg nem támogatottak, de a jövőben támogatott.
+A felügyelt lemezes pillanatképet hello felügyelt lemezes, Standard szintű felügyelt lemezes tárolt írásvédett másolatot. Növekményes pillanatképek felügyelt lemezek jelenleg nem támogatottak, de a jövőbeli hello támogatott.
 
-Ha egy felügyelt lemezt egy virtuális Géphez van csatolva, bizonyos API műveletek nem engedélyezettek a lemezeken. Például egy közös hozzáférésű jogosultságkód (SAS), a másolási műveletek végrehajtásához, amíg a lemez csatolva van egy virtuális gép nem hozható létre. Ehelyett először hozzon létre egy pillanatképet a lemezen, és végezze el a pillanatkép példányát. Alternatív megoldásként válassza le a lemezt, és létrehozza a közös hozzáférésű jogosultságkód (SAS), a másolási művelet végrehajtásához.
+Ha egy felügyelt lemezes csatolt tooa VM, bizonyos API műveletek nem engedélyezettek hello lemezeken. Például egy közös hozzáférésű jogosultságkód (SAS) tooperform a másolási műveletek nem generálható hello lemez pedig csatolt tooa virtuális gép. Ehelyett először létre kell hoznia egy pillanatkép hello lemez, és hajtsa végre az hello pillanatkép hello példányát. Alternatív megoldásként hello lemezt leválasztani és létrehozza a közös hozzáférésű jogosultságkód (SAS) tooperform hello másolási műveletek.
 
 ## <a name="pricing-and-billing"></a>Árak és számlázás
 
-Standard szintű tárolást használ, amikor az alábbi számlázási szempontok érvényesek:
+Standard szintű tárolást használ, amikor hello alábbi számlázási szempontok érvényesek:
 
 * Standard szintű tárolót nem felügyelt lemezek/adatok mérete 
 * Standard szintű felügyelt lemez
@@ -120,15 +120,15 @@ Standard szintű tárolást használ, amikor az alábbi számlázási szempontok
 * Kimenő adatforgalom
 * Tranzakciók
 
-**Nem felügyelt tárolási lemez és az adatok mérete:** nem felügyelt lemezek és egyéb adatokat (BLOB, táblák, üzenetsorok és fájlok), van szó, csak az területet használ. Például ha egy virtuális amelynek oldalakra vonatkozó blob 127 GB, de a virtuális gép ki van építve valójában a 10 GB lemezterületet használ, csak akkor lesz terhelve a 10 GB lemezterület. Standard tárolási támogatjuk legfeljebb 8191 GB, és nem felügyelt Standard legfeljebb 4095 GB lemezterület. 
+**Nem felügyelt tárolási lemez és az adatok mérete:** nem felügyelt lemezek és egyéb adatokat (BLOB, táblák, üzenetsorok és fájlok), van szó, csak a hello mennyisége területet használ. Például, ha egy virtuális Gépet, amelynek az oldalakra vonatkozó blob ki van építve, mint 127 GB, de hello virtuális gép valójában a 10 GB lemezterületet használ, csak akkor lesz terhelve a 10 GB lemezterület. Standard szintű tárolót fel too8191 GB, és a szabványos nem felügyelt lemezek mentése too4095 GB támogatott. 
 
-**Által kezelt lemezeken:** felügyelt lemezek számlázása kiosztott mérete. Ha a lemez ki van építve, egy 10 GB-os lemezt, és csak 5 GB használ, továbbra is fizetnie kell a kiépítés méretét, 10 GB-os.
+**Által kezelt lemezeken:** felügyelt lemezek számlázása a kiépített hello mérete. Ha a lemez ki van építve, egy 10 GB-os lemezt, és csak 5 GB használ, továbbra is fizetnie kell hello rendelkezés mérete 10 GB-os számára.
 
-**A pillanatképek**: standard lemezek pillanatkép-készítési számlázása a további kapacitást, a pillanatképek használják. A pillanatképek információkért lásd: [egy pillanatképet készíteni egy Blob](/rest/api/storageservices/Creating-a-Snapshot-of-a-Blob).
+**A pillanatképek**: standard lemezek pillanatkép-készítési számlázása hello további kapacitást hello pillanatképek használják. A pillanatképek információkért lásd: [egy pillanatképet készíteni egy Blob](/rest/api/storageservices/Creating-a-Snapshot-of-a-Blob).
 
 **Kimenő adatátvitel**: [kimenő adatátviteli](https://azure.microsoft.com/pricing/details/data-transfers/) (az adatok Azure-adatközpont kilépő) gigabájtalapú sávszélesség-használat.
 
-**Tranzakció**: Azure díja 0.0036 $ 100 000 standard tárolási tranzakciók száma. Tranzakciónak számít az adatok tárolóba írása és tárolóból való olvasása is.
+**Tranzakció**: Azure díja 0.0036 $ 100 000 standard tárolási tranzakciók száma. Tranzakciók tartalmazzák mind olvasási és írási műveletek toostorage.
 
 Standard szintű tárolást, a virtuális gépek és a felügyelt lemezek árakkal kapcsolatos részletes információkért lásd:
 
@@ -140,11 +140,11 @@ Standard szintű tárolást, a virtuális gépek és a felügyelt lemezek árakk
 
 Nem felügyelt lemezzel rendelkező virtuális gépek Azure Backup segítségével készíthető. [További részletekért](../backup/backup-azure-vms-first-look-arm.md).
 
-Hozzon létre egy biztonsági mentési feladat idő-alapú biztonsági mentések, könnyű VM-helyreállítás és biztonsági mentési adatmegőrzési felügyelt lemezzel az Azure Backup szolgáltatás is használja. További, a [használata Azure Backup szolgáltatás felügyelt lemezzel rendelkező virtuális gépek](../backup/backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup).
+Is használata hello Azure Backup szolgáltatás felügyelt lemezek toocreate egy biztonsági mentési feladat az idő-alapú biztonsági mentések, könnyű VM-helyreállítás és biztonsági másolatok megőrzésének házirendek. További, a [használata Azure Backup szolgáltatás felügyelt lemezzel rendelkező virtuális gépek](../backup/backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup).
 
 ## <a name="next-steps"></a>Következő lépések
 
-* [Az Azure Storage bemutatása](storage-introduction.md)
+* [Bevezetés tooAzure tároló](storage-introduction.md)
 
 * [Tárfiók létrehozása](storage-create-storage-account.md)
 
@@ -152,4 +152,4 @@ Hozzon létre egy biztonsági mentési feladat idő-alapú biztonsági mentések
 
 * [Virtuális gép létrehozása a Resource Manager és a PowerShell használatával](../virtual-machines/virtual-machines-windows-ps-create.md)
 
-* [Linux-alapú virtuális gép létrehozása az Azure CLI 2.0-s verziójával](../virtual-machines/linux/quick-create-cli.md)
+* [Linux virtuális gép létrehozása Azure CLI 2.0 hello](../virtual-machines/linux/quick-create-cli.md)

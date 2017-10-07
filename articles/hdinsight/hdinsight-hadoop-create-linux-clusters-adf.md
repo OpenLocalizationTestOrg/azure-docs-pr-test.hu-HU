@@ -1,6 +1,6 @@
 ---
-title: "Igény szerinti használatával a Data Factory - Azure HDInsight Hadoop-fürtök létrehozása |} Microsoft Docs"
-description: "Ismerje meg, igény szerinti Hadoop-fürtök létrehozása a HDInsight az Azure Data Factory használatával."
+title: "igény szerinti Hadoop-fürtök használata a Data Factory - Azure HDInsight aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate igény szerinti Hadoop-fürtök a HDInsight az Azure Data Factory használatával."
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -16,36 +16,36 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/20/2017
 ms.author: spelluru
-ms.openlocfilehash: e68f1d72965d9516e0552c84d03d234c21739390
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c869776ac270e37dec710b5fc8d2a792d9263129
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-on-demand-hadoop-clusters-in-hdinsight-using-azure-data-factory"></a>Igény szerinti Hadoop-fürtök létrehozása a Hdinsightban Azure Data Factory használatával
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
-[Az Azure Data Factory](../data-factory/data-factory-introduction.md) egy felhőalapú integrációs szolgáltatás koordinálja és automatizálja az adatátviteli és az adatok átalakítása. Létrehozhat egy HDInsight Hadoop fürthöz közvetlenül az időponthoz kötött egy bemeneti adatszelet feldolgozni, és törölheti a fürtöt, ha feldolgozása befejeződött. Egy igény szerinti HDInsight Hadoop-fürt használatának előnyei a következők:
+[Az Azure Data Factory](../data-factory/data-factory-introduction.md) egy felhőalapú integrációs szolgáltatás koordinálja és hello mozgás és adatok átalakítása automatizálja. Hozzon létre egy HDInsight Hadoop fürthöz just-in-time tooprocess egy bemeneti adatszelet képes és hello fürt törlése, ha hello feldolgozása befejeződött. Egy igény szerinti HDInsight Hadoop-fürt használatának hello előnyei a következők:
 
-- Ön egyetlen fizetési idő feladat fut. a HDInsight Hadoop-fürt (és egy rövid konfigurálható üresjárati idő). A HDInsight-fürtök számlázása pro-értékelés percenként történik, függetlenül attól, hogy azokat, vagy nem. A Data Factory egy igény szerinti HDInsight kapcsolódó szolgáltatás használatakor a fürtök igény jönnek létre. És a fürt automatikusan törlődnek a feladatok elvégzésekor. Ezért csak kell fizetnie a feladat fut, és a rövid üresjárati idő (live idő beállítása).
-- Használatával a Data Factory-folyamathoz Munkafolyamat létrehozásához. Például lehet egy helyi SQL Server adatainak másolása az Azure blob Storage tárolóban, az adatok feldolgozása a Hive parancsfájlok és a Pig-parancsprogram futtatásával az igény szerinti HDInsight Hadoop-fürt folyamat. Ezután másolja az eredményadatok Azure SQL Data Warehouse BI alkalmazások felhasználását.
-- A munkafolyamat futtatását időnként (óránként, naponta, hetente, havonta, stb.) is ütemezheti.
+- Ön egyetlen fizetési hello idő feladat fut hello HDInsight Hadoop cluster (és egy rövid konfigurálható üresjárati idő). a HDInsight-fürtök hello számlázás pro-értékelés percenként történik, függetlenül attól, hogy azokat, vagy nem. Egy igény szerinti HDInsight kapcsolódó szolgáltatás használatakor a Data Factory hello fürtök igény jönnek létre. És hello fürtök automatikusan törlődnek hello feladatok elvégzésekor. Ezért csak kell fizetnie hello feladat fut, és hello rövid üresjárati idő (live idő beállítása).
+- Használatával a Data Factory-folyamathoz Munkafolyamat létrehozásához. Például lehet hello adatcsatorna toocopy adatait egy helyi SQL Server tooan Azure blob-tároló, a folyamat hello adatok az igény szerinti HDInsight Hadoop-fürt a Hive parancsfájlok és a Pig-parancsprogram futtatásával. Ezután másolja hello eredmény adatok tooan Azure SQL Data Warehouse BI alkalmazások tooconsume.
+- Ütemezheti az hello munkafolyamat toorun időnként (óránként, naponta, hetente, havonta, stb.).
 
-Az Azure Data Factoryben adat-előállító rendelkezhet egy vagy több adat folyamatok. Adatok folyamat rendelkezik egy vagy több tevékenységet. Tevékenységek két típusa van: [adatok mozgása tevékenységek](../data-factory/data-factory-data-movement-activities.md) és [adatok átalakítása tevékenységek](../data-factory/data-factory-data-transformation-activities.md). Adatok mozgása tevékenységek (jelenleg csak másolási tevékenység) használatával helyezze át az adatokat egy forrás adattárból a cél-tárolóban. Adatok átalakítása tevékenységek segítségével átalakítási/folyamat adatokat. HDInsight Hive tevékenység a Data Factory által támogatott átalakítása tevékenységek egyike. Ebben az oktatóanyagban a Hive átalakítási tevékenységet használja.
+Az Azure Data Factoryben adat-előállító rendelkezhet egy vagy több adat folyamatok. Adatok folyamat rendelkezik egy vagy több tevékenységet. Tevékenységek két típusa van: [adatok mozgása tevékenységek](../data-factory/data-factory-data-movement-activities.md) és [adatok átalakítása tevékenységek](../data-factory/data-factory-data-transformation-activities.md). Adatok (jelenleg csak másolási tevékenység) tevékenységek toomove adat egy forrás adatokat tároló tooa cél adattárból használhatja. Adatok átalakítása tevékenységek tootransform/folyamat adatokat használ. HDInsight Hive tevékenység a Data Factory által támogatott hello átalakítása tevékenységek egyike. Ebben az oktatóanyagban hello Hive átalakítási tevékenységet használja.
 
-A hive tevékenység saját HDInsight Hadoop-fürt vagy egy igény szerinti HDInsight Hadoop-fürt használatára konfigurálhatja. Ebben az oktatóanyagban a data factory-folyamat a Hive tevékenység igény szerinti HDInsight-fürt használatára van konfigurálva. Ezért amikor a tevékenység fut egy adatszelet feldolgozni, ez történik:
+Konfigurálhatja a hive tevékenység toouse saját HDInsight Hadoop-fürt vagy egy igény szerinti HDInsight Hadoop-fürt. Ebben az oktatóanyagban hello hello data factory-folyamathoz Hive tevékenység konfigurált toouse igény szerinti HDInsight-fürtöt. Ezért amikor hello tevékenység fut tooprocess egy adatszelet, ez történik:
 
-1. A HDInsight Hadoop-fürt automatikusan létrejön, közvetlenül az időponthoz kötött a szelet feldolgozása.  
-2. A bemeneti adatokat dolgozza fel a fürtön fut egy HiveQL-parancsfájlt.
-3. A HDInsight Hadoop-fürtök törlése a feldolgozás befejezése után, a fürt üresjáratban a beállított időn (timeToLive-beállítást). A timeToLive üresjárati idő feldolgozás a következő adatszelet érhető el, ha ugyanabban a fürtben szolgál a szelet feldolgozása.  
+1. HDInsight Hadoop-fürthöz, közvetlenül az időponthoz kötött tooprocess hello szelet automatikusan létrejön.  
+2. hello bemeneti adatokat dolgozza fel a HiveQL-parancsfájlt hello fürtben futó.
+3. HDInsight Hadoop-fürt hello hello feldolgozás befejezése után, hello fürt üresjáratban konfigurálva hello időn (timeToLive-beállítást) törlődik. A timeToLive üresjárati idő feldolgozásra hello következő adatszelet érhető el, hello ugyanabban a fürtben esetén használt tooprocess hello szelet.  
 
-Ebben az oktatóanyagban a hive tevékenységhez társított HiveQL-parancsfájlt az alábbi műveleteket hajtja végre:
+Ebben az oktatóanyagban hello hello hive tevékenységhez társított HiveQL-parancsfájlt hello a következő műveleteket hajtja végre:
 
-1. Létrehoz egy külső táblát, amely a nyers webes naplóadatokat, egy Azure Blob storage-ban tárolt hivatkozik.
-2. Partíciók évben és hónapban a nyers adatok.
-3. A particionált adatot tárol az Azure blob storage.
+1. Létrehoz egy külső táblát, amely a hivatkozások hello egy Azure Blob storage-ban tárolt nyers webes naplóadatokat.
+2. Partíciók hello nyers adatok hónap és év szerint.
+3. Tárolók hello particionált adatok hello Azure blob Storage tárolóban.
 
-Ebben az oktatóanyagban a HiveQL-parancsfájlt a hive tevékenységhez társított létrehoz egy külső táblát, amely a nyers webes naplóadatokat, az Azure Blob Storage tárolóban tárolt hivatkozik. Az alábbiakban a minta sorok minden hónapban a bemeneti fájl.
+Ebben az oktatóanyagban hello hello hive tevékenységhez társított HiveQL-parancsfájlt, amely hivatkozások hello hello Azure Blob Storage tárolóban tárolt nyers webes naplóadatokat külső táblát hoz létre. Az alábbiakban hello minta sorok havonta hello bemeneti fájl.
 
 ```
 2014-01-01,02:01:09,SAMPLEWEBSITE,GET,/blogposts/mvc4/step2.png,X-ARR-LOG-ID=2ec4b8ad-3cf0-4442-93ab-837317ece6a1,80,-,1.54.23.196,Mozilla/5.0+(Windows+NT+6.3;+WOW64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/31.0.1650.63+Safari/537.36,-,http://weblogs.asp.net/sample/archive/2007/12/09/asp-net-mvc-framework-part-4-handling-form-edit-and-post-scenarios.aspx,\N,200,0,0,53175,871
@@ -53,7 +53,7 @@ Ebben az oktatóanyagban a HiveQL-parancsfájlt a hive tevékenységhez társít
 2014-03-01,02:01:10,SAMPLEWEBSITE,GET,/blogposts/mvc4/step7.png,X-ARR-LOG-ID=d7472a26-431a-4a4d-99eb-c7b4fda2cf4c,80,-,1.54.23.196,Mozilla/5.0+(Windows+NT+6.3;+WOW64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/31.0.1650.63+Safari/537.36,-,http://weblogs.asp.net/sample/archive/2007/12/09/asp-net-mvc-framework-part-4-handling-form-edit-and-post-scenarios.aspx,\N,200,0,0,30184,871
 ```
 
-A HiveQL-parancsfájlt a nyers adatok particionálja a hónap és év szerint. Három kimeneti mappa az előző bemeneti alapján hoz létre. Minden mappa minden hónap bejegyzéseinek fájlt tartalmaz.
+hello HiveQL parancsfájl partíciók hello nyers adatok hónap és év szerint. Három kimeneti mappa hello előző bemeneti alapján hoz létre. Minden mappa minden hónap bejegyzéseinek fájlt tartalmaz.
 
 ```
 adfgetstarted/partitioneddata/year=2014/month=1/000000_0
@@ -61,13 +61,13 @@ adfgetstarted/partitioneddata/year=2014/month=2/000000_0
 adfgetstarted/partitioneddata/year=2014/month=3/000000_0
 ```
 
-Adat-előállító átalakítása tevékenységek struktúrát tevékenység mellett listájáért lásd: [alakít át és elemez az Azure Data Factory használatával](../data-factory/data-factory-data-transformation-activities.md).
+Adat-előállító átalakítása tevékenységek hozzáadása tooHive tevékenységben listájáért lásd: [alakít át és elemez az Azure Data Factory használatával](../data-factory/data-factory-data-transformation-activities.md).
 
 > [!NOTE]
 > Jelenleg csak létrehozhat HDInsight fürt 3.2-es verziójú Azure Data Factory.
 
 ## <a name="prerequisites"></a>Előfeltételek
-A jelen cikkben lévő utasítások megkezdése előtt rendelkeznie kell a következő elemek:
+Ez a cikk utasításait hello megkezdése előtt a következő elemek hello kell rendelkeznie:
 
 * [Azure-előfizetés](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 * Azure PowerShell.
@@ -75,19 +75,19 @@ A jelen cikkben lévő utasítások megkezdése előtt rendelkeznie kell a köve
 [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell.md)]
 
 ### <a name="prepare-storage-account"></a>Készítse elő a storage-fiók
-Ebben a forgatókönyvben legfeljebb három storage-fiókok is használhatja:
+Ebben a forgatókönyvben toothree storage-fiók mentése használhatja:
 
-- a HDInsight-fürthöz az alapértelmezett tárfiók
-- a bemeneti adatok tárfiók
-- a kimeneti adatok Storage-fiók
+- alapértelmezett tárfiók hello HDInsight-fürthöz
+- a bemeneti adatok hello Storage-fiók
+- tárfiók hello kimeneti adatai
 
-Az oktatóanyag leegyszerűsítése segítségével egy tárfiókot a három célokra szolgál. Az Azure PowerShell-parancsfájlpélda ebben a szakaszban található a következő feladatokat hajtja végre:
+toosimplify hello oktatóanyagban egy tárolási fiók tooserve hello három célra használja. hello ebben a szakaszban található Azure PowerShell-parancsfájlpélda hello a következő feladatokat hajtja végre:
 
-1. Jelentkezzen be az Azure-bA.
+1. Jelentkezzen be tooAzure.
 2. Azure-erőforráscsoport létrehozása
 3. Hozzon létre egy Azure Storage-fiókot.
-4. A tárfiók egy Blob-tároló létrehozása
-5. A következő két fájlt másolja a Blob-tároló:
+4. Egy Blob-tároló hello storage-fiók létrehozása
+5. Másolja a következő két fájlok toohello Blob tároló hello:
 
    * A bemeneti adatfájlt: [https://hditutorialdata.blob.core.windows.net/adfhiveactivity/inputdata/input.log](https://hditutorialdata.blob.core.windows.net/adfhiveactivity/inputdata/input.log)
    * HiveQL-parancsfájlt: [https://hditutorialdata.blob.core.windows.net/adfhiveactivity/script/partitionweblogs.hql](https://hditutorialdata.blob.core.windows.net/adfhiveactivity/script/partitionweblogs.hql)
@@ -95,10 +95,10 @@ Az oktatóanyag leegyszerűsítése segítségével egy tárfiókot a három cé
      Mindkét fájljai a következő nyilvános blobtárolóban.
 
 
-**A tárterület előkészítése és Azure PowerShell használatával másolhat fájlokat:**
+**tooprepare hello tárolási, és másolja hello fájlok Azure PowerShell használatával:**
 > [!IMPORTANT]
-> Adjon meg nevet az Azure erőforráscsoport és az Azure storage-fiók, a parancsfájl által létrehozott.
-> Írja le **erőforráscsoport-név**, **tárfióknév**, és **tárfiók kulcsa** outputted a parancsfájl által. Már szükség a következő szakaszban.
+> Adjon meg nevet hello Azure erőforráscsoport és hello parancsfájl által létrehozott hello Azure storage-fiók.
+> Írja le **erőforráscsoport-név**, **tárfióknév**, és **tárfiók kulcsa** outputted hello parancsfájl. Már szükség hello a következő szakaszban.
 
 ```powershell
 $resourceGroupName = "<Azure Resource Group Name>"
@@ -112,10 +112,10 @@ $destStorageAccountName = $storageAccountName
 $destContainerName = "adfgetstarted" # don't change this value.
 
 ####################################
-# Connect to Azure
+# Connect tooAzure
 ####################################
-#region - Connect to Azure subscription
-Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+#region - Connect tooAzure subscription
+Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
 try{Get-AzureRmContext}
 catch{Login-AzureRmAccount}
 #endregion
@@ -166,7 +166,7 @@ Write-Host "`nCopied files ..." -ForegroundColor Green
 Get-AzureStorageBlob -Context $destContext -Container $destContainerName
 #endregion
 
-Write-host "`nYou will use the following values:" -ForegroundColor Green
+Write-host "`nYou will use hello following values:" -ForegroundColor Green
 write-host "`nResource group name: $resourceGroupName"
 Write-host "Storage Account Name: $destStorageAccountName"
 write-host "Storage Account Key: $destStorageAccountKey"
@@ -174,59 +174,59 @@ write-host "Storage Account Key: $destStorageAccountKey"
 Write-host "`nScript completed" -ForegroundColor Green
 ```
 
-Ha a PowerShell parancsfájl segítségre van szüksége, tekintse meg a [az Azure PowerShell használata az Azure Storage](../storage/common/storage-powershell-guide-full.md). Ha szeretné, hogy az Azure parancssori felület használata, tekintse meg a [függelék](#appendix) szakaszban az Azure CLI-parancsfájlt.
+Ha a PowerShell-parancsfájllal hello segítségre van szüksége, tekintse meg [Using hello az Azure Storage Azure PowerShell](../storage/common/storage-powershell-guide-full.md). Ha például az Azure parancssori felület toouse ehelyett látható hello [függelék](#appendix) szakasz hello Azure CLI-parancsfájlt.
 
-**A tárfiók és a tartalom vizsgálata**
+**tooexamine hello tárolási fiók és hello tartalma**
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-2. Kattintson a **erőforráscsoportok** a bal oldali ablaktáblán.
-3. Kattintson duplán a PowerShell parancsfájl létrehozott az erőforráscsoport neve. A szűrő használja, ha túl sok erőforrás-csoportok szerepel a listában.
-4. Az a **erőforrások** csempe, kell rendelkeznie kivéve, ha az erőforráscsoport megosztása más projektek felsorolt egy erőforrást. Adott erőforrás a korábban megadott nevű tárfiók. Kattintson a tárfiók nevét.
-5. Kattintson a **Blobok** csempék.
-6. Kattintson a **adfgetstarted** tároló. Két mappák látja: **inputdata** és **parancsfájl**.
-7. Nyissa meg a mappát, és a mappákban található fájlokat. A inputdata tartalmazza a input.log fájl bemeneti adatokkal, és a parancsfájl mappa tartalmazza a HiveQL-parancsfájlt.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. Kattintson a **erőforráscsoportok** hello bal oldali ablaktáblán.
+3. Kattintson duplán az erőforráscsoport neve hello a PowerShell parancsfájl létrehozott. Hello szűrőt használhat, ha túl sok erőforrás-csoportok szerepel a listában.
+4. A hello **erőforrások** csempe, kell rendelkeznie kivéve, ha hello erőforráscsoport megosztása más projektek felsorolt egy erőforrás. Adott erőforrás hello tárfiók a korábban meghatározott hello nevű. Kattintson a hello tárfiók neve.
+5. Kattintson a hello **Blobok** csempék.
+6. Kattintson a hello **adfgetstarted** tároló. Két mappák látja: **inputdata** és **parancsfájl**.
+7. Nyissa meg a hello mappa, és ellenőrizze a hello mappákban hello fájlok. hello inputdata tartalmaz hello input.log fájl bemeneti adatokkal, és hello parancsfájlmappa hello HiveQL-parancsfájlt tartalmazza.
 
 ## <a name="create-a-data-factory-using-resource-manager-template"></a>A Resource Manager sablonnal adat-előállító létrehozása
-A tárfiók, a bemeneti adatok és a HiveQL-parancsfájlt készített készen áll az Azure data factory létrehozása. Többféleképpen az adat-előállító létrehozása. Ebben az oktatóanyagban létrehoz egy adat-előállító telepítésével az Azure Resource Manager-sablon az Azure portál használatával. A Resource Manager-sablon használatával is telepítheti [Azure CLI](../azure-resource-manager/resource-group-template-deploy-cli.md) és [Azure PowerShell](../azure-resource-manager/resource-group-template-deploy.md#deploy-local-template). Más data factory létrehozási módszert, lásd: [oktatóanyag: az első adat-előállító létrehozása](../data-factory/data-factory-build-your-first-pipeline.md).
+Hello tárfiókot, hello bemeneti adatok és hello előkészített HiveQL-parancsfájlt készen áll a toocreate egy az Azure data factory áll. Többféleképpen az adat-előállító létrehozása. Ebben az oktatóanyagban létrehoz egy adat-előállító hello Azure-portál használatával egy Azure Resource Manager-sablon üzembe helyezésével. A Resource Manager-sablon használatával is telepítheti [Azure CLI](../azure-resource-manager/resource-group-template-deploy-cli.md) és [Azure PowerShell](../azure-resource-manager/resource-group-template-deploy.md#deploy-local-template). Más data factory létrehozási módszert, lásd: [oktatóanyag: az első adat-előállító létrehozása](../data-factory/data-factory-build-your-first-pipeline.md).
 
-1. Az alábbi képre kattintva jelentkezzen be az Azure-ba, és nyissa meg a Resource Manager-sablont az Azure Portalon. A sablon https://hditutorialdata.blob.core.windows.net/adfhiveactivity/data-factory-hdinsight-on-demand.json helyezkedik el. Tekintse meg a [adat-előállító bejegyzései szerepelnek a sablon](#data-factory-entities-in-the-template) szakasz a sablonban definiált entitások kapcsolatos részletes információkat. 
+1. Kattintson a következő kép toosign tooAzure a és a nyitott hello Resource Manager sablon hello Azure-portálon hello. hello sablon https://hditutorialdata.blob.core.windows.net/adfhiveactivity/data-factory-hdinsight-on-demand.json helyezkedik el. Lásd: hello [adat-előállító entitások hello sablonban](#data-factory-entities-in-the-template) szakasz hello sablon entitásokból kapcsolatos részletes információkat. 
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fadfhiveactivity%2Fdata-factory-hdinsight-on-demand.json" target="_blank"><img src="./media/hdinsight-hadoop-create-linux-clusters-adf/deploy-to-azure.png" alt="Deploy to Azure"></a>
-2. Válassza ki **használata meglévő** választás a **erőforráscsoport** beállításával, és válassza ki a nevét (a PowerShell-parancsfájl használatával), az előző lépésben létrehozott erőforráscsoportot.
-3. Adjon meg egy nevet az adat-előállítóban (**adat-előállító**). Ez a név globálisan egyedinek kell lennie.
-4. Adja meg a **tárfióknév** és **tárfiók kulcsa** az előző lépésben megírt.
-5. Válassza ki **elfogadom a feltételeket és kikötéseket** elolvasása után említettük **feltételek és kikötések**.
-6. Válassza ki **rögzítés az irányítópulton** lehetőséget.
-6. Kattintson a **beszerzés/létrehozása**. Megjelenik az Irányítópulton egy csempére nevű **telepítése sablon-üzembehelyezés**. Várjon, amíg a **erőforráscsoport** az erőforráscsoport panel nyílik meg. A csempe jelenik meg az erőforráscsoport neve az erőforráscsoport panel megnyitásához, is kattinthat.
-6. Kattintson a csempére kattintva nyissa meg az erőforráscsoportot, ha az erőforráscsoport panel még nincs megnyitva. Most látni fog egy további adatokat előállító szereplő erőforrásra a tárolási fiók erőforrások mellett.
-7. Kattintson a data factory nevét (a megadott értékre a **adat-előállító** paraméter).
-8. A Data Factory panelen kattintson a **Diagram** csempére. Az ábrán látható egy bemeneti adatkészlet, és egy kimeneti adatkészlet egy tevékenységet:
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fadfhiveactivity%2Fdata-factory-hdinsight-on-demand.json" target="_blank"><img src="./media/hdinsight-hadoop-create-linux-clusters-adf/deploy-to-azure.png" alt="Deploy tooAzure"></a>
+2. Válassza ki **használata meglévő** hello beállítása **erőforráscsoport** beállítás, és válassza hello neve (a PowerShell-parancsfájl használatával) hello előző lépésben létrehozott hello erőforráscsoportot.
+3. Adjon meg egy nevet az hello data factory (**adat-előállító**). Ez a név globálisan egyedinek kell lennie.
+4. Adja meg a hello **tárfióknév** és **tárfiók kulcsa** hello előző lépésben megírt.
+5. Válassza ki **toohello feltételek és kikötések elfogadom** elolvasása után említettük **feltételek és kikötések**.
+6. Válassza ki **PIN-kód toodashboard** lehetőséget.
+6. Kattintson a **beszerzés/létrehozása**. Megtekintheti a csempe irányítópult nevű hello **telepítése sablon-üzembehelyezés**. Várjon, amíg hello **erőforráscsoport** az erőforráscsoport panel nyílik meg. Hello csempe jelenik meg, az erőforráscsoport neve tooopen hello erőforrás csoport panel is kattinthat.
+6. Ha hello erőforráscsoport panel még nincs megnyitva, kattintson a hello csempe tooopen hello erőforráscsoportot. Most megjelenik egy további data factory erőforrás továbbá felsorolt toohello tárolási fiók erőforrás.
+7. Kattintson a data factory hello nevére (hello megadott érték **adat-előállító** paraméter).
+8. Hello adat-előállító paneljén kattintson hello **Diagram** csempére. hello ábrán egy bemeneti adatkészlet, és egy kimeneti adatkészlet egy tevékenységet:
 
     ![Az Azure Data Factory HDInsight igény Hive tevékenység folyamat diagramja](./media/hdinsight-hadoop-create-linux-clusters-adf/hdinsight-adf-pipeline-diagram.png)
 
-    A nevek a Resource Manager-sablon vannak definiálva.
+    hello nevek hello Resource Manager-sablon vannak definiálva.
 9. Kattintson duplán a **AzureBlobOutput**.
-10. Az a **Recent frissítése szeletek**, ekkor megjelenik egy szelet. Ha az állapot **folyamatban**, várjon, amíg értékre módosul **készen**. Általában vesz igénybe **20 perc** hozhat létre HDInsight-fürtöt.
+10. A hello **Recent frissítése szeletek**, ekkor megjelenik egy szelet. Ha hello állapota **folyamatban**, várja meg, amíg nem módosítják túl**készen**. Általában vesz igénybe **20 perc** toocreate HDInsight-fürtöt.
 
-### <a name="check-the-data-factory-output"></a>Ellenőrizze a data factory kimenet
+### <a name="check-hello-data-factory-output"></a>Hello data factory kimeneti ellenőrzése
 
-1. A legutóbbi munkamenet ugyanazzal az eljárással használatával ellenőrizze a tárolók a adfgetstarted tároló. Nincsenek kívül két új tárolók **adfgetsarted**:
+1. Használja az azonos hello hello utolsó munkamenet toocheck hello tárolók hello adfgetstarted tároló eljárását. Nincsenek két új tárolók továbbá túl**adfgetsarted**:
 
-   * Egy tároló megadásával, amely mintát követi: `adf<yourdatafactoryname>-linkedservicename-datetimestamp`. Ebben a tárolóban az alapértelmezett tároló a HDInsight-fürthöz.
-   * adfjobs: Ebben a tárolóban az ADF feladatnaplóit az alkalmazása tárolója.
+   * Egy tároló hello mintája nevű: `adf<yourdatafactoryname>-linkedservicename-datetimestamp`. Ez a tároló egy hello alapértelmezett tároló hello HDInsight-fürthöz.
+   * adfjobs: Ebben a tárolóban hello ADF feladatnaplóit hello tárolója.
 
-     A data factory kimeneti tárolódik **afgetstarted** a Resource Manager sablon konfigurált.
+     hello data factory kimeneti tárolódik **afgetstarted** hello Resource Manager sablon konfigurált.
 2. Kattintson a **adfgetstarted**.
-3. Kattintson duplán a **partitioneddata**. Megjelenik egy **év = 2014** mappa, mert a webalkalmazás-naplók dátuma 2014-ben.
+3. Kattintson duplán a **partitioneddata**. Megjelenik egy **év = 2014** mappa mert összes hello webes naplókat dátuma 2014-ben.
 
     ![Az Azure Data Factory HDInsight igény Hive tevékenység folyamat kimeneti](./media/hdinsight-hadoop-create-linux-clusters-adf/hdinsight-adf-output-year.png)
 
-    Ha a lista részletező, január, február és március kell tekintse meg a három mappa. És minden hónapban van egy naplófájl.
+    Ha Ön is részletekbe menően tárhatják hello lista, január, február és március kell tekintse meg a három mappa. És minden hónapban van egy naplófájl.
 
     ![Az Azure Data Factory HDInsight igény Hive tevékenység folyamat kimeneti](./media/hdinsight-hadoop-create-linux-clusters-adf/hdinsight-adf-output-month.png)
 
-## <a name="data-factory-entities-in-the-template"></a>Data Factory-entitások a sablonban
-Itt látható, hogyan néz egy adat-előállító legfelső szintű erőforrás-kezelő sablonjának:
+## <a name="data-factory-entities-in-hello-template"></a>Data Factory entitások hello sablonban
+Itt látható, hogyan néz hello legfelső szintű erőforrás-kezelő sablon egy adat-előállító:
 
 ```json
 {
@@ -254,7 +254,7 @@ Itt látható, hogyan néz egy adat-előállító legfelső szintű erőforrás-
 ```
 
 ### <a name="define-data-factory"></a>Data Factory definiálása
-A data factoryt a Resource Manager-sablonban definiálhatja az alábbi minta szerint:  
+Megadhat egy adat-előállító hello Resource Manager-sablon látható módon a következő minta hello:  
 
 ```json
 "resources": [
@@ -265,10 +265,10 @@ A data factoryt a Resource Manager-sablonban definiálhatja az alábbi minta sze
     "location": "westus",
 }
 ```
-A dataFactoryName, adja meg a sablon telepítésekor adat-előállító nevét. Adat-előállító jelenleg csak az USA keleti régiója, USA nyugati régiója és Észak-Európa régiókban támogatott.
+hello dataFactoryName hello adat-előállító hello sablon telepítésekor megadott hello neve. Adat-előállító jelenleg csak a hello USA keleti régiója, USA nyugati régiója és Észak-Európa következő régiókban támogatott.
 
-### <a name="defining-entities-within-the-data-factory"></a>Az adat-előállítóban belüli definiálása
-Az alábbi Data Factory-entitások a JSON-sablonban vannak definiálva:
+### <a name="defining-entities-within-hello-data-factory"></a>Hello adat-előállító belüli definiálása
+hello következő adat-előállító entitások definiált hello JSON-sablon:
 
 * [Azure Storage társított szolgáltatás](#azure-storage-linked-service)
 * [HDInsight igény szerinti társított szolgáltatás](#hdinsight-on-demand-linked-service)
@@ -277,7 +277,7 @@ Az alábbi Data Factory-entitások a JSON-sablonban vannak definiálva:
 * [Másolási tevékenységgel rendelkező adatfolyamat](#data-pipeline)
 
 #### <a name="azure-storage-linked-service"></a>Azure Storage társított szolgáltatás
-Az Azure Storage társított szolgáltatás az Azure tárfiókot társítja az adat-előállítóval. Ebben az oktatóanyagban ugyanabban a tárfiókban lesz az alapértelmezett HDInsight tárfiókot, a bemeneti adatokat tároló és a kimeneti adatok tárolási. Ezért adja meg csak egy Azure Storage társított szolgáltatásnak. A társított szolgáltatás definíciójának neve és kulcsa az Azure storage-fiókot kell megadni. Az Azure Storage társított szolgáltatás definiálásához használt JSON-tulajdonságokkal kapcsolatos információkért tekintse meg az [Azure Storage társított szolgáltatás](../data-factory/data-factory-azure-blob-connector.md#azure-storage-linked-service) című szakaszt.
+hello Azure Storage társított szolgáltatás hivatkozások a az Azure storage-fiók toohello adat-előállítóban. Ebben az oktatóanyagban hello ugyanabban a tárfiókban lesz hello alapértelmezett HDInsight tárfiókot, a bemeneti adatokat tároló és a kimeneti adatok tárolására. Ezért adja meg csak egy Azure Storage társított szolgáltatásnak. A hello társított szolgáltatás definíciójának akkor adja meg a hello és az Azure storage-fiók kulcsát. Lásd: [Azure Storage társított szolgáltatásnak](../data-factory/data-factory-azure-blob-connector.md#azure-storage-linked-service) JSON használt tulajdonságok toodefine vonatkozó további információért egy Azure Storage társított szolgáltatásnak.
 
 ```json
 {
@@ -293,10 +293,10 @@ Az Azure Storage társított szolgáltatás az Azure tárfiókot társítja az a
     }
 }
 ```
-A **connectionString** a storageAccountName és storageAccountKey paramétereket használja. A sablon telepítése során adja meg a paraméterek értékeit.  
+Hello **connectionString** használ hello storageAccountName és storageAccountKey paraméterek. Ezek a paraméterek értékeit hello sablon telepítése során adja meg.  
 
 #### <a name="hdinsight-on-demand-linked-service"></a>HDInsight igény szerinti társított szolgáltatás
-Igény szerinti HDInsight kapcsolódó szolgáltatásdefinícióban meg futásidőben egy HDInsight Hadoop-fürt létrehozása a Data Factory szolgáltatásnak által használt konfigurációs paraméterek értékét. A HDInsight igény szerinti társított szolgáltatás definiálásához használt JSON-tulajdonságokkal kapcsolatos információkért tekintse meg a [Számítási társított szolgáltatás](../data-factory/data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) című cikket.  
+A hello igény szerinti HDInsight társított szolgáltatás definíciójának, megadhatja a hello adat-előállító szolgáltatás toocreate egy HDInsight Hadoop futásidőben fürt által használt konfigurációs paraméterek értékét. Lásd: [összekapcsolt szolgáltatások számítási](../data-factory/data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) JSON használt tulajdonságok toodefine vonatkozó további információért cikk egy HDInsight igény társított szolgáltatást.  
 
 ```json
 
@@ -322,20 +322,20 @@ Igény szerinti HDInsight kapcsolódó szolgáltatásdefinícióban meg futásid
     }
 }
 ```
-Vegye figyelembe a következő szempontokat:
+Vegye figyelembe a következő pontok hello:
 
-* A Data Factory létrehoz egy **Linux-alapú** meg HDInsight-fürthöz.
-* A HDInsight Hadoop-fürt és a tárfiók ugyanabban a régióban jön létre.
-* Figyelje meg a *timeToLive* beállítást. A data factory automatikusan törli a fürt, miután a fürt 30 percig inaktív alatt.
-* A HDInsight-fürt létrehoz egy **alapértelmezett tárolót** a JSON-fájlban megadott blob-tárolóban (**linkedServiceName**). A fürt törlésekor a HDInsight nem törli ezt a tárolót. Ez a működésmód szándékos. Igény szerinti HDInsight társított szolgáltatás esetén a rendszer mindig létrehoz egy HDInsight-fürt, amikor fel kell dolgozni egy szeletet, kivéve, ha van meglévő élő fürt (**timeToLive**), majd a feldolgozás végén a rendszer törli a fürtöt.
+* hello adat-előállító létrehoz egy **Linux-alapú** meg HDInsight-fürthöz.
+* hello HDInsight Hadoop-fürt jön létre hello azonos hello tárfiók és a régióban.
+* Értesítés hello *timeToLive* beállítást. hello adat-előállító hello fürt üresjárati folyamatban van 30 perc után automatikusan törli hello fürt.
+* hello HDInsight-fürtöt hoz létre egy **alapértelmezett tároló** az Ön által megadott hello JSON hello blob storage (**linkedServiceName**). HDInsight nem törli a tárolót hello fürt törlésekor. Ez a működésmód szándékos. Az igény szerinti HDInsight kapcsolódó szolgáltatás használata esetén a HDInsight-fürt létrehozása minden alkalommal, amikor a szelet kell feldolgozni, kivéve, ha egy meglévő élő fürthöz toobe (**timeToLive**), és törlődik, amikor hello feldolgozási hajtja végre.
 
 További információkért lásd: [On-demand HDInsight Linked Service](../data-factory/data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) (Igény szerinti HDInsight társított szolgáltatás).
 
 > [!IMPORTANT]
-> Ahogy egyre több szelet lesz feldolgozva, egyre több tároló jelenik meg az Azure Blob Storage-tárban. Ha nincs szüksége rájuk a feladatokkal kapcsolatos hibaelhárításhoz, törölheti őket a tárolási költségek csökkentése érdekében. A tárolók neve a következő mintát követi: „adf**yourdatafactoryname**-**linkedservicename**-datetimestamp”. Az Azure Blob Storage-tárból olyan eszközökkel törölheti a tárolókat, mint például a [Microsoft Storage Explorer](http://storageexplorer.com/).
+> Ahogy egyre több szelet lesz feldolgozva, egyre több tároló jelenik meg az Azure Blob Storage-tárban. Ha nem kell őket hello feladatok hibaelhárítási, érdemes lehet a toodelete őket tooreduce hello tárolási költségeket. ezekhez a tárolókhoz hello nevei, hajtsa végre a minta: "adf**yourdatafactoryname**-**linkedservicename**- datetimestamp". Használjon például az eszközök [Microsoft Tártallózó](http://storageexplorer.com/) toodelete tárolókat az az Azure blob-tároló.
 
 #### <a name="azure-blob-input-dataset"></a>Azure blobbemeneti adatkészlet
-A bemeneti adatkészlet-definícióban blob tároló mappa és a bemeneti adatokat tartalmazó fájl nevét adja meg. Az Azure Blob-adatkészletek definiálásához használt JSON-tulajdonságokkal kapcsolatos információkért tekintse meg az [Azure Blob-adatkészlet tulajdonságai](../data-factory/data-factory-azure-blob-connector.md#dataset-properties) című szakaszt.
+Hello bemeneti adatkészlet-definícióban blob tároló, mappa, és hello bemeneti adatokat tartalmazó fájlt hello nevét kell megadni. Lásd: [Azure-Blob adatkészlet tulajdonságai](../data-factory/data-factory-azure-blob-connector.md#dataset-properties) JSON használt tulajdonságok toodefine egy Azure Blob-adathalmazra vonatkozó további információért.
 
 ```json
 
@@ -369,7 +369,7 @@ A bemeneti adatkészlet-definícióban blob tároló mappa és a bemeneti adatok
 
 ```
 
-Figyelje meg a JSON-definícióból adott alábbi beállításait:
+Figyelje meg a következő hello JSON-definícióban meghatározott beállításokat hello:
 
 ```json
 "fileName": "input.log",
@@ -377,7 +377,7 @@ Figyelje meg a JSON-definícióból adott alábbi beállításait:
 ```
 
 #### <a name="azure-blob-output-dataset"></a>Azure Blob kimeneti adatkészlet
-A kimeneti adatkészlet-definícióban és a blob tároló a kimeneti adatokat tartalmazó mappa nevét kell megadni. Az Azure Blob-adatkészletek definiálásához használt JSON-tulajdonságokkal kapcsolatos információkért tekintse meg az [Azure Blob-adatkészlet tulajdonságai](../data-factory/data-factory-azure-blob-connector.md#dataset-properties) című szakaszt.  
+Hello kimeneti adatkészlet-definícióban és a blob tároló hello kimeneti adatokat tartalmazó mappa hello nevét kell megadni. Lásd: [Azure-Blob adatkészlet tulajdonságai](../data-factory/data-factory-azure-blob-connector.md#dataset-properties) JSON használt tulajdonságok toodefine egy Azure Blob-adathalmazra vonatkozó további információért.  
 
 ```json
 
@@ -408,13 +408,13 @@ A kimeneti adatkészlet-definícióban és a blob tároló a kimeneti adatokat t
 }
 ```
 
-A folderPath határozza meg a mappa elérési útját, amely tárolja az adatokat:
+hello folderPath hello elérési toohello mappa hello kimeneti adatokat tartalmazó határozza meg:
 
 ```json
 "folderPath": "adfgetstarted/partitioneddata",
 ```
 
-A [adatkészlet rendelkezésre állási](../data-factory/data-factory-create-datasets.md#dataset-availability) beállítás a következőképpen történik:
+Hello [adatkészlet rendelkezésre állási](../data-factory/data-factory-create-datasets.md#dataset-availability) beállítás a következőképpen történik:
 
 ```json
 "availability": {
@@ -424,10 +424,10 @@ A [adatkészlet rendelkezésre állási](../data-factory/data-factory-create-dat
 },
 ```
 
-Az Azure Data Factoryben kimeneti adatkészlet rendelkezésre állási meghajtók a folyamatot. Ebben a példában a szelet (EndOfInterval) hónap utolsó napján havonta jön létre. További információkért lásd: [Data Factory ütemezés és a végrehajtási](../data-factory/data-factory-scheduling-and-execution.md).
+Az Azure Data Factoryben, kimeneti adatkészlet rendelkezésre állási meghajtók hello folyamat. Ebben a példában hello szelet jön létre havonta hello (EndOfInterval) hónap utolsó napján meg. További információkért lásd: [Data Factory ütemezés és a végrehajtási](../data-factory/data-factory-scheduling-and-execution.md).
 
 #### <a name="data-pipeline"></a>Adatfolyamat
-Megadhatja egy folyamatot, amely átalakítja az adatok igény szerinti Azure HDInsight-fürtök a Hive parancsfájl futtatásával. A példában található folyamat definiálásához használt JSON-elemek leírásához tekintse meg [A folyamat JSON-fájlja](../data-factory/data-factory-create-pipelines.md#pipeline-json) című szakaszt.
+Megadhatja egy folyamatot, amely átalakítja az adatok igény szerinti Azure HDInsight-fürtök a Hive parancsfájl futtatásával. Lásd: [adatcsatorna JSON](../data-factory/data-factory-create-pipelines.md#pipeline-json) a JSON használt elemek toodefine ebben a példában a folyamat leírását.
 
 ```json
 {
@@ -479,28 +479,28 @@ Megadhatja egy folyamatot, amely átalakítja az adatok igény szerinti Azure HD
 }
 ```
 
-A folyamat egy tevékenységet, HDInsightHive tevékenységet tartalmaz. Mivel a kezdő és záró dátumát 2016. január adatokat (a szeletek) feldolgozva csak egy hónap. Mindkét *start* és *end* múltbeli dátum, a tevékenység rendelkezik, így a Data Factory az adatokat közvetlenül az adott hónap dolgozza fel. Ha vége a jövőben, az adat-előállítóban létrehoz egy másik szelet Ha idő. További információkért lásd: [Data Factory ütemezés és a végrehajtási](../data-factory/data-factory-scheduling-and-execution.md).
+hello adatcsatorna egy tevékenységet, HDInsightHive tevékenységet tartalmaz. Mivel a kezdő és záró dátumát 2016. január adatokat (a szeletek) feldolgozva csak egy hónap. Mindkét *start* és *end* múltbeli dátum, hello tevékenység rendelkezik, így a Data Factory hello hello hónap azonnal adatokat dolgozza fel. Ha hello célból egy jövőbeli dátumot, hello adat-előállító létrehoz egy másik szelet, ha hello idő. További információkért lásd: [Data Factory ütemezés és a végrehajtási](../data-factory/data-factory-scheduling-and-execution.md).
 
-## <a name="clean-up-the-tutorial"></a>Az oktatóanyag tartalmának törlése
+## <a name="clean-up-hello-tutorial"></a>Hello oktatóanyag tisztítása
 
-### <a name="delete-the-blob-containers-created-by-on-demand-hdinsight-cluster"></a>A blob-tárolók hozta létre igény szerinti HDInsight-fürt törlése
-Az igény szerinti HDInsight kapcsolódó szolgáltatás használata esetén egy HDInsight-fürt létrehozása minden alkalommal, amikor a szelet kell feldolgozni, kivéve, ha egy meglévő élő fürthöz (élettartam); és a fürt akkor törlődnek, ha a feldolgozás történik. Az egyes fürtökön Azure Data Factory egy blob-tároló az Azure blob storage a fürthöz az alapértelmezett stroage fiókként használt hoz létre. Annak ellenére, hogy a HDInsight-fürtök törlése az alapértelmezett blob tárolókat, és a kapcsolódó tárfiók nem törlődik. Ez a működésmód szándékos. Ahogy egyre több szelet lesz feldolgozva, egyre több tároló jelenik meg az Azure Blob Storage-tárban. Ha nincs szüksége rájuk a feladatokkal kapcsolatos hibaelhárításhoz, törölheti őket a tárolási költségek csökkentése érdekében. A tárolók neve a következő mintát követi: `adfyourdatafactoryname-linkedservicename-datetimestamp`.
+### <a name="delete-hello-blob-containers-created-by-on-demand-hdinsight-cluster"></a>Igény szerinti HDInsight-fürt által létrehozott hello blobtárolók törlése
+Az igény szerinti HDInsight kapcsolódó szolgáltatás használata esetén egy HDInsight-fürt létrehozása minden alkalommal, amikor a szelet kell feldolgozni, kivéve, ha egy meglévő élő fürthöz (élettartam); toobe és hello fürt akkor törlődnek, ha nem hello hajtja végre. Az egyes fürtökön Azure Data Factory egy blob-tároló hello hello fürthöz hello alapértelmezett stroage fiókként használt Azure blob Storage tárolóban hoz létre. Annak ellenére, hogy a HDInsight-fürtök törlése hello alapértelmezett blob tároló és a kapcsolódó hello tárfiók nem törlődik. Ez a működésmód szándékos. Ahogy egyre több szelet lesz feldolgozva, egyre több tároló jelenik meg az Azure Blob Storage-tárban. Ha nem kell őket hello feladatok hibaelhárítási, érdemes lehet a toodelete őket tooreduce hello tárolási költségeket. ezekhez a tárolókhoz hello nevei, hajtsa végre a minta: `adfyourdatafactoryname-linkedservicename-datetimestamp`.
 
-Törölje a **adfjobs** és **adfyourdatafactoryname-linkedservicename-datetimestamp** mappák. A adfjobs tároló feladatnaplóit az Azure Data Factory tartalmaz.
+Törölje a hello **adfjobs** és **adfyourdatafactoryname-linkedservicename-datetimestamp** mappák. hello adfjobs tároló feladatnaplóit az Azure Data Factory tartalmaz.
 
-### <a name="delete-the-resource-group"></a>Az erőforráscsoport törlése
-[Az Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) központi telepítése, kezelése és a megoldás csoportként figyelésére szolgál.  Erőforráscsoport törlése összetevőit a csoporton belül.  
+### <a name="delete-hello-resource-group"></a>Hello erőforráscsoport törlése
+[Az Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) van használt toodeploy, kezelheti és figyelheti a megoldás csoportként.  Erőforráscsoport törlése az összes hello összetevő hello csoporton belül.  
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-2. Kattintson a **erőforráscsoportok** a bal oldali ablaktáblán.
-3. Kattintson a PowerShell parancsfájl létrehozott az erőforráscsoport neve. A szűrő használja, ha túl sok erőforrás-csoportok szerepel a listában. Az erőforráscsoport egy új panelen nyitja meg.
-4. Az a **erőforrások** csempe, akkor az alapértelmezett tárfiók és rendelkezik a data factory, kivéve, ha az erőforráscsoport megosztása más projektek felsorolt.
-5. Kattintson a **törlése** a panel tetején. Ezzel törli a tárfiókot és a storage-fiókban tárolt adatok.
-6. Adja meg a törlés jóváhagyásához, és kattintson az erőforráscsoport neve **törlése**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. Kattintson a **erőforráscsoportok** hello bal oldali ablaktáblán.
+3. Kattintson az erőforráscsoport neve hello a PowerShell parancsfájl létrehozott. Hello szűrőt használhat, ha túl sok erőforrás-csoportok szerepel a listában. Hello erőforráscsoportot egy új panelen nyitja meg.
+4. A hello **erőforrások** csempe, kell rendelkeznie, hello alapértelmezett tárfiókot és felsorolt, kivéve, ha hello erőforráscsoport megosztása más projektek hello adat-előállítóban.
+5. Kattintson a **törlése** hello felül hello panelről. Ezzel törli a hello tárfiók és a storage-fiók hello hello adataihoz.
+6. Írja be a hello erőforrás csoport neve tooconfirm törlése, és kattintson **törlése**.
 
-Abban az esetben, ha nem szeretné törölni a tárfiókot, ha törli az erőforráscsoportot, fontolja meg a következő architektúra által az üzleti adatok mappától az alapértelmezett tárfiók. Ebben az esetben egy erőforráscsoportot a tárfiók az üzleti adatok rendelkezik, és az alapértelmezett tárfiókot, a HDInsight tartozó többi erőforráscsoport kapcsolódó szolgáltatás és az adat-előállítóban. A második erőforráscsoport törlése nem érinti az üzleti adatok tárfiók. Ehhez tegye a következőket:
+Abban az esetben, ha nem kívánja toodelete hello tárfiók hello erőforráscsoport törlésekor, fontolja meg a következő architektúra hello alapértelmezett tárfiókból hello üzleti adatok elválasztva hello. Ebben az esetben rendelkezik egy erőforráscsoport hello tárfiók hello üzleti adatok, és egy másik erőforráscsoportban hello alapértelmezett tárfiók HDInsight csatolt szolgáltatás és hello adat-előállító hello. Hello második erőforráscsoport törlése nem érinti hello üzleti adatok tárfiók. toodo így:
 
-* Adja hozzá a következő a legfelső szintű erőforráscsoporttal együtt a Resource Manager-sablon az Microsoft.DataFactory/datafactories erőforrás. Létrehoz egy tárfiókot:
+* Adja hozzá a következő toohello legfelső szintű erőforráscsoport együtt hello Microsoft.DataFactory/datafactories erőforrás a Resource Manager sablon hello. Létrehoz egy tárfiókot:
 
     ```json
     {
@@ -517,7 +517,7 @@ Abban az esetben, ha nem szeretné törölni a tárfiókot, ha törli az erőfor
         }
     },
     ```
-* Vegyen fel egy új társított szolgáltatás pontot az új tárolási fiók:
+* Új társított szolgáltatás pont toohello új tárfiók hozzáadása:
 
     ```json
     {
@@ -533,7 +533,7 @@ Abban az esetben, ha nem szeretné törölni a tárfiókot, ha törli az erőfor
         }
     },
     ```
-* Konfigurálja a HDInsight kapcsolódó ondemand-szolgáltatás egy további dependsOn és egy additionalLinkedServiceNames:
+* Egy további dependsOn és egy additionalLinkedServiceNames hello HDInsight ondemand kapcsolódó szolgáltatás konfigurálása:
 
     ```json
     {
@@ -562,7 +562,7 @@ Abban az esetben, ha nem szeretné törölni a tárfiókot, ha törli az erőfor
     },            
     ```
 ## <a name="next-steps"></a>Következő lépések
-Ebben a cikkben rendelkezik megtanulta, hogyan használható az Azure Data Factory igény szerinti HDInsight-fürt feldolgozni a Hive-feladatok létrehozása. Ha többet:
+Ebben a cikkben megtanulta, hogyan toouse Azure Data Factory toocreate igény szerinti HDInsight-fürt tooprocess Hive-feladatokat. További tooread:
 
 * [Hadoop oktatóanyag: hdinsight Linux-alapú Hadoop használatának megkezdése](hdinsight-hadoop-linux-tutorial-get-started.md)
 * [Linux-alapú Hadoop-fürtök létrehozása a Hdinsightban](hdinsight-hadoop-provision-linux-clusters.md)
@@ -572,11 +572,11 @@ Ebben a cikkben rendelkezik megtanulta, hogyan használható az Azure Data Facto
 ## <a name="appendix"></a>Függelék:
 
 ### <a name="azure-cli-script"></a>Az Azure CLI-parancsfájlt
-Az oktatóanyag elvégzéséhez Azure PowerShell használata helyett az Azure parancssori felület is használhatja. Az Azure parancssori felület használatához először telepítenie kell az Azure parancssori felület szerint az alábbi utasításokat:
+Használhatja az Azure CLI Azure PowerShell toodo hello oktatóanyag használata helyett. toouse Azure CLI-t, először telepítse az Azure parancssori felület hello utasításai szerint:
 
 [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
-#### <a name="use-azure-cli-to-prepare-the-storage-and-copy-the-files"></a>A tárterület előkészítése, és másolja a fájlokat az Azure parancssori felület használatával
+#### <a name="use-azure-cli-tooprepare-hello-storage-and-copy-hello-files"></a>Az Azure parancssori felület tooprepare hello tárhelyet használja, és hello fájlok másolása
 
 ```
 azure login
@@ -594,4 +594,4 @@ azure storage blob copy start "https://hditutorialdata.blob.core.windows.net/adf
 azure storage blob copy start "https://hditutorialdata.blob.core.windows.net/adfhiveactivity/script/partitionweblogs.hql" --dest-account-name "<Azure Storage Account Name>" --dest-account-key "<Azure Storage Account Key>" --dest-container "adfgetstarted"
 ```
 
-A tároló neve *adfgetstarted*. Legyen ez. Ellenkező esetben frissítenie kell a Resource Manager-sablon. Ha a parancssori felület parancsfájllal segítségre van szüksége, tekintse meg [az Azure parancssori felület használatával az Azure Storage](../storage/common/storage-azure-cli.md).
+hello tároló neve *adfgetstarted*. Legyen ez. Ellenkező esetben tooupdate hello Resource Manager-sablon van szüksége. Ha a parancssori felület parancsfájllal segítségre van szüksége, tekintse meg [az Azure Storage Azure CLI használata hello](../storage/common/storage-azure-cli.md).

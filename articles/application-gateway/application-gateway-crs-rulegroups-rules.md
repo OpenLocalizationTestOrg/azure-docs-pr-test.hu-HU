@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Application Gateway webalkalmazási tűzfal CRS szabály csoportok és a szabályok |} Microsoft Docs"
+title: "aaaAzure Alkalmazásátjáró webalkalmazási tűzfal CRS szabály csoportok és a szabályok |} Microsoft Docs"
 description: "Ezen a lapon információt nyújt webes alkalmazás tűzfal CRS csoportok és a szabályok."
 documentationcenter: na
 services: application-gateway
@@ -15,17 +15,17 @@ ms.custom:
 ms.workload: infrastructure-services
 ms.date: 03/28/2017
 ms.author: gwallace
-ms.openlocfilehash: 9f4445b7ceb5b39c7907b1ca4c7bf0ad52ba8212
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6be139847392baeb235bc48b079335c1e0d8287b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="list-of-web-application-firewall-crs-rule-groups-and-rules-offered"></a>Kínált webes alkalmazás tűzfal CRS csoportok és a szabályok listája
 
-Alkalmazás átjáró webalkalmazási tűzfal (waf-ot) védje a webalkalmazások a normál biztonsági rés és biztonsági réseket. Ez a OWASP core szabálykészletek program 2.2.9-es vagy 3.0 alapján definiált szabályok segítségével történik. Ezek a szabályok által szabály alapján lehet letiltani. Ez a cikk tartalmazza az aktuális szabályok és a kínált szabálykészletek.
+Alkalmazás átjáró webalkalmazási tűzfal (waf-ot) védje a webalkalmazások a normál biztonsági rés és biztonsági réseket. Ez a hello OWASP core szabálykészletek program 2.2.9-es vagy 3.0 alapján definiált szabályok segítségével történik. Ezek a szabályok által szabály alapján lehet letiltani. Ez a cikk hello aktuális szabályok és a kínált szabálykészletek tartalmazza.
 
-Az alábbi táblázatok a következők: a csoportok és a szabályok, amelyek webalkalmazási tűzfal Application Gateway használata esetén érhetők el.  Minden tábla jelenti. a szabályok egy adott CRS verziójához szabály csoportban található.
+a következő táblák hello hello csoportok és a szabályok, amelyek webalkalmazási tűzfal Application Gateway használata esetén érhetők el.  Minden tábla hello szabályok egy adott CRS verziójához szabály csoportban található jelöli.
 
 ##<a name="owasp30"></a>OWASP_3.0
 
@@ -110,7 +110,7 @@ Az alábbi táblázatok a következők: a csoportok és a szabályok, amelyek we
 |920011|A szabály 920011|
 |920012|A szabály 920012|
 |920100|Érvénytelen HTTP-kérelem-sor|
-|920130|Nem sikerült elemezni a kérés törzsében.|
+|920130|Nem sikerült tooparse kérés törzsében.|
 |920140|Több részből álló kérelem törzse szigorú ellenőrzése sikertelen PE %@{REQBODY_PROCESSOR_ERROR =} BQ %@{MULTIPART_BOUNDARY_QUOTED} BW %@{MULTIPART_BOUNDARY_WHITESPACE} DB %@{MULTIPART_DATA_BEFORE} DA %@{MULTIPART_DATA_AFTER} NF %@{MULTIPART_HEADER_FOLDING} LF % @ {MULTIPART_LF_LINE}     FÁJL %@{MULTIPART_FILE_LIMIT_EXCEEDED IH %@{MULTIPART_INVALID_HEADER_FOLDING IQ %@{MULTIPART_INVALID_QUOTING SM %@{MULTIPART_SEMICOLON_MISSING}}}}|
 |920160|Content-Length HTTP-fejléc nincs numerikus.|
 |920170|GET vagy HEAD kérelem törzse tartalmú.|
@@ -342,7 +342,7 @@ Az alábbi táblázatok a következők: a csoportok és a szabályok, amelyek we
 |---|---|
 |960911|Érvénytelen HTTP-kérelem-sor|
 |981227|Apache hiba = kérelemben érvénytelen URI.|
-|960912|Nem sikerült elemezni a kérés törzsében.|
+|960912|Nem sikerült tooparse kérés törzsében.|
 |960914|Több részből álló kérelem törzse szigorú ellenőrzése sikertelen PE %@{REQBODY_PROCESSOR_ERROR =} BQ %@{MULTIPART_BOUNDARY_QUOTED} BW %@{MULTIPART_BOUNDARY_WHITESPACE} DB %@{MULTIPART_DATA_BEFORE} DA %@{MULTIPART_DATA_AFTER} NF %@{MULTIPART_HEADER_FOLDING} LF % @ {MULTIPART_LF_LINE}     FÁJL %@{MULTIPART_FILE_LIMIT_EXCEEDED IH %@{MULTIPART_INVALID_HEADER_FOLDING IQ %@{MULTIPART_INVALID_QUOTING SM %@{MULTIPART_SEMICOLON_MISSING}}}}|
 |960915|Több részből álló elemző észlelte a lehetséges páratlan határ.|
 |960016|Content-Length HTTP-fejléc nincs numerikus.|
@@ -400,9 +400,9 @@ Az alábbi táblázatok a következők: a csoportok és a szabályok, amelyek we
 
 |ruleId|Leírás|
 |---|---|
-|990002|Kérelem azt jelzi, hogy egy biztonsági beolvasott a hely|
-|990901|Kérelem azt jelzi, hogy egy biztonsági beolvasott a hely|
-|990902|Kérelem azt jelzi, hogy egy biztonsági beolvasott a hely|
+|990002|Kérelem jelzi egy biztonsági beolvasott hello hely|
+|990901|Kérelem jelzi egy biztonsági beolvasott hello hely|
+|990902|Kérelem jelzi egy biztonsági beolvasott hello hely|
 |990012|Az engedélyezetlen webhely webbejáró|
 
 ### <a name="crs40"></a>crs_40_generic_attacks
@@ -592,6 +592,6 @@ Az alábbi táblázatok a következők: a csoportok és a szabályok, amelyek we
 
 ## <a name="next-steps"></a>Következő lépések
 
-Megtudhatja, hogyan tilthatja ellátogatva WAF: [testreszabása WAF szabályok](application-gateway-customize-waf-rules-portal.md)
+Ismerje meg, hogyan toodisable WAF szabályok ellátogatva: [testreszabása WAF szabályok](application-gateway-customize-waf-rules-portal.md)
 
 [1]: ./media/application-gateway-integration-security-center/figure1.png

@@ -33,18 +33,18 @@
 ###[Munkamenetállapot-szolgáltató](cache-aspnet-session-state-provider.md)
 ###[Kimeneti gyorsítótár-szolgáltató](cache-aspnet-output-cache-provider.md)
 ## Kezelés
-###[Konfigurálás a portálon](cache-configure.md)
+###[Hello portál konfigurálása](cache-configure.md)
 ###[Georeplikáció konfigurálása](cache-how-to-geo-replication.md)
 ###[Adatok importálása és exportálása](cache-how-to-import-export-data.md)
 ###[Újraindítás](cache-administration.md#reboot)
 ###[Frissítések ütemezése](cache-administration.md#schedule-updates)
 ## Figyelés és hibaelhárítás
-###[Figyelés a portálon](cache-how-to-monitor.md)
+###[Hello portálon figyelése](cache-how-to-monitor.md)
 ###[Gyorsítótárral kapcsolatos problémák megoldása](cache-how-to-troubleshoot.md)
 ###[Riasztások beállítása kivételekhez](cache-how-to-monitor.md#operations-and-alerts)
 ## Méretezés
-###[Módosítás más méretre és szintre](cache-how-to-scale.md)
-###[Vertikális és horizontális leskálázás Redis-fürttel](cache-how-to-premium-clustering.md)
+###[Frissítés tooa különböző mérete és szint](cache-how-to-scale.md)
+###[A Redis-fürt tooscale be- / kimeneti használata](cache-how-to-premium-clustering.md)
 ## Integráció a Spring Boottal
 ###[Spring Boot inicializáló alkalmazás használata Redis Cache-sel](cache-java-spring-boot-initializer-with-redis-cache.md)
 

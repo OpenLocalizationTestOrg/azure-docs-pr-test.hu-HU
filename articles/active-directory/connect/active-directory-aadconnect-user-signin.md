@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 99df1c65ee59a3c12e8818d9069a8b487839b08d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7848b419f3855b25cfa074a46779d258bd534bae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-user-sign-in-options"></a>Az Azure AD Connect felhasználói bejelentkezés lehetőségei
-Az Azure Active Directory (Azure AD) Connect lehetővé teszi, hogy a felhasználókat, hogy jelentkezzen be a felhő- és a helyszíni erőforrásokhoz ugyanazt a jelszót. Ez a cikk ismerteti az alapvető fogalmakat minden identitás modell segítségével válassza ki az Azure AD bejelentkezés használni kívánt identitását.
+Az Azure Active Directory (Azure AD) Connect lehetővé teszi, hogy a felhasználók toosign tooboth felhőben és helyszíni erőforrások használatával hello ugyanazt a jelszót. Ez a cikk ismerteti az alapfogalmakat minden identitás modell toohelp a beállítani kívánt toouse tooAzure AD bejelentkezés hello identitását választja.
 
-Ha már ismeri az Azure AD identity modell, és szeretné, hogy egy adott módszerrel kapcsolatos további, tekintse meg a megfelelő hivatkozásra:
+Ha már ismeri hello Azure AD identity modell, és szeretné, hogy egy adott módszerrel kapcsolatos további toolearn, lásd: hello megfelelő hivatkozásra:
 
 * [A jelszó-szinkronizálás](#password-synchronization) rendelkező [egyszeri bejelentkezés (SSO)](active-directory-aadconnect-sso.md)
 * [Áteresztő hitelesítés](active-directory-aadconnect-pass-through-authentication.md)
 * [Összevont egyszeri Bejelentkezést (az Active Directory összevonási szolgáltatások (AD FS))](#federation-that-uses-a-new-or-existing-farm-with-ad-fs-in-windows-server-2012-r2)
 
-## <a name="choosing-the-user-sign-in-method-for-your-organization"></a>A felhasználói bejelentkezési módszer a szervezet kiválasztása
-A legtöbb szervezet számára, hogy csak szeretné engedélyezni a felhasználói bejelentkezés az Office 365, SaaS-alkalmazásokhoz és más Azure AD-alapú erőforrások az alapértelmezett jelszó-szinkronizálási beállítás ajánlott. Egyes szervezetek azonban rendelkezik egy adott oka, hogy nem használhatja ezt a beállítást. Azok vagy egy összevont bejelentkezési beállítást használhatja, például az AD FS vagy átmenő hitelesítés. Az alábbi táblázat segítségével segít meghozni a megfelelő választás.
+## <a name="choosing-hello-user-sign-in-method-for-your-organization"></a>Hello felhasználói bejelentkezési módszer kiválasztása szervezete számára
+A legtöbb szervezet számára, tooenable felhasználói bejelentkezési tooOffice 365, SaaS-alkalmazásokhoz és más Azure AD-alapú erőforrások csak szeretne ajánlott hello alapértelmezett jelszó-szinkronizálási beállítás kérése. Egyes szervezetek azonban rendelkezik egy adott oka, hogy ezek nem képesek toouse ezt a beállítást. Azok vagy egy összevont bejelentkezési beállítást használhatja, például az AD FS vagy átmenő hitelesítés. A következő tábla toohelp akkor megfelelő választás hello hello is használhatja.
 
-Telepítenem kell | PS-alapú egyszeri| Egyszeri bejelentkezési modellel PA| ACTIVE DIRECTORY ÖSSZEVONÁSI SZOLGÁLTATÁSOK |
+Túl van szükségem| PS-alapú egyszeri| Egyszeri bejelentkezési modellel PA| ACTIVE DIRECTORY ÖSSZEVONÁSI SZOLGÁLTATÁSOK |
  --- | --- | --- | --- |
-Új felhasználói, lépjen kapcsolatba, és a felhőbe a helyszíni Active Directoryban automatikus szinkronizálása.|x|x|x|
+Új felhasználói, lépjen kapcsolatba, és a helyszíni Active Directory toohello felhőben automatikus szinkronizálása.|x|x|x|
 A bérlő az Office 365 hibrid forgatókönyvek beállítása.|x|x|x|
-Engedélyezze a felhasználók bejelentkezhetnek és elérhetik a felhőszolgáltatások a helyszíni jelszó használatával.|x|x|x|
+A helyszíni jelszavát segítségével engedélyezheti a felhasználók toosign a és a felhőalapú szolgáltatást.|x|x|x|
 Egyszeri bejelentkezés megvalósítása a vállalati hitelesítő adatok használatával.|x|x|x|
-Győződjön meg arról, hogy a jelszavak nélkül a felhőben vannak tárolva.||x *|x|
+Győződjön meg arról, hogy nincs jelszava hello felhő megtalálható-e.||x *|x|
 A helyi multi-factor Authentication hitelesítés megoldások engedélyezése.|||x|
 
 * Segítségével egy lightweight összekötőt.
@@ -47,20 +47,20 @@ A helyi multi-factor Authentication hitelesítés megoldások engedélyezése.||
 > Átmenő hitelesítés van néhány korlátozást a funkciógazdag ügyfeleket. Lásd: [áteresztő hitelesítés](active-directory-aadconnect-pass-through-authentication.md) további részleteket.
 
 ### <a name="password-synchronization"></a>Jelszó-szinkronizálás
-A jelszó-szinkronizálás kivonatokat a felhasználói jelszavak rendszer szinkronizálja a helyszíni Active Directoryból az Azure AD. Jelszavak módosulnak, és az újraindítás a helyszíni, az új jelszavai szinkronizálva vannak az Azure ad azonnal, hogy a felhasználók mindig használhatja ugyanazt a jelszót a felhőben található erőforrásokat és a helyszíni erőforrások. A jelszavak soha nem küld az Azure AD vagy az Azure AD-szövegként tárolt. Együtt jelszóvisszaírást jelszó-szinkronizálás segítségével engedélyezheti az önkiszolgáló jelszó-változtatási Azure AD-ben.
+A jelszó-szinkronizálás a helyszíni Active Directory tooAzure AD kivonatokat a felhasználói jelszavak szinkronizálódnak. Jelszavak módosulnak, és az újraindítás a helyszíni, hello új jelszóban szinkronizált tooAzure AD azonnal, hogy a felhasználók mindig használjon hello azonos felhőben található erőforrásokat és a helyszíni erőforrások jelszavát. hello jelszavak soha nem küldött tooAzure AD vagy az Azure AD-szövegként tárolt. A jelszó-szinkronizálás jelszó késleltetve visszaírt tooenable önkiszolgáló módon új jelszót az Azure AD együtt használható.
 
-Emellett engedélyezheti [SSO](active-directory-aadconnect-sso.md) a tartományhoz csatlakoztatott számítógépeken, amelyek a vállalati hálózaton lévő felhasználók számára. Az engedélyezett felhasználók az egyszeri bejelentkezést, csak kell adjon meg egy felhasználónevet segítségével biztonságos hozzáférés felhőben található erőforrásokat.
+Emellett engedélyezheti [SSO](active-directory-aadconnect-sso.md) tartományhoz csatlakoztatott számítógépeken, amelyek a vállalati hálózaton hello felhasználójához. Egyszeri bejelentkezés engedélyezve van, a felhasználók csak szükség tooenter egy felhasználónév toohelp őket biztonságosan hozzáférhessenek a felhőben található erőforrásokat.
 
 ![Jelszó-szinkronizálás](./media/active-directory-aadconnect-user-signin/passwordhash.png)
 
-További információkért lásd: a [jelszó-szinkronizálás](active-directory-aadconnectsync-implement-password-synchronization.md) cikk.
+További információkért lásd: hello [jelszó-szinkronizálás](active-directory-aadconnectsync-implement-password-synchronization.md) cikk.
 
 ### <a name="pass-through-authentication"></a>Áteresztő hitelesítés
-Átmenő hitelesítéssel a felhasználó jelszava összevetni a helyszíni Active Directory-tartományvezérlő. A jelszó megtalálható az Azure AD semmilyen formában nem szükséges. Ez lehetővé teszi a helyi házirendek óra bejelentkezési korlátozásokat, például a felhőalapú hitelesítés során kiértékelendő szolgáltatások.
+Az átmenő hitelesítés hello jelszó összevetni hello a helyszíni Active Directory-tartományvezérlő. hello jelszó toobe szerepel az Azure AD semmilyen formában nem szükséges. Ez lehetővé teszi a helyi házirendek óra bejelentkezési korlátozásokat, például toobe kiértékelése során hitelesítési toocloud szolgáltatások.
 
-Áteresztő hitelesítés egy egyszerű ügynök a helyszíni környezetben a Windows Server 2012 R2 tartományhoz gép használja. Ez az ügynök a jelszó érvényesítése kéréseket figyeli. Bejövő portra is meg kell nyitni az internethez nem igényel.
+Áteresztő hitelesítés egy egyszerű ügynök hello a helyszíni környezetben a Windows Server 2012 R2 tartományhoz gép használja. Ez az ügynök a jelszó érvényesítése kéréseket figyeli. Minden bejövő portra toobe nyitott toohello Internet nem igényel.
 
-Emellett engedélyezheti egyszeri bejelentkezéshez a felhasználók számára a tartományhoz csatlakoztatott számítógépeken, amelyek a vállalati hálózatban találhatók. Az engedélyezett felhasználók az egyszeri bejelentkezést, csak kell adjon meg egy felhasználónevet segítségével biztonságos hozzáférés felhőben található erőforrásokat.
+Emellett engedélyezheti egyszeri bejelentkezéshez a felhasználók számára, amelyek a vállalati hálózaton hello tartományhoz csatlakoztatott számítógépeken. Egyszeri bejelentkezés engedélyezve van, a felhasználók csak szükség tooenter egy felhasználónév toohelp őket biztonságosan hozzáférhessenek a felhőben található erőforrásokat.
 ![Áteresztő hitelesítés](./media/active-directory-aadconnect-user-signin/pta.png)
 
 További információkért lásd:
@@ -68,7 +68,7 @@ További információkért lásd:
 - [Egyszeri bejelentkezés](active-directory-aadconnect-sso.md)
 
 ### <a name="federation-that-uses-a-new-or-existing-farm-with-ad-fs-in-windows-server-2012-r2"></a>Amely egy új vagy meglévő farmot használ, a Windows Server 2012 R2 AD FS összevonási
-Az összevont bejelentkezés a felhasználók bármikor beléphet az Azure AD-alapú szolgáltatásokat, helyszíni jelszavukat. Amikor nem a vállalati hálózaton, azok nem is kell adja meg a jelszavukat. Az AD FS összevonási beállítás használatával telepítheti az AD FS a Windows Server 2012 R2 új vagy meglévő farmhoz. Ha egy meglévő farmra megadását választja, az Azure AD Connect a farm és az Azure AD közötti megbízhatósági kapcsolatot konfigurálja, hogy a felhasználók bejelentkezhetnek.
+Az összevont bejelentkezés a felhasználók bejelentkezhetnek tooAzure jelszavukat a helyszíni AD-alapú szolgáltatások. Amikor nem hello a vállalati hálózaton, azok nem is kell tooenter jelszavukat. Hello összevonási beállítás az AD FS használatával telepítheti az AD FS a Windows Server 2012 R2 új vagy meglévő farmhoz. Ha toospecify egy meglévő farmra, az Azure AD Connect a farm és az Azure AD között hello megbízhatósági konfigurálja, hogy a felhasználók bejelentkezhetnek.
 
 <center>![Összevonás az AD FS a Windows Server 2012 R2 rendszerben](./media/active-directory-aadconnect-user-signin/federatedsignin.png)</center>
 
@@ -76,102 +76,102 @@ Az összevont bejelentkezés a felhasználók bármikor beléphet az Azure AD-al
 
 Ha telepít egy új farmot, lesz szüksége:
 
-* Egy Windows Server 2012 R2 kiszolgálóra az összevonási kiszolgáló.
-* A webalkalmazás-Proxy kiszolgáló a Windows Server 2012 R2.
+* A Windows Server 2012 R2 server hello összevonási kiszolgáló.
+* A Windows Server 2012 R2 hello webalkalmazás-Proxy kiszolgáló.
 * A .pfx-fájlját egy SSL-tanúsítványt a kívánt összevonási szolgáltatás neve. Például: fs.contoso.com.
 
 Ha telepít egy új farmot, vagy egy meglévő farmot használ, meg kell:
 
 * Helyi rendszergazdai hitelesítő adatokat az összevonási kiszolgálókon.
-* Helyi rendszergazdai hitelesítő adatokat egyetlen (nincsenek tartományhoz csatlakoztatva) munkacsoport-kiszolgálón, hogy szeretné-e telepíteni a webalkalmazás-Proxy szerepkör a.
-* A gépet, a varázslóban a tudjanak csatlakozni más számítógépekhez, hogy szeretné, hogy az AD FS vagy webalkalmazás-Proxy telepítése a Windows Remote Management használatával.
+* Helyi rendszergazdai hitelesítő adatokat egyetlen (nincsenek tartományhoz csatlakoztatva) munkacsoport-kiszolgálón, hogy szeretné-e toodeploy a webalkalmazás-Proxy szerepkör hello.
+* hello gépen, hogy hello varázsló futtatása toobe képes tooconnect tooany a többi gép, amelyet az AD FS vagy a webalkalmazás-Proxy tooinstall Rendszerfelügyeleti webszolgáltatások használatával.
 
 További információkért lásd: [egyszeri bejelentkezés konfigurálása az AD FS](active-directory-aadconnect-get-started-custom.md#configuring-federation-with-ad-fs).
 
 #### <a name="sign-in-by-using-an-earlier-version-of-ad-fs-or-a-third-party-solution"></a>Jelentkezzen be egy korábbi AD FS vagy egy harmadik féltől származó megoldás használatával
-Ha már konfigurálta az felhő bejelentkezhet egy korábbi verzióját (például az AD FS 2.0) AD FS vagy egy harmadik féltől származó összevonási szolgáltató használatával, ha szeretné, hagyja ki a felhasználó-bejelentkezés konfigurálása az Azure AD Connect használatával. Ez lehetővé teszi a legutóbbi szinkronizálás és más képességek az Azure AD Connect beolvasása közben továbbra is a meglévő megoldást használni a bejelentkezéshez.
+Ha már konfigurálta az felhő bejelentkezhet egy korábbi verzióját (például az AD FS 2.0) AD FS vagy egy harmadik féltől származó összevonási szolgáltató használatával, dönthet úgy tooskip felhasználói-bejelentkezés konfigurálása az Azure AD Connect használatával. Ez lehetővé teszi az tooget hello legutóbbi szinkronizálás és más képességek az Azure AD Connect továbbra is a meglévő megoldást használni a bejelentkezés során.
 
-További információkért lásd: a [az Azure AD külső összevonási kompatibilitási lista](active-directory-aadconnect-federation-compatibility.md).
+További információkért lásd: hello [az Azure AD külső összevonási kompatibilitási lista](active-directory-aadconnect-federation-compatibility.md).
 
 
 ## <a name="user-sign-in-and-user-principal-name"></a>Felhasználói bejelentkezés és a felhasználó egyszerű felhasználóneve
 ### <a name="understanding-user-principal-name"></a>Understanding egyszerű felhasználónév
-Az Active Directory az alapértelmezett egyszerű felhasználónév (UPN) utótagját a tartományhoz, ahol a felhasználói fiók létrehozták a DNS-nevét. A legtöbb esetben ez a tartománynév, amely a vállalati tartományhoz, az interneten néven van regisztrálva. Azonban több UPN-utótagot is hozzáadhat Active Directory – tartományok és megbízhatósági kapcsolatok segítségével.
+Az Active Directory hello alapértelmezett egyszerű felhasználónév (UPN) utótagja hello tartomány, ahol hello felhasználói fiók létrejött hello DNS-nevét. A legtöbb esetben ez a hello tartomány nevét, amely a vállalati tartományhoz hello hello Internet néven van regisztrálva. Azonban több UPN-utótagot is hozzáadhat Active Directory – tartományok és megbízhatósági kapcsolatok segítségével.
 
-A felhasználó a felhasználónév formátuma a username@domain. Például "contoso.com" nevű Active Directory-tartomány, a John nevű felhasználó lehet az egyszerű felhasználónév "john@contoso.com". A felhasználó egyszerű Felhasználónevét RFC 822 alapul. Bár az UPN- és e-mailek osztani ugyanazt a formátumot, egy felhasználó egyszerű Felhasználóneve értékének lehetnek nem ugyanaz, mint a felhasználó e-mail címe.
+hello hello felhasználó egyszerű Felhasználónevét hello formátuma username@domain. Például "contoso.com" nevű Active Directory-tartomány, a John nevű felhasználó lehet hello UPN "john@contoso.com". hello hello felhasználó egyszerű Felhasználónevét RFC 822 alapul. Bár hello UPN és e-mailek megosztás hello ugyanazt a formátumot, egy felhasználó UPN hello hello értékének lehetnek nem hello ugyanaz, mint hello hello felhasználó e-mail címét.
 
 ### <a name="user-principal-name-in-azure-ad"></a>Az Azure AD-felhasználó egyszerű felhasználóneve
-Az Azure AD Connect varázsló a userPrincipalName attribútum használ, vagy lehetővé teszi, hogy adja meg az attribútum (egyéni telepítés) használható a helyszíni egyszerű felhasználónevet az Azure ad-ben. Ez az érték az Azure AD aláírására szolgál. Ha a userPrincipalName attribútum értéke nem felel meg egy ellenőrzött tartomány Azure AD-ben, majd az Azure AD felülírja az alapértelmezett. onmicrosoft.com érték.
+hello Azure AD Connect varázsló hello userPrincipalName attribútumot használ, vagy adja meg, hogy lehetővé teszi a helyszíni vettük hello egyszerű felhasználónév az Azure Active Directory-attribútumban (egyéni telepítés) toobe hello. Ez érték hello tooAzure AD a aláírására szolgál. Ha a userPrincipalName attribútum hello hello értéke nem felel meg tooa ellenőrzése tartományhoz az Azure ad-ben, az Azure AD felülírja az alapértelmezett. onmicrosoft.com érték.
 
-Minden címtárat az Azure Active Directoryban egy beépített a tartománynevet, a formátum contoso.onmicrosoft.com Azure vagy más Microsoft-szolgáltatások használatának megkezdésében lehetővé tévő tartalmaz. Javításához, és a bejelentkezés során tapasztal élmény egyszerűsítése egyéni tartományok használatával. Információ az Azure AD-ben egyéni tartománynevek és a tartomány ellenőrzése: [az egyéni tartománynév hozzáadása az Azure Active Directory](../add-custom-domain.md#add-your-custom-domain).
+Minden címtárat az Azure Active Directoryban egy beépített a tartománynevet, hello formátum contoso.onmicrosoft.com, Azure vagy más Microsoft-szolgáltatások használatának megkezdésében lehetővé tévő tartalmaz. Révén jelentősen javítható és hello bejelentkezés során tapasztal élmény egyszerűsítése egyéni tartományok használatával. Egyéni tartománynevek az Azure AD információt, és hogyan tooverify egy tartományhoz, [adja hozzá az egyéni tartomány nevét tooAzure Active Directory](../add-custom-domain.md#add-your-custom-domain).
 
 ## <a name="azure-ad-sign-in-configuration"></a>Azure AD-bejelentkezés konfigurálása
 ### <a name="azure-ad-sign-in-configuration-with-azure-ad-connect"></a>Az Azure AD-bejelentkezés konfigurálása az Azure AD Connecttel
-Az Azure AD bejelentkezés során tapasztal élmény attól függ, hogy az Azure AD is megegyezhet, a felhasználói UPN-utótag van folyamatban szinkronizált az Azure AD-címtárban lévő ellenőrzött egyéni tartomány közül az egyik felhasználó. Az Azure AD Connect segítséget nyújt a beállításokat az Azure AD-bejelentkezés, amíg úgy, hogy a felhasználói bejelentkezési élmény a felhőben található hasonló a helyszíni.
+hello Azure AD bejelentkezés során tapasztal élmény attól függ, hogy felel meg az Azure AD is hello UPN-utótag olyan felhasználó hello egyéni tartományok hello Azure AD-címtárban lévő ellenőrzött szinkronizált tooone folyamatban van. Az Azure AD Connect segítséget nyújt a beállításokat az Azure AD-bejelentkezés, amíg, hogy hello felhasználói bejelentkezés során tapasztal élmény hello felhőben található hasonló toohello helyszíni.
 
-Az Azure AD Connect sorolja fel az UPN-utótagot, amely a tartományok megadása, és összehasonlítja azokat az egyéni tartományt az Azure ad-ben. Majd segít a megfelelő művelettel, amely kell állítani.
-Az Azure AD bejelentkezési oldal megjeleníti az UPN-utótagot, amely a helyszíni Active Directory határozza meg, és minden utótag elleni megfelelő állapotát jeleníti meg. Az állapot értékei a következők egyike lehet:
+Az Azure AD Connect listák hello hello tartományok és záma toomatch definiált UPN-utótagot őket az Azure AD-ben egyéni tartományt. Majd segít hello megfelelő művelettel, amelyet a toobe venni.
+hello Azure AD bejelentkezési oldalára sorolja fel a helyszíni Active Directory megadott hello UPN-utótagot, és minden utótag elleni hello a megfelelő állapotát jeleníti meg. hello állapotértékek hello a következők egyike lehet:
 
 | Állapot | Leírás | Beavatkozás szükséges |
 |:--- |:--- |:--- |
 | Ellenőrzése |Az Azure AD Connect található megfelelő ellenőrzött tartományához Azure AD-ben. A tartomány minden felhasználó a helyszíni hitelesítő adatokkal jelentkezhetnek be. |Nincs szükség beavatkozásra. |
-| Nincs ellenőrizve |Az Azure AD Connect található egyező egyéni tartományt az Azure ad-ben, de nem ellenőrzi, hogy. Ebben a tartományban a felhasználói UPN-utótagot változnak az alapértelmezett. onmicrosoft.com utótag szinkronizálás, ha a tartomány nem ellenőrzése után. | [Az egyéni tartomány ellenőrzéséhez az Azure ad-ben.](../add-custom-domain.md#verify-the-domain-name-with-azure-ad) |
-| Nincs hozzáadva |Az Azure AD Connect egyéni tartományok, amelyek megfelelnek az egyszerű Felhasználónévi utótagot nem található. Ebben a tartományban a felhasználói UPN-utótagot változnak az alapértelmezett. onmicrosoft.com utótag, ha a tartomány nem hozzáadja, és ellenőrizte az Azure-ban. | [Adja hozzá, és ellenőrizze, hogy megfelel-e az egyszerű Felhasználónévi utótagot az egyéni tartománynév.](../add-custom-domain.md) |
+| Nincs ellenőrizve |Az Azure AD Connect található egyező egyéni tartományt az Azure ad-ben, de nem ellenőrzi, hogy. hello egyszerű Felhasználónévi utótagot a tartomány felhasználóinak hello lesz megváltozott toohello alapértelmezett. onmicrosoft.com utótag szinkronizálás Ha hello tartomány nem ellenőrzése után. | [Ellenőrizze a hello egyéni tartományt az Azure ad-ben.](../add-custom-domain.md#verify-the-domain-name-with-azure-ad) |
+| Nincs hozzáadva |Az Azure AD Connect egyéni tartományt nem található a megfeleltetett toohello UPN-utótagot. Ebben a tartományban hello felhasználói UPN-utótagot hello lesz megváltozott toohello alapértelmezett. onmicrosoft.com utótag Ha hello tartomány nem hozzáadja, és ellenőrizte az Azure-ban. | [Adja hozzá, és ellenőrizze az egyéni tartományt, amely megfelel a toohello UPN-utótagot.](../add-custom-domain.md) |
 
-Az Azure AD bejelentkezési oldal sorolja fel a helyszíni Active Directory és a megfelelő egyéni tartományhoz az Azure AD az aktuális ellenőrzési állapotú meghatározott UPN-utótagot. Egyéni telepítés, mostantól kiválaszthatja a felhasználó egyszerű felhasználóneve attribútumát a a **az Azure AD-bejelentkezés** lap.
+hello Azure AD bejelentkezési oldalára sorolja fel, amely a helyszíni Active Directory határozza meg, és megfelelő egyéni tartomány hello hello állapotának ellenőrzése az Azure AD-ben hello UPN-utótagot. Egyéni telepítés, most kiválaszthatja hello egyszerű felhasználónév a hello hello attribútuma **az Azure AD-bejelentkezés** lap.
 
 ![Az Azure AD bejelentkezési oldalára](./media/active-directory-aadconnect-user-signin/custom_azure_sign_in.png)
 
-A frissítés gombra kattintva újból beolvasni az egyéni tartományok legfrissebb állapotának az Azure AD kattinthat.
+Hello frissítés gomb toore-fetch hello legfrissebb állapotának hello egyéni tartományok Azure ad-gombra.
 
-### <a name="selecting-the-attribute-for-the-user-principal-name-in-azure-ad"></a>A felhasználó egyszerű felhasználóneve attribútumát kiválasztásával az Azure ad-ben
-Az attribútum userPrincipalName, amely a felhasználók használni, amikor bejelentkeznek az Azure AD és az Office 365. Ellenőrizze a tartomány (más néven UPN-utótagot), az Azure ad-ben a felhasználók szinkronizálása előtt használt.
+### <a name="selecting-hello-attribute-for-hello-user-principal-name-in-azure-ad"></a>Az Azure AD hello egyszerű felhasználónév hello attribútum kiválasztása
+hello attribútum userPrincipalName felhasználók használni, amikor bejelentkeznek az tooAzure AD és az Office 365 hello attribútum. Hello tartományok (más néven UPN-utótagot), mielőtt hello felhasználók szinkronizált Azure AD-ben használt ellenőrizze.
 
-Határozottan javasoljuk, hogy őrizze meg az alapértelmezett attribútum userPrincipalName. Ha ez az attribútum útválasztást, és nem lehet ellenőrizni, majd úgy is ki lehet egy másik attribútum (például e-mail), amely tartalmazza a bejelentkezési azonosítót. Ez más néven a másik azonosító. A másik azonosító értékének igazodnia kell az RFC 822 szabvány. Egyszeri jelszó és a összevonási Egyszeri bejelentkezési megoldásként használható a másik azonosító.
+Határozottan javasoljuk, hogy maradjon hello alapértelmezett attribútum userPrincipalName. Ha ez az attribútum útválasztást, és nem lehet ellenőrizni, akkor célszerű lehetséges tooselect egy másik attribútum (például e-mail), amely tárolja hello attribútumaként hello bejelentkezési azonosítót. Ez az úgynevezett hello másik azonosítót. hello másik azonosító értékének hello RFC 822 szabványos kell követnie. Egyszeri jelszó és a összevonási SSO hello bejelentkezési megoldásként használható a másik azonosító.
 
 > [!NOTE]
 > A másik azonosító használata nem felel meg az összes Office 365 számítási feladattal. További információkért lásd: [másodlagos bejelentkezési azonosító beállítása](https://technet.microsoft.com/library/dn659436.aspx).
 >
 >
 
-#### <a name="different-custom-domain-states-and-their-effect-on-the-azure-sign-in-experience"></a>Egyéni tartomány különböző állapotok és azok hatása az az Azure bejelentkezési élmény
-Nagyon fontos tudni, hogy az Azure AD-címtárát az egyéni tartomány állapotok közötti kapcsolatot, és az UPN-utótagot, amelyek a helyszíni definiálva. A különböző módokon lehetséges az Azure bejelentkezési pedig ugorjunk, ha meg van-szinkronizálás beállítása az Azure AD Connect használatával.
+#### <a name="different-custom-domain-states-and-their-effect-on-hello-azure-sign-in-experience"></a>Egyéni tartomány különböző állapotok és azok hatása az Azure-bejelentkezés hello élmény
+Nagyon fontos toounderstand hello kapcsolat az Azure AD-címtár hello egyéni tartomány állapotok közötti és hello UPN-utótagot, amelyek meghatározott helyszíni. Hello különböző módokon lehetséges az Azure bejelentkezési pedig ugorjunk, ha meg van-szinkronizálás beállítása az Azure AD Connect használatával.
 
-A következő információkat tegyük fel, hogy a rendszer szerepel a helyszíni címtár UPN--részeként például egyszerű Felhasználónévi utótagot contoso.com érintett user@contoso.com.
+A következő információ hello, tegyük fel, hogy a rendszer hello helyszíni címtárban UPN--részeként például használatos hello egyszerű Felhasználónévi utótagot contoso.com érintett user@contoso.com.
 
 ###### <a name="express-settingspassword-synchronization"></a>Express beállítások/jelszó-szinkronizálás
 | Állapot | Az Azure-bejelentkezés a felhasználói élmény hatása |
 |:---:|:--- |
-| Nincs hozzáadva |Ebben az esetben nem contoso.com tartozó egyéni tartomány hozzá lett adva az Azure AD-címtárban. Egyszerű felhasználónév a helyszíni utótaggal rendelkező felhasználók @contoso.com nem fogja tudni használni a helyszíni egyszerű Felhasználónévvel jelentkezzen be az Azure-bA. Ezek helyette kell őket az Azure ad által biztosított hozzáadása az alapértelmezett Azure AD-címtár utótagja új egyszerű felhasználónév használata. Például, ha a felhasználók számára az Azure Active directory azurecontoso.onmicrosoft.com, majd a helyi felhasználó van szinkronizálása user@contoso.com kap egy egyszerű user@azurecontoso.onmicrosoft.com. |
-| Nincs ellenőrizve |Ebben az esetben van egy egyéni tartománynév contoso.com, amely fel van véve az Azure AD-címtár. Azonban ez még nincs ellenőrizve. Ha azokat, amelyek a felhasználók szinkronizálását a tartomány ellenőrzése nélkül, majd a felhasználók hozzá fog rendelni egy új UPN az Azure AD csakúgy, mint a "Nem hozzáadott" forgatókönyvben. |
-| Ellenőrzése |Ebben az esetben van egy egyéni tartománynév contoso.com már hozzáadott és ellenőrizni az egyszerű Felhasználónévi utótagot az Azure AD-ben. Felhasználók tudják a helyszíni egyszerű felhasználónév használata, például user@contoso.com, jelentkezzen be Azure azok van-e szinkronizálva az Azure AD számára. |
+| Nincs hozzáadva |Ebben az esetben nem contoso.com tartozó egyéni tartomány hello Azure AD-címtár lett hozzáadva. Egyszerű felhasználónév a helyszíni hello utótaggal rendelkező felhasználók @contoso.com nem fogja tudni toouse a helyszíni egyszerű Felhasználónévvel toosign a tooAzure. Azok helyette kell toouse egy új egyszerű felhasználónév, amely toothem megadta a Azure ad hello alapértelmezett Azure AD-címtár hello utótagja hozzáadásával. Például, ha a felhasználók toohello az Azure Active directory azurecontoso.onmicrosoft.com szinkronizálás majd hello a helyszíni felhasználói user@contoso.com kap egy egyszerű user@azurecontoso.onmicrosoft.com. |
+| Nincs ellenőrizve |Ebben az esetben van egy egyéni tartománynév contoso.com, amely fel van véve hello Azure Active directory. Azonban ez még nincs ellenőrizve. Ha azokat, amelyek a felhasználók szinkronizálása hello tartomány ellenőrzése nélkül, majd hello felhasználók hozzá fog rendelni egy új UPN az Azure AD, ugyanúgy, mint a "Nem hozzáadott" forgatókönyv hello. |
+| Ellenőrzése |Ebben az esetben van egy egyéni tartománynév contoso.com már hozzáadott és az Azure ad-val hello ellenőrzött UPN-utótagot. Felhasználók fognak tudni toouse a helyszíni egyszerű felhasználónevéhez, például user@contoso.com, tooAzure után azok szinkronizálva van a toosign tooAzure AD. |
 
 ###### <a name="ad-fs-federation"></a>AD FS összevonási
-Nem hozható létre egy összevonási az alapértelmezett. onmicrosoft.com tartományt az Azure AD vagy az Azure ad-ben nem ellenőrzött egyéni tartományt. Jelenik meg az Azure AD Connect varázsló, ha az összevonási létrehozásához nem ellenőrzött tartományt, majd az Azure AD Connect jelenít meg a szükséges rekordok hozható létre, amelyen a DNS-kiszolgáló a tartományban található. További információkért lásd: [összevonási kijelölt Azure AD-tartomány ellenőrzése](active-directory-aadconnect-get-started-custom.md#verify-the-azure-ad-domain-selected-for-federation).
+Nem hozható létre egy összevonási hello alapértelmezett. onmicrosoft.com tartományt az Azure AD vagy az Azure ad-ben nem ellenőrzött egyéni tartományt. Amikor futtatja hello Azure AD Connect varázsló, ha egy nem ellenőrzött tartományok toocreate az összevonási, majd meg a szükséges hello létrehozni, ahol a DNS-kiszolgáló tárolása hello tartomány toobe rögzíti az Azure AD Connect megjelenő utasításokat. További információkért lásd: [összevonási kiválasztott hello Azure AD-tartomány hitelesítése](active-directory-aadconnect-get-started-custom.md#verify-the-azure-ad-domain-selected-for-federation).
 
-Ha a felhasználó bejelentkezési lehetőséget választotta **az AD FS összevonási**, akkor telepíteni kell az Azure AD összevonási létrehozásának folytatásához egyéni tartományt. A leírását ez azt jelenti, hogy kell-e azt egy egyéni tartomány contoso.com, az Azure AD-címtár szerepel.
+Hello felhasználói bejelentkezési lehetőséget választva **az AD FS összevonási**, akkor telepíteni kell egy egyéni tartomány toocontinue összevonási létrehozása az Azure ad-ben. A leírását ez azt jelenti, hogy kell-e azt egy egyéni tartomány contoso.com hello Azure Active directory szerepel.
 
-| Állapot | A felhasználó Azure bejelentkezési élmény hatása |
+| Állapot | Hello Azure bejelentkezés felhasználói élményt hatása |
 |:---:|:--- |
-| Nincs hozzáadva |Az Azure AD Connect ebben az esetben a egyszerű Felhasználónévi utótagot contoso.com az Azure AD-címtár nem található egyező egyéni tartományt. Kell adnia egy egyéni tartománynév contoso.com, ha felhasználók jelentkezhetnek be az AD FS segítségével, a helyszíni egyszerű Felhasználónévvel (például user@contoso.com). |
+| Nincs hozzáadva |Az Azure AD Connect ebben az esetben hello egyszerű Felhasználónévi utótagot contoso.com hello Azure AD-címtár nem található egyező egyéni tartományt. Ha a felhasználók toosign kell az AD FS segítségével, a helyszíni egyszerű Felhasználónévvel tooadd egy egyéni tartománynév contoso.com szüksége (például user@contoso.com). |
 | Nincs ellenőrizve |Ebben az esetben az Azure AD Connect rákérdez, hogyan ellenőrizheti a tartomány egy későbbi időpontban a szükséges adatokat. |
-| Ellenőrzése |Ebben az esetben megkezdheti a konfigurációjával kapcsolatban további műveletek nélkül. |
+| Ellenőrzése |Ebben az esetben megkezdheti hello konfigurációjával kapcsolatban további műveletek nélkül. |
 
-## <a name="changing-the-user-sign-in-method"></a>A felhasználói bejelentkezési módszer módosítása
-A felhasználói bejelentkezési módszer módosíthatja a összevonási, jelszó-szinkronizálás vagy átmenő hitelesítést követően érhetők el az Azure AD Connectben a varázsló az Azure AD Connect a kezdeti konfigurációs feladatok használatával. Futtassa újra az Azure AD Connect varázslót, és láthatja, hogy elvégezhető feladatok listáját. Válassza ki **felhasználói bejelentkezés módosítása** feladatot a listából.
+## <a name="changing-hello-user-sign-in-method"></a>Hello felhasználói bejelentkezési módszer módosítása
+Hello felhasználói bejelentkezési módszer módosíthatja a összevonási, a jelszó-szinkronizálás vagy az átmenő hitelesítés után hello kezdeti konfigurálása az Azure AD Connect hello varázsló az Azure AD Connectben elérhető hello feladatok használatával. Futtassa újra a hello Azure AD Connect varázsló, és láthatja, hogy elvégezhető feladatok listáját. Válassza ki **felhasználói bejelentkezés módosítása** hello feladatok listája.
 
 ![Felhasználói bejelentkezés módosítása](./media/active-directory-aadconnect-user-signin/changeusersignin.png)
 
-A következő oldalon kéri a hitelesítő adatokat kér az Azure AD.
+A következő lapon hello megkérdezi tooprovide hello hitelesítő adatokat az Azure AD.
 
-![Csatlakozás az Azure AD szolgáltatáshoz](./media/active-directory-aadconnect-user-signin/changeusersignin2.png)
+![TooAzure AD Connect](./media/active-directory-aadconnect-user-signin/changeusersignin2.png)
 
-Az a **felhasználói bejelentkezés** lapon, válassza ki a kívánt felhasználói bejelentkezés.
+A hello **felhasználói bejelentkezés** lapon, válassza ki a kívánt hello felhasználói bejelentkezés.
 
-![Csatlakozás az Azure AD szolgáltatáshoz](./media/active-directory-aadconnect-user-signin/changeusersignin2a.png)
+![TooAzure AD Connect](./media/active-directory-aadconnect-user-signin/changeusersignin2a.png)
 
 > [!NOTE]
-> Ha a jelszó-szinkronizálás csak hajt végre egy ideiglenes kapcsolót, majd válassza ki a **felhasználói fiókok nem konvertálhatók** jelölőnégyzetet. A beállítás nem ellenőrzése átkonvertálja összevont felhasználók, és több órát is igénybe vehet.
+> Ha csak hajt végre egy ideiglenes kapcsoló toopassword szinkronizálást, majd válassza ki hello **felhasználói fiókok nem konvertálhatók** jelölőnégyzetet. Minden felhasználó toofederated nem ellenőrzése hello beállítás konvertálja, és több órát is igénybe vehet.
 >
 >
 

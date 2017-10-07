@@ -1,6 +1,6 @@
 ---
-title: "Az Azure SQL Database-alkalmazás teljesítményének javítása érdekében a kötegelés használata"
-description: "A témakör igazolja, hogy kötegelési adatbázis-műveletek sebessége nagy mértékben imroves és méretezhetőséget biztosít a az Azure SQL adatbázis-alkalmazások. Habár ezek a technológiák kötegelési bármely SQL Server-adatbázis is működik, a cikk célja az Azure-on."
+title: "az Azure SQL Database alkalmazásteljesítmény tooimprove kötegelés aaaHow toouse"
+description: "hello témakör igazolja, hogy kötegelés adatbázis-műveletek nagy mértékben imroves hello sebesség és a méretezhetőség, az Azure SQL adatbázis-alkalmazások. Bár ezek a technológiák kötegelési bármely SQL Server-adatbázis használatához hello hello a cikk célja az Azure-on."
 services: sql-database
 documentationcenter: na
 author: stevestein
@@ -15,39 +15,39 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 07/12/2016
 ms.author: sstein
-ms.openlocfilehash: 22cff47444306e599325ba3035d83a0266d69c72
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 124b203ee69c595f0813852ff09ef9ec6841233a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-batching-to-improve-sql-database-application-performance"></a>SQL-adatbázis teljesítményének javítása érdekében a kötegelés használata
-Az Azure SQL Database-műveletek kötegelése jelentősen javítja a teljesítményét és méretezhetőségét, az alkalmazások. Előnyeinek megismerése, hogy ez a cikk első része ismertet néhány minta vizsgálati eredmények, hasonlítsa össze az SQL-adatbázis szekvenciális és kötegelt kérelmek. A cikk fennmaradó a technikák, a forgatókönyvek és a szempontokat tartalmaz, amelyek segítséget nyújtanak az Azure-alkalmazásokban sikeresen kötegelés használandó jeleníti meg.
+# <a name="how-toouse-batching-tooimprove-sql-database-application-performance"></a>Hogyan tooimprove SQL-adatbázis teljesítményének kötegelés toouse
+Műveletek tooAzure SQL-adatbázis kötegelés jelentősen javítja a hello teljesítményét és méretezhetőségét, az alkalmazások. Ez a cikk első része hello rendelés toounderstand hello előnyeit, néhány minta teszteredmények összehasonlító szekvenciális és kötegelt kérelmek tooa SQL-adatbázis foglalja magában. hello hello cikk hátralévő megjeleníti a hello technikák, forgatókönyvek és szempontok toohelp toouse, az Azure-alkalmazásokban sikeresen kötegelés.
 
 ## <a name="why-is-batching-important-for-sql-database"></a>Miért van kötegelés fontos az SQL Database?
-A távoli szolgáltatás hívásainak kötegelés növelését a teljesítmény és méretezhetőség jól ismert stratégiáját. Egy távoli szolgáltatással, például a szerializálás, a hálózati átvitel és a deszerializálás kölcsönhatások feldolgozási költségek rögzítettek. Ezek a költségek azokat a kötegek sok külön tranzakciókat minimálisra csökkenti.
+Egy jól ismert stratégia növelését a teljesítmény és méretezhetőség hívások tooa távoli szolgáltatás kötegelés. Nincs fix költségek tooany interakció, a távoli szolgáltatás, például a szerializálás, a hálózati átvitel és a deszerializálás feldolgozása. Ezek a költségek azokat a kötegek sok külön tranzakciókat minimálisra csökkenti.
 
-A dokumentum azt szeretnénk vizsgálja meg a különböző SQL-adatbázis kötegelés azokat a stratégiákat és forgatókönyvek. Bár ezek stratégiák is fontos SQL Server használó helyszíni alkalmazások esetén, több oka konzolban kötegelés SQL-adatbázis használatát:
+A dokumentum azt szeretnénk tooexamine különböző SQL-adatbázis kötegelési stratégiák és forgatókönyvek. Bár ezek stratégiák is fontos SQL Server használó helyszíni alkalmazások esetén, több oka konzolban SQL-adatbázis kötegelés hello használata:
 
-* Nincs potenciálisan nagyobb hálózati késés SQL-adatbázis, különösen akkor, ha az ugyanahhoz a Microsoft Azure adatközponton kívülről SQL-adatbázis elérésére.
-* SQL-adatbázis több-bérlős jellemzői azt jelenti, hogy az adatok hozzáférési réteg felel meg az adatbázis átfogó méretezhetősége hatékonyságát. SQL-adatbázis az egyes bérlői felhasználók megakadályozása kell legaktívabbak más bérlők hátrányára adatbázis-erőforrások. SQL-adatbázis használati, amelyek átlépik ezt az előre definiált kvóták válaszul, átviteli csökkentheti vagy szabályozási kivételeket válaszolni. Hatékonyság, például a kötegelés, lehetővé teszik a munkájuk elvégzéséhez további SQL-adatbázis a működés felső korlátjának elérése előtt. 
-* Kötegelés esetében is, amelyek több adatbázist (horizontális) architektúrára való hatékony. Az adatbázis tárolóegységekhez folytatott kommunikációt hatékonyságát még mindig a teljes méretezhetőség kulcsfontosságú tényező. 
+* Nincs potenciálisan nagyobb hálózati késés SQL-adatbázis eléréséhez, különösen akkor, ha az SQL-adatbázis a külső hello érnek ugyanazt a Microsoft Azure-adatközpont.
+* SQL-adatbázis azt jelenti, hogy hello adatok hatékonyságát hello több-bérlős jellemzői hello hozzáférési réteg korrelálja toohello hello adatbázis teljes méretezhetőségét. SQL-adatbázis az egyes bérlői felhasználók megakadályozása kell legaktívabbak adatbázis erőforrások toohello hátrányára a többi bérlő. Válasz toousage, amelyek átlépik ezt az előre definiált kvótákat, az SQL-adatbázis átviteli csökkentheti vagy szabályozási kivételeket válaszolni. Hatékonyság, például a kötegelés, engedélyezze azt toodo munka a SQL-adatbázis a működés felső korlátjának elérése előtt. 
+* Kötegelés esetében is, amelyek több adatbázist (horizontális) architektúrára való hatékony. az adatbázis tárolóegységekhez való együttműködéshez hello hatékonyságát még mindig kulcsfontosságú tényező az általános méretezhetőséget. 
 
-Az SQL-adatbázis használatának előnyei egyike, hogy nem kell az adatbázist üzemeltető kiszolgáló kezeléséhez. Azonban a felügyelt infrastruktúra is azt jelenti, hogy másképp gondolniuk adatbázis optimalizálás. Már nem megtekintheti az adatbázis hardver- vagy hálózati infrastruktúra javítása érdekében. A Microsoft Azure határozza meg azokat a környezetben. A fő területet, amely befolyásolhatja az SQL-adatbázis és az alkalmazás együttműködését. Kötegelés egyike ezek az optimalizálások. 
+SQL-adatbázis használatának előnyei hello egyike, hogy nincs toomanage hello kiszolgálók állomás hello adatbázis. Azonban a felügyelt infrastruktúra is azt jelenti, hogy másképp kapcsolatos adatbázis optimalizálás toothink. Keresse meg a tooimprove hello adatbázis hardver- vagy hálózati infrastruktúra már nem. A Microsoft Azure határozza meg azokat a környezetben. hello fő területet, amely befolyásolhatja az SQL-adatbázis és az alkalmazás együttműködését. Kötegelés egyike ezek az optimalizálások. 
 
-A dokumentum első része SQL-adatbázis használata a .NET-alkalmazások különböző kötegelési technikák megvizsgálja. Az utolsó két szakaszok fedik le a kötegelési irányelvek és forgatókönyvek.
+hello papír első része hello SQL-adatbázis használata a .NET-alkalmazások különböző kötegelési technikák megvizsgálja. hello utolsó két szakaszok fedik le a kötegelési irányelvek és forgatókönyvek.
 
 ## <a name="batching-strategies"></a>Kötegelési stratégiák
 ### <a name="note-about-timing-results-in-this-topic"></a>Megjegyzés: Ebben a témakörben időzítési eredmény
 > [!NOTE]
-> Eredmények nem referenciaalapokhoz képest, de van kialakítva, hogy megjelenítése **relatív teljesítménye**. Időzítés legalább 10 teszt futtatása átlagosan alapulnak. Műveletek esetében a beszúrások, a program üres táblát. Ezek a tesztek mért előtti-12-es verzióra, és ezek nem feltétlenül felelnek meg, hogy Ön is szembesülhet egy 12-es verziójú adatbázis, az új átviteli [szolgáltatásszintek](sql-database-service-tiers.md). A relatív előnye, hogy a kötegelési technika hasonlónak kell lenniük.
+> Eredmények nem referenciaalapokhoz képest, de célja tooshow **relatív teljesítménye**. Időzítés legalább 10 teszt futtatása átlagosan alapulnak. Műveletek esetében a beszúrások, a program üres táblát. Ezek a tesztek mért előtti-12-es verzióra, és ezek nem feltétlenül toothroughput 12-es verziójú adatbázis hello új segítségével esetleg előforduló [szolgáltatásszintek](sql-database-service-tiers.md). hello relatív előnye, hogy a technikával kötegelés hello hasonlónak kell lenniük.
 > 
 > 
 
 ### <a name="transactions"></a>Tranzakciók
-Furcsa megvitatása tranzakciók által kötegelés áttekintése megkezdéséhez tűnik. De a tranzakciók ügyféloldali használata finom kiszolgálóoldali kötegelési hatással van, amely javítja a teljesítményt. És a tranzakciók hozzáadása is lehetséges csak néhány sornyi kódot, így gyorsan egymást követő műveletek teljesítményének javításával biztosítanak.
+Úgy tűnik, hogy a rendellenes toobegin megvitatása tranzakciók által kötegelés áttekintése. De a tranzakciók ügyféloldali hello használata finom kiszolgálóoldali kötegelési hatással van, amely javítja a teljesítményt. És a tranzakciók hozzáadása is lehetséges csak néhány sornyi kódot, így ezek biztosítanak egy gyorsan tooimprove teljesítmény egymást követő műveletek.
 
-Vegye figyelembe a következő C#-kódban insert sorozatát tartalmazó és a frissítési műveletek egyszerű táblán.
+Vegye figyelembe a következő C#-kódban insert sorozatát tartalmazó hello és frissítési műveletek egyszerű táblán.
 
     List<string> dbOperations = new List<string>();
     dbOperations.Add("update MyTable set mytext = 'updated text' where id = 1");
@@ -57,7 +57,7 @@ Vegye figyelembe a következő C#-kódban insert sorozatát tartalmazó és a fr
     dbOperations.Add("insert MyTable values ('new value',2)");
     dbOperations.Add("insert MyTable values ('new value',3)");
 
-A következő ADO.NET kód egymás után végrehajtja ezeket a műveleteket.
+az ADO.NET kód egymás után következő hello ezeket a műveleteket hajt végre.
 
     using (SqlConnection connection = new SqlConnection(CloudConfigurationManager.GetSetting("Sql.ConnectionString")))
     {
@@ -70,7 +70,7 @@ A következő ADO.NET kód egymás után végrehajtja ezeket a műveleteket.
         }
     }
 
-A legjobb módja, ez a kód optimalizálása érdekében, hogy az adott hívások kötegelés ügyféloldali valamilyen alkalmazza. Azonban ez a kód a teljesítmény növelése érdekében használatával egyszerűen a hívások sorrendjét a tranzakcióban egyszerű módszert. Itt található, amely egy tranzakció használja ugyanazt a kódot.
+hello legjobb módja toooptimize ezt a kódot tooimplement van valamilyen ügyféloldali kötegelése hívásokat. Azonban ez a kód egy egyszerű módon tooincrease hello teljesítményének használatával egyszerűen hívások hello sorozatát szerepel egy tranzakcióban. Itt hello ugyanazt a kódot, amely egy tranzakció használja.
 
     using (SqlConnection connection = new SqlConnection(CloudConfigurationManager.GetSetting("Sql.ConnectionString")))
     {
@@ -86,11 +86,11 @@ A legjobb módja, ez a kód optimalizálása érdekében, hogy az adott híváso
         transaction.Commit();
     }
 
-Tranzakciók mindkét ezekben a példákban ténylegesen használatban van. Az első példában minden egyes tekintendő, amely az implicit tranzakciókban. A második példában az explicit tranzakciók becsomagolja a hívások mindegyikét. / Dokumentációját a [írási előre tranzakciónapló](https://msdn.microsoft.com/library/ms186259.aspx), naplórekordokat kiürített a lemezre, ha a tranzakció véglegesítése. Így több hívást együtt egy tranzakcióban, az írás a tranzakciós napló tudja elhalasztani, amíg a tranzakció. Érvényben engedélyezi az írási műveleteket ad ki a kiszolgáló tranzakciónapló a kötegelés.
+Tranzakciók mindkét ezekben a példákban ténylegesen használatban van. Hello első példában minden egyes tekintendő, amely az implicit tranzakciókban. Hello második példában az explicit tranzakciók becsomagolja összes hello hívások. Hello hello dokumentációja / [írási előre tranzakciónapló](https://msdn.microsoft.com/library/ms186259.aspx), naplórekordokat esetén kiürített toohello lemez hello tranzakció véglegesítése. Így több hívást együtt egy tranzakcióban, hello írási toohello tranzakciónapló tudja elhalasztani, amíg hello tranzakció. Érvényben engedélyezi a kötegelés hello írások toohello server tranzakciós napló.
 
-Az alábbi táblázat néhány alkalmi vizsgálati eredményeket jeleníti meg. A következő tesztek kerülnek végrehajtásra, és anélkül tranzakciók azonos szekvenciális beszúrása. Több szempont az első készletét tesztek futott távolról a hordozható az adatbázis a Microsoft Azure-ban. A második készlet tesztet hajt végre egy felhőalapú szolgáltatás, hogy mindkét tartózkodott belül az azonos Microsoft Azure datacenter (USA nyugati régiója) adatbázis futott. A következő táblázat az időtartam a szekvenciális Beszúrások rendelkező és anélküli tranzakciók ezredmásodpercben.
+a következő táblázat hello néhány alkalmi vizsgálati eredményeket jeleníti meg. hello tesztek kerülnek végrehajtásra hello azonos szekvenciális beszúrása rendelkező és anélküli tranzakciók. További perspektívát, hello első teszteket hajtson futott távolról a Microsoft Azure-ban egy hordozható toohello adatbázisból. hello második együttesét a tesztek futtatása egy felhőalapú szolgáltatás, hogy mindkét tartózkodott hello belül azonos adatbázist a Microsoft Azure datacenter (USA nyugati régiója). hello következő táblázatban hello időtartam ezredmásodpercben a szekvenciális Beszúrások rendelkező és anélküli tranzakciók.
 
-**Az Azure-bA helyszíni**:
+**A helyszíni tooAzure**:
 
 | Műveletek | Nincs tranzakció (ms) | Tranzakció (ms) |
 | --- | --- | --- |
@@ -99,7 +99,7 @@ Az alábbi táblázat néhány alkalmi vizsgálati eredményeket jeleníti meg. 
 | 100 |12662 |10395 |
 | 1000 |128852 |102917 |
 
-**Azure-az Azure-ba (ugyanabban az adatközpontban)**:
+**Az Azure tooAzure (ugyanabban az adatközpontban)**:
 
 | Műveletek | Nincs tranzakció (ms) | Tranzakció (ms) |
 | --- | --- | --- |
@@ -109,34 +109,34 @@ Az alábbi táblázat néhány alkalmi vizsgálati eredményeket jeleníti meg. 
 | 1000 |21479 |2756 |
 
 > [!NOTE]
-> A eredményei nem referenciaalapokhoz képest. Tekintse meg a [időzítési eredményezi, hogy ez a témakör Megjegyzés](#note-about-timing-results-in-this-topic).
+> A eredményei nem referenciaalapokhoz képest. Lásd: hello [időzítési eredményezi, hogy ez a témakör Megjegyzés](#note-about-timing-results-in-this-topic).
 > 
 > 
 
-Az előző teszt eredményei alapján teljesítmény ténylegesen csökkenti alkalmazásburkoló egyetlen műveletben szerepel egy tranzakcióban. De növelésével egy tranzakción belül műveletek számát, a teljesítmény fokozása több lesz megjelölve. A teljesítménybeli különbség az akkor is jobban észlelhető, ha minden műveletnél fordulhat elő, a Microsoft Azure adatközponton belül. Az SQL-adatbázisát használja a Microsoft Azure adatközponton kívülről nagyobb késéseket overshadows tranzakciók használatával jobb a teljesítménye.
+Hello előző teszt eredményei alapján teljesítmény ténylegesen csökkenti alkalmazásburkoló egyetlen műveletben szerepel egy tranzakcióban. De növelésével műveletek egy tranzakción belül hello száma, hello teljesítményjavulást több lesz megjelölve. hello teljesítménybeli különbség az akkor is jobban észlelhető, ha minden műveletnél hello Microsoft Azure adatközponton belül történik. hello SQL-adatbázis használata a Microsoft Azure datacenter külső hello nagyobb késéseket overshadows hello jobb teljesítménye tranzakciók használatával.
 
-Bár a tranzakciók használata növelheti a teljesítményt, továbbra is [tekintse át az ajánlott eljárások az tranzakciók és kapcsolatok](https://msdn.microsoft.com/library/ms187484.aspx). Tartsa a lehető legrövidebb tranzakció, és a munka végeztével, zárja be az adatbázis-kapcsolatot. Az utasítás használatával az előző példában szereplő biztosítja, hogy a kapcsolat megszakad, a következő kódblokk befejezéséről.
+Noha a tranzakciók hello használata növelheti a teljesítményt, továbbra is túl[tekintse át az ajánlott eljárások az tranzakciók és kapcsolatok](https://msdn.microsoft.com/library/ms187484.aspx). Tartsa hello tranzakció és a lehető legrövidebb lehetséges és Bezárás hello adatbázis-kapcsolat hello munkahelyi befejeződése után. hello utasítás használatával az előző példában hello biztosítja, hogy az hello kapcsolat le van zárva hello későbbi kódblokk befejezéséről.
 
-A korábbi példa bemutatja, hogy adhat hozzá egy helyi tranzakció ADO.NET kódok esetén is tenné két sort. Tranzakciók ajánlatot gyorsan kódot, amely lehetővé teszi a szekvenciális beszúrási, frissítési és törlési műveletek teljesítményének növelésében. Azonban a leggyorsabb teljesítmény érdekében fontolja meg a kódot használja ki az ügyféloldali kötegelés, például a táblázat értékű paramétereket tovább.
+hello előző példa bemutatja, hogy adhat hozzá egy helyi tranzakció tooany ADO.NET kódot két sort. Tranzakciók tooimprove hello teljesítményének kódot, amely lehetővé teszi a szekvenciális beszúrási, frissítési és törlési műveletek gyors lehetőséget kínál. Azonban a hello leggyorsabb teljesítmény érdekében érdemes megfontolni hello kód további tootake előnye, hogy az ügyféloldali kötegelés, például a táblázat értékű paramétereket.
 
 Az ADO.NET tranzakciókkal kapcsolatos további információkért lásd: [ADO.NET helyi tranzakciók](https://docs.microsoft.com/dotnet/framework/data/adonet/local-transactions).
 
 ### <a name="table-valued-parameters"></a>tábla értékű paraméter
-Tábla értékű paraméter paraméterekkel a Transact-SQL-utasítások, tárolt eljárások és függvények, felhasználó által definiált táblatípusokban támogatja. Ez az ügyféloldali kötegelési módszer lehetővé teszi, hogy több sornyi adatot belül a tábla értékű paraméter küldhet. Tábla értékű paraméter használatához először meg kell határoznia egy táblatípus. A következő Transact-SQL-utasítást hoz létre nevű tábla típus **MyTableType**.
+Tábla értékű paraméter paraméterekkel a Transact-SQL-utasítások, tárolt eljárások és függvények, felhasználó által definiált táblatípusokban támogatja. Ez az ügyféloldali kötegelési módszer lehetővé teszi, hogy toosend több sornyi adatot hello tábla értékű paraméter belül. toouse tábla értékű paraméter, először egy táblatípus határozza meg. a következő Transact-SQL-utasítás hello nevű tábla típus létrehozása **MyTableType**.
 
     CREATE TYPE MyTableType AS TABLE 
     ( mytext TEXT,
       num INT );
 
 
-A kódban, hozzon létre egy **DataTable** pontos azonos nevét és a táblatípus típusú. Ez átadni **DataTable** egy paraméterben, szöveges lekérdezés vagy tárolt eljárás hívása. A következő példa bemutatja, ezzel a módszerrel:
+A kódban, hozzon létre egy **DataTable** hello a pontos azonos nevét és típusát hello táblatípus. Ez átadni **DataTable** egy paraméterben, szöveges lekérdezés vagy tárolt eljárás hívása. hello következő példa bemutatja, ezzel a módszerrel:
 
     using (SqlConnection connection = new SqlConnection(CloudConfigurationManager.GetSetting("Sql.ConnectionString")))
     {
         connection.Open();
 
         DataTable table = new DataTable();
-        // Add columns and rows. The following is a simple example.
+        // Add columns and rows. hello following is a simple example.
         table.Columns.Add("mytext", typeof(string));
         table.Columns.Add("num", typeof(int));    
         for (var i = 0; i < 10; i++)
@@ -160,9 +160,9 @@ A kódban, hozzon létre egy **DataTable** pontos azonos nevét és a táblatíp
         cmd.ExecuteNonQuery();
     }
 
-Az előző példában a **SqlCommand** objektum egy tábla értékű paraméter a sor beszúrása  **@TestTvp** . A korábban létrehozott **DataTable** objektum ezt a paramétert hozzá van rendelve a **SqlCommand.Parameters.Add** metódust. A teljesítmény egy hívásban Beszúrások kötegelés jelentősen növeli a szekvenciális Beszúrások keresztül.
+Hello előző példában hello **SqlCommand** objektum egy tábla értékű paraméter a sor beszúrása  **@TestTvp** . korábban létrehozott hello **DataTable** objektum hozzá van rendelve a hello toothis paraméterrel **SqlCommand.Parameters.Add** metódust. Kötegelési hello beszúrása egy hívás jelentősen növeli hello teljesítmény szekvenciális Beszúrások keresztül.
 
-Az előző példa folytatásaként javításához használja a tárolt eljárás egy szöveges parancs helyett. A következő Transact-SQL-parancs létrehoz egy tárolt eljárás, amely a **SimpleTestTableType** tábla értékű paraméter.
+tooimprove hello előző példa folytatásaként, használja a tárolt eljárás egy szöveges parancs helyett. a következő Transact-SQL-parancs hello hoz létre, amely hello tárolt eljárás **SimpleTestTableType** tábla értékű paraméter.
 
     CREATE PROCEDURE [dbo].[sp_InsertRows] 
     @TestTvp as MyTableType READONLY
@@ -173,16 +173,16 @@ Az előző példa folytatásaként javításához használja a tárolt eljárás
     END
     GO
 
-Módosítsa a **SqlCommand** objektum az előző példakódban csatlakoztatása a következő nyilatkozatot.
+Módosítsa a hello **SqlCommand** hello előző kód példa toohello következő deklaráció objektum.
 
     SqlCommand cmd = new SqlCommand("sp_InsertRows", connection);
     cmd.CommandType = CommandType.StoredProcedure;
 
-A legtöbb esetben a tábla értékű paraméter rendelkezik egyenértékű vagy jobb teljesítményt biztosít, mint más kötegelési módszerek. Tábla értékű paraméterek gyakran érdemes, mivel rugalmasabb, mint más beállítások. Egyéb módszerek, például SQL tömeges másolás, például csak új sorok beszúrását lehetővé teszik. De tábla értékű paraméter segítségével programot a tárolt eljárás annak meghatározására, hogy mely sorai frissítések, és amelyek beszúrása. A táblatípus is módosíthatja a tartalmaz egy "Művelet" oszlopot, amely jelzi, hogy a megadott sor kell beszúrni, frissíteni, vagy törölve.
+A legtöbb esetben a tábla értékű paraméter rendelkezik egyenértékű vagy jobb teljesítményt biztosít, mint más kötegelési módszerek. Tábla értékű paraméterek gyakran érdemes, mivel rugalmasabb, mint más beállítások. Egyéb módszerek, például SQL tömeges másolás, például csak új sorok beszúrását hello lehetővé teszik. De tábla értékű paraméter segítségével is logika hello tárolt eljárás toodetermine mely sorai frissítések érhetők el, és amelyek beszúrása. hello táblatípus is módosított toocontain egy "Művelet" oszlopot, amely azt jelzi, hogy hello megadott sort kell beszúrni, frissíteni, vagy törölve.
 
-A következő táblázat a tábla értékű paraméterek használatával vizsgálati eredményeket ad hoc ezredmásodpercben.
+a következő táblázat hello alkalmi teszteredmények hello használható a tábla értékű paraméterek mutatja ezredmásodpercben.
 
-| Műveletek | A helyszíni Azure-ba (ms) | Az Azure ugyanabban az adatközpontban (ms) |
+| Műveletek | A helyszíni tooAzure (ms) | Az Azure ugyanabban az adatközpontban (ms) |
 | --- | --- | --- |
 | 1 |124 |32 |
 | 10 |131 |25 |
@@ -191,16 +191,16 @@ A következő táblázat a tábla értékű paraméterek használatával vizsgá
 | 10000 |23830 |3586 |
 
 > [!NOTE]
-> A eredményei nem referenciaalapokhoz képest. Tekintse meg a [időzítési eredményezi, hogy ez a témakör Megjegyzés](#note-about-timing-results-in-this-topic).
+> A eredményei nem referenciaalapokhoz képest. Lásd: hello [időzítési eredményezi, hogy ez a témakör Megjegyzés](#note-about-timing-results-in-this-topic).
 > 
 > 
 
-A kötegelés jobb a teljesítménye azonnal kétségtelenül. Az előző szekvenciális teszt 1000 műveletek 129 másodperc az adatközponton kívülről és az adatközponton belül a 21 másodpercet vett igénybe. De tábla értékű paraméter 1000 műveletek másodpercre csak 2.6-os és az adatközponton belül idõtartamtól az adatközponton kívülről.
+hello jobb teljesítménye a kötegelés azonnal kétségtelenül. Hello előző szekvenciális teszt 1000 műveletek másodpercet vett igénybe 129 külső hello datacenter és hello adatközponton belül a 21 másodperc. De a tábla értékű paraméter 1000-műveletek egy csak 2.6-os másodperc hello adatközponton kívülről és idõtartamtól hello adatközponton belül.
 
 További információ a tábla értékű paraméter: [Table-Valued paraméterek](https://msdn.microsoft.com/library/bb510489.aspx).
 
 ### <a name="sql-bulk-copy"></a>SQL tömeges másolási
-SQL tömeges másolási egy másik módja a nagy mennyiségű adat elhelyezni a céladatbázis. .NET-alkalmazások használhatják a **SqlBulkCopy** osztály végrehajtására tömeges beszúrási műveletek. **SqlBulkCopy** a parancssori eszköz, a függvény hasonló **Bcp.exe**, vagy a Transact-SQL-utasítás **TÖMEGES Beszúrás**. Az alábbi példakód bemutatja, hogyan tömegesen másolni a sorokat a forráshelyen **DataTable**, táblázatra, az SQL Server, a céltábla táblanév.
+SQL tömeges másolási egy másik módja tooinsert nagy mennyiségű adat egy cél adatbázisba. .NET-alkalmazásokban használható hello **SqlBulkCopy** osztály tooperform tömeges beszúrási műveletek. **SqlBulkCopy** hasonló függvény toohello parancssori eszköz, a **Bcp.exe**, vagy a Transact-SQL-utasítás hello **TÖMEGES Beszúrás**. hello következő kódrészlet példa bemutatja, hogyan toobulk másolási hello hello forrás sort **DataTable**, tábla, az SQL Server, MyTable toohello céltábla.
 
     using (SqlConnection connection = new SqlConnection(CloudConfigurationManager.GetSetting("Sql.ConnectionString")))
     {
@@ -215,11 +215,11 @@ SQL tömeges másolási egy másik módja a nagy mennyiségű adat elhelyezni a 
         }
     }
 
-Néhány esetben, ha tömeges másolás előnyben részesített tábla értékű paraméter felett van. Tekintse meg a tábla értékű paraméter és a következő témakör TÖMEGES beszúrási műveletek összehasonlító táblázatot [Table-Valued paraméterek](https://msdn.microsoft.com/library/bb510489.aspx).
+Néhány esetben, ha tömeges másolás előnyben részesített tábla értékű paraméter felett van. Tekintse meg a tábla értékű paramétert, és TÖMEGES beszúrási műveletek hello témakör hello összehasonlító táblázatában [Table-Valued paraméterek](https://msdn.microsoft.com/library/bb510489.aspx).
 
-A következő alkalmi vizsgálati eredmények megjelenítése a kötegelés teljesítményének **SqlBulkCopy** ezredmásodpercben.
+hello következő alkalmi vizsgálati eredmények megjelenítése hello teljesítményét a kötegelés **SqlBulkCopy** ezredmásodpercben.
 
-| Műveletek | A helyszíni Azure-ba (ms) | Az Azure ugyanabban az adatközpontban (ms) |
+| Műveletek | A helyszíni tooAzure (ms) | Az Azure ugyanabban az adatközpontban (ms) |
 | --- | --- | --- |
 | 1 |433 |57 |
 | 10 |441 |32 |
@@ -228,16 +228,16 @@ A következő alkalmi vizsgálati eredmények megjelenítése a kötegelés telj
 | 10000 |21605 |2737 |
 
 > [!NOTE]
-> A eredményei nem referenciaalapokhoz képest. Tekintse meg a [időzítési eredményezi, hogy ez a témakör Megjegyzés](#note-about-timing-results-in-this-topic).
+> A eredményei nem referenciaalapokhoz képest. Lásd: hello [időzítési eredményezi, hogy ez a témakör Megjegyzés](#note-about-timing-results-in-this-topic).
 > 
 > 
 
-A Köteg mérete kisebb, használja a tábla értékű paraméterek outperformed a **SqlBulkCopy** osztály. Azonban **SqlBulkCopy** gyorsabb, mint a tábla értékű paraméterek a 12-31 % elvégzi a tesztek 1000 és 10 000 sorok. Tábla értékű paraméterek, például **SqlBulkCopy** van a kötegelt Beszúrás jó választás, különösen akkor, ha nem kötegelni műveletek teljesítményének képest.
+A Köteg mérete kisebb, hello használata tábla értékű paraméter outperformed hello **SqlBulkCopy** osztály. Azonban **SqlBulkCopy** az 1000 és 10 000 sorok hello tesztek során végrehajtott 12-31 % gyorsabb, mint a tábla értékű paraméter. Tábla értékű paraméterek, például **SqlBulkCopy** van a kötegelt Beszúrás jó választás, különösen akkor, ha képest műveletek nem kötegelni toohello teljesítményét.
 
 A tömeges másolás az ADO.NET további információkért lásd: [az SQL Server tömeges másolási műveletek](https://msdn.microsoft.com/library/7ek5da1a.aspx).
 
 ### <a name="multiple-row-parameterized-insert-statements"></a>Több soron kívüli Beszúrás paraméteres utasításokat
-Egy kis kötegek esetben nagy paraméteres utasítást, amely több sor beszúrása összeállításához. Az alábbi példakód mutatja be, ezzel a módszerrel.
+Egy kis kötegek esetben egy nagy tooconstruct paraméteres INSERT utasításban, amely több sor beszúrása. hello a következő példakód azt mutatja be, ezzel a módszerrel.
 
     using (SqlConnection connection = new SqlConnection(CloudConfigurationManager.GetSetting("Sql.ConnectionString")))
     {
@@ -258,9 +258,9 @@ Egy kis kötegek esetben nagy paraméteres utasítást, amely több sor beszúr�
     }
 
 
-Ez a példa arra szolgál, hogy az alapvető fogalma megjelenítése. A modell forgatókönyv volna ismétlése a lekérdezési karakterláncot és a parancs paraméterei egyidejűleg összeállításához szükséges entitásokat. Azonban legfeljebb összesen 2100 lekérdezési paraméterek, ez korlátozza az ilyen módon feldolgozható sorok száma.
+Ez a példa arra szolgál, tooshow hello alapvető fogalma. A modell forgatókönyv volna ismétlése szükséges hello entitások tooconstruct hello lekérdezési karakterlánc és hello parancs paraméterei egyidejűleg. Legfeljebb 2100 lekérdezési paraméterek, ez korlátozza hello sorok maximális számát, amelyek az ilyen módon dolgozhatók tooa összesen.
 
-A következő alkalmi teszteredmények utasítást ilyen típusú teljesítményének megjelenítése ezredmásodpercben.
+a következő alkalmi eredmények megjelenítése hello teljesítményének tesztelése az ilyen típusú insert utasítás ezredmásodpercben hello.
 
 | Műveletek | Tábla értékű paraméter (ms) | Utasításból INSERT (ms) |
 | --- | --- | --- |
@@ -269,39 +269,39 @@ A következő alkalmi teszteredmények utasítást ilyen típusú teljesítmény
 | 100 |33 |51 |
 
 > [!NOTE]
-> A eredményei nem referenciaalapokhoz képest. Tekintse meg a [időzítési eredményezi, hogy ez a témakör Megjegyzés](#note-about-timing-results-in-this-topic).
+> A eredményei nem referenciaalapokhoz képest. Lásd: hello [időzítési eredményezi, hogy ez a témakör Megjegyzés](#note-about-timing-results-in-this-topic).
 > 
 > 
 
-Ezt a módszert használja, amelyek 100-nál kevesebb sort kötegek némileg gyorsabb lehet. Bár a javítása kis, ez a módszer akkor egy másik lehetőség, amely előfordulhat, hogy kiválóan működjenek az adott alkalmazás helyzetnek.
+Ezt a módszert használja, amelyek 100-nál kevesebb sort kötegek némileg gyorsabb lehet. Bár hello javítása kis, ez a módszer akkor lehet, hogy kiválóan működjenek az adott alkalmazás helyzetnek lehetősége.
 
 ### <a name="dataadapter"></a>DataAdapter
-A **DataAdapter** osztály lehetővé teszi, hogy módosítsa egy **DataSet** objektumot, és küldje el az INSERT, UPDATE és DELETE műveletek változik. Ha használja a **DataAdapter** ezen a módon kikapcsolja, fontos megjegyezni, hogy külön hívások legyenek-e készülve az egyes különálló műveletet. A teljesítmény javítása érdekében használja a **UpdateBatchSize** tulajdonságot, amely egyszerre kell lehet kötegelni műveletek száma. További információkért lásd: [végrehajtása kötegelt műveletek használatával DataAdapters](https://msdn.microsoft.com/library/aadf8fk2.aspx).
+Hello **DataAdapter** osztály toomodify lehetővé teszi egy **DataSet** objektumot, és küldje el a INSERT, UPDATE és DELETE műveletek hello változik. Hello használata **DataAdapter** ezen a módon kikapcsolja, fontos, hívások elválasztó toonote legyenek készülve az egyes különálló műveletet. tooimprove teljesítmény érdekében használjon hello **UpdateBatchSize** egyszerre kell lehet kötegelni műveletek tulajdonság toohello száma. További információkért lásd: [végrehajtása kötegelt műveletek használatával DataAdapters](https://msdn.microsoft.com/library/aadf8fk2.aspx).
 
 ### <a name="entity-framework"></a>Entitás-keretrendszer
-Entitás-keretrendszer jelenleg nem támogatja kötegelés. A közösségi különböző fejlesztők próbált meg lehetséges megoldások, például a felülbírálás bemutatása a **a SaveChanges metódus** metódust. De a megoldások általában összetett és testreszabott, az alkalmazás és az adatmodell. Az Entity Framework codeplex-projekt jelenleg is rendelkezik az ismertető a szolgáltatás kérésre. Az ismertető megtekintése: [tervezési értekezlet megjegyzések - 2012 augusztus 2](http://entityframework.codeplex.com/wikipage?title=Design%20Meeting%20Notes%20-%20August%202%2c%202012).
+Entitás-keretrendszer jelenleg nem támogatja kötegelés. Hello Közösségből származó különböző fejlesztők próbált toodemonstrate lehetséges megoldások, például a felülbírálás hello **a SaveChanges metódus** metódust. De hello megoldások általában összetett és testre szabott toohello alkalmazás és az adatokat az adatmodellbe. hello Entity Framework codeplex-projekt jelenleg is rendelkezik az ismertető a szolgáltatás kérésre. tooview ismertető, lásd: [tervezési értekezlet megjegyzések - 2012 augusztus 2](http://entityframework.codeplex.com/wikipage?title=Design%20Meeting%20Notes%20-%20August%202%2c%202012).
 
 ### <a name="xml"></a>XML
-A teljesség kedvéért azt látja, hogy fontos, mint egy kötegelési stratégia XML kapcsolatban. Az XML-kód használatát azonban más módszerekkel nem előnyöket és számos hátránya rendelkezik. A megoldás, tábla értékű paraméter hasonló, de egy XML-fájl vagy karakterlánc objektumnak átadott helyett a felhasználó által definiált tábla tárolt eljárást. A tárolt eljárás elemzi a parancsok a tárolt eljárást.
+A teljesség kedvéért azt látja, hogy az XML kötegelési stratégiát, fontos tootalk. Az XML-kód hello használata azonban más módszerekkel nem előnyöket és számos hátránya rendelkezik. hello megközelítés hasonló tootable értékű paraméterek, de egy XML-fájl vagy karakterlánc átadása tooa tárolt eljárás nem felhasználói tábla. hello tárolt eljárás elemez hello parancsok hello tárolt eljárás.
 
-Ezt a megközelítést több hátrányai van:
+Van több hátrányai toothis módszert:
 
 * Az XML működő nehézkes lehet, és hibalehetőségeket rejt magában hiba.
-* Az adatbázis az XML-elemzés processzorigényes is lehet.
+* Elemzési hello XML hello adatbázison processzorigényes lehet.
 * A legtöbb esetben ez a módszer lassabb, mint a tábla értékű paraméter.
 
-Ezen okok miatt a XML kötegelt lekérdezések használata nem ajánlott.
+Ezen okok miatt hello XML kötegelt lekérdezések használata nem ajánlott.
 
 ## <a name="batching-considerations"></a>Kötegelési kapcsolatos szempontok
-Az alábbi szakaszokban további útmutatás nyújtása a kötegelés SQL-adatbázis alkalmazások használatát.
+a következő szakaszok hello további útmutatás nyújtása a hello használata az SQL-adatbázis alkalmazások kötegelés.
 
 ### <a name="tradeoffs"></a>Mellékhatásokkal
-Attól függően, hogy az architektúrák kötegelés magába foglaló a teljesítményt és rugalmasságot közötti kompromisszumot. Vegyük példaként a forgatókönyvet, ahol a szerepkör váratlanul leáll. Ha elveszíti egy adatsornak, szempontjából kisebb, mint egy nagy sorköteg el nem küldött elvesztése hatását. Nagyobb veszélynek van Ha sorok elegendő pufferrel, mielőtt elküldi őket az adatbázishoz megadott időkeretnél.
+Attól függően, hogy az architektúrák kötegelés magába foglaló a teljesítményt és rugalmasságot közötti kompromisszumot. Vegye figyelembe például hello forgatókönyv, ahol a szerepkör váratlanul leáll. Ha elveszíti egy adatsornak, hello szempontjából kisebb, mint egy nagy sorköteg el nem küldött elvesztése hello hatását. Nagyobb veszélynek van, amikor sorok elegendő pufferrel, mielőtt elküldi őket a megadott időkeretnél toohello adatbázis.
 
-Miatt ez kompromisszumot kiértékelheti, hogy Ön kötegelt működés. A Batch-agresszívabb (nagyobb kötegek és hosszabb idő windows) kevésbé fontos adatokkal.
+Miatt ez kompromisszumot kiértékelheti, hogy Ön kötegelt hello típusú műveletek. A Batch-agresszívabb (nagyobb kötegek és hosszabb idő windows) kevésbé fontos adatokkal.
 
 ### <a name="batch-size"></a>Köteg mérete
-A tesztelés során történt általában nagy kötegek ossza kisebb csoportjai való nem szolgál előnyökkel. Gyakran ez felosztása, mint egy egyetlen nagy kötegelt lassabban eredményezett. Vegyük példaként egy olyan forgatókönyvet, ahol szeretné 1000 sor beszúrása. Az alábbi táblázatban látható, mennyi ideig tart a tábla értékű paraméter használatával 1000 sor, amikor kisebb kötegekben osztva.
+A tesztelés során történt általában nem szolgál előnyökkel toobreaking nagy kötegek kisebb adattömbökbe. Gyakran ez felosztása, mint egy egyetlen nagy kötegelt lassabban eredményezett. Példaként vegyünk egy forgatókönyvet, ahol azt szeretné, hogy tooinsert 1000 sor. hello következő táblázatban mennyi idő alatt toouse tábla értékű paraméter tooinsert 1000 sorok, amikor kisebb kötegekben osztva.
 
 | Köteg mérete | Az ismétlés | Tábla értékű paraméter (ms) |
 | --- | --- | --- |
@@ -311,18 +311,18 @@ A tesztelés során történt általában nagy kötegek ossza kisebb csoportjai 
 | 50 |20 |630 |
 
 > [!NOTE]
-> A eredményei nem referenciaalapokhoz képest. Tekintse meg a [időzítési eredményezi, hogy ez a témakör Megjegyzés](#note-about-timing-results-in-this-topic).
+> A eredményei nem referenciaalapokhoz képest. Lásd: hello [időzítési eredményezi, hogy ez a témakör Megjegyzés](#note-about-timing-results-in-this-topic).
 > 
 > 
 
-Láthatja, hogy-e a legjobb teljesítményt 1000 sor elküldeni őket egyszerre. Más tesztekben (itt nem látható) történt egy 10000 sor kötegelt felosztása két kötegek 5000 jobb a teljesítménye kis. Azonban ezekben a tesztekben a következő tábla sémáját viszonylag egyszerű, végre kell hajtania az adatokat és a Köteg mérete ezen eredmények ellenőrzése tesztek.
+Láthatja, hogy a legjobb teljesítményt hello 1000 sor toosubmit egyszerre őket. Más tesztekben (itt nem látható) történt egy kis teljesítmény nyereség toobreak be két kötegek 5000 10000 sor kötegben. Azonban ezekben a tesztekben hello táblaséma viszonylag egyszerű, így végre kell hajtania teszteli, az adatokat és a Köteg mérete tooverify ezen eredmények.
 
-Egy másik szempont az, hogy, hogy a teljes kötegelt túl nagyra nő, ha SQL-adatbázis előfordulhat, hogy sávszélesség-szabályozási és elutasítja a kötegelt véglegesítéséhez. A legjobb eredmény elérése érdekében tesztelje az adott forgatókönyv annak meghatározásához, hogy van-e az épp ezért tökéletes választás a köteg méretének. Ellenőrizze a Köteg mérete konfigurálható teljesítmény vagy hibák alapján gyors módosításának engedélyezése a futási időben.
+Egy másik tényező tooconsider, hogy hello teljes kötegelt túl nagyra nő, ha SQL-adatbázis előfordulhat, hogy sávszélesség-szabályozási és toocommit hello kötegelt elutasítja. Ha az épp ezért tökéletes választás a köteg méretének vizsgálat az adott forgatókönyv toodetermine hello legjobb eredmények elérése érdekében. Hello köteg mérete konfigurálható tegye a futásidejű tooenable gyors beállításai alapján a teljesítmény- vagy hibákat.
 
-Végezetül egyenleg a Köteg mérete a kötegelés kapcsolódó kockázatokat. Ha átmeneti hiba merül fel, vagy a szerepkör nem sikerül, fontolja meg, majd próbálja megismételni a műveletet, vagy az adatvesztés a kötegben következményeit.
+Végezetül egyenleg hello köteg mérete hello hello kockázatot jelentő társított kötegelés. Ha átmeneti hiba merül fel, vagy hello szerepkör meghiúsul, fontolja meg a hello következmények hello művelet vagy hello adatvesztés hello kötegben.
 
 ### <a name="parallel-processing"></a>Párhuzamos feldolgozás
-Mi történik, ha a köteg méretének csökkentését megközelítés tartott, de több szál hajthatók végre a munkahelyi? Ebben az esetben a tesztek bemutatta, hogy több kisebb többszálas kötegek általában végre a nagyobb kötegek rosszabb. A következő teszt megkísérli 1000 sor beszúrása egy vagy több párhuzamos kötegekben. Ez a vizsgálat bemutatja, hogyan több egyidejű kötegek ténylegesen csökkent teljesítményt.
+Mi történik, ha tartott hello megközelítés hello a köteg méretének csökkentését, de több szál tooexecute hello munkahelyi használt? Ebben az esetben a tesztek bemutatta, hogy több kisebb többszálas kötegek általában végre a nagyobb kötegek rosszabb. hello következő teszt megpróbál egy vagy több párhuzamos kötegekben tooinsert 1000 sor. Ez a vizsgálat bemutatja, hogyan több egyidejű kötegek ténylegesen csökkent teljesítményt.
 
 | A köteg méretének [ismétlési] | Két szállal (ms) | Négy szálak (ms) | Hat szálak (ms) |
 | --- | --- | --- | --- |
@@ -332,39 +332,39 @@ Mi történik, ha a köteg méretének csökkentését megközelítés tartott, 
 | 100 [10] |488 |439 |391 |
 
 > [!NOTE]
-> A eredményei nem referenciaalapokhoz képest. Tekintse meg a [időzítési eredményezi, hogy ez a témakör Megjegyzés](#note-about-timing-results-in-this-topic).
+> A eredményei nem referenciaalapokhoz képest. Lásd: hello [időzítési eredményezi, hogy ez a témakör Megjegyzés](#note-about-timing-results-in-this-topic).
 > 
 > 
 
-Van több lehetséges oka a akár teljesítménycsökkenés párhuzamosság miatt:
+Több lehetséges oka lehet hello akár teljesítménycsökkenés esedékes tooparallelism:
 
 * Nincsenek egy helyett több egyidejű hálózati hívást.
 * Egyetlen tábla több műveleteket versengés és blokkolja a eredményezhet.
 * Nincsenek társított terhek többszálas.
-* Több kapcsolat megnyitásának járó költségek ez fontosabb, mint az az előnye, hogy a párhuzamos feldolgozást.
+* több kapcsolat megnyitása hello költsége ez fontosabb, mint a hello előnye, hogy a párhuzamos feldolgozást.
 
-Különböző táblákhoz vagy adatbázisok célozhat meg, akkor megállapíthatja, hogy ezt a stratégiát, hogy néhány teljesítmény. Adatbázis horizontális vagy összevonási lenne a forgatókönyv ezt a módszert használja. Horizontális több adatbázist használ, és továbbítja a különböző adatokat az egyes adatbázisok. Ha egy kis köteg egy másik adatbázishoz, hatékonyabb lehet majd a műveletet hajt végre párhuzamosan. Jobb a teljesítménye azonban nem elég jelentős döntést alapjául használandó adatbázis horizontális használja a megoldásban.
+Különböző táblákhoz vagy adatbázisok célozhat esetén lehetséges toosee néhány teljesítmény szerezhet az ezt a stratégiát. Adatbázis horizontális vagy összevonási lenne a forgatókönyv ezt a módszert használja. Horizontális több adatbázisok és útvonalak különböző az tooeach-adatbázist használja. Ha egy kis köteg tooa másik adatbázishoz, hatékonyabb lehet majd hello műveletet hajt végre párhuzamosan. Azonban hello jobb teljesítménye nincs elég jelentős toouse egy döntési toouse adatbázis horizontális a megoldásban a hello alapjaként.
 
-Néhány terveibe kisebb kötegekben párhuzamos végrehajtása eredményezhet továbbfejlesztett kapacitásának terhelés alatt a rendszer. Ebben az esetben akkor is, ha gyorsabb, nagyobb a kötegek feldolgozni, párhuzamosan több kötegenként lehet hatékonyabb.
+Néhány terveibe kisebb kötegekben párhuzamos végrehajtása eredményezhet továbbfejlesztett kapacitásának terhelés alatt a rendszer. Ebben az esetben akkor is, ha a nagyobb kötegek gyorsabb tooprocess, párhuzamosan több kötegenként lehet hatékonyabb.
 
-Ha párhuzamos végrehajtás, érdemes a munkaszálak maximális számának vezérlése. Kevesebb gyorsabb végrehajtási idő, és kevesebb a versengés eredményezheti. Is fontolja meg az egyéb terheléseket, amelyeket a ez helyez el a céladatbázist, kapcsolatok és a tranzakciók egyaránt.
+Ha párhuzamos végrehajtás használja, fontolja meg az ellenőrző hello szálak maximális száma worker. Kevesebb gyorsabb végrehajtási idő, és kevesebb a versengés eredményezheti. Figyelembe venni, a hello egyéb terheléseket, amelyeket ez hello céladatbázis kapcsolatok és a tranzakciók egyaránt helyezi.
 
 ### <a name="related-performance-factors"></a>A teljesítmény kapcsolódó tényezők
 Adatbázis teljesítménye jellemző útmutatást is kötegelés hatással van. Például be nagy elsődleges kulcs, vagy sok fürtözetlen indexeire rendelkező táblák csökken a teljesítmény.
 
-Ha a tábla értékű paraméter tárolt eljárás használatához a paranccsal **SET NOCOUNT ON** az eljárás elején. A jelen nyilatkozat mellőzi a visszatérési az eljárás az érintett sorok száma. Azonban a tesztelés során használatát **SET NOCOUNT ON** kellett nincs hatása, vagy teljesítménye csökkent. A vizsgálati tárolt eljárás egyetlen egyszerű volt **BESZÚRÁSA** parancsot a tábla értékű paraméter. Akkor lehet, hogy összetettebb tárolt eljárások a jelen nyilatkozat előnyös. Nem érdemes feltételezni, hogy hozzáadása, de **SET NOCOUNT ON** a tárolt eljárás automatikusan javítja a teljesítményt. Szeretné megtudni, a hatás, tesztelje a tárolt eljárás használatával és anélkül a **SET NOCOUNT ON** utasítást.
+Ha a tábla értékű paraméter tárolt eljárás használatához paranccsal hello **SET NOCOUNT ON** hello eljárás hello elején. A jelen nyilatkozat mellőzi hello visszatérési hello eljárás hello érintett sorok hello száma. Azonban a tesztelés során használatát hello **SET NOCOUNT ON** kellett nincs hatása, vagy teljesítménye csökkent. hello vizsgálati tárolt eljárás egyszerű volt egyetlen **BESZÚRÁSA** hello tábla értékű paraméter parancsot. Akkor lehet, hogy összetettebb tárolt eljárások a jelen nyilatkozat előnyös. Nem érdemes feltételezni, hogy hozzáadása, de **SET NOCOUNT ON** tooyour tárolt eljárás automatikusan javítja a teljesítményt. toounderstand hello hatása, tesztelje a tárolt eljárás használatával és anélkül hello **SET NOCOUNT ON** utasítást.
 
 ## <a name="batching-scenarios"></a>Kötegelése forgatókönyvek
-Az alábbi szakaszok ismertetik a tábla értékű paraméter három alkalmazás helyzetekben használhatja. Az első forgatókönyv bemutatja, hogyan pufferelés és kötegelés hogyan tudnak együttműködni. A második forgatókönyv javítja a teljesítményt, egyetlen tárolt eljárás hívása a fő-részletek műveletet hajt végre. A végső forgatókönyv bemutatja, hogyan tábla értékű paraméterek használatához a "UPSERT" művelet.
+hello alábbi szakaszok azt ismertetik, hogyan toouse táblázat értékű paramétereket a három alkalmazás-forgatókönyveket. hello első forgatókönyv bemutatja, hogyan pufferelés és kötegelés hogyan tudnak együttműködni. második forgatókönyv hello javítja a teljesítményt, egyetlen tárolt eljárás hívása a fő-részletek műveletet hajt végre. végső forgatókönyvet mutat be hello hogyan toouse tábla értékű paraméter "UPSERT" műveletben.
 
 ### <a name="buffering"></a>Pufferelés
-Habár van néhány olyan forgatókönyvet, nyilvánvaló jelölt kötegelés, ott sikerült előnyeit által késleltetett feldolgozási kötegelés több forgatókönyv áll. Késleltetett feldolgozási is, hogy az adatok nem vesztek el meghibásodása nagyobb veszélynek végzi. Fontos megérteni a kockázat, és vegye figyelembe a következményekkel.
+Habár van néhány olyan forgatókönyvet, nyilvánvaló jelölt kötegelés, ott sikerült előnyeit által késleltetett feldolgozási kötegelés több forgatókönyv áll. Azonban késleltetett feldolgozása is hordoz magában, ha nagyobb kockázata, hogy egy nem várt hiba hello esemény hello adatok elvesznek. Fontos toounderstand ennek a veszélyét, és vegye figyelembe a hello következményeiről.
 
-Vegye figyelembe például egy webes alkalmazás, amely nyomon követi a minden felhasználó előzménylistáján. A lap lekérése az alkalmazás sikerült hívható meg a felhasználó lapmegtekintés rögzítésére adatbázis. De a nagyobb teljesítmény és méretezhetőség legyen elérhető a felhasználók navigációs tevékenységek pufferelés, és elküldi ezeket az adatokat az adatbázisba kötegekben. Az adatbázis frissítést a futása közben eltelt idő és/vagy puffer mérete indíthat el. Egy szabály például megadhatja, hogy a kötegelt 20 másodperc, vagy amikor a puffer eléri-e 1000 elemek után fel kell dolgozni.
+Tegyük fel, amely nyomon követi a minden felhasználó hello előzménylistáján webalkalmazás. Minden lap kérésre hello alkalmazás sikerült egy adatbázis hívás toorecord hello felhasználói lap nézetben. De magasabb teljesítmény és méretezhetőség pufferelés hello felhasználók navigációs tevékenységeket, és elküldi az adatokat toohello adatbázis kötegekben úgy lehet elérni. Hello adatbázis módosítása során eltelt idő és/vagy puffer mérete által aktiválhatók. Egy szabály például megadhatja, hogy hello kötegelt fel kell dolgozni, 20 másodperc, vagy amikor hello puffer eléri-e 1000 elem után.
 
-Az alábbi példakód [reaktív bővítmények – a Rx](https://msdn.microsoft.com/data/gg577609) figyelési osztály által kiváltott pufferelt események feldolgozásához. Amikor beírja a puffer, vagy időkorlátot, a felhasználói adatok kötegelt zajlik egy tábla értékű paraméter az adatbázisba.
+hello alábbi példakód [reaktív bővítmények – a Rx](https://msdn.microsoft.com/data/gg577609) tooprocess pufferelt figyelési osztály által kiváltott esemény. Amikor a puffer kitöltés hello vagy időtúllépés, a felhasználói adatok hello kötegelt küldött toohello adatbázis egy tábla értékű paraméter.
 
-A következő NavHistoryData osztály modellek a felhasználó navigációs adatait. Például a felhasználói azonosító az elért URL-cím vagy a hozzáférés idejének alapszintű információkat tartalmaz.
+hello következő NavHistoryData osztály modellek hello felhasználói navigációs adatok. Például a felhasználói azonosító hello alapszintű információkat tartalmaz, hello URL-cím elérhető, hello hozzáférés időpontja.
 
     public class NavHistoryData
     {
@@ -375,7 +375,7 @@ A következő NavHistoryData osztály modellek a felhasználó navigációs adat
         public DateTime AccessTime { get; set; }
     }
 
-A NavHistoryDataMonitor osztály a felhasználói navigációs adatokat az adatbázisba pufferelés felelős. Tartalmaz egy metódust, RecordUserNavigationEntry, amely válaszol-e megjelenítve jelzi egy **OnAdded** esemény. A következő kód bemutatja a konstruktor logika, amely használja a Rx hozzon létre egy megfigyelhető gyűjteményt az események alapján. Majd feliratkozva a megfigyelhető gyűjteményhez a következő puffer metódussal. A túlterhelés határozza meg, hogy a memóriapuffer 20 másodpercenként vagy 1000 bejegyzések küldjön.
+hello NavHistoryDataMonitor osztály hello felhasználói navigációs adatok toohello adatbázis pufferelés felelős. Tartalmaz egy metódust, RecordUserNavigationEntry, amely válaszol-e megjelenítve jelzi egy **OnAdded** esemény. hello következő kód bemutatja hello konstruktor logika, amely használja a Rx toocreate hello események alapján egy megfigyelhető gyűjteményt. Majd feliratkozva toothis megfigyelhető gyűjtemény hello puffer metódussal. hello túlterhelési határozza meg, hogy hello puffer küldjön 20 másodpercenként vagy 1000 bejegyzéseket.
 
     public NavHistoryDataMonitor()
     {
@@ -385,7 +385,7 @@ A NavHistoryDataMonitor osztály a felhasználói navigációs adatokat az adatb
         observableData.Buffer(TimeSpan.FromSeconds(20), 1000).Subscribe(Handler);           
     }
 
-A kezelő összes pufferelt elem alakítja át a tábla értékű típus, és majd átadja a ehhez a típushoz, amely feldolgozza a kötegelt tárolt eljárást. A következő kód bemutatja a NavHistoryDataEventArgs, mind a NavHistoryDataMonitor osztályok teljes definíciója.
+hello kezelő pufferelt hello elemek mindegyikét alakítja át a tábla értékű típus, és ezután továbbítja a típus tooa tárolt eljárás, hogy folyamatok hello kötegelt. hello következő kód bemutatja hello hello NavHistoryDataEventArgs és a hello NavHistoryDataMonitor osztályok teljes definíciója.
 
     public class NavHistoryDataEventArgs : System.EventArgs
     {
@@ -444,10 +444,10 @@ A kezelő összes pufferelt elem alakítja át a tábla értékű típus, és ma
         }
     }
 
-Ez az osztály pufferelési használatához az alkalmazás egy statikus NavHistoryDataMonitor objektumot hoz létre. Minden alkalommal, amikor egy felhasználó egy lap fér hozzá az alkalmazás meghívja a NavHistoryDataMonitor.RecordUserNavigationEntry metódust. Ezek a bejegyzések küldése az adatbázis kötegekben irányuló pufferelési logika eltérő lehet.
+toouse az pufferelési osztály hello alkalmazás egy statikus NavHistoryDataMonitor objektumot hoz létre. Minden alkalommal, amikor egy felhasználó hozzáfér egy lap hello alkalmazás meghívja hello NavHistoryDataMonitor.RecordUserNavigationEntry metódust. pufferelés logika hello kiszolgálásához küld e bejegyzések toohello adatbázis kötegekben tootake folytatódik.
 
 ### <a name="master-detail"></a>Fő részletei
-Tábla értékű paraméter egyszerű INSERT forgatókönyvek hasznosak. Azonban lehet, például az egynél több tábla kötegelt Beszúrás további kihívást. A "kapcsolatú" például az is jó példa. A fő táblázat azonosítja az elsődleges entitás. Egy vagy több részletek tábla entitás több adatot tároljon. Ebben a forgatókönyvben a külső kulcsok kapcsolatai kényszerítése a kapcsolat egy egyedi fő entitásra részletességi. Vegye figyelembe a PurchaseOrder és a kapcsolódó OrderDetail tábla egyszerűsített verziója. A következő Transact-SQL négy oszlopot hoz létre a PurchaseOrder tábla: OrderID, orderdate oszlopra, CustomerID és állapotát.
+Tábla értékű paraméter egyszerű INSERT forgatókönyvek hasznosak. Lehet azonban nehezebb toobatch Beszúrások, például több mint egy olyan táblát. hello "kapcsolatú" például az is jó példa. hello fő tábla elsődleges entitás hello azonosítja. Egy vagy több részletek tábla kapcsolatos hello entitás több adatot tároljon. Ebben a forgatókönyvben a külső kulcsok kapcsolatai kényszerítése hello kapcsolat részletek tooa egyedi fő entitás. Vegye figyelembe a PurchaseOrder és a kapcsolódó OrderDetail tábla egyszerűsített verziója. a következő Transact-SQL hello hello PurchaseOrder tábla négy oszlopot hoz létre: OrderID, orderdate oszlopra, CustomerID és állapotát.
 
     CREATE TABLE [dbo].[PurchaseOrder](
     [OrderID] [int] IDENTITY(1,1) NOT NULL,
@@ -457,7 +457,7 @@ Tábla értékű paraméter egyszerű INSERT forgatókönyvek hasznosak. Azonban
      CONSTRAINT [PrimaryKey_PurchaseOrder] 
     PRIMARY KEY CLUSTERED ( [OrderID] ASC ))
 
-Minden egyes rendelés egy vagy több termék vásárlás tartalmazza. Ezt az információt a PurchaseOrderDetail tábla rögzített. A következő Transact-SQL hoz létre a PurchaseOrderDetail tábla öt oszlopok: OrderID, OrderDetailID, ProductID, Egységár és OrderQty.
+Minden egyes rendelés egy vagy több termék vásárlás tartalmazza. Ezek az információk rögzítése hello PurchaseOrderDetail táblában. a következő Transact-SQL hello hello PurchaseOrderDetail táblázatot hoz öt oszlopokkal: OrderID, OrderDetailID, ProductID, Egységár és OrderQty.
 
     CREATE TABLE [dbo].[PurchaseOrderDetail](
     [OrderID] [int] NOT NULL,
@@ -468,13 +468,13 @@ Minden egyes rendelés egy vagy több termék vásárlás tartalmazza. Ezt az in
      CONSTRAINT [PrimaryKey_PurchaseOrderDetail] PRIMARY KEY CLUSTERED 
     ( [OrderID] ASC, [OrderDetailID] ASC ))
 
-Az OrderID oszlop a PurchaseOrderDetail tábla sorrendben kell hivatkoznia, a PurchaseOrder táblából. A következő idegen kulcs definícióját a korlátozás érvényesítése.
+hello OrderID oszlop hello PurchaseOrderDetail tábla sorrendben kell hivatkoznia, hello PurchaseOrder táblából. a következő idegen kulcs definícióját hello kikényszeríti ennél a határértéknél.
 
     ALTER TABLE [dbo].[PurchaseOrderDetail]  WITH CHECK ADD 
     CONSTRAINT [FK_OrderID_PurchaseOrder] FOREIGN KEY([OrderID])
     REFERENCES [dbo].[PurchaseOrder] ([OrderID])
 
-Tábla értékű paraméter használatához rendelkeznie kell egy felhasználó által definiált táblatípus minden céloldali táblához.
+Rendelés toouse tábla értékű paraméterek rendelkeznie kell egy felhasználó által definiált táblatípus minden céloldali táblához.
 
     CREATE TYPE PurchaseOrderTableType AS TABLE 
     ( OrderID INT,
@@ -490,7 +490,7 @@ Tábla értékű paraméter használatához rendelkeznie kell egy felhasználó 
       OrderQty SMALLINT );
     GO
 
-Majd adja meg, amely támogatja a következő típusú táblák tárolt eljárást. Ez az eljárás lehetővé teszi az helyileg a batch-rendeléseket és egy hívás a rendelés részleteit. A következő Transact-SQL beszerzési sorrendje a példa a teljes tárolt eljárás nyilatkozat biztosít.
+Majd adja meg, amely támogatja a következő típusú táblák tárolt eljárást. Ez az eljárás lehetővé teszi, hogy egy alkalmazás toolocally kötegelt rendeléseket és a rendelés részleteit egyetlen hívásban. hello következő Transact-SQL biztosít hello teljes tárolt eljárás deklaráció a következő példában szereplő beszerzési rendelés.
 
     CREATE PROCEDURE sp_InsertOrdersBatch (
     @orders as PurchaseOrderTableType READONLY,
@@ -498,22 +498,22 @@ Majd adja meg, amely támogatja a következő típusú táblák tárolt eljárá
     AS
     SET NOCOUNT ON;
 
-    -- Table that connects the order identifiers in the @orders
-    -- table with the actual order identifiers in the PurchaseOrder table
+    -- Table that connects hello order identifiers in hello @orders
+    -- table with hello actual order identifiers in hello PurchaseOrder table
     DECLARE @IdentityLink AS TABLE ( 
     SubmittedKey int, 
     ActualKey int, 
     RowNumber int identity(1,1)
     );
 
-          -- Add new orders to the PurchaseOrder table, storing the actual
-    -- order identifiers in the @IdentityLink table   
+          -- Add new orders toohello PurchaseOrder table, storing hello actual
+    -- order identifiers in hello @IdentityLink table   
     INSERT INTO PurchaseOrder ([OrderDate], [CustomerID], [Status])
     OUTPUT inserted.OrderID INTO @IdentityLink (ActualKey)
     SELECT [OrderDate], [CustomerID], [Status] FROM @orders ORDER BY OrderID;
 
-    -- Match the passed-in order identifiers with the actual identifiers
-    -- and complete the @IdentityLink table for use with inserting the details
+    -- Match hello passed-in order identifiers with hello actual identifiers
+    -- and complete hello @IdentityLink table for use with inserting hello details
     WITH OrderedRows As (
     SELECT OrderID, ROW_NUMBER () OVER (ORDER BY OrderID) As RowNumber 
     FROM @orders
@@ -521,8 +521,8 @@ Majd adja meg, amely támogatja a következő típusú táblák tárolt eljárá
     UPDATE @IdentityLink SET SubmittedKey = M.OrderID
     FROM @IdentityLink L JOIN OrderedRows M ON L.RowNumber = M.RowNumber;
 
-    -- Insert the order details into the PurchaseOrderDetail table, 
-          -- using the actual order identifiers of the master table, PurchaseOrder
+    -- Insert hello order details into hello PurchaseOrderDetail table, 
+          -- using hello actual order identifiers of hello master table, PurchaseOrder
     INSERT INTO PurchaseOrderDetail (
     [OrderID],
     [ProductID],
@@ -533,9 +533,9 @@ Majd adja meg, amely támogatja a következő típusú táblák tárolt eljárá
     JOIN @IdentityLink L ON L.SubmittedKey = D.OrderID;
     GO
 
-Ebben a példában a helyileg definiált @IdentityLink tábla tárolja az újonnan behelyezett sorainak tényleges OrderID értéke. Ilyen rendelés azonosítókat az ideiglenes OrderID értékek eltérnek a @orders és @details tábla értékű paraméter. Emiatt a @IdentityLink tábla csatlakoztatja az OrderID értékeit a @orders paramétert az új sort a PurchaseOrder tábla valós OrderID értékeit. Ez a lépés után a @IdentityLink tábla megkönnyítheti a rendelés részleteit és a tényleges OrderID, amely eleget tesz a Külsőkulcs-korlátozást beszúrni.
+Ebben a példában a helyileg definiált hello @IdentityLink a táblázat sorainak újonnan beszúrt hello hello tényleges OrderID értéke. Ilyen rendelés azonosítókat hello hello ideiglenes OrderID értékek eltérnek @orders és @details tábla értékű paraméter. Emiatt hello @IdentityLink tábla majd összekapcsolja hello OrderID értékek hello @orders toohello valós OrderID paraméterértékek hello PurchaseOrder tábla hello új soraihoz. Ez a lépés után hello @IdentityLink tábla megkönnyítheti beszúrni hello rendelés részleteit a hello tényleges OrderID, amely eleget tesz a hello idegenkulcs-megkötés.
 
-Ez a tárolt eljárás használható kód vagy más Transact-SQL-hívások. A dokumentum a kód például a táblázat értékű paramétereket című szakaszában talál. A következő Transact-SQL bemutatja, hogyan hívhatja meg a sp_InsertOrdersBatch.
+Ez a tárolt eljárás használható kód vagy más Transact-SQL-hívások. A dokumentum a kód például a hello tábla értékű paraméter című szakaszában talál. a következő Transact-SQL hello bemutatja, hogyan toocall hello sp_InsertOrdersBatch.
 
     declare @orders as PurchaseOrderTableType
     declare @details as PurchaseOrderDetailTableType
@@ -555,14 +555,14 @@ Ez a tárolt eljárás használható kód vagy más Transact-SQL-hívások. A do
 
     exec sp_InsertOrdersBatch @orders, @details
 
-Ez a megoldás lehetővé teszi, hogy az egyes kötegekben OrderID értékek: 1 kezdődő használandó. Ideiglenes OrderID értékeiről leírják a kötegben lévő kapcsolatok, de a tényleges OrderID értékek az insert művelet időpontjában határozza meg. Futtassa az előző példában szereplő ismételten a azonos utasításokat, és egyedi rendeléseket lehet létrehozni az adatbázist. Emiatt érdemes további kóddal vagy az adatbázis logika, amely megakadályozza a duplikált rendelések használatakor ezzel a technikával kötegelés.
+Ez a megoldás lehetővé teszi, hogy minden kötegelt toouse OrderID értékek: 1 kezdődő. Ideiglenes OrderID értékeiről leírják hello kapcsolatok hello kötegben, de hello tényleges OrderID értékek határozzák meg a hello beszúrási művelet hello időpontjában. A befejezésre hello azonos utasítások hello előző példában szereplő, és egyedi rendeléseket hello adatbázis lehet létrehozni. Emiatt érdemes további kóddal vagy az adatbázis logika, amely megakadályozza a duplikált rendelések használatakor ezzel a technikával kötegelés.
 
 Ez a példa mutatja be, hogy még inkább összetett adatbázis-műveletek, például a részletezés master operations, is lehet kötegelni tábla értékű paraméterek használatával.
 
 ### <a name="upsert"></a>UPSERT
-Egy másik kötegelési forgatókönyv magában foglalja a egyidejűleg frissíteni a létező sorok és új sort beszúrni. Ez a művelet van más néven "UPSERT" (frissítés + insert) műveletet. Ahelyett, hogy külön hívások BESZÚRÁSA, és FRISSÍTI a MERGE utasítás bizonyul a legalkalmasabbnak a tevékenységhez. A MERGE utasítás végrehajtása mindkét insert és frissítési művelet egyetlen hívással.
+Egy másik kötegelési forgatókönyv magában foglalja a egyidejűleg frissíteni a létező sorok és új sort beszúrni. Ez a művelet néha hivatkozott tooas "UPSERT" (frissítés + insert) művelet esetében. Ahelyett, hogy külön hívások tooINSERT és a frissítés elvégzése, hello MERGE utasítás a legjobb olyan környezethez a legalkalmasabb toothis feladat. hello MERGE utasítás végrehajtása mindkét insert és frissítési művelet egyetlen hívással.
 
-Tábla értékű paraméter frissítések és a Beszúrás elvégzéséhez használható a MERGE utasítással. Vegyük példaként a következő oszlopokat tartalmazó egyszerűsített alkalmazott táblázat: EmployeeID, az Utónév, a Vezetéknév, a SocialSecurityNumber:
+Tábla értékű paraméterek hello MERGE utasítás tooperform frissítéseket és a Beszúrás használhatók. Vegyük példaként a következő oszlopok hello tartalmazó egyszerűsített alkalmazott táblázat: EmployeeID, az Utónév, a Vezetéknév, a SocialSecurityNumber:
 
     CREATE TABLE [dbo].[Employee](
     [EmployeeID] [int] IDENTITY(1,1) NOT NULL,
@@ -572,7 +572,7 @@ Tábla értékű paraméter frissítések és a Beszúrás elvégzéséhez haszn
      CONSTRAINT [PrimaryKey_Employee] PRIMARY KEY CLUSTERED 
     ([EmployeeID] ASC ))
 
-Ebben a példában használhatja arra, hogy a SocialSecurityNumber egyedi több alkalmazott EGYESÍTÉSÉVEL végrehajtásához. Először hozza létre a felhasználó által definiált táblatípus:
+Ebben a példában a hello arra, hogy hello SocialSecurityNumber egyedi tooperform több alkalmazott EGYESÍTÉSÉVEL is használhatja. Először hozzon létre hello felhasználó által definiált táblatípus:
 
     CREATE TYPE EmployeeTableType AS TABLE 
     ( Employee_ID INT,
@@ -581,7 +581,7 @@ Ebben a példában használhatja arra, hogy a SocialSecurityNumber egyedi több 
       SocialSecurityNumber NVARCHAR(50) );
     GO
 
-A következő tárolt eljárás létrehozása, vagy kiírhatja a MERGE utasítás segítségével hajtsa végre a frissítést, majd szúrja be a kódját. Az alábbi példában a MERGE utasítás egy tábla értékű paraméter @employees, EmployeeTableType típusú. A tartalmát a @employees tábla itt nem látható.
+A következő tárolt eljárás létrehozása, vagy írhat kódot, hogy használ hello MERGE utasítás tooperform hello frissítést, majd szúrja be. hello alábbi példában hello MERGE utasítás egy tábla értékű paraméter @employees, EmployeeTableType típusú. hello tartalmát hello @employees tábla itt nem látható.
 
     MERGE Employee AS target
     USING (SELECT [FirstName], [LastName], [SocialSecurityNumber] FROM @employees) 
@@ -595,28 +595,28 @@ A következő tárolt eljárás létrehozása, vagy kiírhatja a MERGE utasítá
        INSERT ([FirstName], [LastName], [SocialSecurityNumber])
        VALUES (source.[FirstName], source.[LastName], source.[SocialSecurityNumber]);
 
-További információkért lásd: a dokumentáció és példák a MERGE utasításban. Bár a többlépéses tárolt ugyanaz a munkahelyi sikerült végezhető el a eljáráshívási külön INSERT, és frissítési műveleteket, a MERGE utasítás hatékonyabban. Adatbázis kód hogyan hozhat létre a MERGE utasítás közvetlenül nélkül két adatbázis hívások az INSERT vagy UPDATE használó Transact-SQL-hívások is.
+További információkért lásd: hello dokumentáció és példák hello MERGE utasításban. Ugyanazzal a munkahelyi elvégezhető egy több lépésben hello tárolt eljárás hívása külön INSERT vagy UPDATE műveletekkel, hello MERGE utasítás használata sokkal hatékonyabb. Adatbázis kód hogyan hozhat létre közvetlenül nélkül két adatbázis hívások az INSERT vagy UPDATE hello MERGE utasítás használó Transact-SQL-hívások is.
 
 ## <a name="recommendation-summary"></a>A javaslat összefoglaló
-Az alábbi lista a jelen témakörben bemutatott kötegelési ajánlások összegzését tartalmazza:
+hello alábbi lista tartalmaz összefoglaló információkat a jelen témakörben bemutatott javaslatok kötegelés hello:
 
-* Pufferelés és kötegelés segítségével növelheti a teljesítményét és méretezhetőségét SQL adatbázis-alkalmazások.
-* Ismerje meg a mellékhatásokkal kötegelés/pufferelés és a rugalmasság között. Adott szerepkör meghibásodás során a egy feldolgozatlan kötegelt az üzleti szempontból kritikus fontosságú adatok elvesztését kockáztatja a teljesítmény előnye, hogy kötegelés előfordulhat, hogy járó.
-* Tartsa a késés csökkentése érdekében az adatbázis egy adatközponton belül minden hívások történt kísérlet.
-* Ha úgy dönt, hogy egyetlen kötegelési technika, tábla értékű paraméter nyújtanak a legjobb teljesítményt és rugalmasságot biztosít.
-* A leggyorsabb insert teljesítmény érdekében kövesse az alábbi általános irányelveket, de a forgatókönyv teszteléséhez:
+* Pufferelés és kötegelés tooincrease hello teljesítményét és méretezhetőségét SQL adatbázis-alkalmazások használata.
+* Ismerje meg, hello mellékhatásokkal kötegelés/pufferelés és a rugalmasság között. Adott szerepkör meghibásodás során egy feldolgozatlan kötegelt az üzleti szempontból kritikus fontosságú adatok elvesztését kockáztatja hello hello teljesítmény előnye, hogy a kötegelés előfordulhat, hogy járó.
+* Kísérlet történt tookeep összes hívások toohello adatbázis egyetlen datacenter tooreduce késleltetése belül.
+* Ha úgy dönt, hogy egyetlen kötegelési technika, tábla értékű paraméter kínálnak hello legjobb teljesítményt és rugalmasságot biztosít.
+* Hello leggyorsabb beszúrása teljesítmény, kövesse az alábbi általános irányelveket, de a forgatókönyv teszteléséhez:
   * < 100 sorai egy paraméteres INSERT parancs használata.
   * A < 1000 sor használja a táblázat értékű paramétereket.
   * A > = 1000 sorok, SqlBulkCopy használja.
-* A és törlési műveletek frissítéséhez használja tábla értékű paraméter tárolt eljárás logikával határozza meg, hogy a megfelelő műveletet az egyes sorokkal. a tábla paraméterben.
+* A és törlési műveletek frissítéséhez használja tábla értékű paraméter tárolt eljárás logikával határozza meg, hogy a helyes műveletet hello minden egyes sorára hello tábla paraméter.
 * Köteg mérete irányelveket:
-  * A legnagyobb kötegelt méretek számára az alkalmazás- és üzleti követelmények célszerű használni.
-  * A jobb teljesítménye nagy köteg a kockázatot jelentő ideiglenes vagy végzetes hibák elosztása. Mi az a következménye az újrapróbálkozások és az adatvesztés a kötegben? 
-  * A legnagyobb kötegméret ellenőrzése, hogy SQL-adatbázis nem elutasítania tesztelése.
-  * A vezérlő kötegelés, például a köteg méretének vagy a pufferelési időszak-konfigurációs beállítások létrehozása. Ezek a beállítások rugalmasságot biztosít. Éles környezetben kötegelési viselkedést a felhőalapú szolgáltatás ismételt üzembe helyezésével módosíthatja.
-* Kerülje a párhuzamos végrehajtás kötegek, amely több adatbázis egyetlen táblájára működik. Ha a kötegek osztja szét több munkavégző szál, tesztek futtatása annak szálak ideális számának meghatározásához. Után egy nem meghatározott küszöbértéket több szál fog miatta a teljesítmény, nem pedig növeli azt.
+  * Hello legnagyobb kötegelt méretek számára az alkalmazás- és üzleti követelmények célszerű használni.
+  * Nagy kötegek egyenleg hello teljesítmény hello kockázatot jelentő ideiglenes vagy végzetes hibák ettől kezdve. Mi az az újrapróbálkozások hello következménye és hello hello kötegben adatvesztés? 
+  * Hello legnagyobb köteg mérete tooverify, hogy SQL-adatbázis nem elutasítania tesztelése.
+  * A vezérlő kötegelés, például hello kötegméret vagy hello pufferelési időkerete konfigurációs beállítások létrehozása. Ezek a beállítások rugalmasságot biztosít. Hello viselkedésnek a termelési kötegelés hello felhőalapú szolgáltatás ismételt üzembe helyezésével módosíthatja.
+* Kerülje a párhuzamos végrehajtás kötegek, amely több adatbázis egyetlen táblájára működik. Ha toodivide a kötegek között több munkavégző szál, futtassa a tesztek toodetermine hello ideális szálak száma. Után egy nem meghatározott küszöbértéket több szál fog miatta a teljesítmény, nem pedig növeli azt.
 * Vegye figyelembe a pufferelés méret és így további forgatókönyvek kötegelés végrehajtási idő.
 
 ## <a name="next-steps"></a>Következő lépések
-Ez a cikk összpontosított hogyan adatbázis tervezési és a kapcsolódó kötegelés technikák kódolási javíthatja az alkalmazás teljesítményét és méretezhetőségét. Ez azonban csak egy tényező az általános stratégiában. A jobb teljesítmény és méretezhetőség további részleteket lásd: [Azure SQL Database teljesítményét útmutatást az önálló adatbázisok](sql-database-performance-guidance.md) és [rugalmas készletek ára és teljesítménye szempontok](sql-database-elastic-pool-guidance.md).
+Ez a cikk arra irányul, hogy hogyan adatbázis tervezési és kódolási technikák kapcsolódó toobatching javíthatja az alkalmazás teljesítményét és méretezhetőségét. Ez azonban csak egy tényező az általános stratégiában. További módszereket tooimprove teljesítményét és méretezhetőségét, lásd: [Azure SQL Database teljesítményét útmutatást az önálló adatbázisok](sql-database-performance-guidance.md) és [rugalmas készletek ára és teljesítménye szempontok](sql-database-elastic-pool-guidance.md).
 

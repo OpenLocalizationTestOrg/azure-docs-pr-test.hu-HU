@@ -1,6 +1,6 @@
 ---
-title: "Azure Resource Manager-sablonok létrehozása és konfigurálása a Naplóelemzési munkaterület |} Microsoft Docs"
-description: "Azure Resource Manager-sablonok segítségével hozza létre és konfigurálja a Naplóelemzési munkaterület."
+title: "aaaUse Azure Resource Manager sablonok tooCreate, és konfigurálja a Naplóelemzési munkaterület |} Microsoft Docs"
+description: "Azure Resource Manager sablonok toocreate használja, és konfigurálja a Naplóelemzési munkaterület."
 services: log-analytics
 documentationcenter: 
 author: richrundmsft
@@ -14,43 +14,43 @@ ms.devlang: json
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: richrund
-ms.openlocfilehash: 505b741d14c594b22108298466c646bf723ce2d4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c8f413e982f5eeed73f463524ff6f239f26c9127
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-log-analytics-using-azure-resource-manager-templates"></a>Log Analytics használata Azure Resource Manager-sablonok kezelése
-Használhat [Azure Resource Manager-sablonok](../azure-resource-manager/resource-group-authoring-templates.md) létrehozása és konfigurálása a Naplóelemzési munkaterület. A sablonok végrehajtható műveletek közé tartoznak:
+Használhat [Azure Resource Manager-sablonok](../azure-resource-manager/resource-group-authoring-templates.md) toocreate és Naplóelemzési munkaterület konfigurálása. Hello feladatokat hajthat végre a sablonok közé:
 
 * Munkaterületek létrehozása
 * Megoldás hozzáadása
 * Mentett keresések létrehozása
 * Hozzon létre egy számítógépcsoportot
-* A Windows-ügynök telepítve az IIS-naplók számítógépekről gyűjtésének engedélyezése
+* Hello Windows-ügynök telepítve az IIS-naplók számítógépekről gyűjtésének engedélyezése
 * A Linux és Windows számítógépekről a teljesítményszámlálók adatainak összegyűjtése
 * A Linux rendszerű számítógépeken syslog események gyűjtése 
 * A Windows Eseménynapló eseményeinek gyűjtése
 * Egyéni eseménynaplók gyűjtése
-* A log analytics agent hozzáadása egy Azure virtuális gépen
-* Naplóelemzési Azure diagnostics használatával gyűjt index adatok konfigurálása
+* Hello napló analytics ügynök tooan Azure virtuális gépek hozzáadása
+* Log analytics-tooindex adatok Azure diagnostics használatával gyűjt konfigurálása
 
-Ez a cikk ismerteti a sablon minták, amelyek bemutatják az egyes készítése a konfigurációról sablonok alapján hajthat végre.
+Ez a cikk ismerteti a sablon minták, amelyek bemutatják az egyes hello konfigurációról sablonok alapján hajthat végre.
 
 ## <a name="create-and-configure-a-log-analytics-workspace"></a>Hozza létre és konfigurálja a Naplóelemzési munkaterület
-A következő sablon minta bemutatja, hogyan:
+hello következő sablon minta bemutatja, hogyan:
 
 1. Beleértve a beállítás az adatmegőrzés munkaterület létrehozása
-2. A munkaterület megoldások hozzáadása
+2. Adja hozzá a megoldások toohello munkaterület
 3. Mentett keresések létrehozása
 4. Hozzon létre egy számítógépcsoportot
-5. A Windows-ügynök telepítve az IIS-naplók számítógépekről gyűjtésének engedélyezése
+5. Hello Windows-ügynök telepítve az IIS-naplók számítógépekről gyűjtésének engedélyezése
 6. Logikai lemez teljesítményszámlálói gyűjteni a Linux rendszerű számítógépek (% Inode-OK; Szabad hely MB-ban; Foglalt hely; % / Mp átvitelek; Lemezolvasások/mp; Lemezírás/mp)
 7. Syslog-események gyűjtése Linux számítógépekről
-8. Hiba és figyelmeztetési események gyűjtése az alkalmazások eseménynaplójában a Windows rendszerű számítógépek
+8. Hiba és figyelmeztetési események gyűjtése hello alkalmazások eseménynaplójában keresse meg a Windows rendszerű számítógépek
 9. A Windows rendszerű számítógépek memória rendelkezésre álló memória (MB) teljesítményszámláló gyűjtése.
 10. Egy egyéni napló gyűjtése 
-11. IIS-napló és a Windows eseménynaplóiban keresse meg a storage-fiókok Azure diagnostics által írt gyűjtése
+11. IIS-napló és a Windows eseménynaplóiban keresse meg az Azure diagnostics tooa tárfiók által írt gyűjtése
 
 ```
 {
@@ -95,13 +95,13 @@ A következő sablon minta bemutatja, hogyan:
     "applicationDiagnosticsStorageAccountName": {
         "type": "string",
         "metadata": {
-          "description": "Name of the storage account with Azure diagnostics output"
+          "description": "Name of hello storage account with Azure diagnostics output"
         }
     },
     "applicationDiagnosticsStorageAccountResourceGroup": {
         "type": "string",
         "metadata": {
-          "description": "The resource group name containing the storage account with Azure diagnostics output"
+          "description": "hello resource group name containing hello storage account with Azure diagnostics output"
         }
     }
   },
@@ -426,12 +426,12 @@ A következő sablon minta bemutatja, hogyan:
 }
 
 ```
-### <a name="deploying-the-sample-template"></a>A minta sablon telepítése
-A minta sablon telepítéséhez:
+### <a name="deploying-hello-sample-template"></a>Hello minta sablon telepítése
+toodeploy hello mintasablon:
 
-1. A csatolt minta például egy fájl mentése`azuredeploy.json` 
-2. Szerkesztheti a sablont a kívánt konfigurációval rendelkezik
-3. A sablon telepítéséhez PowerShell vagy parancssor használatával
+1. Hello csatolt minta például egy fájl mentése`azuredeploy.json` 
+2. Hello toohave hello konfigurációt szeretne szerkesztése
+3. PowerShell vagy hello parancssori toodeploy hello sablon használata
 
 #### <a name="powershell"></a>PowerShell
 `New-AzureRmResourceGroupDeployment -Name <deployment-name> -ResourceGroupName <resource-group-name> -TemplateFile azuredeploy.json`
@@ -444,15 +444,15 @@ azure group deployment create <my-resource-group> <my-deployment-name> --Templat
 
 
 ## <a name="example-resource-manager-templates"></a>Példa Resource Manager-sablonok
-Az Azure gyors üzembe helyezés sablon gyűjtemény Naplóelemzési, beleértve a több sablont is tartalmaz:
+hello Azure gyors üzembe helyezés sablon gyűjtemény Naplóelemzési, beleértve a több sablont is tartalmaz:
 
-* [A virtuális gép Windows operációs rendszer és a napló Analytics Virtuálisgép-bővítmény telepítése](https://azure.microsoft.com/documentation/templates/201-oms-extension-windows-vm/)
-* [A napló Analytics Virtuálisgép-bővítmény linuxos virtuális gép telepítése](https://azure.microsoft.com/documentation/templates/201-oms-extension-ubuntu-vm/)
+* [Hello napló Analytics Virtuálisgép-bővítmény tartalmazó Windows rendszert futtató virtuális gép telepítése](https://azure.microsoft.com/documentation/templates/201-oms-extension-windows-vm/)
+* [Hello napló Analytics Virtuálisgép-bővítmény linuxos virtuális gép telepítése](https://azure.microsoft.com/documentation/templates/201-oms-extension-ubuntu-vm/)
 * [A figyelő Azure Site Recovery segítségével egy meglévő Naplóelemzési munkaterület](https://azure.microsoft.com/documentation/templates/asr-oms-monitoring/)
 * [Egy meglévő Naplóelemzési munkaterület használata Azure-webalkalmazások figyelése](https://azure.microsoft.com/documentation/templates/101-webappazure-oms-monitoring/)
 * [A figyelő SQL Azure-ban egy meglévő Naplóelemzési munkaterület](https://azure.microsoft.com/documentation/templates/101-sqlazure-oms-monitoring/)
 * [A Service Fabric-fürt telepítéséhez és figyeléséhez azt egy meglévő Naplóelemzési munkaterület](https://azure.microsoft.com/documentation/templates/service-fabric-oms/)
-* [A Service Fabric-fürt központi telepítése és a figyeléshez Naplóelemzési munkaterület létrehozása](https://azure.microsoft.com/documentation/templates/service-fabric-vmss-oms/)
+* [A Service Fabric-fürt központi telepítése, és hozzon létre egy Naplóelemzési munkaterület toomonitor azt](https://azure.microsoft.com/documentation/templates/service-fabric-vmss-oms/)
 
 ## <a name="next-steps"></a>Következő lépések
 * [Ügynökök üzembe helyezés virtuális gépek Azure Resource Manager-sablonok](log-analytics-azure-vm-extension.md)

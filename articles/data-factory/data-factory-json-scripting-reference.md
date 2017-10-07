@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Data Factory - JSON-Parancsprogramokról |} Microsoft Docs"
+title: "aaaAzure Data Factory - JSON-parancsfájl-kezelési referencia |} Microsoft Docs"
 description: "JSON-sémákat biztosít a Data Factory-entitásokhoz."
 services: data-factory
 documentationcenter: 
@@ -13,17 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 805106c0a5cdbff1f143f22a2ae59f6d2a0bf126
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 813fd752bb0ecb1b513d022b9f302325105dac31
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-data-factory---json-scripting-reference"></a>Az Azure Data Factory - JSON-Parancsprogramokról
 A cikkben JSON-sémákat és példák meghatározásához az Azure Data Factory entitások (adatcsatorna, tevékenység, adatkészlet és társított szolgáltatás).  
 
 ## <a name="pipeline"></a>Folyamat 
-A magas szintű struktúra folyamat meghatározása a következőképpen történik: 
+hello magas szintű struktúra folyamat meghatározása a következőképpen történik: 
 
 ```json
 {
@@ -38,22 +38,22 @@ A magas szintű struktúra folyamat meghatározása a következőképpen törté
 } 
 ```
 
-Következő táblázat az adatcsatorna JSON-definícióból a tulajdonságokat:
+Következő táblázat hello adatcsatorna JSON-definícióból hello tulajdonságokat:
 
 | Tulajdonság | Leírás | Szükséges
 -------- | ----------- | --------
-| név | A folyamat neve. Adjon meg egy nevet a műveletet jelenti, hogy a tevékenység vagy csővezeték van konfigurálva<br/><ul><li>Karakterek maximális száma: 260</li><li>Számnak betűvel vagy aláhúzással (_) kell kezdődnie</li><li>Következő karakterek nem engedélyezettek: ".", "+","?", "/", "<",">", "*", "%", "&", ":","\\"</li></ul> |Igen |
-| Leírás |A tevékenység vagy csővezeték alkalmazott leíró szöveg | Nem |
+| név | Hello folyamat nevét. Adjon meg egy nevet, amely jelöli, hogy a tevékenység hello hello műveletet, vagy csővezeték konfigurált toodo<br/><ul><li>A karakterek maximális száma: 260</li><li>Betűvel, számmal vagy aláhúzásjellel (_) kell kezdődnie</li><li>Következő karakterek nem engedélyezettek: ".", "+","?", "/", "<",">", "*", "%", "&", ":","\\"</li></ul> |Igen |
+| leírás |Milyen hello tevékenység vagy csővezeték leíró szöveg | Nem |
 | tevékenységek | A tevékenységek listáját tartalmazza. | Igen |
-| start |Kezdő dátum-idő az adatcsatornához. Meg kell [ISO formátum](http://en.wikipedia.org/wiki/ISO_8601). Például: 2014-10-14T16:32:41. <br/><br/>Akkor adja meg a helyi időt, például egy keleti TÉLI idő lehet. Példa: `2016-02-27T06:00:00**-05:00`, vagyis 6 AM becsült<br/><br/>A kezdő és záró tulajdonságok együtt adja meg az adatcsatorna aktív időszakát. Kimeneti szeletek csak előállítása és az aktív időszakban. |Nem<br/><br/>Ha end tulajdonság értékét adja meg, meg kell adnia a kezdő tulajdonság értéke.<br/><br/>A kezdő és befejező időpontja is lehet folyamatokat létrehozni üres. Állítsa az aktív időszakot futtatásához a tölcsér mindkét értéket meg kell adni. Ha nem adja meg a kezdési és befejezési időpontjai folyamat létrehozásakor beállíthatja azokat később a Set-AzureRmDataFactoryPipelineActivePeriod parancsmaggal. |
-| Vége |Befejező dátum-idő az adatcsatorna. Ha a megadott ISO-formátumban kell lennie. Például: 2014-10-14T17:32:41 <br/><br/>Akkor adja meg a helyi időt, például egy keleti TÉLI idő lehet. Példa: `2016-02-27T06:00:00**-05:00`, vagyis 6 AM becsült<br/><br/>A folyamat határozatlan idejű futásra, adja meg a 9999-09-09 end tulajdonság értékét. |Nem <br/><br/>Ha a start tulajdonság értékét adja meg, meg kell adnia end tulajdonság értéke.<br/><br/>Tekintse meg a megjegyzéseket az **start** tulajdonság. |
-| isPaused |Ha a feldolgozási sor igaz értékre való beállítása nem működik. Alapértelmezett érték = false. Ez a tulajdonság segítségével engedélyezheti vagy tilthatja le. |Nem |
-| pipelineMode |Az ütemezési módszer a következő feldolgozási sor fut. Két érték engedélyezett: (alapértelmezett), ütemezett alkalommal.<br/><br/>"Ütemezett" azt jelzi, hogy a folyamat az aktív időszak (kezdő és záró idő) alapján meghatározott időközönként. "Alkalommal" jelzi, hogy a folyamat csak egyszer fut-e. Létrehozását követően alkalommal adatcsatornák nem lehet módosítani/frissített jelenleg. Lásd: [Onetime csővezeték](data-factory-create-pipelines.md#onetime-pipeline) alkalommal beállítás vonatkozó további információért. |Nem |
-| ExpirationTime |Időtartam, amelyek a feldolgozási sor érvényes, és kiépített maradjon létrehozása után. Ha nem rendelkezik minden aktív sikertelen volt, vagy függőben lévő fut, a folyamat a rendszer automatikusan törli lejárati időpont után. |Nem |
+| start |Kezdő dátum-idő hello adatcsatorna. Meg kell [ISO formátum](http://en.wikipedia.org/wiki/ISO_8601). Például: 2014-10-14T16:32:41. <br/><br/>Már lehetséges toospecify a helyi időt, például egy keleti TÉLI idő. Példa: `2016-02-27T06:00:00**-05:00`, vagyis 6 AM becsült<br/><br/>hello kezdő és záró együtt adjon hello adatcsatorna aktív időszakát. Kimeneti szeletek csak előállítása és az aktív időszakban. |Nem<br/><br/>Ha hello end tulajdonság értékét adja meg, meg kell adnia hello start tulajdonság értéke.<br/><br/>hello indításának és befejezésének idejét is lehet üres toocreate folyamat. Mindkét értéket meg kell adni az aktív időszak hello csővezeték toorun tooset. Ha nem adja meg a kezdési és befejezési időpontjai folyamat létrehozásakor beállíthatja azokat később hello Set-AzureRmDataFactoryPipelineActivePeriod parancsmag használatával. |
+| Vége |Befejező dátum idejű hello adatcsatorna. Ha a megadott ISO-formátumban kell lennie. Például: 2014-10-14T17:32:41 <br/><br/>Már lehetséges toospecify a helyi időt, például egy keleti TÉLI idő. Példa: `2016-02-27T06:00:00**-05:00`, vagyis 6 AM becsült<br/><br/>toorun hello folyamat határozatlan ideig, adja meg 9999-09-09 hello hello end tulajdonság értékét. |Nem <br/><br/>Ha hello start tulajdonság értékét adja meg, meg kell adnia hello end tulajdonság értéke.<br/><br/>Lásd: a Megjegyzések a hello **start** tulajdonság. |
+| isPaused |Ha a készlet tootrue hello folyamat nem futtatható. Alapértelmezett érték = false. Ez a tulajdonság tooenable használja, vagy tiltsa le. |Nem |
+| pipelineMode |hello ütemezési módszer hello adatcsatorna fut. Két érték engedélyezett: (alapértelmezett), ütemezett alkalommal.<br/><br/>"Ütemezett" azt jelzi, hogy hello adatcsatorna tooits aktív időszaka (kezdő és záró idő) alapján meghatározott időközönként. "Alkalommal" azt jelzi, hogy hello folyamat csak egyszer fut le. Létrehozását követően alkalommal adatcsatornák nem lehet módosítani/frissített jelenleg. Lásd: [Onetime csővezeték](data-factory-create-pipelines.md#onetime-pipeline) alkalommal beállítás vonatkozó további információért. |Nem |
+| ExpirationTime |Időtartam, mely hello a feldolgozási sorban lévő érvényes és kiépített maradjon létrehozása után. Nincs minden aktív sikertelen volt, vagy fut, függőben lévő hello feldolgozási sor törlése esetén automatikusan egyszer eléri a hello lejárati ideje. |Nem |
 
 
 ## <a name="activity"></a>Tevékenység 
-A magas szintű struktúra egy tevékenységhez, a folyamat definition (tevékenységek elem) belül a következőképpen történik:
+Az adatcsatorna definícióját (tevékenységek elem) tevékenységet hello magas szintű struktúráját a következőképpen történik:
 
 ```json
 {
@@ -76,46 +76,46 @@ A magas szintű struktúra egy tevékenységhez, a folyamat definition (tevéken
 }
 ```
 
-A következő táblázat a tulajdonságokat a tevékenység JSON-definícióból ismertetik:
+A következő táblázat azt mutatják be hello tevékenység JSON-definícióból hello tulajdonságokat:
 
 | Címke | Leírás | Szükséges |
 | --- | --- | --- |
-| név |A tevékenység nevét. Adjon meg egy nevet a műveletet jelenti, hogy a tevékenység van konfigurálva<br/><ul><li>Karakterek maximális száma: 260</li><li>Számnak betűvel vagy aláhúzással (_) kell kezdődnie</li><li>Következő karakterek nem engedélyezettek: ".", "+","?", "/", "<",">", "*", "%", "&", ":","\\"</li></ul> |Igen |
-| Leírás |Mire használható a tevékenységet leíró szöveg. |Igen |
-| type |Adja meg a tevékenység típusa. Tekintse meg a [ADATTÁROLÓKHOZ](#data-stores) és [adatok ÁTALAKÍTÁSA tevékenységek](#data-transformation-activities) szakaszok a tevékenységek különböző típusú. |Igen |
-| Bemenetek |A tevékenység által felhasznált bemeneti táblák<br/><br/>`// one input table`<br/>`"inputs":  [ { "name": "inputtable1"  } ],`<br/><br/>`// two input tables` <br/>`"inputs":  [ { "name": "inputtable1"  }, { "name": "inputtable2"  } ],` |Igen |
-| kimenetek |A tevékenység által használt kimeneti táblák.<br/><br/>`// one output table`<br/>`"outputs":  [ { "name": “outputtable1” } ],`<br/><br/>`//two output tables`<br/>`"outputs":  [ { "name": “outputtable1” }, { "name": “outputtable2” }  ],` |Igen |
-| linkedServiceName |A tevékenység által használt társított szolgáltatás neve. <br/><br/>Egy tevékenység szükség lehet, hogy megadja a szükséges számítási környezet mutató társított szolgáltatás. |HDInsight tevékenységek, az Azure Machine Learning tevékenységek és a tárolt eljárási tevékenység igen. <br/><br/>Nem az összes többi |
-| typeProperties |A typeProperties szakaszban tulajdonságok attól függnek, hogy a tevékenység típusa. |Nem |
-| Házirend |A tevékenység a futásidejű működését befolyásoló házirendek. Ha nincs megadva, az alapértelmezett házirendek használhatók. |Nem |
-| A Feladatütemező |"Feladatütemező" tulajdonság a tevékenység kívánt ütemezés meghatározására szolgál. A altulajdonságok ugyanazok, mint az a [availability tulajdonság DataSet adatkészletben](data-factory-create-datasets.md#dataset-availability). |Nem |
+| név |Hello tevékenység nevét. Adja meg egy nevet, hogy hello tevékenység hello műveletet képviselő úgy toodo<br/><ul><li>A karakterek maximális száma: 260</li><li>Betűvel, számmal vagy aláhúzásjellel (_) kell kezdődnie</li><li>Következő karakterek nem engedélyezettek: ".", "+","?", "/", "<",">", "*", "%", "&", ":","\\"</li></ul> |Igen |
+| leírás |Milyen hello tevékenységet leíró szöveg használható. |Igen |
+| type |Hello tevékenység hello típusát határozza meg. Lásd: hello [ADATTÁROLÓKHOZ](#data-stores) és [adatok ÁTALAKÍTÁSA tevékenységek](#data-transformation-activities) szakaszok a tevékenységek különböző típusú. |Igen |
+| Bemenetek |Hello tevékenység által felhasznált bemeneti táblák<br/><br/>`// one input table`<br/>`"inputs":  [ { "name": "inputtable1"  } ],`<br/><br/>`// two input tables` <br/>`"inputs":  [ { "name": "inputtable1"  }, { "name": "inputtable2"  } ],` |Igen |
+| kimenetek |Hello tevékenység által használt kimeneti táblák.<br/><br/>`// one output table`<br/>`"outputs":  [ { "name": “outputtable1” } ],`<br/><br/>`//two output tables`<br/>`"outputs":  [ { "name": “outputtable1” }, { "name": “outputtable2” }  ],` |Igen |
+| linkedServiceName |Hello tevékenység által használt hello társított szolgáltatás neve. <br/><br/>Egy tevékenység lehet szükség, hogy megadja a kapcsolódó hello szolgáltatást, amely a toohello szükséges számítási környezet. |HDInsight tevékenységek, az Azure Machine Learning tevékenységek és a tárolt eljárási tevékenység igen. <br/><br/>Minden egyéb esetében: nem |
+| typeProperties |Hello typeProperties szakaszban tulajdonságok attól függnek, hogy hello tevékenység típusa. |Nem |
+| szabályzat |Hello tevékenység hello futásidejű működését befolyásoló házirendek. Ha nincs megadva, az alapértelmezett házirendek használhatók. |Nem |
+| A Feladatütemező |"Feladatütemező" tulajdonság hello tevékenység ütemezés használt toodefine szükséges. A altulajdonságok vannak hello megegyeznek a hello azokat a hello [availability tulajdonság DataSet adatkészletben](data-factory-create-datasets.md#dataset-availability). |Nem |
 
 ### <a name="policies"></a>Házirendek
-A házirendek milyen hatással a futtatási viselkedés tevékenység, kifejezetten a szelet egy tábla feldolgozásakor. A következő táblázat a részletesen.
+A házirendek milyen hatással hello futtatási viselkedés tevékenység, kifejezetten egy tábla hello szelet feldolgozásakor. a következő táblázat hello hello részletes adatokat biztosít.
 
 | Tulajdonság | Megengedett értékek | Alapértelmezett érték | Leírás |
 | --- | --- | --- | --- |
-| Egyidejűségi |Egész szám <br/><br/>A maximális érték: 10 |1 |A tevékenység egyidejű végrehajtások száma.<br/><br/>Meghatározza, hogy a párhuzamos tevékenység végrehajtások, amely akkor fordulhat elő, a másik szeletek számát. Például ha egy tevékenység kell végighaladnia rendelkezésre álló adatok, nagyobb feldolgozási értéke számos felgyorsítja az adatok feldolgozása. |
-| executionPriorityOrder |NewestFirst<br/><br/>OldestFirst |OldestFirst |Meghatározza, hogy feldolgozott adatszeletek sorrendje.<br/><br/>Például ha 2 szeletek (du. 4: egy azonban és délután 5 óra egy másik tulajdonságnak), és mindkét végrehajtási függőben van. Ha a executionPriorityOrder NewestFirst kell, a szelet, délután 5 óra lesz elsőként feldolgozva. Hasonlóképpen ha OldestFIrst kell executionPriorityORder, majd a szelet du. 4: dolgoz fel. |
-| Próbálja meg újra |Egész szám<br/><br/>A maximális érték 10 is lehet. |0 |Az adatok feldolgozása a szeletre vonatkozó hiba van megjelölve, mielőtt újrapróbálkozások száma. Egy adatszelet tevékenység végrehajtása a rendszer ismét megkísérli legfeljebb a megadott újrapróbálkozások maximális számát. Az újra gombra a lehető leghamarabb a meghibásodás után történik. |
-| Időtúllépés |A TimeSpan |00:00:00 |A tevékenység időkorlátja. . Példa: 00:10:00 (azt jelenti, időtúllépés 10 perc)<br/><br/>Ha az érték nincs megadva vagy 0, az időtúllépési érték végtelen.<br/><br/>A szelet adatok feldolgozási ideje meghaladja a időtúllépési értéket, ha azt megszakadt, és a rendszer megkísérli újra feldolgozását. Az újrapróbálkozások száma attól függ, hogy az újra gombra tulajdonság. Időtúllépés történik, ha a beállítás időtúllépésbe került. |
-| Késleltetés |A TimeSpan |00:00:00 |Adja meg a késleltetés, elindul a szelet feldolgozásának előtt.<br/><br/>Egy adatszelet tevékenység végrehajtása után a késleltetési idő legyen a várt végrehajtási ideje elmúlt elindult.<br/><br/>. Példa: 00:10:00 (magában foglalja a késleltetést a 10 perc) |
-| hosszú újrapróbálkozás |Egész szám<br/><br/>A maximális érték: 10 |1 |Sikertelen volt a szelet végrehajtása előtt hosszú újrapróbálkozási kísérletek száma.<br/><br/>hosszú újrapróbálkozás kísérletek által longRetryInterval távolságban helyezkednek el. Ha meg kell adnia egy újrapróbálkozási kísérletek között eltelt idő, így hosszú újrapróbálkozás használja. Ha mind az újra gombra, és a hosszú újrapróbálkozás meg van adva, minden hosszú újrapróbálkozás kísérlet tartalmazza újrapróbálkozások és kísérletek maximális számát. Próbálkozzon újra * hosszú újrapróbálkozás.<br/><br/>Ha például a tevékenység-házirend van a következő beállításokat:<br/>Próbálkozzon újra: 3<br/>hosszú újrapróbálkozás: 2. régiója<br/>longRetryInterval: 01:00:00<br/><br/>Tegyük fel, nincs végrehajtandó csak egy szelet (állapot vár) és a tevékenység végrehajtása meghiúsul minden alkalommal. Eredetileg nem lenne 3 egymást követő végrehajtási kísérletek. A szelet állapota minden kísérlet után újra lehet. Miután először 3 kísérletet keresztül történik, a szelet állapota hosszú újrapróbálkozás lehet.<br/><br/>Egy óra (Ez azt jelenti, hogy longRetryInteval tartozó érték) nem lenne a 3 egymást követő végrehajtási kísérletek egy másik készlet. Ezt követően a szelet állapota akkor sikertelen, és nincs további újrapróbálkozások volna kísérli meg a. Ezért a teljes 6 történt kísérlet.<br/><br/>Ha bármely végrehajtása sikeres, a szelet állapota Kész és nincs további újrapróbálkozások próbált vannak.<br/><br/>hosszú újrapróbálkozás függő adatok nem determinisztikus időpontokban érkeznek vagy flaky akkor következik be, mely az adatfeldolgozás alatt a környezetben használható. Ilyen esetekben újrapróbálkozások egymás után nem segíthet ezzel, és ezzel egy időszak után időt a kívánt kimeneti eredményez.<br/><br/>Járjon el a Word: nincs beállítva hosszú újrapróbálkozás vagy longRetryInterval magas értékeit. Általában a magasabb értékkel rendszeres problémákkal utalnak. |
-| longRetryInterval |A TimeSpan |00:00:00 |Hosszú újrapróbálkozások közötti késleltetés |
+| Egyidejűségi |Egész szám <br/><br/>A maximális érték: 10 |1 |Egyidejű végrehajtások hello tevékenység száma.<br/><br/>Meghatározza, hogy hello száma párhuzamos tevékenység végrehajtások, amely akkor fordulhat elő, a másik szeletek. Például ha egy tevékenység toogo keresztül elérhető adatokat, nagyobb feldolgozási értéke számos felgyorsítja a hello adatok feldolgozása. |
+| executionPriorityOrder |NewestFirst<br/><br/>OldestFirst |OldestFirst |Meghatározza, hogy hello sorrendje feldolgozott adatszeletek.<br/><br/>Például ha 2 szeletek (du. 4: egy azonban és délután 5 óra egy másik tulajdonságnak), és mindkét végrehajtási függőben van. Ha hello executionPriorityOrder toobe NewestFirst, hello szelet, délután 5 óra lesz elsőként feldolgozva. Hasonlóképpen ha hello executionPriorityORder toobe OldestFIrst, majd du. 4: hello szelet feldolgozása. |
+| retry |Egész szám<br/><br/>A maximális érték 10 is lehet. |0 |Hello adatfeldolgozási hello adatszelethez előtt újrapróbálkozások száma hiba van megjelölve. Egy adatszelet tevékenység végrehajtása a rendszer ismét megkísérli megadott toohello mentése újrapróbálkozások száma. hello újrapróbálkozási minél hamarabb hello meghibásodás után történik. |
+| timeout |A TimeSpan |00:00:00 |Hello tevékenység időkorlátját. . Példa: 00:10:00 (azt jelenti, időtúllépés 10 perc)<br/><br/>Ha az érték nincs megadva vagy 0, hello időtúllépési érték végtelen.<br/><br/>Szelet hello adatok feldolgozási ideje meghaladja a hello időtúllépési értéket, ha azt megszakadt, és hello rendszer próbál tooretry hello feldolgozása. Az újrapróbálkozások számát hello hello újrapróbálkozási tulajdonság függ. Időtúllépés esetén hello beállítás tooTimedOut. |
+| Késleltetés |A TimeSpan |00:00:00 |Adja meg a hello késleltetés hello szelet elindítja az adatok feldolgozása előtt.<br/><br/>egy adatszelet tevékenységet hello végrehajtása után hello késleltetés hello várt végrehajtási ideje elmúlt elindult.<br/><br/>. Példa: 00:10:00 (magában foglalja a késleltetést a 10 perc) |
+| hosszú újrapróbálkozás |Egész szám<br/><br/>A maximális érték: 10 |1 |hosszú újrapróbálkozások számát hello tett kísérletet, mielőtt hello szelet végrehajtása sikertelen volt.<br/><br/>hosszú újrapróbálkozás kísérletek által longRetryInterval távolságban helyezkednek el. Ha toospecify kell egy újrapróbálkozási kísérletek között eltelt idő, így hosszú újrapróbálkozás használja. Ha mind az újra gombra, és a hosszú újrapróbálkozás meg van adva, minden hosszú újrapróbálkozás kísérlet tartalmazza az ismételt kísérletek számát, és hello kísérletek maximális száma újrapróbálkozási * hosszú újrapróbálkozás.<br/><br/>Ha például tudunk hello hello tevékenység házirend beállításai a következő:<br/>Próbálkozzon újra: 3<br/>hosszú újrapróbálkozás: 2. régiója<br/>longRetryInterval: 01:00:00<br/><br/>Feltételezik, hogy csak egy szelet tooexecute (állapot vár) hello tevékenység végrehajtási minden olyan alkalommal sikertelen lesz. Eredetileg nem lenne 3 egymást követő végrehajtási kísérletek. Minden kísérlet után hello szelet állapota lenne az újra gombra. Miután először 3 kísérletet: keresztül, hello szelet állapota hosszú újrapróbálkozás lesz.<br/><br/>Egy óra (Ez azt jelenti, hogy longRetryInteval tartozó érték) nem lenne a 3 egymást követő végrehajtási kísérletek egy másik készlet. Ezt követően hello szelet állapota akkor sikertelen, és nincs további újrapróbálkozások volna kísérli meg. Ezért a teljes 6 történt kísérlet.<br/><br/>Ha bármely végrehajtása sikeres, hello szelet állapota Kész és nincs további újrapróbálkozások próbált vannak.<br/><br/>hosszú újrapróbálkozás függő adatok nem determinisztikus időpontokban érkeznek vagy hello teljes környezete alapján akkor következik be, mely az adatfeldolgozás flaky használható. Ezekben az esetekben nem újrapróbálkozások egymás után ez segíthet, és kimeneti így időt eredményez hello időköz után szükséges.<br/><br/>Járjon el a Word: nincs beállítva hosszú újrapróbálkozás vagy longRetryInterval magas értékeit. Általában a magasabb értékkel rendszeres problémákkal utalnak. |
+| longRetryInterval |A TimeSpan |00:00:00 |hello kísérletek hosszú újrapróbálkozási kísérletek között eltelt idő |
 
 ### <a name="typeproperties-section"></a>typeProperties szakasz
-A typeProperties szakaszban nem egyezik, minden egyes tevékenységhez. Átalakítás tevékenységek rendelkezik csak a típus tulajdonságokat. Lásd: [adatok ÁTALAKÍTÁSA tevékenységek](#data-transformation-activities) szakasz ebben a cikkben egy folyamat átalakítása tevékenységek meghatározó JSON-minták. 
+hello typeProperties szakaszban nem egyezik, minden egyes tevékenységhez. Átalakítás tevékenység csak a hello típus tulajdonságokkal rendelkezik. Lásd: [adatok ÁTALAKÍTÁSA tevékenységek](#data-transformation-activities) szakasz ebben a cikkben egy folyamat átalakítása tevékenységek meghatározó JSON-minták. 
 
-**Másolási tevékenység** rendelkezik-e a typeProperties szakasz két alszakaszokat: **forrás** és **fogadó**. Lásd: [ADATTÁROLÓKHOZ](#data-stores) szakasz ebben a cikkben, amelyek bemutatják, hogyan használható az adatok JSON-minták tárolót, mint a forrás és fogadó, vagy a. 
+**Másolási tevékenység** rendelkezik-e két alszakaszokat hello typeProperties szakasz: **forrás** és **fogadó**. Lásd: [ADATTÁROLÓKHOZ](#data-stores) szakasz ebben a cikkben a JSON-minták, hogy hogyan toouse egy adatok tárolót, mint a forrás és fogadó vagy megjelenítése. 
 
-### <a name="sample-copy-pipeline"></a>A minta másolási folyamat
-A következő minta feldolgozási típusú egy tevékenység nincs **másolási** a a **tevékenységek** szakasz. Ez a példa a [másolási tevékenység](data-factory-data-movement-activities.md) másol adatokat az Azure Blob storage Azure SQL-adatbázishoz. 
+### <a name="sample-copy-pipeline"></a>Minta másolási folyamat
+A következő minta csővezeték hello, nincs típusú egy tevékenység **másolása** a hello **tevékenységek** szakasz. Ez a példa hello [másolási tevékenység](data-factory-data-movement-activities.md) másol adatokat az Azure Blob storage tooan Azure SQL-adatbázis. 
 
 ```json
 {
   "name": "CopyPipeline",
   "properties": {
-    "description": "Copy data from a blob to Azure SQL table",
+    "description": "Copy data from a blob tooAzure SQL table",
     "activities": [
       {
         "name": "CopyFromBlobToSQL",
@@ -154,18 +154,18 @@ A következő minta feldolgozási típusú egy tevékenység nincs **másolási*
 } 
 ```
 
-Vegye figyelembe a következő szempontokat:
+Vegye figyelembe a következő pontok hello:
 
-* A tevékenységek szakaszban csak egyetlen tevékenység van, amelynek a **típusa** **Copy** értékre van beállítva.
-* A tevékenység bemenetének beállítása **InputDataset**, a kimeneté pedig **OutputDataset**.
-* A **typeProperties** szakaszban forrástípusként a **BlobSource**, fogadótípusként pedig az **SqlSink** érték van megadva.
+* Hello tevékenységek szakaszban csak egy tevékenység nincs amelynek **típus** értéke túl**másolási**.
+* Adjon meg a hello tevékenység értéke túl**InputDataset** és hello tevékenység túl van-e állítva a kimeneti**OutputDataset**.
+* A hello **typeProperties** szakaszban **BlobSource** hello forrás típusaként van megadva, és **SqlSink** hello a fogadó típusa van megadva.
 
-Lásd: [ADATTÁROLÓKHOZ](#data-stores) szakasz ebben a cikkben, amelyek bemutatják, hogyan használható az adatok JSON-minták tárolót, mint a forrás és fogadó, vagy a.    
+Lásd: [ADATTÁROLÓKHOZ](#data-stores) szakasz ebben a cikkben a JSON-minták, hogy hogyan toouse egy adatok tárolót, mint a forrás és fogadó vagy megjelenítése.    
 
-Ez az adatcsatorna létrehozásának részletes útmutatást lásd: [oktatóanyag: adatok másolása az Blob-tároló az SQL-adatbázis](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md). 
+Ez az adatcsatorna létrehozásának részletes útmutatást lásd: [oktatóanyag: adatok másolása a Blob Storage tooSQL adatbázis](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md). 
 
-### <a name="sample-transformation-pipeline"></a>A minta átalakítási folyamat
-A következő minta feldolgozási típusú egy tevékenység nincs **HDInsightHive** a a **tevékenységek** szakasz. Ez a példa a [HDInsight Hive tevékenység](data-factory-hive-activity.md) átalakítja az adatokat a egy Azure Blob storage egy Azure HDInsight Hadoop-fürt Hive parancsfájl futtatásával. 
+### <a name="sample-transformation-pipeline"></a>Minta átalakítási folyamat
+A következő minta csővezeték hello, nincs típusú egy tevékenység **HDInsightHive** a hello **tevékenységek** szakasz. Ez a példa hello [HDInsight Hive tevékenység](data-factory-hive-activity.md) átalakítja az adatokat a egy Azure Blob storage egy Azure HDInsight Hadoop-fürt Hive parancsfájl futtatásával. 
 
 ```json
 {
@@ -212,37 +212,37 @@ A következő minta feldolgozási típusú egy tevékenység nincs **HDInsightHi
 }
 ```
 
-Vegye figyelembe a következő szempontokat: 
+Vegye figyelembe a következő pontok hello: 
 
-* A tevékenységek szakasz csak egy tevékenység nincs amelynek **típus** értéke **HDInsightHive**.
-* A **partitionweblogs.hql** Hive-parancsfájl tárolása az Azure Storage-fiókban (az **AzureStorageLinkedService** nevű scriptLinkedService szolgáltatás által megadva), és az **adfgetstarted** tároló **script** mappájában történik.
-* A **meghatározása** szakasz használatával adja meg a Hive értékként a hive-parancsfájl átadott futásidejű beállítások (például `${hiveconf:inputtable}`, `${hiveconf:partitionedtable}`).
+* Hello tevékenységek szakaszban csak egy tevékenység nincs amelynek **típus** értéke túl**HDInsightHive**.
+* hello Hive parancsfájl, **partitionweblogs.hql**, hello Azure storage-fiók tárolva van (hello scriptLinkedService nevű által megadott **AzureStorageLinkedService**), majd a  **parancsfájl** hello tároló mappa **adfgetstarted**.
+* Hello **meghatározása** szakaszban használt toospecify hello futtatási beállítások Hive értékként toohello hive parancsfájl átadott (például `${hiveconf:inputtable}`, `${hiveconf:partitionedtable}`).
 
 Lásd: [adatok ÁTALAKÍTÁSA tevékenységek](#data-transformation-activities) szakasz ebben a cikkben egy folyamat átalakítása tevékenységek meghatározó JSON-minták.
 
-Ez az adatcsatorna létrehozásának részletes útmutatást lásd: [oktatóanyag: felépítheti első folyamatát Hadoop-fürt használatával adatfeldolgozásra történő](data-factory-build-your-first-pipeline.md). 
+Ez az adatcsatorna létrehozásának részletes útmutatást lásd: [oktatóanyag: az első adatcsatorna tooprocess adatok Hadoop-fürt létrehozása](data-factory-build-your-first-pipeline.md). 
 
 ## <a name="linked-service"></a>Társított szolgáltatások
-A magas szintű struktúra, a társított szolgáltatás definíciójának a következőképpen történik:
+a társított szolgáltatás definíciójának hello magas szintű struktúrája a következőképpen történik:
 
 ```json
 {
-    "name": "<name of the linked service>",
+    "name": "<name of hello linked service>",
     "properties": {
-        "type": "<type of the linked service>",
+        "type": "<type of hello linked service>",
         "typeProperties": {
         }
     }
 }
 ```
 
-A következő táblázat a tulajdonságokat a tevékenység JSON-definícióból ismertetik:
+A következő táblázat azt mutatják be hello tevékenység JSON-definícióból hello tulajdonságokat:
 
 | Tulajdonság | Leírás | Szükséges |
 | -------- | ----------- | -------- | 
-| név | A társított szolgáltatás neve. | Igen | 
-| Tulajdonságok - típus | A társított szolgáltatás típusa. Például: az Azure Storage, Azure SQL Database. |
-| typeProperties | A typeProperties szakasz különböző minden adattároló vagy számítási környezet elemeket tartalmaz. Lásd: [adattárolókhoz](#datastores) szakasz az összes adat tárolására társított szolgáltatások és [számítási környezetek](#compute-environments) a számítás kapcsolódó szolgáltatások |   
+| név | Hello társított szolgáltatás neve. | Igen | 
+| Tulajdonságok - típus | Hello típusú társított szolgáltatás. Például: az Azure Storage, Azure SQL Database. |
+| typeProperties | hello typeProperties szakasz különböző minden adattároló vagy számítási környezet elemeket tartalmaz. Lásd: [adattárolókhoz](#datastores) szakasz az összes hello adattároló társított szolgáltatások és [számítási környezetek](#compute-environments) összes hello a számítási összekapcsolt szolgáltatások |   
 
 ## <a name="dataset"></a>Adatkészlet 
 Az Azure Data Factory dataset a következők:
@@ -252,12 +252,12 @@ Az Azure Data Factory dataset a következők:
     "name": "<name of dataset>",
     "properties": {
         "type": "<type of dataset: AzureBlob, AzureSql etc...>",
-        "external": <boolean flag to indicate external data. only for input datasets>,
-        "linkedServiceName": "<Name of the linked service that refers to a data store.>",
+        "external": <boolean flag tooindicate external data. only for input datasets>,
+        "linkedServiceName": "<Name of hello linked service that refers tooa data store.>",
         "structure": [
             {
-                "name": "<Name of the column>",
-                "type": "<Name of the type>"
+                "name": "<Name of hello column>",
+                "type": "<Name of hello type>"
             }
         ],
         "typeProperties": {
@@ -265,8 +265,8 @@ Az Azure Data Factory dataset a következők:
             "<type specific property 2>": "<value 2>",
         },
         "availability": {
-            "frequency": "<Specifies the time unit for data slice production. Supported frequency: Minute, Hour, Day, Week, Month>",
-            "interval": "<Specifies the interval within the defined frequency. For example, frequency set to 'Hour' and interval set to 1 indicates that new data slices should be produced hourly>"
+            "frequency": "<Specifies hello time unit for data slice production. Supported frequency: Minute, Hour, Day, Week, Month>",
+            "interval": "<Specifies hello interval within hello defined frequency. For example, frequency set too'Hour' and interval set too1 indicates that new data slices should be produced hourly>"
         },
        "policy":
         {      
@@ -275,28 +275,28 @@ Az Azure Data Factory dataset a következők:
 }
 ```
 
-A következő táblázat ismerteti a fenti JSON-tulajdonságokat:   
+a következő táblázat hello hello fent JSON-tulajdonságokat ismerteti:   
 
 | Tulajdonság | Leírás | Szükséges | Alapértelmezett |
 | --- | --- | --- | --- |
-| név | A DataSet adatkészlet neve. Lásd: [Azure Data Factory - elnevezési szabályait](data-factory-naming-rules.md) elnevezési szabályait. |Igen |NA |
-| type | A dataset típusa. Meg kell adni az Azure Data Factory által támogatott típusok egyikét (például: AzureBlob, AzureSqlTable). Lásd: [ADATTÁROLÓKHOZ](#data-stores) szakasz az adatok áruházak és a Data Factory által támogatott adatkészlet-típusok. | 
-| struktúra | Az adatkészlet sémája. Tartalmaz oszlopok, azok típusok, stb. | Nem |NA |
-| typeProperties | A kiválasztott típus megfelelő tulajdonságok. Lásd: [ADATTÁROLÓKHOZ](#data-stores) szakaszban a támogatott típusok és azok tulajdonságait. |Igen |NA |
-| external | Logikai jelző, amely adja meg, hogy a data factory-folyamathoz explicit módon létrehozott adatkészlet vagy nem. |Nem |hamis |
-| rendelkezésre állás | A feldolgozási időszakában vagy az adatkészlet üzemi slicing modell határoz meg. Az adatkészlet modell felosztás a részletekért lásd: [ütemezés és a végrehajtás](data-factory-scheduling-and-execution.md) cikk. |Igen |NA |
-| Házirend |Meghatározza a feltételek vagy a feltétellel, hogy a dataset szeletek teljesítenie kell. <br/><br/>További információkért lásd: [Dataset házirend](#Policy) szakasz. |Nem |NA |
+| név | Hello DataSet adatkészlet neve. Lásd: [Azure Data Factory - elnevezési szabályait](data-factory-naming-rules.md) elnevezési szabályait. |Igen |NA |
+| type | Hello dataset típusa. Adjon meg egy Azure Data Factory által támogatott hello típusok (például: AzureBlob, AzureSqlTable). Lásd: [ADATTÁROLÓKHOZ](#data-stores) szakasz az összes hello adattárolókhoz és a Data Factory által támogatott adatkészlet-típusok. | 
+| struktúra | Hello adatkészlet sémája. Tartalmaz oszlopok, azok típusok, stb. | Nem |NA |
+| typeProperties | Tulajdonságok toohello megfelelő típust választotta. Lásd: [ADATTÁROLÓKHOZ](#data-stores) szakaszban a támogatott típusok és azok tulajdonságait. |Igen |NA |
+| external | Logikai jelző toospecify, hogy a DataSet adatkészlet explicit módon hozzák a data factory-folyamat vagy nem. |Nem |hamis |
+| rendelkezésre állás | Feldolgozási időszakát, vagy a felosztás hello dataset üzemi modell hello hello határozza meg. További részletek a felosztás modell hello adatkészlet: [ütemezés és a végrehajtás](data-factory-scheduling-and-execution.md) cikk. |Igen |NA |
+| szabályzat |Hello feltételek vagy hello dataset szeletek kell néhány előfeltételnek hello feltételt határoz meg. <br/><br/>További információkért lásd: [Dataset házirend](#Policy) szakasz. |Nem |NA |
 
-Minden egyes oszlopának a **struktúra** a szakasz a következő tulajdonságokkal:
+Minden egyes oszlopának hello **struktúra** szakasz hello következő tulajdonságai:
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| név |Az oszlop neve. |Igen |
-| type |Az oszlop adattípusát.  |Nem |
-| Kulturális környezet |.NET-alapú kulturális környezet lehet használni, ha a típus meg van adva, de a .NET-típus `Datetime` vagy `Datetimeoffset`. Alapértelmezett érték a `en-us`. |Nem |
-| Formátumban |Formázó karakterlánc, használandó típus van megadva, és a .NET-típus `Datetime` vagy `Datetimeoffset`. |Nem |
+| név |Hello oszlop neve. |Igen |
+| type |Hello oszlop adattípusát.  |Nem |
+| Kulturális környezet |.NET-alapú kulturális környezet toobe használható, ha a típus meg van adva, de a .NET-típus `Datetime` vagy `Datetimeoffset`. Alapértelmezett érték a `en-us`. |Nem |
+| Formátumban |Formázza használható, ha a típus meg van adva, de .NET típusú karakterlánc toobe `Datetime` vagy `Datetimeoffset`. |Nem |
 
-A következő példában a dataset adatkészletben három oszlopot `slicetimestamp`, `projectname`, és `pageviews` és típus: karakterlánc, karakterlánc és tizedes kulcsattribútumokkal.
+A következő példa hello, hello dataset adatkészletben három oszlopot `slicetimestamp`, `projectname`, és `pageviews` és típus: karakterlánc, karakterlánc és decimális rendre.
 
 ```json
 structure:  
@@ -307,17 +307,17 @@ structure:
 ]
 ```
 
-A következő táblázat ismerteti a használható tulajdonságok a **rendelkezésre állási** szakasz:
+hello következő táblázat ismerteti a hello használható tulajdonságok **rendelkezésre állási** szakasz:
 
 | Tulajdonság | Leírás | Szükséges | Alapértelmezett |
 | --- | --- | --- | --- |
-| gyakoriság |Megadja a dataset szelet üzemi időegységét.<br/><br/><b>Támogatott gyakoriság</b>: perc, óra, nap, hét, hónap |Igen |NA |
-| időköz |Megadja egy szorzóval gyakoriság<br/><br/>"X időköz" határozza meg, milyen gyakran a szelet jön létre.<br/><br/>Ha módosítania kell a adatkészlet kell szeletelhetők óránként, beállíthatja <b>gyakorisága</b> való <b>óra</b>, és <b>időköz</b> való <b>1</b>.<br/><br/><b>Megjegyzés:</b>: perces gyakoriságot ad meg, ha azt javasoljuk, hogy beállította az intervallum nem lehet kisebb, mint 15 |Igen |NA |
-| stílus |Meghatározza, hogy a szelet akkor a rendszer az időköz kezdő/végén.<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>Ha gyakoriságának beállítása hónapot és stílus EndOfInterval beállítása, a szelet hónap utolsó napján elő. Ha a stílus StartOfInterval van megadva, a szelet hónap első napján elő.<br/><br/>Ha nap gyakoriságának beállítása és stílus EndOfInterval beállítása, a szelet elő az elmúlt órában a nap.<br/><br/>Ha gyakoriságának beállítása óra és stílus EndOfInterval beállítása, a szelet elő az órát végén. Például egy adatszelethez du. 1 – 2 óra időszakban, a szelet hozzák 2 du.. |Nem |EndOfInterval |
-| anchorDateTime |Határozza meg az idő az ütemező által használt adatkészlet szelet határok számítási abszolút pozíciója. <br/><br/><b>Megjegyzés:</b>: Ha a AnchorDateTime részekből dátum, amelyek részletesebben, mint a gyakorisága, akkor a részletesebb részek figyelmen kívül lesznek hagyva. <br/><br/>Például ha a <b>időköz</b> van <b>óránkénti</b> (gyakoriság: óra és időköz: 1) és a <b>AnchorDateTime</b> tartalmaz <b>percet és másodpercet</b>a <b>percet és másodpercet</b> a AnchorDateTime részei a rendszer figyelmen kívül hagyja. |Nem |01/01/0001 |
-| Az offset |TimeSpan érték, amely a kezdő és a záró összes adatkészlet szeletek vette. <br/><br/><b>Megjegyzés:</b>: Ha anchorDateTime és az offset is meg van adva, az eredmény a kombinált shift-e. |Nem |NA |
+| frequency |Megadja a dataset szelet üzemi hello időegységét.<br/><br/><b>Támogatott gyakoriság</b>: perc, óra, nap, hét, hónap |Igen |NA |
+| interval |Megadja egy szorzóval gyakoriság<br/><br/>"X időköz" határozza meg, milyen gyakran hello szelet jön létre.<br/><br/>Ha dataset toobe szeletelhetők óránként kell hello, akkor be <b>gyakoriság</b> túl<b>óra</b>, és <b>időköz</b> túl<b>1</b>.<br/><br/><b>Megjegyzés:</b>: perces gyakoriságot ad meg, ha azt javasoljuk, hogy állítsa a 15-nál kisebb hello időköz toono |Igen |NA |
+| stílus |Meghatározza, hogy kell-e hello szelet előállított hello kezdő/záró hello időköz.<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>Ha gyakoriságának beállítása tooMonth és stílus tooEndOfInterval van beállítva, hello szelet a hónap utolsó napján hello elő. Ha hello stílus be van állítva tooStartOfInterval, hello szelet elő hello a hónap első napján.<br/><br/>Ha gyakoriságának beállítása tooDay és stílus tooEndOfInterval van beállítva, hello szelet elő az elmúlt egy órában hello nap hello.<br/><br/>Ha gyakoriság tooHour és stílus tooEndOfInterval van beállítva, hello szelet hello végének hello keletkezik. Például a szelet du. 1 – 2 óra időszakban, a hello szelet hozzák 2 du.. |Nem |EndOfInterval |
+| anchorDateTime |Hello abszolút pozíciója a ennyi másodpercig használta a Feladatütemező toocompute dataset szelet határok meghatározása. <br/><br/><b>Megjegyzés:</b>: Ha hello AnchorDateTime részekből dátum, amelyek részletesebben, mint a hello gyakorisága, akkor hello részletesebb részek figyelmen kívül lesznek hagyva. <br/><br/>Például, ha hello <b>időköz</b> van <b>óránkénti</b> (gyakoriság: óra és időköz: 1) és hello <b>AnchorDateTime</b> tartalmaz <b>percet és másodpercet</b>majd hello <b>percet és másodpercet</b> hello AnchorDateTime részei a rendszer figyelmen kívül hagyja. |Nem |01/01/0001 |
+| Az offset |TimeSpan érték, mely hello által kezdő és záró összes adatkészlet szeletek vette. <br/><br/><b>Megjegyzés:</b>: Ha anchorDateTime és az offset is meg van adva, hello eredménye kombinált hello shift. |Nem |NA |
 
-A következő rendelkezésre állási szakasz Megadja, hogy a kimeneti adatkészlet előállított óránként (vagy) bemeneti adatkészlet óránkénti áll rendelkezésre:
+a következő rendelkezésre állással kapcsolatos szakaszának hello Megadja, hogy adott hello kimeneti adatkészlet előállított óránként (vagy) bemeneti adatkészlet óránkénti áll rendelkezésre:
 
 ```json
 "availability":    
@@ -327,12 +327,12 @@ A következő rendelkezésre állási szakasz Megadja, hogy a kimeneti adatkész
 }
 ```
 
-A **házirend** az adatkészlet-definícióban szakaszban határozza meg, a feltételek vagy a feltétellel, hogy a dataset szeletek teljesítenie kell.
+Hello **házirend** hello feltételek rész az adatkészlet-definícióban vagy hello feltétellel, hogy a dataset szeletek hello teljesítenie kell.
 
-| Házirend neve | Leírás | Vonatkozik. | Szükséges | Alapértelmezett |
+| Házirend neve | Leírás | Alkalmazott túl| Szükséges | Alapértelmezett |
 | --- | --- | --- | --- | --- |
-| minimumSizeMB |Azt ellenőrzi, hogy az adatokat egy **Azure blob** megfelel a minimális méretét (megabájtban). |Azure-blob |Nem |NA |
-| minimumRows |Azt ellenőrzi, hogy az adatokat egy **Azure SQL adatbázis** vagy egy **Azure-tábla** a sorok legkisebb számát tartalmazza. |<ul><li>Azure SQL Database</li><li>Azure-tábla</li></ul> |Nem |NA |
+| minimumSizeMB |Ellenőrzi, hogy hello adatokat egy **Azure blob** megfelel-e hello (megabájtban) a minimális méret követelményeinek. |Azure-blob |Nem |NA |
+| minimumRows |Ellenőrzi, hogy hello adatokat egy **Azure SQL adatbázis** vagy egy **Azure-tábla** hello a sorok legkisebb számát tartalmazza. |<ul><li>Azure SQL Database</li><li>Azure-tábla</li></ul> |Nem |NA |
 
 **Példa**
 
@@ -347,24 +347,24 @@ A **házirend** az adatkészlet-definícióban szakaszban határozza meg, a felt
 }
 ```
 
-Azure Data Factory hozzák alatt álló adatkészlet, kivéve azt állapotúként kell megjelölni **külső**. Ez a beállítás általában vonatkozik a bemenet az adatcsatorna első tevékenység, kivéve, ha a tevékenység vagy csővezeték-láncolás használatban van.
+Azure Data Factory hozzák alatt álló adatkészlet, kivéve azt állapotúként kell megjelölni **külső**. Ez a beállítás toohello bemenet az adatcsatorna első tevékenység általában vonatkozik, kivéve, ha a tevékenység vagy csővezeték-láncolás használatban van.
 
 | Név | Leírás | Szükséges | Alapértelmezett érték |
 | --- | --- | --- | --- |
-| dataDelay |A külső adatokat az adott szelet rendelkezésre állásának az ellenőrzését késleltetési idő. Például ha óránkénti érhető el az adatokat, ellenőrizze, hogy a külső adatok elérhetők legyenek és a megfelelő szelet készen áll az dataDelay használatával késleltethető.<br/><br/>Csak a jelenlegi időpont vonatkozik.  Például ha 1:00 PM azonnal, és az értéke 10 perc, az érvényesítési kezdődik, 1:10 óra.<br/><br/>Ez a beállítás nincs hatással a szeletek a múltban (szelet befejezési időpontja + dataDelay szeletek < most) dolgoznak fel késedelem nélkül.<br/><br/>Idő nagyobb, mint 23:59 óra kell megadni, használja a `day.hours:minutes:seconds` formátumban. Például adja meg a 24 órát, ne használja 24:00:00. Ehelyett használjon 1.00:00:00. Ha 24:00:00 használja, akkor a rendszer 24 napos (24.00:00:00). 1 nap és 4 óra adja meg 1:04:00:00. |Nem |0 |
-| RetryInterval |A várakozási idő közötti hiba, a következő kísérlet próbálkozzon újra. Ha egy try sikertelen, a következő kísérlet retryInterval utánra esik. <br/><br/>Ha 1:00 PM most, az első lépések az első próbálkozás. Ha az első ellenőrzési ellenőrzés időtartam 1 perc és a művelet sikertelen volt, a következő újrapróbálkozási jelenleg 1:00 + 1 perc (időtartam) + 1 perces (újrapróbálkozási időköz) = 1:02 PM. <br/><br/>A múltban szeletek nincs késleltetés. Az újrapróbálkozási azonnal történik. |Nem |00:01:00 (1 perc) |
-| retryTimeout |Az egyes újrapróbálkozások időkorlátját.<br/><br/>Ha ez a tulajdonság 10 percre van beállítva, az érvényesítési kell elvégezni, 10 percen belül. Ha az érvényesítés végrehajtásához 10 percnél hosszabb ideig tart, az ismételt próbálkozás túllépi az időkorlátot.<br/><br/>Ha az érvényesítéshez bármilyen kísérlet időkorlátja lejár, a szelet időtúllépésbe került van megjelölve. |Nem |00:10:00 (10 perc) |
-| maximumRetry |Ellenőrizze, hogy elérhető-e a külső adatok futtatásainak száma. A megengedett maximális értéke 10. |Nem |3 |
+| dataDelay |Idő toodelay hello ellenőrzése hello külső adatok számára megadott szelet hello hello rendelkezésre állását. Például ha hello érhetők el adatok óránkénti, hello ellenőrzés toosee hello külső adatok elérhetők legyenek és hello megfelelő szelet készen felszámítása dataDelay használatával.<br/><br/>Csak érvényes toohello jelenlegi idő.  Például ha 1:00 PM azonnal, és az értéke 10 perc hello érvényesítési kezdődik, 1:10 óra.<br/><br/>Ez a beállítás nem befolyásolja az elmúlt hello szeletek (szelet befejezési időpontja + dataDelay szeletek < most) dolgoznak fel késedelem nélkül.<br/><br/>23:59 óra kell hello segítségével toospecified hosszabb idő `day.hours:minutes:seconds` formátumban. Például toospecify 24 órát, ne használjon 24:00:00. Ehelyett használjon 1.00:00:00. Ha 24:00:00 használja, akkor a rendszer 24 napos (24.00:00:00). 1 nap és 4 óra adja meg 1:04:00:00. |Nem |0 |
+| RetryInterval |hello várakozási idő a hibákhoz és hello következő újrapróbálkozások között. Ha nem sikerül egy try, hello következő kísérlet retryInterval utánra esik. <br/><br/>Ha 1:00 PM most, az első lépések hello első próbálkozás. Hello időtartama toocomplete hello első eredetiség ellenőrzésének 1 perc és hello művelet végrehajtása sikertelen volt, hello legközelebbi újrapróbálkozás akkor 1:00 + 1 perc (időtartam) + (újrapróbálkozási időköz) 1 perc = 1:02 PM. <br/><br/>Az elmúlt hello szeletek nincs késleltetés. hello újrapróbálkozási azonnal történik. |Nem |00:01:00 (1 perc) |
+| retryTimeout |hello időkorlátjának újrapróbálkozási kísérletei.<br/><br/>Ha ez a tulajdonság értéke too10 perc hello érvényesítési igények toobe 10 percen belül fejeződött be. Ha hosszabb ideig tart, mint 10 percig tooperform hello érvényesítési, hello időtúllépést próbálkozzon újra.<br/><br/>Ha bármilyen kísérlet hello érvényesítéshez időkorlátja lejár, hello szelet időtúllépésbe került van megjelölve. |Nem |00:10:00 (10 perc) |
+| maximumRetry |Számos alkalommal fordult elő az toocheck a hello hello külső adatok rendelkezésre állását. hello engedélyezett maximális értéke 10. |Nem |3 |
 
 
 ## <a name="data-stores"></a>ADATTÁROLÓ
-A [társított szolgáltatás](#linked-service) szakaszban megadott JSON-elemek szerepelnek, amelyek közösek az összes eszköztípuson összekapcsolt szolgáltatások leírása. Ez a szakasz ismerteti a JSON-elemek szerepelnek, mindegyik adattár jellemző.
+Hello [társított szolgáltatás](#linked-service) szakaszban megadott leírásainak összekapcsolt szolgáltatások gyakori tooall típusa JSON-elemek szerepelnek. Ez a szakasz ismerteti a JSON-elemek szerepelnek, amelyek adott tooeach adattár részleteit.
 
-A [Dataset](#dataset) JSON-elemek szerepelnek, amelyek közösek az összes eszköztípuson adatkészletek a megadott szakasz leírását. Ez a szakasz ismerteti a JSON-elemek szerepelnek, mindegyik adattár jellemző.
+Hello [Dataset](#dataset) szakaszban megadott JSON-elemek szerepelnek, amelyek közös tooall fajta adatkészlet leírása. Ez a szakasz ismerteti a JSON-elemek szerepelnek, amelyek adott tooeach adattár részleteit.
 
-A [tevékenység](#activity) JSON-elemek szerepelnek, amelyek közösek az összes eszköztípuson tevékenységek leírásainak szakaszát. Ez a szakasz ismerteti a JSON-elemek szerepelnek, amelyek minden adattár kötődnek, mint a másolási tevékenység során a forrás/fogadó használata esetén.  
+Hello [tevékenység](#activity) JSON-elemek szerepelnek, amelyek közös tooall típusú tevékenységek leírásainak szakaszát. Ez a szakasz ismerteti, amelyek adott tooeach adattár, mikor kell azokat alkalmazni, a másolási tevékenység során a forrás/fogadó JSON-elemek szerepelnek.  
 
-A tároló érdekli a JSON-sémák társított szolgáltatás, a DataSet adatkészlet és a másolási tevékenység során a forrás/fogadó megjelenítéséhez a hivatkozásra kattintva.
+Megtudhatja, hogyan készítheti toosee hello JSON sémák kapcsolódó szolgáltatás, adatkészlet és forrás/fogadó hello másolási tevékenységhez hello hello tároló hello hivatkozásra kattintva.
 
 | Kategória | Adattár 
 |:--- |:--- |
@@ -404,11 +404,11 @@ A tároló érdekli a JSON-sémák társított szolgáltatás, a DataSet adatké
 Társított szolgáltatások két típusa van: Azure Storage társított szolgáltatásnak, és a társított szolgáltatásnak Azure Storage SAS.
 
 #### <a name="azure-storage-linked-service"></a>Azure Storage társított szolgáltatás
-A data factory használatával az Azure storage-fiók összekapcsolása a **fiókkulcs**, hozzon létre egy Azure Storage társított szolgáltatást. Meghatározásához az Azure Storage társított szolgáltatásnak, és állítsa a **típus** a társított szolgáltatás **AzureStorage**. Ezután megadhatja tulajdonságait a következő a **typeProperties** szakasz:  
+toolink a az Azure storage-tooa data factory hello segítségével **fiókkulcs**, hozzon létre egy Azure Storage társított szolgáltatást. toodefine egy Azure Storage társított szolgáltatásnak, set hello **típus** hello a társított szolgáltatás túl**AzureStorage**. Ezután megadhatja tulajdonságok hello a következő **typeProperties** szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 |:--- |:--- |:--- |
-| connectionString |Adja meg a connectionString tulajdonság az Azure storage való kapcsolódáshoz szükséges adatokat. |Igen |
+| connectionString |Adjon meg információt tooconnect tooAzure tárolási hello connectionString tulajdonság szükséges. |Igen |
 
 ##### <a name="example"></a>Példa  
 
@@ -425,11 +425,11 @@ A data factory használatával az Azure storage-fiók összekapcsolása a **fió
 ```
 
 #### <a name="azure-storage-sas-linked-service"></a>Az Azure Storage SAS társított szolgáltatás
-A társított Azure Storage SAS-szolgáltatás lehetővé teszi egy Azure Storage-fiók összekapcsolása egy Azure data factory egy közös hozzáférésű Jogosultságkód (SAS) használatával. Az adat-előállítóban minden/specifikus erőforrások (blobtárolóban /) a tárolóban lévő korlátozott/időhöz kötött hozzáférést biztosít. Az Azure storage-fiók összekapcsolása egy adat-előállító közös hozzáférésű Jogosultságkód használatával, a társított Azure Storage SAS-szolgáltatás létrehozása. Egy Azure Storage SAS meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **AzureStorageSas**. Ezután megadhatja tulajdonságait a következő a **typeProperties** szakasz:   
+hello Azure Storage SAS kapcsolódó szolgáltatás lehetővé teszi egy Azure Storage-fiók tooan az Azure data factory toolink egy közös hozzáférésű Jogosultságkód (SAS) használatával. Ez hozzáférést biztosít a hello adat-előállító korlátozott/időhöz kötött tooall/specifikus erőforrások (blobtárolóban /) hello tárolóban. toolink a az Azure storage-tooa data factory használatával a közös hozzáférésű Jogosultságkód, Azure Storage SAS társított szolgáltatás létrehozása. egy Azure Storage SAS toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**AzureStorageSas**. Ezután megadhatja tulajdonságok hello a következő **typeProperties** szakasz:   
 
 | Tulajdonság | Leírás | Szükséges |
 |:--- |:--- |:--- |
-| sasUri |Adja meg a megosztott hozzáférési aláírást URI az Azure Storage-erőforrások, például a blob, -tároló vagy tábla. |Igen |
+| sasUri |Adja meg a megosztott hozzáférési aláírást URI toohello Azure tárolási erőforrások, például blob, a tároló vagy a tábla. |Igen |
 
 ##### <a name="example"></a>Példa
 
@@ -448,15 +448,15 @@ A társított Azure Storage SAS-szolgáltatás lehetővé teszi egy Azure Storag
 További információ a következő összekapcsolt szolgáltatások: [Azure Blob Storage összekötő](data-factory-azure-blob-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg az Azure-Blob adatkészletet, állítsa be a **típus** a DataSet **AzureBlob**. Ezt követően adja meg a következő Azure Blob tulajdonságokat a **typeProperties** szakasz: 
+egy Azure Blob-adathalmazra toodefine set hello **típus** hello adatkészlet túl**AzureBlob**. Ezt követően adja a következő hello Azure Blob tulajdonságokat hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| folderPath |A tároló és a blob-tároló mappa elérési útja. Példa: myblobcontainer\myblobfolder\ |Igen |
-| fileName |A blob neve. Fájlnév nem, kötelező, és a kis-és nagybetűket.<br/><br/>Ha megad egy fájlnevet, a tevékenység (például a Másolás) működik a megadott Blob.<br/><br/>Ha nincs megadva fájlnév, másolása összes BLOB bemeneti adatkészlet folderPath tartalmazza.<br/><br/>Ha nincs megadva fájlnév egy kimeneti adatkészletet, a létrehozott fájl nevét a következő lenne ebben a formátumban: adatok. <Guid>.txt (például:: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |Nem |
-| partitionedBy |partitionedBy egy nem kötelező tulajdonság. Használhatja a dinamikus folderPath és fájlnevét idő adatsorozat adatok megadása. Például folderPath is paraméteres adatok óránkénti. |Nem |
-| Formátumban | A következő formátumban típusok támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**, **ParquetFormat**. Állítsa be a **típus** tulajdonság a formátuma a következő értékek egyikét. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, hogy **másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a Formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
-| Tömörítés | Adja meg a típus és az adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**. Támogatott szintek a következők: **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
+| folderPath |Elérési út toohello tároló és mappa hello blob Storage tárolóban. Példa: myblobcontainer\myblobfolder\ |Igen |
+| fileName |Hello blob neve. Fájlnév nem, kötelező, és a kis-és nagybetűket.<br/><br/>Ha meg kell adnia egy fájlnevet, hello (például a Másolás) tevékenység works hello adott Blob.<br/><br/>Ha nincs megadva fájlnév, másolása összes BLOB bemeneti adatkészlet hello folderPath tartalmazza.<br/><br/>Ha nincs megadva fájlnév egy kimeneti adatkészletet, hello hello létrehozott fájl lenne a következő formátumban hello: adatok. <Guid>.txt (például:: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |Nem |
+| partitionedBy |partitionedBy egy nem kötelező tulajdonság. Használhatja a dinamikus folderPath toospecify és a fájlnév idő adatsorozat adatok. Például folderPath is paraméteres adatok óránkénti. |Nem |
+| Formátumban | a következő formátumban típusok hello támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **típus** tulajdonság alapján formátum tooone ezeket az értékeket. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, túl**másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a hello formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
+| Tömörítés | Adja meg a hello típusát és hello adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**. Támogatott szintek a következők: **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
 
 #### <a name="example"></a>Példa
 
@@ -488,11 +488,11 @@ Adja meg az Azure-Blob adatkészletet, állítsa be a **típus** a DataSet **Azu
 További információkért lásd: [Azure Blob összekötő](data-factory-azure-blob-connector.md#dataset-properties) cikk.
 
 ### <a name="blobsource-in-copy-activity"></a>A másolási tevékenység BlobSource
-Adatok másolása az Azure Blob-tárolóból, állítsa be a **adatforrástípust** a másolási tevékenység **BlobSource**, és adja meg a következő tulajdonságokat a ** forrás ** szakasz:
+Adatok másolása az Azure Blob-tárolóból, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**BlobSource**, és adja meg a következő tulajdonságok hello ** forrás ** szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| Rekurzív |Azt jelzi, hogy az adatok olvasható rekurzív módon az almappák vagy csak a megadott mappát. |TRUE hamis (alapértelmezés) |Nem |
+| Rekurzív |Azt jelzi, hogy hello adatolvasás rekurzív módon hello almappák vagy csak a megadott mappa hello. |TRUE hamis (alapértelmezés) |Nem |
 
 #### <a name="example-blobsource"></a>Példa: BlobSource **
 ```json
@@ -531,11 +531,11 @@ Adatok másolása az Azure Blob-tárolóból, állítsa be a **adatforrástípus
 }
 ```
 ### <a name="blobsink-in-copy-activity"></a>A másolási tevékenység BlobSink
-Adatok másolása az Azure Blob Storage, állítsa be a **típus gyűjtése** a másolási tevékenység **BlobSink**, és adja meg a következő tulajdonságokat a **fogadó** szakasz:
+Adatok tooan Azure Blob Storage másolása, állítsa be a hello **típus gyűjtése** hello a másolási tevékenység túl**BlobSink**, és adja meg a következő tulajdonságok hello **fogadó** szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| copyBehavior |Másolás viselkedését határozza meg, ha az adatforrás BlobSource vagy a fájlrendszer. |<b>PreserveHierarchy</b>: őrzi meg a fájl hierarchia a célmappában. A következő forrásfájl forrásmappához relatív elérési a relatív elérési út a cél-fájlját és a célmappa megegyezik.<br/><br/><b>FlattenHierarchy</b>: a forrásmappából a fájlok a célmappában első szintjét is. A fájlok céljaként automatikusan létrehozott nevet adni. <br/><br/><b>Mergefiles típusú (alapértelmezett):</b> egyesíti a forrásmappából egy fájl összes fájlt. Ha a fájl/Blob neve meg van adva, az egyesített neve legyen a megadott név; Ellenkező esetben lenne automatikusan létrehozott fájl nevét. |Nem |
+| copyBehavior |Hello másolási viselkedését határozza meg, ha hello adatforrás BlobSource vagy a fájlrendszer. |<b>PreserveHierarchy</b>: megtartja hello fájl hierarchia hello célmappában. hello relatív fájl toosource forrásmappa elérési út azonos toohello fájl tootarget célmappa relatív elérési útját.<br/><br/><b>FlattenHierarchy</b>: összes fájl hello forrásmappából a hello első szintű tároló mappa. hello fájljaira automatikusan létrehozott nevet adni. <br/><br/><b>Mergefiles típusú (alapértelmezett):</b> forrásfájlból hello mappa tooone minden fájl egyesíti. Ha hello fájl/Blob neve meg van adva, egyesített hello neve legyen hello megadott név; Ellenkező esetben lenne automatikusan létrehozott fájl nevét. |Nem |
 
 #### <a name="example-blobsink"></a>Példa: BlobSink
 
@@ -581,19 +581,19 @@ További információkért lásd: [Azure Blob összekötő](data-factory-azure-b
 ## <a name="azure-data-lake-store"></a>Azure Data Lake Store
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Egy Azure Data Lake Store meghatározásához társított szolgáltatás, a társított szolgáltatás típusának beállítása **AzureDataLakeStore**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+egy Azure Data Lake Store kapcsolódó szolgáltatás toodefine, hello beállítása hello típusú társított szolgáltatás túl**AzureDataLakeStore**, és adja meg a következő tulajdonságok hello **typeProperties** szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 |:--- |:--- |:--- |
-| type | A type tulajdonságot kell beállítani: **AzureDataLakeStore** | Igen |
-| dataLakeStoreUri | Adja meg az Azure Data Lake Store-fiók adatait. A következő formátumban: `https://[accountname].azuredatalakestore.net/webhdfs/v1` vagy `adl://[accountname].azuredatalakestore.net/`. | Igen |
-| subscriptionId | Azure-előfizetése azonosítóját, amelyhez a Data Lake Store tartozik. | A fogadó szükséges |
-| erőforráscsoport-név | Azure erőforráscsoport-név, amely a Data Lake Store tartozik. | A fogadó szükséges |
-| servicePrincipalId | Adja meg az alkalmazás ügyfél-azonosítót. | Igen (a szolgáltatás egyszerű hitelesítés) |
-| servicePrincipalKey | Adja meg az alkalmazás kulcsot. | Igen (a szolgáltatás egyszerű hitelesítés) |
-| Bérlői | Adja meg a bérlői adatokat (tartomány nevét vagy a bérlő azonosító) alatt az alkalmazás található. Azt az Azure-portál jobb felső sarkában az egér rámutató által kérheti le. | Igen (a szolgáltatás egyszerű hitelesítés) |
-| Engedélyezési | Kattintson a **engedélyezés** gombra a **Data Factory Editor** , és írja be a hitelesítő adatok, amelyek az automatikusan létrehozott engedélyezési URL-címet rendel hozzá ehhez a tulajdonsághoz. | Igen (a felhasználói hitelesítő)|
-| Munkamenet-azonosító | OAuth munkamenet-azonosító az OAuth hitelesítési munkamenetből. Minden munkamenet-azonosító egyedi, és előfordulhat, hogy csak egyszer használható. Ez a beállítás automatikusan létrejön a Data Factory Editor használatakor. | Igen (a felhasználói hitelesítő) |
+| type | hello type tulajdonságot kell beállítani: **AzureDataLakeStore** | Igen |
+| dataLakeStoreUri | Hello Azure Data Lake Store-fiók adatainak megadása. Az hello a következő formátumban: `https://[accountname].azuredatalakestore.net/webhdfs/v1` vagy `adl://[accountname].azuredatalakestore.net/`. | Igen |
+| subscriptionId | Azure-előfizetés azonosítója toowhich Data Lake Store tartozik. | A fogadó szükséges |
+| erőforráscsoport-név | Azure-erőforrás csoport neve toowhich Data Lake Store tartozik. | A fogadó szükséges |
+| servicePrincipalId | Adja meg a hello alkalmazás ügyfél-azonosítót. | Igen (a szolgáltatás egyszerű hitelesítés) |
+| servicePrincipalKey | Adja meg a hello kulcsát. | Igen (a szolgáltatás egyszerű hitelesítés) |
+| Bérlői | Adja meg a hello bérlői adatokat (tartomány nevét vagy a bérlő azonosító) alatt az alkalmazás található. Ez által rámutató hello egér hello Azure-portál jobb felső sarkában hello kérheti le. | Igen (a szolgáltatás egyszerű hitelesítés) |
+| Engedélyezési | Kattintson a **engedélyezés** hello gombjára **Data Factory Editor** , és írja be a hitelesítő adat, amelyet hozzárendel hello automatikusan létrehozott engedélyezési URL-cím toothis tulajdonság. | Igen (a felhasználói hitelesítő)|
+| Munkamenet-azonosító | OAuth munkamenet-azonosító hello OAuth hitelesítési munkamenetből. Minden munkamenet-azonosító egyedi, és előfordulhat, hogy csak egyszer használható. Ez a beállítás automatikusan létrejön a Data Factory Editor használatakor. | Igen (a felhasználói hitelesítő) |
 
 #### <a name="example-using-service-principal-authentication"></a>Példa: a szolgáltatás egyszerű hitelesítést használó
 ```json
@@ -631,15 +631,15 @@ Egy Azure Data Lake Store meghatározásához társított szolgáltatás, a tár
 További információkért lásd: [Azure Data Lake Store összekötő](data-factory-azure-datalake-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg az Azure Data Lake Store adatkészlethez, állítsa be a **típus** a DataSet **AzureDataLakeStore**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine egy Azure Data Lake Store adatkészlet set hello **típus** hello adatkészlet túl**AzureDataLakeStore**, és adja meg a következő tulajdonságai a hello hello **typeProperties**szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 |:--- |:--- |:--- |
-| folderPath |A tároló és az Azure Data Lake mappa elérési útja tárolja. |Igen |
-| fileName |A fájl az Azure Data Lake store nevét. Fájlnév nem, kötelező, és a kis-és nagybetűket. <br/><br/>Ha megad egy fájlnevet, a tevékenység (például a Másolás) működik az adott fájlt.<br/><br/>Ha nincs megadva fájlnév, példány bemeneti adatkészlet folderPath minden fájl tartalmazza.<br/><br/>Ha nincs megadva fájlnév egy kimeneti adatkészletet, a létrehozott fájl nevét a következő lenne ebben a formátumban: adatok. <Guid>.txt (például:: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |Nem |
-| partitionedBy |partitionedBy egy nem kötelező tulajdonság. Használhatja a dinamikus folderPath és fájlnevét idő adatsorozat adatok megadása. Például folderPath is paraméteres adatok óránkénti. |Nem |
-| Formátumban | A következő formátumban típusok támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**, **ParquetFormat**. Állítsa be a **típus** tulajdonság a formátuma a következő értékek egyikét. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, hogy **másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a Formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
-| Tömörítés | Adja meg a típus és az adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**. Támogatott szintek a következők: **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
+| folderPath |Elérési út toohello tároló és mappa hello Azure Data Lake tárolja. |Igen |
+| fileName |Hello fájl hello Azure Data Lake store nevét. Fájlnév nem, kötelező, és a kis-és nagybetűket. <br/><br/>Ha megad egy fájlnevet, hello tevékenység (például a Másolás) működik-e az hello adott fájlt.<br/><br/>Ha nincs megadva fájlnév, másolása hello folderPath bemeneti adatkészlet összes fájl tartalmazza.<br/><br/>Ha nincs megadva fájlnév egy kimeneti adatkészletet, hello hello létrehozott fájl lenne a következő formátumban hello: adatok. <Guid>.txt (például:: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |Nem |
+| partitionedBy |partitionedBy egy nem kötelező tulajdonság. Használhatja a dinamikus folderPath toospecify és a fájlnév idő adatsorozat adatok. Például folderPath is paraméteres adatok óránkénti. |Nem |
+| Formátumban | a következő formátumban típusok hello támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **típus** tulajdonság alapján formátum tooone ezeket az értékeket. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, túl**másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a hello formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
+| Tömörítés | Adja meg a hello típusát és hello adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**. Támogatott szintek a következők: **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
 
 #### <a name="example"></a>Példa
 ```json
@@ -676,13 +676,13 @@ Adja meg az Azure Data Lake Store adatkészlethez, állítsa be a **típus** a D
 További információkért lásd: [Azure Data Lake Store összekötő](data-factory-azure-datalake-connector.md#dataset-properties) cikk. 
 
 ### <a name="azure-data-lake-store-source-in-copy-activity"></a>A másolási tevékenység az Azure Data Lake Store-forrás
-Adatok másolása az Azure Data Lake Store a, állítsa be a **adatforrástípust** a másolási tevékenység **AzureDataLakeStoreSource**, és adja meg a következő tulajdonságokat a **forrás**szakasz:
+Adatok másolása az Azure Data Lake Store a, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**AzureDataLakeStoreSource**, és adja meg a következő tulajdonságok hello **forrás**  szakasz:
 
-**AzureDataLakeStoreSource** támogatja a következő tulajdonságok **typeProperties** szakasz:
+**AzureDataLakeStoreSource** támogatja a következő tulajdonságai hello **typeProperties** szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| Rekurzív |Azt jelzi, hogy az adatok olvasható rekurzív módon az almappák vagy csak a megadott mappát. |TRUE hamis (alapértelmezés) |Nem |
+| Rekurzív |Azt jelzi, hogy hello adatolvasás rekurzív módon hello almappák vagy csak a megadott mappa hello. |TRUE hamis (alapértelmezés) |Nem |
 
 #### <a name="example-azuredatalakestoresource"></a>Példa: AzureDataLakeStoreSource
 
@@ -725,11 +725,11 @@ Adatok másolása az Azure Data Lake Store a, állítsa be a **adatforrástípus
 További információkért lásd: [Azure Data Lake Store összekötő](data-factory-azure-datalake-connector.md#copy-activity-properties) cikk.
 
 ### <a name="azure-data-lake-store-sink-in-copy-activity"></a>A másolási tevékenység az Azure Data Lake Store fogadó
-Adatok másolása az Azure Data Lake Store, állítsa be a **típus gyűjtése** a másolási tevékenység **AzureDataLakeStoreSink**, és adja meg a következő tulajdonságokat a **fogadó** a szakasz:
+Adatok tooan Azure Data Lake Store másolása, állítsa be a hello **típus gyűjtése** hello a másolási tevékenység túl**AzureDataLakeStoreSink**, és adja meg a következő tulajdonságok hello **fogadó**szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| copyBehavior |Meghatározza a másolási viselkedését. |<b>PreserveHierarchy</b>: őrzi meg a fájl hierarchia a célmappában. A következő forrásfájl forrásmappához relatív elérési a relatív elérési út a cél-fájlját és a célmappa megegyezik.<br/><br/><b>FlattenHierarchy</b>: minden fájl a forrásmappából az első szintű célmappában jönnek létre. A cél fájlok jönnek létre automatikusan létrehozott névvel.<br/><br/><b>Mergefiles típusú</b>: egy fájl összes fájlt a forrásmappából egyesíti. Ha a fájl/Blob neve meg van adva, az egyesített neve legyen a megadott név; Ellenkező esetben lenne automatikusan létrehozott fájl nevét. |Nem |
+| copyBehavior |Meghatározza a hello másolási viselkedését. |<b>PreserveHierarchy</b>: megtartja hello fájl hierarchia hello célmappában. hello relatív fájl toosource forrásmappa elérési út azonos toohello fájl tootarget célmappa relatív elérési útját.<br/><br/><b>FlattenHierarchy</b>: hello forrásmappából minden fájl első szintű hello célmappában jönnek létre. hello fájljaira jönnek létre automatikusan létrehozott névvel.<br/><br/><b>Mergefiles típusú</b>: összes fájl forrásfájlból hello mappa tooone egyesíti. Ha hello fájl/Blob neve meg van adva, egyesített hello neve legyen hello megadott név; Ellenkező esetben lenne automatikusan létrehozott fájl nevét. |Nem |
 
 #### <a name="example-azuredatalakestoresink"></a>Példa: AzureDataLakeStoreSink
 ```json
@@ -777,11 +777,11 @@ További információkért lásd: [Azure Data Lake Store összekötő](data-fact
 ## <a name="azure-cosmos-db"></a>Azure Cosmos DB  
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Egy Azure Cosmos DB meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **DocumentDb**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+egy Azure Cosmos DB toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**DocumentDb**, és adja meg a következő tulajdonságok hello **typeProperties** a szakasz:  
 
 | **Tulajdonság** | **Leírás** | **Szükséges** |
 | --- | --- | --- |
-| connectionString |Adja meg Azure Cosmos DB adatbázishoz való kapcsolódáshoz szükséges adatokat. |Igen |
+| connectionString |Adja meg a szükséges adatok tooconnect tooAzure Cosmos DB adatbázisban. |Igen |
 
 #### <a name="example"></a>Példa
 
@@ -799,11 +799,11 @@ Egy Azure Cosmos DB meghatározásához társított szolgáltatás, állítsa be
 További információkért lásd: [Azure Cosmos DB összekötő](data-factory-azure-documentdb-connector.md#linked-service-properties) cikk.
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg az Azure Cosmos DB adatkészlethez, állítsa be a **típus** a DataSet **DocumentDbCollection**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine egy Azure Cosmos DB adatkészlet set hello **típus** hello adatkészlet túl**DocumentDbCollection**, és adja meg a következő tulajdonságai a hello hello **typeProperties** a szakasz: 
 
 | **Tulajdonság** | **Leírás** | **Szükséges** |
 | --- | --- | --- |
-| CollectionName |Az Azure Cosmos DB gyűjtemény nevét. |Igen |
+| CollectionName |Hello Azure Cosmos DB gyűjtemény neve. |Igen |
 
 #### <a name="example"></a>Példa
 
@@ -827,13 +827,13 @@ Adja meg az Azure Cosmos DB adatkészlethez, állítsa be a **típus** a DataSet
 További információkért lásd: [Azure Cosmos DB összekötő](data-factory-azure-documentdb-connector.md#dataset-properties) cikk.
 
 ### <a name="azure-cosmos-db-collection-source-in-copy-activity"></a>A másolási tevékenység Azure Cosmos DB gyűjtemény forrás
-Adatok másolása az Azure Cosmos adatbázisából, állítsa be a **adatforrástípust** a másolási tevékenység **DocumentDbCollectionSource**, és adja meg a következő tulajdonságokat a **forrás**szakasz:
+Adatok másolása az Azure Cosmos adatbázisából, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**DocumentDbCollectionSource**, és adja meg a következő tulajdonságok hello **forrás** szakasz:
 
 
 | **Tulajdonság** | **Leírás** | **Megengedett értékek** | **Szükséges** |
 | --- | --- | --- | --- |
-| lekérdezés |Adja meg a lekérdezés adatainak olvasására. |Lekérdezés-karakterlánc hossza Azure Cosmos DB által támogatott. <br/><br/>Példa:`SELECT c.BusinessEntityID, c.PersonType, c.NameStyle, c.Title, c.Name.First AS FirstName, c.Name.Last AS LastName, c.Suffix, c.EmailPromotion FROM c WHERE c.ModifiedDate > \"2009-01-01T00:00:00\"` |Nem <br/><br/>Ha nincs megadva, az SQL-utasítást, amely végrehajtja a rendszer:`select <columns defined in structure> from mycollection` |
-| nestingSeparator |Jelzi, hogy a dokumentum van beágyazva speciális karakter |Bármely karakter. <br/><br/>Azure Cosmos-adatbázis egy NoSQL-tároló JSON-dokumentumok, amelyben beágyazott struktúrákat engedélyezett. Az Azure Data Factory lehetővé teszi, hogy a felhasználó nestingSeparator, amely használatával a hierarchia jelöléséhez "." a fenti példákban. A elválasztóval, a másolási tevékenység hoz létre a "Name" objektum három gyermekek elemekkel először középső és az utolsó, "Name.First", "Name.Middle" és "Name.Last" tábla definíciójában. |Nem |
+| lekérdezés |Adja meg a hello tooread adatait kérdezi le. |Lekérdezés-karakterlánc hossza Azure Cosmos DB által támogatott. <br/><br/>Példa:`SELECT c.BusinessEntityID, c.PersonType, c.NameStyle, c.Title, c.Name.First AS FirstName, c.Name.Last AS LastName, c.Suffix, c.EmailPromotion FROM c WHERE c.ModifiedDate > \"2009-01-01T00:00:00\"` |Nem <br/><br/>Ha nincs megadva, hello végrehajtott SQL-utasítást:`select <columns defined in structure> from mycollection` |
+| nestingSeparator |Speciális karakter tooindicate, hogy a dokumentum hello van beágyazva. |Bármely karakter. <br/><br/>Azure Cosmos-adatbázis egy NoSQL-tároló JSON-dokumentumok, amelyben beágyazott struktúrákat engedélyezett. Az Azure Data Factory lehetővé teszi, hogy a felhasználó toodenote hierarchia keresztül nestingSeparator, amely "." a fenti példák hello. Hello elválasztóval hello másolási tevékenység hello "Name" objektum három gyermekek elemekkel hozza létre első, középső és utolsó, függően too"Name.First", "Name.Middle" és "Name.Last" hello a tábla megadása. |Nem |
 
 #### <a name="example"></a>Példa
 
@@ -874,13 +874,13 @@ Adatok másolása az Azure Cosmos adatbázisából, állítsa be a **adatforrás
 ```
 
 ### <a name="azure-cosmos-db-collection-sink-in-copy-activity"></a>Az Azure Cosmos DB gyűjtemény fogadó a másolási tevékenység
-Adatok másolása az Azure Cosmos Adatbázishoz, állítsa be a **típus gyűjtése** a másolási tevékenység **DocumentDbCollectionSink**, és adja meg a következő tulajdonságokat a **fogadó** szakasz :
+Adatok tooAzure Cosmos DB másolása, állítsa be a hello **típus gyűjtése** hello a másolási tevékenység túl**DocumentDbCollectionSink**, és adja meg a következő tulajdonságok hello **fogadó**szakasz:
 
 | **Tulajdonság** | **Leírás** | **Megengedett értékek** | **Szükséges** |
 | --- | --- | --- | --- |
-| nestingSeparator |A forrás oszlop nevét jelzi, hogy a beágyazott dokumentum egy különleges karakterek van szükség. <br/><br/>Például fent: `Name.First` a kimeneti táblát hoz létre a következő JSON struktúrában a Cosmos DB dokumentumban:<br/><br/>"Name": {<br/>    "Első": "John"<br/>}, |A beágyazási szinteket elválasztó karakter.<br/><br/>Alapértelmezett érték `.` (pont). |A beágyazási szinteket elválasztó karakter. <br/><br/>Alapértelmezett érték `.` (pont). |
-| WriteBatchSize |Dokumentumok létrehozásához Azure Cosmos DB szolgáltatás párhuzamos kérelmek száma.<br/><br/>A teljesítmény úgy finomhangolhatja, e tulajdonság használatával vagy az Azure Cosmos Adatbázisból adatok másolásakor. A jobb teljesítmény számíthat, mivel több párhuzamos kérelem Azure Cosmos DB writeBatchSize növelésével. Azonban kell elkerülheti a sávszélesség-szabályozás, amely képes throw a hibaüzenet a következő: "Ez nagy lekérő".<br/><br/>Sávszélesség-szabályozás tényező, beleértve a dokumentumok, a dokumentumok számát méretét, indexelő házirend célgyűjteményt stb határoz meg. A másolási műveletek segítségével jobban gyűjtemény (például S3) rendelkezik a legtöbb átviteli sebesség érhető el (2500 kérés egység/másodperc). |Egész szám |Nem (alapértelmezett: 5) |
-| writeBatchTimeout |Várakozási idő a művelet befejezését, mielőtt azt az időkorlátot. |A TimeSpan<br/><br/> Példa: "00: 30:00" (30 perc). |Nem |
+| nestingSeparator |A különleges karakterek hello forrás oszlop neve tooindicate, amely a beágyazott dokumentumok van szükség. <br/><br/>Például fent: `Name.First` hello kimeneti táblát hoz létre hello JSON struktúrában hello Cosmos DB dokumentumban a következő:<br/><br/>"Name": {<br/>    "Első": "John"<br/>}, |Az karakter, amely használt tooseparate beágyazási szinttel.<br/><br/>Alapértelmezett érték `.` (pont). |Az karakter, amely használt tooseparate beágyazási szinttel. <br/><br/>Alapértelmezett érték `.` (pont). |
+| WriteBatchSize |A lekérdezések tooAzure Cosmos DB toocreate dokumentumok párhuzamos száma.<br/><br/>Hello teljesítmény úgy finomhangolhatja, e tulajdonság használatával vagy az Azure Cosmos Adatbázisból adatok másolásakor. A jobb teljesítmény számíthat, mivel a rendszer további kérelmeket párhuzamos tooAzure Cosmos DB elküldi a writeBatchSize növelésével. Azonban szüksége lesz, amelyek sávszélesség-szabályozás tooavoid is throw hello hibaüzenet: "Ez nagy lekérő".<br/><br/>Sávszélesség-szabályozás tényező, beleértve a dokumentumok, a dokumentumok számát méretét, indexelő házirend célgyűjteményt stb határoz meg. A másolási műveletek, használhat egy jobb gyűjtemény (például S3) toohave hello legtöbb átviteli sebesség érhető el (2500 kérés egység/másodperc). |Egész szám |Nem (alapértelmezett: 5) |
+| writeBatchTimeout |Várnia kell az hello művelet toocomplete előtt azt az időkorlátot. |A TimeSpan<br/><br/> Példa: "00: 30:00" (30 perc). |Nem |
 
 #### <a name="example"></a>Példa
 
@@ -902,7 +902,7 @@ Adatok másolása az Azure Cosmos Adatbázishoz, állítsa be a **típus gyűjt�
                 },
                 "translator": {
                     "type": "TabularTranslator",
-                    "ColumnMappings": "FirstName: Name.First, MiddleName: Name.Middle, LastName: Name.Last, BusinessEntityID: BusinessEntityID, PersonType: PersonType, NameStyle: NameStyle, Title: Title, Suffix: Suffix"
+                    "ColumnMappings": "FirstName: Name.First, MiddleName: Name.Middle, LastName: Name.Last, BusinessEntityID: BusinessEntityID, PersonType: PersonType, NameStyle: NameStyle, title: aaaTitle, Suffix: Suffix"
                 }
             },
             "inputs": [{
@@ -927,11 +927,11 @@ További információkért lásd: [Azure Cosmos DB összekötő](data-factory-az
 ## <a name="azure-sql-database"></a>Azure SQL Database
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Egy Azure SQL Database meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **AzureSqlDatabase**, és adja meg a következő tulajdonságokat a **typeProperties** a szakasz:  
+egy Azure SQL Database toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**AzureSqlDatabase**, és adja meg a következő tulajdonságok hello **typeProperties**szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| connectionString |Adja meg az Azure SQL Database-példányt a connectionString tulajdonság való kapcsolódáshoz szükséges adatokat. |Igen |
+| connectionString |Adjon meg információt hello connectionString tulajdonság szükséges tooconnect toohello Azure SQL Database-példányt. |Igen |
 
 #### <a name="example"></a>Példa
 ```json
@@ -949,11 +949,11 @@ Egy Azure SQL Database meghatározásához társított szolgáltatás, állítsa
 További információkért lásd: [Azure SQL-összekötő](data-factory-azure-sql-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg az Azure SQL Database adatkészlethez, állítsa be a **típus** a DataSet **AzureSqlTable**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine egy Azure SQL Database adatkészlet set hello **típus** hello adatkészlet túl**AzureSqlTable**, és adja meg a következő tulajdonságai a hello hello **typeProperties** a szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |A tábla vagy nézet társított szolgáltatásnak Azure SQL Database-példány neve hivatkozik. |Igen |
+| tableName |Hello tábla vagy nézet hello Azure SQL Database-példányt, amelyre a társított szolgáltatás neve hivatkozik. |Igen |
 
 #### <a name="example"></a>Példa
 
@@ -984,14 +984,14 @@ Adja meg az Azure SQL Database adatkészlethez, állítsa be a **típus** a Data
 További információkért lásd: [Azure SQL-összekötő](data-factory-azure-sql-connector.md#dataset-properties) cikk. 
 
 ### <a name="sql-source-in-copy-activity"></a>A másolási tevékenység SQL-forrás
-Adatok másolása az Azure SQL-adatbázisból, állítsa be a **adatforrástípust** a másolási tevékenység **SqlSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+Adatok másolása az Azure SQL-adatbázisból, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**SqlSource**, és adja meg a következő tulajdonságok hello **forrás** a szakasz:
 
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| sqlReaderQuery |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Példa: `select * from MyTable`. |Nem |
-| sqlReaderStoredProcedureName |A tárolt eljárás, amely adatokat olvas a forrástábla neve. |A tárolt eljárás neve. |Nem |
-| storedProcedureParameters |A tárolt eljárás paramétereit. |A név/érték párok. Nevét és a kis-és a paraméterek meg kell egyeznie a nevek és a kis-és nagybetűhasználat a tárolt eljárás paramétereit. |Nem |
+| sqlReaderQuery |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Példa: `select * from MyTable`. |Nem |
+| sqlReaderStoredProcedureName |Hello neve tárolt eljárást, amely hello forrástábla olvassa be az adatokat. |Hello neve tárolt eljárást. |Nem |
+| storedProcedureParameters |Hello paramétereinek tárolt eljárást. |A név/érték párok. Nevek és a kis-és paraméterek meg kell egyeznie hello nevét és a kis-és nagybetűhasználat hello tárolt eljárás paramétereit. |Nem |
 
 #### <a name="example"></a>Példa
 
@@ -1038,17 +1038,17 @@ Adatok másolása az Azure SQL-adatbázisból, állítsa be a **adatforrástípu
 További információkért lásd: [Azure SQL-összekötő](data-factory-azure-sql-connector.md#copy-activity-properties) cikk. 
 
 ### <a name="sql-sink-in-copy-activity"></a>A másolási tevékenység SQL fogadó
-Adatok másolása az Azure SQL Database, állítsa be a **típus gyűjtése** a másolási tevékenység **SqlSink**, és adja meg a következő tulajdonságokat a **fogadó** szakasz:
+Adatok tooAzure SQL-adatbázis másolása, állítsa be a hello **típus gyűjtése** hello a másolási tevékenység túl**SqlSink**, és adja meg a következő tulajdonságok hello **fogadó** szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| writeBatchTimeout |Várakozási idő a kötegelt beszúrási művelet befejezését, mielőtt azt az időkorlátot. |A TimeSpan<br/><br/> Példa: "00: 30:00" (30 perc). |Nem |
-| WriteBatchSize |Szúr be az SQL-tábla adatokat, amikor a puffer mérete eléri writeBatchSize. |Egész szám (sorok száma) |Nem (alapértelmezett: 10000) |
-| sqlWriterCleanupScript |Adja meg egy lekérdezést a másolási tevékenység végrehajtása úgy, hogy egy adott szelet adatait. |A lekérdezési utasítást. |Nem |
-| sliceIdentifierColumnName |Adja meg a másolási tevékenység során automatikusan létrejön szelet azonosítóval, amely távolítja el az adatokat egy adott szelet, amikor futtassa újra a kitöltésének oszlop nevét. |Egy oszlop binary(32) adattípusú oszlop neve. |Nem |
-| sqlWriterStoredProcedureName |A tárolt eljárás neve a cél táblázatba upserts (frissítés/Beszúrás) adatok. |A tárolt eljárás neve. |Nem |
-| storedProcedureParameters |A tárolt eljárás paramétereit. |A név/érték párok. Nevét és a kis-és a paraméterek meg kell egyeznie a nevek és a kis-és nagybetűhasználat a tárolt eljárás paramétereit. |Nem |
-| sqlWriterTableType |Adjon meg egy tábla típus a következő tárolt eljárás használható. Másolási tevékenység elérhetővé teszi az adatok áthelyezése egy ideiglenes táblát, amely a táblatípus. Tárolt eljárás kódot is majd egyesítheti az adatokat, a meglévő adatok másolásának. |Egy tábla környezettípus nevét. |Nem |
+| writeBatchTimeout |Várnia kell az hello kötegelt beszúrási művelet toocomplete előtt azt az időkorlátot. |A TimeSpan<br/><br/> Példa: "00: 30:00" (30 perc). |Nem |
+| WriteBatchSize |Amikor hello puffer mérete eléri writeBatchSize adatok beillesztése hello SQL táblázat. |Egész szám (sorok száma) |Nem (alapértelmezett: 10000) |
+| sqlWriterCleanupScript |Adja meg a másolási tevékenység tooexecute vonatkozó lekérdezést úgy, hogy egy adott szelet adatait. |A lekérdezési utasítást. |Nem |
+| sliceIdentifierColumnName |Adja meg oszlop nevét, a másolási tevékenység toofill szelet azonosító automatikusan létrejön, vagyis amikor futtassa újra a megadott szelet adatainak használt tooclean. |Egy oszlop binary(32) adattípusú oszlop neve. |Nem |
+| sqlWriterStoredProcedureName |Hello nevét (frissítés/Beszúrás) upserts adatok tárolt eljárás hello cél táblába. |Hello neve tárolt eljárást. |Nem |
+| storedProcedureParameters |Hello paramétereinek tárolt eljárást. |A név/érték párok. Nevek és a kis-és paraméterek meg kell egyeznie hello nevét és a kis-és nagybetűhasználat hello tárolt eljárás paramétereit. |Nem |
+| sqlWriterTableType |Adjon meg egy tábla Típus neve toobe hello tárolt eljárásban használt. Másolási tevékenység elérhetővé teszi hello adatok éppen áthelyezik egy ideiglenes táblát, amely a táblatípus. Tárolt eljárás kód majd egyesítheti a meglévő adatok másolásának hello adatokat. |Egy tábla környezettípus nevét. |Nem |
 
 #### <a name="example"></a>Példa
 
@@ -1098,11 +1098,11 @@ További információkért lásd: [Azure SQL-összekötő](data-factory-azure-sq
 ## <a name="azure-sql-data-warehouse"></a>Azure SQL Data Warehouse
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Azure SQL Data Warehouse meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **AzureSqlDW**, és adja meg a következő tulajdonságokat a **typeProperties** a szakasz:  
+Azure SQL Data Warehouse toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**AzureSqlDW**, és adja meg a következő tulajdonságok hello **typeProperties**szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| connectionString |Adja meg a connectionString tulajdonság az Azure SQL Data Warehouse-példány való kapcsolódáshoz szükséges adatokat. |Igen |
+| connectionString |Adjon meg információt hello connectionString tulajdonság szükséges tooconnect toohello Azure SQL Data Warehouse-példányhoz. |Igen |
 
 
 
@@ -1123,11 +1123,11 @@ Azure SQL Data Warehouse meghatározásához társított szolgáltatás, állít
 További információkért lásd: [Azure SQL Data Warehouse-összekötő](data-factory-azure-sql-data-warehouse-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg az Azure SQL Data Warehouse adatkészlethez, állítsa be a **típus** a DataSet **AzureSqlDWTable**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine egy Azure SQL Data Warehouse adatkészlet set hello **típus** hello adatkészlet túl**AzureSqlDWTable**, és adja meg a következő tulajdonságai a hello hello **typeProperties**szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |A tábla vagy nézet, az Azure SQL Data Warehouse-adatbázis hivatkozik a társított szolgáltatás neve. |Igen |
+| tableName |Hello tábla vagy nézet hello Azure SQL Data Warehouse-adatbázis, amely a társított szolgáltatás hello nevére hivatkozik. |Igen |
 
 #### <a name="example"></a>Példa
 
@@ -1159,14 +1159,14 @@ Adja meg az Azure SQL Data Warehouse adatkészlethez, állítsa be a **típus** 
 További információkért lásd: [Azure SQL Data Warehouse-összekötő](data-factory-azure-sql-data-warehouse-connector.md#dataset-properties) cikk. 
 
 ### <a name="sql-dw-source-in-copy-activity"></a>A másolási tevékenység SQL DW-forrás
-Adatok másolása az Azure SQL Data Warehouse, állítsa be a **adatforrástípust** a másolási tevékenység **SqlDWSource**, és adja meg a következő tulajdonságokat a **forrás** a szakasz:
+Adatok másolása az Azure SQL Data Warehouse, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**SqlDWSource**, és adja meg a következő tulajdonságok hello **forrás**szakasz:
 
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| sqlReaderQuery |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Például: `select * from MyTable`. |Nem |
-| sqlReaderStoredProcedureName |A tárolt eljárás, amely adatokat olvas a forrástábla neve. |A tárolt eljárás neve. |Nem |
-| storedProcedureParameters |A tárolt eljárás paramétereit. |A név/érték párok. Nevét és a kis-és a paraméterek meg kell egyeznie a nevek és a kis-és nagybetűhasználat a tárolt eljárás paramétereit. |Nem |
+| sqlReaderQuery |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Például: `select * from MyTable`. |Nem |
+| sqlReaderStoredProcedureName |Hello neve tárolt eljárást, amely hello forrástábla olvassa be az adatokat. |Hello neve tárolt eljárást. |Nem |
+| storedProcedureParameters |Hello paramétereinek tárolt eljárást. |A név/érték párok. Nevek és a kis-és paraméterek meg kell egyeznie hello nevét és a kis-és nagybetűhasználat hello tárolt eljárás paramétereit. |Nem |
 
 #### <a name="example"></a>Példa
 
@@ -1214,19 +1214,19 @@ Adatok másolása az Azure SQL Data Warehouse, állítsa be a **adatforrástípu
 További információkért lásd: [Azure SQL Data Warehouse-összekötő](data-factory-azure-sql-data-warehouse-connector.md#copy-activity-properties) cikk. 
 
 ### <a name="sql-dw-sink-in-copy-activity"></a>A másolási tevékenység SQL DW fogadó
-Adatok másolása az Azure SQL Data Warehouse, állítsa be a **típus gyűjtése** a másolási tevékenység **SqlDWSink**, és adja meg a következő tulajdonságokat a **fogadó** szakasz:
+Adatok tooAzure SQL Data Warehouse másolása, állítsa be a hello **típus gyűjtése** hello a másolási tevékenység túl**SqlDWSink**, és adja meg a következő tulajdonságok hello **fogadó** a szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| sqlWriterCleanupScript |Adja meg egy lekérdezést a másolási tevékenység végrehajtása úgy, hogy egy adott szelet adatait. |A lekérdezési utasítást. |Nem |
-| allowPolyBase |Azt jelzi, hogy (ha alkalmazható), a PolyBase használata helyett BULKINSERT mechanizmus. <br/><br/> **Az ajánlott módszer az adatok betöltése az SQL Data Warehouse PolyBase a használata.** |True (Igaz) <br/>Hamis (alapértelmezés) |Nem |
-| kapcsolódó polyBaseSettings |Egy csoport, amely tulajdonságok megadott, amikor a **allowPolybase** tulajdonsága **igaz**. |&nbsp; |Nem |
-| rejectValue |Megadja a szám vagy is el kell utasítani, mielőtt a lekérdezés nem sikerült sorokat százalékát. <br/><br/>További információ a PolyBase utasítsa el a beállítások elemre a **argumentumok** szakasza [külső tábla létrehozása (Transact-SQL)](https://msdn.microsoft.com/library/dn935021.aspx) témakör. |0 (alapértelmezés), 1, 2... |Nem |
-| rejectType |Határozza meg, hogy a rejectValue beállítás konstans értéket vagy százalékában van megadva. |Érték (alapértelmezett), százalékos aránya |Nem |
-| rejectSampleValue |Mielőtt a PolyBase újraszámítja a visszautasított sorok százalékát beolvasandó sorok számát határozza meg. |1, 2, … |Igen, ha **rejectType** van **százalékos aránya** |
-| useTypeDefault |Megadja, hogyan legyen kezelve tagolt szövegfájlok a hiányzó értékeket, amikor a PolyBase kér le adatokat a szövegfájlból.<br/><br/>Ezt a tulajdonságot, az argumentumok ismertető részben olvashat [létrehozása külső FÁJLFORMÁTUM (Transact-SQL)](https://msdn.microsoft.com/library/dn935026.aspx). |IGAZ, hamis (alapértelmezés) |Nem |
-| WriteBatchSize |Adatok beszúrása a SQL táblázatba, amikor a puffer mérete eléri writeBatchSize |Egész szám (sorok száma) |Nem (alapértelmezett: 10000) |
-| writeBatchTimeout |Várakozási idő a kötegelt beszúrási művelet befejezését, mielőtt azt az időkorlátot. |A TimeSpan<br/><br/> Példa: "00: 30:00" (30 perc). |Nem |
+| sqlWriterCleanupScript |Adja meg a másolási tevékenység tooexecute vonatkozó lekérdezést úgy, hogy egy adott szelet adatait. |A lekérdezési utasítást. |Nem |
+| allowPolyBase |Azt jelzi, hogy (ha alkalmazható) PolyBase toouse BULKINSERT mechanizmus helyett. <br/><br/> **A PolyBase használata javasolt módja tooload adatokat az SQL Data Warehouse hello.** |True (Igaz) <br/>Hamis (alapértelmezés) |Nem |
+| kapcsolódó polyBaseSettings |Egy csoport lehet megadni, ha hello tulajdonságok **allowPolybase** tulajdonsága túl**igaz**. |&nbsp; |Nem |
+| rejectValue |Megadja a hello számát vagy a sorok, amelyekre el lehet utasítani, mielőtt hello lekérdezés nem sikerült százalékát. <br/><br/>Bővebben a hello PolyBase elutasítása hello lehetőségeit további **argumentumok** szakasza [külső tábla létrehozása (Transact-SQL)](https://msdn.microsoft.com/library/dn935021.aspx) témakör. |0 (alapértelmezés), 1, 2... |Nem |
+| rejectType |Meghatározza, hogy hello rejectValue beállítás konstans értéket vagy százalékában van megadva. |Érték (alapértelmezett), százalékos aránya |Nem |
+| rejectSampleValue |Határozza meg, hogy hello sorok tooretrieve előtt hello PolyBase újraszámítja a visszautasított sorok hello százalékát. |1, 2, … |Igen, ha **rejectType** van **százalékos aránya** |
+| useTypeDefault |Itt adhatja meg, hogyan értékek a hiányzó toohandle tagolt-e szövegfájlok amikor PolyBase hello szövegfájlból kér le adatokat.<br/><br/>Ezt a tulajdonságot hello argumentumok című szakaszában olvashat [létrehozása külső FÁJLFORMÁTUM (Transact-SQL)](https://msdn.microsoft.com/library/dn935026.aspx). |IGAZ, hamis (alapértelmezés) |Nem |
+| WriteBatchSize |Adatok beszúrása hello SQL táblázatba, amikor hello puffer mérete eléri writeBatchSize |Egész szám (sorok száma) |Nem (alapértelmezett: 10000) |
+| writeBatchTimeout |Várnia kell az hello kötegelt beszúrási művelet toocomplete előtt azt az időkorlátot. |A TimeSpan<br/><br/> Példa: "00: 30:00" (30 perc). |Nem |
 
 #### <a name="example"></a>Példa
 
@@ -1277,12 +1277,12 @@ További információkért lásd: [Azure SQL Data Warehouse-összekötő](data-f
 ## <a name="azure-search"></a>Azure Search
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Meghatározásához az Azure Search társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **AzureSearch**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+az Azure Search toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**AzureSearch**, és adja meg a következő tulajdonságok hello **typeProperties** a szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | -------- | ----------- | -------- |
-| URL-címe | Az Azure Search szolgáltatás URL-címe. | Igen |
-| kulcs | Az Azure Search szolgáltatás adminisztrációs kulcsot. | Igen |
+| URL-címe | Hello Azure Search szolgáltatás URL-címe. | Igen |
+| kulcs | Adminisztrátori kulcsot a hello Azure Search szolgáltatás. | Igen |
 
 #### <a name="example"></a>Példa
 
@@ -1302,12 +1302,12 @@ Meghatározásához az Azure Search társított szolgáltatás, állítsa be a *
 További információkért lásd: [Azure Search összekötő](data-factory-azure-search-connector.md#linked-service-properties) cikk.
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg az Azure Search adatkészlethez, állítsa be a **típus** a DataSet **AzureSearchIndex**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine egy Azure Search adatkészlet set hello **típus** hello adatkészlet túl**AzureSearchIndex**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz : 
 
 | Tulajdonság | Leírás | Szükséges |
 | -------- | ----------- | -------- |
-| type | A type tulajdonságot meg kell **AzureSearchIndex**.| Igen |
-| indexName | Az Azure Search-index neve. Adat-előállító nem hoz létre az indexet. Az index az Azure Search léteznie kell. | Igen |
+| type | hello type tulajdonság túl be kell állítani**AzureSearchIndex**.| Igen |
+| indexName | Hello Azure Search-index neve. Adat-előállító nem hoz létre hello index. az Azure Search léteznie kell a hello index. | Igen |
 
 #### <a name="example"></a>Példa
 
@@ -1331,12 +1331,12 @@ Adja meg az Azure Search adatkészlethez, állítsa be a **típus** a DataSet **
 További információkért lásd: [Azure Search összekötő](data-factory-azure-search-connector.md#dataset-properties) cikk.
 
 ### <a name="azure-search-index-sink-in-copy-activity"></a>A másolási tevékenység az Azure Search-Index fogadó
-Adatok másolása az Azure Search-index, állítsa be a **típus gyűjtése** a másolási tevékenység **AzureSearchIndexSink**, és adja meg a következő tulajdonságokat a **fogadó** a szakasz:
+Adatok tooan Azure Search-index másolása, állítsa be a hello **típus gyűjtése** hello a másolási tevékenység túl**AzureSearchIndexSink**, és adja meg a következő tulajdonságok hello **fogadó**szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | -------- | ----------- | -------------- | -------- |
-| WriteBehavior | Megadja, hogy egyesíteni vagy cserélje le, ha az index már létezik egy dokumentumot. | Egyesítés (alapértelmezett)<br/>Feltöltés| Nem |
-| WriteBatchSize | Amikor a puffer mérete eléri writeBatchSize feltölti az adatok be az Azure Search-index. | 1-1 000. Alapértelmezett érték 1000. | Nem |
+| WriteBehavior | Meghatározza, hogy toomerge vagy cserélje le a dokumentum már létezik hello index. | Egyesítés (alapértelmezett)<br/>Feltöltés| Nem |
+| WriteBatchSize | Fájlfeltöltések hello Azure Search-index az adatokat, amikor hello puffer mérete eléri writeBatchSize. | 1 too1 000. Alapértelmezett érték 1000. | Nem |
 
 #### <a name="example"></a>Példa
 
@@ -1389,12 +1389,12 @@ További információkért lásd: [Azure Search összekötő](data-factory-azure
 Társított szolgáltatások két típusa van: Azure Storage társított szolgáltatásnak, és a társított szolgáltatásnak Azure Storage SAS.
 
 #### <a name="azure-storage-linked-service"></a>Azure Storage társított szolgáltatás
-A data factory használatával az Azure storage-fiók összekapcsolása a **fiókkulcs**, hozzon létre egy Azure Storage társított szolgáltatást. Meghatározásához az Azure Storage társított szolgáltatásnak, és állítsa a **típus** a társított szolgáltatás **AzureStorage**. Ezután megadhatja tulajdonságait a következő a **typeProperties** szakasz:  
+toolink a az Azure storage-tooa data factory hello segítségével **fiókkulcs**, hozzon létre egy Azure Storage társított szolgáltatást. toodefine egy Azure Storage társított szolgáltatásnak, set hello **típus** hello a társított szolgáltatás túl**AzureStorage**. Ezután megadhatja tulajdonságok hello a következő **typeProperties** szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 |:--- |:--- |:--- |
-| type |A type tulajdonságot kell beállítani: **AzureStorage** |Igen |
-| connectionString |Adja meg a connectionString tulajdonság az Azure storage való kapcsolódáshoz szükséges adatokat. |Igen |
+| type |hello type tulajdonságot kell beállítani: **AzureStorage** |Igen |
+| connectionString |Adjon meg információt tooconnect tooAzure tárolási hello connectionString tulajdonság szükséges. |Igen |
 
 **Példa**  
 
@@ -1411,12 +1411,12 @@ A data factory használatával az Azure storage-fiók összekapcsolása a **fió
 ```
 
 #### <a name="azure-storage-sas-linked-service"></a>Az Azure Storage SAS társított szolgáltatás
-A társított Azure Storage SAS-szolgáltatás lehetővé teszi egy Azure Storage-fiók összekapcsolása egy Azure data factory egy közös hozzáférésű Jogosultságkód (SAS) használatával. Az adat-előállítóban minden/specifikus erőforrások (blobtárolóban /) a tárolóban lévő korlátozott/időhöz kötött hozzáférést biztosít. Az Azure storage-fiók összekapcsolása egy adat-előállító közös hozzáférésű Jogosultságkód használatával, a társított Azure Storage SAS-szolgáltatás létrehozása. Egy Azure Storage SAS meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **AzureStorageSas**. Ezután megadhatja tulajdonságait a következő a **typeProperties** szakasz:   
+hello Azure Storage SAS kapcsolódó szolgáltatás lehetővé teszi egy Azure Storage-fiók tooan az Azure data factory toolink egy közös hozzáférésű Jogosultságkód (SAS) használatával. Ez hozzáférést biztosít a hello adat-előállító korlátozott/időhöz kötött tooall/specifikus erőforrások (blobtárolóban /) hello tárolóban. toolink a az Azure storage-tooa data factory használatával a közös hozzáférésű Jogosultságkód, Azure Storage SAS társított szolgáltatás létrehozása. egy Azure Storage SAS toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**AzureStorageSas**. Ezután megadhatja tulajdonságok hello a következő **typeProperties** szakasz:   
 
 | Tulajdonság | Leírás | Szükséges |
 |:--- |:--- |:--- |
-| type |A type tulajdonságot kell beállítani: **AzureStorageSas** |Igen |
-| sasUri |Adja meg a megosztott hozzáférési aláírást URI az Azure Storage-erőforrások, például a blob, -tároló vagy tábla. |Igen |
+| type |hello type tulajdonságot kell beállítani: **AzureStorageSas** |Igen |
+| sasUri |Adja meg a megosztott hozzáférési aláírást URI toohello Azure tárolási erőforrások, például blob, a tároló vagy a tábla. |Igen |
 
 **Példa**
 
@@ -1435,11 +1435,11 @@ A társított Azure Storage SAS-szolgáltatás lehetővé teszi egy Azure Storag
 További információ a következő összekapcsolt szolgáltatások: [Azure Table Storage összekötő](data-factory-azure-table-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg az Azure Table-adatkészlet, állítsa be a **típus** a DataSet **AzureTable**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine az Azure tábla adatkészlethez set hello **típus** hello adatkészlet túl**AzureTable**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |Az az Azure tábla adatbázispéldány táblájának, amelyre a társított szolgáltatás neve hivatkozik. |Igen. Amikor egy Táblanév egy azureTableSourceQuery nélkül van megadva, a tábla összes rekordot a cél lesz másolva. Ha egy azureTableSourceQuery is meg van adva, a cél a táblázatból, amely eleget tesz a lekérdezés rekordok lesz másolva. |
+| tableName |Hello hello Azure tábla adatbázispéldány táblájának, amelyre a társított szolgáltatás neve hivatkozik. |Igen. Egy Táblanév egy azureTableSourceQuery nélkül van megadva, a hello tábla összes rekordot másolt toohello cél. Ha egy azureTableSourceQuery is meg van adva, a rekordok hello táblázatból, amely eleget tesz a hello lekérdezés olyan másolt toohello cél. |
 
 #### <a name="example"></a>Példa
 
@@ -1471,12 +1471,12 @@ Adja meg az Azure Table-adatkészlet, állítsa be a **típus** a DataSet **Azur
 További információ a következő összekapcsolt szolgáltatások: [Azure Table Storage összekötő](data-factory-azure-table-connector.md#dataset-properties) cikk. 
 
 ### <a name="azure-table-source-in-copy-activity"></a>A másolási tevékenység az Azure tábla forrása
-Adatok másolása az Azure Table Storage, állítsa be a **adatforrástípust** a másolási tevékenység **AzureTableSource**, és adja meg a következő tulajdonságokat a **forrás** a szakasz:
+Adatok másolása az Azure Table Storage, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**AzureTableSource**, és adja meg a következő tulajdonságok hello **forrás**szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| azureTableSourceQuery |Az egyéni lekérdezés segítségével adatokat olvasni. |Azure-tábla lekérdezési karakterlánc. Példák a következő szakaszban. |Nem. Amikor egy Táblanév egy azureTableSourceQuery nélkül van megadva, a tábla összes rekordot a cél lesz másolva. Ha egy azureTableSourceQuery is meg van adva, a cél a táblázatból, amely eleget tesz a lekérdezés rekordok lesz másolva. |
-| azureTableSourceIgnoreTableNotFound |Azt jelzi, hogy a tábla kivétel swallow nem létezik. |IGAZ<br/>HAMIS |Nem |
+| azureTableSourceQuery |Hello egyéni lekérdezés tooread adatok felhasználásával. |Azure-tábla lekérdezési karakterlánc. Példák a következő szakaszban hello. |Nem. Egy Táblanév egy azureTableSourceQuery nélkül van megadva, a hello tábla összes rekordot másolt toohello cél. Ha egy azureTableSourceQuery is meg van adva, a rekordok hello táblázatból, amely eleget tesz a hello lekérdezés olyan másolt toohello cél. |
+| azureTableSourceIgnoreTableNotFound |Azt jelzi, hogy swallow hello kivétel tábla nem létezik. |IGAZ<br/>HAMIS |Nem |
 
 #### <a name="example"></a>Példa
 
@@ -1524,16 +1524,16 @@ Adatok másolása az Azure Table Storage, állítsa be a **adatforrástípust** 
 További információ a következő összekapcsolt szolgáltatások: [Azure Table Storage összekötő](data-factory-azure-table-connector.md#copy-activity-properties) cikk. 
 
 ### <a name="azure-table-sink-in-copy-activity"></a>A másolási tevékenység az Azure tábla fogadó
-Adatok másolása az Azure Table Storage, állítsa be a **típus gyűjtése** a másolási tevékenység **AzureTableSink**, és adja meg a következő tulajdonságokat a **fogadó** szakasz:
+A Table Storage adatok tooAzure másolása, állítsa be a hello **típus gyűjtése** hello a másolási tevékenység túl**AzureTableSink**, és adja meg a következő tulajdonságok hello **fogadó** a szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| azureTableDefaultPartitionKeyValue |Alapértelmezett partíció kulcs értékét, amely a fogadó által használható. |Egy karakterlánc-érték. |Nem |
-| azureTablePartitionKeyName |Adja meg az oszlop, amelynek értékeket fogja használni, mint partíciókulcsok nevét. Ha nincs megadva, a partíciós kulcs AzureTableDefaultPartitionKeyValue lesz. |Egy oszlop neve. |Nem |
-| azureTableRowKeyName |Adja meg az oszlop, amelynek oszlop értékeit sor kulcsaként vannak használatban. Ha nincs megadva, minden egyes sorára használjon a GUID Azonosítót. |Egy oszlop neve. |Nem |
-| azureTableInsertType |A mód lehet adatokat beszúrni az Azure-tábla.<br/><br/>Ez a tulajdonság szabja meg, hogy rendelkeznek-e a meglévő sorokat a táblában az egyező partíció-és sorkulcsok cseréje vagy egyesített értékükre. <br/><br/>Ezeket a beállításokat (lemezegyesítési és -csere) működése, lásd: [Insert vagy az egyesítéses entitás](https://msdn.microsoft.com/library/azure/hh452241.aspx) és [Insert vagy az entitás cseréje](https://msdn.microsoft.com/library/azure/hh452242.aspx) témaköröket. <br/><br> Ez a beállítás a sor szintjén, a táblázatok szintjén nem vonatkozik, és sem a lehetőség törli a kimeneti táblához, amely nem szerepel a bemeneti sorokat. |Egyesítés (alapértelmezett)<br/>cserélje le |Nem |
-| WriteBatchSize |Amikor writeBatchSize vagy writeBatchTimeout találati adatok beillesztése az Azure-tábla. |Egész szám (sorok száma) |Nem (alapértelmezett: 10000) |
-| writeBatchTimeout |Adatok szúr be az Azure-táblázatra, ha a writeBatchSize vagy writeBatchTimeout találati |A TimeSpan<br/><br/>Példa: "00: 20:00" (20 perc) |Nem (alapértelmezett tároló ügyfél alapértelmezett időtúllépési érték 90 másodperc) |
+| azureTableDefaultPartitionKeyValue |Alapértelmezett partíció kulcsérték hello a fogadó által használható. |Egy karakterlánc-érték. |Nem |
+| azureTablePartitionKeyName |Adja meg, amelynek értékeket fogja használni, mint partíciókulcsok hello oszlop neve. Ha nincs megadva, AzureTableDefaultPartitionKeyValue hello partíciókulcs lesz. |Egy oszlop neve. |Nem |
+| azureTableRowKeyName |Adja meg, amelynek oszlop értékeit kulcsként sor hello oszlop neve. Ha nincs megadva, minden egyes sorára használjon a GUID Azonosítót. |Egy oszlop neve. |Nem |
+| azureTableInsertType |hello mód tooinsert adatait az Azure táblájába.<br/><br/>Ez a tulajdonság szabja meg, hogy meglévő hello kimeneti táblát, amely megfelelő a partíció-és sorkulcsok sora cseréje vagy egyesített értékükre. <br/><br/>toolearn arról, hogyan működnek ezek a beállítások (lemezegyesítési és -csere), lásd: [Insert vagy az egyesítéses entitás](https://msdn.microsoft.com/library/azure/hh452241.aspx) és [Insert vagy az entitás cseréje](https://msdn.microsoft.com/library/azure/hh452242.aspx) témaköröket. <br/><br> Ez a beállítás érvényes szinten hello sor nem hello táblaszintű, és sem a lehetőség törli a nem létező hello bemeneti hello kimeneti tábla sorainak. |Egyesítés (alapértelmezett)<br/>cserélje le |Nem |
+| WriteBatchSize |Amikor hello writeBatchSize vagy writeBatchTimeout találati adatok beillesztése hello Azure-tábla. |Egész szám (sorok száma) |Nem (alapértelmezett: 10000) |
+| writeBatchTimeout |Adatbeszúrást hello Azure-tábla amikor hello writeBatchSize vagy writeBatchTimeout találati |A TimeSpan<br/><br/>Példa: "00: 20:00" (20 perc) |Nem (alapértelmezett toostorage ügyfél alapértelmezett időtúllépési érték 90 másodperc) |
 
 #### <a name="example"></a>Példa
 
@@ -1583,15 +1583,15 @@ További információ a következő összekapcsolt szolgáltatások: [Azure Tabl
 ## <a name="amazon-redshift"></a>Amazon RedShift
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Az Amazon Redshift meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **AmazonRedshift**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz :  
+az Amazon Redshift toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**AmazonRedshift**, és adja meg a következő tulajdonságok hello **typeProperties**szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| kiszolgáló |Kiszolgáló IP-címét vagy állomásnevét kiszolgálónevét az Amazon Redshift. |Igen |
-| port |A TCP-portot, amelyen az Amazon Redshift kiszolgáló ügyfélkapcsolatokat száma. |Nem, alapértelmezett érték: 5439 |
-| adatbázis |Az Amazon Redshift adatbázis nevét. |Igen |
-| felhasználónév |Felhasználó, aki hozzáfér az adatbázis neve. |Igen |
-| jelszó |A felhasználói fiók jelszavát. |Igen |
+| kiszolgáló |Kiszolgáló IP-címét vagy állomásnevét kiszolgálónevét hello Amazon Redshift. |Igen |
+| port |Amazon Redshift server hello hello TCP port száma hello toolisten ügyfél-kommunikációhoz használ. |Nem, alapértelmezett érték: 5439 |
+| adatbázis |Hello Amazon Redshift adatbázis neve. |Igen |
+| felhasználónév |Hozzáférés toohello adatbázis-felhasználó nevét. |Igen |
+| jelszó |Hello felhasználói fiókhoz tartozó jelszót. |Igen |
 
 #### <a name="example"></a>Példa
 
@@ -1614,11 +1614,11 @@ Az Amazon Redshift meghatározásához társított szolgáltatás, állítsa be 
 További információkért lásd: [Amazon Redshift összekötő](#data-factory-amazon-redshift-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg az Amazon Redshift adatkészlethez, állítsa be a **típus** a DataSet **RelationalTable**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine az Amazon Redshift adatkészlethez set hello **típus** hello adatkészlet túl**RelationalTable**, és adja meg a következő tulajdonságai a hello hello **typeProperties** a szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |A tábla az Amazon Redshift adatbázisban, amelyre a társított szolgáltatás neve hivatkozik. |Nem (Ha **lekérdezés** a **RelationalSource** van megadva) |
+| tableName |Hello tábla hello Amazon Redshift adatbázis, amelyre a társított szolgáltatás neve hivatkozik. |Nem (Ha **lekérdezés** a **RelationalSource** van megadva) |
 
 
 #### <a name="example"></a>Példa
@@ -1643,11 +1643,11 @@ Adja meg az Amazon Redshift adatkészlethez, állítsa be a **típus** a DataSet
 További információkért lásd: [Amazon Redshift összekötő](#data-factory-amazon-redshift-connector.md#dataset-properties) cikk.
 
 ### <a name="relational-source-in-copy-activity"></a>A másolási tevékenység relációs adatforrás 
-Adatok másolása az Amazon Redshift, állítsa be a **adatforrástípust** a másolási tevékenység **RelationalSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+Adatok másolása az Amazon Redshift, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**RelationalSource**, és adja meg a következő tulajdonságok hello **forrás** a szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Például: `select * from MyTable`. |Nem (Ha **tableName** a **dataset** van megadva) |
+| lekérdezés |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Például: `select * from MyTable`. |Nem (Ha **tableName** a **dataset** van megadva) |
 
 #### <a name="example"></a>Példa
 
@@ -1695,17 +1695,17 @@ További információkért lásd: [Amazon Redshift összekötő](#data-factory-a
 ## <a name="ibm-db2"></a>IBM DB2
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Az IBM DB2 meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **OnPremisesDB2**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+az IBM DB2 toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**OnPremisesDB2**, és adja meg a következő tulajdonságok hello **typeProperties** szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| kiszolgáló |A DB2-kiszolgáló neve. |Igen |
-| adatbázis |Neve a DB2-adatbázishoz. |Igen |
-| Séma |Az adatbázisban séma neve. A séma neve a kis-és nagybetűket. |Nem |
-| AuthenticationType |A DB2-adatbázishoz való kapcsolódáshoz használt hitelesítés típusa. Lehetséges értékek a következők: névtelen, alapszintű és a Windows. |Igen |
+| kiszolgáló |Hello DB2-kiszolgáló neve. |Igen |
+| adatbázis |Hello DB2-adatbázis neve. |Igen |
+| Séma |Hello séma hello adatbázis neve. hello sémanév a kis-és nagybetűket. |Nem |
+| AuthenticationType |Tooconnect toohello DB2-adatbázishoz használt hitelesítés típusa. Lehetséges értékek a következők: névtelen, alapszintű és a Windows. |Igen |
 | felhasználónév |Adja meg a felhasználónevet Basic vagy Windows-hitelesítés használata. |Nem |
-| jelszó |Adja meg a felhasználónévhez megadott felhasználói fiók jelszavát. |Nem |
-| gatewayName |Az átjáró, amely használatával a Data Factory szolgáltatásnak csatlakoznia a helyszíni DB2-adatbázishoz való kapcsolódáshoz neve. |Igen |
+| jelszó |Adja meg a megadott felhasználónévhez hello hello felhasználói fiókhoz tartozó jelszót. |Nem |
+| gatewayName |Hello átjáró, amely a Data Factory szolgáltatásnak hello nevét használja tooconnect toohello helyszíni DB2-adatbázishoz. |Igen |
 
 #### <a name="example"></a>Példa
 ```json
@@ -1728,11 +1728,11 @@ Az IBM DB2 meghatározásához társított szolgáltatás, állítsa be a **típ
 További információkért lásd: [IBM DB2-összekötő](#data-factory-onprem-db2-connector.md#linked-service-properties) cikk.
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg a DB2 adatkészletet, állítsa be a **típus** a DataSet **RelationalTable**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz:
+toodefine DB2 dataset, set hello **típus** hello adatkészlet túl**RelationalTable**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz:
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |A tábla a DB2-adatbázishoz példány, amelyre a társított szolgáltatás neve hivatkozik. A táblanév a kis-és nagybetűket. |Nem (Ha **lekérdezés** a **RelationalSource** van megadva) 
+| tableName |Hello hello DB2 adatbázispéldány táblájának, amelyre a társított szolgáltatás neve hivatkozik. hello táblanév a kis-és nagybetűket. |Nem (Ha **lekérdezés** a **RelationalSource** van megadva) 
 
 #### <a name="example"></a>Példa
 ```json
@@ -1761,12 +1761,12 @@ Adja meg a DB2 adatkészletet, állítsa be a **típus** a DataSet **RelationalT
 További információkért lásd: [IBM DB2-összekötő](#data-factory-onprem-db2-connector.md#dataset-properties) cikk.
 
 ### <a name="relational-source-in-copy-activity"></a>A másolási tevékenység relációs adatforrás
-Adatok másolása az IBM DB2, állítsa be a **adatforrástípust** a másolási tevékenység **RelationalSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+Adatok másolása az IBM DB2, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**RelationalSource**, és adja meg a következő tulajdonságok hello **forrás** szakasz:
 
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Például: `"query": "select * from "MySchema"."MyTable""`. |Nem (Ha **tableName** a **dataset** van megadva) |
+| lekérdezés |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Például: `"query": "select * from "MySchema"."MyTable""`. |Nem (Ha **tableName** a **dataset** van megadva) |
 
 #### <a name="example"></a>Példa
 ```json
@@ -1811,17 +1811,17 @@ További információkért lásd: [IBM DB2-összekötő](#data-factory-onprem-db
 ## <a name="mysql"></a>MySQL
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Egy MySQL meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **OnPremisesMySql**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+egy MySQL toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**OnPremisesMySql**, és adja meg a következő tulajdonságok hello **typeProperties** szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| kiszolgáló |A MySQL-kiszolgáló neve. |Igen |
-| adatbázis |A MySQL-adatbázis neve. |Igen |
-| Séma |Az adatbázisban séma neve. |Nem |
-| AuthenticationType |A MySQL-adatbázishoz való kapcsolódáshoz használt hitelesítés típusa. Lehetséges értékek a következők: `Basic`. |Igen |
-| felhasználónév |Adja meg a felhasználónevet a MySQL-adatbázishoz való kapcsolódáshoz. |Igen |
-| jelszó |Adja meg a megadott felhasználói fiók jelszavát. |Igen |
-| gatewayName |Az átjáró, amely a Data Factory szolgáltatásnak csatlakoznia való kapcsolódáshoz a helyszíni MySQL-adatbázis neve. |Igen |
+| kiszolgáló |Hello MySQL kiszolgáló neve. |Igen |
+| adatbázis |Hello MySQL-adatbázis neve. |Igen |
+| Séma |Hello séma hello adatbázis neve. |Nem |
+| AuthenticationType |Tooconnect toohello MySQL-adatbázis használt hitelesítés típusa. Lehetséges értékek a következők: `Basic`. |Igen |
+| felhasználónév |Adja meg a felhasználó nevét tooconnect toohello MySQL-adatbázis. |Igen |
+| jelszó |Adja meg a megadott hello felhasználói fiók jelszavát. |Igen |
+| gatewayName |Hello átjáró, amely a Data Factory szolgáltatásnak hello nevét kell tooconnect toohello helyszíni MySQL-adatbázis használata. |Igen |
 
 #### <a name="example"></a>Példa
 
@@ -1846,11 +1846,11 @@ Egy MySQL meghatározásához társított szolgáltatás, állítsa be a **típu
 További információkért lásd: [MySQL összekötő](data-factory-onprem-mysql-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg a MySQL adatkészletet, állítsa be a **típus** a DataSet **RelationalTable**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine egy MySQL dataset set hello **típus** hello adatkészlet túl**RelationalTable**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |A tábla a MySQL-adatbázis-példány, amelyre a társított szolgáltatás neve hivatkozik. |Nem (Ha **lekérdezés** a **RelationalSource** van megadva) |
+| tableName |Hello tábla hello MySQL-adatbázis-példány, amelyre a társított szolgáltatás neve hivatkozik. |Nem (Ha **lekérdezés** a **RelationalSource** van megadva) |
 
 #### <a name="example"></a>Példa
 
@@ -1879,12 +1879,12 @@ Adja meg a MySQL adatkészletet, állítsa be a **típus** a DataSet **Relationa
 További információkért lásd: [MySQL összekötő](data-factory-onprem-mysql-connector.md#dataset-properties) cikk. 
 
 ### <a name="relational-source-in-copy-activity"></a>A másolási tevékenység relációs adatforrás
-Adatok másolása a MySQL-adatbázis, állítsa be a **adatforrástípust** a másolási tevékenység **RelationalSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+Adatok másolása a MySQL-adatbázis, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**RelationalSource**, és adja meg a következő tulajdonságok hello **forrás** a szakasz:
 
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Például: `select * from MyTable`. |Nem (Ha **tableName** a **dataset** van megadva) |
+| lekérdezés |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Például: `select * from MyTable`. |Nem (Ha **tableName** a **dataset** van megadva) |
 
 
 #### <a name="example"></a>Példa
@@ -1933,13 +1933,13 @@ További információkért lásd: [MySQL összekötő](data-factory-onprem-mysql
 ## <a name="oracle"></a>Oracle 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Az Oracle meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **OnPremisesOracle**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+az Oracle toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**OnPremisesOracle**, és adja meg a következő tulajdonságok hello **typeProperties** a szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| driverType | Adja meg, melyik illesztőprogram használatával másolja az adatokat, vagy Oracle-adatbázishoz. Két érték engedélyezett **Microsoft** vagy **ODP** (alapértelmezett). Lásd: [verziójától és a telepítés támogatott](#supported-versions-and-installation) illesztőprogram adatai szakaszban. | Nem |
-| connectionString | Adja meg az Oracle adatbázispéldányt a connectionString tulajdonság való kapcsolódáshoz szükséges adatokat. | Igen |
-| gatewayName | Azon átjáró neve, amely a helyszíni Oracle-kiszolgálóhoz való csatlakozáshoz használt |Igen |
+| driverType | Adja meg, mely illesztőprogram toouse toocopy adatait / tooOracle adatbázis. Két érték engedélyezett **Microsoft** vagy **ODP** (alapértelmezett). Lásd: [verziójától és a telepítés támogatott](#supported-versions-and-installation) illesztőprogram adatai szakaszban. | Nem |
+| connectionString | Adjon meg információt tooconnect toohello Oracle adatbázispéldány hello connectionString tulajdonság szükséges. | Igen |
+| gatewayName | Hello átjáró, amely használt tooconnect toohello helyszíni Oracle-kiszolgáló neve |Igen |
 
 #### <a name="example"></a>Példa
 ```json
@@ -1959,11 +1959,11 @@ Az Oracle meghatározásához társított szolgáltatás, állítsa be a **típu
 További információkért lásd: [Oracle összekötő](data-factory-onprem-oracle-connector.md#linked-service-properties) cikk.
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg az Oracle-adatkészlet, állítsa be a **típus** a DataSet **OracleTable**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine az Oracle adatkészlethez set hello **típus** hello adatkészlet túl**OracleTable**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |A tábla az Oracle-adatbázishoz, amely hivatkozik a társított szolgáltatás neve. |Nem (Ha **oracleReaderQuery** a **OracleSource** van megadva) |
+| tableName |Oracle-adatbázishoz kapcsolódó szolgáltatás hello hello hello tábla neve hivatkozik. |Nem (Ha **oracleReaderQuery** a **OracleSource** van megadva) |
 
 #### <a name="example"></a>Példa
 
@@ -1996,11 +1996,11 @@ Adja meg az Oracle-adatkészlet, állítsa be a **típus** a DataSet **OracleTab
 További információkért lásd: [Oracle összekötő](data-factory-onprem-oracle-connector.md#dataset-properties) cikk.
 
 ### <a name="oracle-source-in-copy-activity"></a>A másolási tevékenység Oracle-forrás
-Adatok másolása az Oracle-adatbázishoz, állítsa be a **adatforrástípust** a másolási tevékenység **OracleSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+Adatok másolása az Oracle-adatbázishoz, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**OracleSource**, és adja meg a következő tulajdonságok hello **forrás** a szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| oracleReaderQuery |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Például:`select * from MyTable` <br/><br/>Ha nincs megadva, az SQL-utasítást, amely végrehajtja a rendszer:`select * from MyTable` |Nem (Ha **tableName** a **dataset** van megadva) |
+| oracleReaderQuery |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Például:`select * from MyTable` <br/><br/>Ha nincs megadva, hello végrehajtott SQL-utasítást:`select * from MyTable` |Nem (Ha **tableName** a **dataset** van megadva) |
 
 #### <a name="example"></a>Példa
 
@@ -2048,14 +2048,14 @@ Adatok másolása az Oracle-adatbázishoz, állítsa be a **adatforrástípust**
 További információkért lásd: [Oracle összekötő](data-factory-onprem-oracle-connector.md#copy-activity-properties) cikk.
 
 ### <a name="oracle-sink-in-copy-activity"></a>A másolási tevékenység Oracle fogadó
-Adatok másolása az Oracle-adatbázishoz am, állítsa be a **típus gyűjtése** a másolási tevékenység **OracleSink**, és adja meg a következő tulajdonságokat a **fogadó** szakasz:
+Adatok tooam Oracle adatbázis másolása, állítsa be a hello **típus gyűjtése** hello a másolási tevékenység túl**OracleSink**, és adja meg a következő tulajdonságok hello **fogadó** szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| writeBatchTimeout |Várakozási idő a kötegelt beszúrási művelet befejezését, mielőtt azt az időkorlátot. |A TimeSpan<br/><br/> . Példa: 00:30:00 (30 perc). |Nem |
-| WriteBatchSize |Szúr be az SQL-tábla adatokat, amikor a puffer mérete eléri writeBatchSize. |Egész szám (sorok száma) |Nem (alapértelmezett: 100) |
-| sqlWriterCleanupScript |Adja meg egy lekérdezést a másolási tevékenység végrehajtása úgy, hogy egy adott szelet adatait. |A lekérdezési utasítást. |Nem |
-| sliceIdentifierColumnName |Adja meg a másolási tevékenység során automatikusan létrejön szelet azonosító, amely segítségével távolítja el az adatokat egy adott szelet, amikor futtassa újra a töltse ki az oszlopnevet. |Egy oszlop binary(32) adattípusú oszlop neve. |Nem |
+| writeBatchTimeout |Várnia kell az hello kötegelt beszúrási művelet toocomplete előtt azt az időkorlátot. |A TimeSpan<br/><br/> . Példa: 00:30:00 (30 perc). |Nem |
+| WriteBatchSize |Amikor hello puffer mérete eléri writeBatchSize adatok beillesztése hello SQL táblázat. |Egész szám (sorok száma) |Nem (alapértelmezett: 100) |
+| sqlWriterCleanupScript |Adja meg a másolási tevékenység tooexecute vonatkozó lekérdezést úgy, hogy egy adott szelet adatait. |A lekérdezési utasítást. |Nem |
+| sliceIdentifierColumnName |Adja meg, a másolási tevékenység toofill oszlopnév automatikusan létrejön szelet azonosítóval, amely adatokat egy adott szelet, amikor futtassa újra a használt tooclean. |Egy oszlop binary(32) adattípusú oszlop neve. |Nem |
 
 #### <a name="example"></a>Példa
 ```json
@@ -2102,17 +2102,17 @@ További információkért lásd: [Oracle összekötő](data-factory-onprem-orac
 ## <a name="postgresql"></a>PostgreSQL
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Egy PostgreSQL meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **OnPremisesPostgreSql**, és adja meg a következő tulajdonságokat a **typeProperties** a szakasz:  
+egy PostgreSQL toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**OnPremisesPostgreSql**, és adja meg a következő tulajdonságok hello **typeProperties**szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| kiszolgáló |A PostgreSQL-kiszolgáló neve. |Igen |
-| adatbázis |A PostgreSQL-adatbázis neve. |Igen |
-| Séma |Az adatbázisban séma neve. A séma neve a kis-és nagybetűket. |Nem |
-| AuthenticationType |A PostgreSQL-adatbázishoz való kapcsolódáshoz használt hitelesítés típusa. Lehetséges értékek a következők: névtelen, alapszintű és a Windows. |Igen |
+| kiszolgáló |Hello PostgreSQL-kiszolgáló neve. |Igen |
+| adatbázis |Hello PostgreSQL-adatbázis neve. |Igen |
+| Séma |Hello séma hello adatbázis neve. hello sémanév a kis-és nagybetűket. |Nem |
+| AuthenticationType |Tooconnect toohello PostgreSQL-adatbázishoz használt hitelesítés típusa. Lehetséges értékek a következők: névtelen, alapszintű és a Windows. |Igen |
 | felhasználónév |Adja meg a felhasználónevet Basic vagy Windows-hitelesítés használata. |Nem |
-| jelszó |Adja meg a felhasználónévhez megadott felhasználói fiók jelszavát. |Nem |
-| gatewayName |Az átjáró, amely használatával a Data Factory szolgáltatásnak csatlakoznia a helyszíni PostgreSQL-adatbázishoz való kapcsolódáshoz neve. |Igen |
+| jelszó |Adja meg a megadott felhasználónévhez hello hello felhasználói fiókhoz tartozó jelszót. |Nem |
+| gatewayName |Hello átjáró, amely a Data Factory szolgáltatásnak hello nevét használja tooconnect toohello a helyszíni PostgreSQL-adatbázisból. |Igen |
 
 #### <a name="example"></a>Példa
 
@@ -2136,11 +2136,11 @@ Egy PostgreSQL meghatározásához társított szolgáltatás, állítsa be a **
 További információkért lásd: [PostgreSQL összekötő](data-factory-onprem-postgresql-connector.md#linked-service-properties) cikk.
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg egy PostgreSQL-adatkészlet, állítsa be a **típus** a DataSet **RelationalTable**, adja meg a következő tulajdonságokat és a **typeProperties** szakasz: 
+toodefine egy PostgreSQL dataset set hello **típus** hello adatkészlet túl**RelationalTable**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |A tábla PostgreSQL-adatbázispéldány, amelyre a társított szolgáltatás neve hivatkozik. A táblanév a kis-és nagybetűket. |Nem (Ha **lekérdezés** a **RelationalSource** van megadva) |
+| tableName |Hello tábla hello PostgreSQL-adatbázispéldányt, amely a társított szolgáltatás neve hivatkozik. hello táblanév a kis-és nagybetűket. |Nem (Ha **lekérdezés** a **RelationalSource** van megadva) |
 
 #### <a name="example"></a>Példa
 ```json
@@ -2168,12 +2168,12 @@ Adja meg egy PostgreSQL-adatkészlet, állítsa be a **típus** a DataSet **Rela
 További információkért lásd: [PostgreSQL összekötő](data-factory-onprem-postgresql-connector.md#dataset-properties) cikk.
 
 ### <a name="relational-source-in-copy-activity"></a>A másolási tevékenység relációs adatforrás
-Adatok másolása egy PostgreSQL-adatbázisból, állítsa be a **adatforrástípust** a másolási tevékenység **RelationalSource**, és adja meg a következő tulajdonságokat a **forrás** a szakasz:
+Adatok másolása egy PostgreSQL-adatbázisból, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**RelationalSource**, és adja meg a következő tulajdonságok hello **forrás**szakasz:
 
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Például: "query": "Válasszon * a \"MySchema\".\" MyTable\"". |Nem (Ha **tableName** a **dataset** van megadva) |
+| lekérdezés |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Például: "query": "Válasszon * a \"MySchema\".\" MyTable\"". |Nem (Ha **tableName** a **dataset** van megadva) |
 
 #### <a name="example"></a>Példa
 
@@ -2221,17 +2221,17 @@ További információkért lásd: [PostgreSQL összekötő](data-factory-onprem-
 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Egy SAP Business Warehouse (BW) meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **SapBw**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz :  
+egy SAP Business Warehouse (BW) toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**SapBw**, és adja meg a következő tulajdonságok hello **typeProperties**szakasz:  
 
 Tulajdonság | Leírás | Megengedett értékek | Szükséges
 -------- | ----------- | -------------- | --------
-kiszolgáló | A kiszolgálóra az SAP BW-példány neve. | Karakterlánc | Igen
-systemNumber | Az SAP BW rendszer rendszer száma. | Kétjegyű tizedes tört karakterláncból. | Igen
-clientId | Az ügyfél számára a SAP W rendszer ügyfél-azonosítója. | Három számjegyből tizedes tört karakterláncból. | Igen
-felhasználónév | Az SAP-kiszolgálóhoz hozzáféréssel rendelkező felhasználó neve | Karakterlánc | Igen
-jelszó | A felhasználó jelszavát. | Karakterlánc | Igen
-gatewayName | Az átjáró, amely a Data Factory szolgáltatásnak csatlakoznia a helyszíni SAP BW-példányra neve. | Karakterlánc | Igen
-encryptedCredential | A titkosított hitelesítő adatokban karakterlánc. | Karakterlánc | Nem
+kiszolgáló | Hello kiszolgálóra mely hello SAP BW példány neve. | Karakterlánc | Igen
+systemNumber | Hello SAP BW rendszer rendszer száma. | Kétjegyű tizedes tört karakterláncból. | Igen
+clientId | Hello ügyfél hello SAP W rendszer ügyfél-azonosító. | Három számjegyből tizedes tört karakterláncból. | Igen
+felhasználónév | Hello toohello SAP-kiszolgálóhoz hozzáféréssel rendelkező felhasználó neve | Karakterlánc | Igen
+jelszó | Hello felhasználó jelszavát. | Karakterlánc | Igen
+gatewayName | Hello átjáró, amely a Data Factory szolgáltatásnak hello neve tooconnect toohello helyszíni SAP BW példányát kell használnia. | Karakterlánc | Igen
+encryptedCredential | hello titkosított hitelesítő adat karakterlánc. | Karakterlánc | Nem
 
 #### <a name="example"></a>Példa
 
@@ -2255,7 +2255,7 @@ encryptedCredential | A titkosított hitelesítő adatokban karakterlánc. | Kar
 További információkért lásd: [SAP Business Warehouse-összekötő](data-factory-sap-business-warehouse-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg egy SAP BW dataset, állítsa be a **típus** a DataSet **RelationalTable**. Nincsenek az SAP BW adatkészlet típusú támogatott típusra vonatkozó tulajdonságok **RelationalTable**.  
+toodefine egy SAP BW dataset set hello **típus** hello adatkészlet túl**RelationalTable**. Nincsenek hello SAP BW adatkészlet típusú támogatott típusra vonatkozó tulajdonságok **RelationalTable**.  
 
 #### <a name="example"></a>Példa
 
@@ -2277,12 +2277,12 @@ Adja meg egy SAP BW dataset, állítsa be a **típus** a DataSet **RelationalTab
 További információkért lásd: [SAP Business Warehouse-összekötő](data-factory-sap-business-warehouse-connector.md#dataset-properties) cikk. 
 
 ### <a name="relational-source-in-copy-activity"></a>A másolási tevékenység relációs adatforrás
-Adatok másolása az SAP Business Warehouse, állítsa be a **adatforrástípust** a másolási tevékenység **RelationalSource**, és adja meg a következő tulajdonságokat a **forrás** a szakasz:
+Adatok másolása az SAP Business Warehouse, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**RelationalSource**, és adja meg a következő tulajdonságok hello **forrás**szakasz:
 
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés | Meghatározza az MDX-lekérdezés adatokat olvasni az SAP BW-példány. | MDX-lekérdezés. | Igen |
+| lekérdezés | Megadja a hello MDX tooread adatait hello SAP BW-példányból. | MDX-lekérdezés. | Igen |
 
 #### <a name="example"></a>Példa
 
@@ -2331,16 +2331,16 @@ További információkért lásd: [SAP Business Warehouse-összekötő](data-fac
 ## <a name="sap-hana"></a>SAP HANA
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Egy SAP HANA meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **SapHana**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+egy SAP HANA toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**SapHana**, és adja meg a következő tulajdonságok hello **typeProperties** szakasz:  
 
 Tulajdonság | Leírás | Megengedett értékek | Szükséges
 -------- | ----------- | -------------- | --------
-kiszolgáló | A kiszolgálóra az SAP HANA-példány neve. Ha a kiszolgáló egy testreszabott portot használ, adja meg a `server:port`. | Karakterlánc | Igen
+kiszolgáló | Hello kiszolgálóra mely hello SAP HANA példány neve. Ha a kiszolgáló egy testreszabott portot használ, adja meg a `server:port`. | Karakterlánc | Igen
 AuthenticationType | Hitelesítés típusa. | Karakterlánc. "Basic" vagy "Windows" | Igen 
-felhasználónév | Az SAP-kiszolgálóhoz hozzáféréssel rendelkező felhasználó neve | Karakterlánc | Igen
-jelszó | A felhasználó jelszavát. | Karakterlánc | Igen
-gatewayName | Az átjáró, amely a Data Factory szolgáltatásnak csatlakoznia való kapcsolódáshoz a helyszíni SAP HANA-példány neve. | Karakterlánc | Igen
-encryptedCredential | A titkosított hitelesítő adatokban karakterlánc. | Karakterlánc | Nem
+felhasználónév | Hello toohello SAP-kiszolgálóhoz hozzáféréssel rendelkező felhasználó neve | Karakterlánc | Igen
+jelszó | Hello felhasználó jelszavát. | Karakterlánc | Igen
+gatewayName | Hello átjáró, amely a Data Factory szolgáltatásnak hello neve tooconnect toohello helyszíni SAP HANA-példányt kell használnia. | Karakterlánc | Igen
+encryptedCredential | hello titkosított hitelesítő adat karakterlánc. | Karakterlánc | Nem
 
 #### <a name="example"></a>Példa
 
@@ -2363,7 +2363,7 @@ encryptedCredential | A titkosított hitelesítő adatokban karakterlánc. | Kar
 További információkért lásd: [SAP HANA-összekötő](data-factory-sap-hana-connector.md#linked-service-properties) cikk.
  
 ### <a name="dataset"></a>Adatkészlet
-Adja meg egy SAP HANA-adatkészlet, állítsa be a **típus** a DataSet **RelationalTable**. Nincsenek az SAP HANA-adatkészlet típusú támogatott típusra vonatkozó tulajdonságok **RelationalTable**. 
+toodefine egy SAP HANA dataset set hello **típus** hello adatkészlet túl**RelationalTable**. Nincsenek hello SAP HANA-adatkészlet típusú támogatott típusra vonatkozó tulajdonságok **RelationalTable**. 
 
 #### <a name="example"></a>Példa
 
@@ -2385,11 +2385,11 @@ Adja meg egy SAP HANA-adatkészlet, állítsa be a **típus** a DataSet **Relati
 További információkért lásd: [SAP HANA-összekötő](data-factory-sap-hana-connector.md#dataset-properties) cikk. 
 
 ### <a name="relational-source-in-copy-activity"></a>A másolási tevékenység relációs adatforrás
-Adatok másolása egy SAP HANA adattárból, állítsa be a **adatforrástípust** a másolási tevékenység **RelationalSource**, és adja meg a következő tulajdonságokat a **forrás** a szakasz:
+Adatok másolása egy SAP HANA adattárból, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**RelationalSource**, és adja meg a következő tulajdonságok hello **forrás**szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés | Adja meg az adatokat olvasni az SAP HANA-példány az SQL-lekérdezést. | SQL-lekérdezésben. | Igen |
+| lekérdezés | Megadja a hello SQL lekérdezés tooread adatait hello SAP HANA-példányból. | SQL-lekérdezésben. | Igen |
 
 
 #### <a name="example"></a>Példa
@@ -2441,19 +2441,19 @@ További információkért lásd: [SAP HANA-összekötő](data-factory-sap-hana-
 ## <a name="sql-server"></a>SQL Server
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Típusú társított szolgáltatás létrehozása **OnPremisesSqlServer** a helyszíni SQL Server adatbázis összekapcsolása egy adat-előállítóban. A következő táblázat a JSON-elemek szerepelnek a helyszíni SQL Server kapcsolódó szolgáltatásra vonatkozó leírást.
+Típusú társított szolgáltatás létrehozása **OnPremisesSqlServer** toolink egy helyi SQL Server adatbázis tooa adat-előállítóban. a következő táblázat hello biztosít JSON elemek adott tooon-hez kapcsolódó SQL Server szolgáltatás leírását.
 
-A következő táblázat a JSON-elemek szerepelnek kapcsolódó SQL Server-szolgáltatásra vonatkozó leírást.
+a következő táblázat hello biztosít JSON-elemek adott tooSQL csatolt kiszolgáló szolgáltatás leírását.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| type |A type tulajdonságot kell megadni: **OnPremisesSqlServer**. |Igen |
-| connectionString |Az SQL-hitelesítéssel vagy a Windows-hitelesítés a helyszíni SQL Server adatbázishoz való kapcsolódáshoz szükséges connectionString információkat adják meg. |Igen |
-| gatewayName |Neve az átjáró, amely a Data Factory szolgáltatásnak csatlakoznia kell a helyszíni SQL Server adatbázishoz. |Igen |
+| type |hello tulajdonságra kell megadni: **OnPremisesSqlServer**. |Igen |
+| connectionString |Adja meg a connectionString információ tooconnect toohello a helyszíni SQL Server-adatbázis SQL-hitelesítéssel vagy a Windows-hitelesítés szükséges. |Igen |
+| gatewayName |Hello átjáró, amely a Data Factory szolgáltatásnak hello neve tooconnect toohello a helyszíni SQL Server-adatbázist használja. |Igen |
 | felhasználónév |Adja meg a felhasználónevet, ha a Windows-hitelesítést használ. Példa: **tartománynév\\felhasználónév**. |Nem |
-| jelszó |Adja meg a felhasználónévhez megadott felhasználói fiók jelszavát. |Nem |
+| jelszó |Adja meg a megadott felhasználónévhez hello hello felhasználói fiókhoz tartozó jelszót. |Nem |
 
-Hitelesítő adatok használatával titkosíthatja az **New-AzureRmDataFactoryEncryptValue** parancsmag és a következő példában látható módon használhatja őket a kapcsolódási karakterláncban (**EncryptedCredential** tulajdonság):  
+Hitelesítő adatok hello segítségével titkosíthatja **New-AzureRmDataFactoryEncryptValue** parancsmag, amelyekkel hello kapcsolati karakterlánc, ahogy az alábbi példa hello (**EncryptedCredential** tulajdonság):  
 
 ```json
 "connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=True;EncryptedCredential=<encrypted credential>",
@@ -2476,7 +2476,7 @@ Hitelesítő adatok használatával titkosíthatja az **New-AzureRmDataFactoryEn
 ```
 #### <a name="example-json-for-using-windows-authentication"></a>Példa: JSON a Windows-hitelesítés használatával
 
-Ha a felhasználónév és jelszó van adva, átjáró őket a megszemélyesítéshez használ a megadott felhasználói fióknak a helyi SQL Server-adatbázishoz való kapcsolódáshoz. Ellenkező esetben átjáró csatlakozik az SQL Server közvetlenül az átjáró (az indítási fiókjához) biztonsági környezetében.
+Ha a felhasználónév és jelszó van adva, átjáró használja őket tooimpersonate hello megadott felhasználói fiók tooconnect toohello a helyszíni SQL Server-adatbázist. Ellenkező esetben átjáró csatlakozik toohello SQL Server közvetlenül (az indítási fiókjához) átjáró hello biztonsági környezetében.
 
 ```json
 {
@@ -2496,11 +2496,11 @@ Ha a felhasználónév és jelszó van adva, átjáró őket a megszemélyesít�
 További információkért lásd: [SQL Server-összekötő](data-factory-sqlserver-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg az SQL Server dataset, állítsa be a **típus** a DataSet **SqlServerTable**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine egy SQL Server dataset set hello **típus** hello adatkészlet túl**SqlServerTable**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |A tábla vagy nézet, amelyre a társított szolgáltatás SQL Server adatbázis-példány neve hivatkozik. |Igen |
+| tableName |Hello tábla vagy nézet hello SQL Server-adatbázispéldány, amelyre a társított szolgáltatás neve hivatkozik. |Igen |
 
 #### <a name="example"></a>Példa
 ```json
@@ -2531,23 +2531,23 @@ Adja meg az SQL Server dataset, állítsa be a **típus** a DataSet **SqlServerT
 További információkért lásd: [SQL Server-összekötő](data-factory-sqlserver-connector.md#dataset-properties) cikk. 
 
 ### <a name="sql-source-in-copy-activity"></a>A másolási tevékenység SQL-forrás
-Adatok másolása egy SQL Server-adatbázisból, állítsa be a **adatforrástípust** a másolási tevékenység **SqlSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+Adatok másolása egy SQL Server-adatbázisból, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**SqlSource**, és adja meg a következő tulajdonságok hello **forrás** a szakasz:
 
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| sqlReaderQuery |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Például: `select * from MyTable`. Előfordulhat, hogy a bemeneti adatkészlet által hivatkozott adatbázishoz több táblát is hivatkozik. Ha nincs megadva, az SQL-utasítás végrehajtott: táblanév kiválaszthatja. |Nem |
-| sqlReaderStoredProcedureName |A tárolt eljárás, amely adatokat olvas a forrástábla neve. |A tárolt eljárás neve. |Nem |
-| storedProcedureParameters |A tárolt eljárás paramétereit. |A név/érték párok. Nevét és a kis-és a paraméterek meg kell egyeznie a nevek és a kis-és nagybetűhasználat a tárolt eljárás paramétereit. |Nem |
+| sqlReaderQuery |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Például: `select * from MyTable`. Hivatkozhatnak hello bemeneti adatkészlet által hivatkozott hello adatbázisból táblákat. Ha nincs megadva, az SQL-utasítás végrehajtása hello: táblanév kiválaszthatja. |Nem |
+| sqlReaderStoredProcedureName |Hello neve tárolt eljárást, amely hello forrástábla olvassa be az adatokat. |Hello neve tárolt eljárást. |Nem |
+| storedProcedureParameters |Hello paramétereinek tárolt eljárást. |A név/érték párok. Nevek és a kis-és paraméterek meg kell egyeznie hello nevét és a kis-és nagybetűhasználat hello tárolt eljárás paramétereit. |Nem |
 
-Ha a **sqlReaderQuery** van megadva a SqlSource, a másolási tevékenység során ez a lekérdezés fut az SQL Server-adatbázis forrás az adatok eléréséhez.
+Ha hello **sqlReaderQuery** megadott hello SqlSource, hello másolási tevékenység során ez a lekérdezés futtatása hello SQL Server-adatbázis forrás tooget hello adatok alapján.
 
-Másik lehetőségként megadhat tárolt eljárás megadásával a **sqlReaderStoredProcedureName** és **storedProcedureParameters** (Ha a tárolt eljárás paraméterek fogadja el).
+Másik lehetőségként megadhat tárolt eljárás hello megadásával **sqlReaderStoredProcedureName** és **storedProcedureParameters** (ha hello tárolt eljárás paraméterek fogadja el).
 
-Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, struktúra szakaszában meghatározott oszlopokat válassza futtatni az SQL Server adatbázis-lekérdezés összeállításához használt. Az adatkészlet-definícióban nem rendelkezik a struktúra, ha minden kiválasztott oszlop. a táblából.
+Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, hello struktúra szakaszban meghatározott hello oszlopok használt toobuild a select lekérdezés toorun elleni hello SQL Server-adatbázis. Hello adatkészlet definíciója nem rendelkezik hello struktúra, ha minden kiválasztott oszlop. a hello táblából.
 
 > [!NOTE]
-> Amikor **sqlReaderStoredProcedureName**, továbbra is meg kell adnia egy értéket a **tableName** az adatkészlet JSON tulajdonság. Nincs érvényesítést hajt végre ezt a táblázatot, ha van.
+> Használata esetén **sqlReaderStoredProcedureName**, továbbra is szükséges toospecify értéket hello **tableName** hello adatkészlet JSON tulajdonság. Nincs érvényesítést hajt végre ezt a táblázatot, ha van.
 
 
 #### <a name="example"></a>Példa
@@ -2592,27 +2592,27 @@ Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, struktúra szaka
 }
 ```
 
-Ebben a példában **sqlReaderQuery** a SqlSource van megadva. A másolási tevékenység során ez a lekérdezés fut az SQL Server-adatbázis forrás az adatok eléréséhez. Másik lehetőségként megadhat tárolt eljárás megadásával a **sqlReaderStoredProcedureName** és **storedProcedureParameters** (Ha a tárolt eljárás paraméterek fogadja el). A sqlReaderQuery hivatkozhat több táblák az adatbázisban a következő bemeneti adatkészlet hivatkozik. Nincs korlátozva csak a tábla a dataset tableName typeProperty állítja be.
+Ebben a példában **sqlReaderQuery** hello SqlSource van megadva. hello másolási tevékenység fut ez a lekérdezés hello hello tooget SQL Server-adatbázis forrásadatot. Másik lehetőségként megadhat tárolt eljárás hello megadásával **sqlReaderStoredProcedureName** és **storedProcedureParameters** (ha hello tárolt eljárás paraméterek fogadja el). hello sqlReaderQuery hello bemeneti adatkészlet által hivatkozott hello adatbázison belül több táblát is hivatkozik. Már nem korlátozott tooonly hello tábla adatkészlet tableName typeProperty hello beállítani.
 
-Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, struktúra szakaszában meghatározott oszlopokat válassza futtatni az SQL Server adatbázis-lekérdezés összeállításához használt. Az adatkészlet-definícióban nem rendelkezik a struktúra, ha minden kiválasztott oszlop. a táblából.
+Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, hello struktúra szakaszban meghatározott hello oszlopok használt toobuild a select lekérdezés toorun elleni hello SQL Server-adatbázis. Hello adatkészlet definíciója nem rendelkezik hello struktúra, ha minden kiválasztott oszlop. a hello táblából.
 
 További információkért lásd: [SQL Server-összekötő](data-factory-sqlserver-connector.md#copy-activity-properties) cikk. 
 
 ### <a name="sql-sink-in-copy-activity"></a>A másolási tevékenység SQL fogadó
-Adatok másolása az SQL Server-adatbázishoz, állítsa be a **típus gyűjtése** a másolási tevékenység **SqlSink**, és adja meg a következő tulajdonságokat a **fogadó** szakasz:
+Adatok tooa SQL Server-adatbázis másolása, állítsa be a hello **típus gyűjtése** hello a másolási tevékenység túl**SqlSink**, és adja meg a következő tulajdonságok hello **fogadó** szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| writeBatchTimeout |Várakozási idő a kötegelt beszúrási művelet befejezését, mielőtt azt az időkorlátot. |A TimeSpan<br/><br/> Példa: "00: 30:00" (30 perc). |Nem |
-| WriteBatchSize |Szúr be az SQL-tábla adatokat, amikor a puffer mérete eléri writeBatchSize. |Egész szám (sorok száma) |Nem (alapértelmezett: 10000) |
-| sqlWriterCleanupScript |Adja meg a lekérdezést úgy, hogy egy adott szelet adatait végrehajtásához másolási tevékenységhez. További információkért lásd: [ismételhetőség](#repeatability-during-copy) szakasz. |A lekérdezési utasítást. |Nem |
-| sliceIdentifierColumnName |Adja meg a másolási tevékenység során automatikusan létrejön szelet azonosító, amely segítségével távolítja el az adatokat egy adott szelet, amikor futtassa újra a töltse ki az oszlopnevet. További információkért lásd: [ismételhetőség](#repeatability-during-copy) szakasz. |Egy oszlop binary(32) adattípusú oszlop neve. |Nem |
-| sqlWriterStoredProcedureName |A tárolt eljárás neve a cél táblázatba upserts (frissítés/Beszúrás) adatok. |A tárolt eljárás neve. |Nem |
-| storedProcedureParameters |A tárolt eljárás paramétereit. |A név/érték párok. Nevét és a kis-és a paraméterek meg kell egyeznie a nevek és a kis-és nagybetűhasználat a tárolt eljárás paramétereit. |Nem |
-| sqlWriterTableType |Adja meg a tárolt eljárásban használandó tábla neve. Másolási tevékenység elérhetővé teszi az adatok áthelyezése egy ideiglenes táblát, amely a táblatípus. Tárolt eljárás kódot is majd egyesítheti az adatokat, a meglévő adatok másolásának. |Egy tábla környezettípus nevét. |Nem |
+| writeBatchTimeout |Várnia kell az hello kötegelt beszúrási művelet toocomplete előtt azt az időkorlátot. |A TimeSpan<br/><br/> Példa: "00: 30:00" (30 perc). |Nem |
+| WriteBatchSize |Amikor hello puffer mérete eléri writeBatchSize adatok beillesztése hello SQL táblázat. |Egész szám (sorok száma) |Nem (alapértelmezett: 10000) |
+| sqlWriterCleanupScript |Adja meg a másolási tevékenység tooexecute lekérdezést, úgy, hogy egy adott szelet adatait. További információkért lásd: [ismételhetőség](#repeatability-during-copy) szakasz. |A lekérdezési utasítást. |Nem |
+| sliceIdentifierColumnName |Adja meg, a másolási tevékenység toofill oszlopnév automatikusan létrejön szelet azonosítóval, amely adatokat egy adott szelet, amikor futtassa újra a használt tooclean. További információkért lásd: [ismételhetőség](#repeatability-during-copy) szakasz. |Egy oszlop binary(32) adattípusú oszlop neve. |Nem |
+| sqlWriterStoredProcedureName |Hello nevét (frissítés/Beszúrás) upserts adatok tárolt eljárás hello cél táblába. |Hello neve tárolt eljárást. |Nem |
+| storedProcedureParameters |Hello paramétereinek tárolt eljárást. |A név/érték párok. Nevek és a kis-és paraméterek meg kell egyeznie hello nevét és a kis-és nagybetűhasználat hello tárolt eljárás paramétereit. |Nem |
+| sqlWriterTableType |Adja meg a tábla Típus neve toobe hello tárolt eljárásban használt. Másolási tevékenység elérhetővé teszi hello adatok éppen áthelyezik egy ideiglenes táblát, amely a táblatípus. Tárolt eljárás kód majd egyesítheti a meglévő adatok másolásának hello adatokat. |Egy tábla környezettípus nevét. |Nem |
 
 #### <a name="example"></a>Példa
-A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és kimeneti adatkészletek használatára van konfigurálva, és óránkénti futásra nem ütemezték. Az adatcsatorna JSON-definícióból a **forrás** típusúra **BlobSource** és **fogadó** típusúra **SqlSink**.
+hello folyamat másolatot tevékenységet tartalmaz, amely konfigurált toouse ezen bemeneti és kimeneti adatkészletek és ütemezett toorun óránként. Hello adatcsatorna JSON-definícióból, hello **forrás** típusuk értéke túl**BlobSource** és **fogadó** típusuk értéke túl**SqlSink**.
 
 ```json
 {
@@ -2660,17 +2660,17 @@ További információkért lásd: [SQL Server-összekötő](data-factory-sqlserv
 ## <a name="sybase"></a>Sybase
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Adja meg a Sybase társított a szolgáltatás, állítsa be a **típus** a társított szolgáltatás **OnPremisesSybase**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+egy Sybase toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**OnPremisesSybase**, és adja meg a következő tulajdonságok hello **typeProperties** a szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| kiszolgáló |A Sybase-kiszolgáló neve. |Igen |
-| adatbázis |Neve a Sybase-adatbázishoz. |Igen |
-| Séma |Az adatbázisban séma neve. |Nem |
-| AuthenticationType |A Sybase-adatbázishoz való kapcsolódáshoz használt hitelesítés típusa. Lehetséges értékek a következők: névtelen, alapszintű és a Windows. |Igen |
+| kiszolgáló |Hello Sybase-kiszolgáló neve. |Igen |
+| adatbázis |Hello Sybase-adatbázis neve. |Igen |
+| Séma |Hello séma hello adatbázis neve. |Nem |
+| AuthenticationType |Tooconnect toohello Sybase-adatbázishoz használt hitelesítés típusa. Lehetséges értékek a következők: névtelen, alapszintű és a Windows. |Igen |
 | felhasználónév |Adja meg a felhasználónevet Basic vagy Windows-hitelesítés használata. |Nem |
-| jelszó |Adja meg a felhasználónévhez megadott felhasználói fiók jelszavát. |Nem |
-| gatewayName |Az átjáró, amely használatával a Data Factory szolgáltatásnak csatlakoznia a helyszíni Sybase-adatbázishoz való kapcsolódáshoz neve. |Igen |
+| jelszó |Adja meg a megadott felhasználónévhez hello hello felhasználói fiókhoz tartozó jelszót. |Nem |
+| gatewayName |Hello átjáró, amely a Data Factory szolgáltatásnak hello nevét használja tooconnect toohello helyszíni Sybase-adatbázishoz. |Igen |
 
 #### <a name="example"></a>Példa
 ```json
@@ -2694,11 +2694,11 @@ Adja meg a Sybase társított a szolgáltatás, állítsa be a **típus** a tár
 További információkért lásd: [Sybase összekötő](data-factory-onprem-sybase-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg a Sybase adatkészletet, állítsa be a **típus** a DataSet **RelationalTable**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine egy Sybase dataset set hello **típus** hello adatkészlet túl**RelationalTable**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |A tábla a Sybase-adatbázishoz példány, amelyre a társított szolgáltatás neve hivatkozik. |Nem (Ha **lekérdezés** a **RelationalSource** van megadva) |
+| tableName |Hello tábla hello Sybase-adatbázispéldányt, amely a társított szolgáltatás neve hivatkozik. |Nem (Ha **lekérdezés** a **RelationalSource** van megadva) |
 
 #### <a name="example"></a>Példa
 
@@ -2728,12 +2728,12 @@ Adja meg a Sybase adatkészletet, állítsa be a **típus** a DataSet **Relation
 További információkért lásd: [Sybase összekötő](data-factory-onprem-sybase-connector.md#dataset-properties) cikk. 
 
 ### <a name="relational-source-in-copy-activity"></a>A másolási tevékenység relációs adatforrás
-Adatok másolása egy Sybase-adatbázisból, állítsa be a **adatforrástípust** a másolási tevékenység **RelationalSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz :
+Adatok másolása egy Sybase-adatbázisból, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**RelationalSource**, és adja meg a következő tulajdonságok hello **forrás** a szakasz:
 
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Például: `select * from MyTable`. |Nem (Ha **tableName** a **dataset** van megadva) |
+| lekérdezés |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Például: `select * from MyTable`. |Nem (Ha **tableName** a **dataset** van megadva) |
 
 #### <a name="example"></a>Példa
 
@@ -2780,15 +2780,15 @@ További információkért lásd: [Sybase összekötő](data-factory-onprem-syba
 ## <a name="teradata"></a>Teradata
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Adja meg a teradata rendszerhez társított a szolgáltatás, állítsa be a **típus** a társított szolgáltatás **OnPremisesTeradata**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+a Teradata toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**OnPremisesTeradata**, és adja meg a következő tulajdonságok hello **typeProperties** a szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| kiszolgáló |A Teradata-kiszolgáló neve. |Igen |
-| AuthenticationType |A Teradata-adatbázishoz való kapcsolódáshoz használt hitelesítés típusa. Lehetséges értékek a következők: névtelen, alapszintű és a Windows. |Igen |
+| kiszolgáló |Hello Teradata-kiszolgáló neve. |Igen |
+| AuthenticationType |Tooconnect toohello Teradata-adatbázishoz használt hitelesítés típusa. Lehetséges értékek a következők: névtelen, alapszintű és a Windows. |Igen |
 | felhasználónév |Adja meg a felhasználónevet Basic vagy Windows-hitelesítés használata. |Nem |
-| jelszó |Adja meg a felhasználónévhez megadott felhasználói fiók jelszavát. |Nem |
-| gatewayName |Az átjáró, amely használatával a Data Factory szolgáltatásnak csatlakoznia a helyszíni Teradata-adatbázishoz való kapcsolódáshoz neve. |Igen |
+| jelszó |Adja meg a megadott felhasználónévhez hello hello felhasználói fiókhoz tartozó jelszót. |Nem |
+| gatewayName |Hello átjáró, amely a Data Factory szolgáltatásnak hello nevét használja tooconnect toohello a helyszíni Teradata-adatbázishoz. |Igen |
 
 #### <a name="example"></a>Példa
 ```json
@@ -2810,7 +2810,7 @@ Adja meg a teradata rendszerhez társított a szolgáltatás, állítsa be a **t
 További információkért lásd: [Teradata összekötő](data-factory-onprem-teradata-connector.md#linked-service-properties) cikk.
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg a Teradata-Blob adatkészletet, állítsa be a **típus** a DataSet **RelationalTable**. Jelenleg nem támogatott a Teradata-adatkészlet tulajdonságokat. 
+toodefine egy Teradata-Blob adatkészletet set hello **típus** hello adatkészlet túl**RelationalTable**. Jelenleg nem támogatott hello Teradata adatkészlet tulajdonságokat. 
 
 #### <a name="example"></a>Példa
 ```json
@@ -2839,11 +2839,11 @@ Adja meg a Teradata-Blob adatkészletet, állítsa be a **típus** a DataSet **R
 További információkért lásd: [Teradata összekötő](data-factory-onprem-teradata-connector.md#dataset-properties) cikk.
 
 ### <a name="relational-source-in-copy-activity"></a>A másolási tevékenység relációs adatforrás
-Adatok másolása egy Teradata-adatbázisból, állítsa be a **adatforrástípust** a másolási tevékenység **RelationalSource**, és adja meg a következő tulajdonságokat a **forrás** a szakasz:
+Adatok másolása egy Teradata-adatbázisból, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**RelationalSource**, és adja meg a következő tulajdonságok hello **forrás**szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Például: `select * from MyTable`. |Igen |
+| lekérdezés |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Például: `select * from MyTable`. |Igen |
 
 #### <a name="example"></a>Példa
 
@@ -2894,17 +2894,17 @@ További információkért lásd: [Teradata összekötő](data-factory-onprem-te
 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Kapcsolódó Cassandra szolgáltatás definiálásához, állítsa be a **típus** a társított szolgáltatás **OnPremisesCassandra**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+egy Cassandra toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**OnPremisesCassandra**, és adja meg a következő tulajdonságok hello **typeProperties** a szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| állomás |Egy vagy több IP-címek vagy Cassandra kiszolgálók állomás nevét.<br/><br/>IP-címek vagy állomásnevek kiszolgálókhoz való kapcsolódáshoz összes egyidejűleg vesszővel tagolt listáját adja meg. |Igen |
-| port |A TCP-portot, amelyen a Cassandra kiszolgáló ügyfélkapcsolatokat. |Nem, alapértelmezett érték: 9042 |
+| állomás |Egy vagy több IP-címek vagy Cassandra kiszolgálók állomás nevét.<br/><br/>IP-címek vagy nevek tooconnect tooall kiszolgálók vesszővel tagolt listáját adja meg a egyidejűleg. |Igen |
+| port |hello hello Cassandra server TCP-port toolisten ügyfél-kommunikációhoz használ. |Nem, alapértelmezett érték: 9042 |
 | AuthenticationType |Basic vagy Anonymous |Igen |
-| felhasználónév |Adja meg a felhasználói fiók felhasználónevét. |Igen, ha authenticationType beállítása alapszintű. |
-| jelszó |Adja meg a felhasználói fiók jelszavát. |Igen, ha authenticationType beállítása alapszintű. |
-| gatewayName |A helyszíni Cassandra adatbázishoz való csatlakozáshoz használt átjáró neve. |Igen |
-| encryptedCredential |Az átjáró által titkosított hitelesítő. |Nem |
+| felhasználónév |Adja meg a hello felhasználói fiókhoz tartozó felhasználónevet. |Igen, ha authenticationType tooBasic van beállítva. |
+| jelszó |Adja meg a hello felhasználói fiókhoz tartozó jelszót. |Igen, ha authenticationType tooBasic van beállítva. |
+| gatewayName |hello hello átjáró, amely használt tooconnect toohello helyszíni Cassandra adatbázis neve. |Igen |
+| encryptedCredential |A hitelesítő adatok hello átjáró titkosítja. |Nem |
 
 #### <a name="example"></a>Példa
 
@@ -2928,12 +2928,12 @@ Kapcsolódó Cassandra szolgáltatás definiálásához, állítsa be a **típus
 További információkért lásd: [Cassandra összekötő](data-factory-onprem-cassandra-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Cassandra dataset határozza meg, állítsa be a **típus** a DataSet **CassandraTable**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine Cassandra dataset, set hello **típus** hello adatkészlet túl**CassandraTable**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| kulcstérértesítések használatával |Kulcstérértesítések használatával vagy séma Cassandra adatbázis nevét. |Igen (Ha **lekérdezés** a **CassandraSource** nincs definiálva). |
-| tableName |A tábla Cassandra adatbázis neve. |Igen (Ha **lekérdezés** a **CassandraSource** nincs definiálva). |
+| kulcstérértesítések használatával |Hello kulcstérértesítések használatával vagy a séma Cassandra adatbázis neve. |Igen (Ha **lekérdezés** a **CassandraSource** nincs definiálva). |
+| tableName |Hello tábla Cassandra adatbázis neve. |Igen (Ha **lekérdezés** a **CassandraSource** nincs definiálva). |
 
 #### <a name="example"></a>Példa
 
@@ -2966,12 +2966,12 @@ Cassandra dataset határozza meg, állítsa be a **típus** a DataSet **Cassandr
 További információkért lásd: [Cassandra összekötő](data-factory-onprem-cassandra-connector.md#dataset-properties) cikk. 
 
 ### <a name="cassandra-source-in-copy-activity"></a>A másolási tevékenység Cassandra forrás
-Adatok másolása az Cassandra, állítsa be a **adatforrástípust** a másolási tevékenység **CassandraSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+Adatok másolása az Cassandra, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**CassandraSource**, és adja meg a következő tulajdonságok hello **forrás** szakasz :
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-92 vagy CQL lekérdezés. Lásd: [CQL hivatkozás](https://docs.datastax.com/en/cql/3.1/cql/cql_reference/cqlReferenceTOC.html). <br/><br/>SQL-lekérdezés használata esetén adja meg a **kulcstérértesítések használatával name.table neve** a lekérdezni kívánt táblázat képviseli. |Nem (ha van megadva a tableName és a dataset kulcstérértesítések használatával). |
-| consistencyLevel |A konzisztencia szint határozza meg, hány replikák adatok visszatér az ügyfélalkalmazás egy olvasási kérést kell válaszolnia. Cassandra ellenőrzi a megadott számú replikákat az adatok a olvasási kérelem teljesítéséhez. |EGY, KETTŐ, HÁROM, KVÓRUM, AZ ÖSSZES, LOCAL_QUORUM EACH_QUORUM, LOCAL_ONE. Lásd: [konfigurálása az adatok konzisztenciájának](http://docs.datastax.com/en//cassandra/2.0/cassandra/dml/dml_config_consistency_c.html) részleteiről. |Nem. Alapértelmezett érték: egyet. |
+| lekérdezés |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-92 vagy CQL lekérdezés. Lásd: [CQL hivatkozás](https://docs.datastax.com/en/cql/3.1/cql/cql_reference/cqlReferenceTOC.html). <br/><br/>SQL-lekérdezés használata esetén adja meg a **kulcstérértesítések használatával name.table neve** tooquery kívánt toorepresent hello tábla. |Nem (ha van megadva a tableName és a dataset kulcstérértesítések használatával). |
+| consistencyLevel |hello konzisztencia szint határozza meg, hány replikák tooa olvasási kérelem kell válaszolnia kell a visszatérésre adatok toohello ügyfélalkalmazás. Cassandra ellenőrzések hello replikák megadott számú, az adatok toosatisfy hello olvasni a kérelmet. |EGY, KETTŐ, HÁROM, KVÓRUM, AZ ÖSSZES, LOCAL_QUORUM EACH_QUORUM, LOCAL_ONE. Lásd: [konfigurálása az adatok konzisztenciájának](http://docs.datastax.com/en//cassandra/2.0/cassandra/dml/dml_config_consistency_c.html) részleteiről. |Nem. Alapértelmezett érték: egyet. |
 
 #### <a name="example"></a>Példa
   
@@ -2984,7 +2984,7 @@ Adatok másolása az Cassandra, állítsa be a **adatforrástípust** a másolá
         "description": "pipeline with copy activity",
         "activities": [{
             "name": "CassandraToAzureBlob",
-            "description": "Copy from Cassandra to an Azure blob",
+            "description": "Copy from Cassandra tooan Azure blob",
             "type": "Copy",
             "inputs": [{
                 "name": "CassandraInput"
@@ -3021,18 +3021,18 @@ További információkért lásd: [Cassandra összekötő](data-factory-onprem-c
 ## <a name="mongodb"></a>MongoDB
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-A MongoDB meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **OnPremisesMongoDB**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+a MongoDB toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**OnPremisesMongoDB**, és adja meg a következő tulajdonságok hello **typeProperties** a szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| kiszolgáló |Kiszolgáló IP-címét vagy állomásnevét kiszolgálónevét a mongodb-Protokolltámogatással. |Igen |
-| port |A MongoDB-kiszolgálóhoz a kapcsolatok figyelésére használt TCP portot. |Nem kötelező, alapértelmezett érték: 27017 |
+| kiszolgáló |Kiszolgáló IP-címét vagy állomásnevét kiszolgálónevét hello MongoDB. |Igen |
+| port |TCP-portot, amely a MongoDB-kiszolgálóhoz hello toolisten ügyfél-kommunikációhoz használ. |Nem kötelező, alapértelmezett érték: 27017 |
 | AuthenticationType |Alapszintű, vagy névtelen. |Igen |
-| felhasználónév |Felhasználói fiók MongoDB eléréséhez. |Igen (Ha alapszintű hitelesítést használ). |
-| jelszó |A felhasználó jelszavát. |Igen (Ha alapszintű hitelesítést használ). |
-| authSource |A MongoDB-adatbázist, amely a hitelesítő adatok kereséséhez használni kívánt nevét. |Választható (Ha alapszintű hitelesítést használ). alapértelmezett: a rendszergazdai fiókot és a databaseName tulajdonsággal megadott adatbázis használ. |
-| DatabaseName |A MongoDB-adatbázist, amely az elérni kívánt nevét. |Igen |
-| gatewayName |Az átjáró, aki hozzáfér az adattár neve. |Igen |
+| felhasználónév |Felhasználói fiók MongoDB tooaccess. |Igen (Ha alapszintű hitelesítést használ). |
+| jelszó |Hello felhasználó jelszavát. |Igen (Ha alapszintű hitelesítést használ). |
+| authSource |Hello MongoDB-adatbázist, amelyet toouse toocheck a hitelesítő adatok hitelesítéshez neve. |Választható (Ha alapszintű hitelesítést használ). alapértelmezett: hello rendszergazdai fiókot és a databaseName tulajdonsággal megadott hello adatbázis használ. |
+| DatabaseName |Hello MongoDB-adatbázist, amelyet az tooaccess neve. |Igen |
+| gatewayName |Hello adattár hozzáférő hello átjáró neve. |Igen |
 | encryptedCredential |A hitelesítőadat-átjáró által titkosított. |Optional |
 
 #### <a name="example"></a>Példa
@@ -3044,11 +3044,11 @@ A MongoDB meghatározásához társított szolgáltatás, állítsa be a **típu
         "type": "OnPremisesMongoDb",
         "typeProperties": {
             "authenticationType": "<Basic or Anonymous>",
-            "server": "< The IP address or host name of the MongoDB server >",
-            "port": "<The number of the TCP port that the MongoDB server uses to listen for client connections.>",
+            "server": "< hello IP address or host name of hello MongoDB server >",
+            "port": "<hello number of hello TCP port that hello MongoDB server uses toolisten for client connections.>",
             "username": "<username>",
             "password": "<password>",
-            "authSource": "< The database that you want to use to check your credentials for authentication. >",
+            "authSource": "< hello database that you want toouse toocheck your credentials for authentication. >",
             "databaseName": "<database name>",
             "gatewayName": "<onpremgateway>"
         }
@@ -3059,11 +3059,11 @@ A MongoDB meghatározásához társított szolgáltatás, állítsa be a **típu
 További információkért lásd: [MongoDB összekötő cikk](data-factory-on-premises-mongodb-connector.md#linked-service-properties)
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg a MongoDB adatkészletet, állítsa be a **típus** a DataSet **MongoDbCollection**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine a MongoDB dataset set hello **típus** hello adatkészlet túl**MongoDbCollection**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| CollectionName |A MongoDB-adatbázist a gyűjtemény nevét. |Igen |
+| CollectionName |A MongoDB adatbázis hello gyűjtemény nevét. |Igen |
 
 #### <a name="example"></a>Példa
 
@@ -3088,11 +3088,11 @@ Adja meg a MongoDB adatkészletet, állítsa be a **típus** a DataSet **MongoDb
 További információkért lásd: [MongoDB összekötő cikk](data-factory-on-premises-mongodb-connector.md#dataset-properties)
 
 #### <a name="mongodb-source-in-copy-activity"></a>A másolási tevékenység MongoDB-forrás
-Adatok másolása a MongoDB, állítsa be a **adatforrástípust** a másolási tevékenység **MongoDbSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+Adatok másolása a MongoDB, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**MongoDbSource**, és adja meg a következő tulajdonságok hello **forrás** szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-92 lekérdezési karakterlánc. Például: `select * from MyTable`. |Nem (Ha **collectionName** a **dataset** van megadva) |
+| lekérdezés |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-92 lekérdezési karakterlánc. Például: `select * from MyTable`. |Nem (Ha **collectionName** a **dataset** van megadva) |
 
 #### <a name="example"></a>Példa
 
@@ -3142,12 +3142,12 @@ További információkért lásd: [MongoDB összekötő cikk](data-factory-on-pr
 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Az Amazon S3 meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **AwsAccessKey**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+az Amazon S3 toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**AwsAccessKey**, és adja meg a következő tulajdonságok hello **typeProperties** szakasz :  
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| accessKeyID |A titkos hívóbetű azonosítója. |Karakterlánc |Igen |
-| secretAccessKey |A titkos hívóbetű magát. |Titkosított titkos karakterlánc |Igen |
+| accessKeyID |Hello titkos hívóbetű azonosítója. |Karakterlánc |Igen |
+| secretAccessKey |hello titkos hívóbetű magát. |Titkosított titkos karakterlánc |Igen |
 
 #### <a name="example"></a>Példa
 ```json
@@ -3166,20 +3166,20 @@ Az Amazon S3 meghatározásához társított szolgáltatás, állítsa be a **t�
 További információkért lásd: [Amazon S3 összekötő cikk](data-factory-amazon-simple-storage-service-connector.md#linked-service-properties).
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg az Amazon S3 adatkészlethez, állítsa be a **típus** a DataSet **AmazonS3**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+az Amazon S3 toodefine dataset, set hello **típus** hello adatkészlet túl**AmazonS3**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| bucketName |S3 gyűjtő neve. |Karakterlánc |Igen |
-| kulcs |S3 objektum kulcsa. |Karakterlánc |Nem |
-| előtag |S3 objektum kulcshoz előtag. Kiválasztott objektumok, amelynek kulcsait a előtaggal kezdődik. Érvényes, csak ha kulcsa üres. |Karakterlánc |Nem |
-| Verzió |Ha engedélyezve van a S3 versioning S3 objektum verziója. |Karakterlánc |Nem |
-| Formátumban | A következő formátumban típusok támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**, **ParquetFormat**. Állítsa be a **típus** tulajdonság a formátuma a következő értékek egyikét. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, hogy **másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a Formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem | |
-| Tömörítés | Adja meg a típus és az adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**. A támogatott szintek a következők: **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem | |
+| bucketName |hello S3 gyűjtő neve. |Karakterlánc |Igen |
+| kulcs |hello S3 objektum kulcsának. |Karakterlánc |Nem |
+| előtag |Hello S3 Objektumkulcs előtagját. Kiválasztott objektumok, amelynek kulcsait a előtaggal kezdődik. Érvényes, csak ha kulcsa üres. |Karakterlánc |Nem |
+| Verzió |Ha engedélyezve van a S3 versioning S3 objektum hello verziója. |Karakterlánc |Nem |
+| Formátumban | a következő formátumban típusok hello támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **típus** tulajdonság alapján formátum tooone ezeket az értékeket. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, túl**másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a hello formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem | |
+| Tömörítés | Adja meg a hello típusát és hello adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**. hello támogatott szintek a következők: **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem | |
 
 
 > [!NOTE]
-> bucketName + kulcs elérési útja a S3 objektum, ahol a gyűjtő S3 objektumok a legfelső szintű tárolója, és a kulcs S3 objektum teljes elérési útja.
+> bucketName + kulcs hello S3 objektum, ahol a gyűjtő S3 objektumok hello legfelső szintű tárolója, és a kulcs hello teljes elérési útja tooS3 objektum hello helyét adja meg.
 
 #### <a name="example-sample-dataset-with-prefix"></a>Példa: Minta-adatkészleteken előtaggal
 
@@ -3230,31 +3230,31 @@ Adja meg az Amazon S3 adatkészlethez, állítsa be a **típus** a DataSet **Ama
 ```
 
 #### <a name="example-dynamic-paths-for-s3"></a>Példa: A dinamikus útvonalak S3
-A minta rögzített értékeket használjuk az Amazon S3 adatkészlet kulcs és bucketName tulajdonságok.
+Hello minta rögzített értékeket használjuk kulcs és bucketName tulajdonságok hello Amazon S3 adatkészletben.
 
 ```json
 "key": "testFolder/test.orc",
 "bucketName": "<S3 bucket name>",
 ```
 
-A kulcs és a futási időben dinamikusan bucketName kiszámításához rendszerváltozók SliceStart például a Data Factory lehet.
+Hello kulcs, és dinamikusan futásidőben bucketName kiszámításához rendszerváltozók SliceStart például a Data Factory lehet.
 
 ```json
 "key": "$$Text.Format('{0:MM}/{0:dd}/test.orc', SliceStart)"
 "bucketName": "$$Text.Format('{0:yyyy}', SliceStart)"
 ```
 
-Az Amazon S3 adatkészlethez előtag tulajdonságának azonos teheti meg. Lásd: [adat-előállító funkciók és rendszerváltozók](data-factory-functions-variables.md) támogatott funkciók és változók listáját.
+Mindent hello azonos hello előtag tulajdonsága az Amazon S3 adatkészlethez. Lásd: [adat-előállító funkciók és rendszerváltozók](data-factory-functions-variables.md) támogatott funkciók és változók listáját.
 
 További információkért lásd: [Amazon S3 összekötő cikk](data-factory-amazon-simple-storage-service-connector.md#dataset-properties).
 
 ### <a name="file-system-source-in-copy-activity"></a>A másolási tevékenység rendszer forrás
-Adatok másolása az Amazon S3, állítsa be a **adatforrástípust** a másolási tevékenység **FileSystemSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+Adatok másolása az Amazon S3, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**FileSystemSource**, és adja meg a következő tulajdonságok hello **forrás** szakasz :
 
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| Rekurzív |Határozza meg, hogy a rekurzív módon listában S3 objektumok a könyvtárban. |Igaz/hamis |Nem |
+| Rekurzív |Meghatározza, hogy toorecursively lista S3 objektumokat hello könyvtára alatt tárolja. |Igaz/hamis |Nem |
 
 
 #### <a name="example"></a>Példa
@@ -3306,16 +3306,16 @@ További információkért lásd: [Amazon S3 összekötő cikk](data-factory-ama
 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Egy helyszíni fájlrendszer hozzákapcsolhatja egy az Azure data factory, a **a helyi fájlkiszolgáló** társított szolgáltatás. A következő táblázat ismerteti, amelyek a helyszíni fájl kiszolgálóhoz kapcsolódó szolgáltatásra vonatkozó JSON-elemek szerepelnek.
+Egy helyi fájl rendszer tooan az Azure data factory hello társíthatja **a helyi fájlkiszolgáló** társított szolgáltatás. hello a következő táblázat ismerteti, amelyek adott toohello a helyi fájlkiszolgáló társított szolgáltatás JSON-elemek szerepelnek.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| type |Győződjön meg arról, hogy a type tulajdonság értéke **OnPremisesFileServer**. |Igen |
-| állomás |Adja meg a legfelső szintű mappa elérési útját, amelyet szeretne másolni. Az escape-karakter használata "\" a speciális karakterek a karakterláncban. Lásd: [minta kapcsolódó szolgáltatás és az adatkészlet-definíciók](#sample-linked-service-and-dataset-definitions) példákat. |Igen |
-| felhasználói azonosítóját |Adja meg a felhasználó, aki hozzáfér a kiszolgáló Azonosítóját. |Nem (Ha úgy dönt, hogy encryptedCredential) |
-| jelszó |Adja meg a felhasználó (userid) jelszavát. |Nem (Ha úgy dönt, hogy encryptedCredential |
-| encryptedCredential |Adja meg a titkosított hitelesítő adatokat kaphat a New-AzureRmDataFactoryEncryptValue parancsmag futtatásával. |Nem (Ha úgy dönt, hogy adja meg a felhasználói azonosítót és jelszót a szövegként) |
-| gatewayName |Megadja a Data Factory kell csatlakozni a helyi fájlkiszolgálón használó átjáró nevét. |Igen |
+| type |Győződjön meg arról, hogy hello típusú tulajdonsága túl**OnPremisesFileServer**. |Igen |
+| állomás |Hello legfelső szintű megjeleníteni kívánt toocopy hello mappa elérési útját adja meg. Hello escape-karakter használata "\" hello karakterlánc speciális karakter. Lásd: [minta kapcsolódó szolgáltatás és az adatkészlet-definíciók](#sample-linked-service-and-dataset-definitions) példákat. |Igen |
+| felhasználói azonosítóját |Adja meg a toohello kiszolgáló hello felhasználó hello Azonosítót. |Nem (Ha úgy dönt, hogy encryptedCredential) |
+| jelszó |Adja meg a hello jelszó hello (userid). |Nem (Ha úgy dönt, hogy encryptedCredential |
+| encryptedCredential |Adja meg a hello titkosított hitelesítő adatokat, amelyek a parancsmagot a New-AzureRmDataFactoryEncryptValue hello kaphat. |Nem (Ha úgy dönt, toospecify felhasználói azonosítót és jelszót a szövegként) |
+| gatewayName |Megadja, hogy a Data Factory kell használnia tooconnect toohello a helyi fájlkiszolgáló hello átjáró hello nevét. |Igen |
 
 #### <a name="sample-folder-path-definitions"></a>A minta mappa elérési útja definíciók 
 | Forgatókönyv | A társított szolgáltatás definíciójának üzemeltetéséhez | Az adatkészlet-definícióban folderPath |
@@ -3360,16 +3360,16 @@ Egy helyszíni fájlrendszer hozzákapcsolhatja egy az Azure data factory, a **a
 További információkért lásd: [fájlrendszer összekötő cikk](data-factory-onprem-file-system-connector.md#linked-service-properties).
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg a fájlrendszer adatkészletet, állítsa be a **típus** a DataSet **fájlmegosztási**, adja meg a következő tulajdonságokat és a **typeProperties** szakasz: 
+toodefine egy fájlrendszer dataset set hello **típus** hello adatkészlet túl**fájlmegosztási**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| folderPath |Adja meg a részleges elérési útja a mappához. Az escape-karakter használata "\" a speciális karakterek a karakterláncban. Lásd: [minta kapcsolódó szolgáltatás és az adatkészlet-definíciók](#sample-linked-service-and-dataset-definitions) példákat.<br/><br/>Ez a tulajdonság a kombinálhatja **partitionBy** szeretné, hogy a mappa elérési utak alapján szelet kezdő és záró dátum-idő. |Igen |
-| fileName |Adja meg a fájl nevét a **folderPath** Ha azt szeretné, hogy a tábla egy adott fájlra a mappában. Ha nem ad meg ehhez a tulajdonsághoz értéket, a tábla a mappában lévő összes fájlt mutat.<br/><br/>Nincs megadva fájlnév egy kimeneti adatkészletet, a létrehozott fájl neve esetén a következő formátumban: <br/><br/>`Data.<Guid>.txt`(Példa: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |Nem |
-| fileFilter |Adjon meg egy szűrőt, amely minden fájl helyett a fájlok Tárolónév részhalmazának kiválasztására szolgál. <br/><br/>Két érték engedélyezett: `*` (több karaktert) és `?` (egyetlen karakter).<br/><br/>1. példa: "fileFilter": "* .log"<br/>2. példa: "fileFilter": 2016 - 1-?. txt"<br/><br/>Vegye figyelembe, hogy fileFilter egy bemeneti fájlmegosztási adatkészlet esetében alkalmazható. |Nem |
-| partitionedBy |PartitionedBy segítségével adjon meg egy dinamikus folderPath/fájlnevet idősorozat adatok. Példa: az adatok óránkénti paraméteres folderPath. |Nem |
-| Formátumban | A következő formátumban típusok támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**, **ParquetFormat**. Állítsa be a **típus** tulajdonság a formátuma a következő értékek egyikét. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, hogy **másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a Formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
-| Tömörítés | Adja meg a típus és az adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**; és a támogatott szintek a következők: **Optimal** és **leggyorsabb**. Lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
+| folderPath |Hello részleges toohello mappáját adja meg. Hello escape-karakter használata "\" hello karakterlánc speciális karakter. Lásd: [minta kapcsolódó szolgáltatás és az adatkészlet-definíciók](#sample-linked-service-and-dataset-definitions) példákat.<br/><br/>Ez a tulajdonság a kombinálhatja **partitionBy** toohave mappák elérési útjaiban szelet alapján kezdő és záró dátum-idő. |Igen |
+| fileName |Meg kell adnia hello fájl hello nevet hello **folderPath** Ha azt szeretné, hogy hello tábla toorefer tooa adott fájl hello mappában. Ha nem ad meg semmilyen értéket ehhez a tulajdonsághoz, hello tábla mutat tooall fájlok hello mappában.<br/><br/>Ha nincs megadva fájlnév egy kimeneti adatkészletet, hello név hello létrehozott fájl van hello formátuma a következő: <br/><br/>`Data.<Guid>.txt`(Példa: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |Nem |
+| fileFilter |Adja meg a szűrő toobe tooselect használja, minden fájl helyett a hello folderPath fájlok egy részét. <br/><br/>Két érték engedélyezett: `*` (több karaktert) és `?` (egyetlen karakter).<br/><br/>1. példa: "fileFilter": "* .log"<br/>2. példa: "fileFilter": 2016 - 1-?. txt"<br/><br/>Vegye figyelembe, hogy fileFilter egy bemeneti fájlmegosztási adatkészlet esetében alkalmazható. |Nem |
+| partitionedBy |Az idősorozat adatok partitionedBy toospecify dinamikus folderPath/fileName is használhatja. Példa: az adatok óránkénti paraméteres folderPath. |Nem |
+| Formátumban | a következő formátumban típusok hello támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **típus** tulajdonság alapján formátum tooone ezeket az értékeket. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, túl**másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a hello formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
+| Tömörítés | Adja meg a hello típusát és hello adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**; és a támogatott szintek a következők: **Optimal** és **leggyorsabb**. Lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
 
 > [!NOTE]
 > Nem használható egyszerre fájlnév és fileFilter.
@@ -3434,11 +3434,11 @@ Adja meg a fájlrendszer adatkészletet, állítsa be a **típus** a DataSet **f
 További információkért lásd: [fájlrendszer összekötő cikk](data-factory-onprem-file-system-connector.md#dataset-properties).
 
 ### <a name="file-system-source-in-copy-activity"></a>A másolási tevékenység rendszer forrás
-Adatok másolása a fájlrendszerből, állítsa be a **adatforrástípust** a másolási tevékenység **FileSystemSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+Adatok másolása a fájlrendszerből, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**FileSystemSource**, és adja meg a következő tulajdonságok hello **forrás** a szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| Rekurzív |Azt jelzi, hogy az adatok olvasható rekurzív módon az almappákat, illetve csak a megadott mappát. |IGAZ, hamis (alapértelmezés) |Nem |
+| Rekurzív |Azt jelzi, hogy hello adatolvasás rekurzív módon hello almappák vagy csak a megadott mappa hello. |IGAZ, hamis (alapértelmezés) |Nem |
 
 #### <a name="example"></a>Példa
 
@@ -3484,11 +3484,11 @@ Adatok másolása a fájlrendszerből, állítsa be a **adatforrástípust** a m
 További információkért lásd: [fájlrendszer összekötő cikk](data-factory-onprem-file-system-connector.md#copy-activity-properties).
 
 ### <a name="file-system-sink-in-copy-activity"></a>A másolási tevékenység gyűjtése fájlrendszer
-Adatok másolása fájlrendszerre, állítsa be a **típus gyűjtése** a másolási tevékenység **FileSystemSink**, és adja meg a következő tulajdonságokat a **fogadó** szakasz:
+Adatok tooFile rendszer másolása, állítsa be a hello **típus gyűjtése** hello a másolási tevékenység túl**FileSystemSink**, és adja meg a következő tulajdonságok hello **fogadó** szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| copyBehavior |Másolás viselkedését határozza meg, ha az adatforrás BlobSource vagy a fájlrendszer. |**PreserveHierarchy:** őrzi meg a fájl hierarchia a célmappában. Ez azt jelenti, hogy a forrásfájl, a forrásmappához relatív elérési út ugyanaz, mint a relatív a cél elérési útja a célként megadott mappába.<br/><br/>**FlattenHierarchy:** minden fájl a forrásmappából az első szintű célmappában jönnek létre. A cél fájlok jönnek létre automatikusan létrehozott névvel.<br/><br/>**Mergefiles típusú:** egyesíti a forrásmappából egy fájl összes fájlt. Ha a fájl neve/blob neve meg van adva, az egyesített fájlnév a megadott név. Ellenkező esetben egy automatikusan létrehozott nevét. |Nem |
+| copyBehavior |Hello másolási viselkedését határozza meg, ha hello adatforrás BlobSource vagy a fájlrendszer. |**PreserveHierarchy:** hello fájl hierarchia hello célmappában megőrzi. Ez azt jelenti, hogy van hello ugyanaz, mint a hello relatív elérési útja hello cél fájl toohello célmappa hello hello forrás fájl toohello forrásmappa relatív elérési út.<br/><br/>**FlattenHierarchy:** hello forrásmappából minden fájl első szintű hello célmappában jönnek létre. hello fájljaira jönnek létre automatikusan létrehozott névvel.<br/><br/>**Mergefiles típusú:** forrásfájlból hello mappa tooone minden fájl egyesíti. Ha hello fájl neve/blob neve meg van adva, a hello egyesített fájl neve az hello megadott név. Ellenkező esetben egy automatikusan létrehozott nevét. |Nem |
 automatikus-
 
 #### <a name="example"></a>Példa
@@ -3539,19 +3539,19 @@ További információkért lásd: [fájlrendszer összekötő cikk](data-factory
 ## <a name="ftp"></a>FTP
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Egy FTP meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **FTP-kiszolgáló**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+az FTP toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**FTP-kiszolgáló**, és adja meg a következő tulajdonságok hello **typeProperties** szakasz:  
 
 | Tulajdonság | Leírás | Szükséges | Alapértelmezett |
 | --- | --- | --- | --- |
-| állomás |Az FTP-kiszolgáló neve vagy IP-cím |Igen |&nbsp; |
+| állomás |Hello FTP-kiszolgáló neve vagy IP-címe |Igen |&nbsp; |
 | AuthenticationType |Adja meg a hitelesítés típusa |Igen |Alapszintű, a névtelen |
-| felhasználónév |Az FTP-kiszolgálóhoz hozzáféréssel rendelkező felhasználó |Nem |&nbsp; |
-| jelszó |A felhasználó (felhasználónév) jelszavát |Nem |&nbsp; |
-| encryptedCredential |Az FTP-kiszolgáló eléréséhez titkosított hitelesítő adatokat |Nem |&nbsp; |
-| gatewayName |A helyszíni FTP-kiszolgálóhoz csatlakozni az adatkezelési átjáró átjáró neve |Nem |&nbsp; |
-| port |Port, amelyet az FTP-kiszolgáló figyel |Nem |21 |
-| enableSsl |Adja meg, hogy a TLS/SSL csatornán keresztül FTP használata |Nem |Igaz |
-| enableServerCertificateValidation |Adja meg, hogy engedélyezi az FTP-használ, a TLS/SSL csatornán keresztül kiszolgálói SSL-tanúsítvány hitelesítése |Nem |Igaz |
+| felhasználónév |Felhasználó, aki rendelkezik hozzáférési toohello FTP-kiszolgáló |Nem |&nbsp; |
+| jelszó |Jelszó hello (felhasználónév) |Nem |&nbsp; |
+| encryptedCredential |Titkosított hitelesítő adatokban tooaccess hello FTP-kiszolgáló |Nem |&nbsp; |
+| gatewayName |Hello az adatkezelési átjáró átjáró tooconnect tooan nevét a helyszíni FTP-kiszolgáló |Nem |&nbsp; |
+| port |Mely hello FTP-kiszolgáló figyel port |Nem |21 |
+| enableSsl |Adja meg, hogy toouse SSL/TLS-csatorna feletti FTP-e |Nem |Igaz |
+| enableServerCertificateValidation |Adja meg, hogy a tooenable server SSL FTP használata a TLS/SSL csatornán keresztül tanúsítvány érvényesítése |Nem |Igaz |
 
 #### <a name="example-using-anonymous-authentication"></a>Példa: A névtelen hitelesítést használó
 
@@ -3625,16 +3625,16 @@ Egy FTP meghatározásához társított szolgáltatás, állítsa be a **típus*
 További információkért lásd: [FTP-összekötő](data-factory-ftp-connector.md#linked-service-properties) cikk.
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg az FTP-adatkészlet, állítsa be a **típus** a DataSet **fájlmegosztási**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine egy FTP-adatkészlet, set hello **típus** hello adatkészlet túl**fájlmegosztási**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| folderPath |Sub mappa elérési útját. Használja az escape-karakter "\" a speciális karakterek a karakterláncban. Lásd: [minta kapcsolódó szolgáltatás és az adatkészlet-definíciók](#sample-linked-service-and-dataset-definitions) példákat.<br/><br/>Ez a tulajdonság a kombinálhatja **partitionBy** szeretné, hogy a mappa elérési utak alapján szelet kezdő és záró dátum-idő. |Igen 
-| fileName |Adja meg a fájl nevét a **folderPath** Ha azt szeretné, hogy a tábla egy adott fájlra a mappában. Ha nem ad meg ehhez a tulajdonsághoz értéket, a tábla a mappában lévő összes fájlt mutat.<br/><br/>Ha nincs megadva fájlnév egy kimeneti adatkészletet, a létrehozott fájl nevét a következő lenne ebben a formátumban: <br/><br/>Adatok. <Guid>.txt (Példa: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |Nem |
-| fileFilter |Adjon meg egy szűrőt, amely minden fájl helyett a fájlok Tárolónév részhalmazának kiválasztására szolgál.<br/><br/>Két érték engedélyezett: `*` (több karaktert) és `?` (egyetlen karakter).<br/><br/>1. példa:`"fileFilter": "*.log"`<br/>2. példa:`"fileFilter": 2016-1-?.txt"`<br/><br/> fileFilter is alkalmazható egy bemeneti fájlmegosztási az adatkészlethez. Ez a tulajdonság a HDFS nem támogatott. |Nem |
-| partitionedBy |Adjon meg egy dinamikus folderPath idő adatsor fájlnevét partitionedBy használható. Például folderPath adatok óránkénti paraméteres. |Nem |
-| Formátumban | A következő formátumban típusok támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**, **ParquetFormat**. Állítsa be a **típus** tulajdonság a formátuma a következő értékek egyikét. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, hogy **másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a Formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
-| Tömörítés | Adja meg a típus és az adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**; és a támogatott szintek a következők: **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
+| folderPath |Elérési út toohello almappa. Használja az escape-karakter "\" hello karakterlánc speciális karakter. Lásd: [minta kapcsolódó szolgáltatás és az adatkészlet-definíciók](#sample-linked-service-and-dataset-definitions) példákat.<br/><br/>Ez a tulajdonság a kombinálhatja **partitionBy** toohave mappák elérési útjaiban szelet alapján kezdő és záró dátum-idő. |Igen 
+| fileName |Meg kell adnia hello fájl hello nevet hello **folderPath** Ha azt szeretné, hogy hello tábla toorefer tooa adott fájl hello mappában. Ha nem ad meg semmilyen értéket ehhez a tulajdonsághoz, hello tábla mutat tooall fájlok hello mappában.<br/><br/>Ha nincs megadva fájlnév egy kimeneti adatkészletet, hello hello létrehozott fájl neve a következő formátumban hello lenne: <br/><br/>Adatok. <Guid>.txt (Példa: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |Nem |
+| fileFilter |Adja meg a szűrő toobe tooselect használja, minden fájl helyett a hello folderPath fájlok egy részét.<br/><br/>Két érték engedélyezett: `*` (több karaktert) és `?` (egyetlen karakter).<br/><br/>1. példa:`"fileFilter": "*.log"`<br/>2. példa:`"fileFilter": 2016-1-?.txt"`<br/><br/> fileFilter is alkalmazható egy bemeneti fájlmegosztási az adatkészlethez. Ez a tulajdonság a HDFS nem támogatott. |Nem |
+| partitionedBy |partitionedBy lehet használt toospecify egy dinamikus folderPath időadatok adatsorozat nevét. Például folderPath adatok óránkénti paraméteres. |Nem |
+| Formátumban | a következő formátumban típusok hello támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **típus** tulajdonság alapján formátum tooone ezeket az értékeket. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, túl**másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a hello formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
+| Tömörítés | Adja meg a hello típusát és hello adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**; és a támogatott szintek a következők: **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
 | useBinaryTransfer |Adja meg, hogy a bináris átviteli mód használata. A bináris mód és a hamis értéket ASCII igaz. Alapértelmezett érték: igaz. A tulajdonság csak akkor használható, típusú társított kapcsolódószolgáltatás-típus esetén: FTP-kiszolgáló. |Nem |
 
 > [!NOTE]
@@ -3649,7 +3649,7 @@ Adja meg az FTP-adatkészlet, állítsa be a **típus** a DataSet **fájlmegoszt
         "type": "FileShare",
         "linkedServiceName": "FTPLinkedService",
         "typeProperties": {
-            "folderPath": "<path to shared folder>",
+            "folderPath": "<path tooshared folder>",
             "fileName": "test.csv",
             "useBinaryTransfer": true
         },
@@ -3665,11 +3665,11 @@ Adja meg az FTP-adatkészlet, állítsa be a **típus** a DataSet **fájlmegoszt
 További információkért lásd: [FTP-összekötő](data-factory-ftp-connector.md#dataset-properties) cikk.
 
 ### <a name="file-system-source-in-copy-activity"></a>A másolási tevékenység rendszer forrás
-Adatok másolása az FTP-kiszolgálóról, állítsa be a **adatforrástípust** a másolási tevékenység **FileSystemSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+Adatok másolása az FTP-kiszolgálóról, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**FileSystemSource**, és adja meg a következő tulajdonságok hello **forrás** a szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| Rekurzív |Azt jelzi, hogy az adatok olvasható rekurzív módon az almappák vagy csak a megadott mappát. |IGAZ, hamis (alapértelmezés) |Nem |
+| Rekurzív |Azt jelzi, hogy hello adatolvasás rekurzív módon hello almappák vagy csak a megadott mappa hello. |IGAZ, hamis (alapértelmezés) |Nem |
 
 #### <a name="example"></a>Példa
 
@@ -3717,17 +3717,17 @@ További információkért lásd: [FTP-összekötő](data-factory-ftp-connector.
 ## <a name="hdfs"></a>HDFS
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-A HDFS meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **Hdfs**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+a HDFS toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**Hdfs**, és adja meg a következő tulajdonságok hello **typeProperties** szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| type |A type tulajdonságot kell beállítani: **Hdfs** |Igen |
-| URL-cím |A HDFS URL-címe |Igen |
-| AuthenticationType |Névtelen, vagy a Windows. <br><br> Használandó **Kerberos-hitelesítés** HDFS-összekötőhöz, tekintse meg [ebben a szakaszban](#use-kerberos-authentication-for-hdfs-connector) ennek megfelelően a helyszíni környezet beállítása. |Igen |
+| type |hello type tulajdonságot kell beállítani: **Hdfs** |Igen |
+| URL-cím |URL-cím toohello HDFS |Igen |
+| AuthenticationType |Névtelen, vagy a Windows. <br><br> toouse **Kerberos-hitelesítés** HDFS-összekötőhöz, tekintse meg túl[ebben a szakaszban](#use-kerberos-authentication-for-hdfs-connector) a helyszíni környezet tooset ennek megfelelően. |Igen |
 | Felhasználónév |Felhasználónév a Windows-hitelesítést. |Igen (a Windows-hitelesítés) |
 | jelszó |A Windows-hitelesítés jelszót. |Igen (a Windows-hitelesítés) |
-| gatewayName |Az átjáró, amely a Data Factory szolgáltatásnak csatlakoznia a HDFS a neve. |Igen |
-| encryptedCredential |[Új AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) kimenetét a hozzáférési hitelesítő adatok. |Nem |
+| gatewayName |Hello átjáró, amely a Data Factory szolgáltatásnak hello neve tooconnect toohello HDFS kell használnia. |Igen |
+| encryptedCredential |[Új AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) hello hozzáférési hitelesítő adatok kimenetét. |Nem |
 
 #### <a name="example-using-anonymous-authentication"></a>Példa: A névtelen hitelesítést használó
 
@@ -3767,15 +3767,15 @@ A HDFS meghatározásához társított szolgáltatás, állítsa be a **típus**
 További információkért lásd: [HDFS összekötő](#data-factory-hdfs-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg a HDFS adatkészletet, állítsa be a **típus** a DataSet **fájlmegosztási**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine a HDFS dataset set hello **típus** hello adatkészlet túl**fájlmegosztási**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| folderPath |A mappa elérési útját. Példa:`myfolder`<br/><br/>Használja az escape-karakter "\" a speciális karakterek a karakterláncban. Például: folder\subfolder, adja meg a mappa\\\\almappa és d:\samplefolder, adja meg a d:\\\\mappába.<br/><br/>Ez a tulajdonság a kombinálhatja **partitionBy** szeretné, hogy a mappa elérési utak alapján szelet kezdő és záró dátum-idő. |Igen |
-| fileName |Adja meg a fájl nevét a **folderPath** Ha azt szeretné, hogy a tábla egy adott fájlra a mappában. Ha nem ad meg ehhez a tulajdonsághoz értéket, a tábla a mappában lévő összes fájlt mutat.<br/><br/>Ha nincs megadva fájlnév egy kimeneti adatkészletet, a létrehozott fájl nevét a következő lenne ebben a formátumban: <br/><br/>Adatok. <Guid>.txt (például:: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |Nem |
-| partitionedBy |Adjon meg egy dinamikus folderPath idő adatsor fájlnevét partitionedBy használható. Példa: folderPath adatok óránkénti paraméteres. |Nem |
-| Formátumban | A következő formátumban típusok támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**, **ParquetFormat**. Állítsa be a **típus** tulajdonság a formátuma a következő értékek egyikét. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, hogy **másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a Formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
-| Tömörítés | Adja meg a típus és az adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**. Támogatott szintek a következők: **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
+| folderPath |Toohello mappa elérési útja. Példa:`myfolder`<br/><br/>Használja az escape-karakter "\" hello karakterlánc speciális karakter. Például: folder\subfolder, adja meg a mappa\\\\almappa és d:\samplefolder, adja meg a d:\\\\mappába.<br/><br/>Ez a tulajdonság a kombinálhatja **partitionBy** toohave mappák elérési útjaiban szelet alapján kezdő és záró dátum-idő. |Igen |
+| fileName |Meg kell adnia hello fájl hello nevet hello **folderPath** Ha azt szeretné, hogy hello tábla toorefer tooa adott fájl hello mappában. Ha nem ad meg semmilyen értéket ehhez a tulajdonsághoz, hello tábla mutat tooall fájlok hello mappában.<br/><br/>Ha nincs megadva fájlnév egy kimeneti adatkészletet, hello hello létrehozott fájl neve a következő formátumban hello lenne: <br/><br/>Adatok. <Guid>.txt (például:: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |Nem |
+| partitionedBy |partitionedBy lehet használt toospecify egy dinamikus folderPath időadatok adatsorozat nevét. Példa: folderPath adatok óránkénti paraméteres. |Nem |
+| Formátumban | a következő formátumban típusok hello támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **típus** tulajdonság alapján formátum tooone ezeket az értékeket. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, túl**másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a hello formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
+| Tömörítés | Adja meg a hello típusát és hello adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**. Támogatott szintek a következők: **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
 
 > [!NOTE]
 > fájlnév és fileFilter nem használható egyszerre.
@@ -3803,13 +3803,13 @@ Adja meg a HDFS adatkészletet, állítsa be a **típus** a DataSet **fájlmegos
 További információkért lásd: [HDFS összekötő](#data-factory-hdfs-connector.md#dataset-properties) cikk. 
 
 ### <a name="file-system-source-in-copy-activity"></a>A másolási tevékenység rendszer forrás
-Adatok másolása a HDFS, állítsa be a **adatforrástípust** a másolási tevékenység **FileSystemSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+Adatok másolása a HDFS, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**FileSystemSource**, és adja meg a következő tulajdonságok hello **forrás** szakasz:
 
-**FileSystemSource** támogatja a következő tulajdonságokkal:
+**FileSystemSource** következő tulajdonságai hello támogatja:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| Rekurzív |Azt jelzi, hogy az adatok olvasható rekurzív módon az almappák vagy csak a megadott mappát. |IGAZ, hamis (alapértelmezés) |Nem |
+| Rekurzív |Azt jelzi, hogy hello adatolvasás rekurzív módon hello almappák vagy csak a megadott mappa hello. |IGAZ, hamis (alapértelmezés) |Nem |
 
 #### <a name="example"></a>Példa
 
@@ -3853,26 +3853,26 @@ További információkért lásd: [HDFS összekötő](#data-factory-hdfs-connect
 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Az SFTP meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **Sftp**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+az SFTP toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**Sftp**, és adja meg a következő tulajdonságok hello **typeProperties** szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- | --- |
-| állomás | Az SFTP-kiszolgáló neve vagy IP-címét. |Igen |
-| port |Port, amelyen az SFTP kiszolgáló figyel. Az alapértelmezett érték: 21. |Nem |
-| AuthenticationType |Adja meg a hitelesítés típusát. Megengedett értékek: **alapvető**, **SshPublicKey**. <br><br> Tekintse meg [használja az egyszerű hitelesítés](#using-basic-authentication) és [használatával SSH nyilvános kulcsos hitelesítés](#using-ssh-public-key-authentication) további tulajdonságokat és JSON-minták szakasz. |Igen |
-| skipHostKeyValidation | Adja meg, hogy a gazdagép kulcs ellenőrzésének kihagyására. | Nem. Az alapértelmezett érték: hamis |
-| hostKeyFingerprint | Adja meg a gazdagép kulcs az ujjlenyomat. | Igen, ha a `skipHostKeyValidation` hamis értékre van állítva.  |
-| gatewayName |Az adatkezelési átjáró egy helyszíni SFTP-kiszolgálóhoz való csatlakozáshoz neve. | Igen, ha az adatok másolása egy helyszíni SFTP-kiszolgálón. |
-| encryptedCredential | Titkosított hitelesítő adatokat a SFTP-kiszolgálóhoz való hozzáféréshez. Automatikusan létrehozott Ha megadja az egyszerű hitelesítés (felhasználónév + jelszó) vagy az SshPublicKey hitelesítési (felhasználónév + titkos kulcs elérési útja vagy tartalom) másolása varázsló vagy a ClickOnce előugró párbeszédpanelen. | Nem. Csak akkor, ha az adatok másolása egy helyszíni SFTP kiszolgáló alkalmazni. |
+| állomás | Hello SFTP kiszolgáló neve vagy IP-címét. |Igen |
+| port |Az port, mely hello SFTP kiszolgáló figyel. hello alapértelmezett érték: 21. |Nem |
+| AuthenticationType |Adja meg a hitelesítés típusát. Megengedett értékek: **alapvető**, **SshPublicKey**. <br><br> Tekintse meg a túl[használja az egyszerű hitelesítés](#using-basic-authentication) és [használatával SSH nyilvános kulcsos hitelesítés](#using-ssh-public-key-authentication) további tulajdonságokat és JSON-minták szakasz. |Igen |
+| skipHostKeyValidation | Adja meg, hogy tooskip gazdagép kulcs érvényesítése. | Nem. alapértelmezett érték hello: hamis |
+| hostKeyFingerprint | Adja meg a hello ujjlenyomat hello állomás kulcs. | Igen, ha a hello `skipHostKeyValidation` toofalse van beállítva.  |
+| gatewayName |Hello az adatkezelési átjáró tooconnect tooan nevét a helyszíni SFTP kiszolgáló. | Igen, ha az adatok másolása egy helyszíni SFTP-kiszolgálón. |
+| encryptedCredential | Titkosított hitelesítő adatokban tooaccess hello SFTP kiszolgáló. Automatikusan létrehozott Ha megadja az egyszerű hitelesítés (felhasználónév + jelszó) vagy az SshPublicKey hitelesítési (felhasználónév + titkos kulcs elérési útja vagy tartalom) másolása varázsló vagy a hello ClickOnce előugró párbeszédpanelen. | Nem. Csak akkor, ha az adatok másolása egy helyszíni SFTP kiszolgáló alkalmazni. |
 
 #### <a name="example-using-basic-authentication"></a>Például: Alapszintű hitelesítést használ
 
-Egyszerű hitelesítést használ, állítsa be `authenticationType` , `Basic`, és adja meg az SFTP összekötő általános néhányat a meglévők közül az utolsó szakaszban bemutatott mellett az alábbi tulajdonságokat:
+Alapszintű hitelesítés toouse, állítsa be `authenticationType` , `Basic`, és adja meg a következő tulajdonságai módosításokon kívül SFTP összekötő hello utolsó szakaszában bevezetett általános ők hello hello:
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- | --- |
-| felhasználónév | Felhasználó, aki hozzáfér az SFTP-kiszolgálóhoz. |Igen |
-| jelszó | A felhasználó (felhasználónév) jelszavát. | Igen |
+| felhasználónév | Az felhasználó, aki rendelkezik toohello SFTP kiszolgálót. |Igen |
+| jelszó | (Felhasználónév) hello felhasználó jelszavát. | Igen |
 
 ```json
 {
@@ -3916,14 +3916,14 @@ Egyszerű hitelesítést használ, állítsa be `authenticationType` , `Basic`, 
 
 #### <a name="using-ssh-public-key-authentication"></a>SSH nyilvános kulcsos hitelesítés használatával: **
 
-Egyszerű hitelesítést használ, állítsa be `authenticationType` , `SshPublicKey`, és adja meg az SFTP összekötő általános néhányat a meglévők közül az utolsó szakaszban bemutatott mellett az alábbi tulajdonságokat:
+Alapszintű hitelesítés toouse, állítsa be `authenticationType` , `SshPublicKey`, és adja meg a következő tulajdonságai módosításokon kívül SFTP összekötő hello utolsó szakaszában bevezetett általános ők hello hello:
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- | --- |
-| felhasználónév |SFTP-kiszolgálóhoz hozzáféréssel rendelkező felhasználó |Igen |
-| privateKeyPath | Adjon meg abszolút elérési útját a titkos kulcs fájlját, hogy az átjáró férhetnek hozzá. | Adja meg a `privateKeyPath` vagy `privateKeyContent`. <br><br> Csak akkor, ha az adatok másolása egy helyszíni SFTP kiszolgáló alkalmazni. |
-| privateKeyContent | A titkos kulcs tartalmát, mivel a szerializált karakterlánc. A varázsló a titkos kulcsfájl olvashatja, és automatikusan bontsa ki a titkos kulcs tartalmát. Ha minden egyéb eszköz/SDK használja, használja a privateKeyPath tulajdonságot. | Adja meg a `privateKeyPath` vagy `privateKeyContent`. |
-| hozzáférési kód | Adja meg a pass kifejezést/jelszót a titkos kulcs visszafejtésére, ha a kulcs fájlját egy hozzáférési kódot védi. | Igen, ha a titkos kulcsfájl védik a hozzáférési kód. |
+| felhasználónév |Felhasználó, aki rendelkezik toohello SFTP kiszolgáló |Igen |
+| privateKeyPath | Adjon meg abszolút elérési út toohello titkos kulcsot tartalmazó fájlt, hogy az átjáró férhetnek hozzá. | Adja meg vagy hello `privateKeyPath` vagy `privateKeyContent`. <br><br> Csak akkor, ha az adatok másolása egy helyszíni SFTP kiszolgáló alkalmazni. |
+| privateKeyContent | Hello titkos kulcs tartalmát, mivel a szerializált karakterlánc. hello másolása varázsló olvashatja hello titkos kulcsot tartalmazó fájlt, és bontsa ki a titkos kulcs tartalmát hello automatikusan. Minden egyéb eszköz/SDK használatakor használja hello privateKeyPath tulajdonságot. | Adja meg vagy hello `privateKeyPath` vagy `privateKeyContent`. |
+| hozzáférési kód | Adja meg hello hozzáférési kódot vagy jelszót toodecrypt hello titkos kulcsot, ha hello kulcsfájl védi egy hozzáférési kódot. | Igen, ha a hozzáférési kód hello titkos kulcsot tartalmazó fájlt védi. |
 
 ```json
 {
@@ -3956,7 +3956,7 @@ Egyszerű hitelesítést használ, állítsa be `authenticationType` , `SshPubli
             "port": 22,
             "authenticationType": "SshPublicKey",
             "username": "xxx",
-            "privateKeyContent": "<base64 string of the private key content>",
+            "privateKeyContent": "<base64 string of hello private key content>",
             "passPhrase": "xxx",
             "skipHostKeyValidation": true
         }
@@ -3967,16 +3967,16 @@ Egyszerű hitelesítést használ, állítsa be `authenticationType` , `SshPubli
 További információkért lásd: [SFTP összekötő](data-factory-sftp-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg az SFTP adatkészlethez, állítsa be a **típus** a DataSet **fájlmegosztási**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine az SFTP adatkészlethez set hello **típus** hello adatkészlet túl**fájlmegosztási**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| folderPath |Sub mappa elérési útját. Használja az escape-karakter "\" a speciális karakterek a karakterláncban. Lásd: [minta kapcsolódó szolgáltatás és az adatkészlet-definíciók](#sample-linked-service-and-dataset-definitions) példákat.<br/><br/>Ez a tulajdonság a kombinálhatja **partitionBy** szeretné, hogy a mappa elérési utak alapján szelet kezdő és záró dátum-idő. |Igen |
-| fileName |Adja meg a fájl nevét a **folderPath** Ha azt szeretné, hogy a tábla egy adott fájlra a mappában. Ha nem ad meg ehhez a tulajdonsághoz értéket, a tábla a mappában lévő összes fájlt mutat.<br/><br/>Ha nincs megadva fájlnév egy kimeneti adatkészletet, a létrehozott fájl nevét a következő lenne ebben a formátumban: <br/><br/>Adatok. <Guid>.txt (Példa: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |Nem |
-| fileFilter |Adjon meg egy szűrőt, amely minden fájl helyett a fájlok Tárolónév részhalmazának kiválasztására szolgál.<br/><br/>Két érték engedélyezett: `*` (több karaktert) és `?` (egyetlen karakter).<br/><br/>1. példa:`"fileFilter": "*.log"`<br/>2. példa:`"fileFilter": 2016-1-?.txt"`<br/><br/> fileFilter is alkalmazható egy bemeneti fájlmegosztási az adatkészlethez. Ez a tulajdonság a HDFS nem támogatott. |Nem |
-| partitionedBy |Adjon meg egy dinamikus folderPath idő adatsor fájlnevét partitionedBy használható. Például folderPath adatok óránkénti paraméteres. |Nem |
-| Formátumban | A következő formátumban típusok támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**, **ParquetFormat**. Állítsa be a **típus** tulajdonság a formátuma a következő értékek egyikét. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, hogy **másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a Formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
-| Tömörítés | Adja meg a típus és az adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**. Támogatott szintek a következők: **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
+| folderPath |Elérési út toohello almappa. Használja az escape-karakter "\" hello karakterlánc speciális karakter. Lásd: [minta kapcsolódó szolgáltatás és az adatkészlet-definíciók](#sample-linked-service-and-dataset-definitions) példákat.<br/><br/>Ez a tulajdonság a kombinálhatja **partitionBy** toohave mappák elérési útjaiban szelet alapján kezdő és záró dátum-idő. |Igen |
+| fileName |Meg kell adnia hello fájl hello nevet hello **folderPath** Ha azt szeretné, hogy hello tábla toorefer tooa adott fájl hello mappában. Ha nem ad meg semmilyen értéket ehhez a tulajdonsághoz, hello tábla mutat tooall fájlok hello mappában.<br/><br/>Ha nincs megadva fájlnév egy kimeneti adatkészletet, hello hello létrehozott fájl neve a következő formátumban hello lenne: <br/><br/>Adatok. <Guid>.txt (Példa: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |Nem |
+| fileFilter |Adja meg a szűrő toobe tooselect használja, minden fájl helyett a hello folderPath fájlok egy részét.<br/><br/>Két érték engedélyezett: `*` (több karaktert) és `?` (egyetlen karakter).<br/><br/>1. példa:`"fileFilter": "*.log"`<br/>2. példa:`"fileFilter": 2016-1-?.txt"`<br/><br/> fileFilter is alkalmazható egy bemeneti fájlmegosztási az adatkészlethez. Ez a tulajdonság a HDFS nem támogatott. |Nem |
+| partitionedBy |partitionedBy lehet használt toospecify egy dinamikus folderPath időadatok adatsorozat nevét. Például folderPath adatok óránkénti paraméteres. |Nem |
+| Formátumban | a következő formátumban típusok hello támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **típus** tulajdonság alapján formátum tooone ezeket az értékeket. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, túl**másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a hello formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
+| Tömörítés | Adja meg a hello típusát és hello adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**. Támogatott szintek a következők: **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
 | useBinaryTransfer |Adja meg, hogy a bináris átviteli mód használata. A bináris mód és a hamis értéket ASCII igaz. Alapértelmezett érték: igaz. A tulajdonság csak akkor használható, típusú társított kapcsolódószolgáltatás-típus esetén: FTP-kiszolgáló. |Nem |
 
 > [!NOTE]
@@ -3991,7 +3991,7 @@ Adja meg az SFTP adatkészlethez, állítsa be a **típus** a DataSet **fájlmeg
         "type": "FileShare",
         "linkedServiceName": "SftpLinkedService",
         "typeProperties": {
-            "folderPath": "<path to shared folder>",
+            "folderPath": "<path tooshared folder>",
             "fileName": "test.csv"
         },
         "external": true,
@@ -4006,11 +4006,11 @@ Adja meg az SFTP adatkészlethez, állítsa be a **típus** a DataSet **fájlmeg
 További információkért lásd: [SFTP összekötő](data-factory-sftp-connector.md#dataset-properties) cikk. 
 
 ### <a name="file-system-source-in-copy-activity"></a>A másolási tevékenység rendszer forrás
-SFTP forrásból származó adatok másolása, állítsa be a **adatforrástípust** a másolási tevékenység **FileSystemSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+SFTP forrásból származó adatok másolása, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**FileSystemSource**, és adja meg a következő tulajdonságok hello **forrás** a szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| Rekurzív |Azt jelzi, hogy az adatok olvasható rekurzív módon az almappák vagy csak a megadott mappát. |IGAZ, hamis (alapértelmezés) |Nem |
+| Rekurzív |Azt jelzi, hogy hello adatolvasás rekurzív módon hello almappák vagy csak a megadott mappa hello. |IGAZ, hamis (alapértelmezés) |Nem |
 
 
 
@@ -4060,23 +4060,23 @@ További információkért lásd: [SFTP összekötő](data-factory-sftp-connecto
 ## <a name="http"></a>HTTP
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Egy HTTP meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **Http**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+a HTTP toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**Http**, és adja meg a következő tulajdonságok hello **typeProperties** szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| URL-címe | A webkiszolgáló alap URL-címe | Igen |
-| AuthenticationType | Megadja a hitelesítési típus. Két érték engedélyezett: **névtelen**, **alapvető**, **kivonatoló**, **Windows**, **ClientCertificate**. <br><br> Tekintse meg a további tulajdonságok és adott hitelesítési típusok JSON-példák a táblázat alatti részek kulcsattribútumokkal. | Igen |
-| enableServerCertificateValidation | Adja meg, hogy a kiszolgálói SSL-tanúsítvány hitelesítése engedélyezése, ha a forrás HTTPS webkiszolgáló | Nem, alapértelmezett érték true |
-| gatewayName | Neve az adatkezelési átjáró HTTP a helyszíni adatforráshoz kapcsolódni. | Igen, ha a helyszíni HTTP forrásból származó adatok másolása. |
-| encryptedCredential | Titkosított hitelesítő adatokat a HTTP-végpont elérésére. Automatikusan létrehozott másolása varázsló vagy a ClickOnce felugró párbeszédpanel a hitelesítő adatok konfigurálásakor. | Nem. Csak akkor, ha az adatok másolása helyi HTTP-kiszolgáló alkalmazni. |
+| URL-címe | Alap URL-cím toohello webkiszolgáló | Igen |
+| AuthenticationType | Hello hitelesítés típusát határozza meg. Két érték engedélyezett: **névtelen**, **alapvető**, **kivonatoló**, **Windows**, **ClientCertificate**. <br><br> További tulajdonságokat és JSON-minták a táblázat alatti toosections rendre adott hitelesítési típusok olvassa. | Igen |
+| enableServerCertificateValidation | Adja meg, hogy tooenable server SSL tanúsítvány érvényesítése, ha forrás HTTPS webkiszolgáló | Nem, alapértelmezett érték true |
+| gatewayName | Hello az adatkezelési átjáró tooconnect tooan nevét a helyszíni HTTP-forrás. | Igen, ha a helyszíni HTTP forrásból származó adatok másolása. |
+| encryptedCredential | Titkosított hitelesítő adatokban tooaccess hello HTTP-végpont. Automatikusan létrehozott hello hitelesítési adatok másolása varázsló vagy a hello ClickOnce előugró párbeszédpanelen konfigurálásakor. | Nem. Csak akkor, ha az adatok másolása helyi HTTP-kiszolgáló alkalmazni. |
 
 #### <a name="example-using-basic-digest-or-windows-authentication"></a>Példa: Basic, a kivonatoló vagy a Windows-hitelesítés használatával
-Állítsa be `authenticationType` , `Basic`, `Digest`, vagy `Windows`, és adja meg a HTTP-összekötő fent bevezetett általános ők mellett az alábbi tulajdonságokat:
+Állítsa be `authenticationType` , `Basic`, `Digest`, vagy `Windows`, és adja meg a következő tulajdonságai módosításokon kívül HTTP összekötő általános azokat, a fenti bevezetett hello hello:
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| felhasználónév | Felhasználónév a HTTP-végpont elérésére. | Igen |
-| jelszó | A felhasználó (felhasználónév) jelszavát. | Igen |
+| felhasználónév | Felhasználónév tooaccess hello HTTP-végpont. | Igen |
+| jelszó | (Felhasználónév) hello felhasználó jelszavát. | Igen |
 
 ```json
 {
@@ -4095,22 +4095,22 @@ Egy HTTP meghatározásához társított szolgáltatás, állítsa be a **típus
 
 #### <a name="example-using-clientcertificate-authentication"></a>Példa: ClientCertificate hitelesítés használatával
 
-Egyszerű hitelesítést használ, állítsa be `authenticationType` , `ClientCertificate`, és adja meg a HTTP-összekötő fent bevezetett általános ők mellett az alábbi tulajdonságokat:
+Alapszintű hitelesítés toouse, állítsa be `authenticationType` , `ClientCertificate`, és adja meg a következő tulajdonságai módosításokon kívül HTTP összekötő általános azokat, a fenti bevezetett hello hello:
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| embeddedCertData | A személyes információcseréhez kapcsolódó (PFX) fájl bináris adatok Base64-kódolású tartalmát. | Adja meg a `embeddedCertData` vagy `certThumbprint`. |
-| CertThumbprint | A tanúsítványtároló átjáró számítógépre telepített tanúsítvány ujjlenyomatát. Csak akkor, ha a helyszíni HTTP forrásból származó adat másolása alkalmazni. | Adja meg a `embeddedCertData` vagy `certThumbprint`. |
-| jelszó | A tanúsítványhoz tartozó jelszót. | Nem |
+| embeddedCertData | hello Base64-kódolású tartalmak a bináris adatok hello személyes információcseréhez kapcsolódó (PFX) fájl. | Adja meg vagy hello `embeddedCertData` vagy `certThumbprint`. |
+| CertThumbprint | hello telepítve lett az átjáró gépen tanúsítványtároló hello tanúsítvány ujjlenyomata. Csak akkor, ha a helyszíni HTTP forrásból származó adat másolása alkalmazni. | Adja meg vagy hello `embeddedCertData` vagy `certThumbprint`. |
+| jelszó | Hello tanúsítványhoz tartozó jelszót. | Nem |
 
-Ha `certThumbprint` hitelesítés és a tanúsítvány telepítése a helyi számítógép személyes tanúsítványokat tartalmazó tárolójában kell az olvasási engedélyt az átjárószolgáltatás:
+Ha `certThumbprint` hitelesítési és hello tanúsítvány telepítve van a hello hello helyi számítógép személyes tárolójában, kell toogrant hello olvasási hozzáférést toohello átjáró szolgáltatás:
 
-1. Indítsa el a Microsoft Management Console (MMC). Adja hozzá a **tanúsítványok** beépülő modul, amelynek célpontja a **helyi számítógép**.
+1. Indítsa el a Microsoft Management Console (MMC). Adja hozzá a hello **tanúsítványok** beépülő modul a célok hello **helyi számítógép**.
 2. Bontsa ki a **tanúsítványok**, **személyes**, és kattintson a **tanúsítványok**.
-3. Kattintson a jobb gombbal a tanúsítványt a személyes tárolóba, és válassza ki **feladataival**->**titkos kulcsok kezelése...**
-3. Az a **biztonsági** lapon maradva adja hozzá a felhasználói fiók, amely alatt az adatkezelési átjáró gazdaszolgáltatása fut az olvasási joggal rendelkező tanúsítvány.  
+3. Kattintson a jobb gombbal a hello tanúsítványt hello személyes tárolójában, és válassza ki **feladataival**->**titkos kulcsok kezelése...**
+3. A hello **biztonsági** lapon maradva adja hozzá a hello felhasználói fiók alatt az adatkezelési átjáró gazdaszolgáltatása fut. hello olvasási hozzáférés toohello tanúsítvánnyal.  
 
-**Példa: ügyfél-tanúsítványt használ:** ez kapcsolódó szolgáltatás hivatkozások a data factory egy helyszíni HTTP-webkiszolgálón. Az adatkezelési átjáró telepítve a számítógépen telepített ügyféltanúsítványt használ.
+**Példa: ügyfél-tanúsítványt használ:** a társított szolgáltatás hivatkozások a data factory tooan helyszíni HTTP webkiszolgáló. Az adatkezelési átjáró telepített hello gépen telepített ügyféltanúsítványt használ.
 
 ```json
 {
@@ -4128,7 +4128,7 @@ Ha `certThumbprint` hitelesítés és a tanúsítvány telepítése a helyi szá
 ```
 
 #### <a name="example-using-client-certificate-in-a-file"></a>Példa: ügyfél-tanúsítványt használ egy fájlban
-A kapcsolódó szolgáltatás hivatkozások a data factory egy helyszíni HTTP-webkiszolgálón. Az adatkezelési átjáró telepítése egy ügyfél tanúsítványfájlt, a gép használ.
+Ez a data factory tooan helyszíni HTTP webkiszolgáló kapcsolódó szolgáltatás hivatkozásokat. Az adatkezelési átjáró telepítése egy ügyfél tanúsítványfájl hello gépen használ.
 
 ```json
 {
@@ -4148,18 +4148,18 @@ A kapcsolódó szolgáltatás hivatkozások a data factory egy helyszíni HTTP-w
 További információkért lásd: [HTTP összekötő](data-factory-http-connector.md#linked-service-properties) cikk.
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg a HTTP-adatkészletet, állítsa be a **típus** a DataSet **Http**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine egy HTTP-adatkészlet, set hello **típus** hello adatkészlet túl**Http**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 |:--- |:--- |:--- |
-| relativeUrl | Az erőforrás adatokat tartalmazó relatív URL-CÍMÉT. Ha nincs megadva, csak a megadott URL-cím a társított szolgáltatás definíciójának használja. <br><br> Dinamikus URL-cím létrehozásához használható [adat-előállító funkciók és rendszerváltozók](data-factory-functions-variables.md), például: `"relativeUrl": "$$Text.Format('/my/report?month={0:yyyy}-{0:MM}&fmt=csv', SliceStart)"`. | Nem |
+| relativeUrl | Relatív URL-cím toohello erőforrás hello adatokat tartalmaz. Ha nincs megadva elérési út, kapcsolódó hello szolgáltatásdefinícióban megadott csak hello URL szolgál. <br><br> tooconstruct dinamikus URL-címe, használhat [adat-előállító funkciók és rendszerváltozók](data-factory-functions-variables.md), például: `"relativeUrl": "$$Text.Format('/my/report?month={0:yyyy}-{0:MM}&fmt=csv', SliceStart)"`. | Nem |
 | requestMethod | HTTP-metódus. Két érték engedélyezett **beolvasása** vagy **POST**. | Nem. Alapértelmezett érték a `GET`. |
 | additionalHeaders | További HTTP-kérelemfejlécekben. | Nem |
 | requestBody | A HTTP-kérelmek törzsében. | Nem |
-| Formátumban | Ha azt szeretné, hogy egyszerűen **lekérik az adatokat, HTTP-végpont-van** nélkül elemzés azt, hagyja ki a formátumot beállítások. <br><br> Ha azt szeretné, a HTTP-válasz tartalom elemzése során másolása, a következő formátumban típusok támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**, **ParquetFormat**. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. |Nem |
-| Tömörítés | Adja meg a típus és az adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**. Támogatott szintek a következők: **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
+| Formátumban | Ha azt szeretné, hogy toosimply **hello adatainak lekérése, a HTTP-végpont-van** nélkül elemzés azt, hagyja ki a formátumot beállítások. <br><br> Ha szeretné tooparse hello HTTP-válasz tartalom másolása során, a következő formátumban típusok hello támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**, **ParquetFormat**. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. |Nem |
+| Tömörítés | Adja meg a hello típusát és hello adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**. Támogatott szintek a következők: **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
 
-#### <a name="example-using-the-get-default-method"></a>Példa: a GET (alapértelmezett) metódussal
+#### <a name="example-using-hello-get-default-method"></a>Példa: hello (alapértelmezett) GET metódussal
 
 ```json
 {
@@ -4180,7 +4180,7 @@ Adja meg a HTTP-adatkészletet, állítsa be a **típus** a DataSet **Http**, é
 }
 ```
 
-#### <a name="example-using-the-post-method"></a>Példa: a POST metódussal
+#### <a name="example-using-hello-post-method"></a>Példa: hello POST metódussal
 
 ```json
 {
@@ -4204,11 +4204,11 @@ Adja meg a HTTP-adatkészletet, állítsa be a **típus** a DataSet **Http**, é
 További információkért lásd: [HTTP összekötő](data-factory-http-connector.md#dataset-properties) cikk.
 
 ### <a name="http-source-in-copy-activity"></a>A másolási tevékenység HTTP-forrás
-Adatok másolása egy HTTP-bejegyzéseket, állítsa be a **adatforrástípust** a másolási tevékenység **HttpSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+Adatok másolása egy HTTP-bejegyzéseket, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**HttpSource**, és adja meg a következő tulajdonságok hello **forrás** szakasz:
 
 | Tulajdonság | Leírás | Szükséges |
 | -------- | ----------- | -------- |
-| httpRequestTimeout | Időtúllépés (időtartam) válaszol a HTTP-kérelem. Az időtúllépés is válaszol, nem lehet olvasni a válasz adatokat időtúllépés. | Nem. Alapértelmezett érték: 00:01:40 |
+| httpRequestTimeout | hello hello HTTP kérelem tooget választ (időtartam) időkorlátját. Hello időtúllépés tooget választ, hello időtúllépés tooread érkezett válasz adatait is. | Nem. Alapértelmezett érték: 00:01:40 |
 
 
 #### <a name="example"></a>Példa
@@ -4222,7 +4222,7 @@ Adatok másolása egy HTTP-bejegyzéseket, állítsa be a **adatforrástípust**
         "description": "pipeline with copy activity",
         "activities": [{
             "name": "HttpSourceToAzureBlob",
-            "description": "Copy from an HTTP source to an Azure blob",
+            "description": "Copy from an HTTP source tooan Azure blob",
             "type": "Copy",
             "inputs": [{
                 "name": "HttpSourceDataInput"
@@ -4258,16 +4258,16 @@ További információkért lásd: [HTTP összekötő](data-factory-http-connecto
 ## <a name="odata"></a>OData
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Egy OData meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **OData**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+egy OData toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**OData**, és adja meg a következő tulajdonságok hello **typeProperties** szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| URL-címe |Az OData szolgáltatási URL-címét. |Igen |
-| AuthenticationType |Az OData-forrásra való kapcsolódáshoz használt hitelesítés típusa. <br/><br/> A felhőbeli OData a lehetséges értékek: névtelen, alapszintű és OAuth (Megjegyzés: jelenleg csak Azure Data Factory támogatási Azure Active Directory-alapú OAuth). <br/><br/> A helyszíni OData lehetséges értékei a névtelen, alapszintű és a Windows. |Igen |
+| URL-címe |Hello OData-szolgáltatás URL-címét. |Igen |
+| AuthenticationType |Tooconnect toohello OData-forrásra használt hitelesítés típusa. <br/><br/> A felhőbeli OData a lehetséges értékek: névtelen, alapszintű és OAuth (Megjegyzés: jelenleg csak Azure Data Factory támogatási Azure Active Directory-alapú OAuth). <br/><br/> A helyszíni OData lehetséges értékei a névtelen, alapszintű és a Windows. |Igen |
 | felhasználónév |Ha egyszerű hitelesítést használ, adja meg a felhasználónevet. |Igen (Ha csak az egyszerű hitelesítés használata esetén) |
-| jelszó |Adja meg a felhasználónévhez megadott felhasználói fiók jelszavát. |Igen (Ha csak az egyszerű hitelesítés használata esetén) |
-| authorizedCredential |Ha OAuth használ, kattintson a **engedélyezés** gombra a Data Factory másolása varázsló vagy a szerkesztőben, majd adja meg a hitelesítő adatok, akkor ez a tulajdonság értékének lesz automatikusan generált. |Igen (csak ha OAuth-hitelesítés használata esetén) |
-| gatewayName |Az átjáró, amely a Data Factory szolgáltatásnak csatlakoznia a helyszíni OData-szolgáltatás neve. Csak adja meg, ha a másolt adatokat a helyszíni OData-forrásra. |Nem |
+| jelszó |Adja meg a megadott felhasználónévhez hello hello felhasználói fiókhoz tartozó jelszót. |Igen (Ha csak az egyszerű hitelesítés használata esetén) |
+| authorizedCredential |Ha OAuth használ, kattintson a **engedélyezés** hello Data Factory másolása varázsló vagy a szerkesztő gombra, és adja meg a hitelesítő adatok, akkor a tulajdonság értékének hello lesz automatikusan generált. |Igen (csak ha OAuth-hitelesítés használata esetén) |
+| gatewayName |Hello átjáró, amely a Data Factory szolgáltatásnak hello nevét használja tooconnect toohello helyszíni OData-szolgáltatás. Csak adja meg, ha a másolt adatokat a helyszíni OData-forrásra. |Nem |
 
 #### <a name="example---using-basic-authentication"></a>Példa – egyszerű hitelesítés használata
 ```json
@@ -4329,7 +4329,7 @@ Egy OData meghatározásához társított szolgáltatás, állítsa be a **típu
         {
             "url": "<endpoint of cloud OData source, for example, https://<tenant>.crm.dynamics.com/XRMServices/2011/OrganizationData.svc>",
             "authenticationType": "OAuth",
-            "authorizedCredential": "<auto generated by clicking the Authorize button on UI>"
+            "authorizedCredential": "<auto generated by clicking hello Authorize button on UI>"
         }
     }
 }
@@ -4338,11 +4338,11 @@ Egy OData meghatározásához társított szolgáltatás, állítsa be a **típu
 További információkért lásd: [OData összekötő](data-factory-odata-connector.md#linked-service-properties) cikk.
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg egy OData-adatkészlet, állítsa be a **típus** a DataSet **ODataResource**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine egy OData adatkészlet set hello **típus** hello adatkészlet túl**ODataResource**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| Elérési út |Az OData-erőforrás elérési útja |Nem |
+| Elérési út |Elérési út toohello OData-erőforrás |Nem |
 
 #### <a name="example"></a>Példa
 
@@ -4373,11 +4373,11 @@ Adja meg egy OData-adatkészlet, állítsa be a **típus** a DataSet **ODataReso
 További információkért lásd: [OData összekötő](data-factory-odata-connector.md#dataset-properties) cikk.
 
 ### <a name="relational-source-in-copy-activity"></a>A másolási tevékenység relációs adatforrás
-OData forrásból származó adatok másolása, állítsa be a **adatforrástípust** a másolási tevékenység **RelationalSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+OData forrásból származó adatok másolása, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**RelationalSource**, és adja meg a következő tulajdonságok hello **forrás** a szakasz:
 
 | Tulajdonság | Leírás | Példa | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés |Az egyéni lekérdezés segítségével adatokat olvasni. |"? $select neve, leírása és $top = = 5" |Nem |
+| lekérdezés |Hello egyéni lekérdezés tooread adatok felhasználásával. |"? $select neve, leírása és $top = = 5" |Nem |
 
 #### <a name="example"></a>Példa
 
@@ -4428,16 +4428,16 @@ További információkért lásd: [OData összekötő](data-factory-odata-connec
 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Az ODBC meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **OnPremisesOdbc**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+az ODBC toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**OnPremisesOdbc**, és adja meg a következő tulajdonságok hello **typeProperties** szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| connectionString |A kapcsolati karakterlánc és egy opcionális titkosított hitelesítő adat nem hozzáférési hitelesítő adatok része. Példák az alábbi szakaszokban található. |Igen |
-| hitelesítő adatok |A hozzáférési hitelesítő adatok része illesztőprogram-specifikus tulajdonság-érték formátumban megadott kapcsolódási karakterlánc. Példa: "Uid =<user ID>; Pwd =<password>; RefreshToken =<secret refresh token>; ". |Nem |
-| AuthenticationType |Az ODBC-adattár eléréséhez használt hitelesítés típusa. Lehetséges értékek a következők: névtelen és alapvető. |Igen |
+| connectionString |hello nem hozzáférési hitelesítő adatok része hello kapcsolati karakterláncot, és egy nem kötelező hitelesítő adat titkosítva. Példák a következő részekben hello. |Igen |
+| hitelesítő adatok |hello hozzáférési hitelesítő adatok része, illesztőprogram-specifikus tulajdonság-érték formátumban megadott hello kapcsolati karakterlánc. Példa: "Uid =<user ID>; Pwd =<password>; RefreshToken =<secret refresh token>; ". |Nem |
+| AuthenticationType |Tooconnect toohello ODBC adattár használt hitelesítés típusa. Lehetséges értékek a következők: névtelen és alapvető. |Igen |
 | felhasználónév |Ha egyszerű hitelesítést használ, adja meg a felhasználónevet. |Nem |
-| jelszó |Adja meg a felhasználónévhez megadott felhasználói fiók jelszavát. |Nem |
-| gatewayName |Az átjáró, amely a Data Factory szolgáltatásnak csatlakoznia az ODBC-adattárolóhoz neve. |Igen |
+| jelszó |Adja meg a megadott felhasználónévhez hello hello felhasználói fiókhoz tartozó jelszót. |Nem |
+| gatewayName |Hello átjáró, amely a Data Factory szolgáltatásnak hello neve tooconnect toohello ODBC adattárat kell használnia. |Igen |
 
 #### <a name="example---using-basic-authentication"></a>Példa – egyszerű hitelesítés használata
 
@@ -4457,7 +4457,7 @@ Az ODBC meghatározásához társított szolgáltatás, állítsa be a **típus*
 }
 ```
 #### <a name="example---using-basic-authentication-with-encrypted-credentials"></a>Példa – egyszerű hitelesítés használata a titkosított hitelesítő adatokat
-A hitelesítő adatokat titkosíthatja a [New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) (Azure PowerShell 1.0-ás verziója) parancsmag vagy [New-AzureDataFactoryEncryptValue](https://msdn.microsoft.com/library/dn834940.aspx) (az Azure PowerShell 0.9 vagy régebbi verzió).  
+Hello hitelesítő adatok hello segítségével titkosíthatja [New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) (Azure PowerShell 1.0-ás verziója) parancsmag vagy [New-AzureDataFactoryEncryptValue](https://msdn.microsoft.com/library/dn834940.aspx) (0.9 vagy korábbi verziójú hello Az Azure PowerShell).  
 
 ```json
 {
@@ -4493,11 +4493,11 @@ A hitelesítő adatokat titkosíthatja a [New-AzureRMDataFactoryEncryptValue](ht
 További információkért lásd: [ODBC összekötő](data-factory-odbc-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg egy ODBC-adatkészlet, állítsa be a **típus** a DataSet **RelationalTable**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz: 
+toodefine egy ODBC adatkészlet set hello **típus** hello adatkészlet túl**RelationalTable**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |Az ODBC-tárolóban a tábla neve. |Igen |
+| tableName |Hello ODBC adattár hello tábla neve. |Igen |
 
 
 #### <a name="example"></a>Példa
@@ -4528,11 +4528,11 @@ Adja meg egy ODBC-adatkészlet, állítsa be a **típus** a DataSet **Relational
 További információkért lásd: [ODBC összekötő](data-factory-odbc-connector.md#dataset-properties) cikk. 
 
 ### <a name="relational-source-in-copy-activity"></a>A másolási tevékenység relációs adatforrás
-Adatok másolása egy ODBC adattárból, állítsa be a **adatforrástípust** a másolási tevékenység **RelationalSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz :
+Adatok másolása egy ODBC adattárból, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**RelationalSource**, és adja meg a következő tulajdonságok hello **forrás** a szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Például: `select * from MyTable`. |Igen |
+| lekérdezés |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Például: `select * from MyTable`. |Igen |
 
 #### <a name="example"></a>Példa
 
@@ -4582,14 +4582,14 @@ További információkért lásd: [ODBC összekötő](data-factory-odbc-connecto
 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-A Salesforce meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **Salesforce**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+a Salesforce toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**Salesforce**, és adja meg a következő tulajdonságok hello **typeProperties** szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| environmentUrl | Adja meg az URL-címet a Salesforce-példány. <br><br> -Alapértelmezett érték a "https://login.salesforce.com". <br> -Adatok másolása az védőfal, adja meg a "https://test.salesforce.com". <br> -Adatok másolása az egyéni tartományt, adja meg, például "https://[domain].my.salesforce.com". |Nem |
-| felhasználónév |Adja meg a felhasználói fiók felhasználói nevét. |Igen |
-| jelszó |Adja meg a felhasználói fiókhoz tartozó jelszót. |Igen |
-| securityToken |Adja meg a felhasználói fiók biztonsági jogkivonatot. Lásd: [biztonsági jogkivonatának beszerzéséhez](https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm) útmutatást, ha alaphelyzetbe állítása/get egy biztonsági jogkivonatot. Általános biztonsági jogkivonatokat kapcsolatos további tudnivalókért lásd: [biztonsági és az API-t](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_concepts_security.htm). |Igen |
+| environmentUrl | Adja meg a hello URL-címet a Salesforce-példány. <br><br> -Alapértelmezett érték a "https://login.salesforce.com". <br> -toocopy adatok védőfalak, adja meg a "https://test.salesforce.com". <br> -toocopy adatait egyéni tartományt, adja meg, például "https://[domain].my.salesforce.com". |Nem |
+| felhasználónév |Adjon meg egy felhasználónevet hello felhasználói fiókhoz. |Igen |
+| jelszó |Adjon meg egy hello felhasználói fiók jelszavát. |Igen |
+| securityToken |Adjon meg egy biztonsági jogkivonatot hello felhasználói fiókhoz. Lásd: [biztonsági jogkivonatának beszerzéséhez](https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm) útmutatást tooreset/get egy biztonsági jogkivonatot. biztonsági jogkivonatok kapcsolatos toolearn általában, lásd: [biztonsági és hello API](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_concepts_security.htm). |Igen |
 
 #### <a name="example"></a>Példa
 
@@ -4610,11 +4610,11 @@ A Salesforce meghatározásához társított szolgáltatás, állítsa be a **t�
 További információkért lásd: [Salesforce összekötő](data-factory-salesforce-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg a Salesforce-adatkészlet, állítsa be a **típus** a DataSet **RelationalTable**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine a Salesforce-adatkészlet set hello **típus** hello adatkészlet túl**RelationalTable**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |A Salesforce-ban a tábla neve. |Nem (Ha egy **lekérdezés** a **RelationalSource** van megadva) |
+| tableName |A Salesforce-ban hello tábla neve. |Nem (Ha egy **lekérdezés** a **RelationalSource** van megadva) |
 
 #### <a name="example"></a>Példa
 
@@ -4646,11 +4646,11 @@ Adja meg a Salesforce-adatkészlet, állítsa be a **típus** a DataSet **Relati
 További információkért lásd: [Salesforce összekötő](data-factory-salesforce-connector.md#dataset-properties) cikk. 
 
 ### <a name="relational-source-in-copy-activity"></a>A másolási tevékenység relációs adatforrás
-Adatok másolása a Salesforce, állítsa be a **adatforrástípust** a másolási tevékenység **RelationalSource**, és adja meg a következő tulajdonságokat a **forrás** szakasz:
+Adatok másolása a Salesforce, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**RelationalSource**, és adja meg a következő tulajdonságok hello **forrás** a szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés |Az egyéni lekérdezés segítségével adatokat olvasni. |Egy SQL-92 lekérdezés vagy [Salesforce objektum Query Language (SOQL)](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) lekérdezés. Például: `select * from MyTable__c`. |Nem (Ha a **tableName** , a **dataset** van megadva) |
+| lekérdezés |Hello egyéni lekérdezés tooread adatok felhasználásával. |Egy SQL-92 lekérdezés vagy [Salesforce objektum Query Language (SOQL)](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) lekérdezés. Például: `select * from MyTable__c`. |Nem (ha hello **tableName** a hello **dataset** van megadva) |
 
 #### <a name="example"></a>Példa  
 
@@ -4665,7 +4665,7 @@ Adatok másolása a Salesforce, állítsa be a **adatforrástípust** a másolá
         "description": "pipeline with copy activity",
         "activities": [{
             "name": "SalesforceToAzureBlob",
-            "description": "Copy from Salesforce to an Azure blob",
+            "description": "Copy from Salesforce tooan Azure blob",
             "type": "Copy",
             "inputs": [{
                 "name": "SalesforceInput"
@@ -4698,18 +4698,18 @@ Adatok másolása a Salesforce, állítsa be a **adatforrástípust** a másolá
 ```
 
 > [!IMPORTANT]
-> Az API neve "__c" részét bármilyen egyéni objektum szükséges.
+> hello API neve "__c" részét hello bármilyen egyéni objektum szükséges.
 
 További információkért lásd: [Salesforce összekötő](data-factory-salesforce-connector.md#copy-activity-properties) cikk. 
 
 ## <a name="web-data"></a>Webes adatok 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Egy webes meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **webes**, és adja meg a következő tulajdonságokat a **typeProperties** szakasz:  
+a webes toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**webes**, és adja meg a következő tulajdonságok hello **typeProperties** szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| URL-cím |A webes forrás URL-címe |Igen |
+| URL-cím |URL-cím toohello webes forrás |Igen |
 | AuthenticationType |Névtelen. |Igen |
  
 
@@ -4732,13 +4732,13 @@ Egy webes meghatározásához társított szolgáltatás, állítsa be a **típu
 További információkért lásd: [webes tábla összekötő](data-factory-web-table-connector.md#linked-service-properties) cikk. 
 
 ### <a name="dataset"></a>Adatkészlet
-Adja meg a webes adatkészletet, állítsa be a **típus** a DataSet **Webtábla**, és adja meg az alábbi tulajdonságokat a **typeProperties** szakasz: 
+toodefine egy webes dataset set hello **típus** hello adatkészlet túl**Webtábla**, és adja meg a következő tulajdonságai a hello hello **typeProperties** szakasz: 
 
 | Tulajdonság | Leírás | Szükséges |
 |:--- |:--- |:--- |
-| type |A dataset típusa. meg kell **Webtábla** |Igen |
-| Elérési út |Az erőforrás, amely tartalmazza a tábla relatív URL-CÍMÉT. |Nem. Ha nincs megadva, csak a megadott URL-cím a társított szolgáltatás definíciójának használja. |
-| Index |Annak az erőforrás a táblának az indexe. Lásd: [Get index egy tábla egy HTML-lapon](#get-index-of-a-table-in-an-html-page) szakasz lépéseit egy tábla indexének első HTML-lapon. |Igen |
+| type |Hello dataset típusa. be kell állítani túl**Webtábla** |Igen |
+| Elérési út |Relatív URL-cím toohello erőforrás hello táblát tartalmaz. |Nem. Ha nincs megadva elérési út, kapcsolódó hello szolgáltatásdefinícióban megadott csak hello URL szolgál. |
+| Index |hello tábla hello erőforrás hello indexe. Lásd: [Get index egy tábla egy HTML-lapon](#get-index-of-a-table-in-an-html-page) szakasz lépéseit toogetting index egy tábla egy HTML-lapon. |Igen |
 
 #### <a name="example"></a>Példa
 
@@ -4764,7 +4764,7 @@ Adja meg a webes adatkészletet, állítsa be a **típus** a DataSet **Webtábla
 További információkért lásd: [webes tábla összekötő](data-factory-web-table-connector.md#dataset-properties) cikk. 
 
 ### <a name="web-source-in-copy-activity"></a>A másolási tevékenység webes forrás
-Adatok másolása egy webes táblából, állítsa be a **adatforrástípust** a másolási tevékenység **WebSource**. Ha a forrás, a másolási tevékenység jelenleg típusú **WebSource**, további tulajdonságok nem támogatottak.
+Adatok másolása egy webes táblából, állítsa be a hello **adatforrástípust** hello a másolási tevékenység túl**WebSource**. Ha a másolási tevékenység hello forrás jelenleg típusú **WebSource**, további tulajdonságok nem támogatottak.
 
 #### <a name="example"></a>Példa
 
@@ -4777,7 +4777,7 @@ Adatok másolása egy webes táblából, állítsa be a **adatforrástípust** a
         "description": "pipeline with copy activity",
         "activities": [{
             "name": "WebTableToAzureBlob",
-            "description": "Copy from a Web table to an Azure blob",
+            "description": "Copy from a Web table tooan Azure blob",
             "type": "Copy",
             "inputs": [{
                 "name": "WebTableInput"
@@ -4811,7 +4811,7 @@ Adatok másolása egy webes táblából, állítsa be a **adatforrástípust** a
 További információkért lásd: [webes tábla összekötő](data-factory-web-table-connector.md#copy-activity-properties) cikk. 
 
 ## <a name="compute-environments"></a>SZÁMÍTÁSI KÖRNYEZETEK
-Az alábbi táblázat a Data Factory és az átalakítási tevékenységek ezeken futó által támogatott számítási környezeteket. A számítási érdekli a JSON-sémák csatolni egy adat-előállító kapcsolódó szolgáltatás megjelenítéséhez a hivatkozásra kattintva. 
+hello következő táblázatban hello számítási környezetek futtathat rajtuk adat-előállító és hello átalakítása tevékenységek által támogatott. Ön hello számítási hello hivatkozásra kattintva érdeklődik toosee hello JSON-sémák társított szolgáltatás toolink azt tooa adat-előállítóban. 
 
 | Számítási környezet | Tevékenységek |
 | --- | --- |
@@ -4822,24 +4822,24 @@ Az alábbi táblázat a Data Factory és az átalakítási tevékenységek ezeke
 | [Az Azure SQL adatbázis](#azure-sql-database-1), [Azure SQL Data Warehouse](#azure-sql-data-warehouse-1), [SQL Server](#sql-server-1) |[Tárolt eljárás](#stored-procedure-activity) |
 
 ## <a name="on-demand-azure-hdinsight-cluster"></a>Igény szerinti Azure HDInsight-fürt
-Az Azure Data Factory szolgáltatásnak automatikusan hozhat létre egy Windows/Linux-alapú igény szerinti HDInsight-fürt adatfeldolgozásra történő. A fürt létrehozása a tárfiók (linkedServiceName tulajdonságot a JSON-ban) a fürthöz tartozó ugyanabban a régióban. Futtathatja a következő átalakító tevékenységek szolgáltatásnak: [.NET egyéni tevékenység](#net-custom-activity), [tevékenység Hive](#hdinsight-hive-activity), [tevékenység sertésfelmérés] (hdinsight-pig-tevékenység # [MapReduce művelethez ](#hdinsight-mapreduce-activity), [Hadoop-Stream tevékenység](#hdinsight-streaming-activityd), [tevékenység Spark](#hdinsight-spark-activity). 
+hello Azure Data Factory szolgáltatásnak automatikusan hozhat létre egy Windows/Linux-alapú igény szerinti HDInsight fürt tooprocess adatok. hello fürt hello és hello (hello JSON linkedServiceName tulajdonsága) storage-fiók ugyanabban a régióban társított hello fürt jön létre. Átalakítás tevékenységek a szolgáltatásnak a következő hello futtatása: [.NET egyéni tevékenység](#net-custom-activity), [tevékenység Hive](#hdinsight-hive-activity), [tevékenység sertésfelmérés] (hdinsight-pig-tevékenység # [MapReduce művelethez ](#hdinsight-mapreduce-activity), [Hadoop-Stream tevékenység](#hdinsight-streaming-activityd), [tevékenység Spark](#hdinsight-spark-activity). 
 
 ### <a name="linked-service"></a>Társított szolgáltatások 
-A következő táblázat ismerteti az igény szerinti HDInsight társított szolgáltatásnak Azure JSON-definícióból használt tulajdonságok.
+a következő táblázat hello hello Azure JSON-definícióból igény szerinti HDInsight kapcsolódó szolgáltatási használt hello tulajdonságok ismerteti.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| type |A type tulajdonságot kell megadni **HDInsightOnDemand**. |Igen |
-| Nagyobbnak |A fürt munkavégző/adatok csomópontok száma. A HDInsight-fürt együtt ez a tulajdonság a megadott munkavégző csomópontok száma 2 átjárócsomópontokkal hozza létre. A csomópontok egy 4 munkavégző csomópontot tartalmazó fürtben veszi 24 mag, 4 mag, rendelkező standard, D3 méretű vannak (4\*a munkavégző csomópontokról, valamint 2 processzormag, 4 = 16\*az átjárócsomópontokkal processzormag, 4 = 8). Lásd: [hdinsight létrehozása Linux-alapú Hadoop-fürtök](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md) a standard, D3 réteg vonatkozó további információért. |Igen |
-| a TimeToLive tulajdonság |A megengedett üresjárati idő az igény szerinti HDInsight-fürthöz. Meghatározza, mennyi ideig az igény szerinti HDInsight-fürt aktív marad egy tevékenység fut, ha nincsenek a fürt más aktív feladatok befejezése után.<br/><br/>Például ha egy tevékenység futott 6 percig tart, és az élettartam értéke 5 perc, a fürt marad, a figyelő életben 5 perc, a 6 percnél feldolgozásának a tevékenység futtatása után. Ha egy másik tevékenységfuttatási 6 percnél időkeretet, dolgoz fel ugyanabban a fürtben.<br/><br/>Igény szerinti HDInsight fürtök létrehozásával egy (igénybe vehet) drága művelet, ezt a beállítást, mint egy adat-előállító teljesítményének javításával újból felhasználja az igény szerinti HDInsight-fürtök által szükséges Igen használja.<br/><br/>A TimeToLive tulajdonság értékét 0-ra állítja be, ha törölni a fürtöt, amint a tevékenység futtatása feldolgozott. Másrészről Ha a magas érték, a fürt felfüggesztheti üresjárati feleslegesen magas költségeket eredményez. Ezért fontos, hogy beállította-e a megfelelő értéket a igényei szerint.<br/><br/>Több folyamatok is használ az igény szerinti HDInsight-fürt ugyanazt a példányát, ha a timetolive tulajdonság értékének megfelelően van beállítva. |Igen |
-| Verzió |A HDInsight-fürt verziószáma. További információkért lásd: [HDInsight-verziókról támogatott az Azure Data Factory](data-factory-compute-linked-services.md#supported-hdinsight-versions-in-azure-data-factory). |Nem |
-| linkedServiceName |Az Azure tárolás társított szolgáltatásának történő tárolására és feldolgozására adatok az igény szerinti fürt által használható. <p>Jelenleg nem hozható létre, amely egy Azure Data Lake Store használ a tárolási igény szerinti HDInsight-fürtöt. Ha szeretné tárolni az eredményadatok a HDInsight-feldolgozás alatt álló egy Azure Data Lake Store-ból, a másolási tevékenység segítségével az adatok másolása az Azure Blob Storage-ból az Azure Data Lake Store.</p>  | Igen |
-| additionalLinkedServiceNames |Adja meg a további tárfiókok a HDInsight a társított szolgáltatás, hogy a Data Factory szolgáltatásnak is regisztrálja őket az Ön nevében. |Nem |
+| type |hello típusú tulajdonságot kell beállítani, túl**HDInsightOnDemand**. |Igen |
+| Nagyobbnak |Hello fürt/adatok csomópontok száma. Ez a tulajdonság a megadott munkavégző csomópontokhoz hello száma együtt 2 átjárócsomópontokkal hello HDInsight-fürt jön létre. hello csomópontra van, amely nem rendelkezik 4 mag, így egy 4 munkavégző csomópontot tartalmazó fürtben veszi 24 mag standard, D3 méretű (4\*a munkavégző csomópontokról, valamint 2 processzormag, 4 = 16\*az átjárócsomópontokkal processzormag, 4 = 8). Lásd: [hdinsight létrehozása Linux-alapú Hadoop-fürtök](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md) hello standard, D3 réteg vonatkozó további információért. |Igen |
+| a TimeToLive tulajdonság |hello megengedett üresjárati idő hello igény szerinti HDInsight-fürthöz. Meghatározza, mennyi ideig hello igény szerinti HDInsight-fürt aktív marad a művelet végrehajtása, ha nincsenek más aktív feladatok hello fürt tevékenység befejezését követően.<br/><br/>Például ha egy tevékenységfuttatási fogad 6 percnél és timetolive nem beállítása too5 perc, hello fürt marad a 5 perc után hello életben hello tevékenységfuttatási feldolgozásának 6 percnél. Ha egy másik tevékenységfuttatási hello 6 percnél ablak, hello által feldolgozott ugyanabban a fürtben.<br/><br/>Igény szerinti HDInsight-fürtök létrehozása során költséges (igénybe vehet), így használják ezt a beállítást egy adat-előállító szükséges tooimprove teljesítményének újból felhasználja az igény szerinti HDInsight-fürtök által.<br/><br/>Ha timetolive érték too0, amint hello tevékenység fut feldolgozott hello-fürtök törlése. A hello ugyanakkor, ha a magas érték, hello fürt felfüggesztheti üresjárati feleslegesen magas költségeket eredményez. Ezért fontos, hogy állítsa a igények alapján hello megfelelő értékre.<br/><br/>Több folyamatok megoszthatja hello hello igény szerinti HDInsight-fürt ugyanazt a példányát, ha hello timetolive tulajdonság értékének megfelelően van beállítva. |Igen |
+| Verzió |Hello HDInsight-fürt verziószáma. További információkért lásd: [HDInsight-verziókról támogatott az Azure Data Factory](data-factory-compute-linked-services.md#supported-hdinsight-versions-in-azure-data-factory). |Nem |
+| linkedServiceName |Az Azure Storage társított szolgáltatás toobe történő tárolására és feldolgozására adatok hello igény fürt által használt. <p>Jelenleg nem hozható létre, amely egy Azure Data Lake Store hello tárolóként használ igény szerinti HDInsight-fürtöt. Ha azt szeretné, hogy toostore hello ezért az adatok a HDInsight-feldolgozás alatt álló egy Azure Data Lake Store-ból, a hello Azure Blob Storage toohello Azure Data Lake Store másolási tevékenység toocopy hello adatait használják.</p>  | Igen |
+| additionalLinkedServiceNames |Adja meg a további tárfiókok hello HDInsight a társított szolgáltatás, így hello Data Factory szolgáltatásnak is regisztrálja őket az Ön nevében. |Nem |
 | osType |Az operációs rendszer típusát. Két érték engedélyezett: (alapértelmezett) Windows és Linux |Nem |
-| hcatalogLinkedServiceName |A név az Azure SQL társított szolgáltatásnak, mutasson az HCatalog-adatbázisra. Az igény szerinti HDInsight-fürt létrehozása az Azure SQL database segítségével a metaadattárhoz. |Nem |
+| hcatalogLinkedServiceName |Azure SQL társított hello neve szolgáltatási pont toohello HCatalog adatbázis. hello igény szerinti HDInsight-fürt létrehozása hello metaadattárhoz hello Azure SQL database segítségével. |Nem |
 
 ### <a name="json-example"></a>JSON-példa
-A következő JSON igény kapcsolódó HDInsight Linux-alapú szolgáltatás határozza meg. A Data Factory szolgáltatásnak automatikusan létrehoz egy **Linux-alapú** HDInsight-fürt adatok szelet feldolgozása közben. 
+a következő JSON hello igény kapcsolódó HDInsight Linux-alapú szolgáltatás határozza meg. hello Data Factory szolgáltatásnak automatikusan létrehoz egy **Linux-alapú** HDInsight-fürt adatok szelet feldolgozása közben. 
 
 ```json
 {
@@ -4860,18 +4860,18 @@ A következő JSON igény kapcsolódó HDInsight Linux-alapú szolgáltatás hat
 További információkért lásd: [összekapcsolt szolgáltatások számítási](data-factory-compute-linked-services.md) cikk. 
 
 ## <a name="existing-azure-hdinsight-cluster"></a>Meglévő Azure HDInsight-fürt
-Létrehozhat saját HDInsight-fürt regisztrálni a Data Factory kapcsolt Azure HDInsight szolgáltatásnak. Futtathatja a következő adatok átalakítása tevékenységek szolgáltatásnak: [.NET egyéni tevékenység](#net-custom-activity), [tevékenység Hive](#hdinsight-hive-activity), [tevékenység sertésfelmérés] (hdinsight-pig-tevékenység # [MapReduce tevékenység](#hdinsight-mapreduce-activity), [Hadoop-Stream tevékenység](#hdinsight-streaming-activityd), [tevékenység Spark](#hdinsight-spark-activity). 
+A Data Factory egy Azure HDInsight kapcsolódó szolgáltatás tooregister saját HDInsight-fürtöt hozhat létre. Adatok átalakítása tevékenységek a szolgáltatásnak a következő hello is futtathatja: [.NET egyéni tevékenység](#net-custom-activity), [tevékenység Hive](#hdinsight-hive-activity), [tevékenység sertésfelmérés] (hdinsight-pig-tevékenység # [MapReduce tevékenység](#hdinsight-mapreduce-activity), [Hadoop-Stream tevékenység](#hdinsight-streaming-activityd), [tevékenység Spark](#hdinsight-spark-activity). 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-A következő táblázat ismerteti az Azure HDInsight társított szolgáltatásnak Azure JSON-definícióból használt tulajdonságok.
+hello a következő táblázat ismerteti az Azure HDInsight társított szolgáltatásnak Azure JSON-definícióból hello használt hello tulajdonságok.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| type |A type tulajdonságot kell megadni **HDInsight**. |Igen |
-| clusterUri |Az URI-je a HDInsight-fürthöz. |Igen |
-| felhasználónév |Adja meg a felhasználó egy meglévő HDInsight-fürtre való kapcsolódáshoz használt nevét. |Igen |
-| jelszó |Adja meg a felhasználói fiók jelszavát. |Igen |
-| linkedServiceName | Az Azure blob storage a HDInsight-fürt által használt az Azure Storage társított szolgáltatás neve. <p>Jelenleg nem adhat meg egy Azure Data Lake Store társított szolgáltatás ehhez a tulajdonsághoz. Ha a HDInsight-fürt hozzáférése van a Data Lake Store adatokat az Azure Data Lake Store előfordulhat, hogy elérhető Hive/Pig-parancsfájlok. </p>  |Igen |
+| type |hello típusú tulajdonságot kell beállítani, túl**HDInsight**. |Igen |
+| clusterUri |hello hello HDInsight-fürt URI. |Igen |
+| felhasználónév |Adja meg felhasználói toobe hello hello nevét használja tooconnect tooan meglévő HDInsight-fürtre. |Igen |
+| jelszó |Adja meg a hello felhasználói fiókhoz tartozó jelszót. |Igen |
+| linkedServiceName | Hello toohello Azure blob storage Azure Storage társított szolgáltatás neve hello által használt HDInsight-fürthöz. <p>Jelenleg nem adhat meg egy Azure Data Lake Store társított szolgáltatás ehhez a tulajdonsághoz. Előfordulhat, hogy éri hello Azure Data Lake Store a Hive/Pig-parancsfájlok hozzáférés toohello Data Lake Store hello HDInsight-fürt-e. </p>  |Igen |
 
 A HDInsight-fürtök támogatott verzióit lásd: [HDInsight-verziókról támogatott](data-factory-compute-linked-services.md#supported-hdinsight-versions-in-azure-data-factory). 
 
@@ -4893,18 +4893,18 @@ A HDInsight-fürtök támogatott verzióit lásd: [HDInsight-verziókról támog
 ```
 
 ## <a name="azure-batch"></a>Azure Batch
-A data Factory létrehozhat egy csatolt Azure Batch szolgáltatás regisztrálása virtuális gépek (VM) kötegelt készletét. .NET-egyéni tevékenységek Azure Batch vagy Azure HDInsight segítségével is futtathatja. Futtathatja a [.NET egyéni tevékenység](#net-custom-activity) a társított szolgáltatás. 
+A data Factory egy csatolt Azure Batch szolgáltatás tooregister Batch-készlet a virtuális gépek (VM) hozhat létre. .NET-egyéni tevékenységek Azure Batch vagy Azure HDInsight segítségével is futtathatja. Futtathatja a [.NET egyéni tevékenység](#net-custom-activity) a társított szolgáltatás. 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-A következő táblázat ismerteti az Azure Batch társított szolgáltatásnak Azure JSON definíciójában használt tulajdonságok.
+a következő táblázat hello hello Azure JSON-definícióból egy csatolt Azure Batch szolgáltatás használt hello tulajdonságok ismerteti.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| type |A type tulajdonságot kell megadni **AzureBatch**. |Igen |
-| Fióknév |Az Azure Batch-fiók neve. |Igen |
-| accessKey |Az Azure Batch-fiók elérési kulcsának. |Igen |
-| poolName |A virtuálisgép-készlet neve. |Igen |
-| linkedServiceName |Neve az Azure Storage társított szolgáltatásnak a kapcsolódó Azure-köteg szolgáltatással kapcsolatos. A társított szolgáltatás átmeneti fájlok kell futnia a tevékenység és a tevékenység végrehajtási naplók tárolására szolgál. |Igen |
+| type |hello típusú tulajdonságot kell beállítani, túl**AzureBatch**. |Igen |
+| Fióknév |Hello Azure Batch-fiók neve. |Igen |
+| accessKey |Hello Azure Batch-fiók elérési kulcsának. |Igen |
+| poolName |A virtuális gépek hello készlet neve. |Igen |
+| linkedServiceName |Hello a kapcsolódó Azure Batch-szolgáltatás társított Azure Storage társított szolgáltatás neve. A társított szolgáltatás szolgál átmeneti fájlok toorun hello tevékenység és a hello tevékenység végrehajtási naplók tárolásához szükséges. |Igen |
 
 
 #### <a name="json-example"></a>JSON-példa
@@ -4925,16 +4925,16 @@ A következő táblázat ismerteti az Azure Batch társított szolgáltatásnak 
 ```
 
 ## <a name="azure-machine-learning"></a>Azure Machine Learning
-A Machine Learning kötegelt pontozási végpont a data Factory regisztrálni Azure Machine Learning társított szolgáltatás létrehozása. A társított szolgáltatás futtatható ez két adatok átalakítása tevékenységek: [Machine Learning kötegelt végrehajtási tevékenység](#machine-learning-batch-execution-activity), [Machine Learning Update-Erőforrástevékenység](#machine-learning-update-resource-activity). 
+A Machine Learning kötegelt pontozási végpont a data Factory létrehozása az Azure Machine Learning kapcsolódó szolgáltatás tooregister. A társított szolgáltatás futtatható ez két adatok átalakítása tevékenységek: [Machine Learning kötegelt végrehajtási tevékenység](#machine-learning-batch-execution-activity), [Machine Learning Update-Erőforrástevékenység](#machine-learning-update-resource-activity). 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-A következő táblázat ismerteti az Azure Machine Learning társított szolgáltatásnak Azure JSON-definícióból használt tulajdonságok.
+hello a következő táblázat ismerteti az Azure Machine Learning társított szolgáltatásnak Azure JSON-definícióból hello használt hello tulajdonságok.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| Típus |A type tulajdonságot kell megadni: **AzureML**. |Igen |
-| mlEndpoint |A kötegelt pontozás URL-CÍMÉT. |Igen |
-| apiKey |A közzétett munkaterület-modell API. |Igen |
+| Típus |hello tulajdonságra kell megadni: **AzureML**. |Igen |
+| mlEndpoint |hello kötegelt pontozás URL-CÍMÉT. |Igen |
+| apiKey |hello közzétett munkaterület-modell API. |Igen |
 
 #### <a name="json-example"></a>JSON-példa
 
@@ -4952,25 +4952,25 @@ A következő táblázat ismerteti az Azure Machine Learning társított szolgá
 ```
 
 ## <a name="azure-data-lake-analytics"></a>Azure Data Lake Analytics
-Létrehozhat egy **Azure Data Lake Analytics** társított szolgáltatás az Azure Data Lake Analytics csatolásához számítási egy az Azure data factory szolgáltatás használata előtt a [Data Lake Analytics U-SQL-tevékenység](data-factory-usql-activity.md) egy folyamaton belül.
+Létrehozhat egy **Azure Data Lake Analytics** szolgáltatás toolink egy Azure Data Lake Analytics számítási szolgáltatás tooan az Azure data factory kapcsolt hello használata előtt [Data Lake Analytics U-SQL-tevékenység](data-factory-usql-activity.md) egy folyamaton belül .
 
 ### <a name="linked-service"></a>Társított szolgáltatások
 
-A következő táblázat ismerteti az Azure Data Lake Analytics társított szolgáltatás JSON-definícióból használt tulajdonságok. 
+hello a következő táblázat ismerteti az Azure Data Lake Analytics társított szolgáltatás JSON-definícióból hello használt hello tulajdonságok. 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| Típus |A type tulajdonságot kell megadni: **AzureDataLakeAnalytics**. |Igen |
+| Típus |hello tulajdonságra kell megadni: **AzureDataLakeAnalytics**. |Igen |
 | Fióknév |Az Azure Data Lake Analytics-fiók neve. |Igen |
 | datalakeanalyticsuri paraméter |Az Azure Data Lake Analytics URI. |Nem |
-| Engedélyezési |Engedélyezési kód automatikusan beolvassa kattintás után **engedélyezés** a Data Factory Editor gombra, és az OAuth-bejelentkezés befejezése. |Igen |
-| subscriptionId |Az Azure előfizetés-azonosító |Nem (Ha nincs megadva, a data factory-előfizetése szerepel). |
-| erőforráscsoport-név |Azure erőforráscsoport-név |Nem (Ha nincs megadva, az adat-előállító erőforráscsoport szerepel). |
-| Munkamenet-azonosító |munkamenet-azonosító az OAuth hitelesítési munkamenetből. Minden munkamenet-azonosító egyedi, és előfordulhat, hogy csak egyszer használható. A Data Factory Editor használata esetén ezt az Azonosítót jön létre automatikusan. |Igen |
+| Engedélyezési |Engedélyezési kód automatikusan beolvassa kattintás után **engedélyezés** gombra a Data Factory Editor hello és épp hello OAuth-bejelentkezés. |Igen |
+| subscriptionId |Az Azure előfizetés-azonosító |Nem (Ha nincs megadva, az adat-előállító használt hello előfizetés). |
+| erőforráscsoport-név |Azure erőforráscsoport-név |Nem (Ha nincs megadva, az adat-előállító használt hello erőforráscsoport). |
+| Munkamenet-azonosító |munkamenet-azonosító hello OAuth hitelesítési munkamenetből. Minden munkamenet-azonosító egyedi, és előfordulhat, hogy csak egyszer használható. Data Factory Editor hello használata esetén ezt az Azonosítót jön létre automatikusan. |Igen |
 
 
 #### <a name="json-example"></a>JSON-példa
-Az alábbi példa biztosít az Azure Data Lake Analytics társított szolgáltatás JSON-definícióból.
+a következő példa hello biztosít az Azure Data Lake Analytics társított szolgáltatás JSON-definícióból.
 
 ```json
 {
@@ -4990,14 +4990,14 @@ Az alábbi példa biztosít az Azure Data Lake Analytics társított szolgáltat
 ```
 
 ## <a name="azure-sql-database"></a>Azure SQL Database
-Hozzon létre egy Azure SQL társított szolgáltatást, és együtt használja a [tárolt eljárási tevékenység](#stored-procedure-activity) meghívni a Data Factory-folyamat a tárolt eljárást. 
+Hozzon létre egy Azure SQL társított szolgáltatást, és használatához a hello [tárolt eljárási tevékenység](#stored-procedure-activity) tooinvoke a Data Factory-folyamathoz tárolt eljárást. 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Egy Azure SQL Database meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **AzureSqlDatabase**, és adja meg a következő tulajdonságokat a **typeProperties** a szakasz:  
+egy Azure SQL Database toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**AzureSqlDatabase**, és adja meg a következő tulajdonságok hello **typeProperties**szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| connectionString |Adja meg az Azure SQL Database-példányt a connectionString tulajdonság való kapcsolódáshoz szükséges adatokat. |Igen |
+| connectionString |Adjon meg információt hello connectionString tulajdonság szükséges tooconnect toohello Azure SQL Database-példányt. |Igen |
 
 #### <a name="json-example"></a>JSON-példa
 
@@ -5016,14 +5016,14 @@ Egy Azure SQL Database meghatározásához társított szolgáltatás, állítsa
 Lásd: [Azure SQL-összekötő](data-factory-azure-sql-connector.md#linked-service-properties) szóló cikkben olvashat a szolgáltatásnak.
 
 ## <a name="azure-sql-data-warehouse"></a>Azure SQL Data Warehouse
-Hozzon létre egy Azure SQL Data Warehouse társított szolgáltatást, és együtt használja a [tárolt eljárási tevékenység](data-factory-stored-proc-activity.md) meghívni a Data Factory-folyamat a tárolt eljárást. 
+Azure SQL Data Warehouse társított szolgáltatás létrehozása és használatához a hello [tárolt eljárási tevékenység](data-factory-stored-proc-activity.md) tooinvoke a Data Factory-folyamathoz tárolt eljárást. 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Azure SQL Data Warehouse meghatározásához társított szolgáltatás, állítsa be a **típus** a társított szolgáltatás **AzureSqlDW**, és adja meg a következő tulajdonságokat a **typeProperties** a szakasz:  
+Azure SQL Data Warehouse toodefine társított szolgáltatás, állítsa hello **típus** hello a társított szolgáltatás túl**AzureSqlDW**, és adja meg a következő tulajdonságok hello **typeProperties**szakasz:  
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| connectionString |Adja meg a connectionString tulajdonság az Azure SQL Data Warehouse-példány való kapcsolódáshoz szükséges adatokat. |Igen |
+| connectionString |Adjon meg információt hello connectionString tulajdonság szükséges tooconnect toohello Azure SQL Data Warehouse-példányhoz. |Igen |
 
 #### <a name="json-example"></a>JSON-példa
 
@@ -5042,22 +5042,22 @@ Azure SQL Data Warehouse meghatározásához társított szolgáltatás, állít
 További információkért lásd: [Azure SQL Data Warehouse-összekötő](data-factory-azure-sql-data-warehouse-connector.md#linked-service-properties) cikk. 
 
 ## <a name="sql-server"></a>SQL Server 
-Hozzon létre csatolt SQL Server szolgáltatást, és együtt használja a [tárolt eljárási tevékenység](data-factory-stored-proc-activity.md) meghívni a Data Factory-folyamat a tárolt eljárást. 
+Hozzon létre csatolt SQL Server szolgáltatást, és használatához a hello [tárolt eljárási tevékenység](data-factory-stored-proc-activity.md) tooinvoke a Data Factory-folyamathoz tárolt eljárást. 
 
 ### <a name="linked-service"></a>Társított szolgáltatások
-Típusú társított szolgáltatás létrehozása **OnPremisesSqlServer** a helyszíni SQL Server adatbázis összekapcsolása egy adat-előállítóban. A következő táblázat a JSON-elemek szerepelnek a helyszíni SQL Server kapcsolódó szolgáltatásra vonatkozó leírást.
+Típusú társított szolgáltatás létrehozása **OnPremisesSqlServer** toolink egy helyi SQL Server adatbázis tooa adat-előállítóban. a következő táblázat hello biztosít JSON elemek adott tooon-hez kapcsolódó SQL Server szolgáltatás leírását.
 
-A következő táblázat a JSON-elemek szerepelnek kapcsolódó SQL Server-szolgáltatásra vonatkozó leírást.
+a következő táblázat hello biztosít JSON-elemek adott tooSQL csatolt kiszolgáló szolgáltatás leírását.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| type |A type tulajdonságot kell megadni: **OnPremisesSqlServer**. |Igen |
-| connectionString |Az SQL-hitelesítéssel vagy a Windows-hitelesítés a helyszíni SQL Server adatbázishoz való kapcsolódáshoz szükséges connectionString információkat adják meg. |Igen |
-| gatewayName |Neve az átjáró, amely a Data Factory szolgáltatásnak csatlakoznia kell a helyszíni SQL Server adatbázishoz. |Igen |
+| type |hello tulajdonságra kell megadni: **OnPremisesSqlServer**. |Igen |
+| connectionString |Adja meg a connectionString információ tooconnect toohello a helyszíni SQL Server-adatbázis SQL-hitelesítéssel vagy a Windows-hitelesítés szükséges. |Igen |
+| gatewayName |Hello átjáró, amely a Data Factory szolgáltatásnak hello neve tooconnect toohello a helyszíni SQL Server-adatbázist használja. |Igen |
 | felhasználónév |Adja meg a felhasználónevet, ha a Windows-hitelesítést használ. Példa: **tartománynév\\felhasználónév**. |Nem |
-| jelszó |Adja meg a felhasználónévhez megadott felhasználói fiók jelszavát. |Nem |
+| jelszó |Adja meg a megadott felhasználónévhez hello hello felhasználói fiókhoz tartozó jelszót. |Nem |
 
-Hitelesítő adatok használatával titkosíthatja az **New-AzureRmDataFactoryEncryptValue** parancsmag és a következő példában látható módon használhatja őket a kapcsolódási karakterláncban (**EncryptedCredential** tulajdonság):  
+Hitelesítő adatok hello segítségével titkosíthatja **New-AzureRmDataFactoryEncryptValue** parancsmag, amelyekkel hello kapcsolati karakterlánc, ahogy az alábbi példa hello (**EncryptedCredential** tulajdonság):  
 
 ```JSON
 "connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=True;EncryptedCredential=<encrypted credential>",
@@ -5080,7 +5080,7 @@ Hitelesítő adatok használatával titkosíthatja az **New-AzureRmDataFactoryEn
 ```
 #### <a name="example-json-for-using-windows-authentication"></a>Példa: JSON a Windows-hitelesítés használatával
 
-Ha a felhasználónév és jelszó van adva, átjáró őket a megszemélyesítéshez használ a megadott felhasználói fióknak a helyi SQL Server-adatbázishoz való kapcsolódáshoz. Ellenkező esetben átjáró csatlakozik az SQL Server közvetlenül az átjáró (az indítási fiókjához) biztonsági környezetében.
+Ha a felhasználónév és jelszó van adva, átjáró használja őket tooimpersonate hello megadott felhasználói fiók tooconnect toohello a helyszíni SQL Server-adatbázist. Ellenkező esetben átjáró csatlakozik toohello SQL Server közvetlenül (az indítási fiókjához) átjáró hello biztonsági környezetében.
 
 ```json
 {
@@ -5103,31 +5103,31 @@ További információkért lásd: [SQL Server-összekötő](data-factory-sqlserv
 
 Tevékenység | Leírás
 -------- | -----------
-[HDInsight Hive tevékenység](#hdinsight-hive-activity) | A HDInsight Hive tevékenység a Data Factory-folyamat saját Hive-lekérdezéseket vagy igény szerinti Windows/Linux-alapú HDInsight-fürt hajt végre. 
-[HDInsight Pig tevékenység](#hdinsight-pig-activity) | A HDInsight Pig tevékenység a Data Factory-folyamat saját Pig lekérdezések vagy igény szerinti Windows/Linux-alapú HDInsight-fürt hajt végre.
-[HDInsight MapReduce-tevékenység](#hdinsight-mapreduce-activity) | A HDInsight MapReduce művelethez a Data Factory-folyamat saját MapReduce programok vagy igény szerinti Windows/Linux-alapú HDInsight-fürt hajt végre.
-[HDInsight Streaming-tevékenység](#hdinsight-streaming-activity) | A HDInsight Streamelési tevékenységben a Data Factory-folyamat saját Hadoop Streamelési programok vagy igény szerinti Windows/Linux-alapú HDInsight-fürt hajt végre.
-[HDInsight Spark-tevékenység](#hdinsight-spark-activity) | A HDInsight Spark tevékenység a Data Factory-folyamat saját HDInsight-fürt végrehajtja a Spark programokat. 
-[Machine Learning kötegelt végrehajtási tevékenység](#machine-learning-batch-execution-activity) | Az Azure Data Factory lehetővé teszi, hogy könnyen létrehozhat egy közzétett Azure Machine Learning webszolgáltatás prediktív elemzési használó folyamatok. A kötegelt végrehajtási tevékenység használja az Azure Data Factory-folyamathoz, hívhat meg a Machine Learning webszolgáltatás előrejelzéseket készítsen a kötegben lévő adatokat. 
-[Machine Learning Update-erőforrástevékenység](#machine-learning-update-resource-activity) | Az idő múlásával a Machine Learning scoring-kísérletek a prediktív modellek kell kell retrained új bemeneti adatkészletek használata. Miután elkészült, az átképezési, retrained gépi tanulási modell a pontozási webszolgáltatás frissíteni kívánt. A frissítés erőforrás tevékenység segítségével a webszolgáltatás frissítenie az újonnan betanított modell.
-[Tárolt eljárási tevékenység](#stored-procedure-activity) | Segítségével a tárolt eljárási tevékenység a Data Factory-folyamat a következő adatokat tárolja egyikében tárolt eljárás hívása: Azure SQL Database, Azure SQL Data Warehouse szolgáltatásban a vállalat SQL Server-adatbázis vagy egy Azure virtuális Gépen. 
+[HDInsight Hive tevékenység](#hdinsight-hive-activity) | a Data Factory-folyamathoz HDInsight Hive tevékenység hello Hive-lekérdezéseket a saját vagy igény szerinti Windows/Linux-alapú HDInsight-fürt hajt végre. 
+[HDInsight Pig tevékenység](#hdinsight-pig-activity) | a Data Factory-folyamathoz HDInsight Pig tevékenység hello Pig lekérdezések saját vagy igény szerinti Windows/Linux-alapú HDInsight-fürt hajt végre.
+[HDInsight MapReduce-tevékenység](#hdinsight-mapreduce-activity) | hello HDInsight MapReduce művelethez a Data Factory-folyamat saját MapReduce programok vagy igény szerinti Windows/Linux-alapú HDInsight-fürt hajt végre.
+[HDInsight Streaming-tevékenység](#hdinsight-streaming-activity) | hello Streamelési tevékenységben HDInsight a Data Factory-folyamat saját Hadoop Streamelési programok vagy igény szerinti Windows/Linux-alapú HDInsight-fürt hajt végre.
+[HDInsight Spark-tevékenység](#hdinsight-spark-activity) | a Data Factory-folyamathoz HDInsight Spark tevékenység hello Spark programok saját HDInsight-fürt hajtja végre. 
+[Machine Learning kötegelt végrehajtási tevékenység](#machine-learning-batch-execution-activity) | Az Azure Data Factory lehetővé teszi, hogy Ön tooeasily létrehozása folyamatok, amelyek egy közzétett Azure Machine Learning a prediktív elemzés webszolgáltatás. Egy Azure Data Factory-folyamat a kötegelt végrehajtási tevékenység hello használ, a Machine Learning web toomake előrejelzések kötegben hello adatokon hívhat meg. 
+[Machine Learning Update-erőforrástevékenység](#machine-learning-update-resource-activity) | Idővel hello saját prediktív modelljeit hello pontozási kísérletek kell toobe retrained új Machine Learning bemeneti adatkészletek. Miután elkészült, az átképezési, kívánt hello webszolgáltatás pontozási tooupdate hello retrained gépi tanulási modell. Hello Update-Erőforrástevékenység tooupdate hello webszolgáltatás újonnan betanítása hello modell használható.
+[Tárolt eljárási tevékenység](#stored-procedure-activity) | Hello tárolt eljárási tevékenység használható egy adat-előállító adatcsatorna tooinvoke valamelyik hello adattárolókhoz a következő tárolt eljárást: Azure SQL Database, Azure SQL Data Warehouse szolgáltatásban a vállalat SQL Server-adatbázis vagy egy Azure virtuális Gépen. 
 [Data Lake Analytics U-SQL-tevékenység](#data-lake-analytics-u-sql-activity) | Data Lake Analytics U-SQL-tevékenység egy Azure Data Lake Analytics-fürt U-SQL parancsfájlt futtat.  
-[.NET egyéni tevékenység](#net-custom-activity) | Ha úgy, hogy nem támogatja a Data Factory adatok átalakítása van szüksége, hozzon létre egy egyéni tevékenység saját adatokat feldolgozó logika, és használja a tevékenységet a feldolgozási. Az egyéni .NET tevékenység segítségével futtatja, az Azure Batch szolgáltatás vagy az Azure HDInsight-fürtöt is konfigurálhat. 
+[.NET egyéni tevékenység](#net-custom-activity) | Ha tootransform adatokat oly módon, amely nem támogatja a Data Factory van szüksége, hozzon létre egy egyéni tevékenység saját adatokat feldolgozó logika, és hello tevékenység hello folyamat használja. Hello egyéni .NET tevékenység toorun az Azure Batch szolgáltatás vagy az Azure HDInsight-fürtöt is konfigurálhat. 
 
      
 ## <a name="hdinsight-hive-activity"></a>HDInsight Hive-tevékenység
-A következő tulajdonságok is megadhatók a Hive tevékenység JSON-definícióban. A type tulajdonságot a tevékenységnek kell lennie: **HDInsightHive**. Létre kell hoznia egy HDInsight kapcsolódó szolgáltatás először és értékeként adja meg a nevét, a **linkedServiceName** tulajdonság. A következő tulajdonságok támogatottak a **typeProperties** szakasz tevékenység HDInsightHive beállításakor:
+A következő tulajdonságok a tevékenység JSON Hive definícióban hello adhatja meg. hello type tulajdonság hello tevékenységnek kell lennie: **HDInsightHive**. Létre kell hoznia egy HDInsight kapcsolódó szolgáltatás először és hello értékeként adja meg a hello nevét az **linkedServiceName** tulajdonság. hello következő tulajdonságok támogatottak hello **typeProperties** szakasz hello típusú tevékenység tooHDInsightHive beállításakor:
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| Parancsfájl |Adja meg a Hive parancsfájl beágyazott |Nem |
-| parancsfájl elérési útja |A Hive-parancsfájl az Azure blob Storage tárolóban tárolja, és adja meg a fájl elérési útját. Használja a "script" vagy "scriptPath" tulajdonságot. Mindkettő nem használható együtt. A fájlnév pedig kis-és nagybetűket. |Nem |
-| határozza meg |Kulcs/érték párok paraméterek meghatározni a Hive-parancsfájl segítségével történő "hiveconf" belül hivatkozik |Nem |
+| Parancsfájl |Adja meg a hello Hive parancsfájl beágyazott |Nem |
+| parancsfájl elérési útja |Tároló hello Hive parancsprogram egy Azure blob Storage tárolóban, és adja meg a hello elérési toohello fájlt. Használja a "script" vagy "scriptPath" tulajdonságot. Mindkettő nem használható együtt. hello fájlnév a kis-és nagybetűket. |Nem |
+| határozza meg |Kulcs/érték párok paraméterek meghatározni belül hello Hive parancsfájl segítségével történő "hiveconf" hivatkozik |Nem |
 
-A típus tulajdonságokat. a struktúra tevékenység vonatkoznak. Az összes tevékenység egyéb tulajdonságok (kívül a typeProperties szakaszban) támogatottak.   
+Adott toohello Hive tevékenység rendszer így ezeket a típus tulajdonságokat. Az összes tevékenység egyéb tulajdonságok (kívül hello typeProperties szakaszban) támogatottak.   
 
 ### <a name="json-example"></a>JSON-példa
-A következő JSON egy HDInsight Hive tevékenységet egy folyamaton belül határozza meg.  
+a következő JSON hello egy HDInsight Hive tevékenységet egy folyamaton belül határozza meg.  
 
 ```json
 {
@@ -5162,15 +5162,15 @@ A következő JSON egy HDInsight Hive tevékenységet egy folyamaton belül hat�
 További információkért lásd: [Hive tevékenység](data-factory-hive-activity.md) cikk. 
 
 ## <a name="hdinsight-pig-activity"></a>HDInsight Pig-tevékenység
-A következő tulajdonságok is megadhatók a Pig tevékenység JSON-definícióban. A type tulajdonságot a tevékenységnek kell lennie: **HDInsightPig**. Létre kell hoznia egy HDInsight kapcsolódó szolgáltatás először és értékeként adja meg a nevét, a **linkedServiceName** tulajdonság. A következő tulajdonságok támogatottak a **typeProperties** szakasz tevékenység HDInsightPig beállításakor: 
+A következő tulajdonságok a Pig tevékenység JSON-definícióban hello adhatja meg. hello type tulajdonság hello tevékenységnek kell lennie: **HDInsightPig**. Létre kell hoznia egy HDInsight kapcsolódó szolgáltatás először és hello értékeként adja meg a hello nevét az **linkedServiceName** tulajdonság. hello következő tulajdonságok támogatottak hello **typeProperties** szakasz hello típusú tevékenység tooHDInsightPig beállításakor: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| Parancsfájl |Adja meg a Pig-parancsprogram beágyazott |Nem |
-| parancsfájl elérési útja |A Pig-parancsprogram egy Azure blob Storage tárolóban tárolja, és adja meg a fájl elérési útját. Használja a "script" vagy "scriptPath" tulajdonságot. Mindkettő nem használható együtt. A fájlnév pedig kis-és nagybetűket. |Nem |
-| határozza meg |Kulcs/érték párok paraméterek meghatározni a Pig-parancsprogram belül hivatkozik |Nem |
+| Parancsfájl |Adja meg a Pig-parancsprogram beágyazott hello |Nem |
+| parancsfájl elérési útja |Hello Pig-parancsprogram egy Azure blob Storage tárolóban tárolja, és adja meg a hello elérési toohello fájlt. Használja a "script" vagy "scriptPath" tulajdonságot. Mindkettő nem használható együtt. hello fájlnév a kis-és nagybetűket. |Nem |
+| határozza meg |Kulcs/érték párok paraméterek meghatározni hivatkozó belül hello Pig-parancsprogram |Nem |
 
-A típus tulajdonságokat. a Pig tevékenység vonatkoznak. Az összes tevékenység egyéb tulajdonságok (kívül a typeProperties szakaszban) támogatottak.   
+Adott toohello Pig tevékenység rendszer így ezeket a típus tulajdonságokat. Az összes tevékenység egyéb tulajdonságok (kívül hello typeProperties szakaszban) támogatottak.   
 
 ### <a name="json-example"></a>JSON-példa
 
@@ -5214,14 +5214,14 @@ A típus tulajdonságokat. a Pig tevékenység vonatkoznak. Az összes tevékeny
 További információkért lásd: [Pig tevékenység](#data-factory-pig-activity.md) cikk. 
 
 ## <a name="hdinsight-mapreduce-activity"></a>HDInsight MapReduce-tevékenység
-A következő tulajdonságok is megadhatók a MapReduce tevékenység JSON-definícióban. A type tulajdonságot a tevékenységnek kell lennie: **HDInsightMapReduce**. Létre kell hoznia egy HDInsight kapcsolódó szolgáltatás először és értékeként adja meg a nevét, a **linkedServiceName** tulajdonság. A következő tulajdonságok támogatottak a **typeProperties** szakasz tevékenység HDInsightMapReduce beállításakor: 
+A következő tulajdonságok MapReduce tevékenység JSON-definícióban hello adhatja meg. hello type tulajdonság hello tevékenységnek kell lennie: **HDInsightMapReduce**. Létre kell hoznia egy HDInsight kapcsolódó szolgáltatás először és hello értékeként adja meg a hello nevét az **linkedServiceName** tulajdonság. hello következő tulajdonságok támogatottak hello **typeProperties** szakasz hello típusú tevékenység tooHDInsightMapReduce beállításakor: 
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| jarLinkedService | Az Azure Storage a JAR-fájlt tartalmazó a társított szolgáltatás neve. | Igen |
-| jarfilepath tulajdonságot | Az Azure Storage a JAR-fájl elérési útja. | Igen | 
-| Osztálynév | Neve a fő osztály a JAR-fájlra. | Igen | 
-| Argumentumok | A MapReduce program argumentumai vesszővel tagolt listája. Futásidőben, néhány további argumentumok látja (például: mapreduce.job.tags) a a MapReduce keretrendszer. A MapReduce argumentumok argumentumok megkülönböztetéséhez érdemes beállítás és value elemeit is argumentumként a következő példában látható módon (- s,--bemeneti,--kimeneti stb., amelyet közvetlenül az értékeik lehetőség áll) | Nem | 
+| jarLinkedService | Hello nevét csatolt Azure Storage hello JAR-fájlt tartalmazó hello szolgáltatást. | Igen |
+| jarfilepath tulajdonságot | Elérési út toohello JAR-fájlra a hello Azure Storage. | Igen | 
+| Osztálynév | Hello fő osztály hello JAR-fájlra a neve. | Igen | 
+| Argumentumok | Vesszővel elválasztott argumentumokat hello MapReduce program listáját. Futásidőben, néhány további argumentumok látja (például: mapreduce.job.tags) a hello MapReduce keretrendszer. toodifferentiate az argumentumok hello MapReduce argumentumokkal, érdemes lehetőség és value elemeit is argumentumként látható módon a következő példa hello (- s,--bemeneti,--kimeneti stb., amelyet közvetlenül az értékeik lehetőség áll) | Nem | 
 
 ### <a name="json-example"></a>JSON-példa
 
@@ -5229,7 +5229,7 @@ A következő tulajdonságok is megadhatók a MapReduce tevékenység JSON-defin
 {
     "name": "MahoutMapReduceSamplePipeline",
     "properties": {
-        "description": "Sample Pipeline to Run a Mahout Custom Map Reduce Jar. This job calculates an Item Similarity Matrix to determine the similarity between two items",
+        "description": "Sample Pipeline tooRun a Mahout Custom Map Reduce Jar. This job calculates an Item Similarity Matrix toodetermine hello similarity between two items",
         "activities": [
             {
                 "type": "HDInsightMapReduce",
@@ -5259,7 +5259,7 @@ A következő tulajdonságok is megadhatók a MapReduce tevékenység JSON-defin
                     "interval": 1
                 },
                 "name": "MahoutActivity",
-                "description": "Custom Map Reduce to generate Mahout result",
+                "description": "Custom Map Reduce toogenerate Mahout result",
                 "linkedServiceName": "HDInsightLinkedService"
             }
         ],
@@ -5272,21 +5272,21 @@ A következő tulajdonságok is megadhatók a MapReduce tevékenység JSON-defin
 További információkért lásd: [MapReduce művelethez](data-factory-map-reduce.md) cikk. 
 
 ## <a name="hdinsight-streaming-activity"></a>HDInsight Streaming-tevékenység
-A következő tulajdonságok is megadhatók a Hadoop Streamelési tevékenység JSON-definícióban. A type tulajdonságot a tevékenységnek kell lennie: **HDInsightStreaming**. Létre kell hoznia egy HDInsight kapcsolódó szolgáltatás először és értékeként adja meg a nevét, a **linkedServiceName** tulajdonság. A következő tulajdonságok támogatottak a **typeProperties** szakasz tevékenység HDInsightStreaming beállításakor: 
+A következő tulajdonságok a Hadoop Streamelési tevékenység JSON-definícióban hello adhatja meg. hello type tulajdonság hello tevékenységnek kell lennie: **HDInsightStreaming**. Létre kell hoznia egy HDInsight kapcsolódó szolgáltatás először és hello értékeként adja meg a hello nevét az **linkedServiceName** tulajdonság. hello következő tulajdonságok támogatottak hello **typeProperties** szakasz hello típusú tevékenység tooHDInsightStreaming beállításakor: 
 
 | Tulajdonság | Leírás | 
 | --- | --- |
-| eseményleképező | A végrehajtható hozzárendelő neve. A példában a cat.exe végrehajtható leképező.| 
-| Nyomáscsökkentő | A végrehajtható nyomáscsökkentő neve. A példában a wc.exe végrehajtható nyomáscsökkentő. | 
-| Bemeneti | A leképező bemeneti (beleértve a hely) fájl. A példában: "wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt": adfsample a blob-tároló, például/data/Gutenberg az a mappa, pedig davinci.txt a blob. |
-| Kimeneti | Kimeneti fájl (beleértve) a nyomáscsökkentő. Az adatfolyam-Hadoop-feladat eredményének írása ehhez a tulajdonsághoz megadott helyre. |
-| filePaths | Elérési utak a hozzárendelést és nyomáscsökkentő végrehajtható fájlok számára. A példában: "adfsample/example/apps/wc.exe" adfsample a blob-tároló, például/alkalmazások az a mappa, pedig wc.exe a végrehajtható fájl. | 
-| fileLinkedService | Az Azure tárolás társított szolgáltatása, amely az Azure storage filePaths szakaszában megadott fájlt tartalmazó jelöli. | 
-| Argumentumok | A MapReduce program argumentumai vesszővel tagolt listája. Futásidőben, néhány további argumentumok látja (például: mapreduce.job.tags) a a MapReduce keretrendszer. A MapReduce argumentumok argumentumok megkülönböztetéséhez érdemes beállítás és value elemeit is argumentumként a következő példában látható módon (- s,--bemeneti,--kimeneti stb., amelyet közvetlenül az értékeik lehetőség áll) | 
-| getDebugInfo | Választható eleme. Hiba-ra van állítva, a naplók csak az hiba lesznek letöltve. Ha ezt a beállítást az összes, a naplók mindig letöltődnek függetlenül a végrehajtási állapotot. | 
+| eseményleképező | Hello leképező végrehajtható fájl nevét. Hello példában cat.exe: hello leképező végrehajtható.| 
+| Nyomáscsökkentő | Hello nyomáscsökkentő végrehajtható fájl nevét. Hello példában wc.exe: hello nyomáscsökkentő végrehajtható. | 
+| Bemeneti | Hello leképező bemeneti (beleértve a hely) fájl. Hello példa: "wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt": adfsample hello blob tároló, például/data/Gutenberg hello mappában, pedig davinci.txt hello blob. |
+| Kimeneti | Kimeneti fájl (beleértve a hely) hello nyomáscsökkentő. hello Hadoop adatfolyam-feladat eredményének hello toohello helyére a tulajdonság írása. |
+| filePaths | Elérési utak hello hozzárendelést és nyomáscsökkentő végrehajtható fájlok számára. Hello példa: "adfsample/example/apps/wc.exe" adfsample egy hello blob tároló, például/alkalmazások hello mappa, pedig wc.exe hello végrehajtható. | 
+| fileLinkedService | Az Azure tárolás társított szolgáltatása, amely az Azure storage hello filePaths szakaszában megadott hello fájlokat tartalmazó hello jelöli. | 
+| Argumentumok | Vesszővel elválasztott argumentumokat hello MapReduce program listáját. Futásidőben, néhány további argumentumok látja (például: mapreduce.job.tags) a hello MapReduce keretrendszer. toodifferentiate az argumentumok hello MapReduce argumentumokkal, érdemes lehetőség és value elemeit is argumentumként látható módon a következő példa hello (- s,--bemeneti,--kimeneti stb., amelyet közvetlenül az értékeik lehetőség áll) | 
+| getDebugInfo | Választható eleme. Ha ezt a beállítást tooFailure, hello naplók csak az hiba lesznek letöltve. Ha ezt a beállítást tooAll, naplók mindig letöltődnek függetlenül hello végrehajtási állapotát. | 
 
 > [!NOTE]
-> A Hadoop Streamelési tevékenységben egy kimeneti adatkészletet kell megadni a **kimenete** tulajdonság. Ez az adatkészlet csak egy üres adatkészlet szükséges ahhoz, hogy az adatcsatorna ütemezés (óránként, naponta, stb.) a meghajtó is lehet. A tevékenység bemeneti nem veszi, kihagyhatja, ha egy bemeneti adatkészlet a tevékenység megadása a **bemenetek** tulajdonság.  
+> Meg kell adnia egy kimeneti adatkészletet hello a Hadoop Streamelési tevékenységben hello **kimenete** tulajdonság. Ez az adatkészlet csak egy üres adathalmazt, amelyet szükséges toodrive hello csővezeték ütemezés (óránként, naponta, stb.) lehet. Hello tevékenység bemeneti nem veszi, kihagyhatja, ha egy bemeneti adatkészlet hello tevékenység a hello megadó **bemenetek** tulajdonság.  
 
 ## <a name="json-example"></a>JSON-példa
 
@@ -5336,18 +5336,18 @@ A következő tulajdonságok is megadhatók a Hadoop Streamelési tevékenység 
 További információkért lásd: [Hadoop Streamelési tevékenységben](data-factory-hadoop-streaming-activity.md) cikk. 
 
 ## <a name="hdinsight-spark-activity"></a>HDInsight Spark-tevékenység
-A következő tulajdonságok is megadhatók a Spark tevékenység JSON-definícióban. A type tulajdonságot a tevékenységnek kell lennie: **HDInsightSpark**. Létre kell hoznia egy HDInsight kapcsolódó szolgáltatás először és értékeként adja meg a nevét, a **linkedServiceName** tulajdonság. A következő tulajdonságok támogatottak a **typeProperties** szakasz tevékenység HDInsightSpark beállításakor: 
+A következő tulajdonságok Spark tevékenység JSON-definícióban hello adhatja meg. hello type tulajdonság hello tevékenységnek kell lennie: **HDInsightSpark**. Létre kell hoznia egy HDInsight kapcsolódó szolgáltatás először és hello értékeként adja meg a hello nevét az **linkedServiceName** tulajdonság. hello következő tulajdonságok támogatottak hello **typeProperties** szakasz hello típusú tevékenység tooHDInsightSpark beállításakor: 
 
 | Tulajdonság | Leírás | Szükséges |
 | -------- | ----------- | -------- |
-| rootPath | Az Azure Blob-tároló és a Spark-fájlt tartalmazó mappát. A fájlnév pedig kis-és nagybetűket. | Igen |
-| entryFilePath | A gyökérmappában található azon a Spark kódcsomag relatív elérési útja. | Igen |
+| rootPath | hello Azure blobtároló és hello Spark fájlt tartalmazó mappát. hello fájlnév a kis-és nagybetűket. | Igen |
+| entryFilePath | Relatív elérési út toohello gyökérmappájában hello Spark kódcsomag. | Igen |
 | Osztálynév | Az alkalmazás Java/Spark fő osztály | Nem | 
-| Argumentumok | A Spark program parancssori argumentumokat listáját. | Nem | 
-| proxyUser | A Spark program végrehajtásának megszemélyesíteni a felhasználói fiók | Nem | 
+| Argumentumok | Parancssori argumentumok toohello Spark program listáját. | Nem | 
+| proxyUser | hello felhasználói fiók tooimpersonate tooexecute hello Spark program | Nem | 
 | sparkConfig | Spark konfigurációs tulajdonságaiban. | Nem | 
-| getDebugInfo | Itt adhatja meg, amikor a Spark naplófájlok kerülnek a HDInsight-fürt által használt Azure storage (vagy) leírt módon sparkJobLinkedService. Megengedett értékek: None, mindig, vagy sikertelen. Alapértelmezett érték: nincs. | Nem | 
-| sparkJobLinkedService | Az Azure Storage társított szolgáltatás, amely tárolja a Spark feladat fájl, a függőségeket és a naplókat.  Ha nem ad meg egy értéket ehhez a tulajdonsághoz, a HDInsight-fürthöz társított tárolót használja a rendszer. | Nem |
+| getDebugInfo | Itt adhatja meg, amikor hello Spark naplófájlok másolt toohello az Azure storage HDInsight-fürt által használt (vagy) leírt módon sparkJobLinkedService. Megengedett értékek: None, mindig, vagy sikertelen. Alapértelmezett érték: nincs. | Nem | 
+| sparkJobLinkedService | hello Azure tárolás társított szolgáltatása, amely tárolja a hello Spark feladat fájl, a függőségeket és a naplókat.  Ha nem ad meg egy értéket ehhez a tulajdonsághoz, HDInsight-fürthöz társított hello tárolót használja a rendszer. | Nem |
 
 ### <a name="json-example"></a>JSON-példa
 
@@ -5377,31 +5377,31 @@ A következő tulajdonságok is megadhatók a Spark tevékenység JSON-definíci
     }
 }
 ```
-Vegye figyelembe a következő szempontokat: 
+Vegye figyelembe a következő pontok hello: 
 
-- A **típus** tulajdonsága **HDInsightSpark**.
-- A **rootPath** értéke **adfspark\\pyFiles** ahol adfspark az Azure Blob-tárolóba, pyFiles pedig az adott tároló finom mappát. Ebben a példában az Azure Blob Storage lesz a Spark-fürt társított. Feltöltheti a fájlt egy másik Azure-tárhelyre. Ha így tesz, hozzon létre egy Azure tárolás társított szolgáltatása, hogy a storage-fiók összekapcsolása az adat-előállítóban. Ezt követően adja meg a társított szolgáltatás neve értékeként a **sparkJobLinkedService** tulajdonság. Lásd: [Spark-tevékenység tulajdonságai](#spark-activity-properties) Ez a tulajdonság és az egyéb Spark tevékenység által támogatott tulajdonságokról.
-- A **entryFilePath** értékre van állítva a **test.py**, vagyis a python-fájl. 
-- A **getDebugInfo** tulajdonsága **mindig**, ami azt jelenti, a naplófájlok helyét a rendszer mindig generált (sikeres vagy sikertelen).  
+- Hello **típus** tulajdonsága túl**HDInsightSpark**.
+- Hello **rootPath** értéke túl**adfspark\\pyFiles** ahol adfspark hello Azure Blob-tároló és pyFiles pedig az adott tároló finom mappát. Ebben a példában a hello Azure Blob Storage egy Spark-fürt hello társított hello. Feltöltheti a hello fájl tooa különböző Azure Storage. Ha így tesz, hozzon létre egy Azure Storage társított szolgáltatás toolink adott tárolási fiók toohello adat-előállítóban. Ezt követően adja a hello társított szolgáltatás neve hello hello értékeként **sparkJobLinkedService** tulajdonság. Lásd: [Spark-tevékenység tulajdonságai](#spark-activity-properties) Ez a tulajdonság és az egyéb hello Spark tevékenység által támogatott tulajdonságokról.
+- Hello **entryFilePath** értéke toohello **test.py**, vagyis hello python-fájl. 
+- Hello **getDebugInfo** tulajdonsága túl**mindig**, ami azt jelenti, hogy hello naplófájlok helyét a rendszer mindig generált (sikeres vagy sikertelen).  
 
     > [!IMPORTANT]
-    > Azt javasoljuk, hogy nincs megadva ehhez a tulajdonsághoz mindig az éles környezetben kivéve, ha a probléma hibaelhárítást. 
-- A **kimenete** szakasz tartalmaz egy kimeneti adatkészletet. Meg kell adnia egy kimeneti adatkészletet, még akkor is, ha a spark program nem ad kimenetet. A kimeneti adatkészlet meghajtók az ütemezés a következő feldolgozási sor (óránként, naponta, stb.).
+    > Azt javasoljuk, hogy nincs megadva a tulajdonság tooAlways éles környezetben kivéve, ha a probléma hibaelhárítást. 
+- Hello **kimenete** szakasz tartalmaz egy kimeneti adatkészletet. Meg kell adnia egy kimeneti adatkészletet, még akkor is, ha hello spark program nem ad kimenetet. hello kimeneti adatkészlet meghajtók hello ütemezés hello adatcsatorna (óránként, naponta, stb.).
 
-A tevékenység kapcsolatos további információkért lásd: [Spark tevékenység](data-factory-spark.md) cikk.  
+Hello tevékenységgel kapcsolatos további információkért lásd: [Spark tevékenység](data-factory-spark.md) cikk.  
 
 ## <a name="machine-learning-batch-execution-activity"></a>Machine Learning kötegelt végrehajtási tevékenység
-A következő tulajdonságok is megadhatók az Azure ML kötegelt végrehajtási tevékenység JSON-definícióban. A type tulajdonságot a tevékenységnek kell lennie: **AzureMLBatchExecution**. Létre kell hoznia az Azure Machine Learning-szolgáltatásnak először és értékeként adja meg a nevét, a **linkedServiceName** tulajdonság. A következő tulajdonságok támogatottak a **typeProperties** szakasz tevékenység AzureMLBatchExecution beállításakor:
+A következő tulajdonságok az Azure ML kötegelt végrehajtási tevékenység JSON-definícióban hello adhatja meg. hello type tulajdonság hello tevékenységnek kell lennie: **AzureMLBatchExecution**. Létre kell hoznia az Azure Machine Learning-szolgáltatásnak először és adja meg azt hello nevét hello értékeként **linkedServiceName** tulajdonság. hello következő tulajdonságok támogatottak hello **typeProperties** szakasz hello típusú tevékenység tooAzureMLBatchExecution beállításakor:
 
 Tulajdonság | Leírás | Szükséges 
 -------- | ----------- | --------
-Típus | Az adatkészlet átadását az Azure gépi tanulás webszolgáltatás bemeneteként. Ez az adatkészlet a tevékenység bemenetei is kell szerepelnie. |Használja a típus vagy webServiceInputs. | 
-webServiceInputs | Adja meg az Azure gépi tanulás webszolgáltatás bemeneteként átadni adatkészletek. A webszolgáltatás több bemeneti adatokat fogad, ha a webServiceInputs tulajdonsággal típus tulajdonság használata helyett. Által hivatkozott adatkészletek a **webServiceInputs** is szerepelnie kell a tevékenység **bemenetek**. | Használja a típus vagy webServiceInputs. | 
-webServiceOutputs | Az Azure ML web service kimeneti rendelt adathalmazokat. A webszolgáltatás kimeneti adatait jeleníti meg az ehhez az adatkészlethez. | Igen | 
-globalParameters | Ez a szakasz a webszolgáltatás-paramétereket értékeket megadni. | Nem | 
+Típus | hello dataset toobe át az Azure ML web service hello bemenetként. Ez az adatkészlet hello bemenetek hello tevékenység is kell szerepelnie. |Használja a típus vagy webServiceInputs. | 
+webServiceInputs | Adja meg az Azure ML web service hello bemeneteként átadott adatkészletek toobe. Ha hello webszolgáltatás több bemeneti adatokat fogad, tulajdonsággal hello webServiceInputs hello típus tulajdonság használata helyett. Hello által hivatkozott adatkészletek **webServiceInputs** is szerepelnie kell hello tevékenység **bemenetek**. | Használja a típus vagy webServiceInputs. | 
+webServiceOutputs | hello adathalmaz kimeneti hello Azure ML web service rendelt. hello webszolgáltatás kimeneti adatokat adja vissza ehhez az adatkészlethez. | Igen | 
+globalParameters | Ez a szakasz hello webszolgáltatás-paramétereket értékeket megadni. | Nem | 
 
 ### <a name="json-example"></a>JSON-példa
-Ebben a példában a tevékenység rendelkezik az adatkészlet **MLSqlInput** bemenetként és **MLSqlOutput** kimeneteként. A **MLSqlInput** átadása a webszolgáltatás által bemeneteként használja a **típus** JSON tulajdonság. A **MLSqlOutput** objektumnak átadott kimenetként a webszolgáltatás által használ a **webServiceOutputs** JSON tulajdonság. 
+Ebben a példában hello tevékenység rendelkezik hello dataset **MLSqlInput** bemenetként és **MLSqlOutput** hello output típusúként. Hello **MLSqlInput** átadása egy bemeneti toohello webszolgáltatásként által hello segítségével **típus** JSON tulajdonság. Hello **MLSqlOutput** átadása egy kimeneti toohello webszolgáltatás által hello segítségével **webServiceOutputs** JSON tulajdonság. 
 
 ```json
 {
@@ -5441,21 +5441,21 @@ Ebben a példában a tevékenység rendelkezik az adatkészlet **MLSqlInput** be
 }
 ```
 
-A JSON példában a telepített Azure Machine Learning Web service használ egy olvasó és író modul adatokat az vagy egy Azure SQL-adatbázis írható/olvasható. Ez a webszolgáltatás mutatja meg a következő négy paraméterek: adatbázis-kiszolgáló neve, a adatbázis neve, a kiszolgáló felhasználói fiók nevét és a kiszolgáló felhasználói fiók jelszavát.
+Hello JSON példában hello telepítette az Azure Machine Learning Web szolgáltatás használja az olvasót, és egy író modul tooread/adatok írása az / tooan Azure SQL Database. Ez a webszolgáltatás mutatja meg a következő négy paraméterek hello: adatbázis-kiszolgáló neve, a adatbázis neve, a kiszolgáló felhasználói fiók nevét és a kiszolgáló felhasználói fiók jelszavát.
 
 > [!NOTE]
-> Csak be- és kimenetekkel a AzureMLBatchExecution tevékenység argumentumként átadhatók paraméterek a webszolgáltatással. Például a fenti JSON-részlet MLSqlInput a AzureMLBatchExecution tevékenység, amelyet a rendszer továbbad a webszolgáltatás bemeneteként típus paraméteren keresztül bemenete.
+> Csak be- és kimenetekkel hello AzureMLBatchExecution tevékenység paraméterek toohello webszolgáltatás argumentumként átadhatók. A fenti JSON részlet hello, például a MLSqlInput egy bemeneti toohello AzureMLBatchExecution tevékenység, mint egy bemeneti toohello webszolgáltatás átadott típus paraméteren keresztül.
 
 ## <a name="machine-learning-update-resource-activity"></a>Machine Learning Update-erőforrástevékenység
-A következő tulajdonságok is megadhatók az Azure ML Update erőforrás tevékenység JSON-definícióban. A type tulajdonságot a tevékenységnek kell lennie: **AzureMLUpdateResource**. Létre kell hoznia az Azure Machine Learning-szolgáltatásnak először és értékeként adja meg a nevét, a **linkedServiceName** tulajdonság. A következő tulajdonságok támogatottak a **typeProperties** szakasz AzureMLUpdateResource tevékenység beállításakor:
+A következő tulajdonságok az Azure ML Update erőforrás tevékenység JSON-definícióban hello adhatja meg. hello type tulajdonság hello tevékenységnek kell lennie: **AzureMLUpdateResource**. Létre kell hoznia az Azure Machine Learning-szolgáltatásnak először és adja meg azt hello nevét hello értékeként **linkedServiceName** tulajdonság. hello következő tulajdonságok támogatottak hello **typeProperties** szakasz hello típusú tevékenység tooAzureMLUpdateResource beállításakor:
 
 Tulajdonság | Leírás | Szükséges 
 -------- | ----------- | --------
-trainedModelName | A retrained modell neve. | Igen |  
-trainedModelDatasetName | A DataSet adatkészlet mutat a megőrzési művelet által visszaadott iLearner-fájlt. | Igen | 
+trainedModelName | Hello neve retrained modell. | Igen |  
+trainedModelDatasetName | Adatkészlet mutat toohello iLearner-fájlt hello átképezési művelet által visszaadott. | Igen | 
 
 ### <a name="json-example"></a>JSON-példa
-A folyamat két tevékenység rendelkezik: **AzureMLBatchExecution** és **AzureMLUpdateResource**. Az Azure ML kötegelt végrehajtási tevékenység lekéri a tanítási adatokat bemeneti adatként, és egy kimenetként iLearner-fájlt hoz létre. A tevékenység hív meg, a képzési webszolgáltatás (a tanítási kísérletet webszolgáltatásként kitett) a bemeneti betanítási adatok, és megkapja a webservice ilearner-fájlt. A placeholderBlob csak az Azure Data Factory szolgáltatásnak a feldolgozási sor futtatásához szükséges üres kimeneti adatkészlet.
+hello folyamat két tevékenység rendelkezik: **AzureMLBatchExecution** és **AzureMLUpdateResource**. hello Azure ML kötegelt végrehajtási tevékenység hello betanítási adatok bemenetként vesz igénybe, és egy kimenetként iLearner-fájlt hoz létre. hello tevékenység hello képzési webszolgáltatás (a tanítási kísérletet webszolgáltatásként kitett) hív hello bevitellel betanítási adatok, és hello ilearner-fájlt kapott hello webszolgáltatás. hello placeholderBlob csak hello Azure Data Factory szolgáltatás toorun hello-folyamat által igényelt üres kimeneti adatkészlet.
 
 
 ```json
@@ -5514,16 +5514,16 @@ A folyamat két tevékenység rendelkezik: **AzureMLBatchExecution** és **Azure
 ```
 
 ## <a name="data-lake-analytics-u-sql-activity"></a>Data Lake Analytics U-SQL-tevékenység
-A következő tulajdonságok is megadhatók a U-SQL tevékenység JSON-definícióban. A type tulajdonságot a tevékenységnek kell lennie: **DataLakeAnalyticsU-SQL**. Létre kell hoznia egy Azure Data Lake Analytics kapcsolódó szolgáltatás és értékeként adja meg a nevét, a **linkedServiceName** tulajdonság. A következő tulajdonságok támogatottak a **typeProperties** szakasz tevékenység DataLakeAnalyticsU-SQL beállításakor: 
+A következő tulajdonságok a U-SQL tevékenység JSON-definícióban hello adhatja meg. hello type tulajdonság hello tevékenységnek kell lennie: **DataLakeAnalyticsU-SQL**. Létre kell hoznia egy Azure Data Lake Analytics kapcsolódó szolgáltatás és adja meg azt hello nevét hello értékeként **linkedServiceName** tulajdonság. hello következő tulajdonságok támogatottak hello **typeProperties** szakasz hello típusú tevékenység tooDataLakeAnalyticsU-SQL beállításakor: 
 
 | Tulajdonság | Leírás | Szükséges |
 |:--- |:--- |:--- |
-| scriptPath |A U-SQL parancsfájlt tartalmazó mappa elérési útja. A fájl neve nem kis-és nagybetűket. |Nem (Ha a parancsfájl használata) |
-| scriptLinkedService |Kapcsolódó szolgáltatás, amely a tárolóban, amely tartalmazza az adat-előállító parancsfájl |Nem (Ha a parancsfájl használata) |
+| scriptPath |Elérési út toofolder hello U-SQL parancsfájlt tartalmazó. Hello fájl neve nem kis-és nagybetűket. |Nem (Ha a parancsfájl használata) |
+| scriptLinkedService |Kapcsolódó szolgáltatás, amely a hello parancsfájl toohello adat-előállító tartalmazó hello tároló |Nem (Ha a parancsfájl használata) |
 | Parancsfájl |Adja meg a beágyazott parancsfájlja scriptPath és a scriptLinkedService megadása helyett. Például: "script": "Adatbázis létrehozása test". |Nem (Ha a ScriptPath tulajdonságot is és a scriptLinkedService használ) |
-| degreeOfParallelism |A feladat futtatásához egyidejűleg használt csomópontok maximális száma. |Nem |
-| Prioritás |Azt határozza meg, melyet futtatni kíván szereplő várólistáján szereplő feladatok közül melyeket. Az alacsonyabb a szám, annál magasabb a prioritás. |Nem |
-| Paraméterek |A U-SQL parancsfájl paraméterek |Nem |
+| degreeOfParallelism |csomópontok maximális száma hello egyidejűleg használt toorun hello feladat. |Nem |
+| Prioritás |Meghatározza, hogy szereplő várólistáján szereplő feladatok közül kell lennie a kijelölt toorun először. hello hello kevesebb, hello hello elsőbbséget. |Nem |
+| paraméterek |Hello U-SQL parancsfájl paramétereinek |Nem |
 
 ### <a name="json-example"></a>JSON-példa
 
@@ -5581,22 +5581,22 @@ A következő tulajdonságok is megadhatók a U-SQL tevékenység JSON-definíci
 További információkért lásd: [Data Lake Analytics U-SQL tevékenység](data-factory-usql-activity.md). 
 
 ## <a name="stored-procedure-activity"></a>Tárolt eljárási tevékenység
-A következő tulajdonságok is megadhatók a tárolt eljárás tevékenység JSON-definícióban. A type tulajdonságot a tevékenységnek kell lennie: **SqlServerStoredProcedure**. Létre kell hoznia egy, a következő összekapcsolt szolgáltatások, és adja meg a társított szolgáltatás neve értékének a **linkedServiceName** tulajdonság:
+A következő tárolt eljárás tevékenység JSON-definícióban tulajdonságok hello adhatja meg. hello type tulajdonság hello tevékenységnek kell lennie: **SqlServerStoredProcedure**. Létre kell hoznia egy valamelyik a következő összekapcsolt szolgáltatások hello és hello értékeként adja meg a kapcsolódó hello szolgáltatás hello neve **linkedServiceName** tulajdonság:
 
 - SQL Server 
 - Azure SQL Database
 - Azure SQL Data Warehouse
 
-A következő tulajdonságok támogatottak a **typeProperties** szakasz tevékenység SqlServerStoredProcedure beállításakor:
+hello következő tulajdonságok támogatottak hello **typeProperties** szakasz hello típusú tevékenység tooSqlServerStoredProcedure beállításakor:
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| storedProcedureName |Adja meg a tárolt eljárás neve a Azure SQL database vagy az Azure SQL Data Warehouse, amely a társított szolgáltatás, amely a bemeneti tábla használja. |Igen |
-| storedProcedureParameters |Adja meg a tárolt eljárás paraméter értékét. Ha az egyik paraméter null értéket átadni van szüksége, használja a szintaxist: "param1": (összes kisbetű) NULL értékű. Tekintse meg az alábbi minta tájékozódhat az e tulajdonság használatával. |Nem |
+| storedProcedureName |Hello Azure SQL database vagy az Azure SQL Data Warehouse hello kapcsolódó szolgáltatás, amely a kimeneti tábla által használt hello által képviselt hello hello tárolt eljárás nevét adja meg. |Igen |
+| storedProcedureParameters |Adja meg a tárolt eljárás paraméter értékét. Ha toopass null egy paraméter, szintaxissal hello: "param1": (összes kisbetű) NULL értékű. Tekintse meg a következő minta toolearn e tulajdonság használatával kapcsolatos hello. |Nem |
 
-Ha megad egy bemeneti adatkészlet, elérhetőnek kell lennie (a "Kész" állapotú) a tárolt eljárás tevékenység futtatásához. A bemeneti adatkészletet a tárolt eljárás nem használható paraméterként. Csak a tárolt eljárási tevékenység megkezdése előtt ellenőrizze, a függőség szolgál. Meg kell adnia egy tárolt eljárás tevékenység egy kimeneti adatkészletet. 
+Ha megad egy bemeneti adatkészlet, elérhetőnek kell lennie (a "Kész" állapotú) hello a tárolt eljárás tevékenység toorun. hello bemeneti adatkészlet hello tárolt eljárás nem használható paraméterként. Csak a felhasznált toocheck hello függőségi kezdési hello tárolt eljárási tevékenység előtt. Meg kell adnia egy tárolt eljárás tevékenység egy kimeneti adatkészletet. 
 
-Kimeneti adatkészlet határozza meg a **ütemezés** a tárolt eljárás tevékenység (óránként, heti, havi, stb.). A kimeneti adatkészlet kell használnia egy **társított szolgáltatás** , amely egy Azure SQL Database vagy az Azure SQL Data Warehouse vagy a tárolt eljárás futtatásához használni kívánt SQL Server-adatbázis hivatkozik. A kimeneti adatkészlet felelt meg a tárolt eljárás eredményét a későbbi feldolgozásra, amelyet egy másik tevékenység módon működhetnek ([tevékenységek láncolás](data-factory-scheduling-and-execution.md##multiple-activities-in-a-pipeline)) a feldolgozási. Azonban adat-előállító nem automatikusan kiírhatja a kimenetet tárolt eljárás ehhez a DataSet adatkészlethez. A tárolt eljárás, amely egy SQL táblázat, amely a kimeneti adatkészlet mutat ír. Bizonyos esetekben a kimeneti adatkészlet lehet egy **dummy dataset**, amellyel csak a tárolt eljárási tevékenység fut ütemezése.  
+Kimeneti adatkészlet megadja hello **ütemezés** hello a tárolt eljárási tevékenység (óránként, heti, havi, stb.). hello kimeneti adatkészlet kell használnia egy **társított szolgáltatás** , amely hivatkozik tooan Azure SQL Database vagy az Azure SQL Data Warehouse vagy a használni kívánt tárolt eljárás toorun hello SQL Server-adatbázis. hello kimeneti adatkészlet ki tud szolgálni hello tárolt eljárás későbbi feldolgozásra módon toopass hello eredményként egy másik tevékenység ([tevékenységek láncolás](data-factory-scheduling-and-execution.md##multiple-activities-in-a-pipeline)) hello folyamat. Adat-előállító azonban nem a hello kimeneti a tárolt eljárás toothis DataSet adatkészlet automatikusan írnia. Hello tárolt eljárás írások tooa SQL táblát, amely hello kimeneti adatkészlet mutat. Bizonyos esetekben hello kimeneti adatkészlet lehet egy **dummy dataset**, amellyel csak hello futtatási toospecify hello ütemezésének tárolt eljárási tevékenység.  
 
 ### <a name="json-example"></a>JSON-példa
 
@@ -5627,15 +5627,15 @@ Kimeneti adatkészlet határozza meg a **ütemezés** a tárolt eljárás tevék
 További információkért lásd: [tárolt eljárási tevékenység](data-factory-stored-proc-activity.md) cikk. 
 
 ## <a name="net-custom-activity"></a>.NET egyéni tevékenység
-A következő tulajdonságok is megadhatók a .NET egyéni tevékenység JSON-definícióból. A type tulajdonságot a tevékenységnek kell lennie: **DotNetActivity**. Létre kell hoznia egy Azure HDInsight kapcsolódó szolgáltatás, vagy egy társított Azure Batch szolgáltatásra, és adja meg a társított szolgáltatás neve értékének a **linkedServiceName** tulajdonság. A következő tulajdonságok támogatottak a **typeProperties** szakasz tevékenység DotNetActivity beállításakor:
+A következő tulajdonságok .NET egyéni tevékenység JSON-definícióból hello adhatja meg. hello type tulajdonság hello tevékenységnek kell lennie: **DotNetActivity**. Létre kell hoznia egy Azure HDInsight kapcsolódó szolgáltatás, vagy egy társított Azure Batch szolgáltatás, és adja meg a hello társított szolgáltatás neve hello hello értéket **linkedServiceName** tulajdonság. hello következő tulajdonságok támogatottak hello **typeProperties** szakasz hello típusú tevékenység tooDotNetActivity beállításakor:
  
 | Tulajdonság | Leírás | Szükséges |
 |:--- |:--- |:--- |
-| AssemblyName | A szerelvény neve. A példában van: **MyDotnetActivity.dll**. | Igen |
-| Belépési pont |Az IDotNetActivity illesztőfelületet megvalósító osztály neve. A példában van: **MyDotNetActivityNS.MyDotNetActivity** ahol MyDotNetActivityNS az a névtér pedig MyDotNetActivity az osztály.  | Igen | 
-| PackageLinkedService | Az Azure Storage társított szolgáltatás mutat, a blob-tároló, amely tartalmazza az egyéni tevékenység zip-fájl neve. A példában van: **AzureStorageLinkedService**.| Igen |
-| PackageFile | A zip-fájl neve. A példában van: **customactivitycontainer/MyDotNetActivity.zip**. | Igen |
-| Az ExtendedProperties | A kiterjesztett tulajdonságok, amely meghatározza, és át a .NET-kódot. Ebben a példában a **SliceStart** változó értéke a SliceStart rendszerváltozó alapuló értéket. | Nem | 
+| AssemblyName | Hello szerelvény neve. Hello például, hogy a rendszer: **MyDotnetActivity.dll**. | Igen |
+| Belépési pont |Hello IDotNetActivity felületet megvalósító hello osztály neve. Hello például, hogy a rendszer: **MyDotNetActivityNS.MyDotNetActivity** ahol a MyDotNetActivityNS hello névtere, ezért a MyDotNetActivity hello osztály.  | Igen | 
+| PackageLinkedService | Hello Azure Storage társított szolgáltatás mutat, toohello blob-tároló, amely tartalmazza a hello egyéni tevékenység zip-fájl neve. Hello például, hogy a rendszer: **AzureStorageLinkedService**.| Igen |
+| PackageFile | Hello zip-fájl neve. Hello például, hogy a rendszer: **customactivitycontainer/MyDotNetActivity.zip**. | Igen |
+| Az ExtendedProperties | A kiterjesztett tulajdonságok, amely meghatározza, és adja át a toohello .NET-kódot. Ebben a példában hello **SliceStart** változó értéke alapján hello SliceStart rendszerváltozó tooa érték. | Nem | 
 
 ### <a name="json-example"></a>JSON-példa
 
@@ -5687,7 +5687,7 @@ A következő tulajdonságok is megadhatók a .NET egyéni tevékenység JSON-de
 Részletes információkért lásd: [egyéni tevékenységeket felhasználni a Data Factory](data-factory-use-custom-activities.md) cikk. 
 
 ## <a name="next-steps"></a>Következő lépések
-Tekintse meg az alábbi oktatóanyagok: 
+Tekintse meg a következő oktatóanyagok hello: 
 
 - [Oktatóanyag: hozzon létre egy folyamatot a másolási tevékenység](data-factory-copy-activity-tutorial-using-azure-portal.md)
 - [Oktatóanyag: hozzon létre egy folyamatot egy hive-tevékenység](data-factory-build-your-first-pipeline-using-editor.md)

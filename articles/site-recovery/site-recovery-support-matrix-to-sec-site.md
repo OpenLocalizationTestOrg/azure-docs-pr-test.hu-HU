@@ -1,6 +1,6 @@
 ---
-title: "A replikálás az Azure Site Recovery egy másodlagos hely támogatási mátrix |} Microsoft Docs"
-description: "A támogatott operációs rendszerek és összetevők összegzi az Azure Site Recovery"
+title: "a replikációs tooa másodlagos hely az Azure Site Recovery aaaSupport mátrix |} Microsoft Docs"
+description: "Az Azure Site Recovery összegzi a hello támogatott operációs rendszerek és összetevők"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 05/24/2017
 ms.author: raynew
-ms.openlocfilehash: db7ee5251f2e2016081e55ca4b295e284c8b08cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0b2bbc86aff52308d5a90a56d7a3ff4286877740
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="support-matrix-for-replication-to-a-secondary-site-with-azure-site-recovery"></a>A replikálás az Azure Site Recovery egy másodlagos hely támogatási mátrix
+# <a name="support-matrix-for-replication-tooa-secondary-site-with-azure-site-recovery"></a>A replikációs tooa másodlagos hely az Azure Site Recovery támogatási mátrix
 
-Ez a cikk összefoglalja, mit akkor támogatott, ha az Azure Site Recovery segítségével replikálása egy másodlagos helyszíni helyre.
+Ez a cikk összefoglalja, hogy mi van támogatja az Azure Site Recovery tooreplicate tooa másodlagos helyszíni helyre.
 
 ## <a name="deployment-options"></a>Üzembe helyezési lehetőségek
 
 **Üzembe helyezés** | **VMware vagy fizikai kiszolgáló** | **A Hyper-V (a/SCVMM nélkül)**
 --- | --- | --- | ---
-**Azure Portal** | A helyszíni VMware virtuális gépek másodlagos VMware-hely.<br/><br/> Töltse le a [InMage Scout felhasználói útmutató](http://download.microsoft.com/download/E/0/8/E08B3BCE-3631-4CED-8E65-E3E7D252D06D/InMage_Scout_Standard_User_Guide_8.0.1.pdf) (az Azure portálon nem érhető el). | A helyszíni Hyper-V virtuális gépek VMM-felhőkben másodlagos VMM-felhőhöz.<br></br> A VMM nem támogatott  <br/><br/> Standard Hyper-V replikáció esetén. A SAN nem támogatott.
+**Azure Portal** | Helyszíni VMware virtuális gépek toosecondary VMware-hely.<br/><br/> Töltse le a hello [InMage Scout felhasználói útmutató](http://download.microsoft.com/download/E/0/8/E08B3BCE-3631-4CED-8E65-E3E7D252D06D/InMage_Scout_Standard_User_Guide_8.0.1.pdf) (a hello Azure-portál nem érhető el). | A helyszíni Hyper-V virtuális gépek VMM felhők tooa másodlagos VMM-felhőben.<br></br> A VMM nem támogatott  <br/><br/> Standard Hyper-V replikáció esetén. A SAN nem támogatott.
 **Klasszikus portál** | Karbantartási mód csak. Nem hozható létre új tárolók. | Csak a karbantartási mód<br></br> Az SCVMM nem támogatott
 **PowerShell** | Nem támogatott | Támogatott<br></br> Az SCVMM nem támogatott
 
-## <a name="on-premises-servers"></a>A helyszíni kiszolgálók
+## <a name="on-premises-servers"></a>Helyszíni kiszolgálók
 
 ### <a name="virtualization-servers"></a>Virtualizálási kiszolgálók
 
@@ -49,20 +49,20 @@ Ez a cikk összefoglalja, mit akkor támogatott, ha az Azure Site Recovery segí
 **Üzembe helyezés** | **Támogatás**
 --- | ---
 **VMware virtuális gép vagy fizikai kiszolgáló** | vCenter 5.5 vagy 6.0 (csak a 5.5 szolgáltatások támogatása)
-**A Hyper-V (nincs VMM)** | Nem támogatott konfigurációkra vonatkozó replikálása egy másodlagos helyre
-**A Hyper-V a VMM-mel** | Windows Server 2016 és a Windows Server 2012 R2 legújabb frissítéseit.<br/><br/> Windows Server 2016 gazdagépek a VMM 2016 kell kezelnie.
+**A Hyper-V (nincs VMM)** | Nem támogatott konfigurációkra vonatkozó tooa másodlagos helyre replikál
+**A Hyper-V a VMM-mel** | Windows Server 2016 és a Windows Server 2012 R2 hello legújabb frissítéseit.<br/><br/> Windows Server 2016 gazdagépek a VMM 2016 kell kezelnie.
 
 ## <a name="support-for-replicated-machine-os-versions"></a>A replikált gép operációsrendszer-verziók támogatása
-Az alábbi táblázat foglalja össze különböző telepítési forgatókönyvek észlelt, miközben az Azure Site Recovery segítségével az operációs rendszer támogatásának. Ez a támogatás nem alkalmazható az említett operációs rendszer bármilyen számítási feladatot.
+a következő táblázat hello foglalja össze különböző telepítési forgatókönyvek észlelt, miközben az Azure Site Recovery segítségével az operációs rendszer támogatásának. Ez a támogatás nem alkalmazható, az összes hello futó munkaterhelés említett operációs rendszer.
 
 **VMware vagy fizikai kiszolgáló** | **A Hyper-V (a VMM-mel)**
 --- | --- | ---
-64 bites Windows Server 2012 R2, Windows Server 2012, Windows Server 2008 R2: legalább SP1<br/><br/> Red Hat Enterprise Linux 6.7, 7.1, 7.2 <br/><br/> Centos 6.5, 6.6, 6.7, 7.0, 7.1, 7.2 <br/><br/> Oracle 6.4 vagy 6.5 fut a Red Hat Enterprise Linux kompatibilis kernel vagy szoros vállalati Kernel Release 3 (UEK3) <br/><br/> SUSE Linux Enterprise Server 11 SP3 | A vendég operációs rendszer [Hyper-V által támogatott](https://technet.microsoft.com/library/mt126277.aspx)
+64 bites Windows Server 2012 R2, Windows Server 2012, Windows Server 2008 R2: legalább SP1<br/><br/> Red Hat Enterprise Linux 6.7, 7.1, 7.2 <br/><br/> Centos 6.5, 6.6, 6.7, 7.0, 7.1, 7.2 <br/><br/> Oracle Enterprise Linux 6.4 vagy 6.5 hello Red Hat kompatibilis kernel vagy szoros vállalati Kernel kiadási-3 (UEK3) <br/><br/> SUSE Linux Enterprise Server 11 SP3 | A vendég operációs rendszer [Hyper-V által támogatott](https://technet.microsoft.com/library/mt126277.aspx)
 
 >[!Note]
->A következő tárolási csak Linux gépek replikálhatja: fájlrendszer (EXT3, ETX4, ReiserFS, XFS); A többutas szoftver-eszköz leképező; Kötetkezelő (LVM2).
+>A következő tárolási hello csak Linux gépek replikálhatja: fájlrendszer (EXT3, ETX4, ReiserFS, XFS); A többutas szoftver-eszköz leképező; Kötetkezelő (LVM2).
 >HP CCISS vezérlő tároló fizikai kiszolgálók nem támogatottak.
->SUSE Linux Enterprise Server 11 SP3 csak támogatott ReiserFS fájlrendszert.
+>SUSE Linux Enterprise Server 11 SP3 csak támogatott hello ReiserFS fájlrendszer.
 
 ## <a name="network-configuration"></a>Hálózati konfiguráció
 
@@ -103,7 +103,7 @@ SAN (ISCSI) | Igen | Igen
 **Konfigurálás** | **VMware vagy fizikai kiszolgáló** | **A Hyper-V (a VMM-mel)**
 --- | --- | ---
 VMDK-FÁJL | Igen | N/A
-VHD/VHDX | N/A | Igen (legfeljebb 16 lemez)
+VHD/VHDX | N/A | Igen (be too16 lemezeket)
 Generációból 2 virtuális gép | N/A | Igen
 Megosztott fürtlemez | Igen  | Nem
 Titkosított lemez | Nem | Nem
@@ -130,10 +130,10 @@ Tárolási, hálózati, Azure virtuális gépek között (belül vagy között, 
 **Name (Név)** | **Leírás** | **Legújabb verzió** | **Részletek**
 --- | --- | --- | --- | ---
 **Az Azure Site Recovery Providert** | Koordinálja a helyszíni kiszolgálók és az Azure közötti kommunikáció <br/><br/> A helyszíni VMM-kiszolgálókon, vagy a Hyper-V kiszolgálókon telepítve, ha nincs VMM-kiszolgáló | 5.1.19 ([elérhető portálról](http://aka.ms/downloaddra)) | [Legújabb funkcióit és javításokat](https://support.microsoft.com/kb/3155002)
-**Mobilitási szolgáltatás** | Koordinálja a helyszíni VMware Server vagy fizikai kiszolgálók és a másodlagos hely közötti replikálás<br/><br/> VMware virtuális gép vagy fizikai kiszolgálók replikálni kívánt telepítve  | N/A (elérhető a portál) | N/A
+**Mobilitási szolgáltatás** | Helyszíni VMware Server vagy a fizikai kiszolgálók és a hello másodlagos hely közötti replikációt koordinálja<br/><br/> VMware virtuális gép vagy fizikai kiszolgálók, amelyet az tooreplicate telepítve  | N/A (elérhető a portál) | N/A
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-- [Hyper-V virtuális gépek VMM-felhőkben replikálása egy másodlagos helyre](site-recovery-vmm-to-vmm.md)
-- [VMware-alapú virtuális gépek és fizikai kiszolgálók replikálása másodlagos helyre](site-recovery-vmware-to-vmware.md)
+- [A VMM-felhők tooa másodlagos helyet a Hyper-V virtuális gépek replikálása](site-recovery-vmm-to-vmm.md)
+- [VMware virtuális gépek és fizikai kiszolgálók tooa másodlagos hely replikálása](site-recovery-vmware-to-vmware.md)

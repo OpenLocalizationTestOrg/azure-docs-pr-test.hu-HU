@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Import/Export eszköz beállítása |} Microsoft Docs"
-description: "Megtudhatja, hogyan állíthat be a meghajtó előkészítése, és javítsa ki az Azure Import/Export szolgáltatás eszközének."
+title: "hello Azure Import/Export eszköz be aaaSetting |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooset be hello meghajtó előkészítése és javító hello Azure Import/Export szolgáltatás."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,49 +14,49 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: muralikk
-ms.openlocfilehash: d39ec89b4877e2fca01b68b30bb287a120f2eb71
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ee5bb99bd84ea5ee2f6b6e99c5a375b215e94ea8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="setting-up-the-azure-importexport-tool"></a>Az Azure Import/Export eszköz beállítása
+# <a name="setting-up-hello-azure-importexport-tool"></a>Hello Azure Import/Export eszköz beállítása
 
-A Microsoft Azure Import/Export eszköz a meghajtó előkészítése és a javítás eszköz, amely a Microsoft Azure Import/Export szolgáltatás használata. Az eszköz használható a következő funkciókat:
+a Microsoft Azure Import/Export eszköz hello hello meghajtó előkészítése és lemezjavító eszköz, amely hello Microsoft Azure Import/Export szolgáltatás használata. A következő funkciók hello hello eszközt is használhatja:
 
-* Mielőtt létrehozna egy importálási feladat, az eszköz segítségével történő egy Azure-adatközpontban fog merevlemezek adatok másolása.
-* Az importálási feladat befejezése után az eszköz segítségével javítsa ki, hogy megsérült, hiányoztak vagy ütköző bármely blobok a más BLOB.
-* Miután a meghajtók kapott egy befejezett exportálási feladat, az eszköz segítségével javítsa ki azokat a fájlokat, hibás vagy hiányzik a meghajtó a volt.
+* Mielőtt létrehozna egy importálási feladat, az eszköz toocopy toohello rögzített adatmeghajtókon tooship tooan Azure-adatközpontban fog is használhatja.
+* Az importálási feladat befejezése után is használhatja az eszköz toorepair megsérült, hiányoztak vagy ütköző blobot a más BLOB.
+* Miután hello meghajtók kapott egy befejezett exportálási feladat, használhatja az eszköz toorepair, azokat a fájlokat, sérült vagy hiányzó hello meghajtókon.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Ha Ön **meghajtók előkészítése** egy importálási feladatnak a következő előfeltételeknek is teljesülniük kell:
+Ha Ön **meghajtók előkészítése** az importálási feladat a következő előfeltételek hello kell megfelelni:
 
 * Aktív Azure-előfizetéssel kell rendelkeznie.
-* Az előfizetés tartalmaznia kell egy tárfiókot a fájlok tárolásához elegendő lemezterülettel rendelkező importálni kívánja.
-* A fiók tárelérési kulcsok legalább egyike szükséges.
-* Windows 7, Windows Server 2008 R2 vagy egy újabb Windows operációs rendszer van telepítve a számítógépre (a "Másolás gép") van szüksége.
-* A .NET-keretrendszer 4 telepítenie kell a másolási gépen.
-* A BitLocker a másolási gépen engedélyezni kell.
-* Szükség van egy vagy több üres 3,5 hüvelykes SATA merevlemez-meghajtók másolási számítógéphez kapcsolódó.
-* Az importálandó fájlok a Másolás gépről elérhetőnek kell lennie, hogy egy hálózati megosztásra vagy egy helyi merevlemezen lévő.
+* Az előfizetés tartalmaznia kell egy tárfiókot elegendő szabad terület toostore hello fájlokkal tooimport fog.
+* Hello fiók tárelérési kulcsok legalább egyike szükséges.
+* Windows 7, Windows Server 2008 R2 vagy egy újabb Windows operációs rendszer van telepítve a számítógépre (hello "Másolás gép") van szüksége.
+* .NET-keretrendszer 4 hello hello másolási gépen rendszerre telepíthető.
+* A BitLocker hello másolási gépen engedélyezni kell.
+* Szükség van egy, vagy további üres 3,5 hüvelykes SATA merevlemez-meghajtók toohello másolási géphez csatlakoztatva.
+* hello fájlok tooimport tervezi hello másolási számítógépről elérhetőnek kell lennie, hogy egy hálózati megosztásra vagy egy helyi merevlemezen lévő.
 
-Ha a kívánt **javítsa ki az importálás** részben meghiúsult, akkor kell:
+Ha túl próbált**javítsa ki az importálás** részben meghiúsult, akkor kell:
 
-* A másolási naplófájlok
-* A tárfiók kulcsa
+* hello másolási naplófájlok
+* hello tárfiók kulcsa
 
-Ha a kívánt **javítsa ki az exportálási** részben meghiúsult, akkor kell:
+Ha túl próbált**javítsa ki az exportálási** részben meghiúsult, akkor kell:
 
-* A másolási naplófájlok
-* A jegyzékfájlt (nem kötelező)
-* A tárfiók kulcsa
+* hello másolási naplófájlok
+* hello jegyzékfájlt (nem kötelező)
+* hello tárfiók kulcsa
 
-## <a name="installing-the-azure-importexport-tool"></a>Az Azure Import/Export eszköz telepítése
+## <a name="installing-hello-azure-importexport-tool"></a>Hello Azure Import/Export eszköz telepítése
 
-Első, [töltse le az Azure Import/Export eszköz](https://www.microsoft.com/download/details.aspx?id=55280) és bontsa ki a számítógépre, könyvtárra például `c:\WAImportExport`.
+Első, [hello Azure Import/Export eszköz letöltése](https://www.microsoft.com/download/details.aspx?id=55280) és fejteni, például a számítógépre, tooa directory `c:\WAImportExport`.
 
-Az Azure Import/Export eszköz az alábbi fájlokat foglalja magában:
+hello Azure Import/Export eszköz a következő fájlok hello áll:
 
 * DataSet.csv
 * driveset.csv
@@ -73,9 +73,9 @@ Az Azure Import/Export eszköz az alábbi fájlokat foglalja magában:
 * WAImportExportRepair.dll
 * WAImportExportRepair.pdb
 
-Ezután nyissa meg a parancsot a parancssorablakba **felügyeleti üzemmód**, és váltson át a kicsomagolt fájlokat tartalmazó könyvtárat.
+Ezután nyissa meg a parancsot a parancssorablakba **felügyeleti üzemmód**, és módosítás hello tartalmazó hello könyvtárba kibontott fájlokat.
 
-A parancs, futtassa az eszközt kimeneti súgójában (`WAImportExport.exe`) paraméterek nélkül:
+hello parancs, futtassa az eszközt hello toooutput súgóját (`WAImportExport.exe`) paraméterek nélkül:
 
 ```
 WAImportExport, a client tool for Windows Azure Import/Export Service. Microsoft (c) 2013
@@ -118,79 +118,79 @@ Preview an Export Job:
 Parameters:
 
     /j:<JournalFile>
-        - Required. Path to the journal file. A journal file tracks a set of drives and
-          records the progress in preparing these drives. The journal file must always
+        - Required. Path toohello journal file. A journal file tracks a set of drives and
+          records hello progress in preparing these drives. hello journal file must always
           be specified.
     /logdir:<LogDirectory>
-        - Optional. The log directory. Verbose log files as well as some temporary
-          files will be written to this directory. If not specified, current directory
-          will be used as the log directory. The log directory can be specified only
-          once for the same journal file.
+        - Optional. hello log directory. Verbose log files as well as some temporary
+          files will be written toothis directory. If not specified, current directory
+          will be used as hello log directory. hello log directory can be specified only
+          once for hello same journal file.
     /id:<SessionId>
-        - Optional. The session Id is used to identify a copy session. It is used to
+        - Optional. hello session Id is used tooidentify a copy session. It is used to
           ensure accurate recovery of an interrupted copy session.
     /ResumeSession
-        - Optional. If the last copy session was terminated abnormally, this parameter
-          can be specified to resume the session.
+        - Optional. If hello last copy session was terminated abnormally, this parameter
+          can be specified tooresume hello session.
     /AbortSession
-        - Optional. If the last copy session was terminated abnormally, this parameter
-          can be specified to abort the session.
+        - Optional. If hello last copy session was terminated abnormally, this parameter
+          can be specified tooabort hello session.
     /sn:<StorageAccountName>
-        - Required. Only applicable for RepairImport and RepairExport. The name of
-          the storage account.
+        - Required. Only applicable for RepairImport and RepairExport. hello name of
+          hello storage account.
     /sk:<StorageAccountKey>
-        - Required. The key of the storage account.
+        - Required. hello key of hello storage account.
     /InitialDriveSet:<driveset.csv>
-        - Required. A .csv file that contains a list of drives to prepare.
+        - Required. A .csv file that contains a list of drives tooprepare.
     /AdditionalDriveSet:<driveset.csv>
-        - Required. A .csv file that contains a list of additional drives to be added.
+        - Required. A .csv file that contains a list of additional drives toobe added.
     /r:<RepairFile>
         - Required. Only applicable for RepairImport and RepairExport.
-          Path to the file for tracking repair progress. Each drive must have one
+          Path toohello file for tracking repair progress. Each drive must have one
           and only one repair file.
     /d:<TargetDirectories>
         - Required. Only applicable for RepairImport and RepairExport.
-          For RepairImport, one or more semicolon-separated directories to repair;
-          For RepairExport, one directory to repair, e.g. root directory of the drive.
+          For RepairImport, one or more semicolon-separated directories toorepair;
+          For RepairExport, one directory toorepair, e.g. root directory of hello drive.
     /CopyLogFile:<DriveCopyLogFile>
-        - Required. Only applicable for RepairImport and RepairExport. Path to the
+        - Required. Only applicable for RepairImport and RepairExport. Path toothe
           drive copy log file (verbose or error).
     /ManifestFile:<DriveManifestFile>
-        - Required. Only applicable for RepairExport. Path to the drive manifest file.
+        - Required. Only applicable for RepairExport. Path toohello drive manifest file.
     /PathMapFile:<DrivePathMapFile>
-        - Optional. Only applicable for RepairImport. Path to the file containing
-          mappings of file paths relative to the drive root to locations of actual files
+        - Optional. Only applicable for RepairImport. Path toohello file containing
+          mappings of file paths relative toohello drive root toolocations of actual files
           (tab-delimited). When first specified, it will be populated with file paths
           with empty targets, which means either they are not found in TargetDirectories,
           access denied, with invalid name, or they exist in multiple directories. The
-          path map file can be manually edited to include the correct target paths and
-          specified again for the tool to resolve the file paths correctly.
+          path map file can be manually edited tooinclude hello correct target paths and
+          specified again for hello tool tooresolve hello file paths correctly.
     /ExportBlobListFile:<ExportBlobListFile>
-        - Required. Path to the XML file containing list of blob paths or blob path
-          prefixes for the blobs to be exported. The file format is the same as the
-          blob list blob format in the Put Job operation of the Import/Export Service
+        - Required. Path toohello XML file containing list of blob paths or blob path
+          prefixes for hello blobs toobe exported. hello file format is hello same as the
+          blob list blob format in hello Put Job operation of hello Import/Export Service
           REST API.
     /DriveSize:<DriveSize>
-        - Required. Size of drives to be used for export. For example, 500GB, 1.5TB.
+        - Required. Size of drives toobe used for export. For example, 500GB, 1.5TB.
           Note: 1 GB = 1,000,000,000 bytes
                 1 TB = 1,000,000,000,000 bytes
     /DataSet:<dataset.csv>
         - Required. A .csv file that contains a list of directories and/or a list files
-          to be copied to target drives.
+          toobe copied tootarget drives.
 
     /silentmode
-        - Optional. If not specified, it will remind you the requirement of drives and
-          need your confirmation to continue.
+        - Optional. If not specified, it will remind you hello requirement of drives and
+          need your confirmation toocontinue.
 
 Examples:
 
-    Copy a data set to a drive:
+    Copy a data set tooa drive:
     WAImportExport.exe PrepImport
         /j:9WM35C2V.jrn /id:session#1 /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GEL
         xmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /InitialDriveSet:driveset1.csv
         /DataSet:data.csv
 
-    Copy another dataset to the same drive following the above command:
+    Copy another dataset toohello same drive following hello above command:
     WAImportExport.exe PrepImport /j:9WM35C2V.jrn /id:session#2 /DataSet:dataset2.csv
 
     Preview how many 1.5 TB drives are needed for an export job:
@@ -213,4 +213,4 @@ Examples:
 * [Feladatok állapotának áttekintése a másolási naplófájlok segítségével](storage-import-export-tool-reviewing-job-status-v1.md)
 * [Importálási feladat javítása](storage-import-export-tool-repairing-an-import-job-v1.md)
 * [Exportálási feladat javítása](storage-import-export-tool-repairing-an-export-job-v1.md)
-* [Az Azure Import/Export eszköz hibaelhárítása](storage-import-export-tool-troubleshooting-v1.md)
+* [Hibaelhárítási hello Azure Import/Export eszköz](storage-import-export-tool-troubleshooting-v1.md)

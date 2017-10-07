@@ -1,6 +1,6 @@
 ---
-title: "A bevonási API használata IOS rendszerű eszközökön"
-description: "Legújabb iOS SDK - IOS rendszerű eszközökön a bevonási API használatával"
+title: "aaaHow tooUse hello Engagement API IOS rendszerű eszközökön"
+description: "Legújabb iOS SDK - tooUse hogyan Engagement API hello iOS"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,48 +14,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: a31424da98205e97bdf57010cccfd044360f03dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7fb9b95ad319cf3b1e2de81b5d6aee5b30266069
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-engagement-api-on-ios"></a>A bevonási API használata IOS rendszerű eszközökön
-Ez a dokumentum az bővítménye a dokumentum hogyan integrálhatja Engagement IOS: a mélység részletei jelentés az alkalmazás statisztikái az Engagement API használatával biztosít.
+# <a name="how-toouse-hello-engagement-api-on-ios"></a>Hogyan tooUse hello IOS Engagement API
+Ez a dokumentum hogyan egy bővítmény toohello dokumentum tooIntegrate Engagement IOS: hogyan toouse hello Engagement API tooreport az alkalmazás statisztikái mélysége adatait a biztosít.
 
-Ne feledje, hogy ha Engagement jelenti a munkamenetek, a tevékenységek, a összeomlásokat és a technikai információkat az alkalmazás csak szeretne, majd a legegyszerűbb módja annak, hogy az egyéni `UIViewController` objektumok öröklik a megfelelő `EngagementViewController` osztály.
+Ne feledje, hogy ha munkamenetek, a tevékenységek, a összeomlásokat és a technikai információkat az alkalmazás csak szeretné Engagement tooreport majd hello legegyszerűbb módja van toomake az egyéni `UIViewController` örökölt objektumok megfelelő hello `EngagementViewController` osztály .
 
-Ha szeretne többet, például ha adott eseményeket, hibákat és feladatok, jelentenie, vagy ha a jelentés az alkalmazás tevékenységei eltérő módon, mint az egyik valósult meg, hogy a `EngagementViewController` osztályokat, akkor használja az Engagement API szükséges.
+Ha azt szeretné, hogy toodo további, például ha tooreport adott eseményeket, hibákat és feladatok van szüksége, vagy ha tooreport az alkalmazás tevékenységei eltérő módon, mint egy hello megvalósított hello `EngagementViewController` osztályokat, akkor szükséges, hogy toouse hello Bevonási API.
 
-A bevonási API által biztosított a `EngagementAgent` osztály. Ez az osztály példánya meghívásával lehet beolvasni a `[EngagementAgent shared]` statikus metódus (vegye figyelembe, hogy a `EngagementAgent` objektumot adott vissza az Egypéldányos).
+hello Engagement API által biztosított hello `EngagementAgent` osztály. Ez az osztály példánya lekérhetők hívó hello `[EngagementAgent shared]` statikus metódus (vegye figyelembe, hogy hello `EngagementAgent` objektumot adott vissza az Egypéldányos).
 
-Minden API-hívások előtt az `EngagementAgent` objektumot inicializálni kell a metódus meghívásával.`[EngagementAgent init:@"Endpoint={YOUR_APP_COLLECTION.DOMAIN};SdkKey={YOUR_SDK_KEY};AppId={YOUR_APPID}"];`
+Mielőtt API-k hívja, hello `EngagementAgent` hello metódus meghívásával objektumot inicializálni kell`[EngagementAgent init:@"Endpoint={YOUR_APP_COLLECTION.DOMAIN};SdkKey={YOUR_SDK_KEY};AppId={YOUR_APPID}"];`
 
 ## <a name="engagement-concepts"></a>Engagement – fogalmak
-A következő részekből finomíthatja a közös [Mobile Engagement fogalmait](mobile-engagement-concepts.md) az iOS platformra.
+hello következő részekből pontosítsa közös hello [Mobile Engagement fogalmait](mobile-engagement-concepts.md) hello iOS platformra.
 
 ### <a name="session-and-activity"></a>`Session` és `Activity`
-Egy *tevékenység* tartozik általában egy képernyő az alkalmazás, azaz a *tevékenység* kezdődik, amikor a képernyő jelenik meg, és leállítja a képernyő bezárásakor: Ez a helyzet, amikor az Engagement SDK használatával integrálva van a `EngagementViewController` osztályok.
+Egy *tevékenység* általában egy képernyő hello alkalmazás, amely toosay hello társított *tevékenység* kezdődik, amikor hello képernyő jelenik meg, és leállítja az üdvözlő képernyőt bezárásakor: Ez a hello eset, amikor hello Engagement SDK integrálva van a hello segítségével `EngagementViewController` osztályok.
 
-De *tevékenységek* is szabályozhatja manuálisan az Engagement API használatával. Ez lehetővé teszi több sub pontján további részletes információkat az ezen a képernyőn (például hogy milyen gyakran ismert, és mennyi ideig párbeszédpanelek ezen a képernyőn belül használt) használatát egy adott képernyő felosztása.
+De *tevékenységek* is szabályozhatja manuálisan hello Engagement API használatával. Így toosplit egy adott képernyő több sub részek tooget kapcsolatos további részletekért hello használata ezen a képernyőn (például milyen gyakran tooknown és mennyi ideig párbeszédpanelek használt ezen a képernyőn belül).
 
 ## <a name="reporting-activities"></a>Jelentéskészítési tevékenység
 ### <a name="user-starts-a-new-activity"></a>Felhasználó elindítja az új tevékenység
             [[EngagementAgent shared] startActivity:@"MyUserActivity" extras:nil];
 
-Meg kell hívnia `startActivity()` minden egyes alkalommal, amikor a felhasználói tevékenység módosul. Ez a függvény az első hívás új felhasználói munkamenet indítása.
+Toocall kell `startActivity()` minden alkalommal hello felhasználói tevékenység változik. hello első hívás toothis függvény új felhasználói munkamenet indítása.
 
 ### <a name="user-ends-his-current-activity"></a>Felhasználói karakterlánccal végződik-e aktuális tevékenysége
             [[EngagementAgent shared] endActivity];
 
 > [!WARNING]
-> Meg kell **soha** hív, ez a funkció önállóan, kivéve ha szeretné osztani több munkamenet az alkalmazás használatát: a függvény hívása úgy, azonnal, a jelenlegi munkamenet volna end későbbi hívása `startActivity()` volna indítson egy újat. Ez a funkció automatikusan hívja az SDK az alkalmazás bezárása után.
+> Meg kell **soha** hívja meg a függvényt önállóan, kivéve, ha azt szeretné, hogy az alkalmazás több munkamenet toosplit használatát: toothis függvény volna end hívása hello azonnal, a jelenlegi munkamenet, így a későbbi hívása túl`startActivity()`volna indítson egy újat. Ez a funkció automatikusan hívja hello SDK az alkalmazás bezárása után.
 > 
 > 
 
 ## <a name="reporting-events"></a>Jelentési eseményeket
 ### <a name="session-events"></a>Munkamenet-események
-A munkamenet során a felhasználó által végrehajtott műveletek jelentésére általában használhatók munkamenet események.
+Munkamenet-eseményeket általában használt tooreport hello műveletek során a munkamenet a felhasználó által végrehajtott is.
 
 **További adatok nélkül. példa:**
 
@@ -89,7 +89,7 @@ A munkamenet során a felhasználó által végrehajtott műveletek jelentésér
     }
 
 ### <a name="standalone-events"></a>Önálló események
-Ellentétesen munkamenet események különálló esemény egy munkamenet környezetében kívül is használható.
+Ellentétes toosession események, különálló esemény egy munkamenet környezetében hello kívül is használható.
 
 **Példa**
 
@@ -97,16 +97,16 @@ Ellentétesen munkamenet események különálló esemény egy munkamenet körny
 
 ## <a name="reporting-errors"></a>Hibát jelentett
 ### <a name="session-errors"></a>Munkamenet-hibák
-Munkamenet a hibák általában használhatók a a munkamenet során a felhasználót érintő hibák jelentését.
+Munkamenet olyan hello felhasználói érintő a munkamenet során általában használt tooreport hello hibákat tartalmaznak.
 
 **Példa**
 
-    /** The user has entered invalid data in a form */
+    /** hello user has entered invalid data in a form */
     @implementation MyViewController {
       [...]
       -(void)onMyFormSubmitted:(MyForm*)form {
         [...]
-        /* The user has entered an invalid email address */
+        /* hello user has entered an invalid email address */
         [[EngagementAgent shared] sendSessionError:@"sign_up_email" extras:nil]
         [...]
       }
@@ -114,7 +114,7 @@ Munkamenet a hibák általában használhatók a a munkamenet során a felhaszn�
     }
 
 ### <a name="standalone-errors"></a>Önálló hibák
-Munkamenet hibák ellentétesen önálló hibák kívül egy munkamenet környezetében használható.
+Ellentétes toosession hibák, önálló hibák kívül hello egy munkamenet környezetében használható.
 
 **Példa**
 
@@ -123,7 +123,7 @@ Munkamenet hibák ellentétesen önálló hibák kívül egy munkamenet környez
 ## <a name="reporting-jobs"></a>Feladatok jelentése
 **Példa**
 
-Tegyük fel, hogy szeretne jelentést készíteni a bejelentkezési folyamat időtartama:
+Tegyük fel, hogy a bejelentkezési folyamat tooreport hello időtartama:
 
     [...]
     -(void)signIn
@@ -139,11 +139,11 @@ Tegyük fel, hogy szeretne jelentést készíteni a bejelentkezési folyamat id�
     [...]
 
 ### <a name="report-errors-during-a-job"></a>A feladat során hibák jelentése
-Hibák a jelenlegi felhasználói munkamenet való helyett egy futó feladat kapcsolódhat.
+Hibák lehetnek feldolgozás alatt álló helyett kapcsolódó tooa kapcsolódó toohello jelenlegi felhasználói munkamenetet.
 
 **Példa**
 
-Tegyük fel, hogy a bejelentkezési folyamat során hiba jelentését:
+Tegyük fel, hogy tooreport hiba történt a bejelentkezési folyamat során:
 
     [...]
     -(void)signin
@@ -153,7 +153,7 @@ Tegyük fel, hogy a bejelentkezési folyamat során hiba jelentését:
 
       BOOL success = NO;
       while (!success) {
-        /* Try to sign in */
+        /* Try toosign in */
         NSError* error = nil;
         [self trySigin:&error];
         success = error == nil;
@@ -176,11 +176,11 @@ Tegyük fel, hogy a bejelentkezési folyamat során hiba jelentését:
     [...]
 
 ### <a name="events-during-a-job"></a>A feladat során események
-Események egy futó feladat helyett a jelenlegi felhasználói munkamenet való kapcsolódhat.
+Események lehet feldolgozás alatt álló helyett kapcsolódó tooa kapcsolódó toohello jelenlegi felhasználói munkamenetet.
 
 **Példa**
 
-Tegyük fel, közösségi hálózata, és a teljes idő, ameddig a felhasználó csatlakozik-e a kiszolgáló egy feladatot, amely a jelentés használjuk. A felhasználó fogadhat üzeneteket az ismerősök, ez az esemény feladat.
+Tegyük fel, közösségi hálózata, és egy feladat tooreport hello teljes ideje mely hello felhasználói pedig csatlakoztatott toohello server használjuk. hello felhasználói fogadhat üzeneteket az ismerősök, ez az esemény feladat.
 
     [...]
     - (void) signin
@@ -203,18 +203,18 @@ Tegyük fel, közösségi hálózata, és a teljes idő, ameddig a felhasználó
     [...]
 
 ## <a name="extra-parameters"></a>További paraméterek
-Tetszőleges adatok csatolható események, hibákat, tevékenységeket és feladatokat.
+Lehet, hogy az adatokat tetszőleges csatolt tooevents, hibákat, tevékenységeket és feladatokat.
 
 Ezek az adatok szervezhetők, iOS tartozó NSDictionary osztályt használja.
 
 Vegye figyelembe, hogy a kiegészítő funkciók tartalmazhatnak `arrays(NSArray, NSMutableArray)`, `numbers(NSNumber class)`, `strings(NSString, NSMutableString)`, `urls(NSURL)`, `data(NSData, NSMutableData)` vagy más `NSDictionary` példányok.
 
 > [!NOTE]
-> A kiegészítő paraméterrel szerializált a JSON-ban. Ha a különböző objektumok, mint a fent leírt átadni kívánt, meg kell valósítani a következő metódust az osztályban:
+> hello kiegészítő paraméterrel szerializált a JSON-ban. Ha azt szeretné, hogy toopass különböző objektumok, mint hello fent leírtaktól, meg kell valósítani hello metódus az osztály a következő:
 > 
 > -(NSString*) JSONRepresentation;
 > 
-> A módszer az objektum JSON-ábrázolását kell visszaadnia.
+> hello metódus az objektum JSON-ábrázolását kell visszaadnia.
 > 
 > 
 
@@ -226,25 +226,25 @@ Vegye figyelembe, hogy a kiegészítő funkciók tartalmazhatnak `arrays(NSArray
 
 ### <a name="limits"></a>Korlátok
 #### <a name="keys"></a>Kulcsok
-Az egyes kulcsok a `NSDictionary` meg kell egyeznie a következő reguláris kifejezésnek:
+Minden kulcs hello `NSDictionary` meg kell egyeznie a következő reguláris kifejezésnek hello:
 
 `^[a-zA-Z][a-zA-Z_0-9]*`
 
 Ez azt jelenti, hogy kulcsok betűk, számok és aláhúzásjelek követ legalább egy betűvel kell kezdődnie (\_).
 
 #### <a name="size"></a>Méret
-Kiegészítő funkciók korlátozva **1024** karakter / hívás (egyszer kódolású a JSON-ban az Engagement ügynök).
+Kiegészítő funkciók korlátozva túl**1024** karakter / hívás (egyszer kódolású JSON hello Engagement ügynök).
 
-Az előző példában a a kiszolgálónak küldött JSON-ja 58 karakter:
+Hello az előző példában hello toohello server elküldött JSON 58 karakter hosszú:
 
     {"ref_click":"http:\/\/foobar.com\/blog","video_id":"123"}
 
 ## <a name="reporting-application-information"></a>Jelentéskészítési alkalmazással kapcsolatos adatok
-Manuálisan jelentheti a nyomkövetési adatokat (vagy más alkalmazás egyedi információt) használatával a `sendAppInfo:` függvény.
+Manuálisan jelentheti a nyomkövetési adatokat (vagy más alkalmazás egyedi információt) hello `sendAppInfo:` függvény.
 
-Vegye figyelembe, hogy ezek az információt elküldi Növekményesen: a megadott kulcs csak a legutóbbi értékét az adott eszköz megmarad.
+Vegye figyelembe, hogy ezek az információt elküldi Növekményesen: az adott eszköz folyamatosan csak hello legújabb egy adott kulcs értékét.
 
-Esemény kiegészítő funkciók, például a `NSDictionary` osztály absztrakt alkalmazással kapcsolatos információk, vegye figyelembe, hogy tömbök vagy alárendelt szótárak minősül, egyszerű karakterlánc (JSON-szerializálás) szolgál.
+Például a esemény kiegészítő funkciók, hello `NSDictionary` osztály használt tooabstract alkalmazással kapcsolatos információk, vegye figyelembe, hogy tömbállandó vagy alárendelt szótárak minősül, egyszerű karakterlánc (JSON-szerializálás).
 
 **Példa**
 
@@ -255,15 +255,15 @@ Esemény kiegészítő funkciók, például a `NSDictionary` osztály absztrakt 
 
 ### <a name="limits"></a>Korlátok
 #### <a name="keys"></a>Kulcsok
-Az egyes kulcsok a `NSDictionary` meg kell egyeznie a következő reguláris kifejezésnek:
+Minden kulcs hello `NSDictionary` meg kell egyeznie a következő reguláris kifejezésnek hello:
 
 `^[a-zA-Z][a-zA-Z_0-9]*`
 
 Ez azt jelenti, hogy kulcsok betűk, számok és aláhúzásjelek követ legalább egy betűvel kell kezdődnie (\_).
 
 #### <a name="size"></a>Méret
-Alkalmazásadatok esetén egyre korlátozódik **1024** karakter / hívás (egyszer kódolású a JSON-ban az Engagement ügynök).
+Alkalmazásadatok esetén egyre korlátozódik túl**1024** karakter / hívás (egyszer kódolású JSON hello Engagement ügynök).
 
-Az előző példában a a kiszolgálónak küldött JSON-ja 44 karakter:
+Hello az előző példában hello toohello server elküldött JSON 44 karakter hosszú:
 
     {"birthdate":"1983-12-07","gender":"female"}

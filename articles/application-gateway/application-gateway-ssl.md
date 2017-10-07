@@ -1,6 +1,6 @@
 ---
-title: "Konfigurálja az SSL - Azure Application Gateway - kiszervezés klasszikus PowerShell |} Microsoft Docs"
-description: "Ez a cikk ismerteti az Azure klasszikus telepítési modell segítségével kiszervezése SSL Alkalmazásátjáró létrehozásához nyújt útmutatást."
+title: "aaaConfigure SSL - Azure Application Gateway - PowerShell klasszikus kiürítési |} Microsoft Docs"
+description: "Ez a cikk útmutatást Alkalmazásátjáró SSL használatával kiszervezése toocreate hello Azure klasszikus üzembe helyezési modellben."
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: gwallace
-ms.openlocfilehash: 2eba6fb24c11add12ac16d04d3445e19a3486216
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5cb128015747ed4b71802cf751c80b60634601a9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-an-application-gateway-for-ssl-offload-by-using-the-classic-deployment-model"></a>SSL kiszervezési Alkalmazásátjáró konfigurálása a klasszikus telepítési modell segítségével
+# <a name="configure-an-application-gateway-for-ssl-offload-by-using-hello-classic-deployment-model"></a>SSL kiszervezési Alkalmazásátjáró konfigurálása hello klasszikus telepítési modell segítségével
 
 > [!div class="op_single_selector"]
 > * [Azure Portal](application-gateway-ssl-portal.md)
@@ -28,34 +28,34 @@ ms.lasthandoff: 08/18/2017
 > * [Klasszikus Azure PowerShell](application-gateway-ssl.md)
 > * [Azure CLI 2.0](application-gateway-ssl-cli.md)
 
-Az Azure Application Gateway konfigurálható úgy, hogy leállítsa a Secure Sockets Layer (SSL) munkamenetét az átjárónál, így elkerülhetők a költséges SSL visszafejtési feladatok a webfarmon. Az SSL-alapú kiszervezés emellett leegyszerűsíti az előtér-kiszolgáló számára webalkalmazás telepítését és kezelését.
+Az Azure Application Gateway konfigurált tooterminate hello Secure Sockets Layer (SSL) munkamenet: hello átjáró tooavoid költséges SSL visszafejtési feladatok toohappen: hello webfarm lehet. SSL kiszervezési is egyszerűbbé teszi a hello előtér-kiszolgáló beállítása és felügyelete hello webalkalmazás.
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-1. Telepítse az Azure PowerShell-parancsmagok legújabb verzióját a Webplatform-telepítővel. A [Letöltések lap](https://azure.microsoft.com/downloads/) **Windows PowerShell** szakaszából letöltheti és telepítheti a legújabb verziót.
-2. Ellenőrizze, hogy rendelkezik-e működő virtuális hálózattal és hozzá tartozó érvényes alhálózattal. Győződjön meg arról, hogy egy virtuális gép vagy felhőalapú telepítés sem használja az alhálózatot. Az Application Gateway-nek egyedül kell lennie a virtuális hálózat alhálózatán.
-3. A kiszolgálóknak, amelyeket az Application Gateway használatára konfigurál, már létezniük kell, illetve a virtuális hálózatban vagy hozzárendelt nyilvános/virtuális IP-címmel létrehozott végpontokkal kell rendelkezniük.
+1. Webplatform-telepítő hello segítségével hello hello Azure PowerShell-parancsmagok legújabb verzióját telepítse. Töltse le, és telepítse hello legújabb verziót a hello **Windows PowerShell** hello szakasza [letöltési oldalon](https://azure.microsoft.com/downloads/).
+2. Ellenőrizze, hogy rendelkezik-e működő virtuális hálózattal és hozzá tartozó érvényes alhálózattal. Győződjön meg arról, hogy egyetlen virtuális gépek vagy a felhőben történő alkalmazáshoz hello alhálózat használja. a virtuális hálózati alhálózat hello Alkalmazásátjáró önmagában kell lennie.
+3. hello kiszolgálók toouse hello Alkalmazásátjáró konfigurált léteznie kell, különben a végpontok hello virtuális hálózatban vagy a nyilvános IP-cím/VIP rendelt hozzá.
 
-Az Alkalmazásátjáró SSL kiszervezési konfigurálásához hajtsa végre az alábbi lépéseket a megadott sorrendben:
+tooconfigure SSL Alkalmazásátjáró kiszervezésére, hello a következő lépéseket a hello sorrendben:
 
 1. [Alkalmazásátjáró létrehozása](#create-an-application-gateway)
 2. [SSL-tanúsítványok feltöltése](#upload-ssl-certificates)
-3. [Az átjáró konfigurálása](#configure-the-gateway)
-4. [Állítsa be az átjáró konfigurálása](#set-the-gateway-configuration)
-5. [Az átjáró elindítása](#start-the-gateway)
-6. [Az átjáró állapotának megerősítése](#verify-the-gateway-status)
+3. [Hello átjáró konfigurálása](#configure-the-gateway)
+4. [Hello átjáró konfigurációjának beállítása](#set-the-gateway-configuration)
+5. [Indítsa el a hello átjáró](#start-the-gateway)
+6. [Hello az átjáró állapotának megerősítése](#verify-the-gateway-status)
 
 ## <a name="create-an-application-gateway"></a>Application Gateway létrehozása
 
-Az átjáró létrehozásához használja a `New-AzureApplicationGateway` parancsmagot, és cserélje le az értékeket a saját értékeire. Az átjáró használati díjának felszámolása ekkor még nem kezdődik el. A használati díj felszámolása egy későbbi lépésnél kezdődik, amikor az átjáró sikeresen elindul.
+toocreate hello átjáró használata hello `New-AzureApplicationGateway` hello értékeket cserélje le a saját, a parancsmag. Számlázási hello átjáró nem indul el ezen a ponton. Számlázási egy későbbi lépésben, akkor kezdődik, amikor hello átjáró sikeresen elindult.
 
 ```powershell
 New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
 ```
 
-Az átjáró létrehozásának ellenőrzéséhez használhatja a `Get-AzureApplicationGateway` parancsmagot.
+amely átjáró hello toovalidate lett létrehozva, használhatja a hello `Get-AzureApplicationGateway` parancsmag.
 
-A minta *leírás*, *InstanceCount*, és *GatewaySize* opcionális paraméterek. Az *InstanceCount* alapértelmezett értéke 2, a maximális értéke pedig 10. A *GatewaySize* alapértelmezett értéke Közepes. Kis és nagy más elérhető értékek. A *VirtualIPs* és a *DnsName* paraméterek azért üresek, mert az átjáró még nem indult el. Ezek az értékek jönnek létre, ha az átjáró már szerepel a futó állapotot.
+Hello mintában *leírás*, *InstanceCount*, és *GatewaySize* opcionális paraméterek. az alapértelmezett érték hello *InstanceCount* 2, maximális értéke 10. az alapértelmezett érték hello *GatewaySize* közepes. Kis és nagy más elérhető értékek. *Virtualip értékek* és *DnsName* jelennek meg az üres mert hello átjáró még nem kezdődött meg. Ezeket az értékeket jönnek létre, ha hello átjáró hello futó állapotban van.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -63,17 +63,17 @@ Get-AzureApplicationGateway AppGwTest
 
 ## <a name="upload-ssl-certificates"></a>SSL-tanúsítványok feltöltése
 
-Használjon `Add-AzureApplicationGatewaySslCertificate` töltse fel a kiszolgálói tanúsítvány *pfx* formátum az Alkalmazásátjáró. A tanúsítvány nevét a felhasználó által választott név, és az Alkalmazásátjáró belül egyedieknek kell lenniük. Ezt a tanúsítványt ezt a nevet a tanúsítvány az alkalmazás-átjárón összes felügyeleti művelet is hivatkozik.
+Használjon `Add-AzureApplicationGatewaySslCertificate` tooupload hello kiszolgálói tanúsítvány *pfx* formátum toohello Alkalmazásátjáró. hello tanúsítvány neve egy felhasználó által választott név és hello Alkalmazásátjáró belül egyedieknek kell lenniük. Ez a tanúsítvány az említett tooby ezt a nevet az összes hello Alkalmazásátjáró a felügyeleti műveletekhez.
 
-Ez a következő példa bemutatja a parancsmag cserélje le a mintában szereplő értékekkel saját.
+Ez a következő példa bemutatja hello parancsmag, cserélje le hello mintában hello értékeket a saját.
 
 ```powershell
-Add-AzureApplicationGatewaySslCertificate  -Name AppGwTest -CertificateName GWCert -Password <password> -CertificateFile <full path to pfx file>
+Add-AzureApplicationGatewaySslCertificate  -Name AppGwTest -CertificateName GWCert -Password <password> -CertificateFile <full path toopfx file>
 ```
 
-A következő érvényesítse a tanúsítvány feltöltése. Használja a `Get-AzureApplicationGatewayCertificate` parancsmag.
+A következő érvényesítse hello tanúsítvány feltöltése. Használjon hello `Get-AzureApplicationGatewayCertificate` parancsmag.
 
-Ez a példa bemutatja a parancsmag az első sorba a kimeneti követ.
+Ez a példa bemutatja hello parancsmag hello első sor hello kimeneti követi.
 
 ```powershell
 Get-AzureApplicationGatewaySslCertificate AppGwTest
@@ -90,28 +90,28 @@ State..........: Provisioned
 ```
 
 > [!NOTE]
-> A tanúsítvány jelszava nem lehet 4 – 12 karakterből, betűk és számok között. Speciális karakterek használata nem engedélyezett.
+> hello tanúsítvány jelszava toobe között 4 too12 karakterek, betűket és számokat tartalmaz. Speciális karakterek használata nem engedélyezett.
 
-## <a name="configure-the-gateway"></a>Az átjáró konfigurálása
+## <a name="configure-hello-gateway"></a>Hello átjáró konfigurálása
 
-Egy alkalmazás átjáró konfigurálása több érték áll. Az értékek is kötődik együtt a konfiguráció létrehozásához.
+Egy alkalmazás átjáró konfigurálása több érték áll. hello értékeket is kötődik együtt tooconstruct hello konfigurációs.
 
-Az értékek a következők:
+hello értékek a következők:
 
-* **Háttér-kiszolgálókészlet:** A háttérkiszolgálók IP-címeinek listája. A listán szereplő IP-címeknek a virtuális hálózat alhálózatához kell tartozniuk, vagy nyilvános/virtuális IP-címnek kell lenniük.
-* **Háttér-kiszolgálókészlet beállításai:** Minden készletnek vannak beállításai, például port, protokoll vagy cookie-alapú affinitás. Ezek a beállítások egy adott készlethez kapcsolódnak, és a készlet minden kiszolgálójára érvényesek.
-* **Előtérbeli port:** Az Application Gateway-en megnyitott nyilvános port. Amikor a forgalom eléri ezt a portot, a port átirányítja az egyik háttérkiszolgálóra.
-* **Figyelő:** A figyelő egy előtérbeli porttal, egy protokollal (Http vagy Https, a kis- és a nagybetűk megkülönböztetésével) és SSL tanúsítványnévvel rendelkezik (SSL-kiszervezés konfigurálásakor).
-* **Szabály:** A szabály összeköti a figyelőt és a háttérkiszolgáló-készletet, és meghatározza, hogy mely háttérkiszolgáló-készletre legyen átirányítva a forgalom, ha elér egy adott figyelőt. Jelenleg csak a *basic* szabály támogatott. A *basic* szabály a ciklikus időszeleteléses terheléselosztás.
+* **Háttér-kiszolgálófiók készlet:** hello hello háttér-kiszolgálók IP-címek listáját. hello IP-címek felsorolt toohello virtuális hálózati alhálózat vagy kell tartoznia, vagy egy nyilvános IP-cím/VIP kell lennie.
+* **Háttér-kiszolgálókészlet beállításai:** Minden készletnek vannak beállításai, például port, protokoll vagy cookie-alapú affinitás. Ezek a beállítások esetén tooa kapcsolt verem és a hello készlet alkalmazott tooall-kiszolgálók.
+* **Előtér-port:** Ez a port nem hello nyilvános portot, amelyet a hello Alkalmazásátjáró meg van nyitva. Forgalom találatok ezt a portot, és lekérdezi átirányítja tooone hello háttér-kiszolgálók.
+* **Figyelő:** hello figyelő rendelkezik egy előtér-portot, a protokollt (Http vagy Https, ezek az értékek kis-és nagybetűket), és hello SSL tanúsítvány neve (ha az SSL beállításának-kiszervezés).
+* **Szabály:** hello szabály hello figyelő és hello háttér-kiszolgálófiók alkalmazáskészlet van kötve, és azt határozza meg, mely háttér-kiszolgálófiók készlet hello forgalom irányított toowhen találatok száma a egy adott figyelő. Jelenleg csak hello *alapvető* szabály használata támogatott. Hello *alapvető* szabály-e időszeletelés terheléselosztási.
 
 **További konfigurációs megjegyzések**
 
-Az SSL-tanúsítványok konfigurálásához *Https*-re kell módosítani a **HttpListener** protokollját (megkülönböztetve a kis- és nagybetűket). A **SslCert** elem hozzáadódik **HttpListener** az érték azonos nevű feltöltésének használt megelőző SSL-tanúsítványok szakasz. Az előtérbeli portot frissíteni kell 443-ra.
+SSL-tanúsítványok beállítása, a hello protokoll **HttpListener** túl kell módosítani*Https* (kis-és nagybetűket). Hello **SslCert** elem túl kerül**HttpListener** a hello értéke toohello azonos hello feltöltése az előző SSL-tanúsítványok szakaszban használt nevet. hello előtér-port frissített too443 lehet.
 
-**A cookie-alapú affinitás engedélyezése**: Egy Application Gateway konfigurálható úgy, hogy egy ügyfélmunkamenetből érkező kérelmet mindig a webfarm ugyanazon virtuális gépére irányítsa. Ez a forgatókönyv egy munkameneti cookie beszúrásával lesz végrehajtva, amely lehetővé teszi az átjáró számára a forgalom megfelelő irányítását. A cookie-alapú affinitás engedélyezéséhez a **CookieBasedAffinity** paraméter beállítása legyen *Enabled* a **BackendHttpSettings** elemen belül.
+**tooenable cookie-alapú kapcsolat**: Alkalmazásátjáró lehet győződjön meg arról, hogy egy kérelem egy ügyfél-munkamenetből mindig irányított toohello konfigurált tooensure hello webfarm azonos virtuális gép. Ebben a forgatókönyvben történik, hogy az egy munkamenetcookie-t, amely lehetővé teszi annak megfelelően hello átjáró toodirect forgalom. cookie-alapú tooenable affinitás beállítása **CookieBasedAffinity** túl*engedélyezve* a hello **BackendHttpSettings** elemet.
 
 A konfigurációs hogyan hozhat létre, vagy hozzon létre egy konfigurációs objektumot, vagy egy konfigurációs XML-fájl használatával.
-Összeállíthatja a konfigurációs XML konfigurációs fájl használatával, használja a következő mintát:
+tooconstruct egy konfigurációs XML-fájl használatával a konfigurációt használja következő minta hello:
 
 **Konfigurációs XML-minta**
 
@@ -162,20 +162,20 @@ A konfigurációs hogyan hozhat létre, vagy hozzon létre egy konfigurációs o
 </ApplicationGatewayConfiguration>
 ```
 
-## <a name="set-the-gateway-configuration"></a>Állítsa be az átjáró konfigurálása
+## <a name="set-hello-gateway-configuration"></a>Hello átjáró konfigurációjának beállítása
 
-Ezután állítsa be az Alkalmazásátjáró. Használhatja a `Set-AzureApplicationGatewayConfig` parancsmag vagy a konfigurációs objektum vagy egy konfigurációs XML-fájlt.
+Ezután állítsa be hello Alkalmazásátjáró. Használhatja a hello `Set-AzureApplicationGatewayConfig` parancsmag vagy a konfigurációs objektum vagy egy konfigurációs XML-fájlt.
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile D:\config.xml
 ```
 
-## <a name="start-the-gateway"></a>Az átjáró indítása
+## <a name="start-hello-gateway"></a>Indítsa el a hello átjáró
 
-Az átjáró konfigurálása után indítsa el az átjárót a `Start-AzureApplicationGateway` parancsmaggal. Az Application Gateway használati díjának felszámolása az átjáró sikeres indítása után kezdődik.
+Ha hello átjáró van konfigurálva, a hello `Start-AzureApplicationGateway` parancsmag toostart hello átjáró. Alkalmazásátjáró számlázás megkezdése után hello átjáró sikeresen elindult.
 
 > [!NOTE]
-> A `Start-AzureApplicationGateway` parancsmag futtatása akár 15–20 percet is igénybe vehet.
+> Hello `Start-AzureApplicationGateway` parancsmag is igénybe vehet fel toofinish too15-20 perc.
 >
 >
 
@@ -183,11 +183,11 @@ Az átjáró konfigurálása után indítsa el az átjárót a `Start-AzureAppli
 Start-AzureApplicationGateway AppGwTest
 ```
 
-## <a name="verify-the-gateway-status"></a>Az átjáró állapotának ellenőrzése
+## <a name="verify-hello-gateway-status"></a>Hello az átjáró állapotának megerősítése
 
-Ellenőrizze az átjáró állapotát a `Get-AzureApplicationGateway` parancsmaggal. Ha `Start-AzureApplicationGateway` sikeres volt az előző lépésben *állapot* kell futnia, és *virtualip értékek* és *DnsName* érvényes bejegyzést kell rendelkeznie.
+Használjon hello `Get-AzureApplicationGateway` parancsmag toocheck hello hello átjáró állapotának. Ha `Start-AzureApplicationGateway` hello a korábbi lépésben sikeres *állapot* kell futnia, és *virtualip értékek* és *DnsName* érvényes bejegyzést kell rendelkeznie.
 
-Ez a példa bemutatja, hogy működik-e, fut, és készen áll forgalom elkészítésére Alkalmazásátjáró.
+Ez a példa bemutatja, hogy működik-e, fut, és készen áll a tootake forgalom Alkalmazásátjáró.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest

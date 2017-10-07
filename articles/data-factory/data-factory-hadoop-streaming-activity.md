@@ -1,6 +1,6 @@
 ---
-title: "Adatok Hadoop Streamelési tevékenységben - Azure használatával |} Microsoft Docs"
-description: "Ismerje meg, hogyan használhatja a Hadoop Streamelési tevékenységben egy Azure data factoryban adatok átalakítására használja a-igény szerint vagy a saját HDInsight-fürtök Hadoop Streamelési programok futtatásával."
+title: "Hadoop Streamelési tevékenységben - Azure aaaTransform adatok |} Microsoft Docs"
+description: "Ismerje meg, hogy használatát hello Hadoop Streamelési tevékenységben egy az Azure data factory tootransform adatokban lévő-igény szerint vagy a saját HDInsight-fürtök Hadoop Streamelési programok futtatásával."
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: shlo
-ms.openlocfilehash: bfe62aa60f5a0ff339e1d495d22a5fdfac10d5dc
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a7ddb7268f47162709a9c8136ccd69e0b7d4ad7d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transform-data-using-hadoop-streaming-activity-in-azure-data-factory"></a>Azure Data Factory használatával Hadoop Streamelési tevékenységben adatok átalakítása
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -33,15 +33,15 @@ ms.lasthandoff: 08/18/2017
 > * [Data Lake Analytics U-SQL-tevékenység](data-factory-usql-activity.md)
 > * [.NET egyéni tevékenység](data-factory-use-custom-activities.md)
 
-Használhatja a HDInsightStreamingActivity tevékenység meghívni egy Azure Data Factory-folyamat a Hadoop adatfolyam-feladatot. A következő JSON-részlet a HDInsightStreamingActivity használatát mutatja be egy adatcsatorna JSON-fájl szintaxisát jeleníti meg. 
+Használhat hello HDInsightStreamingActivity tevékenység meghívni egy Azure Data Factory-folyamat a Hadoop adatfolyam-feladatot. hello alábbi JSON kódrészletben láthatja hello szintaxisát hello HDInsightStreamingActivity az adatcsatorna JSON-fájlt. 
 
-A HDInsight Streamelési tevékenységben egy adat-előállítóban [csővezeték](data-factory-create-pipelines.md) Hadoop Streamelési programok végrehajtása a [saját](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) vagy [igény szerinti](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) Windows/Linux-alapú HDInsight-fürthöz. Ez a cikk épít, a [adatok átalakítása tevékenységek](data-factory-data-transformation-activities.md) cikk, amelynek során az adatok átalakítása és a támogatott átalakítása tevékenységek általános áttekintést.
+HDInsight a Data Factory Streamelési tevékenységben hello [csővezeték](data-factory-create-pipelines.md) Hadoop Streamelési programok végrehajtása a [saját](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) vagy [igény](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) Windows/Linux-alapú HDInsight fürt. Ez a cikk épít, hello [adatok átalakítása tevékenységek](data-factory-data-transformation-activities.md) cikk, amelynek során az adatok átalakítása és hello támogatott átalakítása tevékenységek általános áttekintést.
 
 > [!NOTE] 
-> Ha most ismerkedik az Azure Data Factory, olvassa végig [Bevezetés az Azure Data Factory](data-factory-introduction.md) hajtsa végre az oktatóanyag: [felépítheti első folyamatát adatok](data-factory-build-your-first-pipeline.md) a cikk elolvasása előtt. 
+> Ha új tooAzure adat-előállítót, olvassa végig [Data Factory bemutatása tooAzure](data-factory-introduction.md) és hello oktatóanyag: [felépítheti első folyamatát adatok](data-factory-build-your-first-pipeline.md) a cikk elolvasása előtt. 
 
 ## <a name="json-sample"></a>JSON-mintát
-A HDInsight-fürt automatikusan kitölti a rendszer például programok (wc.exe és cat.exe) és az adatokat (davinci.txt). Alapértelmezés szerint a tárolót a HDInsight-fürt által használt neve egyrészt a fürt nevét. Például ha a fürt neve myhdicluster, a társított blob-tároló neve lenne myhdicluster. 
+Példa programok (wc.exe és cat.exe) és az adatok (davinci.txt) automatikusan töltődik hello HDInsight-fürthöz. Alapértelmezés szerint hello HDInsight-fürt által használt hello tároló neve nem hello fürt hello nevét. Például ha a fürt neve myhdicluster, a kapcsolódó hello blob-tároló neve lenne myhdicluster. 
 
 ```JSON
 {
@@ -89,30 +89,30 @@ A HDInsight-fürt automatikusan kitölti a rendszer például programok (wc.exe 
 }
 ```
 
-Vegye figyelembe a következő szempontokat:
+Vegye figyelembe a következő pontok hello:
 
-1. Állítsa be a **linkedServiceName** nevére, a társított szolgáltatás mutat, a HDInsight fürt a folyamatos átviteli mapreduce-feladatok futtatásához.
-2. Állítsa be a tevékenység típusát **HDInsightStreaming**.
-3. Az a **leképező** tulajdonság, adja meg a leképező végrehajtható fájl nevét. A példában a cat.exe végrehajtható leképező.
-4. Az a **nyomáscsökkentő** tulajdonság, adja meg a végrehajtható nyomáscsökkentő nevét. A példában a wc.exe végrehajtható nyomáscsökkentő.
-5. Az a **bemeneti** írja be a tulajdonságot, adja meg a bemeneti fájl (például helye) a leképező. A példában: "wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt": adfsample a blob-tároló, például/data/Gutenberg az a mappa, pedig davinci.txt a blob.
-6. Az a **kimeneti** írja be a tulajdonságot, adja meg a kimeneti fájl (például helye) a nyomáscsökkentő. Az adatfolyam-Hadoop-feladat eredményének írása ehhez a tulajdonsághoz megadott helyre.
-7. Az a **filePaths** területén adja meg a hozzárendelést és nyomáscsökkentő végrehajtható fájlok elérési útját. A példában: "adfsample/example/apps/wc.exe" adfsample a blob-tároló, például/alkalmazások az a mappa, pedig wc.exe a végrehajtható fájl.
-8. Az a **fileLinkedService** tulajdonság, adja meg az Azure tárolás társított szolgáltatása, amely az Azure storage filePaths szakaszában megadott fájlt tartalmazó jelöli.
-9. Az a **argumentumok** tulajdonság, a folyamatos átviteli feladat argumentumainak megadása.
-10. A **getDebugInfo** tulajdonsága egy nem kötelező elemet. Hiba-ra van állítva, a naplók csak az hiba lesznek letöltve. Ha ezt a beállítást mindig, naplók mindig letöltődnek függetlenül a végrehajtási állapotot.
+1. Set hello **linkedServiceName** hello toohello neve társított szolgáltatás mutat, mely streaming mapreduce hello feladat fut tooyour HDInsight-fürt.
+2. Állítsa be a hello tevékenység hello típusa túl**HDInsightStreaming**.
+3. A hello **leképező** tulajdonság, leképező végrehajtható hello neve adható meg. Hello példában cat.exe: hello leképező végrehajtható.
+4. A hello **nyomáscsökkentő** tulajdonság, adja meg a végrehajtható nyomáscsökkentő hello nevét. Hello példában wc.exe: hello nyomáscsökkentő végrehajtható.
+5. A hello **bemeneti** írja be a tulajdonságot, hello leképező hello bemeneti fájl (beleértve a hello helye) megadása. Hello példa: "wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt": adfsample hello blob tároló, például/data/Gutenberg hello mappában, pedig davinci.txt hello blob.
+6. A hello **kimeneti** írja be a tulajdonságot, hello nyomáscsökkentő hello kimeneti fájl (beleértve a hello helye) megadása. hello Hadoop adatfolyam-feladat eredményének hello toohello helyére a tulajdonság írása.
+7. A hello **filePaths** területén hello hello hozzárendelést és nyomáscsökkentő végrehajtható fájlok elérési útját adja meg. Hello példa: "adfsample/example/apps/wc.exe" adfsample egy hello blob tároló, például/alkalmazások hello mappa, pedig wc.exe hello végrehajtható.
+8. A hello **fileLinkedService** tulajdonság, adja meg az Azure Storage társított szolgáltatás, amely jelöli az Azure storage hello filePaths szakaszában megadott hello fájlokat tartalmazó hello hello.
+9. A hello **argumentumok** tulajdonság, a folyamatos átviteli feladat hello hello argumentumainak megadása.
+10. Hello **getDebugInfo** tulajdonsága egy nem kötelező elemet. Ha ezt a beállítást tooFailure, hello naplók csak az hiba lesznek letöltve. Ha ezt a beállítást tooAlways, naplók mindig letöltődnek függetlenül hello végrehajtási állapotát.
 
 > [!NOTE]
-> A példa szerint, állít be egy kimeneti adatkészlet esetében a Hadoop Streamelési tevékenységben a **kimenete** tulajdonság. Ez az adatkészlet csak egy üres adatkészlet szükséges ahhoz, hogy az adatcsatorna ütemezés meghajtó. Nem kell megadnia a bármely bemeneti adatkészlet a tevékenység a **bemenetek** tulajdonság.  
+> Példában látható módon hello, akkor adja meg egy kimeneti adatkészletet hello a Hadoop Streamelési tevékenységben hello **kimenete** tulajdonság. Ez az adatkészlet csak egy üres adathalmazt, amelyet szükséges toodrive hello csővezeték ütemezés. Nem kell toospecify bármely bemeneti adatkészlet hello tevékenység a hello **bemenetek** tulajdonság.  
 > 
 > 
 
 ## <a name="example"></a>Példa
-A kimenetátirányítási mechanizmusával Ez a forgatókönyv az Azure HDInsight-fürt a szószámot adatfolyam térkép/csökkentse programot futtatja. 
+Ebben a bemutatóban hello csővezeték hello szószámot adatfolyam térkép/csökkentse programot futtatja Azure HDInsight-fürtön található. 
 
 ### <a name="linked-services"></a>Társított szolgáltatások
 #### <a name="azure-storage-linked-service"></a>Azure Storage társított szolgáltatás
-Először hozzon létre az Azure Storage Azure data factoryval való az Azure HDInsight-fürt által használt csatolásához összekapcsolt szolgáltatás. Ha Ön másolja és illessze be az alábbi kód, ne feledje cseréje a fióknevet és a fiókkulcsot nevét és az Azure Storage kulcsa. 
+Először hozzon létre egy kapcsolódó szolgáltatás toolink hello hello Azure HDInsight fürt toohello az Azure data factory által használt Azure Storage. Ha Ön másolja és illessze be a következő kód hello, ne feledje tooreplace fiók név és fiókkulcs hello nevű kulcs és az Azure Storage kulcsa. 
 
 ```JSON
 {
@@ -127,7 +127,7 @@ Először hozzon létre az Azure Storage Azure data factoryval való az Azure HD
 ```
 
 #### <a name="azure-hdinsight-linked-service"></a>Az Azure HDInsight társított szolgáltatás
-Ezután hozzon létre egy Azure HDInsight-fürtjéhez csatolása az Azure data factory társított szolgáltatás. Ha, másolja és illessze be az alábbi kód, cserélje le a HDInsight-fürt neve a HDInsight-fürt nevét, és módosítsa a felhasználói nevet és jelszót értékek. 
+Ezután létrehozhat egy kapcsolódó szolgáltatás toolink az Azure HDInsight fürt toohello az Azure data factory. Ha Ön másolja és illessze be a következő kód hello, cserélje le a HDInsight-fürt neve a HDInsight fürt hello neve, és módosítsa a felhasználói nevet és jelszót értékek. 
 
 ```JSON
 {
@@ -146,7 +146,7 @@ Ezután hozzon létre egy Azure HDInsight-fürtjéhez csatolása az Azure data f
 
 ### <a name="datasets"></a>Adathalmazok
 #### <a name="output-dataset"></a>Kimeneti adatkészlet
-Ebben a példában az adatcsatorna nem veszi a bemeneti adatok. Egy kimeneti adatkészlet állít be a HDInsight Streamelési tevékenységben. Ez az adatkészlet csak egy üres adatkészlet szükséges ahhoz, hogy az adatcsatorna ütemezés meghajtó. 
+Ebben a példában hello folyamat nem veszi a bemeneti adatok. Megadhat egy kimeneti adatkészletet hello HDInsight Streamelési tevékenységben. Ez az adatkészlet csak egy üres adathalmazt, amelyet szükséges toodrive hello csővezeték ütemezés. 
 
 ```JSON
 {
@@ -171,9 +171,9 @@ Ebben a példában az adatcsatorna nem veszi a bemeneti adatok. Egy kimeneti ada
 ```
 
 ### <a name="pipeline"></a>Folyamat
-Ebben a példában az adatcsatorna csak egy tevékenység, amelynek típusa van: **HDInsightStreaming**. 
+hello csővezeték ebben a példában csak egy tevékenység, amelynek típusa van: **HDInsightStreaming**. 
 
-A HDInsight-fürt automatikusan kitölti a rendszer például programok (wc.exe és cat.exe) és az adatokat (davinci.txt). Alapértelmezés szerint a tárolót a HDInsight-fürt által használt neve egyrészt a fürt nevét. Például ha a fürt neve myhdicluster, a társított blob-tároló neve lenne myhdicluster.  
+Példa programok (wc.exe és cat.exe) és az adatok (davinci.txt) automatikusan töltődik hello HDInsight-fürthöz. Alapértelmezés szerint hello HDInsight-fürt által használt hello tároló neve nem hello fürt hello nevét. Például ha a fürt neve myhdicluster, a kapcsolódó hello blob-tároló neve lenne myhdicluster.  
 
 ```JSON
 {

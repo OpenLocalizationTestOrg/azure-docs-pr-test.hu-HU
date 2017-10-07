@@ -1,6 +1,6 @@
 ---
-title: "Univerzális Windows-alkalmazások Reach SDK-integráció"
-description: "Az Azure Mobile Engagement Reach integrálása univerzális Windows-alkalmazások"
+title: "aaaWindows univerzális alkalmazások Reach SDK-integráció"
+description: "Hogyan tooIntegrate az Azure Mobile Engagement jut, ahol a univerzális Windows-alkalmazások"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,32 +14,32 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 9311e998e67d8d0d56da68fc9460df32ce7ce5a9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: af311c65940014083333853875a00173b8d6783e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-universal-apps-reach-sdk-integration"></a>Univerzális Windows-alkalmazások Reach SDK-integráció
-Az integráció az ismertetett eljárást kell követni a [Windows Universal Engagement SDK-integráció](mobile-engagement-windows-store-integrate-engagement.md) Ez az útmutató követése előtt.
+Hello ismertetett hello integrációs eljárást kell követni, [Windows Universal Engagement SDK-integráció](mobile-engagement-windows-store-integrate-engagement.md) Ez az útmutató követése előtt.
 
-## <a name="embed-the-engagement-reach-sdk-into-your-windows-universal-project"></a>Az Engagement Reach SDK beágyazása a univerzális Windows-projekt
-Nincs olyan hozzáadása. `EngagementReach`hivatkozások és erőforrások még a projektben.
+## <a name="embed-hello-engagement-reach-sdk-into-your-windows-universal-project"></a>A univerzális Windows-projektben Engagement Reach SDK hello beágyazása
+Nincs semmi tooadd. `EngagementReach`hivatkozások és erőforrások még a projektben.
 
 > [!TIP]
-> Lemezképek található, testreszabhatja a `Resources` mappa a projekt, különösen a márka ikon (hogy az Engagement ikonra az alapértelmezett). Univerzális alkalmazások át is helyezheti a `Resources` közötti alkalmazásokat, de a tartalmak megosztása a megosztott projekt mappájába kell tartani a `Resources\EngagementConfiguration.xml` alapértelmezett helyére, a fájlt, mert függő platformra.
+> Testre szabhatja a hello található képek `Resources` mappa a projekt, különösen akkor hello márka ikon (adott alapértelmezett toohello Engagement ikon). Univerzális alkalmazások is áthelyezheti hello `Resources` a benne lévő tartalom alkalmazásokat, de közötti lesz megosztott projekt tooshare mappájába tookeep hello `Resources\EngagementConfiguration.xml` alapértelmezett helyére, a fájlt, mert függő platformra.
 > 
 > 
 
-## <a name="enable-the-windows-notification-service"></a>A Windows értesítési szolgáltatás engedélyezése
+## <a name="enable-hello-windows-notification-service"></a>Hello Windows értesítési szolgáltatás engedélyezése
 ### <a name="windows-8x-and-windows-phone-81-only"></a>A Windows 8.x és Windows Phone 8.1 esetén
-Ahhoz, hogy a **Windows értesítési szolgáltatásával** (WNS néven) az a `Package.appxmanifest` fájlja `Application UI` kattintson a `All Image Assets` a bal oldali botot mezőbe. A mező a jobb `Notifications`, módosítsa `toast capable` a `(not set)` való `(Yes)`.
+A sorrend toouse hello **Windows értesítési szolgáltatásával** (WNS néven) az a `Package.appxmanifest` fájlja `Application UI` kattintson a `All Image Assets` hello bal oldali botot mezőbe. Jobb listájának hello hello: `Notifications`, módosítsa `toast capable` a `(not set)` túl`(Yes)`.
 
 ### <a name="all-platforms"></a>Összes platform
-Az alkalmazás a Microsoft-fiókjával, és az engagement platform szinkronizálni kell. Ehhez hozzon létre egy fiókot, vagy jelentkezzen be szüksége [windows fejlesztői központ](https://dev.windows.com). Ezután hozzon létre egy új alkalmazást, és keresse meg a biztonsági AZONOSÍTÓT és titkos kulcsot. A bevonási előtér nyissa meg az Alkalmazásbeállítás a `native push` , majd illessze be a hitelesítő adatait. Ezt követően kattintson a jobb gombbal a projektre, válassza `store` és `Associate App with the Store...`. Egyszerűen jelölje be az alkalmazás rendelkezik létrehozása előtt a szinkronizáláshoz.
+Az alkalmazás tooyour Microsoft fiók és toohello engagement platform kell toosynchronize. Ez a fiók toocreate kell, vagy jelentkezzen be [windows fejlesztői központ](https://dev.windows.com). Miután, hozzon létre egy új alkalmazást, és található hello biztonsági AZONOSÍTÓT és a titkos kulcsot. A hello engagement előtér, nyissa meg az Alkalmazásbeállítás a `native push` , majd illessze be a hitelesítő adatait. Ezt követően kattintson a jobb gombbal a projektre, válassza `store` és `Associate App with hello Store...`. Egyszerűen tooselect hello alkalmazás rendelkezik létrehozása előtt toosynchronize.
 
-## <a name="initialize-the-engagement-reach-sdk"></a>Az Engagement Reach SDK inicializálása
-Módosítsa a `App.xaml.cs`:
+## <a name="initialize-hello-engagement-reach-sdk"></a>Hello Engagement Reach SDK inicializálása
+Módosítsa a hello `App.xaml.cs`:
 
 * Helyezze be `EngagementReach.Instance.Init` után csak `EngagementAgent.Instance.Init` a a `InitEngagement` módszert:
   
@@ -49,27 +49,27 @@ Módosítsa a `App.xaml.cs`:
         EngagementReach.Instance.Init(e);
       }
   
-  A `EngagementReach.Instance.Init` egy dedikált szálat futtat. Nem kell saját kezűleg elvégezni.
+  Hello `EngagementReach.Instance.Init` egy dedikált szálat futtat. Nem rendelkezik toodo azt saját maga.
 
 > [!NOTE]
-> Ha máshol használják a leküldéses értesítések a az alkalmazás, akkor el kell [megosztani a leküldéses csatorna](#push-channel-sharing) az Engagement Reach.
+> Ha máshol használják a leküldéses értesítések a az alkalmazás, akkor túl van[megosztani a leküldéses csatorna](#push-channel-sharing) az Engagement Reach.
 > 
 > 
 
 ## <a name="integration"></a>Integráció
-Engagement két módot biztosít a Reach alkalmazásbeli szalagok és a hirdetmények és szavazások esetén közbeszúrt nézetek hozzáadása az alkalmazásban: a átfedéses integráció és a webes nézetek manuális integráció. Nem ötvözze az mindkét megközelítés ugyanazon az oldalon.
+Bevonási kétféleképpen tooadd hello Reach alkalmazásbeli szalagok és közbeszúrt kínál a hirdetmények és szavazások az alkalmazásban: hello átfedő integrációs és hello webes nézetek manuális integráció. Mindkét megközelítés a hello ötvözze nem ugyanazon az oldalon.
 
-A két integrációs közötti választás sikerült összesíthető ily módon:
+sikerült hello két integrációs hello választást összesíthető ily módon:
 
-* A átfedéses integráció úgy is dönthet, ha a lapok már örököl az ügynök `EngagementPage`, csak cseréje kérdése `EngagementPage` által `EngagementPageOverlay` és `xmlns:engagement="using:Microsoft.Azure.Engagement"` által `xmlns:engagement="using:Microsoft.Azure.Engagement.Overlay"` a lapokon.
-* Választhatja, hogy a webes nézetek manuális integrációs Ha azt szeretné, hogy pontosan helyezhető el a Reach felhasználói felületén a lapokon belül, vagy ha nem szeretne egy másik öröklési szint hozzáadása a lapokon. 
+* Hello átfedéses integráció úgy is dönthet, ha a lapok már örököl hello ügynök `EngagementPage`, csak cseréje kérdése `EngagementPage` által `EngagementPageOverlay` és `xmlns:engagement="using:Microsoft.Azure.Engagement"` által `xmlns:engagement="using:Microsoft.Azure.Engagement.Overlay"` a lapokon.
+* Dönthet hello webes nézetek manuális integrációs Ha tooprecisely hely hello UI elérni a lapokon belül, vagy ha nem szeretné, hogy tooadd egy másik öröklési szintű tooyour lapokat. 
 
 ### <a name="overlay-integration"></a>Átfedéses integráció
-Az Engagement átfedés dinamikusan kerülnek be a Reach-kampányokat a lapon való megjelenítéséhez használt felhasználói felületi elemeket. Ha az átmeneti területre nem felelnek meg az elrendezésben vegye figyelembe a webes nézetek manuális integrációs helyette.
+hello Engagement átfedő dinamikusan kerülnek be a hello felhasználói felületi elemei toodisplay Reach-kampányokat szerepel a oldalon. Ha hello átfedő nem felelnek meg a elrendezést érdemes hello webes nézetek manuális integrációs helyette.
 
-A .xaml fájlban változásával `EngagementPage` hivatkozás`EngagementPageOverlay`
+A .xaml fájlban változásával `EngagementPage` túl hivatkozik`EngagementPageOverlay`
 
-* Adja hozzá a következőt a névtér-deklarációkhoz:
+* Tooyour névtér-deklarációk hozzáadása:
   
       xmlns:engagement="using:Microsoft.Azure.Engagement.Overlay"
 * Cserélje le `engagement:EngagementPage` rendelkező `engagement:EngagementPageOverlay`:
@@ -121,12 +121,12 @@ Ezután a .cs fájlban a lap a címke `EngagementPageOverlay` helyett `Engagemen
             }
 
 
-Az Engagement átfedés ad hozzá egy `Grid` elem felett a lap a elrendezés és a két állnak `WebView` elemei egy szalagcím, a másik a közbeszúrt nézet.
+hello Engagement átfedő ad hozzá egy `Grid` elem felett a lap a elrendezés és a két hello álló `WebView` hello elemei egy szalag, és más hello közbeszúrt nézet egy hello.
 
-Testre szabhatja az átmeneti területre elemek közvetlenül a `EngagementPageOverlay.cs` fájlt.
+Testre szabhatja a hello átfedő elemet közvetlenül a hello `EngagementPageOverlay.cs` fájlt.
 
 ### <a name="web-views-manual-integration"></a>Webes nézetek manuális integráció
-Reach keresnek a lapokon a két `WebView` elemek megjelenítése a szalagcím, valamint a közbeszúrt nézet felelős. Meg kell nyitnia egyedül az, hogy adja hozzá ezeket a két `WebView` elemek valahol a lapokon Íme egy példa:
+Reach keresnek a lapokat a hello két `WebView` felelős hello Szalagcím és hello közbeszúrt nézet megjelenítése elemet. csak annyi teendője van, toodo tooadd hello e két `WebView` elemek valahol a lapokon Íme egy példa:
 
     <Grid x:Name="engagementGrid">
 
@@ -137,17 +137,17 @@ Reach keresnek a lapokon a két `WebView` elemek megjelenítése a szalagcím, v
     </Grid>
 
 
-Ebben a példában a `WebView` megfelelően a tároló, amely automatikusan újra méretezi őket képernyő elforgatásának vagy ablak méretének módosítása esetén elemek archiválva a felhőbe.
+Az ebben a példában hello `WebView` elemek felhőbe archivált toofit vannak a tároló, amely automatikusan újra méretezi őket képernyő elforgatásának vagy ablak méretének módosítása esetén.
 
 > [!WARNING]
-> Fontos, hogy az azonos elnevezési tartsa `engagement_notification_content` és `engagement_announcement_content` a a `WebView` elemek. Reach azonosítja azokat a nevük számára. 
+> Fontos tookeep hello azonos elnevezési `engagement_notification_content` és `engagement_announcement_content` a hello `WebView` elemek. Reach azonosítja azokat a nevük számára. 
 > 
 > 
 
 ## <a name="handle-datapush-optional"></a>Leíró datapush (nem kötelező)
-Ha azt szeretné, hogy az alkalmazás fogadhat Reach adatleküldések, két esemény EngagementReach osztály végrehajtásához rendelkezik:
+Ha azt szeretné, hogy az alkalmazás toobe képes tooreceive Reach adatleküldések, két események tooimplement hello EngagementReach osztály van:
 
-A App() konstruktorban App.xaml.cs fájlban adja hozzá:
+Hello App() konstruktor az App.xaml.cs fájlban adja hozzá:
 
             EngagementReach.Instance.DataPushStringReceived += (body) =>
             {
@@ -162,18 +162,18 @@ A App() konstruktorban App.xaml.cs fájlban adja hozzá:
               return true;
             };
 
-Láthatja, hogy az egyes módszerek visszahívási olyan logikai érték beolvasása. Bevonási egy visszajelzést küld a a háttér-után az adatleküldés terjesztéséhez. A visszahívási hamis értéket ad vissza, ha a `exit` visszajelzés küldése lesz. Ellenkező esetben lesz `action`. Ha nem visszahívási események, be van állítva a `drop` visszajelzést az eredmény engagement.
+Láthatja, hogy az egyes metódus értéket ad vissza egy logikai érték hello a visszahívás. Engagement küld egy visszajelzés tooits háttér-után hello adatleküldés terjesztéséhez. Hello visszahívási hamis értéket ad vissza, ha hello `exit` visszajelzés küldése lesz. Ellenkező esetben lesz `action`. Ha nincs visszahívás hello események, hello `drop` visszajelzés visszaadott tooEngagement.
 
 > [!WARNING]
-> Bevonási nincs Többszörösök visszajelzése van, az adatokat fogadhat. Ha azt tervezi, hogy több kezelők be egy eseményt, vegye figyelembe, hogy a visszajelzés utolsó felel meg egyik küldött. Ebben az esetben ajánlott mindig adja meg ugyanazt az értéket ne használjon egyértelmű visszajelzést az előtér-a.
+> Bevonási nem tud tooreceive Többszörösök visszajelzése van, az adatokat. Ha azt tervezi, tooset több kezelők egy olyan eseményre, vegye figyelembe, hogy hello visszajelzés felel meg toohello legutóbb elküldött. Ebben az esetben ajánlott tooalways értéket ad vissza hello zavaró visszajelzés rendelkező előtér-hello azonos érték tooavoid.
 > 
 > 
 
 ## <a name="customize-ui-optional"></a>(Választható) felhasználói felület testreszabása
 ### <a name="first-step"></a>Első lépés
-Azt teszik lehetővé a reach felhasználói felület testreszabása.
+Azt teszik toocustomize hello reach felhasználói felületén.
 
-Ehhez létre kell hoznia egy alosztálya a `EngagementReachHandler` osztály.
+toodo úgy, hogy toocreate hello alosztályát `EngagementReachHandler` osztály.
 
 **Mintakód:**
 
@@ -187,7 +187,7 @@ Ehhez létre kell hoznia egy alosztálya a `EngagementReachHandler` osztály.
               }
             }
 
-Állítsa a tartalmát a `EngagementReach.Instance.Handler` mező található az egyéni objektum a `App.xaml.cs` belül osztály a `App()` metódus.
+Állítsa hello hello tartalmának `EngagementReach.Instance.Handler` mező található az egyéni objektum a `App.xaml.cs` hello osztály `App()` metódust.
 
 **Mintakód:**
 
@@ -200,18 +200,18 @@ Ehhez létre kell hoznia egy alosztálya a `EngagementReachHandler` osztály.
 
 > [!NOTE]
 > Alapértelmezés szerint az Engagement használja a saját végrehajtásának `EngagementReachHandler`.
-> Nem kell létrehoznia a saját, és ha így tesz, nem kell minden metódus felülbírálására. Az alapértelmezett viselkedés, jelölje be a bevonási objektum.
+> Nincs toocreate a saját, és ha így tesz, akkor nem kell toooverride minden metódus. hello alapértelmezés tooselect hello Engagement alapobjektum lesz.
 > 
 > 
 
 ### <a name="web-view"></a>Webes nézet
-Alapértelmezés szerint Reach az értesítések és a lap megjelenítése fogja használni a beágyazott erőforrások a dll-fájl.
+Alapértelmezés szerint a Reach hello beágyazott erőforrások hello DLL toodisplay hello értesítések és lapokat fogja használni.
 
-Adjon meg egy teljes testreszabási lehetőségek a webes nézet csak használjuk. Ha szeretné testre szabni elrendezések, bírálja felül közvetlenül az erőforrások fájlok `EngagementAnnouncement.html` és `EngagementNotification.html`. Bevonási kell az összes kódot `<body></body>` működéséhez. Külső címkét adhat hozzá, de `engagement_webview_area`.
+teljes tooprovide testreszabási lehetőségek webes nézet csak használjuk. Ha azt szeretné, hogy toocustomize elrendezések, bírálja felül közvetlenül hello erőforrások fájlok `EngagementAnnouncement.html` és `EngagementNotification.html`. Bevonási kell az összes kódot `<body></body>` toorun megfelelően. Külső címkét adhat hozzá, de `engagement_webview_area`.
 
-Azonban dönthet úgy is használja a saját erőforrásait.
+Azonban dönthet úgy is toouse saját erőforrásokat.
 
-Ha szeretné felülbírálni az `EngagementReachHandler` módszereket a alosztály állapítható meg, Engagement is használható a elrendezések, de ügyeljen arra, hogy a beágyazott az engagement mechanizmus:
+Ha szeretné felülbírálni az `EngagementReachHandler` az alosztály tootell Engagement toouse módszerek az elrendezést, de igénybe vehet gondot tooembedded hello engagement mechanizmus:
 
 **Mintakód:**
 
@@ -235,56 +235,56 @@ Ha szeretné felülbírálni az `EngagementReachHandler` módszereket a alosztá
             }
 
 
-Alapértelmezés szerint AnnouncementHTML van `ms-appx-web:///Resources/EngagementAnnouncement.html`. A HTML-fájl, amely a leküldéses üzenet (szöveges közlemény, webes anoucement és lekérdezési közlemény) tartalma tervezése képviseli. AnnouncementName van `engagement_announcement_content`. A webes nézet tervéhez az xaml-oldal neve.
+Alapértelmezés szerint AnnouncementHTML van `ms-appx-web:///Resources/EngagementAnnouncement.html`. Azt jelenti, hogy hello html-fájlba (szöveges közlemény, webes anoucement és lekérdezési közlemény) leküldéses üzenet hello tartalmának tervezése. AnnouncementName van `engagement_announcement_content`. Az xaml-oldal hello webes nézet tervéhez hello nevét is.
 
-NotfificationHTML van `ms-appx-web:///Resources/EngagementNotification.html`. Azt jelenti, hogy a HTML-fájl, amely a leküldéses üzenet értesítésének megtervezésére. NotfificationName van `engagement_notification_content`. A webes nézet tervéhez az xaml-oldal neve.
+NotfificationHTML van `ms-appx-web:///Resources/EngagementNotification.html`. Azt jelenti, hogy hello html-fájl, amely a leküldéses üzenet hello értesítési tervezése. NotfificationName van `engagement_notification_content`. Az xaml-oldal hello webes nézet tervéhez hello nevét is.
 
 ### <a name="customization"></a>Testreszabás
-Értesítés és a webes nézet azt szeretné, hogy ha megőrizheti a bevonási objektum rendelkezik közlemény személyre is szabhatja. Ügyelni kell arra, hogy a webes nézet objektum leírt három alkalommal – az első alkalommal a xaml-kódban, még egyszer a .cs fájlban a "setwebview()" metódusban és harmadik idő a HTML-fájlban.
+Értesítés és a webes nézet azt szeretné, hogy ha megőrizheti a bevonási objektum rendelkezik közlemény személyre is szabhatja. Mi gondoskodunk, hogy webes nézet objektum ismertetett három alkalommal – hello először az XAML-kódban, második időben hello "setwebview()" metódusban a .cs fájlban, és harmadik idő hello HTML-fájlban.
 
-* Az XAML-kódot az aktuális grafikus elrendezés webes nézet összetevő ismerteti.
-* A .cs fájlban definiálhat "setwebview()" beállította a két webes nézet (értesítés, bejelentés) dimenziója. Akkor nagyon hatékony az alkalmazás átméretezésekor.
-* A bevonási html-fájlba azt írják le, a webes nézet tartalmat, tervezési és az elemek pozíciók egymás között.
+* Az xaml hello aktuális grafikus elrendezés webes nézet összetevő ismerteti.
+* A .cs fájlban definiálhat "setwebview()" beállította hello két webes nézet (értesítés, bejelentés) hello dimenziója. Akkor nagyon hatékony hello alkalmazás átméretezésekor.
+* Hello Engagement HTML-fájlban azt leíró hello webes nézet tartalom, tervezési és hello elemek pozíciók egymás között.
 
 ### <a name="launch-message"></a>Indítsa el az üzenet
-Amikor egy felhasználó egy Rendszerértesítő (egy bejelentési) kattint, az Engagement elindítja az alkalmazást, a leküldéses üzenetek a tartalom betöltése, és a megfelelő kampány lap megjelenítéséhez.
+Ha a felhasználó kattint, a rendszer értesítést (egy bejelentési), Engagement elindítja hello alkalmazást, hello hello tartalmának betöltése leküldéses üzenetek, hello megfelelő kampány hello lap megjelenítéséhez.
 
-A késleltetés van a indítsa el az alkalmazás és a lap (attól függően, hogy a hálózat sebességétől) megjelenítési között.
+Nincs késleltetés hello indítási hello alkalmazás és hello megjelenítés hello lap (attól függően, hogy a hálózat sebességétől hello) között.
 
-Jelzi a felhasználóknak, hogy valami tölt, egy visual adatok, például egy folyamatjelző vagy egy folyamatjelző kell megadnia. Bevonási nem tudja kezelni, hogy saját magát, de itt néhány kezelők meg.
+valami tölt toohello felhasználói tooindicate, kell biztosítania egy visual adatok, például egy folyamatjelző vagy egy folyamatjelző. Bevonási nem tudja kezelni, hogy saját magát, de itt néhány kezelők meg.
 
-A visszahívás megvalósításához, "Nyilvános App() megkeresése" App.xaml.cs fájlban adja hozzá:
+tooimplement hello visszahívási "Nyilvános App() megkeresése" App.xaml.cs fájlban adja hozzá:
 
-            /* The application has launched and the content is loading.
+            /* hello application has launched and hello content is loading.
              * You should display an indicator here.
              */
             EngagementReach.Instance.RetrieveLaunchMessageStarted += () => { [...] };
 
-            /* The application has finished loading the content and the page
-             * is about to be displayed.
-             * You should hide the indicator here.
+            /* hello application has finished loading hello content and hello page
+             * is about toobe displayed.
+             * You should hide hello indicator here.
              */
             EngagementReach.Instance.RetrieveLaunchMessageCompleted += () => { [...] };
 
-            /* The content has been loaded, but an error has occurred.
-             * You can provide an information to the user.
-             * You should hide the indicator here.
+            /* hello content has been loaded, but an error has occurred.
+             * You can provide an information toohello user.
+             * You should hide hello indicator here.
              */
             EngagementReach.Instance.RetrieveLaunchMessageFailed += () => { [...] };
 
-A visszahívási állíthatja be a "Nyilvános App() {}" metódusában a `App.xaml.cs` fájlt, mielőtt lehetőleg a `EngagementReach.Instance.Init()` hívható meg.
+Hello visszahívási állíthatja be a "Nyilvános App() {}" metódusában a `App.xaml.cs` fájl, lehetőleg előtt hello `EngagementReach.Instance.Init()` hívható meg.
 
 > [!TIP]
-> A felhasználói felület szálából minden kezelő hívja. Nincs a MessageBox vagy a felhasználói felület kapcsolatos valami használatakor foglalkoznia.
+> Minden egyes kezelő felhasználói felület szálából hello hívja. Önnek nincs tooworry MessageBox vagy valami felhasználói felület kapcsolatos használatakor.
 > 
 > 
 
 ## <a id="push-channel-sharing"></a>Leküldéses csatorna megosztása
-Ha használ a leküldéses értesítések más célra az alkalmazás akkor rendelkezik a leküldéses csatorna megosztása Engagement SDK-szolgáltatás használatára. Ez a kihagyott leküldéses elkerülése érdekében.
+Használata leküldéses értesítések más célra az alkalmazás ezután rendelkezik toouse hello leküldéses csatorna megosztása a hello Engagement SDK szolgáltatás. Ez az elmulasztott tooavoid leküldéses.
 
-* Megadhatja a saját az Engagement Reach inicializálás leküldéses csatornát. Az SDK helyett egy új kérő használja.
+* Megadhatja a saját leküldéses csatorna toohello Engagement Reach inicializálása. hello SDK helyett egy új kérő használja.
 
-Frissítse az Engagement Reach inicializálása a leküldéses csatorna a `InitEngagement` metódust a `App.xaml.cs` fájlt:
+Frissítse a leküldéses csatorna hello hello Engagement Reach inicializálási `InitEngagement` hello metódusnak `App.xaml.cs` fájlt:
 
     /* Your own push channel logic... */
     var pushChannel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
@@ -293,14 +293,14 @@ Frissítse az Engagement Reach inicializálása a leküldéses csatorna a `InitE
     EngagementAgent.Instance.Init(e);
     EngagementReach.Instance.Init(e,pushChannel);
 
-* Azt is megteheti Ha szeretné a leküldéses csatorna felhasználását követően a Reach inicializálás, akkor beállíthatja az egy visszahívási Engagement Reach egyszer lekérni a leküldéses csatorna létrejön az SDK-ban.
+* Azt is megteheti Ha csak tooconsume hello leküldéses csatorna hello Reach inicializálás után majd beállíthatja egy visszahívási Engagement Reach tooget hello leküldéses csatornán hello SDK által létrehozása után.
 
-Állítsa be a visszahívási bárhol **után** Reach inicializálása:
+Állítsa be a visszahívási bárhol **után** Reach inicializálási hello:
 
-    /* Set action on the SDK push channel. */
+    /* Set action on hello SDK push channel. */
     EngagementReach.Instance.SetActionOnPushChannel((PushNotificationChannel channel) => 
     {
-      /* The forwarded channel can be null if its creation fails for any reason. */
+      /* hello forwarded channel can be null if its creation fails for any reason. */
       if (channel != null)
       {
         /* Your own push channel logic... */
@@ -308,11 +308,11 @@ Frissítse az Engagement Reach inicializálása a leküldéses csatorna a `InitE
     }
 
 ## <a name="custom-scheme-tip"></a>Egyéni séma tipp
-Azt adja meg az egyéni séma használja. A bevonási frontend alhálózatból az engagement alkalmazásban használható különböző típusú URI küldhet. Alapértelmezett séma például `http, ftp, ...` vannak kezelése Windows, illetve egy ablak lesz kérdezzen rá, ha telepítve az eszközön alapértelmezés szerinti alkalmazás. Az alkalmazás a saját egyéni séma is létrehozhat.
+Azt adja meg az egyéni séma használja. A bevonási előtér toobe az engagement alkalmazásban használt URI különböző típusú küldhet. Alapértelmezett séma például `http, ftp, ...` vannak kezelése Windows, illetve egy ablak lesz kérdezzen rá, ha telepítve az eszközön alapértelmezés szerinti alkalmazás. Az alkalmazás a saját egyéni séma is létrehozhat.
 
-Az egyéni séma beállítása az alkalmazás legegyszerűbb megnyitásához a `Package.appxmanifest` nyissa meg a `Declarations` panel. Válassza ki `Protocol` a rendelkezésre álló deklarációjában görgessen a mezőbe, majd vegye fel azt. Szerkessze a `Name` mező az új protokoll a kívánt nevet.
+hello egyszerűen tooset egy egyéni séma az alkalmazásban tooopen a `Package.appxmanifest` nyissa meg a `Declarations` panel. Válassza ki `Protocol` hello elérhető nyilatkozatok görgessen a mezőbe, majd vegye fel azt. Hello szerkesztése `Name` mező az új protokoll a kívánt nevet.
 
-Ez a protokoll használatához szerkesztésével a `App.xaml.cs` rendelkező a `OnActivated` metódust, és ne feledkezzen meg itt az engagement inicializálására is:
+Most toouse Ez a protokoll szerkesztése a `App.xaml.cs` a hello `OnActivated` metódust, és ne feledkezzen meg is tooinitialize engagement itt:
 
             /// <summary>
             /// Enter point when app his called by another way than user click
@@ -324,7 +324,7 @@ Ez a protokoll használatához szerkesztésével a `App.xaml.cs` rendelkező a `
               EngagementAgent.Instance.Init(args);
               EngagementReach.Instance.Init(args);
 
-              //TODO design action to do when app is launch
+              //TODO design action toodo when app is launch
 
               #region Custom scheme use
               if (args.Kind == ActivationKind.Protocol)

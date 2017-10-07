@@ -1,6 +1,6 @@
 ---
-title: "Hálózat az Azure App Service-környezetek megfontolások"
-description: "Ismerteti a ASE hálózati forgalom és az NSG-ket és a mértékéig udr-EK beállítása"
+title: "az Azure App Service-környezetek aaaNetworking megfontolások"
+description: "Hello ASE hálózati forgalom ismerteti, hogyan tooset NSG-ket és a mértékéig udr-EK"
 services: app-service
 documentationcenter: na
 author: ccompy
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/08/2017
 ms.author: ccompy
-ms.openlocfilehash: 3be0d7a202ff53f5532fd7169a50a04cfaf88832
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d4d3000f4d4d75814b1e6d47079d967334eb1a3b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="networking-considerations-for-an-app-service-environment"></a>App Service-környezet hálózati szempontjai #
 
@@ -25,16 +25,16 @@ ms.lasthandoff: 08/29/2017
 
  Azure [App Service Environment-környezet] [ Intro] egy alhálózatba az Azure virtuális hálózatban (VNet) az Azure App Service üzemelő példány. Nincsenek App Service-környezet (ASE) két központi telepítési típusokat:
 
-- **Külső ASE**: elérhetővé teszi a ASE által kezelt alkalmazások az internetről elérhető IP-címet. További információkért lásd: [hozzon létre egy külső ASE][MakeExternalASE].
-- **ILB ASE**: IP-címet a virtuális hálózaton belül a ASE által üzemeltetett alkalmazások közzététele. A belső végpont nem a belső terheléselosztók (ILB), ezért azt egy ILB ASE hívják. További információkért lásd: [létrehozása és használata egy ILB ASE][MakeILBASE].
+- **Külső ASE**: tesz elérhetővé hello ASE által kezelt alkalmazások az internetről elérhető IP-címet. További információkért lásd: [hozzon létre egy külső ASE][MakeExternalASE].
+- **ILB ASE**: tesz elérhetővé hello ASE által kezelt alkalmazások az IP-címet a virtuális hálózaton belül. hello belső végpont esetében egy belső terheléselosztó (ILB), ezért azt egy ILB ASE hívják. További információkért lásd: [létrehozása és használata egy ILB ASE][MakeILBASE].
 
-Most már két verziója van App Service Environment-környezet: ASEv1 és ASEv2. A ASEv1 információkért lásd: [Bevezetés az App Service Environment-környezet v1][ASEv1Intro]. ASEv1 klasszikus vagy erőforrás-kezelő VNet is telepíthető. ASEv2 csak egy erőforrás-kezelő virtuális hálózaton történő telepíthetők.
+Most már két verziója van App Service Environment-környezet: ASEv1 és ASEv2. A ASEv1 információkért lásd: [bemutatása tooApp Service-környezet v1][ASEv1Intro]. ASEv1 klasszikus vagy erőforrás-kezelő VNet is telepíthető. ASEv2 csak egy erőforrás-kezelő virtuális hálózaton történő telepíthetők.
 
-Egy ASE összes hívásait az interneten keresztül a ASE hozzárendelt virtuális IP-címhez a VNet hagyja. A nyilvános IP-címe a VIP majd a ASE összes hívásait az interneten a forrás IP-címe. Ha az alkalmazásokat a ASE hívások erőforrásokhoz a virtuális hálózat vagy VPN-en keresztül, a forrás IP-címe az az IP-cím az alhálózat, a ASE által használt egyik. Mivel a ASE a Vneten belül, azt is elérhető erőforrások további konfiguráció nélkül a Vneten belül. Ha a virtuális hálózat a helyszíni hálózathoz csatlakozik, a ASE alkalmazások is erőforrásokhoz való hozzáférés van. Nem kell konfigurálni a ASE vagy az alkalmazás minden további.
+Egy ASE összes hívásait toohello nyissa meg az internet hagyja hello virtuális hálózaton keresztül hello ASE hozzárendelt virtuális IP-címhez. hello nyilvános IP-címe a VIP majd hello forrás IP-cím hello ASE összes hívásait toohello nyissa meg az internethez. Ha a ASE hello alkalmazások hívások tooresources a virtuális hálózat vagy VPN-en keresztül, hello forrás IP-cím akkor használják a ASE hello alhálózat IP-címek hello egyik. Hello ASE hello virtuális hálózaton belül van, mert erőforrások hello VNet további konfiguráció nélkül is hozzáférhet. Ha hello VNet csatlakoztatott tooyour a helyszíni hálózat, a ASE alkalmazások is hozzáférést tooresources van. Nincs szükség tooconfigure hello ASE vagy az alkalmazás minden további.
 
 ![Külső ASE][1] 
 
-Ha egy külső ASE, a nyilvános VIP egyben a végpont a feloldható ASE alkalmazásai:
+Ha egy külső ASE, hello nyilvános VIP is, hogy a ASE alkalmazások megoldásához toofor hello végpont:
 
 * A HTTP/S 
 * FTP/MP. 
@@ -43,40 +43,40 @@ Ha egy külső ASE, a nyilvános VIP egyben a végpont a feloldható ASE alkalma
 
 ![ILB ASE][2]
 
-Ha egy ILB ASE, a ILB IP-címe a HTTP/S, az FTP/S, a webes telepítési és a távoli hibakeresés végpontja.
+Ha egy ILB ASE, hello ILB hello IP-címe HTTP/S, az FTP/S, a webes telepítési és a távoli hibakeresés hello végpontja.
 
-A normál alkalmazás-hozzáférési portok a következők:
+hello normál app hozzáférési portok a következők:
 
-| Használat | A | – |
+| Használat | A | túl|
 |----------|---------|-------------|
 |  A HTTP/HTTPS  | Felhasználó által konfigurálható |  80, 443 |
 |  FTP/FTPS    | Felhasználó által konfigurálható |  21, 990, 10001-10020 |
 |  A Visual Studio távoli hibakeresés  |  Felhasználó által konfigurálható |  4016, 4018, 4020, 4022 |
 
-Ez érvényét veszti, ha egy külső ASE vagy egy ILB ASE. Ha a számítógép egy külső ASE, ezeket a portokat, a nyilvános VIP kattint. Ha a számítógép egy ILB ASE, ezeket a portokat a Példánynak a kattint. Ha zárolását a 443-as porton, néhány funkció, a portálon hatással lehet. További információkért lásd: [Portal függőségek](#portaldep).
+Ez érvényét veszti, ha egy külső ASE vagy egy ILB ASE. Ha a számítógép egy külső ASE, ezeket a portokat a hello nyilvános VIP kattint. Ha a számítógép egy ILB ASE, ezeket a portokat a hello ILB kattint. Ha zárolását a 443-as porton, néhány funkció elérhetővé tett hello portálon hatással lehet. További információkért lásd: [Portal függőségek](#portaldep).
 
 ## <a name="ase-dependencies"></a>ASE függőségek ##
 
 Egy ASE befelé függőség:
 
-| Használat | A | – |
+| Használat | A | túl|
 |-----|------|----|
 | Kezelés | App Service management címek | ASE alhálózati: 454, 455 |
 |  Belső kommunikációs ASE | ASE alhálózati: minden port | ASE alhálózati: minden port
 |  Engedélyezi az Azure terheléselosztó bejövő | Az Azure terheléselosztó | ASE alhálózati: minden port
 |  IP-címek hozzárendelt alkalmazás | Címek hozzárendelt alkalmazás | ASE alhálózati: minden port
 
-A bejövő forgalom biztosít a parancs és a rendszer figyelése mellett ASE irányítását. Az ilyen típusú adatforgalom a forrás IP-címek jelennek meg a [ASE felügyeleti címek] [ ASEManagement] dokumentum. A hálózati biztonsági beállításokat kell engedélyezi a hozzáférést a 454 és a 455 portokat összes IP-címekről.
+hello bejövő forgalom biztosít parancs és hello ASE hozzáadása toosystem figyelési irányítását. hello forrás IP-címek a forgalom hello szereplő [ASE felügyeleti címek] [ ASEManagement] dokumentum. hello hálózati biztonsági beállításokat kell tooallow a hozzáférést a 454 és a 455 portok összes IP-címére.
 
-A belső összetevő használt sok port ASE alhálózaton belüli kommunikációhoz és azok módosíthatja.  Ehhez minden port ASE az alhálózaton az ASE alhálózatból elérhetőnek kell lennie. 
+Nincsenek hello ASE alhálózaton belüli belső összetevő-kommunikációhoz használt sok portot, és módosíthatja.  Ehhez szükséges összes hello portjainak hello ASE alhálózati toobe hello ASE alhálózati érhető el. 
 
-Az Azure load balancer és a ASE alhálózati közötti kommunikációhoz a minimális portok nyitva kell lennie a 454, 455 és 16001. A 16001 port használatban van a terheléselosztó és a ASE közötti megtartása életben adatforgalomhoz. Ha egy ILB ASE használ, akkor csak a 454, 455, 16001 le forgalom zárolhatja portok.  Ha egy külső ASE használ akkor kell figyelembe venni a normál alkalmazás-hozzáférési portok.  Hozzárendelt alkalmazás címek használata szüksége nyissa meg az összes porton.  Amikor egy cím hozzá van rendelve egy adott alkalmazást, majd a terheléselosztó nem ismert az előzetesen HTTP és HTTPS-forgalmat küldeni a ASE portok fogja használni.
+Hello Azure terheléselosztó és hello ASE alhálózati hello minimális portok hello kommunikációját, hogy nyitva kell toobe 454, 455 és 16001. Tartsa életben forgalom hello terheléselosztó és hello ASE közötti hello 16001 portot használja. Ha egy ILB ASE használ majd zárolhatja a forgalom toojust hello 454, 455, 16001 portok le.  Ha egy külső ASE használ majd kell tootake a fiók hello normál app hozzáférési portok.  Hozzárendelt alkalmazás címek használata tooopen kell azt tooall portok.  Amikor egy cím hozzá van rendelve tooa adott alkalmazást, majd hello terheléselosztó portot használja előre toosend HTTP és HTTPS-forgalom toohello ASE nem ismert.
 
-Alkalmazás-kezelési forgalom engedélyezése a az alkalmazások ASE az alhálózathoz hozzárendelt IP-címekről kell IP-címek használata.
+Hozzárendelt alkalmazás IP-címek használata IP-címek hozzárendelve tooyour alkalmazások toohello ASE alhálózati hello tooallow forgalmát kell.
 
-A kimenő hozzáférés érdekében egy ASE több külső rendszer függ. E rendszer függőségek rendelkező DNS-nevek, és nem feleltethetők meg az IP-címek készletét. Ebből kifolyólag a ASE portok számos minden külső IP-címek a ASE alhálózatból kimenő hozzáférésre van szüksége. Egy ASE a következő kimenő függőségekkel rendelkezik:
+A kimenő hozzáférés érdekében egy ASE több külső rendszer függ. E rendszer függőségek rendelkező DNS-nevek, és nem képez le IP-címeket rögzített tooa. Ebből kifolyólag hello ASE hello ASE alhálózati tooall a kimenő hozzáférésre van szüksége a portok számos külső IP-címek. Egy ASE rendelkezik a következő kimenő függőségek hello:
 
-| Használat | A | – |
+| Használat | A | túl|
 |-----|------|----|
 | Azure Storage | ASE alhálózati | TABLE.Core.Windows.NET, blob.core.windows.net, queue.core.windows.net, file.core.windows.net: 80-as, a 443-as, a 445-ös (445-ös csak szükséges ASEv1.) |
 | Azure SQL Database | ASE alhálózati | Database.Windows.NET: 1433-as számú 11000-11999, 14000-14999 (további információkért lásd: [SQL Database 12-es port használati](../../sql-database/sql-database-develop-direct-route-ports-adonet-v12.md).)|
@@ -87,19 +87,19 @@ A kimenő hozzáférés érdekében egy ASE több külső rendszer függ. E rend
 | Azure DNS                     | ASE alhálózati            |  Internet: 53
 | Belső kommunikációs ASE    | ASE alhálózati: minden port |  ASE alhálózati: minden port
 
-Ha a ASE elveszítette a hozzáférését ezeket a függőségeket, a rendszer nem működik. Ebben az esetben elég hosszú a ASE fel van függesztve.
+Hello ASE toothese függőségek elveszítette a hozzáférését, ha a rendszer nem működik. Ha hosszú elég, hello ASE történik-e, amely fel van függesztve.
 
 ### <a name="customer-dns"></a>Ügyfél DNS ###
 
-Ha a virtuális hálózat DNS-ügyfél által megadott kiszolgáló van konfigurálva, a bérlők munkaterheléseihez használhatja. A ASE továbbra is felügyelet céljából Azure DNS-sel való kommunikációhoz szükséges. 
+Ha hello VNet van konfigurálva egy DNS-ügyfél által megadott kiszolgálón, hello bérlők munkaterheléseihez használhatja. hello ASE továbbra is hozzá kell az Azure DNS toocommunicate felügyelet céljából. 
 
-Ha a virtuális hálózat DNS, a másik oldalon az egy VPN-ügyfél van beállítva, a DNS-kiszolgáló az alhálózatot, amely tartalmazza a ASE elérhetőnek kell lennie.
+Ha hello VNet működik együtt az ügyfél DNS hello VPN másik oldalán, hello DNS-kiszolgáló, amely tartalmazza a hello ASE hello alhálózatból elérhetőnek kell lennie.
 
 <a name="portaldep"></a>
 
 ## <a name="portal-dependencies"></a>Portál függőségek ##
 
-A ASE működési függőségek kívül a portál élmény kapcsolatos néhány további elemek. Néhány olyan funkciója, az Azure-portálon való közvetlen hozzáférés függő _SCM hely_. Minden az Azure App Service-alkalmazást a két URL-címek vannak. Az első URL-címe, az alkalmazás eléréséhez. A második URL-je néven is ismert SCM webhely eléréséhez a _Kudu konzol_. Az SCM helyet használó szolgáltatások a következők:
+A hozzáadása toohello ASE működési függőségek nincsenek néhány további elemek kapcsolódó toohello portál élmény. Néhány hello Azure-portálon hello képessége közvetlen hozzáférést too_SCM site_ függ. Minden az Azure App Service-alkalmazást a két URL-címek vannak. hello első URL-cím van tooaccess az alkalmazást. hello második URL-címe: hello néven is ismert tooaccess hello SCM hely _Kudu konzol_. Hello SCM helyet használó szolgáltatások a következők:
 
 -   Webes feladatok
 -   Functions
@@ -109,62 +109,62 @@ A ASE működési függőségek kívül a portál élmény kapcsolatos néhány 
 -   Process Explorer
 -   Konzol
 
-Egy ILB ASE használatakor az SCM-hely nem található a virtuális hálózaton kívülről hozzáférhető internet. Ha az alkalmazás egy ILB ASE üzemelteti, bizonyos funkciók nem működnek a portálról.  
+Egy ILB ASE használja, nem a hello SCM hely és az internet hello virtuális hálózaton kívülről hozzáférhető. Ha az alkalmazás egy ILB ASE üzemelteti, bizonyos funkciók nem működnek hello portálról.  
 
-Ezekre a képességekre, amelyek az SCM hely számos érhető el közvetlenül a Kudu konzolon. A portál használata helyett közvetlenül is elérheti. Ha az app Service-Példánynak környezetben, a közzétételi hitelesítő adatok használatával jelentkezzen be. Egy alkalmazás-Példánynak környezetben üzemeltetett SCM webhely eléréséhez az URL-cím formátuma a következő: 
+Ezekre a képességekre, amelyek hello SCM hely számos közvetlenül hello Kudu konzolon érhető el. Tooit is elérheti, hanem közvetlenül hello portál használatával. Ha az app Service-Példánynak környezetben, használja a közzétételi hitelesítő adatok toosign a. hello URL-cím tooaccess hello SCM hely ILB Service-környezetben üzemeltetett alkalmazás rendelkezik hello a következő formátumban: 
 
 ```
-<appname>.scm.<domain name the ILB ASE was created with> 
+<appname>.scm.<domain name hello ILB ASE was created with> 
 ```
 
-A tartománynév esetén a ILB ASE *contoso.net* és az alkalmazás neve *testapp*, az alkalmazás elérése *testapp.contoso.net*. Az SCM-helyet, amely vele együtt áthelyeződik éri el a *testapp.scm.contoso.net*.
+Ha a ILB ASE hello tartománynév *contoso.net* és az alkalmazás neve *testapp*, hello app éri el a *testapp.contoso.net*. hello SCM hely vele együtt áthelyeződik éri el a *testapp.scm.contoso.net*.
 
 ### <a name="functions-and-web-jobs"></a>Függvények és a webes feladatok ###
 
-Függvények és a webes feladatok az SCM hely függ, de akkor is, ha az alkalmazások-Példánynak környezetben, feltéve, hogy a böngésző el lehet-e érni az SCM hely a portál használata támogatott.  Ha önaláírt tanúsítványt használ a ILB mértékéig, szüksége lesz ahhoz, hogy a böngészőt, hogy a tanúsítvány megbízható.  Az Internet Explorer és a peremhálózati, amely azt jelenti, hogy a tanúsítvány-nak kell lennie a számítógép megbízható tárolja.  Ha Chrome használja majd, amely azt jelenti, hogy elfogadott a böngészőben a tanúsítvány korábban által a vélhetően elérés közvetlenül az scm-hely.  A legjobb megoldás, hogy a böngésző lánc megbízhatósági egy kereskedelmi tanúsítványt használja.  
+Függvények és a webes feladatok hello SCM hely függ, de akkor is, ha az alkalmazások-Példánynak környezetben, feltéve, hogy a böngésző hello SCM helyen érhető el a hello portál használata támogatott.  Ha önaláírt tanúsítványt használ a ILB mértékéig, szüksége lesz tooenable a böngésző tootrust, hogy a tanúsítvány.  Az Internet Explorer és a szegély, amely azt jelenti, hogy a hello tanúsítvány rendelkezik toobe hello számítógép megbízható kapcsolat tárolja.  Ha Chrome használja majd, amely azt jelenti, hogy elfogadott hello tanúsítvány hello böngészőben korábbi által a vélhetően elérés közvetlenül hello scm hely.  hello legjobb megoldás, toouse hello böngésző lánc megbízhatósági kereskedelmi tanúsítványokat.  
 
 ## <a name="ase-ip-addresses"></a>ASE IP-címek ##
 
-Egy ASE ismernie néhány IP-címmel rendelkezik. Ezek a következők:
+Egy ASE néhány IP címek toobe tisztában van. Ezek a következők:
 
 - **Nyilvános bejövő IP-cím**: app Service-külső környezetben, és felügyeleti forgalom egy külső ASE és egy ILB ASE is használatos.
-- **Kimenő nyilvános IP-cím**: az "feladó" IP-cím kimenő kapcsolatok a ASE a, amely hagyja, a virtuális hálózat, amely VPN le nem útválasztásos használt.
+- **Kimenő nyilvános IP-cím**: hello "feladó" IP hello ASE kimenő kapcsolatokat, hogy hagyja hello virtuális hálózatot, amely nem útválasztásos le egy VPN használatos.
 - **ILB IP-cím**: Ha egy ILB ASE használja.
 - **Alkalmazás által hozzárendelt IP-alapú SSL-címek**: csak akkor lehetséges, egy külső mértékéig és IP-alapú SSL be van állítva.
 
-A következő IP-címek láthatók egyszerűen egy ASEv2 az Azure-portálon a ASE felhasználói felületen. Ha egy ILB ASE, az IP-Címek használhatók a ILB szerepel.
+A következő IP-címek láthatók egyszerűen egy ASEv2 a hello Azure-portálon a hello ASE felhasználói felületén. Ha egy ILB ASE, hello ILB hello IP-Címek szerepel.
 
 ![IP-címek][3]
 
 ### <a name="app-assigned-ip-addresses"></a>Alkalmazás által hozzárendelt IP-címek ###
 
-Egy külső mértékéig IP-címek rendelhet az egyes alkalmazásokhoz. Nem hajthatja végre, amely egy ILB mértékéig. Az alkalmazásnak a saját IP-cím konfigurálásával kapcsolatos további információkért lásd: [egy meglévő egyéni SSL-tanúsítvány kötését az Azure-webalkalmazásokban](../../app-service-web/app-service-web-tutorial-custom-ssl.md).
+Egy külső mértékéig rendelhet hozzá IP-címek tooindividual alkalmazásokat. Nem hajthatja végre, amely egy ILB mértékéig. További információt a tooconfigure az alkalmazás toohave a saját IP-cím, lásd: [kötése egy meglévő egyéni SSL tanúsítvány tooAzure webalkalmazások](../../app-service-web/app-service-web-tutorial-custom-ssl.md).
 
-Ha egy alkalmazás a saját IP-alapú SSL-címmel rendelkezik, a ASE fenntartja két portok leképezése az IP-címet. Egy port a HTTP-forgalom, és az egyéb portot a HTTPS-hez. Ezeket a portokat a ASE felhasználói felületén, az IP-címek szakaszban találhatók. Forgalom kell elérni ezeket a portokat a a VIP vagy azok nem érhetők el. Ez a követelmény fontos, hogy ne feledje, hogy a hálózati biztonsági csoportokkal (NSG-k) konfigurálásakor.
+Ha egy alkalmazás a saját IP-alapú SSL-címmel rendelkezik, hello ASE fenntartja két portok toomap toothat IP-címet. Egy port a HTTP-forgalom, pedig hello más portot a HTTPS-hez. Ezeket a portokat hello ASE UI hello IP-címek szakaszban találhatók. Forgalom kell lennie a képes tooreach azokat a portokat a hello VIP vagy hello alkalmazások, amelyek nem érhetők el. Ez a követelmény fontos tooremember kell, ha hálózati biztonsági csoportokkal (NSG-k).
 
 ## <a name="network-security-groups"></a>Network Security Groups (Hálózati biztonsági csoportok) ##
 
-[Hálózati biztonsági csoportok] [ NSGs] lehetővé teszik a hálózati hozzáférést egy Vneten belül. A portál használata esetén nincs egy implicit Megtagadás szabály minden visszautasítja a legalacsonyabb prioritással. Állít össze vannak a szabályokat.
+[Hálózati biztonsági csoportok] [ NSGs] hello képességét toocontrol hálózati hozzáférést egy Vneten belül. Ha hello portál, van egy implicit mindent: hello legalacsonyabb prioritású toodeny szabály Megtagadás. Állít össze vannak a szabályokat.
 
--Környezetben nincs a virtuális gépek üzemeltetni a ASE magát a hozzáférést. Is a Microsoft által kezelt előfizetést. Ha azt szeretné, az alkalmazások a ASE való hozzáférésének korlátozásához, állítsa be az NSG-k ASE az alhálózaton. Ennek során a ASE függőségek alapos figyelmet fordítania. Ha letiltja az összes függőséget, az ASE működése leáll.
+-Környezetben nincs hozzáférési toohello használt virtuális gépek toohost hello ASE magát. Is a Microsoft által kezelt előfizetést. Toorestrict hozzáférés toohello alkalmazások hello ASE, állítsa az NSG-k hello ASE alhálózaton. Ennek során toohello ASE függőségek alapos figyelmet fordítania. Ha letiltja az összes függőséget, a hello ASE leáll.
 
-Az NSG-k az Azure portálon keresztül vagy a PowerShell segítségével konfigurálható. Itt tartalmazza az Azure-portálon. Létrehozásához és kezeléséhez az NSG-ket a portálon, a legfelső szintű erőforrásként **hálózati**.
+Az NSG-k hello Azure-portálon keresztül vagy a PowerShell segítségével konfigurálható. hello itt tartalmazza hello Azure-portálon. Létrehozásához és kezeléséhez az NSG-ket hello portálon, a legfelső szintű erőforrásként **hálózati**.
 
-A bejövő és kimenő követelmények figyelembe kell venni, amikor az NSG-ket az NSG-ket ebben a példában látható módon hasonlóan kell kinéznie. A virtuális hálózat címtartomány _192.168.250.0/16_, és az alhálózatot, amely a ASE _192.168.251.128/25_.
+Hello bejövő és kimenő követelmények figyelembe kell venni, amikor hello NSG-ket alábbihoz hasonló toohello NSG-ket ebben a példában látható módon. virtuális hálózat címtartománya hello van _192.168.250.0/16_, és hello alhálózatot, amely hello ASE _192.168.251.128/25_.
 
-A függvény ASE első két bejövő követelményei ebben a példában a lista tetején látható. Ezek ASE és felügyeletét teszi lehetővé maga kommunikálni ASE engedélyezése. A többi bejegyzés összes bérlői konfigurálható és képesek felügyelni a hálózati hozzáférést a ASE állomásokon tárolt alkalmazásokhoz. 
+hello első két bejövő követelményei hello ASE toofunction hello lista ebben a példában hello tetején látható. Ezek ASE és felügyeletét teszi lehetővé hello ASE toocommunicate önmagával engedélyezése. hello más bejegyzések összes bérlői konfigurálható és hálózati hozzáférési toohello ASE által üzemeltetett alkalmazások képesek felügyelni. 
 
 ![Bejövő biztonsági szabályok][4]
 
-Alapértelmezett szabály lehetővé teszi, hogy az IP-címek a ASE alhálózati felvegye a Vneten belül. Egy másik alapértelmezett szabály lehetővé teszi, hogy a terheléselosztó, más néven a nyilvános VIP, a mértékéig kommunikációhoz. Az alapértelmezett szabályok megtekintéséhez válasszon **alapértelmezett szabályok** mellett a **Hozzáadás** ikonra. Ha a Megtagadás, minden más szabály, miután az NSG-szabályok látható, hogy akadályozza meg a forgalmat a VIP és a ASE között. A virtuális hálózaton belül érkező forgalom elkerülése érdekében adja hozzá a saját szabály, amely engedélyezi a bejövő. A forrás AzureLoadBalancer egyenlőnek használata a cél **bármely** és egy porttartomány  **\*** . Az NSG-szabály ASE van alkalmazva, mert nem kell a cél adott lehet.
+Alapértelmezett szabály lehetővé teszi, hogy az IP-címek hello hello VNet tootalk toohello ASE alhálózaton. Egy másik alapértelmezett szabály lehetővé teszi, hogy a hello terheléselosztóhoz, más néven hello nyilvános VIP, a hello ASE toocommunicate. toosee hello alapértelmezett szabályokat, válassza ki **alapértelmezett szabályok** következő toohello **Hozzáadás** ikonra. Ha a Megtagadás, minden más szabály, miután hello NSG-szabályok látható, hogy akadályozza meg a hello VIP és hello ASE közötti forgalmat. tooprevent adatforgalma a hello VNet belül adja hozzá a saját szabály tooallow bejövő. A forrás egyenlő tooAzureLoadBalancer használata a cél **bármely** és egy porttartomány  **\*** . Mivel hello NSG-szabály alkalmazott toohello ASE alhálózati, nincs szükség a toobe specifikus hello cél.
 
-Ha az alkalmazáshoz rendelt IP-címet, győződjön meg arról, hogy a portok nyitva tartása. A portok megtekintéséhez válasszon **App Service Environment-környezet** > **IP-címek**.  
+Ha egy IP-cím tooyour alkalmazáshoz rendelt, ellenőrizze, hogy hello portok megnyitásához mindig. toosee hello-porttal rendelkezik, válasszon **App Service Environment-környezet** > **IP-címek**.  
 
-A következő kimenő szabályok látható elemeinek van szükség, az utolsó elem kivételével. Az ebben a cikkben észleltek ASE függőségek való hálózati hozzáférés lehetővé teszik. Ha letiltja az e valamelyiket, a ASE működése leáll. A lista utolsó elemének lehetővé teszi, hogy a ASE kommunikálni a Vneten található más erőforrásokat.
+A következő kimenő szabályok hello látható minden hello elem van szükség, hello utolsó elem kivételével. Hálózati hozzáférés toohello ASE függőségei vannak, az ebben a cikkben észleltek lehetővé teszik. Ha letiltja az e valamelyiket, a ASE működése leáll. hello lista utolsó elemére hello lehetővé teszi, hogy a ASE toocommunicate a virtuális hálózat más erőforrásokat.
 
 ![Kimenő biztonsági szabályok][5]
 
-Az NSG-k meghatározása után rendelje hozzá őket az alhálózatot, amely a ASE a. Ha nem emlékszik a ASE virtuális hálózat vagy az alhálózat, megtekintheti a ASE felügyeleti portálról. Az NSG-t rendel az alhálózat, nyissa meg a felhasználói felület alhálózathoz, és válassza ki az NSG-t.
+Az NSG-k meghatározása után rendelje hozzá őket a toohello alhálózatot, amely a ASE a. Ha nem emlékszik hello ASE virtuális hálózat vagy az alhálózat, láthatja a hello ASE felügyeleti portálról. tooassign NSG tooyour alhálózati hello nyissa toohello alhálózati felhasználói felület és válassza ki a hello NSG.
 
 ## <a name="routes"></a>Útvonalak ##
 
@@ -176,51 +176,51 @@ Az NSG-k meghatározása után rendelje hozzá őket az alhálózatot, amely a A
 
 BGP-útvonalakat a rendszer útvonalak bírálja felül. Udr-EK bírálja felül a BGP-útvonalakat. Az Azure virtuális hálózataihoz útvonalakkal kapcsolatban további információkért lásd: [felhasználó által definiált útvonalak áttekintése][UDRs].
 
-Az Azure SQL-adatbázis, amely a ASE használja a rendszer egy tűzfal van. Kommunikáció a ASE nyilvános VIP oly módon, hogy ez igényli. Az SQL adatbázishoz a ASE kapcsolódásának elutasításra kerülne, ha elküldi őket egy másik IP-cím és az ExpressRoute-kapcsolatot.
+hello Azure SQL-adatbázist, hogy hello ASE toomanage hello rendszer használja-e tűzfal van. A hello ASE nyilvános VIP kommunikációs toooriginate igényel. Kapcsolatok toohello SQL-adatbázis hello ASE elutasításra kerülne, ha elküldi őket hello ExpressRoute-kapcsolat és egy másik IP-cím.
 
-Ha a bejövő felügyeleti kérelmekre adott válaszokat le az ExpressRoute, a válaszcímet eltér az eredeti célra. Ez az eltérés megsérti a TCP-kommunikációt.
+Válaszok tooincoming felügyeleti kérések érkeznek hello ExpressRoute le, ha hello válasz címe különbözik hello eredeti célra. Ez az eltérés hello TCP kommunikációs megszakad.
 
-A ASE működjön, miközben a virtuális hálózat egy ExpressRoute van konfigurálva a legegyszerűbb is van:
+A ASE toowork közben a virtuális hálózat része egy ExpressRoute hello legegyszerűbb dolog toodo esetén:
 
--   Konfigurálja az ExpressRoute hivatkozik _0.0.0.0/0_. Alapértelmezés szerint azt kényszerített bújtatás minden kimenő forgalom a helyszínen.
--   Hozzon létre egy UDR. Alkalmazza azt az alhálózatot, amely tartalmazza a egy címelőtagot ASE _0.0.0.0/0_ és következőugrás-típusú _Internet_.
+-   Konfigurálja az ExpressRoute tooadvertise _0.0.0.0/0_. Alapértelmezés szerint azt kényszerített bújtatás minden kimenő forgalom a helyszínen.
+-   Hozzon létre egy UDR. Alkalmazza azt az egy címelőtagot hello ASE tartalmazó toohello alhálózati _0.0.0.0/0_ és következőugrás-típusú _Internet_.
 
-Ha a módosítások két, a ASE alhálózatról érkező forgalmat az internet felé nem működik az ExpressRoute- és a ASE le kényszerített. 
+Ha a módosítások két, a hello ASE alhálózati származó internet felé forgalom nem működik hello ExpressRoute és hello ASE kényszerített. 
 
 > [!IMPORTANT]
-> Lehet, hogy egy UDR definiált útvonalak kellően specifikus elsőbbséget élveznek a bármely az ExpressRoute-konfiguráció által hirdetett útvonalakat. Az előző példában a széles körű 0.0.0.0/0 címtartomány. Az esetlegesen véletlenül felülbírálhatja pontosabb címtartományai használó útvonal-hirdetéseinek.
+> egy UDR definiált hello útvonalak bármely hello ExpressRoute-konfiguráció által hirdetett útvonalakat elég konkrétan fogalmaz ahhoz tootake sorrend kell lennie. hello előző példa hello széleskörű 0.0.0.0/0 címtartományt. Az esetlegesen véletlenül felülbírálhatja pontosabb címtartományai használó útvonal-hirdetéseinek.
 >
-> ASEs cross-hirdetményt a magánfelhő-társviszony létesítése – elérési utat a nyilvános társviszony elérési útvonalak ExpressRoute beállításokkal nem támogatottak. A nyilvános társviszony konfigurált ExpressRoute-konfigurációk útvonal-hirdetéseinek kapni a Microsofttól. A hirdetmények a Microsoft Azure IP-címtartományok nagy foglal magában. Ha a címtartomány határokon meghirdetett privát társviszony elérési útján, minden kimenő hálózati csomagokat a ASE alhálózatból egy ügyfél a helyi hálózati infrastruktúra bújtatott hatályba. A hálózati folyamat jelenleg nem támogatott a ASEs. Egy megoldást a problémára, hogy állítsa le a kereszt-közzététel útvonalak nyilvános társviszony elérési útjáról a magánfelhő-társviszony létesítése – elérési utat.
+> ASEs határokon hirdetési hello nyilvános társviszony elérési toohello privát társviszony elérési útvonalak ExpressRoute beállításokkal nem támogatottak. A nyilvános társviszony konfigurált ExpressRoute-konfigurációk útvonal-hirdetéseinek kapni a Microsofttól. a Microsoft Azure IP-címtartományok nagy hello hirdetményeket tartalmaz. Ha hello címtartományai határokon meghirdetett hello privát társviszony elérési úton, hello ASE tartozó alhálózati minden kimenő hálózati csomagok kényszerített bújtatott tooa az ügyfél a helyi hálózati infrastruktúra. A hálózati folyamat jelenleg nem támogatott a ASEs. Az egyik megoldás toothis probléma toostop cross-hirdetési útvonalak hello nyilvános társviszony elérési toohello privát társviszony elérési útról.
 
-Hozzon létre egy UDR, kövesse az alábbi lépéseket:
+egy UDR toocreate kövesse az alábbi lépéseket:
 
-1. Ugrás az Azure-portálon. Válassza ki **hálózati** > **útvonaltáblát**.
+1. Nyissa meg az Azure portál toohello. Válassza ki **hálózati** > **útvonaltáblát**.
 
-2. Hozzon létre egy új útvonaltábla és a virtuális hálózat ugyanabban a régióban.
+2. Hozzon létre egy új útvonaltábla hello és a virtuális hálózat ugyanabban a régióban.
 
 3. Az útvonaltábla felhasználói felületén belül jelölje ki **útvonalak** > **Hozzáadás**.
 
-4. Állítsa be a **a következő ugrás típusa** való **Internet** és a **címelőtag** való **0.0.0.0/0**. Kattintson a **Mentés** gombra.
+4. Set hello **a következő ugrás típusa** túl**Internet** és hello **címelőtag** túl**0.0.0.0/0**. Kattintson a **Mentés** gombra.
 
-    Ekkor megjelenik egy, a következőhöz hasonló:
+    Ekkor megjelenik az alábbihoz hasonló hello:
 
     ![Funkcionális útvonalak][6]
 
-5. Új útvonaltábla létrehozása után nyissa meg az alhálózatot, amely tartalmazza a ASE. Válassza ki az útválasztási táblázatot a portálon a listából. A módosítás mentése után majd megtekintheti az NSG-ket és ezekkel az alhálózati útvonalakat.
+5. Hello új útvonaltábla létrehozása után nyissa meg a ASE tartalmazó toohello alhálózat. Válassza ki az útvonaltábla hello portal hello listájáról. Hello módosítás mentjük, majd megtekintheti az hello NSG-ket és ezekkel az alhálózati útvonalakat.
 
     ![Az NSG-k és útvonalak][7]
 
 ### <a name="deploy-into-existing-azure-virtual-networks-that-are-integrated-with-expressroute"></a>Üzembe helyezés meglévő Azure virtuális hálózataihoz ExpressRoute integrált ###
 
-A ASE egy Vnetet, amely integrálva van a ExpressRoute történő központi telepítéséhez adja meg az alhálózatot, ha azt szeretné, hogy a telepített ASE előre. A Resource Manager-sablon segítségével telepítheti azt. Hozzon létre egy ASE a Vneten belül, amely már rendelkezik konfigurált ExpressRoute:
+toodeploy be egy Vnetet, ExpressRoute, integrálva van a ASE hello ASE telepíteni kívánt hello alhálózati előkonfigurálására szolgálnak. A Resource Manager sablon toodeploy használja azt. a Vneten belül egy ASE toocreate már rendelkezik ExpressRoute konfigurálva:
 
-- Hozzon létre egy alhálózatot a ASE üzemeltetéséhez.
+- Hozzon létre egy alhálózat toohost hello ASE.
 
     > [!NOTE]
-    > Nincs más lehet az alhálózat, de a ASE. Ne válasszon, amely lehetővé teszi a jövőbeli növekedésre címteret. Később Ez a beállítás nem módosítható. Azt javasoljuk, hogy a méretet `/25` 128-címekkel.
+    > Nincs más lehet hello alhálózati, de hello ASE. Lehet, hogy toochoose, amely lehetővé teszi a jövőbeli növekedésre címteret. Később Ez a beállítás nem módosítható. Azt javasoljuk, hogy a méretet `/25` 128-címekkel.
 
-- Hozzon létre udr-EK (például az útvonaltáblák), a fentebb leírt módon, és állítsa be, amely az alhálózaton.
-- A ASE létrehozása a Resource Manager sablonnal [egy ASE létrehozása egy Resource Manager-sablon használatával][MakeASEfromTemplate].
+- Hozzon létre udr-EK (például az útvonaltáblák), a fentebb leírt módon, és állítsa be, amely hello alhálózaton.
+- Hello ASE létrehozása a Resource Manager sablonnal [egy ASE létrehozása egy Resource Manager-sablon használatával][MakeASEfromTemplate].
 
 <!--Image references-->
 [1]: ./media/network_considerations_with_an_app_service_environment/networkase-overflow.png

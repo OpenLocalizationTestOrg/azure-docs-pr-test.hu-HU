@@ -1,6 +1,6 @@
 ---
-title: "StorSimple Snapshot Manager biztonságimásolat-katalógus |} Microsoft Docs"
-description: "Ismerteti a StorSimple Snapshot Manager MMC beépülő modul segítségével megtekintheti, és a biztonságimásolat-katalógus kezelése."
+title: "aaaStorSimple Snapshot Manager biztonságimásolat-katalógus |} Microsoft Docs"
+description: "Útmutatás a toouse StorSimple Snapshot Manager MMC beépülő modul tooview hello és hello biztonságimásolat-katalógus kezelése."
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,153 +14,153 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: v-sharos
-ms.openlocfilehash: b97753e6f1b67e3c8d247281c5e5208033a56eca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 173410095bcec7948d780d7fc258d2e3670bde8c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-storsimple-snapshot-manager-to-manage-the-backup-catalog"></a>Használja a StorSimple Snapshot Manager a biztonságimásolat-katalógus kezelése
+# <a name="use-storsimple-snapshot-manager-toomanage-hello-backup-catalog"></a>Használja a StorSimple Snapshot Manager toomanage hello biztonságimásolat-katalógus
 
 ## <a name="overview"></a>Áttekintés
-Az elsődleges a StorSimple Snapshot Manager funkciója lehetővé teszi a StorSimple-köteteket alkalmazáskonzisztens biztonsági másolatot készíteni a pillanatfelvételek formájában. A pillanatképek majd szereplő nevű XML-fájl egy *biztonságimásolat-katalógus*. A biztonságimásolat-katalógus rendezi a pillanatképek a kötet csoportot, majd a helyi pillanatfelvétel és felhőbeli pillanatfelvétel.
+hello elsődleges funkciója a StorSimple Snapshot Manager tooallow meg toocreate alkalmazáskonzisztens biztonsági mentését másolja át a StorSimple-köteteket a pillanatképek hello formátumban. A pillanatképek majd szereplő nevű XML-fájl egy *biztonságimásolat-katalógus*. hello biztonságimásolat-katalógus rendezi a pillanatképek a kötet csoportot, majd a helyi pillanatfelvétel és felhőbeli pillanatfelvétel.
 
-Ez az oktatóanyag leírja, hogyan használhatja a **biztonságimásolat-katalógus** csomópont a következő feladatok elvégzéséhez:
+Ez az oktatóanyag leírja, hogyan használhatja a hello **biztonságimásolat-katalógus** csomópont toocomplete hello a következő feladatokat:
 
 * A kötet visszaállítása
 * Egy kötet vagy kötet klónozása
 * Biztonsági
 * A fájl helyreállításához
-* A Storsimple Snapshot Manager-adatbázis visszaállítása
+* Hello Storsimple Snapshot Manager adatbázisának visszaállítása
 
-A biztonságimásolat-katalógus kibontásával megtekintheti a **biztonságimásolat-katalógus** csomópontja a **hatókör** ablaktáblán, és a kötet csoport majd bővíteni.
+Hello kibontásával megtekintheti az hello biztonságimásolat-katalógus **biztonságimásolat-katalógus** hello csomópontja **hatókör** ablaktáblán, és majd a hello kötet csoport kiterjesztése.
 
-* Ha a kötet csoport nevére kattint a **eredmények** ablaktábla megjeleníti azokat a helyi pillanatképeket és felhőbeli pillanatképeket kötet csoport számát. 
-* Ha **helyi pillanatfelvétel** vagy **felhőalapú pillanatfelvétel**, a **eredmények** ablaktábla megjeleníti azokat a következő információkat minden egyes biztonsági mentési pillanatképet (attól függően a  **Megtekintése** beállítások):
+* Ha hello kötet csoportnév gombra kattint, hello **eredmények** ablaktábla megjeleníti azokat a helyi pillanatképeket és felhőbeli pillanatképeket hello kötet csoportra elérhető hello száma. 
+* Ha **helyi pillanatfelvétel** vagy **felhőalapú pillanatfelvétel**, hello **eredmények** ablaktáblán látható minden egyes biztonsági mentési pillanatképet kapcsolatos információkat a következő hello (attól függően, hogy a **Nézet** beállítások):
   
-  * **Név** – az idő során létrehozott pillanatképen.
+  * **Név** – hello idő hello pillanatkép készítése.
   * **Típus** – hogy ez-e a helyi pillanatfelvétel vagy egy felhőalapú pillanatfelvétel.
-  * **Tulajdonos** – a tartalom tulajdonosa. 
-  * **Rendelkezésre álló** – hogy jelenleg rendelkezésre áll a pillanatkép. **Igaz** jelzi, hogy a pillanatkép érhető el, és visszaállítása végezhető el; **Hamis** azt jelzi, hogy a pillanatkép nem érhető el. 
-  * **Importált** – hogy a biztonsági mentés lett importálva. **Igaz** azt jelzi, hogy a biztonsági mentés a StorSimple Device Manager szolgáltatásból importálta az eszköz konfigurálása a StorSimple Snapshot Manager; időpontjában **Hamis** azt jelzi, hogy nem lett importálva, de a StorSimple Snapshot Manager által lett létrehozva. (Egyszerűbb azonosítani egy importált kötet csoport egy utótagot ad hozzá, amely azonosítja az eszközt, amelyből a kötet csoport lett importálva, mert.)
+  * **Tulajdonos** – hello tartalom tulajdonosa. 
+  * **Rendelkezésre álló** – hello pillanatkép jelenleg elérhető-e. **Igaz** azt jelzi, hogy hello pillanatkép érhető el, és visszaállítása végezhető el; **Hamis** azt jelzi, hogy hello pillanatkép már nem érhető el. 
+  * **Importált** – hogy hello backup importálták. **Igaz** jelzi a biztonsági mentését végző hello importált hello StorSimple Device Manager hello idő hello eszközön szolgáltatás konfigurálása a StorSimple Snapshot Manager; **Hamis** azt jelzi, hogy nem lett importálva, de a StorSimple Snapshot Manager által lett létrehozva. (Egyszerűbb azonosítani egy importált kötet csoport egy utótagot ad hozzá, amely azonosítja a hello eszköz, amelyből hello kötet csoport lett importálva, mert.)
     
     ![Biztonságimásolat-katalógus](./media/storsimple-snapshot-manager-manage-backup-catalog/HCS_SSM_Backup_catalog.png)
-* Ha kibontja **helyi pillanatfelvétel** vagy **felhőalapú pillanatfelvétel**, az egyes pillanatkép nevét, majd kattintson a **eredmények** ablaktábla megjeleníti azokat a következő információkat a pillanatkép kijelölt:
+* Ha kibontja **helyi pillanatfelvétel** vagy **felhőalapú pillanatfelvétel**, majd kattintson az egyes pillanatfelvétel neve hello **eredmények** ablaktábla megjeleníti azokat a következő információ hello hello kiválasztott pillanatkép:
   
-  * **Név** – a kötet meghajtóbetűjellel azonosított. 
-  * **Helyi** – a meghajtó (ha elérhető) helyi nevét. 
-  * **Eszköz** – a név az eszköz, amelyen a köteten található. 
-  * **Rendelkezésre álló** – hogy jelenleg rendelkezésre áll a pillanatkép. **Igaz** jelzi, hogy a pillanatkép érhető el, és visszaállítása végezhető el; **Hamis** azt jelzi, hogy a pillanatkép nem érhető el. 
+  * **Név** – hello meghajtóbetűjellel azonosított kötetet. 
+  * **Helyi** – hello helyi név hello meghajtó (ha elérhető). 
+  * **Eszköz** – hello mely hello köteten található hello eszköz nevét. 
+  * **Rendelkezésre álló** – hello pillanatkép jelenleg elérhető-e. **Igaz** azt jelzi, hogy hello pillanatkép érhető el, és visszaállítása végezhető el; **Hamis** azt jelzi, hogy hello pillanatkép már nem érhető el. 
 
 ## <a name="restore-a-volume"></a>A kötet visszaállítása
-A következő eljárással egy kötetet biztonsági másolatból történő visszaállítását.
+Használja a következő eljárás toorestore egy kötetet a biztonsági másolatból hello.
 
 #### <a name="prerequisites"></a>Előfeltételek
-Ha még nem tette meg, hozzon létre egy kötet és a kötet csoport, és törölje a kötet. Alapértelmezés szerint a StorSimple Snapshot Manager biztonsági mentést készít egy kötet előtt, amely lehetővé teszi annak törölhető. A okokból előfordulhat, hogy az adatveszteség, ha a kötet véletlenül törölték, vagy ha az adatokat helyre kell állítani a bármilyen okból kell. 
+Ha még nem tette meg, hozzon létre egy kötet és a kötet csoport, és törölje a hello kötet. Alapértelmezés szerint a StorSimple Snapshot Manager biztonsági mentést készít egy kötet lehetővé tevő toobe törlése előtt. Ez okokból előfordulhat, hogy adatvesztés Ha hello kötetet véletlenül, vagy ha hello adatok helyreállítása bármilyen okból toobe. 
 
-StorSimple Snapshot Manager a következő üzenetet jeleníti meg, amikor létrehozza a megelőző biztonsági mentés.
+StorSimple Snapshot Manager hello amikor hello elővigyázatos biztonsági mentés létrehozza a következő üzenetet jeleníti meg.
 
 ![Automatikus pillanatkép üzenet](./media/storsimple-snapshot-manager-manage-backup-catalog/HCS_SSM_Automatic_snap.png) 
 
 > [!IMPORTANT]
-> A kötet olyan kötet csoport részét képező nem törölhető. A törlési beállítás nem érhető el. <br>
+> A kötet olyan kötet csoport részét képező nem törölhető. hello törlési beállítás nem érhető el. <br>
 > 
 > 
 
-#### <a name="to-restore-a-volume"></a>A kötet visszaállítása
-1. Kattintson az asztal ikonra kattintva indítsa el a StorSimple Snapshot Manager. 
-2. Az a **hatókör** ablaktáblában bontsa ki a **biztonságimásolat-katalógus** csomópontot, bontsa ki a kötet csoportot, és kattintson a **helyi pillanatképeket** vagy **felhőalapú pillanatfelvételek**. A biztonsági mentési pillanatképek listája jelenik meg a **eredmények** ablaktáblán.
-3. Keresse meg a biztonsági mentésből szeretné visszaállítani, kattintson a jobb gombbal, és kattintson **visszaállítása**.
+#### <a name="toorestore-a-volume"></a>a kötet toorestore
+1. Kattintson a hello asztali ikon toostart StorSimple Snapshot Manager. 
+2. A hello **hatókör** ablaktáblában bontsa ki a hello **biztonságimásolat-katalógus** csomópontot, bontsa ki a kötet csoportot, és kattintson a **helyi pillanatképeket** vagy **felhőalapú pillanatfelvételek**. A biztonsági mentési pillanatképek listája jelenik meg hello **eredmények** ablaktáblán.
+3. Megjeleníteni kívánt toorestore, kattintson a jobb gombbal, és kattintson a keresés hello biztonsági mentés **visszaállítása**.
    
     ![Állítsa vissza a biztonságimásolat-katalógus](./media/storsimple-snapshot-manager-manage-backup-catalog/HCS_SSM_Restore_BU_catalog.png) 
-4. A jóváhagyó lapon tekintse át a részletes adatait, típus **megerősítése**, és kattintson a **OK**. StorSimple Snapshot Manager a biztonsági másolat használatával állítsa vissza a kötetet.
+4. Írja be a hello megerősítése lapon tekintse át hello részleteit, **megerősítése**, és kattintson a **OK**. StorSimple Snapshot Manager hello biztonsági mentési toorestore hello kötetet használ.
    
     ![Állítsa vissza a jóváhagyást kérő üzenet](./media/storsimple-snapshot-manager-manage-backup-catalog/HCS_SSM_Restore_volume_msg.png) 
-5. Figyelheti a visszaállítási művelet futtatása közben. Az a **hatókör** ablaktáblában bontsa ki a **feladatok** csomópontra, majd **futtató**. A feladat részletei megjelennek a **eredmények** ablaktáblán. Ha a visszaállítási feladat befejeződött, a feladat adatai átkerülnek a **utolsó 24 óra** listája.
+5. Figyelheti hello visszaállítási művelet futtatása közben. A hello **hatókör** ablaktáblában bontsa ki a hello **feladatok** csomópontra, majd **futtató**. hello feladat részletei megjelennek a hello **eredmények** ablaktáblán. Ha hello visszaállítási feladat befejeződött, hello feladat részletei átvitt toohello **utolsó 24 óra** listája.
 
 ## <a name="clone-a-volume-or-volume-group"></a>Egy kötet vagy kötet klónozása
-A következő eljárással hozhat létre egy kötet vagy a kötet csoport duplikált (Klónozás).
+A következő eljárás toocreate duplikált (Klónozás) egy kötet vagy a kötet csoport hello használata.
 
-#### <a name="to-clone-a-volume-or-volume-group"></a>Egy kötet vagy kötet klónozása
-1. Kattintson az asztal ikonra kattintva indítsa el a StorSimple Snapshot Manager.
-2. Az a **hatókör** ablaktáblában bontsa ki a **biztonságimásolat-katalógus** csomópontot, bontsa ki a kötet csoportot, és kattintson a **felhőalapú pillanatfelvételek**. A biztonsági mentések listája jelenik meg a **eredmények** ablaktáblán.
-3. Keresse meg a kötet vagy klónozáshoz, kattintson a jobb gombbal a kötetre vagy a kötet csoport nevét, majd kattintson a kívánt kötet csoportot **Klónozás**. A **klón felhő pillanatkép** párbeszédpanel jelenik meg.
+#### <a name="tooclone-a-volume-or-volume-group"></a>a kötet tooclone vagy kötet csoport
+1. Kattintson a hello asztali ikon toostart StorSimple Snapshot Manager.
+2. A hello **hatókör** ablaktáblában bontsa ki a hello **biztonságimásolat-katalógus** csomópontot, bontsa ki a kötet csoportot, és kattintson a **felhőalapú pillanatfelvételek**. Biztonsági mentések listája jelenik meg a hello **eredmények** ablaktáblán.
+3. Hello kötet vagy a kötet csoport kívánja tooclone, kattintson a jobb gombbal hello kötet vagy kötet csoport nevét, és kattintson a található **Klónozás**. Hello **klón felhő pillanatkép** párbeszédpanel jelenik meg.
    
     ![Egy felhőalapú pillanatfelvétel klónozása](./media/storsimple-snapshot-manager-manage-backup-catalog/HCS_SSM_Clone.png) 
-4. Fejezze be a **klón felhő pillanatkép** párbeszédpanel az alábbiak szerint: 
+4. Teljes hello **klón felhő pillanatkép** párbeszédpanel az alábbiak szerint: 
    
-   1. Az a **neve** szövegmezőbe írja be a klónozott kötet nevét. Ez a név fog megjelenni a **kötetek** csomópont. 
-   2. (Nem kötelező) jelölje ki **meghajtó**, és a legördülő listából válassza ki egy meghajtóbetűjelet.
-   3. (Nem kötelező) jelölje ki **mappa (NTFS)**, és írja be a mappa elérési útját vagy kattintson a Tallózás gombra, és jelölje ki a mappa helyét. 
+   1. A hello **neve** szövegmezőbe írja be egy nevet a hello kötet klónozása. Ez a név fog megjelenni hello **kötetek** csomópont. 
+   2. (Nem kötelező) jelölje ki **meghajtó**, majd válassza ki a meghajtóbetűjel hello legördülő listából.
+   3. (Nem kötelező) jelölje ki **mappa (NTFS)**, és írja be a mappa elérési útját, vagy kattintson a Tallózás gombra és hello mappa helyének kiválasztására. 
    4. Kattintson a **Create** (Létrehozás) gombra.
-5. A Klónozási folyamat befejezésekor inicializálnia kell a klónozott kötet. Indítsa el a Kiszolgálókezelőt, és indítsa el a Lemezkezelés eszközben. Részletes útmutatásért lásd: [csatlakoztassa köteteket](storsimple-snapshot-manager-manage-volumes.md#mount-volumes). Az inicializált, miután a kötet alatt jelenik meg a **kötetek** csomópontja a **hatókör** ablaktáblán. Ha nem látja a kötet felsorolt, a kötetek listájának frissítése (kattintson a jobb gombbal a **kötetek** csomópontra, majd **frissítése**).
+5. Hello a Klónozási folyamat befejezésekor inicializálnia kell a klónozott hello kötet. Indítsa el a Kiszolgálókezelőt, és indítsa el a Lemezkezelés eszközben. Részletes útmutatásért lásd: [csatlakoztassa köteteket](storsimple-snapshot-manager-manage-volumes.md#mount-volumes). Inicializált, miután hello kötet alatt jelenik meg hello **kötetek** hello csomópontja **hatókör** ablaktáblán. Ha nem látja a felsorolt hello kötetet, kötetek hello listájának frissítése (kattintson a jobb gombbal hello **kötetek** csomópontra, majd **frissítése**).
 
 ## <a name="delete-a-backup"></a>Biztonsági
-A következő eljárással pillanatkép törlése a biztonságimásolat-katalógusból. 
+Használja a következő eljárás toodelete pillanatkép hello biztonsági mentési katalógusból hello. 
 
 > [!NOTE]
-> A pillanatképek törlésével törli a pillanatkép társított a biztonsági másolatban szereplő adatokkal. Azonban törli az adatokat a felhőből az a folyamat eltarthat egy ideig.<br>
+> A pillanatképek törlésével törli a biztonsági másolat hello pillanatkép társított hello. Azonban a hello folyamata hello felhőből adatok törlése eltarthat egy ideig.<br>
 
 
-#### <a name="to-delete-a-backup"></a>Biztonsági
-1. Kattintson az asztal ikonra kattintva indítsa el a StorSimple Snapshot Manager.
-2. Az a **hatókör** ablaktáblában bontsa ki a **biztonságimásolat-katalógus** csomópontot, bontsa ki a kötet csoportot, és kattintson a **helyi pillanatképeket** vagy **felhőalapú pillanatfelvételek**. A pillanatképek listája jelenik meg a **eredmények** ablaktáblán.
-3. Kattintson a jobb gombbal a pillanatkép törlése, és kattintson a kívánt **törlése**.
-4. A jóváhagyást kérő üzenet megjelenésekor kattintson **OK**.
+#### <a name="toodelete-a-backup"></a>a biztonsági mentés toodelete
+1. Kattintson a hello asztali ikon toostart StorSimple Snapshot Manager.
+2. A hello **hatókör** ablaktáblában bontsa ki a hello **biztonságimásolat-katalógus** csomópontot, bontsa ki a kötet csoportot, és kattintson a **helyi pillanatképeket** vagy **felhőalapú pillanatfelvételek**. Pillanatképek listája jelenik meg a hello **eredmények** ablaktáblán.
+3. Kattintson a jobb gombbal hello pillanatkép toodelete szeretne, és kattintson a **törlése**.
+4. Hello jóváhagyást kérő üzenet megjelenésekor kattintson **OK**.
 
 ## <a name="recover-a-file"></a>A fájl helyreállításához
-Ha egy fájl véletlenül törli a kötetről, helyreállíthatja a fájl beolvasása, amely a törlés előtti dátumokat pillanatkép, a pillanatkép használatával klónozhatja a kötet, és majd a fájl másolása a klónozott kötetről, az eredeti köteten.
+Ha egy kötet véletlenül töröl egy fájlt, helyreállíthatja hello fájl lekérésével olyan pillanatképet, amely előre dátumok hello törlés használatával hello pillanatkép toocreate hello kötet másolat, és majd a hello fájl másolása hello klónozott kötet toohello eredeti kötet.
 
 #### <a name="prerequisites"></a>Előfeltételek
-Mielőtt elkezdené, győződjön meg arról, hogy rendelkezik-e a kötet csoport aktuális biztonsági másolata. Törölje az egyik kötet csoport köteten tárolt fájl. Végezetül a következő lépésekkel visszaállítani a törölt fájlt a biztonsági mentésből. 
+Mielőtt elkezdené, győződjön meg arról, hogy rendelkezik-e hello kötet csoport aktuális biztonsági másolata. Ezt követően hello köteteket a kötet csoport egyik tárolt fájlok törléséhez. Végezetül a következő lépéseket toorestore hello használata hello fájl törölve a biztonsági mentésből. 
 
-#### <a name="to-recover-a-deleted-file"></a>A törölt fájl helyreállításához
-1. Kattintson a StorSimple Snapshot Manager ikonra az asztalon. A StorSimple Snapshot Manager console ablakban jelenik meg. 
-2. Az a **hatókör** ablaktáblában bontsa ki a **biztonságimásolat-katalógus** csomópont, és keresse meg a törölt fájlt tartalmazó pillanatképet. Ki kell jelölni általában csak a törlés előtt készült pillanatképet.
-3. A kötet, amelyet a klón található kattintson a jobb gombbal, majd kattintson **Klónozás**. A **klón felhő pillanatkép** párbeszédpanel jelenik meg.
+#### <a name="toorecover-a-deleted-file"></a>a törölt fájl toorecover
+1. Kattintson a hello StorSimple Snapshot Manager ikonra az asztalon. hello StorSimple Snapshot Manager console ablakban jelenik meg. 
+2. A hello **hatókör** ablaktáblában bontsa ki a hello **biztonságimásolat-katalógus** csomópontot és tallózási tooa pillanatkép törlése hello fájlt tartalmazó. Ki kell jelölni általában hello törlése előtt készült pillanatképet.
+3. Megjeleníteni kívánt tooclone, kattintson a jobb gombbal, majd kattintson a keresés hello kötet **Klónozás**. Hello **klón felhő pillanatkép** párbeszédpanel jelenik meg.
    
     ![Egy felhőalapú pillanatfelvétel klónozása](./media/storsimple-snapshot-manager-manage-backup-catalog/HCS_SSM_Clone.png) 
-4. Fejezze be a **klón felhő pillanatkép** párbeszédpanel az alábbiak szerint: 
+4. Teljes hello **klón felhő pillanatkép** párbeszédpanel az alábbiak szerint: 
    
-   1. Az a **neve** szövegmezőbe írja be a klónozott kötet nevét. Ez a név fog megjelenni a **kötetek** csomópont. 
-   2. (Választható) Válassza ki **meghajtó**, és a legördülő listából válassza ki egy meghajtóbetűjelet. 
-   3. (Választható) Válassza ki **mappa (NTFS)**, és írja be a mappa elérési útját, vagy kattintson a **Tallózás** és a mappa helyének kiválasztására. 
+   1. A hello **neve** szövegmezőbe írja be egy nevet a hello kötet klónozása. Ez a név fog megjelenni hello **kötetek** csomópont. 
+   2. (Választható) Válassza ki **meghajtó**, majd válassza ki a meghajtóbetűjel hello legördülő listából. 
+   3. (Választható) Válassza ki **mappa (NTFS)**, és írja be a mappa elérési útját, vagy kattintson a **Tallózás** és hello mappa helyének kiválasztására. 
    4. Kattintson a **Create** (Létrehozás) gombra. 
-5. A Klónozási folyamat befejezésekor inicializálnia kell a klónozott kötet. Indítsa el a Kiszolgálókezelőt, és indítsa el a Lemezkezelés eszközben. Részletes útmutatásért lásd: [csatlakoztassa köteteket](storsimple-snapshot-manager-manage-volumes.md#mount-volumes). Az inicializált, miután a kötet alatt jelenik meg a **kötetek** csomópontja a **hatókör** ablaktáblán. 
+5. Hello a Klónozási folyamat befejezésekor inicializálnia kell a klónozott hello kötet. Indítsa el a Kiszolgálókezelőt, és indítsa el a Lemezkezelés eszközben. Részletes útmutatásért lásd: [csatlakoztassa köteteket](storsimple-snapshot-manager-manage-volumes.md#mount-volumes). Inicializált, miután hello kötet alatt jelenik meg hello **kötetek** hello csomópontja **hatókör** ablaktáblán. 
    
-    Ha nem látja a kötet felsorolt, a kötetek listájának frissítése (kattintson a jobb gombbal a **kötetek** csomópontra, majd **frissítése**).
-6. Nyissa meg a klónozott kötetet tartalmazó NTFS-mappába, és bontsa ki a **kötetek** csomópont, és nyissa meg a klónozott kötet. Keresse meg a helyreállítani kívánt fájlt, és másolja az elsődleges köteten.
-7. A fájl visszaállítása után törölheti a klónozott kötetet tartalmazó NTFS-mappába.
+    Ha nem látja a felsorolt hello kötetet, kötetek hello listájának frissítése (kattintson a jobb gombbal hello **kötetek** csomópontra, majd **frissítése**).
+6. Klónozott hello kötetet tartalmazó megnyitott hello NTFS-mappába bontsa ki a hello **kötetek** csomópontját, és klónozták, majd nyissa meg hello kötet. Szeretné, hogy toorecover, és másolja toohello elsődleges kötet hello fájl található.
+7. Hello fájl visszaállítása után törölheti a klónozott hello kötetet tartalmazó hello NTFS-mappába.
 
-## <a name="restore-the-storsimple-snapshot-manager-database"></a>A StorSimple Snapshot Manager-adatbázis visszaállítása
-Rendszeresen készítsen biztonsági másolatot a StorSimple Snapshot Manager-adatbázis az állomáson. Ha katasztrófa történik, vagy a számítógép bármilyen okból nem sikerül, majd visszaállíthatja a biztonsági mentésből. Az adatbázis biztonsági másolatot készít az egy manuális folyamat.
+## <a name="restore-hello-storsimple-snapshot-manager-database"></a>Hello StorSimple Snapshot Manager adatbázisának visszaállítása
+Rendszeresen készítsen biztonsági másolatot hello StorSimple Snapshot Manager adatbázis hello állomáson. Ha katasztrófa történik, vagy hello gazdaszámítógépen bármilyen okból nem sikerül, majd visszaállíthatja hello biztonsági másolatból. Létrehozás hello az adatbázis biztonsági mentése egy kézi művelet.
 
-#### <a name="to-back-up-and-restore-the-database"></a>Készítsen biztonsági másolatot, és állítsa vissza az adatbázist
-1. A Microsoft a StorSimple szolgáltatás leállításához:
+#### <a name="tooback-up-and-restore-hello-database"></a>tooback mentése és visszaállítása hello adatbázis
+1. Állítsa le a Microsoft a StorSimple szolgáltatás hello:
    
    1. Indítsa el a Kiszolgálókezelőt.
-   2. A Kiszolgálókezelő irányítópultján a a **eszközök** menü **szolgáltatások**.
-   3. Az a **szolgáltatások** ablakban válassza ki a **Microsoft StorSimple szolgáltatás**.
-   4. A jobb oldali ablaktáblában a **Microsoft StorSimple szolgáltatás**, kattintson a **állítsa le a szolgáltatást**.
-2. Az állomáson tallózással C:\ProgramData\Microsoft\StorSimple\BACatalog. 
+   2. Hello Kiszolgálókezelő irányítópulton hello **eszközök** menü **szolgáltatások**.
+   3. A hello **szolgáltatások** ablakban, a select hello **Microsoft StorSimple szolgáltatás**.
+   4. Hello a jobb oldali ablaktáblán, a **Microsoft StorSimple szolgáltatás**, kattintson a **hello szolgáltatás leállítása**.
+2. Hello állomáson tooC:\ProgramData\Microsoft\StorSimple\BACatalog tallózása 
    
    > [!NOTE]
    > ProgramData mappa rejtett.
    > 
    > 
-3. A katalógus XML-fájl található, másolja a fájlt, és a példány tárolja biztonságos helyen, vagy a felhőben. Ha a gazdagép meghibásodik, a biztonságimásolat-fájl segítségével létrehozott StorSimple Snapshot Manager biztonsági mentési házirend helyreállítását.
+3. Egy biztonságos helyre, vagy hello felhőben hello katalógus XML-fájl, hello fájl másolása és tároló hello példány keresése. Ha hello gazdagép meghibásodik, a biztonságimásolat-fájl toohelp helyreállítás hello biztonsági mentési házirendek létrehozott StorSimple Snapshot Manager is használhatja.
    
     ![Az Azure StorSimple biztonsági mentési katalógusfájl](./media/storsimple-snapshot-manager-manage-backup-catalog/HCS_SSM_bacatalog.png)
-4. Indítsa újra a Microsoft a StorSimple szolgáltatás: 
+4. Indítsa újra a Microsoft a StorSimple szolgáltatás hello: 
    
-   1. A Kiszolgálókezelő irányítópultján a a **eszközök** menü **szolgáltatások**.
-   2. Az a **szolgáltatások** ablakban válassza ki a **Microsoft StorSimple szolgáltatás**.
-   3. A jobb oldali ablaktáblában a **Microsoft StorSimple szolgáltatás**, kattintson a **indítsa újra a szolgáltatást**.
-5. Az állomáson tallózással C:\ProgramData\Microsoft\StorSimple\BACatalog. 
-6. Törölje a katalógus XML-fájlt, és cserélje le a biztonsági másolatot, amelyet létrehozott. 
-7. Kattintson a start StorSimple Snapshot Manager asztali StorSimple Snapshot Manager ikonra. 
+   1. Hello Kiszolgálókezelő irányítópulton hello **eszközök** menü **szolgáltatások**.
+   2. A hello **szolgáltatások** ablakban, a select hello **Microsoft StorSimple szolgáltatás**.
+   3. Hello a jobb oldali ablaktáblán, a **Microsoft StorSimple szolgáltatás**, kattintson a **hello szolgáltatás újraindítása**.
+5. Hello állomáson tooC:\ProgramData\Microsoft\StorSimple\BACatalog tallózása 
+6. Törölje a hello katalógus XML-fájlt, és cserélje le azt a létrehozott hello biztonsági másolatot. 
+7. Kattintson a hello asztali StorSimple Snapshot Manager ikon toostart StorSimple Snapshot Manager. 
 
 ## <a name="next-steps"></a>Következő lépések
-* További információ [StorSimple Snapshot Manager segítségével felügyelheti a StorSimple megoldásban](storsimple-snapshot-manager-admin.md).
+* További információ [használatával StorSimple Snapshot Manager tooadminister a StorSimple megoldásban](storsimple-snapshot-manager-admin.md).
 * További információ [StorSimple Snapshot Manager feladatok és a munkafolyamatok](storsimple-snapshot-manager-admin.md#storsimple-snapshot-manager-tasks-and-workflows).
 

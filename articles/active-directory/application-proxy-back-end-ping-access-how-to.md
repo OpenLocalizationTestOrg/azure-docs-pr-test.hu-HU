@@ -1,6 +1,6 @@
 ---
-title: "Az alkalmazásproxy alkalmazás PingAccess konfigurálása |} Microsoft Docs"
-description: "Ismerje meg, hogyan jogosíthatja alkalmazásproxy fejléc-alapú hitelesítést használó alkalmazások PingAccess segítségével"
+title: "Az alkalmazásproxy alkalmazás toouse PingAccess aaaHow tooconfigure |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse PingAccess tooextend hello fejléc-alapú hitelesítést használó alkalmazás Proxy tooapplications előnyei"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,19 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: a9da67373465cebbdbecae5c8fb8bd0a0ee3c171
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fa4c9747b7bf5a135425be270e4f7eadf95248fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-an-application-proxy-application-to-use-pingaccess"></a>Az alkalmazásproxy alkalmazás PingAccess konfigurálása
+# <a name="how-tooconfigure-an-application-proxy-application-toouse-pingaccess"></a>Hogyan tooconfigure az alkalmazásproxy alkalmazás toouse PingAccess
 
-Az együttműködés most a PingAccess jogosíthatja alkalmazásproxy fejléc-alapú hitelesítést használó alkalmazások teszi lehetővé. Ha az alkalmazások nem a fejlécek, tekintse meg a [egyszeri bejelentkezés dokumentáció](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-sso-using-kcd) egyéb beállítások leírását.
+A együttműködve PingAccess mostantól lehetővé teszi tooextend hello előnyei alkalmazásproxy tooapplications fejléc-alapú hitelesítéssel. Ha az alkalmazások nem a fejlécek, tekintse meg a [egyszeri bejelentkezés dokumentáció](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-sso-using-kcd) egyéb beállítások leírását.
 
 ## <a name="overview-of-steps-and-recommended-documents"></a>A lépéseket és a javasolt dokumentumok áttekintése
 
-Az alkalmazás konfigurálása PingAccess, négy lépésben történik:
+tooconfigure PingAccess, az alkalmazás négy lépésben történik:
 
 1.  Konfigurálja az Application Proxy összekötőket
 

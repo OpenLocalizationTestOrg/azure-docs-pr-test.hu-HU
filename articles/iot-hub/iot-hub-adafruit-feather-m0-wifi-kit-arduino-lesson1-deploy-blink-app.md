@@ -1,6 +1,6 @@
 ---
-title: "Csatlakozzon az Azure IoT - 1. lecke Arduino: alkalmazás üzembe helyezése |} Microsoft Docs"
-description: "Klónozza a mintaalkalmazást Arduino a Githubból, és futtassa ezt az alkalmazást a Adafruit lágyított M0 Wi-Fi telepítendő gulp. A mintaalkalmazás villogjon-e a GPIO"
+title: "Csatlakozás Arduino tooAzure IoT - lecke 1: alkalmazás üzembe helyezése |} Microsoft Docs"
+description: "Klónozza Arduino mintaalkalmazás hello a Githubból, és futtassa a gulp toodeploy az alkalmazás tooyour Adafruit lágyított M0 Wi-Fi. A mintaalkalmazás villogjon hello GPIO"
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,36 +17,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 4431808ac6182d194e841c087c8f89f1a12b1911
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5bf8e4ae88e070aeacf34bfc43b8d2daeeb1a2fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-deploy-the-blink-application"></a>A villogóalkalmazás elkészítése és üzembe helyezése
+# <a name="create-and-deploy-hello-blink-application"></a>Hello villogási alkalmazás létrehozását és telepítését
 ## <a name="what-you-will-do"></a>Mit fog
-Klónozza a mintaalkalmazást Arduino a Githubból, és a Adafruit lágyított M0 Wi-Fi Arduino táblán a mintaalkalmazás telepítése a gulp eszközzel. A minta alkalmazás villogás a GPIO #13 a-barod két másodpercenként vezetett.
+Klónozza Arduino mintaalkalmazás hello a Githubból, és hello gulp eszköz toodeploy hello minta alkalmazás tooyour Adafruit lágyított M0 Wi-Fi Arduino tábla használatával. hello minta alkalmazás villogás hello barod GPIO #13 két másodpercenként vezetett.
 
-Ha bármilyen problémába ütközik, tekintse meg a megoldások a [oldal hibaelhárítási][troubleshooting-page].
+Ha bármilyen problémába ütközik, keressen megoldásokat a hello [oldal hibaelhárítási][troubleshooting-page].
 
 ## <a name="what-you-will-learn"></a>Amiről tanulni fog
-* Hogyan telepítheti, és futtassa a mintaalkalmazást a Arduino táblán.
+* Hogyan toodeploy és futtatási hello mintaalkalmazást a Arduino táblán.
 
 ## <a name="what-you-need"></a>Mi szükséges
-Sikeresen végrehajtotta a következő műveleteket:
+Sikeresen végrehajtotta a következő műveletek hello:
 
 * [Állítsa be az eszközt][configure-your-device]
-* [Eszközök][get-the-tools]
+* [Hello eszközök beszerzése][get-the-tools]
 
-## <a name="open-the-sample-application"></a>Nyissa meg a mintaalkalmazás
-A mintaalkalmazás megnyitásához kövesse az alábbi lépéseket:
+## <a name="open-hello-sample-application"></a>Nyissa meg hello mintaalkalmazás
+tooopen hello mintaalkalmazást, kövesse az alábbi lépéseket:
 
-1. A Githubból a minta-tárház klónozása a következő parancs futtatásával:
+1. A Githubból hello minta tárház klónozása hello a következő parancs futtatásával:
 
    ```bash
    git clone https://github.com/Azure-Samples/iot-hub-c-feather-m0-getting-started.git
    ```
-2. Nyissa meg a Visual Studio Code a mintaalkalmazást a következő parancsok futtatásával:
+2. Nyissa meg a Visual Studio Code hello mintaalkalmazás hello a következő parancsok futtatásával:
 
    ```bash
    cd iot-hub-c-feather-m0-getting-started
@@ -56,27 +56,27 @@ A mintaalkalmazás megnyitásához kövesse az alábbi lépéseket:
 
    ![Tárház szerkezete][repo-structure]
 
-A `app.ino` fájlt a `app` almappa is szabályozhatja a LED kódot tartalmazó kulcs forrásfájl.
+Hello `app.ino` hello fájlban `app` almappa is hello kód toocontrol hello LED tartalmazó hello kulcs forrásfájl.
 
 ### <a name="install-application-dependencies"></a>Telepítse az alkalmazásfüggőségek
-A szalagtárak és egyéb modulok a következő parancs futtatásával kell a mintaalkalmazás telepítése:
+Hello szalagtárak és más modulok hello a következő parancs futtatásával kell hello mintaalkalmazás telepítése:
 
 ```bash
 npm install
 ```
 
-## <a name="configure-the-device-connection"></a>Az eszköz kapcsolat konfigurálása
-Az eszköz kapcsolat konfigurálásához kövesse az alábbi lépéseket:
+## <a name="configure-hello-device-connection"></a>Hello eszköz kapcsolat konfigurálása
+tooconfigure hello eszköz kapcsolat, kövesse az alábbi lépéseket:
 
-1. A soros port az eszköz az eszköz-felderítési cli az beszerzése:
+1. Hello soros port hello eszköz hello eszköz felderítési cli az beszerzése:
 
    ```bash
    devdisco list --usb
    ```
 
-   Kell egy a következőhöz hasonló kimenetnek és keresése a usb COM-portot a Arduino board: ![eszköz felderítése][device-discovery]
+   Kell egy hasonló toohello következő kimenetnek és található hello usb COM-portot a Arduino board: ![eszköz felderítése][device-discovery]
 
-2. Nyissa meg a fájlt `config.json` a lecke mappában, és adja hozzá az érték a tényleges COM-port száma:
+2. Nyissa meg hello fájl `config.json` a hello lecke mappa, és adja hozzá a COM-port száma található hello hello értékét:
 
    ```json
    {
@@ -85,45 +85,45 @@ Az eszköz kapcsolat konfigurálásához kövesse az alábbi lépéseket:
    ```
    ![Config.JSON][config-json]
    > [!NOTE]
-   > A COM-port, a Windows platformra, formátuma rendelkezik `COM1, COM2, ...`. MacOS vagy Ubuntu, kezdődik `/dev/`.
+   > Hello COM-porthoz, a Windows platformra, hello formátuma rendelkezik `COM1, COM2, ...`. MacOS vagy Ubuntu, kezdődik `/dev/`.
 
-## <a name="deploy-and-run-the-sample-application"></a>Regisztrálhat és futtathat a mintaalkalmazás
-### <a name="install-the-required-tools-for-your-arduino-board"></a>A szükséges telepíti a Arduino kártya
+## <a name="deploy-and-run-hello-sample-application"></a>Regisztrálhat és futtathat hello mintaalkalmazás
+### <a name="install-hello-required-tools-for-your-arduino-board"></a>A Arduino kártya szükséges hello eszközök telepítése
 
-Az Azure IoT Hub SDK a Arduino kártya telepítése a következő parancs futtatásával:
+Hello Azure IoT Hub SDK a Arduino kártya telepítése hello a következő parancs futtatásával:
 
 ```bash
 gulp install-tools
 ```
 
-Ez a feladat befejeződik, attól függően, hogy a hálózati kapcsolat hosszú időbe telhet.
+Ez a feladat egy hosszú ideig toocomplete, attól függően, hogy a hálózati kapcsolatot is igénybe vehet.
 
 > [!NOTE]
-> Lépjen ki a futó Arduino IDE-példány, gulp feladatok futtatásakor: `install-tools`, `run`.
+> Lépjen ki a Arduino IDE-példányt futtató gulp feladatok futtatásakor hello: `install-tools`, `run`.
 
-### <a name="deploy-and-run-the-sample-app"></a>Központi telepítése és a mintaalkalmazás futtatása
-Telepíthet, és futtassa a mintaalkalmazást a következő parancs futtatásával:
+### <a name="deploy-and-run-hello-sample-app"></a>Regisztrálhat és futtathat hello mintaalkalmazás
+Telepíthet, és futtassa a hello mintaalkalmazást hello a következő parancs futtatásával:
 
 ```bash
 gulp run
 
-# You can monitor the serial port by running listen task:
+# You can monitor hello serial port by running listen task:
 gulp listen
 
 # Or you can combine above two gulp tasks into one:
 gulp run --listen
 ```
 
-### <a name="verify-the-app-works"></a>Ellenőrizze az alkalmazás akkor működik
-Ha nem látja a LED villogó, tekintse meg a [hibaelhárítási útmutatója] [ troubleshooting-page] gyakori problémák megoldásainak.
+### <a name="verify-hello-app-works"></a>Ellenőrizze a hello az alkalmazás akkor működik
+Ha nem lát hello LED villogó, lásd: hello [hibaelhárítási útmutatója] [ troubleshooting-page] a megoldások toocommon problémákat.
 
 ![LED villogó][led-blinking]
 
 ## <a name="summary"></a>Összefoglalás
-A Arduino board használható szükséges eszközök telepítése és a LED villogni fog a Arduino kártyához mintaalkalmazás telepítése. Most hozzon létre, telepítheti, és futtassa egy másik olyan mintaalkalmazást, amely összeköti a Arduino board Azure IoT Hub az üzeneteket küldjön és fogadjon.
+Hello szükséges eszközök toowork telepítése a Arduino üzenőfalon, és telepített egy minta alkalmazás tooyour Arduino board tooblink hello LED-jét. Most hozzon létre, telepítheti, és futtassa egy másik olyan mintaalkalmazást, amely összeköti a Arduino board tooAzure IoT-központ toosend és üzeneteket fogadni.
 
 ## <a name="next-steps"></a>Következő lépések
-[Az Azure eszközök][get-the-azure-tools]
+[Első hello Azure-eszközök][get-the-azure-tools]
 
 <!-- Images and links -->
 
