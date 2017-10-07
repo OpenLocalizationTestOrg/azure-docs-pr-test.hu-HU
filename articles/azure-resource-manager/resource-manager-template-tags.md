@@ -1,6 +1,6 @@
 ---
-title: "Azure-erőforrások címke sablonban |} Microsoft Docs"
-description: "Bemutatja, hogyan címkékkel erőforrások az Azure Resource Manager-sablonok"
+title: "aaaTag Azure sablon források |} Microsoft Docs"
+description: "Bemutatja, hogyan tooapply címkét egy Azure Resource Manager sablon tooresources"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/20/2017
 ms.author: tomfitz
-ms.openlocfilehash: adc10ade79af3087a8b24ea5b6709182cb1edb92
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9e07837a4ca3ceffc9da3443e9390c95562eda99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tag-resources-in-azure-resource-manager-templates"></a><span data-ttu-id="85c22-103">Az Azure Resource Manager sablonokban címke erőforrások</span><span class="sxs-lookup"><span data-stu-id="85c22-103">Tag resources in Azure Resource Manager templates</span></span>
+# <a name="tag-resources-in-azure-resource-manager-templates"></a><span data-ttu-id="be422-103">Az Azure Resource Manager sablonokban címke erőforrások</span><span class="sxs-lookup"><span data-stu-id="be422-103">Tag resources in Azure Resource Manager templates</span></span>
 [!INCLUDE [resource-manager-tag-introduction](../../includes/resource-manager-tag-introduction.md)]
 
-## <a name="add-tags-to-your-template"></a><span data-ttu-id="85c22-104">Címkék hozzáadása a sablon</span><span class="sxs-lookup"><span data-stu-id="85c22-104">Add tags to your template</span></span>
+## <a name="add-tags-tooyour-template"></a><span data-ttu-id="be422-104">Címkék tooyour sablon hozzáadása</span><span class="sxs-lookup"><span data-stu-id="be422-104">Add tags tooyour template</span></span>
 
 [!INCLUDE [resource-manager-tags-in-templates](../../includes/resource-manager-tags-in-templates.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="85c22-105">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="85c22-105">Next steps</span></span>
-* <span data-ttu-id="85c22-106">Címkék kezelésével kapcsolatos információkért lásd: [címkék használata az Azure-erőforrások rendszerezéséhez](resource-group-using-tags.md).</span><span class="sxs-lookup"><span data-stu-id="85c22-106">For information about managing tags, see [Use tags to organize your Azure resources](resource-group-using-tags.md).</span></span>
-* <span data-ttu-id="85c22-107">Nagyvállalatoknak az [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Azure nagyvállalati struktúra - előíró előfizetés-irányítás) című cikk nyújt útmutatást az előfizetéseknek a Resource Managerrel való hatékony kezeléséről.</span><span class="sxs-lookup"><span data-stu-id="85c22-107">For guidance on how enterprises can use Resource Manager to effectively manage subscriptions, see [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="be422-105">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="be422-105">Next steps</span></span>
+* <span data-ttu-id="be422-106">Címkék kezelésével kapcsolatos információkért lásd: [címkéket tooorganize az Azure-erőforrások használata](resource-group-using-tags.md).</span><span class="sxs-lookup"><span data-stu-id="be422-106">For information about managing tags, see [Use tags tooorganize your Azure resources](resource-group-using-tags.md).</span></span>
+* <span data-ttu-id="be422-107">A vállalatok használatát erőforrás-kezelő tooeffectively segítségükkel előfizetések kezelése című [Azure enterprise scaffold - előíró előfizetés irányítás](resource-manager-subscription-governance.md).</span><span class="sxs-lookup"><span data-stu-id="be422-107">For guidance on how enterprises can use Resource Manager tooeffectively manage subscriptions, see [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md).</span></span>
 

@@ -1,6 +1,6 @@
 ---
-title: Windows Phone Silverlight SDK tartalma
-description: "További tudnivalók a Windows Phone Silverlight SDK tartalmát az Azure Mobile Engagement"
+title: aaaWindows Phone Silverlight SDK tartalma
+description: "Az Azure Mobile Engagement Windows Phone Silverlight SDK hello hello tartalmát megismerése"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: ce323880100706accf0c08c9929d20908c6198cb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c39247383d65200493d028a80d444a6e96a697cd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="windows-phone-silverlight-sdk-content"></a><span data-ttu-id="8dcf6-103">Windows Phone Silverlight SDK tartalma</span><span class="sxs-lookup"><span data-stu-id="8dcf6-103">Windows Phone Silverlight SDK content</span></span>
-<span data-ttu-id="8dcf6-104">Ez a dokumentum, és ismerteti az SDK-t az alkalmazás által központilag telepített tartalom.</span><span class="sxs-lookup"><span data-stu-id="8dcf6-104">This document lists and describes the content deployed by the SDK in your application.</span></span>
+# <a name="windows-phone-silverlight-sdk-content"></a><span data-ttu-id="b8609-103">Windows Phone Silverlight SDK tartalma</span><span class="sxs-lookup"><span data-stu-id="b8609-103">Windows Phone Silverlight SDK content</span></span>
+<span data-ttu-id="b8609-104">Ez a dokumentum, és hello SDK az alkalmazás által telepített hello tartalom ismerteti.</span><span class="sxs-lookup"><span data-stu-id="b8609-104">This document lists and describes hello content deployed by hello SDK in your application.</span></span>
 
-## <a name="the-resources-folder"></a><span data-ttu-id="8dcf6-105">A `/Resources` mappa</span><span class="sxs-lookup"><span data-stu-id="8dcf6-105">The `/Resources` folder</span></span>
-<span data-ttu-id="8dcf6-106">Ez a mappa tartalmaz, amelyet a Mobile Engagement összes erőforrást.</span><span class="sxs-lookup"><span data-stu-id="8dcf6-106">This folder contains all the resources that Mobile Engagement needs.</span></span> <span data-ttu-id="8dcf6-107">Testre is szabhatja azokat az alkalmazás megfelelően.</span><span class="sxs-lookup"><span data-stu-id="8dcf6-107">You can also customize them to fit your app.</span></span>
+## <a name="hello-resources-folder"></a><span data-ttu-id="b8609-105">Hello `/Resources` mappa</span><span class="sxs-lookup"><span data-stu-id="b8609-105">hello `/Resources` folder</span></span>
+<span data-ttu-id="b8609-106">Ez a mappa összes hello erőforrás, amelyet a Mobile Engagement tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="b8609-106">This folder contains all hello resources that Mobile Engagement needs.</span></span> <span data-ttu-id="b8609-107">Testre is szabhatja azokat toofit az alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="b8609-107">You can also customize them toofit your app.</span></span>
 
-* <span data-ttu-id="8dcf6-108">`EngagementIconNotification.png`: A márka ikonra a bal oldali, egy értesítés jelenik meg helyette a márka ikon jelzi.</span><span class="sxs-lookup"><span data-stu-id="8dcf6-108">`EngagementIconNotification.png` : The brand icon displayed at the left of a notification, replace this one by your brand icon.</span></span>
-* <span data-ttu-id="8dcf6-109">`EngagementIconOk.png`: A reach az "Ok" ikont lapok ApplicationBar.</span><span class="sxs-lookup"><span data-stu-id="8dcf6-109">`EngagementIconOk.png` : The "Ok" icon of the reach pages ApplicationBar.</span></span>
-* <span data-ttu-id="8dcf6-110">`EngagementIconCancel.png`: A reach ikonjára a "Mégse" lapok ApplicationBar.</span><span class="sxs-lookup"><span data-stu-id="8dcf6-110">`EngagementIconCancel.png` : The "Cancel" icon of the reach pages ApplicationBar.</span></span>
-* <span data-ttu-id="8dcf6-111">`EngagementIconCloseLight.png`: A Mobile Engagement reach értesítést a Windows Phone a "Bezárás" ikonra világos témát.</span><span class="sxs-lookup"><span data-stu-id="8dcf6-111">`EngagementIconCloseLight.png` : The "Close" icon of the Mobile Engagement's reach notification for the Windows Phone light theme.</span></span>
-* <span data-ttu-id="8dcf6-112">`EngagementIconCloseDark.png`: A "Bezárás" ikonjára a Mobile Engagement Windows Phone sötét téma értesítési elérni.</span><span class="sxs-lookup"><span data-stu-id="8dcf6-112">`EngagementIconCloseDark.png` : The "Close" icon of the Mobile Engagement's reach notification for the Windows Phone dark theme.</span></span>
-* <span data-ttu-id="8dcf6-113">`EngagementConfiguration.xml`: A Mobile Engagement konfigurációs fájlt, ahol Engagement-beállítások szabhatók testre azt (Engagement kapcsolati karakterláncot, a jelentés összeomlik stb).</span><span class="sxs-lookup"><span data-stu-id="8dcf6-113">`EngagementConfiguration.xml` : The Mobile Engagement's configuration file, this is where you can customize Engagement settings (Engagement connection string, report crashes etc).</span></span>
+* <span data-ttu-id="b8609-108">`EngagementIconNotification.png`: hello márka ikon hello megjelenik egy értesítés bal oldali, helyette a márka ikon jelzi.</span><span class="sxs-lookup"><span data-stu-id="b8609-108">`EngagementIconNotification.png` : hello brand icon displayed at hello left of a notification, replace this one by your brand icon.</span></span>
+* <span data-ttu-id="b8609-109">`EngagementIconOk.png`: hello "Ok" ikonra a hello lapok ApplicationBar elérni.</span><span class="sxs-lookup"><span data-stu-id="b8609-109">`EngagementIconOk.png` : hello "Ok" icon of hello reach pages ApplicationBar.</span></span>
+* <span data-ttu-id="b8609-110">`EngagementIconCancel.png`: hello a "Mégse" ikonra elérni hello lapok ApplicationBar.</span><span class="sxs-lookup"><span data-stu-id="b8609-110">`EngagementIconCancel.png` : hello "Cancel" icon of hello reach pages ApplicationBar.</span></span>
+* <span data-ttu-id="b8609-111">`EngagementIconCloseLight.png`: hello hello "Bezárás" ikonjára a Mobile Engagement reach hello Windows Phone könnyű téma vonatkozó értesítést.</span><span class="sxs-lookup"><span data-stu-id="b8609-111">`EngagementIconCloseLight.png` : hello "Close" icon of hello Mobile Engagement's reach notification for hello Windows Phone light theme.</span></span>
+* <span data-ttu-id="b8609-112">`EngagementIconCloseDark.png`: hello hello "Bezárás" ikonjára a Mobile Engagement reach hello Windows Phone sötét téma vonatkozó értesítést.</span><span class="sxs-lookup"><span data-stu-id="b8609-112">`EngagementIconCloseDark.png` : hello "Close" icon of hello Mobile Engagement's reach notification for hello Windows Phone dark theme.</span></span>
+* <span data-ttu-id="b8609-113">`EngagementConfiguration.xml`: a Mobile Engagement konfigurációs fájl hello, ez pedig, ahol Engagement-beállítások szabhatók testre (Engagement kapcsolati karakterláncot, a jelentés összeomlik stb).</span><span class="sxs-lookup"><span data-stu-id="b8609-113">`EngagementConfiguration.xml` : hello Mobile Engagement's configuration file, this is where you can customize Engagement settings (Engagement connection string, report crashes etc).</span></span>
 

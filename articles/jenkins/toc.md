@@ -6,8 +6,8 @@
 ## [A Jenkins és a Kubernetes integrálása](/azure/container-service/container-service-kubernetes-jenkins)
 ## [A Jenkins és az Azure CLI](/azure/jenkins/execute-cli-jenkins-pipeline)
 ## [A Docker, a Github és a Jenkins](/azure/virtual-machines/linux/tutorial-jenkins-github-docker-cicd)
-## [Üzembe helyezés az App Service-ben](/azure/jenkins/deploy-Jenkins-app-service-plugin)
-# Útmutatók
+## [TooApp szolgáltatás telepítése](/azure/jenkins/deploy-Jenkins-app-service-plugin)
+# Hogyan-tooguides
 ## [A Jenkins védelme az Azure-ban](https://jenkins.io/blog/2017/04/20/secure-jenkins-on-azure/)
 # Erőforrások
 ## [Azure-ütemterv](https://azure.microsoft.com/roadmap/)

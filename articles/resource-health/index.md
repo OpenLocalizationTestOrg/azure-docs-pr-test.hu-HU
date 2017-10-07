@@ -1,5 +1,5 @@
 ---
-title: "Azure Resource Health – oktatóanyagok | Microsoft Docs"
+title: "aaaAzure erőforrásállapot - oktatóanyag |} Microsoft Docs"
 description: 
 services: Resource health
 author: bernardm
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 03/17/2017
 ms.author: bernardm
-ms.openlocfilehash: ef6709b623acb3b823ea337af0062e8c95d0478e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 124ef729fb2be77e7e3a83708d9e6c3c65f08be3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-resource-health-documentation"></a>Azure Resource Health dokumentáció
 
-A Resource Health segítséget nyújt a diagnosztizálásban és a támogatás igénylésében, ha egy Azure-ral kapcsolatos probléma hatással van az erőforrásaira. Tájékoztatja az erőforrásai aktuális és korábbi állapotáról, és segít a problémák kezelésében. A Resource Health műszaki támogatást nyújt, ha segítségre van szüksége az Azure szolgáltatásait érintő problémákkal kapcsolatban.
+A Resource Health segítséget nyújt a diagnosztizálásban és a támogatás igénylésében, ha egy Azure-ral kapcsolatos probléma hatással van az erőforrásaira. Figyelmeztet az erőforrások hello aktuális és korábbi állapotát, és segít a problémák elhárítása érdekében. A Resource Health műszaki támogatást nyújt, ha segítségre van szüksége az Azure szolgáltatásait érintő problémákkal kapcsolatban.
 <ul class="panelContent cardsFTitle">
     <li>
         <a href="/azure/resource-health/resource-health-overview">

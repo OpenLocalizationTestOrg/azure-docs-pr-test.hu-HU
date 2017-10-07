@@ -1,6 +1,6 @@
 ---
-title: "Csatlakozás Azure IoT Suite használatával az Intel NUC átjáró |} Microsoft Docs"
-description: "A Microsoft IoT kereskedelmi átjáró Kit és a távoli figyelési előkonfigurált megoldást használni. Az Azure IoT peremhálózati átjáró használatával kapcsolódni a távoli felügyeleti megoldás, szimulált telemetriai adatokat küldeni a felhőben és a megoldás irányítópultja metódusokra válaszolni."
+title: "egy átjáró tooAzure használatával az Intel NUC IoT Suite aaaConnect |} Microsoft Docs"
+description: "Hello Microsoft IoT kereskedelmi átjáró Kit és hello távoli figyelési előkonfigurált megoldást használni. Használjon hello Azure IoT peremhálózati átjáró tooconnect toohello távoli felügyeleti megoldás, szimulált telemetriai toohello felhő küldhet, és válaszolhat a toomethods hello megoldás irányítópultja meghívni."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -14,56 +14,56 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 9ed57d3c23e2adbd42c054f33c8ed46e3d6c9792
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 46b545fc21b054191c8f78ace20fc628f839a819
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-azure-iot-edge-gateway-to-the-remote-monitoring-preconfigured-solution-and-send-simulated-telemetry"></a><span data-ttu-id="c0c53-104">Csatlakozzon a távoli figyelési előkonfigurált megoldást az Azure IoT peremhálózati átjárót, és szimulált telemetriai adatokat küldhet</span><span class="sxs-lookup"><span data-stu-id="c0c53-104">Connect your Azure IoT Edge gateway to the remote monitoring preconfigured solution and send simulated telemetry</span></span>
+# <a name="connect-your-azure-iot-edge-gateway-toohello-remote-monitoring-preconfigured-solution-and-send-simulated-telemetry"></a><span data-ttu-id="91ccb-104">Csatlakozzon a távoli felügyeleti előkonfigurált megoldás Azure IoT peremhálózati átjáró toohello és szimulált telemetriai adatokat küldhet</span><span class="sxs-lookup"><span data-stu-id="91ccb-104">Connect your Azure IoT Edge gateway toohello remote monitoring preconfigured solution and send simulated telemetry</span></span>
 
 [!INCLUDE [iot-suite-gateway-kit-selector](../../includes/iot-suite-gateway-kit-selector.md)]
 
-<span data-ttu-id="c0c53-105">Az oktatóanyag bemutatja, ezzel szimulálva a hőmérséklet és a páratartalom adatokat küldeni a távoli felügyeleti előkonfigurált megoldás Azure IoT Edge használata.</span><span class="sxs-lookup"><span data-stu-id="c0c53-105">This tutorial shows you how to use Azure IoT Edge to simulate temperature and humidity data to send to the remote monitoring preconfigured solution.</span></span> <span data-ttu-id="c0c53-106">Az oktatóprogram:</span><span class="sxs-lookup"><span data-stu-id="c0c53-106">The tutorial uses:</span></span>
+<span data-ttu-id="91ccb-105">Az oktatóanyag bemutatja, hogyan toouse Azure IoT peremhálózati toosimulate hőmérséklet és a páratartalom adatok toosend toohello távoli felügyelet előre megoldás.</span><span class="sxs-lookup"><span data-stu-id="91ccb-105">This tutorial shows you how toouse Azure IoT Edge toosimulate temperature and humidity data toosend toohello remote monitoring preconfigured solution.</span></span> <span data-ttu-id="91ccb-106">hello oktatóprogram:</span><span class="sxs-lookup"><span data-stu-id="91ccb-106">hello tutorial uses:</span></span>
 
-- <span data-ttu-id="c0c53-107">Az Azure IoT peremhálózati minta átjáró végrehajtásához.</span><span class="sxs-lookup"><span data-stu-id="c0c53-107">Azure IoT Edge to implement a sample gateway.</span></span>
-- <span data-ttu-id="c0c53-108">Az IoT Suite távoli megfigyelési előre konfigurált megoldás, a felhő alapú háttér.</span><span class="sxs-lookup"><span data-stu-id="c0c53-108">The IoT Suite remote monitoring preconfigured solution as the cloud-based back end.</span></span>
+- <span data-ttu-id="91ccb-107">Az Azure IoT peremhálózati tooimplement minta átjáró.</span><span class="sxs-lookup"><span data-stu-id="91ccb-107">Azure IoT Edge tooimplement a sample gateway.</span></span>
+- <span data-ttu-id="91ccb-108">mint hello felhőalapú háttér hello IoT Suite távoli megfigyelési előre konfigurált megoldás.</span><span class="sxs-lookup"><span data-stu-id="91ccb-108">hello IoT Suite remote monitoring preconfigured solution as hello cloud-based back end.</span></span>
 
-## <a name="overview"></a><span data-ttu-id="c0c53-109">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="c0c53-109">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="91ccb-109">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="91ccb-109">Overview</span></span>
 
-<span data-ttu-id="c0c53-110">Ebben az oktatóanyagban végezze el a következő lépéseket:</span><span class="sxs-lookup"><span data-stu-id="c0c53-110">In this tutorial, you complete the following steps:</span></span>
+<span data-ttu-id="91ccb-110">Az oktatóanyag befejezése hello a következő lépéseket:</span><span class="sxs-lookup"><span data-stu-id="91ccb-110">In this tutorial, you complete hello following steps:</span></span>
 
-- <span data-ttu-id="c0c53-111">Telepítse a távoli felügyeleti előkonfigurált megoldás egy példányát az Azure-előfizetéshez.</span><span class="sxs-lookup"><span data-stu-id="c0c53-111">Deploy an instance of the remote monitoring preconfigured solution to your Azure subscription.</span></span> <span data-ttu-id="c0c53-112">Ebben a lépésben automatikusan telepíti és konfigurálja a több Azure-szolgáltatásokhoz.</span><span class="sxs-lookup"><span data-stu-id="c0c53-112">This step automatically deploys and configures multiple Azure services.</span></span>
-- <span data-ttu-id="c0c53-113">Az Intel NUC átjáróeszköz beállítása a számítógép és a távoli felügyeleti megoldás folytatott kommunikációhoz.</span><span class="sxs-lookup"><span data-stu-id="c0c53-113">Set up your Intel NUC gateway device to communicate with your computer and the remote monitoring solution.</span></span>
-- <span data-ttu-id="c0c53-114">Konfigurálja az IoT peremhálózati átjáró, amely megtalálható a megoldás irányítópultja szimulált telemetriai adatokat küldhet.</span><span class="sxs-lookup"><span data-stu-id="c0c53-114">Configure the IoT Edge gateway to send simulated telemetry that you can view on the solution dashboard.</span></span>
+- <span data-ttu-id="91ccb-111">Hello távoli figyelési előkonfigurált megoldás tooyour Azure-előfizetés-példányt telepítése.</span><span class="sxs-lookup"><span data-stu-id="91ccb-111">Deploy an instance of hello remote monitoring preconfigured solution tooyour Azure subscription.</span></span> <span data-ttu-id="91ccb-112">Ebben a lépésben automatikusan telepíti és konfigurálja a több Azure-szolgáltatásokhoz.</span><span class="sxs-lookup"><span data-stu-id="91ccb-112">This step automatically deploys and configures multiple Azure services.</span></span>
+- <span data-ttu-id="91ccb-113">Az Intel NUC átjáró eszköz toocommunicate a számítógép és a távoli felügyeleti megoldás hello beállítása.</span><span class="sxs-lookup"><span data-stu-id="91ccb-113">Set up your Intel NUC gateway device toocommunicate with your computer and hello remote monitoring solution.</span></span>
+- <span data-ttu-id="91ccb-114">Konfigurálja a hello IoT peremhálózati átjáró toosend szimulált telemetriai adatokból, hogy a hello megoldás irányítópultja tekintheti meg.</span><span class="sxs-lookup"><span data-stu-id="91ccb-114">Configure hello IoT Edge gateway toosend simulated telemetry that you can view on hello solution dashboard.</span></span>
 
 [!INCLUDE [iot-suite-gateway-kit-prerequisites](../../includes/iot-suite-gateway-kit-prerequisites.md)]
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
 > [!WARNING]
-> <span data-ttu-id="c0c53-115">A távoli felügyeleti megoldás látja el az Azure-előfizetéshez az Azure szolgáltatások.</span><span class="sxs-lookup"><span data-stu-id="c0c53-115">The remote monitoring solution provisions a set of Azure services in your Azure subscription.</span></span> <span data-ttu-id="c0c53-116">A központi telepítés által adott jelentéseket tükrözik a valós vállalati architektúra.</span><span class="sxs-lookup"><span data-stu-id="c0c53-116">The deployment reflects a real enterprise architecture.</span></span> <span data-ttu-id="c0c53-117">Szükségtelen Azure felhasználási díjak elkerülése az előre konfigurált megoldást a következő azureiotsuite.com a példányának törlése után vele.</span><span class="sxs-lookup"><span data-stu-id="c0c53-117">To avoid unnecessary Azure consumption charges, delete your instance of the preconfigured solution at azureiotsuite.com when you have finished with it.</span></span> <span data-ttu-id="c0c53-118">Ha újra kell az előkonfigurált megoldás, egyszerűen létrehozhatja azt.</span><span class="sxs-lookup"><span data-stu-id="c0c53-118">If you need the preconfigured solution again, you can easily recreate it.</span></span> <span data-ttu-id="c0c53-119">További információ a felhasználás csökkentése a távoli felügyeleti megoldás futtatása közben: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config].</span><span class="sxs-lookup"><span data-stu-id="c0c53-119">For more information about reducing consumption while the remote monitoring solution runs, see [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config].</span></span>
+> <span data-ttu-id="91ccb-115">távoli hello figyelési megoldást kiosztja az Azure-előfizetéshez az Azure szolgáltatások.</span><span class="sxs-lookup"><span data-stu-id="91ccb-115">hello remote monitoring solution provisions a set of Azure services in your Azure subscription.</span></span> <span data-ttu-id="91ccb-116">hello központi telepítés által adott jelentéseket tükrözik a valós vállalati architektúra.</span><span class="sxs-lookup"><span data-stu-id="91ccb-116">hello deployment reflects a real enterprise architecture.</span></span> <span data-ttu-id="91ccb-117">tooavoid szükségtelen Azure felhasználási díjak, az előre konfigurált hello megoldást a következő azureiotsuite.com példányának törlése, vele befejezése után.</span><span class="sxs-lookup"><span data-stu-id="91ccb-117">tooavoid unnecessary Azure consumption charges, delete your instance of hello preconfigured solution at azureiotsuite.com when you have finished with it.</span></span> <span data-ttu-id="91ccb-118">Ha újra kell hello előkonfigurált megoldás, egyszerűen létrehozhatja azt.</span><span class="sxs-lookup"><span data-stu-id="91ccb-118">If you need hello preconfigured solution again, you can easily recreate it.</span></span> <span data-ttu-id="91ccb-119">Hello távoli figyelési megoldást futtatása közben felhasználás csökkentése kapcsolatos további információkért lásd: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config].</span><span class="sxs-lookup"><span data-stu-id="91ccb-119">For more information about reducing consumption while hello remote monitoring solution runs, see [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config].</span></span>
 
 [!INCLUDE [iot-suite-gateway-kit-view-solution](../../includes/iot-suite-gateway-kit-view-solution.md)]
 
-<span data-ttu-id="c0c53-120">Ismételje meg az előző lépéseket egy második eszköz, például egy eszköz azonosítójával **device02**.</span><span class="sxs-lookup"><span data-stu-id="c0c53-120">Repeat the previous steps to add a second device using a Device ID such as **device02**.</span></span> <span data-ttu-id="c0c53-121">A minta elküldi az adatokat a távoli felügyeleti megoldás az átjáró két szimulált eszközökről.</span><span class="sxs-lookup"><span data-stu-id="c0c53-121">The sample sends data from two simulated devices in the gateway to the remote monitoring solution.</span></span>
+<span data-ttu-id="91ccb-120">Ismételje meg a hello előző lépéseket tooadd egy második eszköz, például egy eszköz azonosítójával **device02**.</span><span class="sxs-lookup"><span data-stu-id="91ccb-120">Repeat hello previous steps tooadd a second device using a Device ID such as **device02**.</span></span> <span data-ttu-id="91ccb-121">hello minta adatot küld a két szimulált eszköz hello átjáró toohello távoli figyelési megoldást igényelnek.</span><span class="sxs-lookup"><span data-stu-id="91ccb-121">hello sample sends data from two simulated devices in hello gateway toohello remote monitoring solution.</span></span>
 
 [!INCLUDE [iot-suite-gateway-kit-prepare-nuc-connectivity](../../includes/iot-suite-gateway-kit-prepare-nuc-connectivity.md)]
 
 [!INCLUDE [iot-suite-gateway-kit-prepare-nuc-software](../../includes/iot-suite-gateway-kit-prepare-nuc-software.md)]
 
-## <a name="build-the-custom-iot-edge-module"></a><span data-ttu-id="c0c53-122">Az egyéni IoT peremhálózati modul létrehozása</span><span class="sxs-lookup"><span data-stu-id="c0c53-122">Build the custom IoT Edge module</span></span>
+## <a name="build-hello-custom-iot-edge-module"></a><span data-ttu-id="91ccb-122">Hello egyéni IoT peremhálózati modul létrehozása</span><span class="sxs-lookup"><span data-stu-id="91ccb-122">Build hello custom IoT Edge module</span></span>
 
-<span data-ttu-id="c0c53-123">Most már lefordíthatja az egyéni IoT peremhálózati modul, amely lehetővé teszi, hogy az átjáró üzeneteket küldhet a távoli figyelési megoldást igényelnek.</span><span class="sxs-lookup"><span data-stu-id="c0c53-123">You can now build the custom IoT Edge module that enables the gateway to send messages to the remote monitoring solution.</span></span> <span data-ttu-id="c0c53-124">Átjáró és az IoT-Edge modulok konfigurálásával kapcsolatos további információkért lásd: [Azure IoT peremhálózati fogalmak][lnk-gateway-concepts].</span><span class="sxs-lookup"><span data-stu-id="c0c53-124">For more information about configuring a gateway and IoT Edge modules, see [Azure IoT Edge concepts][lnk-gateway-concepts].</span></span>
+<span data-ttu-id="91ccb-123">Most már lefordíthatja hello egyéni IoT peremhálózati modul, amely lehetővé teszi a hello átjáró toosend üzenetek toohello távoli figyelési megoldást igényelnek.</span><span class="sxs-lookup"><span data-stu-id="91ccb-123">You can now build hello custom IoT Edge module that enables hello gateway toosend messages toohello remote monitoring solution.</span></span> <span data-ttu-id="91ccb-124">Átjáró és az IoT-Edge modulok konfigurálásával kapcsolatos további információkért lásd: [Azure IoT peremhálózati fogalmak][lnk-gateway-concepts].</span><span class="sxs-lookup"><span data-stu-id="91ccb-124">For more information about configuring a gateway and IoT Edge modules, see [Azure IoT Edge concepts][lnk-gateway-concepts].</span></span>
 
-<span data-ttu-id="c0c53-125">Töltse le az egyéni IoT peremhálózati modulok forráskódja a Githubról a következő parancsokkal:</span><span class="sxs-lookup"><span data-stu-id="c0c53-125">Download the source code for the custom IoT Edge modules from GitHub using the following commands:</span></span>
+<span data-ttu-id="91ccb-125">Hello egyéni IoT peremhálózati modulok hello forráskódja letölthető GitHub hello a következő parancsok használatával:</span><span class="sxs-lookup"><span data-stu-id="91ccb-125">Download hello source code for hello custom IoT Edge modules from GitHub using hello following commands:</span></span>
 
 ```bash
 cd ~
 git clone https://github.com/Azure-Samples/iot-remote-monitoring-c-intel-nuc-gateway-getting-started.git
 ```
 
-<span data-ttu-id="c0c53-126">Hozni az egyéni IoT biztonsági modult, a következő parancsokkal:</span><span class="sxs-lookup"><span data-stu-id="c0c53-126">Build the custom IoT Edge module using the following commands:</span></span>
+<span data-ttu-id="91ccb-126">Build hello hello a következő parancsok használatával egyéni IoT peremhálózati modult:</span><span class="sxs-lookup"><span data-stu-id="91ccb-126">Build hello custom IoT Edge module using hello following commands:</span></span>
 
 ```bash
 cd ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/simulator
@@ -72,22 +72,22 @@ sed -i -e 's/\r$//' build.sh
 ./build.sh
 ```
 
-<span data-ttu-id="c0c53-127">A build script a build mappában helyezi el a libsimulator.so egyéni IoT peremhálózati modul.</span><span class="sxs-lookup"><span data-stu-id="c0c53-127">The build script places the libsimulator.so custom IoT Edge module in the build folder.</span></span>
+<span data-ttu-id="91ccb-127">hello build script hello libsimulator.so egyéni IoT peremhálózati modul hello build mappába helyezi.</span><span class="sxs-lookup"><span data-stu-id="91ccb-127">hello build script places hello libsimulator.so custom IoT Edge module in hello build folder.</span></span>
 
-## <a name="configure-and-run-the-iot-edge-gateway"></a><span data-ttu-id="c0c53-128">Konfigurálja és futtassa az IoT-átjáró</span><span class="sxs-lookup"><span data-stu-id="c0c53-128">Configure and run the IoT Edge gateway</span></span>
+## <a name="configure-and-run-hello-iot-edge-gateway"></a><span data-ttu-id="91ccb-128">Konfigurálására és futtatására hello IoT peremhálózati átjáró</span><span class="sxs-lookup"><span data-stu-id="91ccb-128">Configure and run hello IoT Edge gateway</span></span>
 
-<span data-ttu-id="c0c53-129">Most már konfigurálhatja az IoT peremhálózati átjáró szimulált telemetriai adatokat küldeni a távoli figyelési irányítópulton.</span><span class="sxs-lookup"><span data-stu-id="c0c53-129">You can now configure the IoT Edge gateway to send simulated telemetry to your remote monitoring dashboard.</span></span> <span data-ttu-id="c0c53-130">Átjáró és az IoT-Edge modulok konfigurálásával kapcsolatos további információkért lásd: [Azure IoT peremhálózati fogalmak][lnk-gateway-concepts].</span><span class="sxs-lookup"><span data-stu-id="c0c53-130">For more information about configuring a gateway and IoT Edge modules, see [Azure IoT Edge concepts][lnk-gateway-concepts].</span></span>
+<span data-ttu-id="91ccb-129">Hello IoT peremhálózati átjáró toosend szimulált telemetriai tooyour távoli figyelési irányítópult mostantól konfigurálható.</span><span class="sxs-lookup"><span data-stu-id="91ccb-129">You can now configure hello IoT Edge gateway toosend simulated telemetry tooyour remote monitoring dashboard.</span></span> <span data-ttu-id="91ccb-130">Átjáró és az IoT-Edge modulok konfigurálásával kapcsolatos további információkért lásd: [Azure IoT peremhálózati fogalmak][lnk-gateway-concepts].</span><span class="sxs-lookup"><span data-stu-id="91ccb-130">For more information about configuring a gateway and IoT Edge modules, see [Azure IoT Edge concepts][lnk-gateway-concepts].</span></span>
 
 > [!TIP]
-> <span data-ttu-id="c0c53-131">Ebben az oktatóanyagban a használja, a standard `vi` az Intel NUC a szövegszerkesztőben.</span><span class="sxs-lookup"><span data-stu-id="c0c53-131">In this tutorial, you use the standard `vi` text editor on the Intel NUC.</span></span> <span data-ttu-id="c0c53-132">Ha még nem használta `vi` , el kell végeznie egy bevezető oktatóanyag, például a [Unix - a vi szerkesztő oktatóanyag] [ lnk-vi-tutorial] való ismerkedésre a szerkesztő.</span><span class="sxs-lookup"><span data-stu-id="c0c53-132">If you have not used `vi` before, you should complete an introductory tutorial, such as [Unix - The vi Editor Tutorial][lnk-vi-tutorial] to familiarize yourself with this editor.</span></span> <span data-ttu-id="c0c53-133">Másik lehetőségként telepítheti a könnyebben [nano](https://www.nano-editor.org/) a paranccsal szerkesztő `smart install nano -y`.</span><span class="sxs-lookup"><span data-stu-id="c0c53-133">Alternatively, you can install the more user-friendly [nano](https://www.nano-editor.org/) editor using the command `smart install nano -y`.</span></span>
+> <span data-ttu-id="91ccb-131">Ebben az oktatóanyagban hello szabvány használata `vi` hello Intel NUC a szövegszerkesztőben.</span><span class="sxs-lookup"><span data-stu-id="91ccb-131">In this tutorial, you use hello standard `vi` text editor on hello Intel NUC.</span></span> <span data-ttu-id="91ccb-132">Ha még nem használta `vi` , el kell végeznie egy bevezető oktatóanyag, például a [Unix - hello vi szerkesztő oktatóanyag] [ lnk-vi-tutorial] toofamiliarize saját kezűleg a szerkesztő.</span><span class="sxs-lookup"><span data-stu-id="91ccb-132">If you have not used `vi` before, you should complete an introductory tutorial, such as [Unix - hello vi Editor Tutorial][lnk-vi-tutorial] toofamiliarize yourself with this editor.</span></span> <span data-ttu-id="91ccb-133">Másik lehetőségként telepítése könnyebben hello [nano](https://www.nano-editor.org/) hello paranccsal szerkesztő `smart install nano -y`.</span><span class="sxs-lookup"><span data-stu-id="91ccb-133">Alternatively, you can install hello more user-friendly [nano](https://www.nano-editor.org/) editor using hello command `smart install nano -y`.</span></span>
 
-<span data-ttu-id="c0c53-134">Nyissa meg a minta konfigurációs fájlt a **vi** szerkesztő a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="c0c53-134">Open the sample configuration file in the **vi** editor using the following command:</span></span>
+<span data-ttu-id="91ccb-134">Nyissa meg hello minta konfigurációs fájlt a hello **vi** szerkesztő hello a következő parancs használatával:</span><span class="sxs-lookup"><span data-stu-id="91ccb-134">Open hello sample configuration file in hello **vi** editor using hello following command:</span></span>
 
 ```bash
 vi ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/simulator/remote_monitoring.json
 ```
 
-<span data-ttu-id="c0c53-135">Az IOT hubbal modul konfigurációjában keresse meg a következő sorokat:</span><span class="sxs-lookup"><span data-stu-id="c0c53-135">Locate the following lines in the configuration for the IoTHub module:</span></span>
+<span data-ttu-id="91ccb-135">Keresse meg az alábbi hello konfigurációban hello IOT hubbal modul hello:</span><span class="sxs-lookup"><span data-stu-id="91ccb-135">Locate hello following lines in hello configuration for hello IoTHub module:</span></span>
 
 ```json
 "args": {
@@ -97,9 +97,9 @@ vi ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/simulator/remote_
 }
 ```
 
-<span data-ttu-id="c0c53-136">Cserélje le a helyőrző értékeket az IoT-központ adatokat létrehozott és mentett Ez az oktatóanyag elején.</span><span class="sxs-lookup"><span data-stu-id="c0c53-136">Replace the placeholder values with the IoT Hub information you created and saved at the start of this tutorial.</span></span> <span data-ttu-id="c0c53-137">IoTHubName értékét a következőképpen néz **yourrmsolution37e08**, és IoTSuffix értéke általában **azure-devices.net**.</span><span class="sxs-lookup"><span data-stu-id="c0c53-137">The value for IoTHubName looks like **yourrmsolution37e08**, and the value for IoTSuffix is typically **azure-devices.net**.</span></span>
+<span data-ttu-id="91ccb-136">Cserélje le a hello helyőrző értékeket az IoT-központ adatokat létrehozott és mentett hello hello elejére ebben az oktatóanyagban.</span><span class="sxs-lookup"><span data-stu-id="91ccb-136">Replace hello placeholder values with hello IoT Hub information you created and saved at hello start of this tutorial.</span></span> <span data-ttu-id="91ccb-137">hello érték IoTHubName a következőhöz hasonló **yourrmsolution37e08**, és hello IoTSuffix értéke általában **azure-devices.net**.</span><span class="sxs-lookup"><span data-stu-id="91ccb-137">hello value for IoTHubName looks like **yourrmsolution37e08**, and hello value for IoTSuffix is typically **azure-devices.net**.</span></span>
 
-<span data-ttu-id="c0c53-138">A hozzárendelési modul konfigurációjában keresse meg a következő sorokat:</span><span class="sxs-lookup"><span data-stu-id="c0c53-138">Locate the following lines in the configuration for the mapping module:</span></span>
+<span data-ttu-id="91ccb-138">Keresse meg az alábbi hello konfigurációban a hello hozzárendelési module hello:</span><span class="sxs-lookup"><span data-stu-id="91ccb-138">Locate hello following lines in hello configuration for hello mapping module:</span></span>
 
 ```json
 args": [
@@ -116,39 +116,39 @@ args": [
 ]
 ```
 
-<span data-ttu-id="c0c53-139">Cserélje le a **deviceID** és **deviceKey** helyőrzőt azonosítóit és a két eszköz a távoli felügyeleti megoldás korábban létrehozott kulcsokat.</span><span class="sxs-lookup"><span data-stu-id="c0c53-139">Replace the **deviceID** and **deviceKey** placeholders with the IDs and keys for the two devices you created in the remote monitoring solution previously.</span></span>
+<span data-ttu-id="91ccb-139">Cserélje le a hello **deviceID** és **deviceKey** helyőrzőt hello azonosítók és kulcsok hello távoli figyelési megoldást korábban létrehozott hello két eszközökhöz.</span><span class="sxs-lookup"><span data-stu-id="91ccb-139">Replace hello **deviceID** and **deviceKey** placeholders with hello IDs and keys for hello two devices you created in hello remote monitoring solution previously.</span></span>
 
-<span data-ttu-id="c0c53-140">Mentse a módosításokat.</span><span class="sxs-lookup"><span data-stu-id="c0c53-140">Save your changes.</span></span>
+<span data-ttu-id="91ccb-140">Mentse a módosításokat.</span><span class="sxs-lookup"><span data-stu-id="91ccb-140">Save your changes.</span></span>
 
-<span data-ttu-id="c0c53-141">Most már futtathatja az IoT peremhálózati átjáró a következő parancsokkal:</span><span class="sxs-lookup"><span data-stu-id="c0c53-141">You can now run the IoT Edge gateway using the following commands:</span></span>
+<span data-ttu-id="91ccb-141">Most futtathatja hello IoT peremhálózati átjáró használatával hello a következő parancsokat:</span><span class="sxs-lookup"><span data-stu-id="91ccb-141">You can now run hello IoT Edge gateway using hello following commands:</span></span>
 
 ```bash
 cd ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/simulator
 /usr/share/azureiotgatewaysdk/samples/simulated_device_cloud_upload/simulated_device_cloud_upload remote_monitoring.json
 ```
 
-<span data-ttu-id="c0c53-142">Az átjáró elindítja az Intel NUC és szimulált telemetriai adatokat küld a távoli figyelési megoldást:</span><span class="sxs-lookup"><span data-stu-id="c0c53-142">The gateway starts on the Intel NUC and sends simulated telemetry to the remote monitoring solution:</span></span>
+<span data-ttu-id="91ccb-142">hello átjáró hello Intel NUC kezdődik, és elküldi a szimulált telemetriai toohello távoli figyelési megoldást:</span><span class="sxs-lookup"><span data-stu-id="91ccb-142">hello gateway starts on hello Intel NUC and sends simulated telemetry toohello remote monitoring solution:</span></span>
 
 ![Az IoT-átjárónak állít elő, szimulált telemetriai adat][img-simulated telemetry]
 
-<span data-ttu-id="c0c53-144">Nyomja le az **Ctrl-C** kilép a programból bármikor.</span><span class="sxs-lookup"><span data-stu-id="c0c53-144">Press **Ctrl-C** to exit the program at any time.</span></span>
+<span data-ttu-id="91ccb-144">Nyomja le az **Ctrl-C** tooexit hello program tetszőleges időpontban.</span><span class="sxs-lookup"><span data-stu-id="91ccb-144">Press **Ctrl-C** tooexit hello program at any time.</span></span>
 
-## <a name="view-the-telemetry"></a><span data-ttu-id="c0c53-145">A telemetriai adatok megtekintése</span><span class="sxs-lookup"><span data-stu-id="c0c53-145">View the telemetry</span></span>
+## <a name="view-hello-telemetry"></a><span data-ttu-id="91ccb-145">Nézet hello telemetriai adat</span><span class="sxs-lookup"><span data-stu-id="91ccb-145">View hello telemetry</span></span>
 
-<span data-ttu-id="c0c53-146">Az IoT-átjárónak szimulált telemetriai most küld a távoli figyelési megoldást igényelnek.</span><span class="sxs-lookup"><span data-stu-id="c0c53-146">The IoT Edge gateway is now sending simulated telemetry to the remote monitoring solution.</span></span> <span data-ttu-id="c0c53-147">A telemetriai adatokat a megoldás irányítópultján tekintheti meg.</span><span class="sxs-lookup"><span data-stu-id="c0c53-147">You can view the telemetry on the solution dashboard.</span></span>
+<span data-ttu-id="91ccb-146">hello IoT peremhálózati átjáró most küld szimulált telemetriai toohello távoli figyelési megoldást igényelnek.</span><span class="sxs-lookup"><span data-stu-id="91ccb-146">hello IoT Edge gateway is now sending simulated telemetry toohello remote monitoring solution.</span></span> <span data-ttu-id="91ccb-147">Hello telemetriai hello megoldás irányítópultján tekintheti meg.</span><span class="sxs-lookup"><span data-stu-id="91ccb-147">You can view hello telemetry on hello solution dashboard.</span></span>
 
-- <span data-ttu-id="c0c53-148">Nyissa meg a megoldás irányítópultja.</span><span class="sxs-lookup"><span data-stu-id="c0c53-148">Navigate to the solution dashboard.</span></span>
-- <span data-ttu-id="c0c53-149">Válassza ki a két eszköz, az átjárót konfigurált a **nézet eszköz** legördülő menüből.</span><span class="sxs-lookup"><span data-stu-id="c0c53-149">Select one of the two devices you configured in the gateway in the **Device to View** dropdown.</span></span>
-- <span data-ttu-id="c0c53-150">Az átjáró eszközökről telemetriai adatok az irányítópulton jeleníti meg.</span><span class="sxs-lookup"><span data-stu-id="c0c53-150">The telemetry from the gateway devices displays on the dashboard.</span></span>
+- <span data-ttu-id="91ccb-148">Keresse meg a toohello megoldás irányítópultja.</span><span class="sxs-lookup"><span data-stu-id="91ccb-148">Navigate toohello solution dashboard.</span></span>
+- <span data-ttu-id="91ccb-149">Válasszon ki egy konfigurált hello hello átjáró két hello eszközök **eszköz tooView** legördülő menüből.</span><span class="sxs-lookup"><span data-stu-id="91ccb-149">Select one of hello two devices you configured in hello gateway in hello **Device tooView** dropdown.</span></span>
+- <span data-ttu-id="91ccb-150">hello telemetriai hello átjáró eszközökről hello irányítópulton jeleníti meg.</span><span class="sxs-lookup"><span data-stu-id="91ccb-150">hello telemetry from hello gateway devices displays on hello dashboard.</span></span>
 
-![A szimulált átjáró eszközök telemetriai adatok megjelenítéséhez][img-telemetry-display]
+![A szimulált hello átjáró eszközökről telemetriai megjelenítése][img-telemetry-display]
 
 > [!WARNING]
-> <span data-ttu-id="c0c53-152">Ha nem adja meg a távoli figyelési megoldást igényelnek fut az Azure-fiókjával, a futtatásakor a kell fizetni.</span><span class="sxs-lookup"><span data-stu-id="c0c53-152">If you leave the remote monitoring solution running in your Azure account, you are billed for the time it runs.</span></span> <span data-ttu-id="c0c53-153">További információ a felhasználás csökkentése a távoli felügyeleti megoldás futtatása közben: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config].</span><span class="sxs-lookup"><span data-stu-id="c0c53-153">For more information about reducing consumption while the remote monitoring solution runs, see [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config].</span></span> <span data-ttu-id="c0c53-154">Ha befejezte, használja az előkonfigurált megoldás törlése az Azure-fiókjával.</span><span class="sxs-lookup"><span data-stu-id="c0c53-154">Delete the preconfigured solution from your Azure account when you have finished using it.</span></span>
+> <span data-ttu-id="91ccb-152">Ha nem adja meg hello távoli felügyeleti megoldás az Azure-fiókjával fut, a hello futásakor kell fizetni.</span><span class="sxs-lookup"><span data-stu-id="91ccb-152">If you leave hello remote monitoring solution running in your Azure account, you are billed for hello time it runs.</span></span> <span data-ttu-id="91ccb-153">Hello távoli figyelési megoldást futtatása közben felhasználás csökkentése kapcsolatos további információkért lásd: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config].</span><span class="sxs-lookup"><span data-stu-id="91ccb-153">For more information about reducing consumption while hello remote monitoring solution runs, see [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config].</span></span> <span data-ttu-id="91ccb-154">Ha befejezte, használja előre konfigurált hello megoldás törlése az Azure-fiókjával.</span><span class="sxs-lookup"><span data-stu-id="91ccb-154">Delete hello preconfigured solution from your Azure account when you have finished using it.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="c0c53-155">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="c0c53-155">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="91ccb-155">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="91ccb-155">Next steps</span></span>
 
-<span data-ttu-id="c0c53-156">Látogasson el a [Azure IoT-fejlesztői központhoz](https://azure.microsoft.com/develop/iot/) további mintákat és Azure IoT-dokumentációja.</span><span class="sxs-lookup"><span data-stu-id="c0c53-156">Visit the [Azure IoT Dev Center](https://azure.microsoft.com/develop/iot/) for more samples and documentation on Azure IoT.</span></span>
+<span data-ttu-id="91ccb-156">A Microsoft hello [Azure IoT-fejlesztői központhoz](https://azure.microsoft.com/develop/iot/) további mintákat és Azure IoT-dokumentációja.</span><span class="sxs-lookup"><span data-stu-id="91ccb-156">Visit hello [Azure IoT Dev Center](https://azure.microsoft.com/develop/iot/) for more samples and documentation on Azure IoT.</span></span>
 
 [img-simulated telemetry]: ./media/iot-suite-gateway-kit-get-started-simulator/appoutput.png
 

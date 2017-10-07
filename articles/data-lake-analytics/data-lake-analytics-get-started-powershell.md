@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Lake Analytics használatának első lépései az Azure PowerShell-lel | Microsoft Docs"
-description: "Az Azure PowerShell használata egy Data Lake Analytics-fiók létrehozásához, egy Data Lake Analytics-feladat létrehozására U-SQL használatával, valamint a feladat elküldésére. "
+title: "az Azure Data Lake Analytics az Azure PowerShell lépései aaaGet |} Microsoft Docs"
+description: "Azure PowerShell toocreate egy Data Lake Analytics-fiókot használja, hozzon létre egy U-SQL használatával a Data Lake Analytics-feladatot, valamint hello feladat elküldéséhez. "
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/04/2017
 ms.author: edmaca
-ms.openlocfilehash: 4f73e27c733edae658d1ea3bdabe48076328279b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cb9b35352d1cc9a78337448b1d6835875a212e08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-data-lake-analytics-using-azure-powershell"></a><span data-ttu-id="f8abf-103">Az Azure Data Lake Analytics használatának első lépései az Azure PowerShell-lel</span><span class="sxs-lookup"><span data-stu-id="f8abf-103">Get started with Azure Data Lake Analytics using Azure PowerShell</span></span>
+# <a name="get-started-with-azure-data-lake-analytics-using-azure-powershell"></a><span data-ttu-id="134de-103">Az Azure Data Lake Analytics használatának első lépései az Azure PowerShell-lel</span><span class="sxs-lookup"><span data-stu-id="134de-103">Get started with Azure Data Lake Analytics using Azure PowerShell</span></span>
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
-<span data-ttu-id="f8abf-104">Ebből a cikkből megtudhatja, hogyan használhatja az Azure PowerShellt Azure Data Lake Analytics-fiókok létrehozására, majd U-SQL-feladatok elküldéséhez és futtatásához.</span><span class="sxs-lookup"><span data-stu-id="f8abf-104">Learn how to use Azure PowerShell to create Azure Data Lake Analytics accounts and then submit and run U-SQL jobs.</span></span> <span data-ttu-id="f8abf-105">További információk a Data Lake Analyticsről: [Azure Data Lake Analytics overview](data-lake-analytics-overview.md) (Az Azure Data Lake Analytics áttekintése).</span><span class="sxs-lookup"><span data-stu-id="f8abf-105">For more information about Data Lake Analytics, see [Azure Data Lake Analytics overview](data-lake-analytics-overview.md).</span></span>
+<span data-ttu-id="134de-104">Ismerje meg, hogyan toouse Azure PowerShell toocreate Azure Data Lake Analytics fiókok majd küldje el és U-SQL feladatok futtatásához.</span><span class="sxs-lookup"><span data-stu-id="134de-104">Learn how toouse Azure PowerShell toocreate Azure Data Lake Analytics accounts and then submit and run U-SQL jobs.</span></span> <span data-ttu-id="134de-105">További információk a Data Lake Analyticsről: [Azure Data Lake Analytics overview](data-lake-analytics-overview.md) (Az Azure Data Lake Analytics áttekintése).</span><span class="sxs-lookup"><span data-stu-id="134de-105">For more information about Data Lake Analytics, see [Azure Data Lake Analytics overview](data-lake-analytics-overview.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="f8abf-106">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="f8abf-106">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="134de-106">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="134de-106">Prerequisites</span></span>
 
-<span data-ttu-id="f8abf-107">Az oktatóanyag elkezdéséhez az alábbiakkal kell rendelkeznie:</span><span class="sxs-lookup"><span data-stu-id="f8abf-107">Before you begin this tutorial, you must have the following information:</span></span>
+<span data-ttu-id="134de-107">Ez az oktatóanyag elkezdéséhez hello a következő információkat kell rendelkeznie:</span><span class="sxs-lookup"><span data-stu-id="134de-107">Before you begin this tutorial, you must have hello following information:</span></span>
 
-* <span data-ttu-id="f8abf-108">**Egy Azure Data Lake Analytics-fiók**.</span><span class="sxs-lookup"><span data-stu-id="f8abf-108">**An Azure Data Lake Analytics account**.</span></span> <span data-ttu-id="f8abf-109">Lásd: [Ismerkedés a Data Lake Analytics szolgáltatással](https://docs.microsoft.com/en-us/azure/data-lake-analytics/data-lake-analytics-get-started-portal).</span><span class="sxs-lookup"><span data-stu-id="f8abf-109">See [Get started with Data Lake Analytics](https://docs.microsoft.com/en-us/azure/data-lake-analytics/data-lake-analytics-get-started-portal).</span></span>
-* <span data-ttu-id="f8abf-110">**Munkaállomás Azure PowerShell-lel**.</span><span class="sxs-lookup"><span data-stu-id="f8abf-110">**A workstation with Azure PowerShell**.</span></span> <span data-ttu-id="f8abf-111">Lásd: [How to install and configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása).</span><span class="sxs-lookup"><span data-stu-id="f8abf-111">See [How to install and configure Azure PowerShell](/powershell/azure/overview).</span></span>
+* <span data-ttu-id="134de-108">**Egy Azure Data Lake Analytics-fiók**.</span><span class="sxs-lookup"><span data-stu-id="134de-108">**An Azure Data Lake Analytics account**.</span></span> <span data-ttu-id="134de-109">Lásd: [Ismerkedés a Data Lake Analytics szolgáltatással](https://docs.microsoft.com/en-us/azure/data-lake-analytics/data-lake-analytics-get-started-portal).</span><span class="sxs-lookup"><span data-stu-id="134de-109">See [Get started with Data Lake Analytics](https://docs.microsoft.com/en-us/azure/data-lake-analytics/data-lake-analytics-get-started-portal).</span></span>
+* <span data-ttu-id="134de-110">**Munkaállomás Azure PowerShell-lel**.</span><span class="sxs-lookup"><span data-stu-id="134de-110">**A workstation with Azure PowerShell**.</span></span> <span data-ttu-id="134de-111">Lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="134de-111">See [How tooinstall and configure Azure PowerShell](/powershell/azure/overview).</span></span>
 
-## <a name="log-in-to-azure"></a><span data-ttu-id="f8abf-112">Jelentkezzen be az Azure-ba</span><span class="sxs-lookup"><span data-stu-id="f8abf-112">Log in to Azure</span></span>
+## <a name="log-in-tooazure"></a><span data-ttu-id="134de-112">Jelentkezzen be tooAzure</span><span class="sxs-lookup"><span data-stu-id="134de-112">Log in tooAzure</span></span>
 
-<span data-ttu-id="f8abf-113">Ez az oktatóanyag feltételezi az Azure PowerShell használatának előzetes ismeretét.</span><span class="sxs-lookup"><span data-stu-id="f8abf-113">This tutorial assumes you are already familiar with using Azure PowerShell.</span></span> <span data-ttu-id="f8abf-114">Az előzetes ismeretek fontos része az Azure-ba történő bejelentkezés.</span><span class="sxs-lookup"><span data-stu-id="f8abf-114">In particular, you need to know how to log in to Azure.</span></span> <span data-ttu-id="f8abf-115">Ha segítségre van szüksége, tekintse meg az [Ismerkedés az Azure PowerShell szolgáltatással](https://docs.microsoft.com/en-us/powershell/azure/get-started-azureps) című cikket.</span><span class="sxs-lookup"><span data-stu-id="f8abf-115">See the [Get started with Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/get-started-azureps) if you need help.</span></span>
+<span data-ttu-id="134de-113">Ez az oktatóanyag feltételezi az Azure PowerShell használatának előzetes ismeretét.</span><span class="sxs-lookup"><span data-stu-id="134de-113">This tutorial assumes you are already familiar with using Azure PowerShell.</span></span> <span data-ttu-id="134de-114">Különösen tooknow szüksége, hogy a tooAzure toolog.</span><span class="sxs-lookup"><span data-stu-id="134de-114">In particular, you need tooknow how toolog in tooAzure.</span></span> <span data-ttu-id="134de-115">Lásd: hello [Ismerkedés az Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/get-started-azureps) Ha segítségre van szüksége.</span><span class="sxs-lookup"><span data-stu-id="134de-115">See hello [Get started with Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/get-started-azureps) if you need help.</span></span>
 
-<span data-ttu-id="f8abf-116">Előfizetés nevével történő bejelentkezéshez:</span><span class="sxs-lookup"><span data-stu-id="f8abf-116">To log in with a subscription name:</span></span>
+<span data-ttu-id="134de-116">toolog be egy előfizetés nevét:</span><span class="sxs-lookup"><span data-stu-id="134de-116">toolog in with a subscription name:</span></span>
 
 ```
 Login-AzureRmAccount -SubscriptionName "ContosoSubscription"
 ```
 
-<span data-ttu-id="f8abf-117">Az előfizetés neve helyett előfizetés-azonosítót is használhat a bejelentkezéshez:</span><span class="sxs-lookup"><span data-stu-id="f8abf-117">Instead of the subscription name, you can also use a subscription id to log in:</span></span>
+<span data-ttu-id="134de-117">Hello előfizetés neve helyett egy előfizetési azonosító toolog a is használhatja:</span><span class="sxs-lookup"><span data-stu-id="134de-117">Instead of hello subscription name, you can also use a subscription id toolog in:</span></span>
 
 ```
 Login-AzureRmAccount -SubscriptionId "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ```
 
-<span data-ttu-id="f8abf-118">Sikeres művelet esetén a parancs kimenete az alábbi szöveghez hasonlít:</span><span class="sxs-lookup"><span data-stu-id="f8abf-118">If  successful, the output of this command looks like the following text:</span></span>
+<span data-ttu-id="134de-118">Ha sikeres, a parancs kimenetének hello néz hello a következő szöveget:</span><span class="sxs-lookup"><span data-stu-id="134de-118">If  successful, hello output of this command looks like hello following text:</span></span>
 
 ```
 Environment           : AzureCloud
@@ -59,9 +59,9 @@ SubscriptionName      : ContosoSubscription
 CurrentStorageAccount :
 ```
 
-## <a name="preparing-for-the-tutorial"></a><span data-ttu-id="f8abf-119">Felkészülés az oktatóanyag elvégzésére</span><span class="sxs-lookup"><span data-stu-id="f8abf-119">Preparing for the tutorial</span></span>
+## <a name="preparing-for-hello-tutorial"></a><span data-ttu-id="134de-119">Hello oktatóanyag előkészítése</span><span class="sxs-lookup"><span data-stu-id="134de-119">Preparing for hello tutorial</span></span>
 
-<span data-ttu-id="f8abf-120">A jelen oktatóanyagban szereplő PowerShell-kódrészletek ezeket a változókat használják az adattárolásra:</span><span class="sxs-lookup"><span data-stu-id="f8abf-120">The PowerShell snippets in this tutorial use these variables to store this information:</span></span>
+<span data-ttu-id="134de-120">Ebben az oktatóanyagban hello PowerShell kódtöredékek ezeket az információkat használja a változók toostore:</span><span class="sxs-lookup"><span data-stu-id="134de-120">hello PowerShell snippets in this tutorial use these variables toostore this information:</span></span>
 
 ```
 $rg = "<ResourceGroupName>"
@@ -70,15 +70,15 @@ $adla = "<DataLakeAnalyticsAccountName>"
 $location = "East US 2"
 ```
 
-## <a name="get-information-about-a-data-lake-analytics-account"></a><span data-ttu-id="f8abf-121">Data Lake Analytics-fiókkal kapcsolatos információk beszerzése</span><span class="sxs-lookup"><span data-stu-id="f8abf-121">Get information about a Data Lake Analytics account</span></span>
+## <a name="get-information-about-a-data-lake-analytics-account"></a><span data-ttu-id="134de-121">Data Lake Analytics-fiókkal kapcsolatos információk beszerzése</span><span class="sxs-lookup"><span data-stu-id="134de-121">Get information about a Data Lake Analytics account</span></span>
 
 ```
 Get-AdlAnalyticsAccount -ResourceGroupName $rg -Name $adla  
 ```
 
-## <a name="submit-a-u-sql-job"></a><span data-ttu-id="f8abf-122">U-SQL-feladat elküldése</span><span class="sxs-lookup"><span data-stu-id="f8abf-122">Submit a U-SQL job</span></span>
+## <a name="submit-a-u-sql-job"></a><span data-ttu-id="134de-122">U-SQL-feladat elküldése</span><span class="sxs-lookup"><span data-stu-id="134de-122">Submit a U-SQL job</span></span>
 
-<span data-ttu-id="f8abf-123">Hozzon létre egy PowerShell-változót a U-SQL-szkript tárolásához.</span><span class="sxs-lookup"><span data-stu-id="f8abf-123">Create a PowerShell variable to hold the U-SQL script.</span></span>
+<span data-ttu-id="134de-123">Hozzon létre egy PowerShell-változó toohold hello U-SQL parancsfájlt.</span><span class="sxs-lookup"><span data-stu-id="134de-123">Create a PowerShell variable toohold hello U-SQL script.</span></span>
 
 ```
 $script = @"
@@ -90,19 +90,19 @@ $script = @"
         ) AS 
               D( customer, amount );
 OUTPUT @a
-    TO "/data.csv"
+    too"/data.csv"
     USING Outputters.Csv();
 
 "@
 ```
 
-<span data-ttu-id="f8abf-124">Küldje el a szkriptet.</span><span class="sxs-lookup"><span data-stu-id="f8abf-124">Submit the script.</span></span>
+<span data-ttu-id="134de-124">Hello parancsfájl nyújt.</span><span class="sxs-lookup"><span data-stu-id="134de-124">Submit hello script.</span></span>
 
 ```
 $job = Submit-AdlJob -AccountName $adla –Script $script
 ```
 
-<span data-ttu-id="f8abf-125">Azt is megteheti, hogy fájlként menti a szkriptet, és a következő paranccsal küldi el:</span><span class="sxs-lookup"><span data-stu-id="f8abf-125">Alternatively, you could save the script as a file and submit with the following command:</span></span>
+<span data-ttu-id="134de-125">Azt is megteheti sikerült hello parancsfájl menteni a fájlt, és küldje el a hello a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="134de-125">Alternatively, you could save hello script as a file and submit with hello following command:</span></span>
 
 ```
 $filename = "d:\test.usql"
@@ -111,25 +111,25 @@ $job = Submit-AdlJob -AccountName $adla –ScriptPath $filename
 ```
 
 
-<span data-ttu-id="f8abf-126">Kérje le egy adott feladat állapotát.</span><span class="sxs-lookup"><span data-stu-id="f8abf-126">Get the status of a specific job.</span></span> <span data-ttu-id="f8abf-127">Használja a parancsmagot addig, amíg a feladat be nem fejeződik.</span><span class="sxs-lookup"><span data-stu-id="f8abf-127">Keep using this cmdlet until you see the job is done.</span></span>
+<span data-ttu-id="134de-126">Egy adott feladat hello állapotának beolvasása.</span><span class="sxs-lookup"><span data-stu-id="134de-126">Get hello status of a specific job.</span></span> <span data-ttu-id="134de-127">Ez a parancsmag továbbra is használatára, amíg megjelenik a hello történik.</span><span class="sxs-lookup"><span data-stu-id="134de-127">Keep using this cmdlet until you see hello job is done.</span></span>
 
 ```
 $job = Get-AdlJob -AccountName $adla -JobId $job.JobId
 ```
 
-<span data-ttu-id="f8abf-128">Ahelyett, hogy újra és újra meghívná a Get-AdlAnalyticsJob parancsmagot a feladat befejeződéséig, használja a Wait-AdlJob parancsmagot.</span><span class="sxs-lookup"><span data-stu-id="f8abf-128">Instead of calling Get-AdlAnalyticsJob over and over until a job finishes, you can use the Wait-AdlJob cmdlet.</span></span>
+<span data-ttu-id="134de-128">Helyett Get-AdlAnalyticsJob és újra amíg a feladat befejeződik, hello várakozási-AdlJob parancsmagot használhatja.</span><span class="sxs-lookup"><span data-stu-id="134de-128">Instead of calling Get-AdlAnalyticsJob over and over until a job finishes, you can use hello Wait-AdlJob cmdlet.</span></span>
 
 ```
 Wait-AdlJob -Account $adla -JobId $job.JobId
 ```
 
-<span data-ttu-id="f8abf-129">Töltse le a kimeneti fájlt.</span><span class="sxs-lookup"><span data-stu-id="f8abf-129">Download the output file.</span></span>
+<span data-ttu-id="134de-129">Hello kimeneti fájl letöltéséhez.</span><span class="sxs-lookup"><span data-stu-id="134de-129">Download hello output file.</span></span>
 
 ```
 Export-AdlStoreItem -AccountName $adls -Path "/data.csv" -Destination "C:\data.csv"
 ```
 
-## <a name="see-also"></a><span data-ttu-id="f8abf-130">Lásd még:</span><span class="sxs-lookup"><span data-stu-id="f8abf-130">See also</span></span>
-* <span data-ttu-id="f8abf-131">Ha ugyanezt az oktatóanyagot más eszközök használatával szeretné megtekinteni, kattintson az oldal tetején található lapválasztókra.</span><span class="sxs-lookup"><span data-stu-id="f8abf-131">To see the same tutorial using other tools, click the tab selectors on the top of the page.</span></span>
-* <span data-ttu-id="f8abf-132">A U-SQL nyelv megismerése: [Get started with Azure Data Lake Analytics U-SQL language](data-lake-analytics-u-sql-get-started.md) (Ismerkedés az Azure Data Lake Analytics U-SQL nyelvével).</span><span class="sxs-lookup"><span data-stu-id="f8abf-132">To learn U-SQL, see [Get started with Azure Data Lake Analytics U-SQL language](data-lake-analytics-u-sql-get-started.md).</span></span>
-* <span data-ttu-id="f8abf-133">Felügyeleti feladatok: [Manage Azure Data Lake Analytics using Azure Portal](data-lake-analytics-manage-use-portal.md) (Az Azure Data Lake Analytics kezelése az Azure Portallal).</span><span class="sxs-lookup"><span data-stu-id="f8abf-133">For management tasks, see [Manage Azure Data Lake Analytics using Azure portal](data-lake-analytics-manage-use-portal.md).</span></span>
+## <a name="see-also"></a><span data-ttu-id="134de-130">Lásd még:</span><span class="sxs-lookup"><span data-stu-id="134de-130">See also</span></span>
+* <span data-ttu-id="134de-131">toosee hello ugyanaz az oktatóanyagot más eszközök használatával hello szeretné a hello hello lap tetején kattintson.</span><span class="sxs-lookup"><span data-stu-id="134de-131">toosee hello same tutorial using other tools, click hello tab selectors on hello top of hello page.</span></span>
+* <span data-ttu-id="134de-132">toolearn U-SQL, lásd: [Ismerkedés az Azure Data Lake Analytics U-SQL nyelv](data-lake-analytics-u-sql-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="134de-132">toolearn U-SQL, see [Get started with Azure Data Lake Analytics U-SQL language](data-lake-analytics-u-sql-get-started.md).</span></span>
+* <span data-ttu-id="134de-133">Felügyeleti feladatok: [Manage Azure Data Lake Analytics using Azure Portal](data-lake-analytics-manage-use-portal.md) (Az Azure Data Lake Analytics kezelése az Azure Portallal).</span><span class="sxs-lookup"><span data-stu-id="134de-133">For management tasks, see [Manage Azure Data Lake Analytics using Azure portal](data-lake-analytics-manage-use-portal.md).</span></span>

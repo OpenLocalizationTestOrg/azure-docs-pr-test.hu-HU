@@ -1,5 +1,5 @@
 ---
-title: "DataFu használata a HDInsight - Azure Pig |} Microsoft Docs"
+title: a Pig a HDInsight - Azure DataFu aaaUse |} Microsoft Docs
 description: "DataFu gyűjteménye szalagtárak Hadoop való használatra. Ismerje meg, hogyan használható DataFu Pig a HDInsight-fürtre."
 services: hdinsight
 documentationcenter: 
@@ -15,71 +15,71 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: 4de55f5f6c5605e9c6c8dd7ccac902b811d1b062
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 357ad8f9694cc590115289877e752bdd242bdadc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-datafu-with-pig-on-hdinsight"></a><span data-ttu-id="1480f-104">A HDInsight pig DataFu használata</span><span class="sxs-lookup"><span data-stu-id="1480f-104">Use DataFu with pig on HDInsight</span></span>
+# <a name="use-datafu-with-pig-on-hdinsight"></a><span data-ttu-id="8d735-104">A HDInsight pig DataFu használata</span><span class="sxs-lookup"><span data-stu-id="8d735-104">Use DataFu with pig on HDInsight</span></span>
 
-<span data-ttu-id="1480f-105">Megtudhatja, hogyan használhat DataFu a hdinsight eszközzel.</span><span class="sxs-lookup"><span data-stu-id="1480f-105">Learn how to use DataFu with HDInsight.</span></span> <span data-ttu-id="1480f-106">DataFu gyűjteményei, nyílt forráskódú szalagtárak Pig hadoop való használatra.</span><span class="sxs-lookup"><span data-stu-id="1480f-106">DataFu is a collection of Open Source libraries for use with Pig on Hadoop.</span></span>
+<span data-ttu-id="8d735-105">Megtudhatja, hogyan toouse DataFu a hdinsight eszközzel.</span><span class="sxs-lookup"><span data-stu-id="8d735-105">Learn how toouse DataFu with HDInsight.</span></span> <span data-ttu-id="8d735-106">DataFu gyűjteményei, nyílt forráskódú szalagtárak Pig hadoop való használatra.</span><span class="sxs-lookup"><span data-stu-id="8d735-106">DataFu is a collection of Open Source libraries for use with Pig on Hadoop.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="1480f-107">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="1480f-107">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="8d735-107">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="8d735-107">Prerequisites</span></span>
 
-* <span data-ttu-id="1480f-108">Azure-előfizetés.</span><span class="sxs-lookup"><span data-stu-id="1480f-108">An Azure subscription.</span></span>
+* <span data-ttu-id="8d735-108">Azure-előfizetés.</span><span class="sxs-lookup"><span data-stu-id="8d735-108">An Azure subscription.</span></span>
 
-* <span data-ttu-id="1480f-109">Azure HDInsight-fürtök (Linux- vagy Windows-alapú)</span><span class="sxs-lookup"><span data-stu-id="1480f-109">An Azure HDInsight cluster (Linux or Windows based)</span></span>
+* <span data-ttu-id="8d735-109">Azure HDInsight-fürtök (Linux- vagy Windows-alapú)</span><span class="sxs-lookup"><span data-stu-id="8d735-109">An Azure HDInsight cluster (Linux or Windows based)</span></span>
 
   > [!IMPORTANT]
-  > <span data-ttu-id="1480f-110">A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható.</span><span class="sxs-lookup"><span data-stu-id="1480f-110">Linux is the only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="1480f-111">További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span><span class="sxs-lookup"><span data-stu-id="1480f-111">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
+  > <span data-ttu-id="8d735-110">Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója.</span><span class="sxs-lookup"><span data-stu-id="8d735-110">Linux is hello only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="8d735-111">További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span><span class="sxs-lookup"><span data-stu-id="8d735-111">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
 
-* <span data-ttu-id="1480f-112">Egy alapszintű ismeretét [Pig használata a HDInsight-on](hdinsight-use-pig.md)</span><span class="sxs-lookup"><span data-stu-id="1480f-112">A basic familiarity with [using Pig on HDInsight](hdinsight-use-pig.md)</span></span>
+* <span data-ttu-id="8d735-112">Egy alapszintű ismeretét [Pig használata a HDInsight-on](hdinsight-use-pig.md)</span><span class="sxs-lookup"><span data-stu-id="8d735-112">A basic familiarity with [using Pig on HDInsight](hdinsight-use-pig.md)</span></span>
 
-## <a name="install-datafu-on-linux-based-hdinsight"></a><span data-ttu-id="1480f-113">A Linux-alapú HDInsight DataFu telepítése</span><span class="sxs-lookup"><span data-stu-id="1480f-113">Install DataFu on Linux-based HDInsight</span></span>
+## <a name="install-datafu-on-linux-based-hdinsight"></a><span data-ttu-id="8d735-113">A Linux-alapú HDInsight DataFu telepítése</span><span class="sxs-lookup"><span data-stu-id="8d735-113">Install DataFu on Linux-based HDInsight</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="1480f-114">DataFu telepítve van a Linux-alapú fürtökön verzióján 3.3 és magasabb, és a Windows-alapú fürtökön.</span><span class="sxs-lookup"><span data-stu-id="1480f-114">DataFu is installed on Linux-based clusters version 3.3 and higher, and on Windows-based clusters.</span></span> <span data-ttu-id="1480f-115">Nem telepíti a rendszer a Linux-alapú fürtökön 3.3-as verziójánál.</span><span class="sxs-lookup"><span data-stu-id="1480f-115">It is not installed on Linux-based clusters earlier than 3.3.</span></span>
+> <span data-ttu-id="8d735-114">DataFu telepítve van a Linux-alapú fürtökön verzióján 3.3 és magasabb, és a Windows-alapú fürtökön.</span><span class="sxs-lookup"><span data-stu-id="8d735-114">DataFu is installed on Linux-based clusters version 3.3 and higher, and on Windows-based clusters.</span></span> <span data-ttu-id="8d735-115">Nem telepíti a rendszer a Linux-alapú fürtökön 3.3-as verziójánál.</span><span class="sxs-lookup"><span data-stu-id="8d735-115">It is not installed on Linux-based clusters earlier than 3.3.</span></span>
 >
-> <span data-ttu-id="1480f-116">Ha egy Windows-alapú fürt, vagy nagyobb, mint 3.3-as verzió Linux-alapú fürt használ, hagyja ki az ebben a szakaszban.</span><span class="sxs-lookup"><span data-stu-id="1480f-116">If you are using a Windows-based cluster, or a Linux-based cluster higher than version 3.3, skip this section.</span></span>
+> <span data-ttu-id="8d735-116">Ha egy Windows-alapú fürt, vagy nagyobb, mint 3.3-as verzió Linux-alapú fürt használ, hagyja ki az ebben a szakaszban.</span><span class="sxs-lookup"><span data-stu-id="8d735-116">If you are using a Windows-based cluster, or a Linux-based cluster higher than version 3.3, skip this section.</span></span>
 
-<span data-ttu-id="1480f-117">DataFu letölthető, és a Maven tárházból telepítve.</span><span class="sxs-lookup"><span data-stu-id="1480f-117">DataFu can be downloaded and installed from the Maven repository.</span></span> <span data-ttu-id="1480f-118">Az alábbi lépések segítségével DataFu hozzáadása a HDInsight-fürt:</span><span class="sxs-lookup"><span data-stu-id="1480f-118">Use the following steps to add DataFu to your HDInsight cluster:</span></span>
+<span data-ttu-id="8d735-117">DataFu letölthető, és adattárból hello Maven telepítve.</span><span class="sxs-lookup"><span data-stu-id="8d735-117">DataFu can be downloaded and installed from hello Maven repository.</span></span> <span data-ttu-id="8d735-118">A következő lépéseket tooadd DataFu tooyour HDInsight-fürt hello használata:</span><span class="sxs-lookup"><span data-stu-id="8d735-118">Use hello following steps tooadd DataFu tooyour HDInsight cluster:</span></span>
 
-1. <span data-ttu-id="1480f-119">Csatlakoztassa a Linux-alapú HDInsight-fürthöz SSH használatával.</span><span class="sxs-lookup"><span data-stu-id="1480f-119">Connect to your Linux-based HDInsight cluster using SSH.</span></span> <span data-ttu-id="1480f-120">További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).</span><span class="sxs-lookup"><span data-stu-id="1480f-120">For more information, see [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span></span>
+1. <span data-ttu-id="8d735-119">Csatlakozzon az SSH használatával tooyour Linux-alapú HDInsight-fürtöt.</span><span class="sxs-lookup"><span data-stu-id="8d735-119">Connect tooyour Linux-based HDInsight cluster using SSH.</span></span> <span data-ttu-id="8d735-120">További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).</span><span class="sxs-lookup"><span data-stu-id="8d735-120">For more information, see [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span></span>
 
-2. <span data-ttu-id="1480f-121">Az alábbi parancs segítségével töltse le a wget segédprogrammal DataFu jar-fájlra vagy másolja és illessze be a hivatkozást a böngészőbe a letöltés megkezdéséhez.</span><span class="sxs-lookup"><span data-stu-id="1480f-121">Use the following command to download the DataFu jar file using the wget utility, or copy and paste the link into your browser to begin the download.</span></span>
+2. <span data-ttu-id="8d735-121">Használja a következő parancs toodownload hello DataFu jar-fájlra segédprogrammal hello wget, hello másolása és illessze be a böngésző toobegin hello letöltés hello hivatkozásra.</span><span class="sxs-lookup"><span data-stu-id="8d735-121">Use hello following command toodownload hello DataFu jar file using hello wget utility, or copy and paste hello link into your browser toobegin hello download.</span></span>
 
     ```
     wget http://central.maven.org/maven2/com/linkedin/datafu/datafu/1.2.0/datafu-1.2.0.jar
     ```
 
-3. <span data-ttu-id="1480f-122">A következő feltölteni a fájlt az alapértelmezett storage a HDInsight-fürthöz.</span><span class="sxs-lookup"><span data-stu-id="1480f-122">Next, upload the file to default storage for your HDInsight cluster.</span></span> <span data-ttu-id="1480f-123">Helyezi el a fájlt az alapértelmezett tároló lehetővé teszi az összes csomópont a fürtben.</span><span class="sxs-lookup"><span data-stu-id="1480f-123">Placing the file in default storage makes it available to all nodes in the cluster.</span></span>
+3. <span data-ttu-id="8d735-122">A következő feltöltése hello toodefault tároló a HDInsight-fürthöz.</span><span class="sxs-lookup"><span data-stu-id="8d735-122">Next, upload hello file toodefault storage for your HDInsight cluster.</span></span> <span data-ttu-id="8d735-123">Hello fájlt helyez az alapértelmezett tároló teszi a rendelkezésre álló tooall csomópontok hello fürt.</span><span class="sxs-lookup"><span data-stu-id="8d735-123">Placing hello file in default storage makes it available tooall nodes in hello cluster.</span></span>
 
     ```
     hdfs dfs -put datafu-1.2.0.jar /example/jars
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="1480f-124">Az előző parancs tárolja a jar `/example/jars` mivel ez a könyvtár már létezik a fürttároló.</span><span class="sxs-lookup"><span data-stu-id="1480f-124">The previous command stores the jar in `/example/jars` since this directory already exists on the cluster storage.</span></span> <span data-ttu-id="1480f-125">A HDInsight fürt tárolón kívánja bárhol használhatja.</span><span class="sxs-lookup"><span data-stu-id="1480f-125">You can use any location you wish on HDInsight cluster storage.</span></span>
+    > <span data-ttu-id="8d735-124">előző parancs hello tárolja a hello jar `/example/jars` mivel ez a könyvtár már létezik a hello fürttároló.</span><span class="sxs-lookup"><span data-stu-id="8d735-124">hello previous command stores hello jar in `/example/jars` since this directory already exists on hello cluster storage.</span></span> <span data-ttu-id="8d735-125">A HDInsight fürt tárolón kívánja bárhol használhatja.</span><span class="sxs-lookup"><span data-stu-id="8d735-125">You can use any location you wish on HDInsight cluster storage.</span></span>
 
-## <a name="use-datafu-with-pig"></a><span data-ttu-id="1480f-126">A Pig DataFu használata</span><span class="sxs-lookup"><span data-stu-id="1480f-126">Use DataFu With Pig</span></span>
+## <a name="use-datafu-with-pig"></a><span data-ttu-id="8d735-126">A Pig DataFu használata</span><span class="sxs-lookup"><span data-stu-id="8d735-126">Use DataFu With Pig</span></span>
 
-<span data-ttu-id="1480f-127">Ebben a szakaszban a lépések feltételezik, hogy ismeri a Pig használata a hdinsight platformon.</span><span class="sxs-lookup"><span data-stu-id="1480f-127">The steps in this section assume that you are familiar with using Pig on HDInsight.</span></span> <span data-ttu-id="1480f-128">A Pig használata a HDInsight további információkért lásd: [a Pig használata a hdinsight eszközzel](hdinsight-use-pig.md).</span><span class="sxs-lookup"><span data-stu-id="1480f-128">For more information on using Pig with HDInsight, see [Use Pig with HDInsight](hdinsight-use-pig.md).</span></span>
+<span data-ttu-id="8d735-127">Ebben a szakaszban hello lépések feltételezik, hogy ismeri a Pig használata a hdinsight platformon.</span><span class="sxs-lookup"><span data-stu-id="8d735-127">hello steps in this section assume that you are familiar with using Pig on HDInsight.</span></span> <span data-ttu-id="8d735-128">A Pig használata a HDInsight további információkért lásd: [a Pig használata a hdinsight eszközzel](hdinsight-use-pig.md).</span><span class="sxs-lookup"><span data-stu-id="8d735-128">For more information on using Pig with HDInsight, see [Use Pig with HDInsight](hdinsight-use-pig.md).</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="1480f-129">Ha manuálisan telepíti az előző szakaszban leírtak DataFu, akkor regisztrálnia kell azt annak használata előtt.</span><span class="sxs-lookup"><span data-stu-id="1480f-129">If you manually installed DataFu using the steps in the previous section, you must register it before using it.</span></span>
+> <span data-ttu-id="8d735-129">Ha manuálisan telepítette hello lépéseket követve hello előző szakaszban DataFu, regisztrálnia kell azt annak használata előtt.</span><span class="sxs-lookup"><span data-stu-id="8d735-129">If you manually installed DataFu using hello steps in hello previous section, you must register it before using it.</span></span>
 >
-> * <span data-ttu-id="1480f-130">Ha a fürt Azure tárterületet használja, használja a `wasb://` elérési útja.</span><span class="sxs-lookup"><span data-stu-id="1480f-130">If your cluster uses Azure Storage, use a `wasb://` path.</span></span> <span data-ttu-id="1480f-131">Például: `register wasb:///example/jars/datafu-1.2.0.jar`.</span><span class="sxs-lookup"><span data-stu-id="1480f-131">For example, `register wasb:///example/jars/datafu-1.2.0.jar`.</span></span>
+> * <span data-ttu-id="8d735-130">Ha a fürt Azure tárterületet használja, használja a `wasb://` elérési útja.</span><span class="sxs-lookup"><span data-stu-id="8d735-130">If your cluster uses Azure Storage, use a `wasb://` path.</span></span> <span data-ttu-id="8d735-131">Például: `register wasb:///example/jars/datafu-1.2.0.jar`.</span><span class="sxs-lookup"><span data-stu-id="8d735-131">For example, `register wasb:///example/jars/datafu-1.2.0.jar`.</span></span>
 >
-> * <span data-ttu-id="1480f-132">Ha a fürt az Azure Data Lake Store használ, egy `adl://` elérési útja.</span><span class="sxs-lookup"><span data-stu-id="1480f-132">If your cluster uses Azure Data Lake Store, use an `adl://` path.</span></span> <span data-ttu-id="1480f-133">Például: `register adl://home/example/jars/datafu-1.2.0.jar`.</span><span class="sxs-lookup"><span data-stu-id="1480f-133">For example, `register adl://home/example/jars/datafu-1.2.0.jar`.</span></span>
+> * <span data-ttu-id="8d735-132">Ha a fürt az Azure Data Lake Store használ, egy `adl://` elérési útja.</span><span class="sxs-lookup"><span data-stu-id="8d735-132">If your cluster uses Azure Data Lake Store, use an `adl://` path.</span></span> <span data-ttu-id="8d735-133">Például: `register adl://home/example/jars/datafu-1.2.0.jar`.</span><span class="sxs-lookup"><span data-stu-id="8d735-133">For example, `register adl://home/example/jars/datafu-1.2.0.jar`.</span></span>
 
-<span data-ttu-id="1480f-134">Gyakran határozza meg az DataFu függvény aliasa.</span><span class="sxs-lookup"><span data-stu-id="1480f-134">You often define an alias for DataFu functions.</span></span> <span data-ttu-id="1480f-135">Az alábbi példa meghatározza az alias `SHA`:</span><span class="sxs-lookup"><span data-stu-id="1480f-135">The following example defines an alias of `SHA`:</span></span>
+<span data-ttu-id="8d735-134">Gyakran határozza meg az DataFu függvény aliasa.</span><span class="sxs-lookup"><span data-stu-id="8d735-134">You often define an alias for DataFu functions.</span></span> <span data-ttu-id="8d735-135">hello alábbi példa meghatározza az alias `SHA`:</span><span class="sxs-lookup"><span data-stu-id="8d735-135">hello following example defines an alias of `SHA`:</span></span>
 
 ```piglatin
 DEFINE SHA datafu.pig.hash.SHA();
 ```
 
-<span data-ttu-id="1480f-136">A bemeneti adatok a kivonat létrehozásához használhatja ezt az aliast a Pig Latin parancsfájl.</span><span class="sxs-lookup"><span data-stu-id="1480f-136">You can then use this alias in a Pig Latin script to generate a hash for the input data.</span></span> <span data-ttu-id="1480f-137">Például az alábbi kód kivonatot lecseréli a bemeneti adatok helye:</span><span class="sxs-lookup"><span data-stu-id="1480f-137">For example, the following code replaces the location in the input data with a hash value:</span></span>
+<span data-ttu-id="8d735-136">A bemeneti adatok hello használhatja ezt az aliast a Pig Latin parancsfájl toogenerate kivonatát.</span><span class="sxs-lookup"><span data-stu-id="8d735-136">You can then use this alias in a Pig Latin script toogenerate a hash for hello input data.</span></span> <span data-ttu-id="8d735-137">Például hello alábbira lecseréli hello helyre hello bemeneti adatokat a kivonatot:</span><span class="sxs-lookup"><span data-stu-id="8d735-137">For example, hello following code replaces hello location in hello input data with a hash value:</span></span>
 
 ```piglatin
 raw = LOAD '/HdiSamples/HdiSamples/SensorSampleData/building/building.csv' USING
@@ -93,7 +93,7 @@ mask = FOREACH raw GENERATE int1, id1, int2, id2, SHA(location);
 DUMP mask;
 ```
 
-<span data-ttu-id="1480f-138">A következő kimenetet hoz létre:</span><span class="sxs-lookup"><span data-stu-id="1480f-138">It generates the following output:</span></span>
+<span data-ttu-id="8d735-138">A következő kimeneti hello hoz létre:</span><span class="sxs-lookup"><span data-stu-id="8d735-138">It generates hello following output:</span></span>
 
     (1,M1,25,AC1000,aa5ab35a9174c2062b7f7697b33fafe5ce404cf5fecf6bfbbf0dc96ba0d90046)
     (2,M2,27,FN39TG,7a1ca4ef7515f7276bae7230545829c27810c9d9e98ab2c06066bee6270d5153)
@@ -116,9 +116,9 @@ DUMP mask;
     (19,M19,14,GG1919,be55ef3f4c4e6c2d9c2afe2a33ac90ad0f50d4de7f9163999877e2a9ca5a54f8)
     (20,M20,19,ACMAX22,ea0b937ea317101ee2c26b03a4843a19ceced8a2b9673c3cf409a726ca2b0fd8)
 
-## <a name="next-steps"></a><span data-ttu-id="1480f-139">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="1480f-139">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="8d735-139">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="8d735-139">Next steps</span></span>
 
-<span data-ttu-id="1480f-140">DataFu vagy Pig további információkért lásd a következő dokumentumokat:</span><span class="sxs-lookup"><span data-stu-id="1480f-140">For more information on DataFu or Pig, see the following documents:</span></span>
+<span data-ttu-id="8d735-140">DataFu vagy Pig további információkért tekintse meg a következő dokumentumok hello:</span><span class="sxs-lookup"><span data-stu-id="8d735-140">For more information on DataFu or Pig, see hello following documents:</span></span>
 
-* <span data-ttu-id="1480f-141">[Apache DataFu Pig útmutató](http://datafu.incubator.apache.org/docs/datafu/guide.html).</span><span class="sxs-lookup"><span data-stu-id="1480f-141">[Apache DataFu Pig Guide](http://datafu.incubator.apache.org/docs/datafu/guide.html).</span></span>
-* [<span data-ttu-id="1480f-142">A Pig használata a HDInsightban</span><span class="sxs-lookup"><span data-stu-id="1480f-142">Use Pig with HDInsight</span></span>](hdinsight-use-pig.md)
+* <span data-ttu-id="8d735-141">[Apache DataFu Pig útmutató](http://datafu.incubator.apache.org/docs/datafu/guide.html).</span><span class="sxs-lookup"><span data-stu-id="8d735-141">[Apache DataFu Pig Guide](http://datafu.incubator.apache.org/docs/datafu/guide.html).</span></span>
+* [<span data-ttu-id="8d735-142">A Pig használata a HDInsightban</span><span class="sxs-lookup"><span data-stu-id="8d735-142">Use Pig with HDInsight</span></span>](hdinsight-use-pig.md)

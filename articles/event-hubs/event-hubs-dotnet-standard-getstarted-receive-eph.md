@@ -1,6 +1,6 @@
 ---
-title: "Események fogadása az Azure Event Hubs használatával a .NET-szabvány |} Microsoft Docs"
-description: "Ismerkedés az EventProcessorHost üzenetek fogadása a .NET-szabvány"
+title: "az Azure Event Hubs használatával a .NET-szabvány aaaReceive események |} Microsoft Docs"
+description: "Ismerkedés a .NET-szabvány hello EventProcessorHost üzenetek fogadása"
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -14,61 +14,61 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/27/2017
 ms.author: sethm
-ms.openlocfilehash: cc62792dad0284f9514664795fdfb32e94a85943
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c3983f2668ac8f65522e44a1609dfd2eed31b7d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-receiving-messages-with-the-event-processor-host-in-net-standard"></a><span data-ttu-id="09ab4-103">Az Event Processor Host üzenetek fogadása a .NET-szabvány első lépései</span><span class="sxs-lookup"><span data-stu-id="09ab4-103">Get started receiving messages with the Event Processor Host in .NET Standard</span></span>
+# <a name="get-started-receiving-messages-with-hello-event-processor-host-in-net-standard"></a><span data-ttu-id="a9e87-103">Ismerkedés a .NET-szabvány hello Event Processor Host üzenetek fogadása</span><span class="sxs-lookup"><span data-stu-id="a9e87-103">Get started receiving messages with hello Event Processor Host in .NET Standard</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="09ab4-104">Ez a minta érhető el a [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver).</span><span class="sxs-lookup"><span data-stu-id="09ab4-104">This sample is available on [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver).</span></span>
+> <span data-ttu-id="a9e87-104">Ez a minta érhető el a [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver).</span><span class="sxs-lookup"><span data-stu-id="a9e87-104">This sample is available on [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver).</span></span>
 
-<span data-ttu-id="09ab4-105">Ez az oktatóanyag bemutatja, hogyan írhat egy .NET Core-konzolalkalmazást, amely üzeneteket fogad az eseményközpontban lévő használatával **EventProcessorHost**.</span><span class="sxs-lookup"><span data-stu-id="09ab4-105">This tutorial shows how to write a .NET Core console application that receives messages from an event hub by using **EventProcessorHost**.</span></span> <span data-ttu-id="09ab4-106">Futtathatja a [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver) megoldás szerint-van, a karakterláncok cseréje a event hub és a tárolási fiók értékek.</span><span class="sxs-lookup"><span data-stu-id="09ab4-106">You can run the [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver) solution as-is, replacing the strings with your event hub and storage account values.</span></span> <span data-ttu-id="09ab4-107">Vagy a lépésekkel ebben az oktatóanyagban saját.</span><span class="sxs-lookup"><span data-stu-id="09ab4-107">Or you can follow the steps in this tutorial to create your own.</span></span>
+<span data-ttu-id="a9e87-105">Ez az oktatóanyag bemutatja, hogyan toowrite a .NET Core Konzolalkalmazás, amely üzeneteket fogad az eseményközpontban lévő használatával **EventProcessorHost**.</span><span class="sxs-lookup"><span data-stu-id="a9e87-105">This tutorial shows how toowrite a .NET Core console application that receives messages from an event hub by using **EventProcessorHost**.</span></span> <span data-ttu-id="a9e87-106">Hello futtatása [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver) megoldás szerint-, lecseréli hello karakterláncok a event hub és a tárolási fiók értékek.</span><span class="sxs-lookup"><span data-stu-id="a9e87-106">You can run hello [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver) solution as-is, replacing hello strings with your event hub and storage account values.</span></span> <span data-ttu-id="a9e87-107">Vagy követheti hello lépéseit az oktatóanyag toocreate saját.</span><span class="sxs-lookup"><span data-stu-id="a9e87-107">Or you can follow hello steps in this tutorial toocreate your own.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="09ab4-108">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="09ab4-108">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="a9e87-108">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="a9e87-108">Prerequisites</span></span>
 
-* <span data-ttu-id="09ab4-109">[A Microsoft Visual Studio 2015-öt vagy 2017](http://www.visualstudio.com).</span><span class="sxs-lookup"><span data-stu-id="09ab4-109">[Microsoft Visual Studio 2015 or 2017](http://www.visualstudio.com).</span></span> <span data-ttu-id="09ab4-110">A példák a Visual Studio 2017 oktatóanyag használja, de a Visual Studio 2015-öt is támogatott.</span><span class="sxs-lookup"><span data-stu-id="09ab4-110">The examples in this tutorial use Visual Studio 2017, but Visual Studio 2015 is also supported.</span></span>
-* <span data-ttu-id="09ab4-111">[A .NET core Visual Studio 2015-öt vagy 2017 eszközök](http://www.microsoft.com/net/core).</span><span class="sxs-lookup"><span data-stu-id="09ab4-111">[.NET Core Visual Studio 2015 or 2017 tools](http://www.microsoft.com/net/core).</span></span>
-* <span data-ttu-id="09ab4-112">Azure-előfizetés.</span><span class="sxs-lookup"><span data-stu-id="09ab4-112">An Azure subscription.</span></span>
-* <span data-ttu-id="09ab4-113">Az Azure Event Hubs névtér.</span><span class="sxs-lookup"><span data-stu-id="09ab4-113">An Azure Event Hubs namespace.</span></span>
-* <span data-ttu-id="09ab4-114">Egy Azure-tárfiók.</span><span class="sxs-lookup"><span data-stu-id="09ab4-114">An Azure storage account.</span></span>
+* <span data-ttu-id="a9e87-109">[A Microsoft Visual Studio 2015-öt vagy 2017](http://www.visualstudio.com).</span><span class="sxs-lookup"><span data-stu-id="a9e87-109">[Microsoft Visual Studio 2015 or 2017](http://www.visualstudio.com).</span></span> <span data-ttu-id="a9e87-110">Ebben az oktatóanyag a Visual Studio 2017 hello példák, de a Visual Studio 2015-öt is támogatott.</span><span class="sxs-lookup"><span data-stu-id="a9e87-110">hello examples in this tutorial use Visual Studio 2017, but Visual Studio 2015 is also supported.</span></span>
+* <span data-ttu-id="a9e87-111">[A .NET core Visual Studio 2015-öt vagy 2017 eszközök](http://www.microsoft.com/net/core).</span><span class="sxs-lookup"><span data-stu-id="a9e87-111">[.NET Core Visual Studio 2015 or 2017 tools](http://www.microsoft.com/net/core).</span></span>
+* <span data-ttu-id="a9e87-112">Azure-előfizetés.</span><span class="sxs-lookup"><span data-stu-id="a9e87-112">An Azure subscription.</span></span>
+* <span data-ttu-id="a9e87-113">Az Azure Event Hubs névtér.</span><span class="sxs-lookup"><span data-stu-id="a9e87-113">An Azure Event Hubs namespace.</span></span>
+* <span data-ttu-id="a9e87-114">Egy Azure-tárfiók.</span><span class="sxs-lookup"><span data-stu-id="a9e87-114">An Azure storage account.</span></span>
 
-## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a><span data-ttu-id="09ab4-115">Event Hubs-névtér és eseményközpont létrehozása</span><span class="sxs-lookup"><span data-stu-id="09ab4-115">Create an Event Hubs namespace and an event hub</span></span>  
+## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a><span data-ttu-id="a9e87-115">Event Hubs-névtér és eseményközpont létrehozása</span><span class="sxs-lookup"><span data-stu-id="a9e87-115">Create an Event Hubs namespace and an event hub</span></span>  
 
-<span data-ttu-id="09ab4-116">Az első lépés az, hogy használja a [Azure-portálon](https://portal.azure.com) az Event Hubs típus névtér létrehozása, és szerezze be a felügyeleti hitelesítő adatokat az alkalmazásban az event hubs folytatott kommunikációhoz szükséges.</span><span class="sxs-lookup"><span data-stu-id="09ab4-116">The first step is to use the [Azure portal](https://portal.azure.com) to create a namespace for the Event Hubs type, and obtain the management credentials that your application needs to communicate with the event hub.</span></span> <span data-ttu-id="09ab4-117">Egy névtér és az event hub létrehozásához kövesse a [Ez a cikk](event-hubs-create.md), majd folytassa a következő lépéseket.</span><span class="sxs-lookup"><span data-stu-id="09ab4-117">To create a namespace and event hub, follow the procedure in [this article](event-hubs-create.md), and then proceed with the following steps.</span></span>  
+<span data-ttu-id="a9e87-116">hello első lépése az toouse hello [Azure-portálon](https://portal.azure.com) toocreate hello Event Hubs egy névterét adja meg, majd hello felügyeleti hitelesítő adatok, hogy az alkalmazás kell toocommunicate hello eseményközpont az beszerzése.</span><span class="sxs-lookup"><span data-stu-id="a9e87-116">hello first step is toouse hello [Azure portal](https://portal.azure.com) toocreate a namespace for hello Event Hubs type, and obtain hello management credentials that your application needs toocommunicate with hello event hub.</span></span> <span data-ttu-id="a9e87-117">toocreate névtér és az event hubs eljárással hello a [Ez a cikk](event-hubs-create.md), majd folytassa a következő lépéseket hello.</span><span class="sxs-lookup"><span data-stu-id="a9e87-117">toocreate a namespace and event hub, follow hello procedure in [this article](event-hubs-create.md), and then proceed with hello following steps.</span></span>  
 
-## <a name="create-an-azure-storage-account"></a><span data-ttu-id="09ab4-118">Azure-tárfiók létrehozása</span><span class="sxs-lookup"><span data-stu-id="09ab4-118">Create an Azure storage account</span></span>  
+## <a name="create-an-azure-storage-account"></a><span data-ttu-id="a9e87-118">Azure-tárfiók létrehozása</span><span class="sxs-lookup"><span data-stu-id="a9e87-118">Create an Azure storage account</span></span>  
 
-1. <span data-ttu-id="09ab4-119">Jelentkezzen be az [Azure Portalra](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="09ab4-119">Sign in to the [Azure portal](https://portal.azure.com).</span></span>  
-2. <span data-ttu-id="09ab4-120">A portál bal oldali navigációs ablaktábláján kattintson **új**, kattintson a **tárolási**, és kattintson a **Tárfiók**.</span><span class="sxs-lookup"><span data-stu-id="09ab4-120">In the left navigation pane of the portal, click **New**, click **Storage**, and then click **Storage Account**.</span></span>  
-3. <span data-ttu-id="09ab4-121">Töltse ki a mezőket a storage-fiók panelen, és kattintson a **létrehozása**.</span><span class="sxs-lookup"><span data-stu-id="09ab4-121">Complete the fields in the storage account blade, and then click **Create**.</span></span>
+1. <span data-ttu-id="a9e87-119">Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="a9e87-119">Sign in toohello [Azure portal](https://portal.azure.com).</span></span>  
+2. <span data-ttu-id="a9e87-120">Hello portal hello bal oldali navigációs ablaktábláján kattintson **új**, kattintson a **tárolási**, és kattintson a **Tárfiók**.</span><span class="sxs-lookup"><span data-stu-id="a9e87-120">In hello left navigation pane of hello portal, click **New**, click **Storage**, and then click **Storage Account**.</span></span>  
+3. <span data-ttu-id="a9e87-121">Fejezze be a hello mezők hello storage-fiók panelen, majd kattintson a **létrehozása**.</span><span class="sxs-lookup"><span data-stu-id="a9e87-121">Complete hello fields in hello storage account blade, and then click **Create**.</span></span>
 
     ![Storage-fiók létrehozása][1]
 
-4. <span data-ttu-id="09ab4-123">Miután meggyőződött arról a **központi telepítések sikeres** üzenetet, kattintson az új tárfiók neve.</span><span class="sxs-lookup"><span data-stu-id="09ab4-123">After you see the **Deployments Succeeded** message, click the name of the new storage account.</span></span> <span data-ttu-id="09ab4-124">Az a **Essentials** panelen kattintson a **Blobok**.</span><span class="sxs-lookup"><span data-stu-id="09ab4-124">In the **Essentials** blade, click **Blobs**.</span></span> <span data-ttu-id="09ab4-125">Ha a **Blob szolgáltatás** panel nyílik meg, kattintson a **+ tároló** tetején.</span><span class="sxs-lookup"><span data-stu-id="09ab4-125">When the **Blob service** blade opens, click **+ Container** at the top.</span></span> <span data-ttu-id="09ab4-126">Nevezze el a tárolót, és zárja be a **Blob szolgáltatás** panelen.</span><span class="sxs-lookup"><span data-stu-id="09ab4-126">Give the container a name, and then close the **Blob service** blade.</span></span>  
-5. <span data-ttu-id="09ab4-127">Kattintson a **hívóbetűk** a bal oldali panelen és a példány nevét és a tároló, a tárfiók, értékének **key1**.</span><span class="sxs-lookup"><span data-stu-id="09ab4-127">Click **Access keys** in the left blade and copy the name of the storage container, the storage account, and the value of **key1**.</span></span> <span data-ttu-id="09ab4-128">Ezeket az értékeket a Jegyzettömb vagy más ideiglenes helyre mentse.</span><span class="sxs-lookup"><span data-stu-id="09ab4-128">Save these values to Notepad or some other temporary location.</span></span>  
+4. <span data-ttu-id="a9e87-123">Miután meggyőződött arról, hogy hello **központi telepítések sikeres** üzenetet, kattintson az új tárfiók hello hello nevére.</span><span class="sxs-lookup"><span data-stu-id="a9e87-123">After you see hello **Deployments Succeeded** message, click hello name of hello new storage account.</span></span> <span data-ttu-id="a9e87-124">A hello **Essentials** panelen kattintson a **Blobok**.</span><span class="sxs-lookup"><span data-stu-id="a9e87-124">In hello **Essentials** blade, click **Blobs**.</span></span> <span data-ttu-id="a9e87-125">Ha hello **Blob szolgáltatás** panel nyílik meg, kattintson a **+ tároló** hello tetején.</span><span class="sxs-lookup"><span data-stu-id="a9e87-125">When hello **Blob service** blade opens, click **+ Container** at hello top.</span></span> <span data-ttu-id="a9e87-126">Nevezze el hello tárolót, és zárja be a hello **Blob szolgáltatás** panelen.</span><span class="sxs-lookup"><span data-stu-id="a9e87-126">Give hello container a name, and then close hello **Blob service** blade.</span></span>  
+5. <span data-ttu-id="a9e87-127">Kattintson a **hívóbetűk** hello bal oldali panelen, és másolja hello nevű hello tároló hello tárfiók és hello értékének **key1**.</span><span class="sxs-lookup"><span data-stu-id="a9e87-127">Click **Access keys** in hello left blade and copy hello name of hello storage container, hello storage account, and hello value of **key1**.</span></span> <span data-ttu-id="a9e87-128">Ezen értékek tooNotepad vagy más ideiglenes helyre mentse.</span><span class="sxs-lookup"><span data-stu-id="a9e87-128">Save these values tooNotepad or some other temporary location.</span></span>  
 
-## <a name="create-a-console-application"></a><span data-ttu-id="09ab4-129">Konzolalkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="09ab4-129">Create a console application</span></span>
+## <a name="create-a-console-application"></a><span data-ttu-id="a9e87-129">Konzolalkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="a9e87-129">Create a console application</span></span>
 
-<span data-ttu-id="09ab4-130">Indítsa el a Visual Studiót.</span><span class="sxs-lookup"><span data-stu-id="09ab4-130">Start Visual Studio.</span></span> <span data-ttu-id="09ab4-131">Kattintson a **File** (Fájl) menüben a **New** (Új), majd a **Project** (Projekt) elemre.</span><span class="sxs-lookup"><span data-stu-id="09ab4-131">From the **File** menu, click **New**, and then click **Project**.</span></span> <span data-ttu-id="09ab4-132">A .NET Core Konzolalkalmazás létrehozása.</span><span class="sxs-lookup"><span data-stu-id="09ab4-132">Create a .NET Core console application.</span></span>
+<span data-ttu-id="a9e87-130">Indítsa el a Visual Studiót.</span><span class="sxs-lookup"><span data-stu-id="a9e87-130">Start Visual Studio.</span></span> <span data-ttu-id="a9e87-131">A hello **fájl** menüben kattintson a **új**, és kattintson a **projekt**.</span><span class="sxs-lookup"><span data-stu-id="a9e87-131">From hello **File** menu, click **New**, and then click **Project**.</span></span> <span data-ttu-id="a9e87-132">A .NET Core Konzolalkalmazás létrehozása.</span><span class="sxs-lookup"><span data-stu-id="a9e87-132">Create a .NET Core console application.</span></span>
 
 ![Új projekt][2]
 
-## <a name="add-the-event-hubs-nuget-package"></a><span data-ttu-id="09ab4-134">Az Event Hubs NuGet-csomag hozzáadása</span><span class="sxs-lookup"><span data-stu-id="09ab4-134">Add the Event Hubs NuGet package</span></span>
+## <a name="add-hello-event-hubs-nuget-package"></a><span data-ttu-id="a9e87-134">Hello Event Hubs NuGet-csomag hozzáadása</span><span class="sxs-lookup"><span data-stu-id="a9e87-134">Add hello Event Hubs NuGet package</span></span>
 
-<span data-ttu-id="09ab4-135">Adja hozzá a [ `Microsoft.Azure.EventHubs` ](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) és [ `Microsoft.Azure.EventHubs.Processor` ](https://www.nuget.org/packages/Microsoft.Azure.EventHubs.Processor/) .NET-szabvány library NuGet-csomagok a projekthez az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="09ab4-135">Add the [`Microsoft.Azure.EventHubs`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) and [`Microsoft.Azure.EventHubs.Processor`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs.Processor/) .NET Standard library NuGet packages to your project by following these steps:</span></span> 
+<span data-ttu-id="a9e87-135">Adja hozzá a hello [ `Microsoft.Azure.EventHubs` ](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) és [ `Microsoft.Azure.EventHubs.Processor` ](https://www.nuget.org/packages/Microsoft.Azure.EventHubs.Processor/) .NET-szabvány library NuGet csomagok tooyour projekt ezeket a lépéseket követve:</span><span class="sxs-lookup"><span data-stu-id="a9e87-135">Add hello [`Microsoft.Azure.EventHubs`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) and [`Microsoft.Azure.EventHubs.Processor`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs.Processor/) .NET Standard library NuGet packages tooyour project by following these steps:</span></span> 
 
-1. <span data-ttu-id="09ab4-136">Kattintson a jobb gombbal az újonnan létrehozott projektre, és válassza a **Manage Nuget Packages** (NuGet-csomagok kezelése) lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="09ab4-136">Right-click the newly created project and select **Manage NuGet Packages**.</span></span>
-2. <span data-ttu-id="09ab4-137">Kattintson a **Tallózás** fülre, majd keresse meg a "Microsoft.Azure.EventHubs", és válassza ki a **Microsoft.Azure.EventHubs** csomag.</span><span class="sxs-lookup"><span data-stu-id="09ab4-137">Click the **Browse** tab, then search for "Microsoft.Azure.EventHubs" and select the **Microsoft.Azure.EventHubs** package.</span></span> <span data-ttu-id="09ab4-138">Kattintson a **Telepítés** gombra a telepítés befejezéséhez, majd zárja be a párbeszédpanelt.</span><span class="sxs-lookup"><span data-stu-id="09ab4-138">Click **Install** to complete the installation, then close this dialog box.</span></span>
-3. <span data-ttu-id="09ab4-139">Ismételje meg az 1. és 2, és telepítse a **Microsoft.Azure.EventHubs.Processor** csomag.</span><span class="sxs-lookup"><span data-stu-id="09ab4-139">Repeat steps 1 and 2, and install the **Microsoft.Azure.EventHubs.Processor** package.</span></span>
+1. <span data-ttu-id="a9e87-136">Kattintson a jobb gombbal az újonnan létrehozott hello projektet, és válassza ki **NuGet-csomagok kezelése**.</span><span class="sxs-lookup"><span data-stu-id="a9e87-136">Right-click hello newly created project and select **Manage NuGet Packages**.</span></span>
+2. <span data-ttu-id="a9e87-137">Kattintson a hello **Tallózás** fülre, majd keresse meg a "Microsoft.Azure.EventHubs" és a select hello **Microsoft.Azure.EventHubs** csomag.</span><span class="sxs-lookup"><span data-stu-id="a9e87-137">Click hello **Browse** tab, then search for "Microsoft.Azure.EventHubs" and select hello **Microsoft.Azure.EventHubs** package.</span></span> <span data-ttu-id="a9e87-138">Kattintson a **telepítése** toocomplete hello telepítését, majd zárja be a párbeszédpanelt.</span><span class="sxs-lookup"><span data-stu-id="a9e87-138">Click **Install** toocomplete hello installation, then close this dialog box.</span></span>
+3. <span data-ttu-id="a9e87-139">Ismételje meg az 1. és 2, és telepítse a hello **Microsoft.Azure.EventHubs.Processor** csomag.</span><span class="sxs-lookup"><span data-stu-id="a9e87-139">Repeat steps 1 and 2, and install hello **Microsoft.Azure.EventHubs.Processor** package.</span></span>
 
-## <a name="implement-the-ieventprocessor-interface"></a><span data-ttu-id="09ab4-140">A IEventProcessor illesztőfelület megvalósítása</span><span class="sxs-lookup"><span data-stu-id="09ab4-140">Implement the IEventProcessor interface</span></span>
+## <a name="implement-hello-ieventprocessor-interface"></a><span data-ttu-id="a9e87-140">Hello IEventProcessor illesztőfelület megvalósítása</span><span class="sxs-lookup"><span data-stu-id="a9e87-140">Implement hello IEventProcessor interface</span></span>
 
-1. <span data-ttu-id="09ab4-141">A Megoldáskezelőben kattintson a jobb gombbal a projektre, kattintson a **Hozzáadás**, és kattintson a **osztály**.</span><span class="sxs-lookup"><span data-stu-id="09ab4-141">In Solution Explorer, right-click the project, click **Add**, and then click **Class**.</span></span> <span data-ttu-id="09ab4-142">Az új osztály neve **SimpleEventProcessor**.</span><span class="sxs-lookup"><span data-stu-id="09ab4-142">Name the new class **SimpleEventProcessor**.</span></span>
+1. <span data-ttu-id="a9e87-141">A Megoldáskezelőben kattintson a jobb gombbal hello projektben kattintson **Hozzáadás**, és kattintson a **osztály**.</span><span class="sxs-lookup"><span data-stu-id="a9e87-141">In Solution Explorer, right-click hello project, click **Add**, and then click **Class**.</span></span> <span data-ttu-id="a9e87-142">Hello új osztály neve **SimpleEventProcessor**.</span><span class="sxs-lookup"><span data-stu-id="a9e87-142">Name hello new class **SimpleEventProcessor**.</span></span>
 
-2. <span data-ttu-id="09ab4-143">Nyissa meg a SimpleEventProcessor.cs fájl, és adja hozzá a következő `using` utasítást, hogy a fájl elejéhez.</span><span class="sxs-lookup"><span data-stu-id="09ab4-143">Open the SimpleEventProcessor.cs file and add the following `using` statements to the top of the file.</span></span>
+2. <span data-ttu-id="a9e87-143">Nyissa meg a hello SimpleEventProcessor.cs fájl, és adja hozzá a következő hello `using` utasítások toohello felső hello fájl.</span><span class="sxs-lookup"><span data-stu-id="a9e87-143">Open hello SimpleEventProcessor.cs file and add hello following `using` statements toohello top of hello file.</span></span>
 
     ```csharp
     using Microsoft.Azure.EventHubs;
@@ -76,7 +76,7 @@ ms.lasthandoff: 07/11/2017
     using System.Threading.Tasks;
     ```
 
-3. <span data-ttu-id="09ab4-144">Alkalmazzon a `IEventProcessor` felületet.</span><span class="sxs-lookup"><span data-stu-id="09ab4-144">Implement the `IEventProcessor` interface.</span></span> <span data-ttu-id="09ab4-145">Cserélje le a teljes tartalmát a `SimpleEventProcessor` osztály az alábbi kódra:</span><span class="sxs-lookup"><span data-stu-id="09ab4-145">Replace the entire contents of the `SimpleEventProcessor` class with the following code:</span></span>
+3. <span data-ttu-id="a9e87-144">Alkalmazzon hello `IEventProcessor` felületet.</span><span class="sxs-lookup"><span data-stu-id="a9e87-144">Implement hello `IEventProcessor` interface.</span></span> <span data-ttu-id="a9e87-145">Cserélje le a teljes tartalma hello hello `SimpleEventProcessor` hello kód a következő osztályra:</span><span class="sxs-lookup"><span data-stu-id="a9e87-145">Replace hello entire contents of hello `SimpleEventProcessor` class with hello following code:</span></span>
 
     ```csharp
     public class SimpleEventProcessor : IEventProcessor
@@ -112,9 +112,9 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-## <a name="write-a-main-console-method-that-uses-the-simpleeventprocessor-class-to-receive-messages"></a><span data-ttu-id="09ab4-146">A fő konzolon metódus írása, amely a SimpleEventProcessor osztály üzenetek fogadásához használt</span><span class="sxs-lookup"><span data-stu-id="09ab4-146">Write a main console method that uses the SimpleEventProcessor class to receive messages</span></span>
+## <a name="write-a-main-console-method-that-uses-hello-simpleeventprocessor-class-tooreceive-messages"></a><span data-ttu-id="a9e87-146">A fő konzolon metódus írása, amely hello SimpleEventProcessor osztály tooreceive üzeneteket</span><span class="sxs-lookup"><span data-stu-id="a9e87-146">Write a main console method that uses hello SimpleEventProcessor class tooreceive messages</span></span>
 
-1. <span data-ttu-id="09ab4-147">Adja hozzá az alábbi `using` utasításokat a Program.cs fájl elejéhez.</span><span class="sxs-lookup"><span data-stu-id="09ab4-147">Add the following `using` statements to the top of the Program.cs file.</span></span>
+1. <span data-ttu-id="a9e87-147">Adja hozzá a következő hello `using` hello Program.cs fájl elejéhez utasítások toohello.</span><span class="sxs-lookup"><span data-stu-id="a9e87-147">Add hello following `using` statements toohello top of hello Program.cs file.</span></span>
 
     ```csharp
     using Microsoft.Azure.EventHubs;
@@ -122,7 +122,7 @@ ms.lasthandoff: 07/11/2017
     using System.Threading.Tasks;
     ```
 
-2. <span data-ttu-id="09ab4-148">Adja hozzá a állandók a `Program` osztály a event hub kapcsolati karakterlánc, a eseményközpont neve, a tárfiók tároló neve, a tárfiók neve és a tárfiók kulcsa.</span><span class="sxs-lookup"><span data-stu-id="09ab4-148">Add constants to the `Program` class for the event hub connection string, event hub name, storage account container name, storage account name, and storage account key.</span></span> <span data-ttu-id="09ab4-149">Adja hozzá a következő kódot, a helyőrzők cseréje a hozzájuk tartozó értékek.</span><span class="sxs-lookup"><span data-stu-id="09ab4-149">Add the following code, replacing the placeholders with their corresponding values.</span></span>
+2. <span data-ttu-id="a9e87-148">Adja hozzá a állandók toohello `Program` osztály hello event hub kapcsolati karakterlánc, eseményközpont neve, a tárfiók tároló neve, a tárfiók nevének és tárfiók kulcsa.</span><span class="sxs-lookup"><span data-stu-id="a9e87-148">Add constants toohello `Program` class for hello event hub connection string, event hub name, storage account container name, storage account name, and storage account key.</span></span> <span data-ttu-id="a9e87-149">Adja hozzá a következő kódot, hello helyőrzők cseréje a hozzájuk tartozó értékek hello.</span><span class="sxs-lookup"><span data-stu-id="a9e87-149">Add hello following code, replacing hello placeholders with their corresponding values.</span></span>
 
     ```csharp
     private const string EhConnectionString = "{Event Hubs connection string}";
@@ -134,7 +134,7 @@ ms.lasthandoff: 07/11/2017
     private static readonly string StorageConnectionString = string.Format("DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}", StorageAccountName, StorageAccountKey);
     ```   
 
-3. <span data-ttu-id="09ab4-150">Nevű új módszer `MainAsync` számára a `Program` osztály, az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="09ab4-150">Add a new method named `MainAsync` to the `Program` class, as follows:</span></span>
+3. <span data-ttu-id="a9e87-150">Nevű új módszer `MainAsync` toohello `Program` osztály, az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="a9e87-150">Add a new method named `MainAsync` toohello `Program` class, as follows:</span></span>
 
     ```csharp
     private static async Task MainAsync(string[] args)
@@ -148,24 +148,24 @@ ms.lasthandoff: 07/11/2017
             StorageConnectionString,
             StorageContainerName);
 
-        // Registers the Event Processor Host and starts receiving messages
+        // Registers hello Event Processor Host and starts receiving messages
         await eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-        Console.WriteLine("Receiving. Press ENTER to stop worker.");
+        Console.WriteLine("Receiving. Press ENTER toostop worker.");
         Console.ReadLine();
 
-        // Disposes of the Event Processor Host
+        // Disposes of hello Event Processor Host
         await eventProcessorHost.UnregisterEventProcessorAsync();
     }
     ```
 
-3. <span data-ttu-id="09ab4-151">Adja hozzá a következő kódsort a `Main` módszert:</span><span class="sxs-lookup"><span data-stu-id="09ab4-151">Add the following line of code to the `Main` method:</span></span>
+3. <span data-ttu-id="a9e87-151">Adja hozzá a következő kód toohello üzletági hello `Main` módszert:</span><span class="sxs-lookup"><span data-stu-id="a9e87-151">Add hello following line of code toohello `Main` method:</span></span>
 
     ```csharp
     MainAsync(args).GetAwaiter().GetResult();
     ```
 
-    <span data-ttu-id="09ab4-152">A Program.cs fájlnak így kell kinéznie:</span><span class="sxs-lookup"><span data-stu-id="09ab4-152">Here is what your Program.cs file should look like:</span></span>
+    <span data-ttu-id="a9e87-152">A Program.cs fájlnak így kell kinéznie:</span><span class="sxs-lookup"><span data-stu-id="a9e87-152">Here is what your Program.cs file should look like:</span></span>
 
     ```csharp
     namespace SampleEphReceiver
@@ -197,29 +197,29 @@ ms.lasthandoff: 07/11/2017
                     StorageConnectionString,
                     StorageContainerName);
 
-                // Registers the Event Processor Host and starts receiving messages
+                // Registers hello Event Processor Host and starts receiving messages
                 await eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-                Console.WriteLine("Receiving. Press ENTER to stop worker.");
+                Console.WriteLine("Receiving. Press ENTER toostop worker.");
                 Console.ReadLine();
 
-                // Disposes of the Event Processor Host
+                // Disposes of hello Event Processor Host
                 await eventProcessorHost.UnregisterEventProcessorAsync();
             }
         }
     }
     ```
 
-4. <span data-ttu-id="09ab4-153">Futtassa a programot, és ellenőrizze, hogy nincsenek-e hibák.</span><span class="sxs-lookup"><span data-stu-id="09ab4-153">Run the program, and ensure that there are no errors.</span></span>
+4. <span data-ttu-id="a9e87-153">Hello program futtatása, és győződjön meg arról, hogy nincsenek-e hibák.</span><span class="sxs-lookup"><span data-stu-id="a9e87-153">Run hello program, and ensure that there are no errors.</span></span>
 
-<span data-ttu-id="09ab4-154">Gratulálunk!</span><span class="sxs-lookup"><span data-stu-id="09ab4-154">Congratulations!</span></span> <span data-ttu-id="09ab4-155">Most kapott üzenetek eseményközpontban az Event Processor Host használatával.</span><span class="sxs-lookup"><span data-stu-id="09ab4-155">You have now received messages from an event hub by using the Event Processor Host.</span></span>
+<span data-ttu-id="a9e87-154">Gratulálunk!</span><span class="sxs-lookup"><span data-stu-id="a9e87-154">Congratulations!</span></span> <span data-ttu-id="a9e87-155">Az eseményközpontok hello Event Processor Host használatával most kapott üzenetek.</span><span class="sxs-lookup"><span data-stu-id="a9e87-155">You have now received messages from an event hub by using hello Event Processor Host.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="09ab4-156">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="09ab4-156">Next steps</span></span>
-<span data-ttu-id="09ab4-157">Az alábbi webhelyeken további információt talál az Event Hubsról:</span><span class="sxs-lookup"><span data-stu-id="09ab4-157">You can learn more about Event Hubs by visiting the following links:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a9e87-156">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="a9e87-156">Next steps</span></span>
+<span data-ttu-id="a9e87-157">További információ az Event Hubs érhetők el a következő hivatkozások hello:</span><span class="sxs-lookup"><span data-stu-id="a9e87-157">You can learn more about Event Hubs by visiting hello following links:</span></span>
 
-* [<span data-ttu-id="09ab4-158">Event Hubs – áttekintés</span><span class="sxs-lookup"><span data-stu-id="09ab4-158">Event Hubs overview</span></span>](event-hubs-what-is-event-hubs.md)
-* [<span data-ttu-id="09ab4-159">Eseményközpont létrehozása</span><span class="sxs-lookup"><span data-stu-id="09ab4-159">Create an event hub</span></span>](event-hubs-create.md)
-* [<span data-ttu-id="09ab4-160">Event Hubs – gyakori kérdések</span><span class="sxs-lookup"><span data-stu-id="09ab4-160">Event Hubs FAQ</span></span>](event-hubs-faq.md)
+* [<span data-ttu-id="a9e87-158">Event Hubs – áttekintés</span><span class="sxs-lookup"><span data-stu-id="a9e87-158">Event Hubs overview</span></span>](event-hubs-what-is-event-hubs.md)
+* [<span data-ttu-id="a9e87-159">Eseményközpont létrehozása</span><span class="sxs-lookup"><span data-stu-id="a9e87-159">Create an event hub</span></span>](event-hubs-create.md)
+* [<span data-ttu-id="a9e87-160">Event Hubs – gyakori kérdések</span><span class="sxs-lookup"><span data-stu-id="a9e87-160">Event Hubs FAQ</span></span>](event-hubs-faq.md)
 
 [1]: ./media/event-hubs-dotnet-standard-getstarted-receive-eph/event-hubs-python1.png
 [2]: ./media/event-hubs-dotnet-standard-getstarted-receive-eph/netcore.png

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Batch dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Ismerje meg, hogy a Batch hogyan használható a nagy léptékű párhuzamos és nagy teljesítményű feldolgozási alkalmazások futtatására. Oktatóanyagok, API-referenciák, és egyéb dokumentációk."
+title: "aaaAzure kötegelt dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse toorun nagyméretű párhuzamos és nagy teljesítményű számítástechnikai alkalmazások hatékonyan kötegelt. Oktatóanyagok, API-referenciák, és egyéb dokumentációk."
 services: batch
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: bf3e8b9e8976e2b68bc0da6a3beb1dacfaef6066
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 25172c7b3462794643d1cba539fcd0d9a6c4c62e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="batch-documentation"></a>Batch – dokumentáció
 
-Ismerje meg, hogy a Batch hogyan használható a nagy léptékű párhuzamos és nagy teljesítményű feldolgozási alkalmazások felhőalapú futtatására. Az oktatóanyagok, API-referenciák és egyéb dokumentációk megmutatják önnek, hogy hogyan definiálhat Azure számítási erőforrásokat, amelyek manuális konfigurálás vagy infrastruktúra-kezelés nélkül is párhuzamosan, a megfelelő skálázással futtatják az alkalmazásokat.
+Ismerje meg, hogyan toouse kötegelt toorun nagyméretű párhuzamos és nagy teljesítményű számítástechnikai alkalmazások hatékonyan a hello felhő. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt, megtudhatja, hogyan toodefine hello Azure számítási erőforrások tooexecute az alkalmazások párhuzamosan vagy léptékű kézzel konfigurálásához, vagy infrastruktúra kezelése nélkül.
 
 <ul class="panelContent cardsFTitle">
     <li>

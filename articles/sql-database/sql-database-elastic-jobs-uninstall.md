@@ -1,6 +1,6 @@
 ---
-title: "A rugalmas adatbázis-feladatok eszköz eltávolítása"
-description: "A rugalmas feladatok eszköz eltávolítása"
+title: "aaaHow toouninstall rugalmas feladatok eszköz"
+description: "Hogyan toouninstall hello rugalmas adatbázis-feladatok eszköze"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -15,31 +15,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: ae7f0bce452a0a86f6f1e4d9b0c93a0fa1727f21
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3bc1e889d5042bc3eaa9fd9da89816737e0b8df8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="uninstall-elastic-database-jobs-components"></a><span data-ttu-id="7a79a-103">A rugalmas adatbázis-feladatok összetevőinek eltávolítása</span><span class="sxs-lookup"><span data-stu-id="7a79a-103">Uninstall Elastic Database jobs components</span></span>
-<span data-ttu-id="7a79a-104">**Rugalmas adatbázis-feladatok** összetevőket is el kell távolítani a portál vagy a PowerShell használatával.</span><span class="sxs-lookup"><span data-stu-id="7a79a-104">**Elastic Database jobs** components can be uninstalled using either the Portal or PowerShell.</span></span>
+# <a name="uninstall-elastic-database-jobs-components"></a><span data-ttu-id="d0757-103">A rugalmas adatbázis-feladatok összetevőinek eltávolítása</span><span class="sxs-lookup"><span data-stu-id="d0757-103">Uninstall Elastic Database jobs components</span></span>
+<span data-ttu-id="d0757-104">**Rugalmas adatbázis-feladatok** összetevők hello portál vagy a PowerShell használatával is eltávolíthatók.</span><span class="sxs-lookup"><span data-stu-id="d0757-104">**Elastic Database jobs** components can be uninstalled using either hello Portal or PowerShell.</span></span>
 
-## <a name="uninstall-elastic-database-jobs-components-using-the-azure-portal"></a><span data-ttu-id="7a79a-105">Az Azure portál használatával rugalmas adatbázis-feladatok összetevőinek eltávolítása</span><span class="sxs-lookup"><span data-stu-id="7a79a-105">Uninstall Elastic Database jobs components using the Azure portal</span></span>
-1. <span data-ttu-id="7a79a-106">Nyissa meg az [Azure portált](https://portal.azure.com/).</span><span class="sxs-lookup"><span data-stu-id="7a79a-106">Open the [Azure portal](https://portal.azure.com/).</span></span>
-2. <span data-ttu-id="7a79a-107">Keresse meg az előfizetés tartalmazó **rugalmas adatbázis-feladatok** összetevők, nevezetesen az előfizetés, mely rugalmas adatbázis feladatok összetevők megtörtént-e.</span><span class="sxs-lookup"><span data-stu-id="7a79a-107">Navigate to the subscription that contains **Elastic Database jobs** components, namely the subscription in which Elastic Database jobs components were installed.</span></span>
-3. <span data-ttu-id="7a79a-108">Kattintson a **Tallózás** kattintson **erőforráscsoportok**.</span><span class="sxs-lookup"><span data-stu-id="7a79a-108">Click **Browse** and click **Resource groups**.</span></span>
-4. <span data-ttu-id="7a79a-109">Válassza ki a "__ElasticDatabaseJob" nevű erőforráscsoport.</span><span class="sxs-lookup"><span data-stu-id="7a79a-109">Select the resource group named "__ElasticDatabaseJob".</span></span>
-5. <span data-ttu-id="7a79a-110">Törölje a csoportot.</span><span class="sxs-lookup"><span data-stu-id="7a79a-110">Delete the resource group.</span></span>
+## <a name="uninstall-elastic-database-jobs-components-using-hello-azure-portal"></a><span data-ttu-id="d0757-105">Távolítsa el a rugalmas adatbázis-feladatok összetevőket hello Azure-portál használatával</span><span class="sxs-lookup"><span data-stu-id="d0757-105">Uninstall Elastic Database jobs components using hello Azure portal</span></span>
+1. <span data-ttu-id="d0757-106">Nyissa meg hello [Azure-portálon](https://portal.azure.com/).</span><span class="sxs-lookup"><span data-stu-id="d0757-106">Open hello [Azure portal](https://portal.azure.com/).</span></span>
+2. <span data-ttu-id="d0757-107">Keresse meg a toohello előfizetés tartalmazó **rugalmas adatbázis-feladatok** összetevők, azaz hello előfizetés mely rugalmas adatbázis feladatok összetevők megtörtént-e.</span><span class="sxs-lookup"><span data-stu-id="d0757-107">Navigate toohello subscription that contains **Elastic Database jobs** components, namely hello subscription in which Elastic Database jobs components were installed.</span></span>
+3. <span data-ttu-id="d0757-108">Kattintson a **Tallózás** kattintson **erőforráscsoportok**.</span><span class="sxs-lookup"><span data-stu-id="d0757-108">Click **Browse** and click **Resource groups**.</span></span>
+4. <span data-ttu-id="d0757-109">Jelölje be hello "__ElasticDatabaseJob" nevű erőforráscsoport.</span><span class="sxs-lookup"><span data-stu-id="d0757-109">Select hello resource group named "__ElasticDatabaseJob".</span></span>
+5. <span data-ttu-id="d0757-110">Hello csoport törléséhez.</span><span class="sxs-lookup"><span data-stu-id="d0757-110">Delete hello resource group.</span></span>
 
-## <a name="uninstall--elastic-database-jobs-components-using-powershell"></a><span data-ttu-id="7a79a-111">Távolítsa el a PowerShell használatával rugalmas adatbázis-feladatok összetevői</span><span class="sxs-lookup"><span data-stu-id="7a79a-111">Uninstall  Elastic Database jobs components using PowerShell</span></span>
-1. <span data-ttu-id="7a79a-112">Indítsa el a Microsoft Azure PowerShell-parancsablakot, és keresse meg az eszközök alkönyvtárát Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x mappában lévő: típus **cd eszközök**.</span><span class="sxs-lookup"><span data-stu-id="7a79a-112">Launch a Microsoft Azure PowerShell command window and navigate to the tools sub-directory under the Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x folder: Type **cd tools**.</span></span>
+## <a name="uninstall--elastic-database-jobs-components-using-powershell"></a><span data-ttu-id="d0757-111">Távolítsa el a PowerShell használatával rugalmas adatbázis-feladatok összetevői</span><span class="sxs-lookup"><span data-stu-id="d0757-111">Uninstall  Elastic Database jobs components using PowerShell</span></span>
+1. <span data-ttu-id="d0757-112">Indítsa el a Microsoft Azure PowerShell-parancsablakot, és keresse meg a toohello eszközök alkönyvtárát hello Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x mappában: típus **cd eszközök**.</span><span class="sxs-lookup"><span data-stu-id="d0757-112">Launch a Microsoft Azure PowerShell command window and navigate toohello tools sub-directory under hello Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x folder: Type **cd tools**.</span></span>
    
-     <span data-ttu-id="7a79a-113">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x* > cd-eszközök</span><span class="sxs-lookup"><span data-stu-id="7a79a-113">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools</span></span>
-2. <span data-ttu-id="7a79a-114">A PowerShell-parancsfájl.\UninstallElasticDatabaseJobs.ps1 hajtható végre.</span><span class="sxs-lookup"><span data-stu-id="7a79a-114">Execute the .\UninstallElasticDatabaseJobs.ps1 PowerShell script.</span></span>
+     <span data-ttu-id="d0757-113">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x* > cd-eszközök</span><span class="sxs-lookup"><span data-stu-id="d0757-113">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools</span></span>
+2. <span data-ttu-id="d0757-114">Hajtsa végre hello.\UninstallElasticDatabaseJobs.ps1 PowerShell parancsfájlt.</span><span class="sxs-lookup"><span data-stu-id="d0757-114">Execute hello .\UninstallElasticDatabaseJobs.ps1 PowerShell script.</span></span>
    
-     <span data-ttu-id="7a79a-115">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools > feloldása fájl.\UninstallElasticDatabaseJobs.ps1 PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools >. \ UninstallElasticDatabaseJobs.ps1</span><span class="sxs-lookup"><span data-stu-id="7a79a-115">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\UninstallElasticDatabaseJobs.ps1   PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\UninstallElasticDatabaseJobs.ps1</span></span>
+     <span data-ttu-id="d0757-115">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools > feloldása fájl.\UninstallElasticDatabaseJobs.ps1 PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools >. \ UninstallElasticDatabaseJobs.ps1</span><span class="sxs-lookup"><span data-stu-id="d0757-115">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\UninstallElasticDatabaseJobs.ps1   PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\UninstallElasticDatabaseJobs.ps1</span></span>
 
-<span data-ttu-id="7a79a-116">Vagy egyszerűen, hajtsa végre a következő parancsfájlt, ha az alapértelmezett értékeket, ha az összetevők telepítéséhez használja:</span><span class="sxs-lookup"><span data-stu-id="7a79a-116">Or simply, execute the following script, assuming default values where used on installation of the components:</span></span>
+<span data-ttu-id="d0757-116">Vagy egyszerűen, hajtsa végre a következő parancsfájlt, feltéve, hogy alapértelmezett hello adott hello összetevők telepítéséhez használt értékek:</span><span class="sxs-lookup"><span data-stu-id="d0757-116">Or simply, execute hello following script, assuming default values where used on installation of hello components:</span></span>
 
         $ResourceGroupName = "__ElasticDatabaseJob"
         Switch-AzureMode AzureResourceManager
@@ -47,18 +47,18 @@ ms.lasthandoff: 07/11/2017
         $resourceGroup = Get-AzureResourceGroup -Name $ResourceGroupName
         if(!$resourceGroup)
         {
-            Write-Host "The Azure Resource Group: $ResourceGroupName has already been deleted.  Elastic database job components are uninstalled."
+            Write-Host "hello Azure Resource Group: $ResourceGroupName has already been deleted.  Elastic database job components are uninstalled."
             return
         }
 
-        Write-Host "Removing the Azure Resource Group: $ResourceGroupName.  This may take a few minutes.”
+        Write-Host "Removing hello Azure Resource Group: $ResourceGroupName.  This may take a few minutes.”
         Remove-AzureResourceGroup -Name $ResourceGroupName -Force
-        Write-Host "Completed removing the Azure Resource Group: $ResourceGroupName.  Elastic database job compoennts are now uninstalled."
+        Write-Host "Completed removing hello Azure Resource Group: $ResourceGroupName.  Elastic database job compoennts are now uninstalled."
 
-## <a name="next-steps"></a><span data-ttu-id="7a79a-117">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="7a79a-117">Next steps</span></span>
-<span data-ttu-id="7a79a-118">Telepítse újra a rugalmas feladatok, lásd: [a rugalmas adatbázis feladat szolgáltatás telepítése](sql-database-elastic-jobs-service-installation.md)</span><span class="sxs-lookup"><span data-stu-id="7a79a-118">To re-install Elastic Database jobs, see [Installing the Elastic Database job service](sql-database-elastic-jobs-service-installation.md)</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d0757-117">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="d0757-117">Next steps</span></span>
+<span data-ttu-id="d0757-118">toore-telepítés rugalmas feladatok, lásd: [hello rugalmas feladat szolgáltatás telepítése](sql-database-elastic-jobs-service-installation.md)</span><span class="sxs-lookup"><span data-stu-id="d0757-118">toore-install Elastic Database jobs, see [Installing hello Elastic Database job service](sql-database-elastic-jobs-service-installation.md)</span></span>
 
-<span data-ttu-id="7a79a-119">A rugalmas feladatok áttekintéséhez lásd: [rugalmas adatbázis-feladatok áttekintése](sql-database-elastic-jobs-overview.md).</span><span class="sxs-lookup"><span data-stu-id="7a79a-119">For an overview of Elastic Database jobs, see [Elastic Database jobs overview](sql-database-elastic-jobs-overview.md).</span></span>
+<span data-ttu-id="d0757-119">A rugalmas feladatok áttekintéséhez lásd: [rugalmas adatbázis-feladatok áttekintése](sql-database-elastic-jobs-overview.md).</span><span class="sxs-lookup"><span data-stu-id="d0757-119">For an overview of Elastic Database jobs, see [Elastic Database jobs overview](sql-database-elastic-jobs-overview.md).</span></span>
 
 <!--Image references-->
 

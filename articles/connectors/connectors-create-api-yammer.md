@@ -1,6 +1,6 @@
 ---
-title: "Adja hozzá a Yammer-összekötő az Azure Logic Apps |} Microsoft Docs"
-description: "A REST API-paraméterekkel rendelkező Yammer-összekötő áttekintése"
+title: "az Azure Logic Apps-Yammer-összekötőjét aaaAdd hello |} Microsoft Docs"
+description: "Hello Yammer-összekötő REST API-paraméterekkel rendelkező áttekintése"
 services: logic-apps
 documentationcenter: 
 author: MandiOhlinger
@@ -15,34 +15,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: c7a213343b4fb2b5a89a5052a459061b404a431c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: be75df770a8062d839926dff8c0195d2647f78d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-yammer-connector"></a><span data-ttu-id="34da1-103">A Yammer-összekötő az első lépései</span><span class="sxs-lookup"><span data-stu-id="34da1-103">Get started with the Yammer connector</span></span>
-<span data-ttu-id="34da1-104">A Yammer csatlakozni hozzáférés beszélgetések a vállalati hálózaton.</span><span class="sxs-lookup"><span data-stu-id="34da1-104">Connect to Yammer to access conversations in your enterprise network.</span></span> <span data-ttu-id="34da1-105">A Yammer a következőket teheti:</span><span class="sxs-lookup"><span data-stu-id="34da1-105">With Yammer, you can:</span></span>
+# <a name="get-started-with-hello-yammer-connector"></a><span data-ttu-id="fc638-103">Hello Yammer-összekötő az első lépései</span><span class="sxs-lookup"><span data-stu-id="fc638-103">Get started with hello Yammer connector</span></span>
+<span data-ttu-id="fc638-104">Csatlakozás tooYammer tooaccess beszélgetések a vállalati hálózaton.</span><span class="sxs-lookup"><span data-stu-id="fc638-104">Connect tooYammer tooaccess conversations in your enterprise network.</span></span> <span data-ttu-id="fc638-105">A Yammer a következőket teheti:</span><span class="sxs-lookup"><span data-stu-id="fc638-105">With Yammer, you can:</span></span>
 
-* <span data-ttu-id="34da1-106">Az üzleti folyamat Yammer származó adatok alapján történő létrehozása.</span><span class="sxs-lookup"><span data-stu-id="34da1-106">Build your business flow based on the data you get from Yammer.</span></span> 
-* <span data-ttu-id="34da1-107">Használja a váltja ki, ha van egy új üzenet, vagy adatcsatornára a következőket.</span><span class="sxs-lookup"><span data-stu-id="34da1-107">Use triggers for when there is a new message in a group, or a feed your following.</span></span>
-* <span data-ttu-id="34da1-108">Műveletek segítségével üzenetet, az összes üzenetet, és több.</span><span class="sxs-lookup"><span data-stu-id="34da1-108">Use actions to post a message, get all messages, and more.</span></span> <span data-ttu-id="34da1-109">Ezeket a műveleteket válaszol, és végezze el a kimeneti más műveletek érhető el.</span><span class="sxs-lookup"><span data-stu-id="34da1-109">These actions get a response, and then make the output available for other actions.</span></span> <span data-ttu-id="34da1-110">Például egy új üzenet jelenik meg, ha az Office 365-tel e-mailt küldhet.</span><span class="sxs-lookup"><span data-stu-id="34da1-110">For example, when a new message appears, you can send an email using Office 365.</span></span>
+* <span data-ttu-id="fc638-106">Hozhat létre. az üzleti folyamat Yammer kapott hello adatok alapján.</span><span class="sxs-lookup"><span data-stu-id="fc638-106">Build your business flow based on hello data you get from Yammer.</span></span> 
+* <span data-ttu-id="fc638-107">Használja a váltja ki, ha van egy új üzenet, vagy adatcsatornára a következőket.</span><span class="sxs-lookup"><span data-stu-id="fc638-107">Use triggers for when there is a new message in a group, or a feed your following.</span></span>
+* <span data-ttu-id="fc638-108">Műveletek toopost üzenet használatához az összes üzenet, és több.</span><span class="sxs-lookup"><span data-stu-id="fc638-108">Use actions toopost a message, get all messages, and more.</span></span> <span data-ttu-id="fc638-109">Ezeket a műveleteket válaszol, és végezze el hello kimeneti más műveletek érhető el.</span><span class="sxs-lookup"><span data-stu-id="fc638-109">These actions get a response, and then make hello output available for other actions.</span></span> <span data-ttu-id="fc638-110">Például egy új üzenet jelenik meg, ha az Office 365-tel e-mailt küldhet.</span><span class="sxs-lookup"><span data-stu-id="fc638-110">For example, when a new message appears, you can send an email using Office 365.</span></span>
 
-<span data-ttu-id="34da1-111">Első lépések egy logikai alkalmazás létrehozása most; Lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).</span><span class="sxs-lookup"><span data-stu-id="34da1-111">Get started by creating a logic app now; see [Create a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
+<span data-ttu-id="fc638-111">Első lépések egy logikai alkalmazás létrehozása most; Lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).</span><span class="sxs-lookup"><span data-stu-id="fc638-111">Get started by creating a logic app now; see [Create a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
 
-## <a name="create-a-connection-to-yammer"></a><span data-ttu-id="34da1-112">Kapcsolatot létesíthet Yammer</span><span class="sxs-lookup"><span data-stu-id="34da1-112">Create a connection to Yammer</span></span>
-<span data-ttu-id="34da1-113">A Yammer-összekötő használatához először létre kell hoznia egy **kapcsolat** adja meg a részleteket a tulajdonságok:</span><span class="sxs-lookup"><span data-stu-id="34da1-113">To use the Yammer connector, you first create a **connection** then provide the details for these properties:</span></span> 
+## <a name="create-a-connection-tooyammer"></a><span data-ttu-id="fc638-112">Egy kapcsolat tooYammer létrehozása</span><span class="sxs-lookup"><span data-stu-id="fc638-112">Create a connection tooYammer</span></span>
+<span data-ttu-id="fc638-113">toouse hello Yammer összekötő, először létre kell hoznia egy **kapcsolat** hello részletek adja meg ezeket a tulajdonságokat:</span><span class="sxs-lookup"><span data-stu-id="fc638-113">toouse hello Yammer connector, you first create a **connection** then provide hello details for these properties:</span></span> 
 
-| <span data-ttu-id="34da1-114">Tulajdonság</span><span class="sxs-lookup"><span data-stu-id="34da1-114">Property</span></span> | <span data-ttu-id="34da1-115">Szükséges</span><span class="sxs-lookup"><span data-stu-id="34da1-115">Required</span></span> | <span data-ttu-id="34da1-116">Leírás</span><span class="sxs-lookup"><span data-stu-id="34da1-116">Description</span></span> |
+| <span data-ttu-id="fc638-114">Tulajdonság</span><span class="sxs-lookup"><span data-stu-id="fc638-114">Property</span></span> | <span data-ttu-id="fc638-115">Szükséges</span><span class="sxs-lookup"><span data-stu-id="fc638-115">Required</span></span> | <span data-ttu-id="fc638-116">Leírás</span><span class="sxs-lookup"><span data-stu-id="fc638-116">Description</span></span> |
 | --- | --- | --- |
-| <span data-ttu-id="34da1-117">Token</span><span class="sxs-lookup"><span data-stu-id="34da1-117">Token</span></span> |<span data-ttu-id="34da1-118">Igen</span><span class="sxs-lookup"><span data-stu-id="34da1-118">Yes</span></span> |<span data-ttu-id="34da1-119">Yammer hitelesítő adatok</span><span class="sxs-lookup"><span data-stu-id="34da1-119">Provide Yammer Credentials</span></span> |
+| <span data-ttu-id="fc638-117">Token</span><span class="sxs-lookup"><span data-stu-id="fc638-117">Token</span></span> |<span data-ttu-id="fc638-118">Igen</span><span class="sxs-lookup"><span data-stu-id="fc638-118">Yes</span></span> |<span data-ttu-id="fc638-119">Yammer hitelesítő adatok</span><span class="sxs-lookup"><span data-stu-id="fc638-119">Provide Yammer Credentials</span></span> |
 
-> [!INCLUDE [Steps to create a connection to Yammer](../../includes/connectors-create-api-yammer.md)]
+> [!INCLUDE [Steps toocreate a connection tooYammer](../../includes/connectors-create-api-yammer.md)]
 > 
 
-## <a name="connector-specific-details"></a><span data-ttu-id="34da1-120">Összekötő-specifikus részletei</span><span class="sxs-lookup"><span data-stu-id="34da1-120">Connector-specific details</span></span>
+## <a name="connector-specific-details"></a><span data-ttu-id="fc638-120">Összekötő-specifikus részletei</span><span class="sxs-lookup"><span data-stu-id="fc638-120">Connector-specific details</span></span>
 
-<span data-ttu-id="34da1-121">Bármely eseményindítók és a swagger definiált műveletek megtekintése, és semmilyen határnak a Lásd még: a [connector részleteket](/connectors/yammer/).</span><span class="sxs-lookup"><span data-stu-id="34da1-121">View any triggers and actions defined in the swagger, and also see any limits in the [connector details](/connectors/yammer/).</span></span>
+<span data-ttu-id="fc638-121">Bármely eseményindítók és hello swagger definiált műveletek megtekintése, és semmilyen határnak hello a Lásd még: [connector részleteket](/connectors/yammer/).</span><span class="sxs-lookup"><span data-stu-id="fc638-121">View any triggers and actions defined in hello swagger, and also see any limits in hello [connector details](/connectors/yammer/).</span></span>
 
-## <a name="more-connectors"></a><span data-ttu-id="34da1-122">További összekötők</span><span class="sxs-lookup"><span data-stu-id="34da1-122">More connectors</span></span>
-<span data-ttu-id="34da1-123">Lépjen vissza a [API-k lista](apis-list.md).</span><span class="sxs-lookup"><span data-stu-id="34da1-123">Go back to the [APIs list](apis-list.md).</span></span>
+## <a name="more-connectors"></a><span data-ttu-id="fc638-122">További összekötők</span><span class="sxs-lookup"><span data-stu-id="fc638-122">More connectors</span></span>
+<span data-ttu-id="fc638-123">Lépjen vissza toohello [API-k lista](apis-list.md).</span><span class="sxs-lookup"><span data-stu-id="fc638-123">Go back toohello [APIs list](apis-list.md).</span></span>

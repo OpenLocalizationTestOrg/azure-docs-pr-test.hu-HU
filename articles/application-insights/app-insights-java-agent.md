@@ -1,5 +1,5 @@
 ---
-title: "Java-webalkalmazások Azure Application Insights az alkalmazásteljesítmény-figyelés |} Microsoft Docs"
+title: "Java-webalkalmazások Azure Application insightsban figyelésének aaaPerformance |} Microsoft Docs"
 description: "Kiterjesztett teljesítmény és a Java-webhely, az Application Insights-használat figyelését."
 services: application-insights
 documentationcenter: java
@@ -13,41 +13,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/24/2016
 ms.author: bwren
-ms.openlocfilehash: 4e56998382610ad3d7224e6a8de5aee5419ebe43
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bf3983e3b4a16e72bc606b6468a757288d05ebaa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-dependencies-exceptions-and-execution-times-in-java-web-apps"></a><span data-ttu-id="dd1ef-103">Függőségek, kivételeket és végrehajtásának lassúságát a Java-webalkalmazások figyelése</span><span class="sxs-lookup"><span data-stu-id="dd1ef-103">Monitor dependencies, exceptions and execution times in Java web apps</span></span>
+# <a name="monitor-dependencies-exceptions-and-execution-times-in-java-web-apps"></a><span data-ttu-id="3f4c0-103">Függőségek, kivételeket és végrehajtásának lassúságát a Java-webalkalmazások figyelése</span><span class="sxs-lookup"><span data-stu-id="3f4c0-103">Monitor dependencies, exceptions and execution times in Java web apps</span></span>
 
 
-<span data-ttu-id="dd1ef-104">Ha rendelkezik [a Java-webalkalmazás az Application insights szolgáltatással tagolva][java], a Java-ügynök részleteinek megtekintésével mélyebb betekintést kód módosítások nélkül használható:</span><span class="sxs-lookup"><span data-stu-id="dd1ef-104">If you have [instrumented your Java web app with Application Insights][java], you can use the Java Agent to get deeper insights, without any code changes:</span></span>
+<span data-ttu-id="3f4c0-104">Ha rendelkezik [a Java-webalkalmazás az Application insights szolgáltatással tagolva][java], hello Java ügynök tooget részleteinek megtekintésével mélyebb betekintést, kód módosítások nélkül használható:</span><span class="sxs-lookup"><span data-stu-id="3f4c0-104">If you have [instrumented your Java web app with Application Insights][java], you can use hello Java Agent tooget deeper insights, without any code changes:</span></span>
 
-* <span data-ttu-id="dd1ef-105">**Függőségek:** hívások, az alkalmazás által az egyéb összetevők, beleértve a vonatkozó adatokat:</span><span class="sxs-lookup"><span data-stu-id="dd1ef-105">**Dependencies:** Data about calls that your application makes to other components, including:</span></span>
-  * <span data-ttu-id="dd1ef-106">**REST-hívások** HttpClient OkHttp és RestTemplate (forrás) keresztül történik.</span><span class="sxs-lookup"><span data-stu-id="dd1ef-106">**REST calls** made via HttpClient, OkHttp, and RestTemplate (Spring).</span></span>
-  * <span data-ttu-id="dd1ef-107">**Redis** keresztül a Jedis ügyfél felé indított hívások.</span><span class="sxs-lookup"><span data-stu-id="dd1ef-107">**Redis** calls made via the Jedis client.</span></span> <span data-ttu-id="dd1ef-108">A hívás tovább tart, mint 10 egység, ha az ügynök is beolvassa a hívás argumentumokkal.</span><span class="sxs-lookup"><span data-stu-id="dd1ef-108">If the call takes longer than 10s, the agent also fetches the call arguments.</span></span>
-  * <span data-ttu-id="dd1ef-109">**[JDBC-hívások](http://docs.oracle.com/javase/7/docs/technotes/guides/jdbc/)**  -MySQL, SQL Server, PostgreSQL, SQLite, Oracle DB vagy Apache Derby DB.</span><span class="sxs-lookup"><span data-stu-id="dd1ef-109">**[JDBC calls](http://docs.oracle.com/javase/7/docs/technotes/guides/jdbc/)** - MySQL, SQL Server, PostgreSQL, SQLite, Oracle DB or Apache Derby DB.</span></span> <span data-ttu-id="dd1ef-110">"executeBatch" hívások támogatottak.</span><span class="sxs-lookup"><span data-stu-id="dd1ef-110">"executeBatch" calls are supported.</span></span> <span data-ttu-id="dd1ef-111">A MySQL és PostgreSQL, ha a hívás tovább tart, mint 10 egység, az ügynök jelentéseket küld a lekérdezéstervben.</span><span class="sxs-lookup"><span data-stu-id="dd1ef-111">For MySQL and PostgreSQL, if the call takes longer than 10s, the agent reports the query plan.</span></span>
-* <span data-ttu-id="dd1ef-112">**Kivétel lépett fel:** a kód által kezelt kivételek adatait.</span><span class="sxs-lookup"><span data-stu-id="dd1ef-112">**Caught exceptions:** Data about exceptions that are handled by your code.</span></span>
-* <span data-ttu-id="dd1ef-113">**Módszer végrehajtási ideje:** bizonyos eljárások végrehajtásához szükséges idő az adatait.</span><span class="sxs-lookup"><span data-stu-id="dd1ef-113">**Method execution time:** Data about the time it takes to execute specific methods.</span></span>
+* <span data-ttu-id="3f4c0-105">**Függőségek:** hívások, amely az alkalmazás tooother összetevők, beleértve a vonatkozó adatokat:</span><span class="sxs-lookup"><span data-stu-id="3f4c0-105">**Dependencies:** Data about calls that your application makes tooother components, including:</span></span>
+  * <span data-ttu-id="3f4c0-106">**REST-hívások** HttpClient OkHttp és RestTemplate (forrás) keresztül történik.</span><span class="sxs-lookup"><span data-stu-id="3f4c0-106">**REST calls** made via HttpClient, OkHttp, and RestTemplate (Spring).</span></span>
+  * <span data-ttu-id="3f4c0-107">**Redis** hello Jedis ügyfél keresztül felé indított hívások.</span><span class="sxs-lookup"><span data-stu-id="3f4c0-107">**Redis** calls made via hello Jedis client.</span></span> <span data-ttu-id="3f4c0-108">Ha hello hívás 10 egység hosszabb időbe telik, hello ügynök is beolvassa hello hívás argumentumokat.</span><span class="sxs-lookup"><span data-stu-id="3f4c0-108">If hello call takes longer than 10s, hello agent also fetches hello call arguments.</span></span>
+  * <span data-ttu-id="3f4c0-109">**[JDBC-hívások](http://docs.oracle.com/javase/7/docs/technotes/guides/jdbc/)**  -MySQL, SQL Server, PostgreSQL, SQLite, Oracle DB vagy Apache Derby DB.</span><span class="sxs-lookup"><span data-stu-id="3f4c0-109">**[JDBC calls](http://docs.oracle.com/javase/7/docs/technotes/guides/jdbc/)** - MySQL, SQL Server, PostgreSQL, SQLite, Oracle DB or Apache Derby DB.</span></span> <span data-ttu-id="3f4c0-110">"executeBatch" hívások támogatottak.</span><span class="sxs-lookup"><span data-stu-id="3f4c0-110">"executeBatch" calls are supported.</span></span> <span data-ttu-id="3f4c0-111">A MySQL és PostgreSQL, ha hello hívás tovább tart, mint 10 egység, hello ügynök jelentéseket küld hello lekérdezéstervben.</span><span class="sxs-lookup"><span data-stu-id="3f4c0-111">For MySQL and PostgreSQL, if hello call takes longer than 10s, hello agent reports hello query plan.</span></span>
+* <span data-ttu-id="3f4c0-112">**Kivétel lépett fel:** a kód által kezelt kivételek adatait.</span><span class="sxs-lookup"><span data-stu-id="3f4c0-112">**Caught exceptions:** Data about exceptions that are handled by your code.</span></span>
+* <span data-ttu-id="3f4c0-113">**Módszer végrehajtási ideje:** hello adatait alkalommal vesz tooexecute megadott metódusok.</span><span class="sxs-lookup"><span data-stu-id="3f4c0-113">**Method execution time:** Data about hello time it takes tooexecute specific methods.</span></span>
 
-<span data-ttu-id="dd1ef-114">A Java-ügynök használatára, akkor a kiszolgálóra telepítette.</span><span class="sxs-lookup"><span data-stu-id="dd1ef-114">To use the Java agent, you install it on your server.</span></span> <span data-ttu-id="dd1ef-115">A webalkalmazások kell tagolva, és a [Application Insights Java SDK][java].</span><span class="sxs-lookup"><span data-stu-id="dd1ef-115">Your web apps must be instrumented with the [Application Insights Java SDK][java].</span></span> 
+<span data-ttu-id="3f4c0-114">toouse hello Java ügynök, az a kiszolgálóra telepítette.</span><span class="sxs-lookup"><span data-stu-id="3f4c0-114">toouse hello Java agent, you install it on your server.</span></span> <span data-ttu-id="3f4c0-115">A webalkalmazások kell lesznek tagolva a hello [Application Insights Java SDK][java].</span><span class="sxs-lookup"><span data-stu-id="3f4c0-115">Your web apps must be instrumented with hello [Application Insights Java SDK][java].</span></span> 
 
-## <a name="install-the-application-insights-agent-for-java"></a><span data-ttu-id="dd1ef-116">A Javához készült Application Insights-ügynök telepítése</span><span class="sxs-lookup"><span data-stu-id="dd1ef-116">Install the Application Insights agent for Java</span></span>
-1. <span data-ttu-id="dd1ef-117">A számítógépen a Java Servert futtató [töltse le az ügynököt](https://aka.ms/aijavasdk).</span><span class="sxs-lookup"><span data-stu-id="dd1ef-117">On the machine running your Java server, [download the agent](https://aka.ms/aijavasdk).</span></span>
-2. <span data-ttu-id="dd1ef-118">Az alkalmazás server indítási parancsfájl szerkesztése, és adja hozzá az alábbi JVM-et:</span><span class="sxs-lookup"><span data-stu-id="dd1ef-118">Edit the application server startup script, and add the following JVM:</span></span>
+## <a name="install-hello-application-insights-agent-for-java"></a><span data-ttu-id="3f4c0-116">Java hello Application Insights-ügynök telepítése</span><span class="sxs-lookup"><span data-stu-id="3f4c0-116">Install hello Application Insights agent for Java</span></span>
+1. <span data-ttu-id="3f4c0-117">Hello gépen futó Java kiszolgálóját [hello-ügynök letöltése](https://aka.ms/aijavasdk).</span><span class="sxs-lookup"><span data-stu-id="3f4c0-117">On hello machine running your Java server, [download hello agent](https://aka.ms/aijavasdk).</span></span>
+2. <span data-ttu-id="3f4c0-118">Hello application server indítási parancsfájl szerkesztése, és adja hozzá a következő JVM hello:</span><span class="sxs-lookup"><span data-stu-id="3f4c0-118">Edit hello application server startup script, and add hello following JVM:</span></span>
    
-    <span data-ttu-id="dd1ef-119">`javaagent:`*az ügynök JAR-fájl teljes elérési útja*</span><span class="sxs-lookup"><span data-stu-id="dd1ef-119">`javaagent:`*full path to the agent JAR file*</span></span>
+    <span data-ttu-id="3f4c0-119">`javaagent:`*teljes elérési útja toohello ügynök JAR-fájlra*</span><span class="sxs-lookup"><span data-stu-id="3f4c0-119">`javaagent:`*full path toohello agent JAR file*</span></span>
    
-    <span data-ttu-id="dd1ef-120">Például a Linux rendszerű gépen Tomcat:</span><span class="sxs-lookup"><span data-stu-id="dd1ef-120">For example, in Tomcat on a Linux machine:</span></span>
+    <span data-ttu-id="3f4c0-120">Például a Linux rendszerű gépen Tomcat:</span><span class="sxs-lookup"><span data-stu-id="3f4c0-120">For example, in Tomcat on a Linux machine:</span></span>
    
-    `export JAVA_OPTS="$JAVA_OPTS -javaagent:<full path to agent JAR file>"`
-3. <span data-ttu-id="dd1ef-121">Indítsa újra az alkalmazáskiszolgáló.</span><span class="sxs-lookup"><span data-stu-id="dd1ef-121">Restart your application server.</span></span>
+    `export JAVA_OPTS="$JAVA_OPTS -javaagent:<full path tooagent JAR file>"`
+3. <span data-ttu-id="3f4c0-121">Indítsa újra az alkalmazáskiszolgáló.</span><span class="sxs-lookup"><span data-stu-id="3f4c0-121">Restart your application server.</span></span>
 
-## <a name="configure-the-agent"></a><span data-ttu-id="dd1ef-122">Az ügynök konfigurálása</span><span class="sxs-lookup"><span data-stu-id="dd1ef-122">Configure the agent</span></span>
-<span data-ttu-id="dd1ef-123">Hozzon létre egy fájlt `AI-Agent.xml` és naplózza azt a mappában, amelyben az ügynök JAR-fájlra.</span><span class="sxs-lookup"><span data-stu-id="dd1ef-123">Create a file named `AI-Agent.xml` and place it in the same folder as the agent JAR file.</span></span>
+## <a name="configure-hello-agent"></a><span data-ttu-id="3f4c0-122">Hello ügynök konfigurálása</span><span class="sxs-lookup"><span data-stu-id="3f4c0-122">Configure hello agent</span></span>
+<span data-ttu-id="3f4c0-123">Hozzon létre egy fájlt `AI-Agent.xml` és helyezheti el hello hello ügynök JAR fájllal megegyező mappában.</span><span class="sxs-lookup"><span data-stu-id="3f4c0-123">Create a file named `AI-Agent.xml` and place it in hello same folder as hello agent JAR file.</span></span>
 
-<span data-ttu-id="dd1ef-124">Állítsa be az XML-fájl tartalmát.</span><span class="sxs-lookup"><span data-stu-id="dd1ef-124">Set the content of the xml file.</span></span> <span data-ttu-id="dd1ef-125">Szerkessze a következő példa a azt szeretné, vagy hagyja el a szolgáltatásokat.</span><span class="sxs-lookup"><span data-stu-id="dd1ef-125">Edit the following example to include or omit the features you want.</span></span>
+<span data-ttu-id="3f4c0-124">Hello XML-fájl tartalmának hello beállítása.</span><span class="sxs-lookup"><span data-stu-id="3f4c0-124">Set hello content of hello xml file.</span></span> <span data-ttu-id="3f4c0-125">Szerkessze a következő példa tooinclude hello, vagy hagyja ki a kívánt hello szolgáltatásokat.</span><span class="sxs-lookup"><span data-stu-id="3f4c0-125">Edit hello following example tooinclude or omit hello features you want.</span></span>
 
 ```XML
 
@@ -74,7 +74,7 @@ ms.lasthandoff: 08/18/2017
                reportExecutionTime="true"
                />
 
-           <!-- Report on the particular signature
+           <!-- Report on hello particular signature
                 void methodTwo(String, int) -->
            <Method name="methodTwo"
               reportExecutionTime="true"
@@ -86,20 +86,20 @@ ms.lasthandoff: 08/18/2017
 
 ```
 
-<span data-ttu-id="dd1ef-126">Kell engedélyezni a jelentések kivétel és az egyes módszerek metódus ütemezését.</span><span class="sxs-lookup"><span data-stu-id="dd1ef-126">You have to enable reports exception and method timing for individual methods.</span></span>
+<span data-ttu-id="3f4c0-126">Tooenable jelentések kivétel és az egyes módszerek metódus időzítési rendelkezik.</span><span class="sxs-lookup"><span data-stu-id="3f4c0-126">You have tooenable reports exception and method timing for individual methods.</span></span>
 
-<span data-ttu-id="dd1ef-127">Alapértelmezés szerint `reportExecutionTime` IGAZ és `reportCaughtExceptions` értéke "false".</span><span class="sxs-lookup"><span data-stu-id="dd1ef-127">By default, `reportExecutionTime` is true and `reportCaughtExceptions` is false.</span></span>
+<span data-ttu-id="3f4c0-127">Alapértelmezés szerint `reportExecutionTime` IGAZ és `reportCaughtExceptions` értéke "false".</span><span class="sxs-lookup"><span data-stu-id="3f4c0-127">By default, `reportExecutionTime` is true and `reportCaughtExceptions` is false.</span></span>
 
-## <a name="view-the-data"></a><span data-ttu-id="dd1ef-128">Az adatok megjelenítése</span><span class="sxs-lookup"><span data-stu-id="dd1ef-128">View the data</span></span>
-<span data-ttu-id="dd1ef-129">Összesített távoli függőség és metódus végrehajtásának lassúságát jelenik meg az Application Insights-erőforrás [alatt a teljesítmény csempéje][metrics].</span><span class="sxs-lookup"><span data-stu-id="dd1ef-129">In the Application Insights resource, aggregated remote dependency and method execution times appears [under the Performance tile][metrics].</span></span>
+## <a name="view-hello-data"></a><span data-ttu-id="3f4c0-128">Hello adatok megtekintése</span><span class="sxs-lookup"><span data-stu-id="3f4c0-128">View hello data</span></span>
+<span data-ttu-id="3f4c0-129">Összesített távoli függőség és metódus végrehajtásának lassúságát jelenik meg hello Application Insights-erőforrást, [alatt hello teljesítmény csempéje][metrics].</span><span class="sxs-lookup"><span data-stu-id="3f4c0-129">In hello Application Insights resource, aggregated remote dependency and method execution times appears [under hello Performance tile][metrics].</span></span>
 
-<span data-ttu-id="dd1ef-130">Nyissa meg a keresendő függőségi kivétel és metódus jelentések egyes példányai, [keresési][diagnostic].</span><span class="sxs-lookup"><span data-stu-id="dd1ef-130">To search for individual instances of dependency, exception, and method reports, open [Search][diagnostic].</span></span>
+<span data-ttu-id="3f4c0-130">Nyissa meg a függőségi kivétel és metódus jelentések egyes példányai toosearch [keresési][diagnostic].</span><span class="sxs-lookup"><span data-stu-id="3f4c0-130">toosearch for individual instances of dependency, exception, and method reports, open [Search][diagnostic].</span></span>
 
-<span data-ttu-id="dd1ef-131">[Diagnosztizálás függőségi problémákhoz – további](app-insights-asp-net-dependencies.md#diagnosis).</span><span class="sxs-lookup"><span data-stu-id="dd1ef-131">[Diagnosing dependency issues - learn more](app-insights-asp-net-dependencies.md#diagnosis).</span></span>
+<span data-ttu-id="3f4c0-131">[Diagnosztizálás függőségi problémákhoz – további](app-insights-asp-net-dependencies.md#diagnosis).</span><span class="sxs-lookup"><span data-stu-id="3f4c0-131">[Diagnosing dependency issues - learn more](app-insights-asp-net-dependencies.md#diagnosis).</span></span>
 
-## <a name="questions-problems"></a><span data-ttu-id="dd1ef-132">Kérdései vannak?</span><span class="sxs-lookup"><span data-stu-id="dd1ef-132">Questions?</span></span> <span data-ttu-id="dd1ef-133">Problémákat tapasztal?</span><span class="sxs-lookup"><span data-stu-id="dd1ef-133">Problems?</span></span>
-* <span data-ttu-id="dd1ef-134">Nincs adat?</span><span class="sxs-lookup"><span data-stu-id="dd1ef-134">No data?</span></span> [<span data-ttu-id="dd1ef-135">Tűzfalkivételek beállítása</span><span class="sxs-lookup"><span data-stu-id="dd1ef-135">Set firewall exceptions</span></span>](app-insights-ip-addresses.md)
-* [<span data-ttu-id="dd1ef-136">A Java hibaelhárítása</span><span class="sxs-lookup"><span data-stu-id="dd1ef-136">Troubleshooting Java</span></span>](app-insights-java-troubleshoot.md)
+## <a name="questions-problems"></a><span data-ttu-id="3f4c0-132">Kérdései vannak?</span><span class="sxs-lookup"><span data-stu-id="3f4c0-132">Questions?</span></span> <span data-ttu-id="3f4c0-133">Problémákat tapasztal?</span><span class="sxs-lookup"><span data-stu-id="3f4c0-133">Problems?</span></span>
+* <span data-ttu-id="3f4c0-134">Nincs adat?</span><span class="sxs-lookup"><span data-stu-id="3f4c0-134">No data?</span></span> [<span data-ttu-id="3f4c0-135">Tűzfalkivételek beállítása</span><span class="sxs-lookup"><span data-stu-id="3f4c0-135">Set firewall exceptions</span></span>](app-insights-ip-addresses.md)
+* [<span data-ttu-id="3f4c0-136">A Java hibaelhárítása</span><span class="sxs-lookup"><span data-stu-id="3f4c0-136">Troubleshooting Java</span></span>](app-insights-java-troubleshoot.md)
 
 <!--Link references-->
 

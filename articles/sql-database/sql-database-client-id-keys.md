@@ -1,5 +1,5 @@
 ---
-title: "Értékek lekérése app hitelesítés – az Azure SQL Database |} Microsoft Docs"
+title: "alkalmazás hitelesítés – az Azure SQL Database aaaGet értékeinek |} Microsoft Docs"
 description: "Hozzon létre egy egyszerű szolgáltatást kód SQL-adatbázis eléréséhez."
 services: sql-database
 documentationcenter: 
@@ -16,30 +16,30 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 09/30/2016
 ms.author: sstein
-ms.openlocfilehash: ec6256e9c5bb0d9c8d15d0f673cea70b3915eb34
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b57dc075ec9e679da9f2f5fa53e02312539cdf07
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-the-required-values-for-authenticating-an-application-to-access-sql-database-from-code"></a><span data-ttu-id="c4a06-103">Az alkalmazás kódjában SQL-adatbázis eléréséhez szükséges értékek beolvasása</span><span class="sxs-lookup"><span data-stu-id="c4a06-103">Get the required values for authenticating an application to access SQL Database from code</span></span>
-<span data-ttu-id="c4a06-104">Létrehozásához és kezeléséhez az SQL-adatbázis kódból regisztrálnia kell az az alkalmazás hol létrejöttek-e az Azure-erőforrások Azure Active Directory (AAD) tartományban az előfizetést.</span><span class="sxs-lookup"><span data-stu-id="c4a06-104">To create and manage SQL Database from code you must register your app in the Azure Active Directory (AAD) domain  in the subscription where your Azure resources have been created.</span></span>
+# <a name="get-hello-required-values-for-authenticating-an-application-tooaccess-sql-database-from-code"></a><span data-ttu-id="66b23-103">Egy alkalmazás tooaccess SQL-adatbázis kódból hitelesítéséhez szükséges hello értékek lekérése</span><span class="sxs-lookup"><span data-stu-id="66b23-103">Get hello required values for authenticating an application tooaccess SQL Database from code</span></span>
+<span data-ttu-id="66b23-104">toocreate és SQL-adatbázis kezeléséhez hello Azure Active Directory (AAD) tartomány hello előfizetésben ahol létrejöttek-e az Azure-erőforrások regisztrálnia kell az alkalmazás kódját.</span><span class="sxs-lookup"><span data-stu-id="66b23-104">toocreate and manage SQL Database from code you must register your app in hello Azure Active Directory (AAD) domain  in hello subscription where your Azure resources have been created.</span></span>
 
-## <a name="create-a-service-principal-to-access-resources-from-an-application"></a><span data-ttu-id="c4a06-105">Egy egyszerű szolgáltatásnév létrehozása hozzáférését az erőforrásokhoz az adott alkalmazásból</span><span class="sxs-lookup"><span data-stu-id="c4a06-105">Create a service principal to access resources from an application</span></span>
-<span data-ttu-id="c4a06-106">Telepíteni kell a legújabb [Azure PowerShell](https://msdn.microsoft.com/library/mt619274.aspx) telepíteni és futtatni.</span><span class="sxs-lookup"><span data-stu-id="c4a06-106">You need to have the latest [Azure PowerShell](https://msdn.microsoft.com/library/mt619274.aspx) installed and running.</span></span> <span data-ttu-id="c4a06-107">Részletes információk: [Az Azure PowerShell telepítése és konfigurálása](/powershell/azureps-cmdlets-docs).</span><span class="sxs-lookup"><span data-stu-id="c4a06-107">For detailed information, see [How to install and configure Azure PowerShell](/powershell/azureps-cmdlets-docs).</span></span>
+## <a name="create-a-service-principal-tooaccess-resources-from-an-application"></a><span data-ttu-id="66b23-105">A szolgáltatás egyszerű tooaccess erőforrások létrehozása egy alkalmazás</span><span class="sxs-lookup"><span data-stu-id="66b23-105">Create a service principal tooaccess resources from an application</span></span>
+<span data-ttu-id="66b23-106">Legújabb szüksége toohave hello [Azure PowerShell](https://msdn.microsoft.com/library/mt619274.aspx) telepíteni és futtatni.</span><span class="sxs-lookup"><span data-stu-id="66b23-106">You need toohave hello latest [Azure PowerShell](https://msdn.microsoft.com/library/mt619274.aspx) installed and running.</span></span> <span data-ttu-id="66b23-107">Részletes információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azureps-cmdlets-docs).</span><span class="sxs-lookup"><span data-stu-id="66b23-107">For detailed information, see [How tooinstall and configure Azure PowerShell](/powershell/azureps-cmdlets-docs).</span></span>
 
-<span data-ttu-id="c4a06-108">A következő PowerShell-parancsprogram létrehozza az Active Directory (AD)-alkalmazást, és a C#-alkalmazás hitelesítéséhez szükséges egyszerű szolgáltatást.</span><span class="sxs-lookup"><span data-stu-id="c4a06-108">The following PowerShell script creates the Active Directory (AD) application and the service principal that we need to authenticate our C# app.</span></span> <span data-ttu-id="c4a06-109">A parancsfájl kimenetének értékeire szükség lesz az előbb említett C#-mintához.</span><span class="sxs-lookup"><span data-stu-id="c4a06-109">The script outputs values we need for the preceding C# sample.</span></span> <span data-ttu-id="c4a06-110">Részletes információk: [Egyszerű szolgáltatás létrehozása erőforrások eléréséhez az Azure PowerShell használatával](../azure-resource-manager/resource-group-authenticate-service-principal.md).</span><span class="sxs-lookup"><span data-stu-id="c4a06-110">For detailed information, see [Use Azure PowerShell to create a service principal to access resources](../azure-resource-manager/resource-group-authenticate-service-principal.md).</span></span>
+<span data-ttu-id="66b23-108">hello következő PowerShell-parancsfájlt hoz létre hello Active Directory (AD) és hello szolgáltatást egyszerű tooauthenticate a C# alkalmazás igazolnia kell.</span><span class="sxs-lookup"><span data-stu-id="66b23-108">hello following PowerShell script creates hello Active Directory (AD) application and hello service principal that we need tooauthenticate our C# app.</span></span> <span data-ttu-id="66b23-109">hello parancsfájl kimenetében igazolnia kell a hello megelőző C# minták értékeket.</span><span class="sxs-lookup"><span data-stu-id="66b23-109">hello script outputs values we need for hello preceding C# sample.</span></span> <span data-ttu-id="66b23-110">Részletes információkért lásd: [egyszerű szolgáltatás használata az Azure PowerShell toocreate tooaccess erőforrások](../azure-resource-manager/resource-group-authenticate-service-principal.md).</span><span class="sxs-lookup"><span data-stu-id="66b23-110">For detailed information, see [Use Azure PowerShell toocreate a service principal tooaccess resources](../azure-resource-manager/resource-group-authenticate-service-principal.md).</span></span>
 
-    # Sign in to Azure.
+    # Sign in tooAzure.
     Add-AzureRmAccount
 
-    # If you have multiple subscriptions, uncomment and set to the subscription you want to work with.
+    # If you have multiple subscriptions, uncomment and set toohello subscription you want toowork with.
     #$subscriptionId = "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"
     #Set-AzureRmContext -SubscriptionId $subscriptionId
 
     # Provide these values for your new AAD app.
-    # $appName is the display name for your app, must be unique in your directory.
-    # $uri does not need to be a real uri.
+    # $appName is hello display name for your app, must be unique in your directory.
+    # $uri does not need toobe a real uri.
     # $secret is a password you create.
 
     $appName = "{app-name}"
@@ -49,19 +49,19 @@ ms.lasthandoff: 07/11/2017
     # Create a AAD app
     $azureAdApplication = New-AzureRmADApplication -DisplayName $appName -HomePage $Uri -IdentifierUris $Uri -Password $secret
 
-    # Create a Service Principal for the app
+    # Create a Service Principal for hello app
     $svcprincipal = New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
 
-    # To avoid a PrincipalNotFound error, I pause here for 15 seconds.
+    # tooavoid a PrincipalNotFound error, I pause here for 15 seconds.
     Start-Sleep -s 15
 
-    # If you still get a PrincipalNotFound error, then rerun the following until successful. 
+    # If you still get a PrincipalNotFound error, then rerun hello following until successful. 
     $roleassignment = New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
 
 
-    # Output the values we need for our C# application to successfully authenticate
+    # Output hello values we need for our C# application toosuccessfully authenticate
 
-    Write-Output "Copy these values into the C# sample app"
+    Write-Output "Copy these values into hello C# sample app"
 
     Write-Output "_subscriptionId:" (Get-AzureRmContext).Subscription.SubscriptionId
     Write-Output "_tenantId:" (Get-AzureRmContext).Tenant.TenantId
@@ -71,7 +71,7 @@ ms.lasthandoff: 07/11/2017
 
 
 
-## <a name="see-also"></a><span data-ttu-id="c4a06-111">Lásd még:</span><span class="sxs-lookup"><span data-stu-id="c4a06-111">See also</span></span>
-* [<span data-ttu-id="c4a06-112">SQL-adatbázis létrehozása a C#</span><span class="sxs-lookup"><span data-stu-id="c4a06-112">Create a SQL database with C#</span></span>](sql-database-get-started-csharp.md)
-* [<span data-ttu-id="c4a06-113">Csatlakozás az SQL Database az Azure Active Directory-hitelesítés használatával</span><span class="sxs-lookup"><span data-stu-id="c4a06-113">Connecting to SQL Database By Using Azure Active Directory Authentication</span></span>](sql-database-aad-authentication.md)
+## <a name="see-also"></a><span data-ttu-id="66b23-111">Lásd még:</span><span class="sxs-lookup"><span data-stu-id="66b23-111">See also</span></span>
+* [<span data-ttu-id="66b23-112">SQL-adatbázis létrehozása a C#</span><span class="sxs-lookup"><span data-stu-id="66b23-112">Create a SQL database with C#</span></span>](sql-database-get-started-csharp.md)
+* [<span data-ttu-id="66b23-113">Csatlakozás tooSQL adatbázis által használó Azure Active Directory-hitelesítés</span><span class="sxs-lookup"><span data-stu-id="66b23-113">Connecting tooSQL Database By Using Azure Active Directory Authentication</span></span>](sql-database-aad-authentication.md)
 

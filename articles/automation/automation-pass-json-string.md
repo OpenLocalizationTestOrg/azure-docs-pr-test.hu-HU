@@ -1,6 +1,6 @@
 ---
-title: "Egy JSON-objektum átadása egy Azure Automation-runbook |} Microsoft Docs"
-description: "Egy runbook JSON-objektumként paraméterek továbbítása"
+title: a JSON aaaPass objektum tooan Azure Automation-runbook |} Microsoft Docs
+description: "Hogyan toopass paraméterek tooa runbook JSON-objektumként"
 services: automation
 documentationcenter: dev-center-name
 author: eslesar
@@ -13,32 +13,32 @@ ms.tgt_pltfrm: powershell
 ms.workload: TBD
 ms.date: 06/15/2017
 ms.author: eslesar
-ms.openlocfilehash: eac0e95a46731b9d396ea0590e629d61ca6a7d70
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8229a16015d549927ead5496c70e9fb391d35498
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="pass-a-json-object-to-an-azure-automation-runbook"></a><span data-ttu-id="8c644-104">Egy JSON-objektum átadása egy Azure Automation-runbook</span><span class="sxs-lookup"><span data-stu-id="8c644-104">Pass a JSON object to an Azure Automation runbook</span></span>
+# <a name="pass-a-json-object-tooan-azure-automation-runbook"></a><span data-ttu-id="c3bce-104">Adjon át egy JSON-objektum tooan Azure Automation-forgatókönyv</span><span class="sxs-lookup"><span data-stu-id="c3bce-104">Pass a JSON object tooan Azure Automation runbook</span></span>
 
-<span data-ttu-id="8c644-105">Lehet hasznos, ha szeretné, hogy egy runbook egy JSON-fájlban használni kívánt adatok tárolásához.</span><span class="sxs-lookup"><span data-stu-id="8c644-105">It can be useful to store data that you want to pass to a runbook in a JSON file.</span></span>
-<span data-ttu-id="8c644-106">Például előfordulhat, hogy hozzon létre egy JSON-fájl, amely tartalmazza az összes runbook átadni kívánt paramétert.</span><span class="sxs-lookup"><span data-stu-id="8c644-106">For example, you might create a JSON file that contains all of the parameters you want to pass to a runbook.</span></span>
-<span data-ttu-id="8c644-107">Ehhez az szükséges, akkor a JSON alakítható át karakterlánccá, majd a karakterlánc át kell alakítania egy PowerShell-objektum előtt annak tartalmát a runbookhoz.</span><span class="sxs-lookup"><span data-stu-id="8c644-107">To do this, you have to convert the JSON to a string and then convert the string to a PowerShell object before passing its contents to the runbook.</span></span>
+<span data-ttu-id="c3bce-105">Ez lehet a hasznos toostore adat, amelyet az toopass tooa runbook egy JSON-fájlban.</span><span class="sxs-lookup"><span data-stu-id="c3bce-105">It can be useful toostore data that you want toopass tooa runbook in a JSON file.</span></span>
+<span data-ttu-id="c3bce-106">Például létrehozhat egy JSON-fájl, amely tartalmazza az összes hello paraméterek toopass tooa runbook szeretné.</span><span class="sxs-lookup"><span data-stu-id="c3bce-106">For example, you might create a JSON file that contains all of hello parameters you want toopass tooa runbook.</span></span>
+<span data-ttu-id="c3bce-107">toodo, hogy tooconvert hello JSON tooa karakterlánc és alakítsa át a tartalmak toohello runbook előtt hello karakterlánc tooa PowerShell-objektum.</span><span class="sxs-lookup"><span data-stu-id="c3bce-107">toodo this, you have tooconvert hello JSON tooa string and then convert hello string tooa PowerShell object before passing its contents toohello runbook.</span></span>
 
-<span data-ttu-id="8c644-108">Ebben a példában, mi létrehozunk egy PowerShell-parancsfájlt, amely behívja [Start-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) PowerShell runbook, a tartalmát a JSON átadja a runbook indítása.</span><span class="sxs-lookup"><span data-stu-id="8c644-108">In this example, we'll create a PowerShell script that calls [Start-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) to start a PowerShell runbook, passing the contents of the JSON to the runbook.</span></span>
-<span data-ttu-id="8c644-109">A PowerShell-forgatókönyv egy Azure virtuális Gépen, a paraméterek lekérése lett átadva a JSON a virtuális gép elindul.</span><span class="sxs-lookup"><span data-stu-id="8c644-109">The PowerShell runbook starts an Azure VM, getting the parameters for the VM from the JSON that was passed in.</span></span>
+<span data-ttu-id="c3bce-108">Ebben a példában, mi létrehozunk egy PowerShell-parancsfájlt, amely behívja [Start-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) toostart hello JSON toohello runbook tartalmának hello átadásakor PowerShell-forgatókönyv.</span><span class="sxs-lookup"><span data-stu-id="c3bce-108">In this example, we'll create a PowerShell script that calls [Start-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) toostart a PowerShell runbook, passing hello contents of hello JSON toohello runbook.</span></span>
+<span data-ttu-id="c3bce-109">hello PowerShell runbook elindul egy Azure virtuális Gépen, hello paraméterek hello lett átadva a JSON-NÁ. a virtuális gép hello lekérése.</span><span class="sxs-lookup"><span data-stu-id="c3bce-109">hello PowerShell runbook starts an Azure VM, getting hello parameters for hello VM from hello JSON that was passed in.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="8c644-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="8c644-110">Prerequisites</span></span>
-<span data-ttu-id="8c644-111">Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:</span><span class="sxs-lookup"><span data-stu-id="8c644-111">To complete this tutorial, you need the following:</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="c3bce-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="c3bce-110">Prerequisites</span></span>
+<span data-ttu-id="c3bce-111">toocomplete ebben az oktatóanyagban a következő hello szüksége:</span><span class="sxs-lookup"><span data-stu-id="c3bce-111">toocomplete this tutorial, you need hello following:</span></span>
 
-* <span data-ttu-id="8c644-112">Egy Azure-előfizetés.</span><span class="sxs-lookup"><span data-stu-id="8c644-112">Azure subscription.</span></span> <span data-ttu-id="8c644-113">Ha még nem rendelkezik fiókkal, [aktiválhatja MSDN-előfizetői előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/), illetve <a href="/pricing/free-account/" target="_blank">[regisztrálhat egy ingyenes fiókot](https://azure.microsoft.com/free/).</span><span class="sxs-lookup"><span data-stu-id="8c644-113">If you don't have one yet, you can [activate your MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) or <a href="/pricing/free-account/" target="_blank">[sign up for a free account](https://azure.microsoft.com/free/).</span></span>
-* <span data-ttu-id="8c644-114">[Automation-fiók](automation-sec-configure-azure-runas-account.md) a forgatókönyv tárolásához és az Azure erőforrásokban való hitelesítéshez.</span><span class="sxs-lookup"><span data-stu-id="8c644-114">[Automation account](automation-sec-configure-azure-runas-account.md) to hold the runbook and authenticate to Azure resources.</span></span>  <span data-ttu-id="8c644-115">Ennek a fióknak jogosultsággal kell rendelkeznie a virtuális gép elindításához és leállításához.</span><span class="sxs-lookup"><span data-stu-id="8c644-115">This account must have permission to start and stop the virtual machine.</span></span>
-* <span data-ttu-id="8c644-116">Egy Azure virtuális gép.</span><span class="sxs-lookup"><span data-stu-id="8c644-116">An Azure virtual machine.</span></span> <span data-ttu-id="8c644-117">Ezt a gépet leállítjuk és elindítjuk, tehát ne olyan virtuális gépet használjon, amely élesben működik.</span><span class="sxs-lookup"><span data-stu-id="8c644-117">We stop and start this machine so it should not be a production VM.</span></span>
-* <span data-ttu-id="8c644-118">Az Azure Powershell telepítve a helyi számítógépen.</span><span class="sxs-lookup"><span data-stu-id="8c644-118">Azure Powershell installed on a local machine.</span></span> <span data-ttu-id="8c644-119">Lásd: [telepítse és konfigurálja az Azure Powershellt](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.1.0) hogyan Azure PowerShell kérhet információt.</span><span class="sxs-lookup"><span data-stu-id="8c644-119">See [Install and configure Azure Powershell](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.1.0) for information about how to get Azure PowerShell.</span></span>
+* <span data-ttu-id="c3bce-112">Egy Azure-előfizetés.</span><span class="sxs-lookup"><span data-stu-id="c3bce-112">Azure subscription.</span></span> <span data-ttu-id="c3bce-113">Ha még nem rendelkezik fiókkal, [aktiválhatja MSDN-előfizetői előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/), illetve <a href="/pricing/free-account/" target="_blank">[regisztrálhat egy ingyenes fiókot](https://azure.microsoft.com/free/).</span><span class="sxs-lookup"><span data-stu-id="c3bce-113">If you don't have one yet, you can [activate your MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) or <a href="/pricing/free-account/" target="_blank">[sign up for a free account](https://azure.microsoft.com/free/).</span></span>
+* <span data-ttu-id="c3bce-114">[Automation-fiók](automation-sec-configure-azure-runas-account.md) toohold hello runbook és tooAzure erőforrások hitelesítéséhez.</span><span class="sxs-lookup"><span data-stu-id="c3bce-114">[Automation account](automation-sec-configure-azure-runas-account.md) toohold hello runbook and authenticate tooAzure resources.</span></span>  <span data-ttu-id="c3bce-115">Ezt a fiókot kell toostart engedéllyel rendelkezik, és állítsa le a virtuális gép hello.</span><span class="sxs-lookup"><span data-stu-id="c3bce-115">This account must have permission toostart and stop hello virtual machine.</span></span>
+* <span data-ttu-id="c3bce-116">Egy Azure virtuális gép.</span><span class="sxs-lookup"><span data-stu-id="c3bce-116">An Azure virtual machine.</span></span> <span data-ttu-id="c3bce-117">Ezt a gépet leállítjuk és elindítjuk, tehát ne olyan virtuális gépet használjon, amely élesben működik.</span><span class="sxs-lookup"><span data-stu-id="c3bce-117">We stop and start this machine so it should not be a production VM.</span></span>
+* <span data-ttu-id="c3bce-118">Az Azure Powershell telepítve a helyi számítógépen.</span><span class="sxs-lookup"><span data-stu-id="c3bce-118">Azure Powershell installed on a local machine.</span></span> <span data-ttu-id="c3bce-119">Lásd: [telepítse és konfigurálja az Azure Powershellt](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.1.0) információ tooget Azure PowerShell.</span><span class="sxs-lookup"><span data-stu-id="c3bce-119">See [Install and configure Azure Powershell](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.1.0) for information about how tooget Azure PowerShell.</span></span>
 
-## <a name="create-the-json-file"></a><span data-ttu-id="8c644-120">A JSON-fájl létrehozása</span><span class="sxs-lookup"><span data-stu-id="8c644-120">Create the JSON file</span></span>
+## <a name="create-hello-json-file"></a><span data-ttu-id="c3bce-120">Hello JSON-fájl létrehozása</span><span class="sxs-lookup"><span data-stu-id="c3bce-120">Create hello JSON file</span></span>
 
-<span data-ttu-id="8c644-121">Írja be a következő teszt a fájlt, és mentse a fájt `test.json` valahol a helyi számítógépen.</span><span class="sxs-lookup"><span data-stu-id="8c644-121">Type the following test in a text file, and save it as `test.json` somewhere on your local computer.</span></span>
+<span data-ttu-id="c3bce-121">Típus hello következő tesztelése a fájlt, és mentse a fájt `test.json` valahol a helyi számítógépen.</span><span class="sxs-lookup"><span data-stu-id="c3bce-121">Type hello following test in a text file, and save it as `test.json` somewhere on your local computer.</span></span>
 
 ```json
 {
@@ -47,14 +47,14 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-## <a name="create-the-runbook"></a><span data-ttu-id="8c644-122">Hozza létre a runbookot</span><span class="sxs-lookup"><span data-stu-id="8c644-122">Create the runbook</span></span>
+## <a name="create-hello-runbook"></a><span data-ttu-id="c3bce-122">Hello runbook létrehozása</span><span class="sxs-lookup"><span data-stu-id="c3bce-122">Create hello runbook</span></span>
 
-<span data-ttu-id="8c644-123">Hozzon létre egy új "Test-Json" az Azure Automationben nevű PowerShell-forgatókönyv.</span><span class="sxs-lookup"><span data-stu-id="8c644-123">Create a new PowerShell runbook named "Test-Json" in Azure Automation.</span></span>
-<span data-ttu-id="8c644-124">Megtudhatja, hogyan hozzon létre egy új PowerShell runbookot, lásd: [az első PowerShell runbook](automation-first-runbook-textual-powershell.md).</span><span class="sxs-lookup"><span data-stu-id="8c644-124">To learn how to create a new PowerShell runbook, see [My first PowerShell runbook](automation-first-runbook-textual-powershell.md).</span></span>
+<span data-ttu-id="c3bce-123">Hozzon létre egy új "Test-Json" az Azure Automationben nevű PowerShell-forgatókönyv.</span><span class="sxs-lookup"><span data-stu-id="c3bce-123">Create a new PowerShell runbook named "Test-Json" in Azure Automation.</span></span>
+<span data-ttu-id="c3bce-124">Hogyan toocreate egy új PowerShell-forgatókönyv: toolearn [az első PowerShell runbook](automation-first-runbook-textual-powershell.md).</span><span class="sxs-lookup"><span data-stu-id="c3bce-124">toolearn how toocreate a new PowerShell runbook, see [My first PowerShell runbook](automation-first-runbook-textual-powershell.md).</span></span>
 
-<span data-ttu-id="8c644-125">A JSON-adatok fogadására, a runbook egy objektum szükséges bemeneti paraméterként.</span><span class="sxs-lookup"><span data-stu-id="8c644-125">To accept the JSON data, the runbook must take an object as an input parameter.</span></span>
+<span data-ttu-id="c3bce-125">tooaccept hello JSON-adatokat, hello runbook objektum szükséges bemeneti paraméterként.</span><span class="sxs-lookup"><span data-stu-id="c3bce-125">tooaccept hello JSON data, hello runbook must take an object as an input parameter.</span></span>
 
-<span data-ttu-id="8c644-126">A runbook ezután használhatja a JSON-ban meghatározott tulajdonságokat.</span><span class="sxs-lookup"><span data-stu-id="8c644-126">The runbook can then use the properties defined in the JSON.</span></span>
+<span data-ttu-id="c3bce-126">hello runbook használhatja a hello JSON meghatározott hello tulajdonság.</span><span class="sxs-lookup"><span data-stu-id="c3bce-126">hello runbook can then use hello properties defined in hello JSON.</span></span>
 
 ```powershell
 Param(
@@ -62,40 +62,40 @@ Param(
      [object]$json
 )
 
-# Connect to Azure account   
+# Connect tooAzure account   
 $Conn = Get-AutomationConnection -Name AzureRunAsConnection
 Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
     -ApplicationID $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
 
-# Convert object to actual JSON
+# Convert object tooactual JSON
 $json = $json | ConvertFrom-Json
 
-# Use the values from the JSON object as the parameters for your command
+# Use hello values from hello JSON object as hello parameters for your command
 Start-AzureRmVM -Name $json.VMName -ResourceGroupName $json.ResourceGroup
  ```
 
- <span data-ttu-id="8c644-127">Mentse, és tegye közzé ezt a runbookot az Automation-fiókban.</span><span class="sxs-lookup"><span data-stu-id="8c644-127">Save and publish this runbook in your Automation account.</span></span>
+ <span data-ttu-id="c3bce-127">Mentse, és tegye közzé ezt a runbookot az Automation-fiókban.</span><span class="sxs-lookup"><span data-stu-id="c3bce-127">Save and publish this runbook in your Automation account.</span></span>
 
-## <a name="call-the-runbook-from-powershell"></a><span data-ttu-id="8c644-128">A runbook hívja a Powershellből</span><span class="sxs-lookup"><span data-stu-id="8c644-128">Call the runbook from PowerShell</span></span>
+## <a name="call-hello-runbook-from-powershell"></a><span data-ttu-id="c3bce-128">Hívás hello runbook PowerShell</span><span class="sxs-lookup"><span data-stu-id="c3bce-128">Call hello runbook from PowerShell</span></span>
 
-<span data-ttu-id="8c644-129">Most hívása a runbook a helyi gép Azure PowerShell használatával.</span><span class="sxs-lookup"><span data-stu-id="8c644-129">Now you can call the runbook from your local machine by using Azure PowerShell.</span></span>
-<span data-ttu-id="8c644-130">Futtassa a következő PowerShell-parancsokat:</span><span class="sxs-lookup"><span data-stu-id="8c644-130">Run the following PowerShell commands:</span></span>
+<span data-ttu-id="c3bce-129">Most hívása hello runbook a helyi gép Azure PowerShell használatával.</span><span class="sxs-lookup"><span data-stu-id="c3bce-129">Now you can call hello runbook from your local machine by using Azure PowerShell.</span></span>
+<span data-ttu-id="c3bce-130">Futtassa a következő PowerShell-parancsok hello:</span><span class="sxs-lookup"><span data-stu-id="c3bce-130">Run hello following PowerShell commands:</span></span>
 
-1. <span data-ttu-id="8c644-131">Jelentkezzen be az Azure:</span><span class="sxs-lookup"><span data-stu-id="8c644-131">Log in to Azure:</span></span>
+1. <span data-ttu-id="c3bce-131">Jelentkezzen be tooAzure:</span><span class="sxs-lookup"><span data-stu-id="c3bce-131">Log in tooAzure:</span></span>
    ```powershell
    Login-AzureRmAccount
    ```
-    <span data-ttu-id="8c644-132">Az Azure hitelesítő adatait kéri.</span><span class="sxs-lookup"><span data-stu-id="8c644-132">You are prompted to enter your Azure credentials.</span></span>
-1. <span data-ttu-id="8c644-133">A JSON-fájl tartalmának beolvasása és konvertálható karakterláncra:</span><span class="sxs-lookup"><span data-stu-id="8c644-133">Get the contents of the JSON file and convert it to a string:</span></span>
+    <span data-ttu-id="c3bce-132">Meg vannak felszólító tooenter Azure hitelesítő adatait.</span><span class="sxs-lookup"><span data-stu-id="c3bce-132">You are prompted tooenter your Azure credentials.</span></span>
+1. <span data-ttu-id="c3bce-133">Első hello hello JSON-fájl tartalmát, és konvertálja tooa karakterlánc:</span><span class="sxs-lookup"><span data-stu-id="c3bce-133">Get hello contents of hello JSON file and convert it tooa string:</span></span>
     ```powershell
     $json =  (Get-content -path 'JsonPath\test.json' -Raw) | Out-string
     ```
-    <span data-ttu-id="8c644-134">`JsonPath`az elérési utat, ahová mentette a JSON-fájl van.</span><span class="sxs-lookup"><span data-stu-id="8c644-134">`JsonPath` is the path where you saved the JSON file.</span></span>
-1. <span data-ttu-id="8c644-135">Karakterlánc tartalmát `$json` PowerShell objektumhoz:</span><span class="sxs-lookup"><span data-stu-id="8c644-135">Convert the string contents of `$json` to a PowerShell object:</span></span>
+    <span data-ttu-id="c3bce-134">`JsonPath`hello elérési utat, ahová mentette hello JSON-fájl van.</span><span class="sxs-lookup"><span data-stu-id="c3bce-134">`JsonPath` is hello path where you saved hello JSON file.</span></span>
+1. <span data-ttu-id="c3bce-135">Átalakítás hello karakterlánc tartalmát `$json` tooa PowerShell objektum:</span><span class="sxs-lookup"><span data-stu-id="c3bce-135">Convert hello string contents of `$json` tooa PowerShell object:</span></span>
    ```powershell
    $JsonParams = @{"json"=$json}
    ```
-1. <span data-ttu-id="8c644-136">Létrehozni egy kivonattáblát a paramétereinek `Start-AzureRmAutomstionRunbook`:</span><span class="sxs-lookup"><span data-stu-id="8c644-136">Create a hashtable for the parameters for `Start-AzureRmAutomstionRunbook`:</span></span>
+1. <span data-ttu-id="c3bce-136">Létrehozni egy kivonattáblát hello paramétereinek `Start-AzureRmAutomstionRunbook`:</span><span class="sxs-lookup"><span data-stu-id="c3bce-136">Create a hashtable for hello parameters for `Start-AzureRmAutomstionRunbook`:</span></span>
    ```powershell
    $RBParams = @{
         AutomationAccountName = 'AATest'
@@ -104,17 +104,17 @@ Start-AzureRmVM -Name $json.VMName -ResourceGroupName $json.ResourceGroup
         Parameters = $JsonParams
    }
    ```
-   <span data-ttu-id="8c644-137">Figyelje meg, az értéke határozza meg `Parameters` és a PowerShell-objektum, amely tartalmazza a JSON-fájl értékeinek.</span><span class="sxs-lookup"><span data-stu-id="8c644-137">Notice that you are setting the value of `Parameters` to the PowerShell object that contains the values from the JSON file.</span></span> 
-1. <span data-ttu-id="8c644-138">Elindítja a runbookot</span><span class="sxs-lookup"><span data-stu-id="8c644-138">Start the runbook</span></span>
+   <span data-ttu-id="c3bce-137">Figyelje meg, hogy hello értékét állítja `Parameters` toohello PowerShell-objektum, amely a JSON-fájl hello hello értékeket tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="c3bce-137">Notice that you are setting hello value of `Parameters` toohello PowerShell object that contains hello values from hello JSON file.</span></span> 
+1. <span data-ttu-id="c3bce-138">Hello runbook elindítása</span><span class="sxs-lookup"><span data-stu-id="c3bce-138">Start hello runbook</span></span>
    ```powershell
    $job = Start-AzureRmAutomationRunbook @RBParams
    ```
 
-<span data-ttu-id="8c644-139">A runbook értékeket használja a JSON-fájlt a virtuális gép elindításához.</span><span class="sxs-lookup"><span data-stu-id="8c644-139">The runbook uses the values from the JSON file to start a VM.</span></span>
+<span data-ttu-id="c3bce-139">hello runbook hello JSON-fájl toostart egy virtuális gép hello értékeit használja.</span><span class="sxs-lookup"><span data-stu-id="c3bce-139">hello runbook uses hello values from hello JSON file toostart a VM.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="8c644-140">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="8c644-140">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="c3bce-140">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="c3bce-140">Next steps</span></span>
 
-* <span data-ttu-id="8c644-141">Szöveges szerkesztővel PowerShell és a PowerShell-munkafolyamati forgatókönyvek szerkesztésével kapcsolatos további tudnivalókért lásd: [szöveges az Azure Automation runbookjai szerkesztése](automation-edit-textual-runbook.md)</span><span class="sxs-lookup"><span data-stu-id="8c644-141">To learn more about editing PowerShell and PowerShell Workflow runbooks with a textual editor, see [Editing textual runbooks in Azure Automation](automation-edit-textual-runbook.md)</span></span> 
-* <span data-ttu-id="8c644-142">További információ létrehozása és importálása a runbookok további tudnivalókért lásd: [létrehozása vagy egy Azure Automation forgatókönyv importálása](automation-creating-importing-runbook.md)</span><span class="sxs-lookup"><span data-stu-id="8c644-142">To learn more about creating and importing runbooks, see [Creating or importing a runbook in Azure Automation](automation-creating-importing-runbook.md)</span></span>
+* <span data-ttu-id="c3bce-141">További információ a szöveges szerkesztőt, PowerShell és a PowerShell-munkafolyamati forgatókönyvek Szerkesztés toolearn lásd [szöveges az Azure Automation runbookjai szerkesztése](automation-edit-textual-runbook.md)</span><span class="sxs-lookup"><span data-stu-id="c3bce-141">toolearn more about editing PowerShell and PowerShell Workflow runbooks with a textual editor, see [Editing textual runbooks in Azure Automation](automation-edit-textual-runbook.md)</span></span> 
+* <span data-ttu-id="c3bce-142">További információ az létrehozása és importálása a runbookok, toolearn lásd: [létrehozása vagy egy Azure Automation forgatókönyv importálása](automation-creating-importing-runbook.md)</span><span class="sxs-lookup"><span data-stu-id="c3bce-142">toolearn more about creating and importing runbooks, see [Creating or importing a runbook in Azure Automation](automation-creating-importing-runbook.md)</span></span>
 
 

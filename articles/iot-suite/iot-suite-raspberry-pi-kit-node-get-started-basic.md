@@ -1,6 +1,6 @@
 ---
-title: "Csatlakozás egy málna Pi Azure IoT Suite Node.js használatával valós érzékelők |} Microsoft Docs"
-description: "Használja a Microsoft Azure IoT Starter Kit a Raspberry pi 3 és az Azure IoT Suite. A málna Pi kapcsolódni a távoli felügyeleti megoldás használata Node.js telemetriai adatokat küldhet az érzékelők a felhőhöz, és a megoldás irányítópultja metódusokra válaszol."
+title: "egy málna Pi tooAzure IoT Suite aaaConnect valós érzékelők Node.js használatával |} Microsoft Docs"
+description: "A Microsoft Azure IoT Starter Kit hello a hello málna Pi 3 és Azure IoT Suite használja. Node.js tooconnect használata a távoli felügyeleti megoldás málna Pi toohello, telemetriai adatokat küldhet az érzékelők toohello felhőalapú és meghívni a hello megoldás irányítópultja toomethods válaszol."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -14,123 +14,123 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 91546157cc8eabf68706391ce706038d8dc5f82d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7ffb4a7a8c04b424a1f29170f4739d89f39a2429
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-raspberry-pi-3-to-the-remote-monitoring-solution-and-send-telemetry-from-a-real-sensor-using-nodejs"></a><span data-ttu-id="02cb7-104">A málna Pi 3 kapcsolódni a távoli felügyeleti megoldás és telemetriai adatokat küldhet egy Node.js segítségével valós érzékelő</span><span class="sxs-lookup"><span data-stu-id="02cb7-104">Connect your Raspberry Pi 3 to the remote monitoring solution and send telemetry from a real sensor using Node.js</span></span>
+# <a name="connect-your-raspberry-pi-3-toohello-remote-monitoring-solution-and-send-telemetry-from-a-real-sensor-using-nodejs"></a><span data-ttu-id="34f8e-104">Csatlakozzon a távoli felügyeleti megoldás málna Pi 3 toohello és telemetriai adatokat küldhet egy Node.js segítségével valós érzékelő</span><span class="sxs-lookup"><span data-stu-id="34f8e-104">Connect your Raspberry Pi 3 toohello remote monitoring solution and send telemetry from a real sensor using Node.js</span></span>
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-selector](../../includes/iot-suite-raspberry-pi-kit-selector.md)]
 
-<span data-ttu-id="02cb7-105">Az oktatóanyag bemutatja, hogyan használhatja a Microsoft Azure IoT Starter Kit málna Pi 3 fejlesztéséhez a hőmérséklet és a páratartalom olvasó, amely képes kommunikálni a felhőben.</span><span class="sxs-lookup"><span data-stu-id="02cb7-105">This tutorial shows you how to use the Microsoft Azure IoT Starter Kit for Raspberry Pi 3 to develop a temperature and humidity reader that can communicate with the cloud.</span></span> <span data-ttu-id="02cb7-106">Az oktatóprogram:</span><span class="sxs-lookup"><span data-stu-id="02cb7-106">The tutorial uses:</span></span>
+<span data-ttu-id="34f8e-105">Az oktatóanyag bemutatja, hogyan toouse hello Microsoft Azure IoT Starter Kit málna Pi 3 toodevelop a hőmérséklet és a páratartalom olvasó, amely képes kommunikálni a hello felhő.</span><span class="sxs-lookup"><span data-stu-id="34f8e-105">This tutorial shows you how toouse hello Microsoft Azure IoT Starter Kit for Raspberry Pi 3 toodevelop a temperature and humidity reader that can communicate with hello cloud.</span></span> <span data-ttu-id="34f8e-106">hello oktatóprogram:</span><span class="sxs-lookup"><span data-stu-id="34f8e-106">hello tutorial uses:</span></span>
 
-- <span data-ttu-id="02cb7-107">Raspbian operációs rendszer, a Node.js programozási nyelv, és a Microsoft Azure IoT SDK for Node.js egy minta eszköz végrehajtásához.</span><span class="sxs-lookup"><span data-stu-id="02cb7-107">Raspbian OS, the Node.js programming language, and the Microsoft Azure IoT SDK for Node.js to implement a sample device.</span></span>
-- <span data-ttu-id="02cb7-108">Az IoT Suite távoli megfigyelési előre konfigurált megoldás, a felhő alapú háttér.</span><span class="sxs-lookup"><span data-stu-id="02cb7-108">The IoT Suite remote monitoring preconfigured solution as the cloud-based back end.</span></span>
+- <span data-ttu-id="34f8e-107">Raspbian operációs rendszer, hello Node.js programozási nyelv, és a Microsoft Azure IoT SDK hello Node.js tooimplement egy minta eszköz.</span><span class="sxs-lookup"><span data-stu-id="34f8e-107">Raspbian OS, hello Node.js programming language, and hello Microsoft Azure IoT SDK for Node.js tooimplement a sample device.</span></span>
+- <span data-ttu-id="34f8e-108">mint hello felhőalapú háttér hello IoT Suite távoli megfigyelési előre konfigurált megoldás.</span><span class="sxs-lookup"><span data-stu-id="34f8e-108">hello IoT Suite remote monitoring preconfigured solution as hello cloud-based back end.</span></span>
 
-## <a name="overview"></a><span data-ttu-id="02cb7-109">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="02cb7-109">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="34f8e-109">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="34f8e-109">Overview</span></span>
 
-<span data-ttu-id="02cb7-110">Ebben az oktatóanyagban végezze el a következő lépéseket:</span><span class="sxs-lookup"><span data-stu-id="02cb7-110">In this tutorial, you complete the following steps:</span></span>
+<span data-ttu-id="34f8e-110">Az oktatóanyag befejezése hello a következő lépéseket:</span><span class="sxs-lookup"><span data-stu-id="34f8e-110">In this tutorial, you complete hello following steps:</span></span>
 
-- <span data-ttu-id="02cb7-111">Telepítse a távoli felügyeleti előkonfigurált megoldás egy példányát az Azure-előfizetéshez.</span><span class="sxs-lookup"><span data-stu-id="02cb7-111">Deploy an instance of the remote monitoring preconfigured solution to your Azure subscription.</span></span> <span data-ttu-id="02cb7-112">Ebben a lépésben automatikusan telepíti és konfigurálja a több Azure-szolgáltatásokhoz.</span><span class="sxs-lookup"><span data-stu-id="02cb7-112">This step automatically deploys and configures multiple Azure services.</span></span>
-- <span data-ttu-id="02cb7-113">Állítsa be az eszköz és a érzékelők kommunikáljanak a számítógép és a távoli felügyeleti megoldás.</span><span class="sxs-lookup"><span data-stu-id="02cb7-113">Set up your device and sensors to communicate with your computer and the remote monitoring solution.</span></span>
-- <span data-ttu-id="02cb7-114">Frissítse a mintakódot eszköz csatlakozni a távoli felügyeleti megoldás, és, amely megtalálható a megoldás irányítópultja telemetriai adatokat küldhet.</span><span class="sxs-lookup"><span data-stu-id="02cb7-114">Update the sample device code to connect to the remote monitoring solution, and send telemetry that you can view on the solution dashboard.</span></span>
+- <span data-ttu-id="34f8e-111">Hello távoli figyelési előkonfigurált megoldás tooyour Azure-előfizetés-példányt telepítése.</span><span class="sxs-lookup"><span data-stu-id="34f8e-111">Deploy an instance of hello remote monitoring preconfigured solution tooyour Azure subscription.</span></span> <span data-ttu-id="34f8e-112">Ebben a lépésben automatikusan telepíti és konfigurálja a több Azure-szolgáltatásokhoz.</span><span class="sxs-lookup"><span data-stu-id="34f8e-112">This step automatically deploys and configures multiple Azure services.</span></span>
+- <span data-ttu-id="34f8e-113">Állítsa be a számítógép és a hello az eszköz és az érzékelők toocommunicate távoli felügyeleti megoldás.</span><span class="sxs-lookup"><span data-stu-id="34f8e-113">Set up your device and sensors toocommunicate with your computer and hello remote monitoring solution.</span></span>
+- <span data-ttu-id="34f8e-114">Hello eszköz kód tooconnect toohello távoli figyelési megoldást frissítése, és megtekintheti a hello megoldás irányítópultja telemetriát.</span><span class="sxs-lookup"><span data-stu-id="34f8e-114">Update hello sample device code tooconnect toohello remote monitoring solution, and send telemetry that you can view on hello solution dashboard.</span></span>
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-prerequisites](../../includes/iot-suite-raspberry-pi-kit-prerequisites.md)]
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
 > [!WARNING]
-> <span data-ttu-id="02cb7-115">A távoli felügyeleti megoldás látja el az Azure-előfizetéshez az Azure szolgáltatások.</span><span class="sxs-lookup"><span data-stu-id="02cb7-115">The remote monitoring solution provisions a set of Azure services in your Azure subscription.</span></span> <span data-ttu-id="02cb7-116">A központi telepítés által adott jelentéseket tükrözik a valós vállalati architektúra.</span><span class="sxs-lookup"><span data-stu-id="02cb7-116">The deployment reflects a real enterprise architecture.</span></span> <span data-ttu-id="02cb7-117">Szükségtelen Azure felhasználási díjak elkerülése az előre konfigurált megoldást a következő azureiotsuite.com a példányának törlése után vele.</span><span class="sxs-lookup"><span data-stu-id="02cb7-117">To avoid unnecessary Azure consumption charges, delete your instance of the preconfigured solution at azureiotsuite.com when you have finished with it.</span></span> <span data-ttu-id="02cb7-118">Ha újra kell az előkonfigurált megoldás, egyszerűen létrehozhatja azt.</span><span class="sxs-lookup"><span data-stu-id="02cb7-118">If you need the preconfigured solution again, you can easily recreate it.</span></span> <span data-ttu-id="02cb7-119">További információ a felhasználás csökkentése a távoli felügyeleti megoldás futtatása közben: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config].</span><span class="sxs-lookup"><span data-stu-id="02cb7-119">For more information about reducing consumption while the remote monitoring solution runs, see [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config].</span></span>
+> <span data-ttu-id="34f8e-115">távoli hello figyelési megoldást kiosztja az Azure-előfizetéshez az Azure szolgáltatások.</span><span class="sxs-lookup"><span data-stu-id="34f8e-115">hello remote monitoring solution provisions a set of Azure services in your Azure subscription.</span></span> <span data-ttu-id="34f8e-116">hello központi telepítés által adott jelentéseket tükrözik a valós vállalati architektúra.</span><span class="sxs-lookup"><span data-stu-id="34f8e-116">hello deployment reflects a real enterprise architecture.</span></span> <span data-ttu-id="34f8e-117">tooavoid szükségtelen Azure felhasználási díjak, az előre konfigurált hello megoldást a következő azureiotsuite.com példányának törlése, vele befejezése után.</span><span class="sxs-lookup"><span data-stu-id="34f8e-117">tooavoid unnecessary Azure consumption charges, delete your instance of hello preconfigured solution at azureiotsuite.com when you have finished with it.</span></span> <span data-ttu-id="34f8e-118">Ha újra kell hello előkonfigurált megoldás, egyszerűen létrehozhatja azt.</span><span class="sxs-lookup"><span data-stu-id="34f8e-118">If you need hello preconfigured solution again, you can easily recreate it.</span></span> <span data-ttu-id="34f8e-119">Hello távoli figyelési megoldást futtatása közben felhasználás csökkentése kapcsolatos további információkért lásd: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config].</span><span class="sxs-lookup"><span data-stu-id="34f8e-119">For more information about reducing consumption while hello remote monitoring solution runs, see [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config].</span></span>
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-view-solution](../../includes/iot-suite-raspberry-pi-kit-view-solution.md)]
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-prepare-pi](../../includes/iot-suite-raspberry-pi-kit-prepare-pi.md)]
 
-## <a name="download-and-configure-the-sample"></a><span data-ttu-id="02cb7-120">Töltse le és konfigurálja a minta</span><span class="sxs-lookup"><span data-stu-id="02cb7-120">Download and configure the sample</span></span>
+## <a name="download-and-configure-hello-sample"></a><span data-ttu-id="34f8e-120">Töltse le és konfigurálja a hello minta</span><span class="sxs-lookup"><span data-stu-id="34f8e-120">Download and configure hello sample</span></span>
 
-<span data-ttu-id="02cb7-121">Most töltse le és konfigurálja a távoli felügyeleti ügyfélalkalmazás a málna Pi.</span><span class="sxs-lookup"><span data-stu-id="02cb7-121">You can now download and configure the remote monitoring client application on your Raspberry Pi.</span></span>
+<span data-ttu-id="34f8e-121">Most töltse le, és a málna Pi hello távoli figyelési ügyfélalkalmazás konfigurálása.</span><span class="sxs-lookup"><span data-stu-id="34f8e-121">You can now download and configure hello remote monitoring client application on your Raspberry Pi.</span></span>
 
-### <a name="install-nodejs"></a><span data-ttu-id="02cb7-122">A Node.js telepítése</span><span class="sxs-lookup"><span data-stu-id="02cb7-122">Install Node.js</span></span>
+### <a name="install-nodejs"></a><span data-ttu-id="34f8e-122">A Node.js telepítése</span><span class="sxs-lookup"><span data-stu-id="34f8e-122">Install Node.js</span></span>
 
-<span data-ttu-id="02cb7-123">Node.js telepíthető a Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="02cb7-123">Install Node.js on your Raspberry Pi.</span></span> <span data-ttu-id="02cb7-124">Az IoT-SDK for Node.js 0.11.5 Node.js vagy újabb verzió szükséges.</span><span class="sxs-lookup"><span data-stu-id="02cb7-124">The IoT SDK for Node.js requires version 0.11.5 of Node.js or later.</span></span> <span data-ttu-id="02cb7-125">A következő lépések bemutatják a Node.js v6.10.2 telepíthető a málna Pi:</span><span class="sxs-lookup"><span data-stu-id="02cb7-125">The following steps show you how to install Node.js v6.10.2 on your Raspberry Pi:</span></span>
+<span data-ttu-id="34f8e-123">Node.js telepíthető a Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="34f8e-123">Install Node.js on your Raspberry Pi.</span></span> <span data-ttu-id="34f8e-124">hello IoT SDK for Node.js 0.11.5 Node.js vagy újabb verzió szükséges.</span><span class="sxs-lookup"><span data-stu-id="34f8e-124">hello IoT SDK for Node.js requires version 0.11.5 of Node.js or later.</span></span> <span data-ttu-id="34f8e-125">hello következő lépések bemutatják, hogyan tooinstall Node.js v6.10.2 a málna Pi meg:</span><span class="sxs-lookup"><span data-stu-id="34f8e-125">hello following steps show you how tooinstall Node.js v6.10.2 on your Raspberry Pi:</span></span>
 
-1. <span data-ttu-id="02cb7-126">A málna Pi frissítéséhez használja a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="02cb7-126">Use the following command to update your Raspberry Pi:</span></span>
+1. <span data-ttu-id="34f8e-126">A következő parancs tooupdate hello a málna telepítővel:</span><span class="sxs-lookup"><span data-stu-id="34f8e-126">Use hello following command tooupdate your Raspberry Pi:</span></span>
 
     ```sh
     sudo apt-get update
     ```
 
-1. <span data-ttu-id="02cb7-127">Az alábbi parancs segítségével töltse le a Node.js bináris fájlok a málna Pi:</span><span class="sxs-lookup"><span data-stu-id="02cb7-127">Use the following command to download the Node.js binaries to your Raspberry Pi:</span></span>
+1. <span data-ttu-id="34f8e-127">A következő parancs toodownload hello Node.js bináris tooyour málna Pi hello használata:</span><span class="sxs-lookup"><span data-stu-id="34f8e-127">Use hello following command toodownload hello Node.js binaries tooyour Raspberry Pi:</span></span>
 
     ```sh
     wget https://nodejs.org/dist/v6.10.2/node-v6.10.2-linux-armv7l.tar.gz
     ```
 
-1. <span data-ttu-id="02cb7-128">A következő paranccsal telepítse a bináris fájlok:</span><span class="sxs-lookup"><span data-stu-id="02cb7-128">Use the following command to install the binaries:</span></span>
+1. <span data-ttu-id="34f8e-128">A következő parancs tooinstall hello bináris hello használata:</span><span class="sxs-lookup"><span data-stu-id="34f8e-128">Use hello following command tooinstall hello binaries:</span></span>
 
     ```sh
     sudo tar -C /usr/local --strip-components 1 -xzf node-v6.10.2-linux-armv7l.tar.gz
     ```
 
-1. <span data-ttu-id="02cb7-129">A következő paranccsal ellenőrizheti a Node.js v6.10.2 sikeresen telepítette:</span><span class="sxs-lookup"><span data-stu-id="02cb7-129">Use the following command to verify you have installed Node.js v6.10.2 successfully:</span></span>
+1. <span data-ttu-id="34f8e-129">A következő parancs tooverify Node.js v6.10.2 sikeresen telepített hello használata:</span><span class="sxs-lookup"><span data-stu-id="34f8e-129">Use hello following command tooverify you have installed Node.js v6.10.2 successfully:</span></span>
 
     ```sh
     node --version
     ```
 
-### <a name="clone-the-repositories"></a><span data-ttu-id="02cb7-130">A tárolóhelyekkel klónozása</span><span class="sxs-lookup"><span data-stu-id="02cb7-130">Clone the repositories</span></span>
+### <a name="clone-hello-repositories"></a><span data-ttu-id="34f8e-130">Klónozás hello adattárak</span><span class="sxs-lookup"><span data-stu-id="34f8e-130">Clone hello repositories</span></span>
 
-<span data-ttu-id="02cb7-131">Ha még nem tette meg, klónozza a szükséges adattárak a Pi a következő parancsok futtatásával:</span><span class="sxs-lookup"><span data-stu-id="02cb7-131">If you haven't already done so, clone the required repositories by running the following commands on your Pi:</span></span>
+<span data-ttu-id="34f8e-131">Ha még nem tette meg, a Klónozás hello szükséges futtatásával adattárak hello parancsok követően a Pi:</span><span class="sxs-lookup"><span data-stu-id="34f8e-131">If you haven't already done so, clone hello required repositories by running hello following commands on your Pi:</span></span>
 
 ```sh
 cd ~
 git clone --recursive https://github.com/Azure-Samples/iot-remote-monitoring-node-raspberrypi-getstartedkit.git`
 ```
 
-### <a name="update-the-device-connection-string"></a><span data-ttu-id="02cb7-132">Frissítés az eszköz kapcsolati karakterlánc</span><span class="sxs-lookup"><span data-stu-id="02cb7-132">Update the device connection string</span></span>
+### <a name="update-hello-device-connection-string"></a><span data-ttu-id="34f8e-132">Hello eszköz kapcsolati karakterlánc frissítése</span><span class="sxs-lookup"><span data-stu-id="34f8e-132">Update hello device connection string</span></span>
 
-<span data-ttu-id="02cb7-133">Nyissa meg a minta a fájlt a **nano** szerkesztő a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="02cb7-133">Open the sample source file in the **nano** editor using the following command:</span></span>
+<span data-ttu-id="34f8e-133">Nyissa meg hello minta forrásfájl hello **nano** szerkesztő hello a következő parancs használatával:</span><span class="sxs-lookup"><span data-stu-id="34f8e-133">Open hello sample source file in hello **nano** editor using hello following command:</span></span>
 
 ```sh
 nano ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/basic/remote_monitoring.js
 ```
 
-<span data-ttu-id="02cb7-134">Keresse meg a sor:</span><span class="sxs-lookup"><span data-stu-id="02cb7-134">Find the line:</span></span>
+<span data-ttu-id="34f8e-134">Hello sor keresése:</span><span class="sxs-lookup"><span data-stu-id="34f8e-134">Find hello line:</span></span>
 
 ```javascript
 var connectionString = 'HostName=[Your IoT hub name].azure-devices.net;DeviceId=[Your device id];SharedAccessKey=[Your device key]';
 ```
 
-<span data-ttu-id="02cb7-135">Cserélje le a helyőrző értékeket az eszköz és az IoT-központ adatokat létrehozott és mentett Ez az oktatóanyag elején.</span><span class="sxs-lookup"><span data-stu-id="02cb7-135">Replace the placeholder values with the device and IoT Hub information you created and saved at the start of this tutorial.</span></span> <span data-ttu-id="02cb7-136">Menti a módosításokat (**Ctrl-O**, **Enter**), és zárja be a szerkesztőt (**Ctrl-X**).</span><span class="sxs-lookup"><span data-stu-id="02cb7-136">Save your changes (**Ctrl-O**, **Enter**) and exit the editor (**Ctrl-X**).</span></span>
+<span data-ttu-id="34f8e-135">Cserélje le hello helyőrző értékeket hello eszköz- és IoT-központ adatokat létrehozott és mentett ebben az oktatóanyagban hello elején.</span><span class="sxs-lookup"><span data-stu-id="34f8e-135">Replace hello placeholder values with hello device and IoT Hub information you created and saved at hello start of this tutorial.</span></span> <span data-ttu-id="34f8e-136">Menti a módosításokat (**Ctrl-O**, **Enter**) és a kilépési hello editor (**Ctrl-X**).</span><span class="sxs-lookup"><span data-stu-id="34f8e-136">Save your changes (**Ctrl-O**, **Enter**) and exit hello editor (**Ctrl-X**).</span></span>
 
-## <a name="run-the-sample"></a><span data-ttu-id="02cb7-137">A minta futtatásához</span><span class="sxs-lookup"><span data-stu-id="02cb7-137">Run the sample</span></span>
+## <a name="run-hello-sample"></a><span data-ttu-id="34f8e-137">Hello minta futtatásához</span><span class="sxs-lookup"><span data-stu-id="34f8e-137">Run hello sample</span></span>
 
-<span data-ttu-id="02cb7-138">A következő parancsokat a csomagokat a minta telepítéséhez:</span><span class="sxs-lookup"><span data-stu-id="02cb7-138">Run the following commands to install the prerequisite packages for the sample:</span></span>
+<span data-ttu-id="34f8e-138">Futtatási hello következő parancsok hello minta tooinstall hello csomagokat:</span><span class="sxs-lookup"><span data-stu-id="34f8e-138">Run hello following commands tooinstall hello prerequisite packages for hello sample:</span></span>
 
 ```sh
 cd ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/basic
 npm install
 ```
 
-<span data-ttu-id="02cb7-139">A minta program most futtathatja a málna Pi.</span><span class="sxs-lookup"><span data-stu-id="02cb7-139">You can now run the sample program on the Raspberry Pi.</span></span> <span data-ttu-id="02cb7-140">Adja meg a parancsot:</span><span class="sxs-lookup"><span data-stu-id="02cb7-140">Enter the command:</span></span>
+<span data-ttu-id="34f8e-139">Hello minta program hello málna Pi most futtathatja.</span><span class="sxs-lookup"><span data-stu-id="34f8e-139">You can now run hello sample program on hello Raspberry Pi.</span></span> <span data-ttu-id="34f8e-140">Adja meg a hello parancsot:</span><span class="sxs-lookup"><span data-stu-id="34f8e-140">Enter hello command:</span></span>
 
 ```sh
 sudo node ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/basic/remote_monitoring.js
 ```
 
-<span data-ttu-id="02cb7-141">A következő minta kimenet látható egy példa a kimeneti látja a málna Pi a parancssorba:</span><span class="sxs-lookup"><span data-stu-id="02cb7-141">The following sample output is an example of the output you see at the command prompt on the Raspberry Pi:</span></span>
+<span data-ttu-id="34f8e-141">hello következő minta kimenet látható egy példa hello kimeneti hello parancssorba a hello málna Pi látja:</span><span class="sxs-lookup"><span data-stu-id="34f8e-141">hello following sample output is an example of hello output you see at hello command prompt on hello Raspberry Pi:</span></span>
 
 ![Raspberry Pi-alkalmazás kimenete][img-raspberry-output]
 
-<span data-ttu-id="02cb7-143">Nyomja le az **Ctrl-C** kilép a programból bármikor.</span><span class="sxs-lookup"><span data-stu-id="02cb7-143">Press **Ctrl-C** to exit the program at any time.</span></span>
+<span data-ttu-id="34f8e-143">Nyomja le az **Ctrl-C** tooexit hello program tetszőleges időpontban.</span><span class="sxs-lookup"><span data-stu-id="34f8e-143">Press **Ctrl-C** tooexit hello program at any time.</span></span>
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-view-telemetry](../../includes/iot-suite-raspberry-pi-kit-view-telemetry.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="02cb7-144">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="02cb7-144">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="34f8e-144">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="34f8e-144">Next steps</span></span>
 
-<span data-ttu-id="02cb7-145">Látogasson el a [Azure IoT-fejlesztői központhoz](https://azure.microsoft.com/develop/iot/) további mintákat és Azure IoT-dokumentációja.</span><span class="sxs-lookup"><span data-stu-id="02cb7-145">Visit the [Azure IoT Dev Center](https://azure.microsoft.com/develop/iot/) for more samples and documentation on Azure IoT.</span></span>
+<span data-ttu-id="34f8e-145">A Microsoft hello [Azure IoT-fejlesztői központhoz](https://azure.microsoft.com/develop/iot/) további mintákat és Azure IoT-dokumentációja.</span><span class="sxs-lookup"><span data-stu-id="34f8e-145">Visit hello [Azure IoT Dev Center](https://azure.microsoft.com/develop/iot/) for more samples and documentation on Azure IoT.</span></span>
 
 [img-raspberry-output]: ./media/iot-suite-raspberry-pi-kit-node-get-started-basic/app-output.png
 
