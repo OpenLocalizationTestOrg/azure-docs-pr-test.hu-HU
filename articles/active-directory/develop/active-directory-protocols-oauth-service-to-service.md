@@ -1,6 +1,6 @@
 ---
-title: "Az Azure AD szolgáltatás hitelesítési OAuth2.0 használatával |} Microsoft Docs"
-description: "A cikkből megtudhatja, hogyan használható a HTTP-üzenetek OAuth2.0 ügyfél hitelesítő adatok grant flow szolgáltatások közötti hitelesítés megvalósításához."
+title: "aaaAzure AD szolgáltatás tooService Auth OAuth2.0 használatával |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan toouse HTTP-üzenetek tooimplement szolgáltatás hello OAuth2.0 ügyfél hitelesítő adatok grant flow tooservice hitelesítéshez."
 services: active-directory
 documentationcenter: .net
 author: navyasric
@@ -15,50 +15,50 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: cc30a54cd56c0cb03a67f86e4552398baa764e58
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f4bfd4ea8a7de1929c7dcf7ad65a156edff74f71
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# Ügyfél-hitelesítő (közös titkos kulcs vagy tanúsítvány) hívásokról szolgáltatás
-Az OAuth 2.0 ügyfél hitelesítő adatok Grant Flow lehetővé teszi egy webszolgáltatás-bővítmény (*bizalmas ügyfél*) a saját hitelesítő adatok használata helyett a felhasználó megszemélyesítésekor, hitelesítésére, miközben egy másik webes szolgáltatás hívása. Ebben a forgatókönyvben az ügyfél nem általában egy középső rétegbeli webes szolgáltatás, a démon szolgáltatás vagy a webhely. A magasabb szintű megbízhatóság az Azure AD is lehetővé teszi a hívó szolgáltatás (és nem a közös titkos kulcs) tanúsítványt használják a hitelesítő adatokat.
+# Szolgáltatás tooservice hívásokon ügyfél hitelesítő adatait (közös titkos kulcs vagy tanúsítvány)
+OAuth 2.0 ügyfél hitelesítő adatok Grant Flow hello lehetővé teszi egy webszolgáltatás-bővítmény (*bizalmas ügyfél*) toouse webszolgáltatás helyett a felhasználó megszemélyesítésekor, egy másik meghívásakor tooauthenticate saját hitelesítő adatait. Ebben az esetben a hello ügyfél esetében általában egy középső rétegbeli webes szolgáltatás, egy démon szolgáltatás vagy a webhely. A magasabb szintű megbízhatóság az Azure AD is lehetővé teszi, hogy hello hívja service toouse hitelesítő adatot (nem a közös titkos kulcs) tanúsítványok.
 
 ## Ügyfél hitelesítő adatai megadják folyamatábrája
-A következő ábra bemutatja, hogyan az ügyfél hitelesítő adatait adja meg Azure Active Directory (Azure AD) működik folyamata.
+hello következő ábra bemutatja, hogyan a hello ügyfél hitelesítő adatai megadják a folyamat működéséről az Azure Active Directory (Azure AD).
 
 ![OAuth2.0 ügyfél hitelesítő adatok megadása folyamata](media/active-directory-protocols-oauth-service-to-service/active-directory-protocols-oauth-client-credentials-grant-flow.jpg)
 
-1. Az ügyfélalkalmazás végzi el a hitelesítést az Azure AD hitelesítési karakterlánc-kiállítási végpont, és kéri a hozzáférési tokent.
-2. Az Azure AD hitelesítési karakterlánc-kiállítási végpont állít ki a hozzáférési jogkivonat.
-3. A hozzáférési jogkivonat a védett erőforrások felé történő hitelesítésre szolgál.
-4. A védett erőforrás adatait a webes alkalmazás küld vissza.
+1. hello ügyfélalkalmazás toohello az Azure AD hitelesítési karakterlánc-kiállítási végpont hitelesíti, és egy hozzáférési jogkivonatot kéri.
+2. az Azure AD hello jogkivonat kibocsátási végpont problémák hello hozzáférési jogkivonat.
+3. hello access token használt tooauthenticate toohello védett erőforrás.
+4. Védett erőforrás hello adatait toohello webalkalmazás adja vissza.
 
-## A szolgáltatások regisztrálása az Azure ad-ben
-A hívó szolgáltatás és a fogadó szolgáltatás regisztrálása az Azure Active Directory (Azure AD). Részletes útmutatásért lásd: [alkalmazások integrálása az Azure Active Directory](active-directory-integrating-applications.md).
+## Hello szolgáltatások regisztrálása az Azure ad-ben
+Hello hívja service és a szolgáltatás Azure Active Directory (Azure AD) fogadásának hello regisztrálni. Részletes útmutatásért lásd: [alkalmazások integrálása az Azure Active Directory](active-directory-integrating-applications.md).
 
 ## A kérelem egy hozzáférési jogkivonatot:
-Olyan hozzáférési jogkivonatot kérni, használja a bérlői adott HTTP POST az Azure AD-végpont.
+toorequest hozzáférési tokent, egy HTTP POST toohello az Azure AD bérlő-specifikus végpontot használni.
 
 ```
 https://login.microsoftonline.com/<tenant id>/oauth2/token
 ```
 
 ## Szolgáltatás hozzáférési jogkivonat kérelem
-Attól függően, hogy az ügyfélalkalmazás úgy dönt, hogy egy közös titkot, vagy a tanúsítvány védi két esetben van.
+Attól függően, hogy úgy dönt, hogy hello ügyfélalkalmazás egy közös titkot, vagy a tanúsítvány által védett toobe két esetben van.
 
 ### Először. eset: egy közös titkot a hozzáférési token kérelem
-Egy közös titkos kulcs használata esetén a szolgáltatás hozzáférési kérelmek tartalmazza a következő paraméterekkel:
+A közös titkos kulcs használata esetén a szolgáltatás hozzáférési kérelmek tartalmazza a következő paraméterek hello:
 
 | Paraméter |  | Leírás |
 | --- | --- | --- |
-| grant_type |Szükséges |A kért grant típusát határozza meg. Az ügyfél-hitelesítő adatok Grant flow, az értéknek kell lennie **client_credentials**. |
-| client_id |Szükséges |Adja meg az Azure AD a hívó webszolgáltatás ügyfél-azonosító. A hívó alkalmazás ügyfél-azonosító, a kereséséhez a [Azure-portálon](https://portal.azure.com), kattintson a **Active Directory**kapcsoló directory lehetőséget, kattintson az alkalmazás. A client_id van a *Alkalmazásazonosító* |
-| client_secret |Szükséges |Adjon meg egy kulcsot, a hívó szolgáltatás vagy démon webalkalmazás az Azure ad-ben regisztrált. Az Azure-portálon a kulcs létrehozásához kattintson a **Active Directory**directory váltani, kattintson az alkalmazás, kattintson **beállítások**, kattintson a **kulcsok**, és a kulcs hozzáadása.|
-| Erőforrás |Szükséges |Adja meg az App ID URI az fogadó webszolgáltatás. Az Azure portálon található App ID URI, kattintson a **Active Directory**, directory váltani, kattintson a szolgáltatásalkalmazás, majd **beállítások** és **tulajdonságai** |
+| grant_type |Szükséges |Adja meg a kért hello támogatás típusa. Az ügyfél-hitelesítő adatok Grant flow, hello értéknek kell lennie **client_credentials**. |
+| client_id |Szükséges |Adja meg a webes szolgáltatás hívása hello hello Azure AD ügyfél-azonosítója. történt az alkalmazás ügyfél-azonosító, a hello toofind hello [Azure-portálon](https://portal.azure.com), kattintson a **Active Directory**directory váltani, kattintson a hello alkalmazás. hello client_id hello *Alkalmazásazonosító* |
+| client_secret |Szükséges |Adjon meg egy hello hívja service vagy démon webalkalmazás az Azure ad-ben regisztrált kulcsot. toocreate egy kulcs, hello Azure-portálon kattintson **Active Directory**, directory váltani, kattintson a hello alkalmazást, majd **beállítások**, kattintson a **kulcsok**, és a kulcs hozzáadása.|
+| Erőforrás |Szükséges |Adja meg az fogadó webszolgáltatás hello App ID URI hello. toofind hello App ID URI, az Azure-portálon hello kattintson **Active Directory**, directory váltani, kattintson hello szolgáltatásalkalmazás, majd **beállítások** és **tulajdonságai** |
 
 #### Példa
-A következő HTTP POST kérelmek egy jogkivonatot a https://service.contoso.com/ webszolgáltatáshoz. A `client_id` azonosítja a webszolgáltatás, amelyet a hozzáférési jogkivonat igényel.
+hello alábbi HTTP POST kérelmek olyan hozzáférési jogkivonatot hello https://service.contoso.com/ webszolgáltatáshoz. Hello `client_id` hello webszolgáltatás hello hozzáférési jogkivonatot kérő azonosítja.
 
 ```
 POST /contoso.com/oauth2/token HTTP/1.1
@@ -69,20 +69,20 @@ grant_type=client_credentials&client_id=625bc9f6-3bf6-4b6d-94ba-e97cf07a22de&cli
 ```
 
 ### A második esetben: hozzáférési jogkivonat kérelem tanúsítvánnyal
-Szolgáltatás hozzáférési kérelmek tanúsítvánnyal tartalmazza a következő paraméterekkel:
+Szolgáltatás hozzáférési kérelmek tanúsítvánnyal hello a következő paramétereket tartalmazza:
 
 | Paraméter |  | Leírás |
 | --- | --- | --- |
-| grant_type |Szükséges |A kért válaszának típusa határozza meg. Az ügyfél-hitelesítő adatok Grant flow, az értéknek kell lennie **client_credentials**. |
-| client_id |Szükséges |Adja meg az Azure AD a hívó webszolgáltatás ügyfél-azonosító. A hívó alkalmazás ügyfél-azonosító, a kereséséhez a [Azure-portálon](https://portal.azure.com), kattintson a **Active Directory**kapcsoló directory lehetőséget, kattintson az alkalmazás. A client_id van a *Alkalmazásazonosító* |
-| client_assertion_type |Szükséges |Az értéknek kell lennie`urn:ietf:params:oauth:client-assertion-type:jwt-bearer` |
-| client_assertion |Szükséges | Egy helyességi feltétel (egy JSON Web Token) hozzon létre, és írja alá a tanúsítványt igénylő regisztrálta hitelesítő adatként az alkalmazáshoz. További információ a [tanúsítvány a hitelesítő adatok](active-directory-certificate-credentials.md) megtudhatja, hogyan kell regisztrálni a tanúsítványt, és a helyességi feltétel formátuma.|
-| Erőforrás | Szükséges |Adja meg az App ID URI az fogadó webszolgáltatás. Az Azure portálon található App ID URI, kattintson a **Active Directory**, kattintson arra a címtárra, kattintson az alkalmazást, majd **konfigurálása**. |
+| grant_type |Szükséges |Adja meg a kért választípus hello. Az ügyfél-hitelesítő adatok Grant flow, hello értéknek kell lennie **client_credentials**. |
+| client_id |Szükséges |Adja meg a webes szolgáltatás hívása hello hello Azure AD ügyfél-azonosítója. történt az alkalmazás ügyfél-azonosító, a hello toofind hello [Azure-portálon](https://portal.azure.com), kattintson a **Active Directory**directory váltani, kattintson a hello alkalmazás. hello client_id hello *Alkalmazásazonosító* |
+| client_assertion_type |Szükséges |hello értéknek kell lennie`urn:ietf:params:oauth:client-assertion-type:jwt-bearer` |
+| client_assertion |Szükséges | Egy helyességi feltétel (egy JSON Web Token), hogy toocreate van szüksége, és a jel hello a tanúsítványok, az alkalmazás hitelesítő adatként regisztrálva. További információ a [tanúsítvány a hitelesítő adatok](active-directory-certificate-credentials.md) toolearn hogyan tooregister hello helyességi feltétel a tanúsítvány és hello formátuma.|
+| Erőforrás | Szükséges |Adja meg az fogadó webszolgáltatás hello App ID URI hello. Kattintson a toofind hello App ID URI hello Azure-portálon a **Active Directory**, kattintson hello címtár, kattintson hello alkalmazásra, majd **konfigurálása**. |
 
-Figyelje meg, hogy a paraméterek megegyeznek-szinte közös titkos kulcs kérése gazdabuszadaptereken azzal a különbséggel, hogy a client_secret paraméter helyébe két paramétert: egy client_assertion_type és client_assertion.
+Figyelje meg, hogy hello paraméterei szinte hello ugyanaz, mint hello hello kérelem által megosztott titkot azzal a különbséggel, hogy hello client_secret paraméter helyébe két paramétert: egy client_assertion_type és client_assertion.
 
 #### Példa
-A következő HTTP POST kérelmek egy jogkivonatot a https://service.contoso.com/ webszolgáltatás tanúsítvánnyal. A `client_id` azonosítja a webszolgáltatás, amelyet a hozzáférési jogkivonat igényel.
+a következő HTTP POST hello olyan hozzáférési jogkivonatot hello https://service.contoso.com/ webszolgáltatáshoz tanúsítvánnyal kér. Hello `client_id` hello webszolgáltatás hello hozzáférési jogkivonatot kérő azonosítja.
 
 ```
 POST /<tenant_id>/oauth2/token HTTP/1.1
@@ -94,19 +94,19 @@ resource=https%3A%2F%contoso.onmicrosoft.com%2Ffc7664b4-cdd6-43e1-9365-c2e1c4e1b
 
 ### Szolgáltatás hozzáférési jogkivonat válasz
 
-A sikeres válasz tartalmazza JSON OAuth 2.0 választ a következő paraméterekkel:
+Sikerességi válasz egy JSON OAuth 2.0 válasz a következő paraméterek hello tartalmazza:
 
 | Paraméter | Leírás |
 | --- | --- |
-| access_token |A kért hozzáférési jogkivonat. A hívó webszolgáltatás a jogkivonat segítségével hitelesíti a fogadó webszolgáltatás. |
-| token_type |A jogkivonat típusa értékét jelöli. Az egyetlen típus, amely az Azure AD által támogatott **tulajdonosi**. Tulajdonosi jogkivonatok kapcsolatos további információkért tekintse meg a [OAuth 2.0 hitelesítési keretrendszer: tulajdonosi jogkivonat használati (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt). |
-| expires_in |Mennyi ideig a hozzáférési jogkivonat érvénytelen (másodpercben). |
-| expires_on |A hozzáférési jogkivonat lejárati idejének. A dátum jelzi másodpercben a 1970-01-01T0:0:0Z UTC, amíg az elévülési időt. Ezt az értéket a gyorsítótárazott jogkivonatok élettartama meghatározására szolgál. |
-| not_before |Az időt, amelyből a hozzáférési jogkivonat lesz használható. A dátum jelzi másodpercben a 1970-01-01T0:0:0Z UTC, amíg a token érvényességi ideje.|
-| Erőforrás |A fogadó webszolgáltatás App ID URI. |
+| access_token |hello kért hozzáférési jogkivonat. webes szolgáltatás hívása hello használhatja a token tooauthenticate toohello webszolgáltatás fogadásakor. |
+| token_type |Azt jelzi, hogy hello token objektumtípus-érték. csak olyan típusú, amely az Azure AD által támogatott hello **tulajdonosi**. Tulajdonosi jogkivonatok kapcsolatos további információkért lásd: hello [OAuth 2.0 hitelesítési keretrendszer: tulajdonosi jogkivonat használati (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt). |
+| expires_in |Mennyi ideig hello hozzáférési jogkivonat érvénytelen (másodpercben). |
+| expires_on |hello hello hozzáférési jogkivonat lejárati idejének. hello dátum egy jelenik meg azon másodpercek számát hello a 1970-01-01T0:0:0Z UTC amíg hello lejárati ideje. Az értéket nem használt toodetermine hello élettartama gyorsítótárazott jogkivonatokat. |
+| not_before |hello idő mely hello a hozzáférési jogkivonat lesz használható. hello dátum egy jelenik meg azon másodpercek számát hello a 1970-01-01T0:0:0Z UTC amíg hello token érvényességi ideje.|
+| Erőforrás |a fogadó webszolgáltatás hello App ID URI hello. |
 
 #### Válasz – példa
-A következő példa bemutatja egy olyan hozzáférési jogkivonatot webszolgáltatásnak kérelemre sikerességi válasz.
+hello következő példa bemutatja, az access token tooa webszolgáltatás sikeres válasz tooa kérelmet.
 
 ```
 {
@@ -120,4 +120,4 @@ A következő példa bemutatja egy olyan hozzáférési jogkivonatot webszolgál
 
 ## Lásd még:
 * [OAuth 2.0 Azure AD-ben](active-directory-protocols-oauth-code.md)
-* [A szolgáltatások közötti hívás egy közös titkot a C# minta](https://github.com/Azure-Samples/active-directory-dotnet-daemon) és [C# nyelven íródtak a szolgáltatások közötti hívás tanúsítvánnyal minta](https://github.com/Azure-Samples/active-directory-dotnet-daemon-certificate-credential)
+* [A C# hello szolgáltatás tooservice hívás a közös titkos minta](https://github.com/Azure-Samples/active-directory-dotnet-daemon) és [C# hello szolgáltatás tooservice hívás tanúsítvánnyal minta](https://github.com/Azure-Samples/active-directory-dotnet-daemon-certificate-credential)

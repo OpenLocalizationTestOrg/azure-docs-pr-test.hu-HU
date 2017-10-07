@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Mobile Engagement Windows Phone Silverlight SDK kibocsátási megjegyzései |} Microsoft Docs"
+title: "aaaAzure Mobile Engagement Windows Phone Silverlight SDK kibocsátási megjegyzései |} Microsoft Docs"
 description: "Az Azure Mobile Engagement - Windows Phone Silverlight SDK kibocsátási megjegyzései"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,42 +14,42 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 11/03/2016
 ms.author: piyushjo
-ms.openlocfilehash: df754a3002750e6ba0b71b664c1df84d506808a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f9af6ca91295dbecfa4c51fe4b3bad6626fa5999
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="windows-phone-silverlight-sdk-release-notes"></a><span data-ttu-id="819db-103">Windows Phone Silverlight SDK kibocsátási megjegyzései</span><span class="sxs-lookup"><span data-stu-id="819db-103">Windows Phone Silverlight SDK Release Notes</span></span>
-##<a name="331-11032016"></a><span data-ttu-id="819db-104">3.3.1 (11/03/2016)</span><span class="sxs-lookup"><span data-stu-id="819db-104">3.3.1 (11/03/2016)</span></span>
-<span data-ttu-id="819db-105">Része a *MicrosoftAzure.MobileEngagement* Nuget-csomag **v3.4.1**</span><span class="sxs-lookup"><span data-stu-id="819db-105">Part of the *MicrosoftAzure.MobileEngagement* Nuget package **v3.4.1**</span></span>
+# <a name="windows-phone-silverlight-sdk-release-notes"></a><span data-ttu-id="a07c0-103">Windows Phone Silverlight SDK kibocsátási megjegyzései</span><span class="sxs-lookup"><span data-stu-id="a07c0-103">Windows Phone Silverlight SDK Release Notes</span></span>
+##<a name="331-11032016"></a><span data-ttu-id="a07c0-104">3.3.1 (11/03/2016)</span><span class="sxs-lookup"><span data-stu-id="a07c0-104">3.3.1 (11/03/2016)</span></span>
+<span data-ttu-id="a07c0-105">Hello részét *MicrosoftAzure.MobileEngagement* Nuget-csomag **v3.4.1**</span><span class="sxs-lookup"><span data-stu-id="a07c0-105">Part of hello *MicrosoftAzure.MobileEngagement* Nuget package **v3.4.1**</span></span>
 
-* <span data-ttu-id="819db-106">Jobb stabilitás.</span><span class="sxs-lookup"><span data-stu-id="819db-106">Stability improvements.</span></span>
+* <span data-ttu-id="a07c0-106">Jobb stabilitás.</span><span class="sxs-lookup"><span data-stu-id="a07c0-106">Stability improvements.</span></span>
 
-## <a name="330-04192016"></a><span data-ttu-id="819db-107">3.3.0 (04/19/2016)</span><span class="sxs-lookup"><span data-stu-id="819db-107">3.3.0 (04/19/2016)</span></span>
-<span data-ttu-id="819db-108">Része a *MicrosoftAzure.MobileEngagement* Nuget-csomag **v3.4.0**</span><span class="sxs-lookup"><span data-stu-id="819db-108">Part of the *MicrosoftAzure.MobileEngagement* Nuget package **v3.4.0**</span></span>
+## <a name="330-04192016"></a><span data-ttu-id="a07c0-107">3.3.0 (04/19/2016)</span><span class="sxs-lookup"><span data-stu-id="a07c0-107">3.3.0 (04/19/2016)</span></span>
+<span data-ttu-id="a07c0-108">Hello részét *MicrosoftAzure.MobileEngagement* Nuget-csomag **v3.4.0**</span><span class="sxs-lookup"><span data-stu-id="a07c0-108">Part of hello *MicrosoftAzure.MobileEngagement* Nuget package **v3.4.0**</span></span>
 
-* <span data-ttu-id="819db-109">A hozzáadott "TestLogLevel" API engedélyezése/letiltása/szűrő konzolnaplófájlokban az SDK által kibocsátott.</span><span class="sxs-lookup"><span data-stu-id="819db-109">Added "TestLogLevel" API to enable/disable/filter console logs emitted by the SDK.</span></span>
+* <span data-ttu-id="a07c0-109">A hozzáadott "TestLogLevel" API-tooenable vagy tiltsa le vagy szűrőkezelő konzolnaplófájlokban hello SDK által kibocsátott.</span><span class="sxs-lookup"><span data-stu-id="a07c0-109">Added "TestLogLevel" API tooenable/disable/filter console logs emitted by hello SDK.</span></span>
 
-## <a name="320-01222016"></a><span data-ttu-id="819db-110">3.2.0 (01/22/2016)</span><span class="sxs-lookup"><span data-stu-id="819db-110">3.2.0 (01/22/2016)</span></span>
-<span data-ttu-id="819db-111">Része a *MicrosoftAzure.MobileEngagement* Nuget-csomag **v3.3.0**</span><span class="sxs-lookup"><span data-stu-id="819db-111">Part of the *MicrosoftAzure.MobileEngagement* Nuget package **v3.3.0**</span></span>
+## <a name="320-01222016"></a><span data-ttu-id="a07c0-110">3.2.0 (01/22/2016)</span><span class="sxs-lookup"><span data-stu-id="a07c0-110">3.2.0 (01/22/2016)</span></span>
+<span data-ttu-id="a07c0-111">Hello részét *MicrosoftAzure.MobileEngagement* Nuget-csomag **v3.3.0**</span><span class="sxs-lookup"><span data-stu-id="a07c0-111">Part of hello *MicrosoftAzure.MobileEngagement* Nuget package **v3.3.0**</span></span>
 
-* <span data-ttu-id="819db-112">Egyéni rendszerek, ms-appx és ms-appdata érhető el a műveleti URL-címeket.</span><span class="sxs-lookup"><span data-stu-id="819db-112">Custom schemes, ms-appx and ms-appdata available on action urls.</span></span>
-* <span data-ttu-id="819db-113">Jobb stabilitás.</span><span class="sxs-lookup"><span data-stu-id="819db-113">Stability improvements.</span></span>
+* <span data-ttu-id="a07c0-112">Egyéni rendszerek, ms-appx és ms-appdata érhető el a műveleti URL-címeket.</span><span class="sxs-lookup"><span data-stu-id="a07c0-112">Custom schemes, ms-appx and ms-appdata available on action urls.</span></span>
+* <span data-ttu-id="a07c0-113">Jobb stabilitás.</span><span class="sxs-lookup"><span data-stu-id="a07c0-113">Stability improvements.</span></span>
 
-## <a name="310-11202015"></a><span data-ttu-id="819db-114">3.1.0 (11/20/2015)</span><span class="sxs-lookup"><span data-stu-id="819db-114">3.1.0 (11/20/2015)</span></span>
-<span data-ttu-id="819db-115">Része a *MicrosoftAzure.MobileEngagement* Nuget-csomag **v3.2.0**</span><span class="sxs-lookup"><span data-stu-id="819db-115">Part of the *MicrosoftAzure.MobileEngagement* Nuget package **v3.2.0**</span></span>
+## <a name="310-11202015"></a><span data-ttu-id="a07c0-114">3.1.0 (11/20/2015)</span><span class="sxs-lookup"><span data-stu-id="a07c0-114">3.1.0 (11/20/2015)</span></span>
+<span data-ttu-id="a07c0-115">Hello részét *MicrosoftAzure.MobileEngagement* Nuget-csomag **v3.2.0**</span><span class="sxs-lookup"><span data-stu-id="a07c0-115">Part of hello *MicrosoftAzure.MobileEngagement* Nuget package **v3.2.0**</span></span>
 
-* <span data-ttu-id="819db-116">Rögzített összeomlási csak az inicializálás után az eszközazonosítót lekérésekor.</span><span class="sxs-lookup"><span data-stu-id="819db-116">Fixed crash while requesting the device id just after the initialization.</span></span>
-* <span data-ttu-id="819db-117">-Konzol naplói fejlesztései.</span><span class="sxs-lookup"><span data-stu-id="819db-117">Console logs improvements.</span></span>
+* <span data-ttu-id="a07c0-116">Rögzített összeomlási hello eszközazonosító csak hello inicializálás után lekérésekor.</span><span class="sxs-lookup"><span data-stu-id="a07c0-116">Fixed crash while requesting hello device id just after hello initialization.</span></span>
+* <span data-ttu-id="a07c0-117">-Konzol naplói fejlesztései.</span><span class="sxs-lookup"><span data-stu-id="a07c0-117">Console logs improvements.</span></span>
 
-## <a name="300-04032015"></a><span data-ttu-id="819db-118">3.0.0 (04/03/2015)</span><span class="sxs-lookup"><span data-stu-id="819db-118">3.0.0 (04/03/2015)</span></span>
-* <span data-ttu-id="819db-119">Alapértelmezett értesítési ikon frissítése.</span><span class="sxs-lookup"><span data-stu-id="819db-119">Default notification icon updated.</span></span>
-* <span data-ttu-id="819db-120">A rendszer hátsó értesítési művelet visszajelzést küldjön a értesítést kattintáskor.</span><span class="sxs-lookup"><span data-stu-id="819db-120">Send back system notification action feedback when a notification is clicked.</span></span>
-* <span data-ttu-id="819db-121">Versenyhelyzet rögzített a rendszer értesítést.</span><span class="sxs-lookup"><span data-stu-id="819db-121">Fixed a race condition on system notification.</span></span>
+## <a name="300-04032015"></a><span data-ttu-id="a07c0-118">3.0.0 (04/03/2015)</span><span class="sxs-lookup"><span data-stu-id="a07c0-118">3.0.0 (04/03/2015)</span></span>
+* <span data-ttu-id="a07c0-119">Alapértelmezett értesítési ikon frissítése.</span><span class="sxs-lookup"><span data-stu-id="a07c0-119">Default notification icon updated.</span></span>
+* <span data-ttu-id="a07c0-120">A rendszer hátsó értesítési művelet visszajelzést küldjön a értesítést kattintáskor.</span><span class="sxs-lookup"><span data-stu-id="a07c0-120">Send back system notification action feedback when a notification is clicked.</span></span>
+* <span data-ttu-id="a07c0-121">Versenyhelyzet rögzített a rendszer értesítést.</span><span class="sxs-lookup"><span data-stu-id="a07c0-121">Fixed a race condition on system notification.</span></span>
 
-## <a name="200-02172015"></a><span data-ttu-id="819db-122">2.0.0 (02/17/2015)</span><span class="sxs-lookup"><span data-stu-id="819db-122">2.0.0 (02/17/2015)</span></span>
-* <span data-ttu-id="819db-123">Az Azure Mobile Engagement eredeti kiadását.</span><span class="sxs-lookup"><span data-stu-id="819db-123">Initial Release of Azure Mobile Engagement.</span></span>
-* <span data-ttu-id="819db-124">a kapcsolódási karakterlánc konfigurációs appId/sdkKey konfigurációs cseréli le.</span><span class="sxs-lookup"><span data-stu-id="819db-124">appId/sdkKey configuration is replaced by a connection string configuration.</span></span>
-* <span data-ttu-id="819db-125">Biztonsági fejlesztések.</span><span class="sxs-lookup"><span data-stu-id="819db-125">Security improvements.</span></span>
+## <a name="200-02172015"></a><span data-ttu-id="a07c0-122">2.0.0 (02/17/2015)</span><span class="sxs-lookup"><span data-stu-id="a07c0-122">2.0.0 (02/17/2015)</span></span>
+* <span data-ttu-id="a07c0-123">Az Azure Mobile Engagement eredeti kiadását.</span><span class="sxs-lookup"><span data-stu-id="a07c0-123">Initial Release of Azure Mobile Engagement.</span></span>
+* <span data-ttu-id="a07c0-124">a kapcsolódási karakterlánc konfigurációs appId/sdkKey konfigurációs cseréli le.</span><span class="sxs-lookup"><span data-stu-id="a07c0-124">appId/sdkKey configuration is replaced by a connection string configuration.</span></span>
+* <span data-ttu-id="a07c0-125">Biztonsági fejlesztések.</span><span class="sxs-lookup"><span data-stu-id="a07c0-125">Security improvements.</span></span>
 

@@ -1,5 +1,5 @@
 ---
-title: "SharePoint-hely megfigyelése az Application Insights segítségével"
+title: "aaaMonitor egy SharePoint-webhely, az Application insights szolgáltatással"
 description: "Új alkalmazás figyelésének megkezdése új kialakítási kulccsal"
 services: application-insights
 documentationcenter: 
@@ -13,82 +13,82 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/24/2016
 ms.author: bwren
-ms.openlocfilehash: a3b37674469a131016f46af590e1eee3ba4cdc73
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: acfe99c24a4d77daec1017de0442ec952a1faba2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-a-sharepoint-site-with-application-insights"></a><span data-ttu-id="feaf1-103">SharePoint-hely megfigyelése az Application Insights segítségével</span><span class="sxs-lookup"><span data-stu-id="feaf1-103">Monitor a SharePoint site with Application Insights</span></span>
-<span data-ttu-id="feaf1-104">Az Azure Application Insights figyeli alkalmazásai rendelkezésre állását, teljesítményét és használatát.</span><span class="sxs-lookup"><span data-stu-id="feaf1-104">Azure Application Insights monitors the availability, performance and usage of your apps.</span></span> <span data-ttu-id="feaf1-105">Ebből a cikkből megismerheti, hogyan állíthatja be egy SharePoint-helyhez.</span><span class="sxs-lookup"><span data-stu-id="feaf1-105">Here you'll learn how to set it up for a SharePoint site.</span></span>
+# <a name="monitor-a-sharepoint-site-with-application-insights"></a><span data-ttu-id="55038-103">SharePoint-hely megfigyelése az Application Insights segítségével</span><span class="sxs-lookup"><span data-stu-id="55038-103">Monitor a SharePoint site with Application Insights</span></span>
+<span data-ttu-id="55038-104">Az Azure Application Insights hello rendelkezésre állási-, teljesítmény- és az alkalmazások használati figyeli.</span><span class="sxs-lookup"><span data-stu-id="55038-104">Azure Application Insights monitors hello availability, performance and usage of your apps.</span></span> <span data-ttu-id="55038-105">Itt megtudhatja, hogyan tooset azt feliratkozott egy SharePoint-webhelyen.</span><span class="sxs-lookup"><span data-stu-id="55038-105">Here you'll learn how tooset it up for a SharePoint site.</span></span>
 
-## <a name="create-an-application-insights-resource"></a><span data-ttu-id="feaf1-106">Application Insights-erőforrás létrehozása</span><span class="sxs-lookup"><span data-stu-id="feaf1-106">Create an Application Insights resource</span></span>
-<span data-ttu-id="feaf1-107">Az [Azure Portalon](https://portal.azure.com) hozzon létre egy új Application Insights-erőforrást.</span><span class="sxs-lookup"><span data-stu-id="feaf1-107">In the [Azure portal](https://portal.azure.com), create a new Application Insights resource.</span></span> <span data-ttu-id="feaf1-108">Az alkalmazás típusának válassza az ASP.NET lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="feaf1-108">Choose ASP.NET as the application type.</span></span>
+## <a name="create-an-application-insights-resource"></a><span data-ttu-id="55038-106">Application Insights-erőforrás létrehozása</span><span class="sxs-lookup"><span data-stu-id="55038-106">Create an Application Insights resource</span></span>
+<span data-ttu-id="55038-107">A hello [Azure-portálon](https://portal.azure.com), hozzon létre egy új Application Insights-erőforrást.</span><span class="sxs-lookup"><span data-stu-id="55038-107">In hello [Azure portal](https://portal.azure.com), create a new Application Insights resource.</span></span> <span data-ttu-id="55038-108">Válassza ki az ASP.NET hello alkalmazás típusként.</span><span class="sxs-lookup"><span data-stu-id="55038-108">Choose ASP.NET as hello application type.</span></span>
 
-![Kattintson a Tulajdonságok elemre, válassza ki a kulcsot, és nyomja le a ctrl+C billentyűkombinációt.](./media/app-insights-sharepoint/01-new.png)
+![Kattintson a Tulajdonságok parancsra, válassza ki a hello kulcs, használja a ctrl + C](./media/app-insights-sharepoint/01-new.png)
 
-<span data-ttu-id="feaf1-110">A megnyíló panelen megtekintheti az alkalmazása teljesítmény- és használati adatait.</span><span class="sxs-lookup"><span data-stu-id="feaf1-110">The blade that opens is the place where you'll see performance and usage data about your app.</span></span> <span data-ttu-id="feaf1-111">Amikor legközelebb bejelentkezik az Azure-ba, a kezdőképernyőn található csempére kattintva léphet közvetlenül erre a panelre.</span><span class="sxs-lookup"><span data-stu-id="feaf1-111">To get back to it next time you login to Azure, you should find a tile for it on the start screen.</span></span> <span data-ttu-id="feaf1-112">Vagy a Tallózás gombra kattintva is megkeresheti.</span><span class="sxs-lookup"><span data-stu-id="feaf1-112">Alternatively click Browse to find it.</span></span>
+<span data-ttu-id="55038-110">hello panel, amely megnyitja a hello hely, ahol látni fogja, teljesítmény- és használati adatokat az alkalmazásra vonatkozó.</span><span class="sxs-lookup"><span data-stu-id="55038-110">hello blade that opens is hello place where you'll see performance and usage data about your app.</span></span> <span data-ttu-id="55038-111">tooget hátsó tooit tooAzure, következő bejelentkezéskor látnia kell egy csempe az kifejezésre a kezdőképernyőn hello.</span><span class="sxs-lookup"><span data-stu-id="55038-111">tooget back tooit next time you login tooAzure, you should find a tile for it on hello start screen.</span></span> <span data-ttu-id="55038-112">Másik lehetőségként kattintson a Tallózás toofind azt.</span><span class="sxs-lookup"><span data-stu-id="55038-112">Alternatively click Browse toofind it.</span></span>
 
-## <a name="add-our-script-to-your-web-pages"></a><span data-ttu-id="feaf1-113">A szkriptünk hozzáadása weblapokhoz</span><span class="sxs-lookup"><span data-stu-id="feaf1-113">Add our script to your web pages</span></span>
-<span data-ttu-id="feaf1-114">A Gyors üzembe helyezés területen kérje le a weblapok szkriptjét:</span><span class="sxs-lookup"><span data-stu-id="feaf1-114">In Quick Start, get the script for web pages:</span></span>
+## <a name="add-our-script-tooyour-web-pages"></a><span data-ttu-id="55038-113">A parancsfájl tooyour weblapok hozzáadása</span><span class="sxs-lookup"><span data-stu-id="55038-113">Add our script tooyour web pages</span></span>
+<span data-ttu-id="55038-114">A gyors üzembe helyezés hello parancsfájl weblapok érhető el:</span><span class="sxs-lookup"><span data-stu-id="55038-114">In Quick Start, get hello script for web pages:</span></span>
 
 ![](./media/app-insights-sharepoint/02-monitor-web-page.png)
 
-<span data-ttu-id="feaf1-115">Szúrja be a szkriptet minden olyan lap &lt;/head&gt; címkéje elé, amelyet nyomon szeretne követni. Ha a webhelye mesterlappal rendelkezik, ide helyezheti a szkriptet.</span><span class="sxs-lookup"><span data-stu-id="feaf1-115">Insert the script just before the &lt;/head&gt; tag of every page you want to track. If your website has a master page, you can put the script there.</span></span> <span data-ttu-id="feaf1-116">Egy ASP.NET MVC-projektben a következő helyre helyezné a szkriptet: View\Shared\_Layout.cshtml</span><span class="sxs-lookup"><span data-stu-id="feaf1-116">For example, in an ASP.NET MVC project, you'd put it in View\Shared\_Layout.cshtml</span></span>
+<span data-ttu-id="55038-115">Hello előtt hello parancsprogram beszúrása &lt;/head&gt; címke tootrack kívánt minden oldalon.</span><span class="sxs-lookup"><span data-stu-id="55038-115">Insert hello script just before hello &lt;/head&gt; tag of every page you want tootrack.</span></span> <span data-ttu-id="55038-116">Ha a webhely mesterlapra, nem adhat meg hello parancsfájl.</span><span class="sxs-lookup"><span data-stu-id="55038-116">If your website has a master page, you can put hello script there.</span></span> <span data-ttu-id="55038-117">Egy ASP.NET MVC-projektben a következő helyre helyezné a szkriptet: View\Shared\_Layout.cshtml</span><span class="sxs-lookup"><span data-stu-id="55038-117">For example, in an ASP.NET MVC project, you'd put it in View\Shared\_Layout.cshtml</span></span>
 
-<span data-ttu-id="feaf1-117">A szkript tartalmazza a kialakítási kulcsot, amely a telemetriát az Application Insights-erőforrásra irányítja.</span><span class="sxs-lookup"><span data-stu-id="feaf1-117">The script contains the instrumentation key that directs the telemetry to your Application Insights resource.</span></span>
+<span data-ttu-id="55038-118">hello hello instrumentation kulcs, amely arra utasítja a hello telemetriai tooyour Application Insights-erőforrást tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="55038-118">hello script contains hello instrumentation key that directs hello telemetry tooyour Application Insights resource.</span></span>
 
-### <a name="add-the-code-to-your-site-pages"></a><span data-ttu-id="feaf1-118">Kód hozzáadása webhely lapjaihoz</span><span class="sxs-lookup"><span data-stu-id="feaf1-118">Add the code to your site pages</span></span>
-#### <a name="on-the-master-page"></a><span data-ttu-id="feaf1-119">A mesterlapon</span><span class="sxs-lookup"><span data-stu-id="feaf1-119">On the master page</span></span>
-<span data-ttu-id="feaf1-120">Ha szerkeszti webhelye mesterlapját, az biztosítja a webhely összes lapjának figyelését.</span><span class="sxs-lookup"><span data-stu-id="feaf1-120">If you can edit the site's master page, that will provide monitoring for every page in the site.</span></span>
+### <a name="add-hello-code-tooyour-site-pages"></a><span data-ttu-id="55038-119">Hello kódlapok tooyour webhely hozzáadása</span><span class="sxs-lookup"><span data-stu-id="55038-119">Add hello code tooyour site pages</span></span>
+#### <a name="on-hello-master-page"></a><span data-ttu-id="55038-120">A hello mesterlap</span><span class="sxs-lookup"><span data-stu-id="55038-120">On hello master page</span></span>
+<span data-ttu-id="55038-121">Ha hello hely mesterlap szerkesztéséhez, amely szerepel figyelésének hello webhely összes lapjára.</span><span class="sxs-lookup"><span data-stu-id="55038-121">If you can edit hello site's master page, that will provide monitoring for every page in hello site.</span></span>
 
-<span data-ttu-id="feaf1-121">Tekintse át a mesterlapot, és szerkessze a SharePoint Designerrel vagy más szerkesztővel.</span><span class="sxs-lookup"><span data-stu-id="feaf1-121">Check out the master page and edit it using SharePoint Designer or any other editor.</span></span>
+<span data-ttu-id="55038-122">Tekintse meg a hello mesterlap és szerkeszthetők a SharePoint Designer vagy bármely más szerkesztő.</span><span class="sxs-lookup"><span data-stu-id="55038-122">Check out hello master page and edit it using SharePoint Designer or any other editor.</span></span>
 
 ![](./media/app-insights-sharepoint/03-master.png)
 
-<span data-ttu-id="feaf1-122">Adja hozzá a kódot közvetlenül a(z) </head> címke elé.</span><span class="sxs-lookup"><span data-stu-id="feaf1-122">Add the code just before the </head> tag.</span></span> 
+<span data-ttu-id="55038-123">Adja hozzá hello kódot hello előtt </head> címke.</span><span class="sxs-lookup"><span data-stu-id="55038-123">Add hello code just before hello </head> tag.</span></span> 
 
 ![](./media/app-insights-sharepoint/04-code.png)
 
-#### <a name="or-on-individual-pages"></a><span data-ttu-id="feaf1-123">Vagy önálló lapokon</span><span class="sxs-lookup"><span data-stu-id="feaf1-123">Or on individual pages</span></span>
-<span data-ttu-id="feaf1-124">Adott számú lap figyeléséhez adja hozzá a szkriptet egyesével a lapokhoz.</span><span class="sxs-lookup"><span data-stu-id="feaf1-124">To monitor a limited set of pages, add the script separately to each page.</span></span> 
+#### <a name="or-on-individual-pages"></a><span data-ttu-id="55038-124">Vagy önálló lapokon</span><span class="sxs-lookup"><span data-stu-id="55038-124">Or on individual pages</span></span>
+<span data-ttu-id="55038-125">toomonitor lap van, korlátozott számú hello parancsfájl külön-külön hozzáadása tooeach lap.</span><span class="sxs-lookup"><span data-stu-id="55038-125">toomonitor a limited set of pages, add hello script separately tooeach page.</span></span> 
 
-<span data-ttu-id="feaf1-125">Szúrjon be egy kijelzőt, és ágyazza bele a kódrészletet.</span><span class="sxs-lookup"><span data-stu-id="feaf1-125">Insert a web part and embed the code snippet in it.</span></span>
+<span data-ttu-id="55038-126">Kijelző beszúrása és hello kódrészletet beágyazása.</span><span class="sxs-lookup"><span data-stu-id="55038-126">Insert a web part and embed hello code snippet in it.</span></span>
 
 ![](./media/app-insights-sharepoint/05-page.png)
 
-## <a name="view-data-about-your-app"></a><span data-ttu-id="feaf1-126">Alkalmazás adatainak megtekintése</span><span class="sxs-lookup"><span data-stu-id="feaf1-126">View data about your app</span></span>
-<span data-ttu-id="feaf1-127">Helyezze ismét üzembe alkalmazását.</span><span class="sxs-lookup"><span data-stu-id="feaf1-127">Redeploy your app.</span></span>
+## <a name="view-data-about-your-app"></a><span data-ttu-id="55038-127">Alkalmazás adatainak megtekintése</span><span class="sxs-lookup"><span data-stu-id="55038-127">View data about your app</span></span>
+<span data-ttu-id="55038-128">Helyezze ismét üzembe alkalmazását.</span><span class="sxs-lookup"><span data-stu-id="55038-128">Redeploy your app.</span></span>
 
-<span data-ttu-id="feaf1-128">Térjen vissza alkalmazása paneljéhez az [Azure Portalon](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="feaf1-128">Return to your application blade in the [Azure portal](https://portal.azure.com).</span></span>
+<span data-ttu-id="55038-129">Visszatérési tooyour alkalmazás paneljén hello [Azure-portálon](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="55038-129">Return tooyour application blade in hello [Azure portal](https://portal.azure.com).</span></span>
 
-<span data-ttu-id="feaf1-129">Az első események megjelennek a keresésben.</span><span class="sxs-lookup"><span data-stu-id="feaf1-129">The first events will appear in Search.</span></span> 
+<span data-ttu-id="55038-130">hello első események keresési fog megjelenni.</span><span class="sxs-lookup"><span data-stu-id="55038-130">hello first events will appear in Search.</span></span> 
 
 ![](./media/app-insights-sharepoint/09-search.png)
 
-<span data-ttu-id="feaf1-130">Ha több adatot vár, néhány másodperc elteltével kattintson a Frissítés elemre.</span><span class="sxs-lookup"><span data-stu-id="feaf1-130">Click Refresh after a few seconds if you're expecting more data.</span></span>
+<span data-ttu-id="55038-131">Ha több adatot vár, néhány másodperc elteltével kattintson a Frissítés elemre.</span><span class="sxs-lookup"><span data-stu-id="55038-131">Click Refresh after a few seconds if you're expecting more data.</span></span>
 
-<span data-ttu-id="feaf1-131">A felhasználókkal, munkamenetekkel és lapmegtekintésekkel kapcsolatos diagramok megtekintéséhez kattintson a **Használatelemzés** elemre az áttekintési panelen:</span><span class="sxs-lookup"><span data-stu-id="feaf1-131">From the overview blade, click **Usage analytics** to see to charts of users, sessions and page views:</span></span>
+<span data-ttu-id="55038-132">Hello áttekintése paneljén kattintson **használatelemzés** toosee toocharts a felhasználók, a munkamenetek és az oldalmegtekintéseket:</span><span class="sxs-lookup"><span data-stu-id="55038-132">From hello overview blade, click **Usage analytics** toosee toocharts of users, sessions and page views:</span></span>
 
 ![](./media/app-insights-sharepoint/06-usage.png)
 
-<span data-ttu-id="feaf1-132">Bármely diagramra kattintva további részleteket tekinthet meg, például a Lapmegtekintések diagram esetében:</span><span class="sxs-lookup"><span data-stu-id="feaf1-132">Click any chart to see more details - for example Page Views:</span></span>
+<span data-ttu-id="55038-133">Kattintson a diagram toosee további részletekért – például a lapmegtekintések:</span><span class="sxs-lookup"><span data-stu-id="55038-133">Click any chart toosee more details - for example Page Views:</span></span>
 
 ![](./media/app-insights-sharepoint/07-pages.png)
 
-<span data-ttu-id="feaf1-133">Vagy a Felhasználók diagram esetében:</span><span class="sxs-lookup"><span data-stu-id="feaf1-133">Or Users:</span></span>
+<span data-ttu-id="55038-134">Vagy a Felhasználók diagram esetében:</span><span class="sxs-lookup"><span data-stu-id="55038-134">Or Users:</span></span>
 
 ![](./media/app-insights-sharepoint/08-users.png)
 
-## <a name="capturing-user-id"></a><span data-ttu-id="feaf1-134">Felhasználói azonosító rögzítése</span><span class="sxs-lookup"><span data-stu-id="feaf1-134">Capturing User Id</span></span>
-<span data-ttu-id="feaf1-135">A normál weblapkódrészlet nem rögzíti a felhasználói azonosítót a SharePointból, de ez egy apró módosítással elvégezhető.</span><span class="sxs-lookup"><span data-stu-id="feaf1-135">The standard web page code snippet doesn't capture the user id from SharePoint, but you can do that with a small modification.</span></span>
+## <a name="capturing-user-id"></a><span data-ttu-id="55038-135">Felhasználói azonosító rögzítése</span><span class="sxs-lookup"><span data-stu-id="55038-135">Capturing User Id</span></span>
+<span data-ttu-id="55038-136">hello szabványos weblap kódrészletet nem rögzíti a hello felhasználói azonosító a SharePoint, azonban lehetőség van, amely egy kis módosítással.</span><span class="sxs-lookup"><span data-stu-id="55038-136">hello standard web page code snippet doesn't capture hello user id from SharePoint, but you can do that with a small modification.</span></span>
 
-1. <span data-ttu-id="feaf1-136">Az Application Insights Alapvető erőforrások legördülő menüjéből másolja ki alkalmazása kialakítási kulcsát.</span><span class="sxs-lookup"><span data-stu-id="feaf1-136">Copy your app's instrumentation key from the Essentials drop-down in Application Insights.</span></span> 
+1. <span data-ttu-id="55038-137">Az alkalmazás instrumentation kulcs másolása hello Essentials legördülő az Application insights szolgáltatással.</span><span class="sxs-lookup"><span data-stu-id="55038-137">Copy your app's instrumentation key from hello Essentials drop-down in Application Insights.</span></span> 
 
     ![](./media/app-insights-sharepoint/02-props.png)
 
-1. <span data-ttu-id="feaf1-137">Az alábbi részletben szereplő „XXXX”-et cserélje le a kialakítási kulcsra.</span><span class="sxs-lookup"><span data-stu-id="feaf1-137">Substitute the instrumentation key for 'XXXX' in the snippet below.</span></span> 
-2. <span data-ttu-id="feaf1-138">Ágyazza be a szkriptet a SharePoint alkalmazásába annak a kódrészletnek a helyére, amelyet a portálról töltött le.</span><span class="sxs-lookup"><span data-stu-id="feaf1-138">Embed the script in your SharePoint app instead of the snippet you get from the portal.</span></span>
+1. <span data-ttu-id="55038-138">Az alábbi hello részlet "XXXX" hello instrumentation kulcs helyettesítse be.</span><span class="sxs-lookup"><span data-stu-id="55038-138">Substitute hello instrumentation key for 'XXXX' in hello snippet below.</span></span> 
+2. <span data-ttu-id="55038-139">Hello parancsfájl beágyazása a SharePoint-alkalmazásokban beszerzése hello portálról hello részlet helyett.</span><span class="sxs-lookup"><span data-stu-id="55038-139">Embed hello script in your SharePoint app instead of hello snippet you get from hello portal.</span></span>
 
 ```
 
@@ -99,26 +99,26 @@ ms.lasthandoff: 08/18/2017
 <script type="text/javascript"> 
 var personProperties; 
 
-// Ensure that the SP.UserProfiles.js file is loaded before the custom code runs. 
+// Ensure that hello SP.UserProfiles.js file is loaded before hello custom code runs. 
 SP.SOD.executeOrDelayUntilScriptLoaded(getUserProperties, 'SP.UserProfiles.js'); 
 
 function getUserProperties() { 
-    // Get the current client context and PeopleManager instance. 
+    // Get hello current client context and PeopleManager instance. 
     var clientContext = new SP.ClientContext.get_current(); 
     var peopleManager = new SP.UserProfiles.PeopleManager(clientContext); 
 
-    // Get user properties for the target user. 
-    // To get the PersonProperties object for the current user, use the 
+    // Get user properties for hello target user. 
+    // tooget hello PersonProperties object for hello current user, use hello 
     // getMyProperties method. 
 
     personProperties = peopleManager.getMyProperties(); 
 
-    // Load the PersonProperties object and send the request. 
+    // Load hello PersonProperties object and send hello request. 
     clientContext.load(personProperties); 
     clientContext.executeQueryAsync(onRequestSuccess, onRequestFail); 
 } 
 
-// This function runs if the executeQueryAsync call succeeds. 
+// This function runs if hello executeQueryAsync call succeeds. 
 function onRequestSuccess() { 
 var appInsights=window.appInsights||function(config){
 function s(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},r=document,f=window,e="script",o=r.createElement(e),i,u;for(o.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",r.getElementsByTagName(e)[0].parentNode.appendChild(o),t.cookie=r.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)s("track"+i.pop());return config.disableExceptionTracking||(i="onerror",s("_"+i),u=f[i],f[i]=function(config,r,f,e,o){var s=u&&u(config,r,f,e,o);return s!==!0&&t["_"+i](config,r,f,e,o),s}),t
@@ -129,7 +129,7 @@ function s(config){t[config]=function(){var i=arguments;t.queue.push(function(){
     appInsights.trackPageView(document.title,window.location.href, {User: personProperties.get_displayName()});
 } 
 
-// This function runs if the executeQueryAsync call fails. 
+// This function runs if hello executeQueryAsync call fails. 
 function onRequestFail(sender, args) { 
 } 
 </script> 
@@ -139,9 +139,9 @@ function onRequestFail(sender, args) {
 
 
 
-## <a name="next-steps"></a><span data-ttu-id="feaf1-139">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="feaf1-139">Next Steps</span></span>
-* <span data-ttu-id="feaf1-140">[Webes tesztek](app-insights-monitor-web-app-availability.md) webhelye rendelkezésre állásának figyeléséhez.</span><span class="sxs-lookup"><span data-stu-id="feaf1-140">[Web tests](app-insights-monitor-web-app-availability.md) to monitor the availability of your site.</span></span>
-* <span data-ttu-id="feaf1-141">[Application Insights](app-insights-overview.md) más típusú alkalmazásokhoz.</span><span class="sxs-lookup"><span data-stu-id="feaf1-141">[Application Insights](app-insights-overview.md) for other types of app.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="55038-140">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="55038-140">Next Steps</span></span>
+* <span data-ttu-id="55038-141">[Webalkalmazás-tesztek](app-insights-monitor-web-app-availability.md) toomonitor hello a hely rendelkezésre állását.</span><span class="sxs-lookup"><span data-stu-id="55038-141">[Web tests](app-insights-monitor-web-app-availability.md) toomonitor hello availability of your site.</span></span>
+* <span data-ttu-id="55038-142">[Application Insights](app-insights-overview.md) más típusú alkalmazásokhoz.</span><span class="sxs-lookup"><span data-stu-id="55038-142">[Application Insights](app-insights-overview.md) for other types of app.</span></span>
 
 <!--Link references-->
 

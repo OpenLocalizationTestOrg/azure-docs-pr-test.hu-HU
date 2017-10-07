@@ -80,15 +80,15 @@
 #### [Gyorsított hálózatkezeléssel rendelkező virtuális gép létrehozása](virtual-network-create-vm-accelerated-networking.md)
 
 ### Kapcsolódási forgatókönyvek
-#### [Virtuális hálózatok közötti kapcsolat](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
-#### [Resource Manager-alapú és klasszikus virtuális hálózat közötti kapcsolat](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
-#### [Virtuális hálózat és helyszíni hálózat (VPN) közötti kapcsolat](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
-#### [Virtuális hálózat és helyszíni hálózat (ExpressRoute) közötti kapcsolat](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [Virtuális hálózathoz (VNet) tooVNet](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [Virtuális hálózat (erőforrás-kezelő) tooa hálózatok (klasszikus)](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [Virtuális hálózat tooon helyi hálózati (VPN)](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [Virtuális hálózat tooon helyi hálózati (ExpressRoute)](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 #### [Magas rendelkezésre állású hibrid hálózati architektúra](../guidance/guidance-hybrid-network-expressroute-vpn-failover.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 
 ### Biztonsági forgatókönyvek
 #### [Hálózatok biztonságossá tétele virtuális készülékekkel](virtual-network-scenario-udr-gw-nva.md)
-#### [Szegélyhálózat (DMZ) az Azure és az internet között](../guidance/guidance-iaas-ra-secure-vnet-dmz.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [DMZ Azure és a hello az Internet között](../guidance/guidance-iaas-ra-secure-vnet-dmz.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 #### [Felhőszolgáltatás és hálózati biztonság](../best-practices-network-security.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 ##### [Egyszerű szegélyhálózat NSG-kkel](virtual-networks-dmz-nsg-asm.md)
 ##### [Szegélyhálózat tűzfallal és NSG-kkel](virtual-networks-dmz-nsg-fw-asm.md)
@@ -118,7 +118,7 @@
 #### [Társviszonyok](virtual-network-manage-peering.md)
 #### Klasszikus
 ##### [Hálózati konfigurációs fájl](virtual-networks-using-network-configuration-file.md)
-##### [Migrálás affinitáscsoportból régióba](virtual-networks-migrate-to-regional-vnet.md)
+##### [Az affinitáscsoport tooa régió áttelepítése](virtual-networks-migrate-to-regional-vnet.md)
 ### Network security groups (Hálózati biztonsági csoportok)
 #### [Portál](virtual-network-manage-nsg-arm-portal.md)
 #### [PowerShell](virtual-network-manage-nsg-arm-ps.md)
@@ -128,7 +128,7 @@
 #### [Hálózati adapterek létrehozása, módosítása vagy törlése](virtual-network-network-interface.md)
 #### [IP-címek hozzáadása, szerkesztése vagy eltávolítása](virtual-network-network-interface-addresses.md)
 ### Virtual machines (Virtuális gépek)
-#### [Virtuális gép áthelyezése másik alhálózatra](virtual-networks-move-vm-role-to-subnet.md)
+#### [Helyezze át a virtuális gép tooa alhálózaton](virtual-networks-move-vm-role-to-subnet.md)
 ### [Nyilvános IP-címek](virtual-network-public-ip-address.md)
 
 ## Hibaelhárítás
@@ -140,7 +140,7 @@
 #### [PowerShell](virtual-network-routes-troubleshoot-powershell.md)
 ### [Az átviteli sebesség tesztelése](virtual-network-bandwidth-testing.md)
 ### [Nem lehet törölni a virtuális hálózatokat](virtual-network-troubleshoot-cannot-delete-vnet.md)
-### [Virtuális gépek közötti kapcsolódási problémák](virtual-network-troubleshoot-connectivity-problem-between-vms.md)
+### [Virtuális gép tooVM kapcsolódási problémák](virtual-network-troubleshoot-connectivity-problem-between-vms.md)
 
 # Referencia
 ## [Kódminták](https://azure.microsoft.com/en-us/resources/samples/?service=virtual-network)

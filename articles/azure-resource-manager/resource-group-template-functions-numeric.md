@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Resource Manager sablonfüggvényei - numerikus |} Microsoft Docs"
-description: "Az Azure Resource Manager-sablonok segítségével számok dolgozni funkcióit ismerteti."
+title: "aaaAzure Resource Manager sablonfüggvényei - numerikus |} Microsoft Docs"
+description: "Ismerteti az Azure Resource Manager sablon toowork a hello funkciók toouse számokkal."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/13/2017
 ms.author: tomfitz
-ms.openlocfilehash: ae0261134b8d4a934048f58d6c679a48a904950b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 855d5b354d094b9815edc160e3d72efbfd36ba77
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="numeric-functions-for-azure-resource-manager-templates"></a><span data-ttu-id="13be1-103">Az Azure Resource Manager sablonokhoz numerikus funkciók</span><span class="sxs-lookup"><span data-stu-id="13be1-103">Numeric functions for Azure Resource Manager templates</span></span>
+# <a name="numeric-functions-for-azure-resource-manager-templates"></a><span data-ttu-id="1fcc5-103">Az Azure Resource Manager sablonokhoz numerikus funkciók</span><span class="sxs-lookup"><span data-stu-id="1fcc5-103">Numeric functions for Azure Resource Manager templates</span></span>
 
-<span data-ttu-id="13be1-104">Erőforrás-kezelő a következő funkciókat nyújt egész számok használata:</span><span class="sxs-lookup"><span data-stu-id="13be1-104">Resource Manager provides the following functions for working with integers:</span></span>
+<span data-ttu-id="1fcc5-104">A Resource Manager biztosít a következő funkciók egész számok való munkához hello:</span><span class="sxs-lookup"><span data-stu-id="1fcc5-104">Resource Manager provides hello following functions for working with integers:</span></span>
 
-* [<span data-ttu-id="13be1-105">hozzáadása</span><span class="sxs-lookup"><span data-stu-id="13be1-105">add</span></span>](#add)
-* [<span data-ttu-id="13be1-106">copyIndex</span><span class="sxs-lookup"><span data-stu-id="13be1-106">copyIndex</span></span>](#copyindex)
-* [<span data-ttu-id="13be1-107">DIV</span><span class="sxs-lookup"><span data-stu-id="13be1-107">div</span></span>](#div)
-* [<span data-ttu-id="13be1-108">lebegőpontos</span><span class="sxs-lookup"><span data-stu-id="13be1-108">float</span></span>](#float)
-* [<span data-ttu-id="13be1-109">int</span><span class="sxs-lookup"><span data-stu-id="13be1-109">int</span></span>](#int)
-* [<span data-ttu-id="13be1-110">perc</span><span class="sxs-lookup"><span data-stu-id="13be1-110">min</span></span>](#min)
-* [<span data-ttu-id="13be1-111">maximális</span><span class="sxs-lookup"><span data-stu-id="13be1-111">max</span></span>](#max)
-* [<span data-ttu-id="13be1-112">MOD</span><span class="sxs-lookup"><span data-stu-id="13be1-112">mod</span></span>](#mod)
-* [<span data-ttu-id="13be1-113">MUL számú</span><span class="sxs-lookup"><span data-stu-id="13be1-113">mul</span></span>](#mul)
-* [<span data-ttu-id="13be1-114">Sub</span><span class="sxs-lookup"><span data-stu-id="13be1-114">sub</span></span>](#sub)
+* [<span data-ttu-id="1fcc5-105">hozzáadása</span><span class="sxs-lookup"><span data-stu-id="1fcc5-105">add</span></span>](#add)
+* [<span data-ttu-id="1fcc5-106">copyIndex</span><span class="sxs-lookup"><span data-stu-id="1fcc5-106">copyIndex</span></span>](#copyindex)
+* [<span data-ttu-id="1fcc5-107">DIV</span><span class="sxs-lookup"><span data-stu-id="1fcc5-107">div</span></span>](#div)
+* [<span data-ttu-id="1fcc5-108">lebegőpontos</span><span class="sxs-lookup"><span data-stu-id="1fcc5-108">float</span></span>](#float)
+* [<span data-ttu-id="1fcc5-109">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-109">int</span></span>](#int)
+* [<span data-ttu-id="1fcc5-110">perc</span><span class="sxs-lookup"><span data-stu-id="1fcc5-110">min</span></span>](#min)
+* [<span data-ttu-id="1fcc5-111">maximális</span><span class="sxs-lookup"><span data-stu-id="1fcc5-111">max</span></span>](#max)
+* [<span data-ttu-id="1fcc5-112">MOD</span><span class="sxs-lookup"><span data-stu-id="1fcc5-112">mod</span></span>](#mod)
+* [<span data-ttu-id="1fcc5-113">MUL számú</span><span class="sxs-lookup"><span data-stu-id="1fcc5-113">mul</span></span>](#mul)
+* [<span data-ttu-id="1fcc5-114">Sub</span><span class="sxs-lookup"><span data-stu-id="1fcc5-114">sub</span></span>](#sub)
 
 <a id="add" />
 
-## <a name="add"></a><span data-ttu-id="13be1-115">Hozzáadása</span><span class="sxs-lookup"><span data-stu-id="13be1-115">add</span></span>
+## <a name="add"></a><span data-ttu-id="1fcc5-115">Hozzáadása</span><span class="sxs-lookup"><span data-stu-id="1fcc5-115">add</span></span>
 `add(operand1, operand2)`
 
-<span data-ttu-id="13be1-116">A két megadott egész számok összegét adja vissza.</span><span class="sxs-lookup"><span data-stu-id="13be1-116">Returns the sum of the two provided integers.</span></span>
+<span data-ttu-id="1fcc5-116">Beolvasása hello hello két megadott egész számok összege.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-116">Returns hello sum of hello two provided integers.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="13be1-117">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="13be1-117">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="1fcc5-117">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="1fcc5-117">Parameters</span></span>
 
-| <span data-ttu-id="13be1-118">Paraméter</span><span class="sxs-lookup"><span data-stu-id="13be1-118">Parameter</span></span> | <span data-ttu-id="13be1-119">Szükséges</span><span class="sxs-lookup"><span data-stu-id="13be1-119">Required</span></span> | <span data-ttu-id="13be1-120">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-120">Type</span></span> | <span data-ttu-id="13be1-121">Leírás</span><span class="sxs-lookup"><span data-stu-id="13be1-121">Description</span></span> |
+| <span data-ttu-id="1fcc5-118">Paraméter</span><span class="sxs-lookup"><span data-stu-id="1fcc5-118">Parameter</span></span> | <span data-ttu-id="1fcc5-119">Szükséges</span><span class="sxs-lookup"><span data-stu-id="1fcc5-119">Required</span></span> | <span data-ttu-id="1fcc5-120">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-120">Type</span></span> | <span data-ttu-id="1fcc5-121">Leírás</span><span class="sxs-lookup"><span data-stu-id="1fcc5-121">Description</span></span> |
 |:--- |:--- |:--- |:--- | 
-|<span data-ttu-id="13be1-122">operand1</span><span class="sxs-lookup"><span data-stu-id="13be1-122">operand1</span></span> |<span data-ttu-id="13be1-123">Igen</span><span class="sxs-lookup"><span data-stu-id="13be1-123">Yes</span></span> |<span data-ttu-id="13be1-124">int</span><span class="sxs-lookup"><span data-stu-id="13be1-124">int</span></span> |<span data-ttu-id="13be1-125">Első számú hozzáadásához.</span><span class="sxs-lookup"><span data-stu-id="13be1-125">First number to add.</span></span> |
-|<span data-ttu-id="13be1-126">operand2</span><span class="sxs-lookup"><span data-stu-id="13be1-126">operand2</span></span> |<span data-ttu-id="13be1-127">Igen</span><span class="sxs-lookup"><span data-stu-id="13be1-127">Yes</span></span> |<span data-ttu-id="13be1-128">int</span><span class="sxs-lookup"><span data-stu-id="13be1-128">int</span></span> |<span data-ttu-id="13be1-129">Adja hozzá a második szám.</span><span class="sxs-lookup"><span data-stu-id="13be1-129">Second number to add.</span></span> |
+|<span data-ttu-id="1fcc5-122">operand1</span><span class="sxs-lookup"><span data-stu-id="1fcc5-122">operand1</span></span> |<span data-ttu-id="1fcc5-123">Igen</span><span class="sxs-lookup"><span data-stu-id="1fcc5-123">Yes</span></span> |<span data-ttu-id="1fcc5-124">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-124">int</span></span> |<span data-ttu-id="1fcc5-125">Első számú tooadd.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-125">First number tooadd.</span></span> |
+|<span data-ttu-id="1fcc5-126">operand2</span><span class="sxs-lookup"><span data-stu-id="1fcc5-126">operand2</span></span> |<span data-ttu-id="1fcc5-127">Igen</span><span class="sxs-lookup"><span data-stu-id="1fcc5-127">Yes</span></span> |<span data-ttu-id="1fcc5-128">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-128">int</span></span> |<span data-ttu-id="1fcc5-129">Második szám tooadd.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-129">Second number tooadd.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="13be1-130">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="13be1-130">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="1fcc5-130">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-130">Return value</span></span>
 
-<span data-ttu-id="13be1-131">Egész szám, amely tartalmazza a paraméterek számának összege.</span><span class="sxs-lookup"><span data-stu-id="13be1-131">An integer that contains the sum of the parameters.</span></span>
+<span data-ttu-id="1fcc5-131">Egész szám, amely hello összege hello paramétereket tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-131">An integer that contains hello sum of hello parameters.</span></span>
 
-### <a name="example"></a><span data-ttu-id="13be1-132">Példa</span><span class="sxs-lookup"><span data-stu-id="13be1-132">Example</span></span>
+### <a name="example"></a><span data-ttu-id="1fcc5-132">Példa</span><span class="sxs-lookup"><span data-stu-id="1fcc5-132">Example</span></span>
 
-<span data-ttu-id="13be1-133">A következő példakóddal felveheti a két paramétert.</span><span class="sxs-lookup"><span data-stu-id="13be1-133">The following example adds two parameters.</span></span>
+<span data-ttu-id="1fcc5-133">a következő példa hello két paramétereket ad.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-133">hello following example adds two parameters.</span></span>
 
 ```json
 {
@@ -66,14 +66,14 @@ ms.lasthandoff: 08/03/2017
             "type": "int",
             "defaultValue": 5,
             "metadata": {
-                "description": "First integer to add"
+                "description": "First integer tooadd"
             }
         },
         "second": {
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Second integer to add"
+                "description": "Second integer tooadd"
             }
         }
     },
@@ -88,37 +88,37 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="13be1-134">Az alapértelmezett értékeit az előző példából kimenete:</span><span class="sxs-lookup"><span data-stu-id="13be1-134">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="1fcc5-134">hello kimenetét hello előző példa hello alapértelmezett értékekkel:</span><span class="sxs-lookup"><span data-stu-id="1fcc5-134">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="13be1-135">Név</span><span class="sxs-lookup"><span data-stu-id="13be1-135">Name</span></span> | <span data-ttu-id="13be1-136">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-136">Type</span></span> | <span data-ttu-id="13be1-137">Érték</span><span class="sxs-lookup"><span data-stu-id="13be1-137">Value</span></span> |
+| <span data-ttu-id="1fcc5-135">Név</span><span class="sxs-lookup"><span data-stu-id="1fcc5-135">Name</span></span> | <span data-ttu-id="1fcc5-136">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-136">Type</span></span> | <span data-ttu-id="1fcc5-137">Érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-137">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="13be1-138">addResult</span><span class="sxs-lookup"><span data-stu-id="13be1-138">addResult</span></span> | <span data-ttu-id="13be1-139">int</span><span class="sxs-lookup"><span data-stu-id="13be1-139">Int</span></span> | <span data-ttu-id="13be1-140">8</span><span class="sxs-lookup"><span data-stu-id="13be1-140">8</span></span> |
+| <span data-ttu-id="1fcc5-138">addResult</span><span class="sxs-lookup"><span data-stu-id="1fcc5-138">addResult</span></span> | <span data-ttu-id="1fcc5-139">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-139">Int</span></span> | <span data-ttu-id="1fcc5-140">8</span><span class="sxs-lookup"><span data-stu-id="1fcc5-140">8</span></span> |
 
 <a id="copyindex" />
 
-## <a name="copyindex"></a><span data-ttu-id="13be1-141">copyIndex</span><span class="sxs-lookup"><span data-stu-id="13be1-141">copyIndex</span></span>
+## <a name="copyindex"></a><span data-ttu-id="1fcc5-141">copyIndex</span><span class="sxs-lookup"><span data-stu-id="1fcc5-141">copyIndex</span></span>
 `copyIndex(loopName, offset)`
 
-<span data-ttu-id="13be1-142">Egy iteráció hurok indexét adja vissza.</span><span class="sxs-lookup"><span data-stu-id="13be1-142">Returns the index of an iteration loop.</span></span> 
+<span data-ttu-id="1fcc5-142">Értéket ad vissza egy iteráció hurok index hello.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-142">Returns hello index of an iteration loop.</span></span> 
 
-### <a name="parameters"></a><span data-ttu-id="13be1-143">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="13be1-143">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="1fcc5-143">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="1fcc5-143">Parameters</span></span>
 
-| <span data-ttu-id="13be1-144">Paraméter</span><span class="sxs-lookup"><span data-stu-id="13be1-144">Parameter</span></span> | <span data-ttu-id="13be1-145">Szükséges</span><span class="sxs-lookup"><span data-stu-id="13be1-145">Required</span></span> | <span data-ttu-id="13be1-146">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-146">Type</span></span> | <span data-ttu-id="13be1-147">Leírás</span><span class="sxs-lookup"><span data-stu-id="13be1-147">Description</span></span> |
+| <span data-ttu-id="1fcc5-144">Paraméter</span><span class="sxs-lookup"><span data-stu-id="1fcc5-144">Parameter</span></span> | <span data-ttu-id="1fcc5-145">Szükséges</span><span class="sxs-lookup"><span data-stu-id="1fcc5-145">Required</span></span> | <span data-ttu-id="1fcc5-146">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-146">Type</span></span> | <span data-ttu-id="1fcc5-147">Leírás</span><span class="sxs-lookup"><span data-stu-id="1fcc5-147">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="13be1-148">loopName</span><span class="sxs-lookup"><span data-stu-id="13be1-148">loopName</span></span> | <span data-ttu-id="13be1-149">Nem</span><span class="sxs-lookup"><span data-stu-id="13be1-149">No</span></span> | <span data-ttu-id="13be1-150">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="13be1-150">string</span></span> | <span data-ttu-id="13be1-151">Neve a ciklus ismétléseinek beolvasásakor.</span><span class="sxs-lookup"><span data-stu-id="13be1-151">The name of the loop for getting the iteration.</span></span> |
-| <span data-ttu-id="13be1-152">Az offset</span><span class="sxs-lookup"><span data-stu-id="13be1-152">offset</span></span> |<span data-ttu-id="13be1-153">Nem</span><span class="sxs-lookup"><span data-stu-id="13be1-153">No</span></span> |<span data-ttu-id="13be1-154">int</span><span class="sxs-lookup"><span data-stu-id="13be1-154">int</span></span> |<span data-ttu-id="13be1-155">Az a szám, a nulla alapú ismétlési érték hozzáadása.</span><span class="sxs-lookup"><span data-stu-id="13be1-155">The number to add to the zero-based iteration value.</span></span> |
+| <span data-ttu-id="1fcc5-148">loopName</span><span class="sxs-lookup"><span data-stu-id="1fcc5-148">loopName</span></span> | <span data-ttu-id="1fcc5-149">Nem</span><span class="sxs-lookup"><span data-stu-id="1fcc5-149">No</span></span> | <span data-ttu-id="1fcc5-150">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="1fcc5-150">string</span></span> | <span data-ttu-id="1fcc5-151">hello neve hello hurok hello iterációs beolvasásakor.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-151">hello name of hello loop for getting hello iteration.</span></span> |
+| <span data-ttu-id="1fcc5-152">Az offset</span><span class="sxs-lookup"><span data-stu-id="1fcc5-152">offset</span></span> |<span data-ttu-id="1fcc5-153">Nem</span><span class="sxs-lookup"><span data-stu-id="1fcc5-153">No</span></span> |<span data-ttu-id="1fcc5-154">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-154">int</span></span> |<span data-ttu-id="1fcc5-155">hello tooadd toohello nulla alapú iterációs számértéket.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-155">hello number tooadd toohello zero-based iteration value.</span></span> |
 
-### <a name="remarks"></a><span data-ttu-id="13be1-156">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="13be1-156">Remarks</span></span>
+### <a name="remarks"></a><span data-ttu-id="1fcc5-156">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="1fcc5-156">Remarks</span></span>
 
-<span data-ttu-id="13be1-157">Ez a funkció mindig használatos a **másolási** objektum.</span><span class="sxs-lookup"><span data-stu-id="13be1-157">This function is always used with a **copy** object.</span></span> <span data-ttu-id="13be1-158">Ha nincs érték megadva, a **eltolás**, az aktuális iterációs értéket adja vissza.</span><span class="sxs-lookup"><span data-stu-id="13be1-158">If no value is provided for **offset**, the current iteration value is returned.</span></span> <span data-ttu-id="13be1-159">Az ismétlési érték nulla kezdődik.</span><span class="sxs-lookup"><span data-stu-id="13be1-159">The iteration value starts at zero.</span></span>
+<span data-ttu-id="1fcc5-157">Ez a funkció mindig használatos a **másolási** objektum.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-157">This function is always used with a **copy** object.</span></span> <span data-ttu-id="1fcc5-158">Ha nincs érték megadva, a **eltolás**, hello aktuális iterációs értéket adja vissza.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-158">If no value is provided for **offset**, hello current iteration value is returned.</span></span> <span data-ttu-id="1fcc5-159">hello ismétlési érték nulla kezdődik.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-159">hello iteration value starts at zero.</span></span>
 
-<span data-ttu-id="13be1-160">A **loopName** tulajdonság lehetővé teszi adja meg, hogy copyIndex erőforrás iterációs vagy tulajdonság iterációs hivatkozik.</span><span class="sxs-lookup"><span data-stu-id="13be1-160">The **loopName** property enables you to specify whether copyIndex is referring to a resource iteration or property iteration.</span></span> <span data-ttu-id="13be1-161">Ha nincs érték megadva, a **loopName**, az aktuális erőforrás-típus iteráció szolgál.</span><span class="sxs-lookup"><span data-stu-id="13be1-161">If no value is provided for **loopName**, the current resource type iteration is used.</span></span> <span data-ttu-id="13be1-162">Adjon meg egy értéket a **loopName** amikor léptetés tulajdonság alapján.</span><span class="sxs-lookup"><span data-stu-id="13be1-162">Provide a value for **loopName** when iterating on a property.</span></span> 
+<span data-ttu-id="1fcc5-160">Hello **loopName** tulajdonság lehetővé teszi toospecify e copyIndex tooa erőforrás iterációs vagy tulajdonság iterációs hivatkozik.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-160">hello **loopName** property enables you toospecify whether copyIndex is referring tooa resource iteration or property iteration.</span></span> <span data-ttu-id="1fcc5-161">Ha nincs érték megadva, a **loopName**, hello aktuális erőforrás típusa iterációs szolgál.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-161">If no value is provided for **loopName**, hello current resource type iteration is used.</span></span> <span data-ttu-id="1fcc5-162">Adjon meg egy értéket a **loopName** amikor léptetés tulajdonság alapján.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-162">Provide a value for **loopName** when iterating on a property.</span></span> 
  
-<span data-ttu-id="13be1-163">Teljes leírását az használatának **copyIndex**, lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).</span><span class="sxs-lookup"><span data-stu-id="13be1-163">For a complete description of how you use **copyIndex**, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).</span></span>
+<span data-ttu-id="1fcc5-163">Teljes leírását az használatának **copyIndex**, lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).</span><span class="sxs-lookup"><span data-stu-id="1fcc5-163">For a complete description of how you use **copyIndex**, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).</span></span>
 
-### <a name="example"></a><span data-ttu-id="13be1-164">Példa</span><span class="sxs-lookup"><span data-stu-id="13be1-164">Example</span></span>
+### <a name="example"></a><span data-ttu-id="1fcc5-164">Példa</span><span class="sxs-lookup"><span data-stu-id="1fcc5-164">Example</span></span>
 
-<span data-ttu-id="13be1-165">A következő példa bemutatja a másolási ciklust és az értéket a neve tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="13be1-165">The following example shows a copy loop and the index value included in the name.</span></span> 
+<span data-ttu-id="1fcc5-165">hello következő példa bemutatja a másolási hurok és hello indexértéket hello neve tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-165">hello following example shows a copy loop and hello index value included in hello name.</span></span> 
 
 ```json
 "resources": [ 
@@ -134,31 +134,31 @@ ms.lasthandoff: 08/03/2017
 ]
 ```
 
-### <a name="return-value"></a><span data-ttu-id="13be1-166">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="13be1-166">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="1fcc5-166">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-166">Return value</span></span>
 
-<span data-ttu-id="13be1-167">Jelző egész számot az iteráció aktuális indexét.</span><span class="sxs-lookup"><span data-stu-id="13be1-167">An integer representing the current index of the iteration.</span></span>
+<span data-ttu-id="1fcc5-167">Az aktuális index hello hello iterációs jelző egész számot.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-167">An integer representing hello current index of hello iteration.</span></span>
 
 <a id="div" />
 
-## <a name="div"></a><span data-ttu-id="13be1-168">DIV</span><span class="sxs-lookup"><span data-stu-id="13be1-168">div</span></span>
+## <a name="div"></a><span data-ttu-id="1fcc5-168">DIV</span><span class="sxs-lookup"><span data-stu-id="1fcc5-168">div</span></span>
 `div(operand1, operand2)`
 
-<span data-ttu-id="13be1-169">A két megadott egész számok egész szám hányadosának adja vissza.</span><span class="sxs-lookup"><span data-stu-id="13be1-169">Returns the integer division of the two provided integers.</span></span>
+<span data-ttu-id="1fcc5-169">Adja vissza egész osztás hello két megadott egész számok hello.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-169">Returns hello integer division of hello two provided integers.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="13be1-170">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="13be1-170">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="1fcc5-170">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="1fcc5-170">Parameters</span></span>
 
-| <span data-ttu-id="13be1-171">Paraméter</span><span class="sxs-lookup"><span data-stu-id="13be1-171">Parameter</span></span> | <span data-ttu-id="13be1-172">Szükséges</span><span class="sxs-lookup"><span data-stu-id="13be1-172">Required</span></span> | <span data-ttu-id="13be1-173">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-173">Type</span></span> | <span data-ttu-id="13be1-174">Leírás</span><span class="sxs-lookup"><span data-stu-id="13be1-174">Description</span></span> |
+| <span data-ttu-id="1fcc5-171">Paraméter</span><span class="sxs-lookup"><span data-stu-id="1fcc5-171">Parameter</span></span> | <span data-ttu-id="1fcc5-172">Szükséges</span><span class="sxs-lookup"><span data-stu-id="1fcc5-172">Required</span></span> | <span data-ttu-id="1fcc5-173">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-173">Type</span></span> | <span data-ttu-id="1fcc5-174">Leírás</span><span class="sxs-lookup"><span data-stu-id="1fcc5-174">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="13be1-175">operand1</span><span class="sxs-lookup"><span data-stu-id="13be1-175">operand1</span></span> |<span data-ttu-id="13be1-176">Igen</span><span class="sxs-lookup"><span data-stu-id="13be1-176">Yes</span></span> |<span data-ttu-id="13be1-177">int</span><span class="sxs-lookup"><span data-stu-id="13be1-177">int</span></span> |<span data-ttu-id="13be1-178">Az a szám felosztják.</span><span class="sxs-lookup"><span data-stu-id="13be1-178">The number being divided.</span></span> |
-| <span data-ttu-id="13be1-179">operand2</span><span class="sxs-lookup"><span data-stu-id="13be1-179">operand2</span></span> |<span data-ttu-id="13be1-180">Igen</span><span class="sxs-lookup"><span data-stu-id="13be1-180">Yes</span></span> |<span data-ttu-id="13be1-181">int</span><span class="sxs-lookup"><span data-stu-id="13be1-181">int</span></span> |<span data-ttu-id="13be1-182">Az a szám, amellyel osztani.</span><span class="sxs-lookup"><span data-stu-id="13be1-182">The number that is used to divide.</span></span> <span data-ttu-id="13be1-183">Nem lehet 0.</span><span class="sxs-lookup"><span data-stu-id="13be1-183">Cannot be 0.</span></span> |
+| <span data-ttu-id="1fcc5-175">operand1</span><span class="sxs-lookup"><span data-stu-id="1fcc5-175">operand1</span></span> |<span data-ttu-id="1fcc5-176">Igen</span><span class="sxs-lookup"><span data-stu-id="1fcc5-176">Yes</span></span> |<span data-ttu-id="1fcc5-177">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-177">int</span></span> |<span data-ttu-id="1fcc5-178">felosztják hello számát.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-178">hello number being divided.</span></span> |
+| <span data-ttu-id="1fcc5-179">operand2</span><span class="sxs-lookup"><span data-stu-id="1fcc5-179">operand2</span></span> |<span data-ttu-id="1fcc5-180">Igen</span><span class="sxs-lookup"><span data-stu-id="1fcc5-180">Yes</span></span> |<span data-ttu-id="1fcc5-181">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-181">int</span></span> |<span data-ttu-id="1fcc5-182">hello szám használt toodivide.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-182">hello number that is used toodivide.</span></span> <span data-ttu-id="1fcc5-183">Nem lehet 0.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-183">Cannot be 0.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="13be1-184">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="13be1-184">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="1fcc5-184">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-184">Return value</span></span>
 
-<span data-ttu-id="13be1-185">Egy osztás jelző egész számot.</span><span class="sxs-lookup"><span data-stu-id="13be1-185">An integer representing the division.</span></span>
+<span data-ttu-id="1fcc5-185">Egy egész számot jelölő hello osztás.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-185">An integer representing hello division.</span></span>
 
-### <a name="example"></a><span data-ttu-id="13be1-186">Példa</span><span class="sxs-lookup"><span data-stu-id="13be1-186">Example</span></span>
+### <a name="example"></a><span data-ttu-id="1fcc5-186">Példa</span><span class="sxs-lookup"><span data-stu-id="1fcc5-186">Example</span></span>
 
-<span data-ttu-id="13be1-187">A következő példa egy másik paraméterrel egy paraméter osztja.</span><span class="sxs-lookup"><span data-stu-id="13be1-187">The following example divides one parameter by another parameter.</span></span>
+<span data-ttu-id="1fcc5-187">a következő példa hello felosztja egy másik paraméterrel egy paramétert.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-187">hello following example divides one parameter by another parameter.</span></span>
 
 ```json
 {
@@ -176,7 +176,7 @@ ms.lasthandoff: 08/03/2017
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Integer used to divide"
+                "description": "Integer used toodivide"
             }
         }
     },
@@ -191,31 +191,31 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="13be1-188">Az alapértelmezett értékeit az előző példából kimenete:</span><span class="sxs-lookup"><span data-stu-id="13be1-188">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="1fcc5-188">hello kimenetét hello előző példa hello alapértelmezett értékekkel:</span><span class="sxs-lookup"><span data-stu-id="1fcc5-188">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="13be1-189">Név</span><span class="sxs-lookup"><span data-stu-id="13be1-189">Name</span></span> | <span data-ttu-id="13be1-190">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-190">Type</span></span> | <span data-ttu-id="13be1-191">Érték</span><span class="sxs-lookup"><span data-stu-id="13be1-191">Value</span></span> |
+| <span data-ttu-id="1fcc5-189">Név</span><span class="sxs-lookup"><span data-stu-id="1fcc5-189">Name</span></span> | <span data-ttu-id="1fcc5-190">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-190">Type</span></span> | <span data-ttu-id="1fcc5-191">Érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-191">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="13be1-192">divResult</span><span class="sxs-lookup"><span data-stu-id="13be1-192">divResult</span></span> | <span data-ttu-id="13be1-193">int</span><span class="sxs-lookup"><span data-stu-id="13be1-193">Int</span></span> | <span data-ttu-id="13be1-194">2</span><span class="sxs-lookup"><span data-stu-id="13be1-194">2</span></span> |
+| <span data-ttu-id="1fcc5-192">divResult</span><span class="sxs-lookup"><span data-stu-id="1fcc5-192">divResult</span></span> | <span data-ttu-id="1fcc5-193">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-193">Int</span></span> | <span data-ttu-id="1fcc5-194">2</span><span class="sxs-lookup"><span data-stu-id="1fcc5-194">2</span></span> |
 
 <a id="float" />
 
-## <a name="float"></a><span data-ttu-id="13be1-195">Lebegőpontos</span><span class="sxs-lookup"><span data-stu-id="13be1-195">float</span></span>
+## <a name="float"></a><span data-ttu-id="1fcc5-195">Lebegőpontos</span><span class="sxs-lookup"><span data-stu-id="1fcc5-195">float</span></span>
 `float(arg1)`
 
-<span data-ttu-id="13be1-196">Konvertálja az értéket lebegőpontos számnak.</span><span class="sxs-lookup"><span data-stu-id="13be1-196">Converts the value to a floating point number.</span></span> <span data-ttu-id="13be1-197">Ez a függvény csak ha egyéni paraméterek átadása egy alkalmazást, például a logikai alkalmazás használja.</span><span class="sxs-lookup"><span data-stu-id="13be1-197">You only use this function when passing custom parameters to an application, such as a Logic App.</span></span>
+<span data-ttu-id="1fcc5-196">Lebegőpontos szám hello érték tooa alakítja.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-196">Converts hello value tooa floating point number.</span></span> <span data-ttu-id="1fcc5-197">Ez a függvény csak ha egyéni paraméterek átadása tooan alkalmazás, például a logikai alkalmazás használja.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-197">You only use this function when passing custom parameters tooan application, such as a Logic App.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="13be1-198">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="13be1-198">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="1fcc5-198">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="1fcc5-198">Parameters</span></span>
 
-| <span data-ttu-id="13be1-199">Paraméter</span><span class="sxs-lookup"><span data-stu-id="13be1-199">Parameter</span></span> | <span data-ttu-id="13be1-200">Szükséges</span><span class="sxs-lookup"><span data-stu-id="13be1-200">Required</span></span> | <span data-ttu-id="13be1-201">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-201">Type</span></span> | <span data-ttu-id="13be1-202">Leírás</span><span class="sxs-lookup"><span data-stu-id="13be1-202">Description</span></span> |
+| <span data-ttu-id="1fcc5-199">Paraméter</span><span class="sxs-lookup"><span data-stu-id="1fcc5-199">Parameter</span></span> | <span data-ttu-id="1fcc5-200">Szükséges</span><span class="sxs-lookup"><span data-stu-id="1fcc5-200">Required</span></span> | <span data-ttu-id="1fcc5-201">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-201">Type</span></span> | <span data-ttu-id="1fcc5-202">Leírás</span><span class="sxs-lookup"><span data-stu-id="1fcc5-202">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="13be1-203">arg1</span><span class="sxs-lookup"><span data-stu-id="13be1-203">arg1</span></span> |<span data-ttu-id="13be1-204">Igen</span><span class="sxs-lookup"><span data-stu-id="13be1-204">Yes</span></span> |<span data-ttu-id="13be1-205">karakterlánc- vagy int</span><span class="sxs-lookup"><span data-stu-id="13be1-205">string or int</span></span> |<span data-ttu-id="13be1-206">Az érték átalakítása lebegőpontos számnak.</span><span class="sxs-lookup"><span data-stu-id="13be1-206">The value to convert to a floating point number.</span></span> |
+| <span data-ttu-id="1fcc5-203">arg1</span><span class="sxs-lookup"><span data-stu-id="1fcc5-203">arg1</span></span> |<span data-ttu-id="1fcc5-204">Igen</span><span class="sxs-lookup"><span data-stu-id="1fcc5-204">Yes</span></span> |<span data-ttu-id="1fcc5-205">karakterlánc- vagy int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-205">string or int</span></span> |<span data-ttu-id="1fcc5-206">hello érték tooconvert tooa lebegőpontos szám.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-206">hello value tooconvert tooa floating point number.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="13be1-207">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="13be1-207">Return value</span></span>
-<span data-ttu-id="13be1-208">Lebegőpontos szám.</span><span class="sxs-lookup"><span data-stu-id="13be1-208">A floating point number.</span></span>
+### <a name="return-value"></a><span data-ttu-id="1fcc5-207">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-207">Return value</span></span>
+<span data-ttu-id="1fcc5-208">Lebegőpontos szám.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-208">A floating point number.</span></span>
 
-### <a name="example"></a><span data-ttu-id="13be1-209">Példa</span><span class="sxs-lookup"><span data-stu-id="13be1-209">Example</span></span>
+### <a name="example"></a><span data-ttu-id="1fcc5-209">Példa</span><span class="sxs-lookup"><span data-stu-id="1fcc5-209">Example</span></span>
 
-<span data-ttu-id="13be1-210">A következő példa bemutatja, hogyan lebegőpontos használandó paraméterek átadása egy logikai alkalmazást:</span><span class="sxs-lookup"><span data-stu-id="13be1-210">The following example shows how to use float to pass parameters to a Logic App:</span></span>
+<span data-ttu-id="1fcc5-210">hello a következő példa bemutatja, hogyan toouse lebegőpontos toopass paraméterek tooa logikai alkalmazást:</span><span class="sxs-lookup"><span data-stu-id="1fcc5-210">hello following example shows how toouse float toopass parameters tooa Logic App:</span></span>
 
 ```json
 {
@@ -233,24 +233,24 @@ ms.lasthandoff: 08/03/2017
 
 <a id="int" />
 
-## <a name="int"></a><span data-ttu-id="13be1-211">int</span><span class="sxs-lookup"><span data-stu-id="13be1-211">int</span></span>
+## <a name="int"></a><span data-ttu-id="1fcc5-211">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-211">int</span></span>
 `int(valueToConvert)`
 
-<span data-ttu-id="13be1-212">A megadott érték konvertálása egy egész számot.</span><span class="sxs-lookup"><span data-stu-id="13be1-212">Converts the specified value to an integer.</span></span>
+<span data-ttu-id="1fcc5-212">Hello megadott érték tooan egész számra konvertál.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-212">Converts hello specified value tooan integer.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="13be1-213">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="13be1-213">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="1fcc5-213">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="1fcc5-213">Parameters</span></span>
 
-| <span data-ttu-id="13be1-214">Paraméter</span><span class="sxs-lookup"><span data-stu-id="13be1-214">Parameter</span></span> | <span data-ttu-id="13be1-215">Szükséges</span><span class="sxs-lookup"><span data-stu-id="13be1-215">Required</span></span> | <span data-ttu-id="13be1-216">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-216">Type</span></span> | <span data-ttu-id="13be1-217">Leírás</span><span class="sxs-lookup"><span data-stu-id="13be1-217">Description</span></span> |
+| <span data-ttu-id="1fcc5-214">Paraméter</span><span class="sxs-lookup"><span data-stu-id="1fcc5-214">Parameter</span></span> | <span data-ttu-id="1fcc5-215">Szükséges</span><span class="sxs-lookup"><span data-stu-id="1fcc5-215">Required</span></span> | <span data-ttu-id="1fcc5-216">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-216">Type</span></span> | <span data-ttu-id="1fcc5-217">Leírás</span><span class="sxs-lookup"><span data-stu-id="1fcc5-217">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="13be1-218">valueToConvert</span><span class="sxs-lookup"><span data-stu-id="13be1-218">valueToConvert</span></span> |<span data-ttu-id="13be1-219">Igen</span><span class="sxs-lookup"><span data-stu-id="13be1-219">Yes</span></span> |<span data-ttu-id="13be1-220">karakterlánc- vagy int</span><span class="sxs-lookup"><span data-stu-id="13be1-220">string or int</span></span> |<span data-ttu-id="13be1-221">Az érték egész számra konvertálni.</span><span class="sxs-lookup"><span data-stu-id="13be1-221">The value to convert to an integer.</span></span> |
+| <span data-ttu-id="1fcc5-218">valueToConvert</span><span class="sxs-lookup"><span data-stu-id="1fcc5-218">valueToConvert</span></span> |<span data-ttu-id="1fcc5-219">Igen</span><span class="sxs-lookup"><span data-stu-id="1fcc5-219">Yes</span></span> |<span data-ttu-id="1fcc5-220">karakterlánc- vagy int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-220">string or int</span></span> |<span data-ttu-id="1fcc5-221">hello érték tooconvert tooan egész szám.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-221">hello value tooconvert tooan integer.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="13be1-222">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="13be1-222">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="1fcc5-222">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-222">Return value</span></span>
 
-<span data-ttu-id="13be1-223">Az átalakított érték egész szám.</span><span class="sxs-lookup"><span data-stu-id="13be1-223">An integer of the converted value.</span></span>
+<span data-ttu-id="1fcc5-223">Hello konvertálni érték egész szám.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-223">An integer of hello converted value.</span></span>
 
-### <a name="example"></a><span data-ttu-id="13be1-224">Példa</span><span class="sxs-lookup"><span data-stu-id="13be1-224">Example</span></span>
+### <a name="example"></a><span data-ttu-id="1fcc5-224">Példa</span><span class="sxs-lookup"><span data-stu-id="1fcc5-224">Example</span></span>
 
-<span data-ttu-id="13be1-225">Az alábbi példa a felhasználó által megadott paraméter értékének egész számra konvertál.</span><span class="sxs-lookup"><span data-stu-id="13be1-225">The following example converts the user-provided parameter value to integer.</span></span>
+<span data-ttu-id="1fcc5-225">hello alábbi példa konvertál hello felhasználó által megadott paraméter értéke toointeger.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-225">hello following example converts hello user-provided parameter value toointeger.</span></span>
 
 ```json
 {
@@ -273,33 +273,33 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="13be1-226">Az alapértelmezett értékeit az előző példából kimenete:</span><span class="sxs-lookup"><span data-stu-id="13be1-226">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="1fcc5-226">hello kimenetét hello előző példa hello alapértelmezett értékekkel:</span><span class="sxs-lookup"><span data-stu-id="1fcc5-226">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="13be1-227">Név</span><span class="sxs-lookup"><span data-stu-id="13be1-227">Name</span></span> | <span data-ttu-id="13be1-228">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-228">Type</span></span> | <span data-ttu-id="13be1-229">Érték</span><span class="sxs-lookup"><span data-stu-id="13be1-229">Value</span></span> |
+| <span data-ttu-id="1fcc5-227">Név</span><span class="sxs-lookup"><span data-stu-id="1fcc5-227">Name</span></span> | <span data-ttu-id="1fcc5-228">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-228">Type</span></span> | <span data-ttu-id="1fcc5-229">Érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-229">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="13be1-230">intEredmeny</span><span class="sxs-lookup"><span data-stu-id="13be1-230">intResult</span></span> | <span data-ttu-id="13be1-231">int</span><span class="sxs-lookup"><span data-stu-id="13be1-231">Int</span></span> | <span data-ttu-id="13be1-232">4</span><span class="sxs-lookup"><span data-stu-id="13be1-232">4</span></span> |
+| <span data-ttu-id="1fcc5-230">intEredmeny</span><span class="sxs-lookup"><span data-stu-id="1fcc5-230">intResult</span></span> | <span data-ttu-id="1fcc5-231">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-231">Int</span></span> | <span data-ttu-id="1fcc5-232">4</span><span class="sxs-lookup"><span data-stu-id="1fcc5-232">4</span></span> |
 
 
 <a id="min" />
 
-## <a name="min"></a><span data-ttu-id="13be1-233">perc</span><span class="sxs-lookup"><span data-stu-id="13be1-233">min</span></span>
+## <a name="min"></a><span data-ttu-id="1fcc5-233">perc</span><span class="sxs-lookup"><span data-stu-id="1fcc5-233">min</span></span>
 `min (arg1)`
 
-<span data-ttu-id="13be1-234">Egy számokból álló tömb vagy egészek vesszővel elválasztott listáját a minimális értékét adja vissza.</span><span class="sxs-lookup"><span data-stu-id="13be1-234">Returns the minimum value from an array of integers or a comma-separated list of integers.</span></span>
+<span data-ttu-id="1fcc5-234">Beolvasása hello számokból álló tömb vagy egészek vesszővel elválasztott listáját az minimális értékét.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-234">Returns hello minimum value from an array of integers or a comma-separated list of integers.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="13be1-235">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="13be1-235">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="1fcc5-235">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="1fcc5-235">Parameters</span></span>
 
-| <span data-ttu-id="13be1-236">Paraméter</span><span class="sxs-lookup"><span data-stu-id="13be1-236">Parameter</span></span> | <span data-ttu-id="13be1-237">Szükséges</span><span class="sxs-lookup"><span data-stu-id="13be1-237">Required</span></span> | <span data-ttu-id="13be1-238">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-238">Type</span></span> | <span data-ttu-id="13be1-239">Leírás</span><span class="sxs-lookup"><span data-stu-id="13be1-239">Description</span></span> |
+| <span data-ttu-id="1fcc5-236">Paraméter</span><span class="sxs-lookup"><span data-stu-id="1fcc5-236">Parameter</span></span> | <span data-ttu-id="1fcc5-237">Szükséges</span><span class="sxs-lookup"><span data-stu-id="1fcc5-237">Required</span></span> | <span data-ttu-id="1fcc5-238">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-238">Type</span></span> | <span data-ttu-id="1fcc5-239">Leírás</span><span class="sxs-lookup"><span data-stu-id="1fcc5-239">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="13be1-240">arg1</span><span class="sxs-lookup"><span data-stu-id="13be1-240">arg1</span></span> |<span data-ttu-id="13be1-241">Igen</span><span class="sxs-lookup"><span data-stu-id="13be1-241">Yes</span></span> |<span data-ttu-id="13be1-242">a tömb egész szám vagy egészek vesszővel elválasztott felsorolása</span><span class="sxs-lookup"><span data-stu-id="13be1-242">array of integers, or comma-separated list of integers</span></span> |<span data-ttu-id="13be1-243">A gyűjteményt, amelyben a minimális érték beolvasása.</span><span class="sxs-lookup"><span data-stu-id="13be1-243">The collection to get the minimum value.</span></span> |
+| <span data-ttu-id="1fcc5-240">arg1</span><span class="sxs-lookup"><span data-stu-id="1fcc5-240">arg1</span></span> |<span data-ttu-id="1fcc5-241">Igen</span><span class="sxs-lookup"><span data-stu-id="1fcc5-241">Yes</span></span> |<span data-ttu-id="1fcc5-242">a tömb egész szám vagy egészek vesszővel elválasztott felsorolása</span><span class="sxs-lookup"><span data-stu-id="1fcc5-242">array of integers, or comma-separated list of integers</span></span> |<span data-ttu-id="1fcc5-243">hello gyűjtemény tooget hello minimális érték.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-243">hello collection tooget hello minimum value.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="13be1-244">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="13be1-244">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="1fcc5-244">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-244">Return value</span></span>
 
-<span data-ttu-id="13be1-245">Jelző egész számot minimális érték a gyűjteményből.</span><span class="sxs-lookup"><span data-stu-id="13be1-245">An integer representing minimum value from the collection.</span></span>
+<span data-ttu-id="1fcc5-245">A minimális érték hello gyűjteményből jelző egész számot.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-245">An integer representing minimum value from hello collection.</span></span>
 
-### <a name="example"></a><span data-ttu-id="13be1-246">Példa</span><span class="sxs-lookup"><span data-stu-id="13be1-246">Example</span></span>
+### <a name="example"></a><span data-ttu-id="1fcc5-246">Példa</span><span class="sxs-lookup"><span data-stu-id="1fcc5-246">Example</span></span>
 
-<span data-ttu-id="13be1-247">A következő példa bemutatja, hogyan használható min tömb és az egész számok listáját:</span><span class="sxs-lookup"><span data-stu-id="13be1-247">The following example shows how to use min with an array and a list of integers:</span></span>
+<span data-ttu-id="1fcc5-247">a következő példa azt mutatja meg hogyan hello toouse min tömb és az egész számok listáját:</span><span class="sxs-lookup"><span data-stu-id="1fcc5-247">hello following example shows how toouse min with an array and a list of integers:</span></span>
 
 ```json
 {
@@ -325,33 +325,33 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="13be1-248">Az alapértelmezett értékeit az előző példából kimenete:</span><span class="sxs-lookup"><span data-stu-id="13be1-248">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="1fcc5-248">hello kimenetét hello előző példa hello alapértelmezett értékekkel:</span><span class="sxs-lookup"><span data-stu-id="1fcc5-248">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="13be1-249">Név</span><span class="sxs-lookup"><span data-stu-id="13be1-249">Name</span></span> | <span data-ttu-id="13be1-250">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-250">Type</span></span> | <span data-ttu-id="13be1-251">Érték</span><span class="sxs-lookup"><span data-stu-id="13be1-251">Value</span></span> |
+| <span data-ttu-id="1fcc5-249">Név</span><span class="sxs-lookup"><span data-stu-id="1fcc5-249">Name</span></span> | <span data-ttu-id="1fcc5-250">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-250">Type</span></span> | <span data-ttu-id="1fcc5-251">Érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-251">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="13be1-252">arrayOutput</span><span class="sxs-lookup"><span data-stu-id="13be1-252">arrayOutput</span></span> | <span data-ttu-id="13be1-253">int</span><span class="sxs-lookup"><span data-stu-id="13be1-253">Int</span></span> | <span data-ttu-id="13be1-254">0</span><span class="sxs-lookup"><span data-stu-id="13be1-254">0</span></span> |
-| <span data-ttu-id="13be1-255">intOutput</span><span class="sxs-lookup"><span data-stu-id="13be1-255">intOutput</span></span> | <span data-ttu-id="13be1-256">int</span><span class="sxs-lookup"><span data-stu-id="13be1-256">Int</span></span> | <span data-ttu-id="13be1-257">0</span><span class="sxs-lookup"><span data-stu-id="13be1-257">0</span></span> |
+| <span data-ttu-id="1fcc5-252">arrayOutput</span><span class="sxs-lookup"><span data-stu-id="1fcc5-252">arrayOutput</span></span> | <span data-ttu-id="1fcc5-253">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-253">Int</span></span> | <span data-ttu-id="1fcc5-254">0</span><span class="sxs-lookup"><span data-stu-id="1fcc5-254">0</span></span> |
+| <span data-ttu-id="1fcc5-255">intOutput</span><span class="sxs-lookup"><span data-stu-id="1fcc5-255">intOutput</span></span> | <span data-ttu-id="1fcc5-256">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-256">Int</span></span> | <span data-ttu-id="1fcc5-257">0</span><span class="sxs-lookup"><span data-stu-id="1fcc5-257">0</span></span> |
 
 <a id="max" />
 
-## <a name="max"></a><span data-ttu-id="13be1-258">maximális</span><span class="sxs-lookup"><span data-stu-id="13be1-258">max</span></span>
+## <a name="max"></a><span data-ttu-id="1fcc5-258">maximális</span><span class="sxs-lookup"><span data-stu-id="1fcc5-258">max</span></span>
 `max (arg1)`
 
-<span data-ttu-id="13be1-259">A maximális érték egész számok tömb vagy egészek vesszővel elválasztott listáját adja vissza.</span><span class="sxs-lookup"><span data-stu-id="13be1-259">Returns the maximum value from an array of integers or a comma-separated list of integers.</span></span>
+<span data-ttu-id="1fcc5-259">Beolvasása hello számokból álló tömb vagy egészek vesszővel elválasztott listáját maximális értéket.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-259">Returns hello maximum value from an array of integers or a comma-separated list of integers.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="13be1-260">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="13be1-260">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="1fcc5-260">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="1fcc5-260">Parameters</span></span>
 
-| <span data-ttu-id="13be1-261">Paraméter</span><span class="sxs-lookup"><span data-stu-id="13be1-261">Parameter</span></span> | <span data-ttu-id="13be1-262">Szükséges</span><span class="sxs-lookup"><span data-stu-id="13be1-262">Required</span></span> | <span data-ttu-id="13be1-263">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-263">Type</span></span> | <span data-ttu-id="13be1-264">Leírás</span><span class="sxs-lookup"><span data-stu-id="13be1-264">Description</span></span> |
+| <span data-ttu-id="1fcc5-261">Paraméter</span><span class="sxs-lookup"><span data-stu-id="1fcc5-261">Parameter</span></span> | <span data-ttu-id="1fcc5-262">Szükséges</span><span class="sxs-lookup"><span data-stu-id="1fcc5-262">Required</span></span> | <span data-ttu-id="1fcc5-263">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-263">Type</span></span> | <span data-ttu-id="1fcc5-264">Leírás</span><span class="sxs-lookup"><span data-stu-id="1fcc5-264">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="13be1-265">arg1</span><span class="sxs-lookup"><span data-stu-id="13be1-265">arg1</span></span> |<span data-ttu-id="13be1-266">Igen</span><span class="sxs-lookup"><span data-stu-id="13be1-266">Yes</span></span> |<span data-ttu-id="13be1-267">a tömb egész szám vagy egészek vesszővel elválasztott felsorolása</span><span class="sxs-lookup"><span data-stu-id="13be1-267">array of integers, or comma-separated list of integers</span></span> |<span data-ttu-id="13be1-268">A gyűjteményt, amelyben a legnagyobb érték beolvasása.</span><span class="sxs-lookup"><span data-stu-id="13be1-268">The collection to get the maximum value.</span></span> |
+| <span data-ttu-id="1fcc5-265">arg1</span><span class="sxs-lookup"><span data-stu-id="1fcc5-265">arg1</span></span> |<span data-ttu-id="1fcc5-266">Igen</span><span class="sxs-lookup"><span data-stu-id="1fcc5-266">Yes</span></span> |<span data-ttu-id="1fcc5-267">a tömb egész szám vagy egészek vesszővel elválasztott felsorolása</span><span class="sxs-lookup"><span data-stu-id="1fcc5-267">array of integers, or comma-separated list of integers</span></span> |<span data-ttu-id="1fcc5-268">hello gyűjtemény tooget hello maximális értéket.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-268">hello collection tooget hello maximum value.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="13be1-269">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="13be1-269">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="1fcc5-269">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-269">Return value</span></span>
 
-<span data-ttu-id="13be1-270">Jelző egész számot a maximális érték a gyűjteményből.</span><span class="sxs-lookup"><span data-stu-id="13be1-270">An integer representing the maximum value from the collection.</span></span>
+<span data-ttu-id="1fcc5-270">Jelző egész számot hello maximális érték hello gyűjteményből.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-270">An integer representing hello maximum value from hello collection.</span></span>
 
-### <a name="example"></a><span data-ttu-id="13be1-271">Példa</span><span class="sxs-lookup"><span data-stu-id="13be1-271">Example</span></span>
+### <a name="example"></a><span data-ttu-id="1fcc5-271">Példa</span><span class="sxs-lookup"><span data-stu-id="1fcc5-271">Example</span></span>
 
-<span data-ttu-id="13be1-272">A következő példa bemutatja, hogyan használható maximum tömb és az egész számok listáját:</span><span class="sxs-lookup"><span data-stu-id="13be1-272">The following example shows how to use max with an array and a list of integers:</span></span>
+<span data-ttu-id="1fcc5-272">a következő példa azt mutatja meg hogyan hello toouse maximális tömb és az egész számok listáját:</span><span class="sxs-lookup"><span data-stu-id="1fcc5-272">hello following example shows how toouse max with an array and a list of integers:</span></span>
 
 ```json
 {
@@ -377,33 +377,33 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="13be1-273">Az alapértelmezett értékeit az előző példából kimenete:</span><span class="sxs-lookup"><span data-stu-id="13be1-273">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="1fcc5-273">hello kimenetét hello előző példa hello alapértelmezett értékekkel:</span><span class="sxs-lookup"><span data-stu-id="1fcc5-273">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="13be1-274">Név</span><span class="sxs-lookup"><span data-stu-id="13be1-274">Name</span></span> | <span data-ttu-id="13be1-275">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-275">Type</span></span> | <span data-ttu-id="13be1-276">Érték</span><span class="sxs-lookup"><span data-stu-id="13be1-276">Value</span></span> |
+| <span data-ttu-id="1fcc5-274">Név</span><span class="sxs-lookup"><span data-stu-id="1fcc5-274">Name</span></span> | <span data-ttu-id="1fcc5-275">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-275">Type</span></span> | <span data-ttu-id="1fcc5-276">Érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-276">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="13be1-277">arrayOutput</span><span class="sxs-lookup"><span data-stu-id="13be1-277">arrayOutput</span></span> | <span data-ttu-id="13be1-278">int</span><span class="sxs-lookup"><span data-stu-id="13be1-278">Int</span></span> | <span data-ttu-id="13be1-279">5</span><span class="sxs-lookup"><span data-stu-id="13be1-279">5</span></span> |
-| <span data-ttu-id="13be1-280">intOutput</span><span class="sxs-lookup"><span data-stu-id="13be1-280">intOutput</span></span> | <span data-ttu-id="13be1-281">int</span><span class="sxs-lookup"><span data-stu-id="13be1-281">Int</span></span> | <span data-ttu-id="13be1-282">5</span><span class="sxs-lookup"><span data-stu-id="13be1-282">5</span></span> |
+| <span data-ttu-id="1fcc5-277">arrayOutput</span><span class="sxs-lookup"><span data-stu-id="1fcc5-277">arrayOutput</span></span> | <span data-ttu-id="1fcc5-278">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-278">Int</span></span> | <span data-ttu-id="1fcc5-279">5</span><span class="sxs-lookup"><span data-stu-id="1fcc5-279">5</span></span> |
+| <span data-ttu-id="1fcc5-280">intOutput</span><span class="sxs-lookup"><span data-stu-id="1fcc5-280">intOutput</span></span> | <span data-ttu-id="1fcc5-281">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-281">Int</span></span> | <span data-ttu-id="1fcc5-282">5</span><span class="sxs-lookup"><span data-stu-id="1fcc5-282">5</span></span> |
 
 <a id="mod" />
 
-## <a name="mod"></a><span data-ttu-id="13be1-283">MOD</span><span class="sxs-lookup"><span data-stu-id="13be1-283">mod</span></span>
+## <a name="mod"></a><span data-ttu-id="1fcc5-283">MOD</span><span class="sxs-lookup"><span data-stu-id="1fcc5-283">mod</span></span>
 `mod(operand1, operand2)`
 
-<span data-ttu-id="13be1-284">Használja a két megadott egész szám hányadosának egész a maradékot adja vissza.</span><span class="sxs-lookup"><span data-stu-id="13be1-284">Returns the remainder of the integer division using the two provided integers.</span></span>
+<span data-ttu-id="1fcc5-284">Hello egész osztály használatával hello két megadott egész számok hello maradékot adja vissza.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-284">Returns hello remainder of hello integer division using hello two provided integers.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="13be1-285">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="13be1-285">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="1fcc5-285">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="1fcc5-285">Parameters</span></span>
 
-| <span data-ttu-id="13be1-286">Paraméter</span><span class="sxs-lookup"><span data-stu-id="13be1-286">Parameter</span></span> | <span data-ttu-id="13be1-287">Szükséges</span><span class="sxs-lookup"><span data-stu-id="13be1-287">Required</span></span> | <span data-ttu-id="13be1-288">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-288">Type</span></span> | <span data-ttu-id="13be1-289">Leírás</span><span class="sxs-lookup"><span data-stu-id="13be1-289">Description</span></span> |
+| <span data-ttu-id="1fcc5-286">Paraméter</span><span class="sxs-lookup"><span data-stu-id="1fcc5-286">Parameter</span></span> | <span data-ttu-id="1fcc5-287">Szükséges</span><span class="sxs-lookup"><span data-stu-id="1fcc5-287">Required</span></span> | <span data-ttu-id="1fcc5-288">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-288">Type</span></span> | <span data-ttu-id="1fcc5-289">Leírás</span><span class="sxs-lookup"><span data-stu-id="1fcc5-289">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="13be1-290">operand1</span><span class="sxs-lookup"><span data-stu-id="13be1-290">operand1</span></span> |<span data-ttu-id="13be1-291">Igen</span><span class="sxs-lookup"><span data-stu-id="13be1-291">Yes</span></span> |<span data-ttu-id="13be1-292">int</span><span class="sxs-lookup"><span data-stu-id="13be1-292">int</span></span> |<span data-ttu-id="13be1-293">Az a szám felosztják.</span><span class="sxs-lookup"><span data-stu-id="13be1-293">The number being divided.</span></span> |
-| <span data-ttu-id="13be1-294">operand2</span><span class="sxs-lookup"><span data-stu-id="13be1-294">operand2</span></span> |<span data-ttu-id="13be1-295">Igen</span><span class="sxs-lookup"><span data-stu-id="13be1-295">Yes</span></span> |<span data-ttu-id="13be1-296">int</span><span class="sxs-lookup"><span data-stu-id="13be1-296">int</span></span> |<span data-ttu-id="13be1-297">A szám, amellyel osztani, nem lehet 0.</span><span class="sxs-lookup"><span data-stu-id="13be1-297">The number that is used to divide, Cannot be 0.</span></span> |
+| <span data-ttu-id="1fcc5-290">operand1</span><span class="sxs-lookup"><span data-stu-id="1fcc5-290">operand1</span></span> |<span data-ttu-id="1fcc5-291">Igen</span><span class="sxs-lookup"><span data-stu-id="1fcc5-291">Yes</span></span> |<span data-ttu-id="1fcc5-292">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-292">int</span></span> |<span data-ttu-id="1fcc5-293">felosztják hello számát.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-293">hello number being divided.</span></span> |
+| <span data-ttu-id="1fcc5-294">operand2</span><span class="sxs-lookup"><span data-stu-id="1fcc5-294">operand2</span></span> |<span data-ttu-id="1fcc5-295">Igen</span><span class="sxs-lookup"><span data-stu-id="1fcc5-295">Yes</span></span> |<span data-ttu-id="1fcc5-296">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-296">int</span></span> |<span data-ttu-id="1fcc5-297">használt toodivide hello szám nem lehet 0.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-297">hello number that is used toodivide, Cannot be 0.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="13be1-298">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="13be1-298">Return value</span></span>
-<span data-ttu-id="13be1-299">Egy további jelző egész számot.</span><span class="sxs-lookup"><span data-stu-id="13be1-299">An integer representing the remainder.</span></span>
+### <a name="return-value"></a><span data-ttu-id="1fcc5-298">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-298">Return value</span></span>
+<span data-ttu-id="1fcc5-299">Egy egész számot jelölő hello maradékot.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-299">An integer representing hello remainder.</span></span>
 
-### <a name="example"></a><span data-ttu-id="13be1-300">Példa</span><span class="sxs-lookup"><span data-stu-id="13be1-300">Example</span></span>
+### <a name="example"></a><span data-ttu-id="1fcc5-300">Példa</span><span class="sxs-lookup"><span data-stu-id="1fcc5-300">Example</span></span>
 
-<span data-ttu-id="13be1-301">A következő példa egy másik paraméterrel egy paraméter felosztása adja eredményül.</span><span class="sxs-lookup"><span data-stu-id="13be1-301">The following example returns the remainder of dividing one parameter by another parameter.</span></span>
+<span data-ttu-id="1fcc5-301">hello alábbi példa maradékot adja vissza hello felosztása egy paraméter egy másik paraméterrel.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-301">hello following example returns hello remainder of dividing one parameter by another parameter.</span></span>
 
 ```json
 {
@@ -421,7 +421,7 @@ ms.lasthandoff: 08/03/2017
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Integer used to divide"
+                "description": "Integer used toodivide"
             }
         }
     },
@@ -436,33 +436,33 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="13be1-302">Az alapértelmezett értékeit az előző példából kimenete:</span><span class="sxs-lookup"><span data-stu-id="13be1-302">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="1fcc5-302">hello kimenetét hello előző példa hello alapértelmezett értékekkel:</span><span class="sxs-lookup"><span data-stu-id="1fcc5-302">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="13be1-303">Név</span><span class="sxs-lookup"><span data-stu-id="13be1-303">Name</span></span> | <span data-ttu-id="13be1-304">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-304">Type</span></span> | <span data-ttu-id="13be1-305">Érték</span><span class="sxs-lookup"><span data-stu-id="13be1-305">Value</span></span> |
+| <span data-ttu-id="1fcc5-303">Név</span><span class="sxs-lookup"><span data-stu-id="1fcc5-303">Name</span></span> | <span data-ttu-id="1fcc5-304">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-304">Type</span></span> | <span data-ttu-id="1fcc5-305">Érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-305">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="13be1-306">modResult</span><span class="sxs-lookup"><span data-stu-id="13be1-306">modResult</span></span> | <span data-ttu-id="13be1-307">int</span><span class="sxs-lookup"><span data-stu-id="13be1-307">Int</span></span> | <span data-ttu-id="13be1-308">1</span><span class="sxs-lookup"><span data-stu-id="13be1-308">1</span></span> |
+| <span data-ttu-id="1fcc5-306">modResult</span><span class="sxs-lookup"><span data-stu-id="1fcc5-306">modResult</span></span> | <span data-ttu-id="1fcc5-307">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-307">Int</span></span> | <span data-ttu-id="1fcc5-308">1</span><span class="sxs-lookup"><span data-stu-id="1fcc5-308">1</span></span> |
 
 <a id="mul" />
 
-## <a name="mul"></a><span data-ttu-id="13be1-309">MUL számú</span><span class="sxs-lookup"><span data-stu-id="13be1-309">mul</span></span>
+## <a name="mul"></a><span data-ttu-id="1fcc5-309">MUL számú</span><span class="sxs-lookup"><span data-stu-id="1fcc5-309">mul</span></span>
 `mul(operand1, operand2)`
 
-<span data-ttu-id="13be1-310">A két megadott egész számok szorzás adja vissza.</span><span class="sxs-lookup"><span data-stu-id="13be1-310">Returns the multiplication of the two provided integers.</span></span>
+<span data-ttu-id="1fcc5-310">Értéket ad vissza a szorzás hello két megadott egész számok hello.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-310">Returns hello multiplication of hello two provided integers.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="13be1-311">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="13be1-311">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="1fcc5-311">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="1fcc5-311">Parameters</span></span>
 
-| <span data-ttu-id="13be1-312">Paraméter</span><span class="sxs-lookup"><span data-stu-id="13be1-312">Parameter</span></span> | <span data-ttu-id="13be1-313">Szükséges</span><span class="sxs-lookup"><span data-stu-id="13be1-313">Required</span></span> | <span data-ttu-id="13be1-314">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-314">Type</span></span> | <span data-ttu-id="13be1-315">Leírás</span><span class="sxs-lookup"><span data-stu-id="13be1-315">Description</span></span> |
+| <span data-ttu-id="1fcc5-312">Paraméter</span><span class="sxs-lookup"><span data-stu-id="1fcc5-312">Parameter</span></span> | <span data-ttu-id="1fcc5-313">Szükséges</span><span class="sxs-lookup"><span data-stu-id="1fcc5-313">Required</span></span> | <span data-ttu-id="1fcc5-314">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-314">Type</span></span> | <span data-ttu-id="1fcc5-315">Leírás</span><span class="sxs-lookup"><span data-stu-id="1fcc5-315">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="13be1-316">operand1</span><span class="sxs-lookup"><span data-stu-id="13be1-316">operand1</span></span> |<span data-ttu-id="13be1-317">Igen</span><span class="sxs-lookup"><span data-stu-id="13be1-317">Yes</span></span> |<span data-ttu-id="13be1-318">int</span><span class="sxs-lookup"><span data-stu-id="13be1-318">int</span></span> |<span data-ttu-id="13be1-319">A szorzási első szám.</span><span class="sxs-lookup"><span data-stu-id="13be1-319">First number to multiply.</span></span> |
-| <span data-ttu-id="13be1-320">operand2</span><span class="sxs-lookup"><span data-stu-id="13be1-320">operand2</span></span> |<span data-ttu-id="13be1-321">Igen</span><span class="sxs-lookup"><span data-stu-id="13be1-321">Yes</span></span> |<span data-ttu-id="13be1-322">int</span><span class="sxs-lookup"><span data-stu-id="13be1-322">int</span></span> |<span data-ttu-id="13be1-323">A szorzási második szám.</span><span class="sxs-lookup"><span data-stu-id="13be1-323">Second number to multiply.</span></span> |
+| <span data-ttu-id="1fcc5-316">operand1</span><span class="sxs-lookup"><span data-stu-id="1fcc5-316">operand1</span></span> |<span data-ttu-id="1fcc5-317">Igen</span><span class="sxs-lookup"><span data-stu-id="1fcc5-317">Yes</span></span> |<span data-ttu-id="1fcc5-318">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-318">int</span></span> |<span data-ttu-id="1fcc5-319">Első számú toomultiply.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-319">First number toomultiply.</span></span> |
+| <span data-ttu-id="1fcc5-320">operand2</span><span class="sxs-lookup"><span data-stu-id="1fcc5-320">operand2</span></span> |<span data-ttu-id="1fcc5-321">Igen</span><span class="sxs-lookup"><span data-stu-id="1fcc5-321">Yes</span></span> |<span data-ttu-id="1fcc5-322">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-322">int</span></span> |<span data-ttu-id="1fcc5-323">Második szám toomultiply.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-323">Second number toomultiply.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="13be1-324">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="13be1-324">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="1fcc5-324">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-324">Return value</span></span>
 
-<span data-ttu-id="13be1-325">A szorzás jelölő egész.</span><span class="sxs-lookup"><span data-stu-id="13be1-325">An integer representing the multiplication.</span></span>
+<span data-ttu-id="1fcc5-325">Egy egész számot jelölő hello szorzást végezhet.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-325">An integer representing hello multiplication.</span></span>
 
-### <a name="example"></a><span data-ttu-id="13be1-326">Példa</span><span class="sxs-lookup"><span data-stu-id="13be1-326">Example</span></span>
+### <a name="example"></a><span data-ttu-id="1fcc5-326">Példa</span><span class="sxs-lookup"><span data-stu-id="1fcc5-326">Example</span></span>
 
-<span data-ttu-id="13be1-327">Az alábbi példa szorozza meg egy másik paraméterrel egy paramétert.</span><span class="sxs-lookup"><span data-stu-id="13be1-327">The following example multiplies one parameter by another parameter.</span></span>
+<span data-ttu-id="1fcc5-327">a következő példa hello szorozza meg egy másik paraméterrel egy paramétert.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-327">hello following example multiplies one parameter by another parameter.</span></span>
 
 ```json
 {
@@ -473,14 +473,14 @@ ms.lasthandoff: 08/03/2017
             "type": "int",
             "defaultValue": 5,
             "metadata": {
-                "description": "First integer to multiply"
+                "description": "First integer toomultiply"
             }
         },
         "second": {
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Second integer to multiply"
+                "description": "Second integer toomultiply"
             }
         }
     },
@@ -495,32 +495,32 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="13be1-328">Az alapértelmezett értékeit az előző példából kimenete:</span><span class="sxs-lookup"><span data-stu-id="13be1-328">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="1fcc5-328">hello kimenetét hello előző példa hello alapértelmezett értékekkel:</span><span class="sxs-lookup"><span data-stu-id="1fcc5-328">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="13be1-329">Név</span><span class="sxs-lookup"><span data-stu-id="13be1-329">Name</span></span> | <span data-ttu-id="13be1-330">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-330">Type</span></span> | <span data-ttu-id="13be1-331">Érték</span><span class="sxs-lookup"><span data-stu-id="13be1-331">Value</span></span> |
+| <span data-ttu-id="1fcc5-329">Név</span><span class="sxs-lookup"><span data-stu-id="1fcc5-329">Name</span></span> | <span data-ttu-id="1fcc5-330">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-330">Type</span></span> | <span data-ttu-id="1fcc5-331">Érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-331">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="13be1-332">mulResult</span><span class="sxs-lookup"><span data-stu-id="13be1-332">mulResult</span></span> | <span data-ttu-id="13be1-333">int</span><span class="sxs-lookup"><span data-stu-id="13be1-333">Int</span></span> | <span data-ttu-id="13be1-334">15</span><span class="sxs-lookup"><span data-stu-id="13be1-334">15</span></span> |
+| <span data-ttu-id="1fcc5-332">mulResult</span><span class="sxs-lookup"><span data-stu-id="1fcc5-332">mulResult</span></span> | <span data-ttu-id="1fcc5-333">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-333">Int</span></span> | <span data-ttu-id="1fcc5-334">15</span><span class="sxs-lookup"><span data-stu-id="1fcc5-334">15</span></span> |
 
 <a id="sub" />
 
-## <a name="sub"></a><span data-ttu-id="13be1-335">Sub</span><span class="sxs-lookup"><span data-stu-id="13be1-335">sub</span></span>
+## <a name="sub"></a><span data-ttu-id="1fcc5-335">Sub</span><span class="sxs-lookup"><span data-stu-id="1fcc5-335">sub</span></span>
 `sub(operand1, operand2)`
 
-<span data-ttu-id="13be1-336">A kivonás a két megadott egész számokat adja vissza.</span><span class="sxs-lookup"><span data-stu-id="13be1-336">Returns the subtraction of the two provided integers.</span></span>
+<span data-ttu-id="1fcc5-336">Értéket ad vissza a két megadott egészek hello kivonás hello.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-336">Returns hello subtraction of hello two provided integers.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="13be1-337">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="13be1-337">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="1fcc5-337">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="1fcc5-337">Parameters</span></span>
 
-| <span data-ttu-id="13be1-338">Paraméter</span><span class="sxs-lookup"><span data-stu-id="13be1-338">Parameter</span></span> | <span data-ttu-id="13be1-339">Szükséges</span><span class="sxs-lookup"><span data-stu-id="13be1-339">Required</span></span> | <span data-ttu-id="13be1-340">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-340">Type</span></span> | <span data-ttu-id="13be1-341">Leírás</span><span class="sxs-lookup"><span data-stu-id="13be1-341">Description</span></span> |
+| <span data-ttu-id="1fcc5-338">Paraméter</span><span class="sxs-lookup"><span data-stu-id="1fcc5-338">Parameter</span></span> | <span data-ttu-id="1fcc5-339">Szükséges</span><span class="sxs-lookup"><span data-stu-id="1fcc5-339">Required</span></span> | <span data-ttu-id="1fcc5-340">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-340">Type</span></span> | <span data-ttu-id="1fcc5-341">Leírás</span><span class="sxs-lookup"><span data-stu-id="1fcc5-341">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="13be1-342">operand1</span><span class="sxs-lookup"><span data-stu-id="13be1-342">operand1</span></span> |<span data-ttu-id="13be1-343">Igen</span><span class="sxs-lookup"><span data-stu-id="13be1-343">Yes</span></span> |<span data-ttu-id="13be1-344">int</span><span class="sxs-lookup"><span data-stu-id="13be1-344">int</span></span> |<span data-ttu-id="13be1-345">A szám, amelyet a program levonja az.</span><span class="sxs-lookup"><span data-stu-id="13be1-345">The number that is subtracted from.</span></span> |
-| <span data-ttu-id="13be1-346">operand2</span><span class="sxs-lookup"><span data-stu-id="13be1-346">operand2</span></span> |<span data-ttu-id="13be1-347">Igen</span><span class="sxs-lookup"><span data-stu-id="13be1-347">Yes</span></span> |<span data-ttu-id="13be1-348">int</span><span class="sxs-lookup"><span data-stu-id="13be1-348">int</span></span> |<span data-ttu-id="13be1-349">A szám, amelyet a program levonja.</span><span class="sxs-lookup"><span data-stu-id="13be1-349">The number that is subtracted.</span></span> |
+| <span data-ttu-id="1fcc5-342">operand1</span><span class="sxs-lookup"><span data-stu-id="1fcc5-342">operand1</span></span> |<span data-ttu-id="1fcc5-343">Igen</span><span class="sxs-lookup"><span data-stu-id="1fcc5-343">Yes</span></span> |<span data-ttu-id="1fcc5-344">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-344">int</span></span> |<span data-ttu-id="1fcc5-345">a program levonja az hello száma.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-345">hello number that is subtracted from.</span></span> |
+| <span data-ttu-id="1fcc5-346">operand2</span><span class="sxs-lookup"><span data-stu-id="1fcc5-346">operand2</span></span> |<span data-ttu-id="1fcc5-347">Igen</span><span class="sxs-lookup"><span data-stu-id="1fcc5-347">Yes</span></span> |<span data-ttu-id="1fcc5-348">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-348">int</span></span> |<span data-ttu-id="1fcc5-349">a program levonja hello száma.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-349">hello number that is subtracted.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="13be1-350">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="13be1-350">Return value</span></span>
-<span data-ttu-id="13be1-351">Egy a kivonásnak jelző egész számot.</span><span class="sxs-lookup"><span data-stu-id="13be1-351">An integer representing the subtraction.</span></span>
+### <a name="return-value"></a><span data-ttu-id="1fcc5-350">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-350">Return value</span></span>
+<span data-ttu-id="1fcc5-351">Egy egész számot jelölő hello kivonás.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-351">An integer representing hello subtraction.</span></span>
 
-### <a name="example"></a><span data-ttu-id="13be1-352">Példa</span><span class="sxs-lookup"><span data-stu-id="13be1-352">Example</span></span>
+### <a name="example"></a><span data-ttu-id="1fcc5-352">Példa</span><span class="sxs-lookup"><span data-stu-id="1fcc5-352">Example</span></span>
 
-<span data-ttu-id="13be1-353">A következő példa egy paraméter és egy másik paraméter kivonja.</span><span class="sxs-lookup"><span data-stu-id="13be1-353">The following example subtracts one parameter from another parameter.</span></span>
+<span data-ttu-id="1fcc5-353">a következő példa hello kivonja másik paraméter egy paramétert.</span><span class="sxs-lookup"><span data-stu-id="1fcc5-353">hello following example subtracts one parameter from another parameter.</span></span>
 
 ```json
 {
@@ -538,7 +538,7 @@ ms.lasthandoff: 08/03/2017
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Integer to subtract"
+                "description": "Integer toosubtract"
             }
         }
     },
@@ -553,15 +553,15 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="13be1-354">Az alapértelmezett értékeit az előző példából kimenete:</span><span class="sxs-lookup"><span data-stu-id="13be1-354">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="1fcc5-354">hello kimenetét hello előző példa hello alapértelmezett értékekkel:</span><span class="sxs-lookup"><span data-stu-id="1fcc5-354">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="13be1-355">Név</span><span class="sxs-lookup"><span data-stu-id="13be1-355">Name</span></span> | <span data-ttu-id="13be1-356">Típus</span><span class="sxs-lookup"><span data-stu-id="13be1-356">Type</span></span> | <span data-ttu-id="13be1-357">Érték</span><span class="sxs-lookup"><span data-stu-id="13be1-357">Value</span></span> |
+| <span data-ttu-id="1fcc5-355">Név</span><span class="sxs-lookup"><span data-stu-id="1fcc5-355">Name</span></span> | <span data-ttu-id="1fcc5-356">Típus</span><span class="sxs-lookup"><span data-stu-id="1fcc5-356">Type</span></span> | <span data-ttu-id="1fcc5-357">Érték</span><span class="sxs-lookup"><span data-stu-id="1fcc5-357">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="13be1-358">subResult</span><span class="sxs-lookup"><span data-stu-id="13be1-358">subResult</span></span> | <span data-ttu-id="13be1-359">int</span><span class="sxs-lookup"><span data-stu-id="13be1-359">Int</span></span> | <span data-ttu-id="13be1-360">4</span><span class="sxs-lookup"><span data-stu-id="13be1-360">4</span></span> |
+| <span data-ttu-id="1fcc5-358">subResult</span><span class="sxs-lookup"><span data-stu-id="1fcc5-358">subResult</span></span> | <span data-ttu-id="1fcc5-359">int</span><span class="sxs-lookup"><span data-stu-id="1fcc5-359">Int</span></span> | <span data-ttu-id="1fcc5-360">4</span><span class="sxs-lookup"><span data-stu-id="1fcc5-360">4</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="13be1-361">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="13be1-361">Next steps</span></span>
-* <span data-ttu-id="13be1-362">A szakaszok az Azure Resource Manager-sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="13be1-362">For a description of the sections in an Azure Resource Manager template, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).</span></span>
-* <span data-ttu-id="13be1-363">Több sablon egyesíteni, lásd: [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).</span><span class="sxs-lookup"><span data-stu-id="13be1-363">To merge multiple templates, see [Using linked templates with Azure Resource Manager](resource-group-linked-templates.md).</span></span>
-* <span data-ttu-id="13be1-364">Megadott számú alkalommal felépítésének egy adott típusú erőforrás létrehozása esetén lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).</span><span class="sxs-lookup"><span data-stu-id="13be1-364">To iterate a specified number of times when creating a type of resource, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).</span></span>
-* <span data-ttu-id="13be1-365">A sablon létrehozott központi telepítéséről, olvassa el [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).</span><span class="sxs-lookup"><span data-stu-id="13be1-365">To see how to deploy the template you have created, see [Deploy an application with Azure Resource Manager template](resource-group-template-deploy.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="1fcc5-361">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="1fcc5-361">Next steps</span></span>
+* <span data-ttu-id="1fcc5-362">Hello részeiben arról olvashat az Azure Resource Manager sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="1fcc5-362">For a description of hello sections in an Azure Resource Manager template, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).</span></span>
+* <span data-ttu-id="1fcc5-363">toomerge több sablonjainak használatáról [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).</span><span class="sxs-lookup"><span data-stu-id="1fcc5-363">toomerge multiple templates, see [Using linked templates with Azure Resource Manager](resource-group-linked-templates.md).</span></span>
+* <span data-ttu-id="1fcc5-364">megadott számú alkalommal tooiterate olyan típusú erőforrások létrehozásakor lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).</span><span class="sxs-lookup"><span data-stu-id="1fcc5-364">tooiterate a specified number of times when creating a type of resource, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).</span></span>
+* <span data-ttu-id="1fcc5-365">toosee hogyan toodeploy hello sablon létrehozott, lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).</span><span class="sxs-lookup"><span data-stu-id="1fcc5-365">toosee how toodeploy hello template you have created, see [Deploy an application with Azure Resource Manager template](resource-group-template-deploy.md).</span></span>
 

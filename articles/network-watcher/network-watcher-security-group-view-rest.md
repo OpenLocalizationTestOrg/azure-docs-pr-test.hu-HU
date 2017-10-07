@@ -1,6 +1,6 @@
 ---
-title: "Hálózati biztonság Azure hálózati figyelő biztonsági csoport láthassák - REST API elemzése |} Microsoft Docs"
-description: "Ez a cikk azt ismerteti, hogyan lehet a virtuális gépek biztonsági biztonsági csoport megtekintése és elemzése a PowerShell használatával."
+title: "aaaAnalyze hálózati biztonság Azure hálózati figyelő biztonsági csoport láthassák - REST API |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan toouse PowerShell tooanalyze a virtuális gépek biztonsági a biztonsági csoport megtekintése."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: afced52b3ae6f3b7f400364f5ec7d049aa166590
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0858a64a9454816e05f06dadb9536ad0c755e90e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="analyze-your-virtual-machine-security-with-security-group-view-using-rest-api"></a><span data-ttu-id="447aa-103">A virtuális gép biztonsági biztonsági csoport láthassák REST API használatával elemzése</span><span class="sxs-lookup"><span data-stu-id="447aa-103">Analyze your Virtual Machine security with Security Group View using REST API</span></span>
+# <a name="analyze-your-virtual-machine-security-with-security-group-view-using-rest-api"></a><span data-ttu-id="51c45-103">A virtuális gép biztonsági biztonsági csoport láthassák REST API használatával elemzése</span><span class="sxs-lookup"><span data-stu-id="51c45-103">Analyze your Virtual Machine security with Security Group View using REST API</span></span>
 
 > [!div class="op_single_selector"]
-> - [<span data-ttu-id="447aa-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="447aa-104">PowerShell</span></span>](network-watcher-security-group-view-powershell.md)
-> - [<span data-ttu-id="447aa-105">CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="447aa-105">CLI 1.0</span></span>](network-watcher-security-group-view-cli-nodejs.md)
-> - [<span data-ttu-id="447aa-106">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="447aa-106">CLI 2.0</span></span>](network-watcher-security-group-view-cli.md)
-> - [<span data-ttu-id="447aa-107">REST API</span><span class="sxs-lookup"><span data-stu-id="447aa-107">REST API</span></span>](network-watcher-security-group-view-rest.md)
+> - [<span data-ttu-id="51c45-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="51c45-104">PowerShell</span></span>](network-watcher-security-group-view-powershell.md)
+> - [<span data-ttu-id="51c45-105">CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="51c45-105">CLI 1.0</span></span>](network-watcher-security-group-view-cli-nodejs.md)
+> - [<span data-ttu-id="51c45-106">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="51c45-106">CLI 2.0</span></span>](network-watcher-security-group-view-cli.md)
+> - [<span data-ttu-id="51c45-107">REST API</span><span class="sxs-lookup"><span data-stu-id="51c45-107">REST API</span></span>](network-watcher-security-group-view-rest.md)
 
-<span data-ttu-id="447aa-108">Biztonsági csoport megtekintése konfigurált és hatékony hálózati biztonsági szabályok virtuális gép által használt adja vissza.</span><span class="sxs-lookup"><span data-stu-id="447aa-108">Security group view returns configured and effective network security rules that are applied to a virtual machine.</span></span> <span data-ttu-id="447aa-109">Ez a funkció akkor hasznos, naplózási és diagnosztizálhatja a hálózati biztonsági csoportok és annak érdekében, hogy folyamatban van a forgalom egy virtuális gépen konfigurált szabályok megfelelően engedélyez vagy tilt.</span><span class="sxs-lookup"><span data-stu-id="447aa-109">This capability is useful to audit and diagnose Network Security Groups and rules that are configured on a VM to ensure traffic is being correctly allowed or denied.</span></span> <span data-ttu-id="447aa-110">Ebben a cikkben megmutatjuk, hogyan lehet lekérni a hatékony és alkalmazott szabályok REST API használatával virtuális géphez</span><span class="sxs-lookup"><span data-stu-id="447aa-110">In this article, we show you how to retrieve the effective and applied security rules to a virtual machine using REST API</span></span>
+<span data-ttu-id="51c45-108">Biztonsági csoport megtekintése konfigurált és hatékony hálózati biztonsági szabályok, amelyek a virtuális gép alkalmazott tooa adja vissza.</span><span class="sxs-lookup"><span data-stu-id="51c45-108">Security group view returns configured and effective network security rules that are applied tooa virtual machine.</span></span> <span data-ttu-id="51c45-109">Ez a funkció hasznos tooaudit és diagnosztizálhatja a hálózati biztonsági csoportok és a virtuális gépek tooensure forgalma konfigurált szabályok folyamatban van megfelelően engedélyez vagy tilt.</span><span class="sxs-lookup"><span data-stu-id="51c45-109">This capability is useful tooaudit and diagnose Network Security Groups and rules that are configured on a VM tooensure traffic is being correctly allowed or denied.</span></span> <span data-ttu-id="51c45-110">Ebben a cikkben megmutatjuk, hogyan tooretrieve hello hatékony és alkalmazott biztonsági szabályok tooa virtuális gépet a REST API használatával</span><span class="sxs-lookup"><span data-stu-id="51c45-110">In this article, we show you how tooretrieve hello effective and applied security rules tooa virtual machine using REST API</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="447aa-111">Előkészületek</span><span class="sxs-lookup"><span data-stu-id="447aa-111">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="51c45-111">Előkészületek</span><span class="sxs-lookup"><span data-stu-id="51c45-111">Before you begin</span></span>
 
-<span data-ttu-id="447aa-112">Ebben az esetben hívható meg a hálózati figyelő Rest API-t a biztonsági csoport nézetet beolvasása a virtuális géphez.</span><span class="sxs-lookup"><span data-stu-id="447aa-112">In this scenario, you call the Network Watcher Rest API to get the security group view for a virtual machine.</span></span> <span data-ttu-id="447aa-113">A PowerShell használatával REST API hívása ARMclient szolgál.</span><span class="sxs-lookup"><span data-stu-id="447aa-113">ARMclient is used to call the REST API using PowerShell.</span></span> <span data-ttu-id="447aa-114">ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient)</span><span class="sxs-lookup"><span data-stu-id="447aa-114">ARMClient is found on chocolatey at [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient)</span></span>
+<span data-ttu-id="51c45-112">Ebben a forgatókönyvben a virtuális gép meghívja a hello hálózati figyelő Rest API tooget hello biztonsági csoport megtekintése.</span><span class="sxs-lookup"><span data-stu-id="51c45-112">In this scenario, you call hello Network Watcher Rest API tooget hello security group view for a virtual machine.</span></span> <span data-ttu-id="51c45-113">ARMclient használt toocall hello REST API használatával PowerShell.</span><span class="sxs-lookup"><span data-stu-id="51c45-113">ARMclient is used toocall hello REST API using PowerShell.</span></span> <span data-ttu-id="51c45-114">ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient)</span><span class="sxs-lookup"><span data-stu-id="51c45-114">ARMClient is found on chocolatey at [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient)</span></span>
 
-<span data-ttu-id="447aa-115">Ez a forgatókönyv azt feltételezi, hogy már követte lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) létrehozása egy hálózati figyelőt.</span><span class="sxs-lookup"><span data-stu-id="447aa-115">This scenario assumes you have already followed the steps in [Create a Network Watcher](network-watcher-create.md) to create a Network Watcher.</span></span> <span data-ttu-id="447aa-116">A forgatókönyv feltételezi, hogy létezik-e egy erőforráscsoportot, egy érvényes virtuális géppel használandó.</span><span class="sxs-lookup"><span data-stu-id="447aa-116">The scenario also assumes that a Resource Group with a valid virtual machine exists to be used.</span></span>
+<span data-ttu-id="51c45-115">Ez a forgatókönyv azt feltételezi, hogy már követte hello lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) toocreate egy hálózati figyelőt.</span><span class="sxs-lookup"><span data-stu-id="51c45-115">This scenario assumes you have already followed hello steps in [Create a Network Watcher](network-watcher-create.md) toocreate a Network Watcher.</span></span> <span data-ttu-id="51c45-116">hello is feltételezzük, hogy létezik-e egy érvényes virtuális géppel erőforrás csoport toobe használt.</span><span class="sxs-lookup"><span data-stu-id="51c45-116">hello scenario also assumes that a Resource Group with a valid virtual machine exists toobe used.</span></span>
 
-## <a name="scenario"></a><span data-ttu-id="447aa-117">Forgatókönyv</span><span class="sxs-lookup"><span data-stu-id="447aa-117">Scenario</span></span>
+## <a name="scenario"></a><span data-ttu-id="51c45-117">Forgatókönyv</span><span class="sxs-lookup"><span data-stu-id="51c45-117">Scenario</span></span>
 
-<span data-ttu-id="447aa-118">A forgatókönyv a cikkben szereplő lekéri a hatékony és alkalmazott szabályok egy adott virtuális géphez.</span><span class="sxs-lookup"><span data-stu-id="447aa-118">The scenario covered in this article retrieves the effective and applied security rules for a given virtual machine.</span></span>
+<span data-ttu-id="51c45-118">a cikkben szereplő hello forgatókönyv hello hatékony és alkalmazott biztonsági szabályok egy adott virtuális gép kéri le.</span><span class="sxs-lookup"><span data-stu-id="51c45-118">hello scenario covered in this article retrieves hello effective and applied security rules for a given virtual machine.</span></span>
 
-## <a name="log-in-with-armclient"></a><span data-ttu-id="447aa-119">Jelentkezzen be ARMClient</span><span class="sxs-lookup"><span data-stu-id="447aa-119">Log in with ARMClient</span></span>
+## <a name="log-in-with-armclient"></a><span data-ttu-id="51c45-119">Jelentkezzen be ARMClient</span><span class="sxs-lookup"><span data-stu-id="51c45-119">Log in with ARMClient</span></span>
 
 ```PowerShell
 armclient login
 ```
 
-## <a name="retrieve-a-virtual-machine"></a><span data-ttu-id="447aa-120">A virtuális gép beolvasása</span><span class="sxs-lookup"><span data-stu-id="447aa-120">Retrieve a virtual machine</span></span>
+## <a name="retrieve-a-virtual-machine"></a><span data-ttu-id="51c45-120">A virtuális gép beolvasása</span><span class="sxs-lookup"><span data-stu-id="51c45-120">Retrieve a virtual machine</span></span>
 
-<span data-ttu-id="447aa-121">Futtassa a következő virtuális machineThe vissza a következő kódot változók van szüksége:</span><span class="sxs-lookup"><span data-stu-id="447aa-121">Run the following script to return a virtual machineThe following code needs variables:</span></span>
+<span data-ttu-id="51c45-121">Futtassa a következő parancsfájl tooreturn virtuális machineThe hello változók van szüksége a következő kódot:</span><span class="sxs-lookup"><span data-stu-id="51c45-121">Run hello following script tooreturn a virtual machineThe following code needs variables:</span></span>
 
-- <span data-ttu-id="447aa-122">**a subscriptionId** -előfizetés-azonosító is lehet beolvasni a a **Get-AzureRMSubscription** parancsmag.</span><span class="sxs-lookup"><span data-stu-id="447aa-122">**subscriptionId** - The subscription id can also be retrieved with the **Get-AzureRMSubscription** cmdlet.</span></span>
-- <span data-ttu-id="447aa-123">**resourceGroupName** -virtuális gépeket tartalmazó erőforráscsoport nevét.</span><span class="sxs-lookup"><span data-stu-id="447aa-123">**resourceGroupName** - The name of a resource group that contains virtual machines.</span></span>
+- <span data-ttu-id="51c45-122">**a subscriptionId** -hello előfizetés-azonosító is lehet beolvasni a hello **Get-AzureRMSubscription** parancsmag.</span><span class="sxs-lookup"><span data-stu-id="51c45-122">**subscriptionId** - hello subscription id can also be retrieved with hello **Get-AzureRMSubscription** cmdlet.</span></span>
+- <span data-ttu-id="51c45-123">**resourceGroupName** – hello virtuális gépeket tartalmazó erőforráscsoport nevét.</span><span class="sxs-lookup"><span data-stu-id="51c45-123">**resourceGroupName** - hello name of a resource group that contains virtual machines.</span></span>
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -60,7 +60,7 @@ $resourceGroupName = '<resource group name>'
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-<span data-ttu-id="447aa-124">A szükséges információk a **azonosító** típus szerinti `Microsoft.Compute/virtualMachines` válaszként, az alábbi példában látható módon:</span><span class="sxs-lookup"><span data-stu-id="447aa-124">The information that is needed is the **id** under the type `Microsoft.Compute/virtualMachines` in response, as seen in the following example:</span></span>
+<span data-ttu-id="51c45-124">hello szükséges adatokat az hello **azonosító** a hello típusa `Microsoft.Compute/virtualMachines` válaszként, hello a következő példában látható módon:</span><span class="sxs-lookup"><span data-stu-id="51c45-124">hello information that is needed is hello **id** under hello type `Microsoft.Compute/virtualMachines` in response, as seen in hello following example:</span></span>
 
 ```json
 ...,
@@ -90,9 +90,9 @@ pute/virtualMachines/{vmName}/extensions/CustomScriptExtension"
 }
 ```
 
-## <a name="get-security-group-view-for-virtual-machine"></a><span data-ttu-id="447aa-125">A virtuális gép biztonsági csoport nézet beolvasása</span><span class="sxs-lookup"><span data-stu-id="447aa-125">Get security group view for virtual machine</span></span>
+## <a name="get-security-group-view-for-virtual-machine"></a><span data-ttu-id="51c45-125">A virtuális gép biztonsági csoport nézet beolvasása</span><span class="sxs-lookup"><span data-stu-id="51c45-125">Get security group view for virtual machine</span></span>
 
-<span data-ttu-id="447aa-126">Az alábbi példa kéri a biztonsági csoport Nézet megcélzott virtuális gép.</span><span class="sxs-lookup"><span data-stu-id="447aa-126">The following example requests the security group view of a targeted virtual machine.</span></span> <span data-ttu-id="447aa-127">Ebben a példában eredményeinek összehasonlítására, a szabályok és a konfigurációs eltéréseket kereséséhez eredetének által meghatározott biztonsági használható.</span><span class="sxs-lookup"><span data-stu-id="447aa-127">The results from this example can be used to compare to the rules and security defined by the origination to look for configuration drift.</span></span>
+<span data-ttu-id="51c45-126">a következő példa hello kérelmek hello biztonsági csoport Nézet megcélzott virtuális gép.</span><span class="sxs-lookup"><span data-stu-id="51c45-126">hello following example requests hello security group view of a targeted virtual machine.</span></span> <span data-ttu-id="51c45-127">Ebben a példában hello eredményeinek használt toocompare toohello szabályok és a konfigurációs eltéréseket hello eredetének toolook által meghatározott biztonsági lehet.</span><span class="sxs-lookup"><span data-stu-id="51c45-127">hello results from this example can be used toocompare toohello rules and security defined by hello origination toolook for configuration drift.</span></span>
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -109,9 +109,9 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/securityGroupView?api-version=2016-12-01" $requestBody -verbose
 ```
 
-## <a name="view-the-response"></a><span data-ttu-id="447aa-128">A válasz megtekintése</span><span class="sxs-lookup"><span data-stu-id="447aa-128">View the response</span></span>
+## <a name="view-hello-response"></a><span data-ttu-id="51c45-128">Hello válasz megtekintése</span><span class="sxs-lookup"><span data-stu-id="51c45-128">View hello response</span></span>
 
-<span data-ttu-id="447aa-129">A következő példa az előző parancs válasza.</span><span class="sxs-lookup"><span data-stu-id="447aa-129">The following sample is the response returned from the preceding command.</span></span> <span data-ttu-id="447aa-130">Az eredmények megjelenítése a hatékony és alkalmazott biztonsági szabályokat a virtuális gépen csoportok bontásban **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, és  **EffectiveSecurityRules**.</span><span class="sxs-lookup"><span data-stu-id="447aa-130">The results show all the effective and applied security rules on the virtual machine broken down in groups of **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, and **EffectiveSecurityRules**.</span></span>
+<span data-ttu-id="51c45-129">a következő minta hello parancs megelőző hello hello válasza.</span><span class="sxs-lookup"><span data-stu-id="51c45-129">hello following sample is hello response returned from hello preceding command.</span></span> <span data-ttu-id="51c45-130">hello eredményeket jelenít meg minden hello hatékony és alkalmazott biztonsági szabályokat csoportok bontásban hello virtuális gépen **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, és  **EffectiveSecurityRules**.</span><span class="sxs-lookup"><span data-stu-id="51c45-130">hello results show all hello effective and applied security rules on hello virtual machine broken down in groups of **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, and **EffectiveSecurityRules**.</span></span>
 
 ```json
 
@@ -179,8 +179,8 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="447aa-131">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="447aa-131">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="51c45-131">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="51c45-131">Next steps</span></span>
 
-<span data-ttu-id="447aa-132">Látogasson el [naplózás hálózati biztonsági csoportok (NSG) rendelkező hálózati figyelőt](network-watcher-security-group-view-powershell.md) megtudhatja, hogyan automatizálhatja a hálózati biztonsági csoportok érvényesítése.</span><span class="sxs-lookup"><span data-stu-id="447aa-132">Visit [Auditing Network Security Groups (NSG) with Network Watcher](network-watcher-security-group-view-powershell.md) to learn how to automate validation of Network Security Groups.</span></span>
+<span data-ttu-id="51c45-132">Látogasson el [naplózás hálózati biztonsági csoportok (NSG) rendelkező hálózati figyelőt](network-watcher-security-group-view-powershell.md) toolearn hogyan hálózati biztonsági csoportok tooautomate érvényesítése.</span><span class="sxs-lookup"><span data-stu-id="51c45-132">Visit [Auditing Network Security Groups (NSG) with Network Watcher](network-watcher-security-group-view-powershell.md) toolearn how tooautomate validation of Network Security Groups.</span></span>
 
 

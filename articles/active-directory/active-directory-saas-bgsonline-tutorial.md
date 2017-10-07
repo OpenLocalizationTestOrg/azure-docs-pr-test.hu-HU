@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directory-integráció a Háttérkép Online |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és a Háttérkép Online között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és a Háttérkép Online között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,212 +13,212 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/09/2017
 ms.author: jeedes
-ms.openlocfilehash: d1abd3f8e2980e03fc092613183a261880fbce38
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b728606ded7687d424a8175d0602b6b00f398497
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-bgs-online"></a><span data-ttu-id="f249b-103">Oktatóanyag: Azure Active Directory Online szolgáltatással való integráció Háttérkép</span><span class="sxs-lookup"><span data-stu-id="f249b-103">Tutorial: Azure Active Directory integration with BGS Online</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-bgs-online"></a><span data-ttu-id="acff0-103">Oktatóanyag: Azure Active Directory Online szolgáltatással való integráció Háttérkép</span><span class="sxs-lookup"><span data-stu-id="acff0-103">Tutorial: Azure Active Directory integration with BGS Online</span></span>
 
-<span data-ttu-id="f249b-104">Ebben az oktatóanyagban elsajátíthatja az Azure Active Directoryval (Azure AD) integrálása Háttérkép Online.</span><span class="sxs-lookup"><span data-stu-id="f249b-104">In this tutorial, you learn how to integrate BGS Online with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="acff0-104">Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Háttérkép kapcsolódik az Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="acff0-104">In this tutorial, you learn how toointegrate BGS Online with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="f249b-105">Az Azure ad szolgáltatással Háttérkép Online integrációja lehetővé teszi a következő előnyöket biztosítja:</span><span class="sxs-lookup"><span data-stu-id="f249b-105">Integrating BGS Online with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="acff0-105">Az Azure ad szolgáltatással Háttérkép Online integrációja lehetővé teszi a következő előnyöket hello:</span><span class="sxs-lookup"><span data-stu-id="acff0-105">Integrating BGS Online with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="f249b-106">Szabályozhatja, aki hozzáfér a Háttérkép Online Azure AD-ben</span><span class="sxs-lookup"><span data-stu-id="f249b-106">You can control in Azure AD who has access to BGS Online</span></span>
-- <span data-ttu-id="f249b-107">Az Azure AD-fiókok a engedélyezheti a felhasználóknak, hogy automatikusan lekérni bejelentkezett Háttérkép online (egyszeri bejelentkezés)</span><span class="sxs-lookup"><span data-stu-id="f249b-107">You can enable your users to automatically get signed-on to BGS Online (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="f249b-108">Kezelheti a fiókokat, egy központi helyen – az Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="f249b-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="acff0-106">Megadhatja a hozzáférés tooBGS Online rendelkező Azure AD-ben</span><span class="sxs-lookup"><span data-stu-id="acff0-106">You can control in Azure AD who has access tooBGS Online</span></span>
+- <span data-ttu-id="acff0-107">Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooBGS Online (egyszeri bejelentkezés) a saját Azure AD-fiókok</span><span class="sxs-lookup"><span data-stu-id="acff0-107">You can enable your users tooautomatically get signed-on tooBGS Online (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="acff0-108">Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="acff0-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="f249b-109">Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="f249b-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="acff0-109">Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="acff0-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="f249b-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="f249b-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="acff0-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="acff0-110">Prerequisites</span></span>
 
-<span data-ttu-id="f249b-111">Az Azure AD-integráció konfigurálása a Háttérkép Online, a következőkre van szükség:</span><span class="sxs-lookup"><span data-stu-id="f249b-111">To configure Azure AD integration with BGS Online, you need the following items:</span></span>
+<span data-ttu-id="acff0-111">tooconfigure az Azure AD Online szolgáltatással való integráció Háttérkép, a következő elemek hello kell:</span><span class="sxs-lookup"><span data-stu-id="acff0-111">tooconfigure Azure AD integration with BGS Online, you need hello following items:</span></span>
 
-- <span data-ttu-id="f249b-112">Az Azure AD szolgáltatásra</span><span class="sxs-lookup"><span data-stu-id="f249b-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="f249b-113">A Háttérkép Online egyszeri bejelentkezés engedélyezve van az előfizetésben</span><span class="sxs-lookup"><span data-stu-id="f249b-113">A BGS Online single-sign on enabled subscription</span></span>
+- <span data-ttu-id="acff0-112">Az Azure AD szolgáltatásra</span><span class="sxs-lookup"><span data-stu-id="acff0-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="acff0-113">A Háttérkép Online egyszeri bejelentkezés engedélyezve van az előfizetésben</span><span class="sxs-lookup"><span data-stu-id="acff0-113">A BGS Online single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="f249b-114">Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.</span><span class="sxs-lookup"><span data-stu-id="f249b-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="acff0-114">tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.</span><span class="sxs-lookup"><span data-stu-id="acff0-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="f249b-115">Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:</span><span class="sxs-lookup"><span data-stu-id="f249b-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="acff0-115">Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:</span><span class="sxs-lookup"><span data-stu-id="acff0-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="f249b-116">Ne használja az éles környezetben, nem szükséges.</span><span class="sxs-lookup"><span data-stu-id="f249b-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="f249b-117">Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="f249b-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="acff0-116">Ne használja az éles környezetben, nem szükséges.</span><span class="sxs-lookup"><span data-stu-id="acff0-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="acff0-117">Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="acff0-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="f249b-118">Forgatókönyv leírása</span><span class="sxs-lookup"><span data-stu-id="f249b-118">Scenario description</span></span>
-<span data-ttu-id="f249b-119">Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben.</span><span class="sxs-lookup"><span data-stu-id="f249b-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="f249b-120">Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:</span><span class="sxs-lookup"><span data-stu-id="f249b-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="acff0-118">Forgatókönyv leírása</span><span class="sxs-lookup"><span data-stu-id="acff0-118">Scenario description</span></span>
+<span data-ttu-id="acff0-119">Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben.</span><span class="sxs-lookup"><span data-stu-id="acff0-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="acff0-120">Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:</span><span class="sxs-lookup"><span data-stu-id="acff0-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="f249b-121">A gyűjteményből Háttérkép Online hozzáadása</span><span class="sxs-lookup"><span data-stu-id="f249b-121">Adding BGS Online from the gallery</span></span>
-2. <span data-ttu-id="f249b-122">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="f249b-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="acff0-121">Hello gyűjteményből Háttérkép Online hozzáadása</span><span class="sxs-lookup"><span data-stu-id="acff0-121">Adding BGS Online from hello gallery</span></span>
+2. <span data-ttu-id="acff0-122">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="acff0-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-bgs-online-from-the-gallery"></a><span data-ttu-id="f249b-123">A gyűjteményből Háttérkép Online hozzáadása</span><span class="sxs-lookup"><span data-stu-id="f249b-123">Adding BGS Online from the gallery</span></span>
-<span data-ttu-id="f249b-124">Az Azure AD integrálása a Háttérkép Online konfigurálásához kell hozzáadnia Háttérkép Online a gyűjteményből a felügyelt SaaS-alkalmazások listájára.</span><span class="sxs-lookup"><span data-stu-id="f249b-124">To configure the integration of BGS Online into Azure AD, you need to add BGS Online from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-bgs-online-from-hello-gallery"></a><span data-ttu-id="acff0-123">Hello gyűjteményből Háttérkép Online hozzáadása</span><span class="sxs-lookup"><span data-stu-id="acff0-123">Adding BGS Online from hello gallery</span></span>
+<span data-ttu-id="acff0-124">tooconfigure hello integrációs Háttérkép online az Azure AD-be, meg kell tooadd Háttérkép Online hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.</span><span class="sxs-lookup"><span data-stu-id="acff0-124">tooconfigure hello integration of BGS Online into Azure AD, you need tooadd BGS Online from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="f249b-125">**Adja hozzá a Háttérkép Online a gyűjteményből, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="f249b-125">**To add BGS Online from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="acff0-125">**hello gyűjteményből Online Háttérkép tooadd hajtsa végre a lépéseket követve hello:**</span><span class="sxs-lookup"><span data-stu-id="acff0-125">**tooadd BGS Online from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="f249b-126">Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="f249b-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="acff0-126">A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="acff0-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="f249b-128">Navigáljon a **vállalati alkalmazások**.</span><span class="sxs-lookup"><span data-stu-id="f249b-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="f249b-129">Ezután lépjen **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="f249b-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="acff0-128">Keresse meg a túl**vállalati alkalmazások**.</span><span class="sxs-lookup"><span data-stu-id="acff0-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="acff0-129">Keresse meg a túl**összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="acff0-129">Then go too**All applications**.</span></span>
 
     ![Alkalmazások][2]
     
-3. <span data-ttu-id="f249b-131">Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.</span><span class="sxs-lookup"><span data-stu-id="f249b-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="acff0-131">Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.</span><span class="sxs-lookup"><span data-stu-id="acff0-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Alkalmazások][3]
 
-4. <span data-ttu-id="f249b-133">Írja be a keresőmezőbe, **Háttérkép Online**.</span><span class="sxs-lookup"><span data-stu-id="f249b-133">In the search box, type **BGS Online**.</span></span>
+4. <span data-ttu-id="acff0-133">Hello keresési mezőbe, írja be a **Háttérkép Online**.</span><span class="sxs-lookup"><span data-stu-id="acff0-133">In hello search box, type **BGS Online**.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-bgsonline-tutorial/tutorial_bgsonline_search.png)
 
-5. <span data-ttu-id="f249b-135">Az eredmények panelen válassza ki a **Háttérkép Online**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="f249b-135">In the results panel, select **BGS Online**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="acff0-135">A hello eredmények panelen válassza ki a **Háttérkép Online**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.</span><span class="sxs-lookup"><span data-stu-id="acff0-135">In hello results panel, select **BGS Online**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-bgsonline-tutorial/tutorial_bgsonline_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="f249b-137">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="f249b-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="f249b-138">Ebben a szakaszban, tesztelése és konfigurálása az Azure AD egyszeri bejelentkezést a Háttérkép Online "Britta Simon." nevű tesztfelhasználó alapján</span><span class="sxs-lookup"><span data-stu-id="f249b-138">In this section, you configure and test Azure AD single sign-on with BGS Online based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="acff0-137">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="acff0-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="acff0-138">Ebben a szakaszban, tesztelése és konfigurálása az Azure AD egyszeri bejelentkezést a Háttérkép Online "Britta Simon." nevű tesztfelhasználó alapján</span><span class="sxs-lookup"><span data-stu-id="acff0-138">In this section, you configure and test Azure AD single sign-on with BGS Online based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="f249b-139">Az egyszeri bejelentkezés működéséhez az Azure AD tudnia kell, a partner felhasználó a Háttérkép Online Újdonságok egy felhasználó számára az Azure ad-ben.</span><span class="sxs-lookup"><span data-stu-id="f249b-139">For single sign-on to work, Azure AD needs to know what the counterpart user in BGS Online is to a user in Azure AD.</span></span> <span data-ttu-id="f249b-140">Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a Háttérkép Online közötti kapcsolat kapcsolatot kell létrehozni.</span><span class="sxs-lookup"><span data-stu-id="f249b-140">In other words, a link relationship between an Azure AD user and the related user in BGS Online needs to be established.</span></span>
+<span data-ttu-id="acff0-139">Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználói a Háttérkép Online tooa felhasználó az Azure ad-ben.</span><span class="sxs-lookup"><span data-stu-id="acff0-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in BGS Online is tooa user in Azure AD.</span></span> <span data-ttu-id="acff0-140">Ez azt jelenti hello kapcsolódó felhasználó a Háttérkép Online és az Azure AD-felhasználó közötti kapcsolat kapcsolatot kell létrehozni toobe.</span><span class="sxs-lookup"><span data-stu-id="acff0-140">In other words, a link relationship between an Azure AD user and hello related user in BGS Online needs toobe established.</span></span>
 
-<span data-ttu-id="f249b-141">A Háttérkép Online, rendelje az értékét a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.</span><span class="sxs-lookup"><span data-stu-id="f249b-141">In BGS Online, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="acff0-141">A Háttérkép Online rendelje hello hello értékét **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.</span><span class="sxs-lookup"><span data-stu-id="acff0-141">In BGS Online, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="f249b-142">Az Azure AD egyszeri bejelentkezést a Háttérkép Online tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:</span><span class="sxs-lookup"><span data-stu-id="f249b-142">To configure and test Azure AD single sign-on with BGS Online, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="acff0-142">tooconfigure és a Háttérkép Online az Azure AD az egyszeri bejelentkezés tesztelése, a következő építőelemeket toocomplete hello szüksége:</span><span class="sxs-lookup"><span data-stu-id="acff0-142">tooconfigure and test Azure AD single sign-on with BGS Online, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="f249b-143">**[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.</span><span class="sxs-lookup"><span data-stu-id="f249b-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="f249b-144">**[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.</span><span class="sxs-lookup"><span data-stu-id="f249b-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="f249b-145">**[Háttérkép Online tesztfelhasználó létrehozása](#creating-a-bgs-online-test-user)**  - való Britta Simon egy megfelelője a Háttérkép Online, amely csatolva van a felhasználó az Azure AD-ábrázolását.</span><span class="sxs-lookup"><span data-stu-id="f249b-145">**[Creating a BGS Online test user](#creating-a-bgs-online-test-user)** - to have a counterpart of Britta Simon in BGS Online that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="f249b-146">**[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="f249b-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="f249b-147">**[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.</span><span class="sxs-lookup"><span data-stu-id="f249b-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="acff0-143">**[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.</span><span class="sxs-lookup"><span data-stu-id="acff0-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="acff0-144">**[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="acff0-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="acff0-145">**[Háttérkép Online tesztfelhasználó létrehozása](#creating-a-bgs-online-test-user)**  -toohave egy megfelelője a Britta Simon Háttérkép Online felhasználói ábrázolása csatolt toohello az Azure AD-ban.</span><span class="sxs-lookup"><span data-stu-id="acff0-145">**[Creating a BGS Online test user](#creating-a-bgs-online-test-user)** - toohave a counterpart of Britta Simon in BGS Online that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="acff0-146">**[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.</span><span class="sxs-lookup"><span data-stu-id="acff0-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="acff0-147">**[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.</span><span class="sxs-lookup"><span data-stu-id="acff0-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="f249b-148">Az Azure AD az egyszeri bejelentkezés konfigurálása</span><span class="sxs-lookup"><span data-stu-id="f249b-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="acff0-148">Az Azure AD az egyszeri bejelentkezés konfigurálása</span><span class="sxs-lookup"><span data-stu-id="acff0-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="f249b-149">Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és a Háttérkép Online alkalmazás egyszeri bejelentkezés konfigurálása.</span><span class="sxs-lookup"><span data-stu-id="f249b-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your BGS Online application.</span></span>
+<span data-ttu-id="acff0-149">Ebben a szakaszban az Azure AD az egyszeri bejelentkezés az Azure-portálon hello engedélyezése és konfigurálása egyszeri bejelentkezéshez a Háttérkép Online alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="acff0-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your BGS Online application.</span></span>
 
-<span data-ttu-id="f249b-150">**Az Azure AD egyszeri bejelentkezést a Háttérkép Online megadásához hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="f249b-150">**To configure Azure AD single sign-on with BGS Online, perform the following steps:**</span></span>
+<span data-ttu-id="acff0-150">**az Azure AD tooconfigure egyszeri bejelentkezést a Háttérkép Online, hajtsa végre a lépéseket követve hello:**</span><span class="sxs-lookup"><span data-stu-id="acff0-150">**tooconfigure Azure AD single sign-on with BGS Online, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="f249b-151">Az Azure portálon a a **Háttérkép Online** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.</span><span class="sxs-lookup"><span data-stu-id="f249b-151">In the Azure portal, on the **BGS Online** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="acff0-151">Az Azure portál, a hello hello **Háttérkép Online** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.</span><span class="sxs-lookup"><span data-stu-id="acff0-151">In hello Azure portal, on hello **BGS Online** application integration page, click **Single sign-on**.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. <span data-ttu-id="f249b-153">Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="f249b-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="acff0-153">A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.</span><span class="sxs-lookup"><span data-stu-id="acff0-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-bgsonline-tutorial/tutorial_bgsonline_samlbase.png)
 
-3. <span data-ttu-id="f249b-155">Az a **Háttérkép Online tartomány és az URL-címek** területen tegye a következőket:</span><span class="sxs-lookup"><span data-stu-id="f249b-155">On the **BGS Online Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="acff0-155">A hello **Háttérkép Online tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:</span><span class="sxs-lookup"><span data-stu-id="acff0-155">On hello **BGS Online Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-bgsonline-tutorial/tutorial_bgsonline_url.png)
 
-    <span data-ttu-id="f249b-157">a.</span><span class="sxs-lookup"><span data-stu-id="f249b-157">a.</span></span> <span data-ttu-id="f249b-158">Az a **azonosító** szövegmező, adja meg a következő minta használatával URL-címe:</span><span class="sxs-lookup"><span data-stu-id="f249b-158">In the **Identifier** textbox, type a URL using the following pattern:</span></span>
+    <span data-ttu-id="acff0-157">a.</span><span class="sxs-lookup"><span data-stu-id="acff0-157">a.</span></span> <span data-ttu-id="acff0-158">A hello **azonosító** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:</span><span class="sxs-lookup"><span data-stu-id="acff0-158">In hello **Identifier** textbox, type a URL using hello following pattern:</span></span>
 
-    <span data-ttu-id="f249b-159">Az éles környezetben használja ezt a mintát`https://<company name>.millwardbrown.report`</span><span class="sxs-lookup"><span data-stu-id="f249b-159">For production environment, use this pattern `https://<company name>.millwardbrown.report`</span></span> 
+    <span data-ttu-id="acff0-159">Az éles környezetben használja ezt a mintát`https://<company name>.millwardbrown.report`</span><span class="sxs-lookup"><span data-stu-id="acff0-159">For production environment, use this pattern `https://<company name>.millwardbrown.report`</span></span> 
 
-    <span data-ttu-id="f249b-160">A tesztkörnyezetben használja ezt a mintát`https://millwardbrown.marketingtracker.nl/mt5/`</span><span class="sxs-lookup"><span data-stu-id="f249b-160">For test environment, use this pattern `https://millwardbrown.marketingtracker.nl/mt5/`</span></span>
+    <span data-ttu-id="acff0-160">A tesztkörnyezetben használja ezt a mintát`https://millwardbrown.marketingtracker.nl/mt5/`</span><span class="sxs-lookup"><span data-stu-id="acff0-160">For test environment, use this pattern `https://millwardbrown.marketingtracker.nl/mt5/`</span></span>
 
-    <span data-ttu-id="f249b-161">b.</span><span class="sxs-lookup"><span data-stu-id="f249b-161">b.</span></span> <span data-ttu-id="f249b-162">Az a **válasz URL-CÍMEN** szövegmező, adja meg a következő minta használatával URL-címe:</span><span class="sxs-lookup"><span data-stu-id="f249b-162">In the **Reply URL** textbox, type a URL using the following pattern:</span></span>
+    <span data-ttu-id="acff0-161">b.</span><span class="sxs-lookup"><span data-stu-id="acff0-161">b.</span></span> <span data-ttu-id="acff0-162">A hello **válasz URL-CÍMEN** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:</span><span class="sxs-lookup"><span data-stu-id="acff0-162">In hello **Reply URL** textbox, type a URL using hello following pattern:</span></span>
     
-    <span data-ttu-id="f249b-163">Az éles környezetben használja ezt a mintát`https://<company name>.millwardbrown.report/sso/saml/AssertionConsumerService.aspx`</span><span class="sxs-lookup"><span data-stu-id="f249b-163">For production environment, use this pattern `https://<company name>.millwardbrown.report/sso/saml/AssertionConsumerService.aspx`</span></span> 
+    <span data-ttu-id="acff0-163">Az éles környezetben használja ezt a mintát`https://<company name>.millwardbrown.report/sso/saml/AssertionConsumerService.aspx`</span><span class="sxs-lookup"><span data-stu-id="acff0-163">For production environment, use this pattern `https://<company name>.millwardbrown.report/sso/saml/AssertionConsumerService.aspx`</span></span> 
       
-    <span data-ttu-id="f249b-164">A tesztkörnyezetben használja ezt a mintát`https://millwardbrown.marketingtracker.nl/mt5/sso/saml/AssertionConsumerService.aspx`</span><span class="sxs-lookup"><span data-stu-id="f249b-164">For test environment, use this pattern `https://millwardbrown.marketingtracker.nl/mt5/sso/saml/AssertionConsumerService.aspx`</span></span>
+    <span data-ttu-id="acff0-164">A tesztkörnyezetben használja ezt a mintát`https://millwardbrown.marketingtracker.nl/mt5/sso/saml/AssertionConsumerService.aspx`</span><span class="sxs-lookup"><span data-stu-id="acff0-164">For test environment, use this pattern `https://millwardbrown.marketingtracker.nl/mt5/sso/saml/AssertionConsumerService.aspx`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="f249b-165">Ezek az értékek nincsenek valós.</span><span class="sxs-lookup"><span data-stu-id="f249b-165">These values are not real.</span></span> <span data-ttu-id="f249b-166">Frissítheti ezeket az értékeket a tényleges azonosítója és a válasz URL-CÍMEN.</span><span class="sxs-lookup"><span data-stu-id="f249b-166">Update these values with the actual Identifier and Reply URL.</span></span> <span data-ttu-id="f249b-167">Ügyfél [Háttérkép Online támogatási csoport](mailTo:bgsdashboardteam@millwardbrown.com) beolvasni ezeket az értékeket.</span><span class="sxs-lookup"><span data-stu-id="f249b-167">Contact [BGS Online support team](mailTo:bgsdashboardteam@millwardbrown.com) to get these values.</span></span>
+    > <span data-ttu-id="acff0-165">Ezek az értékek nincsenek valós.</span><span class="sxs-lookup"><span data-stu-id="acff0-165">These values are not real.</span></span> <span data-ttu-id="acff0-166">Frissítheti ezeket az értékeket hello tényleges azonosítója és a válasz URL-címmel.</span><span class="sxs-lookup"><span data-stu-id="acff0-166">Update these values with hello actual Identifier and Reply URL.</span></span> <span data-ttu-id="acff0-167">Ügyfél [Háttérkép Online támogatási csoport](mailTo:bgsdashboardteam@millwardbrown.com) tooget ezeket az értékeket.</span><span class="sxs-lookup"><span data-stu-id="acff0-167">Contact [BGS Online support team](mailTo:bgsdashboardteam@millwardbrown.com) tooget these values.</span></span>
  
 
-4. <span data-ttu-id="f249b-168">Az a **SAML-aláíró tanúsítványa** területen kattintson **metaadatainak XML-kódja** és mentse a metaadat-fájlt a számítógépen.</span><span class="sxs-lookup"><span data-stu-id="f249b-168">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+4. <span data-ttu-id="acff0-168">A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello metaadatait tartalmazó fájl a számítógépen.</span><span class="sxs-lookup"><span data-stu-id="acff0-168">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-bgsonline-tutorial/tutorial_bgsonline_certificate.png) 
 
-5. <span data-ttu-id="f249b-170">Kattintson a **mentése** gombra.</span><span class="sxs-lookup"><span data-stu-id="f249b-170">Click **Save** button.</span></span>
+5. <span data-ttu-id="acff0-170">Kattintson a **mentése** gombra.</span><span class="sxs-lookup"><span data-stu-id="acff0-170">Click **Save** button.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-bgsonline-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="f249b-172">A a **Háttérkép Online konfigurációs** kattintson **Háttérkép Online konfigurálása** megnyitásához **bejelentkezés konfigurálása** ablak.</span><span class="sxs-lookup"><span data-stu-id="f249b-172">On the **BGS Online Configuration** section, click **Configure BGS Online** to open **Configure sign-on** window.</span></span> <span data-ttu-id="f249b-173">Másolás a **SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**</span><span class="sxs-lookup"><span data-stu-id="f249b-173">Copy the **SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="acff0-172">A hello **Háttérkép Online konfigurációs** kattintson **Háttérkép Online konfigurálása** tooopen **bejelentkezés konfigurálása** ablak.</span><span class="sxs-lookup"><span data-stu-id="acff0-172">On hello **BGS Online Configuration** section, click **Configure BGS Online** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="acff0-173">Másolás hello **SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**</span><span class="sxs-lookup"><span data-stu-id="acff0-173">Copy hello **SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-bgsonline-tutorial/tutorial_bgsonline_configure.png) 
 
-7. <span data-ttu-id="f249b-175">Egyszeri bejelentkezés konfigurálása **Háttérkép Online** oldalon kell küldeniük a letöltött **metaadatainak XML-kódja** és **SAML-alapú egyszeri bejelentkezési URL-címe** való [Online Háttérkép támogatási csoport](mailto:bgsdashboardteam@millwardbrown.com).</span><span class="sxs-lookup"><span data-stu-id="f249b-175">To configure single sign-on on **BGS Online** side, you need to send the downloaded **Metadata XML** and **SAML Single Sign-On Service URL** to [BGS Online support team](mailto:bgsdashboardteam@millwardbrown.com).</span></span> 
+7. <span data-ttu-id="acff0-175">tooconfigure egyszeri bejelentkezést a **Háttérkép Online** oldalon kell letöltött toosend hello **metaadatainak XML-kódja** és **SAML-alapú egyszeri bejelentkezési URL-címe** túl[Háttérkép Online támogatási csoport](mailto:bgsdashboardteam@millwardbrown.com).</span><span class="sxs-lookup"><span data-stu-id="acff0-175">tooconfigure single sign-on on **BGS Online** side, you need toosend hello downloaded **Metadata XML** and **SAML Single Sign-On Service URL** too[BGS Online support team](mailto:bgsdashboardteam@millwardbrown.com).</span></span> 
 
 
 > [!TIP]
-> <span data-ttu-id="f249b-176">Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!</span><span class="sxs-lookup"><span data-stu-id="f249b-176">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="f249b-177">Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján.</span><span class="sxs-lookup"><span data-stu-id="f249b-177">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="f249b-178">További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="f249b-178">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="acff0-176">Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!</span><span class="sxs-lookup"><span data-stu-id="acff0-176">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="acff0-177">Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján.</span><span class="sxs-lookup"><span data-stu-id="acff0-177">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="acff0-178">További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="acff0-178">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="f249b-179">Az Azure AD tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="f249b-179">Creating an Azure AD test user</span></span>
-<span data-ttu-id="f249b-180">Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.</span><span class="sxs-lookup"><span data-stu-id="f249b-180">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="acff0-179">Az Azure AD tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="acff0-179">Creating an Azure AD test user</span></span>
+<span data-ttu-id="acff0-180">hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.</span><span class="sxs-lookup"><span data-stu-id="acff0-180">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-<span data-ttu-id="f249b-182">**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="f249b-182">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="acff0-182">**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**</span><span class="sxs-lookup"><span data-stu-id="acff0-182">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="f249b-183">Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="f249b-183">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="acff0-183">A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="acff0-183">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-bgsonline-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="f249b-185">Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.</span><span class="sxs-lookup"><span data-stu-id="f249b-185">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="acff0-185">toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.</span><span class="sxs-lookup"><span data-stu-id="acff0-185">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-bgsonline-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="f249b-187">Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.</span><span class="sxs-lookup"><span data-stu-id="f249b-187">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="acff0-187">tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="acff0-187">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-bgsonline-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="f249b-189">Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:</span><span class="sxs-lookup"><span data-stu-id="f249b-189">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="acff0-189">A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:</span><span class="sxs-lookup"><span data-stu-id="acff0-189">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-bgsonline-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="f249b-191">a.</span><span class="sxs-lookup"><span data-stu-id="f249b-191">a.</span></span> <span data-ttu-id="f249b-192">Az a **neve** szövegmezőhöz típus **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="f249b-192">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="acff0-191">a.</span><span class="sxs-lookup"><span data-stu-id="acff0-191">a.</span></span> <span data-ttu-id="acff0-192">A hello **neve** szövegmezőhöz típus **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="acff0-192">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="f249b-193">b.</span><span class="sxs-lookup"><span data-stu-id="f249b-193">b.</span></span> <span data-ttu-id="f249b-194">Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="f249b-194">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="acff0-193">b.</span><span class="sxs-lookup"><span data-stu-id="acff0-193">b.</span></span> <span data-ttu-id="acff0-194">A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="acff0-194">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="f249b-195">c.</span><span class="sxs-lookup"><span data-stu-id="f249b-195">c.</span></span> <span data-ttu-id="f249b-196">Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.</span><span class="sxs-lookup"><span data-stu-id="f249b-196">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="acff0-195">c.</span><span class="sxs-lookup"><span data-stu-id="acff0-195">c.</span></span> <span data-ttu-id="acff0-196">Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.</span><span class="sxs-lookup"><span data-stu-id="acff0-196">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="f249b-197">d.</span><span class="sxs-lookup"><span data-stu-id="f249b-197">d.</span></span> <span data-ttu-id="f249b-198">Kattintson a **Create** (Létrehozás) gombra.</span><span class="sxs-lookup"><span data-stu-id="f249b-198">Click **Create**.</span></span>
+    <span data-ttu-id="acff0-197">d.</span><span class="sxs-lookup"><span data-stu-id="acff0-197">d.</span></span> <span data-ttu-id="acff0-198">Kattintson a **Create** (Létrehozás) gombra.</span><span class="sxs-lookup"><span data-stu-id="acff0-198">Click **Create**.</span></span>
  
-### <a name="creating-a-bgs-online-test-user"></a><span data-ttu-id="f249b-199">Háttérkép Online tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="f249b-199">Creating a BGS Online test user</span></span>
+### <a name="creating-a-bgs-online-test-user"></a><span data-ttu-id="acff0-199">Háttérkép Online tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="acff0-199">Creating a BGS Online test user</span></span>
 
-<span data-ttu-id="f249b-200">Ebben a szakaszban a felhasználók, Háttérkép Online Britta Simon meghívta hoz létre.</span><span class="sxs-lookup"><span data-stu-id="f249b-200">In this section, you create a user called Britta Simon in BGS Online.</span></span> <span data-ttu-id="f249b-201">Együttműködve [Háttérkép Online támogatási csoport](mailto:bgsdashboardteam@millwardbrown.com) a felhasználók hozzáadása a Háttérkép Online platform.</span><span class="sxs-lookup"><span data-stu-id="f249b-201">Work with [BGS Online support team](mailto:bgsdashboardteam@millwardbrown.com) to add the users in the BGS Online platform.</span></span>
+<span data-ttu-id="acff0-200">Ebben a szakaszban a felhasználók, Háttérkép Online Britta Simon meghívta hoz létre.</span><span class="sxs-lookup"><span data-stu-id="acff0-200">In this section, you create a user called Britta Simon in BGS Online.</span></span> <span data-ttu-id="acff0-201">Együttműködve [Háttérkép Online támogatási csoport](mailto:bgsdashboardteam@millwardbrown.com) tooadd hello felhasználók, Háttérkép Online hello platform.</span><span class="sxs-lookup"><span data-stu-id="acff0-201">Work with [BGS Online support team](mailto:bgsdashboardteam@millwardbrown.com) tooadd hello users in hello BGS Online platform.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="f249b-202">Az Azure AD-teszt felhasználó hozzárendelése</span><span class="sxs-lookup"><span data-stu-id="f249b-202">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="acff0-202">Az Azure AD hello tesztfelhasználó hozzárendelése</span><span class="sxs-lookup"><span data-stu-id="acff0-202">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="f249b-203">Ebben a szakaszban engedélyezze Britta Simon Azure egyszeri bejelentkezéshez használandó Háttérkép online-hoz való hozzáférés biztosítása.</span><span class="sxs-lookup"><span data-stu-id="f249b-203">In this section, you enable Britta Simon to use Azure single sign-on by granting access to BGS Online.</span></span>
+<span data-ttu-id="acff0-203">Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés Online hozzáférés tooBGS megadásával engedélyeznie.</span><span class="sxs-lookup"><span data-stu-id="acff0-203">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooBGS Online.</span></span>
 
 ![Felhasználó hozzárendelése][200] 
 
-<span data-ttu-id="f249b-205">**A Háttérkép Online Britta Simon hozzárendeléséhez a következő lépésekkel:**</span><span class="sxs-lookup"><span data-stu-id="f249b-205">**To assign Britta Simon to BGS Online, perform the following steps:**</span></span>
+<span data-ttu-id="acff0-205">**tooassign Britta Simon tooBGS Online, hajtsa végre a következő lépéseket hello:**</span><span class="sxs-lookup"><span data-stu-id="acff0-205">**tooassign Britta Simon tooBGS Online, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="f249b-206">Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="f249b-206">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="acff0-206">A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="acff0-206">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Felhasználó hozzárendelése][201] 
 
-2. <span data-ttu-id="f249b-208">Az alkalmazások listában válassza ki a **Háttérkép Online**.</span><span class="sxs-lookup"><span data-stu-id="f249b-208">In the applications list, select **BGS Online**.</span></span>
+2. <span data-ttu-id="acff0-208">Hello alkalmazások listában válassza ki a **Háttérkép Online**.</span><span class="sxs-lookup"><span data-stu-id="acff0-208">In hello applications list, select **BGS Online**.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-bgsonline-tutorial/tutorial_bgsonline_app.png) 
 
-3. <span data-ttu-id="f249b-210">A bal oldali menüben kattintson a **felhasználók és csoportok**.</span><span class="sxs-lookup"><span data-stu-id="f249b-210">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="acff0-210">Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.</span><span class="sxs-lookup"><span data-stu-id="acff0-210">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Felhasználó hozzárendelése][202] 
 
-4. <span data-ttu-id="f249b-212">Kattintson a **Hozzáadás** gombra.</span><span class="sxs-lookup"><span data-stu-id="f249b-212">Click **Add** button.</span></span> <span data-ttu-id="f249b-213">Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="f249b-213">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="acff0-212">Kattintson a **Hozzáadás** gombra.</span><span class="sxs-lookup"><span data-stu-id="acff0-212">Click **Add** button.</span></span> <span data-ttu-id="acff0-213">Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="acff0-213">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Felhasználó hozzárendelése][203]
 
-5. <span data-ttu-id="f249b-215">A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.</span><span class="sxs-lookup"><span data-stu-id="f249b-215">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="acff0-215">A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.</span><span class="sxs-lookup"><span data-stu-id="acff0-215">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="f249b-216">Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="f249b-216">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="acff0-216">Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="acff0-216">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="f249b-217">Kattintson a **hozzárendelése** gombra **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="f249b-217">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="acff0-217">Kattintson a **hozzárendelése** gombra **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="acff0-217">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="f249b-218">Egyszeri bejelentkezés tesztelése</span><span class="sxs-lookup"><span data-stu-id="f249b-218">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="acff0-218">Egyszeri bejelentkezés tesztelése</span><span class="sxs-lookup"><span data-stu-id="acff0-218">Testing single sign-on</span></span>
 
-<span data-ttu-id="f249b-219">Ebben a szakaszban a Azure AD SSO konfigurációját, a hozzáférési Panel segítségével tesztelheti.</span><span class="sxs-lookup"><span data-stu-id="f249b-219">In this section, you test your Azure AD SSO configuration using the Access Panel.</span></span>
+<span data-ttu-id="acff0-219">Ebben a szakaszban tesztelése az Azure AD SSO konfigurációs hello hozzáférési Panel használatával.</span><span class="sxs-lookup"><span data-stu-id="acff0-219">In this section, you test your Azure AD SSO configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="f249b-220">Ha a hozzáférési panelen a Háttérkép Online csempére kattint, akkor kell beolvasása automatikusan bejelentkezett a Háttérkép Online alkalmazáshoz.</span><span class="sxs-lookup"><span data-stu-id="f249b-220">When you click the BGS Online tile in the Access Panel, you should get automatically signed-on to your BGS Online application.</span></span>
+<span data-ttu-id="acff0-220">Hello Háttérkép Online csempe a hozzáférési Panel hello kattintáskor automatikusan bejelentkezett tooyour Háttérkép Online alkalmazás kapja meg.</span><span class="sxs-lookup"><span data-stu-id="acff0-220">When you click hello BGS Online tile in hello Access Panel, you should get automatically signed-on tooyour BGS Online application.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="f249b-221">További források</span><span class="sxs-lookup"><span data-stu-id="f249b-221">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="acff0-221">További források</span><span class="sxs-lookup"><span data-stu-id="acff0-221">Additional resources</span></span>
 
-* [<span data-ttu-id="f249b-222">Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása</span><span class="sxs-lookup"><span data-stu-id="f249b-222">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="f249b-223">Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?</span><span class="sxs-lookup"><span data-stu-id="f249b-223">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="acff0-222">Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval</span><span class="sxs-lookup"><span data-stu-id="acff0-222">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="acff0-223">Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?</span><span class="sxs-lookup"><span data-stu-id="acff0-223">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

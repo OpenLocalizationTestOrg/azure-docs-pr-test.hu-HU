@@ -7,7 +7,7 @@
 ## [Az első logikai alkalmazás létrehozása](logic-apps-create-a-logic-app.md)
 ## [Sablonok logikai alkalmazásokhoz](logic-apps-use-logic-app-templates.md)
 ## [Logikai alkalmazások létrehozása sablonból](logic-apps-arm-provision.md)
-## [MABS-alkalmazások áthelyezése a logikai alkalmazásokhoz](logic-apps-move-from-mabs.md)
+## [Helyezze át a MABS alkalmazások toologic alkalmazások](logic-apps-move-from-mabs.md)
 
 # Útmutató
 ## Felépítés
@@ -46,7 +46,7 @@
 ### [EDIFACT vállalati integrációja](logic-apps-enterprise-integration-edifact.md)
 ### [EDIFACT-kódolás](logic-apps-enterprise-integration-edifact-encode.md)
 ### [EDIFACT-dekódolás](logic-apps-enterprise-integration-edifact-decode.md)
-### [UNH2.5-szegmenst tartalmazó EDIFACT-dokumentumok kezelése](logic-apps-enterprise-integration-edifact_inputfile_unh2.5.md)
+### [Hogyan toohandle EDIFACT dokumentumokat, hogy UNH2.5 szegmens](logic-apps-enterprise-integration-edifact_inputfile_unh2.5.md)
 ### [X12 vállalati integrációja](logic-apps-enterprise-integration-x12.md)
 ### [X12-kódolás](logic-apps-enterprise-integration-x12-encode.md)
 ### [X12-dekódolás](logic-apps-enterprise-integration-x12-decode.md)
@@ -54,7 +54,7 @@
 ### [Hibák és megoldások](logic-apps-enterprise-integration-b2b-list-errors-solutions.md)
 
 ## Helyszíni adatok elérése
-### [Csatlakozás helyszíni adatokhoz](logic-apps-gateway-connection.md)
+### [Csatlakozás tooon helyszíni adatokhoz](logic-apps-gateway-connection.md)
 ### [Adatátjáró telepítése](logic-apps-gateway-install.md)
 
 ## Automatizálás és üzembe helyezés

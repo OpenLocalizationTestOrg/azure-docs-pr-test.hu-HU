@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure IoT Hub kezelés (Java) |} Microsoft Docs"
-description: "Hogyan használható az Azure IoT Hub kezelés távoli eszköz újraindítás kezdeményezése. Az Azure IoT-eszközök SDK Java segítségével valósítja meg a szimulált eszköz alkalmazást, amely közvetlen módszer és az Azure IoT szolgáltatást megvalósítása, amely a közvetlen módszer hívja service-alkalmazást Java SDK tartalmazza."
+title: "aaaGet Azure IoT Hub kezelés (Java) használatába |} Microsoft Docs"
+description: "Hogyan toouse Azure IoT Hub eszköz felügyeleti tooinitiate egy távoli eszköz újraindul. A szimulált eszköz alkalmazást, amely magában foglalja a közvetlen módszer és hello Azure IoT szolgáltatás SDK Java tooimplement, amely hello közvetlen metódust hívja service-alkalmazást Java tooimplement hello Azure IoT-eszközök SDK használ."
 services: iot-hub
 documentationcenter: .java
 author: dominicbetts
@@ -13,69 +13,69 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: c75635f366f5ced4bf91792d1a905dd6aab8ed79
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7aaeda9d4ff7002e5c66adfd61e2dfd5bcea964f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-device-management-java"></a><span data-ttu-id="526f3-104">Eszközkezelés (Java) az első lépései</span><span class="sxs-lookup"><span data-stu-id="526f3-104">Get started with device management (Java)</span></span>
+# <a name="get-started-with-device-management-java"></a><span data-ttu-id="7c1ec-104">Eszközkezelés (Java) az első lépései</span><span class="sxs-lookup"><span data-stu-id="7c1ec-104">Get started with device management (Java)</span></span>
 
 [!INCLUDE [iot-hub-selector-dm-getstarted](../../includes/iot-hub-selector-dm-getstarted.md)]
 
-<span data-ttu-id="526f3-105">Ez az oktatóanyag a következőket mutatja be:</span><span class="sxs-lookup"><span data-stu-id="526f3-105">This tutorial shows you how to:</span></span>
+<span data-ttu-id="7c1ec-105">Ez az oktatóanyag a következőket mutatja be:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-105">This tutorial shows you how to:</span></span>
 
-* <span data-ttu-id="526f3-106">Az Azure-portál használatával létrehoz egy IoT-központot, és az IoT hub hozzon létre egy eszközidentitás.</span><span class="sxs-lookup"><span data-stu-id="526f3-106">Use the Azure portal to create an IoT Hub and create a device identity in your IoT hub.</span></span>
-* <span data-ttu-id="526f3-107">Létrehoz egy szimulált eszköz alkalmazást, amely az eszköz újraindítását közvetlen módszer.</span><span class="sxs-lookup"><span data-stu-id="526f3-107">Create a simulated device app that implements a direct method to reboot the device.</span></span> <span data-ttu-id="526f3-108">Közvetlen módszerek a felhőből hívják.</span><span class="sxs-lookup"><span data-stu-id="526f3-108">Direct methods are invoked from the cloud.</span></span>
-* <span data-ttu-id="526f3-109">Hozzon létre egy alkalmazást, amely a szimulált eszköz alkalmazásának keresztül az IoT hub újraindítás közvetlen metódust hívja.</span><span class="sxs-lookup"><span data-stu-id="526f3-109">Create an app that invokes the reboot direct method in the simulated device app through your IoT hub.</span></span> <span data-ttu-id="526f3-110">Ezt az alkalmazást az eszközről, tekintse meg az újraindítás művelet befejezésekor jelentett tulajdonságok figyeli.</span><span class="sxs-lookup"><span data-stu-id="526f3-110">This app then monitors the reported properties from the device to see when the reboot operation is complete.</span></span>
+* <span data-ttu-id="7c1ec-106">Az Azure portál toocreate az IoT-központ hello használata, és az IoT hub hozzon létre egy eszközidentitás.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-106">Use hello Azure portal toocreate an IoT Hub and create a device identity in your IoT hub.</span></span>
+* <span data-ttu-id="7c1ec-107">Létrehoz egy szimulált eszköz alkalmazást, amely megvalósítja a közvetlen módszer tooreboot hello eszköz.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-107">Create a simulated device app that implements a direct method tooreboot hello device.</span></span> <span data-ttu-id="7c1ec-108">Közvetlen módszerek hello felhőből hívják.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-108">Direct methods are invoked from hello cloud.</span></span>
+* <span data-ttu-id="7c1ec-109">Hozzon létre egy alkalmazást, amely hívja meg hello újraindítás közvetlen módszer az IoT hub keresztül hello szimulált eszköz alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-109">Create an app that invokes hello reboot direct method in hello simulated device app through your IoT hub.</span></span> <span data-ttu-id="7c1ec-110">Ez app majd figyelők hello hello eszköz toosee jelentett tulajdonságait, ha hello újraindítás művelete befejeződött.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-110">This app then monitors hello reported properties from hello device toosee when hello reboot operation is complete.</span></span>
 
-<span data-ttu-id="526f3-111">Ez az oktatóanyag végén két Java konzol alkalmazások közül választhat:</span><span class="sxs-lookup"><span data-stu-id="526f3-111">At the end of this tutorial, you have two Java console apps:</span></span>
+<span data-ttu-id="7c1ec-111">Ez az oktatóanyag végén hello két Java konzol alkalmazások közül választhat:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-111">At hello end of this tutorial, you have two Java console apps:</span></span>
 
-<span data-ttu-id="526f3-112">**Szimulált eszköz**.</span><span class="sxs-lookup"><span data-stu-id="526f3-112">**simulated-device**.</span></span> <span data-ttu-id="526f3-113">Ezt az alkalmazást:</span><span class="sxs-lookup"><span data-stu-id="526f3-113">This app:</span></span>
+<span data-ttu-id="7c1ec-112">**Szimulált eszköz**.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-112">**simulated-device**.</span></span> <span data-ttu-id="7c1ec-113">Ezt az alkalmazást:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-113">This app:</span></span>
 
-* <span data-ttu-id="526f3-114">Az IoT hub csatlakozik a korábban létrehozott eszközidentitás.</span><span class="sxs-lookup"><span data-stu-id="526f3-114">Connects to your IoT hub with the device identity created earlier.</span></span>
-* <span data-ttu-id="526f3-115">Újraindítás közvetlen módszer hívást kap.</span><span class="sxs-lookup"><span data-stu-id="526f3-115">Receives a reboot direct method call.</span></span>
-* <span data-ttu-id="526f3-116">A fizikai számítógép újraindítása szimulálja.</span><span class="sxs-lookup"><span data-stu-id="526f3-116">Simulates a physical reboot.</span></span>
-* <span data-ttu-id="526f3-117">A jelentés az utolsó újraindítás jelentett tulajdonságon keresztül idején.</span><span class="sxs-lookup"><span data-stu-id="526f3-117">Reports the time of the last reboot through a reported property.</span></span>
+* <span data-ttu-id="7c1ec-114">A korábban létrehozott hello eszközidentitás tooyour IoT-központ kapcsolódik.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-114">Connects tooyour IoT hub with hello device identity created earlier.</span></span>
+* <span data-ttu-id="7c1ec-115">Újraindítás közvetlen módszer hívást kap.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-115">Receives a reboot direct method call.</span></span>
+* <span data-ttu-id="7c1ec-116">A fizikai számítógép újraindítása szimulálja.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-116">Simulates a physical reboot.</span></span>
+* <span data-ttu-id="7c1ec-117">Jelentések hello idő az utolsó újraindítás hello jelentett tulajdonságon keresztül.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-117">Reports hello time of hello last reboot through a reported property.</span></span>
 
-<span data-ttu-id="526f3-118">**eseményindító-újraindítás**.</span><span class="sxs-lookup"><span data-stu-id="526f3-118">**trigger-reboot**.</span></span> <span data-ttu-id="526f3-119">Ezt az alkalmazást:</span><span class="sxs-lookup"><span data-stu-id="526f3-119">This app:</span></span>
+<span data-ttu-id="7c1ec-118">**eseményindító-újraindítás**.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-118">**trigger-reboot**.</span></span> <span data-ttu-id="7c1ec-119">Ezt az alkalmazást:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-119">This app:</span></span>
 
-* <span data-ttu-id="526f3-120">A közvetlen módszer meghívja a szimulált eszköz alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="526f3-120">Calls a direct method in the simulated device app.</span></span>
-* <span data-ttu-id="526f3-121">Megjeleníti a közvetlen módszer hívásához a szimulált eszköz által küldött válasz</span><span class="sxs-lookup"><span data-stu-id="526f3-121">Displays the response to the direct method call sent by the simulated device</span></span>
-* <span data-ttu-id="526f3-122">Megjeleníti a módosított tulajdonságok jelentett.</span><span class="sxs-lookup"><span data-stu-id="526f3-122">Displays the updated reported properties.</span></span>
+* <span data-ttu-id="7c1ec-120">Meghívja a közvetlen módszer hello szimulált eszköz alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-120">Calls a direct method in hello simulated device app.</span></span>
+* <span data-ttu-id="7c1ec-121">Hello válasz toohello közvetlen metódus hívása hello szimulált eszköz által küldött jeleníti meg</span><span class="sxs-lookup"><span data-stu-id="7c1ec-121">Displays hello response toohello direct method call sent by hello simulated device</span></span>
+* <span data-ttu-id="7c1ec-122">Frissített megjeleníti hello jelentett tulajdonságok.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-122">Displays hello updated reported properties.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="526f3-123">Az SDK-k használó alkalmazások futtatásához eszközökön és a megoldás háttérrendszeréhez kapcsolatos információkért lásd: [Azure IoT SDK-k][lnk-hub-sdks].</span><span class="sxs-lookup"><span data-stu-id="526f3-123">For information about the SDKs that you can use to build applications to run on devices and your solution back end, see [Azure IoT SDKs][lnk-hub-sdks].</span></span>
+> <span data-ttu-id="7c1ec-123">Használható toobuild alkalmazások toorun eszközökön és a megoldás háttérrendszeréhez hello SDK-kkal kapcsolatos információk: [Azure IoT SDK-k][lnk-hub-sdks].</span><span class="sxs-lookup"><span data-stu-id="7c1ec-123">For information about hello SDKs that you can use toobuild applications toorun on devices and your solution back end, see [Azure IoT SDKs][lnk-hub-sdks].</span></span>
 
-<span data-ttu-id="526f3-124">Az oktatóanyag elvégzéséhez a következőkre lesz szüksége:</span><span class="sxs-lookup"><span data-stu-id="526f3-124">To complete this tutorial, you need:</span></span>
+<span data-ttu-id="7c1ec-124">toocomplete ebben az oktatóanyagban szüksége:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-124">toocomplete this tutorial, you need:</span></span>
 
-* <span data-ttu-id="526f3-125">Java SE 8.</span><span class="sxs-lookup"><span data-stu-id="526f3-125">Java SE 8.</span></span> <br/> <span data-ttu-id="526f3-126">[A fejlesztési környezet előkészítését][lnk-dev-setup] ismertető cikk leírja, hogyan telepítheti a Javát ehhez az oktatóanyaghoz Windows vagy Linux rendszeren.</span><span class="sxs-lookup"><span data-stu-id="526f3-126">[Prepare your development environment][lnk-dev-setup] describes how to install Java for this tutorial on either Windows or Linux.</span></span>
-* <span data-ttu-id="526f3-127">Maven 3</span><span class="sxs-lookup"><span data-stu-id="526f3-127">Maven 3.</span></span>  <br/> <span data-ttu-id="526f3-128">[A fejlesztési környezet előkészítését][lnk-dev-setup] ismertető cikk leírja, hogyan telepítheti a [Mavent][lnk-maven] ehhez az oktatóanyaghoz Windows vagy Linux rendszeren.</span><span class="sxs-lookup"><span data-stu-id="526f3-128">[Prepare your development environment][lnk-dev-setup] describes how to install [Maven][lnk-maven] for this tutorial on either Windows or Linux.</span></span>
-* <span data-ttu-id="526f3-129">[NODE.js-verzió 0.10.0-s vagy újabb](http://nodejs.org).</span><span class="sxs-lookup"><span data-stu-id="526f3-129">[Node.js version 0.10.0 or later](http://nodejs.org).</span></span>
+* <span data-ttu-id="7c1ec-125">Java SE 8.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-125">Java SE 8.</span></span> <br/> <span data-ttu-id="7c1ec-126">[A fejlesztőkörnyezet előkészítése] [ lnk-dev-setup] ismerteti, hogyan tooinstall Java ebben az oktatóanyagban a Windows vagy Linux.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-126">[Prepare your development environment][lnk-dev-setup] describes how tooinstall Java for this tutorial on either Windows or Linux.</span></span>
+* <span data-ttu-id="7c1ec-127">Maven 3</span><span class="sxs-lookup"><span data-stu-id="7c1ec-127">Maven 3.</span></span>  <br/> <span data-ttu-id="7c1ec-128">[A fejlesztőkörnyezet előkészítése] [ lnk-dev-setup] ismerteti, hogyan tooinstall [Maven] [ lnk-maven] ebben az oktatóanyagban a Windows vagy Linux.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-128">[Prepare your development environment][lnk-dev-setup] describes how tooinstall [Maven][lnk-maven] for this tutorial on either Windows or Linux.</span></span>
+* <span data-ttu-id="7c1ec-129">[NODE.js-verzió 0.10.0-s vagy újabb](http://nodejs.org).</span><span class="sxs-lookup"><span data-stu-id="7c1ec-129">[Node.js version 0.10.0 or later](http://nodejs.org).</span></span>
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="trigger-a-remote-reboot-on-the-device-using-a-direct-method"></a><span data-ttu-id="526f3-130">Az eszközön, a közvetlen módszer használatával távoli újraindítás eseményindító</span><span class="sxs-lookup"><span data-stu-id="526f3-130">Trigger a remote reboot on the device using a direct method</span></span>
+## <a name="trigger-a-remote-reboot-on-hello-device-using-a-direct-method"></a><span data-ttu-id="7c1ec-130">Eseményindító közvetlen metódussal hello eszközön távoli újraindítás</span><span class="sxs-lookup"><span data-stu-id="7c1ec-130">Trigger a remote reboot on hello device using a direct method</span></span>
 
-<span data-ttu-id="526f3-131">Ebben a szakaszban hoz létre egy Java-Konzolalkalmazás, amely:</span><span class="sxs-lookup"><span data-stu-id="526f3-131">In this section, you create a Java console app that:</span></span>
+<span data-ttu-id="7c1ec-131">Ebben a szakaszban hoz létre egy Java-Konzolalkalmazás, amely:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-131">In this section, you create a Java console app that:</span></span>
 
-1. <span data-ttu-id="526f3-132">Meghívja a szimulált eszköz alkalmazásának újraindítás közvetlen metódust.</span><span class="sxs-lookup"><span data-stu-id="526f3-132">Invokes the reboot direct method in the simulated device app.</span></span>
-1. <span data-ttu-id="526f3-133">A válasz megjeleníti.</span><span class="sxs-lookup"><span data-stu-id="526f3-133">Displays the response.</span></span>
-1. <span data-ttu-id="526f3-134">Szavazások a jelentésben szereplő tulajdonságok az eszköz számára küldött határozza meg, ha az újraindítás befejeződött.</span><span class="sxs-lookup"><span data-stu-id="526f3-134">Polls the reported properties sent from the device to determine when the reboot is complete.</span></span>
+1. <span data-ttu-id="7c1ec-132">Meghívja a hello újraindítás közvetlen módszer hello szimulált eszköz alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-132">Invokes hello reboot direct method in hello simulated device app.</span></span>
+1. <span data-ttu-id="7c1ec-133">Hello válasz jeleníti meg.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-133">Displays hello response.</span></span>
+1. <span data-ttu-id="7c1ec-134">Szavazások hello tulajdonságok hello eszköz toodetermine küldött hello újraindítás befejezésekor jelentett.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-134">Polls hello reported properties sent from hello device toodetermine when hello reboot is complete.</span></span>
 
-<span data-ttu-id="526f3-135">A Konzolalkalmazás csatlakozik az IoT Hub meghívni a közvetlen metódust, és a jelentett tulajdonságainak olvasása.</span><span class="sxs-lookup"><span data-stu-id="526f3-135">This console app connects to your IoT Hub to invoke the direct method and read the reported properties.</span></span>
+<span data-ttu-id="7c1ec-135">A Konzolalkalmazás csatlakozik az IoT-központ tooyour tooinvoke hello közvetlen módszer és olvasási hello jelentett tulajdonságait.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-135">This console app connects tooyour IoT Hub tooinvoke hello direct method and read hello reported properties.</span></span>
 
-1. <span data-ttu-id="526f3-136">Hozzon létre egy üres nevű dm-get-started.</span><span class="sxs-lookup"><span data-stu-id="526f3-136">Create an empty folder called dm-get-started.</span></span>
+1. <span data-ttu-id="7c1ec-136">Hozzon létre egy üres nevű dm-get-started.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-136">Create an empty folder called dm-get-started.</span></span>
 
-1. <span data-ttu-id="526f3-137">A dm-get-started mappában hozzon létre egy Maven project nevű **eseményindító-újraindítás** parancsot a parancssorba az alábbi parancs segítségével.</span><span class="sxs-lookup"><span data-stu-id="526f3-137">In the dm-get-started folder, create a Maven project called **trigger-reboot** using the following command at your command prompt.</span></span> <span data-ttu-id="526f3-138">Az alábbiakban látható egy egyetlen, hosszú parancsot:</span><span class="sxs-lookup"><span data-stu-id="526f3-138">The following shows a single, long command:</span></span>
+1. <span data-ttu-id="7c1ec-137">A dm-get-started hello mappában nevű Maven-projekt létrehozása **eseményindító-újraindítás** a következő parancsot a parancssorba hello segítségével.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-137">In hello dm-get-started folder, create a Maven project called **trigger-reboot** using hello following command at your command prompt.</span></span> <span data-ttu-id="7c1ec-138">hello következő egyetlen, hosszú parancs jeleníti meg:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-138">hello following shows a single, long command:</span></span>
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=trigger-reboot -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. <span data-ttu-id="526f3-139">A parancssorban keresse meg az eseményindító-újraindítás mappát.</span><span class="sxs-lookup"><span data-stu-id="526f3-139">At your command prompt, navigate to the trigger-reboot folder.</span></span>
+1. <span data-ttu-id="7c1ec-139">A parancssorban keresse meg a toohello eseményindító-újraindítás mappa.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-139">At your command prompt, navigate toohello trigger-reboot folder.</span></span>
 
-1. <span data-ttu-id="526f3-140">Egy szövegszerkesztővel nyissa meg a pom.xml fájlt az eseményindító-újraindítás mappában, és adja hozzá a következő függőség a **függőségek** csomópont.</span><span class="sxs-lookup"><span data-stu-id="526f3-140">Using a text editor, open the pom.xml file in the trigger-reboot folder and add the following dependency to the **dependencies** node.</span></span> <span data-ttu-id="526f3-141">A függőség lehetővé teszi, hogy az iot-szolgáltatás-ügyfélcsomag az alkalmazás kommunikáljon az IoT hub:</span><span class="sxs-lookup"><span data-stu-id="526f3-141">This dependency enables you to use the iot-service-client package in your app to communicate with your IoT hub:</span></span>
+1. <span data-ttu-id="7c1ec-140">Egy szövegszerkesztőben nyissa hello pom.xml fájlt hello eseményindító-újraindítás mappában, és adja hozzá a következő függőségi toohello hello **függőségek** csomópont.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-140">Using a text editor, open hello pom.xml file in hello trigger-reboot folder and add hello following dependency toohello **dependencies** node.</span></span> <span data-ttu-id="7c1ec-141">A függőség lehetővé teszi, hogy Ön toouse hello iot-szolgáltatás-ügyfélcsomagját a app toocommunicate az IoT hubbal:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-141">This dependency enables you toouse hello iot-service-client package in your app toocommunicate with your IoT hub:</span></span>
 
     ```xml
     <dependency>
@@ -87,9 +87,9 @@ ms.lasthandoff: 08/18/2017
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="526f3-142">Az **iot-service-client** legújabb verzióját a [Maven keresési funkciójával][lnk-maven-service-search] tekintheti meg.</span><span class="sxs-lookup"><span data-stu-id="526f3-142">You can check for the latest version of **iot-service-client** using [Maven search][lnk-maven-service-search].</span></span>
+    > <span data-ttu-id="7c1ec-142">Ellenőrizze, hogy hello legújabb verziójának **iot-szolgáltatásügyfél** használatával [Maven keresési][lnk-maven-service-search].</span><span class="sxs-lookup"><span data-stu-id="7c1ec-142">You can check for hello latest version of **iot-service-client** using [Maven search][lnk-maven-service-search].</span></span>
 
-1. <span data-ttu-id="526f3-143">Adja hozzá a következő **build** csomópont után a **függőségek** csomópont.</span><span class="sxs-lookup"><span data-stu-id="526f3-143">Add the following **build** node after the **dependencies** node.</span></span> <span data-ttu-id="526f3-144">Ez a konfiguráció arra utasítja a Java 1.8 az lehetővé teszi az alkalmazás Maven:</span><span class="sxs-lookup"><span data-stu-id="526f3-144">This configuration instructs Maven to use Java 1.8 to build the app:</span></span>
+1. <span data-ttu-id="7c1ec-143">Adja hozzá a következő hello **build** után hello csomópont **függőségek** csomópont.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-143">Add hello following **build** node after hello **dependencies** node.</span></span> <span data-ttu-id="7c1ec-144">Ez a konfiguráció arra utasítja a Maven toouse Java 1,8 toobuild hello alkalmazást:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-144">This configuration instructs Maven toouse Java 1.8 toobuild hello app:</span></span>
 
     ```xml
     <build>
@@ -107,11 +107,11 @@ ms.lasthandoff: 08/18/2017
     </build>
     ```
 
-1. <span data-ttu-id="526f3-145">Mentse és zárja be a pom.xml fájlt.</span><span class="sxs-lookup"><span data-stu-id="526f3-145">Save and close the pom.xml file.</span></span>
+1. <span data-ttu-id="7c1ec-145">Mentse és zárja be a hello pom.xml fájlt.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-145">Save and close hello pom.xml file.</span></span>
 
-1. <span data-ttu-id="526f3-146">Egy szövegszerkesztőben nyissa meg a trigger-reboot\src\main\java\com\mycompany\app\App.java forrásfájl.</span><span class="sxs-lookup"><span data-stu-id="526f3-146">Using a text editor, open the trigger-reboot\src\main\java\com\mycompany\app\App.java source file.</span></span>
+1. <span data-ttu-id="7c1ec-146">Egy szövegszerkesztőben nyissa meg hello trigger-reboot\src\main\java\com\mycompany\app\App.java forrásfájl.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-146">Using a text editor, open hello trigger-reboot\src\main\java\com\mycompany\app\App.java source file.</span></span>
 
-1. <span data-ttu-id="526f3-147">Adja hozzá a következő **importálási** utasításokat a fájlhoz:</span><span class="sxs-lookup"><span data-stu-id="526f3-147">Add the following **import** statements to the file:</span></span>
+1. <span data-ttu-id="7c1ec-147">Adja hozzá a következő hello **importálása** utasítások toohello fájlt:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-147">Add hello following **import** statements toohello file:</span></span>
 
     ```java
     import com.microsoft.azure.sdk.iot.service.devicetwin.DeviceMethod;
@@ -126,7 +126,7 @@ ms.lasthandoff: 08/18/2017
     import java.util.concurrent.ExecutorService;
     ```
 
-1. <span data-ttu-id="526f3-148">Adja hozzá a következő osztályszintű változókat az **App** osztályhoz.</span><span class="sxs-lookup"><span data-stu-id="526f3-148">Add the following class-level variables to the **App** class.</span></span> <span data-ttu-id="526f3-149">Cserélje le `{youriothubconnectionstring}` az IoT hub kapcsolati karakterlánccal feljegyzett a *létrehoz egy IoT-központot* szakasz:</span><span class="sxs-lookup"><span data-stu-id="526f3-149">Replace `{youriothubconnectionstring}` with your IoT hub connection string you noted in the *Create an IoT Hub* section:</span></span>
+1. <span data-ttu-id="7c1ec-148">Adja hozzá a következő osztály változók toohello hello **App** osztály.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-148">Add hello following class-level variables toohello **App** class.</span></span> <span data-ttu-id="7c1ec-149">Cserélje le `{youriothubconnectionstring}` az IoT hub kapcsolati karakterlánccal hello feljegyzett *létrehoz egy IoT-központot* szakasz:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-149">Replace `{youriothubconnectionstring}` with your IoT hub connection string you noted in hello *Create an IoT Hub* section:</span></span>
 
     ```java
     public static final String iotHubConnectionString = "{youriothubconnectionstring}";
@@ -137,7 +137,7 @@ ms.lasthandoff: 08/18/2017
     private static final Long connectTimeout = TimeUnit.SECONDS.toSeconds(5);
     ```
 
-1. <span data-ttu-id="526f3-150">A szál, amely a jelentésben szereplő tulajdonságok beolvassa az eszköz kettős 10 másodpercenként alkalmazásához adja hozzá a következő beágyazott osztály a **App** osztály:</span><span class="sxs-lookup"><span data-stu-id="526f3-150">To implement a thread that reads the reported properties from the device twin every 10 seconds, add the following nested class to the **App** class:</span></span>
+1. <span data-ttu-id="7c1ec-150">a szál hello olvasó tooimplement jelentett tulajdonságok hello eszköz kettős 10 másodpercenként hozzá hello következő beágyazott osztály toohello **App** osztály:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-150">tooimplement a thread that reads hello reported properties from hello device twin every 10 seconds, add hello following nested class toohello **App** class:</span></span>
 
     ```java
     private static class ShowReportedProperties implements Runnable {
@@ -158,7 +158,7 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. <span data-ttu-id="526f3-151">A rendszer újraindítása a szimulált eszköz közvetlen metódus meghívásához, adja hozzá az alábbi kódot a **fő** módszert:</span><span class="sxs-lookup"><span data-stu-id="526f3-151">To invoke the reboot direct method on the simulated device, add the following code to the **main** method:</span></span>
+1. <span data-ttu-id="7c1ec-151">tooinvoke hello újraindítás közvetlen módszer hello szimulált eszköz, adja hozzá a következő kód toohello hello **fő** módszert:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-151">tooinvoke hello reboot direct method on hello simulated device, add hello following code toohello **main** method:</span></span>
 
     ```java
     System.out.println("Starting sample...");
@@ -183,7 +183,7 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. <span data-ttu-id="526f3-152">És kérdezze le a jelentett tulajdonságok a szimulált eszköz eltávolítása a szálat indítani, adja hozzá az alábbi kódot a **fő** módszert:</span><span class="sxs-lookup"><span data-stu-id="526f3-152">To start the thread to poll the reported properties from the simulated device, add the following code to the **main** method:</span></span>
+1. <span data-ttu-id="7c1ec-152">toostart hello szál toopoll hello hello szimulált eszköz jelentett tulajdonságait, adja hozzá a következő kód toohello hello **fő** módszert:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-152">toostart hello thread toopoll hello reported properties from hello simulated device, add hello following code toohello **main** method:</span></span>
 
     ```java
     ShowReportedProperties showReportedProperties = new ShowReportedProperties();
@@ -191,32 +191,32 @@ ms.lasthandoff: 08/18/2017
     executor.execute(showReportedProperties);
     ```
 
-1. <span data-ttu-id="526f3-153">Ahhoz, hogy állítsa le az alkalmazást, adja hozzá a következő kódot a **fő** módszert:</span><span class="sxs-lookup"><span data-stu-id="526f3-153">To enable you to stop the app, add the following code to the **main** method:</span></span>
+1. <span data-ttu-id="7c1ec-153">tooenable toostop hello alkalmazást, adja hozzá a következő kód toohello hello **fő** módszert:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-153">tooenable you toostop hello app, add hello following code toohello **main** method:</span></span>
 
     ```java
-    System.out.println("Press ENTER to exit.");
+    System.out.println("Press ENTER tooexit.");
     System.in.read();
     executor.shutdownNow();
     System.out.println("Shutting down sample...");
     ```
 
-1. <span data-ttu-id="526f3-154">Mentse és zárja be a trigger-reboot\src\main\java\com\mycompany\app\App.java fájlt.</span><span class="sxs-lookup"><span data-stu-id="526f3-154">Save and close the trigger-reboot\src\main\java\com\mycompany\app\App.java file.</span></span>
+1. <span data-ttu-id="7c1ec-154">Mentse és zárja be hello trigger-reboot\src\main\java\com\mycompany\app\App.java fájlt.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-154">Save and close hello trigger-reboot\src\main\java\com\mycompany\app\App.java file.</span></span>
 
-1. <span data-ttu-id="526f3-155">Build a **eseményindító-újraindítás** háttér-alkalmazást, és kijavíthatja az esetleges hibákat.</span><span class="sxs-lookup"><span data-stu-id="526f3-155">Build the **trigger-reboot** back-end app and correct any errors.</span></span> <span data-ttu-id="526f3-156">A parancssorban keresse meg az eseményindító-újraindítás mappát, és futtassa a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="526f3-156">At your command prompt, navigate to the trigger-reboot folder and run the following command:</span></span>
+1. <span data-ttu-id="7c1ec-155">Build hello **eseményindító-újraindítás** háttér-alkalmazást, és kijavíthatja az esetleges hibákat.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-155">Build hello **trigger-reboot** back-end app and correct any errors.</span></span> <span data-ttu-id="7c1ec-156">A parancssorban lépjen a toohello eseményindító-újraindítás mappa és a következő parancs futtatása hello:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-156">At your command prompt, navigate toohello trigger-reboot folder and run hello following command:</span></span>
 
     `mvn clean package -DskipTests`
 
-## <a name="create-a-simulated-device-app"></a><span data-ttu-id="526f3-157">Szimulált eszközalkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="526f3-157">Create a simulated device app</span></span>
+## <a name="create-a-simulated-device-app"></a><span data-ttu-id="7c1ec-157">Szimulált eszközalkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="7c1ec-157">Create a simulated device app</span></span>
 
-<span data-ttu-id="526f3-158">Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az eszköz szimulálja.</span><span class="sxs-lookup"><span data-stu-id="526f3-158">In this section, you create a Java console app that simulates a device.</span></span> <span data-ttu-id="526f3-159">Az alkalmazás figyeli, az újraindítást követően a közvetlen metódus hívása az IoT hub, és azonnal válaszol-e, hogy a hívást.</span><span class="sxs-lookup"><span data-stu-id="526f3-159">The app listens for the reboot direct method call from your IoT hub and immediately responds to that call.</span></span> <span data-ttu-id="526f3-160">A alkalmazást, majd a alszik egy ideig, hogy újraindítás szimulálja értesíteni jelentett tulajdonság használata előtt a **eseményindító-újraindítás** háttér-alkalmazást, hogy az újraindítás befejeződött.</span><span class="sxs-lookup"><span data-stu-id="526f3-160">The app then sleeps for a while to simulate the reboot process before it uses a reported property to notify the **trigger-reboot** back-end app that the reboot is complete.</span></span>
+<span data-ttu-id="7c1ec-158">Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az eszköz szimulálja.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-158">In this section, you create a Java console app that simulates a device.</span></span> <span data-ttu-id="7c1ec-159">hello app hello újraindítás közvetlen metódus hívását az IoT hub figyeli, és azonnal válaszol toothat hívás.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-159">hello app listens for hello reboot direct method call from your IoT hub and immediately responds toothat call.</span></span> <span data-ttu-id="7c1ec-160">alkalmazást, majd egy ideig alszik hello toosimulate hello újraindítás folyamat egy jelentett tulajdonság toonotify hello használata előtt **eseményindító-újraindítás** háttér-alkalmazást, amely hello újraindítás befejeződött.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-160">hello app then sleeps for a while toosimulate hello reboot process before it uses a reported property toonotify hello **trigger-reboot** back-end app that hello reboot is complete.</span></span>
 
-1. <span data-ttu-id="526f3-161">A dm-get-started mappában hozzon létre egy Maven project nevű **szimulált eszköz** parancsot a parancssorba az alábbi parancs segítségével.</span><span class="sxs-lookup"><span data-stu-id="526f3-161">In the dm-get-started folder, create a Maven project called **simulated-device** using the following command at your command prompt.</span></span> <span data-ttu-id="526f3-162">A következő egy olyan nagyméretű, sok parancs:</span><span class="sxs-lookup"><span data-stu-id="526f3-162">The following is a single, long command:</span></span>
+1. <span data-ttu-id="7c1ec-161">A dm-get-started hello mappában nevű Maven-projekt létrehozása **szimulált eszköz** a következő parancsot a parancssorba hello segítségével.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-161">In hello dm-get-started folder, create a Maven project called **simulated-device** using hello following command at your command prompt.</span></span> <span data-ttu-id="7c1ec-162">hello az alábbiakban olvashat egy egyetlen, hosszú parancsot:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-162">hello following is a single, long command:</span></span>
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=simulated-device -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. <span data-ttu-id="526f3-163">A parancssorban lépjen a simulated-device mappára.</span><span class="sxs-lookup"><span data-stu-id="526f3-163">At your command prompt, navigate to the simulated-device folder.</span></span>
+1. <span data-ttu-id="7c1ec-163">A parancssorban lépjen a toohello szimulált eszköz mappában.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-163">At your command prompt, navigate toohello simulated-device folder.</span></span>
 
-1. <span data-ttu-id="526f3-164">Egy szövegszerkesztővel nyissa meg a pom.xml fájlt a szimulált eszköz mappában, és adja hozzá a következő függőség a **függőségek** csomópont.</span><span class="sxs-lookup"><span data-stu-id="526f3-164">Using a text editor, open the pom.xml file in the simulated-device folder and add the following dependency to the **dependencies** node.</span></span> <span data-ttu-id="526f3-165">A függőség lehetővé teszi, hogy az iot-szolgáltatás-ügyfélcsomag az alkalmazás kommunikáljon az IoT hub:</span><span class="sxs-lookup"><span data-stu-id="526f3-165">This dependency enables you to use the iot-service-client package in your app to communicate with your IoT hub:</span></span>
+1. <span data-ttu-id="7c1ec-164">Egy szövegszerkesztőben nyissa hello pom.xml fájlt hello szimulált eszköz mappában, és adja hozzá a következő függőségi toohello hello **függőségek** csomópont.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-164">Using a text editor, open hello pom.xml file in hello simulated-device folder and add hello following dependency toohello **dependencies** node.</span></span> <span data-ttu-id="7c1ec-165">A függőség lehetővé teszi, hogy Ön toouse hello iot-szolgáltatás-ügyfélcsomagját a app toocommunicate az IoT hubbal:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-165">This dependency enables you toouse hello iot-service-client package in your app toocommunicate with your IoT hub:</span></span>
 
     ```xml
     <dependency>
@@ -227,9 +227,9 @@ ms.lasthandoff: 08/18/2017
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="526f3-166">Az **iot-device-client** legújabb verzióját a [Maven keresési funkciójával][lnk-maven-device-search] tekintheti meg.</span><span class="sxs-lookup"><span data-stu-id="526f3-166">You can check for the latest version of **iot-device-client** using [Maven search][lnk-maven-device-search].</span></span>
+    > <span data-ttu-id="7c1ec-166">Ellenőrizze, hogy hello legújabb verziójának **iot-eszközügyfél** használatával [Maven keresési][lnk-maven-device-search].</span><span class="sxs-lookup"><span data-stu-id="7c1ec-166">You can check for hello latest version of **iot-device-client** using [Maven search][lnk-maven-device-search].</span></span>
 
-1. <span data-ttu-id="526f3-167">Adja hozzá a következő **build** csomópont után a **függőségek** csomópont.</span><span class="sxs-lookup"><span data-stu-id="526f3-167">Add the following **build** node after the **dependencies** node.</span></span> <span data-ttu-id="526f3-168">Ez a konfiguráció arra utasítja a Java 1.8 az lehetővé teszi az alkalmazás Maven:</span><span class="sxs-lookup"><span data-stu-id="526f3-168">This configuration instructs Maven to use Java 1.8 to build the app:</span></span>
+1. <span data-ttu-id="7c1ec-167">Adja hozzá a következő hello **build** után hello csomópont **függőségek** csomópont.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-167">Add hello following **build** node after hello **dependencies** node.</span></span> <span data-ttu-id="7c1ec-168">Ez a konfiguráció arra utasítja a Maven toouse Java 1,8 toobuild hello alkalmazást:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-168">This configuration instructs Maven toouse Java 1.8 toobuild hello app:</span></span>
 
     ```xml
     <build>
@@ -247,11 +247,11 @@ ms.lasthandoff: 08/18/2017
     </build>
     ```
 
-1. <span data-ttu-id="526f3-169">Mentse és zárja be a pom.xml fájlt.</span><span class="sxs-lookup"><span data-stu-id="526f3-169">Save and close the pom.xml file.</span></span>
+1. <span data-ttu-id="7c1ec-169">Mentse és zárja be a hello pom.xml fájlt.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-169">Save and close hello pom.xml file.</span></span>
 
-1. <span data-ttu-id="526f3-170">Egy szövegszerkesztőben nyissa meg a simulated-device\src\main\java\com\mycompany\app\App.java forrásfájl.</span><span class="sxs-lookup"><span data-stu-id="526f3-170">Using a text editor, open the simulated-device\src\main\java\com\mycompany\app\App.java source file.</span></span>
+1. <span data-ttu-id="7c1ec-170">Egy szövegszerkesztőben nyissa meg hello simulated-device\src\main\java\com\mycompany\app\App.java forrásfájl.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-170">Using a text editor, open hello simulated-device\src\main\java\com\mycompany\app\App.java source file.</span></span>
 
-1. <span data-ttu-id="526f3-171">Adja hozzá a következő **importálási** utasításokat a fájlhoz:</span><span class="sxs-lookup"><span data-stu-id="526f3-171">Add the following **import** statements to the file:</span></span>
+1. <span data-ttu-id="7c1ec-171">Adja hozzá a következő hello **importálása** utasítások toohello fájlt:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-171">Add hello following **import** statements toohello file:</span></span>
 
     ```java
     import com.microsoft.azure.sdk.iot.device.*;
@@ -265,7 +265,7 @@ ms.lasthandoff: 08/18/2017
     import java.util.HashSet;
     ```
 
-1. <span data-ttu-id="526f3-172">Adja hozzá a következő osztályszintű változókat az **App** osztályhoz.</span><span class="sxs-lookup"><span data-stu-id="526f3-172">Add the following class-level variables to the **App** class.</span></span> <span data-ttu-id="526f3-173">Cserélje le `{yourdeviceconnectionstring}` feljegyzett eszköz kapcsolati karakterlánccal rendelkező a *hozzon létre egy eszközidentitás* szakasz:</span><span class="sxs-lookup"><span data-stu-id="526f3-173">Replace `{yourdeviceconnectionstring}` with the device connection string you noted in the *Create a device identity* section:</span></span>
+1. <span data-ttu-id="7c1ec-172">Adja hozzá a következő osztály változók toohello hello **App** osztály.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-172">Add hello following class-level variables toohello **App** class.</span></span> <span data-ttu-id="7c1ec-173">Cserélje le `{yourdeviceconnectionstring}` hello eszköz kapcsolati karakterlánccal hello feljegyzett *hozzon létre egy eszközidentitás* szakasz:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-173">Replace `{yourdeviceconnectionstring}` with hello device connection string you noted in hello *Create a device identity* section:</span></span>
 
     ```java
     private static final int METHOD_SUCCESS = 200;
@@ -276,31 +276,31 @@ ms.lasthandoff: 08/18/2017
     private static DeviceClient client;
     ```
 
-1. <span data-ttu-id="526f3-174">Egy visszahívás-kezelő, a közvetlen módszer állapoteseményeit alkalmazásához adja hozzá a következő beágyazott osztályt a **App** osztály:</span><span class="sxs-lookup"><span data-stu-id="526f3-174">To implement a callback handler for direct method status events, add the following nested class to the **App** class:</span></span>
+1. <span data-ttu-id="7c1ec-174">egy visszahívás-kezelő, a közvetlen módszer állapoteseményeit, tooimplement adja hozzá a hello következő beágyazott osztály toohello **App** osztály:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-174">tooimplement a callback handler for direct method status events, add hello following nested class toohello **App** class:</span></span>
 
     ```java
     protected static class DirectMethodStatusCallback implements IotHubEventCallback
     {
       public void execute(IotHubStatusCode status, Object context)
       {
-        System.out.println("IoT Hub responded to device method operation with status " + status.name());
+        System.out.println("IoT Hub responded toodevice method operation with status " + status.name());
       }
     }
     ```
 
-1. <span data-ttu-id="526f3-175">Egy visszahívás-kezelő eszköz iker állapoteseményeit a alkalmazásához adja hozzá a következő beágyazott osztályt a **App** osztály:</span><span class="sxs-lookup"><span data-stu-id="526f3-175">To implement a callback handler for device twin status events, add the following nested class to the **App** class:</span></span>
+1. <span data-ttu-id="7c1ec-175">egy visszahívás-kezelő eszköz iker állapoteseményeit, a tooimplement adja hozzá a hello következő beágyazott osztály toohello **App** osztály:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-175">tooimplement a callback handler for device twin status events, add hello following nested class toohello **App** class:</span></span>
 
     ```java
     protected static class DeviceTwinStatusCallback implements IotHubEventCallback
     {
         public void execute(IotHubStatusCode status, Object context)
         {
-            System.out.println("IoT Hub responded to device twin operation with status " + status.name());
+            System.out.println("IoT Hub responded toodevice twin operation with status " + status.name());
         }
     }
     ```
 
-1. <span data-ttu-id="526f3-176">Egy visszahívás-kezelő tulajdonság események alkalmazásához adja hozzá a következő beágyazott osztályt a **App** osztály:</span><span class="sxs-lookup"><span data-stu-id="526f3-176">To implement a callback handler for property events, add the following nested class to the **App** class:</span></span>
+1. <span data-ttu-id="7c1ec-176">egy visszahívás-kezelő tulajdonság események tooimplement adja hozzá a hello következő beágyazott osztály toohello **App** osztály:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-176">tooimplement a callback handler for property events, add hello following nested class toohello **App** class:</span></span>
 
     ```java
     protected static class PropertyCallback implements PropertyCallBack<String, String>
@@ -313,7 +313,7 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. <span data-ttu-id="526f3-177">A szál az eszköz újraindítás szimulálásához alkalmazásához adja hozzá a következő beágyazott osztályt a **App** osztály.</span><span class="sxs-lookup"><span data-stu-id="526f3-177">To implement a thread to simulate the device reboot, add the following nested class to the **App** class.</span></span> <span data-ttu-id="526f3-178">A szál öt másodpercenként alvó állapotba kerül, és ezután beállítja a **lastReboot** tulajdonság jelentette:</span><span class="sxs-lookup"><span data-stu-id="526f3-178">The thread sleeps for five seconds and then sets the **lastReboot** reported property:</span></span>
+1. <span data-ttu-id="7c1ec-177">tooimplement szál toosimulate hello eszköz újraindítás, adja hozzá a hello következő beágyazott osztály toohello **App** osztály.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-177">tooimplement a thread toosimulate hello device reboot, add hello following nested class toohello **App** class.</span></span> <span data-ttu-id="7c1ec-178">hello szál öt másodpercenként alvó állapotba kerül, és ezután beállítja az hello **lastReboot** tulajdonság jelentette:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-178">hello thread sleeps for five seconds and then sets hello **lastReboot** reported property:</span></span>
 
     ```java
     protected static class RebootDeviceThread implements Runnable {
@@ -334,7 +334,7 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. <span data-ttu-id="526f3-179">Az eszközön a közvetlen módszer alkalmazásához adja hozzá a következő beágyazott osztály a **App** osztály.</span><span class="sxs-lookup"><span data-stu-id="526f3-179">To implement the direct method on the device, add the following nested class to the **App** class.</span></span> <span data-ttu-id="526f3-180">Ha a szimulált alkalmazások a hívást kap a **újraindítás** közvetlen módszer azt nyugtázást visszatér a hívó, majd elindítja az újraindítás feldolgozására szolgáló szálat:</span><span class="sxs-lookup"><span data-stu-id="526f3-180">When the simulated app receives a call to the **reboot** direct method, it returns an acknowledgement to the caller and then starts a thread to process the reboot:</span></span>
+1. <span data-ttu-id="7c1ec-179">tooimplement hello közvetlen módszer hello eszközön, adja hozzá a hello következő beágyazott osztály toohello **App** osztály.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-179">tooimplement hello direct method on hello device, add hello following nested class toohello **App** class.</span></span> <span data-ttu-id="7c1ec-180">Ha hello szimulált app kap egy hívás toohello **újraindítás** közvetlen módszer adja vissza egy nyugtázási toohello hívó és majd elindul egy szál tooprocess hello újraindítás:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-180">When hello simulated app receives a call toohello **reboot** direct method, it returns an acknowledgement toohello caller and then starts a thread tooprocess hello reboot:</span></span>
 
     ```java
     protected static class DirectMethodCallback implements com.microsoft.azure.sdk.iot.device.DeviceTwin.DeviceMethodCallback
@@ -366,20 +366,20 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. <span data-ttu-id="526f3-181">Aláírását, valamint módosíthatja a **fő** metódust kell küldeni a következő kivételekkel:</span><span class="sxs-lookup"><span data-stu-id="526f3-181">Modify the signature of the **main** method to throw the following exceptions:</span></span>
+1. <span data-ttu-id="7c1ec-181">Hello hello aláírása módosítása **fő** metódus toothrow hello kivételek a következő:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-181">Modify hello signature of hello **main** method toothrow hello following exceptions:</span></span>
 
     ```java
     public static void main(String[] args) throws IOException, URISyntaxException
     ```
 
-1. <span data-ttu-id="526f3-182">Példányt létrehozni egy **DeviceClient**, adja hozzá a következő kódot a **fő** módszert:</span><span class="sxs-lookup"><span data-stu-id="526f3-182">To instantiate a **DeviceClient**, add the following code to the **main** method:</span></span>
+1. <span data-ttu-id="7c1ec-182">tooinstantiate egy **DeviceClient**, adja hozzá a következő kód toohello hello **fő** módszert:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-182">tooinstantiate a **DeviceClient**, add hello following code toohello **main** method:</span></span>
 
     ```java
     System.out.println("Starting device client sample...");
     client = new DeviceClient(connString, protocol);
     ```
 
-1. <span data-ttu-id="526f3-183">Megkezdeni a figyelést közvetlen metódushívások, adja hozzá a következő kódot a **fő** módszert:</span><span class="sxs-lookup"><span data-stu-id="526f3-183">To start listening for direct method calls, add the following code to the **main** method:</span></span>
+1. <span data-ttu-id="7c1ec-183">figyeli a közvetlen metódushívások esetén toostart adja hozzá a következő kód toohello hello **fő** módszert:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-183">toostart listening for direct method calls, add hello following code toohello **main** method:</span></span>
 
     ```java
     try
@@ -387,7 +387,7 @@ ms.lasthandoff: 08/18/2017
       client.open();
       client.subscribeToDeviceMethod(new DirectMethodCallback(), null, new DirectMethodStatusCallback(), null);
       client.startDeviceTwin(new DeviceTwinStatusCallback(), null, new PropertyCallback(), null);
-      System.out.println("Subscribed to direct methods and polling for reported properties. Waiting...");
+      System.out.println("Subscribed toodirect methods and polling for reported properties. Waiting...");
     }
     catch (Exception e)
     {
@@ -397,10 +397,10 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. <span data-ttu-id="526f3-184">Állítsa le az eszköz szimulátor, adja hozzá az alábbi kódot a **fő** módszert:</span><span class="sxs-lookup"><span data-stu-id="526f3-184">To shut down the device simulator, add the following code to the **main** method:</span></span>
+1. <span data-ttu-id="7c1ec-184">tooshut le hello eszköz szimulátor, adja hozzá a következő kód toohello hello **fő** módszert:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-184">tooshut down hello device simulator, add hello following code toohello **main** method:</span></span>
 
     ```java
-    System.out.println("Press any key to exit...");
+    System.out.println("Press any key tooexit...");
     Scanner scanner = new Scanner(System.in);
     scanner.nextLine();
     scanner.close();
@@ -408,31 +408,31 @@ ms.lasthandoff: 08/18/2017
     System.out.println("Shutting down...");
     ```
 
-1. <span data-ttu-id="526f3-185">Mentse és zárja be a simulated-device\src\main\java\com\mycompany\app\App.java fájlt.</span><span class="sxs-lookup"><span data-stu-id="526f3-185">Save and close the simulated-device\src\main\java\com\mycompany\app\App.java file.</span></span>
+1. <span data-ttu-id="7c1ec-185">Mentse és zárja be hello simulated-device\src\main\java\com\mycompany\app\App.java fájlt.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-185">Save and close hello simulated-device\src\main\java\com\mycompany\app\App.java file.</span></span>
 
-1. <span data-ttu-id="526f3-186">Build a **szimulált eszköz** háttér-alkalmazást, és kijavíthatja az esetleges hibákat.</span><span class="sxs-lookup"><span data-stu-id="526f3-186">Build the **simulated-device** back-end app and correct any errors.</span></span> <span data-ttu-id="526f3-187">A parancssorban keresse meg a szimulált eszköz mappát, és futtassa a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="526f3-187">At your command prompt, navigate to the simulated-device folder and run the following command:</span></span>
+1. <span data-ttu-id="7c1ec-186">Build hello **szimulált eszköz** háttér-alkalmazást, és kijavíthatja az esetleges hibákat.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-186">Build hello **simulated-device** back-end app and correct any errors.</span></span> <span data-ttu-id="7c1ec-187">A parancssorban lépjen a toohello szimulált eszköz mappa és a következő parancs futtatása hello:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-187">At your command prompt, navigate toohello simulated-device folder and run hello following command:</span></span>
 
     `mvn clean package -DskipTests`
 
-## <a name="run-the-apps"></a><span data-ttu-id="526f3-188">Az alkalmazások futtatása</span><span class="sxs-lookup"><span data-stu-id="526f3-188">Run the apps</span></span>
+## <a name="run-hello-apps"></a><span data-ttu-id="7c1ec-188">Hello alkalmazások futtatása</span><span class="sxs-lookup"><span data-stu-id="7c1ec-188">Run hello apps</span></span>
 
-<span data-ttu-id="526f3-189">Most már készen áll az alkalmazások futtatására.</span><span class="sxs-lookup"><span data-stu-id="526f3-189">You are now ready to run the apps.</span></span>
+<span data-ttu-id="7c1ec-189">Most már áll készen toorun hello alkalmazásokat.</span><span class="sxs-lookup"><span data-stu-id="7c1ec-189">You are now ready toorun hello apps.</span></span>
 
-1. <span data-ttu-id="526f3-190">Parancsot egy parancssorba a szimulált eszköz mappában futtassa a következő parancsot az IoT hub az újraindítás metódushívások figyelését:</span><span class="sxs-lookup"><span data-stu-id="526f3-190">At a command prompt in the simulated-device folder, run the following command to begin listening for reboot method calls from your IoT hub:</span></span>
-
-    `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
-
-    ![Java IoT Hub szimulált eszköz alkalmazás figyelését, indítsa újra közvetlen metódushívások][1]
-
-1. <span data-ttu-id="526f3-192">A parancssorba az eseményindító-újraindítás mappában futtassa a következő parancsot a rendszer újraindítása metódusát hívja a szimulált eszköz az IoT hub:</span><span class="sxs-lookup"><span data-stu-id="526f3-192">At a command prompt in the trigger-reboot folder, run the following command to call the reboot method on your simulated device from your IoT hub:</span></span>
+1. <span data-ttu-id="7c1ec-190">Parancsot egy parancssorba hello szimulált eszköz mappában futtassa a következő parancs toobegin újraindítás metódushívások az IoT-központ figyel hello:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-190">At a command prompt in hello simulated-device folder, run hello following command toobegin listening for reboot method calls from your IoT hub:</span></span>
 
     `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
 
-    ![Java IoT-központ szolgáltatás alkalmazásnak, hogy a rendszer újraindítása közvetlen metódus hívása][2]
+    ![Java IoT Hub szimulált eszköz alkalmazás toolisten újraindítás közvetlen metódushívások][1]
 
-1. <span data-ttu-id="526f3-194">A szimulált eszköz válaszol-e a rendszer újraindítása közvetlen metódus hívása:</span><span class="sxs-lookup"><span data-stu-id="526f3-194">The simulated device responds to the reboot direct method call:</span></span>
+1. <span data-ttu-id="7c1ec-192">Parancsot egy parancssorba hello eseményindító-újraindítás mappában futtassa a szimulált eszköz parancs toocall hello újraindítás metódus követően az IoT hub hello:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-192">At a command prompt in hello trigger-reboot folder, run hello following command toocall hello reboot method on your simulated device from your IoT hub:</span></span>
 
-    ![Java IoT Hub szimulált eszköz alkalmazásának válaszol-e a közvetlen metódus hívása][3]
+    `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
+
+    ![Java IoT-központ szolgáltatás app toocall hello indítsa újra a közvetlen módszer][2]
+
+1. <span data-ttu-id="7c1ec-194">hello szimulált eszköz válaszol toohello újraindítás közvetlen metódus hívása:</span><span class="sxs-lookup"><span data-stu-id="7c1ec-194">hello simulated device responds toohello reboot direct method call:</span></span>
+
+    ![Java IoT Hub szimulált eszköz alkalmazásának válaszol toohello közvetlen metódus hívása][3]
 
 [!INCLUDE [iot-hub-dm-followup](../../includes/iot-hub-dm-followup.md)]
 

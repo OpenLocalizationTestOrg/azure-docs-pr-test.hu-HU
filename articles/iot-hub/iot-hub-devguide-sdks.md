@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT SDK-k ismertetése |} Microsoft Docs"
-description: "Fejlesztői útmutató - információk és hivatkozások a különböző Azure IoT eszköz és a szolgáltatás SDK-k, amelyek segítségével eszközön futó alkalmazások és a háttér-alkalmazásokat hozhat létre."
+title: aaaUnderstand hello Azure IoT SDK |} Microsoft Docs
+description: "Fejlesztői útmutató - információk és hivatkozások toohello különböző Azure IoT eszköz és a szolgáltatás SDK-k használható toobuild eszköz és háttér-alkalmazások."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -15,87 +15,87 @@ ms.workload: na
 ms.date: 06/16/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: bcbf4b9633f58293edb19aeb33dec6602ac4ec8f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e319451ca97876666e1c011ee0e1a73d0a0f1ed1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="understand-and-use-azure-iot-sdks"></a><span data-ttu-id="27940-103">Megismeréséhez és használatához Azure IoT SDK-k</span><span class="sxs-lookup"><span data-stu-id="27940-103">Understand and use Azure IoT SDKs</span></span>
+# <a name="understand-and-use-azure-iot-sdks"></a><span data-ttu-id="8ed6c-103">Megismeréséhez és használatához Azure IoT SDK-k</span><span class="sxs-lookup"><span data-stu-id="8ed6c-103">Understand and use Azure IoT SDKs</span></span>
 
-<span data-ttu-id="27940-104">Az IoT-központ való munkához SDK három kategóriába sorolhatók:</span><span class="sxs-lookup"><span data-stu-id="27940-104">There are three categories of SDK for working with IoT Hub:</span></span>
+<span data-ttu-id="8ed6c-104">Az IoT-központ való munkához SDK három kategóriába sorolhatók:</span><span class="sxs-lookup"><span data-stu-id="8ed6c-104">There are three categories of SDK for working with IoT Hub:</span></span>
 
-* <span data-ttu-id="27940-105">**Eszközoldali SDK-k** lehetővé teszik az IoT-eszközök futó alkalmazások.</span><span class="sxs-lookup"><span data-stu-id="27940-105">**Device SDKs** enable you to build apps that run on your IoT devices.</span></span> <span data-ttu-id="27940-106">Ezek az alkalmazások telemetriai adatokat küldeni az IoT hub, és opcionálisan az IoT hub-üzeneteket fogadjon.</span><span class="sxs-lookup"><span data-stu-id="27940-106">These apps send telemetry to your IoT hub, and optionally receive messages from your IoT hub.</span></span>
+* <span data-ttu-id="8ed6c-105">**Eszközoldali SDK-k** lehetővé teszik az IoT-eszközök futó toobuild alkalmazások.</span><span class="sxs-lookup"><span data-stu-id="8ed6c-105">**Device SDKs** enable you toobuild apps that run on your IoT devices.</span></span> <span data-ttu-id="8ed6c-106">Ezek az alkalmazások telemetriai tooyour IoT-központ küldeni, és opcionálisan az IoT hub-üzeneteket fogadjon.</span><span class="sxs-lookup"><span data-stu-id="8ed6c-106">These apps send telemetry tooyour IoT hub, and optionally receive messages from your IoT hub.</span></span>
 
-* <span data-ttu-id="27940-107">**Szolgáltatás SDK-k** lehetővé teszik az IoT hub kezelését, és opcionálisan az üzenetek küldése az IoT-eszközök.</span><span class="sxs-lookup"><span data-stu-id="27940-107">**Service SDKs** enable you to manage your IoT hub, and optionally send messages to your IoT devices.</span></span>
+* <span data-ttu-id="8ed6c-107">**Szolgáltatás SDK-k** meg toomanage engedélyezése az IoT hub, és opcionálisan tooyour az IoT-eszközök az üzeneteket küldeni.</span><span class="sxs-lookup"><span data-stu-id="8ed6c-107">**Service SDKs** enable you toomanage your IoT hub, and optionally send messages tooyour IoT devices.</span></span>
 
-* <span data-ttu-id="27940-108">**Az Azure IoT peremhálózati** ahhoz, hogy az eszközök, amelyek a támogatott protokollok, vagy nem kell tennie a peremhálózaton lévő üzenetek feldolgozásához átjárók létrehozását teszi lehetővé.</span><span class="sxs-lookup"><span data-stu-id="27940-108">**Azure IoT Edge** enables you to build gateways to enable devices that don't use one of the supported protocols, or when you need to process messages on the edge.</span></span>
+* <span data-ttu-id="8ed6c-108">**Az Azure IoT peremhálózati** lehetővé teszi a toobuild átjárók tooenable eszközök hello támogatott protokollok, amelyek nem használnak, vagy ha tooprocess üzenetek hello oldal van szükség.</span><span class="sxs-lookup"><span data-stu-id="8ed6c-108">**Azure IoT Edge** enables you toobuild gateways tooenable devices that don't use one of hello supported protocols, or when you need tooprocess messages on hello edge.</span></span>
 
-<span data-ttu-id="27940-109">SDK-k több programozási nyelv támogatása biztosított.</span><span class="sxs-lookup"><span data-stu-id="27940-109">SDKs are provided to support multiple programming languages.</span></span>
+<span data-ttu-id="8ed6c-109">SDK-k vannak megadva toosupport több programozási nyelv.</span><span class="sxs-lookup"><span data-stu-id="8ed6c-109">SDKs are provided toosupport multiple programming languages.</span></span>
 
-## <a name="azure-iot-device-sdks"></a><span data-ttu-id="27940-110">Az Azure SDK-k IoT-eszközök</span><span class="sxs-lookup"><span data-stu-id="27940-110">Azure IoT device SDKs</span></span>
+## <a name="azure-iot-device-sdks"></a><span data-ttu-id="8ed6c-110">Az Azure SDK-k IoT-eszközök</span><span class="sxs-lookup"><span data-stu-id="8ed6c-110">Azure IoT device SDKs</span></span>
 
-<span data-ttu-id="27940-111">A Microsoft Azure IoT-eszközök SDK-k, amely elősegíti a épület eszközök és alkalmazások és szolgáltatások Azure IoT-központ által kezelt-kódot tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="27940-111">The Microsoft Azure IoT device SDKs contain code that facilitates building devices and applications that connect to and are managed by Azure IoT Hub services.</span></span>
+<span data-ttu-id="8ed6c-111">Microsoft Azure IoT eszközoldali SDK-k hello kódot tartalmaznak, amely elősegíti a épület eszközök és alkalmazások, amelyek tooand Azure IoT-központ szolgáltatás által kezelt.</span><span class="sxs-lookup"><span data-stu-id="8ed6c-111">hello Microsoft Azure IoT device SDKs contain code that facilitates building devices and applications that connect tooand are managed by Azure IoT Hub services.</span></span>
 
-<span data-ttu-id="27940-112">A következő Azure IoT-eszközök SDK-k is letölthetők a Githubról:</span><span class="sxs-lookup"><span data-stu-id="27940-112">The following Azure IoT device SDKs are available to download from GitHub:</span></span>
+<span data-ttu-id="8ed6c-112">hello következő Azure IoT eszközoldali SDK-k a Githubról elérhető toodownload:</span><span class="sxs-lookup"><span data-stu-id="8ed6c-112">hello following Azure IoT device SDKs are available toodownload from GitHub:</span></span>
 
-* <span data-ttu-id="27940-113">[Az Azure IoT-eszközök SDK c] [ lnk-c-device-sdk] írt adatok hordozhatóságára és széles körű platformkompatibilitásra ANSI C (C99).</span><span class="sxs-lookup"><span data-stu-id="27940-113">[Azure IoT device SDK for C][lnk-c-device-sdk] written in ANSI C (C99) for portability and broad platform compatibility.</span></span> <span data-ttu-id="27940-114">Nincsenek a két eszköz ügyféloldali kódtáraknál c, az alacsony szintű **iothub_client** és a **szerializáló**.</span><span class="sxs-lookup"><span data-stu-id="27940-114">There are two device client libraries for C, the low-level **iothub_client** and the **serializer**.</span></span>
-* <span data-ttu-id="27940-115">[Az Azure IoT-eszközök SDK a .NET-hez][lnk-dotnet-device-sdk]</span><span class="sxs-lookup"><span data-stu-id="27940-115">[Azure IoT device SDK for .NET][lnk-dotnet-device-sdk]</span></span>
-* <span data-ttu-id="27940-116">[Az Azure IoT-eszközök SDK Java][lnk-java-device-sdk]</span><span class="sxs-lookup"><span data-stu-id="27940-116">[Azure IoT device SDK for Java][lnk-java-device-sdk]</span></span>
-* <span data-ttu-id="27940-117">[Az Azure IoT-eszközök SDK for Node.js][lnk-node-device-sdk]</span><span class="sxs-lookup"><span data-stu-id="27940-117">[Azure IoT device SDK for Node.js][lnk-node-device-sdk]</span></span>
-* <span data-ttu-id="27940-118">[Az Azure IoT-eszközök SDK Python-hez][lnk-python-device-sdk]</span><span class="sxs-lookup"><span data-stu-id="27940-118">[Azure IoT device SDK for Python][lnk-python-device-sdk]</span></span>
+* <span data-ttu-id="8ed6c-113">[Az Azure IoT-eszközök SDK c] [ lnk-c-device-sdk] írt adatok hordozhatóságára és széles körű platformkompatibilitásra ANSI C (C99).</span><span class="sxs-lookup"><span data-stu-id="8ed6c-113">[Azure IoT device SDK for C][lnk-c-device-sdk] written in ANSI C (C99) for portability and broad platform compatibility.</span></span> <span data-ttu-id="8ed6c-114">Nincsenek C, két eszköz ügyféloldali kódtáraknál hello alacsony szintű **iothub_client** és hello **szerializáló**.</span><span class="sxs-lookup"><span data-stu-id="8ed6c-114">There are two device client libraries for C, hello low-level **iothub_client** and hello **serializer**.</span></span>
+* <span data-ttu-id="8ed6c-115">[Az Azure IoT-eszközök SDK a .NET-hez][lnk-dotnet-device-sdk]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-115">[Azure IoT device SDK for .NET][lnk-dotnet-device-sdk]</span></span>
+* <span data-ttu-id="8ed6c-116">[Az Azure IoT-eszközök SDK Java][lnk-java-device-sdk]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-116">[Azure IoT device SDK for Java][lnk-java-device-sdk]</span></span>
+* <span data-ttu-id="8ed6c-117">[Az Azure IoT-eszközök SDK for Node.js][lnk-node-device-sdk]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-117">[Azure IoT device SDK for Node.js][lnk-node-device-sdk]</span></span>
+* <span data-ttu-id="8ed6c-118">[Az Azure IoT-eszközök SDK Python-hez][lnk-python-device-sdk]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-118">[Azure IoT device SDK for Python][lnk-python-device-sdk]</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="27940-119">Tekintse meg a GitHub-adattárak readme fájljaiban találhat használatáról nyelvet és a platform-specifikus csomag kezelők bináris fájljait és a függőségek telepítése a fejlesztési számítógépén.</span><span class="sxs-lookup"><span data-stu-id="27940-119">See the readme files in the GitHub repositories for information about using language and platform-specific package managers to install binaries and dependencies on your development machine.</span></span>
+> <span data-ttu-id="8ed6c-119">Lásd: hello információs fájl hello GitHub-adattárak az információt a nyelvi és a platform-specifikus csomag kezelők tooinstall bináris fájljait és a függőségek a fejlesztési számítógépén.</span><span class="sxs-lookup"><span data-stu-id="8ed6c-119">See hello readme files in hello GitHub repositories for information about using language and platform-specific package managers tooinstall binaries and dependencies on your development machine.</span></span>
 > 
 > 
 
-### <a name="os-platform-and-hardware-compatibility"></a><span data-ttu-id="27940-120">Az operációs rendszer platform és hardver kompatibilitása</span><span class="sxs-lookup"><span data-stu-id="27940-120">OS platform and hardware compatibility</span></span>
+### <a name="os-platform-and-hardware-compatibility"></a><span data-ttu-id="8ed6c-120">Az operációs rendszer platform és hardver kompatibilitása</span><span class="sxs-lookup"><span data-stu-id="8ed6c-120">OS platform and hardware compatibility</span></span>
 
-<span data-ttu-id="27940-121">Bizonyos hardvereszközök kompatibilisek SDK kapcsolatos további információkért tekintse meg a [Azure IoT eszköz katalógus hitelesített][lnk-certified].</span><span class="sxs-lookup"><span data-stu-id="27940-121">For more information about SDK compatibility with specific hardware devices, see the [Azure Certified for IoT device catalog][lnk-certified].</span></span>
+<span data-ttu-id="8ed6c-121">Bizonyos hardvereszközök kompatibilisek SDK kapcsolatos további információkért lásd: hello [Azure IoT eszköz katalógus hitelesített][lnk-certified].</span><span class="sxs-lookup"><span data-stu-id="8ed6c-121">For more information about SDK compatibility with specific hardware devices, see hello [Azure Certified for IoT device catalog][lnk-certified].</span></span>
 
-## <a name="azure-iot-service-sdks"></a><span data-ttu-id="27940-122">Az Azure IoT szolgáltatás SDK-k</span><span class="sxs-lookup"><span data-stu-id="27940-122">Azure IoT service SDKs</span></span>
+## <a name="azure-iot-service-sdks"></a><span data-ttu-id="8ed6c-122">Az Azure IoT szolgáltatás SDK-k</span><span class="sxs-lookup"><span data-stu-id="8ed6c-122">Azure IoT service SDKs</span></span>
 
-<span data-ttu-id="27940-123">Az Azure IoT szolgáltatás SDK-k lehetővé teszi az épület alkalmazásokat közvetlenül az IoT-központ kezelheti az eszközöket és a biztonsági kódot tartalmazhatnak.</span><span class="sxs-lookup"><span data-stu-id="27940-123">The Azure IoT service SDKs contain code to facilitate building applications that interact directly with IoT Hub to manage devices and security.</span></span>
+<span data-ttu-id="8ed6c-123">hello Azure IoT szolgáltatás SDK-k alkalmazások közvetlenül kommunikáló IoT Hub toomanage eszközöket és a biztonsági kódot toofacilitate tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="8ed6c-123">hello Azure IoT service SDKs contain code toofacilitate building applications that interact directly with IoT Hub toomanage devices and security.</span></span>
 
-<span data-ttu-id="27940-124">A következő Azure IoT-szolgáltatás SDK-k is letölthetők a Githubról:</span><span class="sxs-lookup"><span data-stu-id="27940-124">The following Azure IoT service SDKs are available to download from GitHub:</span></span>
+<span data-ttu-id="8ed6c-124">hello következő Azure IoT szolgáltatás SDK-k a Githubról elérhető toodownload:</span><span class="sxs-lookup"><span data-stu-id="8ed6c-124">hello following Azure IoT service SDKs are available toodownload from GitHub:</span></span>
 
-* <span data-ttu-id="27940-125">[Az Azure IoT szolgáltatás SDK a .NET-hez][lnk-dotnet-service-sdk]</span><span class="sxs-lookup"><span data-stu-id="27940-125">[Azure IoT service SDK for .NET][lnk-dotnet-service-sdk]</span></span>
-* <span data-ttu-id="27940-126">[Az Azure IoT szolgáltatás SDK for Node.js][lnk-node-service-sdk]</span><span class="sxs-lookup"><span data-stu-id="27940-126">[Azure IoT service SDK for Node.js][lnk-node-service-sdk]</span></span>
-* <span data-ttu-id="27940-127">[Azure IoT-szolgáltatás SDK Java][lnk-java-service-sdk]</span><span class="sxs-lookup"><span data-stu-id="27940-127">[Azure IoT service SDK for Java][lnk-java-service-sdk]</span></span>
-* <span data-ttu-id="27940-128">[Azure IoT-szolgáltatás SDK Python][lnk-python-service-sdk]</span><span class="sxs-lookup"><span data-stu-id="27940-128">[Azure IoT service SDK for Python][lnk-python-service-sdk]</span></span>
-* <span data-ttu-id="27940-129">[Az Azure IoT szolgáltatás SDK C-hez][lnk-c-service-sdk]</span><span class="sxs-lookup"><span data-stu-id="27940-129">[Azure IoT service SDK for C][lnk-c-service-sdk]</span></span>
+* <span data-ttu-id="8ed6c-125">[Az Azure IoT szolgáltatás SDK a .NET-hez][lnk-dotnet-service-sdk]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-125">[Azure IoT service SDK for .NET][lnk-dotnet-service-sdk]</span></span>
+* <span data-ttu-id="8ed6c-126">[Az Azure IoT szolgáltatás SDK for Node.js][lnk-node-service-sdk]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-126">[Azure IoT service SDK for Node.js][lnk-node-service-sdk]</span></span>
+* <span data-ttu-id="8ed6c-127">[Azure IoT-szolgáltatás SDK Java][lnk-java-service-sdk]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-127">[Azure IoT service SDK for Java][lnk-java-service-sdk]</span></span>
+* <span data-ttu-id="8ed6c-128">[Azure IoT-szolgáltatás SDK Python][lnk-python-service-sdk]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-128">[Azure IoT service SDK for Python][lnk-python-service-sdk]</span></span>
+* <span data-ttu-id="8ed6c-129">[Az Azure IoT szolgáltatás SDK C-hez][lnk-c-service-sdk]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-129">[Azure IoT service SDK for C][lnk-c-service-sdk]</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="27940-130">Tekintse meg a GitHub-adattárak readme fájljaiban találhat használatáról nyelvet és a platform-specifikus csomag kezelők bináris fájljait és a függőségek telepítése a fejlesztési számítógépén.</span><span class="sxs-lookup"><span data-stu-id="27940-130">See the readme files in the GitHub repositories for information about using language and platform-specific package managers to install binaries and dependencies on your development machine.</span></span>
+> <span data-ttu-id="8ed6c-130">Lásd: hello információs fájl hello GitHub-adattárak az információt a nyelvi és a platform-specifikus csomag kezelők tooinstall bináris fájljait és a függőségek a fejlesztési számítógépén.</span><span class="sxs-lookup"><span data-stu-id="8ed6c-130">See hello readme files in hello GitHub repositories for information about using language and platform-specific package managers tooinstall binaries and dependencies on your development machine.</span></span>
 
-## <a name="azure-iot-edge"></a><span data-ttu-id="27940-131">Azure IoT Edge</span><span class="sxs-lookup"><span data-stu-id="27940-131">Azure IoT Edge</span></span>
+## <a name="azure-iot-edge"></a><span data-ttu-id="8ed6c-131">Azure IoT Edge</span><span class="sxs-lookup"><span data-stu-id="8ed6c-131">Azure IoT Edge</span></span>
 
-<span data-ttu-id="27940-132">Azure IoT peremhálózati infrastruktúra és az IoT-átjáró megoldások létrehozásához modulok tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="27940-132">Azure IoT Edge contains the infrastructure and modules to create IoT gateway solutions.</span></span> <span data-ttu-id="27940-133">Bővítheti IoT peremhálózati olyan végpont forgatókönyv igazított átjárók létrehozására.</span><span class="sxs-lookup"><span data-stu-id="27940-133">You can extend IoT Edge to create gateways tailored to any end-to-end scenario.</span></span>
+<span data-ttu-id="8ed6c-132">Az Azure IoT peremhálózati hello infrastruktúra és a modulok toocreate IoT átjáró megoldásait tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="8ed6c-132">Azure IoT Edge contains hello infrastructure and modules toocreate IoT gateway solutions.</span></span> <span data-ttu-id="8ed6c-133">Az IoT-Edge toocreate átjárók szabott tooany végpont forgatókönyvet kibővítheti a.</span><span class="sxs-lookup"><span data-stu-id="8ed6c-133">You can extend IoT Edge toocreate gateways tailored tooany end-to-end scenario.</span></span>
 
-<span data-ttu-id="27940-134">Letöltheti a [Azure IoT peremhálózati] [ lnk-iot-edge] a Githubról.</span><span class="sxs-lookup"><span data-stu-id="27940-134">You can download [Azure IoT Edge][lnk-iot-edge] from GitHub.</span></span>
+<span data-ttu-id="8ed6c-134">Letöltheti a [Azure IoT peremhálózati] [ lnk-iot-edge] a Githubról.</span><span class="sxs-lookup"><span data-stu-id="8ed6c-134">You can download [Azure IoT Edge][lnk-iot-edge] from GitHub.</span></span>
 
-## <a name="online-api-reference-documentation"></a><span data-ttu-id="27940-135">Online API referenciadokumentációt tartalmaz</span><span class="sxs-lookup"><span data-stu-id="27940-135">Online API reference documentation</span></span>
+## <a name="online-api-reference-documentation"></a><span data-ttu-id="8ed6c-135">Online API referenciadokumentációt tartalmaz</span><span class="sxs-lookup"><span data-stu-id="8ed6c-135">Online API reference documentation</span></span>
 
-<span data-ttu-id="27940-136">Az alábbi lista tartalmazza az Azure IoT eszköz, a szolgáltatás és az átjáró szalagtárak online API referenciadokumentációt tartalmaz hivatkozásokat:</span><span class="sxs-lookup"><span data-stu-id="27940-136">The following list contains links to online API reference documentation for Azure IoT device, service, and gateway libraries:</span></span>
+<span data-ttu-id="8ed6c-136">hello alábbi lista hivatkozások tooonline API referenciadokumentációt tartalmaz Azure IoT eszköz, a szolgáltatás és az átjáró szalagtárak.</span><span class="sxs-lookup"><span data-stu-id="8ed6c-136">hello following list contains links tooonline API reference documentation for Azure IoT device, service, and gateway libraries:</span></span>
 
-* <span data-ttu-id="27940-137">[Az eszközök internetes hálózata (IoT) .NET][lnk-dotnet-ref]</span><span class="sxs-lookup"><span data-stu-id="27940-137">[Internet of Things (IoT) .NET][lnk-dotnet-ref]</span></span>
-* <span data-ttu-id="27940-138">[Az IoT Hub REST][lnk-rest-ref]</span><span class="sxs-lookup"><span data-stu-id="27940-138">[IoT Hub REST][lnk-rest-ref]</span></span>
-* <span data-ttu-id="27940-139">[Az Azure IoT-eszközök SDK C-hez][lnk-c-ref]</span><span class="sxs-lookup"><span data-stu-id="27940-139">[Azure IoT device SDK for C][lnk-c-ref]</span></span>
-* <span data-ttu-id="27940-140">[Az Azure IoT-eszközök SDK Java][lnk-java-ref]</span><span class="sxs-lookup"><span data-stu-id="27940-140">[Azure IoT device SDK for Java][lnk-java-ref]</span></span>
-* <span data-ttu-id="27940-141">[Azure IoT-szolgáltatás SDK Java][lnk-java-service-ref]</span><span class="sxs-lookup"><span data-stu-id="27940-141">[Azure IoT service SDK for Java][lnk-java-service-ref]</span></span>
-* <span data-ttu-id="27940-142">[Az Azure IoT-eszközök SDK for Node.js][lnk-node-ref]</span><span class="sxs-lookup"><span data-stu-id="27940-142">[Azure IoT device SDK for Node.js][lnk-node-ref]</span></span>
-* <span data-ttu-id="27940-143">[Az Azure IoT szolgáltatás SDK for Node.js][lnk-node-service-ref]</span><span class="sxs-lookup"><span data-stu-id="27940-143">[Azure IoT service SDK for Node.js][lnk-node-service-ref]</span></span>
-* <span data-ttu-id="27940-144">[Az Azure IoT él][lnk-gateway-ref]</span><span class="sxs-lookup"><span data-stu-id="27940-144">[Azure IoT Edge][lnk-gateway-ref]</span></span>
+* <span data-ttu-id="8ed6c-137">[Az eszközök internetes hálózata (IoT) .NET][lnk-dotnet-ref]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-137">[Internet of Things (IoT) .NET][lnk-dotnet-ref]</span></span>
+* <span data-ttu-id="8ed6c-138">[Az IoT Hub REST][lnk-rest-ref]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-138">[IoT Hub REST][lnk-rest-ref]</span></span>
+* <span data-ttu-id="8ed6c-139">[Az Azure IoT-eszközök SDK C-hez][lnk-c-ref]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-139">[Azure IoT device SDK for C][lnk-c-ref]</span></span>
+* <span data-ttu-id="8ed6c-140">[Az Azure IoT-eszközök SDK Java][lnk-java-ref]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-140">[Azure IoT device SDK for Java][lnk-java-ref]</span></span>
+* <span data-ttu-id="8ed6c-141">[Azure IoT-szolgáltatás SDK Java][lnk-java-service-ref]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-141">[Azure IoT service SDK for Java][lnk-java-service-ref]</span></span>
+* <span data-ttu-id="8ed6c-142">[Az Azure IoT-eszközök SDK for Node.js][lnk-node-ref]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-142">[Azure IoT device SDK for Node.js][lnk-node-ref]</span></span>
+* <span data-ttu-id="8ed6c-143">[Az Azure IoT szolgáltatás SDK for Node.js][lnk-node-service-ref]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-143">[Azure IoT service SDK for Node.js][lnk-node-service-ref]</span></span>
+* <span data-ttu-id="8ed6c-144">[Az Azure IoT él][lnk-gateway-ref]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-144">[Azure IoT Edge][lnk-gateway-ref]</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="27940-145">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="27940-145">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="8ed6c-145">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="8ed6c-145">Next steps</span></span>
 
-<span data-ttu-id="27940-146">Az IoT Hub fejlesztői útmutató egyéb témaköröket tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="27940-146">Other reference topics in this IoT Hub developer guide include:</span></span>
+<span data-ttu-id="8ed6c-146">Az IoT Hub fejlesztői útmutató egyéb témaköröket tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="8ed6c-146">Other reference topics in this IoT Hub developer guide include:</span></span>
 
-* <span data-ttu-id="27940-147">[IoT-központok végpontjai][lnk-devguide-endpoints]</span><span class="sxs-lookup"><span data-stu-id="27940-147">[IoT Hub endpoints][lnk-devguide-endpoints]</span></span>
-* <span data-ttu-id="27940-148">[Az IoT-központ lekérdezési nyelv eszköz twins, a feladatok és az üzenet-útválasztás][lnk-devguide-query]</span><span class="sxs-lookup"><span data-stu-id="27940-148">[IoT Hub query language for device twins, jobs, and message routing][lnk-devguide-query]</span></span>
-* <span data-ttu-id="27940-149">[Kvóták és sávszélesség-szabályozás][lnk-devguide-quotas]</span><span class="sxs-lookup"><span data-stu-id="27940-149">[Quotas and throttling][lnk-devguide-quotas]</span></span>
-* <span data-ttu-id="27940-150">[Az IoT Hub MQTT támogatása][lnk-devguide-mqtt]</span><span class="sxs-lookup"><span data-stu-id="27940-150">[IoT Hub MQTT support][lnk-devguide-mqtt]</span></span>
+* <span data-ttu-id="8ed6c-147">[IoT-központok végpontjai][lnk-devguide-endpoints]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-147">[IoT Hub endpoints][lnk-devguide-endpoints]</span></span>
+* <span data-ttu-id="8ed6c-148">[Az IoT-központ lekérdezési nyelv eszköz twins, a feladatok és az üzenet-útválasztás][lnk-devguide-query]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-148">[IoT Hub query language for device twins, jobs, and message routing][lnk-devguide-query]</span></span>
+* <span data-ttu-id="8ed6c-149">[Kvóták és sávszélesség-szabályozás][lnk-devguide-quotas]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-149">[Quotas and throttling][lnk-devguide-quotas]</span></span>
+* <span data-ttu-id="8ed6c-150">[Az IoT Hub MQTT támogatása][lnk-devguide-mqtt]</span><span class="sxs-lookup"><span data-stu-id="8ed6c-150">[IoT Hub MQTT support][lnk-devguide-mqtt]</span></span>
 
 <!-- Links and images -->
 

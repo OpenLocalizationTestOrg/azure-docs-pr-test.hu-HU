@@ -1,6 +1,6 @@
 ---
-title: "A VHD-fájl Azure DevTest Labs egyéni lemezkép létrehozása |} Microsoft Docs"
-description: "Útmutató egyéni lemezkép létrehozása a Azure DevTest Labs szolgáltatásban a VHD-fájl az Azure portál használatával"
+title: "erről a VHD-fájl egy Azure DevTest Labs egyéni lemezképet aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate egyéni lemezképként az Azure DevTest Labs szolgáltatásban virtuális merevlemez fájl használatával hello Azure-portálon"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 9983ea9b847f44ed18a6169a4bdb224b63626a64
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 80af8ea1cb72380f868df0a76c4a0dcd92e63cf5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-custom-image-from-a-vhd-file"></a><span data-ttu-id="957ad-103">Létrehozhat egyéni rendszerképeket a VHD-fájl</span><span class="sxs-lookup"><span data-stu-id="957ad-103">Create a custom image from a VHD file</span></span>
+# <a name="create-a-custom-image-from-a-vhd-file"></a><span data-ttu-id="b97d6-103">Létrehozhat egyéni rendszerképeket a VHD-fájl</span><span class="sxs-lookup"><span data-stu-id="b97d6-103">Create a custom image from a VHD file</span></span>
 
 [!INCLUDE [devtest-lab-create-custom-image-from-vhd-selector](../../includes/devtest-lab-create-custom-image-from-vhd-selector.md)]
 
@@ -28,51 +28,51 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [devtest-lab-upload-vhd-options](../../includes/devtest-lab-upload-vhd-options.md)]
 
-## <a name="step-by-step-instructions"></a><span data-ttu-id="957ad-104">Lépésenkénti utasítások</span><span class="sxs-lookup"><span data-stu-id="957ad-104">Step-by-step instructions</span></span>
+## <a name="step-by-step-instructions"></a><span data-ttu-id="b97d6-104">Lépésenkénti utasítások</span><span class="sxs-lookup"><span data-stu-id="b97d6-104">Step-by-step instructions</span></span>
 
-<span data-ttu-id="957ad-105">A következő lépések végigvezetik a VHD-fájl az Azure portál használatával egyéni lemezkép létrehozása:</span><span class="sxs-lookup"><span data-stu-id="957ad-105">The following steps walk you through creating a custom image from a VHD file using the Azure portal:</span></span>
+<span data-ttu-id="b97d6-105">hello következő lépések végigvezetik a VHD-fájlt hello Azure-portálon az egyéni lemezkép létrehozása:</span><span class="sxs-lookup"><span data-stu-id="b97d6-105">hello following steps walk you through creating a custom image from a VHD file using hello Azure portal:</span></span>
 
-1. <span data-ttu-id="957ad-106">Jelentkezzen be az [Azure Portalra](http://go.microsoft.com/fwlink/p/?LinkID=525040).</span><span class="sxs-lookup"><span data-stu-id="957ad-106">Sign in to the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).</span></span>
+1. <span data-ttu-id="b97d6-106">Jelentkezzen be toohello [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040).</span><span class="sxs-lookup"><span data-stu-id="b97d6-106">Sign in toohello [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).</span></span>
 
-1. <span data-ttu-id="957ad-107">Válassza a **További szolgáltatások**, majd a **DevTest Labs** elemet a listából.</span><span class="sxs-lookup"><span data-stu-id="957ad-107">Select **More services**, and then select **DevTest Labs** from the list.</span></span>
+1. <span data-ttu-id="b97d6-107">Válassza ki **további szolgáltatások**, majd válassza ki **DevTest Labs** hello listából.</span><span class="sxs-lookup"><span data-stu-id="b97d6-107">Select **More services**, and then select **DevTest Labs** from hello list.</span></span>
 
-1. <span data-ttu-id="957ad-108">Válassza ki a kívánt labor labs listájának megtekintéséhez.</span><span class="sxs-lookup"><span data-stu-id="957ad-108">From the list of labs, select the desired lab.</span></span>  
+1. <span data-ttu-id="b97d6-108">Labs hello listában jelölje ki hello kívánt labor.</span><span class="sxs-lookup"><span data-stu-id="b97d6-108">From hello list of labs, select hello desired lab.</span></span>  
 
-1. <span data-ttu-id="957ad-109">A labor paneljén válassza **konfigurációs**.</span><span class="sxs-lookup"><span data-stu-id="957ad-109">On the lab's blade, select **Configuration**.</span></span> 
+1. <span data-ttu-id="b97d6-109">Hello labor paneljén válassza **konfigurációs**.</span><span class="sxs-lookup"><span data-stu-id="b97d6-109">On hello lab's blade, select **Configuration**.</span></span> 
 
-1. <span data-ttu-id="957ad-110">A tesztlabor a **konfigurációs** panelen válassza **egyéni lemezképeket (VHD)**.</span><span class="sxs-lookup"><span data-stu-id="957ad-110">On the lab **Configuration** blade, select **Custom images (VHDs)**.</span></span>
+1. <span data-ttu-id="b97d6-110">A tesztkörnyezet hello **konfigurációs** panelen válassza **egyéni lemezképeket (VHD)**.</span><span class="sxs-lookup"><span data-stu-id="b97d6-110">On hello lab **Configuration** blade, select **Custom images (VHDs)**.</span></span>
 
-1. <span data-ttu-id="957ad-111">Az a **egyéni lemezképek** panelen válassza **+ Hozzáadás**.</span><span class="sxs-lookup"><span data-stu-id="957ad-111">On the **Custom images** blade, select **+Add**.</span></span>
+1. <span data-ttu-id="b97d6-111">A hello **egyéni lemezképek** panelen válassza **+ Hozzáadás**.</span><span class="sxs-lookup"><span data-stu-id="b97d6-111">On hello **Custom images** blade, select **+Add**.</span></span>
 
     ![Egyéni lemezkép hozzáadása](./media/devtest-lab-create-template/add-custom-image.png)
 
-1. <span data-ttu-id="957ad-113">Adja meg az egyéni lemezkép nevét.</span><span class="sxs-lookup"><span data-stu-id="957ad-113">Enter the name of the custom image.</span></span> <span data-ttu-id="957ad-114">Ez a név alap képek listájának a virtuális gép létrehozásakor.</span><span class="sxs-lookup"><span data-stu-id="957ad-114">This name is displayed in the list of base images when creating a VM.</span></span>
+1. <span data-ttu-id="b97d6-113">Adjon meg egyéni lemezkép hello hello nevét.</span><span class="sxs-lookup"><span data-stu-id="b97d6-113">Enter hello name of hello custom image.</span></span> <span data-ttu-id="b97d6-114">Ez a név alap képek hello listája jelenik meg a virtuális gépek létrehozásakor.</span><span class="sxs-lookup"><span data-stu-id="b97d6-114">This name is displayed in hello list of base images when creating a VM.</span></span>
 
-1. <span data-ttu-id="957ad-115">Adja meg az egyéni lemezkép leírását.</span><span class="sxs-lookup"><span data-stu-id="957ad-115">Enter the description of the custom image.</span></span> <span data-ttu-id="957ad-116">A leírást alap képek listája jelenik meg a virtuális gépek létrehozásakor.</span><span class="sxs-lookup"><span data-stu-id="957ad-116">This description is displayed in the list of base images when creating a VM.</span></span>
+1. <span data-ttu-id="b97d6-115">Adja meg a hello egyéni lemezkép hello leírását.</span><span class="sxs-lookup"><span data-stu-id="b97d6-115">Enter hello description of hello custom image.</span></span> <span data-ttu-id="b97d6-116">A leírást alap képek hello listája jelenik meg a virtuális gépek létrehozásakor.</span><span class="sxs-lookup"><span data-stu-id="b97d6-116">This description is displayed in hello list of base images when creating a VM.</span></span>
 
-1. <span data-ttu-id="957ad-117">Válassza ki **VHD**.</span><span class="sxs-lookup"><span data-stu-id="957ad-117">Select **VHD**.</span></span>
+1. <span data-ttu-id="b97d6-117">Válassza ki **VHD**.</span><span class="sxs-lookup"><span data-stu-id="b97d6-117">Select **VHD**.</span></span>
 
-1. <span data-ttu-id="957ad-118">Az a **VHD** panelen válassza ki a kívánt VHD-fájlt.</span><span class="sxs-lookup"><span data-stu-id="957ad-118">From the **VHD** blade, select the desired VHD file.</span></span>
+1. <span data-ttu-id="b97d6-118">A hello **VHD** panelen, a select hello kívánt VHD-fájlt.</span><span class="sxs-lookup"><span data-stu-id="b97d6-118">From hello **VHD** blade, select hello desired VHD file.</span></span>
 
-1. <span data-ttu-id="957ad-119">Válassza ki **OK** bezárásához a **VHD** panelen.</span><span class="sxs-lookup"><span data-stu-id="957ad-119">Select **OK** to close the **VHD** blade.</span></span>
+1. <span data-ttu-id="b97d6-119">Válassza ki **OK** tooclose hello **VHD** panelen.</span><span class="sxs-lookup"><span data-stu-id="b97d6-119">Select **OK** tooclose hello **VHD** blade.</span></span>
 
-1. <span data-ttu-id="957ad-120">Válassza ki **operációs rendszer konfigurációja**.</span><span class="sxs-lookup"><span data-stu-id="957ad-120">Select **OS configuration**.</span></span>
+1. <span data-ttu-id="b97d6-120">Válassza ki **operációs rendszer konfigurációja**.</span><span class="sxs-lookup"><span data-stu-id="b97d6-120">Select **OS configuration**.</span></span>
 
-1. <span data-ttu-id="957ad-121">Az a **operációs rendszer konfigurációja** lapra, válassza ki vagy **Windows** vagy **Linux**.</span><span class="sxs-lookup"><span data-stu-id="957ad-121">On the **OS configuration** tab, select either **Windows** or **Linux**.</span></span>
+1. <span data-ttu-id="b97d6-121">A hello **operációs rendszer konfigurációja** lapra, válassza ki vagy **Windows** vagy **Linux**.</span><span class="sxs-lookup"><span data-stu-id="b97d6-121">On hello **OS configuration** tab, select either **Windows** or **Linux**.</span></span>
 
-1. <span data-ttu-id="957ad-122">Ha **Windows** van jelölve, adja meg a jelölőnégyzet keresztül e *Sysprep* már futtatták azon a gépen.</span><span class="sxs-lookup"><span data-stu-id="957ad-122">If **Windows** is selected, specify via the checkbox whether *Sysprep* has been run on the machine.</span></span> 
+1. <span data-ttu-id="b97d6-122">Ha **Windows** van jelölve, adja meg a hello jelölőnégyzet keresztül e *Sysprep* hello gépen futott.</span><span class="sxs-lookup"><span data-stu-id="b97d6-122">If **Windows** is selected, specify via hello checkbox whether *Sysprep* has been run on hello machine.</span></span> 
 
-1. <span data-ttu-id="957ad-123">Válassza ki **OK** bezárásához a **operációs rendszer konfigurációja** panelen.</span><span class="sxs-lookup"><span data-stu-id="957ad-123">Select **OK** to close the **OS configuration** blade.</span></span>
+1. <span data-ttu-id="b97d6-123">Válassza ki **OK** tooclose hello **operációs rendszer konfigurációja** panelen.</span><span class="sxs-lookup"><span data-stu-id="b97d6-123">Select **OK** tooclose hello **OS configuration** blade.</span></span>
 
-1. <span data-ttu-id="957ad-124">Válassza ki **OK** egyéni lemezkép létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="957ad-124">Select **OK** to create the custom image.</span></span>
+1. <span data-ttu-id="b97d6-124">Válassza ki **OK** toocreate hello egyéni lemezképet.</span><span class="sxs-lookup"><span data-stu-id="b97d6-124">Select **OK** toocreate hello custom image.</span></span>
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-## <a name="related-blog-posts"></a><span data-ttu-id="957ad-125">Kapcsolódó blogbejegyzések</span><span class="sxs-lookup"><span data-stu-id="957ad-125">Related blog posts</span></span>
+## <a name="related-blog-posts"></a><span data-ttu-id="b97d6-125">Kapcsolódó blogbejegyzések</span><span class="sxs-lookup"><span data-stu-id="b97d6-125">Related blog posts</span></span>
 
-- [<span data-ttu-id="957ad-126">Egyéni lemezképek vagy képletek?</span><span class="sxs-lookup"><span data-stu-id="957ad-126">Custom images or formulas?</span></span>](https://blogs.msdn.microsoft.com/devtestlab/2016/04/06/custom-images-or-formulas/)
-- [<span data-ttu-id="957ad-127">Az Azure DevTest Labs között egyéni lemezképek másolása</span><span class="sxs-lookup"><span data-stu-id="957ad-127">Copying Custom Images between Azure DevTest Labs</span></span>](http://www.visualstudiogeeks.com/blog/DevOps/How-To-Move-CustomImages-VHD-Between-AzureDevTestLabs#copying-custom-images-between-azure-devtest-labs)
+- [<span data-ttu-id="b97d6-126">Egyéni lemezképek vagy képletek?</span><span class="sxs-lookup"><span data-stu-id="b97d6-126">Custom images or formulas?</span></span>](https://blogs.msdn.microsoft.com/devtestlab/2016/04/06/custom-images-or-formulas/)
+- [<span data-ttu-id="b97d6-127">Az Azure DevTest Labs között egyéni lemezképek másolása</span><span class="sxs-lookup"><span data-stu-id="b97d6-127">Copying Custom Images between Azure DevTest Labs</span></span>](http://www.visualstudiogeeks.com/blog/DevOps/How-To-Move-CustomImages-VHD-Between-AzureDevTestLabs#copying-custom-images-between-azure-devtest-labs)
 
-##<a name="next-steps"></a><span data-ttu-id="957ad-128">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="957ad-128">Next steps</span></span>
+##<a name="next-steps"></a><span data-ttu-id="b97d6-128">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="b97d6-128">Next steps</span></span>
 
-- [<span data-ttu-id="957ad-129">A virtuális gépek hozzáadása a tesztkörnyezet</span><span class="sxs-lookup"><span data-stu-id="957ad-129">Add a VM to your lab</span></span>](./devtest-lab-add-vm-with-artifacts.md)
+- [<span data-ttu-id="b97d6-129">Virtuális gép tooyour labor hozzáadása</span><span class="sxs-lookup"><span data-stu-id="b97d6-129">Add a VM tooyour lab</span></span>](./devtest-lab-add-vm-with-artifacts.md)

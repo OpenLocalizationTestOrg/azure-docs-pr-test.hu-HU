@@ -1,5 +1,5 @@
 ---
-title: "Az Azure virtuális gépek magas rendelkezésre állás a SAP NetWeaver a SUSE Linux Enterprise Server SAP alkalmazásokhoz |} Microsoft Docs"
+title: "Virtuális gépek magas rendelkezésre állás a SUSE Linux Enterprise Server SAP NetWeaver az SAP-alkalmazásokból aaaAzure |} Microsoft Docs"
 description: "Magas rendelkezésre állású útmutatója az SAP NetWeaver a SUSE Linux Enterprise Server SAP-alkalmazásokból"
 services: virtual-machines-windows,virtual-network,storage
 documentationcenter: saponazure
@@ -16,27 +16,27 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 04/27/2017
 ms.author: sedusch
-ms.openlocfilehash: 16e09797926f29bc18cb05671c986c74f9c2d4f8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e944103df92d5ffec9196189f138e25972bea79f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="high-availability-for-sap-netweaver-on-azure-vms-on-suse-linux-enterprise-server-for-sap-applications"></a><span data-ttu-id="143ee-103">Magas rendelkezésre állás a SAP NetWeaver a SUSE Linux Enterprise Server Azure virtuális gépeken az SAP-alkalmazásokból</span><span class="sxs-lookup"><span data-stu-id="143ee-103">High availability for SAP NetWeaver on Azure VMs on SUSE Linux Enterprise Server for SAP applications</span></span>
+# <a name="high-availability-for-sap-netweaver-on-azure-vms-on-suse-linux-enterprise-server-for-sap-applications"></a><span data-ttu-id="d0887-103">Magas rendelkezésre állás a SAP NetWeaver a SUSE Linux Enterprise Server Azure virtuális gépeken az SAP-alkalmazásokból</span><span class="sxs-lookup"><span data-stu-id="d0887-103">High availability for SAP NetWeaver on Azure VMs on SUSE Linux Enterprise Server for SAP applications</span></span>
 
 [dbms-guide]:dbms-guide.md
 [deployment-guide]:deployment-guide.md
 [planning-guide]:planning-guide.md
 
-<span data-ttu-id="143ee-104">[2205917]:https://launchpad.support.sap.com/#/notes/2205917</span><span class="sxs-lookup"><span data-stu-id="143ee-104">[2205917]:https://launchpad.support.sap.com/#/notes/2205917</span></span>
-<span data-ttu-id="143ee-105">[1944799]:https://launchpad.support.sap.com/#/notes/1944799</span><span class="sxs-lookup"><span data-stu-id="143ee-105">[1944799]:https://launchpad.support.sap.com/#/notes/1944799</span></span>
-<span data-ttu-id="143ee-106">[1928533]:https://launchpad.support.sap.com/#/notes/1928533</span><span class="sxs-lookup"><span data-stu-id="143ee-106">[1928533]:https://launchpad.support.sap.com/#/notes/1928533</span></span>
-<span data-ttu-id="143ee-107">[2015553]:https://launchpad.support.sap.com/#/notes/2015553</span><span class="sxs-lookup"><span data-stu-id="143ee-107">[2015553]:https://launchpad.support.sap.com/#/notes/2015553</span></span>
-<span data-ttu-id="143ee-108">[2178632]:https://launchpad.support.sap.com/#/notes/2178632</span><span class="sxs-lookup"><span data-stu-id="143ee-108">[2178632]:https://launchpad.support.sap.com/#/notes/2178632</span></span>
-<span data-ttu-id="143ee-109">[2191498]:https://launchpad.support.sap.com/#/notes/2191498</span><span class="sxs-lookup"><span data-stu-id="143ee-109">[2191498]:https://launchpad.support.sap.com/#/notes/2191498</span></span>
-<span data-ttu-id="143ee-110">[2243692]:https://launchpad.support.sap.com/#/notes/2243692</span><span class="sxs-lookup"><span data-stu-id="143ee-110">[2243692]:https://launchpad.support.sap.com/#/notes/2243692</span></span>
-<span data-ttu-id="143ee-111">[1984787]:https://launchpad.support.sap.com/#/notes/1984787</span><span class="sxs-lookup"><span data-stu-id="143ee-111">[1984787]:https://launchpad.support.sap.com/#/notes/1984787</span></span>
-<span data-ttu-id="143ee-112">[1999351]:https://launchpad.support.sap.com/#/notes/1999351</span><span class="sxs-lookup"><span data-stu-id="143ee-112">[1999351]:https://launchpad.support.sap.com/#/notes/1999351</span></span>
+[2205917]:https://launchpad.support.sap.com/#/notes/2205917
+[1944799]:https://launchpad.support.sap.com/#/notes/1944799
+[1928533]:https://launchpad.support.sap.com/#/notes/1928533
+[2015553]:https://launchpad.support.sap.com/#/notes/2015553
+[2178632]:https://launchpad.support.sap.com/#/notes/2178632
+[2191498]:https://launchpad.support.sap.com/#/notes/2191498
+[2243692]:https://launchpad.support.sap.com/#/notes/2243692
+[1984787]:https://launchpad.support.sap.com/#/notes/1984787
+[1999351]:https://launchpad.support.sap.com/#/notes/1999351
 [1410736]:https://launchpad.support.sap.com/#/notes/1410736
 
 [sap-swcenter]:https://support.sap.com/en/my-support/software-downloads.html
@@ -50,217 +50,217 @@ ms.lasthandoff: 08/03/2017
 
 [sap-hana-ha]:sap-hana-high-availability.md
 
-<span data-ttu-id="143ee-113">Ez a cikk ismerteti, hogyan telepítse a virtuális gépeket, a virtuális gépet állíthat be, a fürt-keretrendszer telepítése és magas rendelkezésre állású SAP NetWeaver 7.50 rendszert telepíteni.</span><span class="sxs-lookup"><span data-stu-id="143ee-113">This article describes how to deploy the virtual machines, configure the virtual machines, install the cluster framework and install a highly available SAP NetWeaver 7.50 system.</span></span>
-<span data-ttu-id="143ee-114">A példa konfigurációkban telepítési parancsok stb. Asc példányszámának 00, SSZON példányszámának 02 és SAP rendszer azonosító NWS szolgál.</span><span class="sxs-lookup"><span data-stu-id="143ee-114">In the example configurations, installation commands etc. ASCS instance number 00, ERS instance number 02 and SAP System ID NWS is used.</span></span> <span data-ttu-id="143ee-115">A példában szereplő erőforrások (például virtuális gépek, virtuális hálózatok) nevei azt feltételezik, használja a [sablon összevont] [ template-converged] SAP rendszer azonosító NWS az erőforrások létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="143ee-115">The names of the resources (for example virtual machines, virtual networks) in the example assume that you have used the [converged template][template-converged] with SAP system ID NWS to create the resources.</span></span>
+<span data-ttu-id="d0887-113">Ez a cikk ismerteti, hogyan toodeploy hello virtuális gépek, virtuális gépek hello konfigurálása, hello fürt keretrendszer telepítése és egy magas rendelkezésre állású SAP NetWeaver 7.50 rendszer telepítéséhez.</span><span class="sxs-lookup"><span data-stu-id="d0887-113">This article describes how toodeploy hello virtual machines, configure hello virtual machines, install hello cluster framework and install a highly available SAP NetWeaver 7.50 system.</span></span>
+<span data-ttu-id="d0887-114">Hello például konfigurációk telepítési parancsok stb. Asc példányszámának 00, SSZON példányszámának 02 és SAP rendszer azonosító NWS szolgál.</span><span class="sxs-lookup"><span data-stu-id="d0887-114">In hello example configurations, installation commands etc. ASCS instance number 00, ERS instance number 02 and SAP System ID NWS is used.</span></span> <span data-ttu-id="d0887-115">hello nevek hello erőforrások (például virtuális gépek, virtuális hálózatok) hello példa feltételezi hello használt [sablon összevont] [ template-converged] SAP rendszer azonosító NWS toocreate hello erőforrásokkal.</span><span class="sxs-lookup"><span data-stu-id="d0887-115">hello names of hello resources (for example virtual machines, virtual networks) in hello example assume that you have used hello [converged template][template-converged] with SAP system ID NWS toocreate hello resources.</span></span>
 
-<span data-ttu-id="143ee-116">Olvassa el a következő SAP megjegyzések és által írt cikkeket először</span><span class="sxs-lookup"><span data-stu-id="143ee-116">Read the following SAP Notes and papers first</span></span>
+<span data-ttu-id="d0887-116">Olvassa el a következő SAP megjegyzések és által írt cikkeket először hello</span><span class="sxs-lookup"><span data-stu-id="d0887-116">Read hello following SAP Notes and papers first</span></span>
 
-* <span data-ttu-id="143ee-117">SAP Megjegyzés [1928533], amelynek van:</span><span class="sxs-lookup"><span data-stu-id="143ee-117">SAP Note [1928533], which has:</span></span>
-  * <span data-ttu-id="143ee-118">Az SAP szoftver központi telepítése támogatott Azure Virtuálisgép-méretek listáját</span><span class="sxs-lookup"><span data-stu-id="143ee-118">List of Azure VM sizes that are supported for the deployment of SAP software</span></span>
-  * <span data-ttu-id="143ee-119">Az Azure Virtuálisgép-méretek fontos készletkapacitás információival</span><span class="sxs-lookup"><span data-stu-id="143ee-119">Important capacity information for Azure VM sizes</span></span>
-  * <span data-ttu-id="143ee-120">Támogatott SAP szoftver, és az operációs rendszer és az adatbázis kombinációját</span><span class="sxs-lookup"><span data-stu-id="143ee-120">Supported SAP software, and operating system (OS) and database combinations</span></span>
-  * <span data-ttu-id="143ee-121">A Windows és a Microsoft Azure Linux szükséges SAP kernel verziója</span><span class="sxs-lookup"><span data-stu-id="143ee-121">Required SAP kernel version for Windows and Linux on Microsoft Azure</span></span>
+* <span data-ttu-id="d0887-117">SAP Megjegyzés [1928533], amelynek van:</span><span class="sxs-lookup"><span data-stu-id="d0887-117">SAP Note [1928533], which has:</span></span>
+  * <span data-ttu-id="d0887-118">Hello SAP szoftver központi telepítése által támogatott Azure Virtuálisgép-méretek listáját</span><span class="sxs-lookup"><span data-stu-id="d0887-118">List of Azure VM sizes that are supported for hello deployment of SAP software</span></span>
+  * <span data-ttu-id="d0887-119">Az Azure Virtuálisgép-méretek fontos készletkapacitás információival</span><span class="sxs-lookup"><span data-stu-id="d0887-119">Important capacity information for Azure VM sizes</span></span>
+  * <span data-ttu-id="d0887-120">Támogatott SAP szoftver, és az operációs rendszer és az adatbázis kombinációját</span><span class="sxs-lookup"><span data-stu-id="d0887-120">Supported SAP software, and operating system (OS) and database combinations</span></span>
+  * <span data-ttu-id="d0887-121">A Windows és a Microsoft Azure Linux szükséges SAP kernel verziója</span><span class="sxs-lookup"><span data-stu-id="d0887-121">Required SAP kernel version for Windows and Linux on Microsoft Azure</span></span>
 
-* <span data-ttu-id="143ee-122">SAP Megjegyzés [2015553] a SAP-támogatott SAP szoftverek központi telepítése az Azure-ban szükséges előfeltételeket ismerteti.</span><span class="sxs-lookup"><span data-stu-id="143ee-122">SAP Note [2015553] lists prerequisites for SAP-supported SAP software deployments in Azure.</span></span>
-* <span data-ttu-id="143ee-123">SAP Megjegyzés [2205917] javasolt a SUSE Linux Enterprise Server operációs rendszer beállításait az SAP-alkalmazásokból</span><span class="sxs-lookup"><span data-stu-id="143ee-123">SAP Note [2205917] has recommended OS settings for SUSE Linux Enterprise Server for SAP Applications</span></span>
-* <span data-ttu-id="143ee-124">SAP Megjegyzés [1944799] SUSE Linux Enterprise Server SAP HANA-irányelvek rendelkezik az SAP-alkalmazásokból</span><span class="sxs-lookup"><span data-stu-id="143ee-124">SAP Note [1944799] has SAP HANA Guidelines for SUSE Linux Enterprise Server for SAP Applications</span></span>
-* <span data-ttu-id="143ee-125">SAP Megjegyzés [2178632] tartalmaz részletes információkat az Azure-ban SAP jelentett összes figyelési metrikákat.</span><span class="sxs-lookup"><span data-stu-id="143ee-125">SAP Note [2178632] has detailed information about all monitoring metrics reported for SAP in Azure.</span></span>
-* <span data-ttu-id="143ee-126">SAP Megjegyzés [2191498] vannak a szükséges SAP gazdagép-ügynök verziója Linux az Azure-ban.</span><span class="sxs-lookup"><span data-stu-id="143ee-126">SAP Note [2191498] has the required SAP Host Agent version for Linux in Azure.</span></span>
-* <span data-ttu-id="143ee-127">SAP Megjegyzés [2243692] SAP Azure Linux licenceléssel kapcsolatos információt tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="143ee-127">SAP Note [2243692] has information about SAP licensing on Linux in Azure.</span></span>
-* <span data-ttu-id="143ee-128">SAP Megjegyzés [1984787] SUSE Linux Enterprise Server 12 vonatkozó általános információkat tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="143ee-128">SAP Note [1984787] has general information about SUSE Linux Enterprise Server 12.</span></span>
-* <span data-ttu-id="143ee-129">SAP Megjegyzés [1999351] további információkat talál az Azure fokozott Figyelőbővítmény az SAP rendelkezik.</span><span class="sxs-lookup"><span data-stu-id="143ee-129">SAP Note [1999351] has additional troubleshooting information for the Azure Enhanced Monitoring Extension for SAP.</span></span>
-* <span data-ttu-id="143ee-130">[SAP közösségi WIKI](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) rendelkezik az összes szükséges SAP megjegyzések Linux.</span><span class="sxs-lookup"><span data-stu-id="143ee-130">[SAP Community WIKI](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) has all required SAP Notes for Linux.</span></span>
-* <span data-ttu-id="143ee-131">[Azure virtuális gépek tervezési és megvalósítási az SAP Linux rendszeren][planning-guide]</span><span class="sxs-lookup"><span data-stu-id="143ee-131">[Azure Virtual Machines planning and implementation for SAP on Linux][planning-guide]</span></span>
-* <span data-ttu-id="143ee-132">[Az Azure virtuális gépek telepítése az SAP, Linux (Ez a cikk)][deployment-guide]</span><span class="sxs-lookup"><span data-stu-id="143ee-132">[Azure Virtual Machines deployment for SAP on Linux (this article)][deployment-guide]</span></span>
-* <span data-ttu-id="143ee-133">[Az SAP Linux Azure virtuális gépek DBMS-telepítés][dbms-guide]</span><span class="sxs-lookup"><span data-stu-id="143ee-133">[Azure Virtual Machines DBMS deployment for SAP on Linux][dbms-guide]</span></span>
-* <span data-ttu-id="143ee-134">[SAP HANA SR teljesítményre optimalizált forgatókönyv][suse-hana-ha-guide]</span><span class="sxs-lookup"><span data-stu-id="143ee-134">[SAP HANA SR Performance Optimized Scenario][suse-hana-ha-guide]</span></span>  
-  <span data-ttu-id="143ee-135">Az útmutató a helyszíni SAP HANA replikációs beállítása az összes szükséges információkat tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="143ee-135">The guide contains all required information to set up SAP HANA System Replication on-premises.</span></span> <span data-ttu-id="143ee-136">Ez az útmutató használja kiindulópontként.</span><span class="sxs-lookup"><span data-stu-id="143ee-136">Use this guide as a baseline.</span></span>
-* <span data-ttu-id="143ee-137">[Magas rendelkezésre álló NFS tár DRBD és támasztja] [ suse-drbd-guide] az útmutató a magas rendelkezésre állású NFS-kiszolgáló beállítása az összes szükséges információkat tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="143ee-137">[Highly Available NFS Storage with DRBD and Pacemaker][suse-drbd-guide] The guide contains all required information to set up a highly available NFS server.</span></span> <span data-ttu-id="143ee-138">Ez az útmutató használja kiindulópontként.</span><span class="sxs-lookup"><span data-stu-id="143ee-138">Use this guide as a baseline.</span></span>
+* <span data-ttu-id="d0887-122">SAP Megjegyzés [2015553] a SAP-támogatott SAP szoftverek központi telepítése az Azure-ban szükséges előfeltételeket ismerteti.</span><span class="sxs-lookup"><span data-stu-id="d0887-122">SAP Note [2015553] lists prerequisites for SAP-supported SAP software deployments in Azure.</span></span>
+* <span data-ttu-id="d0887-123">SAP Megjegyzés [2205917] javasolt a SUSE Linux Enterprise Server operációs rendszer beállításait az SAP-alkalmazásokból</span><span class="sxs-lookup"><span data-stu-id="d0887-123">SAP Note [2205917] has recommended OS settings for SUSE Linux Enterprise Server for SAP Applications</span></span>
+* <span data-ttu-id="d0887-124">SAP Megjegyzés [1944799] SUSE Linux Enterprise Server SAP HANA-irányelvek rendelkezik az SAP-alkalmazásokból</span><span class="sxs-lookup"><span data-stu-id="d0887-124">SAP Note [1944799] has SAP HANA Guidelines for SUSE Linux Enterprise Server for SAP Applications</span></span>
+* <span data-ttu-id="d0887-125">SAP Megjegyzés [2178632] tartalmaz részletes információkat az Azure-ban SAP jelentett összes figyelési metrikákat.</span><span class="sxs-lookup"><span data-stu-id="d0887-125">SAP Note [2178632] has detailed information about all monitoring metrics reported for SAP in Azure.</span></span>
+* <span data-ttu-id="d0887-126">SAP Megjegyzés [2191498] hello szükséges SAP állomás ügynök verziója Linux az Azure-ban.</span><span class="sxs-lookup"><span data-stu-id="d0887-126">SAP Note [2191498] has hello required SAP Host Agent version for Linux in Azure.</span></span>
+* <span data-ttu-id="d0887-127">SAP Megjegyzés [2243692] SAP Azure Linux licenceléssel kapcsolatos információt tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="d0887-127">SAP Note [2243692] has information about SAP licensing on Linux in Azure.</span></span>
+* <span data-ttu-id="d0887-128">SAP Megjegyzés [1984787] SUSE Linux Enterprise Server 12 vonatkozó általános információkat tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="d0887-128">SAP Note [1984787] has general information about SUSE Linux Enterprise Server 12.</span></span>
+* <span data-ttu-id="d0887-129">SAP Megjegyzés [1999351] hello Azure fokozott Figyelőbővítmény az SAP további információkat.</span><span class="sxs-lookup"><span data-stu-id="d0887-129">SAP Note [1999351] has additional troubleshooting information for hello Azure Enhanced Monitoring Extension for SAP.</span></span>
+* <span data-ttu-id="d0887-130">[SAP közösségi WIKI](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) rendelkezik az összes szükséges SAP megjegyzések Linux.</span><span class="sxs-lookup"><span data-stu-id="d0887-130">[SAP Community WIKI](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) has all required SAP Notes for Linux.</span></span>
+* <span data-ttu-id="d0887-131">[Azure virtuális gépek tervezési és megvalósítási az SAP Linux rendszeren][planning-guide]</span><span class="sxs-lookup"><span data-stu-id="d0887-131">[Azure Virtual Machines planning and implementation for SAP on Linux][planning-guide]</span></span>
+* <span data-ttu-id="d0887-132">[Az Azure virtuális gépek telepítése az SAP, Linux (Ez a cikk)][deployment-guide]</span><span class="sxs-lookup"><span data-stu-id="d0887-132">[Azure Virtual Machines deployment for SAP on Linux (this article)][deployment-guide]</span></span>
+* <span data-ttu-id="d0887-133">[Az SAP Linux Azure virtuális gépek DBMS-telepítés][dbms-guide]</span><span class="sxs-lookup"><span data-stu-id="d0887-133">[Azure Virtual Machines DBMS deployment for SAP on Linux][dbms-guide]</span></span>
+* <span data-ttu-id="d0887-134">[SAP HANA SR teljesítményre optimalizált forgatókönyv][suse-hana-ha-guide]</span><span class="sxs-lookup"><span data-stu-id="d0887-134">[SAP HANA SR Performance Optimized Scenario][suse-hana-ha-guide]</span></span>  
+  <span data-ttu-id="d0887-135">hello útmutató tartalmazza az összes szükséges információk tooset helyszíni SAP HANA replikációs fel.</span><span class="sxs-lookup"><span data-stu-id="d0887-135">hello guide contains all required information tooset up SAP HANA System Replication on-premises.</span></span> <span data-ttu-id="d0887-136">Ez az útmutató használja kiindulópontként.</span><span class="sxs-lookup"><span data-stu-id="d0887-136">Use this guide as a baseline.</span></span>
+* <span data-ttu-id="d0887-137">[Magas rendelkezésre álló NFS tár DRBD és támasztja] [ suse-drbd-guide] hello útmutató tartalmazza az összes szükséges információt tooset NFS magas rendelkezésre állású kiszolgáló.</span><span class="sxs-lookup"><span data-stu-id="d0887-137">[Highly Available NFS Storage with DRBD and Pacemaker][suse-drbd-guide] hello guide contains all required information tooset up a highly available NFS server.</span></span> <span data-ttu-id="d0887-138">Ez az útmutató használja kiindulópontként.</span><span class="sxs-lookup"><span data-stu-id="d0887-138">Use this guide as a baseline.</span></span>
 
 
-## <a name="overview"></a><span data-ttu-id="143ee-139">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="143ee-139">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="d0887-139">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="d0887-139">Overview</span></span>
 
-<span data-ttu-id="143ee-140">Magas rendelkezésre állás eléréséhez SAP NetWeaver az NFS-kiszolgáló szükséges.</span><span class="sxs-lookup"><span data-stu-id="143ee-140">To achieve high availability, SAP NetWeaver requires an NFS server.</span></span> <span data-ttu-id="143ee-141">Az NFS-kiszolgáló egy külön fürtben lett konfigurálva, és több SAP-rendszerek által használható.</span><span class="sxs-lookup"><span data-stu-id="143ee-141">The NFS server is configured in a separate cluster and can be used by multiple SAP systems.</span></span>
+<span data-ttu-id="d0887-140">tooachieve magas rendelkezésre állású, SAP NetWeaver az NFS-kiszolgáló szükséges.</span><span class="sxs-lookup"><span data-stu-id="d0887-140">tooachieve high availability, SAP NetWeaver requires an NFS server.</span></span> <span data-ttu-id="d0887-141">hello NFS-kiszolgáló egy külön fürtben lett konfigurálva, és több SAP-rendszerek által használható.</span><span class="sxs-lookup"><span data-stu-id="d0887-141">hello NFS server is configured in a separate cluster and can be used by multiple SAP systems.</span></span>
 
 ![SAP NetWeaver magas rendelkezésre állás – Áttekintés](./media/high-availability-guide-suse/img_001.png)
 
-<span data-ttu-id="143ee-143">Az NFS-kiszolgáló, a SAP NetWeaver ASC, a SAP NetWeaver SCS, a SAP NetWeaver SSZON és az SAP HANA-adatbázisból virtuális állomásnév és a virtuális IP-címek használata.</span><span class="sxs-lookup"><span data-stu-id="143ee-143">The NFS server, SAP NetWeaver ASCS, SAP NetWeaver SCS, SAP NetWeaver ERS and the SAP HANA database use virtual hostname and virtual IP addresses.</span></span> <span data-ttu-id="143ee-144">Az Azure a terheléselosztó virtuális IP-cím szükséges.</span><span class="sxs-lookup"><span data-stu-id="143ee-144">On Azure, a load balancer is required to use a virtual IP address.</span></span> <span data-ttu-id="143ee-145">Az alábbi lista a terheléselosztó-konfiguráció látható.</span><span class="sxs-lookup"><span data-stu-id="143ee-145">The following list shows the configuration of the load balancer.</span></span>
+<span data-ttu-id="d0887-143">hello NFS-kiszolgáló, a SAP NetWeaver ASC, SAP NetWeaver SCS, SAP NetWeaver SSZON és hello SAP HANA-adatbázisból virtuális állomásnév és a virtuális IP-címek használata.</span><span class="sxs-lookup"><span data-stu-id="d0887-143">hello NFS server, SAP NetWeaver ASCS, SAP NetWeaver SCS, SAP NetWeaver ERS and hello SAP HANA database use virtual hostname and virtual IP addresses.</span></span> <span data-ttu-id="d0887-144">A Azure-ban egy terhelés-kiegyenlítő szükség toouse egy virtuális IP-címet.</span><span class="sxs-lookup"><span data-stu-id="d0887-144">On Azure, a load balancer is required toouse a virtual IP address.</span></span> <span data-ttu-id="d0887-145">hello alábbi lista mutatja azokat hello terheléselosztó hello konfigurációja.</span><span class="sxs-lookup"><span data-stu-id="d0887-145">hello following list shows hello configuration of hello load balancer.</span></span>
 
-### <a name="nfs-server"></a><span data-ttu-id="143ee-146">NFS-kiszolgáló</span><span class="sxs-lookup"><span data-stu-id="143ee-146">NFS Server</span></span>
-* <span data-ttu-id="143ee-147">Előtérbeli konfigurációja</span><span class="sxs-lookup"><span data-stu-id="143ee-147">Frontend configuration</span></span>
-  * <span data-ttu-id="143ee-148">IP-cím 10.0.0.4</span><span class="sxs-lookup"><span data-stu-id="143ee-148">IP address 10.0.0.4</span></span>
-* <span data-ttu-id="143ee-149">Háttérkonfiguráció</span><span class="sxs-lookup"><span data-stu-id="143ee-149">Backend configuration</span></span>
-  * <span data-ttu-id="143ee-150">Az összes virtuális gépet, amely az NFS-fürt részét kell képezniük elsődleges hálózati illesztők csatlakozik</span><span class="sxs-lookup"><span data-stu-id="143ee-150">Connected to primary network interfaces of all virtual machines that should be part of the NFS cluster</span></span>
-* <span data-ttu-id="143ee-151">Mintavételi portot</span><span class="sxs-lookup"><span data-stu-id="143ee-151">Probe Port</span></span>
-  * <span data-ttu-id="143ee-152">Port 61000</span><span class="sxs-lookup"><span data-stu-id="143ee-152">Port 61000</span></span>
-* <span data-ttu-id="143ee-153">Terheléselosztás szabályok</span><span class="sxs-lookup"><span data-stu-id="143ee-153">Loadbalancing rules</span></span>
-  * <span data-ttu-id="143ee-154">2049 TCP</span><span class="sxs-lookup"><span data-stu-id="143ee-154">2049 TCP</span></span> 
-  * <span data-ttu-id="143ee-155">2049 UDP</span><span class="sxs-lookup"><span data-stu-id="143ee-155">2049 UDP</span></span>
+### <a name="nfs-server"></a><span data-ttu-id="d0887-146">NFS-kiszolgáló</span><span class="sxs-lookup"><span data-stu-id="d0887-146">NFS Server</span></span>
+* <span data-ttu-id="d0887-147">Előtérbeli konfigurációja</span><span class="sxs-lookup"><span data-stu-id="d0887-147">Frontend configuration</span></span>
+  * <span data-ttu-id="d0887-148">IP-cím 10.0.0.4</span><span class="sxs-lookup"><span data-stu-id="d0887-148">IP address 10.0.0.4</span></span>
+* <span data-ttu-id="d0887-149">Háttérkonfiguráció</span><span class="sxs-lookup"><span data-stu-id="d0887-149">Backend configuration</span></span>
+  * <span data-ttu-id="d0887-150">Az összes virtuális gépet, amely hello NFS fürt részét kell képezniük tooprimary hálózati adapterek csatlakoztatva</span><span class="sxs-lookup"><span data-stu-id="d0887-150">Connected tooprimary network interfaces of all virtual machines that should be part of hello NFS cluster</span></span>
+* <span data-ttu-id="d0887-151">Mintavételi portot</span><span class="sxs-lookup"><span data-stu-id="d0887-151">Probe Port</span></span>
+  * <span data-ttu-id="d0887-152">Port 61000</span><span class="sxs-lookup"><span data-stu-id="d0887-152">Port 61000</span></span>
+* <span data-ttu-id="d0887-153">Terheléselosztás szabályok</span><span class="sxs-lookup"><span data-stu-id="d0887-153">Loadbalancing rules</span></span>
+  * <span data-ttu-id="d0887-154">2049 TCP</span><span class="sxs-lookup"><span data-stu-id="d0887-154">2049 TCP</span></span> 
+  * <span data-ttu-id="d0887-155">2049 UDP</span><span class="sxs-lookup"><span data-stu-id="d0887-155">2049 UDP</span></span>
 
-### <a name="ascs"></a><span data-ttu-id="143ee-156">(A) SCS</span><span class="sxs-lookup"><span data-stu-id="143ee-156">(A)SCS</span></span>
-* <span data-ttu-id="143ee-157">Előtérbeli konfigurációja</span><span class="sxs-lookup"><span data-stu-id="143ee-157">Frontend configuration</span></span>
-  * <span data-ttu-id="143ee-158">IP-cím 10.0.0.10</span><span class="sxs-lookup"><span data-stu-id="143ee-158">IP address 10.0.0.10</span></span>
-* <span data-ttu-id="143ee-159">Háttérkonfiguráció</span><span class="sxs-lookup"><span data-stu-id="143ee-159">Backend configuration</span></span>
-  * <span data-ttu-id="143ee-160">Az összes virtuális gépet, amely a (A) részét kell képezniük elsődleges hálózati illesztők csatlakozik SCS/SSZON fürt</span><span class="sxs-lookup"><span data-stu-id="143ee-160">Connected to primary network interfaces of all virtual machines that should be part of the (A)SCS/ERS cluster</span></span>
-* <span data-ttu-id="143ee-161">Mintavételi portot</span><span class="sxs-lookup"><span data-stu-id="143ee-161">Probe Port</span></span>
-  * <span data-ttu-id="143ee-162">Port 620**&lt;nr&gt;**</span><span class="sxs-lookup"><span data-stu-id="143ee-162">Port 620**&lt;nr&gt;**</span></span>
-* <span data-ttu-id="143ee-163">Terheléselosztás szabályok</span><span class="sxs-lookup"><span data-stu-id="143ee-163">Loadbalancing rules</span></span>
-  * <span data-ttu-id="143ee-164">32**&lt;nr&gt;**  TCP</span><span class="sxs-lookup"><span data-stu-id="143ee-164">32**&lt;nr&gt;** TCP</span></span>
-  * <span data-ttu-id="143ee-165">36**&lt;nr&gt;**  TCP</span><span class="sxs-lookup"><span data-stu-id="143ee-165">36**&lt;nr&gt;** TCP</span></span>
-  * <span data-ttu-id="143ee-166">39**&lt;nr&gt;**  TCP</span><span class="sxs-lookup"><span data-stu-id="143ee-166">39**&lt;nr&gt;** TCP</span></span>
-  * <span data-ttu-id="143ee-167">81-es**&lt;nr&gt;**  TCP</span><span class="sxs-lookup"><span data-stu-id="143ee-167">81**&lt;nr&gt;** TCP</span></span>
-  * <span data-ttu-id="143ee-168">5**&lt;nr&gt;**13 TCP</span><span class="sxs-lookup"><span data-stu-id="143ee-168">5**&lt;nr&gt;**13 TCP</span></span>
-  * <span data-ttu-id="143ee-169">5**&lt;nr&gt;**14 TCP</span><span class="sxs-lookup"><span data-stu-id="143ee-169">5**&lt;nr&gt;**14 TCP</span></span>
-  * <span data-ttu-id="143ee-170">5**&lt;nr&gt;**16 TCP</span><span class="sxs-lookup"><span data-stu-id="143ee-170">5**&lt;nr&gt;**16 TCP</span></span>
+### <a name="ascs"></a><span data-ttu-id="d0887-156">(A) SCS</span><span class="sxs-lookup"><span data-stu-id="d0887-156">(A)SCS</span></span>
+* <span data-ttu-id="d0887-157">Előtérbeli konfigurációja</span><span class="sxs-lookup"><span data-stu-id="d0887-157">Frontend configuration</span></span>
+  * <span data-ttu-id="d0887-158">IP-cím 10.0.0.10</span><span class="sxs-lookup"><span data-stu-id="d0887-158">IP address 10.0.0.10</span></span>
+* <span data-ttu-id="d0887-159">Háttérkonfiguráció</span><span class="sxs-lookup"><span data-stu-id="d0887-159">Backend configuration</span></span>
+  * <span data-ttu-id="d0887-160">Az összes virtuális gépet, amely hello (A) SCS/SSZON fürt részét kell képezniük tooprimary csatlakoztatott hálózati illesztők</span><span class="sxs-lookup"><span data-stu-id="d0887-160">Connected tooprimary network interfaces of all virtual machines that should be part of hello (A)SCS/ERS cluster</span></span>
+* <span data-ttu-id="d0887-161">Mintavételi portot</span><span class="sxs-lookup"><span data-stu-id="d0887-161">Probe Port</span></span>
+  * <span data-ttu-id="d0887-162">Port 620**&lt;nr&gt;**</span><span class="sxs-lookup"><span data-stu-id="d0887-162">Port 620**&lt;nr&gt;**</span></span>
+* <span data-ttu-id="d0887-163">Terheléselosztás szabályok</span><span class="sxs-lookup"><span data-stu-id="d0887-163">Loadbalancing rules</span></span>
+  * <span data-ttu-id="d0887-164">32**&lt;nr&gt;**  TCP</span><span class="sxs-lookup"><span data-stu-id="d0887-164">32**&lt;nr&gt;** TCP</span></span>
+  * <span data-ttu-id="d0887-165">36**&lt;nr&gt;**  TCP</span><span class="sxs-lookup"><span data-stu-id="d0887-165">36**&lt;nr&gt;** TCP</span></span>
+  * <span data-ttu-id="d0887-166">39**&lt;nr&gt;**  TCP</span><span class="sxs-lookup"><span data-stu-id="d0887-166">39**&lt;nr&gt;** TCP</span></span>
+  * <span data-ttu-id="d0887-167">81-es**&lt;nr&gt;**  TCP</span><span class="sxs-lookup"><span data-stu-id="d0887-167">81**&lt;nr&gt;** TCP</span></span>
+  * <span data-ttu-id="d0887-168">5**&lt;nr&gt;**13 TCP</span><span class="sxs-lookup"><span data-stu-id="d0887-168">5**&lt;nr&gt;**13 TCP</span></span>
+  * <span data-ttu-id="d0887-169">5**&lt;nr&gt;**14 TCP</span><span class="sxs-lookup"><span data-stu-id="d0887-169">5**&lt;nr&gt;**14 TCP</span></span>
+  * <span data-ttu-id="d0887-170">5**&lt;nr&gt;**16 TCP</span><span class="sxs-lookup"><span data-stu-id="d0887-170">5**&lt;nr&gt;**16 TCP</span></span>
 
-### <a name="ers"></a><span data-ttu-id="143ee-171">SSZON</span><span class="sxs-lookup"><span data-stu-id="143ee-171">ERS</span></span>
-* <span data-ttu-id="143ee-172">Előtérbeli konfigurációja</span><span class="sxs-lookup"><span data-stu-id="143ee-172">Frontend configuration</span></span>
-  * <span data-ttu-id="143ee-173">IP-cím 10.0.0.11</span><span class="sxs-lookup"><span data-stu-id="143ee-173">IP address 10.0.0.11</span></span>
-* <span data-ttu-id="143ee-174">Háttérkonfiguráció</span><span class="sxs-lookup"><span data-stu-id="143ee-174">Backend configuration</span></span>
-  * <span data-ttu-id="143ee-175">Az összes virtuális gépet, amely a (A) részét kell képezniük elsődleges hálózati illesztők csatlakozik SCS/SSZON fürt</span><span class="sxs-lookup"><span data-stu-id="143ee-175">Connected to primary network interfaces of all virtual machines that should be part of the (A)SCS/ERS cluster</span></span>
-* <span data-ttu-id="143ee-176">Mintavételi portot</span><span class="sxs-lookup"><span data-stu-id="143ee-176">Probe Port</span></span>
-  * <span data-ttu-id="143ee-177">Port 621**&lt;nr&gt;**</span><span class="sxs-lookup"><span data-stu-id="143ee-177">Port 621**&lt;nr&gt;**</span></span>
-* <span data-ttu-id="143ee-178">Terheléselosztás szabályok</span><span class="sxs-lookup"><span data-stu-id="143ee-178">Loadbalancing rules</span></span>
-  * <span data-ttu-id="143ee-179">33**&lt;nr&gt;**  TCP</span><span class="sxs-lookup"><span data-stu-id="143ee-179">33**&lt;nr&gt;** TCP</span></span>
-  * <span data-ttu-id="143ee-180">5**&lt;nr&gt;**13 TCP</span><span class="sxs-lookup"><span data-stu-id="143ee-180">5**&lt;nr&gt;**13 TCP</span></span>
-  * <span data-ttu-id="143ee-181">5**&lt;nr&gt;**14 TCP</span><span class="sxs-lookup"><span data-stu-id="143ee-181">5**&lt;nr&gt;**14 TCP</span></span>
-  * <span data-ttu-id="143ee-182">5**&lt;nr&gt;**16 TCP</span><span class="sxs-lookup"><span data-stu-id="143ee-182">5**&lt;nr&gt;**16 TCP</span></span>
+### <a name="ers"></a><span data-ttu-id="d0887-171">SSZON</span><span class="sxs-lookup"><span data-stu-id="d0887-171">ERS</span></span>
+* <span data-ttu-id="d0887-172">Előtérbeli konfigurációja</span><span class="sxs-lookup"><span data-stu-id="d0887-172">Frontend configuration</span></span>
+  * <span data-ttu-id="d0887-173">IP-cím 10.0.0.11</span><span class="sxs-lookup"><span data-stu-id="d0887-173">IP address 10.0.0.11</span></span>
+* <span data-ttu-id="d0887-174">Háttérkonfiguráció</span><span class="sxs-lookup"><span data-stu-id="d0887-174">Backend configuration</span></span>
+  * <span data-ttu-id="d0887-175">Az összes virtuális gépet, amely hello (A) SCS/SSZON fürt részét kell képezniük tooprimary csatlakoztatott hálózati illesztők</span><span class="sxs-lookup"><span data-stu-id="d0887-175">Connected tooprimary network interfaces of all virtual machines that should be part of hello (A)SCS/ERS cluster</span></span>
+* <span data-ttu-id="d0887-176">Mintavételi portot</span><span class="sxs-lookup"><span data-stu-id="d0887-176">Probe Port</span></span>
+  * <span data-ttu-id="d0887-177">Port 621**&lt;nr&gt;**</span><span class="sxs-lookup"><span data-stu-id="d0887-177">Port 621**&lt;nr&gt;**</span></span>
+* <span data-ttu-id="d0887-178">Terheléselosztás szabályok</span><span class="sxs-lookup"><span data-stu-id="d0887-178">Loadbalancing rules</span></span>
+  * <span data-ttu-id="d0887-179">33**&lt;nr&gt;**  TCP</span><span class="sxs-lookup"><span data-stu-id="d0887-179">33**&lt;nr&gt;** TCP</span></span>
+  * <span data-ttu-id="d0887-180">5**&lt;nr&gt;**13 TCP</span><span class="sxs-lookup"><span data-stu-id="d0887-180">5**&lt;nr&gt;**13 TCP</span></span>
+  * <span data-ttu-id="d0887-181">5**&lt;nr&gt;**14 TCP</span><span class="sxs-lookup"><span data-stu-id="d0887-181">5**&lt;nr&gt;**14 TCP</span></span>
+  * <span data-ttu-id="d0887-182">5**&lt;nr&gt;**16 TCP</span><span class="sxs-lookup"><span data-stu-id="d0887-182">5**&lt;nr&gt;**16 TCP</span></span>
 
-### <a name="sap-hana"></a><span data-ttu-id="143ee-183">SAP HANA</span><span class="sxs-lookup"><span data-stu-id="143ee-183">SAP HANA</span></span>
-* <span data-ttu-id="143ee-184">Előtérbeli konfigurációja</span><span class="sxs-lookup"><span data-stu-id="143ee-184">Frontend configuration</span></span>
-  * <span data-ttu-id="143ee-185">10.0.0.12 IP-cím</span><span class="sxs-lookup"><span data-stu-id="143ee-185">IP address 10.0.0.12</span></span>
-* <span data-ttu-id="143ee-186">Háttérkonfiguráció</span><span class="sxs-lookup"><span data-stu-id="143ee-186">Backend configuration</span></span>
-  * <span data-ttu-id="143ee-187">Az összes virtuális gépet, amely a HANA fürt részét kell képezniük elsődleges hálózati illesztők csatlakozik</span><span class="sxs-lookup"><span data-stu-id="143ee-187">Connected to primary network interfaces of all virtual machines that should be part of the HANA cluster</span></span>
-* <span data-ttu-id="143ee-188">Mintavételi portot</span><span class="sxs-lookup"><span data-stu-id="143ee-188">Probe Port</span></span>
-  * <span data-ttu-id="143ee-189">Port a 625**&lt;nr&gt;**</span><span class="sxs-lookup"><span data-stu-id="143ee-189">Port 625**&lt;nr&gt;**</span></span>
-* <span data-ttu-id="143ee-190">Terheléselosztás szabályok</span><span class="sxs-lookup"><span data-stu-id="143ee-190">Loadbalancing rules</span></span>
-  * <span data-ttu-id="143ee-191">3**&lt;nr&gt;**15 TCP</span><span class="sxs-lookup"><span data-stu-id="143ee-191">3**&lt;nr&gt;**15 TCP</span></span>
-  * <span data-ttu-id="143ee-192">3**&lt;nr&gt;**17 TCP</span><span class="sxs-lookup"><span data-stu-id="143ee-192">3**&lt;nr&gt;**17 TCP</span></span>
+### <a name="sap-hana"></a><span data-ttu-id="d0887-183">SAP HANA</span><span class="sxs-lookup"><span data-stu-id="d0887-183">SAP HANA</span></span>
+* <span data-ttu-id="d0887-184">Előtérbeli konfigurációja</span><span class="sxs-lookup"><span data-stu-id="d0887-184">Frontend configuration</span></span>
+  * <span data-ttu-id="d0887-185">10.0.0.12 IP-cím</span><span class="sxs-lookup"><span data-stu-id="d0887-185">IP address 10.0.0.12</span></span>
+* <span data-ttu-id="d0887-186">Háttérkonfiguráció</span><span class="sxs-lookup"><span data-stu-id="d0887-186">Backend configuration</span></span>
+  * <span data-ttu-id="d0887-187">Az összes virtuális gépet, amely hello HANA fürt részét kell képezniük tooprimary hálózati adapterek csatlakoztatva</span><span class="sxs-lookup"><span data-stu-id="d0887-187">Connected tooprimary network interfaces of all virtual machines that should be part of hello HANA cluster</span></span>
+* <span data-ttu-id="d0887-188">Mintavételi portot</span><span class="sxs-lookup"><span data-stu-id="d0887-188">Probe Port</span></span>
+  * <span data-ttu-id="d0887-189">Port a 625**&lt;nr&gt;**</span><span class="sxs-lookup"><span data-stu-id="d0887-189">Port 625**&lt;nr&gt;**</span></span>
+* <span data-ttu-id="d0887-190">Terheléselosztás szabályok</span><span class="sxs-lookup"><span data-stu-id="d0887-190">Loadbalancing rules</span></span>
+  * <span data-ttu-id="d0887-191">3**&lt;nr&gt;**15 TCP</span><span class="sxs-lookup"><span data-stu-id="d0887-191">3**&lt;nr&gt;**15 TCP</span></span>
+  * <span data-ttu-id="d0887-192">3**&lt;nr&gt;**17 TCP</span><span class="sxs-lookup"><span data-stu-id="d0887-192">3**&lt;nr&gt;**17 TCP</span></span>
 
-## <a name="setting-up-a-highly-available-nfs-server"></a><span data-ttu-id="143ee-193">Egy magas rendelkezésre állású NFS-kiszolgáló beállítása</span><span class="sxs-lookup"><span data-stu-id="143ee-193">Setting up a highly available NFS server</span></span>
+## <a name="setting-up-a-highly-available-nfs-server"></a><span data-ttu-id="d0887-193">Egy magas rendelkezésre állású NFS-kiszolgáló beállítása</span><span class="sxs-lookup"><span data-stu-id="d0887-193">Setting up a highly available NFS server</span></span>
 
-### <a name="deploying-linux"></a><span data-ttu-id="143ee-194">Linux telepítése</span><span class="sxs-lookup"><span data-stu-id="143ee-194">Deploying Linux</span></span>
+### <a name="deploying-linux"></a><span data-ttu-id="d0887-194">Linux telepítése</span><span class="sxs-lookup"><span data-stu-id="d0887-194">Deploying Linux</span></span>
 
-<span data-ttu-id="143ee-195">Az Azure piactéren SUSE Linux Enterprise Server SAP alkalmazások 12-es segítségével új virtuális gépek telepítése a kép tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="143ee-195">The Azure Marketplace contains an image for SUSE Linux Enterprise Server for SAP Applications 12 that you can use to deploy new virtual machines.</span></span>
-<span data-ttu-id="143ee-196">Segítségével a gyors üzembe helyezési sablonok valamelyikét a githubon központi telepítése az összes szükséges erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="143ee-196">You can use one of the quick start templates on github to deploy all required resources.</span></span> <span data-ttu-id="143ee-197">A sablon telepíti, a virtuális gépek, a terheléselosztó hasonló adataival, a rendelkezésre állási csoport stb. Kövesse az alábbi lépéseket a sablon telepítéséhez:</span><span class="sxs-lookup"><span data-stu-id="143ee-197">The template deploys the virtual machines, the load balancer, availability set etc. Follow these steps to deploy the template:</span></span>
+<span data-ttu-id="d0887-195">hello Azure piactér SUSE Linux Enterprise Server SAP alkalmazások 12 használható toodeploy új virtuális gépek a kép tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="d0887-195">hello Azure Marketplace contains an image for SUSE Linux Enterprise Server for SAP Applications 12 that you can use toodeploy new virtual machines.</span></span>
+<span data-ttu-id="d0887-196">Használhat hello gyors üzembe helyezési sablonok a githubon toodeploy minden szükséges erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="d0887-196">You can use one of hello quick start templates on github toodeploy all required resources.</span></span> <span data-ttu-id="d0887-197">hello sablon telepíti hello virtuális gépek, a terheléselosztó hello, a rendelkezésre állási csoport stb. Kövesse a lépéseket toodeploy hello sablon:</span><span class="sxs-lookup"><span data-stu-id="d0887-197">hello template deploys hello virtual machines, hello load balancer, availability set etc. Follow these steps toodeploy hello template:</span></span>
 
-1. <span data-ttu-id="143ee-198">Nyissa meg a [SAP fájl server sablon] [ template-file-server] az Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="143ee-198">Open the [SAP file server template][template-file-server] in the Azure portal</span></span>   
-1. <span data-ttu-id="143ee-199">Adja meg a következő paraméterek</span><span class="sxs-lookup"><span data-stu-id="143ee-199">Enter the following parameters</span></span>
-   1. <span data-ttu-id="143ee-200">Erőforrás-előtag</span><span class="sxs-lookup"><span data-stu-id="143ee-200">Resource Prefix</span></span>  
-      <span data-ttu-id="143ee-201">Adja meg a használni kívánt előtagot.</span><span class="sxs-lookup"><span data-stu-id="143ee-201">Enter the prefix you want to use.</span></span> <span data-ttu-id="143ee-202">Az érték a telepített erőforrások esetén használatos előtagjaként.</span><span class="sxs-lookup"><span data-stu-id="143ee-202">The value is used as a prefix for the resources that are deployed.</span></span>
-   2. <span data-ttu-id="143ee-203">Operációs rendszer típusa</span><span class="sxs-lookup"><span data-stu-id="143ee-203">Os Type</span></span>  
-      <span data-ttu-id="143ee-204">Válasszon egyet a Linux terjesztéseket.</span><span class="sxs-lookup"><span data-stu-id="143ee-204">Select one of the Linux distributions.</span></span> <span data-ttu-id="143ee-205">Ehhez a példához válassza ki a SLES 12 rendszert</span><span class="sxs-lookup"><span data-stu-id="143ee-205">For this example, select SLES 12</span></span>
-   3. <span data-ttu-id="143ee-206">Rendszergazda felhasználónevét és a rendszergazdai jelszó</span><span class="sxs-lookup"><span data-stu-id="143ee-206">Admin Username and Admin Password</span></span>  
-      <span data-ttu-id="143ee-207">Új felhasználó jön létre, amely segítségével jelentkezzen be a gépre.</span><span class="sxs-lookup"><span data-stu-id="143ee-207">A new user is created that can be used to log on to the machine.</span></span>
-   4. <span data-ttu-id="143ee-208">Alhálózati azonosító</span><span class="sxs-lookup"><span data-stu-id="143ee-208">Subnet Id</span></span>  
-      <span data-ttu-id="143ee-209">Az alhálózat, amelyhez a virtuális gépek csatlakoznia kell az azonosítója.</span><span class="sxs-lookup"><span data-stu-id="143ee-209">The ID of the subnet to which the virtual machines should be connected to.</span></span> <span data-ttu-id="143ee-210">Hagyja üresen, ha azt szeretné, hozzon létre egy új virtuális hálózatot, vagy jelölje ki az alhálózatot, a VPN- vagy Express Route virtuális hálózat a virtuális gép és a helyszíni hálózathoz csatlakozni.</span><span class="sxs-lookup"><span data-stu-id="143ee-210">Leave empty if you want to create a new virtual network or select the subnet of your VPN or Express Route virtual network to connect the virtual machine to your on-premises network.</span></span> <span data-ttu-id="143ee-211">Az azonosító általában a következőképpen néz következő**&lt;előfizetés-azonosító&gt;**/resourceGroups/**&lt;erőforráscsoport-név&gt;**/providers/ Microsoft.Network/virtualNetworks/**&lt;virtuálishálózat-név&gt;**/subnets/**&lt;alhálózat neve&gt;**</span><span class="sxs-lookup"><span data-stu-id="143ee-211">The ID usually looks like /subscriptions/**&lt;subscription id&gt;**/resourceGroups/**&lt;resource group name&gt;**/providers/Microsoft.Network/virtualNetworks/**&lt;virtual network name&gt;**/subnets/**&lt;subnet name&gt;**</span></span>
+1. <span data-ttu-id="d0887-198">Nyissa meg hello [SAP fájl server sablon] [ template-file-server] a hello Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="d0887-198">Open hello [SAP file server template][template-file-server] in hello Azure portal</span></span>   
+1. <span data-ttu-id="d0887-199">Adja meg a következő paraméterek hello</span><span class="sxs-lookup"><span data-stu-id="d0887-199">Enter hello following parameters</span></span>
+   1. <span data-ttu-id="d0887-200">Erőforrás-előtag</span><span class="sxs-lookup"><span data-stu-id="d0887-200">Resource Prefix</span></span>  
+      <span data-ttu-id="d0887-201">Adja meg a kívánt toouse hello előtag.</span><span class="sxs-lookup"><span data-stu-id="d0887-201">Enter hello prefix you want toouse.</span></span> <span data-ttu-id="d0887-202">hello érték előtagjaként hello telepített erőforrások esetén használatos.</span><span class="sxs-lookup"><span data-stu-id="d0887-202">hello value is used as a prefix for hello resources that are deployed.</span></span>
+   2. <span data-ttu-id="d0887-203">Operációs rendszer típusa</span><span class="sxs-lookup"><span data-stu-id="d0887-203">Os Type</span></span>  
+      <span data-ttu-id="d0887-204">Válasszon ki egy hello Linux terjesztéseket.</span><span class="sxs-lookup"><span data-stu-id="d0887-204">Select one of hello Linux distributions.</span></span> <span data-ttu-id="d0887-205">Ehhez a példához válassza ki a SLES 12 rendszert</span><span class="sxs-lookup"><span data-stu-id="d0887-205">For this example, select SLES 12</span></span>
+   3. <span data-ttu-id="d0887-206">Rendszergazda felhasználónevét és a rendszergazdai jelszó</span><span class="sxs-lookup"><span data-stu-id="d0887-206">Admin Username and Admin Password</span></span>  
+      <span data-ttu-id="d0887-207">Új felhasználó jön létre, amely lehet használt toolog toohello gépen.</span><span class="sxs-lookup"><span data-stu-id="d0887-207">A new user is created that can be used toolog on toohello machine.</span></span>
+   4. <span data-ttu-id="d0887-208">Alhálózati azonosító</span><span class="sxs-lookup"><span data-stu-id="d0887-208">Subnet Id</span></span>  
+      <span data-ttu-id="d0887-209">hello azonosító hello alhálózati toowhich hello virtuális gépek csatlakoznia kell.</span><span class="sxs-lookup"><span data-stu-id="d0887-209">hello ID of hello subnet toowhich hello virtual machines should be connected to.</span></span> <span data-ttu-id="d0887-210">Hagyja üresen, ha szeretné, hogy egy új virtuális hálózat toocreate, vagy jelölje ki a VPN- vagy Express Route virtuális hálózati tooconnect hello virtuális gép tooyour a helyszíni hálózat hello alhálózatot.</span><span class="sxs-lookup"><span data-stu-id="d0887-210">Leave empty if you want toocreate a new virtual network or select hello subnet of your VPN or Express Route virtual network tooconnect hello virtual machine tooyour on-premises network.</span></span> <span data-ttu-id="d0887-211">hello azonosítója általában a következőképpen néz következő**&lt;előfizetés-azonosító&gt;**/resourceGroups/**&lt;erőforráscsoport-név&gt;**/providers/ Microsoft.Network/virtualNetworks/**&lt;virtuálishálózat-név&gt;**/subnets/**&lt;alhálózat neve&gt;**</span><span class="sxs-lookup"><span data-stu-id="d0887-211">hello ID usually looks like /subscriptions/**&lt;subscription id&gt;**/resourceGroups/**&lt;resource group name&gt;**/providers/Microsoft.Network/virtualNetworks/**&lt;virtual network name&gt;**/subnets/**&lt;subnet name&gt;**</span></span>
 
-### <a name="installation"></a><span data-ttu-id="143ee-212">Telepítés</span><span class="sxs-lookup"><span data-stu-id="143ee-212">Installation</span></span>
+### <a name="installation"></a><span data-ttu-id="d0887-212">Telepítés</span><span class="sxs-lookup"><span data-stu-id="d0887-212">Installation</span></span>
 
-<span data-ttu-id="143ee-213">A következő elemek fűzve előtagként vagy **[A]** – az összes csomópont alkalmazandó **[1]** – csak érvényes csomópont 1 vagy **[2]** - csomópont 2 csak érvényes.</span><span class="sxs-lookup"><span data-stu-id="143ee-213">The following items are prefixed with either **[A]** - applicable to all nodes, **[1]** - only applicable to node 1 or **[2]** - only applicable to node 2.</span></span>
+<span data-ttu-id="d0887-213">hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall csomópontok **[1]** -csak a megfelelő toonode 1 vagy **[2]** -csak a megfelelő toonode 2.</span><span class="sxs-lookup"><span data-stu-id="d0887-213">hello following items are prefixed with either **[A]** - applicable tooall nodes, **[1]** - only applicable toonode 1 or **[2]** - only applicable toonode 2.</span></span>
 
-1. <span data-ttu-id="143ee-214">**[A]**  SLES frissítése</span><span class="sxs-lookup"><span data-stu-id="143ee-214">**[A]** Update SLES</span></span>
+1. <span data-ttu-id="d0887-214">**[A]**  SLES frissítése</span><span class="sxs-lookup"><span data-stu-id="d0887-214">**[A]** Update SLES</span></span>
 
    <pre><code>
    sudo zypper update
    </code></pre>
 
-1. <span data-ttu-id="143ee-215">**[1]**  Ssh hozzáférés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="143ee-215">**[1]** Enable ssh access</span></span>
+1. <span data-ttu-id="d0887-215">**[1]**  Ssh hozzáférés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="d0887-215">**[1]** Enable ssh access</span></span>
 
    <pre><code>
    sudo ssh-keygen -tdsa
    
-   # Enter file in which to save the key (/root/.ssh/id_dsa): -> ENTER
+   # Enter file in which toosave hello key (/root/.ssh/id_dsa): -> ENTER
    # Enter passphrase (empty for no passphrase): -> ENTER
    # Enter same passphrase again: -> ENTER
    
-   # copy the public key
+   # copy hello public key
    sudo cat /root/.ssh/id_dsa.pub
    </code></pre>
 
-2. <span data-ttu-id="143ee-216">**[2]**  Ssh hozzáférés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="143ee-216">**[2]** Enable ssh access</span></span>
+2. <span data-ttu-id="d0887-216">**[2]**  Ssh hozzáférés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="d0887-216">**[2]** Enable ssh access</span></span>
 
    <pre><code>
    sudo ssh-keygen -tdsa
 
-   # insert the public key you copied in the last step into the authorized keys file on the second server
+   # insert hello public key you copied in hello last step into hello authorized keys file on hello second server
    sudo vi /root/.ssh/authorized_keys
    
-   # Enter file in which to save the key (/root/.ssh/id_dsa): -> ENTER
+   # Enter file in which toosave hello key (/root/.ssh/id_dsa): -> ENTER
    # Enter passphrase (empty for no passphrase): -> ENTER
    # Enter same passphrase again: -> ENTER
    
-   # copy the public key   
+   # copy hello public key   
    sudo cat /root/.ssh/id_dsa.pub
    </code></pre>
 
-1. <span data-ttu-id="143ee-217">**[1]**  Ssh hozzáférés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="143ee-217">**[1]** Enable ssh access</span></span>
+1. <span data-ttu-id="d0887-217">**[1]**  Ssh hozzáférés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="d0887-217">**[1]** Enable ssh access</span></span>
 
    <pre><code>
-   # insert the public key you copied in the last step into the authorized keys file on the first server
+   # insert hello public key you copied in hello last step into hello authorized keys file on hello first server
    sudo vi /root/.ssh/authorized_keys
    </code></pre>
 
-1. <span data-ttu-id="143ee-218">**[A]**  Telepítése magas rendelkezésre ÁLLÁSÚ bővítmény</span><span class="sxs-lookup"><span data-stu-id="143ee-218">**[A]** Install HA extension</span></span>
+1. <span data-ttu-id="d0887-218">**[A]**  Telepítése magas rendelkezésre ÁLLÁSÚ bővítmény</span><span class="sxs-lookup"><span data-stu-id="d0887-218">**[A]** Install HA extension</span></span>
    
    <pre><code>
    sudo zypper install sle-ha-release fence-agents
    </code></pre>
 
-1. <span data-ttu-id="143ee-219">**[A]**  Állomásnév beállítása</span><span class="sxs-lookup"><span data-stu-id="143ee-219">**[A]** Setup host name resolution</span></span>   
+1. <span data-ttu-id="d0887-219">**[A]**  Állomásnév beállítása</span><span class="sxs-lookup"><span data-stu-id="d0887-219">**[A]** Setup host name resolution</span></span>   
 
-   <span data-ttu-id="143ee-220">DNS-kiszolgálót használjon, vagy módosítsa az/etc/hosts minden csomóponton.</span><span class="sxs-lookup"><span data-stu-id="143ee-220">You can either use a DNS server or modify the /etc/hosts on all nodes.</span></span> <span data-ttu-id="143ee-221">Ez a példa bemutatja, hogyan használható az/etc/hosts fájlt.</span><span class="sxs-lookup"><span data-stu-id="143ee-221">This example shows how to use the /etc/hosts file.</span></span>
-   <span data-ttu-id="143ee-222">Cserélje le az IP-cím és a következő parancsokat az állomásnév</span><span class="sxs-lookup"><span data-stu-id="143ee-222">Replace the IP address and the hostname in the following commands</span></span>
+   <span data-ttu-id="d0887-220">DNS-kiszolgálót használjon, vagy módosítsa a hello/etc/hosts minden csomóponton.</span><span class="sxs-lookup"><span data-stu-id="d0887-220">You can either use a DNS server or modify hello /etc/hosts on all nodes.</span></span> <span data-ttu-id="d0887-221">Ez a példa bemutatja, hogyan toouse hello/Etc/Hosts fájlt.</span><span class="sxs-lookup"><span data-stu-id="d0887-221">This example shows how toouse hello /etc/hosts file.</span></span>
+   <span data-ttu-id="d0887-222">Cserélje le a hello IP-cím és a következő parancsok hello hello állomásnév</span><span class="sxs-lookup"><span data-stu-id="d0887-222">Replace hello IP address and hello hostname in hello following commands</span></span>
 
    <pre><code>
    sudo vi /etc/hosts
    </code></pre>
    
-   <span data-ttu-id="143ee-223">Helyezze be a következő sorokat/etc/hosts.</span><span class="sxs-lookup"><span data-stu-id="143ee-223">Insert the following lines to /etc/hosts.</span></span> <span data-ttu-id="143ee-224">Az IP-cím és a környezet megfelelő állomásnév módosítása</span><span class="sxs-lookup"><span data-stu-id="143ee-224">Change the IP address and hostname to match your environment</span></span>   
+   <span data-ttu-id="d0887-223">Helyezze be a következő sorokat túl/etc/hosts hello.</span><span class="sxs-lookup"><span data-stu-id="d0887-223">Insert hello following lines too/etc/hosts.</span></span> <span data-ttu-id="d0887-224">Hello IP cím és az állomásnév toomatch a környezet módosítása</span><span class="sxs-lookup"><span data-stu-id="d0887-224">Change hello IP address and hostname toomatch your environment</span></span>   
    
    <pre><code>
-   # IP address of the load balancer frontend configuration for NFS
+   # IP address of hello load balancer frontend configuration for NFS
    <b>10.0.0.4 nws-nfs</b>
    </code></pre>
 
-1. <span data-ttu-id="143ee-225">**[1]**  Fürt telepítése</span><span class="sxs-lookup"><span data-stu-id="143ee-225">**[1]** Install Cluster</span></span>
+1. <span data-ttu-id="d0887-225">**[1]**  Fürt telepítése</span><span class="sxs-lookup"><span data-stu-id="d0887-225">**[1]** Install Cluster</span></span>
    
    <pre><code>
    sudo ha-cluster-init
    
-   # Do you want to continue anyway? [y/N] -> y
-   # Network address to bind to (for example: 192.168.1.0) [10.79.227.0] -> ENTER
+   # Do you want toocontinue anyway? [y/N] -> y
+   # Network address toobind too(for example: 192.168.1.0) [10.79.227.0] -> ENTER
    # Multicast address (for example: 239.x.x.x) [239.174.218.125] -> ENTER
    # Multicast port [5405] -> ENTER
-   # Do you wish to use SBD? [y/N] -> N
-   # Do you wish to configure an administration IP? [y/N] -> N
+   # Do you wish toouse SBD? [y/N] -> N
+   # Do you wish tooconfigure an administration IP? [y/N] -> N
    </code></pre>
 
-1. <span data-ttu-id="143ee-226">**[2]**  Csomópont hozzáadása a fürthöz</span><span class="sxs-lookup"><span data-stu-id="143ee-226">**[2]** Add node to cluster</span></span>
+1. <span data-ttu-id="d0887-226">**[2]**  Csomópont toocluster hozzáadása</span><span class="sxs-lookup"><span data-stu-id="d0887-226">**[2]** Add node toocluster</span></span>
    
    <pre><code> 
    sudo ha-cluster-join
 
-   # WARNING: NTP is not configured to start at system boot.
-   # WARNING: No watchdog device found. If SBD is used, the cluster will be unable to start without a watchdog.
-   # Do you want to continue anyway? [y/N] -> y
+   # WARNING: NTP is not configured toostart at system boot.
+   # WARNING: No watchdog device found. If SBD is used, hello cluster will be unable toostart without a watchdog.
+   # Do you want toocontinue anyway? [y/N] -> y
    # IP address or hostname of existing node (for example: 192.168.1.1) [] -> IP address of node 1 for example 10.0.0.10
    # /root/.ssh/id_dsa already exists - overwrite? [y/N] N
    </code></pre>
 
-1. <span data-ttu-id="143ee-227">**[A]**  Hacluster ugyanazt a jelszót a jelszó módosítása</span><span class="sxs-lookup"><span data-stu-id="143ee-227">**[A]** Change hacluster password to the same password</span></span>
+1. <span data-ttu-id="d0887-227">**[A]**  Módosítása hacluster jelszó toohello ugyanazt a jelszót</span><span class="sxs-lookup"><span data-stu-id="d0887-227">**[A]** Change hacluster password toohello same password</span></span>
 
    <pre><code> 
    sudo passwd hacluster
    </code></pre>
 
-1. <span data-ttu-id="143ee-228">**[A]**  Egyéb átvitelt használ, és adja hozzá a csomópontlista corosync konfigurálása.</span><span class="sxs-lookup"><span data-stu-id="143ee-228">**[A]** Configure corosync to use other transport and add nodelist.</span></span> <span data-ttu-id="143ee-229">Fürt egyébként nem működik.</span><span class="sxs-lookup"><span data-stu-id="143ee-229">Cluster will not work otherwise.</span></span>
+1. <span data-ttu-id="d0887-228">**[A]**  Corosync toouse más átviteli konfigurálása, és adja hozzá a csomópontlista.</span><span class="sxs-lookup"><span data-stu-id="d0887-228">**[A]** Configure corosync toouse other transport and add nodelist.</span></span> <span data-ttu-id="d0887-229">Fürt egyébként nem működik.</span><span class="sxs-lookup"><span data-stu-id="d0887-229">Cluster will not work otherwise.</span></span>
    
    <pre><code> 
    sudo vi /etc/corosync/corosync.conf   
    </code></pre>
 
-   <span data-ttu-id="143ee-230">Vegye fel a következő félkövér tartalmat a fájlba.</span><span class="sxs-lookup"><span data-stu-id="143ee-230">Add the following bold content to the file.</span></span>
+   <span data-ttu-id="d0887-230">Adja hozzá a következő félkövér tartalom toohello fájl hello.</span><span class="sxs-lookup"><span data-stu-id="d0887-230">Add hello following bold content toohello file.</span></span>
    
    <pre><code> 
    [...]
@@ -283,25 +283,25 @@ ms.lasthandoff: 08/03/2017
      [...]
    </code></pre>
 
-   <span data-ttu-id="143ee-231">Indítsa újra a corosync szolgáltatás</span><span class="sxs-lookup"><span data-stu-id="143ee-231">Then restart the corosync service</span></span>
+   <span data-ttu-id="d0887-231">Indítsa újra hello corosync szolgáltatás</span><span class="sxs-lookup"><span data-stu-id="d0887-231">Then restart hello corosync service</span></span>
 
    <pre><code>
    sudo service corosync restart
    </code></pre>
 
-1. <span data-ttu-id="143ee-232">**[A]**  Drbd összetevőinek telepítése</span><span class="sxs-lookup"><span data-stu-id="143ee-232">**[A]** Install drbd components</span></span>
+1. <span data-ttu-id="d0887-232">**[A]**  Drbd összetevőinek telepítése</span><span class="sxs-lookup"><span data-stu-id="d0887-232">**[A]** Install drbd components</span></span>
 
    <pre><code>
    sudo zypper install drbd drbd-kmp-default drbd-utils
    </code></pre>
 
-1. <span data-ttu-id="143ee-233">**[A]**  Hozzon létre egy partíciót a drbd eszköz</span><span class="sxs-lookup"><span data-stu-id="143ee-233">**[A]** Create a partition for the drbd device</span></span>
+1. <span data-ttu-id="d0887-233">**[A]**  Hozzon létre egy partíciót hello drbd eszköz</span><span class="sxs-lookup"><span data-stu-id="d0887-233">**[A]** Create a partition for hello drbd device</span></span>
 
    <pre><code>
    sudo sh -c 'echo -e "n\n\n\n\n\nw\n" | fdisk /dev/sdc'
    </code></pre>
 
-1. <span data-ttu-id="143ee-234">**[A]**  Létrehozása LVM konfigurációk</span><span class="sxs-lookup"><span data-stu-id="143ee-234">**[A]** Create LVM configurations</span></span>
+1. <span data-ttu-id="d0887-234">**[A]**  Létrehozása LVM konfigurációk</span><span class="sxs-lookup"><span data-stu-id="d0887-234">**[A]** Create LVM configurations</span></span>
 
    <pre><code>
    sudo pvcreate /dev/sdc1   
@@ -309,13 +309,13 @@ ms.lasthandoff: 08/03/2017
    sudo lvcreate -l 100%FREE -n <b>NWS</b> vg_NFS
    </code></pre>
 
-1. <span data-ttu-id="143ee-235">**[A]**  Az NFS drbd eszköz létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-235">**[A]** Create the NFS drbd device</span></span>
+1. <span data-ttu-id="d0887-235">**[A]**  Létrehozása hello NFS drbd eszköz</span><span class="sxs-lookup"><span data-stu-id="d0887-235">**[A]** Create hello NFS drbd device</span></span>
 
    <pre><code>
    sudo vi /etc/drbd.d/<b>NWS</b>_nfs.res
    </code></pre>
 
-   <span data-ttu-id="143ee-236">Helyezze be az új drbd eszköz és a kilépési konfiguráció</span><span class="sxs-lookup"><span data-stu-id="143ee-236">Insert the configuration for the new drbd device and exit</span></span>
+   <span data-ttu-id="d0887-236">Helyezze be a hello új drbd eszköz és a kilépési hello konfigurálása</span><span class="sxs-lookup"><span data-stu-id="d0887-236">Insert hello configuration for hello new drbd device and exit</span></span>
 
    <pre><code>
    resource <b>NWS</b>_nfs {
@@ -338,26 +338,26 @@ ms.lasthandoff: 08/03/2017
    }
    </code></pre>
 
-   <span data-ttu-id="143ee-237">Hozzon létre a drbd eszközt, és indítsa el</span><span class="sxs-lookup"><span data-stu-id="143ee-237">Create the drbd device and start it</span></span>
+   <span data-ttu-id="d0887-237">Hello drbd eszköz létrehozása, és indítsa el</span><span class="sxs-lookup"><span data-stu-id="d0887-237">Create hello drbd device and start it</span></span>
 
    <pre><code>
    sudo drbdadm create-md <b>NWS</b>_nfs
    sudo drbdadm up <b>NWS</b>_nfs
    </code></pre>
 
-1. <span data-ttu-id="143ee-238">**[1]**  Kihagyása a kezdeti szinkronizálás</span><span class="sxs-lookup"><span data-stu-id="143ee-238">**[1]** Skip initial synchronization</span></span>
+1. <span data-ttu-id="d0887-238">**[1]**  Kihagyása a kezdeti szinkronizálás</span><span class="sxs-lookup"><span data-stu-id="d0887-238">**[1]** Skip initial synchronization</span></span>
 
    <pre><code>
    sudo drbdadm new-current-uuid --clear-bitmap <b>NWS</b>_nfs
    </code></pre>
 
-1. <span data-ttu-id="143ee-239">**[1]**  Állítsa be az elsődleges csomópont</span><span class="sxs-lookup"><span data-stu-id="143ee-239">**[1]** Set the primary node</span></span>
+1. <span data-ttu-id="d0887-239">**[1]**  Set hello elsődleges csomópont</span><span class="sxs-lookup"><span data-stu-id="d0887-239">**[1]** Set hello primary node</span></span>
 
    <pre><code>
    sudo drbdadm primary --force <b>NWS</b>_nfs
    </code></pre>
 
-1. <span data-ttu-id="143ee-240">**[1]**  Várjon, amíg az új drbd eszköz szinkronizált</span><span class="sxs-lookup"><span data-stu-id="143ee-240">**[1]** Wait until the new drbd devices are synchronized</span></span>
+1. <span data-ttu-id="d0887-240">**[1]**  Várjon, amíg a hello új drbd eszköz szinkronizált</span><span class="sxs-lookup"><span data-stu-id="d0887-240">**[1]** Wait until hello new drbd devices are synchronized</span></span>
 
    <pre><code>
    sudo cat /proc/drbd
@@ -368,16 +368,16 @@ ms.lasthandoff: 08/03/2017
    #    ns:0 nr:0 dw:0 dr:912 al:8 bm:0 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:0
    </code></pre>
 
-1. <span data-ttu-id="143ee-241">**[1]**  Fájlrendszerek létrehozása a drbd eszközökön</span><span class="sxs-lookup"><span data-stu-id="143ee-241">**[1]** Create file systems on the drbd devices</span></span>
+1. <span data-ttu-id="d0887-241">**[1]**  Fájlrendszerek hozható létre hello drbd eszközök</span><span class="sxs-lookup"><span data-stu-id="d0887-241">**[1]** Create file systems on hello drbd devices</span></span>
 
    <pre><code>
    sudo mkfs.xfs /dev/drbd0
    </code></pre>
 
 
-### <a name="configure-cluster-framework"></a><span data-ttu-id="143ee-242">Fürt keretrendszer konfigurálása</span><span class="sxs-lookup"><span data-stu-id="143ee-242">Configure Cluster Framework</span></span>
+### <a name="configure-cluster-framework"></a><span data-ttu-id="d0887-242">Fürt keretrendszer konfigurálása</span><span class="sxs-lookup"><span data-stu-id="d0887-242">Configure Cluster Framework</span></span>
 
-1. <span data-ttu-id="143ee-243">**[1]**  Az alapértelmezett beállítások módosítása</span><span class="sxs-lookup"><span data-stu-id="143ee-243">**[1]** Change the default settings</span></span>
+1. <span data-ttu-id="d0887-243">**[1]**  Hello alapértelmezett beállításainak módosítása</span><span class="sxs-lookup"><span data-stu-id="d0887-243">**[1]** Change hello default settings</span></span>
 
    <pre><code>
    sudo crm configure
@@ -388,7 +388,7 @@ ms.lasthandoff: 08/03/2017
    crm(live)configure# exit
    </code></pre>
 
-1. <span data-ttu-id="143ee-244">**[1]**  NFS drbd eszköz hozzáadása a fürt konfigurálása</span><span class="sxs-lookup"><span data-stu-id="143ee-244">**[1]** Add the NFS drbd device to the cluster configuration</span></span>
+1. <span data-ttu-id="d0887-244">**[1]**  Hozzáadás hello NFS drbd eszköz toohello fürtkonfiguráció</span><span class="sxs-lookup"><span data-stu-id="d0887-244">**[1]** Add hello NFS drbd device toohello cluster configuration</span></span>
 
    <pre><code>
    sudo crm configure
@@ -407,7 +407,7 @@ ms.lasthandoff: 08/03/2017
    crm(live)configure# exit
    </code></pre>
 
-1. <span data-ttu-id="143ee-245">**[1]**  Az NFS-kiszolgáló létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-245">**[1]** Create the NFS server</span></span>
+1. <span data-ttu-id="d0887-245">**[1]**  Létrehozása hello NFS-kiszolgáló</span><span class="sxs-lookup"><span data-stu-id="d0887-245">**[1]** Create hello NFS server</span></span>
 
    <pre><code>
    sudo crm configure
@@ -422,7 +422,7 @@ ms.lasthandoff: 08/03/2017
    crm(live)configure# exit
    </code></pre>
 
-1. <span data-ttu-id="143ee-246">**[1]**  Létrehozása az NFS fájlrendszert erőforrások</span><span class="sxs-lookup"><span data-stu-id="143ee-246">**[1]** Create the NFS File System resources</span></span>
+1. <span data-ttu-id="d0887-246">**[1]**  Hello NFS fájlrendszert erőforrások létrehozása</span><span class="sxs-lookup"><span data-stu-id="d0887-246">**[1]** Create hello NFS File System resources</span></span>
 
    <pre><code>
    sudo crm configure
@@ -446,7 +446,7 @@ ms.lasthandoff: 08/03/2017
    crm(live)configure# exit
    </code></pre>
 
-1. <span data-ttu-id="143ee-247">**[1]**  Létrehozása az NFS exportálása</span><span class="sxs-lookup"><span data-stu-id="143ee-247">**[1]** Create the NFS exports</span></span>
+1. <span data-ttu-id="d0887-247">**[1]**  Hello NFS kivitel létrehozása</span><span class="sxs-lookup"><span data-stu-id="d0887-247">**[1]** Create hello NFS exports</span></span>
 
    <pre><code>
    sudo mkdir /srv/nfs/<b>NWS</b>/sidsys
@@ -469,7 +469,7 @@ ms.lasthandoff: 08/03/2017
    crm(live)configure# exit
    </code></pre>
 
-1. <span data-ttu-id="143ee-248">**[1]**  Hozzon létre egy virtuális IP- és állapot-mintavételi a belső terheléselosztóhoz</span><span class="sxs-lookup"><span data-stu-id="143ee-248">**[1]** Create a virtual IP resource and health-probe for the internal load balancer</span></span>
+1. <span data-ttu-id="d0887-248">**[1]**  Hozzon létre egy virtuális IP- és állapot-mintavételi hello belső terheléselosztóhoz</span><span class="sxs-lookup"><span data-stu-id="d0887-248">**[1]** Create a virtual IP resource and health-probe for hello internal load balancer</span></span>
 
    <pre><code>
    sudo crm configure
@@ -489,41 +489,41 @@ ms.lasthandoff: 08/03/2017
    crm(live)configure# exit
    </code></pre>
 
-### <a name="create-stonith-device"></a><span data-ttu-id="143ee-249">STONITH eszköz létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-249">Create STONITH device</span></span>
+### <a name="create-stonith-device"></a><span data-ttu-id="d0887-249">STONITH eszköz létrehozása</span><span class="sxs-lookup"><span data-stu-id="d0887-249">Create STONITH device</span></span>
 
-<span data-ttu-id="143ee-250">A STONITH eszköz egy egyszerű szolgáltatást használ, szemben a Microsoft Azure engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="143ee-250">The STONITH device uses a Service Principal to authorize against Microsoft Azure.</span></span> <span data-ttu-id="143ee-251">Kövesse az alábbi lépéseket egy egyszerű szolgáltatásnév létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="143ee-251">Follow these steps to create a Service Principal.</span></span>
+<span data-ttu-id="d0887-250">hello STONITH eszköz által használt egy egyszerű tooauthorize Microsoft Azure ellen.</span><span class="sxs-lookup"><span data-stu-id="d0887-250">hello STONITH device uses a Service Principal tooauthorize against Microsoft Azure.</span></span> <span data-ttu-id="d0887-251">Kövesse ezeket a lépéseket toocreate egy egyszerű szolgáltatást.</span><span class="sxs-lookup"><span data-stu-id="d0887-251">Follow these steps toocreate a Service Principal.</span></span>
 
-1. <span data-ttu-id="143ee-252">Ugrás a <https://portal.azure.com></span><span class="sxs-lookup"><span data-stu-id="143ee-252">Go to <https://portal.azure.com></span></span>
-1. <span data-ttu-id="143ee-253">Nyissa meg az Azure Active Directory panelt</span><span class="sxs-lookup"><span data-stu-id="143ee-253">Open the Azure Active Directory blade</span></span>  
-   <span data-ttu-id="143ee-254">Nyissa meg tulajdonságait, és jegyezze fel a könyvtárban.</span><span class="sxs-lookup"><span data-stu-id="143ee-254">Go to Properties and write down the Directory Id.</span></span> <span data-ttu-id="143ee-255">Ez a **bérlőazonosító**.</span><span class="sxs-lookup"><span data-stu-id="143ee-255">This is the **tenant id**.</span></span>
-1. <span data-ttu-id="143ee-256">Kattintson az alkalmazás-regisztráció</span><span class="sxs-lookup"><span data-stu-id="143ee-256">Click App registrations</span></span>
-1. <span data-ttu-id="143ee-257">Kattintson az Add (Hozzáadás) parancsra</span><span class="sxs-lookup"><span data-stu-id="143ee-257">Click Add</span></span>
-1. <span data-ttu-id="143ee-258">Adjon meg egy nevet, válassza ki a "Web app/API" alkalmazástípus, adja meg a bejelentkezési URL-címet (például http://localhost) és kattintson a Létrehozás gombra</span><span class="sxs-lookup"><span data-stu-id="143ee-258">Enter a Name, select Application Type "Web app/API", enter a sign-on URL (for example http://localhost) and click Create</span></span>
-1. <span data-ttu-id="143ee-259">A bejelentkezési URL-címet nem használja, és bármilyen érvényes URL-CÍMEK lehetnek</span><span class="sxs-lookup"><span data-stu-id="143ee-259">The sign-on URL is not used and can be any valid URL</span></span>
-1. <span data-ttu-id="143ee-260">Válassza ki az új alkalmazást, és a beállítások lapon kattintson a kulcsok</span><span class="sxs-lookup"><span data-stu-id="143ee-260">Select the new App and click Keys in the Settings tab</span></span>
-1. <span data-ttu-id="143ee-261">Adja meg egy új kulcs leírását, válassza a "Soha nem jár le", és kattintson a Mentés gombra</span><span class="sxs-lookup"><span data-stu-id="143ee-261">Enter a description for a new key, select "Never expires" and click Save</span></span>
-1. <span data-ttu-id="143ee-262">Jegyezze fel az értéket.</span><span class="sxs-lookup"><span data-stu-id="143ee-262">Write down the Value.</span></span> <span data-ttu-id="143ee-263">Használják a **jelszó** a szolgáltatás egyszerű</span><span class="sxs-lookup"><span data-stu-id="143ee-263">It is used as the **password** for the Service Principal</span></span>
-1. <span data-ttu-id="143ee-264">Jegyezze fel az azonosítót.</span><span class="sxs-lookup"><span data-stu-id="143ee-264">Write down the Application Id.</span></span> <span data-ttu-id="143ee-265">A felhasználónév használják (**bejelentkezési azonosító** az alábbi lépéseket a) a szolgáltatás egyszerű</span><span class="sxs-lookup"><span data-stu-id="143ee-265">It is used as the username (**login id** in the steps below) of the Service Principal</span></span>
+1. <span data-ttu-id="d0887-252">Nyissa meg túl<https://portal.azure.com></span><span class="sxs-lookup"><span data-stu-id="d0887-252">Go too<https://portal.azure.com></span></span>
+1. <span data-ttu-id="d0887-253">Nyissa meg hello Azure Active Directory panel</span><span class="sxs-lookup"><span data-stu-id="d0887-253">Open hello Azure Active Directory blade</span></span>  
+   <span data-ttu-id="d0887-254">Nyissa meg tooProperties, és írja le hello Directory azonosítóját. Ez a hello **bérlőazonosító**.</span><span class="sxs-lookup"><span data-stu-id="d0887-254">Go tooProperties and write down hello Directory Id. This is hello **tenant id**.</span></span>
+1. <span data-ttu-id="d0887-255">Kattintson az alkalmazás-regisztráció</span><span class="sxs-lookup"><span data-stu-id="d0887-255">Click App registrations</span></span>
+1. <span data-ttu-id="d0887-256">Kattintson az Add (Hozzáadás) parancsra</span><span class="sxs-lookup"><span data-stu-id="d0887-256">Click Add</span></span>
+1. <span data-ttu-id="d0887-257">Adjon meg egy nevet, válassza ki a "Web app/API" alkalmazástípus, adja meg a bejelentkezési URL-címet (például http://localhost) és kattintson a Létrehozás gombra</span><span class="sxs-lookup"><span data-stu-id="d0887-257">Enter a Name, select Application Type "Web app/API", enter a sign-on URL (for example http://localhost) and click Create</span></span>
+1. <span data-ttu-id="d0887-258">hello bejelentkezési URL-címet nem használja, és bármilyen érvényes URL-CÍMEK lehetnek</span><span class="sxs-lookup"><span data-stu-id="d0887-258">hello sign-on URL is not used and can be any valid URL</span></span>
+1. <span data-ttu-id="d0887-259">Válassza ki az új alkalmazás hello és kattintson a kulcsok hello-beállítások lap</span><span class="sxs-lookup"><span data-stu-id="d0887-259">Select hello new App and click Keys in hello Settings tab</span></span>
+1. <span data-ttu-id="d0887-260">Adja meg egy új kulcs leírását, válassza a "Soha nem jár le", és kattintson a Mentés gombra</span><span class="sxs-lookup"><span data-stu-id="d0887-260">Enter a description for a new key, select "Never expires" and click Save</span></span>
+1. <span data-ttu-id="d0887-261">Írja le hello érték.</span><span class="sxs-lookup"><span data-stu-id="d0887-261">Write down hello Value.</span></span> <span data-ttu-id="d0887-262">Hello használják **jelszó** a hello szolgáltatás egyszerű</span><span class="sxs-lookup"><span data-stu-id="d0887-262">It is used as hello **password** for hello Service Principal</span></span>
+1. <span data-ttu-id="d0887-263">Írja le hello azonosítót. Hello felhasználónév, a rendszer (**bejelentkezési azonosító** hello lépéseket a) a hello szolgáltatás egyszerű</span><span class="sxs-lookup"><span data-stu-id="d0887-263">Write down hello Application Id. It is used as hello username (**login id** in hello steps below) of hello Service Principal</span></span>
 
-<span data-ttu-id="143ee-266">A szolgáltatás egyszerű nincs engedélye a alapértelmezés szerint az Azure-erőforrások eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="143ee-266">The Service Principal does not have permissions to access your Azure resources by default.</span></span> <span data-ttu-id="143ee-267">Hozzá kell rendelnie a szolgáltatás egyszerű engedélyek indítása és leállítása (felszabadítása) a fürt összes virtuális gépet.</span><span class="sxs-lookup"><span data-stu-id="143ee-267">You need to give the Service Principal permissions to start and stop (deallocate) all virtual machines of the cluster.</span></span>
+<span data-ttu-id="d0887-264">hello szolgáltatás egyszerű engedélyek tooaccess az Azure-erőforrások alapértelmezés szerint nem rendelkezik.</span><span class="sxs-lookup"><span data-stu-id="d0887-264">hello Service Principal does not have permissions tooaccess your Azure resources by default.</span></span> <span data-ttu-id="d0887-265">Toogive hello szolgáltatás egyszerű engedélyek toostart van szüksége, és állítsa (felszabadítása) hello fürt összes virtuális gépet.</span><span class="sxs-lookup"><span data-stu-id="d0887-265">You need toogive hello Service Principal permissions toostart and stop (deallocate) all virtual machines of hello cluster.</span></span>
 
-1. <span data-ttu-id="143ee-268">Ugrás a https://portal.azure.com</span><span class="sxs-lookup"><span data-stu-id="143ee-268">Go to https://portal.azure.com</span></span>
-1. <span data-ttu-id="143ee-269">Nyissa meg az összes erőforrás panel</span><span class="sxs-lookup"><span data-stu-id="143ee-269">Open the All resources blade</span></span>
-1. <span data-ttu-id="143ee-270">Válassza ki a virtuális gépet</span><span class="sxs-lookup"><span data-stu-id="143ee-270">Select the virtual machine</span></span>
-1. <span data-ttu-id="143ee-271">Kattintson a hozzáférés-vezérlés (IAM)</span><span class="sxs-lookup"><span data-stu-id="143ee-271">Click Access control (IAM)</span></span>
-1. <span data-ttu-id="143ee-272">Kattintson az Add (Hozzáadás) parancsra</span><span class="sxs-lookup"><span data-stu-id="143ee-272">Click Add</span></span>
-1. <span data-ttu-id="143ee-273">Válassza ki a szerepkör tulajdonosa</span><span class="sxs-lookup"><span data-stu-id="143ee-273">Select the role Owner</span></span>
-1. <span data-ttu-id="143ee-274">Adja meg az előbb létrehozott alkalmazás nevét</span><span class="sxs-lookup"><span data-stu-id="143ee-274">Enter the name of the application you created above</span></span>
-1. <span data-ttu-id="143ee-275">Kattintson az OK gombra</span><span class="sxs-lookup"><span data-stu-id="143ee-275">Click OK</span></span>
+1. <span data-ttu-id="d0887-266">Nyissa meg toohttps://portal.azure.com</span><span class="sxs-lookup"><span data-stu-id="d0887-266">Go toohttps://portal.azure.com</span></span>
+1. <span data-ttu-id="d0887-267">Nyissa meg az összes erőforrás panel hello</span><span class="sxs-lookup"><span data-stu-id="d0887-267">Open hello All resources blade</span></span>
+1. <span data-ttu-id="d0887-268">Válassza ki a virtuális gép hello</span><span class="sxs-lookup"><span data-stu-id="d0887-268">Select hello virtual machine</span></span>
+1. <span data-ttu-id="d0887-269">Kattintson a hozzáférés-vezérlés (IAM)</span><span class="sxs-lookup"><span data-stu-id="d0887-269">Click Access control (IAM)</span></span>
+1. <span data-ttu-id="d0887-270">Kattintson az Add (Hozzáadás) parancsra</span><span class="sxs-lookup"><span data-stu-id="d0887-270">Click Add</span></span>
+1. <span data-ttu-id="d0887-271">Válassza ki a hello szerepkör tulajdonosa</span><span class="sxs-lookup"><span data-stu-id="d0887-271">Select hello role Owner</span></span>
+1. <span data-ttu-id="d0887-272">Adja meg az előbb létrehozott hello alkalmazás hello neve</span><span class="sxs-lookup"><span data-stu-id="d0887-272">Enter hello name of hello application you created above</span></span>
+1. <span data-ttu-id="d0887-273">Kattintson az OK gombra</span><span class="sxs-lookup"><span data-stu-id="d0887-273">Click OK</span></span>
 
-#### <a name="1-create-the-stonith-devices"></a><span data-ttu-id="143ee-276">**[1]**  STONITH eszközök létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-276">**[1]** Create the STONITH devices</span></span>
+#### <a name="1-create-hello-stonith-devices"></a><span data-ttu-id="d0887-274">**[1]**  Hello STONITH eszközök létrehozása</span><span class="sxs-lookup"><span data-stu-id="d0887-274">**[1]** Create hello STONITH devices</span></span>
 
-<span data-ttu-id="143ee-277">Után szerkeszteni a virtuális gépek engedélyeit, beállíthatja a STONITH eszközök a fürtben.</span><span class="sxs-lookup"><span data-stu-id="143ee-277">After you edited the permissions for the virtual machines, you can configure the STONITH devices in the cluster.</span></span>
+<span data-ttu-id="d0887-275">Után szerkeszteni hello engedélyek hello virtuális gépekhez, beállíthatja a hello STONITH eszközök hello fürtben.</span><span class="sxs-lookup"><span data-stu-id="d0887-275">After you edited hello permissions for hello virtual machines, you can configure hello STONITH devices in hello cluster.</span></span>
 
 <pre><code>
 sudo crm configure
 
-# replace the bold string with your subscription id, resource group, tenant id, service principal id and password
+# replace hello bold string with your subscription id, resource group, tenant id, service principal id and password
 
 crm(live)configure# primitive rsc_st_azure_1 stonith:fence_azure_arm \
    params subscriptionId="<b>subscription id</b>" resourceGroup="<b>resource group</b>" tenantId="<b>tenant id</b>" login="<b>login id</b>" passwd="<b>password</b>"
@@ -537,108 +537,108 @@ crm(live)configure# commit
 crm(live)configure# exit
 </code></pre>
 
-#### <a name="1-enable-the-use-of-a-stonith-device"></a><span data-ttu-id="143ee-278">**[1]**  STONITH eszköz használatának engedélyezése</span><span class="sxs-lookup"><span data-stu-id="143ee-278">**[1]** Enable the use of a STONITH device</span></span>
+#### <a name="1-enable-hello-use-of-a-stonith-device"></a><span data-ttu-id="d0887-276">**[1]**  STONITH eszköz hello használatának engedélyezése</span><span class="sxs-lookup"><span data-stu-id="d0887-276">**[1]** Enable hello use of a STONITH device</span></span>
 
 <pre><code>
 sudo crm configure property stonith-enabled=true 
 </code></pre>
 
-## <a name="setting-up-ascs"></a><span data-ttu-id="143ee-279">(A) SCS beállítása</span><span class="sxs-lookup"><span data-stu-id="143ee-279">Setting up (A)SCS</span></span>
+## <a name="setting-up-ascs"></a><span data-ttu-id="d0887-277">(A) SCS beállítása</span><span class="sxs-lookup"><span data-stu-id="d0887-277">Setting up (A)SCS</span></span>
 
-### <a name="deploying-linux"></a><span data-ttu-id="143ee-280">Linux telepítése</span><span class="sxs-lookup"><span data-stu-id="143ee-280">Deploying Linux</span></span>
+### <a name="deploying-linux"></a><span data-ttu-id="d0887-278">Linux telepítése</span><span class="sxs-lookup"><span data-stu-id="d0887-278">Deploying Linux</span></span>
 
-<span data-ttu-id="143ee-281">Az Azure piactéren SUSE Linux Enterprise Server SAP alkalmazások 12-es segítségével új virtuális gépek telepítése a kép tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="143ee-281">The Azure Marketplace contains an image for SUSE Linux Enterprise Server for SAP Applications 12 that you can use to deploy new virtual machines.</span></span> <span data-ttu-id="143ee-282">A Piactéri lemezképhez SAP NetWeaver erőforrás ügynökön tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="143ee-282">The marketplace image contains the resource agent for SAP NetWeaver.</span></span>
+<span data-ttu-id="d0887-279">hello Azure piactér SUSE Linux Enterprise Server SAP alkalmazások 12 használható toodeploy új virtuális gépek a kép tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="d0887-279">hello Azure Marketplace contains an image for SUSE Linux Enterprise Server for SAP Applications 12 that you can use toodeploy new virtual machines.</span></span> <span data-ttu-id="d0887-280">hello Piactéri lemezképhez hello erőforrás ügynök az SAP NetWeaver tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="d0887-280">hello marketplace image contains hello resource agent for SAP NetWeaver.</span></span>
 
-<span data-ttu-id="143ee-283">Segítségével a gyors üzembe helyezési sablonok valamelyikét a githubon központi telepítése az összes szükséges erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="143ee-283">You can use one of the quick start templates on github to deploy all required resources.</span></span> <span data-ttu-id="143ee-284">A sablon telepíti, a virtuális gépek, a terheléselosztó hasonló adataival, a rendelkezésre állási csoport stb. Kövesse az alábbi lépéseket a sablon telepítéséhez:</span><span class="sxs-lookup"><span data-stu-id="143ee-284">The template deploys the virtual machines, the load balancer, availability set etc. Follow these steps to deploy the template:</span></span>
+<span data-ttu-id="d0887-281">Használhat hello gyors üzembe helyezési sablonok a githubon toodeploy minden szükséges erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="d0887-281">You can use one of hello quick start templates on github toodeploy all required resources.</span></span> <span data-ttu-id="d0887-282">hello sablon telepíti hello virtuális gépek, a terheléselosztó hello, a rendelkezésre állási csoport stb. Kövesse a lépéseket toodeploy hello sablon:</span><span class="sxs-lookup"><span data-stu-id="d0887-282">hello template deploys hello virtual machines, hello load balancer, availability set etc. Follow these steps toodeploy hello template:</span></span>
 
-1. <span data-ttu-id="143ee-285">Nyissa meg a [ASC/SCS Multi SID sablon] [ template-multisid-xscs] vagy a [sablon összevont] [ template-converged] az Azure-portál a SCS/ASC sablon csak hoz létre a terheléselosztási szabályok SAP NetWeaver ASC/SCS és SSZON példányok (csak Linux), míg az átszervezett is létrejön a terheléselosztási szabályok-adatbázis (például a Microsoft SQL Server vagy az SAP HANA).</span><span class="sxs-lookup"><span data-stu-id="143ee-285">Open the [ASCS/SCS Multi SID template][template-multisid-xscs] or the [converged template][template-converged] on the Azure portal The ASCS/SCS template only creates the load-balancing rules for the SAP NetWeaver ASCS/SCS and ERS (Linux only) instances whereas the converged template also creates the load-balancing rules for a database (for example Microsoft SQL Server or SAP HANA).</span></span> <span data-ttu-id="143ee-286">Ha azt tervezi, hogy az SAP NetWeaver alapú rendszert telepíti, és szeretné telepíteni az adatbázis ugyanazon a gépen, használja a [sablon összevont][template-converged].</span><span class="sxs-lookup"><span data-stu-id="143ee-286">If you plan to install an SAP NetWeaver based system and you also want to install the database on the same machines, use the [converged template][template-converged].</span></span>
-1. <span data-ttu-id="143ee-287">Adja meg a következő paraméterek</span><span class="sxs-lookup"><span data-stu-id="143ee-287">Enter the following parameters</span></span>
-   1. <span data-ttu-id="143ee-288">Erőforrás-előtag (csak a sablon ASC/SCS Multi SID)</span><span class="sxs-lookup"><span data-stu-id="143ee-288">Resource Prefix (ASCS/SCS Multi SID template only)</span></span>  
-      <span data-ttu-id="143ee-289">Adja meg a használni kívánt előtagot.</span><span class="sxs-lookup"><span data-stu-id="143ee-289">Enter the prefix you want to use.</span></span> <span data-ttu-id="143ee-290">Az érték a telepített erőforrások esetén használatos előtagjaként.</span><span class="sxs-lookup"><span data-stu-id="143ee-290">The value is used as a prefix for the resources that are deployed.</span></span>
-   3. <span data-ttu-id="143ee-291">SAP rendszerazonosító (csak az átszervezett sablon)</span><span class="sxs-lookup"><span data-stu-id="143ee-291">Sap System Id (converged template only)</span></span>  
-      <span data-ttu-id="143ee-292">Adja meg a telepíteni kívánt SAP rendszer SAP rendszer azonosítója.</span><span class="sxs-lookup"><span data-stu-id="143ee-292">Enter the SAP system Id of the SAP system you want to install.</span></span> <span data-ttu-id="143ee-293">Az azonosító előtagjaként szolgál a telepített erőforrások esetén.</span><span class="sxs-lookup"><span data-stu-id="143ee-293">The Id is used as a prefix for the resources that are deployed.</span></span>
-   4. <span data-ttu-id="143ee-294">A készlet típusa</span><span class="sxs-lookup"><span data-stu-id="143ee-294">Stack Type</span></span>  
-      <span data-ttu-id="143ee-295">Az SAP NetWeaver verem típusának kiválasztása</span><span class="sxs-lookup"><span data-stu-id="143ee-295">Select the SAP NetWeaver stack type</span></span>
-   5. <span data-ttu-id="143ee-296">Operációs rendszer típusa</span><span class="sxs-lookup"><span data-stu-id="143ee-296">Os Type</span></span>  
-      <span data-ttu-id="143ee-297">Válasszon egyet a Linux terjesztéseket.</span><span class="sxs-lookup"><span data-stu-id="143ee-297">Select one of the Linux distributions.</span></span> <span data-ttu-id="143ee-298">Ehhez a példához válassza ki a SLES 12 saját</span><span class="sxs-lookup"><span data-stu-id="143ee-298">For this example, select SLES 12 BYOS</span></span>
-   6. <span data-ttu-id="143ee-299">DB típusa</span><span class="sxs-lookup"><span data-stu-id="143ee-299">Db Type</span></span>  
-      <span data-ttu-id="143ee-300">Válassza ki a HANA</span><span class="sxs-lookup"><span data-stu-id="143ee-300">Select HANA</span></span>
-   7. <span data-ttu-id="143ee-301">SAP mérete</span><span class="sxs-lookup"><span data-stu-id="143ee-301">Sap System Size</span></span>  
-      <span data-ttu-id="143ee-302">Az új rendszer biztosít SAP mennyisége.</span><span class="sxs-lookup"><span data-stu-id="143ee-302">The amount of SAPS the new system provides.</span></span> <span data-ttu-id="143ee-303">Ha nem tudja, hogy hány SAP, a rendszer szükséges, kérje meg a SAP technológia Partner vagy a rendszer integráló</span><span class="sxs-lookup"><span data-stu-id="143ee-303">If you are not sure how many SAPS the system requires, please ask your SAP Technology Partner or System Integrator</span></span>
-   8. <span data-ttu-id="143ee-304">Rendszer rendelkezésre állás</span><span class="sxs-lookup"><span data-stu-id="143ee-304">System Availability</span></span>  
-      <span data-ttu-id="143ee-305">Válassza ki a magas rendelkezésre ÁLLÁSÚ</span><span class="sxs-lookup"><span data-stu-id="143ee-305">Select HA</span></span>
-   9. <span data-ttu-id="143ee-306">Rendszergazda felhasználónevét és a rendszergazdai jelszó</span><span class="sxs-lookup"><span data-stu-id="143ee-306">Admin Username and Admin Password</span></span>  
-      <span data-ttu-id="143ee-307">Új felhasználó jön létre, amely segítségével jelentkezzen be a gépre.</span><span class="sxs-lookup"><span data-stu-id="143ee-307">A new user is created that can be used to log on to the machine.</span></span>
-   10. <span data-ttu-id="143ee-308">Alhálózati azonosító</span><span class="sxs-lookup"><span data-stu-id="143ee-308">Subnet Id</span></span>  
-   <span data-ttu-id="143ee-309">Az alhálózat, amelyhez a virtuális gépek csatlakoznia kell az azonosítója.</span><span class="sxs-lookup"><span data-stu-id="143ee-309">The ID of the subnet to which the virtual machines should be connected to.</span></span>  <span data-ttu-id="143ee-310">Hagyja üresen, ha azt szeretné, hozzon létre egy új virtuális hálózatot, vagy válasszon ugyanazon az alhálózaton, amely a használni vagy létrehozni az NFS-kiszolgáló központi telepítésének részeként.</span><span class="sxs-lookup"><span data-stu-id="143ee-310">Leave empty if you want to create a new virtual network or select the same subnet that you used or created as part of the NFS server deployment.</span></span> <span data-ttu-id="143ee-311">Az azonosító általában a következőképpen néz következő**&lt;előfizetés-azonosító&gt;**/resourceGroups/**&lt;erőforráscsoport-név&gt;**/providers/ Microsoft.Network/virtualNetworks/**&lt;virtuálishálózat-név&gt;**/subnets/**&lt;alhálózat neve&gt;**</span><span class="sxs-lookup"><span data-stu-id="143ee-311">The ID usually looks like /subscriptions/**&lt;subscription id&gt;**/resourceGroups/**&lt;resource group name&gt;**/providers/Microsoft.Network/virtualNetworks/**&lt;virtual network name&gt;**/subnets/**&lt;subnet name&gt;**</span></span>
+1. <span data-ttu-id="d0887-283">Nyissa meg hello [ASC/SCS Multi SID sablon] [ template-multisid-xscs] vagy hello [sablon összevont] [ template-converged] hello Azure portál hello ASC/SCS sablon csak hello terheléselosztási szabályok hello SAP NetWeaver ASC/SCS és SSZON (csak Linux) példányok hoz létre, mivel hello átszervezett sablon is (például a Microsoft SQL Server vagy az SAP HANA) adatbázis hello terheléselosztási szabályokat hoz létre.</span><span class="sxs-lookup"><span data-stu-id="d0887-283">Open hello [ASCS/SCS Multi SID template][template-multisid-xscs] or hello [converged template][template-converged] on hello Azure portal hello ASCS/SCS template only creates hello load-balancing rules for hello SAP NetWeaver ASCS/SCS and ERS (Linux only) instances whereas hello converged template also creates hello load-balancing rules for a database (for example Microsoft SQL Server or SAP HANA).</span></span> <span data-ttu-id="d0887-284">Ha azt tervezi, hogy az SAP NetWeaver-alapú rendszerek tooinstall és tooinstall hello adatbázis is érdemes a hello azonos gépek, használja a hello [sablon összevont][template-converged].</span><span class="sxs-lookup"><span data-stu-id="d0887-284">If you plan tooinstall an SAP NetWeaver based system and you also want tooinstall hello database on hello same machines, use hello [converged template][template-converged].</span></span>
+1. <span data-ttu-id="d0887-285">Adja meg a következő paraméterek hello</span><span class="sxs-lookup"><span data-stu-id="d0887-285">Enter hello following parameters</span></span>
+   1. <span data-ttu-id="d0887-286">Erőforrás-előtag (csak a sablon ASC/SCS Multi SID)</span><span class="sxs-lookup"><span data-stu-id="d0887-286">Resource Prefix (ASCS/SCS Multi SID template only)</span></span>  
+      <span data-ttu-id="d0887-287">Adja meg a kívánt toouse hello előtag.</span><span class="sxs-lookup"><span data-stu-id="d0887-287">Enter hello prefix you want toouse.</span></span> <span data-ttu-id="d0887-288">hello érték előtagjaként hello telepített erőforrások esetén használatos.</span><span class="sxs-lookup"><span data-stu-id="d0887-288">hello value is used as a prefix for hello resources that are deployed.</span></span>
+   3. <span data-ttu-id="d0887-289">SAP rendszerazonosító (csak az átszervezett sablon)</span><span class="sxs-lookup"><span data-stu-id="d0887-289">Sap System Id (converged template only)</span></span>  
+      <span data-ttu-id="d0887-290">Adja meg a hello SAP rendszer azonosító hello tooinstall kívánt SAP rendszer.</span><span class="sxs-lookup"><span data-stu-id="d0887-290">Enter hello SAP system Id of hello SAP system you want tooinstall.</span></span> <span data-ttu-id="d0887-291">hello azonosító előtagjaként hello telepített erőforrások esetén használható.</span><span class="sxs-lookup"><span data-stu-id="d0887-291">hello Id is used as a prefix for hello resources that are deployed.</span></span>
+   4. <span data-ttu-id="d0887-292">A készlet típusa</span><span class="sxs-lookup"><span data-stu-id="d0887-292">Stack Type</span></span>  
+      <span data-ttu-id="d0887-293">Hello SAP NetWeaver verem típusának kiválasztása</span><span class="sxs-lookup"><span data-stu-id="d0887-293">Select hello SAP NetWeaver stack type</span></span>
+   5. <span data-ttu-id="d0887-294">Operációs rendszer típusa</span><span class="sxs-lookup"><span data-stu-id="d0887-294">Os Type</span></span>  
+      <span data-ttu-id="d0887-295">Válasszon ki egy hello Linux terjesztéseket.</span><span class="sxs-lookup"><span data-stu-id="d0887-295">Select one of hello Linux distributions.</span></span> <span data-ttu-id="d0887-296">Ehhez a példához válassza ki a SLES 12 saját</span><span class="sxs-lookup"><span data-stu-id="d0887-296">For this example, select SLES 12 BYOS</span></span>
+   6. <span data-ttu-id="d0887-297">DB típusa</span><span class="sxs-lookup"><span data-stu-id="d0887-297">Db Type</span></span>  
+      <span data-ttu-id="d0887-298">Válassza ki a HANA</span><span class="sxs-lookup"><span data-stu-id="d0887-298">Select HANA</span></span>
+   7. <span data-ttu-id="d0887-299">SAP mérete</span><span class="sxs-lookup"><span data-stu-id="d0887-299">Sap System Size</span></span>  
+      <span data-ttu-id="d0887-300">SAP hello új rendszer hello mennyisége biztosít.</span><span class="sxs-lookup"><span data-stu-id="d0887-300">hello amount of SAPS hello new system provides.</span></span> <span data-ttu-id="d0887-301">Ha nem biztos abban, hogy hány SAP hello rendszer igényel, kérje meg a SAP technológia Partner vagy a rendszer integráló</span><span class="sxs-lookup"><span data-stu-id="d0887-301">If you are not sure how many SAPS hello system requires, please ask your SAP Technology Partner or System Integrator</span></span>
+   8. <span data-ttu-id="d0887-302">Rendszer rendelkezésre állás</span><span class="sxs-lookup"><span data-stu-id="d0887-302">System Availability</span></span>  
+      <span data-ttu-id="d0887-303">Válassza ki a magas rendelkezésre ÁLLÁSÚ</span><span class="sxs-lookup"><span data-stu-id="d0887-303">Select HA</span></span>
+   9. <span data-ttu-id="d0887-304">Rendszergazda felhasználónevét és a rendszergazdai jelszó</span><span class="sxs-lookup"><span data-stu-id="d0887-304">Admin Username and Admin Password</span></span>  
+      <span data-ttu-id="d0887-305">Új felhasználó jön létre, amely lehet használt toolog toohello gépen.</span><span class="sxs-lookup"><span data-stu-id="d0887-305">A new user is created that can be used toolog on toohello machine.</span></span>
+   10. <span data-ttu-id="d0887-306">Alhálózati azonosító</span><span class="sxs-lookup"><span data-stu-id="d0887-306">Subnet Id</span></span>  
+   <span data-ttu-id="d0887-307">hello azonosító hello alhálózati toowhich hello virtuális gépek csatlakoznia kell.</span><span class="sxs-lookup"><span data-stu-id="d0887-307">hello ID of hello subnet toowhich hello virtual machines should be connected to.</span></span>  <span data-ttu-id="d0887-308">Hagyja üresen, ha azt szeretné, hogy egy új virtuális hálózat toocreate, vagy válasszon hello ugyanazon az alhálózaton, amely használja, vagy hozza létre hello NFS-kiszolgáló központi telepítésének részeként.</span><span class="sxs-lookup"><span data-stu-id="d0887-308">Leave empty if you want toocreate a new virtual network or select hello same subnet that you used or created as part of hello NFS server deployment.</span></span> <span data-ttu-id="d0887-309">hello azonosítója általában a következőképpen néz következő**&lt;előfizetés-azonosító&gt;**/resourceGroups/**&lt;erőforráscsoport-név&gt;**/providers/ Microsoft.Network/virtualNetworks/**&lt;virtuálishálózat-név&gt;**/subnets/**&lt;alhálózat neve&gt;**</span><span class="sxs-lookup"><span data-stu-id="d0887-309">hello ID usually looks like /subscriptions/**&lt;subscription id&gt;**/resourceGroups/**&lt;resource group name&gt;**/providers/Microsoft.Network/virtualNetworks/**&lt;virtual network name&gt;**/subnets/**&lt;subnet name&gt;**</span></span>
 
-### <a name="installation"></a><span data-ttu-id="143ee-312">Telepítés</span><span class="sxs-lookup"><span data-stu-id="143ee-312">Installation</span></span>
+### <a name="installation"></a><span data-ttu-id="d0887-310">Telepítés</span><span class="sxs-lookup"><span data-stu-id="d0887-310">Installation</span></span>
 
-<span data-ttu-id="143ee-313">A következő elemek fűzve előtagként vagy **[A]** – az összes csomópont alkalmazandó **[1]** – csak érvényes csomópont 1 vagy **[2]** - csomópont 2 csak érvényes.</span><span class="sxs-lookup"><span data-stu-id="143ee-313">The following items are prefixed with either **[A]** - applicable to all nodes, **[1]** - only applicable to node 1 or **[2]** - only applicable to node 2.</span></span>
+<span data-ttu-id="d0887-311">hello következő elemek fűzve előtagként vagy **[A]** -alkalmazható tooall csomópontok **[1]** -csak a megfelelő toonode 1 vagy **[2]** -csak a megfelelő toonode 2.</span><span class="sxs-lookup"><span data-stu-id="d0887-311">hello following items are prefixed with either **[A]** - applicable tooall nodes, **[1]** - only applicable toonode 1 or **[2]** - only applicable toonode 2.</span></span>
 
-1. <span data-ttu-id="143ee-314">**[A]**  SLES frissítése</span><span class="sxs-lookup"><span data-stu-id="143ee-314">**[A]** Update SLES</span></span>
+1. <span data-ttu-id="d0887-312">**[A]**  SLES frissítése</span><span class="sxs-lookup"><span data-stu-id="d0887-312">**[A]** Update SLES</span></span>
 
    <pre><code>
    sudo zypper update
    </code></pre>
 
-1. <span data-ttu-id="143ee-315">**[1]**  Ssh hozzáférés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="143ee-315">**[1]** Enable ssh access</span></span>
+1. <span data-ttu-id="d0887-313">**[1]**  Ssh hozzáférés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="d0887-313">**[1]** Enable ssh access</span></span>
 
    <pre><code>
    sudo ssh-keygen -tdsa
    
-   # Enter file in which to save the key (/root/.ssh/id_dsa): -> ENTER
+   # Enter file in which toosave hello key (/root/.ssh/id_dsa): -> ENTER
    # Enter passphrase (empty for no passphrase): -> ENTER
    # Enter same passphrase again: -> ENTER
    
-   # copy the public key
+   # copy hello public key
    sudo cat /root/.ssh/id_dsa.pub
    </code></pre>
 
-2. <span data-ttu-id="143ee-316">**[2]**  Ssh hozzáférés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="143ee-316">**[2]** Enable ssh access</span></span>
+2. <span data-ttu-id="d0887-314">**[2]**  Ssh hozzáférés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="d0887-314">**[2]** Enable ssh access</span></span>
 
    <pre><code>
    sudo ssh-keygen -tdsa
 
-   # insert the public key you copied in the last step into the authorized keys file on the second server
+   # insert hello public key you copied in hello last step into hello authorized keys file on hello second server
    sudo vi /root/.ssh/authorized_keys
    
-   # Enter file in which to save the key (/root/.ssh/id_dsa): -> ENTER
+   # Enter file in which toosave hello key (/root/.ssh/id_dsa): -> ENTER
    # Enter passphrase (empty for no passphrase): -> ENTER
    # Enter same passphrase again: -> ENTER
    
-   # copy the public key   
+   # copy hello public key   
    sudo cat /root/.ssh/id_dsa.pub
    </code></pre>
 
-1. <span data-ttu-id="143ee-317">**[1]**  Ssh hozzáférés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="143ee-317">**[1]** Enable ssh access</span></span>
+1. <span data-ttu-id="d0887-315">**[1]**  Ssh hozzáférés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="d0887-315">**[1]** Enable ssh access</span></span>
 
    <pre><code>
-   # insert the public key you copied in the last step into the authorized keys file on the first server
+   # insert hello public key you copied in hello last step into hello authorized keys file on hello first server
    sudo vi /root/.ssh/authorized_keys
    </code></pre>
 
-1. <span data-ttu-id="143ee-318">**[A]**  Telepítése magas rendelkezésre ÁLLÁSÚ bővítmény</span><span class="sxs-lookup"><span data-stu-id="143ee-318">**[A]** Install HA extension</span></span>
+1. <span data-ttu-id="d0887-316">**[A]**  Telepítése magas rendelkezésre ÁLLÁSÚ bővítmény</span><span class="sxs-lookup"><span data-stu-id="d0887-316">**[A]** Install HA extension</span></span>
    
    <pre><code>
    sudo zypper install sle-ha-release fence-agents
    </code></pre>
 
-1. <span data-ttu-id="143ee-319">**[A]**  Frissítés SAP erőforrás ügynökök</span><span class="sxs-lookup"><span data-stu-id="143ee-319">**[A]** Update SAP resource agents</span></span>  
+1. <span data-ttu-id="d0887-317">**[A]**  Frissítés SAP erőforrás ügynökök</span><span class="sxs-lookup"><span data-stu-id="d0887-317">**[A]** Update SAP resource agents</span></span>  
    
-   <span data-ttu-id="143ee-320">Az erőforrás-ügynökök csomag javítást kell használnia az új konfigurációt, ebben a cikkben ismertetett.</span><span class="sxs-lookup"><span data-stu-id="143ee-320">A patch for the resource-agents package is required to use the new configuration, that is described in this article.</span></span> <span data-ttu-id="143ee-321">Ellenőrizheti, ha a javítás már telepítve van a következő paranccsal</span><span class="sxs-lookup"><span data-stu-id="143ee-321">You can check, if the patch is already installed with the following command</span></span>
+   <span data-ttu-id="d0887-318">Egy javítást a hello erőforrás-ügynökök csomag szükséges toouse hello új konfigurációt, ebben a cikkben ismertetett.</span><span class="sxs-lookup"><span data-stu-id="d0887-318">A patch for hello resource-agents package is required toouse hello new configuration, that is described in this article.</span></span> <span data-ttu-id="d0887-319">Ellenőrizheti, ha hello javítás már telepítve van a következő parancs hello</span><span class="sxs-lookup"><span data-stu-id="d0887-319">You can check, if hello patch is already installed with hello following command</span></span>
 
    <pre><code>
    sudo grep 'parameter name="IS_ERS"' /usr/lib/ocf/resource.d/heartbeat/SAPInstance
    </code></pre>
 
-   <span data-ttu-id="143ee-322">A kimeneti hasonlónak kell lennie.</span><span class="sxs-lookup"><span data-stu-id="143ee-322">The output should be similar to</span></span>
+   <span data-ttu-id="d0887-320">hello kimeneti hasonlónak kell lennie.</span><span class="sxs-lookup"><span data-stu-id="d0887-320">hello output should be similar to</span></span>
 
    <pre><code>
    &lt;parameter name="IS_ERS" unique="0" required="0"&gt;
    </code></pre>
 
-   <span data-ttu-id="143ee-323">Ha a grep parancs nem található a IS_ERS paraméter, szeretné-e meg a javítás [a SUSE letöltési oldala](https://download.suse.com/patch/finder/#bu=suse&familyId=&productId=&dateRange=&startDate=&endDate=&priority=&architecture=&keywords=resource-agents)</span><span class="sxs-lookup"><span data-stu-id="143ee-323">If the grep command does not find the IS_ERS parameter, you need to install the patch listed on [the SUSE download page](https://download.suse.com/patch/finder/#bu=suse&familyId=&productId=&dateRange=&startDate=&endDate=&priority=&architecture=&keywords=resource-agents)</span></span>
+   <span data-ttu-id="d0887-321">Hello grep parancs nem található hello IS_ERS paraméter, ha szüksége van-e a felsorolt tooinstall hello javítás [hello SUSE letöltési oldala](https://download.suse.com/patch/finder/#bu=suse&familyId=&productId=&dateRange=&startDate=&endDate=&priority=&architecture=&keywords=resource-agents)</span><span class="sxs-lookup"><span data-stu-id="d0887-321">If hello grep command does not find hello IS_ERS parameter, you need tooinstall hello patch listed on [hello SUSE download page](https://download.suse.com/patch/finder/#bu=suse&familyId=&productId=&dateRange=&startDate=&endDate=&priority=&architecture=&keywords=resource-agents)</span></span>
 
    <pre><code>
    # example for patch for SLES 12 SP1
@@ -647,66 +647,66 @@ sudo crm configure property stonith-enabled=true
    sudo zypper in -t patch SUSE-SLE-HA-12-SP2-2017-886=1
    </code></pre>
 
-1. <span data-ttu-id="143ee-324">**[A]**  Állomásnév beállítása</span><span class="sxs-lookup"><span data-stu-id="143ee-324">**[A]** Setup host name resolution</span></span>   
+1. <span data-ttu-id="d0887-322">**[A]**  Állomásnév beállítása</span><span class="sxs-lookup"><span data-stu-id="d0887-322">**[A]** Setup host name resolution</span></span>   
 
-   <span data-ttu-id="143ee-325">DNS-kiszolgálót használjon, vagy módosítsa az/etc/hosts minden csomóponton.</span><span class="sxs-lookup"><span data-stu-id="143ee-325">You can either use a DNS server or modify the /etc/hosts on all nodes.</span></span> <span data-ttu-id="143ee-326">Ez a példa bemutatja, hogyan használható az/etc/hosts fájlt.</span><span class="sxs-lookup"><span data-stu-id="143ee-326">This example shows how to use the /etc/hosts file.</span></span>
-   <span data-ttu-id="143ee-327">Cserélje le az IP-cím és a következő parancsokat az állomásnév</span><span class="sxs-lookup"><span data-stu-id="143ee-327">Replace the IP address and the hostname in the following commands</span></span>
+   <span data-ttu-id="d0887-323">DNS-kiszolgálót használjon, vagy módosítsa a hello/etc/hosts minden csomóponton.</span><span class="sxs-lookup"><span data-stu-id="d0887-323">You can either use a DNS server or modify hello /etc/hosts on all nodes.</span></span> <span data-ttu-id="d0887-324">Ez a példa bemutatja, hogyan toouse hello/Etc/Hosts fájlt.</span><span class="sxs-lookup"><span data-stu-id="d0887-324">This example shows how toouse hello /etc/hosts file.</span></span>
+   <span data-ttu-id="d0887-325">Cserélje le a hello IP-cím és a következő parancsok hello hello állomásnév</span><span class="sxs-lookup"><span data-stu-id="d0887-325">Replace hello IP address and hello hostname in hello following commands</span></span>
 
    <pre><code>
    sudo vi /etc/hosts
    </code></pre>
    
-   <span data-ttu-id="143ee-328">Helyezze be a következő sorokat/etc/hosts.</span><span class="sxs-lookup"><span data-stu-id="143ee-328">Insert the following lines to /etc/hosts.</span></span> <span data-ttu-id="143ee-329">Az IP-cím és a környezet megfelelő állomásnév módosítása</span><span class="sxs-lookup"><span data-stu-id="143ee-329">Change the IP address and hostname to match your environment</span></span>   
+   <span data-ttu-id="d0887-326">Helyezze be a következő sorokat túl/etc/hosts hello.</span><span class="sxs-lookup"><span data-stu-id="d0887-326">Insert hello following lines too/etc/hosts.</span></span> <span data-ttu-id="d0887-327">Hello IP cím és az állomásnév toomatch a környezet módosítása</span><span class="sxs-lookup"><span data-stu-id="d0887-327">Change hello IP address and hostname toomatch your environment</span></span>   
    
    <pre><code>
-   # IP address of the load balancer frontend configuration for NFS
+   # IP address of hello load balancer frontend configuration for NFS
    <b>10.0.0.4 nws-nfs</b>
-   # IP address of the load balancer frontend configuration for SAP NetWeaver ASCS/SCS
+   # IP address of hello load balancer frontend configuration for SAP NetWeaver ASCS/SCS
    <b>10.0.0.10 nws-ascs</b>
-   # IP address of the load balancer frontend configuration for SAP NetWeaver ERS
+   # IP address of hello load balancer frontend configuration for SAP NetWeaver ERS
    <b>10.0.0.11 nws-ers</b>
-   # IP address of the load balancer frontend configuration for database
+   # IP address of hello load balancer frontend configuration for database
    <b>10.0.0.12 nws-db</b>
    </code></pre>
 
-1. <span data-ttu-id="143ee-330">**[1]**  Fürt telepítése</span><span class="sxs-lookup"><span data-stu-id="143ee-330">**[1]** Install Cluster</span></span>
+1. <span data-ttu-id="d0887-328">**[1]**  Fürt telepítése</span><span class="sxs-lookup"><span data-stu-id="d0887-328">**[1]** Install Cluster</span></span>
    
    <pre><code>
    sudo ha-cluster-init
    
-   # Do you want to continue anyway? [y/N] -> y
-   # Network address to bind to (for example: 192.168.1.0) [10.79.227.0] -> ENTER
+   # Do you want toocontinue anyway? [y/N] -> y
+   # Network address toobind too(for example: 192.168.1.0) [10.79.227.0] -> ENTER
    # Multicast address (for example: 239.x.x.x) [239.174.218.125] -> ENTER
    # Multicast port [5405] -> ENTER
-   # Do you wish to use SBD? [y/N] -> N
-   # Do you wish to configure an administration IP? [y/N] -> N
+   # Do you wish toouse SBD? [y/N] -> N
+   # Do you wish tooconfigure an administration IP? [y/N] -> N
    </code></pre>
 
-1. <span data-ttu-id="143ee-331">**[2]**  Csomópont hozzáadása a fürthöz</span><span class="sxs-lookup"><span data-stu-id="143ee-331">**[2]** Add node to cluster</span></span>
+1. <span data-ttu-id="d0887-329">**[2]**  Csomópont toocluster hozzáadása</span><span class="sxs-lookup"><span data-stu-id="d0887-329">**[2]** Add node toocluster</span></span>
    
    <pre><code> 
    sudo ha-cluster-join
 
-   # WARNING: NTP is not configured to start at system boot.
-   # WARNING: No watchdog device found. If SBD is used, the cluster will be unable to start without a watchdog.
-   # Do you want to continue anyway? [y/N] -> y
+   # WARNING: NTP is not configured toostart at system boot.
+   # WARNING: No watchdog device found. If SBD is used, hello cluster will be unable toostart without a watchdog.
+   # Do you want toocontinue anyway? [y/N] -> y
    # IP address or hostname of existing node (for example: 192.168.1.1) [] -> IP address of node 1 for example 10.0.0.10
    # /root/.ssh/id_dsa already exists - overwrite? [y/N] N
    </code></pre>
 
-1. <span data-ttu-id="143ee-332">**[A]**  Hacluster ugyanazt a jelszót a jelszó módosítása</span><span class="sxs-lookup"><span data-stu-id="143ee-332">**[A]** Change hacluster password to the same password</span></span>
+1. <span data-ttu-id="d0887-330">**[A]**  Módosítása hacluster jelszó toohello ugyanazt a jelszót</span><span class="sxs-lookup"><span data-stu-id="d0887-330">**[A]** Change hacluster password toohello same password</span></span>
 
    <pre><code> 
    sudo passwd hacluster
    </code></pre>
 
-1. <span data-ttu-id="143ee-333">**[A]**  Egyéb átvitelt használ, és adja hozzá a csomópontlista corosync konfigurálása.</span><span class="sxs-lookup"><span data-stu-id="143ee-333">**[A]** Configure corosync to use other transport and add nodelist.</span></span> <span data-ttu-id="143ee-334">Fürt egyébként nem működik.</span><span class="sxs-lookup"><span data-stu-id="143ee-334">Cluster will not work otherwise.</span></span>
+1. <span data-ttu-id="d0887-331">**[A]**  Corosync toouse más átviteli konfigurálása, és adja hozzá a csomópontlista.</span><span class="sxs-lookup"><span data-stu-id="d0887-331">**[A]** Configure corosync toouse other transport and add nodelist.</span></span> <span data-ttu-id="d0887-332">Fürt egyébként nem működik.</span><span class="sxs-lookup"><span data-stu-id="d0887-332">Cluster will not work otherwise.</span></span>
    
    <pre><code> 
    sudo vi /etc/corosync/corosync.conf   
    </code></pre>
 
-   <span data-ttu-id="143ee-335">Vegye fel a következő félkövér tartalmat a fájlba.</span><span class="sxs-lookup"><span data-stu-id="143ee-335">Add the following bold content to the file.</span></span>
+   <span data-ttu-id="d0887-333">Adja hozzá a következő félkövér tartalom toohello fájl hello.</span><span class="sxs-lookup"><span data-stu-id="d0887-333">Add hello following bold content toohello file.</span></span>
    
    <pre><code> 
    [...]
@@ -729,25 +729,25 @@ sudo crm configure property stonith-enabled=true
      [...]
    </code></pre>
 
-   <span data-ttu-id="143ee-336">Indítsa újra a corosync szolgáltatás</span><span class="sxs-lookup"><span data-stu-id="143ee-336">Then restart the corosync service</span></span>
+   <span data-ttu-id="d0887-334">Indítsa újra hello corosync szolgáltatás</span><span class="sxs-lookup"><span data-stu-id="d0887-334">Then restart hello corosync service</span></span>
 
    <pre><code>
    sudo service corosync restart
    </code></pre>
 
-1. <span data-ttu-id="143ee-337">**[A]**  Drbd összetevőinek telepítése</span><span class="sxs-lookup"><span data-stu-id="143ee-337">**[A]** Install drbd components</span></span>
+1. <span data-ttu-id="d0887-335">**[A]**  Drbd összetevőinek telepítése</span><span class="sxs-lookup"><span data-stu-id="d0887-335">**[A]** Install drbd components</span></span>
 
    <pre><code>
    sudo zypper install drbd drbd-kmp-default drbd-utils
    </code></pre>
 
-1. <span data-ttu-id="143ee-338">**[A]**  Hozzon létre egy partíciót a drbd eszköz</span><span class="sxs-lookup"><span data-stu-id="143ee-338">**[A]** Create a partition for the drbd device</span></span>
+1. <span data-ttu-id="d0887-336">**[A]**  Hozzon létre egy partíciót hello drbd eszköz</span><span class="sxs-lookup"><span data-stu-id="d0887-336">**[A]** Create a partition for hello drbd device</span></span>
 
    <pre><code>
    sudo sh -c 'echo -e "n\n\n\n\n\nw\n" | fdisk /dev/sdc'
    </code></pre>
 
-1. <span data-ttu-id="143ee-339">**[A]**  Létrehozása LVM konfigurációk</span><span class="sxs-lookup"><span data-stu-id="143ee-339">**[A]** Create LVM configurations</span></span>
+1. <span data-ttu-id="d0887-337">**[A]**  Létrehozása LVM konfigurációk</span><span class="sxs-lookup"><span data-stu-id="d0887-337">**[A]** Create LVM configurations</span></span>
 
    <pre><code>
    sudo pvcreate /dev/sdc1   
@@ -756,13 +756,13 @@ sudo crm configure property stonith-enabled=true
    sudo lvcreate -l 50%FREE -n <b>NWS</b>_ERS vg_<b>NWS</b>
    </code></pre>
 
-1. <span data-ttu-id="143ee-340">**[A]**  A SCS drbd eszköz létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-340">**[A]** Create the SCS drbd device</span></span>
+1. <span data-ttu-id="d0887-338">**[A]**  Létrehozása hello SCS drbd eszköz</span><span class="sxs-lookup"><span data-stu-id="d0887-338">**[A]** Create hello SCS drbd device</span></span>
 
    <pre><code>
    sudo vi /etc/drbd.d/<b>NWS</b>_ascs.res
    </code></pre>
 
-   <span data-ttu-id="143ee-341">Helyezze be az új drbd eszköz és a kilépési konfiguráció</span><span class="sxs-lookup"><span data-stu-id="143ee-341">Insert the configuration for the new drbd device and exit</span></span>
+   <span data-ttu-id="d0887-339">Helyezze be a hello új drbd eszköz és a kilépési hello konfigurálása</span><span class="sxs-lookup"><span data-stu-id="d0887-339">Insert hello configuration for hello new drbd device and exit</span></span>
 
    <pre><code>
    resource <b>NWS</b>_ascs {
@@ -785,20 +785,20 @@ sudo crm configure property stonith-enabled=true
    }
    </code></pre>
 
-   <span data-ttu-id="143ee-342">Hozzon létre a drbd eszközt, és indítsa el</span><span class="sxs-lookup"><span data-stu-id="143ee-342">Create the drbd device and start it</span></span>
+   <span data-ttu-id="d0887-340">Hello drbd eszköz létrehozása, és indítsa el</span><span class="sxs-lookup"><span data-stu-id="d0887-340">Create hello drbd device and start it</span></span>
 
    <pre><code>
    sudo drbdadm create-md <b>NWS</b>_ascs
    sudo drbdadm up <b>NWS</b>_ascs
    </code></pre>
 
-1. <span data-ttu-id="143ee-343">**[A]**  A SSZON drbd eszköz létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-343">**[A]** Create the ERS drbd device</span></span>
+1. <span data-ttu-id="d0887-341">**[A]**  Létrehozása hello SSZON drbd eszköz</span><span class="sxs-lookup"><span data-stu-id="d0887-341">**[A]** Create hello ERS drbd device</span></span>
 
    <pre><code>
    sudo vi /etc/drbd.d/<b>NWS</b>_ers.res
    </code></pre>
 
-   <span data-ttu-id="143ee-344">Helyezze be az új drbd eszköz és a kilépési konfiguráció</span><span class="sxs-lookup"><span data-stu-id="143ee-344">Insert the configuration for the new drbd device and exit</span></span>
+   <span data-ttu-id="d0887-342">Helyezze be a hello új drbd eszköz és a kilépési hello konfigurálása</span><span class="sxs-lookup"><span data-stu-id="d0887-342">Insert hello configuration for hello new drbd device and exit</span></span>
 
    <pre><code>
    resource <b>NWS</b>_ers {
@@ -821,28 +821,28 @@ sudo crm configure property stonith-enabled=true
    }
    </code></pre>
 
-   <span data-ttu-id="143ee-345">Hozzon létre a drbd eszközt, és indítsa el</span><span class="sxs-lookup"><span data-stu-id="143ee-345">Create the drbd device and start it</span></span>
+   <span data-ttu-id="d0887-343">Hello drbd eszköz létrehozása, és indítsa el</span><span class="sxs-lookup"><span data-stu-id="d0887-343">Create hello drbd device and start it</span></span>
 
    <pre><code>
    sudo drbdadm create-md <b>NWS</b>_ers
    sudo drbdadm up <b>NWS</b>_ers
    </code></pre>
 
-1. <span data-ttu-id="143ee-346">**[1]**  Kihagyása a kezdeti szinkronizálás</span><span class="sxs-lookup"><span data-stu-id="143ee-346">**[1]** Skip initial synchronization</span></span>
+1. <span data-ttu-id="d0887-344">**[1]**  Kihagyása a kezdeti szinkronizálás</span><span class="sxs-lookup"><span data-stu-id="d0887-344">**[1]** Skip initial synchronization</span></span>
 
    <pre><code>
    sudo drbdadm new-current-uuid --clear-bitmap <b>NWS</b>_ascs
    sudo drbdadm new-current-uuid --clear-bitmap <b>NWS</b>_ers
    </code></pre>
 
-1. <span data-ttu-id="143ee-347">**[1]**  Állítsa be az elsődleges csomópont</span><span class="sxs-lookup"><span data-stu-id="143ee-347">**[1]** Set the primary node</span></span>
+1. <span data-ttu-id="d0887-345">**[1]**  Set hello elsődleges csomópont</span><span class="sxs-lookup"><span data-stu-id="d0887-345">**[1]** Set hello primary node</span></span>
 
    <pre><code>
    sudo drbdadm primary --force <b>NWS</b>_ascs
    sudo drbdadm primary --force <b>NWS</b>_ers
    </code></pre>
 
-1. <span data-ttu-id="143ee-348">**[1]**  Várjon, amíg az új drbd eszköz szinkronizált</span><span class="sxs-lookup"><span data-stu-id="143ee-348">**[1]** Wait until the new drbd devices are synchronized</span></span>
+1. <span data-ttu-id="d0887-346">**[1]**  Várjon, amíg a hello új drbd eszköz szinkronizált</span><span class="sxs-lookup"><span data-stu-id="d0887-346">**[1]** Wait until hello new drbd devices are synchronized</span></span>
 
    <pre><code>
    sudo cat /proc/drbd
@@ -857,7 +857,7 @@ sudo crm configure property stonith-enabled=true
    #     ns:5142732 nr:0 dw:5142732 dr:5133924 al:30 bm:0 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:0
    </code></pre>
 
-1. <span data-ttu-id="143ee-349">**[1]**  Fájlrendszerek létrehozása a drbd eszközökön</span><span class="sxs-lookup"><span data-stu-id="143ee-349">**[1]** Create file systems on the drbd devices</span></span>
+1. <span data-ttu-id="d0887-347">**[1]**  Fájlrendszerek hozható létre hello drbd eszközök</span><span class="sxs-lookup"><span data-stu-id="d0887-347">**[1]** Create file systems on hello drbd devices</span></span>
 
    <pre><code>
    sudo mkfs.xfs /dev/drbd0
@@ -865,9 +865,9 @@ sudo crm configure property stonith-enabled=true
    </code></pre>
 
 
-### <a name="configure-cluster-framework"></a><span data-ttu-id="143ee-350">Fürt keretrendszer konfigurálása</span><span class="sxs-lookup"><span data-stu-id="143ee-350">Configure Cluster Framework</span></span>
+### <a name="configure-cluster-framework"></a><span data-ttu-id="d0887-348">Fürt keretrendszer konfigurálása</span><span class="sxs-lookup"><span data-stu-id="d0887-348">Configure Cluster Framework</span></span>
 
-<span data-ttu-id="143ee-351">**[1]**  Az alapértelmezett beállítások módosítása</span><span class="sxs-lookup"><span data-stu-id="143ee-351">**[1]** Change the default settings</span></span>
+<span data-ttu-id="d0887-349">**[1]**  Hello alapértelmezett beállításainak módosítása</span><span class="sxs-lookup"><span data-stu-id="d0887-349">**[1]** Change hello default settings</span></span>
 
    <pre><code>
    sudo crm configure
@@ -878,9 +878,9 @@ sudo crm configure property stonith-enabled=true
    crm(live)configure# exit
    </code></pre>
 
-## <a name="prepare-for-sap-netweaver-installation"></a><span data-ttu-id="143ee-352">SAP NetWeaver telepítésének előkészítése</span><span class="sxs-lookup"><span data-stu-id="143ee-352">Prepare for SAP NetWeaver installation</span></span>
+## <a name="prepare-for-sap-netweaver-installation"></a><span data-ttu-id="d0887-350">SAP NetWeaver telepítésének előkészítése</span><span class="sxs-lookup"><span data-stu-id="d0887-350">Prepare for SAP NetWeaver installation</span></span>
 
-1. <span data-ttu-id="143ee-353">**[A]**  a megosztott könyvtárak létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-353">**[A]** Create the shared directories</span></span>
+1. <span data-ttu-id="d0887-351">**[A]**  Létrehozása hello megosztott könyvtárak</span><span class="sxs-lookup"><span data-stu-id="d0887-351">**[A]** Create hello shared directories</span></span>
 
    <pre><code>
    sudo mkdir -p /sapmnt/<b>NWS</b>
@@ -892,58 +892,58 @@ sudo crm configure property stonith-enabled=true
    sudo chattr +i /usr/sap/<b>NWS</b>/SYS
    </code></pre>
 
-1. <span data-ttu-id="143ee-354">**[A]**  Autofs konfigurálása</span><span class="sxs-lookup"><span data-stu-id="143ee-354">**[A]** Configure autofs</span></span>
+1. <span data-ttu-id="d0887-352">**[A]**  Autofs konfigurálása</span><span class="sxs-lookup"><span data-stu-id="d0887-352">**[A]** Configure autofs</span></span>
  
    <pre><code>
    sudo vi /etc/auto.master
 
-   # Add the following line to the file, save and exit
+   # Add hello following line toohello file, save and exit
    +auto.master
    /- /etc/auto.direct
    </code></pre>
 
-   <span data-ttu-id="143ee-355">Fájl létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-355">Create a file with</span></span>
+   <span data-ttu-id="d0887-353">Fájl létrehozása</span><span class="sxs-lookup"><span data-stu-id="d0887-353">Create a file with</span></span>
 
    <pre><code>
    sudo vi /etc/auto.direct
 
-   # Add the following lines to the file, save and exit
+   # Add hello following lines toohello file, save and exit
    /sapmnt/<b>NWS</b> -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/sapmntsid
    /usr/sap/trans -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/trans
    /usr/sap/<b>NWS</b>/SYS -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/sidsys
    </code></pre>
 
-   <span data-ttu-id="143ee-356">Indítsa újra az új fájlmegosztások csatlakoztatása autofs</span><span class="sxs-lookup"><span data-stu-id="143ee-356">Restart autofs to mount the new shares</span></span>
+   <span data-ttu-id="d0887-354">Indítsa újra a autofs toomount hello új megosztások</span><span class="sxs-lookup"><span data-stu-id="d0887-354">Restart autofs toomount hello new shares</span></span>
 
    <pre><code>
    sudo systemctl enable autofs
    sudo service autofs restart
    </code></pre>
 
-1. <span data-ttu-id="143ee-357">**[A]**  Fájl FELCSERÉLÉSE konfigurálása</span><span class="sxs-lookup"><span data-stu-id="143ee-357">**[A]** Configure SWAP file</span></span>
+1. <span data-ttu-id="d0887-355">**[A]**  Fájl FELCSERÉLÉSE konfigurálása</span><span class="sxs-lookup"><span data-stu-id="d0887-355">**[A]** Configure SWAP file</span></span>
  
    <pre><code>
    sudo vi /etc/waagent.conf
 
-   # Set the property ResourceDisk.EnableSwap to y
+   # Set hello property ResourceDisk.EnableSwap tooy
    # Create and use swapfile on resource disk.
    ResourceDisk.EnableSwap=<b>y</b>
 
-   # Set the size of the SWAP file with property ResourceDisk.SwapSizeMB
-   # The free space of resource disk varies by virtual machine size. Make sure that you do not set a value that is too big. You can check the SWAP space with command swapon
-   # Size of the swapfile.
+   # Set hello size of hello SWAP file with property ResourceDisk.SwapSizeMB
+   # hello free space of resource disk varies by virtual machine size. Make sure that you do not set a value that is too big. You can check hello SWAP space with command swapon
+   # Size of hello swapfile.
    ResourceDisk.SwapSizeMB=<b>2000</b>
    </code></pre>
 
-   <span data-ttu-id="143ee-358">Indítsa újra az ügynököt, a módosítás aktiválása</span><span class="sxs-lookup"><span data-stu-id="143ee-358">Restart the Agent to activate the change</span></span>
+   <span data-ttu-id="d0887-356">Indítsa újra a hello ügynök tooactivate hello módosítása</span><span class="sxs-lookup"><span data-stu-id="d0887-356">Restart hello Agent tooactivate hello change</span></span>
 
    <pre><code>
    sudo service waagent restart
    </code></pre>
 
-### <a name="installing-sap-netweaver-ascsers"></a><span data-ttu-id="143ee-359">SAP NetWeaver ASC/SSZON telepítése</span><span class="sxs-lookup"><span data-stu-id="143ee-359">Installing SAP NetWeaver ASCS/ERS</span></span>
+### <a name="installing-sap-netweaver-ascsers"></a><span data-ttu-id="d0887-357">SAP NetWeaver ASC/SSZON telepítése</span><span class="sxs-lookup"><span data-stu-id="d0887-357">Installing SAP NetWeaver ASCS/ERS</span></span>
 
-1. <span data-ttu-id="143ee-360">**[1]**  Hozzon létre egy virtuális IP- és állapot-mintavételi a belső terheléselosztóhoz</span><span class="sxs-lookup"><span data-stu-id="143ee-360">**[1]** Create a virtual IP resource and health-probe for the internal load balancer</span></span>
+1. <span data-ttu-id="d0887-358">**[1]**  Hozzon létre egy virtuális IP- és állapot-mintavételi hello belső terheléselosztóhoz</span><span class="sxs-lookup"><span data-stu-id="d0887-358">**[1]** Create a virtual IP resource and health-probe for hello internal load balancer</span></span>
 
    <pre><code>
    sudo crm node standby <b>nws-cl-1</b>
@@ -987,7 +987,7 @@ sudo crm configure property stonith-enabled=true
    crm(live)configure# exit
    </code></pre>
 
-   <span data-ttu-id="143ee-361">Győződjön meg arról, hogy a fürt állapota rendben, és, hogy az összes erőforrás indulnak el.</span><span class="sxs-lookup"><span data-stu-id="143ee-361">Make sure that the cluster status is ok and that all resources are started.</span></span> <span data-ttu-id="143ee-362">Nem fontos, melyik csomópontján, az erőforrások futnak.</span><span class="sxs-lookup"><span data-stu-id="143ee-362">It is not important on which node the resources are running.</span></span>
+   <span data-ttu-id="d0887-359">Győződjön meg arról, hogy hello fürt állapot rendben, és, hogy az összes erőforrás indulnak el.</span><span class="sxs-lookup"><span data-stu-id="d0887-359">Make sure that hello cluster status is ok and that all resources are started.</span></span> <span data-ttu-id="d0887-360">Nem fontos a csomópont hello erőforrások futnak.</span><span class="sxs-lookup"><span data-stu-id="d0887-360">It is not important on which node hello resources are running.</span></span>
 
    <pre><code>
    sudo crm_mon -r
@@ -1006,17 +1006,17 @@ sudo crm configure property stonith-enabled=true
    #      fs_NWS_ASCS        (ocf::heartbeat:Filesystem):    <b>Started nws-cl-0</b>
    </code></pre>
 
-1. <span data-ttu-id="143ee-363">**[1]**  SAP NetWeaver ASC telepítése</span><span class="sxs-lookup"><span data-stu-id="143ee-363">**[1]** Install SAP NetWeaver ASCS</span></span>  
+1. <span data-ttu-id="d0887-361">**[1]**  SAP NetWeaver ASC telepítése</span><span class="sxs-lookup"><span data-stu-id="d0887-361">**[1]** Install SAP NetWeaver ASCS</span></span>  
 
-   <span data-ttu-id="143ee-364">SAP NetWeaver ASC telepítse a legfelső szintű használatával egy virtuális állomásnevet, amely a terheléselosztó előtér-konfiguráció a ASC IP-címe például az első csomóponton <b>nws-ASC</b>, <b>10.0.0.10</b> és a példány számát, például használt a mintavétel a terheléselosztó <b>00</b>.</span><span class="sxs-lookup"><span data-stu-id="143ee-364">Install SAP NetWeaver ASCS as root on the first node using a virtual hostname that maps to the IP address of the load balancer frontend configuration for the ASCS for example <b>nws-ascs</b>, <b>10.0.0.10</b> and the instance number that you used for the probe of the load balancer for example <b>00</b>.</span></span>
+   <span data-ttu-id="d0887-362">SAP NetWeaver ASC telepítse a legfelső szintű használatával egy virtuális állomásnevet, amely hello terheléselosztó előtér-konfiguráció hello ASC toohello IP-címe például hello első csomóponton <b>nws-ASC</b>, <b>10.0.0.10</b>és például használt hello mintavétel hello terheléselosztó hello példányszámának <b>00</b>.</span><span class="sxs-lookup"><span data-stu-id="d0887-362">Install SAP NetWeaver ASCS as root on hello first node using a virtual hostname that maps toohello IP address of hello load balancer frontend configuration for hello ASCS for example <b>nws-ascs</b>, <b>10.0.0.10</b> and hello instance number that you used for hello probe of hello load balancer for example <b>00</b>.</span></span>
 
-   <span data-ttu-id="143ee-365">Használhatja a sapinst paraméter SAPINST_REMOTE_ACCESS_USER sapinst való kapcsolódáshoz nem legfelső szintű felhasználó engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="143ee-365">You can use the sapinst parameter SAPINST_REMOTE_ACCESS_USER to allow a non-root user to connect to sapinst.</span></span>
+   <span data-ttu-id="d0887-363">Hello sapinst paraméter SAPINST_REMOTE_ACCESS_USER tooallow a nem gyökér szintű felhasználó tooconnect toosapinst is használhatja.</span><span class="sxs-lookup"><span data-stu-id="d0887-363">You can use hello sapinst parameter SAPINST_REMOTE_ACCESS_USER tooallow a non-root user tooconnect toosapinst.</span></span>
 
    <pre><code>
    sudo &lt;swpm&gt;/sapinst SAPINST_REMOTE_ACCESS_USER=<b>sapadmin</b>
    </code></pre>
 
-1. <span data-ttu-id="143ee-366">**[1]**  Hozzon létre egy virtuális IP- és állapot-mintavételi a belső terheléselosztóhoz</span><span class="sxs-lookup"><span data-stu-id="143ee-366">**[1]** Create a virtual IP resource and health-probe for the internal load balancer</span></span>
+1. <span data-ttu-id="d0887-364">**[1]**  Hozzon létre egy virtuális IP- és állapot-mintavételi hello belső terheléselosztóhoz</span><span class="sxs-lookup"><span data-stu-id="d0887-364">**[1]** Create a virtual IP resource and health-probe for hello internal load balancer</span></span>
 
    <pre><code>
    sudo crm node standby <b>nws-cl-0</b>
@@ -1058,13 +1058,13 @@ sudo crm configure property stonith-enabled=true
    
    crm(live)configure# commit
    # WARNING: Resources nc_NWS_ASCS,nc_NWS_ERS,nc_NWS_nfs violate uniqueness for parameter "binfile": "/usr/bin/nc"
-   # Do you still want to commit (y/n)? y
+   # Do you still want toocommit (y/n)? y
 
    crm(live)configure# exit
    
    </code></pre>
  
-   <span data-ttu-id="143ee-367">Győződjön meg arról, hogy a fürt állapota rendben, és, hogy az összes erőforrás indulnak el.</span><span class="sxs-lookup"><span data-stu-id="143ee-367">Make sure that the cluster status is ok and that all resources are started.</span></span> <span data-ttu-id="143ee-368">Nem fontos, melyik csomópontján, az erőforrások futnak.</span><span class="sxs-lookup"><span data-stu-id="143ee-368">It is not important on which node the resources are running.</span></span>
+   <span data-ttu-id="d0887-365">Győződjön meg arról, hogy hello fürt állapot rendben, és, hogy az összes erőforrás indulnak el.</span><span class="sxs-lookup"><span data-stu-id="d0887-365">Make sure that hello cluster status is ok and that all resources are started.</span></span> <span data-ttu-id="d0887-366">Nem fontos a csomópont hello erőforrások futnak.</span><span class="sxs-lookup"><span data-stu-id="d0887-366">It is not important on which node hello resources are running.</span></span>
 
    <pre><code>
    sudo crm_mon -r
@@ -1090,78 +1090,78 @@ sudo crm configure property stonith-enabled=true
    #      fs_NWS_ERS (ocf::heartbeat:Filesystem):    <b>Started nws-cl-1</b>
    </code></pre>
 
-1. <span data-ttu-id="143ee-369">**[2]**  SAP NetWeaver SSZON telepítése</span><span class="sxs-lookup"><span data-stu-id="143ee-369">**[2]** Install SAP NetWeaver ERS</span></span>  
+1. <span data-ttu-id="d0887-367">**[2]**  SAP NetWeaver SSZON telepítése</span><span class="sxs-lookup"><span data-stu-id="d0887-367">**[2]** Install SAP NetWeaver ERS</span></span>  
 
-   <span data-ttu-id="143ee-370">SAP NetWeaver SSZON telepítése a második csomópont használatával egy virtuális állomásnevet, amely a terheléselosztó előtér-konfiguráció a SSZON IP-címe például a legfelső szintű <b>nws-sszon</b>, <b>10.0.0.11</b> és a példány számát, például használt a mintavétel a terheléselosztó <b>02</b>.</span><span class="sxs-lookup"><span data-stu-id="143ee-370">Install SAP NetWeaver ERS as root on the second node using a virtual hostname that maps to the IP address of the load balancer frontend configuration for the ERS for example <b>nws-ers</b>, <b>10.0.0.11</b> and the instance number that you used for the probe of the load balancer for example <b>02</b>.</span></span>
+   <span data-ttu-id="d0887-368">SAP NetWeaver SSZON telepítése hello a második csomópont használatával egy virtuális állomásnevet, amely hello terheléselosztó előtér-konfiguráció hello SSZON toohello IP-címe például a legfelső szintű <b>nws-sszon</b>, <b>10.0.0.11</b> és például használt hello mintavétel hello terheléselosztó hello példányszámának <b>02</b>.</span><span class="sxs-lookup"><span data-stu-id="d0887-368">Install SAP NetWeaver ERS as root on hello second node using a virtual hostname that maps toohello IP address of hello load balancer frontend configuration for hello ERS for example <b>nws-ers</b>, <b>10.0.0.11</b> and hello instance number that you used for hello probe of hello load balancer for example <b>02</b>.</span></span>
 
-   <span data-ttu-id="143ee-371">Használhatja a sapinst paraméter SAPINST_REMOTE_ACCESS_USER sapinst való kapcsolódáshoz nem legfelső szintű felhasználó engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="143ee-371">You can use the sapinst parameter SAPINST_REMOTE_ACCESS_USER to allow a non-root user to connect to sapinst.</span></span>
+   <span data-ttu-id="d0887-369">Hello sapinst paraméter SAPINST_REMOTE_ACCESS_USER tooallow a nem gyökér szintű felhasználó tooconnect toosapinst is használhatja.</span><span class="sxs-lookup"><span data-stu-id="d0887-369">You can use hello sapinst parameter SAPINST_REMOTE_ACCESS_USER tooallow a non-root user tooconnect toosapinst.</span></span>
 
    <pre><code>
    sudo &lt;swpm&gt;/sapinst SAPINST_REMOTE_ACCESS_USER=<b>sapadmin</b>
    </code></pre>
 
    > [!NOTE]
-   > <span data-ttu-id="143ee-372">SWPM SP 20 PL 05 vagy újabb verzióját használja.</span><span class="sxs-lookup"><span data-stu-id="143ee-372">Please use SWPM SP 20 PL 05 or higher.</span></span> <span data-ttu-id="143ee-373">Alacsonyabb verzió nincs beállítva az engedélyeket, és a telepítés sikertelen lesz.</span><span class="sxs-lookup"><span data-stu-id="143ee-373">Lower versions do not set the permissions correctly and the installation will fail.</span></span>
+   > <span data-ttu-id="d0887-370">SWPM SP 20 PL 05 vagy újabb verzióját használja.</span><span class="sxs-lookup"><span data-stu-id="d0887-370">Please use SWPM SP 20 PL 05 or higher.</span></span> <span data-ttu-id="d0887-371">Korábbi verziók nem hello engedélyek helyesen beállítva, és hello telepítése sikertelen lesz.</span><span class="sxs-lookup"><span data-stu-id="d0887-371">Lower versions do not set hello permissions correctly and hello installation will fail.</span></span>
    > 
 
-1. <span data-ttu-id="143ee-374">**[1]**  Adaptálása a ASC/SCS és SSZON példány profilok</span><span class="sxs-lookup"><span data-stu-id="143ee-374">**[1]** Adapt the ASCS/SCS and ERS instance profiles</span></span>
+1. <span data-ttu-id="d0887-372">**[1]**  Hello ASC/SCS és SSZON példány profilok igazítja</span><span class="sxs-lookup"><span data-stu-id="d0887-372">**[1]** Adapt hello ASCS/SCS and ERS instance profiles</span></span>
  
-   * <span data-ttu-id="143ee-375">Asc/SCS profil</span><span class="sxs-lookup"><span data-stu-id="143ee-375">ASCS/SCS profile</span></span>
+   * <span data-ttu-id="d0887-373">Asc/SCS profil</span><span class="sxs-lookup"><span data-stu-id="d0887-373">ASCS/SCS profile</span></span>
 
    <pre><code> 
    sudo vi /sapmnt/<b>NWS</b>/profile/<b>NWS</b>_<b>ASCS00</b>_<b>nws-ascs</b>
 
-   # Change the restart command to a start command
+   # Change hello restart command tooa start command
    #Restart_Program_01 = local $(_EN) pf=$(_PF)
    Start_Program_01 = local $(_EN) pf=$(_PF)
 
-   # Add the following lines
+   # Add hello following lines
    service/halib = $(DIR_CT_RUN)/saphascriptco.so
    service/halib_cluster_connector = /usr/bin/sap_suse_cluster_connector
 
-   # Add the keep alive parameter
+   # Add hello keep alive parameter
    enque/encni/set_so_keepalive = true
    </code></pre>
 
-   * <span data-ttu-id="143ee-376">SSZON profil</span><span class="sxs-lookup"><span data-stu-id="143ee-376">ERS profile</span></span>
+   * <span data-ttu-id="d0887-374">SSZON profil</span><span class="sxs-lookup"><span data-stu-id="d0887-374">ERS profile</span></span>
 
    <pre><code> 
    sudo vi /sapmnt/<b>NWS</b>/profile/<b>NWS</b>_ERS<b>02</b>_<b>nws-ers</b>
 
-   # Add the following lines
+   # Add hello following lines
    service/halib = $(DIR_CT_RUN)/saphascriptco.so
    service/halib_cluster_connector = /usr/bin/sap_suse_cluster_connector
    </code></pre>
 
 
-1. <span data-ttu-id="143ee-377">**[A]**  Keep-Alive konfigurálása</span><span class="sxs-lookup"><span data-stu-id="143ee-377">**[A]** Configure Keep Alive</span></span>
+1. <span data-ttu-id="d0887-375">**[A]**  Keep-Alive konfigurálása</span><span class="sxs-lookup"><span data-stu-id="d0887-375">**[A]** Configure Keep Alive</span></span>
 
-   <span data-ttu-id="143ee-378">Az SAP NetWeaver alkalmazáskiszolgáló és az ASC/SCS közötti kommunikáció áthalad szoftveres terheléselosztóként üzemeljen.</span><span class="sxs-lookup"><span data-stu-id="143ee-378">The communication between the SAP NetWeaver application server and the ASCS/SCS is routed through a software load balancer.</span></span> <span data-ttu-id="143ee-379">A load balancer inaktív kapcsolatok leválasztása után konfigurálható időtúllépés.</span><span class="sxs-lookup"><span data-stu-id="143ee-379">The load balancer disconnects inactive connections after a configurable timeout.</span></span> <span data-ttu-id="143ee-380">Ennek megelőzése szüksége egy paramétert az SAP NetWeaver ASC/SCS profil és a Linux rendszer beállításainak módosítására.</span><span class="sxs-lookup"><span data-stu-id="143ee-380">To prevent this you need to set a parameter in the SAP NetWeaver ASCS/SCS profile and change the Linux system settings.</span></span> <span data-ttu-id="143ee-381">Kérjük, olvassa el [SAP Megjegyzés 1410736] [ 1410736] további információt.</span><span class="sxs-lookup"><span data-stu-id="143ee-381">Please read [SAP Note 1410736][1410736] for more information.</span></span>
+   <span data-ttu-id="d0887-376">SAP NetWeaver alkalmazáskiszolgáló hello és az ASC/SCS hello hello kommunikációját szoftveres terheléselosztóként üzemeljen keresztül történik.</span><span class="sxs-lookup"><span data-stu-id="d0887-376">hello communication between hello SAP NetWeaver application server and hello ASCS/SCS is routed through a software load balancer.</span></span> <span data-ttu-id="d0887-377">hello terheléselosztó inaktív kapcsolatok leválasztása után konfigurálható időtúllépés.</span><span class="sxs-lookup"><span data-stu-id="d0887-377">hello load balancer disconnects inactive connections after a configurable timeout.</span></span> <span data-ttu-id="d0887-378">tooprevent ez tooset hello SAP NetWeaver ASC/SCS profil egyik paraméterének kell és hello Linux rendszer beállításainak módosítására.</span><span class="sxs-lookup"><span data-stu-id="d0887-378">tooprevent this you need tooset a parameter in hello SAP NetWeaver ASCS/SCS profile and change hello Linux system settings.</span></span> <span data-ttu-id="d0887-379">Kérjük, olvassa el [SAP Megjegyzés 1410736] [ 1410736] további információt.</span><span class="sxs-lookup"><span data-stu-id="d0887-379">Please read [SAP Note 1410736][1410736] for more information.</span></span>
    
-   <span data-ttu-id="143ee-382">A ASC/SCS profil paraméter célzó/encni/set_so_keepalive már felvették az előző lépésben.</span><span class="sxs-lookup"><span data-stu-id="143ee-382">The ASCS/SCS profile parameter enque/encni/set_so_keepalive was already added in the last step.</span></span>
+   <span data-ttu-id="d0887-380">hello ASC/SCS profil paraméter célzó/encni/set_so_keepalive már felvették hello utolsó lépésében megadja.</span><span class="sxs-lookup"><span data-stu-id="d0887-380">hello ASCS/SCS profile parameter enque/encni/set_so_keepalive was already added in hello last step.</span></span>
 
    <pre><code> 
-   # Change the Linux system configuration
+   # Change hello Linux system configuration
    sudo sysctl net.ipv4.tcp_keepalive_time=120
    </code></pre>
 
-1. <span data-ttu-id="143ee-383">**[A]**  Az SAP felhasználók konfigurálásához, a telepítés után</span><span class="sxs-lookup"><span data-stu-id="143ee-383">**[A]** Configure the SAP users after the installation</span></span>
+1. <span data-ttu-id="d0887-381">**[A]**  Hello SAP felhasználók konfigurálása hello telepítése után</span><span class="sxs-lookup"><span data-stu-id="d0887-381">**[A]** Configure hello SAP users after hello installation</span></span>
  
    <pre><code>
-   # Add sidadm to the haclient group
+   # Add sidadm toohello haclient group
    sudo usermod -aG haclient <b>nws</b>adm   
    </code></pre>
 
-1. <span data-ttu-id="143ee-384">**[1]**  A ASC és SSZON SAP-szolgáltatás hozzáadása a sapservice fájlhoz</span><span class="sxs-lookup"><span data-stu-id="143ee-384">**[1]** Add the ASCS and ERS SAP services to the sapservice file</span></span>
+1. <span data-ttu-id="d0887-382">**[1]**  Hello ASC és SSZON SAP szolgáltatások toohello sapservice fájl</span><span class="sxs-lookup"><span data-stu-id="d0887-382">**[1]** Add hello ASCS and ERS SAP services toohello sapservice file</span></span>
 
-   <span data-ttu-id="143ee-385">Adja hozzá a ASC bejegyzés a második csomópontra történő szolgáltatást, és másolja a SSZON szolgáltatás bejegyzés az első csomópontot.</span><span class="sxs-lookup"><span data-stu-id="143ee-385">Add the ASCS service entry to the second node and copy the ERS service entry to the first node.</span></span>
+   <span data-ttu-id="d0887-383">Adja hozzá a hello ASC szolgáltatás bejegyzés toohello második csomópontnak, illetve másolási hello SSZON szolgáltatás bejegyzés toohello első csomópontnak.</span><span class="sxs-lookup"><span data-stu-id="d0887-383">Add hello ASCS service entry toohello second node and copy hello ERS service entry toohello first node.</span></span>
 
    <pre><code>
    cat /usr/sap/sapservices | grep ASCS<b>00</b> | sudo ssh <b>nws-cl-1</b> "cat >>/usr/sap/sapservices"
    sudo ssh <b>nws-cl-1</b> "cat /usr/sap/sapservices" | grep ERS<b>02</b> | sudo tee -a /usr/sap/sapservices
    </code></pre>
 
-1. <span data-ttu-id="143ee-386">**[1]**  Az SAP fürterőforrások létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-386">**[1]** Create the SAP cluster resources</span></span>
+1. <span data-ttu-id="d0887-384">**[1]**  Hello SAP-fürterőforrás létrehozása</span><span class="sxs-lookup"><span data-stu-id="d0887-384">**[1]** Create hello SAP cluster resources</span></span>
 
    <pre><code>
    sudo crm configure property maintenance-mode="true"
@@ -1195,7 +1195,7 @@ sudo crm configure property stonith-enabled=true
    sudo crm node online <b>nws-cl-0</b>
    </code></pre>
 
-   <span data-ttu-id="143ee-387">Győződjön meg arról, hogy a fürt állapota rendben, és, hogy az összes erőforrás indulnak el.</span><span class="sxs-lookup"><span data-stu-id="143ee-387">Make sure that the cluster status is ok and that all resources are started.</span></span> <span data-ttu-id="143ee-388">Nem fontos, melyik csomópontján, az erőforrások futnak.</span><span class="sxs-lookup"><span data-stu-id="143ee-388">It is not important on which node the resources are running.</span></span>
+   <span data-ttu-id="d0887-385">Győződjön meg arról, hogy hello fürt állapot rendben, és, hogy az összes erőforrás indulnak el.</span><span class="sxs-lookup"><span data-stu-id="d0887-385">Make sure that hello cluster status is ok and that all resources are started.</span></span> <span data-ttu-id="d0887-386">Nem fontos a csomópont hello erőforrások futnak.</span><span class="sxs-lookup"><span data-stu-id="d0887-386">It is not important on which node hello resources are running.</span></span>
 
    <pre><code>
    sudo crm_mon -r
@@ -1222,41 +1222,41 @@ sudo crm configure property stonith-enabled=true
    #      rsc_sap_NWS_ERS02  (ocf::heartbeat:SAPInstance):   <b>Started nws-cl-1</b>
    </code></pre>
 
-### <a name="create-stonith-device"></a><span data-ttu-id="143ee-389">STONITH eszköz létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-389">Create STONITH device</span></span>
+### <a name="create-stonith-device"></a><span data-ttu-id="d0887-387">STONITH eszköz létrehozása</span><span class="sxs-lookup"><span data-stu-id="d0887-387">Create STONITH device</span></span>
 
-<span data-ttu-id="143ee-390">A STONITH eszköz egy egyszerű szolgáltatást használ, szemben a Microsoft Azure engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="143ee-390">The STONITH device uses a Service Principal to authorize against Microsoft Azure.</span></span> <span data-ttu-id="143ee-391">Kövesse az alábbi lépéseket egy egyszerű szolgáltatásnév létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="143ee-391">Follow these steps to create a Service Principal.</span></span>
+<span data-ttu-id="d0887-388">hello STONITH eszköz által használt egy egyszerű tooauthorize Microsoft Azure ellen.</span><span class="sxs-lookup"><span data-stu-id="d0887-388">hello STONITH device uses a Service Principal tooauthorize against Microsoft Azure.</span></span> <span data-ttu-id="d0887-389">Kövesse ezeket a lépéseket toocreate egy egyszerű szolgáltatást.</span><span class="sxs-lookup"><span data-stu-id="d0887-389">Follow these steps toocreate a Service Principal.</span></span>
 
-1. <span data-ttu-id="143ee-392">Ugrás a <https://portal.azure.com></span><span class="sxs-lookup"><span data-stu-id="143ee-392">Go to <https://portal.azure.com></span></span>
-1. <span data-ttu-id="143ee-393">Nyissa meg az Azure Active Directory panelt</span><span class="sxs-lookup"><span data-stu-id="143ee-393">Open the Azure Active Directory blade</span></span>  
-   <span data-ttu-id="143ee-394">Nyissa meg tulajdonságait, és jegyezze fel a könyvtárban.</span><span class="sxs-lookup"><span data-stu-id="143ee-394">Go to Properties and write down the Directory Id.</span></span> <span data-ttu-id="143ee-395">Ez a **bérlőazonosító**.</span><span class="sxs-lookup"><span data-stu-id="143ee-395">This is the **tenant id**.</span></span>
-1. <span data-ttu-id="143ee-396">Kattintson az alkalmazás-regisztráció</span><span class="sxs-lookup"><span data-stu-id="143ee-396">Click App registrations</span></span>
-1. <span data-ttu-id="143ee-397">Kattintson az Add (Hozzáadás) parancsra</span><span class="sxs-lookup"><span data-stu-id="143ee-397">Click Add</span></span>
-1. <span data-ttu-id="143ee-398">Adjon meg egy nevet, válassza ki a "Web app/API" alkalmazástípus, adja meg a bejelentkezési URL-címet (például http://localhost) és kattintson a Létrehozás gombra</span><span class="sxs-lookup"><span data-stu-id="143ee-398">Enter a Name, select Application Type "Web app/API", enter a sign-on URL (for example http://localhost) and click Create</span></span>
-1. <span data-ttu-id="143ee-399">A bejelentkezési URL-címet nem használja, és bármilyen érvényes URL-CÍMEK lehetnek</span><span class="sxs-lookup"><span data-stu-id="143ee-399">The sign-on URL is not used and can be any valid URL</span></span>
-1. <span data-ttu-id="143ee-400">Válassza ki az új alkalmazást, és a beállítások lapon kattintson a kulcsok</span><span class="sxs-lookup"><span data-stu-id="143ee-400">Select the new App and click Keys in the Settings tab</span></span>
-1. <span data-ttu-id="143ee-401">Adja meg egy új kulcs leírását, válassza a "Soha nem jár le", és kattintson a Mentés gombra</span><span class="sxs-lookup"><span data-stu-id="143ee-401">Enter a description for a new key, select "Never expires" and click Save</span></span>
-1. <span data-ttu-id="143ee-402">Jegyezze fel az értéket.</span><span class="sxs-lookup"><span data-stu-id="143ee-402">Write down the Value.</span></span> <span data-ttu-id="143ee-403">Használják a **jelszó** a szolgáltatás egyszerű</span><span class="sxs-lookup"><span data-stu-id="143ee-403">It is used as the **password** for the Service Principal</span></span>
-1. <span data-ttu-id="143ee-404">Jegyezze fel az azonosítót.</span><span class="sxs-lookup"><span data-stu-id="143ee-404">Write down the Application Id.</span></span> <span data-ttu-id="143ee-405">A felhasználónév használják (**bejelentkezési azonosító** az alábbi lépéseket a) a szolgáltatás egyszerű</span><span class="sxs-lookup"><span data-stu-id="143ee-405">It is used as the username (**login id** in the steps below) of the Service Principal</span></span>
+1. <span data-ttu-id="d0887-390">Nyissa meg túl<https://portal.azure.com></span><span class="sxs-lookup"><span data-stu-id="d0887-390">Go too<https://portal.azure.com></span></span>
+1. <span data-ttu-id="d0887-391">Nyissa meg hello Azure Active Directory panel</span><span class="sxs-lookup"><span data-stu-id="d0887-391">Open hello Azure Active Directory blade</span></span>  
+   <span data-ttu-id="d0887-392">Nyissa meg tooProperties, és írja le hello Directory azonosítóját. Ez a hello **bérlőazonosító**.</span><span class="sxs-lookup"><span data-stu-id="d0887-392">Go tooProperties and write down hello Directory Id. This is hello **tenant id**.</span></span>
+1. <span data-ttu-id="d0887-393">Kattintson az alkalmazás-regisztráció</span><span class="sxs-lookup"><span data-stu-id="d0887-393">Click App registrations</span></span>
+1. <span data-ttu-id="d0887-394">Kattintson az Add (Hozzáadás) parancsra</span><span class="sxs-lookup"><span data-stu-id="d0887-394">Click Add</span></span>
+1. <span data-ttu-id="d0887-395">Adjon meg egy nevet, válassza ki a "Web app/API" alkalmazástípus, adja meg a bejelentkezési URL-címet (például http://localhost) és kattintson a Létrehozás gombra</span><span class="sxs-lookup"><span data-stu-id="d0887-395">Enter a Name, select Application Type "Web app/API", enter a sign-on URL (for example http://localhost) and click Create</span></span>
+1. <span data-ttu-id="d0887-396">hello bejelentkezési URL-címet nem használja, és bármilyen érvényes URL-CÍMEK lehetnek</span><span class="sxs-lookup"><span data-stu-id="d0887-396">hello sign-on URL is not used and can be any valid URL</span></span>
+1. <span data-ttu-id="d0887-397">Válassza ki az új alkalmazás hello és kattintson a kulcsok hello-beállítások lap</span><span class="sxs-lookup"><span data-stu-id="d0887-397">Select hello new App and click Keys in hello Settings tab</span></span>
+1. <span data-ttu-id="d0887-398">Adja meg egy új kulcs leírását, válassza a "Soha nem jár le", és kattintson a Mentés gombra</span><span class="sxs-lookup"><span data-stu-id="d0887-398">Enter a description for a new key, select "Never expires" and click Save</span></span>
+1. <span data-ttu-id="d0887-399">Írja le hello érték.</span><span class="sxs-lookup"><span data-stu-id="d0887-399">Write down hello Value.</span></span> <span data-ttu-id="d0887-400">Hello használják **jelszó** a hello szolgáltatás egyszerű</span><span class="sxs-lookup"><span data-stu-id="d0887-400">It is used as hello **password** for hello Service Principal</span></span>
+1. <span data-ttu-id="d0887-401">Írja le hello azonosítót. Hello felhasználónév, a rendszer (**bejelentkezési azonosító** hello lépéseket a) a hello szolgáltatás egyszerű</span><span class="sxs-lookup"><span data-stu-id="d0887-401">Write down hello Application Id. It is used as hello username (**login id** in hello steps below) of hello Service Principal</span></span>
 
-<span data-ttu-id="143ee-406">A szolgáltatás egyszerű nincs engedélye a alapértelmezés szerint az Azure-erőforrások eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="143ee-406">The Service Principal does not have permissions to access your Azure resources by default.</span></span> <span data-ttu-id="143ee-407">Hozzá kell rendelnie a szolgáltatás egyszerű engedélyek indítása és leállítása (felszabadítása) a fürt összes virtuális gépet.</span><span class="sxs-lookup"><span data-stu-id="143ee-407">You need to give the Service Principal permissions to start and stop (deallocate) all virtual machines of the cluster.</span></span>
+<span data-ttu-id="d0887-402">hello szolgáltatás egyszerű engedélyek tooaccess az Azure-erőforrások alapértelmezés szerint nem rendelkezik.</span><span class="sxs-lookup"><span data-stu-id="d0887-402">hello Service Principal does not have permissions tooaccess your Azure resources by default.</span></span> <span data-ttu-id="d0887-403">Toogive hello szolgáltatás egyszerű engedélyek toostart van szüksége, és állítsa (felszabadítása) hello fürt összes virtuális gépet.</span><span class="sxs-lookup"><span data-stu-id="d0887-403">You need toogive hello Service Principal permissions toostart and stop (deallocate) all virtual machines of hello cluster.</span></span>
 
-1. <span data-ttu-id="143ee-408">Ugrás a https://portal.azure.com</span><span class="sxs-lookup"><span data-stu-id="143ee-408">Go to https://portal.azure.com</span></span>
-1. <span data-ttu-id="143ee-409">Nyissa meg az összes erőforrás panel</span><span class="sxs-lookup"><span data-stu-id="143ee-409">Open the All resources blade</span></span>
-1. <span data-ttu-id="143ee-410">Válassza ki a virtuális gépet</span><span class="sxs-lookup"><span data-stu-id="143ee-410">Select the virtual machine</span></span>
-1. <span data-ttu-id="143ee-411">Kattintson a hozzáférés-vezérlés (IAM)</span><span class="sxs-lookup"><span data-stu-id="143ee-411">Click Access control (IAM)</span></span>
-1. <span data-ttu-id="143ee-412">Kattintson az Add (Hozzáadás) parancsra</span><span class="sxs-lookup"><span data-stu-id="143ee-412">Click Add</span></span>
-1. <span data-ttu-id="143ee-413">Válassza ki a szerepkör tulajdonosa</span><span class="sxs-lookup"><span data-stu-id="143ee-413">Select the role Owner</span></span>
-1. <span data-ttu-id="143ee-414">Adja meg az előbb létrehozott alkalmazás nevét</span><span class="sxs-lookup"><span data-stu-id="143ee-414">Enter the name of the application you created above</span></span>
-1. <span data-ttu-id="143ee-415">Kattintson az OK gombra</span><span class="sxs-lookup"><span data-stu-id="143ee-415">Click OK</span></span>
+1. <span data-ttu-id="d0887-404">Nyissa meg toohttps://portal.azure.com</span><span class="sxs-lookup"><span data-stu-id="d0887-404">Go toohttps://portal.azure.com</span></span>
+1. <span data-ttu-id="d0887-405">Nyissa meg az összes erőforrás panel hello</span><span class="sxs-lookup"><span data-stu-id="d0887-405">Open hello All resources blade</span></span>
+1. <span data-ttu-id="d0887-406">Válassza ki a virtuális gép hello</span><span class="sxs-lookup"><span data-stu-id="d0887-406">Select hello virtual machine</span></span>
+1. <span data-ttu-id="d0887-407">Kattintson a hozzáférés-vezérlés (IAM)</span><span class="sxs-lookup"><span data-stu-id="d0887-407">Click Access control (IAM)</span></span>
+1. <span data-ttu-id="d0887-408">Kattintson az Add (Hozzáadás) parancsra</span><span class="sxs-lookup"><span data-stu-id="d0887-408">Click Add</span></span>
+1. <span data-ttu-id="d0887-409">Válassza ki a hello szerepkör tulajdonosa</span><span class="sxs-lookup"><span data-stu-id="d0887-409">Select hello role Owner</span></span>
+1. <span data-ttu-id="d0887-410">Adja meg az előbb létrehozott hello alkalmazás hello neve</span><span class="sxs-lookup"><span data-stu-id="d0887-410">Enter hello name of hello application you created above</span></span>
+1. <span data-ttu-id="d0887-411">Kattintson az OK gombra</span><span class="sxs-lookup"><span data-stu-id="d0887-411">Click OK</span></span>
 
-#### <a name="1-create-the-stonith-devices"></a><span data-ttu-id="143ee-416">**[1]**  STONITH eszközök létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-416">**[1]** Create the STONITH devices</span></span>
+#### <a name="1-create-hello-stonith-devices"></a><span data-ttu-id="d0887-412">**[1]**  Hello STONITH eszközök létrehozása</span><span class="sxs-lookup"><span data-stu-id="d0887-412">**[1]** Create hello STONITH devices</span></span>
 
-<span data-ttu-id="143ee-417">Után szerkeszteni a virtuális gépek engedélyeit, beállíthatja a STONITH eszközök a fürtben.</span><span class="sxs-lookup"><span data-stu-id="143ee-417">After you edited the permissions for the virtual machines, you can configure the STONITH devices in the cluster.</span></span>
+<span data-ttu-id="d0887-413">Után szerkeszteni hello engedélyek hello virtuális gépekhez, beállíthatja a hello STONITH eszközök hello fürtben.</span><span class="sxs-lookup"><span data-stu-id="d0887-413">After you edited hello permissions for hello virtual machines, you can configure hello STONITH devices in hello cluster.</span></span>
 
 <pre><code>
 sudo crm configure
 
-# replace the bold string with your subscription id, resource group, tenant id, service principal id and password
+# replace hello bold string with your subscription id, resource group, tenant id, service principal id and password
 
 crm(live)configure# primitive rsc_st_azure_1 stonith:fence_azure_arm \
    params subscriptionId="<b>subscription id</b>" resourceGroup="<b>resource group</b>" tenantId="<b>tenant id</b>" login="<b>login id</b>" passwd="<b>password</b>"
@@ -1270,26 +1270,26 @@ crm(live)configure# commit
 crm(live)configure# exit
 </code></pre>
 
-#### <a name="1-enable-the-use-of-a-stonith-device"></a><span data-ttu-id="143ee-418">**[1]**  STONITH eszköz használatának engedélyezése</span><span class="sxs-lookup"><span data-stu-id="143ee-418">**[1]** Enable the use of a STONITH device</span></span>
+#### <a name="1-enable-hello-use-of-a-stonith-device"></a><span data-ttu-id="d0887-414">**[1]**  STONITH eszköz hello használatának engedélyezése</span><span class="sxs-lookup"><span data-stu-id="d0887-414">**[1]** Enable hello use of a STONITH device</span></span>
 
-<span data-ttu-id="143ee-419">Egy STONITH eszköz használatának engedélyezése</span><span class="sxs-lookup"><span data-stu-id="143ee-419">Enable the use of a STONITH device</span></span>
+<span data-ttu-id="d0887-415">Hello STONITH eszköz használatának engedélyezése</span><span class="sxs-lookup"><span data-stu-id="d0887-415">Enable hello use of a STONITH device</span></span>
 
 <pre><code>
 sudo crm configure property stonith-enabled=true 
 </code></pre>
 
-## <a name="install-database"></a><span data-ttu-id="143ee-420">A telepítési adatbázis</span><span class="sxs-lookup"><span data-stu-id="143ee-420">Install database</span></span>
+## <a name="install-database"></a><span data-ttu-id="d0887-416">A telepítési adatbázis</span><span class="sxs-lookup"><span data-stu-id="d0887-416">Install database</span></span>
 
-<span data-ttu-id="143ee-421">Ebben a példában egy SAP HANA replikációs telepítve és konfigurálva van.</span><span class="sxs-lookup"><span data-stu-id="143ee-421">In this example an SAP HANA System Replication is installed and configured.</span></span> <span data-ttu-id="143ee-422">A fürtön, amelyen az SAP NetWeaver ASC/SCS és SSZON SAP HANA fog futni.</span><span class="sxs-lookup"><span data-stu-id="143ee-422">SAP HANA will run in the same cluster as the SAP NetWeaver ASCS/SCS and ERS.</span></span> <span data-ttu-id="143ee-423">SAP HANA egy dedikált fürtön is telepíthet.</span><span class="sxs-lookup"><span data-stu-id="143ee-423">You can also install SAP HANA on a dedicated cluster.</span></span> <span data-ttu-id="143ee-424">Lásd: [magas rendelkezésre állás az SAP HANA Azure virtuális gépek (VM)] [ sap-hana-ha] további információt.</span><span class="sxs-lookup"><span data-stu-id="143ee-424">See [High Availability of SAP HANA on Azure Virtual Machines (VMs)][sap-hana-ha] for more information.</span></span>
+<span data-ttu-id="d0887-417">Ebben a példában egy SAP HANA replikációs telepítve és konfigurálva van.</span><span class="sxs-lookup"><span data-stu-id="d0887-417">In this example an SAP HANA System Replication is installed and configured.</span></span> <span data-ttu-id="d0887-418">SAP HANA hello azonos hello SAP NetWeaver ASC/SCS és SSZON fürtöt fog futni.</span><span class="sxs-lookup"><span data-stu-id="d0887-418">SAP HANA will run in hello same cluster as hello SAP NetWeaver ASCS/SCS and ERS.</span></span> <span data-ttu-id="d0887-419">SAP HANA egy dedikált fürtön is telepíthet.</span><span class="sxs-lookup"><span data-stu-id="d0887-419">You can also install SAP HANA on a dedicated cluster.</span></span> <span data-ttu-id="d0887-420">Lásd: [magas rendelkezésre állás az SAP HANA Azure virtuális gépek (VM)] [ sap-hana-ha] további információt.</span><span class="sxs-lookup"><span data-stu-id="d0887-420">See [High Availability of SAP HANA on Azure Virtual Machines (VMs)][sap-hana-ha] for more information.</span></span>
 
-### <a name="prepare-for-sap-hana-installation"></a><span data-ttu-id="143ee-425">SAP HANA-telepítés előkészítése</span><span class="sxs-lookup"><span data-stu-id="143ee-425">Prepare for SAP HANA installation</span></span>
+### <a name="prepare-for-sap-hana-installation"></a><span data-ttu-id="d0887-421">SAP HANA-telepítés előkészítése</span><span class="sxs-lookup"><span data-stu-id="d0887-421">Prepare for SAP HANA installation</span></span>
 
-<span data-ttu-id="143ee-426">Általában javasoljuk LVM kötetek, amelyek adatokat tárolhatnak, és a naplófájlok.</span><span class="sxs-lookup"><span data-stu-id="143ee-426">We generally recommend using LVM for volumes that store data and log files.</span></span> <span data-ttu-id="143ee-427">Tesztelési célokra is beállíthatja az adatok tárolásához és a naplófájl közvetlenül egy normál lemezen.</span><span class="sxs-lookup"><span data-stu-id="143ee-427">For testing purposes, you can also choose to store the data and log file directly on a plain disk.</span></span>
+<span data-ttu-id="d0887-422">Általában javasoljuk LVM kötetek, amelyek adatokat tárolhatnak, és a naplófájlok.</span><span class="sxs-lookup"><span data-stu-id="d0887-422">We generally recommend using LVM for volumes that store data and log files.</span></span> <span data-ttu-id="d0887-423">Tesztelési célokra toostore hello adatainak és naplókönyvtárainak közvetlenül egy egyszerű lemezen fájl is kiválaszthatja.</span><span class="sxs-lookup"><span data-stu-id="d0887-423">For testing purposes, you can also choose toostore hello data and log file directly on a plain disk.</span></span>
 
-1. <span data-ttu-id="143ee-428">**[A]**  LVM</span><span class="sxs-lookup"><span data-stu-id="143ee-428">**[A]** LVM</span></span>  
-   <span data-ttu-id="143ee-429">Az alábbi példa azt feltételezi, hogy, hogy a virtuális gépek rendelkeznek négy adatlemezt csatolni, amelynek használatával hozzon létre két köteteket.</span><span class="sxs-lookup"><span data-stu-id="143ee-429">The example below assumes that the virtual machines have four data disks attached that should be used to create two volumes.</span></span>
+1. <span data-ttu-id="d0887-424">**[A]**  LVM</span><span class="sxs-lookup"><span data-stu-id="d0887-424">**[A]** LVM</span></span>  
+   <span data-ttu-id="d0887-425">hello az alábbi példa azt feltételezi, hogy hello virtuális gépek rendelkezik-e a négy adatlemezt csatolni, amelyeket használt toocreate két kötet.</span><span class="sxs-lookup"><span data-stu-id="d0887-425">hello example below assumes that hello virtual machines have four data disks attached that should be used toocreate two volumes.</span></span>
    
-   <span data-ttu-id="143ee-430">A használni kívánt összes lemez fizikai köteteket hozhat létre.</span><span class="sxs-lookup"><span data-stu-id="143ee-430">Create physical volumes for all disks that you want to use.</span></span>
+   <span data-ttu-id="d0887-426">Az összes lemezt, amelyet az toouse fizikai köteteket hozhat létre.</span><span class="sxs-lookup"><span data-stu-id="d0887-426">Create physical volumes for all disks that you want toouse.</span></span>
    
    <pre><code>
    sudo pvcreate /dev/sdd
@@ -1298,7 +1298,7 @@ sudo crm configure property stonith-enabled=true
    sudo pvcreate /dev/sdg
    </code></pre>
    
-   <span data-ttu-id="143ee-431">Az adatfájlok kötet csoport, a naplófájlok egy kötet csoport és egy SAP HANA a megosztott könyvtár létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-431">Create a volume group for the data files, one volume group for the log files and one for the shared directory of SAP HANA</span></span>
+   <span data-ttu-id="d0887-427">Hozzon létre egy kötet csoport hello adatfájlok, hello naplófájlok egy kötet csoport és egy hello megosztott könyvtárában SAP HANA</span><span class="sxs-lookup"><span data-stu-id="d0887-427">Create a volume group for hello data files, one volume group for hello log files and one for hello shared directory of SAP HANA</span></span>
    
    <pre><code>
    sudo vgcreate vg_hana_data /dev/sdd /dev/sde
@@ -1306,7 +1306,7 @@ sudo crm configure property stonith-enabled=true
    sudo vgcreate vg_hana_shared /dev/sdg
    </code></pre>
    
-   <span data-ttu-id="143ee-432">A logikai köteteket hozhat létre</span><span class="sxs-lookup"><span data-stu-id="143ee-432">Create the logical volumes</span></span>
+   <span data-ttu-id="d0887-428">Hello logikai köteteket hozhat létre</span><span class="sxs-lookup"><span data-stu-id="d0887-428">Create hello logical volumes</span></span>
    
    <pre><code>
    sudo lvcreate -l 100%FREE -n hana_data vg_hana_data
@@ -1317,7 +1317,7 @@ sudo crm configure property stonith-enabled=true
    sudo mkfs.xfs /dev/vg_hana_shared/hana_shared
    </code></pre>
    
-   <span data-ttu-id="143ee-433">A csatlakoztatási könyvtárak létrehozása, és másolja az összes logikai kötet UUID</span><span class="sxs-lookup"><span data-stu-id="143ee-433">Create the mount directories and copy the UUID of all logical volumes</span></span>
+   <span data-ttu-id="d0887-429">Hello csatlakoztatási könyvtárak létrehozása, és másolja az összes logikai kötet UUID hello</span><span class="sxs-lookup"><span data-stu-id="d0887-429">Create hello mount directories and copy hello UUID of all logical volumes</span></span>
    
    <pre><code>
    sudo mkdir -p /hana/data
@@ -1326,17 +1326,17 @@ sudo crm configure property stonith-enabled=true
    sudo chattr +i /hana/data
    sudo chattr +i /hana/log
    sudo chattr +i /hana/shared
-   # write down the id of /dev/vg_hana_data/hana_data, /dev/vg_hana_log/hana_log and /dev/vg_hana_shared/hana_shared
+   # write down hello id of /dev/vg_hana_data/hana_data, /dev/vg_hana_log/hana_log and /dev/vg_hana_shared/hana_shared
    sudo blkid
    </code></pre>
    
-   <span data-ttu-id="143ee-434">A három logikai kötetek autofs bejegyzéseket létrehozni</span><span class="sxs-lookup"><span data-stu-id="143ee-434">Create autofs entries for the three logical volumes</span></span>
+   <span data-ttu-id="d0887-430">Három logikai kötetek hello autofs bejegyzéseket létrehozni</span><span class="sxs-lookup"><span data-stu-id="d0887-430">Create autofs entries for hello three logical volumes</span></span>
    
    <pre><code>
    sudo vi /etc/auto.direct
    </code></pre>
    
-   <span data-ttu-id="143ee-435">Ez a sudo vi /etc/auto.direct sor beszúrása</span><span class="sxs-lookup"><span data-stu-id="143ee-435">Insert this line to sudo vi /etc/auto.direct</span></span>
+   <span data-ttu-id="d0887-431">A sor toosudo vi /etc/auto.direct beszúrása</span><span class="sxs-lookup"><span data-stu-id="d0887-431">Insert this line toosudo vi /etc/auto.direct</span></span>
    
    <pre><code>
    /hana/data -fstype=xfs :UUID=<b>&lt;UUID of /dev/vg_hana_data/hana_data&gt;</b>
@@ -1344,30 +1344,30 @@ sudo crm configure property stonith-enabled=true
    /hana/shared -fstype=xfs :UUID=<b>&lt;UUID of /dev/vg_hana_shared/hana_shared&gt;</b>
    </code></pre>
    
-   <span data-ttu-id="143ee-436">Csatlakoztassa az új köteteket</span><span class="sxs-lookup"><span data-stu-id="143ee-436">Mount the new volumes</span></span>
+   <span data-ttu-id="d0887-432">Csatlakoztassa hello új köteteket</span><span class="sxs-lookup"><span data-stu-id="d0887-432">Mount hello new volumes</span></span>
    
    <pre><code>
    sudo service autofs restart 
    </code></pre>
 
-1. <span data-ttu-id="143ee-437">**[A]**  Egyszerű lemez</span><span class="sxs-lookup"><span data-stu-id="143ee-437">**[A]** Plain Disks</span></span>  
+1. <span data-ttu-id="d0887-433">**[A]**  Egyszerű lemez</span><span class="sxs-lookup"><span data-stu-id="d0887-433">**[A]** Plain Disks</span></span>  
 
-   <span data-ttu-id="143ee-438">A kis vagy bemutató rendszerek, elhelyezhet egy lemezt a HANA adatainak és naplókönyvtárainak fájlokat.</span><span class="sxs-lookup"><span data-stu-id="143ee-438">For small or demo systems, you can place your HANA data and log files on one disk.</span></span> <span data-ttu-id="143ee-439">A következő parancsok /dev/sdc hozza létre a partíciót, és formázza xfs.</span><span class="sxs-lookup"><span data-stu-id="143ee-439">The following commands create a partition on /dev/sdc and format it with xfs.</span></span>
+   <span data-ttu-id="d0887-434">A kis vagy bemutató rendszerek, elhelyezhet egy lemezt a HANA adatainak és naplókönyvtárainak fájlokat.</span><span class="sxs-lookup"><span data-stu-id="d0887-434">For small or demo systems, you can place your HANA data and log files on one disk.</span></span> <span data-ttu-id="d0887-435">hello következő parancsok /dev/sdc hozza létre a partíciót, és formázza xfs.</span><span class="sxs-lookup"><span data-stu-id="d0887-435">hello following commands create a partition on /dev/sdc and format it with xfs.</span></span>
    ```bash
    sudo sh -c 'echo -e "n\n\n\n\n\nw\n" | fdisk /dev/sdd'
    sudo mkfs.xfs /dev/sdd1
    
-   # write down the id of /dev/sdd1
+   # write down hello id of /dev/sdd1
    sudo /sbin/blkid
    sudo vi /etc/auto.direct
    ```
    
-   <span data-ttu-id="143ee-440">Ez a /etc/auto.direct sor beszúrása</span><span class="sxs-lookup"><span data-stu-id="143ee-440">Insert this line to /etc/auto.direct</span></span>
+   <span data-ttu-id="d0887-436">A sor too/etc/auto.direct beszúrása</span><span class="sxs-lookup"><span data-stu-id="d0887-436">Insert this line too/etc/auto.direct</span></span>
    <pre><code>
    /hana -fstype=xfs :UUID=<b>&lt;UUID&gt;</b>
    </code></pre>
    
-   <span data-ttu-id="143ee-441">A célkönyvtár létrehozása, és csatlakoztassa a lemezt.</span><span class="sxs-lookup"><span data-stu-id="143ee-441">Create the target directory and mount the disk.</span></span>
+   <span data-ttu-id="d0887-437">Hello célkönyvtár és azt csatlakoztatja a hello lemez.</span><span class="sxs-lookup"><span data-stu-id="d0887-437">Create hello target directory and mount hello disk.</span></span>
    
    <pre><code>
    sudo mkdir /hana
@@ -1375,11 +1375,11 @@ sudo crm configure property stonith-enabled=true
    sudo service autofs restart
    </code></pre>
 
-### <a name="installing-sap-hana"></a><span data-ttu-id="143ee-442">SAP HANA telepítése</span><span class="sxs-lookup"><span data-stu-id="143ee-442">Installing SAP HANA</span></span>
+### <a name="installing-sap-hana"></a><span data-ttu-id="d0887-438">SAP HANA telepítése</span><span class="sxs-lookup"><span data-stu-id="d0887-438">Installing SAP HANA</span></span>
 
-<span data-ttu-id="143ee-443">Az alábbi lépéseket a fejezete 4 alapulnak a [SAP HANA SR teljesítmény optimalizált forgatókönyv útmutató] [ suse-hana-ha-guide] SAP HANA rendszer replikáció telepítését.</span><span class="sxs-lookup"><span data-stu-id="143ee-443">The following steps are based on chapter 4 of the [SAP HANA SR Performance Optimized Scenario guide][suse-hana-ha-guide] to install SAP HANA System Replication.</span></span> <span data-ttu-id="143ee-444">Olvassa el, mielőtt folytatja a telepítést.</span><span class="sxs-lookup"><span data-stu-id="143ee-444">Please read it before you continue the installation.</span></span>
+<span data-ttu-id="d0887-439">hello lépések alapuló hello 4 fejezete [SAP HANA SR teljesítmény optimalizált forgatókönyv útmutató] [ suse-hana-ha-guide] tooinstall SAP HANA replikációs.</span><span class="sxs-lookup"><span data-stu-id="d0887-439">hello following steps are based on chapter 4 of hello [SAP HANA SR Performance Optimized Scenario guide][suse-hana-ha-guide] tooinstall SAP HANA System Replication.</span></span> <span data-ttu-id="d0887-440">Olvassa el, mielőtt hello telepítés folytatásához.</span><span class="sxs-lookup"><span data-stu-id="d0887-440">Please read it before you continue hello installation.</span></span>
 
-1. <span data-ttu-id="143ee-445">**[A]**  Hdblcm HANA DVD-ről futtatni</span><span class="sxs-lookup"><span data-stu-id="143ee-445">**[A]** Run hdblcm from the HANA DVD</span></span>
+1. <span data-ttu-id="d0887-441">**[A]**  Hdblcm hello HANA DVD-ről futtatva</span><span class="sxs-lookup"><span data-stu-id="d0887-441">**[A]** Run hdblcm from hello HANA DVD</span></span>
    
    <pre><code>
    sudo hdblcm --sid=<b>HDB</b> --number=<b>03</b> --action=install --batch --password=<b>&lt;password&gt;</b> --system_user_password=<b>&lt;password for system user&gt;</b>
@@ -1387,45 +1387,45 @@ sudo crm configure property stonith-enabled=true
    sudo /hana/shared/<b>HDB</b>/hdblcm/hdblcm --action=configure_internal_network --listen_interface=internal --internal_network=<b>10.0.0/24</b> --password=<b>&lt;password for system user&gt;</b> --batch
    </code></pre>
 
-1. <span data-ttu-id="143ee-446">**[A]**  SAP állomás ügynökök frissítése</span><span class="sxs-lookup"><span data-stu-id="143ee-446">**[A]** Upgrade SAP Host Agent</span></span>
+1. <span data-ttu-id="d0887-442">**[A]**  SAP állomás ügynökök frissítése</span><span class="sxs-lookup"><span data-stu-id="d0887-442">**[A]** Upgrade SAP Host Agent</span></span>
 
-   <span data-ttu-id="143ee-447">Töltse le a legfrissebb SAP a gazdagép ügynöke archív a a [SAP Softwarecenter] [ sap-swcenter] és az ügynökök frissítése a következő parancsot.</span><span class="sxs-lookup"><span data-stu-id="143ee-447">Download the latest SAP Host Agent archive from the [SAP Softwarecenter][sap-swcenter] and run the following command to upgrade the agent.</span></span> <span data-ttu-id="143ee-448">Cserélje le az archívum mutasson a letöltött fájl elérési útja.</span><span class="sxs-lookup"><span data-stu-id="143ee-448">Replace the path to the archive to point to the file you downloaded.</span></span>
+   <span data-ttu-id="d0887-443">Hello legújabb SAP a gazdagép ügynöke archív letöltését hello [SAP Softwarecenter] [ sap-swcenter] és futtatási hello parancs tooupgrade hello ügynök következő.</span><span class="sxs-lookup"><span data-stu-id="d0887-443">Download hello latest SAP Host Agent archive from hello [SAP Softwarecenter][sap-swcenter] and run hello following command tooupgrade hello agent.</span></span> <span data-ttu-id="d0887-444">Cserélje le a hello elérési toohello toopoint toohello archívumfájl letöltött.</span><span class="sxs-lookup"><span data-stu-id="d0887-444">Replace hello path toohello archive toopoint toohello file you downloaded.</span></span>
    <pre><code>
-   sudo /usr/sap/hostctrl/exe/saphostexec -upgrade -archive <b>&lt;path to SAP Host Agent SAR&gt;</b> 
+   sudo /usr/sap/hostctrl/exe/saphostexec -upgrade -archive <b>&lt;path tooSAP Host Agent SAR&gt;</b> 
    </code></pre>
 
-1. <span data-ttu-id="143ee-449">**[1]**  Létrehozása HANA replikációs (rendszergazdaként)</span><span class="sxs-lookup"><span data-stu-id="143ee-449">**[1]** Create HANA replication (as root)</span></span>  
+1. <span data-ttu-id="d0887-445">**[1]**  Létrehozása HANA replikációs (rendszergazdaként)</span><span class="sxs-lookup"><span data-stu-id="d0887-445">**[1]** Create HANA replication (as root)</span></span>  
 
-   <span data-ttu-id="143ee-450">A következő parancsot.</span><span class="sxs-lookup"><span data-stu-id="143ee-450">Run the following command.</span></span> <span data-ttu-id="143ee-451">Ügyeljen arra, hogy félkövér karakterláncok (HANA rendszer azonosító HDB és példány újrahasznosítása 03) cserélje le az értékeket a SAP HANA-telepítés.</span><span class="sxs-lookup"><span data-stu-id="143ee-451">Make sure to replace bold strings (HANA System ID HDB and instance number 03) with the values of your SAP HANA installation.</span></span>
+   <span data-ttu-id="d0887-446">Futtassa a következő parancs hello.</span><span class="sxs-lookup"><span data-stu-id="d0887-446">Run hello following command.</span></span> <span data-ttu-id="d0887-447">Győződjön meg arról, hogy tooreplace félkövér karakterláncok (HANA rendszer azonosító HDB és példány újrahasznosítása 03) a SAP HANA-telepítés hello értékekkel.</span><span class="sxs-lookup"><span data-stu-id="d0887-447">Make sure tooreplace bold strings (HANA System ID HDB and instance number 03) with hello values of your SAP HANA installation.</span></span>
    <pre><code>
    PATH="$PATH:/usr/sap/<b>HDB</b>/HDB<b>03</b>/exe"
    hdbsql -u system -i <b>03</b> 'CREATE USER <b>hdb</b>hasync PASSWORD "<b>passwd</b>"' 
-   hdbsql -u system -i <b>03</b> 'GRANT DATA ADMIN TO <b>hdb</b>hasync' 
+   hdbsql -u system -i <b>03</b> 'GRANT DATA ADMIN too<b>hdb</b>hasync' 
    hdbsql -u system -i <b>03</b> 'ALTER USER <b>hdb</b>hasync DISABLE PASSWORD LIFETIME' 
    </code></pre>
 
-1. <span data-ttu-id="143ee-452">**[A]**  Keystore bejegyzés (rendszergazdaként) létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-452">**[A]** Create keystore entry (as root)</span></span>
+1. <span data-ttu-id="d0887-448">**[A]**  Keystore bejegyzés (rendszergazdaként) létrehozása</span><span class="sxs-lookup"><span data-stu-id="d0887-448">**[A]** Create keystore entry (as root)</span></span>
 
    <pre><code>
    PATH="$PATH:/usr/sap/<b>HDB</b>/HDB<b>03</b>/exe"
    hdbuserstore SET <b>hdb</b>haloc localhost:3<b>03</b>15 <b>hdb</b>hasync <b>&lt;passwd&gt;</b>
    </code></pre>
 
-1. <span data-ttu-id="143ee-453">**[1]**  Adatbázis biztonsági másolata (rendszergazdaként)</span><span class="sxs-lookup"><span data-stu-id="143ee-453">**[1]** Backup database (as root)</span></span>
+1. <span data-ttu-id="d0887-449">**[1]**  Adatbázis biztonsági másolata (rendszergazdaként)</span><span class="sxs-lookup"><span data-stu-id="d0887-449">**[1]** Backup database (as root)</span></span>
 
    <pre><code>
    PATH="$PATH:/usr/sap/<b>HDB</b>/HDB<b>03</b>/exe"
    hdbsql -u system -i <b>03</b> "BACKUP DATA USING FILE ('<b>initialbackup</b>')" 
    </code></pre>
 
-1. <span data-ttu-id="143ee-454">**[1]**  Váltani a HANA sapsid felhasználó és az elsődleges hely létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="143ee-454">**[1]** Switch to the HANA sapsid user and create the primary site.</span></span>
+1. <span data-ttu-id="d0887-450">**[1]**  Toohello HANA sapsid felhasználói váltson, és hozzon létre hello elsődleges hely.</span><span class="sxs-lookup"><span data-stu-id="d0887-450">**[1]** Switch toohello HANA sapsid user and create hello primary site.</span></span>
 
    <pre><code>
    su - <b>hdb</b>adm
    hdbnsutil -sr_enable –-name=<b>SITE1</b>
    </code></pre>
 
-1. <span data-ttu-id="143ee-455">**[2]**  Váltani a HANA sapsid felhasználó és a másodlagos hely létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="143ee-455">**[2]** Switch to the HANA sapsid user and create the secondary site.</span></span>
+1. <span data-ttu-id="d0887-451">**[2]**  Toohello HANA sapsid felhasználói váltson, és hello másodlagos hely létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="d0887-451">**[2]** Switch toohello HANA sapsid user and create hello secondary site.</span></span>
 
    <pre><code>
    su - <b>hdb</b>adm
@@ -1433,14 +1433,14 @@ sudo crm configure property stonith-enabled=true
    hdbnsutil -sr_register --remoteHost=<b>nws-cl-0</b> --remoteInstance=<b>03</b> --replicationMode=sync --name=<b>SITE2</b> 
    </code></pre>
 
-1. <span data-ttu-id="143ee-456">**[1]**  Fürterőforrások SAP HANA létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-456">**[1]** Create SAP HANA cluster resources</span></span>
+1. <span data-ttu-id="d0887-452">**[1]**  Fürterőforrások SAP HANA létrehozása</span><span class="sxs-lookup"><span data-stu-id="d0887-452">**[1]** Create SAP HANA cluster resources</span></span>
 
-   <span data-ttu-id="143ee-457">Először hozza létre a topológiát.</span><span class="sxs-lookup"><span data-stu-id="143ee-457">First, create the topology.</span></span>
+   <span data-ttu-id="d0887-453">Először hozzon létre hello topológia.</span><span class="sxs-lookup"><span data-stu-id="d0887-453">First, create hello topology.</span></span>
    
    <pre><code>
    sudo crm configure
 
-   # replace the bold string with your instance number and HANA system id
+   # replace hello bold string with your instance number and HANA system id
    
    crm(live)configure# primitive rsc_SAPHanaTopology_<b>HDB</b>_HDB<b>03</b>   ocf:suse:SAPHanaTopology \
      operations $id="rsc_sap2_<b>HDB</b>_HDB<b>03</b>-operations" \
@@ -1456,12 +1456,12 @@ sudo crm configure property stonith-enabled=true
    crm(live)configure# exit
    </code></pre>
    
-   <span data-ttu-id="143ee-458">Ezután hozzon létre a HANA erőforrások</span><span class="sxs-lookup"><span data-stu-id="143ee-458">Next, create the HANA resources</span></span>
+   <span data-ttu-id="d0887-454">Ezután hozzon létre hello HANA erőforrások</span><span class="sxs-lookup"><span data-stu-id="d0887-454">Next, create hello HANA resources</span></span>
    
    <pre><code>
    sudo crm configure
 
-   # replace the bold string with your instance number, HANA system id and the frontend IP address of the Azure load balancer. 
+   # replace hello bold string with your instance number, HANA system id and hello frontend IP address of hello Azure load balancer. 
     
    crm(live)configure# primitive rsc_SAPHana_<b>HDB</b>_HDB<b>03</b> ocf:suse:SAPHana \
      operations $id="rsc_sap_<b>HDB</b>_HDB<b>03</b>-operations" \
@@ -1499,7 +1499,7 @@ sudo crm configure property stonith-enabled=true
    crm(live)configure# exit
    </code></pre>
 
-   <span data-ttu-id="143ee-459">Győződjön meg arról, hogy a fürt állapota rendben, és, hogy az összes erőforrás indulnak el.</span><span class="sxs-lookup"><span data-stu-id="143ee-459">Make sure that the cluster status is ok and that all resources are started.</span></span> <span data-ttu-id="143ee-460">Nem fontos, melyik csomópontján, az erőforrások futnak.</span><span class="sxs-lookup"><span data-stu-id="143ee-460">It is not important on which node the resources are running.</span></span>
+   <span data-ttu-id="d0887-455">Győződjön meg arról, hogy hello fürt állapot rendben, és, hogy az összes erőforrás indulnak el.</span><span class="sxs-lookup"><span data-stu-id="d0887-455">Make sure that hello cluster status is ok and that all resources are started.</span></span> <span data-ttu-id="d0887-456">Nem fontos a csomópont hello erőforrások futnak.</span><span class="sxs-lookup"><span data-stu-id="d0887-456">It is not important on which node hello resources are running.</span></span>
 
    <pre><code>
    sudo crm_mon -r
@@ -1536,42 +1536,42 @@ sudo crm configure property stonith-enabled=true
    # rsc_st_azure_2  (stonith:fence_azure_arm):      <b>Started nws-cl-1</b>
    </code></pre>
 
-1. <span data-ttu-id="143ee-461">**[1]**  Az SAP NetWeaver adatbázis-példány telepítése</span><span class="sxs-lookup"><span data-stu-id="143ee-461">**[1]** Install the SAP NetWeaver database instance</span></span>
+1. <span data-ttu-id="d0887-457">**[1]**  Telepítés hello SAP NetWeaver adatbázispéldány</span><span class="sxs-lookup"><span data-stu-id="d0887-457">**[1]** Install hello SAP NetWeaver database instance</span></span>
 
-   <span data-ttu-id="143ee-462">A SAP NetWeaver adatbázis-példány telepítését a legfelső szintű használatával egy virtuális állomásnevet, amely a terheléselosztó előtér-konfiguráció az adatbázis IP-címe például <b>nws-db</b> és <b>10.0.0.12</b>.</span><span class="sxs-lookup"><span data-stu-id="143ee-462">Install the SAP NetWeaver database instance as root using a virtual hostname that maps to the IP address of the load balancer frontend configuration for the database for example <b>nws-db</b> and <b>10.0.0.12</b>.</span></span>
+   <span data-ttu-id="d0887-458">Telepítés hello SAP NetWeaver adatbázispéldány legfelső szintű használatával egy virtuális állomásnevet, amely hello terheléselosztó előtér-konfiguráció hello adatbázis toohello IP-címe például <b>nws-db</b> és <b>10.0.0.12</b>.</span><span class="sxs-lookup"><span data-stu-id="d0887-458">Install hello SAP NetWeaver database instance as root using a virtual hostname that maps toohello IP address of hello load balancer frontend configuration for hello database for example <b>nws-db</b> and <b>10.0.0.12</b>.</span></span>
 
-   <span data-ttu-id="143ee-463">Használhatja a sapinst paraméter SAPINST_REMOTE_ACCESS_USER sapinst való kapcsolódáshoz nem legfelső szintű felhasználó engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="143ee-463">You can use the sapinst parameter SAPINST_REMOTE_ACCESS_USER to allow a non-root user to connect to sapinst.</span></span>
+   <span data-ttu-id="d0887-459">Hello sapinst paraméter SAPINST_REMOTE_ACCESS_USER tooallow a nem gyökér szintű felhasználó tooconnect toosapinst is használhatja.</span><span class="sxs-lookup"><span data-stu-id="d0887-459">You can use hello sapinst parameter SAPINST_REMOTE_ACCESS_USER tooallow a non-root user tooconnect toosapinst.</span></span>
 
    <pre><code>
    sudo &lt;swpm&gt;/sapinst SAPINST_REMOTE_ACCESS_USER=<b>sapadmin</b>
    </code></pre>
 
-## <a name="sap-netweaver-application-server-installation"></a><span data-ttu-id="143ee-464">SAP NetWeaver alkalmazáskiszolgáló telepítése</span><span class="sxs-lookup"><span data-stu-id="143ee-464">SAP NetWeaver application server installation</span></span>
+## <a name="sap-netweaver-application-server-installation"></a><span data-ttu-id="d0887-460">SAP NetWeaver alkalmazáskiszolgáló telepítése</span><span class="sxs-lookup"><span data-stu-id="d0887-460">SAP NetWeaver application server installation</span></span>
 
-<span data-ttu-id="143ee-465">Kövesse az alábbi lépéseket az SAP-alkalmazáskiszolgáló telepítése.</span><span class="sxs-lookup"><span data-stu-id="143ee-465">Follow these steps to install an SAP application server.</span></span> <span data-ttu-id="143ee-466">A lépések alábbi azt feltételezik, hogy az alkalmazáskiszolgáló egy kiszolgálón telepíti a ASC/SCS és HANA-kiszolgálókról különböző.</span><span class="sxs-lookup"><span data-stu-id="143ee-466">The steps bellow assume that you install the application server on a server different from the ASCS/SCS and HANA servers.</span></span> <span data-ttu-id="143ee-467">Ellenkező esetben egyes (például a gazdagép névfeloldásához konfigurálása) az alábbi lépéseket nem szükséges.</span><span class="sxs-lookup"><span data-stu-id="143ee-467">Otherwise some of the steps below (like configuring host name resolution) are not needed.</span></span>
+<span data-ttu-id="d0887-461">Kövesse ezeket a lépéseket tooinstall SAP alkalmazáskiszolgáló.</span><span class="sxs-lookup"><span data-stu-id="d0887-461">Follow these steps tooinstall an SAP application server.</span></span> <span data-ttu-id="d0887-462">hello lépéseket alábbi azt feltételezik, hogy hello alkalmazáskiszolgáló hello ASC/SCS eltérő kiszolgálóra és HANA kiszolgálók telepíteni.</span><span class="sxs-lookup"><span data-stu-id="d0887-462">hello steps bellow assume that you install hello application server on a server different from hello ASCS/SCS and HANA servers.</span></span> <span data-ttu-id="d0887-463">Ellenkező esetben egyes (például a gazdagép névfeloldásához konfigurálása) alatt hello lépések nem szükségesek.</span><span class="sxs-lookup"><span data-stu-id="d0887-463">Otherwise some of hello steps below (like configuring host name resolution) are not needed.</span></span>
 
-1. <span data-ttu-id="143ee-468">A telepítő állomásnév</span><span class="sxs-lookup"><span data-stu-id="143ee-468">Setup host name resolution</span></span>    
-   <span data-ttu-id="143ee-469">DNS-kiszolgálót használjon, vagy módosítsa az/etc/hosts minden csomóponton.</span><span class="sxs-lookup"><span data-stu-id="143ee-469">You can either use a DNS server or modify the /etc/hosts on all nodes.</span></span> <span data-ttu-id="143ee-470">Ez a példa bemutatja, hogyan használható az/etc/hosts fájlt.</span><span class="sxs-lookup"><span data-stu-id="143ee-470">This example shows how to use the /etc/hosts file.</span></span>
-   <span data-ttu-id="143ee-471">Cserélje le az IP-cím és a következő parancsokat az állomásnév</span><span class="sxs-lookup"><span data-stu-id="143ee-471">Replace the IP address and the hostname in the following commands</span></span>
+1. <span data-ttu-id="d0887-464">A telepítő állomásnév</span><span class="sxs-lookup"><span data-stu-id="d0887-464">Setup host name resolution</span></span>    
+   <span data-ttu-id="d0887-465">DNS-kiszolgálót használjon, vagy módosítsa a hello/etc/hosts minden csomóponton.</span><span class="sxs-lookup"><span data-stu-id="d0887-465">You can either use a DNS server or modify hello /etc/hosts on all nodes.</span></span> <span data-ttu-id="d0887-466">Ez a példa bemutatja, hogyan toouse hello/Etc/Hosts fájlt.</span><span class="sxs-lookup"><span data-stu-id="d0887-466">This example shows how toouse hello /etc/hosts file.</span></span>
+   <span data-ttu-id="d0887-467">Cserélje le a hello IP-cím és a következő parancsok hello hello állomásnév</span><span class="sxs-lookup"><span data-stu-id="d0887-467">Replace hello IP address and hello hostname in hello following commands</span></span>
    ```bash
    sudo vi /etc/hosts
    ```
-   <span data-ttu-id="143ee-472">Helyezze be a következő sorokat/etc/hosts.</span><span class="sxs-lookup"><span data-stu-id="143ee-472">Insert the following lines to /etc/hosts.</span></span> <span data-ttu-id="143ee-473">Az IP-cím és a környezet megfelelő állomásnév módosítása</span><span class="sxs-lookup"><span data-stu-id="143ee-473">Change the IP address and hostname to match your environment</span></span>    
+   <span data-ttu-id="d0887-468">Helyezze be a következő sorokat túl/etc/hosts hello.</span><span class="sxs-lookup"><span data-stu-id="d0887-468">Insert hello following lines too/etc/hosts.</span></span> <span data-ttu-id="d0887-469">Hello IP cím és az állomásnév toomatch a környezet módosítása</span><span class="sxs-lookup"><span data-stu-id="d0887-469">Change hello IP address and hostname toomatch your environment</span></span>    
     
    <pre><code>
-   # IP address of the load balancer frontend configuration for NFS
+   # IP address of hello load balancer frontend configuration for NFS
    <b>10.0.0.4 nws-nfs</b>
-   # IP address of the load balancer frontend configuration for SAP NetWeaver ASCS/SCS
+   # IP address of hello load balancer frontend configuration for SAP NetWeaver ASCS/SCS
    <b>10.0.0.10 nws-ascs</b>
-   # IP address of the load balancer frontend configuration for SAP NetWeaver ERS
+   # IP address of hello load balancer frontend configuration for SAP NetWeaver ERS
    <b>10.0.0.11 nws-ers</b>
-   # IP address of the load balancer frontend configuration for database
+   # IP address of hello load balancer frontend configuration for database
    <b>10.0.0.12 nws-db</b>
-   # IP address of the application server
+   # IP address of hello application server
    <b>10.0.0.8 nws-di-0</b>
    </code></pre>
 
-1. <span data-ttu-id="143ee-474">A sapmnt könyvtár létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-474">Create the sapmnt directory</span></span>
+1. <span data-ttu-id="d0887-470">Hello sapmnt könyvtár létrehozása</span><span class="sxs-lookup"><span data-stu-id="d0887-470">Create hello sapmnt directory</span></span>
 
    <pre><code>
    sudo mkdir -p /sapmnt/<b>NWS</b>
@@ -1581,75 +1581,75 @@ sudo crm configure property stonith-enabled=true
    sudo chattr +i /usr/sap/trans
    </code></pre>
 
-1. <span data-ttu-id="143ee-475">Autofs konfigurálása</span><span class="sxs-lookup"><span data-stu-id="143ee-475">Configure autofs</span></span>
+1. <span data-ttu-id="d0887-471">Autofs konfigurálása</span><span class="sxs-lookup"><span data-stu-id="d0887-471">Configure autofs</span></span>
  
    <pre><code>
    sudo vi /etc/auto.master
 
-   # Add the following line to the file, save and exit
+   # Add hello following line toohello file, save and exit
    +auto.master
    /- /etc/auto.direct
    </code></pre>
 
-   <span data-ttu-id="143ee-476">Új fájl létrehozása</span><span class="sxs-lookup"><span data-stu-id="143ee-476">Create a new file with</span></span>
+   <span data-ttu-id="d0887-472">Új fájl létrehozása</span><span class="sxs-lookup"><span data-stu-id="d0887-472">Create a new file with</span></span>
 
    <pre><code>
    sudo vi /etc/auto.direct
 
-   # Add the following lines to the file, save and exit
+   # Add hello following lines toohello file, save and exit
    /sapmnt/<b>NWS</b> -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/sapmntsid
    /usr/sap/trans -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/trans
    </code></pre>
 
-   <span data-ttu-id="143ee-477">Indítsa újra az új fájlmegosztások csatlakoztatása autofs</span><span class="sxs-lookup"><span data-stu-id="143ee-477">Restart autofs to mount the new shares</span></span>
+   <span data-ttu-id="d0887-473">Indítsa újra a autofs toomount hello új megosztások</span><span class="sxs-lookup"><span data-stu-id="d0887-473">Restart autofs toomount hello new shares</span></span>
 
    <pre><code>
    sudo systemctl enable autofs
    sudo service autofs restart
    </code></pre>
 
-1. <span data-ttu-id="143ee-478">Lapozófájl konfigurálása</span><span class="sxs-lookup"><span data-stu-id="143ee-478">Configure SWAP file</span></span>
+1. <span data-ttu-id="d0887-474">Lapozófájl konfigurálása</span><span class="sxs-lookup"><span data-stu-id="d0887-474">Configure SWAP file</span></span>
  
    <pre><code>
    sudo vi /etc/waagent.conf
 
-   # Set the property ResourceDisk.EnableSwap to y
+   # Set hello property ResourceDisk.EnableSwap tooy
    # Create and use swapfile on resource disk.
    ResourceDisk.EnableSwap=<b>y</b>
 
-   # Set the size of the SWAP file with property ResourceDisk.SwapSizeMB
-   # The free space of resource disk varies by virtual machine size. Make sure that you do not set a value that is too big. You can check the SWAP space with command swapon
-   # Size of the swapfile.
+   # Set hello size of hello SWAP file with property ResourceDisk.SwapSizeMB
+   # hello free space of resource disk varies by virtual machine size. Make sure that you do not set a value that is too big. You can check hello SWAP space with command swapon
+   # Size of hello swapfile.
    ResourceDisk.SwapSizeMB=<b>2000</b>
    </code></pre>
 
-   <span data-ttu-id="143ee-479">Indítsa újra az ügynököt, a módosítás aktiválása</span><span class="sxs-lookup"><span data-stu-id="143ee-479">Restart the Agent to activate the change</span></span>
+   <span data-ttu-id="d0887-475">Indítsa újra a hello ügynök tooactivate hello módosítása</span><span class="sxs-lookup"><span data-stu-id="d0887-475">Restart hello Agent tooactivate hello change</span></span>
 
    <pre><code>
    sudo service waagent restart
    </code></pre>
 
-1. <span data-ttu-id="143ee-480">SAP NetWeaver alkalmazáskiszolgáló telepítése</span><span class="sxs-lookup"><span data-stu-id="143ee-480">Install SAP NetWeaver application server</span></span>
+1. <span data-ttu-id="d0887-476">SAP NetWeaver alkalmazáskiszolgáló telepítése</span><span class="sxs-lookup"><span data-stu-id="d0887-476">Install SAP NetWeaver application server</span></span>
 
-   <span data-ttu-id="143ee-481">Elsődleges vagy további SAP NetWeaver alkalmazások kiszolgáló telepítése.</span><span class="sxs-lookup"><span data-stu-id="143ee-481">Install a primary or additional SAP NetWeaver applications server.</span></span>
+   <span data-ttu-id="d0887-477">Elsődleges vagy további SAP NetWeaver alkalmazások kiszolgáló telepítése.</span><span class="sxs-lookup"><span data-stu-id="d0887-477">Install a primary or additional SAP NetWeaver applications server.</span></span>
 
-   <span data-ttu-id="143ee-482">Használhatja a sapinst paraméter SAPINST_REMOTE_ACCESS_USER sapinst való kapcsolódáshoz nem legfelső szintű felhasználó engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="143ee-482">You can use the sapinst parameter SAPINST_REMOTE_ACCESS_USER to allow a non-root user to connect to sapinst.</span></span>
+   <span data-ttu-id="d0887-478">Hello sapinst paraméter SAPINST_REMOTE_ACCESS_USER tooallow a nem gyökér szintű felhasználó tooconnect toosapinst is használhatja.</span><span class="sxs-lookup"><span data-stu-id="d0887-478">You can use hello sapinst parameter SAPINST_REMOTE_ACCESS_USER tooallow a non-root user tooconnect toosapinst.</span></span>
 
    <pre><code>
    sudo &lt;swpm&gt;/sapinst SAPINST_REMOTE_ACCESS_USER=<b>sapadmin</b>
    </code></pre>
 
-1. <span data-ttu-id="143ee-483">Biztonságos tár SAP HANA frissítése</span><span class="sxs-lookup"><span data-stu-id="143ee-483">Update SAP HANA secure store</span></span>
+1. <span data-ttu-id="d0887-479">Biztonságos tár SAP HANA frissítése</span><span class="sxs-lookup"><span data-stu-id="d0887-479">Update SAP HANA secure store</span></span>
 
-   <span data-ttu-id="143ee-484">Frissítse a SAP HANA biztonságos tár úgy, hogy a virtuális nevét a replikációs SAP HANA-telepítő mutasson.</span><span class="sxs-lookup"><span data-stu-id="143ee-484">Update the SAP HANA secure store to point to the virtual name of the SAP HANA System Replication setup.</span></span>
+   <span data-ttu-id="d0887-480">Frissítés hello SAP HANA biztonságos tárolására toopoint toohello virtuális nevét hello SAP HANA replikációs beállítás.</span><span class="sxs-lookup"><span data-stu-id="d0887-480">Update hello SAP HANA secure store toopoint toohello virtual name of hello SAP HANA System Replication setup.</span></span>
    <pre><code>
    su - <b>nws</b>adm
    hdbuserstore SET DEFAULT <b>nws-db</b>:3<b>03</b>15 <b>SAPABAP1</b> <b>&lt;password of ABAP schema&gt;</b>
    </code></pre>
 
-## <a name="next-steps"></a><span data-ttu-id="143ee-485">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="143ee-485">Next steps</span></span>
-* <span data-ttu-id="143ee-486">[Az Azure virtuális gépek tervezési és megvalósítási az SAP][planning-guide]</span><span class="sxs-lookup"><span data-stu-id="143ee-486">[Azure Virtual Machines planning and implementation for SAP][planning-guide]</span></span>
-* <span data-ttu-id="143ee-487">[Az SAP Azure virtuális gépek telepítése][deployment-guide]</span><span class="sxs-lookup"><span data-stu-id="143ee-487">[Azure Virtual Machines deployment for SAP][deployment-guide]</span></span>
-* <span data-ttu-id="143ee-488">[Az SAP Azure virtuális gépek adatbázis-kezelő telepítése][dbms-guide]</span><span class="sxs-lookup"><span data-stu-id="143ee-488">[Azure Virtual Machines DBMS deployment for SAP][dbms-guide]</span></span>
-* <span data-ttu-id="143ee-489">Magas rendelkezésre állás és az Azure (nagy példány) az SAP HANA vész-helyreállítási terv létrehozásához, lásd: [SAP HANA (nagy példányok) magas rendelkezésre állási és vészhelyreállítási helyreállítási Azure](hana-overview-high-availability-disaster-recovery.md).</span><span class="sxs-lookup"><span data-stu-id="143ee-489">To learn how to establish high availability and plan for disaster recovery of SAP HANA on Azure (large instances), see [SAP HANA (large instances) high availability and disaster recovery on Azure](hana-overview-high-availability-disaster-recovery.md).</span></span>
-* <span data-ttu-id="143ee-490">Magas rendelkezésre állás és az Azure virtuális gépeken az SAP HANA vész-helyreállítási terv létrehozásához, lásd: [magas rendelkezésre állás az SAP HANA Azure virtuális gépek (VM)][sap-hana-ha]</span><span class="sxs-lookup"><span data-stu-id="143ee-490">To learn how to establish high availability and plan for disaster recovery of SAP HANA on Azure VMs, see [High Availability of SAP HANA on Azure Virtual Machines (VMs)][sap-hana-ha]</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d0887-481">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="d0887-481">Next steps</span></span>
+* <span data-ttu-id="d0887-482">[Az Azure virtuális gépek tervezési és megvalósítási az SAP][planning-guide]</span><span class="sxs-lookup"><span data-stu-id="d0887-482">[Azure Virtual Machines planning and implementation for SAP][planning-guide]</span></span>
+* <span data-ttu-id="d0887-483">[Az SAP Azure virtuális gépek telepítése][deployment-guide]</span><span class="sxs-lookup"><span data-stu-id="d0887-483">[Azure Virtual Machines deployment for SAP][deployment-guide]</span></span>
+* <span data-ttu-id="d0887-484">[Az SAP Azure virtuális gépek adatbázis-kezelő telepítése][dbms-guide]</span><span class="sxs-lookup"><span data-stu-id="d0887-484">[Azure Virtual Machines DBMS deployment for SAP][dbms-guide]</span></span>
+* <span data-ttu-id="d0887-485">Hogyan tooestablish magas rendelkezésre állású és az Azure (nagy példányokat), az SAP HANA vész-helyreállítási terv: toolearn [SAP HANA (nagy példányok) magas rendelkezésre állási és vészhelyreállítási helyreállítási Azure](hana-overview-high-availability-disaster-recovery.md).</span><span class="sxs-lookup"><span data-stu-id="d0887-485">toolearn how tooestablish high availability and plan for disaster recovery of SAP HANA on Azure (large instances), see [SAP HANA (large instances) high availability and disaster recovery on Azure](hana-overview-high-availability-disaster-recovery.md).</span></span>
+* <span data-ttu-id="d0887-486">Hogyan tooestablish magas rendelkezésre állású és az Azure virtuális gépeken, a SAP HANA vész-helyreállítási terv: toolearn [magas rendelkezésre állás az SAP HANA Azure virtuális gépek (VM)][sap-hana-ha]</span><span class="sxs-lookup"><span data-stu-id="d0887-486">toolearn how tooestablish high availability and plan for disaster recovery of SAP HANA on Azure VMs, see [High Availability of SAP HANA on Azure Virtual Machines (VMs)][sap-hana-ha]</span></span>

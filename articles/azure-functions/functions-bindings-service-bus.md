@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Functions a Service Bus-eseményindítók és kötések |} Microsoft Docs"
-description: "Azure Service Bus-eseményindítók és kötések az Azure Functions használatának megismerése."
+title: "aaaAzure funkciók a Service Bus eseményindítók és kötések |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse Azure Service Bus eseményindítók és kötések az Azure Functions."
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,88 +16,88 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 04/01/2017
 ms.author: glenga
-ms.openlocfilehash: b3ee306cd37ebf88dc9369ccc2dc6c670557fd5a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: dff9e89bd3840b8c11f91cae41e13502afc7aa60
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-functions-service-bus-bindings"></a><span data-ttu-id="37b41-104">Az Azure Functions a Service Bus kötések</span><span class="sxs-lookup"><span data-stu-id="37b41-104">Azure Functions Service Bus bindings</span></span>
+# <a name="azure-functions-service-bus-bindings"></a><span data-ttu-id="ac95f-104">Az Azure Functions a Service Bus kötések</span><span class="sxs-lookup"><span data-stu-id="ac95f-104">Azure Functions Service Bus bindings</span></span>
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-<span data-ttu-id="37b41-105">Ez a cikk azt ismerteti, hogyan konfigurálását és az Azure Functions Azure Service Bus kötések használatát.</span><span class="sxs-lookup"><span data-stu-id="37b41-105">This article explains how to configure and work with Azure Service Bus bindings in Azure Functions.</span></span> 
+<span data-ttu-id="ac95f-105">Ez a cikk azt ismerteti, hogyan tooconfigure és az Azure Functions Azure Service Bus kötések munkahelyi.</span><span class="sxs-lookup"><span data-stu-id="ac95f-105">This article explains how tooconfigure and work with Azure Service Bus bindings in Azure Functions.</span></span> 
 
-<span data-ttu-id="37b41-106">Az Azure Functions támogatja aktiválhatja és Service Bus-üzenetsorok és témakörök kimeneti.</span><span class="sxs-lookup"><span data-stu-id="37b41-106">Azure Functions supports trigger and output bindings for Service Bus queues and topics.</span></span>
+<span data-ttu-id="ac95f-106">Az Azure Functions támogatja aktiválhatja és Service Bus-üzenetsorok és témakörök kimeneti.</span><span class="sxs-lookup"><span data-stu-id="ac95f-106">Azure Functions supports trigger and output bindings for Service Bus queues and topics.</span></span>
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a name="trigger"></a>
 
-## <a name="service-bus-trigger"></a><span data-ttu-id="37b41-107">A Service Bus eseményindító</span><span class="sxs-lookup"><span data-stu-id="37b41-107">Service Bus trigger</span></span>
-<span data-ttu-id="37b41-108">A Service Bus eseményindító használatával a Service Bus-üzenetsor vagy témakör üzenetek válaszolni.</span><span class="sxs-lookup"><span data-stu-id="37b41-108">Use the Service Bus trigger to respond to messages from a Service Bus queue or topic.</span></span> 
+## <a name="service-bus-trigger"></a><span data-ttu-id="ac95f-107">A Service Bus eseményindító</span><span class="sxs-lookup"><span data-stu-id="ac95f-107">Service Bus trigger</span></span>
+<span data-ttu-id="ac95f-108">Hello Service Bus eseményindító toorespond toomessages a Service Bus-üzenetsor vagy témakör használja.</span><span class="sxs-lookup"><span data-stu-id="ac95f-108">Use hello Service Bus trigger toorespond toomessages from a Service Bus queue or topic.</span></span> 
 
-<span data-ttu-id="37b41-109">A Service Bus-üzenetsor és a témakör eseményindítók határozzák meg a következő JSON-objektumok a `bindings` function.json tömbje:</span><span class="sxs-lookup"><span data-stu-id="37b41-109">The Service Bus queue and topic triggers are defined by the following JSON objects in the `bindings` array of function.json:</span></span>
+<span data-ttu-id="ac95f-109">hello Service Bus-üzenetsor és a témakör eseményindítók határozzák meg a következő hello a JSON-objektumok hello `bindings` function.json tömbje:</span><span class="sxs-lookup"><span data-stu-id="ac95f-109">hello Service Bus queue and topic triggers are defined by hello following JSON objects in hello `bindings` array of function.json:</span></span>
 
-* <span data-ttu-id="37b41-110">*várólista* eseményindító:</span><span class="sxs-lookup"><span data-stu-id="37b41-110">*queue* trigger:</span></span>
+* <span data-ttu-id="ac95f-110">*várólista* eseményindító:</span><span class="sxs-lookup"><span data-stu-id="ac95f-110">*queue* trigger:</span></span>
 
     ```json
     {
         "name" : "<Name of input parameter in function signature>",
-        "queueName" : "<Name of the queue>",
+        "queueName" : "<Name of hello queue>",
         "connection" : "<Name of app setting that has your queue's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>",
+        "accessRights" : "<Access rights for hello connection string - see below>",
         "type" : "serviceBusTrigger",
         "direction" : "in"
     }
     ```
 
-* <span data-ttu-id="37b41-111">*a témakör* eseményindító:</span><span class="sxs-lookup"><span data-stu-id="37b41-111">*topic* trigger:</span></span>
+* <span data-ttu-id="ac95f-111">*a témakör* eseményindító:</span><span class="sxs-lookup"><span data-stu-id="ac95f-111">*topic* trigger:</span></span>
 
     ```json
     {
         "name" : "<Name of input parameter in function signature>",
-        "topicName" : "<Name of the topic>",
-        "subscriptionName" : "<Name of the subscription>",
+        "topicName" : "<Name of hello topic>",
+        "subscriptionName" : "<Name of hello subscription>",
         "connection" : "<Name of app setting that has your topic's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>",
+        "accessRights" : "<Access rights for hello connection string - see below>",
         "type" : "serviceBusTrigger",
         "direction" : "in"
     }
     ```
 
-<span data-ttu-id="37b41-112">Vegye figyelembe a következőket:</span><span class="sxs-lookup"><span data-stu-id="37b41-112">Note the following:</span></span>
+<span data-ttu-id="ac95f-112">Vegye figyelembe a következőket hello:</span><span class="sxs-lookup"><span data-stu-id="ac95f-112">Note hello following:</span></span>
 
-* <span data-ttu-id="37b41-113">A `connection`, [alkalmazásbeállítás létrehozása az függvény alkalmazásban](functions-how-to-use-azure-function-app-settings.md) , amely tartalmazza a Service Bus-névtér a kapcsolati karakterláncot, majd adja meg a az Alkalmazásbeállítás nevét a `connection` az eseményindító tulajdonságait.</span><span class="sxs-lookup"><span data-stu-id="37b41-113">For `connection`, [create an app setting in your function app](functions-how-to-use-azure-function-app-settings.md) that contains the connection string to your Service Bus namespace, then specify the name of the app setting in the `connection` property in your trigger.</span></span> <span data-ttu-id="37b41-114">Szerezze be a kapcsolati karakterláncot a jelenik meg a lépéseket követve [a felügyeleti hitelesítő adatok beszerzése](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).</span><span class="sxs-lookup"><span data-stu-id="37b41-114">You obtain the connection string by following the steps shown at [Obtain the management credentials](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).</span></span>
-  <span data-ttu-id="37b41-115">A kapcsolati karakterláncnak kell lennie, a Service Bus-névtér, nem kizárólagosan az adott üzenetsor vagy témakör.</span><span class="sxs-lookup"><span data-stu-id="37b41-115">The connection string must be for a Service Bus namespace, not limited to a specific queue or topic.</span></span>
-  <span data-ttu-id="37b41-116">Ha nem adja meg `connection` üres, az eseményindító azt feltételezi, hogy egy alapértelmezett Service Bus kapcsolati karakterlánc van megadva egy alkalmazás nevű beállításával `AzureWebJobsServiceBus`.</span><span class="sxs-lookup"><span data-stu-id="37b41-116">If you leave `connection` empty, the trigger assumes that a default Service Bus connection string is specified in an app setting named `AzureWebJobsServiceBus`.</span></span>
-* <span data-ttu-id="37b41-117">A `accessRights`, elérhető értékek a következők `manage` és `listen`.</span><span class="sxs-lookup"><span data-stu-id="37b41-117">For `accessRights`, available values are `manage` and `listen`.</span></span> <span data-ttu-id="37b41-118">Az alapértelmezett érték `manage`, amely azt jelzi, hogy a `connection` rendelkezik a **kezelése** engedéllyel.</span><span class="sxs-lookup"><span data-stu-id="37b41-118">The default is `manage`, which indicates that the `connection` has the **Manage** permission.</span></span> <span data-ttu-id="37b41-119">Ha használja a kapcsolati karakterláncot, amely nem rendelkezik a **kezelése** engedély, `accessRights` való `listen`.</span><span class="sxs-lookup"><span data-stu-id="37b41-119">If you use a connection string that does not have the **Manage** permission, set `accessRights` to `listen`.</span></span> <span data-ttu-id="37b41-120">Ellenkező esetben a futásidejű meghiúsulhat igénylő műveletek végrehajtását megkísérlő funkciók jogosultságaik kezelését.</span><span class="sxs-lookup"><span data-stu-id="37b41-120">Otherwise, the Functions runtime might fail trying to do operations that require manage rights.</span></span>
+* <span data-ttu-id="ac95f-113">A `connection`, [alkalmazásbeállítás létrehozása az függvény alkalmazásban](functions-how-to-use-azure-function-app-settings.md) tartalmazó hello kapcsolati karakterlánc tooyour Service Bus-névtér, majd meg kell adnia hello nevet hello Alkalmazásbeállítás hello `connection` az eseményindító tulajdonságait.</span><span class="sxs-lookup"><span data-stu-id="ac95f-113">For `connection`, [create an app setting in your function app](functions-how-to-use-azure-function-app-settings.md) that contains hello connection string tooyour Service Bus namespace, then specify hello name of hello app setting in hello `connection` property in your trigger.</span></span> <span data-ttu-id="ac95f-114">Hello kapcsolati karakterlánc látható hello lépéseket követve szerezze be [hello felügyeleti hitelesítő adatok beszerzése](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).</span><span class="sxs-lookup"><span data-stu-id="ac95f-114">You obtain hello connection string by following hello steps shown at [Obtain hello management credentials](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).</span></span>
+  <span data-ttu-id="ac95f-115">hello kapcsolati karakterláncnak kell lennie, a Service Bus névtér, korlátozás nélkül tooa adott üzenetsor vagy témakör.</span><span class="sxs-lookup"><span data-stu-id="ac95f-115">hello connection string must be for a Service Bus namespace, not limited tooa specific queue or topic.</span></span>
+  <span data-ttu-id="ac95f-116">Ha nem adja meg `connection` üres, hello eseményindító azt feltételezi, hogy egy alapértelmezett Service Bus kapcsolati karakterlánc van megadva egy alkalmazás nevű beállításával `AzureWebJobsServiceBus`.</span><span class="sxs-lookup"><span data-stu-id="ac95f-116">If you leave `connection` empty, hello trigger assumes that a default Service Bus connection string is specified in an app setting named `AzureWebJobsServiceBus`.</span></span>
+* <span data-ttu-id="ac95f-117">A `accessRights`, elérhető értékek a következők `manage` és `listen`.</span><span class="sxs-lookup"><span data-stu-id="ac95f-117">For `accessRights`, available values are `manage` and `listen`.</span></span> <span data-ttu-id="ac95f-118">hello alapértelmezett érték a `manage`, ami azt jelenti, hogy hello `connection` hello rendelkezik **kezelése** engedéllyel.</span><span class="sxs-lookup"><span data-stu-id="ac95f-118">hello default is `manage`, which indicates that hello `connection` has hello **Manage** permission.</span></span> <span data-ttu-id="ac95f-119">Ha használja a kapcsolati karakterláncot, amely nem rendelkezik hello **kezelése** engedély, `accessRights` túl`listen`.</span><span class="sxs-lookup"><span data-stu-id="ac95f-119">If you use a connection string that does not have hello **Manage** permission, set `accessRights` too`listen`.</span></span> <span data-ttu-id="ac95f-120">Ellenkező esetben a futásidejű meghiúsulhat, miközben a rendszer toodo műveletet, amelyhez hello funkciók jogosultságaik kezelését.</span><span class="sxs-lookup"><span data-stu-id="ac95f-120">Otherwise, hello Functions runtime might fail trying toodo operations that require manage rights.</span></span>
 
-## <a name="trigger-behavior"></a><span data-ttu-id="37b41-121">Eseményindító viselkedése</span><span class="sxs-lookup"><span data-stu-id="37b41-121">Trigger behavior</span></span>
-* <span data-ttu-id="37b41-122">**Single-threading** - alapértelmezés szerint a funkciók futásidejű folyamatok több üzenetet párhuzamosan.</span><span class="sxs-lookup"><span data-stu-id="37b41-122">**Single-threading** - By default, the Functions runtime processes multiple messages concurrently.</span></span> <span data-ttu-id="37b41-123">Állítsa át tudja irányítani a futtatókörnyezet egyszerre csak egyetlen üzenetsor vagy témakör üzenet feldolgozásához, `serviceBus.maxConcurrentCalls` 1 *host.json*.</span><span class="sxs-lookup"><span data-stu-id="37b41-123">To direct the runtime to process only a single queue or topic message at a time, set `serviceBus.maxConcurrentCalls` to 1 in *host.json*.</span></span> 
-  <span data-ttu-id="37b41-124">További információ *host.json*, lásd: [mappaszerkezet](functions-reference.md#folder-structure) és [host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json).</span><span class="sxs-lookup"><span data-stu-id="37b41-124">For information about *host.json*, see [Folder Structure](functions-reference.md#folder-structure) and [host.json](https://github .com/Azure/azure-webjobs-sdk-script/wiki/host.json).</span></span>
-* <span data-ttu-id="37b41-125">**Elhalt üzenetek kezelésének** -Service Bus does saját elhalt üzenetek kezelésének, nem szabályozott, vagy az Azure Functions konfiguráció vagy a kód konfigurálva.</span><span class="sxs-lookup"><span data-stu-id="37b41-125">**Poison message handling** - Service Bus does its own poison message handling, which can't be controlled or configured in Azure Functions configuration or code.</span></span> 
-* <span data-ttu-id="37b41-126">**PeekLock viselkedés** -a Functions futtatókörnyezete az üzenetet kap [ `PeekLock` mód](../service-bus-messaging/service-bus-performance-improvements.md#receive-mode) és hívások `Complete` az üzenetet, ha a függvény futtatása sikeresen befejeződött, vagy a hívások `Abandon` Ha a parancs nem működik.</span><span class="sxs-lookup"><span data-stu-id="37b41-126">**PeekLock behavior** - The Functions runtime receives a message in [`PeekLock` mode](../service-bus-messaging/service-bus-performance-improvements.md#receive-mode) and calls `Complete` on the message if the function finishes successfully, or calls `Abandon` if the function fails.</span></span> 
-  <span data-ttu-id="37b41-127">Ha a függvény futásakor hosszabb, mint a `PeekLock` automatikusan megújítják időtúllépés, a zárolás.</span><span class="sxs-lookup"><span data-stu-id="37b41-127">If the function runs longer than the `PeekLock` timeout, the lock is automatically renewed.</span></span>
+## <a name="trigger-behavior"></a><span data-ttu-id="ac95f-121">Eseményindító viselkedése</span><span class="sxs-lookup"><span data-stu-id="ac95f-121">Trigger behavior</span></span>
+* <span data-ttu-id="ac95f-122">**Single-threading** - alapértelmezés szerint hello funkciók futásidejű folyamatok több üzenetet párhuzamosan.</span><span class="sxs-lookup"><span data-stu-id="ac95f-122">**Single-threading** - By default, hello Functions runtime processes multiple messages concurrently.</span></span> <span data-ttu-id="ac95f-123">toodirect hello futásidejű tooprocess csak egyetlen üzenetsor vagy témakör üzenet egyszerre, állítsa be `serviceBus.maxConcurrentCalls` a too1 *host.json*.</span><span class="sxs-lookup"><span data-stu-id="ac95f-123">toodirect hello runtime tooprocess only a single queue or topic message at a time, set `serviceBus.maxConcurrentCalls` too1 in *host.json*.</span></span> 
+  <span data-ttu-id="ac95f-124">További információ *host.json*, lásd: [mappaszerkezet](functions-reference.md#folder-structure) és [host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json).</span><span class="sxs-lookup"><span data-stu-id="ac95f-124">For information about *host.json*, see [Folder Structure](functions-reference.md#folder-structure) and [host.json](https://github .com/Azure/azure-webjobs-sdk-script/wiki/host.json).</span></span>
+* <span data-ttu-id="ac95f-125">**Elhalt üzenetek kezelésének** -Service Bus does saját elhalt üzenetek kezelésének, nem szabályozott, vagy az Azure Functions konfiguráció vagy a kód konfigurálva.</span><span class="sxs-lookup"><span data-stu-id="ac95f-125">**Poison message handling** - Service Bus does its own poison message handling, which can't be controlled or configured in Azure Functions configuration or code.</span></span> 
+* <span data-ttu-id="ac95f-126">**PeekLock viselkedés** -hello Functions futtatókörnyezete az üzenetet kap [ `PeekLock` mód](../service-bus-messaging/service-bus-performance-improvements.md#receive-mode) és hívások `Complete` üdvözlőüzenetére Ha hello függvény futtatása sikeresen befejeződött, vagy a hívások `Abandon` Ha hello parancs nem működik.</span><span class="sxs-lookup"><span data-stu-id="ac95f-126">**PeekLock behavior** - hello Functions runtime receives a message in [`PeekLock` mode](../service-bus-messaging/service-bus-performance-improvements.md#receive-mode) and calls `Complete` on hello message if hello function finishes successfully, or calls `Abandon` if hello function fails.</span></span> 
+  <span data-ttu-id="ac95f-127">Ha hello függvény futásakor hello hosszabb `PeekLock` időkorlát, hello zárolása automatikusan megújítják.</span><span class="sxs-lookup"><span data-stu-id="ac95f-127">If hello function runs longer than hello `PeekLock` timeout, hello lock is automatically renewed.</span></span>
 
 <a name="triggerusage"></a>
 
-## <a name="trigger-usage"></a><span data-ttu-id="37b41-128">Eseményindító kihasználtsága</span><span class="sxs-lookup"><span data-stu-id="37b41-128">Trigger usage</span></span>
-<span data-ttu-id="37b41-129">Ez a szakasz bemutatja, hogyan használható a Service Bus eseményindító a funkciókódot.</span><span class="sxs-lookup"><span data-stu-id="37b41-129">This section shows you how to use your Service Bus trigger in your function code.</span></span> 
+## <a name="trigger-usage"></a><span data-ttu-id="ac95f-128">Eseményindító kihasználtsága</span><span class="sxs-lookup"><span data-stu-id="ac95f-128">Trigger usage</span></span>
+<span data-ttu-id="ac95f-129">Ez a szakasz bemutatja, hogyan toouse a Service Bus indul el, a függvény kódban.</span><span class="sxs-lookup"><span data-stu-id="ac95f-129">This section shows you how toouse your Service Bus trigger in your function code.</span></span> 
 
-<span data-ttu-id="37b41-130">A C# és F # a Service Bus eseményindító üzenet a következő bemeneti típusok bármelyikéhez deszerializálható:</span><span class="sxs-lookup"><span data-stu-id="37b41-130">In C# and F#, the Service Bus trigger message can be deserialized to any of the following input types:</span></span>
+<span data-ttu-id="ac95f-130">C# és F #, a Service Bus eseményindító üdvözlőüzenetére lehet a következő bemeneti típusnak sem hello deszerializált tooany:</span><span class="sxs-lookup"><span data-stu-id="ac95f-130">In C# and F#, hello Service Bus trigger message can be deserialized tooany of hello following input types:</span></span>
 
-* <span data-ttu-id="37b41-131">`string`-hasznosak lehetnek a karakterlánc-üzenetek</span><span class="sxs-lookup"><span data-stu-id="37b41-131">`string` - useful for string messages</span></span>
-* <span data-ttu-id="37b41-132">`byte[]`-hasznosak lehetnek a bináris adatok</span><span class="sxs-lookup"><span data-stu-id="37b41-132">`byte[]` - useful for binary data</span></span>
-* <span data-ttu-id="37b41-133">Bármely [objektum](https://msdn.microsoft.com/library/system.object.aspx) - hasznosak lehetnek a JSON-adatokból.</span><span class="sxs-lookup"><span data-stu-id="37b41-133">Any [Object](https://msdn.microsoft.com/library/system.object.aspx) - useful for JSON-serialized data.</span></span>
-  <span data-ttu-id="37b41-134">Egy egyéni bemeneti típus, például a deklarálható `CustomType`, az Azure Functions megkísérli a JSON-adatok deszerializálása be a megadott típus.</span><span class="sxs-lookup"><span data-stu-id="37b41-134">If you declare a custom input type, such as `CustomType`, Azure Functions tries to deserialize the JSON data into your specified type.</span></span>
-* <span data-ttu-id="37b41-135">`BrokeredMessage`-a deszerializált üzenet lehetővé teszi a [BrokeredMessage.GetBody<T>()](https://msdn.microsoft.com/library/hh144211.aspx) metódust.</span><span class="sxs-lookup"><span data-stu-id="37b41-135">`BrokeredMessage` - gives you the deserialized message with the [BrokeredMessage.GetBody<T>()](https://msdn.microsoft.com/library/hh144211.aspx) method.</span></span>
+* <span data-ttu-id="ac95f-131">`string`-hasznosak lehetnek a karakterlánc-üzenetek</span><span class="sxs-lookup"><span data-stu-id="ac95f-131">`string` - useful for string messages</span></span>
+* <span data-ttu-id="ac95f-132">`byte[]`-hasznosak lehetnek a bináris adatok</span><span class="sxs-lookup"><span data-stu-id="ac95f-132">`byte[]` - useful for binary data</span></span>
+* <span data-ttu-id="ac95f-133">Bármely [objektum](https://msdn.microsoft.com/library/system.object.aspx) - hasznosak lehetnek a JSON-adatokból.</span><span class="sxs-lookup"><span data-stu-id="ac95f-133">Any [Object](https://msdn.microsoft.com/library/system.object.aspx) - useful for JSON-serialized data.</span></span>
+  <span data-ttu-id="ac95f-134">Egy egyéni bemeneti típus, például a deklarálható `CustomType`, az Azure Functions megpróbál toodeserialize hello JSON-adatokat a megadott típus be.</span><span class="sxs-lookup"><span data-stu-id="ac95f-134">If you declare a custom input type, such as `CustomType`, Azure Functions tries toodeserialize hello JSON data into your specified type.</span></span>
+* <span data-ttu-id="ac95f-135">`BrokeredMessage`-tesz lehetővé, hogy hello deszerializálni hello üzenet [BrokeredMessage.GetBody<T>()](https://msdn.microsoft.com/library/hh144211.aspx) metódust.</span><span class="sxs-lookup"><span data-stu-id="ac95f-135">`BrokeredMessage` - gives you hello deserialized message with hello [BrokeredMessage.GetBody<T>()](https://msdn.microsoft.com/library/hh144211.aspx) method.</span></span>
 
-<span data-ttu-id="37b41-136">A node.js a Service Bus eseményindító üzenet át a funkciót egy karakterlánc- vagy JSON-objektumból.</span><span class="sxs-lookup"><span data-stu-id="37b41-136">In Node.js, the Service Bus trigger message is passed into the function as either a string or JSON object.</span></span>
+<span data-ttu-id="ac95f-136">A node.js a Service Bus eseményindító üdvözlőüzenetére átadott hello függvény egy karakterlánc vagy a JSON-objektumból.</span><span class="sxs-lookup"><span data-stu-id="ac95f-136">In Node.js, hello Service Bus trigger message is passed into hello function as either a string or JSON object.</span></span>
 
 <a name="triggersample"></a>
 
-## <a name="trigger-sample"></a><span data-ttu-id="37b41-137">Eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="37b41-137">Trigger sample</span></span>
-<span data-ttu-id="37b41-138">Tegyük fel, a következő function.json:</span><span class="sxs-lookup"><span data-stu-id="37b41-138">Suppose you have the following function.json:</span></span>
+## <a name="trigger-sample"></a><span data-ttu-id="ac95f-137">Eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="ac95f-137">Trigger sample</span></span>
+<span data-ttu-id="ac95f-138">Tegyük fel, a következő function.json hello:</span><span class="sxs-lookup"><span data-stu-id="ac95f-138">Suppose you have hello following function.json:</span></span>
 
 ```json
 {
@@ -114,15 +114,15 @@ ms.lasthandoff: 08/29/2017
 }
 ```
 
-<span data-ttu-id="37b41-139">Tekintse meg a nyelvspecifikus mintát, amely egy Service Bus üzenetsor-üzenetet feldolgozza.</span><span class="sxs-lookup"><span data-stu-id="37b41-139">See the language-specific sample that processes a Service Bus queue message.</span></span>
+<span data-ttu-id="ac95f-139">Lásd: hello nyelvspecifikus mintát, amely egy Service Bus üzenetsor-üzenetet feldolgozza.</span><span class="sxs-lookup"><span data-stu-id="ac95f-139">See hello language-specific sample that processes a Service Bus queue message.</span></span>
 
-* [<span data-ttu-id="37b41-140">C#</span><span class="sxs-lookup"><span data-stu-id="37b41-140">C#</span></span>](#triggercsharp)
-* [<span data-ttu-id="37b41-141">F#</span><span class="sxs-lookup"><span data-stu-id="37b41-141">F#</span></span>](#triggerfsharp)
-* [<span data-ttu-id="37b41-142">Node.js</span><span class="sxs-lookup"><span data-stu-id="37b41-142">Node.js</span></span>](#triggernodejs)
+* [<span data-ttu-id="ac95f-140">C#</span><span class="sxs-lookup"><span data-stu-id="ac95f-140">C#</span></span>](#triggercsharp)
+* [<span data-ttu-id="ac95f-141">F#</span><span class="sxs-lookup"><span data-stu-id="ac95f-141">F#</span></span>](#triggerfsharp)
+* [<span data-ttu-id="ac95f-142">Node.js</span><span class="sxs-lookup"><span data-stu-id="ac95f-142">Node.js</span></span>](#triggernodejs)
 
 <a name="triggercsharp"></a>
 
-### <a name="trigger-sample-in-c"></a><span data-ttu-id="37b41-143">A C# eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="37b41-143">Trigger sample in C#</span></span> #
+### <a name="trigger-sample-in-c"></a><span data-ttu-id="ac95f-143">A C# eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="ac95f-143">Trigger sample in C#</span></span> #
 
 ```cs
 public static void Run(string myQueueItem, TraceWriter log)
@@ -133,7 +133,7 @@ public static void Run(string myQueueItem, TraceWriter log)
 
 <a name="triggerfsharp"></a>
 
-### <a name="trigger-sample-in-f"></a><span data-ttu-id="37b41-144">Az F # eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="37b41-144">Trigger sample in F#</span></span> #
+### <a name="trigger-sample-in-f"></a><span data-ttu-id="ac95f-144">Az F # eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="ac95f-144">Trigger sample in F#</span></span> #
 
 ```fsharp
 let Run(myQueueItem: string, log: TraceWriter) =
@@ -142,7 +142,7 @@ let Run(myQueueItem: string, log: TraceWriter) =
 
 <a name="triggernodejs"></a>
 
-### <a name="trigger-sample-in-nodejs"></a><span data-ttu-id="37b41-145">A node.js eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="37b41-145">Trigger sample in Node.js</span></span>
+### <a name="trigger-sample-in-nodejs"></a><span data-ttu-id="ac95f-145">A node.js eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="ac95f-145">Trigger sample in Node.js</span></span>
 
 ```javascript
 module.exports = function(context, myQueueItem) {
@@ -153,61 +153,61 @@ module.exports = function(context, myQueueItem) {
 
 <a name="output"></a>
 
-## <a name="service-bus-output-binding"></a><span data-ttu-id="37b41-146">A Service Bus kimeneti kötése</span><span class="sxs-lookup"><span data-stu-id="37b41-146">Service Bus output binding</span></span>
-<span data-ttu-id="37b41-147">A Service Bus várólista és ez a témakör kimeneti függvény használata a következő JSON-objektumok a `bindings` function.json tömbje:</span><span class="sxs-lookup"><span data-stu-id="37b41-147">The Service Bus queue and topic output for a function use the following JSON objects in the `bindings` array of function.json:</span></span>
+## <a name="service-bus-output-binding"></a><span data-ttu-id="ac95f-146">A Service Bus kimeneti kötése</span><span class="sxs-lookup"><span data-stu-id="ac95f-146">Service Bus output binding</span></span>
+<span data-ttu-id="ac95f-147">a Service Bus várólista és ez a témakör kimeneti függvény hello használata hello hello a JSON-objektumok a következő `bindings` function.json tömbje:</span><span class="sxs-lookup"><span data-stu-id="ac95f-147">hello Service Bus queue and topic output for a function use hello following JSON objects in hello `bindings` array of function.json:</span></span>
 
-* <span data-ttu-id="37b41-148">*várólista* kimenete:</span><span class="sxs-lookup"><span data-stu-id="37b41-148">*queue* output:</span></span>
+* <span data-ttu-id="ac95f-148">*várólista* kimenete:</span><span class="sxs-lookup"><span data-stu-id="ac95f-148">*queue* output:</span></span>
 
     ```json
     {
         "name" : "<Name of output parameter in function signature>",
-        "queueName" : "<Name of the queue>",
+        "queueName" : "<Name of hello queue>",
         "connection" : "<Name of app setting that has your queue's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>",
+        "accessRights" : "<Access rights for hello connection string - see below>",
         "type" : "serviceBus",
         "direction" : "out"
     }
     ```
-* <span data-ttu-id="37b41-149">*a témakör* kimenete:</span><span class="sxs-lookup"><span data-stu-id="37b41-149">*topic* output:</span></span>
+* <span data-ttu-id="ac95f-149">*a témakör* kimenete:</span><span class="sxs-lookup"><span data-stu-id="ac95f-149">*topic* output:</span></span>
 
     ```json
     {
         "name" : "<Name of output parameter in function signature>",
-        "topicName" : "<Name of the topic>",
-        "subscriptionName" : "<Name of the subscription>",
+        "topicName" : "<Name of hello topic>",
+        "subscriptionName" : "<Name of hello subscription>",
         "connection" : "<Name of app setting that has your topic's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>",
+        "accessRights" : "<Access rights for hello connection string - see below>",
         "type" : "serviceBus",
         "direction" : "out"
     }
     ```
 
-<span data-ttu-id="37b41-150">Vegye figyelembe a következőket:</span><span class="sxs-lookup"><span data-stu-id="37b41-150">Note the following:</span></span>
+<span data-ttu-id="ac95f-150">Vegye figyelembe a következőket hello:</span><span class="sxs-lookup"><span data-stu-id="ac95f-150">Note hello following:</span></span>
 
-* <span data-ttu-id="37b41-151">A `connection`, [alkalmazásbeállítás létrehozása az függvény alkalmazásban](functions-how-to-use-azure-function-app-settings.md) , amely tartalmazza a Service Bus-névtér a kapcsolati karakterláncot, majd adja meg a az Alkalmazásbeállítás nevét a `connection` tulajdonság a kimeneti kötés.</span><span class="sxs-lookup"><span data-stu-id="37b41-151">For `connection`, [create an app setting in your function app](functions-how-to-use-azure-function-app-settings.md) that contains the connection string to your Service Bus namespace, then specify the name of the app setting in the `connection` property in your output binding.</span></span> <span data-ttu-id="37b41-152">Szerezze be a kapcsolati karakterláncot a jelenik meg a lépéseket követve [a felügyeleti hitelesítő adatok beszerzése](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).</span><span class="sxs-lookup"><span data-stu-id="37b41-152">You obtain the connection string by following the steps shown at [Obtain the management credentials](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).</span></span>
-  <span data-ttu-id="37b41-153">A kapcsolati karakterláncnak kell lennie, a Service Bus-névtér, nem kizárólagosan az adott üzenetsor vagy témakör.</span><span class="sxs-lookup"><span data-stu-id="37b41-153">The connection string must be for a Service Bus namespace, not limited to a specific queue or topic.</span></span>
-  <span data-ttu-id="37b41-154">Ha nem adja meg `connection` üres, a kimeneti kötés azt feltételezi, hogy egy alapértelmezett Service Bus kapcsolati karakterlánc van megadva egy alkalmazás nevű beállításával `AzureWebJobsServiceBus`.</span><span class="sxs-lookup"><span data-stu-id="37b41-154">If you leave `connection` empty, the output binding assumes that a default Service Bus connection string is specified in an app setting named `AzureWebJobsServiceBus`.</span></span>
-* <span data-ttu-id="37b41-155">A `accessRights`, elérhető értékek a következők `manage` és `listen`.</span><span class="sxs-lookup"><span data-stu-id="37b41-155">For `accessRights`, available values are `manage` and `listen`.</span></span> <span data-ttu-id="37b41-156">Az alapértelmezett érték `manage`, amely azt jelzi, hogy a `connection` rendelkezik a **kezelése** engedéllyel.</span><span class="sxs-lookup"><span data-stu-id="37b41-156">The default is `manage`, which indicates that the `connection` has the **Manage** permission.</span></span> <span data-ttu-id="37b41-157">Ha használja a kapcsolati karakterláncot, amely nem rendelkezik a **kezelése** engedély, `accessRights` való `listen`.</span><span class="sxs-lookup"><span data-stu-id="37b41-157">If you use a connection string that does not have the **Manage** permission, set `accessRights` to `listen`.</span></span> <span data-ttu-id="37b41-158">Ellenkező esetben a futásidejű meghiúsulhat igénylő műveletek végrehajtását megkísérlő funkciók jogosultságaik kezelését.</span><span class="sxs-lookup"><span data-stu-id="37b41-158">Otherwise, the Functions runtime might fail trying to do operations that require manage rights.</span></span>
+* <span data-ttu-id="ac95f-151">A `connection`, [alkalmazásbeállítás létrehozása az függvény alkalmazásban](functions-how-to-use-azure-function-app-settings.md) tartalmazó hello kapcsolati karakterlánc tooyour Service Bus-névtér, majd meg kell adnia hello nevet hello Alkalmazásbeállítás hello `connection` szöveget a kimenetben tulajdonság kötelező.</span><span class="sxs-lookup"><span data-stu-id="ac95f-151">For `connection`, [create an app setting in your function app](functions-how-to-use-azure-function-app-settings.md) that contains hello connection string tooyour Service Bus namespace, then specify hello name of hello app setting in hello `connection` property in your output binding.</span></span> <span data-ttu-id="ac95f-152">Hello kapcsolati karakterlánc látható hello lépéseket követve szerezze be [hello felügyeleti hitelesítő adatok beszerzése](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).</span><span class="sxs-lookup"><span data-stu-id="ac95f-152">You obtain hello connection string by following hello steps shown at [Obtain hello management credentials](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).</span></span>
+  <span data-ttu-id="ac95f-153">hello kapcsolati karakterláncnak kell lennie, a Service Bus névtér, korlátozás nélkül tooa adott üzenetsor vagy témakör.</span><span class="sxs-lookup"><span data-stu-id="ac95f-153">hello connection string must be for a Service Bus namespace, not limited tooa specific queue or topic.</span></span>
+  <span data-ttu-id="ac95f-154">Ha nem adja meg `connection` üres, hello kimeneti kötés azt feltételezi, hogy egy alapértelmezett Service Bus kapcsolati karakterlánc van megadva egy alkalmazás nevű beállításával `AzureWebJobsServiceBus`.</span><span class="sxs-lookup"><span data-stu-id="ac95f-154">If you leave `connection` empty, hello output binding assumes that a default Service Bus connection string is specified in an app setting named `AzureWebJobsServiceBus`.</span></span>
+* <span data-ttu-id="ac95f-155">A `accessRights`, elérhető értékek a következők `manage` és `listen`.</span><span class="sxs-lookup"><span data-stu-id="ac95f-155">For `accessRights`, available values are `manage` and `listen`.</span></span> <span data-ttu-id="ac95f-156">hello alapértelmezett érték a `manage`, ami azt jelenti, hogy hello `connection` hello rendelkezik **kezelése** engedéllyel.</span><span class="sxs-lookup"><span data-stu-id="ac95f-156">hello default is `manage`, which indicates that hello `connection` has hello **Manage** permission.</span></span> <span data-ttu-id="ac95f-157">Ha használja a kapcsolati karakterláncot, amely nem rendelkezik hello **kezelése** engedély, `accessRights` túl`listen`.</span><span class="sxs-lookup"><span data-stu-id="ac95f-157">If you use a connection string that does not have hello **Manage** permission, set `accessRights` too`listen`.</span></span> <span data-ttu-id="ac95f-158">Ellenkező esetben a futásidejű meghiúsulhat, miközben a rendszer toodo műveletet, amelyhez hello funkciók jogosultságaik kezelését.</span><span class="sxs-lookup"><span data-stu-id="ac95f-158">Otherwise, hello Functions runtime might fail trying toodo operations that require manage rights.</span></span>
 
 <a name="outputusage"></a>
 
-## <a name="output-usage"></a><span data-ttu-id="37b41-159">Kimeneti használata</span><span class="sxs-lookup"><span data-stu-id="37b41-159">Output usage</span></span>
-<span data-ttu-id="37b41-160">C# és F #, az Azure Functions létrehozhat egy Service Bus-üzenetsor a következő típusok:</span><span class="sxs-lookup"><span data-stu-id="37b41-160">In C# and F#, Azure Functions can create a Service Bus queue message from any of the following types:</span></span>
+## <a name="output-usage"></a><span data-ttu-id="ac95f-159">Kimeneti használata</span><span class="sxs-lookup"><span data-stu-id="ac95f-159">Output usage</span></span>
+<span data-ttu-id="ac95f-160">A C# és F # az Azure Functions a következő típusok hello bármelyik hozhat létre egy Service Bus-üzenetsor:</span><span class="sxs-lookup"><span data-stu-id="ac95f-160">In C# and F#, Azure Functions can create a Service Bus queue message from any of hello following types:</span></span>
 
-* <span data-ttu-id="37b41-161">Bármely [objektum](https://msdn.microsoft.com/library/system.object.aspx) -paraméterek definícióját a következőképpen néz `out T paramName` (C#).</span><span class="sxs-lookup"><span data-stu-id="37b41-161">Any [Object](https://msdn.microsoft.com/library/system.object.aspx) - Parameter definition looks like `out T paramName` (C#).</span></span>
-  <span data-ttu-id="37b41-162">Funkciók deserializes az objektum JSON üzenetbe.</span><span class="sxs-lookup"><span data-stu-id="37b41-162">Functions deserializes the object into a JSON message.</span></span> <span data-ttu-id="37b41-163">Ha a kimeneti érték értéke null, ha a függvény kilép, funkciók az üzenet null objektumot hoz létre.</span><span class="sxs-lookup"><span data-stu-id="37b41-163">If the output value is null when the function exits, Functions creates the message with a null object.</span></span>
-* <span data-ttu-id="37b41-164">`string`-Paraméterek definícióját a következőképpen néz `out string paraName` (C#).</span><span class="sxs-lookup"><span data-stu-id="37b41-164">`string` - Parameter definition looks like `out string paraName` (C#).</span></span> <span data-ttu-id="37b41-165">Ha a paraméter értéke nem null értékű, amikor a függvény kilép, a funkciók létrehoz egy üzenetet.</span><span class="sxs-lookup"><span data-stu-id="37b41-165">If the parameter value is non-null when the function exits, Functions creates a message.</span></span>
-* <span data-ttu-id="37b41-166">`byte[]`-Paraméterek definícióját a következőképpen néz `out byte[] paraName` (C#).</span><span class="sxs-lookup"><span data-stu-id="37b41-166">`byte[]` - Parameter definition looks like `out byte[] paraName` (C#).</span></span> <span data-ttu-id="37b41-167">Ha a paraméter értéke nem null értékű, amikor a függvény kilép, a funkciók létrehoz egy üzenetet.</span><span class="sxs-lookup"><span data-stu-id="37b41-167">If the parameter value is non-null when the function exits, Functions creates a message.</span></span>
-* <span data-ttu-id="37b41-168">`BrokeredMessage`Paraméterek definícióját a következőképpen néz `out BrokeredMessage paraName` (C#).</span><span class="sxs-lookup"><span data-stu-id="37b41-168">`BrokeredMessage` Parameter definition looks like `out BrokeredMessage paraName` (C#).</span></span> <span data-ttu-id="37b41-169">Ha a paraméter értéke nem null értékű, amikor a függvény kilép, a funkciók létrehoz egy üzenetet.</span><span class="sxs-lookup"><span data-stu-id="37b41-169">If the parameter value is non-null when the function exits, Functions creates a message.</span></span>
+* <span data-ttu-id="ac95f-161">Bármely [objektum](https://msdn.microsoft.com/library/system.object.aspx) -paraméterek definícióját a következőképpen néz `out T paramName` (C#).</span><span class="sxs-lookup"><span data-stu-id="ac95f-161">Any [Object](https://msdn.microsoft.com/library/system.object.aspx) - Parameter definition looks like `out T paramName` (C#).</span></span>
+  <span data-ttu-id="ac95f-162">Funkciók hello objektum deserializes JSON üzenetbe.</span><span class="sxs-lookup"><span data-stu-id="ac95f-162">Functions deserializes hello object into a JSON message.</span></span> <span data-ttu-id="ac95f-163">Ha hello kimeneti értéket értéke null, ha hello függvény kilép, Funkciók üdvözlőüzenetére null objektumot hoz létre.</span><span class="sxs-lookup"><span data-stu-id="ac95f-163">If hello output value is null when hello function exits, Functions creates hello message with a null object.</span></span>
+* <span data-ttu-id="ac95f-164">`string`-Paraméterek definícióját a következőképpen néz `out string paraName` (C#).</span><span class="sxs-lookup"><span data-stu-id="ac95f-164">`string` - Parameter definition looks like `out string paraName` (C#).</span></span> <span data-ttu-id="ac95f-165">Ha hello paraméter értéke nem null értékű amikor hello függvény kilép, a funkciók létrehoz egy üzenetet.</span><span class="sxs-lookup"><span data-stu-id="ac95f-165">If hello parameter value is non-null when hello function exits, Functions creates a message.</span></span>
+* <span data-ttu-id="ac95f-166">`byte[]`-Paraméterek definícióját a következőképpen néz `out byte[] paraName` (C#).</span><span class="sxs-lookup"><span data-stu-id="ac95f-166">`byte[]` - Parameter definition looks like `out byte[] paraName` (C#).</span></span> <span data-ttu-id="ac95f-167">Ha hello paraméter értéke nem null értékű amikor hello függvény kilép, a funkciók létrehoz egy üzenetet.</span><span class="sxs-lookup"><span data-stu-id="ac95f-167">If hello parameter value is non-null when hello function exits, Functions creates a message.</span></span>
+* <span data-ttu-id="ac95f-168">`BrokeredMessage`Paraméterek definícióját a következőképpen néz `out BrokeredMessage paraName` (C#).</span><span class="sxs-lookup"><span data-stu-id="ac95f-168">`BrokeredMessage` Parameter definition looks like `out BrokeredMessage paraName` (C#).</span></span> <span data-ttu-id="ac95f-169">Ha hello paraméter értéke nem null értékű amikor hello függvény kilép, a funkciók létrehoz egy üzenetet.</span><span class="sxs-lookup"><span data-stu-id="ac95f-169">If hello parameter value is non-null when hello function exits, Functions creates a message.</span></span>
 
-<span data-ttu-id="37b41-170">A több üzenet létrehozása a C# függvényben, használhat `ICollector<T>` vagy `IAsyncCollector<T>`.</span><span class="sxs-lookup"><span data-stu-id="37b41-170">For creating multiple messages in a C# function, you can use `ICollector<T>` or `IAsyncCollector<T>`.</span></span> <span data-ttu-id="37b41-171">Egy üzenet jön létre, ha meghívja a `Add` metódust.</span><span class="sxs-lookup"><span data-stu-id="37b41-171">A message is created when you call the `Add` method.</span></span>
+<span data-ttu-id="ac95f-170">A több üzenet létrehozása a C# függvényben, használhat `ICollector<T>` vagy `IAsyncCollector<T>`.</span><span class="sxs-lookup"><span data-stu-id="ac95f-170">For creating multiple messages in a C# function, you can use `ICollector<T>` or `IAsyncCollector<T>`.</span></span> <span data-ttu-id="ac95f-171">Egy üzenet jön létre, ha meghívja a hello `Add` metódust.</span><span class="sxs-lookup"><span data-stu-id="ac95f-171">A message is created when you call hello `Add` method.</span></span>
 
-<span data-ttu-id="37b41-172">A node.js, rendelhet egy karakterlánc, egy bájttömböt vagy egy Javascript-objektum (deszerializálni a JSON-ba) `context.binding.<paramName>`.</span><span class="sxs-lookup"><span data-stu-id="37b41-172">In Node.js, you can assign a string, a byte array, or a Javascript object (deserialized into JSON) to `context.binding.<paramName>`.</span></span>
+<span data-ttu-id="ac95f-172">Node.js, rendelhet egy karakterlánc, egy bájttömböt vagy egy Javascript-objektum (deszerializálni a JSON-ba) túl`context.binding.<paramName>`.</span><span class="sxs-lookup"><span data-stu-id="ac95f-172">In Node.js, you can assign a string, a byte array, or a Javascript object (deserialized into JSON) too`context.binding.<paramName>`.</span></span>
 
 <a name="outputsample"></a>
 
-## <a name="output-sample"></a><span data-ttu-id="37b41-173">Minta kimenet</span><span class="sxs-lookup"><span data-stu-id="37b41-173">Output sample</span></span>
-<span data-ttu-id="37b41-174">Tegyük fel, amely meghatározza egy Service Bus várólista kimenete a következő function.json:</span><span class="sxs-lookup"><span data-stu-id="37b41-174">Suppose you have the following function.json, that defines a Service Bus queue output:</span></span>
+## <a name="output-sample"></a><span data-ttu-id="ac95f-173">Minta kimenet</span><span class="sxs-lookup"><span data-stu-id="ac95f-173">Output sample</span></span>
+<span data-ttu-id="ac95f-174">Tegyük fel, a következő function.json, amely meghatározza egy Service Bus várólista kimeneti hello:</span><span class="sxs-lookup"><span data-stu-id="ac95f-174">Suppose you have hello following function.json, that defines a Service Bus queue output:</span></span>
 
 ```json
 {
@@ -231,15 +231,15 @@ module.exports = function(context, myQueueItem) {
 }
 ```
 
-<span data-ttu-id="37b41-175">Tekintse meg a nyelvspecifikus mintát, amely egy üzenetet küld a service bus-üzenetsorba.</span><span class="sxs-lookup"><span data-stu-id="37b41-175">See the language-specific sample that sends a message to the service bus queue.</span></span>
+<span data-ttu-id="ac95f-175">Lásd: hello nyelvspecifikus minta által küldött üzenet toohello service bus-üzenetsorba.</span><span class="sxs-lookup"><span data-stu-id="ac95f-175">See hello language-specific sample that sends a message toohello service bus queue.</span></span>
 
-* [<span data-ttu-id="37b41-176">C#</span><span class="sxs-lookup"><span data-stu-id="37b41-176">C#</span></span>](#outcsharp)
-* [<span data-ttu-id="37b41-177">F#</span><span class="sxs-lookup"><span data-stu-id="37b41-177">F#</span></span>](#outfsharp)
-* [<span data-ttu-id="37b41-178">Node.js</span><span class="sxs-lookup"><span data-stu-id="37b41-178">Node.js</span></span>](#outnodejs)
+* [<span data-ttu-id="ac95f-176">C#</span><span class="sxs-lookup"><span data-stu-id="ac95f-176">C#</span></span>](#outcsharp)
+* [<span data-ttu-id="ac95f-177">F#</span><span class="sxs-lookup"><span data-stu-id="ac95f-177">F#</span></span>](#outfsharp)
+* [<span data-ttu-id="ac95f-178">Node.js</span><span class="sxs-lookup"><span data-stu-id="ac95f-178">Node.js</span></span>](#outnodejs)
 
 <a name="outcsharp"></a>
 
-### <a name="output-sample-in-c"></a><span data-ttu-id="37b41-179">A C# kimeneti minta</span><span class="sxs-lookup"><span data-stu-id="37b41-179">Output sample in C#</span></span> #
+### <a name="output-sample-in-c"></a><span data-ttu-id="ac95f-179">A C# kimeneti minta</span><span class="sxs-lookup"><span data-stu-id="ac95f-179">Output sample in C#</span></span> #
 
 ```cs
 public static void Run(TimerInfo myTimer, TraceWriter log, out string outputSbQueue)
@@ -250,7 +250,7 @@ public static void Run(TimerInfo myTimer, TraceWriter log, out string outputSbQu
 }
 ```
 
-<span data-ttu-id="37b41-180">Vagy, hozzon létre több üzenetet:</span><span class="sxs-lookup"><span data-stu-id="37b41-180">Or, to create multiple messages:</span></span>
+<span data-ttu-id="ac95f-180">Vagy toocreate több üzenetet:</span><span class="sxs-lookup"><span data-stu-id="ac95f-180">Or, toocreate multiple messages:</span></span>
 
 ```cs
 public static void Run(TimerInfo myTimer, TraceWriter log, ICollector<string> outputSbQueue)
@@ -264,7 +264,7 @@ public static void Run(TimerInfo myTimer, TraceWriter log, ICollector<string> ou
 
 <a name="outfsharp"></a>
 
-### <a name="output-sample-in-f"></a><span data-ttu-id="37b41-181">Az F # kimeneti minta</span><span class="sxs-lookup"><span data-stu-id="37b41-181">Output sample in F#</span></span> #
+### <a name="output-sample-in-f"></a><span data-ttu-id="ac95f-181">Az F # kimeneti minta</span><span class="sxs-lookup"><span data-stu-id="ac95f-181">Output sample in F#</span></span> #
 
 ```fsharp
 let Run(myTimer: TimerInfo, log: TraceWriter, outputSbQueue: byref<string>) =
@@ -275,7 +275,7 @@ let Run(myTimer: TimerInfo, log: TraceWriter, outputSbQueue: byref<string>) =
 
 <a name="outnodejs"></a>
 
-### <a name="output-sample-in-nodejs"></a><span data-ttu-id="37b41-182">Kimeneti minta node.js</span><span class="sxs-lookup"><span data-stu-id="37b41-182">Output sample in Node.js</span></span>
+### <a name="output-sample-in-nodejs"></a><span data-ttu-id="ac95f-182">Kimeneti minta node.js</span><span class="sxs-lookup"><span data-stu-id="ac95f-182">Output sample in Node.js</span></span>
 
 ```javascript
 module.exports = function (context, myTimer) {
@@ -286,7 +286,7 @@ module.exports = function (context, myTimer) {
 };
 ```
 
-<span data-ttu-id="37b41-183">Vagy, hozzon létre több üzenetet:</span><span class="sxs-lookup"><span data-stu-id="37b41-183">Or, to create multiple messages:</span></span>
+<span data-ttu-id="ac95f-183">Vagy toocreate több üzenetet:</span><span class="sxs-lookup"><span data-stu-id="ac95f-183">Or, toocreate multiple messages:</span></span>
 
 ```javascript
 module.exports = function (context, myTimer) {
@@ -299,6 +299,6 @@ module.exports = function (context, myTimer) {
 };
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="37b41-184">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="37b41-184">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ac95f-184">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="ac95f-184">Next steps</span></span>
 [!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
 

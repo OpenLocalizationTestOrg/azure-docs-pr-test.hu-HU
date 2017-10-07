@@ -1,5 +1,5 @@
 ---
-title: "Csatlakozás az Azure SQL Data Warehouse-hoz – VSTS | Microsoft Docs"
+title: aaaConnect tooAzure SQL Data Warehouse - VSTS |} Microsoft Docs
 description: "Az SQL Data Warehouse lekérdezése a Visual Studióval."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,81 +15,81 @@ ms.workload: data-services
 ms.custom: connect
 ms.date: 10/31/2016
 ms.author: anvang;barbkess
-ms.openlocfilehash: 1e44c6c3c47034a892753c69c5ef22a5eac18c0d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 55eef4dff3e0647be5a735295bc89b43eb456079
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-to-sql-data-warehouse-with-visual-studio-and-ssdt"></a><span data-ttu-id="5e3b5-103">Csatlakozás a SQL Data Warehouse-hoz a Visual Studio és az SSDT használatával</span><span class="sxs-lookup"><span data-stu-id="5e3b5-103">Connect to SQL Data Warehouse with Visual Studio and SSDT</span></span>
+# <a name="connect-toosql-data-warehouse-with-visual-studio-and-ssdt"></a><span data-ttu-id="ea865-103">Visual Studio és az SSDT tooSQL adatraktár csatlakozás</span><span class="sxs-lookup"><span data-stu-id="ea865-103">Connect tooSQL Data Warehouse with Visual Studio and SSDT</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="5e3b5-104">Power BI</span><span class="sxs-lookup"><span data-stu-id="5e3b5-104">Power BI</span></span>](sql-data-warehouse-get-started-visualize-with-power-bi.md)
-> * [<span data-ttu-id="5e3b5-105">Azure Machine Learning</span><span class="sxs-lookup"><span data-stu-id="5e3b5-105">Azure Machine Learning</span></span>](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md)
-> * [<span data-ttu-id="5e3b5-106">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="5e3b5-106">Visual Studio</span></span>](sql-data-warehouse-query-visual-studio.md)
-> * [<span data-ttu-id="5e3b5-107">sqlcmd</span><span class="sxs-lookup"><span data-stu-id="5e3b5-107">sqlcmd</span></span>](sql-data-warehouse-get-started-connect-sqlcmd.md) 
-> * [<span data-ttu-id="5e3b5-108">SSMS</span><span class="sxs-lookup"><span data-stu-id="5e3b5-108">SSMS</span></span>](sql-data-warehouse-query-ssms.md)
+> * [<span data-ttu-id="ea865-104">Power BI</span><span class="sxs-lookup"><span data-stu-id="ea865-104">Power BI</span></span>](sql-data-warehouse-get-started-visualize-with-power-bi.md)
+> * [<span data-ttu-id="ea865-105">Azure Machine Learning</span><span class="sxs-lookup"><span data-stu-id="ea865-105">Azure Machine Learning</span></span>](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md)
+> * [<span data-ttu-id="ea865-106">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ea865-106">Visual Studio</span></span>](sql-data-warehouse-query-visual-studio.md)
+> * [<span data-ttu-id="ea865-107">sqlcmd</span><span class="sxs-lookup"><span data-stu-id="ea865-107">sqlcmd</span></span>](sql-data-warehouse-get-started-connect-sqlcmd.md) 
+> * [<span data-ttu-id="ea865-108">SSMS</span><span class="sxs-lookup"><span data-stu-id="ea865-108">SSMS</span></span>](sql-data-warehouse-query-ssms.md)
 > 
 > 
 
-<span data-ttu-id="5e3b5-109">A Visual Studio használatával néhány perc alatt lekérdezheti az Azure SQL Data Warehouse-t.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-109">Use Visual Studio to query Azure SQL Data Warehouse in just a few minutes.</span></span> <span data-ttu-id="5e3b5-110">Ez a módszer a Visual Studio SQL Server Data Tools (SSDT) bővítményét használja.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-110">This method uses the SQL Server Data Tools (SSDT) extension in Visual Studio.</span></span> 
+<span data-ttu-id="ea865-109">Használja a Visual Studio tooquery Azure SQL Data Warehouse csak néhány perc múlva.</span><span class="sxs-lookup"><span data-stu-id="ea865-109">Use Visual Studio tooquery Azure SQL Data Warehouse in just a few minutes.</span></span> <span data-ttu-id="ea865-110">Ez a módszer hello SQL Server Data Tools (SSDT) bővítményt a Visual Studio használja.</span><span class="sxs-lookup"><span data-stu-id="ea865-110">This method uses hello SQL Server Data Tools (SSDT) extension in Visual Studio.</span></span> 
 
-## <a name="prerequisites"></a><span data-ttu-id="5e3b5-111">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="5e3b5-111">Prerequisites</span></span>
-<span data-ttu-id="5e3b5-112">Ehhez az oktatóanyaghoz a következőkre lesz szüksége:</span><span class="sxs-lookup"><span data-stu-id="5e3b5-112">To use this tutorial, you need:</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="ea865-111">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="ea865-111">Prerequisites</span></span>
+<span data-ttu-id="ea865-112">toouse ebben az oktatóanyagban szüksége:</span><span class="sxs-lookup"><span data-stu-id="ea865-112">toouse this tutorial, you need:</span></span>
 
-* <span data-ttu-id="5e3b5-113">Egy létező SQL Data Warehouse.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-113">An existing SQL data warehouse.</span></span> <span data-ttu-id="5e3b5-114">A létrehozás menetét az [SQL Data Warehouse létrehozását][Create a SQL Data Warehouse] ismertető cikkben találja.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-114">To create one, see [Create a SQL Data Warehouse][Create a SQL Data Warehouse].</span></span>
-* <span data-ttu-id="5e3b5-115">SSDT a Visual Studióhoz.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-115">SSDT for Visual Studio.</span></span> <span data-ttu-id="5e3b5-116">Ha rendelkezik a Visual Studióval, akkor valószínűleg már ezzel is.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-116">If you have Visual Studio, you probably already have this.</span></span> <span data-ttu-id="5e3b5-117">A telepítés menetéről és a beállításokról [a Visual Studio és az SSDT telepítését][Installing Visual Studio and SSDT] ismertető cikkben olvashat bővebben.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-117">For installation instructions and options, see [Installing Visual Studio and SSDT][Installing Visual Studio and SSDT].</span></span>
-* <span data-ttu-id="5e3b5-118">Az Azure SQL-kiszolgáló teljes neve.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-118">The fully qualified SQL server name.</span></span> <span data-ttu-id="5e3b5-119">Ennek megkeresésével kapcsolatban olvassa el [az SQL Data Warehouse-hoz történő csatlakozást][Connect to SQL Data Warehouse] ismertető cikket.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-119">To find this, see [Connect to SQL Data Warehouse][Connect to SQL Data Warehouse].</span></span>
+* <span data-ttu-id="ea865-113">Egy létező SQL Data Warehouse.</span><span class="sxs-lookup"><span data-stu-id="ea865-113">An existing SQL data warehouse.</span></span> <span data-ttu-id="ea865-114">toocreate, lásd: [SQL Data Warehouse létrehozása][Create a SQL Data Warehouse].</span><span class="sxs-lookup"><span data-stu-id="ea865-114">toocreate one, see [Create a SQL Data Warehouse][Create a SQL Data Warehouse].</span></span>
+* <span data-ttu-id="ea865-115">SSDT a Visual Studióhoz.</span><span class="sxs-lookup"><span data-stu-id="ea865-115">SSDT for Visual Studio.</span></span> <span data-ttu-id="ea865-116">Ha rendelkezik a Visual Studióval, akkor valószínűleg már ezzel is.</span><span class="sxs-lookup"><span data-stu-id="ea865-116">If you have Visual Studio, you probably already have this.</span></span> <span data-ttu-id="ea865-117">A telepítés menetéről és a beállításokról [a Visual Studio és az SSDT telepítését][Installing Visual Studio and SSDT] ismertető cikkben olvashat bővebben.</span><span class="sxs-lookup"><span data-stu-id="ea865-117">For installation instructions and options, see [Installing Visual Studio and SSDT][Installing Visual Studio and SSDT].</span></span>
+* <span data-ttu-id="ea865-118">hello teljesen minősített SQL-kiszolgáló neve.</span><span class="sxs-lookup"><span data-stu-id="ea865-118">hello fully qualified SQL server name.</span></span> <span data-ttu-id="ea865-119">toofind a, lásd: [csatlakozzon az adatraktár tooSQL][Connect tooSQL Data Warehouse].</span><span class="sxs-lookup"><span data-stu-id="ea865-119">toofind this, see [Connect tooSQL Data Warehouse][Connect tooSQL Data Warehouse].</span></span>
 
-## <a name="1-connect-to-your-sql-data-warehouse"></a><span data-ttu-id="5e3b5-120">1. Csatlakozás az SQL Data Warehouse-hoz</span><span class="sxs-lookup"><span data-stu-id="5e3b5-120">1. Connect to your SQL Data Warehouse</span></span>
-1. <span data-ttu-id="5e3b5-121">Nyissa meg a Visual Studio 2013-at vagy 2015-öt.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-121">Open Visual Studio 2013 or 2015.</span></span>
-2. <span data-ttu-id="5e3b5-122">Nyissa meg az SQL Server Object Explorert.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-122">Open SQL Server Object Explorer.</span></span> <span data-ttu-id="5e3b5-123">Ehhez válassza a következőket: **View** (Nézet)  > **SQL Server Object Explorer**.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-123">To do this, select **View** > **SQL Server Object Explorer**.</span></span>
+## <a name="1-connect-tooyour-sql-data-warehouse"></a><span data-ttu-id="ea865-120">1. Csatlakozás az SQL Data Warehouse tooyour</span><span class="sxs-lookup"><span data-stu-id="ea865-120">1. Connect tooyour SQL Data Warehouse</span></span>
+1. <span data-ttu-id="ea865-121">Nyissa meg a Visual Studio 2013-at vagy 2015-öt.</span><span class="sxs-lookup"><span data-stu-id="ea865-121">Open Visual Studio 2013 or 2015.</span></span>
+2. <span data-ttu-id="ea865-122">Nyissa meg az SQL Server Object Explorert.</span><span class="sxs-lookup"><span data-stu-id="ea865-122">Open SQL Server Object Explorer.</span></span> <span data-ttu-id="ea865-123">toodo a, válassza ki **nézet** > **SQL Server Object Explorer**.</span><span class="sxs-lookup"><span data-stu-id="ea865-123">toodo this, select **View** > **SQL Server Object Explorer**.</span></span>
    
     ![SQL Server Object Explorer][1]
-3. <span data-ttu-id="5e3b5-125">Kattintson az **Add SQL Server** (SQL Server hozzáadása) ikonra.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-125">Click the **Add SQL Server** icon.</span></span>
+3. <span data-ttu-id="ea865-125">Kattintson a hello **SQL-kiszolgáló hozzáadása** ikonra.</span><span class="sxs-lookup"><span data-stu-id="ea865-125">Click hello **Add SQL Server** icon.</span></span>
    
     ![SQL Server hozzáadása][2]
-4. <span data-ttu-id="5e3b5-127">Töltse ki az összes mezőt a Connect to Server (Csatlakozás a kiszolgálóhoz) ablakban.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-127">Fill in the fields in the Connect to Server window.</span></span>
+4. <span data-ttu-id="ea865-127">Hello Connect tooServer ablakban hello mezők kitöltésével.</span><span class="sxs-lookup"><span data-stu-id="ea865-127">Fill in hello fields in hello Connect tooServer window.</span></span>
    
-    ![Csatlakozás kiszolgálóhoz][3]
+    ![Csatlakozás tooServer][3]
    
-   * <span data-ttu-id="5e3b5-129">**Kiszolgálónév**.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-129">**Server name**.</span></span> <span data-ttu-id="5e3b5-130">Adja meg a korábban azonosított **kiszolgálónevet**.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-130">Enter the **server name** previously identified.</span></span>
-   * <span data-ttu-id="5e3b5-131">**Hitelesítés**.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-131">**Authentication**.</span></span> <span data-ttu-id="5e3b5-132">Válassza az **SQL Server Authentication** (SQL Server-hitelesítés) vagy az **Active Directory Integrated Authentication** (Active Directory beépített hitelesítés) lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-132">Select **SQL Server Authentication** or **Active Directory Integrated Authentication**.</span></span>
-   * <span data-ttu-id="5e3b5-133">**Felhasználónév** és **Jelszó**.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-133">**User Name** and **Password**.</span></span> <span data-ttu-id="5e3b5-134">Amennyiben az SQL Server-hitelesítést választotta, adja meg felhasználónevét és jelszavát.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-134">Enter user name and password if SQL Server Authentication was selected above.</span></span>
-   * <span data-ttu-id="5e3b5-135">Kattintson a **Csatlakozás** gombra.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-135">Click **Connect**.</span></span>
-5. <span data-ttu-id="5e3b5-136">A részletes megtekintéshez bontsa ki az Azure SQL-kiszolgálót.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-136">To explore, expand your Azure SQL server.</span></span> <span data-ttu-id="5e3b5-137">Megtekintheti a kiszolgálóhoz társított adatbázisokat.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-137">You can view the databases associated with the server.</span></span> <span data-ttu-id="5e3b5-138">Bontsa ki az AdventureWorksDW elemet a mintaadatbázis tábláinak megtekintéséhez.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-138">Expand AdventureWorksDW to see the tables in your sample database.</span></span>
+   * <span data-ttu-id="ea865-129">**Kiszolgálónév**.</span><span class="sxs-lookup"><span data-stu-id="ea865-129">**Server name**.</span></span> <span data-ttu-id="ea865-130">Adja meg a hello **kiszolgálónév** korábban azonosított.</span><span class="sxs-lookup"><span data-stu-id="ea865-130">Enter hello **server name** previously identified.</span></span>
+   * <span data-ttu-id="ea865-131">**Hitelesítés**.</span><span class="sxs-lookup"><span data-stu-id="ea865-131">**Authentication**.</span></span> <span data-ttu-id="ea865-132">Válassza az **SQL Server Authentication** (SQL Server-hitelesítés) vagy az **Active Directory Integrated Authentication** (Active Directory beépített hitelesítés) lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="ea865-132">Select **SQL Server Authentication** or **Active Directory Integrated Authentication**.</span></span>
+   * <span data-ttu-id="ea865-133">**Felhasználónév** és **Jelszó**.</span><span class="sxs-lookup"><span data-stu-id="ea865-133">**User Name** and **Password**.</span></span> <span data-ttu-id="ea865-134">Amennyiben az SQL Server-hitelesítést választotta, adja meg felhasználónevét és jelszavát.</span><span class="sxs-lookup"><span data-stu-id="ea865-134">Enter user name and password if SQL Server Authentication was selected above.</span></span>
+   * <span data-ttu-id="ea865-135">Kattintson a **Connect** (Csatlakozás) gombra.</span><span class="sxs-lookup"><span data-stu-id="ea865-135">Click **Connect**.</span></span>
+5. <span data-ttu-id="ea865-136">tooexplore, bontsa ki az Azure SQL-kiszolgálót.</span><span class="sxs-lookup"><span data-stu-id="ea865-136">tooexplore, expand your Azure SQL server.</span></span> <span data-ttu-id="ea865-137">Hello kiszolgálóhoz társított hello adatbázisok tekintheti meg.</span><span class="sxs-lookup"><span data-stu-id="ea865-137">You can view hello databases associated with hello server.</span></span> <span data-ttu-id="ea865-138">Bontsa ki az AdventureWorksDW toosee hello táblák a mintaadatbázis.</span><span class="sxs-lookup"><span data-stu-id="ea865-138">Expand AdventureWorksDW toosee hello tables in your sample database.</span></span>
    
     ![Az AdventureWorksDW áttekintése][4]
 
-## <a name="2-run-a-sample-query"></a><span data-ttu-id="5e3b5-140">2. Mintalekérdezés futtatása</span><span class="sxs-lookup"><span data-stu-id="5e3b5-140">2. Run a sample query</span></span>
-<span data-ttu-id="5e3b5-141">Most, hogy létrejött a kapcsolat az adatbázissal, ideje lefuttatni egy lekérdezést.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-141">Now that a connection has been established to your database, let's write a query.</span></span>
+## <a name="2-run-a-sample-query"></a><span data-ttu-id="ea865-140">2. Mintalekérdezés futtatása</span><span class="sxs-lookup"><span data-stu-id="ea865-140">2. Run a sample query</span></span>
+<span data-ttu-id="ea865-141">Most, hogy a kapcsolat már meglévő tooyour adatbázis, ideje lefuttatni egy lekérdezést.</span><span class="sxs-lookup"><span data-stu-id="ea865-141">Now that a connection has been established tooyour database, let's write a query.</span></span>
 
-1. <span data-ttu-id="5e3b5-142">Kattintson a jobb gombbal az adatbázisára az SQL Server Object Explorer alatt.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-142">Right-click your database in SQL Server Object Explorer.</span></span>
-2. <span data-ttu-id="5e3b5-143">Válassza a **New Query** (Új lekérdezés) lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-143">Select **New Query**.</span></span> <span data-ttu-id="5e3b5-144">Megnyílik egy új lekérdezési ablak.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-144">A new query window opens.</span></span>
+1. <span data-ttu-id="ea865-142">Kattintson a jobb gombbal az adatbázisára az SQL Server Object Explorer alatt.</span><span class="sxs-lookup"><span data-stu-id="ea865-142">Right-click your database in SQL Server Object Explorer.</span></span>
+2. <span data-ttu-id="ea865-143">Válassza a **New Query** (Új lekérdezés) lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="ea865-143">Select **New Query**.</span></span> <span data-ttu-id="ea865-144">Megnyílik egy új lekérdezési ablak.</span><span class="sxs-lookup"><span data-stu-id="ea865-144">A new query window opens.</span></span>
    
     ![Új lekérdezés][5]
-3. <span data-ttu-id="5e3b5-146">Másolja be ezt a TSQL-lekérdezést a lekérdezési ablakba:</span><span class="sxs-lookup"><span data-stu-id="5e3b5-146">Copy this TSQL query into the query window:</span></span>
+3. <span data-ttu-id="ea865-146">Másolja a TSQL-lekérdezést hello lekérdezési ablakba:</span><span class="sxs-lookup"><span data-stu-id="ea865-146">Copy this TSQL query into hello query window:</span></span>
    
     ```sql
     SELECT COUNT(*) FROM dbo.FactInternetSales;
     ```
-4. <span data-ttu-id="5e3b5-147">Futtassa a lekérdezést.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-147">Run the query.</span></span> <span data-ttu-id="5e3b5-148">Ehhez kattintson a zöld nyílra, vagy használja a következő billentyűparancsot: `CTRL`+`SHIFT`+`E`.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-148">To do this, click the green arrow or use the following shortcut: `CTRL`+`SHIFT`+`E`.</span></span>
+4. <span data-ttu-id="ea865-147">Hello lekérdezés futtatása.</span><span class="sxs-lookup"><span data-stu-id="ea865-147">Run hello query.</span></span> <span data-ttu-id="ea865-148">toodo, hello zöld nyílra, vagy használja a következő helyi hello: `CTRL` + `SHIFT` + `E`.</span><span class="sxs-lookup"><span data-stu-id="ea865-148">toodo this, click hello green arrow or use hello following shortcut: `CTRL`+`SHIFT`+`E`.</span></span>
    
     ![A lekérdezés futtatása][6]
-5. <span data-ttu-id="5e3b5-150">Tekintse meg a lekérdezés eredményeit.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-150">Look at the query results.</span></span> <span data-ttu-id="5e3b5-151">Ebben a példában a FactInternetSales táblának 60 398 sora van.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-151">In this example, the FactInternetSales table has 60398 rows.</span></span>
+5. <span data-ttu-id="ea865-150">Tekintse meg hello lekérdezés eredményeit.</span><span class="sxs-lookup"><span data-stu-id="ea865-150">Look at hello query results.</span></span> <span data-ttu-id="ea865-151">Ebben a példában a hello FactInternetSales táblának 60 398 sora van.</span><span class="sxs-lookup"><span data-stu-id="ea865-151">In this example, hello FactInternetSales table has 60398 rows.</span></span>
    
     ![Lekérdezés eredményei][7]
 
-## <a name="next-steps"></a><span data-ttu-id="5e3b5-153">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="5e3b5-153">Next steps</span></span>
-<span data-ttu-id="5e3b5-154">Most, hogy képes csatlakozni és elvégezni a lekérdezéseket, próbálja [megjeleníteni az adatokat a PowerBI használatával][visualizing the data with PowerBI].</span><span class="sxs-lookup"><span data-stu-id="5e3b5-154">Now that you can connect and query, try [visualizing the data with PowerBI][visualizing the data with PowerBI].</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ea865-153">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="ea865-153">Next steps</span></span>
+<span data-ttu-id="ea865-154">Most, hogy kapcsolódási, és a lekérdezési, próbálja [megjeleníteni hello adatokat a powerbi-jal][visualizing hello data with PowerBI].</span><span class="sxs-lookup"><span data-stu-id="ea865-154">Now that you can connect and query, try [visualizing hello data with PowerBI][visualizing hello data with PowerBI].</span></span>
 
-<span data-ttu-id="5e3b5-155">A környezet Azure Active Directory-hitelesítésre történő konfigurálásával kapcsolatban tekintse meg az [SQL Data Warehouse-zal történő hitelesítést][Authenticate to SQL Data Warehouse] ismertető cikket.</span><span class="sxs-lookup"><span data-stu-id="5e3b5-155">To configure your environment for Azure Active Directory authentication, see [Authenticate to SQL Data Warehouse][Authenticate to SQL Data Warehouse].</span></span>
+<span data-ttu-id="ea865-155">tooconfigure a környezetet az Azure Active Directory-hitelesítés, lásd: [tooSQL adatraktár hitelesítéséhez][Authenticate tooSQL Data Warehouse].</span><span class="sxs-lookup"><span data-stu-id="ea865-155">tooconfigure your environment for Azure Active Directory authentication, see [Authenticate tooSQL Data Warehouse][Authenticate tooSQL Data Warehouse].</span></span>
 
 <!--Arcticles-->
-[Connect to SQL Data Warehouse]: sql-data-warehouse-connect-overview.md
+[Connect tooSQL Data Warehouse]: sql-data-warehouse-connect-overview.md
 [Create a SQL Data Warehouse]: sql-data-warehouse-get-started-provision.md
 [Installing Visual Studio and SSDT]: sql-data-warehouse-install-visual-studio.md
-[Authenticate to SQL Data Warehouse]: sql-data-warehouse-authentication.md
-[visualizing the data with PowerBI]: sql-data-warehouse-get-started-visualize-with-power-bi.md  
+[Authenticate tooSQL Data Warehouse]: sql-data-warehouse-authentication.md
+[visualizing hello data with PowerBI]: sql-data-warehouse-get-started-visualize-with-power-bi.md  
 
 <!--Other-->
 [Azure portal]: https://portal.azure.com

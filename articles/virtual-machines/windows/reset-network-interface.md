@@ -1,6 +1,6 @@
 ---
-title: "Hálózati kapcsolat visszaállítása az Azure virtuális gépekhez Windows |} Microsoft Docs"
-description: "Bemutatja, hogyan Azure Windows virtuális hálózati adapter alaphelyzetbe"
+title: "az Azure virtuális gépekhez Windows aaaHow tooreset hálózati illesztő |} Microsoft Docs"
+description: "Bemutatja, hogyan tooreset a hálózati kapcsolat az Azure virtuális gépekhez Windows"
 services: virtual-machines-windows, azure-resource-manager
 documentationcenter: 
 author: genlin
@@ -14,62 +14,62 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/26/2017
 ms.author: genli
-ms.openlocfilehash: 220e426be20086841854d89831f6c9d67529867f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1b653820927ef4c3bb8f384a7e752846a8be3da9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-reset-network-interface-for-azure-windows-vm"></a><span data-ttu-id="d11fd-103">Az Azure virtuális gépekhez Windows hálózati kapcsolat visszaállítása</span><span class="sxs-lookup"><span data-stu-id="d11fd-103">How to reset network interface for Azure Windows VM</span></span> 
+# <a name="how-tooreset-network-interface-for-azure-windows-vm"></a><span data-ttu-id="504c4-103">Hogyan tooreset a hálózati kapcsolat az Azure virtuális gépekhez Windows</span><span class="sxs-lookup"><span data-stu-id="504c4-103">How tooreset network interface for Azure Windows VM</span></span> 
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-<span data-ttu-id="d11fd-104">Nem lehet csatlakoztatni a Microsoft Azure Windows virtuális gép (VM) után tiltsa le az alapértelmezett hálózati illesztő (NIC), vagy manuálisan egy statikus IP-cím beállítása a hálózati adaptert.</span><span class="sxs-lookup"><span data-stu-id="d11fd-104">You cannot connect to Microsoft Azure Windows Virtual Machine (VM) after you disable the default Network Interface (NIC) or manually sets a static IP for the NIC.</span></span> <span data-ttu-id="d11fd-105">Ez a cikk bemutatja, hogyan alaphelyzetbe állítani a hálózati illesztő Azure Windows virtuális gép, amely a távoli kapcsolati probléma elhárítható.</span><span class="sxs-lookup"><span data-stu-id="d11fd-105">This article shows how to reset the network interface for Azure Windows VM, which will resolve the remote connection issue.</span></span>
+<span data-ttu-id="504c4-104">Hello alapértelmezett hálózati illesztő (NIC) letiltása után a tooMicrosoft Azure Windows virtuális gép (VM) nem tud csatlakozni, vagy manuálisan egy statikus IP-cím beállítása hello hálózati adaptert.</span><span class="sxs-lookup"><span data-stu-id="504c4-104">You cannot connect tooMicrosoft Azure Windows Virtual Machine (VM) after you disable hello default Network Interface (NIC) or manually sets a static IP for hello NIC.</span></span> <span data-ttu-id="504c4-105">Ez a cikk bemutatja, hogyan tooreset hello hello távoli kapcsolati probléma elhárítható Azure Windows virtuális hálózati adapter.</span><span class="sxs-lookup"><span data-stu-id="504c4-105">This article shows how tooreset hello network interface for Azure Windows VM, which will resolve hello remote connection issue.</span></span>
 
 [!INCLUDE [support-disclaimer](../../../includes/support-disclaimer.md)]
-## <a name="reset-network-interface"></a><span data-ttu-id="d11fd-106">Hálózati adapter alaphelyzetbe állítása</span><span class="sxs-lookup"><span data-stu-id="d11fd-106">Reset network interface</span></span>
+## <a name="reset-network-interface"></a><span data-ttu-id="504c4-106">Hálózati adapter alaphelyzetbe állítása</span><span class="sxs-lookup"><span data-stu-id="504c4-106">Reset network interface</span></span>
 
-### <a name="for-classic-vms"></a><span data-ttu-id="d11fd-107">Klasszikus virtuális gépekhez</span><span class="sxs-lookup"><span data-stu-id="d11fd-107">For Classic VMs</span></span>
+### <a name="for-classic-vms"></a><span data-ttu-id="504c4-107">Klasszikus virtuális gépekhez</span><span class="sxs-lookup"><span data-stu-id="504c4-107">For Classic VMs</span></span>
 
-<span data-ttu-id="d11fd-108">Hálózati illesztő visszaállításához kövesse az alábbi lépéseket:</span><span class="sxs-lookup"><span data-stu-id="d11fd-108">To reset network interface, follow these steps:</span></span>
+<span data-ttu-id="504c4-108">tooreset hálózati csatoló, kövesse az alábbi lépéseket:</span><span class="sxs-lookup"><span data-stu-id="504c4-108">tooreset network interface, follow these steps:</span></span>
 
-1.  <span data-ttu-id="d11fd-109">Nyissa meg az [Azure Portal]( https://ms.portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="d11fd-109">Go to the [Azure portal]( https://ms.portal.azure.com).</span></span>
-2.  <span data-ttu-id="d11fd-110">Válassza ki **virtuális gépek (klasszikus)**.</span><span class="sxs-lookup"><span data-stu-id="d11fd-110">Select **Virtual Machines (Classic)**.</span></span>
-3.  <span data-ttu-id="d11fd-111">Válassza ki az érintett virtuális gépet.</span><span class="sxs-lookup"><span data-stu-id="d11fd-111">Select the affected Virtual Machine.</span></span>
-4.  <span data-ttu-id="d11fd-112">Válassza ki **IP-címek**.</span><span class="sxs-lookup"><span data-stu-id="d11fd-112">Select **IP addresses**.</span></span>
-5.  <span data-ttu-id="d11fd-113">Ha a **privát IP-hozzárendelés** nem **statikus**, módosítsa úgy, hogy **statikus**.</span><span class="sxs-lookup"><span data-stu-id="d11fd-113">If the **Private IP assignment**  is not  **Static**, change it to **Static**.</span></span>
-6.  <span data-ttu-id="d11fd-114">Módosítsa a **IP-cím** egy másik, elérhető az alhálózat IP-címre.</span><span class="sxs-lookup"><span data-stu-id="d11fd-114">Change the **IP address** to another IP address that is available in the Subnet.</span></span>
-7.  <span data-ttu-id="d11fd-115">A mentés kiválasztása.</span><span class="sxs-lookup"><span data-stu-id="d11fd-115">Select Save.</span></span>
-8.  <span data-ttu-id="d11fd-116">A virtuális gép újraindul, a rendszer az új hálózati inicializálása.</span><span class="sxs-lookup"><span data-stu-id="d11fd-116">The virtual machine will restart to initialize the new NIC to the system.</span></span>
-9.  <span data-ttu-id="d11fd-117">Próbálja meg az RDP a számítógépen.</span><span class="sxs-lookup"><span data-stu-id="d11fd-117">Try to RDP to your machine.</span></span> <span data-ttu-id="d11fd-118">Ha sikeres, módosíthatja a magánhálózati IP-cím vissza az eredeti Ha szeretné.</span><span class="sxs-lookup"><span data-stu-id="d11fd-118">If successful, you can change the Private IP address back to the original if you would like.</span></span> <span data-ttu-id="d11fd-119">Ellenkező esetben beállíthatja, hogy azt.</span><span class="sxs-lookup"><span data-stu-id="d11fd-119">Otherwise, you can keep it.</span></span> 
+1.  <span data-ttu-id="504c4-109">Nyissa meg toohello [Azure-portálon]( https://ms.portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="504c4-109">Go toohello [Azure portal]( https://ms.portal.azure.com).</span></span>
+2.  <span data-ttu-id="504c4-110">Válassza ki **virtuális gépek (klasszikus)**.</span><span class="sxs-lookup"><span data-stu-id="504c4-110">Select **Virtual Machines (Classic)**.</span></span>
+3.  <span data-ttu-id="504c4-111">Jelölje be hello hatással a virtuális gép.</span><span class="sxs-lookup"><span data-stu-id="504c4-111">Select hello affected Virtual Machine.</span></span>
+4.  <span data-ttu-id="504c4-112">Válassza ki **IP-címek**.</span><span class="sxs-lookup"><span data-stu-id="504c4-112">Select **IP addresses**.</span></span>
+5.  <span data-ttu-id="504c4-113">Ha hello **privát IP-hozzárendelés** nem **statikus**, túl megváltoztatnia**statikus**.</span><span class="sxs-lookup"><span data-stu-id="504c4-113">If hello **Private IP assignment**  is not  **Static**, change it too**Static**.</span></span>
+6.  <span data-ttu-id="504c4-114">Változás hello **IP-cím** hello alhálózat elérhető IP-cím tooanother.</span><span class="sxs-lookup"><span data-stu-id="504c4-114">Change hello **IP address** tooanother IP address that is available in hello Subnet.</span></span>
+7.  <span data-ttu-id="504c4-115">A mentés kiválasztása.</span><span class="sxs-lookup"><span data-stu-id="504c4-115">Select Save.</span></span>
+8.  <span data-ttu-id="504c4-116">virtuális gép hello tooinitialize hello új hálózati toohello rendszer újraindul.</span><span class="sxs-lookup"><span data-stu-id="504c4-116">hello virtual machine will restart tooinitialize hello new NIC toohello system.</span></span>
+9.  <span data-ttu-id="504c4-117">Próbálja meg tooRDP tooyour gép.</span><span class="sxs-lookup"><span data-stu-id="504c4-117">Try tooRDP tooyour machine.</span></span> <span data-ttu-id="504c4-118">Ha sikeres, hello magán IP cím hátsó toohello eredeti módosíthatja, ha azt szeretné.</span><span class="sxs-lookup"><span data-stu-id="504c4-118">If successful, you can change hello Private IP address back toohello original if you would like.</span></span> <span data-ttu-id="504c4-119">Ellenkező esetben beállíthatja, hogy azt.</span><span class="sxs-lookup"><span data-stu-id="504c4-119">Otherwise, you can keep it.</span></span> 
 
-### <a name="for-vms-deployed-in-resource-group-model"></a><span data-ttu-id="d11fd-120">Erőforrás csoport modellben telepített virtuális gépek</span><span class="sxs-lookup"><span data-stu-id="d11fd-120">For VMs deployed in Resource group model</span></span>
+### <a name="for-vms-deployed-in-resource-group-model"></a><span data-ttu-id="504c4-120">Erőforrás csoport modellben telepített virtuális gépek</span><span class="sxs-lookup"><span data-stu-id="504c4-120">For VMs deployed in Resource group model</span></span>
 
-1.  <span data-ttu-id="d11fd-121">Nyissa meg az [Azure Portal]( https://ms.portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="d11fd-121">Go to the [Azure portal]( https://ms.portal.azure.com).</span></span>
-2.  <span data-ttu-id="d11fd-122">Válassza ki az érintett virtuális gépet.</span><span class="sxs-lookup"><span data-stu-id="d11fd-122">Select the affected Virtual Machine.</span></span>
-3.  <span data-ttu-id="d11fd-123">Válassza ki **hálózati illesztőt**.</span><span class="sxs-lookup"><span data-stu-id="d11fd-123">Select **Network Interfaces**.</span></span>
-4.  <span data-ttu-id="d11fd-124">Válassza ki a géphez társított hálózati illesztőt</span><span class="sxs-lookup"><span data-stu-id="d11fd-124">Select the Network Interface associated with your machine</span></span>
-5.  <span data-ttu-id="d11fd-125">Válassza ki **IP-konfigurációk**.</span><span class="sxs-lookup"><span data-stu-id="d11fd-125">Select **IP configurations**.</span></span>
-6.  <span data-ttu-id="d11fd-126">Válassza ki az IP-cím.</span><span class="sxs-lookup"><span data-stu-id="d11fd-126">Select the IP.</span></span> 
-7.  <span data-ttu-id="d11fd-127">Ha a **privát IP-hozzárendelés** nem **statikus**, módosítsa úgy, hogy **statikus**.</span><span class="sxs-lookup"><span data-stu-id="d11fd-127">If the **Private IP assignment**  is not  **Static**, change it to **Static**.</span></span>
-8.  <span data-ttu-id="d11fd-128">Módosítsa a **IP-cím** egy másik, elérhető az alhálózat IP-címre.</span><span class="sxs-lookup"><span data-stu-id="d11fd-128">Change the **IP address** to another IP address that is available in the Subnet.</span></span>
-9. <span data-ttu-id="d11fd-129">A virtuális gép újraindul, a rendszer az új hálózati inicializálása.</span><span class="sxs-lookup"><span data-stu-id="d11fd-129">The virtual machine will restart to initialize the new NIC to the system.</span></span>
-10. <span data-ttu-id="d11fd-130">Próbálja meg az RDP a számítógépen.</span><span class="sxs-lookup"><span data-stu-id="d11fd-130">Try to RDP to your machine.</span></span> <span data-ttu-id="d11fd-131">Ha sikeres, módosíthatja a magánhálózati IP-cím vissza az eredeti Ha szeretné.</span><span class="sxs-lookup"><span data-stu-id="d11fd-131">If successful, you can change the Private IP address back to the original if you would like.</span></span> <span data-ttu-id="d11fd-132">Ellenkező esetben beállíthatja, hogy azt.</span><span class="sxs-lookup"><span data-stu-id="d11fd-132">Otherwise, you can keep it.</span></span> 
+1.  <span data-ttu-id="504c4-121">Nyissa meg toohello [Azure-portálon]( https://ms.portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="504c4-121">Go toohello [Azure portal]( https://ms.portal.azure.com).</span></span>
+2.  <span data-ttu-id="504c4-122">Jelölje be hello hatással a virtuális gép.</span><span class="sxs-lookup"><span data-stu-id="504c4-122">Select hello affected Virtual Machine.</span></span>
+3.  <span data-ttu-id="504c4-123">Válassza ki **hálózati illesztőt**.</span><span class="sxs-lookup"><span data-stu-id="504c4-123">Select **Network Interfaces**.</span></span>
+4.  <span data-ttu-id="504c4-124">Válassza ki a géphez tartozó hálózati illesztőt hello</span><span class="sxs-lookup"><span data-stu-id="504c4-124">Select hello Network Interface associated with your machine</span></span>
+5.  <span data-ttu-id="504c4-125">Válassza ki **IP-konfigurációk**.</span><span class="sxs-lookup"><span data-stu-id="504c4-125">Select **IP configurations**.</span></span>
+6.  <span data-ttu-id="504c4-126">Jelölje be hello IP-címet.</span><span class="sxs-lookup"><span data-stu-id="504c4-126">Select hello IP.</span></span> 
+7.  <span data-ttu-id="504c4-127">Ha hello **privát IP-hozzárendelés** nem **statikus**, túl megváltoztatnia**statikus**.</span><span class="sxs-lookup"><span data-stu-id="504c4-127">If hello **Private IP assignment**  is not  **Static**, change it too**Static**.</span></span>
+8.  <span data-ttu-id="504c4-128">Változás hello **IP-cím** hello alhálózat elérhető IP-cím tooanother.</span><span class="sxs-lookup"><span data-stu-id="504c4-128">Change hello **IP address** tooanother IP address that is available in hello Subnet.</span></span>
+9. <span data-ttu-id="504c4-129">virtuális gép hello tooinitialize hello új hálózati toohello rendszer újraindul.</span><span class="sxs-lookup"><span data-stu-id="504c4-129">hello virtual machine will restart tooinitialize hello new NIC toohello system.</span></span>
+10. <span data-ttu-id="504c4-130">Próbálja meg tooRDP tooyour gép.</span><span class="sxs-lookup"><span data-stu-id="504c4-130">Try tooRDP tooyour machine.</span></span> <span data-ttu-id="504c4-131">Ha sikeres, hello magán IP cím hátsó toohello eredeti módosíthatja, ha azt szeretné.</span><span class="sxs-lookup"><span data-stu-id="504c4-131">If successful, you can change hello Private IP address back toohello original if you would like.</span></span> <span data-ttu-id="504c4-132">Ellenkező esetben beállíthatja, hogy azt.</span><span class="sxs-lookup"><span data-stu-id="504c4-132">Otherwise, you can keep it.</span></span> 
 
-## <a name="delete-the-unavailable-nics"></a><span data-ttu-id="d11fd-133">Az elérhető hálózati adapterek törlése</span><span class="sxs-lookup"><span data-stu-id="d11fd-133">Delete the unavailable NICs</span></span>
-<span data-ttu-id="d11fd-134">Után is a távoli asztal a géphez, törölnie kell a régi hálózati adaptert a potenciális problémák elkerülése érdekében:</span><span class="sxs-lookup"><span data-stu-id="d11fd-134">After you can remote desktop to the machine, you must delete the old NICs to avoid the potential problem:</span></span>
+## <a name="delete-hello-unavailable-nics"></a><span data-ttu-id="504c4-133">Törlés hello nem érhető el a hálózati adapterek</span><span class="sxs-lookup"><span data-stu-id="504c4-133">Delete hello unavailable NICs</span></span>
+<span data-ttu-id="504c4-134">Után is távoli asztali toohello géphez, törölnie kell az hello régi hálózati adapterek tooavoid hello lehetséges problémát:</span><span class="sxs-lookup"><span data-stu-id="504c4-134">After you can remote desktop toohello machine, you must delete hello old NICs tooavoid hello potential problem:</span></span>
 
-1.  <span data-ttu-id="d11fd-135">Nyissa meg az Eszközkezelőben.</span><span class="sxs-lookup"><span data-stu-id="d11fd-135">Open Device Manager.</span></span>
-2.  <span data-ttu-id="d11fd-136">Válassza ki **nézet** > **rejtett eszközök megjelenítése**.</span><span class="sxs-lookup"><span data-stu-id="d11fd-136">Select **View** > **Show hidden devices**.</span></span>
-3.  <span data-ttu-id="d11fd-137">Válassza ki **hálózati adapterek**.</span><span class="sxs-lookup"><span data-stu-id="d11fd-137">Select **Network Adapters**.</span></span> 
-4.  <span data-ttu-id="d11fd-138">Ellenőrizze, hogy az adapterek, mint a "Microsoft Hyper-V hálózati Adapter" nevű.</span><span class="sxs-lookup"><span data-stu-id="d11fd-138">Check for the adapters named as "Microsoft Hyper-V Network Adapter".</span></span>
-5.  <span data-ttu-id="d11fd-139">Láthatja, hogy az nem érhető el adapter, amely szürkén jelenik meg.</span><span class="sxs-lookup"><span data-stu-id="d11fd-139">You might see an unavailable adapter that is grayed out.</span></span> <span data-ttu-id="d11fd-140">Kattintson a jobb gombbal az adaptert, és válassza az eltávolítás.</span><span class="sxs-lookup"><span data-stu-id="d11fd-140">Right-click the adapter and then select Uninstall.</span></span>
+1.  <span data-ttu-id="504c4-135">Nyissa meg az Eszközkezelőben.</span><span class="sxs-lookup"><span data-stu-id="504c4-135">Open Device Manager.</span></span>
+2.  <span data-ttu-id="504c4-136">Válassza ki **nézet** > **rejtett eszközök megjelenítése**.</span><span class="sxs-lookup"><span data-stu-id="504c4-136">Select **View** > **Show hidden devices**.</span></span>
+3.  <span data-ttu-id="504c4-137">Válassza ki **hálózati adapterek**.</span><span class="sxs-lookup"><span data-stu-id="504c4-137">Select **Network Adapters**.</span></span> 
+4.  <span data-ttu-id="504c4-138">Ellenőrizze, mint a "Microsoft Hyper-V hálózati Adapter" nevű hello adapterek.</span><span class="sxs-lookup"><span data-stu-id="504c4-138">Check for hello adapters named as "Microsoft Hyper-V Network Adapter".</span></span>
+5.  <span data-ttu-id="504c4-139">Láthatja, hogy az nem érhető el adapter, amely szürkén jelenik meg. Kattintson a jobb gombbal a hello adapter, és válassza az eltávolítás.</span><span class="sxs-lookup"><span data-stu-id="504c4-139">You might see an unavailable adapter that is grayed out. Right-click hello adapter and then select Uninstall.</span></span>
 
-    ![a hálózati adapter képe](media/reset-network-interface/nicpage.png)
+    ![a hálózati adapter hello hello képe](media/reset-network-interface/nicpage.png)
 
     > [!NOTE]
-    > <span data-ttu-id="d11fd-142">Csak távolítsa el a "Microsoft Hyper-V hálózati Adapter" nevű nem érhető el adaptereket.</span><span class="sxs-lookup"><span data-stu-id="d11fd-142">Only uninstall the unavailable adapters that have the name "Microsoft Hyper-V Network Adapter".</span></span> <span data-ttu-id="d11fd-143">Ha bármelyik más rejtett adapter távolítja el, további problémákat okozhat.</span><span class="sxs-lookup"><span data-stu-id="d11fd-143">If you uninstall any of the other hidden adapters, it could cause additional issues.</span></span>
+    > <span data-ttu-id="504c4-141">Csak eltávolítása nem érhető el adapterek hello hello neve "Microsoft Hyper-V hálózati Adapter" használatát.</span><span class="sxs-lookup"><span data-stu-id="504c4-141">Only uninstall hello unavailable adapters that have hello name "Microsoft Hyper-V Network Adapter".</span></span> <span data-ttu-id="504c4-142">Ha eltávolítja a hello bármely más rejtett adapterek, akkor további problémák.</span><span class="sxs-lookup"><span data-stu-id="504c4-142">If you uninstall any of hello other hidden adapters, it could cause additional issues.</span></span>
     >
     >
 
-6.  <span data-ttu-id="d11fd-144">Most már nem érhető el az összes adapter jelölését törölje a rendszerből.</span><span class="sxs-lookup"><span data-stu-id="d11fd-144">Now all unavailable adapter should be cleared out from your system.</span></span>
+6.  <span data-ttu-id="504c4-143">Most már nem érhető el az összes adapter jelölését törölje a rendszerből.</span><span class="sxs-lookup"><span data-stu-id="504c4-143">Now all unavailable adapter should be cleared out from your system.</span></span>

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure CLI-parancsfájlt minta - hozhat létre egy felügyelt lemezt a tárfiók ugyanahhoz az előfizetéshez a VHD-fájl |} Microsoft Docs"
-description: "Az Azure CLI-parancsfájlt minta - hozhat létre egy felügyelt lemezt a tárfiók ugyanahhoz az előfizetéshez a VHD-fájl"
+title: "aaaAzure CLI parancsfájl minta - hozhat létre egy felügyelt lemezt egy VHD-fájlt a hello tárfiókokban ugyanahhoz az előfizetéshez |} Microsoft Docs"
+description: "Az Azure CLI-parancsfájlt minta - hozhat létre egy felügyelt lemezt egy VHD-fájlt a hello tárfiókokban ugyanahhoz az előfizetéshez"
 services: virtual-machines-linux
 documentationcenter: storage
 author: ramankumarlive
@@ -15,38 +15,38 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: ramankum
-ms.openlocfilehash: 5022ca23ac2c2e515a9b80d44b1221f3c05fecb1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1e792fdbb7daea92bf6a6589a5d8aab5b9b5a670
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-managed-disk-from-a-vhd-file-in-a-storage-account-in-the-same-subscription-with-cli"></a><span data-ttu-id="64b3a-103">Hozhat létre egy felügyelt lemezt a tárfiók ugyanahhoz az előfizetéshez a parancssori felület a VHD-fájl</span><span class="sxs-lookup"><span data-stu-id="64b3a-103">Create a managed disk from a VHD file in a storage account in the same subscription with CLI</span></span>
+# <a name="create-a-managed-disk-from-a-vhd-file-in-a-storage-account-in-hello-same-subscription-with-cli"></a><span data-ttu-id="16b97-103">Felügyelt lemezes tárfiókokban hello a VHD-fájl létrehozása a parancssori felület ugyanahhoz az előfizetéshez</span><span class="sxs-lookup"><span data-stu-id="16b97-103">Create a managed disk from a VHD file in a storage account in hello same subscription with CLI</span></span>
 
-<span data-ttu-id="64b3a-104">Ez a parancsfájl egy felügyelt lemezt a tárfiók ugyanahhoz az előfizetéshez a VHD-fájl hoz létre.</span><span class="sxs-lookup"><span data-stu-id="64b3a-104">This script creates a managed disk from a VHD file in a storage account in the same subscription.</span></span> <span data-ttu-id="64b3a-105">Ezen parancsfájl segítségével importálja a speciális (nem általánosított/Sysprep használatával előkészített) felügyelt operációsrendszer-lemez VHD-egy virtuális gép létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="64b3a-105">Use this script to import a specialized (not generalized/sysprepped) VHD to managed OS disk to create a virtual machine.</span></span> <span data-ttu-id="64b3a-106">Másik lehetőségként az adatimportálás egy virtuális merevlemez felügyelt adatok lemezre.</span><span class="sxs-lookup"><span data-stu-id="64b3a-106">Or, use it to import a data VHD to managed data disk.</span></span> 
+<span data-ttu-id="16b97-104">Ezt a parancsfájlt hoz létre egy felügyelt lemezes egy VHD-fájlt a hello tárfiókokban ugyanahhoz az előfizetéshez.</span><span class="sxs-lookup"><span data-stu-id="16b97-104">This script creates a managed disk from a VHD file in a storage account in hello same subscription.</span></span> <span data-ttu-id="16b97-105">A parancsfájl tooimport egy speciális (nem általánosított/Sysprep használatával előkészített) VHD toomanaged OS lemez toocreate egy virtuális gép használja.</span><span class="sxs-lookup"><span data-stu-id="16b97-105">Use this script tooimport a specialized (not generalized/sysprepped) VHD toomanaged OS disk toocreate a virtual machine.</span></span> <span data-ttu-id="16b97-106">Másik lehetőségként azt tooimport VHD toomanaged adatlemezt.</span><span class="sxs-lookup"><span data-stu-id="16b97-106">Or, use it tooimport a data VHD toomanaged data disk.</span></span> 
 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="sample-script"></a><span data-ttu-id="64b3a-107">Mintaparancsfájl</span><span class="sxs-lookup"><span data-stu-id="64b3a-107">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="16b97-107">Mintaparancsfájl</span><span class="sxs-lookup"><span data-stu-id="16b97-107">Sample script</span></span>
 
-<span data-ttu-id="64b3a-108">[!code-azurecli[fő](../../../cli_scripts/storage/create-managed-data-disks-from-vhd/create-managed-data-disks-from-vhd.sh "létrehozás felügyelt lemezes virtuális merevlemezből")]</span><span class="sxs-lookup"><span data-stu-id="64b3a-108">[!code-azurecli[main](../../../cli_scripts/storage/create-managed-data-disks-from-vhd/create-managed-data-disks-from-vhd.sh "Create managed disk from VHD")]</span></span>
+[!code-azurecli[main](../../../cli_scripts/storage/create-managed-data-disks-from-vhd/create-managed-data-disks-from-vhd.sh "Create managed disk from VHD")]
 
 
-## <a name="script-explanation"></a><span data-ttu-id="64b3a-109">Parancsfájl ismertetése</span><span class="sxs-lookup"><span data-stu-id="64b3a-109">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="16b97-108">Parancsfájl ismertetése</span><span class="sxs-lookup"><span data-stu-id="16b97-108">Script explanation</span></span>
 
-<span data-ttu-id="64b3a-110">A parancsfájl a következő parancsok hozhat létre egy felügyelt lemezt egy virtuális Merevlemezt.</span><span class="sxs-lookup"><span data-stu-id="64b3a-110">This script uses following commands to create a managed disk from a VHD.</span></span> <span data-ttu-id="64b3a-111">Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.</span><span class="sxs-lookup"><span data-stu-id="64b3a-111">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="16b97-109">A parancsfájl a következő parancsok toocreate felügyelt lemezes olyan virtuális merevlemezről.</span><span class="sxs-lookup"><span data-stu-id="16b97-109">This script uses following commands toocreate a managed disk from a VHD.</span></span> <span data-ttu-id="16b97-110">Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.</span><span class="sxs-lookup"><span data-stu-id="16b97-110">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="64b3a-112">Parancs</span><span class="sxs-lookup"><span data-stu-id="64b3a-112">Command</span></span> | <span data-ttu-id="64b3a-113">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="64b3a-113">Notes</span></span> |
+| <span data-ttu-id="16b97-111">Parancs</span><span class="sxs-lookup"><span data-stu-id="16b97-111">Command</span></span> | <span data-ttu-id="16b97-112">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="16b97-112">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="64b3a-114">az lemez létrehozása</span><span class="sxs-lookup"><span data-stu-id="64b3a-114">az disk create</span></span>](https://docs.microsoft.com/cli/azure/disk#create) | <span data-ttu-id="64b3a-115">A virtuális merevlemez URI használatát a tárfiók ugyanahhoz az előfizetéshez felügyelt lemezt hozott létre</span><span class="sxs-lookup"><span data-stu-id="64b3a-115">Creates a managed disk using URI of a VHD in a storage account in the same subscription</span></span> |
+| [<span data-ttu-id="16b97-113">az lemez létrehozása</span><span class="sxs-lookup"><span data-stu-id="16b97-113">az disk create</span></span>](https://docs.microsoft.com/cli/azure/disk#create) | <span data-ttu-id="16b97-114">Létrehoz egy virtuális merevlemez URI használatát a tárfiókokat hello felügyelt lemezes ugyanahhoz az előfizetéshez</span><span class="sxs-lookup"><span data-stu-id="16b97-114">Creates a managed disk using URI of a VHD in a storage account in hello same subscription</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="64b3a-116">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="64b3a-116">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="16b97-115">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="16b97-115">Next steps</span></span>
 
-[<span data-ttu-id="64b3a-117">Virtuális gép létrehozása az operációs rendszer lemezeként felügyelt lemezes csatolásával</span><span class="sxs-lookup"><span data-stu-id="64b3a-117">Create a virtual machine by attaching a managed disk as OS disk</span></span>](./../../virtual-machines/scripts/virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fcli%2fmodule%2ftoc.json)
+[<span data-ttu-id="16b97-116">Virtuális gép létrehozása az operációs rendszer lemezeként felügyelt lemezes csatolásával</span><span class="sxs-lookup"><span data-stu-id="16b97-116">Create a virtual machine by attaching a managed disk as OS disk</span></span>](./../../virtual-machines/scripts/virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fcli%2fmodule%2ftoc.json)
 
-<span data-ttu-id="64b3a-118">További információ az Azure parancssori felület: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="64b3a-118">For more information on the Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
+<span data-ttu-id="16b97-117">Az Azure CLI hello további információkért lásd: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="16b97-117">For more information on hello Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
 
-<span data-ttu-id="64b3a-119">További virtuális gép és a felügyelt lemezek CLI parancsfájl minták megtalálhatók a [Azure Linux virtuális dokumentációját](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="64b3a-119">Additional virtual machine and managed disks CLI script samples can be found in the [Azure Linux VM documentation](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+<span data-ttu-id="16b97-118">További virtuális gép és a felügyelt lemezek CLI parancsfájl minták található hello [Azure Linux virtuális dokumentációját](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="16b97-118">Additional virtual machine and managed disks CLI script samples can be found in hello [Azure Linux VM documentation](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>

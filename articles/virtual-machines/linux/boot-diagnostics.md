@@ -1,6 +1,6 @@
 ---
-title: "Rendszerindítási diagnosztika a Linux virtuális gépek Azure-ban |} Microsoft Doc"
-description: "A Linux virtuális gépek Azure-ban két hibakeresési funkcióinak áttekintése"
+title: "a Linux virtuális gépek Azure-ban aaaBoot diagnosztika |} Microsoft Doc"
+description: "Hello két hibakeresési funkcióinak a Linux virtuális gépek Azure-ban áttekintése"
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
 author: Deland-Han
@@ -15,44 +15,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: delhan
-ms.openlocfilehash: 70254d39b5c6326166f7e29fdfc99533835502f9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d355d512de09d2f1d7a2718e3db3fb99c9dd9e24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-boot-diagnostics-to-troubleshoot-linux-virtual-machines-in-azure"></a><span data-ttu-id="18dcf-103">Rendszerindítási diagnosztika használata a Linux virtuális gépek Azure-ban hibaelhárítása</span><span class="sxs-lookup"><span data-stu-id="18dcf-103">How to use boot diagnostics to troubleshoot Linux virtual machines in Azure</span></span>
+# <a name="how-toouse-boot-diagnostics-tootroubleshoot-linux-virtual-machines-in-azure"></a><span data-ttu-id="b5659-103">Hogyan toouse rendszerindítási diagnosztika tootroubleshoot Linux virtuális gépek Azure</span><span class="sxs-lookup"><span data-stu-id="b5659-103">How toouse boot diagnostics tootroubleshoot Linux virtual machines in Azure</span></span>
 
-<span data-ttu-id="18dcf-104">Mostantól két hibakereső szolgáltatás is elérhető az Azure-ban: konzolkimenet és képernyőkép is támogatott az Azure virtuális gépeken a Resource Manager-alapú üzemi modellben.</span><span class="sxs-lookup"><span data-stu-id="18dcf-104">Support for two debugging features is now available in Azure: Console Output and Screenshot support for Azure Virtual Machines Resource Manager deployment model.</span></span> 
+<span data-ttu-id="b5659-104">Mostantól két hibakereső szolgáltatás is elérhető az Azure-ban: konzolkimenet és képernyőkép is támogatott az Azure virtuális gépeken a Resource Manager-alapú üzemi modellben.</span><span class="sxs-lookup"><span data-stu-id="b5659-104">Support for two debugging features is now available in Azure: Console Output and Screenshot support for Azure Virtual Machines Resource Manager deployment model.</span></span> 
 
-<span data-ttu-id="18dcf-105">Amikor a saját rendszerképét használja az Azure-ban, vagy valamelyik platform rendszerképét indítja, számos oka lehet annak, hogy egy virtuális gép rendszerindításra képtelen állapotba kerül.</span><span class="sxs-lookup"><span data-stu-id="18dcf-105">When bringing your own image to Azure or even booting one of the platform images, there can be many reasons why a Virtual Machine gets into a non-bootable state.</span></span> <span data-ttu-id="18dcf-106">Ezekkel a szolgáltatásokkal könnyedén diagnosztizálhatja és helyreállíthatja a virtuális gépeket a rendszerindítási hibák után.</span><span class="sxs-lookup"><span data-stu-id="18dcf-106">These features enable you to easily diagnose and recover your Virtual Machines from boot failures.</span></span>
+<span data-ttu-id="b5659-105">Amikor a saját kép tooAzure vagy hello platform képek is rendszerindítás egyike, miért egy virtuális gép nem indítható állapotba lekérdezi számos oka lehet.</span><span class="sxs-lookup"><span data-stu-id="b5659-105">When bringing your own image tooAzure or even booting one of hello platform images, there can be many reasons why a Virtual Machine gets into a non-bootable state.</span></span> <span data-ttu-id="b5659-106">E szolgáltatások engedélyezése meg tooeasily diagnosztizálhatja és a virtuális gépek helyreállítás rendszerindítási hibák esetén.</span><span class="sxs-lookup"><span data-stu-id="b5659-106">These features enable you tooeasily diagnose and recover your Virtual Machines from boot failures.</span></span>
 
-<span data-ttu-id="18dcf-107">Linux virtuális gépek esetén a konzol naplófájljának kimenetét egyszerűen megtekintheti a Portalon:</span><span class="sxs-lookup"><span data-stu-id="18dcf-107">For Linux Virtual Machines, you can easily view the output of your console log from the Portal:</span></span>
+<span data-ttu-id="b5659-107">A Linux virtuális gépek megtekintéséhez a konzol napló, a portál hello hello kimeneti:</span><span class="sxs-lookup"><span data-stu-id="b5659-107">For Linux Virtual Machines, you can easily view hello output of your console log from hello Portal:</span></span>
 
 ![Azure Portal](./media/boot-diagnostics/screenshot1.png)
  
-<span data-ttu-id="18dcf-109">Azonban az Azure Windows és Linux virtuális gépeken is lehetővé teszi, hogy megtekintsen egy képernyőképet a virtuális gépről a hipervizortól:</span><span class="sxs-lookup"><span data-stu-id="18dcf-109">However, for both Windows and Linux Virtual Machines, Azure also enables you to see a screenshot of the VM from the hypervisor:</span></span>
+<span data-ttu-id="b5659-109">Azonban a Windows és Linux rendszerű virtuális gépek Azure is lehetővé teszi, hogy egy képernyőfelvétel a hello VM hello hipervizorról toosee:</span><span class="sxs-lookup"><span data-stu-id="b5659-109">However, for both Windows and Linux Virtual Machines, Azure also enables you toosee a screenshot of hello VM from hello hypervisor:</span></span>
 
 ![Hiba](./media/boot-diagnostics/screenshot2.png)
 
-<span data-ttu-id="18dcf-111">Mindkét szolgáltatás támogatott az Azure virtuális gépeken minden régióban.</span><span class="sxs-lookup"><span data-stu-id="18dcf-111">Both of these features are supported for Azure Virtual Machines in all regions.</span></span> <span data-ttu-id="18dcf-112">Ne feledje, akár 10 percet is igénybe vehet, hogy a képernyőképek és a kimenet megjelenjen a tárfiókjában.</span><span class="sxs-lookup"><span data-stu-id="18dcf-112">Note, screenshots, and output can take up to 10 minutes to appear in your storage account.</span></span>
+<span data-ttu-id="b5659-111">Mindkét szolgáltatás támogatott az Azure virtuális gépeken minden régióban.</span><span class="sxs-lookup"><span data-stu-id="b5659-111">Both of these features are supported for Azure Virtual Machines in all regions.</span></span> <span data-ttu-id="b5659-112">Vegye figyelembe, a pillanatképek és a kimeneti too10 perc tooappear a tárfiókban lévő is eltarthat.</span><span class="sxs-lookup"><span data-stu-id="b5659-112">Note, screenshots, and output can take up too10 minutes tooappear in your storage account.</span></span>
 
-## <a name="common-boot-errors"></a><span data-ttu-id="18dcf-113">Gyakori rendszerindítási hibák</span><span class="sxs-lookup"><span data-stu-id="18dcf-113">Common boot errors</span></span>
+## <a name="common-boot-errors"></a><span data-ttu-id="b5659-113">Gyakori rendszerindítási hibák</span><span class="sxs-lookup"><span data-stu-id="b5659-113">Common boot errors</span></span>
 
-- [<span data-ttu-id="18dcf-114">Kapcsolatos problémák</span><span class="sxs-lookup"><span data-stu-id="18dcf-114">File system issues</span></span>](https://blogs.msdn.microsoft.com/linuxonazure/2016/09/13/linux-recovery-cannot-ssh-to-linux-vm-due-to-file-system-errors-fsck-inodes/)
-- [<span data-ttu-id="18dcf-115">Kernel-problémák</span><span class="sxs-lookup"><span data-stu-id="18dcf-115">Kernel Issues</span></span>](https://blogs.msdn.microsoft.com/linuxonazure/2016/10/09/linux-recovery-manually-fixing-non-boot-issues-related-to-kernel-problems/)
-- [<span data-ttu-id="18dcf-116">FSTAB hibák</span><span class="sxs-lookup"><span data-stu-id="18dcf-116">FSTAB errors</span></span>](https://blogs.msdn.microsoft.com/linuxonazure/2016/07/21/cannot-ssh-to-linux-vm-after-adding-data-disk-to-etcfstab-and-rebooting/ )
+- [<span data-ttu-id="b5659-114">Kapcsolatos problémák</span><span class="sxs-lookup"><span data-stu-id="b5659-114">File system issues</span></span>](https://blogs.msdn.microsoft.com/linuxonazure/2016/09/13/linux-recovery-cannot-ssh-to-linux-vm-due-to-file-system-errors-fsck-inodes/)
+- [<span data-ttu-id="b5659-115">Kernel-problémák</span><span class="sxs-lookup"><span data-stu-id="b5659-115">Kernel Issues</span></span>](https://blogs.msdn.microsoft.com/linuxonazure/2016/10/09/linux-recovery-manually-fixing-non-boot-issues-related-to-kernel-problems/)
+- [<span data-ttu-id="b5659-116">FSTAB hibák</span><span class="sxs-lookup"><span data-stu-id="b5659-116">FSTAB errors</span></span>](https://blogs.msdn.microsoft.com/linuxonazure/2016/07/21/cannot-ssh-to-linux-vm-after-adding-data-disk-to-etcfstab-and-rebooting/ )
 
-## <a name="enable-diagnostics-on-a-new-virtual-machine"></a><span data-ttu-id="18dcf-117">Diagnosztika engedélyezése egy új virtuális gépen</span><span class="sxs-lookup"><span data-stu-id="18dcf-117">Enable diagnostics on a new virtual machine</span></span>
-1. <span data-ttu-id="18dcf-118">Amikor új virtuális gépet hoz létre a Betekintő portálon, válassza az **Azure Resource Manager** lehetőséget az üzemi modell legördülő menüből:</span><span class="sxs-lookup"><span data-stu-id="18dcf-118">When creating a new Virtual Machine from the Preview Portal, select the **Azure Resource Manager** from the deployment model dropdown:</span></span>
+## <a name="enable-diagnostics-on-a-new-virtual-machine"></a><span data-ttu-id="b5659-117">Diagnosztika engedélyezése egy új virtuális gépen</span><span class="sxs-lookup"><span data-stu-id="b5659-117">Enable diagnostics on a new virtual machine</span></span>
+1. <span data-ttu-id="b5659-118">Ha egy új virtuális gép létrehozása a betekintő portálon hello, válassza ki a hello **Azure Resource Manager** hello telepítési modell legördülő listából:</span><span class="sxs-lookup"><span data-stu-id="b5659-118">When creating a new Virtual Machine from hello Preview Portal, select hello **Azure Resource Manager** from hello deployment model dropdown:</span></span>
  
     ![Resource Manager](./media/boot-diagnostics/screenshot3.jpg)
 
-2. <span data-ttu-id="18dcf-120">Konfigurálja a Figyelés beállítást, és válassza ki a tárfiókot, ahova el kívánja helyezni ezeket a diagnosztikai fájlokat.</span><span class="sxs-lookup"><span data-stu-id="18dcf-120">Configure the Monitoring option to select the storage account where you would like to place these diagnostic files.</span></span>
+2. <span data-ttu-id="b5659-120">A diagnosztikai fájlok hello figyelés beállítás tooselect hello tárfiók tooplace helyének megadása</span><span class="sxs-lookup"><span data-stu-id="b5659-120">Configure hello Monitoring option tooselect hello storage account where you would like tooplace these diagnostic files.</span></span>
  
     ![Virtuális gép létrehozása](./media/boot-diagnostics/screenshot4.jpg)
 
-3. <span data-ttu-id="18dcf-122">Ha egy Azure Resource Manager-sablonból végzi a központi telepítést, keresse meg a virtuális gép erőforrást, és fűzze hozzá a diagnosztikai profil szakaszt.</span><span class="sxs-lookup"><span data-stu-id="18dcf-122">If you are deploying from an Azure Resource Manager template, navigate to your Virtual Machine resource and append the diagnostics profile section.</span></span> <span data-ttu-id="18dcf-123">Fontos, hogy a „2015-06-15” API-verzió fejlécet használja.</span><span class="sxs-lookup"><span data-stu-id="18dcf-123">Remember to use the “2015-06-15” API version header.</span></span>
+3. <span data-ttu-id="b5659-122">Ha telepíti az Azure Resource Manager sablon alapján, keresse meg a virtuálisgép-erőforrás tooyour, és a hozzáfűző hello diagnosztikai profil szakasz.</span><span class="sxs-lookup"><span data-stu-id="b5659-122">If you are deploying from an Azure Resource Manager template, navigate tooyour Virtual Machine resource and append hello diagnostics profile section.</span></span> <span data-ttu-id="b5659-123">Ne felejtse el toouse hello "2015-06-15" API version fejlécnek.</span><span class="sxs-lookup"><span data-stu-id="b5659-123">Remember toouse hello “2015-06-15” API version header.</span></span>
 
     ```json
     {
@@ -61,7 +61,7 @@ ms.lasthandoff: 08/29/2017
           … 
     ```
 
-4. <span data-ttu-id="18dcf-124">A diagnosztikai profil lehetővé teszi, hogy kiválassza a tárfiókot, ahol el kívánja helyezni ezeket a naplókat.</span><span class="sxs-lookup"><span data-stu-id="18dcf-124">The diagnostics profile enables you to select the storage account where you want to put these logs.</span></span>
+4. <span data-ttu-id="b5659-124">hello diagnosztikai profiljának lehetővé teszi tooselect hello tárfiók, amelybe tooput ezek a naplók.</span><span class="sxs-lookup"><span data-stu-id="b5659-124">hello diagnostics profile enables you tooselect hello storage account where you want tooput these logs.</span></span>
 
     ```json
             "diagnosticsProfile": {
@@ -74,8 +74,8 @@ ms.lasthandoff: 08/29/2017
         }
     ```
 
-## <a name="update-an-existing-virtual-machine"></a><span data-ttu-id="18dcf-125">Meglévő virtuális gép frissítése</span><span class="sxs-lookup"><span data-stu-id="18dcf-125">Update an existing virtual machine</span></span>
+## <a name="update-an-existing-virtual-machine"></a><span data-ttu-id="b5659-125">Meglévő virtuális gép frissítése</span><span class="sxs-lookup"><span data-stu-id="b5659-125">Update an existing virtual machine</span></span>
 
-<span data-ttu-id="18dcf-126">Ahhoz, hogy a rendszerindítási diagnosztika a portálon keresztül, egy meglévő virtuális gépet a portálon keresztül is frissítheti.</span><span class="sxs-lookup"><span data-stu-id="18dcf-126">To enable boot diagnostics through the portal, you can also update an existing virtual machine through the portal.</span></span> <span data-ttu-id="18dcf-127">Válassza a Rendszerindítási diagnosztika lehetőséget, majd kattintson a Mentés elemre.</span><span class="sxs-lookup"><span data-stu-id="18dcf-127">Select the Boot Diagnostics option and Save.</span></span> <span data-ttu-id="18dcf-128">A módosítás a virtuális gép újraindítása után lép életbe.</span><span class="sxs-lookup"><span data-stu-id="18dcf-128">Restart the VM to take effect.</span></span>
+<span data-ttu-id="b5659-126">hello portálon keresztül tooenable a rendszerindítási diagnosztika, is frissítheti egy meglévő virtuális gép hello portálon keresztül.</span><span class="sxs-lookup"><span data-stu-id="b5659-126">tooenable boot diagnostics through hello portal, you can also update an existing virtual machine through hello portal.</span></span> <span data-ttu-id="b5659-127">Válassza ki a rendszerindítási diagnosztika lehetőséget, majd mentse hello.</span><span class="sxs-lookup"><span data-stu-id="b5659-127">Select hello Boot Diagnostics option and Save.</span></span> <span data-ttu-id="b5659-128">Hello VM tootake léptetéséhez indítsa újra.</span><span class="sxs-lookup"><span data-stu-id="b5659-128">Restart hello VM tootake effect.</span></span>
 
 ![Létező virtuális gép frissítése](./media/boot-diagnostics/screenshot5.png)

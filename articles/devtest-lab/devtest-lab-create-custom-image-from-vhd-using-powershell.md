@@ -1,5 +1,5 @@
 ---
-title: "Azure DevTest Labs egyéni lemezkép létrehozása a PowerShell használatával VHD-fájl |} Microsoft Docs"
+title: "PowerShell-lel VHD-fájl az Azure DevTest Labs egyéni lemezképének aaaCreate |} Microsoft Docs"
 description: "Egyéni lemezképként az Azure DevTest Labs szolgáltatásban, a PowerShell használatával VHD-fájl létrehozásának automatizálása"
 services: devtest-lab,virtual-machines
 documentationcenter: na
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: a4729f70aae80a13233fbe96a5d8a56c0c9d01d3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 39b4005fa46cdf86cf0800ca376128134bcfb650
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-custom-image-from-a-vhd-file-using-powershell"></a><span data-ttu-id="45e83-103">Egyéni lemezkép létrehozása a PowerShell használatával VHD-fájl</span><span class="sxs-lookup"><span data-stu-id="45e83-103">Create a custom image from a VHD file using PowerShell</span></span>
+# <a name="create-a-custom-image-from-a-vhd-file-using-powershell"></a><span data-ttu-id="0d208-103">Egyéni lemezkép létrehozása a PowerShell használatával VHD-fájl</span><span class="sxs-lookup"><span data-stu-id="0d208-103">Create a custom image from a VHD file using PowerShell</span></span>
 
 [!INCLUDE [devtest-lab-create-custom-image-from-vhd-selector](../../includes/devtest-lab-create-custom-image-from-vhd-selector.md)]
 
@@ -28,24 +28,24 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [devtest-lab-upload-vhd-options](../../includes/devtest-lab-upload-vhd-options.md)]
 
-## <a name="step-by-step-instructions"></a><span data-ttu-id="45e83-104">Lépésenkénti utasítások</span><span class="sxs-lookup"><span data-stu-id="45e83-104">Step-by-step instructions</span></span>
+## <a name="step-by-step-instructions"></a><span data-ttu-id="0d208-104">Lépésenkénti utasítások</span><span class="sxs-lookup"><span data-stu-id="0d208-104">Step-by-step instructions</span></span>
 
-<span data-ttu-id="45e83-105">A következő lépések végigvezetik egyéni lemezkép létrehozása a PowerShell használatával VHD-fájlt:</span><span class="sxs-lookup"><span data-stu-id="45e83-105">The following steps walk you through creating a custom image from a VHD file using PowerShell:</span></span>
+<span data-ttu-id="0d208-105">hello következő lépések végigvezetik egyéni lemezkép létrehozása a PowerShell használatával VHD-fájlt:</span><span class="sxs-lookup"><span data-stu-id="0d208-105">hello following steps walk you through creating a custom image from a VHD file using PowerShell:</span></span>
 
-1. <span data-ttu-id="45e83-106">Egy PowerShell-parancssorba, jelentkezzen be az Azure-fiókjával a következő hívást a **Login-AzureRmAccount** parancsmag.</span><span class="sxs-lookup"><span data-stu-id="45e83-106">At a PowerShell prompt, log in to your Azure account with the following call to the **Login-AzureRmAccount** cmdlet.</span></span>  
+1. <span data-ttu-id="0d208-106">Egy PowerShell-parancssorba, jelentkezzen be Azure-fiók tooyour a következő hívást toohello hello **Login-AzureRmAccount** parancsmag.</span><span class="sxs-lookup"><span data-stu-id="0d208-106">At a PowerShell prompt, log in tooyour Azure account with hello following call toohello **Login-AzureRmAccount** cmdlet.</span></span>  
     
     ```PowerShell
     Login-AzureRmAccount
     ```
 
-1.  <span data-ttu-id="45e83-107">Válassza ki a kívánt Azure-előfizetés meghívásával a **Select-AzureRmSubscription** parancsmag.</span><span class="sxs-lookup"><span data-stu-id="45e83-107">Select the desired Azure subscription by calling the **Select-AzureRmSubscription** cmdlet.</span></span> <span data-ttu-id="45e83-108">A következő helyőrzőt cserélje le a **$subscriptionId** változó, egy érvényes Azure-előfizetéssel.</span><span class="sxs-lookup"><span data-stu-id="45e83-108">Replace the following placeholder for the **$subscriptionId** variable with a valid Azure subscription ID.</span></span> 
+1.  <span data-ttu-id="0d208-107">Jelölje be hello Azure-előfizetés szükséges hívási hello által **Select-AzureRmSubscription** parancsmag.</span><span class="sxs-lookup"><span data-stu-id="0d208-107">Select hello desired Azure subscription by calling hello **Select-AzureRmSubscription** cmdlet.</span></span> <span data-ttu-id="0d208-108">Cserélje le a következő hello helyőrzője hello **$subscriptionId** változó, egy érvényes Azure-előfizetéssel.</span><span class="sxs-lookup"><span data-stu-id="0d208-108">Replace hello following placeholder for hello **$subscriptionId** variable with a valid Azure subscription ID.</span></span> 
 
     ```PowerShell
     $subscriptionId = '<Specify your subscription ID here>'
     Select-AzureRmSubscription -SubscriptionId $subscriptionId
     ```
 
-1.  <span data-ttu-id="45e83-109">A tesztkörnyezet objektum beolvasása meghívásával a **Get-AzureRmResource** parancsmag.</span><span class="sxs-lookup"><span data-stu-id="45e83-109">Get the lab object by calling the **Get-AzureRmResource** cmdlet.</span></span> <span data-ttu-id="45e83-110">Cserélje le a helyőrzőket a **$labRg** és **$labName** változók a környezetének megfelelő értékekkel.</span><span class="sxs-lookup"><span data-stu-id="45e83-110">Replace the following placeholders for the **$labRg** and **$labName** variables with the appropriate values for your environment.</span></span> 
+1.  <span data-ttu-id="0d208-109">Hello labor objektum lekéréséhez hívó hello **Get-AzureRmResource** parancsmag.</span><span class="sxs-lookup"><span data-stu-id="0d208-109">Get hello lab object by calling hello **Get-AzureRmResource** cmdlet.</span></span> <span data-ttu-id="0d208-110">Cserélje le a következő hello helyőrzőit hello **$labRg** és **$labName** hello változók a megfelelő értékek környezetnek.</span><span class="sxs-lookup"><span data-stu-id="0d208-110">Replace hello following placeholders for hello **$labRg** and **$labName** variables with hello appropriate values for your environment.</span></span> 
 
     ```PowerShell
     $labRg = '<Specify your lab resource group name here>'
@@ -53,70 +53,70 @@ ms.lasthandoff: 07/11/2017
     $lab = Get-AzureRmResource -ResourceId ('/subscriptions/' + $subscriptionId + '/resourceGroups/' + $labRg + '/providers/Microsoft.DevTestLab/labs/' + $labName)
     ```
  
-1.  <span data-ttu-id="45e83-111">A labor tárolási fiók és a tesztkörnyezet tárolási fiók kulcs értékek lekérése a labor objektumból.</span><span class="sxs-lookup"><span data-stu-id="45e83-111">Get the lab storage account and lab storage account key values from the lab object.</span></span> 
+1.  <span data-ttu-id="0d208-111">Beszerzése hello tesztkörnyezet tárfiókja és a tesztkörnyezet tárfiókja kulcsértékei hello labor objektum.</span><span class="sxs-lookup"><span data-stu-id="0d208-111">Get hello lab storage account and lab storage account key values from hello lab object.</span></span> 
 
     ```PowerShell
     $labStorageAccount = Get-AzureRmResource -ResourceId $lab.Properties.defaultStorageAccount 
     $labStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $labStorageAccount.ResourceGroupName -Name $labStorageAccount.ResourceName)[0].Value
     ```
 
-1.  <span data-ttu-id="45e83-112">A következő helyőrzőt cserélje le a **$vhdUri** változó pedig a feltöltött VHD-fájl URI-azonosítójú.</span><span class="sxs-lookup"><span data-stu-id="45e83-112">Replace the following placeholder for the **$vhdUri** variable with the URI to your uploaded VHD file.</span></span> <span data-ttu-id="45e83-113">A VHD-fájl URI lekérheti a tárfiók a blob panel az Azure portálon.</span><span class="sxs-lookup"><span data-stu-id="45e83-113">You can get the VHD file's URI from the storage account's blob blade in the Azure portal.</span></span>
+1.  <span data-ttu-id="0d208-112">Cserélje le a következő hello helyőrzője hello **$vhdUri** változó hello URI, tooyour feltöltött VHD-fájlt.</span><span class="sxs-lookup"><span data-stu-id="0d208-112">Replace hello following placeholder for hello **$vhdUri** variable with hello URI tooyour uploaded VHD file.</span></span> <span data-ttu-id="0d208-113">Hello VHD fájl URI Azonosítóját az hello tárolási fiók blob panel az Azure-portálon hello kérheti le.</span><span class="sxs-lookup"><span data-stu-id="0d208-113">You can get hello VHD file's URI from hello storage account's blob blade in hello Azure portal.</span></span>
 
     ```PowerShell
-    $vhdUri = '<Specify the VHD URI here>'
+    $vhdUri = '<Specify hello VHD URI here>'
     ```
 
-1.  <span data-ttu-id="45e83-114">Az egyéni lemezképet létrehozni a **New-AzureRmResourceGroupDeployment** parancsmag.</span><span class="sxs-lookup"><span data-stu-id="45e83-114">Create the custom image using the **New-AzureRmResourceGroupDeployment** cmdlet.</span></span> <span data-ttu-id="45e83-115">Cserélje le a helyőrzőket a **$customImageName** és **$customImageDescription** változókat, a környezetnek kifejező nevet.</span><span class="sxs-lookup"><span data-stu-id="45e83-115">Replace the following placeholders for the **$customImageName** and **$customImageDescription** variables to meaningful names for your environment.</span></span>
+1.  <span data-ttu-id="0d208-114">Hello egyéni lemezkép létrehozása hello **New-AzureRmResourceGroupDeployment** parancsmag.</span><span class="sxs-lookup"><span data-stu-id="0d208-114">Create hello custom image using hello **New-AzureRmResourceGroupDeployment** cmdlet.</span></span> <span data-ttu-id="0d208-115">Cserélje le a következő hello helyőrzőit hello **$customImageName** és **$customImageDescription** változók toomeaningful nevek a környezethez.</span><span class="sxs-lookup"><span data-stu-id="0d208-115">Replace hello following placeholders for hello **$customImageName** and **$customImageDescription** variables toomeaningful names for your environment.</span></span>
 
     ```PowerShell
-    $customImageName = '<Specify the custom image name>'
-    $customImageDescription = '<Specify the custom image description>'
+    $customImageName = '<Specify hello custom image name>'
+    $customImageDescription = '<Specify hello custom image description>'
 
     $parameters = @{existingLabName="$($lab.Name)"; existingVhdUri=$vhdUri; imageOsType='windows'; isVhdSysPrepped=$false; imageName=$customImageName; imageDescription=$customImageDescription}
 
     New-AzureRmResourceGroupDeployment -ResourceGroupName $lab.ResourceGroupName -Name CreateCustomImage -TemplateUri 'https://raw.githubusercontent.com/Azure/azure-devtestlab/master/Samples/201-dtl-create-customimage-from-vhd/azuredeploy.json' -TemplateParameterObject $parameters
     ```
 
-## <a name="powershell-script-to-create-a-custom-image-from-a-vhd-file"></a><span data-ttu-id="45e83-116">PowerShell parancsfájl egyéni lemezkép a VHD-fájl létrehozása</span><span class="sxs-lookup"><span data-stu-id="45e83-116">PowerShell script to create a custom image from a VHD file</span></span>
+## <a name="powershell-script-toocreate-a-custom-image-from-a-vhd-file"></a><span data-ttu-id="0d208-116">PowerShell parancsfájl toocreate egy VHD-fájlt egy egyéni lemezkép</span><span class="sxs-lookup"><span data-stu-id="0d208-116">PowerShell script toocreate a custom image from a VHD file</span></span>
 
-<span data-ttu-id="45e83-117">A következő PowerShell-parancsfájl segítségével létrehozhat egyéni rendszerképeket a VHD-fájl.</span><span class="sxs-lookup"><span data-stu-id="45e83-117">The following PowerShell script can be used to create a custom image from a VHD file.</span></span> <span data-ttu-id="45e83-118">Cserélje le a helyőrzőket (kezdő és Záró csúcsos zárójelek rendelkező) az igényeinek megfelelő értékeket.</span><span class="sxs-lookup"><span data-stu-id="45e83-118">Replace the placeholders (starting and ending with angle brackets) with the appropriate values for your needs.</span></span> 
+<span data-ttu-id="0d208-117">a következő PowerShell-parancsfájl hello használt toocreate egy VHD-fájlt az egyéni kép is lehet.</span><span class="sxs-lookup"><span data-stu-id="0d208-117">hello following PowerShell script can be used toocreate a custom image from a VHD file.</span></span> <span data-ttu-id="0d208-118">(Kezdő és Záró csúcsos zárójelek rendelkező) hello helyőrzőket cserélje le az igényeinek megfelelő értékeket hello.</span><span class="sxs-lookup"><span data-stu-id="0d208-118">Replace hello placeholders (starting and ending with angle brackets) with hello appropriate values for your needs.</span></span> 
 
 ```PowerShell
-# Log in to your Azure account.  
+# Log in tooyour Azure account.  
 Login-AzureRmAccount
 
-# Select the desired Azure subscription. 
+# Select hello desired Azure subscription. 
 $subscriptionId = '<Specify your subscription ID here>'
 Select-AzureRmSubscription -SubscriptionId $subscriptionId
 
-# Get the lab object.
+# Get hello lab object.
 $labRg = '<Specify your lab resource group name here>'
 $labName = '<Specify your lab name here>'
 $lab = Get-AzureRmResource -ResourceId ('/subscriptions/' + $subscriptionId + '/resourceGroups/' + $labRg + '/providers/Microsoft.DevTestLab/labs/' + $labName)
 
-# Get the lab storage account and lab storage account key values.
+# Get hello lab storage account and lab storage account key values.
 $labStorageAccount = Get-AzureRmResource -ResourceId $lab.Properties.defaultStorageAccount 
 $labStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $labStorageAccount.ResourceGroupName -Name $labStorageAccount.ResourceName)[0].Value
 
-# Set the URI of the VHD file.  
-$vhdUri = '<Specify the VHD URI here>'
+# Set hello URI of hello VHD file.  
+$vhdUri = '<Specify hello VHD URI here>'
 
-# Set the custom image name and description values.
-$customImageName = '<Specify the custom image name>'
-$customImageDescription = '<Specify the custom image description>'
+# Set hello custom image name and description values.
+$customImageName = '<Specify hello custom image name>'
+$customImageDescription = '<Specify hello custom image description>'
 
-# Set up the parameters object.
+# Set up hello parameters object.
 $parameters = @{existingLabName="$($lab.Name)"; existingVhdUri=$vhdUri; imageOsType='windows'; isVhdSysPrepped=$false; imageName=$customImageName; imageDescription=$customImageDescription}
 
-# Create the custom image. 
+# Create hello custom image. 
 New-AzureRmResourceGroupDeployment -ResourceGroupName $lab.ResourceGroupName -Name CreateCustomImage -TemplateUri 'https://raw.githubusercontent.com/Azure/azure-devtestlab/master/Samples/201-dtl-create-customimage-from-vhd/azuredeploy.json' -TemplateParameterObject $parameters
 ```
 
-## <a name="related-blog-posts"></a><span data-ttu-id="45e83-119">Kapcsolódó blogbejegyzések</span><span class="sxs-lookup"><span data-stu-id="45e83-119">Related blog posts</span></span>
+## <a name="related-blog-posts"></a><span data-ttu-id="0d208-119">Kapcsolódó blogbejegyzések</span><span class="sxs-lookup"><span data-stu-id="0d208-119">Related blog posts</span></span>
 
-- [<span data-ttu-id="45e83-120">Egyéni lemezképek vagy képletek?</span><span class="sxs-lookup"><span data-stu-id="45e83-120">Custom images or formulas?</span></span>](https://blogs.msdn.microsoft.com/devtestlab/2016/04/06/custom-images-or-formulas/)
-- [<span data-ttu-id="45e83-121">Az Azure DevTest Labs között egyéni lemezképek másolása</span><span class="sxs-lookup"><span data-stu-id="45e83-121">Copying Custom Images between Azure DevTest Labs</span></span>](http://www.visualstudiogeeks.com/blog/DevOps/How-To-Move-CustomImages-VHD-Between-AzureDevTestLabs#copying-custom-images-between-azure-devtest-labs)
+- [<span data-ttu-id="0d208-120">Egyéni lemezképek vagy képletek?</span><span class="sxs-lookup"><span data-stu-id="0d208-120">Custom images or formulas?</span></span>](https://blogs.msdn.microsoft.com/devtestlab/2016/04/06/custom-images-or-formulas/)
+- [<span data-ttu-id="0d208-121">Az Azure DevTest Labs között egyéni lemezképek másolása</span><span class="sxs-lookup"><span data-stu-id="0d208-121">Copying Custom Images between Azure DevTest Labs</span></span>](http://www.visualstudiogeeks.com/blog/DevOps/How-To-Move-CustomImages-VHD-Between-AzureDevTestLabs#copying-custom-images-between-azure-devtest-labs)
 
-##<a name="next-steps"></a><span data-ttu-id="45e83-122">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="45e83-122">Next steps</span></span>
+##<a name="next-steps"></a><span data-ttu-id="0d208-122">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="0d208-122">Next steps</span></span>
 
-- [<span data-ttu-id="45e83-123">A virtuális gépek hozzáadása a tesztkörnyezet</span><span class="sxs-lookup"><span data-stu-id="45e83-123">Add a VM to your lab</span></span>](./devtest-lab-add-vm-with-artifacts.md)
+- [<span data-ttu-id="0d208-123">Virtuális gép tooyour labor hozzáadása</span><span class="sxs-lookup"><span data-stu-id="0d208-123">Add a VM tooyour lab</span></span>](./devtest-lab-add-vm-with-artifacts.md)

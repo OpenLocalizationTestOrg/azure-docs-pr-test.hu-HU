@@ -1,6 +1,6 @@
 ---
-title: "Az Azure DNS PowerShell-lel való használatának első lépései | Microsoft Docs"
-description: "A cikkből megtudhatja, hogyan hozhat létre DNS-zónát és -rekordot az Azure DNS-ben. Ez egy lépésenkénti útmutató, amellyel a PowerShell használatával létrehozhatja és kezelheti az első DNS-zónáját és -rekordját."
+title: "aaaGet lépések az Azure DNS PowerShell-lel |} Microsoft Docs"
+description: "Megtudhatja, hogyan toocreate DNS zóna, illetve az Azure DNS-rekord. Ez egy részletes útmutató toocreate és kezelése az első DNS-zónát, és rögzítse a PowerShell használatával."
 services: dns
 documentationcenter: na
 author: jtuliani
@@ -15,67 +15,67 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/10/2017
 ms.author: jonatul
-ms.openlocfilehash: 48f7ba325f61b4a91c0208b4c99058da801bee19
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0f9dead1e4b44fcc74c84a024c41cdfaeb02b5d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-dns-using-powershell"></a><span data-ttu-id="486d8-104">Az Azure DNS PowerShell-lel való használatának első lépései</span><span class="sxs-lookup"><span data-stu-id="486d8-104">Get Started with Azure DNS using PowerShell</span></span>
+# <a name="get-started-with-azure-dns-using-powershell"></a><span data-ttu-id="e57d3-104">Az Azure DNS PowerShell-lel való használatának első lépései</span><span class="sxs-lookup"><span data-stu-id="e57d3-104">Get Started with Azure DNS using PowerShell</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="486d8-105">Azure Portal</span><span class="sxs-lookup"><span data-stu-id="486d8-105">Azure portal</span></span>](dns-getstarted-portal.md)
-> * [<span data-ttu-id="486d8-106">PowerShell</span><span class="sxs-lookup"><span data-stu-id="486d8-106">PowerShell</span></span>](dns-getstarted-powershell.md)
-> * [<span data-ttu-id="486d8-107">Azure CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="486d8-107">Azure CLI 1.0</span></span>](dns-getstarted-cli-nodejs.md)
-> * [<span data-ttu-id="486d8-108">Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="486d8-108">Azure CLI 2.0</span></span>](dns-getstarted-cli.md)
+> * [<span data-ttu-id="e57d3-105">Azure Portal</span><span class="sxs-lookup"><span data-stu-id="e57d3-105">Azure portal</span></span>](dns-getstarted-portal.md)
+> * [<span data-ttu-id="e57d3-106">PowerShell</span><span class="sxs-lookup"><span data-stu-id="e57d3-106">PowerShell</span></span>](dns-getstarted-powershell.md)
+> * [<span data-ttu-id="e57d3-107">Azure CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="e57d3-107">Azure CLI 1.0</span></span>](dns-getstarted-cli-nodejs.md)
+> * [<span data-ttu-id="e57d3-108">Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="e57d3-108">Azure CLI 2.0</span></span>](dns-getstarted-cli.md)
 
-<span data-ttu-id="486d8-109">Ez a cikk végigvezeti az első DNS-zóna és -rekord Azure PowerShell-lel való létrehozásának lépésein.</span><span class="sxs-lookup"><span data-stu-id="486d8-109">This article walks you through the steps to create your first DNS zone and record using Azure PowerShell.</span></span> <span data-ttu-id="486d8-110">Ezek a lépések az Azure Portal vagy a platformfüggetlen Azure CLI használatával is elvégezhetőek.</span><span class="sxs-lookup"><span data-stu-id="486d8-110">You can also perform these steps using the Azure portal or the cross-platform Azure CLI.</span></span>
+<span data-ttu-id="e57d3-109">Ez a cikk bemutatja, hogyan hello lépéseket toocreate az első DNS-zónát és az Azure PowerShell rögzítése.</span><span class="sxs-lookup"><span data-stu-id="e57d3-109">This article walks you through hello steps toocreate your first DNS zone and record using Azure PowerShell.</span></span> <span data-ttu-id="e57d3-110">A következő lépésekkel hello Azure-portál használatával vagy platformok közötti Azure CLI hello is.</span><span class="sxs-lookup"><span data-stu-id="e57d3-110">You can also perform these steps using hello Azure portal or hello cross-platform Azure CLI.</span></span>
 
-<span data-ttu-id="486d8-111">Az egyes tartományokhoz tartozó DNS-rekordok üzemeltetése DNS-zónákban történik.</span><span class="sxs-lookup"><span data-stu-id="486d8-111">A DNS zone is used to host the DNS records for a particular domain.</span></span> <span data-ttu-id="486d8-112">A tartománya Azure DNS-ben való üzemeltetésének megkezdéséhez létre kell hoznia egy DNS-zónát az adott tartománynévhez.</span><span class="sxs-lookup"><span data-stu-id="486d8-112">To start hosting your domain in Azure DNS, you need to create a DNS zone for that domain name.</span></span> <span data-ttu-id="486d8-113">Ezután a tartománya összes DNS-rekordja ebben a DNS-zónában jön létre.</span><span class="sxs-lookup"><span data-stu-id="486d8-113">Each DNS record for your domain is then created inside this DNS zone.</span></span> <span data-ttu-id="486d8-114">Végül a DNS-zóna interneten való közzétételéhez konfigurálnia kell a tartomány névkiszolgálóit.</span><span class="sxs-lookup"><span data-stu-id="486d8-114">Finally, to publish your DNS zone to the Internet, you need to configure the name servers for the domain.</span></span> <span data-ttu-id="486d8-115">Az egyes lépéseket az alábbiakban ismertetjük.</span><span class="sxs-lookup"><span data-stu-id="486d8-115">Each of these steps is described below.</span></span>
+<span data-ttu-id="e57d3-111">A DNS-zónák használt toohost hello DNS-rekordok az adott tartományban.</span><span class="sxs-lookup"><span data-stu-id="e57d3-111">A DNS zone is used toohost hello DNS records for a particular domain.</span></span> <span data-ttu-id="e57d3-112">az Azure DNS, a tartomány toostart toocreate DNS-zóna van szüksége a tartománynevet.</span><span class="sxs-lookup"><span data-stu-id="e57d3-112">toostart hosting your domain in Azure DNS, you need toocreate a DNS zone for that domain name.</span></span> <span data-ttu-id="e57d3-113">Ezután a tartománya összes DNS-rekordja ebben a DNS-zónában jön létre.</span><span class="sxs-lookup"><span data-stu-id="e57d3-113">Each DNS record for your domain is then created inside this DNS zone.</span></span> <span data-ttu-id="e57d3-114">Végezetül toopublish a DNS-zónák toohello Internet, tooconfigure hello névkiszolgálók hello tartomány van szüksége.</span><span class="sxs-lookup"><span data-stu-id="e57d3-114">Finally, toopublish your DNS zone toohello Internet, you need tooconfigure hello name servers for hello domain.</span></span> <span data-ttu-id="e57d3-115">Az egyes lépéseket az alábbiakban ismertetjük.</span><span class="sxs-lookup"><span data-stu-id="e57d3-115">Each of these steps is described below.</span></span>
 
-<span data-ttu-id="486d8-116">Ezek az utasítások feltételezik, hogy már telepítette és az Azure Powershellt, és bejelentkezett.</span><span class="sxs-lookup"><span data-stu-id="486d8-116">These instructions assume you have already installed and signed in to Azure PowerShell.</span></span> <span data-ttu-id="486d8-117">További segítségért lásd [a DNS-zónák a PowerShell használatával való kezelésével kapcsolatos](dns-operations-dnszones.md) témakört.</span><span class="sxs-lookup"><span data-stu-id="486d8-117">For help, see [How to manage DNS zones using PowerShell](dns-operations-dnszones.md).</span></span>
+<span data-ttu-id="e57d3-116">Ezek az utasítások azt feltételezik, ha már telepítette, és tooAzure PowerShell bejelentkezett.</span><span class="sxs-lookup"><span data-stu-id="e57d3-116">These instructions assume you have already installed and signed in tooAzure PowerShell.</span></span> <span data-ttu-id="e57d3-117">Útmutatásért lásd: [hogyan toomanage DNS zónák PowerShell-lel](dns-operations-dnszones.md).</span><span class="sxs-lookup"><span data-stu-id="e57d3-117">For help, see [How toomanage DNS zones using PowerShell](dns-operations-dnszones.md).</span></span>
 
-## <a name="create-the-resource-group"></a><span data-ttu-id="486d8-118">Az erőforráscsoport létrehozása</span><span class="sxs-lookup"><span data-stu-id="486d8-118">Create the resource group</span></span>
+## <a name="create-hello-resource-group"></a><span data-ttu-id="e57d3-118">Hello erőforráscsoport létrehozása</span><span class="sxs-lookup"><span data-stu-id="e57d3-118">Create hello resource group</span></span>
 
-<span data-ttu-id="486d8-119">A DNS-zóna létrehozása előtt egy erőforráscsoportot kell létrehozni, amely a DNS-zónát tartalmazza majd.</span><span class="sxs-lookup"><span data-stu-id="486d8-119">Before creating the DNS zone, a resource group is created to contain the DNS Zone.</span></span> <span data-ttu-id="486d8-120">Az alábbiakban a parancs látható.</span><span class="sxs-lookup"><span data-stu-id="486d8-120">The following shows the command.</span></span>
+<span data-ttu-id="e57d3-119">Mielőtt létrehozna hello DNS-zónát, egy erőforráscsoportot toocontain hello DNS-zóna jön létre.</span><span class="sxs-lookup"><span data-stu-id="e57d3-119">Before creating hello DNS zone, a resource group is created toocontain hello DNS Zone.</span></span> <span data-ttu-id="e57d3-120">hello következő hello parancs jeleníti meg.</span><span class="sxs-lookup"><span data-stu-id="e57d3-120">hello following shows hello command.</span></span>
 
 ```powershell
 New-AzureRMResourceGroup -name MyResourceGroup -location "westus"
 ```
 
-## <a name="create-a-dns-zone"></a><span data-ttu-id="486d8-121">DNS-zóna létrehozása</span><span class="sxs-lookup"><span data-stu-id="486d8-121">Create a DNS zone</span></span>
+## <a name="create-a-dns-zone"></a><span data-ttu-id="e57d3-121">DNS-zóna létrehozása</span><span class="sxs-lookup"><span data-stu-id="e57d3-121">Create a DNS zone</span></span>
 
-<span data-ttu-id="486d8-122">A DNS-zóna az `New-AzureRmDnsZone` parancsmag használatával hozható létre.</span><span class="sxs-lookup"><span data-stu-id="486d8-122">A DNS zone is created by using the `New-AzureRmDnsZone` cmdlet.</span></span> <span data-ttu-id="486d8-123">Az alábbi példaparancs a *MyResourceGroup* erőforráscsoportban létrehozza a *contoso.com* DNS-zónát.</span><span class="sxs-lookup"><span data-stu-id="486d8-123">The following example creates a DNS zone called *contoso.com* in the resource group called *MyResourceGroup*.</span></span> <span data-ttu-id="486d8-124">A példát követve, és az értékeket a sajátjaira cserélve hozza létre a DNS-zónát.</span><span class="sxs-lookup"><span data-stu-id="486d8-124">Use the example to create a DNS zone, substituting the values for your own.</span></span>
+<span data-ttu-id="e57d3-122">A DNS-zónák hello segítségével hozhatók létre `New-AzureRmDnsZone` parancsmag.</span><span class="sxs-lookup"><span data-stu-id="e57d3-122">A DNS zone is created by using hello `New-AzureRmDnsZone` cmdlet.</span></span> <span data-ttu-id="e57d3-123">hello alábbi példa létrehoz egy DNS-zónát *contoso.com* nevű hello erőforráscsoportban *MyResourceGroup*.</span><span class="sxs-lookup"><span data-stu-id="e57d3-123">hello following example creates a DNS zone called *contoso.com* in hello resource group called *MyResourceGroup*.</span></span> <span data-ttu-id="e57d3-124">Hello példa toocreate egy DNS-zónát és hello értékeket a saját használja.</span><span class="sxs-lookup"><span data-stu-id="e57d3-124">Use hello example toocreate a DNS zone, substituting hello values for your own.</span></span>
 
 ```powershell
 New-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyResourceGroup
 ```
 
-## <a name="create-a-dns-record"></a><span data-ttu-id="486d8-125">DNS-rekord létrehozása</span><span class="sxs-lookup"><span data-stu-id="486d8-125">Create a DNS record</span></span>
+## <a name="create-a-dns-record"></a><span data-ttu-id="e57d3-125">DNS-rekord létrehozása</span><span class="sxs-lookup"><span data-stu-id="e57d3-125">Create a DNS record</span></span>
 
-<span data-ttu-id="486d8-126">Rekordhalmazt a `New-AzureRmDnsRecordSet` parancsmag használatával hozhat létre.</span><span class="sxs-lookup"><span data-stu-id="486d8-126">You create record sets by using the `New-AzureRmDnsRecordSet` cmdlet.</span></span> <span data-ttu-id="486d8-127">Az alábbi példa a „MyResourceGroup” erőforráscsoport „contoso.com” DNS-zónájában egy „www” relatív nevű rekordot hoz létre.</span><span class="sxs-lookup"><span data-stu-id="486d8-127">The following example creates a record with the relative name "www" in the DNS Zone "contoso.com", in resource group "MyResourceGroup".</span></span> <span data-ttu-id="486d8-128">A beállított rekord teljes neve „www.contoso.com”.</span><span class="sxs-lookup"><span data-stu-id="486d8-128">The fully-qualified name of the record set is "www.contoso.com".</span></span> <span data-ttu-id="486d8-129">A rekord típusa „A”, az IP-címe „1.2.3.4”, az élettartama pedig 3600 másodperc.</span><span class="sxs-lookup"><span data-stu-id="486d8-129">The record type is "A", with IP address "1.2.3.4", and the TTL is 3600 seconds.</span></span>
+<span data-ttu-id="e57d3-126">Rekordhalmazok hello segítségével hozhatja létre `New-AzureRmDnsRecordSet` parancsmag.</span><span class="sxs-lookup"><span data-stu-id="e57d3-126">You create record sets by using hello `New-AzureRmDnsRecordSet` cmdlet.</span></span> <span data-ttu-id="e57d3-127">hello alábbi példa létrehoz egy rekordot hello relatív névvel "www" hello "contoso.com", az erőforráscsoportban "Contoso.com" DNS-zónát.</span><span class="sxs-lookup"><span data-stu-id="e57d3-127">hello following example creates a record with hello relative name "www" in hello DNS Zone "contoso.com", in resource group "MyResourceGroup".</span></span> <span data-ttu-id="e57d3-128">hello rekordhalmaz hello teljesen minősített neve "www.contoso.com".</span><span class="sxs-lookup"><span data-stu-id="e57d3-128">hello fully-qualified name of hello record set is "www.contoso.com".</span></span> <span data-ttu-id="e57d3-129">hello rekordtípus "A", "1.2.3.4" IP-címmel, pedig hello élettartam 3600 másodperc.</span><span class="sxs-lookup"><span data-stu-id="e57d3-129">hello record type is "A", with IP address "1.2.3.4", and hello TTL is 3600 seconds.</span></span>
 
 ```powershell
 New-AzureRmDnsRecordSet -Name www -RecordType A -ZoneName contoso.com -ResourceGroupName MyResourceGroup -Ttl 3600 -DnsRecords (New-AzureRmDnsRecordConfig -IPv4Address "1.2.3.4")
 ```
 
-<span data-ttu-id="486d8-130">Más rekordtípusok, több rekordot tartalmazó rekordhalmazok és meglévő rekordok módosítása esetén lásd: [DNS-rekordok és -rekordhalmazok kezelése az Azure PowerShell használatával](dns-operations-recordsets.md).</span><span class="sxs-lookup"><span data-stu-id="486d8-130">For other record types, for record sets with more than one record, and to modify existing records, see [Manage DNS records and record sets using Azure PowerShell](dns-operations-recordsets.md).</span></span> 
+<span data-ttu-id="e57d3-130">Egyéb típusú bejegyzés a rekordhalmazok egynél több rekordot, és toomodify meglévő rekordokat, lásd: [kezelése DNS-rekordok és a rekordhalmazok az Azure PowerShell](dns-operations-recordsets.md).</span><span class="sxs-lookup"><span data-stu-id="e57d3-130">For other record types, for record sets with more than one record, and toomodify existing records, see [Manage DNS records and record sets using Azure PowerShell](dns-operations-recordsets.md).</span></span> 
 
 
-## <a name="view-records"></a><span data-ttu-id="486d8-131">A rekordok megtekintése</span><span class="sxs-lookup"><span data-stu-id="486d8-131">View records</span></span>
+## <a name="view-records"></a><span data-ttu-id="e57d3-131">A rekordok megtekintése</span><span class="sxs-lookup"><span data-stu-id="e57d3-131">View records</span></span>
 
-<span data-ttu-id="486d8-132">A zónájában lévő DNS-rekordokat a következő paranccsal listázhatja:</span><span class="sxs-lookup"><span data-stu-id="486d8-132">To list the DNS records in your zone, use:</span></span>
+<span data-ttu-id="e57d3-132">toolist hello DNS-rekordokat, amelyek a zónához használja:</span><span class="sxs-lookup"><span data-stu-id="e57d3-132">toolist hello DNS records in your zone, use:</span></span>
 
 ```powershell
 Get-AzureRmDnsRecordSet -ZoneName contoso.com -ResourceGroupName MyResourceGroup
 ```
 
 
-## <a name="update-name-servers"></a><span data-ttu-id="486d8-133">A névkiszolgálók frissítése</span><span class="sxs-lookup"><span data-stu-id="486d8-133">Update name servers</span></span>
+## <a name="update-name-servers"></a><span data-ttu-id="e57d3-133">A névkiszolgálók frissítése</span><span class="sxs-lookup"><span data-stu-id="e57d3-133">Update name servers</span></span>
 
-<span data-ttu-id="486d8-134">Ha a DNS-zóna és -rekordok megfelelően be lettek állítva, konfigurálnia kell a tartománynevet az Azure DNS-névkiszolgálók használatára.</span><span class="sxs-lookup"><span data-stu-id="486d8-134">Once you are satisfied that your DNS zone and records have been set up correctly, you need to configure your domain name to use the Azure DNS name servers.</span></span> <span data-ttu-id="486d8-135">Így más internetes felhasználók megkereshetik a DNS-rekordjait.</span><span class="sxs-lookup"><span data-stu-id="486d8-135">This enables other users on the Internet to find your DNS records.</span></span>
+<span data-ttu-id="e57d3-134">Ha mindent megfelelőnek talált, hogy a DNS-zóna és a rekordok beállított megfelelően, tooconfigure van szüksége a tartománynév toouse hello Azure DNS névkiszolgálóit.</span><span class="sxs-lookup"><span data-stu-id="e57d3-134">Once you are satisfied that your DNS zone and records have been set up correctly, you need tooconfigure your domain name toouse hello Azure DNS name servers.</span></span> <span data-ttu-id="e57d3-135">Ez lehetővé teszi a más felhasználóktól a hello Internet toofind a DNS-rekordokat.</span><span class="sxs-lookup"><span data-stu-id="e57d3-135">This enables other users on hello Internet toofind your DNS records.</span></span>
 
-<span data-ttu-id="486d8-136">A zóna névkiszolgálói az `Get-AzureRmDnsZone` parancsmaggal vannak megadva.</span><span class="sxs-lookup"><span data-stu-id="486d8-136">The name servers for your zone are given by the `Get-AzureRmDnsZone` cmdlet:</span></span>
+<span data-ttu-id="e57d3-136">Adja meg a zóna névkiszolgálóit hello hello `Get-AzureRmDnsZone` parancsmagot:</span><span class="sxs-lookup"><span data-stu-id="e57d3-136">hello name servers for your zone are given by hello `Get-AzureRmDnsZone` cmdlet:</span></span>
 
 ```powershell
 Get-AzureRmDnsZone -ZoneName contoso.com -ResourceGroupName MyResourceGroup
@@ -89,21 +89,21 @@ NumberOfRecordSets    : 3
 MaxNumberOfRecordSets : 5000
 ```
 
-<span data-ttu-id="486d8-137">Ezeket a névkiszolgálókat a tartományregisztrálóhoz kell konfigurálni (ahol a tartománynevet vásárolta).</span><span class="sxs-lookup"><span data-stu-id="486d8-137">These name servers should be configured with the domain name registrar (where you purchased the domain name).</span></span> <span data-ttu-id="486d8-138">A regisztráló felajánlja, hogy beállítja a névkiszolgálókat a tartományhoz.</span><span class="sxs-lookup"><span data-stu-id="486d8-138">Your registrar will offer the option to set up the name servers for the domain.</span></span> <span data-ttu-id="486d8-139">További információért lásd: [Tartomány delegálása az Azure DNS-be](dns-domain-delegation.md).</span><span class="sxs-lookup"><span data-stu-id="486d8-139">For more information, see [Delegate your domain to Azure DNS](dns-domain-delegation.md).</span></span>
+<span data-ttu-id="e57d3-137">Ezeket a kiszolgálókat (vásárolta hello tartománynevet) hello regisztrációs kell konfigurálni.</span><span class="sxs-lookup"><span data-stu-id="e57d3-137">These name servers should be configured with hello domain name registrar (where you purchased hello domain name).</span></span> <span data-ttu-id="e57d3-138">A regisztráló felajánlja, hello beállítás tooset hello neve kiszolgáló hello tartományhoz.</span><span class="sxs-lookup"><span data-stu-id="e57d3-138">Your registrar will offer hello option tooset up hello name servers for hello domain.</span></span> <span data-ttu-id="e57d3-139">További információkért lásd: [delegálása a tartományi tooAzure DNS](dns-domain-delegation.md).</span><span class="sxs-lookup"><span data-stu-id="e57d3-139">For more information, see [Delegate your domain tooAzure DNS](dns-domain-delegation.md).</span></span>
 
-## <a name="delete-all-resources"></a><span data-ttu-id="486d8-140">Az összes erőforrás törlése</span><span class="sxs-lookup"><span data-stu-id="486d8-140">Delete all resources</span></span>
+## <a name="delete-all-resources"></a><span data-ttu-id="e57d3-140">Az összes erőforrás törlése</span><span class="sxs-lookup"><span data-stu-id="e57d3-140">Delete all resources</span></span>
 
-<span data-ttu-id="486d8-141">A jelen cikkben létrehozott összes erőforrás törléséhez hajtsa végre az alábbi lépést:</span><span class="sxs-lookup"><span data-stu-id="486d8-141">To delete all resources created in this article, take the following step:</span></span>
+<span data-ttu-id="e57d3-141">toodelete ebben a cikkben a következő lépés hajtsa végre a megfelelő hello létrehozott összes erőforrás:</span><span class="sxs-lookup"><span data-stu-id="e57d3-141">toodelete all resources created in this article, take hello following step:</span></span>
 
 ```powershell
 Remove-AzureRMResourceGroup -Name MyResourceGroup
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="486d8-142">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="486d8-142">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e57d3-142">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="e57d3-142">Next steps</span></span>
 
-<span data-ttu-id="486d8-143">Az Azure DNS-sel kapcsolatos további információért lásd [az Azure DNS áttekintését biztosító](dns-overview.md) cikket.</span><span class="sxs-lookup"><span data-stu-id="486d8-143">To learn more about Azure DNS, see [Azure DNS overview](dns-overview.md).</span></span>
+<span data-ttu-id="e57d3-143">További információ az Azure DNS-beli toolearn lásd [Azure DNS áttekintése](dns-overview.md).</span><span class="sxs-lookup"><span data-stu-id="e57d3-143">toolearn more about Azure DNS, see [Azure DNS overview](dns-overview.md).</span></span>
 
-<span data-ttu-id="486d8-144">DNS-zónák az Azure DNS-ben való kezelésével kapcsolatos további információért lásd [a DNS-zónák az Azure DNS-ben a PowerShell-lel való kezelésével kapcsolatos](dns-operations-dnszones.md) témakört.</span><span class="sxs-lookup"><span data-stu-id="486d8-144">To learn more about managing DNS zones in Azure DNS, see [Manage DNS zones in Azure DNS using PowerShell](dns-operations-dnszones.md).</span></span>
+<span data-ttu-id="e57d3-144">További információ az Azure DNS-, DNS-zónák kezelése toolearn lásd [kezelése DNS-zónák az Azure DNS PowerShell-lel](dns-operations-dnszones.md).</span><span class="sxs-lookup"><span data-stu-id="e57d3-144">toolearn more about managing DNS zones in Azure DNS, see [Manage DNS zones in Azure DNS using PowerShell](dns-operations-dnszones.md).</span></span>
 
-<span data-ttu-id="486d8-145">DNS-rekordok az Azure DNS-ben való kezelésével kapcsolatos további információért lásd [a DNS-rekordok és -rekordhalmazok az Azure DNS-ben a PowerShell-lel való kezelésével kapcsolatos](dns-operations-recordsets.md) témakört.</span><span class="sxs-lookup"><span data-stu-id="486d8-145">To learn more about managing DNS records in Azure DNS, see [Manage DNS records and record sets in Azure DNS using PowerShell](dns-operations-recordsets.md).</span></span>
+<span data-ttu-id="e57d3-145">További információ az Azure DNS-, DNS-rekordok kezelése toolearn lásd [kezelése DNS-rekordok és a rekord beállítja az Azure DNS PowerShell-lel](dns-operations-recordsets.md).</span><span class="sxs-lookup"><span data-stu-id="e57d3-145">toolearn more about managing DNS records in Azure DNS, see [Manage DNS records and record sets in Azure DNS using PowerShell](dns-operations-recordsets.md).</span></span>
 

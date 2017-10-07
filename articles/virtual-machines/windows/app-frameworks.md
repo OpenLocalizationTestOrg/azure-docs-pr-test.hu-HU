@@ -1,6 +1,6 @@
 ---
-title: "Alkalmazás-keretrendszerek számára a Windows Azure virtuális gépek telepítése |} Microsoft Docs"
-description: "Hozzon létre Windows-alapú virtuális gépek Azure Resource Manager-sablonok segítségével telepítse az Active Directory, Docker és sok más népszerű alkalmazás-keretrendszerek számára."
+title: "alkalmazás-keretrendszerbeli aaaDeploy a Windows-alapú virtuális gépek Azure-ban |} Microsoft Docs"
+description: "Hozzon létre Windows-alapú virtuális gépek Azure Resource Manager sablonok tooinstall Active Directory, a Docker és sok más népszerű alkalmazás-keretrendszerek számára."
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: dlepow
@@ -16,15 +16,15 @@ ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 275342413c6f4a9efc7a056bdc80b6489536576f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: cfc7f044cca36b7743d9acc25a27e2d589e866c7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-popular-application-frameworks-on-windows-using-azure-resource-manager-templates"></a><span data-ttu-id="9cdbb-103">A Windows Azure Resource Manager-sablonok használatával népszerű alkalmazás-keretrendszerek számára telepítése</span><span class="sxs-lookup"><span data-stu-id="9cdbb-103">Deploy popular application frameworks on Windows using Azure Resource Manager templates</span></span> 
+# <a name="deploy-popular-application-frameworks-on-windows-using-azure-resource-manager-templates"></a><span data-ttu-id="ec322-103">A Windows Azure Resource Manager-sablonok használatával népszerű alkalmazás-keretrendszerek számára telepítése</span><span class="sxs-lookup"><span data-stu-id="ec322-103">Deploy popular application frameworks on Windows using Azure Resource Manager templates</span></span> 
 
-<span data-ttu-id="9cdbb-104">A munkaterhelések általában tervezési megfelelően működik a legtöbb erőforrást igényelnek.</span><span class="sxs-lookup"><span data-stu-id="9cdbb-104">Workloads usually require many resources to function according to design.</span></span> <span data-ttu-id="9cdbb-105">Az Azure Resource Manager-sablonok lehetővé teszik, hogy nem csak határozzák meg, milyen alkalmazások vannak konfigurálva, de is hogyan vannak telepítve az erőforrások alkalmazások támogatását konfigurálva.</span><span class="sxs-lookup"><span data-stu-id="9cdbb-105">Azure Resource Manager templates make it possible for you to not only define how applications are configured, but also how the resources are deployed to support configured applications.</span></span> <span data-ttu-id="9cdbb-106">Ez a cikk bemutatja a legnépszerűbb sablonok a katalógusban, és lehetővé teszi az adatokat az Azure portálon, az Azure parancssori felület vagy a PowerShell használatával történő központi telepítésére.</span><span class="sxs-lookup"><span data-stu-id="9cdbb-106">This article introduces you to the most popular templates in the gallery and gives you information for using the Azure portal, Azure CLI, or PowerShell to deploy them.</span></span>
+<span data-ttu-id="ec322-104">A munkaterhelések általában sok erőforrást toofunction toodesign szerint igényelnek.</span><span class="sxs-lookup"><span data-stu-id="ec322-104">Workloads usually require many resources toofunction according toodesign.</span></span> <span data-ttu-id="ec322-105">Az Azure Resource Manager sablonok lehetővé teszi számára akkor toonot csak határozza meg, milyen alkalmazások vannak konfigurálva, de is hogyan hello erőforrások telepített toosupport konfigurált alkalmazások.</span><span class="sxs-lookup"><span data-stu-id="ec322-105">Azure Resource Manager templates make it possible for you toonot only define how applications are configured, but also how hello resources are deployed toosupport configured applications.</span></span> <span data-ttu-id="ec322-106">Ez a cikk bemutatja toohello Legnépszerűbb sablonok hello gyűjteményben, és lehetővé teszi az hello Azure-portálon, az Azure parancssori felület vagy a PowerShell toodeploy használatával kapcsolatos információkat őket.</span><span class="sxs-lookup"><span data-stu-id="ec322-106">This article introduces you toohello most popular templates in hello gallery and gives you information for using hello Azure portal, Azure CLI, or PowerShell toodeploy them.</span></span>
 
 [!INCLUDE [virtual-machines-common-app-frameworks](../../../includes/virtual-machines-common-app-frameworks.md)]
 

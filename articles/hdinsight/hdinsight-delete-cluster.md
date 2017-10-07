@@ -1,6 +1,6 @@
 ---
-title: "HDInsight-fürtök - Azure törlése |} Microsoft Docs"
-description: "Információ a különböző módszereket, hogy egy HDInsight-fürt törlése."
+title: "HDInsight-fürtök - Azure aaaHow toodelete |} Microsoft Docs"
+description: "HDInsight-fürtök törlése különböző módokon hello információkat."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,44 +15,44 @@ ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: 65dac529df15d2dd43eec17673d82a2832f7692e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5b9d9a09eecfdcfaed7a1f5ebab440e13bd358b0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="delete-an-hdinsight-cluster-using-your-browser-powershell-or-the-azure-cli"></a><span data-ttu-id="915dc-103">A böngésző, PowerShell vagy az Azure parancssori felület használatával HDInsight-fürtök törlése</span><span class="sxs-lookup"><span data-stu-id="915dc-103">Delete an HDInsight cluster using your browser, PowerShell, or the Azure CLI</span></span>
+# <a name="delete-an-hdinsight-cluster-using-your-browser-powershell-or-hello-azure-cli"></a><span data-ttu-id="d6f84-103">A böngészőben, a PowerShell vagy az hello Azure parancssori felület használatával HDInsight-fürtök törlése</span><span class="sxs-lookup"><span data-stu-id="d6f84-103">Delete an HDInsight cluster using your browser, PowerShell, or hello Azure CLI</span></span>
 
-<span data-ttu-id="915dc-104">A HDInsight fürt számlázás követően egy fürt jön létre, és leállítja a fürt törlésekor indul.</span><span class="sxs-lookup"><span data-stu-id="915dc-104">HDInsight cluster billing starts once a cluster is created and stops when the cluster is deleted.</span></span> <span data-ttu-id="915dc-105">Számlázási, egyenletesen percenként történik, így mindig törölnie kell a fürthöz, amikor már nincs használatban.</span><span class="sxs-lookup"><span data-stu-id="915dc-105">Billing is pro-rated per minute, so you should always delete your cluster when it is no longer in use.</span></span> <span data-ttu-id="915dc-106">Ebből a dokumentumból megismerheti, hogyan törlése az Azure portál, Azure PowerShell és az Azure CLI 1.0 egy fürtöt.</span><span class="sxs-lookup"><span data-stu-id="915dc-106">In this document, you learn how to delete a cluster using the Azure portal, Azure PowerShell, and the Azure CLI 1.0.</span></span>
+<span data-ttu-id="d6f84-104">HDInsight-fürt számlázási elindul, miután a fürt jön létre, és leállítja a hello fürt törlésekor.</span><span class="sxs-lookup"><span data-stu-id="d6f84-104">HDInsight cluster billing starts once a cluster is created and stops when hello cluster is deleted.</span></span> <span data-ttu-id="d6f84-105">Számlázási, egyenletesen percenként történik, így mindig törölnie kell a fürthöz, amikor már nincs használatban.</span><span class="sxs-lookup"><span data-stu-id="d6f84-105">Billing is pro-rated per minute, so you should always delete your cluster when it is no longer in use.</span></span> <span data-ttu-id="d6f84-106">Ebből a dokumentumból megismerheti, hogyan egy fürt használt toodelete hello Azure-portál, Azure PowerShell és hello Azure CLI 1.0.</span><span class="sxs-lookup"><span data-stu-id="d6f84-106">In this document, you learn how toodelete a cluster using hello Azure portal, Azure PowerShell, and hello Azure CLI 1.0.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="915dc-107">HDInsight-fürtök törlése nem érinti az Azure Storage-fiókokat, vagy a Data Lake Store a fürthöz rendelt.</span><span class="sxs-lookup"><span data-stu-id="915dc-107">Deleting an HDInsight cluster does not delete the Azure Storage accounts or Data Lake Store associated with the cluster.</span></span> <span data-ttu-id="915dc-108">Ezek a szolgáltatások a jövőben tárolt adatokat is felhasználhatja.</span><span class="sxs-lookup"><span data-stu-id="915dc-108">You can reuse data stored in those services in the future.</span></span>
+> <span data-ttu-id="d6f84-107">HDInsight-fürtök törlése nem érinti hello Azure Storage-fiókokat, vagy a Data Lake Store társított hello fürt.</span><span class="sxs-lookup"><span data-stu-id="d6f84-107">Deleting an HDInsight cluster does not delete hello Azure Storage accounts or Data Lake Store associated with hello cluster.</span></span> <span data-ttu-id="d6f84-108">A jövőbeli hello e szolgáltatásokban tárolt adatokat is felhasználhatja.</span><span class="sxs-lookup"><span data-stu-id="d6f84-108">You can reuse data stored in those services in hello future.</span></span>
 
-## <a name="azure-portal"></a><span data-ttu-id="915dc-109">Azure Portal</span><span class="sxs-lookup"><span data-stu-id="915dc-109">Azure portal</span></span>
+## <a name="azure-portal"></a><span data-ttu-id="d6f84-109">Azure Portal</span><span class="sxs-lookup"><span data-stu-id="d6f84-109">Azure portal</span></span>
 
-1. <span data-ttu-id="915dc-110">Jelentkezzen be a [Azure-portálon](https://portal.azure.com) válassza ki a HDInsight-fürthöz.</span><span class="sxs-lookup"><span data-stu-id="915dc-110">Log in to the [Azure portal](https://portal.azure.com) and select your HDInsight cluster.</span></span> <span data-ttu-id="915dc-111">Ha a HDInsight-fürt nincs rögzítve az irányítópulton, kereshet, használja a keresőmezőt név szerint.</span><span class="sxs-lookup"><span data-stu-id="915dc-111">If your HDInsight cluster is not pinned to the dashboard, you can search for it by name using the search field.</span></span>
+1. <span data-ttu-id="d6f84-110">Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) válassza ki a HDInsight-fürthöz.</span><span class="sxs-lookup"><span data-stu-id="d6f84-110">Log in toohello [Azure portal](https://portal.azure.com) and select your HDInsight cluster.</span></span> <span data-ttu-id="d6f84-111">Ha a HDInsight-fürt nem rögzített toohello irányítópult, kereshet az hello keresési mező nevét.</span><span class="sxs-lookup"><span data-stu-id="d6f84-111">If your HDInsight cluster is not pinned toohello dashboard, you can search for it by name using hello search field.</span></span>
    
     ![portál keresési](./media/hdinsight-delete-cluster/navbar.png)
 
-2. <span data-ttu-id="915dc-113">Ha a panel nyit a fürt számára, jelölje ki a **törlése** ikonra.</span><span class="sxs-lookup"><span data-stu-id="915dc-113">Once the blade opens for the cluster, select the **Delete** icon.</span></span> <span data-ttu-id="915dc-114">Amikor a rendszer kéri, válassza ki a **Igen** törölni a fürtöt.</span><span class="sxs-lookup"><span data-stu-id="915dc-114">When prompted, select **Yes** to delete the cluster.</span></span>
+2. <span data-ttu-id="d6f84-113">Ha hello panel hello fürt nyit, válassza ki a hello **törlése** ikonra.</span><span class="sxs-lookup"><span data-stu-id="d6f84-113">Once hello blade opens for hello cluster, select hello **Delete** icon.</span></span> <span data-ttu-id="d6f84-114">Amikor a rendszer kéri, válassza ki a **Igen** toodelete hello fürt.</span><span class="sxs-lookup"><span data-stu-id="d6f84-114">When prompted, select **Yes** toodelete hello cluster.</span></span>
    
     ![Törlés ikonja](./media/hdinsight-delete-cluster/deletecluster.png)
 
-## <a name="azure-powershell"></a><span data-ttu-id="915dc-116">Azure PowerShell</span><span class="sxs-lookup"><span data-stu-id="915dc-116">Azure PowerShell</span></span>
+## <a name="azure-powershell"></a><span data-ttu-id="d6f84-116">Azure PowerShell</span><span class="sxs-lookup"><span data-stu-id="d6f84-116">Azure PowerShell</span></span>
 
-<span data-ttu-id="915dc-117">Egy PowerShell-parancssorból a következő parancs segítségével törölheti a fürtöt:</span><span class="sxs-lookup"><span data-stu-id="915dc-117">From a PowerShell prompt, use the following command to delete the cluster:</span></span>
+<span data-ttu-id="d6f84-117">Egy PowerShell-parancssorból a következő parancs toodelete hello fürt hello használata:</span><span class="sxs-lookup"><span data-stu-id="d6f84-117">From a PowerShell prompt, use hello following command toodelete hello cluster:</span></span>
 
     Remove-AzureRmHDInsightCluster -ClusterName CLUSTERNAME
 
-<span data-ttu-id="915dc-118">Cserélje le a **CLUSTERNAME** kifejezést a HDInsight-fürt nevére.</span><span class="sxs-lookup"><span data-stu-id="915dc-118">Replace **CLUSTERNAME** with the name of your HDInsight cluster.</span></span>
+<span data-ttu-id="d6f84-118">Cserélje le **CLUSTERNAME** hello nevet, a HDInsight-fürthöz.</span><span class="sxs-lookup"><span data-stu-id="d6f84-118">Replace **CLUSTERNAME** with hello name of your HDInsight cluster.</span></span>
 
-## <a name="azure-cli-10"></a><span data-ttu-id="915dc-119">Azure CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="915dc-119">Azure CLI 1.0</span></span>
+## <a name="azure-cli-10"></a><span data-ttu-id="d6f84-119">Azure CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="d6f84-119">Azure CLI 1.0</span></span>
 
-<span data-ttu-id="915dc-120">A parancssorba használja a következő törölni a fürtöt:</span><span class="sxs-lookup"><span data-stu-id="915dc-120">From a prompt, use the following to delete the cluster:</span></span>
+<span data-ttu-id="d6f84-120">A parancssorba használja a következő toodelete hello fürt hello:</span><span class="sxs-lookup"><span data-stu-id="d6f84-120">From a prompt, use hello following toodelete hello cluster:</span></span>
 
     azure hdinsight cluster delete CLUSTERNAME
 
-<span data-ttu-id="915dc-121">Cserélje le a **CLUSTERNAME** kifejezést a HDInsight-fürt nevére.</span><span class="sxs-lookup"><span data-stu-id="915dc-121">Replace **CLUSTERNAME** with the name of your HDInsight cluster.</span></span>
+<span data-ttu-id="d6f84-121">Cserélje le **CLUSTERNAME** hello nevet, a HDInsight-fürthöz.</span><span class="sxs-lookup"><span data-stu-id="d6f84-121">Replace **CLUSTERNAME** with hello name of your HDInsight cluster.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="915dc-122">Az Azure CLI 2.0 nem támogatja a HDInsight-fürtök törlése most (2017. július 31.).</span><span class="sxs-lookup"><span data-stu-id="915dc-122">Azure CLI 2.0 does not support deleting HDInsight clusters at this time (July 31, 2017).</span></span>
+> <span data-ttu-id="d6f84-122">Az Azure CLI 2.0 nem támogatja a HDInsight-fürtök törlése most (2017. július 31.).</span><span class="sxs-lookup"><span data-stu-id="d6f84-122">Azure CLI 2.0 does not support deleting HDInsight clusters at this time (July 31, 2017).</span></span>

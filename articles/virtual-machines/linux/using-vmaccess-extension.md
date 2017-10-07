@@ -1,6 +1,6 @@
 ---
-title: "Hozzáférés az Azure Linux virtuális gép visszaállítása |} Microsoft Docs"
-description: "Hogyan kezelheti a felhasználók, és alaphelyzetbe állítja a hozzáférés a Linux virtuális gépeken a VMAccess bővítmény és az Azure CLI 2.0 használatával"
+title: "aaaReset hozzáférés tooan Azure Linux virtuális gép |} Microsoft Docs"
+description: "Hogyan toomanage felhasználók és a visszaállítási hozzáférés Linux virtuális gépek használata a VMAccess bővítmény hello és hello Azure CLI 2.0"
 services: virtual-machines-linux
 documentationcenter: 
 author: dlepow
@@ -15,28 +15,28 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 08/04/2017
 ms.author: danlep
-ms.openlocfilehash: 587c73278a9a92776276a811c5c4c8d3db773de3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2f8db01b9fac20bf547d8b1926e5c0b3c5d18280
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-users-ssh-and-check-or-repair-disks-on-linux-vms-using-the-vmaccess-extension-with-the-azure-cli-20"></a><span data-ttu-id="8e113-103">Kezelheti a felhasználókat, az SSH és az ellenőrzése, vagy javítsa ki a Linux virtuális gépeken a VMAccess bővítmény használata az Azure CLI 2.0 lemezek</span><span class="sxs-lookup"><span data-stu-id="8e113-103">Manage users, SSH, and check or repair disks on Linux VMs using the VMAccess Extension with the Azure CLI 2.0</span></span>
-<span data-ttu-id="8e113-104">A lemezt a Linux virtuális Gépet a hibák láthatók.</span><span class="sxs-lookup"><span data-stu-id="8e113-104">The disk on your Linux VM is showing errors.</span></span> <span data-ttu-id="8e113-105">Valamilyen módon alaphelyzetbe állítja a gyökér szintű jelszavát a Linux virtuális gép számára, vagy véletlenül törli a titkos SSH-kulcsot.</span><span class="sxs-lookup"><span data-stu-id="8e113-105">You somehow reset the root password for your Linux VM or accidentally deleted your SSH private key.</span></span> <span data-ttu-id="8e113-106">Ha vissza a datacenter napban bekövetkezett, meg kell meghajtó van, és nyissa meg a kiszolgáló konzolján beolvasandó KVM.</span><span class="sxs-lookup"><span data-stu-id="8e113-106">If that happened back in the days of the datacenter, you would need to drive there and then open the KVM to get at the server console.</span></span> <span data-ttu-id="8e113-107">Az Azure VMAccess bővítmény gondol adott KVM kapcsolóéval, amely lehetővé teszi a hozzáférést a következőre Linux, vagy végezzen szintű konzol eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="8e113-107">Think of the Azure VMAccess extension as that KVM switch that allows you to access the console to reset access to Linux or perform disk level maintenance.</span></span>
+# <a name="manage-users-ssh-and-check-or-repair-disks-on-linux-vms-using-hello-vmaccess-extension-with-hello-azure-cli-20"></a><span data-ttu-id="76c23-103">Kezelheti a felhasználókat, az SSH és az ellenőrzése vagy javítása lemezek Linux virtuális gépek használata a VMAccess bővítmény hello a hello Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="76c23-103">Manage users, SSH, and check or repair disks on Linux VMs using hello VMAccess Extension with hello Azure CLI 2.0</span></span>
+<span data-ttu-id="76c23-104">a Linux virtuális gép lemezének hello hibák láthatók.</span><span class="sxs-lookup"><span data-stu-id="76c23-104">hello disk on your Linux VM is showing errors.</span></span> <span data-ttu-id="76c23-105">Valamilyen módon alaphelyzetbe hello gyökér szintű jelszavát a Linux virtuális Gépet, vagy véletlenül törli a titkos SSH-kulcsot.</span><span class="sxs-lookup"><span data-stu-id="76c23-105">You somehow reset hello root password for your Linux VM or accidentally deleted your SSH private key.</span></span> <span data-ttu-id="76c23-106">Vissza hello napban hello Datacenter bekövetkezett, ha meg szeretné toodrive van szüksége, és nyisson meg hello KVM tooget hello kiszolgáló konzolján.</span><span class="sxs-lookup"><span data-stu-id="76c23-106">If that happened back in hello days of hello datacenter, you would need toodrive there and then open hello KVM tooget at hello server console.</span></span> <span data-ttu-id="76c23-107">Hello Azure VMAccess bővítmény gondol adott KVM kapcsoló, amely lehetővé teszi, hogy Ön tooaccess konzol tooreset hozzáférés tooLinux hello, vagy végezzen szint szerint.</span><span class="sxs-lookup"><span data-stu-id="76c23-107">Think of hello Azure VMAccess extension as that KVM switch that allows you tooaccess hello console tooreset access tooLinux or perform disk level maintenance.</span></span>
 
-<span data-ttu-id="8e113-108">Ez a cikk bemutatja, hogyan ellenőrizze vagy javítsa ki a lemezt, alaphelyzetbe állítja a felhasználói hozzáférés, a felhasználói fiókok kezelése vagy a Linux SSH-konfigurációjának visszaállítása az Azure VMAccess bővítmény használatával.</span><span class="sxs-lookup"><span data-stu-id="8e113-108">This article shows you how to use the Azure VMAccess Extension to check or repair a disk, reset user access, manage user accounts, or reset the SSH configuration on Linux.</span></span> <span data-ttu-id="8e113-109">Az [Azure CLI 1.0-s](using-vmaccess-extension-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) verziójával is elvégezheti ezeket a lépéseket.</span><span class="sxs-lookup"><span data-stu-id="8e113-109">You can also perform these steps with the [Azure CLI 1.0](using-vmaccess-extension-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+<span data-ttu-id="76c23-108">Ez a cikk bemutatja, hogyan toouse hello Azure VMAccess bővítmény toocheck vagy javítsa ki a lemez, alaphelyzetbe állítja a felhasználói hozzáférés, felhasználói fiókok kezelése, vagy visszaállítja hello Linux SSH-konfigurációt.</span><span class="sxs-lookup"><span data-stu-id="76c23-108">This article shows you how toouse hello Azure VMAccess Extension toocheck or repair a disk, reset user access, manage user accounts, or reset hello SSH configuration on Linux.</span></span> <span data-ttu-id="76c23-109">Is elvégezheti ezeket a lépéseket hello [Azure CLI 1.0](using-vmaccess-extension-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="76c23-109">You can also perform these steps with hello [Azure CLI 1.0](using-vmaccess-extension-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 
 
-## <a name="ways-to-use-the-vmaccess-extension"></a><span data-ttu-id="8e113-110">A VMAccess bővítmény használatának módjai</span><span class="sxs-lookup"><span data-stu-id="8e113-110">Ways to use the VMAccess Extension</span></span>
-<span data-ttu-id="8e113-111">Kétféleképpen használható a VMAccess bővítmény a Linux virtuális gépeken:</span><span class="sxs-lookup"><span data-stu-id="8e113-111">There are two ways that you can use the VMAccess Extension on your Linux VMs:</span></span>
+## <a name="ways-toouse-hello-vmaccess-extension"></a><span data-ttu-id="76c23-110">Többféleképpen toouse hello VMAccess bővítmény</span><span class="sxs-lookup"><span data-stu-id="76c23-110">Ways toouse hello VMAccess Extension</span></span>
+<span data-ttu-id="76c23-111">Két módon használható hello VMAccess bővítmény a Linux virtuális gépeken:</span><span class="sxs-lookup"><span data-stu-id="76c23-111">There are two ways that you can use hello VMAccess Extension on your Linux VMs:</span></span>
 
-* <span data-ttu-id="8e113-112">Használja az Azure CLI 2.0 és a szükséges paramétereket.</span><span class="sxs-lookup"><span data-stu-id="8e113-112">Use the Azure CLI 2.0 and the required parameters.</span></span>
-* <span data-ttu-id="8e113-113">[Használja a VMAccess bővítmény feldolgozó nyers JSON-fájlok](#use-json-files-and-the-vmaccess-extension) és majd rájuk.</span><span class="sxs-lookup"><span data-stu-id="8e113-113">[Use raw JSON files that the VMAccess Extension process](#use-json-files-and-the-vmaccess-extension) and then act on.</span></span>
+* <span data-ttu-id="76c23-112">Hello Azure CLI 2.0 és a szükséges hello paraméterek használata.</span><span class="sxs-lookup"><span data-stu-id="76c23-112">Use hello Azure CLI 2.0 and hello required parameters.</span></span>
+* <span data-ttu-id="76c23-113">[Használjon nyers JSON-fájlokat a VMAccess bővítmény folyamat hello](#use-json-files-and-the-vmaccess-extension) és majd rájuk.</span><span class="sxs-lookup"><span data-stu-id="76c23-113">[Use raw JSON files that hello VMAccess Extension process](#use-json-files-and-the-vmaccess-extension) and then act on.</span></span>
 
-<span data-ttu-id="8e113-114">A következő példákban [az vm felhasználói](/cli/azure/vm/user) parancsok.</span><span class="sxs-lookup"><span data-stu-id="8e113-114">The following examples use [az vm user](/cli/azure/vm/user) commands.</span></span> <span data-ttu-id="8e113-115">A következő lépésekkel lesz szüksége a legújabb [Azure CLI 2.0](/cli/azure/install-az-cli2) telepítve, és bejelentkezett az Azure-fiók használatával [az bejelentkezési](/cli/azure/#login).</span><span class="sxs-lookup"><span data-stu-id="8e113-115">To perform these steps, you need the latest [Azure CLI 2.0](/cli/azure/install-az-cli2) installed and logged in to an Azure account using [az login](/cli/azure/#login).</span></span>
+<span data-ttu-id="76c23-114">a következő példák használata hello [az vm felhasználói](/cli/azure/vm/user) parancsok.</span><span class="sxs-lookup"><span data-stu-id="76c23-114">hello following examples use [az vm user](/cli/azure/vm/user) commands.</span></span> <span data-ttu-id="76c23-115">Ezek a lépések tooperform, kell hello legújabb [Azure CLI 2.0](/cli/azure/install-az-cli2) telepítve, és bejelentkezett tooan Azure-fiók használatával [az bejelentkezési](/cli/azure/#login).</span><span class="sxs-lookup"><span data-stu-id="76c23-115">tooperform these steps, you need hello latest [Azure CLI 2.0](/cli/azure/install-az-cli2) installed and logged in tooan Azure account using [az login](/cli/azure/#login).</span></span>
 
-## <a name="reset-ssh-key"></a><span data-ttu-id="8e113-116">SSH-kulcs visszaállítása</span><span class="sxs-lookup"><span data-stu-id="8e113-116">Reset SSH key</span></span>
-<span data-ttu-id="8e113-117">Az alábbi példa visszaállítja az SSH-kulcs a felhasználó `azureuser` nevű virtuális gépen `myVM`:</span><span class="sxs-lookup"><span data-stu-id="8e113-117">The following example resets the SSH key for the user `azureuser` on the VM named `myVM`:</span></span>
+## <a name="reset-ssh-key"></a><span data-ttu-id="76c23-116">SSH-kulcs visszaállítása</span><span class="sxs-lookup"><span data-stu-id="76c23-116">Reset SSH key</span></span>
+<span data-ttu-id="76c23-117">hello alábbi példa visszaállítja hello SSH-kulcs hello felhasználói `azureuser` hello nevű virtuális gép a `myVM`:</span><span class="sxs-lookup"><span data-stu-id="76c23-117">hello following example resets hello SSH key for hello user `azureuser` on hello VM named `myVM`:</span></span>
 
 ```azurecli
 az vm user update \
@@ -46,8 +46,8 @@ az vm user update \
   --ssh-key-value ~/.ssh/id_rsa.pub
 ```
 
-## <a name="reset-password"></a><span data-ttu-id="8e113-118">Új jelszó létrehozása</span><span class="sxs-lookup"><span data-stu-id="8e113-118">Reset password</span></span>
-<span data-ttu-id="8e113-119">Az alábbi példában a felhasználó jelszava alaphelyzetbe állítása `azureuser` nevű virtuális gépen `myVM`:</span><span class="sxs-lookup"><span data-stu-id="8e113-119">The following example resets the password for the user `azureuser` on the VM named `myVM`:</span></span>
+## <a name="reset-password"></a><span data-ttu-id="76c23-118">Új jelszó létrehozása</span><span class="sxs-lookup"><span data-stu-id="76c23-118">Reset password</span></span>
+<span data-ttu-id="76c23-119">hello alábbi példa jelszavának alaphelyzetbe állítása hello hello felhasználó `azureuser` hello nevű virtuális gép a `myVM`:</span><span class="sxs-lookup"><span data-stu-id="76c23-119">hello following example resets hello password for hello user `azureuser` on hello VM named `myVM`:</span></span>
 
 ```azurecli
 az vm user update \
@@ -57,8 +57,8 @@ az vm user update \
   --password myNewPassword
 ```
 
-## <a name="restart-ssh"></a><span data-ttu-id="8e113-120">Indítsa újra az SSH</span><span class="sxs-lookup"><span data-stu-id="8e113-120">Restart SSH</span></span>
-<span data-ttu-id="8e113-121">A következő példa az SSH démon újraindul, és visszaállítja az SSH-konfigurációt az alapértelmezett értékekre a nevű virtuális gép `myVM`:</span><span class="sxs-lookup"><span data-stu-id="8e113-121">The following example restarts the SSH daemon and resets the SSH configuration to default values on a VM named `myVM`:</span></span>
+## <a name="restart-ssh"></a><span data-ttu-id="76c23-120">Indítsa újra az SSH</span><span class="sxs-lookup"><span data-stu-id="76c23-120">Restart SSH</span></span>
+<span data-ttu-id="76c23-121">hello alábbi példa újraindítja hello SSH démon, és alaphelyzetbe állítását hello SSH konfigurációs toodefault értékek a nevű virtuális gép `myVM`:</span><span class="sxs-lookup"><span data-stu-id="76c23-121">hello following example restarts hello SSH daemon and resets hello SSH configuration toodefault values on a VM named `myVM`:</span></span>
 
 ```azurecli
 az vm user reset-ssh \
@@ -66,8 +66,8 @@ az vm user reset-ssh \
   --name myVM
 ```
 
-## <a name="create-a-user"></a><span data-ttu-id="8e113-122">Felhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="8e113-122">Create a user</span></span>
-<span data-ttu-id="8e113-123">Az alábbi példakód létrehozza a felhasználó nevű `myNewUser` nevű virtuális gép hitelesítéséhez SSH-kulcs használata `myVM`:</span><span class="sxs-lookup"><span data-stu-id="8e113-123">The following example creates a user named `myNewUser` using an SSH key for authentication on the VM named `myVM`:</span></span>
+## <a name="create-a-user"></a><span data-ttu-id="76c23-122">Felhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="76c23-122">Create a user</span></span>
+<span data-ttu-id="76c23-123">hello alábbi példa létrehoz egy megnevezett felhasználó `myNewUser` hello nevű virtuális gép hitelesítéséhez SSH-kulcs használata `myVM`:</span><span class="sxs-lookup"><span data-stu-id="76c23-123">hello following example creates a user named `myNewUser` using an SSH key for authentication on hello VM named `myVM`:</span></span>
 
 ```azurecli
 az vm user update \
@@ -77,8 +77,8 @@ az vm user update \
   --ssh-key-value ~/.ssh/id_rsa.pub
 ```
 
-## <a name="delete-a-user"></a><span data-ttu-id="8e113-124">Felhasználó törlése</span><span class="sxs-lookup"><span data-stu-id="8e113-124">Delete a user</span></span>
-<span data-ttu-id="8e113-125">A következő példa egy megnevezett felhasználó törli `myNewUser` nevű virtuális gépen `myVM`:</span><span class="sxs-lookup"><span data-stu-id="8e113-125">The following example deletes a user named `myNewUser` on the VM named `myVM`:</span></span>
+## <a name="delete-a-user"></a><span data-ttu-id="76c23-124">Felhasználó törlése</span><span class="sxs-lookup"><span data-stu-id="76c23-124">Delete a user</span></span>
+<span data-ttu-id="76c23-125">hello alábbi példa törli nevű felhasználó `myNewUser` hello nevű virtuális gép a `myVM`:</span><span class="sxs-lookup"><span data-stu-id="76c23-125">hello following example deletes a user named `myNewUser` on hello VM named `myVM`:</span></span>
 
 ```azurecli
 az vm user delete \
@@ -88,13 +88,13 @@ az vm user delete \
 ```
 
 
-## <a name="use-json-files-and-the-vmaccess-extension"></a><span data-ttu-id="8e113-126">JSON-fájlok és a VMAccess bővítmény</span><span class="sxs-lookup"><span data-stu-id="8e113-126">Use JSON files and the VMAccess Extension</span></span>
-<span data-ttu-id="8e113-127">Az alábbi példák nyers JSON-fájlokat használja.</span><span class="sxs-lookup"><span data-stu-id="8e113-127">The following examples use raw JSON files.</span></span> <span data-ttu-id="8e113-128">Használjon [az virtuálisgép-bővítmény készlet](/cli/azure/vm/extension#set) majd hívni a JSON-fájlokat.</span><span class="sxs-lookup"><span data-stu-id="8e113-128">Use [az vm extension set](/cli/azure/vm/extension#set) to then call your JSON files.</span></span> <span data-ttu-id="8e113-129">A JSON-fájlok az Azure-sablonok alapján is hívható.</span><span class="sxs-lookup"><span data-stu-id="8e113-129">These JSON files can also be called from Azure templates.</span></span> 
+## <a name="use-json-files-and-hello-vmaccess-extension"></a><span data-ttu-id="76c23-126">JSON-fájlokat használ, és a VMAccess bővítmény hello</span><span class="sxs-lookup"><span data-stu-id="76c23-126">Use JSON files and hello VMAccess Extension</span></span>
+<span data-ttu-id="76c23-127">a következő példák hello nyers JSON-fájlokat használja.</span><span class="sxs-lookup"><span data-stu-id="76c23-127">hello following examples use raw JSON files.</span></span> <span data-ttu-id="76c23-128">Használjon [az virtuálisgép-bővítmény készlet](/cli/azure/vm/extension#set) toothen hívja a JSON-fájlokat.</span><span class="sxs-lookup"><span data-stu-id="76c23-128">Use [az vm extension set](/cli/azure/vm/extension#set) toothen call your JSON files.</span></span> <span data-ttu-id="76c23-129">A JSON-fájlok az Azure-sablonok alapján is hívható.</span><span class="sxs-lookup"><span data-stu-id="76c23-129">These JSON files can also be called from Azure templates.</span></span> 
 
-### <a name="reset-user-access"></a><span data-ttu-id="8e113-130">Felhasználói hozzáférés alaphelyzetbe állítása</span><span class="sxs-lookup"><span data-stu-id="8e113-130">Reset user access</span></span>
-<span data-ttu-id="8e113-131">Ha elvesztette a hozzáférést, legfelső szintű a Linux virtuális gépre, a felhasználó az SSH-kulcsot, vagy a jelszó alaphelyzetbe állítása a vmaccess bővítmény parancsfájl indíthatja el.</span><span class="sxs-lookup"><span data-stu-id="8e113-131">If you have lost access to root on your Linux VM, you can launch a VMAccess script to reset a user's SSH key or password.</span></span>
+### <a name="reset-user-access"></a><span data-ttu-id="76c23-130">Felhasználói hozzáférés alaphelyzetbe állítása</span><span class="sxs-lookup"><span data-stu-id="76c23-130">Reset user access</span></span>
+<span data-ttu-id="76c23-131">Hozzáférés tooroot elvesztette a Linux virtuális gépre, ha a felhasználó az SSH-kulcsot vagy jelszót indítja el a vmaccess bővítmény parancsfájl tooreset.</span><span class="sxs-lookup"><span data-stu-id="76c23-131">If you have lost access tooroot on your Linux VM, you can launch a VMAccess script tooreset a user's SSH key or password.</span></span>
 
-<span data-ttu-id="8e113-132">Alaphelyzetbe állítja a nyilvános SSH-kulcs egy olyan felhasználó, hozzon létre egy fájlt `reset_ssh_key.json` , és adja hozzá a beállítások a következő formátumban.</span><span class="sxs-lookup"><span data-stu-id="8e113-132">To reset the SSH public key of a user, create a file named `reset_ssh_key.json` and add settings in the following format.</span></span> <span data-ttu-id="8e113-133">A saját értékeit helyettesítse a `username` és `ssh_key` paraméterek:</span><span class="sxs-lookup"><span data-stu-id="8e113-133">Substitute your own values for the `username` and `ssh_key` parameters:</span></span>
+<span data-ttu-id="76c23-132">tooreset hello SSH nyilvános kulcsát egy olyan felhasználó, hozzon létre egy fájlt `reset_ssh_key.json` és beállítások hozzáadása a formátum a következő hello.</span><span class="sxs-lookup"><span data-stu-id="76c23-132">tooreset hello SSH public key of a user, create a file named `reset_ssh_key.json` and add settings in hello following format.</span></span> <span data-ttu-id="76c23-133">Helyettesítse a saját értékeit hello `username` és `ssh_key` paraméterek:</span><span class="sxs-lookup"><span data-stu-id="76c23-133">Substitute your own values for hello `username` and `ssh_key` parameters:</span></span>
 
 ```json
 {
@@ -103,7 +103,7 @@ az vm user delete \
 }
 ```
 
-<span data-ttu-id="8e113-134">A vmaccess bővítmény parancsprogram végrehajtása:</span><span class="sxs-lookup"><span data-stu-id="8e113-134">Execute the VMAccess script with:</span></span>
+<span data-ttu-id="76c23-134">Hello VMAccess parancsprogram végrehajtása:</span><span class="sxs-lookup"><span data-stu-id="76c23-134">Execute hello VMAccess script with:</span></span>
 
 ```azurecli
 az vm extension set \
@@ -115,7 +115,7 @@ az vm extension set \
   --protected-settings reset_ssh_key.json
 ```
 
-<span data-ttu-id="8e113-135">Felhasználói jelszó alaphelyzetbe állítása, hozzon létre egy fájlt `reset_user_password.json` , és adja hozzá a beállítások a következő formátumban.</span><span class="sxs-lookup"><span data-stu-id="8e113-135">To reset a user password, create a file named `reset_user_password.json` and add settings in the following format.</span></span> <span data-ttu-id="8e113-136">A saját értékeit helyettesítse a `username` és `password` paraméterek:</span><span class="sxs-lookup"><span data-stu-id="8e113-136">Substitute your own values for the `username` and `password` parameters:</span></span>
+<span data-ttu-id="76c23-135">tooreset felhasználói jelszó, hozzon létre egy fájlt `reset_user_password.json` és beállítások hozzáadása a formátum a következő hello.</span><span class="sxs-lookup"><span data-stu-id="76c23-135">tooreset a user password, create a file named `reset_user_password.json` and add settings in hello following format.</span></span> <span data-ttu-id="76c23-136">Helyettesítse a saját értékeit hello `username` és `password` paraméterek:</span><span class="sxs-lookup"><span data-stu-id="76c23-136">Substitute your own values for hello `username` and `password` parameters:</span></span>
 
 ```json
 {
@@ -124,7 +124,7 @@ az vm extension set \
 }
 ```
 
-<span data-ttu-id="8e113-137">A vmaccess bővítmény parancsprogram végrehajtása:</span><span class="sxs-lookup"><span data-stu-id="8e113-137">Execute the VMAccess script with:</span></span>
+<span data-ttu-id="76c23-137">Hello VMAccess parancsprogram végrehajtása:</span><span class="sxs-lookup"><span data-stu-id="76c23-137">Execute hello VMAccess script with:</span></span>
 
 ```azurecli
 az vm extension set \
@@ -136,8 +136,8 @@ az vm extension set \
   --protected-settings reset_user_password.json
 ```
 
-### <a name="restart-ssh"></a><span data-ttu-id="8e113-138">Indítsa újra az SSH</span><span class="sxs-lookup"><span data-stu-id="8e113-138">Restart SSH</span></span>
-<span data-ttu-id="8e113-139">Indítsa újra az SSH démon, és visszaállítja az SSH-konfigurációt az alapértelmezett értékekre, hozzon létre egy fájlt `reset_sshd.json`.</span><span class="sxs-lookup"><span data-stu-id="8e113-139">To restart the SSH daemon and reset the SSH configuration to default values, create a file named `reset_sshd.json`.</span></span> <span data-ttu-id="8e113-140">Adja hozzá a következőket:</span><span class="sxs-lookup"><span data-stu-id="8e113-140">Add the following content:</span></span>
+### <a name="restart-ssh"></a><span data-ttu-id="76c23-138">Indítsa újra az SSH</span><span class="sxs-lookup"><span data-stu-id="76c23-138">Restart SSH</span></span>
+<span data-ttu-id="76c23-139">toorestart SSH démon hello és hello SSH konfigurációs toodefault értékek visszaállítása, hozzon létre egy fájlt `reset_sshd.json`.</span><span class="sxs-lookup"><span data-stu-id="76c23-139">toorestart hello SSH daemon and reset hello SSH configuration toodefault values, create a file named `reset_sshd.json`.</span></span> <span data-ttu-id="76c23-140">Adja hozzá a következő tartalmat hello:</span><span class="sxs-lookup"><span data-stu-id="76c23-140">Add hello following content:</span></span>
 
 ```json
 {
@@ -145,7 +145,7 @@ az vm extension set \
 }
 ```
 
-<span data-ttu-id="8e113-141">A vmaccess bővítmény parancsprogram végrehajtása:</span><span class="sxs-lookup"><span data-stu-id="8e113-141">Execute the VMAccess script with:</span></span>
+<span data-ttu-id="76c23-141">Hello VMAccess parancsprogram végrehajtása:</span><span class="sxs-lookup"><span data-stu-id="76c23-141">Execute hello VMAccess script with:</span></span>
 
 ```azurecli
 az vm extension set \
@@ -157,9 +157,9 @@ az vm extension set \
   --protected-settings reset_sshd.json
 ```
 
-### <a name="manage-users"></a><span data-ttu-id="8e113-142">Felhasználók kezelése</span><span class="sxs-lookup"><span data-stu-id="8e113-142">Manage users</span></span>
+### <a name="manage-users"></a><span data-ttu-id="76c23-142">Felhasználók kezelése</span><span class="sxs-lookup"><span data-stu-id="76c23-142">Manage users</span></span>
 
-<span data-ttu-id="8e113-143">Hozzon létre egy felhasználót, egy SSH-kulcsot használ, hozzon létre egy fájlt `create_new_user.json` , és adja hozzá a beállítások a következő formátumban.</span><span class="sxs-lookup"><span data-stu-id="8e113-143">To create a user that uses an SSH key for authentication, create a file named `create_new_user.json` and add settings in the following format.</span></span> <span data-ttu-id="8e113-144">A saját értékeit helyettesítse a `username` és `ssh_key` paraméterek:</span><span class="sxs-lookup"><span data-stu-id="8e113-144">Substitute your own values for the `username` and `ssh_key` parameters:</span></span>
+<span data-ttu-id="76c23-143">toocreate egy olyan felhasználó, egy SSH-kulcsot használ a hitelesítéshez, hozzon létre egy fájlt `create_new_user.json` és beállítások hozzáadása a formátum a következő hello.</span><span class="sxs-lookup"><span data-stu-id="76c23-143">toocreate a user that uses an SSH key for authentication, create a file named `create_new_user.json` and add settings in hello following format.</span></span> <span data-ttu-id="76c23-144">Helyettesítse a saját értékeit hello `username` és `ssh_key` paraméterek:</span><span class="sxs-lookup"><span data-stu-id="76c23-144">Substitute your own values for hello `username` and `ssh_key` parameters:</span></span>
 
 ```json
 {
@@ -169,7 +169,7 @@ az vm extension set \
 }
 ```
 
-<span data-ttu-id="8e113-145">A vmaccess bővítmény parancsprogram végrehajtása:</span><span class="sxs-lookup"><span data-stu-id="8e113-145">Execute the VMAccess script with:</span></span>
+<span data-ttu-id="76c23-145">Hello VMAccess parancsprogram végrehajtása:</span><span class="sxs-lookup"><span data-stu-id="76c23-145">Execute hello VMAccess script with:</span></span>
 
 ```azurecli
 az vm extension set \
@@ -181,7 +181,7 @@ az vm extension set \
   --protected-settings create_new_user.json
 ```
 
-<span data-ttu-id="8e113-146">Felhasználó törlése, hozzon létre egy fájlt `delete_user.json` , és adja hozzá a következő tartalmat.</span><span class="sxs-lookup"><span data-stu-id="8e113-146">To delete a user, create a file named `delete_user.json` and add the following content.</span></span> <span data-ttu-id="8e113-147">Helyettesítse a saját értéke a `remove_user` paraméter:</span><span class="sxs-lookup"><span data-stu-id="8e113-147">Substitute your own value for the `remove_user` parameter:</span></span>
+<span data-ttu-id="76c23-146">a felhasználó toodelete hozzon létre egy fájlt `delete_user.json` , és adja hozzá a tartalom a következő hello.</span><span class="sxs-lookup"><span data-stu-id="76c23-146">toodelete a user, create a file named `delete_user.json` and add hello following content.</span></span> <span data-ttu-id="76c23-147">Helyettesítse a saját értéke hello `remove_user` paraméter:</span><span class="sxs-lookup"><span data-stu-id="76c23-147">Substitute your own value for hello `remove_user` parameter:</span></span>
 
 ```json
 {
@@ -189,7 +189,7 @@ az vm extension set \
 }
 ```
 
-<span data-ttu-id="8e113-148">A vmaccess bővítmény parancsprogram végrehajtása:</span><span class="sxs-lookup"><span data-stu-id="8e113-148">Execute the VMAccess script with:</span></span>
+<span data-ttu-id="76c23-148">Hello VMAccess parancsprogram végrehajtása:</span><span class="sxs-lookup"><span data-stu-id="76c23-148">Execute hello VMAccess script with:</span></span>
 
 ```azurecli
 az vm extension set \
@@ -201,10 +201,10 @@ az vm extension set \
   --protected-settings delete_user.json
 ```
 
-### <a name="check-or-repair-the-disk"></a><span data-ttu-id="8e113-149">Ellenőrizze, vagy javítsa ki a lemez</span><span class="sxs-lookup"><span data-stu-id="8e113-149">Check or repair the disk</span></span>
-<span data-ttu-id="8e113-150">Vmaccess bővítmény használatával ellenőrizze, és javítsa ki egy lemezt, a Linux virtuális gép hozzáadott-e.</span><span class="sxs-lookup"><span data-stu-id="8e113-150">Using VMAccess you can also check and repair a disk that you added to the Linux VM.</span></span>
+### <a name="check-or-repair-hello-disk"></a><span data-ttu-id="76c23-149">Ellenőrizze, vagy javítsa ki hello lemez</span><span class="sxs-lookup"><span data-stu-id="76c23-149">Check or repair hello disk</span></span>
+<span data-ttu-id="76c23-150">Vmaccess bővítmény használatával is ellenőrizze és javítsa ki, hogy hozzáadta a Linux virtuális gép toohello lemezt.</span><span class="sxs-lookup"><span data-stu-id="76c23-150">Using VMAccess you can also check and repair a disk that you added toohello Linux VM.</span></span>
 
-<span data-ttu-id="8e113-151">Ellenőrizze és javítsa ki a lemezt, hozzon létre egy fájlt `disk_check_repair.json` , és adja hozzá a beállítások a következő formátumban.</span><span class="sxs-lookup"><span data-stu-id="8e113-151">To check and then repair the disk, create a file named `disk_check_repair.json` and add settings in the following format.</span></span> <span data-ttu-id="8e113-152">Helyettesítse a saját nevét a következő `repair_disk`:</span><span class="sxs-lookup"><span data-stu-id="8e113-152">Substitute your own value for the name of `repair_disk`:</span></span>
+<span data-ttu-id="76c23-151">toocheck és hello lemezt, majd hozzon létre egy fájlt `disk_check_repair.json` és beállítások hozzáadása a formátum a következő hello.</span><span class="sxs-lookup"><span data-stu-id="76c23-151">toocheck and then repair hello disk, create a file named `disk_check_repair.json` and add settings in hello following format.</span></span> <span data-ttu-id="76c23-152">Helyettesítse a saját hello nevét a következő `repair_disk`:</span><span class="sxs-lookup"><span data-stu-id="76c23-152">Substitute your own value for hello name of `repair_disk`:</span></span>
 
 ```json
 {
@@ -213,7 +213,7 @@ az vm extension set \
 }
 ```
 
-<span data-ttu-id="8e113-153">A vmaccess bővítmény parancsprogram végrehajtása:</span><span class="sxs-lookup"><span data-stu-id="8e113-153">Execute the VMAccess script with:</span></span>
+<span data-ttu-id="76c23-153">Hello VMAccess parancsprogram végrehajtása:</span><span class="sxs-lookup"><span data-stu-id="76c23-153">Execute hello VMAccess script with:</span></span>
 
 ```azurecli
 az vm extension set \
@@ -225,12 +225,12 @@ az vm extension set \
   --protected-settings disk_check_repair.json
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="8e113-154">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="8e113-154">Next steps</span></span>
-<span data-ttu-id="8e113-155">Az Azure VMAccess bővítmény használatával Linux frissítése a módosításokat a futó Linux virtuális gép módszerrel.</span><span class="sxs-lookup"><span data-stu-id="8e113-155">Updating Linux using the Azure VMAccess Extension is one method to make changes on a running Linux VM.</span></span> <span data-ttu-id="8e113-156">Eszközök, például a felhő inicializálás és az Azure Resource Manager-sablonok segítségével módosíthatja a Linux virtuális gép rendszerindító.</span><span class="sxs-lookup"><span data-stu-id="8e113-156">You can also use tools like cloud-init and Azure Resource Manager templates to modify your Linux VM on boot.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="76c23-154">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="76c23-154">Next steps</span></span>
+<span data-ttu-id="76c23-155">Linux frissítése hello Azure VMAccess bővítmény használata a Linux virtuális gép egy metódus toomake módosításait.</span><span class="sxs-lookup"><span data-stu-id="76c23-155">Updating Linux using hello Azure VMAccess Extension is one method toomake changes on a running Linux VM.</span></span> <span data-ttu-id="76c23-156">Használhatja például a felhő inicializálás és az Azure Resource Manager sablonok toomodify eszközök a Linux virtuális Gépet a rendszerindító.</span><span class="sxs-lookup"><span data-stu-id="76c23-156">You can also use tools like cloud-init and Azure Resource Manager templates toomodify your Linux VM on boot.</span></span>
 
-[<span data-ttu-id="8e113-157">Virtuálisgép-bővítmények és a Linux funkcióit</span><span class="sxs-lookup"><span data-stu-id="8e113-157">Virtual machine extensions and features for Linux</span></span>](extensions-features.md)
+[<span data-ttu-id="76c23-157">Virtuálisgép-bővítmények és a Linux funkcióit</span><span class="sxs-lookup"><span data-stu-id="76c23-157">Virtual machine extensions and features for Linux</span></span>](extensions-features.md)
 
-[<span data-ttu-id="8e113-158">Linux Virtuálisgép-bővítmények az Azure Resource Manager sablonok készítése</span><span class="sxs-lookup"><span data-stu-id="8e113-158">Authoring Azure Resource Manager templates with Linux VM extensions</span></span>](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+[<span data-ttu-id="76c23-158">Linux Virtuálisgép-bővítmények az Azure Resource Manager sablonok készítése</span><span class="sxs-lookup"><span data-stu-id="76c23-158">Authoring Azure Resource Manager templates with Linux VM extensions</span></span>](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-[<span data-ttu-id="8e113-159">Felhő inicializálás segítségével testre szabhatja a Linux virtuális gép létrehozása során</span><span class="sxs-lookup"><span data-stu-id="8e113-159">Using cloud-init to customize a Linux VM during creation</span></span>](using-cloud-init.md)
+[<span data-ttu-id="76c23-159">Használatával a felhő inicializálás toocustomize Linux virtuális gép létrehozása során</span><span class="sxs-lookup"><span data-stu-id="76c23-159">Using cloud-init toocustomize a Linux VM during creation</span></span>](using-cloud-init.md)
 

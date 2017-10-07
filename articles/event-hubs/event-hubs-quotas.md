@@ -1,5 +1,5 @@
 ---
-title: "A Microsoft Azure Event Hubs kvótái és korlátai |} Microsoft Docs"
+title: "Azure Event Hubs aaaMicrosoft kvótái és korlátai |} Microsoft Docs"
 description: "Korlátozásai és az Azure Event Hubs kvótái"
 services: event-hubs
 documentationcenter: na
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/12/2017
 ms.author: sethm
-ms.openlocfilehash: c1c9217cf51cef450837bdd255f8c44c14a74ac0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3d57d813f112eacf0f4981743dec42ba99221cf9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="event-hubs-quotas"></a><span data-ttu-id="71e58-103">Event Hubs kvóták</span><span class="sxs-lookup"><span data-stu-id="71e58-103">Event Hubs quotas</span></span>
-<span data-ttu-id="71e58-104">Ez a rész felsorolja az alapvető kvótái és korlátai az Azure Event Hubs.</span><span class="sxs-lookup"><span data-stu-id="71e58-104">This section lists basic quotas and limits in Azure Event Hubs.</span></span>
+# <a name="event-hubs-quotas"></a><span data-ttu-id="9adab-103">Event Hubs kvóták</span><span class="sxs-lookup"><span data-stu-id="9adab-103">Event Hubs quotas</span></span>
+<span data-ttu-id="9adab-104">Ez a rész felsorolja az alapvető kvótái és korlátai az Azure Event Hubs.</span><span class="sxs-lookup"><span data-stu-id="9adab-104">This section lists basic quotas and limits in Azure Event Hubs.</span></span>
 
 [!INCLUDE [event-hubs-limits](../../includes/event-hubs-limits.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="71e58-105">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="71e58-105">Next steps</span></span>
-<span data-ttu-id="71e58-106">Az alábbi webhelyeken további információt talál az Event Hubsról:</span><span class="sxs-lookup"><span data-stu-id="71e58-106">You can learn more about Event Hubs by visiting the following links:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="9adab-105">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="9adab-105">Next steps</span></span>
+<span data-ttu-id="9adab-106">További információ az Event Hubs érhetők el a következő hivatkozások hello:</span><span class="sxs-lookup"><span data-stu-id="9adab-106">You can learn more about Event Hubs by visiting hello following links:</span></span>
 
-* [<span data-ttu-id="71e58-107">Event Hubs – áttekintés</span><span class="sxs-lookup"><span data-stu-id="71e58-107">Event Hubs overview</span></span>](event-hubs-what-is-event-hubs.md)
-* [<span data-ttu-id="71e58-108">Event Hubs automatikus megnöveli</span><span class="sxs-lookup"><span data-stu-id="71e58-108">Event Hubs Auto-inflate</span></span>](event-hubs-auto-inflate.md)
-* [<span data-ttu-id="71e58-109">Event Hubs – gyakori kérdések</span><span class="sxs-lookup"><span data-stu-id="71e58-109">Event Hubs FAQ</span></span>](event-hubs-faq.md)
+* [<span data-ttu-id="9adab-107">Event Hubs – áttekintés</span><span class="sxs-lookup"><span data-stu-id="9adab-107">Event Hubs overview</span></span>](event-hubs-what-is-event-hubs.md)
+* [<span data-ttu-id="9adab-108">Event Hubs automatikus megnöveli</span><span class="sxs-lookup"><span data-stu-id="9adab-108">Event Hubs Auto-inflate</span></span>](event-hubs-auto-inflate.md)
+* [<span data-ttu-id="9adab-109">Event Hubs – gyakori kérdések</span><span class="sxs-lookup"><span data-stu-id="9adab-109">Event Hubs FAQ</span></span>](event-hubs-faq.md)

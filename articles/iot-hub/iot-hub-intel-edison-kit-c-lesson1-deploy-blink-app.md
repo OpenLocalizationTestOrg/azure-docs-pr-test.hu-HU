@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT - lecke 1 Connect Intel Edison (C): alkalmazás központi telepítése |} Microsoft Docs"
-description: "Klónozza a C mintaalkalmazást a Githubból, és futtassa a gulp az Intel Edison board az alkalmazás telepítéséhez. A mintaalkalmazás villogjon a kártyához csatlakoztatott két másodpercenként LED-jét."
+title: "Connect Intel Edison (C) tooAzure IoT - lecke 1: alkalmazás központi telepítése |} Microsoft Docs"
+description: "Klónozza a C mintaalkalmazás hello a Githubból, és futtassa gulp toodeploy az alkalmazás tooyour Intel Edison board. A mintaalkalmazás villogjon hello csatlakoztatott LED toohello board két másodpercenként."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,34 +17,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: c45ff5f41bdbc78da8532ffdcaaeec15c695f531
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fa84fae812dd742a2ad4997a5e213c8e40e6fcf9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-deploy-the-blink-application"></a><span data-ttu-id="ba70f-105">A villogóalkalmazás elkészítése és üzembe helyezése</span><span class="sxs-lookup"><span data-stu-id="ba70f-105">Create and deploy the blink application</span></span>
-## <a name="what-you-will-do"></a><span data-ttu-id="ba70f-106">Mit fog</span><span class="sxs-lookup"><span data-stu-id="ba70f-106">What you will do</span></span>
-<span data-ttu-id="ba70f-107">Klónozza a C mintaalkalmazást a Githubból, és a segítségével gulp az Intel Edison minta alkalmazást telepíti.</span><span class="sxs-lookup"><span data-stu-id="ba70f-107">Clone the sample C application from GitHub, and use the gulp tool to deploy the sample application to Intel Edison.</span></span> <span data-ttu-id="ba70f-108">A mintaalkalmazás villogjon a kártyához csatlakoztatott két másodpercenként LED-jét.</span><span class="sxs-lookup"><span data-stu-id="ba70f-108">The sample application blinks the LED connected to the board every two seconds.</span></span> <span data-ttu-id="ba70f-109">Ha bármilyen problémába ütközik, tekintse meg a megoldások a [oldal hibaelhárítási][troubleshooting].</span><span class="sxs-lookup"><span data-stu-id="ba70f-109">If you have any problems, look for solutions on the [troubleshooting page][troubleshooting].</span></span>
+# <a name="create-and-deploy-hello-blink-application"></a><span data-ttu-id="4382e-105">Hello villogási alkalmazás létrehozását és telepítését</span><span class="sxs-lookup"><span data-stu-id="4382e-105">Create and deploy hello blink application</span></span>
+## <a name="what-you-will-do"></a><span data-ttu-id="4382e-106">Mit fog</span><span class="sxs-lookup"><span data-stu-id="4382e-106">What you will do</span></span>
+<span data-ttu-id="4382e-107">Klónozza a C mintaalkalmazás hello a Githubból, és hello gulp eszköz toodeploy hello minta alkalmazás tooIntel Edison használja.</span><span class="sxs-lookup"><span data-stu-id="4382e-107">Clone hello sample C application from GitHub, and use hello gulp tool toodeploy hello sample application tooIntel Edison.</span></span> <span data-ttu-id="4382e-108">hello mintaalkalmazás villogjon hello csatlakoztatott LED toohello board két másodpercenként.</span><span class="sxs-lookup"><span data-stu-id="4382e-108">hello sample application blinks hello LED connected toohello board every two seconds.</span></span> <span data-ttu-id="4382e-109">Ha bármilyen problémába ütközik, keressen megoldásokat a hello [oldal hibaelhárítási][troubleshooting].</span><span class="sxs-lookup"><span data-stu-id="4382e-109">If you have any problems, look for solutions on hello [troubleshooting page][troubleshooting].</span></span>
 
-## <a name="what-you-will-learn"></a><span data-ttu-id="ba70f-110">Amiről tanulni fog</span><span class="sxs-lookup"><span data-stu-id="ba70f-110">What you will learn</span></span>
-* <span data-ttu-id="ba70f-111">Hogyan telepítheti, és futtassa a mintaalkalmazást a Edison.</span><span class="sxs-lookup"><span data-stu-id="ba70f-111">How to deploy and run the sample application on Edison.</span></span>
+## <a name="what-you-will-learn"></a><span data-ttu-id="4382e-110">Amiről tanulni fog</span><span class="sxs-lookup"><span data-stu-id="4382e-110">What you will learn</span></span>
+* <span data-ttu-id="4382e-111">Hogyan toodeploy és futtatási hello mintaalkalmazást a Edison.</span><span class="sxs-lookup"><span data-stu-id="4382e-111">How toodeploy and run hello sample application on Edison.</span></span>
 
-## <a name="what-you-need"></a><span data-ttu-id="ba70f-112">Mi szükséges</span><span class="sxs-lookup"><span data-stu-id="ba70f-112">What you need</span></span>
-<span data-ttu-id="ba70f-113">Sikeresen végrehajtotta a következő műveleteket:</span><span class="sxs-lookup"><span data-stu-id="ba70f-113">You must have successfully completed the following operations:</span></span>
+## <a name="what-you-need"></a><span data-ttu-id="4382e-112">Mi szükséges</span><span class="sxs-lookup"><span data-stu-id="4382e-112">What you need</span></span>
+<span data-ttu-id="4382e-113">Sikeresen végrehajtotta a következő műveletek hello:</span><span class="sxs-lookup"><span data-stu-id="4382e-113">You must have successfully completed hello following operations:</span></span>
 
-* <span data-ttu-id="ba70f-114">[Állítsa be az eszközt][configure-your-device]</span><span class="sxs-lookup"><span data-stu-id="ba70f-114">[Configure your device][configure-your-device]</span></span>
-* <span data-ttu-id="ba70f-115">[Eszközök][get-the-tools]</span><span class="sxs-lookup"><span data-stu-id="ba70f-115">[Get the tools][get-the-tools]</span></span>
+* <span data-ttu-id="4382e-114">[Állítsa be az eszközt][configure-your-device]</span><span class="sxs-lookup"><span data-stu-id="4382e-114">[Configure your device][configure-your-device]</span></span>
+* <span data-ttu-id="4382e-115">[Hello eszközök beszerzése][get-the-tools]</span><span class="sxs-lookup"><span data-stu-id="4382e-115">[Get hello tools][get-the-tools]</span></span>
 
-## <a name="open-the-sample-application"></a><span data-ttu-id="ba70f-116">Nyissa meg a mintaalkalmazás</span><span class="sxs-lookup"><span data-stu-id="ba70f-116">Open the sample application</span></span>
-<span data-ttu-id="ba70f-117">A mintaalkalmazás megnyitásához kövesse az alábbi lépéseket:</span><span class="sxs-lookup"><span data-stu-id="ba70f-117">To open the sample application, follow these steps:</span></span>
+## <a name="open-hello-sample-application"></a><span data-ttu-id="4382e-116">Nyissa meg hello mintaalkalmazás</span><span class="sxs-lookup"><span data-stu-id="4382e-116">Open hello sample application</span></span>
+<span data-ttu-id="4382e-117">tooopen hello mintaalkalmazást, kövesse az alábbi lépéseket:</span><span class="sxs-lookup"><span data-stu-id="4382e-117">tooopen hello sample application, follow these steps:</span></span>
 
-1. <span data-ttu-id="ba70f-118">A Githubból a minta-tárház klónozása a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="ba70f-118">Clone the sample repository from GitHub by running the following command:</span></span>
+1. <span data-ttu-id="4382e-118">A Githubból hello minta tárház klónozása hello a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="4382e-118">Clone hello sample repository from GitHub by running hello following command:</span></span>
 
    ```bash
    git clone https://github.com/Azure-Samples/iot-hub-c-edison-getting-started.git
    ```
-2. <span data-ttu-id="ba70f-119">Nyissa meg a Visual Studio Code a mintaalkalmazást a következő parancsok futtatásával:</span><span class="sxs-lookup"><span data-stu-id="ba70f-119">Open the sample application in Visual Studio Code by running the following commands:</span></span>
+2. <span data-ttu-id="4382e-119">Nyissa meg a Visual Studio Code hello mintaalkalmazás hello a következő parancsok futtatásával:</span><span class="sxs-lookup"><span data-stu-id="4382e-119">Open hello sample application in Visual Studio Code by running hello following commands:</span></span>
 
    ```bash
    cd iot-hub-c-edison-getting-started
@@ -54,27 +54,27 @@ ms.lasthandoff: 07/11/2017
 
    ![Tárház szerkezete][repo-structure]
 
-<span data-ttu-id="ba70f-121">A fájl a `app` almappa is szabályozhatja a LED kódot tartalmazó kulcs forrásfájl.</span><span class="sxs-lookup"><span data-stu-id="ba70f-121">The file in the `app` subfolder is the key source file that contains the code to control the LED.</span></span>
+<span data-ttu-id="4382e-121">hello hello fájlban `app` almappa is hello kód toocontrol hello LED tartalmazó hello kulcs forrásfájl.</span><span class="sxs-lookup"><span data-stu-id="4382e-121">hello file in hello `app` subfolder is hello key source file that contains hello code toocontrol hello LED.</span></span>
 
-### <a name="install-application-dependencies"></a><span data-ttu-id="ba70f-122">Telepítse az alkalmazásfüggőségek</span><span class="sxs-lookup"><span data-stu-id="ba70f-122">Install application dependencies</span></span>
-<span data-ttu-id="ba70f-123">A szalagtárak és egyéb modulok a következő parancs futtatásával kell a mintaalkalmazás telepítése:</span><span class="sxs-lookup"><span data-stu-id="ba70f-123">Install the libraries and other modules you need for the sample application by running the following command:</span></span>
+### <a name="install-application-dependencies"></a><span data-ttu-id="4382e-122">Telepítse az alkalmazásfüggőségek</span><span class="sxs-lookup"><span data-stu-id="4382e-122">Install application dependencies</span></span>
+<span data-ttu-id="4382e-123">Hello szalagtárak és más modulok hello a következő parancs futtatásával kell hello mintaalkalmazás telepítése:</span><span class="sxs-lookup"><span data-stu-id="4382e-123">Install hello libraries and other modules you need for hello sample application by running hello following command:</span></span>
 
 ```bash
 npm install
 ```
 
-## <a name="configure-the-device-connection"></a><span data-ttu-id="ba70f-124">Az eszköz kapcsolat konfigurálása</span><span class="sxs-lookup"><span data-stu-id="ba70f-124">Configure the device connection</span></span>
-<span data-ttu-id="ba70f-125">Az eszköz kapcsolat konfigurálásához kövesse az alábbi lépéseket:</span><span class="sxs-lookup"><span data-stu-id="ba70f-125">To configure the device connection, follow these steps:</span></span>
+## <a name="configure-hello-device-connection"></a><span data-ttu-id="4382e-124">Hello eszköz kapcsolat konfigurálása</span><span class="sxs-lookup"><span data-stu-id="4382e-124">Configure hello device connection</span></span>
+<span data-ttu-id="4382e-125">tooconfigure hello eszköz kapcsolat, kövesse az alábbi lépéseket:</span><span class="sxs-lookup"><span data-stu-id="4382e-125">tooconfigure hello device connection, follow these steps:</span></span>
 
-1. <span data-ttu-id="ba70f-126">Az eszköz konfigurációs fájl létrehozása a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="ba70f-126">Generate the device configuration file by running the following command:</span></span>
+1. <span data-ttu-id="4382e-126">Hello eszköz konfigurációs fájl létrehozása hello a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="4382e-126">Generate hello device configuration file by running hello following command:</span></span>
 
    ```bash
    gulp init
    ```
 
-   <span data-ttu-id="ba70f-127">A konfigurációs fájl `config-edison.json` felhasználói hitelesítő adatokkal kell bejelentkezni Edison tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="ba70f-127">The configuration file `config-edison.json` contains the user credentials you use to log in to Edison.</span></span> <span data-ttu-id="ba70f-128">A felhasználói hitelesítő adatok memóriavesztés elkerülése érdekében a konfigurációs fájl jön létre, almappájában `.iot-hub-getting-started` az otthoni mappa a számítógépen.</span><span class="sxs-lookup"><span data-stu-id="ba70f-128">To avoid the leak of user credentials, the configuration file is generated in the subfolder `.iot-hub-getting-started` of the home folder on your computer.</span></span>
+   <span data-ttu-id="4382e-127">hello konfigurációs fájl `config-edison.json` hello segítségével toolog tooEdison felhasználói hitelesítő adatokat tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="4382e-127">hello configuration file `config-edison.json` contains hello user credentials you use toolog in tooEdison.</span></span> <span data-ttu-id="4382e-128">tooavoid hello szivárgásával járnak a felhasználói hitelesítő adatok, hello konfigurációs fájl jön létre hello almappájában `.iot-hub-getting-started` hello otthoni mappa a számítógépen.</span><span class="sxs-lookup"><span data-stu-id="4382e-128">tooavoid hello leak of user credentials, hello configuration file is generated in hello subfolder `.iot-hub-getting-started` of hello home folder on your computer.</span></span>
 
-2. <span data-ttu-id="ba70f-129">Nyissa meg a Visual Studio Code eszköz konfigurációs fájl a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="ba70f-129">Open the device configuration file in Visual Studio Code by running the following command:</span></span>
+2. <span data-ttu-id="4382e-129">Nyissa meg a Visual Studio Code hello eszköz konfigurációs fájl hello a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="4382e-129">Open hello device configuration file in Visual Studio Code by running hello following command:</span></span>
 
    ```bash
    # For Windows command prompt
@@ -84,39 +84,39 @@ npm install
    code ~/.iot-hub-getting-started/config-edison.json
    ```
 
-3. <span data-ttu-id="ba70f-130">Cserélje le a helyőrző `[device hostname or IP address]` és `[device password]` a IP-címét és jelszavát, amely korábbi lecke jelölésű.</span><span class="sxs-lookup"><span data-stu-id="ba70f-130">Replace the placeholder `[device hostname or IP address]` and `[device password]` with the IP address and password that you marked down in previous lesson.</span></span>
+3. <span data-ttu-id="4382e-130">Cserélje le a hello helyőrző `[device hostname or IP address]` és `[device password]` hello IP-címét és jelszavát, amely korábbi lecke jelölésű.</span><span class="sxs-lookup"><span data-stu-id="4382e-130">Replace hello placeholder `[device hostname or IP address]` and `[device password]` with hello IP address and password that you marked down in previous lesson.</span></span>
 
    ![Config.JSON](media/iot-hub-intel-edison-lessons/lesson1/vscode-config-mac.png)
 
-<span data-ttu-id="ba70f-132">Gratulálunk!</span><span class="sxs-lookup"><span data-stu-id="ba70f-132">Congratulations!</span></span> <span data-ttu-id="ba70f-133">Sikeresen létrehozta a Edison első mintaalkalmazást.</span><span class="sxs-lookup"><span data-stu-id="ba70f-133">You've successfully created the first sample application for Edison.</span></span>
+<span data-ttu-id="4382e-132">Gratulálunk!</span><span class="sxs-lookup"><span data-stu-id="4382e-132">Congratulations!</span></span> <span data-ttu-id="4382e-133">Sikeresen létrehozta a hello első mintaalkalmazás Edison.</span><span class="sxs-lookup"><span data-stu-id="4382e-133">You've successfully created hello first sample application for Edison.</span></span>
 
-## <a name="deploy-and-run-the-sample-application"></a><span data-ttu-id="ba70f-134">Regisztrálhat és futtathat a mintaalkalmazás</span><span class="sxs-lookup"><span data-stu-id="ba70f-134">Deploy and run the sample application</span></span>
-### <a name="install-the-azure-iot-hub-sdk-on-edison"></a><span data-ttu-id="ba70f-135">Telepítse az Azure IoT Hub SDK Edison</span><span class="sxs-lookup"><span data-stu-id="ba70f-135">Install the Azure IoT Hub SDK on Edison</span></span>
-<span data-ttu-id="ba70f-136">Az Azure IoT Hub SDK telepítése Edison a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="ba70f-136">Install the Azure IoT Hub SDK on Edison by running the following command:</span></span>
+## <a name="deploy-and-run-hello-sample-application"></a><span data-ttu-id="4382e-134">Regisztrálhat és futtathat hello mintaalkalmazás</span><span class="sxs-lookup"><span data-stu-id="4382e-134">Deploy and run hello sample application</span></span>
+### <a name="install-hello-azure-iot-hub-sdk-on-edison"></a><span data-ttu-id="4382e-135">Edison hello Azure IoT Hub SDK telepítése</span><span class="sxs-lookup"><span data-stu-id="4382e-135">Install hello Azure IoT Hub SDK on Edison</span></span>
+<span data-ttu-id="4382e-136">Hello Azure IoT Hub SDK telepítése Edison hello a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="4382e-136">Install hello Azure IoT Hub SDK on Edison by running hello following command:</span></span>
 
 ```bash
 gulp install-tools
 ```
 
-<span data-ttu-id="ba70f-137">Ez a feladat befejeződik, attól függően, hogy a hálózati kapcsolat hosszú időbe telhet.</span><span class="sxs-lookup"><span data-stu-id="ba70f-137">This task might take a long time to complete, depending on your network connection.</span></span> <span data-ttu-id="ba70f-138">Az egy Edison csak egyszer futtatnia kell.</span><span class="sxs-lookup"><span data-stu-id="ba70f-138">It needs to be run only once for one Edison.</span></span>
+<span data-ttu-id="4382e-137">Ez a feladat egy hosszú ideig toocomplete, attól függően, hogy a hálózati kapcsolatot is igénybe vehet.</span><span class="sxs-lookup"><span data-stu-id="4382e-137">This task might take a long time toocomplete, depending on your network connection.</span></span> <span data-ttu-id="4382e-138">Az igények toobe csak egyszeri futtatás egy Edison.</span><span class="sxs-lookup"><span data-stu-id="4382e-138">It needs toobe run only once for one Edison.</span></span>
 
-### <a name="deploy-and-run-the-sample-app"></a><span data-ttu-id="ba70f-139">Központi telepítése és a mintaalkalmazás futtatása</span><span class="sxs-lookup"><span data-stu-id="ba70f-139">Deploy and run the sample app</span></span>
-<span data-ttu-id="ba70f-140">Telepíthet, és futtassa a mintaalkalmazást a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="ba70f-140">Deploy and run the sample application by running the following command:</span></span>
+### <a name="deploy-and-run-hello-sample-app"></a><span data-ttu-id="4382e-139">Regisztrálhat és futtathat hello mintaalkalmazás</span><span class="sxs-lookup"><span data-stu-id="4382e-139">Deploy and run hello sample app</span></span>
+<span data-ttu-id="4382e-140">Telepíthet, és futtassa a hello mintaalkalmazást hello a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="4382e-140">Deploy and run hello sample application by running hello following command:</span></span>
 
 ```bash
 gulp deploy && gulp run
 ```
 
-### <a name="verify-the-app-works"></a><span data-ttu-id="ba70f-141">Ellenőrizze az alkalmazás akkor működik</span><span class="sxs-lookup"><span data-stu-id="ba70f-141">Verify the app works</span></span>
-<span data-ttu-id="ba70f-142">A mintaalkalmazás automatikusan leáll, miután a LED villogjon-20 alkalommal a.</span><span class="sxs-lookup"><span data-stu-id="ba70f-142">The sample application terminates automatically after the LED blinks for 20 times.</span></span> <span data-ttu-id="ba70f-143">Ha nem látja a LED villogó, tekintse meg a [hibaelhárítási útmutatója] [ troubleshooting] gyakori problémák megoldásainak.</span><span class="sxs-lookup"><span data-stu-id="ba70f-143">If you don’t see the LED blinking, see the [troubleshooting guide][troubleshooting] for solutions to common problems.</span></span>
+### <a name="verify-hello-app-works"></a><span data-ttu-id="4382e-141">Ellenőrizze a hello az alkalmazás akkor működik</span><span class="sxs-lookup"><span data-stu-id="4382e-141">Verify hello app works</span></span>
+<span data-ttu-id="4382e-142">hello mintaalkalmazás automatikusan leáll, miután hello LED villogjon-20 alkalommal a.</span><span class="sxs-lookup"><span data-stu-id="4382e-142">hello sample application terminates automatically after hello LED blinks for 20 times.</span></span> <span data-ttu-id="4382e-143">Ha nem lát hello LED villogó, lásd: hello [hibaelhárítási útmutatója] [ troubleshooting] a megoldások toocommon problémákat.</span><span class="sxs-lookup"><span data-stu-id="4382e-143">If you don’t see hello LED blinking, see hello [troubleshooting guide][troubleshooting] for solutions toocommon problems.</span></span>
 
 ![LED villogó][led-blinking]
 
-## <a name="summary"></a><span data-ttu-id="ba70f-145">Összefoglalás</span><span class="sxs-lookup"><span data-stu-id="ba70f-145">Summary</span></span>
-<span data-ttu-id="ba70f-146">A szükséges eszközök Edison használható telepítése és a LED villogni fog Edison a mintaalkalmazás telepítése.</span><span class="sxs-lookup"><span data-stu-id="ba70f-146">You've installed the required tools to work with Edison and deployed a sample application to Edison to blink the LED.</span></span> <span data-ttu-id="ba70f-147">Most hozzon létre, telepítheti, és futtassa egy másik olyan mintaalkalmazást, amely összeköti Edison Azure IoT Hub az üzeneteket küldjön és fogadjon.</span><span class="sxs-lookup"><span data-stu-id="ba70f-147">You can now create, deploy, and run another sample application that connects Edison to Azure IoT Hub to send and receive messages.</span></span>
+## <a name="summary"></a><span data-ttu-id="4382e-145">Összefoglalás</span><span class="sxs-lookup"><span data-stu-id="4382e-145">Summary</span></span>
+<span data-ttu-id="4382e-146">A Edison hello szükséges eszközök toowork telepítése és telepített egy minta alkalmazás tooEdison tooblink hello LED-jét.</span><span class="sxs-lookup"><span data-stu-id="4382e-146">You've installed hello required tools toowork with Edison and deployed a sample application tooEdison tooblink hello LED.</span></span> <span data-ttu-id="4382e-147">Most hozzon létre, telepítheti, és futtassa egy másik olyan mintaalkalmazást, amely összeköti az IoT-központ toosend Edison tooAzure és üzeneteket fogadni.</span><span class="sxs-lookup"><span data-stu-id="4382e-147">You can now create, deploy, and run another sample application that connects Edison tooAzure IoT Hub toosend and receive messages.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="ba70f-148">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="ba70f-148">Next steps</span></span>
-<span data-ttu-id="ba70f-149">[Az Azure eszközök][get-the-azure-tools]</span><span class="sxs-lookup"><span data-stu-id="ba70f-149">[Get the Azure tools][get-the-azure-tools]</span></span>
+## <a name="next-steps"></a><span data-ttu-id="4382e-148">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="4382e-148">Next steps</span></span>
+<span data-ttu-id="4382e-149">[Első hello Azure-eszközök][get-the-azure-tools]</span><span class="sxs-lookup"><span data-stu-id="4382e-149">[Get hello Azure tools][get-the-azure-tools]</span></span>
 
 <!-- Images and links -->
 

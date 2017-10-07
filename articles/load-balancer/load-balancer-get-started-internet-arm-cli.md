@@ -1,6 +1,6 @@
 ---
-title: "Internetkapcsolattal rendelkező terheléselosztó létrehozása – Azure CLI | Microsoft Docs"
-description: "Ismerje meg, hogyan hozható létre internetkapcsolattal rendelkező terheléselosztó a Resource Managerben az Azure parancssori felület használatával"
+title: "az internetre irányuló aaaCreate terheléselosztó - Azure parancssori Felülettel |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate egy Internet felé néző terheléselosztót a Resource Manager használatával hello Azure parancssori felület"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -15,143 +15,143 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: 3b1780033cbc8aa3e108a213a4d2bfd0332fd7d7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cadb5edb3b4a4e2f0813109d027eaafdc7ef7303
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="creating-an-internet-load-balancer-using-the-azure-cli"></a><span data-ttu-id="d2f5f-103">Internetes terheléselosztó létrehozása az Azure parancssori felületével</span><span class="sxs-lookup"><span data-stu-id="d2f5f-103">Creating an internet load balancer using the Azure CLI</span></span>
+# <a name="creating-an-internet-load-balancer-using-hello-azure-cli"></a><span data-ttu-id="5de4c-103">Az internet terheléselosztói hello Azure parancssori felület használatával</span><span class="sxs-lookup"><span data-stu-id="5de4c-103">Creating an internet load balancer using hello Azure CLI</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="d2f5f-104">Portál</span><span class="sxs-lookup"><span data-stu-id="d2f5f-104">Portal</span></span>](../load-balancer/load-balancer-get-started-internet-portal.md)
-> * [<span data-ttu-id="d2f5f-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="d2f5f-105">PowerShell</span></span>](../load-balancer/load-balancer-get-started-internet-arm-ps.md)
-> * [<span data-ttu-id="d2f5f-106">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="d2f5f-106">Azure CLI</span></span>](../load-balancer/load-balancer-get-started-internet-arm-cli.md)
-> * [<span data-ttu-id="d2f5f-107">Sablon</span><span class="sxs-lookup"><span data-stu-id="d2f5f-107">Template</span></span>](../load-balancer/load-balancer-get-started-internet-arm-template.md)
+> * [<span data-ttu-id="5de4c-104">Portál</span><span class="sxs-lookup"><span data-stu-id="5de4c-104">Portal</span></span>](../load-balancer/load-balancer-get-started-internet-portal.md)
+> * [<span data-ttu-id="5de4c-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="5de4c-105">PowerShell</span></span>](../load-balancer/load-balancer-get-started-internet-arm-ps.md)
+> * [<span data-ttu-id="5de4c-106">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="5de4c-106">Azure CLI</span></span>](../load-balancer/load-balancer-get-started-internet-arm-cli.md)
+> * [<span data-ttu-id="5de4c-107">Sablon</span><span class="sxs-lookup"><span data-stu-id="5de4c-107">Template</span></span>](../load-balancer/load-balancer-get-started-internet-arm-template.md)
 
 [!INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-<span data-ttu-id="d2f5f-108">Ez a cikk a Resource Manager-alapú üzemi modellt ismerteti.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-108">This article covers the Resource Manager deployment model.</span></span> <span data-ttu-id="d2f5f-109">Emellett [azt is megismerheti, hogyan hozható létre internetkapcsolattal rendelkező terheléselosztó a klasszikus üzemelő példány használatával](load-balancer-get-started-internet-classic-portal.md)</span><span class="sxs-lookup"><span data-stu-id="d2f5f-109">You can also [Learn how to create an Internet facing load balancer using classic deployment](load-balancer-get-started-internet-classic-portal.md)</span></span>
+<span data-ttu-id="5de4c-108">Ez a cikk ismerteti a hello Resource Manager üzembe helyezési modellben.</span><span class="sxs-lookup"><span data-stu-id="5de4c-108">This article covers hello Resource Manager deployment model.</span></span> <span data-ttu-id="5de4c-109">Emellett [megtudhatja, hogyan toocreate egy internetre irányuló terheléselosztót használja a klasszikus üzembe helyezési](load-balancer-get-started-internet-classic-portal.md)</span><span class="sxs-lookup"><span data-stu-id="5de4c-109">You can also [Learn how toocreate an Internet facing load balancer using classic deployment](load-balancer-get-started-internet-classic-portal.md)</span></span>
 
 [!INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
-## <a name="deploying-the-solution-using-the-azure-cli"></a><span data-ttu-id="d2f5f-110">A megoldás üzembe helyezése az Azure parancssori felület használatával</span><span class="sxs-lookup"><span data-stu-id="d2f5f-110">Deploying the solution using the Azure CLI</span></span>
+## <a name="deploying-hello-solution-using-hello-azure-cli"></a><span data-ttu-id="5de4c-110">Hello Azure parancssori felület használatával hello megoldás telepítése</span><span class="sxs-lookup"><span data-stu-id="5de4c-110">Deploying hello solution using hello Azure CLI</span></span>
 
-<span data-ttu-id="d2f5f-111">A következő lépések bemutatják, hogyan hozható létre internetkapcsolattal rendelkező terheléselosztó az Azure Resource Manager parancssori felületének használatával.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-111">The following steps show how to create an Internet facing load balancer using Azure Resource Manager with CLI.</span></span> <span data-ttu-id="d2f5f-112">Az Azure Resource Manager lehetővé teszi, hogy az egyes erőforrások konfigurálása egyenként történjen, majd az összerakásukkal jöjjön létre egy erőforrás.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-112">With Azure Resource Manager each resource is created and configured individually, then put together to create a resource.</span></span>
+<span data-ttu-id="5de4c-111">hello lépések bemutatják, hogyan toocreate egy internetre irányuló terheléselosztót a CLI Azure Resource Manager használatával.</span><span class="sxs-lookup"><span data-stu-id="5de4c-111">hello following steps show how toocreate an Internet facing load balancer using Azure Resource Manager with CLI.</span></span> <span data-ttu-id="5de4c-112">Az Azure Resource Manager az egyes erőforrások hozzák létre, és egyenként konfigurálni, majd hozzáfoghat toocreate erőforrás.</span><span class="sxs-lookup"><span data-stu-id="5de4c-112">With Azure Resource Manager each resource is created and configured individually, then put together toocreate a resource.</span></span>
 
-<span data-ttu-id="d2f5f-113">A terheléselosztó üzembe helyezéséhez a következő objektumokat kell létrehozni és konfigurálni:</span><span class="sxs-lookup"><span data-stu-id="d2f5f-113">You must create and configure the following objects to deploy a load balancer:</span></span>
+<span data-ttu-id="5de4c-113">Kell létrehozni, és a következő objektumok toodeploy terheléselosztó hello konfigurálása:</span><span class="sxs-lookup"><span data-stu-id="5de4c-113">You must create and configure hello following objects toodeploy a load balancer:</span></span>
 
-* <span data-ttu-id="d2f5f-114">Előtér-IP-konfiguráció – a nyilvános IP-címeket tartalmazza a bejövő hálózati forgalomhoz.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-114">Front-end IP configuration - contains public IP addresses for incoming network traffic.</span></span>
-* <span data-ttu-id="d2f5f-115">Háttércímkészlet – hálózati adaptereket (NIC) tartalmaz, amelyek segítségével a virtuális gépek fogadhatják a terheléselosztóról érkező hálózati forgalmat.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-115">Back-end address pool - contains network interfaces (NICs) for the virtual machines to receive network traffic from the load balancer.</span></span>
-* <span data-ttu-id="d2f5f-116">Terheléselosztási szabályok – olyan szabályokat tartalmaz, amelyek a terheléselosztó nyilvános portjait rendelik hozzá háttércímkészlet portjaihoz.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-116">Load balancing rules - contains rules mapping a public port on the load balancer to port in the back-end address pool.</span></span>
-* <span data-ttu-id="d2f5f-117">Bejövő NAT-szabályok – olyan szabályokat tartalmaz, amelyek a terheléselosztó nyilvános portjait rendelik hozzá egy adott virtuális gép portjához a háttércímkészletben.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-117">Inbound NAT rules - contains rules mapping a public port on the load balancer to a port for a specific virtual machine in the back-end address pool.</span></span>
-* <span data-ttu-id="d2f5f-118">Mintavételezők – állapotfigyelő mintavételezőket tartalmaz, amelyek a virtuálisgép-példányok rendelkezésre állását ellenőrzik a háttércímkészletben.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-118">Probes - contains health probes used to check availability of virtual machines instances in the back-end address pool.</span></span>
+* <span data-ttu-id="5de4c-114">Előtér-IP-konfiguráció – a nyilvános IP-címeket tartalmazza a bejövő hálózati forgalomhoz.</span><span class="sxs-lookup"><span data-stu-id="5de4c-114">Front-end IP configuration - contains public IP addresses for incoming network traffic.</span></span>
+* <span data-ttu-id="5de4c-115">Háttér-címkészlet - hello virtuális gépek tooreceive hálózati forgalmat a hello terheléselosztó hálózati adapterek (NIC) tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="5de4c-115">Back-end address pool - contains network interfaces (NICs) for hello virtual machines tooreceive network traffic from hello load balancer.</span></span>
+* <span data-ttu-id="5de4c-116">Terheléselosztási szabályok - hello load balancer tooport hello háttér-címkészletbeli nyilvános port leképezési szabályokat tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="5de4c-116">Load balancing rules - contains rules mapping a public port on hello load balancer tooport in hello back-end address pool.</span></span>
+* <span data-ttu-id="5de4c-117">Bejövő NAT-szabályok – hello terhelés terheléselosztó tooa port egy adott virtuális gép hello háttér-címkészletbeli nyilvános port leképezési szabályokat tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="5de4c-117">Inbound NAT rules - contains rules mapping a public port on hello load balancer tooa port for a specific virtual machine in hello back-end address pool.</span></span>
+* <span data-ttu-id="5de4c-118">Mintavétel - állapotfigyelő használ mintavételi készleten toocheck rendelkezésre állása hello háttér címkészletet virtuálisgép-példánya tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="5de4c-118">Probes - contains health probes used toocheck availability of virtual machines instances in hello back-end address pool.</span></span>
 
-<span data-ttu-id="d2f5f-119">A további információkat [Az Azure Resource Manager támogatása a terheléselosztó számára](load-balancer-arm.md) című rész tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-119">For more information see [Azure Resource Manager support for Load Balancer](load-balancer-arm.md).</span></span>
+<span data-ttu-id="5de4c-119">A további információkat [Az Azure Resource Manager támogatása a terheléselosztó számára](load-balancer-arm.md) című rész tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="5de4c-119">For more information see [Azure Resource Manager support for Load Balancer](load-balancer-arm.md).</span></span>
 
-## <a name="set-up-cli-to-use-resource-manager"></a><span data-ttu-id="d2f5f-120">A parancssori felület beállítása a Resource Manager használatához</span><span class="sxs-lookup"><span data-stu-id="d2f5f-120">Set up CLI to use Resource Manager</span></span>
+## <a name="set-up-cli-toouse-resource-manager"></a><span data-ttu-id="5de4c-120">Parancssori felület toouse erőforrás-kezelő beállítása</span><span class="sxs-lookup"><span data-stu-id="5de4c-120">Set up CLI toouse Resource Manager</span></span>
 
-1. <span data-ttu-id="d2f5f-121">Ha még sosem használta az Azure CLI-t, akkor tekintse meg [Install and Configure the Azure CLI](../cli-install-nodejs.md) (Az Azure CLI telepítése és konfigurálása) részt, és kövesse az utasításokat addig a pontig, ahol ki kell választania az Azure-fiókot és -előfizetést.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-121">If you have never used Azure CLI, see [Install and Configure the Azure CLI](../cli-install-nodejs.md) and follow the instructions up to the point where you select your Azure account and subscription.</span></span>
-2. <span data-ttu-id="d2f5f-122">Az **azure config mode** parancs futtatásával váltson az Erőforrás-kezelő módra, a lent látható módon.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-122">Run the **azure config mode** command to switch to Resource Manager mode, as shown below.</span></span>
+1. <span data-ttu-id="5de4c-121">Ha még sosem használta az Azure parancssori felület, lásd: [telepítése és konfigurálása az Azure parancssori felület hello](../cli-install-nodejs.md) hello utasítások mentése toohello pont, ahol ki kell választania az Azure-fiókja és -előfizetést.</span><span class="sxs-lookup"><span data-stu-id="5de4c-121">If you have never used Azure CLI, see [Install and Configure hello Azure CLI](../cli-install-nodejs.md) and follow hello instructions up toohello point where you select your Azure account and subscription.</span></span>
+2. <span data-ttu-id="5de4c-122">Futtassa a hello **azure config mód** tooswitch tooResource Manager üzemmód, alább látható módon.</span><span class="sxs-lookup"><span data-stu-id="5de4c-122">Run hello **azure config mode** command tooswitch tooResource Manager mode, as shown below.</span></span>
 
     ```azurecli
         azure config mode arm
     ```
 
-    <span data-ttu-id="d2f5f-123">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="d2f5f-123">Expected output:</span></span>
+    <span data-ttu-id="5de4c-123">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="5de4c-123">Expected output:</span></span>
 
         info:    New mode is arm
 
-## <a name="create-a-virtual-network-and-a-public-ip-address-for-the-front-end-ip-pool"></a><span data-ttu-id="d2f5f-124">Virtuális hálózat és nyilvános IP-cím létrehozása az előtér-IP-címkészlethez</span><span class="sxs-lookup"><span data-stu-id="d2f5f-124">Create a virtual network and a public IP address for the front-end IP pool</span></span>
+## <a name="create-a-virtual-network-and-a-public-ip-address-for-hello-front-end-ip-pool"></a><span data-ttu-id="5de4c-124">Hozzon létre egy virtuális hálózatot és egy nyilvános IP-cím hello előtér-IP-címtartományhoz.</span><span class="sxs-lookup"><span data-stu-id="5de4c-124">Create a virtual network and a public IP address for hello front-end IP pool</span></span>
 
-1. <span data-ttu-id="d2f5f-125">Hozzon létre egy *NRPVnet* nevű virtuális hálózatot (VNet) az USA keleti régiója helyen az *NRPRG* nevű erőforráscsoporttal.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-125">Create a virtual network (VNet) named *NRPVnet* in the East US location using a resource group named *NRPRG*.</span></span>
+1. <span data-ttu-id="5de4c-125">Hozzon létre egy virtuális hálózatot (VNet) nevű *NRPVnet* hello USA keleti régiója helyen erőforráscsoport használatával nevű *NRPRG*.</span><span class="sxs-lookup"><span data-stu-id="5de4c-125">Create a virtual network (VNet) named *NRPVnet* in hello East US location using a resource group named *NRPRG*.</span></span>
 
     ```azurecli
         azure network vnet create NRPRG NRPVnet eastUS -a 10.0.0.0/16
     ```
 
-    <span data-ttu-id="d2f5f-126">Hozzon létre egy 10.0.0.0/24 CIDR-blokkot tartalmazó *NRPVnetSubnet* nevű alhálózatot az *NRPVnet* virtuális hálózatban.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-126">Create a subnet named *NRPVnetSubnet* with a CIDR block of 10.0.0.0/24 in *NRPVnet*.</span></span>
+    <span data-ttu-id="5de4c-126">Hozzon létre egy 10.0.0.0/24 CIDR-blokkot tartalmazó *NRPVnetSubnet* nevű alhálózatot az *NRPVnet* virtuális hálózatban.</span><span class="sxs-lookup"><span data-stu-id="5de4c-126">Create a subnet named *NRPVnetSubnet* with a CIDR block of 10.0.0.0/24 in *NRPVnet*.</span></span>
 
     ```azurecli
         azure network vnet subnet create NRPRG NRPVnet NRPVnetSubnet -a 10.0.0.0/24
     ```
 
-2. <span data-ttu-id="d2f5f-127">Hozzon létre egy előtér-IP-címkészlet által használandó nyilvános IP-címet *NRPPublicIP* névvel és *loadbalancernrp.eastus.cloudapp.azure.com* DNS-névvel.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-127">Create a public IP address named *NRPPublicIP* to be used by a front-end IP pool with DNS name *loadbalancernrp.eastus.cloudapp.azure.com*.</span></span> <span data-ttu-id="d2f5f-128">Az alábbi parancs a statikus felosztástípust és 4 perces üresjárati időkorlátot használ.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-128">The command below uses the static allocation type and idle timeout of 4 minutes.</span></span>
+2. <span data-ttu-id="5de4c-127">Hozzon létre egy nyilvános IP-cím nevű *NRPPublicIP* DNS-nevet egy előtér-IP-készlet által használt toobe *loadbalancernrp.eastus.cloudapp.azure.com*. hello parancs az alábbi hello statikus foglalási típust használja, és 4 perc üresjárati időkorlátját.</span><span class="sxs-lookup"><span data-stu-id="5de4c-127">Create a public IP address named *NRPPublicIP* toobe used by a front-end IP pool with DNS name *loadbalancernrp.eastus.cloudapp.azure.com*. hello command below uses hello static allocation type and idle timeout of 4 minutes.</span></span>
 
     ```azurecli
         azure network public-ip create -g NRPRG -n NRPPublicIP -l eastus -d loadbalancernrp -a static -i 4
     ```
 
    > [!IMPORTANT]
-   > <span data-ttu-id="d2f5f-129">A terheléselosztó a nyilvános IP-cím tartománycímkéjét fogja használni FQDN-ként.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-129">The load balancer will use the domain label of the public IP as its FQDN.</span></span> <span data-ttu-id="d2f5f-130">Ez áttérést jelent a klasszikus üzemelő példányról, amely a felhőszolgáltatást használja a terheléselosztó teljes tartományneveként (FQDN).</span><span class="sxs-lookup"><span data-stu-id="d2f5f-130">This a change from classic deployment, which uses the cloud service as the load balancer Fully Qualified Domain Name (FQDN).</span></span>
-   > <span data-ttu-id="d2f5f-131">Ebben a példában a *loadbalancernrp.eastus.cloudapp.azure.com* az FQDN.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-131">In this example, the FQDN is *loadbalancernrp.eastus.cloudapp.azure.com*.</span></span>
+   > <span data-ttu-id="5de4c-128">hello terheléselosztó azonos teljes Tartománynevű hello tartomány címkéjének hello nyilvános IP-címet fog használni.</span><span class="sxs-lookup"><span data-stu-id="5de4c-128">hello load balancer will use hello domain label of hello public IP as its FQDN.</span></span> <span data-ttu-id="5de4c-129">A klasszikus üzembe helyezési, hello felhőalapú szolgáltatás, a terheléselosztó teljesen minősített tartománynév (FQDN) hello használó módosítást.</span><span class="sxs-lookup"><span data-stu-id="5de4c-129">This a change from classic deployment, which uses hello cloud service as hello load balancer Fully Qualified Domain Name (FQDN).</span></span>
+   > <span data-ttu-id="5de4c-130">Ebben a példában hello FQDN-je *loadbalancernrp.eastus.cloudapp.azure.com*.</span><span class="sxs-lookup"><span data-stu-id="5de4c-130">In this example, hello FQDN is *loadbalancernrp.eastus.cloudapp.azure.com*.</span></span>
 
-## <a name="create-a-load-balancer"></a><span data-ttu-id="d2f5f-132">Terheléselosztó létrehozása</span><span class="sxs-lookup"><span data-stu-id="d2f5f-132">Create a load balancer</span></span>
+## <a name="create-a-load-balancer"></a><span data-ttu-id="5de4c-131">Terheléselosztó létrehozása</span><span class="sxs-lookup"><span data-stu-id="5de4c-131">Create a load balancer</span></span>
 
-<span data-ttu-id="d2f5f-133">A következő parancs létrehoz egy *NRPlb* nevű terheléselosztót az *NRPRG* erőforráscsoportban, az *USA keleti régiója* Azure-helyen.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-133">The following command creates a load balancer named *NRPlb* in the *NRPRG* resource group in the *East US* Azure location.</span></span>
+<span data-ttu-id="5de4c-132">hello következő parancs létrehoz egy terhelés-kiegyenlítő nevű *NRPlb* a hello *NRPRG* hello erőforráscsoportja *USA keleti régiója* Azure-beli hely.</span><span class="sxs-lookup"><span data-stu-id="5de4c-132">hello following command creates a load balancer named *NRPlb* in hello *NRPRG* resource group in hello *East US* Azure location.</span></span>
 
     ```azurecli
     azure network lb create NRPRG NRPlb eastus
     ```
 
-## <a name="create-a-front-end-ip-pool-and-a-backend-address-pool"></a><span data-ttu-id="d2f5f-134">Előtér-IP-címkészlet és háttércímkészlet létrehozása</span><span class="sxs-lookup"><span data-stu-id="d2f5f-134">Create a front-end IP pool and a backend address pool</span></span>
-<span data-ttu-id="d2f5f-135">Ez a példa bemutatja, hogyan kell létrehozni azt az előtér-IP-címkészletet, amely a bejövő hálózati forgalmat fogadja a terheléselosztón, illetve azt a háttér-IP-címkészletet, ahová az előtérkészlet küldi az elosztott terhelésű hálózati forgalmat.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-135">This example demonstrates how to create the front-end IP pool that receives the incoming network traffic on the load balancer and the backend IP pool where the front-end pool sends the load balanced network traffic.</span></span>
+## <a name="create-a-front-end-ip-pool-and-a-backend-address-pool"></a><span data-ttu-id="5de4c-133">Előtér-IP-címkészlet és háttércímkészlet létrehozása</span><span class="sxs-lookup"><span data-stu-id="5de4c-133">Create a front-end IP pool and a backend address pool</span></span>
+<span data-ttu-id="5de4c-134">Ez a példa bemutatja, hogyan toocreate hello előtér-IP-készlet, amely megkapja a bejövő hálózati forgalmat hello hello terheléselosztó és hello háttérbeli IP-készlet, ahol hello előtér-készlet küldi hello hálózati forgalmat.</span><span class="sxs-lookup"><span data-stu-id="5de4c-134">This example demonstrates how toocreate hello front-end IP pool that receives hello incoming network traffic on hello load balancer and hello backend IP pool where hello front-end pool sends hello load balanced network traffic.</span></span>
 
-1. <span data-ttu-id="d2f5f-136">Hozzon létre egy előtér-IP-címkészletet az előző lépésben létrehozott nyilvános IP-címet társítva a terheléselosztóhoz.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-136">Create a front-end IP pool associating the public IP created in the previous step and the load balancer.</span></span>
+1. <span data-ttu-id="5de4c-135">Hozzon létre egy társítása hello nyilvános IP-cím létrehozott hello előző lépésben és hello terheléselosztó előtér-IP-címkészletet.</span><span class="sxs-lookup"><span data-stu-id="5de4c-135">Create a front-end IP pool associating hello public IP created in hello previous step and hello load balancer.</span></span>
 
     ```azurecli
         azure network lb frontend-ip create nrpRG NRPlb NRPfrontendpool -i nrppublicip
     ```
 
-2. <span data-ttu-id="d2f5f-137">Állítson be egy háttér-címkészletet az előtér-IP-címkészletből bejövő forgalom fogadásához.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-137">Set up a back-end address pool used to receive incoming traffic from the front-end IP pool.</span></span>
+2. <span data-ttu-id="5de4c-136">Állítsa be egy háttér címkészletet tooreceive bejövő forgalom használt hello előtér-IP-készletből.</span><span class="sxs-lookup"><span data-stu-id="5de4c-136">Set up a back-end address pool used tooreceive incoming traffic from hello front-end IP pool.</span></span>
 
     ```azurecli
         azure network lb address-pool create NRPRG NRPlb NRPbackendpool
     ```
 
-## <a name="create-lb-rules-nat-rules-and-probe"></a><span data-ttu-id="d2f5f-138">LB-szabályok, NAT-szabályok és mintavétel létrehozása</span><span class="sxs-lookup"><span data-stu-id="d2f5f-138">Create LB rules, NAT rules, and probe</span></span>
+## <a name="create-lb-rules-nat-rules-and-probe"></a><span data-ttu-id="5de4c-137">LB-szabályok, NAT-szabályok és mintavétel létrehozása</span><span class="sxs-lookup"><span data-stu-id="5de4c-137">Create LB rules, NAT rules, and probe</span></span>
 
-<span data-ttu-id="d2f5f-139">Ez a példa a következő elemeket hozza létre.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-139">This example creates the following items.</span></span>
+<span data-ttu-id="5de4c-138">Ebben a példában a következő elemek hello hoz létre.</span><span class="sxs-lookup"><span data-stu-id="5de4c-138">This example creates hello following items.</span></span>
 
-* <span data-ttu-id="d2f5f-140">egy NAT-szabályt, amely a 21-es porton bejövő összes forgalmat lefordítja a 22<sup>1</sup>-es portra</span><span class="sxs-lookup"><span data-stu-id="d2f5f-140">a NAT rule to translate all incoming traffic on port 21 to port 22<sup>1</sup></span></span>
-* <span data-ttu-id="d2f5f-141">egy NAT-szabályt, amely a 23-as porton bejövő összes forgalmat lefordítja a 22-es portra</span><span class="sxs-lookup"><span data-stu-id="d2f5f-141">a NAT rule to translate all incoming traffic on port 23 to port 22</span></span>
-* <span data-ttu-id="d2f5f-142">egy terheléselosztó-szabályt, amely elosztja a 80-as porton bejövő összes forgalmat a háttér-címkészletben szereplő címekhez tartozó 80-as porton.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-142">a load balancer rule to balance all incoming traffic on port 80 to port 80 on the addresses in the back-end pool.</span></span>
-* <span data-ttu-id="d2f5f-143">egy mintavételi szabályt, amely az állapotot ellenőrzi a *HealthProbe.aspx* nevű oldalon.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-143">a probe rule to check the health status on a page named *HealthProbe.aspx*.</span></span>
+* <span data-ttu-id="5de4c-139">a NAT-szabályok tootranslate minden bejövő forgalom a 22-es port 21 tooport<sup>1</sup></span><span class="sxs-lookup"><span data-stu-id="5de4c-139">a NAT rule tootranslate all incoming traffic on port 21 tooport 22<sup>1</sup></span></span>
+* <span data-ttu-id="5de4c-140">a NAT-szabályok tootranslate minden bejövő forgalom a 22-es port 23 tooport</span><span class="sxs-lookup"><span data-stu-id="5de4c-140">a NAT rule tootranslate all incoming traffic on port 23 tooport 22</span></span>
+* <span data-ttu-id="5de4c-141">a load balancer szabály toobalance minden bejövő forgalmat a 80-as port tooport 80 hello a címek hello háttér-készletben.</span><span class="sxs-lookup"><span data-stu-id="5de4c-141">a load balancer rule toobalance all incoming traffic on port 80 tooport 80 on hello addresses in hello back-end pool.</span></span>
+* <span data-ttu-id="5de4c-142">a mintavétel szabály toocheck hello állapot nevű oldalon *HealthProbe.aspx*.</span><span class="sxs-lookup"><span data-stu-id="5de4c-142">a probe rule toocheck hello health status on a page named *HealthProbe.aspx*.</span></span>
 
-<span data-ttu-id="d2f5f-144"><sup>1</sup> A NAT-szabályok a terheléselosztó mögött található adott virtuálisgép-példányhoz vannak társítva.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-144"><sup>1</sup> NAT rules are associated to a specific virtual machine instance behind the load balancer.</span></span> <span data-ttu-id="d2f5f-145">A 21-es portra érkező hálózati forgalmat a rendszer elküldi a 22-es porton keresztül egy adott virtuális gépre, amely ehhez a NAT-szabályhoz van társítva.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-145">The network traffic arriving on port 21 is sent to a specific virtual machine on port 22 associated with this NAT rule.</span></span> <span data-ttu-id="d2f5f-146">A NAT-szabályhoz meg kell adnia egy protokollt (UDP vagy TCP).</span><span class="sxs-lookup"><span data-stu-id="d2f5f-146">You must specify a protocol (UDP or TCP) for a NAT rule.</span></span> <span data-ttu-id="d2f5f-147">Mindkét protokollt nem lehet hozzárendelni ugyanahhoz a porthoz.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-147">Both protocols can't be assigned to the same port.</span></span>
+<span data-ttu-id="5de4c-143"><sup>1</sup> NAT-szabályok adott virtuálisgép-példányt társított tooa hello terheléselosztó mögött.</span><span class="sxs-lookup"><span data-stu-id="5de4c-143"><sup>1</sup> NAT rules are associated tooa specific virtual machine instance behind hello load balancer.</span></span> <span data-ttu-id="5de4c-144">hello hálózati 21 portot a bejövő adatforgalom tooa adott virtuális gép a NAT-szabály társított 22-es porton.</span><span class="sxs-lookup"><span data-stu-id="5de4c-144">hello network traffic arriving on port 21 is sent tooa specific virtual machine on port 22 associated with this NAT rule.</span></span> <span data-ttu-id="5de4c-145">A NAT-szabályhoz meg kell adnia egy protokollt (UDP vagy TCP).</span><span class="sxs-lookup"><span data-stu-id="5de4c-145">You must specify a protocol (UDP or TCP) for a NAT rule.</span></span> <span data-ttu-id="5de4c-146">Mindkét protokollt nem lehet toohello hozzárendelve ugyanehhez a porthoz.</span><span class="sxs-lookup"><span data-stu-id="5de4c-146">Both protocols can't be assigned toohello same port.</span></span>
 
-1. <span data-ttu-id="d2f5f-148">Hozza létre a NAT-szabályokat.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-148">Create the NAT rules.</span></span>
+1. <span data-ttu-id="5de4c-147">Hello NAT-szabályok létrehozása.</span><span class="sxs-lookup"><span data-stu-id="5de4c-147">Create hello NAT rules.</span></span>
 
     ```azurecli
         azure network lb inbound-nat-rule create --resource-group nrprg --lb-name nrplb --name ssh1 --protocol tcp --frontend-port 21 --backend-port 22
         azure network lb inbound-nat-rule create --resource-group nrprg --lb-name nrplb --name ssh2 --protocol tcp --frontend-port 23 --backend-port 22
     ```
 
-2. <span data-ttu-id="d2f5f-149">Hozzon létre egy terheléselosztó-szabályt.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-149">Create a load balancer rule.</span></span>
+2. <span data-ttu-id="5de4c-148">Hozzon létre egy terheléselosztó-szabályt.</span><span class="sxs-lookup"><span data-stu-id="5de4c-148">Create a load balancer rule.</span></span>
 
     ```azurecli
         azure network lb rule create --resource-group nrprg --lb-name nrplb --name lbrule --protocol tcp --frontend-port 80 --backend-port 80 --frontend-ip-name NRPfrontendpool --backend-address-pool-name NRPbackendpool
     ```
 
-3. <span data-ttu-id="d2f5f-150">Hozzon létre egy állapotmintát.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-150">Create a health probe.</span></span>
+3. <span data-ttu-id="5de4c-149">Hozzon létre egy állapotmintát.</span><span class="sxs-lookup"><span data-stu-id="5de4c-149">Create a health probe.</span></span>
 
     ```azurecli
         azure network lb probe create --resource-group nrprg --lb-name nrplb --name healthprobe --protocol "http" --port 80 --path healthprobe.aspx --interval 15 --count 4
     ```
 
-4. <span data-ttu-id="d2f5f-151">Ellenőrizze a beállításokat.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-151">Check your settings.</span></span>
+4. <span data-ttu-id="5de4c-150">Ellenőrizze a beállításokat.</span><span class="sxs-lookup"><span data-stu-id="5de4c-150">Check your settings.</span></span>
 
     ```azurecli
         azure network lb show nrprg nrplb
     ```
 
-    <span data-ttu-id="d2f5f-152">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="d2f5f-152">Expected output:</span></span>
+    <span data-ttu-id="5de4c-151">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="5de4c-151">Expected output:</span></span>
 
         info:    Executing command network lb show
-        + Looking up the load balancer "nrplb"
-        + Looking up the public ip "NRPPublicIP"
+        + Looking up hello load balancer "nrplb"
+        + Looking up hello public ip "NRPPublicIP"
         data:    Id                              : /subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb
         data:    Name                            : nrplb
         data:    Type                            : Microsoft.Network/loadBalancers
@@ -208,23 +208,23 @@ ms.lasthandoff: 07/11/2017
         data:
         info:    network lb show command OK
 
-## <a name="create-nics"></a><span data-ttu-id="d2f5f-153">Hálózati adapterek létrehozása</span><span class="sxs-lookup"><span data-stu-id="d2f5f-153">Create NICs</span></span>
+## <a name="create-nics"></a><span data-ttu-id="5de4c-152">Hálózati adapterek létrehozása</span><span class="sxs-lookup"><span data-stu-id="5de4c-152">Create NICs</span></span>
 
-<span data-ttu-id="d2f5f-154">Hálózati adaptereket kell létrehoznia (vagy a meglévőket is módosíthatja), és hozzá kell rendelnie őket a NAT-szabályokhoz, a terheléselosztási szabályokhoz és a mintavételezőkhöz.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-154">You need to create NICs (or modify existing ones) and associate them to NAT rules, load balancer rules, and probes.</span></span>
+<span data-ttu-id="5de4c-153">Toocreate hálózati adapterrel kell (vagy módosíthatja a meglévőket), és rendelje hozzá őket tooNAT szabályok, load balancer szabályok és mintavételek menüpontban.</span><span class="sxs-lookup"><span data-stu-id="5de4c-153">You need toocreate NICs (or modify existing ones) and associate them tooNAT rules, load balancer rules, and probes.</span></span>
 
-1. <span data-ttu-id="d2f5f-155">Hozzon létre egy hálózati adaptert *lb-nic1-be* néven, majd társítsa az *rdp1* NAT-szabállyal és az *NRPbackendpool* háttércímkészlettel.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-155">Create a NIC named *lb-nic1-be*, and associate it with the *rdp1* NAT rule, and the *NRPbackendpool* back-end address pool.</span></span>
+1. <span data-ttu-id="5de4c-154">Hozzon létre egy hálózati adapter nevű *lb nic1 kell*, és társítsa azt az hello *rdp1* NAT szabály és hello *NRPbackendpool* háttér címkészletet.</span><span class="sxs-lookup"><span data-stu-id="5de4c-154">Create a NIC named *lb-nic1-be*, and associate it with hello *rdp1* NAT rule, and hello *NRPbackendpool* back-end address pool.</span></span>
 
     ```azurecli
         azure network nic create --resource-group nrprg --name lb-nic1-be --subnet-name nrpvnetsubnet --subnet-vnet-name nrpvnet --lb-address-pool-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/backendAddressPools/NRPbackendpool" --lb-inbound-nat-rule-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/inboundNatRules/rdp1" eastus
     ```
 
-    <span data-ttu-id="d2f5f-156">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="d2f5f-156">Expected output:</span></span>
+    <span data-ttu-id="5de4c-155">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="5de4c-155">Expected output:</span></span>
 
         info:    Executing command network nic create
-        + Looking up the network interface "lb-nic1-be"
-        + Looking up the subnet "nrpvnetsubnet"
+        + Looking up hello network interface "lb-nic1-be"
+        + Looking up hello subnet "nrpvnetsubnet"
         + Creating network interface "lb-nic1-be"
-        + Looking up the network interface "lb-nic1-be"
+        + Looking up hello network interface "lb-nic1-be"
         data:    Id                              : /subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/networkInterfaces/lb-nic1-be
         data:    Name                            : lb-nic1-be
         data:    Type                            : Microsoft.Network/networkInterfaces
@@ -244,68 +244,68 @@ ms.lasthandoff: 07/11/2017
         data:
         info:    network nic create command OK
 
-2. <span data-ttu-id="d2f5f-157">Hozzon létre egy hálózati adaptert *lb-nic2-be* néven, majd társítsa az *rdp2* NAT-szabállyal és az *NRPbackendpool* háttércímkészlettel.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-157">Create a NIC named *lb-nic2-be*, and associate it with the *rdp2* NAT rule, and the *NRPbackendpool* back-end address pool.</span></span>
+2. <span data-ttu-id="5de4c-156">Hozzon létre egy hálózati adapter nevű *lb nic2 kell*, és társítsa azt az hello *rdp2* NAT szabály és hello *NRPbackendpool* háttér címkészletet.</span><span class="sxs-lookup"><span data-stu-id="5de4c-156">Create a NIC named *lb-nic2-be*, and associate it with hello *rdp2* NAT rule, and hello *NRPbackendpool* back-end address pool.</span></span>
 
     ```azurecli
         azure network nic create --resource-group nrprg --name lb-nic2-be --subnet-name nrpvnetsubnet --subnet-vnet-name nrpvnet --lb-address-pool-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/backendAddressPools/NRPbackendpool" --lb-inbound-nat-rule-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/inboundNatRules/rdp2" eastus
     ```
 
-3. <span data-ttu-id="d2f5f-158">Hozzon létre egy virtuális gépet (VM) *web1* néven, és társítsa az *lb-nic1-be* nevű hálózati adapterhez.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-158">Create a virtual machine (VM) named *web1*, and associate it with the NIC named *lb-nic1-be*.</span></span> <span data-ttu-id="d2f5f-159">Az alábbi parancs futtatása előtt létrejött egy *web1nrp* nevű tárfiók.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-159">A storage account called *web1nrp* was created before running the command below.</span></span>
+3. <span data-ttu-id="5de4c-157">Hozzon létre egy virtuális gépet (VM) nevű *web1*, és rendelje hozzá azt a hálózati adapter nevű hello *lb nic1 kell*.</span><span class="sxs-lookup"><span data-stu-id="5de4c-157">Create a virtual machine (VM) named *web1*, and associate it with hello NIC named *lb-nic1-be*.</span></span> <span data-ttu-id="5de4c-158">A tárfiók neve *web1nrp* alábbi hello parancs futtatása előtt lett létrehozva.</span><span class="sxs-lookup"><span data-stu-id="5de4c-158">A storage account called *web1nrp* was created before running hello command below.</span></span>
 
     ```azurecli
         azure vm create --resource-group nrprg --name web1 --location eastus --vnet-name nrpvnet --vnet-subnet-name nrpvnetsubnet --nic-name lb-nic1-be --availset-name nrp-avset --storage-account-name web1nrp --os-type Windows --image-urn MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:4.0.20150825
     ```
 
     > [!IMPORTANT]
-    > <span data-ttu-id="d2f5f-160">A terheléselosztó virtuális gépeinek ugyanabban a rendelkezésre állási készletben kell lenniük.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-160">VMs in a load balancer need to be in the same availability set.</span></span> <span data-ttu-id="d2f5f-161">Használja az `azure availset create` parancsot a rendelkezésre állási készlet létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-161">Use `azure availset create` to create an availability set.</span></span>
+    > <span data-ttu-id="5de4c-159">A betöltési terheléselosztó kell toobe a virtuális gépek hello azonos rendelkezésre állási csoportot.</span><span class="sxs-lookup"><span data-stu-id="5de4c-159">VMs in a load balancer need toobe in hello same availability set.</span></span> <span data-ttu-id="5de4c-160">Használjon `azure availset create` toocreate rendelkezésre állási készlet.</span><span class="sxs-lookup"><span data-stu-id="5de4c-160">Use `azure availset create` toocreate an availability set.</span></span>
 
-    <span data-ttu-id="d2f5f-162">A kimenet az alábbihoz hasonló lesz:</span><span class="sxs-lookup"><span data-stu-id="d2f5f-162">The output should be similar to the following:</span></span>
+    <span data-ttu-id="5de4c-161">hello kimeneti hasonló toohello következő legyen:</span><span class="sxs-lookup"><span data-stu-id="5de4c-161">hello output should be similar toohello following:</span></span>
 
         info:    Executing command vm create
-        + Looking up the VM "web1"
+        + Looking up hello VM "web1"
         Enter username: azureuser
         Enter password for azureuser: *********
         Confirm password: *********
-        info:    Using the VM Size "Standard_A1"
-        info:    The [OS, Data] Disk or image configuration requires storage account
-        + Looking up the storage account web1nrp
-        + Looking up the availability set "nrp-avset"
+        info:    Using hello VM Size "Standard_A1"
+        info:    hello [OS, Data] Disk or image configuration requires storage account
+        + Looking up hello storage account web1nrp
+        + Looking up hello availability set "nrp-avset"
         info:    Found an Availability set "nrp-avset"
-        + Looking up the NIC "lb-nic1-be"
+        + Looking up hello NIC "lb-nic1-be"
         info:    Found an existing NIC "lb-nic1-be"
-        info:    Found an IP configuration with virtual network subnet id "/subscriptions/####################################/resourceGroups/NRPRG/providers/Microsoft.Network/virtualNetworks/NRPVnet/subnets/NRPVnetSubnet" in the NIC "lb-nic1-be"
+        info:    Found an IP configuration with virtual network subnet id "/subscriptions/####################################/resourceGroups/NRPRG/providers/Microsoft.Network/virtualNetworks/NRPVnet/subnets/NRPVnetSubnet" in hello NIC "lb-nic1-be"
         info:    This is a NIC without publicIP configured
         + Creating VM "web1"
         info:    vm create command OK
 
     > [!NOTE]
-    > <span data-ttu-id="d2f5f-163">A következő tájékoztató üzenetnek kell megjelennie: **Ez egy nyilvános IP-cím nélkül konfigurált hálózati adapter**, mivel a terheléselosztóhoz létrehozott hálózati adapter a terheléselosztó nyilvános IP-címével csatlakozik az internethez.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-163">The informational message **This is a NIC without publicIP configured** is expected since the NIC created for the load balancer connecting to Internet using the load balancer public IP address.</span></span>
+    > <span data-ttu-id="5de4c-162">hello tájékoztató üzenet **Ez az egy hálózati adapter nélkül konfigurált publicIP** várt hello hálózati adapter létrehozása óta hello terheléselosztóhoz csatlakozó tooInternet hello load balancer nyilvános IP-cím használatával.</span><span class="sxs-lookup"><span data-stu-id="5de4c-162">hello informational message **This is a NIC without publicIP configured** is expected since hello NIC created for hello load balancer connecting tooInternet using hello load balancer public IP address.</span></span>
 
-    <span data-ttu-id="d2f5f-164">Mivel az *lb-nic1-be* hálózati adapter az *rdp1* NAT-szabályhoz van társítva, az RDP-vel a terheléselosztó 3441-es portján keresztül csatlakozhat a *web1* virtuális géphez.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-164">Since the *lb-nic1-be* NIC is associated with the *rdp1* NAT rule, you can connect to *web1* using RDP through port 3441 on the load balancer.</span></span>
+    <span data-ttu-id="5de4c-163">Hello óta *lb nic1 kell* hálózati adapter kapcsolódik a hello *rdp1* NAT-szabály túl kapcsolódhatnak*web1* RDP Funkciót használnak a hello terheléselosztón 3441 porton keresztül.</span><span class="sxs-lookup"><span data-stu-id="5de4c-163">Since hello *lb-nic1-be* NIC is associated with hello *rdp1* NAT rule, you can connect too*web1* using RDP through port 3441 on hello load balancer.</span></span>
 
-4. <span data-ttu-id="d2f5f-165">Hozzon létre egy virtuális gépet (VM) *web2* néven, és társítsa az *lb-nic2-be* nevű hálózati adapterhez.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-165">Create a virtual machine (VM) named *web2*, and associate it with the NIC named *lb-nic2-be*.</span></span> <span data-ttu-id="d2f5f-166">Az alábbi parancs futtatása előtt létrejött egy *web1nrp* nevű tárfiók.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-166">A storage account called *web1nrp* was created before running the command below.</span></span>
+4. <span data-ttu-id="5de4c-164">Hozzon létre egy virtuális gépet (VM) nevű *web2*, és rendelje hozzá azt a hálózati adapter nevű hello *lb nic2 kell*.</span><span class="sxs-lookup"><span data-stu-id="5de4c-164">Create a virtual machine (VM) named *web2*, and associate it with hello NIC named *lb-nic2-be*.</span></span> <span data-ttu-id="5de4c-165">A tárfiók neve *web1nrp* alábbi hello parancs futtatása előtt lett létrehozva.</span><span class="sxs-lookup"><span data-stu-id="5de4c-165">A storage account called *web1nrp* was created before running hello command below.</span></span>
 
     ```azurecli
         azure vm create --resource-group nrprg --name web2 --location eastus --vnet-name nrpvnet --vnet-subnet-name nrpvnetsubnet --nic-name lb-nic2-be --availset-name nrp-avset --storage-account-name web2nrp --os-type Windows --image-urn MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:4.0.20150825
     ```
 
-## <a name="update-an-existing-load-balancer"></a><span data-ttu-id="d2f5f-167">Meglévő terheléselosztó frissítése</span><span class="sxs-lookup"><span data-stu-id="d2f5f-167">Update an existing load balancer</span></span>
-<span data-ttu-id="d2f5f-168">Hozzáadhat egy meglévő terheléselosztóra hivatkozó szabályokat.</span><span class="sxs-lookup"><span data-stu-id="d2f5f-168">You can add rules referencing an existing load balancer.</span></span> <span data-ttu-id="d2f5f-169">A következő példában egy új terheléselosztó-szabályt adunk hozzá egy **NRPlb** nevű meglévő terheléselosztóhoz</span><span class="sxs-lookup"><span data-stu-id="d2f5f-169">In the next example, a new load balancer rule is added to an existing load balancer **NRPlb**</span></span>
+## <a name="update-an-existing-load-balancer"></a><span data-ttu-id="5de4c-166">Meglévő terheléselosztó frissítése</span><span class="sxs-lookup"><span data-stu-id="5de4c-166">Update an existing load balancer</span></span>
+<span data-ttu-id="5de4c-167">Hozzáadhat egy meglévő terheléselosztóra hivatkozó szabályokat.</span><span class="sxs-lookup"><span data-stu-id="5de4c-167">You can add rules referencing an existing load balancer.</span></span> <span data-ttu-id="5de4c-168">Hello a következő példában, egy új terheléselosztási szabály kerül a meglévő terheléselosztó tooan **NRPlb**</span><span class="sxs-lookup"><span data-stu-id="5de4c-168">In hello next example, a new load balancer rule is added tooan existing load balancer **NRPlb**</span></span>
 
 ```azurecli
 azure network lb rule create --resource-group nrprg --lb-name nrplb --name lbrule2 --protocol tcp --frontend-port 8080 --backend-port 8051 --frontend-ip-name frontendnrppool --backend-address-pool-name NRPbackendpool
 ```
 
-## <a name="delete-a-load-balancer"></a><span data-ttu-id="d2f5f-170">Terheléselosztó törlése</span><span class="sxs-lookup"><span data-stu-id="d2f5f-170">Delete a load balancer</span></span>
-<span data-ttu-id="d2f5f-171">Terheléselosztó eltávolításához használja a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="d2f5f-171">Use the following command to remove a load balancer:</span></span>
+## <a name="delete-a-load-balancer"></a><span data-ttu-id="5de4c-169">Terheléselosztó törlése</span><span class="sxs-lookup"><span data-stu-id="5de4c-169">Delete a load balancer</span></span>
+<span data-ttu-id="5de4c-170">A következő parancs tooremove terheléselosztó hello használata:</span><span class="sxs-lookup"><span data-stu-id="5de4c-170">Use hello following command tooremove a load balancer:</span></span>
 
 ```azurecli
 azure network lb delete --resource-group nrprg --name nrplb
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="d2f5f-172">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="d2f5f-172">Next steps</span></span>
-[<span data-ttu-id="d2f5f-173">Bevezetés a belső terheléselosztók konfigurálásába</span><span class="sxs-lookup"><span data-stu-id="d2f5f-173">Get started configuring an internal load balancer</span></span>](load-balancer-get-started-ilb-arm-cli.md)
+## <a name="next-steps"></a><span data-ttu-id="5de4c-171">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="5de4c-171">Next steps</span></span>
+[<span data-ttu-id="5de4c-172">Bevezetés a belső terheléselosztók konfigurálásába</span><span class="sxs-lookup"><span data-stu-id="5de4c-172">Get started configuring an internal load balancer</span></span>](load-balancer-get-started-ilb-arm-cli.md)
 
-[<span data-ttu-id="d2f5f-174">A terheléselosztó elosztási módjának konfigurálása</span><span class="sxs-lookup"><span data-stu-id="d2f5f-174">Configure a load balancer distribution mode</span></span>](load-balancer-distribution-mode.md)
+[<span data-ttu-id="5de4c-173">A terheléselosztó elosztási módjának konfigurálása</span><span class="sxs-lookup"><span data-stu-id="5de4c-173">Configure a load balancer distribution mode</span></span>](load-balancer-distribution-mode.md)
 
-[<span data-ttu-id="d2f5f-175">A terheléselosztó üresjárati TCP-időtúllépési beállításainak konfigurálása</span><span class="sxs-lookup"><span data-stu-id="d2f5f-175">Configure idle TCP timeout settings for your load balancer</span></span>](load-balancer-tcp-idle-timeout.md)
+[<span data-ttu-id="5de4c-174">A terheléselosztó üresjárati TCP-időtúllépési beállításainak konfigurálása</span><span class="sxs-lookup"><span data-stu-id="5de4c-174">Configure idle TCP timeout settings for your load balancer</span></span>](load-balancer-tcp-idle-timeout.md)

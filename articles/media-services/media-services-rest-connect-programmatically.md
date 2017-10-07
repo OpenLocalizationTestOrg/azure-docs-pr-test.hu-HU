@@ -1,6 +1,6 @@
 ---
-title: "Kapcsolódás a Media Services-fiók REST API használatával |} Microsoft Docs"
-description: "Ebben a témakörben bemutatjuk, hogyan csatlakozhat a Media Services előrejelzése REST API-t."
+title: "aaaConnecting tooMedia Services-fiók REST API használatával |} Microsoft Docs"
+description: "Ez a témakör bemutatja, hogyan tooconnect tooMedia szolgáltatások előrejelzése REST API-t."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,54 +14,54 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
-ms.openlocfilehash: 4feb0eb81823835e8e0b701463d85b27f5598019
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1d5064a3612dc96f5c5ad910d183d84fb70a3b6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connecting-to-media-services-account-using-media-services-rest-api"></a><span data-ttu-id="cabc6-103">Kapcsolódás a Media Services-fiók Media Services REST API használatával</span><span class="sxs-lookup"><span data-stu-id="cabc6-103">Connecting to Media Services Account using Media Services REST API</span></span>
+# <a name="connecting-toomedia-services-account-using-media-services-rest-api"></a><span data-ttu-id="81d96-103">Csatlakozás a Media Services REST API használatával Services-fiók tooMedia</span><span class="sxs-lookup"><span data-stu-id="81d96-103">Connecting tooMedia Services Account using Media Services REST API</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="cabc6-104">.NET</span><span class="sxs-lookup"><span data-stu-id="cabc6-104">.NET</span></span>](media-services-dotnet-connect-programmatically.md)
-> * [<span data-ttu-id="cabc6-105">REST</span><span class="sxs-lookup"><span data-stu-id="cabc6-105">REST</span></span>](media-services-rest-connect-programmatically.md)
+> * [<span data-ttu-id="81d96-104">.NET</span><span class="sxs-lookup"><span data-stu-id="81d96-104">.NET</span></span>](media-services-dotnet-connect-programmatically.md)
+> * [<span data-ttu-id="81d96-105">REST</span><span class="sxs-lookup"><span data-stu-id="81d96-105">REST</span></span>](media-services-rest-connect-programmatically.md)
 > 
 > 
 
-<span data-ttu-id="cabc6-106">Ez a témakör ismerteti az beszerzése programozott kapcsolódni a Microsoft Azure Media Services, ha meg vannak programozási Media Services REST API-val.</span><span class="sxs-lookup"><span data-stu-id="cabc6-106">This topic describes how to obtain a programmatic connection to Microsoft Azure Media Services when you are programming with the Media Services REST API.</span></span>
+<span data-ttu-id="81d96-106">Ez a témakör ismerteti, hogyan tooobtain egy Azure Media Services, amikor a rendszer programozás a szoftveres kapcsolatot tooMicrosoft hello Media Services REST API-t.</span><span class="sxs-lookup"><span data-stu-id="81d96-106">This topic describes how tooobtain a programmatic connection tooMicrosoft Azure Media Services when you are programming with hello Media Services REST API.</span></span>
 
-<span data-ttu-id="cabc6-107">Két dolog szükség, ha a Microsoft Azure Media Services szolgáltatásainak eléréséhez: egy hozzáférési jogkivonat segítségével Azure Access Control szolgáltatások (ACS), és a Media Services URI magát.</span><span class="sxs-lookup"><span data-stu-id="cabc6-107">Two things are required when accessing Microsoft Azure Media Services: An access token provided by Azure Access Control Services (ACS), and the URI of Media Services itself.</span></span> <span data-ttu-id="cabc6-108">Azt szeretné, hogy ezek a kérelmek létrehozásakor, mindaddig, amíg adja meg a megfelelő fejléc értékét, és a hozzáférési jogkivonat megfelelően előhívásakor továbbítsa a Media Services bármilyen módon használhatja.</span><span class="sxs-lookup"><span data-stu-id="cabc6-108">You can use any means you want when creating these requests as long as you specify the correct header values and pass in the access token correctly when calling into Media Services.</span></span>
+<span data-ttu-id="81d96-107">Két dolog szükség, ha a Microsoft Azure Media Services szolgáltatásainak eléréséhez: egy hozzáférési jogkivonat segítségével Azure Access Control szolgáltatások (ACS), és a URI Media Services hello magát.</span><span class="sxs-lookup"><span data-stu-id="81d96-107">Two things are required when accessing Microsoft Azure Media Services: An access token provided by Azure Access Control Services (ACS), and hello URI of Media Services itself.</span></span> <span data-ttu-id="81d96-108">Azt szeretné, hogy ezek a kérelmek létrehozásakor, mindaddig, amíg hello megfelelő fejléc értékeket megadni, és a hozzáférési jogkivonat hello megfelelően előhívásakor továbbítsa a Media Services bármilyen módon használhatja.</span><span class="sxs-lookup"><span data-stu-id="81d96-108">You can use any means you want when creating these requests as long as you specify hello correct header values and pass in hello access token correctly when calling into Media Services.</span></span>
 
-<span data-ttu-id="cabc6-109">A következő lépések bemutatják a leggyakrabban használt munkafolyamat, a Media Services REST API való csatlakozáshoz a Media Services használata esetén:</span><span class="sxs-lookup"><span data-stu-id="cabc6-109">The following steps describe the most common workflow when using the Media Services REST API to connect to Media Services:</span></span>
+<span data-ttu-id="81d96-109">a lépéseket követve hello hello leggyakoribb munkafolyamat mutatják be, amikor szolgáltatási hello Media Services REST API tooconnect tooMedia használatával:</span><span class="sxs-lookup"><span data-stu-id="81d96-109">hello following steps describe hello most common workflow when using hello Media Services REST API tooconnect tooMedia Services:</span></span>
 
-1. <span data-ttu-id="cabc6-110">Egy hozzáférési jogkivonat beolvasása</span><span class="sxs-lookup"><span data-stu-id="cabc6-110">Getting an access token</span></span> 
-2. <span data-ttu-id="cabc6-111">Csatlakozás a Media Services URI</span><span class="sxs-lookup"><span data-stu-id="cabc6-111">Connecting to the Media Services URI</span></span> 
+1. <span data-ttu-id="81d96-110">Egy hozzáférési jogkivonat beolvasása</span><span class="sxs-lookup"><span data-stu-id="81d96-110">Getting an access token</span></span> 
+2. <span data-ttu-id="81d96-111">Csatlakozás a Media Services URI toohello</span><span class="sxs-lookup"><span data-stu-id="81d96-111">Connecting toohello Media Services URI</span></span> 
    
    > [!NOTE]
-   > <span data-ttu-id="cabc6-112">Sikeresen csatlakoztassa a https://media.windows.net, adja meg egy másik Media Services URI 301 átirányítást fog kapni.</span><span class="sxs-lookup"><span data-stu-id="cabc6-112">After successfully connecting to https://media.windows.net, you will receive a 301 redirect specifying another Media Services URI.</span></span> <span data-ttu-id="cabc6-113">Meg kell nyitnia az új URI későbbi hívásokat.</span><span class="sxs-lookup"><span data-stu-id="cabc6-113">You must make subsequent calls to the new URI.</span></span>
-   > <span data-ttu-id="cabc6-114">A HTTP/1.1 200 választ, amely tartalmazza a ODATA API-metaadatok leírását is megjelenhet.</span><span class="sxs-lookup"><span data-stu-id="cabc6-114">You may also receive a HTTP/1.1 200 response that contains the ODATA API metadata description.</span></span>
+   > <span data-ttu-id="81d96-112">Toohttps://media.windows.net sikeres csatlakozás után kapni fog egy másik Media Services URI megadása 301 átirányítást.</span><span class="sxs-lookup"><span data-stu-id="81d96-112">After successfully connecting toohttps://media.windows.net, you will receive a 301 redirect specifying another Media Services URI.</span></span> <span data-ttu-id="81d96-113">Meg kell nyitnia a további hívások toohello új URI.</span><span class="sxs-lookup"><span data-stu-id="81d96-113">You must make subsequent calls toohello new URI.</span></span>
+   > <span data-ttu-id="81d96-114">A HTTP/1.1 200 válasz hello ODATA API-metaadatok leírását tartalmazó is megjelenhet.</span><span class="sxs-lookup"><span data-stu-id="81d96-114">You may also receive a HTTP/1.1 200 response that contains hello ODATA API metadata description.</span></span>
    > 
    > 
-3. <span data-ttu-id="cabc6-115">Írjon a következő API-hívások új URL-címet.</span><span class="sxs-lookup"><span data-stu-id="cabc6-115">Post your subsequent API calls to the new URL.</span></span> 
+3. <span data-ttu-id="81d96-115">Közzététel az ezt követő API hívások toohello új URL-címe.</span><span class="sxs-lookup"><span data-stu-id="81d96-115">Post your subsequent API calls toohello new URL.</span></span> 
    
-    <span data-ttu-id="cabc6-116">Például ha az próbál csatlakozni, után kapott a következő:</span><span class="sxs-lookup"><span data-stu-id="cabc6-116">For example, if after trying to connect, you got the following:</span></span>
+    <span data-ttu-id="81d96-116">Például ha az tooconnect próbálja, után kapott hello következő:</span><span class="sxs-lookup"><span data-stu-id="81d96-116">For example, if after trying tooconnect, you got hello following:</span></span>
    
         HTTP/1.1 301 Moved Permanently
         Location: https://wamsbayclus001rest-hs.cloudapp.net/api/
    
-    <span data-ttu-id="cabc6-117">A következő API-hívások https://wamsbayclus001rest-hs.cloudapp.net/api/ tegye meg.</span><span class="sxs-lookup"><span data-stu-id="cabc6-117">You should post your subsequent API calls to https://wamsbayclus001rest-hs.cloudapp.net/api/.</span></span>
+    <span data-ttu-id="81d96-117">A következő API-hívások toohttps://wamsbayclus001rest-hs.cloudapp.net/api/ tegye meg.</span><span class="sxs-lookup"><span data-stu-id="81d96-117">You should post your subsequent API calls toohttps://wamsbayclus001rest-hs.cloudapp.net/api/.</span></span>
 
     >[!NOTE]
-    ><span data-ttu-id="cabc6-118">A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat.</span><span class="sxs-lookup"><span data-stu-id="cabc6-118">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="cabc6-119">Ha mindig ugyanazokat a napokat/hozzáférési engedélyeket használja (például olyan keresők szabályzatait, amelyek hosszú ideig érvényben maradnak, vagyis nem feltöltött szabályzatokat), a szabályzatazonosítónak is ugyanannak kell lennie.</span><span class="sxs-lookup"><span data-stu-id="cabc6-119">You should use the same policy ID if you are always using the same days / access permissions, for example, policies for locators that are intended to remain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="cabc6-120">További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.</span><span class="sxs-lookup"><span data-stu-id="cabc6-120">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
+    ><span data-ttu-id="81d96-118">A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat.</span><span class="sxs-lookup"><span data-stu-id="81d96-118">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="81d96-119">Használjon hello azonos házirend-azonosítója mindig használata hello azonos nap / hozzáférési engedélyek, például a lokátorokat, amelyek a helyen tervezett tooremain hosszú ideje (nem feltöltés házirendek) házirendek.</span><span class="sxs-lookup"><span data-stu-id="81d96-119">You should use hello same policy ID if you are always using hello same days / access permissions, for example, policies for locators that are intended tooremain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="81d96-120">További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.</span><span class="sxs-lookup"><span data-stu-id="81d96-120">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
 
-## <a name="access-control-address"></a><span data-ttu-id="cabc6-121">MAC-címe</span><span class="sxs-lookup"><span data-stu-id="cabc6-121">Access control address</span></span>
-<span data-ttu-id="cabc6-122">A Media Services MAC-címe https://wamsprodglobal001acs.accesscontrol.windows.net, kivéve a Észak Kína régió, ahol https://wamsprodglobal001acs.accesscontrol.chinacloudapi.cn.</span><span class="sxs-lookup"><span data-stu-id="cabc6-122">Media Services access control address is https://wamsprodglobal001acs.accesscontrol.windows.net, except for North China region, where it is https://wamsprodglobal001acs.accesscontrol.chinacloudapi.cn.</span></span>
+## <a name="access-control-address"></a><span data-ttu-id="81d96-121">MAC-címe</span><span class="sxs-lookup"><span data-stu-id="81d96-121">Access control address</span></span>
+<span data-ttu-id="81d96-122">A Media Services MAC-címe https://wamsprodglobal001acs.accesscontrol.windows.net, kivéve a Észak Kína régió, ahol https://wamsprodglobal001acs.accesscontrol.chinacloudapi.cn.</span><span class="sxs-lookup"><span data-stu-id="81d96-122">Media Services access control address is https://wamsprodglobal001acs.accesscontrol.windows.net, except for North China region, where it is https://wamsprodglobal001acs.accesscontrol.chinacloudapi.cn.</span></span>
 
-## <a name="getting-an-access-token"></a><span data-ttu-id="cabc6-123">Egy hozzáférési jogkivonat beolvasása</span><span class="sxs-lookup"><span data-stu-id="cabc6-123">Getting an access token</span></span>
-<span data-ttu-id="cabc6-124">Media Services eléréséhez közvetlenül a REST API-n keresztül, egy hozzáférési jogkivonatot beolvasni az ACS-től, illetve használják során minden HTTP-kérelem elvégezte a szolgáltatásba.</span><span class="sxs-lookup"><span data-stu-id="cabc6-124">To access Media Services directly through the REST API, retrieve an access token from ACS and use it during every HTTP request you make into the service.</span></span> <span data-ttu-id="cabc6-125">A jogkivonat nagyon hasonló a HTTP-kérelem és a OAuth v2 protokollt használó fejlécben megadott hozzáférési jogcímei alapján ACS által biztosított egyéb jogkivonatokat.</span><span class="sxs-lookup"><span data-stu-id="cabc6-125">This token is similar to other tokens provided by ACS based on access claims provided in the header of an HTTP request and using the OAuth v2 protocol.</span></span> <span data-ttu-id="cabc6-126">Media Services való közvetlen csatlakozás előtt nem kell más előfeltételeket.</span><span class="sxs-lookup"><span data-stu-id="cabc6-126">You do not need any other prerequisites before directly connecting to Media Services.</span></span>
+## <a name="getting-an-access-token"></a><span data-ttu-id="81d96-123">Egy hozzáférési jogkivonat beolvasása</span><span class="sxs-lookup"><span data-stu-id="81d96-123">Getting an access token</span></span>
+<span data-ttu-id="81d96-124">tooaccess Media Services közvetlenül hello REST API-t, a hozzáférési jogkivonatot lekérdezni az ACS-től, illetve használják során minden HTTP-kérelem hello szolgáltatásban végez.</span><span class="sxs-lookup"><span data-stu-id="81d96-124">tooaccess Media Services directly through hello REST API, retrieve an access token from ACS and use it during every HTTP request you make into hello service.</span></span> <span data-ttu-id="81d96-125">Ez a jogkivonat nagyon hasonló tooother jogkivonatok HTTP-kérelem és hello OAuth v2 protokollt használó hello fejlécben megadott hozzáférési jogcímei alapján ACS által biztosított.</span><span class="sxs-lookup"><span data-stu-id="81d96-125">This token is similar tooother tokens provided by ACS based on access claims provided in hello header of an HTTP request and using hello OAuth v2 protocol.</span></span> <span data-ttu-id="81d96-126">Egyéb előfeltételeket nem kell előtt tooMedia szolgáltatások használatával közvetlenül csatlakozik.</span><span class="sxs-lookup"><span data-stu-id="81d96-126">You do not need any other prerequisites before directly connecting tooMedia Services.</span></span>
 
-<span data-ttu-id="cabc6-127">A következő példa bemutatja a HTTP-kérés fejlécének és a szervezet jogkivonat beolvasása.</span><span class="sxs-lookup"><span data-stu-id="cabc6-127">The following example shows the HTTP request header and body used to retrieve a token.</span></span>
+<span data-ttu-id="81d96-127">hello következő példa bemutatja hello HTTP-kérés fejlécének és használt törzs tooretrieve jogkivonatot.</span><span class="sxs-lookup"><span data-stu-id="81d96-127">hello following example shows hello HTTP request header and body used tooretrieve a token.</span></span>
 
-<span data-ttu-id="cabc6-128">**Fejléc**:</span><span class="sxs-lookup"><span data-stu-id="cabc6-128">**Header**:</span></span>
+<span data-ttu-id="81d96-128">**Fejléc**:</span><span class="sxs-lookup"><span data-stu-id="81d96-128">**Header**:</span></span>
 
     POST https://wamsprodglobal001acs.accesscontrol.windows.net/v2/OAuth2-13 HTTP/1.1
     Content-Type: application/x-www-form-urlencoded
@@ -72,21 +72,21 @@ ms.lasthandoff: 07/11/2017
     Accept: application/json
 
 
-<span data-ttu-id="cabc6-129">**Törzs**:</span><span class="sxs-lookup"><span data-stu-id="cabc6-129">**Body**:</span></span>
+<span data-ttu-id="81d96-129">**Törzs**:</span><span class="sxs-lookup"><span data-stu-id="81d96-129">**Body**:</span></span>
 
-<span data-ttu-id="cabc6-130">A kérelem; törzsében client_id és client_secret értékek igazolnia kell client_id és client_secret felel meg az AccountName és az AccountKey értékeket, illetve.</span><span class="sxs-lookup"><span data-stu-id="cabc6-130">You need to prove the client_id and client_secret values in the body of this request; client_id and client_secret correspond to the AccountName and AccountKey values, respectively.</span></span> <span data-ttu-id="cabc6-131">Ezek az értékek vannak által biztosított Media Services a fiók beállításakor.</span><span class="sxs-lookup"><span data-stu-id="cabc6-131">These values are provided to you by Media Services when you set up your account.</span></span> 
+<span data-ttu-id="81d96-130">Tooprove hello client_id és client_secret hello törzsében a kérelem; értékek van szüksége client_id és client_secret megfelelnek a toohello AccountName és az AccountKey értékeket, illetve.</span><span class="sxs-lookup"><span data-stu-id="81d96-130">You need tooprove hello client_id and client_secret values in hello body of this request; client_id and client_secret correspond toohello AccountName and AccountKey values, respectively.</span></span> <span data-ttu-id="81d96-131">Ezek az értékek tooyou által biztosított Media Services a fiók beállításakor.</span><span class="sxs-lookup"><span data-stu-id="81d96-131">These values are provided tooyou by Media Services when you set up your account.</span></span> 
 
-<span data-ttu-id="cabc6-132">Vegye figyelembe, hogy a Media Services-fiókhoz tartozó AccountKey csak URL-kódolású (lásd: [százalék-kódolás](http://tools.ietf.org/html/rfc3986#section-2.1) azt a hozzáférési token kérelem client_secret beállítás használatakor.</span><span class="sxs-lookup"><span data-stu-id="cabc6-132">Note that the AccountKey for your Media Services account must be URL-encoded (see [Percent-Encoding](http://tools.ietf.org/html/rfc3986#section-2.1) when using it as the client_secret value in your access token request.</span></span>
+<span data-ttu-id="81d96-132">Vegye figyelembe, hogy hello accountkey elemeket, a Media Services-fiók URL-kódolású kell lennie (lásd: [százalék-kódolás](http://tools.ietf.org/html/rfc3986#section-2.1) azt a hozzáférési token kérés hello client_secret értékként használatakor.</span><span class="sxs-lookup"><span data-stu-id="81d96-132">Note that hello AccountKey for your Media Services account must be URL-encoded (see [Percent-Encoding](http://tools.ietf.org/html/rfc3986#section-2.1) when using it as hello client_secret value in your access token request.</span></span>
 
     grant_type=client_credentials&client_id=ams_account_name&client_secret=URL_encoded_ams_account_key&scope=urn%3aWindowsAzureMediaServices
 
 
-<span data-ttu-id="cabc6-133">Példa:</span><span class="sxs-lookup"><span data-stu-id="cabc6-133">For example:</span></span> 
+<span data-ttu-id="81d96-133">Példa:</span><span class="sxs-lookup"><span data-stu-id="81d96-133">For example:</span></span> 
 
     grant_type=client_credentials&client_id=amstestaccount001&client_secret=wUNbKhNj07oqjqU3Ah9R9f4kqTJ9avPpfe6Pk3YZ7ng%3d&scope=urn%3aWindowsAzureMediaServices
 
 
-<span data-ttu-id="cabc6-134">A következő példa bemutatja a HTTP-válasz, amely tartalmazza a hozzáférési jogkivonat a válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="cabc6-134">The following example shows the HTTP response that contains the access token in the response body.</span></span>
+<span data-ttu-id="81d96-134">hello következő példa bemutatja hello HTTP-válasz, amely tartalmazza a hello access token hello válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="81d96-134">hello following example shows hello HTTP response that contains hello access token in hello response body.</span></span>
 
     HTTP/1.1 200 OK
     Cache-Control: no-cache, no-store
@@ -108,20 +108,20 @@ ms.lasthandoff: 07/11/2017
 
 
 > [!NOTE]
-> <span data-ttu-id="cabc6-135">Javasoljuk, hogy gyorsítótárazzák a "access_token" és "expires_in" értékek külső tárolóra.</span><span class="sxs-lookup"><span data-stu-id="cabc6-135">It is recommended to cache the "access_token " and "expires_in " values to an external storage.</span></span> <span data-ttu-id="cabc6-136">A tokenadatforrások később is olvassa be a tároló és a Media Services REST API-hívásokban használt újra.</span><span class="sxs-lookup"><span data-stu-id="cabc6-136">The token data could later be retrieved from the storage and re-used in your Media Services REST API calls.</span></span> <span data-ttu-id="cabc6-137">Ez különösen fontos a forgatókönyvek, ahol a token biztonságosan megoszthatók több folyamatok vagy számítógépek között.</span><span class="sxs-lookup"><span data-stu-id="cabc6-137">This is especially useful for scenarios where the token can be securely shared among multiple processes or computers.</span></span>
+> <span data-ttu-id="81d96-135">Ajánlott toocache hello "access_token" és "expires_in" értékek tooan külső tárhelyen.</span><span class="sxs-lookup"><span data-stu-id="81d96-135">It is recommended toocache hello "access_token " and "expires_in " values tooan external storage.</span></span> <span data-ttu-id="81d96-136">hello tokenadatforrások később is hello tárolási lekért és a Media Services REST API-hívásokban használt újra.</span><span class="sxs-lookup"><span data-stu-id="81d96-136">hello token data could later be retrieved from hello storage and re-used in your Media Services REST API calls.</span></span> <span data-ttu-id="81d96-137">Ez különösen fontos a forgatókönyvek, ahol hello token biztonságosan megoszthatók több folyamatok vagy számítógépek között.</span><span class="sxs-lookup"><span data-stu-id="81d96-137">This is especially useful for scenarios where hello token can be securely shared among multiple processes or computers.</span></span>
 > 
 > 
 
-<span data-ttu-id="cabc6-138">Ügyeljen arra, hogy a "expires_in" értéket, és a hozzáférési jogkivonat figyelheti és frissítheti a REST API-hívások új jogkivonatokkal, igény szerint.</span><span class="sxs-lookup"><span data-stu-id="cabc6-138">Make sure to monitor the "expires_in" value of the access token and update your REST API calls with new tokens as needed.</span></span>
+<span data-ttu-id="81d96-138">Győződjön meg arról, hogy toomonitor hello "expires_in" érték hello hozzáférési jogkivonat, és szükség szerint új jogkivonatokkal frissítse a REST API-hívásokat.</span><span class="sxs-lookup"><span data-stu-id="81d96-138">Make sure toomonitor hello "expires_in" value of hello access token and update your REST API calls with new tokens as needed.</span></span>
 
-### <a name="connecting-to-the-media-services-uri"></a><span data-ttu-id="cabc6-139">Csatlakozás a Media Services URI</span><span class="sxs-lookup"><span data-stu-id="cabc6-139">Connecting to the Media Services URI</span></span>
-<span data-ttu-id="cabc6-140">A legfelső szintű URI a Media Services https://media.windows.net/ nem.</span><span class="sxs-lookup"><span data-stu-id="cabc6-140">The root URI for Media Services is https://media.windows.net/.</span></span> <span data-ttu-id="cabc6-141">Először csatlakozzon a URI, és ha 301 átirányítást vissza válaszként, meg kell győződnie későbbi hívások az új URI.</span><span class="sxs-lookup"><span data-stu-id="cabc6-141">You should initially connect to this URI, and if you get a 301 redirect back in response, you should make subsequent calls to the new URI.</span></span> <span data-ttu-id="cabc6-142">Továbbá ne használjon bármely automatikus átirányítási/követhető logika a a kérelmek.</span><span class="sxs-lookup"><span data-stu-id="cabc6-142">In addition, do not use any auto-redirect/follow logic in your requests.</span></span> <span data-ttu-id="cabc6-143">HTTP-műveletekre és a kérelem szervek a rendszer nem továbbítja az új URI.</span><span class="sxs-lookup"><span data-stu-id="cabc6-143">HTTP verbs and request bodies will not be forwarded to the new URI.</span></span>
+### <a name="connecting-toohello-media-services-uri"></a><span data-ttu-id="81d96-139">Csatlakozás a Media Services URI toohello</span><span class="sxs-lookup"><span data-stu-id="81d96-139">Connecting toohello Media Services URI</span></span>
+<span data-ttu-id="81d96-140">hello legfelső szintű Media Services URI https://media.windows.net/.</span><span class="sxs-lookup"><span data-stu-id="81d96-140">hello root URI for Media Services is https://media.windows.net/.</span></span> <span data-ttu-id="81d96-141">Kezdetben a toothis URI kell csatlakoznia, és ha 301 átirányítást vissza válaszként, meg kell győződnie későbbi hívások toohello új URI.</span><span class="sxs-lookup"><span data-stu-id="81d96-141">You should initially connect toothis URI, and if you get a 301 redirect back in response, you should make subsequent calls toohello new URI.</span></span> <span data-ttu-id="81d96-142">Továbbá ne használjon bármely automatikus átirányítási/követhető logika a a kérelmek.</span><span class="sxs-lookup"><span data-stu-id="81d96-142">In addition, do not use any auto-redirect/follow logic in your requests.</span></span> <span data-ttu-id="81d96-143">HTTP-műveletekre és a kérelem szervek nem továbbítják toohello új URI.</span><span class="sxs-lookup"><span data-stu-id="81d96-143">HTTP verbs and request bodies will not be forwarded toohello new URI.</span></span>
 
-<span data-ttu-id="cabc6-144">Vegye figyelembe, hogy a legfelső szintű fel-és eszköz fájlok letöltése URI https://yourstorageaccount.blob.core.windows.net/ ahol a tárfiók neve megegyezik egy a Media Services-fiók beállításakor használt.</span><span class="sxs-lookup"><span data-stu-id="cabc6-144">Note that the root URI for uploading and downloading Asset files is https://yourstorageaccount.blob.core.windows.net/ where the storage account name is the same one you used during your Media Services account setup.</span></span>
+<span data-ttu-id="81d96-144">Vegye figyelembe, hogy hello legfelső szintű URI feltöltése és eszköz fájlok letöltése https://yourstorageaccount.blob.core.windows.net/ ahol hello tárfiókneve hello azonos egy, a Media Services-fiók beállításakor használt.</span><span class="sxs-lookup"><span data-stu-id="81d96-144">Note that hello root URI for uploading and downloading Asset files is https://yourstorageaccount.blob.core.windows.net/ where hello storage account name is hello same one you used during your Media Services account setup.</span></span>
 
-<span data-ttu-id="cabc6-145">A következő példa bemutatja a Media Services legfelső szintű URI (https://media.windows.net/) HTTP-kérelem.</span><span class="sxs-lookup"><span data-stu-id="cabc6-145">The following example demonstrates HTTP request to the Media Services root URI (https://media.windows.net/).</span></span> <span data-ttu-id="cabc6-146">A kérelem vissza válaszként 301 átirányítást lekérdezi.</span><span class="sxs-lookup"><span data-stu-id="cabc6-146">The request gets a 301 redirect back in response.</span></span> <span data-ttu-id="cabc6-147">A későbbi kérés használja az új URI (https://wamsbayclus001rest-hs.cloudapp.net/api/).</span><span class="sxs-lookup"><span data-stu-id="cabc6-147">The subsequent request is using the new URI (https://wamsbayclus001rest-hs.cloudapp.net/api/).</span></span>     
+<span data-ttu-id="81d96-145">a következő példa hello HTTP kérelem toohello Media Services gyökér URI (https://media.windows.net/) mutatja be.</span><span class="sxs-lookup"><span data-stu-id="81d96-145">hello following example demonstrates HTTP request toohello Media Services root URI (https://media.windows.net/).</span></span> <span data-ttu-id="81d96-146">hello kérelem 301 átirányítást lekérdezi vissza válaszként.</span><span class="sxs-lookup"><span data-stu-id="81d96-146">hello request gets a 301 redirect back in response.</span></span> <span data-ttu-id="81d96-147">hello későbbi kérés használ hello új URI (https://wamsbayclus001rest-hs.cloudapp.net/api/).</span><span class="sxs-lookup"><span data-stu-id="81d96-147">hello subsequent request is using hello new URI (https://wamsbayclus001rest-hs.cloudapp.net/api/).</span></span>     
 
-<span data-ttu-id="cabc6-148">**HTTP-kérelem**:</span><span class="sxs-lookup"><span data-stu-id="cabc6-148">**HTTP Request**:</span></span>
+<span data-ttu-id="81d96-148">**HTTP-kérelem**:</span><span class="sxs-lookup"><span data-stu-id="81d96-148">**HTTP Request**:</span></span>
 
     GET https://media.windows.net/ HTTP/1.1
     Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amstestaccount001&urn%3aSubscriptionId=z7f19258-6753-4ca2-b1ae-193798e2c9d8&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1421500579&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=ElVWXOnMVggFQl%2ft9vhdcv1qH1n%2fE8l3hRef4zPmrzg%3d
@@ -130,7 +130,7 @@ ms.lasthandoff: 07/11/2017
     Host: media.windows.net
 
 
-<span data-ttu-id="cabc6-149">**HTTP-válasz**:</span><span class="sxs-lookup"><span data-stu-id="cabc6-149">**HTTP Response**:</span></span>
+<span data-ttu-id="81d96-149">**HTTP-válasz**:</span><span class="sxs-lookup"><span data-stu-id="81d96-149">**HTTP Response**:</span></span>
 
     HTTP/1.1 301 Moved Permanently
     Location: https://wamsbayclus001rest-hs.cloudapp.net/api/
@@ -143,11 +143,11 @@ ms.lasthandoff: 07/11/2017
     Content-Length: 164
 
     <html><head><title>Object moved</title></head><body>
-    <h2>Object moved to <a href="https://wamsbayclus001rest-hs.cloudapp.net/api/">here</a>.</h2>
+    <h2>Object moved too<a href="https://wamsbayclus001rest-hs.cloudapp.net/api/">here</a>.</h2>
     </body></html>
 
 
-<span data-ttu-id="cabc6-150">**HTTP-kérelem** (új URI segítségével):</span><span class="sxs-lookup"><span data-stu-id="cabc6-150">**HTTP Request** (using the new URI):</span></span>
+<span data-ttu-id="81d96-150">**HTTP-kérelem** (új URI hello használatával):</span><span class="sxs-lookup"><span data-stu-id="81d96-150">**HTTP Request** (using hello new URI):</span></span>
 
     GET https://wamsbayclus001rest-hs.cloudapp.net/api/ HTTP/1.1
     Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amstestaccount001&urn%3aSubscriptionId=z7f19258-2233-4ca2-b1ae-193798e2c9d8&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1421500579&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=ElVWXOnMVggFQl%2ft9vhdcv1qH1n%2fE8l3hRef4zPmrzg%3d
@@ -156,7 +156,7 @@ ms.lasthandoff: 07/11/2017
     Host: wamsbayclus001rest-hs.cloudapp.net
 
 
-<span data-ttu-id="cabc6-151">**HTTP-válasz**:</span><span class="sxs-lookup"><span data-stu-id="cabc6-151">**HTTP Response**:</span></span>
+<span data-ttu-id="81d96-151">**HTTP-válasz**:</span><span class="sxs-lookup"><span data-stu-id="81d96-151">**HTTP Response**:</span></span>
 
     HTTP/1.1 200 OK
     Cache-Control: no-cache
@@ -176,13 +176,13 @@ ms.lasthandoff: 07/11/2017
 
 
 > [!NOTE]
-> <span data-ttu-id="cabc6-152">Miután az új URI, ez az URI, amely a Media Services folytatott kommunikációhoz használandó.</span><span class="sxs-lookup"><span data-stu-id="cabc6-152">Once you get the new URI, that is the URI that should be used to communicate with Media Services.</span></span> 
+> <span data-ttu-id="81d96-152">Miután hello új URI, hello URI, amely a Media Services használt toocommunicate kell lennie.</span><span class="sxs-lookup"><span data-stu-id="81d96-152">Once you get hello new URI, that is hello URI that should be used toocommunicate with Media Services.</span></span> 
 > 
 > 
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="cabc6-153">Media Services képzési tervek</span><span class="sxs-lookup"><span data-stu-id="cabc6-153">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="81d96-153">Media Services képzési tervek</span><span class="sxs-lookup"><span data-stu-id="81d96-153">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="cabc6-154">Visszajelzés küldése</span><span class="sxs-lookup"><span data-stu-id="cabc6-154">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="81d96-154">Visszajelzés küldése</span><span class="sxs-lookup"><span data-stu-id="81d96-154">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 

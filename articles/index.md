@@ -1,13 +1,13 @@
 ---
 layout: HubPage
 hide_bc: True
-title: "Microsoft Azure-dokumentáció"
-description: "Ismerje meg, hogyan készíthet és felügyelhet hatékony alkalmazásokat a Microsoft Azure Cloud Services használatával. Töltse le a dokumentációt, mintakódokat, oktatóanyagokat és sok egyebet."
-ms.openlocfilehash: cec37e94b31d08930d7262b2f30dd3e84793af46
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+title: "aaaMicrosoft Azure-dokumentáció"
+description: "Megtudhatja, hogyan toobuild és a Microsoft Azure felhőalapú szolgáltatások segítségével hatékony alkalmazásokat kezeléséhez. Töltse le a dokumentációt, mintakódokat, oktatóanyagokat és sok egyebet."
+ms.openlocfilehash: 29267e2e5fd7c750526541e4d357bedc5b1f409c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 <div id="main" class="v2">
     <div class="container">
@@ -1129,7 +1129,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Virtual Machine Scale Sets</h3>
-                                                    <p>Több 10 vagy akár több 1000 Linux- és Windows-alapú virtuális gép felügyelete és méretezése</p>
+                                                    <p>Kezelése, a méretezés 10 egység too1000s a Linux és a Windows virtuális gépek</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1266,7 +1266,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Hálózatok – áttekintés</h3>
-                                                    <p>Az Azure hálózati szolgáltatásainak integrált áttekintése</p>
+                                                    <p>Egy hálózati szolgáltatások az Azure-ban hello integrált ábrázolása</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1285,7 +1285,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Virtual Network</h3>
-                                                    <p>Magánhálózatok kialakítása és igény szerinti csatlakoztatása a helyben üzemelő adatközpontokhoz</p>
+                                                    <p>Privát hálózatok kiépítéséhez, opcionálisan csatlakozás tooon helyszíni adatközpontokkal</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1304,7 +1304,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Load Balancer</h3>
-                                                    <p>Magas rendelkezésre állás és hálózati teljesítmény biztosítása alkalmazásai számára</p>
+                                                    <p>Magas rendelkezésre állás és a hálózati teljesítményt biztosítanak tooyour alkalmazások</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1380,7 +1380,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Tartalomkézbesítési hálózat (CDN)</h3>
-                                                    <p>A végfelhasználókhoz globális adatközpontok robusztus hálózatán jut el a tartalom </p>
+                                                    <p>A globális adatközpontok robusztus hálózaton keresztül a tartalom tooend felhasználók biztosításához </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1418,7 +1418,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>ExpressRoute</h3>
-                                                    <p>Dedikált száloptikás magánhálózati kapcsolatok az Azure-hoz</p>
+                                                    <p>Dedikált magánhálózati fiber kapcsolatok tooAzure</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1594,7 +1594,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Biztonsági mentés</h3>
-                                                    <p>A kiszolgálók egyszerű és megbízható biztonsági mentése a felhőbe</p>
+                                                    <p>Egyszerű és megbízható kiszolgáló biztonsági mentési toohello felhő</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1656,7 +1656,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Mobile Apps</h3>
-                                                    <p>Háttérmodul elkészítése és üzemeltetése bármilyen mobilalkalmazáshoz</p>
+                                                    <p>Az összes mobilalkalmazás build és a gazdagép hello háttér</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1694,7 +1694,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Logic Apps</h3>
-                                                    <p>Az adatok felhők közötti használatának és elérésének automatizálása kódírás nélkül</p>
+                                                    <p>Hello hozzáférési és használati adatok felhők közötti automatizálásához kód írása nélkül</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1713,7 +1713,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Tartalomkézbesítési hálózat (CDN)</h3>
-                                                    <p>A végfelhasználókhoz globális adatközpontok robusztus hálózatán jut el a tartalom </p>
+                                                    <p>A globális adatközpontok robusztus hálózaton keresztül a tartalom tooend felhasználók biztosításához </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1970,7 +1970,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>SQL Server Stretch Database</h3>
-                                                    <p>Helyszíni SQL Server adatbázisok dinamikus kiterjesztése az Azure-ra</p>
+                                                    <p>A helyszíni SQL Server adatbázisok tooAzure dinamikusan stretch</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2046,7 +2046,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Redis Cache</h3>
-                                                    <p>A nagy sávszélességű, kis késleltetésű adatelérés gyors és méretezhető alkalmazások fejlesztését teszi lehetővé</p>
+                                                    <p>Magas teljesítmény, kis késleltetésű adatelérési toobuild gyors méretezhető alkalmazások</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2127,7 +2127,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Bing – Internetes keresés</h3>
-                                                    <p>Hatékony webes keresés csatlakoztatása az appokhoz</p>
+                                                    <p>Csatlakozás hatékony keresési tooyour webalkalmazások</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2165,7 +2165,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Egyéni vizuális szolgáltatás</h3>
-                                                    <p>Testre szabható webes szolgáltatás, amely megtanulja adott tartalmak felismerését a képekben</p>
+                                                    <p>Egy testre szabható webszolgáltatás, amelyet megtanulja a képek toorecognize adott tartalma</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2203,7 +2203,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Language Understanding Intelligent Services (LUIS)</h3>
-                                                    <p>Megtaníthatja appjait, hogy értsék a felhasználói parancsokat</p>
+                                                    <p>Mutatja meg az alkalmazások a felhasználók toounderstand parancsok</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2222,7 +2222,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Bing – Egyéni keresés</h3>
-                                                    <p>Állítsa össze az Önnek megfelelő keresési találatokat</p>
+                                                    <p>Keresett hello találatok összeállítása</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2265,7 +2265,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Machine Learning</h3>
-                                                    <p>Nagy teljesítményű felhőalapú prediktív elemzőeszköz a megelőző karbantartáshoz</p>
+                                                    <p>Hatékony felhőalapú prediktív elemzési eszköz tooenable prediktív karbantartás</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2303,7 +2303,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Data Catalog</h3>
-                                                    <p>Önkiszolgáló adatforrás-felderítés a teljes vállalatban</p>
+                                                    <p>Önkiszolgáló adatforrás-felderítés engedélyezése hello vállalaton belül</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2398,7 +2398,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Analysis Services</h3>
-                                                    <p>Vállalati szintű adatmodellezés a felhőben</p>
+                                                    <p>Vállalati szintű adatok modellezési hello felhőben</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2479,7 +2479,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Azure IoT Suite</h3>
-                                                    <p>Javítsa üzleti eredményeit a kihasználatlan adatok rögzítésével és elemzésével</p>
+                                                    <p>Rögzíteni és elemezni hasznosított adatokat tooimprove üzleti eredmények</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2536,7 +2536,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Machine Learning</h3>
-                                                    <p>Nagy teljesítményű felhőalapú prediktív elemzőeszköz a megelőző karbantartáshoz</p>
+                                                    <p>Hatékony felhőalapú prediktív elemzési eszköz tooenable prediktív karbantartás</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2598,7 +2598,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Logic Apps</h3>
-                                                    <p>Az adatok felhők közötti használatának és elérésének automatizálása kódírás nélkül</p>
+                                                    <p>Hello hozzáférési és használati adatok felhők közötti automatizálásához kód írása nélkül</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2636,7 +2636,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>API Management</h3>
-                                                    <p>Biztonságos, nagy terhelhetőségű programozási felületek (API-k) közzététele fejlesztők, partnerek és munkatársak számára</p>
+                                                    <p>Biztonságos és léptékű közzététele az API-k toodevelopers, partnerek és alkalmazottak</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2674,7 +2674,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>SQL Server Stretch Database</h3>
-                                                    <p>Helyszíni SQL Server adatbázisok dinamikus kiterjesztése az Azure-ra</p>
+                                                    <p>A helyszíni SQL Server adatbázisok tooAzure dinamikusan stretch</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2712,7 +2712,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Biztalk Services</h3>
-                                                    <p>Zökkenőmentes integráció a vállalat és a felhő között</p>
+                                                    <p>Zökkenőmentesen integrálható a hello vállalati és hello felhő</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2736,7 +2736,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Security Center</h3>
-                                                    <p>Fenyegetések megelőzése, észlelése és elhárítása jobb láthatósággal</p>
+                                                    <p>Megakadályozása, észlelésében és kezelésében toothreats a láthatóság növelésével</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2755,7 +2755,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Key Vault</h3>
-                                                    <p>Útmutató a kriptográfiai kulcsok és egyéb titkok kezeléséhez</p>
+                                                    <p>Megtudhatja, hogyan toomanage titkosítási kulcsok és titkos</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2793,7 +2793,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Azure Active Directory B2C</h3>
-                                                    <p>Felhasználói identitás és hozzáférés kezelése a felhőben</p>
+                                                    <p>Felhasználói identitások és hozzáférések felügyeletéhez hello felhőben</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2812,7 +2812,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Active Directory tartományi szolgáltatások</h3>
-                                                    <p>Azure-beli virtuális gépeit tartományvezérlők nélkül csatlakoztathatja tartományokhoz</p>
+                                                    <p>Csatlakozás az Azure virtuális gépek tooa tartományhoz tartományvezérlők nélkül</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2831,7 +2831,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Multi-Factor Authentication</h3>
-                                                    <p>Az extra hitelesítési szint nagyobb biztonságot kínál adatai és alkalmazásai számára</p>
+                                                    <p>A biztonságos működés érdekében hozzáférés tooyour adatai és alkalmazásai számára az extra hitelesítési szint</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2850,7 +2850,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Biztonsági tudnivalók</h3>
-                                                    <p>Bemutatjuk, hogy az Azure miként nyújt biztonságos infrastruktúrát a felhőalapú megoldások létrehozásához</p>
+                                                    <p>Ismerje meg, hogyan Azure infrastruktúrát biztosít a biztonságos toobuild megoldások</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2874,7 +2874,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Visual Studio Team Services</h3>
-                                                    <p>Szolgáltatások fejlesztőcsapatoknak kódmegosztáshoz, projektkövetéshez és szoftverkészítéshez</p>
+                                                    <p>Csoportok tooshare kódot, a szolgáltatások munka nyomon követése, és küldje el a szoftver</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2931,7 +2931,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>API Management</h3>
-                                                    <p>Biztonságos, nagy terhelhetőségű programozási felületek (API-k) közzététele fejlesztők, partnerek és munkatársak számára</p>
+                                                    <p>Biztonságos és léptékű közzététele az API-k toodevelopers, partnerek és alkalmazottak</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2993,7 +2993,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Log Analytics</h3>
-                                                    <p>Ismerje meg, hogyan alakíthatók át a számítógépadatok operatív adatelemzési információkká</p>
+                                                    <p>Ismerje meg, hogyan tootransform számítógép működési eszközintelligencia be adatok</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3031,7 +3031,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Biztonsági mentés</h3>
-                                                    <p>A kiszolgálók egyszerű és megbízható biztonsági mentése a felhőbe</p>
+                                                    <p>Egyszerű és megbízható kiszolgáló biztonsági mentési toohello felhő</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3107,7 +3107,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Számlázás</h3>
-                                                    <p>Az Azure-előfizetés használatának és számlájának értelmezése</p>
+                                                    <p>Ismerje meg, hogyan tooread/megértéséhez hello a használati és az Azure-előfizetéshez tartozó számlázási</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3126,7 +3126,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Azure Advisor</h3>
-                                                    <p>Az Azure-erőforrások hatékonyságának, teljesítményének, magas rendelkezésre állásának és biztonságának javítása</p>
+                                                    <p>Költség hatékonyságát, a teljesítmény, a magas rendelkezésre állású és az Azure-erőforrások biztonsági hello javítása</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3278,7 +3278,7 @@ ms.lasthandoff: 08/29/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="/dotnet/azure/dotnet-sdk-azure-install">A .NET-hez készült Azure-kódtárak beszerzése</a>
+                                                    <a href="/dotnet/azure/dotnet-sdk-azure-install">.NET-keretrendszerhez készült Azure szalagtárak hello beolvasása</a>
                                                 </h3>
                                                 <p>
                                                     <a href="/dotnet/azure">Első lépések</a>
@@ -3302,7 +3302,7 @@ ms.lasthandoff: 08/29/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="/python/azure/python-sdk-azure-install">A Pythonhoz készült Azure-kódtárak beszerzése</a>
+                                                    <a href="/python/azure/python-sdk-azure-install">Python hello Azure szalagtárak beolvasása</a>
                                                 </h3>
                                                 <p>
                                                     <a href="/python/azure">Első lépések</a>
@@ -3326,7 +3326,7 @@ ms.lasthandoff: 08/29/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="/nodejs/azure/node-sdk-azure-install">A Node.js-hez készült Azure-kódtárak beszerzése</a>
+                                                    <a href="/nodejs/azure/node-sdk-azure-install">A Node.js az Azure szalagtárak hello beolvasása</a>
                                                 </h3>
                                                 <p>
                                                     <a href="/nodejs/azure/?view=azure-node-2.0.0">Első lépések</a>
@@ -3350,7 +3350,7 @@ ms.lasthandoff: 08/29/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="/java/azure/java-sdk-azure-install">A Javához készült Azure-kódtárak beszerzése</a>
+                                                    <a href="/java/azure/java-sdk-azure-install">Javához készült Azure szalagtárak hello beolvasása</a>
                                                 </h3>
                                                 <p>
                                                     <a href="/java/azure">Első lépések</a>
@@ -3374,7 +3374,7 @@ ms.lasthandoff: 08/29/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://rubygems.org/gems/azure">A Ruby SDK beszerzése</a>
+                                                    <a href="https://rubygems.org/gems/azure">Hello Ruby SDK beszerzése</a>
                                                 </h3>
                                                 <p>
                                                     <a href="https://github.com/Azure/azure-sdk-for-ruby/blob/master/README.md">Első lépések</a>
@@ -3646,7 +3646,7 @@ ms.lasthandoff: 08/29/2017
                         <ul id="architecture1" class="cardsC">
                             <li>
                                 <div class="container intro">
-                                    <p>A felhőalapú alkalmazásokhoz ajánlott architektúra-készletek. Minden architektúra ajánlott gyakorlatokat, előírásokat és egy, a javaslatokat megtestesítő, futtatható komponenst is tartalmaz.</p>
+                                    <p>A felhőalapú alkalmazásokhoz ajánlott architektúra-készletek. Egyes architektúrák magában foglalja a következőben ajánlott eljárásokat, előírásoknak megfelelő, továbbá hello ajánlásokat, úgy végrehajtható összetevőként.</p>
                                 </div>
                             </li>
                             <li>
@@ -3661,7 +3661,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Útmutató az Azure alkalmazásarchitektúrájához</h3>
-                                                    <p>A sikeres felhőhasználat alapismeretei. Ha még nem ismeri a felhőt vagy az Azure-t, kezdje ezzel.</p>
+                                                    <p>Az alapismeretek toobe sikeres hello felhőben. Ha új toohello felhőalapú vagy új tooAzure, kezdje itt.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3680,7 +3680,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Referenciaarchitektúrák</h3>
-                                                    <p>A felhőhöz ajánlott architektúra-készletek. Minden architektúra ajánlott eljárásokat, előírásokat és egy üzembe helyezhető megoldást tartalmaz.</p>
+                                                    <p>Ajánlott architektúrák hello felhő készlete. Minden architektúra ajánlott eljárásokat, előírásokat és egy üzembe helyezhető megoldást tartalmaz.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3699,7 +3699,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Tervezési minták felhőkhöz</h3>
-                                                    <p>A felhők tervezési mintái. Minden minta egy problémát, egy problémáról szóló mintát és egy Azure-alapú példát ismertet.</p>
+                                                    <p>A kialakítási minták hello felhő. Minden minta probléma, egy mintát, amely a címek hello problémát, és az Azure-alapú példa ismerteti.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3737,7 +3737,7 @@ ms.lasthandoff: 08/29/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Scenario Guides</h3>
-                                                    <p>Guidance for various end-to-end application scenarios in the cloud. Includes
+                                                    <p>Guidance for various end-to-end application scenarios in hello cloud. Includes
                                                         written guidance and reference implementations.</p>
                                                 </div>
                                             </div>

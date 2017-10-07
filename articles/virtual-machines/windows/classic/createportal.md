@@ -1,6 +1,6 @@
 ---
-title: "Egyéni Windows virtuális gép létrehozása |} Microsoft Docs"
-description: "Útmutató egyéni Windows virtuális gép létrehozása a klasszikus üzembe helyezési modellel, az Azure portálról."
+title: "egyéni Windows rendszerű virtuális gép aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate hello Azure portál használatával egyéni Windows virtuális gép hello klasszikus üzembe helyezési modellben."
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,19 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/30/2017
 ms.author: cynthn
-ms.openlocfilehash: 4d7b7a17751cc476d0365cbcbff3fcf23dd0c6ff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1496516ddfea8caf3fe1c4e673c18ea60d56abb9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-custom-virtual-machine-running-windows-using-the-classic-deployment-model"></a><span data-ttu-id="262e8-103">Egy egyéni, a klasszikus üzembe helyezési modellel Windows rendszerű virtuális gép létrehozása</span><span class="sxs-lookup"><span data-stu-id="262e8-103">Create a custom virtual machine running Windows using the classic deployment model</span></span>
+# <a name="create-a-custom-virtual-machine-running-windows-using-hello-classic-deployment-model"></a><span data-ttu-id="e07d6-103">Egyéni hello klasszikus telepítési modell segítségével Windows rendszerű virtuális gép létrehozása</span><span class="sxs-lookup"><span data-stu-id="e07d6-103">Create a custom virtual machine running Windows using hello classic deployment model</span></span>
 > [!IMPORTANT]
-> <span data-ttu-id="262e8-104">Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="262e8-104">Azure has two different deployment models for creating and working with resources: [Resource Manager and Classic](../../../resource-manager-deployment-model.md).</span></span> <span data-ttu-id="262e8-105">Ez a cikk a klasszikus telepítési modell használatát bemutatja.</span><span class="sxs-lookup"><span data-stu-id="262e8-105">This article covers using the Classic deployment model.</span></span> <span data-ttu-id="262e8-106">A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja.</span><span class="sxs-lookup"><span data-stu-id="262e8-106">Microsoft recommends that most new deployments use the Resource Manager model.</span></span>
+> <span data-ttu-id="e07d6-104">Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="e07d6-104">Azure has two different deployment models for creating and working with resources: [Resource Manager and Classic](../../../resource-manager-deployment-model.md).</span></span> <span data-ttu-id="e07d6-105">Ez a cikk hello klasszikus telepítési modell használatát bemutatja.</span><span class="sxs-lookup"><span data-stu-id="e07d6-105">This article covers using hello Classic deployment model.</span></span> <span data-ttu-id="e07d6-106">A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja.</span><span class="sxs-lookup"><span data-stu-id="e07d6-106">Microsoft recommends that most new deployments use hello Resource Manager model.</span></span>
 
 [!INCLUDE [virtual-machines-common-classic-createportal](../../../../includes/virtual-machines-common-classic-createportal.md)]
 
 [!INCLUDE [virtual-machines-create-WindowsVM](../../../../includes/virtual-machines-create-windowsvm.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="262e8-107">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="262e8-107">Next steps</span></span> 
-<span data-ttu-id="262e8-108">Emellett [hozzon létre egy egyéni Linux rendszerű virtuális gép](../../linux/classic/createportal.md).</span><span class="sxs-lookup"><span data-stu-id="262e8-108">You can also [create a custom virtual machine running Linux](../../linux/classic/createportal.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e07d6-107">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="e07d6-107">Next steps</span></span> 
+<span data-ttu-id="e07d6-108">Emellett [hozzon létre egy egyéni Linux rendszerű virtuális gép](../../linux/classic/createportal.md).</span><span class="sxs-lookup"><span data-stu-id="e07d6-108">You can also [create a custom virtual machine running Linux](../../linux/classic/createportal.md).</span></span>

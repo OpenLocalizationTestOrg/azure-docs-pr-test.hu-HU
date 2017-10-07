@@ -1,6 +1,6 @@
 ---
-title: "H264 Multiple Bitrate 4 KB-os Media Encoder Standard előre definiált - Azure |} Microsoft Docs"
-description: "A témakör áttekintést a ** H264 Multiple Bitrate 4 KB -os ** feladat készletet."
+title: "aaaH264 Multiple Bitrate 4 KB-os Media Encoder Standard előre definiált - Azure |} Microsoft Docs"
+description: "hello a témakör áttekintést hello ** H264 Multiple Bitrate 4 KB -os ** feladat készletet."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 4f0863f3db1bfc814971fca740e460012b1aca60
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e22e0bd3bb110f54f7d624e099b5e34e8d4820a6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="h264-multiple-bitrate-4k"></a><span data-ttu-id="dac9a-103">H264 Multiple Bitrate 4 KB-os</span><span class="sxs-lookup"><span data-stu-id="dac9a-103">H264 Multiple Bitrate 4K</span></span>
-<span data-ttu-id="dac9a-104">`Media Encoder Standard`Meghatározza a kódolási készletek kódolási feladatok létrehozásakor használható.</span><span class="sxs-lookup"><span data-stu-id="dac9a-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="dac9a-105">Használhatja a `preset name` adhatja meg, melyik formátumba kódolja a médiafájl szeretné.</span><span class="sxs-lookup"><span data-stu-id="dac9a-105">You can either use a `preset name` to specify into which format you would like to encode your media file.</span></span> <span data-ttu-id="dac9a-106">Másik lehetőségként létrehozhat saját JSON- vagy XML-alapú készletek (UTF-8 vagy UTF-16 kódolás használatával.</span><span class="sxs-lookup"><span data-stu-id="dac9a-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="dac9a-107">Az egyéni készletet a kódoló majd át lesz.</span><span class="sxs-lookup"><span data-stu-id="dac9a-107">You would then pass the custom preset to the encoder.</span></span> <span data-ttu-id="dac9a-108">Ez által támogatott összes előre definiált nevek listája `Media Encoder Standard` kódoló, lásd: [feladat készletek a Media Encoder Standard](media-services-mes-presets-overview.md).</span><span class="sxs-lookup"><span data-stu-id="dac9a-108">For the list of all the preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
+# <a name="h264-multiple-bitrate-4k"></a><span data-ttu-id="ce738-103">H264 Multiple Bitrate 4 KB-os</span><span class="sxs-lookup"><span data-stu-id="ce738-103">H264 Multiple Bitrate 4K</span></span>
+<span data-ttu-id="ce738-104">`Media Encoder Standard`Meghatározza a kódolási készletek kódolási feladatok létrehozásakor használható.</span><span class="sxs-lookup"><span data-stu-id="ce738-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="ce738-105">Használhatja a `preset name` mely formátumú fájlba szeretné tooencode toospecify a médiafájl.</span><span class="sxs-lookup"><span data-stu-id="ce738-105">You can either use a `preset name` toospecify into which format you would like tooencode your media file.</span></span> <span data-ttu-id="ce738-106">Másik lehetőségként létrehozhat saját JSON- vagy XML-alapú készletek (UTF-8 vagy UTF-16 kódolás használatával.</span><span class="sxs-lookup"><span data-stu-id="ce738-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="ce738-107">Majd át kellene hello egyéni előre definiált toohello kódoló.</span><span class="sxs-lookup"><span data-stu-id="ce738-107">You would then pass hello custom preset toohello encoder.</span></span> <span data-ttu-id="ce738-108">Minden hello hello listáját az adott néven beállítás által támogatott nevek `Media Encoder Standard` kódoló, lásd: [feladat készletek a Media Encoder Standard](media-services-mes-presets-overview.md).</span><span class="sxs-lookup"><span data-stu-id="ce738-108">For hello list of all hello preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
   
- <span data-ttu-id="dac9a-109">Ez a témakör bemutatja a `H264 Multiple Bitrate 4K` beállított XML és a JSON formátumban.</span><span class="sxs-lookup"><span data-stu-id="dac9a-109">This topic shows the `H264 Multiple Bitrate 4K` preset in XML and JSON format.</span></span>  
+ <span data-ttu-id="ce738-109">Ez a témakör bemutatja a hello `H264 Multiple Bitrate 4K` beállított XML és a JSON formátumban.</span><span class="sxs-lookup"><span data-stu-id="ce738-109">This topic shows hello `H264 Multiple Bitrate 4K` preset in XML and JSON format.</span></span>  
   
- <span data-ttu-id="dac9a-110">Ezt a készletet hoz létre a 12 GOP igazított MP4-fájlokat, és 1000 KB/s és sztereó AAC hang 20000 kbit/s közötti.</span><span class="sxs-lookup"><span data-stu-id="dac9a-110">This preset produces a set of 12 GOP-aligned MP4 files, ranging from 20000 kbps to 1000 kbps, and stereo AAC audio.</span></span> <span data-ttu-id="dac9a-111">Profillal kapcsolatos részletes információkért sávszélességű mintavételi arány stb. a készletet, vizsgálja meg az XML- vagy JSON-ban megadva.</span><span class="sxs-lookup"><span data-stu-id="dac9a-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine the XML or JSON defined below.</span></span> <span data-ttu-id="dac9a-112">Az egyes milyen egyes elemei a készletek azt jelenti, és az érvényes értékek az egyes elemekhez, tekintse meg a [Media Encoder Standard séma](media-services-mes-schema.md) témakör.</span><span class="sxs-lookup"><span data-stu-id="dac9a-112">For explanations of what each element in these presets means, and the valid values for each element, see the [Media Encoder Standard schema](media-services-mes-schema.md) topic.</span></span>  
-  
-> [!NOTE]
->  <span data-ttu-id="dac9a-113">A prémium szintű fenntartott egységnek kapja meg a 4 KB-os típus kódolja.</span><span class="sxs-lookup"><span data-stu-id="dac9a-113">You should get the Premium reserved unit type with 4K encodes.</span></span> <span data-ttu-id="dac9a-114">További információkért lásd: [hogyan méretezési kódolás](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units).</span><span class="sxs-lookup"><span data-stu-id="dac9a-114">For more information, see [How to Scale Encoding](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units).</span></span>  
+ <span data-ttu-id="ce738-110">Az előre definiált létrejön egy 12 GOP igazított MP4-fájlok közötti 20000 kbps too1000 kbit/s és sztereó AAC hang.</span><span class="sxs-lookup"><span data-stu-id="ce738-110">This preset produces a set of 12 GOP-aligned MP4 files, ranging from 20000 kbps too1000 kbps, and stereo AAC audio.</span></span> <span data-ttu-id="ce738-111">Profillal kapcsolatos részletes információkért sávszélességű mintavételi arány stb. Ennek az adott néven beállítás esetében vizsgálja meg, XML vagy az alább megadott JSON hello.</span><span class="sxs-lookup"><span data-stu-id="ce738-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine hello XML or JSON defined below.</span></span> <span data-ttu-id="ce738-112">Az egyes milyen egyes elemei a készletek azt jelenti, és hello az érvényes értékek az egyes elemekhez, lásd: hello [Media Encoder Standard séma](media-services-mes-schema.md) témakör.</span><span class="sxs-lookup"><span data-stu-id="ce738-112">For explanations of what each element in these presets means, and hello valid values for each element, see hello [Media Encoder Standard schema](media-services-mes-schema.md) topic.</span></span>  
   
 > [!NOTE]
->  <span data-ttu-id="dac9a-115">Ha módosítja a `Width` és `Height` értékek különböző rétegek, győződjön meg arról, hogy az eredeti oldalarányok konzisztensek maradnak.</span><span class="sxs-lookup"><span data-stu-id="dac9a-115">When modifying the `Width` and `Height` values across layers, make sure that the aspect ratio remains consistent.</span></span> <span data-ttu-id="dac9a-116">Például: 1920 x 1080, 1280 x 720, 1080 x 576, 640 x 360.</span><span class="sxs-lookup"><span data-stu-id="dac9a-116">For example: 1920x1080, 1280x720, 1080x576, 640x360.</span></span> <span data-ttu-id="dac9a-117">Például ne használjon méretarányoknak megfelelően keverékével: 1280 x 720, 720 x 480, 640 x 360.</span><span class="sxs-lookup"><span data-stu-id="dac9a-117">You should not use a mixture of aspect ratios, such as: 1280x720, 720x480, 640x360.</span></span>  
+>  <span data-ttu-id="ce738-113">Hello szolgáltatás számára fenntartott prémium kapja meg a 4 KB-os egységtípus kódolja.</span><span class="sxs-lookup"><span data-stu-id="ce738-113">You should get hello Premium reserved unit type with 4K encodes.</span></span> <span data-ttu-id="ce738-114">További információkért lásd: [hogyan tooScale kódolás](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units).</span><span class="sxs-lookup"><span data-stu-id="ce738-114">For more information, see [How tooScale Encoding](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units).</span></span>  
   
- <span data-ttu-id="dac9a-118">XML</span><span class="sxs-lookup"><span data-stu-id="dac9a-118">XML</span></span>  
+> [!NOTE]
+>  <span data-ttu-id="ce738-115">Ha módosítja a hello `Width` és `Height` értékek különböző rétegek, győződjön meg arról, hogy hello oldalarányának konzisztensek maradnak.</span><span class="sxs-lookup"><span data-stu-id="ce738-115">When modifying hello `Width` and `Height` values across layers, make sure that hello aspect ratio remains consistent.</span></span> <span data-ttu-id="ce738-116">Például: 1920 x 1080, 1280 x 720, 1080 x 576, 640 x 360.</span><span class="sxs-lookup"><span data-stu-id="ce738-116">For example: 1920x1080, 1280x720, 1080x576, 640x360.</span></span> <span data-ttu-id="ce738-117">Például ne használjon méretarányoknak megfelelően keverékével: 1280 x 720, 720 x 480, 640 x 360.</span><span class="sxs-lookup"><span data-stu-id="ce738-117">You should not use a mixture of aspect ratios, such as: 1280x720, 720x480, 640x360.</span></span>  
+  
+ <span data-ttu-id="ce738-118">XML</span><span class="sxs-lookup"><span data-stu-id="ce738-118">XML</span></span>  
   
 ```  
 <?xml version="1.0" encoding="utf-16"?>  
@@ -240,7 +240,7 @@ ms.lasthandoff: 08/29/2017
 </Preset>  
 ```  
   
- <span data-ttu-id="dac9a-119">JSON</span><span class="sxs-lookup"><span data-stu-id="dac9a-119">JSON</span></span>  
+ <span data-ttu-id="ce738-119">JSON</span><span class="sxs-lookup"><span data-stu-id="ce738-119">JSON</span></span>  
   
 ```  
 {  

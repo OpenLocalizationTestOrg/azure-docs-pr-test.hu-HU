@@ -1,6 +1,6 @@
 ---
-title: "Azure Resource Manager-sablonok létrehozása és konfigurálása a Naplóelemzési munkaterület |} Microsoft Docs"
-description: "Azure Resource Manager-sablonok segítségével hozza létre és konfigurálja a Naplóelemzési munkaterület."
+title: "aaaUse Azure Resource Manager sablonok tooCreate, és konfigurálja a Naplóelemzési munkaterület |} Microsoft Docs"
+description: "Azure Resource Manager sablonok toocreate használja, és konfigurálja a Naplóelemzési munkaterület."
 services: log-analytics
 documentationcenter: 
 author: richrundmsft
@@ -14,43 +14,43 @@ ms.devlang: json
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: richrund
-ms.openlocfilehash: 505b741d14c594b22108298466c646bf723ce2d4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c8f413e982f5eeed73f463524ff6f239f26c9127
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-log-analytics-using-azure-resource-manager-templates"></a><span data-ttu-id="9ed54-103">Log Analytics használata Azure Resource Manager-sablonok kezelése</span><span class="sxs-lookup"><span data-stu-id="9ed54-103">Manage Log Analytics using Azure Resource Manager templates</span></span>
-<span data-ttu-id="9ed54-104">Használhat [Azure Resource Manager-sablonok](../azure-resource-manager/resource-group-authoring-templates.md) létrehozása és konfigurálása a Naplóelemzési munkaterület.</span><span class="sxs-lookup"><span data-stu-id="9ed54-104">You can use [Azure Resource Manager templates](../azure-resource-manager/resource-group-authoring-templates.md) to create and configure Log Analytics workspaces.</span></span> <span data-ttu-id="9ed54-105">A sablonok végrehajtható műveletek közé tartoznak:</span><span class="sxs-lookup"><span data-stu-id="9ed54-105">Examples of the tasks you can perform with templates include:</span></span>
+# <a name="manage-log-analytics-using-azure-resource-manager-templates"></a><span data-ttu-id="fd4bf-103">Log Analytics használata Azure Resource Manager-sablonok kezelése</span><span class="sxs-lookup"><span data-stu-id="fd4bf-103">Manage Log Analytics using Azure Resource Manager templates</span></span>
+<span data-ttu-id="fd4bf-104">Használhat [Azure Resource Manager-sablonok](../azure-resource-manager/resource-group-authoring-templates.md) toocreate és Naplóelemzési munkaterület konfigurálása.</span><span class="sxs-lookup"><span data-stu-id="fd4bf-104">You can use [Azure Resource Manager templates](../azure-resource-manager/resource-group-authoring-templates.md) toocreate and configure Log Analytics workspaces.</span></span> <span data-ttu-id="fd4bf-105">Hello feladatokat hajthat végre a sablonok közé:</span><span class="sxs-lookup"><span data-stu-id="fd4bf-105">Examples of hello tasks you can perform with templates include:</span></span>
 
-* <span data-ttu-id="9ed54-106">Munkaterületek létrehozása</span><span class="sxs-lookup"><span data-stu-id="9ed54-106">Create a workspace</span></span>
-* <span data-ttu-id="9ed54-107">Megoldás hozzáadása</span><span class="sxs-lookup"><span data-stu-id="9ed54-107">Add a solution</span></span>
-* <span data-ttu-id="9ed54-108">Mentett keresések létrehozása</span><span class="sxs-lookup"><span data-stu-id="9ed54-108">Create saved searches</span></span>
-* <span data-ttu-id="9ed54-109">Hozzon létre egy számítógépcsoportot</span><span class="sxs-lookup"><span data-stu-id="9ed54-109">Create a computer group</span></span>
-* <span data-ttu-id="9ed54-110">A Windows-ügynök telepítve az IIS-naplók számítógépekről gyűjtésének engedélyezése</span><span class="sxs-lookup"><span data-stu-id="9ed54-110">Enable collection of IIS logs from computers with the Windows agent installed</span></span>
-* <span data-ttu-id="9ed54-111">A Linux és Windows számítógépekről a teljesítményszámlálók adatainak összegyűjtése</span><span class="sxs-lookup"><span data-stu-id="9ed54-111">Collect performance counters from Linux and Windows computers</span></span>
-* <span data-ttu-id="9ed54-112">A Linux rendszerű számítógépeken syslog események gyűjtése</span><span class="sxs-lookup"><span data-stu-id="9ed54-112">Collect events from syslog on Linux computers</span></span> 
-* <span data-ttu-id="9ed54-113">A Windows Eseménynapló eseményeinek gyűjtése</span><span class="sxs-lookup"><span data-stu-id="9ed54-113">Collect events from Windows event logs</span></span>
-* <span data-ttu-id="9ed54-114">Egyéni eseménynaplók gyűjtése</span><span class="sxs-lookup"><span data-stu-id="9ed54-114">Collect custom event logs</span></span>
-* <span data-ttu-id="9ed54-115">A log analytics agent hozzáadása egy Azure virtuális gépen</span><span class="sxs-lookup"><span data-stu-id="9ed54-115">Add the log analytics agent to an Azure virtual machine</span></span>
-* <span data-ttu-id="9ed54-116">Naplóelemzési Azure diagnostics használatával gyűjt index adatok konfigurálása</span><span class="sxs-lookup"><span data-stu-id="9ed54-116">Configure log analytics to index data collected using Azure diagnostics</span></span>
+* <span data-ttu-id="fd4bf-106">Munkaterületek létrehozása</span><span class="sxs-lookup"><span data-stu-id="fd4bf-106">Create a workspace</span></span>
+* <span data-ttu-id="fd4bf-107">Megoldás hozzáadása</span><span class="sxs-lookup"><span data-stu-id="fd4bf-107">Add a solution</span></span>
+* <span data-ttu-id="fd4bf-108">Mentett keresések létrehozása</span><span class="sxs-lookup"><span data-stu-id="fd4bf-108">Create saved searches</span></span>
+* <span data-ttu-id="fd4bf-109">Hozzon létre egy számítógépcsoportot</span><span class="sxs-lookup"><span data-stu-id="fd4bf-109">Create a computer group</span></span>
+* <span data-ttu-id="fd4bf-110">Hello Windows-ügynök telepítve az IIS-naplók számítógépekről gyűjtésének engedélyezése</span><span class="sxs-lookup"><span data-stu-id="fd4bf-110">Enable collection of IIS logs from computers with hello Windows agent installed</span></span>
+* <span data-ttu-id="fd4bf-111">A Linux és Windows számítógépekről a teljesítményszámlálók adatainak összegyűjtése</span><span class="sxs-lookup"><span data-stu-id="fd4bf-111">Collect performance counters from Linux and Windows computers</span></span>
+* <span data-ttu-id="fd4bf-112">A Linux rendszerű számítógépeken syslog események gyűjtése</span><span class="sxs-lookup"><span data-stu-id="fd4bf-112">Collect events from syslog on Linux computers</span></span> 
+* <span data-ttu-id="fd4bf-113">A Windows Eseménynapló eseményeinek gyűjtése</span><span class="sxs-lookup"><span data-stu-id="fd4bf-113">Collect events from Windows event logs</span></span>
+* <span data-ttu-id="fd4bf-114">Egyéni eseménynaplók gyűjtése</span><span class="sxs-lookup"><span data-stu-id="fd4bf-114">Collect custom event logs</span></span>
+* <span data-ttu-id="fd4bf-115">Hello napló analytics ügynök tooan Azure virtuális gépek hozzáadása</span><span class="sxs-lookup"><span data-stu-id="fd4bf-115">Add hello log analytics agent tooan Azure virtual machine</span></span>
+* <span data-ttu-id="fd4bf-116">Log analytics-tooindex adatok Azure diagnostics használatával gyűjt konfigurálása</span><span class="sxs-lookup"><span data-stu-id="fd4bf-116">Configure log analytics tooindex data collected using Azure diagnostics</span></span>
 
-<span data-ttu-id="9ed54-117">Ez a cikk ismerteti a sablon minták, amelyek bemutatják az egyes készítése a konfigurációról sablonok alapján hajthat végre.</span><span class="sxs-lookup"><span data-stu-id="9ed54-117">This article provides a template samples that illustrate some of the configuration that you can perform from templates.</span></span>
+<span data-ttu-id="fd4bf-117">Ez a cikk ismerteti a sablon minták, amelyek bemutatják az egyes hello konfigurációról sablonok alapján hajthat végre.</span><span class="sxs-lookup"><span data-stu-id="fd4bf-117">This article provides a template samples that illustrate some of hello configuration that you can perform from templates.</span></span>
 
-## <a name="create-and-configure-a-log-analytics-workspace"></a><span data-ttu-id="9ed54-118">Hozza létre és konfigurálja a Naplóelemzési munkaterület</span><span class="sxs-lookup"><span data-stu-id="9ed54-118">Create and configure a Log Analytics Workspace</span></span>
-<span data-ttu-id="9ed54-119">A következő sablon minta bemutatja, hogyan:</span><span class="sxs-lookup"><span data-stu-id="9ed54-119">The following template sample illustrates how to:</span></span>
+## <a name="create-and-configure-a-log-analytics-workspace"></a><span data-ttu-id="fd4bf-118">Hozza létre és konfigurálja a Naplóelemzési munkaterület</span><span class="sxs-lookup"><span data-stu-id="fd4bf-118">Create and configure a Log Analytics Workspace</span></span>
+<span data-ttu-id="fd4bf-119">hello következő sablon minta bemutatja, hogyan:</span><span class="sxs-lookup"><span data-stu-id="fd4bf-119">hello following template sample illustrates how to:</span></span>
 
-1. <span data-ttu-id="9ed54-120">Beleértve a beállítás az adatmegőrzés munkaterület létrehozása</span><span class="sxs-lookup"><span data-stu-id="9ed54-120">Create a workspace, including setting data retention</span></span>
-2. <span data-ttu-id="9ed54-121">A munkaterület megoldások hozzáadása</span><span class="sxs-lookup"><span data-stu-id="9ed54-121">Add solutions to the workspace</span></span>
-3. <span data-ttu-id="9ed54-122">Mentett keresések létrehozása</span><span class="sxs-lookup"><span data-stu-id="9ed54-122">Create saved searches</span></span>
-4. <span data-ttu-id="9ed54-123">Hozzon létre egy számítógépcsoportot</span><span class="sxs-lookup"><span data-stu-id="9ed54-123">Create a computer group</span></span>
-5. <span data-ttu-id="9ed54-124">A Windows-ügynök telepítve az IIS-naplók számítógépekről gyűjtésének engedélyezése</span><span class="sxs-lookup"><span data-stu-id="9ed54-124">Enable collection of IIS logs from computers with the Windows agent installed</span></span>
-6. <span data-ttu-id="9ed54-125">Logikai lemez teljesítményszámlálói gyűjteni a Linux rendszerű számítógépek (% Inode-OK; Szabad hely MB-ban; Foglalt hely; % / Mp átvitelek; Lemezolvasások/mp; Lemezírás/mp)</span><span class="sxs-lookup"><span data-stu-id="9ed54-125">Collect Logical Disk perf counters from Linux computers (% Used Inodes; Free Megabytes; % Used Space; Disk Transfers/sec; Disk Reads/sec; Disk Writes/sec)</span></span>
-7. <span data-ttu-id="9ed54-126">Syslog-események gyűjtése Linux számítógépekről</span><span class="sxs-lookup"><span data-stu-id="9ed54-126">Collect syslog events from Linux computers</span></span>
-8. <span data-ttu-id="9ed54-127">Hiba és figyelmeztetési események gyűjtése az alkalmazások eseménynaplójában a Windows rendszerű számítógépek</span><span class="sxs-lookup"><span data-stu-id="9ed54-127">Collect Error and Warning events from the Application Event Log from Windows computers</span></span>
-9. <span data-ttu-id="9ed54-128">A Windows rendszerű számítógépek memória rendelkezésre álló memória (MB) teljesítményszámláló gyűjtése.</span><span class="sxs-lookup"><span data-stu-id="9ed54-128">Collect Memory Available Mbytes performance counter from Windows computers</span></span>
-10. <span data-ttu-id="9ed54-129">Egy egyéni napló gyűjtése</span><span class="sxs-lookup"><span data-stu-id="9ed54-129">Collect a custom log</span></span> 
-11. <span data-ttu-id="9ed54-130">IIS-napló és a Windows eseménynaplóiban keresse meg a storage-fiókok Azure diagnostics által írt gyűjtése</span><span class="sxs-lookup"><span data-stu-id="9ed54-130">Collect IIS logs and Windows Event logs written by Azure diagnostics to a storage account</span></span>
+1. <span data-ttu-id="fd4bf-120">Beleértve a beállítás az adatmegőrzés munkaterület létrehozása</span><span class="sxs-lookup"><span data-stu-id="fd4bf-120">Create a workspace, including setting data retention</span></span>
+2. <span data-ttu-id="fd4bf-121">Adja hozzá a megoldások toohello munkaterület</span><span class="sxs-lookup"><span data-stu-id="fd4bf-121">Add solutions toohello workspace</span></span>
+3. <span data-ttu-id="fd4bf-122">Mentett keresések létrehozása</span><span class="sxs-lookup"><span data-stu-id="fd4bf-122">Create saved searches</span></span>
+4. <span data-ttu-id="fd4bf-123">Hozzon létre egy számítógépcsoportot</span><span class="sxs-lookup"><span data-stu-id="fd4bf-123">Create a computer group</span></span>
+5. <span data-ttu-id="fd4bf-124">Hello Windows-ügynök telepítve az IIS-naplók számítógépekről gyűjtésének engedélyezése</span><span class="sxs-lookup"><span data-stu-id="fd4bf-124">Enable collection of IIS logs from computers with hello Windows agent installed</span></span>
+6. <span data-ttu-id="fd4bf-125">Logikai lemez teljesítményszámlálói gyűjteni a Linux rendszerű számítógépek (% Inode-OK; Szabad hely MB-ban; Foglalt hely; % / Mp átvitelek; Lemezolvasások/mp; Lemezírás/mp)</span><span class="sxs-lookup"><span data-stu-id="fd4bf-125">Collect Logical Disk perf counters from Linux computers (% Used Inodes; Free Megabytes; % Used Space; Disk Transfers/sec; Disk Reads/sec; Disk Writes/sec)</span></span>
+7. <span data-ttu-id="fd4bf-126">Syslog-események gyűjtése Linux számítógépekről</span><span class="sxs-lookup"><span data-stu-id="fd4bf-126">Collect syslog events from Linux computers</span></span>
+8. <span data-ttu-id="fd4bf-127">Hiba és figyelmeztetési események gyűjtése hello alkalmazások eseménynaplójában keresse meg a Windows rendszerű számítógépek</span><span class="sxs-lookup"><span data-stu-id="fd4bf-127">Collect Error and Warning events from hello Application Event Log from Windows computers</span></span>
+9. <span data-ttu-id="fd4bf-128">A Windows rendszerű számítógépek memória rendelkezésre álló memória (MB) teljesítményszámláló gyűjtése.</span><span class="sxs-lookup"><span data-stu-id="fd4bf-128">Collect Memory Available Mbytes performance counter from Windows computers</span></span>
+10. <span data-ttu-id="fd4bf-129">Egy egyéni napló gyűjtése</span><span class="sxs-lookup"><span data-stu-id="fd4bf-129">Collect a custom log</span></span> 
+11. <span data-ttu-id="fd4bf-130">IIS-napló és a Windows eseménynaplóiban keresse meg az Azure diagnostics tooa tárfiók által írt gyűjtése</span><span class="sxs-lookup"><span data-stu-id="fd4bf-130">Collect IIS logs and Windows Event logs written by Azure diagnostics tooa storage account</span></span>
 
 ```
 {
@@ -95,13 +95,13 @@ ms.lasthandoff: 07/11/2017
     "applicationDiagnosticsStorageAccountName": {
         "type": "string",
         "metadata": {
-          "description": "Name of the storage account with Azure diagnostics output"
+          "description": "Name of hello storage account with Azure diagnostics output"
         }
     },
     "applicationDiagnosticsStorageAccountResourceGroup": {
         "type": "string",
         "metadata": {
-          "description": "The resource group name containing the storage account with Azure diagnostics output"
+          "description": "hello resource group name containing hello storage account with Azure diagnostics output"
         }
     }
   },
@@ -426,34 +426,34 @@ ms.lasthandoff: 07/11/2017
 }
 
 ```
-### <a name="deploying-the-sample-template"></a><span data-ttu-id="9ed54-131">A minta sablon telepítése</span><span class="sxs-lookup"><span data-stu-id="9ed54-131">Deploying the sample template</span></span>
-<span data-ttu-id="9ed54-132">A minta sablon telepítéséhez:</span><span class="sxs-lookup"><span data-stu-id="9ed54-132">To deploy the sample template:</span></span>
+### <a name="deploying-hello-sample-template"></a><span data-ttu-id="fd4bf-131">Hello minta sablon telepítése</span><span class="sxs-lookup"><span data-stu-id="fd4bf-131">Deploying hello sample template</span></span>
+<span data-ttu-id="fd4bf-132">toodeploy hello mintasablon:</span><span class="sxs-lookup"><span data-stu-id="fd4bf-132">toodeploy hello sample template:</span></span>
 
-1. <span data-ttu-id="9ed54-133">A csatolt minta például egy fájl mentése`azuredeploy.json`</span><span class="sxs-lookup"><span data-stu-id="9ed54-133">Save the attached sample in a file, for example `azuredeploy.json`</span></span> 
-2. <span data-ttu-id="9ed54-134">Szerkesztheti a sablont a kívánt konfigurációval rendelkezik</span><span class="sxs-lookup"><span data-stu-id="9ed54-134">Edit the template to have the configuration you want</span></span>
-3. <span data-ttu-id="9ed54-135">A sablon telepítéséhez PowerShell vagy parancssor használatával</span><span class="sxs-lookup"><span data-stu-id="9ed54-135">Use PowerShell or the command line to deploy the template</span></span>
+1. <span data-ttu-id="fd4bf-133">Hello csatolt minta például egy fájl mentése`azuredeploy.json`</span><span class="sxs-lookup"><span data-stu-id="fd4bf-133">Save hello attached sample in a file, for example `azuredeploy.json`</span></span> 
+2. <span data-ttu-id="fd4bf-134">Hello toohave hello konfigurációt szeretne szerkesztése</span><span class="sxs-lookup"><span data-stu-id="fd4bf-134">Edit hello template toohave hello configuration you want</span></span>
+3. <span data-ttu-id="fd4bf-135">PowerShell vagy hello parancssori toodeploy hello sablon használata</span><span class="sxs-lookup"><span data-stu-id="fd4bf-135">Use PowerShell or hello command line toodeploy hello template</span></span>
 
-#### <a name="powershell"></a><span data-ttu-id="9ed54-136">PowerShell</span><span class="sxs-lookup"><span data-stu-id="9ed54-136">PowerShell</span></span>
+#### <a name="powershell"></a><span data-ttu-id="fd4bf-136">PowerShell</span><span class="sxs-lookup"><span data-stu-id="fd4bf-136">PowerShell</span></span>
 `New-AzureRmResourceGroupDeployment -Name <deployment-name> -ResourceGroupName <resource-group-name> -TemplateFile azuredeploy.json`
 
-#### <a name="command-line"></a><span data-ttu-id="9ed54-137">Parancssor</span><span class="sxs-lookup"><span data-stu-id="9ed54-137">Command line</span></span>
+#### <a name="command-line"></a><span data-ttu-id="fd4bf-137">Parancssor</span><span class="sxs-lookup"><span data-stu-id="fd4bf-137">Command line</span></span>
 ```
 azure config mode arm
 azure group deployment create <my-resource-group> <my-deployment-name> --TemplateFile azuredeploy.json
 ```
 
 
-## <a name="example-resource-manager-templates"></a><span data-ttu-id="9ed54-138">Példa Resource Manager-sablonok</span><span class="sxs-lookup"><span data-stu-id="9ed54-138">Example Resource Manager templates</span></span>
-<span data-ttu-id="9ed54-139">Az Azure gyors üzembe helyezés sablon gyűjtemény Naplóelemzési, beleértve a több sablont is tartalmaz:</span><span class="sxs-lookup"><span data-stu-id="9ed54-139">The Azure quickstart template gallery includes several templates for Log Analytics, including:</span></span>
+## <a name="example-resource-manager-templates"></a><span data-ttu-id="fd4bf-138">Példa Resource Manager-sablonok</span><span class="sxs-lookup"><span data-stu-id="fd4bf-138">Example Resource Manager templates</span></span>
+<span data-ttu-id="fd4bf-139">hello Azure gyors üzembe helyezés sablon gyűjtemény Naplóelemzési, beleértve a több sablont is tartalmaz:</span><span class="sxs-lookup"><span data-stu-id="fd4bf-139">hello Azure quickstart template gallery includes several templates for Log Analytics, including:</span></span>
 
-* [<span data-ttu-id="9ed54-140">A virtuális gép Windows operációs rendszer és a napló Analytics Virtuálisgép-bővítmény telepítése</span><span class="sxs-lookup"><span data-stu-id="9ed54-140">Deploy a virtual machine running Windows with the Log Analytics VM extension</span></span>](https://azure.microsoft.com/documentation/templates/201-oms-extension-windows-vm/)
-* [<span data-ttu-id="9ed54-141">A napló Analytics Virtuálisgép-bővítmény linuxos virtuális gép telepítése</span><span class="sxs-lookup"><span data-stu-id="9ed54-141">Deploy a virtual machine running Linux with the Log Analytics VM extension</span></span>](https://azure.microsoft.com/documentation/templates/201-oms-extension-ubuntu-vm/)
-* [<span data-ttu-id="9ed54-142">A figyelő Azure Site Recovery segítségével egy meglévő Naplóelemzési munkaterület</span><span class="sxs-lookup"><span data-stu-id="9ed54-142">Monitor Azure Site Recovery using an existing Log Analytics workspace</span></span>](https://azure.microsoft.com/documentation/templates/asr-oms-monitoring/)
-* [<span data-ttu-id="9ed54-143">Egy meglévő Naplóelemzési munkaterület használata Azure-webalkalmazások figyelése</span><span class="sxs-lookup"><span data-stu-id="9ed54-143">Monitor Azure Web Apps using an existing Log Analytics workspace</span></span>](https://azure.microsoft.com/documentation/templates/101-webappazure-oms-monitoring/)
-* [<span data-ttu-id="9ed54-144">A figyelő SQL Azure-ban egy meglévő Naplóelemzési munkaterület</span><span class="sxs-lookup"><span data-stu-id="9ed54-144">Monitor SQL Azure using an existing Log Analytics workspace</span></span>](https://azure.microsoft.com/documentation/templates/101-sqlazure-oms-monitoring/)
-* [<span data-ttu-id="9ed54-145">A Service Fabric-fürt telepítéséhez és figyeléséhez azt egy meglévő Naplóelemzési munkaterület</span><span class="sxs-lookup"><span data-stu-id="9ed54-145">Deploy a Service Fabric cluster and monitor it with an existing Log Analytics workspace</span></span>](https://azure.microsoft.com/documentation/templates/service-fabric-oms/)
-* [<span data-ttu-id="9ed54-146">A Service Fabric-fürt központi telepítése és a figyeléshez Naplóelemzési munkaterület létrehozása</span><span class="sxs-lookup"><span data-stu-id="9ed54-146">Deploy a Service Fabric cluster and create a Log Analytics workspace to monitor it</span></span>](https://azure.microsoft.com/documentation/templates/service-fabric-vmss-oms/)
+* [<span data-ttu-id="fd4bf-140">Hello napló Analytics Virtuálisgép-bővítmény tartalmazó Windows rendszert futtató virtuális gép telepítése</span><span class="sxs-lookup"><span data-stu-id="fd4bf-140">Deploy a virtual machine running Windows with hello Log Analytics VM extension</span></span>](https://azure.microsoft.com/documentation/templates/201-oms-extension-windows-vm/)
+* [<span data-ttu-id="fd4bf-141">Hello napló Analytics Virtuálisgép-bővítmény linuxos virtuális gép telepítése</span><span class="sxs-lookup"><span data-stu-id="fd4bf-141">Deploy a virtual machine running Linux with hello Log Analytics VM extension</span></span>](https://azure.microsoft.com/documentation/templates/201-oms-extension-ubuntu-vm/)
+* [<span data-ttu-id="fd4bf-142">A figyelő Azure Site Recovery segítségével egy meglévő Naplóelemzési munkaterület</span><span class="sxs-lookup"><span data-stu-id="fd4bf-142">Monitor Azure Site Recovery using an existing Log Analytics workspace</span></span>](https://azure.microsoft.com/documentation/templates/asr-oms-monitoring/)
+* [<span data-ttu-id="fd4bf-143">Egy meglévő Naplóelemzési munkaterület használata Azure-webalkalmazások figyelése</span><span class="sxs-lookup"><span data-stu-id="fd4bf-143">Monitor Azure Web Apps using an existing Log Analytics workspace</span></span>](https://azure.microsoft.com/documentation/templates/101-webappazure-oms-monitoring/)
+* [<span data-ttu-id="fd4bf-144">A figyelő SQL Azure-ban egy meglévő Naplóelemzési munkaterület</span><span class="sxs-lookup"><span data-stu-id="fd4bf-144">Monitor SQL Azure using an existing Log Analytics workspace</span></span>](https://azure.microsoft.com/documentation/templates/101-sqlazure-oms-monitoring/)
+* [<span data-ttu-id="fd4bf-145">A Service Fabric-fürt telepítéséhez és figyeléséhez azt egy meglévő Naplóelemzési munkaterület</span><span class="sxs-lookup"><span data-stu-id="fd4bf-145">Deploy a Service Fabric cluster and monitor it with an existing Log Analytics workspace</span></span>](https://azure.microsoft.com/documentation/templates/service-fabric-oms/)
+* [<span data-ttu-id="fd4bf-146">A Service Fabric-fürt központi telepítése, és hozzon létre egy Naplóelemzési munkaterület toomonitor azt</span><span class="sxs-lookup"><span data-stu-id="fd4bf-146">Deploy a Service Fabric cluster and create a Log Analytics workspace toomonitor it</span></span>](https://azure.microsoft.com/documentation/templates/service-fabric-vmss-oms/)
 
-## <a name="next-steps"></a><span data-ttu-id="9ed54-147">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="9ed54-147">Next steps</span></span>
-* [<span data-ttu-id="9ed54-148">Ügynökök üzembe helyezés virtuális gépek Azure Resource Manager-sablonok</span><span class="sxs-lookup"><span data-stu-id="9ed54-148">Deploy agents into Azure VMs using Resource Manager templates</span></span>](log-analytics-azure-vm-extension.md)
+## <a name="next-steps"></a><span data-ttu-id="fd4bf-147">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="fd4bf-147">Next steps</span></span>
+* [<span data-ttu-id="fd4bf-148">Ügynökök üzembe helyezés virtuális gépek Azure Resource Manager-sablonok</span><span class="sxs-lookup"><span data-stu-id="fd4bf-148">Deploy agents into Azure VMs using Resource Manager templates</span></span>](log-analytics-azure-vm-extension.md)
 

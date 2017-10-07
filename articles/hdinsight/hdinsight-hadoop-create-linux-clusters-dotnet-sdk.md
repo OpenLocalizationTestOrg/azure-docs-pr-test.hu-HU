@@ -1,6 +1,6 @@
 ---
-title: ".NET - Azure HDInsight Hadoop-fürtök létrehozása |} Microsoft Docs"
-description: "Útmutató a Hadoop, HBase, Storm vagy Spark-fürtök létrehozása Linux rendszeren a HDInsight a HDInsight .NET SDK használatával."
+title: "aaaCreate Hadoop-fürtök használata a .NET - Azure HDInsight |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate Hadoop, HBase, Storm vagy Spark fürtök a Linuxon HDInsight használatának hello HDInsight .NET SDK-val."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -16,38 +16,38 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/17/2017
 ms.author: jgao
-ms.openlocfilehash: ccd3a0c777510e0694170b2f9acc8da0e7dcde9b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9460b0d27143c97860b3540fcec26851d755aa28
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-linux-based-clusters-in-hdinsight-using-the-net-sdk"></a><span data-ttu-id="9d1a6-103">Linux-alapú fürtök létrehozása a HDInsight .NET SDK használatával</span><span class="sxs-lookup"><span data-stu-id="9d1a6-103">Create Linux-based clusters in HDInsight using the .NET SDK</span></span>
+# <a name="create-linux-based-clusters-in-hdinsight-using-hello-net-sdk"></a><span data-ttu-id="01c8b-103">Linux-alapú fürtök létrehozása a Hdinsightban hello .NET SDK használatával</span><span class="sxs-lookup"><span data-stu-id="01c8b-103">Create Linux-based clusters in HDInsight using hello .NET SDK</span></span>
 
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
 
-<span data-ttu-id="9d1a6-104">Ismerje meg, a Hadoop-fürt létrehozása az Azure HDInsight-fürt a .NET SDK használatával.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-104">Learn how to create a Hadoop cluster in Azure HDInsight cluster using the .NET SDK.</span></span>
+<span data-ttu-id="01c8b-104">Ismerje meg, hogyan toocreate Hadoop-fürthöz az Azure HDInsight fürt használt hello .NET SDK-val.</span><span class="sxs-lookup"><span data-stu-id="01c8b-104">Learn how toocreate a Hadoop cluster in Azure HDInsight cluster using hello .NET SDK.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="9d1a6-105">A jelen dokumentumban leírt lépések egy munkavégző csomóponton hozzon létre egy fürtöt.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-105">The steps in this document create a cluster with one worker node.</span></span> <span data-ttu-id="9d1a6-106">Ha azt tervezi, több mint 32 munkavégző csomópont, vagy a fürt létrehozásakor, vagy a fürt létrehozása után skálázással szüksége legalább 8 maggal és 14GB ram átjárócsomópont kiválasztásához.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-106">If you plan on more than 32 worker nodes, either at cluster creation or by scaling the cluster after creation, you need to select a head node size with at least 8 cores and 14GB ram.</span></span>
+> <span data-ttu-id="01c8b-105">hello jelen dokumentumban leírt lépések egy munkavégző csomóponton hozzon létre egy fürtöt.</span><span class="sxs-lookup"><span data-stu-id="01c8b-105">hello steps in this document create a cluster with one worker node.</span></span> <span data-ttu-id="01c8b-106">Ha azt tervezi, több mint 32 munkavégző csomópont, vagy a fürt létrehozásakor, vagy a létrehozás után hello fürt skálázással kell tooselect egy átjárócsomóponttal mérete legalább 8 maggal és 14GB RAM-mal.</span><span class="sxs-lookup"><span data-stu-id="01c8b-106">If you plan on more than 32 worker nodes, either at cluster creation or by scaling hello cluster after creation, you need tooselect a head node size with at least 8 cores and 14GB ram.</span></span>
 >
-> <span data-ttu-id="9d1a6-107">A csomópont-méretek és a társuló költségeket további információkért lásd: [HDInsight árképzési](https://azure.microsoft.com/pricing/details/hdinsight/).</span><span class="sxs-lookup"><span data-stu-id="9d1a6-107">For more information on node sizes and associated costs, see [HDInsight pricing](https://azure.microsoft.com/pricing/details/hdinsight/).</span></span>
+> <span data-ttu-id="01c8b-107">A csomópont-méretek és a társuló költségeket további információkért lásd: [HDInsight árképzési](https://azure.microsoft.com/pricing/details/hdinsight/).</span><span class="sxs-lookup"><span data-stu-id="01c8b-107">For more information on node sizes and associated costs, see [HDInsight pricing](https://azure.microsoft.com/pricing/details/hdinsight/).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="9d1a6-108">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="9d1a6-108">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="01c8b-108">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="01c8b-108">Prerequisites</span></span>
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-* <span data-ttu-id="9d1a6-109">**Azure-előfizetés**.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-109">**An Azure subscription**.</span></span> <span data-ttu-id="9d1a6-110">Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).</span><span class="sxs-lookup"><span data-stu-id="9d1a6-110">See [Get Azure free trial](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).</span></span>
-* <span data-ttu-id="9d1a6-111">**Azure-tárfiók**.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-111">**An Azure storage account**.</span></span> <span data-ttu-id="9d1a6-112">Lásd: [hozzon létre egy tárfiókot](../storage/common/storage-create-storage-account.md#create-a-storage-account).</span><span class="sxs-lookup"><span data-stu-id="9d1a6-112">See [Create a storage account](../storage/common/storage-create-storage-account.md#create-a-storage-account).</span></span>
-* <span data-ttu-id="9d1a6-113">**Visual Studio 2013, Visual Studio 2015-öt vagy a Visual Studio 2017**.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-113">**Visual Studio 2013, Visual Studio 2015 or Visual Studio 2017**.</span></span>
+* <span data-ttu-id="01c8b-109">**Azure-előfizetés**.</span><span class="sxs-lookup"><span data-stu-id="01c8b-109">**An Azure subscription**.</span></span> <span data-ttu-id="01c8b-110">Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).</span><span class="sxs-lookup"><span data-stu-id="01c8b-110">See [Get Azure free trial](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).</span></span>
+* <span data-ttu-id="01c8b-111">**Azure-tárfiók**.</span><span class="sxs-lookup"><span data-stu-id="01c8b-111">**An Azure storage account**.</span></span> <span data-ttu-id="01c8b-112">Lásd: [hozzon létre egy tárfiókot](../storage/common/storage-create-storage-account.md#create-a-storage-account).</span><span class="sxs-lookup"><span data-stu-id="01c8b-112">See [Create a storage account](../storage/common/storage-create-storage-account.md#create-a-storage-account).</span></span>
+* <span data-ttu-id="01c8b-113">**Visual Studio 2013, Visual Studio 2015-öt vagy a Visual Studio 2017**.</span><span class="sxs-lookup"><span data-stu-id="01c8b-113">**Visual Studio 2013, Visual Studio 2015 or Visual Studio 2017**.</span></span>
 
-## <a name="create-clusters"></a><span data-ttu-id="9d1a6-114">Fürtök létrehozása</span><span class="sxs-lookup"><span data-stu-id="9d1a6-114">Create clusters</span></span>
+## <a name="create-clusters"></a><span data-ttu-id="01c8b-114">Fürtök létrehozása</span><span class="sxs-lookup"><span data-stu-id="01c8b-114">Create clusters</span></span>
 
-1. <span data-ttu-id="9d1a6-115">Nyissa meg a Visual Studio 2017.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-115">Open Visual Studio 2017.</span></span>
-2. <span data-ttu-id="9d1a6-116">Hozzon létre egy új Visual C# konzolalkalmazást.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-116">Create a new Visual C# console application.</span></span>
-3. <span data-ttu-id="9d1a6-117">Az a **eszközök** menüben kattintson a **NuGet-Csomagkezelő**, és kattintson a **Csomagkezelő konzol**.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-117">From the **Tools** menu, click **NuGet Package Manager**, and then click **Package Manager Console**.</span></span>
-4. <span data-ttu-id="9d1a6-118">A konzolon a csomagok telepítéséhez futtassa a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="9d1a6-118">Run the following command in the console to install the packages:</span></span>
+1. <span data-ttu-id="01c8b-115">Nyissa meg a Visual Studio 2017.</span><span class="sxs-lookup"><span data-stu-id="01c8b-115">Open Visual Studio 2017.</span></span>
+2. <span data-ttu-id="01c8b-116">Hozzon létre egy új Visual C# konzolalkalmazást.</span><span class="sxs-lookup"><span data-stu-id="01c8b-116">Create a new Visual C# console application.</span></span>
+3. <span data-ttu-id="01c8b-117">A hello **eszközök** menüben kattintson a **NuGet-Csomagkezelő**, és kattintson a **Csomagkezelő konzol**.</span><span class="sxs-lookup"><span data-stu-id="01c8b-117">From hello **Tools** menu, click **NuGet Package Manager**, and then click **Package Manager Console**.</span></span>
+4. <span data-ttu-id="01c8b-118">Futtassa a következő parancs a hello konzol tooinstall hello csomagok hello:</span><span class="sxs-lookup"><span data-stu-id="01c8b-118">Run hello following command in hello console tooinstall hello packages:</span></span>
 
     ```powershell
     Install-Package Microsoft.Rest.ClientRuntime.Azure.Authentication -Pre
@@ -55,8 +55,8 @@ ms.lasthandoff: 08/29/2017
     Install-Package Microsoft.Azure.Management.HDInsight
     ```
 
-    <span data-ttu-id="9d1a6-119">Ezek a parancsok .NET-kódtárakra és azok mutató hivatkozások hozzáadása a jelenlegi Visual Studio-projekt.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-119">These commands add .NET libraries and references to them to the current Visual Studio project.</span></span>
-5. <span data-ttu-id="9d1a6-120">A Megoldáskezelőben kattintson duplán a **Program.cs** való megnyitásához, az alábbi kódot, és adjon meg értékeket a változók:</span><span class="sxs-lookup"><span data-stu-id="9d1a6-120">From Solution Explorer, double-click **Program.cs** to open it, paste the following code, and provide values for the variables:</span></span>
+    <span data-ttu-id="01c8b-119">Ezek a parancsok .NET kódtárak és hivatkozások toothem toohello jelenlegi Visual Studio-projekt hozzáadása.</span><span class="sxs-lookup"><span data-stu-id="01c8b-119">These commands add .NET libraries and references toothem toohello current Visual Studio project.</span></span>
+5. <span data-ttu-id="01c8b-120">A Megoldáskezelőben kattintson duplán a **Program.cs** tooopen, illessze be a kódját a következő hello, és adjon meg értékeket hello változók:</span><span class="sxs-lookup"><span data-stu-id="01c8b-120">From Solution Explorer, double-click **Program.cs** tooopen it, paste hello following code, and provide values for hello variables:</span></span>
 
     ```csharp
     using System;
@@ -77,7 +77,7 @@ ms.lasthandoff: 08/29/2017
             private const string SubscriptionId = "<Your Azure Subscription ID>";
             // Replace with your AAD tenant ID if necessary
             private const string TenantId = UserTokenProvider.CommonTenantId; 
-            // This is the GUID for the PowerShell client. Used for interactive logins in this example.
+            // This is hello GUID for hello PowerShell client. Used for interactive logins in this example.
             private const string ClientId = "1950a258-227b-4e31-a9cf-717495945fc2";
 
             private const string ExistingResourceGroupName = "<Enter Resource Group Name>";
@@ -87,7 +87,7 @@ ms.lasthandoff: 08/29/2017
 
             private const string NewClusterName = "<Enter HDInsight Cluster Name>";
             private const int NewClusterNumNodes = 2;
-            private const string NewClusterLocation = "EAST US 2";     // Must be the same as the default Storage account
+            private const string NewClusterLocation = "EAST US 2";     // Must be hello same as hello default Storage account
             private const OSType NewClusterOSType = OSType.Linux;
             private const string NewClusterType = "Hadoop";
             private const string NewClusterVersion = "3.5";
@@ -105,11 +105,11 @@ ms.lasthandoff: 08/29/2017
                 WVfu15kKyY8YAiynVbdV51EB0SZaSLdMZkZQ81xi4DDtCZD7qvdtWEFwLa+EHdkd
                 pzO36Mtev5XvseLQqzXzZ6aVBdlXoppGHXkoGHAMNOtEWRXpAUtEccjpATsaZhQR
                 zZdZlzHduhM10ofS4YOYBADt9JohporbQVHM5w6qUhIgyiPo7w==
-                ---- END SSH2 PUBLIC KEY ----"; //replace the public key with your own
+                ---- END SSH2 PUBLIC KEY ----"; //replace hello public key with your own
 
             static void Main(string[] args)
             {
-                System.Console.WriteLine("Creating a cluster.  The process takes 10 to 20 minutes ...");
+                System.Console.WriteLine("Creating a cluster.  hello process takes 10 too20 minutes ...");
 
                 // Authenticate and get a token
                 var authToken = GetTokenCloudCredentials(TenantId, ClientId, SubscriptionId);
@@ -118,7 +118,7 @@ ms.lasthandoff: 08/29/2017
                 // Get an HDInsight management client
                 _hdiManagementClient = new HDInsightManagementClient(authToken);
 
-                // Set parameters for the new cluster
+                // Set parameters for hello new cluster
                 var parameters = new ClusterCreateParameters
                 {
                     ClusterSizeInNodes = NewClusterNumNodes,
@@ -127,11 +127,11 @@ ms.lasthandoff: 08/29/2017
                     OSType = NewClusterOSType,
                     Version = NewClusterVersion,
 
-                    // Use an Azure storage account as the default storage
+                    // Use an Azure storage account as hello default storage
                     DefaultStorageInfo = new AzureStorageInfo(ExistingStorageName, ExistingStorageKey, ExistingBlobContainer),
 
-                    // Is the cluster type RServer? If so, you can set the EdgeNodeSize.
-                    // Otherwise, the default VM size is used.
+                    // Is hello cluster type RServer? If so, you can set hello EdgeNodeSize.
+                    // Otherwise, hello default VM size is used.
                     //EdgeNodeSize = "Standard_D12_v2",
 
                     Password = NewClusterPassword,
@@ -142,7 +142,7 @@ ms.lasthandoff: 08/29/2017
                     //SshPublicKey = NewClusterSshPublicKey
                 };
 
-                // Is the cluster type RServer? If so, add the RStudio configuration option.
+                // Is hello cluster type RServer? If so, add hello RStudio configuration option.
                 /*
                 parameters.Configurations.Add(
                     "rserver",
@@ -153,15 +153,15 @@ ms.lasthandoff: 08/29/2017
                 );
                 */
 
-                // Create the cluster
+                // Create hello cluster
                 _hdiManagementClient.Clusters.Create(ExistingResourceGroupName, NewClusterName, parameters);
 
-                System.Console.WriteLine("The cluster has been created. Press ENTER to continue ...");
+                System.Console.WriteLine("hello cluster has been created. Press ENTER toocontinue ...");
                 System.Console.ReadLine();
             }
 
             /// <summary>
-            /// Authenticate to an Azure subscription and retrieve an authentication token
+            /// Authenticate tooan Azure subscription and retrieve an authentication token
             /// </summary>
             static TokenCloudCredentials GetTokenCloudCredentials(string TenantId, string ClientId, string SubscriptionId)
             {
@@ -181,29 +181,29 @@ ms.lasthandoff: 08/29/2017
             /// <param name="authToken">An authentication token for your Azure subscription</param>
             static void EnableHDInsight(TokenCloudCredentials authToken)
             {
-                // Create a client for the Resource manager and set the subscription ID
+                // Create a client for hello Resource manager and set hello subscription ID
                 var resourceManagementClient = new ResourceManagementClient(new TokenCredentials(authToken.Token));
                 resourceManagementClient.SubscriptionId = SubscriptionId;
-                // Register the HDInsight provider
+                // Register hello HDInsight provider
                 var rpResult = resourceManagementClient.Providers.Register("Microsoft.HDInsight");
             }
         }
     }
     ```
 
-6. <span data-ttu-id="9d1a6-121">Cserélje le a osztály kombinálását.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-121">Replace the class member values.</span></span>
-7. <span data-ttu-id="9d1a6-122">Az alkalmazás futtatásához nyomja le az **F5** billentyűt.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-122">Press **F5** to run the application.</span></span> <span data-ttu-id="9d1a6-123">A konzolablakban nyissa meg kell, és az alkalmazás állapotának megjelenítése.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-123">A console window should open and display the status of the application.</span></span> <span data-ttu-id="9d1a6-124">Az Azure-fiók hitelesítő adatainak megadását kéri.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-124">You are prompted to enter your Azure account credentials.</span></span> <span data-ttu-id="9d1a6-125">Hozzon létre egy HDInsight-fürtjéhez, általában körülbelül 15 több percet is igénybe vehet.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-125">It can take several minutes to create an HDInsight cluster, normally around 15.</span></span>
+6. <span data-ttu-id="01c8b-121">Cserélje le a hello osztály kombinálását.</span><span class="sxs-lookup"><span data-stu-id="01c8b-121">Replace hello class member values.</span></span>
+7. <span data-ttu-id="01c8b-122">Nyomja le az **F5** toorun hello alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="01c8b-122">Press **F5** toorun hello application.</span></span> <span data-ttu-id="01c8b-123">A konzolablakban nyissa meg kell, és hello alkalmazás hello állapotának megjelenítése.</span><span class="sxs-lookup"><span data-stu-id="01c8b-123">A console window should open and display hello status of hello application.</span></span> <span data-ttu-id="01c8b-124">Meg vannak felszólító tooenter a Azure-fiók hitelesítő adatait.</span><span class="sxs-lookup"><span data-stu-id="01c8b-124">You are prompted tooenter your Azure account credentials.</span></span> <span data-ttu-id="01c8b-125">Is igénybe vehet néhány percet toocreate HDInsight-fürtöt, általában körülbelül 15.</span><span class="sxs-lookup"><span data-stu-id="01c8b-125">It can take several minutes toocreate an HDInsight cluster, normally around 15.</span></span>
 
-## <a name="use-bootstrap"></a><span data-ttu-id="9d1a6-126">Használja a rendszerindítás</span><span class="sxs-lookup"><span data-stu-id="9d1a6-126">Use bootstrap</span></span>
+## <a name="use-bootstrap"></a><span data-ttu-id="01c8b-126">Használja a rendszerindítás</span><span class="sxs-lookup"><span data-stu-id="01c8b-126">Use bootstrap</span></span>
 
-<span data-ttu-id="9d1a6-127">Rendszerindítási használva állíthatja hozzáadása a fürt létrehozása során.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-127">Using bootstrap, you can configure addition settings during the cluster creations.</span></span>  <span data-ttu-id="9d1a6-128">További információkért lásd: [testreszabása HDInsight-fürtök használata rendszerindítási](hdinsight-hadoop-customize-cluster-bootstrap.md).</span><span class="sxs-lookup"><span data-stu-id="9d1a6-128">For more information, see [Customize HDInsight clusters using Bootstrap](hdinsight-hadoop-customize-cluster-bootstrap.md).</span></span>
+<span data-ttu-id="01c8b-127">Rendszerindítási használja, beállíthatja továbbá beállítások hello fürt létrehozása során.</span><span class="sxs-lookup"><span data-stu-id="01c8b-127">Using bootstrap, you can configure addition settings during hello cluster creations.</span></span>  <span data-ttu-id="01c8b-128">További információkért lásd: [testreszabása HDInsight-fürtök használata rendszerindítási](hdinsight-hadoop-customize-cluster-bootstrap.md).</span><span class="sxs-lookup"><span data-stu-id="01c8b-128">For more information, see [Customize HDInsight clusters using Bootstrap](hdinsight-hadoop-customize-cluster-bootstrap.md).</span></span>
 
-<span data-ttu-id="9d1a6-129">Módosítsa a minta [fürtöket létrehozni](#create-clusters) a Hive beállításainak:</span><span class="sxs-lookup"><span data-stu-id="9d1a6-129">Modify the sample in [Create clusters](#create-clusters) to configure a Hive setting:</span></span>
+<span data-ttu-id="01c8b-129">Módosítsa a hello minta [fürtöket létrehozni](#create-clusters) tooconfigure egy Hive-beállítás:</span><span class="sxs-lookup"><span data-stu-id="01c8b-129">Modify hello sample in [Create clusters](#create-clusters) tooconfigure a Hive setting:</span></span>
 
 ```csharp
 static void Main(string[] args)
 {
-    System.Console.WriteLine("Creating a cluster.  The process takes 10 to 20 minutes ...");
+    System.Console.WriteLine("Creating a cluster.  hello process takes 10 too20 minutes ...");
 
     // Authenticate and get a token
     var authToken = GetTokenCloudCredentials(TenantId, ClientId, SubscriptionId);
@@ -212,7 +212,7 @@ static void Main(string[] args)
     // Get an HDInsight management client
     _hdiManagementClient = new HDInsightManagementClient(authToken);
 
-    // Set parameters for the new cluster
+    // Set parameters for hello new cluster
     var extendedParameters = new ClusterCreateParametersExtended
     {
         Location = NewClusterLocation,
@@ -281,7 +281,7 @@ static void Main(string[] args)
             {
                 UserName = NewClusterSshUserName,
                 Password = NewClusterSshPassword //,
-                // When use a SSH pulbic key, make sure to remove comments, headers and trailers, and concatenate the key into one line 
+                // When use a SSH pulbic key, make sure tooremove comments, headers and trailers, and concatenate hello key into one line 
                 //SshProfile = new SshProfile
                 //{
                 //    SshPublicKeys = sshPublicKeys
@@ -318,21 +318,21 @@ static void Main(string[] args)
 
     _hdiManagementClient.Clusters.Create(ExistingResourceGroupName, NewClusterName, extendedParameters);
 
-    System.Console.WriteLine("The cluster has been created. Press ENTER to continue ...");
+    System.Console.WriteLine("hello cluster has been created. Press ENTER toocontinue ...");
     System.Console.ReadLine();
 }
 ```
 
-## <a name="use-script-action"></a><span data-ttu-id="9d1a6-130">Parancsfájl művelettel</span><span class="sxs-lookup"><span data-stu-id="9d1a6-130">Use Script Action</span></span>
+## <a name="use-script-action"></a><span data-ttu-id="01c8b-130">Parancsfájl művelettel</span><span class="sxs-lookup"><span data-stu-id="01c8b-130">Use Script Action</span></span>
 
-<span data-ttu-id="9d1a6-131">Parancsfájlművelet használja, beállíthatja a további beállítások fürt létrehozása során.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-131">Using Script Action, you can configure additional settings during cluster creations.</span></span>  <span data-ttu-id="9d1a6-132">További információkért lásd: [testreszabása Linux-alapú HDInsight-fürtök használata parancsfájlművelet](hdinsight-hadoop-customize-cluster-linux.md).</span><span class="sxs-lookup"><span data-stu-id="9d1a6-132">For more information, see [Customize Linux-based HDInsight clusters using Script Action](hdinsight-hadoop-customize-cluster-linux.md).</span></span>
+<span data-ttu-id="01c8b-131">Parancsfájlművelet használja, beállíthatja a további beállítások fürt létrehozása során.</span><span class="sxs-lookup"><span data-stu-id="01c8b-131">Using Script Action, you can configure additional settings during cluster creations.</span></span>  <span data-ttu-id="01c8b-132">További információkért lásd: [testreszabása Linux-alapú HDInsight-fürtök használata parancsfájlművelet](hdinsight-hadoop-customize-cluster-linux.md).</span><span class="sxs-lookup"><span data-stu-id="01c8b-132">For more information, see [Customize Linux-based HDInsight clusters using Script Action](hdinsight-hadoop-customize-cluster-linux.md).</span></span>
 
-<span data-ttu-id="9d1a6-133">Módosítsa a minta [fürtöket létrehozni](#create-clusters) hívni egy parancsfájlművelet r telepítéséhez</span><span class="sxs-lookup"><span data-stu-id="9d1a6-133">Modify the sample in [Create clusters](#create-clusters) to call a Script Action to install R:</span></span>
+<span data-ttu-id="01c8b-133">Módosítsa a hello minta [fürtöket létrehozni](#create-clusters) toocall egy parancsfájlművelet tooinstall R:</span><span class="sxs-lookup"><span data-stu-id="01c8b-133">Modify hello sample in [Create clusters](#create-clusters) toocall a Script Action tooinstall R:</span></span>
 
 ```csharp
 static void Main(string[] args)
 {
-    System.Console.WriteLine("Creating a cluster.  The process takes 10 to 20 minutes ...");
+    System.Console.WriteLine("Creating a cluster.  hello process takes 10 too20 minutes ...");
 
     // Authenticate and get a token
     var authToken = GetTokenCloudCredentials(TenantId, ClientId, SubscriptionId);
@@ -341,7 +341,7 @@ static void Main(string[] args)
     // Get an HDInsight management client
     _hdiManagementClient = new HDInsightManagementClient(authToken);
 
-    // Set parameters for the new cluster
+    // Set parameters for hello new cluster
     var parameters = new ClusterCreateParameters
     {
         ClusterSizeInNodes = NewClusterNumNodes,
@@ -366,42 +366,42 @@ static void Main(string[] args)
 
     _hdiManagementClient.Clusters.Create(ExistingResourceGroupName, NewClusterName, parameters);
 
-    System.Console.WriteLine("The cluster has been created. Press ENTER to continue ...");
+    System.Console.WriteLine("hello cluster has been created. Press ENTER toocontinue ...");
     System.Console.ReadLine();
 }
 ```
 
-## <a name="troubleshoot"></a><span data-ttu-id="9d1a6-134">Hibaelhárítás</span><span class="sxs-lookup"><span data-stu-id="9d1a6-134">Troubleshoot</span></span>
+## <a name="troubleshoot"></a><span data-ttu-id="01c8b-134">Hibaelhárítás</span><span class="sxs-lookup"><span data-stu-id="01c8b-134">Troubleshoot</span></span>
 
-<span data-ttu-id="9d1a6-135">Ha problémába ütközik a HDInsight-fürtök létrehozása során, tekintse meg [a hozzáférés-vezérlésre vonatkozó követelményeket](hdinsight-administer-use-portal-linux.md#create-clusters).</span><span class="sxs-lookup"><span data-stu-id="9d1a6-135">If you run into issues with creating HDInsight clusters, see [access control requirements](hdinsight-administer-use-portal-linux.md#create-clusters).</span></span>
+<span data-ttu-id="01c8b-135">Ha problémába ütközik a HDInsight-fürtök létrehozása során, tekintse meg [a hozzáférés-vezérlésre vonatkozó követelményeket](hdinsight-administer-use-portal-linux.md#create-clusters).</span><span class="sxs-lookup"><span data-stu-id="01c8b-135">If you run into issues with creating HDInsight clusters, see [access control requirements](hdinsight-administer-use-portal-linux.md#create-clusters).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="9d1a6-136">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="9d1a6-136">Next steps</span></span>
-<span data-ttu-id="9d1a6-137">Most, hogy sikeresen létrehozott egy HDInsight-fürtre, használja a következő megtudhatja, hogyan működnek a fürthöz.</span><span class="sxs-lookup"><span data-stu-id="9d1a6-137">Now that you have successfully created an HDInsight cluster, use the following to learn how to work with your cluster.</span></span> 
+## <a name="next-steps"></a><span data-ttu-id="01c8b-136">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="01c8b-136">Next steps</span></span>
+<span data-ttu-id="01c8b-137">Most, hogy sikeresen létrehozott egy HDInsight-fürtre, használja a következő toolearn hogyan hello toowork a fürthöz.</span><span class="sxs-lookup"><span data-stu-id="01c8b-137">Now that you have successfully created an HDInsight cluster, use hello following toolearn how toowork with your cluster.</span></span> 
 
-### <a name="hadoop-clusters"></a><span data-ttu-id="9d1a6-138">Hadoop-fürtök</span><span class="sxs-lookup"><span data-stu-id="9d1a6-138">Hadoop clusters</span></span>
-* [<span data-ttu-id="9d1a6-139">A Hive használata a HDInsightban</span><span class="sxs-lookup"><span data-stu-id="9d1a6-139">Use Hive with HDInsight</span></span>](hdinsight-use-hive.md)
-* [<span data-ttu-id="9d1a6-140">A Pig használata a HDInsightban</span><span class="sxs-lookup"><span data-stu-id="9d1a6-140">Use Pig with HDInsight</span></span>](hdinsight-use-pig.md)
-* [<span data-ttu-id="9d1a6-141">Use MapReduce with HDInsight</span><span class="sxs-lookup"><span data-stu-id="9d1a6-141">Use MapReduce with HDInsight</span></span>](hdinsight-use-mapreduce.md)
+### <a name="hadoop-clusters"></a><span data-ttu-id="01c8b-138">Hadoop-fürtök</span><span class="sxs-lookup"><span data-stu-id="01c8b-138">Hadoop clusters</span></span>
+* [<span data-ttu-id="01c8b-139">A Hive használata a HDInsightban</span><span class="sxs-lookup"><span data-stu-id="01c8b-139">Use Hive with HDInsight</span></span>](hdinsight-use-hive.md)
+* [<span data-ttu-id="01c8b-140">A Pig használata a HDInsightban</span><span class="sxs-lookup"><span data-stu-id="01c8b-140">Use Pig with HDInsight</span></span>](hdinsight-use-pig.md)
+* [<span data-ttu-id="01c8b-141">Use MapReduce with HDInsight</span><span class="sxs-lookup"><span data-stu-id="01c8b-141">Use MapReduce with HDInsight</span></span>](hdinsight-use-mapreduce.md)
 
-### <a name="hbase-clusters"></a><span data-ttu-id="9d1a6-142">HBase-fürtökkel</span><span class="sxs-lookup"><span data-stu-id="9d1a6-142">HBase clusters</span></span>
-* [<span data-ttu-id="9d1a6-143">Az a HDInsight HBase első lépései</span><span class="sxs-lookup"><span data-stu-id="9d1a6-143">Get started with HBase on HDInsight</span></span>](hdinsight-hbase-tutorial-get-started-linux.md)
-* [<span data-ttu-id="9d1a6-144">A HDInsight HBase Java-alkalmazások fejlesztése</span><span class="sxs-lookup"><span data-stu-id="9d1a6-144">Develop Java applications for HBase on HDInsight</span></span>](hdinsight-hbase-build-java-maven-linux.md)
+### <a name="hbase-clusters"></a><span data-ttu-id="01c8b-142">HBase-fürtökkel</span><span class="sxs-lookup"><span data-stu-id="01c8b-142">HBase clusters</span></span>
+* [<span data-ttu-id="01c8b-143">Az a HDInsight HBase első lépései</span><span class="sxs-lookup"><span data-stu-id="01c8b-143">Get started with HBase on HDInsight</span></span>](hdinsight-hbase-tutorial-get-started-linux.md)
+* [<span data-ttu-id="01c8b-144">A HDInsight HBase Java-alkalmazások fejlesztése</span><span class="sxs-lookup"><span data-stu-id="01c8b-144">Develop Java applications for HBase on HDInsight</span></span>](hdinsight-hbase-build-java-maven-linux.md)
 
-### <a name="storm-clusters"></a><span data-ttu-id="9d1a6-145">Storm-fürtök</span><span class="sxs-lookup"><span data-stu-id="9d1a6-145">Storm clusters</span></span>
-* [<span data-ttu-id="9d1a6-146">Java-topológiák fejlesztése hdinsight alatt futó Storm</span><span class="sxs-lookup"><span data-stu-id="9d1a6-146">Develop Java topologies for Storm on HDInsight</span></span>](hdinsight-storm-develop-java-topology.md)
-* [<span data-ttu-id="9d1a6-147">A HDInsight alatt futó Storm Python-összetevőket használnak</span><span class="sxs-lookup"><span data-stu-id="9d1a6-147">Use Python components in Storm on HDInsight</span></span>](hdinsight-storm-develop-python-topology.md)
-* [<span data-ttu-id="9d1a6-148">Telepítheti és figyelheti a HDInsight alatt futó Storm topológiák</span><span class="sxs-lookup"><span data-stu-id="9d1a6-148">Deploy and monitor topologies with Storm on HDInsight</span></span>](hdinsight-storm-deploy-monitor-topology-linux.md)
+### <a name="storm-clusters"></a><span data-ttu-id="01c8b-145">Storm-fürtök</span><span class="sxs-lookup"><span data-stu-id="01c8b-145">Storm clusters</span></span>
+* [<span data-ttu-id="01c8b-146">Java-topológiák fejlesztése hdinsight alatt futó Storm</span><span class="sxs-lookup"><span data-stu-id="01c8b-146">Develop Java topologies for Storm on HDInsight</span></span>](hdinsight-storm-develop-java-topology.md)
+* [<span data-ttu-id="01c8b-147">A HDInsight alatt futó Storm Python-összetevőket használnak</span><span class="sxs-lookup"><span data-stu-id="01c8b-147">Use Python components in Storm on HDInsight</span></span>](hdinsight-storm-develop-python-topology.md)
+* [<span data-ttu-id="01c8b-148">Telepítheti és figyelheti a HDInsight alatt futó Storm topológiák</span><span class="sxs-lookup"><span data-stu-id="01c8b-148">Deploy and monitor topologies with Storm on HDInsight</span></span>](hdinsight-storm-deploy-monitor-topology-linux.md)
 
-### <a name="spark-clusters"></a><span data-ttu-id="9d1a6-149">A Spark-fürtök</span><span class="sxs-lookup"><span data-stu-id="9d1a6-149">Spark clusters</span></span>
-* [<span data-ttu-id="9d1a6-150">Önálló alkalmazás létrehozása a Scala használatával</span><span class="sxs-lookup"><span data-stu-id="9d1a6-150">Create a standalone application using Scala</span></span>](hdinsight-apache-spark-create-standalone-application.md)
-* [<span data-ttu-id="9d1a6-151">Feladatok távoli futtatása Spark-fürtön a Livy használatával</span><span class="sxs-lookup"><span data-stu-id="9d1a6-151">Run jobs remotely on a Spark cluster using Livy</span></span>](hdinsight-apache-spark-livy-rest-interface.md)
-* [<span data-ttu-id="9d1a6-152">Spark és BI: Interaktív adatelemzés végrehajtása a Spark on HDInsight használatával, BI-eszközökkel</span><span class="sxs-lookup"><span data-stu-id="9d1a6-152">Spark with BI: Perform interactive data analysis using Spark in HDInsight with BI tools</span></span>](hdinsight-apache-spark-use-bi-tools.md)
-* [<span data-ttu-id="9d1a6-153">Spark és Machine Learning: A Spark on HDInsight használata az élelmiszervizsgálati eredmények előrejelzésére</span><span class="sxs-lookup"><span data-stu-id="9d1a6-153">Spark with Machine Learning: Use Spark in HDInsight to predict food inspection results</span></span>](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
-* [<span data-ttu-id="9d1a6-154">Spark Streaming: A Spark on HDInsight használata valós idejű streamelési alkalmazások összeállítására</span><span class="sxs-lookup"><span data-stu-id="9d1a6-154">Spark Streaming: Use Spark in HDInsight for building real-time streaming applications</span></span>](hdinsight-apache-spark-eventhub-streaming.md)
+### <a name="spark-clusters"></a><span data-ttu-id="01c8b-149">A Spark-fürtök</span><span class="sxs-lookup"><span data-stu-id="01c8b-149">Spark clusters</span></span>
+* [<span data-ttu-id="01c8b-150">Önálló alkalmazás létrehozása a Scala használatával</span><span class="sxs-lookup"><span data-stu-id="01c8b-150">Create a standalone application using Scala</span></span>](hdinsight-apache-spark-create-standalone-application.md)
+* [<span data-ttu-id="01c8b-151">Feladatok távoli futtatása Spark-fürtön a Livy használatával</span><span class="sxs-lookup"><span data-stu-id="01c8b-151">Run jobs remotely on a Spark cluster using Livy</span></span>](hdinsight-apache-spark-livy-rest-interface.md)
+* [<span data-ttu-id="01c8b-152">Spark és BI: Interaktív adatelemzés végrehajtása a Spark on HDInsight használatával, BI-eszközökkel</span><span class="sxs-lookup"><span data-stu-id="01c8b-152">Spark with BI: Perform interactive data analysis using Spark in HDInsight with BI tools</span></span>](hdinsight-apache-spark-use-bi-tools.md)
+* [<span data-ttu-id="01c8b-153">Spark és Machine Learning: használja a Spark on HDInsight toopredict élelmiszervizsgálati eredmények</span><span class="sxs-lookup"><span data-stu-id="01c8b-153">Spark with Machine Learning: Use Spark in HDInsight toopredict food inspection results</span></span>](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [<span data-ttu-id="01c8b-154">Spark Streaming: A Spark on HDInsight használata valós idejű streamelési alkalmazások összeállítására</span><span class="sxs-lookup"><span data-stu-id="01c8b-154">Spark Streaming: Use Spark in HDInsight for building real-time streaming applications</span></span>](hdinsight-apache-spark-eventhub-streaming.md)
 
-### <a name="run-jobs"></a><span data-ttu-id="9d1a6-155">Feladatok futtatása</span><span class="sxs-lookup"><span data-stu-id="9d1a6-155">Run jobs</span></span>
-* [<span data-ttu-id="9d1a6-156">Hive-feladatok futtatása a HDInsight .NET SDK használatával</span><span class="sxs-lookup"><span data-stu-id="9d1a6-156">Run Hive jobs in HDInsight using .NET SDK</span></span>](hdinsight-hadoop-use-hive-dotnet-sdk.md)
-* [<span data-ttu-id="9d1a6-157">A Pig-feladatok futtatása a HDInsight .NET SDK használatával</span><span class="sxs-lookup"><span data-stu-id="9d1a6-157">Run Pig jobs in HDInsight using .NET SDK</span></span>](hdinsight-hadoop-use-pig-dotnet-sdk.md)
-* [<span data-ttu-id="9d1a6-158">Sqoop feladatok futtatása a HDInsight .NET SDK használatával</span><span class="sxs-lookup"><span data-stu-id="9d1a6-158">Run Sqoop jobs in HDInsight using .NET SDK</span></span>](hdinsight-hadoop-use-sqoop-dotnet-sdk.md)
-* [<span data-ttu-id="9d1a6-159">A HDInsight Oozie feladatok futtatása</span><span class="sxs-lookup"><span data-stu-id="9d1a6-159">Run Oozie jobs in HDInsight</span></span>](hdinsight-use-oozie.md)
+### <a name="run-jobs"></a><span data-ttu-id="01c8b-155">Feladatok futtatása</span><span class="sxs-lookup"><span data-stu-id="01c8b-155">Run jobs</span></span>
+* [<span data-ttu-id="01c8b-156">Hive-feladatok futtatása a HDInsight .NET SDK használatával</span><span class="sxs-lookup"><span data-stu-id="01c8b-156">Run Hive jobs in HDInsight using .NET SDK</span></span>](hdinsight-hadoop-use-hive-dotnet-sdk.md)
+* [<span data-ttu-id="01c8b-157">A Pig-feladatok futtatása a HDInsight .NET SDK használatával</span><span class="sxs-lookup"><span data-stu-id="01c8b-157">Run Pig jobs in HDInsight using .NET SDK</span></span>](hdinsight-hadoop-use-pig-dotnet-sdk.md)
+* [<span data-ttu-id="01c8b-158">Sqoop feladatok futtatása a HDInsight .NET SDK használatával</span><span class="sxs-lookup"><span data-stu-id="01c8b-158">Run Sqoop jobs in HDInsight using .NET SDK</span></span>](hdinsight-hadoop-use-sqoop-dotnet-sdk.md)
+* [<span data-ttu-id="01c8b-159">A HDInsight Oozie feladatok futtatása</span><span class="sxs-lookup"><span data-stu-id="01c8b-159">Run Oozie jobs in HDInsight</span></span>](hdinsight-use-oozie.md)
 
