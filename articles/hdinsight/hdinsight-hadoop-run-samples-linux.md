@@ -1,6 +1,6 @@
 ---
-title: "Futtassa a Hadoop-MapReduce példák a HDInsight - Azure-on |} Microsoft Docs"
-description: "MapReduce-minták a HDInsight szereplő jar-fájlok az első lépéseiben. Csatlakozzon a fürthöz az SSH segítségével, és a Hadoop paranccsal minta feladatok futtatásához."
+title: "a HDInsight - Azure aaaRun Hadoop MapReduce példák |} Microsoft Docs"
+description: "MapReduce-minták a HDInsight szereplő jar-fájlok az első lépéseiben. SSH tooconnect toohello fürtöt használ, és aztán hello Hadoop parancs toorun mintafeladatok."
 keywords: "hadoop példa jar, a hadoop példák jar, a hadoop-mapreduce példák, a mapreduce példák"
 services: hdinsight
 documentationcenter: 
@@ -17,120 +17,120 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/26/2017
 ms.author: larryfr
-ms.openlocfilehash: 447c07f869ff9a2a2a00089248be98e6729d6dc4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7a16bbd51eb17570fcaa3b1e0f5990fa889c106a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="run-the-mapreduce-examples-included-in-hdinsight"></a>Futtassa a HDInsight szereplő MapReduce példák
+# <a name="run-hello-mapreduce-examples-included-in-hdinsight"></a>Futtassa a HDInsight szereplő hello MapReduce példák
 
 [!INCLUDE [samples-selector](../../includes/hdinsight-run-samples-selector.md)]
 
-Útmutató a mellékelt a HDInsight Hadoop MapReduce példák futtatásához.
+Ismerje meg, hogyan toorun hello MapReduce példák a HDInsight Hadoop része.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 * **HDInsight-fürtök**: lásd: [Hadoop használatának megkezdésében a Hive HDInsight Linux rendszeren](hdinsight-hadoop-linux-tutorial-get-started.md)
 
     > [!IMPORTANT]
-    > A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+    > Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 * **Egy SSH-ügyfél**: további információkért lásd: [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-## <a name="the-mapreduce-examples"></a>A MapReduce példák
+## <a name="hello-mapreduce-examples"></a>hello MapReduce példák
 
-**Hely**: A minták a HDInsight-fürthöz, a lévő `/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar`.
+**Hely**: hello minták a HDInsight-fürtöt: hello lévő `/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar`.
 
-**Tartalom**: A következő minták ebből az archívumból tartalmazza:
+**Tartalom**: a következő minták hello ebből az archívumból tartalmazza:
 
-* `aggregatewordcount`: Egy összesítés mapreduce program, amely a bemeneti fájlok szavakat száma alapján.
-* `aggregatewordhist`: Egy összesítés mapreduce program, amely kiszámítja a szövegrész szerepel a bemeneti fájlok hisztogram alapján.
-* `bbp`: Mapreduce használó program Bailey-Borwein-Plouffe pi számjegyeket kiszámításához.
-* `dbcount`: Egy példa a feladat, amely megjeleníti az adatbázisban tárolt pageview naplókat.
-* `distbbp`: Mapreduce program pi pontos bits számítási BBP típusú képlet használatával.
-* `grep`: A mapreduce program, amely egy reguláris kifejezéssel, a bemeneti adatok egyezések száma.
+* `aggregatewordcount`: Egy összesítés mapreduce program, amely a bemeneti fájlok hello hello szavak száma alapján.
+* `aggregatewordhist`: Egy összesítés alapján kiszámítja a bemeneti fájlok hello hello szavak hello hisztogram mapreduce program.
+* `bbp`: A Pi Bailey-Borwein-Plouffe toocompute számjegyeket használó a mapreduce programot.
+* `dbcount`: Egy példa a feladat, amely megjeleníti az adatbázisban tárolt hello pageview naplók.
+* `distbbp`: A Pi bit pontos BBP típusú képlet toocompute használó a mapreduce programot.
+* `grep`: A mapreduce program hello megadó megegyezik a regex hello bemeneti a.
 * `join`: Egy feladatot, amely végrehajtja a való csatlakozást keresztül rendezve, adatkészletek egyaránt particionálva.
 * `multifilewc`: Egy feladatot, amely a szavakat több fájlok száma.
-* `pentomino`: A mapreduce csempe szóló program pentomino problémák megoldása.
+* `pentomino`: A mapreduce csempe elrendezése program toofind megoldások toopentomino problémákat.
 * `pi`: A mapreduce program, amely segítségével látszólagos Monte Pi becslése Carlo metódust.
 * `randomtextwriter`: A mapreduce program 10 GB-nyi véletlenszerű szöveges adatok csomópontonként írja.
 * `randomwriter`: A mapreduce program 10 GB-nyi véletlenszerű adatokat csomópontonként írja.
-* `secondarysort`: Példa egy másodlagos rendezési meghatározása a reduce szakaszhoz ugranak.
-* `sort`: Mapreduce program a véletlenszerű író írt adatok rendezi.
+* `secondarysort`: Példa egy másodlagos rendezési toohello meghatározása csökkenti fázisban.
+* `sort`: Mapreduce program hello adatok hello véletlenszerű írási szerint rendezi.
 * `sudoku`: A sudoku solver.
-* `teragen`: A terasort adatainak létrehozása.
-* `terasort`: A terasort futtatásához.
+* `teragen`: Hello terasort adatainak létrehozása.
+* `terasort`: Hello terasort futtatásához.
 * `teravalidate`: Terasort eredményeinek ellenőrzése.
-* `wordcount`: A mapreduce program, amely a szavakat a bemeneti fájlok száma.
-* `wordmean`: A mapreduce program, amely a bemeneti fájlok szavakat átlagos hosszának száma.
-* `wordmedian`: Mapreduce program a közepes hossza a szövegrész szerepel a bemeneti fájlok száma.
-* `wordstandarddeviation`: A mapreduce program, amely a bemeneti fájlok szavakat hosszát szórását száma.
+* `wordcount`: Mapreduce program hello szavak hello bemeneti fájlok száma.
+* `wordmean`: Mapreduce program hello átlagos hossza hello szavak hello bemeneti fájlok száma.
+* `wordmedian`: Mapreduce program hello közepes hossza hello szavak hello bemeneti fájlok száma.
+* `wordstandarddeviation`: Mapreduce program hello szórása hello hosszát hello szavak hello bemeneti fájlok száma.
 
-**Forráskód**: ezeket a mintákat forráskódja szerepel-e a HDInsight-fürt `/usr/hdp/2.2.4.9-1/hadoop/src/hadoop-mapreduce-project/hadoop-mapreduce-examples`.
+**Forráskód**: HDInsight-fürtöt: hello szerepel-e ezeket a mintákat forráskódja `/usr/hdp/2.2.4.9-1/hadoop/src/hadoop-mapreduce-project/hadoop-mapreduce-examples`.
 
 > [!NOTE]
-> A `2.2.4.9-1` az elérési út a Hortonworks Data Platform a HDInsight-fürthöz verziója van telepítve, és a fürt eltérő lehet.
+> Hello `2.2.4.9-1` hello elérési hello verziója hello Hortonworks Data Platform hello HDInsight-fürthöz, és lehet, hogy a fürt másik.
 
-## <a name="run-the-wordcount-example"></a>Futtassa a wordcount-példa
+## <a name="run-hello-wordcount-example"></a>Futtassa a hello wordcount-példa
 
-1. Csatlakozzon a HDInsight SSH használatával. További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
+1. Csatlakozzon az SSH használatával tooHDInsight. További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Az a `username@#######:~$` kérni, használja a következő parancsot a minták listázásához:
+2. A hello `username@#######:~$` kérni, használja a következő Példaparancsok toolist hello hello:
 
     ```bash
     yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar
     ```
 
-    Ez a parancs létrehozza az összetevőlistát a minta a jelen dokumentum korábbi szakaszában.
+    Ez a parancs a dokumentum korábbi szakaszában hello minta hello listát hoz létre.
 
-3. A következő paranccsal egy adott minta segítség. Ebben az esetben a **wordcount** minta:
+3. Használjon hello következő parancsot a tooget súgó adott mintán. Ebben az esetben hello **wordcount** minta:
 
     ```bash
     yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount
     ```
 
-    A következő hibaüzenet jelenik meg:
+    Hello a következő üzenet jelenik meg:
 
         Usage: wordcount <in> [<in>...] <out>
 
-    Ez az üzenet azt jelzi, hogy több bemeneti elérési utak biztosíthat a forrás-dokumentumok. A végső elérési út, a kimenet (a forrás-dokumentumokban szavak száma) tárolására.
+    Ez az üzenet azt jelzi, hogy több bemeneti elérési utak biztosíthat hello forrás dokumentumokhoz. hello végső elérési út hello kimeneti (szavak hello forrás dokumentumok száma) tárolására.
 
-4. A megszámlálandó a notebookok a Leonardo Da Vinci, amely vannak megadva, a mintaadatok a fürthöz az összes szó használja a következőket:
+4. A következő toocount hello minden szó használjon hello notebookok a Leonardo Da Vinci, amely vannak megadva, a mintaadatok a fürthöz:
 
     ```bash
     yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount /example/data/gutenberg/davinci.txt /example/data/davinciwordcount
     ```
 
-    Ez a feladat olvasása az adatokat `/example/data/gutenberg/davinci.txt`. Az ebben a példában tárolódik kimeneti `/example/data/davinciwordcount`. Mindkét elérési utak a fürt, nem a helyi fájlrendszer alapértelmezett tároló található.
+    Ez a feladat olvasása az adatokat `/example/data/gutenberg/davinci.txt`. Az ebben a példában tárolódik kimeneti `/example/data/davinciwordcount`. Mindkét elérési utak alapértelmezett tárolási hello fürt esetén nem hello helyi fájlrendszerben található.
 
    > [!NOTE]
-   > Amint a Súgó gombra a wordcount-példa, több bemeneti fájl is megadhatja. Például `hadoop jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount /example/data/gutenberg/davinci.txt /example/data/gutenberg/ulysses.txt /example/data/twowordcount` számolja davinci.txt és ulysses.txt szavakat.
+   > Amint hello wordcount minta hello súgóját, több bemeneti fájl is megadhatja. Például `hadoop jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount /example/data/gutenberg/davinci.txt /example/data/gutenberg/ulysses.txt /example/data/twowordcount` számolja davinci.txt és ulysses.txt szavakat.
 
-5. Ha a feladat befejeződik, a következő paranccsal eredményének megtekintéséhez:
+5. Amikor hello feladat befejeződik, használja a következő tooview hello parancskimenet hello:
 
     ```bash
     hdfs dfs -cat /example/data/davinciwordcount/*
     ```
 
-    Ez a parancs a feladat által létrehozott kimeneti fájlok fűzi össze. A kimenet megjeleníti a konzolhoz. A kimenet az alábbi szöveghez hasonló:
+    Ez a parancs hello feladat által létrehozott összes hello kimeneti fájlok fűzi össze. Hello kimeneti toohello konzol jeleníti meg. a kimeneti hello hasonló toohello a következő szöveget:
 
         zum     1
         zur     1
         zwanzig 1
         zweite  1
 
-    Soronként egy szót, és hány alkalommal azt történt a bemeneti adatok jelöli.
+    Soronként egy word és hányszor történt a hello a bemeneti adatok jelöli.
 
-## <a name="the-sudoku-example"></a>A Sudoku – példa
+## <a name="hello-sudoku-example"></a>hello Sudoku – példa
 
-[Sudoku](https://en.wikipedia.org/wiki/Sudoku) egy logikai kirakós kilenc 3 x 3 rácsok áll. Néhány a rács celláinak számok, üres, és a cél az, hogy az üres cellák megoldásában. A korábbi hivatkozás a további információk a Kirakós rendelkezik, de ez a minta az a célja, hogy oldja meg az üres cellák. A bemenet, a következő formátumú fájlnak kell lennie:
+[Sudoku](https://en.wikipedia.org/wiki/Sudoku) egy logikai kirakós kilenc 3 x 3 rácsok áll. Néhány hello rács celláinak számok, amíg üres, és hello célja az üres cellák hello toosolve. hello előző hivatkozás hello Kirakós további információkat, de ez a minta hello célját toosolve hello üres cellák. A bemeneti úgy, hogy megtalálható-e a következő formátumban hello fájlnak kell lennie:
 
 * Kilenc oszlopok kilenc sorok
 * Minden oszlop tartalmazhat vagy egy szám vagy `?` (amely azt jelzi, egy üres cella)
 * Cellák egymástól elválasztva
 
-Egy bizonyos módon összeállítani Sudoku rejtvények; egy szám oszlop vagy sor nem ismétlődhet. A HDInsight-fürt megfelelően összeállított például nincs. Az itt található: `/usr/hdp/*/hadoop/src/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/dancing/puzzle1.dta` és tartalmazza a következő szöveget:
+Van egy bizonyos módon tooconstruct Sudoku rejtvények; egy szám oszlop vagy sor nem ismétlődhet. Például nincs megfelelően összeállított hello HDInsight-fürthöz. Az itt található: `/usr/hdp/*/hadoop/src/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/dancing/puzzle1.dta` és a következő szöveg hello tartalmazza:
 
     8 5 ? 3 9 ? ? ? ?
     ? ? 2 ? ? ? ? ? ?
@@ -142,13 +142,13 @@ Egy bizonyos módon összeállítani Sudoku rejtvények; egy szám oszlop vagy s
     ? ? ? ? ? ? 2 ? ?
     ? ? ? ? 4 5 ? 7 8
 
-Példa a probléma keresztül a Sudoku példa futtatásához a következő paranccsal:
+toorun hello Sudoku a példában a példa probléma használja hello a következő parancsot:
 
 ```bash
 yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar sudoku /usr/hdp/*/hadoop/src/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/dancing/puzzle1.dta
 ```
 
-Az eredmény az alábbihoz hasonló jelennek meg:
+hello eredményei jelennek meg a következő szöveg hasonló toohello:
 
     8 5 1 3 9 2 6 4 7
     4 3 2 6 7 8 1 9 5
@@ -162,53 +162,53 @@ Az eredmény az alábbihoz hasonló jelennek meg:
 
 ## <a name="pi--example"></a>A pi (π) – Példa
 
-A pi mintát használ a statisztikai (látszólagos Monte Carlo) módszer a pi értékét. Pontok egység négyzet véletlenszerűen kerülnek. A négyzet kör is tartalmaz. Annak a valószínűsége, hogy a pontok esik-e a kör megegyeznek a terület a kör pi/4. A pi értékét megbecsülhető 4R értékét. R a pontok, amelyek a teljes számú négyzetét belüli pontra körben aránya. Minél nagyobb a mintában használt pontok, annál pontosabb becslést van.
+hello pi mintát használ a statisztikai (látszólagos Monte Carlo) metódus tooestimate hello a pi értékét. Pontok egység négyzet véletlenszerűen kerülnek. hello szögletes kör is tartalmaz. hello valószínűsége, hogy hello pontok tartoznak hello kör hello egyenlő toohello területén kör, pi/4. a pi értékét hello megbecsülhető 4R hello értékét. R hello aránya hello száma pontok belüli hello kör toohello pontok számát, amelyek hello szögletes belül. hello hello kódtöredéket használt pontok, hello jobb hello becsült értéke.
 
-A minta futtatásához használja a következő parancsot. Ez a parancs használ 16 maps 10,000,000 minták becsléséhez a pi értékét:
+A minta a következő parancs toorun hello használata. Ez a parancs 16 maps 10,000,000 minták tooestimate hello a pi értékét használja:
 
 ```bash
 yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar pi 16 10000000
 ```
 
-Ez a parancs által visszaadott érték hasonlít **3.14159155000000000000**. Hivatkozások az első 10 tizedesjegyek pi 3.1415926535 vonatkoznak.
+hello Ez a parancs által visszaadott érték hasonló túl**3.14159155000000000000**. A hivatkozásokat hello pi első 10 tizedesjegyre 3.1415926535.
 
 ## <a name="10-gb-greysort-example"></a>10 GB-os Greysort – példa
 
-GraySort teljesítményteszt rendezés. A metrika az a rendezési gyakoriság (TB percenként), amelyek során nagy mennyiségű adat, általában egy 100 TB-os minimális rendezés érhető el.
+GraySort teljesítményteszt rendezés. hello metrika az hello rendezési gyakoriság (TB percenként), amelyek során nagy mennyiségű adat, általában egy 100 TB-os minimális rendezés érhető el.
 
-Ez a minta egy mérsékelt 10 GB adatot használ, így viszonylag gyorsan futtatása. A MapReduce alkalmazások Owen O'Malley és Arun Murthy által fejlesztett használ. Ezeket az alkalmazásokat az éves általános célú ("daytona") terabájt rendezési teljesítményteszt nyert 2009, sebességet 0.578 TB/perc (173 percben 100 TB). Erről és más rendezési referenciaalapok további információkért lásd: a [Sortbenchmark](http://sortbenchmark.org/) hely.
+Ez a minta egy mérsékelt 10 GB adatot használ, így viszonylag gyorsan futtatása. Hello MapReduce alkalmazások Owen O'Malley és Arun Murthy által fejlesztett használ. Ezek az alkalmazások hello éves általános célú ("daytona") terabájt rendezési teljesítményteszt nyert 2009, sebességet 0.578 TB/perc (173 percben 100 TB). Erről és más rendezési referenciaalapok további információkért lásd: hello [Sortbenchmark](http://sortbenchmark.org/) hely.
 
 A példa a MapReduce programok három különböző használja:
 
-* **TeraGen**: A MapReduce program, amely hoz létre sorok az adatok rendezése
+* **TeraGen**: A MapReduce program által generált adatok toosort sorát
 
-* **TeraSort**: a bemeneti adatok minták és MapReduce segítségével rendezze az adatokat egy teljes rendelés
+* **TeraSort**: hello bemeneti adatokat, és használja a MapReduce toosort hello adatok egy teljes rendelés
 
-    TeraSort szabványos MapReduce rendezési, kivéve egy egyéni particionáló. A particionáló mintát N-1 kulcsok minden egyes csökkentse kulcs tartományának megadása rendezett listáját használja. Ebben az esetben, minden kulcsok ilyen mintát [i-1] < kulcs = < minta [i] kerülnek i csökkentése érdekében. Ez a particionáló garantálja, hogy a kimenetének csökkentése i segédanyagokra-nál kisebb kimenete csökkentése i + 1.
+    TeraSort szabványos MapReduce rendezési, kivéve egy egyéni particionáló. hello particionáló hello kulcs tartomány minden csökkentse definiálása mintát N-1 kulcsok rendezett listáját használja. Ebben az esetben, minden kulcsok ilyen mintát [i-1] < kulcs = < minta [i] küldött tooreduce i. Ez a particionáló garantálja, hogy hello kimenetének csökkentése i segédanyagokra-nál kisebb hello kimenete csökkentése i + 1.
 
-* **TeraValidate**: A MapReduce program, amely ellenőrzi, hogy a kimeneti globálisan rendezett
+* **TeraValidate**: A MapReduce program, amely ellenőrzi, hogy hello kimeneti globálisan rendezése
 
-    Fájlonként egy leképezést a kimeneti könyvtár hozna létre, és minden leképezés biztosítja, hogy minden kulcs kisebb vagy egyenlő, mint az előzőt. A térkép függvény állít elő, az első és utolsó kulcsok minden egyes fájl rögzíti. Csökkentse a függvény biztosítja, hogy az első kulcsát fájl i nagyobb, mint az utolsó fájl i-1 kulcsa. Problémák a kulcsokkal, amelyek nem megfelelő sorrendben csökkentse fázis kimenetként jelenti.
+    Fájlonként egy leképezést hello kimeneti könyvtár hozna létre, és minden leképezés biztosítja, hogy minden kulcs kisebb vagy egyenlő, mint toohello előzőre. hello leképezés funkció hello rekordjának először hoz létre, és a kulcsok az egyes fájlok utolsó. hello csökkentése függvény biztosítja, hogy hello fájl i első kulcsát érték nagyobb, mint a fájl i-1 hello utolsó kulcsa. Problémákat jelentett, a hello kimenete csökkentése fázisban, amelyek nem megfelelő sorrendben hello kulcsokkal.
 
-Az alábbi lépések végrehajtásával hozhat létre adatokat, rendezés, és a kimeneti ellenőrzéséhez:
+Használjon hello alábbi lépéseit toogenerate adatok rendezéséhez, és ezután ellenőrizze a hello kimeneti:
 
-1. 10 GB-os adatait, amely a HDInsight-fürt alapértelmezett tárhelyre, létre `/example/data/10GB-sort-input`:
+1. 10 GB adatot, amely tárolt toohello HDInsight fürt alapértelmezett tárhely létrehozása a `/example/data/10GB-sort-input`:
 
     ```bash
     yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar teragen -Dmapred.map.tasks=50 100000000 /example/data/10GB-sort-input
     ```
 
-    A `-Dmapred.map.tasks` Hadoop közli az feladathoz használandó térkép feladatok. Az utolsó két paramétert kérje meg a feladat létrehozása a 10 GB adatot és tárolja a `/example/data/10GB-sort-input`.
+    Hello `-Dmapred.map.tasks` közli Hadoop hány térkép feladatok toouse ehhez a feladathoz. utolsó két hello paraméterek utasítani hello feladat toocreate 10 GB adat és toostore a `/example/data/10GB-sort-input`.
 
-2. Az alábbi parancs segítségével rendezze az adatokat:
+2. A következő parancs toosort hello adatok hello használata:
 
     ```bash
     yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar terasort -Dmapred.map.tasks=50 -Dmapred.reduce.tasks=25 /example/data/10GB-sort-input /example/data/10GB-sort-output
     ```
 
-    A `-Dmapred.reduce.tasks` közli a Hadoop számának csökkentése a feladathoz használandó feladatok. Az utolsó két paraméterei csak a bemeneti és kimeneti helyek az adatok.
+    Hello `-Dmapred.reduce.tasks` közli a Hadoop számának csökkentése feladatok toouse hello feladat. utolsó két hello paraméterek csak hello bemeneti és kimeneti adatok helyét.
 
-3. A rendezés által létrehozott adatok érvényesítéséhez használja a következőket:
+3. A következő hello rendezési által létrehozott toovalidate hello adatok hello használata:
 
     ```bash
     yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar teravalidate -Dmapred.map.tasks=50 -Dmapred.reduce.tasks=25 /example/data/10GB-sort-output /example/data/10GB-sort-validate
@@ -216,7 +216,7 @@ Az alábbi lépések végrehajtásával hozhat létre adatokat, rendezés, és a
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az ebben a cikkben megtanulta, a Linux-alapú HDInsight-fürtökkel minták futtatása. Oktatóanyagok Pig, a Hive és a MapReduce használata a hdinsight eszközzel a következő témakörökben található:
+Az ebben a cikkben megtanulta, hogyan toorun hello minták mellékelt hello Linux-alapú HDInsight-fürtökön. A Pig, a Hive és a MapReduce és a HDInsight együttes használatával kapcsolatos oktatóanyagok tekintse meg a következő témakörök hello:
 
 * [A Pig használata a HDInsight Hadoop][hdinsight-use-pig]
 * [A Hive használata a hdinsight Hadoop][hdinsight-use-hive]

@@ -1,6 +1,6 @@
 ---
-title: "Engedélyezi a fejlesztői fiókok Azure Active Directory - Azure API Management használata |} Microsoft Docs"
-description: "Útmutató az Azure Active Directoryval az API Management felhasználók hitelesítéséhez."
+title: "aaaAuthorize fejlesztői fiókok Azure Active Directory - Azure API Management használatával |} Microsoft Docs"
+description: "Ismerje meg, hogy az Azure Active Directoryval az API Management tooauthorize felhasználók."
 services: api-management
 documentationcenter: API Management
 author: steved0x
@@ -14,177 +14,177 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 7637e6419d17a2d75904fbe63df5f27d4be4bbe3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ebf5447a509a47df35e4262138bfcf423cb1dd5c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-authorize-developer-accounts-using-azure-active-directory-in-azure-api-management"></a>Hogyan szeretné engedélyekkel felruházni fejlesztői fiókok Azure Active Directory használatával az Azure API Management
+# <a name="how-tooauthorize-developer-accounts-using-azure-active-directory-in-azure-api-management"></a>Hogyan tooauthorize fejlesztői fiókok Azure Active Directory, az Azure API Management
 ## <a name="overview"></a>Áttekintés
-Ez az útmutató bemutatja, hogyan engedélyezze a hozzáférést a fejlesztői portálhoz, a felhasználók számára az Azure Active Directoryból. Ez az útmutató is bemutatja, hogyan Azure Active Directory-felhasználók kezelése külső csoportok, amelyek tartalmazzák az Azure Active Directory a felhasználók hozzáadásával.
+Ez az útmutató bemutatja, hogyan tooenable elérni az Azure Active Directory toohello developer portálon a felhasználók számára. Ez az útmutató azt is bemutatja, hogyan toomanage csoportok az Azure Active Directory-felhasználók külső tartalmazó csoportok hozzáadásával hello egy Azure Active Directory felhasználók.
 
-> Ez az útmutató lépéseinek végrehajtásához először egy Azure Active Directory használandó hozzon létre egy alkalmazást kell rendelkeznie.
+> a jelen útmutató lépéseit toocomplete hello kell egy Azure Active Directory mely toocreate a kérelmet.
 > 
 > 
 
-## <a name="how-to-authorize-developer-accounts-using-azure-active-directory"></a>Hogyan szeretné engedélyekkel felruházni fejlesztői fiókok Azure Active Directory használatával
-A kezdéshez kattintson **Publisher portal** az API Management szolgáltatás az Azure portálon. Ezzel továbblép az API Management közzétevő portáljára.
+## <a name="how-tooauthorize-developer-accounts-using-azure-active-directory"></a>Hogyan tooauthorize fejlesztői fiókok Azure Active Directoryban
+tooget elindítani, kattintson a **Publisher portal** a hello Azure-portálon az API Management szolgáltatás. Ezzel megnyitná toohello API Management publisher portálon.
 
 ![Közzétevő portál][api-management-management-console]
 
-> Ha még nem hozott létre API Management szolgáltatáspéldányt, tekintse meg az [Ismerkedés az Azure API Management szolgáltatással][Get started with Azure API Management] oktatóanyag [API Management szolgáltatáspéldány létrehozása][Create an API Management service instance] című szakaszát.
+> Ha még nem hozott létre az API Management szolgáltatáspéldány, lásd: [hozzon létre egy API-kezelés szolgáltatás példányt] [ Create an API Management service instance] a hello [Ismerkedés az Azure API Management] [ Get started with Azure API Management] oktatóanyag.
 > 
 > 
 
-Kattintson a **biztonsági** a a **API Management** a bal oldalon, majd kattintson a menü **külső identitások**.
+Kattintson a **biztonsági** a hello **API Management** elemre, majd hello bal oldali menü **külső identitások**.
 
 ![Külső identitások][api-management-security-external-identities]
 
-Kattintson a **az Azure Active Directory**. Jegyezze fel a **átirányítási URL-cím** és átválthat a klasszikus Azure-portálon az Azure Active Directoryban.
+Kattintson a **az Azure Active Directory**. Jegyezze fel a hello **átirányítási URL-cím** és a klasszikus Azure portál hello Azure Active Directory tooyour keresztül.
 
 ![Külső identitások][api-management-security-aad-new]
 
-Kattintson a **Hozzáadás** gombra kattintva hozzon létre egy új Azure Active Directory-alkalmazást, és válassza a **a szerveztem által fejlesztett alkalmazás hozzáadása**.
+Kattintson a hello **Hozzáadás** toocreate egy új Azure Active Directory-alkalmazás gombra, és válassza a **a szerveztem által fejlesztett alkalmazás hozzáadása**.
 
 ![Új Azure Active Directory-alkalmazás hozzáadása][api-management-new-aad-application-menu]
 
-Adjon meg egy nevet az alkalmazásnak, válassza a **webes alkalmazáshoz és/vagy webes API**, és kattintson a Tovább gombra.
+Adjon meg egy nevet hello alkalmazás, jelölje be **webes alkalmazáshoz és/vagy webes API**, majd hello Tovább gombra.
 
 ![Új Azure Active Directory-alkalmazás][api-management-new-aad-application-1]
 
-A **bejelentkezési URL-cím**, adja meg a bejelentkezési URL-CÍMÉT a fejlesztői portálján. Ebben a példában a **bejelentkezési URL-cím** van `https://aad03.portal.current.int-azure-api.net/signin`. 
+A **bejelentkezési URL-cím**, adja meg a hello bejelentkezési URL-CÍMÉT a fejlesztői portálján. Ebben a példában hello **bejelentkezési URL-cím** van `https://aad03.portal.current.int-azure-api.net/signin`. 
 
-Az a **azonosító URL-címet**, adja meg az alapértelmezett tartomány vagy egyéni tartományhoz az Azure Active Directoryban, és egyedi hozzáfűzése. Ebben a példában az alapértelmezett tartomány **https://contoso5api.onmicrosoft.com** utótagjával rendelkező használt **/api** megadott.
+A hello **azonosító URL-címet**, adja meg vagy hello alapértelmezett vagy egyéni tartomány hello Azure Active Directoryban, és egy egyedi karakterlánc tooit hozzáfűzése. Ebben a példában az alapértelmezett tartomány hello **https://contoso5api.onmicrosoft.com** hello utótagja használt **/api** megadott.
 
 ![Új Azure Active Directory-alkalmazás tulajdonságai][api-management-new-aad-application-2]
 
-Kattintson a pipa gombra mentéséhez és az alkalmazás létrehozása, majd átváltása a **konfigurálása** lapján adja meg az új alkalmazás.
+Hello ellenőrzése gombra toosave kattintson hello alkalmazás létrehozása és toohello kapcsoló **konfigurálása** tooconfigure hello új alkalmazás lapon.
 
 ![Új Azure Active Directory-alkalmazás létrehozása][api-management-new-aad-app-created]
 
-Ha több aktív Azure-könyvtárak nem használható ehhez az alkalmazáshoz, kattintson a **Igen** a **alkalmazás több-bérlős**. Az alapértelmezett érték **nem**.
+Ha több aktív Azure-könyvtárak fog használni az alkalmazás toobe, kattintson a **Igen** a **alkalmazás több-bérlős**. hello alapértelmezett érték a **nem**.
 
 ![Alkalmazás több-bérlős][api-management-aad-app-multi-tenant]
 
-Másolás a **átirányítási URL-cím** a a **Azure Active Directory** szakasza a **külső identitások** a közzétevő portálon lapra, és illessze be azt a **válasz URL-cím** szövegmezőben. 
+Másolás hello **átirányítási URL-cím** a hello **Azure Active Directory** hello szakasza **külső identitások** hello publisher portálon lapra, majd illessze be hello **Válasz URL-CÍMEN** szövegmezőben. 
 
 ![Válasz URL-címe][api-management-aad-reply-url]
 
-Görgessen az alsó részén a konfigurálása lapon válassza a **Alkalmazásengedélyek** legördülő, és ellenőrizze, **címtáradatok olvasása**.
+Görgessen toohello alsó részén hello konfigurálása lapon válassza hello **Alkalmazásengedélyek** legördülő, és ellenőrizze **címtáradatok olvasása**.
 
 ![Alkalmazásengedélyek][api-management-aad-app-permissions]
 
-Válassza ki a **engedélyek delegálása** legördülő, és ellenőrizze, **bejelentkezéssel, és olvassa el a felhasználói profilokon**.
+Jelölje be hello **delegált engedélyek** legördülő menüben, és ellenőrizze, **bejelentkezéssel, és olvassa el a felhasználói profilokon**.
 
 ![Delegált engedélyek][api-management-aad-delegated-permissions]
 
-> További információ az alkalmazás és a delegált jogosultságokkal sikeresen telepítették: [fér hozzá a Graph API][Accessing the Graph API].
+> További információ az alkalmazás és a delegált jogosultságokkal sikeresen telepítették: [elérése hello Graph API][Accessing hello Graph API].
 > 
 > 
 
-Másolás a **ügyfél-azonosító** a vágólapra.
+Másolás hello **ügyfél-azonosító** toohello vágólapra.
 
 ![Ügyfél-azonosító][api-management-aad-app-client-id]
 
-Lépjen vissza a közzétevő portálon, és illessze be a **ügyfél-azonosító** másolta át az Azure Active Directory-alkalmazás konfigurációja.
+Váltson vissza toohello publisher portálon, és illessze be a hello **ügyfél-azonosító** hello Azure Active Directory-alkalmazás konfigurációja átmásolva.
 
 ![Ügyfél-azonosító][api-management-client-id]
 
-Váltson vissza az az Azure Active Directory konfigurációját, majd kattintson a **válassza ki a duration** a legördülő a **kulcsok** szakaszt, és adjon meg egy időközt. Ebben a példában **1 év** szolgál.
+Váltson vissza toohello Azure Active Directory konfigurációját, majd kattintson a hello **válassza ki a duration** hello legördülő **kulcsok** szakaszt, és adjon meg egy időközt. Ebben a példában **1 év** szolgál.
 
 ![Kulcs][api-management-aad-key-before-save]
 
-Kattintson a **mentése** a konfiguráció mentéséhez, és a kulcs megjelenítéséhez. Másolja a vágólapra a kulcsot.
+Kattintson a **mentése** toosave hello konfigurációs és megjelenítési hello kulcs. Hello kulcs toohello vágólapra másolása.
 
-> Jegyezze fel ezt a kulcsot. Az Azure Active Directory konfigurációs ablak bezárása után a kulcs nem jeleníthető meg újra.
+> Jegyezze fel ezt a kulcsot. Hello Azure Active Directory konfigurációs ablak bezárása után hello kulcs nem jeleníthető meg újra.
 > 
 > 
 
 ![Kulcs][api-management-aad-key-after-save]
 
-Váltás a közzétevő portal, majd illessze be a kulcs a **Ügyfélkulcs** szövegmezőben.
+Kapcsoló hátsó toohello publisher portál és a Beillesztés hello kulcs be hello **Ügyfélkulcs** szövegmezőben.
 
 ![Ügyfélkulcs][api-management-client-secret]
 
-**Bérlők engedélyezett** határozza meg, mely könyvtárak van az API Management service-példány az API-k eléréséhez. Adja meg a tartomány, amelyhez hozzáférést szeretne az Azure Active Directory-példányok. Elkülönítheti a több tartomány ágyazódjanak, szóközzel vagy vesszővel válassza el egymástól.
+**Bérlők engedélyezett** határozza meg, mely könyvtárak rendelkezik hozzáférési toohello API-k hello API Management service-példány. Az Azure Active Directory-példányok toowhich szeretne hozzáférni toogrant hello hello tartományok megadása. Elkülönítheti a több tartomány ágyazódjanak, szóközzel vagy vesszővel válassza el egymástól.
 
 ![Engedélyezett bérlők][api-management-client-allowed-tenants]
 
 
-Ha a szükséges konfiguráció van megadva, kattintson **mentése**.
+Amikor hello szükségeskonfiguráció-konfigurációt ad meg, kattintson a **mentése**.
 
 ![Mentés][api-management-client-allowed-tenants-save]
 
-Ha menti a módosításokat, a felhasználók a megadott Azure Active Directoryban bármikor beléphet a fejlesztői portálhoz lépéseit követve [jelentkezzen be egy Azure Active Directory-fiókot a fejlesztői portálra] [ Log in to the Developer portal using an Azure Active Directory account].
+Miután hello módosítások mentésekor hello hello felhasználók megadott Azure Active Directory bejelentkezés toohello fejlesztői portálján hello utasításait követve [toohello fejlesztői portálján egy Azure Active Directory-fiókot használ-e jelentkezni] [Log in toohello Developer portal using an Azure Active Directory account].
 
-Több tartomány is megadhatók a **engedélyezett bérlők** szakasz. Előtt minden olyan felhasználó, mint az eredeti tartomány, ahol az alkalmazás regisztrálva lett más tartományokból is bejelentkezhetnek, ugyanaz a tartományi globális rendszergazdájának engedélyeznie kell az alkalmazás hozzáférési címtáradatok. Adja meg az engedélyt, a globális rendszergazdának kell lépjen `https://<URL of your developer portal>/aadadminconsent` (például https://contoso.portal.azure-api.net/aadadminconsent), írja be a tartomány nevét annak az Active Directory-bérlő szeretnék a hozzáférést, és kattintson a Küldés gombra. A következő példában a globális rendszergazdájának `miaoaad.onmicrosoft.com` próbál engedélyt az adott fejlesztői portálra. 
+Több tartomány is megadhatók hello **engedélyezett bérlők** szakasz. Mielőtt bármely felhasználó is jelentkezik be egy tartományból hello eredeti ahol hello alkalmazás lett regisztrálva, hello ugyanaz a tartományi globális rendszergazdájának kell engedélyt hello alkalmazás tooaccess címtáradatok. toogrant engedély hello globális rendszergazda léphetik túl`https://<URL of your developer portal>/aadadminconsent` (például https://contoso.portal.azure-api.net/aadadminconsent), hello toogive hozzáférés tooand kívánják Active Directory-bérlő hello tartománynevet írja be a Küldés gombra. Hello alábbi példa, a globális rendszergazdájának `miaoaad.onmicrosoft.com` próbál toogive engedély toothis adott fejlesztői portálján. 
 
 ![Engedélyek][api-management-aad-consent]
 
-A következő képernyőn a globális rendszergazdai jogosultságot ad az engedély megerősítéséhez kéri. 
+Hello következő képernyőn hello globális rendszergazdája lesz felszólító tooconfirm hello engedélyt adjon. 
 
 ![Engedélyek][api-management-permissions-form]
 
-> Ha a nem globális rendszergazda megpróbál bejelentkezni, mielőtt a globális rendszergazda által megadott engedélyekkel, a bejelentkezési kísérlet sikertelen lesz, és egy hiba történt a képernyő jelenik meg.
+> Ha nem globális rendszergazda kísérli meg egy globális rendszergazda által nyújtott toolog az engedélyek előtt, hello bejelentkezési kísérlet sikertelen lesz, és egy hiba történt a képernyő jelenik meg.
 > 
 > 
 
-## <a name="how-to-add-an-external-azure-active-directory-group"></a>Egy külső Azure Active Directory-csoport hozzáadása
-Miután engedélyezte a hozzáférést a felhasználók számára egy Azure Active Directory, Azure Active Directory-csoportok is hozzáadhat, az API Management könnyebben kezelhetik a kívánt termékek a fejlesztők a csoport társítását.
+## <a name="how-tooadd-an-external-azure-active-directory-group"></a>Hogyan tooadd egy külső az Azure Active Directory csoport
+Miután engedélyezte a hozzáférést a felhasználók számára egy Azure Active Directory, adhat hozzá az API Management toomore Active Directory-csoportok, könnyedén kezelhető szükséges hello termékekkel hello hello fejlesztők hello csoport hozzárendelését.
 
-> Egy külső Azure Active Directory-csoport konfigurálásához, az Azure Active Directory először konfigurálni kell az identitások lapon az alábbi eljárást az előző szakaszban. 
+> egy külső Azure Active Directory-csoportot, hello Azure Active Directory tooconfigure először konfigurálni kell hello identitások lapon hello előző szakaszban hello eljárást követve. 
 > 
 > 
 
-Külső Active Directory-csoportok hozzáadott a **látható** a terméket, amelynek kíván hozzáférést biztosítson a csoport lapján. Kattintson a **termékek**, majd kattintson a kívánt termék nevét.
+Külső Active Directory-csoportok hozzáadott hello **látható** , amelynek toogrant hozzáférési toohello csoport kívánja hello termék fülre. Kattintson a **termékek**, majd kattintson a kívánt termék hello hello nevét.
 
 ![Termék konfigurálása][api-management-configure-product]
 
-Váltás a **látható** fülre, majd **csoportok hozzáadása az Azure Active Directory**.
+Váltás toohello **látható** fülre, majd **csoportok hozzáadása az Azure Active Directory**.
 
 ![Csoportok hozzáadása][api-management-add-groups]
 
-Válassza ki a **Azure Active Directory-bérlő** a legördülő listában, és írja be a kívánt csoport neve a **csoportok** adhatók hozzá a szövegmezőben.
+Jelölje be hello **Azure Active Directory-bérlő** hello legördülő listából, és majd hello típusnév hello kívánt csoport hello **csoportok** toobe hozzáadott szövegmezőben.
 
 ![Válassza ki a csoport][api-management-select-group]
 
-A csoport neve megtalálható a **csoportok** listában az Azure Active Directory, az alábbi példában látható módon.
+A csoport neve megtalálható hello **csoportok** az Azure Active Directoryban, ahogy az alábbi példa hello listájában.
 
 ![Az Azure Active Directory-csoportok listája][api-management-aad-groups-list]
 
-Kattintson a **Hozzáadás** ellenőrzéséhez a csoport nevét, és vegye fel azt a csoportot. Ebben a példában a **Contoso 5 fejlesztők** külső csoport hozzá van adva. 
+Kattintson a **Hozzáadás** toovalidate hello csoport nevét, majd adja hozzá hello csoportot. Ebben a példában hello **Contoso 5 fejlesztők** külső csoport hozzá van adva. 
 
 ![Csoport hozzáadva][api-management-aad-group-added]
 
-Kattintson a **mentése** az új csoport mentéshez.
+Kattintson a **mentése** toosave hello új csoport kijelölése.
 
-Miután egy Azure Active Directory csoport konfigurációja egy terméket, akkor érhető el ellenőrzi a **látható** az API Management szolgáltatáspéldány-egyéb termék a lapon.
+Egy Azure Active Directory csoport konfigurációja egy terméket, ha már be van jelölve, a hello elérhető toobe **látható** lapján más termékek hello hello API Management service-példányban.
 
-Tekintse át, és azok hozzáadása után állítsa be a külső csoportok tulajdonságait, kattintson a csoport nevét a **csoportok** fülre.
+tooreview és konfigurálni hello tulajdonságait külső csoportot azok hozzáadott, kattintson a hello hello csoport hello neve **csoportok** fülre.
 
 ![Csoportok kezelése][api-management-groups]
 
-Itt szerkesztheti a **neve** és a **leírás** a csoport.
+Itt szerkesztheti hello **neve** és hello **leírás** hello csoport.
 
 ![Csoport szerkesztése][api-management-edit-group]
 
-A konfigurált Azure Active Directory felhasználók jelentkezzen be a fejlesztői portálján, tekintse meg, és minden olyan csoportot, amelyeknél látható a következő szakaszban található utasításokat követve előfizetni.
+Hello felhasználók konfigurált Azure Active Directory toohello fejlesztői portálján és nézet bejelentkezhet és előfizetés tooany csoportok amelyeknél látható a következő szakasz hello hello utasításait követve.
 
-## <a name="how-to-log-in-to-the-developer-portal-using-an-azure-active-directory-account"></a>A fejlesztői portálra egy Azure Active Directory-fiókot bejelentkezés
-A fejlesztői portálra a korábbi szakaszokban konfigurált Azure Active Directory-fiókkal bejelentkezni, nyisson meg egy új böngészőt ablak használatával a **bejelentkezési URL-cím** az Active Directory-alkalmazás konfigurációból kattintson**Az azure Active Directory**.
+## <a name="how-toolog-in-toohello-developer-portal-using-an-azure-active-directory-account"></a>Hogyan toolog toohello Developer portálon az Azure Active Directory-fiókkal
+hello fejlesztői portálra hello korábbi szakaszokban, konfigurált Azure Active Directory-fiókkal történő toolog nyisson meg egy új böngészőablakot, hello segítségével **bejelentkezési URL-cím** hello Active Directory-alkalmazás konfigurációját, majd kattintson a **Az azure Active Directory**.
 
 ![Fejlesztői portálján][api-management-dev-portal-signin]
 
-Adja meg az egyik felhasználó hitelesítő adatait az Azure Active Directoryban, és kattintson a **bejelentkezés**.
+Adja meg a hello hitelesítő adatokat az egyik hello felhasználók az Azure Active Directoryban, majd kattintson **bejelentkezés**.
 
 ![Bejelentkezés][api-management-aad-signin]
 
-Kérheti a regisztrációs űrlap Ha bármilyen további információkra szükség. Végezze el a regisztrációs képernyő, és kattintson a **regisztráljon**.
+Kérheti a regisztrációs űrlap Ha bármilyen további információkra szükség. Hello regisztrációs űrlap kitöltése és kattintson a **regisztráljon**.
 
 ![Regisztráció][api-management-complete-registration]
 
-A felhasználó most jelentkezett be a fejlesztői portálra, az API Management szolgáltatáspéldány.
+A felhasználók most már be legyen jelentkezve az API Management szolgáltatáspéldány hello fejlesztői portálján.
 
 ![Regisztráció kész][api-management-registration-complete]
 
@@ -220,10 +220,10 @@ A felhasználó most jelentkezett be a fejlesztői portálra, az API Management 
 [api-management-groups]: ./media/api-management-howto-aad/api-management-groups.png
 [api-management-edit-group]: ./media/api-management-howto-aad/api-management-edit-group.png
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to add and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How tooadd and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: api-management-monitoring.md
-[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Get started with Azure API Management]: api-management-get-started.md
 [API Management policy reference]: api-management-policy-reference.md
@@ -232,13 +232,13 @@ A felhasználó most jelentkezett be a fejlesztői portálra, az API Management 
 
 [http://oauth.net/2/]: http://oauth.net/2/
 [WebApp-GraphAPI-DotNet]: https://github.com/AzureADSamples/WebApp-GraphAPI-DotNet
-[Accessing the Graph API]: http://msdn.microsoft.com/library/azure/dn132599.aspx#BKMK_Graph
+[Accessing hello Graph API]: http://msdn.microsoft.com/library/azure/dn132599.aspx#BKMK_Graph
 
 [Prerequisites]: #prerequisites
 [Configure an OAuth 2.0 authorization server in API Management]: #step1
-[Configure an API to use OAuth 2.0 user authorization]: #step2
-[Test the OAuth 2.0 user authorization in the Developer Portal]: #step3
+[Configure an API toouse OAuth 2.0 user authorization]: #step2
+[Test hello OAuth 2.0 user authorization in hello Developer Portal]: #step3
 [Next steps]: #next-steps
 
-[Log in to the Developer portal using an Azure Active Directory account]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account
+[Log in toohello Developer portal using an Azure Active Directory account]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account
 

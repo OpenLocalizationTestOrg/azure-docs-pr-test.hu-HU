@@ -1,6 +1,6 @@
 ---
-title: "Az Azure File storage Python kidolgozása |} Microsoft Docs"
-description: "Ismerje meg, hogyan fejleszthet Python-alkalmazások és szolgáltatások Azure File storage használatával tárolhatja a fájljait."
+title: az Azure File storage Python aaaDevelop |} Microsoft Docs
+description: "Ismerje meg, hogyan toodevelop Python-alkalmazások és szolgáltatások, Azure File storage toostore használó fájladatok."
 services: storage
 documentationcenter: python
 author: robinsh
@@ -14,11 +14,11 @@ ms.devlang: python
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-ms.openlocfilehash: a1a37266908277b54e7b42d85b9b4873af77e622
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 45623e6dbec6f140cedc4e58e56a93fb4af9054e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="develop-for-azure-file-storage-with-python"></a>Az Azure File storage Python fejlesztése
 [!INCLUDE [storage-selector-file-include](../../includes/storage-selector-file-include.md)]
@@ -26,7 +26,7 @@ ms.lasthandoff: 08/03/2017
 [!INCLUDE [storage-try-azure-tools-files](../../includes/storage-try-azure-tools-files.md)]
 
 ## <a name="about-this-tutorial"></a>Az oktatóanyag ismertetése
-Ez az oktatóanyag mutatni, Python alkalmazásokhoz vagy szolgáltatásokhoz, tárolhatja a fájljait az Azure File storage segítségével fejlesztéséhez használatának alapjaival. Ebben az oktatóanyagban a rendszer egyszerű Konzolalkalmazás létrehozása és a Python és az Azure File storage alapvető műveleteket szemléltetik:
+Ez az oktatóanyag mutatni, Python toodevelop alkalmazásokhoz vagy szolgáltatásokhoz, használja az Azure File storage toostore fájladatok használatával hello alapjait. Ebben az oktatóanyagban a rendszer létrehoz egy egyszerű konzolalkalmazásként és megjelenítése hogyan tooperform alapszintű műveleteket az Python és az Azure File storage szolgáltatással:
 
 * Az Azure fájlmegosztások létrehozása
 * Könyvtárak létrehozása
@@ -34,38 +34,38 @@ Ez az oktatóanyag mutatni, Python alkalmazásokhoz vagy szolgáltatásokhoz, t�
 * Töltse fel, töltse le és törölje a fájlt
 
 > [!Note]  
-> Mivel előfordulhat, hogy Azure fájltároló SMB-n keresztül érhető el, akkor lehet egyszerű alkalmazások írását, amelyek a szabványos Python i/o-osztályok és függvény használata Azure fájlmegosztás eléréséhez. Ez a cikk azt ismerteti, hogyan alkalmazások írását, amelyek az Azure Storage Python SDK-val, használja a [Azure File storage REST API](https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/file-service-rest-api) felvegye a Azure File storage.
+> Előfordulhat, hogy Azure fájltároló SMB-n keresztül érhető el, mert lehetséges toowrite elérhető hello Azure fájlmegosztás hello szabványos Python i/o-osztály és függvények használata egyszerű alkalmazásokat is. Ez a cikk ismerteti, hogyan toowrite használó alkalmazások hello használ hello Azure Storage Python SDK [Azure File storage REST API](https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/file-service-rest-api) tootalk tooAzure fájlok tárolására.
 
-### <a name="set-up-your-application-to-use-azure-file-storage"></a>Állítsa be az alkalmazás Azure File storage használata
-Adja hozzá a következő tetejénél található bármely Python forrásfájl, amelyben programon keresztüli eléréséhez az Azure Storage kívánja.
+### <a name="set-up-your-application-toouse-azure-file-storage"></a>Az alkalmazás toouse Azure File storage beállítása
+Adja hozzá a hello következő bármely Python forrásfájlt, ahol tooprogrammatically access Azure Storage kívánja hello tetején.
 
 ```python
 from azure.storage.file import FileService
 ```
 
-### <a name="set-up-a-connection-to-azure-file-storage"></a>Egy Azure File Storage-kapcsolat beállítása 
-A `FileService` objektum lehetővé teszi, hogy a megosztások, könyvtárak és fájlok. Az alábbi kód létrehoz egy `FileService` objektumba a tárfiók nevét és a fiók kulcsot. Cserélje le `<myaccount>` és `<mykey>` a fióknevet és kulcsot.
+### <a name="set-up-a-connection-tooazure-file-storage"></a>Egy kapcsolat tooAzure a File storage beállítása 
+Hello `FileService` objektum lehetővé teszi, hogy a megosztások, könyvtárak és fájlok. hello alábbi kód létrehoz egy `FileService` objektum hello tárfiók neve és a fiók kulcsot használ. Cserélje le `<myaccount>` és `<mykey>` a fióknevet és kulcsot.
 
 ```python
 file_service = FileService(account_name='myaccount', account_key='mykey')
 ```
 
 ### <a name="create-an-azure-file-share"></a>Azure-fájlmegosztás létrehozása
-Az alábbi példakód használhat egy `FileService` objektumot a megosztás létrehozásához, ha még nem létezik.
+Az alábbi kódpéldát hello, használhatja a `FileService` objektum toocreate hello megosztást, ha még nem létezik.
 
 ```python
 file_service.create_share('myshare')
 ```
 
 ### <a name="create-a-directory"></a>Könyvtár létrehozása
-Tárolási tegyen alkönyvtárat így ahelyett hogy ezek a gyökérkönyvtárban található fájlok is rendezhetők. Az Azure File storage hozhat létre a fiókját engedélyezi a könyvtárat. Az alábbi kódot hoz létre a nevű alkönyvtárát **sampledir** a gyökérkönyvtárban.
+Tegyen alkönyvtárat ahelyett, az összes hello gyökérkönyvtárában lévő fájlok tárolási is rendezhetők. Az Azure File storage lehetővé teszi toocreate számos könyvtárat, a fiók fog lehetővé. hello kódot hoz létre a nevű alkönyvtárát **sampledir** hello gyökérkönyvtárban.
 
 ```python
 file_service.create_directory('myshare', 'sampledir')
 ```
 
 ### <a name="enumerate-files-and-directories-in-an-azure-file-share"></a>Fájlok és könyvtárak egy Azure fájlmegosztás számbavétele
-Kilistázhatja a fájlok és könyvtárak olyan megosztáson található, a **lista\_könyvtárak\_és\_fájlok** metódust. Ez a módszer egy generátor adja vissza. A következő kimenetek kódot a **neve** minden fájl és a könyvtár egy megosztáson található, a konzolhoz.
+toolist hello fájlok és könyvtárak olyan megosztáson található, használja a hello **lista\_könyvtárak\_és\_fájlok** metódust. Ez a módszer egy generátor adja vissza. hello alábbira kimenete hello **neve** minden fájl és a könyvtár egy megosztás toohello konzolon.
 
 ```python
 generator = file_service.list_directories_and_files('myshare')
@@ -74,42 +74,42 @@ for file_or_dir in generator:
 ```
 
 ### <a name="upload-a-file"></a>Fájl feltöltése 
-A megosztás tartalmaz legalább az Azure File, egy gyökérkönyvtár fájlokat tároló is. Ebben a szakaszban megtudhatja, hogyan feltölteni a fájlt a helyi tároló megosztás gyökérkönyvtárában alakzatot.
+A megosztás nagyon legalább tartalmaz: hello Azure fájlt, fájlokat tároló is gyökérkönyvtár. Ebben a szakaszban megtudhatja, hogyan tooupload egy fájlt a helyi tároló alakzatot hello gyökérkönyvtár megosztás.
 
-Hozzon létre egy fájlt, és feltölteni az adatokat, használja a `create_file_from_path`, `create_file_from_stream`, `create_file_from_bytes` vagy `create_file_from_text` módszerek. Hajtsa végre a szükséges adattömbösítő, ha az adatok mérete meghaladja a 64 MB magas szintű módszerek.
+toocreate egy fájl és az adatok feltöltése, használja a hello `create_file_from_path`, `create_file_from_stream`, `create_file_from_bytes` vagy `create_file_from_text` módszerek. Magas szintű hello szükséges adattömbösítő Ha hello hello adatok mérete túllépi a 64 MB végző módszerekkel.
 
-`create_file_from_path`feltölt egy fájlt a megadott elérési és `create_file_from_stream` feltölt egy már megnyitott fájl vagy adatfolyam tartalmát. `create_file_from_bytes`Bájttömb, feltölti és `create_file_from_text` feltölti az adott szöveges értéket a megadott kódolás (alapértelmezett értéke UTF-8) használatával.
+`create_file_from_path`feltöltések hello fájl megadott elérési hello és `create_file_from_stream` feltöltések hello egy már megnyitott fájl vagy adatfolyam tartalmát. `create_file_from_bytes`Bájttömb, feltölti és `create_file_from_text` feltöltések hello megadott szöveges érték hello segítségével megadott kódolási (alapértelmezett tooUTF-8).
 
-Az alábbi példa feltölti a tartalmát a **sunset.png** fájlt a **saját_fájl** fájlt.
+hello alábbi példa feltölt hello hello tartalmát **sunset.png** hello fájlból **saját_fájl** fájlt.
 
 ```python
 from azure.storage.file import ContentSettings
 file_service.create_file_from_path(
     'myshare',
-    None, # We want to create this blob in the root directory, so we specify None for the directory_name
+    None, # We want toocreate this blob in hello root directory, so we specify None for hello directory_name
     'myfile',
     'sunset.png',
     content_settings=ContentSettings(content_type='image/png'))
 ```
 
 ### <a name="download-a-file"></a>Fájl letöltése
-Adatok fájlból való letöltéséhez használjon `get_file_to_path`, `get_file_to_stream`, `get_file_to_bytes`, vagy `get_file_to_text`. Hajtsa végre a szükséges adattömbösítő, ha az adatok mérete meghaladja a 64 MB magas szintű módszerek.
+toodownload adatok fájlból történő használata `get_file_to_path`, `get_file_to_stream`, `get_file_to_bytes`, vagy `get_file_to_text`. Magas szintű hello szükséges adattömbösítő Ha hello hello adatok mérete túllépi a 64 MB végző módszerekkel.
 
-A következő példa bemutatja, hogy használatával `get_file_to_path` tartalmának letöltése a **saját_fájl** fájlt, és tárolja el azt, hogy a **out-sunset.png** fájlt.
+hello következő példa bemutatja, hogyan használatával `get_file_to_path` toodownload hello tartalmát hello **saját_fájl** fájlt, és tárolja toohello **out-sunset.png** fájlt.
 
 ```python
 file_service.get_file_to_path('myshare', None, 'myfile', 'out-sunset.png')
 ```
 
 ### <a name="delete-a-file"></a>Fájl törlése
-Végezetül, a fájl törléséhez hívja meg a `delete_file`.
+Végezetül toodelete egy fájl hívás `delete_file`.
 
 ```python
 file_service.delete_file('myshare', None, 'myfile')
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy megismerte hogyan szeretné módosítani az Azure File storage Python, ezek hivatkozásokat követve tudhat meg többet.
+Most, hogy megismerte hogyan toomanipulate Azure File storage Python, kövesse a további hivatkozások toolearn.
 
 * [Python fejlesztői központ](/develop/python/)
 * [Az Azure Storage-szolgáltatások REST API-ja](http://msdn.microsoft.com/library/azure/dd179355)

@@ -1,6 +1,6 @@
 ---
-title: "A .NET SDK - Azure hdinsight Hadoop-fürtök kezelése |} Microsoft Docs"
-description: "Útmutató a HDInsight .NET SDK használatával hdinsight Hadoop-fürtök felügyeleti feladatokat hajthat végre."
+title: a .NET SDK - Azure hdinsight clusters aaaManage Hadoop |} Microsoft Docs
+description: "Ismerje meg, hogyan tooperform felügyeleti feladatokat hello HDInsight .NET SDK használatával hdinsight Hadoop-fürtök."
 services: hdinsight
 editor: cgronlun
 manager: jhubbard
@@ -16,32 +16,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: c10471425fa1202ddb7fe35d0adf4ef33509f268
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d8bbf966b7eba3e943dfb2f764d15d8e52b9be71
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-hadoop-clusters-in-hdinsight-by-using-net-sdk"></a>Hdinsight Hadoop-fürtök kezelése .NET SDK használatával
 [!INCLUDE [selector](../../includes/hdinsight-portal-management-selector.md)]
 
-HDInsight-fürtök kezelése [HDInsight.NET SDK](https://msdn.microsoft.com/library/mt271028.aspx).
+Ismerje meg, hogyan toomanage HDInsight clusters használatával [HDInsight.NET SDK](https://msdn.microsoft.com/library/mt271028.aspx).
 
 **Előfeltételek**
 
-A cikk elkezdéséhez az alábbiakkal kell rendelkeznie:
+Ez a cikk elkezdéséhez hello következő kell rendelkeznie:
 
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 
-## <a name="connect-to-azure-hdinsight"></a>Csatlakozás az Azure HDInsight
+## <a name="connect-tooazure-hdinsight"></a>Csatlakozzon a HDInsight tooAzure
 
-A következő Nuget-csomagok lesz szüksége:
+A következő Nuget-csomagok hello lesz szüksége:
 
     Install-Package Microsoft.Rest.ClientRuntime.Azure.Authentication -Pre
     Install-Package Microsoft.Azure.Management.ResourceManager -Pre
     Install-Package Microsoft.Azure.Management.HDInsight
 
-A következő példakód bemutatja, hogyan csatlakozik az Azure HDInsight-fürtök az Azure-előfizetéshez tartozó felügyeletének előfeltétele.
+hello következő mintakód bemutatja, hogyan tooconnect tooAzure előtt felügyelheti a HDInsight-fürtök alatt az Azure-előfizetéshez.
 
     using System;
     using Microsoft.Azure;
@@ -60,7 +60,7 @@ A következő példakód bemutatja, hogyan csatlakozik az Azure HDInsight-fürt�
             // Replace with your AAD tenant ID if necessary
             private const string TenantId = UserTokenProvider.CommonTenantId; 
             private const string SubscriptionId = "<Your Azure Subscription ID>";
-            // This is the GUID for the PowerShell client. Used for interactive logins in this example.
+            // This is hello GUID for hello PowerShell client. Used for interactive logins in this example.
             private const string ClientId = "1950a258-227b-4e31-a9cf-717495945fc2";
 
             static void Main(string[] args)
@@ -74,12 +74,12 @@ A következő példakód bemutatja, hogyan csatlakozik az Azure HDInsight-fürt�
 
                 // insert code here
 
-                System.Console.WriteLine("Press ENTER to continue");
+                System.Console.WriteLine("Press ENTER toocontinue");
                 System.Console.ReadLine();
             }
 
             /// <summary>
-            /// Authenticate to an Azure subscription and retrieve an authentication token
+            /// Authenticate tooan Azure subscription and retrieve an authentication token
             /// </summary>
             static TokenCloudCredentials Authenticate(string TenantId, string ClientId, string SubscriptionId)
             {
@@ -99,22 +99,22 @@ A következő példakód bemutatja, hogyan csatlakozik az Azure HDInsight-fürt�
             /// <param name="authToken">An authentication token for your Azure subscription</param>
             static void EnableHDInsight(TokenCloudCredentials authToken)
             {
-                // Create a client for the Resource manager and set the subscription ID
+                // Create a client for hello Resource manager and set hello subscription ID
                 var resourceManagementClient = new ResourceManagementClient(new TokenCredentials(authToken.Token));
                 resourceManagementClient.SubscriptionId = SubscriptionId;
-                // Register the HDInsight provider
+                // Register hello HDInsight provider
                 var rpResult = resourceManagementClient.Providers.Register("Microsoft.HDInsight");
             }
         }
     }
 
-Kell megjelenik egy üzenet, amikor futtatja a programot.  Ha nem szeretné kéri, lásd: [.NET HDInsight-alkalmazások létrehozása a nem interaktív hitelesítés](hdinsight-create-non-interactive-authentication-dotnet-applications.md).
+Kell megjelenik egy üzenet, amikor futtatja a programot.  Ha nem szeretné toosee hello kérdés, lásd: [.NET HDInsight-alkalmazások létrehozása a nem interaktív hitelesítés](hdinsight-create-non-interactive-authentication-dotnet-applications.md).
 
 ## <a name="create-clusters"></a>Fürtök létrehozása
-Lásd: [fürtök létrehozása Linux-alapú hdinsight .NET SDK használatával](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md)
+Lásd: [létrehozása Linux-alapú fürtökön a Hdinsightban az hello .NET SDK-val](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md)
 
 ## <a name="list-clusters"></a>Lista fürtök
-A következő kódrészletet a fürtök és az egyes tulajdonságok tartalmazza:
+hello következő kódrészletet felsorolja fürtök és az egyes tulajdonságok:
 
     var results = _hdiManagementClient.Clusters.List();
     foreach (var name in results.Clusters) {
@@ -125,63 +125,63 @@ A következő kódrészletet a fürtök és az egyes tulajdonságok tartalmazza:
     }
 
 ## <a name="delete-clusters"></a>Fürtök törlése
-A fürtök törlése szinkron vagy aszinkron módon használja a következő kódrészletet: 
+A következő kód részlet toodelete fürt szinkron vagy aszinkron módon hello használata: 
 
     _hdiManagementClient.Clusters.Delete("<Resource Group Name>", "<Cluster Name>");
     _hdiManagementClient.Clusters.DeleteAsync("<Resource Group Name>", "<Cluster Name>");
 
 ## <a name="scale-clusters"></a>Fürtök méretezése
-A fürt skálázás funkciót lehetővé teszi, hogy anélkül, hogy újra létre kell hoznia a fürt fut az Azure HDInsight fürt által használt feldolgozó csomópontok számának módosítása.
+hello fürt skálázás funkció lehetővé teszi, hogy anélkül, hogy toore fut az Azure HDInsight fürt által használt feldolgozó csomópontok száma toochange hello-hello fürt létrehozása.
 
 > [!NOTE]
-> Csak verzió 3.1.3 hdinsight clusters vagy annál magasabb támogatottak. Ha biztos benne, hogy a fürt verzióját, a Tulajdonságok lapján ellenőrizheti.  Lásd: [listája és megjelenítése fürtök](hdinsight-administer-use-portal-linux.md#list-and-show-clusters).
+> Csak verzió 3.1.3 hdinsight clusters vagy annál magasabb támogatottak. Ha biztos benne, hogy a fürt hello verziója, ellenőrizheti a hello tulajdonságlapján.  Lásd: [listája és megjelenítése fürtök](hdinsight-administer-use-portal-linux.md#list-and-show-clusters).
 > 
 > 
 
-A fürt a HDInsight által támogatott különböző típusú adatok csomópontok számának módosítása következményei:
+a fürt a HDInsight által támogatott különböző típusú adatok csomópontok hello számának módosítása hello következményei:
 
 * Hadoop
   
-    Zökkenőmentesen növelheti adhatja meg, hogy minden folyamatban lévő vagy a futó feladatok befolyásolása nélkül fut egy Hadoop-fürt feldolgozó csomópontjainak számát. Új feladatokat is küldheti el, amíg a művelet folyamatban van. A méretezési művelet sikertelen szabályosan kezeli, hogy a fürt mindig működőképes állapotban marad.
+    Zökkenőmentesen növelheti hello adhatja meg, hogy minden folyamatban lévő vagy a futó feladatok befolyásolása nélkül fut egy Hadoop-fürt feldolgozó csomópontjainak számát. Új feladatokat is küldheti el, amíg hello művelet van folyamatban. A méretezési művelet sikertelen szabályosan kezeli, így hello fürt mindig marad működőképes állapotban.
   
-    A Hadoop fürtök adatok csomópontok számának csökkentésével átméretezi, ha néhány, a fürt a szolgáltatások újraindításáig. Ennek hatására a összes futó és függőben lévő feladatok meghiúsulhatnak, a méretezési művelet befejezését. Akkor is, azonban küldje el újra a feladatok a művelet végrehajtása után.
+    A Hadoop fürtök adatok csomópontok száma hello csökkentésével átméretezi, ha néhány hello fürt hello szolgáltatás újraindul. Ennek hatására az összes futó és függőben lévő feladatok toofail művelet skálázás hello hello megvalósításának következő. Akkor is, azonban küldje el újra hello feladatok hello művelet végrehajtása után.
 * HBase
   
-    Akkor is zökkenőmentesen csomópontok hozzáadásához és eltávolításához a HBase-fürtöt a futtatása. Területi kiszolgálók automatikus elosztását a méretezési művelet befejezését néhány percen belül. Azonban Ön kézzel is eloszthatja a regionális kiszolgálók fürt headnode való bejelentkezés, és futtatja a következő parancsokat egy parancssori ablakot:
+    Zökkenőmentesen hozzáadása vagy eltávolítása a csomópontok tooyour HBase-fürtöt futtatása. A területi kiszolgálók hello skálázás művelet befejezése néhány percen belül automatikusan elosztását. Azonban Ön kézzel is eloszthatja hello területi kiszolgálók jelentkezzen be a fürt és a következő parancsok parancssori ablakból futó hello hello headnode:
   
         >pushd %HBASE_HOME%\bin
         >hbase shell
         >balancer
 * Storm
   
-    Akkor is zökkenőmentesen csomópontok hozzáadásához és eltávolításához adatok Storm fürthöz való futtatása során. De a méretezési művelet sikeres befejezését követően szüksége lesz a topológia egyensúlyba.
+    Zökkenőmentesen hozzáadása vagy eltávolítása adatok csomópontok tooyour Storm-fürt futása közben is. De hello skálázás művelet sikeres befejezése után kell toorebalance hello topológia.
   
     Kétféle módon valósítható meg újraelosztás:
   
   * A Storm webes felhasználói felület
   * Parancssori felület (CLI) eszköz
     
-    Tekintse meg a [alatt futó Apache Storm-dokumentáció](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html) további részleteket.
+    Tekintse meg a toohello [alatt futó Apache Storm-dokumentáció](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html) további részleteket.
     
-    A Storm webes felhasználói felület érhető el a HDInsight-fürt:
+    HDInsight-fürt hello hello Storm webes felhasználói felület érhető el:
     
     ![A HDInsight alatt futó Storm méretezési egyensúlyozza ki újra](./media/hdinsight-administer-use-management-portal/hdinsight-portal-scale-cluster-storm-rebalance.png)
     
-    Íme egy példa a CLI parancs használata a Storm-topológia egyensúlyba:
+    Például hogyan toouse hello CLI parancssori toorebalance hello Storm-topológia:
     
-        ## Reconfigure the topology "mytopology" to use 5 worker processes,
-        ## the spout "blue-spout" to use 3 executors, and
-        ## the bolt "yellow-bolt" to use 10 executors
+        ## Reconfigure hello topology "mytopology" toouse 5 worker processes,
+        ## hello spout "blue-spout" toouse 3 executors, and
+        ## hello bolt "yellow-bolt" toouse 10 executors
         $ storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10
 
-A következő kódrészletet bemutatja, hogyan méretezze át a fürt szinkron vagy aszinkron módon:
+a következő kódrészletben látható kód hogyan hello tooresize fürt szinkron vagy aszinkron módon:
 
     _hdiManagementClient.Clusters.Resize("<Resource Group Name>", "<Cluster Name>", <New Size>);   
     _hdiManagementClient.Clusters.ResizeAsync("<Resource Group Name>", "<Cluster Name>", <New Size>);   
 
 
 ## <a name="grantrevoke-access"></a>Hozzáférés biztosítása/visszavonása
-A HDInsight-fürtök a következő HTTP webszolgáltatásokat (ezen szolgáltatások mindegyikéhez rendelkezik RESTful végpontok) rendelkezik:
+A HDInsight-fürtök (ezen szolgáltatások mindegyikéhez rendelkezik RESTful végpontok) HTTP-webszolgáltatások a következő hello rendelkezik:
 
 * ODBC
 * JDBC
@@ -189,7 +189,7 @@ A HDInsight-fürtök a következő HTTP webszolgáltatásokat (ezen szolgáltat�
 * Oozie
 * Lépni a Templeton
 
-Alapértelmezés szerint ezek a szolgáltatások hozzáférés vonatkozóan biztosított. Meg is visszavonási/engedélyezze a hozzáférést. Visszavonni:
+Alapértelmezés szerint ezek a szolgáltatások hozzáférés vonatkozóan biztosított. Akkor is a visszavonási/grant hello hozzáférést. toorevoke:
 
     var httpParams = new HttpSettingsParameters
     {
@@ -199,7 +199,7 @@ Alapértelmezés szerint ezek a szolgáltatások hozzáférés vonatkozóan bizt
     };
     _hdiManagementClient.Clusters.ConfigureHttpSettings("<Resource Group Name>, <Cluster Name>, httpParams);
 
-Megadását:
+toogrant:
 
     var httpParams = new HttpSettingsParameters
     {
@@ -211,17 +211,17 @@ Megadását:
 
 
 > [!NOTE]
-> A hozzáférés biztosítása/visszavonása, visszaállítja, a fürt felhasználónevet és jelszót.
+> Hello hozzáférés biztosítása/visszavonása, visszaállítja, hello fürt felhasználónevet és jelszót.
 > 
 > 
 
-Ez a portálon keresztül is elvégezhető. Lásd: [felügyelheti a HDInsight az Azure portál használatával][hdinsight-admin-portal].
+Ez hello portálon keresztül is elvégezhető. Lásd: [felügyeletéhez HDInsight használatával hello Azure-portálon][hdinsight-admin-portal].
 
 ## <a name="update-http-user-credentials"></a>HTTP-felhasználó hitelesítő adatainak frissítése
-Ugyanezt az eljárást, mint a [Grant/revoke HTTP access](#grant/revoke-access). Ha a fürt megadták a HTTP-hozzáférést, meg kell először vonja vissza.  És adja meg a hozzáférés új HTTP felhasználói hitelesítő adatokkal.
+Hello azonos művelet [Grant/revoke HTTP access](#grant/revoke-access). Ha hello fürt hello HTTP hozzáféréssel rendelkezik, akkor kell először vonja vissza.  És új HTTP felhasználói hitelesítő adatokkal majd hello hozzáférést.
 
-## <a name="find-the-default-storage-account"></a>Az alapértelmezett tárfiók keresése
-A következő kódrészletet az alapértelmezett tárfiók neve és a alapértelmezett tárfiók hívóbetűjét fürt mutatja be.
+## <a name="find-hello-default-storage-account"></a>Hello alapértelmezett tárfiók keresése
+a következő kódrészletet hello bemutatja, hogyan tooget hello alapértelmezett tárfiók neve és hello alapértelmezett tárfiók kulcsa a fürthöz.
 
     var results = _hdiManagementClient.Clusters.GetClusterConfigurations(<Resource Group Name>, <Cluster Name>, "core-site");
     foreach (var key in results.Configuration.Keys)
@@ -231,35 +231,35 @@ A következő kódrészletet az alapértelmezett tárfiók neve és a alapértel
 
 
 ## <a name="submit-jobs"></a>Feladatok elküldéséhez
-**Elküldeni a MapReduce-feladatok**
+**toosubmit MapReduce-feladatok**
 
 Lásd: [hdinsight Hadoop-MapReduce futtatása minták](hdinsight-hadoop-run-samples-linux.md).
 
-**Elküldeni a Hive-feladatok** 
+**toosubmit Hive-feladatok** 
 
 Lásd: [.NET SDK használatával futtassa Hive lekérdezések](hdinsight-hadoop-use-hive-dotnet-sdk.md).
 
-**Elküldeni a Pig-feladatokhoz**
+**toosubmit Pig-feladatokhoz**
 
 Lásd: [.NET SDK használatával futtassa Pig-feladatokhoz](hdinsight-hadoop-use-pig-dotnet-sdk.md).
 
-**Sqoop feladatok küldéséhez**
+**toosubmit Sqoop feladatok**
 
 Lásd: [Use Sqoop with HDInsight](hdinsight-hadoop-use-sqoop-dotnet-sdk.md).
 
-**Oozie feladatok küldéséhez**
+**toosubmit Oozie feladatok**
 
-Lásd: [hadooppal megadásához és a munkafolyamat futtatása hdinsight használata Oozie](hdinsight-use-oozie-linux-mac.md).
+Lásd: [Hadoop toodefine és futtatása egy munkafolyamat hdinsight használata Oozie](hdinsight-use-oozie-linux-mac.md).
 
-## <a name="upload-data-to-azure-blob-storage"></a>Adatok feltöltése az Azure Blob storage
-Lásd: [Adatok feltöltése a HDInsightba][hdinsight-upload-data].
+## <a name="upload-data-tooazure-blob-storage"></a>Töltse fel az adatok tooAzure Blob-tároló
+Lásd: [töltse fel az adatok tooHDInsight][hdinsight-upload-data].
 
 ## <a name="see-also"></a>Lásd még:
 * [A HDInsight .NET SDK referenciadokumentációt](https://msdn.microsoft.com/library/mt271028.aspx)
-* [HDInsight felügyelete az Azure-portál használatával][hdinsight-admin-portal]
+* [HDInsight felügyelete hello Azure-portál használatával][hdinsight-admin-portal]
 * [HDInsight a parancssori felület felügyelete][hdinsight-admin-cli]
 * [A HDInsight-fürtök létrehozása][hdinsight-provision]
-* [Adatok feltöltése a HDInsightba][hdinsight-upload-data]
+* [Adatok tooHDInsight feltöltése][hdinsight-upload-data]
 * [Azure HDInsight – első lépések][hdinsight-get-started]
 
 [azure-purchase-options]: http://azure.microsoft.com/pricing/purchase-options/

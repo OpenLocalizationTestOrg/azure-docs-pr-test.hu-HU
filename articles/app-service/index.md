@@ -1,6 +1,6 @@
 ---
-title: "Az Azure App Service dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Az oktatóanyagok, API-referenciák és egyéb dokumentáció segítségével megtudhatja, hogyan hozhat létre az App Service használatával web- és mobilappokat bármely platformra és eszközre."
+title: "App Service dokumentációja – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse App Service toocreate web- és mobilalkalmazásokat bármilyen platformra vagy eszközre oktatóprogramok, videók, API hivatkozások és az egyéb dokumentációt."
 services: app-service
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: a9b7cb3492fa71b33c4aa6b2c0ecda9eaac9ea4b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1d4ec0970232d2a12065a05d2f0211f7aae16d3f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="app-service-documentation"></a>App Service – dokumentáció
 
-Az oktatóanyagok, API-referenciák és egyéb dokumentáció segítségével megtudhatja, hogyan fejleszthet és szolgáltathat az App Service használatával web- és mobilappokat bármely platformra és eszközre. Ismerje meg, hogyan integrálhatja alkalmazásait SaaS megoldásokkal, hogyan csatlakozhat helyszíni alkalmazásokhoz és hogyan automatizálhatja üzleti folyamatait.
+Megtudhatja, hogyan toouse App Service toodevelop és a gazdagép web- és mobilalkalmazásokat bármilyen platformra vagy eszközre oktatóprogramok, videók, API hivatkozások és az egyéb dokumentációt. Ismerje meg, hogyan toointegrate alkalmazások a Szolgáltatottszoftver-megoldások, csatlakozzon a helyszíni alkalmazások, és automatizálhatja üzleti folyamatait.
 
 <ul class="panelContent cardsFTitle">
     <li>

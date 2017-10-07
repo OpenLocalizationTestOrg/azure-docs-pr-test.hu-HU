@@ -1,6 +1,6 @@
 ---
-title: "Gépi tanulási algoritmus-Adatlap |} Microsoft Docs"
-description: "Egy nyomtatható gépi tanulási algoritmus-Adatlap segítségével válassza ki a megfelelő a prediktív modell algoritmusa az Azure Machine Learning Studióban."
+title: "tanulási algoritmus-Adatlap aaaMachine |} Microsoft Docs"
+description: "Egy nyomtatható gépi tanulási algoritmus-Adatlap segítségével válassza ki a prediktív modell hello jobb algoritmusa az Azure Machine Learning Studióban."
 keywords: "algoritmus-Adatlap, Adatlap, gépi tanulási algoritmus"
 services: machine-learning
 documentationcenter: 
@@ -15,66 +15,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: garye
-ms.openlocfilehash: 2cf4f498a107b8c6085489723ae946b119bb6244
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2bedd77bfc65128a90c6128743016415dd8609d7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="machine-learning-algorithm-cheat-sheet-for-microsoft-azure-machine-learning-studio"></a>Gyorsreferencia a Machine Learning-algoritmusokhoz a Microsoft Azure Machine Learning Studióban
-A **Microsoft Azure Machine Learning algoritmus Cheat lap** segít kiválasztani, a jobb oldali egy prediktív elemzési modell algoritmusa.
+Hello **Microsoft Azure Machine Learning algoritmus Cheat lap** segít kiválasztani hello jobb egy prediktív elemzési modell algoritmusa.
 
-[Az Azure Machine Learning Studio](https://studio.azureml.net/) származó algoritmusok hatalmas katalógusában rendelkezik a ***regressziós***, ***besorolás***, ***Fürtszolgáltatás***, és ***anomáliadetektálás*** családok. Minden más típusú machine learning probléma megoldására készült.
+[Az Azure Machine Learning Studio](https://studio.azureml.net/) rendelkezik a hello algoritmusok hatalmas katalógusában ***regressziós***, ***besorolás***, ***Fürtszolgáltatás***, és ***anomáliadetektálás*** családok. Egy tervezett tooaddress machine learning probléma más típusú.
 
 ## <a name="download-machine-learning-algorithm-cheat-sheet"></a>Letöltés: Machine learning algoritmus-Adatlap
-**Töltse le a Adatlap: [Machine Learning algoritmus Cheat lap (11 x 17.)](http://download.microsoft.com/download/A/6/1/A613E11E-8F9C-424A-B99D-65344785C288/microsoft-machine-learning-algorithm-cheat-sheet-v6.pdf)**
+**Töltse le a hello Adatlap itt: [Machine Learning algoritmus Cheat lap (11 x 17.)](http://download.microsoft.com/download/A/6/1/A613E11E-8F9C-424A-B99D-65344785C288/microsoft-machine-learning-algorithm-cheat-sheet-v6.pdf)**
 
-![Machine Learning algoritmus-Adatlap: Útmutató: a gépi tanulási algoritmus kiválasztása.][cheat-sheet]
+![Machine Learning algoritmus-Adatlap: megtudhatja, hogyan toochoose egy gépi tanulási algoritmus.][cheat-sheet]
 
 [cheat-sheet]: ./media/machine-learning-algorithm-cheat-sheet/machine-learning-algorithm-cheat-sheet-small_v_0_6-01.png
 
-Töltse le és lapot tud kinyomtatni a Machine Learning algoritmus Cheat tabloid méretben kéznél legyen, és segítségre van szüksége a választáshoz algoritmust.
+Töltse le, és nyomtassa ki tabloid mérete tookeep a Machine Learning algoritmus Cheat lap hello kéznél legyen, és a get-help egy algoritmus kiválasztása.
 
 > [!NOTE]
-> A cikkben [algoritmusok kiválasztása a Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md) egy részletes útmutató a Adatlap használatával.
+> Hello cikke [hogyan toochoose algoritmusok használata a Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md) egy részletes útmutató toousing az e Adatlap.
 > 
 > 
 
 ## <a name="more-help-with-algorithms"></a>További segítséget itt találhat algoritmusok
-* Ez Adatlap használva a megfelelő algoritmus, valamint a gépi tanulási algoritmusok és hogyan által használt különböző típusú mélyebb döntéseken kiválasztására vonatkozó útmutatásért lásd: [algoritmusok kiválasztása a Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md).
+* Ez Adatlap használatával hello megfelelő algoritmus, valamint a gépi tanulási algoritmusok és hogyan által használt különböző típusú hello mélyebb döntéseken kiválasztására vonatkozó útmutatásért lásd: [hogyan toochoose algoritmusok használata a Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md).
 * Letölthető infographic, amely leírja a algoritmusok, és a példákat mutat be, lásd: [letölthető Infographic: gépi tanulási algoritmus példákkal alapjai](machine-learning-basics-infographic-with-algorithm-examples.md).
-* Kategória a Machine Learning Studióban elérhető összes gépi tanulási algoritmusok listájáért lásd: [inicializálása modell] [ initialize-model] a Machine Learning Studio algoritmus és a modul segítségével.
+* Az összes hello gépi tanulási algoritmusok a Machine Learning Studióban elérhető kategória szerint listájáért lásd: [inicializálása modell] [ initialize-model] hello Machine Learning Studio algoritmus és a modul segítségével.
 * Teljes betűrendben listáját az algoritmusok és a modulok a Machine Learning Studióban, tekintse meg a [a Machine Learning Studio moduljai A-Z listában] [ a-z-list] a Machine Learning Studio algoritmus és a modul segítségével.
-* Ha szeretne egy letölthető és kinyomtatható diagramot a Machine Learning Studio funkcióiról, tekintse meg [Az Azure Machine Learning Studio funkcióit bemutató diagram](machine-learning-studio-overview-diagram.md) című cikket.
+* Lásd a toodownload és nyomtatási ábrázoló diagram, amely áttekintést nyújt a Machine Learning Studio funkcióiról hello [Azure Machine Learning Studio képességeit áttekintő diagram](machine-learning-studio-overview-diagram.md).
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="notes-and-terminology-definitions-for-the-machine-learning-algorithm-cheat-sheet"></a>Megjegyzések és a gépi tanulási algoritmus terminológiai definíciók cheat lap
+## <a name="notes-and-terminology-definitions-for-hello-machine-learning-algorithm-cheat-sheet"></a>Megjegyzések és a hello gépi tanulási algoritmus terminológiai definíciók cheat lap
 
-* A javaslatok érhető el az algoritmus-Adatlap hozzávetőleges szabályok-az-görgetőgomb. Néhány hajlított, és néhány is lehet flagrantly betartva. Ennek célja felajánlja a kiindulási pontot. Ne ijedjen head-to-head verseny futtatásához több algoritmusok a adatai között. Nincs egyszerűen nem helyettesíti a ismertetése az egyes algoritmustípusok modelljeinek ezeket az alapelveket és a rendszer az adatokat létrehozó ismertetése.
+* hello javaslatok érhető el az algoritmus-Adatlap hozzávetőleges szabályok-az-görgetőgomb. Néhány hajlított, és néhány is lehet flagrantly betartva. Ez a tervezett toosuggest kiindulási pontot. Afraid toorun nem lehet egy head-to-head verseny több algoritmusok a adatai között. Nincs egyszerűen nem helyettesíti a hello alapelvek minden algoritmus megismeréséhez, és az adatokat létrehozó hello rendszer ismertetése.
 
-* Minden gépi tanulási algoritmus rendelkezik saját stílus vagy *induktív időeltérés*. Egy adott probléma lehet, hogy több algoritmusok megfelelő, és egy algoritmus lehet, mint a többire jobban megfelelnek. Azonban úgy is nem mindig tudja előre, ez az a legjobb térkihasználás érdekében. Ilyen esetekben több algoritmusok szereplő együtt a Adatlap. Próbálja meg egy algoritmust, és ha az eredmények még nem kielégítő, próbálja ki, a többi lehet a megfelelő stratégiát. A példában a [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com/) egy kísérlet, amely megpróbál több algoritmusok elleni ugyanazokat az adatokat, és összehasonlítja az eredményeket: [több osztály osztályozó összehasonlítása: felismerés betűs](http://gallery.cortanaintelligence.com/Details/a635502fc98b402a890efe21cec65b92).
+* Minden gépi tanulási algoritmus rendelkezik saját stílus vagy *induktív időeltérés*. Egy adott probléma lehet, hogy több algoritmusok megfelelő, és egy algoritmus lehet, mint a többire jobban megfelelnek. De nem mindig lehetséges tooknow előzetesen amely hello legjobb térkihasználás érdekében. Ilyen esetekben több algoritmusok szereplő együtt hello Adatlap. Megfelelő stratégiát volna tootry egy algoritmust, és hello eredmények még nem kielégítő, ha próbálja hello mások. Íme egy példa a hello [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com/) egy kísérlet, amely több algoritmusok elleni hello ugyanazon adatokhoz és összehasonlítja hello eredmények: [több osztály osztályozó összehasonlítása: felismerés betűs ](http://gallery.cortanaintelligence.com/Details/a635502fc98b402a890efe21cec65b92).
 
 * Gépi tanulás három fő kategóriába sorolhatók: **felügyelt tanítással**, **felügyelt tanítást**, és **megerősítése tanulási**.
 
-  * A **felügyelt tanítással**, minden adatpontnál feliratú vagy kategória vagy egyik fontos értékére.  Példa kategorikus címke van hozzárendelése "cat" vagy "kutya" kép.  Egy érték címkéje példa: egy használt autó kapcsolódó pénztári ár. Felügyelt tanítás során az a célja, hogy sok címkézett fentihez hasonló példához hasonló, ezek tanulmányozzák, majd előrejelzéseket készítsen a jövőbeli adatpontok tennie. Például új fényképek azonosítja a megfelelő állat, vagy más használt autók pontos pénztári árak hozzárendelése. Ez olyan népszerű és hasznos a gépi tanulás. Tanulási algoritmus kivételével az összes, az Azure Machine Learning modulok felügyelete [K-közép Fürtszolgáltatás][k-means-clustering].
+  * A **felügyelt tanítással**, minden adatpontnál feliratú vagy kategória vagy egyik fontos értékére.  Példa kategorikus címke van hozzárendelése "cat" vagy "kutya" kép.  Példa egy érték címkéje: hello pénztári ár használt autót társított. hello felügyelt tanítás során célja toostudy számos feliratú példák hasonló, és toobe kapcsolatos későbbi adatpontok képes toomake előrejelzéseket. Új fényképek például megfelelő állat vagy a pontos pénztári árak tooother hozzárendelése használt autók hello azonosítja. Ez olyan népszerű és hasznos a gépi tanulás. Tanulási algoritmus kivételével az összes hello Azure Machine Learning modulok felügyelete [K-közép Fürtszolgáltatás][k-means-clustering].
 
-  * A **felügyelt tanítást**, adatpontok hozzájuk társított címkéket nem rendelkezik. Ehelyett felügyeletlen tanulási algoritmus célja az adatok valamilyen módon vagy struktúrája ismertetik. Ez azt csoportosításával azt fürtök esetén a K-közép hasonlóan, vagy megtekint összetett adatokat úgy, hogy egyszerűbb különböző módokat kereséséhez.
+  * A **felügyelt tanítást**, adatpontok hozzájuk társított címkéket nem rendelkezik. Ehelyett hello felügyeletlen tanulási algoritmus célja van néhány módon vagy toodescribe tooorganize hello adatok struktúrája. Ez azt csoportosításával azt fürtök esetén a K-közép hasonlóan, vagy megtekint összetett adatokat úgy, hogy egyszerűbb különböző módokat kereséséhez.
 
-  * A **megerősítése tanulási**, az algoritmus lekérdezi az egyes adatpontokban válaszul művelet kiválasztását. Általános gyakorlatként javasolt a robotics, ahol adatpont érzékelő szivattyútelepek érzékelőinek adatai egy helyen időben lesz, és az algoritmus ki kell választania a robot a következő művelet. Egyúttal természetes az eszközök internetes hálózatát alkalmazások alkalmas. A tanulási algoritmus is kap egy ellenszolgáltatás jel rövid időn belül később jelző mennyire jó a döntést. Ennek alapján, az algoritmus módosítja a stratégia a legmagasabb ellenszolgáltatás elérése érdekében. Jelenleg nincsenek nem tanulási algoritmus modulok Azure ml megerősítése.
+  * A **megerősítése tanulási**, hello algoritmus művelet lekérdezi toochoose válasz tooeach adatpont. Általános gyakorlatként javasolt a robotics, ahol hello érzékelő szivattyútelepek érzékelőinek adatai egy helyen időben készlete adatpont és hello algoritmus ki kell választania a következő művelet hello robot. Egyúttal természetes az eszközök internetes hálózatát alkalmazások alkalmas. hello tanulási algoritmus is kap egy rövid időn belül, mennyire jó hello döntési jelző lett ellenszolgáltatás jel. Ennek alapján, hello algoritmus módosítja annak biztosításával kapcsolatos stratégia rendelés tooachieve hello legmagasabb ellenszolgáltatás. Jelenleg nincsenek nem tanulási algoritmus modulok Azure ml megerősítése.
 
-* **Bayes-féle módszerek** statisztikailag független adatpontok feltételezi. Ez azt jelenti, hogy az egy-egy unmodeled variancia predikátumban másokkal, ez azt jelenti, hogy nem meghatározható. Például ha a rögzített adatok percben, amíg a következő subway vonat megérkeznek, két mérések naponta egymástól függetlenek statisztikailag. Azonban két mérések egy percet egymástól függetlenek nem statisztikailag - egyik értéke magas prediktív egyéb értékének.
+* **Bayes-féle módszerek** hello feltételezésen statisztikailag független adatpontok ellenőrizze. Ez azt jelenti, hogy az egy-egy unmodeled variancia hello predikátumban másokkal, ez azt jelenti, hogy nem meghatározható. Például ha rögzíti hello adatok hello hány percig, amíg hello következő subway vonat megérkeznek, két mérések naponta egymástól függetlenek statisztikailag. Azonban két mérések egy percet egymástól függetlenek nem statisztikailag – hello valamelyik értéke magas prediktív más hello hello értékének.
 
-* **Súlyozott döntési fa regressziós** kihasználja a szolgáltatás hozzon létre vagy szolgáltatások közötti kommunikáció. Ez azt jelenti, hogy, hogy bármely adott adatpontban, egy szolgáltatás értéke némileg prediktív egy másik érték. Például napi magas vagy alacsony hőmérséklet-adatok, az alacsony hőmérséklet ismerete, a nap lehetővé teszi, hogy csak akkor lehet egy ésszerű becslés a nagy. A két funkció szereplő információk már némileg redundáns.
+* **Súlyozott döntési fa regressziós** kihasználja a szolgáltatás hozzon létre vagy szolgáltatások közötti kommunikáció. Némileg prediktív hello értékének egy másik, hogy azt jelenti, hogy, a megadott adatokat, majd hello egy funkció értéke. Például a magas vagy alacsony hőmérséklet adatok napi, hello alacsony hőmérséklet tudatában hello napon lehetővé teszi egy ésszerű becslés toomake: hello magas. hello két szolgáltatás lévő hello információt már némileg redundáns.
 
-* Adatok besorolása több mint két kategóriába sorolhatók végezhető vagy egy eredendően több osztály osztályozó, vagy csoportjának egyesítésével képzett két osztályú osztályozó be egy **ensemble**. A ensemble módszert használja, nincs külön két osztályú besorolás minden osztály - mindegyik elkülöníti az adatokat két kategóriába sorolhatók: "Ez az osztály" és "nem ez az osztály." Ezek a besorolások majd a megfelelő hozzárendelési az adatpont szavazhatnak. Ez az a működési elv mögött [egyik-vs-összes Multiclass][one-vs-all-multiclass].
+* Adatok besorolása több mint két kategóriába sorolhatók végezhető vagy egy eredendően több osztály osztályozó, vagy csoportjának egyesítésével képzett két osztályú osztályozó be egy **ensemble**. Hello ensemble módszert használja, nincs külön két osztályú besorolás minden osztályához – hello adatok mindegyik elválasztja a két kategóriába sorolhatók: "Ez az osztály" és "nem ez az osztály." Ezek a besorolások majd hello megfelelő hozzárendelés hello adatpont szavazhatnak. Ez a működési elv hello mögött [egyik-vs-összes Multiclass][one-vs-all-multiclass].
 
-* Tegyük fel, számos módszer, beleértve a logisztikai regresszió és Bayes pontozó gépet **lineáris osztály határok**. Ez azt jelenti, hogy azok feltételezik, hogy a határok osztályok között körülbelül egyenes vonalak (vagy az általános esetben hyperplanes). Gyakran ez jellemzője, addig nem tudja, miután azt próbálta adatokat, de azt olyan dolog, amire általában is amelyeket ismernie kell előzetesen megjelenítése. Ha az osztály határok nagyon szabálytalan, a döntési fák odatapadjon, jungles döntési, támogatja a vektoros gépek vagy a Neurális hálózatokat.
+* Tegyük fel, számos módszer, beleértve a logisztikai regresszió és hello Bayes pontozó gépet **lineáris osztály határok**. Ez azt jelenti, hogy azok azt feltételezik, hogy hello osztályok közötti határokat körülbelül egyenes vonalak vagy (a hyperplanes hello általános eset). Gyakran ez a tulajdonság hello adatok után tooseparate próbált, de azt Ön nem tudja csak olyan dolog, amire általában is amelyeket ismernie kell előzetesen megjelenítése. Ha hello osztály határok nagyon szabálytalan, a döntési fák odatapadjon, jungles döntési, támogatja a vektoros gépek vagy a Neurális hálózatokat.
 
-* Neurális hálózatokat használható kategorikus változók hozzon létre egy **típusú változó** kategórián, 1 értékre állítaná az esetekben, amikor a kategóriát, ahol nem 0.
+* Neurális hálózatokat használható kategorikus változók hozzon létre egy **típusú változó** kategórián, amely too1 azokban az esetekben, ahol hello kategória vonatkozik, ahol nem 0.
 
 
-<!-- This is how you can embed a link in an image in HTML. Don't know how to do this in markdown.
+<!-- This is how you can embed a link in an image in HTML. Don't know how toodo this in markdown.
 <a href="http://download.microsoft.com/download/A/6/1/A613E11E-8F9C-424A-B99D-65344785C288/microsoft-machine-learning-algorithm-cheat-sheet.pdf">
 <img src="C:\Users\garye\azure-docs-pr\articles\media\machine-learning-algorithm-cheat-sheet\cheat-sheet-small.png">
 </a>

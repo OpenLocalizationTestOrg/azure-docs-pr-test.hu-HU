@@ -1,6 +1,6 @@
 ---
-title: "Index lekérdezése (.NET API – Azure Search) | Microsoft Docs"
-description: "Létrehozhat keresési lekérdezést az Azure Search szolgáltatásban, a keresési eredmények szűrését és rendezését pedig keresési paraméterek használatával végezheti el."
+title: "AAA \"lekérdezheti az indexét (.NET API - Azure Search) |} Microsoft dokumentumok\""
+description: "Hozza létre az Azure search keresési lekérdezés, és használja a keresési paraméterek toofilter és rendezési keresési eredmények."
 services: search
 manager: jhubbard
 documentationcenter: 
@@ -13,13 +13,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 05/19/2017
 ms.author: brjohnst
-ms.openlocfilehash: 52bd0fd4cf70401dcf881c7f28d5cd91397bb059
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8b3ba1cd1270aad038fb48d9053fcff35d243e13
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="query-your-azure-search-index-using-the-net-sdk"></a>Az Azure Search-index lekérdezése a .NET SDK használatával
+# <a name="query-your-azure-search-index-using-hello-net-sdk"></a>Hello .NET SDK használatával az Azure Search-index lekérdezése
 > [!div class="op_single_selector"]
 > * [Áttekintés](search-query-overview.md)
 > * [Portál](search-explorer.md)
@@ -28,31 +28,31 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-Ebből a cikkből megtudhatja, hogyan történik egy index lekérdezése az [Azure Search .NET SDK](https://aka.ms/search-sdk) használatával.
+Ez a cikk bemutatja, hogyan egy index használatával tooquery hello [Azure Search .NET SDK](https://aka.ms/search-sdk).
 
 A bemutató elindítása előtt [létre kell hoznia egy Azure Search-indexet](search-what-is-an-index.md), majd [fel kell töltenie azt adatokkal](search-what-is-data-import.md).
 
 > [!NOTE]
-> A cikkben szereplő összes példakód C# nyelven van megírva. A teljes forráskódot a [GitHub](http://aka.ms/search-dotnet-howto) webhelyén találja. Az [Azure Search .NET SDK](search-howto-dotnet-sdk.md) leírásában részletesebb útmutatást kaphat a példakóddal kapcsolatban.
+> A cikkben szereplő összes példakód C# nyelven van megírva. Hello teljes forráskód található [a Githubon](http://aka.ms/search-dotnet-howto). Hello is olvashat [Azure Search .NET SDK](search-howto-dotnet-sdk.md) egy részletesebb lépésein végighaladva hello mintakódot az.
 
 ## <a name="identify-your-azure-search-services-query-api-key"></a>Azonosítsa az Azure Search szolgáltatás lekérdezési API-kulcsát
-Az Azure Search-index létrehozását követően most már csaknem készen áll lekérdezések kiadására a .NET SDK használatával. Először is az Ön által üzembe helyezett Search szolgáltatás számára létrehozott lekérdezési API-kulcsok egyikére lesz szüksége. A .NET SDK ezt az API-kulcsot minden szolgáltatáskérés alkalmával elküldi. Érvényes kulcs birtokában kérelmenként létesíthető megbízhatósági kapcsolat a kérést küldő alkalmazás és az azt kezelő szolgáltatás között.
+Most, hogy létrehozta az Azure Search-index, áll majdnem kész tooissue lekérdezések hello .NET SDK használatával. Először szüksége lesz egy hello lekérdezés api-kulcs lett létrehozva, tooobtain hello keresőszolgáltatáshoz. hello .NET SDK minden kérelem tooyour szolgáltatás elküld az api-kulcsot. Érvényes kulcs birtokában létesít megbízhatósági, egy kérelem alapon hello küldő hello kérelem és a kezelő hello szolgáltatás között.
 
-1. A szolgáltatás API-kulcsainak megkereséséhez bejelentkezhet az [Azure Portalra](https://portal.azure.com/).
-2. Nyissa meg az Azure Search szolgáltatáspaneljét
-3. Kattintson a „Kulcsok” ikonra
+1. toofind a szolgáltatás api-kulcsokat bejelentkezhet toohello [Azure-portálon](https://portal.azure.com/)
+2. Nyissa meg tooyour Azure Search szolgáltatás paneljét
+3. Kattintson a hello "Kulcsok" ikonra
 
 A szolgáltatás *rendszergazdai kulcsokkal* és *lekérdezési kulcsokkal* fog rendelkezni.
 
-* Az elsődleges és másodlagos *rendszergazdai kulcsok* teljes jogosultságot biztosítanak az összes művelethez, beleértve a szolgáltatás felügyeletének, valamint az indexek, indexelők és adatforrások létrehozásának és törlésének képességét. Két kulcs létezi, tehát ha az elsődleges kulcs újbóli létrehozása mellett dönt, a másodlagos kulcsot továbbra is használhatja (ez fordítva is igaz).
-* A *lekérdezési kulcsok* csak olvasási hozzáférést biztosítanak az indexekhez és a dokumentumokhoz, és általában a keresési kéréseket kibocsátó ügyfélalkalmazások számára vannak kiosztva.
+* Az elsődleges és másodlagos *adminisztrációs kulcsok* teljes körű tooall műveleteket, köztük a hello képességét toomanage hello szolgáltatást biztosítania hozzon létre, és törölje az indexek, az indexelők és az adatforrások. Két kulcs van, hogy a Folytatás toouse hello másodlagos kulcsát. Ha úgy dönt, hogy tooregenerate hello elsődleges kulcs, és fordítva.
+* A *lekérdezési kulcsok* adjon olvasási hozzáférést tooindexes és a dokumentumok és keresési kérelmeket kibocsátó általában elosztott tooclient alkalmazások.
 
-Indexlekérdezéshez a lekérdezési kulcsok egyikét használhatja. A rendszergazdai kulcsok szintén használhatók a lekérdezésekhez, az alkalmazáskódban azonban inkább lekérdezési kulcsot használjon, mivel ez a módszer jobban követi a [legalacsonyabb jogosultsági szint elvét](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
+Az index lekérdezése hello alkalmazásában a lekérdezési kulcsok egyikét használhatja. Az adminisztrációs kulcsok is használható a lekérdezések, de egy lekérdezési kulcsot kell használni az alkalmazás kódjában, az alábbi módon ez jobban hello [legalacsonyabb jogosultsági szint elve](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
 
-## <a name="create-an-instance-of-the-searchindexclient-class"></a>A SearchIndexClient osztály egy példányának létrehozása
-A lekérdezések Azure Search .NET SDK használatával történő kiadásához létre kell hoznia a `SearchIndexClient` osztály egy példányát. Ez az osztály több konstruktorral rendelkezik. Amelyikre Önnek szüksége van, az paraméterként a Search-szolgáltatás nevét, az indexnevet és egy `SearchCredentials` objektumot használ. A `SearchCredentials` becsomagolja az API-kulcsot.
+## <a name="create-an-instance-of-hello-searchindexclient-class"></a>Hello SearchIndexClient osztály példányának létrehozása
+az Azure Search .NET SDK hello lekérdezések tooissue, szüksége lesz toocreate hello példányának `SearchIndexClient` osztály. Ez az osztály több konstruktorral rendelkezik. hello kívánt időt vesz igénybe, a keresőszolgáltatása nevét, az index neve, és egy `SearchCredentials` objektumot használ paraméterként. A `SearchCredentials` becsomagolja az API-kulcsot.
 
-Az alábbi kód egy új `SearchIndexClient` elemet hoz létre az ([Azure Search-index létrehozása .NET SDK használatával](search-create-index-dotnet.md) című részben létrehozott) „hotels” index számára, az alkalmazás konfigurációs fájljában (a [mintaalkalmazás](http://aka.ms/search-dotnet-howto) esetében az `appsettings.json` fájlban) tárolt Search-szolgáltatásnév és API-kulcs értékeinek használatával:
+az alábbi hello kód létrehoz egy új `SearchIndexClient` hello "Hotels nevű" index (létrehozott [hello .NET SDK használatával Azure Search-index létrehozása](search-create-index-dotnet.md)) hello keresőszolgáltatása nevét és api-kulcs hello alkalmazás config tárolt értékekkel fájl (`appsettings.json` hello hello esetében [mintaalkalmazás](http://aka.ms/search-dotnet-howto)):
 
 ```csharp
 private static SearchIndexClient CreateSearchIndexClient(IConfigurationRoot configuration)
@@ -65,24 +65,24 @@ private static SearchIndexClient CreateSearchIndexClient(IConfigurationRoot conf
 }
 ```
 
-A `SearchIndexClient` rendelkezik egy `Documents` tulajdonsággal. Ezen tulajdonság biztosítja mindazokat a módszereket, amelyek az Azure Search-indexek lekérdezéséhez szükségesek.
+A `SearchIndexClient` rendelkezik egy `Documents` tulajdonsággal. Ez a tulajdonság biztosít minden hello tooquery Azure Search-indexek szükséges módszereket.
 
 ## <a name="query-your-index"></a>Az index lekérdezése
-A .NET SDK használatával történő keresés ugyanolyan egyszerűen végrehajtható, mint a `Documents.Search` módszer meghívása a következőn: `SearchIndexClient`. Ezen módszer néhány paramétert használ, ide értve a keresett szöveget, a lekérdezés további finomításához használható `SearchParameters` objektummal együtt.
+A helyettesítő hello .NET SDK legegyszerűbb hívó hello `Documents.Search` metódust a `SearchIndexClient`. Ez a módszer veszi néhány paraméterekkel, többek között a keresési szöveget: hello, valamint egy `SearchParameters` objektum, amely használt toofurther finomítása hello lekérdezés lehet.
 
 #### <a name="types-of-queries"></a>A lekérdezések típusai
-Az itt használt két fő [lekérdezési típus](search-query-overview.md#types-of-queries): `search` és `filter`. A `search` lekérdezés egy vagy több kifejezésre keres rá az index összes *searchable* (kereshető) mezőjében. A `filter` lekérdezés egy logikai kifejezés kiértékelését végzi el az index összes *filterable* (szűrhető) mezőjén.
+hello két fő [típusok lekérdezése](search-query-overview.md#types-of-queries) használandó vannak `search` és `filter`. A `search` lekérdezés egy vagy több kifejezésre keres rá az index összes *searchable* (kereshető) mezőjében. A `filter` lekérdezés egy logikai kifejezés kiértékelését végzi el az index összes *filterable* (szűrhető) mezőjén.
 
-A keresések és a szűrések egyaránt a `Documents.Search` módszer használatával vannak végrehajtva. Keresési lekérdezések a `searchText` paraméterben, szűrőkifejezések pedig a `SearchParameters` osztály `Filter` tulajdonságában adhatóak át. A keresés nélküli szűrés végrehajtásához a `searchText` paraméter számára a `"*"` kifejezést adja át. A szűrés nélküli keresés végrehajtásához ne állítsa be a `Filter` tulajdonságot, vagy egyáltalán ne adja át azt egy `SearchParameters`-példányban.
+Keresés és a szűrők készül hello segítségével `Documents.Search` metódust. Keresési lekérdezés átadhatók a hello `searchText` paraméter, miközben egy kifejezést a hello adhatók át `Filter` hello tulajdonságának `SearchParameters` osztály. toofilter nélkül keres, csak adja át `"*"` a hello `searchText` paraméter. toosearch szűrés nélkül ne változtassa meg hello `Filter` tulajdonság beállított, vagy nem adjon át egy `SearchParameters` minden példány.
 
 #### <a name="example-queries"></a>Példa a lekérdezésekre
-Az alábbi mintakód néhány különböző módját mutatja be az [Azure Search-index létrehozása .NET SDK használatával](search-create-index-dotnet.md#DefineIndex) című részben meghatározott „hotels” index lekérdezésének. Vegye figyelembe, hogy a keresési eredményekkel visszaadott dokumentumok annak a `Hotel` osztálynak a példányai, amely az [Adatok importálása az Azure Search szolgáltatásban .NET SDK használatával](search-import-data-dotnet.md#HotelClass) című részben lett meghatározva. Ez a mintakód a `WriteDocuments` módszer használatával jeleníti meg a keresési eredményeket a konzolon. Ezt a módszert a következő szakasz ismerteti.
+a következő példakód hello látható többféleképpen tooquery hello "Hotels"nevű index definiált [hello .NET SDK használatával Azure Search-index létrehozása](search-create-index-dotnet.md#DefineIndex). Ne feledje, hogy ad vissza, amelyben hello keresési eredmények hello dokumentumok hello példányai `Hotel` osztályt, amely lett definiálva [adatok importálása az Azure Search használatával hello .NET SDK](search-import-data-dotnet.md#HotelClass). mintakód hello használ egy `WriteDocuments` metódus toooutput hello keresési eredmények toohello konzol. Ez a módszer hello a következő szakaszban ismertetett.
 
 ```csharp
 SearchParameters parameters;
 DocumentSearchResult<Hotel> results;
 
-Console.WriteLine("Search the entire index for the term 'budget' and return only the hotelName field:\n");
+Console.WriteLine("Search hello entire index for hello term 'budget' and return only hello hotelName field:\n");
 
 parameters =
     new SearchParameters()
@@ -94,8 +94,8 @@ results = indexClient.Documents.Search<Hotel>("budget", parameters);
 
 WriteDocuments(results);
 
-Console.Write("Apply a filter to the index to find hotels cheaper than $150 per night, ");
-Console.WriteLine("and return the hotelId and description:\n");
+Console.Write("Apply a filter toohello index toofind hotels cheaper than $150 per night, ");
+Console.WriteLine("and return hello hotelId and description:\n");
 
 parameters =
     new SearchParameters()
@@ -108,8 +108,8 @@ results = indexClient.Documents.Search<Hotel>("*", parameters);
 
 WriteDocuments(results);
 
-Console.Write("Search the entire index, order by a specific field (lastRenovationDate) ");
-Console.Write("in descending order, take the top two results, and show only hotelName and ");
+Console.Write("Search hello entire index, order by a specific field (lastRenovationDate) ");
+Console.Write("in descending order, take hello top two results, and show only hotelName and ");
 Console.WriteLine("lastRenovationDate:\n");
 
 parameters =
@@ -124,7 +124,7 @@ results = indexClient.Documents.Search<Hotel>("*", parameters);
 
 WriteDocuments(results);
 
-Console.WriteLine("Search the entire index for the term 'motel':\n");
+Console.WriteLine("Search hello entire index for hello term 'motel':\n");
 
 parameters = new SearchParameters();
 results = indexClient.Documents.Search<Hotel>("motel", parameters);
@@ -133,7 +133,7 @@ WriteDocuments(results);
 ```
 
 ## <a name="handle-search-results"></a>A keresési eredmények kezelése
-A `Documents.Search` módszer olyan `DocumentSearchResult` objektumot ad vissza, amely tartalmazza a lekérdezés eredményeit. Az előző szakaszban szereplő példa a `WriteDocuments` módszer használatával jelenítette meg a keresési eredményeket a konzolon:
+Hello `Documents.Search` metódus értéket ad vissza egy `DocumentSearchResult` hello hello lekérdezés eredményeit tartalmazó objektum. hello példa az előző szakaszban hello használt a hívott metódus `WriteDocuments` toooutput hello keresési eredmények toohello konzol:
 
 ```csharp
 private static void WriteDocuments(DocumentSearchResult<Hotel> searchResults)
@@ -147,27 +147,27 @@ private static void WriteDocuments(DocumentSearchResult<Hotel> searchResults)
 }
 ```
 
-Az előző szakasz lekérdezéseinek eredménye a következőképpen fog megjelenni, feltételezve, hogy a „hotels” index az [Adatok importálása az Azure Search szolgáltatásban .NET SDK használatával](search-import-data-dotnet.md) rész mintaadataival van feltöltve:
+Ez mit hello eredmények néz ki, az előző szakaszban hello hello lekérdezésekhez feltételezve hello "Hotels"nevű index példaadatok hello van feltöltve [adatok importálása az Azure Search használatával hello .NET SDK](search-import-data-dotnet.md):
 
 ```
-Search the entire index for the term 'budget' and return only the hotelName field:
+Search hello entire index for hello term 'budget' and return only hello hotelName field:
 
 Name: Roach Motel
 
-Apply a filter to the index to find hotels cheaper than $150 per night, and return the hotelId and description:
+Apply a filter toohello index toofind hotels cheaper than $150 per night, and return hello hotelId and description:
 
 ID: 2   Description: Cheapest hotel in town
-ID: 3   Description: Close to town hall and the river
+ID: 3   Description: Close tootown hall and hello river
 
-Search the entire index, order by a specific field (lastRenovationDate) in descending order, take the top two results, and show only hotelName and lastRenovationDate:
+Search hello entire index, order by a specific field (lastRenovationDate) in descending order, take hello top two results, and show only hotelName and lastRenovationDate:
 
 Name: Fancy Stay        Last renovated on: 6/27/2010 12:00:00 AM +00:00
 Name: Roach Motel       Last renovated on: 4/28/1982 12:00:00 AM +00:00
 
-Search the entire index for the term 'motel':
+Search hello entire index for hello term 'motel':
 
 ID: 2   Base rate: 79.99        Description: Cheapest hotel in town     Description (French): Hôtel le moins cher en ville      Name: Roach Motel       Category: Budget        Tags: [motel, budget]   Parking included: yes   Smoking allowed: yes    Last renovated on: 4/28/1982 12:00:00 AM +00:00 Rating: 1/5     Location: Latitude 49.678581, longitude -122.131577
 ```
 
-A fenti mintakód a keresési eredményeket a konzolon jeleníti meg. A keresési eredményeket hasonlóképpen kell megjeleníteni a saját alkalmazásában is. Az ASP.NET MVC-alapú webalkalmazásokban történő keresésieredmény-rendelerelésre itt láthat példát: [a GitHub-on lévő minta](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetSample).
+a fenti hello mintakód hello konzol toooutput keresési eredményeket használja. A saját alkalmazásban toodisplay keresési eredmények hasonlóképpen kell. Lásd: [ezt a mintát a Githubon](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetSample) hogyan toorender keresés eredménye egy ASP.NET MVC-alapú webalkalmazás példát.
 

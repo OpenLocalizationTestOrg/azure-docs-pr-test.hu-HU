@@ -1,6 +1,6 @@
 ---
-title: "Konfigurálása terheléselosztó SQL mindig |} Microsoft Docs"
-description: "Terheléselosztó együttműködni SQL mindig és hogyan használhatók ki a terheléselosztó SQL végrehajtása létrehozásához powershell konfigurálása"
+title: "az always on SQL aaaConfigure terheléselosztó |} Microsoft Docs"
+description: "SQL mindig a, és hogyan tooleverage powershell toocreate terheléselosztóját hello SQL végrehajtása Load balancer toowork konfigurálása"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -13,23 +13,23 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
-ms.openlocfilehash: 68aad6253f185d53fdd7f11c8660c7287ef12655
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ac6200b18f725dadee2555b80055327d379417d4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-load-balancer-for-sql-always-on"></a>Konfigurálása terheléselosztó SQL mindig
 
-SQL Server AlwaysOn rendelkezésre állási csoportok futtatható a Példánynak. Rendelkezésre állási csoport egy SQL Server flagship megoldás magas rendelkezésre állási és vészhelyreállítási helyreállításhoz. A rendelkezésre állási csoport figyelőjének ügyfélalkalmazások teszi lehetővé az elsődleges másodpéldány, függetlenül a konfigurációban a replikák száma zökkenőmentesen csatlakozni.
+SQL Server AlwaysOn rendelkezésre állási csoportok futtatható a Példánynak. Rendelkezésre állási csoport egy SQL Server flagship megoldás magas rendelkezésre állási és vészhelyreállítási helyreállításhoz. rendelkezésre állási csoport figyelőjének hello lehetővé teszi, hogy ügyfél alkalmazások tooseamlessly csatlakozás toohello elsődleges másodpéldány, függetlenül hello replikák hello konfigurációban hello száma.
 
-A figyelő (DNS) nevet egy elosztott terhelésű IP-cím van leképezve, és Azure terheléselosztója irányítja a bejövő forgalom csak az elsődleges kiszolgálóra a replika.
+hello figyelőjének (DNS) nevével csatlakoztatott tooa elosztott terhelésű IP-cím, Azure terheléselosztója hello replikakészlethez hello bejövő forgalom tooonly hello elsődleges kiszolgáló gazdagépére továbbítja.
 
-Az SQL Server AlwaysOn (figyelő) végpontokhoz ILB támogatási is használhatja. Most a figyelő a kisegítő szabályozhatják, és az elosztott terhelésű IP-cím közül választhatnak a megadott alhálózat a virtuális hálózat (VNet).
+Az SQL Server AlwaysOn (figyelő) végpontokhoz ILB támogatási is használhatja. Most hello kisegítő hello figyelő szabályozhatják, és választhat hello elosztott terhelésű IP-cím a megadott alhálózat a virtuális hálózat (VNet).
 
-A figyelő az SQL server endpoint ILB használatával (pl. Server = tcp:ListenerName, 1433; adatbázis = DatabaseName) csak által elérhető:
+Hello figyelő ILB használatával hello az SQL server endpoint (pl. Server = tcp:ListenerName, 1433; adatbázis = DatabaseName) csak úgy érhető el:
 
-* Szolgáltatások és az azonos virtuális hálózatban lévő virtuális gépek
+* Szolgáltatások és a virtuális gépek hello azonos virtuális hálózaton
 * Szolgáltatások és virtuális gépek csatlakoztatott helyszíni hálózatról
 * Szolgáltatások és az összekapcsolt Vnetek virtuális gépek
 
@@ -37,9 +37,9 @@ A figyelő az SQL server endpoint ILB használatával (pl. Server = tcp:Listener
 
 1. ábra – az SQL AlwaysOn konfigurálva az Internet felé néző terheléselosztó
 
-## <a name="add-internal-load-balancer-to-the-service"></a>A szolgáltatás belső terheléselosztó hozzáadása
+## <a name="add-internal-load-balancer-toohello-service"></a>Belső terheléselosztó toohello szolgáltatás hozzáadása
 
-1. A következő példában azt egy virtuális hálózatot, amely tartalmazza a "Alhálózat-1" nevű alhálózat konfigurálhatja:
+1. A következő példa hello hogy egy virtuális hálózatot, amely tartalmazza a "Alhálózat-1" nevű alhálózat konfigurálhatja:
 
     ```powershell
     Add-AzureInternalLoadBalancer -InternalLoadBalancerName ILB_SQL_AO -SubnetName Subnet-1 -ServiceName SqlSvc
@@ -53,7 +53,7 @@ A figyelő az SQL server endpoint ILB használatával (pl. Server = tcp:Listener
     Get-AzureVM -ServiceName SqlSvc -Name sqlsvc2 | Add-AzureEndpoint -Name "LisEUep" -LBSetName "ILBSet1" -Protocol tcp -LocalPort 1433 -PublicPort 1433 -ProbePort 59999 -ProbeProtocol tcp -ProbeIntervalInSeconds 10 -DirectServerReturn $true -InternalLoadBalancerName ILB_SQL_AO | Update-AzureVM
     ```
 
-    A fenti példában rendelkezik 2 VM hívott "sqlsvc1" és "sqlsvc2" fut a felhőben található "Sqlsvc" szolgáltatás. Miután létrehozta a ILB `DirectServerReturn` kapcsoló ad hozzá elosztott terhelésű végpont a Példánynak, hogy az SQL rendelkezésre állási csoportok figyelői konfigurálása.
+    Hello a fenti példában fel kell 2 VM hívott "sqlsvc1" és "sqlsvc2" fut a felhőben hello szolgáltatást a "Sqlsvc". Létrehozása után a ILB hello `DirectServerReturn` váltani, hozzáadhat betölteni az elosztott terhelésű végpont toohello ILB tooallow SQL tooconfigure hello figyelői hello rendelkezésre állási csoportok számára.
 
 Az SQL AlwaysOn szolgáltatással kapcsolatos további információkért lásd: [belső terheléselosztót egy AlwaysOn rendelkezésre állási csoport konfigurálása az Azure-](../virtual-machines/windows/sql/virtual-machines-windows-portal-sql-alwayson-int-listener.md).
 

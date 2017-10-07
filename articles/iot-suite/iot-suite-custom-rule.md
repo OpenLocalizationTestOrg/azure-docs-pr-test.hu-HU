@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre egy egyéni szabály Azure IoT Suite |} Microsoft Docs"
-description: "A megoldás IoT Suite előre konfigurált egy egyéni szabály létrehozásának módjáról."
+title: "egy egyéni szabály Azure IoT Suite aaaCreate |} Microsoft Docs"
+description: "Hogyan toocreate egy egyéni szabályt az IoT Suite előre konfigurált megoldás."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,56 +15,56 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: d58c27234ea05a82aaa3e8d72f70c1449980df09
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6c5bb2ca54f3f17b99ad482e727c8e9fa28d7fe5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-custom-rule-in-the-remote-monitoring-preconfigured-solution"></a>Hozzon létre egy egyéni szabályt a távoli felügyeleti előkonfigurált megoldás
+# <a name="create-a-custom-rule-in-hello-remote-monitoring-preconfigured-solution"></a>Hozzon létre egy egyéni szabály hello távoli felügyeleti előkonfigurált megoldás
 
 ## <a name="introduction"></a>Bevezetés
 
-Az előkonfigurált megoldásokat konfigurálhat [szabályokat, amelyek indul el, ha egy telemetriai érték, egy eszköz eléri a meghatározott][lnk-builtin-rule]. [Dinamikus telemetriai adatokat a távoli figyelési megoldást előre konfigurált] [ lnk-dynamic-telemetry] ismerteti, hogyan értékeket is hozzáadhat egyéni telemetriai adatokat, például a *ExternalTemperature* a megoldáshoz. Ez a cikk bemutatja, hogyan dinamikus telemetriai típusok egyéni szabály létrehozására a megoldásban.
+Előre konfigurált hello megoldásokat konfigurálhat [szabályokat, amelyek indul el, ha egy telemetriai érték, egy eszköz eléri a meghatározott][lnk-builtin-rule]. [Dinamikus telemetriai adatok használata a távoli felügyeleti előkonfigurált megoldás hello] [ lnk-dynamic-telemetry] ismerteti, hogyan értékeket is hozzáadhat egyéni telemetriai adatokat, például a *ExternalTemperature* tooyour megoldás. Ez a cikk bemutatja, hogyan toocreate egyéni szabály dinamikus telemetriai adatokat a típusokat a megoldásban.
 
-Ebben az oktatóanyagban egy egyszerű Node.js szimulált eszköz használják a dinamikus telemetriai adatokat küldhet az előkonfigurált megoldás háttérrendszerének létrehozásához. Majd adja hozzá az egyéni szabályok a **RemoteMonitoring** Visual Studio megoldás, és a testreszabott háttér telepítse az Azure-előfizetéshez.
+Ez az oktatóanyag egy egyszerű Node.js szimulált eszköz toogenerate dinamikus telemetriai toosend toohello előkonfigurált megoldás háttérrendszerének használja. Majd hozzá az egyéni szabályok a hello **RemoteMonitoring** Visual Studio megoldás és a testreszabott háttér tooyour Azure-előfizetés telepítése.
 
-Az oktatóanyag elvégzéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban szüksége:
 
 * Aktív Azure-előfizetés. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információ: [Ingyenes Azure-fiók létrehozása][lnk_free_trial].
-* [NODE.js] [ lnk-node] verzió 0.12.x vagy újabb rendszert a szimulált eszköz létrehozásához.
-* A Visual Studio 2015-öt vagy a Visual Studio 2017 módosíthatja az előkonfigurált megoldás végén az új szabályokat.
+* [NODE.js] [ lnk-node] verzió 0.12.x vagy későbbi toocreate a szimulált eszköz.
+* A Visual Studio 2015-öt vagy a Visual Studio 2017 toomodify előre konfigurált hello megoldás háttérrendszere végén az új szabályokat.
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
-Jegyezze fel az üzembe helyezéshez választott megoldás nevét. Az oktatóanyag későbbi részében szüksége ezen megoldás neve.
+Jegyezze fel az üzembe helyezéshez választott hello megoldás neve. Az oktatóanyag későbbi részében szüksége ezen megoldás neve.
 
 [!INCLUDE [iot-suite-send-external-temperature](../../includes/iot-suite-send-external-temperature.md)]
 
-Miután ellenőrizte, hogy akkor küld le lehet állítani a Node.js-Konzolalkalmazás **ExternalTemperature** telemetria bekapcsolásával az előkonfigurált megoldás. A konzolablakban tartsa nyitva, mert a Node.js-Konzolalkalmazás a megoldáshoz az egyéni szabály hozzáadása után újra futtatni.
+Miután ellenőrizte, hogy akkor küld le lehet állítani hello Node.js-Konzolalkalmazás **ExternalTemperature** telemetriai toohello előre konfigurált megoldás. Hello konzolablak tartsa nyitva, mert a Node.js-Konzolalkalmazás hello egyéni szabály toohello megoldás hozzáadása után ismét futtatni.
 
 ## <a name="rule-storage-locations"></a>A szabály a tárolási helyek
 
 Két külön helyen megőrződjenek szabályokkal kapcsolatos információkat:
 
-* **DeviceRulesNormalizedTable** tábla – Ez a táblázat a megoldás portál által meghatározott szabályok normalizált hivatkozik. A megoldás portal eszköz szabályokat jeleníti meg, amikor lekérdezi a következő táblázat a szabálydefiníciók.
-* **DeviceRules** blob – a blob tárolja az összes szabály definiált összes regisztrált eszközökhöz, és adjon meg az Azure Stream Analytics-feladatok hivatkozásként van definiálva.
+* **DeviceRulesNormalizedTable** – Ez a táblázat a táblázat egy normalizált hello megoldás portál által definiált toohello szabályok hivatkoznak. Hello megoldás portal eszköz szabályokat jeleníti meg, amikor lekérdezi a következő táblázat hello szabálydefiníciók.
+* **DeviceRules** blob – a blob tároló összes hello szabályai vannak megadva összes regisztrált eszközökre és a hivatkozás bemeneti toohello Azure Stream Analytics-feladatok típusúként van definiálva.
  
-Meglévő szabály frissítésekor, vagy adjon meg egy új szabályt a megoldás portálon, a tábla és a blob frissülnek a módosításokkal. A tábla tároló származik a szabálydefiníciót, megjelenik a portálon, és a Stream Analytics-feladatok által hivatkozott szabálydefiníciója származik a blob. 
+Meglévő szabály frissítésekor, vagy adjon meg egy új szabályt hello megoldás portal, hello tábla és a blob frissített tooreflect hello módosítások. hello portál megjeleníti-definíció hello szabály hello tábla tárolót és hello Stream Analytics-feladatok által hivatkozott definition származik hello blob hello szabály származik. 
 
-## <a name="update-the-remotemonitoring-visual-studio-solution"></a>Frissítés a RemoteMonitoring Visual Studio megoldás
+## <a name="update-hello-remotemonitoring-visual-studio-solution"></a>Hello RemoteMonitoring Visual Studio megoldás frissítése
 
-A következő lépések bemutatják a módosítása a RemoteMonitoring Visual Studio megoldás egy új szabályt, amely használja felvenni a **ExternalTemperature** a szimulált eszközről küldött telemetriai:
+hello következő lépések bemutatják, hogyan toomodify hello RemoteMonitoring Visual Studio megoldás tooinclude hello használó új szabály **ExternalTemperature** hello szimulált eszközről küldött telemetriai:
 
-1. Ha még nem tette meg, klónozza a **azure iot-távoli-ellenőrző** tárházat a helyi számítógépen a következő Git-paranccsal megfelelő helyre:
+1. Ha Ön még nem tette meg, klónozás hello **azure iot-távoli-ellenőrző** tárház tooa megfelelő helye a helyi gépen hello Git parancs a következő használatával:
 
     ```
     git clone https://github.com/Azure/azure-iot-remote-monitoring.git
     ```
 
-2. A Visual Studio, nyissa meg a RemoteMonitoring.sln fájl helyi másolatát a **azure iot-távoli-ellenőrző** tárházba.
+2. A Visual Studio, nyissa meg az hello RemoteMonitoring.sln fájl helyi másolatát hello **azure iot-távoli-ellenőrző** tárházba.
 
-3. Nyissa meg a fájlt Infrastructure\Models\DeviceRuleBlobEntity.cs, és adja hozzá egy **ExternalTemperature** tulajdonság az alábbiak szerint:
+3. Nyissa meg Infrastructure\Models\DeviceRuleBlobEntity.cs hello fájlt, és adja hozzá egy **ExternalTemperature** tulajdonság az alábbiak szerint:
 
     ```csharp
     public double? Temperature { get; set; }
@@ -72,7 +72,7 @@ A következő lépések bemutatják a módosítása a RemoteMonitoring Visual St
     public double? ExternalTemperature { get; set; }
     ```
 
-4. Ugyanebben a fájlban adja hozzá egy **ExternalTemperatureRuleOutput** tulajdonság az alábbiak szerint:
+4. A hello ugyanazt a fájlt, adja hozzá egy **ExternalTemperatureRuleOutput** tulajdonság az alábbiak szerint:
 
     ```csharp
     public string TemperatureRuleOutput { get; set; }
@@ -80,7 +80,7 @@ A következő lépések bemutatják a módosítása a RemoteMonitoring Visual St
     public string ExternalTemperatureRuleOutput { get; set; }
     ```
 
-5. Nyissa meg a fájlt Infrastructure\Models\DeviceRuleDataFields.cs, és adja hozzá a következő **ExternalTemperature** követően a meglévő tulajdonság **páratartalom** tulajdonság:
+5. Nyissa meg a Infrastructure\Models\DeviceRuleDataFields.cs hello fájlt, és adja hozzá a következő hello **ExternalTemperature** után hello meglévő tulajdonság **páratartalom** tulajdonság:
 
     ```csharp
     public static string ExternalTemperature
@@ -89,7 +89,7 @@ A következő lépések bemutatják a módosítása a RemoteMonitoring Visual St
     }
     ```
 
-6. Ugyanebben a fájlban frissítse a **_availableDataFields** felvenni metódus **ExternalTemperature** az alábbiak szerint:
+6. A hello ugyanazt a fájlt, a frissítéskezelés hello **_availableDataFields** metódus tooinclude **ExternalTemperature** az alábbiak szerint:
 
     ```csharp
     private static List<string> _availableDataFields = new List<string>
@@ -98,7 +98,7 @@ A következő lépések bemutatják a módosítása a RemoteMonitoring Visual St
     };
     ```
 
-7. Nyissa meg a fájlt Infrastructure\Repository\DeviceRulesRepository.cs, és módosítsa a **BuildBlobEntityListFromTableRows** módszert az alábbiak szerint:
+7. Nyissa meg a hello fájl Infrastructure\Repository\DeviceRulesRepository.cs, és módosítsa a hello **BuildBlobEntityListFromTableRows** módszert az alábbiak szerint:
 
     ```csharp
     else if (rule.DataField == DeviceRuleDataFields.Humidity)
@@ -113,29 +113,29 @@ A következő lépések bemutatják a módosítása a RemoteMonitoring Visual St
     }
     ```
 
-## <a name="rebuild-and-redeploy-the-solution"></a>Építse újra, és a megoldás újbóli telepítéséhez.
+## <a name="rebuild-and-redeploy-hello-solution"></a>Építse újra, és telepítse újra a hello megoldás.
 
-A frissített megoldás most már telepítheti az Azure-előfizetéshez.
+Most már telepítheti a frissített hello megoldás tooyour Azure-előfizetés.
 
-1. Nyisson meg egy rendszergazda jogú parancssort, és keresse meg a helyi másolat készítése az azure-iot-távelérési-figyelés tárház gyökérkönyvtárában.
+1. Nyisson meg egy rendszergazda jogú parancssort, és keresse meg a helyi példány hello azure iot-távoli-ellenőrző tárház toohello gyökérmappájában.
 
-2. A frissített megoldás telepítéséhez futtassa a következő parancs és **{telepítési neve}** nevű, a korábban feljegyzett előkonfigurált megoldás üzembe helyezése:
+2. toodeploy a frissített megoldás, futtassa a következő parancs és hello **{telepítési neve}** hello nevű előre konfigurált megoldás a központi telepítés korábban feljegyzett:
 
     ```
     build.cmd cloud release {deployment name}
     ```
 
-## <a name="update-the-stream-analytics-job"></a>Frissítés a Stream Analytics-feladat
+## <a name="update-hello-stream-analytics-job"></a>Frissítés hello Stream Analytics-feladat
 
-Ha a telepítés befejeződött, a Stream Analytics-feladat az új szabálydefiníciók használandó frissítheti.
+Ha hello telepítés befejeződött, hello Stream Analytics toouse hello új szabály feladatdefiníciók frissítheti.
 
-1. Az Azure-portálon lépjen az előkonfigurált megoldás erőforrásokat tartalmazó erőforráscsoportot. Ez az erőforráscsoport a telepítés során a megoldáshoz megadott névvel rendelkezik.
+1. Hello Azure-portálon keresse meg az előkonfigurált megoldás erőforrásokat tartalmazó toohello erőforráscsoportot. Ez az erőforráscsoport neve megegyezik a megadott hello van megoldás hello hello üzembe helyezése során.
 
-2. Keresse meg az {neve}-szabályok Stream Analytics-feladat. 
+2. Keresse meg a toohello {telepítési neve}-szabályok Stream Analytics-feladat. 
 
-3. Kattintson a **leállítása** leállítja a Stream Analytics-feladat futtatását. (Várnia kell a folyamatos átviteli feladat leállítása a lekérdezés szerkesztése előtt).
+3. Kattintson a **leállítása** toostop hello Stream Analytics-feladat futtatását. (Meg kell várnia a folyamatos átviteli feladat toostop hello lekérdezés szerkesztése előtt hello).
 
-4. Kattintson a **lekérdezés**. Szerkessze a lekérdezést, hogy tartalmazzák a **válasszon** nyilatkozata **ExternalTemperature**. A következő példa bemutatja a teljes lekérdezés az új **válasszon** utasítást:
+4. Kattintson a **lekérdezés**. Hello lekérdezés tooinclude hello szerkesztése **válasszon** nyilatkozata **ExternalTemperature**. hello alábbi példa a teljes lekérdezés hello hello új **válasszon** utasítást:
 
     ```
     WITH AlarmsData AS 
@@ -190,39 +190,39 @@ Ha a telepítés befejeződött, a Stream Analytics-feladat az új szabálydefin
     FROM AlarmsData
     ```
 
-5. Kattintson a **mentése** a frissített szabály lekérdezés módosításához.
+5. Kattintson a **mentése** toochange hello szabály lekérdezés frissítése.
 
-6. Kattintson a **Start** újra futtatni a Stream Analytics-feladat elindításához.
+6. Kattintson a **Start** toostart hello Stream Analytics-feladat újra futtatni.
 
-## <a name="add-your-new-rule-in-the-dashboard"></a>Az irányítópult az új szabály hozzáadása
+## <a name="add-your-new-rule-in-hello-dashboard"></a>Az új szabály hozzáadása a hello irányítópult
 
-Mostantól hozzáadhatja a **ExternalTemperature** szabály egy eszközre, a megoldás irányítópultjának.
+Mostantól hozzáadhatja azok hello **ExternalTemperature** szabály tooa eszköz hello megoldás irányítópulton.
 
-1. Navigáljon a megoldás portálra.
+1. Keresse meg a toohello megoldás portálon.
 
-2. Keresse meg a **eszközök** panel.
+2. Keresse meg a toohello **eszközök** panel.
 
-3. Keresse meg az egyéni eszközt létrehozott által küldött **ExternalTemperature** telemetriai adatok és a a **eszközadatok** panelen, kattintson a **szabály hozzáadása**.
+3. Keresse meg a hello egyéni eszköz létrehozott által küldött **ExternalTemperature** telemetriai adatok és a hello **. eszköz részletei** panelen, kattintson a **szabály hozzáadása**.
 
 4. Válassza ki **ExternalTemperature** a **adatmező**.
 
-5. Állítsa be **küszöbérték** 56. Kattintson a **mentéséhez és a szabályok megtekintése**.
+5. Állítsa be **küszöbérték** too56. Kattintson a **mentéséhez és a szabályok megtekintése**.
 
-6. Térjen vissza az irányítópulton a riasztás előzményeinek megtekintése.
+6. Térjen vissza a toohello irányítópult tooview hello riasztás előzményeit.
 
-7. A konzolablakban nyitva maradt, indítsa el a Node.js-Konzolalkalmazás megkezdéséhez küldése **ExternalTemperature** telemetriai adatokat.
+7. Hello konzolablakban nyitva maradt, hello Node.js konzol app toobegin küldésének megkezdése **ExternalTemperature** telemetriai adatokat.
 
-8. Figyelje meg, hogy a **riasztási előzmények** táblázat új riasztások az új szabály indítását.
+8. Figyelje meg, hogy hello **riasztási előzmények** táblázat új riasztások aktiválásáról hello új szabályt.
  
 ## <a name="additional-information"></a>További információ
 
-Az operátor módosítása  **>**  bonyolultabb és túllép ebben az oktatóanyagban leírt lépéseket. Módosíthatja a Stream Analytics-feladat bármilyen tetszés operátor használata, jelezve, hogy a megoldás portálon operátor napjainkban összetettebb feladat. 
+Változó hello operátor  **>**  bonyolultabb és túllép hello lépéseit az oktatóanyag. Módosíthatja a Stream Analytics-feladat toouse hello bármilyen tetszés operátor, adott operátor hello megoldás portálon tükröző napjainkban összetettebb feladat. 
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy korábban már látott egyéni szabályok létrehozásához, többet is megtudhat az előkonfigurált megoldások:
+Most, hogy megtudhatta, hogyan toocreate egyéni szabályok, részletesebben előre konfigurált hello megoldásokról:
 
-- [Logikai alkalmazás csatlakoztatása az Azure IoT Suite távoli megfigyelési előre konfigurált megoldás][lnk-logic-app]
-- [Eszköz információk metaadatait a távoli figyelési megoldást előre konfigurált][lnk-devinfo].
+- [Csatlakozás a Logic App tooyour Azure IoT Suite távoli figyelésére szolgáló előre konfigurált megoldás][lnk-logic-app]
+- [Eszköz információk metaadatok hello távoli figyelési megoldást előre konfigurált][lnk-devinfo].
 
 [lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 

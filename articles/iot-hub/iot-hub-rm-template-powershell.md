@@ -1,6 +1,6 @@
 ---
-title: "Sablon (PowerShell) segítségével Azure IoT Hub létrehozása |} Microsoft Docs"
-description: "Hogyan használható az Azure Resource Manager-sablonok az IoT-központ létrehozása a PowerShell használatával."
+title: "az Azure IoT-központ sablon (PowerShell) segítségével aaaCreate |} Microsoft Docs"
+description: "Hogyan toouse az Azure Resource Manager sablon toocreate az IoT-központ a PowerShell használatával."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,68 +14,68 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: f83fac6cffc9e58582417324a4348ca3b6220f0c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e98ff5e898200cd727b9326fb3df393e43b021e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-iot-hub-using-azure-resource-manager-template-powershell"></a>Létrehoz egy IoT-központot, Azure Resource Manager sablonnal (PowerShell)
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
-Azure Resource Manager hozhat létre és kezelhet programozott módon Azure IoT-központok. Ez az oktatóanyag bemutatja, hogyan Azure Resource Manager-sablonok segítségével az IoT-központ létrehozása a PowerShell használatával.
+Használhatja az Azure Resource Manager toocreate és Azure IoT-központok programozott kezelését. Az oktatóanyag bemutatja, hogyan toouse az Azure Resource Manager sablon toocreate az IoT-központ a PowerShell használatával.
 
 > [!NOTE]
-> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Azure Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md). Ez a cikk az Azure Resource Manager telepítési modell használatát bemutatja.
+> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Azure Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md). Ez a cikk hello Azure Resource Manager telepítési modell használatát bemutatja.
 
-Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban a következő hello szüksége:
 
 * Aktív Azure-fiók. <br/>Ha nincs fiókja, néhány perc alatt létrehozhat egy [ingyenes fiókot][lnk-free-trial].
 * [Az Azure PowerShell 1.0] [ lnk-powershell-install] vagy újabb.
 
 > [!TIP]
-> A cikk [az Azure PowerShell használata Azure Resource Managerrel] [ lnk-powershell-arm] PowerShell és az Azure Resource Manager sablonok létrehozása az Azure-erőforrások használatával kapcsolatos további információk.
+> hello cikk [az Azure PowerShell használata Azure Resource Managerrel] [ lnk-powershell-arm] nyújt további információt toouse PowerShell és az Azure Resource Manager sablonok toocreate Azure erőforrásokat.
 
-## <a name="connect-to-your-azure-subscription"></a>Csatlakozás az Azure-előfizetéshez
+## <a name="connect-tooyour-azure-subscription"></a>Csatlakozás Azure-előfizetés tooyour
 
-Adja meg egy PowerShell-parancssort, jelentkezzen be az Azure-előfizetéshez a következő parancsot:
+A PowerShell-parancssort írja be a hello parancs toosign tooyour Azure-előfizetés a következő:
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-Ha több Azure-előfizetéssel rendelkezik, a jelentkezik be az Azure ad hozzáférést az összes Azure-előfizetést a hitelesítő adatok társított. Használja a következő parancsot a rendelkezésre álló használata Azure-előfizetések listázásához:
+Ha több Azure-előfizetéssel rendelkezik, birtokában tooall hozzáférhet tooAzure bejelentkezés hello Azure-előfizetéssel társított hitelesítő adatait. A következő parancs toolist hello Azure-előfizetések elérhető az Ön toouse hello használata:
 
 ```powershell
 Get-AzureRMSubscription
 ```
 
-Az alábbi parancs segítségével válassza ki, hogy az IoT hub létrehozására szolgáló parancsok futtatásához használni kívánt előfizetést. Az előfizetés neve vagy azonosítója is használhatja, ha az előző parancs kimenetében:
+A következő parancs tooselect előfizetést, amelyet toouse toorun hello parancsok toocreate az IoT hub hello használata. Hello előfizetés név vagy azonosító hello kimenetből hello előző parancs használható:
 
 ```powershell
 Select-AzureRMSubscription `
     -SubscriptionName "{your subscription name}"
 ```
 
-A következő parancsok segítségével felderítése, ahol az IoT-központ és a jelenleg támogatott API-verziók telepítheti:
+A következő parancsok toodiscover, ahol az IoT-központ telepítése és hello jelenleg támogatott API-verziók hello használhatja:
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Devices).ResourceTypes | Where-Object ResourceTypeName -eq IoTHubs).Locations
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Devices).ResourceTypes | Where-Object ResourceTypeName -eq IoTHubs).ApiVersions
 ```
 
-Hozzon létre egy erőforráscsoportot az IoT hub, az alábbi paranccsal egy IoT-központ támogatott helyeket tartalmaz. Ebben a példában egy nevű erőforráscsoportot hoz létre **MyIoTRG1**:
+Hozzon létre egy erőforrás csoport toocontain az IoT hub, a következő parancs az IoT-központ hello támogatott helyek egyikén hello segítségével. Ebben a példában egy nevű erőforráscsoportot hoz létre **MyIoTRG1**:
 
 ```powershell
 New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 ```
 
-## <a name="submit-a-template-to-create-an-iot-hub"></a>Az IoT-központ létrehozása sablon küldése
+## <a name="submit-a-template-toocreate-an-iot-hub"></a>Küldje el a sablon toocreate az IoT-központ
 
-A JSON-sablon használatával létrehoz egy IoT-központot az erőforráscsoportban. Az Azure Resource Manager-sablon segítségével módosíthatja egy meglévő IoT-központot.
+A JSON-sablon toocreate az IoT-központ használja az erőforráscsoportban. Az Azure Resource Manager sablon toomake módosítások tooan meglévő IoT-központ is használható.
 
-1. Egy szövegszerkesztő használatával hozzon létre egy Azure Resource Manager-sablon neve **template.json** egy új, normál IoT-központ létrehozásához a következő erőforrás-definícióval. Ebben a példában az IoT-központ hozzáadja a **USA keleti régiója** régió, létrehoz két felhasználói csoportok (**cg1** és **cg2**) Event Hub-kompatibilis végpontot, és használja a  **2016-02-03** API-verzió. Ez a sablon is vár, hogy az IoT-központnév paraméterként adjon át nevű **hubName**. A helyek, amelyek támogatják az IoT-központ aktuális listáját lásd: [Azure állapot][lnk-status].
+1. Használja a szöveg szerkesztő toocreate Azure Resource Manager-sablonok nevű **template.json** a hello erőforrás-definíció toocreate követően egy új, normál IoT-központot. Ebben a példában az IoT-központ hello helyez hello **USA keleti régiója** régió, létrehoz két felhasználói csoportok (**cg1** és **cg2**) hello Event Hub-kompatibilis végpont, és használja hello **2016-02-03** API-verzió. Ez a sablon is várja meg toopass az IoT-központnév hello paraméterként nevű **hubName**. Hello jelenlegi listája támogatja az IoT Hub-helyeken: [Azure állapot][lnk-status].
 
     ```json
     {
@@ -127,35 +127,35 @@ A JSON-sablon használatával létrehoz egy IoT-központot az erőforráscsoport
     }
     ```
 
-2. Mentse az Azure Resource Manager sablon fájlt a helyi számítógépen. Ebben a példában feltételezzük, hogy nevű mappába menti **c:\templates**.
+2. Mentse a hello Azure Resource Manager sablon fájlt a helyi számítógépen. Ebben a példában feltételezzük, hogy nevű mappába menti **c:\templates**.
 
-3. A következő paranccsal telepítheti az új IoT hub, amely az IoT hub nevét átadott paraméterként. Ebben a példában az IoT-központ neve nem `abcmyiothub`. Az IoT hub nevét globálisan egyedinek kell lennie:
+3. Futtassa a következő parancs toodeploy hello az új IoT hub, amely az IoT hub nevét hello átadott paraméterként. Ebben a példában az IoT-központ hello hello neve nem `abcmyiothub`. az IoT hub hello nevének globálisan egyedi kell lennie:
 
     ```powershell
     New-AzureRmResourceGroupDeployment -ResourceGroupName MyIoTRG1 -TemplateFile C:\templates\template.json -hubName abcmyiothub
     ```
   [!INCLUDE [iot-hub-pii-note-naming-hub](../../includes/iot-hub-pii-note-naming-hub.md)]
 
-4. A kimenet a kulcsokat az IoT hub létrehozott jeleníti meg.
+4. hello kimeneti hello kulcsokat hello IoT hub létrehozott jeleníti meg.
 
-5. Ellenőrizze, hogy az alkalmazás fel az új IoT hub, látogasson el a [Azure-portálon] [ lnk-azure-portal] és tekintse meg az erőforrások listáját. Másik megoldásként használhatja a **Get-AzureRmResource** PowerShell-parancsmagot.
+5. az alkalmazás hozzáadott tooverify hello új IoT hub, látogasson el hello [Azure-portálon] [ lnk-azure-portal] és tekintse meg az erőforrások listáját. Másik megoldásként használhatja a hello **Get-AzureRmResource** PowerShell-parancsmagot.
 
 > [!NOTE]
-> A mintaalkalmazás ad hozzá egy S1 Standard IoT-központot, amelynek kell fizetni. Az IoT hub használatával törölheti a [Azure-portálon] [ lnk-azure-portal] vagy használatával a **Remove-AzureRmResource** PowerShell-parancsmag, amikor elkészült.
+> A mintaalkalmazás ad hozzá egy S1 Standard IoT-központot, amelynek kell fizetni. Törölheti a hello IoT-központ keresztül hello [Azure-portálon] [ lnk-azure-portal] vagy hello segítségével **Remove-AzureRmResource** PowerShell-parancsmag, amikor elkészült.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Most egy IoT-központot, a PowerShell segítségével az Azure Resource Manager-sablon használatával telepített, akkor érdemes lehet további felfedezése:
+Most egy IoT-központot, a PowerShell segítségével az Azure Resource Manager-sablon használatával telepített, akkor érdemes lehet további tooexplore:
 
-* Olvassa el a képességeit a [IoT-központ erőforrás-szolgáltató REST API][lnk-rest-api].
-* Olvasási [Azure Resource Manager áttekintése] [ lnk-azure-rm-overview] tudhat meg többet az Azure Resource Manager képességeit.
+* További információ a hello hello képességeit [IoT-központ erőforrás-szolgáltató REST API][lnk-rest-api].
+* Olvasási [Azure Resource Manager áttekintése] [ lnk-azure-rm-overview] Azure Resource Manager hello képességeivel kapcsolatos további toolearn.
 
-Az IoT-központ fejlesztésével kapcsolatos további tudnivalókért tekintse meg a következő cikkeket:
+toolearn IoT-központot, fejlesztésével kapcsolatos további hello a következő cikkekben talál:
 
-* [C SDK bemutatása][lnk-c-sdk]
+* [Bevezetés tooC SDK][lnk-c-sdk]
 * [Az Azure IoT SDK-k][lnk-sdks]
 
-Az IoT-központ képességeit további megismeréséhez lásd:
+toofurther megismerkedhet az IoT-központ hello képességeit, lásd:
 
 * [Egy eszköz szimulálva Azure IoT oldala][lnk-iotedge]
 

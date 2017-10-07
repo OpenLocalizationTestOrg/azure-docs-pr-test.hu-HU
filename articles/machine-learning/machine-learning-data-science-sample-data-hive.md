@@ -1,5 +1,5 @@
 ---
-title: "Az adatokat az Azure HDInsight Hive táblák |} Microsoft Docs"
+title: "Azure HDInsight Hive-táblázatok adatait aaaSample |} Microsoft Docs"
 description: "Lefelé (Hadopop) Azure HDInsight Hive táblák az adatok mintavétele"
 services: machine-learning,hdinsight
 documentationcenter: 
@@ -14,33 +14,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: hangzh;bradsev
-ms.openlocfilehash: d46297dfaf85976114fbf610803e5f1a997041e0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5f86df9b5a18facc875f437abfb004dbe3a06ea4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sample-data-in-azure-hdinsight-hive-tables"></a>Adatmintavétel az Azure HDInsight Hive-táblákban
-Ez a cikk azt ismertetik lefelé-minta Hive-lekérdezésekkel Azure HDInsight Hive táblákban tárolt adatokat. Azt a három popularly használt mintavételi módszerek terjed ki:
+Ebben a cikkben azt ismertetik a Hive-lekérdezésekkel Azure HDInsight Hive táblák hogyan toodown-minta adataihoz. Azt a három popularly használt mintavételi módszerek terjed ki:
 
 * Egységes véletlenszerű mintavétel
 * A csoportok véletlenszerű mintavétel
 * Rétegzett mintavétel
 
-A következő **menü** az adatokat a különböző tárolási környezetekben módját leíró témakörök hivatkozásait.
+hello következő **menü** hivatkozásokat tartalmaz, amelyek ismertetik tootopics hogyan toosample adatait tároló különböző környezetekben.
 
 [!INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
 
 **Miért érdemes az az adatokat?**
-Ha azt tervezi, hogy elemezheti az adatkészlet túl nagy, akkor általában down kétmintás az adatokat, hogy az kisebb, de reprezentatív és könnyebben kezelhető méretű jó ötlet. Ez lehetővé teszi az adatok ismertetése, feltárása és a szolgáltatás mérnöki csapathoz. A szerepkör az adatok tudományos folyamatban az adatok feldolgozása funkciók és a gépi tanulási modellek gyors prototípusának engedélyezéséhez.
+Ha azt tervezi, hogy tooanalyze hello adatkészlet túl nagy, a rendszer általában egy jó ötlet toodown-minta hello adatok tooreduce azt tooa kisebb, de reprezentatív és könnyebben kezelhető méretét. Ez lehetővé teszi az adatok ismertetése, feltárása és a szolgáltatás mérnöki csapathoz. Hello csapat az tudományos folyamata a szerepköre tooenable gyors prototípusának hello adatfeldolgozási funkciók és a gépi tanulási modellek.
 
-Ez a mintavételi feladat Ez a lépés a [Team adatok tudományos folyamat (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
+Ez a mintavételi feladat ez hello lépés [Team adatok tudományos folyamat (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
 
-## <a name="how-to-submit-hive-queries"></a>Hogyan lehet elküldeni a Hive-lekérdezések
-A Hadoop parancssori konzolról a Hadoop-fürt átjárócsomópontjához a Hive-lekérdezések küldheti el. Ehhez jelentkezzen be a Hadoop-fürt átjárócsomópontjához, nyissa meg a Hadoop parancssori konzolt, és küldje el a Hive-lekérdezések ott. A Hadoop parancssori konzolon Hive-lekérdezések elküldése, lásd: [hogyan küldhetnek Hive-lekérdezések](machine-learning-data-science-move-hive-tables.md#submit).
+## <a name="how-toosubmit-hive-queries"></a>Hogyan toosubmit Hive-lekérdezések
+Hive-lekérdezéseket a hello hello Hadoop-fürt átjárócsomópontjához hello Hadoop parancssori konzolról küldheti el. toodo ez, jelentkezzen be a hello hello Hadoop-fürt átjárócsomópontjához nyissa meg a hello Hadoop parancssori konzolt, és küldje el onnan hello Hive-lekérdezéseket. Hive-lekérdezések hello Hadoop parancssori konzolon elküldése, lásd: [hogyan tooSubmit Hive-lekérdezések](machine-learning-data-science-move-hive-tables.md#submit).
 
 ## <a name="uniform"></a>Egységes véletlenszerű mintavétel
-Egységes véletlenszerű mintavételi jelenti, hogy az adatkészlet egyes soraihoz alatt mintát egyenlő esélyét. Ez az ad hozzá egy kiegészítő mezőt rand() az adatkészletben a belső "select" lekérdezési, és a külső "select" lekérdezési feltételhez véletlenszerű mező valósítható meg.
+Egységes véletlenszerű mintavételi jelenti, hogy minden egyes sorára hello adatkészlet alatt mintát egyenlő esélyét. Egy kiegészítő mezőt rand() toohello adatkészlet hello belső "select" lekérdezési való hozzáadásával valósítható, és a hello külső "select" lekérdezési feltételtől véletlenszerű a mezőhöz.
 
 Íme egy példa lekérdezést:
 
@@ -55,11 +55,11 @@ Egységes véletlenszerű mintavételi jelenti, hogy az adatkészlet egyes sorai
         )a
     where samplekey<='${hiveconf:sampleRate}'
 
-Itt `<sample rate, 0-1>` azt jelzi, hogy a felhasználók mintát szeretne arányát határozza meg.
+Itt `<sample rate, 0-1>` hello felhasználók kívánt toosample rekordok hello arányát határozza meg.
 
 ## <a name="group"></a>A csoportok véletlenszerű mintavétel
-Ha mintavételi kategorikus adatok, érdemes lehet akár vagy kizárja a minden egyes adott kategorikus változó értékének előfordulása. Ez a "csoport mintavételi" Mit jelent.
-Például ha kategorikus változó "Állapot", amelynek értékek NY MA, CA, NJ, PA, stb akkor, rekordjának olyan állapotban kell mindig együtt, hogy azok lekérdező vagy nem.
+Ha a mintavételi kategorikus adatok, érdemes lehet tooeither hatókörébe felvenni és kizárni összes hello példányai néhány adott egy kategorikus változó értékét. Ez a "csoport mintavételi" Mit jelent.
+Például ha kategorikus változó "Állapot", amelynek értékek szerepelnek NY, MA, CA, NJ, PA stb, rekordokat szeretne hello olyan állapotban lennie mindig együtt, hogy azok lekérdező vagy sem.
 
 Íme példalekérdezést adott minták csoport szerint:
 
@@ -88,7 +88,7 @@ Például ha kategorikus változó "Állapot", amelynek értékek NY MA, CA, NJ,
     on b.catfield=c.catfield
 
 ## <a name="stratified"></a>Rétegzett mintavétel
-Véletlenszerű mintavételi van műanyaggal rétegezett tekintetében kategorikus változó Ha kapott minták értékeit, hogy kategorikus, amelyek egy-egy beállítani, mint a szülő feltöltését, ahol a minták származik. Az előző példát, a fenti tegyük fel, hogy az adatok részleges feltöltések rendelkezik államok, például NJ 100 megfigyelések, NY 60 megfigyelések van, pedig WA 300 megfigyelések. Ha 0,5 kell rétegzett mintavételi arány ad meg, majd a mintát a kell rendelkeznie körülbelül 50, 30 és 150 megfigyelések NJ, NY és WA rendre.
+Véletlenszerű mintavételi műanyaggal van rétegezett tekintetben tooa kategorikus változóval Ha kapott hello minták rendelkezik, amely kategorikus értékének a hello méretarány hasonlóan hello szülő feltöltése a mely hello minták származik. Ugyanebben a példában a fenti, használatával hello tegyük fel, hogy az adatok részleges feltöltések államok, azaz NJ van 100 megfigyelések, NY rendelkezik 60 megfigyelések, pedig WA 300 megfigyelések. Ha hello aránya adja meg mintavételi toobe 0,5 műanyaggal rétegezett, majd hello mintát a kell körülbelül 50, 30 és 150 megfigyelések NJ, NY és WA kulcsattribútumokkal.
 
 Íme egy példa lekérdezést:
 

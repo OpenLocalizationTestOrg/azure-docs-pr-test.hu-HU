@@ -1,6 +1,6 @@
 ---
-title: "Index lekérdezése (portál – Azure Search) | Microsoft Docs"
-description: "Keresési lekérdezés küldése az Azure portál Keresési ablakában."
+title: "AAA \"lekérdezheti az indexét (portál – Azure Search) |} Microsoft dokumentumok\""
+description: "Keresési lekérdezés küldése hello Azure portál keresési ablakában ki."
 services: search
 manager: jhubbard
 documentationcenter: 
@@ -13,13 +13,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 07/10/2017
 ms.author: ashmaka
-ms.openlocfilehash: dd68d8ed073bf7b8666ddef35a2f1f84df690b4b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 56bab3ef8a66eeb053fbbeb6d322acb6824fb34b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="query-an-azure-search-index-using-search-explorer-in-the-azure-portal"></a>Azure Search-index lekérdezése a keresési ablakkal az Azure Portalon
+# <a name="query-an-azure-search-index-using-search-explorer-in-hello-azure-portal"></a>Keresési ablak használatát hello Azure portál Azure Search-index lekérdezése
 > [!div class="op_single_selector"]
 > * [Áttekintés](search-query-overview.md)
 > * [Portál](search-explorer.md)
@@ -28,41 +28,41 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-Ez a cikk bemutatja, hogyan kérdezhet le Azure Search-indexeket a **keresési ablakkal** az Azure Portalon. A keresési ablakkal egyszerű vagy teljes Lucene lekérdezési karakterláncokat küldhet el a szolgáltatásban lévő bármely indexnek.
+Ez a cikk bemutatja, hogyan tooquery az Azure Search index használatával **keresési ablak** a hello Azure-portálon. Keresési ablak toosubmit egyszerű vagy teljes Lucene lekérdezési karakterláncok tooany meglévő index használhatja a szolgáltatást.
 
-## <a name="open-the-service-dashboard"></a>A szolgáltatás irányítópultjának megnyitása
-1. Az [Azure Portal](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) bal oldali gyorselérési sávján kattintson a **Minden erőforrás** elemre.
+## <a name="open-hello-service-dashboard"></a>Nyissa meg hello szolgáltatás irányítópult
+1. Kattintson a **összes erőforrás** hello Ugrás sávon a bal oldalán található hello hello [Azure-portálon](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 2. Válassza ki az Azure Search szolgáltatást.
 
 ## <a name="select-an-index"></a>Index kiválasztása
 
-Válassza ki az **Indexek** csempén azt az indexet, amelyből keresni kíván.
+Jelölje be hello indexet a hello toosearch **indexek** csempére.
 
    ![](./media/search-explorer/pick-index.png)
 
 ## <a name="open-search-explorer"></a>A keresési ablak megnyitása
 
-Kattintson a Keresési ablak csempére a keresősáv és az eredményeket tartalmazó ablaktábla megnyitásához.
+Kattintson a keresési ablak csempére tooslide nyitott hello keresősáv hello és az eredmények ablaktábláján.
 
    ![](./media/search-explorer/search-explorer-tile.png)
 
 ## <a name="start-searching"></a>Indítson keresést
 
-A Keresési ablak használatakor [lekérdezési paraméterekkel](https://docs.microsoft.com/rest/api/searchservice/Search-Documents) határozhatja meg a lekérdezést.
+Hello keresési ablak használatakor is megadhat [lekérdezési paramétert](https://docs.microsoft.com/rest/api/searchservice/Search-Documents) tooformulate hello lekérdezés.
 
 1. A **Lekérdezési karakterlánc** területen írjon be egy lekérdezést, majd kattintson a **Keresés** gombra. 
 
-   A rendszer automatikusan átalakítja a lekérdezési sztringet a megfelelő kérelmi URL-címmé, és HTTP-kérelmet küldjön az Azure Search REST API-nak.   
+   hello lekérdezési karakterlánc van automatikusan elemzi hello megfelelő kérelem URL-cím toosubmit hello Azure Search REST API egy HTTP-kérelmet.   
    
-   A kérelem létrehozásához bármilyen érvényes egyszerű vagy teljes Lucene lekérdezési szintaxist használhat. A `*` karakter üres vagy nem meghatározott keresésnek felel meg, amely az összes dokumentumot visszaadja véletlenszerű sorrendben.
+   Használhat bármilyen érvényes egyszerű vagy teljes Lucene lekérdezési szintaxis toocreate hello kérelmet. Hello `*` karakter egyenértékű tooan üres vagy nincs megadva keresési, amely visszaadja az összes dokumentumot nem adott sorrendben.
 
-2. Az **Eredmények** területen a lekérdezési eredmények nyers JSON formátumban jelennek meg, hasonlóan a HTTP-választörzsekben visszaadott hasznos adatokhoz, amikor programozott módon ad ki kéréseket.
+2. A **eredmények**, azonos toohello hasznos visszaadott lekérdezés eredménye nyers JSON jelenjenek meg, a HTTP-válasz törzsében programozott módon kérelmek kiállításához.
 
    ![](./media/search-explorer/search-bar.png)
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az alábbi forrásokban további tudnivalókat és példákat találhat a lekérdezési szintaxisokról.
+a következő erőforrások hello adja meg a további lekérdezési szintaxissal kapcsolatos információk és a példákat.
 
  + [Egyszerű lekérdezési szintaxis](https://docs.microsoft.com/rest/api/searchservice/simple-query-syntax-in-azure-search) 
  + [Lucene lekérdezési szintaxis](https://docs.microsoft.com/rest/api/searchservice/lucene-query-syntax-in-azure-search) 

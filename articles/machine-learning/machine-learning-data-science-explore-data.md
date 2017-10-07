@@ -1,6 +1,6 @@
 ---
-title: "Az adatok tudományos folyamatban adatokba |} Microsoft Docs"
-description: "Hogyan adatokba különböző környezettel."
+title: "hello csapat az tudományos folyamata adatokat aaaExplore |} Microsoft Docs"
+description: "Hogyan tooexplore adatok különböző környezettel."
 services: machine-learning,storage
 documentationcenter: 
 author: bradsev
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: b0735d659412699d06d5e4f1e9a713444ad5ac61
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ec582a43fbfcdb19429138a0a4ce9ffe396bee5f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="explore-data-in-the-team-data-science-process"></a>Az adatok megismerése a csoportos adatelemzési folyamattal
-Ez a dokumentum bemutatja, hogyan adhat adatokba négy különböző környezettel, amelyeket többnyire az tudományos folyamat:
+# <a name="explore-data-in-hello-team-data-science-process"></a>A csapat az tudományos folyamata hello adatokba
+Ez a dokumentum azt ismerteti, hogyan tooexplore adatok négy különböző környezettel, amely jellemzően hello tudományos folyamata:
 
-* **Az Azure blob-tároló** adatok van felfedezte használatával a [Pandas](http://pandas.pydata.org/) Python-csomag.
+* **Az Azure blob-tároló** adatok van felfedezte hello segítségével [Pandas](http://pandas.pydata.org/) Python-csomag.
 * **SQL Server** adatok van felfedezte SQL használatával, és a Python hasonló programozási nyelv használatával.
 * **Hive tábla** adatok felfedezte van a Hive-lekérdezések használatával.
 * **Az Azure Machine Learning (AML) Studio** adatok van felfedezte AML modulok használata.
 
-A következő **menü** az eszközök segítségével áttekintheti az különböző tárolási környezetekben adatokat leíró témakörök hivatkozásait. 
+hello következő **menü** toohello leíró témakörök hivatkozásait hogyan toouse ezen eszközök tooexplore adatait tároló különböző környezetekben. 
 
 [!INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
 

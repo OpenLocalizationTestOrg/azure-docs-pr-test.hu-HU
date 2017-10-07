@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Storage szolgáltatás titkosítási ügyfél használatával felügyelt kulcsok Azure Key Vault |} Microsoft Docs"
-description: "Az Azure Blob Storage szolgáltatás oldalán titkosítani, ha az adatok tárolása az Azure Storage szolgáltatás titkosítási szolgáltatás segítségével, és visszafejteni, ha a felhasználói adatok beolvasása kulcsok kezelése."
+title: "aaaAzure Storage szolgáltatás titkosítási kulcsokat az Azure Key Vault ügyfél használatával felügyelt |} Microsoft Docs"
+description: "Használjon hello Azure Storage szolgáltatás titkosítási szolgáltatás tooencrypt az Azure Blob Storage hello szolgáltatás oldalán hello adatokat tárolja, és kulcsok hello adatokat használó ügyfél kezelt visszafejteni."
 services: storage
 documentationcenter: .net
 author: lakasa
@@ -14,49 +14,49 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/07/2017
 ms.author: lakasa
-ms.openlocfilehash: b596cf1a98a9c6f42c3bbee9cc27608549e2b5ea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 870cae2f258b356aa234f8bba65a023ac389be10
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="storage-service-encryption-using-customer-managed-keys-in-azure-key-vault"></a>Felügyelt felhasználói kulcsok használata az Azure Key Vault Storage szolgáltatás titkosítási
 
-Microsoft Azure a erősen elkötelezett az Ön és az adatokat, hogy megfeleljen a szervezeti biztonsági és megfelelőségi kötelezettségvállalások megvédeni.  Az inaktív adatok védelméhez egyik módja Storage szolgáltatás titkosítási (SSE), amely titkosítja az adatokat, történő írásakor, tárolási és automatikusan visszafejti az adatok beolvasása közben azt használja. A titkosítási és visszafejtési automatikus és teljes mértékben transzparens és 256 bites [AES titkosítási](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard), a legerősebb blokk egyik Rejtjelek érhető el.
+Microsoft Azure a erősen véglegesített toohelping, és az adatok toomeet megvédeni a szervezeti biztonsági és megfelelőségi jár kötelezettségekkel.  Az adatvédelemben aktívan egyike toouse Storage szolgáltatás titkosítási (SSE), automatikusan titkosítja az adatokat, amikor toostorage alkalmazásokba, és az adatok visszafejtése azt lekérése közben. hello titkosítási és visszafejtési automatikus és teljes mértékben transzparens és 256 bites [AES titkosítási](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard), hello legerősebb blokk egyik Rejtjelek érhető el.
 
-A Microsoft által felügyelt titkosítási kulcsok használatával SSE, vagy használhatja a saját titkosítási kulccsal. Ez a cikk az utóbbi kapcsolatos kommunikál. További információ a Microsoft által felügyelt kulcsokkal, vagy SSE általában talál [Storage szolgáltatás titkosítási az inaktív adatok](storage-service-encryption.md).
+A Microsoft által felügyelt titkosítási kulcsok használatával SSE, vagy használhatja a saját titkosítási kulccsal. Ez a cikk előadás hello utóbbi. További információ a Microsoft által felügyelt kulcsokkal, vagy SSE általában talál [Storage szolgáltatás titkosítási az inaktív adatok](storage-service-encryption.md).
 
-Adja meg a nem tudják használni a saját titkosítási kulccsal, a Blob Storage SSE integrálva van Azure Key Vault (AKV). Létrehozhat saját titkosítási kulccsal, és tárolja őket a AKV, vagy AKV tartozó API-k segítségével készítése a titkosítási kulcsokat. Nem csak AKV lehetővé teszi a kezelhetik és szabályozhatják a kulcsokat, emellett lehetővé teszi a kulcs használatának naplózása. 
+tooprovide hello képességét toouse saját titkosítási kulccsal, a Blob Storage SSE integrálva van az Azure Key Vault (AKV). Létrehozhat saját titkosítási kulccsal, és tárolja őket a AKV, vagy AKV tartozó API-k toogenerate titkosítási kulcsokat is használhat. Nem csak nem AKV toomanage lehetővé teszi, és szabályozhatja a kulcsokat, azt is lehetővé teszi, hogy Ön tooaudit a kulcshasználati. 
 
-Miért érdemes a saját kulcsokat hoz létre? Azt további rugalmasságot biztosít, beleértve a létrehozásához, elforgatása, tiltsa le, és adja meg a hozzáférés-vezérlést, és a titkosítási kulcsokat az adatok védelmére használt naplózása.
+Miért érdemes toocreate saját kulcsok? Ez további rugalmasságot biztosít, beleértve hello képességét toocreate, elforgatása, tiltsa le és hozzáférés-vezérlést és tooaudit hello titkosítási kulcsok használt tooprotect az adatok megadása.
 
 ## <a name="sse-with-customer-managed-keys-preview"></a>Az ügyfél felügyelt kulcsoknál előzetes verziójú SSE
 
-Ez a szolgáltatás jelenleg előzetes kiadásban elérhető. Ez a funkció használatához hozzon létre egy új tárfiókot kell. Hozhat létre egy új kulcstartó és a kulcs vagy egy meglévő kulcstároló és a kulcs használhatja. A tárfiók és a key vault ugyanabban a régióban kell lennie, de különböző előfizetésekhez el.
+Ez a szolgáltatás jelenleg előzetes kiadásban elérhető. toouse ezt a beállítást, egy új tárfiókot toocreate van szüksége. Hozhat létre egy új kulcstartó és a kulcs vagy egy meglévő kulcstároló és a kulcs használhatja. hello tárfiók és kulcstároló hello kell hello ugyanabban a régióban, de nem lehetnek különböző előfizetésekhez.
 
-Részt az előzetes adjon forduljon [ ssediscussions@microsoft.com ](mailto:ssediscussions@microsoft.com). Egy hivatkozásra részt venni az előzetes kiadásban lesz elérhető.
+hello Preview tooparticipate kérdéseivel forduljon [ ssediscussions@microsoft.com ](mailto:ssediscussions@microsoft.com). Egy hivatkozásra tooparticipate hello Preview lesz elérhető.
 
-További tudnivalókért tekintse meg a [gyakran ismételt kérdések](#frequently-asked-questions-about-storage-service-encryption-for-data-at-rest).
+toolearn több, tekintse meg toohello [gyakran ismételt kérdések](#frequently-asked-questions-about-storage-service-encryption-for-data-at-rest).
 
 > [!IMPORTANT]
-> Regisztrálnia kell az előzetes ebben a cikkben ismertetett lépések előtt. Előzetes verzióhoz való hozzáférés nélkül nem lesz a portálon a funkció engedélyezése érdekében.
+> Regisztrálnia kell az hello preview előzetes toofollowing hello cikkben leírt lépéseket. Előzetes verzióhoz való hozzáférés nélkül tartalma nem kell tudni tooenable Ez a szolgáltatás hello portálon.
 
 ## <a name="getting-started"></a>Első lépések
 ## <a name="step-1-create-a-new-storage-accountstorage-create-storage-accountmd"></a>1. lépés: [hozzon létre egy új tárfiókot](storage-create-storage-account.md)
 
 ## <a name="step-2-enable-encryption"></a>2. lépés: Engedélyezze titkosítás
-A tárolási fiók az SSE engedélyezheti a [Azure-portálon](https://portal.azure.com). A tárfiók beállítások panelen keresse meg a Blob szolgáltatás szakasz alábbi ábrán látható, és kattintson a titkosítás.
+Hello tárfiók hello segítségével engedélyezheti az SSE [Azure-portálon](https://portal.azure.com). A hello-beállítások panelen hello tárfiók hello Blob szolgáltatás szakasz alábbi ábrán látható módon keres, és kattintson a titkosítás.
 
 ![A titkosítási beállítással portál ábrázoló képernyőfelvétel](./media/storage-service-encryption/image1.png)
 <br/>*Blob szolgáltatás SSE engedélyezése*
 
-Ha azt szeretné, hogy programozott módon engedélyezze vagy tiltsa le a tárolás titkosítását egy tárfiókon, használja a [Azure Storage erőforrás szolgáltató REST API felülete](https://docs.microsoft.com/en-us/rest/api/storagerp/?redirectedfrom=MSDN), a [Storage erőforrás szolgáltató ügyféloldali kódtára a .NET](https://docs.microsoft.com/en-us/dotnet/api/?redirectedfrom=MSDN), [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/overview?view=azurermps-4.0.0), vagy a [Azure CLI](https://docs.microsoft.com/en-us/azure/storage/storage-azure-cli).
+Ha szeretné, hogy tooprogrammatically engedélyezése, vagy tiltsa le a Storage szolgáltatás titkosítási hello egy tárfiókon, használhatja a hello [Azure Storage erőforrás szolgáltató REST API felülete](https://docs.microsoft.com/en-us/rest/api/storagerp/?redirectedfrom=MSDN), hello [Storage erőforrás-szolgáltató ügyféloldali kódtár a .NET-hez](https://docs.microsoft.com/en-us/dotnet/api/?redirectedfrom=MSDN), [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/overview?view=azurermps-4.0.0), vagy hello [Azure CLI](https://docs.microsoft.com/en-us/azure/storage/storage-azure-cli).
 
-Ezen a képernyőn Ha nem látja a "saját kulcs használata" jelölőnégyzet azt nem jóváhagyott az előzetes verziójára. Kérjük, küldjön egy e-mailek [ ssediscussions@microsoft.com ](mailto:ssediscussions@microsoft.com) és jóváhagyás-igénylést.
+Ezen a képernyőn Ha nem látható hello "saját kulcs használata" jelölőnégyzet, akkor nem jóváhagyott hello Preview. Küldjön egy e-mailt túl[ ssediscussions@microsoft.com ](mailto:ssediscussions@microsoft.com) és jóváhagyás-igénylést.
 
 ![Titkosítási betekintő portál képernyőfelvétel](./media/storage-service-encryption-customer-managed-keys/ssecmk1.png)
 
-Alapértelmezés szerint az SSE Microsoft által felügyelt kulcsok fogja használni. A saját kulcsok használatához jelölje be a jelölőnégyzetet. Majd adja meg a kulcs URI, vagy válassza ki a kulcs és a Key Vault a választó.
+Alapértelmezés szerint az SSE Microsoft által felügyelt kulcsok fogja használni. toouse saját kulcsok hello jelölőnégyzetet. Majd adja meg a kulcs URI, vagy válassza ki a kulcs és a Key Vault hello objektumválasztó.
 
 ## <a name="step-3-select-your-key"></a>3. lépés: Válassza ki a kulcs
 
@@ -64,17 +64,17 @@ Alapértelmezés szerint az SSE Microsoft által felügyelt kulcsok fogja haszn�
 
 ![Portál képernyőfelvétel: a titkosítási kulcs uri-beállítás megadása](./media/storage-service-encryption-customer-managed-keys/ssecmk3.png)
 
-Ha a tárfiók nincs hozzáférése a Key Vault, futtathatja az Azure Powershell hozzáférést biztosít a szükséges kulcstartóhoz storage-fiókok a következő parancsot.
+Ha hello storage-fiók nem rendelkezik hozzáféréssel toohello Key Vault, hello következő futtathatja használata Azure Powershell toogrant hozzáférés toohello tárfiókok toohello kulcstároló szükséges parancsot.
 
 ![A hozzáférés megtagadva a kulcstartót portál képernyőfelvétel](./media/storage-service-encryption-customer-managed-keys/ssecmk4.png)
 
-Ugrás az Azure Key Vault az Azure portálon, és a tárfiók való hozzáférés biztosítása szerint is engedélyezheti a hozzáférést az Azure-portálon.
+Szerint hello Azure-portálon az Azure Key Vault toohello fog, és a hozzáférés toohello storage-fiók megadása is engedélyezheti a hozzáférést hello Azure-portálon keresztül.
 
-## <a name="step-4-copy-data-to-storage-account"></a>4. lépés: Adatok másolása storage-fiók
-Ha szeretné, hogy a titkosított adatok át az új tárfiók, olvassa el [lépés 3 az első lépések a Storage szolgáltatás titkosítási az inaktív adatok](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption#step-3-copy-data-to-storage-account).
+## <a name="step-4-copy-data-toostorage-account"></a>4. lépés:, Másolja át az toostorage fiókja
+Ha azt szeretné tootransfer adatokat az új tárolási figyelembe, hogy titkosítva van, tekintse meg túl[lépés 3 az első lépések a Storage szolgáltatás titkosítási az inaktív adatok](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption#step-3-copy-data-to-storage-account).
 
-## <a name="step-5-query-the-status-of-the-encrypted-data"></a>5. lépés: A titkosított adatok állapotának lekérdezése
-Tekintse meg a titkosított adatok állapotának lekérdezéséhez [lépés 4 az első lépések a Storage szolgáltatás titkosítási az inaktív adatok](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption#step-4-query-the-status-of-the-encrypted-data).
+## <a name="step-5-query-hello-status-of-hello-encrypted-data"></a>5. lépés: A titkosított adatok hello hello állapotának lekérdezése
+hello titkosított adatok tooquery hello állapotának tekintse meg a túl[lépés 4 az első lépések a Storage szolgáltatás titkosítási az inaktív adatok](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption#step-4-query-the-status-of-the-encrypted-data).
 
 ## <a name="frequently-asked-questions-about-storage-service-encryption-for-data-at-rest"></a>Gyakori kérdések Storage szolgáltatás titkosítási az inaktív adatok
 **K: használom a prémium szintű storage; Használhatok SSE felügyelt ügyfél kulcsokkal?**
@@ -89,25 +89,25 @@ V: Igen.
 
 V: nincs az Azure Key Vault használatával költsége. További részletekért látogasson el [Key Vault díjszabása](https://azure.microsoft.com/en-us/pricing/details/key-vault/). Nincs SSE használatára vonatkozó további költség nélkül.
 
-**K: visszavonja a titkosítási kulcsokat a hozzáférést?**
+**K: hozzáférés toohello titkosítási kulcsok visszavonása?**
 
-A: visszavonhatja a hozzáférést Igen, tetszőleges időpontban. Többféleképpen is lehet visszavonni a hozzáférést a kulcsokat. Tekintse meg [Azure Key Vault PowerShell](https://docs.microsoft.com/en-us/powershell/module/azurerm.keyvault/?view=azurermps-4.0.0) és [Azure Key Vault CLI](https://docs.microsoft.com/en-us/cli/azure/keyvault) további részleteket. Visszavonni a hozzáférési gyakorlatilag letiltja való hozzáférést a tárfiókban lévő összes BLOB, a fiók titkosítási kulcs Azure Storage nem érhetők el.
+A: visszavonhatja a hozzáférést Igen, tetszőleges időpontban. Számos módon toorevoke tooyour hívóbetűk van. Tekintse meg a túl[Azure Key Vault PowerShell](https://docs.microsoft.com/en-us/powershell/module/azurerm.keyvault/?view=azurermps-4.0.0) és [Azure Key Vault CLI](https://docs.microsoft.com/en-us/cli/azure/keyvault) további részleteket. Visszavonni a hozzáférési hatékonyan blokkolja tooall blobok hello tárfiókban, titkosítási kulcsára hello Azure Storage nem érhetők el.
 
 **K: hozható létre a tárfiók és a kulcs másik régióban?**
 
-V: nem, a tárfiók és a kulcs tárolóbeli/kulccsal kell ugyanabban a régióban kell. 
+A: nem hello tárfiók és a kulcs tárolóbeli/kulccsal kell toobe hello ugyanabban a régióban. 
 
-**K: engedélyezhető az SSE felügyelt ügyfél kulccsal rendelkező a storage-fiók létrehozása közben?**
+**K: engedélyezhető az SSE felügyelt ügyfél kulccsal rendelkező hello storage-fiók létrehozása közben?**
 
-V: nem. A storage-fiók létrehozása közben engedélyezésekor SSE Microsoft által felügyelt kulcsok csak használhatja. Ha ügyfél által felügyelt kulcsok használatára szeretné szüksége lesz a tárolási fiók tulajdonságainak módosítása. Programozott frissítése a tárfiók REST- vagy a storage ügyfélkódtáraival egyikét használja, vagy frissíteni a tárfiók tulajdonságai-fiók létrehozása után az Azure portál használatával.
+V: nem. Ha engedélyezi az SSE hello storage-fiók létrehozása közben, Microsoft által felügyelt kulcsok csak használhatja. Ha azt szeretné, hogy toouse felügyelt ügyfél kulcsok szüksége lesz a tooupdate hello a tárfiók tulajdonságai. Használhatja a többi vagy hello tárolási ügyfél szalagtárak tooprogrammatically egyike a tárfiók módosítása, vagy frissítse a tárfiók tulajdonságai hello hello Azure portál használatával hello fiók létrehozása után.
 
 **K: letiltani titkosítás közben SSE ügyféllel felügyelt kulcsok?**
 
-V: nem, akkor titkosítás nem tiltható le közben SSE ügyféllel felügyelt kulcsok. Tiltsa le a titkosítást, kell váltania a Microsoft által felügyelt kulcsok. Ehhez az Azure-portálon vagy a PowerShell használatával.
+V: nem, akkor titkosítás nem tiltható le közben SSE ügyféllel felügyelt kulcsok. toodisable titkosítási, szüksége lesz a tooswitch toousing Microsoft által felügyelt kulcsok. Ehhez hello Azure-portálon vagy a PowerShell használatával.
 
 **K: SSE alapértelmezés szerint engedélyezve van, egy új tárfiók létrehozásakor?**
 
-V: SSE; alapértelmezés szerint nincs engedélyezve az Azure portál segítségével engedélyezheti azt. Ez a funkció a tárolási erőforrás-szolgáltató REST API használatával programozott módon is engedélyezhető. 
+V: SSE; alapértelmezés szerint nincs engedélyezve az Azure portál tooenable hello használhatja azt. Szoftveresen is engedélyezheti ezt a funkciót hello Storage erőforrás-szolgáltató REST API használatával. 
 
 **K: nem engedélyezhető a titkosítás a storage-fiókom.**
 
@@ -115,14 +115,14 @@ V: az azt egy erőforrás-kezelő tárfiókot? Klasszikus tárfiókok nem támog
 
 **K: van SSE ügyféllel felügyelt csak meghatározott régióiba engedélyezett kulcsok?**
 
-V: SSE csak bizonyos régiókban a Blob-tároló ebben az előzetes verzióban érhető el. Írjon e-mailt [ ssediscussions@microsoft.com ](mailto:ssediscussions@microsoft.com) kereséséhez a rendelkezésre állás és a részletek a Preview-ban. 
+V: SSE csak bizonyos régiókban a Blob-tároló ebben az előzetes verzióban érhető el. Írjon e-mailt [ ssediscussions@microsoft.com ](mailto:ssediscussions@microsoft.com) toocheck rendelkezésre állást és a részletek a Preview-ban. 
 
-**K: hogyan do I kapcsolatfelvételre Ha I problémák merülnek fel, vagy visszajelzést szeretne biztosítani?**
+**K: hogyan do I kapcsolatfelvételre Ha problémák merülnek fel, vagy visszajelzés tooprovide I?**
 
-A: forduljon a [ ssediscussions@microsoft.com ](mailto:ssediscussions@microsoft.com) a Storage szolgáltatás titkosítási okozó problémákat. 
+A: forduljon a [ ssediscussions@microsoft.com ](mailto:ssediscussions@microsoft.com) pedig problémákkal kapcsolatos tooStorage titkosítását. 
 
 ## <a name="next-steps"></a>Következő lépések
 
-*   További információ a biztonsági átfogó készletét képességeket kínál, amelyek segítségével a fejlesztők olyan biztonságos alkalmazásokat hozhat létre, tekintse meg a [tárolási biztonsági útmutatója](https://docs.microsoft.com/en-us/azure/storage/storage-security-guide).
+*   Bővebben hello választékát biztonsági képességeket kínál, amelyek segítségével a fejlesztők olyan biztonságos alkalmazásokat hozhat létre, tekintse meg a hello [tárolási biztonsági útmutatója](https://docs.microsoft.com/en-us/azure/storage/storage-security-guide).
 *   Áttekintés az Azure Key Vault kapcsolatos információkért lásd: [Mi az Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-whatis)?
 *   Ismerkedés az Azure Key Vault, lásd: [Ismerkedés az Azure Key Vault](../key-vault/key-vault-get-started.md).

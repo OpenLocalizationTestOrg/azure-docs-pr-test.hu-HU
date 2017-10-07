@@ -1,6 +1,6 @@
 ---
-title: "Riasztásokat hoznak létre az OMS szolgáltatáshoz |} Microsoft Docs"
-description: "Naplóelemzési riasztások határozza meg az OMS-adattárban lévő fontos adatokat és is proaktív értesítést küldenek, problémák vagy meghívása műveletek kijavításának őket.  Ez a cikk ismerteti a riasztási szabály és a részletek a különböző általuk végezhető műveletek létrehozása."
+title: "aaaCreating riasztások az OMS szolgáltatáshoz |} Microsoft Docs"
+description: "Log Analytics riasztások határozza meg az OMS-adattárban lévő fontos adatokat és is proaktív értesítést küldenek, problémák vagy meg kíván hívni műveletek tooattempt toocorrect őket.  Ez a cikk ismerteti, hogyan toocreate riasztási szabály és a részletek hello különféle műveletek tarthat."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,144 +14,144 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/23/2017
 ms.author: bwren
-ms.openlocfilehash: c34fb7295e8f386f0e7cf2c1db6b26a3e49eae98
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3d035b2426dda9645b19e6c993dc26a2d95a2a78
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="working-with-alert-rules-in-log-analytics"></a>A Naplóelemzési riasztási szabályok használata
-A riasztási szabályok, amelyek automatikusan futnak a napló keresések rendszeres időközönként riasztások jönnek létre.  Akkor hozzon létre egy riasztási rekordot, ha az eredmények bizonyos feltételeknek.  A szabály úgy automatikusan futtatja egy vagy több műveletek proaktív értesítést küldenek, a figyelmeztetés vagy meg kíván hívni egy másik folyamat.   
+A riasztási szabályok, amelyek automatikusan futnak a napló keresések rendszeres időközönként riasztások jönnek létre.  Akkor hozzon létre egy riasztási rekordot, ha hello eredmények bizonyos feltételeknek.  hello szabály követően automatikusan futtathatja egy vagy több műveletek tooproactively hello riasztás értesíti vagy meg kíván hívni egy másik folyamat.   
 
-Ez a cikk ismerteti a folyamatok létrehozhatja és szerkesztheti a riasztási szabályok az OMS-portálon.  A különböző beállításokról és konfigurálásukról megvalósításához szükséges logikát, lásd: [Naplóelemzési ismertetése riasztások](log-analytics-alerts.md).
+Ez a cikk hello folyamatok toocreate ismerteti, és szerkesztheti a riasztási szabályok használatával hello OMS-portálon.  Hello különböző beállításait, valamint hogyan tooimplement szükséges logikát, lásd: [Naplóelemzési ismertetése riasztások](log-analytics-alerts.md).
 
 >[!NOTE]
-> Jelenleg létrehozásának vagy az Azure portál használatával riasztási szabály módosítása. 
+> Jelenleg létrehozásának vagy hello Azure-portál használatával riasztási szabály módosítása. 
 
 ## <a name="create-an-alert-rule"></a>Riasztási szabály létrehozása
 
-Az OMS-portálon riasztási szabályt létrehozni, akkor először hozzon létre az azt jelzi, hogy a riasztás kell meghívnia napló keresése.  A **riasztás** gomb lesz elérhető, hozhat létre és konfigurálja a riasztási szabályt.
+hello OMS-portálon riasztási szabály, akkor először hozzon létre egy napló toocreate hello azt jelzi, hogy hello riasztást kell meghívnia keres.  Hello **riasztás** gomb lesz elérhető, létrehozhat és hello riasztási szabály konfigurálása.
 
 >[!NOTE]
 > Legfeljebb 250 riasztási szabályok jelenleg az OMS-munkaterület hozható létre. 
 
-1. Az OMS áttekintése lapon kattintson a **naplófájl-keresési**.
+1. Hello OMS áttekintése lapon kattintson **naplófájl-keresési**.
 2. Hozzon létre egy új naplófájl keresési lekérdezést, vagy válasszon ki egy mentett napló keresést. 
-3. Kattintson a **riasztási** nyissa meg a lap tetején a **riasztási szabály hozzáadása** képernyő.
-4. A témakörben található információk alapján riasztási szabály konfigurálása [riasztási szabályok részletei](#details-of-alert-rules) alatt.
-6. Kattintson a **mentése** a riasztási szabály befejezéséhez.  Futtatása azonnal elindul.
+3. Kattintson a **riasztási** hello lap tooopen hello hello tetején **riasztási szabály hozzáadása** képernyő.
+4. Konfigurálja a témakörben található információk alapján hello riasztási szabály [riasztási szabályok részletei](#details-of-alert-rules) alatt.
+6. Kattintson a **mentése** toocomplete hello riasztási szabályt.  Futtatása azonnal elindul.
 
 
 ## <a name="edit-an-alert-rule"></a>Riasztási szabály szerkesztése
-Kaphat az összes riasztási szabályok listáját a **riasztások** Naplóelemzési menüjében **beállítások**.  
+Minden riasztási szabályok listája hello olvashatók be **riasztások** Naplóelemzési menüjében **beállítások**.  
 
 ![Riasztások kezelése](./media/log-analytics-alerts/configure.png)
 
-1. Az OMS-konzol válassza ki a **beállítások** csempére.
+1. A hello OMS konzolon válassza hello **beállítások** csempére.
 2. Válassza ki **riasztások**.
 
 Ez a nézet több műveletet is elvégezheti.
 
-* A szabály letiltása kiválasztásával **ki** látható.
-* Riasztási szabály szerkesztése látható ceruza ikonra kattintva.
-* Riasztási szabály törlése gombra kattintva a **X** ikon látható. 
+* A szabály letiltása kiválasztásával **ki** következő tooit.
+* Riasztási szabály szerkesztése tovább tooit a hello ceruza ikonra kattintva.
+* Távolítsa el a riasztási szabály hello kattintva **X** következő tooit ikonra. 
 
 ## <a name="details-of-alert-rules"></a>Riasztási szabályok részletei
-Hozzon létre vagy szerkesztésekor a riasztási szabály az OMS-portálon, akivel együttműködik a **riasztás szabály hozzáadása** vagy **riasztást szabály szerkesztése** lap.  Az alábbi táblázatban láthatók a mezők ezen a képernyőn.
+Amikor hoz létre, vagy az OMS-portálon hello riasztási szabály szerkesztése, akivel együttműködik hello **riasztás szabály hozzáadása** vagy **riasztást szabály szerkesztése** lap.  a következő táblák hello hello mezők ezen a képernyőn írja le.
 
 ![Riasztási szabály](media/log-analytics-alerts/add-alert-rule.png)
 
 ### <a name="alert-information"></a>Riasztási információkat
-Ezek a alapbeállításainak megadása a riasztási szabály és a riasztásokat hoz létre.
+Ezek a alapbeállításainak megadása hello riasztási szabály és hello riasztásokat hoz létre.
 
 | Tulajdonság | Leírás |
 |:--- |:---|
-| Név | A riasztási szabályt azonosító egyedi nevet. Ez a név szerepel az a szabály által létrehozott riasztások.  |
-| Leírás | A riasztási szabály opcionális leírása. |
+| Név | Egyedi név tooidentify hello riasztási szabályt. Ez a név bármely hello szabály által létrehozott riasztásokat tartalmazza.  |
+| Leírás | Hello riasztási szabály opcionális leírása. |
 | Súlyosság |Az a szabály által létrehozott riasztások súlyossága. |
 
 ### <a name="search-query-and-time-window"></a>Keresési lekérdezés- és ablak
-Annak meghatározásához, ha minden riasztást kell létrehozni a rekordot ad vissza a keresési lekérdezés- és ablak értékeli ki.
+hello keresési lekérdezés- és ablak, amely vissza hello rögzíti, amelyek kiértékelt toodetermine, ha minden riasztást kell létrehozni.
 
 | Tulajdonság | Leírás |
 |:--- |:---|
-| Keresési lekérdezés | Ez az a futtatni kívánt lekérdezés.  Ez a lekérdezés által visszaadott rekordok használható annak meghatározásához, hogy riasztás jöjjön létre.<br><br>Válassza ki **használata aktuális keresési lekérdezés** az aktuális lekérdezés, vagy válasszon egy meglévő mentett keresés a listából.  A lekérdezés szintaxisa valósul meg a szövegmezőben, ahol ezt módosíthatja, ha szükséges. |
-| Időablak |Adja meg a lekérdezés időintervallumát.  A lekérdezés visszaadja csak azt jelzi, hogy az aktuális időponthoz képest ebben a tartományban jöttek létre.  Ez bármilyen 5 perc és 24 óra közötti érték lehet.  Nagyobb vagy egyenlő a riasztások gyakorisága kell.  <br><br> Például ha a időszak 60 percre van beállítva, és a lekérdezés futtatása, 1:15 előtti, csak a 12:15 előtti és 1:15 előtti között létrejövő rekordok visszatér. |
+| Keresési lekérdezés | Ez a futtatni kívánt hello lekérdezés.  Ez a lekérdezés által visszaadott hello rekordok használt toodetermine lesz, hogy egy riasztás jön létre.<br><br>Válassza ki **használata aktuális keresési lekérdezés** toouse aktuális lekérdezés hello, vagy válasszon egy meglévő mentett keresés hello listából.  hello lekérdezés szintaxisát hello szövegmezőben, ahol módosíthatja azt szükség valósul meg. |
+| Időablak |Megadja a hello időtartomány hello lekérdezéshez.  hello lekérdezés csak azt jelzi, hogy hello ebben a tartományban jöttek létre aktuális időt adja vissza.  Ez bármilyen 5 perc és 24 óra közötti érték lehet.  Nagyobb vagy egyenlő toohello riasztási gyakoriságot kell lennie.  <br><br> Például ha a hello időt ablak van beállítva, too60 perc és hello lekérdezés futtatása: 1:15 előtti csak 12:15 előtti és 1:15 előtti között létrejövő rekordok fog adja vissza. |
 
-Ha a riasztási szabály a időszak ad meg, a keresési feltételeknek időtartományt a meglévő rekordok száma jelenik meg.  Ez segít meghatározni, amely erre azért van szükség a kívánt eredmények számát.
+Ha a riasztási szabály hello hello időkerete ad meg, hello hello keresési feltételeknek időtartományt a meglévő rekordok száma jelenik meg.  Ez segít meghatározni hello gyakorisága, amely felkínálja hello kívánt eredmények száma.
 
 ### <a name="schedule"></a>Ütemezés
-Határozza meg, milyen gyakran a keresési lekérdezés futtatása.
+Meghatározza, hogy milyen gyakran hello keresési lekérdezés futtatása.
 
 | Tulajdonság | Leírás |
 |:--- |:---|
-| A riasztások gyakorisága | Meghatározza, hogy milyen gyakran kell futtatni a lekérdezést. Bármely érték 5 perc és 24 óra közötti lehet. A időszak kisebbnek vagy azzal egyenlőnek kell lennie.  Ha az érték nagyobb, mint az időszak, majd azzal kockáztatja alatt nem talált rekordokat.<br><br>Vegye figyelembe például egy olyan időkeretet, 30 perc és 60 perc gyakorisága.  Ha a lekérdezés futtatása, 1:00, 12:30 és 1:00 PM rekordok adja vissza.  A következő szeretné futtatni a lekérdezést ideje 2:00 amikor meghaladná a 1:30 és 2:00 között rögzíti.  1:00 és 1:30 között létrejövő rekordok volna soha nem értékelhető ki. |
+| A riasztások gyakorisága | Itt adhatja meg, milyen gyakran hello lekérdezést kell futtatni. Bármely érték 5 perc és 24 óra közötti lehet. Hello időkerete-nál kisebb egyenlő tooor kell lennie.  Ha hello értéke nagyobb, mint hello időtartományt, azzal alatt elmulasztott rekordok kockáztatja ki.<br><br>Vegye figyelembe például egy olyan időkeretet, 30 perc és 60 perc gyakorisága.  Ha hello lekérdezés futtatása, 1:00, 12:30 és 1:00 PM rekordok adja vissza.  hello hello lekérdezés futna legközelebb 2:00 amikor meghaladná a 1:30 és 2:00 között rögzíti.  1:00 és 1:30 között létrejövő rekordok volna soha nem értékelhető ki. |
 
 
 ### <a name="generate-alert-based-on"></a>Riasztás alapján
-Határozza meg a feltételeket, amelyek fogja értékelni a meghatározásához, ha a riasztás létrejöjjön keresési lekérdezés eredményeit.  Ezen adatok kiválasztott riasztási szabály típusától függően eltérőek lesznek.  Részletek kaphat a különböző riasztási szabály esetében a [Naplóelemzési ismertetése riasztások](log-analytics-alerts.md).
+Meghatározza a hello hello keresési lekérdezés toodetermine, ha a riasztás hello eredményei alapján kiértékelendő feltételeket kell létrehozni.  Ezen adatok kiválasztott riasztási szabály hello típusától függően eltérőek lesznek.  Kaphat részletek hello a különböző riasztási szabályok típusai [Naplóelemzési ismertetése riasztások](log-analytics-alerts.md).
 
 | Tulajdonság | Leírás |
 |:--- |:---|
-| Végfelhasználói értesítések letiltása | A riasztási szabály tiltási bekapcsolásakor műveletek a szabály új riasztás létrehozása után egy meghatározott ideig le vannak tiltva. A szabály mindig fut, és riasztási rekordokat hoz létre, a feltétel teljesülése esetén. Ez egy duplikált műveletek futtatása nélkül a probléma elhárításához idő engedélyezése. |
+| Végfelhasználói értesítések letiltása | A riasztási szabály hello tiltási bekapcsolásakor hello szabályhoz tartozó műveleteket egy meghatározott ideig új riasztás létrehozása után le vannak tiltva. hello szabály továbbra is fut, és létrehozza a riasztási rekordok hello feltétel teljesülése esetén. Ez a tooallow toocorrect hello probléma idő duplikált műveletek futtatása nélkül. |
 
 #### <a name="number-of-results-alert-rules"></a>Eredmények riasztási szabályok száma
 
 | Tulajdonság | Leírás |
 |:--- |:---|
-| Találatok száma |Riasztás jön létre, ha a lekérdezés által visszaadott rekordok számát **nagyobb, mint** vagy **kisebb, mint** megadja az értéket.  |
+| Találatok száma |Riasztás jön létre, ha hello lekérdezés által visszaadott rekordok számát hello **nagyobb, mint** vagy **kisebb, mint** hello értéket megadnia.  |
 
 #### <a name="metric-measurement-alert-rules"></a>Metrika mérési riasztási szabályok
 
 | Tulajdonság | Leírás |
 |:--- |:---|
-| Összesített értékét | Az küszöbérték, amely minden összesített a eredmények meghaladható figyelembe kell venni a sérülése. |
-| Eseményindító riasztás alapján | Létrejön egy riasztás megszegése száma.  Megadhat **megszegése teljes** megszegése az eredmények között bármilyen kombinációját beállítása vagy **egymást követő megszegése** megkövetelése, hogy a behatolás egymást követő mintákban kell-e magukat. |
+| Összesített értékét | A küszöbérték, hogy minden összesített hello eredmények meghaladható toobe megsértése számít. |
+| Eseményindító riasztás alapján | a létrehozott egy riasztási toobe megszegése hello száma.  Megadhat **megszegése teljes** megszegése hello eredmények között bármilyen kombinációját beállítása vagy **egymást követő megszegése** , amely megszegése hello toorequire egymást követő minták a kell megjelennie. |
 
 ### <a name="actions"></a>Műveletek
-A riasztási szabályok mindig létrehoz egy [rekord riasztási](#alert-records) a küszöbérték elérése esetén.  Megadhatja, hogy egy vagy több válaszokat kell futtatnia, például egy e-mailek küldéséhez, vagy a runbook indítása.
+A riasztási szabályok mindig létrehoz egy [rekord riasztási](#alert-records) hello küszöbérték elérése esetén.  Is meghatározhat egy vagy több válaszok toobe futtatnia, például egy e-mailek küldéséhez, vagy a runbook indítása.
 
 
 
 #### <a name="email-actions"></a>E-mailek műveletek
-E-mailek műveletek a riasztás részleteit e-mail küldése egy vagy több címzett.
+E-mailek műveletek hello adatokkal hello riasztási tooone vagy további címzettek e-mail küldése.
 
 | Tulajdonság | Leírás |
 |:--- |:---|
-| E-mailes értesítés |Adja meg **Igen** Ha azt szeretné, hogy egy e-mailt kell küldeni a figyelmeztetés jelenik meg. |
-| Tárgy |A tulajdonos e-mailben.  Az üzenet törzse nem módosítható. |
-| Címzettek |Címzett e-mail címét.  Ha több címet ad meg, majd külön a címeket pontosvesszővel (;). |
+| E-mailes értesítés |Adja meg **Igen** Ha azt szeretné, hogy egy e-mailek toobe küldött, amikor hello figyelmeztetés jelenik meg. |
+| Tárgy |Tulajdonos hello e-mailben.  Üdvözlő e-mail törzsét hello nem módosítható. |
+| Címzettek |Címzett e-mail címét.  Ha ad meg egynél több címet, majd külön hello címeket pontosvesszővel (;). |
 
 #### <a name="webhook-actions"></a>Webhookműveletek
-Webhookműveletek lehetővé teszi egy külső folyamatban egy HTTP POST kérelemben keresztül.
+Webhookműveletek lehetővé teszik a tooinvoke keresztül egy HTTP POST kérelemben egy külső folyamatban.
 
 | Tulajdonság | Leírás |
 |:--- |:---|
-| Webhook |Adja meg **Igen** Ha azt szeretné, hogy a webhook hívására a figyelmeztetés jelenik meg. |
-| Webhook URL-CÍMÉT |A webhook URL-CÍMÉT. |
-| Egyéni JSON-adattartalmat tartalmazza |Válassza ezt a lehetőséget, ha azt szeretné, hogy az alapértelmezett adattartalom lecseréli a egyéni hasznos adatok között. |
-| Adjon meg egyéni JSON-adattartalmat |A webhook egyéni hasznos.  Lásd az előző szakaszát. |
+| Webhook |Adja meg **Igen** Ha azt szeretné, a webhook toocall hello riasztás aktiválása. |
+| Webhook URL-CÍMÉT |hello hello webhook URL-címe |
+| Egyéni JSON-adattartalmat tartalmazza |Válassza ezt a beállítást, ha azt szeretné, hogy egy egyéni adattartalom tooreplace hello alapértelmezett adattartalom. |
+| Adjon meg egyéni JSON-adattartalmat |hello hello webhook egyéni hasznos.  Lásd az előző szakaszát. |
 
 #### <a name="runbook-actions"></a>Runbook-műveletek
 Runbook műveletek az Azure Automationben runbook indítása. 
 
 >[!NOTE]
-> A munkaterület engedélyezni kell a művelet telepíti az Automation-megoldást kell rendelkeznie. 
+> A munkaterületen a művelet toobe engedélyezve van a telepített hello Automation-megoldást kell rendelkeznie. 
 
 
 | Tulajdonság | Leírás |
 |:--- |:---|
-| Forgatókönyv | Adja meg **Igen** Ha egy Azure Automation-runbook elindítja a riasztás aktiválása.  |
-| Automation-fiók | Adja meg a runbookok a kijelölt Automation-fiók.  Ez az a műveleti fiók, amely csatolva van a munkaterületen. |
-| Válassza ki a runbookot | Válassza ki a runbookot, amely elindítja a riasztás létrehozásakor. |
-| Futtassa a | Válassza ki **Azure** a runbook futtatásához a felhőben.  Válassza ki **hibridfeldolgozó** a runbook futhat az ügynök [hibrid forgatókönyv-feldolgozó](../automation/automation-hybrid-runbook-worker.md ) telepítve.  |
+| Forgatókönyv | Adja meg **Igen** Ha azt szeretné, egy Azure Automation-runbook toostart hello riasztás aktiválása.  |
+| Automation-fiók | Megadja a hello forgatókönyvek a kijelölt Automation-fiók.  Ez az hello műveleti fiók, amely toohello munkaterület van kapcsolva. |
+| Válassza ki a runbookot | Válassza ki a megjeleníteni kívánt toostart riasztás létrejöttekor hello runbookot. |
+| Futtassa a | Válassza ki **Azure** toorun hello runbook hello felhőben.  Válassza ki **hibridfeldolgozó** toorun hello runbook az ügynökön [hibrid forgatókönyv-feldolgozó](../automation/automation-hybrid-runbook-worker.md ) telepítve.  |
 
 
 
 
 ## <a name="next-steps"></a>Következő lépések
-* Telepítse a [Riasztáskezelési megoldás](log-analytics-solution-alert-management.md) Naplóelemzési riasztások gyűjtése a System Center Operations Manager (SCOM) együtt létrehozott riasztások elemzéséhez.
+* Hello telepítése [Riasztáskezelési megoldás](log-analytics-solution-alert-management.md) Naplóelemzési riasztások együtt létrehozott tooanalyze riasztások gyűjtése a System Center Operations Manager (SCOM).
 * Tudjon meg többet az [keresések jelentkezzen](log-analytics-log-searches.md) , amely riasztást generál.
 * A forgatókönyv a [konfigurálása egy webook](log-analytics-alerts-webhooks.md) a riasztási szabályt.  
-* Ismerje meg, hogyan írhat [az Azure Automation runbookjai](https://azure.microsoft.com/documentation/services/automation) riasztások által azonosított problémák megoldásáról.
+* Megtudhatja, hogyan toowrite [az Azure Automation runbookjai](https://azure.microsoft.com/documentation/services/automation) riasztások által azonosított tooremediate problémák.
 

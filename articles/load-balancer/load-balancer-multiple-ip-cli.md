@@ -1,6 +1,6 @@
 ---
-title: "Az Azure parancssori felület használatával több IP-konfigurációk terheléselosztási |} Microsoft Docs"
-description: "Megtudhatja, hogyan több IP-címek hozzárendelése a virtuális gép Azure parancssori felületével |} Erőforrás-kezelő."
+title: "az Azure parancssori felület használatával több IP-konfigurációk terheléselosztási aaaLoad |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooassign több IP-címek tooa virtuális gép Azure parancssori felületével |} Erőforrás-kezelő."
 services: virtual-network
 documentationcenter: na
 author: anavinahar
@@ -15,35 +15,35 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/10/2017
 ms.author: annahar
-ms.openlocfilehash: bd15713752ea01ad403d8e3dcfed0c9a7adcc7fa
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: df81e1b8193f274bad435d6b506c7be824117416
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="load-balancing-on-multiple-ip-configurations"></a>Terheléselosztás több IP-konfigurációk
 
 > [!div class="op_single_selector"]
-> * [Portal](load-balancer-multiple-ip.md)
+> * [Portál](load-balancer-multiple-ip.md)
 > * [Parancssori felület](load-balancer-multiple-ip-cli.md)
 > * [PowerShell](load-balancer-multiple-ip-powershell.md)
 
-Ez a cikk ismerteti az Azure Load Balancer használata a másodlagos hálózati adapteren (NIC) több IP-címmel. Ebben a forgatókönyvben két virtuális gépeken futó Windows, az elsődleges és másodlagos hálózati tudunk A másodlagos hálózati adapterrel rendelkezhetnek két IP-konfigurációk. Minden virtuális gép webhelyeket a contoso.com és fabrikam.com üzemelteti. Minden webhelyre van kötve egy IP-konfigurációk másodlagos hálózati adapteren Azure Load Balancer használatával teszi közzé a két előtérbeli IP-cím, egy, a megfelelő IP-konfiguráció a webhelyre irányuló forgalom terjeszteni minden webhelyre vonatkozóan. Ebben a példában ugyanazt a portszámot is frontends, valamint mindkét háttér címkészletet IP-címek között.
+Ez a cikk ismerteti, hogyan toouse Azure Load Balancer több IP-címek egy másodlagos hálózati adapteren (NIC). Ebben a forgatókönyvben két virtuális gépeken futó Windows, az elsődleges és másodlagos hálózati tudunk Egyes hello másodlagos hálózati adapterei két IP-konfigurációk. Minden virtuális gép webhelyeket a contoso.com és fabrikam.com üzemelteti. Minden webhelyre kötött tooone az IP-konfigurációkhoz hello hello másodlagos hálózati adaptert. Azure Load Balancer tooexpose két előtérbeli IP-cím, egy a minden webhelyre, toodistribute forgalom toohello megfelelő IP-konfiguráció hello webhely használjuk. Ebben a forgatókönyvben használt hello ugyanazt a portszámot is frontends, valamint mindkét háttér címkészletet IP-címek között.
 
 ![Terheléselosztó forgatókönyv kép](./media/load-balancer-multiple-ip/lb-multi-ip.PNG)
 
-## <a name="steps-to-load-balance-on-multiple-ip-configurations"></a>A több IP-konfigurációk terheléselosztásához lépései
+## <a name="steps-tooload-balance-on-multiple-ip-configurations"></a>Több IP-konfigurációk lépéseket tooload egyenlege
 
-A cikkben ismertetett forgatókönyvben eléréséhez az alábbi lépésekkel:
+Kövesse az alábbi cikkben leírt tooachieve hello forgatókönyv hello lépéseket:
 
-1. [Telepítse és konfigurálja az Azure parancssori felület](../cli-install-nodejs.md) az Azure parancssori felület lépésekkel a csatolt cikk, majd jelentkezzen be Azure-fiókjába.
+1. [Telepítse és konfigurálja az Azure parancssori felület hello](../cli-install-nodejs.md) hello Azure CLI lépések hello hello csatolt cikk, majd jelentkezzen be Azure-fiókjába.
 2. [Hozzon létre egy erőforráscsoportot](../virtual-machines/linux/create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-resource-group) nevű *contosofabrikam* fent leírt módon.
 
     ```azurecli
     azure group create contosofabrikam westcentralus
     ```
 
-3. [Egy rendelkezésre állási csoport létrehozása](../virtual-machines/linux/create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-an-availability-set) való lévő két virtuális géphez. A jelen esetben használja a következő parancsot:
+3. [Egy rendelkezésre állási csoport létrehozása](../virtual-machines/linux/create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-an-availability-set) toofor hello két virtuális gépeket. Ebben az esetben használja a következő parancs hello:
 
     ```azurecli
     azure availset create --resource-group contosofabrikam --location westcentralus --name myAvailabilitySet
@@ -57,13 +57,13 @@ A cikkben ismertetett forgatókönyvben eléréséhez az alábbi lépésekkel:
     azure network vnet subnet create --resource-group contosofabrikam --vnet-name myVnet --name mySubnet --address-prefix 10.0.0.0/24
     ```
 
-5. [A terheléselosztó létrehozása](../virtual-machines/linux/create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json) nevű *mylb*:
+5. [Hozzon létre hello terheléselosztó](../virtual-machines/linux/create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json) nevű *mylb*:
 
     ```azurecli
     azure network lb create --resource-group contosofabrikam --location westcentralus --name mylb
     ```
 
-6. Hozzon létre két dinamikus nyilvános IP-címet a terheléselosztó előtérbeli IP-konfigurációk:
+6. Hozzon létre két dinamikus nyilvános IP-címet hello előtérbeli IP-konfigurációkat a terheléselosztó:
 
     ```azurecli
     azure network public-ip create --resource-group contosofabrikam --location westcentralus --name PublicIp1 --domain-name-label contoso --allocation-method Dynamic
@@ -71,7 +71,7 @@ A cikkben ismertetett forgatókönyvben eléréséhez az alábbi lépésekkel:
     azure network public-ip create --resource-group contosofabrikam --location westcentralus --name PublicIp2 --domain-name-label fabrikam --allocation-method Dynamic
     ```
 
-7. A két előtérbeli IP-konfigurációk létrehozása *contosofe* és *fabrikamfe* osztályban:
+7. Hozzon létre két hello előtérbeli IP-konfigurációk *contosofe* és *fabrikamfe* osztályban:
 
     ```azurecli
     azure network lb frontend-ip create --resource-group contosofabrikam --lb-name mylb --public-ip-name PublicIp1 --name contosofe
@@ -90,7 +90,7 @@ A cikkben ismertetett forgatókönyvben eléréséhez az alábbi lépésekkel:
     azure network lb rule create --resource-group contosofabrikam --lb-name mylb --name HTTPf --protocol tcp --probe-name http --frontend-port 5000 --backend-port 5000 --frontend-ip-name fabrkamfe --backend-address-pool-name fabrikampool
     ```
 
-9. A következő parancsot az alábbi, és ellenőrizze a kimenet [ellenőrizze a terheléselosztó](../virtual-machines/linux/create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json) megfelelően lett létrehozva:
+9. Futtatási hello következő alatt parancsot, és ezután ellenőrizze túl hello kimeneti[ellenőrizze a terheléselosztó](../virtual-machines/linux/create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json) megfelelően lett létrehozva:
 
     ```azurecli
     azure network lb show --resource-group contosofabrikam --name mylb
@@ -104,7 +104,7 @@ A cikkben ismertetett forgatókönyvben eléréséhez az alábbi lépésekkel:
     azure storage account create --location westcentralus --resource-group contosofabrikam --kind Storage --sku-name GRS mystorageaccount1
     ```
 
-11. [A hálózati adapterek létrehozása](../virtual-machines/linux/create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-a-virtual-nic) VM1 számára, és adja hozzá a második IP-konfiguráció *VM1-ipconfig2*, és [a virtuális gép létrehozása](../virtual-machines/linux/create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-the-linux-vms) alább látható módon:
+11. [Hálózati adapterek létrehozása a hello](../virtual-machines/linux/create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-a-virtual-nic) a VM1, és adja hozzá a második IP-konfiguráció *VM1-ipconfig2*, és [hello virtuális gép létrehozása](../virtual-machines/linux/create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-the-linux-vms) alább látható módon:
 
     ```azurecli
     azure network nic create --resource-group contosofabrikam --location westcentralus --subnet-vnet-name myVnet --subnet-name mySubnet --name VM1Nic1 --ip-config-name NIC1-ipconfig1
@@ -124,8 +124,8 @@ A cikkben ismertetett forgatókönyvben eléréséhez az alábbi lépésekkel:
     azure vm create --resource-group contosofabrikam --name VM2 --location westcentralus --os-type linux --nic-names VM2Nic1,VM2Nic2 --vnet-name VNet1 --vnet-subnet-name Subnet1 --availset-name myAvailabilitySet --vm-size Standard_DS3_v2 --storage-account-name mystorageaccount2 --image-urn canonical:UbuntuServer:16.04.0-LTS:latest --admin-username <your username>  --admin-password <your password>
     ```
 
-13. Végül konfigurálnia kell DNS-erőforrásrekordok a terheléselosztó megfelelő előtérbeli IP-címére mutasson. A tartományok Azure DNS-ben is tartalmazhat. Az Azure DNS-sel terheléselosztással kapcsolatos további információkért lásd: [Azure DNS használata más Azure-szolgáltatásokkal](../dns/dns-for-azure-services.md).
+13. Végül konfigurálnia kell DNS erőforrás rekordok toopoint toohello megfelelő előtérbeli IP-címe hello terheléselosztóhoz. A tartományok Azure DNS-ben is tartalmazhat. Az Azure DNS-sel terheléselosztással kapcsolatos további információkért lásd: [Azure DNS használata más Azure-szolgáltatásokkal](../dns/dns-for-azure-services.md).
 
 ## <a name="next-steps"></a>Következő lépések
-- További tudnivalók az Azure a terheléselosztási egyesítése [terheléselosztás szolgáltatások használata az Azure-ban](../traffic-manager/traffic-manager-load-balancing-azure.md).
-- Ismerje meg, hogyan használhatja különféle naplók az Azure-ban kezelésére és hibaelhárítására terheléselosztó [analytics keresse meg a Azure terheléselosztó](../load-balancer/load-balancer-monitor-log.md).
+- További tudnivalók az Azure-ban hogyan toocombine terheléselosztás szolgáltatások [terheléselosztás szolgáltatások használata az Azure-ban](../traffic-manager/traffic-manager-load-balancing-azure.md).
+- Megtudhatja, hogyan naplók különböző típusait használják az Azure toomanage és hibaelhárítása a terheléselosztó [analytics keresse meg a Azure terheléselosztó](../load-balancer/load-balancer-monitor-log.md).

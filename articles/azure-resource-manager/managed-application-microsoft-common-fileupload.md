@@ -1,6 +1,6 @@
 ---
-title: "Az Azure által felügyelt alkalmazás FileUpload felhasználói felületi elem |} Microsoft Docs"
-description: "A témakör ismerteti a Microsoft.Common.FileUpload felhasználói felületi elem Azure által felügyelt alkalmazások"
+title: "aaaAzure felügyelt alkalmazás FileUpload felhasználói felületi elem |} Microsoft Docs"
+description: "Hello Microsoft.Common.FileUpload felhasználói felületi elem ismerteti az Azure által felügyelt alkalmazások"
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,14 +13,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 217e9e63eb7cd198f70cee42b418867df9f1f993
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7af5bec992e3f120afb1bdf56d8b4c19a8e5e834
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoftcommonfileupload-ui-element"></a>Microsoft.Common.FileUpload felhasználói felületi elem
-Lehetővé teszi a felhasználóknak adjon meg egy vagy több fájl feltöltése vezérlő. Ez az elem használata során [Azure által felügyelt alkalmazások létrehozására](managed-application-publishing.md).
+A vezérlő, amely lehetővé teszi, hogy egy felhasználó toospecify egy vagy több tooupload fájlok. Ez az elem használata során [Azure által felügyelt alkalmazások létrehozására](managed-application-publishing.md).
 
 ## <a name="ui-sample"></a>Felhasználói felület minta
 ![Microsoft.Common.FileUpload](./media/managed-application-elements/microsoft.common.fileupload.png)
@@ -47,21 +47,21 @@ Lehetővé teszi a felhasználóknak adjon meg egy vagy több fájl feltöltése
 ```
 
 ## <a name="remarks"></a>Megjegyzések
-- `constraints.accept`Adja meg a fájlokat, amelyek megjelennek a böngésző fájlpárbeszédpanelt típusú. Tekintse meg a [HTML5-specifikációt](http://www.w3.org/TR/html5/forms.html#attr-input-accept) az engedélyezett értékek. Az alapértelmezett érték **null**.
-- Ha `options.multiple` értéke **igaz**, a felhasználó által megadható egynél több fájl a böngésző fájl párbeszédpanelen. Az alapértelmezett érték **hamis**.
-- Ez az elem feltöltése fájlokat támogatja a két mód értéke alapján `options.uploadMode`. Ha **fájl** van megadva, a kimenet tartalmazza a fájlt egy blobba tartalmát. Ha **URL-cím** van megadva, akkor a fájl feltöltése egy ideiglenes helyre, és a kimenet tartalmazza a blob URL-CÍMÉT. Ideiglenes blobok kiürítendő 24 óra múlva. Az alapértelmezett érték **fájl**.
-- Értékének `options.openMode` határozza meg, hogy a fájl írásvédett. Ha a fájl várt egyszerű szövegként, adja meg **szöveg**; más, adja meg **bináris**. Az alapértelmezett érték **szöveg**.
-- Ha `options.uploadMode` értéke **fájl** és `options.openMode` értéke **bináris**, a base64-kódolású kimenete.
-- `options.encoding`Meghatározza, hogy a fájl olvasásánál használandó kódolás. Az alapértelmezett érték **UTF-8**, és csak akkor, ha `options.openMode` értéke **szöveg**.
+- `constraints.accept`Megadja a hello fájltípusok hello böngésző fájl párbeszédpanelen látható. Lásd: hello [HTML5-specifikációt](http://www.w3.org/TR/html5/forms.html#attr-input-accept) az engedélyezett értékek. hello alapértelmezett értéke **null**.
+- Ha `options.multiple` értéke túl**igaz**, hello használhatók tooselect több mint egy fájl hello böngészővel fájl párbeszédpanelt. hello alapértelmezett értéke **hamis**.
+- Ez az elem feltöltése fájlokat támogatja hello értéke alapján két módban `options.uploadMode`. Ha **fájl** van megadva, hello kimenet hello fájlt egy blobba hello tartalmát tartalmazza. Ha **URL-cím** van megadva, akkor hello fájl feltöltött tooa ideiglenes helyre, és hello kimenet hello hello blob URL-CÍMÉT tartalmazza. Ideiglenes blobok kiürítendő 24 óra múlva. hello alapértelmezett értéke **fájl**.
+- hello értékének `options.openMode` határozza meg, hogyan hello fájl olvasható. Ha hello fájl várt toobe egyszerű szövegként, adja meg a **szöveg**; más, adja meg **bináris**. hello alapértelmezett értéke **szöveg**.
+- Ha `options.uploadMode` értéke túl**fájl** és `options.openMode` értéke túl**bináris**, hello eredménye a base64 kódolású.
+- `options.encoding`Adja meg a hello kódolási toouse hello fájl olvasásakor. hello alapértelmezett értéke **UTF-8**, és csak akkor, ha `options.openMode` értéke túl**szöveg**.
 
-## <a name="sample-output"></a>Minta kimenet
-Ha options.multiple értéke false, és options.uploadMode fájlt, majd a kimenet tartalmazza a fájl tartalmát egy JSON-karakterlánc:
+## <a name="sample-output"></a>Példa kimenet
+Ha options.multiple értéke false, és options.uploadMode fájlt, majd a kimenet tartalmazza hello hello fájl tartalmát egy JSON-karakterlánc:
 
 ```json
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 ```
 
-Ha igaz options.multiple and'options.uploadMode fájl, akkor a kimenet tartalmazza a fájlok tartalmát egy JSON-tömb:
+Ha igaz options.multiple and'options.uploadMode fájl, akkor a kimenet tartalmazza a hello fájlok hello tartalmát egy JSON-tömb:
 
 ```json
 [
@@ -87,10 +87,10 @@ Ha options.multiple értéke true, és options.uploadMode URL-címet, majd a kim
 ]
 ```
 
-Egy CreateUiDefinition tesztelésekor (például a Google Chrome) egyes böngészők csonkolja a böngészőbeli konzolon a Microsoft.Common.FileUpload eleme által generált URL-címeket. Kattintson a jobb gombbal az egyes hivatkozások másolása a teljes URL-címeket szeretne.
+Egy CreateUiDefinition tesztelésekor (például a Google Chrome) egyes böngészők csonkolása hello böngészőkonzolt hello Microsoft.Common.FileUpload eleme által generált URL-címeket. Szükség lehet tooright kattintással egyes hivatkozások toocopy hello teljes URL-címeket.
 
 
 ## <a name="next-steps"></a>Következő lépések
-* Felügyelt alkalmazások bemutatása, lásd: [Azure kezelt alkalmazás – áttekintés](managed-application-overview.md).
-* A bevezetést UI-definíciók létrehozásáról lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Egy bevezető toomanaged alkalmazások, lásd: [Azure kezelt alkalmazás – áttekintés](managed-application-overview.md).
+* Egy bevezető toocreating UI-definíciók, lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Általános tulajdonságok felhasználói felületi elemei ismertetését lásd: [CreateUiDefinition elemek](managed-application-createuidefinition-elements.md).

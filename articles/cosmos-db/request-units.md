@@ -1,6 +1,6 @@
 ---
-title: "Kérelem egységek & átviteli - Azure Cosmos DB becslése |} Microsoft Docs"
-description: "További tudnivalók ismertetése, adja meg, és az Azure Cosmos Adatbázisba kérelem egység követelményeinek becslése."
+title: "aaaRequest egységek és átviteli sebesség becslése - Azure Cosmos DB |} Microsoft Docs"
+description: "További tudnivalók arról, hogyan toounderstand, adja meg, és az Azure Cosmos Adatbázisba kérelem egység követelményeinek becslése."
 services: cosmos-db
 author: mimig1
 manager: jhubbard
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: 7a4efc0fb9b3855b9dbbe445768ceb2a9940d0b2
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 13c4e7aeb6222fa14ef982e238716e15a0159fd5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="request-units-in-azure-cosmos-db"></a>Az Azure Cosmos DB egység kérése
 Most már hozzáférhető: Azure Cosmos DB [kérelem egység Számológép](https://www.documentdb.com/capacityplanner). További információ: [megbecsülheti, az átviteli sebesség kell](request-units.md#estimating-throughput-needs).
@@ -26,41 +26,41 @@ Most már hozzáférhető: Azure Cosmos DB [kérelem egység Számológép](http
 ![Átviteli sebesség Számológép][5]
 
 ## <a name="introduction"></a>Bevezetés
-[Az Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) Microsoft globálisan elosztott több modellre adatbázis. Az Azure Cosmos DB nem kell virtuális gépek kölcsönbe, szoftver központi telepítése vagy adatbázisok figyelése. Azure Cosmos DB üzemeltetett, és képes biztosítani a világ osztály rendelkezésre állását, teljesítményét és adatok védelme a Microsoft felső mérnökök folyamatosan figyeli. Az adatok az Ön által választott, API-k használatával végezheti el [a DocumentDB SQL](documentdb-sql-query.md) (dokumentumok) MongoDB (dokumentumok), [Azure Table Storage](https://azure.microsoft.com/services/storage/tables/) (kulcs-érték), és [Gremlin](https://tinkerpop.apache.org/gremlin.html) (diagramot)-e minden natív módon támogatottak. Azure Cosmos DB pénzneme kérelem egység (RU). A RUs nem kell olvasási/írási kapacitások vagy rendelkezés Processzor, memória, és iops-érték.
+[Az Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) Microsoft globálisan elosztott több modellre adatbázis. Az Azure Cosmos DB akkor nem toorent olyan virtuális gépet, szoftver központi telepítése vagy adatbázisok figyelése. Azure Cosmos DB üzemeltetésének és folyamatosan figyeli a Microsoft felső mérnökök toodeliver globális osztály rendelkezésre állását, teljesítményét és adatok védelme. Az adatok az Ön által választott, API-k használatával végezheti el [a DocumentDB SQL](documentdb-sql-query.md) (dokumentumok) MongoDB (dokumentumok), [Azure Table Storage](https://azure.microsoft.com/services/storage/tables/) (kulcs-érték), és [Gremlin](https://tinkerpop.apache.org/gremlin.html) (diagramot)-e minden natív módon támogatottak. hello Azure Cosmos DB pénzneme hello kérelem egység (RU). A RUs nem kell tooreserve olvasási/írási kapacitások vagy rendelkezés Processzor, memória és iops-érték.
 
-Azure Cosmos DB alkalmazásprogramozási támogatja a különböző műveletekkel, egyszerű olvasási műveletek közötti, és összetett graph lekérdezések írja. Mivel nem minden kérelemre egyenlő, hozzárendeli egy normalizált mennyisége **egységek kérelem** a kérelem kiszolgálásához szükséges számítási mennyisége alapján. A száma kérelem művelet nem determinisztikus, és nyomon követheti a válasz fejléce Azure Cosmos DB bármely művelet által felhasznált kérelem egységek száma. 
+Azure Cosmos-adatbázis API-k számos különböző közötti egyszerű olvasási műveletek támogat, és írja toocomplex graph lekérdezések. Mivel nem minden kérelemre egyenlő, hozzárendeli egy normalizált mennyisége **egységek kérelem** számítási szükséges tooserve hello kérelem hello mennyisége alapján. hello száma kérelem művelet nem determinisztikus, és bármely Azure Cosmos DB egy válasz fejléce művelet által felhasznált kérelemegység hello száma követheti nyomon. 
 
-Kiszámítható teljesítmény elérése érdekében kell lefoglalni átviteli egységekben 100 RU/másodperc. 
+tooprovide kiszámítható teljesítmény, kell tooreserve átviteli egységekben 100 RU/másodperc. 
 
-A cikk elolvasása után képes lesz a következő kérdések megválaszolásához:  
+A cikk elolvasása után be fog tudni tooanswer hello a következő kérdéseket:  
 
 * Mik azok a egységek kérése és díjak kérelem?
 * Hogyan adja meg a kérelem egység kapacitás gyűjtemény?
 * Hogyan becsléséhez, az alkalmazás kérelem egység van szüksége?
 * Mi történik, ha szeretnék haladhatja meg a kérelem egység kapacitás gyűjtemény?
 
-Mivel Azure Cosmos DB több modellre adatbázis, fontos megjegyezni, hogy egy gyűjtemény/dokumentum API dokumentum, egy grafikonon/csomópont egy grafikonon API és a tábla/entitás tábla API hivatkozik. Átviteli sebesség a dokumentum azt fogja generalize tároló/elem fogalmakra.
+Mivel Azure Cosmos DB több modellre adatbázis, akkor fontos, hogy a dokumentum API, egy grafikonon/csomópont egy grafikonon API és a tábla/entitás tábla API tooa gyűjtemény/dokumentum hivatkozik toonote. Átviteli sebesség a dokumentum azt fogja generalize tároló/elem toohello elveit.
 
 ## <a name="request-units-and-request-charges"></a>Kérelemegység és kérelem díjak
-Azure Cosmos-adatbázis által gyors és kiszámítható teljesítményt nyújt *foglalása* erőforrások teljesíteni kell az alkalmazás átviteli sebességére.  Alkalmazás betölteni, és a hozzáférési minták módosítása adott idő alatt, mert az Azure Cosmos DB lehetővé teszi könnyen növeléséhez vagy csökkentéséhez fenntartott átviteli sebesség érhető el, hogy az alkalmazást.
+Azure Cosmos-adatbázis által gyors és kiszámítható teljesítményt nyújt *foglalása* erőforrások toosatisfy az alkalmazás átviteli sebességére kell.  Alkalmazás betölteni, és a hozzáférési minták módosítása adott idő alatt, mert az Azure Cosmos DB lehetővé teszi a tooeasily növelését, vagy csökkentse a fenntartott átviteli sebességet elérhető tooyour alkalmazás hello mennyiségét.
 
-Az Azure Cosmos DB fenntartott átviteli kérelem egység / másodperc feldolgozása tekintetében van megadva. Az eltolásokat tekintheti kérelemegység átviteli pénznemként, amellyel meg *lefoglalni* az alkalmazás számára elérhető garantált kérelemegység másodpercenként egy mennyisége.  Minden Azure Cosmos DB - dokumentum írása, frissítése egy dokumentumot a lekérdezés végrehajtása - műveletet igényel, Processzor, memória és iops-érték.  Ez azt jelenti, hogy minden egyes művelet azt eredményezi azok háromszorosa egy *kell fizetni kérelem*, amelyhez van megadva *egységek kérelem*.  Ismertetése a tényezőket, amely hatással van a kérelem egység díjak, az alkalmazás átviteli követelményeket, valamint lehetővé teszi az alkalmazás futtatása a lehető leghatékonyabban költség. A lekérdezés explorer egyben a core lekérdezés teszteléséhez csodálatos eszköz.
+Az Azure Cosmos DB fenntartott átviteli kérelem egység / másodperc feldolgozása tekintetében van megadva. Az eltolásokat tekintheti kérelemegység átviteli pénznemként, amelyek akkor *lefoglalni* összege garantált kérelemegység másodpercenként elérhető tooyour alkalmazás.  Minden Azure Cosmos DB - dokumentum írása, frissítése egy dokumentumot a lekérdezés végrehajtása - műveletet igényel, Processzor, memória és iops-érték.  Ez azt jelenti, hogy minden egyes művelet azt eredményezi azok háromszorosa egy *kell fizetni kérelem*, amelyhez van megadva *egységek kérelem*.  Understanding hello tényező, amely hatással van a kérelem egység díjak, az alkalmazás átviteli követelményeket, valamint lehetővé teszi, hogy Ön toorun az alkalmazás a lehető leghatékonyabban költséggel. a lekérdezés csodálatos eszköz tootest hello alapszintű hello lekérdezéskezelő is.
 
-Azt javasoljuk, hogy Kezdésként tekintse meg az alábbi videót, ahol Aravind Ramachandran kérelemegység és a kiszámítható teljesítmény Azure Cosmos DB mutatja.
+Azt javasoljuk, hogy Kezdésként tekintse a következő videó, ahol Aravind Ramachandran ismerteti kérelemegység és kiszámítható teljesítményt az Azure Cosmos DB hello.
 
 > [!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Predictable-Performance-with-DocumentDB/player]
 > 
 > 
 
 ## <a name="specifying-request-unit-capacity-in-azure-cosmos-db"></a>Adja meg a kérelem egység kapacitás az Azure Cosmos DB
-Egy új gyűjteményt, táblázat vagy graph indításakor, akkor az itt megadott kérelemegység (RU / másodperc) másodpercenként kívánt foglalt. A létesített átviteli sebesség alapján, Azure Cosmos DB foglal le, a gyűjtemény üzemeltetésére fizikai partíciók és elágazást/rebalances adatok között partíciók növekedésével azt.
+Egy új gyűjteményt, táblázat vagy graph indításakor adhatja meg hello számát a kérelemegység (RU / másodperc) másodpercenként kívánt foglalt. Hello kiosztott átviteli sebesség alapján, Azure Cosmos adatbázis lefoglalt fizikai partíciók toohost a gyűjtemény és az elágazások/rebalances adatok között partíciók növekedésével azt.
 
-Azure Cosmos-adatbázis egy partíciókulcsot kell határozni, ha a gyűjtemény kiépítése 2500 kérést egységek vagy újabb szükséges. A partíciós kulcs is szükség van a gyűjtemény átviteli sebességét túl 2500 kérést egységek méretezése a jövőben. Ezért erősen ajánlott konfigurálása egy [partíciókulcs](partition-data.md) függetlenül a kezdeti átviteli tárolója létrehozásakor. Az adatok kell kell-e osztani több partíciót, szükség egy partíciós kulcs, amely rendelkezik egy nagy számosságot (több millió különböző értékeket 100), hogy a gyűjtemény/tábla/graph és a kérelmek is méretezhető egységesen Azure Cosmos DB kiválasztásához. 
+Azure Cosmos-adatbázis szükséges, a partíciós kulcs toobe határozni, ha a gyűjtemény kiosztott 2500 kérést egységek vagy újabb verzióját. A partíciós kulcs túl jövőbeli hello 2500 kérést egység a gyűjtemény átviteli sebességét szükséges tooscale is van. Ezért erősen ajánlott tooconfigure egy [partíciókulcs](partition-data.md) függetlenül a kezdeti átviteli tárolója létrehozásakor. Mivel az adatok előfordulhat, hogy rendelkezik-e osztani több partíciót toobe, célszerű szükséges toopick, amely rendelkezik egy nagy számosságot (100 toomillions pontos értékek), hogy a gyűjtemény/tábla/graph és a kérelmek is méretezhető egységesen Azure Cosmos DB partíciós kulcs. 
 
 > [!NOTE]
-> A partíciós kulcs, a logikai határ, és nem egy fizikai egy. Emiatt nem kell külön partíciókulcs-értékek számának korlátozása. Valójában célszerűbb értékűeknek több partíciós kulcs kisebb, mint Azure Cosmos DB rendelkezik további terheléselosztási beállításai.
+> A partíciós kulcs, a logikai határ, és nem egy fizikai egy. Emiatt nem kell különböző partíciókulcs-értékek toolimit hello száma. Ez tulajdonképpen jobb toohave különböző kulcsértékei kisebb, mint partícióazonosító Azure Cosmos DB rendelkezik további terheléselosztási beállításai.
 
-Íme egy kódrészletet 3000 kérelem egység / második .NET SDK használatával a gyűjtemény létrehozásához:
+Íme egy kódrészletet, egy gyűjtemény 3000 való létrehozásának egység / második használatával hello .NET SDK kérelem:
 
 ```csharp
 DocumentCollection myCollection = new DocumentCollection();
@@ -73,46 +73,46 @@ await client.CreateDocumentCollectionAsync(
     new RequestOptions { OfferThroughput = 3000 });
 ```
 
-Azure Cosmos-adatbázis működik, a teljesítmény a Foglalás modellt. Ez azt jelenti, hogy kell fizetni az átviteli sebesség *fenntartott*, függetlenül attól, hogy átviteli mekkora aktívan *használt*. Az alkalmazás által könnyen méretezheti mennyisége fel és le terhelés, az adatok és a használati minták módosítása fenntartott RUs SDK-k, vagy használja a [Azure Portal](https://portal.azure.com).
+Azure Cosmos-adatbázis működik, a teljesítmény a Foglalás modellt. Ez azt jelenti, hogy kell fizetni az átviteli sebesség hello mennyisége *fenntartott*, függetlenül attól, hogy átviteli mekkora aktívan *használt*. Mint az alkalmazás terhelés, adatok, és a használati minták módosítása könnyen méretezheti felfelé és lefelé hello SDK-k segítségével fenntartott RUs mennyisége vagy hello segítségével [Azure Portal](https://portal.azure.com).
 
-Minden gyűjtemény/tábla/graph hozzá vannak rendelve egy `Offer` Azure Cosmos DB, amelynek metaadatait a létesített átviteli sebesség erőforrás. A megfelelő ajánlat erőforrás egy tároló keresése, akkor új átviteli értékű frissítése módosíthatja a kiosztott átviteli sebesség. Íme egy kódrészletet a módosítása a gyűjtemény átviteli 5 000 kérelemegység / második .NET SDK használatával:
+Minden gyűjtemény/tábla/graph le vannak képezve tooan `Offer` Azure Cosmos DB, amelynek hello kiosztott átviteli sebesség metaadatainak erőforrás. Egy tároló hello megfelelő ajánlat erőforrás keresése, akkor frissítette a hello új átviteli érték hello kiosztott átviteli sebesség módosíthatja. Íme egy kódrészletet hello sebességét, a gyűjtemény too5 módosítására, 000 kérelemegység / második használatával hello .NET SDK-val:
 
 ```csharp
-// Fetch the resource to be updated
+// Fetch hello resource toobe updated
 Offer offer = client.CreateOfferQuery()
                 .Where(r => r.ResourceLink == collection.SelfLink)    
                 .AsEnumerable()
                 .SingleOrDefault();
 
-// Set the throughput to 5000 request units per second
+// Set hello throughput too5000 request units per second
 offer = new OfferV2(offer, 5000);
 
-// Now persist these changes to the database by replacing the original resource
+// Now persist these changes toohello database by replacing hello original resource
 await client.ReplaceOfferAsync(offer);
 ```
 
-Ha megváltoztatja az átviteli sebesség, nincs hatással a következő rendelkezésre állási, a tároló. Az új fenntartott átviteli sebességet általában hatékony alkalmazásra, az új átviteli másodpercen belül.
+Nincs nem gyakorolt hatás toohello rendelkezésre állását a tároló hello átviteli módosításakor. Új fenntartott átviteli hello általában hatékony hello új átviteli kérelem másodpercen belül.
 
 ## <a name="request-unit-considerations"></a>Kérelem egység kapcsolatos szempontok
-Az Azure Cosmos DB tároló foglalása a kérelem egységek számának becslése, fontos figyelembe venni a következő változókat:
+Az Azure Cosmos DB tároló kérelemben egységek tooreserve hello száma megbecsülheti, esetén fontos tootake hello változók figyelembe a következő:
 
-* **Konfigurációelem-méret**. Mivel mérete nő, olvasására vagy írására, növeli az adatok használt mértékegységet.
-* **Konfigurációelem-tulajdonság száma**. A tulajdonság száma növekszik, megnöveli a feltételezve alapértelmezett indexelő levő összes tulajdonság írása egy dokumentum/csomópont/ntity használt mértékegységet.
-* **Adatkonzisztencia**. Az erős, vagy a kötött elavulási konzisztencia szintek használata esetén további egységek cikkek elolvasására fognak használni.
-* **Indexelt tulajdonságok**. Egy index házirendet minden egyes tároló meghatározza, hogy mely tulajdonságok indexelt alapértelmezés szerint. Az indexelt tulajdonságok számának korlátozása vagy engedélyezése a Lusta indexelő csökkentése érdekében a kérelem egység fogyasztás.
-* **A dokumentum indexelő**. Alapértelmezésben minden elem automatikusan indexelt kevesebb kérelemegység fog használni, ha nem kíván a elemek egy része az index.
-* **Lekérdezési minták**. A lekérdezés összetettsége hatással van kérelem egységek művelet végrehajtásánál. A predikátum száma, a predikátum, leképezések, felhasználó által megadott függvények száma és mérete a forrás adatkészlet összes jellege befolyásolják a lekérdezési műveletek költségét.
-* **Parancsfájl-használati**.  Csakúgy, mint a lekérdezéseket, a tárolt eljárások és eseményindítók végrehajtott műveletek összetettsége alapján kérelemegység felhasználni. Az alkalmazás elkészítéséhez, vizsgálja meg jobb megértése érdekében hogyan egyes műveletek nem használ-e kérelem egység kapacitás kérelemfejléc kell fizetni.
+* **Konfigurációelem-méret**. Mérete nő, hello felhasználva tooread vagy adatok írása hello is növeli.
+* **Konfigurációelem-tulajdonság száma**. Feltéve, hogy minden tulajdonságai, a dokumentum/csomópont/ntity növeli a hello tulajdonság számának növekedése hello felhasználva toowrite indexelése alapértelmezett.
+* **Adatkonzisztencia**. Az erős, vagy a kötött elavulási konzisztencia szintek használata esetén további egységek lesz felhasznált tooread elemek.
+* **Indexelt tulajdonságok**. Egy index házirendet minden egyes tároló meghatározza, hogy mely tulajdonságok indexelt alapértelmezés szerint. Kérelem egység történő korlátozásával hello száma az indexelt tulajdonságok vagy Lusta indexelő engedélyezésével csökkentheti.
+* **A dokumentum indexelő**. Alapértelmezésben minden elem automatikusan indexelt kevesebb kérelemegység fog használni, ha úgy dönt, nem tooindex a elemek egy része.
+* **Lekérdezési minták**. a lekérdezés hello összetettsége hatással van kérelem egységek művelet végrehajtásánál. predikátumok hello száma, hello predikátumok, a leképezések, felhasználó által megadott függvények száma, illetve hello forrás adatkészlet összes befolyásolják hello költségét hello mérete jellege lekérdezési műveletek.
+* **Parancsfájl-használati**.  Csakúgy, mint a lekérdezéseket, a tárolt eljárások és eseményindítók hello összetettsége hello végrehajtott műveletek alapján kérelemegység felhasználni. Mivel az alkalmazás fejlesztése, vizsgálja meg a hello kérelem kell fizetni fejléc toobetter megérteni, hogyan egyes műveletek nem használ-e kérelem egység kapacitás.
 
 ## <a name="estimating-throughput-needs"></a>Átviteli sebesség igények becslése
-A kérelem egység mérőszáma normalizált kérelemfeldolgozáshoz költség. Egy egyetlen kérelem egységet jelöli a feldolgozási kapacitás egy egyetlen 1KB cikk álló (kivéve a rendszer tulajdonságai) 10 egyedi tulajdonságértékek (keresztül self link vagy azonosítója) olvasásához szükséges. A kérelem létrehozása (insert), cseréje vagy azonos elem törlése fogyaszt, több folyamatot, a szolgáltatásból, és ezáltal több kérelemegység.   
+A kérelem egység mérőszáma normalizált kérelemfeldolgozáshoz költség. Egy egyetlen kérelem egységet jelöli hello feldolgozási kapacitás szükséges tooread (keresztül self link vagy azonosítója) egy egyetlen 1KB cikk álló 10 egyedi tulajdonság értékével (kivéve a rendszer tulajdonságai). A kérelem toocreate (insert), cserélje le, vagy azonos elem fogyaszt több hello szolgáltatás feldolgozása hello törlése, és ezáltal több kérelem egység.   
 
 > [!NOTE]
-> Az alapkonfiguráció 1 kérelem egység egy 1 KB cikk megfelel egy egyszerű GET self link vagy az elem azonosítója.
+> hello Alapterv 1 kérelem egység az 1KB cikk megfelel-e egyszerű tooa HOZZA self link vagy hello elem azonosítója.
 > 
 > 
 
-Például egy táblázat következik hány kérelemegység kiépítését, három különböző elem mérete (1KB, 4 KB-os és 64 KB-os) és két különböző teljesítményszintek az itt található (500 olvasás/másodperc + 100 írási műveletek másodpercenkénti száma és 500 olvasás/másodperc + 500 írás/másodperc). Az adatok konzisztenciájának a munkamenet lett konfigurálva, és az indexelési házirendet értékre lett beállítva.
+Itt például van egy táblázat mutatja be, hogy hány kérés egységek tooprovision három különböző elem mérete (1KB, 4 KB-os és 64 KB-os) és a két különböző teljesítményszintek (500 olvasás/másodperc + 100 írási műveletek másodpercenkénti száma és 500 olvasás/másodperc + 500 írás/másodperc). hello adatkonzisztencia munkamenetben lett konfigurálva, és házirend indexelő hello tooNone lett beállítva.
 
 <table border="0" cellspacing="0" cellpadding="0">
     <tbody>
@@ -161,64 +161,64 @@ Például egy táblázat következik hány kérelemegység kiépítését, háro
     </tbody>
 </table>
 
-### <a name="use-the-request-unit-calculator"></a>A kérelem egység Számológép használata
-Vékony ügyfelek hangolja az átviteli sebesség becsléseket, és van egy webalapú [kérelem egység Számológép](https://www.documentdb.com/capacityplanner) használatával megbecsülheti a kérelem egységekre vonatkozó követelményeket a tipikus műveleteket, köztük:
+### <a name="use-hello-request-unit-calculator"></a>Hello kérelem egység Számológép használata
+toohelp ügyfelek finom hangolja az átviteli sebesség becsléseket, és van egy webalapú [kérelem egység Számológép](https://www.documentdb.com/capacityplanner) toohelp becsült hello kérelem egységekre vonatkozó követelményeket a tipikus műveleteket, köztük:
 
 * Elem hoz létre (írás)
 * Elem beolvasása
 * Elem törlése
 * Elem frissítések
 
-Az eszköz az adattárolási igények kielégítésére megadta minta cikkek alapján megbecsülheti támogatását is tartalmazza.
+hello eszköz is támogatja az adattárolási igények kielégítésére megadta hello minta elemeken alapuló becslése.
 
-Az eszköz használata egyszerű:
+Hello eszközzel felettébb egyszerű:
 
 1. Töltsön fel egy vagy több jellemző elemet.
    
-    ![Töltse fel a kérelem egység Számológép elemek][2]
-2. Adatok tárolási követelményeinek becslése, adja meg a várhatóan tárolni elemek összesített száma.
-3. Adja meg az elemek száma létrehozása, olvasása, frissítése és törlési műveletek (a másodpercenként alapján) van szüksége. A kérelem egység díjak elem frissítési műveletek becsléséhez, töltse fel az 1. lépés a fenti tipikus mező frissítéseket tartalmazó minta elem másolatának.  Például ha elem frissítések általában két tulajdonságainak módosítása lastLogin és userVisits nevű majd egyszerűen a minta elem másolása, e két tulajdonság értéket, és töltse fel a másolt elem.
+    ![Elemek toohello kérelem egység Számológép feltöltése][2]
+2. adattárolási követelmények tooestimate, adja meg a hello száma elemek toostore várt.
+3. Adja meg hello elemszáma létrehozása, olvasása, frissítése és törlési műveletek (a másodpercenként alapján) van szüksége. tooestimate hello kérelem egység díjak elem frissítési műveletek, töltse fel a hello minta elem 1. lépésben a fenti tipikus mező frissítéseket tartalmazó másolatát.  Például ha elem frissítések általában a lastLogin és userVisits nevű két tulajdonságainak módosítása, akkor egyszerűen másolhatja hello minta elem, hello értékek ezek két tulajdonságok frissítése, és töltse fel a másolt hello elemet.
    
-    ![Adja meg a kérelem egység Számológép átviteli követelmények][3]
-4. Kattintson a kiszámításához, és vizsgálja meg az eredményeket.
+    ![Adja meg a átviteli követelményeket hello kérelem egység Számológép][3]
+4. Kattintson kiszámításához, és vizsgálja meg hello eredményét.
    
     ![Kérelem egység Számológép eredményei][4]
 
 > [!NOTE]
-> Ha méretét és az indexelt tulajdonságok száma jelentősen eltérő típusú elemekre, majd töltse fel az egyes minta *típus* tipikus az eszköz elemet, és majd kiszámítja az eredményeket.
+> Ha az indexelt tulajdonságok méretét és hello számát jelentősen eltérő típusú elemekre, majd töltse fel az egyes minta *típus* jellemző elem toohello az eszközt, és ezután hello számol.
 > 
 > 
 
-### <a name="use-the-azure-cosmos-db-request-charge-response-header"></a>Használja az Azure Cosmos DB kérelem kell fizetni válaszfejléc
-Minden válasz az Azure Cosmos DB szolgáltatástól tartalmaz egy egyéni fejlécet (`x-ms-request-charge`), amely tartalmazza a kéréshez használt kérelemegység. Ezt a fejlécet az Azure Cosmos DB SDK-k keresztül is érhető el. A .NET SDK RequestCharge a ResourceResponse objektum olyan osztályát.  A lekérdezések az Azure Cosmos DB lekérdezéskezelő az Azure portálon információival kérelem kell fizetni végrehajtott lekérdezések számára.
+### <a name="use-hello-azure-cosmos-db-request-charge-response-header"></a>Hello Azure Cosmos DB kérelem kell fizetni válaszfejléc használata
+Minden hello Azure Cosmos DB szolgáltatás válasza tartalmaz egy egyéni fejlécet (`x-ms-request-charge`), amely tartalmazza a hello kérelem felhasznált hello kérelemegység. Ezt a fejlécet hello Azure Cosmos DB SDK-k keresztül is érhető el. A .NET SDK hello RequestCharge hello ResourceResponse objektum olyan osztályát.  A lekérdezések hello Azure Cosmos DB lekérdezéskezelő hello Azure-portálon a információival kérelem kell fizetni végrehajtott lekérdezések számára.
 
-![A lekérdezés Explorer RU díjak vizsgálata][1]
+![RU költségeket az hello lekérdezéskezelő vizsgálata][1]
 
-Ennek a szem előtt, megbecsülheti a fenntartott átviteli sebességet, az alkalmazás által igényelt mérete, jegyezze fel a kérelem egység kell fizetni társított tipikus műveleteket futtatott egy reprezentatív elem, amelyet az alkalmazás, és ezután műveletek számának becslése egy módszert, amelyek várhatóan másodpercenként végez.  Győződjön meg arról, mérése és tipikus lekérdezések és Azure Cosmos DB parancsfájl használata is tartalmazza.
+Ennek tudatában, egy fenntartott átviteli sebességet, az alkalmazás által igényelt hello mennyisége becslése módja toorecord hello kérelem egység kell fizetni társított tipikus műveleteket futtatott egy reprezentatív elem, amelyet az alkalmazás, majd műveletek száma hello becslése várhatóan másodpercenként végez.  Lehet, hogy toomeasure és tipikus lekérdezések és Azure Cosmos DB parancsfájl használati is.
 
 > [!NOTE]
-> Ha méretét és az indexelt tulajdonságok száma jelentősen eltérő típusú elemekre, majd jegyezze fel a megfelelő műveletet kérelem egység kell fizetni társított minden egyes *típus* jellemző elem.
+> Ha az indexelt tulajdonságok méretét és hello számát jelentősen eltérő típusú elemekre, majd rögzítse hello alkalmazandó művelet kérelem egység kell fizetni az összes kapcsolódó *típus* jellemző elem.
 > 
 > 
 
 Példa:
 
-1. Jegyezze fel a kérelem egység költség (Beszúrás) létrehozásához egy jellemző elemet. 
-2. Jegyezze fel a kérelem egység kell fizetni egy tipikus elem olvasása.
-3. Jegyezze fel a kérelem egység felelős egy tipikus elem frissítése.
-4. Jegyezze fel a kérelem egység kell fizetni tipikus, közös elem lekérdezések.
-5. Jegyezze fel a kérelem egység ingyenesen elérhető bármely egyéni parancsfájlok (tárolt eljárások, eseményindítók, felhasználó által definiált függvények) használja ki az alkalmazást
-6. A megadott műveletek másodpercenkénti futtatásához várhatóan becsült száma szükséges kérelemegység kiszámításához.
+1. Hello kérelem egység létrehozása (Beszúrás) kell fizetni rögzítéséhez egy jellemző elemet. 
+2. Rekord hello kérelem egység kell fizetni egy tipikus elem olvasása.
+3. Rekord hello kérelem egység felelős egy tipikus elem frissítése.
+4. Rekord hello kérelem egység kell fizetni tipikus, közös elem lekérdezések.
+5. Rekord hello kérelem egység ingyenesen elérhető bármely egyéni parancsfájlok (tárolt eljárások, eseményindítók, felhasználó által definiált függvények) hello alkalmazás alkalmazhatók
+6. Hello szükséges kérelem egységek megadott műveletek hello becsült száma, amelyek várhatóan toorun másodpercenként kiszámításához.
 
 ### <a id="GetLastRequestStatistics"></a>A MongoDB GetLastRequestStatistics parancshoz használható API
-Mongodb-protokolltámogatással API támogatja egy egyéni parancs *getLastRequestStatistics*, a kérelem kell fizetni a megadott műveletek beolvasásakor.
+Mongodb-protokolltámogatással API támogatja egy egyéni parancs *getLastRequestStatistics*, hello kérelem kell fizetni a megadott műveletek beolvasásakor.
 
-Például a Mongo rendszerhéj hajtható végre a kérelem díjat ellenőrizni szeretné a műveletet.
+A Mongo rendszerhéj hello, például azt szeretné, hogy tooverify hello kérelem díjat hello művelet végrehajtása.
 ```
 > db.sample.find()
 ```
 
-Ezután hajtsa végre a parancsot *getLastRequestStatistics*.
+Ezután hajtsa végre a hello parancsot *getLastRequestStatistics*.
 ```
 > db.runCommand({getLastRequestStatistics: 1})
 {
@@ -230,20 +230,20 @@ Ezután hajtsa végre a parancsot *getLastRequestStatistics*.
 }
 ```
 
-Ennek a szem előtt, megbecsülheti a fenntartott átviteli sebességet, az alkalmazás által igényelt mérete, jegyezze fel a kérelem egység kell fizetni társított tipikus műveleteket futtatott egy reprezentatív elem, amelyet az alkalmazás, és ezután műveletek számának becslése egy módszert, amelyek várhatóan másodpercenként végez.
+Ennek tudatában, egy fenntartott átviteli sebességet, az alkalmazás által igényelt hello mennyisége becslése módja toorecord hello kérelem egység kell fizetni társított tipikus műveleteket futtatott egy reprezentatív elem, amelyet az alkalmazás, majd műveletek száma hello becslése várhatóan másodpercenként végez.
 
 > [!NOTE]
-> Ha méretét és az indexelt tulajdonságok száma jelentősen eltérő típusú elemekre, majd jegyezze fel a megfelelő műveletet kérelem egység kell fizetni társított minden egyes *típus* jellemző elem.
+> Ha az indexelt tulajdonságok méretét és hello számát jelentősen eltérő típusú elemekre, majd rögzítse hello alkalmazandó művelet kérelem egység kell fizetni az összes kapcsolódó *típus* jellemző elem.
 > 
 > 
 
 ## <a name="use-api-for-mongodbs-portal-metrics"></a>MongoDB a portál metrikáihoz API használata
-A legegyszerűbben úgy beszerezni kérelem jó becslése egység költségek az API-MongoDB-adatbázist, hogy használja a [Azure-portálon](https://portal.azure.com) metrikákat. Az a *kérelem* és *kérelem kell fizetni* diagramokat, a kérelem egységek minden művelet nem használ-e, és hány kérelemegység használják ki egy másik viszonyítva felmérését kaphat.
+egy jó felmérést kérelem egység a MongoDB adatbázis toouse hello díja az API-legegyszerűbb módja tooget hello [Azure-portálon](https://portal.azure.com) metrikákat. A hello *kérések száma* és *kérelem kell fizetni* diagramok, kaphat a kérelem egységek minden művelet felmérését fel, és hány kérelemegység használják ki a relatív tooone egy másik.
 
 ![API-t a MongoDB portál metrikák][6]
 
 ## <a name="a-request-unit-estimation-example"></a>A kérelem egység becslés – példa
-Vegye figyelembe a következő ~ 1 KB méretű dokumentum:
+Vegye figyelembe a következő ~ 1 KB méretű dokumentum hello:
 
 ```json
 {
@@ -296,11 +296,11 @@ Vegye figyelembe a következő ~ 1 KB méretű dokumentum:
 ```
 
 > [!NOTE]
-> Dokumentumok Azure Cosmos DB, a rendszer minified szűrést, a rendszer a dokumentum fenti mérete valamivel kisebb, mint 1KB.
+> Dokumentumok Azure Cosmos DB, a rendszer minified, hello rendszer által számított hello dokumentum fenti mérete valamivel kisebb, mint 1KB.
 > 
 > 
 
-Az alábbi táblázat hozzávetőleges kérelem egység költségekkel ezt az elemet (a hozzávetőleges kérelem egység kell fizetni feltételezi, hogy a fiók konzisztencia szintje "Munkamenet", és minden elem automatikusan indexelt) jellemző műveleteket:
+hello következő táblázatban a hozzávetőleges kérelem egység díjak ezt az elemet a tipikus műveleteihez (hello hozzávetőleges kérelem egység kell fizetni feltételezi, hogy hello fiók konzisztencia szintje túl "Munkamenet" és az összes elemet automatikusan indexelt):
 
 | Művelet | Egységköltség kérése |
 | --- | --- |
@@ -308,7 +308,7 @@ Az alábbi táblázat hozzávetőleges kérelem egység költségekkel ezt az el
 | Elem olvasása |~ 1 RU |
 | Lekérdezés elem azonosítója |~2.5 RU |
 
-Emellett az alábbi táblázatban hozzávetőleges kérést az alkalmazásban használt szokásos lekérdezések egység díjak:
+Emellett az alábbi táblázatban hozzávetőleges kérelem egység díjak hello alkalmazásban használt szokásos lekérdezések:
 
 | Lekérdezés | Egységköltség kérése | Visszaadott elemek száma |
 | --- | --- | --- |
@@ -318,11 +318,11 @@ Emellett az alábbi táblázatban hozzávetőleges kérést az alkalmazásban ha
 | Válassza ki a felső 10 élelmiszerek étele csoportban |~ 10 RU |10 |
 
 > [!NOTE]
-> RU díjak visszaküldött elemek száma függően változhat.
+> RU díjak visszaküldött elemek száma hello függően változhat.
 > 
 > 
 
-Az információ azt megbecsülhető a RU-műveletek és a másodpercenként várhatóan lekérdezések száma alkalmazáshoz szükséges követelmények:
+Az információ azt megbecsülhető a megadott alkalmazás hello műveletek és száma másodpercenként várhatóan lekérdezések hello RU követelményei:
 
 | A művelet/lekérdezés | Becsült száma másodpercenként | Szükséges RUs |
 | --- | --- | --- |
@@ -332,31 +332,31 @@ Az információ azt megbecsülhető a RU-műveletek és a másodpercenként vár
 | Válassza ki a étele csoport szerint |10 |700 |
 | Válassza ki a felső 10 |15 |150 összesen |
 
-Ebben az esetben egy 1,275 RU/s átlagos átviteli sebességgel követelmény várhatóan.  Kerekítése a legközelebbi 100, akár azt szeretné kiépítése 1300 RU/mp ezt az alkalmazást a gyűjteményhez.
+Ebben az esetben egy 1,275 RU/s átlagos átviteli sebességgel követelmény várhatóan.  Felfelé toohello legközelebbi 100, azt kellene kiépítése 1300 RU/mp ezt az alkalmazást a gyűjteményhez.
 
 ## <a id="RequestRateTooLarge"></a>Az Azure Cosmos Adatbázisba meghaladó fenntartott átviteli sebességének korlátai
-Visszahívása, hogy kérelem egység fogyasztás kiértékelhető legyen másodpercenkénti, ha a keret üres. Olyan alkalmazások, amelyek mérete meghaladja a kiépített kérelmek egység aránya a tárolóhoz gyűjteményhez kérelmek kell halmozódni fog, amíg nem foglalt szint alatt esik száma másodpercenként. A szabályozási következik be, amikor a kiszolgáló megelőző jelleggel end RequestRateTooLargeException (HTTP-állapotkód: 429) a kérelmet, és térjen vissza a idő ezredmásodpercben, amely a felhasználó kell várnia, mielőtt megoldódhat jelző x-ms-újrapróbálkozási-után-ms-fejléc a kérelmet.
+Visszahívása, hogy kérelem egység fogyasztás kiértékelhető legyen másodpercenkénti, ha hello költségvetési üres. Az alkalmazások, amelyek mérete meghaladja a hello kiosztott kérelem egység egy tároló-kérelmek száma másodpercenként toothat gyűjtemény halmozódni fog, amíg hello arány fenntartott hello szint alá csökken. A szabályozási esetén hello server megelőző jelleggel véget ér hello kérelem RequestRateTooLargeException (HTTP-állapotkód: 429) és a visszatérési hello x-ms-újrapróbálkozási-után-ms-fejléc jelző idő, ezredmásodpercben, felhasználói hello hello mennyiségét kell várnia, mielőtt hello kérelem megoldódhat.
 
     HTTP Status 429
     Status Line: RequestRateTooLarge
     x-ms-retry-after-ms :100
 
-Ha a .NET SDK-ügyfél és a LINQ-lekérdezések, majd a legtöbbször ennek soha nem kell a .NET SDK-ügyfél aktuális verziója implicit módon ezt a választ ki, ez a kivétel kezelésére használ, tiszteletben tartja a kiszolgáló által megadott újrapróbálkozási után fejlécet, és újrapróbálkozik a a kérést. Kivéve, ha a fiók több ügyfélnek egyszerre használja, a következő újrapróbálkozási sikeres lesz.
+Hello .NET SDK-ügyfél és a LINQ-lekérdezések, majd a legtöbbször ennek hello hello .NET SDK-ügyfél aktuális verziója hello implicit módon ki ezt a választ, soha nem kell ezt a kivételt a toodeal használatakor tekintetben hello kiszolgáló által megadott újrapróbálkozási után fejlécet, és Az újrapróbálkozások hello kérelem. Kivéve, ha a fiók egyszerre több ügyfél által is hozzáférnek, hello legközelebbi újrapróbálkozás sikeres lesz.
 
-Ha egynél több ügyfél összesítve felett a kérelmek aránya működő esetleg nem elegendő az alapértelmezett újrapróbálási viselkedése, és az ügyfél egy DocumentClientException állapotkóddal 429 kivételhibát az alkalmazáshoz. Például ez esetben érdemes újrapróbálási viselkedése és rutinok kezelése vagy a tároló a fenntartott átviteli sebesség növelése az alkalmazás hibás programot.
+Ha egynél több ügyfél összesítve felett hello lekérdezési gyakorisága, működő hello alapértelmezett újrapróbálási viselkedése nem elegendők, és hello ügyfél kivételhibát egy DocumentClientException állapot kód 429-es jelű toohello alkalmazással. Például ez esetben érdemes újrapróbálási viselkedése és rutinok kezelése vagy hello hello tároló fenntartott átviteli sebesség növelése az alkalmazás hibás programot.
 
 ## <a id="RequestRateTooLargeAPIforMongoDB"></a>Mongodb-protokolltámogatással meghaladja a fenntartott átviteli sebességének korlátai API-ban.
-Alkalmazások, amelyek mérete meghaladja a kiosztott kérelemegység gyűjtemény halmozódni fog, amíg a sebesség esik fenntartott szint alatt. A szabályozási esetén a háttér megelőző jelleggel véget ér a kérelmet egy *16500* hibakód - *túl sok kérelem*. Alapértelmezés szerint API-t a MongoDB automatikusan megpróbálja legfeljebb 10-szer visszatérése előtt egy *túl sok kérelem* hibakód. Ha sok kap *túl sok kérelem* hibakódok, akkor fontolja meg vagy hozzáadását újrapróbálási viselkedése a az alkalmazás hibakezelési rutinok vagy [a gyűjteményafenntartottátvitelisebességnövelése](set-throughput.md).
+Alkalmazások, mint a gyűjtemény kiépítése hello kérelemegység halmozódni fog, amíg hello arány fenntartott hello szint alá csökken. A szabályozási esetén hello háttér megelőző jelleggel véget ér az hello kérelmek egy *16500* hibakód - *túl sok kérelem*. Alapértelmezés szerint API-t a MongoDB automatikusan megpróbálja too10 alkalommal visszatérése előtt fel egy *túl sok kérelem* hibakód. Ha sok kap *túl sok kérelem* hibakódok, akkor fontolja meg vagy hozzáadását újrapróbálási viselkedése a az alkalmazás hibakezelési rutinok vagy [hello hello gyűjteményfenntartottátvitelisebességnövelése](set-throughput.md).
 
 ## <a name="next-steps"></a>Következő lépések
-További információt az Azure Cosmos DB adatbázisok fenntartott átviteli sebességet, ismerheti meg ezeket az erőforrásokat:
+További információ az Azure Cosmos DB adatbázisok fenntartott átviteli sebességet toolearn ismerheti meg ezeket az erőforrásokat:
 
 * [Azure-beli árakról Cosmos DB](https://azure.microsoft.com/pricing/details/cosmos-db/)
 * [Az Azure Cosmos Adatbázisba az adatok particionálása](partition-data.md)
 
-Azure Cosmos DB kapcsolatos további tudnivalókért tekintse meg az Azure Cosmos DB [dokumentáció](https://azure.microsoft.com/documentation/services/cosmos-db/). 
+toolearn Azure Cosmos DB, kapcsolatos további információkért lásd: hello Azure Cosmos DB [dokumentáció](https://azure.microsoft.com/documentation/services/cosmos-db/). 
 
-Első lépésként a méretezés és teljesítmény Azure Cosmos DB tesztelést, lásd: [teljesítmény- és Mérettesztelés az Azure Cosmos DB](performance-testing.md).
+Méretezés és teljesítmény Azure Cosmos DB, tesztelték használatába tooget lásd [teljesítmény- és Mérettesztelés az Azure Cosmos DB](performance-testing.md).
 
 [1]: ./media/request-units/queryexplorer.png 
 [2]: ./media/request-units/RUEstimatorUpload.png

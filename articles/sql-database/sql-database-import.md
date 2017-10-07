@@ -1,5 +1,5 @@
 ---
-title: "Az Azure SQL-adatbázis létrehozásához BACPAC fájl importálása |} Microsoft Docs"
+title: "egy BACPAC aaaImport fájl toocreate Azure SQL-adatbázis |} Microsoft Docs"
 description: "Hozzon létre egy newAzure SQL-adatbázis BACPAC fájl importálásával."
 services: sql-database
 documentationcenter: 
@@ -15,48 +15,48 @@ ms.author: carlrab
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
-ms.openlocfilehash: 285e17ed6d0ce700cb518864df7a3b5f5e55bee5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0d5fc93acf27b79502969fcd6199d11161915b19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="import-a-bacpac-file-to-a-new-azure-sql-database"></a>Új Azure SQL-adatbázis BACPAC fájl importálása
+# <a name="import-a-bacpac-file-tooa-new-azure-sql-database"></a>Importálja a BACPAC fájl tooa új Azure SQL-adatbázis
 
-Ha egy adatbázis archívumból importálnia kell vagy egy másik platformról áttelepítésekor importálhatja az adatbázisséma és adatainak áttelepítését egy [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) fájlt. Egy BACPAC egy ZIP-fájlt tartalmazó a metaadatokat és az SQL Server-adatbázis BACPAC kiterjesztésű fájl. Egy BACPAC fájl importálhatók az Azure blob storage (csak a standard tárolási) vagy egy helyszíni hely a helyi tárolóból. Az importálási sebesség maximalizálása érdekében azt javasoljuk, hogy szintet adjon meg magasabb szolgáltatás és teljesítményszintet, például egy P6, és majd méretezhető, az importálás sikeres után szükség szerint le. Az adatbázis kompatibilitási szintjét az importálás után is, a forrás-adatbázis kompatibilitási szintjének alapul. 
+Ha tooimport archívumból adatbázis van szüksége, vagy egy másik platformról áttelepítésekor hello adatbázisséma és adatainak áttelepítését importálni egy [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) fájlt. Egy BACPAC egy ZIP-fájlt tartalmazó hello metaadatok és adatainak áttelepítését egy SQL Server-adatbázis BACPAC kiterjesztésű fájl. Egy BACPAC fájl importálhatók az Azure blob storage (csak a standard tárolási) vagy egy helyszíni hely a helyi tárolóból. Adjon meg egy magasabb és teljesítményszintet szolgáltatásszintet, például egy P6, és szükség szerint toodown majd méretezhető, hello importálási befejezését követően ajánlott toomaximize hello importálási sebessége. Hello adatbázis kompatibilitási szintje hello importálás után is, hello source adatbázis kompatibilitási szintje hello alapul. 
 
 > [!IMPORTANT] 
-> Az adatbázis az Azure SQL Database az áttelepítés után válassza ki az adatbázist, a jelenlegi kompatibilitási szinten (100. szint a AdventureWorks2008R2 adatbázis) vagy magasabb szinten működik. A implications és a beállításokat egy adatbázis kompatibilitási szintű működő további információkért lásd: [adatbázis kompatibilitási szintje ALTER](https://docs.microsoft.com/sql/t-sql/statements/alter-database-transact-sql-compatibility-level). Lásd még: [adatbázis HATÓKÖRŰ konfiguráció ALTER](https://docs.microsoft.com/sql/t-sql/statements/alter-database-scoped-configuration-transact-sql) kompatibilitási szintre vonatkozó további adatbázis-szintű beállítással kapcsolatos információkat.   >
+> Az adatbázis tooAzure SQL-adatbázis az áttelepítés után dönthet úgy, hogy a jelenlegi kompatibilitási szinten (100. szint hello AdventureWorks2008R2 adatbázis) vagy magasabb szintű toooperate hello adatbázis ki. Hello hatással vannak, és egy adatbázis kompatibilitási szintű működő beállításainak további információkért lásd: [adatbázis kompatibilitási szintje ALTER](https://docs.microsoft.com/sql/t-sql/statements/alter-database-transact-sql-compatibility-level). Lásd még: [adatbázis HATÓKÖRŰ konfiguráció ALTER](https://docs.microsoft.com/sql/t-sql/statements/alter-database-scoped-configuration-transact-sql) további adatbázis-szintű beállítással kapcsolatos információkat a vonatkozó toocompatibility szintjének.   >
 
 > [!NOTE]
-> Egy új adatbázist egy BACPAC importálni, először létre kell hoznia egy Azure SQL Database logikai kiszolgálóhoz. Az oktatóanyag bemutatja, hogyan egy SQL Server-adatbázis áttelepítése az Azure SQL Database szolgáltatásba SQLPackage, lásd: [SQL Server-adatbázis áttelepítése](sql-database-migrate-your-sql-server-database.md)
+> tooimport BACPAC tooa új adatbázist, akkor először létre kell hoznia egy Azure SQL Database logikai kiszolgálóhoz. Egy oktatóanyag, hogy bemutatja, hogyan toomigrate egy SQL Server adatbázis-tooAzure SQL-adatbázis használata SQLPackage, lásd: [SQL Server-adatbázis áttelepítése](sql-database-migrate-your-sql-server-database.md)
 >
 
 ## <a name="import-from-a-bacpac-file-using-azure-portal"></a>Azure-portál használatával BACPAC-fájlból való importálása
 
-Ez a cikk ismerteti az Azure SQL-adatbázis tárolja az Azure blob storage használatával BACPAC-fájlból való létrehozására vonatkozó utasításokat a [Azure-portálon](https://portal.azure.com). Importálás csak az Azure portál használatával támogatja a BACPAC-fájl importálását az Azure blob storage.
+Ez a cikk ismerteti az Azure SQL-adatbázis hello használata az Azure blob storage-ban tárolt BACPAC-fájlból való létrehozására vonatkozó utasításokat [Azure-portálon](https://portal.azure.com). Hello csak az Azure portál használatával importálhatók BACPAC fájlok importálása az Azure blob storage.
 
-Szeretne importálni egy adatbázist, az Azure portál használatával, nyissa meg az adatbázis lapját, és kattintson a **importálása** az eszköztáron. Adja meg a tárfiók és tároló, és válassza ki az importálni kívánt BACPAC. Adja meg az új adatbázist (általában a megegyezik az eredeti), és adja meg a célként megadott SQL Server hitelesítő adatokat.  
+egy adatbázis használatával tooimport hello Azure-portálon, az adatbázisról, és kattintson a Megnyitás hello lap **importálási** hello eszköztáron. Adja meg a hello tárfiók és tároló, és válassza ki a kívánt tooimport hello BACPAC-fájl. Válassza ki az új adatbázis hello hello méretet (általában hello ugyanaz, mint a forrás) és hello cél SQL Server hitelesítő adatok megadásához.  
 
    ![Adatbázis importálása](./media/sql-database-import/import.png)
 
-Az importálási művelet előrehaladásának figyeléséhez, nyissa meg az importált adatbázist tartalmazó logikai kiszolgálóhoz tartozó lapon. Görgessen le a **műveletek** majd **Import/Export** előzményeit.
+hello toomonitor hello előrehaladását az importálási művelet, hello logikai kiszolgáló tartalmazó hello adatbázisának importált hello lap megnyitásához. Görgessen lefelé, túl**műveletek** , majd **Import/Export** előzményeit.
 
-### <a name="monitor-the-progress-of-an-import-operation"></a>Az importálási művelet előrehaladásának figyeléséhez
+### <a name="monitor-hello-progress-of-an-import-operation"></a>Az importálási művelet hello állapotának figyelése
 
-Az importálási művelet előrehaladásának figyeléséhez, nyissa meg a logikai kiszolgáló amelybe az adatbázis importált importált lapját. Görgessen le a **műveletek** majd **Import/Export** előzményeit.
+hello toomonitor hello előrehaladását az importálási művelet, hello logikai kiszolgáló mely hello az adatbázis importált importált hello lap megnyitásához. Görgessen lefelé, túl**műveletek** , majd **Import/Export** előzményeit.
    
    ![Importálás](./media/sql-database-import/import-history.png) ![importálás állapota](./media/sql-database-import/import-status.png)
 
-Ellenőrizze, hogy az adatbázis a kiszolgálón élő, kattintson a **SQL-adatbázisok** és ellenőrizze, hogy az új adatbázis **Online**.
+tooverify hello adatbázis élő hello kiszolgálón, kattintson a **SQL-adatbázisok** és ellenőrizze, hogy új adatbázist hello **Online**.
 
 ## <a name="import-from-a-bacpac-file-using-sqlpackage"></a>SQLPackage használatával BACPAC-fájlból való importálása
 
-Egy SQL adatbázis használatával importálhatja a [SqlPackage](https://msdn.microsoft.com/library/hh550080.aspx) parancssori segédprogram, lásd: [importálja a paraméterek és a Tulajdonságok](https://msdn.microsoft.com/library/hh550080.aspx#Import Parameters and Properties). A SQLPackage segédprogram érhető el a legújabb verziójú [SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) és [SQL Server Data Tools for Visual Studio](https://msdn.microsoft.com/library/mt204009.aspx), vagy letöltheti a legújabb [SqlPackage](https://www.microsoft.com/download/details.aspx?id=53876) közvetlenül a Microsoft letöltőközpontból.
+tooimport egy SQL-adatbázis használatával hello [SqlPackage](https://msdn.microsoft.com/library/hh550080.aspx) parancssori segédprogram, lásd: [importálja a paraméterek és a Tulajdonságok](https://msdn.microsoft.com/library/hh550080.aspx#Import Parameters and Properties). hello SQLPackage segédprogram hello legfrissebb változatának részét képező [SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) és [SQL Server Data Tools for Visual Studio](https://msdn.microsoft.com/library/mt204009.aspx), vagy letöltheti a legújabb verziót hello [ SqlPackage](https://www.microsoft.com/download/details.aspx?id=53876) közvetlenül a hello Microsoft letöltőközpontból.
 
-Méretezés és teljesítmény a legtöbb éles környezetben a SQLPackage segédprogram használatát javasoljuk. További információ a BACPAC-fájlokkal végzett migrálásról az SQL Server ügyféltanácsadói csapat blogján: [Migrálás SQL Serverről az Azure SQL Database-re BACPAC-fájlokkal](https://blogs.msdn.microsoft.com/sqlcat/2016/10/20/migrating-from-sql-server-to-azure-sql-database-using-bacpac-files/).
+A méretezés és teljesítmény a legtöbb éles környezetben hello hello SQLPackage segédprogram használatát javasoljuk. Egy SQL Server Ügyféltanácsadói csapatának blogja áttelepítéssel kapcsolatos BACPAC-fájlokkal, lásd: [áttelepítése az SQL Server tooAzure SQL-adatbázis BACPAC-fájlokat használ](https://blogs.msdn.microsoft.com/sqlcat/2016/10/20/migrating-from-sql-server-to-azure-sql-database-using-bacpac-files/).
 
-Az alábbi SQLPackage parancsot a parancsfájl például importálásáról lásd a **AdventureWorks2008R2** Azure SQL Database logikai kiszolgálóhoz, nevű a helyi tároló adatbázis **mynewserver20170403** ebben a példában. Ez a parancsfájl jeleníti meg az új adatbázis létrehozása **myMigratedDatabase**, egy szolgáltatási szint a **prémium**, és a szolgáltatás célkitűzése **P6**. Ezeket az értékeket a környezet szükség szerint módosítható.
+Tekintse meg a következő SQLPackage parancs olyan parancsfájl például arról, hogyan hello tooimport hello **AdventureWorks2008R2** helyi tároló tooan Azure SQL Database logikai kiszolgáló, nevű adatbázis **mynewserver20170403** ebben a példában. A parancsfájl jeleníti meg az új adatbázis létrehozása hello **myMigratedDatabase**, az egy szolgáltatási szint **prémium**, és a szolgáltatás célja **P6**. Megfelelő tooyour környezet módosítani ezeket az értékeket.
 
 ```cmd
 SqlPackage.exe /a:import /tcs:"Data Source=mynewserver20170403.database.windows.net;Initial Catalog=myMigratedDatabase;User Id=ServerAdmin;Password=<change_to_your_password>" /sf:AdventureWorks2008R2.bacpac /p:DatabaseEdition=Premium /p:DatabaseServiceObjective=P6
@@ -65,10 +65,10 @@ SqlPackage.exe /a:import /tcs:"Data Source=mynewserver20170403.database.windows.
    ![sqlpackage importálása](./media/sql-database-migrate-your-sql-server-database/sqlpackage-import.png)
 
 > [!IMPORTANT]
-> Egy Azure SQL Database logikai kiszolgáló figyel az 1433-as porton. Ha vállalati tűzfalon belülről szeretne csatlakozni egy Azure SQL Database logikai kiszolgálóhoz, ennek a portnak nyitva kell lennie a vállalati tűzfalon a sikeres csatlakozáshoz.
+> Egy Azure SQL Database logikai kiszolgáló figyel az 1433-as porton. Próbált tooconnect tooan Azure SQL Database logikai kiszolgáló a vállalati tűzfalon belül, ha ezt a portot kell megnyitni hello vállalati tűzfal az Ön toosuccessfully csatlakozzon.
 >
 
-Ez a példa bemutatja, hogyan importálása az Active Directory univerzális hitelesítéssel SqlPackage.exe egy adatbázist:
+A példa bemutatja, hogyan tooimport egy adatbázist az Active Directory univerzális hitelesítéssel SqlPackage.exe használatával:
 
 ```cmd
 SqlPackage.exe /a:Import /sf:testExport.bacpac /tdn:NewDacFX /tsn:apptestserver.database.windows.net /ua:True /tid:"apptest.onmicrosoft.com"
@@ -76,7 +76,7 @@ SqlPackage.exe /a:Import /sf:testExport.bacpac /tdn:NewDacFX /tsn:apptestserver.
 
 ## <a name="import-from-a-bacpac-file-using-powershell"></a>PowerShell-lel BACPAC-fájlból való importálása
 
-Használja a [New-AzureRmSqlDatabaseImport](/powershell/module/azurerm.sql/new-azurermsqldatabaseimport) parancsmagot, hogy küldje el az importálási adatbázis kérelmet az Azure SQL Database szolgáltatásban. Az adatbázis méretétől függően az importálási művelet eltarthat egy ideig.
+Használjon hello [New-AzureRmSqlDatabaseImport](/powershell/module/azurerm.sql/new-azurermsqldatabaseimport) parancsmag toosubmit egy importálási adatbázis kérelem toohello Azure SQL Database szolgáltatásban. Attól függően, hogy az adatbázis méretét hello hello importálási művelet eltarthat néhány alkalommal toocomplete.
 
  ```powershell
  $importRequest = New-AzureRmSqlDatabaseImport -ResourceGroupName "myResourceGroup" `
@@ -93,7 +93,7 @@ Használja a [New-AzureRmSqlDatabaseImport](/powershell/module/azurerm.sql/new-a
 
  ```
 
-A kérést állapotának ellenőrzéséhez használja a [Get-AzureRmSqlDatabaseImportExportStatus](/powershell/module/azurerm.sql/get-azurermsqldatabaseimportexportstatus) parancsmag. Fut a kérelem után azonnal általában értéket ad vissza **állapota: esetbejegyzések**. Amikor látja **állapota: sikeres** az importálás befejeződött.
+hello toocheck hello állapotának-importálási kérelem, használja a hello [Get-AzureRmSqlDatabaseImportExportStatus](/powershell/module/azurerm.sql/get-azurermsqldatabaseimportexportstatus) parancsmag. Ez közvetlenül a hello után fut kérelmek általában értéket ad vissza **állapota: esetbejegyzések**. Amikor látja **állapota: sikeres** hello importálás befejeződött.
 
 ```powershell
 $importStatus = Get-AzureRmSqlDatabaseImportExportStatus -OperationStatusLink $importRequest.OperationStatusLink
@@ -112,9 +112,9 @@ $importStatus
 Egy másik mintaparancsfájl, lásd: [adatbázis BACPAC-fájlból való importálása](scripts/sql-database-import-from-bacpac-powershell.md).
 
 ## <a name="next-steps"></a>Következő lépések
-* Megtudhatja, hogyan csatlakozhat, és az importált SQL-adatbázis lekérdezése, lásd: [Csatlakozás SQL Database adatbázishoz az SQL Server Management Studio eszközt, és végezze el a T-SQL-mintalekérdezés](sql-database-connect-query-ssms.md).
-* További információ a BACPAC-fájlokkal végzett migrálásról az SQL Server ügyféltanácsadói csapat blogján: [Migrálás SQL Serverről az Azure SQL Database-re BACPAC-fájlokkal](https://blogs.msdn.microsoft.com/sqlcat/2016/10/20/migrating-from-sql-server-to-azure-sql-database-using-bacpac-files/).
-* A teljes SQL Server adatbázis áttelepítési folyamat, többek között teljesítmény javaslatok leírását lásd: [egy SQL Server-adatbázis áttelepítése az Azure SQL Database](sql-database-cloud-migrate.md).
+* toolearn hogyan tooconnect tooand lekérdezni egy importált SQL-adatbázis, lásd: [tooSQL adatbázis csatlakozzon az SQL Server Management Studio eszközt, és minta T-SQL-lekérdezést végrehajtani a](sql-database-connect-query-ssms.md).
+* Egy SQL Server Ügyféltanácsadói csapatának blogja áttelepítéssel kapcsolatos BACPAC-fájlokkal, lásd: [áttelepítése az SQL Server tooAzure SQL-adatbázis BACPAC-fájlokat használ](https://blogs.msdn.microsoft.com/sqlcat/2016/10/20/migrating-from-sql-server-to-azure-sql-database-using-bacpac-files/).
+* Hello teljes SQL Server adatbázis áttelepítési folyamat, többek között teljesítmény javaslatok leírását lásd: [egy SQL Server adatbázis tooAzure SQL-adatbázis áttelepítése](sql-database-cloud-migrate.md).
 
 
 

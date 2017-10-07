@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directory-kiadások |} Microsoft Docs"
-description: "Ez a cikk döntések szabad ismerteti, és a fizetős Azure Active Directory kiadása. Az Azure Active Directory alapszintű Azure Active Directory Premium P1 és Azure Active Directory Premium P2 a fizetős kiadások."
+title: "Active Directory-kiadások aaaAzure |} Microsoft Docs"
+description: "Ez a cikk döntések szabad ismerteti, és a fizetős Azure Active Directory kiadása. Az Azure Active Directory alapszintű Azure Active Directory Premium P1 és Azure Active Directory Premium P2 fizetős hello kiadások."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
-ms.openlocfilehash: 9d10ebf9d7bd07bd126302a6ecf442d809e00196
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 59478692020e84c7bf3fc96cba81eba4e9eb1ae6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-editions"></a>Az Azure Active Directory-kiadások
-Bejelentkezés az Azure Active Directory (Azure AD) támaszkodnak az összes Microsoft Online szolgáltatás, és más az identitásukat. Ha előfizet a Microsoft Online üzleti szolgáltatások (például Office 365 vagy a Microsoft Azure), emellett hozzáférhetnek az összes szabad szolgáltatását, az alábbiakban az Azure AD kap.  
+Bejelentkezés az Azure Active Directory (Azure AD) támaszkodnak az összes Microsoft Online szolgáltatás, és más az identitásukat. Ha előfizet a Microsoft Online üzleti szolgáltatások (például Office 365 vagy a Microsoft Azure) tooany, kap az access tooall hello az Azure AD ingyenes szolgáltatásokat, az alábbiakban.  
 
-Az Azure Active Directory egy átfogó, magas rendelkezésre állású, felhőalapú identitás- és hozzáférés-kezelő megoldás, amely ötvözi az alapvető címtárszolgáltatásokat, a fejlett identitáskezelést és az alkalmazáshozzáférés-felügyeletet. Az Azure Active Directory egyben funkciógazdag, szabványalapú platformként szolgál, amely lehetővé teszi, hogy a fejlesztők központosított módon szabályozzák a hozzáférést alkalmazásaikhoz. Az Azure Active Directory ingyenes kiadásával is kezelhető felhasználókat és csoportokat, szinkronizálja a helyszíni címtárak, Azure, az Office 365 és a népszerű SaaS-alkalmazásokhoz Salesforce, Workday, Concur, DocuSign, Google Apps, mező, ServiceNow, dropbox-ba, és több ezer egyszeri bejelentkezés beolvasása. Azure Active Directoryval kapcsolatos további tudnivalókért olvassa el [Mi az Azure AD?](active-directory-whatis.md)
+Az Azure Active Directory egy átfogó, magas rendelkezésre állású, felhőalapú identitás- és hozzáférés-kezelő megoldás, amely ötvözi az alapvető címtárszolgáltatásokat, a fejlett identitáskezelést és az alkalmazáshozzáférés-felügyeletet. Az Azure Active Directory is gazdag, szabványokon alapuló platformot biztosít, amely lehetővé teszi a fejlesztők toodeliver vezérlő tootheir alkalmazásokat, központi házirend és a szabályok alapján. Hello Azure Active Directory ingyenes kiadásával felhasználók és csoportok kezelése, a helyszíni címtárak szinkronizálása, egyszeri bejelentkezést Azure, az Office 365 és a népszerű SaaS-alkalmazásokhoz, például a Salesforce, Workday, Concur, DocuSign, több ezer beolvasása Google Apps, mezőbe, a ServiceNow, Dropbox és több. További információ az Azure Active Directoryban, toolearn olvasási [Mi az Azure AD?](active-directory-whatis.md)
 
-Az Azure Active Directory javítása érdekében, az Azure Active Directory Basic, a Premium P1 és a Premium P2 verziójával fizetős képességeket is hozzáadhat. Kiadás fizetős Azure Active Directory épülő a meglévő szabad directory vállalati átfedés önkiszolgáló, a kibővített figyelési, jelentéskészítési biztonsági, többtényezős hitelesítés (MFA) és biztonságos hozzáférést a mobil munkaerő igényeire osztály képességek biztosítása.
+tooenhance az Azure Active Directoryban, adhat hozzá hello Azure Active Directory Basic, a Premium P1 és a Premium P2 verziójával fizetős képességeit. Kiadás fizetős Azure Active Directory épülő a meglévő szabad directory vállalati átfedés önkiszolgáló, a kibővített figyelési, jelentéskészítési biztonsági, többtényezős hitelesítés (MFA) és biztonságos hozzáférést a mobil munkaerő igényeire osztály képességek biztosítása.
 
-Office 365-előfizetéssel a összehasonlítása az alábbi táblázatban leírt további Azure Active Directory-szolgáltatások közé tartozik.
+Office 365-előfizetéshez tartozik további Azure Active Directory-szolgáltatások hello összehasonlítása az alábbi táblázat ismerteti.
 
 > [!NOTE]
-> A következő kiadásokra árképzési beállítások, lásd: [Azure Active Directory árképzési](https://azure.microsoft.com/pricing/details/active-directory/). Az Azure Active Directory Premium P1, Premium P2 és Azure Active Directory alapvető jelenleg nem támogatottak Kínában. Lépjen kapcsolatba velünk az Azure Active Directory fórum további információt a.
+> Beállítások a következő kiadásokra árképzési hello, lásd: [Azure Active Directory árképzési](https://azure.microsoft.com/pricing/details/active-directory/). Az Azure Active Directory Premium P1, Premium P2 és Azure Active Directory alapvető jelenleg nem támogatottak Kínában. Lépjen kapcsolatba velünk a hello Azure Active Directory fórumán további információt.
 >
 >
 
-* **Alapszintű Azure Active Directory** -felhő-első igényekkel biztosíthasson az adminisztratív munkatársak tervezték, a kiadás tartalmazza felhő központú alkalmazás-hozzáférést és önkiszolgáló identitáskezelési megoldások. Az Azure Active Directory Alapszintű kiadása különböző hatékonyságnövelő és költségcsökkentő funkciókat biztosít, többek között csoportalapú hozzáférés-kezelést és önkiszolgáló jelszó-visszaállítást felhőalkalmazásokhoz, valamint az Azure Active Directory Application Proxy szolgáltatást, amellyel helyszíni környezetben futó webes alkalmazások tehetők közzé az Azure Active Directoryval – mindezt nagyvállalati szintű, 99,9%-os garantált szolgáltatási szintben vállalt rendelkezésre állás mellett.
-* **Az Azure Active Directory Premium P1** - tervezett építve a vállalatok nehezebb identitások és hozzáférések felügyeletéhez szükséges, az Azure Active Directory Premium edition gazdag vállalati szintű identitás-felügyeleti képességét biztosítja, és lehetővé teszi a hibrid felhasználók zavartalanul hozzáférni a helyszíni és a felhőalapú képességek. A kiadás minden szükséges képességgel ellátja a hibrid környezetben dolgozó infomunkásokat és identitáskezelő adminisztrátorokat, legyen szó az alkalmazásokhoz való hozzáférésről, önkiszolgáló identitás- és hozzáférés-kezelési funkciókról, az identitások védelméről és a felhő biztonságáról. Speciális felügyelet és a delegálás erőforrásokhoz, mint a dinamikus csoportok és az önkiszolgáló csoportkezelési támogatja. Magában foglalja a Microsoft Identity Manager (egy a helyszíni identitások és hozzáférések felügyeleti csomag) és a felhőalapú megoldások, például az önkiszolgáló jelszó-visszaállítást a helyi felhasználók engedélyezése késleltetve visszaírt képességeket biztosít.
-* **Az Azure Active Directory Premium P2** -kialakítása során a felhasználók és rendszergazdák speciális védelem, az új ajánlat tartalmazza a képességek az Azure AD Premium P1, valamint az új Identity Protection és a Privileged Identity Management. Az Azure Active Directory Identity Protection jelek a kockázat-alapú feltételes hozzáférést biztosítanak az alkalmazások és a kritikus vállalati adatokat egy kihasználja. Azt is súgó kezelése és a kiemelt jogosultságú fiókok Azure Active Directory Privileged Identity Management védi, ezért is felderítheti, korlátozza és figyelje a rendszergazdák és azok erőforrásokhoz való hozzáférésének, és csak időben való hozzáférésre, szükség esetén adja meg.  
+* **Alapszintű Azure Active Directory** -felhő-első igényekkel biztosíthasson az adminisztratív munkatársak tervezték, a kiadás tartalmazza felhő központú alkalmazás-hozzáférést és önkiszolgáló identitáskezelési megoldások. Hello az Azure Active Directory Basic edition, az beszerzése a termelékenység növelése, és költségek csökkentése a szolgáltatások, mint a csoport-alapú hozzáférés-felügyeletet, önkiszolgáló jelszó-visszaállítást a felhőalapú alkalmazásokhoz, és az Azure Active Directory alkalmazásproxyt (toopublish a helyszíni webalkalmazások Azure Active Directory használatával), az összes által támogatott vállalati szintű szolgáltatásiszint-szerződésben garantált 99,9 % megadott hasznos üzemideje.
+* **Az Azure Active Directory Premium P1** -további nagy rendelkező tooempower szervezeteknek készült Azure Active Directory Premium edition veszi fel a gazdag vállalati szintű identitás-kezelési képességei, identitások és hozzáférések felügyeletéhez szükséges és lehetővé teszi, hogy hibrid felhasználók tooseamlessly hozzáférését a helyszíni, mind a felhőalapú képességek. Ez a kiadás tartalmaz mindent, ami szükséges információkkal dolgozó szakember és hibrid környezetekben identitás-rendszergazdák az alkalmazások elérésére, önkiszolgáló identitás és hozzáférés-kezelés (IAM), azonosító adatok védelmét és biztonsági hello felhőben. Speciális felügyelet és a delegálás erőforrásokhoz, mint a dinamikus csoportok és az önkiszolgáló csoportkezelési támogatja. Magában foglalja a Microsoft Identity Manager (egy a helyszíni identitások és hozzáférések felügyeleti csomag) és a felhőalapú megoldások, például az önkiszolgáló jelszó-visszaállítást a helyi felhasználók engedélyezése késleltetve visszaírt képességeket biztosít.
+* **Az Azure Active Directory Premium P2** -kialakítása során a felhasználók és rendszergazdák speciális védelem, az új ajánlat kínálja összes hello az Azure AD Premium P1, valamint az új Identity Protection és a Privileged Identity Felügyeleti. Az Azure Active Directory Identity Protection jelek tooprovide kockázati-alapú feltételes hozzáférés tooyour alkalmazások és a kritikus vállalati adatokat egy kihasználja. Azt is súgó kezelése és a kiemelt jogosultságú fiókok Azure Active Directory Privileged Identity Management védi, ezért is felderítheti, korlátozza és figyelje a rendszergazdák és a hozzáférés tooresources, és csak időben való hozzáférésre, szükség esetén adja meg.  
 
-Regisztráció és az Active Directory Premium ma használatának megkezdéséhez [Ismerkedés az Azure Active Directory Premium](active-directory-get-started-premium.md).
+toosign fel és ma, használja az Active Directory Premium start [Ismerkedés az Azure Active Directory Premium](active-directory-get-started-premium.md).
 
 > [!NOTE]
 > Számos Azure Active Directory képességet "használatalapú" kiadás keresztül érhetők el:
 >
-> * Active Directory B2C jelenleg a identitás- és hozzáférés-kezelési megoldás a felhasználók felé néző alkalmazásokhoz. További részletekért lásd: [Azure Active Directory B2C-vel](https://azure.microsoft.com/documentation/services/active-directory-b2c/)
+> * Active Directory B2C jelenleg hello identitás- és hozzáférés-kezelési megoldást a felhasználók felé néző alkalmazások. További részletekért lásd: [Azure Active Directory B2C-vel](https://azure.microsoft.com/documentation/services/active-directory-b2c/)
 > * Az Azure multi-factor Authentication használható keresztül, felhasználónként, vagy a hitelesítésszolgáltatókat. További részletekért lásd: [Mi az Azure multi-factor Authentication?](../multi-factor-authentication/multi-factor-authentication.md)
 >
 >
 
 ## <a name="comparing-generally-available-features"></a>Általánosan elérhető szolgáltatások összehasonlítása
 > [!NOTE]
-> Ezen adatok másik nézetet, tekintse meg a [Azure Active Directory képességek](https://www.microsoft.com/en/server-cloud/products/azure-active-directory/features.aspx).
+> Ezen adatok másik nézetet, lásd: hello [Azure Active Directory képességek](https://www.microsoft.com/en/server-cloud/products/azure-active-directory/features.aspx).
 >
 >
 
@@ -60,7 +60,7 @@ Regisztráció és az Active Directory Premium ma használatának megkezdéséhe
 * [Felhasználó/csoport Management (hozzáadása/frissítés/törlés) / felhasználóalapú kiépítés, az eszközök regisztrációja](#usergroup-management-addupdatedelete-user-based-provisioning-device-registration)
 * [Egyszeri bejelentkezés (SSO)](#single-sign-on-sso)
 * [A felhőbeli felhasználóinak az önkiszolgáló jelszó módosítása](#self-service-password-change-for-cloud-users)
-* [(A, amely kiterjeszti a helyszíni címtárakat az Azure Active Directory szinkronizálási motor) csatlakozás](#connect-sync-engine-that-extends-on-premises-directories-to-azure-active-directory)
+* [Connect (szinkronizálási motor, amely kiterjeszti a helyszíni címtárak tooAzure Active Directory)](#connect-sync-engine-that-extends-on-premises-directories-to-azure-active-directory)
 * [Biztonsági / jelentései](#securityusage-reports)
 
 **Alapvető szolgáltatások**
@@ -88,20 +88,20 @@ Regisztráció és az Active Directory Premium ma használatának megkezdéséhe
 
 **Az Azure Active Directory Join – Windows 10 csak a kapcsolódó szolgáltatások**
 
-* [Egy eszköz csatlakoztatása az Azure ad-vel, asztali SSO, a Microsoft Passport az Azure Active Directory, a rendszergazda a Bitlocker helyreállítási](#join-a-device-to-azure-ad-desktop-sso-microsoft-passport-for-azure-ad-administrator-bitlocker-recovery)
-* [Mobileszköz-kezelési automatikus igénylés, önkiszolgáló Bitlocker-helyreállítást, a Windows 10-eszközöket az Azure AD Join további helyi rendszergazda](#mdm-auto-enrollment)
+* [Egy eszköz tooAzure AD, asztali SSO, a Microsoft Passport for Azure Active Directory, a rendszergazda a Bitlocker helyreállítási csatlakozás](#join-a-device-to-azure-ad-desktop-sso-microsoft-passport-for-azure-ad-administrator-bitlocker-recovery)
+* [Mobileszköz-kezelési automatikus igénylés, önkiszolgáló Bitlocker helyreállítási további helyi rendszergazdák tooWindows 10-eszközöket az Azure AD-csatlakozás](#mdm-auto-enrollment)
 
 ## <a name="common-features"></a>Közös funkciók
 #### <a name="directory-objects"></a>Címtárobjektumok
 **Típus:** általános szolgáltatások
 
-Az alapértelmezett memóriahasználati kvóta 150 000 objektumok. Objektum a címtárszolgáltatás minden egyedi megkülönböztető névvel jelölt bejegyzése, Objektum lehet például egy hitelesítési célra használt felhasználói bejegyzés. Ha meghaladja az alapértelmezett kvótát van szüksége, forduljon a támogatási szolgálatához. Az 500 ezres objektumkorlát az Office 365-re, a Microsoft Intune-ra és a Microsoft azon fizetős online szolgáltatásaira nem vonatkozik, amelyek címtárszolgáltatásként az Azure Active Directoryt használják.
+hello alapértelmezett memóriahasználati kvóta 150 000 objektumok. Az objektum bejegyzés hello címtárszolgáltatásban, az egyedi megkülönböztető neve alapján. Objektum lehet például egy hitelesítési célra használt felhasználói bejegyzés. Ha az alapértelmezett kvótát kell tooexceed, forduljon a támogatási szolgálatához. hello 500 KB-os objektum nem vonatkozik a korlátozás az Office 365, a Microsoft Intune, vagy bármely más Microsoft fizetős online szolgáltatás, amely Azure Active Directory címtárszolgáltatásban támaszkodik.
 
 **Rendelkezésre állás:**
 
 | Ingyenes kiadás | Basic Edition | Prémium (P1 és P2) kiadásai | Csak az Office 365-alkalmazásokhoz |
 |:---:|:---:|:---:|:---:|
-| Legfeljebb 500 000 objektumok |Nincs objektum korlát |Nincs objektum korlát |Az Office 365 felhasználói fiókjainak objektum korlátlan |
+| Too500, 000 objektumok mentése |Nincs objektum korlát |Nincs objektum korlát |Az Office 365 felhasználói fiókjainak objektum korlátlan |
 
 #### <a name="usergroup-management-addupdatedelete-user-based-provisioning-device-registration"></a>Felhasználó/csoport felügyeletet (hozzáadása/frissítés/törlés), a felhasználó-alapú üzembe helyezés, az eszközök regisztrációja
 **Típus:** általános szolgáltatások
@@ -126,8 +126,8 @@ Az alapértelmezett memóriahasználati kvóta 150 000 objektumok. Objektum a c�
 |:---:|:---:|:---:|:---:|
 | 10-es alkalmazások felhasználónként (1) |10-es alkalmazások felhasználónként (1) |Korlátlan (2) |10-es alkalmazások felhasználónként (1) |
 
-1. Az ingyenes és az alapszintű Azure AD esetében a végfelhasználók legfeljebb 10 alkalmazáshoz jogosultak egyszeri bejelentkezéses hozzáférésre.
-2. Bármely SAML-t, SCIM-et vagy űrlapalapú hitelesítést támogató alkalmazás önkiszolgáló integrációja az alkalmazáskatalógus menüjében biztosított sablonok használatával. További részletekért lásd: [konfigurálása egyszeri bejelentkezés alkalmazásokhoz, amelyek nincsenek rajta az Azure Active Directory alkalmazáskatalógusában](active-directory-saas-custom-apps.md).
+1. Az Azure AD ingyenes és Azure AD alapvető a végfelhasználók jogosultak tooget egyszeri bejelentkezés hozzáférést too10 alkalmazások fel.
+2. Önkiszolgáló integrációs bármely alkalmazás, SAML, SCIM vagy űrlapalapú hitelesítést támogató hello alkalmazás jelentéstár menüből megadott sablonok használatával. További részletekért lásd: [konfigurálása egyszeri bejelentkezéshez tooapplications, amelyek nincsenek hello Azure Active Directory alkalmazáskatalógusában](active-directory-saas-custom-apps.md).
 
 **További részletek:**
 
@@ -144,9 +144,9 @@ Az alapértelmezett memóriahasználati kvóta 150 000 objektumok. Objektum a c�
 
 **További részletek:**
 
-* [Saját jelszó frissítése](active-directory-passwords-update-your-own-password.md#reset-or-unlock-my-password-for-a-work-or-school-account)
+* [Hogyan tooupdate a saját jelszavát](active-directory-passwords-update-your-own-password.md#reset-or-unlock-my-password-for-a-work-or-school-account)
 
-#### <a name="connect--sync-engine-that-extends-on-premises-directories-to-azure-active-directory"></a>(A, amely kiterjeszti a helyszíni címtárakat az Azure Active Directory szinkronizálási motor) csatlakozás
+#### <a name="connect--sync-engine-that-extends-on-premises-directories-tooazure-active-directory"></a>Connect (szinkronizálási motor, amely kiterjeszti a helyszíni címtárak tooAzure Active Directory)
 **Típus:** általános szolgáltatások
 
 **Rendelkezésre állás:**
@@ -184,7 +184,7 @@ Az alapértelmezett memóriahasználati kvóta 150 000 objektumok. Objektum a c�
 
 **További részletek:**
 
-* [SaaS-alkalmazásokhoz való hozzáférés kezelése csoport segítségével](active-directory-accessmanagement-group-saasapps.md)
+* [Egy csoport toomanage tooSaaS alkalmazásokat használatával](active-directory-accessmanagement-group-saasapps.md)
 
 #### <a name="self-service-password-reset-for-cloud-users"></a>Önkiszolgáló jelszóátállítás felhőfelhasználók számára
 **Típus:** alapvető szolgáltatások
@@ -210,7 +210,7 @@ Az alapértelmezett memóriahasználati kvóta 150 000 objektumok. Objektum a c�
 
 **További részletek:**
 
-* [Vállalati arculat megjelenítése a bejelentkezési és a hozzáférési panel oldalon](active-directory-add-company-branding.md)
+* [Vállalati arculat megjelenítése a tooyour bejelentkezés és a hozzáférési Panel oldalon](active-directory-add-company-branding.md)
 
 #### <a name="application-proxy"></a>Application Proxy
 **Típus:** alapvető szolgáltatások
@@ -223,7 +223,7 @@ Az alapértelmezett memóriahasználati kvóta 150 000 objektumok. Objektum a c�
 
 **További részletek:**
 
-* [Útmutató a helyszíni alkalmazások biztonságos távoli hozzáférést biztosítanak](active-directory-application-proxy-get-started.md)
+* [Hogyan tooprovide biztonságos távoli hozzáférés tooon helyszíni alkalmazások](active-directory-application-proxy-get-started.md)
 
 #### <a name="sla-999"></a>SLA-T 99,9 %-OS
 **Típus:** alapvető szolgáltatások
@@ -266,7 +266,7 @@ Az alapértelmezett memóriahasználati kvóta 150 000 objektumok. Objektum a c�
 
 | Ingyenes kiadás | Basic Edition | Prémium (P1 és P2) kiadásai | Csak az Office 365-alkalmazásokhoz |
 |:---:|:---:|:---:|:---:|
-| &nbsp; | &nbsp; |![Jelölőnégyzet][12] |Csak az Office 365-alkalmazások felhőbe korlátozott |
+| &nbsp; | &nbsp; |![Jelölőnégyzet][12] |Korlátozott toocloud csak az Office 365-alkalmazásokat |
 
 **További részletek:**
 
@@ -274,7 +274,7 @@ Az alapértelmezett memóriahasználati kvóta 150 000 objektumok. Objektum a c�
 
 
 #### <a name="mim-cal-mim-server"></a>A MIM-CAL + a MIM-kiszolgáló
-Microsoft Identity Manager Server szoftverhasználati engedélyei Windows Server-licencekkel biztosíthatók (a kiadástól függetlenül). Mivel a Microsoft Identity Manager mindaddig, amíg a kiszolgáló a Windows Server licenccel rendelkező, érvényes példányának fut a Windows Server operációs rendszer fut, majd a Microsoft Identity Manager telepíthetők és ezen a kiszolgálón használt. A Microsoft Identity Manager Server használata egyéb licencet nem igényel.
+Microsoft Identity Manager Server szoftverhasználati engedélyei Windows Server-licencekkel biztosíthatók (a kiadástól függetlenül). A Microsoft Identity Manager hello Windows Server operációs rendszer fut mindaddig, amíg hello kiszolgáló futtat egy érvényes, mert Windows Server, majd a Microsoft Identity Manager licencelt telepítve, és ezen a kiszolgálón használt. A Microsoft Identity Manager Server használata egyéb licencet nem igényel.
 
 **Típus:** prémium szolgáltatások
 
@@ -308,7 +308,7 @@ Microsoft Identity Manager Server szoftverhasználati engedélyei Windows Server
 
 **További részletek:**
 
-* [A helyszíni identitás-infrastruktúra és a szinkronizálási szolgáltatások megfigyelése a felhőben](active-directory-aadconnect-health.md)
+* [A helyszíni identitás infrastruktúra és a szinkronizálási szolgáltatások hello felhő figyelése](active-directory-aadconnect-health.md)
 
 #### <a name="automatic-password-rollover-for-group-accounts"></a>Automatikus jelszóváltás csoportfiók esetén
 **Típus:** prémium szolgáltatások
@@ -334,7 +334,7 @@ Microsoft Identity Manager Server szoftverhasználati engedélyei Windows Server
 | &nbsp; | &nbsp; | ![Jelölőnégyzet][12] | &nbsp; |
 
 ## <a name="azure-active-directory-join--windows-10-only--related-features"></a>Az Azure Active Directory Join – Windows 10 csak a kapcsolódó szolgáltatások
-#### <a name="join-a-device-to-azure-ad-desktop-sso-microsoft-passport-for-azure-ad-administrator-bitlocker-recovery"></a>Eszköz csatlakoztatása az Azure AD-hez, asztali SSO, Azure AD-hez készült Microsoft Passport, rendszergazdai Bitlocker-alapú helyreállítás
+#### <a name="join-a-device-tooazure-ad-desktop-sso-microsoft-passport-for-azure-ad-administrator-bitlocker-recovery"></a>Egy eszköz tooAzure AD, asztali SSO, a Microsoft Passport for Azure Active Directory, a rendszergazda a Bitlocker helyreállítási csatlakozás
 **Típus:** az Azure Active Directory csatlakozási – Windows 10 csak kapcsolódó szolgáltatások
 
 **Rendelkezésre állás:**
@@ -344,7 +344,7 @@ Microsoft Identity Manager Server szoftverhasználati engedélyei Windows Server
 | ![Jelölőnégyzet][12] |![Jelölőnégyzet][12] |![Jelölőnégyzet][12] |![Jelölőnégyzet][12] |
 
 
-#### <a name="mdm-auto-enrollment"></a>Mobileszköz-kezelési automatikus igénylés, önkiszolgáló Bitlocker-helyreállítást, a Windows 10-eszközöket az Azure AD Join további helyi rendszergazda
+#### <a name="mdm-auto-enrollment"></a>Mobileszköz-kezelési automatikus igénylés, önkiszolgáló Bitlocker helyreállítási további helyi rendszergazdák tooWindows 10-eszközöket az Azure AD-csatlakozás
 **Típus:** az Azure Active Directory csatlakozási – Windows 10 csak kapcsolódó szolgáltatások
 
 **Rendelkezésre állás:**
@@ -368,7 +368,7 @@ Microsoft Identity Manager Server szoftverhasználati engedélyei Windows Server
 
 ## <a name="next-steps"></a>Következő lépések
 * [Bevezetés a Prémium szintű Azure Active Directory használatába](active-directory-get-started-premium.md)
-* [Vállalati arculat megjelenítése a bejelentkezési és a hozzáférési Panel oldalon](active-directory-add-company-branding.md)
+* [Vállalati arculat megjelenítése a tooyour bejelentkezési és hozzáférési Panel oldalakon](active-directory-add-company-branding.md)
 * [A hozzáférési és használati jelentések megtekintése](active-directory-view-access-usage-reports.md)
 
 <!--Image references-->

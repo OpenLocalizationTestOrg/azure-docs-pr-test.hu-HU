@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure IoT Hub (Java) szolgáltatással | Microsoft Docs"
-description: "Megtudhatja, hogyan küldhet eszközről a felhőbe irányuló üzeneteket az Azure IoT Hubba a Javához készült IoT SDK-k használatával. Szimulált eszközt és szolgáltatásalkalmazásokat hozhat létre az eszköz regisztrálásához, üzenetek küldéséhez és üzenetek olvasásához az IoT Hubról."
+title: "aaaGet Azure IoT Hub (Java) használatába |} Microsoft Docs"
+description: "Ismerje meg, hogyan toosend eszköz-felhő üzenetek tooAzure IoT Hub Java IoT SDK-k használatával. Szimulált eszköz és a szolgáltatás alkalmazások tooregister létrehozása az eszköz, üzenetküldés és üzenetek olvasni az IoT-központ."
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -15,50 +15,50 @@ ms.workload: na
 ms.date: 06/29/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 707356a49970bcd76a55ee1b8a6fbddf6a6ba390
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ac954f0522b46ed2a5b4a819bc611c13be0b9a9e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-device-to-your-iot-hub-using-java"></a>Az eszköz csatlakoztatása az IoT Hubhoz Javával
+# <a name="connect-your-device-tooyour-iot-hub-using-java"></a>Csatlakozás az eszköz tooyour IoT hub Java használatával
 [!INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
 
-Az oktatóanyag elvégzése után három Java-konzolalkalmazással fog rendelkezni:
+Ez az oktatóanyag végén hello három Java konzol alkalmazások közül választhat:
 
-* A **create-device-identity** egy eszközidentitást, valamint egy társított biztonsági kulcsot hoz létre, amellyel csatlakozhat az eszközalkalmazáshoz.
-* A **read-d2c-messages** megjeleníti az eszközalkalmazások által küldött telemetriát.
-* A **simulated-device** csatlakozik az IoT Hubhoz a korábban létrehozott eszközidentitással, és az MQTT protokoll használatával másodpercenként telemetriai üzenetet küld.
+* **Hozzon létre eszköz-identitás**, ami létrehoz egy eszközidentitás, és a biztonsági kulcsok tooconnect az eszközalkalmazás.
+* **olvasási-d2c-üzenetek**, amely megjeleníti az eszköz alkalmazás által küldött hello telemetriai.
+* **Szimulált eszköz**, amely tooyour IoT-központ kapcsolódik a korábban létrehozott hello eszközidentitás, és minden második használatával hello MQTT protokoll telemetriai üzenetet küld.
 
 > [!NOTE]
-> Az Azure IoT SDK-kat használhatja az eszközökön és a megoldás háttérrendszerén futó alkalmazások összeállításához egyaránt. Ezekről az [Azure IoT SDK-k][lnk-hub-sdks] című témakörben talál további információt.
+> hello cikk [Azure IoT SDK-k] [ lnk-hub-sdks] használható toobuild mindkét alkalmazások toorun eszközökön és a megoldás háttérrendszeréhez hello Azure IoT SDK-k információt nyújt.
 
-Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban a következő hello szüksége:
 
-* A legújabb [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 
+* hello legújabb [Java használata Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 
 * [Maven 3](https://maven.apache.org/install.html) 
 * Aktív Azure-fiók. (Ha nincs fiókja, létrehozhat egy [ingyenes fiókot][lnk-free-trial] néhány perc alatt.)
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
-Az utolsó lépésben jegyezze fel az **Elsődleges kulcs** értékét. Ezután kattintson a **Végpontok**, majd az **Események** beépített végpontra. A **Tulajdonságok** panelen jegyezze fel az **Event Hub-kompatibilis nevet** és az **Event Hub-kompatibilis végpont** címét. Erre a három értékre szüksége lesz a **read-d2c-messages** alkalmazás létrehozásakor.
+Utolsó lépésként, jegyezze fel a hello **elsődleges kulcs** érték. Kattintson a **végpontok** és hello **események** beépített végpont. A hello **tulajdonságok** panelen, jegyezze fel a hello **Event Hub-kompatibilis neve** és hello **Event Hub-kompatibilis végpont** cím. Erre a három értékre szüksége lesz a **read-d2c-messages** alkalmazás létrehozásakor.
 
 ![Az Azure Portal IoT Hub Üzenetküldés panelje][6]
 
-Ezzel létrehozta az IoT Hubot. Rendelkezik az oktatóanyag teljesítéséhez szükséges IoT Hub-állomásnévvel és kapcsolati karakterlánccal, IoT Hub elsődleges kulccsal, valamint Event Hubs-kompatibilis névvel és végponttal.
+Ezzel létrehozta az IoT Hubot. Hello IoT-központ állomásnév, IoT-központ kapcsolati karakterláncot, IoT Hub elsődleges kulcs, Event Hub-kompatibilis neve és Event Hub-kompatibilis végpont ebben az oktatóanyagban toocomplete szüksége van.
 
 ## <a name="create-a-device-identity"></a>Eszközidentitás létrehozása
-Ebben a szakaszban egy Java-konzolalkalmazást fog létrehozni, amely egy új eszközidentitást hoz létre az IoT Hub identitásjegyzékében. Egy eszköz csak akkor tud csatlakozni az IoT Hubhoz, ha be van jegyezve az identitásjegyzékbe. További információkért lásd az [IoT Hub fejlesztői útmutatójának][lnk-devguide-identity] **Identitásjegyzék** című szakaszát. A konzolalkalmazás egy egyedi eszközazonosítót állít elő a futtatásakor, valamint egy kulcsot, amellyel az eszköz azonosítani tudja magát, amikor az eszközről a felhőbe irányuló üzeneteket küld az IoT Hubnak.
+Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely az IoT hub a hello identitásjegyzékhez hoz létre egy eszközidentitás. Egy eszköz nem lehet kapcsolódni a tooIoT hub, kivéve, ha azt egy bejegyzéssel rendelkezik hello identitásjegyzékhez. További információkért lásd: hello **Identitásjegyzékhez** hello szakasza [IoT Hub fejlesztői útmutató][lnk-devguide-identity]. A konzol alkalmazás futtatásakor egy eszköz egyedi Azonosítót hoz létre, és az, hogy az eszköz használhatja tooidentify magát, eszköz-felhő küld a kulcs üzenetek tooIoT Hub.
 
-1. Hozzon létre egy iot-java-get-started nevű üres mappát. Az iot-java-get-started mappában hozzon létre egy **create-device-identity** nevű Maven-projektet a következő parancs beírásával a parancssorba. Látható, hogy ez egyetlen hosszú parancs:
+1. Hozzon létre egy iot-java-get-started nevű üres mappát. Hello iot-java-get-started mappában, úgynevezett Maven-projekt létrehozása **létrehozása eszköz-identitás** a következő parancsot a parancssorba hello segítségével. Látható, hogy ez egyetlen hosszú parancs:
 
     ```cmd/sh
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=create-device-identity -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
 
-2. A parancssorban lépjen a create-device-identity mappára.
+2. A parancssorban keresse meg a toohello létrehozása eszköz-identitás mappa.
 
-3. Egy szövegszerkesztővel nyissa meg a pom.xml fájlt a create-device-identity mappában, és adja hozzá a következő függőséget a **függőségek** csomóponthoz. Ezzel a függőséggel használhatja az iot-service-client csomagot az alkalmazásban:
+3. Egy szövegszerkesztőben nyissa hello pom.xml fájlt hello létrehozása eszköz-identitás mappában, és adja hozzá a következő függőségi toohello hello **függőségek** csomópont. A függőség lehetővé teszi, hogy Ön toouse hello iot-szolgáltatás-ügyfélcsomag az alkalmazásban:
 
     ```xml
     <dependency>
@@ -69,13 +69,13 @@ Ebben a szakaszban egy Java-konzolalkalmazást fog létrehozni, amely egy új es
     ```
 
     > [!NOTE]
-    > Az **iot-service-client** legújabb verzióját a [Maven keresési funkciójával][lnk-maven-service-search] tekintheti meg.
+    > Ellenőrizze, hogy hello legújabb verziójának **iot-szolgáltatásügyfél** használatával [Maven keresési][lnk-maven-service-search].
 
-4. Mentse és zárja be a pom.xml fájlt.
+4. Mentse és zárja be a hello pom.xml fájlt.
 
-5. Egy szövegszerkesztővel nyissa meg a create-device-identity\src\main\java\com\mycompany\app\App.java fájlt.
+5. Egy szövegszerkesztőben nyissa meg hello create-device-identity\src\main\java\com\mycompany\app\App.java fájlt.
 
-6. Adja hozzá a következő **importálási** utasításokat a fájlhoz:
+6. Adja hozzá a következő hello **importálása** utasítások toohello fájlt:
 
     ```java
     import com.microsoft.azure.sdk.iot.service.exceptions.IotHubException;
@@ -86,7 +86,7 @@ Ebben a szakaszban egy Java-konzolalkalmazást fog létrehozni, amely egy új es
     import java.net.URISyntaxException;
     ```
 
-7. Adja a következő osztályszintű változókat az **App** osztályhoz, lecserélve a **{yourhubconnectionstring}** helyőrzőt a korábban feljegyzett értékkel:
+7. Adja hozzá a következő osztály változók toohello hello **App** osztály cseréje **{yourhubconnectionstring}** hello értékre a beállításértékeket korábban:
 
     ```java
     private static final String connectionString = "{yourhubconnectionstring}";
@@ -94,13 +94,13 @@ Ebben a szakaszban egy Java-konzolalkalmazást fog létrehozni, amely egy új es
     ```
 [!INCLUDE [iot-hub-pii-note-naming-device](../../includes/iot-hub-pii-note-naming-device.md)]
 
-8. Módosítsa úgy a **main** metódus aláírását, hogy tartalmazza az alábbi kivételeket:
+8. Hello hello aláírása módosítása **fő** metódus tooinclude hello kivételek az alábbiak szerint:
 
     ```java
     public static void main( String[] args ) throws IOException, URISyntaxException, Exception
     ```
 
-9. Adja hozzá a következő kódot a **main** metódus törzseként. Ez a kód egy *javadevice* nevű eszközt hoz létre az IoT Hub identitásjegyzékében, ha még nem létezik. Ezután megjeleníti az eszközazonosítót és a kulcsot, amelyekre később szüksége lesz:
+9. Adja hozzá a kódot hello hello szövege a következő hello **fő** metódust. Ez a kód egy *javadevice* nevű eszközt hoz létre az IoT Hub identitásjegyzékében, ha még nem létezik. Hello Eszközazonosító és a kulcs, amely később kell majd megjelenítése:
 
     ```java
     RegistryManager registryManager = RegistryManager.createFromConnectionString(connectionString);
@@ -112,7 +112,7 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     try {
       device = registryManager.addDevice(device);
     } catch (IotHubException iote) {
-      // If the device already exists.
+      // If hello device already exists.
       try {
         device = registryManager.getDevice(deviceId);
       } catch (IotHubException iotf) {
@@ -130,7 +130,7 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     try {
       device = registryManager.addDevice(device);
     } catch (IotHubException iote) {
-      // If the device already exists.
+      // If hello device already exists.
       try {
         device = registryManager.getDevice(deviceId);
       } catch (IotHubException iotf) {
@@ -144,41 +144,41 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     System.out.println("Device key: " + device.getPrimaryKey());
     ```
 
-10. Mentse és zárja be az App.java fájlt.
+10. Mentse és zárja be hello App.java fájlt.
 
-11. Ha a **create-device-identity** alkalmazást a Maven használatával szeretné felépíteni, futtassa a következő parancsot a parancssorban a create-device-identity mappában:
+11. toobuild hello **létrehozása eszköz-identitás** app Maven, használatával hajtható végre a következő parancs parancssorba hello hello létrehozása eszköz-identitás mappában hello:
 
     ```cmd/sh
     mvn clean package -DskipTests
     ```
 
-12. Ha a **create-device-identity** alkalmazást a Maven használatával szeretné futtatni, futtassa a következő parancsot a parancssorban a create-device-identity mappában:
+12. toorun hello **létrehozása eszköz-identitás** app Maven, használatával hajtható végre a következő parancs parancssorba hello hello létrehozása eszköz-identitás mappában hello:
 
     ```cmd/sh
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
     ```
 
-13. Jegyezze fel az **eszköz azonosítóját** és az **eszköz kulcsát**. Ezekre az értékekre később szüksége lesz, amikor az IoT Hubhoz eszközként csatlakozó alkalmazást hoz létre.
+13. Jegyezze fel a hello **Eszközazonosító** és **eszközkulcs**. Ezek az értékek később szüksége, amely a központ eszközként tooIoT alkalmazás létrehozásakor.
 
 > [!NOTE]
-> Az IoT Hub-identitásjegyzék csak az IoT Hub biztonságos elérésének biztosításához tárolja az eszközidentitásokat. Az eszközazonosítókat és kulcsokat biztonsági hitelesítő adatokként tárolja, valamint tartalmaz egy engedélyezve/letiltva jelzőt, amellyel letilthatja egy adott eszköz hozzáférését. Ha az alkalmazásnak más eszközspecifikus metaadatokat kell tárolnia, egy alkalmazásspecifikus tárolót kell használnia. További információ: [IoT Hub fejlesztői útmutató][lnk-devguide-identity].
+> az IoT-központ identitásjegyzékhez hello csak eszköz identitások tooenable biztonságos hozzáférést toohello IoT-központ tárolja. Eszköz azonosítók és kulcsok toouse hitelesítő adatokat, és egy engedélyezett vagy letiltott jelző használható toodisable hozzáférést egy adott eszköz tárol. Ha a kell toostore más eszközre vonatkozó metaadatok, azt kell használni az alkalmazás-specifikus tárolási. További információkért lásd: hello [IoT Hub fejlesztői útmutató][lnk-devguide-identity].
 
 ## <a name="receive-device-to-cloud-messages"></a>Az eszközről a felhőbe irányuló üzenetek fogadása
 
-Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely az eszközről a felhőbe irányuló üzeneteket olvas az IoT Hubról. Az IoT Hub egy [Event Hubs][lnk-event-hubs-overview]-kompatibilis végpontot tesz közzé, hogy lehetővé tegye az eszközről a felhőbe irányuló üzenetek olvasását. Az egyszerűség érdekében ez az oktatóanyag egy alapszintű olvasót hoz létre, amely nem alkalmas nagy átviteli sebességű üzemelő példányokhoz. Az eszközről a felhőbe irányuló üzenetek nagy léptékű feldolgozásával kapcsolatban lásd [az eszközről a felhőbe irányuló üzenetek feldolgozását][lnk-process-d2c-tutorial] ismertető oktatóanyagot. Az Event Hubs szolgáltatástól érkező üzenetek feldolgozásával kapcsolatos további információkért lásd [az Event Hubs használatának első lépéseit][lnk-eventhubs-tutorial] ismertető oktatóanyagot. Ez az IoT Hub Event Hub-kompatibilis végpontjaira érvényes.
+Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely az eszközről a felhőbe irányuló üzeneteket olvas az IoT Hubról. Az IoT-központ mutatja egy [Eseményközpont][lnk-event-hubs-overview]-kompatibilis végpont tooenable tooread eszközről a felhőbe üzenetek meg. egyszerű tookeep dolog, ebben az oktatóanyagban egy egyszerű olvasót, amely nem alkalmas a magas teljesítmény központi telepítés hoz létre. Hello [eszközről a felhőbe üzenetek feldolgozásához] [ lnk-process-d2c-tutorial] az oktatóanyag bemutatja, hogyan tooprocess eszköz-felhő léptékű üzenetek. Hello [Bevezetés az Event Hubs használatába] [ lnk-eventhubs-tutorial] oktatóanyag további információkat biztosítanak a tooprocess Eseményközpontokból származó üzenetek és alkalmazható toohello IoT Hub Event Hub-kompatibilis végpontok.
 
 > [!NOTE]
-> Az eszközről a felhőbe irányuló üzenetek olvasásához használt Event Hub-kompatibilis végpontok mindig az AMQP protokollt használják.
+> hello Event Hub-kompatibilis végpont eszközről a felhőbe üzenetek mindig olvasásához hello AMQP protokollt használja.
 
-1. Az *Eszközidentitás létrehozása* szakaszban létrehozott iot-java-get-started mappában hozzon létre egy **read-d2c-messages** nevű Maven-projektet a következő parancs beírásával a parancssorba. Látható, hogy ez egyetlen hosszú parancs:
+1. Hello iot-java-get-started mappában létrehozott hello *hozzon létre egy eszközidentitás* területen nevű Maven-projekt létrehozása **d2c-üzenetek olvasása** a következő parancsot a parancssorba hello segítségével. Látható, hogy ez egyetlen hosszú parancs:
 
     ```cmd/sh
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=read-d2c-messages -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
 
-2. A parancssorban lépjen a read-d2c-messages mappára.
+2. A parancssorban keresse meg a toohello olvasás-d2c-üzenetek mappa.
 
-3. Egy szövegszerkesztővel nyissa meg a pom.xml fájlt a read-d2c-messages mappában, és adja hozzá a következő függőséget a **függőségek** csomóponthoz. Ezzel a függőséggel használhatja az eventhubs-client csomagot az alkalmazásban az Event Hubs-kompatibilis végpontról való olvasáshoz:
+3. Egy szövegszerkesztőben nyissa hello pom.xml fájlt hello olvasás-d2c-üzenetek mappában, és adja hozzá a következő függőségi toohello hello **függőségek** csomópont. A függőség toouse hello eventhubs-ügyfélcsomagját hello Event Hub-kompatibilis végpont az az alkalmazás tooread lehetővé teszi:
 
     ```xml
     <dependency> 
@@ -188,11 +188,11 @@ Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely az eszközről 
     </dependency>
     ```
 
-4. Mentse és zárja be a pom.xml fájlt.
+4. Mentse és zárja be a hello pom.xml fájlt.
 
-5. Egy szövegszerkesztővel nyissa meg a read-d2c-messages\src\main\java\com\mycompany\app\App.java fájlt.
+5. Egy szövegszerkesztőben nyissa meg hello read-d2c-messages\src\main\java\com\mycompany\app\App.java fájlt.
 
-6. Adja hozzá a következő **importálási** utasításokat a fájlhoz:
+6. Adja hozzá a következő hello **importálása** utasítások toohello fájlt:
 
     ```java
     import java.io.IOException;
@@ -204,13 +204,13 @@ Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely az eszközről 
     import java.util.function.*;
     ```
 
-7. Adja hozzá a következő osztályszintű változót az **App** osztályhoz. Cserélje le a **{youriothubkey}**, **{youreventhubcompatibleendpoint}** és **{youreventhubcompatiblename}** helyőrzőket a korábban feljegyzett értékekre:
+7. Adja hozzá a következő osztály szintű változó toohello hello **App** osztály. Cserélje le **{youriothubkey}**, **{youreventhubcompatibleendpoint}**, és **{youreventhubcompatiblename}** korábban feljegyzett hello értékekkel:
 
     ```java
     private static String connStr = "Endpoint={youreventhubcompatibleendpoint};EntityPath={youreventhubcompatiblename};SharedAccessKeyName=iothubowner;SharedAccessKey={youriothubkey}";
     ```
 
-8. Adja hozzá a következő **receiveMessages** metódust az **App** osztályhoz. Ez a metódus **EventHubClient** példányt hoz létre, amely az Event Hub-kompatibilis végponthoz csatlakozik, majd aszinkron módon létrehoz egy **PartitionReceiver** példányt, amely egy Event Hub-partícióról olvas. Folyamatosan hurkokat alkot, és kinyomtatja az üzenet részleteit az alkalmazás leállásáig.
+8. Adja hozzá a következő hello **receiveMessages** metódus toohello **App** osztály. Ezzel a módszerrel hoz létre egy **EventHubClient** tooconnect toohello Event Hub-kompatibilis végpont példányt, és aszinkron módon létrehoz egy **PartitionReceiver** példány tooread az Eseményközpontban lévő a partíció. Folyamatosan fut a hurokban, és kiírja a hello üzenet adatai, amíg hello app véget nem ér.
 
     ```java
     // Create a receiver on a partition.
@@ -219,7 +219,7 @@ Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely az eszközről 
       try {
         client = EventHubClient.createFromConnectionStringSync(connStr);
       } catch (Exception e) {
-        System.out.println("Failed to create client: " + e.getMessage());
+        System.out.println("Failed toocreate client: " + e.getMessage());
         System.exit(1);
       }
       try {
@@ -251,33 +251,33 @@ Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely az eszközről 
                   System.out.println(String.format("Partition: %s, ReceivedBatch Size: %s", partitionId, batchSize));
                 }
               } catch (Exception e) {
-                System.out.println("Failed to receive messages: " + e.getMessage());
+                System.out.println("Failed tooreceive messages: " + e.getMessage());
               }
             }
           });
         } catch (Exception e) {
-          System.out.println("Failed to create receiver: " + e.getMessage());
+          System.out.println("Failed toocreate receiver: " + e.getMessage());
       }
       return client;
     }
     ```
 
    > [!NOTE]
-   > Ez a metódus szűrőt használ a fogadó létrehozásakor, hogy a fogadó csak a fogadó futtatásának megkezdése után az IoT Hubra küldött üzeneteket olvassa. Ez a technika tesztkörnyezetben hasznos, mivel láthatja az aktuális üzeneteket. Éles környezetben azonban a kódnak biztosítania kell, hogy az összes üzenetet feldolgozza. További információért lásd a következő oktatóanyagot: [Eszközről a felhőbe irányuló IoT Hub-üzenetek feldolgozása][lnk-process-d2c-tutorial].
+   > Ez a módszer egy szűrőt használja, amikor hello fogadó létrehozza, hogy hello fogadó csak olvassa be küldött üzenetek tooIoT Hub után hello fogadó elindul. Ez a módszer akkor hasznos, egy tesztkörnyezetben, így hello aktuális készletében lévő üzenetek. Éles környezetben, a kódot kell győződjön meg arról, hogy feldolgozza az összes köszönőüzenetei - további információt találhat hello [hogyan tooprocess IoT Hub eszköz-a-felhőbe küldött üzeneteket] [ lnk-process-d2c-tutorial] oktatóanyag.
 
-9. Módosítsa úgy a **main** metódus aláírását, hogy tartalmazza az alábbi kivételt:
+9. Hello hello aláírása módosítása **fő** metódus tooinclude hello kivétel az alábbiak szerint:
 
     ```java
     public static void main( String[] args ) throws IOException
     ```
 
-10. Adja hozzá a következő kódot a **main** metódushoz az **App** osztályban. Ez a kód létrehozza a két **EventHubClient** és **PartitionReceiver** példányt, és lehetővé teszi, hogy bezárja az alkalmazást az üzenetek feldolgozásának befejezése után:
+10. Adja hozzá a következő kód toohello hello **fő** metódus a hello **App** osztály. Ez a kód létrehoz két hello **EventHubClient** és **PartitionReceiver** példánya, és lehetővé teszi tooclose hello app üzenetek feldolgozása után:
 
     ```java
     // Create receivers for partitions 0 and 1.
     EventHubClient client0 = receiveMessages("0");
     EventHubClient client1 = receiveMessages("1");
-    System.out.println("Press ENTER to exit.");
+    System.out.println("Press ENTER tooexit.");
     System.in.read();
     try {
       client0.closeSync();
@@ -289,28 +289,28 @@ Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely az eszközről 
     ```
 
     > [!NOTE]
-    > Ez a kód azt feltételezi, hogy az IoT hubot az F1 (ingyenes) rétegen hozta létre. Az ingyenes IoT hub két, „0” és „1” nevű partícióval rendelkezik.
+    > Ez a kód azt feltételezi, hogy az IoT hub létrehozott hello F1 (ingyenes) csomagot. Az ingyenes IoT hub két, „0” és „1” nevű partícióval rendelkezik.
 
-11. Mentse és zárja be az App.java fájlt.
+11. Mentse és zárja be hello App.java fájlt.
 
-12. Ha a **read-d2c-messages** alkalmazást a Maven használatával szeretné felépíteni, futtassa a következő parancsot a parancssorban a read-d2c-messages mappában:
+12. toobuild hello **d2c-üzenetek olvasása** app Maven, használatával hajtható végre a következő parancs parancssorba hello hello olvasás-d2c-üzenetek mappában hello:
 
     ```cmd/sh
     mvn clean package -DskipTests
     ```
 
 ## <a name="create-a-device-app"></a>Eszközalkalmazás létrehozása
-Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely egy, az eszközről a felhőbe irányuló üzeneteket egy IoT Hubra küldő eszközt szimulál.
+Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely szimulálja egy eszköz, amelyet az eszköz a felhőbe küldött üzeneteket tooan IoT-központ küld.
 
-1. Az *Eszközidentitás létrehozása* szakaszban létrehozott iot-java-get-started mappában hozzon létre egy **simulated-device** nevű Maven-projektet a következő parancs beírásával a parancssorba. Látható, hogy ez egyetlen hosszú parancs:
+1. Hello iot-java-get-started mappában létrehozott hello *hozzon létre egy eszközidentitás* területen nevű Maven-projekt létrehozása **szimulált eszköz** a következő parancsot a parancssorba hello segítségével. Látható, hogy ez egyetlen hosszú parancs:
 
     ```cmd/sh
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=simulated-device -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
 
-2. A parancssorban lépjen a simulated-device mappára.
+2. A parancssorban lépjen a toohello szimulált eszköz mappában.
 
-3. Egy szövegszerkesztővel nyissa meg a pom.xml fájlt a simulated-device mappában, és adja hozzá a következő függőségeket a **függőségek** csomóponthoz. Ezzel a függőséggel használhatja az iothub-java-client csomagot az alkalmazásban, az IoT Hubbal való kommunikációhoz és Java-objektumok JSON-objektumokká szerializálásához:
+3. Egy szövegszerkesztőben nyissa hello pom.xml fájlt hello szimulált eszköz mappában, és adja hozzá a következő függőségek toohello hello **függőségek** csomópont. A függőség lehetővé teszi, hogy Ön toouse hello IOT hubbal-java-ügyfélcsomagját a app toocommunicate, az IoT-központ és tooserialize Java objektumok tooJSON:
 
     ```xml
     <dependency>
@@ -326,13 +326,13 @@ Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely egy, az eszköz
     ```
 
     > [!NOTE]
-    > Az **iot-device-client** legújabb verzióját a [Maven keresési funkciójával][lnk-maven-device-search] tekintheti meg.
+    > Ellenőrizze, hogy hello legújabb verziójának **iot-eszközügyfél** használatával [Maven keresési][lnk-maven-device-search].
 
-4. Mentse és zárja be a pom.xml fájlt.
+4. Mentse és zárja be a hello pom.xml fájlt.
 
-5. Egy szövegszerkesztővel nyissa meg a simulated-device\src\main\java\com\mycompany\app\App.java fájlt.
+5. Egy szövegszerkesztőben nyissa meg hello simulated-device\src\main\java\com\mycompany\app\App.java fájlt.
 
-6. Adja hozzá a következő **importálási** utasításokat a fájlhoz:
+6. Adja hozzá a következő hello **importálása** utasítások toohello fájlt:
 
     ```java
     import com.microsoft.azure.sdk.iot.device.*;
@@ -345,7 +345,7 @@ Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely egy, az eszköz
     import java.util.concurrent.ExecutorService;
     ```
 
-7. Adja hozzá a következő osztályszintű változókat az **App** osztályhoz. A **{youriothubname}** helyőrző cseréje az IoT Hub nevére, valamint a **{yourdevicekey}** helyőrzőé az *Eszközidentitás létrehozása* szakaszban létrehozott eszközkulcsértékre:
+7. Adja hozzá a következő osztály változók toohello hello **App** osztály. A mag cseréje **{youriothubname}** az IoT hub nevű és **{yourdevicekey}** hello eszköz kulcsérték hello hozta létre a *hozzon létre egy eszközidentitás* szakasz:
 
     ```java
     private static String connString = "HostName={youriothubname}.azure-devices.net;DeviceId=myFirstJavaDevice;SharedAccessKey={yourdevicekey}";
@@ -354,9 +354,9 @@ Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely egy, az eszköz
     private static DeviceClient client;
     ```
    
-    Ez a mintaalkalmazás a **protocol** változót használja egy **DeviceClient** objektum példányának létrehozásakor. Az IoT Hubbal való kommunikációhoz MQTT, AMQP vagy HTTP protokollt használhat.
+    Ezen PéldaAlkalmazás használ hello **protokoll** változó, amikor elindítja a **DeviceClient** objektum. Az IoT-központ vagy hello MQTT, AMQP vagy HTTP protokollt toocommunicate használható.
 
-8. Adja hozzá a következő beágyazott **TelemetryDataPoint** osztályt az **App** osztályon belül az eszköz által az IoT hubnak küldött telemetriai adatok meghatározásához:
+8. Adja hozzá a beágyazott hello következő **TelemetryDataPoint** osztály belsejében hello **App** toospecify hello telemetriai adatokat az eszköz küld tooyour IoT-központ osztályban:
 
     ```java
     private static class TelemetryDataPoint {
@@ -370,12 +370,12 @@ Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely egy, az eszköz
       }
     }
     ```
-9. Adja hozzá a következő beágyazott **EventCallback** osztályt az **App** osztályon belül az IoT Hub által az eszközalkalmazástól érkező üzenet feldolgozásakor visszaadott nyugtázási állapot megjelenítéséhez. Ez a metódus az alkalmazás fő szálát is értesíti, amikor üzenet fel lett dolgozva:
+9. Adja hozzá a beágyazott hello következő **EventCallback** osztály belsejében hello **App** osztály toodisplay hello nyugtázási állapotát, amely az IoT-központ hello ad vissza, ha hello eszközalkalmazás üzenetét feldolgozza. Ez a módszer is értesíti hello fő szálnak hello alkalmazásban, üdvözlőüzenetére feldolgozásakor:
    
     ```java
     private static class EventCallback implements IotHubEventCallback {
       public void execute(IotHubStatusCode status, Object context) {
-        System.out.println("IoT Hub responded to message with status: " + status.name());
+        System.out.println("IoT Hub responded toomessage with status: " + status.name());
    
         if (context != null) {
           synchronized (context) {
@@ -386,7 +386,7 @@ Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely egy, az eszköz
     }
     ```
 
-10. Adja hozzá a következő beágyazott **MessageSender** osztályt az **App** osztályon belül. Ezen osztály **run** metódusa minta telemetriai adatokat hoz létre, amelyeket elküld az IoT hubnak, és nyugtázásra vár a következő üzenet elküldése előtt:
+10. Adja hozzá a beágyazott hello következő **MessageSender** osztály belsejében hello **App** osztály. Hello **futtatása** metódus Ez az osztály a minta telemetriai adatok toosend tooyour IoT-központ állít elő, és megvárja-e a nyugtázást hello tovább üzenet küldése előtt:
 
     ```java
     private static class MessageSender implements Runnable {
@@ -426,9 +426,9 @@ Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely egy, az eszköz
     }
     ```
 
-    Ez a metódus elküld egy új, az eszközről a felhőbe irányuló üzenetet egy másodperccel azután, hogy az IoT hub nyugtázza az előző üzenetet. Az üzenet egy JSON-szerializált objektumot tartalmaz az eszköz azonosítójával és véletlenszerűen előállított számokkal, amelyek egy hőmérséklet- és egy páratartalom-érzékelőt szimulálnak.
+    Ez a módszer új eszközről a felhőbe üzenetet küld egy másodperc után hello IoT-központ elismeri hello előző üzenetét. üdvözlőüzenetére hello deviceId rendelkező JSON-szerializált objektumot tartalmaz, és véletlenszerűen generált számok toosimulate hőmérséklet-érzékelő és a páratartalom érzékelő.
 
-11. Cserélje le a **main** metódust a következő kódra, amely létrehoz egy szálat az eszközről a felhőbe irányuló üzenetek elküldéséhez az IoT Hubra:
+11. Cserélje le a hello **fő** hello kódot, amely létrehoz egy szál toosend eszköz a felhőbe küldött üzeneteket tooyour IoT-központ a következő metódust:
 
     ```java
     public static void main( String[] args ) throws IOException, URISyntaxException {
@@ -440,58 +440,58 @@ Ebben a szakaszban egy Java-konzolalkalmazást hoz létre, amely egy, az eszköz
       ExecutorService executor = Executors.newFixedThreadPool(1);
       executor.execute(sender);
     
-      System.out.println("Press ENTER to exit.");
+      System.out.println("Press ENTER tooexit.");
       System.in.read();
       executor.shutdownNow();
       client.closeNow();
     }
     ```
 
-12. Mentse és zárja be az App.java fájlt.
+12. Mentse és zárja be hello App.java fájlt.
 
-13. Ha a **simulated-device** alkalmazást a Maven használatával szeretné felépíteni, futtassa a következő parancsot a parancssorban a simulated-device mappában:
+13. toobuild hello **szimulált eszköz** app Maven, használatával hajtható végre a következő parancs parancssorba hello hello szimulált eszköz mappában hello:
 
     ```cmd/sh
     mvn clean package -DskipTests
     ```
 
 > [!NOTE]
-> Az egyszerűség kedvéért ez az oktatóanyag nem valósít meg semmilyen újrapróbálkozási házirendet. Az éles kódban újrapróbálkozási házirendeket is meg kell valósítania (például egy exponenciális leállítást) a [tranziens hibakezelést][lnk-transient-faults] ismertető MSDN-cikkben leírtak szerint.
+> Ez az oktatóanyag tookeep dolgot egyszerű, nem valósítja meg semmilyen újrapróbálkozási házirendje. Az éles kódban, meg kell valósítania újrapróbálkozási házirendek (például az exponenciális leállítási), hello MSDN-cikkben leírtak [átmeneti hiba kezelése][lnk-transient-faults].
 
-## <a name="run-the-apps"></a>Az alkalmazások futtatása
+## <a name="run-hello-apps"></a>Hello alkalmazások futtatása
 
-Most már készen áll az alkalmazások futtatására.
+Most már áll készen toorun hello alkalmazásokat.
 
-1. A read-d2c mappában egy parancssorban futtassa a következő parancsot, amellyel megkezdheti az IoT Hub első partíciójának megfigyelését:
+1. Parancssorba hello olvasás-d2c mappában futtassa a következő parancs toobegin hello első partíció az IoT hub a figyelési hello:
 
     ```cmd/sh
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
     ```
 
-    ![Java IoT Hub-szolgáltatásalkalmazás az eszközről a felhőbe irányuló üzenetek figyeléséhez][7]
+    ![Java IoT-központ szolgáltatás toomonitor eszközről a felhőbe alkalmazásüzenetek][7]
 
-2. A simulated-device mappában egy parancssorban futtassa a következő parancsot, amellyel megkezdheti a telemetriai adatok küldését az IoT Hubnak:
+2. Parancsot egy parancssorba hello szimulált eszköz mappában futtassa a következő parancs toobegin telemetriai adatok tooyour IoT-központ küldése hello:
 
     ```cmd/sh
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App" 
     ```
 
-    ![Java IoT Hub-eszközalkalmazás az eszközről a felhőbe irányuló üzenetek küldéséhez][8]
+    ![Java IoT Hub eszközre app toosend eszközről a felhőbe küldött üzenetek][8]
 
-3. Az [Azure Portal][lnk-portal] **Használat** csempéje az IoT Hubnak küldött üzenetek számát jeleníti meg:
+3. Hello **használati** hello csempére [Azure-portálon] [ lnk-portal] mutat be hello küldött üzenetek toohello IoT-központ száma:
 
-    ![Az Azure Portalon az IoT Hubnak küldött üzenetek számát megjelenítő Használat csempe][43]
+    ![Az Azure portál használata csempe ábrázoló száma küldött üzenetek tooIoT Hub][43]
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóanyagban egy új IoT Hubot konfigurált az Azure-portálon, majd létrehozott egy eszközidentitást az IoT Hub identitásjegyzékében. Ennek az eszközidentitásnak a segítségével lehetővé tette az eszközalkalmazásnak, hogy az eszközről a felhőbe irányuló üzeneteket küldjön az IoT Hubnak. Emellett létrehozott egy alkalmazást, amely megjeleníti az IoT Hub által fogadott üzeneteket.
+Ebben az oktatóanyagban egy új IoT hub konfigurálva hello Azure-portálon, és hozza létre a hello IoT hub identitásjegyzékhez egy eszközidentitás. Az eszköz identitása tooenable hello eszköz alkalmazás toosend eszköz a felhőbe küldött üzeneteket toohello IoT-központ használta. Is létrehozott alkalmazás hello IoT-központ által fogadott hello üzeneteket jelenít meg.
 
-További bevezetés az IoT Hub használatába, valamint egyéb IoT-forgatókönyvek megismerése:
+első lépések toocontinue az IoT Hub és tooexplore más IoT-forgatókönyvek esetén, lásd:
 
 * [Kapcsolódás az eszközhöz][lnk-connect-device]
 * [Eszközfelügyelet – első lépések][lnk-device-management]
 * [Ismerkedés az Azure IoT Edge szolgáltatással][lnk-iot-edge]
 
-Az IoT-megoldás kibővítésével és az eszközről a felhőbe irányuló üzenetek nagy léptékű feldolgozásával kapcsolatban tekintse meg [az eszközről a felhőbe irányuló üzenetek feldolgozását][lnk-process-d2c-tutorial] ismertető oktatóanyagot.
+toolearn hogyan tooextend az IoT megoldás és a folyamat eszközről a felhőbe üzenetek léptékű: hello [eszközről a felhőbe üzenetek feldolgozásához] [ lnk-process-d2c-tutorial] oktatóanyag.
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
 
 <!-- Images. -->

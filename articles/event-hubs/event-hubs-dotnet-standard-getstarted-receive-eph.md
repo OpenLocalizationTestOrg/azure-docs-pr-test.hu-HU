@@ -1,6 +1,6 @@
 ---
-title: "Események fogadása az Azure Event Hubs használatával a .NET-szabvány |} Microsoft Docs"
-description: "Ismerkedés az EventProcessorHost üzenetek fogadása a .NET-szabvány"
+title: "az Azure Event Hubs használatával a .NET-szabvány aaaReceive események |} Microsoft Docs"
+description: "Ismerkedés a .NET-szabvány hello EventProcessorHost üzenetek fogadása"
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/27/2017
 ms.author: sethm
-ms.openlocfilehash: cc62792dad0284f9514664795fdfb32e94a85943
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c3983f2668ac8f65522e44a1609dfd2eed31b7d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-receiving-messages-with-the-event-processor-host-in-net-standard"></a>Az Event Processor Host üzenetek fogadása a .NET-szabvány első lépései
+# <a name="get-started-receiving-messages-with-hello-event-processor-host-in-net-standard"></a>Ismerkedés a .NET-szabvány hello Event Processor Host üzenetek fogadása
 
 > [!NOTE]
 > Ez a minta érhető el a [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver).
 
-Ez az oktatóanyag bemutatja, hogyan írhat egy .NET Core-konzolalkalmazást, amely üzeneteket fogad az eseményközpontban lévő használatával **EventProcessorHost**. Futtathatja a [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver) megoldás szerint-van, a karakterláncok cseréje a event hub és a tárolási fiók értékek. Vagy a lépésekkel ebben az oktatóanyagban saját.
+Ez az oktatóanyag bemutatja, hogyan toowrite a .NET Core Konzolalkalmazás, amely üzeneteket fogad az eseményközpontban lévő használatával **EventProcessorHost**. Hello futtatása [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver) megoldás szerint-, lecseréli hello karakterláncok a event hub és a tárolási fiók értékek. Vagy követheti hello lépéseit az oktatóanyag toocreate saját.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-* [A Microsoft Visual Studio 2015-öt vagy 2017](http://www.visualstudio.com). A példák a Visual Studio 2017 oktatóanyag használja, de a Visual Studio 2015-öt is támogatott.
+* [A Microsoft Visual Studio 2015-öt vagy 2017](http://www.visualstudio.com). Ebben az oktatóanyag a Visual Studio 2017 hello példák, de a Visual Studio 2015-öt is támogatott.
 * [A .NET core Visual Studio 2015-öt vagy 2017 eszközök](http://www.microsoft.com/net/core).
 * Azure-előfizetés.
 * Az Azure Event Hubs névtér.
@@ -37,38 +37,38 @@ Ez az oktatóanyag bemutatja, hogyan írhat egy .NET Core-konzolalkalmazást, am
 
 ## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a>Event Hubs-névtér és eseményközpont létrehozása  
 
-Az első lépés az, hogy használja a [Azure-portálon](https://portal.azure.com) az Event Hubs típus névtér létrehozása, és szerezze be a felügyeleti hitelesítő adatokat az alkalmazásban az event hubs folytatott kommunikációhoz szükséges. Egy névtér és az event hub létrehozásához kövesse a [Ez a cikk](event-hubs-create.md), majd folytassa a következő lépéseket.  
+hello első lépése az toouse hello [Azure-portálon](https://portal.azure.com) toocreate hello Event Hubs egy névterét adja meg, majd hello felügyeleti hitelesítő adatok, hogy az alkalmazás kell toocommunicate hello eseményközpont az beszerzése. toocreate névtér és az event hubs eljárással hello a [Ez a cikk](event-hubs-create.md), majd folytassa a következő lépéseket hello.  
 
 ## <a name="create-an-azure-storage-account"></a>Azure-tárfiók létrehozása  
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).  
-2. A portál bal oldali navigációs ablaktábláján kattintson **új**, kattintson a **tárolási**, és kattintson a **Tárfiók**.  
-3. Töltse ki a mezőket a storage-fiók panelen, és kattintson a **létrehozása**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).  
+2. Hello portal hello bal oldali navigációs ablaktábláján kattintson **új**, kattintson a **tárolási**, és kattintson a **Tárfiók**.  
+3. Fejezze be a hello mezők hello storage-fiók panelen, majd kattintson a **létrehozása**.
 
     ![Storage-fiók létrehozása][1]
 
-4. Miután meggyőződött arról a **központi telepítések sikeres** üzenetet, kattintson az új tárfiók neve. Az a **Essentials** panelen kattintson a **Blobok**. Ha a **Blob szolgáltatás** panel nyílik meg, kattintson a **+ tároló** tetején. Nevezze el a tárolót, és zárja be a **Blob szolgáltatás** panelen.  
-5. Kattintson a **hívóbetűk** a bal oldali panelen és a példány nevét és a tároló, a tárfiók, értékének **key1**. Ezeket az értékeket a Jegyzettömb vagy más ideiglenes helyre mentse.  
+4. Miután meggyőződött arról, hogy hello **központi telepítések sikeres** üzenetet, kattintson az új tárfiók hello hello nevére. A hello **Essentials** panelen kattintson a **Blobok**. Ha hello **Blob szolgáltatás** panel nyílik meg, kattintson a **+ tároló** hello tetején. Nevezze el hello tárolót, és zárja be a hello **Blob szolgáltatás** panelen.  
+5. Kattintson a **hívóbetűk** hello bal oldali panelen, és másolja hello nevű hello tároló hello tárfiók és hello értékének **key1**. Ezen értékek tooNotepad vagy más ideiglenes helyre mentse.  
 
 ## <a name="create-a-console-application"></a>Konzolalkalmazás létrehozása
 
-Indítsa el a Visual Studiót. Kattintson a **File** (Fájl) menüben a **New** (Új), majd a **Project** (Projekt) elemre. A .NET Core Konzolalkalmazás létrehozása.
+Indítsa el a Visual Studiót. A hello **fájl** menüben kattintson a **új**, és kattintson a **projekt**. A .NET Core Konzolalkalmazás létrehozása.
 
 ![Új projekt][2]
 
-## <a name="add-the-event-hubs-nuget-package"></a>Az Event Hubs NuGet-csomag hozzáadása
+## <a name="add-hello-event-hubs-nuget-package"></a>Hello Event Hubs NuGet-csomag hozzáadása
 
-Adja hozzá a [ `Microsoft.Azure.EventHubs` ](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) és [ `Microsoft.Azure.EventHubs.Processor` ](https://www.nuget.org/packages/Microsoft.Azure.EventHubs.Processor/) .NET-szabvány library NuGet-csomagok a projekthez az alábbiak szerint: 
+Adja hozzá a hello [ `Microsoft.Azure.EventHubs` ](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) és [ `Microsoft.Azure.EventHubs.Processor` ](https://www.nuget.org/packages/Microsoft.Azure.EventHubs.Processor/) .NET-szabvány library NuGet csomagok tooyour projekt ezeket a lépéseket követve: 
 
-1. Kattintson a jobb gombbal az újonnan létrehozott projektre, és válassza a **Manage Nuget Packages** (NuGet-csomagok kezelése) lehetőséget.
-2. Kattintson a **Tallózás** fülre, majd keresse meg a "Microsoft.Azure.EventHubs", és válassza ki a **Microsoft.Azure.EventHubs** csomag. Kattintson a **Telepítés** gombra a telepítés befejezéséhez, majd zárja be a párbeszédpanelt.
-3. Ismételje meg az 1. és 2, és telepítse a **Microsoft.Azure.EventHubs.Processor** csomag.
+1. Kattintson a jobb gombbal az újonnan létrehozott hello projektet, és válassza ki **NuGet-csomagok kezelése**.
+2. Kattintson a hello **Tallózás** fülre, majd keresse meg a "Microsoft.Azure.EventHubs" és a select hello **Microsoft.Azure.EventHubs** csomag. Kattintson a **telepítése** toocomplete hello telepítését, majd zárja be a párbeszédpanelt.
+3. Ismételje meg az 1. és 2, és telepítse a hello **Microsoft.Azure.EventHubs.Processor** csomag.
 
-## <a name="implement-the-ieventprocessor-interface"></a>A IEventProcessor illesztőfelület megvalósítása
+## <a name="implement-hello-ieventprocessor-interface"></a>Hello IEventProcessor illesztőfelület megvalósítása
 
-1. A Megoldáskezelőben kattintson a jobb gombbal a projektre, kattintson a **Hozzáadás**, és kattintson a **osztály**. Az új osztály neve **SimpleEventProcessor**.
+1. A Megoldáskezelőben kattintson a jobb gombbal hello projektben kattintson **Hozzáadás**, és kattintson a **osztály**. Hello új osztály neve **SimpleEventProcessor**.
 
-2. Nyissa meg a SimpleEventProcessor.cs fájl, és adja hozzá a következő `using` utasítást, hogy a fájl elejéhez.
+2. Nyissa meg a hello SimpleEventProcessor.cs fájl, és adja hozzá a következő hello `using` utasítások toohello felső hello fájl.
 
     ```csharp
     using Microsoft.Azure.EventHubs;
@@ -76,7 +76,7 @@ Adja hozzá a [ `Microsoft.Azure.EventHubs` ](https://www.nuget.org/packages/Mic
     using System.Threading.Tasks;
     ```
 
-3. Alkalmazzon a `IEventProcessor` felületet. Cserélje le a teljes tartalmát a `SimpleEventProcessor` osztály az alábbi kódra:
+3. Alkalmazzon hello `IEventProcessor` felületet. Cserélje le a teljes tartalma hello hello `SimpleEventProcessor` hello kód a következő osztályra:
 
     ```csharp
     public class SimpleEventProcessor : IEventProcessor
@@ -112,9 +112,9 @@ Adja hozzá a [ `Microsoft.Azure.EventHubs` ](https://www.nuget.org/packages/Mic
     }
     ```
 
-## <a name="write-a-main-console-method-that-uses-the-simpleeventprocessor-class-to-receive-messages"></a>A fő konzolon metódus írása, amely a SimpleEventProcessor osztály üzenetek fogadásához használt
+## <a name="write-a-main-console-method-that-uses-hello-simpleeventprocessor-class-tooreceive-messages"></a>A fő konzolon metódus írása, amely hello SimpleEventProcessor osztály tooreceive üzeneteket
 
-1. Adja hozzá az alábbi `using` utasításokat a Program.cs fájl elejéhez.
+1. Adja hozzá a következő hello `using` hello Program.cs fájl elejéhez utasítások toohello.
 
     ```csharp
     using Microsoft.Azure.EventHubs;
@@ -122,7 +122,7 @@ Adja hozzá a [ `Microsoft.Azure.EventHubs` ](https://www.nuget.org/packages/Mic
     using System.Threading.Tasks;
     ```
 
-2. Adja hozzá a állandók a `Program` osztály a event hub kapcsolati karakterlánc, a eseményközpont neve, a tárfiók tároló neve, a tárfiók neve és a tárfiók kulcsa. Adja hozzá a következő kódot, a helyőrzők cseréje a hozzájuk tartozó értékek.
+2. Adja hozzá a állandók toohello `Program` osztály hello event hub kapcsolati karakterlánc, eseményközpont neve, a tárfiók tároló neve, a tárfiók nevének és tárfiók kulcsa. Adja hozzá a következő kódot, hello helyőrzők cseréje a hozzájuk tartozó értékek hello.
 
     ```csharp
     private const string EhConnectionString = "{Event Hubs connection string}";
@@ -134,7 +134,7 @@ Adja hozzá a [ `Microsoft.Azure.EventHubs` ](https://www.nuget.org/packages/Mic
     private static readonly string StorageConnectionString = string.Format("DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}", StorageAccountName, StorageAccountKey);
     ```   
 
-3. Nevű új módszer `MainAsync` számára a `Program` osztály, az alábbiak szerint:
+3. Nevű új módszer `MainAsync` toohello `Program` osztály, az alábbiak szerint:
 
     ```csharp
     private static async Task MainAsync(string[] args)
@@ -148,18 +148,18 @@ Adja hozzá a [ `Microsoft.Azure.EventHubs` ](https://www.nuget.org/packages/Mic
             StorageConnectionString,
             StorageContainerName);
 
-        // Registers the Event Processor Host and starts receiving messages
+        // Registers hello Event Processor Host and starts receiving messages
         await eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-        Console.WriteLine("Receiving. Press ENTER to stop worker.");
+        Console.WriteLine("Receiving. Press ENTER toostop worker.");
         Console.ReadLine();
 
-        // Disposes of the Event Processor Host
+        // Disposes of hello Event Processor Host
         await eventProcessorHost.UnregisterEventProcessorAsync();
     }
     ```
 
-3. Adja hozzá a következő kódsort a `Main` módszert:
+3. Adja hozzá a következő kód toohello üzletági hello `Main` módszert:
 
     ```csharp
     MainAsync(args).GetAwaiter().GetResult();
@@ -197,25 +197,25 @@ Adja hozzá a [ `Microsoft.Azure.EventHubs` ](https://www.nuget.org/packages/Mic
                     StorageConnectionString,
                     StorageContainerName);
 
-                // Registers the Event Processor Host and starts receiving messages
+                // Registers hello Event Processor Host and starts receiving messages
                 await eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-                Console.WriteLine("Receiving. Press ENTER to stop worker.");
+                Console.WriteLine("Receiving. Press ENTER toostop worker.");
                 Console.ReadLine();
 
-                // Disposes of the Event Processor Host
+                // Disposes of hello Event Processor Host
                 await eventProcessorHost.UnregisterEventProcessorAsync();
             }
         }
     }
     ```
 
-4. Futtassa a programot, és ellenőrizze, hogy nincsenek-e hibák.
+4. Hello program futtatása, és győződjön meg arról, hogy nincsenek-e hibák.
 
-Gratulálunk! Most kapott üzenetek eseményközpontban az Event Processor Host használatával.
+Gratulálunk! Az eseményközpontok hello Event Processor Host használatával most kapott üzenetek.
 
 ## <a name="next-steps"></a>Következő lépések
-Az alábbi webhelyeken további információt talál az Event Hubsról:
+További információ az Event Hubs érhetők el a következő hivatkozások hello:
 
 * [Event Hubs – áttekintés](event-hubs-what-is-event-hubs.md)
 * [Eseményközpont létrehozása](event-hubs-create.md)

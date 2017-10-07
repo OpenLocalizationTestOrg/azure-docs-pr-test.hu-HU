@@ -1,6 +1,6 @@
 ---
-title: "A helyszíni a blob storage (Java) alkalmazás |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozzon létre egy konzolalkalmazást, amely feltölt egy képet az Azure-ba, majd a kép jelenik meg a böngészőben. Kódminták Java nyelven."
+title: "a blob storage (Java) alkalmazás aaaOn helyszíni |} Microsoft Docs"
+description: "Ismerje meg, hogyan hello az toocreate egy konzolalkalmazást, amely feltölt egy képet tooAzure, majd megjeleníti a lemezképet a böngészőben. Kódminták Java nyelven."
 services: storage
 documentationcenter: java
 author: mmacy
@@ -14,29 +14,29 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 11/17/2016
 ms.author: marsma
-ms.openlocfilehash: a172b881fa38a69f4510df94f5797b7a56940c52
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ed8eb4c1045691c25abe94bf6c1b18b797adc3e3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="on-premises-application-with-blob-storage"></a>A helyszíni alkalmazások az blob storage szolgáltatással
 ## <a name="overview"></a>Áttekintés
-A következő példa bemutatja, hogyan használhatja az Azure storage tud lemezképeket menteni az Azure-ban. Ebben a cikkben a kód egy konzolalkalmazást, amely feltölt egy képet az Azure-ba, és létrehozza a kép jelenik meg a böngészőben HTML-fájlba van.
+hello alábbi példa bemutatja, hogyan használhatja az Azure storage tud lemezképeket menteni az Azure-ban. Ebben a cikkben hello kód van egy konzolalkalmazást, amely feltölt egy képet tooAzure, és létrehozza a HTML-fájlba hello kép megjelenítése a böngészőben.
 
 ## <a name="prerequisites"></a>Előfeltételek
 * A Java fejlesztői készlet (JDK), 1,6 vagy újabb verziója már telepítve van.
-* Az Azure SDK telepítve van.
-* A Javához készült Azure-tárak JAR, és bármely alkalmazandó függőségi JAR-fájlok kivételével, telepítve van, és a Java-fordítónak használják, a build elérési úton találhatók. Az Azure-könyvtárakban Java telepítésével kapcsolatos információkért lásd: [töltse le az Azure SDK for Java](../java-download-azure-sdk.md).
-* Egy Azure storage-fiók be van állítva. A fiók nevét és a tárfiók kulcsára ebben a cikkben a kód használják. Lásd: [a Storage-fiók létrehozása](storage-create-storage-account.md#create-a-storage-account) a storage-fiók létrehozásával kapcsolatos információkat és [megtekintése és másolása tárelérési kulcsok](storage-create-storage-account.md#view-and-copy-storage-access-keys) a fiókkulcs beolvasásával kapcsolatos.
-* Létrehozott nevű kép: helyi fájl elérési útja c: mentve\\myimages\\image1.jpg. Azt is megteheti, módosítsa a **FileInputStream** konstruktor a példa egy másik kép elérési útját és fájlnevét név.
+* hello Azure SDK telepítve van.
+* hello JAR a Java hello Azure-könyvtárakban, és bármely alkalmazandó függőségi JAR-fájlok kivételével, telepítve van, és a Java-fordítónak használják a hello build elérési úton találhatók. Java hello Azure-könyvtárakban telepítésével kapcsolatos információkért lásd: [letöltési hello Azure SDK for Java](../java-download-azure-sdk.md).
+* Egy Azure storage-fiók be van állítva. hello fióknevet és a fiókkulcsot hello tárfiók által használandó hello kód ebben a cikkben. Lásd: [hogyan tooCreate Tárfiók](storage-create-storage-account.md#create-a-storage-account) a storage-fiók létrehozásával kapcsolatos információkat és [megtekintése és másolása tárelérési kulcsok](storage-create-storage-account.md#view-and-copy-storage-access-keys) hello fiókkulcs beolvasásával kapcsolatos.
+* Létrehozott nevű kép: helyi fájl helye: hello elérési c:\\myimages\\image1.jpg. Azt is megteheti, módosítsa a **FileInputStream** konstruktor a hello példa toouse különböző kép elérési útját és nevét.
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="to-use-azure-blob-storage-to-upload-a-file"></a>Fájl feltöltése az Azure blob storage segítségével
-Eljárás pontos lépéseit itt akkor jelenik meg. Ha azt szeretné, kihagyhatja azokat, amelyek, a teljes kód számára jelenik meg a cikk későbbi részében.
+## <a name="toouse-azure-blob-storage-tooupload-a-file"></a>toouse Azure blob storage tooupload egy fájlt
+Eljárás pontos lépéseit itt akkor jelenik meg. Ha szeretné azokat, amelyek tooskip, hello teljes kód számára jelenik meg a cikk későbbi részében.
 
-Kezdje az importálja az Azure core tárolási osztályok, az Azure blob ügyfél osztályok, a Java IO osztályok, beleértve a kódot és a **URISyntaxException** osztály.
+Kezdje az hello kód hello Azure core tárolási osztályok, hello Azure blob ügyfél osztályok, hello Java IO osztályok és hello irányuló beleértve **URISyntaxException** osztály.
 
 ```java
 import com.microsoft.azure.storage.*;
@@ -45,13 +45,13 @@ import java.io.*;
 import java.net.URISyntaxException;
 ```
 
-Egy osztályt deklarálható **StorageSample**, és adja meg a nyitó zárójel **{**.
+Egy osztályt deklarálható **StorageSample**, és adja meg a nyitó zárójel hello, **{**.
 
 ```java
 public class StorageSample {
 ```
 
-Belül a **StorageSample** osztály, az alapértelmezett végpont protokoll, a tárfiók nevét és a tárelérési kulcsát, az Azure storage-fiókhoz megadott tartalmazó karakterlánc változót. Cserélje le a helyőrző értékeket **a\_fiók\_neve** és **a\_fiók\_kulcs** saját fiók nevét és a fiókkulcsot, kulcsattribútumokkal.
+Hello belül **StorageSample** osztály, fogja tartalmazni, hello alapértelmezett végpont protokollt, a tárfiók nevét és a tárelérési kulcsát, az Azure storage-fiók a megadott karakterlánc változót. Cserélje le a helyőrző értékeket hello **a\_fiók\_neve** és **a\_fiók\_kulcs** saját fiók nevét és a fiókkulcsot, kulcsattribútumokkal.
 
 ```java
 public static final String storageConnectionString =
@@ -60,7 +60,7 @@ public static final String storageConnectionString =
     "AccountKey=your_account_name";
 ```
 
-Adja hozzá a deklaráció a következő **fő**, közé tartozik egy **próbálja** letiltása, és tartalmazza a szükséges nyitott szögletes **{**.
+Adja hozzá a deklaráció a következő **fő**, közé tartozik egy **próbálja** blokkolni, és tartalmazzák a hello szükséges nyitott zárójelek között van feltüntetve, **{**.
 
 ```java
     public static void main(String[] args)
@@ -69,12 +69,12 @@ Adja hozzá a deklaráció a következő **fő**, közé tartozik egy **próbál
         {
 ```
 
-(Azok használata ebben a példában a rendszer a leírása) a következő típusú változó deklarálható:
+Deklarálja a változókat hello típusa (hello azok használata ebben a példában a rendszer leírása) a következő:
 
-* **CloudStorageAccount**: inicializálni a számítógépfiók-objektum az az Azure storage-fiók nevét és a kulcs, és a blob ügyfél objektum létrehozásához használt.
-* **CloudBlobClient**: a blob szolgáltatás eléréséhez használt.
-* **CloudBlobContainer**: egy blob-tároló létrehozásához használt, a tárolóban lévő blobok listázása, és a tároló törlése.
-* **CloudBlockBlob**: használt kép: helyi fájl feltöltése a tárolóba.
+* **CloudStorageAccount**: használt tooinitialize hello fiók objektum az az Azure storage-fiók nevét és -kulccsal és toocreate a blob ügyfél objektumot.
+* **CloudBlobClient**: tooaccess hello blob szolgáltatás használt.
+* **CloudBlobContainer**: használt toocreate egy blob tároló hello tároló és a delete hello tárolóban lévő blobok listázása.
+* **CloudBlockBlob**: használt tooupload egy kép: helyi fájl toothe tárolót.
 
 <!-- -->
 
@@ -85,79 +85,79 @@ Adja hozzá a deklaráció a következő **fő**, közé tartozik egy **próbál
     CloudBlockBlob blob;
 ```
 
-Adja meg az értéket a **fiók** változó.
+Rendelje hozzá egy érték toohello **fiók** változó.
 
 ```java
 account = CloudStorageAccount.parse(storageConnectionString);
 ```
 
-Adja meg az értéket a **serviceClient** változó.
+Rendelje hozzá egy érték toohello **serviceClient** változó.
 
 ```java
 serviceClient = account.createCloudBlobClient();
 ```
 
-Adja meg az értéket a **tároló** változó. Azt is nevű tárolót mutató hivatkozás lesz **gettingstarted**.
+Rendelje hozzá egy érték toohello **tároló** változó. Azt a referencia-tooa nevű tárolót kaphat **gettingstarted**.
 
 ```java
 // Container name must be lower case.
 container = serviceClient.getContainerReference("gettingstarted");
 ```
 
-A tároló létrehozása. Ezzel a módszerrel hoz létre a tárolót, ha még nem létezik (és visszatérési **igaz**). Ha a tároló létezik, akkor a rendszer visszaküldi **hamis**. Alternatív megoldás **createIfNotExists** van a **létrehozása** metódust (hibát adnak vissza, ha a tároló már létezik).
+Hello tároló létrehozása. Ezzel a módszerrel hoz létre hello tárolót, ha még nem létezik (és visszatérési **igaz**). Ha hello tároló létezik, akkor a rendszer visszaküldi **hamis**. Alternatív túl**createIfNotExists** hello van **létrehozása** metódust (hibát adnak vissza, ha már van hello tároló).
 
 ```java
 container.createIfNotExists();
 ```
 
-Állítsa be a névtelen hozzáférést ahhoz a tárolóhoz.
+Névtelen hozzáférés hello tároló beállítása.
 
 ```java
-// Set anonymous access on the container.
+// Set anonymous access on hello container.
 BlobContainerPermissions containerPermissions;
 containerPermissions = new BlobContainerPermissions();
 containerPermissions.setPublicAccess(BlobContainerPublicAccessType.CONTAINER);
 container.uploadPermissions(containerPermissions);
 ```
 
-Lekérdezni egy jelöli az Azure storage blob blokkblob hivatkozását.
+Egy hivatkozási toohello blokkblob, amely jelöli az Azure storage hello blob beolvasása.
 
 ```java
 blob = container.getBlockBlobReference("image1.jpg");
 ```
 
-Használja a **fájl** konstruktort a helyileg létrehozott fájl, amely feltölti való hivatkozás. Győződjön meg arról, ez a fájl hozott létre a kód futtatása előtt.
+Használjon hello **fájl** konstruktor tooget fel kell töltenie hivatkozás toohello helyileg létrehozott fájlt. Győződjön meg arról, ez a fájl létrehozott hello kód futtatása előtt.
 
 ```java
 File fileReference = new File ("c:\\myimages\\image1.jpg");
 ```
 
-Hívása a helyi fájl feltöltése a **CloudBlockBlob.upload** metódust. Az első paraméterben a **CloudBlockBlob.upload** metódus egy **FileInputStream** a helyi fájl, amely az Azure storage feltöltés képviselő objektum. A második paraméter a mérete, a fájl.
+A hívás toohello keresztül hello a helyi fájl feltöltése **CloudBlockBlob.upload** metódust. első paraméter toohello hello **CloudBlockBlob.upload** metódus egy **FileInputStream** adott jelöli hello helyi fájl, amely lesz feltöltve tooAzure tárolási objektum. második hello paraméter-hello méretét, bájtban hello fájlt.
 
 ```java
 blob.upload(new FileInputStream(fileReference), fileReference.length());
 ```
 
-Nevű segítő függvény **MakeHTMLPage**, hogy egy egyszerű HTML-lapot tartalmazó egy  **&lt;kép&gt;**  elem a forrás beállítása az, amelyik most már az Azure Storage-blobba fiók. A kód **MakeHTMLPage** a cikk tárgyalja.
+Nevű segítő függvény **MakeHTMLPage**, toomake egy egyszerű HTML-oldal, amely tartalmaz egy  **&lt;kép&gt;**  elem az hello forrás beállítása toohello blob, amelyik most már az Azure-ban Storage-fiók. a kód hello **MakeHTMLPage** a cikk tárgyalja.
 
 ```java
 MakeHTMLPage(container);
 ```
 
-Nyomtassa ki a hibaállapot-üzeneteket és a létrehozott HTML-weblap információkat.
+Nyomtassa ki a állapotüzenet és a HTML-weblap létrehozott hello kapcsolatos információkat.
 
 ```java
 System.out.println("Processing complete.");
-System.out.println("Open index.html to see the images stored in your storage account.");
+System.out.println("Open index.html toosee hello images stored in your storage account.");
 ```
 
-Zárja be a **próbálja** blokk egy záró zárójel beszúrásával: **}**
+Bezárás hello **próbálja** blokk egy záró zárójel beszúrásával: **}**
 
-Kezeli a következő kivételekkel:
+A következő kivételek hello kezelni:
 
-* **FileNotFoundException**: által okozott is lehet a **FileInputStream** vagy **FileOutputStream** konstruktor.
-* **StorageException**: az Azure storage ügyfélkódtár által is okozhat.
-* **URISyntaxException**: által okozott is lehet a **ListBlobItem.getUri** metódust.
+* **FileNotFoundException**: hello által is okozhat **FileInputStream** vagy **FileOutputStream** konstruktor.
+* **StorageException**: hello Azure storage ügyfélkódtár által is okozhat.
+* **URISyntaxException**: hello által is okozhat **ListBlobItem.getUri** metódust.
 * **Kivétel**: Általános kivétel kezelése.
 
 <!-- -->
@@ -191,7 +191,7 @@ catch (Exception e)
 
 Zárja be az **fő** záró zárójel beszúrásával: **}**
 
-Nevű metódus létrehozása **MakeHTMLPage** létrehozni egy egyszerű HTML-lapot. Ez a módszer típusú paraméterrel rendelkezik **CloudBlobContainer**, amely használható a feltöltött blobon listáját iterációt. Ez a módszer kivételhibát típusú kivételek **FileNotFoundException**, által is okozhat a **FileOutputStream** konstruktor, és **URISyntaxException**, amely lehet által okozott a **ListBlobItem.getUri** metódust. A nyitó zárójel tartalmaznak **{**.
+Nevű metódus létrehozása **MakeHTMLPage** toocreate egy egyszerű HTML-lapon. Ez a módszer típusú paraméterrel rendelkezik **CloudBlobContainer**, amely lesz használt tooiterate keresztül feltöltött blobon hello listája. Ez a módszer kivételhibát típusú kivételek **FileNotFoundException**, hello által is okozhat **FileOutputStream** konstruktor, és **URISyntaxException**, amely lehet hello által okozott kell **ListBlobItem.getUri** metódust. A nyitó zárójel tartalmaznak **{**.
 
 ```java
 public static void MakeHTMLPage(CloudBlobContainer container) throws FileNotFoundException, URISyntaxException
@@ -205,7 +205,7 @@ PrintStream stream;
 stream = new PrintStream(new FileOutputStream("index.html"));
 ```
 
-Hozzáadása a helyi fájlba írni a  **&lt;html&gt;**,  **&lt;fejléc&gt;**, és  **&lt;törzs&gt;**  elemek.
+Toohello helyi fájl hozzáadása a hello írható  **&lt;html&gt;**,  **&lt;fejléc&gt;**, és  **&lt;törzs&gt;**  elemek.
 
 ```java
 stream.println("<html>");
@@ -213,27 +213,27 @@ stream.println("<header/>");
 stream.println("<body>");
 ```
 
-A feltöltött blobon listáját iterációt. Minden egyes blob, a HTML-weblap hozzon létre egy  **&lt;img&gt;**  elem, amelynek a **src** , mert az az Azure storage-fiók létezik a BLOB URI küldött attribútum.
+Iterációt feltöltött blobon hello listája. Minden egyes blob hello HTML-lapon hozzon létre egy  **&lt;img&gt;**  elem, amelynek a **src** küldött hello hello blob URI Azonosítóját az Azure storage-fiókjában található attribútum.
 Bár csak egy kép ebben a mintában hozzáadni, ha több hozzáadott, ezt a kódot az összes kellene többször.
 
-Az egyszerűség kedvéért ez a példa feltételezi minden feltöltött blobon lemezkép. Ha eltérő képek blobok vagy lapblobokat helyett blokkblobokat frissítette, szükség szerint állítsa be a kódot.
+Az egyszerűség kedvéért ez a példa feltételezi minden feltöltött blobon lemezkép. Blobok eltérő képek vagy lapblobokat helyett blokkblobokat frissítése, ha úgy dönt, igény szerint hello kódot.
 
 ```java
-// Enumerate the uploaded blobs.
+// Enumerate hello uploaded blobs.
 for (ListBlobItem blobItem : container.listBlobs()) {
-// List each blob as an <img> element in the HTML body.
+// List each blob as an <img> element in hello HTML body.
 stream.println("<img src='" + blobItem.getUri() + "'/><br/>");
 }
 ```
 
-Zárja be a  **&lt;törzs&gt;**  elem és a  **&lt;html&gt;**  elemet.
+Bezárás hello  **&lt;törzs&gt;**  elem és hello  **&lt;html&gt;**  elemet.
 
 ```java
 stream.println("</body>");
 stream.println("</html>");
 ```
 
-Zárja be a helyi fájlt.
+Bezárás hello helyi fájl.
 
 ```java
 stream.close();
@@ -243,7 +243,7 @@ Zárja be az **MakeHTMLPage** záró zárójel beszúrásával: **}**
 
 Zárja be az **StorageSample** záró zárójel beszúrásával: **}**
 
-A teljes kód látható az ebben a példában a következő: Ne felejtse el módosítani a helyőrző értékeket **a\_fiók\_neve** és **a\_fiók\_kulcs** a fiók nevére és kulcsára, kulcsattribútumokkal.
+hello hello teljes kód látható az ebben a példában látható. Ne feledje toomodify hello helyőrző értékeket **a\_fiók\_neve** és **a\_fiók\_kulcs** toouse a fiók nevét és a fiók billentyűt, illetve.
 
 ```java
 import com.microsoft.azure.storage.*;
@@ -251,9 +251,9 @@ import com.microsoft.azure.storage.blob.*;
 import java.io.*;
 import java.net.URISyntaxException;
 
-// Create an image, c:\myimages\image1.jpg, prior to running this sample.
-// Alternatively, change the value used by the FileInputStream constructor
-// to use a different image path and file that you have already created.
+// Create an image, c:\myimages\image1.jpg, prior toorunning this sample.
+// Alternatively, change hello value used by hello FileInputStream constructor
+// toouse a different image path and file that you have already created.
 public class StorageSample {
 
     public static final String storageConnectionString =
@@ -274,7 +274,7 @@ public class StorageSample {
             container = serviceClient.getContainerReference("gettingstarted");
             container.createIfNotExists();
 
-            // Set anonymous access on the container.
+            // Set anonymous access on hello container.
             BlobContainerPermissions containerPermissions;
             containerPermissions = new BlobContainerPermissions();
             containerPermissions.setPublicAccess(BlobContainerPublicAccessType.CONTAINER);
@@ -286,12 +286,12 @@ public class StorageSample {
             File fileReference = new File("c:\\myimages\\image1.jpg");
             blob.upload(new FileInputStream(fileReference), fileReference.length());
 
-            // At this point the image is uploaded.
-            // Next, create an HTML page that lists all of the uploaded images.
+            // At this point hello image is uploaded.
+            // Next, create an HTML page that lists all of hello uploaded images.
             MakeHTMLPage(container);
 
             System.out.println("Processing complete.");
-            System.out.println("Open index.html to see the images stored in your storage account.");
+            System.out.println("Open index.html toosee hello images stored in your storage account.");
 
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.print("FileNotFoundException encountered: ");
@@ -312,46 +312,46 @@ public class StorageSample {
         }
     }
 
-    // Create an HTML page that can be used to display the uploaded images.
-    // This example assumes all of the blobs are for images.
+    // Create an HTML page that can be used toodisplay hello uploaded images.
+    // This example assumes all of hello blobs are for images.
     public static void MakeHTMLPage(CloudBlobContainer container) throws FileNotFoundException, URISyntaxException
     {
         PrintStream stream;
         stream = new PrintStream(new FileOutputStream("index.html"));
 
-        // Create the opening <html>, <header>, and <body> elements.
+        // Create hello opening <html>, <header>, and <body> elements.
         stream.println("<html>");
         stream.println("<header/>");
         stream.println("<body>");
 
-        // Enumerate the uploaded blobs.
+        // Enumerate hello uploaded blobs.
         for (ListBlobItem blobItem : container.listBlobs()) {
-            // List each blob as an <img> element in the HTML body.
+            // List each blob as an <img> element in hello HTML body.
             stream.println("<img src='" + blobItem.getUri() + "'/><br/>");
         }
 
         stream.println("</body>");
 
-        // Complete the <html> element and close the file.
+        // Complete hello <html> element and close hello file.
         stream.println("</html>");
         stream.close();
     }
 }
 ```
 
-Mellett a kép: helyi fájl feltöltése az Azure storage, a példakód létrehoz egy helyi fájl namedindex.html, a feltöltött kép megjelenítéséhez böngészőben megnyithat.
+Továbbá toouploading kép: helyi fájl tooAzure tárhelyét, hello példakód létrehoz egy helyi fájl namedindex.html, a böngésző toosee megnyithat a feltöltött lemezkép.
 
-A kódot tartalmaz, a fiók nevét és a fiókkulcsot, győződjön meg arról, hogy a forráskód biztonságos.
+Hello kódot tartalmaz, a fiók nevét és a fiókkulcsot, győződjön meg arról, hogy a forráskód biztonságos.
 
-## <a name="to-delete-a-container"></a>A tároló törlése
-Van szó, a tárolási, mert előfordulhat, hogy törölni kívánja a **gettingstarted** tároló, miután befejezte az ebben a példában ki. Egy tároló törléséhez használja a **CloudBlobContainer.delete** metódust.
+## <a name="toodelete-a-container"></a>egy tároló toodelete
+Mert van szó, a tárolási, érdemes lehet a toodelete a **gettingstarted** tároló, miután befejezte az ebben a példában ki. egy tároló toodelete hello használata **CloudBlobContainer.delete** metódust.
 
 ```java
 container = serviceClient.getContainerReference("gettingstarted");
 container.delete();
 ```
 
-Hívása a **CloudBlobContainer.delete** metódus, a folyamat inicializálása **CloudStorageAccount**, **ClodBlobClient**, és **CloudBlobContainer**  objektumok megegyezik a látható módon a **createIfNotExist** metódust. Az alábbiakban egy teljes példa, amely törli a tárolót egy **gettingstarted**.
+toocall hello **CloudBlobContainer.delete** metódust, hello folyamat inicializálása **CloudStorageAccount**, **ClodBlobClient**, és  **CloudBlobContainer** objektumok van hello ugyanaz, ahogy a **createIfNotExist** metódust. hello az alábbiakban látható egy teljes példa, hogy törli hello nevű tárolót **gettingstarted**.
 
 ```java
 import com.microsoft.azure.storage.*;
@@ -397,10 +397,10 @@ public class DeleteContainer {
 }
 ```
 
-Más blob tárolási osztályokhoz és módszerek áttekintését lásd: [Blob storage-ának Java használatával](storage-java-how-to-use-blob-storage.md).
+Más blob tárolási osztályokhoz és módszerek áttekintését lásd: [hogyan toouse Blob storage-ának Java](storage-java-how-to-use-blob-storage.md).
 
 ## <a name="next-steps"></a>Következő lépések
-Az alábbi hivatkozásokból tájékozódhat az összetettebb tárolási feladatok elvégzéséről.
+Kövesse az e további információ az összetettebb tárolási feladatok elvégzéséről hivatkozások toolearn.
 
 * [Az Azure Storage Java SDK](https://github.com/azure/azure-storage-java)
 * [Az Azure Storage ügyfél SDK-dokumentáció](http://dl.windowsazure.com/storage/javadoc/)

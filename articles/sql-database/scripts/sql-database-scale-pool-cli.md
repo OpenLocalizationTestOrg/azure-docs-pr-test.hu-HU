@@ -1,6 +1,6 @@
 ---
-title: "Parancssori felület például egy SQL rugalmas készlet-Azure SQL Database méretezi |} Microsoft Docs"
-description: "Az Azure parancssori felület a példaként megadott parancsfájlt a rugalmas SQL-készletet, az Azure SQL-adatbázis méretezése"
+title: "aaaCLI például egy SQL rugalmas készlet-Azure SQL Database méretezi |} Microsoft Docs"
+description: "Az Azure CLI például parancsfájl-tooscale a rugalmas SQL-készletet, az Azure SQL-adatbázis"
 services: sql-database
 documentationcenter: sql-database
 author: janeng
@@ -16,13 +16,13 @@ ms.tgt_pltfrm: sql-database
 ms.workload: database
 ms.date: 06/23/2017
 ms.author: janeng
-ms.openlocfilehash: 888d2b7b7c118fede82d39881570a3b3d7b09961
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 436128b8183213f78b9abc2ec46efe2a3ed3c37c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-cli-to-scale-a-sql-elastic-pool-in-azure-sql-database"></a>A rugalmas SQL-készletet, az Azure SQL-adatbázis méretezése parancssori felület használatával
+# <a name="use-cli-tooscale-a-sql-elastic-pool-in-azure-sql-database"></a>Parancssori felület tooscale egy SQL Azure SQL Database rugalmas készlet használata
 
 Az Azure CLI mintaparancsfájl hoz létre SQL rugalmas készletek, készletezett adatbázisok áthelyezése, és a rugalmas készlet teljesítményszintet vált. 
 
@@ -30,15 +30,15 @@ Az Azure CLI mintaparancsfájl hoz létre SQL rugalmas készletek, készletezett
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Ha a parancssori felület helyi telepítése és használata mellett dönt, a témakörben leírt lépésekhez az Azure parancssori felületének 2.0-s vagy annál újabb verzióját kell futtatnia. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, ebben a témakörben van szükség, hogy hello Azure CLI verzióját futtatja, 2.0-s vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-azurecli-interactive[fő](../../../cli_scripts/sql-database/scale-pool/scale-pool.sh "adatbázis áthelyezése készletek között")]
+[!code-azurecli-interactive[main](../../../cli_scripts/sql-database/scale-pool/scale-pool.sh "Move database between pools")]
 
 ## <a name="clean-up-deployment"></a>Az üzemelő példány eltávolítása
 
-A parancsfájl-minta futtatása után a következő parancs segítségével távolítsa el az erőforráscsoportot és a vele társított összes erőforrást.
+Hello parancsfájl minta futtatása után a következő parancs hello lehet használt tooremove hello erőforráscsoport és a vele társított összes erőforrást.
 
 ```azurecli-interactive
 az group delete --name myResourceGroup
@@ -46,19 +46,19 @@ az group delete --name myResourceGroup
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat egy erőforráscsoportot, a logikai kiszolgáló, az SQL-adatbázis és a tűzfalszabályok létrehozásához. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok toocreate erőforráscsoport, a logikai kiszolgáló, az SQL-adatbázis és a tűzfalszabályok hello. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
 | [az csoport létrehozása](https://docs.microsoft.com/cli/azure/group#create) | Az összes erőforrás tároló erőforrás csoportot hoz létre. |
-| [az sql-kiszolgáló létrehozása](https://docs.microsoft.com/cli/azure/sql/server#create) | Az SQL-adatbázist futtató logikai kiszolgáló létrehozása. |
-| [az sql rugalmas-címkészletek létrehozása](https://docs.microsoft.com/cli/azure/sql/elastic-pool#create) | A logikai kiszolgálón belül a rugalmas adatbáziskészlet létrehozása. |
-| [az sql-adatbázis létrehozása](https://docs.microsoft.com/cli/azure/sql/db#create) | Az SQL-adatbázis létrehozása a logikai kiszolgálón. |
-| [az sql rugalmas-gyűjtők frissítése](https://docs.microsoft.com/cli/azure/sql/elastic-pool#update) | A rugalmas adatbáziskészlet frissíti, ebben a példában a hozzárendelt edtu-ra módosítja. |
+| [az sql-kiszolgáló létrehozása](https://docs.microsoft.com/cli/azure/sql/server#create) | Hogy a gazdagépek hello SQL Database logikai kiszolgáló létrehozása. |
+| [az sql rugalmas-címkészletek létrehozása](https://docs.microsoft.com/cli/azure/sql/elastic-pool#create) | A rugalmas adatbáziskészlet hello logikai kiszolgáló belül hoz létre. |
+| [az sql-adatbázis létrehozása](https://docs.microsoft.com/cli/azure/sql/db#create) | Hello SQL Database logikai kiszolgáló hello hoz létre. |
+| [az sql rugalmas-gyűjtők frissítése](https://docs.microsoft.com/cli/azure/sql/elastic-pool#update) | A rugalmas adatbáziskészlet, ez például módosítások hello eDTU hozzárendelt a frissíti. |
 | [az csoport törlése](https://docs.microsoft.com/cli/azure/vm/extension#set) | Egy olyan erőforráscsoport, beleértve az összes beágyazott erőforrások törlése. |
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információ az Azure parancssori felület: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
+Az Azure CLI hello további információkért lásd: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
 
-További SQL-adatbázis CLI parancsfájl minták megtalálhatók a [dokumentáció az Azure SQL Database](../sql-database-cli-samples.md).
+További SQL-adatbázis CLI parancsfájl minták hello található [dokumentáció az Azure SQL Database](../sql-database-cli-samples.md).

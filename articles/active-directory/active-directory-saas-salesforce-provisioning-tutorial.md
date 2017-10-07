@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Salesforce |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és a Salesforce között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és a Salesforce között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,96 +13,96 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/19/2017
 ms.author: jeedes
-ms.openlocfilehash: a573a7ef79e28c50ae0923849a88f88af40f21be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a916be8dbf0b4c6173cda873936a53cd1f3ff12b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-configuring-salesforce-for-automatic-user-provisioning"></a>Oktatóanyag: Salesforce konfigurálása az automatikus felhasználó létesítése
 
-Ez az oktatóanyag célja a Salesforce és az Azure AD automatikus kiépítéséhez elvégzéséhez szükséges lépéseket és deaktiválás rendelkezés felhasználói fiókok Azure ad-Salesforce megjelenítése.
+hello Ez az oktatóanyag célja tooshow hello lépéseket szükséges tooperform a Salesforce és az Azure AD tooautomatically kiépítése és deaktiválás rendelkezés lévő felhasználói fiókok Azure AD tooSalesforce.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Ebben az oktatóanyagban leírt forgatókönyv feltételezi, hogy már rendelkezik a következő elemek:
+Ebben az oktatóanyagban leírt hello forgatókönyv feltételezi, hogy már rendelkezik a következő elemek hello:
 
 *   Az Azure Active directory-bérlő.
 *   Rendelkeznie kell egy érvényes bérlőt Salesforce a munkahelyén vagy a Salesforce oktatási célokra. Egy ingyenes próbafiók vagy a szolgáltatás segítségével.
 *   Egy felhasználói fiókot a Salesforce-ban Team rendszergazdai engedélyekkel.
 
-## <a name="assigning-users-to-salesforce"></a>Felhasználók hozzárendelése Salesforce
+## <a name="assigning-users-toosalesforce"></a>Felhasználók tooSalesforce hozzárendelése
 
-Az Azure Active Directory egy fogalom, más néven "hozzárendeléseket" használ annak meghatározásához, hogy mely felhasználók kell kapnia a kiválasztott alkalmazásokhoz való hozzáférés. Automatikus fiók felhasználókiépítése keretében csak a felhasználók és csoportok "hozzárendelt" az Azure AD-alkalmazáshoz való szinkronizálása.
+Az Azure Active Directory mely felhasználók hozzáférési tooselected alkalmazásokat kell látnia "hozzárendelések" toodetermine nevű elvét használja. Automatikus felhasználói fiók kiépítése hello kontextusában csak hello felhasználók és csoportok "hozzárendelt" tooan alkalmazás Azure Active Directory szinkronizálása.
 
-A létesítési szolgáltatás engedélyezése és konfigurálása, mielőtt szüksége döntse el, hogy mely felhasználók és/vagy az Azure AD-csoportok határoz meg a felhasználók, akik a Salesforce alkalmazásához való hozzáférést. Ha úgy döntött, itt utasításokat követve hozzárendelheti ezek a felhasználók a Salesforce alkalmazást:
+Mielőtt hello szolgáltatás kiépítését engedélyezése és konfigurálása, kell toodecide milyen felhasználói és/vagy csoportok tooyour Salesforce alkalmazást kell használni az Azure AD jelentik hello felhasználók. Ha úgy döntött, itt hello utasításokat követve rendelhet a felhasználók tooyour Salesforce alkalmazásához:
 
-[Egy felhasználó vagy csoport hozzárendelése egy vállalati alkalmazás](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
+[Rendelje hozzá a felhasználó vagy csoport tooan vállalati alkalmazások](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
 
-### <a name="important-tips-for-assigning-users-to-salesforce"></a>Felhasználók hozzárendelése Salesforce fontos tippek
+### <a name="important-tips-for-assigning-users-toosalesforce"></a>Fontos tippek a felhasználók tooSalesforce hozzárendelése
 
-*   Javasoljuk, hogy egyetlen Azure AD-felhasználó van rendelve Salesforce teszteli a telepítési konfigurációt. További felhasználók és/vagy csoportok később is rendelhető.
+*   Javasoljuk, hogy egyetlen Azure AD-felhasználó tooSalesforce tootest hello konfigurálása kiosztás van hozzárendelve. További felhasználók és/vagy csoportok később is rendelhető.
 
-*  Amikor egy felhasználó rendel a Salesforce, ki kell választania egy érvényes felhasználói szerepkörnek. A "Default" szerepkör nem működik történő üzembe helyezéséhez
+*  Amikor egy felhasználó tooSalesforce rendel, ki kell választania egy érvényes felhasználói szerepkörnek. hello "alapértelmezett" szerepkör nem működik történő üzembe helyezéséhez
 
     > [!NOTE]
-    > Ez az alkalmazás egyéni szerepkörök importál a telepítési folyamatot, amely az ügyfél esetleg szeretné kiválasztani a felhasználók hozzárendelésekor részeként Salesforce
+    > Ez az alkalmazás egyéni szerepkörök importál a Salesforce létesítésének folyamatát kell használnia, mely hello ügyfél érdemes tooselect felhasználók hozzárendelésekor hello részeként
 
 ## <a name="enable-automated-user-provisioning"></a>Az automatikus felhasználó-kiépítés engedélyezése
 
-Ez a szakasz végigvezeti az Azure AD kapcsolódás Salesforce a felhasználói fiók kiépítése API és a létesítési szolgáltatás létrehozása, konfigurálása frissítése, és tiltsa le a hozzárendelt felhasználói fiókok a Salesforce alapján a felhasználók és csoportok hozzárendelése az Azure AD.
+Ez a szakasz végigvezeti a csatlakozás az Azure AD tooSalesforce felhasználói fiók kiépítése API és kiépítése szolgáltatáshoz toocreate hello konfigurálása, frissítése, és tiltsa le a hozzárendelt felhasználói fiókok a Salesforce alapján a felhasználók és csoportok hozzárendelése az Azure ad-ben .
 
 >[!Tip]
->Dönthet úgy is, SAML-alapú egyszeri bejelentkezés Salesforce engedélyezni, utasítások megadott [Azure-portálon](https://portal.azure.com). Egyszeri bejelentkezés konfigurálható függetlenül automatikus kiépítés, bár ez a két funkció egészítse ki egymást.
+>Dönthet úgy is tooenabled SAML-alapú egyszeri bejelentkezést a Salesforce hello megjelenő utasításokat követve [Azure-portálon](https://portal.azure.com). Egyszeri bejelentkezés konfigurálható függetlenül automatikus kiépítés, bár ez a két funkció egészítse ki egymást.
 
-### <a name="to-configure-automatic-user-account-provisioning"></a>Konfigurálása automatikus felhasználói fiók kiépítése:
+### <a name="tooconfigure-automatic-user-account-provisioning"></a>tooconfigure automatikus felhasználói fiók kiépítése:
 
-Ez a szakasz célja felvázoló engedélyezése a felhasználók átadása Salesforce Active Directory felhasználói fiókokat.
+hello ebben a szakaszban célja toooutline hogyan tooSalesforce tooenable a felhasználók átadása az Active Directory felhasználói fiókok.
 
-1. Az a [Azure-portálon](https://portal.azure.com), keresse meg a **Azure Active Directory > Vállalati alkalmazások > összes alkalmazás** szakasz.
+1. A hello [Azure-portálon](https://portal.azure.com), keresse meg a toohello **Azure Active Directory > Vállalati alkalmazások > összes alkalmazás** szakasz.
 
-2. Ha már beállította az egyszeri bejelentkezés Salesforce, keresse meg az használja a keresőmezőt Salesforce-példány. Máskülönben válassza **Hozzáadás** keresse meg a **Salesforce** az alkalmazás katalógusában. Válassza ki a Salesforce a keresési eredmények közül, és adja hozzá az alkalmazások listáját.
+2. Ha már beállította az egyszeri bejelentkezés Salesforce, keresse meg az hello keresési mező Salesforce-példány. Máskülönben válassza **Hozzáadás** keresse meg a **Salesforce** hello alkalmazás gyűjteményben. Válassza ki a Salesforce hello keresési eredmények közül, és vegye fel tooyour alkalmazások listáját.
 
-3. Jelölje ki a Salesforce példányát, majd válassza ki a **kiépítési** fülre.
+3. Válassza ki az Salesforce-példány, majd válassza ki a hello **kiépítési** fülre.
 
-4. Állítsa be a **kiépítési üzemmódját** való **automatikus**. 
+4. Set hello **kiépítési üzemmódban** túl**automatikus**. 
 ![kiépítés](./media/active-directory-saas-salesforce-provisioning-tutorial/provisioning.png)
 
-5. Az a **rendszergazdai hitelesítő adataival** területen adja meg a következő konfigurációs beállításokat:
+5. A hello **rendszergazdai hitelesítő adataival** területen adja meg a következő konfigurációs beállítások hello:
    
-    a. Az a **rendszergazda felhasználóneve** szövegmezőhöz a Salesforce-fióknév, amelynek típusa a **rendszergazda** Salesforce.com rendelt profillal.
+    a. A hello **rendszergazda felhasználóneve** szövegmezőhöz a Salesforce-fióknév, amely rendelkezik hello típus **rendszergazda** Salesforce.com rendelt profillal.
    
-    b. Az a **rendszergazdai jelszó** szövegmező, írja be a fiókhoz tartozó jelszót.
+    b. A hello **rendszergazdai jelszó** szövegmezőhöz típus hello fiókhoz tartozó jelszót.
 
-6. A Salesforce biztonsági jogkivonatának beszerzéséhez, nyisson meg egy új lapon és a bejelentkezés Salesforce egy rendszergazdai fiókhoz. Az oldal jobb felső sarkában kattintson a nevére, és kattintson a **saját beállítások**.
+6. tooget a Salesforce biztonsági jogkivonatot, nyisson meg egy új lapot, és jelentkezzen be a hello azonos Salesforce rendszergazdai fiókot. A hello jobb felső sarkában hello lap, kattintson a nevére, és kattintson **saját beállítások**.
 
      ![Az automatikus felhasználó-kiépítés engedélyezése](./media/active-directory-saas-salesforce-provisioning-tutorial/sf-my-settings.png "automatikus felhasználó-kiépítés engedélyezése")
-7. A bal oldali navigációs ablaktábláján kattintson **személyes** bontsa ki a kapcsolódó csomópontot, majd **alaphelyzetbe állítani a biztonsági jogkivonat**.
+7. A hello bal oldali navigációs ablaktábláján kattintson **személyes** tooexpand hello kapcsolódó szakaszt, és kattintson a **alaphelyzetbe állítani a biztonsági jogkivonat**.
   
     ![Az automatikus felhasználó-kiépítés engedélyezése](./media/active-directory-saas-salesforce-provisioning-tutorial/sf-personal-reset.png "automatikus felhasználó-kiépítés engedélyezése")
-8. A a **alaphelyzetbe állítani a biztonsági jogkivonat** kattintson **alaphelyzetbe állítani a biztonsági jogkivonat** gombra.
+8. A hello **alaphelyzetbe állítani a biztonsági jogkivonat** kattintson **alaphelyzetbe állítani a biztonsági jogkivonat** gombra.
 
     ![Az automatikus felhasználó-kiépítés engedélyezése](./media/active-directory-saas-salesforce-provisioning-tutorial/sf-reset-token.png "automatikus felhasználó-kiépítés engedélyezése")
-9. Ellenőrizze a rendszergazdai fiókhoz tartozó e-mailben kapják. Keresse meg a Salesforce.com az új biztonsági jogkivonatot tartalmazó e-mailt.
-10. Másolja a token nyissa meg az Azure AD ablakba, és illessze be azt a **szoftvercsatorna Token** mező.
+9. Ellenőrizze a rendszergazdai fiókhoz társított hello e-mailben kapják. Keresse meg a Salesforce.com hello új biztonsági jogkivonatot tartalmazó e-mailt.
+10. Hello token, nyissa meg a tooyour az Azure AD-ablakban másolja és illessze be hello **szoftvercsatorna Token** mező.
 
-11. Az Azure portálon kattintson **kapcsolat tesztelése** biztosításához az Azure AD csatlakozhat a Salesforce alkalmazást.
+11. Hello Azure-portálon, kattintson **kapcsolat tesztelése** tooensure az Azure AD kapcsolódhatnak tooyour Salesforce alkalmazásához.
 
-12. Az a **értesítő e-mailt** mezőbe írja be az e-mail cím vagy egy csoportot ki kell üzembe helyezési hiba értesítéseket, és jelölje be az alábbi jelölőnégyzetet.
+12. A hello **értesítő e-mailt** mezőbe írja be a hello e-mail címet vagy egy csoportot ki kell üzembe helyezési hiba értesítéseket, és jelölje be az alábbi hello jelölőnégyzetet.
 
 13. Kattintson a **mentéséhez.**  
     
-14.  A hozzárendelések szakaszban válassza ki a **szinkronizálása Azure Active Directory-felhasználók a Salesforce.**
+14.  A hello hozzárendelések szakaszt, válassza a **szinkronizálása Azure Active Directory-felhasználók tooSalesforce.**
 
-15. Az a **attribútum-leképezésekhez** szakaszban, tekintse át a felhasználói attribútumokat a Salesforce szinkronizált Azure AD-ből. Vegye figyelembe, hogy az attribútumok választotta **egyező** tulajdonságok használatával felel meg a felhasználói fiókokat a Salesforce-ban a frissítési műveleteket. Válassza ki a Mentés gombra a módosítások véglegesítéséhez.
+15. A hello **attribútum-leképezésekhez** szakaszban, tekintse át az Azure AD tooSalesforce szinkronizált hello felhasználói attribútumok. Vegye figyelembe, hogy a kiválasztott attribútumok hello **egyező** tulajdonságok használt toomatch hello felhasználói fiókokat a Salesforce-ban a frissítési műveletekben. Válassza ki a hello Mentés gombra toocommit módosításokat.
 
-16. Az Azure AD szolgáltatás a Salesforce-kiépítés engedélyezéséhez módosítsa a **kiépítési állapot** való **a** beállításai szakaszában
+16. tooenable hello Azure AD létesítési szolgáltatás a Salesforce, módosítás hello **kiépítési állapot** túl**a** hello beállítások szakaszában a
 
 17. Kattintson a **mentéséhez.**
 
-Ezzel elindítja a kezdeti szinkronizálás bármely felhasználói és/vagy a felhasználók és csoportok szakaszban Salesforce rendelt csoportok. Figyelje meg, hogy a kezdeti szinkronizálás végrehajtásához bekövetkező körülbelül 20 percenként, mindaddig, amíg a szolgáltatás fut. ezt követő szinkronizálások hosszabb időbe telik. Használhatja a **szinkronizálás részleteivel** szakasz figyelemmel az előrehaladást, és hivatkozásokat követve történő rendszerbe állításához tevékenység jelentéseit, amelyek a Salesforce alkalmazást a létesítési szolgáltatás által végzett összes műveletet írják le.
+Ezzel elindítja a kezdeti szinkronizálás hello bármely felhasználói és/vagy csoportok tooSalesforce a hello felhasználók és csoportok szakasz. Vegye figyelembe, hogy a hello kezdeti szinkronizálás hosszabb, mint bekövetkező körülbelül 20 percenként, mindaddig, amíg hello szolgáltatás fut. ezt követő szinkronizálások tooperform vesz igénybe. Használhatja a hello **szinkronizálás részleteivel** toomonitor folyamatban szakaszt, és hivatkozások tooprovisioning Tevékenységjelentések, minden hello szolgáltatást a Salesforce alkalmazást a kiépítés végrehajtott műveletekről, amelyeket követve.
 
-Mostantól létrehozhat egy olyan fiókot. Akár 20 percig várjon győződjön meg arról, hogy a fiók a Salesforce lett szinkronizálva.
+Mostantól létrehozhat egy olyan fiókot. Várjon, amíg fel hello fiókot töltött tooverify szinkronizált tooSalesforce too20 perc.
 
 ## <a name="additional-resources"></a>További források
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure-erőforrások címke sablonban |} Microsoft Docs"
-description: "Bemutatja, hogyan címkékkel erőforrások az Azure Resource Manager-sablonok"
+title: "aaaTag Azure sablon források |} Microsoft Docs"
+description: "Bemutatja, hogyan tooapply címkét egy Azure Resource Manager sablon tooresources"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/20/2017
 ms.author: tomfitz
-ms.openlocfilehash: adc10ade79af3087a8b24ea5b6709182cb1edb92
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9e07837a4ca3ceffc9da3443e9390c95562eda99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tag-resources-in-azure-resource-manager-templates"></a>Az Azure Resource Manager sablonokban címke erőforrások
 [!INCLUDE [resource-manager-tag-introduction](../../includes/resource-manager-tag-introduction.md)]
 
-## <a name="add-tags-to-your-template"></a>Címkék hozzáadása a sablon
+## <a name="add-tags-tooyour-template"></a>Címkék tooyour sablon hozzáadása
 
 [!INCLUDE [resource-manager-tags-in-templates](../../includes/resource-manager-tags-in-templates.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-* Címkék kezelésével kapcsolatos információkért lásd: [címkék használata az Azure-erőforrások rendszerezéséhez](resource-group-using-tags.md).
-* Nagyvállalatoknak az [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Azure nagyvállalati struktúra - előíró előfizetés-irányítás) című cikk nyújt útmutatást az előfizetéseknek a Resource Managerrel való hatékony kezeléséről.
+* Címkék kezelésével kapcsolatos információkért lásd: [címkéket tooorganize az Azure-erőforrások használata](resource-group-using-tags.md).
+* A vállalatok használatát erőforrás-kezelő tooeffectively segítségükkel előfizetések kezelése című [Azure enterprise scaffold - előíró előfizetés irányítás](resource-manager-subscription-governance.md).
 

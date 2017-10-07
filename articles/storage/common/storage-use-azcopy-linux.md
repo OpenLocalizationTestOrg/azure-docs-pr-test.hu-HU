@@ -1,6 +1,6 @@
 ---
-title: "Másolja, vagy helyezze át az adatok Azure Storage az AzCopy Linux |} Microsoft Docs"
-description: "Linux-segédprogram az AzCopy segítségével áthelyezi vagy másolja az adatokat, vagy a blob és a fájl tartalmát. Adatok másolása az Azure Storage a helyi fájlokból, vagy másolja az adatokat belül vagy tárfiókok között. Adatok áttelepítése egyszerű Azure Storage."
+title: "aaaCopy, vagy helyezze adatok tooAzure Linux AzCopy szolgáltatással |} Microsoft Docs"
+description: "Hello AzCopy használata Linux segédprogram toomove vagy másolat adatok tooor a blob és a fájl tartalmát. Adatok tooAzure tárolási átmásolhatja a helyi fájlokból, vagy adatok belül vagy tárfiókok között. Az adatok tooAzure Storage könnyen át."
 services: storage
 documentationcenter: 
 author: seguler
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: seguler
-ms.openlocfilehash: 441227d84b9c1ec721ae36fdc423ba797654f128
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ee39c311d996a046999b7fd4a4eb873f25b4eb86
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transfer-data-with-azcopy-on-linux"></a>Adatátvitel az AzCopy Linux rendszeren
-AzCopy Linux egy parancssori segédprogram, az adatok másolása, és a Microsoft Azure-Blob és a fájl tárolási egyszerű parancsokkal optimális teljesítménnyel. Másolhatja adatok egy objektum a másikra a tárfiókon belül vagy tárfiókok között.
+AzCopy Linux egy parancssori segédprogram, az adatok tooand másolását a Microsoft Azure-Blob és a fájl tárolási egyszerű parancsokkal optimális teljesítménnyel. Adatokat másolhat egy objektum tooanother a tárfiókon belül vagy tárfiókok között.
 
 AzCopy, letöltheti a két verziója van. AzCopy Linux ajánlat POSIX-stílusú parancssori kapcsolók Linux platformon célozza .NET Core keretrendszerrel épül. [A Windows AzCopy](../storage-use-azcopy.md) a .NET-keretrendszer épül, és ez biztosítja a Windows stílus parancssori kapcsolókat. Ez a cikk a Linux AzCopy ismerteti.
 
 ## <a name="download-and-install-azcopy"></a>Töltse le és telepítse az AzCopy
 ### <a name="installation-on-linux"></a>Linux-telepítés
 
-AzCopy Linux szüksége van a .NET Core keretrendszer a platformon. A telepítési utasításokat tekintse meg a [.NET Core](https://www.microsoft.com/net/core#linuxubuntu) lap.
+AzCopy Linux szüksége van a .NET Core keretrendszer hello platformon. Hello telepítési utasításait lásd a hello [.NET Core](https://www.microsoft.com/net/core#linuxubuntu) lap.
 
-Tegyük fel most telepítse a .NET Core Ubuntu 16.10. A legfrissebb telepítési útmutató a Microsoft [.NET Core Linux](https://www.microsoft.com/net/core#linuxubuntu) telepítési oldal.
+Tegyük fel most telepítse a .NET Core Ubuntu 16.10. Hello legújabb telepítési útmutató a Microsoft [.NET Core Linux](https://www.microsoft.com/net/core#linuxubuntu) telepítési oldal.
 
 
 ```bash
@@ -48,7 +48,7 @@ tar -xf azcopy.tar.gz
 sudo ./install.sh
 ```
 
-A kibontott fájlokat is távolítható el, ha az AzCopy Linux rendszeren telepítve van. Másik lehetőségként nem jogosult felügyelő, ha is futtathatja a kibontott mappában található a "azcopy" parancsfájl segítségével AzCopy. 
+Hello kibontott fájlokat is távolítható el, ha az AzCopy Linux rendszeren telepítve van. Másik lehetőségként nem jogosult felügyelő, ha is futtathatja hello parancsfájl használatával AzCopy "azcopy" hello kibontott mappában. 
 
 ### <a name="alternative-installation-on-ubuntu"></a>Ubuntu alternatív telepítése
 
@@ -122,13 +122,13 @@ sudo apt-get install azcopy
 ```
 
 ## <a name="writing-your-first-azcopy-command"></a>Az első AzCopy parancs írása
-Az AzCopy parancs alapvető szintaxisa:
+hello alapvető AzCopy parancs szintaxisa a következő:
 
 ```azcopy
 azcopy --source <source> --destination <destination> [Options]
 ```
 
-Az alábbi példák bemutatják a különböző forgatókönyvek másolása adatok és a Microsoft Azure-BLOB és a fájlok. Tekintse meg a `azcopy --help` menü egyes mintában használt paraméterek részletes leírását.
+hello a következő példák bemutatják, a Microsoft Azure-BLOB és a fájlok másolását adatok tooand különböző lehetőségeket. Tekintse meg a toohello `azcopy --help` menü használt minden egyes minta hello paraméterek részletes leírását.
 
 ## <a name="blob-download"></a>BLOB: letöltése
 ### <a name="download-single-blob"></a>Egy blob letöltése
@@ -141,7 +141,7 @@ azcopy \
     --include "abc.txt"
 ```
 
-Ha a mappa `/mnt/myfiles` nem létezik, AzCopy létrehozza, és letölti `abc.txt ` az új mappába.
+Ha hello mappa `/mnt/myfiles` nem létezik, AzCopy létrehozza, és letölti `abc.txt ` hello új mappába.
 
 ### <a name="download-single-blob-from-secondary-region"></a>A másodlagos régióba egyetlen blob letöltése
 
@@ -165,7 +165,7 @@ azcopy \
     --recursive
 ```
 
-Tegyük fel, a következő blobot a megadott tárolóban találhatók:  
+Hello következő feltételezik hello megadott tárolóban található blobok:  
 
 ```
 abc.txt
@@ -175,7 +175,7 @@ vd1/a.txt
 vd1/abcd.txt
 ```
 
-A könyvtár a letöltési művelet után `/mnt/myfiles` a következő fájlokat tartalmazza:
+Hello letöltési művelet után hello directory `/mnt/myfiles` tartalmazza a következő fájlok hello:
 
 ```
 /mnt/myfiles/abc.txt
@@ -198,7 +198,7 @@ azcopy \
     --recursive
 ```
 
-Tegyük fel, a következő blobok találhatók a megadott tárolóban. A előtaggal kezdődő összes BLOB `a` letöltődnek.
+Hello következő feltételezik hello megadott tárolóban található blobok. Hello előtaggal kezdődő összes BLOB `a` letöltődnek.
 
 ```
 abc.txt
@@ -209,7 +209,7 @@ vd1\a.txt
 vd1\abcd.txt
 ```
 
-A letöltési mappa művelet után `/mnt/myfiles` a következő fájlokat tartalmazza:
+Hello letöltési művelet után hello mappa `/mnt/myfiles` tartalmazza a következő fájlok hello:
 
 ```
 /mnt/myfiles/abc.txt
@@ -217,9 +217,9 @@ A letöltési mappa művelet után `/mnt/myfiles` a következő fájlokat tartal
 /mnt/myfiles/abc2.txt
 ```
 
-Az előtag a virtuális könyvtárban, a blob nevének első részét képező vonatkozik. A fenti példában a virtuális könyvtár nem egyezik a megadott előtagot, így nincs blob letöltődik. Emellett ha a beállítás `--recursive` nincs megadva, az AzCopy nem tölti le a blobokat.
+hello előtag toohello virtuális könyvtár, hello hello blob neve az első részét képező vonatkozik. Hello a fenti példában hello virtuális könyvtár nem azonos hello megadott előtag, így nincs blob letöltődik. Emellett, ha hello lehetőséget `--recursive` nincs megadva, az AzCopy nem tölti le a blobokat.
 
-### <a name="set-the-last-modified-time-of-exported-files-to-be-same-as-the-source-blobs"></a>Állítsa be az exportált fájlokat lehet ugyanaz, mint a forrás utolsó módosításának időpontja
+### <a name="set-hello-last-modified-time-of-exported-files-toobe-same-as-hello-source-blobs"></a>Állítsa be az exportált fájlokat toobe hello utolsó módosításának időpontja szerint forrás blobok hello
 
 ```azcopy
 azcopy \
@@ -229,7 +229,7 @@ azcopy \
     --preserve-last-modified-time
 ```
 
-Blobok emellett kizárja a letöltési művelet az utolsó módosításának ideje alapján. Például, ha ki szeretné zárni a blobok, amelyek utolsó módosításának ideje azonos vagy újabb, mint a célfájl, vegye fel a `--exclude-newer` lehetőséget:
+Blobok emellett kizárja hello letöltési művelet az utolsó módosításának ideje alapján. Például, ha azt szeretné, hogy a tooexclude blobot, amelynek utolsó módosítási időpontjának hello azonos vagy újabb, mint hello célfájl, adja meg hello `--exclude-newer` lehetőséget:
 
 ```azcopy
 azcopy \
@@ -240,7 +240,7 @@ azcopy \
     --exclude-newer
 ```
 
-Vagy ha ki szeretné zárni a blobok, amelyek utolsó módosítás időpontja nem azonos vagy régebbi, mint a célfájl, vegye fel a `--exclude-older` lehetőséget:
+Vagy ha azt szeretné, hogy tooexclude blobot, amelynek utolsó módosítási időpontjának hello azonos vagy régebbi, mint hello célfájl, adja hozzá a hello `--exclude-older` lehetőséget:
 
 ```azcopy
 azcopy \
@@ -262,9 +262,9 @@ azcopy \
     --include "abc.txt"
 ```
 
-Ha a megadott célhely tároló nem létezik, az AzCopy létrehozása, és a fájlt tölt be.
+Ha hello megadott tároló nem létezik, AzCopy létrehozza, és feltöltések fájl hello bele.
 
-### <a name="upload-single-file-to-virtual-directory"></a>Egy fájlból töltse fel a virtuális könyvtár
+### <a name="upload-single-file-toovirtual-directory"></a>Egy fájlból toovirtual directory feltöltése
 
 ```azcopy
 azcopy \
@@ -274,7 +274,7 @@ azcopy \
     --include "abc.txt"
 ```
 
-Ha a megadott virtuális könyvtár nem létezik, az AzCopy feltölti a fájlt a virtuális könyvtárat a blob nevének (*pl.*, `vd/abc.txt` a fenti példában).
+Ha hello megadott virtuális könyvtár nem létezik, AzCopy feltölt hello tooinclude hello virtuális könyvtárának a hello blob neve (*pl.*, `vd/abc.txt` a fenti példában hello).
 
 ### <a name="upload-all-files"></a>Minden fájl feltöltése
 
@@ -286,7 +286,7 @@ azcopy \
     --recursive
 ```
 
-Beállítás megadása `--recursive` feltölt Blob storage rekurzív módon, ami azt jelenti, hogy minden almappa és a fájlok feltöltése, valamint a megadott könyvtár tartalmát. Például a mappában találhatók a következő fájlok feltételezik `/mnt/myfiles`:
+Beállítás megadása `--recursive` hello feltöltések hello tartalmát a megadott könyvtár tooBlob tárolási rekurzív módon, ami azt jelenti, hogy minden almappa és a fájljaikat, valamint feltöltése. Például azt feltételezik hello következő mappában található fájlok `/mnt/myfiles`:
 
 ```
 /mnt/myfiles/abc.txt
@@ -296,7 +296,7 @@ Beállítás megadása `--recursive` feltölt Blob storage rekurzív módon, ami
 /mnt/myfiles/subfolder/abcd.txt
 ```
 
-A tároló a feltöltési művelet után a következő fájlokat tartalmazza:
+Hello feltöltési művelet után hello tároló tartalmazza a következő fájlok hello:
 
 ```
 abc.txt
@@ -306,7 +306,7 @@ subfolder/a.txt
 subfolder/abcd.txt
 ```
 
-Ha a beállítás `--recursive` nincs megadva, csak a következő három fájlok feltöltése:
+Ha a beállítás hello `--recursive` nincs megadva, csak hello következő három fájlok feltöltése:
 
 ```
 abc.txt
@@ -325,7 +325,7 @@ azcopy \
     --recursive
 ```
 
-Tegyük fel, a következő fájlok mappában találhatók `/mnt/myfiles`:
+Hello következő feltételezik mappában található fájlok `/mnt/myfiles`:
 
 ```
 /mnt/myfiles/abc.txt
@@ -336,7 +336,7 @@ Tegyük fel, a következő fájlok mappában találhatók `/mnt/myfiles`:
 /mnt/myfiles/subfolder/abcd.txt
 ```
 
-A tároló a feltöltési művelet után a következő fájlokat tartalmazza:
+Hello feltöltési művelet után hello tároló tartalmazza a következő fájlok hello:
 
 ```
 abc.txt
@@ -346,7 +346,7 @@ subfolder/a.txt
 subfolder/abcd.txt
 ```
 
-Ha a beállítás `--recursive` nincs megadva, az AzCopy kihagyja alkönyvtár lévő fájlok:
+Ha a beállítás hello `--recursive` nincs megadva, az AzCopy kihagyja alkönyvtár lévő fájlok:
 
 ```
 abc.txt
@@ -354,8 +354,8 @@ abc1.txt
 abc2.txt
 ```
 
-### <a name="specify-the-mime-content-type-of-a-destination-blob"></a>Adjon meg egy cél blob MIME tartalomtípus
-Alapértelmezés szerint az AzCopy beállítja egy cél blobot tartalomtípusa `application/octet-stream`. Azonban közvetlenül megadhatja a tartalomtípus keresztül beállítás `--set-content-type [content-type]`. Ez a szintaxis a feltöltési művelet állítja be a content-type összes BLOB.
+### <a name="specify-hello-mime-content-type-of-a-destination-blob"></a>Adjon meg egy cél BLOB hello MIME tartalomtípus
+Alapértelmezés szerint AzCopy beállítja hello tartalomtípusa cél blob túl`application/octet-stream`. Azonban, explicit módon megadhat hello tartalomtípus keresztül hello beállítás `--set-content-type [content-type]`. Ez a szintaxis hello content-type összes BLOB a feltöltési művelet állítja be.
 
 ```azcopy
 azcopy \
@@ -366,7 +366,7 @@ azcopy \
     --set-content-type "video/mp4"
 ```
 
-Ha a beállítás `--set-content-type` egy érték nélkül van megadva, majd az AzCopy állítja be, minden egyes blob vagy a fájl tartalomtípusa alapján a fájl kiterjesztése.
+Ha hello lehetőséget `--set-content-type` egy érték nélkül van megadva, majd az AzCopy állítja be, minden egyes blob vagy a fájl CODEPAGE tartalomtípus szerint tooits fájl kiterjesztése.
 
 ```azcopy
 azcopy \
@@ -404,7 +404,7 @@ azcopy \
 
 Ha--másolatának szinkronizálása beállítás nélkül egy blobot másol egy [kiszolgálóoldali másolatot](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) művelet.
 
-### <a name="copy-single-blob-from-secondary-region-to-primary-region"></a>Egy blob másolása másodlagos régióba elsődleges régió
+### <a name="copy-single-blob-from-secondary-region-tooprimary-region"></a>Egy blob másolása másodlagos régióba tooprimary régió
 
 ```azcopy
 azcopy \
@@ -429,7 +429,7 @@ azcopy \
     --include-snapshot
 ```
 
-A másolási művelet után a céltároló tartalmaz a blob és a pillanatképek. A tároló a következő blob és a pillanatképek tartalmazza:
+Hello másolási művelet után a hello céltároló hello blob és a pillanatképek tartalmazza. hello tároló tartalmazza hello következő blob és a pillanatképek:
 
 ```
 abc.txt
@@ -438,9 +438,9 @@ abc (2014-02-21 150331).txt
 ```
 
 ### <a name="synchronously-copy-blobs-across-storage-accounts"></a>Szinkron módon másolni BLOB Storage-fiókok
-AzCopy alapértelmezés szerint aszinkron módon másolja az adatokat két tárolási végpontok közötti. Ezért a másolási művelet fut a háttérben, amelynek nincs szolgáltatásiszint-szerződés szempontjából hogyan gyors blob kapacitás tartalékolt sávszélesség használatával kell másolni. 
+AzCopy alapértelmezés szerint aszinkron módon másolja az adatokat két tárolási végpontok közötti. Ezért hello másolási művelet futtatása hello háttérben tartalékolt sávszélesség-kapacitása, amelynek nincs szolgáltatásiszint-szerződés szempontjából hogyan gyors blob használatával kell másolni. 
 
-A `--sync-copy` lehetőség biztosítja, hogy a másolási művelet lekérdezi az egységes sebesség. AzCopy a szinkron másolatot helyi memória a megadott forrás másolása a blobok letöltése, és feltöltheti a Blob storage cél végez.
+Hello `--sync-copy` lehetőség biztosítja, hogy hello másolási művelet lekérdezi az egységes sebesség. AzCopy elkészíti hello szinkron hello blobok letöltésével toocopy hello a megadott forrás toolocal memória, és majd feltöltheti toohello Blob célhelyet.
 
 ```azcopy
 azcopy \
@@ -452,7 +452,7 @@ azcopy \
     --sync-copy
 ```
 
-`--sync-copy`További kilépő költség képest aszinkron másolási hozhat létre. Az ajánlott módszer, hogy ezt a beállítást használja egy Azure virtuális gép, és a kimenő forgalom költségek elkerülése érdekében forrás tárfiók ugyanabban a régióban található.
+`--sync-copy`További kilépő képest költség tooasynchronous másolási hozhat létre. az ajánlott megközelítést alkalmazva hello toouse van ez a beállítás egy Azure virtuális gép, hello lévő és a forrás tárolási fiók tooavoid kilépő költségű ugyanabban a régióban.
 
 ## <a name="file-download"></a>Fájl: letöltése
 ### <a name="download-single-file"></a>Töltse le egy fájlból
@@ -465,7 +465,7 @@ azcopy \
     --include "abc.txt"
 ```
 
-Ha a megadott forrás az Azure fájlmegosztások, akkor meg kell adnia a fájl pontos nevét (*pl.* `abc.txt`) egyetlen fájl letöltéséhez vagy beállítást adja meg `--recursive` a megosztás rekurzív módon található összes fájl letöltéséhez. Adjon meg egy fájl mintát és a beállítás próbál `--recursive` hiba együtt eredményez.
+Hello adott forrása az Azure fájlmegosztások, akkor meg kell adnia hello pontosan a fájl nevét, ha (*pl.* `abc.txt`) toodownload egyetlen fájl, vagy adja meg a beállítás `--recursive` összes toodownload hello megosztáson található fájlok rekurzív módon. Kísérlet toospecify egy fájl és egyaránt lehetőség `--recursive` hiba együtt eredményez.
 
 ### <a name="download-all-files"></a>Minden fájl letöltése
 
@@ -526,7 +526,7 @@ azcopy \
 ```
 Amikor fájlmegosztások között másolhat egy fájlt egy [kiszolgálóoldali másolatot](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) művelet.
 
-### <a name="copy-from-file-share-to-blob"></a>Megosztás és a blob másolása
+### <a name="copy-from-file-share-tooblob"></a>Megosztás tooblob fájl másolása
 
 ```azcopy
 azcopy \ 
@@ -536,9 +536,9 @@ azcopy \
     --dest-key <key2> \
     --recursive
 ```
-Amikor másolhat egy fájlt a blobra, fájlmegosztásról egy [kiszolgálóoldali másolatot](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) művelet.
+Ha fájlt átmásolni fájl megosztási tooblob, egy [kiszolgálóoldali másolatot](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) művelet.
 
-### <a name="copy-from-blob-to-file-share"></a>Fájlmegosztás a blob másolása
+### <a name="copy-from-blob-toofile-share"></a>A blob toofile megosztásból másolása
 
 ```azcopy
 azcopy \
@@ -548,10 +548,10 @@ azcopy \
     --dest-key <key2> \
     --recursive
 ```
-Másolhat egy fájlt blobból fájlmegosztáshoz, amikor egy [kiszolgálóoldali másolatot](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) művelet.
+Amikor blob toofile megosztásból másolhat egy fájlt egy [kiszolgálóoldali másolatot](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) művelet.
 
 ### <a name="synchronously-copy-files"></a>Szinkron módon történik a fájlok másolása
-Megadhatja a `--sync-copy` beállítás adatokat másolni a File Storage a File Storage, File Storage-Blob Storage és a Blob Storage a File Storage szinkron módon történik. AzCopy futtatja ezt a műveletet az adatok letöltése a helyi memória, és majd ismét feltölteni a cél. Ebben az esetben a szabványos kilépő költség érvényes.
+Megadhatja a hello `--sync-copy` toocopy adatok File Storage tooFile tároló, a File Storage tooBlob tároló és a tárolási Blob Storage tooFile szinkron módon lehetőséget. AzCopy művelet hello forrás adatok toolocal memória letöltés és toodestination feltöltése szerint fut. Ebben az esetben a szabványos kilépő költség érvényes.
 
 ```azcopy
 azcopy \
@@ -563,13 +563,13 @@ azcopy \
     --sync-copy
 ```
 
-Amikor másol a File Storage Blob Storage, az alapértelmezett blob típushoz blokkblob, felhasználói beállítást adja meg `/BlobType:page` módosíthatja a blob típusára.
+Amikor a File Storage tooBlob tárolási másol, hello alapértelmezett blob típushoz blokkblob, felhasználói beállítást adja meg `/BlobType:page` toochange hello céltípus blob.
 
-Vegye figyelembe, hogy `--sync-copy` további költségeket, aszinkron másolási való hasonlítás kilépő hozhat létre. Az ajánlott módszer, hogy ezt a beállítást használja egy Azure virtuális gép, és a kimenő forgalom költségek elkerülése érdekében forrás tárfiók ugyanabban a régióban található.
+Vegye figyelembe, hogy `--sync-copy` hozhat létre további kilépő összehasonlító tooasynchronous másolási költsége. az ajánlott megközelítést alkalmazva hello toouse van ez a beállítás egy Azure virtuális gép, hello lévő és a forrás tárolási fiók tooavoid kilépő költségű ugyanabban a régióban.
 
 ## <a name="other-azcopy-features"></a>Más AzCopy szolgáltatások
-### <a name="only-copy-data-that-doesnt-exist-in-the-destination"></a>Csak másolja az adatokat, a cél nem létezik
-A `--exclude-older` és `--exclude-newer` paraméterek lehetővé teszik a régebbi vagy újabb forrás erőforrások másolását, illetve kizárása. Ha szeretné, amelyek nem léteznek a cél a forrás-erőforrások másolása, mindkét paraméter az AzCopy parancs adhat meg:
+### <a name="only-copy-data-that-doesnt-exist-in-hello-destination"></a>Csak másolja az adatokat, amely a célként megadott hello nem létezik
+Hello `--exclude-older` és `--exclude-newer` paraméterek tooexclude régebbi vagy újabb forrás erőforrások másolását, illetve lehetővé teszik. Ha csak toocopy forrás erőforrásokat, amelyek nem léteznek a hello cél, mindkét paraméter hello AzCopy parancs adhat meg:
 
     --source http://myaccount.blob.core.windows.net/mycontainer --destination /mnt/myfiles --source-key <sourcekey> --recursive --exclude-older --exclude-newer
 
@@ -577,15 +577,15 @@ A `--exclude-older` és `--exclude-newer` paraméterek lehetővé teszik a rége
 
     --source http://myaccount.blob.core.windows.net/mycontainer --destination http://myaccount.blob.core.windows.net/mycontainer1 --source-key <sourcekey> --dest-key <destkey> --recursive --exclude-older --exclude-newer
 
-### <a name="use-a-configuration-file-to-specify-command-line-parameters"></a>A konfigurációs fájlt használja a parancssori paraméterek megadása
+### <a name="use-a-configuration-file-toospecify-command-line-parameters"></a>Egy konfigurációs fájl toospecify parancssori paraméterek használata
 
 ```azcopy
 azcopy --config-file "azcopy-config.ini"
 ```
 
-AzCopy parancssori paramétereket is megadhat a konfigurációs fájlt. AzCopy dolgozza fel a paraméterek a fájlban, ha a parancssorban megadott lett hajt végre a fájl tartalma közvetlen helyettesítés.
+AzCopy parancssori paramétereket is megadhat a konfigurációs fájlt. AzCopy folyamatok hello hello fájlban paramétereket, mintha hello parancssorban közvetlen helyettesítés hello tartalma hello fájl végrehajtása meg lett.
 
-Tegyük fel, a konfigurációs fájl nevű `copyoperation`, amely tartalmazza a következő sorokat. Minden egyes AzCopy paraméter egy sorba adható meg.
+Tegyük fel, a konfigurációs fájl nevű `copyoperation`, amely tartalmazza a következő sorokat hello. Minden egyes AzCopy paraméter egy sorba adható meg.
 
     --source http://myaccount.blob.core.windows.net/mycontainer --destination /mnt/myfiles --source-key <sourcekey> --recursive --quiet
 
@@ -597,7 +597,7 @@ vagy külön sorok:
     --recursive
     --quiet
 
-AzCopy sikertelen lesz, ha a paraméter osztani két sort, az itt látható a `--source-key` paraméter:
+AzCopy sikertelen lesz, ha hello paraméter osztani két sort, ahogy az itt látható a hello `--source-key` paraméter:
 
     http://myaccount.blob.core.windows.net/mycontainer
     /mnt/myfiles
@@ -617,7 +617,7 @@ azcopy \
     --include abc.txt
 ```
 
-Azt is megadhatja egy SAS URI tárolón:
+Azt is megadhatja a SAS hello tárolóra URI:
 
 ```azcopy
 azcopy \
@@ -626,14 +626,14 @@ azcopy \
     --recursive
 ```
 
-Vegye figyelembe, hogy az AzCopy jelenleg csak az támogatja a [fiók SAS](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-shared-access-signature-part-1).
+AzCopy jelenleg csak támogatja a hello [fiók SAS](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-shared-access-signature-part-1).
 
 ### <a name="journal-file-folder"></a>Napló fájlmappa
-Minden alkalommal, amikor egy parancs kiadni az AzCopy, ellenőrzi, hogy a napló fájl megtalálható-e az alapértelmezett mappába, vagy hogy keresztül ez a beállítás a megadott mappa létezik. A napló fájl nem létezik egyik helyen sem, ha az AzCopy kezeli a művelet új, és létrehoz egy új naplófájl.
+Minden alkalommal, amikor egy parancs tooAzCopy kiadása ellenőrzi, hogy a napló fájl megtalálható-e hello alapértelmezett mappát, vagy hogy keresztül ez a beállítás a megadott mappa létezik. Hello napló fájl nem létezik egyik helyen sem, ha AzCopy hello művelet új kezeli, és létrehoz egy új naplófájl.
 
-Ha a napló fájl nem létezik, AzCopy ellenőrzi, hogy a parancssor, amely a megadott megegyezik-e a parancssorban a napló fájlban. Ha a két parancssorokat egyeznek, AzCopy folytatja a teljes műveletet. Ha nem egyeznek, a AzCopy felszólítja a felhasználót vagy felülírja ezt a napló fájlt egy új művelet indítása és az aktuális művelet megszakítására.
+Hello napló fájl létezik, az AzCopy ellenőrzi, hogy megadott hello parancssori megegyezik-e parancssori hello hello napló fájlban. Hello két parancssorokat felel meg, ha az AzCopy hello hiányos művelet folytatása. Ha nem egyeznek, az AzCopy felhasználói tooeither felülírása hello napló fájl toostart új művelet, vagy toocancel hello aktuális művelet megadását kéri.
 
-Ha szeretné a naplófájl alapértelmezett helyet használja:
+Ha azt szeretné, hogy toouse hello hello napló fájl alapértelmezett helye:
 
 ```azcopy
 azcopy \
@@ -643,9 +643,9 @@ azcopy \
     --resume
 ```
 
-Ha a beállítás nincs megadva `--resume`, vagy adja meg a beállítás `--resume` anélkül, hogy a mappa elérési útja, a fent látható AzCopy fájlt hoz létre a napló az alapértelmezett helyen, amely `~\Microsoft\Azure\AzCopy`. Ha a napló fájl már létezik, majd AzCopy folytatja a műveletet, a napló-fájl alapján.
+Ha a beállítás nincs megadva `--resume`, vagy adja meg a beállítás `--resume` nélkül hello mappa elérési útja, a fent látható AzCopy fájlt hoz létre hello napló hello alapértelmezett helyen, amely `~\Microsoft\Azure\AzCopy`. Ha hello napló fájl már létezik, majd AzCopy folytatja hello művelet hello napló fájl alapján.
 
-Ha szeretne egy egyéni napló elérési útját adja meg:
+Ha azt szeretné, hogy egy egyéni helyet hello napló fájl toospecify:
 
 ```azcopy
 azcopy \
@@ -655,12 +655,12 @@ azcopy \
     --resume "/mnt/myjournal"
 ```
 
-Ebben a példában a napló fájlt hoz létre, ha még nem létezik. Ha létezik, majd AzCopy folytatja a műveletet, a napló-fájl alapján.
+Ez a példa hello napló fájlt hoz létre, ha még nem létezik. Ha létezik, majd AzCopy folytatja hello művelet hello napló fájl alapján.
 
-Ha azt szeretné, az AzCopy művelet folytatásához ismételje meg ugyanezt a parancsot. AzCopy Linux majd megerősítést kér fogja kérni:
+Ha azt szeretné, hogy az AzCopy művelet tooresume, ismételje meg a hello ugyanezt a parancsot. AzCopy Linux majd megerősítést kér fogja kérni:
 
 ```azcopy
-Incomplete operation with same command line detected at the journal directory "/home/myaccount/Microsoft/Azure/AzCopy", do you want to resume the operation? Choose Yes to resume, choose No to overwrite the journal to start a new operation. (Yes/No)
+Incomplete operation with same command line detected at hello journal directory "/home/myaccount/Microsoft/Azure/AzCopy", do you want tooresume hello operation? Choose Yes tooresume, choose No toooverwrite hello journal toostart a new operation. (Yes/No)
 ```
 
 ### <a name="output-verbose-logs"></a>Kimeneti részletes naplókat
@@ -673,31 +673,31 @@ azcopy \
     --verbose
 ```
 
-### <a name="specify-the-number-of-concurrent-operations-to-start"></a>Adja meg elindítani a párhuzamos műveletek száma
-A beállítás `--parallel-level` egyidejű másolási műveletek számát adja meg. Alapértelmezés szerint az AzCopy bizonyos száma párhuzamos műveletek az adatok átvitel átviteli sebesség növelése elindul. A párhuzamos műveletek száma rendelkezik processzorok száma nyolc alkalommal. AzCopy kis sávszélességű hálózaton keresztül futtatja, ha sikertelen a erőforrás konkurencia elkerülése érdekében a--párhuzamos szintű kevesebb is megadhat.
+### <a name="specify-hello-number-of-concurrent-operations-toostart"></a>Adja meg a hello száma párhuzamos műveletek toostart
+A beállítás `--parallel-level` hello egyidejű másolási műveletek számát adja meg. Alapértelmezés szerint az AzCopy elindul egy bizonyos száma párhuzamos műveletek átviteli tooincrease hello adatátvitelt. hello száma párhuzamos műveletek nyolc alkalommal hello processzorral rendelkezik. Ha AzCopy kis sávszélességű hálózaton keresztül futtatja, megadhatja a--párhuzamos szintű tooavoid hibáját okozta. erőforrás verseny kevesebb.
 
 [!TIP]
->AzCopy paraméterek teljes listájának megtekintéséhez tekintse meg a "azcopy – súgó" menü.
+>tooview hello teljes listáját az AzCopy paraméterek, tekintse meg a "azcopy – súgó" menü.
 
 ## <a name="known-issues-and-best-practices"></a>Ismert problémák és ajánlott eljárások
-### <a name="error-net-core-is-not-found-in-the-system"></a>Hiba: A .NET Core nem található a rendszerben.
-Ha a program hibát kap, hogy a .NET Core nincs telepítve a rendszeren, a .NET Core bináris fájl elérési ÚTJA `dotnet` lehet, hogy hiányzik.
+### <a name="error-net-core-is-not-found-in-hello-system"></a>Hiba: A .NET Core nem található a hello rendszer.
+Ha arról, hogy a .NET Core nincs telepítve a hello rendszer hibát észlel, elérési út toohello .NET Core bináris hello `dotnet` lehet, hogy hiányzik.
 
-Ahhoz, hogy a probléma megoldásához keresse meg a .NET Core bináris a rendszerben:
+A rendezés tooaddress probléma, hello .NET Core bináris hello rendszerben található:
 ```bash
 sudo find / -name dotnet
 ```
 
-Ez az elérési útját adja a dotnet bináris. 
+Ez visszaad hello elérési toohello dotnet bináris. 
 
     /opt/rh/rh-dotnetcore11/root/usr/bin/dotnet
     /opt/rh/rh-dotnetcore11/root/usr/lib64/dotnetcore/dotnet
     /opt/rh/rh-dotnetcore11/root/usr/lib64/dotnetcore/shared/Microsoft.NETCore.App/1.1.2/dotnet
 
-Most az elérési út hozzáadása a PATH változóban. A sudo secure_path tartalmazó elérési útját a bináris dotnet szerkesztése:
+Az elérési út toohello ELÉRÉSI változó most hozzáadása. A sudo secure_path toocontain hello elérési toohello dotnet bináris szerkesztése:
 ```bash 
 sudo visudo
-### Append the path found in the preceding example to 'secure_path' variable
+### Append hello path found in hello preceding example too'secure_path' variable
 ```
 
 Ebben a példában secure_path változó olvassa be, mint:
@@ -706,10 +706,10 @@ Ebben a példában secure_path változó olvassa be, mint:
 secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/opt/rh/rh-dotnetcore11/root/usr/bin/
 ```
 
-Az aktuális felhasználó szerkesztése.bash_profile/.profile elérési útját a PATH változóban bináris dotnet tartalmazza 
+Hello aktuális felhasználó esetében.bash_profile/.profile tooinclude hello elérési toohello dotnet bináris PATH változóban szerkesztése 
 ```bash
 vi ~/.bash_profile
-### Append the path found in the preceding example to 'PATH' variable
+### Append hello path found in hello preceding example too'PATH' variable
 ```
 
 Győződjön meg arról, hogy a .NET Core most az elérési út:
@@ -719,7 +719,7 @@ sudo which dotnet
 ```
 
 ### <a name="error-installing-azcopy"></a>Hiba történt az AzCopy telepítése
-Ha hibát tapasztal az AzCopy telepítési, megpróbálhatja újból futtatni a bash parancsfájlok használatát a kibontott AzCopy `azcopy` mappa.
+Ha hibát tapasztal az AzCopy telepítési, megpróbálhatja újból hello bash parancsfájlok használatát hello AzCopy kibontott toorun `azcopy` mappa.
 
 ```bash
 cd azcopy
@@ -727,25 +727,25 @@ cd azcopy
 ```
 
 ### <a name="limit-concurrent-writes-while-copying-data"></a>Adatok másolása egyidejű írási műveletek korlátozása
-AzCopy rendelkező fájlokat vagy a BLOB másolása esetén vegye figyelembe, hogy egy másik alkalmazás módosítja az adatok másolása, amíg. Ha lehetséges győződjön meg arról, hogy a másolt adatok nem áll módosítás alatt a másolási művelet során. Például, ha egy Azure virtuális géphez társított virtuális merevlemez, győződjön meg arról, hogy más alkalmazás nem jelenleg írás a virtuális merevlemezhez. Egy jó úgy ehhez, hogy az erőforrás másolandó lízing. Alternatív megoldásként először hozza létre a virtuális merevlemez pillanatképet, és másolja a pillanatkép.
+AzCopy rendelkező fájlokat vagy a BLOB másolása esetén vegye figyelembe, hogy egy másik alkalmazás módosítja hello adatokat másol, amíg. Ha lehetséges győződjön meg arról, hogy hello adatok másolása nem áll módosítás alatt hello másolási művelet során. Például amikor egy Azure virtuális géphez társított virtuális merevlemez másolása, győződjön meg arról, hogy más alkalmazás nem jelenleg írás toohello VHD-t. Egy jó módszer toodo ezen nem lízing hello erőforrás toobe másolva. Alternatív megoldásként pillanatkép létrehozása a virtuális merevlemez hello először, és másolja hello pillanatkép.
 
-A blobok vagy a fájlok írása közben másolja őket, hogy más alkalmazások nem megakadályozása, majd vegye figyelembe, hogy az idő, a feladat befejeződik, a másolt erőforrások már nincs a forrás-erőforrások teljes paritás.
+Ha más alkalmazásokat tooblobs vagy fájlok írásában közben másolni, akkor ne feledje, hogy hello idő hello feladat befejezése nem megelőzése érdekében hello másolt erőforrások már nincs teljes paritásos hello forrás erőforrásokkal.
 
 ### <a name="run-one-azcopy-instance-on-one-machine"></a>Futtassa az AzCopy egy példány egy számítógépen.
-AzCopy célja, hogy felgyorsítsa az adatok átvitele a gép erőforrás-felhasználás, azt javasoljuk, hogy csak egy AzCopy példány egy számítógépen futtatja, és adja meg a beállítást `--parallel-level` Ha több egyidejű műveletek van szüksége. További tudnivalókért írja be a `AzCopy --help parallel-level` a parancssorból.
+AzCopy tervezett toomaximize hello kihasználtságát a gép erőforrás tooaccelerate hello adatátviteli, azt javasoljuk, hogy csak egy AzCopy példány egy számítógépen futtatja, és hello beállítást adja meg `--parallel-level` Ha több egyidejű műveletek van szüksége. További tudnivalókért írja be a `AzCopy --help parallel-level` hello parancssorból.
 
 ## <a name="next-steps"></a>Következő lépések
-Azure Storage és AzCopy kapcsolatos további információkért lásd a következőket:
+Azure Storage és AzCopy kapcsolatos további információkért tekintse meg a következő erőforrások hello:
 
 ### <a name="azure-storage-documentation"></a>Az Azure Storage-dokumentáció:
-* [Az Azure Storage bemutatása](../storage-introduction.md)
+* [Bevezetés tooAzure tároló](../storage-introduction.md)
 * [Tárfiók létrehozása](../storage-create-storage-account.md)
 * [A Tártallózó alkalmazással blobok kezelése](https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-explorer-blobs)
-* [Az Azure parancssori felület 2.0 használatával az Azure Storage](../storage-azure-cli.md)
-* [Blob storage-ának C++ használata](../blobs/storage-c-plus-plus-how-to-use-blobs.md)
-* [How to use Blob storage from Java (A Blob Storage használata Javával)](../blobs/storage-java-how-to-use-blob-storage.md)
-* [How to use Blob storage from Node.js (A Blob Storage használata Node.js-sel)](../blobs/storage-nodejs-how-to-use-blob-storage.md)
-* [How to use Blob storage from Pythonnal (A Blob Storage használata Pythonnal)](../blobs/storage-python-how-to-use-blob-storage.md)
+* [Az Azure Storage hello Azure CLI 2.0 használatával](../storage-azure-cli.md)
+* [Hogyan toouse Blob storage-ának C++](../blobs/storage-c-plus-plus-how-to-use-blobs.md)
+* [Hogyan toouse Blob storage-ának Java](../blobs/storage-java-how-to-use-blob-storage.md)
+* [Hogyan toouse Blob-tároló Node.js-ből](../blobs/storage-nodejs-how-to-use-blob-storage.md)
+* [Hogyan toouse Blob storage-ának Python](../blobs/storage-python-how-to-use-blob-storage.md)
 
 ### <a name="azure-storage-blog-posts"></a>Az Azure Storage blogbejegyzések:
 * [AzCopy lévő Linux előzetes bejelentése](https://azure.microsoft.com/en-in/blog/announcing-azcopy-on-linux-preview/)

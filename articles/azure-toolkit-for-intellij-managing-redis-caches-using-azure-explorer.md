@@ -1,6 +1,6 @@
 ---
-title: "Redis Cache-gyorsítótárak az intellij-t Azure Explorerrel kezelése |} Microsoft Docs"
-description: "Útmutató az Azure redis gyorsítótár felügyelni az intellij-t az Azure-kezelővel használatával."
+title: "az IntelliJ aaaManaging Redis Cache-gyorsítótárak használatával hello Azure-kezelővel |} Microsoft Docs"
+description: "Ismerje meg, hogyan toomanage az Azure redis gyorsítótárazza az IntelliJ hello Azure Explorer használatával."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,15 +14,15 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 06/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 9ab8ae17ee2a92b5b16d2210366c00b5b8023fa8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 76ba37a2a35c26d0045e17003181108992eb957d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="managing-redis-caches-using-the-azure-explorer-for-intellij"></a>Redis Cache-gyorsítótárak az intellij-t Azure Explorerrel kezelése
+# <a name="managing-redis-caches-using-hello-azure-explorer-for-intellij"></a>Redis Cache-gyorsítótárak hello Azure Explorer használatával az IntelliJ kezelése
 
-Az Azure-kezelővel, amely IntelliJ Azure eszköztára része biztosít a Java fejlesztők egy könnyen használható megoldást a redis-gyorsítótárak a Azure fiók belül az IntelliJ IDE.
+hello Azure-kezelővel, amely hello Azure eszköztára IntelliJ része, biztosít a Java-fejlesztők egy könnyen kezelhető megoldás az kezelése redis gyorsítótár belül a Azure fiók hello IntelliJ IDE.
 
 [!INCLUDE [azure-toolkit-for-intellij-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
 
@@ -30,60 +30,60 @@ Az Azure-kezelővel, amely IntelliJ Azure eszköztára része biztosít a Java f
 
 ## <a name="create-a-redis-cache-by-using-intellij"></a>A Redis Cache létrehozása az IntelliJ használatával
 
-A következő lépések végigvezetik Önt az Azure-kezelővel redis gyorsítótár létrehozásához szükséges lépéseket.
+hello lépések végigvezetik Önt hello lépéseket toocreate a redis gyorsítótár hello Azure Explorer használatával.
 
-1. A lépések az Azure-fiókjával jelentkezzen be a [bejelentkezési az utasítások az intellij-t Azure eszköztára] cikk.
+1. Jelentkezzen be tooyour hello lépésekkel hello Azure-fiók [bejelentkezési a utasítások az intellij-t Azure eszköztára hello] cikk.
 
-1. Az a **Azure Explorer** ablak eszköze, bontsa ki a **Azure** csomópontot, kattintson a jobb gombbal **Redis Cache-gyorsítótárak**, és kattintson a **Redis Cache létrehozása**.
+1. A hello **Azure Explorer** ablak eszköze, bontsa ki a hello **Azure** csomópontot, kattintson a jobb gombbal **Redis Cache-gyorsítótárak**, és kattintson a **Redis Cache létrehozása**.
 
    ![Redis gyorsítótár menü létrehozása][CR01]
 
-1. Ha a **új Redis Cache** párbeszédpanel, adja meg a következő beállításokat:
+1. Ha hello **új Redis Cache** párbeszédpanel, adja meg az alábbi beállítások hello:
 
    ![Hozzon létre új Redis Cache párbeszédpanel][CR02]
 
-   a. **DNS-név**: Adja meg a DNS altartományában a új redis gyorsítótár, amely a rendszer $a ". redis.cache.windows.net"; például: *wingtiptoys.redis.cache.windows.net*.
+   a. **DNS-név**: Adja meg a DNS altartományában hello hello új redis gyorsítótárat, amely túl $a-e a ". redis.cache.windows .net"; például: *wingtiptoys.redis.cache.windows.net*.
 
-   b. **Előfizetés**: Adja meg az új redis gyorsítótár használni kívánt Azure-előfizetést.
+   b. **Előfizetés**: hello toouse hello új redis gyorsítótár kívánt Azure-előfizetés határozza meg.
 
-   c. **Erőforráscsoport**: Adja meg az erőforráscsoport a redis gyorsítótár; meg kell adnia az alábbi lehetőségek közül:
-      * **Hozzon létre új**: megadhatja, hogy kívánja-e egy új erőforráscsoport létrehozásához.
+   c. **Erőforráscsoport**: Adja meg a redis gyorsítótár hello erőforráscsoport; toochoose az alábbi beállítások hello van szüksége:
+      * **Hozzon létre új**: megadhatja, hogy kívánja-e toocreate egy új erőforráscsoportot.
       * **Használja a már meglévő**: meghatározza a fog választani az erőforráscsoportok az Azure-fiókjával társított listájából.
 
-   d. **Hely**: Adja meg a helyet, ahol a redis gyorsítótárat létrehozni; például *USA nyugati régiója*.
+   d. **Hely**: a redis gyorsítótár létrehozási helyének; hello helyét adja meg például *USA nyugati régiója*.
 
-   e. **IP-címek**: Adja meg a redis gyorsítótárat használ tarifacsomagtól; Ez a beállítás meghatározza, hogy az ügyfélkapcsolatok számát. (További információkért lásd: [Redis gyorsítótár árképzési].)
+   e. **IP-címek**: Adja meg a redis gyorsítótárat használ tarifacsomagtól; Ez a beállítás határozza meg, hogy hello ügyfélkapcsolatokat. (További információkért lásd: [Redis gyorsítótár árképzési].)
 
    f. **A nem SSL port**: Megadja, hogy a redis gyorsítótár lehetővé teszi, hogy az SSL kapcsolatok; alapértelmezés szerint csak az SSL-kapcsolatok engedélyezett.
 
 1. A redis gyorsítótár beállításainak megadását, kattintson a **OK**.
 
-A redis gyorsítótár létrehozása után megjelenik az Azure-kezelővel történik.
+A redis gyorsítótár létrehozása után megjelenő hello Azure-kezelővel történik.
 
    ![Redis gyorsítótár Azure Explorerben][CR03]
 
 > [!NOTE]
 >
-> Az Azure konfigurálásával kapcsolatos további információkat a redis gyorsítótár-beállítások című [konfigurálása az Azure Redis Cache].
+> Az Azure konfigurálásával kapcsolatos további információkat a redis gyorsítótár-beállítások című [hogyan tooconfigure Azure Redis Cache].
 >
 
-## <a name="display-the-properties-for-your-redis-cache-in-intellij"></a>A Redis Cache-ben az IntelliJ tulajdonságainak megjelenítése
+## <a name="display-hello-properties-for-your-redis-cache-in-intellij"></a>A Redis Cache-ben az IntelliJ hello tulajdonságok megjelenítése
 
-1. Az Azure-kezelővel, kattintson a jobb gombbal a redis gyorsítótárt, és kattintson a **tulajdonságainak megjelenítése**.
+1. A hello Azure-kezelővel, kattintson a jobb gombbal a redis gyorsítótárt, és kattintson a **tulajdonságainak megjelenítése**.
 
-   ![Az Azure Explorer helyi menü megjelenítése a redis gyorsítótár tulajdonságai][SP01]
+   ![Az Azure Explorer helyi menü toodisplay tulajdonságai egy redis gyorsítótárhoz][SP01]
 
-1. Az Azure-kezelővel a redis gyorsítótárat a Tulajdonságok megjelenítése.
+1. hello Azure-kezelővel a redis gyorsítótár hello tulajdonságainak megjelenítése.
 
    ![A Redis Cache-gyorsítótár tulajdonságai][SP02]
 
 ## <a name="delete-your-redis-cache-by-using-intellij"></a>Törölje a Redis Cache IntelliJ használatával
 
-1. Az Azure-kezelővel, kattintson a jobb gombbal a redis gyorsítótárt, és kattintson a **törlése**.
+1. A hello Azure-kezelővel, kattintson a jobb gombbal a redis gyorsítótárt, és kattintson a **törlése**.
 
-   ![A redis gyorsítótár törléséhez az Azure Explorer helyi menü][DE01]
+   ![Az Azure Explorer helyi menü toodelete a redis gyorsítótár][DE01]
 
-1. Kattintson a **Igen** amikor a rendszer kéri a redis gyorsítótár törléséhez.
+1. Kattintson a **Igen** amikor toodelete a redis gyorsítótár kéri.
 
    ![Redis gyorsítótár kérdés törlése][DE02]
 
@@ -91,20 +91,20 @@ A redis gyorsítótár létrehozása után megjelenik az Azure-kezelővel tört�
 
 [!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
 
-Azure redis gyorsítótár, a konfigurációs beállításokat és a díjszabás kapcsolatos további információkért tekintse meg a következőket:
+Azure redis gyorsítótár, a konfigurációs beállításokat és a díjszabás kapcsolatos további információkért tekintse meg a következő hivatkozások hello:
 
 * [Azure Redis Cache]
 * [Redis gyorsítótár dokumentáció]
-* [Redis gyorsítótár árképzési]
-* [konfigurálása az Azure Redis Cache]
+* [Redis gyorsítótár díjszabása]
+* [Hogyan tooconfigure Azure Redis Cache-gyorsítótár]
 
 <!-- URL List -->
 
-[Redis gyorsítótár árképzési]: https://azure.microsoft.com/pricing/details/cache/
+[Redis gyorsítótár díjszabása]: https://azure.microsoft.com/pricing/details/cache/
 [Azure Redis Cache]: https://azure.microsoft.com/services/cache/
 [Redis gyorsítótár dokumentáció]: ./redis-cache/index.md
-[konfigurálása az Azure Redis Cache]: ./redis-cache/cache-configure.md
-[bejelentkezési az utasítások az intellij-t Azure eszköztára]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[Hogyan tooconfigure Azure Redis Cache-gyorsítótár]: ./redis-cache/cache-configure.md
+[Bejelentkezés a utasításokat hello IntelliJ Azure eszköztára]: ./azure-toolkit-for-intellij-sign-in-instructions.md
 
 <!-- IMG List -->
 

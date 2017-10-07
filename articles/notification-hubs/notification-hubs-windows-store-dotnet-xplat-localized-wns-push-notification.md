@@ -1,6 +1,6 @@
 ---
-title: "A Notification Hubs honosított Breaking News oktatóanyag"
-description: "Megtudhatja, hogyan használható az Azure Notification Hubs honosított legfrissebb híreket tartalmazó értesítések küldése."
+title: "aaaNotification hubok honosított Megtörje hírek oktatóanyag"
+description: "Ismerje meg, hogyan toouse Azure Notification Hubs toosend honosított legfrissebb híreket tartalmazó értesítések."
 services: notification-hubs
 documentationcenter: windows
 author: ysxu
@@ -14,13 +14,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: e864e832b4c50644bf4062dee29d34ff9fe2774e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d273a6b384df311dea7b76ca83ccd94d9a989c4e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-notification-hubs-to-send-localized-breaking-news"></a>Honosított legfrissebb hírek elküldése a Notification Hubs használatával
+# <a name="use-notification-hubs-toosend-localized-breaking-news"></a>Használjon honosított toosend Notification Hubs – legfrissebb hírek
 > [!div class="op_single_selector"]
 > * [Windows áruház C#](notification-hubs-windows-store-dotnet-xplat-localized-wns-push-notification.md)
 > * [iOS](notification-hubs-ios-xplat-localized-apns-push-notification.md)
@@ -28,26 +28,26 @@ ms.lasthandoff: 07/11/2017
 > 
 
 ## <a name="overview"></a>Áttekintés
-Ez a témakör bemutatja, hogyan használható a **sablon** az Azure Notification Hubs – legfrissebb híreket tartalmazó értesítések nyelv és az eszköz honosított katalóguselemekről adás szolgáltatása. Ez az oktatóanyag a kiindulási pont a Windows Áruházbeli alkalmazásban létrehozott [legfrissebb hírek küldése Notification Hubs használata]. Amikor végzett, lesz kategóriák szeretné regisztrálni, adja meg a nyelvet, amelyen az értesítéseket, és csak a kiválasztott kategóriákra leküldéses értesítéseket kapni az adott nyelveken.
+Ez a témakör bemutatja, hogyan toouse hello **sablon** az Azure Notification Hubs toobroadcast nyelv és az eszköz honosított katalóguselemekről híreket tartalmazó értesítések megtörje szolgáltatása. Ez az oktatóanyag a kiindulási pont hello Windows Áruházbeli alkalmazás létrehozott [legfrissebb hírek Notification Hubs használata toosend]. Amikor végzett, képes tooregister érdekli kategóriákban fogja, adjon meg egy nyelvi mely tooreceive hello értesítések, és csak a kiválasztott hello kategóriák leküldéses értesítések fogadásához az adott nyelveken.
 
-Ez a forgatókönyv két részből áll:
+Nincsenek két részből toothis forgatókönyv:
 
-* a Windows Áruházbeli alkalmazás tesz lehetővé az nyelv megadása, és fizessen elő a különböző breaking news kategóriák;
-* a háttér-közzéteszi az értesítéseket, a **címke** és **sablon** az Azure Notification Hubs feautres.
+* hello Windows Áruházbeli alkalmazás lehetővé teszi, hogy ügyfél eszközök toospecify egy nyelvet, és toosubscribe toodifferent megtörje hírek kategóriák;
+* hello háttér-közzéteszi hello értesítéseket, hello **címke** és **sablon** az Azure Notification Hubs feautres.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Már végrehajtotta a [legfrissebb hírek küldése Notification Hubs használata] oktatóanyagot, és a kód érhető el, mert ez az oktatóanyag közvetlenül épít, hogy a kód.
+Már végrehajtotta hello [legfrissebb hírek Notification Hubs használata toosend] oktatóanyag és hello kód érhető el, mert ez az oktatóanyag közvetlenül épít, hogy a kód.
 
 Szükség a Visual Studio 2012 vagy újabb.
 
 ## <a name="template-concepts"></a>Sablon fogalmak
-A [legfrissebb hírek küldése Notification Hubs használata] olyan alkalmazás, amelynek használt parancsfájlkezelő **címkék** előfizetés az értesítésekre hírek különböző kategóriákban.
-Számos alkalmazás, azonban több piacok célként, és honosítási igényelnek. Ez azt jelenti, hogy a tartalom maguk értesítést kell honosított és kívánt eszközök beküldeni.
-Ebben a témakörben bemutatjuk, hogyan használható a **sablon** könnyen képes biztosítani a honosított legfrissebb híreket tartalmazó értesítések a Notification Hubs szolgáltatása.
+A [legfrissebb hírek Notification Hubs használata toosend] olyan alkalmazás, amelynek használt parancsfájlkezelő **címkék** toosubscribe toonotifications hírek különböző kategóriákban.
+Számos alkalmazás, azonban több piacok célként, és honosítási igényelnek. Ez azt jelenti, hogy maguk hello értesítések hello tartalmának rendelkezik honosított toobe kézbesített toohello, javítsa ki az eszközök.
+Ebben a témakörben bemutatjuk a hogyan toouse hello **sablon** tooeasily biztosítanak a Notification Hubs szolgáltatása honosított legfrissebb híreket tartalmazó értesítések.
 
-Megjegyzés: egy honosított értesítések küldéséhez módja az egyes címkék több verzióját. Például angol, francia és Mandarin támogatásához lenne szükséges három különböző címkék híreket: "world_en", "world_fr" és "world_ch". A Microsoft majd kellene elküldeni a híreket honosított verzióját az egyes ezekkel a címkékkel. Ebben a témakörben a sablonok a címkék elterjedése és több üzenetet küldeni a követelmény elkerülése érdekében használjuk.
+Megjegyzés: egyirányú toosend honosított értesítések toocreate minden címke több verziója van. Például toosupport angol, francia és Mandarin, lenne szükséges három különböző címkék híreket: "world_en", "world_fr" és "world_ch". A Microsoft majd kellene toosend hello world hírek tooeach címkéket honosított verzióját. Ez a témakör használjuk, a címkéket a sablonok tooavoid hello elterjedése és hello követelmény több üzenetet küldeni.
 
-Magas szinten sablonok, amelyek egy adja meg, hogy egy adott eszközhöz egy értesítést kell kapnia. A sablon a pontos az adattartalom formátuma az app-háttér által küldött üzenet részét képező tulajdonságok alapján határozza meg. Ebben az esetben az összes támogatott nyelvek tartalmazó területibeállítás-független üzenetet küldünk:
+Magas szinten, a sablonok olyan módon toospecify hogyan egy adott eszközhöz egy értesítést kell kapnia. hello sablon hello pontos az adattartalom formátuma hello által küldött üzenet az alkalmazás háttér-részét képező tooproperties alapján határozza meg. Ebben az esetben az összes támogatott nyelvek tartalmazó területibeállítás-független üzenetet küldünk:
 
     {
         "News_English": "...",
@@ -55,7 +55,7 @@ Magas szinten sablonok, amelyek egy adja meg, hogy egy adott eszközhöz egy ér
         "News_Mandarin": "..."
     }
 
-Ezután azt fogja győződjön meg arról, hogy az eszközök regisztrálása a sablont, amely a megfelelő tulajdonság hivatkozik. Például egy Windows Áruházbeli alkalmazást, amely kéri a egyszerű bejelentési üzenet regisztrálja a következő sablon bármely megfelelő címkékkel:
+Ezután azt fogja győződjön meg arról, hogy az eszközök regisztrálása a sablont, amely hivatkozik a toohello megfelelő tulajdonság. Például egy Windows Áruházbeli alkalmazást, amely tooreceive szeretne egy egyszerű bejelentési üzenet regisztrálja a sablont a megfelelő címkéket a következő hello:
 
     <toast>
       <visual>
@@ -69,12 +69,12 @@ Ezután azt fogja győződjön meg arról, hogy az eszközök regisztrálása a 
 
 Sablonok egyik újdonsága nagyon hatékony többet is megtudhat arról a a [sablonok](notification-hubs-templates-cross-platform-push-messages.md) cikk. 
 
-## <a name="the-app-user-interface"></a>Az alkalmazás felhasználói felülete
-A Microsoft most módosítja a Megtörje hírek alkalmazást, amely létrehozta a következő témakör [legfrissebb hírek küldése Notification Hubs használata] küldése honosított a legfrissebb hírek sablonok használatával.
+## <a name="hello-app-user-interface"></a>hello alkalmazás felhasználói felülete
+Most módosítja, a Microsoft hello Megtörje hírek app hello a témakör a [legfrissebb hírek Notification Hubs használata toosend] toosend honosított legfrissebb hírek sablonok használatával.
 
 A Windows Áruházbeli alkalmazásban:
 
-A területi beállítás kombinált lista tartalmazza a MainPage.xaml módosítása:
+A MainPage.xaml tooinclude a területi beállítás combobox módosítása:
 
     <Grid Margin="120, 58, 120, 80"  
             Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
@@ -105,8 +105,8 @@ A területi beállítás kombinált lista tartalmazza a MainPage.xaml módosít�
         <Button Content="Subscribe" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Click="SubscribeButton_Click" />
     </Grid>
 
-## <a name="building-the-windows-store-client-app"></a>A Windows áruház-ügyfélalkalmazás létrehozása
-1. Az értesítések osztályban adja hozzá a területi beállítással a *StoreCategoriesAndSubscribe* és *SubscribeToCateories* módszerek.
+## <a name="building-hello-windows-store-client-app"></a>Hello Windows Store ügyfél alkalmazás elkészítése
+1. Az értesítések osztályban adja hozzá a nyelv paraméter tooyour *StoreCategoriesAndSubscribe* és *SubscribeToCateories* módszerek.
    
         public async Task<Registration> StoreCategoriesAndSubscribe(string locale, IEnumerable<string> categories)
         {
@@ -125,23 +125,23 @@ A területi beállítás kombinált lista tartalmazza a MainPage.xaml módosít�
             }
    
             // Using a template registration. This makes supporting notifications across other platforms much easier.
-            // Using the localized tags based on locale selected.
+            // Using hello localized tags based on locale selected.
             string templateBodyWNS = String.Format("<toast><visual><binding template=\"ToastText01\"><text id=\"1\">$(News_{0})</text></binding></visual></toast>", locale);
    
             return await hub.RegisterTemplateAsync(channel.Uri, templateBodyWNS, "localizedWNSTemplateExample", categories);
         }
    
-    Vegye figyelembe, hogy hívása helyett a *RegisterNativeAsync* metódus hívása *RegisterTemplateAsync*: egy adott értesítés formátuma, amelyben a sablont függ a területi beállítás regisztrálja azt. Egy nevet a sablonnak ("localizedWNSTemplateExample"), azt is adja meg, mert előfordulhat, hogy szeretné regisztrálni (például egy bejelentési értesítést) és a csempék egy több sablon, ezért ellenőriznünk kell a nevét ahhoz, hogy a frissítés vagy törlés őket.
+    Vegye figyelembe, hogy a hívó hello helyett *RegisterNativeAsync* metódus hívása *RegisterTemplateAsync*: egy adott értesítés formátuma, mely hello sablon függ hello területi beállítás regisztrálja azt. Azt is nevezze el a hello sablon ("localizedWNSTemplateExample"), mert célszerű lehet tooregister egynél több sablont (például egy bejelentési értesítést) és egy a csempéket, ezért ellenőriznünk kell, hogy tooname azokat sorrendben toobe képes tooupdate vagy törölje őket.
    
-    Vegye figyelembe, hogy ha egy eszköz több sablon regisztrálja az azonos címkével, egy bejövő üzenet célcsoport-kezelési eredményező címke több értesítés is érkezett kell juttatni az eszközre (minden sablon egy). Ez a viselkedés akkor hasznos, ha ugyanazon logikai üzenet van több vizuális értesítések, például a Windows Áruházbeli alkalmazások megjelenítő egy jelvény és egy bejelentési is eredményezheti.
-2. Adja hozzá a következő metódust beolvasni a tárolt nyelvterületi beállításokat:
+    Vegye figyelembe, hogy ha egy eszköz több sablon regisztrálja azonos címke, a célcsoport-kezelési címke eredményez bejövő üzenet hello több értesítés is érkezett (egy mindegyik sablon) toohello eszköz kézbesíteni. Ez a viselkedés akkor hasznos, ha hello azonos logikai üzenetnek tooresult több vizuális értesítések, például a Windows Áruházbeli alkalmazások megjelenítő egy jelvény és egy bejelentési is.
+2. Adja hozzá a következő metódus tooretrieve hello tárolt területi hello:
    
         public string RetrieveLocale()
         {
             var locale = (string) ApplicationData.Current.LocalSettings.Values["locale"];
             return locale != null ? locale : "English";
         }
-3. A MainPage.xaml.cs, frissítse a gomb látható beolvasása a területi beállítás kombinált lista aktuális értéke, és hogy az értesítések osztály hívása kezelő kattintson:
+3. A MainPage.xaml.cs, frissítse a gomb kezelő kattintson beolvasása hello hello területi kombinált lista aktuális értéke, és azt toohello hívás toohello értesítések osztály megadásával látható módon:
    
         private async void SubscribeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -163,13 +163,13 @@ A területi beállítás kombinált lista tartalmazza a MainPage.xaml módosít�
             dialog.Commands.Add(new UICommand("OK"));
             await dialog.ShowAsync();
         }
-4. Végezetül az App.xaml.cs fájlban ellenőrizze, hogy frissítse a `InitNotificationsAsync` beolvasni a területi és használatra, ha az előfizetés módszert:
+4. Végül az App.xaml.cs fájlban győződjön meg arról, hogy tooupdate a `InitNotificationsAsync` metódus tooretrieve hello területi beállítás, és használatra, ha feliratkozik:
    
         private async void InitNotificationsAsync()
         {
             var result = await notifications.SubscribeToCategories(notifications.RetrieveLocale());
    
-            // Displays the registration ID so you know it was successful
+            // Displays hello registration ID so you know it was successful
             if (result.RegistrationId != null)
             {
                 var dialog = new MessageDialog("Registration successful: " + result.RegistrationId);
@@ -183,8 +183,8 @@ A területi beállítás kombinált lista tartalmazza a MainPage.xaml módosít�
 
 <!-- Anchors. -->
 [Template concepts]: #concepts
-[The app user interface]: #ui
-[Building the Windows Store client app]: #building-client
+[hello app user interface]: #ui
+[Building hello Windows Store client app]: #building-client
 [Send notifications from your back-end]: #send
 [Next Steps]:#next-steps
 
@@ -194,7 +194,7 @@ A területi beállítás kombinált lista tartalmazza a MainPage.xaml módosít�
 [Mobile Service]: /develop/mobile/tutorials/get-started
 [Notify users with Notification Hubs: ASP.NET]: /manage/services/notification-hubs/notify-users-aspnet
 [Notify users with Notification Hubs: Mobile Services]: /manage/services/notification-hubs/notify-users
-[legfrissebb hírek küldése Notification Hubs használata]: /manage/services/notification-hubs/breaking-news-dotnet
+[legfrissebb hírek Notification Hubs használata toosend]: /manage/services/notification-hubs/breaking-news-dotnet
 
 [Submit an app page]: http://go.microsoft.com/fwlink/p/?LinkID=266582
 [My Applications]: http://go.microsoft.com/fwlink/p/?LinkId=262039
@@ -203,11 +203,11 @@ A területi beállítás kombinált lista tartalmazza a MainPage.xaml módosít�
 [Get started with data]: /develop/mobile/tutorials/get-started-with-data-dotnet
 [Get started with authentication]: /develop/mobile/tutorials/get-started-with-users-dotnet
 [Get started with push notifications]: /develop/mobile/tutorials/get-started-with-push-dotnet
-[Push notifications to app users]: /develop/mobile/tutorials/push-notifications-to-app-users-dotnet
+[Push notifications tooapp users]: /develop/mobile/tutorials/push-notifications-to-app-users-dotnet
 [Authorize users with scripts]: /develop/mobile/tutorials/authorize-users-in-scripts-dotnet
 [JavaScript and HTML]: /develop/mobile/tutorials/get-started-with-push-js
 
 [wns object]: http://go.microsoft.com/fwlink/p/?LinkId=260591
 [Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx
-[Notification Hubs How-To for iOS]: http://msdn.microsoft.com/library/jj927168.aspx
-[Notification Hubs How-To for Windows Store]: http://msdn.microsoft.com/library/jj927172.aspx
+[Notification Hubs How-toofor iOS]: http://msdn.microsoft.com/library/jj927168.aspx
+[Notification Hubs How-toofor Windows Store]: http://msdn.microsoft.com/library/jj927172.aspx

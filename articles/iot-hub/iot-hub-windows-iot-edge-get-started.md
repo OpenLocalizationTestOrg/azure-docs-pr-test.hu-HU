@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure IoT peremhálózati (Windows) |} Microsoft Docs"
-description: "Megtudhatja, hogyan lehet létrehozni az Azure IoT peremhálózati átjáró Windows-gépen, és alapfogalmakat például modulok és a JSON-konfigurációs fájlokat az Azure IoT Edge megismerése."
+title: "aaaGet Azure IoT peremhálózati (Windows) használatába |} Microsoft Docs"
+description: "Hogyan toobuild egy, a Windows Azure IoT peremhálózati átjáró számítógéphez, és a modulok és a JSON-konfigurációs fájlok például az Azure IoT Edge főbb fogalmait megismerése."
 services: iot-hub
 documentationcenter: 
 author: chipalost
@@ -15,11 +15,11 @@ ms.workload: na
 ms.date: 06/07/2017
 ms.author: andbuc
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 5db39bab8e31a8e7026b34e72b4614b0f6f57772
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5dd13cbfc02eeb55d9f2dbffca5021f2624acf14
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="explore-azure-iot-edge-architecture-on-windows"></a>A Windows Azure IoT peremhálózati architektúra felfedezés
 
@@ -27,16 +27,16 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [iot-hub-iot-edge-install-build-windows](../../includes/iot-hub-iot-edge-install-build-windows.md)]
 
-## <a name="how-to-run-the-sample"></a>A minta futtatása
+## <a name="how-toorun-hello-sample"></a>Hogyan toorun hello minta
 
-A **build.cmd** parancsfájlt hoz létre a kimenetét a **build** mappa a helyi példánya a **iot-edge** tárház. A kimenetet a mintában használt két IoT peremhálózati modulok tartalmazza.
+Hello **build.cmd** parancsfájlt hoz létre a kimeneti hello **build** hello helyi példánya mappájában **iot-edge** tárházba. A kimeneti hello a mintában használt két IoT peremhálózati modulok tartalmazza.
 
-A build script helyek **logger.dll** a a **build\\modulok\\naplózó\\Debug** mappa és **hello\_world.dll** a a **build\\modulok\\hello_world\\Debug** mappát. Az elérési utak használata a **modul elérési útján** értékei, ahogy az alábbi JSON fájlban.
+build script helyek hello **logger.dll** a hello **build\\modulok\\naplózó\\Debug** mappa és **hello\_world.dll**  a hello **build\\modulok\\hello_world\\Debug** mappát. Az elérési utak használata hello **modul elérési útján** látható módon hello beállításokat JSON-fájlt a következő értékeket.
 
-A hello\_globális\_minta tart az elérési út egy JSON-konfigurációs fájl parancssori argumentumként. A következő példa JSON-fájl megtalálható a következő SDK tárház **minták\\hello\_globális\\src\\hello\_globális\_win.json**. A konfigurációs fájl, kivéve, ha módosítja a build parancsfájlt helyezze el az IoT peremhálózati modulok vagy a minta végrehajtható fájlok alapértelmezettől eltérő helyeket működik.
+hello hello\_globális\_minta tart hello elérési tooa JSON-konfigurációs fájl parancssori argumentumként. hello alábbi példa JSON-fájl valósul meg a következő SDK-tárházban hello **minták\\hello\_globális\\src\\hello\_globális\_win.json**. A konfigurációs fájl működik, kivéve, ha módosítja a hello build script tooplace hello IoT peremhálózati modulok, vagy végrehajtható fájlok alapértelmezettől eltérő helyeket a mintát.
 
 > [!NOTE]
-> A modul elérési útvonalai képest a könyvtár ahol a hello\_globális\_sample.exe helyezkedik el. A JSON konfigurációs mintafájl a „log.txt” naplófájlokat alapértelmezetten az aktuális munkakönyvtárba írja.
+> hello modul elérési utak relatív toohello directory, ahol hello hello\_globális\_sample.exe helyezkedik el. hello minta JSON konfigurációs fájl alapértelmezett toowriting "log.txt" az aktuális munkakönyvtárban a.
 
 ```json
 {
@@ -71,9 +71,9 @@ A hello\_globális\_minta tart az elérési út egy JSON-konfigurációs fájl p
 }
 ```
 
-1. Keresse meg a **build** mappa gyökérkönyvtárában található a helyi másolat készítése a **iot-edge** tárház.
+1. Keresse meg a toohello **build** hello helyi példánya hello gyökérmappájában mappájában **iot-edge** tárház.
 
-1. Futtassa az alábbi parancsot:
+1. Futtassa a következő parancs hello:
 
     ```cmd
     samples\hello_world\Debug\hello_world_sample.exe ..\samples\hello_world\src\hello_world_win.json

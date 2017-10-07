@@ -1,6 +1,6 @@
 ---
-title: "Az Azure HDInsight az Apache Spark-fürt elhárítása |} Microsoft Docs"
-description: "További tudnivalók az Apache Spark on Azure HDInsight és azok megkerülő fürtökkel kapcsolatos problémák."
+title: "aaaTroubleshoot problémákat az Apache Spark on Azure hdinsight fürt |} Microsoft Docs"
+description: "Az Azure HDInsight Spark-fürtjei kapcsolódó tooApache problémák megismerése és hogyan toowork körül azokat."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -16,31 +16,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: 3a493a2c35a6cdd31bb1e4ff66113a8f8d97d4f4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7373b90524ae5dbb10ab8ded593aa38d12c14b55
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="known-issues-for-apache-spark-cluster-on-hdinsight"></a>A HDInsight az Apache Spark-fürt kapcsolatos ismert problémák
 
-Ez a dokumentum nyomon követi az összes ismert problémák a HDInsight Spark nyilvános előzetes verzióhoz.  
+Ez a dokumentum nyomon követi az összes hello ismert problémái hello HDInsight Spark nyilvános előzetes verziójához.  
 
 ## <a name="livy-leaks-interactive-session"></a>Livy szivárgást interaktív munkamenet
-Újraindításakor Livy (az Ambari, illetve a virtuális gép újraindítás headnode 0) egy interaktív munkamenet-életben egy interaktív feladat munkamenet szivárgását okozhatja. Emiatt az új feladatok elfogadott állapotban ragadt is, és nem lehet elindítani.
+Újraindításakor Livy (az Ambari vagy tooheadnode 0 virtuális gép újraindítása miatt) egy interaktív munkamenet-életben egy interaktív feladat munkamenet szivárgását okozhatja. Emiatt az új feladatok is hello elfogadott állapotban ragadt, és nem indítható el.
 
 **Megoldás:**
 
-Az alábbi eljárással a probléma megoldása:
+A következő eljárás tooworkaround hello probléma hello használata:
 
 1. Ssh headnode be. További információk: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. A következő parancsot a Livy keresztül elindított interaktív feladatokat az alkalmazás azonosítóit kereséséhez. 
+2. Futtassa a következő parancs toofind hello alkalmazás hello azonosítók hello interaktív feladatok elindítása Livy használatával. 
    
         yarn application –list
    
-    Alapértelmezett kezdjen a feladat nevét kell-e a Livy, ha a feladat lett elindítva a Livy interaktív munkamenethez nincs explicit névvel megadva, a Livy munkamenet Jupyter notebook indította, a feladat nevére a remotesparkmagics_ *. 
-3. A következő parancsot a kill ezeket a feladatokat. 
+    hello alapértelmezett feladat neve lesz Livy, ha nincs megadva, a hello explicit nevekkel hello feladatok indított egy Livy interaktív munkamenet Livy munkamenet Jupyter notebook indította, hello feladatnév indul rendelkező remotesparkmagics_ *. 
+3. Futtassa a következő parancs tookill hello ezeket a feladatokat. 
    
         yarn application –kill <Application ID>
 
@@ -51,63 +51,63 @@ Spark előzmények kiszolgáló nem automatikusan elindul a fürt létrehozása 
 
 **Megoldás:** 
 
-Manuálisan indítsa el az előzmények server Ambari.
+Manuálisan indítsa el az Ambari hello előzmények kiszolgáló.
 
 ## <a name="permission-issue-in-spark-log-directory"></a>A Spark naplókönyvtár engedély probléma
-Amikor hdiuser spark-submit egy feladatot ad meg, nincs-e egy hiba java.io.FileNotFoundException: /var/log/spark/sparkdriver_hdiuser.log (engedély megtagadva) és az illesztőprogram-napló nem készül. 
+Amikor hdiuser spark-submit egy feladatot ad meg, nincs-e egy hiba java.io.FileNotFoundException: /var/log/spark/sparkdriver_hdiuser.log (engedély megtagadva) és hello illesztőprogram napló nem készül. 
 
 **Megoldás:**
 
-1. Hdiuser hozzáadása a Hadoop-csoporthoz. 
+1. Hdiuser toohello Hadoop csoport hozzáadása. 
 2. Adja meg a 777 engedélyek /var/log/spark a fürt létrehozása után. 
-3. Frissítse az Ambari segítségével lehet 777 engedélyekkel könyvtár spark napló helyét.  
+3. Frissítési hello spark napló helyét Ambari toobe könyvtár használatával 777 engedélyekkel.  
 4. Futtassa a spark-nyújt, sudo.  
 
 ## <a name="spark-phoenix-connector-is-not-supported"></a>A Spark-Phoenix összekötő nem támogatott
 
-A Spark-Phoenix összekötő egy HDInsight Spark-fürt nem támogatott.
+Hello Spark-Phoenix összekötő egy HDInsight Spark-fürt nem támogatott.
 
 **Megoldás:**
 
-A Spark-HBase-összekötő kell helyette használni. Útmutatásért lásd: [használata Spark-HBase-összekötő](https://blogs.msdn.microsoft.com/azuredatalake/2016/07/25/hdinsight-how-to-use-spark-hbase-connector/).
+Hello Spark-HBase összekötő kell helyette használni. Útmutatásért lásd: [hogyan toouse Spark-HBase-összekötő](https://blogs.msdn.microsoft.com/azuredatalake/2016/07/25/hdinsight-how-to-use-spark-hbase-connector/).
 
-## <a name="issues-related-to-jupyter-notebooks"></a>Jupyter notebookok kapcsolatos problémák
-Az alábbiakban néhány Jupyter notebookok kapcsolatos ismert problémák.
+## <a name="issues-related-toojupyter-notebooks"></a>Kapcsolódó problémák tooJupyter notebookok
+Az alábbiakban néhány ismert problémák kapcsolódó tooJupyter notebookok.
 
 ### <a name="notebooks-with-non-ascii-characters-in-filenames"></a>A fájlnevek nem ASCII-karaktereket notebookokban
-A Spark HDInsight-fürtökkel használt Jupyter notebookok fájlnevekben nem rendelkezhet nem ASCII-karaktereket. Ha megpróbálja feltölteni a fájlt a Jupyter felhasználói felületen, amelynek a nem ASCII-fájl nevét, meghiúsul csendes (Ez azt jelenti, hogy Jupyter nem teszi lehetővé, hogy a fájl feltöltése, de a vagy azt nem throw látható hiba). 
+A Spark HDInsight-fürtökkel használt Jupyter notebookok fájlnevekben nem rendelkezhet nem ASCII-karaktereket. Ha tooupload hello Jupyter felhasználói felület, amely a nem ASCII-fájl nevét a fájlban, akkor sikertelen lesz csendes (Ez azt jelenti, hogy Jupyter nem engedi hello fájl feltöltéséhez, de a vagy azt nem throw látható hiba). 
 
 ### <a name="error-while-loading-notebooks-of-larger-sizes"></a>Nagyobb méretű notebookok betöltése közben hiba
-Láthatja, hogy hiba  **`Error loading notebook`**  Ha nagyobb méretű notebookok tölthető be.  
+Láthatja, hogy hiba ** `Error loading notebook` ** Ha nagyobb méretű notebookok tölthető be.  
 
 **Megoldás:**
 
-Ha ez a hibaüzenet azt jelenti az adatok elveszett vagy sérült.  Továbbra is a lemezen vannak jegyzetfüzetek `/var/lib/jupyter`, és azok eléréséhez a fürthöz SSH is. További információk: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
+Ha ez a hibaüzenet azt jelenti az adatok elveszett vagy sérült.  Továbbra is a lemezen vannak jegyzetfüzetek `/var/lib/jupyter`, ráadásul SSH hello fürt tooaccess be őket. További információk: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-Miután csatlakozott az SSH-fürtjéhez, átmásolhatja a jegyzetfüzetek a fürt a helyi számítógépen (SCP vagy WinSCP használatával) biztonsági mentéséhez a fontos adatokról a notebook az adatvesztés elkerülése érdekében. Ezek közül SSH-alagút azokat a headnode porton 8001 Jupyter eléréséhez az átjárón keresztül nélkül.  Ott törölje a notebook kimenetét, és mentse újra a notebook méretének minimalizálása érdekében.
+Ha SSH használatával toohello fürt csatlakozott, átmásolhatja a jegyzetfüzetek a fürt tooyour helyi számítógép (SCP vagy WinSCP használatával) hello notebook a fontos adatok biztonsági mentés tooprevent hello veszteségként. Ezek közül SSH-alagút be a következő port 8001 tooaccess Jupyter headnode hello átjáró áthaladás nélkül.  Ezekből a notebook hello kimenete törölje és mentse újra toominimize hello jegyzetfüzet méretét.
 
-Ez a hiba megakadályozza a jövőben történik, kövesse az néhány ajánlott eljárás:
+tooprevent Ez a hiba a jövőbeli, hajtsa végre az tanácsokat hello le:
 
-* Fontos, hogy maradjon kicsi a notebook méretét. A Spark feladatok bármely olyan kimenete, amely küld vissza a Jupyter van őrzi meg a notebook.  A legjobb Jupyter általában futó elkerülése érdekében `.collect()` a nagy RDD vagy dataframes; helyette, ha szeretné bepillanthat, hogy egy RDD tartalmát, fontolja meg a futó `.take()` vagy `.sample()` , hogy a kimenet nem get túl nagy.
-* Is a notebook mentésekor törölje az összes kimeneti cellák méretének csökkentése érdekében.
+* Fontos tookeep hello notebook kis méretű legyen. Bármely olyan kimenete a Spark feladatok küldött vissza tooJupyter hello jegyzetfüzet megőrződjenek.  Az ajánlott eljárás a Jupyter futtató általános tooavoid `.collect()` a nagy RDD vagy dataframes; helyette, ha azt szeretné, hogy egy RDD tartalmát, toopeek, fontolja meg a futó `.take()` vagy `.sample()` , hogy a kimenet nem get túl nagy.
+* Is a notebook mentésekor törölje az összes kimeneti cellák tooreduce hello méretét.
 
 ### <a name="notebook-initial-startup-takes-longer-than-expected"></a>Kezdeti indítási notebook vártnál hosszabb ideig tart.
 Jupyter notebook használatával Spark magic utasításnak elsőként kód több mint egy percbe is beletelhet.  
 
 **Magyarázat:**
 
-Ez akkor fordul elő, mert az első kódcella futtatásakor. A háttérben kezdeményez a munkamenet-konfigurációhoz és Spark, SQL, és a Hive-környezeteket. Miután ezek a környezetek vannak beállítva, az első utasításban fut, és ezáltal a benyomást, amely az utasítás hosszú időt vett igénybe befejezéséhez.
+Ez akkor fordul elő, mert hello első kódcella futtatásakor. Hello háttérben kezdeményez a munkamenet-konfigurációhoz és Spark, SQL, és a Hive-környezeteket. Miután ezek a környezetek van beállítva, hello első utasítása fut, és így az, hogy hello utasítás tartott egy hosszú ideig toocomplete hello benyomást.
 
-### <a name="jupyter-notebook-timeout-in-creating-the-session"></a>Jupyter notebook időkorlátot adja meg a munkamenet létrehozása
-Amikor Spark-fürt kifogyott az erőforrásokból, a Jupyter notebook a Spark- és Pyspark kernelek fog időtúllépés történt a munkamenet létrehozása közben. 
+### <a name="jupyter-notebook-timeout-in-creating-hello-session"></a>Jupyter notebook időtúllépés hello munkamenet létrehozása
+Spark-fürt kifogyott az erőforrásokból, hello Spark és a a hello Jupyter notebook Pyspark kernel toocreate hello munkamenet közben időtúllépés lesz. 
 
 **Megoldást:** 
 
 1. Szabadítson fel a Spark-fürt egyes erőforrások:
    
-   * Egyéb külső notebookok leállítása a zárja be és Halt menü címen, vagy kattintson a leállítás a notebook Explorer.
+   * Egyéb külső notebookok toohello is zárja be és a Halt menüből, vagy kattintson a Leállítás hello notebook Explorer leállítása.
    * A YARN más Spark-alkalmazások leállítása.
-2. Indítsa újra a notebook kívánt elindításához. Elegendő erőforrást ahhoz, hogy hozzon létre most egy munkamenet elérhetőnek kell lennie.
+2. Indítsa újra a hello notebook toostart próbált fel. Erőforrásokkal elérhetőknek kell lenniük a akkor toocreate most egy munkamenet.
 
 ## <a name="see-also"></a>Lásd még:
 * [Overview: Apache Spark on Azure HDInsight (Áttekintés: Apache Spark on Azure HDInsight)](hdinsight-apache-spark-overview.md)
@@ -115,7 +115,7 @@ Amikor Spark-fürt kifogyott az erőforrásokból, a Jupyter notebook a Spark- �
 ### <a name="scenarios"></a>Forgatókönyvek
 * [Spark és BI: Interaktív adatelemzés végrehajtása a Spark on HDInsight használatával, BI-eszközökkel](hdinsight-apache-spark-use-bi-tools.md)
 * [Spark és Machine Learning: A Spark on HDInsight használata az épület-hőmérséklet elemzésére HVAC-adatok alapján](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [Spark és Machine Learning: A Spark on HDInsight használata az élelmiszervizsgálati eredmények előrejelzésére](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark és Machine Learning: használja a Spark on HDInsight toopredict élelmiszervizsgálati eredmények](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark Streaming: A Spark on HDInsight használata valós idejű streamelési alkalmazások összeállítására](hdinsight-apache-spark-eventhub-streaming.md)
 * [A webhelynapló elemzése a Spark on HDInsight használatával](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
@@ -124,14 +124,14 @@ Amikor Spark-fürt kifogyott az erőforrásokból, a Jupyter notebook a Spark- �
 * [Feladatok távoli futtatása Spark-fürtön a Livy használatával](hdinsight-apache-spark-livy-rest-interface.md)
 
 ### <a name="tools-and-extensions"></a>Eszközök és bővítmények
-* [Az IntelliJ IDEA HDInsight-eszközei beépülő moduljának használata Spark Scala-alkalmazások létrehozásához és elküldéséhez](hdinsight-apache-spark-intellij-tool-plugin.md)
-* [Az IntelliJ IDEA HDInsight-eszközei beépülő moduljának használata Spark-alkalmazások távoli hibaelhárításához](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [Toocreate IntelliJ IDEA HDInsight-eszközei beépülő használja, és küldje el a Spark Scala applicatons](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [IntelliJ IDEA toodebug Spark-alkalmazások HDInsight-eszközei beépülő távolról használni](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [Zeppelin notebookok használata Spark-fürttel HDInsighton](hdinsight-apache-spark-zeppelin-notebook.md)
 * [Jupyter notebookokhoz elérhető kernelek a HDInsight Spark-fürtjében](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 * [Külső csomagok használata Jupyter notebookokkal](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
-* [A Jupyter telepítése a számítógépre, majd csatlakozás egy HDInsight Spark-fürthöz](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [Jupyter telepítse a számítógépre, és csatlakozzon a HDInsight Spark-fürt tooan](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
 ### <a name="manage-resources"></a>Erőforrások kezelése
-* [Apache Spark-fürt erőforrásainak kezelése az Azure HDInsightban](hdinsight-apache-spark-resource-manager.md)
+* [Az Azure HDInsight hello Apache Spark-fürt erőforrásainak kezelése](hdinsight-apache-spark-resource-manager.md)
 * [Apache Spark-fürtön futó feladatok nyomon követése és hibakeresése a HDInsightban](hdinsight-apache-spark-job-debugging.md)
 

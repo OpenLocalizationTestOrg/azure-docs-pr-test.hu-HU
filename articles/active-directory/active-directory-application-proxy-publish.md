@@ -1,6 +1,6 @@
 ---
-title: "Alkalmazások közzététele az Azure AD-alkalmazásproxyval | Microsoft Docs"
-description: "Helyszíni alkalmazásait közzéteheti a felhőben az Azure AD-alkalmazásproxy használatával a klasszikus portálon."
+title: "az Azure AD alkalmazásproxy aaaPublish alkalmazások |} Microsoft Docs"
+description: "Tegye közzé a helyszíni alkalmazások toohello felhőalapú Azure AD-alkalmazásproxyval hello a klasszikus portálon."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,11 +15,11 @@ ms.date: 07/14/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro; oldportal
-ms.openlocfilehash: 96490c0d060fe5486a7235a5aa76380c8d9b5d4f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7926998314c65521ae48aebcceb33cb0c67e0b87
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="publish-applications-using-azure-ad-application-proxy"></a>Alkalmazások közzététele az Azure AD-alkalmazásproxyval
 
@@ -27,72 +27,72 @@ ms.lasthandoff: 08/03/2017
 > * [Azure Portal](application-proxy-publish-azure-portal.md)
 > * [klasszikus Azure portál](active-directory-application-proxy-publish.md)
 
-Az Azure AD alkalmazásproxy segít a távoli feldolgozók támogatásában azáltal, hogy közzétesz helyszíni alkalmazásokat, és ezek elérhetővé válnak az interneten keresztül. Ennél a pontnál, már [engedélyezte az alkalmazásproxyt a klasszikus Azure-portálon](active-directory-application-proxy-enable.md). Ez a cikk végigvezeti a helyi hálózaton futó alkalmazások közzétételének és távoli, hálózaton kívüli biztonságos hozzáférésük kiépítésének lépésein. Miután befejezte a cikkben leírtakat, készen áll az alkalmazás személyre szabott információkkal vagy biztonsági követelményekkel történő konfigurálására.
+Az Azure AD-alkalmazásproxy segít a távoli dolgozók támogatja a helyszíni alkalmazások toobe hello keresztül elérhető közzétételével internet. A pont, akkor már rendelkezik [alkalmazásproxy engedélyezve a klasszikus Azure portálon hello](active-directory-application-proxy-enable.md). Ez a cikk bemutatja, hogyan hello lépéseket toopublish alkalmazást, hogy a helyi hálózaton keresztül, és adja meg a biztonságos távoli hozzáférés a a hálózaton kívülről. Ez a cikk befejezése után készen áll a tooconfigure hello alkalmazás személyre szabott adatok vagy a biztonsági követelmények lesz.
 
 > [!NOTE]
-> Az alkalmazásproxy-szolgáltatás kizárólag akkor érhető el, ha frissített az Azure Active Directory Prémium vagy Alapszintű kiadására. További információk: [Azure Active Directory editions](active-directory-editions.md) (Azure Active Directory-kiadások). Ha szeretné az alkalmazásproxyt használni, ezt megteheti az [alkalmazások közzétételével az Azure Portalban](application-proxy-publish-azure-portal.md).
+> Alkalmazásproxy rendszerben elérhető, csak akkor, ha frissített toohello prémium vagy alapszintű kiadására az Azure Active Directory szolgáltatás. További információk: [Azure Active Directory editions](active-directory-editions.md) (Azure Active Directory-kiadások). Ha azt szeretné, hogy toouse proxyval, akkor [alkalmazások közzététele az Azure-portálon hello](application-proxy-publish-azure-portal.md).
 
-## <a name="publish-an-app-using-the-wizard"></a>Alkalmazás közzététele a varázsló használatával
-1. Jelentkezzen be rendszergazdaként a [klasszikus Azure portálra](https://manage.windowsazure.com/).
-2. Lépjen az Active Directory területre, majd válassza ki azt a címtárat, amelyen az alkalmazásproxyt engedélyezte.
+## <a name="publish-an-app-using-hello-wizard"></a>Hello varázsló használó alkalmazások közzététele
+1. Jelentkezzen be rendszergazdaként a hello [a klasszikus Azure portálon](https://manage.windowsazure.com/).
+2. Nyissa meg a könyvtár tooActive, és válassza a hello könyvtárban, ahol engedélyezve van az alkalmazásproxy.
    
     ![Active Directory – ikon](./media/active-directory-application-proxy-publish/ad_icon.png)
-3. Kattintson az **Alkalmazások** lapra, majd a képernyő alján található **Hozzáadás** gombra.
+3. Hello kattintson **alkalmazások** fülre, majd hello **Hozzáadás** üdvözlő képernyőt hello alján gomb
    
     ![Alkalmazás hozzáadása](./media/active-directory-application-proxy-publish/aad_appproxy_selectdirectory.png)
 4. Válassza a **Publish an application that will be accessible from outside your network** (Hálózaton kívülről hozzáférhető alkalmazás közzététele) lehetőséget.
    
     ![Hálózaton kívülről hozzáférhető alkalmazás közzététele](./media/active-directory-application-proxy-publish/aad_appproxy_addapp.png)
-5. Adja meg a következő információkat az alkalmazásról:
+5. Adja meg a következő információkat az alkalmazásról hello:
    
-   * **Név**: Az alkalmazás felhasználóbarát neve. Ennek a címtáron belül egyedinek kell lennie.
-   * **Belső URL-cím**: Az alkalmazásproxy összekötője által használt cím a magánhálózaton belülről történő alkalmazás-hozzáféréshez. Megadhat egyedi elérési utat a háttérkiszolgálón a közzétételhez, míg a kiszolgáló további része nem lesz közzétéve. Így különböző, ugyanazon a kiszolgálón található webhelyeket tehet közzé, és mindegyiknek saját nevet és hozzáférési szabályokat adhat.
+   * **Név**: hello felhasználóbarát nevet az alkalmazásnak. Ennek a címtáron belül egyedinek kell lennie.
+   * **Belső URL-cím**: alkalmazásproxy-összekötő hello hello címtől tooaccess hello alkalmazás eltávolítása a magánhálózaton belül használja. Megadott elérési útra hello háttér server toopublish biztosíthat, amíg hello rest hello kiszolgáló nem lesz közzétéve. Ezzel a módszerrel közzéteheti a különböző helyek hello ugyanarra a kiszolgálóra, és mindegyiknek saját nevet és hozzáférési szabályokat.
      
      > [!TIP]
-     > Ha közzétesz egy útvonalat, győződjön meg róla, hogy az tartalmaz minden szükséges lemezképet, szkriptet és stíluslapot az alkalmazásához. Például ha az alkalmazása a https://yourapp/app helyen található, és a https://yourapp/media helyen található képeket használ, elérési útként a következőt javasolt közzétenni: https://yourapp/.
+     > Ha közzéteszi a egy elérési utat, győződjön meg arról, hogy minden hello szükséges lemezképek, parancsprogramok és stíluslapok, az alkalmazás tartalmaz. Például ha az alkalmazás https://yourapp/app, illetve lemezkép https://yourapp/media helyen, majd kell közzé tenni https://yourapp/ hello elérési útjával.
      > 
      > 
-   * **Előhitelesítési módszer:** Az alkalmazásproxy által a felhasználók ellenőrzésére használt módszer az alkalmazás-hozzáférés engedélyezése előtt. A legördülő listában válasszon egyet a különböző lehetőségek közül.
+   * **Előhitelesítési módszer**: hogyan alkalmazásproxy access tooyour alkalmazás engedélyezése előtt ellenőrzi a felhasználót. Hello legördülő menüből válassza az hello lehetőségek egyikét.
      
-     * Azure Active Directory: Az alkalmazásproxy átirányítja a felhasználókat az Azure AD bejelentkezési oldalára, ahol megtörténik a címtár és az alkalmazás használatára vonatkozó engedélyeik hitelesítése.
-     * Átengedés: Nincs szükség a felhasználók hitelesítésére az alkalmazáshoz való hozzáféréshez.
+     * Az Azure Active Directory: Alkalmazásproxy átirányítja a felhasználók toosign hitelesíti a rájuk vonatkozó engedélyek hello címtár és az alkalmazás az Azure AD-be.
+     * Átengedés: A felhasználóknak nem kell tooauthenticate tooaccess hello alkalmazás.
      
      ![Az alkalmazás tulajdonságai](./media/active-directory-application-proxy-publish/aad_appproxy_appproperties.png)  
-6. A varázsló bezárásához kattintson a képernyő alján található pipára. Az alkalmazás így már meg van adva az Azure AD-ben.
+6. toofinish hello varázsló, kattintson a pipa hello üdvözlő képernyőt hello alján. hello alkalmazás már meg van adva az Azure ad-ben.
 
-## <a name="assign-users-and-groups-to-the-application"></a>Felhasználók és csoportok hozzárendelése az alkalmazáshoz
-Ahhoz, hogy a felhasználók hozzáférjenek a közzétett alkalmazáshoz, egyénileg vagy csoportosan hozzá kell őket rendelni. (Ne feledkezzen meg a saját hozzáférésének hozzárendeléséről.) Minden hozzárendelt felhasználónak rendelkeznie kell egy Azure Basic vagy magasabb szintű licenccel. Licenceket egyénekhez vagy csoportokhoz is hozzárendelhet. További információkat a [felhasználók egy alkalmazáshoz történő hozzárendelését](active-directory-applications-guiding-developers-assigning-users.md) ismertető cikkben talál. 
+## <a name="assign-users-and-groups-toohello-application"></a>Felhasználók és csoportok hozzárendelése toohello alkalmazás
+A sorrend a felhasználók tooaccess a közzétett alkalmazáshoz, tooassign kell őket egyenként vagy csoportokat. (Ne feledje tooassign saját kezűleg fér hozzá, túl.) Minden hozzárendelt felhasználónak rendelkeznie kell egy Azure Basic vagy magasabb szintű licenccel. Külön-külön is hozzárendelhet licenceket vagy toogroups. További információkért lásd: [felhasználók tooan alkalmazás hozzárendelése](active-directory-applications-guiding-developers-assigning-users.md). 
 
-Az előhitelesítést igénylő alkalmazások esetében a felhasználók a hozzárendeléssel jogosultságot is kapnak az alkalmazás használatára. Az előhitelesítést nem igénylő alkalmazások esetében a felhasználók a hozzárendelés után az alkalmazáshoz a hozzáférés panelen keresztül férhetnek hozzá.
+Az előhitelesítést igénylő alkalmazások esetén engedély toouse hello alkalmazás hozzárendelése egy felhasználói biztosít. Az alkalmazások, amelyek nem igényelnek előhitelesítéssel hozzárendelése egy felhasználói azt jelenti, hogy hello felhasználó hello alkalmazást érheti el hello hozzáférési panel keresztül.
 
-1. Az Alkalmazás hozzáadása varázsló befejezését követően megjelenik az alkalmazás első lépéseinek oldala. Az alkalmazás-hozzáférés kezeléséhez válassza a **Felhasználók és csoportok** lehetőséget.
+1. Után hello alkalmazás hozzáadása varázsló befejeződik lásd: hello gyors üzembe helyezési oldal az alkalmazáshoz. hozzáférés toohello app, aki toomanage kiválasztása **felhasználók és csoportok**.
    
     ![Felhasználók hozzárendelése az alkalmazásproxy első lépései oldalán – képernyőfelvétel](./media/active-directory-application-proxy-publish/aad_appproxy_usersgroups.png)
-2. Keressen rá a címtár adott csoportjára, vagy jelenítse meg az összes felhasználót. Kattintson a pipajelre a keresési eredmények megjelenítéséhez.
+2. Keressen rá a címtár adott csoportjára, vagy jelenítse meg az összes felhasználót. toodisplay hello keresési eredmények között kattintson hello pipára.
    
       ![Csoportok vagy felhasználók keresése – képernyőfelvétel](./media/active-directory-application-proxy-publish/aad_appproxy_search.png)
-3. Válasszon ki minden olyan felhasználót vagy csoportot, amelyet hozzá szeretne rendelni az alkalmazáshoz, majd kattintson a **Hozzárendelés** gombra. E művelet végrehajtását meg kell erősítenie.
+3. Válassza ki a felhasználó vagy csoport, szeretné, hogy tooassign toothis alkalmazást, majd kattintson az **hozzárendelése**. Biztosan kéri tooconfirm ezt a műveletet.
 
 > [!NOTE]
-> Integrált Windows-hitelesítésű alkalmazások esetében kizárólag a helyszíni Active Directoryból szinkronizált felhasználók és csoportok rendelhetők hozzá az alkalmazáshoz. A Microsoft-fiókkal bejelentkezett felhasználók és a vendégek nem rendelhetők hozzá az Azure Active Directory alkalmazásproxyjával közzétett alkalmazásokhoz. Győződjön meg arról, hogy a felhasználók ugyanannak a tartománynak a hitelesítő adataival jelentkeznek be, amelyhez a közzétett alkalmazás tartozik.
+> Integrált Windows-hitelesítésű alkalmazások esetében kizárólag a helyszíni Active Directoryból szinkronizált felhasználók és csoportok rendelhetők hozzá az alkalmazáshoz. A Microsoft-fiókkal bejelentkezett felhasználók és a vendégek nem rendelhetők hozzá az Azure Active Directory alkalmazásproxyjával közzétett alkalmazásokhoz. Győződjön meg arról, hogy a felhasználók hello részét képező hitelesítő adatokkal jelentkezhetnek be közzétett hello alkalmazás azonos tartományban.
 > 
 > 
 
 ## <a name="test-your-published-application"></a>A közzétett alkalmazás tesztelése
-Miután közzétette az alkalmazást, tesztelheti azt úgy, hogy a közzétett URL-t megnyitja. Győződjön meg róla, hogy az alkalmazás elérhető, megfelelően jelenik meg, és minden a vártak szerint működik. Ha problémája van, vagy hibaüzenetet kap, próbálja meg a [hibaelhárítási útmutató](active-directory-application-proxy-troubleshoot.md) használatát.
+Miután közzétette az alkalmazást, ha közzétett toohello URL-cím megnyitásával tesztelheti azt. Győződjön meg róla, hogy az alkalmazás elérhető, megfelelően jelenik meg, és minden a vártak szerint működik. Ha problémákat tapasztal, vagy egy hibaüzenet jelenik meg, próbálkozzon hello [hibaelhárítási útmutatója](active-directory-application-proxy-troubleshoot.md).
 
 ## <a name="configure-your-application"></a>Az alkalmazás konfigurálása
-A Konfigurálás oldalon módosíthatja a közzétett alkalmazásokat, illetve speciális beállításokat adhat meg. Ezen az oldalon a név módosításával vagy embléma feltöltésével testre is szabhatja az alkalmazást. Olyan hozzáférési szabályokat is kezelhet, mint például a előhitelesítési módszer vagy a többtényezős hitelesítés.
+Módosíthatja a közzétett alkalmazásokat, vagy speciális beállítások hello konfigurálása lapon. Ezen a lapon testre szabhatja az alkalmazás hello név módosításával vagy embléma feltöltésével. Például a előhitelesítési módszer vagy a multi-factor authentication hello hozzáférési szabályok is kezelheti.
 
 ![Speciális konfiguráció](./media/active-directory-application-proxy-publish/aad_appproxy_configure.png)
 
-Az Azure Active Directory alkalmazásproxyjával történő alkalmazás-közzétételt követően az alkalmazások megjelennek és kezelhetővé válnak az Azure AD alkalmazáslistájában.
+Alkalmazások közzététele után használata az Azure Active Directory Alkalmazásproxyjával történő hello alkalmazások listáját az Azure ad-ben jelennek, és kezelheti azokat van.
 
-Ha letiltja az alkalmazásproxy-szolgáltatásokat az alkalmazások közzétételét követően, azok a továbbiakban nem érhetők el a magánhálózaton kívülről. A felhasználók továbbra is a szokásos módon férhetnek hozzá a helyszíni alkalmazásokhoz.
+Ha letiltja az alkalmazásproxy szolgáltatásainak alkalmazások közzétételét követően, hello alkalmazások nem lesznek a magánhálózaton kívülről hozzáférhető. A felhasználók is továbbra is hozzáférési hello alkalmazásokhoz a helyszínen, a szokásos módon.
 
-Egy alkalmazás megtekintéséhez és hozzáférhetőségének ellenőrzéséhez kattintson duplán az alkalmazás nevére. Ha az alkalmazásproxy le van tiltva, és az alkalmazás nem érhető el, a képernyő tetején figyelmeztető üzenet jelenik meg.
+tooview egy alkalmazást, és győződjön meg arról, hogy az informatikai érhető el, kattintson duplán a hello alkalmazás hello nevét. Ha hello alkalmazásproxy-szolgáltatás le van tiltva, és hello alkalmazás nem áll rendelkezésre, üdvözlő képernyőt hello tetején megjelenik egy figyelmeztető üzenet.
 
-Egy alkalmazás törléséhez jelölje ki azt a listában, majd kattintson a **Törlés** gombra.
+egy alkalmazáskészletet, toodelete hello listán jelöljön ki egy alkalmazást, és kattintson a **törlése**.
 
 ## <a name="next-steps"></a>Következő lépések
 * [Alkalmazások közzététele saját tartománynév használatával](active-directory-application-proxy-custom-domains.md)
@@ -100,5 +100,5 @@ Egy alkalmazás törléséhez jelölje ki azt a listában, majd kattintson a **T
 * [Feltételes hozzáférés engedélyezése](active-directory-application-proxy-conditional-access.md)
 * [Munkavégzés jogcímeket figyelembe vevő alkalmazásokkal](active-directory-application-proxy-claims-aware-apps.md)
 
-A legújabb híreket és frissítéseket itt találja: [Alkalmazásproxy blog](http://blogs.technet.com/b/applicationproxyblog/).
+Hello legfrissebb híreket és frissítéseket, tekintse meg a hello [alkalmazásproxy blog](http://blogs.technet.com/b/applicationproxyblog/)
 

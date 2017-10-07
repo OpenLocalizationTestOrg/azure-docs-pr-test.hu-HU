@@ -1,6 +1,6 @@
 ---
-title: "Függvény-alkalmazás létrehozása az Azure portálról |} Microsoft Docs"
-description: "Létrehoz egy új funkció alkalmazást az Azure App Service-ben a portálról."
+title: "egy függvény hello Azure portál alkalmazásából aaaCreate |} Microsoft Docs"
+description: "Létrehoz egy új funkció alkalmazást az Azure App Service hello portálról."
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -16,15 +16,15 @@ ms.workload: na
 ms.date: 04/11/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 85a88c537415cd6f2b6bc005cc18e3baaa29e9a4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c531fc71c798edf22e25a5f4b79c15413809dc86
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-function-app-from-the-azure-portal"></a>Függvény-alkalmazás létrehozása az Azure-portálon
+# <a name="create-a-function-app-from-hello-azure-portal"></a>Az Azure-portálon hello függvény-alkalmazás létrehozása
 
-Azure függvény alkalmazások az Azure App Service-infrastruktúrát használja. Ez a témakör bemutatja, hogyan függvény alkalmazás létrehozása az Azure portálon. Egy függvény alkalmazást tartalmazó egyéni függvényei végrehajtása. Az App Service üzemeltetési terv egy függvény alkalmazást hoz létre, amikor a függvény app használhatja az App Service összes funkcióját.
+Az Azure függvény Apps hello Azure App Service-infrastruktúrát használja. Ez a témakör bemutatja, hogyan toocreate egy függvény alkalmazás hello Azure-portálon. Egy függvény app egyéni függvényei hello végrehajtásának hello tárolót. Amikor létrehoz egy függvény alkalmazást az App Service-csomag üzemeltetési hello, a függvény app funkciók is használhatók összes hello az App Service.
 
 ## <a name="create-a-function-app"></a>Függvényalkalmazás létrehozása
 
@@ -34,24 +34,24 @@ Ha létrehoz egy függvény alkalmazást, adja meg egy érvényes **alkalmazásn
 
 A tárfiókok neve 3–24 karakter hosszúságú lehet, és csak számokból és kisbetűkből állhat. A tárfiók nevének egyedinek kell lennie az Azure rendszerben. 
 
-A függvény alkalmazás létrehozása után létrehozhat egyéni függvényei egy vagy több különböző nyelveken. Hozzon létre funkciók [a portál használatával](functions-create-first-azure-function.md#create-function), [folyamatos üzembe helyezés](functions-continuous-deployment.md), vagy a [FTP-vel feltöltése](https://github.com/projectkudu/kudu/wiki/Accessing-files-via-ftp).
+Hello függvény alkalmazás létrehozása után létrehozhat egyéni függvényei egy vagy több különböző nyelveken. Hozzon létre funkciók [hello portál használatával](functions-create-first-azure-function.md#create-function), [folyamatos üzembe helyezés](functions-continuous-deployment.md), vagy a [FTP-vel feltöltése](https://github.com/projectkudu/kudu/wiki/Accessing-files-via-ftp).
 
 ## <a name="service-plans"></a>Service-csomagok
 
-Az Azure Functions van két különböző service-csomagokról: fogyasztás terv és az App Service-csomag. A felhasználási terv automatikusan lefoglalja számára a számítási teljesítményt, ha a kódja fut, a skála kibővített terhelés kezelése érdekében szükség szerint, és majd méretezik-a kód nem futtatásakor. Az App Service-csomag a függvény alkalmazás hozzáférést biztosít az App Service minden lehetőséget. Ki kell választania a service-csomag, a függvény alkalmazás létrehozása, és azt jelenleg nem módosul. További információkért lásd: [válassza ki az Azure Functions üzemeltetési terv](functions-scale.md).
+Az Azure Functions van két különböző service-csomagokról: fogyasztás terv és az App Service-csomag. hello fogyasztás terv automatikusan lefoglalja számára a számítási teljesítményt, ha a kódja fut., és méretezik kibővített szükséges toohandle terhelés, majd méretezik-a kód nem futtatásakor. App Service-csomag hello biztosít a függvény app hozzáférés tooall hello létesítményekben az App Service. Ki kell választania a service-csomag, a függvény alkalmazás létrehozása, és azt jelenleg nem módosul. További információkért lásd: [válassza ki az Azure Functions üzemeltetési terv](functions-scale.md).
 
-Ha azt tervezi, JavaScript-funkcióként futhat az App Service-csomagot, válasszon egy tervet a kevesebb magok. További információkért lásd: a [függvények JavaScript hivatkozás](functions-reference-node.md#choose-single-core-app-service-plans).
+Ha azt tervezi, toorun JavaScript-funkcióként az App Service-csomagot, válasszon egy tervet a kevesebb magok. További információkért lásd: hello [függvények JavaScript hivatkozás](functions-reference-node.md#choose-single-core-app-service-plans).
 
 <a name="storage-account-requirements"></a>
 
 ## <a name="storage-account-requirements"></a>Tárolási fiókra vonatkozó követelmények
 
-Egy függvény alkalmazást az App Service létrehozásakor vagy létre kell hoznia egy általános célú Azure Storage-fiók, amely támogatja a Blob, Queue és Table storage kapcsolódik. Belsőleg funkciók tárolást használ műveletek, például eseményindítók kezelése és naplózási funkciót végrehajtások. Néhány tárfiókok nem támogatják az üzenetsorok és táblák, például csak a blob storage-fiókok, a prémium szintű Azure Storage és a ZRS replikáció általános célú tárfiókok esetében. Ezek a fiókok kiszűri kívüli a Storage-fiók panelen egy függvény alkalmazás létrehozásakor.
+Egy függvény alkalmazást az App Service létrehozásakor létre kell hoznia vagy tooa általános célú Azure Storage-fiók, amely támogatja a Blob, Queue és Table storage hivatkozásra. Belsőleg funkciók tárolást használ műveletek, például eseményindítók kezelése és naplózási funkciót végrehajtások. Néhány tárfiókok nem támogatják az üzenetsorok és táblák, például csak a blob storage-fiókok, a prémium szintű Azure Storage és a ZRS replikáció általános célú tárfiókok esetében. Ezek a fiókok kiszűri kívüli hello Storage-fiók panelen egy függvény alkalmazás létrehozásakor.
 
 >[!NOTE]
->A felhasználás üzemeltetési terv használatakor függvény kód és a kötés konfigurációs fájljainak Azure File storage a fő tárfiókban vannak tárolva. A fő storage-fiók törlésekor a tartalom törlődik, és nem állítható helyre.
+>Hello fogyasztás üzemeltetési terv használata esetén a függvény kód és a kötés a konfigurációs fájlok Azure File storage hello fő tárfiókban lévő vannak tárolva. Hello fő storage-fiók törlésekor a tartalom törlődik, és nem állítható helyre.
 
-Tárfióktípusokat kapcsolatos további információkért lásd: [az Azure Storage szolgáltatásainak bemutatása](../storage/common/storage-introduction.md#introducing-the-azure-storage-services). 
+toolearn tárfióktípusokat, kapcsolatos további információkért lásd: [hello Azure Storage szolgáltatásainak bemutatása](../storage/common/storage-introduction.md#introducing-the-azure-storage-services). 
 
 ## <a name="next-steps"></a>Következő lépések
 

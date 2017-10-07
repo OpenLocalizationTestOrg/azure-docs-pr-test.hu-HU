@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált munkahelyi által Facebook-on |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és a munkahely által Facebook között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és a munkahely által Facebook között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,165 +14,165 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/18/2017
 ms.author: jeedes
-ms.openlocfilehash: 27e62a00832484667117d8718db9f2fc05e2f4e2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fd19b3f178a2aee7dd2f204d6d3cf6df8fe6b444
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-workplace-by-facebook"></a>Oktatóanyag: Azure Active Directoryval integrált munkahelyi által Facebook-on
 
-Ebben az oktatóanyagban elsajátíthatja által Facebook munkahelyi integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate munkahelyi által Facebook az Azure Active Directoryval (Azure AD).
 
-Munkahelyi által Facebook integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+Munkahelyi által Facebook integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Az Azure AD, aki hozzáféréssel rendelkezik a munkahelyi Facebook által szabályozható.
-- Engedélyezheti a felhasználóknak, hogy automatikusan lekérni munkahelyi által aláírt Facebook (egyszeri bejelentkezés) a saját Azure AD-fiókok.
-- A fiók egyetlen központi helyen kezelheti: az Azure-portálon.
+- Az Azure AD hozzáférési tooWorkplace által Facebook rendelkező szabályozhatja.
+- Engedélyezheti a felhasználók tooautomatically beolvasása feliratkozva a tooWorkplace Facebook (egyszeri bejelentkezés) által az Azure AD-fiókok.
+- A fiók egyetlen központi helyen kezelheti: hello Azure-portálon.
 
 Szoftver egy szolgáltatott szoftverként (SaaS) alkalmazás integráció az Azure ad-vel kapcsolatos további tudnivalókért lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs munkahelyi által Facebook, a következőkre van szükség:
+tooconfigure az Azure AD-integráció a munkahely által Facebook, a következő elemek hello kell:
 
 - Az Azure AD szolgáltatásra
 - A munkahelyi Facebook egyszeri bejelentkezés (SSO) által engedélyezett előfizetés
 
-Ez az oktatóanyag lépéseit teszteléséhez hajtsa végre az ezek az ajánlások:
+Ebben az oktatóanyagban tootest hello lépéseit kövesse az alábbi ajánlásokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, akkor [egy hónapos próbaverzió beszerzése](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban a Azure AD SSO tesztkörnyezetben tesztelni. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban a Azure AD SSO tesztkörnyezetben tesztelni. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. Adja hozzá a munkahelyi Facebook által a gyűjteményből.
+1. Adja hozzá a munkahelyi által Facebook hello gyűjteményből.
 2. Az Azure AD az egyszeri bejelentkezés tesztelése és konfigurálása.
 
-## <a name="add-workplace-by-facebook-from-the-gallery"></a>Adja hozzá a munkahelyi Facebook által a gyűjteményből
-Konfigurálja az Azure AD integrálása a munkahely által Facebook, vegye fel munkahelyi Facebook által a gyűjteményből a kezelt SaaS-alkalmazások listáját.
+## <a name="add-workplace-by-facebook-from-hello-gallery"></a>Adja hozzá a munkahelyi által Facebook hello gyűjteményből
+tooconfigure hello integrálása a munkahelyi Facebook által az Azure AD által Facebook munkahelyi hello gyűjteménye tooyour kezelt SaaS-alkalmazások listáját adja hozzá.
 
-1. Az a [Azure-portálon](https://portal.azure.com), a bal oldali panelen válassza ki a **Azure Active Directory**. 
+1. A hello [Azure-portálon](https://portal.azure.com), a hello bal oldali panelen, jelölje ki **Azure Active Directory**. 
 
-    ![Az Azure Active Directory gomb][1]
+    ![hello Azure Active Directory gomb][1]
 
-2. Keresse meg a **vállalati alkalmazások** > **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások** > **összes alkalmazás**.
 
-    ![A vállalati alkalmazások panel][2]
+    ![hello vállalati alkalmazások panel][2]
     
-3. Az új alkalmazás hozzáadásához válassza **új alkalmazás** a párbeszédpanel tetején.
+3. tooadd hello új alkalmazást, jelölje be **új alkalmazás** hello felül hello párbeszédpanel.
 
-    ![Az új alkalmazás gomb][3]
+    ![hello új alkalmazás gomb][3]
 
-4. Írja be a keresőmezőbe, **által Facebook munkahelyi**, és válassza ki **által Facebook munkahelyi** eredménybe. Válassza ki **Hozzáadás**, hogy vegye fel az alkalmazást.
+4. Hello keresési mezőbe, írja be a **munkahelyi Facebook által**, és válassza ki **által Facebook munkahelyi** eredmények. Válassza ki **Hozzáadás**, tooadd hello alkalmazás.
 
-    ![Munkahelyi Facebook által az eredménylistában](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_workplacebyfacebook_search.png)
+    ![Munkahelyi által Facebook hello eredmények listájában](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_workplacebyfacebook_search.png)
 
 ##  <a name="configure-and-test-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés tesztelése és konfigurálása
 Ebben a szakaszban konfigurálása és tesztelése a Facebook, a "Britta Simon." nevű tesztfelhasználó alapján által munkahelyi Azure AD egyszeri bejelentkezés
 
-Az egyszeri bejelentkezés működjön az Azure AD tudnia kell, a partner felhasználó által Facebook munkahelyi Újdonságok egy felhasználó számára az Azure ad-ben. Más szóval közötti egy Azure AD-felhasználó és a kapcsolódó felhasználó a munkahelyi Facebook által hivatkozott kapcsolatot kell létrehozni.
+Az SSO toowork az Azure AD kell tooknow milyen hello tartozó felhasználói által Facebook munkahelyi tooa felhasználó az Azure ad-ben. Más szóval csatolt hello kapcsolódó felhasználói által Facebook munkahelyi és az Azure AD-felhasználó közötti kapcsolatot kell létrehozni.
 
-Ez kapcsolatot létesíteni a értékének hozzárendelésével a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** munkahelyi Facebook által.
+Ezt a kapcsolatot létesíteni hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** munkahelyi Facebook által.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és egyszeri bejelentkezés konfigurálása Facebook-alkalmazás által a munkahelyen.
+Ebben a szakaszban hello Azure-portálon az Azure AD SSO engedélyezi, és egyszeri bejelentkezés konfigurálása Facebook-alkalmazás által a munkahelyen.
 
-1. Az Azure portálon a a **által Facebook munkahelyi** alkalmazás integrációs lapon jelölje be **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **által Facebook munkahelyi** alkalmazás integrációs lapon jelölje be **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés kapcsolat konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédpanelen jelölje ki **mód** , **SAML-alapú bejelentkezés** SSO engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédpanelen jelölje ki **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri Bejelentkezést.
  
     ![Egyszeri bejelentkezés párbeszédpanel](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_workplacebyfacebook_samlbase.png)
 
-3. Az a **Facebook-tartomány és az URL-címek munkahelyi** területen tegye a következőket:
+3. A hello **Facebook-tartomány és az URL-címek munkahelyi** területen a következő hello:
 
-    a. Az a **bejelentkezési URL-cím** szövegmezőbe írja be egy URL-címet, amely a következő mintát használ:`https://<company subdomain>.facebook.com`
+    a. A hello **bejelentkezési URL-cím** szövegmezőbe írja be egy URL-címet, amely a következő mintát hello használja:`https://<company subdomain>.facebook.com`
 
-    b. Az a **azonosító** szövegmezőbe írja be egy URL-címet, amely a következő mintát használ:`https://www.facebook.com/company/<scim company id>`
+    b. A hello **azonosító** szövegmezőbe írja be egy URL-címet, amely a következő mintát hello használja:`https://www.facebook.com/company/<scim company id>`
 
     > [!NOTE]
-    > Ezek az értékek csak egy példa. Frissítheti ezeket az értékeket a tényleges bejelentkezési URL-cím és azonosítója. Lépjen kapcsolatba a [Facebook ügyfél-támogatási csoport által munkahelyi](https://workplace.fb.com/faq/) beolvasni ezeket az értékeket. 
+    > Ezek az értékek csak egy példa. Frissítheti ezeket az értékeket a hello tényleges bejelentkezési URL-cím és azonosítója. Kapcsolattartási hello [Facebook ügyfél-támogatási csoport által munkahelyi](https://workplace.fb.com/faq/) tooget ezeket az értékeket. 
 
-4. A a **SAML-aláíró tanúsítványa** szakaszban jelölje be **tanúsítvány (Base64)**, majd mentse a tanúsítványfájlt, a számítógépen.
+4. A hello **SAML-aláíró tanúsítványa** szakaszban jelölje be **tanúsítvány (Base64)**, majd mentse a hello tanúsítványfájlt a számítógépen.
 
-    ![A tanúsítvány letöltési hivatkozását](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_workplacebyfacebook_certificate.png) 
+    ![hello tanúsítvány letöltési hivatkozását](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_workplacebyfacebook_certificate.png) 
 
 5. Kattintson a **Mentés** gombra.
 
     ![Egyszeri bejelentkezés Mentés gombra konfigurálása](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_general_400.png)
 
-6. Az a **Facebook konfigurációja munkahelyi** szakaszban jelölje be **munkahelyi konfigurálása által a Facebook** megnyitásához a **bejelentkezés konfigurálása** ablak. Másolás a **Sign-Out URL-címet, a SAML entitás azonosítója és a SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló** szakasz.
+6. A hello **Facebook konfigurációja munkahelyi** szakaszban jelölje be **munkahelyi konfigurálása által a Facebook** tooopen hello **bejelentkezés konfigurálása** ablak. Másolás hello **Sign-Out URL-címet, a SAML entitás azonosítója és a SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló** szakasz.
 
     ![Munkahelyi Facebook-konfigurációja](./media/active-directory-saas-facebook-at-work-tutorial/config.png) 
 
-7. Egy másik webes böngészőablakban jelentkezzen be a munkahelyi Facebook vállalati hely rendszergazdaként.
+7. Egy másik webes böngészőablakban jelentkezzen be munkahelyi Facebook vállalati hely tooyour rendszergazdaként.
   
    > [!NOTE] 
-   > A SAML-hitelesítési folyamat részeként munkahelyi használhatja lekérdezési karakterláncok legfeljebb 2,5 kilobájt méretű ahhoz, hogy az Azure AD-paraméterekkel.
+   > Hello SAML-alapú hitelesítési folyamat részeként munkahelyi too2.5 kilobájt be a lekérdezési karakterláncok használhatja rendelés toopass paraméterek tooAzure AD mérete.
 
-8. Az a **vállalati irányítópult**, navigáljon a **hitelesítési** fülre.
+8. A hello **vállalati irányítópult**, nyissa meg toohello **hitelesítési** fülre.
 
-9. A **SAML-alapú hitelesítés**, jelölje be **SSO csak** a legördülő listából.
+9. A **SAML-alapú hitelesítés**, jelölje be **SSO csak** hello legördülő listából.
 
-10. Adja meg az értékeket, átmásolva a **Facebook konfigurációja munkahelyi** szakasza a megfelelő mezőkbe az Azure-portálon:
+10. Hello átmásolva hello értékeket **Facebook konfigurációja munkahelyi** hello Azure-portálon hello megfelelő mezőkbe szakaszában:
 
-    *   Az a **SAML-alapú URL-cím** szöveg mezőbe illessze be az értékét **egyszeri bejelentkezési URL-címe**, amely az Azure portálról másolta.
-    *   Az a **SAML kiállítójának URL-címe** szöveg mezőbe illessze be az értékét **SAML Entitásazonosító**, amely az Azure portálról másolta.
-    *   A **SAML kijelentkezési átirányítási (nem kötelező)**, illessze be az értékét **Sign-Out URL-cím**, amely az Azure portálról másolta.
-    *   Nyissa meg a **base-64 kódolású tanúsítvány** Azure-portálról letöltött a Jegyzettömbben. A tartalmának másolása a vágólapra és illessze be azt a **SAML tanúsítvány** szövegmezőben.
+    *   Az a **SAML-alapú URL-cím** szövegmezőben, Beillesztés hello értékének **egyszeri bejelentkezési URL-címe**, amely az Azure-portálon hello másolta.
+    *   Az a **SAML kiállítójának URL-címe** szövegmezőben, Beillesztés hello értékének **SAML Entitásazonosító**, amely az Azure-portálon hello másolta.
+    *   A **SAML kijelentkezési átirányítási (nem kötelező)**, illessze be a hello értékének **Sign-Out URL-cím**, amely az Azure-portálon hello másolta.
+    *   Nyissa meg a **base-64 kódolású tanúsítvány** a Jegyzettömbben le: hello Azure-portálon. Hello tartalmát, másolja a vágólapra, és illessze be azt toothe **SAML tanúsítvány** szövegmezőben.
 
-11. Szükség lehet a célközönség URL-címet, címzett alatt felsorolva, és ACS (helyességi feltétel fogyasztói szolgáltatás) URL-címe, a **SAML-alapú konfigurációs** szakasz.
+11. Előfordulhat, hogy tooenter hello célközönség URL-címe, címzett URL-címet, és az ACS (helyességi feltétel fogyasztói szolgáltatás) URL-cím alatt hello feltüntetve **SAML-alapú konfigurációs** szakasz.
 
-12. A szakasz alján görgessen, és válassza ki **teszt SSO**. Egy előugró ablak jelenik meg, az az Azure AD bejelentkezési oldal. A hitelesítéshez adja meg a hitelesítő adatok szokásos módon. Győződjön meg arról a címre küldi vissza az Azure AD vissza a ugyanaz a munkahelyi fiókkal jelentkezett be.
+12. Görgessen hello szakasz toohello aljára, és válassza ki **teszt SSO**. Egy előugró ablak jelenik meg, a hello Azure AD bejelentkezési oldalára. tooauthenticate, adja meg a hitelesítő adatokat a szokásos módon. Győződjön meg arról, hello e-mail címet adott vissza az Azure AD vissza az hello megegyeznek a hello munkahelyi fiókkal jelentkezett be.
 
-13. Ha a vizsgálat sikeresen befejeződött, görgessen a lap, és válasszon alján **mentése**.
+13. Ha hello teszt sikeresen befejeződött, görgessen toohello alsó hello lap, és válassza ki a **mentése**.
 
 14. Munkahelyi felhasználója számára most jelenik meg az Azure AD bejelentkezési oldalára hitelesítéshez.
 
-Kiválaszthatja, konfigurálhatja az egy URL-cím, az Azure AD kijelentkezési oldalon ponthoz használható SAML kijelentkezett. Ha ezt a beállítást engedélyezve és konfigurálva van, a felhasználó már nem irányítja a rendszer a munkahelyi kijelentkezési lapra. Ehelyett a felhasználó átirányítási URL-címet, amely az SAML kijelentkezési átirányítási beállítás lett hozzáadva.
+Választhat tooconfigure egy URL-címet, amely lehet az Azure AD hello kijelentkezési oldalon használt toopoint SAML kijelentkezett. Ha ezt a beállítást engedélyezve és konfigurálva van, hello felhasználó már nem irányított toohello munkahelyi kijelentkezési lap. Ehelyett a hello felhasználó hozzá lett adva a hello SAML kijelentkezési átirányítási beállítás átirányított toohello URL-cím.
 
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazást. Ez az alkalmazás a hozzáadása után a **Active Directory** > **vállalati alkalmazások** szakaszban egyszerűen jelölje be a **egyszeri bejelentkezés** lapra, és elérheti a beágyazott keresztül dokumentáció a **konfigurációs** szakasz alján. További embedded dokumentációjából szolgáltatásáról a [az Azure AD dokumentációjában beágyazott]( https://go.microsoft.com/fwlink/?linkid=845985).
+> Ezek az utasítások belül hello tömör verziója most el tudja olvasni [Azure-portálon](https://portal.azure.com), míg a hello app beállításakor. Ez az alkalmazás hozzáadása a hello után **Active Directory** > **vállalati alkalmazások** szakaszban, egyszerűen jelölje be a hello **egyszeri bejelentkezés** fülre, és hozzáférést hello beágyazott keresztül hello dokumentáció **konfigurációs** szakasz hello lap alján. További szolgáltatásáról hello embedded dokumentációjából hello [az Azure AD dokumentációjában beágyazott]( https://go.microsoft.com/fwlink/?linkid=845985).
 
 ### <a name="configure-reauthentication-frequency"></a>Újrahitelesítés gyakoriságának konfigurálása
 
-Beállíthatja a munkahelyi bekéri a egy SAML-ellenőrzést minden nap, három nap, egy hét, a két hét, egy hónap, vagy egyáltalán nem.
+Beállíthatja a munkahelyi tooprompt egy SAML-ellenőrzés céljából minden nap, három nap, egy hét, a két hét, egy hónap, vagy egyáltalán nem.
 
 > [!NOTE] 
->A mobilalkalmazás az SAML-ellenőrzését minimális értéke egy hét.
+>hello minimális hello SAML-ellenőrzése mobilalkalmazás értéke tooone hét.
 
-A SAML alaphelyzetbe állítja az összes felhasználó számára is kényszeríthető. Ehhez használja a **szükséges SAML-alapú hitelesítés az összes felhasználó most** gombra.
+A SAML alaphelyzetbe állítja az összes felhasználó számára is kényszeríthető. toodo a, használjon hello **szükséges SAML-alapú hitelesítés az összes felhasználó most** gombra.
 
 
 ### <a name="create-an-azure-ad-test-user"></a>Hozzon létre egy Azure AD-teszt felhasználó
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-1. Az a **Azure-portálon**, a bal oldali panelen válassza ki a **Azure Active Directory**.
+1. A hello **Azure-portálon**, a hello bal oldali panelen, jelölje ki **Azure Active Directory**.
 
-    ![Az Azure Active Directory gomb](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_01.png) 
+    ![hello Azure Active Directory gomb](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok**, és válassza ki **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok**, és válassza ki **minden felhasználó**.
     
-    ![A "felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_02.png) 
+    ![hello "Felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_02.png) 
 
-3. Lehetőségre a **felhasználói** párbeszédpanelen jelölje ki **Hozzáadás**.
+3. tooopen hello **felhasználói** párbeszédpanelen jelölje ki **Hozzáadás**.
  
-    ![A Hozzáadás gombra.](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_03.png) 
+    ![hello Hozzáadás gomb](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanelen tegye a következőket:
+4. A hello **felhasználói** párbeszédpanel mezőbe hello a következő:
  
-    ![A felhasználó párbeszédpanel](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_04.png) 
+    ![hello felhasználó párbeszédpanel](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőben **BrittaSimon**.
+    a. A hello **neve** szövegmezőben **BrittaSimon**.
 
-    b. Az a **felhasználónév** mezőbe, írja be a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** , a típus hello **e-mail cím** a BrittaSimon.
 
     c. Válassza ki **megjelenítése jelszó**, és írja le.
 
@@ -182,50 +182,50 @@ Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta
 
 Ebben a szakaszban Britta Simon nevű felhasználó létrehozta a munkaterületen Facebook-on. Munkahelyi Facebook által támogatja közvetlenül az időponthoz kötött kiosztást, amely alapértelmezés szerint engedélyezve van.
 
-Nincs olyan művelet, ebben a szakaszban. Ha a felhasználó nem létezik a munkahely által Facebook, egy új hozta létre munkahelyi elérésére tett kísérlet során Facebook-on.
+Nincs olyan művelet, ebben a szakaszban. Ha a felhasználó nem létezik a munkahely által Facebook, egy új hozta létre tooaccess munkahelyi tett kísérlet során Facebook-on.
 
 >[!Note]
->Ha a felhasználó manuális létrehozása, forduljon a [Facebook ügyfél-támogatási csoport által munkahelyi](https://workplace.fb.com/faq/).
+>Ha egy felhasználó toocreate manuálisan kell, lépjen kapcsolatba a hello [Facebook ügyfél-támogatási csoport által munkahelyi](https://workplace.fb.com/faq/).
 
-### <a name="assign-the-azure-ad-test-user"></a>Rendelje hozzá az Azure AD-teszt felhasználó
+### <a name="assign-hello-azure-ad-test-user"></a>Rendelje hozzá az Azure AD hello tesztfelhasználó számára
 
-Ebben a szakaszban Azure SSO nyújtó munkahelyi Facebook által használandó Britta Simon engedélyezi.
+Ebben a szakaszban Britta Simon toouse Azure egyszeri Bejelentkezéses hozzáférést tooWorkplace Facebook által biztosított engedélyezi.
 
 ![Felhasználó hozzárendelése][200] 
 
-1. Nyissa meg az alkalmazások megtekintése az Azure-portálon. A könyvtár nézet megnyitása, írja be a **vállalati alkalmazások**, majd válassza ki **összes alkalmazás**.
+1. Hello Azure portál, nyissa meg hello alkalmazások megtekintése. Nyissa meg a könyvtár nézet toohello, nyissa meg túl**vállalati alkalmazások**, majd válassza ki **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **által Facebook munkahelyi**.
+2. Hello alkalmazások listában válassza ki a **által Facebook munkahelyi**.
 
-    ![A munkahely által az alkalmazások listáját a Facebook-hivatkozás](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_workplacebyfacebook_app.png) 
+    ![hello munkahelyi hello alkalmazások listáját a Facebook-kapcsolat](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_workplacebyfacebook_app.png) 
 
-3. A bal oldali menüben válasszon ki **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben válasszon ki **felhasználók és csoportok**.
 
-    ![A "Felhasználók és csoportok" hivatkozásra][202] 
+    ![hello "Felhasználók és csoportok" hivatkozásra.][202] 
 
-4. Válassza a **Hozzáadás** lehetőséget. Ezt követően a a **hozzáadása hozzárendelés** ablaktáblán válassza előbb **felhasználók és csoportok**.
+4. Válassza a **Hozzáadás** lehetőséget. Ezt követően a hello **hozzáadása hozzárendelés** ablaktáblán válassza előbb **felhasználók és csoportok**.
 
-    ![A hozzárendelés hozzáadása panelen][203]
+    ![hello hozzárendelés hozzáadása panelen][203]
 
-5. Az a **felhasználók és csoportok** párbeszédpanelen jelölje ki **Britta Simon** a felhasználók listában.
+5. A hello **felhasználók és csoportok** párbeszédpanelen jelölje ki **Britta Simon** hello felhasználók listában.
 
-6. Az a **felhasználók és csoportok** párbeszédpanelen jelölje ki **válasszon**.
+6. A hello **felhasználók és csoportok** párbeszédpanelen jelölje ki **válasszon**.
 
-7. Az a **hozzáadása hozzárendelés** párbeszédpanelen jelölje ki **hozzárendelése**.
+7. A hello **hozzáadása hozzárendelés** párbeszédpanelen jelölje ki **hozzárendelése**.
     
 ### <a name="test-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Az SSO-beállítások tesztelésére, nyissa meg a hozzáférési Panel.
-További információkért lásd: [Bevezetés a Hozzáférési panel használatába](active-directory-saas-access-panel-introduction.md).
+Ha tootest az egyszeri Bejelentkezést a beállításokat, nyissa meg a hozzáférési Panel hello.
+További információkért lásd: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Tekintse meg a [SaaS-alkalmazásokhoz az Azure Active Directoryval integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md).
+* Lásd: hello [kapcsolatos bemutatók felsorolása toointegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md).
 * Olvasási [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval?](active-directory-appssoaccess-whatis.md).
-* További tudnivalók a [konfigurálja, a felhasználók átadása](active-directory-saas-facebook-at-work-provisioning-tutorial.md).
+* További tudnivalók túl[konfigurálja, a felhasználók átadása](active-directory-saas-facebook-at-work-provisioning-tutorial.md).
 
 
 

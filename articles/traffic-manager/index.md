@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Traffic Manager dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Ismerje meg, hogy hogyan kezelje a bejövő forgalmat az optimális alkalmazásteljesítmény eléréséhez. A dokumentáció bemutatja a forgalom Azure- vagy külső szolgáltatásvégpontok közötti elosztásának lehetőségeit."
+title: "aaaAzure Traffic Manager-dokumentáció – oktatóanyagok API-referencia |} Microsoft Docs"
+description: "Ismerje meg, hogyan toomanage bejövő forgalmat, az optimális alkalmazásteljesítmény. Dokumentációja bemutatja, hogyan toodistribute forgalom tooAzure vagy külső végpontok."
 services: traffic-manager
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 5ba8a589e319928365dbdc5fb6b2295119de77ea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bb547f220186c8db9020bcd61a7e4c4d47838107
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="traffic-manager-documentation"></a>Traffic Manager-dokumentáció
 
-Ismerje meg a Traffic Manager használatát a bejövő forgalom irányítására az optimális alkalmazásteljesítmény és megbízhatóság eléréséhez. Az oktatóanyagok, API-referenciák, és egyéb dokumentációk bemutatják a forgalom Azure- vagy külső szolgáltatásvégpontok közötti elosztásának módszereit.
+Ismerje meg, hogyan toouse Traffic Manager tooroute bejövő forgalmat, az alkalmazás optimális teljesítmény és megbízhatóság. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt megjelenítése hogyan toomanage forgalom tooAzure vagy külső végpontok.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -88,7 +88,7 @@ Ismerje meg a Traffic Manager használatát a bejövő forgalom irányítására
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Ismerkedés a Traffic Manager-végpontok kezelésével az Azure-portál használatával</h3>
+                        <h3>Első lépések használatával hello Azure portál Traffic Manager végpontok kezelése</h3>
                     </div>
                 </div>
             </div>

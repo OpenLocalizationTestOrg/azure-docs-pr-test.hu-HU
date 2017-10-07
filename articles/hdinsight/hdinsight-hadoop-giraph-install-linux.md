@@ -1,6 +1,6 @@
 ---
-title: "Telepítheti és használhatja Giraph HDInsight (Hadoop) - Azure |} Microsoft Docs"
-description: "Megtudhatja, hogyan Giraph telepítése Linux-alapú HDInsight-fürtök Parancsfájlműveletek használatával. A Parancsfájlműveletek engedélyezi, hogy testre szabhatja a fürt létrehozásakor fürtkonfiguráció módosításával, vagy a szolgáltatások és segédprogramok telepítése."
+title: "aaaInstall és Giraph használata a HDInsight (Hadoop) - Azure-on |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooinstall Giraph a Linux-alapú HDInsight clusters Parancsfájlműveletek használatával. A Parancsfájlműveletek lehetővé teszik toocustomize hello fürt létrehozásakor fürtkonfiguráció módosításával, vagy a szolgáltatások és segédprogramok telepítése."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,65 +16,65 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: 6e2f6983e00f874420f7f0907dbc68185f0af713
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0f195b65cebf5e24d1808ef33b95b4d362555521
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="install-giraph-on-hdinsight-hadoop-clusters-and-use-giraph-to-process-large-scale-graphs"></a>HDInsight Hadoop-fürtök Giraph telepítse, és nagy méretű diagramjait feldolgozásához Giraph használni
+# <a name="install-giraph-on-hdinsight-hadoop-clusters-and-use-giraph-tooprocess-large-scale-graphs"></a>HDInsight Hadoop-fürtök Giraph telepítse, és Giraph tooprocess nagyméretű diagramjait használata
 
-Útmutató Apache Giraph telepítse a HDInsight-fürtöt. A HDInsight a parancsfájl művelet a szolgáltatás lehetővé teszi a fürt testreszabását bash parancsfájl futtatásával. Parancsfájlok segítségével testre szabhatja a fürtök alatt és a fürt létrehozása után.
+Megtudhatja, hogyan tooinstall Apache Giraph a HDInsight-fürtöt. hello parancsfájl művelet a HDInsight lehetővé teszi toocustomize a fürt bash parancsfájl futtatásával. Parancsfájlok lehet használt toocustomize fürtök alatt és a fürt létrehozása után.
 
 > [!IMPORTANT]
-> A jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Linux igényelnek. A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> hello jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Linux igényelnek. Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a name="whatis"></a>Mi az a Giraph
 
-[Apache Giraph](http://giraph.apache.org/) lehetővé teszi a végrehajtását diagramfeldolgozás Hadoop használatával, és az Azure HDInsight használható. Diagramokat objektumok közötti kapcsolatok modellezésére. Például a nagy hálózati útválasztók közötti kapcsolatok, mint például az internetről, vagy a közösségi hálózatokkal személyek közötti kapcsolatok. Graph feldolgozás lehetővé teszi a ok egy grafikonon objektumok közötti kapcsolatok, mint:
+[Apache Giraph](http://giraph.apache.org/) lehetővé teszi a Hadoop használatával tooperform diagramfeldolgozás, és az Azure HDInsight használható. Diagramokat objektumok közötti kapcsolatok modellezésére. Például hello kapcsolatok nagy hálózati útválasztók között, mint például hello Internet, vagy a közösségi hálózatokkal személyek közötti kapcsolatok. Graph feldolgozás lehetővé teszi a tooreason kapcsolatos hello kapcsolatai egy grafikonon objektumok, mint:
 
 * A jelenlegi kapcsolatok alapján lehetséges ismerősök azonosítása.
 
-* Azonosítja a legrövidebb útvonal hálózatban két számítógép között.
+* Azonosító hello legrövidebb útvonal hálózatban két számítógép között.
 
-* A lap rangot a weblapok kiszámítása.
+* A weblapok hello lap indulva számított rangját kiszámítása.
 
 > [!WARNING]
-> A HDInsight-fürt összetevői teljes mértékben támogatottak, mert a Microsoft Support segít elkülöníteni, és ezeket az összetevőket kapcsolatos problémák megoldásához.
+> Hello HDInsight-fürt összetevői teljes mértékben támogatottak, mert a Microsoft Support tooisolate segítségével, és hárítsa el a problémákat kapcsolódó toothese összetevőket.
 >
-> Egyéni összetevők, például Giraph, minden üzleti szempontból ésszerű terméktámogatási segítséget nyújtanak a probléma további hibaelhárításához. Microsoft Support lehet a probléma megoldását. Ha nem, ahol részletes segítséget, hogy a technológiát található nyílt forráskódú Közösségek kell tájékozódnia. Például nincsenek sok közösségi webhelyek használható, például: [MSDN fórum hdinsight](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hdinsight), [http://stackoverflow.com](http://stackoverflow.com). Is Apache projektek rendelkezik projekt helyek [http://apache.org](http://apache.org), például: [Hadoop](http://hadoop.apache.org/).
+> Egyéni összetevők, például Giraph, minden üzleti szempontból ésszerű támogatási toohelp fogadni, toofurther hello problémával kapcsolatos hibaelhárítás elősegítéséhez. Microsoft Support képes tooresolving hello probléma lehet. Ha nem, ahol részletes segítséget, hogy a technológiát található nyílt forráskódú Közösségek kell tájékozódnia. Például nincsenek sok közösségi webhelyek használható, például: [MSDN fórum hdinsight](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hdinsight), [http://stackoverflow.com](http://stackoverflow.com). Is Apache projektek rendelkezik projekt helyek [http://apache.org](http://apache.org), például: [Hadoop](http://hadoop.apache.org/).
 
 
-## <a name="what-the-script-does"></a>A parancsfájl funkciója
+## <a name="what-hello-script-does"></a>Milyen hello parancsprogram
 
-Ezt a parancsfájlt a következő műveleteket hajtja végre:
+Ez a parancsfájl hello a következő műveleteket hajtja végre:
 
-* Giraph történő telepítése`/usr/hdp/current/giraph`
+* Giraph túl telepíti`/usr/hdp/current/giraph`
 
-* Másolja a `giraph-examples.jar` fájl alapértelmezett Storage (WASB) a fürt:`/example/jars/giraph-examples.jar`
+* Másolatot hello `giraph-examples.jar` fájltárolás toodefault (WASB) a fürt:`/example/jars/giraph-examples.jar`
 
 ## <a name="install"></a>A Parancsfájlműveletek segítségével Giraph telepítése
 
-Egy HDInsight-fürtök Giraph telepítendő parancsfájlt a következő helyen érhető el:
+Egy minta parancsfájlt tooinstall Giraph egy HDInsight-fürt hello a következő helyen érhető el:
 
     https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh
 
-Ez a szakasz utasításokat biztosít a minta-parancsfájl használata a fürt létrehozásakor az Azure portál használatával.
+Ez a szakasz útmutatás hogyan toouse hello hello Azure-portál használatával hello fürt létrehozásakor minta parancsfájlt.
 
 > [!NOTE]
-> A parancsfájl művelet a következő módszerekkel történő alkalmazhatók:
+> A parancsfájlművelet hello a következő módszerek bármelyikével alkalmazhatók:
 > * Azure PowerShell
-> * Az Azure parancssori felület
-> * A HDInsight .NET SDK
+> * hello Azure parancssori felület
+> * hello HDInsight .NET SDK
 > * Azure Resource Manager-sablonok
 > 
-> Már fut a fürtök Parancsfájlműveletek is alkalmazhat. További információkért lásd: [testreszabása HDInsight-fürtök parancsfájlműveletekkel](hdinsight-hadoop-customize-cluster-linux.md).
+> A futó fürtök parancsfájl műveletek tooalready is alkalmazhat. További információkért lásd: [testreszabása HDInsight-fürtök parancsfájlműveletekkel](hdinsight-hadoop-customize-cluster-linux.md).
 
-1. Indítsa el a fürt létrehozása a lépések segítségével [létrehozása Linux-alapú HDInsight-fürtök](hdinsight-hadoop-create-linux-clusters-portal.md), de nem hajtja végre létrehozása.
+1. Indítsa el a fürt létrehozása a hello lépések segítségével [létrehozása Linux-alapú HDInsight-fürtök](hdinsight-hadoop-create-linux-clusters-portal.md), de nem hajtja végre létrehozása.
 
-2. Az a **opcionális konfigurációs** panelen válassza **Parancsfájlműveletek**, és adja meg a következő információkat:
+2. A hello **opcionális konfigurációs** panelen válassza **Parancsfájlműveletek**, és adja meg a következő információ hello:
 
-   * **NÉV**: Adja meg a parancsfájlművelet rövid nevét.
+   * **NÉV**: Adjon meg egy rövid nevet hello parancsfájlművelet.
 
    * **PARANCSFÁJL URI azonosítója**: https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh
 
@@ -86,15 +86,15 @@ Ez a szakasz utasításokat biztosít a minta-parancsfájl használata a fürt l
 
    * **PARAMÉTEREK**: ezt a mezőt hagyja üresen
 
-3. Alján a **Parancsfájlműveletek**, használja a **válasszon** gombra kattintva mentse a konfigurációt. Végül a **válasszon** gomb alján a **opcionális konfigurációs** panelt, és mentse a nem kötelező konfigurációs adatokat.
+3. Hello hello alján **Parancsfájlműveletek**, hello használata **válasszon** gombok toosave hello beállítása. Végezetül a hello használata **kiválasztása** hello hello alján gomb **opcionális konfigurációs** panel toosave hello opcionális konfigurációs információkat.
 
-4. A fürt létrehozása, a folytatáshoz [létrehozása Linux-alapú HDInsight-fürtök](hdinsight-hadoop-create-linux-clusters-portal.md).
+4. Hello fürtöt hoz létre, a folytatáshoz [létrehozása Linux-alapú HDInsight-fürtök](hdinsight-hadoop-create-linux-clusters-portal.md).
 
 ## <a name="usegiraph"></a>Giraph használata a Hdinsightban
 
-Ha a fürt létrejött, a következő lépésekkel a mellékelt Giraph SimpleShortestPathsComputation példa futtatásához. Ez a példa a basic [Pregel](http://people.apache.org/~edwardyoon/documents/pregel.pdf) megvalósítása a legrövidebb elérési út egy grafikonon objektumok közötti kereséséhez.
+Hello fürt létrehozása után használja a következő lépéseket toorun hello SimpleShortestPathsComputation példa Giraph mellékelt hello. Ez a példa hello basic [Pregel](http://people.apache.org/~edwardyoon/documents/pregel.pdf) megvalósítása a hello legrövidebb elérési út egy grafikonon objektumok közötti kereséshez.
 
-1. Csatlakozzon SSH-val a HDInsight-fürthöz:
+1. Csatlakozzon az SSH használatával toohello HDInsight-fürt:
 
     ```bash
     ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
@@ -102,13 +102,13 @@ Ha a fürt létrejött, a következő lépésekkel a mellékelt Giraph SimpleSho
 
     További információk: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Az alábbi parancs segítségével hozzon létre egy fájlt **tiny_graph.txt**:
+2. Használjon hello következő parancsot a toocreate nevű fájlt **tiny_graph.txt**:
 
     ```bash
     nano tiny_graph.txt
     ```
 
-    Ez a fájl tartalmát a következő szöveg használata:
+    Szöveg hello a fájl tartalmát, a következő hello használata:
 
     ```text
     [0,0,[[1,1],[3,3]]]
@@ -118,49 +118,49 @@ Ha a fürt létrejött, a következő lépésekkel a mellékelt Giraph SimpleSho
     [4,0,[[3,4],[2,4]]]
     ```
 
-    Ezek az adatok irányított gráf, a következő formátumban objektumok közötti kapcsolatot ismerteti `[source_id, source_value,[[dest_id], [edge_value],...]]`. Minden egyes sorban közötti kapcsolatot jelent a `source_id` objektum és egy vagy több `dest_id` objektumok. A `edge_value` -re a erőssége vagy a kapcsolat közötti távolság `source_id` és `dest\_id`.
+    Ezek az adatok egy irányított gráf hello formátum használatával az objektumok közötti kapcsolatot ismerteti `[source_id, source_value,[[dest_id], [edge_value],...]]`. Minden egyes sorban közötti kapcsolatot jelent a `source_id` objektum és egy vagy több `dest_id` objektumok. Hello `edge_value` -re hello erőssége vagy hello kapcsolat közötti távolság `source_id` és `dest\_id`.
 
-    Jelenik meg, és objektumok közötti távolságot a érték (vagy súly) használ, az adatok nézhet ki például az alábbi ábra:
+    Jelenik meg, és objektumok közötti távolság hello hello érték (vagy súly) használ, hello adatok nézhet ki például a következő diagram hello:
 
     ![különböző távolságát sornyi kör Megrajzolás tiny_graph.txt](./media/hdinsight-hadoop-giraph-install-linux/giraph-graph.png)
 
-3. Mentse a fájlt, használja a **Ctrl + X**, majd **Y**, és végül **Enter** fogadja el a fájlt.
+3. toosave hello fájl használata **Ctrl + X**, majd **Y**, és végül **Enter** tooaccept hello fájl nevét.
 
-4. A HDInsight-fürtjéhez elsődleges tárba. az adatok tárolásához használja a következőket:
+4. A HDInsight-fürthöz elsődleges tárba toostore hello adatokat követő hello használata:
 
     ```bash
     hdfs dfs -put tiny_graph.txt /example/data/tiny_graph.txt
     ```
 
-5. Futtassa a SimpleShortestPathsComputation például a következő parancsot:
+5. Futtassa a hello SimpleShortestPathsComputation példa hello a következő parancs használatával:
 
     ```bash
     yarn jar /usr/hdp/current/giraph/giraph-examples.jar org.apache.giraph.GiraphRunner org.apache.giraph.examples.SimpleShortestPathsComputation -ca mapred.job.tracker=headnodehost:9010 -vif org.apache.giraph.io.formats.JsonLongDoubleFloatDoubleVertexInputFormat -vip /example/data/tiny_graph.txt -vof org.apache.giraph.io.formats.IdWithValueTextOutputFormat -op /example/output/shortestpaths -w 2
     ```
 
-    Ezzel a paranccsal használt paraméterek a következő táblázat ismerteti:
+    Ez a parancs paramétereit hello hello a következő táblázat ismerteti:
 
    | Paraméter | Funkció |
    | --- | --- |
-   | `jar` |A példák tartalmazó jar-fájlt. |
-   | `org.apache.giraph.GiraphRunner` |Az osztály a példák indításához használt. |
-   | `org.apache.giraph.examples.SimpleShortestPathsCoputation` |A példában használt. Ebben a példában kiszámítja a legrövidebb elérési azonosítója 1 és a Graph más azonosítók között. |
-   | `-ca mapred.job.tracker` |A fürt headnode. |
-   | `-vif` |A bemeneti az formátumát a bemeneti adatok. |
-   | `-vip` |A bemeneti adatfájlt. |
-   | `-vof` |A kimeneti formátum. A példa, azonosítója és egyszerű szövegként érték. |
-   | `-op` |A kimeneti helyet. |
-   | `-w 2` |A munkavállalók használandó száma. Ebben a példában, 2. |
+   | `jar` |hello jar-fájlt tartalmazó hello példák. |
+   | `org.apache.giraph.GiraphRunner` |hello osztályt használja a toostart hello példák. |
+   | `org.apache.giraph.examples.SimpleShortestPathsCoputation` |hello példára. Ebben a példában kiszámítja hello legrövidebb elérési út azonosítója 1 és más hello Graph azonosítók között. |
+   | `-ca mapred.job.tracker` |hello headnode hello fürthöz. |
+   | `-vif` |hello bemeneti formátum toouse hello bemeneti adatok. |
+   | `-vip` |hello bemeneti adatfájlt. |
+   | `-vof` |hello kimeneti formátum. A példa, azonosítója és egyszerű szövegként érték. |
+   | `-op` |hello kimeneti helyen. |
+   | `-w 2` |feldolgozók toouse hello száma. Ebben a példában, 2. |
 
-    Ezeket és más Giraph minták használt paraméterek további információkért lásd: a [Giraph gyors üzembe helyezés](http://giraph.apache.org/quick_start.html).
+    Ezeket és más Giraph minták használt paraméterek további információkért lásd: hello [Giraph gyors üzembe helyezés](http://giraph.apache.org/quick_start.html).
 
-6. Ha a feladat befejeződött, az eredmények tárolódnak a **/example/out/shotestpaths** könyvtár. A kimeneti fájl kezdődő **rész-m -** és véget a száma, amelyben az első, a második, a fájl stb. A következő paranccsal eredményének megtekintéséhez:
+6. Miután hello feladat befejeződött, hello eredmények hello vannak tárolva **/example/out/shotestpaths** könyvtár. hello kimeneti fájl kezdődő **rész-m -** és végződhet azonosítószámát hello először, másrészt fájl stb. A következő parancs tooview hello kimeneti hello használata:
 
     ```bash
     hdfs dfs -text /example/output/shortestpaths/*
     ```
 
-    A kimenet az alábbihoz hasonló kell megjelennie:
+    hello kimeneti megjelenjen-e a következő szöveg hasonló toohello:
 
         0    1.0
         4    5.0
@@ -168,9 +168,9 @@ Ha a fürt létrejött, a következő lépésekkel a mellékelt Giraph SimpleSho
         1    0.0
         3    1.0
 
-    A kódolt kezdődnie példája rögzített SimpleShortestPathComputation azonosítója 1 objektum, és keresse meg a legrövidebb más objektumok elérési útja. A kimeneti formátumban van `destination_id` és `distance`. A `distance` objektum azonosítója 1 és a célként megadott azonosító közötti távolság széleinek érték (vagy súlya)
+    hello SimpleShortestPathComputation példa nél nagyobb toostart objektum azonosítója 1 és hello legrövidebb elérési tooother objektumok keresése. hello kimeneti hello formátumban van `destination_id` és `distance`. Hello `distance` , de hello érték (súly) amennyi hello szegélye között objektum azonosítója 1 és hello cél azonosítót.
 
-    Ezek az adatok megjelenítése, ellenőrizheti az eredményeket a legrövidebb elérési utak utazás azonosítója 1 és egyéb objektumok között. A legrövidebb azonosítója 1 és 4 azonosító közötti elérési út 5. Az értéket nem teljes távolságát <span style="color:orange">azonosítója 1. és 3</span>, majd <span style="color:red">azonosító 3. és 4</span>.
+    Ezek az adatok megjelenítése, ellenőrizheti hello eredmények hello legrövidebb elérési utak utazás azonosítója 1 és egyéb objektumok között. hello legrövidebb azonosítója 1 és 4 azonosító közötti elérési út 5. Az értéket nem hello teljes közötti távolság szerint <span style="color:orange">azonosítója 1. és 3</span>, majd <span style="color:red">azonosító 3. és 4</span>.
 
     ![Az objektumok rajzolási körök mint a legrövidebb elérési utak között](./media/hdinsight-hadoop-giraph-install-linux/giraph-graph-out.png)
 

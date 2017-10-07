@@ -1,5 +1,5 @@
 ---
-title: "Ismerkedés az Azure Log Analytics-munkaterülettel | Microsoft Docs"
+title: "az Azure Log Analytics-munkaterülethez használatába aaaGet |} Microsoft Docs"
 description: "A Log Analyticsban a munkaterület percek alatt üzembe helyezhető."
 services: log-analytics
 documentationcenter: 
@@ -14,144 +14,144 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/08/2017
 ms.author: magoedte
-ms.openlocfilehash: 7bdbdf8654ae22ba143d5f87384e04fe4a11d10e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 442a9258a37ee79e8f0b45759ef24b5e3dae0130
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-a-log-analytics-workspace"></a>Ismerkedés a Log Analytics-munkaterülettel
 Az Azure Log Analytics percek alatt üzembe helyezhető, és segít kiértékelni az informatikai infrastruktúrából gyűjtött operatív adatelemzési információkat. Ennek a cikknek a segítségével könnyedén nekiláthat az *ingyenesen* gyűjtött adatok felfedezésének és elemzésének, valamint reagálhat azokra.
 
-Ez a cikk bevezetőként szolgál a Log Analytics használatába, és egy rövid oktatóanyagon keresztül végigvezeti egy minimális Azure-alapú üzemi példány létrehozásán, így rögtön el is kezdheti használni a szolgáltatást. A logikai tárolót, amely az Azure-ban a felügyeleti adatok tárolására szolgál, munkaterületnek nevezzük. Miután áttekintette ezeket az információkat, és elvégezte az értékelésüket, eltávolíthatja a kiértékelési munkaterületet. Lévén ez a cikk egy oktatóanyag, az üzleti követelményekkel, a tervezéssel és az architektúrával kapcsolatos iránymutatásokkal nem foglalkozik.
+Ez a cikk szolgál egy bevezető tooLog Analytics egy rövid útmutató toowalk használatának meg a minimális központi az Azure-ban, hogy elindíthatja hello szolgáltatás használatával. hello logikai tárolónak tárolja a felügyeleti adatokat az Azure-ban a munkaterület neve. Miután befejezte a saját értékelési és olvasta ezt az információt, eltávolíthatja a hello értékelési munkaterületen. Lévén ez a cikk egy oktatóanyag, az üzleti követelményekkel, a tervezéssel és az architektúrával kapcsolatos iránymutatásokkal nem foglalkozik.
 
 >[!NOTE]
->A Microsoft Azure Government Cloud használata esetén inkább az [Azure Government felügyeletének és kezelésének dokumentációját](https://docs.microsoft.com/azure/azure-government/documentation-government-services-monitoringandmanagement#log-analytics) érdemes áttekintenie.
+>Ha a Microsoft Azure Government felhő hello használja, a [Azure Government figyelési + dokumentáció](https://docs.microsoft.com/azure/azure-government/documentation-government-services-monitoringandmanagement#log-analytics) helyette.
 
-Elsőként is érdemes röviden áttekinteni az Ön előtt álló folyamatot:
+Itt található lépések hello használt folyamat tooget gyorsan át:
 
 ![folyamatábra](./media/log-analytics-get-started/onboard-oms.png)
 
 ## <a name="1-create-an-azure-account-and-sign-in"></a>1 Azure-fiók létrehozása és bejelentkezés
 
-Ha még nem rendelkezik Azure-fiókkal, először létre kell egyet hoznia a Log Analytics használatához. Létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/), amely 30 napon keresztül működik, és ezalatt bármely Azure-szolgáltatáshoz hozzáférést biztosít.
+Ha még nem rendelkezik Azure-fiókra, toocreate egy toouse Naplóelemzési kell. Létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/), amely 30 napon keresztül működik, és ezalatt bármely Azure-szolgáltatáshoz hozzáférést biztosít.
 
-### <a name="to-create-a-free-account-and-sign-in"></a>Ingyenes fiók létrehozása és bejelentkezés
-1. Kövesse az [ingyenes Azure-fiók létrehozását](https://azure.microsoft.com/free/) ismertető utasításokat.
-2. Nyissa meg az [Azure Portalt](https://portal.azure.com), és jelentkezzen be.
+### <a name="toocreate-a-free-account-and-sign-in"></a>toocreate egy ingyenes fiókot, és jelentkezzen be
+1. Kövesse a hello utasításokat [az ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/free/).
+2. Nyissa meg toohello [Azure-portálon](https://portal.azure.com) , jelentkezzen be.
 
 ## <a name="2-create-a-workspace"></a>2 Munkaterület létrehozása
 
-A következő lépés egy munkaterület létrehozása.
+hello következő lépés egy munkaterület toocreate.
 
-1. Az Azure Portalon, a Piactéren keressen a *Log Analytics* kifezezésre a szolgáltatások listájában, majd válassza ki a **Log Analytics** elemet.  
+1. Hello Azure-portálon, a Keresés a piactér hello szolgáltatás hello listája a *Naplóelemzési*, majd válassza ki **Naplóelemzési**.  
     ![Azure Portal](./media/log-analytics-get-started/log-analytics-portal.png)
-2. Kattintson a **Létrehozás** gombra, majd válassza ki az egyik lehetőséget a következő elemeknél:
+2. Kattintson a **létrehozása**, majd válassza ki a következő elemek hello lehetőségeit:
    * **OMS-munkaterület** – Adja meg a munkaterület nevét.
-   * **Előfizetés** – Ha több előfizetéssel rendelkezik, válassza ki azt, amelyiket társítani szeretné az új munkaterülethez.
+   * **Előfizetés** – Ha több előfizetéssel, válassza ki a kívánt hello új munkaterület tooassociate hello rendelkezik.
    * **Erőforráscsoport**
    * **Hely**
    * **Tarifacsomag**  
        ![gyors létrehozás](./media/log-analytics-get-started/oms-onboard-quick-create.png)
-3. Kattintson az **OK** gombra a munkaterületek listájának megtekintéséhez.
-4. Válasszon ki egy munkaterületet, hogy megtekinthesse a részleteit az Azure Portalon.       
+3. Kattintson a **OK** toosee a munkaterületek listáját.
+4. Válassza ki a munkaterület toosee a részletek hello Azure-portálon.       
     ![munkaterület részletei](./media/log-analytics-get-started/oms-onboard-workspace-details.png)         
 
-## <a name="3-upgrade-workspace-to-new-log-search"></a>3 A munkaterület frissítése új naplókeresésre
-Új Log Analytics lekérdezési nyelv érhető el. A nyelv által kínált előnyök kihasználásához át kell alakítania a munkaterületét.  Ha a régió, amelyben a munkaterület üzemeltetve van, frissül, egy lila szalagcím jelenik meg a munkaterület tetején, amely felkéri Önt az átalakításra. A frissítés teljesen önkéntes, és nincs hatással a Log Analytics és a hozzáadott megoldások által biztosított felhasználói élményre.  
+## <a name="3-upgrade-workspace-toonew-log-search"></a>3 frissítési munkaterület toonew napló keresése
+Új Naplóelemzési lekérdezésnyelvet kiadása és rendelés tootake előnye az, hogy kell tooconvert a munkaterület.  Ha a munkaterület üzemeltetett hello régió frissítve lett, meg kell jelennie egy lila szalagcím hello tetején a munkaterület felkérte a tooconvert. hello frissítése teljes mértékben önkéntes, és nem befolyásolja a felhasználói élmény a Naplóelemzési és bármely megoldások ad hozzá.  
 
-Az előnyöket, a szempontokat és a frissítés folyamatát ismertető további információkért tekintse meg [az Azure Log Analytics új naplókeresésre való frissítését](log-analytics-log-search-upgrade.md) bemutató cikket.  
+További információk toounderstand hello juttatásra, a szempontok és a folyamat tooupgrade, lásd: [frissítése Azure Naplóelemzés toonew napló keresési](log-analytics-log-search-upgrade.md).  
 
 ## <a name="4-add-solutions-and-solution-offerings"></a>4 Megoldások és megoldásajánlatok hozzáadása
 
 A következő lépésben adjon hozzá megoldásokat és megoldásajánlatokat. A felügyeleti megoldások egy adott problématerületet érintő mérőszámokat szolgáltató logikai, adatábrázolási és adatgyűjtési szabályok gyűjteményei. A megoldásajánlat alatt csomagba foglalt felügyeleti megoldásokat értünk.
 
-A megoldások a munkaterülethez való hozzáadásával a Log Analytics különféle adatokat lesz képes gyűjteni az ügynökök révén hozzácsatolt számítógépekről. A felvételi ügynökökről a későbbiekben lesz szó.
+Hozzáadása megoldások tooyour munkaterület lehetővé teszi Naplóelemzési toocollect különböző típusú adatok tartozó ügynökök használatával csatlakoztatott tooyour munkaterület számítógépekről. A felvételi ügynökökről a későbbiekben lesz szó.
 
-### <a name="to-add-solutions-and-solution-offerings"></a>Megoldások és megoldásajánlatok hozzáadása
+### <a name="tooadd-solutions-and-solution-offerings"></a>tooadd megoldások és a megoldás ajánlatok
 
-1. Az Azure portálon kattintson az **Új** gombra, majd a **Keresés a piactéren** mezőbe írja be az **Activity Log Analytics** kifejezést, és nyomja le az ENTER billentyűt.
-2. A Minden erőforrás panelen válassza ki az **Activity Log Analytics** lehetőséget, majd kattintson a **Létrehozás** gombra.  
+1. Az Azure portálon kattintson **új** , majd a hello **hello a piactéren** mezőbe írja be **tevékenység Naplóelemzési** , és nyomja le az ENTER BILLENTYŰT.
+2. A hello mindent panelen válassza **tevékenység Naplóelemzési** majd **létrehozása**.  
     ![Activity Log Analytics](./media/log-analytics-get-started/activity-log-analytics.png)  
-3. A *Felügyeleti megoldás neve* panelen válassza ki azt a munkaterületet, amelyet a felügyeleti megoldáshoz társítani kíván.
-4. Kattintson a **Létrehozás** gombra.  
+3. A hello *felügyeleti megoldás neve* panelen válassza ki a megfelelő munkaterület, amelyet az tooassociate hello felügyeleti megoldással.
+4. Kattintson a **Create** (Létrehozás) gombra.  
     ![megoldás munkaterület](./media/log-analytics-get-started/solution-workspace.png)  
-5. Az 1–4. lépés megismétlésével adja hozzá a következőket:
-    - A **Biztonság és megfelelőség** szolgáltatásajánlatot a Kártevőirtók felmérése és a Biztonság és naplózás megoldással.
-    - Az **Automatizálás és vezérlés** szolgáltatásajánlatot az Automation hibrid feldolgozó, a Változáskövetés és a Rendszerfrissítési felmérés (más néven Frissítéskezelés) megoldással. A szolgáltatásajánlat hozzáadásakor létre kell hoznia egy Automation-fiókot.  
+5. Ismételje meg a lépéseket: 1-4 tooadd:
+    - Hello **biztonsági és megfelelőségi** szolgáltatásajánlat hello Assessment kártevőirtó és biztonsági és naplózási megoldásokkal.
+    - Hello **Automation & vezérlő** szolgáltatásajánlat hello Automation Hibridfeldolgozó, a változások követése és a rendszer frissítések értékelését (más néven frissítéskezelés) megoldásokat. Hello megoldás ajánlat hozzáadásakor, létre kell hoznia az Automation-fiók.  
         ![Automation-fiók](./media/log-analytics-get-started/automation-account.png)  
-6. A munkaterülethez hozzáadott felügyeleti megoldások áttekintéséhez lépjen a **Log Analytics** > **Előfizetések** > ***a munkaterület neve*** > **Áttekintés** felületre. Itt láthatóak a hozzáadott felügyeleti megoldások csempéi.  
+6. Megtekintheti a hello megoldások tooyour munkaterület túl navigálva hozzáadott**Naplóelemzési** > **előfizetések** > ***munkaterületneve***  >  **Áttekintése**. Hello felügyeleti megoldásokra hozzáadott csempék jelennek meg.  
     >[!NOTE]
-    >Mivel még nem csatlakoztattunk ügynököket a munkaterülethez, így nem jelennek meg a hozzáadott megoldások adatai.  
+    >Jelenleg még nem csatlakozott bármely ügynökök toohello munkaterületen, mert nem látható a hozzáadott hello megoldások adatokat.  
 
     ![megoldások csempéi adatok nélkül](./media/log-analytics-get-started/solutions-no-data.png)
 
 ## <a name="4-create-a-vm-and-onboard-an-agent"></a>4 Virtuális gép létrehozása és ügynök felvétele
 
-A következő lépésben hozzon létre egy egyszerű virtuális gépet az Azure-ban. Miután létrehozta a virtuális gépet, vegye fel, és ezáltal engedélyezze az OMS-ügynököt. Az ügynök engedélyezésével megkezdődik az adatok gyűjtése a virtuális gépen, és a továbbításuk a Log Analyticsbe.
+A következő lépésben hozzon létre egy egyszerű virtuális gépet az Azure-ban. Miután létrehozta a virtuális gépek előkészítésére hello OMS-ügynök tooenable azt. Lehetővé teszi hello ügynök hello VM adatgyűjtés indul, és adatok tooLog Analytics küld.
 
-### <a name="to-create-a-virtual-machine"></a>Virtuális gép létrehozása
+### <a name="toocreate-a-virtual-machine"></a>a virtuális gépek toocreate
 
-- Kövesse [az első Windows rendszerű virtuális gép az Azure Portalon történő létrehozását](../virtual-machines/virtual-machines-windows-hero-tutorial.md) ismertető témakör útmutatásait, és indítsa el az új virtuális gépet.
+- Hello kövesse a következő [az első Windows rendszerű virtuális gép létrehozása az Azure-portálon hello](../virtual-machines/virtual-machines-windows-hero-tutorial.md) és hello új virtuális gép elindításához.
 
-### <a name="connect-the-virtual-machine-to-log-analytics"></a>A virtuális gép csatlakoztatása a Log Analyticshez
+### <a name="connect-hello-virtual-machine-toolog-analytics"></a>Csatlakozás hello virtuális gép tooLog elemzés
 
-- Kövesse az [Azure-beli virtuális gépek a Log Analyticshez történő csatlakoztatását](log-analytics-azure-vm-extension.md) ismertető témakör útmutatásait a virtuális gép és a Log Analytics az Azure Portal segítségével történő csatlakoztatásához.
+- Kövesse a hello utasításokat [csatlakozás Azure virtuális gépek tooLog Analytics](log-analytics-azure-vm-extension.md) tooconnect hello VM tooLog analyticset hello Azure-portálon.
 
 ## <a name="6-view-and-act-on-data"></a>6 Adatok megtekintése és reagálás
 
-Előzőleg már engedélyezte az Activity Log Analytics megoldást, valamint a Biztonság és megfelelőség és az Automatizálás és vezérlés szolgáltatásajánlatot. A következő lépésben elkezdjük áttekinteni a megoldások által gyűjtött adatokat és a naplókeresések során kapott eredményeket.
+Korábban engedélyezte hello tevékenység Naplóelemzési megoldás és hello biztonsági, megfelelőségi és automatizálás & vezérlő szolgáltatásajánlatok. A következő lépésben elkezdjük áttekinteni a megoldások által gyűjtött adatokat és a naplókeresések során kapott eredményeket.
 
-Kezdésképp nézzük meg a megoldásokon belül megjelenített adatokat. Ezután nézzünk meg néhány, a naplókeresésekben elérhető keresési eredményt. A naplókeresések segítségével a környezetben lévő különféle forrásokból származó adatokat ötvözhet, és feltárhatja az összefüggéseket. További információkért tekintse meg [a Log Analyticsben végzett naplókeresésekkel kapcsolatos](log-analytics-log-searches.md) cikket, vagy ha már átalakította a munkaterületet az új lekérdezési nyelvre, tekintse meg [a Log Analytics naplókereséseit ismertető](log-analytics-log-search-new.md) cikket. 
+toostart, nézze meg a megjelenő adatokat a megoldások belül. Ezután nézzünk meg néhány, a naplókeresésekben elérhető keresési eredményt. Napló keresések toocombine lehetővé teszi, és a számítógép adatainak a környezetben több forrásból. További információkért lásd: [Log Analytics-e jelentkezni a keresések](log-analytics-log-searches.md) , vagy ha a munkaterületet toohello új lekérdezési nyelv alakította át, keresse meg a [ismertetése napló keres a Naplóelemzési](log-analytics-log-search-new.md). 
 
-### <a name="to-view-antimalware-data"></a>A kártevőirtó adatainak megtekintése
+### <a name="tooview-antimalware-data"></a>tooview kártevőirtó adatok
 
-1. Az Azure Portalon lépjen a **Log Analytics** > ***saját munkaterület*** felületre.
-2. A munkaterület panelén, az **Általános** területen kattintson az **Áttekintés** elemre.  
+1. Az Azure-portálon hello, keresse meg a túl**Naplóelemzési** > ***a munkaterület***.
+2. A munkaterület hello panelen a **általános**, kattintson a **áttekintése**.  
     ![Áttekintés](./media/log-analytics-get-started/overview.png)
-3. Kattintson a **Kártevőirtók felmérése** csempére. Ebben a példában láthatja, hogy a Windows Defender telepítve van az egyik számítógépen, azonban az aláírása elavult.  
+3. Kattintson a hello **kártevőirtó Assessment** csempére. Ebben a példában láthatja, hogy a Windows Defender telepítve van az egyik számítógépen, azonban az aláírása elavult.  
     ![Kártevőirtó](./media/log-analytics-get-started/solution-antimalware.png)
-4. Példánk esetében a **Védelem állapota** területen kattintson az **Aláírás lejárt** elemre a Naplókeresés megnyitásához, ahol megtekintheti a lejárt aláírású számítógépeket. Példánkban a számítógép neve *getstarted*. Ha több olyan számítógép is van, amelyiknek lejárt az aláírása, mindegyik megjelenik a Naplókeresésben.  
+4. Az ebben a példában a **védelmi állapot**, kattintson a **aláírás elavult** tooopen naplófájl-keresési és hello számítógépek adatait, amely elavult aláírással rendelkeznek-e. Ebben a példában, vegye figyelembe, hogy hello a számítógépnek a neve *getstarted*. Ha egynél több számítógép elavult aláírásokkal, azok összes jelennek meg hello napló keresése az eredmények.  
     ![A kártevőirtó elavult](./media/log-analytics-get-started/antimalware-search.png)
 
-### <a name="to-view-security-and-audit-data"></a>A biztonsági és naplózási adatok megtekintése
+### <a name="tooview-security-and-audit-data"></a>Biztonsági és naplózási adatok tooview
 
-1. A munkaterület panelén, az **Általános** területen kattintson az **Áttekintés** elemre.  
-2. Kattintson a **Biztonság és naplózás** csempére. Példánkban két jelentős problémát láthat: az egyik számítógépről kritikus frissítések hiányoznak, egy másikon pedig nincs elégséges védelem.  
+1. A munkaterület hello panelen a **általános**, kattintson a **áttekintése**.  
+2. Kattintson a hello **biztonsági és naplózási** csempére. Példánkban két jelentős problémát láthat: az egyik számítógépről kritikus frissítések hiányoznak, egy másikon pedig nincs elégséges védelem.  
     ![Biztonság és naplózás](./media/log-analytics-get-started/security-audit.png)
-3. Példánk esetében a **Jelentős problémák** területen kattintson a **Kritikus frissítéseket igénylő számítógépek** elemre a Naplókeresés megnyitásához, ahol megtekintheti a kritikus frissítéseket nem tartalmazó számítógépek részleteit. Példánkban egy kritikus frissítés és 63 egyéb frissítés hiányzik.  
+3. Az ebben a példában a **jelentős problémák**, kattintson a **gépek, amelyekről kritikus frissítések hiányoznak** tooopen naplófájl-keresési és részleteit gépek, amelyekről kritikus frissítések hiányoznak. Példánkban egy kritikus frissítés és 63 egyéb frissítés hiányzik.  
     ![Biztonság és naplózás naplókeresése](./media/log-analytics-get-started/security-audit-log-search.png)
 
-### <a name="to-view-and-act-on-system-update-data"></a>Rendszerfrissítési adatok megtekintése és reagálás
+### <a name="tooview-and-act-on-system-update-data"></a>tooview és a törvény Rendszerfrissítés adatokon
 
-1. A munkaterület panelén, az **Általános** területen kattintson az **Áttekintés** elemre.  
-2. Kattintson a **Rendszerfrissítési felmérés** csempére. Példánkban azt láthatja, hogy van egy *getstarted* nevű Windows-számítógép, amelyről kritikus frissítések hiányoznak, egy másik számítógép pedig definíciófrissítésekre szorul.  
+1. A munkaterület hello panelen a **általános**, kattintson a **áttekintése**.  
+2. Kattintson a hello **rendszer frissítések értékelését** csempére. Példánkban azt láthatja, hogy van egy *getstarted* nevű Windows-számítógép, amelyről kritikus frissítések hiányoznak, egy másik számítógép pedig definíciófrissítésekre szorul.  
     ![Rendszerfrissítések](./media/log-analytics-get-started/system-updates.png)
-3. Példánk esetében a **Hiányzó frissítések** területen kattintson a **Kritikus frissítések** elemre a Naplókeresés megnyitásához, ahol megtekintheti a kritikus frissítéseket nem tartalmazó számítógépek részleteit. Példánkban egy frissítés hiányzik és egy szükséges.  
+3. Az ebben a példában a **hiányzó frissítések**, kattintson a **kritikus frissítések** tooopen naplófájl-keresési és részleteit gépek, amelyekről kritikus frissítések hiányoznak. Példánkban egy frissítés hiányzik és egy szükséges.  
     ![Rendszerfrissítések naplókeresése](./media/log-analytics-get-started/system-updates-log-search.png)
-4. Nyissa meg az [Operations Management Suite](http://microsoft.com/oms) webhelyet, és jelentkezzen be Azure-fiókjával. Miután bejelentkezett, láthatja, hogy a megoldás adatai hasonlóak az Azure Portalon látható adatokhoz.  
+4. Nyissa meg toohello [Operations Management Suite](http://microsoft.com/oms) webhelyet, és jelentkezzen be az Azure-fiókjával. Ha jelentkezett be, láthatja, hogy hello információkat hasonló toowhat hello Azure-portálon látható.  
     ![OMS-portál](./media/log-analytics-get-started/oms-portal.png)
-5. Kattintson a **Frissítéskezelés** csempére.
-6. A Frissítéskezelés irányítópultján láthatja, hogy a rendszerfrissítési adatok hasonlóak az Azure Portalon látható Rendszerfrissítés adataihoz. A **Frissítéstelepítések kezelése** csempe azonban egy új elem. Kattintson a **Frissítéstelepítések kezelése** csempére.  
+5. Kattintson a hello **frissítéskezelés** csempére.
+6. Hello frissítése kezelési irányítópulton láthatja, hogy hello rendszer frissítésekkel kapcsolatos információk hasonló toohello rendszer frissíteni információkat korábban már látott hello Azure-portálon. Azonban hello **frissítési telepítések kezelése** egy új csempe. Kattintson a hello **frissítési telepítések kezelése** csempére.  
     ![Frissítéskezelés csempe](./media/log-analytics-get-started/update-management.png)
-7. A **Frissítéstelepítések** lapon kattintson a **Hozzáadás** gombra egy *frissítés futtatásának* létrehozásához.  
+7. A hello **telepítések frissítése** kattintson **Hozzáadás** toocreate egy *frissítési menetet*.  
     ![Frissítéstelepítések](./media/log-analytics-get-started/update-management-update-deployments.png)
-8.  Az **Új frissítéstelepítés** lapon adja meg a frissítéstelepítés nevét, válassza ki a frissíteni kívánt számítógépeket (példánkban ez a *getstarted*), válassza ki az ütemezést, majd kattintson a **Mentés** gombra.  
+8.  A hello **új központi telepítésének** lapon adjon meg egy nevet hello központi telepítéséhez, és válassza ki a számítógépek tooupdate (ebben a példában *getstarted*), válassza ki egy ütemezést, és kattintson a **mentése**.  
     ![Új telepítés](./media/log-analytics-get-started/new-deployment.png)  
-    A frissítéstelepítés mentése után megjelenik az ütemezett frissítés.  
+    Hello központi telepítésének mentése után megjelenik-e ütemezett hello frissítése.  
     ![ütemezett frissítés](./media/log-analytics-get-started/scheduled-update.png)  
-    A frissítés futtatása után az állapot **Befejeződött** értékre vált.
+    Hello frissítési menet befejezése után hello állapotát jeleníti meg **befejezett**.
     ![befejezett frissítés](./media/log-analytics-get-started/completed-update.png)
-9. A frissítés futtatása után megtekintheti, hogy a futtatás sikeres volt-e vagy sem, és megtekintheti az alkalmazott frissítések részleteit.
+9. Hello frissítési menet befejezése után e hello futtatása sikeres volt-e, és megtekintheti, hogy mi frissítések alkalmazása adatait tekintheti meg.
 
 ## <a name="after-evaluation"></a>A kiértékelést követően
 
-Ebben az oktatóanyagban egy ügynököt telepített egy virtuális gépre, és azonnal munkához is látott. A végrehajtott lépések rövidek és egyszerűek voltak. A legtöbb nagyobb szervezet és vállalat azonban összetett helyszíni informatikai infrastruktúrával rendelkezik. És az adatgyűjtés az ilyen komplex környezetekből több tervezést és erőfeszítést igényel, mint amit az oktatóanyag elvégzése jelentett. Tekintse át az alábbi, Következő lépések elnevezésű szakaszban lévő információkat a további hasznos cikkekre mutató hivatkozásokért.
+Ebben az oktatóanyagban egy ügynököt telepített egy virtuális gépre, és azonnal munkához is látott. hello lépéseket követte gyors és egyszerű volt. A legtöbb nagyobb szervezet és vállalat azonban összetett helyszíni informatikai infrastruktúrával rendelkezik. Igen adatainak begyűjtése e összetett környezetek veszi további tervezési és tevékenységi, mint az oktatóanyag hello. Tekintse át a következő további lépések szakaszt az hivatkozások toohelpful cikkek hello hello információit.
 
-Az oktatóanyagban létrehozott munkaterületet igény szerint el is távolíthatja.
+Eltávolíthatja az oktatóanyaghoz létrehozott hello munkaterület nem kötelező.
 
 ## <a name="next-steps"></a>Következő lépések
-* Tudnivalók a [Windows-ügynökök](log-analytics-windows-agents.md) a Log Analyticshez való csatlakoztatásáról.
-* Tudnivalók az [Operations Manager-ügynökök](log-analytics-om-agents.md) a Log Analyticshez való csatlakoztatásáról.
-* A funkciók hozzáadásával és az adatgyűjtéssel kapcsolatban lásd: [Add Log Analytics solutions from the Solutions Gallery](log-analytics-add-solutions.md) (Log Analytics-megoldások hozzáadása a megoldástárból).
-* A [naplókeresések](log-analytics-log-searches.md) megismerése a megoldások által összegyűjtött részletes információk megtekintéséhez.
+* További tudnivalók: kapcsolódás [Windows-ügynökök](log-analytics-windows-agents.md) tooLog elemzés.
+* További tudnivalók: kapcsolódás [Operations Manager-ügynökök](log-analytics-om-agents.md) tooLog elemzés.
+* [Log Analytics-megoldások hozzáadása hello megoldások gyűjtemény](log-analytics-add-solutions.md) tooadd funkciókat és összefog adatokat.
+* Ismerkedjen meg [keresések jelentkezzen](log-analytics-log-searches.md) tooview részletes megoldások által összegyűjtött adatokat.

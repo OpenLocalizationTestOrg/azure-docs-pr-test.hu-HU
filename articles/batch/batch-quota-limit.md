@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Batch kvótái és korlátai szolgáltatás |} Microsoft Docs"
-description: "További tudnivalók az alapértelmezett Azure Batch kvóták, korlátozások és megkötések-re, arról, hogyan kérhet kvóta"
+title: "aaaService kvótái és korlátai Azure Batch |} Microsoft Docs"
+description: "További tudnivalók az alapértelmezett Azure Batch kvóták, korlátok és korlátozások és hogyan toorequest kvóta növeli"
 services: batch
 documentationcenter: 
 author: tamram
@@ -15,21 +15,21 @@ ms.topic: article
 ms.date: 06/28/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f3f69ed8d3a985afe07e648e7512a88b25278ced
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6035d1c7618cfe97ebca3780e02a4ee34f54e534
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="batch-service-quotas-and-limits"></a>A Bach szolgáltatás kvótái és korlátozásai
 
-Mint az egyéb Azure-szolgáltatásokkal, nincsenek korlátozások bizonyos erőforrások, a Batch szolgáltatás társított. Ezek a korlátozások számos alapértelmezett kvóták alkalmazása az Azure-ban az előfizetés vagy a fiók szintjén. Ez a cikk ismerteti azokat az alapértelmezett beállításokat, és hogyan kérheti a kvótájának növeli.
+Mint az egyéb Azure-szolgáltatásokkal, nincsenek korlátozások bizonyos hello Batch szolgáltatás társított erőforrások. Ezek a korlátozások számos alapértelmezett kvóták alkalmazása az Azure-ban hello előfizetés vagy a fiók szintjén. Ez a cikk ismerteti azokat az alapértelmezett beállításokat, és hogyan kérheti a kvótájának növeli.
 
-Vegye figyelembe ezeket a kvótákat a Batch számítási feladatok tervezésekor és bővítésekor. Például a készlet nem eléri a számítási csomópontok a megadott cél száma, ha előfordulhat, hogy elérte a core kvótát a Batch-fiók, vagy a regionális virtuális gép magok kvóta az előfizetéséhez.
+Vegye figyelembe ezeket a kvótákat a Batch számítási feladatok tervezésekor és bővítésekor. Például ha a készlet a megadott számítási csomópontok száma hello cél nem elérése, előfordulhat, hogy elérte hello core kvótakorlátot a Batch-fiók, vagy a regionális virtuális gép magok kvóta az előfizetéséhez.
 
-Több Batch számítási feladatot is futtathat egyetlen Batch-fiókon, de el is oszthatja a számítási feladatokat ugyanazon előfizetéshez, de különböző Azure-régiókhoz tartozó Batch-fiókok között.
+Több kötegelt feladatok futtatása egyetlen Batch-fiók, vagy a Batch-fiókok, amelyek a hello munkaterhelésének terjesztése ugyanahhoz az előfizetéshez, de különböző Azure-régiókban.
 
-Ha szeretné futtatni a termelési számítási feladatokhoz kötegben, szükség lehet egy vagy több, a kvóták fenti az alapértelmezett növelése érdekében. Ha azt szeretné, a kvóta emelése, az online megnyithatja [ügyfél-támogatási kérelem](#increase-a-quota) díjmentesen.
+Ha azt tervezi, hogy a kötegben toorun termelési számítási feladatokhoz, szükség lehet tooincrease egy vagy több hello kvóták fenti hello alapértelmezett. Ha azt szeretné, hogy tooraise egy kvótát, az online megnyithatja [ügyfél-támogatási kérelem](#increase-a-quota) díjmentesen.
 
 > [!NOTE]
 > A kvóta legfeljebb, nem kapacitás garancia. Ha nagyméretű lemezkapacitási igényekről, forduljon az Azure támogatási szolgálatához.
@@ -41,9 +41,9 @@ Ha szeretné futtatni a termelési számítási feladatokhoz kötegben, szüksé
 
 ## <a name="quotas-in-user-subscription-mode"></a>Kvótákat felhasználói előfizetési módban
 
-Tárolókészlet foglalási módban a Batch-fiókhoz **felhasználói előfizetési**, a Batch-virtuális gépek és más erőforrások, például a storage-fiókok, közvetlenül az előfizetésében jönnek létre, amikor egy alkalmazáskészlet jön létre. Az Azure Batch magok kvóta nem vonatkozik az ebben a módban létrehozott fiók. Ehelyett az előfizetéshez tartozó területi kvóták számítási mag, és más erőforrások alkalmazza. További információ a ezek mely százalékértékénél kéri [Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések](../azure-subscription-service-limits.md).
+Tárolókészlet foglalási módban a túl a Batch-fiókhoz**felhasználói előfizetési**, a Batch-virtuális gépek és más erőforrások, például a storage-fiókok, közvetlenül az előfizetésében jönnek létre, amikor egy alkalmazáskészlet jön létre. hello Azure Batch magok kvóta nem érvényes ebben a módban létrehozott tooan fiók. Ehelyett hello kvóták regionális számítási maggal és más erőforrásokhoz az előfizetésben érvényesek. További információ a ezek mely százalékértékénél kéri [Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések](../azure-subscription-service-limits.md).
 
-Egy olyan fiók felhasználói előfizetési módban létrehozott erőforrás-használat tervezésekor vegye figyelembe a következő kötegelt erőforrások (számítási magok) mellett minden 40 Linux virtuális gépet, vagy szükségesek 20 Windows virtuális gépek:
+Erőforrás kihasználtsága egy olyan fiók, létre felhasználói előfizetési módban tervezésekor a következő kötegelt erőforrások (a hozzáadása toocompute magok) Megjegyzés hello minden 40 Linux virtuális gépek, vagy szükségesek 20 Windows virtuális gépek:
 
 | Erőforrás | Kvóta | Szolgáltató |
 | --- | ---| --- |
@@ -54,7 +54,7 @@ Egy olyan fiók felhasználói előfizetési módban létrehozott erőforrás-ha
 | Egy virtuálisgép-méretezési csoport | Virtual Machine Scale Sets | Microsoft.Compute | 
 | Egy terheléselosztó | Terheléselosztók | Microsoft.Network | 
 
-Regionális szinten, vagy a virtuális gép termékcsalád magok kvóta a Virtuálisgép-méretet, a Batch-készlet vagy készletek szükséges megfelelően kell beállítani:
+hello magok kvóta regionális szinten, vagy a virtuális gép termékcsalád kell set függően toohello Virtuálisgép-méretet a Batch-készlet vagy készletek szükséges:
 
 | Kvóta | Szolgáltató |
 | --- | ---- |
@@ -76,32 +76,32 @@ Regionális szinten, vagy a virtuális gép termékcsalád magok kvóta a Virtu�
 <sup>2</sup> erőforrás fájlok és a környezeti változók
 
 ## <a name="view-batch-quotas"></a>Kötegelt kvóták megtekintése
-A kötegelt fiók kvótákat megtekintése a [Azure-portálon][portal].
+Tekintse meg a Batch-fiók kvótákat hello [Azure-portálon][portal].
 
-1. Válassza ki **Batch-fiókok** a portálon, majd válassza ki a Batch-fiók kíváncsiak vagyunk.
-2. Válassza ki **tulajdonságok** a Batch-fiók menü panelen.
-3. A Tulajdonságok panelen megjeleníti a **kvóták** jelenleg hozzárendelve a Batch-fiók
+1. Válassza ki **Batch-fiókok** hello portálon, majd válassza ki kíváncsiak vagyunk hello Batch-fiókhoz.
+2. Válassza ki **tulajdonságok** hello kötegelt fiók menü panelen.
+3. hello tulajdonságok panelen megjeleníti hello **kvóták** jelenleg alkalmazott toohello Batch-fiókhoz.
    
     ![Batch-fiók kvóták][account_quotas]
 
-Batch-fiók felhasználói előfizetési módban létrehozott tekintse meg a kapcsolódó előfizetés kvóták az Azure portálon.
+Batch-fiók felhasználói előfizetési módban létrehozott nézet hello kapcsolatos hello Azure Portal előfizetés kvótáját.
 
-1. Válassza ki **előfizetések**, és válassza ki az előfizetést, a Batch-fiókot használ.
+1. Válassza ki **előfizetések**, és válassza ki a Batch-fiókhoz hello alkalmaz hello előfizetést.
 
-2. Az a **előfizetés** panelen válassza **használati + kvóták**.
+2. A hello **előfizetés** panelen válassza **használati + kvóták**.
 
 
 
 ## <a name="increase-a-quota"></a>A kvóta növeléséhez
-Kövesse ezeket a lépéseket, kérje a kvóta növeléséhez a Batch-fiók, illetve az előfizetés használata a [Azure-portálon][portal]. Kvótájának növelését típusa attól függ, hogy a tárolókészlet foglalási mód a Batch-fiókhoz.
+Kövesse ezeket a kvóta növeléséhez a Batch-fiók vagy a feliratkozás hello lépéseket toorequest [Azure-portálon][portal]. hello kvótájának növelését függ hello tárolókészlet foglalási mód a Batch-fiókhoz.
 
 ### <a name="increase-a-batch-cores-quota"></a>A kötegelt magok kvóta növelése 
 
-Ha a Batch-fiókhoz készült **a Batch szolgáltatás** mód, kövesse ezeket a lépéseket, kérje a kötegelt magok kvóta növelése:
+Ha a Batch-fiókhoz készült **a Batch szolgáltatás** mód, kövesse ezeket a lépéseket toorequest a kötegelt magok kvóta növelését:
 
-1. Válassza ki a **súgó + támogatás** csempét a portál irányítópultján, vagy a kérdőjel (**?**) a portál jobb felső sarkában.
+1. Jelölje be hello **súgó + támogatás** csempét a portál irányítópultján, vagy a kérdőjel hello (**?**) hello portál jobb felső sarkában hello.
 2. Válassza ki **új támogatja a kérelem** > **alapjai**.
-3. Az a **alapjai** panel:
+3. A hello **alapjai** panel:
    
     a. **Típusú** > **kvóta**
    
@@ -112,22 +112,22 @@ Ha a Batch-fiókhoz készült **a Batch szolgáltatás** mód, kövesse ezeket a
     d. **Támogatás megléte** > **kvóta támogatásához -**
    
     Kattintson a **Tovább** gombra.
-4. Az a **probléma** panel:
+4. A hello **probléma** panel:
    
-    a. Válassza ki a **súlyossági** megfelelően a [üzletmenetre gyakorolt hatás][support_sev].
+    a. Válassza ki a **súlyossági** tooyour szerint [üzletmenetre gyakorolt hatás][support_sev].
    
-    b. A **részletek**, adja meg minden egyes módosítani kívánt kvótát, a Batch-fiók nevét és az új korlát.
+    b. A **részletek**, adja meg minden egyes toochange hello Batch-fiók nevét és hello új korlát kívánt kvótát.
    
     Kattintson a **Tovább** gombra.
-5. Az a **elérhetőségi adatai** panel:
+5. A hello **elérhetőségi adatai** panel:
    
     a. Válassza ki a **elsődleges kapcsolattartási módszert**.
    
-    b. Győződjön meg arról, és írja be a szükséges kapcsolattartási adatait.
+    b. Győződjön meg arról, és írja be a szükséges hello kapcsolattartási adatait.
    
-    Kattintson a**Create** (Létrehozás) gombra a támogatási kérelem elküldéséhez.
+    Kattintson a **létrehozása** toosubmit hello támogatási kérelmet.
 
-Ha a támogatási kérelmet küldött, az Azure támogatási kapcsolatba lép Önnel. Ne feledje, hogy a kérelem befejezése telhet legfeljebb 2 munkanapos határidejűek.
+Ha a támogatási kérelmet küldött, az Azure támogatási kapcsolatba lép Önnel. Vegye figyelembe, hogy hello kérelem befejezése is eltarthat too2 munkanapos határidejűek.
 
 ### <a name="increase-a-subscription-cores-quota"></a>Egy mag előfizetési kvóta növeléséhez
 
@@ -136,7 +136,7 @@ Ha a Batch-fiókhoz készült **felhasználói előfizetési** módot, és át k
 
 
 ## <a name="related-topics"></a>Kapcsolódó témakörök
-* [Az Azure portál használata az Azure Batch-fiók létrehozása](batch-account-create-portal.md)
+* [Hello Azure portál használata az Azure Batch-fiók létrehozása](batch-account-create-portal.md)
 * [Azure Batch funkcióinak áttekintése](batch-api-basics.md)
 * [Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések](../azure-subscription-service-limits.md)
 

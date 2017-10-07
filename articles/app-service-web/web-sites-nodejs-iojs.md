@@ -1,6 +1,6 @@
 ---
-title: "Az io.js használata az Azure App Service Web Apps szolgáltatással"
-description: "Ismerje meg, hogyan használható egy webalkalmazást az Azure App Service io.js."
+title: az Azure App Service Web Apps aaaHow toouse io.js
+description: "Megtudhatja, hogyan toouse egy webalkalmazást az io.js az Azure App Service-ben."
 services: app-service\web
 documentationcenter: nodejs
 author: TomArcher
@@ -14,44 +14,44 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/17/2016
 ms.author: tarcher
-ms.openlocfilehash: 4800504e1939a46842d15e8c9d4279a4b9cae787
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5dfdac37546b36bc91ab43d9e0a39c2126b4fa9d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-iojs-with-azure-app-service-web-apps"></a>Az io.js használata az Azure App Service Web Apps szolgáltatással
-A népszerű csomópont elágazás [io.js] Joyent a Node.js projekthez, beleértve a modell több megnyitása cégirányítási, gyorsabb kiadás ciklust és gyorsabb elfogadását új és kísérleti JavaScript-szolgáltatások különböző különbségek szolgáltatásokat.
+# <a name="how-toouse-iojs-with-azure-app-service-web-apps"></a>Hogyan toouse io.js az Azure App Service Web Apps
+hello népszerű csomópont elágazás [io.js] különböző különbségek tooJoyent Node.js projekt, beleértve a modell több megnyitása cégirányítási, gyorsabb kiadás ciklust és gyorsabb elfogadását új és kísérleti JavaScript-szolgáltatások szolgáltatásait.
 
-Amíg [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) webalkalmazások sok Node.js verzió előre telepítve van, lehetővé teszi egy felhasználó által megadott Node.js bináris fájljának. Ez a cikk ismerteti, amelyek két módszer io.js az App Service Web Apps használatának engedélyezése: egy kiterjesztett telepítési parancsfájlt, amely automatikusan konfigurálja az Azure használata a legújabb elérhető io.js, valamint egy bináris io.js manuális feltöltésének használatát. 
+Amíg [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) webalkalmazások sok Node.js verzió előre telepítve van, lehetővé teszi egy felhasználó által megadott Node.js bináris fájljának. Ez a cikk ismerteti, amelyek két módszer az App Service Web Apps io.js hello használatának engedélyezése: hello egy kiterjesztett telepítési parancsfájlt, amely automatikusan konfigurálja az Azure toouse hello legújabb elérhető io.js verzió használatát, valamint az io.js bináris hello manuális feltöltése. 
 
 <a id="deploymentscript"></a>
 
 ## <a name="using-a-deployment-script"></a>A telepítési parancsfájl használatával
-A Node.js-alkalmazás központi telepítését, akkor App Service Web Apps kis parancsok futtatásával győződjön meg arról, hogy megfelelően van-e konfigurálva a környezetben több futtatja. A telepítési parancsfájl használatával, ez a folyamat testre szabható letöltését és io.js konfigurációját tartalmazza.
+A Node.js-alkalmazás központi telepítését, akkor App Service Web Apps megfelelően van-e konfigurálva, hogy a környezet hello tooensure kis parancsok számos futtatja. A telepítési parancsfájl használatával, ez a folyamat csak testreszabott tooinclude hello letöltési és io.js konfigurációját.
 
-A [io.js telepítési parancsfájl](https://github.com/felixrieseberg/iojs-azure) a Githubon érhető el. Ahhoz, hogy a webalkalmazás az io.js, egyszerűen másolhatja **.deployment**, **Deploy.cmd fájl** és **iisnode.yml fájlt** a gyökérben, az alkalmazás mappájában, és a webalkalmazások telepítését.  
+Hello [io.js telepítési parancsfájl](https://github.com/felixrieseberg/iojs-azure) a Githubon érhető el. a webalkalmazásban tooenable io.js egyszerűen másolhatja **.deployment**, **Deploy.cmd fájl** és **iisnode.yml fájlt** toohello gyökérmappájában az alkalmazás mappájában és tooWeb alkalmazások telepítése.  
 
-Az első ilyen fájlt, **.deployment**, arra utasítja a webes alkalmazások futtatásához **Deploy.cmd fájl** központi telepítés esetén. Ezt a parancsfájlt a szokásos lépéseket egy Node.js-alkalmazás fut, de is letölti az io.js legújabb verzióját. Végezetül **iisnode.yml fájlt** csak a letöltött io.js használata bináris helyett egy előre telepített Node.js bináris webalkalmazások konfigurálása.
+hello első fájl, **.deployment**, arra utasítja a webes alkalmazások toorun **Deploy.cmd fájl** központi telepítés esetén. Ez a parancsfájl minden hello szokásos lépései a Node.js-alkalmazás fut, de is letölti az io.js hello legújabb verzióját. Végezetül **iisnode.yml fájlt** webalkalmazások toouse letöltött csak hello io.js bináris helyett egy előre telepített Node.js bináris konfigurálja.
 
 > [!NOTE]
-> A parancsfájl és a használt io.js bináris, egyszerűen telepítse újra az alkalmazás - letölti egy új verziója io.js minden telepítik az alkalmazást egy alkalommal.
+> tooupdate hello használt io.js bináris, egyszerűen telepítse újra az alkalmazás - hello parancsfájl letölti azokat a io.js minden egy alkalommal hello alkalmazás központi telepítése egy új verziója.
 > 
 > 
 
 <a id="manualinstallation"></a>
 
 ## <a name="using-manual-installation"></a>Manuális telepítés
-A manuális telepítés olyan egyéni io.js verzió csak két folyamatát foglalja magában. Első lépésként töltse le a **win-x64** bináris közvetlenül a [io.js terjesztési]. Szükség van a két fájlt - **iojs.exe** és **iojs.lib**. Mentse mindkét fájlt, hogy egy mappát a web app alkalmazásban például **bin/iojs**.
+manuális telepítés hello olyan egyéni io.js verzió csak két folyamatát foglalja magában. Első lépésként töltse le a hello **win-x64** bináris közvetlenül a hello [io.js terjesztési]. Szükség van a két fájlt - **iojs.exe** és **iojs.lib**. Egyaránt mentés-fájlok tooa mappa a web app alkalmazásban például **bin/iojs**.
 
-Webalkalmazások használandó konfigurálása **iojs.exe** helyett egy előre telepített csomópont, hozzon létre egy **iisnode.yml fájlt** fájlt az alkalmazás gyökérkönyvtárában, és adja hozzá a következő sort.
+tooconfigure webalkalmazások toouse **iojs.exe** helyett egy előre telepített csomópont, hozzon létre egy **iisnode.yml fájlt** hello gyökerében az alkalmazás fájlt, és adja hozzá a következő sor hello.
 
     nodeProcessCommandLine: "D:\home\site\wwwroot\bin\iojs\iojs.exe"
 
 <a id="nextsteps"></a>
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben a cikkben megtanulta, hogyan használhatja az App Service Web Apps, mind io.js, valamint a manuális telepítés megadott üzembe helyezési parancsfájlok. 
+Ebben a cikkben megtanulta, hogyan toouse io.js az App Service Web Apps, mind a megadott üzembe helyezési parancsfájlok, valamint a manuális telepítés. 
 
 > [!NOTE]
 > IO.js nehéz fejlesztési, és Node.js gyakoribb. A Node.js modulok száma nem működik együtt io.js - adjon tájékoztatást [a Githubon io.js] hibaelhárításhoz.
@@ -59,10 +59,10 @@ Ebben a cikkben megtanulta, hogyan használhatja az App Service Web Apps, mind i
 > 
 
 ## <a name="whats-changed"></a>A változások
-* Információk a Websites szolgáltatásról az App Service-re való váltásról: [Az Azure App Service és a hatása a meglévő Azure-szolgáltatásokra](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Egy útmutató toohello webhelyek tooApp szolgáltatás változás lásd: [Azure App Service és a hatása a meglévő Azure-szolgáltatások](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 > [!NOTE]
-> Ha az Azure App Service-t az Azure-fiók regisztrálása előtt szeretné kipróbálni, ugorjon [Az Azure App Service kipróbálása](https://azure.microsoft.com/try/app-service/) oldalra. Itt azonnal létrehozhat egy ideiglenes, kezdő szintű webalkalmazást az App Service szolgáltatásban. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
+> Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
 > 
 > 
 

@@ -1,6 +1,6 @@
 ---
-title: "Bevezetés az Azure Cosmos DB: API-t a MongoDB |} Microsoft Docs"
-description: "Ismerje meg, hogyan használható az Azure Cosmos DB tárolására és a lekérdezés nagy mennyiségű JSON-dokumentumok, kisebb késést a népszerű OSS MongoDB API-k használatával."
+title: "Bevezetés tooAzure Cosmos DB: API-t a MongoDB |} Microsoft Docs"
+description: "Ismerje meg, hogyan használhatja az Azure Cosmos DB toostore, és JSON-dokumentumok kis késleltetésű használatával nagy mennyiségű lekérdezés hello népszerű OSS MongoDB API-k."
 keywords: Mi az a MongoDB
 services: cosmos-db
 author: AndrewHoh
@@ -15,57 +15,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: anhoh
-ms.openlocfilehash: 4dbf91a3c1d6a287d7337647f9e059566c7ddbe5
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1eb88014cc4809332e3f5c109a44a55814194934
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-azure-cosmos-db-api-for-mongodb"></a>Bevezetés az Azure Cosmos DB: API-t a mongodb-Protokolltámogatással
+# <a name="introduction-tooazure-cosmos-db-api-for-mongodb"></a>Bevezetés tooAzure Cosmos DB: API-t a mongodb-Protokolltámogatással
 
-Az [Azure Cosmos DB](../cosmos-db/introduction.md) a Microsoft globálisan elosztott, többmodelles adatbázis-szolgáltatása az alapvető fontosságú alkalmazásokhoz. Az Azure Cosmos DB az [iparág legjobb szolgáltatásiszint-szerződései](https://azure.microsoft.com/support/legal/sla/cosmos-db/) által biztosított [teljes körű, globális terjesztést](distribute-data-globally.md) kínál, valamint [a teljesítmény és a tárterület rugalmas méretezését](partition-data.md) világszerte, az esetek 99%-ában egyszámjegyű ezredmásodperces késéseket, [öt jól meghatározott konzisztenciaszintet](consistency-levels.md) és garantált magas rendelkezésre állást. Az Azure Cosmos DB [automatikusan indexeli az adatokat](http://www.vldb.org/pvldb/vol8/p1668-shukla.pdf) anélkül, hogy a felhasználónak sémákat és indexeket kellene kezelnie. Többmodelles szolgáltatás, amely támogatja a dokumentumokat, a kulcs-értékeket, a diagramokat és az oszlopos adatmodelleket. 
+Az [Azure Cosmos DB](../cosmos-db/introduction.md) a Microsoft globálisan elosztott, többmodelles adatbázis-szolgáltatása az alapvető fontosságú alkalmazásokhoz. Az Azure Cosmos DB biztosít [kulcsrakész globális terjesztési](distribute-data-globally.md), [átviteli sebesség és tárterület a rugalmas méretezést](partition-data.md) világszerte, egyjegyű ezredmásodperces késések: hello 99th PERCENTILIS, [öt jól meghatározott konzisztenciaszintek](consistency-levels.md), és magas rendelkezésre állás érdekében minden biztonsági mentés által garantált [iparágvezető SLA](https://azure.microsoft.com/support/legal/sla/cosmos-db/). Az Azure Cosmos DB [automatikusan elvégzi az adatok](http://www.vldb.org/pvldb/vol8/p1668-shukla.pdf) anélkül, hogy Ön séma- és index felügyeleti toodeal. Többmodelles szolgáltatás, amely támogatja a dokumentumokat, a kulcs-értékeket, a diagramokat és az oszlopos adatmodelleket. 
 
 ![Az Azure Cosmos DB: MongoDB API](./media/mongodb-introduction/cosmosdb-mongodb.png) 
 
-Írt cosmos DB adatbázisok használható adattárként [MongoDB](https://docs.mongodb.com/manual/introduction/). Ez azt jelenti, hogy a meglévő [illesztőprogramok](https://docs.mongodb.org/ecosystem/drivers/), az alkalmazás írt MongoDB mostantól Cosmos DB kommunikálni és Cosmos DB adatbázisok használata helyett a MongoDB-adatbázisokat. Sok esetben válthat a MongoDB Cosmos DB használatával egyszerűen módosítja a kapcsolati karakterláncot. Ezzel a funkcióval könnyedén építhet és futtatási MongoDB adatbázis-alkalmazások az Azure felhőalapú Azure Cosmos DB globális eloszláshoz és [átfogó iparágvezető SLA-k](https://azure.microsoft.com/support/legal/sla/cosmos-db), miközben továbbra is használja a megszokott ismeretei és eszközei mongodb-protokolltámogatással.
+Írt cosmos DB adatbázisok használható hello adatokat tároló [MongoDB](https://docs.mongodb.com/manual/introduction/). Ez azt jelenti, hogy a meglévő [illesztőprogramok](https://docs.mongodb.org/ecosystem/drivers/), az alkalmazás írt MongoDB mostantól Cosmos DB kommunikálni és Cosmos DB adatbázisok használata helyett a MongoDB-adatbázisokat. Sok esetben válthat a MongoDB tooCosmos DB használatával egyszerűen módosítja a kapcsolati karakterláncot. Ezzel a funkcióval könnyedén építhet és futtatási MongoDB adatbázis-alkalmazások az hello Azure felhő Azure Cosmos DB globális terjesztési és [átfogó iparágvezető SLA-k](https://azure.microsoft.com/support/legal/sla/cosmos-db), miközben továbbra toouse ismeri ismeretei és eszközei mongodb-protokolltámogatással.
 
 
-## <a name="what-is-the-benefit-of-using-azure-cosmos-db-for-mongodb-applications"></a>Mi az az előnye, hogy a MongoDB-alkalmazások Azure Cosmos DB használatával?
+## <a name="what-is-hello-benefit-of-using-azure-cosmos-db-for-mongodb-applications"></a>Miért érdemes hello Azure Cosmos DB használatával a MongoDB-alkalmazásokhoz?
 
-**Rugalmasan méretezhető átviteli sebesség és tárterület:** könnyedén méretezhető felfelé vagy lefelé a MongoDB-adatbázist az alkalmazás igényeinek. Az adatok tárolása tartós állapotú meghajtón (SSD) történik az alacsony, előre jelezhető késés érdekében. Cosmos DB támogatja a MongoDB-gyűjteményekre, amelyek méretezhető, gyakorlatilag korlátlan tárterület mérete és a létesített átviteli sebesség. Rugalmasan méretezhető Cosmos DB kiszámítható teljesítmény zökkenőmentesen pedig az alkalmazás forgalmához igazítható. 
+**Rugalmasan méretezhető átviteli sebesség és tárterület:** könnyedén növelheti vagy a MongoDB adatbázis toomeet le az alkalmazást kell. Az adatok tárolása tartós állapotú meghajtón (SSD) történik az alacsony, előre jelezhető késés érdekében. Cosmos DB támogatja a MongoDB-gyűjtemények is méretezhető toovirtually korlátlan tárterület mérete és a létesített átviteli sebesség. Rugalmasan méretezhető Cosmos DB kiszámítható teljesítmény zökkenőmentesen pedig az alkalmazás forgalmához igazítható. 
 
-**Több területi replikációs:** Cosmos DB transzparens módon replikálja az adatokat minden egyes tartozó a MongoDB-fiókkal, amely lehetővé teszi, ugyanakkor biztosítható a közötti konzisztencia, rendelkezésre állásáról és teljesítményéről, mindezt megfelelő garanciák mellékhatásokkal adatok globális elérését igénylő alkalmazások fejlesztéséhez. Cosmos DB transzparens regionális feladatátvétel többhelyű API-khoz és rugalmasan méretezhető átviteli sebesség és tárterület világszerte képességét biztosítja. További információ: [adatok globálisan terjesztése](distribute-data-globally.md).
+**Több területi replikációs:** Cosmos DB transzparens módon replikálja a tooall adatterületek tartozó a MongoDB-fiókkal, amely lehetővé teszi, ugyanakkor biztosítható a mellékhatásokkal között a globális hozzáférési toodata igénylő toodevelop alkalmazások konzisztencia, rendelkezésre állását és teljesítményét, az összes megfelelő garanciát. Cosmos DB többhelyű API-kat, és a hello képességét tooelastically méretezési átviteli sebesség és a tárterület átlátható regionális feladatátvétel lehetővé teszi az hello földgolyó méretét. További információ: [adatok globálisan terjesztése](distribute-data-globally.md).
 
-**MongoDB-kompatibilitási**: a meglévő MongoDB szakértői alkalmazáskód és tooling is használhatja. MongoDB használata alkalmazások fejlesztéséhez és a termelési a teljes körűen felügyelt globálisan elosztott Cosmos DB szolgáltatás használatával történő központi telepítésére.
+**MongoDB-kompatibilitási**: a meglévő MongoDB szakértői alkalmazáskód és tooling is használhatja. MongoDB használata alkalmazások fejlesztéséhez és a központi telepítésük tooproduction hello teljes körűen felügyelt globálisan elosztott Cosmos DB szolgáltatás.
 
-**Egyetlen kiszolgálóból álló felügyeleti**: nem kell kezelni, a méretezés a MongoDB-adatbázisok. A cosmos DB egy teljes körűen felügyelt szolgáltatás, amely azt jelenti, hogy nem kell kezelniük bármilyen infrastruktúra vagy a virtuális gépek saját kezűleg. A cosmos DB érhető el 30 + [Azure-régiókat](https://azure.microsoft.com/regions/services/).
+**Egyetlen kiszolgálóból álló felügyeleti**: nem toomanage rendelkezik, és a MongoDB-adatbázisok méretezése. A cosmos DB egy teljes körűen felügyelt szolgáltatás, amely azt jelenti, hogy nem rendelkezik toomanage bármilyen infrastruktúra vagy a virtuális gépek saját kezűleg. A cosmos DB érhető el 30 + [Azure-régiókat](https://azure.microsoft.com/regions/services/).
 
-**Aprólékosan beállítható konzisztenciaszintek:** Öt jól meghatározott konzisztenciaszint közül választhat a konzisztencia és a teljesítmény közötti optimális kompromisszum elérése érdekében. A lekérdezések és olvasási műveletek Cosmos DB öt különböző konzisztenciaszintet kínál: erős, kötött elavulás, munkamenet, egységes előtag, és végleges. Ezek a részletes, jól meghatározott konzisztenciaszintek lehetővé teszik, hogy ésszerű kompromisszumot alakítson ki a konzisztencia, a rendelkezésre állás és a késleltetés között. További információk: [A rendelkezésre állás és a teljesítmény maximalizálása a konzisztenciaszintek használatával](consistency-levels.md).
+**Aprólékosan beállítható konzisztenciaszintek:** válassza ki a öt jól meghatározott konzisztencia szintek tooachieve közötti optimális kompromisszum konzisztencia és a teljesítmény. A lekérdezések és olvasási műveletek Cosmos DB öt különböző konzisztenciaszintet kínál: erős, kötött elavulás, munkamenet, egységes előtag, és végleges. A részletes, jól meghatározott konzisztenciaszintek lehetővé teszik toomake ésszerű kompromisszumot konzisztencia, a rendelkezésre állás és a késleltetés között. További információ: [toomaximize rendelkezésre állásának és teljesítményének konzisztencia használatával szintek](consistency-levels.md).
 
-**Az automatikus indexeléshez**: alapértelmezés szerint Cosmos DB automatikusan indexeli az összes tulajdonságainak belül dokumentumok a MongoDB adatbázis- és nem várt vagy igényel semmilyen sémát, illetve másodlagos indexek létrehozását.
+**Az automatikus indexeléshez**: alapértelmezés szerint Cosmos DB automatikusan indexeli a dokumentumok a MongoDB adatbázis összes hello tulajdonságokat és nem várt vagy igényel semmilyen sémát, illetve másodlagos indexek létrehozását.
 
-**Enterprise osztályú** -Azure Cosmos DB támogatja több helyi replika képes biztosítani a helyi és regionális hibák állásuk rendelkezésre állási és adatvédelem 99,99 %. Az Azure Cosmos DB rendelkezik enterprise osztályú [megfelelőségi minősítései közül](https://www.microsoft.com/trustcenter) és biztonsági szolgáltatásokat. 
+**Enterprise osztályú** -Azure Cosmos DB támogatja több helyi replikák toodeliver 99,99 % rendelkezésre állási és adatvédelem a helyi és regionális hibák hello felületét. Az Azure Cosmos DB rendelkezik enterprise osztályú [megfelelőségi minősítései közül](https://www.microsoft.com/trustcenter) és biztonsági szolgáltatásokat. 
 
 További az Azure-ban a Scott Hanselman és Azure Cosmos DB egyszerű mérnöki Manager, Kirill Gavrylyuk videó péntekig.
 
 > [!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Introducing-Azure-Cosmos-DB/player]
 > 
 
-## <a name="how-to-get-started"></a>Első lépések
+## <a name="how-tooget-started"></a>Hogyan tooget el
 
-Kövesse a MongoDB quickstarts egy Cosmos DB fiók létrehozásához, és telepítse át a meglévő Mongo DB alkalmazást Cosmos-Adatbázist kíván használni, vagy egy új létrehozása:
+Hajtsa végre a hello MongoDB quickstarts toocreate egy Cosmos DB fiókot és telepítse át a meglévő Mongo DB alkalmazás toouse Cosmos DB, vagy egy új build:
 
 * [Telepítse át egy meglévő Node.js MongoDB webalkalmazás](create-mongodb-nodejs.md).
-* [A .NET- és az Azure-portálon MongoDB API webalkalmazás létrehozása](create-mongodb-dotnet.md)
-* [Hozza létre a MongoDB API konzol alkalmazását a Java és az Azure-portálon](create-mongodb-java.md)
+* [A .NET és hello Azure-portálon MongoDB API webalkalmazás létrehozása](create-mongodb-dotnet.md)
+* [Hozza létre a MongoDB API konzol alkalmazását a Java és hello Azure-portálon](create-mongodb-java.md)
 
 ## <a name="next-steps"></a>Következő lépések
 
-Azure Cosmos DB MongoDB API információ integrálva van a teljes Azure Cosmos DB dokumentációt, de az alábbiakban néhány mutatók az első lépésekhez:
+Azure Cosmos DB MongoDB API kapcsolatos információkat a teljes Azure Cosmos DB dokumentáció hello integrálva van, de az alábbiakban néhány mutatók tooget indítása:
 
-* Kövesse a [összekapcsolás MongoDB-fiókkal](connect-mongodb-account.md) az oktatóanyag segítséget nyújt a kapcsolati karakterlánc fiókadatok beszerzéséről.
-* Kövesse a [használata MongoChef rendelkező Azure Cosmos DB](mongodb-mongochef.md) oktatóanyag áttekintésével megismerheti, hogyan MongoChef az Azure Cosmos DB adatbázis és a MongoDB alkalmazás közötti kapcsolat létrehozásához.
-* Kövesse a [adatok áttelepítése az Azure Cosmos Adatbázishoz protokoll támogatja a mongodb-protokolltámogatással](mongodb-migrate.md) az oktatóanyag segítséget nyújt az adatok importálása egy API-t a MongoDB-adatbázist.
-* Az API-t a MongoDB-fiók használatával csatlakozni [Robomongo](mongodb-robomongo.md).
-* Ismerje meg, hány RUs az operatív-t használ a [GetLastRequestStatistics parancs és az Azure portál metrikák](request-units.md#GetLastRequestStatistics).
-* Megtudhatja, hogyan [írásvédett globálisan elosztott alkalmazások beállításainak konfigurálása](../cosmos-db/tutorial-global-distribution-mongodb.md).
+* Hajtsa végre a hello [tooa MongoDB fiók csatlakozás](connect-mongodb-account.md) oktatóanyag toolearn hogyan tooget fiók kapcsolati karakterlánc adatainak.
+* Hajtsa végre a hello [használata MongoChef rendelkező Azure Cosmos DB](mongodb-mongochef.md) oktatóanyag toolearn hogyan toocreate az Azure Cosmos DB adatbázis és a MongoDB alkalmazás MongoChef közötti kapcsolat.
+* Hajtsa végre a hello [adatok tooAzure Cosmos DB mongodb-protokolltámogatással rendelkező áttelepítése](mongodb-migrate.md) oktatóanyag tooimport az adatok tooan API a MongoDB-adatbázist.
+* Csatlakozás tooan API-t a MongoDB-fiók használatával [Robomongo](mongodb-robomongo.md).
+* Ismerje meg, hogy hány RUs hello használ az operatív [GetLastRequestStatistics parancsot, és az Azure portál metrikák hello](request-units.md#GetLastRequestStatistics).
+* Ismerje meg, hogyan túl[írásvédett globálisan elosztott alkalmazások beállításainak konfigurálása](../cosmos-db/tutorial-global-distribution-mongodb.md).

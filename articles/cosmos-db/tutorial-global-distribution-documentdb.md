@@ -1,6 +1,6 @@
 ---
-title: "A DocumentDB API Azure Cosmos DB globális telepítési útmutató |} Microsoft Docs"
-description: "Megtudhatja, hogyan beállítani az Azure Cosmos DB globális terjesztési a DocumentDB API használatával."
+title: "aaaAzure Cosmos DB globális terjesztési oktatóprogram a DocumentDB az API-hoz |} Microsoft Docs"
+description: "Ismerje meg, hogyan hello DocumentDB API toosetup Azure Cosmos DB globális terjesztési használatával."
 services: cosmos-db
 keywords: "globális terjesztési, a documentdb"
 documentationcenter: 
@@ -15,51 +15,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: f4d8efe9814bd28bb902567a23b541bc9b5414a1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a1d5f01faa62407fbbc9c078ef4a9589a1a29219
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-setup-azure-cosmos-db-global-distribution-using-the-documentdb-api"></a>How Azure Cosmos DB globális terjesztési a DocumentDB API-jával beállítása
+# <a name="how-toosetup-azure-cosmos-db-global-distribution-using-hello-documentdb-api"></a>Hogyan toosetup Azure Cosmos DB globális terjesztési használatával hello DocumentDB API
 
-Ebben a cikkben megmutatjuk, hogyan használható az Azure-portálon Azure Cosmos DB globális terjesztési beállításához, és csatlakoztassa a DocumentDB API használatával.
+Ez a cikk megmutatjuk, hogyan toouse hello Azure portál toosetup Azure Cosmos DB globális terjesztési, és csatlakoztassa a hello DocumentDB API használatával.
 
-Ez a cikk ismerteti a következő feladatokat: 
+Ez a cikk ismerteti a következő feladatok hello: 
 
 > [!div class="checklist"]
-> * Az Azure portál használatával globális terjesztési konfigurálása
-> * Globális terjesztési használatával konfigurálja a [DocumentDB API-k](documentdb-introduction.md)
+> * Konfigurálja a globális terjesztési hello Azure-portál használatával
+> * Globális terjesztési használatával hello konfigurálása [DocumentDB API-k](documentdb-introduction.md)
 
 <a id="portal"></a>
 [!INCLUDE [cosmos-db-tutorial-global-distribution-portal](../../includes/cosmos-db-tutorial-global-distribution-portal.md)]
 
 
-## <a name="connecting-to-a-preferred-region-using-the-documentdb-api"></a>A preferált régió a DocumentDB API-jával való kapcsolódás
+## <a name="connecting-tooa-preferred-region-using-hello-documentdb-api"></a>Csatlakozás előnyben részesített régióba tooa hello DocumentDB API
 
-Kihasználása érdekében [globális terjesztési](distribute-data-globally.md), ügyfélalkalmazások is adja meg a dokumentum műveletek végrehajtásához használandó régiók rendezett beállítások listáját. Ezt megteheti a kapcsolat házirend beállításával. Az Azure Cosmos DB-fiók konfigurációja, az aktuális területi rendelkezésre állás és a megadott beállításokat szabályozó lista alapján, a legoptimálisabb végpont választja ki a DocumentDB SDK írási és olvasási műveletek.
+A rendelés tootake előnyeit [globális terjesztési](distribute-data-globally.md), ügyfélalkalmazások hello rendezett használt tooperform dokumentum műveletek régiók toobe preferencia listája adhat meg. Ezt megteheti hello kapcsolat házirend beállításával. Hello Azure Cosmos DB fiók konfigurációja alapján, aktuális területi rendelkezésre állási és hello preferencia lista megadva, a legtöbb optimális végpont választja ki a DocumentDB SDK tooperform írási és olvasási műveletek hello hello.
 
-Ez a beállítás lista van megadva, a DocumentDB SDK-k használata a kapcsolat inicializálása közben. Az SDK-k elfogadása "PreferredLocations" nem kötelező paraméter, amely egy Azure-régiók rendezett listáját.
+Ez a beállítás lista inicializálása közben hello DocumentDB SDK-k használatával van megadva. hello SDK-k elfogadása "PreferredLocations" nem kötelező paraméter, amely egy Azure-régiók rendezett listáját.
 
-Az SDK automatikusan elküld minden írási műveleteket ad ki az aktuális írási régió.
+hello SDK automatikusan elküld minden írások toohello aktuális írási terület.
 
-Az összes olvasási kapnak a PreferredLocations lista első rendelkezésre álló terület. A kérés nem teljesíthető, ha az ügyfél lefelé a listában, a következő régióban sikertelen, és így tovább.
+Az összes olvasási küld toohello első rendelkezésre álló terület hello PreferredLocations listában. Hello kérelem sikertelen lesz, ha hello ügyfél le hello lista toohello következő terület sikertelen, és így tovább.
 
-Az SDK-k csak megpróbálja beolvasni a régió van megadva a PreferredLocations. Igen például ha az adatbázis-fiókot a három régióban, de az ügyfél csak meghatározza a nem írási régiók két PreferredLocations, majd nincs olvasási szolgáltató kívül az írási régió, feladatátvétel esetén is.
+hello SDK-k csak kísérli meg a hello régió van megadva a PreferredLocations tooread. Így például ha hello adatbázisfiók három régiókban, de hello ügyfél csak határozza meg két hello nem írási régiók PreferredLocations, majd nincs olvasási szolgáltató hello írási régió, még akkor is, a feladatátvétel hello eset kívül.
 
-Az alkalmazás a jelenlegi írási végpont ellenőrizheti és olvassa el a két tulajdonság, WriteEndpoint és ReadEndpoint, elérhető, a SDK 1.8-as verzióját és az újabb ellenőrzésével az SDK által választott végpont.
+hello alkalmazás hello aktuális írási végpont ellenőrizheti és olvassa el a végpont által hello SDK WriteEndpoint és ReadEndpoint, elérhető, a SDK 1.8-as verzióját és az újabb ellenőrzési két tulajdonság által választott.
 
-A PreferredLocations tulajdonsága nincs beállítva, ha minden kérésnél szolgáltató aktuális írási régióban.
+Hello PreferredLocations tulajdonság nincs beállítva, ha minden kérésnél hello aktuális írási régióban kell kézbesíteni.
 
 ## <a name="net-sdk"></a>.NET SDK
-Az SDK kód módosítások nélkül használható. Az SDK ebben az esetben automatikusan arra utasítja, mind az Olvasás, és az aktuális írási területen írja.
+hello SDK kód módosítások nélkül használható. Ebben az esetben hello SDK automatikusan számáról mindkét olvasási és az toohello aktuális írási területen írja.
 
-A .NET SDK 1,8 és újabb verziójában a ConnectionPolicy paramétert a DocumentClient konstruktor Microsoft.Azure.Documents.ConnectionPolicy.PreferredLocations nevű tulajdonsággal rendelkezik. Ez a tulajdonság nem gyűjtemény típusú `<string>` és tartalmaznia kell a régió neveinek listáját. A karakterlánc-értékek az a régió nevét oszloponként formázott a [Azure-régiókat] [ regions] , szóközök nélkül előtt vagy után az első lap, és az utolsó karakter kulcsattribútumokkal.
+1,8 és hello .NET SDK újabb verziójában hello ConnectionPolicy paramétere hello DocumentClient konstruktor hívása Microsoft.Azure.Documents.ConnectionPolicy.PreferredLocations tulajdonsággal rendelkezik. Ez a tulajdonság nem gyűjtemény típusú `<string>` és tartalmaznia kell a régió neveinek listáját. hello karakterlánc-értékek vannak formázva a hello hello régió neve oszloponként [Azure-régiókat] [ regions] lap, szóközök nélkül előtt vagy után hello először, és az utolsó karakter rendre.
 
-Az aktuális írási és olvasási végpontok találhatók DocumentClient.WriteEndpoint és DocumentClient.ReadEndpoint kulcsattribútumokkal.
+hello aktuális írási és olvasási végpontok találhatók DocumentClient.WriteEndpoint és DocumentClient.ReadEndpoint kulcsattribútumokkal.
 
 > [!NOTE]
-> Az URL-címeket a végpontok nem hosszú élettartamú állandók kell tekinteni. A szolgáltatás ezek bármikor előfordulhat, hogy frissíteni. Az SDK kezeli automatikusan ezt a módosítást.
+> hello URL-címek hello végpontok hosszú élettartamú állandóként nem tekinthető. hello szolgáltatás ezek bármikor előfordulhat, hogy frissíteni. hello SDK automatikusan kezeli ezt a módosítást.
 >
 >
 
@@ -81,44 +81,44 @@ DocumentClient docClient = new DocumentClient(
     accountKey,
     connectionPolicy);
 
-// connect to DocDB
+// connect tooDocDB
 await docClient.OpenAsync().ConfigureAwait(false);
 ```
 
 ## <a name="nodejs-javascript-and-python-sdks"></a>NodeJS és a Python SDK-k
-Az SDK kód módosítások nélkül használható. Ebben az esetben az SDK automatikusan átirányítja a mind az Olvasás, mind az írás az aktuális írási régióban.
+hello SDK kód módosítások nélkül használható. Ebben az esetben SDK automatikusan átirányítja a hello is beolvassa és toohello aktuális írási terület.
 
-A 1,8 és minden SDK újabb verziója a ConnectionPolicy paramétert a DocumentClient konstruktor új tulajdonság neve DocumentClient.ConnectionPolicy.PreferredLocations. A paraméter karakterláncok tömbje, amely régió neveinek listáját. A nevek a régió nevét oszloponként vannak formázva a [Azure-régiókat] [ regions] lap. A kényelem objektumban AzureDocuments.Regions is használhatja az előre definiált állandók
+Verzió 1,8, és később a minden SDK hello ConnectionPolicy paraméterében hello DocumentClient konstruktor DocumentClient.ConnectionPolicy.PreferredLocations nevű új tulajdonsággal. A paraméter karakterláncok tömbje, amely régió neveinek listáját. a hello hello régió neve oszloponként formázott hello nevek [Azure-régiókat] [ regions] lap. Használhatja az előre megadott hello állandók hello AzureDocuments.Regions kényelmi objektumban
 
-Az aktuális írási és olvasási végpontok találhatók DocumentClient.getWriteEndpoint és DocumentClient.getReadEndpoint kulcsattribútumokkal.
+hello aktuális írási és olvasási végpontok találhatók DocumentClient.getWriteEndpoint és DocumentClient.getReadEndpoint kulcsattribútumokkal.
 
 > [!NOTE]
-> Az URL-címeket a végpontok nem hosszú élettartamú állandók kell tekinteni. A szolgáltatás ezek bármikor előfordulhat, hogy frissíteni. Az SDK automatikusan kezeli ezt a módosítást.
+> hello URL-címek hello végpontok hosszú élettartamú állandóként nem tekinthető. hello szolgáltatás ezek bármikor előfordulhat, hogy frissíteni. hello SDK automatikusan kezeli ezt a módosítást.
 >
 >
 
-Az alábbiakban egy példa van NodeJS/Javascript. Python és a Java a rendszer ugyanazt a sablont követi.
+Az alábbiakban egy példa van NodeJS/Javascript. Python és a Java követi hello ugyanilyen mintájú.
 
 ```java
 // Creating a ConnectionPolicy object
 var connectionPolicy = new DocumentBase.ConnectionPolicy();
 
-// Setting read region selection preference, in the following order -
+// Setting read region selection preference, in hello following order -
 // 1 - West US
 // 2 - East US
 // 3 - North Europe
 connectionPolicy.PreferredLocations = ['West US', 'East US', 'North Europe'];
 
-// initialize the connection
+// initialize hello connection
 var client = new DocumentDBClient(host, { masterKey: masterKey }, connectionPolicy);
 ```
 
 ## <a name="rest"></a>REST
-Az adatbázisfiók elérhetővé tett több régióba, ha az ügyfelek lekérhetnek által egy GET kérelem végrehajtása a következő URI-CÍMÉN elérhetőségét.
+Az adatbázisfiók elérhetővé tett több régióba, ha az ügyfelek lekérhetnek által egy GET kérelem végrehajtása a következő URI hello elérhetőségét.
 
     https://{databaseaccount}.documents.azure.com/
 
-A szolgáltatás régiók és a replikák számára a megfelelő Azure Cosmos DB végpont URI-azonosítók listáját adja vissza. Az aktuális írási terület jelzik a válaszban. Az ügyfél kiválaszthatja a megfelelő végpont minden további REST API-kérelmek az alábbiak szerint.
+hello szolgáltatás régiók és a megfelelő Azure Cosmos DB végpont URI-azonosítók hello replikáinak listáját adja vissza. hello aktuális írási terület hello válasz jelzik. hello ügyfél ezután kijelölhet hello megfelelő végpont a minden további REST API-kérelmek az alábbiak szerint.
 
 Példa egy válasz
 
@@ -153,27 +153,27 @@ Példa egy válasz
     }
 
 
-* Minden PUT, POST és DELETE kérelmek be kell lépnie a jelzett írási URI
-* Minden lekérdezi és egyéb olvasási kérések (például a lekérdezések) lehet, hogy nyissa meg az az ügyfél által választott bármely végponthoz
+* Minden PUT, POST és DELETE kérelmek be kell lépnie jelzett toohello írási URI
+* Minden lekérdezi és egyéb olvasási kérések (például a lekérdezések) előfordulhat, hogy nyissa meg az hello ügyfél választott tooany végpont
 
-Az írási kérelmek írásvédett régiók sikertelen lesz, és HTTP-hibakódot 403 ("tiltott").
+Az írási kérések csak tooread régiók sikertelen lesz, és HTTP-hibakódot 403 ("tiltott").
 
-Ha az írási régió változik, az ügyfél kezdeti felderítés fázis után, a későbbi írási műveleteket ad ki az előző írási régió sikertelen lesz, és HTTP-hibakódot 403 ("tiltott"). Az ügyfél ezután SZEREZHETI be újra a frissített írási régió beolvasandó régiók listáját.
+Ha hello írási régió után módosítja a hello ügyfél kezdeti felderítés fázisban későbbi ír előző toohello írási régió sikertelen lesz, és HTTP-hibakódot ("tiltott") 403. hello ügyfél kell majd le régiók listáját hello újra tooget hello frissített írási régióban.
 
-Ez azt, hogy ez az oktatóanyag befejezése. Megismerheti a globális replikált fiókja konzisztencia kezeléséhez olvasásával [Azure Cosmos DB-ben konzisztenciaszintek](consistency-levels.md). És hogyan globális adatbázis-replikációval kapcsolatos további információk az Azure Cosmos Adatbázisba működik, a következő témakörben: [adatok globálisan Azure Cosmos DB terjesztése](distribute-data-globally.md).
+Ez azt, hogy ez az oktatóanyag befejezése. Megismerheti, hogyan toomanage hello olvasásával globálisan replikált fiókja konzisztencia [Azure Cosmos DB-ben konzisztenciaszintek](consistency-levels.md). És hogyan globális adatbázis-replikációval kapcsolatos további információk az Azure Cosmos Adatbázisba működik, a következő témakörben: [adatok globálisan Azure Cosmos DB terjesztése](distribute-data-globally.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben az oktatóanyagban ezt a következők:
+Ebben az oktatóanyagban hello következő régebben már kötöttek:
 
 > [!div class="checklist"]
-> * Az Azure portál használatával globális terjesztési konfigurálása
-> * A DocumentDB API-k használatával globális terjesztési konfigurálása
+> * Konfigurálja a globális terjesztési hello Azure-portál használatával
+> * Globális terjesztési hello DocumentDB API-k használatával konfigurálása
 
-Most már folytathatja a következő oktatóanyag megtudhatja, hogyan fejleszthet, helyileg emulátorral Azure Cosmos DB helyi.
+Most már folytathatja a következő útmutató toolearn toohello hogyan helyileg toodevelop hello Azure Cosmos DB helyi emulátor.
 
 > [!div class="nextstepaction"]
-> [Helyileg emulátorral fejlesztése](local-emulator.md)
+> [Hello emulátorral helyileg fejlesztése](local-emulator.md)
 
 [regions]: https://azure.microsoft.com/regions/
 

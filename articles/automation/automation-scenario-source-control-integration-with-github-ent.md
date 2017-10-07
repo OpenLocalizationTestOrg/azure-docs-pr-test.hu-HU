@@ -1,6 +1,6 @@
 ---
-title: "Verziókövetés integrálása az Azure Automation a Githubon vállalati |} Microsoft Docs"
-description: "A GitHub vállalati integrációs konfigurálása az Automation-forgatókönyv verziókövetési részleteit ismerteti."
+title: "Automatizálási verziókövetés integrálása a Githubon vállalati aaaAzure |} Microsoft Docs"
+description: "Ismerteti, hogyan hello részleteit az Automation-forgatókönyv verziókövetési tooconfigure-integráció a Githubon vállalati."
 services: automation
 documentationCenter: 
 authors: mgoedtel
@@ -14,79 +14,79 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/26/2017
 ms.author: magoedte
-ms.openlocfilehash: 62793dcdbbf4c83161e95d1c165d5c231245f7c6
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 915d36ccabb72fdee1dba663049a0b331249cd73
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-automation-scenario---automation-source-control-integration-with-github-enterprise"></a>Azure Automation forgatókönyv - automatizálási verziókövetés integrálása a Githubon vállalati
 
-Automatizálási jelenleg verziókövetés integrálása, amely lehetővé teszi az Automation-fiók egy GitHub verziókövetési tárházat a runbookot.  Azonban az ügyfelek, akik telepített [GitHub vállalati](https://enterprise.github.com/home) a DevOps eljárások támogatásához is szeretne az üzleti folyamatok automatizálása és felügyeleti műveletek szolgáltatás fejlesztett runbookok életciklus kezeléséhez.  
+Automatizálási jelenleg a verziókövetés integrálása, amely lehetővé teszi runbookok tooassociate az automatizálási fiók tooa GitHub verziókövetési tárházat támogatja.  Azonban az ügyfelek, akik telepített [GitHub vállalati](https://enterprise.github.com/home) toosupport a DevOps eljárásokat, azt is szeretnék toouse azt toomanage hello életciklusa a runbookok, amelyek fejlett tooautomate üzleti folyamatok és szolgáltatások kezelése műveletek.  
 
-Ebben a forgatókönyvben a Windows rendszerű számítógépeken az Adatközpont konfigurálva, a hibrid forgatókönyv-feldolgozók az Azure Resource Manager modulok és a Git-eszközök telepítve van.  A hibrid feldolgozó gépnek klónját, a helyi Git-tárházba.  A runbook futásakor a hibrid feldolgozón a Git directory szinkronizálása és a runbook tartalmát a rendszer importálta az Automation-fiók.
+Ebben a forgatókönyvben a Windows rendszerű számítógépeken az Adatközpont konfigurálva, a hibrid forgatókönyv-feldolgozók hello Azure Resource Manager modulok és a Git-eszközök telepítve van.  hello hibrid feldolgozó gépnek hello helyi Git-tárház klónja.  Hello runbook futásakor hello hibrid feldolgozón hello Git directory szinkronizálása és hello runbook fájl tartalmát a rendszer importálta hello Automation-fiók.
 
-A cikkből megtudhatja, hogyan állíthat be ezt a konfigurációt, az Azure Automation-környezetben. A biztonsági hitelesítő adataival, a runbookok a runbookok futtatásához és hozzáférni a vállalati GitHub-tárház runbookok szinkronizálása az Adatközpont ezt a forgatókönyvet, és a hibrid forgatókönyv-feldolgozók telepítését támogatásához szükséges Automation konfigurálásával először az Automation-fiókkal.  
+Ez a cikk ismerteti, hogyan tooset be ezt a konfigurációt, az Azure Automation-környezetben. Először Automation konfigurálásával hello biztonsági hitelesítő adatokkal, runbookok szükséges toosupport ebben a forgatókönyvben és központi telepítését az adatok a hibrid forgatókönyv-feldolgozó toorun hello runbookok középpontba állításához és hozzáférni a vállalati GitHub-tárház toosynchronize az Automation-fiók runbookok.  
 
 
-## <a name="getting-the-scenario"></a>A forgatókönyv beszerzése
+## <a name="getting-hello-scenario"></a>Első hello forgatókönyv
 
-Ebben a forgatókönyvben két PowerShell-forgatókönyvek, amelyek közvetlenül importálhatók áll a [forgatókönyvek](automation-runbook-gallery.md) az Azure-portálon vagy letölthető a [PowerShell-galériában](https://www.powershellgallery.com).
+Ebben a forgatókönyvben két PowerShell-forgatókönyvek, amelyek közvetlenül a hello importálhatja áll [forgatókönyvek](automation-runbook-gallery.md) az Azure-portálon hello, vagy letöltheti a hello [PowerShell-galériában](https://www.powershellgallery.com).
 
 ### <a name="runbooks"></a>Runbookok
 
 Forgatókönyv | Leírás| 
 --------|------------|
-Export-RunAsCertificateToHybridWorker | Runbook exportálása RunAs tanúsítványt az Automation-fiók a hibrid feldolgozók, hogy a dolgozó runbookokat is annak érdekében hitelesítik magukat Azure runbookok importálja az Automation-fiók.| 
-Szinkronizálási-LocalGitFolderToAutomationAccount | Runbook szinkronizálja a helyi Git-mappa a hibrid gépen, és ezután a runbook-fájlok (*.ps1) importálása az Automation-fiók.|
+Export-RunAsCertificateToHybridWorker | Runbook RunAs tanúsítványt, hogy a runbookokat hello munkavégző hitelesíthetők az Azure-ral rendelés tooimport runbookokat hello Automation-fiók be egy automatizálási fiókot tooa hibrid feldolgozó exportálja.| 
+Szinkronizálási-LocalGitFolderToAutomationAccount | Runbook szinkronizálások hello hello hibrid gépen helyi Git-mappa, és majd hello runbook fájlok (*.ps1) importálása hello Automation-fiók.|
 
 ### <a name="credentials"></a>Hitelesítő adatok
 
 Hitelesítő adat | Leírás|
 -----------|------------|
-GitHRWCredential | Hitelesítőadat-eszköz hoz létre a felhasználónév és a hibrid feldolgozó engedélyekkel rendelkező felhasználó jelszavának tárolásához.|
+GitHRWCredential | Hitelesítőadat-eszköz hoz létre toocontain hello felhasználónevet és jelszót egy felhasználó engedélyek toohello hibrid feldolgozó.|
 
 ## <a name="installing-and-configuring-this-scenario"></a>A forgatókönyv telepítése és konfigurálása
 
 ### <a name="prerequisites"></a>Előfeltételek
 
-1. A Sync-LocalGitFolderToAutomationAccount runbook használatával hitelesít a [Azure-beli futtató fiók](automation-sec-configure-azure-runas-account.md). 
+1. hello Sync-LocalGitFolderToAutomationAccount runbook hitelesíti hello segítségével [Azure-beli futtató fiók](automation-sec-configure-azure-runas-account.md). 
 
-2. Az Azure Automation-megoldás engedélyezve és konfigurálva van a Microsoft Operations Management Suite (OMS) munkaterület is szükség.  Ha még nem rendelkezik ilyennel, amelyek telepítése és konfigurálása ebben a forgatókönyvben használt Automation-fiók van hozzárendelve, az azt létre és konfigurálta az Ön végrehajtásakor a **New-OnPremiseHybridWorker.ps1** parancsfájlt a hibrid forgatókönyv munkavégző.        
+2. Hello Azure Automation-megoldás engedélyezve és konfigurálva van a Microsoft Operations Management Suite (OMS) csomópontjában is szükség.  Ha nem rendelkezik társított hello automatizálási művelet végrehajtására használt fiók tooinstall, és ez a forgatókönyv konfigurálásához, akkor létrehozásáról és az Ön hello végrehajtásakor **New-OnPremiseHybridWorker.ps1** hello hibrid parancsfájlt forgatókönyv-feldolgozó.        
 
     > [!NOTE]
-    > Jelenleg a következő régiókban csak támogatja OMS - automatizálás integrálását **Ausztrália délkeleti**, **USA keleti régiója 2**, **Délkelet-Ázsia**, és **nyugati régiója Európa**. 
+    > Jelenleg hello következő régiókban csak támogatja az OMS - automatizálás integrációja **Ausztrália délkeleti**, **USA keleti régiója 2**, **Délkelet-Ázsia**, és **nyugati régiója Európa**. 
 
-3. Olyan számítógépre, amelyen a dedikált hibrid forgatókönyv-feldolgozók, amely szintén a Githubon szoftver a runbook fájlok karbantartása szolgálhatnak (*runbook*.ps1) a GitHub közötti szinkronizálás a fájlrendszerben forráskönyvtárat és a Automation-fiók.
+3. Olyan számítógépre, amelyen a dedikált hibrid forgatókönyv-feldolgozók, amely is hello GitHub szoftver hello runbook fájlok karbantartása szolgálhatnak (*runbook*.ps1) hello fájl rendszer toosynchronize GitHub között a forráskönyvtárat a és a Automation-fiók.
 
-### <a name="import-and-publish-the-runbooks"></a>Importálja és közzétenni a runbookot
+### <a name="import-and-publish-hello-runbooks"></a>Importálja és runbookokat hello közzététele
 
-Importálhatja a *Export-RunAsCertificateToHybridWorker* és *Sync-LocalGitFolderToAutomationAccount* forgatókönyvek az Automation-fiók az Azure portálon, a Runbook-galériából kövesse a az eljárások [importálási Runbookot a Runbook-galériából](automation-runbook-gallery.md#to-import-a-runbook-from-the-runbook-gallery-with-the-azure-portal). Tegye közzé a runbookokat, után azok sikeresen importálva lettek az Automation-fiók.
+tooimport hello *Export-RunAsCertificateToHybridWorker* és *Sync-LocalGitFolderToAutomationAccount* runbookokat hello forgatókönyvek az Automation-fiókban lévő hello Azure-portálon a a hello eljárások [hello forgatókönyvek Runbook importálása](automation-runbook-gallery.md#to-import-a-runbook-from-the-runbook-gallery-with-the-azure-portal). Tegye közzé a runbookokat hello után azok sikeresen importálva lettek az Automation-fiók.
 
 ### <a name="deploy-and-configure-hybrid-runbook-worker"></a>Telepítse és konfigurálja a hibrid forgatókönyv-feldolgozó
 
-Ha nem rendelkezik a hibrid forgatókönyv-feldolgozók már telepítették az adatközpont, kell tekintse át a követelményeket és kövesse az automatikus telepítési lépéseket hajtsa végre az eljárást a [Azure Automation hibrid forgatókönyv-feldolgozók - telepítés automatizálása és Konfigurációs](automation-hybrid-runbook-worker.md#automated-deployment).  Miután sikeresen telepítette a hibrid feldolgozó egy számítógépen, a következő lépésekkel ennek támogatásához a konfigurálás befejezéséhez.
+Ha nem rendelkezik a hibrid forgatókönyv-feldolgozók már telepítették az adatközpont, kell hello követelményeinek áttekintése és lépések automatikus hello telepítési hello eljárás használatával [Azure Automation hibrid forgatókönyv-feldolgozók - telepítés automatizálása és konfigurációs](automation-hybrid-runbook-worker.md#automated-deployment).  Miután sikeresen telepítette hello hibridfeldolgozó egy számítógépen, hajtsa végre a hello lépéseket toocomplete követően a konfigurációs toosupport ebben a forgatókönyvben.
 
-1. Jelentkezzen be egy olyan fiókkal, amely helyi rendszergazdai jogosultságokkal rendelkezik a hibrid forgatókönyv-feldolgozó szerepkört futtató számítógépen, és hozzon létre egy könyvtárat a Git runbook fájlok tárolásához.  A könyvtár a belső Git-tárház klónozása.
-2. Ha még nem rendelkezik egy futtató fiókot, vagy hozzon létre egy új dedikált egy erre a célra, Azure-portálról navigáljon az Automation-fiók válassza ki az Automation-fiók, hozzon létre egy [hitelesítőadat-eszköz](automation-credentials.md) , a felhasználónév és a hibrid feldolgozó engedélyekkel rendelkező felhasználó jelszavának tartalmazza.  
-3. Az Automation-fiók a [szerkeszteni a runbookot](automation-edit-textual-runbook.md)**Export-RunAsCertificateToHybridWorker** és a változó értékének módosításához *$Password* erős jelszóval.  Az érték módosítása után kattintson **közzététel** kell rendelkeznie a közzétett runbook vázlatverzióját. 
-5. Elindítja a runbookot **Export-RunAsCertificateToHybridWorker**, majd a a **runbook meghívása** panelen, a beállítás a **futtatási beállítások** választja  **Hibridfeldolgozó** és a legördülő listában jelölje ki azokat a hibrid feldolgozócsoport ebben a forgatókönyvben a korábban létrehozott.  
+1. Jelentkezzen be toohello számítógép birtokosi hello hibrid forgatókönyv-feldolgozói szerepkör egy olyan fiókkal, amely helyi rendszergazdai jogosultságokkal rendelkezik, és hozzon létre egy könyvtárat toohold hello Git runbook fájlt.  Klónozás hello belső Git tárház toohello könyvtár.
+2. Ha még nem rendelkezik egy futtató fiókot, vagy egy új erre a célra kijelölt toocreate kívánt, hello Azure-portálon a keresse meg a tooAutomation fiókok válassza ki az Automation-fiók, hozzon létre egy [hitelesítőadat-eszköz](automation-credentials.md) , hello felhasználónévvel és jelszóval rendelkező engedélyek toohello hibridfeldolgozó tartalmazza.  
+3. Az Automation-fiók a [hello runbook szerkesztése](automation-edit-textual-runbook.md)**Export-RunAsCertificateToHybridWorker** és módosítható hello változó értéke hello *$Password* rendelkező egy erős a jelszó.    Hello érték módosítása után kattintson **közzététel** toohave hello hello runbook vázlatverzióját közzé. 
+5. Indítsa el a hello runbook **Export-RunAsCertificateToHybridWorker**, és hello **runbook meghívása** panelen a hello beállítás **futtatási beállítások** hello beállítást **Hibridfeldolgozó** és hello legördülő listában válassza hello hibrid feldolgozócsoport ebben a forgatókönyvben a korábban létrehozott.  
 
-    Ez exportálja a tanúsítványt a hibrid feldolgozó, hogy a munkavégző használatával a runbookok hitelesítéséhez az Azure-ban a Futtatás mint kapcsolat (különösen a forgatókönyv - importálási runbookokat az Automation-fiók) Azure-erőforrások kezeléséhez.
+    A tanúsítvány toohello hibrid feldolgozók ez exportálja, így a runbookokat hello munkavégző hitelesítheti az Azure-ral ahhoz toomanage hello futtató kapcsolat használatával Azure-erőforrások (különösen a forgatókönyv - importálási runbookok toohello Automation-fiók).
 
-4. Az Automation-fiók, jelölje ki a korábban létrehozott hibrid feldolgozócsoport és [adja meg egy futtató fiókot](automation-hrw-run-runbooks.md#runas-account) a hibrid feldolgozócsoport, és válassza a hitelesítőadat-eszköz csak vagy már hozott létre.  Ez biztosítja, hogy a szinkronizálási runbook futtatható-e a Git-parancsokat. 
-5. Elindítja a runbookot **Sync-LocalGitFolderToAutomationAccount**, adja meg a következő kötelező bemeneti paraméterérték és a **runbook meghívása** panelen, a beállítás a **futtatási beállítások**  választja **Hibridfeldolgozó** és a legördülő listában válassza ki a korábban létrehozott ebben a forgatókönyvben a hibrid feldolgozócsoport:
-    * *Erőforráscsoport* – az Automation-fiók társított az erőforráscsoport neve
-    * *AutomationAccountName* – az Automation-fiók neve
-    * *GitPath* -a helyi mappát vagy fájlt a hibrid forgatókönyv-feldolgozó, ahol Git be van állítva legutóbbi változtatásokat lekéréses
+4. Az Automation-fiók a válassza ki a korábban létrehozott hibrid feldolgozócsoport hello és [adja meg egy futtató fiókot](automation-hrw-run-runbooks.md#runas-account) hello hibrid feldolgozócsoport, és a kiválasztott hitelesítőadat-eszköz hello csak vagy már hozott létre.  Ez biztosítja, hogy hello szinkronizálási runbook futhat a Git-parancsokat. 
+5. Hello runbook indítása **Sync-LocalGitFolderToAutomationAccount**, adja meg a hello következő kötelező bemeneti paraméterérték és hello **runbook meghívása** panelen a hello beállítás **futtatása beállítások** hello beállítást **Hibridfeldolgozó** és hello legördülő listában válassza hello hibrid feldolgozócsoport ebben a forgatókönyvben a korábban létrehozott:
+    * *Erőforráscsoport* – hello az Automation-fiók társított az erőforráscsoport neve
+    * *AutomationAccountName* – hello az Automation-fiók neve
+    * *GitPath* – hello helyi mappa vagy fájl a következő hello hibrid forgatókönyv-feldolgozó ahol Git toopull legutóbbi módosítások történő beállítása
 
-    Ez szinkronizálni a hibrid feldolgozó számítógép helyi Git mappájába, és majd a forráskönyvtár a .ps1 fájlok az Automation-fiók importálását.
+    A szinkronizálás hello helyi Git mappa hello hibrid feldolgozó számítógépen, és majd hello .ps1 fájlok importálása hello forrás directory toohello Automation-fiók.
 
     ![Indítsa el a Sync-LocalGitFolderToAutomationAccount Runbook](media/automation-scenario-source-control-integration-with-github-ent/start-runbook-synclocalgitfoldertoautoacct.png)<br>
 
-7. Kiválasztásával le a runbook a feladat összefoglaló információk megtekintése a **Runbookok** paneljén az Automation-fiók, és válassza a **feladatok** csempére.  Ellenőrizze, hogy sikeresen befejeződött-e választva a **összes napló** csempe, és tekintse át a részletes napló adatfolyam.  
+7. Feladat összefoglaló információk hello runbook megtekintése hello kijelölésével **Runbookok** panel az Automation-fiók, és jelölje ki hello **feladatok** csempére.  Ellenőrizze, hogy sikeresen befejeződött-e hello kiválasztásával **összes napló** csempe és áttekintette hello részletes naplófolyamot.  
 
 ## <a name="next-steps"></a>Következő lépések
 
--  További információk a forgatókönyvek típusairól, az előnyeikről és a korlátaikról: [Az Azure Automation forgatókönyveinek típusai](automation-runbook-types.md)
+-  További információ az runbooktípusokkal, azok előnyeit, és a korlátozásokról tooknow lásd [Azure Automation-runbook típusok](automation-runbook-types.md)
 -  További információk a PowerShell-parancsprogramok támogatásáról: [PowerShell-parancsprogramok natív támogatása az Azure Automationben](https://azure.microsoft.com/blog/announcing-powershell-script-support-azure-automation-2/)

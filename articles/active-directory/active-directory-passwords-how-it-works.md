@@ -16,88 +16,88 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
-ms.openlocfilehash: 0fa05ee6a2df13845024e770a82f50ab7f75bafd
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c177192bbe69d179a25d174b06a0813ec28e2615
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="self-service-password-reset-in-azure-ad-deep-dive"></a>Az önkiszolgáló jelszó-változtatási az Azure AD részletes bemutatója
 
-Hogyan működik az önkiszolgáló jelszó-Változtatási? Mi ez a lehetőség jelent a felületen? Továbbra is olvasási további tudnivalók az Azure AD az önkiszolgáló jelszó alaphelyzetbe állítása.
+Hogyan működik az önkiszolgáló jelszó-Változtatási? Mi ez a lehetőség jelent hello felületen? Továbbra is olvasása toofind további információk az Azure AD az önkiszolgáló jelszó alaphelyzetbe állítása.
 
-## <a name="how-does-the-password-reset-portal-work"></a>Hogyan alaphelyzetbe állítja a jelszót a munkahelyi portál
+## <a name="how-does-hello-password-reset-portal-work"></a>Hogyan alaphelyzetbe állítja a jelszót hello a munkahelyi portál
 
-Amikor a felhasználók megnyitják a jelszó-visszaállítási portál, a munkafolyamat van kezdődött el meghatározásához:
+Amikor a felhasználók megnyitják a jelszó-változtatási portál toohello, akkor a munkafolyamat van kezdődött el toodetermine:
 
-   * Hogyan lehet honosított a lapot?
-   * Érvénytelen a felhasználói fiókot?
-   * Milyen a szervezet a felhasználó tartozik?
-   * Ha a felhasználó jelszava felügyelt?
-   * A felhasználó rendelkezik licenccel a szolgáltatás használatához?
+   * Hogyan lehet honosított hello lap?
+   * Az érvényes hello felhasználói fiók?
+   * Milyen szervezet hello felhasználó tartozik?
+   * Ha hello jelszó felügyelt?
+   * Az hello felhasználói licencelt toouse hello szolgáltatás?
 
 
-Olvassa végig az alábbi lépéseket a jelszó alaphelyzetbe állítása lap mögötti logika tájékozódhat.
+Olvassa végig toolearn hello logika hello jelszó alaphelyzetbe állítása oldal mögött kapcsolatos alábbi hello lépéseket.
 
-1. Felhasználó kattint a nem fér hozzá a fiók vagy is megnőnek közvetlenül [https://passwordreset.microsoftonline.com](https://passwordreset.microsoftonline.com).
-2. A megfelelő nyelven jelenik meg a felhasználói élmény, a böngésző területi beállítás alapján. A jelszó alaphelyzetbe állítása élmény azonos nyelvekre honosított, Office 365 támogatja.
+1. Felhasználó kattint hello nem tudja elérni a fiókot hivatkozásra, vagy túl közvetlenül kerül[https://passwordreset.microsoftonline.com](https://passwordreset.microsoftonline.com).
+2. Alapú hello böngésző területi hello a felhasználói élmény hello megfelelő nyelven lett megjelenítve. hello jelszó alaphelyzetbe állítása élmény van honosítva hello azonos nyelveket támogatja az Office 365.
 3. Felhasználó beírja egy felhasználói azonosítót, és továbbítja a captcha.
-4. Az Azure AD ellenőrzi, hogy ha a felhasználó nem tud a szolgáltatás használatához a következő módon:
-   * Ellenőrzi, hogy a felhasználó rendelkezik-e ez a funkció engedélyezve van, és az Azure AD-licenccel.
-     * Ha a felhasználó nem rendelkezik ezzel a funkcióval vagy egy licenccel, a felhasználónak kapcsolatba kell lépnie a jelszó alaphelyzetbe állításához a rendszergazda.
-   * Ellenőrzi, hogy a felhasználó rendelkezik-e a jobb oldali kihívást jelentenek a rendszergazda nyilatkozatnak a fiókot a megadott adatokat.
-     * Ha a házirend csak egy ellenőrző igényel, majd biztosítható, hogy a felhasználó rendelkezik-e a megfelelő adatokat, legalább az egyik kihívás a rendszergazda házirend engedélyezve van definiálva.
-       * Ha a felhasználó nincs konfigurálva, majd a felhasználó ajánlatos a jelszavuk a rendszergazdától.
-     * Ha a házirend két kihívást igényel, majd biztosítható, hogy a felhasználó rendelkezik-e a megfelelő adatokat, a rendszergazda házirend által engedélyezett kihívásai legalább két definiált.
-       * Ha a felhasználó nem úgy van beállítva, akkor azt a felhasználó nem javasoljuk, hogy a jelszó alaphelyzetbe állítása a rendszergazdától.
-   * Ellenőrzi, hogy a felhasználó jelszavát a helyszíni (összevont vagy Jelszókivonat szinkronizálása) felügyelt.
-     * Ha visszaírási van telepítve, és a jelszót a helyszínen kezelt, majd a felhasználó az engedélyezett hitelesítéséhez és a jelszó alaphelyzetbe állítása.
-     * Ha visszaírási nincs telepítve, és a helyszíni kezeli a jelszót, majd a felhasználónak kapcsolatba kell lépnie a jelszó alaphelyzetbe állításához a rendszergazda.
-5. Ha megállapította, hogy a felhasználó nem tudja alaphelyzetbe állítása sikeresen megtörtént a jelszavát, majd a rendszer végigvezeti a felhasználót a visszaállítási folyamat során.
+4. Az Azure AD ellenőrzi, hogy hello felhasználó képes toouse-e a szolgáltatás hello következő tevékenységek végrehajtásával:
+   * Ellenőrzi, hogy hello felhasználó rendelkezik ezzel a funkcióval és az Azure AD-licenccel.
+     * Hello felhasználó nem rendelkezik ezzel a funkcióval vagy egy licenccel, hogy van-e a hello felhasználói toocontact a rendszergazda tooreset kéri a jelszót.
+   * Ellenőrzi, hogy hello felhasználó rendelkezik-e a rendszergazda nyilatkozatnak fiókjuk definiált hello jobb oldali kérdés adatok.
+     * Ha a házirend csak egy ellenőrző igényel, majd biztosítható, hogy hello felhasználó rendelkezik-e legalább az egyik hello kihívást hello rendszergazdai házirend által engedélyezett definiált hello megfelelő adatok.
+       * Ha hello felhasználó nincs konfigurálva, akkor a felhasználó hello van elkeverni toocontact a rendszergazda tooreset a jelszavát.
+     * Ha hello házirend két kihívást igényel, majd biztosítható, hogy hello felhasználó rendelkezik-e legalább két hello kihívást hello rendszergazdai házirend által engedélyezett definiált hello megfelelő adatok.
+       * Ha hello felhasználó nincs konfigurálva, akkor azt a felhasználói hello elkeverni toocontact a rendszergazda tooreset van a jelszavát.
+   * Ellenőrzi, hogy hello jelszó (összevont vagy Jelszókivonat szinkronizálása) helyszínen felügyelt.
+     * Ha visszaírási van telepítve, és a helyszínen felügyelt hello jelszó, hello felhasználói tooproceed tooauthenticate engedélyezett, és a jelszó alaphelyzetbe állítása.
+     * Ha visszaírási nincs telepítve a helyszínen felügyelt hello felhasználó jelszavát, majd hello felhasználó toocontact a rendszergazda tooreset kéri a jelszót.
+5. Ha megállapította, hogy hello felhasználó toosuccessfully jelszó visszaállítása, majd a rendszer végigvezeti hello a felhasználót hello visszaállítási folyamat.
 
 ## <a name="authentication-methods"></a>Hitelesítési módszerek
 
-Ha az önkiszolgáló jelszó alaphelyzetbe állítása (SSPR) engedélyezve van, ki kell választania legalább egy olyan hitelesítési módszerek az alábbiak közül. Erősen ajánlott legalább két hitelesítési módszer kiválasztása, hogy a felhasználók több beleszólása van.
+Ha az önkiszolgáló jelszó alaphelyzetbe állítása (SSPR) engedélyezve van, ki kell választania legalább az alábbi hitelesítési módszerek beállítások hello. Erősen ajánlott legalább két hitelesítési módszer kiválasztása, hogy a felhasználók több beleszólása van.
 
 * E-mail cím
 * Mobiltelefon
 * Irodai telefon
 * Biztonsági kérdések
 
-### <a name="what-fields-are-used-in-the-directory-for-authentication-data"></a>Milyen mezők szerepelnek a directory hitelesítési adatok
+### <a name="what-fields-are-used-in-hello-directory-for-authentication-data"></a>Milyen mezők használ a hello directory hitelesítési adatok
 
-* Irodai telefon megfelel-e irodai telefon
-    * A felhasználók nem tudnak ez mezőben magukat egy rendszergazdának kell megadni
-* Mobiltelefon felel meg a hitelesítéshez megadott telefonját (nem nyilvánosan láthatóvá) vagy a mobiltelefonjára (nyilvánosan láthatóvá)
-    * A szolgáltatás először megkeresi a hitelesítéshez megadott telefonját, majd visszavált a mobiltelefon, ha nem jelent-e
-* Másodlagos E-mail-cím megfelel a hitelesítési E-mail (nem nyilvánosan láthatóvá) vagy a másodlagos E-mail
-    * A szolgáltatás hitelesítési E-mail először megkeresi, majd vissza a másodlagos E-mail sikertelen
+* Irodai telefon tooOffice Phone felel meg.
+    * Felhasználók maguk meg kell határozni egy rendszergazda ebben a mezőben nem tooset
+* Mobiltelefon felel meg a hitelesítéshez megadott telefonját (nem nyilvánosan láthatóvá) vagy a mobiltelefonjára (nyilvánosan láthatóvá) tooeither
+    * hello szolgáltatást először megkeresi a hitelesítéshez megadott telefonját, majd visszavált tooMobile telefon, ha nem jelent-e
+* Másodlagos E-mail-cím megfelel-e tooeither hitelesítési E-mail (nem nyilvánosan láthatóvá) vagy a másodlagos E-mail
+    * hello szolgáltatás hitelesítési E-mail először megkeresi, az e-mailek hátsó tooAlternate sikertelen
 
-Alapértelmezés szerint csak a felhő attribútumok irodai telefon és mobiltelefonra szinkronizálva van a felhő címtárhoz a hitelesítési adatok a helyi címtárban lévő.
+Alapértelmezés szerint csak hello jellemzői irodai telefon és mobiltelefonra szinkronizálja a hitelesítési adatok a helyi címtárban lévő tooyour felhőalapú címtárban.
 
-Felhasználók csak jelszó is visszaállítása, ha a hitelesítési módszereket, amelyek a rendszergazda engedélyezte, és megköveteli az adatok.
+A felhasználók csak a jelszavát, ha telepítve adatok találhatók az hello hitelesítési módszereket, hogy hello rendszergazda engedélyezte a visszaállítási és igényel.
 
-Ha a felhasználó nem szeretné, hogy a címtárban a mobiltelefonszám, de továbbra is használni szeretné, jelszó-visszaállításhoz, a rendszergazdák nem kell tölteni azt a könyvtárban, és a felhasználó majd fel kell töltenie a **hitelesítéshez megadott telefonját** keresztül attribútumot a [jelszó-változtatási regisztrációs portálra](http://aka.ms/ssprsetup). A rendszergazdák láthatják ezeket az információkat a profil, de nem máshol lesz közzétéve. Ha Azure-rendszergazdai fiók regisztrálja a hitelesítéshez használni kívánt telefonszámot, a mobiltelefon mezőbe fel van töltve, és látható.
+Ha a felhasználó nem szeretné, hogy a mobiltelefon száma toobe hello directory látható, de szeretné még toouse például azt a jelszó alaphelyzetbe állítása, a rendszergazdák nem kell tölteni azt hello könyvtárban, és hello felhasználói majd fel kell töltenie a **hitelesítéshez megadott telefonját**  keresztül hello attribútum [jelszó-változtatási regisztrációs portálra](http://aka.ms/ssprsetup). A rendszergazdák láthatják ezt az információt hello profil, de nem máshol lesz közzétéve. Ha Azure-rendszergazdai fiók regisztrálja a hitelesítéshez használni kívánt telefonszámot, hello mobiltelefon mezőbe fel van töltve, és látható.
 
 ### <a name="number-of-authentication-methods-required"></a>Több hitelesítési módszer szükséges
 
-Ezt a beállítást a használható hitelesítési módszereket, a felhasználó alaphelyzetbe állítása vagy feloldása a jelszavát kell végighaladnia és 1 vagy 2 megadható minimális számát határozza meg.
+Ez a beállítás határozza meg, hogy hello minimális hello elérhető hitelesítési módszerek egy felhasználó tooreset keresztül kell haladnia vagy feloldása a jelszavát, és 1 vagy 2 tooeither állítható be.
 
-Adja meg a további hitelesítési módszerek, ha engedélyezve vannak a rendszergazda felhasználók maguk dönthetik.
+Felhasználók maguk dönthetik toosupply további hitelesítési módszerek Ha hello rendszergazda engedélyezve vannak.
 
-Ha a felhasználó nem rendelkezik a minimálisan szükséges módszerek regisztrált, láthatják, amely arra utasítja, kérje a rendszergazda számára, hogy a jelszó visszaállítása hibalap.
+Ha a felhasználó nem rendelkezik a szükséges minimális hello módszerekkel regisztrált, láthatják, amelyek vezeti őket egy rendszergazda tooreset toorequest hibalap a jelszavát.
 
 ### <a name="how-secure-are-my-security-questions"></a>Hogy mennyire vannak biztonságban vannak a biztonsági kérdések
 
-Biztonsági kérdések használata, ha ajánlott azokat használja egy másik módszerrel módon el más módszernél kevésbé biztonságos, mivel a felhasználók némelyike előfordulhat, hogy tudja, egy másik felhasználó kérdésekre adott válaszokat.
+Biztonsági kérdések használata, ha ajánlott azokat használja egy másik módszerrel módon el más módszernél kevésbé biztonságos, mivel a felhasználók némelyike előfordulhat, hogy ismeri a hello válaszok tooanother felhasználók kérdések.
 
 > [!NOTE] 
-> Biztonsági kérdések tárolja a könyvtárban olyan felhasználói objektum közvetlenül és biztonságosan, és képes csak válaszolni felhasználók regisztráció során. Rendszergazda olvasására vagy módosítására a felhasználók semmilyen módon kérdések és válaszok.
+> Biztonsági kérdések a user objektum hello könyvtárban közvetlenül és biztonságos helyen tárolja, és is csak válaszolni felhasználók regisztrálás során. Nincs semmilyen módszer a egy rendszergazda tooread vagy módosíthat egy felhasználói kérdések és válaszok.
 >
 
 ### <a name="security-question-localization"></a>Biztonsági kérdés honosítása
 
-Hajtsa végre az összes előre definiált kérdésekre az Office 365 nyelvek a felhasználó a böngésző nyelve alapján a teljes készletének honosítva vannak.
+Hajtsa végre az összes előre definiált kérdésekre az Office 365 nyelvek hello felhasználó a böngésző nyelve alapján teljes készletét hello honosítva vannak.
 
 * Melyik városban ismerkedett meg az első házastársával/párjával?
 * Melyik városban találkozak először a szülei?
@@ -106,9 +106,9 @@ Hajtsa végre az összes előre definiált kérdésekre az Office 365 nyelvek a 
 * Melyik városban volt az első munkahelye?
 * Melyik városban született az édesanyja?
 * Hol töltötte 1999 szilveszterét?
-* Mi az, hogy magas volt a kedvenc tanárának vezetékneve * iskolai?
-* Milyen felsőoktatási intézménybe jelentkezett, de nem vették fel?
-* Hogy hívták a helyet, ahol az első lakodalmát tartották?
+* Mi az, hogy magas volt a kedvenc tanárának vezetékneve hello * iskolai?
+* Hello keresztneve alkalmazott felsőoktatási intézménybe toobut nem vették fel?
+* Mi az a hello neve hello helyet, ahol az első lakodalmát tartották?
 * Édesapja második keresztneve?
 * Mi a kedvenc étele?
 * Anyai nagyapja vezeték- és keresztneve?
@@ -118,43 +118,43 @@ Hajtsa végre az összes előre definiált kérdésekre az Office 365 nyelvek a 
 * Apai nagyapja vezeték- és keresztneve?
 * Mi a legfiatalabb tesvérének második keresztneve?
 * Melyik iskolában végezte el a hatodik osztályt?
-* Gyerekkori legjobb barátjának vezeték- és keresztneve?
-* Első társának vezeték- és keresztneve?
-* Mi volt a kedvenc általános iskolai tanárának vezetékneve?
-* Mi volt az első autója vagy motorkerékpárja márkája és típusa?
-* Mi volt az első iskolájának neve?
-* Mi a neve annak a kórháznak, ahol született?
-* Első gyerekkori otthonának utcaneve?
-* Ki volt a kedvenc gyerekkori hőse?
-* Kedvenc plüssállatának neve?
-* Mi volt az első háziállatának neve?
+* Mi volt első hello, és a gyerekkori legjobb barátjának keresztneve?
+* Mi volt első hello- és keresztneve első társának?
+* Mi volt a kedvenc általános iskolai tanárának vezetékneve hello?
+* Mi volt az első autója vagy motorkerékpárja márkája és típusa hello?
+* Mi volt a hello hello első iskolájának neve?
+* Mi volt a hello neve hello kórháznak, ahol született?
+* Mi volt első gyerekkori otthonának utcaneve hello hello neve?
+* Mi volt a kedvenc gyerekkori hőse hello neve?
+* Mi volt a kedvenc plüssállatának neve hello?
+* Mi volt az első háziállatának neve hello?
 * Mi volt a gyerekkori beceneve?
 * Mi volt a kedvenc sportja a középiskolában?
 * Mi volt az első munkahelye?
-* Mi volt a gyerekkori telefonszámának utolsó négy számjegye?
-* Gyerekkorában mi szeretett volna lenni, ha majd felnő?
-* Ki volt a leghíresebb ember, akivel valaha is találkozott?
+* Mi volt hello utolsó négy a gyerekkori telefonszámának számjegye?
+* Gyerekkorában, mi szeretett volna toobe Ha majd felnő?
+* Ki hello leghíresebb ember, valaha is találkozott?
 
 ### <a name="custom-security-questions"></a>Egyéni biztonsági kérdések
 
-Egyéni biztonsági kérdések nem a különböző területi beállításokhoz honosított. Összes egyéni kérdést a bevitel a rendszergazda felhasználói felületén akkor is, ha a felhasználó a böngésző nyelve eltérő nyelvével azonos nyelven jelennek meg. Ha honosított kérdése van szüksége, használja az előre definiált kérdéseket.
+Egyéni biztonsági kérdések nem a különböző területi beállításokhoz honosított. Minden egyéni kérdések jelennek meg hello ugyanezen a nyelven bevitel hello rendszergazdai felhasználói felületén akkor is, ha hello felhasználó a böngésző nyelve nem egyezik. Ha honosított kérdése van szüksége, használja az előre megadott hello kérdéseket.
 
-Egy egyéni biztonsági kérdés hossza legfeljebb 200 karakter lehet.
+hello egy egyéni biztonsági kérdés hossza legfeljebb 200 karakter lehet.
 
 ### <a name="security-question-requirements"></a>Biztonsági kérdés követelmények
 
 * Minimális válasz karakteres korlátot érték 3 karakter
 * A válasz maximális karakteres korlátot 40 karakter
-* Felhasználók esetleg nem fogadja a hívást ugyanezt a kérdést egynél többször
-* Felhasználók nem rendelkezhetnek a azonos egynél több kérdésre adott válasz
-* Bármely karakterkészlet meghatározása a kérdések és válaszok, beleértve a Unicode-karaktereket is használható
-* Megadott kérdéseket száma nagyobb vagy egyenlő regisztrálnia kérdések számát kell lennie.
+* Felhasználók esetleg nem fogadja a hívást hello azonos kérdés egynél többször
+* Felhasználók nem rendelkezhetnek hello azonos választ, mint egy kérdést toomore
+* Lehet, hogy bármely karakterkészlet használt toodefine kérdések és válaszok, beleértve a Unicode-karaktereket
+* hello száma megadott kérdéseket kell nagyobb, mint vagy egyenlő kérdések szükséges tooregister toohello száma
 
 ## <a name="registration"></a>Regisztráció
 
-### <a name="require-users-to-register-when-signing-in"></a>Szükséges a felhasználóknak regisztrálniuk a bejelentkezéskor?
+### <a name="require-users-tooregister-when-signing-in"></a>Felhasználók tooregister kérése, amikor a bejelentkezés
 
-A beállítás engedélyezése szükséges, a felhasználó, aki engedélyezve van a jelszó alaphelyzetbe állítása a jelszó befejezéséhez regisztrációs alaphelyzetbe állítása, ha azok bejelentkezni az Azure AD használatával jelentkezzen be, mint az alábbi alkalmazások:
+A beállítás engedélyezése a felhasználó, aki engedélyezve van a jelszó visszaállítása toocomplete hello a jelszóátállítás regisztrációját, ha azok bejelentkezés használatával, például az alábbiakhoz hajtsa végre az Azure AD toosign tooapplications szükséges:
 
 * Office 365
 * Azure Portal
@@ -162,27 +162,27 @@ A beállítás engedélyezése szükséges, a felhasználó, aki engedélyezve v
 * Összevont alkalmazásokhoz
 * Egyéni alkalmazások az Azure AD használatával
 
-E funkció letiltása továbbra is lehetővé teszi felhasználók manuális regisztrálásához a kapcsolattartási adatait ellátogatva [http://aka.ms/ssprsetup](http://aka.ms/ssprsetup) vagy kattintson a **regisztrálhatnak a jelszóváltoztatásra** hivatkozás a profil lapon, a hozzáférési panelen.
+E funkció letiltása továbbra is lehetővé teszi felhasználók toomanually register kapcsolattartási adatait ellátogatva [http://aka.ms/ssprsetup](http://aka.ms/ssprsetup) vagy hello kattintva **regisztrálhatnak a jelszóváltoztatásra** hello alatt profil lap hello hozzáférési panel.
 
 > [!NOTE]
-> Felhasználók a jelszó-visszaállítási portál esetben elvetheti a Mégse gombra kattintva vagy az ablak bezárása, de a rendszer kéri, minden alkalommal, amikor azok bejelentkezéshez, amíg a regisztrációs művelet befejeződik.
+> A felhasználók hello jelszó-visszaállítási portál esetben elvetheti a Mégse gombra kattintva, vagy bezárja az ablakot hello, de a rendszer kéri, minden alkalommal, amikor azok bejelentkezéshez, amíg a regisztrációs művelet befejeződik.
 >
 
-### <a name="number-of-days-before-users-are-asked-to-reconfirm-their-authentication-information"></a>A napok száma, amely előtt a rendszer kéri a felhasználóktól a hitelesítési adataik ismételt megerősítését
+### <a name="number-of-days-before-users-are-asked-tooreconfirm-their-authentication-information"></a>Hány nap elteltével a felhasználó információt kér a rendszer tooreconfirm a hitelesítés
 
-Ez a beállítás azt határozza meg, mennyi ideig beállítása és reconfirming hitelesítési adatok között, és csak akkor érhető el, ha engedélyezi a **felhasználói bejelentkezéskor regisztráció megkövetelése** lehetőséget.
+Ez a beállítás azt határozza meg, és a hitelesítési adatokat reconfirming közötti hello időszak, és csak érhető el, ha engedélyezi a hello **felhasználók tooregister kérése, amikor bejelentkezik** lehetőséget.
 
-Érvényes értékek: 0-730 nap 0, ami azt jelenti, ne jelenjen meg a felhasználók számára a hitelesítési adatokat megerősítése
+Érvényes értékek: 0-730 tehát ne kérdezzen rá felhasználók tooreconfirm hitelesítési adataikat 0 nap
 
 ## <a name="notifications"></a>Értesítések
 
 ### <a name="notify-users-on-password-resets"></a>Értesítse a felhasználókat új jelszó kérésekor?
 
-Ha ez a beállítás értéke Igen, a jelszó alaphelyzetbe állításával a felhasználó kap egy e-mailt, amely értesíti őket, hogy a jelszó változott az önkiszolgáló jelszó-Változtatási portálján keresztül az elsődleges és másodlagos e-mail címét, a fájl az Azure ad-ben. A visszaállítási értesítést senki más nem esemény.
+Tooyes állítja a beállítást, ha a jelszó alaphelyzetbe állításával hello felhasználó kap egy e-mailt, amely értesíti őket, hogy a jelszó megváltozott keresztül hello önkiszolgáló jelszó-Változtatási portál tootheir elsődleges és másodlagos e-mail-címet a fájl az Azure ad-ben. A visszaállítási értesítést senki más nem esemény.
 
 ### <a name="notify-all-admins-when-other-admins-reset-their-passwords"></a>Az összes rendszergazda értesítése, ha más rendszergazdák a jelszavak alaphelyzetbe állítása
 
-Ha a beállítás értéke Igen, majd **minden rendszergazda** az elsődleges e-mail címéhez a fájlt e-mailt kap az Azure ad-ben, amely értesíti őket, hogy egy másik rendszergazda megváltozott a jelszavát, használja az önkiszolgáló jelszó-Változtatási.
+Ha ez a beállítás tooyes, majd **minden rendszergazda** kap egy e-mailek tootheir elsődleges e-mail címét, a fájl az Azure ad-ben, amely értesíti őket, hogy egy másik rendszergazda megváltozott a jelszavát, használja az önkiszolgáló jelszó-Változtatási.
 
 Példa: Nincsenek négy rendszergazdák környezetben. "A" rendszergazda az önkiszolgáló jelszó-Változtatási használatával jelszavának alaphelyzetbe állítása. A rendszergazdák B, C és D azokat, azonban ez a riasztás e-mailt kapni.
 
@@ -190,19 +190,19 @@ Példa: Nincsenek négy rendszergazdák környezetben. "A" rendszergazda az önk
 
 Ha telepítette, konfigurálva, és engedélyezve van az Azure AD Connect akkor helyszíni Integrációk további beállításokat.
 
-### <a name="write-back-passwords-to-your-on-premises-directory"></a>Jelszavakat írhasson a helyszíni címtár
+### <a name="write-back-passwords-tooyour-on-premises-directory"></a>Jelszavak tooyour helyszíni címtár visszaírni
 
-Szabályozza-e a jelszóvisszaírás engedélyezve van a könyvtárhoz, és ha visszaírási egy, a helyszíni visszaírási szolgáltatás állapotát jelzi. Ez akkor hasznos, ha szeretné ideiglenesen letilthatja a jelszóvisszaírást újrakonfigurálása az Azure AD Connect nélkül.
+Szabályozza-e a jelszóvisszaírás engedélyezve van a könyvtárhoz, és ha visszaírási, hello helyszíni visszaírási szolgáltatás hello állapotát jelzi. Ez akkor hasznos, ha azt szeretné, tootemporarily letiltása hello jelszóvisszaírás nélkül újrakonfigurálása az Azure AD Connect.
 
-* Ha a kapcsoló értéke Igen, majd visszaírás engedélyezve van, és összevont és jelszó kivonatoló szinkronizált felhasználók tudják visszaállíthassák a jelszavukat.
-* Ha a kapcsoló beállítása nem, akkor a visszaírás le van tiltva, és összevont és a jelszó szinkronizálva kivonatoló felhasználók nem fognak tudni visszaállíthassák a jelszavukat.
+* Ha hello kapcsoló nem set tooyes visszaírás engedélyezve van, és összevont és a jelszó szinkronizálva kivonatoló felhasználók fognak tudni tooreset jelszavukat.
+* Ha hello kapcsoló nem set toono visszaírás le van tiltva, és összevont és a jelszó szinkronizálva kivonatoló felhasználók nem lesz képes tooreset jelszavukat.
 
-### <a name="allow-users-to-unlock-accounts-without-resetting-their-password"></a>Engedélyezése a felhasználók számára a fiókok zárolásának feloldása nélkül a jelszó alaphelyzetbe állításával
+### <a name="allow-users-toounlock-accounts-without-resetting-their-password"></a>Engedélyezze a felhasználók toounlock fiókok nélkül a jelszó alaphelyzetbe állításával
 
-Határozza meg, függetlenül attól, felhasználók, akik látogasson el a jelszó-változtatási portál meg kell adni a lehetőséget, a helyszíni Active Directory-fiókok zárolásának nélkül a jelszó alaphelyzetbe állításával. Alapértelmezés szerint az Azure AD lesz mindig fiókok zárolásának feloldása új jelszó létrehozását végrehajtása során, ez a beállítás lehetővé teszi a műveletek két külön. 
+Jelöli meg a felhasználók, akik a Microsoft hello jelszó-változtatási portál adott hello beállítás toounlock nélkül a jelszó alaphelyzetbe állításával fiókok a helyszíni Active Directoryban kell-e. Alapértelmezés szerint az Azure AD lesz mindig fiókok zárolásának feloldása új jelszó létrehozását végrehajtása során, ez a beállítás lehetővé teszi, hogy tooseparate e két művelet. 
 
-* Ha a "yes" értékre, majd felhasználók kapnak, hogy a jelszó alaphelyzetbe állítása és a fiók zárolását kívánja feloldani, vagy a jelszó alaphelyzetbe állításával feloldásához.
-* Ha beállítása "nem", akkor a felhasználók csak tudják végrehajtani egy kombinált jelszó alaphelyzetbe állítása és fiókok zárolásának feloldása műveletet.
+* Ha túl állítsa a "yes", akkor a felhasználókat a rendszer adott hello beállítás tooreset a jelszavát, majd hello fiókot, illetve toounlock hello jelszó alaphelyzetbe állításával nélkül is feloldhatják.
+* Ha értéke túl "no", akkor a felhasználók csak akkor tudja tooperform egy kombinált jelszó alaphelyzetbe állítása és a fiók a feloldási műveletet.
 
 ## <a name="network-requirements"></a>A hálózatra vonatkozó követelmények
 
@@ -210,67 +210,67 @@ Határozza meg, függetlenül attól, felhasználók, akik látogasson el a jels
 
 [A Microsoft Office URL-címei és IP-címek listája](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)
 
-Az Azure AD Connect 1.1.443.0 verzió vagy újabb, meg kell kimenő HTTPS hozzáférést a következő
+Az Azure AD Connect verzió 1.1.443.0 és felett, hogy a kimenő HTTPS hozzáférés toohello következőkre lesz szüksége
 * passwordreset.microsoftonline.com
 * servicebus.Windows.NET
 
-Részletesebb elérés, a Microsoft Azure Datacenter IP-címtartományok, amely minden szerdán frissül, és a következő hatályba frissített listáját megtalálja hétfő [Itt](https://www.microsoft.com/download/details.aspx?id=41653).
+Részletesebb hozzáférni, Microsoft Azure Datacenter IP-címtartományok, amely minden szerdán frissítése és kerüljenek a hatás hello következő frissített hello listája megtalálható hétfő [Itt](https://www.microsoft.com/download/details.aspx?id=41653).
 
 ### <a name="idle-connection-timeouts"></a>Kapcsolat üresjárati időtúllépés
 
-Az Azure AD Connect eszköz rendszeres ping-üzenetek Keep Alive hívás/csomagok küldését küld a Szolgáltatásbusz végpontok győződjön meg arról, hogy a kapcsolatok életben maradjon. Ha az eszköz túl sok kapcsolat leállítását észleli, automatikusan növeli a végpont pingelésének gyakoriságát. A legalacsonyabb "pingelje intervallumok" elhagyta 1 ping 60 másodpercenként, azonban ajánlott, hogy proxyk/tűzfalak engedélyezik-e a tétlen kapcsolatok legalább 2-3 percig megőrzéséhez. * A régebbi verziókat javasoljuk, hogy akár négy percnél.
+hello Azure AD Connect eszköz rendszeres ping-üzenetek Keep Alive hívás/csomagok küldését tooServiceBus végpontok tooensure, hogy hello kapcsolatok életben maradjon küld. Kell hello eszköz észleli, hogy túl sok a kapcsolat vannak megállítása folyamatban., automatikusan megnöveli ping-üzenetek toohello végpont hello gyakoriságát. hello legalacsonyabb "pingelje intervallumok" elhagyta toois 1 ping 60 másodpercenként, azonban ajánlott, hogy proxyk/tűzfalak engedélyezik-e legalább 2-3 percig inaktív kapcsolatok toopersist. * A régebbi verziókat javasoljuk, hogy akár négy percnél.
 
 ## <a name="active-directory-permissions"></a>Active Directory-engedélyek
 
-Az Azure AD Connect segédprogram megadott fiók kell rendelkeznie jelszó alaphelyzetbe állítása, a jelszó módosítása, az írási engedélyek lockoutTime, és akár tartalomvédelmi pwdLastSet kiterjesztett írási engedéllyel a legfelső szintű objektumának **tartományonként** az adott erdőben **vagy** a felhasználó szervezeti egységek sspr hatókörében szánja.
+hello hello Azure AD Connect segédprogram megadott fiók jelszó alaphelyzetbe állítása, jelszó módosítása, lockoutTime írási engedéllyel, és engedélyekkel kell rendelkeznie írni a pwdLastSet, bővített jogosultságokkal vagy hello legfelső szintű objektumának a **tartományonként** az adott erdőben **vagy** hello a felhasználónak a szervezeti egységek sspr hatókörében toobe kívánja.
 
-Ha nem biztos abban, hogy milyen fiókot a fenti hivatkozik, nyissa meg az Azure Active Directory Connect konfigurációs felhasználói felület, és kattintson a nézet jelenlegi konfigurációs beállítást. A fiókot hozzá kell adnia az engedélyt megtalálható-e a "Címtárak szinkronizálása"
+Ha nem biztos a fenti milyen fiók hello hivatkozik, nyissa meg a hello Azure Active Directory Connect konfigurációs felhasználói Felületet, és kattintson a hello nézet aktuális konfigurációs beállítást. a "Címtárak szinkronizálása" felsorolt tooadd engedély toois kell hello fiók
 
-Ezek az engedélyek beállítása lehetővé teszi, hogy a MA-szolgáltatásfiókja kezelheti a jelszavakat az erdőben lévő felhasználói fiókok nevében minden egyes erdőhöz. **Ha nem rendeli hozzá ezeket az engedélyeket, majd, annak ellenére, hogy a visszaírás konfigurációja megfelelőnek, jelenik meg felhasználók hibákba megkísérlésekor. a helyszíni jelszavak kezelése a felhőből.**
+Ezek az engedélyek beállítása lehetővé teszi, hogy hello MA-szolgáltatásfiókja minden erdő toomanage jelszavak felhasználói fiókok nevében az erdőben lévő. **Ha nem rendeli tooassign ezeket az engedélyeket, majd, annak ellenére, hogy a visszaírási megfelelően konfigurálva toobe jelenik meg, a felhasználók felmerülő problémákat, toomanage hello felhőből helyszíni jelszavukat megkísérlése során.**
 
 > [!NOTE]
-> Ez eltarthat egy óráig vagy tovább ezen engedélyeket a a címtár összes objektumába replikálja.
+> Tooan óráig vagy tovább a könyvtárban ezen engedélyek tooreplicate tooall objektumok eltarthat.
 >
 
-Megtörténik a jelszóvisszaírás megfelelő engedélyeinek beállítása
+tooset hello a megfelelő engedélyeket jelszó visszaírási toooccur mentése
 
-1. Nyissa meg a megfelelő tartományi rendszergazdai engedélyekkel rendelkező fiók Active Directory – felhasználók és számítógépek
-2. A Nézet menü ellenőrizze, hogy a speciális funkciók be van kapcsolva
-3. A bal oldali panelen kattintson a jobb gombbal a tartomány gyökeréhez képviselő objektum, és válassza a Tulajdonságok
-    * A biztonság lapon
+1. Nyisson meg egy hello megfelelő tartományi rendszergazdai engedélyekkel rendelkező fiók Active Directory – felhasználók és számítógépek
+2. Hello Nézet menü ellenőrizze, hogy a speciális funkciók be van kapcsolva
+3. A hello bal oldali panelen kattintson a jobb gombbal a hello tartomány gyökeréhez hello képviselő hello objektum, és válassza a Tulajdonságok
+    * Kattintson a hello Biztonság lap
     * Majd a Speciális gombra.
-4. Az engedélyek lapon kattintson a Hozzáadás gombra.
-5. Válassza ki a fiókot, amely engedélyek alkalmazott (az Azure AD Connect telepítés)
-6. Válassza a legördülő listája vonatkozik leszármazott felhasználó objektumai
-7. Az engedélyek négyzeteket a következő
+4. Hello engedélyek lapján kattintson a Hozzáadás gombra.
+5. Válasszon hello fiókot, hogy engedélyeket alkalmazásra kerülnek túl (az Azure AD Connect telepítés)
+6. Hello hozzárendelési toodrop beállítómező válassza leszármazott felhasználó objektumai
+7. Az engedélyek jelölőnégyzeteket hello hello következő
     * Unexpire jelszó
     * Jelszó alaphelyzetbe állítása
     * Jelszó módosítása
     * LockoutTime írása
     * PwdLastSet írása
-8. Kattintson az alkalmaz/OK keresztül alkalmazza, és zárja be minden megnyitott párbeszédpanelen.
+8. Kattintson az alkalmaz/OK tooapply keresztül, és zárja be minden megnyitott párbeszédpanelen.
 
 ## <a name="how-does-password-reset-work-for-b2b-users"></a>Hogyan alaphelyzetbe állítja a jelszót B2B felhasználók számára?
-Bármilyen B2B konfigurációjának teljes mértékben támogatottak a jelszó alaphelyzetbe állítása és módosítása.  Olvassa el alább a jelszó-visszaállítás által támogatott három explicit B2B esetekben.
+Bármilyen B2B konfigurációjának teljes mértékben támogatottak a jelszó alaphelyzetbe állítása és módosítása.  Olvassa el alább hello három explicit B2B adódó jelszó-visszaállítás által támogatott.
 
-1. **Egy partner szervezet munkatársa, a meglévő Azure AD-bérlő felhasználóit** – Ha a szervezetben, amelyek együttműködve egy meglévő Azure AD-bérlő azt **tiszteletben tartják a bérlőre engedélyezve vannak függetlenül jelszó alaphelyzetbe állítása házirendjei**. A jelszó alaphelyzetbe állítása működjön, az erőforráspartner szervezet csak kell győződjön meg arról, hogy az Azure AD SSPR engedélyezve van, amely nem kell külön fizetni az Office 365-ügyfelek, és a lépések elvégzésével engedélyezheti a [Ismerkedés a Jelszókezeléssel](https://azure.microsoft.com/documentation/articles/active-directory-passwords-getting-started/#enable-users-to-reset-or-change-their-aad-passwords) útmutató.
-2. **Felhasználókra iratkozott fel használatával [önkiszolgáló regisztrációs](active-directory-self-service-signup.md)**  – Ha a szervezet, amelyek együttműködve használt a [önkiszolgáló regisztrációs](active-directory-self-service-signup.md) a bérlő feltölti a beállítást, azt hogy azok visszaállítani az e-mailt regisztrálják azokat.
-3. **B2B felhasználók** -az új létrehozott új B2B felhasználók [Azure AD B2B képességek](active-directory-b2b-what-is-azure-ad-b2b.md) is tudnak visszaállíthassák a jelszavukat, az e-mailt a meghívott felhasználó során regisztrálják azokat.
+1. **Egy partner szervezet munkatársa, a meglévő Azure AD-bérlő felhasználóit** – Ha Ön együttműködve hello szervezet rendelkezik egy meglévő Azure AD-bérlő azt **tiszteletben tartják a bérlőre engedélyezve vannak függetlenül jelszó alaphelyzetbe állítása házirendjei**. A jelszó alaphelyzetbe állítása toowork, hello partner szervezet csak igények toomake meg arról, hogy az Azure AD SSPR engedélyezve van, amely nem kell külön fizetni az Office 365-ügyfelek, és engedélyezhető a következő hello lépései a [jelszókezelés első lépései ](https://azure.microsoft.com/documentation/articles/active-directory-passwords-getting-started/#enable-users-to-reset-or-change-their-aad-passwords) útmutató.
+2. **Felhasználókra iratkozott fel használatával [önkiszolgáló regisztrációs](active-directory-self-service-signup.md)**  – Ha Ön együttműködve hello szervezet használt hello [önkiszolgáló regisztrációs](active-directory-self-service-signup.md) be egy bérlői tooget funkciót, azt hogy azok a alaphelyzetbe hello e-mail regisztrálják azokat.
+3. **B2B felhasználók** -hello új használatával létrehozott új B2B felhasználók [Azure AD B2B képességek](active-directory-b2b-what-is-azure-ad-b2b.md) is képes tooreset hello e-mail hello meghívása során regisztrálják azokat a jelszavukat.
 
-Ennek teszteléséhez Ugrás http://passwordreset.microsoftonline.com ezen partner felhasználók egyike. Mindaddig, amíg egy másodlagos e-mail vagy a megadott hitelesítési e-mail rendelkeznek, jelszó-átállítási akkor működik megfelelően.
+tootest e, lépjen toohttp://passwordreset.microsoftonline.com ezen partner felhasználók egyike. Mindaddig, amíg egy másodlagos e-mail vagy a megadott hitelesítési e-mail rendelkeznek, jelszó-átállítási akkor működik megfelelően.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az alábbi hivatkozásokat követve az Azure AD jelszóátállításáról olvashat további információkat.
+a következő hivatkozások hello adja meg a jelszó alaphelyzetbe állítása, az Azure AD használatával kapcsolatos további információk
 
 * [**Gyors üzembe helyezés**](active-directory-passwords-getting-started.md) – Percek alatt üzembe helyezheti az Azure AD önkiszolgáló jelszókezelőjét. 
 * [**Licencelés**](active-directory-passwords-licensing.md) – Az Azure AD licencelésének konfigurálása.
-* [**Adatok**](active-directory-passwords-data.md) – A szükséges adatok megismerése, és az adatok használata a rendszer jelszókezelésre.
-* [**Bevezetés**](active-directory-passwords-best-practices.md) – Az SSPR funkció tervezése és üzembe helyezése a felhasználók számára az itt található útmutató segítségével.
+* [**Adatok** ](active-directory-passwords-data.md) - szükséges hello adatok megismeréséhez, és hogyan használja fel azokat a jelszókezelés
+* [**Bevezetés** ](active-directory-passwords-best-practices.md) -megtervezése és telepítése az önkiszolgáló jelszó-Változtatási tooyour felhasználók hello útmutatást itt talál
 * [**Szabályzat**](active-directory-passwords-policy.md) – Megismerheti és beállíthatja az Azure AD jelszószabályzatait.
 * [**Jelszóvisszaíró**](active-directory-passwords-writeback.md) – Megtudhatja, hogyan használhatja a jelszóvisszaírót a helyszíni címtárával.
-* [**Testreszabás**](active-directory-passwords-customize.md) – Az SSPR-felület megjelenésének és működésének testre szabása a cége számára.
+* [**Testre szabhatja** ](active-directory-passwords-customize.md) -testreszabása, önkiszolgáló jelszó-Változtatási élményt a vállalata hello hello megjelenését és működését.
 * [**Jelentéskészítés**](active-directory-passwords-reporting.md) – Megtudhatja, mikor és hol érik el a felhasználói az SSPR funkcióit.
-* [**Gyakori kérdések**](active-directory-passwords-faq.md) – Hogyan? Hogy miért? Mi? Hová? Ki? Mikor? – Válaszok olyan kérdésekre, amiket mindig is fel akart tenni
-* [**Hibaelhárítás**](active-directory-passwords-troubleshoot.md) – Ismerje meg, hogyan oldhat meg általános, az SSPR működése során jelentkező hibákat.
+* [**Gyakori kérdések**](active-directory-passwords-faq.md) – Hogyan? Hogy miért? Mi? Hová? Ki? Mikor? -Válaszok mindig kívánta tooask tooquestions
+* [**Hibaelhárítás** ](active-directory-passwords-troubleshoot.md) -megtudhatja, hogyan tooresolve közös állít ki, hogy az önkiszolgáló jelszó-Változtatási látható
 

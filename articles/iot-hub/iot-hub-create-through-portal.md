@@ -1,6 +1,6 @@
 ---
-title: "IoT Hub létrehozása az Azure-portál használatával |} Microsoft Docs"
-description: "Hogyan létrehozására, kezelésére és törlése az Azure IoT hub az Azure portálon keresztül. Tarifacsomagok, a méretezés, a biztonsági, és a konfigurációs üzenetküldésre kapcsolatos adatokat tartalmaz."
+title: "aaaUse hello Azure portál toocreate az IoT-központ |} Microsoft Docs"
+description: "Hogyan toocreate, kezelése és törlése az Azure IoT hub hello Azure-portálon keresztül. Tarifacsomagok, a méretezés, a biztonsági, és a konfigurációs üzenetküldésre kapcsolatos adatokat tartalmaz."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,52 +14,52 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/26/2017
 ms.author: dobett
-ms.openlocfilehash: bca7eea5f44bbed3b784b56edaac235161b43e5e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 383968c90ee7ef3bff85a6c90efbf5f0e8fbb208
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-iot-hub-using-the-azure-portal"></a>Létrehoz egy IoT-központot, az Azure portál használatával
+# <a name="create-an-iot-hub-using-hello-azure-portal"></a>Létrehoz egy IoT-központot hello Azure-portál használatával
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
 Ez a cikk ismerteti:
 
-* Hol találhatók az IoT-központ szolgáltatás az Azure portálon.
-* Megtudhatja, hogyan hozhatja létre és kezelheti az IoT-központok.
+* Hogyan toofind hello hello Azure-portálon az IoT-központ szolgáltatás.
+* Hogyan toocreate és az IoT-központok kezelése.
 
-## <a name="where-to-find-the-iot-hub-service"></a>Hol található az IoT-központ szolgáltatás
+## <a name="where-toofind-hello-iot-hub-service"></a>Ha toofind hello IoT-központ szolgáltatás
 
-Az IoT-központ szolgáltatás a következő helyeken a portálon találja meg:
+Az alábbi helyek hello portálon hello hello IoT-központ szolgáltatás található:
 
 * Válasszon **+ új**, majd válassza a **az eszközök internetes hálózatát**.
-* Válassza ki a piactér **az eszközök internetes hálózatát**.
+* Hello piactér, válassza a **az eszközök internetes hálózatát**.
 
 ## <a name="create-an-iot-hub"></a>IoT Hub létrehozása
 
-Az IoT-központ a következő módszerekkel hozhat létre:
+Létrehozhat az IoT-központ a következő módszerek hello használata:
 
-* A **+ új** lehetőség megnyitja a panel az alábbi képernyőfelvételen látható. Az IoT hub létrehozása ezzel a módszerrel, és a piactéren keresztül lépései megegyeznek.
-* Válassza ki a piactér **létrehozása** az alábbi képernyőfelvételen látható panel megnyitásához.
+* Hello **+ új** beállítás látható a következő képernyőfelvétel hello hello paneljének megnyitása. hello IoT-központ létrehozásának, ezzel a metódussal és hello piactéren keresztül hello lépései megegyeznek.
+* Hello piactér, válassza a **létrehozása** tooopen hello panel hello a következő képernyőfelvételen látható.
 
-A következő szakaszok ismertetik a számos lépést kelljen IoT hub létrehozása:
+hello következő részek a hello több lépéseket toocreate az IoT-központ:
 
-### <a name="choose-the-name-of-the-iot-hub"></a>Válassza ki az IoT hub nevét
+### <a name="choose-hello-name-of-hello-iot-hub"></a>Válassza ki az IoT-központ hello hello neve
 
-Létrehoz egy IoT-központot, adjon nevet az IoT-központot. Ez a név minden IoT-központok között egyedinek kell lennie.
+az IoT-központ toocreate, adjon nevet az IoT-központ hello. Ez a név minden IoT-központok között egyedinek kell lennie.
 
 [!INCLUDE [iot-hub-pii-note-naming-hub](../../includes/iot-hub-pii-note-naming-hub.md)]
 
-### <a name="choose-the-pricing-tier"></a>A tarifacsomag választható
+### <a name="choose-hello-pricing-tier"></a>Hello tarifacsomag kiválasztása
 
-Négy szintek közül választhat: **szabad**, **szabványos 1** és **szabványos 2**, és **Standard S3**. Ingyenes szint lehetővé teszi, hogy a csatlakoztatva kell lennie az IoT-központot, és legfeljebb 8000 üzenet naponta csak 500 eszközök.
+Négy szintek közül választhat: **szabad**, **szabványos 1** és **szabványos 2**, és **Standard S3**. ingyenes szint hello lehetővé teszi, hogy csak 500 eszközök toobe csatlakozott toohello IoT-központot, illetve a hierarchiában felfelé too8, 000 üzenet naponta.
 
-**Standard szintű, S1**: S1 kiadás nagyszámú eszközöket, hogy mindegyik generál kis mennyiségű adatokat az IoT-megoldások használata. Az S1 kiadás minden egységével naponta 400 ezer üzenetet lehet továbbítani az összes csatlakoztatott eszközön.
+**Standard szintű, S1**: hello S1 edition használja, hogy mindegyik generál kis mennyiségű adatokat eszközök nagy számú IoT-megoldások. Hello S1 kiadás tárolóegységekhez lehetővé teszi, hogy másolatot too400, az összes csatlakoztatott eszközön naponta 000 üzenetek.
 
-**Standard S2**: S2 verzióját használja, amelyben eszközök nagy mennyiségű adat készítése az IoT-megoldások. S2 kiadás tárolóegységekhez lehetővé teszi, hogy minden csatlakoztatott eszközön közötti naponta 6 millió üzeneteket.
+**Standard S2**: hello S2 edition használja, amelyben eszközök nagy mennyiségű adat készítése az IoT-megoldások. Egyes Munkaegységek hello S2 edition lehetővé teszi, hogy másolatot too6 millió üzenetek / nap közötti minden csatlakoztatott eszközön.
 
-**Standard S3**: S3 verzióját használja, amely nagy mennyiségű adat az IoT-megoldások. S3 kiadás tárolóegységekhez lehetővé teszi, hogy akár 300 millió üzenetek / nap közötti minden csatlakoztatott eszközön.
+**Standard S3**: hello S3 edition használja, amely nagy mennyiségű adat az IoT-megoldások. Egyes Munkaegységek hello S3 edition lehetővé teszi, hogy másolatot too300 millió üzenetek / nap közötti minden csatlakoztatott eszközön.
 
 ![][4]
 
@@ -68,77 +68,77 @@ Négy szintek közül választhat: **szabad**, **szabványos 1** és **szabvány
 
 ### <a name="iot-hub-units"></a>IoT hub-egységek
 
-Napi egység értesítésenként engedélyezett üzenetek száma attól függ, hogy a központ tarifacsomag. Például ha azt szeretné, hogy az IoT hub érkező üzenetek 700 000 támogatásához, választja két S1 réteg egység.
+napi egység értesítésenként engedélyezett üzenetek hello száma a központ tarifacsomag függ. Például ha azt szeretné, hogy az IoT hub toosupport érkező üzenetek 700 000 hello, választja két S1 réteg egység.
 
-### <a name="device-to-cloud-partitions-and-resource-group"></a>Erőforráscsoport és a felhőalapú eszköz
+### <a name="device-toocloud-partitions-and-resource-group"></a>Eszköz toocloud partíciók és erőforráscsoport
 
-Módosíthatja az IoT-központ a partíciók száma. A partíciók alapértelmezett értéke 4, akkor egy másik számot a legördülő listából.
+Az IoT-központ tároló partíciók száma hello módosíthatja. partíciók száma hello alapértelmezett érték 4, akkor egy másik számot hello legördülő listából.
 
-Nem kell explicit módon hozzon létre egy üres erőforráscsoportot. Amikor létrehoz egy erőforrást, válassza ki vagy hozzon létre egy új, vagy használjon egy meglévő erőforráscsoportot.
+Nem kell tooexplicitly hozzon létre egy üres erőforráscsoportot. Amikor létrehoz egy erőforrást, vagy új toocreate válasszon, vagy használjon egy meglévő erőforráscsoportot.
 
 ![][5]
 
 ### <a name="choose-subscription"></a>Válassza ki az előfizetést
 
-Az Azure IoT Hub automatikusan az Azure-előfizetéseket a felhasználói fiókhoz kapcsolódó sorolja fel. Lehetősége van az Azure-előfizetés társítása az IoT-központ számára.
+Az Azure IoT Hub automatikusan listák hello Azure-előfizetések hello felhasználói fiók van csatolva. Kiválaszthatja a hello Azure-előfizetés tooassociate hello IoT-központ számára.
 
-### <a name="choose-the-location"></a>Válassza ki azt a helyet
+### <a name="choose-hello-location"></a>Hello helyének kiválasztása
 
-A hely lehetőséget a régiókban, ahol az IoT-központ lehetőség a listáját jeleníti meg.
+hello hely beállítás hello régiókban, ahol az IoT-központ lehetőség a listáját jeleníti meg.
 
-### <a name="create-the-iot-hub"></a>Az IoT hub létrehozása
+### <a name="create-hello-iot-hub"></a>Hello IoT hub létrehozása
 
-Ha az összes előző lépést, létrehozhat az IoT-központ. Kattintson a **létrehozása** a háttér-folyamat létrehozása és telepítése az IoT-központ a kiválasztott beállításokkal.
+Ha az összes előző lépést, hello IoT-központ is létrehozhat. Kattintson a **létrehozása** toostart háttérfolyamatot toocreate hello, és úgy döntött, hogy hello beállításokkal hello IoT-központ telepítése.
 
-Az IoT hub létrehozása, mivel némi időre van a háttér-központi telepítés a megfelelő hely kiszolgálójára futtatásához néhány percet is igénybe vehet.
+Mivel némi időre van a háttér-telepítési toorun hello hello megfelelő helyet kiszolgálókon is igénybe vehet néhány percet toocreate hello IoT-központ.
 
-## <a name="change-the-settings-of-the-iot-hub"></a>Az IoT hub beállításainak módosítása
+## <a name="change-hello-settings-of-hello-iot-hub"></a>Az IoT-központ hello hello beállításainak módosítása
 
-Módosíthatja egy meglévő IoT-központ beállításait az IoT Hub panel a létrehozása után.
+Módosíthatja egy meglévő IoT-központot hello beállításainak hello IoT Hub panel a létrehozása után.
 
 ![][8]
 
-**Megosztott hozzáférési házirendek**: ezek a házirendek meghatározása csatlakozni az IoT Hub eszközöket és szolgáltatásokat engedélyeit. Ezek a házirendek eléréséhez kattintson **megosztott elérési házirendek** alatt **általános**. Ezen a panelen módosíthatja a meglévő házirendeket, vagy adjon hozzá egy új házirendet.
+**Megosztott hozzáférési házirendek**: ezek a házirendek eszközökön és szolgáltatásokon tooconnect tooIoT Hub hello engedélyeinek megadása. Ezek a házirendek eléréséhez kattintson **megosztott elérési házirendek** alatt **általános**. Ezen a panelen módosíthatja a meglévő házirendeket, vagy adjon hozzá egy új házirendet.
 
 ### <a name="create-a-policy"></a>Házirend létrehozása
 
-* Kattintson a **Hozzáadás** egy panel megnyitásához. Itt adhatja meg az új házirend nevét és a kívánt engedélyek társítása a házirend, az alábbi ábrán látható módon:
+* Kattintson a **Hozzáadás** tooopen egy panel. Itt adhatja meg hello új házirend nevét és hello engedélyeit, hogy a házirend tooassociate hello alábbi ábrán. ábra:
 
-    Nincsenek társítható megosztott szabályzatokról több engedélyeket. A **beállításkulcs olvasása** és **beállításjegyzék írási** házirendek jogosultságokat olvasási és írási hozzáférést biztosít az identitásjegyzékhez. Válassza az írási automatikusan úgy dönt, olvassa el a beállítást.
+    Nincsenek társítható megosztott szabályzatokról több engedélyeket. Hello **beállításkulcs olvasása** és **beállításjegyzék írási** házirendek adjon olvasási és írási hozzáférési jogok toohello identitásjegyzékhez. A beállítás hello írási automatikusan úgy dönt, hello olvasása lehetőséget.
 
-    A **Service csatlakozás** házirend Szolgáltatásvégpontok elérésére engedélyt **eszközről a felhőbe kap**. A **eszköz csatlakozzon** házirend engedélyt ad az IoT-központ eszközoldali végpontokon használatával üzenetek küldése és fogadása.
+    Hello **Service csatlakozás** házirend ad engedélyt tooaccess Szolgáltatásvégpontok például **eszközről a felhőbe kap**. Hello **eszköz csatlakozzon** házirend engedélyt ad az IoT-központ eszközoldali hello végpontok használatával üzenetek küldése és fogadása.
 
-* Kattintson a **létrehozása** hozzáadása az újonnan létrehozott házirend a meglévő listájához.
+* Kattintson a **létrehozása** tooadd ebben az újonnan létrehozott házirend toohello meglévő listájához.
 
 ![][10]
 
 ## <a name="endpoints"></a>Végpontok
 
-Kattintson a **végpontok** az IoT hub, amely módosítja a végpontok listájának megjelenítéséhez. A végpontok két típusa van: az IoT hub beépített végpontok, és a létrehozása után az IoT hub hozzáadott végpontok.
+Kattintson a **végpontok** toodisplay hello IoT-központ, amely módosítja a végpontok listáját. A végpontok két típusa van: hello IoT-központ beépített végpontok és, hogy a létrehozása után adja hozzá az IoT-központ toohello végpontok.
 
 ![][11]
 
 ### <a name="built-in-endpoints"></a>Beépített végpontok
 
-Nincsenek a két beépített végpont: **eszköz visszajelzéseire felhő** és **események**.
+Nincsenek a két beépített végpont: **toodevice visszajelzés Cloud** és **események**.
 
-* **Az eszköz visszajelzései alapján felhő** beállítások: Ezzel a beállítással rendelkezik két subsettings: **eszköz TTL felhő** (idő TTL) és **megőrzési idő** (órákban) üzenetekhez. Az első létrehoz egy IoT-központot, mindkét ezeket a beállításokat kell az alapértelmezett érték egy óra. Ezeket a beállításokat, a csúszkákkal, vagy írja be az értékeket.
-* **Események** beállítások: Ezzel a beállítással rendelkezik több subsettings, amelyek némelyike csak olvasható. Az alábbi lista ismerteti ezeket a beállításokat:
+* **Felhőalapú toodevice visszajelzés** beállítások: Ezzel a beállítással rendelkezik két subsettings: **tooDevice TTL Cloud** (idő TTL) és **megőrzési idő** (órákban) hello üzenetek. Az első létrehoz egy IoT-központot, mindkét ezeket a beállításokat kell egy óra hello alapértelmezett értékét. tooadjust ezeket a beállításokat hello csúszkákkal, vagy írja be a hello értékeket.
+* **Események** beállítások: Ezzel a beállítással rendelkezik több subsettings, amelyek némelyike csak olvasható. a következő lista hello ezeket a beállításokat mutatja be:
 
-  * **Partíciók**: egy alapértelmezett értéke az IoT hub létrehozásakor. Módosíthatja ezt a beállítást a partíciók száma.
+  * **Partíciók**: egy alapértelmezett értéke hello IoT-központ létrehozásakor. Ez a beállítás a partíciók száma hello módosíthatja.
 
-  * **Event Hub-kompatibilis nevének és végpontjának**: Ha az IoT-központ jön létre, az Eseményközpont létrehozásakor belső, hogy szükség lehet a hozzáférést bizonyos körülmények között. Nem szabhatja testre az Event Hub-kompatibilis és a végpont értékét, de kattintva másolhatja **másolási**.
+  * **Event Hub-kompatibilis nevének és végpontjának**: hello IoT-központ létrehozásakor az Eseményközpont létrehozásakor belső hogy előfordulhat, hogy kell-e hozzáférési toounder bizonyos körülmények között. Nem szabhatja testre a hello Event Hub-kompatibilis és a végpont értékét, de kattintva másolhatja **másolási**.
 
-  * **Megőrzési idő**: alapértelmezés szerint egy nap beállítva, de ez a legördülő lista használatával módosítható. Ez az érték a nap az eszközről a felhőbe beállítás van.
+  * **Megőrzési idő**: tooone nap meg alapértelmezés szerint azonban hello legördülő lista használatával módosíthat. Ez az érték nap hello eszközről a felhőbe beállítás van.
 
-  * **Felhasználói csoportok**: fogyasztói csoportok lehetővé teszik az üzenetek egymástól függetlenül olvasni az IoT hub több olvasók. Minden IoT-központot egy alapértelmezett felhasználói csoport jön létre. Azonban hozzáadása vagy az IoT-központok ezzel a beállítással a fogyasztói csoportok törlése.
+  * **Felhasználói csoportok**: felhasználói csoportok lehetővé teszik az több olvasók tooread üzenetet az IoT-központ hello től függetlenül. Minden IoT-központot egy alapértelmezett felhasználói csoport jön létre. Azonban hozzáadása vagy törlése a fogyasztói csoportok tooyour IoT-központok ezt a beállítást használja.
 
   > [!NOTE]
-  > Az alapértelmezett felhasználói csoport nem szerkeszthető, és nem törölhető.
+  > hello alapértelmezett felhasználói csoport nem szerkeszthető, és nem törölhető.
 
 ### <a name="custom-endpoints"></a>Egyéni végpontokat
 
-Egyéni végpontokat az IoT hub, a portál használatával is hozzáadhat. Az a **végpontok** panelen kattintson **Hozzáadás** megnyitásához tetején a **végpont hozzáadása** panel. Adja meg a szükséges adatokat, majd kattintson a **OK**. Az egyéni végpontjának mostantól szerepel a fő **végpontok** panelen.
+Egyéni végpontokat az IoT hub hello portál használatával is hozzáadhat. A hello **végpontok** panelen kattintson **Hozzáadás** : hello felső tooopen hello **végpont hozzáadása** panel. Adja meg a hello szükséges információkat, majd kattintson a **OK**. Az egyéni végpontjának megjelenik a fő hello **végpontok** panelen.
 
 ![][13]
 
@@ -146,42 +146,42 @@ További tudnivalók az egyéni végpontokat [referencia - IoT-központok végpo
 
 ## <a name="routes"></a>Útvonalak
 
-Kattintson a **útvonalak** hogyan IoT-központ kiszállítja az eszközről a felhőbe üzenetek kezeléséhez.
+Kattintson a **útvonalak** toomanage hogyan IoT-központ kiszállítja az eszközről a felhőbe üzeneteket.
 
 ![][14]
 
-Hozzáadhat útvonalak az IoT hub kattintva **Hozzáadás** tetején a **útvonalak*** panelen írja be a szükséges adatokat, és kattintson a **OK**. Az útvonal majd szerepel a fő **útvonalak** panelen. Útvonalak listájában kattintva szerkesztheti egy útvonalat. Ahhoz, hogy egy olyan útvonalat, kattintson az útvonalak a listában, és állítsa be a **engedélyezve** kapcsolót **ki**. A módosítás mentéséhez kattintson **OK** a panel alján.
+Útvonalak tooyour IoT-központ kattintva vehet fel **Hozzáadás** hello hello tetején **útvonalak*** hello szükséges adatok bevitele, és kattintson a panel **OK**. Az útvonal majd szerepel a fő hello **útvonalak** panelen. Útvonalak listájában hello kattintva szerkesztheti egy útvonalat. tooenable egy útvonalat, kattintson az útvonalak hello listában, és állítsa be a hello **engedélyezve** túl váltása**ki**. toosave hello módosítása, kattintson a **OK** hello hello panel alsó részén.
 
 ![][15]
 
 ## <a name="pricing-and-scale"></a>Díjszabás és méretezés
 
-Egy meglévő IoT-központot árképzési keresztül módosítható a **árazás** beállításait, a következő kivételekkel:
+egy meglévő IoT-központot árképzése hello hello keresztül módosítható **árazás** beállításait, a következő kivételek hello:
 
-* Az aktuális megvalósításában egy IoT hubot szabad SKU nem rétegek egy olyan címre változtassák a fizetős SKU, vagy fordítva.
-* Csak lehet egy ingyenes szint IoT-központ az Azure-előfizetésben.
+* Hello aktuális megvalósításban egy IoT hubot szabad Termékváltozat nem módosítható rétegek tooone SKU, fizetős hello, vagy fordítva.
+* Csak lehet egy ingyenes szint IoT-központ hello Azure-előfizetés.
 
 ![][12]
 
-Áthelyezheti egy magasabb az alacsonyabb szint csak akkor, ha adott napon küldött üzenetek száma túllépi a kvótát, az alacsonyabb szinten. Például ha naponta üzenetek száma meghaladja a 400000, majd az IoT hub rétegét módosíthatja. Azonban ha megváltoztatja az S1 réteghez majd az IoT hub folyamatban van az adott nap.
+Áthelyezheti a magasabb szintű toolower használható csak akkor, ha adott napon küldött üzenetek hello száma meghaladja a hello kvóta hello alacsonyabb szinten. Például ha naponta üzenetek hello száma meghaladja a 400000, majd hello réteget a hello IoT hub módosítható. Azonban toohello S1 réteg módosítása ezután hello IoT-központ szabályozva van napra vonatkozóan.
 
-## <a name="delete-the-iot-hub"></a>Az IoT hub törlése
+## <a name="delete-hello-iot-hub"></a>Az IoT-központ hello törlése
 
-Az IoT hub törli kattintva tallózással is **Tallózás**, majd kiválasztja a megfelelő hub törlése. Az IoT hub törléséhez kattintson a **törlése** az IoT-központnév gombra.
+Toohello IoT-központ toodelete kívánt kattintva tallózással is kikeresheti **Tallózás**, és megfelelő hub toodelete lehetőséget választja hello. toodelete hello IoT-központot, kattintson a hello **törlése** hello IoT-központnév gombra.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az alábbi hivatkozásokból tudhat meg többet az Azure IoT Hub kezelése:
+Kövesse az alábbi hivatkozások toolearn Azure IoT Hub kezelésével kapcsolatos további:
 
 * [Tömeges az IoT-eszközök kezelése][lnk-bulk]
 * [Az IoT-központ metrikák][lnk-metrics]
 * [Figyelési műveletek][lnk-monitor]
 
-Az IoT-központ képességeit további megismeréséhez lásd:
+toofurther megismerkedhet az IoT-központ hello képességeit, lásd:
 
 * [IoT Hub fejlesztői útmutató][lnk-devguide]
 * [Egy eszköz szimulálva IoT oldala][lnk-iotedge]
-* [Az IoT-megoldásból az alapoktól biztonságos mentése][lnk-securing]
+* [Az IoT-megoldásból hello szabad a biztonságos][lnk-securing]
 
 [4]: ./media/iot-hub-create-through-portal/create-iothub.png
 [5]: ./media/iot-hub-create-through-portal/location1.png

@@ -1,6 +1,6 @@
 ---
-title: "SQL-adatbázis XEvent Eseményfájlt kód |} Microsoft Docs"
-description: "PowerShell és a Transact-SQL biztosít egy kétfázisú példakód azt mutatja be az esemény cél az az Azure SQL Database-kiterjesztett esemény. Az Azure Storage ebben a forgatókönyvben egy kötelező részét képezi."
+title: "SQL-adatbázis Eseményfájlt kód aaaXEvent |} Microsoft Docs"
+description: "PowerShell és a Transact-SQL biztosít egy kétfázisú példakód azt mutatja be, az Azure SQL Database-kiterjesztett esemény hello esemény File célnál. Az Azure Storage ebben a forgatókönyvben egy kötelező részét képezi."
 services: sql-database
 documentationcenter: 
 author: MightyPen
@@ -16,27 +16,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/06/2017
 ms.author: genemi
-ms.openlocfilehash: e8c7a9af11ac4c22be00426337ab7c8b8ff0860f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4457bd3250f4644b54da2f7daddb9da12070e93a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-file-target-code-for-extended-events-in-sql-database"></a>Fájl cél eseménykód kiterjesztett események az SQL-adatbázis
 
 [!INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
-Szeretne teljes kódminta kiterjesztett esemény-készítés és a jelentés adatai hatékony módot kínál.
+A hatékony módon toocapture és a jelentés adatait egy kiterjesztett esemény teljes kódminta használni szeretne.
 
-A Microsoft SQL Server a [esemény cél](http://msdn.microsoft.com/library/ff878115.aspx) esemény kimenetek a helyi merevlemez-meghajtóról fájlban tárolja. Azonban az ilyen fájlok nem érhetők el az Azure SQL Database. Az Azure Storage szolgáltatás helyette az esemény cél használható használjuk.
+A Microsoft SQL Server hello [esemény cél](http://msdn.microsoft.com/library/ff878115.aspx) használt toostore esemény kimenetek egy helyi merevlemezen fájlba van. Azonban az ilyen fájlok nincsenek elérhető tooAzure SQL-adatbázis. Ehelyett hello Azure Storage szolgáltatás toosupport hello Eseményfájlt célja használjuk.
 
 Ez a témakör egy kétfázisú példakód mutatja be:
 
-* PowerShell, hozzon létre egy Azure Storage tárolót a felhőben.
+* PowerShell, toocreate hello felhőben egy Azure Storage-tárolót.
 * Transact-SQL:
   
-  * Az Azure Storage-tároló hozzárendelése egy esemény célhoz.
-  * Hozzon létre és az esemény-munkamenet elindítása, és így tovább.
+  * tooassign hello Azure Storage tároló tooan Eseményfájlt cél.
+  * toocreate és kezdő hello esemény-munkamenethez, és így tovább.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -45,29 +45,29 @@ Ez a témakör egy kétfázisú példakód mutatja be:
   
   * Igény szerint is [hozzon létre egy **AdventureWorksLT** mintaadatbázis](sql-database-get-started.md) perc múlva.
 * SQL Server Management Studio (ssms.exe) ideális esetben a havi frissítés letöltéséhez. 
-  Letöltheti a legújabb ssms.exe:
+  Letöltheti a legújabb ssms.exe hello származó:
   
   * Című témakör [töltse le az SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx).
-  * [A letöltés egy közvetlen hivatkozást.](http://go.microsoft.com/fwlink/?linkid=616025)
-* Rendelkeznie kell a [Azure PowerShell-modulok](http://go.microsoft.com/?linkid=9811175) telepítve.
+  * [Egy közvetlen hivatkozást toohello letölthető.](http://go.microsoft.com/fwlink/?linkid=616025)
+* Rendelkeznie kell hello [Azure PowerShell-modulok](http://go.microsoft.com/?linkid=9811175) telepítve.
   
-  * A modulok tartalmaznak, mint - parancsok **New-AzureStorageAccount**.
+  * hello modulok biztosítanak parancsok, mint - **New-AzureStorageAccount**.
 
 ## <a name="phase-1-powershell-code-for-azure-storage-container"></a>1. fázis: PowerShell-kódjába Azure Storage-tároló
 
-A PowerShell a kétfázisú kódminta 1. fázis.
+A PowerShell hello kétfázisú kódminta 1. fázis.
 
-A parancsfájl parancsok memóriából való eltávolítása után, a korábbi valószínűleg futtassa, rerunnable kezdődik.
+hello parancsfájl kezdődik parancsok tooclean után a korábbi valószínűleg futtatni, és rerunnable.
 
-1. A PowerShell parancsfájl illessze be egy egyszerű szövegszerkesztőben, például a Notepad.exe, és mentse a parancsfájlt a kiterjesztésű fájlként **.ps1**.
+1. Illessze be egy egyszerű szövegszerkesztőben, például a Notepad.exe hello PowerShell-parancsfájlt, és mentse a hello parancsfájl hello kiterjesztésű fájlként **.ps1**.
 2. Indítsa el a PowerShell ISE rendszergazdaként.
-3. Írja be a parancssorba<br/>`Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser`<br/>és nyomja le az ENTER billentyűt.
-4. A PowerShell ISE, nyissa meg a **.ps1** fájlt. Futtassa a parancsfájlt.
-5. A parancsfájl először elindul, amelyben jelentkezik be a Azure új ablakban.
+3. Hello parancssorába írja be a<br/>`Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser`<br/>és nyomja le az ENTER billentyűt.
+4. A PowerShell ISE, nyissa meg a **.ps1** fájlt. Hello parancsprogrammal.
+5. hello parancsfájl először elindul, amelyben a bejelentkezéskor tooAzure új ablakban.
    
-   * Ha a parancsfájl Újrafuttatja a munkamenet megszakítása nélkül, lehetősége van tetszés szerinti a kimenő fűzött megjegyzések a **Add-AzureAccount** parancsot.
+   * Ha Újrafuttatja hello parancsfájl a munkamenet megszakítása nélkül, lehetősége van hello kényelmes a kimenő hello fűzött megjegyzések **Add-AzureAccount** parancsot.
 
-![PowerShell ISE, az Azure-moduljának telepített, készen áll a parancsfájl futtatásához.][30_powershell_ise]
+![PowerShell ISE, készen áll a toorun parancsfájl telepítve, az Azure modullal.][30_powershell_ise]
 
 
 ### <a name="powershell-code"></a>PowerShell-kódot
@@ -79,10 +79,10 @@ A parancsfájl parancsok memóriából való eltávolítása után, a korábbi v
 
 
 # You can comment out or skip this Add-AzureAccount
-# command after the first run.
-# Current PowerShell environment retains the successful outcome.
+# command after hello first run.
+# Current PowerShell environment retains hello successful outcome.
 
-'Expect a pop-up window in which you log in to Azure.'
+'Expect a pop-up window in which you log in tooAzure.'
 
 
 Add-AzureAccount
@@ -91,11 +91,11 @@ Add-AzureAccount
 
 
 '
-TODO: Edit the values assigned to these variables, especially the first few!
+TODO: Edit hello values assigned toothese variables, especially hello first few!
 '
 
-# Ensure the current date is between
-# the Expiry and Start time values that you edit here.
+# Ensure hello current date is between
+# hello Expiry and Start time values that you edit here.
 
 $subscriptionName    = 'YOUR_SUBSCRIPTION_NAME'
 $policySasExpiryTime = '2016-01-28T23:44:56Z'
@@ -115,11 +115,11 @@ $policySasPermission = 'rwl'
 #--------------- 3 -----------------------
 
 
-# The ending display lists your Azure subscriptions.
-# One should match the $subscriptionName value you assigned
+# hello ending display lists your Azure subscriptions.
+# One should match hello $subscriptionName value you assigned
 #   earlier in this PowerShell script. 
 
-'Choose an existing subscription for the current PowerShell environment.'
+'Choose an existing subscription for hello current PowerShell environment.'
 
 
 Select-AzureSubscription -SubscriptionName $subscriptionName
@@ -129,7 +129,7 @@ Select-AzureSubscription -SubscriptionName $subscriptionName
 
 
 '
-Clean up the old Azure Storage Account after any previous run, 
+Clean up hello old Azure Storage Account after any previous run, 
 before continuing this new run.'
 
 
@@ -157,7 +157,7 @@ New-AzureStorageAccount `
 
 
 '
-Get the primary access key for your storage account.
+Get hello primary access key for your storage account.
 '
 
 
@@ -174,9 +174,9 @@ Remainder of PowerShell .ps1 script continues.
 #--------------- 6 -----------------------
 
 
-# The context will be needed to create a container within the storage account.
+# hello context will be needed toocreate a container within hello storage account.
 
-'Create a context object from the storage account and its primary access key.
+'Create a context object from hello storage account and its primary access key.
 '
 
 $context = New-AzureStorageContext `
@@ -184,7 +184,7 @@ $context = New-AzureStorageContext `
     -StorageAccountKey  $primaryAccessKey_ForStorageAccount
 
 
-'Create a container within the storage account.
+'Create a container within hello storage account.
 '
 
 
@@ -193,7 +193,7 @@ $containerObjectInStorageAccount = New-AzureStorageContainer `
     -Context $context
 
 
-'Create a security policy to be applied to the SAS token.
+'Create a security policy toobe applied toohello SAS token.
 '
 
 New-AzureStorageContainerStoredAccessPolicy `
@@ -205,7 +205,7 @@ New-AzureStorageContainerStoredAccessPolicy `
     -StartTime  $policySasStartTime 
 
 '
-Generate a SAS token for the container.
+Generate a SAS token for hello container.
 '
 Try
 {
@@ -222,7 +222,7 @@ Catch
 #-------------- 7 ------------------------
 
 
-'Display the values that YOU must edit into the Transact-SQL script next!:
+'Display hello values that YOU must edit into hello Transact-SQL script next!:
 '
 
 "storageAccountName: $storageAccountName"
@@ -234,42 +234,42 @@ REMINDER: sasTokenWithPolicy here might start with "?" character, which you must
 '
 
 '
-(Later, return here to delete your Azure Storage account. See the preceding - Remove-AzureStorageAccount -StorageAccountName $storageAccountName)'
+(Later, return here toodelete your Azure Storage account. See hello preceding - Remove-AzureStorageAccount -StorageAccountName $storageAccountName)'
 
 '
-Now shift to the Transact-SQL portion of the two-part code sample!'
+Now shift toohello Transact-SQL portion of hello two-part code sample!'
 
 # EOFile
 ```
 
 
-Jegyezze fel a PowerShell parancsfájl kiírja, amikor ez befejeződik néhány nevesített értékek. A 2. fázis, a következő Transact-SQL parancsfájl szerkesztenie kell ezeket az értékeket.
+Jegyezze fel a hello néhány olyan nevesített értékek, amelyek hello PowerShell parancsfájl kiírja, amikor ez befejeződik. A 2. fázis, a következő Transact-SQL parancsfájl hello szerkesztenie kell ezeket az értékeket.
 
 ## <a name="phase-2-transact-sql-code-that-uses-azure-storage-container"></a>2. fázis: Transact-SQL Azure-tárolót használó kódot
 
-* A fenti 1 fázisa futtatta egy Azure Storage-tároló létrehozása a PowerShell-parancsfájlt.
-* Ezután a 2. fázis, a következő Transact-SQL parancsfájlt kell használnia a tároló.
+* A fenti 1 fázisban futtatta a PowerShell parancsfájl toocreate egy Azure Storage-tárolót.
+* Ezután a 2. fázis, hello következő Transact-SQL parancsfájlt kell használnia hello tároló.
 
-A parancsfájl parancsok memóriából való eltávolítása után, a korábbi valószínűleg futtassa, rerunnable kezdődik.
+hello parancsfájl kezdődik parancsok tooclean után a korábbi valószínűleg futtatni, és rerunnable.
 
-A PowerShell parancsfájl néhány névvel ellátott értékek nyomtatva ért véget. Módosítania kell a Transact-SQL parancsfájlt használja ezeket az értékeket. Található **TODO** a Transact-SQL parancsfájl keresse meg a csomópontok szerkesztése.
+PowerShell parancsfájl hello néhány névvel ellátott értékek nyomtatva ért véget. Hello Transact-SQL parancsfájl toouse ezeket az értékeket kell szerkeszteni. Található **TODO** hello Transact-SQL parancsfájl toolocate hello szerkeszteni pontok.
 
 1. Nyissa meg az SQL Server Management Studio (ssms.exe).
-2. Csatlakozás az Azure SQL Database adatbázishoz.
-3. Kattintson ide egy új lekérdezési ablak megnyitásához.
-4. A következő Transact-SQL parancsfájl illessze be a lekérdezési ablaktáblában.
-5. Található minden **TODO** a parancsfájl és elvégezni a megfelelő módosításokat.
-6. Mentse, és futtassa a parancsfájlt.
+2. Csatlakozás tooyour Azure SQL Database adatbázishoz.
+3. Kattintson a tooopen egy új lekérdezési ablak.
+4. Illessze be a következő Transact-SQL parancsfájl hello lekérdezési ablakba hello.
+5. Található minden **TODO** a parancsfájl hello és, hogy megfelelő hello kell végrehajtania.
+6. Mentse, és futtassa a hello parancsfájl.
 
 
 > [!WARNING]
-> A SAS-kulcs értékét a fenti PowerShell-parancsfájl által generált kezdődhet a "?" (kérdőjel). Ha a következő T-SQL-parancsfájlt az SAS-kulcsot használ, akkor meg kell *távolítsa el a bevezető "?"* . Ellenkező esetben a próbálkozások biztonsági blokkolhatja.
+> SAS-kulcs értékét PowerShell parancsfájlt hello által generált hello kezdődhet a "?" (kérdőjel). Ha a következő T-SQL parancsfájl hello hello SAS-kulcsot használ, akkor meg kell *hello bevezető eltávolítása "?"* . Ellenkező esetben a próbálkozások biztonsági blokkolhatja.
 
 
 ### <a name="transact-sql-code"></a>Transact-SQL-kódot
 
 ```sql
----- TODO: First, run the PowerShell portion of this two-part code sample.
+---- TODO: First, run hello PowerShell portion of this two-part code sample.
 ---- TODO: Second, find every 'TODO' in this Transact-SQL file, and edit each.
 
 ---- Transact-SQL code for Event File target on Azure SQL Database.
@@ -322,11 +322,11 @@ GO
 
 IF EXISTS
     (SELECT * FROM sys.database_scoped_credentials
-        -- TODO: Assign AzureStorageAccount name, and the associated Container name.
+        -- TODO: Assign AzureStorageAccount name, and hello associated Container name.
         WHERE name = 'https://gmstorageaccountxevent.blob.core.windows.net/gmcontainerxevent')
 BEGIN
     DROP DATABASE SCOPED CREDENTIAL
-        -- TODO: Assign AzureStorageAccount name, and the associated Container name.
+        -- TODO: Assign AzureStorageAccount name, and hello associated Container name.
         [https://gmstorageaccountxevent.blob.core.windows.net/gmcontainerxevent] ;
 END
 GO
@@ -336,18 +336,18 @@ CREATE
     DATABASE SCOPED
     CREDENTIAL
         -- use '.blob.',   and not '.queue.' or '.table.' etc.
-        -- TODO: Assign AzureStorageAccount name, and the associated Container name.
+        -- TODO: Assign AzureStorageAccount name, and hello associated Container name.
         [https://gmstorageaccountxevent.blob.core.windows.net/gmcontainerxevent]
     WITH
         IDENTITY = 'SHARED ACCESS SIGNATURE',  -- "SAS" token.
-        -- TODO: Paste in the long SasToken string here for Secret, but exclude any leading '?'.
+        -- TODO: Paste in hello long SasToken string here for Secret, but exclude any leading '?'.
         SECRET = 'sv=2014-02-14&sr=c&si=gmpolicysastoken&sig=EjAqjo6Nu5xMLEZEkMkLbeF7TD9v1J8DNB2t8gOKTts%3D'
     ;
 GO
 
 
 ------  Step 3.  Create (define) an event session.  --------
-------  The event session has an event with an action,
+------  hello event session has an event with an action,
 ------  and a has a target.
 
 IF EXISTS
@@ -376,8 +376,8 @@ CREATE
     ADD TARGET
         package0.event_file
             (
-            -- TODO: Assign AzureStorageAccount name, and the associated Container name.
-            -- Also, tweak the .xel file name at end, if you like.
+            -- TODO: Assign AzureStorageAccount name, and hello associated Container name.
+            -- Also, tweak hello .xel file name at end, if you like.
             SET filename =
                 'https://gmstorageaccountxevent.blob.core.windows.net/gmcontainerxevent/anyfilenamexel242b.xel'
             )
@@ -388,12 +388,12 @@ CREATE
 GO
 
 
-------  Step 4.  Start the event session.  ----------------
-------  Issue the SQL Update statements that will be traced.
-------  Then stop the session.
+------  Step 4.  Start hello event session.  ----------------
+------  Issue hello SQL Update statements that will be traced.
+------  Then stop hello session.
 
-------  Note: If the target fails to attach,
-------  the session must be stopped and restarted.
+------  Note: If hello target fails tooattach,
+------  hello session must be stopped and restarted.
 
 ALTER
     EVENT SESSION
@@ -425,7 +425,7 @@ ALTER
 GO
 
 
--------------- Step 5.  Select the results. ----------
+-------------- Step 5.  Select hello results. ----------
 
 SELECT
         *, 'CLICK_NEXT_CELL_TO_BROWSE_ITS_RESULTS!' as [CLICK_NEXT_CELL_TO_BROWSE_ITS_RESULTS],
@@ -433,7 +433,7 @@ SELECT
     FROM
         sys.fn_xe_file_target_read_file
             (
-                -- TODO: Fill in Storage Account name, and the associated Container name.
+                -- TODO: Fill in Storage Account name, and hello associated Container name.
                 'https://gmstorageaccountxevent.blob.core.windows.net/gmcontainerxevent/anyfilenamexel242b',
                 null, null, null
             );
@@ -449,7 +449,7 @@ DROP
 GO
 
 DROP DATABASE SCOPED CREDENTIAL
-    -- TODO: Assign AzureStorageAccount name, and the associated Container name.
+    -- TODO: Assign AzureStorageAccount name, and hello associated Container name.
     [https://gmstorageaccountxevent.blob.core.windows.net/gmcontainerxevent]
     ;
 GO
@@ -457,12 +457,12 @@ GO
 DROP TABLE gmTabEmployee;
 GO
 
-PRINT 'Use PowerShell Remove-AzureStorageAccount to delete your Azure Storage account!';
+PRINT 'Use PowerShell Remove-AzureStorageAccount toodelete your Azure Storage account!';
 GO
 ```
 
 
-Ha a cél nem csatolható futtatásakor, akkor állítsa le és indítsa újra az esemény-munkamenet:
+Ha hello cél tooattach nem sikerül, ha futtatja, akkor állítsa le, és hello esemény-munkamenet újraindítása:
 
 ```sql
 ALTER EVENT SESSION ... STATE = STOP;
@@ -474,7 +474,7 @@ GO
 
 ## <a name="output"></a>Kimenet
 
-A Transact-SQL parancsfájl befejezése után kattintson a cella a **event_data_XML** oszlop fejlécére. Egy  **<event>**  elem akkor jelenik meg, amely egy UPDATE utasítás mutatja.
+Hello Transact-SQL parancsfájl befejeztével kattintson egy cella alatt hello **event_data_XML** oszlop fejlécére. Egy  **<event>**  elem akkor jelenik meg, amely egy UPDATE utasítás mutatja.
 
 Itt az egyik  **<event>**  elem, amely a tesztelés során jött létre:
 
@@ -519,32 +519,32 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM gmTabEmployee;
 ```
 
 
-Az előző Transact-SQL-parancsfájlt a következő rendszerfüggvény a event_file olvasásához használt:
+rendszer függvény tooread hello event_file a következő Transact-SQL parancsfájl használt hello megelőző hello:
 
 * [sys.fn_xe_file_target_read_file (Transact-SQL)](http://msdn.microsoft.com/library/cc280743.aspx)
 
-Speciális beállítások a megtekintésre kiterjesztett események adatainak magyarázata érhető el:
+Speciális beállítások hello megtekintésre kiterjesztett események adatainak magyarázata érhető el:
 
 * [Speciális cél kiterjesztett események adatainak megtekintése](http://msdn.microsoft.com/library/mt752502.aspx)
 
 
-## <a name="converting-the-code-sample-to-run-on-sql-server"></a>Az SQL Server futtatásához kódminta alakítása
+## <a name="converting-hello-code-sample-toorun-on-sql-server"></a>Átalakítás hello kód a minta toorun SQL-kiszolgálón
 
-Tegyük fel, hogy szeretné futtatni a Transact-SQL előző példa a Microsoft SQL Server.
+Tegyük a Microsoft SQL Server Transact-SQL minta megelőző toorun hello.
 
-* Az egyszerűség kedvéért szeretné teljesen cserélje le az Azure Storage-tároló használja, mint egy egyszerű fájl **C:\myeventdata.xel**. A fájl tartalmazná a számítógép, amelyen az SQL Server a helyi merevlemez-meghajtóról.
+* Az egyszerűség kedvéért célszerű hello Azure tároló toocompletely csere használatát egy egyszerű fájlt például **C:\myeventdata.xel**. hello fájl toohello helyi merevlemez-meghajtóról, amelyen az SQL Server számítógép hello tartalmazná.
 * Nem kell semmilyen Transact-SQL-utasításainak **FŐKULCS létrehozása** és **hitelesítő adat létrehozása**.
-* Az a **munkamenet esemény létrehozása** utasítás, a a **tároló hozzáadása** záradék, cserélje a hozzárendelt Http érték végzett **filename =** például a teljes elérési útja karakterláncot **C:\myfile.xel**.
+* A hello **munkamenet esemény létrehozása** utasítás, a a **tároló hozzáadása** záradék, cserélje a hozzárendelt hello Http érték túl végrehajtott**Fájlnév =** példáulteljeselérésiútjakarakterláncot **C:\myfile.xel**.
   
   * Nincs Azure-tárfiók be kell vonni.
 
 ## <a name="more-information"></a>További információ
 
-Fiókok és az Azure Storage szolgáltatást a tárolók kapcsolatos további információkért lásd:
+Fiókok és a tárolók hello Azure Storage szolgáltatás kapcsolatos további információkért lásd:
 
-* [A .NET-Blob-tároló használata](../storage/blobs/storage-dotnet-how-to-use-blobs.md)
+* [Hogyan toouse a .NET-Blob-tároló](../storage/blobs/storage-dotnet-how-to-use-blobs.md)
 * [Elnevezésekor és a hivatkozó, tárolók, Blobok és metaadatok](http://msdn.microsoft.com/library/azure/dd135715.aspx)
-* [A gyökérszintű tároló használata](http://msdn.microsoft.com/library/azure/ee395424.aspx)
+* [Legfelső szintű tároló hello használata](http://msdn.microsoft.com/library/azure/ee395424.aspx)
 * [1. lecke: Egy tárolt hozzáférési házirend és a közös hozzáférésű jogosultságkód létrehozása egy Azure-tárolót a](http://msdn.microsoft.com/library/dn466430.aspx)
   * [2. lecke: SQL Server hitelesítő adatok használatával a közös hozzáférésű jogosultságkód létrehozása](http://msdn.microsoft.com/library/dn466435.aspx)
 

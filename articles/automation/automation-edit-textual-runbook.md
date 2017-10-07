@@ -1,6 +1,6 @@
 ---
-title: "Azure Automation runbookjai szöveges szerkesztése"
-description: "Ez a cikk biztosít a különböző eljárásokkal a PowerShell és a PowerShell-munkafolyamati forgatókönyvek az Azure Automationben használata a szöveges szerkesztővel."
+title: "aaaEditing szöveges Azure Automation runbookjai"
+description: "Ez a cikk biztosít a különböző eljárásokkal a PowerShell és a PowerShell-munkafolyamati forgatókönyvek az Azure Automationben használata hello szöveges szerkesztőjével."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,94 +14,94 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: magoedte;bwren
-ms.openlocfilehash: 21f30e1266a444a2258973f8acad3692077f535b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3fd87d457838f300ca6c94bc345e82c679a0e011
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="editing-textual-runbooks-in-azure-automation"></a>Azure Automation runbookjai szöveges szerkesztése
-Az Azure Automationben szöveges szerkesztő segítségével szerkesztése [PowerShell-forgatókönyvek](automation-runbook-types.md#powershell-runbooks) és [PowerShell munkafolyamat-forgatókönyvekről](automation-runbook-types.md#powershell-workflow-runbooks). Azt az egyéb kód szerkesztőt, például a intellisense és további speciális funkciók színkódolás segítséget nyújt a runbookok közös erőforrások eléréséhez a tipikus funkcióit.  Ez a cikk nyújt a részletes lépéseket a szerkesztővel különböző funkcióihoz.
+hello az Azure Automationben szöveges szerkesztő lehet használt tooedit [PowerShell-forgatókönyvek](automation-runbook-types.md#powershell-runbooks) és [PowerShell munkafolyamat-forgatókönyvekről](automation-runbook-types.md#powershell-workflow-runbooks). Azt hello tipikus részeit, más kód szerkesztőt, például az intellisense és kódolása további speciális funkciók tooassist rendelkező, a közös toorunbooks erőforrások elérése színét.  Ez a cikk nyújt a részletes lépéseket a szerkesztővel különböző funkcióihoz.
 
-A szöveges szerkesztőjének egyik funkciójával, a tevékenységek, eszközök és a gyermekrunbookok kód beszúrása a runbookba. Ahelyett, hogy írja be a kódját magát, válassza ki a rendelkezésre álló erőforrások listája, és rendelkezik a megfelelő kódot a runbook beszúrt.
+hello szöveges szerkesztő runbookba tevékenységeket, eszközök és a gyermekrunbookok szolgáltatás tooinsert kódot tartalmaz. Ahelyett, hogy írja be a kódját hello saját magának, a rendelkezésre álló erőforrások listájából válassza ki, és hello hello runbook beszúrt megfelelő kódot.
 
-Azure Automation összes runbookjának két verziója van, vázlat és egy közzétett. A runbook vázlatverzióját szerkesztheti, és majd közzétenni ahhoz végrehajtható legyen. A közzétett verzió nem szerkeszthető. Lásd: [runbook közzététele](automation-creating-importing-runbook.md#publishing-a-runbook) további információt.
+Azure Automation összes runbookjának két verziója van, vázlat és egy közzétett. Hello runbook vázlatverzióját hello szerkesztheti, és majd közzétenni ahhoz végrehajtható legyen. hello közzétett verzió nem szerkeszthető. Lásd: [runbook közzététele](automation-creating-importing-runbook.md#publishing-a-runbook) további információt.
 
-Történő együttműködésre [grafikus forgatókönyvek](automation-runbook-types.md#graphical-runbooks), lásd: [grafikus készítése az Azure Automationben](automation-graphical-authoring-intro.md).
+a toowork [grafikus forgatókönyvek](automation-runbook-types.md#graphical-runbooks), lásd: [grafikus készítése az Azure Automationben](automation-graphical-authoring-intro.md).
 
-## <a name="to-edit-a-runbook-with-the-azure-portal"></a>Az Azure portálon runbook szerkesztése
-A következő eljárás segítségével nyissa meg szerkesztésre a szöveges szerkesztőben egy runbookot.
+## <a name="tooedit-a-runbook-with-hello-azure-portal"></a>tooedit runbookkal a hello Azure-portálon
+A következő eljárás tooopen szerkesztését hello szöveges szerkesztő a runbook hello használata.
 
-1. Az Azure-portálon válassza ki az automation-fiók.
-2. Kattintson a **Runbookok** csempére a forgatókönyvek listájának megnyitásához.
-3. Kattintson a Szerkesztés, és kattintson a kívánt runbook nevére a **szerkesztése** gombra.
-4. Hajtsa végre a szükséges módosításokat.
+1. Hello Azure-portálon válassza ki az automation-fiók.
+2. Kattintson a hello **Runbookok** csempe tooopen hello forgatókönyvek listája.
+3. Kattintson a hello neve hello runbook tooedit szeretne, és kattintson a hello **szerkesztése** gombra.
+4. Hajtsa végre a szükséges szerkesztési hello.
 5. Kattintson a **mentése** amikor a módosítások nem fejeződik.
-6. Kattintson a **közzététel** Ha azt szeretné, hogy közzé kell tenni a runbook legfrissebb vázlatverzióját.
+6. Kattintson a **közzététel** Ha azt szeretné, hogy hello legfrissebb vázlatverzióját hello runbook toobe közzé.
 
-### <a name="to-insert-a-cmdlet-into-a-runbook"></a>A parancsmag beszúrása a runbookba
-1. A vásznon, a szöveges szerkesztő vigye a kurzort hol szeretné elhelyezni a parancsmag.
-2. Bontsa ki a **parancsmagok** csomópont található a könyvtárban.
-3. Bontsa ki a használni kívánt parancsmag tartalmazó modult.
-4. Kattintson jobb gombbal a Beszúrás, és válassza ki a parancsmag **vászonra Hozzáadás**.  Ha a parancsmag beállítása egynél több paraméterrel rendelkezik, az alapértelmezés szerint lesz hozzáadva.  A parancsmag segítségével válassza ki egy másik paraméter bővítheti is.
-5. A parancsmag a kódját a paraméterek teljes listája a egészül ki.
-6. Adjon meg egy megfelelő értéket a csúcsos zárójelek <> minden kötelező paraméterhez között feltüntetett adattípus helyett.  Távolítsa el a felesleges paramétereket.
+### <a name="tooinsert-a-cmdlet-into-a-runbook"></a>tooinsert át egy runbooknak parancsmag
+1. A vásznon a hello szöveges szerkesztő hello vigye hello kurzor tooplace hello parancsmag.
+2. Bontsa ki a hello **parancsmagok** hello könyvtár vezérlő csomópontja.
+3. Bontsa ki a kívánt toouse hello parancsmag tartalmazó hello modul.
+4. Hello parancsmag tooinsert kattintson jobb gombbal, majd válassza ki **toocanvas hozzáadása**.  Ha hello parancsmag beállítása egynél több paraméterrel rendelkezik, majd hello alapértelmezés szerint megjelenik.  Hello parancsmag tooselect eltérő kibontva beállítása.
+5. a paraméterek teljes listája a hello parancsmag hello kódját egészül ki.
+6. Adjon meg egy megfelelő értéket, a szükséges paramétereket a kapcsos zárójelek <> hello adattípus helyett.  Távolítsa el a felesleges paramétereket.
 
-### <a name="to-insert-code-for-a-child-runbook-into-a-runbook"></a>A gyermekrunbook kód beszúrása a runbookba
-1. A vásznon, a szöveges szerkesztő, vigye a kurzort ahová kódját a [gyermekrunbook](automation-child-runbooks.md).
-2. Bontsa ki a **Runbookok** csomópont található a könyvtárban.
-3. Kattintson jobb gombbal a Beszúrás, és válassza ki a runbook **vászonra Hozzáadás**.
-4. A runbook paramétereket bármely helyőrzőit a kódot, hogy a gyermekrunbook egészül ki.
-5. A helyőrzőket cserélje le minden paraméterhez megfelelő értéket.
+### <a name="tooinsert-code-for-a-child-runbook-into-a-runbook"></a>a gyermek runbook át egy runbooknak tooinsert kódja
+1. A vásznon a hello szöveges szerkesztő hello, vigye hello kurzor tooplace hello kód a hello [gyermekrunbook](automation-child-runbooks.md).
+2. Bontsa ki a hello **Runbookok** hello könyvtár vezérlő csomópontja.
+3. Hello runbook tooinsert kattintson jobb gombbal, majd válassza ki **toocanvas hozzáadása**.
+4. a runbook paramétereket bármely helyőrzőkkel hello gyermekrunbook hello kódját egészül ki.
+5. Hello helyőrzőket cserélje le minden paraméterhez megfelelő értéket.
 
-### <a name="to-insert-an-asset-into-a-runbook"></a>Egy eszköz beszúrása a runbookba
-1. A vásznon, a szöveges szerkesztő helyezze a mutatót a kódot, hogy a gyermekrunbook ahová.
-2. Bontsa ki a **eszközök** csomópont található a könyvtárban.
-3. Bontsa ki a kívánt eszköz típusú csomópont.
-4. Kattintson jobb gombbal a Beszúrás, és válassza ki az eszköz **vászonra Hozzáadás**.  A [változó eszközök](automation-variables.md), válassza **hozzáadása "Változó beolvasása" vászonra** vagy **hozzáadása "Változó beállítása" vászonra** attól függően, hogy a vagy állítsa be a változót.
-5. Az eszköz a kód bekerülnek a runbookot.
+### <a name="tooinsert-an-asset-into-a-runbook"></a>egy eszköz át egy runbooknak tooinsert
+1. A vásznon a hello szöveges szerkesztő hello vigye hello kurzor tooplace hello kód hello gyermek runbook.
+2. Bontsa ki a hello **eszközök** hello könyvtár vezérlő csomópontja.
+3. Bontsa ki a kívánt eszköz hello típusú hello csomópontot.
+4. Hello eszköz tooinsert kattintson jobb gombbal, majd válassza ki **toocanvas hozzáadása**.  A [változó eszközök](automation-variables.md), válassza **hozzáadása "Változó beolvasása" toocanvas** vagy **hozzáadása "Változó beállítása" toocanvas** attól függően, hogy szeretné, hogy tooget vagy hello változót.
+5. hello kód hello eszköz hello runbook bekerülnek.
 
-## <a name="to-edit-a-runbook-with-the-azure-portal"></a>Az Azure portálon runbook szerkesztése
-A következő eljárás segítségével nyissa meg szerkesztésre a szöveges szerkesztőben egy runbookot.
+## <a name="tooedit-a-runbook-with-hello-azure-portal"></a>tooedit runbookkal a hello Azure-portálon
+A következő eljárás tooopen szerkesztését hello szöveges szerkesztő a runbook hello használata.
 
-1. Válassza ki az Azure-portálon **Automation** és majd kattintson az automation-fiók nevét.
-2. Válassza ki a **Runbookok** fülre.
-3. Kattintson a Szerkesztés, és válassza ki a runbook nevét a **Szerző** fülre.
-4. Kattintson a **szerkesztése** gomb a képernyő alján.
-5. Hajtsa végre a szükséges módosításokat.
+1. Hello Azure-portálon, válassza ki **Automation** és majd kattintson az automation-fiók hello nevére.
+2. Jelölje be hello **Runbookok** fülre.
+3. Kattintson a hello neve hello runbook tooedit szeretne, és válassza a hello **Szerző** fülre.
+4. Kattintson a hello **szerkesztése** üdvözlő képernyőt hello alján gombra.
+5. Hajtsa végre a szükséges szerkesztési hello.
 6. Kattintson a **mentése** amikor a módosítások nem fejeződik.
-7. Kattintson a **közzététel** Ha azt szeretné, hogy közzé kell tenni a runbook legfrissebb vázlatverzióját.
+7. Kattintson a **közzététel** Ha azt szeretné, hogy hello legfrissebb vázlatverzióját hello runbook toobe közzé.
 
-### <a name="to-insert-an-activity-into-a-runbook"></a>A tevékenység beszúrása a Runbookba
-1. A vásznon, a szöveges szerkesztő vigye a kurzort hol szeretné elhelyezni a tevékenység.
-2. A képernyő alján kattintson **beszúrása** , majd **tevékenység**.
-3. Az a **integrációs modul** oszlopban válassza ki azt a tevékenységet tartalmazó modult.
-4. Az a **tevékenység** ablaktáblán válasszon ki egy tevékenységet.
-5. Az a **leírás** oszlop, vegye figyelembe a tevékenység leírását. Másik lehetőségként kattinthat a nézet részletes súgó indítása a böngészőben a tevékenységhez tartozó súgót.
-6. Kattintson a jobbra mutató nyílra.  Ha a tevékenység paraméterekkel rendelkezik, azok az információk megjelennek.
-7. Kattintson a pipa gombra.  A tevékenység futtatásához szükséges kódot program beszúrja a runbook.
-8. Ha a tevékenység paramétereket igényel, adjon meg egy megfelelő értéket a csúcsos zárójelek <> között feltüntetett adattípus helyett.
+### <a name="tooinsert-an-activity-into-a-runbook"></a>egy Runbookban egy tevékenységet tooinsert
+1. A vásznon a hello szöveges szerkesztő hello vigye hello kurzor tooplace hello tevékenység.
+2. Hello a hello képernyő aljára, kattintson a **beszúrása** , majd **tevékenység**.
+3. A hello **integrációs modul** oszlop, jelölje be hello modul, amely a hello tevékenységet tartalmaz.
+4. A hello **tevékenység** ablaktáblán válasszon ki egy tevékenységet.
+5. A hello **leírás** oszlop, hello tevékenység Megjegyzés hello leírását. Másik lehetőségként kattinthat a részletes nézet toolaunch súgó hello tevékenység hello böngészőben.
+6. Kattintson a hello jobbra mutató nyílra.  Ha hello tevékenység paraméterekkel rendelkezik, azok az információt megjelenik.
+7. Hello ellenőrzése gombra.  Hello runbook toorun hello tevékenységeket lesz.
+8. Ha a hello tevékenységhez paraméterek szükségesek, adjon meg egy megfelelő értéket a csúcsos zárójelek <> között hello adattípus helyett.
 
-### <a name="to-insert-code-for-a-child-runbook-into-a-runbook"></a>A gyermekrunbook kód beszúrása a runbookba
-1. A vásznon, a szöveges szerkesztő, vigye a kurzort ahol el szeretné helyezni a [gyermekrunbook](automation-child-runbooks.md).
-2. A képernyő alján kattintson **beszúrása** , majd **Runbook**.
-3. Válassza ki a forgatókönyvet, hogy a középső oszlop beszúrása, és kattintson a jobbra mutató nyílra.
-4. Ha a runbook paraméterekkel rendelkezik, azok az információk megjelennek.
-5. Kattintson a pipa gombra.  A kiválasztott runbook futtatásához szükséges kódot program beszúrja a jelenlegi runbook.
-6. Ha a runbook paramétereket igényel, adjon meg egy megfelelő értéket a csúcsos zárójelek <> között feltüntetett adattípus helyett.
+### <a name="tooinsert-code-for-a-child-runbook-into-a-runbook"></a>a gyermek runbook át egy runbooknak tooinsert kódja
+1. A vásznon a hello szöveges szerkesztő hello, vigye hello kurzor tooplace hello [gyermekrunbook](automation-child-runbooks.md).
+2. Hello a hello képernyő aljára, kattintson a **beszúrása** , majd **Runbook**.
+3. Hello runbook tooinsert hello középső oszlopból válassza ki, és hello jobbra mutató nyílra.
+4. Ha hello runbook paraméterekkel rendelkezik, azok az információt megjelenik.
+5. Hello ellenőrzése gombra.  Kód toorun hello kiválasztott runbook program beszúrja hello aktuális runbookot.
+6. Ha a hello runbook paramétereket igényel, adjon meg egy megfelelő értéket a csúcsos zárójelek <> között hello adattípus helyett.
 
-### <a name="to-insert-an-asset-into-a-runbook"></a>Egy eszköz beszúrása a runbookba
-1. A vásznon, a szöveges szerkesztő vigye a kurzort ahová beolvasása az eszköz a tevékenység.
-2. A képernyő alján kattintson **beszúrása** , majd **beállítás**.
-3. Az a **beállítási művelet** oszlopban jelölje ki a kívánt műveletet.
-4. Válassza ki a középső oszlopban elérhető eszközök közül.
-5. Kattintson a pipa gombra.  Beolvasni vagy megadni az eszköz a kód program beszúrja a runbook.
+### <a name="tooinsert-an-asset-into-a-runbook"></a>egy eszköz át egy runbooknak tooinsert
+1. A vásznon a hello szöveges szerkesztő hello vigye hello kurzor tooplace hello tevékenység tooretrieve hello eszköz.
+2. Hello a hello képernyő aljára, kattintson a **beszúrása** , majd **beállítás**.
+3. A hello **beállítási művelet** oszlop, válassza hello kívánt műveletet.
+4. Válassza ki a hello hello középső oszlopban elérhető eszközök.
+5. Hello ellenőrzése gombra.  Kód tooget vagy set hello eszköz program beszúrja a hello runbook.
 
-## <a name="to-edit-an-azure-automation-runbook-using-windows-powershell"></a>A Windows PowerShell egy Azure Automation-runbook szerkesztése
-A Windows PowerShell-lel runbook szerkesztése a szerkesztővel az Ön által választott, és mentse azt egy .ps1 kiterjesztésű fájlba. Használhatja a [Get-AzureAutomationRunbookDefinition](http://aka.ms/runbookauthor/cmdlet/getazurerunbookdefinition) parancsmagot a runbook tartalmának beolvasásához, majd [Set-AzureAutomationRunbookDefinition](http://aka.ms/runbookauthor/cmdlet/setazurerunbookdefinition) parancsmaggal lecserélheti a meglévő vázlatszintű vázlatot a módosítottra runbook.
+## <a name="tooedit-an-azure-automation-runbook-using-windows-powershell"></a>tooedit egy Azure Automation-runbook Windows PowerShell használatával
+egy runbook tooedit a Windows PowerShell használatával, az Ön által választott hello szerkesztővel, és mentse tooa .ps1 fájlt. Használhatja a hello [Get-AzureAutomationRunbookDefinition](http://aka.ms/runbookauthor/cmdlet/getazurerunbookdefinition) parancsmag tooretrieve hello hello runbook tartalmát, majd [Set-AzureAutomationRunbookDefinition](http://aka.ms/runbookauthor/cmdlet/setazurerunbookdefinition) parancsmag tooreplace hello meglévő runbook vázlatként megjelölt hello módosítani egy.
 
-### <a name="to-retrieve-the-contents-of-a-runbook-using-windows-powershell"></a>A Windows PowerShell használatával Runbook tartalmának beolvasása
-Az alábbi Példaparancsok szemléltetik egy runbook parancsprogramjának beolvasását, és mentse a parancsfájlt. Ebben a példában a rendszer lekéri a vázlatként megjelölt verziót. Akkor is a runbook közzétett verziójának beolvasásához, bár ez a verzió nem módosítható.
+### <a name="tooretrieve-hello-contents-of-a-runbook-using-windows-powershell"></a>tooRetrieve hello tartalmát egy Runbook Windows PowerShell használatával
+hello a következő mintaparancsok bemutatják, hogyan tooretrieve hello egy runbook parancsfájlja, és mentse tooa parancsfájl. Ebben a példában a rendszer lekéri hello vázlatként megjelölt verziót. Célszerű is lehetséges tooretrieve hello közzétett verzió hello runbook Bár jelen verziója nem módosítható.
 
     $automationAccountName = "MyAutomationAccount"
     $runbookName = "Sample-TestRunbook"
@@ -112,8 +112,8 @@ Az alábbi Példaparancsok szemléltetik egy runbook parancsprogramjának beolva
 
     Out-File -InputObject $runbookContent -FilePath $scriptPath
 
-### <a name="to-change-the-contents-of-a-runbook-using-windows-powershell"></a>A Windows PowerShell használatával Runbook tartalmának módosítása
-Az alábbi Példaparancsok szemléltetik egy runbook létező tartalmának lecserélése a parancsfájl. Vegye figyelembe, hogy ez a minta eljárásnak és a [runbook importálása parancsfájlból a Windows PowerShell-lel](automation-creating-importing-runbook.md).
+### <a name="toochange-hello-contents-of-a-runbook-using-windows-powershell"></a>tooChange hello tartalmát egy Runbook Windows PowerShell használatával
+hello következő mintaparancsok bemutatják, hogyan tooreplace hello hello tartalma a parancsfájl egy runbook meglévő tartalma. Vegye figyelembe, hogy ez az van hello azonos eljárást, mint a minta [tooimport egy runbookot, a Windows PowerShell-lel parancsfájlból](automation-creating-importing-runbook.md).
 
     $automationAccountName = "MyAutomationAccount"
     $runbookName = "Sample-TestRunbook"

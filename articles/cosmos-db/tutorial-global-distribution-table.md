@@ -1,6 +1,6 @@
 ---
-title: "Tábla API Azure Cosmos DB globális telepítési útmutató |} Microsoft Docs"
-description: "Megtudhatja, hogyan beállítani az Azure Cosmos DB globális terjesztési tábla API használatával."
+title: "Tábla API aaaAzure Cosmos DB globális terjesztési oktatóanyaga |} Microsoft Docs"
+description: "Ismerje meg, hogyan hello tábla API toosetup Azure Cosmos DB globális terjesztési használatával."
 services: cosmos-db
 keywords: "globális terjesztési, tábla"
 documentationcenter: 
@@ -15,38 +15,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: 63c9e530a4982e2e6e478fea56e015fc77851e1d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d2a995e09c37f9449856aef2ab707e95eb8a540c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-setup-azure-cosmos-db-global-distribution-using-the-table-api"></a>Hogyan lehet beállítani az Azure Cosmos DB globális terjesztési tábla API használatával
+# <a name="how-toosetup-azure-cosmos-db-global-distribution-using-hello-table-api"></a>Hogyan toosetup Azure Cosmos DB globális terjesztési használatával hello tábla API
 
-Ebben a cikkben megmutatjuk, hogyan használható az Azure portál Azure Cosmos DB globális terjesztési telepítési és a tábla API (előzetes verzió) segítségével csatlakozzon.
+Ez a cikk megmutatjuk, hogyan toouse hello Azure portál toosetup Azure Cosmos DB globális terjesztési, és csatlakoztassa a hello tábla API (előzetes verzió) használatával.
 
-Ez a cikk ismerteti a következő feladatokat: 
+Ez a cikk ismerteti a következő feladatok hello: 
 
 > [!div class="checklist"]
-> * Az Azure portál használatával globális terjesztési konfigurálása
-> * Globális terjesztési használatával konfigurálja a [tábla API](table-introduction.md)
+> * Konfigurálja a globális terjesztési hello Azure-portál használatával
+> * Globális terjesztési használatával hello konfigurálása [tábla API](table-introduction.md)
 
 [!INCLUDE [cosmos-db-tutorial-global-distribution-portal](../../includes/cosmos-db-tutorial-global-distribution-portal.md)]
 
 
-## <a name="connecting-to-a-preferred-region-using-the-table-api"></a>A preferált régió tábla API használatával csatlakozik
+## <a name="connecting-tooa-preferred-region-using-hello-table-api"></a>Csatlakozás előnyben részesített régióba tooa hello tábla API
 
-Kihasználása érdekében [globális terjesztési](distribute-data-globally.md), ügyfélalkalmazások is adja meg a dokumentum műveletek végrehajtásához használandó régiók rendezett beállítások listáját. Ezt megteheti úgy, hogy a `TablePreferredLocations` konfigurációs érték az előzetes Azure Storage szolgáltatás SDK az alkalmazás Config. Az Azure Cosmos DB-fiók konfigurációja, az aktuális területi rendelkezésre állás és a megadott beállításokat szabályozó lista alapján, a legoptimálisabb végpont választja ki az Azure Storage szolgáltatás SDK írási és olvasási műveletek.
+A rendelés tootake előnyeit [globális terjesztési](distribute-data-globally.md), ügyfélalkalmazások hello rendezett használt tooperform dokumentum műveletek régiók toobe preferencia listája adhat meg. Ezt úgy teheti hello beállítása `TablePreferredLocations` hello alkalmazások konfigurációja az Azure Storage szolgáltatás SDK hello előzetes konfigurációs értéket. Hello Azure Cosmos DB fiók konfigurációtól függően aktuális területi rendelkezésre állási és hello beállításokat szabályozó lista megadva, a legtöbb optimális végpont választja ki hello Azure Storage szolgáltatás SDK tooperform hello írási és olvasási műveletek.
 
-A `TablePreferredLocations` olvasása előnyben részesített (többhelyű) helyek vesszővel tagolt listáját kell tartalmaznia. Minden ügyfél példány e régiók részhalmazát megadhat kis késleltetésű olvasása csatlakozási kísérleteinek kívánt sorrendjét. A régiók névvel kell ellátni használatával a [megjelenített neveket](https://msdn.microsoft.com/library/azure/gg441293.aspx), például `West US`.
+Hello `TablePreferredLocations` olvasása előnyben részesített (többhelyű) helyek vesszővel tagolt listáját kell tartalmaznia. Minden ügyfél példány előnyben részesített hello ahhoz, hogy kis késleltetésű olvasási adhatja meg e régiók egy részét. hello régiók névvel kell ellátni használatával a [megjelenített neveket](https://msdn.microsoft.com/library/azure/gg441293.aspx), például `West US`.
 
-Az összes olvasási kapnak az első rendelkezésre álló terület a `TablePreferredLocations` listája. A kérés nem teljesíthető, ha az ügyfél lefelé a listában, a következő régióban sikertelen, és így tovább.
+Az összes olvasási küldi el toohello első rendelkezésre álló terület hello `TablePreferredLocations` listája. Hello kérelem sikertelen lesz, ha hello ügyfél le hello lista toohello következő terület sikertelen, és így tovább.
 
-Az SDK-t csak megpróbálja beolvasni a régió van megadva a `TablePreferredLocations`. Igen, például ha az adatbázis-fiókot a három régióban, de az ügyfél csak meghatározza a nem írási területek két `TablePreferredLocations`, akkor nincs olvasási szolgáltató kívül az írási régió, feladatátvétel esetén is.
+hello SDK csak kísérli meg a megadott hello régiók tooread `TablePreferredLocations`. Így például ha hello adatbázisfiók három régiókban, de hello csak ügyfélszámítógép két hello nem írási régiók `TablePreferredLocations`, majd nincs olvasási szolgáltató hello írási régió, még akkor is, a feladatátvétel hello eset kívül.
 
-Az SDK automatikusan elküld minden írási műveleteket ad ki az aktuális írási régió.
+hello SDK automatikusan elküld minden írások toohello aktuális írási terület.
 
-Ha a `TablePreferredLocations` tulajdonság nincs beállítva, az összes kérelem szolgáltató aktuális írási régióban.
+Ha hello `TablePreferredLocations` tulajdonsága nincs beállítva, az összes kérelem szolgáltató hello aktuális írási régióban.
 
 ```xml
     <appSettings>
@@ -54,17 +54,17 @@ Ha a `TablePreferredLocations` tulajdonság nincs beállítva, az összes kérel
     </appSettings>
 ```
 
-Ez azt, hogy ez az oktatóanyag befejezése. Megismerheti a globális replikált fiókja konzisztencia kezeléséhez olvasásával [Azure Cosmos DB-ben konzisztenciaszintek](consistency-levels.md). És hogyan globális adatbázis-replikációval kapcsolatos további információk az Azure Cosmos Adatbázisba működik, a következő témakörben: [adatok globálisan Azure Cosmos DB terjesztése](distribute-data-globally.md).
+Ez azt, hogy ez az oktatóanyag befejezése. Megismerheti, hogyan toomanage hello olvasásával globálisan replikált fiókja konzisztencia [Azure Cosmos DB-ben konzisztenciaszintek](consistency-levels.md). És hogyan globális adatbázis-replikációval kapcsolatos további információk az Azure Cosmos Adatbázisba működik, a következő témakörben: [adatok globálisan Azure Cosmos DB terjesztése](distribute-data-globally.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben az oktatóanyagban ezt a következők:
+Ebben az oktatóanyagban hello következő régebben már kötöttek:
 
 > [!div class="checklist"]
-> * Az Azure portál használatával globális terjesztési konfigurálása
-> * A DocumentDB API-k használatával globális terjesztési konfigurálása
+> * Konfigurálja a globális terjesztési hello Azure-portál használatával
+> * Globális terjesztési hello DocumentDB API-k használatával konfigurálása
 
-Most már folytathatja a következő oktatóanyag megtudhatja, hogyan fejleszthet, helyileg emulátorral Azure Cosmos DB helyi.
+Most már folytathatja a következő útmutató toolearn toohello hogyan helyileg toodevelop hello Azure Cosmos DB helyi emulátor.
 
 > [!div class="nextstepaction"]
-> [Helyileg emulátorral fejlesztése](local-emulator.md)
+> [Hello emulátorral helyileg fejlesztése](local-emulator.md)

@@ -1,5 +1,5 @@
 ---
-title: "DataFu használata a HDInsight - Azure Pig |} Microsoft Docs"
+title: a Pig a HDInsight - Azure DataFu aaaUse |} Microsoft Docs
 description: "DataFu gyűjteménye szalagtárak Hadoop való használatra. Ismerje meg, hogyan használható DataFu Pig a HDInsight-fürtre."
 services: hdinsight
 documentationcenter: 
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: 4de55f5f6c5605e9c6c8dd7ccac902b811d1b062
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 357ad8f9694cc590115289877e752bdd242bdadc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-datafu-with-pig-on-hdinsight"></a>A HDInsight pig DataFu használata
 
-Megtudhatja, hogyan használhat DataFu a hdinsight eszközzel. DataFu gyűjteményei, nyílt forráskódú szalagtárak Pig hadoop való használatra.
+Megtudhatja, hogyan toouse DataFu a hdinsight eszközzel. DataFu gyűjteményei, nyílt forráskódú szalagtárak Pig hadoop való használatra.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -32,7 +32,7 @@ Megtudhatja, hogyan használhat DataFu a hdinsight eszközzel. DataFu gyűjtemé
 * Azure HDInsight-fürtök (Linux- vagy Windows-alapú)
 
   > [!IMPORTANT]
-  > A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 * Egy alapszintű ismeretét [Pig használata a HDInsight-on](hdinsight-use-pig.md)
 
@@ -43,43 +43,43 @@ Megtudhatja, hogyan használhat DataFu a hdinsight eszközzel. DataFu gyűjtemé
 >
 > Ha egy Windows-alapú fürt, vagy nagyobb, mint 3.3-as verzió Linux-alapú fürt használ, hagyja ki az ebben a szakaszban.
 
-DataFu letölthető, és a Maven tárházból telepítve. Az alábbi lépések segítségével DataFu hozzáadása a HDInsight-fürt:
+DataFu letölthető, és adattárból hello Maven telepítve. A következő lépéseket tooadd DataFu tooyour HDInsight-fürt hello használata:
 
-1. Csatlakoztassa a Linux-alapú HDInsight-fürthöz SSH használatával. További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
+1. Csatlakozzon az SSH használatával tooyour Linux-alapú HDInsight-fürtöt. További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Az alábbi parancs segítségével töltse le a wget segédprogrammal DataFu jar-fájlra vagy másolja és illessze be a hivatkozást a böngészőbe a letöltés megkezdéséhez.
+2. Használja a következő parancs toodownload hello DataFu jar-fájlra segédprogrammal hello wget, hello másolása és illessze be a böngésző toobegin hello letöltés hello hivatkozásra.
 
     ```
     wget http://central.maven.org/maven2/com/linkedin/datafu/datafu/1.2.0/datafu-1.2.0.jar
     ```
 
-3. A következő feltölteni a fájlt az alapértelmezett storage a HDInsight-fürthöz. Helyezi el a fájlt az alapértelmezett tároló lehetővé teszi az összes csomópont a fürtben.
+3. A következő feltöltése hello toodefault tároló a HDInsight-fürthöz. Hello fájlt helyez az alapértelmezett tároló teszi a rendelkezésre álló tooall csomópontok hello fürt.
 
     ```
     hdfs dfs -put datafu-1.2.0.jar /example/jars
     ```
 
     > [!NOTE]
-    > Az előző parancs tárolja a jar `/example/jars` mivel ez a könyvtár már létezik a fürttároló. A HDInsight fürt tárolón kívánja bárhol használhatja.
+    > előző parancs hello tárolja a hello jar `/example/jars` mivel ez a könyvtár már létezik a hello fürttároló. A HDInsight fürt tárolón kívánja bárhol használhatja.
 
 ## <a name="use-datafu-with-pig"></a>A Pig DataFu használata
 
-Ebben a szakaszban a lépések feltételezik, hogy ismeri a Pig használata a hdinsight platformon. A Pig használata a HDInsight további információkért lásd: [a Pig használata a hdinsight eszközzel](hdinsight-use-pig.md).
+Ebben a szakaszban hello lépések feltételezik, hogy ismeri a Pig használata a hdinsight platformon. A Pig használata a HDInsight további információkért lásd: [a Pig használata a hdinsight eszközzel](hdinsight-use-pig.md).
 
 > [!IMPORTANT]
-> Ha manuálisan telepíti az előző szakaszban leírtak DataFu, akkor regisztrálnia kell azt annak használata előtt.
+> Ha manuálisan telepítette hello lépéseket követve hello előző szakaszban DataFu, regisztrálnia kell azt annak használata előtt.
 >
 > * Ha a fürt Azure tárterületet használja, használja a `wasb://` elérési útja. Például: `register wasb:///example/jars/datafu-1.2.0.jar`.
 >
 > * Ha a fürt az Azure Data Lake Store használ, egy `adl://` elérési útja. Például: `register adl://home/example/jars/datafu-1.2.0.jar`.
 
-Gyakran határozza meg az DataFu függvény aliasa. Az alábbi példa meghatározza az alias `SHA`:
+Gyakran határozza meg az DataFu függvény aliasa. hello alábbi példa meghatározza az alias `SHA`:
 
 ```piglatin
 DEFINE SHA datafu.pig.hash.SHA();
 ```
 
-A bemeneti adatok a kivonat létrehozásához használhatja ezt az aliast a Pig Latin parancsfájl. Például az alábbi kód kivonatot lecseréli a bemeneti adatok helye:
+A bemeneti adatok hello használhatja ezt az aliast a Pig Latin parancsfájl toogenerate kivonatát. Például hello alábbira lecseréli hello helyre hello bemeneti adatokat a kivonatot:
 
 ```piglatin
 raw = LOAD '/HdiSamples/HdiSamples/SensorSampleData/building/building.csv' USING
@@ -93,7 +93,7 @@ mask = FOREACH raw GENERATE int1, id1, int2, id2, SHA(location);
 DUMP mask;
 ```
 
-A következő kimenetet hoz létre:
+A következő kimeneti hello hoz létre:
 
     (1,M1,25,AC1000,aa5ab35a9174c2062b7f7697b33fafe5ce404cf5fecf6bfbbf0dc96ba0d90046)
     (2,M2,27,FN39TG,7a1ca4ef7515f7276bae7230545829c27810c9d9e98ab2c06066bee6270d5153)
@@ -118,7 +118,7 @@ A következő kimenetet hoz létre:
 
 ## <a name="next-steps"></a>Következő lépések
 
-DataFu vagy Pig további információkért lásd a következő dokumentumokat:
+DataFu vagy Pig további információkért tekintse meg a következő dokumentumok hello:
 
 * [Apache DataFu Pig útmutató](http://datafu.incubator.apache.org/docs/datafu/guide.html).
 * [A Pig használata a HDInsightban](hdinsight-use-pig.md)

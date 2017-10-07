@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre egy Azure hálózati figyelőt példányt |} Microsoft Docs"
-description: "Ezen a lapon ismerteti a hálózati figyelőt példányának létrehozása a portál és az Azure REST API használatával"
+title: "egy Azure hálózati figyelőt példány aaaCreate |} Microsoft Docs"
+description: "Ezen a lapon hello lépéseket toocreate egy példányt biztosít a hálózati figyelőt hello portál és az Azure REST API használatával"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 2aeaffdd5ab552e18677cbd1a24a748dd14bf172
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 90d4f90c9709a80e4b27863e79e5b6e16de145c7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-network-watcher-instance"></a>Hozzon létre egy Azure hálózati figyelőt példányt
 
-Hálózati figyelőt olyan regionális szolgáltatás, amely lehetővé teszi, hogy figyelése és diagnosztizálása szintjén feltételek egy hálózati forgatókönyv, hogy, és az Azure-ból. Forgatókönyv szintű figyelését teszi lehetővé egy végpontok közötti hálózati szintű áttekintés a problémák diagnosztizálásához. Hálózati diagnosztika és a képi megjelenítés eszközök is elérhetők a hálózati figyelőt segítenek megérteni, diagnosztizálása és információt kaphat a hálózathoz, az Azure-ban.
+Hálózati figyelőt regionális szolgáltatás, amely lehetővé teszi, hogy Ön toomonitor és diagnosztizálásához szintjén feltételek egy hálózati forgatókönyv, hogy, és az Azure-ból. Forgatókönyv szintű figyelési lehetővé teszi toodiagnose problémákat. az end tooend hálózati szint nézetében. Hálózati diagnosztikai és a képi megjelenítés eszközök is elérhetők a hálózati figyelőt segítenek megérteni, diagnosztizálása és szerezhet insights tooyour hálózati az Azure-ban.
 
 > [!NOTE]
-> Hálózati figyelőt jelenleg csak támogatja CLI 1.0, CLI 1.0 biztosított új hálózati figyelőt példány létrehozásához nyújt útmutatást.
+> Hálózati figyelőt jelenleg csak támogatja CLI 1.0, hello utasításokat toocreate új hálózati figyelőt példány biztosított CLI 1.0.
 
-## <a name="create-a-network-watcher-in-the-portal"></a>Hozzon létre egy hálózati figyelőt a portálon
+## <a name="create-a-network-watcher-in-hello-portal"></a>Hozzon létre egy hálózati figyelőt hello portálon
 
-Navigáljon a **további szolgáltatások** > **hálózati** > **hálózati figyelő**. Kiválaszthatja, hogy a hálózati figyelőt engedélyezni szeretné az előfizetéseket. Ez a művelet létrehoz egy hálózati figyelőt minden régióban elérhető.
+Keresse meg a túl**több szolgáltatások** > **hálózati** > **hálózati figyelőt**. Kiválaszthatja a kívánt hálózati figyelőt tooenable minden hello előfizetés esetében. Ez a művelet létrehoz egy hálózati figyelőt minden régióban elérhető.
 
 ![Hozzon létre egy hálózati figyelőt][1]
 
-Ha engedélyezi a hálózati figyelőt a portál használatával, a hálózati figyelőt példányának neve automatikusan állítja be NetworkWatcher_region_name, ahol region_name felel meg az Azure-régióban, ahol a példány volt engedélyezve.  Például egy hálózati figyelőt nyugati középső Régiójában régióban engedélyezve lesznek elnevezve NetworkWatcher_westcentralus
+Ha engedélyezi a hálózati figyelőt hello portál használatával, hello hálózati figyelőt példány hello neve lesz automatikusan beállítva tooNetworkWatcher_region_name ahol region_name megfelel-e toohello Azure-régióban, ahol hello példány volt engedélyezve.  Például egy hálózati figyelőt nyugati középső Régiójában régióban engedélyezve lesznek elnevezve NetworkWatcher_westcentralus
 
-Emellett a hálózati figyelőt példány automatikusan hozzáadja a NetworkWatcherRG nevű erőforráscsoport.  Ez az erőforráscsoport létrejön, ha még nem létezik.
+Emellett hello hálózati figyelőt példány automatikusan hozzáadja a NetworkWatcherRG nevű erőforráscsoport.  Ez az erőforráscsoport létrejön, ha még nem létezik.
 
-Ha egy hálózati figyelőt példány és az erőforráscsoport nevét testreszabja az el van helyezve, az alábbiakban Powershell, a REST API vagy ARMClient módszerekkel.  Az egyes lehetőségek az erőforráscsoport már léteznie kell a hálózati figyelőt helyezzen azt.  
+Ha egy hálózati figyelőt példány és hello toocustomize hello nevét erőforráscsoport kerül be, az alábbiakban Powershell, hello REST API vagy ARMClient módszerekkel.  Az egyes lehetőségek hello erőforráscsoportban már léteznie kell helyezi-e hálózati figyelőt hello bele.  
 
 ## <a name="create-a-network-watcher-with-powershell"></a>A hálózati figyelő létrehozása a PowerShell használatával
 
-Hálózati figyelőt példányának létrehozásához futtassa az alábbi példa:
+Hálózati figyelőt, futtassa a következő példa hello példányának toocreate:
 
 ```powershell
 New-AzureRmNetworkWatcher -Name "NetworkWatcher_westcentralus" -ResourceGroupName "NetworkWatcherRG" -Location "West Central US"
 ```
 
-## <a name="create-a-network-watcher-with-the-rest-api"></a>Hozzon létre egy hálózati figyelőt REST API-val
+## <a name="create-a-network-watcher-with-hello-rest-api"></a>Hozzon létre egy hálózati figyelőt hello REST API-n
 
-A PowerShell használatával REST API hívása ARMclient szolgál. ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient)
+ARMclient használt toocall hello REST API használatával PowerShell. ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient)
 
 ### <a name="log-in-with-armclient"></a>Jelentkezzen be ARMClient
 
@@ -57,7 +57,7 @@ A PowerShell használatával REST API hívása ARMclient szolgál. ARMClient ver
 armclient login
 ```
 
-### <a name="create-the-network-watcher"></a>A hálózati figyelő létrehozása
+### <a name="create-hello-network-watcher"></a>Hello hálózati figyelő létrehozása
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -75,7 +75,7 @@ armclient put "https://management.azure.com/subscriptions/${subscriptionId}/reso
 
 ## <a name="next-steps"></a>Következő lépések
 
-Most, hogy hálózati figyelőt példányának, megismerése funkciók érhetők el:
+Most, hogy egy hálózati figyelőt példányát, a rendelkezésre álló hello szolgáltatásainak megismerése:
 
 * [Topológia](network-watcher-topology-overview.md)
 * [Csomagrögzítéssel](network-watcher-packet-capture-overview.md)
@@ -85,7 +85,7 @@ Most, hogy hálózati figyelőt példányának, megismerése funkciók érhetők
 * [NSG folyamata naplózás](network-watcher-nsg-flow-logging-overview.md)
 * [Virtuális hálózati átjáró hibaelhárítása](network-watcher-troubleshoot-overview.md)
 
-Ha a hálózati figyelőt példánya létrejött, csomag rögzítési konfigurálhatja a cikk a következő: [riasztási kiváltott csomagrögzítéssel létrehozása](network-watcher-alert-triggered-packet-capture.md)
+A hálózati figyelőt példány létrehozása után következő hello cikk csomag rögzítési konfigurálhatja: [riasztási kiváltott csomagrögzítéssel létrehozása](network-watcher-alert-triggered-packet-capture.md)
 
 [1]: ./media/network-watcher-create/figure1.png
 

@@ -1,6 +1,6 @@
 ---
-title: "Virtuális gép hozzáadása egy laborhoz a Azure DevTest Labs szolgáltatásban |} Microsoft Docs"
-description: "Útmutató: virtuális gép hozzáadása egy laborhoz a Azure DevTest Labs szolgáltatásban"
+title: "aaaAdd egy virtuális gép tooa, amikor a Azure DevTest Labs szolgáltatásban |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooadd egy virtuális gép tooa, amikor a Azure DevTest Labs szolgáltatásban"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,104 +14,104 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/24/2017
 ms.author: tarcher
-ms.openlocfilehash: 449bffb040dafc8edd0b8b0afd80dbea35cd28ac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 82838e4349550db56de311264c188140b9556b24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-vm-to-a-lab-in-azure-devtest-labs"></a>Virtuális gép hozzáadása egy laborhoz a Azure DevTest Labs szolgáltatásban
-Ha már rendelkezik [az első virtuális gép létrehozása](devtest-lab-create-first-vm.md), akkor valószínűleg sor került az előre betöltött [Piactéri lemezképhez](devtest-lab-configure-marketplace-images.md). Mostantól, ha szeretne további virtuális gépek felvétele a labor, dönthet úgy is egy *alap* , amely vagy egy [egyéni lemezkép](devtest-lab-create-template.md) vagy egy [képlet](devtest-lab-manage-formulas.md). Ez az oktatóanyag végigvezeti az Azure portál használatával egy virtuális gép hozzáadása egy laborhoz a DevTest Labs szolgáltatásban.
+# <a name="add-a-vm-tooa-lab-in-azure-devtest-labs"></a>A Azure DevTest Labs szolgáltatásban virtuális gép tooa labor hozzáadása
+Ha már rendelkezik [az első virtuális gép létrehozása](devtest-lab-create-first-vm.md), akkor valószínűleg sor került az előre betöltött [Piactéri lemezképhez](devtest-lab-configure-marketplace-images.md). Mostantól, ha azt szeretné, hogy további virtuális gépek tooyour labor tooadd, dönthet úgy is egy *alap* , amely vagy egy [egyéni lemezkép](devtest-lab-create-template.md) vagy egy [képlet](devtest-lab-manage-formulas.md). Ez az oktatóanyag bemutatja, hogyan hello Azure portál tooadd VM tooa labor használata a DevTest Labs szolgáltatásban.
 
-Ez a cikk is bemutatja, hogyan kezelheti az összetevők a virtuális gépek a tesztkörnyezetben.
+Ez a cikk azt is bemutatja, hogyan toomanage hello összetevők egy virtuális Gépet a tesztkörnyezetben.
 
-## <a name="steps-to-add-a-vm-to-a-lab-in-azure-devtest-labs"></a>Lépések végrehajtásával adja hozzá a virtuális gép egy tesztkörnyezetet a Azure DevTest Labs szolgáltatásban
-1. Jelentkezzen be az [Azure Portalra](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-1. Válassza ki **több szolgáltatások**, majd válassza ki **DevTest Labs** a listából.
-1. Labs listában jelölje ki a labor kívánja a virtuális gép létrehozása.  
-1. A tesztlabor a **áttekintése** panelen válassza **+ Hozzáadás**.  
+## <a name="steps-tooadd-a-vm-tooa-lab-in-azure-devtest-labs"></a>Lépéseket tooadd egy virtuális gép tooa, amikor a Azure DevTest Labs szolgáltatásban
+1. Jelentkezzen be toohello [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Válassza ki **több szolgáltatások**, majd válassza ki **DevTest Labs** hello listából.
+1. Labs hello listáról válassza ki a használni kívánt virtuális gép toocreate hello hello labor.  
+1. A hello labor **áttekintése** panelen válassza **+ Hozzáadás**.  
 
     ![Adja hozzá a virtuális gép gomb](./media/devtest-lab-add-vm/devtestlab-home-blade-add-vm.png)
 
-1. Az a **base válasszon** panelen válassza ki a megfelelő alapja a virtuális gép számára.
-1. Az a **virtuális gép** panelen adjon meg egy nevet az új virtuális gép a **virtuálisgép-nevet** szövegmezőben.
+1. A hello **base válasszon** panelen válassza ki a megfelelő virtuális gép hello alapja.
+1. A hello **virtuális gép** panelen hello hello új virtuális gép nevét adja meg **virtuálisgép-nevet** szövegmezőben.
 
     ![Labor VM panel](./media/devtest-lab-add-vm/devtestlab-lab-vm-blade.png)
 
-1. Adjon meg egy **felhasználónév** kap, amely rendszergazdai jogosultságokkal a virtuális gépen.  
-1. Ha azt szeretné tárolni a jelszó használatát a [titkos tároló](https://azure.microsoft.com/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store), jelölje be **mentett titkos kulcs használata**, és adja meg a kulcs értéke, amely megfelel a titkos kulcs (jelszó). Ellenkező esetben a feliratú szövegmezőbe írja be a jelszót **írjon be egy értéket**.
-1. A **virtuális gép lemeztípus** határozza meg, hogy milyen típusú a virtuális gépek a tesztkörnyezetben.
-1. Válassza ki **virtuálisgép-méret** , és válassza ki a Processzormagok RAM memória méretét és a merevlemez mérete a virtuális gép létrehozásához adjon meg előre meghatározott elemek.
-1. Válassza ki **összetevők** és - műtermék - listából válassza ki és konfigurálja az alapjául szolgáló lemezképhez hozzáadni kívánt összetevők.
-    **Megjegyzés:** Ha ismerkedik a DevTest Labs szolgáltatásban, vagy tekintse meg az összetevők, konfigurálása a [meglévő összetevő felvétele a virtuális gépek](#add-an-existing-artifact-to-a-vm) szakaszt, és térjen vissza ide befejezésekor.
-1. Válassza ki **speciális beállítások** a virtuális gép hálózati beállításai és a lejárati beállítások konfigurálása. 
+1. Adjon meg egy **felhasználónév** kap, amely rendszergazdai jogosultságokkal hello virtuális gépen.  
+1. Ha azt szeretné, hogy toouse jelszó tárolja a [titkos tároló](https://azure.microsoft.com/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store), jelölje be **mentett titkos kulcs használata**, és adja meg a kulcs értéke, amely megfelel a tooyour titkos (jelszó). Ellenkező esetben feliratú hello szövegmezőbe írja be a jelszót **írjon be egy értéket**.
+1. Hello **virtuális gép lemeztípus** határozza meg, hogy milyen típusú hello virtuális gépek hello tesztkörnyezetben.
+1. Válassza ki **virtuálisgép-méret** hello közül előre meg hello Processzormagok, a RAM memória méretét és a merevlemez méretének hello hello VM toocreate elemekre.
+1. Válassza ki **összetevők** és - műtermék - hello listából válassza ki és konfigurálja, amelyet az tooadd toohello alapjául szolgáló lemezképhez hello összetevők.
+    **Megjegyzés:** Ha új tooDevTest Labs vagy konfigurálása összetevők, tekintse meg a toohello [hozzáadása egy meglévő virtuális gép összetevő tooa](#add-an-existing-artifact-to-a-vm) szakaszt, és térjen vissza ide befejezésekor.
+1. Válassza ki **speciális beállítások** tooconfigure hello Virtuálisgép-hálózati beállítások és a lejárati beállítások. 
 
-   Beállíthatja, hogy lejárati, válassza a naptár ikonra, és adjon meg egy dátum, amelyen a virtuális gép automatikusan törölve lesznek.  Alapértelmezés szerint a virtuális Gépet soha nem jár le. 
-1. Ha szeretné megtekinteni, illetve az Azure Resource Manager sablon másolása, tekintse meg a [mentése Azure Resource Manager-sablon](#save-azure-resource-manager-template) szakaszt, és térjen vissza ide, ha befejeződött.
-1. Válassza ki **létrehozása** a megadott virtuális gép hozzáadása a labor.
-1. A tesztkörnyezet panel állapotát jeleníti meg a virtuális gép létrehozás - először mint **létrehozása**, majd, mint a **futtató** a virtuális gép elindítása után.
+   tooset lejárati lehetőség kiválasztása hello naptár ikon toospecify a dátum, amelyen hello a virtuális gép automatikusan törölve lesznek.  Alapértelmezés szerint a virtuális gép hello nem jár. 
+1. Ha szeretné, hogy tooview vagy hello Azure Resource Manager sablon másolása, tekintse meg a toohello [mentése Azure Resource Manager-sablon](#save-azure-resource-manager-template) szakaszt, és térjen vissza ide, ha befejeződött.
+1. Válassza ki **létrehozása** tooadd hello megadott virtuális gép toohello labor.
+1. hello labor panel állapotát jeleníti meg az hello hello virtuális gép létrehozás - először mint **létrehozása**, majd, mint a **futtató** hello virtuális gép elindítása után.
 
 > [!NOTE]
-> [Adja hozzá a claimable virtuális gépek](devtest-lab-add-claimable-vm.md) bemutatja, hogyan végezheti el a virtuális gép claimable, hogy minden olyan felhasználó, a laborban által használható.
+> [Adja hozzá a claimable virtuális gépek](devtest-lab-add-claimable-vm.md) bemutatja, hogyan toomake hello-e a virtuális gép claimable, hogy bármely felhasználója hello laborban érhető el.
 >
 >
 
-## <a name="add-an-existing-artifact-to-a-vm"></a>Meglévő összetevő felvétele a virtuális gépek
-A virtuális gépek létrehozásakor a meglévő összetevőket is hozzáadhat. Minden tesztkörnyezeti tartalmazza a nyilvános DevTest Labs Összetevőtárban, valamint a már létrehozott és a saját Összetevőtárban hozzá összetevők lévő összetevők.
+## <a name="add-an-existing-artifact-tooa-vm"></a>Adja hozzá egy meglévő összetevő tooa méretű VM
+A virtuális gépek létrehozásakor a meglévő összetevőket is hozzáadhat. Minden tesztkörnyezeti hello nyilvános DevTest Labs összetevő-adattárban lévő összetevők, valamint, hogy a létrehozott és a hozzáadott tooyour saját Összetevőtárban összetevőket tartalmazza.
 
-* Az Azure DevTest Labs *összetevők* lehetővé teszik, hogy adja meg *műveletek* , amelyek végrehajtása közben a virtuális gép ki van építve, például a Windows PowerShell-parancsfájlok futtatásakor, Bash parancsok futtatása, és a szoftver telepítése.
-* Összetevő *paraméterek* lehetővé teszik, hogy az adott forgatókönyv szerint összetevő testreszabása
+* Az Azure DevTest Labs *összetevők* lehetővé teszik, hogy adja meg *műveletek* , amelyek végrehajtása közben hello virtuális gép ki van építve, például a Windows PowerShell-parancsfájlok futtatásakor, Bash parancsok futtatása, és a szoftver telepítése.
+* Összetevő *paraméterek* lehetővé teszik, hogy az adott forgatókönyv szerint hello összetevő testreszabása
 
-Az összetevők létrehozása, tekintse meg a cikket, miképpen [megtudhatja, hogyan hozhatnak létre a saját összetevők DevTest Labs szolgáltatásban való használatra](devtest-lab-artifact-author.md).
+Hogyan toocreate összetevőihez: toodiscover hello cikk [megtudhatja, hogyan tooauthor a saját összetevők használata DevTest Labs](devtest-lab-artifact-author.md).
 
-1. Jelentkezzen be az [Azure Portalra](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-1. Válassza ki **több szolgáltatások**, majd válassza ki **DevTest Labs** a listából.
-1. Labs listában jelölje ki a virtuális Gépet, amelyhez a használni kívánt tartalmazó tesztkörnyezet.  
+1. Jelentkezzen be toohello [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Válassza ki **több szolgáltatások**, majd válassza ki **DevTest Labs** hello listából.
+1. Labs hello listában jelölje ki kívánja toowork hello VM tartalmazó hello labor.  
 1. Válassza ki **a virtuális gépek**.
-1. Válassza ki a kívánt virtuális Gépet.
+1. Hello jelölje be a keresett virtuális gép.
 1. Válassza ki **összetevők**. 
 1. Válassza ki **összetevők alkalmazása**.
-1. Az a **összetevők alkalmazása** panelen válassza ki a virtuális gép hozzá kívánja összetevő.
-1. Az a **Hozzáadás összetevő** panelen adja meg a szükséges paraméterek értékeit és a választható paramétereket, amelyekre szüksége van.  
-1. Válassza ki **Hozzáadás** összetevő hozzáadása, és térjen vissza a **összetevők alkalmazása** panelen.
+1. A hello **összetevők alkalmazása** panelen, jelölje be hello összetevő tooadd toohello VM kívánja.
+1. A hello **Hozzáadás összetevő** panelen adja meg a szükséges hello paraméterértékek és a választható paramétereket, amelyekre szüksége van.  
+1. Válassza ki **Hozzáadás** tooadd hello összetevő, és térjen vissza toohello **összetevők alkalmazása** panelen.
 1. Folytassa az összetevők csak a virtuális gép szükséges.
-1. Miután az összetevők adott hozzá, [, amelyben az összetevők futnak sorrendjének módosítása](#change-the-order-in-which-artifacts-are-run). Azt is választhatja vissza [megtekintése vagy módosítása egy közbülső](#view-or-modify-an-artifact).
+1. Miután az összetevők adott hozzá, [összetevők vannak futtassa mely hello hello sorrendjének módosítása](#change-the-order-in-which-artifacts-are-run). Is visszatérhet túl[megtekintése vagy módosítása egy közbülső](#view-or-modify-an-artifact).
 1. Amikor befejezte az összetevők hozzáadása, válassza ki a **alkalmaz**
 
-## <a name="change-the-order-in-which-artifacts-are-run"></a>Az összetevők vannak futásának sorrendje módosítása
-Alapértelmezés szerint a műtermék végrehajtás, amelyben a virtuális gép történő hozzáadásuk sorrendjében. A következő lépések bemutatják, hogyan lehet módosítani, amelyben az összetevők futnak.
+## <a name="change-hello-order-in-which-artifacts-are-run"></a>Az összetevők futnak, amelyben hello sorrend módosítása
+Alapértelmezés szerint hello hello műtermék végrehajtás, amelyben hozzáadásuk után toohello VM hello sorrendben. hello következő lépések bemutatják, hogyan toochange hello mely hello összetevők futásának sorrendje.
 
-1. Felső részén a **összetevők alkalmazása** panelen jelölje ki a kapcsolatot a virtuális gép hozzáadott összetevők száma.
+1. Hello hello tetején **összetevők alkalmazása** panelen, jelölje be hello hivatkozás toohello VM hozzáadott összetevők hello számát.
    
-    ![Virtuális gép hozzá összetevők száma](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifacts-blade-selected-artifacts.png)
-1. Az a **kiválasztott összetevők** panelen áthúzása az összetevők a kívánt sorrendbe. **Megjegyzés:** Ha gondja támad az összetevő húzással, győződjön meg arról, hogy összetevő bal oldalán húzza. 
+    ![A hozzáadott tooVM összetevők száma](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifacts-blade-selected-artifacts.png)
+1. A hello **kiválasztott összetevők** panelen, a fogd és vidd hello összetevők hello a kívánt sorrendben. **Megjegyzés:** Ha gondja támad hello összetevő húzással, ellenőrizze, hogy bal oldalán található hello összetevő hello húz. 
 1. Kattintson az **OK** gombra, amikor végzett.  
 
 ## <a name="view-or-modify-an-artifact"></a>Megtekintése vagy módosítása egy összetevő
-A következő lépések bemutatják, hogyan lehet megtekinteni, vagy módosítsa a paramétereket, összetevő:
+hello következő lépések bemutatják, hogyan tooview vagy módosítsa az összetevő hello paramétereket:
 
-1. Felső részén a **összetevők alkalmazása** panelen jelölje ki a kapcsolatot a virtuális gép hozzáadott összetevők száma.
+1. Hello hello tetején **összetevők alkalmazása** panelen, jelölje be hello hivatkozás toohello VM hozzáadott összetevők hello számát.
    
-    ![Virtuális gép hozzá összetevők száma](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifacts-blade-selected-artifacts.png)
-1. Az a **kiválasztott összetevők** panelen válassza ki a kívánt megjelenítése és szerkesztése a hitelesítendő entitások azonosítása.  
-1. A a **Hozzáadás összetevő** panelen, ellenőrizze a szükséges módosításokat, és válassza a **OK** bezárásához a **Hozzáadás összetevő** panelen.
-1. Válassza ki **OK** bezárásához a **kiválasztott összetevők** panelen.
+    ![A hozzáadott tooVM összetevők száma](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifacts-blade-selected-artifacts.png)
+1. A hello **kiválasztott összetevők** panelen, jelölje be hello összetevő tooview szeretné, vagy szerkesztheti.  
+1. A hello **Hozzáadás összetevő** panelen, ellenőrizze a szükséges módosításokat, és válassza a **OK** tooclose hello **Hozzáadás összetevő** panelen.
+1. Válassza ki **OK** tooclose hello **kiválasztott összetevők** panelen.
 
 ## <a name="save-azure-resource-manager-template"></a>Azure Resource Manager sablon mentése
-Az Azure Resource Manager-sablon egy ismételhető telepítés meghatározásához deklaratív lehetőséget biztosít. A következő lépések bemutatják, hogyan a virtuális gép létrehozása az Azure Resource Manager sablon mentéséhez.
-Miután menti, használhatja az Azure Resource Manager sablon [új virtuális gépeket az Azure PowerShell telepítése](../azure-resource-manager/resource-group-overview.md#template-deployment).
+Az Azure Resource Manager sablon lehetővé teszi egy deklaratív módon toodefine egy ismételhető központi telepítést. hello lépések azt ismertetik, hogyan toosave hello hello virtuális gép létrehozása Azure Resource Manager sablon.
+Ha mentett, használhatja hello Azure Resource Manager sablon túl[új virtuális gépeket az Azure PowerShell telepítése](../azure-resource-manager/resource-group-overview.md#template-deployment).
 
-1. Az a **virtuális gép** panelen válassza **ARM-sablon megtekintése**.
-2. Az a **nézet Azure Resource Manager-sablon** panelen válassza ki a sablon szöveget.
-3. A kijelölt szöveg másolása a vágólapra.
-4. Válassza ki **OK** bezárásához a **Azure Resource Manager sablon megtekintése panel**.
+1. A hello **virtuális gép** panelen válassza **ARM-sablon megtekintése**.
+2. A hello **nézet Azure Resource Manager-sablon** panelen, jelölje be hello sablon szövegét.
+3. Hello kijelölt szöveg toohello vágólapra másolása.
+4. Válassza ki **OK** tooclose hello **Azure Resource Manager sablon megtekintése panel**.
 5. Nyisson meg egy szövegszerkesztőt.
-6. Illessze be a sablon a vágólapra másolt szöveget.
-7. Mentse a fájlt későbbi használatra.
+6. Illessze be a hello sablon hello vágólapra másolt szöveget.
+7. Mentse a fájlt hello későbbi használatra.
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ### <a name="next-steps"></a>Következő lépések
-* A virtuális gép létrehozása után keresztül csatlakozhat a virtuális gép kiválasztásával **Connect** a virtuális gép paneljén.
-* Megtudhatja, hogyan [egyéni összetevők létrehozása a DevTest Labs szolgáltatásban virtuális gép](devtest-lab-artifact-author.md).
-* Megismerkedhet a [Office DevTest Labs Azure Resource Manager gyorsindítási sablonok](https://github.com/Azure/azure-devtestlab/tree/master/Samples).
+* Egyszer hello a virtuális gép létrehozása, csatlakoztathatja toohello virtuális gép kiválasztásával **Connect** hello VM panelen.
+* Ismerje meg, hogyan túl[egyéni összetevők létrehozása a DevTest Labs szolgáltatásban virtuális gép](devtest-lab-artifact-author.md).
+* Fedezze fel hello [Office DevTest Labs Azure Resource Manager gyorsindítási sablonok](https://github.com/Azure/azure-devtestlab/tree/master/Samples).

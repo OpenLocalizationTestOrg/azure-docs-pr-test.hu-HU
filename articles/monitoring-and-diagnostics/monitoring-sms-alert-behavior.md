@@ -1,6 +1,6 @@
 ---
-title: "SMS riasztási viselkedésnek a művelet csoportok |} Microsoft Docs"
-description: "SMS-üzenet formátuma és ad választ az SMS-üzenetek mondhatja, resubscribe, illetve segítséget kérni."
+title: "Riasztási viselkedés aaaSMS művelet csoportok |} Microsoft Docs"
+description: "SMS-üzenet formátuma és tooSMS üzenetek toounsubscribe válaszol, resubscribe, illetve segítséget kérni."
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,63 +14,63 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: ancav
-ms.openlocfilehash: 3e4eca174209eeb9cbce1d45111d1e5cc30af8b0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3cd09b1903e3472f6402f62b74409d97e7e7ea97
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sms-alert-behavior-in-action-groups"></a>SMS riasztási művelet csoportok működése
 ## <a name="overview"></a>Áttekintés ##
-A művelet csoportok lehetővé teszik a fogadók listájának konfigurálásához. Ezek a csoportok majd kihasználható, napló tevékenységriasztásokat; meghatározásakor Győződjön meg arról, hogy egy adott művelet csoport értesítést kaphat a tevékenység napló figyelmeztetés jelenik meg. A támogatott riasztási mechanizmus egyik SMS; a riasztások kétirányú kommunikáció támogatja. A felhasználók válaszolhassanak riasztást:
+A művelet csoportok lehetővé teszik a tooconfigure fogadók listáját. Ezek a csoportok majd kihasználható, napló tevékenységriasztásokat; meghatározásakor Győződjön meg arról, hogy egy adott művelet csoport értesítést hello tevékenység napló figyelmeztetés jelenik meg. Riasztási mechanizmusok támogatott hello egyik SMS; hello riasztások kétirányú kommunikáció támogatja. A felhasználók válaszolhassanak tooan riasztást:
 
 - **Riasztások lemondani:** A felhasználó az összes művelet csoportot, vagy egyes számú művelet csoport összes SMS riasztásokból lemondhatja.  
-- **A riasztások resubscribe:** A felhasználó az összes művelet csoportot, vagy egyes számú művelet csoport összes SMS riasztásnál is resubscribe.  
-- **Segítség kérése:** A felhasználó további információt az SMS teheti fel. A rendszer átirányítja a cikkhez
+- **Resubscribe tooalerts:** egy felhasználó is resubscribe tooall SMS riasztások összes művelet csoportot, vagy egyes számú művelet csoport.  
+- **Segítség kérése:** egy felhasználó hello SMS további információ teheti fel. Átirányított toothis cikk fogja
 
-Ez a cikk ismerteti az SMS-riasztások viselkedését, és a válasz műveletek a felhasználói vehet igénybe alapján a felhasználó területi:
+Ez a cikk ismerteti hello SMS riasztások hello viselkedését, és hello válasz műveletek hello felhasználói vehet igénybe alapján hello területi hello felhasználó:
 
 ## <a name="usacanada-sms-behavior"></a>Amerikai Egyesült Államok vagy Kanada SMS viselkedése
 ### <a name="receiving-an-sms-alert"></a>SMS riasztást fogadása
-Az SMS fogadó, akik egy művelet csoport részeként van konfigurálva, az SMS kap, ha a riasztás akkor következik be. Az SMS fogja hajtani a következő információkat:
-* A művelet csoport rövid_név ezt a figyelmeztetést küldött
-- A riasztás nevét
+Az SMS fogadó, akik egy művelet csoport részeként van konfigurálva, az SMS kap, ha a riasztás akkor következik be. hello SMS fogja hajtani a következő információ hello:
+* Hello művelet csoport rövid_név ezt a figyelmeztetést küldött
+- Cím hello riasztás
 
 ### <a name="unsubscribing-from-sms-alerts-for-one-action-group"></a>Az SMS riasztásokból egy művelet csoport unsubscribing
-A felhasználó leiratkozhat SMS az értesítések egy-egy művelettel csoport által a shortcode 20873 a kulcsszavakkal válaszol: "LETILTÁSA &lt;művelet csoport rövid_név&gt;".
+A felhasználó leiratkozhat SMS az értesítések egy-egy művelettel csoport által válaszol toohello shortcode 20873 hello kulcsszavakkal: "LETILTÁSA &lt;művelet csoport rövid_név&gt;".
 
-Példa Egy művelet csoport a rövid_név "Azure", a riasztások lemondani kívánó felhasználó SMS, amely szerint "Azure tiltsa le a" shortcode 20873 volna küldése
+Példa Az SMS-toohello shortcode 20873, amely szerint "Azure tiltsa le a" hello rövid_név "Azure", a művelet csoportok riasztásaiból toounsubscribe kívánó felhasználó elküldése
 
 ### <a name="unsubscribing-from-sms-alerts-for-all-action-groups"></a>Az SMS riasztásokból az összes művelet csoport unsubscribing
-A felhasználó válaszol a shortcode 20873 a következő kulcsszavak egyikét a leiratkozhat az összes művelet csoport összes SMS riasztás:
+A felhasználó által válaszol toohello shortcode 20873 sem a következő kulcsszavak hello leiratkozhat az összes művelet csoport összes SMS riasztás:
 * ÁLLJ
 
-Példa A felhasználó az összes művelet csoport összes SMS riasztás lemondani kívánó, amely szerint a "STOP" shortcode 20873 SMS volna küldése
+Példa A felhasználó toounsubscribe az összes SMS riasztásokból az összes művelet csoport, amely az SMS-toohello shortcode 20873, amely szerint a "STOP" elküldése
 
 >[!NOTE]
->Ha egy felhasználó leiratkozott a SMS riasztást küld, de egy új művelet csoportba kerül RENDSZER SMS figyelmeztetést a művelet új csoport, hanem marad a művelet minden olyan csoportból korábbi művelet.
+>Ha egy felhasználó leiratkozott a SMS riasztást küld, de kerül tooa új művelet csoport; RENDSZER SMS figyelmeztetést a művelet új csoport, hanem marad a művelet minden olyan csoportból korábbi művelet.
 >
 >
 
-### <a name="resubscribing-to-sms-alerts-for-one-action-group"></a>A művelet egy csoport SMS riasztásokat resubscribing
-A felhasználó is resubscribe SMS az értesítések egy-egy művelettel csoport által a shortcode 20873 a kulcsszavakkal válaszol: "engedélyezése &lt;művelet csoport rövid_név&gt;".
+### <a name="resubscribing-toosms-alerts-for-one-action-group"></a>Egy művelet csoport resubscribing tooSMS riasztások
+A felhasználó által válaszol toohello shortcode 20873 hello kulcsszavakkal is resubscribe tooSMS az értesítések egy-egy művelettel csoport: "engedélyezése &lt;művelet csoport rövid_név&gt;".
 
-Példa A riasztásokat a rövid_név "Azure", a művelet csoportok resubscribe kívánó felhasználó volna SMS küldése a shortcode 20873, amely szerint "Azure engedélyezése"
+Példa A felhasználó tooresubscribe tooalerts egy művelet csoport a hello rövid_név "Azure", amely az SMS-toohello shortcode 20873, amely szerint "Engedélyezése Azure" elküldése
 
-### <a name="resubscribing-to-sms-alerts-for-all-action-groups"></a>Az összes művelet csoport SMS riasztás resubscribing
-A felhasználó által válaszol a shortcode 20873 a következő kulcsszavak egyikét a riasztások az összes művelet csoport összes SMS is resubscribe:
+### <a name="resubscribing-toosms-alerts-for-all-action-groups"></a>Az összes művelet csoport resubscribing tooSMS riasztások
+A felhasználó által válaszol toohello shortcode 20873 sem a következő kulcsszavak hello is resubscribe tooall SMS az összes művelet csoport riasztásokhoz:
 
 * INDÍTSA EL
 
-Példa A felhasználó az összes művelet csoport összes SMS riasztás lemondani kívánó, amely szerint a "START" shortcode 20873 SMS volna küldése
+Példa A felhasználó toounsubscribe az összes SMS riasztásokból az összes művelet csoport, amely az SMS-toohello shortcode 20873, amely szerint a "START" elküldése
 
 ### <a name="requesting-help-via-sms"></a>SMS segítségkérés
-A felhasználó további információt az SMS válaszol a shortcode 20873 a következő kulcsszavak egyikét a kaptak teheti fel:
+A felhasználó hello SMS további információ teheti fel, kaptak a következő kulcsszavak hello egyik válaszol toohello shortcode 20873 által:
 * SEGÍTSÉG
 
-Választ a felhasználó egy hivatkozás, ez a cikk kapnak.
+A hivatkozás toothis cikk toohello felhasználó küld egy választ.
 
 ## <a name="next-steps"></a>Következő lépések
-Első egy [tevékenység napló riasztások áttekintése](monitoring-overview-alerts.md) és megtudhatja, hogyan küldjön riasztást Önnek  
+Első egy [tevékenység napló riasztások áttekintése](monitoring-overview-alerts.md) és megtudhatja, hogyan tooget riasztást  
 További információ [SMS sebesség korlátozása](monitoring-alerts-rate-limiting.md)  
 További információ [művelet csoportok](monitoring-action-groups.md)

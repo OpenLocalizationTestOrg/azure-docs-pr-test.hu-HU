@@ -1,6 +1,6 @@
 ---
-title: "Elemzés - a hatékony keresési eszköz az Azure Application Insights segítségével |} Microsoft Docs"
-description: "Az elemzés, az Application Insights a hatékony diagnosztikai keresési eszköz használatával. "
+title: "aaaUsing Analytics - hello hatékony keresési eszköz az Azure Application Insights |} Microsoft Docs"
+description: "Hello elemzés, az Application Insights hello hatékony diagnosztikai keresési eszköz használatával. "
 services: application-insights
 documentationcenter: 
 author: danhadari
@@ -13,24 +13,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bwren
-ms.openlocfilehash: 9f7c1744db52b1c2f374fd5655e2c66b5f61bacf
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 6e0246848457db368c57d08c47b5bf73f4e5e3a3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-analytics-in-application-insights"></a>Az Application Insightsban Analytics használatával
-[Elemzés](app-insights-analytics.md) a hatékony keresési funkciója [Application Insights](app-insights-overview.md). Ezeken a lapokon a Log Analytics lekérdezési nyelv ismertetik.
+[Elemzés](app-insights-analytics.md) hello hatékony keresési funkciója [Application Insights](app-insights-overview.md). Ezeken a lapokon a Log Analytics lekérdezési nyelv ismertetik.
 
-* **[A bevezető videó](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**.
-* **[Tesztelése szimulált adataink Analytics meghajtóján](https://analytics.applicationinsights.io/demo)**  Ha az alkalmazás nem adatok küldése az Application Insights még.
+* **[Hello bevezető videó](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**.
+* **[Tesztelése szimulált adataink Analytics meghajtóján](https://analytics.applicationinsights.io/demo)**  Ha az alkalmazás még nem küld adatokat tooApplication Insights.
 
 ## <a name="open-analytics"></a>Nyissa meg elemzés
 A az alkalmazás otthoni erőforrás az Application Insightsban kattintson az elemzés.
 
 ![Nyissa meg portal.azure.com, nyissa meg az Application Insights-erőforrást, majd kattintson a elemzés.](./media/app-insights-analytics-using/001.png)
 
-A beágyazott oktatóanyag lehetővé teszi az elérhető lehetőségekkel ötleteket.
+hello beágyazott oktatóanyag lehetővé teszi az elérhető lehetőségekkel ötleteket.
 
 Van egy [itt átfogóbb bemutatása](app-insights-analytics-tour.md).
 
@@ -38,74 +38,74 @@ Van egy [itt átfogóbb bemutatása](app-insights-analytics-tour.md).
 ### <a name="write-a-query"></a>Lekérdezés írása
 ![Séma megjelenítése](./media/app-insights-analytics-using/150.png)
 
-A bal oldalon felsorolt táblákat nevei kezdődnie (vagy a [tartomány](https://docs.loganalytics.io/queryLanguage/query_language_rangeoperator.html) vagy [Unió](https://docs.loganalytics.io/queryLanguage/query_language_unionoperator.html) operátorok). Használjon `|` a folyamatokat létrehozni [operátorok](https://docs.loganalytics.io/learn/cheatsheets/useful_operators.html). 
+Hello nevéhez hello bal oldalon felsorolt hello táblák kezdődik (vagy hello [tartomány](https://docs.loganalytics.io/queryLanguage/query_language_rangeoperator.html) vagy [Unió](https://docs.loganalytics.io/queryLanguage/query_language_unionoperator.html) operátorok). Használjon `|` az adatcsatorna egy toocreate [operátorok](https://docs.loganalytics.io/learn/cheatsheets/useful_operators.html). 
 
-IntelliSense kéri az operátorok és a kifejezés elemek közül választhat. Kattintson a ikonra (vagy nyomja meg a CTRL + szóköz) hosszabb leírást és a példákat egyes elemeinek a használatára.
+IntelliSense kéri hello operátorok és hello kifejezés elemek közül választhat. Kattintson a hello információs ikon (vagy nyomja le a CTRL + szóköz) tooget hosszabb leírást és példákat a toouse egyes elemei.
 
-Tekintse meg a [Analytics nyelvi bemutató](app-insights-analytics-tour.md) és [nyelvi referencia](app-insights-analytics-reference.md).
+Lásd: hello [Analytics nyelvi bemutató](app-insights-analytics-tour.md) és [nyelvi referencia](app-insights-analytics-reference.md).
 
 ### <a name="run-a-query"></a>A lekérdezés futtatása
 ![A lekérdezés futtatása](./media/app-insights-analytics-using/130.png)
 
 1. Egyetlen sortörést használható egy lekérdezésben.
-2. A kurzor belül, vagy a futtatni kívánt lekérdezés végén elhelyezése.
-3. Ellenőrizze a lekérdezés az időtartományt. (Módosíthatja, vagy bírálja felül az által, beleértve a saját [ `where...timestamp...` ](https://docs.loganalytics.io/concepts/concepts_datatypes_timespan.html) záradék a lekérdezés.)
-3. A lekérdezés futtatásához az Ugrás gombra.
-4. A lekérdezés nem üres sorok be. Beállíthatja, hogy több elkülönített lekérdezések egy lekérdezés lap üres vonallal elválasztva őket. Csak a lekérdezés, amely rendelkezik a kurzor fut.
+2. Helyezze el hello kurzor belül vagy hello lekérdezést toorun hello végén.
+3. Ellenőrizze a lekérdezés hello időtartományát. (Módosíthatja, vagy bírálja felül az által, beleértve a saját [ `where...timestamp...` ](https://docs.loganalytics.io/concepts/concepts_datatypes_timespan.html) záradék a lekérdezés.)
+3. Kattintson az Ugrás toorun hello lekérdezés.
+4. A lekérdezés nem üres sorok be. Beállíthatja, hogy több elkülönített lekérdezések egy lekérdezés lap üres vonallal elválasztva őket. Csak az olyan hello lekérdezésekben, amelyekben hello kurzor fut.
 
 ### <a name="save-a-query"></a>Lekérdezés mentése
 ![A lekérdezés mentése](./media/app-insights-analytics-using/140.png)
 
-1. Az aktuális lekérdezés fájl mentéséhez.
+1. Hello aktuális lekérdezés fájl mentéséhez.
 2. Nyissa meg a korábban mentett lekérdezés fájlt.
 3. Hozzon létre egy új lekérdezés fájlt.
 
-## <a name="see-the-details"></a>Részletek
-Bontsa ki az összes sort az eredmények között, a tulajdonságok teljes listájának megtekintéséhez. Ennél jobban is kibonthatja, bármely tulajdonsága strukturált érték – például, egyéni dimenziók vagy a veremben egy kivételt listázása.
+## <a name="see-hello-details"></a>Hello részletek
+Bontsa ki a hello eredmények toosee bármely sorára a tulajdonságok teljes listáját. Ennél jobban is kibonthatja, bármely tulajdonság, amely strukturált érték – például, egyéni dimenziók vagy hello verem listázása egy kivételt.
 
 ![Bontsa ki a sor](./media/app-insights-analytics-using/070.png)
 
-## <a name="arrange-the-results"></a>Az eredmények rendezése
-Rendezési, szűréséhez, megjelenítheti és az a lekérdezés által visszaadott eredmények csoportban.
+## <a name="arrange-hello-results"></a>Hello eredmények rendezése
+Rendezési, szűréséhez, megjelenítheti és a lekérdezés által visszaadott hello eredmények csoportban.
 
 > [!NOTE]
-> Rendezés, a csoportosítás és a szűrés a böngészőben ne futtassa újból a lekérdezést. Ezek csak az eredményeket a legutóbbi lekérdezés által visszaadott eredményobjektumokban tárolt átrendezését. 
+> Rendezés, a csoportosítás és a szűrés hello böngészőben ne futtassa újból a lekérdezést. Ezek csak a legutóbbi lekérdezés által visszaadott eredményobjektumokban tárolt hello eredmények átrendezését. 
 > 
-> Ezen feladatok végrehajtásával a kiszolgálón, mielőtt a rendszer visszairányítja az eredményeket, a lekérdezés írása a [rendezési](https://docs.loganalytics.io/queryLanguage/query_language_sortoperator.html), [összefoglalója](https://docs.loganalytics.io/queryLanguage/query_language_summarizeoperator.html) és [ahol](https://docs.loganalytics.io/queryLanguage/query_language_whereoperator.html) operátorok.
+> tooperform hello kiszolgálóra, mielőtt hello eredményeinek, a feladatok írni a lekérdezés hello [rendezési](https://docs.loganalytics.io/queryLanguage/query_language_sortoperator.html), [összefoglalója](https://docs.loganalytics.io/queryLanguage/query_language_summarizeoperator.html) és [ahol](https://docs.loganalytics.io/queryLanguage/query_language_whereoperator.html) operátorok.
 > 
 > 
 
-Válasszon az annak megtekintéséhez, húzza az oszlopfejlécek átrendezés, húzza a határok automatikus oszlopok.
+Válassza ki az üzembe helyezése hello oszlopokat toosee, például húzza oszlop fejlécek toorearrange, és átméretezési oszlopok a szegélyek húzásával.
 
 ![Oszlopok rendezése](./media/app-insights-analytics-using/030.png)
 
 ### <a name="sort-and-filter-items"></a>Rendezésére és szűrésére elemek
-Egy oszlop vezetője kattintva rendezheti az eredményeket. Kattintson ismét a más módon rendezheti, majd kattintson a harmadik pedig visszatérhet az eredeti rendezést a lekérdezés által visszaadott idő.
+Egy oszlop hello vezetője kattintva rendezheti az eredményeket. Kattintson ismét toosort hello más módon, és kattintson a harmadszor toorevert toohello eredeti rendezést a lekérdezés által visszaadott.
 
-A szűrő ikon segítségével szűkítse a keresést.
+Használjon hello ikon toonarrow szűrheti a keresést.
 
 ![Rendezésére és szűrésére oszlopok](./media/app-insights-analytics-using/040.png)
 
 ### <a name="group-items"></a>Csoport elemek
-Több oszlop szerinti rendezéshez, csoportosítás használata. Először engedélyeznie, és húzza oszlopfejlécek a táblázat felett térbe kerülnek.
+toosort egynél több oszlopok szerinti csoportosítás használata. Először engedélyeznie, és húzza oszlopfejlécek felett hello tábla hello térbe kerülnek.
 
 ![Csoport](./media/app-insights-analytics-using/060.png)
 
 ### <a name="missing-some-results"></a>Hiányzik az egyes eredmények?
 
-Ha úgy gondolja, hogy nem minden, a várt eredményt is lát, van néhány lehetséges ok.
+Ha úgy gondolja, hogy nem várt összes hello eredményt is lát, van néhány lehetséges ok.
 
-* **Tartomány időszűrője**. Alapértelmezés szerint az elmúlt 24 órában származó eredmények csak akkor jelenik meg. Az automatikus szűrő, amely korlátozza az eredmények, amelyek a forrástáblákból lekérése tartományon van. 
+* **Tartomány időszűrője**. Alapértelmezés szerint csak akkor jelenik meg hello eredményeinek utolsó 24 órában. Nincs olyan automatikus szűrő, amely korlátozza az eredmények, amelyek a rendszer beolvassa az hello forrástáblákból hello tartományán. 
 
-    Azonban módosíthatja az időtartományt a legördülő menü használatával szűrő.
+    Azonban módosíthatja a hello időtartomány szűrő hello legördülő menü használatával.
 
-    A beállítás felülbírálható az automatikus tartomány beleértve a saját vagy [ `where  ... timestamp ...` záradék](https://docs.loganalytics.io/queryLanguage/query_language_whereoperator.html) be a lekérdezést. Példa:
+    A beállítás felülbírálható hello automatikus tartomány beleértve a saját vagy [ `where  ... timestamp ...` záradék](https://docs.loganalytics.io/queryLanguage/query_language_whereoperator.html) be a lekérdezést. Példa:
 
     `requests | where timestamp > ago('2d')`
 
-* **Eredmények korlát**. A portál által visszaadott eredmények körülbelül 10 KB-os sorok korlátozva van. Figyelmeztetést jeleníti meg, ha meghaladja a lépjen. Ha ez előfordul, a tábla az eredmények rendezéséhez nem mindig, minden a tényleges első vagy utolsó eredmények megjelenítése. 
+* **Eredmények korlát**. Hello portálról hello eredményének sorain körülbelül 10 KB-os korlátozva van. Figyelmeztetés látható, ha meghaladja hello lépjen. Ebben az esetben, ha hello tábla az eredmények rendezéséhez nem mindig, minden hello tényleges első vagy utolsó eredmények megjelenítése. 
 
-    Tanácsos elérte-e a korlát elkerülése érdekében. Az idő a tartomány szűrővel, vagy használjon operátorok például:
+    Akkor célszerű tooavoid elérte-e hello korlátot. Hello idő a tartomány szűrővel, vagy használjon például operátorok:
 
   * [TOP 100 alapján időbélyeg](https://docs.loganalytics.io/queryLanguage/query_language_topoperator.html) 
   * [100 igénybe](https://docs.loganalytics.io/queryLanguage/query_language_takeoperator.html)
@@ -115,43 +115,43 @@ Ha úgy gondolja, hogy nem minden, a várt eredményt is lát, van néhány lehe
 (Több mint 10 KB-os sor szeretné? Érdemes lehet [a folyamatos exportálás](app-insights-export-telemetry.md) helyette. Elemzés készült elemzés, nem pedig nyers adatok lekérése során.)
 
 ## <a name="diagrams"></a>Diagramok
-Válassza ki a kívánt diagram típusát:
+Milyen diagram hello típusának kiválasztása:
 
 ![Válassza ki a diagram típusát](./media/app-insights-analytics-using/230.png)
 
-Ha rendelkezik a megfelelő típusú több oszlopot, kiválaszthatja az x és y-tengelyek és dimenziókat osztani az eredményeket tartalmazó oszlop.
+Ha több oszlopot hello megfelelő típusú, kiválaszthatja a hello x és y-tengelyek és dimenziók toosplit hello az eredmények oszlop.
 
-Alapértelmezés szerint eredmények kezdetben táblázatként jelenik meg, és manuálisan jelölje ki a diagramot. De használhatja a [irányelv leképezési](https://docs.loganalytics.io/queryLanguage/query_language_renderoperator.html) egy lekérdezést a diagram kiválasztásához végén.
+Alapértelmezés szerint eredmények kezdetben táblázatként jelenik meg, és hello diagram manuálisan válassza. De használhat hello [irányelv leképezési](https://docs.loganalytics.io/queryLanguage/query_language_renderoperator.html) hello végén egy lekérdezés tooselect ábrázoló diagram.
 
 ### <a name="analytics-diagnostics"></a>Elemzés diagnosztika
 
 
-Egy timechart a hirtelen csúcs vagy lépése az adatokat, ha megjelenik a kijelölt pont a sor. Ez azt jelzi, hogy elemzés diagnosztika észlelt a hirtelen módosítás kiszűrhetők tulajdonságok kombinációja. Kattintson a további információkhoz juthat a szűrőre, illetve a jelenik meg a szűrt verzió pontra. Ez lehet, hogy könnyebben azonosíthassa a módosítás okáról. 
+Egy timechart a hirtelen csúcs vagy lépése az adatokat, ha megjelenik a kijelölt pont hello sor. Ez azt jelzi, hogy elemzés diagnosztika észlelt hello hirtelen változás kiszűrhetők tulajdonságok kombinációja. Kattintson a hello pont tooget részletesebb hello szűrő és toosee hello szűrt verzióját. Ez lehet, hogy könnyebben azonosíthassa milyen okozta hello módosítása. 
 
 [További információ az elemzés diagnosztika](app-insights-analytics-diagnostics.md)
 
 
 ![Elemzés diagnosztika](./media/app-insights-analytics-using/analytics-diagnostics.png)
 
-## <a name="pin-to-dashboard"></a>Rögzítés az irányítópulton
-A diagram vagy a tábla egyik rögzíthető a [irányítópultok megosztott](app-insights-dashboards.md) -kattintson a PIN-kódot. (Szükség lehet [frissítési az alkalmazás csomagazonosítóját alapú](app-insights-pricing.md) kapcsolja be a szolgáltatást.) 
+## <a name="pin-toodashboard"></a>PIN-kód toodashboard
+A diagram- vagy tooone a rögzíthető a [irányítópultok megosztott](app-insights-dashboards.md) -kattintson hello PIN-kód. (Előfordulhat, hogy túl kell[frissítési az alkalmazás csomagazonosítóját alapú](app-insights-pricing.md) tooturn a szolgáltatást.) 
 
-![Kattintson a PIN-kód](./media/app-insights-analytics-using/pin-01.png)
+![Kattintson a hello PIN-kód](./media/app-insights-analytics-using/pin-01.png)
 
-Ez azt jelenti, hogy elhelyezett együtt segítenek a teljesítmény vagy a webszolgáltatások használatát az irányítópultot, megadható a más metrikákkal együtt túl összetett elemzést. 
+Ez azt jelenti, hogy a figyelheti hello teljesítmény vagy a webszolgáltatások használatát irányítópult toohelp hozzáfoghat, amikor megadható elég bonyolult elemzés hello mellett más metrikákkal. 
 
-Rögzítheti az irányítópulton, tábla-e azt négy vagy kevesebb oszlopot. Csak az első hét sorok jelennek meg.
+Egy tábla toohello irányítópult rögzíthető-e azt négy vagy kevesebb oszlopot. Csak hello első hét sorok jelennek meg.
 
 ### <a name="dashboard-refresh"></a>Irányítópult frissítése
-A diagram az irányítópulton rögzítette által futtatja újból a lekérdezést körülbelül óránként automatikusan frissül. A frissítés gombra is kattinthat.
+hello rögzítve diagram toohello irányítópult futtatásával újra hello lekérdezés körülbelül óránként automatikusan frissül. Hello frissítés gombra is kattinthat.
 
 ### <a name="automatic-simplifications"></a>Automatikus egyszerűbb
 
-Bizonyos egyszerűbb diagram is vonatkozik, amikor irányítópulton rögzítheti.
+Bizonyos egyszerűbb alkalmazott tooa diagram esetén tooa irányítópult rögzíti azt.
 
-**Idő korlátozás:** lekérdezések korlátozódnak automatikusan az elmúlt 14 napban. A hatás megegyezik, ha a lekérdezésben `where timestamp > ago(14d)`.
+**Idő korlátozás:** lekérdezések automatikusan korlátozott toohello az elmúlt 14 napban. hello hatása van hello azonos módon, ha a lekérdezésben `where timestamp > ago(14d)`.
 
-**Count korlátozás bin:** nagy mennyiségű diszkrét bins (általában a sávdiagram) rendelkező diagram megjelenítése, ha a kisebb ki van töltve bins automatikusan vannak csoportosítva pedig egyetlen "egyéb" bin. Ha például a lekérdezés:
+**Count korlátozás bin:** bin Ha nagy mennyiségű diszkrét bins (általában a sávdiagram), kevesebb ki van töltve bins automatikusan sorolhatók egy egyetlen "egyéb" hello rendelkező diagram megjelenítése. Ha például a lekérdezés:
 
     requests | summarize count_search = count() by client_CountryOrRegion
 
@@ -159,66 +159,66 @@ Bizonyos egyszerűbb diagram is vonatkozik, amikor irányítópulton rögzíthet
 
 ![A diagramon az hosszú utóhívás](./media/app-insights-analytics-using/pin-07.png)
 
-de ha irányítópulton rögzítheti, így néz:
+de amikor azt tooa irányítópult, néz ki:
 
 ![A diagramon az korlátozott bins](./media/app-insights-analytics-using/pin-08.png)
 
-## <a name="export-to-excel"></a>Exportálása az Excelbe
+## <a name="export-tooexcel"></a>TooExcel exportálása
 A lekérdezés futtatása után letölthet egy CSV-fájlt. Kattintson a **exportálása Excel**.
 
-## <a name="export-to-power-bi"></a>Power BI-exportálás
-A kurzor elhelyezése egy lekérdezésben, és válassza a **exportálásához a Power BI**.
+## <a name="export-toopower-bi"></a>Exportálás tooPower BI
+Hello kurzor elhelyezése egy lekérdezésben, és válassza a **exportálásához a Power BI**.
 
-![A Power bi-bA Analytics exportálása](./media/app-insights-analytics-using/240.png)
+![Elemzés tooPower BI exportálása](./media/app-insights-analytics-using/240.png)
 
-A lekérdezés futtatása a Power bi-ban. Beállíthatja úgy, hogy az ütemezés szerint frissítse.
+Hello lekérdezés futtatása a Power bi-ban. Be lehet állítani toorefresh ütemezés szerint.
 
 A Power BI irányítópultjai összefogására olyan adatokat különböző forrásokból hozhat létre.
 
-[További információ a Power bi-ban való exportáláshoz](app-insights-export-power-bi.md)
+[További tudnivalók az Exportálás tooPower BI](app-insights-export-power-bi.md)
 
 ## <a name="deep-link"></a>Áruházra mutató mélyhivatkozás
 
-Szerezzen be egy hivatkozást a **exportálás megosztás hivatkozás** , amely egy másik felhasználó is küldhet. Ha a felhasználó rendelkezik [hozzáférés az erőforráscsoportba](app-insights-resources-roles-access-control.md), a lekérdezés megnyílik az elemzés felhasználói felületén.
+Szerezzen be egy hivatkozást a **exportálás megosztás hivatkozás** , hogy tooanother felhasználói küldhet. Ha hello felhasználó rendelkezik [hozzáférés tooyour erőforráscsoport](app-insights-resources-roles-access-control.md), hello lekérdezés hello Analytics UI nyílik meg.
 
-(A hivatkozás a lekérdezés szövegének után jelenik meg "? q =", gzip tömörített és base-64 kódolású. Kód létrehozásához adja meg a felhasználóknak mélyhivatkozással lehet írni. Azonban az ajánlott módszer kódból Analytics futtatásához segítségével el a [REST API](https://dev.applicationinsights.io/).)
+(Hello hivatkozásban, hello lekérdezés szövegét után "? q =", gzip tömörített és base-64 kódolású. Létrehozható kód toogenerate mélyhivatkozással toousers adni. Azonban hello ajánlott módja toorun Analytics kódból hello segítségével [REST API](https://dev.applicationinsights.io/).)
 
 
 ## <a name="automation"></a>Automatizálás
 
-Használja a [Data Access REST API](https://dev.applicationinsights.io/) elemzési lekérdezések futtatásához. [Például](https://dev.applicationinsights.io/apiexplorer/query?appId=DEMO_APP&apiKey=DEMO_KEY&query=requests%0A%7C%20where%20timestamp%20%3E%3D%20ago%2824h%29%0A%7C%20count) (a PowerShell használatával):
+Használjon hello [Data Access REST API](https://dev.applicationinsights.io/) toorun elemzési lekérdezések. [Például](https://dev.applicationinsights.io/apiexplorer/query?appId=DEMO_APP&apiKey=DEMO_KEY&query=requests%0A%7C%20where%20timestamp%20%3E%3D%20ago%2824h%29%0A%7C%20count) (a PowerShell használatával):
 
 ```PS
 curl "https://api.applicationinsights.io/beta/apps/DEMO_APP/query?query=requests%7C%20where%20timestamp%20%3E%3D%20ago(24h)%7C%20count" -H "x-api-key: DEMO_KEY"
 ```
 
-Ellentétben a Analytics felhasználói felületén a REST API nem automatikusan hozzáadják a Timestamp típusú korlátozás a lekérdezések. Ne felejtse el, adja hozzá a saját where záradék, hatalmas válaszok megakadályozása érdekében.
+Hello Analytics felhasználói felület, eltérően hello REST API-t adja hozzá automatikusan korlátozás Timestamp típusú tooyour lekérdezéseket. Ne feledje tooadd saját where záradék, hatalmas válaszok első tooavoid.
 
 
 
 ## <a name="import-data"></a>Adatok importálása
 
-Adatokat importálhat egy CSV-fájl. A rendszer egy tipikus használati csatlakozhat a a telemetriai adatokból táblákkal statikus adatok. 
+Adatokat importálhat egy CSV-fájl. A tipikus használati tooimport statikus adatok csatlakozhat a a telemetriai adatokból táblákkal. 
 
-Hitelesített felhasználók a telemetriai adatokat egy aliast vagy rejtjelezett azonosító által azonosítható, ha például sikerült egy táblázat, amely leképezhető aliasok valódi nevét importálni. A – kéréstelemetria illesztés elvégzésével felhasználók azonosíthatja az Analytics-jelentések a valódi névvel.
+Hitelesített felhasználók a telemetriai adatokat egy aliast vagy rejtjelezett azonosító által azonosítható, ha például sikerült aliasok tooreal neveket le tábla importálni. Hello – kéréstelemetria illesztés elvégzésével hello Analytics-jelentések a valódi névvel azonosítani a felhasználókat.
 
 ### <a name="define-your-data-schema"></a>Adja meg a Adatséma
 
 1. Kattintson a **beállítások** (a bal felső), majd **adatforrások**. 
-2. Adjon hozzá egy adatforrást, a következő utasításokat. A rendszer felkéri adja meg az adatokat, amelyek tartalmaznia kell legalább 10 sorok mintáját. Javítsa a sémát.
+2. Adja hozzá egy adatforrást, hello utasításokat követve. Biztosan kéri toosupply hello adatokat, amelyek tartalmaznia kell legalább 10 sorok mintáját. Majd javítsa ki az hello séma.
 
-Ez határozza meg az adatforrás, amelyet a későbbiekben is használhat egyes táblák importálásához.
+Ez határozza meg az adatforrás, amely követően tooimport egyedi táblázatot használnak.
 
 ### <a name="import-a-table"></a>A tábla importálása
 
-1. Nyissa meg az adatforrása definíciója a listából.
-2. Kattintson a "Feltöltés lehetőségre", és kövesse az utasításokat a táblázat feltöltéséhez. Ebbe beletartozik a REST API hívása, és így könnyen automatizálásához. 
+1. Nyissa meg az adatforrása definíciója hello listából.
+2. Kattintson a "Feltöltés lehetőségre", és kövesse a hello utasításokat tooupload hello tábla. Ebbe beletartozik egy hívás tooa REST API-t, és így könnyen tooautomate. 
 
 A tábla már elemzési lekérdezések használható. Megjelenik az elemzés 
 
-### <a name="use-the-table"></a>A táblázat
+### <a name="use-hello-table"></a>Hello táblázat
 
-Tegyük fel, az adatforrása definíciója nevezik `usermap`, és arról, hogy rendelkezik-e két mező `realName` és `user_AuthenticatedId`. A `requests` is táblához nevű mező `user_AuthenticatedId`, így egyszerűen csatlakoztassa azokat:
+Tegyük fel, az adatforrása definíciója nevezik `usermap`, és arról, hogy rendelkezik-e két mező `realName` és `user_AuthenticatedId`. Hello `requests` is táblához nevű mező `user_AuthenticatedId`, így könnyen toojoin őket:
 
 ```AIQL
 
@@ -226,11 +226,11 @@ Tegyük fel, az adatforrása definíciója nevezik `usermap`, és arról, hogy r
     | where notempty(user_AuthenticatedId) | take 10
     | join kind=leftouter ( usermap ) on user_AuthenticatedId 
 ```
-Az eredményül kapott tábla kérelmek rendelkezik egy olyan további oszlop `realName`.
+hello kérelmek eredményül kapott tábla tartalmaz egy olyan további oszlop `realName`.
 
 ### <a name="import-from-logstash"></a>Importálás a LogStash
 
-Ha [LogStash](https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html), Analytics segítségével lekérdezni a naplókat. Használja a [beépülő modul, amely adatok csővezeték elemzés be](https://github.com/Microsoft/logstash-output-application-insights). 
+Ha [LogStash](https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html), elemzés tooquery a naplók is használhatja. Használjon hello [beépülő modul, amely adatok csővezeték elemzés be](https://github.com/Microsoft/logstash-output-application-insights). 
 
 ## <a name="video"></a>Videó
 

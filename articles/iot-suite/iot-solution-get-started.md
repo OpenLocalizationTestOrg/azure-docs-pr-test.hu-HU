@@ -1,6 +1,6 @@
 ---
 title: "MyDriving Azure IoT-példa: első lépések |} Microsoft Docs"
-description: "Ismerkedés az alkalmazást, a Microsoft Azure Stream Analytics, a Machine Learning és az Event Hubs használatával az IoT-rendszer tervezővel hogyan átfogó bemutatója."
+description: "Ismerkedés az alkalmazást, hogyan átfogó bemutatója tooarchitect az IoT-rendszer Microsoft Azure Stream Analytics, a Machine Learning és az Event Hubs használatával."
 services: 
 documentationcenter: .net
 suite: 
@@ -14,19 +14,19 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/25/2016
 ms.author: harikm
-ms.openlocfilehash: 031b492df1f186087e7b91102cbb44f552999293
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 411b9a992deb22b915f8291d8559e2917d976b2d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="mydriving-iot-system-quick-start"></a>MyDriving IoT system: első lépések
-MyDriving egy rendszer, amely bemutatja a megtervezését és megvalósítását egy tipikus [az eszközök internetes hálózatát](iot-suite-overview.md) (IoT) megoldás, amely telemetriai adatokat gyűjt a eszközöket, feldolgozza ezeket az adatokat a felhőben, és gépi tanulással adjon meg érvényes egy adaptív választ. A bemutató a car utazgatással kapcsolatos adatokat naplózza a mobiltelefonjára, mind a kiszolgáló, amely adatokat gyűjt a car ellenőrző rendszerből származó adatokkal. A más felhasználókkal szemben a vezetői style visszajelzést használja ezeket az adatokat.
+MyDriving egy rendszer, amely bemutatja a hello tervezési és megvalósítási egy tipikus [az eszközök internetes hálózatát](iot-suite-overview.md) (IoT) megoldás, amely telemetriai adatokat gyűjt a eszközöket, feldolgozza ezeket az adatokat hello felhőben, és alkalmazza a gépi tanulás tooprovide egy adaptív választ. hello bemutató a car utazgatással kapcsolatos adatokat naplózza a mobiltelefonjára, mind a kiszolgáló, amely adatokat gyűjt a car ellenőrző rendszerből származó adatokkal. Az adatok tooprovide visszajelzés a vezetői stílus összehasonlító tooother felhasználók használ.
 
-A valós MyDriving célja a saját IoT-megoldás létrehozása a kezdéshez. De előtt, hogy jelentkezzen be a MyDriving maga az alkalmazás – a vizsgálat felhasználói csoport tagja lesz. Ez lehetővé teszi a számára az alkalmazás és a rendszer mögötte vásárlói, mielőtt jobban elmélyedne architektúrájának. Azt is bemutatja a Hockeyappra, egy ritkán használt adatok módszer az alkalmazások alpha és a béta disztribúciók kezelése felhasználók tesztelése.
+hello valós MyDriving célja tooget létrehozni a saját IoT-megoldás-t elindította. De előtt, hogy jelentkezzen be a hello MyDriving alkalmazás – a vizsgálat felhasználói csoport tagja lesz. Ez lehetővé teszi egy élmény hello alkalmazás és hello rendszer mögötte vásárlói, mielőtt jobban elmélyedne hello architektúra. Azt is bemutatja a tooHockeyApp, a ritkán használt adatok módja hello alpha és a béta disztribúciók a alkalmazások tootest felhasználók kezelése.
 
-## <a name="use-the-mobile-experience"></a>A mobil élmény használata
-A MyDriving alkalmazást is használhatja, ha az Android, iOS vagy Windows 10-es eszköz.
+## <a name="use-hello-mobile-experience"></a>Mobil élmény hello használata
+Hello MyDriving alkalmazást is használhatja, ha az Android, iOS vagy Windows 10-es eszköz.
 
 ### <a name="android-and-windows-10-mobile-installation"></a>Android és Windows 10 Mobile-telepítés
 Az eszközön:
@@ -35,82 +35,82 @@ Az eszközön:
    
    * Android: Az **beállítások** > **biztonsági**, engedélyezi, hogy az alkalmazások **ismeretlen források**.
    * Windows 10: Az **beállítások** > **frissítések** > **a fejlesztők**, beállíthatja **fejlesztői mód**.
-2. A béta teszt csapat csatlakoznak, és regisztrál, vagy a bejelentkezés, [Hockeyappra](https://rink.hockeyapp.net). Hockeyappra megkönnyíti, hogy az alkalmazás tesztelése a felhasználók korai kiadásaiban terjesztéséhez.
+2. A béta teszt csapat csatlakoznak, és regisztrál, vagy a bejelentkezés, [Hockeyappra](https://rink.hockeyapp.net). Hockeyappra lehetővé teszi a tootest felhasználók könnyen toodistribute korai kiadásaiban.
    
-   Windows 10 használata, használja az Edge böngészőben.
+   Ha Windows 10 használata esetén használja a hello Edge böngésző.
    
-   Ha egy Build 2016 résztvevő, jelentkezzen be a ugyanazon Microsoft-fiókja e-mail regisztrálva a a konferencia használatával a Microsoft gombokra. Már regisztrálva van a Hockeyappra.
+   Ha egy Build 2016 résztvevő, jelentkezzen be hello azonos hello Microsoft gombok segítségével regisztrált hello konferencia, a Microsoft-fiókja e-mail. Már regisztrálva van a Hockeyappra.
    
    ![Hockeyappra bejelentkezési képernyő](./media/iot-solution-get-started/image1.png)
-3. Töltse le és telepítse az alkalmazást innen:
+3. Alkalmazás letöltéséhez és telepítéséhez hello innen:
    
    * [Android](http://rink.io/spMyDrivingAndroid)
    * [Windows 10](http://rink.io/spMyDrivingUWP)
    
-   Két elemek vannak. Telepítse a tanúsítványt **megbízható személyek**. Telepítse az alkalmazást.
+   Két elemek vannak. Telepítse a hello **megbízható személyek**. Majd telepítse hello alkalmazást.
 
-*Probléma merül fel az alkalmazás indítása a Windows 10 Mobile?* A telefon lehet egy frissítést, vagy két mögött. Győződjön meg arról, hogy telepítve vannak-e a legújabb frissítéseket, vagy telepítse:
+*Probléma merül fel hello alkalmazás indítása a Windows 10 Mobile?* A telefon lehet egy frissítést, vagy két mögött. Győződjön meg arról, hello legújabb frissítéseinek van, vagy telepítse:
 
 * [Microsoft.NET.Native.Framework.1.2.appx](https://download.hockeyapp.net/packages/win10/Microsoft.NET.Native.Framework.1.2.appx) 
 * [Microsoft.NET.Native.Runtime.1.1.appx](https://download.hockeyapp.net/packages/win10/Microsoft.NET.Native.Runtime.1.1.appx) 
 * [Microsoft.VCLibs.ARM.14.00.appx](https://download.hockeyapp.net/packages/win10/Microsoft.VCLibs.ARM.14.00.appx)
 
 ### <a name="ios-installation"></a>iOS-telepítés
-Ha a felügyelt Build 2016, töltse le az alkalmazást a Hockeyappra a teszt csapat tagjaként:
+Ha a felügyelt Build 2016, töltse le a hello alkalmazást a Hockeyappra a teszt csapat tagjaként:
 
-1. Az iOS-eszközön bejelentkezni [Hockeyappra](https://rink.hockeyapp.net).
-   A Microsoft bejelentkezési gombok, és jelentkezzen be a ugyanazon Microsoft-fiókja e-mail a konferencia regisztrált egyikét használhatja. (Az e-mailek és a jelszó mező nem használható.)
+1. IOS-eszközön, jelentkezzen be túl[Hockeyappra](https://rink.hockeyapp.net).
+   Ugyanazon Microsoft-fiókja e-mail hello konferencia regisztrált hello hello Microsoft bejelentkezési gombok, és jelentkezzen be az egyik használható. (A hello e-mailek és a jelszó mező nem használható.)
    
    ![Hockeyappra bejelentkezési képernyő](./media/iot-solution-get-started/image1.png)
-2. A Hockeyappra irányítópulton MyDriving válassza ki, és töltse le azt.
-3. A bétaverzió a Hockeyappra engedélyezése:
+2. Hello Hockeyappra irányítópulton válassza ki a MyDriving, és le is.
+3. Engedélyezze a hello bétaverziót a Hockeyappra:
    
-   a. Ugrás a **beállítások** > **általános** > **profilok és kezelése.**
+   a. Nyissa meg túl**beállítások** > **általános** > **profilok és kezelése.**
    
-   b. Megbízható a **Bit Stadium GmbH** tanúsítványt.
+   b. Megbízható hello **Bit Stadium GmbH** tanúsítványt.
 
-Ha a Build 2016 nem vették fel, létrehozhatja és telepítse az alkalmazást:
+Ha a Build 2016 nem vették fel, létrehozhatja és saját kezűleg hello alkalmazás telepítése:
 
-1. A kód letöltése [a Githubról].
+1. Töltse le a hello kód [a Githubról].
 2. Hozza létre és telepíthet [Xamarin segítségével].
 
-A további részletekért a [MyDriving használati útmutató](http://aka.ms/mydrivingdocs).
+További részletekért található hello [MyDriving használati útmutató](http://aka.ms/mydrivingdocs).
 
 ## <a name="get-an-obd-adapter-optional"></a>Első OBD adapter (nem kötelező)
-Ez az a része, amelyek miatt ez egy valódi az eszközök internetes hálózatát rendszer! Használhatja az alkalmazás nélkül, de valódi szórakozás, és kevésbé költséges.
+Ez az hello része, amelyek miatt ez egy valódi az eszközök internetes hálózatát rendszer! Hello alkalmazással nélkül, de Szórakozás hello valós dolog, és kevésbé költséges.
 
-A helyi diagnosztika (OBD) az a, amely a garázsnak használatával a car hangolása és páratlan zajnak vagy figyelmeztetés lámpa diagnosztizálja car szolgáltatása. Csak a car a kiváló régiségek, ha található valahol szoftvercsatorna kézi, általában egy flap alatt az irányítópult mögött. A jobb oldali összekötővel a motor teljesítmény metrikákat kaphat, és egyes módosításokat. Egy OBD összekötő olcsón lehet beszerezni a szokásos helyek. Egy alkalmazást a telefonra Bluetooth vagy Wi-Fi használatával tud csatlakozni.
+A helyi diagnosztika (OBD) a hello garázs használ tootune fel a car és páratlan zajnak vagy figyelmeztetés lámpa diagnosztizálja car hello funkciója. Csak a car a kiváló régiségek, ha található valahol szoftvercsatorna hello kézi, általában egy flap alatt hello irányítópult mögött. Hello jobb összekötővel hello motor teljesítmény metrikákat kaphat, és egyes módosításokat. Egy OBD összekötő olcsón megvásárolható hello szokásos helyről. A telefonján Bluetooth vagy Wi-Fi tooan alkalmazás használatával tud csatlakozni.
 
-Ebben az esetben lesz, a car csatlakozni a felhőhöz. A közvetlen kapcsolat az OBD a telefonjára, de az alkalmazás működik, mint egy továbbítót. A car telemetriai adatokat küld rögtön a MyDriving IoT-központ feldolgozza naplózni a közúti való adatváltások számát és a vezetői stílus értékeléséhez.
+Ebben az esetben az oktatóanyagban módosítjuk tooconnect a car toohello felhő. közvetlen kapcsolatot hello hello OBD tooyour telefon, de az alkalmazás működik, mint egy továbbítót. A car telemetriai küldött egyenes toohello MyDriving IoT-központot, ahol feldolgozásra toolog a közúti való adatváltások számát, és a vezetői stílus értékeléséhez.
 
-Csatlakoztassa az OBD eszközt:
+egy OBD eszköz tooconnect:
 
 1. Ellenőrizze, hogy rendelkezik-e a car egy OBD szoftvercsatorna.
 2. Szerezzen be egy OBD adapter:
    
    * Ha egy Android- vagy Windows phone használata esetén szükséges egy Bluetooth-kompatibilis OBD II adapter. Használtuk [BAFX termékek 34t5 Bluetooth OBDII vizsgálati eszköz].
    * Ha egy iOS-telefon használata esetén szükséges egy Wi-Fi-kompatibilis OBD adapter. Használtuk [ScanTool OBDLink MX Wi-Fi: OBD Adapter/diagnosztikai képolvasó].
-3. Kövesse az utasításokat, amelyek a OBD adapterhez csatlakozzanak a telefonjára. Vegye figyelembe a következőket:
+3. Hajtsa végre a hello vonatkozó utasításokat a OBD adapter tooconnect azt tooyour phone. Vegye figyelembe a következőket hello:
    
-   * A Bluetooth-adapter típusnak kell megfeleltetni a telefont, a a **beállítások** lap.
-   * A Wi-Fi adapter az a tartomány 192.168.xxx.xxx címmel kell rendelkeznie.
+   * A Bluetooth-adapter típusnak kell megfeleltetni hello telefon, a hello **beállítások** lap.
+   * A Wi-Fi adapter a hello tartomány 192.168.xxx.xxx címmel kell rendelkeznie.
 4. Ha több autók, külön adapter kaphat mindegyik (legfeljebb három).
 
-Ha egy OBD adapter nem rendelkezik, az alkalmazás lesz továbbra is adatokat küldeni a hely és sebességét, a telefon GPS fogadó a háttérben, és ekkor megkérdezi, hogy szeretné-e egy OBD szimulálásához.
+Ha egy OBD adapter nem rendelkezik, hello alkalmazás továbbra is küldi a hely és a hello phone GPS fogadó toohello vissza sebességű adatok befejezését, majd fogja kérni, ha azt szeretné, egy OBD toosimulate.
 
-Az található további az alkalmazás hogyan használja az adatok OBD adapteréről és beállítások létrehozásához a saját OBD eszközök szakaszban 2.1-es, "Az IoT-eszközök," a [MyDriving használati útmutató](http://aka.ms/mydrivingdocs).
+Az hello található további hogyan hello alkalmazása használja-e a hello OBD adapter származó adatok és beállítások létrehozásához a saját OBD eszközök szakaszban 2.1-es, "Az IoT-eszközök," [MyDriving használati útmutató](http://aka.ms/mydrivingdocs).
 
-## <a name="use-the-app"></a>Az alkalmazás használata
-Indítsa el az alkalmazást. Egy kezdeti gyors üzembe helyezés hogyan működik lépésre van.
+## <a name="use-hello-app"></a>Hello alkalmazás használata
+Hello alkalmazás indításához. Egy kezdeti gyors üzembe helyezés toowalk van annak működéséről nyújt.
 
 ### <a name="track-your-trips"></a>Nyomon követheti a való adatváltások számát
-Koppintson a rekord gombra (nagy piros kör a képernyő alján) egy út elindításához, és koppintson újra befejezéséhez.
+Koppintson a hello rekord gombra (nagy piros kör üdvözlő képernyőt hello alján) toostart egy út, és koppintson újra tooend.
 
-![A rekord gombra nyomon követését utazás ábrája](./media/iot-solution-get-started/image2.png)
+![Hello rekord gombra nyomon követését utazás ábrája](./media/iot-solution-get-started/image2.png)
 
-Utazás, minden egyes indításakor nincs OBD eszköz esetén meg kell adnia a szimulátor használni kívánt.
+Egy út minden egyes indításakor nincs OBD eszköz esetén kéri toouse hello szimulátor gombra.
 
-Egy út végén koppintson a Leállítás gombra, és összefoglaló információk.
+Egy út hello végén koppintson a hello Leállítás gombra, és összefoglaló információk.
 
 ![Egy összegző út – példa](./media/iot-solution-get-started/image3.png)
 
@@ -121,22 +121,22 @@ Egy út végén koppintson a Leállítás gombra, és összefoglaló informáci�
 ![A vezetés stílusú profil – példa](./media/iot-solution-get-started/image5.png)
 
 ## <a name="send-us-your-test-feedback"></a>Teszt visszajelzését
-MyDriving ismertető segítségével létrehozott saját IoT rendszerek, mert biztosan szeretnénk megosztaná velünk, milyen jól működik kapcsolatban. Értesítsen minket, ha:
+A saját IoT rendszerek létrehozott MyDriving toohelp ismertető, mert biztosan szeretnénk toohear az Ön kapcsolatos mennyire működik. Értesítsen minket, ha:
 
 * Nehézségek vagy kihívásokkal futtatja.
-* Van így könnyebben megfelelőbbek, adott esetben bővítmény pont.
-* Egy sokkal hatékonyabb módja bizonyos kell látnia.
+* Van így könnyebben megfelelőbbek tooyour forgatókönyv bővítmény pont.
+* Egy sokkal hatékonyabb módja tooaccomplish található egyes igényeinek.
 * Javaslatai bármely más MyDriving vagy ebben a dokumentációban javítására.
 
-Az alkalmazásban MyDriving magát, használhatja a beépített Hockeyappra visszajelzés mechanizmus: iOS és Android rendszeren csak biztosítják a telefon egy rázó, vagy használja a **visszajelzés** menüparancshoz. Ez automatikusan elvégzi a képernyőfelvételen látható, hogy tudjuk lesz, mi, hogy van szó. És bármely kellemetlen összeomlás esetén Hockeyappra gyűjti a mondja el nekünk azokat-összeomlási naplókat. Visszajelzést keresztül is biztosíthat a [Hockeyappra portal].
+Hello MyDriving App magát, használhatja a hello beépített Hockeyappra visszajelzés mechanizmus: iOS és Android rendszeren csak biztosítják a telefon egy rázó, vagy használjon hello **visszajelzés** menüparancshoz. Ez automatikusan elvégzi a képernyőfelvételen látható, hogy tudjuk lesz, mi, hogy van szó. És bármely kellemetlen összeomlás esetén Hockeyappra gyűjt hello összeomlási naplókat tootell velünk róluk. Is adhat a visszajelzést keresztül hello [Hockeyappra portal].
 
 Is fájl egy [problémát a Githubon], vagy hagyja meg az alábbi megjegyzést (en-us edition).
 
-Kíváncsian nyújtanak segítséget az Ön!
+Számítunk toohearing az Ön!
 
 ## <a name="next-steps"></a>Következő lépések
-* Megismerkedhet a [MyDriving használati útmutató](http://aka.ms/mydrivingdocs) tudni, hogyan előre tervezett és a teljes MyDriving rendszer beépített.
-* [Létrehozásakor és központi telepítésekor a rendszer a saját](iot-solution-build-system.md) az Azure Resource Manager-parancsfájlok használatával. A [MyDriving használati útmutató](http://aka.ms/mydrivingdocs) is végigvezeti azokon a területeken, ahol lesz testreszabásokat a legtöbb.
+* Fedezze fel hello [MyDriving a referencia-útmutató](http://aka.ms/mydrivingdocs) toounderstand hogyan előre tervezett és a beépített hello teljes MyDriving rendszer.
+* [Létrehozásakor és központi telepítésekor a rendszer a saját](iot-solution-build-system.md) az Azure Resource Manager-parancsfájlok használatával. Hello [MyDriving használati útmutató](http://aka.ms/mydrivingdocs) is végigvezeti azokon a területeken, ahol lesz testreszabásokat hello legtöbb.
 
 [a Githubról]: https://github.com/Azure-Samples/MyDriving
 [Xamarin segítségével]: https://developer.xamarin.com/guides/ios/getting_started/installation/

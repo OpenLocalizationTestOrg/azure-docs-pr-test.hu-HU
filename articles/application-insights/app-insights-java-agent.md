@@ -1,5 +1,5 @@
 ---
-title: "Java-webalkalmazások Azure Application Insights az alkalmazásteljesítmény-figyelés |} Microsoft Docs"
+title: "Java-webalkalmazások Azure Application insightsban figyelésének aaaPerformance |} Microsoft Docs"
 description: "Kiterjesztett teljesítmény és a Java-webhely, az Application Insights-használat figyelését."
 services: application-insights
 documentationcenter: java
@@ -13,41 +13,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/24/2016
 ms.author: bwren
-ms.openlocfilehash: 4e56998382610ad3d7224e6a8de5aee5419ebe43
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bf3983e3b4a16e72bc606b6468a757288d05ebaa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-dependencies-exceptions-and-execution-times-in-java-web-apps"></a>Függőségek, kivételeket és végrehajtásának lassúságát a Java-webalkalmazások figyelése
 
 
-Ha rendelkezik [a Java-webalkalmazás az Application insights szolgáltatással tagolva][java], a Java-ügynök részleteinek megtekintésével mélyebb betekintést kód módosítások nélkül használható:
+Ha rendelkezik [a Java-webalkalmazás az Application insights szolgáltatással tagolva][java], hello Java ügynök tooget részleteinek megtekintésével mélyebb betekintést, kód módosítások nélkül használható:
 
-* **Függőségek:** hívások, az alkalmazás által az egyéb összetevők, beleértve a vonatkozó adatokat:
+* **Függőségek:** hívások, amely az alkalmazás tooother összetevők, beleértve a vonatkozó adatokat:
   * **REST-hívások** HttpClient OkHttp és RestTemplate (forrás) keresztül történik.
-  * **Redis** keresztül a Jedis ügyfél felé indított hívások. A hívás tovább tart, mint 10 egység, ha az ügynök is beolvassa a hívás argumentumokkal.
-  * **[JDBC-hívások](http://docs.oracle.com/javase/7/docs/technotes/guides/jdbc/)**  -MySQL, SQL Server, PostgreSQL, SQLite, Oracle DB vagy Apache Derby DB. "executeBatch" hívások támogatottak. A MySQL és PostgreSQL, ha a hívás tovább tart, mint 10 egység, az ügynök jelentéseket küld a lekérdezéstervben.
+  * **Redis** hello Jedis ügyfél keresztül felé indított hívások. Ha hello hívás 10 egység hosszabb időbe telik, hello ügynök is beolvassa hello hívás argumentumokat.
+  * **[JDBC-hívások](http://docs.oracle.com/javase/7/docs/technotes/guides/jdbc/)**  -MySQL, SQL Server, PostgreSQL, SQLite, Oracle DB vagy Apache Derby DB. "executeBatch" hívások támogatottak. A MySQL és PostgreSQL, ha hello hívás tovább tart, mint 10 egység, hello ügynök jelentéseket küld hello lekérdezéstervben.
 * **Kivétel lépett fel:** a kód által kezelt kivételek adatait.
-* **Módszer végrehajtási ideje:** bizonyos eljárások végrehajtásához szükséges idő az adatait.
+* **Módszer végrehajtási ideje:** hello adatait alkalommal vesz tooexecute megadott metódusok.
 
-A Java-ügynök használatára, akkor a kiszolgálóra telepítette. A webalkalmazások kell tagolva, és a [Application Insights Java SDK][java]. 
+toouse hello Java ügynök, az a kiszolgálóra telepítette. A webalkalmazások kell lesznek tagolva a hello [Application Insights Java SDK][java]. 
 
-## <a name="install-the-application-insights-agent-for-java"></a>A Javához készült Application Insights-ügynök telepítése
-1. A számítógépen a Java Servert futtató [töltse le az ügynököt](https://aka.ms/aijavasdk).
-2. Az alkalmazás server indítási parancsfájl szerkesztése, és adja hozzá az alábbi JVM-et:
+## <a name="install-hello-application-insights-agent-for-java"></a>Java hello Application Insights-ügynök telepítése
+1. Hello gépen futó Java kiszolgálóját [hello-ügynök letöltése](https://aka.ms/aijavasdk).
+2. Hello application server indítási parancsfájl szerkesztése, és adja hozzá a következő JVM hello:
    
-    `javaagent:`*az ügynök JAR-fájl teljes elérési útja*
+    `javaagent:`*teljes elérési útja toohello ügynök JAR-fájlra*
    
     Például a Linux rendszerű gépen Tomcat:
    
-    `export JAVA_OPTS="$JAVA_OPTS -javaagent:<full path to agent JAR file>"`
+    `export JAVA_OPTS="$JAVA_OPTS -javaagent:<full path tooagent JAR file>"`
 3. Indítsa újra az alkalmazáskiszolgáló.
 
-## <a name="configure-the-agent"></a>Az ügynök konfigurálása
-Hozzon létre egy fájlt `AI-Agent.xml` és naplózza azt a mappában, amelyben az ügynök JAR-fájlra.
+## <a name="configure-hello-agent"></a>Hello ügynök konfigurálása
+Hozzon létre egy fájlt `AI-Agent.xml` és helyezheti el hello hello ügynök JAR fájllal megegyező mappában.
 
-Állítsa be az XML-fájl tartalmát. Szerkessze a következő példa a azt szeretné, vagy hagyja el a szolgáltatásokat.
+Hello XML-fájl tartalmának hello beállítása. Szerkessze a következő példa tooinclude hello, vagy hagyja ki a kívánt hello szolgáltatásokat.
 
 ```XML
 
@@ -74,7 +74,7 @@ Hozzon létre egy fájlt `AI-Agent.xml` és naplózza azt a mappában, amelyben 
                reportExecutionTime="true"
                />
 
-           <!-- Report on the particular signature
+           <!-- Report on hello particular signature
                 void methodTwo(String, int) -->
            <Method name="methodTwo"
               reportExecutionTime="true"
@@ -86,14 +86,14 @@ Hozzon létre egy fájlt `AI-Agent.xml` és naplózza azt a mappában, amelyben 
 
 ```
 
-Kell engedélyezni a jelentések kivétel és az egyes módszerek metódus ütemezését.
+Tooenable jelentések kivétel és az egyes módszerek metódus időzítési rendelkezik.
 
 Alapértelmezés szerint `reportExecutionTime` IGAZ és `reportCaughtExceptions` értéke "false".
 
-## <a name="view-the-data"></a>Az adatok megjelenítése
-Összesített távoli függőség és metódus végrehajtásának lassúságát jelenik meg az Application Insights-erőforrás [alatt a teljesítmény csempéje][metrics].
+## <a name="view-hello-data"></a>Hello adatok megtekintése
+Összesített távoli függőség és metódus végrehajtásának lassúságát jelenik meg hello Application Insights-erőforrást, [alatt hello teljesítmény csempéje][metrics].
 
-Nyissa meg a keresendő függőségi kivétel és metódus jelentések egyes példányai, [keresési][diagnostic].
+Nyissa meg a függőségi kivétel és metódus jelentések egyes példányai toosearch [keresési][diagnostic].
 
 [Diagnosztizálás függőségi problémákhoz – további](app-insights-asp-net-dependencies.md#diagnosis).
 

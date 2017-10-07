@@ -1,6 +1,6 @@
 ---
 title: "Azure-portálon: egy SQL Database rugalmas készlet kezelése & létrehozása |} Microsoft Docs"
-description: "Ismerje meg, hogyan használható az Azure portál és az SQL Database beépített funkciói kezelése, figyelheti és az adatbázis teljesítményének optimalizálása és költségek kezelésére méretezhető rugalmas készlet megfelelő méretének."
+description: "Ismerje meg, hogyan toouse hello Azure-portál és az SQL Database beépített funkciói toomanage, a figyelő és a megfelelő méretének kiválasztásában egy méretezhető rugalmas készlet toooptimize adatbázis teljesítménye és költségek kezelésére."
 keywords: 
 services: sql-database
 documentationcenter: 
@@ -16,20 +16,20 @@ ms.author: ninarn
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
-ms.openlocfilehash: 4ffd1db31f42967dc7f07aa979898dddbb333641
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e0de952bc0c91177f64c04363630783d72435741
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-manage-an-elastic-pool-with-the-azure-portal"></a>Létrehozása és kezelése az Azure-portálon a rugalmas készlethez
-Ez a témakör bemutatja, hogyan hozhatja létre és kezelheti méretezhető [rugalmas készletek](sql-database-elastic-pool.md) az Azure portálon. Is létrehozása és kezelése az Azure rugalmas készletek [PowerShell](sql-database-elastic-pool-manage-powershell.md), a REST API-t vagy [C#](sql-database-elastic-pool-manage-csharp.md). Is létrehozhat és adatbázisok áthelyezése esetében bejövő és kimenő használatával rugalmas készletek [Transact-SQL](sql-database-elastic-pool-manage-tsql.md).
+# <a name="create-and-manage-an-elastic-pool-with-hello-azure-portal"></a>Létrehozása és kezelése az Azure-portálon hello rugalmas készletek
+Ez a témakör bemutatja, hogyan toocreate és kezelheti a méretezhető [rugalmas készletek](sql-database-elastic-pool.md) a hello Azure-portálon. Is létrehozása és kezelése az Azure rugalmas készletek [PowerShell](sql-database-elastic-pool-manage-powershell.md), hello REST API-t vagy [C#](sql-database-elastic-pool-manage-csharp.md). Is létrehozhat és adatbázisok áthelyezése esetében bejövő és kimenő használatával rugalmas készletek [Transact-SQL](sql-database-elastic-pool-manage-tsql.md).
 
 ## <a name="create-an-elastic-pool"></a>Rugalmas készlet létrehozása 
 
-Kétféleképpen hozhat létre egy rugalmas készlet. Létrehozhatja a készletet a nulláról is, ha tisztában van a használni kívánt beállításokkal, de alapul veheti a szolgáltatás javaslatait is. SQL Database beépített funkciói képesek készletbeállítást egy rugalmas készlet telepítő, ha több költséghatékony, az adatbázisokat a múltbeli használat telemetriai adatai alapján van.
+Kétféleképpen hozhat létre egy rugalmas készlet. Ezt megteheti a teljesen Ha hello javasolni, vagy kezdje hello szolgáltatás ajánlása tudja. SQL Database beépített funkciói képesek készletbeállítást egy rugalmas készlet telepítő, ha gazdaságosabb múltbeli használat telemetriai adatai az adatbázisok esetében hello alapján automatikusan rendelkezik.
 
-Egy kiszolgálón több készletet is létrehozhat, de egy készlethez különböző kiszolgálókról származó adatbázisok nem adhat. 
+Egy kiszolgálón több készletet is létrehozhat, de a hello különböző kiszolgálókról származó adatbázisok nem adhat azonos erőforráskészletben. 
 
 > [!NOTE]
 > A rugalmas készletek minden Azure-régióban általánosan elérhetők, kivéve Nyugat-Indiát, ahol a szolgáltatás jelenleg előzetes verzióként érhető el.  A rugalmas készletek a lehető leghamarabb általánosan elérhetők lesznek ebben a régióban.
@@ -37,120 +37,120 @@ Egy kiszolgálón több készletet is létrehozhat, de egy készlethez különb�
 
 ### <a name="step-1-create-an-elastic-pool"></a>1. lépés: Egy rugalmas készlet létrehozása
 
-Egy rugalmas készlet létrehozása a meglévő **server** a portálon legkönnyebben meglévő adatbázisok áthelyezése rugalmas készletbe.
+Egy rugalmas készlet létrehozása a meglévő **server** hello portál panel hello legegyszerűbb módja toomove meglévő adatbázisok rugalmas készletbe.
 
 > [!NOTE]
-> Rugalmas készletek is létrehozhat keresve **SQL rugalmas készlet** a a **piactér** vagy kattint **+ Hozzáadás** a a **SQL rugalmas készletek** Keresse meg a panelt. Tudunk adjon meg egy új vagy meglévő kiszolgáló ezzel a készlettel munkafolyamat kiépítés keresztül.
+> Rugalmas készletek keresve is létrehozhat **SQL rugalmas készlet** a hello **piactér** vagy kattint **+ Hozzáadás** a hello **SQL rugalmas készletek**keresse meg a panelt. Biztosan tudja toospecify egy új vagy meglévő kiszolgáló ezzel a készlettel munkafolyamat kiépítés keresztül.
 >
 >
 
-1. A a [Azure-portálon](http://portal.azure.com/), kattintson a **további szolgáltatások**  **>**  **SQL Server-kiszolgálók**, és kattintson a kiszolgáló, amely tartalmazza a adatbázisok rugalmas készlethez hozzáadni kívánt.
+1. A hello [Azure-portálon](http://portal.azure.com/), kattintson a **további szolgáltatások**  **>**  **SQL Server-kiszolgálók**, és kattintson a hello tartalmazó hello kiszolgálón tooadd tooan rugalmas készlet kívánt adatbázisok.
 2. Kattintson a **Új készlet** lehetőségre.
 
-    ![Készlet hozzáadása a kiszolgálóhoz](./media/sql-database-elastic-pool-create-portal/new-pool.png)
+    ![Készlet tooa kiszolgáló hozzáadása](./media/sql-database-elastic-pool-create-portal/new-pool.png)
 
     **-VAGY-**
 
-    Megjelenik egy üzenet, amely tájékoztatja, hogy a kiszolgáló rugalmas készletek használata ajánlott. Kattintson az üzenetre a korábbi adatbázis-használat telemetriai adatai alapján javasolt készletek megtekintéséhez, majd kattintson a csomagra a további részletek megjelenítéséhez és a készlet testre szabásához. A javaslatokkal kapcsolatos további információkért olvassa el a témakör későbbi részében található [A készlettel kapcsolatos javaslatok megértése](#understand-elastic-pool-recommendations) című részt.
+    Megjelenik egy üzenet, amely tájékoztatja, hogy ajánlott rugalmas készletek hello kiszolgáló. Hello üzenet toosee hello készletek korábbi adatbázis használat telemetriai adatai alapján javasolt kattintson, majd kattintson a hello réteg toosee további részleteket, és testre szabhatja a hello készlet. Lásd: [készlettel kapcsolatos javaslatok megértése](#understand-elastic-pool-recommendations) a témakör későbbi részében a hello javaslatokkal módját.
 
     ![javasolt készlet](./media/sql-database-elastic-pool-create-portal/recommended-pool.png)
 
-3. A **rugalmas készlet** panel jelenik meg, amely, amelyben meg kell határoznia a beállítások a készlethez. Ha rákattintott **új készletet** az előző lépésben a tarifacsomag megadása **szabványos** alapértelmezett és az adatbázisok nem van jelölve. Létrehozhat egy üres készletet, vagy megadhatja a kiszolgálón már megtalálható adatbázisok egy készletét, amelyet át szeretne helyezni a készletbe. A javasolt készlet létrehozásakor, a javasolt tarifacsomag Teljesítménybeállítások és az adatbázisok listája előre feltöltve, de továbbra is módosíthatja őket.
+3. Hello **rugalmas készlet** panel jelenik meg, amely, amelyben meg kell határoznia hello-beállítások a készlet. Kattintott **új készletet** hello előző lépést, az IP-címek hello az **szabványos** alapértelmezett és az adatbázisok nem van jelölve. Hozzon létre egy üres címkészletet, vagy adjon meg egy adott kiszolgáló toomove meglévő adatbázisok hello készletbe. A javasolt készlet létrehozásakor, hello ajánlott IP-címek, teljesítménybeállításokat, és az adatbázisok listája előre van feltöltve, de továbbra is módosíthatja őket.
 
     ![A rugalmas készlet konfigurálása](./media/sql-database-elastic-pool-create-portal/configure-elastic-pool.png)
 
-4. Adjon nevet a rugalmas készletnek, vagy hagyja meg az alapértelmezett nevet.
+4. Adjon meg egy nevet a rugalmas készlet hello, vagy hagyja meg az alapértelmezett hello.
 
 ### <a name="step-2-choose-a-pricing-tier"></a>2. lépés: Tarifacsomag kiválasztása
 
-A készlet tarifacsomagjának módosítása a funkciók érhetők el a készletet, és Edtu (eDTU MAX) és tárhelyet (GB) az egyes adatbázisok számára elérhető maximális számának elastics határozza meg. A részletekért lásd a tarifacsomagokról szóló cikket.
+hello készlet árképzési szint határozza meg hello funkció elérhető toohello elastics hello készlet és hello legfeljebb hány Edtu (eDTU MAX) és tárhelyet (GB) elérhető tooeach adatbázis. A részletekért lásd a tarifacsomagokról szóló cikket.
 
-A készlet tarifacsomagjának módosításához kattintson a **Tarifacsomag** elemre, a kívánt tarifacsomagra, majd a **Kiválasztás** gombra.
+toochange hello tarifacsomag hello készlet, kattintson a **tarifacsomag**, kattintson az IP-címek, és kattintson hello **válasszon**.
 
 > [!IMPORTANT]
-> Miután kiválasztotta a tarifacsomagot, és az **OK** gombra kattintva mentette a módosításokat az utolsó lépésnél, már nem fogja tudni megváltoztatni a készlet tarifacsomagját. Egy meglévő rugalmas készlet tarifacsomagjának módosításához hozzon létre egy rugalmas készlet a kívánt tarifacsomagot, és az adatbázisok áttelepítése az új készletbe.
+> Hello tarifacsomag kiválasztása és a változtatások véglegesítése a határidő kattintva után **OK** hello utolsó lépésként hello készlet tarifacsomagjának képes toochange hello nem lesz. toochange hello egy meglévő rugalmas készlet tarifacsomagjának, rugalmas készletet létrehozni hello kívánt tarifacsomagot, és át hello adatbázisok toothis új készletet.
 >
 
 ![Tarifacsomag kiválasztása](./media/sql-database-elastic-pool-create-portal/pricing-tier.png)
 
-### <a name="step-3-configure-the-pool"></a>3. lépés: A készlet konfigurálása
+### <a name="step-3-configure-hello-pool"></a>3. lépés: Hello készlet konfigurálása
 
-Az árképzési szint beállítása után kattintson konfigurálása készlet adatbázisok, a set készlet edtu-k és tárhely (GB-ban) vehet fel, és a készlet a minimális és maximális edtu-k számára a elastics állíthatja.
+IP-címek hello beállítása után kattintson konfigurálása készlet adatbázisok, a set készlet edtu-k és tárhely (GB-ban) vehet fel, és hello minimális és maximális edtu-k a hello elastics hello készletben állíthatja.
 
 1. Kattintson a **Készlet beállítása** elemre.
-2. Válassza ki a készletbe felvenni kívánt adatbázisokat. Ezt a lépést nem kötelező a készlet létrehozása során elvégezni. Adatbázisokat a készlet létrehozását követően is fel lehet venni.
-    Az adatbázisok hozzáadásához kattintson az **Adatbázis hozzáadása** gombra, kattintson a felvenni kívánt adatbázisokra, majd a **Kiválasztás** gombra.
+2. Válassza ki a kívánt tooadd toohello készlet hello adatbázisokat. Ez a lépés nem kötelező hello alkalmazáskészlet létrehozása közben. Adatbázisok hello készlet létrehozása után adhatók hozzá.
+    tooadd adatbázisokat, kattintson a **adatbázis hozzáadása**, hello adatbázisok, hogy szeretné, hogy tooadd, és kattintson a hello kattintson **válasszon** gombra.
 
     ![Adatbázisok hozzáadása](./media/sql-database-elastic-pool-create-portal/add-databases.png)
 
-    Ha a felvenni kívánt adatbázisokhoz elegendő korábbi használati telemetriai adat áll rendelkezésre, a rendszer frissíti az **Estimated eDTU and GB usage** (Becsült eDTU- és GB-használat) diagramot és az **Actual eDTU usage** (Tényleges eDTU-használat) sávdiagramot, amelyek segítenek Önnek meghozni a konfigurációval kapcsolatos döntéseket. Ezenfelül egyes esetekben a szolgáltatás javaslatot tartalmazó üzenetet is megjelenít, amely segít a készlet megfelelő méretének kiválasztásában. Lásd: [Dinamikus javaslatok](#understand-elastic-pool-recommendations).
+    Ha dolgozunk hello adatbázisokhoz elegendő korábbi használati telemetriai adat, hello **becsült eDTU- és GB-használati** grafikon és hello **tényleges edtu-k** sávdiagram frissítés toohelp elvégezte a konfiguráció döntéseket. Emellett hello szolgáltatást is megjelenít, egy javaslat üzenet toohelp készlet hello akkor megfelelő méretének kiválasztásában. Lásd: [Dinamikus javaslatok](#understand-elastic-pool-recommendations).
 
-3. A **Készlet beállítása** lapon elérhető vezérlők segítségével áttekintheti a beállításokat, és konfigurálhatja a készletet. Lásd: [rugalmas készletek korlátok](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools) további részletes információt az egyes szolgáltatásszinteken határértékeit, és tanulmányozza a [rugalmas készletek ára és teljesítménye szempontjai](sql-database-elastic-pool.md) részletes útmutatást megfelelő méretének kiválasztását a rugalmas készletekben. Készlet beállításaival kapcsolatos további információkért lásd: [rugalmas készlet tulajdonságok](sql-database-elastic-pool.md#database-properties-for-pooled-databases).
+3. Hello hello vezérlők használhatók **készlet beállítása** tooexplore beállítások lapon, és konfigurálhatja a készletet. Lásd: [rugalmas készletek korlátok](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools) további részletes információt az egyes szolgáltatásszinteken határértékeit, és tanulmányozza a [rugalmas készletek ára és teljesítménye szempontjai](sql-database-elastic-pool.md) részletes útmutatást megfelelő méretének kiválasztását a rugalmas készletekben. Készlet beállításaival kapcsolatos további információkért lásd: [rugalmas készlet tulajdonságok](sql-database-elastic-pool.md#database-properties-for-pooled-databases).
 
     ![A rugalmas készlet konfigurálása](./media/sql-database-elastic-pool-create-portal/configure-performance.png)
 
-4. Ha módosította a beállításokat, kattintson a **Készlet beállítása** panel **Kiválasztás** elemére.
-5. A készlet létrehozásához kattintson az **OK** gombra.
+4. Kattintson a **válasszon** a hello **készlet beállítása** panel beállításainak módosítása után.
+5. Kattintson a **OK** toocreate hello készlet.
 
 ## <a name="understand-elastic-pool-recommendations"></a>Rugalmas készletekkel kapcsolatos javaslatok megértése
 
-Az SQL Database szolgáltatás a használati előzmények elemzésével megállapítja, hogy megéri-e önálló adatbázisok helyett készleteket használni, és ha igen, javasol egy vagy több készletet. A javaslatokat a rendszer a kiszolgáló adatbázisainak a készlethez leginkább illő egyedi részhalmazával konfigurálja.
+hello SQL Database szolgáltatás használati előzmények elemzésével, és azt javasolja, hogy egy vagy több készlethez helyett önálló adatbázisok használata esetén. Minden ajánlást hello server-adatbázisok hello készlet leginkább illő egyedi részhalmazával van konfigurálva.
 
 ![javasolt készlet](./media/sql-database-elastic-pool-create-portal/recommended-pool.png)  
 
-A készletjavaslat a következőkből áll:
+hello készletjavaslat:
 
-- A készlet (alapszintű, Standard, Premium vagy Premium RS) tarifacsomagot
+- Tarifacsomag (alapszintű, Standard, Premium vagy Premium RS) hello készlet
 - A megfelelő **POOL eDTU** száma (amelyet készletenkénti maximális eDTU-ként is meg lehet határozni)
-- Az adatbázisonkénti **eDTU MAX** és **eDTU Min** érték
-- A készletbe javasolt adatbázisok listája
+- Hello **eDTU MAX** és **eDTU, minimális érték** adatbázisonként
+- hello hello készletbe javasolt adatbázisok listája
 
 > [!IMPORTANT]
-> A szolgáltatás az elmúlt 30 nap telemetriai adatai alapján javasol készleteket. Rugalmas készletek jelöltként figyelembe kell venni egy adatbázist akkor léteznie kell legalább 7 napig. Azokat az adatbázisokat, amelyeket korábban már elhelyezett egy másik rugalmas készletben, a rendszer nem javasolja újabb rugalmas készletbe való bevonásra.
+> hello szolgáltatás hello telemetriai adatok az elmúlt 30 napban figyelembe veszi amikor ajánló készletek. A rugalmas készletek javaslatokba adatbázis toobe akkor léteznie kell legalább 7 napig. Azokat az adatbázisokat, amelyeket korábban már elhelyezett egy másik rugalmas készletben, a rendszer nem javasolja újabb rugalmas készletbe való bevonásra.
 >
 
-A szolgáltatás értékeli az erőforrásigényeket, illetve azt, hogy megéri-e a különböző csomagokhoz tartozó önálló adatbázisokat ugyanahhoz a csomaghoz tartozó készletekbe vonni. A rendszer például megvizsgálja, hogy érdemes-e a kiszolgálón található Standard adatbázisokat Standard rugalmas készletté alakítani. Ez azt is jelenti, hogy a szolgáltatás különböző csomagokat tartalmazó javaslatokat nem tesz, azaz soha nem javasolja például, hogy Prémium készletbe helyezzen egy Standard adatbázist.
+hello szolgáltatás értékeli az erőforrásigényeivel és költséghatékonyságát is egyetlen áthelyezése hello adatbázist az egyes szolgáltatásszinteken hello készletekbe azonos szint. A rendszer például megvizsgálja, hogy érdemes-e a kiszolgálón található Standard adatbázisokat Standard rugalmas készletté alakítani. Ez azt jelenti, hogy hello szolgáltatást nem ajánlásokat eltérő szintű például a Standard adatbázis áthelyezése prémium készletbe.
 
-Adatbázisok hozzáadása a készlethez, után javaslatok dinamikusan jönnek létre a kiválasztott adatbázisok korábbi használati alapján. Ezek a javaslatok láthatók, az eDTU- és GB-használati diagramon, és a javaslat fejléc tetején a **készlet beállítása** panelen. Ezek a javaslatok célja, hogy az Ön konkrét adatbázisaihoz optimalizált rugalmas készletek létrehozását.
+A felvett adatbázisok toohello készlet, javaslatok dinamikusan jönnek létre hello hello kiválasztott adatbázisok korábbi használati alapján. Ezek az ajánlások a hello eDTU- és GB-használati diagramon, és a javaslat fejléc hello hello tetején látható **készlet beállítása** panelen. Ezek a javaslatok még a rugalmas készletek létrehozása az Ön konkrét adatbázisaihoz optimalizált tervezett tooassist.
 
 ![dinamikus javaslatok](./media/sql-database-elastic-pool-create-portal/dynamic-recommendation.png)
 
 ## <a name="manage-and-monitor-an-elastic-pool"></a>Kezelni és megfigyelni a rugalmas készlethez
 
-Az Azure portál segítségével rugalmas készletek és a készletben lévő adatbázisok felügyeletét és kezelését. A portálról figyelheti a rugalmas készletek és a készlethez tartozó adatbázis-felhasználását. Módosítások készlete teheti a rugalmas készlethez és egyszerre az összes változtatás is. Ezen változtatások közé tartozik a Hozzáadás, adatbázisok, a rugalmas készlet beállításainak módosítása, vagy nem módosíthatja az adatbázis-beállításokat.
+Az Azure portál toomonitor hello használja, és rugalmas készletek és hello adatbázisok hello készlet kezelése. Hello portálról figyelheti a rugalmas készletek és a készlethez tartozó hello adatbázis hello felhasználását. Is teheti módosítások készlete tooyour rugalmas készlet és küldje el az összes módosulnak hello azonos idő. Ezen változtatások közé tartozik a Hozzáadás, adatbázisok, a rugalmas készlet beállításainak módosítása, vagy nem módosíthatja az adatbázis-beállításokat.
 
-A következő ábrán látható egy példa a rugalmas készlet. A nézet tartalmazza:
+a következő ábra hello látható példa rugalmas készlethez. hello nézet tartalmazza:
 
-*  A rugalmas készlet és a készletben lévő adatbázisok mind az erőforrás-használatát figyelés diagramokat.
-*  A **konfigurálása** készlet gombra kattintva módosíthatja a rugalmas készlethez.
-*  A **adatbázis létrehozása** , amely adatbázist hoz létre, és hozzáadja a jelenlegi rugalmas készlet gombra.
+*  Diagramok figyelés hello rugalmas készlet és a hello adatbázisok hello készletben található az erőforrás-használatát.
+*  Hello **konfigurálása** készlet gomb toomake toohello rugalmas készlet változik.
+*  Hello **adatbázis létrehozása** gomb, amely adatbázist hoz létre, és hozzáadja azt toohello aktuális rugalmas készlet.
 *  Rugalmas feladat, amelyek segítenek adatbázisok nagy számú egy listán szereplő összes adatbázisokhoz Transact-SQL-parancsprogramok futtatásával kezelhető.
 
 ![Készlet megtekintése][2]
 
-Lépjen egy adott alkalmazáskészlet az erőforrás-használat megjelenítéséhez. Alapértelmezés szerint a be van állítva az tárolási és eDTU-használat megjelenítése az elmúlt egy óra. A diagram beállítható úgy, hogy különböző metrikák megjelenítése különböző idő windows keresztül.
+Az erőforrás-használat lépjen tooa adott készlet toosee. Alapértelmezés szerint hello akkor hello elmúlt egy órában konfigurált tooshow tárolási és edtu-k használatát. hello diagram konfigurált tooshow különböző metrikák lehet különböző idő windows keresztül.
 
-1. Válassza ki a rugalmas készlethez történő együttműködésre.
-2. A **rugalmas készlet figyelése** feliratú diagram **erőforrás-használat**. Kattintson a diagramban.
+1. Válassza ki az egy rugalmas készlet toowork.
+2. A **rugalmas készlet figyelése** feliratú diagram **erőforrás-használat**. Kattintson a hello diagram.
 
     ![A rugalmas készlet figyelése][3]
 
-    A **metrika** panel nyílik meg, a megadott metrikák részletes nézete megjeleníti a megadott időszak során.   
+    Hello **metrika** panel nyílik meg, metrikák hello részletes nézete megjelenítő megadott hello megadott időszak alatt.   
 
     ![Metrika panel][9]
 
-### <a name="to-customize-the-chart-display"></a>A diagram megjelenítéséhez
+### <a name="toocustomize-hello-chart-display"></a>toocustomize hello diagram megjelenítése
 
-A diagram és más metrikákkal, például a Processzor százalékos, adat IO százalékos és napló IO százalékos használt megjelenítendő mérték panel szerkesztheti.
+Hello diagram és szerkesztheti hello metrika panel toodisplay más mutatókat, például a Processzor százalékos, adat IO százalékos és használt napló IO százalékot.
 
-1. A metrika paneljén kattintson **szerkesztése**.
+1. Hello metrika paneljén kattintson **szerkesztése**.
 
     ![Kattintson a Szerkesztés][6]
 
-2. Az a **diagram szerkesztése lehetőséget** panelen válasszon ki egy időtartományt (óránként, napjainkban túlra vagy elmúlt hét), vagy kattintson **egyéni** az elmúlt két hétben semmilyen dátumtartomány kijelöléséhez. Válassza ki a diagram (vonal vagy sáv), majd válassza ki az erőforrásokat a figyelheti.
+2. A hello **diagram szerkesztése lehetőséget** panelen válasszon ki egy időtartományt (óránként, napjainkban túlra vagy elmúlt hét), vagy kattintson **egyéni** tooselect bármely dátum között hello az elmúlt két hétben. Válasszon hello diagramtípus (vonal vagy sáv), majd hello erőforrások toomonitor.
 
    > [!Note]
-   > Mértékegység azonos mértékek csak a diagramon megjeleníthető egy időben. Például ha "eDTU százaléka" majd csak választhat más metrikákkal érintő mértékegysége.
+   > Csak a diagram mértékegység azonos hello olvasható hello metrikák: hello azonos idő. Például "eDTU százaléka" választásakor majd csak választhat más metrikákkal érintő mérték hello egységként.
    >
 
     ![Kattintson a Szerkesztés](./media/sql-database-elastic-pool-manage-portal/edit-chart.png)
@@ -161,81 +161,81 @@ A diagram és más metrikákkal, például a Processzor százalékos, adat IO sz
 
 Az egyes adatbázisok is figyelhetők meg potenciális problémák.
 
-1. A **rugalmas adatbázis-figyelési**, öt adatbázisok metrikáját megjelenítő diagram. Alapértelmezés szerint a diagramot jelenít meg a felső 5 adatbázisok a készlet átlagos edtu-k által az elmúlt órában. Kattintson a diagramban.
+1. A **rugalmas adatbázis-figyelési**, öt adatbázisok metrikáját megjelenítő diagram. Alapértelmezés szerint hello diagram alapján jeleníti meg hello felső 5 adatbázisok hello készletben átlagos edtu-k hello az elmúlt egy órában. Kattintson a hello diagram.
 
     ![A rugalmas készlet figyelése][4]
 
-2. A **adatbázis erőforrás-használat** panel jelenik meg. Ez az adatbázis-használat a készletben található részletes áttekintést nyújt a. A rács a panel alsó részén használ, választhatja adatbázisoknak a tárolókészlet megjeleníti a használatát a diagramban (legfeljebb 5 adatbázisok). Testre szabhatja a gombra kattintva a diagramon megjelenő metrikák és idő ablak **diagram szerkesztése**.
+2. Hello **adatbázis erőforrás-használat** panel jelenik meg. Ez az adatbázis-használat hello hello készletben részletes nézetét jeleníti meg. Hello rács hello panel alsó részén hello segítségével, igény szerint adatbázisoknak a hello készlet toodisplay a hello diagramon (felfelé too5 adatbázisok) használatát. Testre szabhatja a metrikák és idő kattintva hello diagramon látható ablak hello **diagram szerkesztése**.
 
     ![Adatbázis erőforráspaneljének kihasználtsága][8]
 
-### <a name="to-customize-the-view"></a>A nézet testreszabásához
+### <a name="toocustomize-hello-view"></a>toocustomize hello megtekintése
 
-1. Az a **adatbázis-erőforrás-használat** panelen kattintson a **diagram szerkesztése**.
+1. A hello **adatbázis-erőforrás-használat** panelen kattintson a **diagram szerkesztése**.
 
     ![Kattintson a diagram szerkesztése](./media/sql-database-elastic-pool-manage-portal/db-utilization-blade.png)
 
-2. Az a **szerkesztése** diagram panelen jelölje be egy időtartományt (óránként túlra vagy elmúlt 24 óra), vagy kattintson a **egyéni** különböző naponta az elmúlt 2 hét megjelenítéséhez jelölje ki.
+2. A hello **szerkesztése** diagram panelen jelölje be egy időtartományt (óránként túlra vagy elmúlt 24 óra), vagy kattintson a **egyéni** különböző naponta az elmúlt 2 hét toodisplay hello tooselect.
 
     ![Kattintson az egyéni](./media/sql-database-elastic-pool-manage-portal/editchart-date-time.png)
 
-3. Kattintson a **hasonlítsa össze az adatbázisok által** jelöljön ki egy másik metrikát adatbázisok összehasonlításakor használandó a legördülő menüből.
+3. Kattintson a hello **hasonlítsa össze az adatbázisok által** legördülő tooselect egy másik metrika toouse adatbázisok összehasonlításakor.
 
-    ![A diagram szerkesztése](./media/sql-database-elastic-pool-manage-portal/edit-comparison-metric.png)
+    ![Hello diagram szerkesztése](./media/sql-database-elastic-pool-manage-portal/edit-comparison-metric.png)
 
-### <a name="to-select-databases-to-monitor"></a>Jelölje be az adatbázisok figyelése
+### <a name="tooselect-databases-toomonitor"></a>tooselect adatbázisok toomonitor
 
-Az adatbázis listáján, a **adatbázis erőforrás-használat** panelen található adott adatbázisok között a listában lévő lapokat vagy egy adatbázis nevében beírásával. A jelölőnégyzet segítségével válassza ki az adatbázist.
+Hello adatbázis listáján, hello **adatbázis erőforrás-használat** panelen található adott adatbázisok hello listában hello lapok között, vagy írja be a hello az adatbázis neve. Hello jelölőnégyzet tooselect hello adatbázist használja.
 
-![Adatbázisok figyelése keresése][7]
+![Adatbázisok toomonitor keresése][7]
 
 
-## <a name="add-an-alert-to-an-elastic-pool-resource"></a>Riasztás egy rugalmas készlet erőforrás hozzáadása
+## <a name="add-an-alert-tooan-elastic-pool-resource"></a>Riasztási tooan rugalmas készlet erőforrás hozzáadása
 
-Szabályokat adhat hozzá egy rugalmas készlet, amely e-mailt küld URL-cím végpontok személyek vagy riasztás karakterláncokkal, amikor a rugalmas készlet találatok egy Ön által beállított használati küszöbértéket.
+Szabályok tooan rugalmas készlet, amely küldött e-mailek toopeople vagy riasztás karakterláncok tooURL végpontok hello rugalmas készlet találatok egy Ön által beállított használati küszöbértéket is hozzáadhat.
 
-**Bármilyen olyan erőforrás riasztást hozzáadása:**
+**egy riasztás tooany erőforrás tooadd:**
 
-1. Kattintson a **erőforrás-használat** a diagram a **metrika** panelen kattintson a **riasztás hozzáadása**, majd adja ki a **riasztásiszabályfelvétele** panel (**erőforrás** automatikusan be kell állítani a készlet dolgozunk kell).
-2. Adjon meg egy **neve** és **leírás** , amely azonosítja a kívánt riasztást, és a címzetteket.
-3. Válasszon egy **metrika** , amelyet szeretne riasztást a listából.
+1. Hello kattintson **erőforrás-használat** diagram tooopen hello **metrika** panelen kattintson a **riasztás hozzáadása**, majd adja meg hello hello információkat **értesítések hozzáadása a szabály** panel (**erőforrás** automatikusan toobe hello készlet dolgozunk be van állítva).
+2. Adjon meg egy **neve** és **leírás** , amely azonosítja a hello riasztási tooyou és hello címzettjeit.
+3. Válasszon egy **metrika** , amelyet az tooalert hello listából.
 
-    A diagram dinamikusan segítségével válassza ki a küszöbértéket, hogy a metrika erőforrás-használat jeleníti meg.
+    hello diagram dinamikusan jeleníti meg, hogy metrika toohelp erőforrás-használat úgy dönt, hogy a küszöbérték.
 
 4. Válasszon egy **feltétel** (nagyobb, kisebb, mint, stb) és egy **küszöbérték**.
-5. Válasszon egy **időszak** idő a metrika szabály a riasztási eseményindítók előtt kell biztosítani.
+5. Válasszon egy **időszak** metrika hello idő szabály kell teljesíteni hello riasztási eseményindítók előtt.
 6. Kattintson az **OK** gombra.
 
 További információkért lásd: [SQL-adatbázis figyelmeztetések létrehozása az Azure-portálon](sql-database-insights-alerts-portal.md).
 
 ## <a name="move-a-database-into-an-elastic-pool"></a>Egy adatbázis áthelyezése rugalmas készletbe
 
-Adja hozzá, vagy távolítsa el az adatbázisokat egy meglévő készletből. Az adatbázisok más készletek is szerepelhet. Azonban csak adhat hozzá adatbázisok, amelyek ugyanazon a logikai kiszolgálón.
+Adja hozzá, vagy távolítsa el az adatbázisokat egy meglévő készletből. hello adatbázisok más készletek is szerepelhet. Azonban csak akkor adhat hozzá adatbázisok vannak a hello azonos logikai kiszolgáló.
 
-1. A készlet panelen a **rugalmas adatbázisok** kattintson **készlet beállítása**.
+1. Hello panelen hello készlet alatt **rugalmas adatbázisok** kattintson **készlet beállítása**.
 
     ![Kattintson a készlet konfigurálása][1]
 
-2. Az a **készlet beállítása** panelen kattintson a **hozzá készlethez**.
+2. A hello **készlet beállítása** panelen kattintson a **toopool hozzáadása**.
 
-    ![Kattintson a Hozzáadás gombra a készlethez](./media/sql-database-elastic-pool-manage-portal/add-to-pool.png)
+    ![Kattintson a Hozzáadás toopool](./media/sql-database-elastic-pool-manage-portal/add-to-pool.png)
 
 
-3. Az a **adatbázisok hozzáadása** panelen válassza ki az adatbázist vagy -adatbázisokat adhat hozzá a készlethez. Kattintson a **válasszon**.
+3. A hello **adatbázisok hozzáadása** panelen, jelölje be hello adatbázis vagy adatbázisok tooadd toohello készlet. Kattintson a **válasszon**.
 
-    ![Válassza ki az adatbázisok hozzáadása](./media/sql-database-elastic-pool-manage-portal/add-databases-pool.png)
+    ![Válassza ki az adatbázisok tooadd](./media/sql-database-elastic-pool-manage-portal/add-databases-pool.png)
 
-    A **készlet beállítása** panel most sorolja fel lehet hozzáadni, az állapot beállítása a kijelölt adatbázis **függőben lévő**.
+    Hello **készlet beállítása** panel most listák hello hozzá, az állapot beállítása túl toobe kijelölt adatbázis**függőben lévő**.
 
     ![Függőben lévő készlet elemek felvétele](./media/sql-database-elastic-pool-manage-portal/pending-additions.png)
 
-3. Az a **konfigurálás készlet paneljén**, kattintson a **mentése**.
+3. A hello **konfigurálás készlet paneljén**, kattintson a **mentése**.
 
     ![Kattintson a Save (Mentés) gombra.](./media/sql-database-elastic-pool-manage-portal/click-save.png)
 
 ## <a name="move-a-database-out-of-an-elastic-pool"></a>Egy adatbázis áthelyezése rugalmas készletek kívül
 
-1. Az a **készlet beállítása** panelen válassza ki az adatbázis vagy az adatbázis eltávolítása.
+1. A hello **készlet beállítása** panelen, jelölje be hello adatbázis vagy adatbázisok tooremove.
 
     ![adatbázisok listázása](./media/sql-database-elastic-pool-manage-portal/select-pools-removal.png)
 
@@ -243,41 +243,41 @@ Adja hozzá, vagy távolítsa el az adatbázisokat egy meglévő készletből. A
 
     ![adatbázisok listázása](./media/sql-database-elastic-pool-manage-portal/click-remove.png)
 
-    A **készlet beállítása** panel most már tartalmazza az adatbázis állapotának beállítása az eltávolításra kijelölt **függőben lévő**.
+    Hello **készlet beállítása** panel most listák hello toobe eltávolítása állapotának beállítása túl, a kijelölt adatbázis**függőben lévő**.
 
     ![előzetes adatbázis hozzáadásának és eltávolításának](./media/sql-database-elastic-pool-manage-portal/pending-removal.png)
 
-3. Az a **konfigurálás készlet paneljén**, kattintson a **mentése**.
+3. A hello **konfigurálás készlet paneljén**, kattintson a **mentése**.
 
     ![Kattintson a Save (Mentés) gombra.](./media/sql-database-elastic-pool-manage-portal/click-save.png)
 
 ## <a name="change-performance-settings-of-an-elastic-pool"></a>Egy rugalmas készlet teljesítmény beállításainak módosítása
 
-Ahogy figyeli az erőforrás-használat rugalmas készlet, azt tapasztalhatja, hogy szükség van-e módosításra. Lehet, hogy a készletben kell a teljesítményt és a tárolást korlátok változását. Esetleg módosítani szeretné az adatbázis-beállításai a készletben. A telepítő a készlet lekérni a legjobb egyenlege teljesítményének és költséghatékonyságának bármikor módosíthatja. Lásd: [amikor rugalmas készletek használandó?](sql-database-elastic-pool.md) további információt.
+Ahogy figyeli a rugalmas készlet hello erőforrás-használat, azt tapasztalhatja, hogy szükség van-e módosításra. Lehet, hogy a hello-készletben hello teljesítményt és a tárolást korlátok változása van szükség. Esetleg érdemes toochange hello adatbázis beállításainak hello készletben. Minden alkalommal tooget hello legjobb egyenlege teljesítményének és költséghatékonyságának hello készlet hello beállítása módosítható. Lásd: [amikor rugalmas készletek használandó?](sql-database-elastic-pool.md) további információt.
 
-A edtu-inak vagy tárolási korlátai készletenként és edtu-k adatbázisonkénti módosítása:
+toochange hello edtu-inak vagy tárolási korlátokat címkészletet, és az adatbázisonkénti edtu-k száma:
 
-1. Nyissa meg a **készlet beállítása** panelen.
+1. Nyissa meg hello **készlet beállítása** panelen.
 
-    A **rugalmas készlet beállítások**, vagy a csúszka segítségével módosítsa a készlet beállításait.
+    A **rugalmas készlet beállítások**, vagy csúszkát toochange hello készlet beállításait használja.
 
     ![A rugalmas készlet erőforrás-használat](./media/sql-database-elastic-pool-manage-portal/resize-pool.png)
 
-2. Ha módosítja a beállítást, a megjelenítési a módosítás következményeivel becsült havi költségét jeleníti meg.
+2. Hello beállítás megváltozásakor hello megjelenítési hello becsült hello módosítás havi költségét jeleníti meg.
 
     ![Egy rugalmas készlet és új havi költségét frissítése folyamatban](./media/sql-database-elastic-pool-manage-portal/pool-change-edtu.png)
 
 ## <a name="latency-of-elastic-pool-operations"></a>A rugalmas készlet műveletek várakozási ideje
-* Másodpercenkénti adatbázis vagy a maximális edtu-k adatbázisonkénti minimális edtu-k általában módosítása befejeződött, kevesebb mint 5 perc alatt.
-* Módosítása edtu-inak száma attól függ, hogy mekkora a készletben lévő összes adatbázisok által felhasznált lemezterület mérete. A módosítások átlagosan 100 gigabájtonként legfeljebb 90 percet vesznek igénybe. Például által használt a teljes lemezterület a készletben lévő összes adatbázisok esetén 200 GB-os, akkor a készlet eDTU-készlet módosítására a várt várakozási 3 óra vagy annál kisebb.
+* Hello minimális Edtu / adatbázis vagy a maximális edtu-k adatbázisonkénti módosítása általában befejezi a kevesebb mint 5 perc alatt.
+* Minden adatbázis hello készletben használt terület teljes mennyisége hello függ készletenként hello edtu-k módosítását. A módosítások átlagosan 100 gigabájtonként legfeljebb 90 percet vesznek igénybe. Például hello teljes terület által használt összes adatbázis hello készletben esetén 200 GB-os, majd hello várt késése hello készlet eDTU-készlet módosítása 3 óra vagy annál kisebb.
 
 ## <a name="next-steps"></a>Következő lépések
 
-- Ismertetése mi rugalmas készletek esetén: [SQL Database rugalmas készlet](sql-database-elastic-pool.md).
+- egy rugalmas készlet van, lásd: toounderstand [SQL Database rugalmas készlet](sql-database-elastic-pool.md).
 - A rugalmas készleteket használó útmutatóért lásd: [rugalmas készletek ára és teljesítménye szempontjai](sql-database-elastic-pool.md).
-- Rugalmas feladat segítségével futtassa a Transact-SQL-szkriptek használatát a készletben lévő adatbázisok tetszőleges számú, lásd: [rugalmas feladatok áttekintése](sql-database-elastic-jobs-overview.md).
-- A készletben lévő adatbázisok tetszőleges számú átfogó lekérdezése, lásd: [rugalmas lekérdezési áttekintése](sql-database-elastic-query-overview.md).
-- Tetszőleges számú adatbázishoz a tárolókészletben, lásd: tranzakciók [rugalmas tranzakciók](sql-database-elastic-transactions-overview.md).
+- toouse rugalmas feladatok toorun Transact-SQL-szkriptek használatát tetszőleges számú adatbázishoz hello készletben, lásd: [rugalmas feladatok áttekintése](sql-database-elastic-jobs-overview.md).
+- tooquery keresztül tetszőleges számú adatbázishoz hello készletben, lásd: [rugalmas lekérdezési áttekintése](sql-database-elastic-query-overview.md).
+- Tetszőleges számú adatbázishoz hello készletben, lásd: tranzakciók [rugalmas tranzakciók](sql-database-elastic-transactions-overview.md).
 
 
 <!--Image references-->

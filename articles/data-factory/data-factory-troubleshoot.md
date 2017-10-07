@@ -1,6 +1,6 @@
 ---
-title: "Azure Data Factory elhárítása"
-description: "További tudnivalók az Azure Data Factory használatával kapcsolatos problémák elhárítása."
+title: "aaaTroubleshoot Azure Data Factory problémák"
+description: "Ismerje meg, hogyan tootroubleshoot állít ki az Azure Data Factory használatával."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: spelluru
-ms.openlocfilehash: 953a2703db7c8991f580a7c963d6cbd94265c213
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: cf65bcf3e1c3f061d3ac1dbf32e99cc7b014f9dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-data-factory-issues"></a>Data Factory-hibák elhárítása
-Ez a cikk biztosítja a hibaelhárítási tippekért problémák Azure Data Factory használatával. Ez a cikk nem szerepel a lehetséges problémák, a szolgáltatás használata esetén, de bizonyos problémák és általános hibaelhárítási tippek magában foglalja.   
+Ez a cikk biztosítja a hibaelhárítási tippekért problémák Azure Data Factory használatával. Ez a cikk nem szerepel minden hello lehetséges problémákat hello szolgáltatás használatakor, de bizonyos problémák és általános hibaelhárítási tippek magában foglalja.   
 
 ## <a name="troubleshooting-tips"></a>Hibaelhárítási tippek
-### <a name="error-the-subscription-is-not-registered-to-use-namespace-microsoftdatafactory"></a>Hiba: Az előfizetés nincs regisztrálva a Microsoft.DataFactory névtér használatára
-Amennyiben ezt a hibaüzenetet kapja, az Azure Data Factory erőforrás-szolgáltató nincs regisztrálva a számítógépén. Tegye a következőket:
+### <a name="error-hello-subscription-is-not-registered-toouse-namespace-microsoftdatafactory"></a>Hiba: hello előfizetés nincs regisztrált toouse névtér "Microsoft.DataFactory"
+Ha ez a hibaüzenet jelenik meg, hello Azure Data Factory erőforrás-szolgáltató nincs regisztrálva a számítógépen. A következő hello:
 
 1. Indítsa el az Azure PowerShellt.
-2. Jelentkezzen be az Azure-fiókjával az alábbi parancs segítségével.
+2. Jelentkezzen be tooyour Azure-fiók hello a következő parancs használatával.
 
     ```powershell
     Login-AzureRmAccount
     ```
-3. A következő parancsot az Azure Data Factory-szolgáltató regisztrálásához.
+3. Futtassa a következő parancs tooregister hello Azure Data Factory szolgáltató hello.
 
     ```powershell        
     Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
     ```
 
 ### <a name="problem-unauthorized-error-when-running-a-data-factory-cmdlet"></a>Probléma: Nem engedélyezett hiba a Data Factory parancsmag futtatásakor
-Valószínűleg nem a megfelelő Azure-fiókot vagy előfizetést használja az Azure PowerShell futtatásához. Az alábbi parancsmagokkal válassza ki a megfelelő Azure-fiókot és előfizetést az Azure PowerShell használatához.
+Az Azure PowerShell hello hello jobb Azure-fiók vagy előfizetés valószínűleg nem használ. A következő parancsmagok tooselect hello jobb hello Azure PowerShell-lel rendelkező Azure fiókja és -előfizetése toouse hello használata.
 
-1. Login-AzureRmAccount - használja a megfelelő felhasználói Azonosítót és jelszót
-2. Get-AzureRmSubscription – a fiókhoz tartozó előfizetések megtekintéséhez.
-3. SELECT-AzureRmSubscription &lt;előfizetés neve&gt; -válassza ki a megfelelő előfizetést. Használja ugyanazt, adat-előállító létrehozása az Azure portál használatával.
+1. Login-AzureRmAccount - használata hello megfelelő felhasználói Azonosítót és jelszót
+2. Get-AzureRmSubscription – összes hello hello fiókhoz előfizetések nézet.
+3. SELECT-AzureRmSubscription &lt;előfizetés neve&gt; -válasszon hello megfelelő előfizetést. Használjon hello azonos toocreate egy adat-előállító hello Azure-portált használja.
 
-### <a name="problem-fail-to-launch-data-management-gateway-express-setup-from-azure-portal"></a>Probléma: Nem sikerült indítsa el az adatok Management Gateway Express telepítése Azure-portálon
-Az adatkezelési átjáró expressz telepítéséhez az Internet Explorer vagy egy Microsoft ClickOnce-kompatiblis webböngésző szükséges. Amennyiben az expressz telepítés nem indul el, tegye a következők egyikét:
+### <a name="problem-fail-toolaunch-data-management-gateway-express-setup-from-azure-portal"></a>Hiba: Sikertelen toolaunch adatok Management Gateway Express telepítése Azure-portálon
+hello Expressz telepítés az adatkezelési átjáró hello Internet Explorer vagy a Microsoft ClickOnce kompatibilis böngésző szükséges. Ha hello Express telepítő toostart sikertelen, hello következő módokon:
 
 * Az Internet Explorer vagy a Microsoft ClickOnce kompatibilis böngésző használata.
 
-    Amennyiben Chrome böngészőt használ, keresse fel a [Chrome webáruházát](https://chrome.google.com/webstore/), keressen rá a „ClickOnce” kulcsszóra, válassza ki az egyik ClickOnce-bővítményt, majd telepítse azt.
+    Ha a Chrome használ, lépjen a toohello [Chrome webes tároló](https://chrome.google.com/webstore/), keressen a "ClickOnce" kulcsszóval, válasszon egyet a hello ClickOnce kiterjesztések, és telepítse.
 
-    Tegye meg ugyanezt a Firefox (install-bővítmény). Kattintson az eszköztár Menü megnyitása gombjára (három vízszintes csík a jobb felső sarokban). Kattintson a Kiegészítők menüpontra, keressen a „ClickOnce” kulcsszóra, jelöljön ki egy ClickOnce-bővítmény, és telepítse azt.
-* Használja a **manuális telepítés** a portálon azonos panelen látható hivatkozásra. Ezt a módszert használja a telepítőfájl letöltéséhez, és manuális futtatása. A telepítés befejezését követően az adatok adatkezelési átjáró konfigurálása párbeszédpanel jelenik meg. Másolja ki a **kulcsot** a Portál képernyőről, és a konfigurációkezelőben ezt használva regisztrálja az átjárót a szolgáltatásban.  
+    Hello azonos Firefox (install-bővítmény). Hello eszköztáron (három vízszintes vonal hello jobb felső sarokban) menü megnyitása gombra, kattintson a bővítmények, keressen a "ClickOnce" kulcsszóval egyikével hello ClickOnce kiválasztása, és telepítse.
+* Használjon hello **manuális telepítés** hivatkozás jelenik meg a hello hello portálon azonos panelen. Ez a megközelítés toodownload telepítőfájlt használ, és manuális futtatása. Hello telepítés befejezését követően hello adatok adatkezelési átjáró konfigurálása párbeszédpanel jelenik meg. Másolás hello **kulcs** hello Letöltés gombra, és használja azt a hello configuration manager toomanually hello átjáró regisztrálása hello szolgáltatásban.  
 
-### <a name="problem-fail-to-connect-to-on-premises-sql-server"></a>Probléma: Nem sikerült kapcsolódni a helyszíni SQL Server
-Indítsa el **az adatkezelési átjáró konfigurációkezelőjének** az átjárót működtető gépen, és használja a **hibaelhárítás** lapon, a kapcsolat tesztelése az SQL-kiszolgálón az átjárót működtető gépen. Lásd: [átjáró elhárítása](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) kapcsolati/átjáró hibaelhárítási tippek a kapcsolódó problémákat.   
+### <a name="problem-fail-tooconnect-tooon-premises-sql-server"></a>Hiba: Sikertelen tooconnect tooon helyszíni SQL Server
+Indítsa el **az adatkezelési átjáró konfigurációkezelőjének** az átjárót működtető gépen hello és hello használata **hibaelhárítás** tootest hello kapcsolat tooSQL Server hello átjáró gépről fülre. Lásd: [átjáró elhárítása](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) kapcsolati/átjáró hibaelhárítási tippek a kapcsolódó problémákat.   
 
 ### <a name="problem-input-slices-are-in-waiting-state-for-ever"></a>Probléma: Ha valaha is várakozó állapotban vannak bemeneti szeletek
-A szeletek lehet a **Várakozás** állapot különféle okok miatt. A gyakori okai, hogy a **külső** tulajdonság értéke nem **igaz**. Bármely Azure Data Factory hatókörén kívül előállított dataset fel kell tüntetni **külső** tulajdonság. Ez a tulajdonság jelzi, hogy az adatok külső és nem mentett adat-előállító belül bármely folyamatok által-e. Az adatszeletek **Készként** vannak jelölve, amint elérhetőek az adatok a megfelelő tárban.
+lehet, hogy hello szeletek a **Várakozás** állapot toovarious okok miatt. Hello gyakori okai egyik adott hello **külső** tulajdonság értéke nem túl**igaz**. Bármely adatkészlet hatókörében létrehozott külső hello Azure Data Factory, fel kell tüntetni **külső** tulajdonság. Ez a tulajdonság jelzi, hogy hello adatok-e a külső és a nem mentett minden belül hello adat-előállító adatcsatornák által. hello adatszeletek fel van tüntetve **készen** hello adatok elérhetővé válik a hello megfelelő áruházban.
 
-Tekintse meg a következő példát az **external** tulajdonság használatáról. Opcionálisan megadhat **externalData*** beállításakor külső igaz értékre.
+Tekintse meg a következő példa hello használati hello hello **külső** tulajdonság. Opcionálisan megadhat **externalData*** külső tootrue beállításakor.
 
 Lásd: [adatkészletek](data-factory-create-datasets.md) cikk részletesebb ezt a tulajdonságot.
 
@@ -92,34 +92,34 @@ Lásd: [adatkészletek](data-factory-create-datasets.md) cikk részletesebb ezt 
 }
 ```
 
-A hiba megoldásához adja hozzá az **external** tulajdonságot és a választható **externalData** szakaszt a bemeneti tábla JSON-definíciójához, és hozza létre ismét a táblát.
+tooresolve hello hiba, vegye fel a hello **külső** tulajdonság és az opcionális hello **externalData** toohello JSON-definícióból hello bemeneti tábla szakaszt, és hozza létre újra a hello tábla.
 
 ### <a name="problem-hybrid-copy-operation-fails"></a>Probléma: Hibrid másolás nem lehetséges
-Lásd: [átjáró elhárítása](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) lépéseket elhárítása onnan egy a helyszíni adatok másolása az adatkezelési átjáró használatával tárolja.
+Lásd: [átjáró elhárítása](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) vonatkozó lépéseket tootroubleshoot problémákat másolása onnan egy a helyszíni adatok tárolására használatával hello az adatkezelési átjáró.
 
 ### <a name="problem-on-demand-hdinsight-provisioning-fails"></a>Probléma: Igény szerinti HDInsight kiépítése sikertelen
-HDInsightOnDemand típusú társított szolgáltatás használata esetén meg kell adnia egy linkedServiceName, amely egy Azure Blob Storage mutat. A Data Factory szolgáltatás ezt a tárolót használja az igény szerinti HDInsight-fürt naplófájljainak és a kapcsolódó fájloknak a tárolásához.  Néha az igény szerinti HDInsight-fürt kiépítése meghiúsul, és a következő hibaüzenet jelenik meg:
+HDInsightOnDemand típusú társított szolgáltatás használatakor a linkedServiceName mutat, tooan Azure Blob Storage toospecify kell. Data Factory szolgáltatásnak használ a tárolási toostore naplók és egyéb szükséges fájlokat a igény szerinti HDInsight-fürthöz.  Egyes esetekben az igény szerinti HDInsight-fürtök kiépítése meghiúsul, és a következő hiba hello:
 
 ```
-Failed to create cluster. Exception: Unable to complete the cluster create operation. Operation failed with code '400'. Cluster left behind state: 'Error'. Message: 'StorageAccountNotColocated'.
+Failed toocreate cluster. Exception: Unable toocomplete hello cluster create operation. Operation failed with code '400'. Cluster left behind state: 'Error'. Message: 'StorageAccountNotColocated'.
 ```
 
-Ez a hiba többnyire azt jelzi, hogy a linkedServiceName szolgáltatásban megadott tárfiók nem ugyanazon az adatközpont-helyen található, ahol a HDInsight kiépítése történik. Példa: Ha a data factory USA nyugati régiója és az Azure storage egy, az USA keleti régiója, az igény szerinti kiépítés sikertelen lesz az USA nyugati régiója.
+Ez a hiba általában azt jelzi, hogy hello linkedServiceName megadott hello tárfiók hello helye nem a hello azonos adatközpont-helyet, ahol hello HDInsight kiépítése történik. Példa: Ha a data factory USA nyugati régiója és az Azure storage hello az USA keleti régiója, hello igény létesítési meghiúsul az USA nyugati régiója.
 
-Az additionalLinkedServiceNames egy másik JSON-tulajdonság, amelyben további tárfiókok adhatók meg az igény szerinti HDInsight szolgáltatáshoz. Ezen további társított tárfiókokat és a HDInsight-fürt ugyanazon a helyen kell lennie, vagy a azonos hiba miatt sikertelen.
+Az additionalLinkedServiceNames egy másik JSON-tulajdonság, amelyben további tárfiókok adhatók meg az igény szerinti HDInsight szolgáltatáshoz. Ezen további kapcsolt tárfiókot kell hello ugyanazon a helyen hello HDInsight-fürtöt, vagy nem sikerül a hello ugyanezt a hibaüzenetet.
 
 ### <a name="problem-custom-net-activity-fails"></a>Probléma: Egyéni .NET tevékenység sikertelen
 Lásd: [folyamat hibakeresése egyéni tevékenységeket](data-factory-use-custom-activities.md#troubleshoot-failures) a részletes lépéseket.
 
-## <a name="use-azure-portal-to-troubleshoot"></a>Az Azure portál használatával hibáinak elhárítása
+## <a name="use-azure-portal-tootroubleshoot"></a>Az Azure portál tootroubleshoot használata
 ### <a name="using-portal-blades"></a>Portál paneleken használatával
 Lásd: [figyelő folyamat](data-factory-build-your-first-pipeline-using-editor.md#monitor-pipeline) lépéseket.
 
 ### <a name="using-monitor-and-manage-app"></a>A Megfigyelés és kezelés alkalmazás használata
 Lásd: [figyelése és kezelése a data factory folyamatok figyelése és kezelése App](data-factory-monitor-manage-app.md) részleteket.
 
-## <a name="use-azure-powershell-to-troubleshoot"></a>Hibaelhárítás az Azure PowerShell használatával
-### <a name="use-azure-powershell-to-troubleshoot-an-error"></a>Egy hiba elhárítása az Azure PowerShell használatával
+## <a name="use-azure-powershell-tootroubleshoot"></a>Azure PowerShell tootroubleshoot használata
+### <a name="use-azure-powershell-tootroubleshoot-an-error"></a>Használja az Azure PowerShell tootroubleshoot hiba
 Lásd: [képernyő adat-előállító folyamatok, az Azure PowerShell](data-factory-build-your-first-pipeline-using-powershell.md#monitor-pipeline) részleteiről.
 
 [adfgetstarted]: data-factory-copy-data-from-azure-blob-storage-to-sql-database.md

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Machine Learning a algoritmusok optimalizálása |} Microsoft Docs"
-description: "Válassza ki az optimális paraméterkészlet az az Azure Machine Learning algoritmus ismerteti."
+title: aaaOptimize a algoritmusok az Azure Machine Learning |} Microsoft Docs
+description: "Ismerteti, hogyan a toochoose hello optimális paraméter beállítása az Azure Machine Learning algoritmus."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: b3be7f31ac31c656744fb809e3972af0ac4ad4f1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fbf2f71abdbce19483fb048d67a39cbb368a928e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="choose-parameters-to-optimize-your-algorithms-in-azure-machine-learning"></a>Válassza ki a paraméterek az Azure Machine Learning a algoritmusok optimalizálása
-Ez a témakör ismerteti a jobb oldali hyperparameter beállítása az Azure Machine Learning algoritmus kiválasztása. A legtöbb gépi tanulási algoritmusok tartozhat paraméter beállítása. Amikor egy modell betanításához kell e paraméterek értékének megadására. A betanított modell hatékonyságát attól függ, hogy a modell paraméterek, választott. A folyamat, hogy a rendszer az optimális beállítása olyan paraméterek összessége *kijelölési minta*.
+# <a name="choose-parameters-toooptimize-your-algorithms-in-azure-machine-learning"></a>Az Azure Machine Learning a algoritmusok paraméterek toooptimize kiválasztása
+Ez a témakör ismerteti, hogyan toochoose hello jobb hyperparameter beállítani az Azure Machine Learning algoritmus. A legtöbb gépi tanulási algoritmusok paraméterek tooset rendelkezik. Amikor egy modell betanításához tooprovide értékeket kell azokat a paramétereket. hello betanított modell hello hatékonyságát hello modell paraméterek, választott függ. hello művelet, hogy a rendszer hello optimális paraméterek készletét néven *kijelölési minta*.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-A kijelölési minta különböző módja van. A gépi tanulásban kereszt-ellenőrzési a legszélesebb körben használt módszerek egyikét a modell kiválasztása, pedig az alapértelmezett modell kijelölés mechanizmus az Azure Machine Learning. Azure Machine Learning támogatja az R és Python, mert mindig megvalósítható a saját modell kijelölés mechanizmusok R vagy Python használatával.
+Nincsenek különböző módokon toodo modell kiválasztása. A gépi tanulásban kereszt-ellenőrzési hello legszélesebb körben használt módszerek egyikét a modell kiválasztása, pedig hello alapértelmezett modell kijelölés mechanizmus az Azure Machine Learning. Azure Machine Learning támogatja az R és Python, mert mindig megvalósítható a saját modell kijelölés mechanizmusok R vagy Python használatával.
 
-A legjobb paraméterhalmaz keresése folyamatban négy lépésben történik:
+Hello folyamat során, hogy a legjobb paraméterhalmaz hello négy lépésben történik:
 
-1. **Adja meg a paraméter terület**: algoritmust, először döntse el, akkor érdemes megfontolni a pontos paraméterértékeket.
-2. **A kereszt-ellenőrzési beállítások megadása**: döntse el, a kereszt-ellenőrzési modellrészt az adatkészlet kiválasztása.
-3. **Adja meg a mérték**: milyen metrika használandó paraméterek, például pontossága legjobb készletének meghatározása mellett dönt, a legfelső szintű közepét négyzet hiba, pontosság, visszaírási vagy f-pontszám.
-4. **Betanítása, értékelje ki, és hasonlítsa össze**: a paraméterértékek egyedi kombinációit kereszt-ellenőrzési által végzett, és adhat meg a hiba a metrika alapján. Értékelési és összehasonlító után válassza ki a legjobban teljesítő modell.
+1. **Hello paraméter térköz meghatározása**: hello algoritmushoz, először döntse el, hello pontos paraméterértékek tooconsider szeretné.
+2. **Hello kereszt-ellenőrzési beállítások megadása**: döntse el, hogyan toochoose kereszt-ellenőrzési modellrészt hello az adatkészlethez.
+3. **Hello mérőszám meghatározása**: döntse el, milyen metrika toouse hello legjobb set paraméterek, például a pontosság meghatározásához, legfelső szintű közepét négyzet hiba, pontosság, visszaírási vagy f-pontszámot.
+4. **Betanítása, értékelje ki, és hasonlítsa össze**: hello paraméterértékek egyedi kombinációit kereszt-ellenőrzési által végzett, és megadhatja a hello hiba metrika alapján. Értékelési és összehasonlító után dönthet úgy hello legjobban teljesítő modell.
 
-Az alábbi ábrán látható, hogy ez elérhető az Azure Machine Learning.
+hello a következő kép bemutatja, hogyan Ez elérhető az Azure Machine Learning mutatja be.
 
-![A legjobb paraméterhalmaz keresése](./media/machine-learning-algorithm-parameters-optimize/fig1.png)
+![Hello legjobb paraméterhalmaz keresése](./media/machine-learning-algorithm-parameters-optimize/fig1.png)
 
-## <a name="define-the-parameter-space"></a>Adja meg a paraméter terület
-Megadhatja, hogy a paraméter, állítsa be megfelelően a modell alkalmazásinicializálási lépéshez. Minden gépi tanulási algoritmusok paraméter ablaktábla trainer két módja van: *egyetlen paraméter* és *paraméter tartomány*. Válassza ki a paraméter tartomány mód. Paraméter tartomány módban mindegyik paraméterhez több értékeket adhat meg. A szövegmezőben vesszővel elválasztott értékeket adhat meg.
+## <a name="define-hello-parameter-space"></a>Adja meg a hello paraméter terület
+Állítsa be megfelelően hello modell alkalmazásinicializálási lépéshez hello paraméter adhat meg. hello paraméter ablaktábla az összes gépi tanulási algoritmusok trainer szolgáltatásnak két módja van: *egyetlen paraméter* és *paraméter tartomány*. Válassza ki a paraméter tartomány mód. Paraméter tartomány módban mindegyik paraméterhez több értékeket adhat meg. Hello szövegmezőben vesszővel elválasztott értékeket adhat meg.
 
 ![Két osztályú súlyozott döntési fa, egyetlen paraméter](./media/machine-learning-algorithm-parameters-optimize/fig2.png)
 
- Alternatív megoldásként megadhatja a rács és pontok létrehozását a teljes száma a maximális és minimális pontjait **használata tartomány jelentéskészítő**. Alapértelmezés szerint a paraméterértékek skálán lineáris jönnek létre. Ha azonban **logaritmikus skála** be van jelölve, az értékek létrejönnek a Logaritmikus skála (Ez azt jelenti, hogy a szomszédos pontok aránya az állandó helyett a különbség). Egész paraméterrel meghatározhatja széles kötőjellel. Például "1 – 10" azt jelenti, hogy az összes egész számok 1 és 10 (mind a két szélsőértéket beleértve) közötti a paraméter készletet alkotnak. A kevert üzemmód is támogatott. Például a paramétert állítsa "1 – 10, 20, 50" tartalmazhat egész számok 1-10, 20, 50 és.
+ Alternatív megoldásként definiálhatja hello maximális és minimális pontok hello rács és hello segítségével létrehozott pontok toobe teljes száma **használata tartomány jelentéskészítő**. Alapértelmezés szerint hello paraméterértékek skálán lineáris jönnek létre. Ha azonban **logaritmikus skála** be van jelölve, hello értékek jönnek létre a Logaritmikus skála hello (Ez azt jelenti, hogy hello arány hello szomszédos pontok, állandó a különbség helyett). Egész paraméterrel meghatározhatja széles kötőjellel. Például, "1 – 10" azt jelenti, hogy minden egész számok 1 és 10 közötti hello paraméter készletet alkotnak (mind a két szélsőértéket beleértve). A kevert üzemmód is támogatott. Például hello paraméterhalmaz "1 – 10, 20, 50" tartalmazhat egész számok 1-10, 20, 50 és.
 
 ![Két osztályú súlyozott döntési fa, paraméter](./media/machine-learning-algorithm-parameters-optimize/fig3.png)
 
 ## <a name="define-cross-validation-folds"></a>Kereszt-ellenőrzési modellrészt meghatározása
-A [partíció és minta] [ partition-and-sample] modul segítségével modellrészt véletlenszerűen hozzárendelése az adatokat. A következő példa a modul konfigurációja, hogy meg kell határozni öt modellrészt és véletlenszerűen számot a modellrészek a minta-példányokban kívánja.
+Hello [partíció és minta] [ partition-and-sample] modul használt toorandomly hozzárendelése modellrészt toohello adatok is lehetnek. A következő hello modul mintakonfiguráció hello, azt meg kell határozni öt modellrészt és véletlenszerűen rendelje hozzá egy szám toohello minta példányok.
 
 ![Partíció és minta](./media/machine-learning-algorithm-parameters-optimize/fig4.png)
 
-## <a name="define-the-metric"></a>A mérőszám meghatározása
-A [Finomhangolhatják a modell-Hiperparamétereket] [ tune-model-hyperparameters] modul támogatást biztosít az egy adott algoritmus és a dataset paraméterek legjobb készletét empirically kiválasztása. Egyéb információk mellett a modell betanítása vonatkozó a **tulajdonságok** ablaktábla ehhez a modul tartalmazza a metrikát a legjobb paraméter készletének meghatározása. Két különböző legördülő listák a besorolás és regressziós algoritmus, illetve rendelkezik. Ha a szóban forgó algoritmus egy osztályozó algoritmus, a regressziós metrika rendszer figyelmen kívül hagyja, és ez fordítva is igaz. Ebben a példában a mérőszáma **pontossága**.   
+## <a name="define-hello-metric"></a>Hello mérőszám meghatározása
+Hello [Finomhangolhatják a modell-Hiperparamétereket] [ tune-model-hyperparameters] modul támogatást nyújt az empirically kiválasztása hello ajánlott egy adott algoritmus és a dataset paraméterek készletét. Ezenkívül képzési hello tooother információhoz modellre: hello **tulajdonságok** Ez a modul ablaktábláján tartalmaz hello metrika hello legjobb paraméterhalmaz meghatározásához. Két különböző legördülő listák a besorolás és regressziós algoritmus, illetve rendelkezik. Ha a szóban forgó hello algoritmus egy osztályozó algoritmus, hello regressziós metrika rendszer figyelmen kívül hagyja, és ez fordítva is igaz. Ebben a példában a hello mérőszáma **pontossága**.   
 
 ![Ismétlés paraméterek](./media/machine-learning-algorithm-parameters-optimize/fig5.png)
 
 ## <a name="train-evaluate-and-compare"></a>A vonat, kiértékeléséhez és összehasonlítása
-Azonos [Finomhangolhatják a modell-Hiperparamétereket] [ tune-model-hyperparameters] modul az modellek, amelyek megfelelnek a paraméterhalmaz betanítja, különböző metrikák kiértékeli, és létrehozza a legjobban betanított modell úgy dönt, a mérték alapján. Ez a modul két kötelező bemeneti rendelkezik:
+hello azonos [Finomhangolhatják a modell-Hiperparamétereket] [ tune-model-hyperparameters] modul betanítja összes hello modellt a toohello paraméterhalmaz megfelelnek, különböző metrikák kiértékeli, és létrehozza a hello legjobban betanított modell hello alapján a metrika választja. Ez a modul két kötelező bemeneti rendelkezik:
 
-* A kellő tanuló
-* Az adatkészlet
+* hello kellő tanuló
+* hello adatkészlet
 
-A modul is rendelkezik egy nem kötelező bemeneti adatkészletet. Csatlakozás a dataset modellrészek információ a kötelező dataset bemeneti. Ha a DataSet adatkészlet bármely modellrészek információ nem hozzá van rendelve, majd a 10-szeres kereszt-ellenőrzési automatikusan végre alapértelmezés szerint. Ha a modellrészek-hozzárendelés nem végezték el, és egy érvényesítési dataset szerepel. a választható dataset port, egy tanítási-teszt mód van kiválasztva, és az első adatkészletet használt paraméter kombinációjához a modell betanításához.
+hello modul is rendelkezik egy nem kötelező bemeneti adatkészletet. Csatlakozás hello dataset modellrészek információk toohello kötelező dataset bemeneti. Ha hello adatkészlet nincs hozzárendelve semmilyen modellrészek információt, majd a 10-szeres kereszt-ellenőrzési automatikusan végre alapértelmezés szerint. Ha hello modellrészek hozzárendelés nem végezték el és érvényesítési dataset áll hello választható dataset port, egy tanítási-teszt mód van kiválasztva, és hello első adatkészlet egy használt tootrain hello modell minden paraméterkombináció.
 
 ![Súlyozott döntési fa osztályozó](./media/machine-learning-algorithm-parameters-optimize/fig6a.png)
 
-A modell majd kiértékelése az érvényesítési adatkészlettel. A modul bal oldali kimeneti portját különböző metrikákat a paraméterértékek funkciók szerint jeleníti meg. A jobb oldali kimeneti portjára biztosít a betanított modell, amely megfelel a kiválasztott metrika szerint a legjobban teljesítő modell (**pontossága** ebben az esetben).  
+hello modell majd kiértékelése hello érvényesítési adatkészlethez. hello hello modul látható kimeneti portjára különböző metrikák állapotban maradt funkciók a paraméterértékek. jobb oldali kimeneti portjára ad hello betanított modell, amely megfelel a kiválasztott metrika toohello szerint toohello legjobban teljesítő modell hello (**pontossága** ebben az esetben).  
 
 ![Érvényesítési adatkészlet](./media/machine-learning-algorithm-parameters-optimize/fig6b.png)
 
-A pontos paraméterek megjelenítése a jobb oldali kimeneti portjára által választott tekintheti meg. Ez a modell használható TesztKészlet pontozási vagy egy operationalized webszolgáltatás a modell betanítását, a mentés után.
+Hello pontos paraméterek megjelenítése hello jobb oldali kimeneti portjára által választott tekintheti meg. Ez a modell használható TesztKészlet pontozási vagy egy operationalized webszolgáltatás a modell betanítását, a mentés után.
 
 <!-- Module References -->
 [partition-and-sample]: https://msdn.microsoft.com/library/azure/a8726e34-1b3e-4515-b59a-3e4a475654b8/

@@ -1,5 +1,5 @@
 ---
-title: "Az alkalmazás állapotának és az Application insights szolgáltatással használatának figyelése"
+title: "aaaMonitor az alkalmazás állapotának és használatának az Application insights szolgáltatással"
 description: "Ismerkedés az Application insights szolgáltatással. Használati, rendelkezésre állásának és a helyszíni vagy a Microsoft Azure-alkalmazások teljesítményének elemzése."
 services: application-insights
 documentationcenter: 
@@ -13,26 +13,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/25/2015
 ms.author: bwren
-ms.openlocfilehash: 5b7b1f4a53cd2624ee8e2ab684ba6ba63252674f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9230a6e65e5afb00c36122ff1d1de01ba19cd7f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-performance-in-web-applications"></a>Webalkalmazások teljesítményének monitorozása
 
 
-Győződjön meg arról, hogy az alkalmazás teljesítménye, és tájékozódhat a gyorsan esetleges hibákat. [Az Application Insights] [ start] adja meg a teljesítménybeli problémák és kivételek, és és az alapvető okok diagnosztizálásában.
+Győződjön meg arról, hogy az alkalmazás teljesítménye, és tájékozódhat a gyorsan esetleges hibákat. [Az Application Insights] [ start] adja meg a teljesítménybeli problémák és kivételek, és keresse meg és diagnosztizálásához hello súgó kiváltó okok.
 
 Az Application Insights figyelheti a Java és az ASP.NET webalkalmazások és szolgáltatások, WCF-szolgáltatások. Ezek lehetnek üzemeltethető a helyszínen, a virtuális gépek, illetve a Microsoft Azure-webhelyekre. 
 
-Ügyféloldali Application Insights telemetria a weblapok és az eszközt, beleértve az iOS, Android és Windows Áruházbeli alkalmazások számos végre.
+Hello ügyféloldalon az Application Insights telemetria a weblapok és az eszközt, beleértve az iOS, Android és Windows Áruházbeli alkalmazások számos vehet igénybe.
 
 >[!Note]
-> Hajtottunk egy új felhasználói élmény keresése lassú lapok végrehajtása a webalkalmazásban érhető el. Ha Ön nem jogosult az elérésére, engedélyezze a kép beállításainak konfigurálásával a [előnézeti panelen](app-insights-previews.md). Olvassa el az új felhasználói élmény a [keresse meg és hárítsa el a interaktív teljesítményt vizsgálat szűk keresztmetszetek](#Find-and-fix-performance-bottlenecks-with-an-interactive-Performance-investigation).
+> Hajtottunk egy új felhasználói élmény keresése lassú lapok végrehajtása a webalkalmazásban érhető el. Ha nem rendelkezik hozzáféréssel tooit, engedélyezheti a hello a kép beállításainak konfigurálásával [előnézeti panelen](app-insights-previews.md). Olvassa el az új felhasználói élmény a [keresse meg és hárítsa el szűk keresztmetszetek hello interaktív teljesítményt vizsgálat](#Find-and-fix-performance-bottlenecks-with-an-interactive-Performance-investigation).
 
 ## <a name="setup"></a>Teljesítmény figyelése
-Ha még nem még hozzáadta az Application Insights a projekthez (Ha nincs beállítva a ApplicationInsights.config), válasszon egyet az alábbi módszerrel lehet hozzálátni:
+Ha még nem vett Application Insights tooyour (Ez azt jelenti, ha nincs beállítva a ApplicationInsights.config) projektre, válassza ki az alábbi módszerek valamelyikével tooget lépések:
 
 * [ASP.NET-webalkalmazások](app-insights-asp-net.md)
   * [Kivételfigyelés hozzáadása](app-insights-asp-net-exceptions.md)
@@ -41,37 +41,37 @@ Ha még nem még hozzáadta az Application Insights a projekthez (Ha nincs beál
   * [A függőségi figyelés felvétele](app-insights-java-agent.md)
 
 ## <a name="view"></a>Teljesítménymértékeket felfedezése
-A [az Azure-portálon](https://portal.azure.com), keresse meg az Application Insights-erőforrást az alkalmazáshoz beállított. Az Áttekintés panel alapvető teljesítményadatokat jeleníti meg:
+A [hello Azure-portálon](https://portal.azure.com), keresse meg az alkalmazáshoz beállított toohello Application Insights-erőforrást. hello áttekintése panel alapvető teljesítményadatait jeleníti meg:
 
-Kattintson a részletek megtekintéséhez, és hosszabb ideig eredmények megtekintése érdekében bármelyik olyan diagram. Kattintson például a kérések csempe, és válassza ki egy időtartományt:
+Kattintson a bármely diagram toosee további információkhoz juthat, és toosee eredmények hosszabb ideig. Kattintson például a hello kérések csempe, és válassza a időtartomány:
 
-![Kattintson a további adatok, és válasszon egy időtartományt](./media/app-insights-web-monitor-performance/appinsights-48metrics.png)
+![Kattintson a toomore adatok között, és válasszon egy időtartományt](./media/app-insights-web-monitor-performance/appinsights-48metrics.png)
 
-Kattintson a diagram mely metrikák azt jeleníti meg, vagy új diagram hozzáadása, és válassza ki a metrikák kiválasztásához:
+Kattintson a diagram toochoose mely metrikák azt jeleníti meg, vagy új diagram hozzáadása, és válassza ki a metrikák:
 
-![Kattintson egy grafikonon metrikák kiválasztásához](./media/app-insights-web-monitor-performance/appinsights-61perfchoices.png)
+![Kattintson egy grafikonon toochoose metrikák](./media/app-insights-web-monitor-performance/appinsights-61perfchoices.png)
 
 > [!NOTE]
-> **Törölje a jelet a metrikák** a teljes kijelölt elérhető. A metrikák sorolhatók csoportok; egy csoport minden tagja van kijelölve, csak a többi a csoportnak a tagjaira jelennek meg.
+> **Törölje az összes hello metrikát** toosee hello teljes kijelölés elérhető. hello metrikák sorolhatók csoportok; Ha egy csoport minden tagja van kijelölve, csak hello csoport többi tagjára jelennek meg.
 
 ## <a name="metrics"></a>Mire azt minden középérték? Teljesítmény csempék és jelentések
-Nincsenek is elérhetővé teljesítménymutatók. Kezdjük azokkal, amely az alkalmazás panel alapértelmezés szerint megjelenik.
+Nincsenek is elérhetővé teljesítménymutatók. Kezdjük az alábbiakhoz alapértelmezés szerint a hello alkalmazás panelen jelennek meg.
 
 ### <a name="requests"></a>Kérelmek
-Egy megadott időszakban fogadott HTTP-kérelmek száma. Hasonlítsa ezt össze az eredményeket egyéb jelentések megtekintéséhez a terhelés, hogyan viselkedik az alkalmazás függ.
+egy megadott időszakban fogadott HTTP-kérelmek száma hello. Hasonlítsa össze a más jelentések toosee, hogyan viselkedik az alkalmazás, mivel változik a terhelés hello hello eredményt.
 
 HTTP-kérések összes GET vagy POST kérelem lapok, adatok és lemezképek tartalmazzák.
 
-Kattintson a csempére lekérésére adott URL-címek száma.
+Kattintson a hello csempe tooget érintett adott URL-címek.
 
 ### <a name="average-response-time"></a>Átlagos válaszidő
-Írja be az alkalmazás és a válaszban visszaadott webes kérelem közötti időt méri.
+Intézkedések hello között eltelt idő egy webes kéréssel, írja be az alkalmazás- és hello választ ad vissza.
 
-A pontok megjelenítése mozgó átlagos. Ha nagy mennyiségű kérést, előfordulhat, egyes, amelyek eltérnek az átlagos egy nyilvánvaló csúcs nélkül, vagy a grafikonon merítsük.
+hello pontok megjelenítése mozgó átlagos. Ha nagy mennyiségű kérést, előfordulhat, egyes hello átlagos nélkül egy nyilvánvaló csúcs eltérnek vagy hello graph mártsuk.
 
-Szokatlan csúcsait keresi. Általában várt válaszideje nőtt a kérelmeket az értéke. Ha a megnövekedhet le aránytalanul nagy, előfordulhat, hogy az alkalmazás szerezze például a Processzor- vagy egy szolgáltatást, használja a kapacitás erőforrás korlátozni.
+Szokatlan csúcsait keresi. Általában várt válasz idő toorise rendelkező kérelmek növekedését. Ha hello megnövekedhet le aránytalanul nagy, előfordulhat, hogy az alkalmazás elérés például a Processzor- vagy hello kapacitás használ szolgáltatás erőforrás korlátozni.
 
-A megadott URL-címek alkalommal csempén kattintson.
+Kattintson a hello csempe tooget többször megadott URL-címek.
 
 ![](./media/app-insights-web-monitor-performance/appinsights-42reqs.png)
 
@@ -85,70 +85,70 @@ Jeleníti meg, mely kérelmek teljesítményhangolás kell.
 
 Kérelmek kivételt váltott ki a nem kezelt kivételek számát.
 
-Kattintson a csempére kattintva megtekintheti az adott hibák részleteit, és válassza ki az egyes kérést a részletek megtekintéséhez. 
+Kattintson a hello csempe toosee hello részleteit vonatkozó hibákat, és válassza ki az egyes toosee a részletek. 
 
 Egyéni ellenőrzési hibák csak egy reprezentatív minta megmarad.
 
 ### <a name="other-metrics"></a>Más metrikákkal
-Hogy más metrikákkal jeleníti meg, kattintson egy grafikonon, és törölje a jelölést a rendelkezésre álló teljes megjelenítéséhez a metrikák beállítása. (I) kattintva megtekintheti az egyes metrika definíciója.
+toosee milyen más metrikákkal jeleníti meg, kattintson egy grafikonon, és törölje a jelölést minden hello metrikák toosee hello teljes elérhető beállítás. Kattintson (i) toosee mindegyik metrikát definíciója.
 
-![Törölje a teljes című szakaszban láthat minden metrikák](./media/app-insights-web-monitor-performance/appinsights-62allchoices.png)
+![Kijelölésének megszüntetése az összes metrikák toosee hello teljes](./media/app-insights-web-monitor-performance/appinsights-62allchoices.png)
 
-Bármely metrika kijelölése letiltja a többi, amelyek nem jelennek meg ugyanabban a diagramban.
+A metrika letiltja a hello kiválasztása mások számára, amelyek nem szerepelnek a hello ugyanabban a diagramban.
 
 ## <a name="set-alerts"></a>Riasztások beállítása
-Rendkívüli értékek a metrika az e-mailben értesítést kapjon, adjon hozzá egy riasztást. Ön választhatja az e-mailt küldhet a rendszergazdák, vagy az adott e-mail címekre.
+rendkívüli értékek a metrika az e-mailben értesítést toobe adja hozzá a riasztást. Kiválaszthatja a toosend hello e-mail toohello a rendszergazdák vagy toospecific e-mail címet.
 
 ![](./media/app-insights-web-monitor-performance/appinsights-413setMetricAlert.png)
 
-Állítsa be az erőforrást, mielőtt a többi tulajdonság. Ne válassza ki a webtesztben erőforrásokat, ha a teljesítmény vagy a használati metrikák állíthatók be riasztások.
+Mielőtt hello hello erőforrás más tulajdonságainak beállítása. Ne válassza ki a hello webtesztben erőforrásokat, ha azt szeretné, hogy a teljesítmény vagy a szoftverhasználati mérési adatok tooset riasztásokat.
 
-Ügyeljen arra, ügyeljen az egységeket, amelyekben azonosítóját, írja be a küszöbértéket.
+Lehet, amelyben kéri tooenter hello küszöbérték gondos toonote hello egység.
 
-*A riasztási hozzáadása gomb nem látható.* -Az Ez a csoport olyan fiókhoz, amelyhez csak olvasási hozzáféréssel? Kérje meg a fiók rendszergazdájához.
+*Hello Hozzáadás riasztási gomb nem látható.* -Van ez a csoport fiók toowhich csak olvasási hozzáféréssel rendelkezik? Kérje meg a fiókadminisztrátort hello.
 
 ## <a name="diagnosis"></a>Problémák diagnosztizálása
 Az alábbiakban néhány tippek megkereséséhez és teljesítménnyel kapcsolatos problémák diagnosztizálásához használható:
 
-* Állítson be [webalkalmazás-tesztek] [ availability] értesítést, ha a webhely nem működik, vagy helytelenül vagy lassan válaszol. 
-* Hasonlítsa össze a más metrikákkal, ha a kapcsolódó betöltése sikertelen vagy lassú válasz a kérelmek számát.
-* [INSERT, és nyomkövetési utasítások keresési] [ diagnostic] érdekében a rögzítési ponthoz problémák a kódban.
+* Állítson be [webalkalmazás-tesztek] [ availability] toobe riasztást kapni, ha a webhely nem működik, vagy helytelenül vagy lassan válaszol. 
+* Hasonlítsa össze a más metrikák toosee hello kérelmek száma, ha sikertelen vagy lassú válasz a kapcsolódó tooload.
+* [INSERT, és nyomkövetési utasítások keresési] [ diagnostic] a kód toohelp a rögzítési ponthoz problémákat.
 * A webalkalmazás műveletet a figyelheti [metrikák adatfolyamot][livestream].
-* A .net alkalmazás állapotának rögzítésére [pillanatkép hibakereső][snapshot].
+* A .net alkalmazás hello állapot rögzítése [pillanatkép hibakereső][snapshot].
 
 ## <a name="find-and-fix-performance-bottlenecks-with-an-interactive-performance-investigation"></a>Keresse meg és hárítsa el szűk keresztmetszetek interaktív teljesítményt vizsgálat
 
-Az új Application Insights interaktív teljesítményt vizsgálat segítségével keresse meg a webalkalmazás összteljesítmény lassítja területéhez. Is gyorsan keresés adott lapok, amelyek lassítja, és használja a [profilkészítési eszköz](app-insights-profiler.md) van-e az adott lapok közötti kapcsolat.
+Hello új Application Insights interaktív teljesítményt vizsgálat toolocate területeit webalkalmazás lassítja általános teljesítménye is használhatja. Is gyorsan keresés adott lapok, amelyek lassítja, és használja a hello [profilkészítési eszköz](app-insights-profiler.md) toosee, ha az adott lapok közötti összefüggés.
 
 ### <a name="create-a-list-of-slow-performing-pages"></a>Lassú teljesítő oldalak listájának létrehozása 
 
-Az első lépés a teljesítménnyel kapcsolatos problémák keresése lassú válaszol oldalak listájának. Az alábbi képernyőfelvételhez mutatja be, a teljesítmény panel használatával alaposabb kivizsgálása lehetséges oldalak listájának beolvasása. Gyorsan megtekintheti ezen a lapon, hogy történt egy slow-down az alkalmazás válaszidő körülbelül 6:00 PM és újra körülbelül 10 óra. Láthatja, hogy az ügyfél-részletek művelet volt-e az egyes hosszú ideig futó műveletek egy közepes válaszidő 507.05 ideje (MS). 
+hello első lépése a teljesítményproblémák kereséshez tooget hello lassan válaszol a lapok listája. alább hello képernyőfelvétel mutatja be, hello teljesítmény panel tooget lehetséges oldalak tooinvestigate további listájának használatával. Gyorsan megtekintheti ezen a lapon, hogy történt egy slow-down hello válaszidő hello alkalmazás körülbelül 6:00 PM és újra körülbelül 10 óra. Láthatja, hogy hello ügyfél-részletek művelet volt, néhány hosszú futású műveleteket és a egy közepes válaszidő 507.05 ideje (MS). 
 
 ![Alkalmazásteljesítmény elemzések interaktív](./media/app-insights-web-monitor-performance/performance1.png)
 
 ### <a name="drill-down-on-specific-pages"></a>Bizonyos lapokon részletekbe menően tárhatják
 
-Miután az alkalmazás teljesítményének pillanatképet, kaphat további részleteket a lassú végez műveleteket. Kattintson az összes műveletet a listában, a részletek megtekintéséhez a lent látható módon. A diagram látható, ha a teljesítmény a függőség alapszik. Hány felhasználó észlelt a különböző válaszidejét is megtekinthető. 
+Miután az alkalmazás teljesítményének pillanatképet, kaphat további részleteket a lassú végez műveleteket. Kattintson az összes műveletet hello lista toosee hello részletei alább látható módon. Hello diagram láthatja, ha hello teljesítmény a függőség alapszik. Hány felhasználó tapasztalt hello különböző válaszidejét is látható. 
 
 ![Application Insights műveletek panel](./media/app-insights-web-monitor-performance/performance5.png)
 
 ### <a name="drill-down-on-a-specific-time-period"></a>Egy adott időszakra vonatkozóan a részletekbe menően tárhatják
 
-Ha azonosított egy pont a ideje kivizsgálni, részletekbe menően tárhatják nézze meg a műveleteket, amelyek oka lehet, hogy a teljesítmény slow-down még tovább. Amikor az adott időben kattint kap a lap részletei alább látható módon. Az alábbi példában látható is egy adott időszakban, valamint a kiszolgáló válaszkódot és a művelet időtartama felsorolt műveleteket. Lehetősége van a TFS munkaelem megnyitása, ha szeretné ezt az információt küld a fejlesztői csapat URL-címét is.
+Ha azonosított egy adott idő tooinvestigate ponthoz, részletekbe menően tárhatják hello hello teljesítmény slow-down oka lehet, hogy bizonyos műveletek, akár további toolook. Az adott időben kattint hello részleteit hello oldalon lent látható módon nyílik meg. Hello az alábbi példa látható egy adott időszakban, valamint hello server válaszkódot és hello művelet időtartama felsorolt hello műveletek. A TFS munkaelem megnyitása, ha az információ tooyour fejlesztői csapat toosend szüksége van hello URL-címét is.
 
 ![Application Insights időszelet](./media/app-insights-web-monitor-performance/performance2.png)
 
 ### <a name="drill-down-on-a-specific-operation"></a>Egy bizonyos művelet részletekbe menően tárhatják
 
-Ha azonosított egy pont a ideje kivizsgálni, részletekbe menően tárhatják nézze meg a műveleteket, amelyek oka lehet, hogy a teljesítmény slow-down még tovább. Kattintson a művelet a listában, a művelet részleteinek megtekintéséhez a lent látható módon. Ebben a példában láthatja, hogy a művelet végrehajtása sikertelen volt, és az Application Insights megadta a kivételt váltott ki. az alkalmazás részleteit. Ezen a panelen újra, a TFS munkaelem könnyedén létrehozhat.
+Ha azonosított egy adott idő tooinvestigate ponthoz, részletekbe menően tárhatják hello hello teljesítmény slow-down oka lehet, hogy bizonyos műveletek, akár további toolook. Kattintson az egy művelet hello lista toosee hello adatait hello művelet alább látható módon. Ebben a példában láthatja, hogy hello művelet végrehajtása sikertelen volt, és az Application Insights nyújtott hello hello részleteit kivétel hello alkalmazás kivételt váltott ki. Ezen a panelen újra, a TFS munkaelem könnyedén létrehozhat.
 
 ![Application Insights művelet panel](./media/app-insights-web-monitor-performance/performance3.png)
 
 
 ## <a name="next"></a>Következő lépések
-[Webalkalmazás-tesztek] [ availability] -rendelkezik a webes kérelmek világszerte a rendszeres időközönként az alkalmazás számára.
+[Webalkalmazás-tesztek] [ availability] -webes kérelmek elküldött tooyour alkalmazás hello világ a rendszeres időközönként.
 
-[Rögzítése, és diagnosztikai nyomkövetési keresési] [ diagnostic] - nyomkövetési hívások beszúrása és az eredményeket a rögzítési ponthoz problémák keletkezik.
+[Rögzítése, és diagnosztikai nyomkövetési keresési] [ diagnostic] - nyomkövetési hívások beszúrása és hello eredmények toopinpoint problémák keletkezik.
 
 [Használat nyomon követése] [ usage] -megtudhatja, hogyan személyek használhassa az alkalmazást.
 

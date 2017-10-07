@@ -1,6 +1,6 @@
 ---
-title: "Több-Bérlős webes Alkalmazásminta |} Microsoft Docs"
-description: "Az architektúra áttekintése és -kialakítási minta, azt ismertetik, hogyan megvalósításához egy több-bérlős webalkalmazást az Azure-on található."
+title: "aaaMulti-bérlő webes Alkalmazásminta |} Microsoft Docs"
+description: "Az architektúra áttekintése és tervezési mintáról olvashat, amelyek ismertetik, hogyan tooimplement egy több-bérlős webalkalmazást az Azure-on található."
 services: 
 documentationcenter: .net
 author: wadepickett
@@ -14,79 +14,79 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/05/2015
 ms.author: wpickett
-ms.openlocfilehash: 57ba0e46139bda2d74c9f7db0ffab2f2122b0df2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3b7822c8ca4aa50d295a174973ae4746c230ba66
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="multitenant-applications-in-azure"></a>Több-bérlős alkalmazásokhoz az Azure-ban
-Egy több-bérlős alkalmazás, amely lehetővé teszi a különböző felhasználók vagy "bérlők," az alkalmazás megtekintéséhez, mintha az volt a saját megosztott erőforrás. A jellemző forgatókönyv, amely egy több-bérlős alkalmazás adatmodelljeinek egyike, amelyben az alkalmazás minden felhasználó kíván a felhasználói élmény testreszabásáról, de egyébként külön az ugyanazon alapvető üzleti követelmények. A nagy több-bérlős alkalmazások többek között az Office 365, az Outlook.com-os és a visualstudio.com webhelyre.
+Egy több-bérlős alkalmazás, amely lehetővé teszi a különböző felhasználók számára, vagy "bérlők," tooview hello alkalmazást, mintha az volt a saját megosztott erőforrás. A jellemző forgatókönyv, amely több-bérlős tooa alkalmazás adatmodelljeinek egyike hello az összes felhasználók számára az alkalmazás toocustomize hello felhasználói élményt kívánja, de egyébként külön hello ugyanazon alapvető üzleti követelmények. A nagy több-bérlős alkalmazások többek között az Office 365, az Outlook.com-os és a visualstudio.com webhelyre.
 
-Egy alkalmazás szolgáltató szempontjából több vállalat kiszolgálása előnyei többnyire vonatkozik költség és működési hatékonyság. Az alkalmazás egy verzióját sok bérlők vagy ügyfelek, így a rendszer összevonása felügyeleti feladatokhoz, mint a figyelést, teljesítményhangolás, szoftverkarbantartást és az adatok biztonsági képes igényeinek.
+Egy alkalmazás szolgáltató szempontjából a több vállalat kiszolgálása hello előnyei többnyire toooperational vonatkoznak, és hatékonyság költség. Az alkalmazás egy verzióját képes igényeinek hello sok bérlő vagy ügyfél, így a rendszer összevonása felügyeleti feladatokhoz, mint a figyelést, teljesítményhangolás, szoftverkarbantartást és az adatok biztonsági.
 
-A következő a legjelentősebb célokat és követelményeket a szolgáltató szempontjából a listáját tartalmazza.
+hello következő hello legjelentősebb célokat és követelményeket a szolgáltató szempontjából a listáját tartalmazza.
 
-* **Kiépítés**: be kell tudnia új bérlők számára az alkalmazás telepítéséhez.  Sok bérlő több-bérlős alkalmazásokhoz fontos általában ez a folyamat automatizálására önkiszolgáló kiépítés engedélyezése.
-* **Karbantartási követelmények**: be kell tudnia, frissítse az alkalmazás és más karbantartási feladatokat végez, amíg a több bérlő-k használják.
-* **Figyelési**: mindig az alkalmazást, az esetleges problémák felismeréséhez és a hibakereséshez képesnek kell lennie. Ez magában foglalja, minden bérlői hogyan használja az alkalmazás figyelése.
+* **Kiépítés**: hello alkalmazás képes tooprovision új bérlők számára kell lennie.  A bérlők nagy mennyiségű, több-bérlős alkalmazások esetén általában szükséges tooautomate Ez a folyamat által az önkiszolgáló kiépítés engedélyezése.
+* **Karbantartási követelmények**: képes tooupgrade hello alkalmazás és más karbantartási feladatokat végez, amíg a több bérlő-k használják.
+* **Figyelési**: meg kell lennie minden alkalommal tooidentify képes toomonitor hello alkalmazást, a problémák és tootroubleshoot őket. Ez magában foglalja, figyelés, hogyan mindegyik bérlő hello alkalmazás használja.
 
-A megfelelően megvalósított több-bérlős alkalmazás a következő előnyökkel jár a felhasználók számára.
+A megfelelően megvalósított több-bérlős alkalmazás maga biztosítja hello következő előnyökkel jár a toousers.
 
-* **Elkülönítési**: az egyes bérlők tevékenységeit nem befolyásolják a más bérlők által az alkalmazás használatát. Bérlők nem érhető el egymás adatokat. Valószínűleg a bérlő számára, hogy rendelkeznek-e az alkalmazás kizárólagos használatát.
-* **Rendelkezésre állási**: az egyes bérlők szeretné, hogy az alkalmazás folyamatosan elérhető legyen, esetleg a szolgáltatásiszint-szerződésben garantált definiált garanciát. Ebben az esetben a tevékenységeket a többi bérlő nem érinti az alkalmazás rendelkezésre állását.
-* **Méretezhetőség**: az alkalmazás méretezi az egyes bérlők igény kielégítésére. A jelenléti és a műveletek a többi bérlő nem érintik az alkalmazás teljesítményét.
-* **Költségek**: költségek alacsonyabbak dedikált, egyetlen-bérlő alkalmazást futtat, mert a több-bérlős lehetővé teszi, hogy az erőforrás-megosztás.
-* **Testreszabhatóság miatt**. Lehetővé teszi az alkalmazás különböző módokon, például fel szolgáltatásokat, színek és az emblémát módosításával, vagy még a saját kód vagy parancsfájl hozzáadása egy adott bérlő testreszabásához.
+* **Elkülönítési**: hello tevékenységeket az egyes bérlők nincsenek hatással a más bérlők hello alkalmazás hello használatát. Bérlők nem érhető el egymás adatokat. Toohello bérlő úgy tűnik, mintha rendelkeznek hello alkalmazás kizárólagos használatát.
+* **Rendelkezésre állási**: egyes bérlői szeretnének hello alkalmazás toobe folyamatosan rendelkezésre álló, lehet, hogy a szolgáltatásiszint-szerződésben garantált definiált garanciát. Ebben az esetben a többi bérlő hello tevékenységek nem érintik hello hello alkalmazás rendelkezésre állásának.
+* **Méretezhetőség**: hello alkalmazás méretezi toomeet hello igény szerint az egyes bérlők számára. hello jelenléte és a műveletek a többi bérlő nem érintik hello alkalmazás hello teljesítményét.
+* **Költségek**: költségek alacsonyabbak dedikált, egyetlen-bérlő alkalmazást futtat, mert a több-bérlős lehetővé teszi az erőforrás-megosztás hello.
+* **Testreszabhatóság miatt**. hello képességét toocustomize hello alkalmazás különböző módokon, például fel szolgáltatásokat, színek és az emblémát módosításával, vagy még a saját kód vagy parancsfájl hozzáadása egy adott bérlő számára.
 
-Röviden hogy közben számos szempontot, figyelembe kell venni egy kiválóan méretezhető kiszolgálása, számos is a célok és számos több-bérlős alkalmazás vonatkozó követelmények. Néhány nem lehet megfelelő, az adott forgatókönyveket, és egyéni célokat és követelményeket fontosságát eltérőek, mindkét esetben. A több-bérlős alkalmazás-szolgáltatóként ki is célokat és követelményeket, többek között a bérlők célok és követelmények, nyereségességével, számlázási, több szolgáltatási szintek, kiépítés, karbantartási követelmények figyelése és automatizálási értekezlet.
+Röviden közben számos szempontot figyelembe kell fiók tooprovide egy kiválóan méretezhető szolgáltatás számos is hello célokat és követelményeket, amelyek közös toomany több-bérlős alkalmazásokhoz. Néhány nem lehet megfelelő, az adott forgatókönyveket, és egyéni célokat hello fontosságát és követelmények eltérőek lehetnek az egyes esetekben. Több-bérlős alkalmazás hello szolgáltatóként ki is célokat és követelményeket, többek között hello bérlők célok és követelmények, jövedelmezőség, számlázási, több szolgáltatási szintek, kiépítés, karbantartási követelmények figyelését, és automatizálási.
 
 A több-bérlős alkalmazás további kialakítási szempontokkal kapcsolatban további információkért lásd: [egy több-Bérlős alkalmazást az Azure-on][Hosting a Multi-Tenant Application on Azure]. A több bérlős szoftverszolgáltatás (SaaS) típusú adatbázis-alkalmazások általános adatarchitektúra-mintázataival kapcsolatos információk: [Tervminták több-bérlős SaaS-alkalmazásokhoz Azure SQL Database esetén](sql-database/sql-database-design-patterns-multi-tenancy-saas-applications.md). 
 
-Azure számos olyan szolgáltatásokat nyújt, engedélyezi, hogy a kulcs a több-bérlős rendszerek tervezése során észlelt problémákat.
+Azure biztosít számos olyan szolgáltatást, amelyek lehetővé teszik tooaddress hello kulcs a több-bérlős rendszerek tervezése során észlelt problémákat.
 
 **Elkülönítés**
 
 * Szegmens webhely bérlők által állomásfejléc vagy anélkül SSL-kommunikáció
 * Szegmens webhely bérlők által lekérdezés-paraméterek
 * A feldolgozói szerepkörök webszolgáltatások
-  * Feldolgozói szerepköröket. amely általában a háttérkiszolgáló az alkalmazás adatokat feldolgozó.
-  * Általában működjön, és az alkalmazások előtérbeli webes szerepkörök.
+  * Feldolgozói szerepköröket. amely általában hello háttérkiszolgáló az alkalmazás adatokat feldolgozó.
+  * Webes szerepkörök, amelyek általában összekötőként hello előtér-alkalmazások.
 
-**Storage**
+**Tárolás**
 
-Például az Azure SQL Database vagy az Azure Storage szolgáltatások, például a Table szolgáltatás, ami nagy mennyiségű strukturálatlan adatok tárolási szolgáltatásokat és a Blob szolgáltatás, amely nagy mennyiségű strukturálatlan szöveges vagy bináris tárolására szolgáltatásokat nyújt adatok kezelése adatok, például a video-, hang- és lemezképek.
+Adatkezelés például az Azure SQL Database vagy az Azure Storage szolgáltatások, például hello Table storage nagy mennyiségű strukturálatlan adatok biztosító szolgáltatás és a Blob szolgáltatás, amely szolgáltatások toostore biztosít a nagy mennyiségű strukturálatlan szöveg hello vagy bináris adatok, például a video-, hang- és lemezképek.
 
 * Az SQL-adatbázis megfelelő biztonságossá tétele több-Bérlős adatok / bérlői SQL Server bejelentkezési azonosítók.
-* Azure-táblák az alkalmazás erőforrások megadásával a tároló szintű hozzáférési házirend használatával állíthatja be az engedélyeket anélkül, hogy ki az új URL-Címeket a megosztott hozzáférési aláírásokkal védett erőforrásokhoz.
-* Alkalmazás-erőforrások Azure várólisták Azure várólisták gyakran használják a bérlők nevében meghajtó feldolgozásra, de a kiépítés vagy felügyeleti szükséges munka terjesztését is felhasználhatók.
-* Service Bus-üzenetsorok leküldéses értesítések alkalmazás-erőforrásokkal működik egy megosztott egy szolgáltatást, használja egy adott sorba ahol mindegyik bérlő küldő csak jogosult (mivel az ACS-től kiadott jogcímeket származó) nyomni a várólistára, a szolgáltatás csak a fogadók a több bérlő érkező adatokat az üzenetsorból lekéréses engedéllyel.
+* Azure táblák használata az alkalmazás erőforrások megadásával a tároló szintű hozzáférési házirend, anélkül, hogy tooissue új URL-CÍMEK védett megosztott hozzáférési aláírásokkal hello erőforrások képességét tooadjust engedélyeket is hello.
+* Alkalmazás-erőforrások Azure várólisták Azure várólisták nevében bérlők feldolgozása gyakran használt toodrive, de is szükség lehet, használt toodistribute munkahelyi kiépítése, vagy a felügyelet.
+* Service Bus-üzenetsorok alkalmazás-erőforrásokat, hogy leküldéses értesítések munkahelyi tooa megosztott egy szolgáltatást, használja egy adott sorba ahol mindegyik bérlő küldő csak van engedélyek (mivel az ACS-től kiadott jogcímeket származó) toopush toothat várólista, közben csak hello fogadók hello szolgáltatás engedély toopull adatokból hello várólista hello több bérlő érkező rendelkezik.
 
 **Kapcsolati és biztonsági szolgáltatások**
 
-* Az Azure Service Bus, egy üzenetkezelési infrastruktúra, amely az alkalmazások engedélyezi azok az exchange-üzenetek a lazán összekapcsolt megoldást, hogy a javított méretezési és rugalmassági között.
+* Az Azure Service Bus, egy üzenetkezelési infrastruktúra, amely az alkalmazások engedélyezi azok lazán összekapcsolt megoldást, hogy a javított méretezés és rugalmasság a tooexchange üzenetek között.
 
 **Hálózati szolgáltatások**
 
-Azure, amely támogatja a hitelesítést, és javíthatja a kezelhetőségi az alkalmazások több hálózati szolgáltatásokat biztosít. Ezek a szolgáltatások a következők:
+Azure, amely támogatja a hitelesítést, és javíthatja a kezelhetőségi az alkalmazások több hálózati szolgáltatásokat biztosít. Ezek a szolgáltatások hello alábbiakat foglalja magába:
 
 * Az Azure virtuális hálózat megadható, hogy Ön kiépítése és virtuális magánhálózatok (VPN) kezelése az Azure-ban, valamint biztonságos hivatkozás ezen a helyszíni informatikai infrastruktúrát.
-* Virtuális hálózati Traffic Manager betöltése oszthatja el a bejövő forgalmat több üzemeltetett az Azure szolgáltatásban, hogy azok futtatja ugyanabban az adatközpontban, vagy a világ különböző üzemeltetésében teszi lehetővé.
-* Azure Active Directory (Azure AD) szolgáltatás modern REST-alapú szolgáltatás, amely identitás kezelése és hozzáférés-vezérlés képességeinek biztosít a felhőalapú alkalmazásokhoz. Az Azure AD az Azure AD-be és felhasználók hitelesítésére ahhoz, hogy hozzáférjenek a webes alkalmazások és szolgáltatások miközben lehetővé teszi a hitelesítési és engedélyezési kívül a kódot kell figyelembe venni a funkciók egyszerű lehetőséget biztosít az alkalmazás-erőforrásokat.
-* Az Azure Service Bus egy biztonságos üzenetküldést biztosít és adatok folyamata funkció elosztott és hibrid alkalmazások, például az Azure közötti kommunikáció üzemeltetett alkalmazások és a helyszíni alkalmazásokhoz és szolgáltatásokhoz, anélkül, hogy bonyolult tűzfal- és biztonsági infrastruktúra. A bérlő (például kívül a rendszer, például a helyszínen üzemeltetett) alkalmazás-erőforrásokat a Service Bus Relay használatával végpontként ki vannak téve a szolgáltatások tartozhat, és lehetnek (mivel kimondottan a bérlő kiépített szolgáltatások -és nagybetűket, a bérlő-specifikus adatok áthaladó őket).
+* Virtuális hálózati Traffic Manager lehetővé teszi bejövő forgalmat több üzemeltetett Azure között szolgáltatások, hogy azok hello futtatja tooload elosztása ugyanabban az adatközpontban vagy hello világ különböző üzemeltetésében.
+* Azure Active Directory (Azure AD) szolgáltatás modern REST-alapú szolgáltatás, amely identitás kezelése és hozzáférés-vezérlés képességeinek biztosít a felhőalapú alkalmazásokhoz. Használja az Azure AD alkalmazás-erőforrásokat az Azure AD tooprovides és felhasználók toogain hozzáférés tooyour webalkalmazások és szolgáltatások hitelesítésére miközben lehetővé teszi a hitelesítési és engedélyezési toobe kívüli beleszámítja hello szolgáltatásai egyszerűen a a kódot.
+* Az Azure Service Bus egy biztonságos üzenetküldést biztosít és adatok folyamata funkció elosztott és hibrid alkalmazások, például az Azure közötti kommunikáció üzemeltetett alkalmazások és a helyszíni alkalmazásokhoz és szolgáltatásokhoz, anélkül, hogy bonyolult tűzfal- és biztonsági infrastruktúra. Service Bus Relay használatával az alkalmazás-erőforrásokat toohello szolgáltatásokról, amelyek ki vannak téve, mint végpontokat tartozhat toohello bérlői (például kívül hello rendszer, például a helyszínen üzemeltetett), vagy kifejezetten hello bérlői (kiépítve szolgáltatások lehetnek mivel bizalmas, bérlő-specifikus adatok áthaladó őket).
 
 **Erőforrások kiépítése**
 
-Azure számos módon rendelkezés új bérlők számára az alkalmazás tartalmazza. Sok bérlő több-bérlős alkalmazásokhoz fontos általában ez a folyamat automatizálására önkiszolgáló kiépítés engedélyezése.
+Azure számos módon rendelkezés új bérlők hello alkalmazás tartalmazza. A bérlők nagy mennyiségű, több-bérlős alkalmazások esetén általában szükséges tooautomate Ez a folyamat által az önkiszolgáló kiépítés engedélyezése.
 
-* Feldolgozói szerepkörök lehetővé teszi a kiépítés és deaktiválás rendelkezés bérlőnként erőforrások (például amikor egy új bérlőt jelentkezik be, vagy megszakítja a), gyűjtéséhez mérési használja, és bizonyos ütemezés kezelésére, vagy a teljesítmény küszöbértékeit metsző válaszul mutatók. Ez ugyanarra a szerepkörre is felhasználhatók leküldéses frissítéseit és a frissítések a megoldáshoz.
-* Azure-blobokat számítási létrehozásához használt, vagy már inicializálva tárolási erőforrások védelme érdekében a számítási ugyanakkor biztosítható a tároló hozzáférési házirendek az új bérlők számára szolgáltatás csomagokat, a virtuális merevlemez képek és egyéb erőforrásokhoz.
+* Feldolgozói szerepkörök tooprovision és deaktiválás rendelkezés / bérlői erőforrások (például amikor egy új bérlőt jelentkezik be, vagy megszakítja a) lehetővé teszik, gyűjtéséhez mérési használja, és bizonyos ütemezés kezelésére vagy a válasz toohello metsző kulcs küszöbértékek teljesítménymutatók. Az ugyanarra a szerepkörre is használt toopush, frissítések és verziófrissítések toohello megoldás.
+* Azure-blobokat lehet használt tooprovision számítási vagy az új bérlők előre inicializált tárolási erőforrások ugyanakkor biztosítható a tároló hozzáférési házirendek tooprotect hello számítási szolgáltatás csomagok, a virtuális merevlemez képek és egyéb erőforrásokat.
 * SQL adatbázis-erőforrások egy bérlő kialakítási lehetőségek a következők:
   
   * A parancsfájlok DDL vagy beágyazott erőforrásként szerelvények belül
   * SQL Server 2008 R2 DAC-csomagokat telepített programozott módon.
   * A fő referencia-adatbázis másolása
-  * Használja az adatbázis importálási és exportálási fájlból új adatbázisok létrehozásához.
+  * Adatbázis importálása és exportálása tooprovision új adatbázisok használatával fájlból.
 
 <!--links-->
 

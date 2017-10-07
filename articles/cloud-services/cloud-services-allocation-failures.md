@@ -1,5 +1,5 @@
 ---
-title: "A felhőalapú szolgáltatás észlelt lefoglalási hibák elhárítása |} Microsoft Docs"
+title: "felhőalapú szolgáltatás memóriafoglalási hiba aaaTroubleshooting |} Microsoft Docs"
 description: "Hozzárendelési hibák elhárítása a Cloud Services telepítése során az Azure szolgáltatásban"
 services: azure-service-management, cloud-services
 documentationcenter: 
@@ -15,59 +15,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/26/2017
 ms.author: v-six
-ms.openlocfilehash: 3379b6d9bea874abecae7e56d30cfb15e6b0c2fc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dfd5cc4663ccc6ed1b27ca9df579182737363b0e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-allocation-failure-when-you-deploy-cloud-services-in-azure"></a>Hozzárendelési hibák elhárítása a Cloud Services telepítése során az Azure szolgáltatásban
 ## <a name="summary"></a>Összefoglalás
-Ha a példányok telepítése az egy felhőalapú szolgáltatás, vagy adja hozzá az új webes vagy feldolgozói szerepkör példányok, a Microsoft Azure számítási erőforrásokat foglal le. Hibák léphetnek ezen műveletek végrehajtásakor, még mielőtt az Azure-előfizetésre vonatkozó korlátok alkalmanként. Ez a cikk ismerteti az egyes a közös pufferallokációs hibák okait, és lehetséges javítási javasol. Az információ is hasznos lehet a szolgáltatásokhoz központi telepítésének tervezése során.
+Ha példányok tooa felhőalapú szolgáltatás telepítéséhez, vagy adja hozzá az új webes vagy feldolgozói szerepkör példányok, a Microsoft Azure számítási erőforrásokat foglal le. Alkalmanként kaphat a hibák, ezen műveletek végrehajtásakor, még mielőtt hello Azure előfizetési korlátozásait. Ez a cikk ismerteti a hello okok egyes hello közös pufferallokációs hibák, és lehetséges javítási javasol. hello információkat is lehetnek hasznosak, ha azt tervezi, hogy a szolgáltatások hello telepítését.
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
 ### <a name="background--how-allocation-works"></a>Háttér – foglalási működése
-Az Azure adatközpontjaiban van particionálva csoportokba. Egy új felhőalapú szolgáltatás memóriafoglalási kérelem több fürt kísérlet történik. Ha az első példány egy felhőalapú szolgáltatást (az átmeneti vagy üzemi), a felhőalapú szolgáltatás központi telepítése egy fürt lekérdezi rögzítve. A további telepítések a felhőszolgáltatás fordul elő az ugyanabban a fürtben. Ebben a cikkben kifejezés ez szerint "fürt rögzítve". Alább 1 diagram azt ábrázolja, a kis-és egy normál foglalási, amely több fürtökben; kísérlet történik 2. ábrán látható, a kis-és memóriakiosztást, mert, ahol a meglévő felhőalapú szolgáltatás CS_1 tárolása fürt 2 van rögzítve.
+az Azure adatközpontjaiban hello kiszolgálók particionáltak csoportokba. Egy új felhőalapú szolgáltatás memóriafoglalási kérelem több fürt kísérlet történik. Ha hello első példány telepített tooa felhőalapú szolgáltatást (az átmeneti vagy üzemi), a felhőalapú szolgáltatás lekérdezi a rögzített tooa fürt. Bármely további központi telepítéseket hello felhőszolgáltatás fordul elő hello ugyanaz a fürt. Ebben a cikkben kifejezés toothis "rögzített tooa fürtként". Alább 1 diagram azt ábrázolja, hello kis-és egy normál foglalási, amely több fürtökben; kísérlet történik 2. ábrán látható, hello kis-és memóriakiosztást meg rögzített tooCluster 2 mert, ahol van hello a meglévő felhőalapú szolgáltatás CS_1 üzemelteti.
 
 ![Foglalási diagramja](./media/cloud-services-allocation-failure/Allocation1.png)
 
 ### <a name="why-allocation-failure-happens"></a>Miért memóriafoglalási hiba történik
-Egy memóriafoglalási kérelem fürtre van rögzítve, nincs hiányában szabad erőforrások keresésére, mivel a rendelkezésre álló erőforráskészletben található egy fürt csak egy magasabb esélyét. Továbbá ha a memóriafoglalási kérelem fürtre van rögzítve, de az adott fürt nem támogatja a kért erőforrás típusát, a kérelem sikertelen lesz akkor is, ha a szabad erőforrás rendelkezik. 3. ábra alatt az esetben, ha egy rögzített foglalás sikertelen lesz, mivel az egyetlen jelölt fürtnek nincs szabad erőforrást mutatja be. 4. ábrán látható, az esetet, ahol egy rögzített foglalás sikertelen lesz, mivel az egyetlen jelölt fürt nem támogatja a kért Virtuálisgép-méret, annak ellenére, hogy a fürt ingyenes erőforrással rendelkezik.
+Ha egy memóriafoglalási kérelem rögzített tooa fürt, magasabb esély van a toofind szabad erőforrást sikertelenek lesznek, mivel hello elérhető erőforráskészlet korlátozott tooa fürt. Továbbá ha a memóriafoglalási kérelem rögzített tooa fürt, de hello típus a kért erőforrás nem érhető el, hogy a fürt, a kérelem sikertelen lesz akkor is, ha hello fürt szabad erőforrás. 3. ábra alatt hello esetet, ahol egy rögzített foglalás sikertelen lesz, mivel hello csak jelölt fürtnek nincs szabad erőforrást mutatja be. 4. ábrán látható, ahol egy rögzített foglalás sikertelen lesz, mivel nem támogatja a hello csak jelölt fürt hello eset hello a kért Virtuálisgép-méretet, annak ellenére, hogy a fürt hello ingyenes erőforrással rendelkezik.
 
 ![Rögzített memóriafoglalási hiba](./media/cloud-services-allocation-failure/Allocation2.png)
 
 ## <a name="troubleshooting-allocation-failure-for-cloud-services"></a>A felhőszolgáltatások észlelt lefoglalási hibák elhárítása
 ### <a name="error-message"></a>Hibaüzenet
-A következő hibaüzenet jelenhet meg:
+A következő hibaüzenet hello jelenhetnek meg:
 
-    "Azure operation '{operation id}' failed with code Compute.ConstrainedAllocationFailed. Details: Allocation failed; unable to satisfy constraints in request. The requested new service deployment is bound to an Affinity Group, or it targets a Virtual Network, or there is an existing deployment under this hosted service. Any of these conditions constrains the new deployment to specific Azure resources. Please retry later or try reducing the VM size or number of role instances. Alternatively, if possible, remove the aforementioned constraints or try deploying to a different region."
+    "Azure operation '{operation id}' failed with code Compute.ConstrainedAllocationFailed. Details: Allocation failed; unable toosatisfy constraints in request. hello requested new service deployment is bound tooan Affinity Group, or it targets a Virtual Network, or there is an existing deployment under this hosted service. Any of these conditions constrains hello new deployment toospecific Azure resources. Please retry later or try reducing hello VM size or number of role instances. Alternatively, if possible, remove hello aforementioned constraints or try deploying tooa different region."
 
 ### <a name="common-issues"></a>Gyakori problémák
-Az alábbiakban a gyakori foglalási forgatókönyvek, amelyek egy foglalási kérelem egy fürtön rögzítve.
+Az alábbiakban hello közös foglalási forgatókönyvek, amelyek egy foglalási kérelem toobe rögzített tooa egyetlen fürthöz.
 
-* Telepítésekor átmeneti helyre - felhőszolgáltatás van a központi telepítés vagy tárolóhelye, majd a teljes körű felhőalapú szolgáltatás rögzítve fürtön.  Ez azt jelenti, hogy ha egy telepítés már szerepel az éles webalkalmazásra, majd egy új átmeneti telepítési csak lehet hozzárendelni a fürtön, amelyen az éles webalkalmazásra. Ha a fürt közelít kapacitásának határához, a kérelem sikertelen lehet.
-* Skálázás – új példányok hozzáadása egy meglévő felhőszolgáltatáshoz kell rendelnie az ugyanabban a fürtben.  Rövid skálázás kérelmek általában osztják, de nem minden esetben. Ha a fürt közelít kapacitásának határához, a kérelem sikertelen lehet.
-* Affinitáscsoport - új központi telepítést egy üres felhőszolgáltatásban foglalhatók által a hálót a fürthöz az adott régióban, kivéve, ha a felhőalapú szolgáltatás affinitáscsoporthoz van rögzítve. Ugyanabban az affinitáscsoportban történő telepítését ugyanazon a fürtön kísérli meg a rendszer. Ha a fürt közelít kapacitásának határához, a kérelem sikertelen lehet.
-* Affinitáscsoport vNet - régebbi virtuális hálózatok affinitáscsoportok régiókat helyett volt kötve, és ezeket a virtuális hálózatokat a cloud services az affinitáscsoport fürt lesz rögzítve. Ez a fajta virtuális hálózatot való telepítésének a rögzített fürtön kísérli meg a rendszer. Ha a fürt közelít kapacitásának határához, a kérelem sikertelen lehet.
+* Tárolóhely - tooStaging telepítésekor egy felhőalapú szolgáltatás a központi telepítés van vagy tárolóhelye, majd hello teljes felhőszolgáltatás rögzített tooa adott fürt.  Ez azt jelenti, hogy ha egy telepítés már létezik a hello éles webalkalmazásra, majd egy új átmeneti központi telepítés csak lehet hozzárendelni hello azonos fürtöt hello éles tárolóhelyre. Ha hello fürt közelít kapacitásának határához, hello kérelem sikertelen lehet.
+* Skálázás - hozzáadása új példányok tooan létező felhőalapú szolgáltatást kell rendelnie a hello azonos fürt.  Rövid skálázás kérelmek általában osztják, de nem minden esetben. Ha hello fürt közelít kapacitásának határához, hello kérelem sikertelen lehet.
+* Affinitáscsoport - egy új központi telepítési tooan üres felhőszolgáltatás foglalhatók hello fabric az adott régióban, a fürt által kivéve, ha hello felhőszolgáltatás rögzített tooan affinitáscsoport. Központi telepítések toohello ugyanabban az affinitáscsoportban kísérli meg a rendszer a hello ugyanabban a fürtben. Ha hello fürt közelít kapacitásának határához, hello kérelem sikertelen lehet.
+* Affinitáscsoport vNet - régebbi virtuális hálózatok volt a feltételekhez tooaffinity csoportok régiókat helyett, és ezek a virtuális hálózatok felhőszolgáltatások rögzített toohello affinitáscsoport fürt. Központi telepítések toothis fajta virtuális hálózatot rögzítve hello fürtön kísérli meg a rendszer. Ha hello fürt közelít kapacitásának határához, hello kérelem sikertelen lehet.
 
 ## <a name="solutions"></a>Megoldások
-1. Telepítse újra az új felhőalapú szolgáltatás – Ez a megoldás valószínűleg legtöbb sikeres, az adott régióban összes fürt választhat a platform lehetővé teszi.
+1. Helyezze üzembe újra tooa új felhőszolgáltatás - Ez a megoldás valószínűleg toobe legtöbb sikeres megegyezik lehetővé teszi a hello platform toochoose összes fürtök az adott régióban.
 
-   * Új felhőalapú szolgáltatás az alkalmazások és szolgáltatások telepítése  
-   * Frissítheti a CNAME vagy egy olyan rekordot irányítsák a forgalmat a új felhőszolgáltatással
-   * Nulla forgalom a régi helyhez állapotra vált, amennyiben törölheti a régi felhőalapú szolgáltatás. Ez a megoldás kell fel Önnek leállítása nélkül.
-2. Üzemi és átmeneti üzembe helyezési ponti törölni – Ez a megoldás megtartja a meglévő DNS-nevével, de az alkalmazás leállás, akkor.
+   * Hello munkaterhelés tooa új felhőalapú szolgáltatás üzembe helyezése  
+   * Hello CNAME vagy A rekord toopoint forgalom toohello új felhőalapú szolgáltatás frissítése
+   * Nulla forgalom toohello régi webhely állapotra vált, amennyiben törölheti hello régi felhőalapú szolgáltatás. Ez a megoldás kell fel Önnek leállítása nélkül.
+2. Üzemi és átmeneti üzembe helyezési ponti törölni – Ez a megoldás is megőrzi a meglévő DNS-nevével, de állásidő tooyour alkalmazást, akkor.
 
-   * A szolgáltatás üzemi és átmeneti üzembe helyezési ponti egy meglévő felhőalapú szolgáltatás, így felhőszolgáltatás nem üres, törölje, majd
-   * Hozzon létre egy új központi telepítést a meglévő felhőalapú szolgáltatást. Ez újra megkísérli a foglalási régióban minden fürtön. Győződjön meg róla, felhőalapú szolgáltatás nem kötődik azonban egy affinitáscsoporthoz.
-3. Fenntartott IP - Ez a megoldás megtartja a meglévő IP-cím, de az alkalmazás állásidőt okoz.  
+   * Hello üzemi és átmeneti üzembe helyezési ponti egy meglévő felhőalapú szolgáltatás, így a hello felhőalapú szolgáltatás nem üres, törölje, majd
+   * Hozzon létre egy új központi telepítési hello létező felhőalapú szolgáltatást. Minden fürtön hello régióban tooallocation újbóli kísérlet. Győződjön meg arról hello felhőalapú szolgáltatás nem kapcsolt tooan affinitáscsoport.
+3. Fenntartott IP - Ez a megoldás megtartja a meglévő IP-cím, de állásidő tooyour alkalmazás okoz.  
 
    * Hozzon létre egy foglalt IP-cím a meglévő telepítéshez Powershell használatával
 
      ```
      New-AzureReservedIP -ReservedIPName {new reserved IP name} -Location {location} -ServiceName {existing service name}
      ```
-   * Hajtsa végre a #2 promptjai meggyőződött arról, hogy a szolgáltatás szolgáltatáskonfigurációs SÉMA adni az új foglalt IP-címet.
-4. Távolítsa el az új központi telepítéseknél - affinitáscsoport Affinitáscsoportok már nem támogatottak. Kövesse a fenti új felhőalapú szolgáltatás telepítése #1. Győződjön meg róla, felhőalapú szolgáltatás nem olyan affinitáscsoportban van.
-5. Regionális virtuális hálózatot – lásd: átalakítása [hogyan kell áttelepíteni egy regionális virtuális hálózatot (VNet) Affinitáscsoportok](../virtual-network/virtual-networks-migrate-to-regional-vnet.md).
+   * Hajtsa végre a promptjai, így új foglalt IP-cím a hello szolgáltatás szolgáltatáskonfigurációs SÉMA hello meg arról, hogy toospecify #2.
+4. Távolítsa el az új központi telepítéseknél - affinitáscsoport Affinitáscsoportok már nem támogatottak. Új felhőalapú szolgáltatás toodeploy #1 utasításai. Győződjön meg róla, felhőalapú szolgáltatás nem olyan affinitáscsoportban van.
+5. Átalakítás tooa regionális virtuális hálózat – lásd: [hogyan toomigrate az Affinitáscsoportok tooa regionális virtuális hálózatot (VNet)](../virtual-network/virtual-networks-migrate-to-regional-vnet.md).

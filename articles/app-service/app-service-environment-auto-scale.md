@@ -1,5 +1,5 @@
 ---
-title: "Automatikus skálázás és az App Service Environment-környezet 1-es verzió"
+title: "aaaAutoscaling és az App Service Environment-környezet 1-es verzió"
 description: "Automatikus skálázás és az App Service Environment-környezet"
 services: app-service
 documentationcenter: 
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/11/2017
 ms.author: ccompy
-ms.openlocfilehash: f32affd285f3918feb0e893543f2a28f678b7b10
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1a03cf494309e80596b64471d1a067b2f64a9fee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="autoscaling-and-app-service-environment-v1"></a>Automatikus skálázás és az App Service Environment-környezet 1-es verzió
 
 > [!NOTE]
-> Ez a cikk az App Service Environment-környezet v1 tárgya.  Az App Service-környezet, amely könnyebben használható, és nagyobb teljesítményű infrastruktúra fut egy újabb verziója van telepítve. További információt az új verzió útmutató a [az App Service Environment bemutatása](../app-service/app-service-environment/intro.md).
+> Ez a cikk hello App Service Environment-környezet v1 tárgya.  App Service-környezet, amely könnyebben toouse, és nagyobb teljesítményű infrastruktúra futó hello újabb verziója van telepítve. több hello új verzióval kapcsolatos kezdődnie hello toolearn [bemutatása toohello App Service Environment-környezet](../app-service/app-service-environment/intro.md).
 > 
 
 Támogatja az Azure App Service-környezetek *automatikus skálázás*. Használhatja az automatikus skálázás egyedi feldolgozókészletek metrikák vagy ütemezés alapján.
 
 ![A feldolgozókészleten automatikus skálázás beállításai.][intro]
 
-Automatikus skálázás optimalizálja az erőforrás-használat automatikusan növekvő és zsugorítását App Service-környezet elférjen a költségvetést, és vagy betöltése.
+Automatikus skálázás optimalizálja az erőforrás-használat automatikusan növekvő, és az App Service-környezet toofit zsugorítását a keret és vagy profil.
 
 ## <a name="configure-worker-pool-autoscale"></a>Munkavégző készlet automatikus skálázás konfigurálása
-Az automatikus skálázás funkciói végezheti el a **beállítások** lapján a munkavégző készletét.
+Hello automatikus skálázási funkciót elérhető hello **beállítások** hello feldolgozókészletek lapján.
 
-![A feldolgozókészleten beállítások lapján.][settings-scale]
+![Hello feldolgozókészletek beállítások lapján.][settings-scale]
 
-Ezekből a felületet kell viszonylag jól ismert, mert ugyanazt a felhasználói élményt, hogy látni, ha az App Service-csomag méretezni. 
+Ott hello felületet kell viszonylag jól ismert, mert hello tervezze meg, hogy látni, amikor egy App Service méretezni ugyanazt a felhasználói élményt. 
 
 ![Manuális skálázási beállításokat.][scale-manual]
 
@@ -45,25 +45,25 @@ Az automatikus skálázási profilok is konfigurálhatja.
 
 ![Automatikus skálázási beállításokat.][scale-profile]
 
-Automatikus skálázási profilok hasznosak a skála korlátozható. Ezzel a módszerrel lehet egy egységes élmény úgy, hogy egy felső határa (2) egy alsó határ skálaértéknél (1) és egy előre jelezhető ráfordítás cap beállításával teljesítmény.
+Automatikus skálázási profilok olyan hasznos tooset vonatkozó korlátozások a skála. Ezzel a módszerrel lehet egy egységes élmény úgy, hogy egy felső határa (2) egy alsó határ skálaértéknél (1) és egy előre jelezhető ráfordítás cap beállításával teljesítmény.
 
 ![A profil beállítását.][scale-profile2]
 
-Egy profil megadása után az automatikus skálázási szabályok méretezési felfelé vagy lefelé a munkavégző készletét. a profil által meghatározott határain belül található példányok száma is hozzáadhat. Automatikus skálázási szabályok metrikák alapulnak.
+Után egy profil megadásához felfelé vagy lefelé hello feldolgozókészletek hello-profil által meghatározott hello határokon belül található példányok száma hello automatikus skálázási szabályok tooscale adhat hozzá. Automatikus skálázási szabályok metrikák alapulnak.
 
 ![Skálázási szabályhoz.][scale-rule]
 
- A feldolgozókészleten vagy előtér-metrikák automatikus skálázási szabályok meghatározásához használható. Ezeket a mérési metrikák az erőforrás panel diagramokban figyelése, vagy állítson be riasztásokat a rendszer.
+ A feldolgozókészleten vagy előtér-metrikák használt toodefine automatikus skálázási szabályok lehet. Ezeket a mérési metrikák hello erőforrás panel diagramokban figyelése, vagy állítsa be a riasztások hello.
 
 ## <a name="autoscale-example"></a>Automatikus skálázás – példa
 Egy App Service Environment-környezet automatikus skálázás legjobb érdekében a forgatókönyv segítségével mutatható be.
 
-Ez a cikk ismerteti a szükséges szempontok, automatikus skálázás beállításához. A cikk végigvezeti az olyan műveleteket, amelyek, ha a figyelembe a automatikus skálázás App Service-környezetek, amelyek App Service Environment-környezet.
+Ez a cikk ismerteti az összes hello szükséges szempontok automatikus skálázás beállításához. hello a cikk bemutatja, hogyan hello figyelembe a automatikus skálázás App Service Environment-környezetben üzemeltetett App Service-környezetek, amelyek kapcsolati lejátszását.
 
 ### <a name="scenario-introduction"></a>A forgatókönyv bemutatása
-Frank a sysadmin (rendszergazda), akik az App Service-környezetek át a munkaterheléseket, általa része lett telepítve a vállalati.
+Frank a sysadmin (rendszergazda), akik át lett telepítve, hogy tooan App Service Environment-környezet kezel hello munkaterhelések része a vállalati.
 
-Az App Service Environment-környezet van konfigurálva manuális méretezési az alábbiak szerint:
+hello App Service-környezet skálázási toomanual a következőképpen konfigurálva:
 
 * **Első végződik:** 3
 * **A feldolgozókészleten 1**: 10
@@ -72,9 +72,9 @@ Az App Service Environment-környezet van konfigurálva manuális méretezési a
 
 1 feldolgozókészletek használjuk a termelési számítási feladatokhoz, feldolgozókészletek 2 és 3 feldolgozókészletek a minőségi megbízhatósági (QA) és a fejlesztői munkaterhelések szolgálnak.
 
-Az App Service-csomagokról QA és fejlesztői manuális méretezési vannak konfigurálva. Az App Service-csomag üzemi automatikus skálázási értéke változások a terhelési és a forgalom kezelésére.
+hello App Service-csomagok a QA és fejlesztői toomanual méretezési konfigurálva. hello éles App Service-csomag tooautoscale toodeal rendelkező változata állítja be a terhelési és a forgalom.
 
-Frank tisztában van az alkalmazás. Tudja, hogy a terhelést csúcsidőszakon 9:00-kor és 18:00:00 közé esnek, mivel ez egy alkalmazottak által használt során az office-üzletági (LOB) alkalmazás. Ezt követően használati elutasítja azokat a felhasználókat adott napon szabásakor. Csúcsidőszakon kívüli nincs még néhány betöltése mert felhasználók férhetnek hozzá az alkalmazás távolról a mobileszközök és az otthoni számítógépek használatával. Az üzemi App Service-csomag már be van állítva a következő szabályokat a CPU-használat alapján automatikus skálázásra:
+Frank hello alkalmazással tisztában. Tudja, hogy a hello csúcsidőszakon terhelést 9:00-kor és 18:00:00 közé esnek, mivel ez egy alkalmazottak által használt során hello office-üzletági (LOB) alkalmazás. Ezt követően használati elutasítja azokat a felhasználókat adott napon szabásakor. Csúcsidőszakon kívüli nincs még néhány betöltése mert felhasználók férhetnek hozzá hello app távolról a mobileszközök és az otthoni számítógépek használatával. App Service-csomag már hello éles CPU-használat alapján a következő szabályok hello tooautoscale konfigurálva:
 
 ![Az ÜZLETÁGI alkalmazás beállításait.][asp-scale]
 
@@ -84,7 +84,7 @@ Frank tisztában van az alkalmazás. Tudja, hogy a terhelést csúcsidőszakon 9
 | **A skála:** ütemezés és a teljesítmény szabályok |**A skála:** ütemezés és a teljesítmény szabályok |
 | **Profil:** hétköznapokon |**Profil:** hétvégi |
 | **Típus:** ismétlődési |**Típus:** ismétlődési |
-| **Tartomány cél:** 5-20 példányok |**Tartomány cél:** 3 – 10 példányok |
+| **Tartomány cél:** 5 too20 példányok |**Tartomány cél:** 3 too10 példányok |
 | **Nap:** hétfő, kedd, szerda, csütörtök, péntek |**Nap:** , szombat és vasárnap |
 | **Kezdési időpont:** 9:00-kor |**Kezdési időpont:** 9:00-kor |
 | **Időzóna:** UTC-08 |**Időzóna:** UTC-08 |
@@ -108,44 +108,44 @@ Frank tisztában van az alkalmazás. Tudja, hogy a terhelést csúcsidőszakon 9
 | **Ritkán használt adatok le (perc):** 20 |**Ritkán használt adatok le (perc):** 10 |
 
 ### <a name="app-service-plan-inflation-rate"></a>Az alkalmazásszolgáltatási csomag inflációja
-App Service-csomagokról konfigurált automatikus skálázásra ehhez óránként sebességet. Ezt az értéket a megadott automatikus skálázási szabály megadott értékek alapján lehet kiszámolni.
+App Service-csomagok, amelyek a konfigurált tooautoscale ehhez óránként sebességet. Ezt az értéket a megadott automatikus skálázási szabály hello hello értékek alapján lehet kiszámolni.
 
-Megismerés és kiszámítása a *App Service-csomag inflációja* fontos az App Service-környezet automatikus skálázás, mert a feldolgozókészleten méretezési módosításai nincsenek azonnali.
+Megismerés és kiszámítása hello *App Service-csomag inflációja* fontos az App Service-környezet automatikus skálázási, mert nincsenek azonnali méretezési módosítások tooa munkavégző készletét.
 
-Az App Service-csomag inflációja kiszámítása a következőképpen történik:
+az alkalmazásszolgáltatási csomag inflációja hello kiszámítása a következőképpen történik:
 
 ![Az alkalmazásszolgáltatási csomag inflációja számítási.][ASP-Inflation]
 
-Az automatikus skálázás – a hét napja profil a termelési App Service-csomag vertikális Felskálázás szabály alapján:
+Hello automatikus skálázás – hello hétköznap profil hello termelési App Service-csomag vertikális Felskálázás szabály alapján:
 
 ![App Service csomag infláció arány alapján automatikus skálázás – vertikális Felskálázás szabály létrehozását.][Equation1]
 
-Automatikus skálázási – a hétvégi profil a termelési App Service-csomag vertikális Felskálázás szabály esetében a képlet kellene tartoznia:
+Az automatikus skálázás – hello hétvégi profil hello termelési App Service-csomag vertikális Felskálázás szabály hello hello esetben hello képlet kellene tartoznia:
 
 ![App Service csomag infláció arány hétvégéket automatikus skálázás – vertikális Felskálázás szabály alapján.][Equation2]
 
 Ez az érték is kerülhet sor, lefelé méretezéshez műveletekhez.
 
-Az automatikus skálázás – a hét napja profil az App Service-csomag, az üzemi méretezési le szabály alapján ez lenne az alábbiak szerint:
+Hello automatikus skálázás – hello hétköznap profil hello termelési App Service-csomag méretezési le szabály alapján ez lenne az alábbiak szerint:
 
 ![App Service csomag infláció arány alapján automatikus skálázás – méretezési le szabály létrehozását.][Equation3]
 
-Automatikus skálázási – az App Service-csomag üzemi hétvégi profiljának méretezési le szabály esetében a képlet kellene tartoznia:  
+Az automatikus skálázás – hello hétvégi profil hello termelési App Service-csomag méretezési le szabály hello hello esetben hello képlet kellene tartoznia:  
 
 ![App Service csomag infláció arány hétvégéket automatikus skálázás – méretezési le szabály alapján.][Equation4]
 
-Az App Service-csomag üzemi milyen mértékben növelhető a maximális sebesség nyolc példányok/óra a héten és négy példányok/óra a hétvégén. Azt is megjelenhetnek példányok négy példányok/óra során a hét sebességet és hat példányok/óra során tartozik.
+hello éles App Service-csomag milyen mértékben növelhető a maximális sebesség hello héten nyolc példányok/óra és négy példányok óránként hello hétvégén. Azt is megjelenhetnek példányok négy példányok/óra hello héten sebességet és hat példányok/óra során tartozik.
 
-Ha több App Service-csomagokról a feldolgozókészleten alatt tárolt, kell számítani a *teljes inflációja* az összes az App Service-csomagok, amelyeket a inflációja összege az adott munkavégző készletét tartalmazó.
+Ha több App Service-csomagokról a feldolgozókészleten alatt tárolt, hogy van-e toocalculate hello *teljes inflációja* , hogy az összes olyan App Service-csomagok hello éppen hello inflációja hello munkavégző készlethez tartozó üzemeltetéséhez.
 
 ![A feldolgozókészleten üzemeltetett több App Service-csomagokról teljes inflációja számítását.][ASP-Total-Inflation]
 
-### <a name="use-the-app-service-plan-inflation-rate-to-define-worker-pool-autoscale-rules"></a>Az App Service-csomag inflációja segítségével munkavégző készlet automatikus skálázási szabályok definiálása
-Munkavégző készletbe üzemeltető App Service-csomagokról konfigurált automatikus skálázásra kell kapacitás puffert lefoglalni. A puffer lehetővé teszi, hogy az automatikus skálázási művelet növelhető vagy csökkenthető az App Service-csomag, igény szerint. A minimális puffer lenne a számított teljes App Service megtervezése inflációja.
+### <a name="use-hello-app-service-plan-inflation-rate-toodefine-worker-pool-autoscale-rules"></a>App Service használata hello inflációja toodefine munkavégző készlet automatikus skálázási szabályok megtervezése
+Munkavégző készletbe üzemeltető App Service-csomagok, amelyek a konfigurált tooautoscale kell kapacitás puffert lefoglalni. hello puffer lehetővé teszi, hogy hello automatikus skálázási műveletek toogrow, és az App Service-csomag igazodjon. hello minimális puffer hello számított teljes App Service megtervezése inflációja lesz.
 
-App Service-környezet skálázási műveleteinek néhány történő alkalmazása időbe telhet, mert további fordulhat elő, amíg folyamatban van egy skálázási műveletet igény szerinti módosítások változásait kell fiókot. Ez a késés teljesítése érdekében azt javasoljuk, hogy használ a számított teljes App Service megtervezése inflációja a hozzáadott példányok minimális számának minden automatikus skálázási művelet.
+App Service-környezet skálázási műveleteinek igénybe vehet néhány alkalommal tooapply, mert további fordulhat elő, amíg folyamatban van egy skálázási műveletet igény szerinti módosítások változásait kell fiókot. tooaccommodate a késés, azt javasoljuk, hogy használja a program teljes App Service megtervezése inflációja hello hello minden automatikus skálázási művelet hozzáadott-példányok minimális száma.
 
-Az információ Frank határozhatja meg a következő automatikus skálázási profil és a szabályok:
+Az információ Frank hello adhatja meg a következő automatikus skálázási profil és a szabályok:
 
 ![Automatikus skálázási profil szabályok LOB például.][Worker-Pool-Scale]
 
@@ -155,7 +155,7 @@ Az információ Frank határozhatja meg a következő automatikus skálázási p
 | **A skála:** ütemezés és a teljesítmény szabályok |**A skála:** ütemezés és a teljesítmény szabályok |
 | **Profil:** hétköznapokon |**Profil:** hétvégi |
 | **Típus:** ismétlődési |**Típus:** ismétlődési |
-| **Tartomány cél:** 13-25 példányok |**Tartomány cél:** 6 – 15 példányok |
+| **Tartomány cél:** 13 too25 példányok |**Tartomány cél:** 6 too15 példányok |
 | **Nap:** hétfő, kedd, szerda, csütörtök, péntek |**Nap:** , szombat és vasárnap |
 | **Kezdési időpont:** 7:00-kor |**Kezdési időpont:** 9:00-kor |
 | **Időzóna:** UTC-08 |**Időzóna:** UTC-08 |
@@ -178,19 +178,19 @@ Az információ Frank határozhatja meg a következő automatikus skálázási p
 | **Művelet:** számának csökkentése 2 |**Művelet:** csökkentése száma 3 |
 | **Ritkán használt adatok le (perc):** 120 |**Ritkán használt adatok le (perc):** 120 |
 
-A célként megadott tartomány-profilban megadott az App Service-csomag + puffer-profilban megadott minimális példányainak számítja ki.
+a példányok minimális hello az App Service-csomag hello-profil + puffer definiált hello hello profilban megadott cél tartomány számítja ki.
 
-A maximális tartomány lenne a munkavégző készletben tárolt összes App Service-csomagokról az összes maximális tartomány összege.
+hello maximális tartomány lenne az összes hello maximális tartomány hello munkavégző készletben tárolt összes App Service-csomagokról hello összege.
 
-A skálázási szabályok növekedése számát létre kell hozni legalább az App Service csomag inflációja bővített X 1.
+hello hello skálázási szabályok száma növelni kell set tooat legalább 1 X az App Service csomag inflációja bővített fel.
 
-Csökkentse száma módosítható egy 1/2 X vagy az App Service csomag inflációja bővített X 1 közötti le.
+Csökkentse száma lehet módosított toosomething 1/2 X között, vagy 1 X App Service megtervezése inflációja hello méretezési le.
 
 ### <a name="autoscale-for-front-end-pool"></a>Automatikus skálázás előtér-készlet
 Az előtér-automatikus skálázási szabályok egyszerűbbek, mint a feldolgozókészletek. Elsősorban akkor  
-Győződjön meg arról, hogy a mérés és a cooldown időzítők időtartama fontolja meg, hogy az App Service-csomagot a skálázási műveletek nem azonnali.
+Győződjön meg arról, hogy hello mérési és hello cooldown időzítők időtartama vegye figyelembe, hogy az App Service-csomagot a skálázási műveletek nem azonnali.
 
-Ebben a forgatókönyvben a Frank tudja, hogy a Hibaarány előtér-webkiszolgálóinak eléri a 80 %-os processzorhasználatot megnő, és beállítja az automatikus skálázási szabály, amely növeli következőképpen példányok:
+Ebben a forgatókönyvben a Frank tudja, hogy hello Hibaarány előtér-webkiszolgálóinak eléri a 80 %-os processzorhasználatot megnő, és beállítja hello automatikus skálázási szabály tooincrease példányok az alábbiak szerint:
 
 ![Automatikus skálázási beállításokat előtér-készlet.][Front-End-Scale]
 
@@ -200,7 +200,7 @@ Ebben a forgatókönyvben a Frank tudja, hogy a Hibaarány előtér-webkiszolgá
 | **A skála:** ütemezés és a teljesítmény szabályok |
 | **Profil:** mindennapi |
 | **Típus:** ismétlődési |
-| **Tartomány cél:** 3 – 10 példányok |
+| **Tartomány cél:** 3 too10 példányok |
 | **Nap:** mindennapi |
 | **Kezdési időpont:** 9:00-kor |
 | **Időzóna:** UTC-08 |

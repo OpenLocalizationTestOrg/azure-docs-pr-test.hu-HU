@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB: A DocumentDB API a .NET fejlesztést |} Microsoft Docs"
-description: "Ismerje meg, hogyan fejleszthet Azure Cosmos DB DocumentDB API-t a .NET használatával"
+title: "Azure Cosmos DB: Fejlesztése a DocumentDB API .NET hello |} Microsoft Docs"
+description: "Megtudhatja, hogyan toodevelop Azure Cosmos DB DocumentDB API-t a .NET használatával"
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -16,19 +16,19 @@ ms.workload:
 ms.date: 05/10/2017
 ms.author: mimig
 ms.custom: mvc
-ms.openlocfilehash: 2eed74ae9bd173b0944ec190dfe5d9a4bdc54c37
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0d3d17afa782054c8fdf3cbac421e5a5d0a6800c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmosdb-develop-with-the-documentdb-api-in-net"></a>Azure CosmosDB: A DocumentDB API a .NET fejlesztést
+# <a name="azure-cosmosdb-develop-with-hello-documentdb-api-in-net"></a>Azure CosmosDB: A DocumentDB API .NET hello fejleszthet
 
-Az Azure Cosmos DB a Microsoft globálisan elosztott többmodelles adatbázis-szolgáltatása. Segítségével gyorsan létrehozhat és lekérdezhet dokumentum-, kulcs/érték és gráf típusú adatbázisokat, melyek mindegyike felhasználja az Azure Cosmos DB középpontjában álló globális elosztási és horizontális skálázhatósági képességeket. 
+Az Azure Cosmos DB a Microsoft globálisan elosztott többmodelles adatbázis-szolgáltatása. Gyorsan hozzon létre, és a dokumentum, a kulcs/érték és a graph adatbázisok, amelyek kihasználhassa hello globális terjesztési és horizontális skálázhatóságot képességekről az Azure-Cosmos adatbázis hello core lekérdezése. 
 
-Ez az oktatóanyag bemutatja, hogyan hozzon létre egy Azure Cosmos DB fiókot az Azure portál használatával, és majd a dokumentum-adatbázis és gyűjtemény létrehozása egy [partíciókulcs](documentdb-partition-data.md#partition-keys) használatával a [DocumentDB .NET API](documentdb-introduction.md). Hozzon létre egy partíciókulcsot, ha létrehoz egy gyűjteményt, amelyet az alkalmazás kész az adatok növekedésével egyszerűen lehet méretezni. 
+Ez az oktatóanyag bemutatja, hogyan egy Azure Cosmos DB fiók használatával toocreate hello Azure-portálon, és majd a dokumentum-adatbázis és gyűjtemény létrehozása egy [partíciókulcs](documentdb-partition-data.md#partition-keys) hello segítségével [DocumentDB .NET API](documentdb-introduction.md). Hozzon létre egy partíciókulcsot, ha létrehoz egy gyűjteményt, amelyet az alkalmazás készen áll a testreszabásra tooscale egyszerűen lehet az adatok növekedésével. 
 
-Ez az oktatóanyag ismerteti a következő feladatok segítségével a [DocumentDB .NET API](documentdb-sdk-dotnet.md):
+Az útmutató tartalma hello alábbi feladatokat hello segítségével [DocumentDB .NET API](documentdb-sdk-dotnet.md):
 
 > [!div class="checklist"]
 > * Azure Cosmos DB-fiók létrehozása
@@ -41,20 +41,20 @@ Ez az oktatóanyag ismerteti a következő feladatok segítségével a [Document
 > * Adatbázis törlése
 
 ## <a name="prerequisites"></a>Előfeltételek
-Győződjön meg róla, hogy rendelkezik az alábbiakkal:
+Győződjön meg arról, hogy a következő hello:
 
 * Aktív Azure-fiók. Ha még nincs fiókja, létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/). 
-    * Másik lehetőségként használhatja a [Azure Cosmos DB emulátor](local-emulator.md) ehhez az oktatóanyaghoz, ha azt szeretné, egy helyi környezet, amely emulálja a fejlesztéshez az Azure DocumentDB szolgáltatás használata.
+    * Másik lehetőségként használhatja a hello [Azure Cosmos DB emulátor](local-emulator.md) ehhez az oktatóanyaghoz, ha azt szeretné, hogy toouse emulálja a fejlesztéshez hello Azure DocumentDB szolgáltatás egy helyi környezet.
 * [Visual Studio](http://www.visualstudio.com/).
 
 ## <a name="create-an-azure-cosmos-db-account"></a>Azure Cosmos DB-fiók létrehozása
 
-Először hozzon létre egy Azure Cosmos DB fiókot az Azure portálon.
+Először hozzon létre egy Azure Cosmos DB fiókot a hello Azure-portálon.
 
 > [!TIP]
-> * Már van Azure Cosmos DB fiókja? Ha igen, ugorjon előre [a Visual Studio megoldás beállítása](#SetupVS)
-> * Kellett az Azure DocumentDB-fiókot? Ha igen, a fiókját most már Azure Cosmos DB fiókkal, és ugorjon előre a [a Visual Studio megoldás beállítása](#SetupVS).  
-> * Ha az Azure Cosmos DB Emulator használ, adja kövesse a [Azure Cosmos DB emulátor](local-emulator.md) kell beállítania az emulátor, és ugorjon előre [a Visual Studio megoldás beállítása](#SetupVS). 
+> * Már van Azure Cosmos DB fiókja? Ha igen, hagyja ki azokat, amelyek túl[a Visual Studio megoldás beállítása](#SetupVS)
+> * Kellett az Azure DocumentDB-fiókot? Ha igen, a fiókját most már Azure Cosmos DB fiókkal, és kihagyhatja azokat, amelyek túl[a Visual Studio megoldás beállítása](#SetupVS).  
+> * Ha hello Azure Cosmos DB Emulator használata esetén kövesse hello készítésével [Azure Cosmos DB emulátor](local-emulator.md) toosetup hello emulátor, és hagyja ki azokat, amelyek túl[a Visual Studio megoldás beállítása](#SetupVS). 
 >
 >
 
@@ -62,26 +62,26 @@ Először hozzon létre egy Azure Cosmos DB fiókot az Azure portálon.
 
 ## <a id="SetupVS"></a>A Visual Studio-megoldás beállítása
 1. Nyissa meg a **Visual Studiót** a számítógépén.
-2. A **Fájl** menüben válassza az **Új**, majd a **Projekt** elemet.
-3. Az a **új projekt** párbeszédablakban válassza **sablonok** / **Visual C#** / **Konzolalkalmazás (.NET-keretrendszer)**, nevezze el a projektet, és kattintson a **OK**.
-   ![Képernyőfelvétel az Új projekt ablakról](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-new-project-2.png)
+2. A hello **fájl** menüjében válassza **új**, és válassza a **projekt**.
+3. A hello **új projekt** párbeszédablakban válassza **sablonok** / **Visual C#** / **Konzolalkalmazás (.NET-keretrendszer)**, nevezze el a projektet, és kattintson a **OK**.
+   ![Képernyőfelvétel a hello új projekt ablakról](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-new-project-2.png)
 
-4. A **Megoldáskezelőben** kattintson a jobb gombbal az új konzolalkalmazásra, amely a Visual Studio megoldás alatt található, majd kattintson a **NuGet-csomagok kezelése...** lehetőségre.
+4. A hello **Megoldáskezelőben**, kattintson az új konzolalkalmazásra, amely a Visual Studio megoldás alatt, a jobb gombbal, és kattintson a **NuGet-csomagok kezelése...**
     
-    ![A Projekt jobb gombos kattintással elérhető menüjének képernyőfelvétele](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-manage-nuget-pacakges.png)
-5. Az a **NuGet** lapra, majd **Tallózás**, és írja be **documentdb** be a keresőmezőbe.
+    ![Képernyőfelvétel a hello jobbra a hello projekt helyi](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-manage-nuget-pacakges.png)
+5. A hello **NuGet** lapra, majd **Tallózás**, és írja be **documentdb** hello Keresés mezőbe.
 <!---stopped here--->
-6. A találatok között keresse meg a **Microsoft.Azure.DocumentDB** elemet, majd kattintson a **Telepítés** lehetőségre.
-   A csomag-azonosító az Azure Cosmos DB ügyféloldali kódtár [Microsoft.Azure.DocumentDB](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB).
-   ![Képernyőfelvétel a NuGet menüről a Azure Cosmos DB ügyfél SDK-kereséshez](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-manage-nuget-pacakges-2.png)
+6. Hello eredmények belül található **Microsoft.Azure.DocumentDB** kattintson **telepítése**.
+   hello csomag azonosítója hello Azure Cosmos DB ügyféloldali kódtár [Microsoft.Azure.DocumentDB](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB).
+   ![Képernyőfelvétel a hello NuGet menüről a Azure Cosmos DB ügyfél SDK-kereséshez](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-manage-nuget-pacakges-2.png)
 
-    Ha a megoldás módosításainak áttekintéséről szóló üzenetet kap, kattintson az **OK** gombra. Ha a licenc elfogadásáról szóló üzenetet kap, kattintson az **Elfogadom** gombra.
+    Ha kapcsolatos módosításokat toohello megoldás áttekintése figyelmeztető hibaüzenet jelenik meg, kattintson a **OK**. Ha a licenc elfogadásáról szóló üzenetet kap, kattintson az **Elfogadom** gombra.
 
-## <a id="Connect"></a>Vegye fel a hivatkozásokat a projekthez
-A fennmaradó lépéseit az oktatóanyag a DocumentDB API kódrészletek, létrehozása és frissítése a projekt Azure Cosmos DB erőforrásainak szükséges adja meg.
+## <a id="Connect"></a>Hivatkozások tooyour projekt hozzáadása
+az oktatóanyag adjon meg hello DocumentDB API kód kódtöredékek szükséges toocreate és a frissítés Azure Cosmos DB erőforrásokat a projekt fennmaradó hello szükséges lépések.
 
-Először adja hozzá ezeket a hivatkozásokat, hogy az alkalmazást.
-<!---These aren't added by default when you install the pkg?--->
+Először adja hozzá ezeket a hivatkozásokat tooyour alkalmazás.
+<!---These aren't added by default when you install hello pkg?--->
 
 ```csharp
 using System.Net;
@@ -100,17 +100,17 @@ private const string PrimaryKey = "<your primary key>";
 private DocumentClient client;
 ```
 
-Majd, head vissza a [Azure-portálon](https://portal.azure.com) a végponti URL-cím és az elsődleges kulcs beolvasása. A végponti URL-cím és az elsődleges kulcs ahhoz szükséges, hogy az alkalmazás tudja, hova kell csatlakoznia, az Azure Cosmos DB pedig megbízzon az alkalmazás által létesített kapcsolatban.
+Ezt követően a head biztonsági toohello [Azure-portálon](https://portal.azure.com) tooretrieve a végponti URL-cím és az elsődleges kulcs. hello végponti URL-cím és elsődleges kulcs szükség az alkalmazás toounderstand ahol tooconnect esetén és Azure Cosmos DB tootrust az alkalmazás által létesített kapcsolatban.
 
-Az Azure portálon lépjen az Azure Cosmos DB fiókjába, kattintson **kulcsok**, és kattintson a **írható-olvasható kulcsok**.
+Az Azure-portálon hello lépjen tooyour Azure Cosmos DB fiókot, kattintson **kulcsok**, és kattintson a **írható-olvasható kulcsok**.
 
-Az URI a portálról másolása és beillesztése azt `<your endpoint URL>` a program.cs fájlban található. Az elsődleges kulcs másolása a portálról, majd illessze be keresztül `<your primary key>`. Ügyeljen arra, hogy távolítsa el a `<` és `>` a értékeiből.
+Hello portálról hello URI másolása és beillesztése azt `<your endpoint URL>` hello program.cs fájlban. Akkor másolási elsődleges kulcs hello hello portálról, és illessze be keresztül `<your primary key>`. Lehet, hogy tooremove hello `<` és `>` a értékeiből.
 
-![Képernyőfelvétel a NoSQL-oktatóanyagban a C# Konzolalkalmazás létrehozásához használt Azure-portálon. A Azure Cosmos DB-fiók panelen lévő kulcsok és a kulcsok panelen lévő URI és PRIMARY KEY értékek Azure Cosmos DB fiókkal tartalmazza](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-keys.png)
+![Képernyőfelvétel a hello Azure-portálon hello NoSQL-oktatóanyag toocreate által használt egy C# konzolalkalmazást. Egy Azure Cosmos DB fiókhoz, hello hello Azure Cosmos DB-fiók panelen lévő kulcsok és hello URI és hello kulcsok panelen lévő elsődleges kulcs értékét jeleníti meg](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-keys.png)
 
-## <a id="instantiate"></a>A documentclient ügyfél segítségével hozható létre
+## <a id="instantiate"></a>Hello DocumentClient példányosítható
 
-Most, hozzon létre egy új példányt a **DocumentClient**.
+Most, hozzon létre egy új példányát hello **DocumentClient**.
 
 ```csharp
 DocumentClient client = new DocumentClient(new Uri(endpoint), authKey);
@@ -118,33 +118,33 @@ DocumentClient client = new DocumentClient(new Uri(endpoint), authKey);
 
 ## <a id="create-database"></a>Adatbázis létrehozása
 
-Ezután hozzon létre egy Azure Cosmos DB [adatbázis](documentdb-resources.md#databases) használatával a [Documentclient](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx) metódus vagy [CreateDatabaseIfNotExistsAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseifnotexistsasync.aspx) metódusában a  **DocumentClient** osztályával a [DocumentDB .NET SDK](documentdb-sdk-dotnet.md). Az adatbázis a JSON-dokumentumtároló gyűjtemények között particionált logikai tárolója.
+Ezután hozzon létre egy Azure Cosmos DB [adatbázis](documentdb-resources.md#databases) hello segítségével [Documentclient](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx) metódus vagy [CreateDatabaseIfNotExistsAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseifnotexistsasync.aspx) hello metódusában ** DocumentClient** hello osztály [DocumentDB .NET SDK](documentdb-sdk-dotnet.md). Egy adatbázis a JSON-dokumentumtároló gyűjtemények között particionált logikai tárolója hello.
 
 ```csharp
 await client.CreateDatabaseAsync(new Database { Id = "db" });
 ```
 ## <a name="decide-on-a-partition-key"></a>Adja meg a partíciós kulcs 
 
-Gyűjtemények tárolói dokumentumok tárolására. Ezek a logikai erőforrások és is [egy vagy több fizikai partíció span](partition-data.md). A [partíciókulcs](documentdb-partition-data.md) a tulajdonság (vagy elérési út) az adatok között a kiszolgálók vagy a partíciók terjesztéséhez használt dokumentumok belül van. Az azonos partíciókulcsú összes dokumentumot partícióra vannak tárolva. 
+Gyűjtemények tárolói dokumentumok tárolására. Ezek a logikai erőforrások és is [egy vagy több fizikai partíció span](partition-data.md). A [partíciókulcs](documentdb-partition-data.md) a tulajdonság (vagy elérési út) belül van, amely használt toodistribute dokumentumok hello kiszolgálók között vagy partíció adatait. Hello ugyanazzal a partíciókulccsal tárolja az összes dokumentum hello egyazon partícióra kerüljenek. 
 
-A partíciós kulcs egy fontos döntés előtt hozzon létre egy gyűjteményt. Partíció kulcsai a tulajdonság (vagy elérési út) az adatok több kiszolgálók között vagy partíciók terjeszteni használható Azure Cosmos DB dokumentumok belül. Cosmos DB csak a partíciós kulcs értékét és a kivonatolt eredménye alapján határozza meg, amely tárolja a dokumentum a partíció. Az azonos partíciókulcsú összes dokumentumot partícióra vannak tárolva, és partíciókulcsok gyűjtemény létrehozása után nem módosítható. 
+A partíciós kulcs egy fontos döntés toomake, egy gyűjtemény létrehozása előtt. Partíciókulcsok a tulajdonság (vagy elérési út) tartoznak, amelyek lehetnek dokumentumok Azure Cosmos DB toodistribute használja az adatok több kiszolgálók között vagy partíció. Cosmos DB hello a partíciós kulcs értéke csak, és használja a kivonatolt hello eredmény toodetermine hello partíció mely toostore hello dokumentumban. Hello ugyanazzal a partíciókulccsal tárolja az összes dokumentum hello egyazon partícióra kerüljenek, és partíciókulcsok gyűjtemény létrehozása után nem módosítható. 
 
-Ebben az oktatóanyagban a partíciós kulcs beállítva fogjuk `/deviceId` , hogy az összes adat egyetlen eszközhöz egyetlen partícióra van tárolva. Válassza ki, hogy az értékek, amelyek segítségével a azonos gyakoriságát Cosmos DB tudja a terhelést, ha az adatok növekszik, és az adatgyűjtés a teljes teljesítmény elérése érdekében nagy számú partíciós kulcs szeretné. 
+Ebben az oktatóanyagban az oktatóanyagban módosítjuk tooset hello partíciós kulcs túl`/deviceId` úgy, amely hello hello minden adatot az egyetlen eszközt egyetlen partícióra van tárolva. Azt szeretné, hogy toochoose, amely rendelkezik, amelyek mindegyike használt értékek nagy számú partíciós kulcsa: hello kapcsolatos azonos gyakoriság tooensure Cosmos DB is a terhelést, ha az adatok növekszik, és hello teljes átviteli képessége – hello gyűjtemény elérése. 
 
-Partícionálásra vonatkozó további információkért lásd: [partíció és a skála Azure Cosmos DB?](partition-data.md) 
+Partícionálásra vonatkozó további információkért lásd: [hogyan toopartition és a skála Azure Cosmos DB?](partition-data.md) 
 
 ## <a id="CreateColl"></a>Gyűjtemény létrehozása 
 
-Most, hogy tudjuk, hogy a partíciós kulcs `/deviceId`, lehetővé teszi, hogy hozzon létre egy [gyűjtemény](documentdb-resources.md#collections) használatával a [CreateDocumentCollectionAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdocumentcollectionasync.aspx) metódus vagy [CreateDocumentCollectionIfNotExistsAsync ](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentcollectionifnotexistsasync.aspx) metódusában a **DocumentClient** osztály. A gyűjtemény egy JSON-dokumentumokat és a kapcsolódó JavaScript-alkalmazáslogikát tartalmazó tároló. 
+Most, hogy tudjuk, hogy a partíciós kulcs `/deviceId`, lehetővé teszi, hogy hozzon létre egy [gyűjtemény](documentdb-resources.md#collections) hello segítségével [CreateDocumentCollectionAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdocumentcollectionasync.aspx) metódus vagy [ CreateDocumentCollectionIfNotExistsAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentcollectionifnotexistsasync.aspx) hello metódusában **DocumentClient** osztály. A gyűjtemény egy JSON-dokumentumokat és a kapcsolódó JavaScript-alkalmazáslogikát tartalmazó tároló. 
 
 > [!WARNING]
-> Gyűjtemény létrehozása megegyezik árképzési hatással vannak, az alkalmazás Azure Cosmos DB kommunikálni átviteli lefoglalja. További részletekért tekintse meg a [árképzést ismertető oldalra](https://azure.microsoft.com/pricing/details/cosmos-db/)
+> Gyűjtemény létrehozása megegyezik megvalósítását, árképzési lefoglalja hello alkalmazás toocommunicate rendelkező Azure Cosmos DB adatátviteli sebességét. További részletekért tekintse meg a [árképzést ismertető oldalra](https://azure.microsoft.com/pricing/details/cosmos-db/)
 > 
 > 
 
 ```csharp
-// Collection for device telemetry. Here the JSON property deviceId is used  
-// as the partition key to spread across partitions. Configured for 2500 RU/s  
+// Collection for device telemetry. Here hello JSON property deviceId is used  
+// as hello partition key toospread across partitions. Configured for 2500 RU/s  
 // throughput and an indexing policy that supports sorting against any  
 // number or string property. .
 DocumentCollection myCollection = new DocumentCollection();
@@ -157,10 +157,10 @@ await client.CreateDocumentCollectionAsync(
     new RequestOptions { OfferThroughput = 2500 });
 ```
 
-Ez a módszer egy REST API hívása Azure Cosmos DB, és a szolgáltatás a kért átviteli sebesség alapján létrehozott partícióknak számos teszi. Módosíthatja a gyűjtemény átviteli azt a teljesítményt kell fejleszteni a SDK használatával vagy a [Azure-portálon](set-throughput.md).
+A metódus elérhetővé válnak a REST API-t hívja fel a tooAzure Cosmos DB, és hello szolgáltatás rendelkezések hello kért átviteli sebesség alapján létrehozott partícióknak számos. A teljesítmény igények fejlődnek hello SDK vagy hello segítségével módosíthatja hello átviteli gyűjtemény [Azure-portálon](set-throughput.md).
 
 ## <a id="CreateDoc"></a>JSON-dokumentumok létrehozása
-Az Azure Cosmos DB szúrjon be néhány JSON-dokumentumokat. A [dokumentumok](documentdb-resources.md#documents) a **DocumentClient** osztály [CreateDocumentAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentasync.aspx) metódusának használatával hozhatók létre. A dokumentumok a felhasználó által megadott (tetszőleges) JSON-tartalmak. Ez a minta az osztály egy eszköz olvasása és szúrható be egy új eszközt egy gyűjteményhez olvasása Documentclient hívásakor tartalmaz.
+Az Azure Cosmos DB szúrjon be néhány JSON-dokumentumokat. A [dokumentum](documentdb-resources.md#documents) hello segítségével hozhatók létre [Documentclient](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentasync.aspx) hello metódusában **DocumentClient** osztály. A dokumentumok a felhasználó által megadott (tetszőleges) JSON-tartalmak. Ez a minta az osztály tartalmaz egy eszköz olvasásra, és egy hívás tooCreateDocumentAsync tooinsert egy új eszközt egy gyűjteményhez olvasásakor.
 
 ```csharp
 public class DeviceReading
@@ -185,8 +185,8 @@ public class DeviceReading
     public double MetricValue;
   }
 
-// Create a document. Here the partition key is extracted 
-// as "XMS-0001" based on the collection definition
+// Create a document. Here hello partition key is extracted 
+// as "XMS-0001" based on hello collection definition
 await client.CreateDocumentAsync(
     UriFactory.CreateDocumentCollectionUri("db", "coll"),
     new DeviceReading
@@ -201,10 +201,10 @@ await client.CreateDocumentAsync(
 ```
 ## <a name="read-data"></a>Adatok olvasása
 
-Most, olvassa el a dokumentum a partíciós kulcs és a ReadDocumentAsync metódussal azonosítója. Vegye figyelembe, hogy az olvasások adni egy PartitionKey (a megfelelő a `x-ms-documentdb-partitionkey` kérelem fejléce a REST API-ban).
+Most elolvasni hello dokumentumot a partíciókulcs és hello ReadDocumentAsync metódussal azonosítója. Vegye figyelembe, hogy a hello olvasások PartitionKey értéket tartalmazza (megfelelő toohello `x-ms-documentdb-partitionkey` hello REST API-t a kérelem fejlécében).
 
 ```csharp
-// Read document. Needs the partition key and the Id to be specified
+// Read document. Needs hello partition key and hello Id toobe specified
 Document result = await client.ReadDocumentAsync(
   UriFactory.CreateDocumentUri("db", "coll", "XMS-001-FE24C"), 
   new RequestOptions { PartitionKey = new PartitionKey("XMS-0001") });
@@ -214,10 +214,10 @@ DeviceReading reading = (DeviceReading)(dynamic)result;
 
 ## <a name="update-data"></a>Adatok frissítése
 
-Most tegyük frissítése néhány adat, a ReplaceDocumentAsync metódussal.
+Most tegyük a néhány hello ReplaceDocumentAsync metódussal adatainak frissítése.
 
 ```csharp
-// Update the document. Partition key is not required, again extracted from the document
+// Update hello document. Partition key is not required, again extracted from hello document
 reading.MetricValue = 104;
 reading.ReadingTime = DateTime.UtcNow;
 
@@ -228,17 +228,17 @@ await client.ReplaceDocumentAsync(
 
 ## <a name="delete-data"></a>Adat törlése
 
-Most már lehetővé teszi, hogy a dokumentum által partíciókulcs és azonosító törlése DeleteDocumentAsync módszer használatával.
+Most már lehetővé teszi, hogy a dokumentum által partíciókulcs és azonosító törlése hello DeleteDocumentAsync módszer használatával.
 
 ```csharp
-// Delete a document. The partition key is required.
+// Delete a document. hello partition key is required.
 await client.DeleteDocumentAsync(
   UriFactory.CreateDocumentUri("db", "coll", "XMS-001-FE24C"), 
   new RequestOptions { PartitionKey = new PartitionKey("XMS-0001") });
 ```
 ## <a name="query-partitioned-collections"></a>A particionált gyűjtemények lekérdezése
 
-Amikor adatait a particionált gyűjtemények, Azure Cosmos DB automatikusan továbbítja a lekérdezés a partíciókat a partíciókulcs-értékek a szűrőben megadott (ha vannak ilyenek) megfelelő. Ez a lekérdezés például csak a partíciós kulcs "XMS-0001" tartalmazó partíció van átirányítva.
+Amikor a adatait a particionált gyűjtemények, Azure Cosmos DB automatikusan útvonalak hello lekérdezési toohello partíciók megfelelő toohello partíció megadott kulcsértékek hello szűrő (ha vannak ilyenek). Például egy, a lekérdezés nem útválasztásos toojust hello partíció tartalmazó hello partíciós kulcs "XMS-0001".
 
 ```csharp
 // Query using partition key
@@ -247,7 +247,7 @@ IQueryable<DeviceReading> query = client.CreateDocumentQuery<DeviceReading>(
     .Where(m => m.MetricType == "Temperature" && m.DeviceId == "XMS-0001");
 ```
     
-A következő lekérdezés nem rendelkezik egy szűrőt a partíciós kulcs (DeviceId), és minden olyan partíciónak, ahol hajtotta végre a partíció index alapján történő van rendezve. Vegye figyelembe, hogy meg kell adnia a EnableCrossPartitionQuery (`x-ms-documentdb-query-enablecrosspartition` REST API-ja) kell rendelkeznie az SDK partíciók között a lekérdezés végrehajtásához.
+hello következő lekérdezés nincs szűrő hello partíciókulcs (DeviceId) és tooall partíciók hol végre hello partíció index alapján van rendezve. Vegye figyelembe, hogy rendelkezik-e toospecify hello EnableCrossPartitionQuery (`x-ms-documentdb-query-enablecrosspartition` a hello REST API-t) toohave hello SDK tooexecute közötti partíciók lekérdezést.
 
 ```csharp
 // Query across partition keys
@@ -258,7 +258,7 @@ IQueryable<DeviceReading> crossPartitionQuery = client.CreateDocumentQuery<Devic
 ```
 
 ## <a name="parallel-query-execution"></a>Párhuzamos lekérdezés-végrehajtás
-Az Azure Cosmos DB DocumentDB SDK-k 1.9.0 és hajthat végre a particionált gyűjtemények, lekérdezések kis késés, még akkor is, amikor sok partíciók touch kell támogatási párhuzamos lekérdezés végrehajtási beállítások fent. A következő lekérdezés például több partíció párhuzamosan futó van konfigurálva.
+hello Azure Cosmos DB DocumentDB SDK 1.9.0 és támogatási fent párhuzamos lekérdezés végrehajtási beállítások, melyek lehetővé teszik tooperform kis késleltetésű lekérdezi a particionált gyűjtemények szemben még akkor is, ha szükségük van tootouch partíciók nagy számú. Például a következő lekérdezés hello partíciók nem konfigurált toorun párhuzamosan.
 
 ```csharp
 // Cross-partition Order By queries
@@ -269,15 +269,15 @@ IQueryable<DeviceReading> crossPartitionQuery = client.CreateDocumentQuery<Devic
     .OrderBy(m => m.MetricValue);
 ```
     
-A következő paraméterek hangolása kezelheti párhuzamos lekérdezés-végrehajtás:
+A következő paraméterek hello hangolása kezelheti párhuzamos lekérdezés-végrehajtás:
 
-* Úgy, hogy `MaxDegreeOfParallelism`, szabályozhatja, azaz a gyűjtemény partíciókra egyidejű hálózati kapcsolatok maximális száma párhuzamos mértékét. Ha a-1, milyen párhuzamossági az SDK kezeli. Ha a `MaxDegreeOfParallelism` nem megadott vagy kell állítani, 0, amely az alapértelmezett érték, a gyűjtemény partíciók egyetlen hálózati kapcsolattal lesz.
-* Úgy, hogy `MaxBufferedItemCount`, akkor is kompromisszumot lekérdezés-késleltetés és ügyféloldali memóriahasználata. Ha kihagyja ezt a paramétert, vagy állítsa-1, párhuzamos lekérdezés-végrehajtás során pufferelt elemek száma. az SDK kezeli.
+* Úgy, hogy `MaxDegreeOfParallelism`, azaz hello egyidejű hálózati kapcsolatok toohello gyűjtemény a partíciók száma párhuzamos hello fokú szabályozhatja. Ha ez túl-1, párhuzamossági hello fokát hello SDK kezeli. Ha hello `MaxDegreeOfParallelism` értéke nincs megadva, illetve too0, amely hello alapértelmezett érték, egy egyetlen hálózati kapcsolat toohello gyűjtemény partíciók lesz.
+* Úgy, hogy `MaxBufferedItemCount`, akkor is kompromisszumot lekérdezés-késleltetés és ügyféloldali memóriahasználata. Ha kihagyja ezt a paramétert, vagy állítsa 1 túl, hello száma párhuzamos lekérdezés-végrehajtás során pufferelt elemek hello SDK kezeli.
 
-Megadott gyűjtemény olyan állapotban, a párhuzamos lekérdezések lesz az eredményeket ugyanabban a sorrendben, ahogy soros végrehajtása. Rendezés (ORDER BY és/vagy felső) tartalmazó kereszt-partíció lekérdezés végrehajtásakor a a DocumentDB SDK-t állít ki párhuzamos lekérdezés partíciók között, és egyesíti az ügyféloldalon globálisan rendezett eredmények eredményezett részben rendezett eredményez.
+Hello megadott hello gyűjtemény olyan állapotban, a párhuzamos lekérdezések lesz az eredményeket hello ugyanaz, mint soros végrehajtási sorrendben. Rendezés (ORDER BY és/vagy felső) tartalmazó kereszt-partíció lekérdezés végrehajtásakor a hello DocumentDB SDK-t állít ki hello lekérdezés párhuzamosan partíciók között, és egyesíti hello ügyfél oldalán tooproduce globálisan rendezett eredmények részben rendezett eredményez.
 
 ## <a name="execute-stored-procedures"></a>Tárolt eljárások végrehajtása
-Végül végrehajthat atomi tranzakciókról dokumentumok ilyen azonosítójú eszköz, például ha a következő kódot ad hozzá a projekthez még karbantartása összesítések vagy egy eszközt az egyetlen dokumentum aktuális állapotát.
+Végül, Ön is végrehajthatja a dokumentumokon végzett atomi tranzakciók ugyanazon Eszközazonosítót, pl. hello Ha éppen karbantartása összesítések, vagy hello egyetlen dokumentum eszköz aktuális állapotát a következő kód tooyour projekt hello hozzáadásával.
 
 ```csharp
 await client.ExecuteStoredProcedureAsync<DeviceReading>(
@@ -286,18 +286,18 @@ await client.ExecuteStoredProcedureAsync<DeviceReading>(
     "XMS-001-FE24C");
 ```
 
-És ennyi az egész! most már a hatékony méretezést adatok terjesztési közötti partíciók partíciókulcsot használó Azure Cosmos DB alkalmazás fő összetevőit.  
+És ennyi az egész! most már az hello fő összetevői közötti partíciók partíciós kulcs tooefficiently méretezési adatok terjesztési használó Azure Cosmos DB alkalmazás.  
 
 ## <a name="clean-up-resources"></a>Az erőforrások eltávolítása
 
-Hogy továbbra is használhatja az alkalmazás nem lesz, ha törli a következő lépések az Azure portálon oktatóprogram során létrehozott összes erőforrás:
+Toocontinue toouse az alkalmazás nem fog, ha törli az összes erőforrást oktatóprogram során létrehozott hello az Azure-portálon az alábbi lépésekkel hello:
 
-1. Az Azure-portálon a bal oldali menüben kattintson a **erőforráscsoportok** és kattintson a létrehozott erőforrás egyedi nevét. 
-2. Az erőforráscsoport lapján kattintson a **Törlés** elemre, írja be a törölni kívánt erőforrás nevét a szövegmezőbe, majd kattintson a **Törlés** gombra.
+1. A hello hello Azure-portálon a bal oldali menüből, kattintson az **erőforráscsoportok** és kattintson a létrehozott hello erőforrás hello egyedi nevét. 
+2. Az erőforrás csoport lapján kattintson a **törlése**, írja be a hello szövegmező hello erőforrás toodelete hello nevét, és kattintson **törlése**.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben az oktatóanyagban ezt a következők: 
+Ebben az oktatóanyagban hello következő régebben már kötöttek: 
 
 > [!div class="checklist"]
 > * Egy Azure Cosmos DB-fiók létrehozása
@@ -309,7 +309,7 @@ Ebben az oktatóanyagban ezt a következők:
 > * A dokumentum törlése
 > * Adatbázis törlése
 
-Ezután folytassa a következő oktatóanyag és további adatok importálása a Cosmos DB fiókját. 
+Ezután folytassa a következő oktatóanyag toohello és további adatok tooyour Cosmos DB fiók importálása. 
 
 > [!div class="nextstepaction"]
 > [Adatok importálása az Azure Cosmos DB-be](import-data.md)

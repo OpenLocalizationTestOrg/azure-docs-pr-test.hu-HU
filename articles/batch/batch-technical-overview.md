@@ -1,6 +1,6 @@
 ---
-title: "Nagyméretű párhuzamos számítási feladatok futtatása a felhőben az Azure Batch használatával | Microsoft Docs"
-description: "Megismerheti, hogyan használhatja az Azure Batch szolgáltatást nagyméretű párhuzamos és HPC számítási feladatokhoz."
+title: "aaaAzure kötegelt hello felhő fut, a nagyméretű párhuzamos számítógépes megoldások |} Microsoft Docs"
+description: "A nagyméretű párhuzamos és a HPC-munkaterhelések hello Azure Batch szolgáltatás használata"
 services: batch
 documentationcenter: 
 author: tamram
@@ -15,17 +15,17 @@ ms.topic: get-started-article
 ms.date: 05/05/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 3bda4859e7ce45f5f7b8df6167e6e9d2cedd5c62
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: acc52e46330c465f81951441d9067371098cf63a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-intrinsically-parallel-workloads-with-batch"></a>Belsőleg párhuzamos számítási feladatok futtatása a Batch használatával
 
-Az Azure Batch platformszolgáltatás lehetővé teszi, hogy hatékonyan futtasson nagyméretű párhuzamos és nagy teljesítményű feldolgozási (HPC) alkalmazásokat a felhőben. Az Azure Batch számításigényes munkák futtatását ütemezi virtuális gépek felügyelt gyűjteményében, és automatikusan képes méretezni a számítási erőforrásokat a feladatok igényeinek megfelelően.
+Az Azure Batch egy olyan platform szolgáltatás a felügyeleti teendők központjaként párhuzamos és nagy teljesítményű számítástechnikai (HPC) alkalmazások hatékonyan hello felhőben futó. Az Azure Batch számítási igényű munkahelyi toorun virtuális gépek felügyelt szervezendő ütemezi, és képes automatikusan méretezési számítási erőforrások toomeet hello igényeinek a feladatok.
 
-Az Azure Batch-szolgáltatással könnyűszerrel határozhat meg Azure számítási erőforrásokat az alkalmazások párhuzamos és méretezhető futtatásához. Nem kell manuálisan létrehoznia, konfigurálnia és felügyelnie a HPC-fürtöket, az egyes virtuális gépeket, virtuális hálózatokat vagy az összetett feladat- és tevékenységütemezési infrastruktúrát. Az Azure Batch automatizálja vagy egyszerűbbé teszi ezeket a feladatokat az Ön számára.
+Az Azure Batch egyszerűen definiálhat Azure számítási erőforrások tooexecute az alkalmazások párhuzamosan, és léptékű. Nincs szükség toomanually van létrehozása, konfigurálása és kezelése a HPC-fürt, az egyes virtuális gépek, virtuális hálózatok vagy egy összetett feladat és feladat ütemezési infrastruktúra. Az Azure Batch automatizálja vagy egyszerűbbé teszi ezeket a feladatokat az Ön számára.
 
 ## <a name="use-cases-for-batch"></a>A Batch használati esetei
 A Batch felügyelt Azure szolgáltatás, amely *kötegelt feldolgozásra* vagy *kötegelt számításra* szolgál – vagyis a kívánt eredmények elérése érdekében a hasonló feladatok nagy mennyiségének a futtatására. A kötegelt feldolgozás olyan szervezetek használják a leggyakrabban, amelyek rendszeresen dolgoznak fel, alakítanak át és elemeznek nagy mennyiségű adatot.
@@ -44,41 +44,41 @@ Néhány példa az ezzel a technikával gyakran feldolgozott számítási felada
 * műszaki feszültségelemzés,
 * szoftvertesztelés.
 
-A Batch végső soron kevesebb lépéssel hajthat végre párhuzamos számításokat, valamint összetettebb HPC számítási feladatokat végezhet, például [Message Passing Interface (MPI)](batch-mpi.md) alkalmazásokat futtathat.
+Kötegelt is hello végén csökkentse lépéssel párhuzamos számításokat, és hajtható végre, mint összetett HPC-munkaterhelések [Message Passing Interface (MPI)](batch-mpi.md) alkalmazások.
 
 Az Azure által biztosított Batch szolgáltatás és az egyéb HPC-megoldások összehasonlítását lásd: [Batch és HPC-megoldások](batch-hpc-solutions.md).
 
 [!INCLUDE [batch-pricing-include](../../includes/batch-pricing-include.md)]
 
 ## <a name="scenario-scale-out-a-parallel-workload"></a>Forgatókönyv: Párhuzamos számítási feladat horizontális felskálázása
-A Batch szolgáltatással való interakcióhoz Batch API-kat használó általános megoldás a belsőleg párhuzamos munkák horizontálisan felskálázásával jár – például a 3D jelenetek képeit rendereli – a számítási csomópontok készletén. A számítási csomópontok ezen készlete a „renderelési farm” lehet, amely több tíz, több száz vagy akár több ezer magot biztosít például a renderelési feladathoz.
+A közös hello Batch szolgáltatás hello kötegelt API-k toointeract használó szükség belsőleg párhuzamos munka – például a 3D színfalak--a számítási csomópontok készletét képek hello megjelenítésének kiterjesztése. A számítási csomópontok készletét is lehet a "Megjelenítés"farm biztosít több tíz, száz vagy akár több ezer magok tooyour megjelenítési feladat, például.
 
-Az alábbi diagram egy általános Batch-munkafolyamatot mutat be, ahol az ügyfélalkalmazás vagy az üzemeltetett szolgáltatás Batch szolgáltatással futtat párhuzamos számítási feladatot.
+hello következő diagram megjelenítése egy közös kötegelt munkafolyamat egy ügyfélalkalmazást és üzemeltetett szolgáltatás kötegelt toorun egy párhuzamos munkaterhelés használatával.
 
 ![Batch-megoldás munkafolyamata][2]
 
-Ebben az általános forgatókönyvben az alkalmazás vagy a szolgáltatás számítási feladatot dolgoz fel az Azure Batch szolgáltatásban a következő lépések végrehajtásával:
+Ez egy gyakori forgatókönyv az alkalmazás vagy szolgáltatás feldolgozza a számítási munkaterhelés Azure kötegben hello lépések végrehajtásával:
 
-1. Töltse fel a **bemeneti fájlokat** és az **alkalmazást**, amely fel fogja dolgozni ezeket a fájlokat az Azure Storage-fiókban. A bemeneti fájlok bármely olyan adatok lehetnek, amelyet az alkalmazás fel fog dolgozni, például pénzügyi modellezési adatok vagy átkódolni kívánt videofájlok. Az alkalmazásfájlok az adatok feldolgozásához használt bármilyen alkalmazások lehetnek, például 3D renderelési alkalmazások vagy adathordozó-átkódolók.
-2. Hozza létre a számítási csomópontok Batch-**készletét** a Batch-fiókban. Ezek a csomópontok a feladatokat végrehajtó virtuális gépek. Olyan tulajdonságokat adhat meg, mint a [csomópont mérete](../cloud-services/cloud-services-sizes-specs.md), operációs rendszere és helye azon alkalmazás Azure Storage tárolójában, amelyet akkor telepít, amikor a csomópontok a készlethez csatlakoznak (az 1. lépésben feltöltött alkalmazás). A készletet [automatikus méretezésre](batch-automatic-scaling.md) is konfigurálhatja a tevékenységek által létrehozott számítási feladatokra válaszul. Az automatikus méretezés dinamikusan állítja be a készletben a számítási csomópontok számát.
-3. Hozzon létre egy Batch-**feladatot** a számítási feladat futtatásához a számítási csomópontok készletén. Feladat létrehozásakor társítsa azt a Batch-készlettel.
-4. Adjon hozzá **tevékenységeket** a feladathoz. Amikor tevékenységeket ad hozzá egy munkához, a Batch szolgáltatás automatikusan ütemezi a tevékenységeket a készletben lévő számítási csomópontokon. Mindegyik tevékenység a bemeneti fájlok feldolgozásához feltöltött alkalmazást használja.
+1. Töltse fel a hello **bemeneti fájlok** és hello **alkalmazás** fel fogja dolgozni ezen fájlok tooyour Azure Storage-fiók. a bemeneti fájlok hello lehet, amely az alkalmazás feldolgozza, például pénzügyi modellezési adatok vagy videofájlok toobe engedélyezi az átalakítását adatokat. hello alkalmazásfájlok lehet bármely alkalmazás, amely hello adatok, például a 3D megjelenítés alkalmazás vagy media transcoder feldolgozására szolgál.
+2. Hozzon létre egy kötegelt **készlet** a számítási csomópontok a Batch-fiók – ezeket a csomópontokat, amely végrehajtja a feladatok hello virtuális gépek. Például a hello tulajdonságait kell előbb megadni [csomópont méretének](../cloud-services/cloud-services-sizes-specs.md), az operációs rendszer, és az Azure Storage helyének hello hello alkalmazás tooinstall Ha hello csomópontok veszi hello címkészlet (a #1. lépésben feltöltött hello alkalmazás). Beállíthatja úgy is hello készlet túl[automatikus méretezése](batch-automatic-scaling.md) a feladatok létrehozása, a válasz toohello terheléseknél engedélyezett. Hello száma hello készlet számítási csomópontjainak automatikus skálázást dinamikusan módosítja.
+3. Hozzon létre egy kötegelt **feladat** hello készlet számítási csomópontok terhelése toorun hello. Feladat létrehozásakor társítsa azt a Batch-készlettel.
+4. Adja hozzá **feladatok** toohello feladat. Feladatok tooa feladat hozzáadásakor hello Batch szolgáltatás automatikusan ütemezi hello feladatok végrehajtásra hello készletben hello számítási csomóponton. Minden feladat, hogy tooprocess hello bemeneti fájlok feltöltött hello alkalmazás használja.
    
-   * 4a. A tevékenység végrehajtása előtt a tevékenység letöltheti azon adatokat (a bemeneti fájlokat), amelyeket fel kell dolgoznia a hozzárendelt számítási csomóponton. Ha az alkalmazás még nem lett telepítve a csomóponton (lásd a 2. lépést), helyette ide tölthető le. Amikor a letöltések elkészültek, a tevékenységek lefutnak a hozzájuk rendelt csomópontokon.
-5. A tevékenységek futtatásakor lekérdezheti a Batch szolgáltatást a feladat és a tevékenységei állapotának megfigyeléséhez. Az Ön által készített ügyfélalkalmazások vagy szolgáltatások HTTPS használatával kommunikálhatnak a Batch szolgáltatással. Mivel előfordulhat, hogy számítási csomópontok ezrein futó több ezer tevékenységet kell figyelnie, gondoskodjon arról, hogy [hatékonyan kérdezi le a Batch szolgáltatást](batch-efficient-list-queries.md).
-6. A tevékenységek befejeződésekor a tevékenységek feltöltik eredményadataikat az Azure Storage-ba. Közvetlenül a számítási csomóponton lévő fájlrendszerből is lekérhet fájlokat.
-7. Amikor a megfigyelés észleli, hogy a feladat tevékenységei befejeződtek, az ügyfélalkalmazás vagy szolgáltatás letöltheti a kimeneti adatokat további feldolgozás vagy kiértékelés céljából.
+   * 4a. A feladat végrehajtása során, mielőtt hello adatok (hello bemeneti fájlok), hogy ez tooprocess toohello számítási csomópont hozzá van rendelve tölthet le. Ha hello alkalmazás nem már telepítve van a hello csomópont (lásd: #2. lépés), letölthető itt helyette. Ha hello letöltések, hello feladatok hozzárendelt csomópontjaik hajtható végre.
+5. Hello feladatok futnak, mint lekérdezheti a kötegelt toomonitor hello előrehaladását hello feladat és a feladatokat. Az ügyfél alkalmazás vagy szolgáltatás kommunikál a Batch szolgáltatás hello HTTPS-KAPCSOLATON keresztül. Mivel előfordulhat, hogy a számítási csomópontok több ezer futó feladatok ezer figyelését, mindenképp túl[hello Batch szolgáltatás hatékony lekérdezéséhez](batch-efficient-list-queries.md).
+6. Hello feladat befejeződik, mert az eredmény adatok tooAzure tárolási is feltölthetnek. Közvetlenül a fájlrendszer hello adott számítási csomóponton is beolvasni a fájlok.
+7. Ha a figyelést észleli, hogy hello feladatok a feladat befejeződött, az ügyfél alkalmazás vagy szolgáltatás letöltheti további feldolgozás és értékelési hello kimeneti adatait.
 
-Vegye figyelembe, hogy ez a Batch használatának csak egyik módja, és ez a forgatókönyv a szolgáltatás mindössze néhány elérhető funkcióját ismerteti. Futtathat például [párhuzamosan több tevékenységet](batch-parallel-node-tasks.md) mindegyik számítási csomóponton, a [feladat-előkészítési és befejezési tevékenységekkel](batch-job-prep-release.md) pedig előkészítheti a csomópontokat a feladatokhoz, majd tisztítást végezhet.
+Tartsa szem előtt az egyik módja toouse kötegelt, és ez a forgatókönyv leírja, csak az elérhető szolgáltatások néhány. Például, hogy végrehajtható [párhuzamosan több feladat](batch-parallel-node-tasks.md) minden számítási csomópont, és használhatja [feladatelőkészítési és -végrehajtási feladatok feladat](batch-job-prep-release.md) tooprepare hello csomópontok a feladatok, majd ezt követően tisztítása.
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy nagy vonalakban áttekintette a Batch szolgáltatás jellemzőit, ideje mélyebbre ásni, hogy megtudja, hogyan használhatja ezt a szolgáltatást a számításigényes párhuzamos számítási feladatok feldolgozásához.
+Most, hogy a Batch szolgáltatás hello magas szintű áttekintését,-e idő toodig mélyebb toolearn használatát az tooprocess a párhuzamos számítási-igényes munkaterhelések.
 
-* Olvassa el [Az Azure Batch funkcióinak áttekintése](batch-api-basics.md) című témakört, amely hasznos információkkal szolgál a Batch használatára készülőknek. A cikk a Batch szolgáltatás erőforrásainak, például a készleteknek, csomópontoknak, feladatoknak, tevékenységeknek és sok olyan API funkciónak a részletesebb információit tartalmazza, amelyeket a Batch-alkalmazás kiépítésekor használhat.
-* Megismerheti a Batch-megoldások fejlesztéséhez rendelkezésre álló [Batch API-kat és eszközöket](batch-apis-tools.md).
-* [Ismerkedjen meg az Azure Batch .NET-es kódtárával](batch-dotnet-get-started.md), hogy megtudja, hogyan használhatja a C# nyelvet és a Batch .NET-es kódtárat egy egyszerű számítási feladat végrehajtásához egy általános Batch-munkafolyamattal. Ennek a cikknek az áttekintése legyen az egyik első lépés, amikor igyekszik elsajátítani a Batch használatát. Az oktatóanyagnak [Python verziója](batch-python-tutorial.md) is van.
-* Töltse le a [GitHubon található kódmintákat][github_samples], hogy lássa, hogyan használható a C# és a Python a Batch eszközzel a mintául szolgáló számítási feladatok ütemezése és feldolgozása során.
-* Tekintse meg a [Batch képzési tervet][learning_path], amelyben megismerheti a Batch használatának elsajátítása során igénybe vehető erőforrásokat.
+* Olvasási hello [Batch funkcióinak áttekintése a fejlesztők](batch-api-basics.md), bárki toouse kötegelt előkészítése alapvető információkat. hello cikkben Batch szolgáltatás erőforrásokhoz, mint a készletek, a csomópontok, a feladatok, és a feladatok és a hello részletesebb információkat is használhatja a kötegelt kérelem felépítésekor sok API-funkciókat.
+* További tudnivalók: hello [kötegelt API-k és eszközök](batch-apis-tools.md) kötegelt megoldások érhetők el.
+* [Hello Azure Batch könyvtár az első lépései a .NET-keretrendszerhez készült](batch-dotnet-get-started.md) toolearn hogyan toouse C# és hello Batch .NET könyvtár tooexecute egy egyszerű munkaterhelés közös kötegelt munkafolyamattal. Ez a cikk a hogyan toouse hello Batch szolgáltatás tanulása közben első nem egyike lehet. Szerepel továbbá egy [Python verzió](batch-python-tutorial.md) hello oktatóanyag.
+* Töltse le a hello [minták a Githubon code] [ github_samples] toosee, hogyan lehet a C# mind a Python kommunikáljanak a kötegelt tooschedule és a folyamat minta munkaterhelések.
+* Tekintse meg a hello [kötegelt képzési terv] [ learning_path] tooget felmérheti, hello erőforrások tooyou érhető el, ha Ön további kötegelt toowork.
 
 
 [github_samples]: https://github.com/Azure/azure-batch-samples

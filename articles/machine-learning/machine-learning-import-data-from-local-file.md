@@ -1,6 +1,6 @@
 ---
-title: "Adatokat importálhat egy fájlt Azure Machine Learning Studio |} Microsoft Docs"
-description: "Útmutató: Azure Machine Learning Studio a merevlemez-meghajtóról adatok képzési fájl feltöltéséhez. Ez létrehoz egy olyan adatkészlet modult a munkaterületen."
+title: "a fájl az Azure Machine Learning Studio aaaImport adatait |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooupload a betanítási adatok fájlt a merevlemez-meghajtóról tooAzure Machine Learning Studio. Ez létrehoz egy olyan adatkészlet modult hello munkaterületen."
 keywords: "adatok, adatformátum, adattípusok, adatforrások, betanítási adatok importálása"
 services: machine-learning
 documentationcenter: 
@@ -15,31 +15,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye;bradsev
-ms.openlocfilehash: 18010864160ceb2d76aea37196e6944bbe426457
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 636facd9042145382c953a1c75969149ede6f6fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="import-training-data-from-a-file-on-your-hard-drive-into-machine-learning-studio"></a>Tanítási adatokat importálhat egy fájlt a merevlemezen a Machine Learning Studióhoz
 [!INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
 
-Ismerje meg, hogyan tölthet fel a merevlemez-meghajtóról kívánja használni, mint az Azure Machine Learning Studióban betanítási adatok adatfájlt. Importálja az adatfájlban, rendelkezik egy adatkészlet modul használatra kész a munkaterület.
+Ismerje meg, hogyan tooupload egy fájlt a merevlemez-meghajtóról toouse tanítási adatokat az Azure Machine Learning Studióban. Hello adatfájl importálásával vannak a munkaterület egy adatkészlet modul használatra kész.
 
-## <a name="steps-to-import-data-from-a-local-file"></a>Adatokat importálhat egy helyi fájl lépései
-Adatokat importálhat egy helyi merevlemezen, tegye a következőket:
+## <a name="steps-tooimport-data-from-a-local-file"></a>Egy helyi fájl lépéseket tooimport adatait
+a helyi merevlemez-meghajtóról, tooimport adatok hello a következő:
 
-1. Kattintson a **+ új** a Machine Learning Studio ablakának alján.
+1. Kattintson a **+ új** hello hello Machine Learning Studio ablakának alsó részén.
 2. Válassza ki **DATASET** és **helyi FÁJLBÓL**.
-3. Az a **töltse fel az új adatkészlet** párbeszédpanelen keresse meg a feltölteni kívánt fájl
-4. Adjon meg egy nevet, és azonosíthatja a adattípus ismertetésének. Olyan leírást ajánlott - lehetővé teszi bármely jellemzőinek, amelyet a későbbiekben az adatok használatakor vegye figyelembe az adatok rögzítéséhez.
-5. A jelölőnégyzet **egyik meglévő adatkészletét új verziója** lehetővé teszi egy meglévő adatkészlet frissítése az új adatokat. Ezt a jelölőnégyzetet, és írja be egy meglévő adatkészlet nevét.
+3. A hello **töltse fel az új adatkészlet** párbeszédpanelen Tallózás toohello fájlt tooupload
+4. Adjon meg egy nevet, hello adattípus azonosítása és ismertetésének. Olyan leírást ajánlott - toorecord lehetővé teszi bármely jellemzőit, amelyet tooremember hello adatok használata a jövőben hello hello adatokról.
+5. jelölőnégyzet hello **hello új verziója, amelyet egy meglévő adatkészlet** lehetővé teszi a tooupdate egy meglévő adatkészlet az új adatokat. Ezt a jelölőnégyzetet, és írja be egy meglévő adatkészlet hello nevét.
 
 ![Töltse fel az új adatkészlet](media/machine-learning-import-data-from-local-file/upload-dataset.png)
 
-Feltöltés közben megjelenik egy üzenet, hogy a fájl feltöltése van folyamatban. Töltse fel idő az adatok méretétől és a szolgáltatásnak a kapcsolat sebességétől függ. Ha tudja, hogy a fájl hosszú időt vesz igénybe, megteheti a Machine Learning Studio belül egyebek, várakozás közben. Azonban a böngésző bezárásával hatására az adatok feltöltése sikertelen.
+Feltöltés közben megjelenik egy üzenet, hogy a fájl feltöltése van folyamatban. Töltse fel idő az adatok és hello sebessége a kapcsolat toohello szolgáltatás hello méretétől függ. Ha ismeri az hello fájl hosszú időt vesz igénybe, megteheti belül a Machine Learning Studio egyebek, várakozás közben. Azonban hello böngésző bezárása hello adatok feltöltése toofail okoz.
 
 ## <a name="dataset-module-is-ready-for-use"></a>A DataSet modul az használatra kész
-Az adatok a feltöltést követően egy adatkészlet modulban tárolja, és bármilyen kísérlet a munkaterület érhető el.
+Az adatok a feltöltést követően dataset modulban tárolt, és elérhető tooany kísérlet a munkaterületen.
 
-A kísérlet szerkesztésekor a létrehozott adathalmazok található a **saját adatkészletek** listában az a **mentett adatkészletek** a modulpalettán lista. Húzza, és dobja el az adatkészletet a kísérlet vászonra, ha meg szeretné használni a dataset további elemzés és a gépi tanulás.
+A kísérlet szerkesztésekor a létrehozott hello hello adatkészletek található **saját adatkészletek** hello alatti listában **mentett adatkészletek** hello modulpalettán listájában. Húzza és a hello dataset hello kísérlet vászonra dobja el, ha azt szeretné, toouse hello dataset további elemzés és a gépi tanulás.

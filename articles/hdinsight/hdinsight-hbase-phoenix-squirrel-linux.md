@@ -1,6 +1,6 @@
 ---
-title: "Használja az Apache Phoenix & SQuirreL a HBase - az Azure HDInsight |} Microsoft Docs"
-description: "Útmutató Apache Phoenix használata a Hdinsightban, és telepítésének és konfigurálásának SQuirreL való kapcsolódáshoz a hdinsight HBase-fürtöt a munkaállomáson."
+title: aaaUse Apache Phoenix & SQuirreL a HBase - Azure HDInsight |} Microsoft Docs
+description: "Megtudhatja, hogyan toouse Apache Phoenix a Hdinsightban, és hogyan tooinstall és a munkaállomás tooconnect tooan hdinsight HBase fürt SQuirreL konfigurálása."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -15,47 +15,47 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/26/2017
 ms.author: jgao
-ms.openlocfilehash: 13d17083bbe26fa9745ce4c5fef9f56859243c2e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a63e8c8212b7a992453ec94fa638ec3863a0ede3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-apache-phoenix-with-linux-based-hbase-clusters-in-hdinsight"></a>Hdinsight Linux-alapú HBase-fürtökkel Apache Phoenix használata
-Ismerje meg, hogyan használható [Apache Phoenix](http://phoenix.apache.org/) , és hogyan SQLLine használható. Phoenix kapcsolatos további információkért lásd: [Phoenix kevesebb mint 15 perc alatt](http://phoenix.apache.org/Phoenix-in-15-minutes-or-less.html). A Phoenix nyelvtan, lásd: [Phoenix nyelvtan](http://phoenix.apache.org/language/index.html).
+Megtudhatja, hogyan toouse [Apache Phoenix](http://phoenix.apache.org/) a Hdinsightban, és hogyan toouse SQLLine. Phoenix kapcsolatos további információkért lásd: [Phoenix kevesebb mint 15 perc alatt](http://phoenix.apache.org/Phoenix-in-15-minutes-or-less.html). Hello Phoenix nyelvtan, lásd: [Phoenix nyelvtan](http://phoenix.apache.org/language/index.html).
 
 > [!NOTE]
-> A Phoenix fájlverzió-információkat a Hdinsightban, lásd: [What's new in HDInsight által biztosított Hadoop-fürt verziók?](hdinsight-component-versioning.md).
+> Hello Phoenix fájlverzió-információkat a Hdinsightban, lásd: [What's new in HDInsight által biztosított hello Hadoop-fürt verziók?](hdinsight-component-versioning.md).
 >
 >
 
 ## <a name="use-sqlline"></a>SQLLine használata
-[SQLLine](http://sqlline.sourceforge.net/) egy parancssori segédprogram SQL végrehajtása.
+[SQLLine](http://sqlline.sourceforge.net/) egy parancssori segédprogram tooexecute SQL.
 
 ### <a name="prerequisites"></a>Előfeltételek
-Mielőtt használhatná SQLLine, az alábbiakkal kell rendelkeznie:
+SQLLine használata előtt hello következő kell rendelkeznie:
 
 * **A HDInsight HBase-fürtöt**. HBase kiépítési információk fürt esetén lásd: [Ismerkedés az Apache HBase hdinsightban][hdinsight-hbase-get-started].
-* **A HBase-fürtöt, a távoli asztal protokollal csatlakozni**. Útmutatásért lásd: [kezelése Hadoop-fürtök a HDInsight az Azure portál használatával][hdinsight-manage-portal].
+* **Csatlakozás toohello HBase-fürtöt hello távoli asztal protokollal**. Útmutatásért lásd: [kezelése Hadoop-fürtöket a HDInsight használatával hello Azure-portálon][hdinsight-manage-portal].
 
-Való csatlakozáskor HBase-fürtöt, a Zookeepers csatlakozni szeretne. Minden egyes HDInsight-fürt három Zookeepers rendelkezik.
+Csatlakozás tooan HBase-fürtöt, meg kell a hello Zookeepers tooconnect tooone. Minden egyes HDInsight-fürt három Zookeepers rendelkezik.
 
-**Ha szeretné tudni, Zookeeper állomásneve**
+**kimenő hello Zookeeper állomásnév toofind**
 
-1. Keresse meg azt az Ambari megnyitásához **https://<ClusterName>. azurehdinsight.net**.
-2. Adja meg a HTTP (fürt) felhasználónév és jelszó használatát a bejelentkezéshez.
-3. Kattintson a **ZooKeeper** a bal oldali menüből. Lásd: három **ZooKeeper Server** szerepel a listában.
-4. Kattintson az egyik a **ZooKeeper Server** szerepel a listában. Keresse meg a összefoglalás ablaktábla a **állomásnév**. Hasonló *zk1-jdolehb.3lnng4rcvp5uzokyktxs4a5dhd.bx.internal.cloudapp.net*.
+1. Nyissa meg az Ambari tallózással túl**https://<ClusterName>. azurehdinsight.net**.
+2. Adja meg a hello HTTP (fürt) felhasználónév és jelszó toologin.
+3. Kattintson a **ZooKeeper** hello bal oldali menüből. Lásd: három **ZooKeeper Server** szerepel a listában.
+4. Kattintson az egyik hello **ZooKeeper Server** szerepel a listában. Megkeresi a hello összefoglalás ablaktábla hello **állomásnév**. Abban a tekintetben hasonló túl*zk1-jdolehb.3lnng4rcvp5uzokyktxs4a5dhd.bx.internal.cloudapp.net*.
 
-**SQLLine használata**
+**toouse SQLLine**
 
-1. Csatlakozzon a fürthöz SSH használatával. További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
+1. Csatlakozzon az SSH használatával toohello fürt. További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Az SSH-ból SQLLine futtassa a következő parancsok futtatásával:
+2. Az SSH-ból futtassa a következő parancsok toorun SQLLine hello:
 
         cd /usr/hdp/2.2.9.1-7/phoenix/bin
         ./sqlline.py <ClusterName>:2181:/hbase-unsecure
-3. A következő parancsokat egy HBase tábla létrehozásához, és néhány adat beviteléhez:
+3. Futtassa a következő parancsok toocreate hello a HBase táblában, és néhány adat beviteléhez:
 
         CREATE TABLE Company (COMPANY_ID INTEGER PRIMARY KEY, NAME VARCHAR(225));
 
@@ -70,12 +70,12 @@ Való csatlakozáskor HBase-fürtöt, a Zookeepers csatlakozni szeretne. Minden 
 További információkért lásd: [SQLLine manuális](http://sqlline.sourceforge.net/#manual) és [Phoenix nyelvtan](http://phoenix.apache.org/language/index.html).
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben a cikkben megtanulta rendelkezik Apache Phoenix használata a Hdinsightban.  További tudnivalókért lásd:
+Ebben a cikkben megtanulta, hogyan toouse Apache Phoenix a hdinsight eszközben.  toolearn több, lásd:
 
 * [HDInsight HBase overview][hdinsight-hbase-overview] (A HDInsight HBase áttekintése): A HBase egy Apache, nyílt forráskódú, a Hadoopra épülő NoSQL-adatbázis, amely véletlenszerű hozzáférést és erős konzisztenciát biztosít a nagy mennyiségű strukturálatlan és félig strukturált adatok számára.
-* [Azure virtuális hálózat HBase-fürtök kiépítése][hdinsight-hbase-provision-vnet]: A virtuális hálózati integráció, HBase-fürtökkel telepíthetők az alkalmazások azonos virtuális hálózaton, hogy az alkalmazások közvetlenül kommunikálhatnak a HBase.
-* [A HDInsight HBase-replikálás konfigurálása](hdinsight-hbase-replication.md): HBase-replikálás konfigurálása az Azure két adatközpont között.
-* [Elemzése a HBase a hdinsight eszközben Twitter sentiment][hbase-twitter-sentiment]: valós idejű módjáról [véleményeket elemzés](http://en.wikipedia.org/wiki/Sentiment_analysis) a big Data típusú adatok a HBase a hdinsight Hadoop-fürthöz.
+* [Azure virtuális hálózat HBase-fürtök kiépítése][hdinsight-hbase-provision-vnet]: A virtuális hálózati integráció, a HBase-fürtökkel telepíthetők telepített toohello azonos virtuális hálózati alkalmazásaihoz, így alkalmazások kommunikálhatnak A HBase közvetlenül.
+* [A HDInsight HBase-replikálás konfigurálása](hdinsight-hbase-replication.md): megtudhatja, hogyan tooconfigure HBase-replikálás két Azure üzemeltetésében.
+* [Elemzése a HBase a hdinsight eszközben Twitter sentiment][hbase-twitter-sentiment]: megtudhatja, hogyan valós idejű toodo [véleményeket elemzés](http://en.wikipedia.org/wiki/Sentiment_analysis) a big Data típusú adatok a HBase a hdinsight Hadoop-fürthöz.
 
 [azure-portal]: https://portal.azure.com
 [vnet-point-to-site-connectivity]: https://msdn.microsoft.com/library/azure/09926218-92ab-4f43-aa99-83ab4d355555#BKMK_VNETPT

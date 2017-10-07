@@ -1,6 +1,6 @@
 ---
-title: "Biztonságos Azure Notification Hubs leküldéses"
-description: "Megtudhatja, hogyan biztonságos leküldéses értesítések küldéséhez iOS-alkalmazásokhoz az Azure-ból. Kódminták Objective-C és C#."
+title: "Notification Hubs biztonságos leküldéses aaaAzure"
+description: "Tudnivalók a biztonságos toosend a leküldéses értesítések tooan iOS-alkalmazás az Azure-ból. Kódminták Objective-C és C#."
 documentationcenter: ios
 author: ysxu
 manager: erikre
@@ -14,11 +14,11 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: e5f09fb3716303bb21fe7442aa6fa8832174838e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 86dd8d7042e5b9e55d2d7ff41cb42f23831fc575
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-notification-hubs-secure-push"></a>Biztonságos Azure Notification Hubs leküldéses
 > [!div class="op_single_selector"]
@@ -29,22 +29,22 @@ ms.lasthandoff: 07/11/2017
 > 
 
 ## <a name="overview"></a>Áttekintés
-Leküldéses értesítési támogatása a Microsoft Azure lehetővé teszi egy könnyen használható, többplatformos, kibővített leküldéses infrastruktúrában, ami jelentősen egyszerűsíti a leküldéses értesítések mobil platformokhoz fogyasztói, valamint a vállalati alkalmazások eléréséhez.
+Leküldéses értesítési támogatása a Microsoft Azure lehetővé teszi tooaccess egy könnyen használható, többplatformos, kibővített leküldéses infrastruktúrában, ami jelentősen egyszerűbb a leküldéses értesítések a mobile fogyasztói, valamint a vállalati alkalmazások hello végrehajtása platformok.
 
-Szabályozó miatt vagy biztonsági korlátozások néha egy alkalmazás előfordulhat, hogy szeretne valamit az értesítés, amely a szabványos leküldéses értesítési infrastruktúrát keresztül nem lehet megadni. Ez az oktatóanyag ismerteti, hogyan által a biztonságos és hitelesített kapcsolatot az ügyféleszközön és a háttéralkalmazás keresztül érzékeny adatokat küld a felhasználói élmény eléréséhez.
+Tooregulatory vagy biztonsági korlátozások miatt néha egy alkalmazás érdemes tooinclude valamit a hello szabványos leküldéses értesítési infrastruktúrát keresztül nem továbbítható hello értesítést. Ez az oktatóanyag leírja, hogyan tooachieve hello úgy, hogy a bizalmas adatokat hello ügyféleszköz- és hello háttéralkalmazás közötti biztonságos és hitelesített kapcsolaton keresztül küld ugyanazt a felhasználói élményt.
 
-Magas szinten a folyamat a következőképpen történik:
+Magas szinten hello folyamat a következőképpen történik:
 
-1. Az alkalmazás háttér:
+1. hello app háttér:
    * Háttér-adatbázisban tárolja biztonságos hasznos.
-   * Az értesítés Azonosítójának elküldi az eszköznek (nem biztonságos információk küldése).
-2. Az alkalmazást az eszközön, az értesítés fogadása közben:
-   * Az eszköz kapcsolatot létesít a háttér-kérő a biztonságos tartalom.
-   * Az alkalmazás a tartalom megjeleníthető értesítésként az eszközön.
+   * Küldi hello azonosítója (nem biztonságos információk küldése) értesítési toohello eszköz.
+2. hello alkalmazást hello eszközön, hello értesítés fogadása közben:
+   * hello eszköz kapcsolatba lép a hello háttér-kérelmező hello biztonságos hasznos.
+   * hello hasznos mutatja az hello app értesítésként hello eszközön.
 
-Fontos megjegyezni, hogy az előző folyamatában (és ebben az oktatóanyagban), feltételezzük, hogy az eszköz tárol egy hitelesítési jogkivonatot helyi tároló, a felhasználó bejelentkezése után. Ez biztosítja, hogy teljesen zökkenőmentes élményt, mivel az eszköz le az értesítési biztonságos tartalom a tokent. Ha az alkalmazás nem tárolja a hitelesítési tokenek az eszközön, vagy ezeket a jogkivonatokat is lejárt, az eszköz alkalmazást, és az értesítés fogadásakor megjelenjen-e a felhasználó megkérdezése általános értesítési indíthatja el az alkalmazást. Az alkalmazás majd hitelesíti a felhasználót, és az értesítési tartalom jeleníti meg.
+Fontos, hogy megelőző folyamata hello (és az oktatóanyag) feltételezzük, hogy hello eszköz toonote tárol egy hitelesítési jogkivonatot helyi tárhelyre – hello felhasználó bejelentkezése után. Ez biztosítja, hogy teljesen zökkenőmentes élményt, mivel hello eszköz hello értesítési biztonságos hasznos a token használatával kérheti le. Ha az alkalmazás nem tárolja a hitelesítési tokenek hello eszköz, vagy ezeket a jogkivonatokat is járhatott, hello eszközalkalmazás hello értesítés fogadásakor megjelenjen-e arra kéri a hello felhasználói toolaunch hello alkalmazás általános értesítést. hello app majd hello felhasználó hitelesíti, és hello értesítési tartalom jeleníti meg.
 
-Biztonságos leküldéses az oktatóanyag bemutatja, hogyan biztonságosan leküldéses értesítés küldéséhez. Az oktatóanyag épít, a [felhasználók értesítése](notification-hubs-aspnet-backend-ios-apple-apns-notification.md) oktatóanyag, ezért el kell végeznie a lépéseket, hogy az oktatóanyagban először.
+Ez biztonságos leküldéses az oktatóanyag bemutatja, hogyan toosend leküldéses értesítés biztonságos helyen. hello oktatóanyag épít, hello [felhasználók értesítése](notification-hubs-aspnet-backend-ios-apple-apns-notification.md) oktatóanyag, ezért el kell végeznie hello lépéseket, hogy az oktatóanyagban először.
 
 > [!NOTE]
 > Ez az oktatóanyag feltételezi, hogy létrehozta és leírtak szerint konfigurálta az értesítési központ [Ismerkedés a Notification Hubs (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md).
@@ -53,20 +53,20 @@ Biztonságos leküldéses az oktatóanyag bemutatja, hogyan biztonságosan lekü
 
 [!INCLUDE [notification-hubs-aspnet-backend-securepush](../../includes/notification-hubs-aspnet-backend-securepush.md)]
 
-## <a name="modify-the-ios-project"></a>Az iOS-projektre módosítása
-Most, hogy módosította, a app háttér küldése csak a *azonosító* egy értesítés, módosítania kell az iOS-alkalmazás az értesítés, és a háttér-letölteni a biztonságos üzenetet megjelenítendő visszahívási.
+## <a name="modify-hello-ios-project"></a>IOS-projekt hello módosítása
+Most, hogy az alkalmazás háttér-toosend csak hello módosított *azonosító* egy értesítés, hogy toochange az iOS app toohandle, értesítések és a visszahívás a háttér-tooretrieve hello megjelenített üzenet toobe biztonságos.
 
-E cél eléréséhez, igazolnia kell a biztonságos tartalmat lekérjen a app háttér-logika írását.
+tooachieve toowrite hello logika tooretrieve hello biztonságos tartalmat app háttér-hello tudunk ezen cél esetében.
 
-1. A **AppDelegate.m**, győződjön meg arról, hogy az alkalmazás regisztrálása a beavatkozás nélküli értesítések, akkor feldolgozza a háttérrendszer által küldött értesítés-azonosítója. Adja hozzá a **UIRemoteNotificationTypeNewsstandContentAvailability** didFinishLaunchingWithOptions beállítást:
+1. A **AppDelegate.m**, győződjön meg arról, hogy hello app regiszterekben csendes értesítések úgy dolgozza fel a küldött hello háttérrendszerből hello értesítés azonosítója. Adja hozzá a hello **UIRemoteNotificationTypeNewsstandContentAvailability** didFinishLaunchingWithOptions beállítást:
    
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeNewsstandContentAvailability];
-2. Az a **AppDelegate.m** adja hozzá az implementációs szakaszban a következő nyilatkozattal felső:
+2. Az a **AppDelegate.m** adja hozzá az implementációs szakaszban hello felső hello deklaráció a következő:
    
         @interface AppDelegate ()
         - (void) retrieveSecurePayloadWithId:(int)payloadId completion: (void(^)(NSString*, NSError*)) completion;
         @end
-3. Majd adja hozzá a megvalósítási szakaszban a következő kódra, és a helyőrző `{back-end endpoint}` a végponthoz, a háttér-korábban beszerzett esetében:
+3. Adja meg a hello megvalósítási szakaszban hello a következő kódot, és hello helyőrző `{back-end endpoint}` a háttér-korábban beszerzett hello-végponthoz:
 
 ```
         NSString *const GetNotificationEndpoint = @"{back-end endpoint}/api/notifications";
@@ -115,13 +115,13 @@ E cél eléréséhez, igazolnia kell a biztonságos tartalmat lekérjen a app h�
         }
 ```
 
-    This method calls your app back-end to retrieve the notification content using the credentials stored in the shared preferences.
+    This method calls your app back-end tooretrieve hello notification content using hello credentials stored in hello shared preferences.
 
-1. Most van a bejövő értesítést, és a fenti metódus használatával a tartalom megjelenítése. Először azt kell ahhoz, hogy az iOS-alkalmazás fut a háttérben leküldéses értesítés fogadásakor. A **XCode**, a app projektet, a bal oldali panelen, majd kattintson a fő cél a a **célok** szakasz a központi panelről.
-2. Kattintson a **képességek** a központi ablaktábla tetején fülre, és ellenőrizze a **távoli értesítések** jelölőnégyzetet.
+1. Most azt toohandle hello bejövő értesítési rendelkezik, és fent tooretrieve hello tartalom toodisplay hello módszert használja. Először azt kell tooenable az iOS app toorun hello háttérben leküldéses értesítés fogadásakor. A **XCode**, az alkalmazás projekt hello bal oldali panelen, majd kattintson a fő cél a hello **célok** szakasz hello központi panelről.
+2. Kattintson a **képességek** a központi ablaktábla felső hello fülre, és ellenőrizze a hello **távoli értesítések** jelölőnégyzetet.
    
     ![][IOS1]
-3. A **AppDelegate.m** adja hozzá leküldéses értesítések kezeléséhez a következő metódust:
+3. A **AppDelegate.m** hello a következő metódus toohandle leküldéses értesítések hozzáadása:
    
         -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
         {
@@ -144,13 +144,13 @@ E cél eléréséhez, igazolnia kell a biztonságos tartalmat lekérjen a app h�
    
         }
    
-    Ne feledje, hogy az esetek hiányzó hitelesítési fejléc tulajdonság vagy elutasítása kezelésére által a háttér-érdemes. Ezekben az esetekben adott kezelésének legtöbbször a cél felhasználói élményét függ. Egy lehetőség egy értesítés megjelenítése egy általános kérdéshez a felhasználó hitelesítésére a tényleges értesítési beolvasása.
+    Ne feledje, hogy hiányzó hitelesítési fejléc tulajdonság vagy elutasíthatják hello háttér-érdemes toohandle hello esetekben. Ezekben az esetekben hello adott kezelésének legtöbbször a cél felhasználói élmény függ. Egy elem toodisplay hello tooauthenticate tooretrieve hello tényleges Felhasználóértesítés általános kérése az értesítést.
 
-## <a name="run-the-application"></a>Futtassa az alkalmazást
-Futtassa az alkalmazást, tegye a következőket:
+## <a name="run-hello-application"></a>Hello alkalmazás futtatása
+toorun hello alkalmazás, a következő hello:
 
-1. Az xcode-ban az alkalmazás futtatása egy fizikai iOS-eszközön (leküldéses értesítések nem fog működni a szimulátor).
-2. Az iOS-alkalmazás felhasználói felületén adja meg egy felhasználónevet és jelszót. Bármilyen karakterlánc is lehetnek, de ugyanarra az értékre kell lenniük.
-3. Kattintson az iOS-alkalmazás felhasználói felületén, **jelentkezzen be**. Kattintson a **leküldéses küldése**. A következő nem jelenik meg az értesítési központ a biztonságos értesítésnek kell megjelennie.
+1. Az XCode-ban hello alkalmazás futtatása egy fizikai iOS-eszközön (leküldéses értesítések hello szimulátor fog működni).
+2. A hello iOS-alkalmazás felhasználói felületén írja be a felhasználónevet és jelszót. Ezek karakterlánc lehet, de kell hello ugyanazt az értéket.
+3. Hello iOS-alkalmazás felhasználói felületén, kattintson **jelentkezzen be**. Kattintson a **leküldéses küldése**. Nem jelenik meg az értesítési központ a következő hello biztonságos értesítésnek kell megjelennie.
 
 [IOS1]: ./media/notification-hubs-aspnet-backend-ios-secure-push/secure-push-ios-1.png

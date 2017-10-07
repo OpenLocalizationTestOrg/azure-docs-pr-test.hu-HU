@@ -1,6 +1,6 @@
 ---
-title: "Az Azure File storage a C++ fejlesztése |} Microsoft Docs"
-description: "Ismerje meg, hogyan fejleszthet C++ alkalmazások és szolgáltatások Azure File storage használatával tárolhatja a fájljait."
+title: az Azure File storage a C++ aaaDevelop |} Microsoft Docs
+description: "Ismerje meg, hogyan toodevelop C++ alkalmazások és szolgáltatások, Azure File storage toostore használó fájladatok."
 services: storage
 documentationcenter: .net
 author: renashahmsft
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/27/2017
 ms.author: renashahmsft
-ms.openlocfilehash: fc0d8451442f1337db4a36718c3fc746f8eb5125
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 40c3aac94214a91121913e2ded315031aeed1c30
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="develop-for-azure-file-storage-with-c"></a>Az Azure File storage a C++ fejlesztése
 [!INCLUDE [storage-selector-file-include](../../includes/storage-selector-file-include.md)]
@@ -27,33 +27,33 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="about-this-tutorial"></a>Az oktatóanyag ismertetése
 
-Ebben az oktatóanyagban, megtudhatja, hogyan az Azure File storage alapvető műveletek végrehajtása. Írt C++ minták segítségével megtudhatja, hogyan megosztások létrehozása és könyvtárak, feltöltése, listázása és fájlok törlése. Ha most ismerkedik az Azure File storage, a minták hasznos információkat a következő szakaszok a jellemzői áthaladás lesz.
+Ebben az oktatóanyagban megtudhatja, hogyan tooperform Azure File storage alapvető műveleteket. Keresztül írt C++ minták, megtudhatja, hogyan osztja meg toocreate és könyvtárak, feltöltése, listázása és fájlok törlése. Ha új tooAzure fájltároló, hasznos információkat hello minták hello fogalmak hello szakaszokban szereplő áthaladás lesz.
 
 
 * Hozzon létre vagy töröljön az Azure fájlmegosztások
 * Hozzon létre vagy töröljön a könyvtárak
 * Fájlok és könyvtárak egy Azure fájlmegosztás számbavétele
 * Töltse fel, töltse le és törölje a fájlt
-* Egy Azure fájlmegosztás kvótájának (maximális méretének) beállítása
-* Közös hozzáférésű jogosultságkód (SAS-kulcs) létrehozása egy, a megosztásban meghatározott megosztott elérési házirendet használó fájlhoz.
+* Egy Azure fájlmegosztás hello kvótájának (maximális méretének) beállítása
+* Hozzon létre egy megosztott elérési házirendet hello megosztáson definiált használó fájl a közös hozzáférésű jogosultságkód (SAS-kulcsot).
 
 > [!Note]  
-> Mivel előfordulhat, hogy Azure fájltároló SMB-n keresztül érhető el, akkor lehet egyszerű alkalmazások írását, amelyek a szabványos C++ i/o-osztályok és függvény használata Azure fájlmegosztás eléréséhez. Ez a cikk azt ismerteti, hogyan alkalmazások írását, amelyek az Azure Storage C++ SDK-val, használja a [Azure File storage REST API](https://docs.microsoft.com/rest/api/storageservices/fileservices/file-service-rest-api) felvegye a Azure File storage.
+> Előfordulhat, hogy Azure fájltároló SMB-n keresztül érhető el, mert lehetséges toowrite elérhető hello Azure fájlmegosztás hello szabványos C++ i/o-osztály és függvények használata egyszerű alkalmazásokat is. Ez a cikk ismerteti, hogyan toowrite használó alkalmazások hello használ hello Azure Storage C++ SDK [Azure File storage REST API](https://docs.microsoft.com/rest/api/storageservices/fileservices/file-service-rest-api) tootalk tooAzure fájlok tárolására.
 
 ## <a name="create-a-c-application"></a>A C++-alkalmazás létrehozása
-A minták létrehozásához szüksége lesz az Azure Storage ügyféloldali kódtár 2.4.0 for C++ telepítése. Meg is létrehozott egy Azure storage-fiókot.
+toobuild hello minták, szüksége lesz tooinstall hello Azure Storage ügyféloldali kódtár 2.4.0 C++. Meg is létrehozott egy Azure storage-fiókot.
 
-Az Azure Storage ügyfél 2.4.0 telepítésében C++, a következő módszerek egyikét használhatja:
+tooinstall hello Azure Storage ügyfél 2.4.0 C++, használhatja hello a következő módszerek egyikét:
 
-* **Linux:** megadott kövesse a [Azure Storage ügyféloldali kódtára a C++ információs](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) lap.
-* **Windows:** a Visual Studióban kattintson **eszközök &gt; NuGet-Csomagkezelő &gt; Csomagkezelő konzol**. Írja be a következő parancsot a [NuGet Package Manager console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) nyomja le az ENTER **ENTER**.
+* **Linux:** hello megadott hello utasítások [Azure Storage ügyféloldali kódtára a C++ információs](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) lap.
+* **Windows:** a Visual Studióban kattintson **eszközök &gt; NuGet-Csomagkezelő &gt; Csomagkezelő konzol**. Típus hello következő parancsot a hello történő [NuGet Package Manager console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) nyomja le az ENTER **ENTER**.
   
 ```
 Install-Package wastorage
 ```
 
-## <a name="set-up-your-application-to-use-azure-file-storage"></a>Állítsa be az alkalmazás Azure File storage használata
-Adja hozzá a következő utasításokat a felső részén a C++ forrásfájl kezelheti az Azure File storage helyét tartalmazza:
+## <a name="set-up-your-application-toouse-azure-file-storage"></a>Az alkalmazás toouse Azure File storage beállítása
+Adja hozzá, hello következő tartalmazó utasítások toohello felső hello C++ toomanipulate Azure File storage kívánt forrásfájl:
 
 ```cpp
 #include <was/storage_account.h>
@@ -61,16 +61,16 @@ Adja hozzá a következő utasításokat a felső részén a C++ forrásfájl ke
 ```
 
 ## <a name="set-up-an-azure-storage-connection-string"></a>Egy Azure storage kapcsolati karakterlánc beállítása
-A File storage használatához szüksége az Azure storage-fiókjához. Az első lépés is konfigurálhat egy kapcsolati karakterláncot, amely csatlakozni a tárfiókhoz fogjuk használni. Nézzük meg egy statikus változót ehhez.
+a File storage toouse, tooconnect tooyour az Azure storage-fiók szükséges. hello első lépéseként lenne egy kapcsolati karakterláncot, amely fogjuk használni tooconfigure tooconnect tooyour tárfiók. Is határozza meg egy statikus változó toodo, amely.
 
 ```cpp
-// Define the connection-string with your values.
+// Define hello connection-string with your values.
 const utility::string_t 
 storage_connection_string(U("DefaultEndpointsProtocol=https;AccountName=your_storage_account;AccountKey=your_storage_account_key"));
 ```
 
-## <a name="connecting-to-an-azure-storage-account"></a>Az Azure storage-fiókhoz való csatlakozást
-Használhatja a **cloud_storage_account** osztályt határoz meg a Tárfiók adatait. A tárfiók adatait a tárolási kapcsolati karakterlánc lekéréséhez használja a **elemezni** metódust.
+## <a name="connecting-tooan-azure-storage-account"></a>Csatlakozás tooan Azure storage-fiók
+Használhatja a hello **cloud_storage_account** osztály toorepresent Tárfiók adatait. tooretrieve a tárolási fiók hello tárolási kapcsolati karakterlánc adatait, használhatja a hello **elemezni** metódust.
 
 ```cpp
 // Retrieve storage account from connection string.    
@@ -79,23 +79,23 @@ azure::storage::cloud_storage_account storage_account =
 ```
 
 ## <a name="create-an-azure-file-share"></a>Azure-fájlmegosztás létrehozása
-A fájlok és könyvtárak az Azure File storage találhatók nevű tároló egy **megosztás**. A tárfiók lehet a kapacitásával lehetővé teszi tetszőleges számú megosztások. Történő hozzáférés a megosztást és tartalmát, Azure File storage-ügyfél használata szükséges.
+A fájlok és könyvtárak az Azure File storage találhatók nevű tároló egy **megosztás**. A tárfiók lehet a kapacitásával lehetővé teszi tetszőleges számú megosztások. tooobtain hozzáférés tooa megosztást és tartalmát, egy Azure File storage ügyfél toouse kell.
 
 ```cpp
-// Create the Azure File storage client.
+// Create hello Azure File storage client.
 azure::storage::cloud_file_client file_client = 
   storage_account.create_cloud_file_client();
 ```
 
-Az Azure File storage ügyfélprogrammal, majd szerezhet be egy hivatkozást egy megosztásra.
+Hello Azure File storage-ügyfelet használ, majd szerezhet be egy hivatkozást tooa megosztást.
 
 ```cpp
-// Get a reference to the file share
+// Get a reference toohello file share
 azure::storage::cloud_file_share share = 
   file_client.get_share_reference(_XPLATSTR("my-sample-share"));
 ```
 
-A megosztás létrehozásához használja a **create_if_not_exists** metódusában a **cloud_file_share** objektum.
+toocreate hello megosztás használata hello **create_if_not_exists** hello metódusában **cloud_file_share** objektum.
 
 ```cpp
 if (share.create_if_not_exists()) {    
@@ -103,28 +103,28 @@ if (share.create_if_not_exists()) {
 }
 ```
 
-Ezen a ponton **megosztása** nevű megosztáshoz egy hivatkozást tartalmaz **a minta-megosztás**.
+Ezen a ponton **megosztása** tartalmazza a referencia-tooa nevű megosztás **a minta-megosztás**.
 
 ## <a name="delete-an-azure-file-share"></a>Egy Azure fájlmegosztás törlése
-Egy megosztás törlése meghívásával történik a **delete_if_exists** cloud_file_share objektum metódus. Itt látható mintakód, amelyet, amely.
+A megosztás törlése hívó hello végezhető el **delete_if_exists** cloud_file_share objektum metódust. Itt látható mintakód, amelyet, amely.
 
 ```cpp
-// Get a reference to the share.
+// Get a reference toohello share.
 azure::storage::cloud_file_share share = 
   file_client.get_share_reference(_XPLATSTR("my-sample-share"));
 
-// delete the share if exists
+// delete hello share if exists
 share.delete_share_if_exists();
 ```
 
 ## <a name="create-a-directory"></a>Könyvtár létrehozása
-Tároló üzembe alkönyvtárak így ahelyett hogy ezek a gyökérkönyvtárban található fájlok rendezhetők. Az Azure File storage hozhat létre a fiókját engedélyezi a könyvtárat. Az alábbi kód létrehoz egy nevű könyvtár **saját minta directory** alatt a gyökérkönyvtár, valamint a nevű **saját minta alkönyvtár**.
+Tároló üzembe alkönyvtárak ahelyett, az összes hello gyökérkönyvtárában lévő fájlok rendezhetők. Az Azure File storage lehetővé teszi toocreate számos könyvtárat, a fiók fog lehetővé. hello az alábbi kód létrehoz egy nevű könyvtár **saját minta directory** alatt hello gyökérkönyvtár, valamint a nevű **saját minta alkönyvtár**.
 
 ```cpp
-// Retrieve a reference to a directory
+// Retrieve a reference tooa directory
 azure::storage::cloud_file_directory directory = share.get_directory_reference(_XPLATSTR("my-sample-directory"));
 
-// Return value is true if the share did not exist and was successfully created.
+// Return value is true if hello share did not exist and was successfully created.
 directory.create_if_not_exists();
 
 // Create a subdirectory.
@@ -137,31 +137,31 @@ subdirectory.create_if_not_exists();
 A könyvtár törlése mely egyszerű feladat, érdemes megjegyezni, hogy nem törölhető a fájlok továbbra is tartalmazó könyvtár vagy más címtárakban.
 
 ```cpp
-// Get a reference to the share.
+// Get a reference toohello share.
 azure::storage::cloud_file_share share = 
   file_client.get_share_reference(_XPLATSTR("my-sample-share"));
 
-// Get a reference to the directory.
+// Get a reference toohello directory.
 azure::storage::cloud_file_directory directory = 
   share.get_directory_reference(_XPLATSTR("my-sample-directory"));
 
-// Get a reference to the subdirectory you want to delete.
+// Get a reference toohello subdirectory you want toodelete.
 azure::storage::cloud_file_directory sub_directory =
   directory.get_subdirectory_reference(_XPLATSTR("my-sample-subdirectory"));
 
-// Delete the subdirectory and the sample directory.
+// Delete hello subdirectory and hello sample directory.
 sub_directory.delete_directory_if_exists();
 
 directory.delete_directory_if_exists();
 ```
 
 ## <a name="enumerate-files-and-directories-in-an-azure-file-share"></a>Fájlok és könyvtárak egy Azure fájlmegosztás számbavétele
-Fájlok és könyvtárak egy megosztáson belüli listájának beszerzésével könnyen történik meghívásával **list_files_and_directories** a egy **cloud_file_directory** hivatkozás. Számos tulajdonságai és metódusai visszaadásakor eléréséhez **list_file_and_directory_item**, meg kell hívnia a **list_file_and_directory_item.as_file** metódus használatával kérje le a **cloud_file**  objektum, vagy a **list_file_and_directory_item.as_directory** metódus használatával kérje le a **cloud_file_directory** objektum.
+Fájlok és könyvtárak egy megosztáson belüli listájának beszerzésével könnyen történik meghívásával **list_files_and_directories** a egy **cloud_file_directory** hivatkozás. tooaccess hello tulajdonságai és metódusai visszaadásakor széles skáláját **list_file_and_directory_item**, meg kell hívnia hello **list_file_and_directory_item.as_file** metódus tooget egy **cloud_ fájl** objektumot, vagy hello **list_file_and_directory_item.as_directory** metódus tooget egy **cloud_file_directory** objektum.
 
-A következő kód bemutatja, hogyan kérhető le és küldhető a megosztás a gyökérmappában lévő egyes elemek URI.
+hello a következő kód bemutatja, hogyan tooretrieve és a kimeneti hello hello megosztás hello gyökérkönyvtárában egyes elemek URI Azonosítóját.
 
 ```cpp
-//Get a reference to the root directory for the share.
+//Get a reference toohello root directory for hello share.
 azure::storage::cloud_file_directory root_dir = 
   share.get_root_directory_reference();
 
@@ -182,16 +182,16 @@ for (auto it = directory.list_files_and_directories(); it != end_of_results; ++i
 ```
 
 ## <a name="upload-a-file"></a>Fájl feltöltése
-Legalább egy Azure fájlmegosztás gyökérkönyvtár fájlokat tároló is tartalmazza. Ebben a szakaszban megtudhatja, hogyan feltölteni a fájlt a helyi tároló megosztás gyökérkönyvtárában alakzatot.
+Nagyon hello: legalább egy Azure fájlmegosztás tartalmazza a gyökérkönyvtár fájlokat tároló is. Ebben a szakaszban megtudhatja, hogyan tooupload egy fájlt a helyi tároló alakzatot hello gyökérkönyvtár megosztás.
 
-Az első lépés egy feltöltés az beszerzése hivatkozni kell a könyvtárban, ahol kell tárolni. Ehhez hívja a **get_root_directory_reference** a megosztás metódusa.
+hello első lépése a fájl feltöltése tooobtain egy hivatkozás toohello könyvtárat, ahol kell tárolni. Ehhez hívó hello **get_root_directory_reference** hello megosztás metódusa.
 
 ```cpp
-//Get a reference to the root directory for the share.
+//Get a reference toohello root directory for hello share.
 azure::storage::cloud_file_directory root_dir = share.get_root_directory_reference();
 ```
 
-Most, hogy a megosztás gyökérkönyvtárában hivatkozik, akkor fájlt tölthet fel rá. Ebben a példában feltölt egy fájlt, szöveg és a folyam.
+Most, hogy hello megosztás hivatkozás toohello gyökérkönyvtár, feltöltheti azt a fájlt. Ebben a példában feltölt egy fájlt, szöveg és a folyam.
 
 ```cpp
 // Upload a file from a stream.
@@ -214,9 +214,9 @@ file4.upload_from_file(_XPLATSTR("DataFile.txt"));
 ```
 
 ## <a name="download-a-file"></a>Fájl letöltése
-Fájlok letöltéséhez először kérjen le egy hivatkozást, és, majd hívja a **download_to_stream** módszerrel kell továbbítania a tartalmát egy stream objektumra, amely meg tudja majd továbbra is fennáll egy helyi fájlba. Másik lehetőségként használhatja a **download_to_file** metódus egy fájl tartalmát egy helyi fájl letöltéséhez. Használhatja a **download_text** metódus egy szöveges karakterlánc egy fájlhoz, a tartalom letöltéséhez.
+toodownload fájlok, először kérjen le egy hivatkozást, és majd meghívják a hello **download_to_stream** metódus tootransfer hello fájl tartalma tooa adatfolyam-objektum, amely meg tudja majd megőrizni a tooa helyi fájlt. Másik lehetőségként használhatja a hello **download_to_file** metódus toodownload hello fájl tooa helyi fájl tartalmát. Használhatja a hello **download_text** metódus toodownload hello tartalmát szöveges karakterláncként fájl.
 
-Az alábbi példában a **download_to_stream** és **download_text** módszerek letölti a fájlokat, amelyek a korábbi szakaszokban létrehozott bemutatásához.
+hello alábbi példában hello **download_to_stream** és **download_text** módszerek toodemonstrate hello fájlokat, amelyek a korábbi szakaszokban létrehozott letöltése.
 
 ```cpp
 // Download as text
@@ -239,10 +239,10 @@ outfile.close();
 ```
 
 ## <a name="delete-a-file"></a>Fájl törlése
-Közös Azure File storage egy másik művelet a fájl törlése. Az alábbi kód töröl egy fájlt, a-minta-fájl – 3 nevű tárolja a gyökérkönyvtárban.
+Közös Azure File storage egy másik művelet a fájl törlése. hello alábbira töröl egy fájlt saját-minta-fájl – 3 nevű hello gyökérkönyvtárban tárolja.
 
 ```cpp
-// Get a reference to the root directory for the share.    
+// Get a reference toohello root directory for hello share.    
 azure::storage::cloud_file_share share = 
   file_client.get_share_reference(_XPLATSTR("my-sample-share"));
 
@@ -255,30 +255,30 @@ azure::storage::cloud_file file =
 file.delete_file_if_exists();
 ```
 
-## <a name="set-the-quota-maximum-size-for-an-azure-file-share"></a>Egy Azure fájlmegosztás kvótájának (maximális méretének) beállítása
-Beállíthatja a kvótát (vagy maximális méretet) egy fájlmegosztáshoz GB-ban. Azt is ellenőrizheti, hogy aktuálisan mennyi adatot tárol a fájlmegosztás.
+## <a name="set-hello-quota-maximum-size-for-an-azure-file-share"></a>Egy Azure fájlmegosztás hello kvótájának (maximális méretének) beállítása
+Beállíthat hello kvótát (vagy maximális méretet) egy fájlmegosztáshoz GB-ban. Mennyi adatot hello megosztáson tárolt toosee is ellenőrizheti.
 
-Ha beállít egy kvótát egy megosztáshoz, korlátozhatja a megosztáson tárolt fájlok összesített méretét. Ha a megosztásban található fájlok teljes mérete meghaladja a megosztáshoz beállított kvótát, az ügyfelek nem növelhetik tovább a meglévő fájlok méretét, és csak olyan új fájlokat hozhatnak létre, amelyek üresek.
+Által beállítás hello kvótát egy megosztáshoz korlátozhatja a hello hello tárolják hello fájlok összesített mérete. Ha hello hello megosztáson található fájlok összesített mérete meghaladja hello kvóta hello megosztáson, akkor az ügyfelek meglévő fájlok mérete nem lehet tooincrease hello vagy fogja új fájlok létrehozása, kivéve azokat, amelyek üresek.
 
-Az alábbi példa bemutatja, hogyan ellenőrizheti egy megosztás aktuális kihasználását, és hogyan adhat meg hozzá kvótát.
+hello az alábbi példa bemutatja, hogyan toocheck hello egy megosztás aktuális kihasználását, és hogyan tooset hello hello fájlmegosztás kvótája.
 
 ```cpp
-// Parse the connection string for the storage account.
+// Parse hello connection string for hello storage account.
 azure::storage::cloud_storage_account storage_account = 
   azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the file client.
+// Create hello file client.
 azure::storage::cloud_file_client file_client = 
   storage_account.create_cloud_file_client();
 
-// Get a reference to the share.
+// Get a reference toohello share.
 azure::storage::cloud_file_share share = 
   file_client.get_share_reference(_XPLATSTR("my-sample-share"));
 if (share.exists())
 {
     std::cout << "Current share usage: " << share.download_share_usage() << "/" << share.properties().quota();
 
-    //This line sets the quota to 2560GB
+    //This line sets hello quota too2560GB
     share.resize(2560);
 
     std::cout << "Quota increased: " << share.download_share_usage() << "/" << share.properties().quota();
@@ -287,16 +287,16 @@ if (share.exists())
 ```
 
 ## <a name="generate-a-shared-access-signature-for-a-file-or-file-share"></a>Közös hozzáférésű jogosultságkód létrehozása egy fájlhoz vagy fájlmegosztáshoz
-Létrehozhat egy közös hozzáférésű jogosultságkód (SAS) egy fájlmegosztáshoz vagy fájlhoz. Létrehozhat egy megosztott elérési házirendet is egy fájlmegosztáshoz, hogy kezelni tudja a közös hozzáférésű jogosultságkódokat. Azért érdemes létrehozni megosztott elérési házirendet, mert annak az eszközeivel vissza lehet hívni az SAS-t, amennyiben sérülne a biztonsága.
+Létrehozhat egy közös hozzáférésű jogosultságkód (SAS) egy fájlmegosztáshoz vagy fájlhoz. Is létrehozhat egy megosztott elérési házirendet egy fájlmegosztási toomanage megosztott hozzáférést aláírások. Megosztott hozzáférési házirend létrehozása az ajánlott, mivel hello SAS visszavonása, ha kell sérülhet módszert biztosít.
 
-Az alábbi példa létrehoz egy megosztott elérési házirendet egy megosztáson, majd felhasználja a házirendet egy, a megosztásban található fájlhoz tartozó SAS korlátozására.
+a következő példa hello hoz létre egy megosztott elérési házirendet egy megosztáson, és akkor használja, hogy használ-e tooprovide hello Házirendmegkötések tartozó SAS korlátozására található hello fájlhoz.
 
 ```cpp
-// Parse the connection string for the storage account.
+// Parse hello connection string for hello storage account.
 azure::storage::cloud_storage_account storage_account = 
   azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the file client and get a reference to the share
+// Create hello file client and get a reference toohello share
 azure::storage::cloud_file_client file_client = 
   storage_account.create_cloud_file_client();
 
@@ -311,37 +311,37 @@ if (share.exists())
     azure::storage::file_shared_access_policy sharedPolicy = 
       azure::storage::file_shared_access_policy();
 
-    //set permissions to expire in 90 minutes
+    //set permissions tooexpire in 90 minutes
     sharedPolicy.set_expiry(utility::datetime::utc_now() + 
        utility::datetime::from_minutes(90));
 
     //give read and write permissions
     sharedPolicy.set_permissions(azure::storage::file_shared_access_policy::permissions::write | azure::storage::file_shared_access_policy::permissions::read);
 
-    //set permissions for the share
+    //set permissions for hello share
     azure::storage::file_share_permissions permissions;    
 
-    //retrieve the current list of shared access policies
+    //retrieve hello current list of shared access policies
     azure::storage::shared_access_policies<azure::storage::file_shared_access_policy> policies;
 
-    //add the new shared policy
+    //add hello new shared policy
     policies.insert(std::make_pair(policy_name, sharedPolicy));
 
-    //save the updated policy list
+    //save hello updated policy list
     permissions.set_policies(policies);
     share.upload_permissions(permissions);
 
-    //Retrieve the root directory and file references
+    //Retrieve hello root directory and file references
     azure::storage::cloud_file_directory root_dir = 
         share.get_root_directory_reference();
     azure::storage::cloud_file file = 
       root_dir.get_file_reference(_XPLATSTR("my-sample-file-1"));
 
-    // Generate a SAS for a file in the share 
+    // Generate a SAS for a file in hello share 
     //  and associate this access policy with it.        
     utility::string_t sas_token = file.get_shared_access_signature(sharedPolicy);
 
-    // Create a new CloudFile object from the SAS, and write some text to the file.        
+    // Create a new CloudFile object from hello SAS, and write some text toohello file.        
     azure::storage::cloud_file file_with_sas(azure::storage::storage_credentials(sas_token).transform_uri(file.uri().primary_uri()));
     utility::string_t text = _XPLATSTR("My sample content");        
     file_with_sas.upload_text(text);        
@@ -354,7 +354,7 @@ if (share.exists())
 }
 ```
 ## <a name="next-steps"></a>Következő lépések
-Az alábbi forrásokból többet is megtudhat az Azure Storage-ról:
+További információ az Azure Storage toolearn ismerheti meg ezeket az erőforrásokat:
 
 * [A Storage ügyféloldali kódtára a C++ programnyelvhez](https://github.com/Azure/azure-storage-cpp)
 * [Az azure Storage szolgáltatás fájlminták c++] (https://github.com/Azure-Samples/storage-file-cpp-getting-started)

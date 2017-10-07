@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB dokumentum-adatbázis létrehozása Javával | Microsoft Docs | Microsoft Docs'"
-description: "Egy Java-kódmintát mutat be, amellyel csatlakozhat az Azure Cosmos DB DocumentDB API-hoz és lekérdezheti azt"
+title: "egy Azure Cosmos DB dokumentum adatbázist, Java aaaCreate |} Microsoft dokumentumok |} Microsoft Docs"
+description: "Megadja a Java kódminta, használhatja a tooconnect tooand lekérdezés hello Azure Cosmos DB DocumentDB API"
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -15,33 +15,33 @@ ms.devlang: java
 ms.topic: hero-article
 ms.date: 08/02/2017
 ms.author: mimig
-ms.openlocfilehash: df1a25d703a7b8082bdabb4f7d593cb005d416fe
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 400c9e7780034d3e28d749e734786e950edad22f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-create-a-document-database-using-java-and-the-azure-portal"></a>Azure Cosmos DB: Dokumentum-adatbázis létrehozása a Java és az Azure Portal használatával
+# <a name="azure-cosmos-db-create-a-document-database-using-java-and-hello-azure-portal"></a>Azure Cosmos DB: Hozzon létre egy dokumentum adatbázist, Java használatával, és hello Azure-portálon
 
-Az Azure Cosmos DB a Microsoft globálisan elosztott többmodelles adatbázis-szolgáltatása. Segítségével gyorsan létrehozhat és lekérdezhet dokumentum-, kulcs/érték és gráf típusú adatbázisokat, melyek mindegyike felhasználja az Azure Cosmos DB középpontjában álló globális elosztási és horizontális skálázhatósági képességeket. 
+Az Azure Cosmos DB a Microsoft globálisan elosztott többmodelles adatbázis-szolgáltatása. Gyorsan hozzon létre, és a dokumentum, a kulcs/érték és a graph adatbázisok, amelyek kihasználhassa hello globális terjesztési és horizontális skálázhatóságot képességekről az Azure-Cosmos adatbázis hello core lekérdezése. 
 
-Ez a rövid útmutató létrehoz egy dokumentum-adatbázist az Azure Cosmos DB-hez készült Azure Portal-eszközök használatával. A rövid útmutató emellett bemutatja, hogyan hozhat létre gyorsan egy Java-konzolalkalmazást a [DocumentDB Java API](documentdb-sdk-java.md) használatával. A rövid útmutatóban lévő utasítások bármilyen, Java-programok futtatására alkalmas operációs rendszeren végrehajthatók. A rövid útmutató követésével megismerheti a dokumentumadatbázis-erőforrások létrehozását és módosítását a felhasználói felületen vagy programozás útján.
+A gyors üzembe helyezés dokumentum létrehozása az Azure portál eszközök adatbázis használatával hello Azure Cosmos DB. A gyors üzembe helyezés azt is bemutatja, hogyan tooquickly hozzon létre egy Java-Konzolalkalmazás használatával hello [DocumentDB Java API](documentdb-sdk-java.md). hello utasításait a gyors üzembe helyezés követhetők bármely operációs rendszeren, amely alkalmas a Java futtatására. A gyors üzembe helyezés befejezése lesz ismeri a létrehozása és módosítása a dokumentum adatbázis erőforrásainak vagy hello felhasználói felületén, vagy programozottan, amelyik igény szerint.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 * [Java fejlesztői készlet (JDK) 1.7+](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-    * Ubuntu rendszeren futtassa az `apt-get install default-jdk` parancsot a JDK telepítéséhez.
-    * Ügyeljen arra, hogy a JAVA_HOME környezeti változó arra a mappára mutasson, ahová a JDK telepítve lett.
+    * Ubuntu, futtassa `apt-get install default-jdk` tooinstall hello JDK.
+    * Lehet, hogy tooset hello JAVA_HOME környezeti változó toopoint toohello mappa hello JDK futtató.
 * [Maven](http://maven.apache.org/download.cgi) bináris archívum [letöltése](http://maven.apache.org/install.html) és [telepítése](http://maven.apache.org/)
-    * Ubuntu rendszeren futtathatja az `apt-get install maven` parancsot a Maven telepítéséhez.
+    * Ubuntu, futtathatja `apt-get install maven` tooinstall Maven.
 * [Git](https://www.git-scm.com/)
-    * Ubuntu rendszeren futtathatja a `sudo apt-get install git` parancsot a Git telepítéséhez.
+    * Ubuntu, futtathatja `sudo apt-get install git` tooinstall Git.
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 ## <a name="create-a-database-account"></a>Adatbázisfiók létrehozása
 
-A dokumentum-adatbázis létrehozásához először létre kell hoznia egy SQL- (DocumentDB-) adatbázisfiókot az Azure Cosmos DB segítségével.
+A dokumentum-adatbázis létrehozása előtt kell toocreate egy Cosmos-DB Azure SQL (DocumentDB) adatbázis fiókja.
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
@@ -52,13 +52,13 @@ A dokumentum-adatbázis létrehozásához először létre kell hoznia egy SQL- 
 <a id="add-sample-data"></a>
 ## <a name="add-sample-data"></a>Mintaadatok hozzáadása
 
-Az Adatkezelő segítségével adatokat adhat hozzá az új gyűjteményhez.
+Most tooyour új adatgyűjtés adatkezelő használatával adhat hozzá.
 
-1. Az új adatbázis az Adatkezelőben a Gyűjtemények ablaktáblán jelenik meg. Bontsa ki a **Feladatok** adatbázist, majd az **Elemek** gyűjteményt, végül kattintson a **Dokumentumok**, majd pedig az **Új dokumentumok** lehetőségre. 
+1. Új adatbázis hello Data Explorer hello Gyűjtemények ablaktáblán jelenik meg. Bontsa ki a hello **feladatok** adatbázisra, és bontsa ki a hello **elemek** gyűjtemény, kattintson a **dokumentumok**, és kattintson a **új dokumentumok**. 
 
-   ![Új dokumentumok létrehozása az Azure Portal Adatkezelőjében](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-new-document.png)
+   ![Hozzon létre új dokumentumok az adatkezelő a hello Azure-portálon](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-new-document.png)
   
-2. Adjon hozzá egy dokumentumot a gyűjteményhez az alábbi struktúrával.
+2. A struktúra a következő hello mostantól hozzáadhatja azok toohello dokumentumgyűjteményt.
 
      ```json
      {
@@ -70,33 +70,33 @@ Az Adatkezelő segítségével adatokat adhat hozzá az új gyűjteményhez.
      }
      ```
 
-3. A JSON hozzáadása után a **Dokumentumok** lapon kattintson a **Mentés** gombra.
+3. Hello json toohello hozzáadása után **dokumentumok** lapra, majd **mentése**.
 
-    ![Másolja át a json-adatokat, és kattintson a Mentés gombra az Adatkezelőben az Azure-portálon](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-save-document.png)
+    ![Másolja át json-adatokat, és kattintson a Mentés gombra az adatok Explorer hello Azure-portálon](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-save-document.png)
 
-4.  Hozzon létre és mentsen még egy dokumentumot, amelyben egyedi értéket szúr be az `id` tulajdonság számára, és tetszés szerint módosítja a többi tulajdonságot. Mivel az Azure Cosmos DB nem kötelezi egy adott adatséma használatára, új dokumentumaihoz bármilyen struktúrát választhat.
+4.  Hozzon létre és mentsen egy egyedi értéket hello helyezze egy további dokumentum `id` tulajdonság, és a változás hello más tulajdonságok, ahogyan szeretné. Mivel az Azure Cosmos DB nem kötelezi egy adott adatséma használatára, új dokumentumaihoz bármilyen struktúrát választhat.
 
-     Az Adatkezelővel így már lekérdezések használatával lekérheti adatait. Ehhez kattintson a **Szűrő szerkesztése**, majd az **Alkalmaz** gombokra. Az Adatkezelő alapértelmezés szerint a `SELECT * FROM c` lekérdezést használja a gyűjteményben lévő összes dokumentum lekéréséhez, de ezt más [SQL-lekérdezésre](documentdb-sql-query.md) is módosíthatja, például a `SELECT * FROM c ORDER BY c._ts DESC` lekérdezésre, ha azt szeretné, hogy a rendszer a dokumentumokat időbélyegzőik szerint csökkenő sorrendben adja vissza. 
+     Most használja lekérdezi az adatkezelő tooretrieve az adatok hello kattintva is **szűrő szerkesztése** és **szűrés** gombokat. Alapértelmezés szerint adatkezelő használja `SELECT * FROM c` összes hello gyűjtemény, de a dokumentumok tooretrieve módosíthatja, hogy különböző tooa [SQL-lekérdezés](documentdb-sql-query.md), például a `SELECT * FROM c ORDER BY c._ts DESC`, csökkenő sorrendben minden hello dokumentum alapján tooreturn az időbélyegző. 
  
-     Az Adatkezelővel létrehozhat tárolt eljárásokat is, felhasználói függvényeket és a kiszolgálóoldali üzleti logikákat végrehajtó eseményindítókat, valamint szabályozhatja az átviteli sebességet. Az Adatkezelő hozzáférhetővé teszi az API-k összes beépített, programozható adatelérési funkcióját, és az Azure Portalon tárolt adataihoz is egyszerű hozzáférést biztosít.
+     Is használhatja adatkezelő toocreate tárolt eljárások, felhasználó által megadott függvények és eseményindítók tooperform kiszolgálóoldali üzleti logikát is mint méretezési átviteli sebesség. Adatkezelő mutatja meg az összes hello beépített programozott adatelérési hello API-k érhető el, de hello Azure-portálon található egyszerű a hozzáférés tooyour adatokat biztosít.
 
-## <a name="clone-the-sample-application"></a>A mintaalkalmazás klónozása
+## <a name="clone-hello-sample-application"></a>Klónozza a mintaalkalmazást hello
 
-Most pedig váltsunk át kódok használatára. Klónozunk egy DocumentDB API-alkalmazást a GitHubról, beállítjuk a kapcsolati karakterláncot, és futtatjuk az alkalmazást. Ilyen egyszerű az adatokkal programozott módon dolgozni. 
+Most tegyük kapcsoló tooworking kóddal. Most klónozza a Githubból, állítsa be a hello kapcsolati karakterláncot, és futtassa azt a DocumentDB API-alkalmazásba. Ön meg, milyen egyszerűen adatokkal toowork programozott módon. 
 
-1. Nyisson meg egy git terminálablakot, például a git bash eszközt, és a `CD` paranccsal lépjen egy munkakönyvtárba.  
+1. Nyisson meg egy git terminálablakot, például a git bash eszközt, és `CD` tooa munkakönyvtárát.  
 
-2. Futtassa a következő parancsot a minta tárház klónozásához. 
+2. Futtassa a következő parancs tooclone hello minta tárház hello. 
 
     ```bash
     git clone https://github.com/Azure-Samples/azure-cosmos-db-documentdb-java-getting-started.git
     ```
 
-## <a name="review-the-code"></a>A kód áttekintése
+## <a name="review-hello-code"></a>Tekintse át a hello kódot
 
-Tekintsük át, hogy mi történik az alkalmazásban. Nyissa meg a \src\GetStarted mappában található `Program.java` fájlt, és keresse meg ezeket a kódsorokat, amelyek létrehozzák az Azure Cosmos DB-erőforrásokat. 
+Most Meggyőződünk arról, mi történik a hello app gyors áttekintése. Nyissa meg hello `Program.java` hello \src\GetStarted mappából fájlt, és ezek a sorok, a kód által létrehozott hello Azure Cosmos DB erőforrások található. 
 
-* A `DocumentClient` inicializálva van.
+* Hello `DocumentClient` inicializálva van.
 
     ```java
     this.client = new DocumentClient("https://FILLME.documents.azure.com",
@@ -128,7 +128,7 @@ Tekintsük át, hogy mi történik az alkalmazásban. Nyissa meg a \src\GetStart
 * A rendszer létrehoz néhány dokumentumot.
 
     ```java
-    // Any Java object within your code can be serialized into JSON and written to Azure Cosmos DB
+    // Any Java object within your code can be serialized into JSON and written tooAzure Cosmos DB
     Family andersenFamily = new Family();
     andersenFamily.setId("Andersen.1");
     andersenFamily.setLastName("Andersen");
@@ -158,45 +158,45 @@ Tekintsük át, hogy mi történik az alkalmazásban. Nyissa meg a \src\GetStart
 
 ## <a name="update-your-connection-string"></a>A kapcsolati karakterlánc frissítése
 
-Lépjen vissza az Azure Portalra a kapcsolati karakterlánc adataiért, majd másolja be azokat az alkalmazásba. Ez lehetővé teszi az alkalmazás számára, hogy kommunikáljon az üzemeltetett adatbázissal.
+Most lépjen vissza az Azure portál tooget toohello kapcsolati karakterlánc adatainak és hello alkalmazásba másolja. Ez lehetővé teszi az alkalmazás toocommunicate az üzemeltetett adatbázissal.
 
-1. Az [Azure Portalon](http://portal.azure.com/) az Azure Cosmos DB-fiókban a bal oldalsávon kattintson a **kulcsok** elemre, majd kattintson az **írási/olvasási kulcsok** lehetőségre. A következő lépésben a képernyő jobb oldalán lévő másolási gombokkal másolhatja az URI és az ELSŐDLEGES KULCS értékét a `Program.java` fájlba.
+1. A hello [Azure-portálon](http://portal.azure.com/), az Azure Cosmos DB a fiókot, kattintson a bal oldali navigációs hello **kulcsok**, és kattintson a **írható-olvasható kulcsok**. Fogjuk hello másolási gombok hello jobb oldalán hello képernyő toocopy hello URI és elsődleges kulcs a hello `Program.java` fájl hello következő lépésben.
 
-    ![Hozzáférési kulcs megtekintése és másolása az Azure Portal kulcsok paneljén](./media/create-documentdb-dotnet/keys.png)
+    ![Megtekintése és másolása egy hozzáférési kulcsot a hello Azure-portálon, a kulcsok panelen](./media/create-documentdb-dotnet/keys.png)
 
-2. A megnyitott `Program.java` fájlba (a másolás gomb használatával) másolja be az URI érteket a portálról, és azt adja meg a DocumentClient konstruktor végpontértékeként a `Program.java` fájlban. 
+2. Hello nyissa meg a `Program.java` fájlt, másolja az URI érték portálról hello (hello Másolás gombra), és könnyebben hello végpont toohello DocumentClient konstruktor a értékének hello `Program.java`. 
 
     `"https://FILLME.documents.azure.com"`
 
-4. Ezután másolja ki az ELSŐDLEGES KULCS értékét a portálról, és illessze be a „FILLME” helyőrző helyére, így az a második paraméter lesz a DocumentClient konstruktorában. Az alkalmazás frissítve lett minden olyan információval, amely az Azure Cosmos DB-vel való kommunikációhoz szükséges. 
+4. Ezután másolja az elsődleges kulcs-érték hello portálról, és illessze be azt "FILLME", így keresztül hello hello DocumentClient konstruktor második paramétere. Most már frissítette az alkalmazást az Azure Cosmos DB toocommunicate szükséges összes hello információval. 
     
-## <a name="run-the-app"></a>Az alkalmazás futtatása
+## <a name="run-hello-app"></a>Hello alkalmazás futtatása
 
-1. A git terminálablakában a `cd` paranccsal lépjen az azure-cosmos-db-documentdb-java-getting-started mappába.
+1. A hello git terminálablakot `cd` toohello azure-cosmos-db-documentdb-java-getting-started mappa.
 
-2. A git terminálablakába írja be az `mvn package` parancsot a szükséges Java-csomagok telepítéséhez.
+2. Írja be a hello git terminálablakot, `mvn package` tooinstall hello szükséges Java-csomagok.
 
-3. A git terminálablakában futtassa az `mvn exec:java -D exec.mainClass=GetStarted.Program` parancsot a Java-alkalmazás elindításához.
+3. Hello git terminál-ablakban futtassa `mvn exec:java -D exec.mainClass=GetStarted.Program` a hello terminálablakot toostart a Java-alkalmazást.
 
-    Amikor a terminálablakban értesítést kap arról, hogy a FamilyDB adatbázis létrejött, nyomjon le egy billentyűt a folytatáshoz. Nyomjon le egy billentyűt az adatbázis létrehozásához, majd váltson át az Adatkezelőre, ahol láthatja, hogy az már tartalmazza a FamilyDB adatbázist. Nyomjon le további billentyűket a gyűjtemény és a dokumentumok létrehozásához, majd hajtson végre egy lekérdezést. Amikor a projekt befejeződik, a rendszer törli az erőforrásokat a fiókjából. 
+    A hello terminálablakot értesíti arról, hogy az adatbázis készült FamilyDB hello és egy kulcs toocontinue toopress kap. Nyomja le az ENTER kulcs toocreate hello adatbázis, majd váltson az adatkezelő toohello, és látni fogja, hogy most már tartalmaz egy FamilyDB adatbázis. Továbbra is toopress kulcsok toocreate hello adatgyűjtési és -hello dokumentumokat, és végezze el a lekérdezést. Hello projekt befejezését követően hello erőforrások törlése fiókjából. 
 
-    ![Hozzáférési kulcs megtekintése és másolása az Azure Portal kulcsok paneljén](./media/create-documentdb-java/console-output.png)
+    ![Megtekintése és másolása egy hozzáférési kulcsot a hello Azure-portálon, a kulcsok panelen](./media/create-documentdb-java/console-output.png)
 
 
-## <a name="review-slas-in-the-azure-portal"></a>Az SLA-k áttekintése az Azure Portalon
+## <a name="review-slas-in-hello-azure-portal"></a>Tekintse át a szolgáltatásiszint-szerződések a hello Azure-portálon
 
 [!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-resources"></a>Az erőforrások eltávolítása
 
-Ha az alkalmazást már nem használja, akkor a következő lépésekkel a mintaalkalmazás által létrehozott összes erőforrást törölheti az Azure Portalon:
+Toocontinue toouse az alkalmazás nem fog, ha törli az összes erőforrást hozta létre a gyors üzembe helyezés hello az Azure-portálon az alábbi lépésekkel hello:
 
-1. Az Azure Portal bal oldali menüjében kattintson az **Erőforráscsoportok** lehetőségre, majd kattintson a létrehozott erőforrás nevére. 
-2. Az erőforráscsoport lapján kattintson a **Törlés** elemre, írja be a törölni kívánt erőforrás nevét a szövegmezőbe, majd kattintson a **Törlés** gombra.
+1. A hello hello Azure-portálon a bal oldali menüből, kattintson az **erőforráscsoportok** és kattintson a létrehozott hello erőforrás hello nevét. 
+2. Az erőforrás csoport lapján kattintson a **törlése**, írja be a hello szövegmező hello erőforrás toodelete hello nevét, és kattintson **törlése**.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben a rövid útmutatóban bemutattuk, hogyan hozhat létre Azure Cosmos DB-fiókot, dokumentum-adatbázist és gyűjteményt az Adatkezelő segítségével, valamint hogyan futtathat egy alkalmazást, amely programozottan hajtja végre ugyanezt. Most további adatokat importálhat a Cosmos DB-fiókba. 
+A gyors üzembe helyezés mér megismerte, hogyan toocreate Azure Cosmos DB fiókkal, a dokumentum-adatbázis és gyűjtemény hello adatkezelő használatával, és futtassa az alkalmazást toodo hello ugyanaz programozott módon. További adatok tooyour Cosmos DB fiókot most importálhatja. 
 
 > [!div class="nextstepaction"]
 > [Adatok importálása az Azure Cosmos DB-be](import-data.md)

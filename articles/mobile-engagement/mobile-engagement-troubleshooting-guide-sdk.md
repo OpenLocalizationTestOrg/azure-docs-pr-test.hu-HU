@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Mobile Engagement hibaelhárítási útmutatója - SDK"
+title: "aaaAzure Mobile Engagement hibaelhárítási útmutatója - SDK"
 description: "Az Azure Mobile Engagement SDK-integráció problémák elhárítása"
 services: mobile-engagement
 documentationcenter: 
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 4d9d6165deb4bd0c65f1841aa7c457363a1f2865
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1c082b81d898f4bdb47b8efe6cfbacfd83fe9279
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-guide-for-sdk-integration-issues"></a>Az SDK-integráció problémák hibaelhárítási útmutató
-A következőkben lehetséges problémák merülhetnek fel az, hogy hogyan integrálja az Azure Mobile Engagement az alkalmazás.
+Az alábbiakban hello lehetséges problémák merülhetnek fel az, hogy hogyan integrálja az Azure Mobile Engagement az alkalmazás.
 
 ## <a name="sdk-issues-discovered-by-a-failure-in-another-area-of-your-application"></a>Az alkalmazás egy másik olyan területen meghibásodása felfedezett SDK
 ### <a name="issue"></a>Probléma
@@ -32,9 +32,9 @@ A következőkben lehetséges problémák merülhetnek fel az, hogy hogyan integ
 * A Szolgáltatáshibák (Azure Mobile Engagement egyike sem működik, az alkalmazás).
 
 ### <a name="causes"></a>Okok
-* A legtöbb során felmerülő kérdések oldható fel az Azure Mobile Engagement SDK az alkalmazás (például a felhasználói felület gyűjtemény hiba, leküldéses hiba, speciális szolgáltatás hibája, Alkalmazásprogramozási felületében, alkalmazás-összeomlásokat, vagy nyilvánvaló szolgáltatáskimaradás) hibát fog eredményül adni.  
-* Ha egy adott szolgáltatással az Azure Mobile Engagement az alkalmazás előtt soha nem működött, szüksége lesz az integráció végrehajtásához. 
-* Ha az Azure Mobile Engagement egy adott szolgáltatással dolgozott, illetve leállt, szükség lehet az utolsó frissítés az Azure Mobile Engagement SDK verziójával. Ne feledje, hogy nincs-e az Azure Mobile Engagement SDK minden Azure Mobile Engagement (Android, iOS, Windows és Windows Phone) által támogatott platform egy másik verziója.
+* A legtöbb során felmerülő kérdések hello Azure Mobile Engagement SDK feloldva toobe úgy fog történni az alkalmazásban (például a felhasználói felület gyűjtemény hiba, leküldéses hiba, speciális szolgáltatás hibája, Alkalmazásprogramozási felületében, alkalmazás-összeomlásokat, vagy nyilvánvaló szolgáltatás hibája kimaradásáról).  
+* Ha egy adott szolgáltatással az Azure Mobile Engagement az alkalmazás előtt soha nem működött, szüksége lesz a toocomplete hello integráció. 
+* Ha az Azure Mobile Engagement egy adott szolgáltatással dolgozott, illetve leállt, szükség lehet a tooupgrade toohello legfrissebb verziója hello Azure Mobile Engagement SDK-t. Ne feledje, hogy nincs-e az Azure Mobile Engagement SDK hello Azure Mobile Engagement (Android, iOS, Windows és Windows Phone) által támogatott platformokon egy másik verziója.
 
 #### <a name="sdk-integration"></a>SDK-integráció
 * Az Azure Mobile Engagement SDK-ban (elemzés) nincs megfelelően integrálva.
@@ -50,8 +50,8 @@ A következőkben lehetséges problémák merülhetnek fel az, hogy hogyan integ
 * [Hibaelhárítási útmutató - leküldéses][Link 23]
 
 #### <a name="sdk-upgrade"></a>SDK frissítése
-* Az SDK-val (gyakran az eszköz operációs rendszer újabb verzióit kapcsolatos) a korábbi verzióival kapcsolatos problémák megoldásához SDK frissítenie kell.
-* Az alkalmazás összes korábbi verziójának eltávolítása az eszközről, és telepítse újra a legújabb verzióját, az alkalmazás a regisztrálja újra az Eszközazonosítót az Azure Mobile Engagement felhasználói felülete annak ellenőrzéséhez, hogy az eszköz az alkalmazás legújabb verzióját használja.
+* Kell tooupgrade SDK tooresolve problémái hello SDK (hello az eszköz operációs rendszere verziója gyakran kapcsolódó toonewer) régebbi verzióit.
+* Az alkalmazás összes korábbi verziójának eltávolítása az eszközről, és telepítse újra az alkalmazás legújabb verzióját hello, hello regisztrálja újra az Eszközazonosítót az hello Azure Mobile Engagement felhasználói felület tooconfirm, hogy az eszköz által használt hello az alkalmazás legújabb verzióját.
 
 **Lásd még:**
 
@@ -59,8 +59,8 @@ A következőkben lehetséges problémák merülhetnek fel az, hogy hogyan integ
 * [SDK-dokumentáció - frissítési útmutatók](http://go.microsoft.com/fwlink/?LinkId= 525554)
 
 #### <a name="sdk-other"></a>Egyéb SDK
-* Az Application Manifest "AndroidManifest.xml" hibákat okozhat, Azure Mobile Engagement nem működik (csak Android esetén).
-* SDK-integrációval és API-használati egy gyakori probléma, hogy megzavarják a SDK és az API-kulcs.
+* Az Application Manifest "AndroidManifest.xml" hibákat okozhat az Azure Mobile Engagement toowork (csak Android esetén).
+* Általános hiba az SDK-integráció és API-használati tooconfuse hello SDK kulcs, és az API-kulcs hello.
 
 **Lásd még:**
 
@@ -68,15 +68,15 @@ A következőkben lehetséges problémák merülhetnek fel az, hogy hogyan integ
 
 ## <a name="advanced-coding-issues"></a>Speciális problémák kódolása
 ### <a name="issue"></a>Probléma
-* Platform adott kód, nem közvetlenül kapcsolódik az Azure Mobile Engagement az iOS, Android és Windows Phone hibákat is okozhat.
+* Adott platformkódot nem közvetlenül kapcsolódó tooAzure a Mobile Engagement az iOS, Android és Windows Phone problémákat okozhat.
 
 ### <a name="causes"></a>Okok
-* Nem megfelelően megírt platform adott kód, nem közvetlenül kapcsolódik az Azure Mobile Engagement számos speciális az Azure Mobile Engagement kódolási probléma okozza. Szüksége lesz a platformon, Azure Mobile Engagement dokumentáció (Android, iOS, webalkalmazás, Windows és Windows Phone) mellett a fejlesztői dokumentációból.
-* Nem megfelelően állítja be "kategóriák", megakadályozza, hogy egy értesítésből összekapcsolása egy másik helyen belül vagy kívül az alkalmazás (csak Android esetén). 
-* Nem a beállítást "UIKit.framework" "választható", a kódban iOS "Szimbólum nem található a hiba" mutat be és/vagy a régebbi iOS-eszközök (csak iOS) összeomlik.
-* Lejárt tanúsítványok, vagy nem megfelelően a cert okok fejlesztői vagy a termék verzióját használja leküldéses kapcsolatos problémákat (csak iOS esetén).
-* Bizonyos korlátozások is egy platform, amely az Azure Mobile Engagement vezérlésére nem képes (ilyen például a system center működéséről az alkalmazásból leküldéses értesítések Android és iOS) beépített szolgáltatásai.
-* Az Azure Mobile Engagement teszi közzé a belső csomagok által használt Azure Mobile Engagement az iOS és Android hivatkozás teljes listáját. Ne feledje, hogy az Azure Mobile Engagement néhány szolgáltatása a platformon (Android, iOS, webalkalmazás, Windows és Windows Phone).
+* Számos speciális az Azure Mobile Engagement kódolási problémák miatt nem megfelelően megírt platform által megadott kódja nem közvetlenül kapcsolódó tooAzure a Mobile Engagement. Szüksége lesz tooconsult dokumentáció adott toohello platform fejleszt a továbbá tooAzure a Mobile Engagement dokumentáció (Android, iOS, webalkalmazás, Windows és Windows Phone).
+* Nem megfelelően állítja be "kategóriák", megakadályozza, hogy a linking helyről értesítési tooanother belül vagy kívül hello alkalmazás (csak Android esetén). 
+* Nincs beállítva, az "UIKit.framework" túl "választható" a kódban iOS "Szimbólum nem található a hiba" mutat be és/vagy a régebbi iOS-eszközök (csak iOS) összeomlik.
+* Lejárt tanúsítványok, vagy fejlesztői hello vagy hello cert termék verziója nem megfelelően használja, okok leküldéses kapcsolatos problémákat (csak iOS esetén).
+* Nincsenek bizonyos korlátozások rejlő tooa platform, amely az Azure Mobile Engagement vezérlésére nem képes (ilyen például a system center hello működéséről az alkalmazásból leküldéses értesítések Android és iOS).
+* Az Azure Mobile Engagement közzéteszi hello belső csomagok által használt Azure Mobile Engagement az iOS és Android hivatkozás teljes listáját. Ne feledje, hogy az Azure Mobile Engagement néhány szolgáltatása adott toohello platform (Android, iOS, webalkalmazás, Windows és Windows Phone).
 
 ### <a name="see-also"></a>Lásd még:
 * [Hibaelhárítási útmutató - leküldéses][Link 23] 
@@ -85,12 +85,12 @@ A következőkben lehetséges problémák merülhetnek fel az, hogy hogyan integ
 
 ## <a name="application-crashes"></a>Alkalmazás-összeomlásokat
 ### <a name="issue"></a>Probléma
-* Az alkalmazás összeomlik a végfelhasználók eszközön.
+* Az alkalmazás összeomlik hello végfelhasználói eszközön.
 
 ### <a name="causes"></a>Okok
-* Összeomlási adatok az megtekinthetők a *Analytics felhasználói felület* vagy a *Analytics API*
-* Keresse meg az Eszközazonosítót a vizsgálati eszköz, és hajtsa végre a azonos műveletet, ami miatt a végfelhasználó számára az összeomlások okának azonosításához összeomlását az alkalmazás.
-* Az Azure Mobile Engagement SDK ismert problémái miatt az alkalmazások összeomlási néha megoldó az SDK legújabb verziójára. Ellenőrizze, hogy a kibocsátási megjegyzések a platformra vonatkozó összeomlások vizsgálatakor.
+* Összeomlási adatok megtekinthetők a hello *Analytics felhasználói felület* vagy hello *Analytics API*
+* A vizsgálati eszköz Eszközazonosító hello hajtanak végre bizonyos hello található, ami miatt a kérelem toocrash egy végfelhasználó toohelp az azonos művelet azonosítására a összeomlási hello okát.
+* Azure Mobile Engagement SDK hello ismert problémái következtében az alkalmazások toocrash néha megoldó toohello hello SDK legújabb verziójának frissítése. Győződjön meg arról, hogy toocheck hello kibocsátási megjegyzések a platformra vonatkozó összeomlások vizsgálatakor.
 
 ### <a name="see-also"></a>Lásd még:
 * [SDK-dokumentáció – kibocsátási megjegyzések][Link 5]
@@ -98,11 +98,11 @@ A következőkben lehetséges problémák merülhetnek fel az, hogy hogyan integ
 
 ## <a name="app-store-upload-failures"></a>Alkalmazás-áruház sikertelen feltöltés
 ### <a name="issue"></a>Probléma
-* Az alkalmazás legújabb verzióját feltölteni az Apple, Google vagy a Windows App store kapcsolatos hibákat.
+* Kapcsolatos hibák toouploading hello legújabb verzióját az alkalmazás tooApple, Google vagy hello Windows alkalmazás-áruházból.
 
 ### <a name="causes"></a>Okok
-* Alkalmazás tárolja néha letiltja az alkalmazások az egyes engedélyezett funkciók (például az Apple Store áruházból megakadályozza, hogy az áruház alkalmazások idfv fogja elvégezni lehetővé használatát és a GooglePlay tároló megakadályozza, hogy az alkalmazással kapcsolatos adatok alkalmazások közötti megosztásának). 
-* Győződjön meg arról, hogy ellenőrizze a kibocsátási megjegyzések a platform és az SDK jelenlegi verzióját, ha olyan alkalmazást tölt fel az áruház nehézséget.
+* Alkalmazás tárolja néha letiltja az alkalmazások bizonyos engedélyezett szolgáltatásokkal (pl. hello Apple Store megakadályozza, hogy hello felhasználása idfv fogja elvégezni lehetővé hello áruházban található alkalmazásokra és hello GooglePlay tároló megakadályozza, hogy az alkalmazással kapcsolatos adatok alkalmazások közötti megosztásának hello). 
+* Győződjön meg arról, hogy ellenőrizze hello kibocsátási megjegyzések a platform és az hello SDK jelenlegi verzióját, ha az alkalmazás-áruházra toohello feltöltése nehézséget.
 
 <!--Link references-->
 [Link 1]: mobile-engagement-user-interface.md

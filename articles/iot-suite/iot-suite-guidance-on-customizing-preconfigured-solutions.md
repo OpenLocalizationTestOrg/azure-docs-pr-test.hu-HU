@@ -1,6 +1,6 @@
 ---
-title: "Testreszabás előre konfigurált megoldások |} Microsoft Docs"
-description: "Hogyan szabhatja testre az Azure IoT Suite előre konfigurált megoldásokat nyújt útmutatást."
+title: "aaaCustomizing előre konfigurált megoldások |} Microsoft Docs"
+description: "Hogyan toocustomize hello Azure IoT Suite előre konfigurált megoldásokat nyújt útmutatást."
 services: 
 suite: iot-suite
 documentationcenter: .net
@@ -15,73 +15,73 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: corywink
-ms.openlocfilehash: bdf4cd89d5ad0392337dfe761108608d506adf18
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1a8573f5ac6ed944c44459df495446f15174d513
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="customize-a-preconfigured-solution"></a>Előre konfigurált megoldás testreszabása
 
-Az Azure IoT Suite előre konfigurált megoldásai belül a csomaggal együtt működve biztosítanak egy végpont megoldás a szolgáltatások bemutatásához. A kiindulási pont, a különböző helyek, amelyeknek kiterjesztése és a megoldás az adott forgatókönyveket testreszabása vannak. A következő szakaszok ismertetik a közös testreszabási pontok.
+hello Azure IoT Suite előre konfigurált hello megoldásai hello szolgáltatások belül hello suite működik együtt toodeliver egy végpont megoldás bemutatása. A kiindulási pont, a különböző helyek, amelyeknek kiterjesztése és testre szabhatja az adott forgatókönyveket hello megoldás vannak. hello a következő szakaszok ismertetik a közös testreszabási pontok.
 
-## <a name="find-the-source-code"></a>A Forráskód keresése
+## <a name="find-hello-source-code"></a>Hello Forráskód keresése
 
-Az előkonfigurált megoldás forráskódját a következő tárházak a githubon érhető el:
+előre konfigurált hello megoldások hello forráskódja érhető el a Githubon hello tárházak találhatók a következő:
 
 * Távoli megfigyelési: [https://www.github.com/Azure/azure-iot-remote-monitoring](https://github.com/Azure/azure-iot-remote-monitoring)
 * A prediktív karbantartási: [https://github.com/Azure/azure-iot-predictive-maintenance](https://github.com/Azure/azure-iot-predictive-maintenance)
 * Csatlakoztatott gyári: [https://github.com/Azure/azure-iot-connected-factory](https://github.com/Azure/azure-iot-connected-factory)
 
-Az előkonfigurált megoldás forráskódját bemutatása a minták és gyakorlatok összessége valósította meg a végpont funkciót egy IoT-megoldás Azure IoT Suite segítségével valósul meg. További információ és a GitHub-adattárak a megoldások üzembe található.
+előre konfigurált hello megoldások hello forráskódja kerül a toodemonstrate hello minták és gyakorlatok használt tooimplement hello végpont funkciók egy IoT-megoldás Azure IoT Suite használata. További információ található toobuild és központi telepítése a GitHub-adattárak hello hello megoldásokat.
 
-## <a name="change-the-preconfigured-rules"></a>Az előre konfigurált szabályai módosítása
+## <a name="change-hello-preconfigured-rules"></a>Hello előre konfigurált szabályok módosítása
 
-A távoli felügyeleti megoldás tartalmaz három [Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) feladatok eszközadatokat, telemetriai adatok és a megoldás szabálylogika kezelésére.
+hello távoli figyelési megoldás tartalmaz három [Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) feladatok toohandle eszközadatokat, telemetriai, szabálylogika hello megoldásban.
 
-A három stream analytics-feladatok és szintaxisát a részletesen ismerteti a [távoli megfigyelési előre konfigurált megoldás forgatókönyv](iot-suite-remote-monitoring-sample-walkthrough.md). 
+hello három stream analytics-feladatok és a hello részletesen ismerteti a szintaxisát [távoli megfigyelési előre konfigurált megoldás forgatókönyv](iot-suite-remote-monitoring-sample-walkthrough.md). 
 
-Ezeket a feladatokat, közvetlenül az alter logika szerkesztése, vagy adott logika hozzáadása a forgatókönyvéhez. A Stream Analytics-feladatok az alábbiak szerint találja meg:
+Ezek a feladatok közvetlen tooalter logika hello, vagy vegye fel a logikai adott tooyour forgatókönyv szerkesztheti. Található hello Stream Analytics-feladatok az alábbiak szerint:
 
-1. Ugrás a [Azure-portálon](https://portal.azure.com).
-2. Nyissa meg az erőforráscsoport neve megegyezik az IoT-megoldásból. 
-3. Válassza ki a módosítani kívánt Azure Stream Analytics-feladat. 
-4. A feladat leállítása kiválasztásával **leállítása** a parancsok készlete. 
-5. A bemenet, a lekérdezés és a kimenetek szerkesztése.
+1. Nyissa meg túl[Azure-portálon](https://portal.azure.com).
+2. Keresse meg az erőforráscsoport toohello hello azonos nevet, amint az IoT-megoldásból. 
+3. Válassza ki azt szeretné, hogy toomodify hello Azure Stream Analytics-feladat. 
+4. Hello feladat leállításával kiválasztásával **leállítása** hello készletében lévő parancsok. 
+5. Hello bemenet, a lekérdezés és a kimenetek szerkesztése.
    
-    Egy egyszerű módosítása, hogy módosítsa a lekérdezést a **szabályok** használandó feladat egy **"<"** ahelyett, hogy egy **">"**. A megoldás portálra még mindig **">"** amikor szabály szerkesztése, de figyelje meg, hogyan viselkedését tükrözött miatt a változást az alapul szolgáló feladatot.
-6. Indítsa el a feladatot
+    Egy egyszerű módosítás toochange hello lekérdezést hello **szabályok** feladat toouse egy **"<"** ahelyett, hogy egy **">"**. hello megoldás portálra még mindig **">"** amikor szabály szerkesztése, de figyelje meg, hogyan hello viselkedés tükrözött toohello változást az alapul szolgáló feladat hello miatt.
+6. Hello feladat indítása
 
 > [!NOTE]
-> A távoli figyelési irányítópult adatokat, függ, így módosítása a feladat sikertelen lesz az irányítópult okozhat.
+> hello távoli figyelési irányítópult adatokat, függ, így hello irányítópult toofail hello feladatok módosítása okozhatja.
 
 ## <a name="add-your-own-rules"></a>A saját szabályok hozzáadása
 
-Mellett az előre konfigurált Azure Stream Analytics-feladatok módosítása, az Azure-portál használatával vegyen fel új feladatokat, vagy vegyen fel új lekérdezések meglévő feladatokat.
+Ezenkívül toochanging hello előre konfigurált Azure Stream Analytics-feladatok, hello Azure portál tooadd új feladatok használhatja, vagy vegyen fel új lekérdezések tooexisting feladatokat.
 
 ## <a name="customize-devices"></a>Eszközök testreszabása
 
-Eszközök adott adott esetben a leggyakrabban használt bővítmény tevékenységek egyikét dolgoznak. Többféleképpen eszközökre való munkához. Ezek a metódusok lehetnek a szimulált eszköz helyzetnek megfelelő módosítása, vagy használja a [IoT eszköz SDK] [ IoT Device SDK] csatlakoztassa a fizikai eszközt a megoldás.
+Hello leggyakoribb bővítmény tevékenységek egyikét és eszközök meghatározott tooyour forgatókönyv működik. Többféleképpen eszközökre való munkához. Ezek a metódusok lehetnek a szimulált eszköz toomatch adott esetben módosítása, vagy a hello segítségével [IoT eszköz SDK] [ IoT Device SDK] tooconnect a fizikai eszköz toohello megoldás.
 
-Egy részletes útmutató a Hozzáadás, eszközök, tekintse meg a [Iot Suite csatlakozó eszközök](iot-suite-connecting-devices.md) cikk és a [C SDK minta figyelési távoli](https://github.com/Azure/azure-iot-sdk-c/tree/master/serializer/samples/remote_monitoring). Ez a minta tervezték a távoli felügyeleti előkonfigurált megoldás.
+Egy részletes útmutató tooadding eszközök esetében lásd: hello [Iot Suite csatlakozó eszközök](iot-suite-connecting-devices.md) cikk és hello [C SDK minta figyelési távoli](https://github.com/Azure/azure-iot-sdk-c/tree/master/serializer/samples/remote_monitoring). Ez a minta a távoli felügyeleti előkonfigurált megoldás hello tervezett toowork.
 
 ### <a name="create-your-own-simulated-device"></a>A saját szimulált eszköz létrehozása
 
-Tartalmazza a [távoli figyelési megoldás forráskódját](https://github.com/Azure/azure-iot-remote-monitoring), .NET szimulátor van. A szimulátor a megoldás részeként üzembe azt, és módosíthatja úgy, hogy a különböző metaadatokat, telemetriai adatokat küldhet és válaszolhat azokra a más parancsok és módszerek.
+Hello szereplő [távoli figyelési megoldás forráskódját](https://github.com/Azure/azure-iot-remote-monitoring), .NET szimulátor van. A szimulátor egy részét hello megoldás, és módosíthatja a toosend különböző metaadatokat, telemetriai adatokat, és válaszoljon toodifferent parancsok és módszerek kiépített hello.
 
-A távoli felügyeleti előkonfigurált megoldás előre konfigurált szimulátor bocsát ki a hőmérséklet és a páratartalom telemetriai hűtő eszköz szimulálja. Módosíthatja a szimulátor a [Simulator.WebJob](https://github.com/Azure/azure-iot-remote-monitoring/tree/master/Simulator/Simulator.WebJob) projektre, ha már ágazik el a GitHub-tárházban.
+hello előre konfigurált szimulátor a távoli felügyeleti előkonfigurált megoldás hello bocsát ki a hőmérséklet és a páratartalom telemetriai hűtő eszköz szimulálja. Módosíthatja a hello hello szimulátor [Simulator.WebJob](https://github.com/Azure/azure-iot-remote-monitoring/tree/master/Simulator/Simulator.WebJob) projektre, ha már ágazik el hello GitHub-tárházban.
 
 ### <a name="available-locations-for-simulated-devices"></a>A szimulált eszköz elérhető helyről
 
-Alapértelmezés szerint helyek Budapest/Redmond, Washington, az Amerikai Egyesült Államok van. Módosíthatja a következő helyeken és [SampleDeviceFactory.cs][lnk-sample-device-factory].
+hello alapértelmezés szerint a helyek Budapest/Redmond, Washington, az Amerikai Egyesült Államok van. Módosíthatja a következő helyeken és [SampleDeviceFactory.cs][lnk-sample-device-factory].
 
-### <a name="add-a-desired-property-update-handler-to-the-simulator"></a>A kívánt tulajdonság frissítéskezelő hozzáadása a szimulátor
+### <a name="add-a-desired-property-update-handler-toohello-simulator"></a>Adja hozzá a kívánt tulajdonság frissítési kezelő toohello szimulátor
 
-Egy eszköz számára a kívánt tulajdonság értékét a megoldás-portálon állíthatja be. Az eszközt, hogy a tulajdonság kezelni felelőssége módosítsa a kérelmet, ha az eszköz olvas be a kívánt tulajdonság értéke. Egy tulajdonság értékének módosítása kívánt tulajdonságon keresztül támogatásához, kell hozzáadnia a kezelő számára a szimulátor.
+Egy eszköz számára a kívánt tulajdonság értékét hello megoldás portálon állíthatja be. Feladata hello hello eszköz toohandle hello tulajdonság változáskérés amikor hello eszköz kér le a szükséges hello tulajdonság értéke. a tulajdonság értékének módosítása tooadd támogatása a kívánt tulajdonságon keresztül kell tooadd kezelő toohello szimulátor.
 
-A szimulátor tartalmazza a kezelők a **SetPointTemp** és **TelemetryInterval** tulajdonságokhoz, frissítheti úgy, hogy a megoldás portálon értékek szükséges.
+hello szimulátor tartalmaz hello kezelőkkel **SetPointTemp** és **TelemetryInterval** beállításával frissíthető tulajdonságok kívánt hello megoldás portálon értékeit.
 
-A következő példa bemutatja a kezelőt a **SetPointTemp** tulajdonság szükséges a **CoolerDevice** osztály:
+hello alábbi példa bemutatja a hello hello kezelő **SetPointTemp** hello tulajdonság szükséges **CoolerDevice** osztály:
 
 ```csharp
 protected async Task OnSetPointTempUpdate(object value)
@@ -93,11 +93,11 @@ protected async Task OnSetPointTempUpdate(object value)
 }
 ```
 
-Ez a módszer a telemetriai adatok pont hőmérséklet frissíti, és majd visszajelzést a módosítás az IoT-központ által jelentett tulajdonság beállítását.
+Ez a módszer hello telemetriai pont hőmérséklet és jelentések hello módosítása hátsó tooIoT központ által jelentett tulajdonság beállítása frissíti.
 
-A minta az előző példában a következő a saját tulajdonságokat adhat hozzá a saját kezelőit.
+A saját kezelőit a saját tulajdonságokat adhat hozzá a következő hello minta a fenti példa hello által.
 
-Is kötni kell a kívánt tulajdonságot a kezelő az alábbi példában látható módon a **CoolerDevice** konstruktor:
+Is kötni kell hello kívánt tulajdonság toohello kezelő látható módon a következő példa hello hello **CoolerDevice** konstruktor:
 
 ```csharp
 _desiredPropertyUpdateHandlers.Add(SetPointTempPropertyName, OnSetPointTempUpdate);
@@ -105,16 +105,16 @@ _desiredPropertyUpdateHandlers.Add(SetPointTempPropertyName, OnSetPointTempUpdat
 
 Vegye figyelembe, hogy **SetPointTempPropertyName** egy meghatározott "Config.SetPointTemp" konstans.
 
-### <a name="add-support-for-a-new-method-to-the-simulator"></a>A szimulátor hozzáadása egy új módszer támogatása
+### <a name="add-support-for-a-new-method-toohello-simulator"></a>Adja hozzá egy új módszer toohello szimulátor támogatása
 
-Testre szabhatja a szimulátor támogatásához új [módszer (közvetlen módszer)][lnk-direct-methods]. Szükséges két fő lépésből áll:
+Testre szabhatja a hello szimulátor tooadd támogatása egy új [módszer (közvetlen módszer)][lnk-direct-methods]. Szükséges két fő lépésből áll:
 
-- A szimulátor értesítenie kell az IoT-központ az előre konfigurált megoldásban a metódus adatokkal.
-- A szimulátor tartalmaznia kell a metódus hívása kezelésére indításakor, a kódot a **eszközadatok** a solution explorer vagy egy feladat panelen.
+- hello szimulátor értesítenie kell az IoT-központ hello előre konfigurált hello megoldásban hello metódus adatokkal.
+- hello szimulátor kell tartalmazniuk a kód toohandle hello metódus hívása a hello meghívása **eszközadatok** hello megoldástallózó vagy egy feladat panelen.
 
-A távoli megfigyelési előre konfigurált megoldás által használt *tulajdonságok jelentett* támogatott módszereket küldeni az IoT-központ. A megoldás háttérrendszeréhez fenntart egy listát a metódus meghívásához előzményeit együtt minden eszköz által támogatott összes módszert. Tekintse meg az eszközök, és a megoldás portálon metódusok.
+hello távoli megfigyelési előre konfigurált megoldás által használt *tulajdonságok jelentett* támogatott módszerek tooIoT hub toosend részleteit. hello megoldás háttérrendszerének fenntart egy listát a metódus meghívásához előzményeit együtt minden eszköz által támogatott összes hello módszert. Tekintse meg az eszközök és a metódusok hello megoldás portálon.
 
-Az IoT hub értesíti, hogy egy eszköz támogatja-e egy metódust, az eszköz részleteit az metódust kell hozzáadnia a **SupportedMethods** csomópont jelentett tulajdonságai:
+toonotify hello IoT-központot, hogy egy eszköz támogatja-e egy módszert, hello eszköz hozzá kell adnia a hello metódus toohello részleteit **SupportedMethods** hello csomópontja jelentett tulajdonságok:
 
 ```json
 "SupportedMethods": {
@@ -123,35 +123,35 @@ Az IoT hub értesíti, hogy egy eszköz támogatja-e egy metódust, az eszköz r
 }
 ```
 
-A metódus-aláírás formátuma a következő: `<method name>--<parameter #0 name>-<parameter #1 type>-...-<parameter #n name>-<parameter #n type>`. Ahhoz például, hogy adja meg a **InitiateFirmwareUpdate** metódus azt várja, egy karakterlánc-paramétert nevű **FwPackageURI**, használja a következő metódus-aláírás:
+hello metódus-aláírás rendelkezik hello a következő formátumban: `<method name>--<parameter #0 name>-<parameter #1 type>-...-<parameter #n name>-<parameter #n type>`. Például toospecify hello **InitiateFirmwareUpdate** metódus azt várja, egy karakterlánc-paramétert nevű **FwPackageURI**, a következő metódus-aláírás hello használata:
 
 ```json
 InitiateFirmwareUpate--FwPackageURI-string: "description of method"
 ```
 
-A támogatott paraméter típusainak listáját lásd: a **CommandTypes** osztály az infrastruktúra-projektben.
+A támogatott paraméter típusainak listáját lásd: hello **CommandTypes** osztály hello infrastruktúra projektben.
 
-Töröl egy metódust, adja meg a metódus-aláírás `null` jelentett tulajdonságai.
+egy metódus toodelete hello metódus-aláírás túl beállítása`null` hello a jelentett tulajdonságok.
 
 > [!NOTE]
-> A megoldás háttérrendszeréhez csak frissíti a támogatott módszerekkel kapcsolatos információk, amikor megkapja a *eszközadatokat* üzenet az eszközön.
+> hello megoldás háttérrendszerének csak frissíti információ a támogatott módszerek fogadásakor egy *eszközadatokat* üzenet hello eszközről.
 
-A következő példakód a a **SampleDeviceFactory** osztály a közös projekt bemutatja, hogyan vehet fel felhasználókat listájának **SupportedMethods** az eszköz által küldött jelentett tulajdonságai:
+kódminta hello a következő hello **SampleDeviceFactory** hello közös osztály hogyan projekt mutat be tooadd metódus toohello listáját a **SupportedMethods** hello a jelentett hello által küldött tulajdonságai eszköz:
 
 ```csharp
 device.Commands.Add(new Command(
     "InitiateFirmwareUpdate",
     DeliveryType.Method,
-    "Updates device Firmware. Use parameter 'FwPackageUri' to specifiy the URI of the firmware file, e.g. https://iotrmassets.blob.core.windows.net/firmwares/FW20.bin",
+    "Updates device Firmware. Use parameter 'FwPackageUri' toospecifiy hello URI of hello firmware file, e.g. https://iotrmassets.blob.core.windows.net/firmwares/FW20.bin",
     new[] { new Parameter("FwPackageUri", "string") }
 ));
 ```
 
-A kódrészletet részleteit hozzáadja a **InitiateFirmwareUpdate** módszer, beleértve a megoldás portál és a szükséges metódus paraméterek részleteit megjelenítendő szöveget.
+A kódrészletet hozzáadja hello részleteit **InitiateFirmwareUpdate** többek között a szöveg toodisplay a hello megoldás portal és hello részleteit metódus szükséges, a metódusok paramétereihez.
 
-A szimulátor küld jelentett tulajdonságait, beleértve a támogatott módszerek, az IoT hubhoz a szimulátor indításakor listáját.
+hello szimulátor küld jelentett tulajdonságai, beleértve a hello támogatott módszerek tooIoT Hub hello szimulátor indításakor.
 
-Adja hozzá a szimulátor kódot az egyes módszerek, amely támogatja a kezelő. Láthatja, hogy a meglévő kezelőket a **CoolerDevice** osztály a Simulator.WebJob projektben. A következő példa bemutatja a kezelőt **InitiateFirmwareUpdate** módszert:
+Adja hozzá az egyes módszerek, amely támogatja a kezelő toohello szimulátor kódot. Megtekintheti a meglévő kezelőket hello hello **CoolerDevice** osztály hello Simulator.WebJob projektben. hello alábbi példa bemutatja a hello kezelő **InitiateFirmwareUpdate** módszert:
 
 ```csharp
 public async Task<MethodResponse> OnInitiateFirmwareUpdate(MethodRequest methodRequest, object userContext)
@@ -195,58 +195,58 @@ public async Task<MethodResponse> OnInitiateFirmwareUpdate(MethodRequest methodR
 }
 ```
 
-Kezelő metódusnevek kell kezdődnie `On` megadott azon metódus neve követ. A **methodRequest** paraméter a metódushívás átadni a megoldás háttérből paramétereket tartalmaz. A visszatérési érték típusúnak kell lennie **feladat&lt;MethodResponse&gt;**. A **BuildMethodResponse** segédprogram módszer létrehozásához nyújt segítséget a visszatérési érték.
+Kezelő metódusnevek kell kezdődnie `On` hello metódus hello neve követ. Hello **methodRequest** paraméter hello megoldás háttérből hello metódushívás átadni paramétereket tartalmaz. hello visszatérési érték típusúnak kell lennie **feladat&lt;MethodResponse&gt;**. Hello **BuildMethodResponse** segédprogram módszer segítségével hozhat létre a hello visszatérési érték.
 
-A metódus kezelő belül sikerült:
+Belül hello metódus-kezelőjének sikerült:
 
 - Aszinkron feladat elindítása.
-- A kívánt tulajdonságokat lekérni a *eszköz iker* az IoT-központ.
-- Egy egyetlen jelentett tulajdonság használatával frissítse a **SetReportedPropertyAsync** metódust a **CoolerDevice** osztály.
-- Hozzon létre több jelentett tulajdonságainak frissítése egy **TwinCollection** példány és hívása a **Transport.UpdateReportedPropertiesAsync** metódust.
+- Lekérdezni kívánt tulajdonságokkal hello *eszköz iker* az IoT-központot.
+- Hello segítségével egyetlen jelentett tulajdonság frissítéséhez **SetReportedPropertyAsync** metódus a hello **CoolerDevice** osztály.
+- Hozzon létre több jelentett tulajdonságainak frissítése egy **TwinCollection** példány és a hívó hello **Transport.UpdateReportedPropertiesAsync** metódust.
 
-Az előző példában a belső vezérlőprogram frissítése a következő lépéseket végzi el:
+hello belső vezérlőprogram-frissítés példában hajtja végre a lépéseket követve hello:
 
-- Ellenőrzi, hogy az eszköz a belső vezérlőprogram frissítési kérelem fogadására képes-e.
-- Aszinkron módon indít el a belső vezérlőprogram frissítési műveletet, és alaphelyzetbe állítja a telemetriai adatokat, a művelet befejezésekor.
-- Azonnal visszaadja a "FirmwareUpdate elfogadta" üzenetet annak jelzésére, hogy az eszköz a kérést elfogadták.
+- Ellenőrzések hello eszköz képes tooaccept hello belső vezérlőprogram frissítési kérelem.
+- Aszinkron módon hello belső vezérlőprogram frissítési művelet elindul, és alaphelyzetbe állítja a hello telemetriai hello művelet befejezésekor.
+- Azonnal vissza hello "FirmwareUpdate elfogadta" üzenetet tooindicate hello kérés elfogadva hello eszköz
 
 ### <a name="build-and-use-your-own-physical-device"></a>Hozza létre, és a saját (fizikai) eszköz
 
-A [Azure IoT SDK-k](https://github.com/Azure/azure-iot-sdks) adja meg a szalagtárak számos eszköztípus (nyelv és operációs rendszerek) csatlakozni az IoT-megoldásokhoz.
+Hello [Azure IoT SDK-k](https://github.com/Azure/azure-iot-sdks) adja meg a szalagtárak számos eszköztípus (nyelv és operációs rendszerek) csatlakozni az IoT-megoldásokhoz.
 
 ## <a name="modify-dashboard-limits"></a>Irányítópult korlátok módosítása
 
 ### <a name="number-of-devices-displayed-in-dashboard-dropdown"></a>Irányítópult legördülő megjelenő eszközök száma
 
-Az alapértelmezett érték 200. Módosíthatja ezt a számot [DashboardController.cs][lnk-dashboard-controller].
+hello alapértelmezett érték 200. Módosíthatja ezt a számot [DashboardController.cs][lnk-dashboard-controller].
 
-### <a name="number-of-pins-to-display-in-bing-map-control"></a>PIN-kódok Bing térképek vezérlőben megjelenítendő száma
+### <a name="number-of-pins-toodisplay-in-bing-map-control"></a>A Bing térképek vezérlő PIN-kódok toodisplay száma
 
-Az alapértelmezett érték 200. Módosíthatja ezt a számot [TelemetryApiController.cs][lnk-telemetry-api-controller-01].
+hello alapértelmezett érték 200. Módosíthatja ezt a számot [TelemetryApiController.cs][lnk-telemetry-api-controller-01].
 
 ### <a name="time-period-of-telemetry-graph"></a>Telemetria gráf időszakban
 
-Az alapértelmezett érték 10 perc. Ez az érték módosítható [TelmetryApiController.cs][lnk-telemetry-api-controller-02].
+hello alapértelmezett érték 10 perc. Ez az érték módosítható [TelmetryApiController.cs][lnk-telemetry-api-controller-02].
 
 ## <a name="manually-set-up-application-roles"></a>Alkalmazási szerepköröknek manuális beállítása
 
-Az alábbi eljárás ismerteti, hogyan adhat **Admin** és **ReadOnly** alkalmazási szerepköröknek előre konfigurált megoldásokhoz. Fontos megjegyezni, hogy a azureiotsuite.com helyről már kiépített előkonfigurált megoldásokat tartalmazza a **Admin** és **ReadOnly** szerepkörök.
+hello alábbi eljárás ismerteti, hogyan tooadd **Admin** és **ReadOnly** alkalmazás szerepkörök tooa előre konfigurált megoldás. Fontos megjegyezni, hogy már kiépített hello azureiotsuite.com helyről előkonfigurált megoldásokat tartalmazza-e a hello **Admin** és **ReadOnly** szerepkörök.
 
-A tagjai a **ReadOnly** szerepkör az irányítópult és az eszközök listája látható, de nem jogosultak eszközök hozzáadása, módosítása eszközattribútumokon vagy parancsokat küldhet.  A tagjai a **Admin** szerepkör minden funkció teljes hozzáféréssel rendelkeznek a megoldásban.
+Hello tagjai **ReadOnly** szerepkör hello irányítópult és hello eszközök listája látható, de nem megengedett tooadd eszközök, eszköz-attribútumok módosítása vagy küldési parancsok.  Hello tagjai **Admin** szerepkör rendelkezik teljes körű hozzáférési tooall hello funkcióit a hello megoldás.
 
-1. Lépjen a [a klasszikus Azure portálon][lnk-classic-portal].
+1. Nyissa meg toohello [a klasszikus Azure portálon][lnk-classic-portal].
 2. Válassza ki **Active Directory**.
-3. Kattintson az AAD-bérlőt, a megoldás létesített használt nevére.
+3. Kattintson a megoldás létesített használt hello AAD-bérlőt hello nevére.
 4. Kattintson a **alkalmazások**.
-5. Kattintson a nevére, az alkalmazás, amely megfelel az előkonfigurált megoldás neve. Ha nem lát a listában az alkalmazást, válassza ki a **a vállalat tulajdonában lévő alkalmazások** a a **megjelenítése** legördülő menüből, majd kattintson a pipa.
-6. Kattintson a lap alján **kezelése Manifest** , majd **jegyzékfájl letöltése**.
-7. Ez az eljárás egy .JSON kiterjesztésű fájlt a helyi számítógépre tölti le. Nyissa meg ezt a fájlt egy szövegszerkesztőben, az Ön által választott szerkesztésre.
-8. A harmadik sorban a .JSON kiterjesztésű fájl láthatja:
+5. Kattintson a hello alkalmazás, amely megfelel az előkonfigurált megoldás neve hello nevét. Ha nem látja az alkalmazás hello listán, válassza ki a **a vállalat tulajdonában lévő alkalmazások** a hello **megjelenítése** legördülő menüből, majd kattintson a pipa jelre hello.
+6. Hello a hello lap alján, kattintson **kezelése Manifest** , majd **jegyzékfájl letöltése**.
+7. Ez az eljárás egy .JSON kiterjesztésű fájl tooyour helyi számítógép tölti le. Nyissa meg ezt a fájlt egy szövegszerkesztőben, az Ön által választott szerkesztésre.
+8. Hello harmadik sor hello .JSON kiterjesztésű fájl láthatja:
 
    ```json
    "appRoles" : [],
    ```
-   Cserélje le ezt a sort a következő kódot:
+   Cserélje le ezt a sort a következő kód hello:
 
    ```json
    "appRoles": [
@@ -254,7 +254,7 @@ A tagjai a **ReadOnly** szerepkör az irányítópult és az eszközök listája
    "allowedMemberTypes": [
    "User"
    ],
-   "description": "Administrator access to the application",
+   "description": "Administrator access toohello application",
    "displayName": "Admin",
    "id": "a400a00b-f67c-42b7-ba9a-f73d8c67e433",
    "isEnabled": true,
@@ -264,7 +264,7 @@ A tagjai a **ReadOnly** szerepkör az irányítópult és az eszközök listája
    "allowedMemberTypes": [
    "User"
    ],
-   "description": "Read only access to device information",
+   "description": "Read only access toodevice information",
    "displayName": "Read Only",
    "id": "e5bbd0f5-128e-4362-9dd1-8f253c6082d7",
    "isEnabled": true,
@@ -272,23 +272,23 @@ A tagjai a **ReadOnly** szerepkör az irányítópult és az eszközök listája
    } ],
    ```
 
-9. Mentse a frissített .JSON kiterjesztésű fájlt (felülírhatja a meglévő fájlt).
-10. A klasszikus Azure portálon, a lap alján válassza **kezelése Manifest** majd **feltöltése Manifest** feltölteni a az előző lépésben mentett .JSON kiterjesztésű fájlt.
-11. Ezzel hozzáadta a **Admin** és **ReadOnly** szerepkörök, amelyekkel az alkalmazás.
-12. Hozzárendelése ezek szerepkörök valamelyikét egy felhasználónak számít a címtárában, lásd: [a azureiotsuite.com Web][lnk-permissions].
+9. Hello frissített .JSON kiterjesztésű fájlt (felülírhatja hello meglévő fájl) mentése.
+10. Hello alján hello hello, klasszikus Azure portálon válassza **kezelése Manifest** majd **feltöltése Manifest** hello előző lépésben mentett tooupload hello .JSON kiterjesztésű fájlt.
+11. Ezzel hozzáadta a hello **Admin** és **ReadOnly** szerepkörök tooyour alkalmazás.
+12. a szerepkörök tooa felhasználónak számít a címtárában, egyik tooassign lásd: [hello azureiotsuite.com hely engedélyeinek][lnk-permissions].
 
 ## <a name="feedback"></a>Visszajelzés
 
-Rendelkezik a testreszabást szeretné lásd a jelen dokumentum az érintett? Adja hozzá a szolgáltatási javaslataikat [User Voice](https://feedback.azure.com/forums/321918-azure-iot), vagy ez a cikk megjegyzés. 
+Rendelkezik a dokumentum által ismertetett toosee milyen testreszabást? Adja hozzá a szolgáltatási javaslataikat túl[User Voice](https://feedback.azure.com/forums/321918-azure-iot), vagy ez a cikk megjegyzés. 
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az előkonfigurált megoldásokat testreszabására vonatkozó beállításokkal kapcsolatos további tudnivalókért lásd:
+További információ az előre konfigurált hello megoldások testreszabásának hello beállításai toolearn lásd:
 
-* [Logikai alkalmazás csatlakoztatása az Azure IoT Suite távoli megfigyelési előre konfigurált megoldás][lnk-logicapp]
-* [Dinamikus telemetriai adatokat a távoli felügyeleti előkonfigurált megoldás][lnk-dynamic]
-* [Eszköz információk metaadatait a távoli felügyeleti előkonfigurált megoldás][lnk-devinfo]
-* [Testre szabhatja, hogy a csatlakoztatott gyári megoldás OPC EE-kiszolgálóinak adatait jeleníti meg][lnk-cf-customize]
+* [Csatlakozás a Logic App tooyour Azure IoT Suite távoli figyelésére szolgáló előre konfigurált megoldás][lnk-logicapp]
+* [Dinamikus telemetriai adatok használata a távoli felügyeleti előkonfigurált megoldás hello][lnk-dynamic]
+* [Eszköz információk metaadatait a távoli felügyeleti előkonfigurált megoldás hello][lnk-devinfo]
+* [Hogyan hello csatlakoztatva a OPC EE-kiszolgálóiról gyári megoldás jelenít meg adatokat testreszabása][lnk-cf-customize]
 
 [lnk-logicapp]: iot-suite-logic-apps-tutorial.md
 [lnk-dynamic]: iot-suite-dynamic-telemetry.md

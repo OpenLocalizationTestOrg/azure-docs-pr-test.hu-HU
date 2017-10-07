@@ -1,6 +1,6 @@
 ---
-title: "Azure-tároló példányát az Azure fájlok kötet csatlakoztatása"
-description: "Útmutató: Azure tároló osztályt állapot megőrizni az Azure fájlok kötet csatlakoztatása"
+title: "az Azure-fájlok kötet Azure tároló példányát aaaMounting"
+description: "Ismerje meg, hogyan toomount egy Azure-fájlokat Azure tároló osztályt kötet toopersist állapota"
 services: container-instances
 documentationcenter: 
 author: seanmck
@@ -17,19 +17,19 @@ ms.workload: na
 ms.date: 08/01/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: 4248a3769ba8a0fb067b3904d55d487fe67e5778
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d87215e06d5e5af40bfebcad17768ee45ccabbb2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="mounting-an-azure-file-share-with-azure-container-instances"></a>Azure-tároló osztályt az Azure fájlmegosztások csatlakoztatása
 
-Alapértelmezés szerint Azure tároló példányok állapot nélküli alkalmazások. Ha a tároló összeomlik, vagy leállítja, annak teljes állapota elvész. Állapot élettartama meghaladja a tároló megőrizni, a kötet csatlakoztatnia kell külső áruházban. Ez a cikk bemutatja, hogyan használható Azure tároló osztályt egy Azure fájlmegosztás csatlakoztatásához.
+Alapértelmezés szerint Azure tároló példányok állapot nélküli alkalmazások. Ha hello tároló összeomlik, vagy leállítja, annak teljes állapota elvész. toopersist állapot hello tároló hello élettartama meghaladja egy kötetet csatlakoztatnia kell egy külső áruházból. Ez a cikk bemutatja, hogyan toomount egy Azure fájlmegosztás Azure tároló példányok való használatra.
 
 ## <a name="create-an-azure-file-share"></a>Az Azure-fájlmegosztás létrehozása
 
-Az Azure fájlmegosztások használatához Azure tároló osztályt, akkor létre kell hoznia. A következő parancsprogrammal hozzon létre egy tárfiókot, a fájlmegosztás és a megosztás saját magát. Vegye figyelembe, hogy a tárfiók neve csak globálisan egyedi, a parancsfájl egy véletlenszerű értékét hozzáadja a kezdőpontját meghatározó karakterlánc.
+Az Azure fájlmegosztások használatához Azure tároló osztályt, akkor létre kell hoznia. Futtassa a következő parancsfájl toocreate hello a tárolási fiók toohost hello fájlmegosztás és hello megosztás saját magát. Vegye figyelembe, hogy hello tárfiók neve csak globálisan egyedi, így hello parancsfájl hozzáad egy véletlenszerű értéket toohello kezdőpontját meghatározó karakterlánc.
 
 ```azurecli-interactive
 # Change these four parameters
@@ -38,28 +38,28 @@ ACI_PERS_RESOURCE_GROUP=myResourceGroup
 ACI_PERS_LOCATION=eastus
 ACI_PERS_SHARE_NAME=acishare
 
-# Create the storage account with the parameters
+# Create hello storage account with hello parameters
 az storage account create -n $ACI_PERS_STORAGE_ACCOUNT_NAME -g $ACI_PERS_RESOURCE_GROUP -l $ACI_PERS_LOCATION --sku Standard_LRS
 
-# Export the connection string as an environment variable, this is used when creating the Azure file share
+# Export hello connection string as an environment variable, this is used when creating hello Azure file share
 export AZURE_STORAGE_CONNECTION_STRING=`az storage account show-connection-string -n $ACI_PERS_STORAGE_ACCOUNT_NAME -g $ACI_PERS_RESOURCE_GROUP -o tsv`
 
-# Create the share
+# Create hello share
 az storage share create -n $ACI_PERS_SHARE_NAME
 ```
 
 ## <a name="acquire-storage-account-access-details"></a>Szerezzen be tárfiókadatok hozzáférés
 
-Az Azure fájlmegosztások csatlakoztatása kötetként az Azure-tároló példányok, három értékek kell: a tárfiók nevét, a megosztás neve és a hozzáférési kulcsot. 
+egy Azure fájlmegosztás kötetként Azure tároló példányát toomount, szüksége három értékekre: hello tárfióknév hello megosztásnevet és hello tárelérési kulcs. 
 
-Ha követte a fenti parancsfájl, a tárfiók nevének végén véletlenszerű értéket hozták létre. A végső karakterláncban (beleértve a véletlenszerű része) lekérdezéséhez használja a következő parancsokat:
+Ha követte a fenti hello parancsfájl, hello tárfióknév hello végén véletlenszerű értéket hozták létre. tooquery hello végső karakterláncban (többek között a következőket hello véletlenszerű része), a következő parancsok hello használata:
 
 ```azurecli-interactive
 STORAGE_ACCOUNT=$(az storage account list --resource-group myResourceGroup --query "[?contains(name,'mystorageaccount')].[name]" -o tsv)
 echo $STORAGE_ACCOUNT
 ```
 
-A megosztásnév már ismert (Ez *acishare* a parancsfájlban), hogy most már a tárfiók hívóbetűjét, amely a következő paranccsal található összes:
+hello megosztásnév már ismert (Ez *acishare* hello parancsfájlban a fenti), így most már hello tárfiók hívóbetűjét, amely segítségével található összes hello a következő parancsot:
 
 ```azurecli-interactive
 $STORAGE_KEY=$(az storage account keys list --resource-group myResourceGroup --account-name $STORAGE_ACCOUNT --query "[0].value" -o tsv)
@@ -68,29 +68,29 @@ echo $STORAGE_KEY
 
 ## <a name="store-storage-account-access-details-with-azure-key-vault"></a>Hozzáférés tárfiókadatok együtt az Azure key vault tárolásához
 
-Tárfiókkulcsok védi a adatokhoz való hozzáférés, ezért javasoljuk, hogy az az Azure key vault tárolja őket. 
+Tárfiókkulcsok adatvédelemben hozzáférés tooyour, ezért azt javasoljuk, egy az Azure key vault tárolja őket. 
 
-Kulcstároló létrehozása az Azure parancssori felület:
+Hozzon létre egy kulcstartót hello Azure parancssori felület:
 
 ```azurecli-interactive
 KEYVAULT_NAME=aci-keyvault
 az keyvault create -n $KEYVAULT_NAME --enabled-for-template-deployment -g myResourceGroup
 ```
 
-A `enabled-for-template-deployment` kapcsoló nyújt a Azure Resource Manager lekéréses titkokat a kulcstartót a központi telepítéskor.
+Hello `enabled-for-template-deployment` kapcsoló lehetővé teszi, hogy az Azure Resource Manager toopull titkokat a kulcstartót a központi telepítéskor.
 
-A tárfiók hívóbetűjét, az új titkos kulcsot a key vaultban. tároló:
+Az új titkos kulcsot a key vaultban hello hello tárfiók kulcsa tárolni:
 
 ```azurecli-interactive
 KEYVAULT_SECRET_NAME=azurefilesstoragekey
 az keyvault secret set --vault-name $KEYVAULT_NAME --name $KEYVAULT_SECRET_NAME --value $STORAGE_KEY
 ```
 
-## <a name="mount-the-volume"></a>A kötet csatlakoztatása
+## <a name="mount-hello-volume"></a>Hello kötet csatlakoztatása
 
-Az Azure fájlmegosztások csatlakoztatása a tárolóban lévő kötetként két lépésből áll. Először akkor adja meg a megosztást a tárolócsoport definiálása adatait, majd egy vagy több csoport tárolók csatlakoztatott kötet módjának megadása.
+Az Azure fájlmegosztások csatlakoztatása a tárolóban lévő kötetként két lépésből áll. Először adjon hello részletek hello megosztás definiálása hello a tárolócsoport, majd egy vagy több hello tárolók hello csoport csatlakoztatott hello kötet módjának megadása.
 
-A kötetek csatlakoztatása az elérhetővé tenni kívánt megadásához adja hozzá a `volumes` a tömb a tároló meghatározása az Azure Resource Manager sablon, majd hivatkozhat őket az egyes tárolókban definíciójában.
+toodefine hello kötetek toomake érhető el elhelyezésre, használni szeretne hozzáadni egy `volumes` tömb toohello tartalmazó csoport definícióban hello Azure Resource Manager sablon, majd hivatkozunk ezekre hello egyes tárolók hello meghatározását.
 
 ```json
 {
@@ -150,7 +150,7 @@ A kötetek csatlakoztatása az elérhetővé tenni kívánt megadásához adja h
 }
 ```
 
-A sablon tartalmazza a tárfiók nevét és a kulcs biztosítható, hogy egy külön paraméterek fájlban paraméterekként. A paraméterek fájl feltöltéséhez, szüksége lesz a következő három érték: a tárfiók nevét, az erőforrás-azonosítója a az Azure key vault, és a titkos kulcstároló neve, a kulcs tárolására használt. Ha már elvégezte az előző lépéseket, ezeket az értékeket a következő parancsfájl kaphat:
+hello sablon paraméterként, amely külön paraméterfájl megadható hello tárolási fióknevet és kulcsot tartalmaz. toopopulate hello paraméterfájl, szüksége lesz értékek: hello a tárfiók nevét, az az Azure key vault erőforrás-azonosító hello és hello titkos kulcs toostore hello használt kulcstároló neve. Ha már elvégezte az előző lépéseket, kaphat ezeket az értékeket a következő parancsfájl hello:
 
 ```azurecli-interactive
 echo $STORAGE_ACCOUNT
@@ -158,7 +158,7 @@ echo $KEYVAULT_SECRET_NAME
 az keyvault show --name $KEYVAULT_NAME --query [id] -o tsv
 ```
 
-Szúrja be az értékeket a paraméterek fájlba:
+Hello értékek beszúrása hello paraméterek fájlba:
 
 ```json
 {
@@ -180,26 +180,26 @@ Szúrja be az értékeket a paraméterek fájlba:
 }
 ```
 
-## <a name="deploy-the-container-and-manage-files"></a>A tároló üzembe és kezelhet fájlokat
+## <a name="deploy-hello-container-and-manage-files"></a>Hello tároló üzembe és kezelhet fájlokat
 
-A sablon definiált a tároló létrehozása, és csatlakoztassa a kötetet, az Azure parancssori felület használatával. Feltételezve, hogy a sablon fájl neve *azuredeploy.json* és a paraméterfájlban nevű *azuredeploy.parameters.json*, akkor a parancssorban:
+Meghatározott hello sablonnal hello tárolókat hozhat létre, és a csatlakoztatási a kötet hello Azure parancssori felület használatával. Feltételezve, hogy hello sablon fájl neve *azuredeploy.json* adott hello paraméterek fájl neve és *azuredeploy.parameters.json*, majd hello a parancssorban:
 
 ```azurecli-interactive
 az group deployment create --name hellofilesdeployment --template-file azuredeploy.json --parameters @azuredeploy.parameters.json --resource-group myResourceGroup
 ```
 
-A tároló elindul, ha a egyszerű webalkalmazást telepített keresztül is használhatja a **seanmckenna/aci-hellofiles** lemezképet, a megadott csatlakoztatási elérési úton Azure fájlmegosztás kezelése a fájlokat. Az IP-cím a következő webalkalmazás az beszerzése:
+Miután hello tároló elindul, hello egyszerű webalkalmazást telepített hello keresztül használhatja **seanmckenna/aci-hellofiles** kép, toohello hello Azure fájlmegosztás megadott hello csatlakoztatási elérési úton lévő fájlok kezeléséhez. Hello webalkalmazás keresztül hello következő hello IP-cím beszerzése:
 
 ```azurecli-interactive
 az container show --resource-group myResourceGroup --name hellofiles -o table
 ```
 
-Egy eszköz, például használhatja a [Microsoft Azure Tártallózó](http://storageexplorer.com) kérhető le, és vizsgálja meg a fájl writen a fájlmegosztáshoz.
+Egy eszköz, például hello használhatja [Microsoft Azure Tártallózó](http://storageexplorer.com) tooretrieve és hello fájl writen toohello fájlmegosztás vizsgálhatja meg.
 
 >[!NOTE]
-> Azure Resource Manager-sablonok használatával kapcsolatos további tudnivalókért alkalmazásparaméter-fájlokat, és az Azure parancssori Felülettel történő telepítése, lásd: [erőforrások a Resource Manager-sablonok és az Azure parancssori felület telepítése](../azure-resource-manager/resource-group-template-deploy-cli.md).
+> További információ az Azure Resource Manager-sablonokkal, alkalmazásparaméter-fájlokat, és a hello Azure parancssori felület telepítése toolearn lásd [erőforrások a Resource Manager-sablonok és az Azure parancssori felület telepítése](../azure-resource-manager/resource-group-template-deploy-cli.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
-- Az első tároló használata az Azure-tároló példányok telepítése [– első lépések](container-instances-quickstart.md)
-- További tudnivalók a [Azure tároló példányok és tároló orchestrators közötti kapcsolat](container-instances-orchestrator-relationship.md)
+- Az első tároló hello Azure tároló példányok használatával telepítheti [– első lépések](container-instances-quickstart.md)
+- További tudnivalók: hello [Azure tároló példányok és tároló orchestrators közötti kapcsolat](container-instances-orchestrator-relationship.md)

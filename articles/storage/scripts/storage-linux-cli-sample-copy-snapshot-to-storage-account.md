@@ -1,6 +1,6 @@
 ---
-title: "Az Azure CLI parancsfájl minta - exportálási vagy másolási pillanatképének, virtuális Merevlemezt egy másik régióban található tárfiókot |} Microsoft Docs"
-description: "Az Azure CLI parancsfájl minta - exportálási vagy másolási pillanatkép virtuális merevlemez, egy tárfiókkal azonos vagy azoktól eltérő előfizetés"
+title: "parancssori felület parancsfájl minta - exportálási vagy másolási pillanatkép, a virtuális merevlemez tooa tárfiók más régióban aaaAzure |} Microsoft Docs"
+description: "Az Azure CLI parancsfájl minta - exportálási vagy másolási pillanatkép VHD tooa tárfiókkal ugyanazon vagy másik előfizetésben található"
 services: virtual-machines-linux
 documentationcenter: storage
 author: ramankumarlive
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: ramankum
-ms.openlocfilehash: fafb74af5f02f74036c770934c5e33f1b8a5593e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 027c5e588c4f10d64d125c17f4c78a7d8e1ef060
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="exportcopy-managed-snapshots-as-vhd-to-a-storage-account-in-different-region-with-cli"></a>Exportálás/másolás felügyelt pillanatfelvételek virtuális merevlemez egy másik régióban található a CLI tárfiókkal
+# <a name="exportcopy-managed-snapshots-as-vhd-tooa-storage-account-in-different-region-with-cli"></a>Felügyelt pillanatfelvételek VHD tooa tárfiók más régióban, CLI exportálási/másolás
 
-Ez a parancsfájl egy másik régióban található tárfiókot felügyelt pillanatkép exportálja. Először hoz létre a SAS URI-jának a pillanatképet, és azt használja egy másik régióban található tárfiókot másolásához. Ez a parancsfájl segítségével biztonsági mentés a felügyelt lemezek vész-helyreállítási másik régióban. 
+Ez a parancsfájl egy felügyelt pillanatkép tooa tárfiók más régióban exportálja. Először hoz létre a hello hello pillanatkép SAS URI-t, és a toocopy használja azt tooa tárfiók más régióban. A parancsfájl toomaintain biztonsági másolat, a kezelt lemezek használható különböző régióban vész-helyreállítási. 
 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
@@ -32,17 +32,17 @@ Ez a parancsfájl egy másik régióban található tárfiókot felügyelt pilla
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-azurecli[fő](../../../cli_scripts/storage/copy-snapshots-to-storage-account/copy-snapshots-to-storage-account.sh "másolási pillanatkép")]
+[!code-azurecli[main](../../../cli_scripts/storage/copy-snapshots-to-storage-account/copy-snapshots-to-storage-account.sh "Copy snapshot")]
 
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-Ez a parancsfájl SAS URI-t a felügyelt pillanatkép létrehozásához a következő parancsok használja, és másolja a pillanatkép SAS URI-t használó tárfiókot. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+Ezt a parancsfájlt használja a következő parancsok toogenerate felügyelt pillanatkép és másolat hello SAS URI-JÁNAK pillanatkép-tooa tárfiók SAS URI-JÁNAK használatával. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
-| [az pillanatkép-hozzáférés engedélyezése](https://docs.microsoft.com/cli/azure/snapshot#grant-access) | Csak olvasható, alapul szolgáló VHD-fájlt másolja a storage-fiók, vagy töltse le a helyszínen használt SAS generál  |
-| [az tárolási blob másolási indítása](https://docs.microsoft.com/en-us/cli/azure/storage/blob/copy#start) | Másolja át a blob aszinkron módon egy tárfiók egy másikra |
+| [az pillanatkép-hozzáférés engedélyezése](https://docs.microsoft.com/cli/azure/snapshot#grant-access) | Állít elő, vagy töltse le az alapul szolgáló virtuális merevlemez fájl tooa tárfiók használt toocopy írásvédett SAS tooon helyszíni  |
+| [az tárolási blob másolási indítása](https://docs.microsoft.com/en-us/cli/azure/storage/blob/copy#start) | Másolja át aszinkron módon blob storage-fiók egy tooanother |
 
 ## <a name="next-steps"></a>Következő lépések
 
@@ -50,6 +50,6 @@ Ez a parancsfájl SAS URI-t a felügyelt pillanatkép létrehozásához a követ
 
 [A felügyelt lemezes virtuális gép létrehozása](./../../virtual-machines/scripts/virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fcli%2fmodule%2ftoc.json)
 
-További információ az Azure parancssori felület: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
+Az Azure CLI hello további információkért lásd: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
 
-További virtuális gép és a felügyelt lemezek CLI parancsfájl minták megtalálhatók a [Azure Linux virtuális dokumentációját](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+További virtuális gép és a felügyelt lemezek CLI parancsfájl minták található hello [Azure Linux virtuális dokumentációját](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).

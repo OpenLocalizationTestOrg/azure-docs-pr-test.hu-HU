@@ -1,6 +1,6 @@
 ---
-title: "Runbook tesztelése az Azure Automationben |} Microsoft Docs"
-description: "Runbook közzététele az Azure Automationben, mielőtt a teszteléshez le annak érdekében, hogy megfelelően működik-e.  Ez a cikk ismerteti egy runbook tesztelése, és tekintse meg a kimenetet."
+title: "Azure Automation forgatókönyv aaaTesting |} Microsoft Docs"
+description: "Runbook közzététele az Azure Automationben, mielőtt a teszteléshez le tooensure, hogy megfelelően működik-e.  Ez a cikk ismerteti, hogyan tootest egy runbook és tekintheti meg a kimenetét."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/12/2016
 ms.author: magoedte;bwren
-ms.openlocfilehash: 5186eb8f1732d533cbceb397b4d8b5224ad773cd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8c531f702699d586f8215d4c171cb0ecf94732b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="testing-a-runbook-in-azure-automation"></a>Runbook tesztelése az Azure Automationben
-Egy runbook tesztelésekor a [vázlatként megjelölt verziót](automation-creating-importing-runbook.md#publishing-a-runbook) végrehajtása és minden elvégzett műveletet végrehajt befejezését. Nincs feladatelőzményekben jön létre, de a [kimeneti](automation-runbook-output-and-messages.md#output-stream) és [figyelmeztetés és hiba](automation-runbook-output-and-messages.md#message-streams) adatfolyamok megjelennek a vizsgálat kimeneti ablaktáblában. Az üzenetek a [részletes adatfolyam](automation-runbook-output-and-messages.md#message-streams) megjelennek a Tesztkimenet ablaktáblán csak akkor, ha a [$VerbosePreference változó](automation-runbook-output-and-messages.md#preference-variables) Folytatás értékre van állítva.
+Egy runbook tesztelésekor hello [vázlatként megjelölt verziót](automation-creating-importing-runbook.md#publishing-a-runbook) végrehajtása és minden elvégzett műveletet végrehajt befejezését. Nincs feladatelőzményekben létrejött, de hello [kimeneti](automation-runbook-output-and-messages.md#output-stream) és [figyelmeztetés és hiba](automation-runbook-output-and-messages.md#message-streams) adatfolyamok megjelennek a hello teszt kimeneti ablaktáblában. Üzenetek toohello [részletes adatfolyam](automation-runbook-output-and-messages.md#message-streams) hello Tesztkimenet ablaktáblán megjelennek, csak ha hello [$VerbosePreference változó](automation-runbook-output-and-messages.md#preference-variables) tooContinue van beállítva.
 
-Annak ellenére, hogy a vázlatként megjelölt verziót futtatása, a runbook még végrehajtja a munkafolyamatot a szokásos módon, és erőforrások minden műveletet elvégez a környezetben. Ezért csak nem éles erőforrások mappaszinten kell tesztelni.
+Annak ellenére, hogy hello vázlatként megjelölt verziót futtatása, a hello runbook továbbra is hello munkafolyamat végrehajtása általában és erőforrások minden műveletet elvégez hello környezetben. Ezért csak nem éles erőforrások mappaszinten kell tesztelni.
 
-Az eljárást minden egyes [típusú forgatókönyvet](automation-runbook-types.md) azonos, és ott tesztelése a szöveges szerkesztő és az Azure portálon grafikus szerkesztő között nincs különbség.  
+az eljárás tootest hello [típusú forgatókönyvet](automation-runbook-types.md) hello azonos, és a tesztelése hello szöveges editor és hello grafikus szerkesztő hello Azure-portálon a között nincs különbség.  
 
-## <a name="to-test-a-runbook-in-the-azure-portal"></a>Egy runbook tesztelése az Azure-portálon
-Használhat egyetlen [runbooktípusba](automation-runbook-types.md) az Azure portálon.
+## <a name="tootest-a-runbook-in-hello-azure-portal"></a>tootest egy runbookot a hello Azure-portálon
+Használhat egyetlen [runbooktípusba](automation-runbook-types.md) a hello Azure-portálon.
 
-1. Nyissa meg a runbook vázlatverzióját vagy a [szöveges szerkesztő](automation-edit-textual-runbook.md) vagy [grafikus szerkesztő](automation-graphical-authoring-intro.md).
-2. Kattintson a **teszt** gombra kattintva nyissa meg a teszt panelt.
-3. Ha a runbook paraméterekkel rendelkezik, azok megjelennek a bal oldali ablaktáblán, ahol megadhatja a vizsgálathoz használt értékek.
-4. Ha azt szeretné, hogy a teszt futtatásáról egy [hibrid forgatókönyv-feldolgozó](automation-hybrid-runbook-worker.md), majd módosítsa **futtatása beállítások** való **Hibridfeldolgozó** válassza ki a nevét, a célcsoport.  Ellenkező esetben hagyja meg az alapértelmezett **Azure** a teszt végrehajtása a felhőben.
-5. Kattintson a **Start** gombra kattintva indítsa el a vizsgálatot.
-6. Ha a runbook állapota [PowerShell munkafolyamat](automation-runbook-types.md#powershell-workflow-runbooks) vagy [grafikus](automation-runbook-types.md#graphical-runbooks), majd állítsa le, vagy felfüggeszti, amíg a kimeneti ablaktábla alatti gombokkal tesztelését. A runbook felfüggesztésekor felfüggesztés előtt végrehajtja az aktuális tevékenységet. Ha a runbook fel van függesztve, állítsa le, vagy indítsa újra.
-7. Vizsgálja meg a kimeneti ablaktábla a runbook kimenete.
+1. Nyissa meg hello vázlatként megjelölt verziót vagy hello hello runbook [szöveges szerkesztő](automation-edit-textual-runbook.md) vagy [grafikus szerkesztő](automation-graphical-authoring-intro.md).
+2. Kattintson a hello **teszt** gomb tooopen hello teszt panelen.
+3. Ha hello runbook paraméterekkel rendelkezik, azok hello bal oldali ablaktáblán, ahol megadhatja a hello vizsgálathoz használt értékek toobe megjelennek.
+4. Ha azt szeretné, toorun hello tesztelési meg egy [hibrid forgatókönyv-feldolgozó](automation-hybrid-runbook-worker.md), majd módosítsa **futtatása beállítások** túl**Hibridfeldolgozó** és select hello hello célcsoport neve.  Ellenkező esetben hagyja az alapértelmezett hello **Azure** toorun hello teszt hello felhőben.
+5. Kattintson a hello **Start** gomb toostart hello tesztelése.
+6. Ha hello runbook [PowerShell munkafolyamat](automation-runbook-types.md#powershell-workflow-runbooks) vagy [grafikus](automation-runbook-types.md#graphical-runbooks), akkor állítsa le, vagy amíg hello gombok hello kimeneti ablaktábla alatti tesztelését felfüggeszti. Hello runbook felfüggesztésekor hello aktuális tevékenység befejezése felfüggesztés előtt. Miután hello runbook fel van függesztve, állítsa le, vagy indítsa újra.
+7. Vizsgálja meg a hello kimeneti hello runbookból hello kimenet ablaktáblán.
 
 ## <a name="next-steps"></a>Következő lépések
-* Megtudhatja, hogyan hozzon létre vagy importáljon egy runbookot, lásd: [létrehozása vagy egy Azure Automation forgatókönyv importálása](automation-creating-importing-runbook.md)
-* További információk a Grafikus létrehozásról: [Grafikus létrehozás az Azure Automationben](automation-graphical-authoring-intro.md).
-* A PowerShell-alapú munkafolyamat-forgatókönyvekkel való ismerkedéshez tekintse meg a következőt: [Az első PowerShell-alapú munkafolyamat-forgatókönyvem](automation-first-runbook-textual.md)
-* Állapotüzenetek és a hibák vissza runboks konfigurálásával kapcsolatos további tudnivalókért beleértve az ajánlott eljárásokat, lásd: [Runbook-kimenet és üzenetek az Azure Automationben](automation-runbook-output-and-messages.md)
+* Hogyan toocreate vagy egy runbook importálása: toolearn [létrehozása vagy egy Azure Automation forgatókönyv importálása](automation-creating-importing-runbook.md)
+* toolearn grafikus szerzői kapcsolatos további információkért lásd: [grafikus készítése az Azure Automationben](automation-graphical-authoring-intro.md)
+* a PowerShell munkafolyamat-forgatókönyvekről, használatába tooget lásd: [az első PowerShell-munkafolyamati forgatókönyv](automation-first-runbook-textual.md)
+* toolearn bővebben runboks tooreturn állapotüzeneteket és a hibák, beleértve az ajánlott eljárások konfigurálásáról lásd: [Runbook-kimenet és üzenetek az Azure Automationben](automation-runbook-output-and-messages.md)
 

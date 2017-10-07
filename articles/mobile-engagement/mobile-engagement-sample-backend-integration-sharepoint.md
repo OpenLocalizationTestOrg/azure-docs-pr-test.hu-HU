@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Mobile Engagement - háttér-integráció"
-description: "Csatlakozás az Azure Mobile Engagement egy SharePoint-háttérrendszerrel SharePoint kampányok létrehozásához"
+title: "a Mobile Engagement - háttérrendszer integrációs aaaAzure"
+description: "Csatlakozás Azure Mobile Engagement egy SharePoint SharePoint háttér toocreate kampányait"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,32 +14,32 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: d49f1094f4c3f170f3618f3e19e42266f9ae8858
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 89e1ef57db607d63c326a760b20260ad439f08b2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-mobile-engagement---api-integration"></a>Az Azure Mobile Engagement - API-integráció
-Egy automatizált marketing rendszerben létrehozása és aktiválása, a marketingkampányok is automatikusan történik. Erre a célra - Azure Mobile Engagement lehetővé teszi, hogy az ilyen API-k használatával is automatizált marketingkampányok létrehozása. 
+Egy automatizált marketing rendszerben létrehozása és aktiválása hello marketingkampányok is automatikusan történik. Erre a célra - Azure Mobile Engagement lehetővé teszi, hogy az ilyen API-k használatával is automatizált marketingkampányok létrehozása. 
 
-Általában az ügyfelek a Mobile Engagement előtér illesztő segítségével a marketingkampányok részeként hozza létre a közlemények/szavazások stb. Azonban a marketingkampányok egyre érett, szükség van az adatokat, hogy egy teljesen automatizált folyamat is létrehozható, amely kampányok hoz létre a Mobile Engagement zárolva van (például a CRM vagy CMS rendszer például SharePoint) a háttérrendszerek ki dinamikusan áramlanak a háttérrendszerek adatok alapján. 
+Általában ügyfelei a marketingkampányok részeként használhatják hello a Mobile Engagement előtér felület toocreate közlemények/szavazások stb. Azonban, hello marketingkampányok érett válik, hogy szükség van tooleverage hello adatok zárolva van (például a CRM vagy CMS rendszer például SharePoint) a hello háttérrendszerek, hogy egy teljesen automatizált folyamat is létrehozható, amely Mobile kampányok hoz létre A bevonási dinamikusan áramlanak hello háttérrendszerek hello adatok alapján. 
 
 ![][5]
 
-Ez az oktatóanyag egy olyan forgatókönyvet, ahol a SharePoint üzleti felhasználók és tölti fel az értékesítési adatokat egy SharePoint-lista egy automatikus folyamat szerzi be a listában szereplő elemeket, és csatlakozik a Mobile Engagement rendszer használata a rendelkezésre álló REST API-k létrehozásához az végig kell vinnie a a SharePoint-adatokból marketingkampányt. 
+Az oktatóanyag is megnőnek olyan forgatókönyvekben, ahol a SharePoint üzleti felhasználók és tölti fel az értékesítési adatokat egy SharePoint-lista egy automatikus folyamat szerzi be hello listában szereplő elemeket, és hello a Mobile Engagement rendszer használatával kapcsolódik a hello elérhető REST API-k toocreate egy marketingkampányt hello SharePoint adatokból. 
 
 > [!IMPORTANT]
-> Általában használhatja ezt a mintát kiindulási pontként a Mobile Engagement REST API-k előhívhat, hogy az adatokat a két fő szempontjait hívja az API - hitelesítő és tompított paraméterek alapos ismerete. 
+> Általában használható ez a minta kiindulási pontként megértése, hogyan toocall Mobile Engagement REST API-k, mert részletek hello két fő szempontjait hello API - hitelesítő és tompított paraméter hívja. 
 > 
 > 
 
 ## <a name="sharepoint-integration"></a>SharePoint-integráció
-1. Ez a minta SharePoint-lista néz. **Cím**, **kategória**, **NotificationTitle**, **üzenet** és **URL-cím** a hirdetmény létrehozásához használt. Nincs oszlopát **IsProcessed** konzol program formájában a minta automation folyamat által használt. Akkor is fut a konzol, az Azure webjobs-feladat program, így is ütemezheti, vagy használhatja a SharePoint-munkafolyamat létrehozása és aktiválása a közlemény, amikor egy elem bekerülnek a SharePoint-lista program közvetlenül. Ez a példa a konzol programot, amely a SharePoint elemeinek listában, és bejelentés létrehozása az Azure Mobile Engagement esetében kerül, és megjelöli végül használjuk a **IsProcessed** jelző IGAZ értékű, a sikeres bejelentés létrehozása.
+1. Ez milyen hello minta SharePoint-lista tűnik. **Cím**, **kategória**, **NotificationTitle**, **üzenet** és **URL-cím** hello hirdetmény létrehozásához használt. Nincs oszlopát **IsProcessed** amellyel hello minta automation folyamat konzol program hello formában. Vagy futtathatja, a konzol program egy Azure webjobs-feladat, hogy is ütemezheti, vagy közvetlenül használható hello SharePoint munkafolyamat tooprogram létrehozása és aktiválásával hello közlemény elem behelyezésekor a hello SharePoint-listát. Ezt a mintát használjuk hello console programot, amely kerül a listában hello SharePoint hello elemek között, és bejelentés létrehozása az Azure Mobile Engagement az egyes őket, és végül jelöli meg hello **IsProcessed** jelző toobe true sikeres közlemény létrehozása.
    
     ![][1]
-2. A kód a minta használjuk *távoli hitelesítés a SharePoint Online használata az ügyfél objektummodell* [Itt](https://code.msdn.microsoft.com/Remote-Authentication-in-b7b6f43c) való hitelesítéshez szükséges a SharePoint-listán.
-3. Hitelesítését követően azt ismétlése minden újonnan létrehozott elemek megállapítása a listaelemek (amelyeket lesz **IsProcessed** = false). 
+2. Hello kódot hello mintát használjuk *távoli hitelesítés a SharePoint Online használata hello ügyfél objektummodell* [Itt](https://code.msdn.microsoft.com/Remote-Authentication-in-b7b6f43c) tooauthenticate hello SharePoint listájával.
+3. Hitelesítését követően azt ismétlése hello lista elemek toofind ki az újonnan létrehozott elemeket (amely lesz **IsProcessed** = false). 
    
          static async void CreateCampaignFromSharepoint()
         {
@@ -52,12 +52,12 @@ Ez az oktatóanyag egy olyan forgatókönyvet, ahol a SharePoint üzleti felhasz
                 query.ViewXml = "<View/>";
                 ListItemCollection items = list.GetItems(query);
    
-                // Load the SharePoint list
+                // Load hello SharePoint list
                 clientContext.Load(list);
                 clientContext.Load(items);
                 clientContext.ExecuteQuery();
    
-                // Loop through the list to go through all the items which are newly added
+                // Loop through hello list toogo through all hello items which are newly added
                 foreach (ListItem item in items)
                     if (item["IsProcessed"].ToString() != "Yes")
                     {
@@ -67,16 +67,16 @@ Ez az oktatóanyag egy olyan forgatókönyvet, ahol a SharePoint üzleti felhasz
                         string category = item["Category"].ToString();
                         string actionURL = ((FieldUrlValue)item["URL"]).Url;
    
-                        // Send an HTTP request to create AzME campaign
+                        // Send an HTTP request toocreate AzME campaign
                         int campaignId = CreateAzMECampaign
                             (name, notificationTitle, notificationMessage, category, actionURL).Result;
    
                         if (campaignId != -1)
                         {
-                            // If creating campaign is successful then set this to true
+                            // If creating campaign is successful then set this tootrue
                             item["IsProcessed"] = "Yes";
    
-                            // Now try to activate the campaign also
+                            // Now try tooactivate hello campaign also
                             await ActivateAzMECampaign(campaignId);
                         }
                         else
@@ -90,8 +90,8 @@ Ez az oktatóanyag egy olyan forgatókönyvet, ahol a SharePoint üzleti felhasz
         }
 
 ## <a name="mobile-engagement-integration"></a>Mobile Engagement-integráció
-1. Amint egy elem feldolgozása - igénylő találtunk azt bontsa ki a közlemény létrehozása a listaelemek és hívás szükséges adatokat `CreateAzMECampaign` létrehozták, és ezt követően `ActivateAzMECampaign` aktiválásához. Ezek a lényegében REST API-hívásokat a Mobile Engagement háttérrendszeréhez hívása. 
-2. A Mobile Engagement REST API-k szükséges egy **alapszintű hitelesítési séma engedélyezési HTTP-fejléc** amely áll a `ApplicationId` és a `ApiKey` amely kap az Azure-portálon. Győződjön meg arról, hogy a kulcsot használ a **api-kulcsokat** szakasz és *nem* a a **sdk kulcsok** szakasz. 
+1. Ha egy elem, amely feldolgozást igényel találtunk – azt bontsa ki a szükséges adatokat hello toocreate hello a közlemény listaelem, és hívja meg `CreateAzMECampaign` toocreate, és ezt követően `ActivateAzMECampaign` tooactivate azt. Ezek a lényegében REST API-hívások toohello Mobile Engagement háttérrendszeréhez hívása. 
+2. hello Mobile Engagement REST API-k szükséges egy **alapszintű hitelesítési séma engedélyezési HTTP-fejléc** hello áll `ApplicationId` és hello `ApiKey` amely kap hello Azure-portálon. Győződjön meg arról, hogy a hello kulcs hello használ **api-kulcsokat** szakasz és *nem* a hello **sdk kulcsok** szakasz. 
    
    ![][2]
    
@@ -107,7 +107,7 @@ Ez az oktatóanyag egy olyan forgatókönyvet, ahol a SharePoint üzleti felhasz
            string returnValue = System.Convert.ToBase64String(toEncodeAsBytes);
            return returnValue;
        }  
-3. A hirdetmény létrehozásához írja be a kampány – tekintse meg a [dokumentáció](https://msdn.microsoft.com/library/azure/mt683750.aspx). Győződjön meg arról, hogy a kampány ad meg kell `kind` , *közlemény* és a [hasznos](https://msdn.microsoft.com/library/azure/mt683751.aspx) és FormUrlEncodedContent, átadja azt. 
+3. Hello közlemény típus létrehozása a kampány – tekintse meg a toohello [dokumentáció](https://msdn.microsoft.com/library/azure/mt683750.aspx). Van szüksége arról, hogy meg hello kampány toomake `kind` , *közlemény* és hello [hasznos](https://msdn.microsoft.com/library/azure/mt683751.aspx) és FormUrlEncodedContent, átadja azt. 
    
         static async Task<int> CreateAzMECampaign(string campaignName, string notificationTitle, 
             string notificationMessage, string notificationCategory, string actionURL)
@@ -119,7 +119,7 @@ Ez az oktatóanyag egy olyan forgatókönyvet, ahol a SharePoint üzleti felhasz
                 // Add Authorization Header
                 client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", CreateAuthZHeader());
    
-                // Create the payload to send the content
+                // Create hello payload toosend hello content
                 // Reference -> https://msdn.microsoft.com/library/dn913749.aspx
                 string data =
                     @"{""name"":""" + campaignName + @"""," + 
@@ -135,13 +135,13 @@ Ez az oktatóanyag egy olyan forgatókönyvet, ahol a SharePoint üzleti felhasz
                     new KeyValuePair<string, string>("data", data),
                 });
    
-                // Send the POST request
+                // Send hello POST request
                 var response = await client.PostAsync(url + createURIFragment, content);
                 var responseString = response.Content.ReadAsStringAsync().Result;
                 int campaignId = -1;
                 if (response.StatusCode.ToString() == "OK")
                 {
-                    // This is the campaign id
+                    // This is hello campaign id
                     campaignId = Convert.ToInt32(responseString);
                     Console.WriteLine("Campaign successfully created with id {0}", campaignId);
                 }
@@ -152,10 +152,10 @@ Ez az oktatóanyag egy olyan forgatókönyvet, ahol a SharePoint üzleti felhasz
                 return campaignId;
             }
         }
-4. Ha már létrehozott bejelentés, megjelenik a következőhöz a Mobile Engagement portál (vegye figyelembe, hogy az állapot = Vázlat és aktív = N/A)
+4. Ha már létrehozott hello közlemény, látni fogja a hello Mobile Engagement portálra a következő hello hasonlót (vegye figyelembe, hogy hello állapot = Vázlat és aktív = N/A)
    
     ![][3]
-5. `CreateAzMECampaign`létrehoz egy bejelentési kampányt, és visszaadja az azonosítója a hívó. `ActivateAzMECampaign`Ez az azonosító szükséges aktiválja a kampányt paraméterként. 
+5. `CreateAzMECampaign`létrehoz egy bejelentési kampányt, és visszaadja a azonosító toohello hívójához. `ActivateAzMECampaign`Ezt az azonosítót igényel, hello paraméter tooactivate hello kampány. 
    
         static async Task<bool> ActivateAzMECampaign(int campaignId)
         {
@@ -171,7 +171,7 @@ Ez az oktatóanyag egy olyan forgatókönyvet, ahol a SharePoint üzleti felhasz
                     new KeyValuePair<string, string>("id", campaignId.ToString()),
                 });
    
-                // Send the POST request
+                // Send hello POST request
                 var response = await client.PostAsync(url + activateUriFragment, content);
                 var responseString = response.Content.ReadAsStringAsync().Result;
                 if (response.StatusCode.ToString() == "OK")
@@ -186,13 +186,13 @@ Ez az oktatóanyag egy olyan forgatókönyvet, ahol a SharePoint üzleti felhasz
                 }
             }
         }
-6. Ha már aktiválta a közlemény, a Mobile Engagement portálon megjelenik a következőhöz:
+6. Miután aktiválta hello közlemény, látni fogja valami hasonló hello hello a Mobile Engagement portál:
    
     ![][4]
-7. Amint az a kampány aktiválása lekérdezi azokat az eszközöket, amelyek megfelelnek a feltétel a kampány indul el értesítések jelent. 
-8. Is láthatja, hogy a listaelem jelölésű IsProcessed = hamis értéket Igaz értékre lett állítva a közlemény kampány létrehozása után.  
+7. Amint hello kampány aktiválása lekérdezi azokat az eszközöket, amelyek megfelelnek a hello kampány hello feltételnek indul el jelent meg értesítések. 
+8. Is láthatja, hogy hello listaelem megjelölve a IsProcessed = FALSE értékre van beállítva tooTrue hello közlemény kampány létrehozása után.  
 
-Ez a minta legtöbbször a szükséges tulajdonságok megadása egyszerű közlemény a kampány létrehozása. Testre szabhatja ezt, mint amennyit a portálról szereplő információk segítségével is [Itt](https://msdn.microsoft.com/library/azure/mt683751.aspx). 
+Ez a minta többnyire szükséges hello tulajdonságok megadása egyszerű közlemény a kampány létrehozása. Testre szabhatja ezt, mint amennyit hello információk segítségével hello portálról is [Itt](https://msdn.microsoft.com/library/azure/mt683751.aspx). 
 
 <!-- Images. -->
 [1]: ./media/mobile-engagement-sample-backend-integration-sharepoint/sharepointlist.png

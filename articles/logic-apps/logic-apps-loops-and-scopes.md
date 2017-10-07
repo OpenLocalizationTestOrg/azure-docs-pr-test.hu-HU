@@ -1,6 +1,6 @@
 ---
-title: "Hurok- és hatókörök létrehozása vagy adatok a munkafolyamatokban - Azure Logic Apps debatch |} Microsoft Docs"
-description: "Az adatok, a hatókörök, műveleteit iterációt hurkok létrehozása, vagy adatokat az Azure Logic Apps további munkafolyamatok indítására debatch."
+title: "aaaCreate fut a hurokban, és hatóköröket annak megfelelően, vagy a munkafolyamatokban - Azure Logic Apps adatok debatch |} Microsoft Docs"
+description: "Hozzon létre hurkok tooiterate keresztül adatokat, a hatókörök, műveleteit, vagy debatch adatok toostart az Azure Logic Apps további munkafolyamatok."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: jeffhollan
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/29/2016
 ms.author: LADocs; jehollan
-ms.openlocfilehash: 413a2ba9107ca259ed577825bf0a17ff5622f1ac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e612ec2e83541f028916a07bf12c44e7b1f57ad1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="logic-apps-loops-scopes-and-debatching"></a>Logic Apps-hurkok, -hatókörök és -kibontás
   
-A Logic Apps használata tömbök, gyűjtemények, kötegekben, számos, és fut a hurokban, a munkafolyamaton belül.
+A Logic Apps számos módon toowork tömbök, gyűjtemények, kötegek és hurkok egy munkafolyamaton belül.
   
 ## <a name="foreach-loop-and-arrays"></a>ForEach hurok és tömbök
   
-A Logic Apps segítségével hurokba építhető adatok, és egy műveletet minden elemhez.  Ez az alkalmazáson keresztül a `foreach` művelet.  A tervezőben, megadhat hozzáadása egy for-each ciklus.  A tömb kívánja az ismétlés kiválasztása, után elkezdhet műveletek.  Jelenleg csak egy művelet foreach hurok száma korlátozott, de ez a korlátozás az elkövetkező hetektől azonnal fel kell oldani.  Egyszer a hurkon belül elkezdheti adja meg, hogy mi történjen a tömb egyes értéken.
+A Logic Apps lehetővé teszi az adatok egy készleten tooloop, és egy műveletet minden elemhez.  Ez az alkalmazáson keresztül hello `foreach` művelet.  Hello Designer tooadd megadhat egy for-each ciklus.  Miután kijelölte hello tömb tooiterate keresztül kívánja, elkezdhet műveletek.  Jelenleg korlátozott tooonly egy-egy művelettel / foreach hurok, de ez a korlátozás a hét hamarosan hello azonnal fel kell oldani.  Egyszer hello hurkon belül megkezdheti toospecify, mi történjen, minden egyes hello tömb értékénél.
 
 Kód-nézet használata esetén is megadhat egy for-each ciklus például alatt.  Itt látható egy példa egy for-each ciklus, amelyet az összes e-mail címet, amely tartalmazza a "microsoft.com" az e-mailt küld:
 
@@ -66,11 +66,11 @@ Kód-nézet használata esetén is megadhat egy for-each ciklus például alatt.
 }
 ```
   
-  A `foreach` művelet is többször over tömbállandó legfeljebb 5000 sort.  Alapértelmezés szerint minden egyes ismétlés párhuzamosan fogja végrehajtani.  
+  A `foreach` művelet is ismétlés tömbök too5, 000 sor mentése.  Alapértelmezés szerint minden egyes ismétlés párhuzamosan fogja végrehajtani.  
 
 ### <a name="sequential-foreach-loops"></a>Szekvenciális ForEach hurkok
 
-Foreach hurkot hajtható végre az egymás után, hogy a `Sequential` műveletet hozzá kell adni.
+a foreach hurok tooexecute egymás után, hello tooenable `Sequential` műveletet hozzá kell adni.
 
 ``` json
 "forEach_email": {
@@ -83,9 +83,9 @@ Foreach hurkot hajtható végre az egymás után, hogy a `Sequential` műveletet
   
 ## <a name="until-loop"></a>Hurok-ig
   
-  Művelet vagy műveletsorozattal hajthat végre, amíg egy feltétel nem teljesül.  A leggyakoribb forgatókönyvhöz, amelyben ez a végpont hívja meg addig, amíg a keresett választ kapott.  A tervezőben, megadhat hozzáadása egy hurok-ig.  Miután hozzáadta a hurok található műveletek, beállíthatja a kilépési feltételt, valamint a hurok korlátok.  Van egy 1 perc késleltetéssel a hurok ciklusok között.
+  Művelet vagy műveletsorozattal hajthat végre, amíg egy feltétel nem teljesül.  hello Ennek leggyakoribb forgatókönyvet hívja meg a végpont csak a keresett hello választ kapott.  Hello Designer tooadd megadhat egy hurok-ig.  A felvett hello hurok található műveletek, akkor is hello kilépési feltétel, valamint hello hurok korlátok.  Van egy 1 perc késleltetéssel a hurok ciklusok között.
   
-  Kód-nézet használata esetén is megadhat egy amíg hurok, például alatt.  Itt látható egy példa egy HTTP-végpont meghívása mindaddig, amíg az adott válasz törzsének értéke "Befejezve".  A feladat befejeződik mikor vagy 
+  Kód-nézet használata esetén is megadhat egy amíg hurok, például alatt.  Itt látható egy példa egy HTTP-végpont meghívása, amíg hello adott válasz törzsének értéke hello "Befejezve".  A feladat befejeződik mikor vagy 
   
   * HTTP-válasz "Befejezve" állapota
   * 1 óráig próbált
@@ -117,9 +117,9 @@ Foreach hurkot hajtható végre az egymás után, hogy a `Sequential` műveletet
   
 ## <a name="spliton-and-debatching"></a>SplitOn és debatching
 
-Néha egy eseményindító kaphat debatch és elindítsanak egy munkafolyamatot elemenként kívánt elemek tömbjét.  Keresztül ehhez a `spliton` parancsot.  Alapértelmezés szerint az eseményindító swagger határozza meg a hasznos adatok között, amely tömb, ha egy `spliton` megjelenik, és indítsa el a elemenként futását.  SplitOn csak egy eseményindító lehet hozzáadni.  Ez manuálisan konfigurálhatók, vagy definition kódnézetben felülbírálható.  Jelenleg is debatch SplitOn tömbállandó legfeljebb 5 000 elemnél.  Nem lehet egy `spliton` és a szinkron válasz mintát is megvalósíthatja.  Minden munkafolyamat neve, amely rendelkezik egy `response` művelet kívül `spliton` aszinkron módon futnak le és azonnali küldés `202 Accepted` választ.  
+Néha egy eseményindító jelenhet meg szeretné, hogy toodebatch, és a elindítsanak egy munkafolyamatot elemenként elemekre tömbjét.  Hello keresztül ehhez `spliton` parancsot.  Alapértelmezés szerint az eseményindító swagger határozza meg a hasznos adatok között, amely tömb, ha egy `spliton` megjelenik, és indítsa el a elemenként futását.  SplitOn nem vehető tooa eseményindító.  Ez manuálisan konfigurálhatók, vagy definition kódnézetben felülbírálható.  Jelenleg a SplitOn is debatch tömbök too5, 000 elemek mentése.  Nem lehet egy `spliton` és hello szinkron válasz mintát is megvalósíthatja.  Minden munkafolyamat neve, amely rendelkezik egy `response` továbbá művelet túl`spliton` aszinkron módon futnak le és azonnali küldés `202 Accepted` választ.  
 
-Az alábbi példa-kódnézetben SplitOn adhat meg.  Ez elemek tömbje fogad, és az egyes sorokkal debatches.
+A következő példa hello kódnézetben-SplitOn adhat meg.  Ez elemek tömbje fogad, és az egyes sorokkal debatches.
 
 ```
 {
@@ -139,7 +139,7 @@ Az alábbi példa-kódnézetben SplitOn adhat meg.  Ez elemek tömbje fogad, és
 
 ## <a name="scopes"></a>Hatókörök
 
-A hatókör együttes használatával műveletsorozat csoportosításához lehetőség.  Ez különösen fontos kivételkezelést megvalósításához.  A tervezőben új hatókör hozzáadása, és megkezdheti saját műveletek hozzáadását.  Meghatározhatja a hatókörök kódnézetben a következőhöz hasonló:
+Már lehetséges toogroup műveletsorozat hatókör együttes használatával.  Ez különösen fontos kivételkezelést megvalósításához.  Hello Designer Új hatókör hozzáadása, és megkezdheti saját műveletek hozzáadását.  Hatókörök hasonló hello kódnézetben definiálhatja:
 
 
 ```

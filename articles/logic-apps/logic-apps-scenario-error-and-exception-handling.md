@@ -1,5 +1,5 @@
 ---
-title: "Kivételkezelés & hiba naplózási forgatókönyv – Azure Logic Apps |} Microsoft Docs"
+title: "aaaException kezelési & hiba naplózási forgatókönyv – Azure Logic Apps |} Microsoft Docs"
 description: "Speciális kivétel- és az Azure Logic Apps hibanaplózás valódi használati eset ismerteti"
 keywords: 
 services: logic-apps
@@ -16,51 +16,51 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 07/29/2016
 ms.author: LADocs; b-hoedid
-ms.openlocfilehash: 044de27c75da93c95609110d2b73336c42f746fe
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e893a7b652254dca7b8a82398e8afd571f6ccd25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scenario-exception-handling-and-error-logging-for-logic-apps"></a>Forgatókönyv: Kivételkezelést és a hibanaplózás a logic Apps alkalmazások
 
-Ez a forgatókönyv leírja, hogyan bővítheti a logikai alkalmazás kivételkezelést hatékonyabb támogatásához. A kérdés megválaszolásához jelenleg használt valós használati eset: "Az Azure Logic Apps támogatja kivétel és hibakezelés?"
+Ez a forgatókönyv leírja, hogyan bővítheti a logic app toobetter támogatási kivételkezelést. Azt már felhasznált egy valós használja kis tooanswer hello kérdést: "Az Azure Logic Apps támogatja kivétel és hibakezelés?"
 
 > [!NOTE]
-> A jelenlegi Azure Logic Apps séma művelet válaszokat biztosít a szabványos sablon. Ez a sablon belső érvényesítési és API-alkalmazás által visszaadott hiba válaszai egyaránt tartalmazza.
+> hello aktuális Azure Logic Apps séma művelet válaszokat biztosít a szabványos sablon. Ez a sablon belső érvényesítési és API-alkalmazás által visszaadott hiba válaszai egyaránt tartalmazza.
 
 ## <a name="scenario-and-use-case-overview"></a>A forgatókönyv és -felhasználási eset áttekintése
 
-A szövegegység itt van, mint az ebben a forgatókönyvben használata esetében: 
+Hello szövegegység itt van, mint a forgatókönyv hello használati eset: 
 
-Egy jól ismert egészségügyi szervezet részt vevő számunkra, hogy egy rekordot kell létrehoznia egy beteg portál a Microsoft Dynamics CRM Online Azure megoldást fejleszthet. Azok a Dynamics CRM Online beteg portál és a Salesforce időpontot egyeztessen rekordok elküldéséhez szükséges. Azt is kéri, hogy használja a [HL7 FHIR](http://www.hl7.org/implement/standards/fhir/) összes beteg rekordok szabványos.
+Egy jól ismert egészségügyi szervezet végző velünk toodevelop egy Azure megoldás, amely a beteg portál hozna létre a Microsoft Dynamics CRM Online használatával. Toosend időpontot egyeztessen rekordok hello Dynamics CRM Online beteg portál és a Salesforce között szükség rájuk. Azt is ismételt toouse hello [HL7 FHIR](http://www.hl7.org/implement/standards/fhir/) összes beteg rekordok szabványos.
 
-A projekt két fő követelmény rendelkezett:  
+hello projekt két fő követelmény rendelkezett:  
 
-* A Dynamics CRM Online portálon küldött rekordok naplózására metódus
-* A munkafolyamaton belül történt hibákról megtekintése
+* A metódus toolog rekordok küldött hello Dynamics CRM Online portálon
+* A módszer tooview hibákról hello munkafolyamaton belül
 
 > [!TIP]
-> A projekt egy magas szintű videót: [integrációs felhasználói csoport](http://www.integrationusergroup.com/logic-apps-support-error-handling/ "Integration User Group").
+> A projekt egy magas szintű videót: [integrációs felhasználói csoport](http://www.integrationusergroup.com/logic-apps-support-error-handling/ "integrációs felhasználói csoport").
 
-## <a name="how-we-solved-the-problem"></a>Hogyan azt megoldotta a problémát
+## <a name="how-we-solved-hello-problem"></a>Hogyan lehet megoldani azt az hello probléma
 
-Választottuk [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/ "Azure Cosmos DB") , a napló és a hiba (Cosmos DB-dokumentumokként rekordok jelenti) rekordok tára. Mivel Azure Logic Apps összes szabványos sablonját, azt nem kell létrehozni egy egyéni séma. API-alkalmazás sikerült létrehozhatunk **beszúrása** és **lekérdezés** hiba és a naplófájlokon is rekordok. Azt is meghatározhatja a séma minden, az API-alkalmazásban.  
+Választottuk [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/ "Azure Cosmos DB") , a napló és a hiba (Cosmos DB hivatkozik-dokumentumokként toorecords) rekordok hello tára. Mivel Azure Logic Apps összes szabványos sablonját, akkor nem tudunk toocreate egyéni séma. Jelenleg túl létrehozhat API-alkalmazás**beszúrása** és **lekérdezés** hiba és a naplófájlokon is rekordok. Azt is meghatározhatja a séma az egyes hello API-alkalmazásban.  
 
-Egy további követelmény a rekordok kiüríteni egy bizonyos dátum után volt. Cosmos DB nevű tulajdonsággal rendelkezik [élettartama](https://azure.microsoft.com/blog/documentdb-now-supports-time-to-live-ttl/ "élettartama") (TTL), amely engedélyezett, hogy állítsa be a **élettartama** rekordok vagy gyűjtemény értékét. Ez a funkció Cosmos DB rekord manuálisan törölnie kell számolni.
+Egy további követelmény toopurge rögzíti egy bizonyos dátum után volt. Cosmos DB nevű tulajdonsággal rendelkezik [tooLive idő](https://azure.microsoft.com/blog/documentdb-now-supports-time-to-live-ttl/ "tooLive idő") (TTL), amely engedélyezett velünk tooset egy **tooLive idő** értéke rekordok vagy gyűjteményben. Ez a funkció hello kell toomanually delete rekordok Cosmos DB szüntetni.
 
 > [!IMPORTANT]
-> Az oktatóanyag teljesítéséhez szüksége egy Cosmos DB adatbázisban és két gyűjtemények (naplózás és -hibák) létrehozásához.
+> toocomplete ebben az oktatóanyagban egy Cosmos DB adatbázisban toocreate és két gyűjtemények (naplózás és -hibák) van szükség.
 
-## <a name="create-the-logic-app"></a>A logikai alkalmazás létrehozása
+## <a name="create-hello-logic-app"></a>Hello logikai alkalmazás létrehozása
 
-Az első lépés a logikai alkalmazás létrehozása, és nyissa meg az alkalmazás a Logic App tervezőben. A jelen példában használjuk a logic apps szülő-gyermek. Tegyük fel, hogy azt a szülő már létrehozott és tervezi, hogy egy gyermek logikai alkalmazás létrehozása.
+hello első lépéseként toocreate hello logikai alkalmazás és a nyitott hello app Logic App Designer. A jelen példában használjuk a logic apps szülő-gyermek. Tegyük fel, hogy azt már létrehozott hello szülő és toocreate egy gyermek logikai alkalmazás is.
 
-A Dynamics CRM Online kívül hamarosan naplórekord fogjuk, kezdjük, míg a lap tetején. Igazolnia kell használnia egy **kérelem** eseményindítót, mert a szülő logikai alkalmazás elindítja a gyermek.
+Dynamics CRM Online kívül hamarosan toolog hello rekordot fogjuk kezdjük, míg hello tetején. Igazolnia kell használnia egy **kérelem** eseményindítót, mert hello szülő logikai alkalmazás elindítja a gyermek.
 
 ### <a name="logic-app-trigger"></a>Logic app eseményindító
 
-Használjuk a **kérelem** indítható el, mert a következő példában látható módon:
+Használjuk a **kérelem** indítható el, mert a következő példa hello látható:
 
 ```` json
 "triggers": {
@@ -100,14 +100,14 @@ Használjuk a **kérelem** indítható el, mert a következő példában láthat
 
 ## <a name="steps"></a>Lépések
 
-A forrás (kérelem) a beteg rekord azt kell jelentkeznie a Dynamics CRM Online portálon.
+Hello forrás (kérelem) hello beteg rekord hello Dynamics CRM Online portálon azt kell jelentkeznie.
 
 1. A Dynamics CRM Online azt kell szereznie egy új időpontot egyeztessen rekordot.
 
-   Az eseményindító CRM érkező nyújt nekünk a a **CRM PatentId**, **rekordtípus**, **új vagy frissített rekord** (új vagy frissíteni a logikai értéket), és **SalesforceId**. A **SalesforceId** null is lehet, mert csak a frissítéshez használja.
-   A CRM-bejegyzés azt lekérése a CRM használatával **PatientID** és a **rekordtípus**.
+   hello eseményindító CRM érkező ad hello **CRM PatentId**, **rekordtípus**, **új vagy frissített rekord** (új vagy frissíteni a logikai értéket), és  **SalesforceId**. Hello **SalesforceId** null is lehet, mert csak a frissítéshez használja.
+   Hello CRM-bejegyzés azt lekérése hello CRM használatával **PatientID** és hello **rekordtípus**.
 
-2. A következő igazolnia kell a DocumentDB API-alkalmazás hozzáadása **InsertLogEntry** művelet Logic App Designer itt látható módon.
+2. Ezt követően kell tooadd a DocumentDB API-alkalmazás **InsertLogEntry** művelet Logic App Designer itt látható módon.
 
    **Naplóbejegyzés beszúrása**
 
@@ -124,15 +124,15 @@ A forrás (kérelem) a beteg rekord azt kell jelentkeznie a Dynamics CRM Online 
 ## <a name="logic-app-source-code"></a>Logic app forráskód
 
 > [!NOTE]
-> A következő példák csak minták. Mivel ebben az oktatóanyagban alapul most az üzemi környezetben, értékének megvalósítását egy **forráscsomópont** nem jelenik meg az ütemezés egy időpontot egyeztessen. kapcsolódó Tulajdonságok > 
+> a következő példák hello csak minták. Ebben az oktatóanyagban alapú megvalósítását most az üzemi környezetben, mert hello értékének egy **forráscsomópont** nem jelenik meg, amelyek az kapcsolódó tooscheduling egy időpontot egyeztessen. > 
 
 ### <a name="logging"></a>Naplózás
 
-A következő logic app példakód bemutatja, hogyan naplózási kezelésére.
+hello logic app kód a következő példa azt mutatja be hogyan toohandle naplózás.
 
 #### <a name="log-entry"></a>Naplóbejegyzés
 
-Ez a logic app forráskódja naplóbejegyzést beszúrni.
+Itt található hello logic app forráskódja naplóbejegyzést beszúrni.
 
 ``` json
 "InsertLogEntry": {
@@ -160,7 +160,7 @@ Ez a logic app forráskódja naplóbejegyzést beszúrni.
 
 #### <a name="log-request"></a>Napló kérelem
 
-Ez a napló kérelemüzenet közzé az API-alkalmazásba.
+Itt található hello napló kérelemüzenet toohello API-alkalmazás közzé.
 
 ``` json
     {
@@ -180,7 +180,7 @@ Ez a napló kérelemüzenet közzé az API-alkalmazásba.
 
 #### <a name="log-response"></a>Válasz naplózása
 
-Ez a napló válaszüzenetet az API-alkalmazás.
+Itt található hello napló válaszüzenetet hello API alkalmazás.
 
 ``` json
 {
@@ -214,15 +214,15 @@ Ez a napló válaszüzenetet az API-alkalmazás.
 
 ```
 
-Most már a hibakezelési lépéseket vizsgáljuk meg.
+Most hello hibakezelési lépéseket vizsgáljuk meg.
 
 ### <a name="error-handling"></a>Hibakezelés
 
-A következő logic app példakód bemutatja, hogyan implementálható hibakezelés.
+hello következő logic app mintakód bemutatja, hogyan implementálható hibakezelés.
 
 #### <a name="create-error-record"></a>Hiba rekord létrehozása
 
-Ez a logic app forráskód egy hibarekordot létrehozásához.
+Itt található hello logic app forráskód egy hibarekordot létrehozásához.
 
 ``` json
 "actions": {
@@ -269,7 +269,7 @@ Ez a logic app forráskód egy hibarekordot létrehozásához.
         "isError": true,
         "crmId": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0",
         "patientId": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0",
-        "message": "Salesforce failed to complete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
+        "message": "Salesforce failed toocomplete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
         "providerId": "",
         "severity": 4,
         "salesforceId": "",
@@ -307,7 +307,7 @@ Ez a logic app forráskód egy hibarekordot létrehozásához.
         "action": "New_Patient",
         "salesforceId": "",
         "update": false,
-        "body": "CRM failed to complete task: Message: duplicate value found: CRM_HUB_ID__c duplicates value on record with id: 001U000001c83gK",
+        "body": "CRM failed toocomplete task: Message: duplicate value found: CRM_HUB_ID__c duplicates value on record with id: 001U000001c83gK",
         "source": "{/"Account_Class_vod__c/":/"PRAC/",/"Account_Status_MED__c/":/"I/",/"CRM_HUB_ID__c/":/"6b115f6d-a7ee-e511-80f5-3863bb2eb2d0/",/"Credentials_vod__c/":/"DO - Degree level is DO/",/"DTC_ID_MED__c/":/"/",/"Fax/":/"/",/"FirstName/":/"A/",/"Gender_vod__c/":/"/",/"IMS_ID__c/":/"/",/"LastName/":/"BAILEY/",/"MterID_mp__c/":/"/",/"Medicis_ID_MED__c/":/"851588/",/"Middle_vod__c/":/"/",/"NPI_vod__c/":/"/",/"PDRP_MED__c/":false,/"PersonDoNotCall/":false,/"PersonEmail/":/"/",/"PersonHasOptedOutOfEmail/":false,/"PersonHasOptedOutOfFax/":false,/"PersonMobilePhone/":/"/",/"Phone/":/"/",/"Practicing_Specialty__c/":/"FM - FAMILY MEDICINE/",/"Primary_City__c/":/"/",/"Primary_State__c/":/"/",/"Primary_Street_Line2__c/":/"/",/"Primary_Street__c/":/"/",/"Primary_Zip__c/":/"/",/"RecordTypeId/":/"012U0000000JaPWIA0/",/"Request_Date__c/":/"2016-06-10T22:31:55.9647467Z/",/"XXXXXXX/":/"/",/"Specialty_1_vod__c/":/"/",/"Suffix_vod__c/":/"/",/"Website/":/"/"}",
         "code": 400,
         "errors": null,
@@ -340,7 +340,7 @@ Ez a logic app forráskód egy hibarekordot létrehozásához.
     },
     "body": {
         "status": 400,
-        "message": "Salesforce failed to complete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
+        "message": "Salesforce failed toocomplete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
         "source": "Salesforce.Common",
         "errors": []
     }
@@ -348,11 +348,11 @@ Ez a logic app forráskód egy hibarekordot létrehozásához.
 
 ```
 
-### <a name="return-the-response-back-to-parent-logic-app"></a>Térjen vissza a választ szülő logikai alkalmazás
+### <a name="return-hello-response-back-tooparent-logic-app"></a>Visszatérési hello válasz hátsó tooparent logikai alkalmazás
 
-Miután lekérni a választ, adja meg a választ a szülő logikai alkalmazást.
+Hello választ kap, miután átadhatók hello válasz hátsó toohello szülő logikai alkalmazást.
 
-#### <a name="return-success-response-to-parent-logic-app"></a>Szülő logikai alkalmazás sikeres választ küldi vissza
+#### <a name="return-success-response-tooparent-logic-app"></a>Térjen vissza a sikeres válasz tooparent logikai alkalmazás
 
 ``` json
 "SuccessResponse": {
@@ -374,7 +374,7 @@ Miután lekérni a választ, adja meg a választ a szülő logikai alkalmazást.
 }
 ```
 
-#### <a name="return-error-response-to-parent-logic-app"></a>Szülő logikai alkalmazás hiba választ küldi vissza
+#### <a name="return-error-response-tooparent-logic-app"></a>Térjen vissza a hiba válasz tooparent logikai alkalmazás
 
 ``` json
 "ErrorResponse": {
@@ -404,12 +404,12 @@ A megoldás hozzáadott képességei a [Cosmos DB](https://azure.microsoft.com/s
 
 ### <a name="error-management-portal"></a>Hiba történt a felügyeleti portálon
 
-Meg a hibákat, létrehozhat egy MVC webalkalmazás Cosmos DB hiba rekordját megjelenítéséhez. A **lista**, **részletek**, **szerkesztése**, és **törlése** műveletek szerepelnek a jelenlegi verziójával.
+tooview hello hibák, a Cosmos-Adatbázisból hozhat létre az MVC webes alkalmazás toodisplay hello hiba rögzíti. Hello **lista**, **részletek**, **szerkesztése**, és **törlése** műveletek szerepelnek hello jelenlegi verziójával.
 
 > [!NOTE]
-> Művelet szerkesztése: Cosmos DB a felváltja a teljes dokumentumot. A bejegyzések a **lista** és **részletes** nézetek olyan csak minták. Nincsenek tényleges beteg időpontot egyeztessen rögzíti.
+> Művelet szerkesztése: Cosmos DB a felváltja hello teljes dokumentumot. hello bejegyzések hello **lista** és **részletes** nézetek olyan csak minták. Nincsenek tényleges beteg időpontot egyeztessen rögzíti.
 
-Az alábbiakban az MVC-alkalmazás adatait, a korábban ismertetett módszert létrehozott példát.
+Példa az MVC alkalmazás hello korábban létrehozott részletek leírt módszer.
 
 #### <a name="error-management-list"></a>Hiba a felügyeleti lista
 ![Hiba](media/logic-apps-scenario-error-and-exception-handling/errorlist.png)
@@ -419,7 +419,7 @@ Az alábbiakban az MVC-alkalmazás adatait, a korábban ismertetett módszert l�
 
 ### <a name="log-management-portal"></a>Napló felügyeleti portálon
 
-A naplók megtekintéséhez is létrehoztunk egy MVC webalkalmazás. Az alábbiakban az MVC-alkalmazás adatait, a korábban ismertetett módszert létrehozott példát.
+tooview hello naplókat, is létrehozott egy MVC webalkalmazás. Példa az MVC alkalmazás hello korábban létrehozott részletek leírt módszer.
 
 #### <a name="sample-log-detail-view"></a>A minta napló részletes nézet
 ![Napló részletes nézet](media/logic-apps-scenario-error-and-exception-handling/samplelogdetail.png)
@@ -434,14 +434,14 @@ A nyílt forráskódú Azure Logic Apps kivétel felügyeleti API app funkcióka
 * **LogController** egy naplóbejegyzést képviselnek (dokumentumok) szúr be egy DocumentDB-gyűjteményt.
 
 > [!TIP]
-> Mindkét vezérlők használata `async Task<dynamic>` műveletek, így a műveletek megoldásához futásidőben, így a DocumentDB séma létrehozhatjuk törzsében. a művelet. 
+> Mindkét vezérlők használata `async Task<dynamic>` műveletek, lehetővé téve a műveletek tooresolve futásidőben, így hozhatunk létre hello DocumentDB séma hello művelet hello törzsében. 
 > 
 
-Minden dokumentumot a documentdb egy egyedi azonosítóval kell rendelkeznie. Használjuk `PatientId` és egy Unix timestamp értéket (kétirányú) konvertált időbélyeg hozzáadása. Az érték, a tört érték eltávolítása csonkolja azt.
+Minden dokumentumot a documentdb egy egyedi azonosítóval kell rendelkeznie. Használjuk `PatientId` és hozzáadása, amely időbélyeg tooa Unix timestamp érték (kétirányú) alakítja át. Hello tooremove hello tört érték csonkolja azt.
 
-Megtekintheti a hiba vezérlőhöz API forráskódját [a Githubról](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi/blob/master/Logic App Exception Management API/Controllers/ErrorController.cs).
+Megtekintheti a hiba vezérlőhöz API hello forráskódját [a Githubról](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi/blob/master/Logic App Exception Management API/Controllers/ErrorController.cs).
 
-Az API-t a logikai alkalmazás, a következő szintaxissal nevezzük:
+A logikai alkalmazás API hello nevezzük hello a következő szintaxis használatával:
 
 ``` json
  "actions": {
@@ -474,17 +474,17 @@ Az API-t a logikai alkalmazás, a következő szintaxissal nevezzük:
  }
 ```
 
-Az előző példakódban kifejezést keresi a *Create_NewPatientRecord* állapotának **sikertelen**.
+a kód a minta ellenőrzések hello megelőző hello kifejezés hello *Create_NewPatientRecord* állapotának **sikertelen**.
 
 ## <a name="summary"></a>Összefoglalás
 
 * Naplózás és a logikai alkalmazás hibakezelési könnyedén alkalmazni.
-* A DocumentDB a tárház védelemként is alkalmazhatják a napló és a hiba a rekordok (dokumentumok).
-* MVC hozhat létre a napló és a hiba a rekordok megjelenítéséhez a portálon.
+* A DocumentDB hello tárház védelemként is alkalmazhatják a napló és a hiba a rekordok (dokumentumok).
+* MVC toocreate portál toodisplay a napló és a hiba is használhatja.
 
 ### <a name="source-code"></a>Forráskód
 
-A Logic Apps kivétel felügyeleti API-alkalmazás forráskódja érhető el ezen [GitHub-tárházban](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi "Logic App kivétel felügyeleti API").
+hello Logic Apps kivétel felügyeleti API-alkalmazás forráskódja hello érhető el ezen [GitHub-tárházban](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi "Logic App kivétel felügyeleti API").
 
 ## <a name="next-steps"></a>Következő lépések
 

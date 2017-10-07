@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure Mobile Engagement Cordova/Phonegap-alkalmazásokkal való használatával"
-description: "Ismerje meg, hogyan használható az Azure Mobile Engagement a Cordova/Phonegap-alkalmazásokhoz kapcsolódó elemzések és leküldéses értesítések tekintetében."
+title: "az Azure Mobile Engagement a Cordova/Phonegap elindítva aaaGet"
+description: "Megtudhatja, hogyan Cordova/Phonegap-alkalmazásokhoz az Azure Mobile Engagement az elemzések és leküldéses értesítések toouse."
 services: mobile-engagement
 documentationcenter: Mobile
 author: piyushjo
@@ -14,66 +14,66 @@ ms.devlang: js
 ms.topic: hero-article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: d7a761310782faab1dda023785f93cf90742e2ae
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e67dabbdf7886802bb058f38964e558d5ae6854c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-mobile-engagement-for-cordovaphonegap"></a>Ismerkedés az Azure Mobile Engagement Cordova/Phonegap-alkalmazásokkal való használatával
 [!INCLUDE [Hero tutorial switcher](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
-Ebben a témakörben elsajátíthatja, hogy miként használható az Azure Mobile Engagement az alkalmazás használatának megértéséhez, valamint leküldéses értesítéseknek a Cordova használatával fejlesztett mobilalkalmazásba történő küldéséhez a szegmentált felhasználók számára.
+Ez a témakör bemutatja, hogyan toouse Azure Mobile Engagement toounderstand a használati és küldési leküldéses értesítések toosegmented felhasználók egy mobilalkalmazás Cordova használatával fejlesztett.
 
-Ebben az oktatóanyagban létre fogunk hozni egy üres Cordova-alkalmazást Mac használatával, majd integráljuk a Mobile Engagement SDK-t. Az alkalmazás alapszintű elemzési adatokat gyűjt össze, és leküldéses értesítéseket fogad az iOS rendszerhez készült Apple leküldéses értesítési rendszerének (APNS) és az Android Google Cloud Messaging (GCM) szolgáltatásának a használatával. Az alkalmazást iOS- vagy Android-eszközön fogjuk üzembe helyezni tesztelés céljából. 
+Ebben az oktatóanyagban létre fogunk hozni egy üres Cordova-alkalmazást Mac használatával, majd integráljuk a Mobile Engagement SDK-t. Az alkalmazás alapszintű elemzési adatokat gyűjt össze, és leküldéses értesítéseket fogad az iOS rendszerhez készült Apple leküldéses értesítési rendszerének (APNS) és az Android Google Cloud Messaging (GCM) szolgáltatásának a használatával. Fogjuk a tooan iOS vagy Android-eszköz tesztelési üzembe helyezni. 
 
 > [!NOTE]
-> Az oktatóanyag elvégzéséhez egy aktív Azure-fiókra lesz szüksége. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-cordova-get-started).
+> toocomplete ebben az oktatóanyagban rendelkeznie kell egy aktív Azure-fiókra. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-cordova-get-started).
 > 
 > 
 
-Az oktatóanyaghoz az alábbiakra lesz szükség:
+Ez az oktatóanyag hello következő szükséges:
 
-* XCode, amely a MAC App Store áruházából telepíthető (iOS rendszeren történő üzembe helyezéshez),
-* [Android SDK és -emulátor](http://developer.android.com/sdk/installing/index.html) (Android rendszeren történő üzembe helyezéshez),
+* XCode, amely telepítése Mac App Store-ból (üzembe helyezéshez tooiOS)
+* [Android SDK és -emulátor](http://developer.android.com/sdk/installing/index.html) (üzembe helyezéshez tooAndroid)
 * leküldéses értesítési tanúsítvány (.p12), amelyet az Apple APNS fejlesztési központjában szerezhet be,
 * GCM-projektszám, amelyet a Google Developer Console for GCM konzolon keresztül szerezhet be,
 * [Mobile Engagement Cordova beépülő modul](https://www.npmjs.com/package/cordova-plugin-ms-azure-mobile-engagement)
 
 > [!NOTE]
-> A Cordova beépülő modul forráskódját és a ReadMe fájlt a [GitHub](https://github.com/Azure/azure-mobile-engagement-cordova) webhelyén érheti el.
+> Hello forráskód kereshet és információs hello hello Cordova beépülő modul a [GitHub](https://github.com/Azure/azure-mobile-engagement-cordova)
 > 
 > 
 
 ## <a id="setup-azme"></a>A Mobile Engagement beállítása a Cordova-alkalmazáshoz
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a id="connecting-app"></a>Az alkalmazás csatlakoztatása a Mobile Engagement háttérrendszeréhez
-Ez az oktatóanyag egy „alapszintű integrációt” mutat be, ami minimálisan szükséges az adatok gyűjtéséhez és leküldéses értesítés küldéséhez. 
+## <a id="connecting-app"></a>Kapcsolódás az alkalmazás toohello Mobile Engagement háttérrendszeréhez
+Ez az oktatóanyag egy "alapszintű integrációt" mutat minimális hello határozza meg a szükséges toocollect dátumát és leküldéses értesítés küldéséhez. 
 
-Létre fogunk hozni egy alapszintű alkalmazást a Cordova segítségével az integráció bemutatásához:
+Létre fogunk hozni egy alapszintű alkalmazást a Cordova toodemonstrate hello integrációja:
 
 ### <a name="create-a-new-cordova-project"></a>Új Cordova-projekt létrehozása
-1. Indítsa el a *Terminál* ablakot a Mac számítógépen, és írja be az alábbiakat, amellyel létrehoz egy új Cordova-projektet az alapértelmezett sablon alapján. Győződjön meg róla, hogy az iOS-alkalmazás majdani üzembe helyezéséhez használni kívánt közzétételi profil a „com.mycompany.myapp” alkalmazásazonosítót használja. 
+1. Indítsa el *Terminálszolgáltatások* ablakot a Mac számítógép és a típus hello követő, amely létrehoz egy új Cordova-projekt hello alapértelmezett sablon alapján. Győződjön meg arról, hogy hello közzétételi profilt, végül használata toodeploy az iOS-alkalmazás által használt "com.mycompany.myapp", mert hello alkalmazás azonosítója. 
    
         $ cordova create azme-cordova com.mycompany.myapp
         $ cd azme-cordova
-2. Hajtsa végre az alábbiakat a projekt konfigurálásához **iOS** esetén, majd futtassa azt az iOS Simulator alkalmazásban:
+2. A projekt hajtható végre a következő tooconfigure hello **iOS** és futtassa azt hello iOS-szimulátor:
    
         $ cordova platform add ios 
         $ cordova run ios
-3. Hajtsa végre az alábbiakat a projekt konfigurálásához **Android** esetén, majd futtassa azt az Android-emulátorban. Győződjön meg róla, hogy az Android SDK Emulator beállításainál a Target (Cél) beállítás értéke Google APIs (Google Inc.), a CPU/ABI értéke pedig a Google APIs ARM.  
+3. A projekt hajtható végre a következő tooconfigure hello **Android** és hello Android-emulátorban való futtatáshoz. Győződjön meg arról, hogy az Android SDK Emulator beállításainál rendelkezik a cél Google APIs (Google Inc.) hello CPU / ABI értéke pedig a Google APIs ARM.  
    
         $ cordova platform add android
         $ cordova run android
-4. Adja hozzá a Cordova-konzol beépülő modulját. 
+4. Adja hozzá a Cordova-konzol beépülő modul hello. 
 
     ```
     $ cordova plugin add cordova-plugin-console
     ``` 
 
-### <a name="connect-your-app-to-mobile-engagement-backend"></a>Az alkalmazás csatlakoztatása a Mobile Engagement háttérrendszeréhez
-1. Telepítse az Azure Mobile Engagement Cordova beépülő modulját, és közben adja meg a beépülő modul konfigurálásához szükséges változók értékeit:
+### <a name="connect-your-app-toomobile-engagement-backend"></a>Csatlakozás az alkalmazás tooMobile Engagement háttérrendszeréhez
+1. Hello Azure Mobile Engagement Cordova beépülő modul telepítése ugyanakkor biztosítható a hello változók értékeinek tooconfigure hello beépülő modult:
    
         cordova plugin add cordova-plugin-ms-azure-mobile-engagement    
              --variable AZME_IOS_CONNECTION_STRING=<iOS Connection String> 
@@ -81,33 +81,33 @@ Létre fogunk hozni egy alapszintű alkalmazást a Cordova segítségével az in
             --variable AZME_ANDROID_CONNECTION_STRING=<Android Connection String> 
             --variable AZME_ANDROID_REACH_ICON=... (icon name WITHOUT extension)       
             --variable AZME_ANDROID_GOOGLE_PROJECT_NUMBER=... (From your Google Cloud console for sending push notifications) 
-            --variable AZME_ACTION_URL =... (URL scheme which triggers the app for deep linking)
+            --variable AZME_ACTION_URL =... (URL scheme which triggers hello app for deep linking)
             --variable AZME_ENABLE_NATIVE_LOG=true|false
             --variable AZME_ENABLE_PLUGIN_LOG=true|false
 
-*Android Reach Icon*: az erőforrás nevének kell lennie kiterjesztés vagy a rajzolható előtag nélkül (például: mynotificationicon), és az ikonfájlt az Android-projektbe kell másolni (platforms/android/res/drawable).
+*Android Reach Icon* : hello bármely kiterjesztést, vagy a rajzolható előtag nélkül hello erőforrás nevének kell lennie (például: mynotificationicon), és hello ikonfájlt az android-projekt (platformok/android/res/drawable) át kell másolni
 
-*iOS Reach Icon*: az erőforrás nevének kell lennie a kiterjesztéssel együtt (például: mynotificationicon.png), és az ikonfájlt hozzá kell adni az iOS-projekthez az XCode segítségével (az Add Files Menu (Fájl hozzáadása menü) használatával).
+*iOS Reach Icon* : hello a kiterjesztéssel együtt hello erőforrás nevének kell lennie (például: mynotificationicon.png), és hello ikonfájlt hozzá kell adni az iOS-projekthez az XCode (hello Hozzáadás fájlok menü használatával)
 
 ## <a id="monitor"></a>Valós idejű figyelés engedélyezése
-1. A Cordova-projektben módosítsa a **www/js/index.js** fájlt úgy, hogy hozzáadja a Mobile Engagementre irányuló hívást egy új tevékenység deklaráláshoz a *deviceReady* esemény fogadását követően.
+1. A Cordova-projekt hello - szerkesztése **www/js/index.js** tooadd hello hívás tooMobile Engagement toodeclare új tevékenységet, egyszer hello *deviceReady* esemény érkezik.
    
          onDeviceReady: function() {
                 Engagement.startActivity("myPage",{});
             }
-2. Futtassa az alkalmazást:
+2. Hello alkalmazás futtatásához:
    
    * **iOS esetén**
      
-       A `Terminal` ablakban indítsa el az alkalmazást a Simulator új példányában az alábbiak végrehajtásával:
+       A `Terminal` ablakban indítsa el az alkalmazást a Simulator új példányában hello alábbiak végrehajtásával:
      
            cordova run ios
    * **Android esetén**
      
-       A `Terminal` ablakban indítsa el az alkalmazást az emulátor új példányában az alábbiak végrehajtásával:
+       A `Terminal` ablakban indítsa el az alkalmazást az emulátor új példányában hello alábbiak végrehajtásával:
      
            cordova run android
-3. A konzolnaplófájlokban az alábbiakat láthatja:
+3. Hello konzolnaplófájlokban hello következő látható:
    
         [Engagement] Agent: Session started
         [Engagement] Agent: Activity 'myPage' started
@@ -120,16 +120,16 @@ Létre fogunk hozni egy alapszintű alkalmazást a Cordova segítségével az in
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
 ## <a id="integrate-push"></a>Leküldéses értesítések és alkalmazáson belüli üzenetek engedélyezése
-A Mobile Engagement lehetővé teszi a felhasználókkal folytatott interakciót a kampányok részeként megjelenő leküldéses értesítésekkel és alkalmazáson belüli üzenetekkel. Ez a modul REACH (Elérés) néven érhető el a Mobile Engagement portálon.
-Az alábbi szakaszok állítják be az alkalmazást a fogadásukra.
+Mobile Engagement lehetővé teszi toointeract a felhasználókkal leküldéses értesítésekkel és alkalmazáson belüli üzenetekkel hello kampányok. Ez a modul REACH neve hello a Mobile Engagement portálon.
+hello alábbi szakaszok állítják be az alkalmazás tooreceive őket.
 
 ### <a name="configure-push-credentials-for-mobile-engagement"></a>Leküldési hitelesítő adatok konfigurálása a Mobile Engagementhez
-Annak engedélyezéséhez, hogy a Mobile Engagement leküldéses értesítéseket küldhessen a nevében, hozzáférést kell biztosítania számára az Apple iOS-tanúsítvány vagy a GCM-kiszolgáló API-kulcsához. 
+tooallow a Mobile Engagement toosend leküldéses értesítések küldése az Ön nevében, meg kell toogrant azt elérni tooyour Apple iOS-tanúsítvány vagy a GCM kiszolgálói API-kulcsot. 
 
-1. Nyissa meg a Mobile Engagement portált. Nyissa meg a projekthez használt alkalmazást, majd kattintson a lap alján található **Engage** (Aktiválás) gombra:
+1. Keresse meg a tooyour Mobile Engagement portálon. Nyissa meg azt a projekt használ, és kattintson a hello hello alkalmazásban **Engage** hello alsó gombra:
    
     ![][1]
-2. Ezzel megnyitja az Engagement portál beállításokat tartalmazó lapját. A lapon kattintson a **Native Push** (Natív leküldés) szakaszra:
+2. Ekkor megnyílik a hello beállítások lapra az Engagement portálon. Kattintson a hello **natív leküldés** szakasz:
    
     ![][2]
 3. iOS-tanúsítvány/GCM-kiszolgáló API-kulcsának konfigurálása
@@ -142,12 +142,12 @@ Annak engedélyezéséhez, hogy a Mobile Engagement leküldéses értesítéseke
    
     **Android**
    
-    a. Kattintson az **API Key** (API-kulcs) előtt található szerkesztési ikonra a GCM Settings (GCM-beállítások) szakaszban, illessze be a GCM kiszolgálói kulcsot az előugró ablakban, majd kattintson az **OK** gombra. 
+    a. Hello Szerkesztés ikonra elé **API-kulcs** hello GCM Settings szakasz és hello előugró ablak, amely mutatja be, illessze be a hello GCM kiszolgálói kulcsot, és kattintson a **OK**. 
    
     ![][4]
 
-### <a name="enable-push-notifications-in-the-cordova-app"></a>Leküldéses értesítések engedélyezése a Cordova-alkalmazásban
-Módosítsa a **www/js/index.js** fájlt úgy, hogy hozzáadja a Mobile Engagementre irányuló hívást leküldéses értesítések kéréséhez és egy kezelő deklarálásához:
+### <a name="enable-push-notifications-in-hello-cordova-app"></a>Hello Cordova-alkalmazás leküldési értesítések engedélyezése
+Szerkesztés **www/js/index.js** tooadd hello hívás tooMobile Engagement toorequest leküldéses értesítések és egy kezelő deklarálásához:
 
      onDeviceReady: function() {
            Engagement.initializeReach(  
@@ -158,48 +158,48 @@ Módosítsa a **www/js/index.js** fájlt úgy, hogy hozzáadja a Mobile Engageme
             Engagement.startActivity("myPage",{});  
         }
 
-### <a name="run-the-app"></a>Az alkalmazás futtatása
+### <a name="run-hello-app"></a>Hello alkalmazás futtatása
 **iOS**
 
-1. Mivel az iOS csak tényleges eszközre teszi lehetővé leküldéses értesítések küldését, az XCode használatával fogjuk létrehozni és üzembe helyezni az alkalmazást az eszközön a leküldéses értesítések teszteléséhez. Lépjen a Cordova-projekt létrehozásának helyére, majd navigáljon a **...\platforms\ios** helyre. Nyissa meg a natív .xcodeproj fájlt az XCode-ban. 
-2. Hozza létre és helyezze üzembe a Cordova-alkalmazást az iOS eszközön annak a fióknak a használatával, amely tartalmazza a Mobile Engagement portálra most feltöltött tanúsítványt és a Cordova-alkalmazás létrehozásakor megadott azonosítóval egyező alkalmazásazonosítót magában foglaló kiépítési profilt. Az egyeztetéshez megtekintheti a *csomagazonosítót* a **Resources\*-info.plist** fájlban az XCode-ban. 
-3. Az eszközön megjelenik a szokásos iOS előugró ablak, amely engedélyt kér az alkalmazás számára értesítések küldéséhez. Adja meg az engedélyt. 
+1. Rendszer XCode toobuild használja és hello eszköz tootest leküldéses értesítések hello alkalmazás telepítése, mivel az iOS csak lehetővé teszi a leküldéses értesítések tooan tényleges eszközön. Nyissa meg a Cordova-projekt létrehozási helyének toohello helyét, és keresse meg a túl**...\platforms\ios** helyét. Nyissa meg hello natív .xcodeproj fájlt az xcode-ban. 
+2. Hozza létre és hello Cordova app toohello iOS-eszközt hello fiókot, amely rendelkezik hello létesítési profilt, amely tartalmazza az imént feltöltött szolgáltatáscsomagban toohello Mobile Engagement portálra és hello alkalmazásazonosító, amely megfelel egy létrehozásakor megadott hello hello tanúsítvány telepítése hello Cordova-alkalmazáshoz. Hello megtekintheti *csomagazonosítót* a a **erőforrások\*-info.plist** fájlt az XCode toomatch azt be. 
+3. Hello szokásos iOS előugró ablak, az eszközön hello alkalmazást kér engedélyt toosend értesítések jelenik meg. Hello engedélyt. 
 
 **Android**
 
-Nyugodtan használhatja az emulátort az Android-alkalmazás futtatásához, mivel az Android-emulátor támogatja a GCM-értesítéseket. 
+Segítségével egyszerűen hello emulátor toorun hello Android-alkalmazás GCM értesítések támogatottak a hello Android-emulátorban. 
 
     cordova run android
 
-## <a id="send"></a>Értesítés küldése az alkalmazásnak
-Most létre fogunk hozni egy egyszerű leküldéses értesítési kampányt, amely egy leküldéses üzenetet fog küldeni az eszközön futó alkalmazásnak:
+## <a id="send"></a>Egy értesítési tooyour app küldése
+Most létrehozunk egy egyszerű leküldéses értesítési kampányt, amely elküld egy leküldéses-tooyour hello eszközön futó alkalmazáshoz:
 
-1. Lépjen a Mobile Engagement portál **Reach** (Elérés) lapjára.
-2. Kattintson a **New Announcement** (Új közlemény) elemre a leküldéses kampány létrehozásához.
+1. Keresse meg a toohello **elérni** a Mobile Engagement portálra a lap
+2. Kattintson a **új hirdetmény** toocreate a leküldéses kampány
    
     ![][6]
-3. Adja meg a bemeneti adatokat a kampány létrehozásához **[Android]**.
+3. Adja meg a bemeneti adatok toocreate a kampány **[Android]**
    
    * Adja meg a kampány nevét a **Name** mezőben. 
-   * A **Delivery Type** (Kézbesítési típus) értékeként jelölje be a *System notification* és *Simple* (Rendszerértesítés, Egyszerű) választógombot.
-   * A **Delivery time** (Kézbesítési idő) értékeként jelölje be az *Any time* (Bármikor) választógombot.
-   * Írja be az értesítés címét a **Title** (Cím) mezőbe. A cím a leküldéses értesítés első sora lesz.
-   * Írja be az értesítés szövegét a **Message** (Üzenet) mezőbe. Ez a szöveg lesz az üzenet törzse. 
+   * Jelölje be hello **kézbesítési típust** , *Rendszerértesítő* *egyszerű*
+   * Jelölje be hello **kézbesítési időhöz** , *"Minden alkalommal"*
+   * Adjon meg egy **cím** a Ez az első sor hello hello leküldéses értesítést.
+   * Adjon meg egy **üzenet** az értesítéshez, amely hello üzenettörzs erre a célra. 
      
      ![][11]
-4. Adja meg a bemeneti adatokat a kampány létrehozásához **[iOS]**.
+4. Adja meg a bemeneti adatok toocreate a kampány **[iOS]**
    
-   * Írja be a kampány nevét a **Name** mezőbe. 
-   * A **Delivery time** (Kézbesítési idő) értékeként jelölje be az *Out of app only* (Csak alkalmazáson kívül) választógombot.
-   * Írja be az értesítés címét a **Title** (Cím) mezőbe. A cím a leküldéses értesítés első sora lesz.
-   * Írja be az értesítés szövegét a **Message** (Üzenet) mezőbe. Ez a szöveg lesz az üzenet törzse. 
+   * Adja meg a kampány nevét a **Name** mezőben. 
+   * Jelölje be hello **kézbesítési időhöz** , *"csak az alkalmazáson kívül"*
+   * Adjon meg egy **cím** a Ez az első sor hello hello leküldéses értesítést.
+   * Adjon meg egy **üzenet** az értesítéshez, amely hello üzenettörzs erre a célra. 
      
      ![][12]
-5. Görgessen le, és a Content (Tartalom) részen jelölje be a **Notification only** (Csak értesítés) választógombot.
+5. Görgessen lefelé, és a hello tartalomszakasz válassza **csak értesítés**
    
     ![][8]
-6. (Választható) Megadhatja egy művelet URL-címét is. Győződjön meg róla, hogy a cím a beépülő modul **AZME\_REDIRECT\_URL** változójának konfigurálásánál megadott URL-sémát használja, például: *myapp://test*.  
-7. Ezzel befejezte a lehető legalapvetőbb kampány beállítását. Görgessen újra le, és kattintson a **Create** (Létrehozás) gombra a kampány mentéséhez.
+6. (Választható) Megadhatja egy művelet URL-címét is. Győződjön meg arról, hogy használja-e a hello beépülő modul konfigurálása során megadott URL-sémát **AZME\_ÁTIRÁNYÍTÁSI\_URL-cím** változó pl. *myapp://test*.  
+7. Elkészült a beállítással hello lehető legegyszerűbb kampányt lehetséges. Görgessen lefelé, és kattintson a hello **létrehozása** toosave gombra a kampány.
 8. Végül aktiválja a kampányt az **Activate** (Aktiválás) gombra kattintva.
    
     ![][10]

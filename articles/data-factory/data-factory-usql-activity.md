@@ -1,6 +1,6 @@
 ---
-title: "U-SQL parancsfájl - Azure használatával adatok átalakítása |} Microsoft Docs"
-description: "Ismerje meg, hogyan kell feldolgozni vagy átalakítási adatok számítási szolgáltatás Azure Data Lake Analytics U-SQL-parancsfájlok futtatásával."
+title: "U-SQL parancsfájl - Azure aaaTransform adatok |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooprocess vagy átalakítási adatok Azure Data Lake Analytics U-SQL-parancsfájlok futtatásával számítási szolgáltatás."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 49a809af92ed1bc6664fbdd3bf1aabf36afb8180
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 51fdb40334d0c131720f65c3a96b4c5045a98b24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transform-data-by-running-u-sql-scripts-on-azure-data-lake-analytics"></a>Adatok átalakítása Azure Data Lake Analytics U-SQL-parancsfájlok futtatásával 
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -33,46 +33,46 @@ ms.lasthandoff: 08/18/2017
 > * [Data Lake Analytics U-SQL-tevékenység](data-factory-usql-activity.md)
 > * [.NET egyéni tevékenység](data-factory-use-custom-activities.md)
 
-Egy folyamatot egy az Azure data factory az adatokat a csatolt tárolószolgáltatások csatolt számítási szolgáltatások használatával dolgozza fel. Ha minden tevékenység egyedi feldolgozása műveletet hajt végre tevékenységek sorrendje tartalmaz. Ez a cikk ismerteti a **Data Lake Analytics U-SQL tevékenység** , amelyen fut a **U-SQL** a parancsfájl egy **Azure Data Lake Analytics** számítási kapcsolódó szolgáltatás. 
+Egy folyamatot egy az Azure data factory az adatokat a csatolt tárolószolgáltatások csatolt számítási szolgáltatások használatával dolgozza fel. Ha minden tevékenység egyedi feldolgozása műveletet hajt végre tevékenységek sorrendje tartalmaz. Ez a cikk ismerteti a hello **Data Lake Analytics U-SQL tevékenység** , amelyen fut a **U-SQL** a parancsfájl egy **Azure Data Lake Analytics** számítási kapcsolódó szolgáltatás. 
 
 > [!NOTE]
-> Azure Data Lake Analytics-fiók létrehozása előtt hoz létre egy folyamatot egy Data Lake Analytics U-SQL-tevékenység. Azure Data Lake Analytics kapcsolatos további tudnivalókért lásd: [Ismerkedés az Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md).
+> Azure Data Lake Analytics-fiók létrehozása előtt hoz létre egy folyamatot egy Data Lake Analytics U-SQL-tevékenység. Azure Data Lake Analytics kapcsolatos toolearn lásd: [Ismerkedés az Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md).
 > 
-> Tekintse át a [az adatcsatorna első oktatóanyaga Szerkesztés](data-factory-build-your-first-pipeline.md) egy adat-előállító létrehozásának részletes lépései a kapcsolódó szolgáltatások, az adatkészletek és a folyamat. A Data Factory Editor vagy a Visual Studio vagy az Azure PowerShell JSON kódtöredékek segítségével adat-előállító entitásokat hozhatnak létre.
+> Felülvizsgálati hello [az adatcsatorna első oktatóanyaga Szerkesztés](data-factory-build-your-first-pipeline.md) részletes lépéseket toocreate egy adat-előállítót, a kapcsolódó szolgáltatások, az adatkészletek és a folyamat. JSON kódtöredékek használja a Data Factory Editor vagy a Visual Studio vagy az Azure PowerShell toocreate adat-előállító szervezeteknél.
 
 ## <a name="supported-authentication-types"></a>Támogatott hitelesítési típusok
 U-SQL-tevékenység alábbi Data Lake Analytics elleni hitelesítési típust támogatja:
 * Egyszerű szolgáltatásnév hitelesítése
 * Felhasználói hitelesítő adatok (OAuth) hitelesítés 
 
-Azt javasoljuk, hogy használja-e szolgáltatás egyszerű hitelesítést, különösen a egy ütemezett U-SQL-végrehajtást. Jogkivonat lejáratáról fordulhat elő a felhasználói hitelesítő adatok hitelesítéssel. További konfigurációs információkért lásd: a [szolgáltatástulajdonságok kapcsolódó](#azure-data-lake-analytics-linked-service) szakasz.
+Azt javasoljuk, hogy használja-e szolgáltatás egyszerű hitelesítést, különösen a egy ütemezett U-SQL-végrehajtást. Jogkivonat lejáratáról fordulhat elő a felhasználói hitelesítő adatok hitelesítéssel. További konfigurációs információkért lásd: hello [szolgáltatástulajdonságok kapcsolódó](#azure-data-lake-analytics-linked-service) szakasz.
 
 ## <a name="azure-data-lake-analytics-linked-service"></a>Az Azure Data Lake Analytics társított szolgáltatás
-Létrehozhat egy **Azure Data Lake Analytics** társított szolgáltatás az Azure Data Lake Analytics csatolásához számítási egy az Azure data factory szolgáltatást. A Data Lake Analytics U-SQL-tevékenység a feldolgozási szolgáltatásnak hivatkozik. 
+Létrehozhat egy **Azure Data Lake Analytics** szolgáltatás toolink egy Azure Data Lake Analytics számítási szolgáltatás tooan az Azure data factory kapcsolt. Data Lake Analytics U-SQL-tevékenység hello folyamat hello toothis kapcsolódó szolgáltatás hivatkozik. 
 
-A következő táblázat ismerteti a JSON-definícióból használt általános tulajdonságok. További választhat egyszerű szolgáltatásnév és felhasználói hitelesítő adatok hitelesítése.
+hello következő táblázat ismerteti hello hello JSON-definícióból használt általános tulajdonságok. További választhat egyszerű szolgáltatásnév és felhasználói hitelesítő adatok hitelesítése.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| **típusa** |A type tulajdonságot kell megadni: **AzureDataLakeAnalytics**. |Igen |
+| **típusa** |hello tulajdonságra kell megadni: **AzureDataLakeAnalytics**. |Igen |
 | **Fióknév** |Az Azure Data Lake Analytics-fiók neve. |Igen |
 | **datalakeanalyticsuri paraméter** |Az Azure Data Lake Analytics URI. |Nem |
-| **előfizetés-azonosító** |Az Azure előfizetés-azonosító |Nem (Ha nincs megadva, a data factory-előfizetése szerepel). |
-| **erőforráscsoport-név** |Azure erőforráscsoport-név |Nem (Ha nincs megadva, az adat-előállító erőforráscsoport szerepel). |
+| **előfizetés-azonosító** |Az Azure előfizetés-azonosító |Nem (Ha nincs megadva, az adat-előállító használt hello előfizetés). |
+| **erőforráscsoport-név** |Azure erőforráscsoport-név |Nem (Ha nincs megadva, az adat-előállító használt hello erőforráscsoport). |
 
 ### <a name="service-principal-authentication-recommended"></a>Szolgáltatás egyszerű hitelesítés (ajánlott)
-Szolgáltatás egyszerű hitelesítést használ, egy alkalmazás entitás regisztrálni kell az Azure Active Directory (Azure AD), és hozzáférést, a Data Lake Store-bA. Részletes útmutató: [szolgáltatások közötti hitelesítési](../data-lake-store/data-lake-store-authenticate-using-active-directory.md). Jegyezze fel a következő érték, melynek segítségével határozza meg a társított szolgáltatás:
+toouse szolgáltatás egyszerű hitelesítési regisztrálása az Azure Active Directory (Azure AD) és támogatás azt hello alkalmazás entitás tooData Lake áruház eléréséhez. Részletes útmutató: [szolgáltatások közötti hitelesítési](../data-lake-store/data-lake-store-authenticate-using-active-directory.md). Jegyezze fel az értéket, amely a következő hello toodefine hello társított szolgáltatáshoz:
 * Alkalmazásazonosító
 * Alkalmazás kulcs 
 * Bérlőazonosító
 
-Szolgáltatás egyszerű hitelesítés használatára a következő tulajdonságok megadásával:
+Szolgáltatás egyszerű hitelesítés használata a következő tulajdonságok hello megadásával:
 
 | Tulajdonság | Leírás | Szükséges |
 |:--- |:--- |:--- |
-| **servicePrincipalId** | Adja meg az alkalmazás ügyfél-azonosítót. | Igen |
-| **servicePrincipalKey** | Adja meg az alkalmazás kulcsot. | Igen |
-| **Bérlői** | Adja meg a bérlői adatokat (tartomány nevét vagy a bérlő azonosító) alatt az alkalmazás található. Azt az Azure-portál jobb felső sarkában az egér rámutató által kérheti le. | Igen |
+| **servicePrincipalId** | Adja meg a hello alkalmazás ügyfél-azonosítót. | Igen |
+| **servicePrincipalKey** | Adja meg a hello kulcsát. | Igen |
+| **Bérlői** | Adja meg a hello bérlői adatokat (tartomány nevét vagy a bérlő azonosító) alatt az alkalmazás található. Ez által rámutató hello egér hello Azure-portál jobb felső sarkában hello kérheti le. | Igen |
 
 **Példa: Szolgáltatás egyszerű hitelesítés**
 ```json
@@ -94,12 +94,12 @@ Szolgáltatás egyszerű hitelesítés használatára a következő tulajdonság
 ```
 
 ### <a name="user-credential-authentication"></a>Felhasználói hitelesítő adatok hitelesítése
-Alternatív megoldásként használható felhasználói hitelesítő Data Lake Analytics megadását követően az alábbi tulajdonságokat:
+Alternatív megoldásként használható felhasználói hitelesítő adatok hitelesítése Data Lake Analytics megadásával következő tulajdonságai hello:
 
 | Tulajdonság | Leírás | Szükséges |
 |:--- |:--- |:--- |
-| **engedélyezési** | Kattintson a **engedélyezés** a Data Factory Editor gombra, és adja meg a hitelesítő adatok, amelyek az automatikusan létrehozott engedélyezési URL-címet rendel hozzá ehhez a tulajdonsághoz. | Igen |
-| **munkamenet-azonosító** | OAuth munkamenet-azonosító az OAuth hitelesítési munkamenetből. Minden munkamenet-azonosító egyedi, és csak egyszer használható. Ez a beállítás automatikusan jön létre, a Data Factory Editor használatakor. | Igen |
+| **engedélyezési** | Kattintson a hello **engedélyezés** hello Data Factory Editor gombra, és írja be a hitelesítő adat, amelyet hozzárendel hello automatikusan létrehozott engedélyezési URL-cím toothis tulajdonság. | Igen |
+| **munkamenet-azonosító** | OAuth munkamenet-azonosító hello OAuth hitelesítési munkamenetből. Minden munkamenet-azonosító egyedi, és csak egyszer használható. Ez a beállítás automatikusan létrejön a Data Factory Editor hello használatakor. | Igen |
 
 **Példa: Felhasználók hitelesítő adatok hitelesítése**
 ```json
@@ -120,14 +120,14 @@ Alternatív megoldásként használható felhasználói hitelesítő Data Lake A
 ```
 
 #### <a name="token-expiration"></a>Jogkivonat lejáratáról
-Az engedélyezési kód használatával előállított a **engedélyezés** gomb némi várakozás után lejár. Lásd az alábbi táblázatban a különböző típusú felhasználói fiókokat a lejárati idejét. Jelenhetnek meg a következő hiba jelenik meg, ha a hitelesítési **-token érvényessége lejár**: hitelesítőadat-műveleti hiba: invalid_grant - AADSTS70002: Hiba történt a hitelesítő adatok ellenőrzése. AADSTS70008: A megadott hozzáférés biztosítása lejárt vagy visszavonták. Nyomkövetési azonosító: d18629e8-af88-43c5-88e3-d8419eb1fca1 Korrelációazonosító: fac30a0c-6be6-4e02-8d69-a776d2ffefd7 időbélyegző: 2015-12-15 21:09:31Z
+Ön hello segítségével létrehozott engedélyezési kód hello **engedélyezés** gomb némi várakozás után lejár. Tekintse meg a következő táblázat a különböző típusú felhasználói fiókok hello lejárati idejének hello. Hello a következő hibaüzenetet fog látni amikor hello hitelesítési **jogkivonat lejár**: hitelesítőadat-műveleti hiba: invalid_grant - AADSTS70002: Hiba történt a hitelesítő adatok ellenőrzése. AADSTS70008: hello megadott hozzáférés biztosítása lejárt vagy visszavonták. Nyomkövetési azonosító: d18629e8-af88-43c5-88e3-d8419eb1fca1 Korrelációazonosító: fac30a0c-6be6-4e02-8d69-a776d2ffefd7 időbélyegző: 2015-12-15 21:09:31Z
 
 | Felhasználó típusa | Után lejár |
 |:--- |:--- |
 | Felhasználói fiókok Azure Active Directory által nem kezelt (@hotmail.com, @live.comstb.) |12 óra |
-| Felhasználói fiókok felügyelete által Azure Active Directory (AAD) |Futtassa a 14 nap után utolsó újrapróbálása. <br/><br/>90 nap, ha a szelet OAuth-alapú társított szolgáltatás fut legalább 14 naponta. |
+| Felhasználói fiókok felügyelete által Azure Active Directory (AAD) |Futtatás után utolsó szelet hello 14 nap. <br/><br/>90 nap, ha a szelet OAuth-alapú társított szolgáltatás fut legalább 14 naponta. |
 
-Ez a hiba elkerüléséhez/hárítsa, ismét engedélyezheti a használatával a **engedélyezés** gombra kattint, ha a **jogkivonat lejár** és telepítse újra a társított szolgáltatás. Értékek is létrehozhat **sessionId** és **engedélyezési** programozott módon, az alábbiak szerint kód tulajdonságok:
+tooavoid/hárítsa el a hiba, ismét engedélyezheti a hello segítségével **engedélyezés** gombbal hello **jogkivonat lejár** és telepítse újra a kapcsolódó hello szolgáltatást. Értékek is létrehozhat **sessionId** és **engedélyezési** programozott módon, az alábbiak szerint kód tulajdonságok:
 
 ```csharp
 if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService ||
@@ -154,16 +154,16 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 }
 ```
 
-Lásd: [AzureDataLakeStoreLinkedService osztály](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx), [AzureDataLakeAnalyticsLinkedService osztály](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx), és [AuthorizationSessionGetResponse osztály](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx) témakörök a Data Factory osztályok, a kódban használt vonatkozó további információért. Adjon hozzá egy hivatkozást,: Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll WindowsFormsWebAuthenticationDialog osztálynál. 
+Lásd: [AzureDataLakeStoreLinkedService osztály](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx), [AzureDataLakeAnalyticsLinkedService osztály](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx), és [AuthorizationSessionGetResponse osztály](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx) részletes kapcsolatos témakörök kapcsolatos hello adat-előállító osztályok hello kódban használt. Adjon hozzá egy hivatkozást,: Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll hello WindowsFormsWebAuthenticationDialog osztály számára. 
 
 ## <a name="data-lake-analytics-u-sql-activity"></a>Data Lake Analytics U-SQL-tevékenység
-A következő JSON-részlet egy folyamatot, egy Data Lake Analytics U-SQL tevékenység határozza meg. A tevékenység definíciójának van a korábban létrehozott Azure Data Lake Analytics társított szolgáltatás hivatkozása.   
+a következő JSON részlet hello egy Data Lake Analytics U-SQL-tevékenység az adatcsatorna határozza meg. hello tevékenység egy hivatkozást a korábban létrehozott társított Azure Data Lake Analytics szolgáltatás toohello van.   
 
 ```json
 {
     "name": "ComputeEventsByRegionPipeline",
     "properties": {
-        "description": "This is a pipeline to compute events for en-gb locale and date less than 2012/02/19.",
+        "description": "This is a pipeline toocompute events for en-gb locale and date less than 2012/02/19.",
         "activities": 
         [
             {
@@ -210,25 +210,25 @@ A következő JSON-részlet egy folyamatot, egy Data Lake Analytics U-SQL tevék
 }
 ```
 
-A következő táblázat ismerteti a neveket és leírásokat erre a tevékenységre jellemző tulajdonságok. 
+hello következő táblázatban neveit és leírásait, amelyek az adott toothis tevékenység. 
 
 | Tulajdonság | Leírás | Szükséges |
 |:--- |:--- |:--- |
-| type |A type tulajdonságot meg kell **DataLakeAnalyticsU-SQL**. |Igen |
-| scriptPath |A U-SQL parancsfájlt tartalmazó mappa elérési útja. A fájl neve nem kis-és nagybetűket. |Nem (Ha a parancsfájl használata) |
-| scriptLinkedService |Kapcsolódó szolgáltatás, amely a tárolóban, amely tartalmazza az adat-előállító parancsfájl |Nem (Ha a parancsfájl használata) |
+| type |hello type tulajdonság túl be kell állítani**DataLakeAnalyticsU-SQL**. |Igen |
+| scriptPath |Elérési út toofolder hello U-SQL parancsfájlt tartalmazó. Hello fájl neve nem kis-és nagybetűket. |Nem (Ha a parancsfájl használata) |
+| scriptLinkedService |Kapcsolódó szolgáltatás, amely a hello parancsfájl toohello adat-előállító tartalmazó hello tároló |Nem (Ha a parancsfájl használata) |
 | Parancsfájl |Adja meg a beágyazott parancsfájlja scriptPath és a scriptLinkedService megadása helyett. Például: `"script": "CREATE DATABASE test"`. |Nem (Ha a ScriptPath tulajdonságot is és a scriptLinkedService használ) |
-| degreeOfParallelism |A feladat futtatásához egyidejűleg használt csomópontok maximális száma. |Nem |
-| Prioritás |Azt határozza meg, melyet futtatni kíván szereplő várólistáján szereplő feladatok közül melyeket. Az alacsonyabb a szám, annál magasabb a prioritás. |Nem |
-| Paraméterek |A U-SQL parancsfájl paraméterek |Nem |
-| runtimeVersion | A U-SQL motort használja futásidejű verzióját | Nem | 
-| compilationMode | <p>Fordítási mód az U-SQL. A következő értékek egyike lehet:</p> <ul><li>**Szemantikus:** csak a szemantikai ellenőrzések és a szükséges megerősítések végrehajtani.</li><li>**Teljes:** hajtsa végre a teljes fordítási, beleértve a szintaxis-ellenőrzés, optimalizálás, kódgenerálás, stb.</li><li>**SingleBox:** hajtsa végre a teljes fordítási SingleBox való a TargetType beállítással.</li></ul><p>Ez a tulajdonság értékét nem adja meg, ha a kiszolgáló meghatározza a optimális fordítás módja. </p>| Nem | 
+| degreeOfParallelism |csomópontok maximális száma hello egyidejűleg használt toorun hello feladat. |Nem |
+| Prioritás |Meghatározza, hogy szereplő várólistáján szereplő feladatok közül kell lennie a kijelölt toorun először. hello hello kevesebb, hello hello elsőbbséget. |Nem |
+| paraméterek |Hello U-SQL parancsfájl paramétereinek |Nem |
+| runtimeVersion | U-SQL hello motor toouse futásidejű verzióját | Nem | 
+| compilationMode | <p>Fordítási mód az U-SQL. A következő értékek egyike lehet:</p> <ul><li>**Szemantikus:** csak a szemantikai ellenőrzések és a szükséges megerősítések végrehajtani.</li><li>**Teljes:** hajtsa végre a hello teljes fordítási, beleértve a szintaxis-ellenőrzés, optimalizálás, kódgenerálás, stb.</li><li>**SingleBox:** hello teljes fordítási a TargetType beállítás tooSingleBox végrehajtani.</li></ul><p>Ez a tulajdonság értékét nem adja meg, ha a hello server hello optimális lefordítására határozza meg. </p>| Nem | 
 
-Lásd: [SearchLogProcessing.txt parancsfájl Definition](#sample-u-sql-script) a parancsfájl definíciójának. 
+Lásd: [SearchLogProcessing.txt parancsfájl Definition](#sample-u-sql-script) hello parancsfájl definíciójához. 
 
 ## <a name="sample-input-and-output-datasets"></a>Minta bemeneti és kimeneti adatkészletek
 ### <a name="input-dataset"></a>Bemeneti adatkészlet
-Ebben a példában a bemeneti adatok az Azure Data Lake Store (searchlog.tsv fájl fájl a datalake-/ bemeneti mappában) található. 
+Ebben a példában hello bemeneti adatokat az Azure Data Lake Store (searchlog.tsv fájl fájl hello datalake-/ bemeneti mappában) található. 
 
 ```json
 {
@@ -254,7 +254,7 @@ Ebben a példában a bemeneti adatok az Azure Data Lake Store (searchlog.tsv fá
 ```
 
 ### <a name="output-dataset"></a>Kimeneti adatkészlet
-Ebben a példában a U-SQL parancsfájl által előállított kimeneti adatokat az Azure Data Lake Store (datalake-/ kimeneti mappa) tárolódik. 
+Ebben a példában hello U-SQL-parancsfájl által előállított hello kimeneti adatok tárolódnak az Azure Data Lake Store (datalake-/ kimeneti mappa). 
 
 ```json
 {
@@ -274,7 +274,7 @@ Ebben a példában a U-SQL parancsfájl által előállított kimeneti adatokat 
 ```
 
 ### <a name="sample-data-lake-store-linked-service"></a>A minta Data Lake Store társított szolgáltatás
-Ez a minta Azure Data Lake Store társított szolgáltatás által a bemeneti/kimeneti adatkészletek használt definíciója. 
+Itt található hello definition hello minta Azure Data Lake Store társított szolgáltatás hello bemeneti/kimeneti adatkészletek használják. 
 
 ```json
 {
@@ -291,7 +291,7 @@ Ez a minta Azure Data Lake Store társított szolgáltatás által a bemeneti/ki
 }
 ```
 
-Lásd: [helyezze át az adatokat, és az Azure Data Lake Store](data-factory-azure-datalake-connector.md) cikk a JSON-tulajdonságok leírását. 
+Lásd: [tooand adatok áthelyezése az Azure Data Lake Store](data-factory-azure-datalake-connector.md) cikk a JSON-tulajdonságok leírását. 
 
 ## <a name="sample-u-sql-script"></a>Minta U-SQL parancsfájl
 
@@ -318,16 +318,16 @@ WHERE Region == "en-gb";
     WHERE Start <= DateTime.Parse("2012/02/19");
 
 OUTPUT @rs1   
-    TO @out
+    too@out
       USING Outputters.Tsv(quoting:false, dateTimeFormat:null);
 ```
 
-Az értékek  **@in**  és  **@out**  a U-SQL parancsfájl átadott paraméterek dinamikusan ADF által a "parameters" szakaszában. A "parameters" című rész a csővezeték-definícióban.
+az értékek hello ** @in ** és ** @out ** hello U-SQL parancsfájl átadott paraméterek dinamikusan által ADF hello "parameters" szakaszában. Hello csővezeték-definícióban hello "parameters" című szakaszában talál.
 
-Megadhat más tulajdonságait, például degreeOfParallelism és prioritását, valamint a csővezeték-definícióban az az Azure Data Lake Analytics szolgáltatásban futó feladatok.
+Adhat meg egyéb tulajdonságait, például degreeOfParallelism és prioritását, valamint a feldolgozási sor hello Azure Data Lake Analytics szolgáltatásban futó feladatok hello definíciója.
 
 ## <a name="dynamic-parameters"></a>Dinamikus paraméterek
-A minta-feldolgozási folyamat definícióban bejövő és kimenő adatforgalma paraméterek vannak hozzárendelve kódolt értékekkel. 
+Hello minta csővezeték-definícióban és paraméterek vannak hozzárendelve kódolt értékekkel. 
 
 ```json
 "parameters": {
@@ -336,7 +336,7 @@ A minta-feldolgozási folyamat definícióban bejövő és kimenő adatforgalma 
 }
 ```
 
-Akkor használja helyette a dinamikus paraméterek lehet. Példa: 
+Ehelyett is lehetséges toouse dinamikus paraméterek. Példa: 
 
 ```json
 "parameters": {
@@ -345,5 +345,5 @@ Akkor használja helyette a dinamikus paraméterek lehet. Példa:
 }
 ```
 
-Ebben az esetben a bemeneti fájlok továbbra is átveszik a /datalake/input mappából, és kimeneti fájlok jönnek létre, a /datalake/output mappában. Fájlnevek nem dinamikus szelet kezdési ideje alapján.  
+Ebben az esetben a bemeneti fájlok továbbra is átveszik hello /datalake/input mappából, és a kimeneti fájlok jönnek létre hello /datalake/output mappában. hello fájlnevek dinamikusak hello szelet kezdési ideje alapján.  
 

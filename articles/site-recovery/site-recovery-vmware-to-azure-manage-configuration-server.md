@@ -1,6 +1,6 @@
 ---
 title: " Az Azure Site Recovery konfigurációs kiszolgáló kezelése |} Microsoft Docs"
-description: "A cikkből megtudhatja, hogyan kezelheti a konfigurációs kiszolgáló."
+description: "Ez a cikk ismerteti, hogyan tooset és kezelheti a konfigurációs kiszolgálót."
 services: site-recovery
 documentationcenter: 
 author: AnoopVasudavan
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: backup-recovery
 ms.date: 06/29/2017
 ms.author: anoopkv
-ms.openlocfilehash: 36da8c7d0f3ace194522e5288f26069cf46d470e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2852bcd25409121be46a1ebf135ebfcdce6e5de5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-a-configuration-server"></a>A konfigurációs kiszolgáló kezelése
 
-Konfigurációs kiszolgáló között a Site Recovery services és a helyszíni infrastruktúra koordinátora működik. Ez a cikk ismerteti, hogyan állítsa be, konfigurálhatja és kezelheti a konfigurációs kiszolgáló.
+Konfigurációs kiszolgáló között hello Site Recovery services és a helyszíni infrastruktúra koordinátora működik. Ez a cikk ismerteti, hogyan állítsa be, konfigurálása és kezelése hello konfigurációs kiszolgáló.
 
 ## <a name="prerequisites"></a>Előfeltételek
-A minimális hardver-, szoftver, és a konfigurációs kiszolgáló beállításához szükséges hálózati konfiguráció az alábbiakban.
+hello az alábbiakban hello minimális hardver-, szoftver, és hálózati konfiguráció szükséges tooset konfigurációs kiszolgáló.
 
 > [!NOTE]
-> [Kapacitástervezés](site-recovery-capacity-planner.md) egy fontos lépés annak érdekében, hogy telepít a konfigurációs kiszolgáló konfigurálása, hogy a csomagok a terhelési követelményeknek. Tudjon meg többet az [méretezése a konfigurációs kiszolgáló követelményei](#sizing-requirements-for-a-configuration-server).
+> [Kapacitástervezés](site-recovery-capacity-planner.md) van egy fontos lépés tooensure központi telepítését hello konfigurációs kiszolgáló konfigurálása, hogy a csomagok a terhelési követelményeknek. Tudjon meg többet az [méretezése a konfigurációs kiszolgáló követelményei](#sizing-requirements-for-a-configuration-server).
 
 [!INCLUDE [site-recovery-configuration-server-requirements](../../includes/site-recovery-configuration-and-scaleout-process-server-requirements.md)]
 
-## <a name="downloading-the-configuration-server-software"></a>A konfigurációs kiszolgáló szoftver letöltése
-1. Jelentkezzen be az Azure-portálon, és keresse meg a Recovery Services-tároló.
-2. Keresse meg a **Site Recovery-infrastruktúra** > **konfigurációs kiszolgálók** (a VMware és fizikai gépek).
+## <a name="downloading-hello-configuration-server-software"></a>Hello konfigurációs kiszolgáló szoftver letöltése
+1. Jelentkezzen be toohello az Azure portálon, és keresse meg tooyour Recovery Services-tároló.
+2. Keresse meg a túl**Site Recovery-infrastruktúra** > **konfigurációs kiszolgálók** (alatt a VMware és fizikai gépek).
 
   ![Kiszolgálók lap hozzáadása](./media/site-recovery-vmware-to-azure-manage-configuration-server/AddServers.png)
-3. Kattintson a **+ kiszolgálók** gombra.
-4. Az a **kiszolgáló hozzáadása** lapon, a Letöltés gombra kattintva töltse le a regisztrációs kulcsot. A konfigurációs kiszolgáló telepítése az Azure Site Recovery szolgáltatásban való regisztrálása során kell ezt a kulcsot.
-5. Kattintson a **töltse le a Microsoft Azure Site Recovery az egységes telepítő** hivatkozást a konfigurációs kiszolgáló legújabb verziójának letöltéséhez.
+3. Kattintson a hello **+ kiszolgálók** gombra.
+4. A hello **kiszolgáló hozzáadása** lapján kattintson a hello Letöltés gomb toodownload hello regisztrációs kulcsot. Ezt a kulcsot kell hello konfigurációs kiszolgáló telepítési tooregister során az Azure Site Recovery szolgáltatásban.
+5. Kattintson a hello **letöltési hello Microsoft Azure Site Recovery az egységes telepítő** hivatkozás toodownload hello legújabb verziójának hello konfigurációs kiszolgáló.
 
   ![Letöltési oldala](./media/site-recovery-vmware-to-azure-manage-configuration-server/downloadcs.png)
 
   > [!TIP]
-  A konfigurációs kiszolgáló legújabb verziója letölthető közvetlenül [Microsoft Download Center letöltési oldala](http://aka.ms/unifiedsetup)
+  Konfigurációs kiszolgáló hello legújabb verziója letölthető közvetlenül [Microsoft Download Center letöltési oldala](http://aka.ms/unifiedsetup)
 
 ## <a name="installing-and-registering-a-configuration-server-from-gui"></a>Telepítése és regisztrálása a konfigurációs kiszolgáló grafikus felhasználói felület
 [!INCLUDE [site-recovery-add-configuration-server](../../includes/site-recovery-add-configuration-server.md)]
@@ -52,7 +52,7 @@ A minimális hardver-, szoftver, és a konfigurációs kiszolgáló beállítás
 ## <a name="installing-and-registering-a-configuration-server-using-command-line"></a>Telepítése és regisztrálása a konfigurációs kiszolgáló parancssor használatával
 
   ```
-  UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <IP address to be used for data transfer] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>]
+  UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <IP address toobe used for data transfer] [/CSIP <IP address of CS toobe registered with>] [/PassphraseFilePath <Passphrase file path>]
   ```
 
 ### <a name="sample-usage"></a>Példa
@@ -68,14 +68,14 @@ A minimális hardver-, szoftver, és a konfigurációs kiszolgáló beállítás
 
 
 ### <a name="create-a-mysql-credentials-file"></a>Egy MySql hitelesítőadat-fájlt létrehozni
-MySQLCredsFilePath paraméter egy fájl fogadja bemeneti adatként. Hozza létre a fájlt a következő formátumban, és adja át bemeneti MySQLCredsFilePath paraméterként.
+MySQLCredsFilePath paraméter egy fájl fogadja bemeneti adatként. Használja a következő formátumú, és adja át bemeneti MySQLCredsFilePath paraméterként hello hello fájl létrehozásához.
 ```
 [MySQLCredentials]
 MySQLRootPassword = "Password>"
 MySQLUserPassword = "Password"
 ```
 ### <a name="create-a-proxy-settings-configuration-file"></a>Proxykiszolgáló-beállítások konfigurációs fájl létrehozása
-ProxySettingsFilePath paraméter egy fájl fogadja bemeneti adatként. Hozza létre a fájlt a következő formátumban, és adja át bemeneti ProxySettingsFilePath paraméterként.
+ProxySettingsFilePath paraméter egy fájl fogadja bemeneti adatként. Használja a következő formátumú, és adja át bemeneti ProxySettingsFilePath paraméterként hello hello fájl létrehozásához.
 
 ```
 [ProxySettings]
@@ -86,15 +86,15 @@ ProxyUserName="UserName"
 ProxyPassword="Password"
 ```
 ## <a name="modifying-proxy-settings-for-configuration-server"></a>Konfigurációs kiszolgáló proxy beállításainak módosítása
-1. A bejelentkezési és a konfigurációs kiszolgáló.
-2. Indítsa el a használatával a helyi cspsconfigtool.exe a.
-3. Kattintson a **tároló regisztrációs** fülre.
-4. Töltsön le egy új tároló regisztrációs fájlt a portálról, és adja meg az eszköz számára.
+1. Bejelentkezési tooyour konfigurációs kiszolgáló.
+2. Indítsa el a hello parancsikon használatával hello cspsconfigtool.exe a.
+3. Kattintson a hello **tároló regisztrációs** fülre.
+4. Töltsön le egy új tároló regisztrációs fájlt hello portálról, és adja meg a bemeneti toohello eszközként.
 
   ![register-konfiguráció-kiszolgáló](./media/site-recovery-vmware-to-azure-manage-configuration-server/register-csonfiguration-server.png)
-5. Adja meg az új proxykiszolgáló adatait, és kattintson a **regisztrálása** gombra.
+5. Adja meg hello új proxykiszolgáló adatait, majd kattintson a hello **regisztrálása** gombra.
 6. Nyisson meg egy rendszergazda PowerShell parancsablakot.
-7. A következő parancsot
+7. Futtassa a következő parancs hello
   ```
   $pwd = ConvertTo-SecureString -String MyProxyUserPassword
   Set-OBMachineSetting -ProxyServer http://myproxyserver.domain.com -ProxyPort PortNumber – ProxyUserName domain\username -ProxyPassword $pwd
@@ -103,17 +103,17 @@ ProxyPassword="Password"
   ```
 
   >[!WARNING]
-  Ha a konfigurációs kiszolgálóhoz kapcsolódó kibővített folyamat kiszolgálóval rendelkezik, akkor [hárítsa el a proxykiszolgáló beállításait a kibővített folyamat összes kiszolgálójára](site-recovery-vmware-to-azure-manage-scaleout-process-server.md#modifying-proxy-settings-for-scale-out-process-server) a környezetben.
+  Ha kibővített folyamat kiszolgálók csatolt toothis konfigurációs kiszolgáló, túl kell[hello proxybeállításai hárítsa el az összes hello kibővített folyamat kiszolgálók](site-recovery-vmware-to-azure-manage-scaleout-process-server.md#modifying-proxy-settings-for-scale-out-process-server) a környezetben.
 
-## <a name="re-register-a-configuration-server-with-the-same-recovery-services-vault"></a>Regisztrálja újra a konfigurációs kiszolgáló a azonos Recovery Services-tároló
-  1. A bejelentkezési és a konfigurációs kiszolgáló.
-  2. Indítsa el a cspsconfigtool.exe használatával a parancsikont az asztalon.
-  3. Kattintson a **tároló regisztrációs** fülre.
-  4. Töltsön le új regisztrációs fájlt a portálról, és adja meg az eszköz számára.
+## <a name="re-register-a-configuration-server-with-hello-same-recovery-services-vault"></a>Regisztrálja újra a konfigurációs kiszolgáló hello azonos Recovery Services-tároló
+  1. Bejelentkezési tooyour konfigurációs kiszolgáló.
+  2. Indítsa el a hello cspsconfigtool.exe használatával hello parancsikont az asztalon.
+  3. Kattintson a hello **tároló regisztrációs** fülre.
+  4. Töltsön le új regisztrációs fájl hello portálról, és adja meg a bemeneti toohello eszközként.
         ![register-konfiguráció-kiszolgáló](./media/site-recovery-vmware-to-azure-manage-configuration-server/register-csonfiguration-server.png)
-  5. Adja meg a proxykiszolgáló adatait, és kattintson a **regisztrálása** gombra.  
+  5. Hello proxykiszolgáló részletesen, és kattintson a hello **regisztrálása** gombra.  
   6. Nyisson meg egy rendszergazda PowerShell parancsablakot.
-  7. A következő parancsot
+  7. Futtassa a következő parancs hello
 
       ```
       $pwd = ConvertTo-SecureString -String MyProxyUserPassword
@@ -123,24 +123,24 @@ ProxyPassword="Password"
       ```
 
   >[!WARNING]
-  Ha a konfigurációs kiszolgálóhoz kapcsolódó kibővített folyamat kiszolgálóval rendelkezik, akkor [regisztrálja újra a kibővített folyamat kiszolgálók](site-recovery-vmware-to-azure-manage-scaleout-process-server.md#re-registering-a-scale-out-process-server) a környezetben.
+  Ha kibővített folyamat kiszolgálók csatolt toothis konfigurációs kiszolgáló, túl kell[regisztrálja újra az összes hello kibővített folyamat kiszolgálók](site-recovery-vmware-to-azure-manage-scaleout-process-server.md#re-registering-a-scale-out-process-server) a környezetben.
 
 ## <a name="registering-a-configuration-server-with-a-different-recovery-services-vault"></a>A konfigurációs kiszolgáló regisztrálása egy másik Recovery Services-tároló.
-1. A bejelentkezési és a konfigurációs kiszolgáló.
-2. Futtassa a parancsot egy rendszergazdai parancssorból
+1. Bejelentkezési tooyour konfigurációs kiszolgáló.
+2. egy rendszergazdai parancssorból futtassa a hello parancsot
 
 ```
 reg delete HKLM\Software\Microsoft\Azure Site Recovery\Registration
 net stop dra
 ```
-3. Indítsa el a használatával a helyi cspsconfigtool.exe a.
-4. Kattintson a **tároló regisztrációs** fülre.
-5. Töltsön le új regisztrációs fájlt a portálról, és adja meg az eszköz számára.
+3. Indítsa el a hello parancsikon használatával hello cspsconfigtool.exe a.
+4. Kattintson a hello **tároló regisztrációs** fülre.
+5. Töltsön le új regisztrációs fájl hello portálról, és adja meg a bemeneti toohello eszközként.
 
     ![register-konfiguráció-kiszolgáló](./media/site-recovery-vmware-to-azure-manage-configuration-server/register-csonfiguration-server.png)
-6. Adja meg a proxykiszolgáló adatait, és kattintson a **regisztrálása** gombra.  
+6. Hello proxykiszolgáló részletesen, és kattintson a hello **regisztrálása** gombra.  
 7. Nyisson meg egy rendszergazda PowerShell parancsablakot.
-8. A következő parancsot
+8. Futtassa a következő parancs hello
     ```
     $pwd = ConvertTo-SecureString -String MyProxyUserPassword
     Set-OBMachineSetting -ProxyServer http://myproxyserver.domain.com -ProxyPort PortNumber – ProxyUserName domain\username -ProxyPassword $pwd
@@ -149,78 +149,78 @@ net stop dra
     ```
 
 ## <a name="decommissioning-a-configuration-server"></a>Konfigurációs kiszolgáló leszerelése
-Ellenőrizze a konfigurációs kiszolgáló leszerelése megkezdése előtt.
+Hello következő győződjön meg arról, a konfigurációs kiszolgáló leszerelése megkezdése előtt.
 1. Tiltsa le a védelmet az összes virtuális gép ezen a konfigurációs kiszolgálón.
-2. Szüntesse meg az összes replikációs házirendek a konfigurációs kiszolgálóról.
-3. Törli a Vcenter kiszolgáló vagy vSphere minden gazdagép tartozó és a konfigurációs kiszolgáló.
+2. Szüntesse meg a konfigurációs kiszolgáló hello összes replikációs házirendet.
+3. Törölje az összes Vcenter kiszolgáló vagy vSphere-gazdagépek társított toohello konfigurációs kiszolgáló.
 
-### <a name="delete-the-configuration-server-from-azure-portal"></a>Törölje a konfigurációs kiszolgáló Azure-portálon
-1. Azure-portálon keresse meg a **Site Recovery-infrastruktúra** > **konfigurációs kiszolgálók** a tároló menüből.
-2. Kattintson a kiszolgáló leszerelése kívánt.
-3. A konfigurációs kiszolgáló adatai lapon kattintson a Törlés gomb.
+### <a name="delete-hello-configuration-server-from-azure-portal"></a>Törölje a hello konfigurációs kiszolgáló Azure-portálon
+1. Azure-portálon Tallózás túl**Site Recovery-infrastruktúra** > **konfigurációs kiszolgálók** hello tároló menüből.
+2. Kattintson a konfigurációs kiszolgáló, amelyet az toodecommission hello.
+3. Hello konfigurációs kiszolgáló adatai lapon kattintson a hello Törlés gomb.
 
   ![törlés-konfiguráció-kiszolgáló](./media/site-recovery-vmware-to-azure-manage-configuration-server/delete-configuration-server.PNG)
-4. Kattintson a **Igen** annak a kiszolgálónak a törlés megerősítéséhez.
+4. Kattintson a **Igen** hello server tooconfirm hello törlését.
 
   >[!WARNING]
-  Ha a virtuális gépek, replikációs házirendek vagy konfigurációs kiszolgálóhoz társított vCenter-kiszolgáló vagy vSphere gazdagépek, a kiszolgáló nem törölhető. Törölje ezeket az entitásokat, mielőtt törli a tárolót.
+  Ha a virtuális gép, replikációs házirendek vagy vCenter-kiszolgáló vagy vSphere gazdagépek konfigurációs kiszolgálóhoz társított hello kiszolgáló nem törölhető. Törölje ezeket az entitásokat előtt toodelete hello tárolóban.
 
-### <a name="uninstall-the-configuration-server-software-and-its-dependencies"></a>Távolítsa el a konfigurációs kiszolgáló szoftver és annak függőségeit
+### <a name="uninstall-hello-configuration-server-software-and-its-dependencies"></a>Távolítsa el a hello konfigurációs kiszolgálók és a függőségek
   > [!TIP]
-  Ha szeretne újra felhasználhatja a konfigurációs kiszolgáló Azure Site Recovery szolgáltatással, majd továbbléphet a 4. lépés közvetlenül
+  Ha újra tooreuse hello konfigurációs kiszolgáló Azure Site Recovery szolgáltatással, majd továbbléphet toostep 4 közvetlenül
 
-1. Jelentkezzen be rendszergazdaként a konfigurációs kiszolgáló.
+1. Jelentkezzen be a konfigurációs kiszolgáló toohello rendszergazdaként.
 2. Nyissa meg Vezérlőpult > Program > Programok eltávolítása
-3. Távolítsa el a programokat, az alábbi sorrendben:
+3. Távolítsa el a következő feladatütemezési hello hello programok:
   * Microsoft Azure Recovery Services Agent
   * Microsoft Azure Site helyreállítási mobilitási szolgáltatás/fő célkiszolgáló megadásával
   * A Microsoft Azure Site Recovery Providert
   * Microsoft Azure Recovery konfigurációs kiszolgáló/folyamat helykiszolgáló
   * A Microsoft Azure Site helyreállítási konfigurációs kiszolgáló függőségek
   * MySQL Server 5.5
-4. Futtassa a következő parancsot a és a rendszergazdai parancssorba.
+4. A következő parancsot a hello és rendszergazdai parancssorból futtatható.
   ```
   reg delete HKLM\Software\Microsoft\Azure Site Recovery\Registration
   ```
 
 ## <a name="renew-configuration-server-secure-socket-layerssl-certificates"></a>Konfigurációs kiszolgáló biztonságos szoftvercsatorna Layer(SSL) tanúsítványainak megújítása
-A kiszolgáló rendelkezik egy beépített webkiszolgálót, amely a mobilitási szolgáltatás, a folyamat kiszolgálók és a fő célkiszolgáló kiszolgálók, a konfigurációs kiszolgálóhoz kapcsolódó tevékenységeket koordinálja. A konfigurációs kiszolgáló webkiszolgáló SSL-tanúsítványt használ az ügyfelek hitelesítéséhez. Ez a tanúsítvány rendelkezik egy három év lejárta, és az alábbi módszerrel bármikor újítható:
+Konfigurációs kiszolgáló hello egy beépített webkiszolgálót, amely koordinálja a hello mobilitási szolgáltatás folyamat kiszolgálók hello tevékenységeit és a fő célkiszolgáló kiszolgálók csatlakoztatva toohello konfigurációs kiszolgáló. hello konfigurációs kiszolgáló webkiszolgálót használ egy SSL-tanúsítvány tooauthenticate az ügyfeleknek. Ez a tanúsítvány rendelkezik egy három év lejárta, és a következő metódus hello segítségével lehet megújítani:
 
 > [!WARNING]
-Tanúsítványlejárat csak verziót lehetne végrehajtani 9.4.XXXX. X vagy újabb verzióját. Az Azure Site Recovery minden összetevőjét (konfigurációs kiszolgáló, a Folyamatkiszolgáló, fő célkiszolgáló, mobilitási szolgáltatás) frissítése a tanúsítványok megújítása munkafolyamat megkezdése előtt.
+Tanúsítványlejárat csak verziót lehetne végrehajtani 9.4.XXXX. X vagy újabb verzióját. Frissítse a hello Azure Site Recovery minden összetevőjét (konfigurációs kiszolgáló, a Folyamatkiszolgáló, fő célkiszolgáló, Mobilitásiszolgáltatás) hello tanúsítványok megújítása munkafolyamat megkezdése előtt.
 
-1. Az Azure-portálon keresse meg a tároló > Site Recovery-infrastruktúra > konfigurációs kiszolgáló.
-2. Kattintson a konfigurációs kiszolgáló, amelyhez újítsa meg az SSL-tanúsítványt kell.
-3. A konfigurációs kiszolgáló állapota tekintse meg a lejárat dátumát az SSL-tanúsítvány.
-4. A tanúsítvány megújításához kattintson a **tanúsítványok megújítása** művelet a következő ábrán látható módon:
+1. A hello Azure-portálon, keresse meg a tároló tooyour > Site Recovery-infrastruktúra > konfigurációs kiszolgáló.
+2. Kattintson a hello konfigurációs kiszolgáló, amelyhez toorenew kell hello SSL-tanúsítványa.
+3. A konfigurációs kiszolgáló állapotának hello lásd: hello lejárati dátumának hello SSL-tanúsítvány.
+4. Megújítás hello tanúsítvány hello kattintva **tanúsítványok megújítása** művelet látható hello kép a következő módon:
 
   ![törlés-konfiguráció-kiszolgáló](./media/site-recovery-vmware-to-azure-manage-configuration-server/renew-cert-page.png)
 
 ### <a name="secure-socket-layer-certificate-expiry-warning"></a>Secure Socket Layer tanúsítvány lejáratával kapcsolatos figyelmeztetés
 
 > [!NOTE]
-Az összes telepítés előtt 2016. május történt az SSL-tanúsítvány érvényességi egy évre lett beállítva. már elindította az Azure-portálon jelenik meg a tanúsítványok lejárati értesítéseinek jelent.
+hello SSL-tanúsítvány érvényességi 2016. május előtt történt összes telepítések be lett állítva tooone év. elindítását követően megtekintheti a tanúsítványok lejárati értesítéseinek hello Azure-portálon jelenik meg.
 
-1. Ha a konfigurációs kiszolgáló SSL-tanúsítvány a következő két hónapon belül lejár, a szolgáltatás elindul, értesíti a felhasználókat az Azure-portálon & e-mailek (kell lehet feliratkozni az Azure Site Recovery értesítésekre). A tároló-erőforrás oldalon értesítésszalagról kezdenek el azt.
+1. Ha hello konfigurációs kiszolgáló SSL-tanúsítvány tooexpire hello a következő két hónapon, hello szolgáltatás elindul, értesítési hello Azure-portálon & e-mailek (kell előfizetett toobe tooAzure Site Recovery-értesítések). Amikor megkezdi a értesítésszalagról hello tároló-erőforrás lapon látható.
 
   ![tanúsítvány-értesítés](./media/site-recovery-vmware-to-azure-manage-configuration-server/ssl-cert-renew-notification.png)
-2. Kattintson a szalagcím, és kérjen további részleteket a tanúsítvány lejárta.
+2. Hello szalagcím tooget további részletek a hello tanúsítványlejárat gombra.
 
   ![tanúsítvány-részletek](./media/site-recovery-vmware-to-azure-manage-configuration-server/ssl-cert-expiry-details.png)
 
   >[!TIP]
-  Ahelyett, hogy ha egy **megújítása most** gomb megjelenik egy **frissítés most** gombra. Ez azt jelenti, hogy vannak-e néhány összetevőt a környezetben, amelyek még nincsenek frissítve az 9.4.xxxx.x vagy újabb verzió.
+  Ahelyett, hogy ha egy **megújítása most** gomb megjelenik egy **frissítés most** gombra. Ez azt jelenti, hogy vannak-e néhány összetevőt a környezetben, amelyek még nincsenek frissített too9.4.xxxx.x vagy újabb verzió.
 
 ## <a name="sizing-requirements-for-a-configuration-server"></a>A konfigurációs kiszolgáló méretezése követelményei
 
 | **PROCESSZOR** | **Memória** | **Gyorsítótár-lemez mérete** | **Adatváltozási sebesség** | **Védett gépek** |
 | --- | --- | --- | --- | --- |
 | 8 Vcpu (2 sockets * @ 2,5 GHz, 4 mag) |16 GB |300 GB |500 GB vagy kevesebb |100-nál kevesebb gépek replikálása. |
-| 12 Vcpu (2 sockets * @ 2,5 GHz-es 6 mag) |18 GB |600 GB |1 TB 500 GB |100-150 gépek közti replikálásához. |
-| 16 Vcpu (2 sockets * @ 2,5 GHz-es 8 mag) |32 GB |1 TB |1 TB-os és 2 TB |150-200 gépek közti replikálásához. |
+| 12 Vcpu (2 sockets * @ 2,5 GHz-es 6 mag) |18 GB |600 GB |500 GB too1 TB |100-150 gépek közti replikálásához. |
+| 16 Vcpu (2 sockets * @ 2,5 GHz-es 8 mag) |32 GB |1 TB |1 TB-os too2 TB |150-200 gépek közti replikálásához. |
 
   >[!TIP]
-  Ha a napi adatforgalommal meghaladja a 2 TB, vagy több mint 200 olyan virtuális gépet replikálni tervezi, javasoljuk, hogy a replikációs forgalom további folyamat-kiszolgálót telepíthet. Ismerje meg, további kibővített folyamat telepítésével kapcsolatos kiszolgálója.
+  Ha a napi adatforgalommal meghaladja a 2 TB, vagy több mint 200 olyan virtuális gépet tooreplicate tervezi, ajánlott toodeploy további folyamat kiszolgálók tooload egyenleg hello replikációs forgalmat. További tudnivalók hogyan toodeploy kibővített folyamat kiszolgálója.
 
 
 ## <a name="common-issues"></a>Gyakori problémák

@@ -1,6 +1,6 @@
 ---
-title: "Csatlakoztassa a helyszíni SQL Server egy webalkalmazást az Azure App Service hibrid kapcsolatok használata"
-description: "A Microsoft Azure-webalkalmazás létrehozása, és csatlakoztassa a helyszíni SQL Server-adatbázis"
+title: "aaaConnect tooon helyszíni SQL Server rendszert egy webalkalmazást az Azure App Service hibrid kapcsolatok használata"
+description: "A Microsoft Azure-webalkalmazás létrehozása, és csatlakoztassa tooan a helyszíni SQL Server-adatbázis"
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -14,255 +14,255 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/09/2016
 ms.author: cephalin
-ms.openlocfilehash: 12456ef3e2aecfa7a03cca97de2ff6ffd9602357
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2e8f8f7e0b9733cfb0433697615faba4358c6023
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-to-on-premises-sql-server-from-a-web-app-in-azure-app-service-using-hybrid-connections"></a>Csatlakoztassa a helyszíni SQL Server egy webalkalmazást az Azure App Service hibrid kapcsolatok használata
-Hibrid kapcsolatok kapcsolódhatnak [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Web Apps statikus TCP-port használatára a helyszíni erőforrásokhoz. Támogatott erőforrások közé tartoznak a Microsoft SQL Server, a MySQL, a HTTP webes API-k, a App Service és a legtöbb egyéni webszolgáltatások.
+# <a name="connect-tooon-premises-sql-server-from-a-web-app-in-azure-app-service-using-hybrid-connections"></a>Kapcsolódó tooon helyszíni SQL Server egy webalkalmazást az Azure App Service hibrid kapcsolatok használata
+Hibrid kapcsolatok kapcsolódhatnak [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) statikus TCP-portot használó webalkalmazások tooon helyszíni erőforrások. Támogatott erőforrások közé tartoznak a Microsoft SQL Server, a MySQL, a HTTP webes API-k, a App Service és a legtöbb egyéni webszolgáltatások.
 
-Ebből az oktatóanyagból megtudhatja hogyan egy App Service webalkalmazás létrehozása a [Azure Portal](http://go.microsoft.com/fwlink/?LinkId=529715), a webes alkalmazás csatlakoztatása az új hibrid kapcsolat funkciójával helyi helyszíni SQL Server-adatbázis, hozzon létre egy egyszerű ASP.NET-alkalmazást, amely a hibrid kapcsolat használatát, és telepítse központilag az alkalmazást az App Service webalkalmazásba. Az elkészült webalkalmazás az Azure felhasználói hitelesítő adatokat, amely a helyszíni tagsági adatbázisban tárolja. Az oktatóanyag azt feltételezi, hogy nincs korábbi tapasztalata az Azure vagy az ASP.NET használatával kapcsolatban.
+Ebből az oktatóanyagból megtudhatja, hogyan toocreate egy App Service webalkalmazás a hello [Azure Portal](http://go.microsoft.com/fwlink/?LinkId=529715), hello web app tooyour helyi helyszíni SQL Server adatbázis hello új hibrid kapcsolat funkció használata csatlakozáshoz, hozzon létre egy egyszerű ASP.NET az alkalmazás hello hibrid kapcsolat használatát, és hello alkalmazás toohello App Service-webalkalmazások telepítése. hello végrehajtani a webalkalmazás Azure felhasználói hitelesítő adatokat, amely a helyszíni tagsági adatbázisban tárolja. hello oktatóanyag feltételezi, hogy nincs korábbi tapasztalata az Azure vagy az ASP.NET használatával kapcsolatban.
 
 > [!NOTE]
-> Ha az Azure App Service-t az Azure-fiók regisztrálása előtt szeretné kipróbálni, ugorjon [Az Azure App Service kipróbálása](https://azure.microsoft.com/try/app-service/) oldalra. Itt azonnal létrehozhat egy ideiglenes, kezdő szintű webalkalmazást az App Service szolgáltatásban. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
+> Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
 > 
-> A Web Apps része a hibrid kapcsolatok szolgáltatás csak a érhető el a [Azure Portal](https://portal.azure.com). BizTalk szolgáltatások VPN-kapcsolat létrehozásához lásd: [hibrid kapcsolatok](http://go.microsoft.com/fwlink/p/?LinkID=397274).  
+> hello webalkalmazások hello hibrid kapcsolatok szolgáltatás része csak a hello [Azure Portal](https://portal.azure.com). BizTalk szolgáltatások, a kapcsolat toocreate lásd [hibrid kapcsolatok](http://go.microsoft.com/fwlink/p/?LinkID=397274).  
 > 
 > 
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az oktatóanyag teljesítéséhez szüksége lesz a következő termékek. Az összes szabad verziók, elérhetők nekiláthat teljes mértékben az Azure ingyenes.
+toocomplete ebben az oktatóanyagban szüksége lesz a következő termékek hello. Az összes szabad verziók, elérhetők nekiláthat teljes mértékben az Azure ingyenes.
 
 * **Azure-előfizetés** - ingyenes előfizetésre, lásd: [Azure ingyenes próbaverzió](/pricing/free-trial/).
-* **A Visual Studio 2013** – a Visual Studio 2013 ingyenes próbaverziójának letöltéséhez lásd: [Visual Studio letöltések](http://www.visualstudio.com/downloads/download-visual-studio-vs). Telepítse a folytatás előtt.
-* **A Microsoft .NET Framework 3.5 Service Pack 1** – Ha az operációs rendszer Windows 8.1, Windows Server 2012 R2, Windows 8, Windows Server 2012, Windows 7, vagy Windows Server 2008 R2, engedélyezheti a Vezérlőpult > Programok és szolgáltatások > Windows-szolgáltatások be- és kikapcsolása. Ellenkező esetben töltheti le a [Microsoft Download Center](http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=22).
-* **SQL Server 2014 Express eszközökkel** -Microsoft SQL Server Express ingyenesen letölthető a [Microsoft Web Platform adatbázissal kapcsolatos beállításainak lapja](http://www.microsoft.com/web/platform/database.aspx). Válassza ki a **Express** (nem LocalDB) verziója. A **eszközökkel Express** tartalmazza az ebben az oktatóanyagban használandó SQL Server Management Studio.
-* **SQL Server Management Studio Express** – Ez tartalmazza az SQL Server 2014 Express a fent említett eszközök letöltése, de ha külön telepíteni kell, töltse le és telepítse innen a [SQL Server Express letöltési oldala](http://www.microsoft.com/web/platform/database.aspx).
+* **A Visual Studio 2013** -toodownload egy ingyenes próbaverzióját Visual Studio 2013, lásd: [Visual Studio letöltések](http://www.visualstudio.com/downloads/download-visual-studio-vs). Telepítse a folytatás előtt.
+* **A Microsoft .NET Framework 3.5 Service Pack 1** – Ha az operációs rendszer Windows 8.1, Windows Server 2012 R2, Windows 8, Windows Server 2012, Windows 7, vagy Windows Server 2008 R2, engedélyezheti a Vezérlőpult > Programok és szolgáltatások > Windows-szolgáltatások be- és kikapcsolása. Ellenkező esetben letöltheti a hello [Microsoft Download Center](http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=22).
+* **SQL Server 2014 Express eszközökkel** -Microsoft SQL Server Express ingyenesen letölthető: hello [Microsoft Web Platform adatbázissal kapcsolatos beállításainak lapja](http://www.microsoft.com/web/platform/database.aspx). Válassza ki a hello **Express** (nem LocalDB) verziója. Hello **eszközökkel Express** tartalmazza az ebben az oktatóanyagban használandó SQL Server Management Studio.
+* **SQL Server Management Studio Express** – Ez az SQL Server 2014 Express hello tartalmazza a fent említett eszközök letöltése, de ha tooinstall van szüksége, külön-külön, letöltheti és telepítse azt hello [SQL Server Express letöltési oldalát](http://www.microsoft.com/web/platform/database.aspx).
 
-Az oktatóanyag feltételezi, hogy rendelkezik-e az Azure-előfizetésre, hogy a Visual Studio 2013 telepítve van, és, hogy telepítve vagy engedélyezve van a .NET-keretrendszer 3.5. Az oktatóanyag bemutatja, hogyan telepítse az SQL Server 2014 Express konfiguráció esetén, amely az Azure hibrid kapcsolatok funkció (egy alapértelmezett példány statikus TCP-port) megfelelően működik. Az oktatóanyag megkezdése előtt letöltése SQL Server 2014 Express eszközökkel a fent említett, ha nincs telepítve az SQL Server.
+hello oktatóanyag feltételezi, hogy rendelkezik-e az Azure-előfizetésre, hogy a Visual Studio 2013 telepítve van, és, hogy telepítve vagy engedélyezve van a .NET-keretrendszer 3.5. hello oktatóanyag bemutatja, hogyan a konfigurációkat, amelyek hello Azure hibrid kapcsolatok jól működik az SQL Server 2014 Express tooinstall funkció (egy alapértelmezett példány statikus TCP-port). Hello oktatóanyag megkezdése előtt letöltése SQL Server 2014 Express eszközökkel hello fent említett, ha nincs telepítve az SQL Server.
 
 ### <a name="notes"></a>Megjegyzések
-A helyszíni SQL Server vagy SQL Server Express adatbázis használata hibrid kapcsolaton keresztül, TCP/IP kell engedélyezni a statikus port. SQL Server alapértelmezett példány statikus 1433-as port használja, mivel elnevezett példányok azonban nem.
+toouse egy helyi SQL Server vagy SQL Server Express adatbázist egy hibrid kapcsolat, az TCP/IP toobe statikus port engedélyezve van szüksége. SQL Server alapértelmezett példány statikus 1433-as port használja, mivel elnevezett példányok azonban nem.
 
-A számítógép, amelyen a helyszíni Hybrid Connection Manager ügynököt telepíti:
+hello számítógép, amelyen hello helyszíni Hybrid Connection Manager ügynököt telepíti:
 
-* Rendelkeznie kell Azure kimenő kapcsolódás keresztül:
+* Kimenő kapcsolódás tooAzure kell rendelkeznie a keresztül:
 
 | Port | miért |
 | --- | --- |
 | 80 |**Szükséges** leellenőrizni a tanúsítvány és választhatóan adatkapcsolattal HTTP-porthoz. |
-| 443 |**Nem kötelező** az adatkapcsolat. Ha a 443-as kimenő kapcsolat nem érhető el, 80-as TCP-portot használja. |
-| 5671 és 9352 |**Ajánlott** , de az adatkapcsolat nem kötelező. Megjegyzés: Ebben a módban általában nagyobb átviteli teljesítményt eredményez. Ha nem érhető el kimenő kapcsolódás ezeket a portokat, 443-as TCP-portot használja. |
+| 443 |**Nem kötelező** az adatkapcsolat. Kimenő kapcsolódás too443 nem érhető el, ha a 80-as TCP-port használatos. |
+| 5671 és 9352 |**Ajánlott** , de az adatkapcsolat nem kötelező. Megjegyzés: Ebben a módban általában nagyobb átviteli teljesítményt eredményez. Kimenő kapcsolódás toothese portok nem érhető el, ha a 443-as TCP-port használatos. |
 
-* Kell tudni érnie a *állomásnév*:*portszám* a helyi erőforrás.
+* Képes tooreach hello kell *állomásnév*:*portszám* a helyi erőforrás.
 
-Ebben a cikkben szereplő lépések azt feltételezik, hogy a számítógépről, amely üzemelteti a helyszíni hibrid kapcsolat ügynök böngészőt használ.
+Ez a cikk hello lépések azt feltételezik, hogy hello helyszíni hibrid kapcsolat ügynököt futtató számítógépről hello hello böngészőt használ.
 
-Ha már van telepítve a konfigurációban, és egy környezetben, amely megfelel a fenti körülmények között SQL Server, kihagyhatja azokat, amelyek, és kezdje [egy SQL Server-adatbázis létrehozása a helyszínen](#CreateSQLDB).
+Ha már van telepítve a konfigurációban, és olyan környezetben, a fent leírt hello feltételeknek megfelelő SQL Server, kihagyhatja azokat, amelyek, és kezdje [egy SQL Server-adatbázis létrehozása a helyszínen](#CreateSQLDB).
 
 <a name="InstallSQL"></a>
 
 ## <a name="a-install-sql-server-express-enable-tcpip-and-create-a-sql-server-database-on-premises"></a>A. Telepítse az SQL Server Expresst, engedélyezze a TCP/IP protokollt, és a helyszíni SQL Server-adatbázis létrehozása
-Ez a szakasz bemutatja, hogyan telepíti az SQL Server Expresst, engedélyezze a TCP/IP protokollt, és hozzon létre egy adatbázist, így a webes alkalmazás működni fog-e az Azure portál.
+Ez a szakasz bemutatja, hogyan tooinstall SQL Server Express, engedélyezze a TCP/IP protokollt, és, hogy a webes alkalmazás működni fog-e hello Azure Portal-adatbázis létrehozása.
 
 ### <a name="install-sql-server-express"></a>SQL Server Express telepítése
-1. SQL Server Express telepítéséhez futtassa a **SQLEXPRWT_x64_ENU.exe** vagy **SQLEXPR_x86_ENU.exe** letöltött fájlban. Az SQL Server telepítési központjának varázsló jelenik meg.
+1. hello futtassa az SQL Server Express tooinstall **SQLEXPRWT_x64_ENU.exe** vagy **SQLEXPR_x86_ENU.exe** letöltött fájlban. hello SQL Server telepítési központjának varázsló jelenik meg.
    
     ![SQL-kiszolgáló telepítése][SQLServerInstall]
-2. Válasszon **új SQL Server önálló telepítése vagy szolgáltatások hozzáadása egy meglévő telepítéshez**. Kövesse az utasításokat, elfogadja az alapértelmezett választási lehetőségek és beállítások, amíg elér a **példány konfigurációja** lap.
-3. Az a **példány konfigurációja** lapon, válassza ki **alapértelmezett példány**.
+2. Válasszon **új SQL Server önálló telepítése vagy szolgáltatások tooan meglévő telepítési hozzáadása**. Útmutatás alapján hello, elfogadása hello alapértelmezett választási lehetőségek és beállítások, amíg elér toohello **példány konfigurációja** lap.
+3. A hello **példány konfigurációja** lapon, válassza ki **alapértelmezett példány**.
    
     ![Válassza ki az alapértelmezett példány][ChooseDefaultInstance]
    
-    A statikus 1433-as port az SQL Server-ügyfelektől érkező kéréseket figyeli az SQL Server alapértelmezett példányát alapértelmezés szerint ez a hibrid kapcsolatok szolgáltatás szükséges. Elnevezett példányok használata a dinamikus portok és UDP, amely nem támogatja a hibrid kapcsolatok.
-4. Fogadja el az alapértelmezett a a **kiszolgálókonfiguráció** lap.
-5. Az a **adatbázismotor beállítása** lap **hitelesítési mód**, válassza a **vegyes üzemmódú (SQL Server-hitelesítést és a Windows-hitelesítés)**, és adjon meg egy jelszót.
+    A statikus 1433-as port az SQL Server-ügyfelektől érkező kéréseket figyeli az SQL Server alapértelmezett példányát hello alapértelmezés szerint ez milyen hello szolgáltatáshoz szükséges a hibrid kapcsolatok. Elnevezett példányok használata a dinamikus portok és UDP, amely nem támogatja a hibrid kapcsolatok.
+4. Fogadja el a hello hello alapértelmezett **kiszolgálókonfiguráció** lap.
+5. A hello **adatbázismotor beállítása** lap **hitelesítési mód**, válassza ki **vegyes üzemmódú (SQL Server-hitelesítést és a Windows-hitelesítés)**, és adja meg a jelszó.
    
     ![Válassza ki a kevert üzemmód][ChooseMixedMode]
    
-    Ebben az oktatóanyagban fog használni az SQL Server-hitelesítést. Ne felejtse el a jelszót ad meg, mert később szüksége lesz az.
-6. A továbbiakban a telepítés befejezéséhez a varázsló lépéseit.
+    Ebben az oktatóanyagban fog használni az SQL Server-hitelesítést. Lehet, hogy tooremember hello jelszót ad meg, mert később szüksége lesz az.
+6. Hello részeinek hello varázsló toocomplete hello telepítési lépéseit.
 
 ### <a name="enable-tcpip"></a>Engedélyezze a TCP/IP protokollt
-Engedélyezze a TCP/IP protokollt, szüksége lesz lett telepítve az SQL Server Express telepítése során az SQL Server Configuration Manager. Kövesse a [engedélyezése TCP/IP hálózati protokollt az SQL Server](http://technet.microsoft.com/library/hh231672%28v=sql.110%29.aspx) folytatása előtt.
+TCP/IP tooenable, szüksége lesz a lett telepítve az SQL Server Express telepítése során az SQL Server Configuration Manager. Hello kövesse [engedélyezése TCP/IP hálózati protokollt az SQL Server](http://technet.microsoft.com/library/hh231672%28v=sql.110%29.aspx) folytatása előtt.
 
 <a name="CreateSQLDB"></a>
 
 ### <a name="create-a-sql-server-database-on-premises"></a>A helyszíni SQL Server-adatbázis létrehozása
-A Visual Studio webalkalmazás az Azure-ban elérhető tagsági adatbázis szükséges. Ehhez szükséges, hogy egy SQL Server vagy SQL Server Express adatbázist (nem a LocalDB adatbázisban, amely alapértelmezés szerint az MVC-sablont használ), így hoz létre, a tagsági adatbázisokból mellett.
+A Visual Studio webalkalmazás az Azure-ban elérhető tagsági adatbázis szükséges. Ehhez szükséges, hogy egy SQL Server vagy SQL Server Express adatbázist (nem hello LocalDB adatbázisban, amely az MVC-sablont használ hello alapértelmezés szerint), így hello tagsági adatbázisokból mellett hoz létre.
 
-1. A SQL Server Management Studio eszközben csatlakozzon az éppen most telepítette az SQL Server. (Ha a **kapcsolódás a kiszolgálóhoz** párbeszédpanelen nem jelenik meg automatikusan, navigáljon a **Object Explorer** a bal oldali ablaktáblán kattintson a **Connect**, és kattintson a **adatbázismotor**.) ![Csatlakozás kiszolgálóhoz][SSMSConnectToServer]
+1. Az SQL Server Management Studio eszközben csatlakozzon a toohello éppen most telepítette az SQL Server. (Ha hello **tooServer csatlakozás** párbeszédpanelen nem jelenik meg automatikusan, keresse meg a túl**Object Explorer** hello bal oldali ablaktáblában kattintson **Connect**, és kattintson a **Adatbázis-motor**.) ![Csatlakozás tooServer][SSMSConnectToServer]
    
-    A **kiszolgálótípus**, válassza a **adatbázismotor**. A **kiszolgálónév**, használhat **localhost** vagy az Ön által használt számítógép nevét. Válasszon **SQL Server-hitelesítés**, majd jelentkezzen be a rendszergazdai felhasználónevet és a korábban létrehozott jelszót.
-2. Az SQL Server Management Studio használatával hozzon létre egy új adatbázist, kattintson a jobb gombbal **adatbázisok** az Object Explorer, és kattintson a **új adatbázis**.
+    A **kiszolgálótípus**, válassza a **adatbázismotor**. A **kiszolgálónév**, használhat **localhost** vagy hello számítógép által használt hello nevét. Válasszon **SQL Server-hitelesítés**, majd jelentkezzen be hello sa felhasználónév és a korábban létrehozott hello jelszót.
+2. Kattintson jobb gombbal az új adatbázis SQL Server Management Studio használatával toocreate **adatbázisok** az Object Explorer, és kattintson a **új adatbázis**.
    
     ![Új adatbázis létrehozása][SSMScreateNewDB]
-3. A a **új adatbázis** párbeszédpanelen adja meg MembershipDB az adatbázis nevét, és kattintson a **OK**.
+3. A hello **új adatbázis** párbeszédpanelen adja meg MembershipDB hello adatbázis nevét, és kattintson a **OK**.
    
     ![Adja meg az adatbázis neve][SSMSprovideDBname]
    
-    Vegye figyelembe, hogy nem módosíthatja az adatbázis ezen a ponton. A tagsági információ bekerül később automatikusan a webes alkalmazás futtatásakor.
-4. Az Object Explorerben, ha kibontja **adatbázisok**, látni fogja, hogy a tagsági adatbázisokból létrejött-e.
+    Vegye figyelembe, hogy nem végzi el a módosításokat toohello adatbázis ezen a ponton. hello csoporttagsági információkat megkapja később automatikusan a webes alkalmazás futtatásakor.
+4. Az Object Explorerben, ha kibontja **adatbázisok**, látni fogja, hogy hello tagsági az adatbázis létrehozását.
    
     ![MembershipDB létrehozása][SSMSMembershipDBCreated]
 
 <a name="CreateSite"></a>
 
-## <a name="b-create-a-web-app-in-the-azure-portal"></a>B. Webalkalmazás létrehozása az Azure portálon
+## <a name="b-create-a-web-app-in-hello-azure-portal"></a>B. A webalkalmazás létrehozása az Azure portál hello
 > [!NOTE]
-> Ha már létrehozott egy webalkalmazást az Azure portálon, hogy a jelen oktatóanyag használni kívánt, ugorjon előre [egy hibrid kapcsolat és a BizTalk szolgáltatás létrehozása](#CreateHC) és továbbra is onnan.
+> Ha már létrehozott egy webalkalmazást az Azure portálon megjeleníteni kívánt toouse ebben az oktatóanyagban hello, akkor kihagyhatja azokat, amelyek túl[egy hibrid kapcsolat és a BizTalk szolgáltatás létrehozása](#CreateHC) és továbbra is onnan.
 > 
 > 
 
-1. Az a [Azure Portal](https://portal.azure.com), kattintson a **új** > **Web + mobil** > **webalkalmazás**.
+1. A hello [Azure Portal](https://portal.azure.com), kattintson a **új** > **Web + mobil** > **webalkalmazás**.
    
     ![Új gomb][New]
 2. A webalkalmazás konfigurálása, és kattintson a **létrehozása**.
    
     ![Webhely neve][WebsiteCreationBlade]
-3. Néhány másodpercen belül a web app jön létre, és a webalkalmazás panelen jelenik meg. A panel függőleges görgethető irányítópultot, amellyel kezelheti a webes alkalmazás.
+3. Néhány másodpercen belül hello webalkalmazás jön létre, és a webalkalmazás panelen jelenik meg. hello panel függőleges görgethető irányítópultot, amellyel kezelheti a webes alkalmazás.
    
     ![Futtató webhely][WebSiteRunningBlade]
    
-    Annak ellenőrzéséhez, hogy a webalkalmazás élő, kattintson a **Tallózás** ikonra kattintva jelenítse meg az alapértelmezett lapon.
+    élő tooverify hello webalkalmazás, rákattinthat hello **Tallózás** ikon toodisplay hello alapértelmezett oldalt.
 
-A következő létrehozhat egy hibrid kapcsolat és a BizTalk szolgáltatás a webalkalmazás.
+Ezt követően egy hibrid kapcsolat és a BizTalk szolgáltatás hello webalkalmazás hoz létre.
 
 <a name="CreateHC"></a>
 
 ## <a name="c-create-a-hybrid-connection-and-a-biztalk-service"></a>C. A hibrid kapcsolat és a BizTalk szolgáltatás létrehozása
-1. Vissza a portálon, válassza a beállítások, és kattintson a **hálózati** > **hibrid kapcsolati végpontok konfigurálása**.
+1. Vissza a hello Portal, nyissa meg toosettings és **hálózati** > **hibrid kapcsolati végpontok konfigurálása**.
    
     ![Hibrid kapcsolatok][CreateHCHCIcon]
-2. A hibrid kapcsolatok paneljén kattintson **Hozzáadás** > **új hibrid kapcsolat**.
-3. Az a **hibrid kapcsolat létrehozása** panel:
+2. Hello hibrid kapcsolatok paneljén kattintson **Hozzáadás** > **új hibrid kapcsolat**.
+3. A hello **hibrid kapcsolat létrehozása** panel:
    
-   * A **neve**, adja meg a kapcsolat nevét.
-   * A **állomásnév**, az SQL Server számítógép a számítógép nevének megadását.
-   * A **Port**, adja meg az alapértelmezett 1433-as (az SQL Server).
-   * Kattintson a **BizTalk szolgáltatás** > **új BizTalk szolgáltatás** , és írja be a BizTalk szolgáltatás nevét.
+   * A **neve**, hello kapcsolat nevét adja meg.
+   * A **állomásnév**, az SQL Server számítógép hello számítógép nevének megadását.
+   * A **Port**, adja meg az alapértelmezett 1433-as (hello az SQL Server).
+   * Kattintson a **BizTalk szolgáltatás** > **új BizTalk szolgáltatás** , és írja be a hello BizTalk szolgáltatás nevét.
      
      ![A hibrid kapcsolat létrehozása][TwinCreateHCBlades]
 4. Kattintson a **OK** kétszer.
    
-    A folyamat befejezése után a **értesítések** terület villogjon, egy zöld **sikeres** és a **a hibrid kapcsolat** panelen jelennek meg az új hibrid kapcsolat a a állapotának **nincs csatlakoztatva**.
+    Hello folyamat befejeződésekor hello **értesítések** terület villogjon, egy zöld **sikeres** és hello **a hibrid kapcsolat** panelen megjelenik a hello új hibrid kapcsolat az hello állapotának **nincs csatlakoztatva**.
    
     ![Egy hibrid kapcsolat létrehozása][CreateHCOneConnectionCreated]
 
-Fontos része a hibrid kapcsolat felhőalapú infrastruktúra ezen a ponton befejeződött. Ezután létrehozhat egy helyszíni megfelelő adat.
+Ezen a ponton befejeződött hello felhőalapú hibrid kapcsolat infrastruktúra fontos része. Ezután létrehozhat egy helyszíni megfelelő adat.
 
 <a name="InstallHCM"></a>
 
-## <a name="d-install-the-on-premises-hybrid-connection-manager-to-complete-the-connection"></a>D. A kapcsolat a helyszíni hibrid Csatlakozáskezelő telepítése
+## <a name="d-install-hello-on-premises-hybrid-connection-manager-toocomplete-hello-connection"></a>D. Hello helyszíni Hybrid Connection Manager toocomplete hello kapcsolat telepítése
 [!INCLUDE [app-service-hybrid-connections-manager-install](../../includes/app-service-hybrid-connections-manager-install.md)]
 
-Most, hogy a hibrid kapcsolat infrastruktúra befejeződött, létrehozhat egy webes alkalmazás, amely használja ezt a szolgáltatást.
+Most, hogy hello hibrid kapcsolat infrastruktúra befejeződött, létrehozhat egy webes alkalmazás, amely használja ezt a szolgáltatást.
 
 <a name="CreateASPNET"></a>
 
-## <a name="e-create-a-basic-aspnet-web-project-edit-the-database-connection-string-and-run-the-project-locally"></a>E. Hozzon létre egy egyszerű ASP.NET webes projekt, az adatbázis-kapcsolati karakterlánc szerkesztése és a projekt helyi futtatása
+## <a name="e-create-a-basic-aspnet-web-project-edit-hello-database-connection-string-and-run-hello-project-locally"></a>E. Hozzon létre egy egyszerű ASP.NET webes projekt hello adatbázis-kapcsolati karakterlánc szerkesztése és hello projekt helyi futtatása
 ### <a name="create-a-basic-aspnet-project"></a>Egy egyszerű ASP.NET-projekt létrehozása
-1. A Visual Studio a a **fájl** menüben hozzon létre egy új projektet:
+1. A Visual Studio, a hello **fájl** menüben hozzon létre egy új projektet:
    
     ![Új Visual Studio-projekt][HCVSNewProject]
-2. A a **sablonok** szakasza a **új projekt** párbeszédablakban válassza **webes** válassza **ASP.NET Web Application**, és kattintson a **OK**.
+2. A hello **sablonok** hello szakasza **új projekt** párbeszédablakban válassza **webes** , és válassza **ASP.NET Web Application**, és kattintson a  **OK**.
    
     ![ASP.NET webalkalmazás kiválasztása][HCVSChooseASPNET]
-3. Az a **új ASP.NET projekt** párbeszédpanelen válasszon **MVC**, és kattintson a **OK**.
+3. A hello **új ASP.NET projekt** párbeszédpanelen válasszon **MVC**, és kattintson a **OK**.
    
     ![MVC kiválasztása][HCVSChooseMVC]
-4. A projekt létrehozása után az alkalmazás információs lap jelenik meg. Nem működnek a webes projekt még.
+4. Hello projekt létrehozásakor hello alkalmazás információs lap jelenik meg. Ne futtassa a még hello webes projektet.
    
     ![Információs oldal][HCVSReadmePage]
 
-### <a name="edit-the-database-connection-string-for-the-application"></a>Az adatbázis-kapcsolati karakterlánc az alkalmazás szerkesztése
-Ebben a lépésben szerkeszteni a kapcsolati karakterlánc, amely közli az alkalmazás hol található a helyi SQL Server Express adatbázisban. A kapcsolati karakterlánc: az alkalmazás Web.config fájl, amely az alkalmazás konfigurációs információit tartalmazza.
+### <a name="edit-hello-database-connection-string-for-hello-application"></a>Adatbázis-kapcsolati karakterlánc hello a hello alkalmazás szerkesztése
+Ebben a lépésben szerkeszteni hello kapcsolati karakterlánc, amely közli az alkalmazás hol toofind a helyi SQL Server Express adatbázist. hello kapcsolati karakterlánca hello alkalmazás Web.config fájl, amely hello alkalmazás konfigurációs információit tartalmazza.
 
 > [!NOTE]
-> Győződjön meg arról, hogy az alkalmazás használja az adatbázis az SQL Server Express, és nem a Visual Studio alapértelmezett LocalDB létrehozott, fontos, hogy a projekt futtatása előtt fejezze be ezt a lépést.
+> az alkalmazás által használt hello adatbázis az SQL Server Express, és nem hello egy Visual Studio alapértelmezett LocalDB létrehozott tooensure, fontos, hogy a projekt futtatása előtt fejezze be ezt a lépést.
 > 
 > 
 
-1. A Megoldáskezelőben kattintson duplán a Web.config fájlt.
+1. A Megoldáskezelőben kattintson duplán a hello Web.config fájlt.
    
     ![Web.config][HCVSChooseWebConfig]
-2. Szerkessze a **connectionStrings** mutasson az SQL Server-adatbázis, a helyi számítógépen, a szintaxis a következő példában a következő szakaszban:
+2. Hello szerkesztése **connectionStrings** szakasz toopoint toohello SQL Server-adatbázisban a helyi gépén, a következő példa hello hello szintaxist a következő:
    
     ![Kapcsolati karakterlánc][HCVSConnectionString]
    
-    A kapcsolati karakterlánc szerkesztésekor vegye figyelembe a következőket:
+    Hello kapcsolati karakterlánc szerkesztésekor tartsa szem előtt tartva hello következő:
    
-   * Ha egy alapértelmezett példány (például YourServer\SQLEXPRESS) helyett egy megnevezett példányt csatlakozik, konfigurálnia kell az SQL Server statikus port használatára. A statikus használt portok konfigurálásáról további információkért lásd: [konfigurálása egy adott portot az SQL Server](http://support.microsoft.com/kb/823938). Alapértelmezés szerint a elnevezett példányok UDP és dinamikus portok, amely nem támogatja a hibrid kapcsolatok használatára.
-   * Javasoljuk, hogy megadja a port (a példában látható módon alapértelmezés szerint 1433) a kapcsolati karakterlánc, hogy akkor is ügyeljen arra, hogy a helyi SQL Server TCP engedélyezve van, és a megfelelő portot használ.
-   * Fontos, hogy az SQL Server-hitelesítés szeretne csatlakozni, a felhasználói azonosító és jelszó megadásával a kapcsolati karakterláncban.
-3. Kattintson a **mentése** a Visual Studio menteni a Web.config fájlt.
+   * Ha megnevezett példány helyett egy alapértelmezett példány (például YourServer\SQLEXPRESS) tooa kapcsolódik, konfigurálnia kell az SQL-kiszolgáló toouse statikus port. A statikus használt portok konfigurálásáról további információkért lásd: [hogyan tooconfigure SQL Server toolisten egy adott portot](http://support.microsoft.com/kb/823938). Alapértelmezés szerint a elnevezett példányok UDP és dinamikus portok, amely nem támogatja a hibrid kapcsolatok használatára.
+   * Javasoljuk, hogy megadja a hello port hello kapcsolati karakterlánc (hello példa látható alapértelmezés szerint 1433), így biztosíthatja, hogy a helyi SQL Server TCP engedélyezve van, és hello megfelelő portot használ.
+   * Ne felejtse el toouse SQL Server-hitelesítés tooconnect hello Felhasználóazonosító és jelszó megadásával a kapcsolati karakterláncban.
+3. Kattintson a **mentése** Visual Studio toosave hello Web.config fájlban.
 
-### <a name="run-the-project-locally-and-register-a-new-user"></a>A projekt helyi futtatása, és egy új felhasználó regisztrálása
-1. Futtassa az új webes projekt helyi csoport hibakeresési a Tallózás gombra kattintva. Ez a példa az Internet Explorerben.
+### <a name="run-hello-project-locally-and-register-a-new-user"></a>Futtassa helyileg a hello projektet, és regisztrálni egy új felhasználót
+1. Futtassa az új webes projekt helyi csoport hibakeresési hello Tallózás gombra kattintva. Ez a példa az Internet Explorerben.
    
     ![Futtassa a projekt][HCVSRunProject]
-2. A képernyő jobb felső sarkában az alapértelmezett webes lapra, válassza **regisztrálása** regisztrálni egy új fiókot:
+2. Az hello jobb felső sarkában hello alapértelmezett weblapot, majd válassza **regisztrálása** tooregister egy új fiókot:
    
     ![Egy új fiók regisztrálása][HCVSRegisterLocally]
 3. Adjon meg egy felhasználónevet és jelszót:
    
     ![Adja meg a felhasználónevet és jelszót][HCVSCreateNewAccount]
    
-    Ez automatikusan létrehoz egy adatbázis a helyi SQL-kiszolgálón, amely tárolja a csoporttagsági információkat az alkalmazás. A tábla (**dbo. AspNetUsers**) tartás webes alkalmazás felhasználói hitelesítő adatokat, mint a csak a megadott. Ebben a táblázatban láthatja az oktatóanyag későbbi részében.
-4. Zárja be a böngészőablakot, az alapértelmezett weblap. Ezzel leállítja a Visual Studio alkalmazás.
+    Ez automatikusan létrehoz egy adatbázis SQL-kiszolgálón a helyi tároló hello csoporttagsági információkat az alkalmazás. Hello tábla (**dbo. AspNetUsers**) tartás webes alkalmazás felhasználói hitelesítő adatok, például hello azokat az előbb hozzáadott. Ez a táblázat hello oktatóanyag későbbi részében jelenik meg.
+4. Zárja be a böngészőablakot hello hello alapértelmezett weblap. Ezzel leállítja a hello alkalmazást a Visual Studio.
 
-Most már készen áll a következő lépéshez, és tegye közzé az alkalmazást az Azure-ba, és tesztelik azt.
+Most már készen áll a hello következő lépésre, amely toopublish hello alkalmazás tooAzure és tesztelik azt.
 
 <a name="PubNTest"></a>
 
-## <a name="f-publish-the-web-application-to-azure-and-test-it"></a>F. Tegye közzé a webalkalmazást az Azure-ba, és tesztelik azt
-Most lesz az alkalmazás az App Service webalkalmazásba közzétételére, és ellenőrizze, hogy kiderüljön, a hibrid kapcsolat korábban konfigurált használatának adatbázishoz való kapcsolódáshoz a webes alkalmazás a helyi gépen.
+## <a name="f-publish-hello-web-application-tooazure-and-test-it"></a>F. Hello webes alkalmazás tooAzure közzététele és tesztelik azt
+Most, lesz az alkalmazás tooyour App Service webalkalmazás közzététele, és korábban konfigurált hello hibrid kapcsolat Mitől toosee tesztelése alatt használt tooconnect a webes alkalmazás toohello adatbázis a helyi számítógépen.
 
-### <a name="publish-the-web-application"></a>Tegye közzé a webalkalmazást
-1. A közzétételi profil az App Service webalkalmazás az Azure portálon töltheti le. A webalkalmazás paneljén kattintson **Get közzétételi profil**, és mentse a fájlt a számítógépre.
+### <a name="publish-hello-web-application"></a>Hello webes alkalmazás közzététele
+1. A közzétételi profil hello App Service webalkalmazás az Azure portál hello töltheti le. A webalkalmazás hello paneljén kattintson **Get közzétételi profil**, majd mentse a hello fájl tooyour számítógép.
    
     ![Közzétételi profil letöltése][PortalDownloadPublishProfile]
    
     A következő importálni ezt a fájlt a Visual Studio web alkalmazásba.
-2. A Visual Studióban, kattintson a jobb gombbal a projekt nevére a Megoldáskezelőben, és válassza ki **közzététel**.
+2. A Visual Studióban, kattintson a jobb gombbal a hello projekt nevére a Megoldáskezelőben, és válassza ki **közzététel**.
    
     ![Válassza ki közzététele][HCVSRightClickProjectSelectPublish]
-3. Az a **webhely közzététele** párbeszédpanelen, a a **profil** lapra, majd **importálási**.
+3. A hello **webhely közzététele** párbeszédpanel, hello **profil** lapra, majd **importálási**.
    
     ![Importálás][HCVSPublishWebDialogImport]
-4. Keresse meg a letöltött közzétételi profilt, válassza ki azt, és kattintson **OK**.
+4. Tallózás tooyour letöltött közzétételi profil, válassza ki azt, és kattintson **OK**.
    
-    ![Keresse meg a profil][HCVSBrowseToImportPubProfile]
-5. A közzétételi információkat importálja, és megjeleníti a **kapcsolat** párbeszédpanel lapján.
+    ![Keresse meg a tooprofile][HCVSBrowseToImportPubProfile]
+5. A közzétételi információkat importálja, és megjeleníti a hello **kapcsolat** hello párbeszédpanel lapján.
    
     ![Kattintson a közzététel][HCVSClickPublish]
    
     Kattintson a **Publish** (Közzététel) gombra.
    
-    Közzététel befejezése után a böngésző elindul, és a már ismerős ASP.NET-alkalmazás – megjelenítése, azzal a különbséggel, hogy most már az élő Azure felhőben!
+    Közzététel befejezése után a böngésző elindul, és a már ismerős ASP.NET-alkalmazás – megjelenítése, azzal a különbséggel, hogy mostantól az Azure-felhőbe hello élő!
 
-A következő élő webalkalmazásokat használatával fog látni a hibrid kapcsolatot, a művelet.
+A következő fogja használni az élő webes alkalmazás toosee a hibrid kapcsolat működés közben.
 
-### <a name="test-the-completed-web-application-on-azure"></a>Az elkészült webalkalmazás az Azure-on tesztelése
-1. A felső sarkában található weblap az Azure-on, válassza ki **jelentkezzen be**.
+### <a name="test-hello-completed-web-application-on-azure"></a>Teszt hello Azure webalkalmazás befejeződött
+1. Hello felső sarkában található weblap az Azure-on, válassza ki **jelentkezzen be**.
    
     ![A teszt-napló][HCTestLogIn]
-2. Az App Service webalkalmazásba most csatlakozik a webes alkalmazás tagsági adatbázisokból a helyi számítógépen. Ennek ellenőrzéséhez jelentkezzen be ugyanazon hitelesítő adatokkal, a helyi adatbázis korábban megadott.
+2. Az App Service webalkalmazás már csatlakoztatott tooyour webes alkalmazás tagsági adatbázisokból a helyi számítógépen. tooverify e, jelentkezzen be a korábbi adatbázis-hitelesítő adatokkal, hogy a megadott hello helyi hello.
    
     ![Hello üdvözlőlap][HCTestHelloContoso]
-3. Az új hibrid kapcsolat további teszteléséhez jelentkezzen ki az Azure-webalkalmazás, és regisztrálja egy másik felhasználóként. Adjon meg egy új felhasználónevet és jelszót, és kattintson a **regisztrálása**.
+3. toofurther az új hibrid kapcsolat tesztelése, jelentkezzen ki az Azure-webalkalmazás, és regisztrálja egy másik felhasználóként. Adjon meg egy új felhasználónevet és jelszót, és kattintson a **regisztrálása**.
    
     ![Teszt regisztrálja egy másik felhasználó][HCTestRegisterRelecloud]
-4. Győződjön meg arról, hogy az új felhasználói hitelesítő adatok a hibrid kapcsolaton keresztül a helyi adatbázisban tárolja, a helyi számítógépen nyissa meg az SQL Management Studio. Az Object Explorerben bontsa ki a **MembershipDB** adatbázisából, és végül **táblák**. Kattintson a jobb gombbal a **dbo. AspNetUsers** tagsági tábla, és válassza a **legfelső 1000 sor kiválasztása** az eredmények megtekintéséhez.
+4. tooverify, hogy hello új felhasználói hitelesítő adatok a hibrid kapcsolaton keresztül a helyi adatbázisban tárolja a helyi számítógépen nyissa meg az SQL Management Studio. Az Object Explorerben bontsa ki a hello **MembershipDB** adatbázisából, és végül **táblák**. Kattintson a jobb gombbal hello **dbo. AspNetUsers** tagsági tábla, és válassza a **legfelső 1000 sor kiválasztása** tooview hello eredmények.
    
-    ![Az eredmények megtekintése][HCTestSSMSTree]
-5. A helyi csoporttagság most táblázat fiókot is - helyileg létrehozó, és az Azure felhőben létrehozott. Az egy, a felhőben Azure hibrid kapcsolat funkción keresztül a helyi adatbázisba mentése megtörtént.
+    ![Hello eredmények megtekintése][HCTestSSMSTree]
+5. A helyi csoporttagság most táblázat mindkét fiókok – hello helyileg létre, és egy, az Azure-felhőbe hello létrehozott hello. hello felhőben létre hello Azure hibrid kapcsolat funkción keresztül tooyour a helyi adatbázis mentése megtörtént.
    
     ![A helyszíni adatbázisban regisztrált felhasználók][HCTestShowMemberDb]
 
-Most már létrehozta és telepítve az ASP.NET webalkalmazások által használt egy hibrid kapcsolat egy webalkalmazást az Azure felhőben és helyszíni SQL Server-adatbázis között. Gratulálunk!
+Most már létrehozta és telepítve az ASP.NET webalkalmazások által használt egy hibrid kapcsolat egy webalkalmazást az Azure-felhőbe hello és a helyszíni SQL Server-adatbázis között. Gratulálunk!
 
 ## <a name="see-also"></a>Lásd még:
 [A hibrid kapcsolatok áttekintése](http://go.microsoft.com/fwlink/p/?LinkID=397274)

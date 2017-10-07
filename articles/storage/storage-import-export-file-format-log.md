@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Import/Export naplófájlformátum |} Microsoft Docs"
-description: "További információk a lépéseket az Import/Export szolgáltatás feladat végrehajtásakor létrehozott naplófájlok formátuma."
+title: "aaaAzure importálási/exportálási formátumát |} Microsoft Docs"
+description: "További információk a lépéseket az Import/Export szolgáltatás feladat végrehajtásakor létrehozott hello naplófájlok hello formátuma."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 16234ccaf13ce1d85cfd207ed4734e683070faa6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 15a652455aa947922af0aa39ccefe68811a3db19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-importexport-service-log-file-format"></a>Az Azure Import/Export szolgáltatás naplófájlformátum
-Amikor a Microsoft Azure Import/Export szolgáltatás hajt végre, az importálási feladat vagy exportálási feladat részeként egy műveletet a meghajtón, írja a naplókat, hogy a feladathoz kapcsolódó tárfiókban blokkblobokat.  
+Amikor hello Microsoft Azure Import/Export szolgáltatás hajt végre, az importálási feladat vagy exportálási feladat részeként egy műveletet a meghajtón, írja a naplókat tooblock blobok adott feladattal társított hello tárfiókban.  
   
-Az Import/Export szolgáltatás írható két naplók van:  
+Hello Import/Export szolgáltatás által írható két naplók van:  
   
--   A hibanapló hiba esetén mindig létrejön.  
+-   hello hibanapló mindig egy hiba hello esemény jön létre.  
   
--   A részletes naplózás alapértelmezés szerint nincs engedélyezve, de úgy, hogy engedélyezhető a `EnableVerboseLog` tulajdonságának egy [Put feladat](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) vagy [frissítés Feladattulajdonság](/rest/api/storageimportexport/jobs#Jobs_Update) műveletet.  
+-   hello részletes naplózás alapértelmezés szerint nincs engedélyezve, de előfordulhat, hogy engedélyezni lehessen hello beállítása `EnableVerboseLog` tulajdonságának egy [Put feladat](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) vagy [frissítés Feladattulajdonság](/rest/api/storageimportexport/jobs#Jobs_Update) műveletet.  
   
 ## <a name="log-file-location"></a>Naplófájl helye  
-A naplók írni a tároló vagy a megadott virtuális könyvtár blokkblobokat a `ImportExportStatesPath` beállítás, amely állíthat be egy `Put Job` műveletet. A helyet, amelyhez a naplók írt, attól függ, hogyan hitelesítés van megadva, a feladat a megadott együtt `ImportExportStatesPath`. A feladat hitelesítési a tárfiók kulcsa, vagy a tároló SAS (közös hozzáférésű jogosultságkód) keresztül adható meg.  
+hello írja a naplókat blobok tooblock hello tároló vagy hello által megadott virtuális könyvtár `ImportExportStatesPath` beállítás, amely állíthat be egy `Put Job` műveletet. Írja a hello hely toowhich hello naplókat attól függ, hogyan hitelesítési hello feladat együtt megadott hello értéke meg van adva `ImportExportStatesPath`. A tárfiók kulcsa, vagy a tároló SAS (közös hozzáférésű jogosultságkód) hitelesítési hello feladat adható meg.  
   
-A tároló vagy a virtuális könyvtár neve lehet, hogy vagy az alapértelmezett nevet: kell `waimportexport`, vagy egy másik tárolóhoz vagy a megadott virtuális könyvtár neve.  
+hello hello tároló vagy a virtuális könyvtár nevét is vagy hello alapértelmezett neve `waimportexport`, vagy egy másik tárolóhoz vagy a megadott virtuális könyvtár neve.  
   
-Az alábbi táblázatban a lehetséges beállítások:  
+az alábbi táblázat hello hello lehetséges lehetőségeket mutatja be:  
   
 |Hitelesítési módszer|Az érték `ImportExportStatesPath`elem|Blobok napló helye|  
 |---------------------------|----------------------------------------------|---------------------------|  
-|Tárfiók kulcsa|Alapértelmezett érték|Nevű tárolót `waimportexport`, amely egy, az alapértelmezett tároló. Példa:<br /><br /> `https://myaccount.blob.core.windows.net/waimportexport`|  
-|Tárfiók kulcsa|A felhasználó által megadott érték|A felhasználó által nevű tárolót. Példa:<br /><br /> `https://myaccount.blob.core.windows.net/mylogcontainer`|  
-|A tároló SAS|Alapértelmezett érték|Nevű virtuális könyvtár `waimportexport`, amely az alapértelmezett nevet, a biztonsági Társítások megadott tároló alatt.<br /><br /> Például, ha a megadott SAS a folyamat `https://myaccount.blob.core.windows.net/mylogcontainer?sv=2012-02-12&se=2015-05-22T06%3A54%3A55Z&sr=c&sp=wl&sig=sigvalue`, akkor válassza a napló helye`https://myaccount.blob.core.windows.net/mylogcontainer/waimportexport`|  
-|A tároló SAS|A felhasználó által megadott érték|A felhasználó, a biztonsági Társítások megadott tároló alatt nevű virtuális könyvtárat.<br /><br /> Például, ha a megadott SAS a folyamat `https://myaccount.blob.core.windows.net/mylogcontainer?sv=2012-02-12&se=2015-05-22T06%3A54%3A55Z&sr=c&sp=wl&sig=sigvalue`, és a megadott virtuális könyvtár neve `mylogblobs`, akkor válassza a napló helyét `https://myaccount.blob.core.windows.net/mylogcontainer/waimportexport/mylogblobs`.|  
+|Tárfiók kulcsa|Alapértelmezett érték|Nevű tárolót `waimportexport`, ez az alapértelmezett tároló hello. Példa:<br /><br /> `https://myaccount.blob.core.windows.net/waimportexport`|  
+|Tárfiók kulcsa|A felhasználó által megadott érték|Hello felhasználó nevű tárolót. Példa:<br /><br /> `https://myaccount.blob.core.windows.net/mylogcontainer`|  
+|A tároló SAS|Alapértelmezett érték|Nevű virtuális könyvtár `waimportexport`, amely hello alapértelmezett nevét, hello SAS megadott hello tároló alatt.<br /><br /> Például, ha a megadott hello SAS hello folyamat `https://myaccount.blob.core.windows.net/mylogcontainer?sv=2012-02-12&se=2015-05-22T06%3A54%3A55Z&sr=c&sp=wl&sig=sigvalue`, majd hello napló helyét lenne.`https://myaccount.blob.core.windows.net/mylogcontainer/waimportexport`|  
+|A tároló SAS|A felhasználó által megadott érték|Hello felhasználó alatt megadott hello SAS hello tároló nevű virtuális könyvtárat.<br /><br /> Például, ha a megadott hello SAS hello folyamat `https://myaccount.blob.core.windows.net/mylogcontainer?sv=2012-02-12&se=2015-05-22T06%3A54%3A55Z&sr=c&sp=wl&sig=sigvalue`, és hello megadott virtuális könyvtár neve `mylogblobs`, majd hello napló helyét lenne `https://myaccount.blob.core.windows.net/mylogcontainer/waimportexport/mylogblobs`.|  
   
-Az URL-címet a hibaüzeneteket és részletes naplókat meghívásával kérheti le a [Get Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) műveletet. A naplók a meghajtó feldolgozás befejezése után érhetők el.  
+Hello URL-címe hello hiba és a részletes naplókat hívó hello olvashatók be [Get Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) műveletet. hello érhetők el naplók hello meghajtó feldolgozás befejezése után.  
   
 ## <a name="log-file-format"></a>Naplófájlformátum  
-Mindkét napló formátuma megegyezik: blobok a merevlemez-meghajtóról, és a felhasználói fiókhoz közötti másolás közben előforduló eseményeket XML leírását tartalmazó blob.  
+hello mindkét naplók formátumban van hello ugyanaz: hello az eseményeket, amelyek a blobok hello merevlemezre és hello felhasználói fiókhoz közötti másolás közben történt az XML-leírását tartalmazó blob.  
   
-A részletes naplózás minden egyes blob (hogy az importálás) vagy a fájlt (exportálási feladat), a másolási művelet állapotára vonatkozó részletes adatokat tartalmaz, mivel a hibanapló csak blobok vagy hibákat észlelt az importálási vagy exportálási feladat során fájlok adatait tartalmazza.  
+hello részletes teljes vonatkozó információkat tartalmaz hello állapot hello másolási művelet minden egyes blob (hogy az importálás) vagy a fájlt (exportálási feladat), mivel hello hibanapló csak hello adatait blobok vagy hibát közben hello fájlokat tartalmazza importálhatja és exportálhatja a feladatot.  
   
-A részletes napló formátuma alább látható. A hibanapló hasonló struktúrával rendelkezik, de sikeres műveletek kiszűri.  
+hello részletes napló formátuma alább látható. hello hibanapló hello azonos struktúra, de sikeres műveletek kiszűri rendelkezik.  
 
 ```xml
 <DriveLog Version="2014-11-01">  
@@ -104,162 +104,162 @@ properties-status ::=
 </Properties>  
 ```
 
-A következő táblázat ismerteti a naplófájl az elemek.  
+hello következő táblázatban hello elemek hello naplófájl.  
   
 |XML-elem.|Típus|Leírás|  
 |-----------------|----------|-----------------|  
 |`DriveLog`|XML-elem.|A meghajtó napló jelöli.|  
-|`Version`|Attribútum, karakterlánc|A naplófájl formátumának verziója.|  
-|`DriveId`|Karakterlánc|A meghajtó hardver sorozatszáma.|  
-|`Status`|Karakterlánc|A meghajtó feldolgozási állapotát. Tekintse meg a `Drive Status Codes` tábla alább olvashat.|  
+|`Version`|Attribútum, karakterlánc|hello naplóformátumban hello verzióját.|  
+|`DriveId`|Karakterlánc|hello meghajtó hardver sorozatszámát.|  
+|`Status`|Karakterlánc|Hello meghajtó feldolgozási állapotát. Lásd: hello `Drive Status Codes` tábla alább olvashat.|  
 |`Blob`|Beágyazott XML-elem.|Egy blob jelöli.|  
-|`Blob/BlobPath`|Karakterlánc|A BLOB URI.|  
-|`Blob/FilePath`|Karakterlánc|A meghajtón a fájl relatív elérési útja.|  
-|`Blob/Snapshot`|Dátum és idő|A blob exportálási feladat csak a pillanatfelvétel-verzió.|  
-|`Blob/Length`|Egész szám|A teljes hossza a blob bájtban.|  
-|`Blob/LastModified`|Dátum és idő|A dátum/idő, amelyet a blob, csak az exportálási feladat.|  
-|`Blob/ImportDisposition`|Karakterlánc|A blob, hogy az importálás csak importálási rendezése.|  
-|`Blob/ImportDisposition/@Status`|Attribútum, karakterlánc|Az importálás törlése állapota.|  
+|`Blob/BlobPath`|Karakterlánc|hello hello blob URI Azonosítóját.|  
+|`Blob/FilePath`|Karakterlánc|hello relatív elérési út toohello fájl hello meghajtón.|  
+|`Blob/Snapshot`|Dátum és idő|hello blob, csak exportálási feladat hello pillanatkép verzióját.|  
+|`Blob/Length`|Egész szám|hello teljes hossza hello blob bájtban.|  
+|`Blob/LastModified`|Dátum és idő|hello dátum/idő, hogy a hello blob voltak utoljára módosítva, csak az exportálási feladat.|  
+|`Blob/ImportDisposition`|Karakterlánc|hello importálása hello BLOB, hogy az importálás csak törlése.|  
+|`Blob/ImportDisposition/@Status`|Attribútum, karakterlánc|hello hello állapotának importálása törlése.|  
 |`PageRangeList`|Beágyazott XML-elem.|Az oldalakra vonatkozó blob tartományokat listáját jelöli.|  
 |`PageRange`|XML-elem.|Egy laptartomány jelöli.|  
-|`PageRange/@Offset`|Attribútum, egész szám|A BLOB a laptartomány kezdő eltolása.|  
-|`PageRange/@Length`|Attribútum, egész szám|A lap tartomány hossza bájtban.|  
-|`PageRange/@Hash`|Attribútum, karakterlánc|Base16 kódolású MD5 kivonatoló a lap tartomány.|  
-|`PageRange/@Status`|Attribútum, karakterlánc|A laptartomány feldolgozási állapotát.|  
+|`PageRange/@Offset`|Attribútum, egész szám|Hello blob eltolása hello laptartomány kezdve.|  
+|`PageRange/@Length`|Attribútum, egész szám|Hello laptartomány hossza (bájt).|  
+|`PageRange/@Hash`|Attribútum, karakterlánc|Base16 kódolású MD5 kivonatoló hello lap tartomány.|  
+|`PageRange/@Status`|Attribútum, karakterlánc|Hello laptartomány feldolgozási állapotát.|  
 |`BlockList`|Beágyazott XML-elem.|Egy blokkblobhoz tartoznak blokkok listája jelöli.|  
 |`Block`|XML-elem.|A blokk jelöli.|  
-|`Block/@Offset`|Attribútum, egész szám|A blob eltolása a blokk kezdve.|  
-|`Block/@Length`|Attribútum, egész szám|A blokk hossza bájtban.|  
-|`Block/@Id`|Attribútum, karakterlánc|A blokk-azonosító.|  
-|`Block/@Hash`|Attribútum, karakterlánc|Base16 kódolású MD5 kivonatoló a blokk.|  
-|`Block/@Status`|Attribútum, karakterlánc|A blokk feldolgozási állapotát.|  
-|`Metadata`|Beágyazott XML-elem.|A blob metaadatai jelöli.|  
-|`Metadata/@Status`|Attribútum, karakterlánc|A blob metaadatai feldolgozásának állapotát.|  
-|`Metadata/GlobalPath`|Karakterlánc|A globális metaadatokat relatív elérési útja.|  
-|`Metadata/GlobalPath/@Hash`|Attribútum, karakterlánc|Base16 kódolású MD5 kivonatoló a globális metaadatfájl.|  
-|`Metadata/Path`|Karakterlánc|A metaadatok relatív elérési útja.|  
-|`Metadata/Path/@Hash`|Attribútum, karakterlánc|Base16 kódolású MD5 kivonatoló a metaadatfájl.|  
-|`Properties`|Beágyazott XML-elem.|A blob tulajdonságai jelöli.|  
-|`Properties/@Status`|Attribútum, karakterlánc|Feldolgozása a blob tulajdonságai, például a fájl nem található, állapotának befejeződött.|  
-|`Properties/GlobalPath`|Karakterlánc|A globális tulajdonságok relatív elérési útja.|  
-|`Properties/GlobalPath/@Hash`|Attribútum, karakterlánc|Base16 kódolású MD5 kivonatoló a globális tulajdonságok fájl.|  
-|`Properties/Path`|Karakterlánc|A tulajdonságok relatív elérési útja.|  
-|`Properties/Path/@Hash`|Attribútum, karakterlánc|Base16 kódolású MD5 kivonatoló tulajdonságok fájl.|  
-|`Blob/Status`|Karakterlánc|A blob feldolgozási állapotát.|  
+|`Block/@Offset`|Attribútum, egész szám|Kezdő eltolása hello blob hello blokkja.|  
+|`Block/@Length`|Attribútum, egész szám|Hello blokk hossza bájtban.|  
+|`Block/@Id`|Attribútum, karakterlánc|hello blokk-azonosító.|  
+|`Block/@Hash`|Attribútum, karakterlánc|Base16 kódolású MD5 kivonatoló hello blokk.|  
+|`Block/@Status`|Attribútum, karakterlánc|Hello blokk feldolgozási állapotát.|  
+|`Metadata`|Beágyazott XML-elem.|Hello blob metaadatai jelöli.|  
+|`Metadata/@Status`|Attribútum, karakterlánc|Hello blob metaadatok feldolgozási állapotát.|  
+|`Metadata/GlobalPath`|Karakterlánc|Relatív elérési út toohello globális metaadatait tartalmazó fájl.|  
+|`Metadata/GlobalPath/@Hash`|Attribútum, karakterlánc|Base16 kódolású MD5 kivonatoló hello globális metaadatfájl.|  
+|`Metadata/Path`|Karakterlánc|Relatív elérési út toohello metaadatait tartalmazó fájl.|  
+|`Metadata/Path/@Hash`|Attribútum, karakterlánc|Base16 kódolású MD5 kivonatoló hello metaadatfájl.|  
+|`Properties`|Beágyazott XML-elem.|Hello blob tulajdonságait adja meg.|  
+|`Properties/@Status`|Attribútum, karakterlánc|Feldolgozási hello blob tulajdonságai, például a fájl nem található, állapotának befejeződött.|  
+|`Properties/GlobalPath`|Karakterlánc|Toohello globális tulajdonságok fájl relatív elérési út.|  
+|`Properties/GlobalPath/@Hash`|Attribútum, karakterlánc|Base16 kódolású MD5 kivonatoló hello globális tulajdonságok fájl.|  
+|`Properties/Path`|Karakterlánc|Toohello tulajdonságok fájl relatív elérési út.|  
+|`Properties/Path/@Hash`|Attribútum, karakterlánc|Base16 kódolású MD5 kivonatoló hello tulajdonságok fájl.|  
+|`Blob/Status`|Karakterlánc|Hello blob feldolgozási állapotát.|  
   
 # <a name="drive-status-codes"></a>Meghajtó állapotkódok  
-Az alábbi táblázat a meghajtó feldolgozása állapotkódjai.  
+hello következő táblázatban hello állapotkódok egy meghajtó feldolgozásához.  
   
 |Állapotkód|Leírás|  
 |-----------------|-----------------|  
-|`Completed`|A meghajtó feldolgozási hiba nélkül befejeződött.|  
-|`CompletedWithWarnings`|A meghajtó figyelmeztetésekkel fejeződött be az egy vagy több blobot a blobok megadott importálási dispositions / feldolgozása befejeződött.|  
-|`CompletedWithErrors`|A meghajtó egy vagy több blobot, vagy adattömbök befejeződött.|  
-|`DiskNotFound`|Nincs lemez a meghajtón található.|  
-|`VolumeNotNtfs`|Az első adatok lemezen levő kötetet a nem nem NTFS formátumú.|  
-|`DiskOperationFailed`|Ismeretlen hiba történt a meghajtón műveletek végrehajtása során.|  
+|`Completed`|hello meghajtó feldolgozási hiba nélkül befejeződött.|  
+|`CompletedWithWarnings`|hello meghajtó figyelmeztetésekkel fejeződött be a / hello importálási dispositions hello blobok megadott egy vagy több blobot feldolgozása befejeződött.|  
+|`CompletedWithErrors`|egy vagy több blobot, vagy adattömbök hello meghajtó befejeződött.|  
+|`DiskNotFound`|Nincs lemez hello meghajtón található.|  
+|`VolumeNotNtfs`|hello első adatok lemezen levő kötetet a hello nem nem NTFS formátumú.|  
+|`DiskOperationFailed`|Ismeretlen hiba történt, amikor hello meghajtón műveletet hajt végre.|  
 |`BitLockerVolumeNotFound`|A BitLocker encryptable kötet található.|  
-|`BitLockerNotActivated`|A BitLocker nincs engedélyezve a köteten.|  
-|`BitLockerProtectorNotFound`|A numerikus jelszó kulcsvédőjének nem létezik a köteten.|  
-|`BitLockerKeyInvalid`|A numerikus, a megadott jelszó nem lehet oldani a kötet zárolását.|  
-|`BitLockerUnlockVolumeFailed`|Ismeretlen hiba történt a kötet zárolásának feloldására tett kísérlet során.|  
+|`BitLockerNotActivated`|A BitLocker nincs engedélyezve a hello kötet.|  
+|`BitLockerProtectorNotFound`|hello numerikus jelszavas kötetvédő nem létezik hello köteten.|  
+|`BitLockerKeyInvalid`|hello numerikus jelszót adott meg, nem oldhatja fel hello kötet.|  
+|`BitLockerUnlockVolumeFailed`|Ismeretlen hiba történt a toounlock hello kötet tett kísérlet során.|  
 |`BitLockerFailed`|Ismeretlen hiba történt a BitLocker műveletet hajt végre.|  
-|`ManifestNameInvalid`|A jegyzékfájl neve érvénytelen.|  
-|`ManifestNameTooLong`|A jegyzékfájl neve túl hosszú.|  
-|`ManifestNotFound`|A jegyzékfájl nem található.|  
-|`ManifestAccessDenied`|A jegyzékfájl való hozzáférés megtagadva.|  
-|`ManifestCorrupted`|Az Alkalmazásjegyzék-fájl sérült (a tartalom nem egyezik a a kivonata).|  
-|`ManifestFormatInvalid`|A jegyzék tartalom nem felel meg a szükséges formátumnak.|  
-|`ManifestDriveIdMismatch`|A jegyzékfájl a meghajtó azonosítója nem egyezik meg a meghajtón egy olvasás.|  
-|`ReadManifestFailed`|A lemez i/o-hiba történt a jegyzék olvasása közben.|  
-|`BlobListFormatInvalid`|Az Exportálás blob lista blob nem felel meg a szükséges formátumnak.|  
-|`BlobRequestForbidden`|A blobot, amely a storage-fiók nem férhet hozzá. Ez akkor lehet érvénytelen tárfiók kulcsa vagy a tároló SAS miatt.|  
-|`InternalError`|És belső hiba történt a meghajtó feldolgozása közben.|  
+|`ManifestNameInvalid`|hello jegyzékfájl neve érvénytelen.|  
+|`ManifestNameTooLong`|hello jegyzékfájl neve túl hosszú.|  
+|`ManifestNotFound`|hello jegyzékfájl nem található.|  
+|`ManifestAccessDenied`|Toohello jegyzékfájl-hozzáférés megtagadva.|  
+|`ManifestCorrupted`|hello Alkalmazásjegyzék-fájl sérült (hello tartalom nem felel meg a kivonatoló).|  
+|`ManifestFormatInvalid`|hello jegyzék tartalom nem felel meg a toohello megkívánt formátumban.|  
+|`ManifestDriveIdMismatch`|hello meghajtó hello jegyzékfájl-azonosító nem egyezik meg a hello egy hello meghajtóról olvasni.|  
+|`ReadManifestFailed`|A lemez i/o-hiba történt a következő jegyzékből hello olvasás közben.|  
+|`BlobListFormatInvalid`|hello exportálási blob lista blob nem felel meg a toohello megkívánt formátumban.|  
+|`BlobRequestForbidden`|Blobok elérése az toohello hello tárfiókban tiltott. Előfordulhat, hogy ennek lehet tooinvalid tárfiók kulcsa vagy a tároló SAS.|  
+|`InternalError`|És hello meghajtó feldolgozása közben belső hiba történt.|  
   
 ## <a name="blob-status-codes"></a>A BLOB állapotkódok  
-Az alábbi táblázat a állapotkódok blob feldolgozásra.  
+hello következő táblázatban hello állapotkódok blob feldolgozásához.  
   
 |Állapotkód|Leírás|  
 |-----------------|-----------------|  
-|`Completed`|A blob feldolgozási hiba nélkül befejeződött.|  
-|`CompletedWithErrors`|A blob hibák egy vagy több tartományokat vagy blokkok, metaadatok vagy-tulajdonságok feldolgozása befejeződött.|  
-|`FileNameInvalid`|A fájlnév érvénytelen.|  
-|`FileNameTooLong`|A fájl neve túl hosszú.|  
-|`FileNotFound`|A fájl nem található.|  
-|`FileAccessDenied`|A fájlhoz való hozzáférés megtagadva.|  
-|`BlobRequestFailed`|A blob eléréséhez a Blob szolgáltatási kérelem sikertelen volt.|  
-|`BlobRequestForbidden`|A blob eléréséhez a Blob szolgáltatási kérelem tiltott. Ez akkor lehet érvénytelen tárfiók kulcsa vagy a tároló SAS miatt.|  
-|`RenameFailed`|Nem sikerült átnevezni a blobot (hogy az importálás) vagy a fájlt (exportálási feladat).|  
-|`BlobUnexpectedChange`|Egy váratlan módosítás történt a blob (exportálási feladat).|  
-|`LeasePresent`|A blob megtalálható a címbérlet van.|  
-|`IOFailed`|A lemez- vagy hálózati i/o-hiba történt a blob feldolgozása során.|  
-|`Failed`|Ismeretlen hiba történt a blob feldolgozása során.|  
+|`Completed`|hello blob feldolgozási hiba nélkül befejeződött.|  
+|`CompletedWithErrors`|hello blob hibák egy vagy több tartományokat vagy blokkok, metaadatok vagy-tulajdonságok feldolgozása befejeződött.|  
+|`FileNameInvalid`|hello neve érvénytelen.|  
+|`FileNameTooLong`|hello fájl neve túl hosszú.|  
+|`FileNotFound`|hello fájl nem található.|  
+|`FileAccessDenied`|Toohello fájl elérése megtagadva.|  
+|`BlobRequestFailed`|tooaccess hello blob hello Blob szolgáltatási kérelem sikertelen volt.|  
+|`BlobRequestForbidden`|hello Blob szolgáltatási kérelem tooaccess hello blob tiltott. Előfordulhat, hogy ennek lehet tooinvalid tárfiók kulcsa vagy a tároló SAS.|  
+|`RenameFailed`|Nem sikerült toorename hello blob (hogy az importálás) vagy hello fájlt (exportálási feladat).|  
+|`BlobUnexpectedChange`|(Az exportálási feladat) hello blob egy váratlan módosítás történt.|  
+|`LeasePresent`|Nincs a címbérlet hello blob megtalálható.|  
+|`IOFailed`|A lemez- vagy hálózati i/o-hiba történt a hello blob feldolgozásakor.|  
+|`Failed`|Ismeretlen hiba történt a hello blob feldolgozása során.|  
   
 ## <a name="import-disposition-status-codes"></a>Importálás törlése állapotkódok  
-Az alábbi táblázat a állapotkódok megoldása érdekében egy importálási törlése.  
+hello következő táblázatban hello állapotkódjai feloldása egy importálási törlése.  
   
 |Állapotkód|Leírás|  
 |-----------------|-----------------|  
-|`Created`|A blob létrehozását.|  
-|`Renamed`|A blob egy átnevezési importálási törlése át lett nevezve. A `Blob/BlobPath` elem tartalmazza-e az átnevezett blob URI-JÁNAK.|  
-|`Skipped`|A blob ki lett hagyva `no-overwrite` importálása törlése.|  
-|`Overwritten`|A blob felülírta egy meglévő blob / `overwrite` importálása törlése.|  
-|`Cancelled`|Egy korábbi hiba leállt, az importálás témakör további feldolgozása.|  
+|`Created`|hello blob létrehozását.|  
+|`Renamed`|hello blob egy átnevezési importálási törlése át lett nevezve. Hello `Blob/BlobPath` elem átnevezése hello BLOB URI hello tartalmazza.|  
+|`Skipped`|hello blob ki lett hagyva `no-overwrite` importálása törlése.|  
+|`Overwritten`|hello blob felülírta egy meglévő blob / `overwrite` importálása törlése.|  
+|`Cancelled`|Egy korábbi hiba hello importálási témakör további feldolgozása leállt.|  
   
 ## <a name="page-rangeblock-status-codes"></a>Tartomány/blokk állapotkódok lap  
-A következő táblázat a tartományt vagy egy tiltólista feldolgozása állapotkódjai.  
+hello következő táblázatban hello állapotkódok tartományt vagy egy tiltólista feldolgozásra.  
   
 |Állapotkód|Leírás|  
 |-----------------|-----------------|  
-|`Completed`|A nyomtatási tartomány vagy blokk feldolgozási hiba nélkül befejeződött.|  
-|`Committed`|A blokk véglegesítve, de nem a teljes blokkot a listán, mert más blokkok sikertelen, vagy helyezze magát teljes tiltólista sikertelen volt.|  
-|`Uncommitted`|A blokk feltölteni, de a nem véglegesített.|  
-|`Corrupted`|A nyomtatási tartomány vagy blokk sérült (a tartalom nem egyezik a a kivonata).|  
+|`Completed`|hello lap tartomány vagy blokk feldolgozási hiba nélkül befejeződött.|  
+|`Committed`|hello blokk véglegesítve, de nem a hello teljes tiltólista, mert más blokkok sikertelen, vagy helyezze magát teljes tiltólista sikertelen volt.|  
+|`Uncommitted`|hello blokk feltölteni, de a nem véglegesített.|  
+|`Corrupted`|hello lap tartomány vagy blokk sérült (hello tartalom nem felel meg a kivonatoló).|  
 |`FileUnexpectedEnd`|Egy nem várt fájlvégjel történt.|  
 |`BlobUnexpectedEnd`|Egy blob váratlan vége történt.|  
-|`BlobRequestFailed`|A Blob szolgáltatási kérelem hozzáféréssel a lap tartomány vagy blokk nem sikerült.|  
-|`IOFailed`|Lemez- vagy i/o-hiba történt a nyomtatási tartomány vagy blokk feldolgozása közben.|  
-|`Failed`|Ismeretlen hiba történt a nyomtatási tartomány vagy blokk feldolgozása közben.|  
-|`Cancelled`|Egy korábbi hiba leállt, az oldal tartomány vagy blokk további feldolgozásra.|  
+|`BlobRequestFailed`|Blob szolgáltatási kérelem tooaccess hello laptartomány hello, vagy blokk nem sikerült.|  
+|`IOFailed`|A lemez- vagy hálózati i/o-hiba történt hello lap tartomány vagy blokk feldolgozása közben.|  
+|`Failed`|Ismeretlen hiba történt a hello lap tartomány vagy blokk feldolgozása során.|  
+|`Cancelled`|Egy korábbi hiba hello lap tartomány vagy blokk további feldolgozás leállt.|  
   
 ## <a name="metadata-status-codes"></a>Metaadatok állapotkódok  
-Az alábbi táblázat a állapotkódjai blob metaadatok feldolgozásakor.  
+hello következő táblázatban hello állapotkódjai feldolgozási blob metaadatait.  
   
 |Állapotkód|Leírás|  
 |-----------------|-----------------|  
-|`Completed`|A metaadatok feldolgozási hiba nélkül befejeződött.|  
-|`FileNameInvalid`|A metaadat neve érvénytelen.|  
-|`FileNameTooLong`|A metaadatok fájl neve túl hosszú.|  
-|`FileNotFound`|A metaadat-fájl nem található.|  
-|`FileAccessDenied`|A metaadatfájl való hozzáférés megtagadva.|  
-|`Corrupted`|A metaadat-fájl sérült (a tartalom nem egyezik a a kivonata).|  
-|`XmlReadFailed`|A metaadat-tartalom nem felel meg a szükséges formátumnak.|  
-|`XmlWriteFailed`|A Metaadatok írása nem sikerült XML.|  
-|`BlobRequestFailed`|A metaadatok eléréséhez a Blob szolgáltatási kérelem sikertelen volt.|  
-|`IOFailed`|A lemez- vagy hálózati i/o-hiba történt a metaadatok feldolgozásakor a program.|  
-|`Failed`|Egy ismeretlen hiba történt a metaadatok feldolgozásakor.|  
-|`Cancelled`|Egy korábbi hiba leállt, a metaadatok további feldolgozásra.|  
+|`Completed`|hello metaadatok feldolgozási hiba nélkül befejeződött.|  
+|`FileNameInvalid`|hello metaadat neve érvénytelen.|  
+|`FileNameTooLong`|hello metaadatok fájl neve túl hosszú.|  
+|`FileNotFound`|hello metaadatait tartalmazó fájl nem található.|  
+|`FileAccessDenied`|Toohello metaadatfájl hozzáférés megtagadva.|  
+|`Corrupted`|hello metaadatait tartalmazó fájl sérült (hello tartalom nem felel meg a kivonatoló).|  
+|`XmlReadFailed`|hello metaadatok tartalom nem felel meg a toohello megkívánt formátumban.|  
+|`XmlWriteFailed`|Írás hello metaadatok XML sikertelen volt.|  
+|`BlobRequestFailed`|tooaccess hello metaadatok hello Blob szolgáltatási kérelem sikertelen volt.|  
+|`IOFailed`|Lemez- vagy i/o-hiba történt a hello metaadatok feldolgozásakor a program.|  
+|`Failed`|Ismeretlen hiba történt a hello metaadatok feldolgozásakor a program.|  
+|`Cancelled`|Egy korábbi hiba hello metaadatok további feldolgozás leállt.|  
   
 ## <a name="properties-status-codes"></a>Tulajdonságok állapotkódok  
-A következő táblázat a blob-tulajdonságok feldolgozása állapotkódjai.  
+hello következő táblázatban hello állapotkódjai blob tulajdonságok feldolgozása.  
   
 |Állapotkód|Leírás|  
 |-----------------|-----------------|  
-|`Completed`|A Tulajdonságok feldolgozása hiba nélkül befejeződött.|  
-|`FileNameInvalid`|A tulajdonságok neve érvénytelen.|  
-|`FileNameTooLong`|A tulajdonságok fájl neve túl hosszú.|  
-|`FileNotFound`|A tulajdonságok fájl nem található.|  
-|`FileAccessDenied`|A Tulajdonságok fájlhoz való hozzáférés megtagadva.|  
-|`Corrupted`|A tulajdonságok fájl sérült (a tartalom nem egyezik a a kivonata).|  
-|`XmlReadFailed`|A Tulajdonságok tartalom nem felel meg a szükséges formátumnak.|  
-|`XmlWriteFailed`|A Tulajdonságok írása nem sikerült XML.|  
-|`BlobRequestFailed`|Nem sikerült a Blob szolgáltatási kérelem tulajdonságainak eléréséhez.|  
-|`IOFailed`|A lemez- vagy hálózati i/o-hiba történt a Tulajdonságok feldolgozása során.|  
-|`Failed`|Ismeretlen hiba történt a Tulajdonságok feldolgozása során.|  
-|`Cancelled`|Egy korábbi hiba a tulajdonságok további feldolgozás leállt.|  
+|`Completed`|hello tulajdonságok feldolgozása hiba nélkül befejeződött.|  
+|`FileNameInvalid`|hello tulajdonságok neve érvénytelen.|  
+|`FileNameTooLong`|hello tulajdonságok fájl neve túl hosszú.|  
+|`FileNotFound`|hello tulajdonságok fájl nem található.|  
+|`FileAccessDenied`|Toohello tulajdonságok fájl elérése megtagadva.|  
+|`Corrupted`|hello tulajdonságok fájl sérült (hello tartalom nem felel meg a kivonatoló).|  
+|`XmlReadFailed`|hello tulajdonságok tartalom nem felel meg a toohello megkívánt formátumban.|  
+|`XmlWriteFailed`|A tulajdonságoknak a hello XML sikertelen volt.|  
+|`BlobRequestFailed`|tooaccess hello tulajdonságok hello Blob szolgáltatási kérelem sikertelen volt.|  
+|`IOFailed`|A lemez- vagy hálózati i/o-hiba történt a hello tulajdonságok feldolgozása során.|  
+|`Failed`|Ismeretlen hiba történt a hello tulajdonságok feldolgozása során.|  
+|`Cancelled`|Egy korábbi hiba hello tulajdonságok további feldolgozás leállt.|  
   
 ## <a name="sample-logs"></a>A minta-naplók  
-A következő példában látható egy részletes napló.  
+hello az alábbiakban látható egy példa részletes naplózás.  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -296,7 +296,7 @@ A következő példában látható egy részletes napló.
 </DriveLog>  
 ```  
   
-A megfelelő hibanapló alább láthatók.  
+hello megfelelő hibanapló alább láthatók.  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -315,7 +315,7 @@ A megfelelő hibanapló alább láthatók.
 </DriveLog>  
 ```
 
- A kövesse hibanaplóját, hogy az importálás a fájl nem található az importálási meghajtón kapcsolatos hibát tartalmaz. Vegye figyelembe, hogy további összetevők állapota `Cancelled`.  
+ hello kövesse hibanaplóját, hogy az importálás hello importálási meghajtón nem található fájlokról hibát tartalmaz. Vegye figyelembe, hogy további összetevők hello állapotának `Cancelled`.  
   
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
@@ -338,7 +338,7 @@ A megfelelő hibanapló alább láthatók.
 </DriveLog>  
 ```
 
-Exportálási feladat a következő hibanaplóban azt jelzi, hogy a blob tartalma írása sikeresen befejeződött a meghajtóra, azonban, hogy hiba történt a blob tulajdonságai exportálása során.  
+hello exportálási feladat következő hibanaplóban azt jelzi, hogy hello blob tartalma sikeresen írt toohello meghajtó, azonban, hogy hiba történt a hello blob tulajdonságai exportálása során.  
   
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  

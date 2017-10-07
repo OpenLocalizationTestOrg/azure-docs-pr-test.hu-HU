@@ -1,6 +1,6 @@
 ---
-title: "Php-ből a Queue storage használata |} Microsoft Docs"
-description: "Útmutató: az Azure Queue storage szolgáltatás segítségével hozza létre, és törli az üzenetsorok, és helyezze, get, és törli az üzenetet. Minták PHP nyelven íródtak."
+title: "php-ből a Queue storage aaaHow toouse |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse hello Azure Queue storage szolgáltatás toocreate és a delete várólisták és a Beszúrás, get, és törli az üzenetet. Minták PHP nyelven íródtak."
 documentationcenter: php
 services: storage
 author: robinsh
@@ -14,42 +14,42 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-ms.openlocfilehash: 12ebb905184e74da534cd44e8314335145f7042d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8daabcc9b3b4de121a309f21bb3325242cff06f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-queue-storage-from-php"></a>How to use Queue storage from PHP (A Queue Storage használata PHP-val)
+# <a name="how-toouse-queue-storage-from-php"></a>Hogyan toouse a Queue storage php-ből
 [!INCLUDE [storage-selector-queue-include](../../../includes/storage-selector-queue-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-queues](../../../includes/storage-try-azure-tools-queues.md)]
 
 ## <a name="overview"></a>Áttekintés
-Ez az útmutató bemutatja, hogyan hajthat végre a gyakori forgatókönyvek az Azure Queue storage szolgáltatás használatával. A minták íródtak osztályok keresztül a Windows SDK-ból a PHP. A kezelt forgatókönyvek például a Beszúrás, megtekintésekor, lekérését, és törli az üzenetsor-üzeneteket, valamint létrehozása és törlése várólisták.
+Ez az útmutató bemutatja, hogyan tooperform gyakori helyzetek használatával hello Azure Queue storage szolgáltatás. hello minták íródtak keresztül osztályok hello Windows SDK-t a PHP. hello kezelt forgatókönyvek például a Beszúrás, megtekintésekor, lekérését, és törli az üzenetsor-üzeneteket, valamint létrehozása és törlése várólisták.
 
 [!INCLUDE [storage-queue-concepts-include](../../../includes/storage-queue-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-php-application"></a>PHP-alkalmazás létrehozása
-A PHP-alkalmazások Azure Queue storage hozzáférő létrehozása egyetlen követelménye, a hivatkozási osztályok az Azure SDK-ból a php a kód. A fejlesztői eszközök hozhat létre az alkalmazás, például a Jegyzettömbbel.
+csak a követelmény a PHP-alkalmazások létrehozása, amely hozzáfér az Azure Queue storage hello hello való hivatkozás hello Azure SDK-t az osztályok a php a kód. A fejlesztői eszközök toocreate használhatja az alkalmazás, például a Jegyzettömbbel.
 
 Ez az útmutató a várólista tárolási szolgáltatásokkal, hogy a PHP-alkalmazás helyileg, vagy egy Azure webes szerepkörről, a feldolgozói szerepkör vagy a webhely belül futó hívható fogja használni.
 
-## <a name="get-the-azure-client-libraries"></a>Az Azure Ügyfélkódtárai beolvasása
+## <a name="get-hello-azure-client-libraries"></a>Hello Azure Ügyfélkódtárai beolvasása
 [!INCLUDE [get-client-libraries](../../../includes/get-client-libraries.md)]
 
-## <a name="configure-your-application-to-access-queue-storage"></a>Állítsa be az alkalmazását, a Queue storage eléréséhez
-Az API-kat az Azure Queue storage használandó kell:
+## <a name="configure-your-application-tooaccess-queue-storage"></a>Az alkalmazás tooaccess várólista-tároló konfigurálása
+API-k toouse hello Azure Queue storage kell:
 
-1. Hivatkozzon a robotot használatával a [require_once] utasítást.
+1. Hello robotjába referenciafájlban hello segítségével [require_once] utasítást.
 2. Bármely olyan osztállyal, amelynek segítségével lehet hivatkozni.
 
-A következő példa bemutatja, hogyan a robotot fájl és a hivatkozás a **ServicesBuilder** osztály.
+hello következő példa bemutatja, hogyan tooinclude hello robotjába fájl- és referenciainformációkat hello **ServicesBuilder** osztály.
 
 > [!NOTE]
-> Ebben a példában (és más, a cikkben szereplő példák) azt feltételezi, hogy telepítette az Azure-szerkesztő segítségével, a PHP Klienskódtárak segítségével. Ha a könyvtárak manuálisan telepítette, szüksége lesz való hivatkozáshoz a `WindowsAzure.php` robotjába fájlt.
+> Ebben a példában (és más, a cikkben szereplő példák) azt feltételezi, hogy telepítette-e az hello PHP Klienskódtárak segítségével az Azure-szerkesztő használatával. Ha manuálisan telepítette a hello szalagtárak, szüksége lesz a tooreference hello `WindowsAzure.php` robotjába fájlt.
 > 
 > 
 
@@ -59,10 +59,10 @@ use WindowsAzure\Common\ServicesBuilder;
 
 ```
 
-Az alábbi példákban a `require_once` utasítás mindig megjelennek, de csak a szükséges végrehajtandó például osztályok lesz hivatkozva.
+Hello a következő példa a hello `require_once` utasítás mindig megjelennek, de csak a szükséges hello példa tooexecute hello osztályok lesz hivatkozva.
 
 ## <a name="set-up-an-azure-storage-connection"></a>Az Azure storage-kapcsolat beállítása
-Az Azure Queue storage ügyfél példányosítható, először egy érvényes kapcsolati karakterláncot kell rendelkeznie. A várólista-szolgáltatás kapcsolati karakterláncának formátuma a következő.
+az Azure Queue storage ügyfél tooinstantiate, először rendelkeznie kell érvényes kapcsolati karakterláncot. hello hello várólista szolgáltatás kapcsolati karakterláncának formátuma az alábbiak szerint.
 
 Élő szolgáltatások elérésére:
 
@@ -70,20 +70,20 @@ Az Azure Queue storage ügyfél példányosítható, először egy érvényes ka
 DefaultEndpointsProtocol=[http|https];AccountName=[yourAccount];AccountKey=[yourKey]
 ```
 
-Az emulátor tárolóinak eléréséhez:
+Hello emulátor tárolóinak eléréséhez:
 
 ```php
 UseDevelopmentStorage=true
 ```
 
-Bármely Azure szolgáltatás ügyfele létrehozásához kell használnia a **ServicesBuilder** osztály. Az alábbi módszerek bármelyikét használhatja:
+toocreate bármely Azure szolgáltatás ügyfele toouse hello kell **ServicesBuilder** osztály. Hello a következő módszerek bármelyikét használhatja:
 
-* Átadni a kapcsolati karakterlánc közvetlenül.
-* Használjon **CloudConfigurationManager (CCM)** ellenőrizze a kapcsolati karakterlánc több külső forrás:
+* Hello kapcsolatot adjon át közvetlenül tooit karakterlánc.
+* Használjon **CloudConfigurationManager (CCM)** toocheck több külső adatforrások hello kapcsolati karakterláncot kell megadnia:
   * Alapértelmezés szerint mellékelt egy külső forrás támogatása – környezeti változókat.
-  * Új forrásból történő kiterjesztésével adhat hozzá a **ConnectionStringSource** osztály.
+  * Hozzáadhat új források hello kiterjesztésével **ConnectionStringSource** osztály.
 
-Az itt leírt példák a kapcsolati karakterlánc közvetlenül fog adható át.
+Itt vázolt hello példákért hello kapcsolati karakterlánc közvetlenül fog adható át.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -94,7 +94,7 @@ $queueRestProxy = ServicesBuilder::getInstance()->createQueueService($connection
 ```
 
 ## <a name="create-a-queue"></a>Üzenetsor létrehozása
-A **QueueRestProxy** objektum lehetővé teszi, hogy a várólista létrehozása a **createQueue** metódust. A várólista létrehozásakor az a várakozási beállítások adhatók meg, de ez így nincs szükség. (Az alábbi példa bemutatja, hogyan metaadatok beállítani a várólista.)
+A **QueueRestProxy** objektum lehetővé teszi, hogy létrehoz egy sort hello segítségével **createQueue** metódust. A várólista létrehozásakor hello várólista beállítások adhatók meg, de ez így nincs szükség. (az alábbi példa hogyan hello tooset metaadatait a várólistát.)
 
 ```php
 require_once 'vendor/autoload.php';
@@ -126,12 +126,12 @@ catch(ServiceException $e){
 ```
 
 > [!NOTE]
-> A metaadatok kulcsok nagybetűk közötti különbségtételt szabályozó nem támaszkodhat. Minden kulcs olvasható kisbetűs a szolgáltatásból.
+> A metaadatok kulcsok nagybetűk közötti különbségtételt szabályozó nem támaszkodhat. Minden kulcs pedig olvassa a kisbetűs hello szolgáltatást.
 > 
 > 
 
-## <a name="add-a-message-to-a-queue"></a>A várólista üzenet hozzáadása
-A várólista adhat hozzá egy üzenetet, **QueueRestProxy -> createMessage**. A módszer veszi a várólista nevét, a szöveges üzenet és az üzenet beállításokat. (nem kötelező).
+## <a name="add-a-message-tooa-queue"></a>Egy üzenetsor tooa hozzáadása
+egy üzenetsor tooa tooadd használja **QueueRestProxy -> createMessage**. hello metódus időt vesz igénybe, hello üzenetsornév, hello üzenet szövege és üzenet beállításokat. (nem kötelező).
 
 ```php
 require_once 'vendor/autoload.php';
@@ -158,8 +158,8 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="peek-at-the-next-message"></a>Betekintés a következő üzenetbe
-Is bepillanthat, hogy egy üzenet (vagy üzenetek) egy sor elején anélkül, hogy eltávolítaná az üzenetsorból meghívásával **QueueRestProxy -> peekMessages**. Alapértelmezés szerint a **peekMessage** metódus egyetlen üzenet ad vissza, de ezt az értéket használatával módosíthatja a **PeekMessagesOptions -> setNumberOfMessages** metódust.
+## <a name="peek-at-hello-next-message"></a>Betekintés a következő köszönőüzenetei
+Is bepillanthat, hogy egy üzenet (vagy üzenetek): a várólista elejére hello nélkül eltávolítása hello meghívásával **QueueRestProxy -> peekMessages**. Alapértelmezés szerint hello **peekMessage** metódus egyetlen üzenet ad vissza, de ezt az értéket módosíthatja hello segítségével **PeekMessagesOptions -> setNumberOfMessages** metódust.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -204,8 +204,8 @@ else{
 }
 ```
 
-## <a name="de-queue-the-next-message"></a>A következő üzenet kivétele az üzenetsorból
-A kód eltávolítja az üzenetet az üzenetsorból két lépést. Először hívja **QueueRestProxy -> listMessages**, ami lehetővé teszi az üzenetet az üzenetsorból olvasó többi kód nem látható. Alapértelmezés szerint ez az üzenet marad láthatatlan 30 másodpercig. (Ha az üzenet nem törlődik az ebben az időszakban, azt újra láthatóvá válnak a várólistán.) Szeretné távolítani az üzenetet az üzenetsorból, meg kell hívnia **QueueRestProxy -> deleteMessage**. A kétlépéses folyamat eltávolításával előállított üzenet biztosítja, hogy a kód nem tudja feldolgozni egy üzenetet, hardver- vagy szoftverhiba miatt, a kód egy másik példánya is megkaphassa ugyanazt az üzenetet, és próbálkozzon újra. A kód hívások **deleteMessage** jobb gombbal az üzenet feldolgozása után.
+## <a name="de-queue-hello-next-message"></a>Hello következő üzenet kivétele az üzenetsorból
+A kód eltávolítja az üzenetet az üzenetsorból két lépést. Először hívja **QueueRestProxy -> listMessages**, amely teszi hello üzenet láthatatlanná tooany egyéb kód, amely éppen olvas hello üzenetsorból. Alapértelmezés szerint ez az üzenet marad láthatatlan 30 másodpercig. (Ha üdvözlőüzenetére ebben az időszakban nem törlődik, azt újra láthatóvá válnak hello várólistában.) toofinish eltávolításakor üdvözlőüzenetére hello üzenetsorból, meg kell hívnia **QueueRestProxy -> deleteMessage**. A kétlépéses folyamat eltávolításával előállított üzenet biztosítja, hogy amikor a kód sikertelen tooprocess miatt toohardware vagy szoftver-hiba, a kód egy másik példánya üzenet kaphat hello ugyanazon üzenet, majd próbálkozzon újra. A kód hívások **deleteMessage** jobb gombbal az üdvözlő üzenet feldolgozása után.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -243,8 +243,8 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="change-the-contents-of-a-queued-message"></a>Üzenetsorban található üzenet tartalmának módosítása
-Módosíthatja a tartalmát egy üzenet helyben a várólistán lévő meghívásával **QueueRestProxy -> updateMessage**. Ha az üzenet munkafeladatot jelöl, ezzel a funkcióval frissítheti a munkafeladat állapotát. Az alábbi kód frissíti az üzenetsorban található üzenetet az új tartalommal, és meghatározza a láthatósági időkorlátot további 60 másodperccel bővíti. Ez az üzenet társított feladat állapotát menti, és az ügyfél folytathatja a munkát az üzenetben további egy percet biztosít. Ezzel a technikával többlépéses munkafolyamatokat is nyomon követhet az üzenetsor üzenetein anélkül, hogy újra kéne kezdenie, ha a folyamat valamelyik lépése hardver- vagy szoftverhiba miatt meghiúsul. A rendszer általában nyilvántartja az újrapróbálkozások számát, és ha az üzenettel *n* alkalomnál többször próbálkoznak, akkor törlődik. Ez védelmet biztosít az ellen, hogy egy üzenetet minden feldolgozásakor kiváltson egy alkalmazáshibát.
+## <a name="change-hello-contents-of-a-queued-message"></a>Hello aszinkron üzenet tartalmának módosítása
+Módosíthatja egy üzenet helyben hello várólista hello tartalmát meghívásával **QueueRestProxy -> updateMessage**. Üdvözlőüzenetére jelöl, használhatja a munkafeladat hello szolgáltatás tooupdate hello állapotának. a következő kód hello hello üzenetsor frissíti az új tartalommal, és további 60 másodperccel beállítja hello látható időtúllépés tooextend. Ez menti üdvözlőüzenetére társított feladat hello állapotát, és hello ügyfél üdvözlőüzenetére dolgozik egy másik perces toocontinue biztosít. Ez a módszer tootrack többlépéses munkafolyamatokat üzenetsor üzenetein anélkül, hogy toostart keresztül hello kezdődően, ha a folyamat valamelyik lépése toohardware-vagy szoftverhiba miatt nem használható. Általában tartja az újrapróbálkozások számát is, és ha hello üzenetet a rendszer ismét megkísérli több mint  *n*  időpontokat, akkor törlődik. Ez védelmet biztosít az ellen, hogy egy üzenetet minden feldolgozásakor kiváltson egy alkalmazáshibát.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -287,7 +287,7 @@ catch(ServiceException $e){
 ```
 
 ## <a name="additional-options-for-de-queuing-messages"></a>Az üzenetek üzenetsorból további beállítások
-Két módon, hogy testre szabhatja az üzenetek lekérését egy üzenetsorból. Az első lehetőség az üzenetkötegek (legfeljebb 32) lekérése. Második beállíthat egy hosszabb vagy rövidebb láthatósági időkorlátot hosszabb vagy rövidebb idő teljesen feldolgozni a minden üzenet, amely lehetővé teszi, hogy a kódot. Az alábbi példakód a **getMessages** módszer segítségével 16 üzenetek egy hívásban. Ezután minden üzenetet feldolgozza a használatával egy **a** hurok. Mindemellett a láthatatlansági időkorlátot minden üzenethez öt percre állítja be.
+Két módon, hogy testre szabhatja az üzenetek lekérését egy üzenetsorból. Először is kaphat az üzenetkötegek (felfelé too32). Második beállíthat egy hosszabb vagy rövidebb láthatósági időkorlátot, így a kódnak több vagy kevesebb idő toofully feldolgozni az egyes üzeneteket. hello alábbi példakód hello **getMessages** metódus tooget 16 üzenetek egy hívásban. Ezután minden üzenetet feldolgozza a használatával egy **a** hurok. Beállítja a hello láthatatlansági időtúllépés toofive percig, amíg minden üzenetet is.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -335,7 +335,7 @@ catch(ServiceException $e){
 ```
 
 ## <a name="get-queue-length"></a>Get-várólista hossza
-Megbecsülheti egy üzenetsorban található üzenetek számát. A **QueueRestProxy -> getQueueMetadata** módszer a queue szolgáltatás az üzenetsorral kapcsolatos metaadatok visszaadását kéri. Hívja a **getApproximateMessageCount** a visszaadott objektumon módszer lehetővé teszi az üzenetek számának vannak a várólistán lévő számát. A szám nem csak hozzávetőleges, mert az üzenetek hozzáadására vagy törlődik, miután a queue szolgáltatás válaszol a kérésre.
+A várólistában lévő üzenetek hello számának becslése kérheti le. Hello **QueueRestProxy -> getQueueMetadata** metódus hello várólista szolgáltatás tooreturn metaadatai tesz kapcsolatban hello várólista. Hívása hello **getApproximateMessageCount** hello metódus visszaadott objektum egy adott időszeletben üzenetek számának vannak a várólistán. hello száma nem csak hozzávetőleges, mert az üzenetek hozzáadására vagy törlődik, miután hello queue szolgáltatás válaszol-e tooyour kérelmet.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -364,7 +364,7 @@ echo $approx_msg_count;
 ```
 
 ## <a name="delete-a-queue"></a>Üzenetsor törlése
-Egy üzenetsor és a benne lévő összes üzenet törléséhez hívja meg a **QueueRestProxy -> deleteQueue** metódust.
+toodelete egy üzenetsor és az összes hello üzenetek, hívja hello **QueueRestProxy -> deleteQueue** metódust.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -390,11 +390,11 @@ catch(ServiceException $e){
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy megismerte az Azure Queue storage alapjait, az alábbi hivatkozásokból tájékozódhat az összetettebb tárolási feladatok elvégzéséről:
+Most, hogy megismerte hello Azure Queue storage alapjait, hajtsa végre az összetettebb tárolási feladatok elvégzéséről kapcsolatos alábbi hivatkozások toolearn:
 
-* Látogasson el a [Azure Storage csapat blogja](http://blogs.msdn.com/b/windowsazurestorage/).
+* A Microsoft hello [Azure Storage csapat blogja](http://blogs.msdn.com/b/windowsazurestorage/).
 
-További információ: a [PHP fejlesztői központ](/develop/php/).
+További információkért lásd még: hello [PHP fejlesztői központ](/develop/php/).
 
 [download]: http://go.microsoft.com/fwlink/?LinkID=252473
 [require_once]: http://www.php.net/manual/en/function.require-once.php

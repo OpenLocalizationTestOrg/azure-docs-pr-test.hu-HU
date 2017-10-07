@@ -1,6 +1,6 @@
 ---
-title: Windows Phone Silverlight SDK tartalma
-description: "További tudnivalók a Windows Phone Silverlight SDK tartalmát az Azure Mobile Engagement"
+title: aaaWindows Phone Silverlight SDK tartalma
+description: "Az Azure Mobile Engagement Windows Phone Silverlight SDK hello hello tartalmát megismerése"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: ce323880100706accf0c08c9929d20908c6198cb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c39247383d65200493d028a80d444a6e96a697cd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-phone-silverlight-sdk-content"></a>Windows Phone Silverlight SDK tartalma
-Ez a dokumentum, és ismerteti az SDK-t az alkalmazás által központilag telepített tartalom.
+Ez a dokumentum, és hello SDK az alkalmazás által telepített hello tartalom ismerteti.
 
-## <a name="the-resources-folder"></a>A `/Resources` mappa
-Ez a mappa tartalmaz, amelyet a Mobile Engagement összes erőforrást. Testre is szabhatja azokat az alkalmazás megfelelően.
+## <a name="hello-resources-folder"></a>Hello `/Resources` mappa
+Ez a mappa összes hello erőforrás, amelyet a Mobile Engagement tartalmaz. Testre is szabhatja azokat toofit az alkalmazást.
 
-* `EngagementIconNotification.png`: A márka ikonra a bal oldali, egy értesítés jelenik meg helyette a márka ikon jelzi.
-* `EngagementIconOk.png`: A reach az "Ok" ikont lapok ApplicationBar.
-* `EngagementIconCancel.png`: A reach ikonjára a "Mégse" lapok ApplicationBar.
-* `EngagementIconCloseLight.png`: A Mobile Engagement reach értesítést a Windows Phone a "Bezárás" ikonra világos témát.
-* `EngagementIconCloseDark.png`: A "Bezárás" ikonjára a Mobile Engagement Windows Phone sötét téma értesítési elérni.
-* `EngagementConfiguration.xml`: A Mobile Engagement konfigurációs fájlt, ahol Engagement-beállítások szabhatók testre azt (Engagement kapcsolati karakterláncot, a jelentés összeomlik stb).
+* `EngagementIconNotification.png`: hello márka ikon hello megjelenik egy értesítés bal oldali, helyette a márka ikon jelzi.
+* `EngagementIconOk.png`: hello "Ok" ikonra a hello lapok ApplicationBar elérni.
+* `EngagementIconCancel.png`: hello a "Mégse" ikonra elérni hello lapok ApplicationBar.
+* `EngagementIconCloseLight.png`: hello hello "Bezárás" ikonjára a Mobile Engagement reach hello Windows Phone könnyű téma vonatkozó értesítést.
+* `EngagementIconCloseDark.png`: hello hello "Bezárás" ikonjára a Mobile Engagement reach hello Windows Phone sötét téma vonatkozó értesítést.
+* `EngagementConfiguration.xml`: a Mobile Engagement konfigurációs fájl hello, ez pedig, ahol Engagement-beállítások szabhatók testre (Engagement kapcsolati karakterláncot, a jelentés összeomlik stb).
 

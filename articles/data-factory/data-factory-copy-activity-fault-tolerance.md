@@ -1,6 +1,6 @@
 ---
-title: "A hibatűrés hozzáadása az Azure Data Factory másolási tevékenység nem kompatibilis sorok kihagyása |} Microsoft Docs"
-description: "Megtudhatja, hogyan hibatűrést hozzáadása az Azure Data Factory másolási tevékenység nem kompatibilis sorok kihagyása másolása során"
+title: "aaaAdd hibatűrést az Azure Data Factory másolási tevékenység nem kompatibilis sorok átugrásával |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooadd hibatűrés az Azure Data Factory másolási tevékenység során példány nem kompatibilis sorok átugrásával"
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -13,36 +13,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: jingwang
-ms.openlocfilehash: e2a108752259d5da3b401666c6bdbaad13b7ea90
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e7cf6117655910844b292d340674d8d631450a81
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="add-fault-tolerance-in-copy-activity-by-skipping-incompatible-rows"></a>A hibatűrés hozzáadása a másolási tevékenység nem kompatibilis sorok kihagyása
 
-Az Azure Data Factory [másolási tevékenység](data-factory-data-movement-activities.md) kétféleképpen Ön szeretné kezelni a forrás és a fogadó adattároló közötti másolás nem kompatibilis sorok:
+Az Azure Data Factory [másolási tevékenység](data-factory-data-movement-activities.md) kínálja kétféleképpen toohandle nem kompatibilis sorokat forrás és a fogadó adattárolók között adatok másolásakor:
 
-- Megszakítja, és sikertelen lesz a másolási tevékenység nem kompatibilis adat esetén történt (alapértelmezés).
-- Továbbra is másolhatja az összes adat hozzáadásával a hibatűrést, és nem kompatibilis adat sorok kihagyása. Ezenkívül bejelentkezhet a nem kompatibilis sorok Azure Blob Storage tárolóban. Ismerje meg a hiba okát, javítsa ki az adatokat az adatforrás, és ismételje meg a másolási tevékenység napló majd ellenőrizheti.
+- Megszakítja, és sikertelen hello másolási tevékenység nem kompatibilis adat esetén történt (alapértelmezés).
+- Folytatás toocopy hello adatok hozzáadásával a hibatűrést, és nem kompatibilis adat sorok kihagyása. Ezenkívül bejelentkezhet hello nem kompatibilis sorok Azure Blob Storage tárolóban. Majd keresse meg a hello napló toolearn hello hello hiba okát, javítsa ki a hello adatok hello az adatforrás és ismételje meg a hello másolási tevékenység.
 
 ## <a name="supported-scenarios"></a>Támogatott helyzetek
 Másolási tevékenység észlelésekor, kihagyása és naplózási adatok nem kompatibilis három forgatókönyveket teszi lehetővé:
 
-- **A forrás adattípus és a fogadó natív típusa között inkompatibilitás**
+- **Kompatibilitási hello forrás adattípus és hello fogadó natív típusa között**
 
-    Például: adatok másolása CSV-fájl Blob Storage egy séma-definícióval, amely tartalmazza a három SQL-adatbázis **INT** típusú oszlop. Például numerikus adatokat tartalmazó CSV-fájl sorok `123,456,789` sikeresen a fogadó tárolóba kerülnek. Azonban a sorokat tartalmazó nem numerikus értékeket, például `123,456,abc` észlelhetők a nem kompatibilis, és kimarad.
+    Például: adatok másolása CSV-fájlból a Blob storage tooa SQL-adatbázis egy séma-definícióval, amely tartalmazza a három **INT** típusú oszlop. például numerikus adatokat tartalmazó CSV-fájl sorok hello `123,456,789` sikeresen másolta toohello fogadó tároló. Például a nem numerikus értékeket tartalmazó sorok azonban hello `123,456,abc` észlelhetők a nem kompatibilis, és kimarad.
 
-- **A forrás- és a fogadó között oszlopok száma nem egyezik**
+- **Hello hello forrás- és fogadó hello között oszlopok száma nem egyezik**
 
-    Például: adatok másolása az a Blob-tároló CSV-fájl az SQL-adatbázis egy séma-definícióval, amely hat oszlopokat tartalmaz. A fogadó tároló hat oszlopokat tartalmazó CSV-fájl sorok sikeresen lesz másolva. A több vagy kevesebb, mint hat oszlopot tartalmazó CSV-fájl sorok észlelhetők a nem kompatibilis, és kimarad.
+    Például: adatok másolása CSV-fájlból a Blob storage tooa SQL adatbázis-egy séma-definícióval, amely hat oszlopokat tartalmaz. hello hat oszlopokat tartalmazó sorokat tartalmazó CSV-fájl sikeresen másolta toohello fogadó tároló. hello CSV fájlt tartalmazó sorok több vagy kevesebb, mint hat oszlopok észlelhetők a nem kompatibilis, és kimarad.
 
-- **Elsődleges kulcs megsértése egy relációs adatbázis írásakor**
+- **Elsődleges kulcs megsértése tooa relációs adatbázis írásakor**
 
-    Például: adatok másolása az SQL server az SQL-adatbázis. A fogadó SQL-adatbázis elsődleges kulcs van definiálva, de nincs ilyen elsődleges kulcs van definiálva a forrás SQL-kiszolgálón. A duplikált sorokat, amely szerepel a forrás nem lehet másolni a fogadó. Másolási tevékenység során az adatok csak az első sor a fogadó másolja. Ismétlődő elsődleges kulcs értéke a következő adatforrás a sorokat a rendszer észleli a rendszer nem kompatibilis, és kimarad a.
+    Például: adatok másolása az SQL server tooa SQL-adatbázis. Hello fogadó SQL adatbázis meg van adva egy elsődleges kulcs, de nincs ilyen elsődleges kulcs hello forrás SQL server van definiálva. Duplikált hello azon sorait, amelyek hello forrás szerepel másolt toohello fogadó nem lehet. Másolási tevékenység csak hello adatok első sora hello forrás hello fogadó másolja. hello hello ismétlődő elsődleges kulcs értéke a következő forrás sorokat észlelhetők a nem kompatibilis és kimarad.
 
 ## <a name="configuration"></a>Konfiguráció
-A következő példa egy JSON-definícióból, a másolási tevékenység nem kompatibilis sorok kihagyása konfigurálása biztosítja:
+hello alábbi példa tartalmazza a JSON definition tooconfigure hello másolási tevékenység nem kompatibilis sorok kihagyása:
 
 ```json
 "typeProperties": {
@@ -63,22 +63,22 @@ A következő példa egy JSON-definícióból, a másolási tevékenység nem ko
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
 | **enableSkipIncompatibleRow** | Vagy nem engedélyezheti a nem kompatibilis sorok kihagyása másolása során. | True (Igaz)<br/>Hamis (alapértelmezés) | Nem |
-| **redirectIncompatibleRowSettings** | Egy csoport, amely tulajdonságok meg, ha azt szeretné, a nem kompatibilis sorok bejelentkezni. | &nbsp; | Nem |
-| **linkedServiceName** | A napló, a rendszer kihagyta sorokat tartalmazó tárolásához Azure Storage társított szolgáltatás. | A neve egy [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service) vagy [AzureStorageSas](data-factory-azure-blob-connector.md#azure-storage-sas-linked-service) társított szolgáltatás, amely a tárolási példányon, amely a naplófájl tárolási használni kívánt vonatkozik. | Nem |
-| **elérési út** | A rendszer kihagyta sorokat tartalmaz-e a naplófájl elérési útja | Adja meg a Blob storage elérési utat, amely a nem kompatibilis adatokat naplózhatnak használni kívánt. Ha nem ad meg egy elérési utat, a szolgáltatás létrehoz egy tárolót. | Nem |
+| **redirectIncompatibleRowSettings** | Egy csoportját, amely tulajdonságok megadott, ha azt szeretné, hogy toolog hello nem kompatibilis sorok. | &nbsp; | Nem |
+| **linkedServiceName** | hello társított szolgáltatásnak Azure Storage toostore hello napló kihagyva hello sorokat tartalmaz-e. | hello nevét egy [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service) vagy [AzureStorageSas](data-factory-azure-blob-connector.md#azure-storage-sas-linked-service) társított szolgáltatás, amely a toohello tárolási példányt, amelyet az toouse toostore hello naplófájl. | Nem |
+| **elérési út** | hello hello tartalmazó hello naplófájl elérési útja kihagyja a sort. | Adja meg a hello Blob. tárolási elérési útja, amelyet az toouse toolog hello inkompatibilis adatokat. Ha nem ad meg egy elérési utat, hello szolgáltatás létrehoz egy tárolót. | Nem |
 
 ## <a name="monitoring"></a>Figyelés
-A másolási tevékenység során futtatása után megtekintheti a figyelési szakaszban kihagyott sorok száma:
+Futtatás hello másolási tevékenység befejezése után hello számát kihagyott sorok hello figyelés szakaszban tekintheti meg:
 
 ![A figyelő nem kompatibilis sorok kihagyva](./media/data-factory-copy-activity-fault-tolerance/skip-incompatible-rows-monitoring.png)
 
-Ha a nem kompatibilis sorok bejelentkezni konfigurálja, a naplófájl ezen az elérési úton található: `https://[your-blob-account].blob.core.windows.net/[path-if-configured]/[copy-activity-run-id]/[auto-generated-GUID].csv` , amelyek ki lettek hagyva a sorok és a kompatibilitási okának láthatja a naplófájlban.
+Ha toolog hello nem kompatibilis sorok konfigurálásához hello naplófájl ezen az elérési úton található: `https://[your-blob-account].blob.core.windows.net/[path-if-configured]/[copy-activity-run-id]/[auto-generated-GUID].csv` hello naplófájlban is hello azon sorait, amelyek ki lettek hagyva és hello hello kompatibilitási okozza.
 
-A fájl az eredeti adatok és a hiba jelentkezett be. A napló fájl tartalma például a következőképpen történik:
+Hello fájl hello eredeti adatok és a megfelelő hello hiba jelentkezett be. Hello naplótartalmak fájlt például a következőképpen történik:
 ```
-data1, data2, data3, UserErrorInvalidDataValue,Column 'Prop_2' contains an invalid value 'data3'. Cannot convert 'data3' to type 'DateTime'.,
-data4, data5, data6, Violation of PRIMARY KEY constraint 'PK_tblintstrdatetimewithpk'. Cannot insert duplicate key in object 'dbo.tblintstrdatetimewithpk'. The duplicate key value is (data4).
+data1, data2, data3, UserErrorInvalidDataValue,Column 'Prop_2' contains an invalid value 'data3'. Cannot convert 'data3' tootype 'DateTime'.,
+data4, data5, data6, Violation of PRIMARY KEY constraint 'PK_tblintstrdatetimewithpk'. Cannot insert duplicate key in object 'dbo.tblintstrdatetimewithpk'. hello duplicate key value is (data4).
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Azure Data Factory másolási tevékenység kapcsolatos további információkért lásd: [adatok áthelyezése a másolási tevékenység segítségével](data-factory-data-movement-activities.md).
+További információ az Azure Data Factory másolási tevékenység során toolearn lásd [adatok áthelyezése a másolási tevékenység segítségével](data-factory-data-movement-activities.md).

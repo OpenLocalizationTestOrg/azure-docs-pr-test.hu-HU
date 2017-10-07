@@ -1,6 +1,6 @@
 ---
-title: "Probléma jelentkezik be egy egyéni által fejlesztett alkalmazás |} Microsoft Docs"
-description: "Az Azure ad-val kialakítása, amelyek okozza, hogy nem fog tudni bejelentkezni egy alkalmazás általános rrors"
+title: "bejelentkezés tooan egyéni által fejlesztett alkalmazás aaaProblems |} Microsoft Docs"
+description: "Közös rrors, amely az okozza, toonot kell egy alkalmazásba, az Azure ad-val fejlesztett ki tudja toosign"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,21 +13,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: b0df23e040a73d18968f547eef7347f14cc577c6
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: cc302e68ae6c129b74387c6fc5ba4fb45ccb8fb3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="problems-signing-in-to-an-custom-developed-application"></a>Egy egyéni által fejlesztett alkalmazás bejelentkezés problémák
+# <a name="problems-signing-in-tooan-custom-developed-application"></a>Bejelentkezés tooan egyéni által fejlesztett alkalmazás problémák
 
-Nincsenek számos hibát, amely az okozza, hogy nem lehet bejelentkezni az alkalmazásba. A legnagyobb OK személyek esetlegesen fellépő probléma van az alkalmazások konfigurációja.
+Nincsenek számos hibát, amely az okozza, toonot képes toosign kell az alkalmazásba. hello legnagyobb személyek során ez a probléma oka helytelenül konfigurált alkalmazások.
 
-## <a name="errors-related-to--misconfigured-apps"></a>Helytelenül konfigurált alkalmazások kapcsolatos hibák
+## <a name="errors-related-too-misconfigured-apps"></a>Túl helytelenül konfigurált alkalmazások kapcsolatos hibák
 
-* Ellenőrizze a portálon mindkét a konfiguráció megfelel az alkalmazás rendelkezik. Pontosabban hasonlítsa össze az ügyfél/alkalmazás azonosítója, a válasz URL-címek, a titkos kulcsok/Ügyfélkulcsokat és a App ID URI.
+* Ellenőrizze mindkét hello konfigurációk hello portálon megfelel az alkalmazás rendelkezik. Pontosabban hasonlítsa össze az ügyfél/alkalmazás azonosítója, a válasz URL-címek, a titkos kulcsok/Ügyfélkulcsokat és a App ID URI.
 
-* Hasonlítsa össze a hozzáférést a kódokat, amelyek a beállított engedélyek szükségesek a kért erőforrás a **szükséges erőforrások** fülre, és ellenőrizze, hogy Ön csak erőforrás-kérelmek konfigurálását.
+* Hasonlítsa össze a hozzáférési tooin kód hello konfigurált engedélyekkel hello a kért hello erőforrás **szükséges erőforrások** konfigurálása lapon toomake meg arról, hogy csak kérjen erőforrásokat.
 
 * Lásd: [Azure AD StackOverflow](http://stackoverflow.com/questions/tagged/azure-active-directory) hasonló hibákat és problémákat.
 
@@ -35,7 +35,7 @@ Nincsenek számos hibát, amely az okozza, hogy nem lehet bejelentkezni az alkal
 
 [Az Azure AD-fejlesztői útmutató](https://docs.microsoft.com/azure/active-directory/develop/active-directory-developers-guide)<br>
 
-[Hozzájárulás és az alkalmazások az Azure AD integrálása](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications>)<br>
+[Hozzájárulás és az alkalmazások integrálása tooAzure AD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications>)<br>
 
 [Hozzájárulás és az Azure AD v2.0 Permissioning összevont alkalmazások](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-scopes)<br>
 

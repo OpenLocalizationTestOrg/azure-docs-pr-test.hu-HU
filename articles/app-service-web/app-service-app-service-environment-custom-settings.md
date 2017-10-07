@@ -1,5 +1,5 @@
 ---
-title: "Az App Service Environment-környezetek egyéni beállítások"
+title: "App Service Environment-környezetek aaaCustom beállításai"
 description: "App Service Environment-környezetek egyéni konfigurációs beállításai"
 services: app-service
 documentationcenter: 
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/22/2016
 ms.author: stefsch
-ms.openlocfilehash: 687475fae0c90713c15e8abbb92b71059eae81c0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3d140688c88b389e71bfdd465c418339cccab3a6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="custom-configuration-settings-for-app-service-environments"></a>App Service Environment-környezetek egyéni konfigurációs beállításai
 ## <a name="overview"></a>Áttekintés
-Mivel az App Service Environment-környezetek egyetlen ügyfél számára elkülönített, vannak bizonyos konfigurációs beállításainak kizárólag az App Service Environment-környezetek alkalmazható. Ez a cikk a különböző testreszabásokat App Service Environment-környezetek számára elérhető dokumentumok.
+Mivel az App Service Environment-környezetek elkülönített tooa egyetlen felhasználói, vannak bizonyos használható konfigurációs beállítások alkalmazása kizárólag tooApp környezetek. Ez a cikk dokumentumok hello App Service Environment-környezetek számára elérhető különböző testreszabásokat.
 
-Ha még nem rendelkezik az App Service-környezetek, lásd: [egy App Service Environment-környezet létrehozása](app-service-web-how-to-create-an-app-service-environment.md).
+Ha még nem rendelkezik az App Service-környezetek, lásd: [hogyan tooCreate az App Service-környezetek](app-service-web-how-to-create-an-app-service-environment.md).
 
-Az új tömböt használatával tárolhatja az App Service Environment-környezet testreszabások **clusterSettings** attribútum. Ez az attribútum található a "Tulajdonságok" szótára a *hostingEnvironments* Azure Resource Manager entitás.
+App Service Environment-környezet testreszabások tárolhatja használatával tömb hello új **clusterSettings** attribútum. Ez az attribútum található hello "Tulajdonságok" szótára hello *hostingEnvironments* Azure Resource Manager entitás.
 
-A következő rövidítése Resource Manager sablon kódrészletet mutat be a **clusterSettings** attribútum:
+hello rövidített Resource Manager sablon alábbi kódrészletben láthatja hello **clusterSettings** attribútum:
 
     "resources": [
     {
@@ -48,25 +48,25 @@ A következő rövidítése Resource Manager sablon kódrészletet mutat be a **
        }
     }
 
-A **clusterSettings** attribútum tartalmazhat egy Resource Manager-sablon frissítéséhez az App Service Environment-környezet.
+Hello **clusterSettings** attribútum tartalmazhat egy Resource Manager sablon tooupdate hello App Service Environment-környezet.
 
-## <a name="use-azure-resource-explorer-to-update-an-app-service-environment"></a>Erőforrás-kezelővel Azure App Service-környezetek frissítése
-Másik megoldásként frissítheti az App Service Environment-környezet használatával [Azure erőforrás-kezelő](https://resources.azure.com).  
+## <a name="use-azure-resource-explorer-tooupdate-an-app-service-environment"></a>Használja az Azure erőforrás-kezelő tooupdate egy App Service Environment-környezet
+Másik megoldásként frissítheti hello App Service Environment-környezet használatával [Azure erőforrás-kezelő](https://resources.azure.com).  
 
-1. Az erőforrás-kezelőben, nyissa meg a csomópontot az App Service Environment-környezet (**előfizetések** > **resourceGroups** > **szolgáltatók** > **Microsoft.Web** > **hostingEnvironments**). Kattintson az adott App Service-környezet, amely frissíti.
-2. Kattintson a jobb oldali ablaktáblában **olvasási/írási** a felső eszköztár engedélyezése interaktív szerkesztése az erőforrás-kezelőben.  
-3. Kattintson a kék **szerkesztése** gomb a Resource Manager-sablon szerkeszthető.
-4. A jobb oldali ablaktábla alján görgessen. A **clusterSettings** attribútum legalsó, ahol adja meg, vagy frissítse az értéket.
-5. Írja be (vagy másolja és illessze be) a kívánt konfigurációs tömböt a **clusterSettings** attribútum.  
-6. Kattintson a zöld **PUT** gombra kattint, amely rendelkezik az App Service Environment-környezet a változtatás véglegesítése a jobb oldali ablaktábla tetején található.
+1. Az erőforrás-kezelőben, nyissa meg az App Service Environment-környezet hello toohello csomópontot (**előfizetések** > **resourceGroups** > **szolgáltatók**  >  **Microsoft.Web** > **hostingEnvironments**). Kattintson az adott App Service-környezet, amelyet az tooupdate hello.
+2. Hello jobb oldali ablaktáblában kattintson **olvasási/írási** a hello felső eszköztár tooallow interaktív szerkesztése az erőforrás-kezelőben.  
+3. Kattintson a kék hello **szerkesztése** gomb toomake hello Resource Manager sablon szerkeszthető.
+4. Toohello hello jobb oldali ablaktábla alján görgessen. Hello **clusterSettings** attribútum jelenleg hello legalsó, ahol adja meg, vagy frissítse az értéket.
+5. Hello kívánt konfigurációs értékeket típusa (vagy a másolás és beillesztés) hello tömbje **clusterSettings** attribútum.  
+6. Kattintson a zöld hello **PUT** gombra kattint, amely rendelkezik hello jobb oldali toocommit hello módosítása toohello App Service Environment-környezet hello tetején található.
 
-A módosítás küldje el, de az App Service-környezet a változtatás érvénybe léptetéséhez előtér-webkiszolgálóinak számát szorozva körülbelül 30 percet vesz igénybe.
-Például ha az App Service-környezetek négy előtér-webkiszolgálóinak, eltarthat körülbelül két órát a konfigurációs frissítés befejezéséhez. A konfigurációváltozás van megkezdődött, míg más skálázási műveletek vagy konfiguráció-módosítási műveletek nem történhet az App Service Environment-környezetben.
+Hello módosítás elküldését, de hello App Service Environment-környezet tootake hatás hello módosítása az előtér-webkiszolgálóinak hello számát szorozva körülbelül 30 percet vesz igénybe.
+Például ha az App Service-környezetek négy előtér-webkiszolgálóinak, körülbelül két órát hello konfigurációs frissítés toofinish tart. Hello konfigurációváltozás megkezdődött van, míg más skálázási műveletek vagy konfiguráció-módosítási műveletek nem történhet a hello App Service Environment-környezet.
 
 ## <a name="disable-tls-10"></a>A TLS 1.0 letiltása
-Ismétlődő kérdés az ügyfelektől, különösen az ügyfelek, akik a PCI-megfelelőséget foglalkoznak eseményeket, a explicit módon az alkalmazások a TLS 1.0 letiltása.
+Ismétlődő kérdés az ügyfelektől, különösen az ügyfelek, akik a PCI-megfelelőséget foglalkoznak eseményeket, a hogyan tooexplicitly letiltja a TLS 1.0 alkalmazásaikat.
 
-A TLS 1.0 a következő keresztül letiltható **clusterSettings** bejegyzést:
+A TLS 1.0 hello következő keresztül letiltható **clusterSettings** bejegyzést:
 
         "clusterSettings": [
             {
@@ -76,7 +76,7 @@ A TLS 1.0 a következő keresztül letiltható **clusterSettings** bejegyzést:
         ],
 
 ## <a name="change-tls-cipher-suite-order"></a>Módosítsa a TLS titkosító csomag sorrendje
--Ügyfél egy másik kérdést akkor, ha azok módosíthatja a kiszolgáló által egyeztetett titkosítási a listáját, és ez módosításával érhető el a **clusterSettings** alább látható módon. Rendelkezésre álló titkosító csomagok listája olvasható be a [MSDN-cikkben](https://msdn.microsoft.com/library/windows/desktop/aa374757\(v=vs.85\).aspx).
+-Ügyfél egy másik kérdést akkor, ha azok módosíthatja, hogy a kiszolgáló által egyeztetett titkosítási hello listáját, és ez elérhető hello módosításával **clusterSettings** alább látható módon. hello elérhető titkosító csomagok listája olvasható be a [MSDN-cikkben](https://msdn.microsoft.com/library/windows/desktop/aa374757\(v=vs.85\).aspx).
 
         "clusterSettings": [
             {
@@ -86,12 +86,12 @@ A TLS 1.0 a következő keresztül letiltható **clusterSettings** bejegyzést:
         ],
 
 > [!WARNING]
-> Érvénytelen értékek vannak beállítva, a titkosítási csomagok, amelyek nem érti a SChannel a, ha a kiszolgáló minden TLS kommunikációs leállhat működését. Ebben az esetben kell eltávolítani a *FrontEndSSLCipherSuiteOrder* bejegyzést **clusterSettings** , és küldje el a frissített Resource Manager-sablon, ha vissza kíván térni az alapértelmezett titkosító csomag beállításokat.  Körültekintően használja ezt a funkciót.
+> Érvénytelen értékek vannak beállítva, a SChannel nem érti hello titkosítócsomag, ha minden TLS kommunikációs tooyour server előfordulhat, hogy működni. Ebben az esetben szüksége lesz a tooremove hello *FrontEndSSLCipherSuiteOrder* bejegyzést **clusterSettings** , és küldje el a hello Resource Manager sablon toorevert hátsó toohello alapértelmezett titkosítás frissítése csomag beállításait.  Körültekintően használja ezt a funkciót.
 > 
 > 
 
 ## <a name="get-started"></a>Bevezetés
-Az Azure gyors üzembe helyezés Resource Manager sablon hely tartalmazza az alapdefinícióját tartalmazó sablon [egy App Service Environment-környezet létrehozása](https://azure.microsoft.com/documentation/templates/201-web-app-ase-create/).
+hello Azure gyors üzembe helyezés Resource Manager sablon webhely alap definíciója hello rendelkező sablont tartalmaz [egy App Service Environment-környezet létrehozása](https://azure.microsoft.com/documentation/templates/201-web-app-ase-create/).
 
 <!-- LINKS -->
 

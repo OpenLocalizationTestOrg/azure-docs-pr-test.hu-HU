@@ -1,6 +1,6 @@
 ---
-title: "A HDInsight alatt futó Apache Storm vehicle érzékelő adatok feldolgozása |} Microsoft Docs"
-description: "Útmutató a vehicle érzékelő adatokat az Event Hubs a HDInsight alatt futó Apache Storm használatával feldolgozni. Vegye fel a modell adatai a Azure Cosmos-Adatbázisból, és a kimenetet tárhelyre."
+title: "aaaProcess vehicle érzékelő adatokat a HDInsight alatt futó Apache Storm |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooprocess vehicle érzékelő adatokat az Event Hubs a HDInsight alatt futó Apache Storm használatával. Vegye fel a modell adatai a Azure Cosmos-Adatbázisból, és kimeneti toostorage tárolja."
 services: hdinsight,documentdb,notification-hubs
 documentationcenter: 
 author: Blackmist
@@ -15,49 +15,49 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/03/2017
 ms.author: larryfr
-ms.openlocfilehash: 8e8ebc724e1c70e8fcd56312adef5da2342373ea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f7b1dbb9072e095ea32160bb731bedd071288af
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="process-vehicle-sensor-data-from-azure-event-hubs-using-apache-storm-on-hdinsight"></a>Az Azure Event Hubs a HDInsight alatt futó Apache Storm használatával vehicle érzékelő adatok feldolgozása
 
-Útmutató a vehicle érzékelő adatokat az Azure Event Hubs a HDInsight alatt futó Apache Storm használatával feldolgozni. Ez a példa olvassa be az Azure Event Hubs érzékelőadatait, a következőképpen színesíti az adatok Azure Cosmos DB tárolt adatok Vezérlőpultjának. Az adatok Azure Storage a Hadoop fájlrendszerrel (HDFS) használatával történő tárolását.
+Megtudhatja, hogyan tooprocess vehicle a HDInsight alatt futó Apache Storm használatával Azure Event hubs érzékelőadatait. Ez a példa olvassa be az Azure Event Hubs érzékelőadatait, a következőképpen színesíti hello adatok Azure Cosmos DB tárolt adatok Vezérlőpultjának. hello tárolja az Azure Storage hello Hadoop fájlrendszerrel (HDFS) használatával.
 
-![HDInsight és az eszközök internetes hálózatát (IoT) architektúrája](./media/hdinsight-storm-iot-eventhub-documentdb/iot.png)
+![HDInsight és hello az eszközök internetes hálózatát (IoT) architektúra diagramja](./media/hdinsight-storm-iot-eventhub-documentdb/iot.png)
 
 ## <a name="overview"></a>Áttekintés
 
-Érzékelők hozzáadása járművekről gyűjtött teszi berendezések problémákat előzményadatokat trendek alapján előre jelezni. Lehetővé teszi a használatelemzés minta alapján a jövőbeli verziókkal továbbfejlesztésére. Gyors és hatékony az adatok betöltése az összes járművekről gyűjtött az Hadoop MapReduce feldolgozása előtt képesnek kell lennie. Emellett érdemes a kritikus hibával elérési utak (motor, fékek stb.) a valós idejű elemzést.
+Érzékelők toovehicles hozzáadását teszi lehetővé toopredict berendezések problémákat előzményadatokat trendek alapján. Lehetővé teszi toomake fejlesztései toofuture verziók használatelemzés minta alapján. Képes tooquickly legyen, és hatékonyan hello adatok betöltése az összes járművekről gyűjtött az Hadoop MapReduce feldolgozása előtt. Emellett Kezdésként kritikus hibával elérési út (motor, fékek stb.) toodo elemzés valós időben.
 
-Azure Event Hubs-t a nagy mennyiségű érzékelők által létrehozott adatok kezelésére. Apache Storm használható betölteni, és az adatok feldolgozása előtt a HDFS tárolja.
+Az Azure Event Hubs-t toohandle hello nagy kötet érzékelők által generált adatmennyiséget. Apache Storm csak használt tooload és hello adatfeldolgozásra tárolja a HDFS előtt.
 
 ## <a name="solution"></a>Megoldás
 
-Az érzékelők motor, a környezeti hőmérséklet és a vehicle sebesség telemetriai adatokat rögzíti. Majd adatküldést Event hubs együtt a car Vehicle azonosító szám (VIN), valamint egy időbélyegző. Ott a egy Apache Storm on HDInsight-fürt futó Storm-topológia a adatokat olvas, folyamatokat engedélyez, és tárolja a HDFS be.
+Az érzékelők motor, a környezeti hőmérséklet és a vehicle sebesség telemetriai adatokat rögzíti. Adatokat küldi el a rendszer tooEvent hubok hello car Vehicle azonosító szám (VIN) és egy időbélyegzőt együtt. Ezekből a egy Apache Storm on HDInsight-fürt futó Storm-topológia hello adatokat olvas, folyamatokat engedélyez, és tárolja a HDFS be.
 
-A feldolgozás során a VIN használatos típusra vonatkozó adatokat a Cosmos-Adatbázisból. Mielőtt a rendszer tárolja ezeket az adatokat az adatfolyamot kerül.
+A feldolgozás során hello VIN használt tooretrieve típusra vonatkozó adatokat a Cosmos-Adatbázisból. Ezek az adatok toohello adatfolyam kerül, mielőtt a rendszer tárolja.
 
-A Storm-topológia használt összetevők a következők:
+a Storm-topológia hello használt hello összetevők a következők:
 
 * **EventHubSpout** -olvassa be az adatokat az Azure Event Hubs
-* **TypeConversionBolt** -konvertálja a JSON-karakterláncban az Event Hubs egy rekord, a következő érzékelő adatokat tartalmazó:
+* **TypeConversionBolt** -konvertálja a JSON-karakterláncban az Event Hubs érzékelőadatait következő hello tartalmazó rekordot a hello:
     * Motor
     * Környezeti hőmérséklet
     * Gyorsaság
     * VIN
     * időbélyeg
-* **DataReferencBolt** -keres a vehicle modell a használatával a VIN Cosmos-Adatbázisból
-* **WasbStoreBolt** -tárolja az adatokat HDFS (Azure Storage)
+* **DataReferencBolt** -hello vehicle modell megkeresi a hello VIN használatával Cosmos-Adatbázisból
+* **WasbStoreBolt** -tárolók hello adatok tooHDFS (Azure Storage)
 
-Az alábbi képen egy diagram az ilyen típusú megoldásra:
+a következő kép hello diagramját, illetve az ehhez a megoldáshoz:
 
 ![Storm-topológia](./media/hdinsight-storm-iot-eventhub-documentdb/iottopology.png)
 
 ## <a name="implementation"></a>Megvalósítás
 
-Egy teljes automatikus megoldás az ebben a forgatókönyvben áll rendelkezésre, mert része a [HDInsight-Storm-példák](https://github.com/hdinsight/hdinsight-storm-examples) GitHub tárházából. Ebben a példában, hajtsa végre a lépéseket a [IoTExample fontos. MD](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md).
+A teljes automatikus megoldás az ebben a forgatókönyvben hello részeként [HDInsight-Storm-példák](https://github.com/hdinsight/hdinsight-storm-examples) GitHub tárházából. toouse ebben a példában hello hello lépéseit kövesse [IoTExample fontos. MD](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md).
 
 ## <a name="next-steps"></a>Következő lépések
 

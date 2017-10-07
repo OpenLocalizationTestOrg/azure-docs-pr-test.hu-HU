@@ -1,6 +1,6 @@
 ---
-title: "Bevezetés az Azure Storage használatába | Microsoft Docs"
-description: "Bevezetés az Azure Storage, a Microsoft felhőalapú adattároló szolgáltatásának használatába."
+title: "aaaIntroduction tooAzure tárolási |} Microsoft Docs"
+description: "Bevezetés tooAzure tároló, a Microsoft adattárolás hello felhőben."
 services: storage
 documentationcenter: 
 author: robinsh
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/09/2017
 ms.author: robinsh
-ms.openlocfilehash: 163f35682a4fdaa971f715c7429153bfdcf6a584
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f61324f98d0a8eb24023e4344acdb4ca58bb27f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-<!-- this is the same version that is in the MVC branch -->
-# <a name="introduction-to-microsoft-azure-storage"></a>A Microsoft Azure Storage bemutatása
+<!-- this is hello same version that is in hello MVC branch -->
+# <a name="introduction-toomicrosoft-azure-storage"></a>Azure Storage bemutatása tooMicrosoft
 
 A Microsoft Azure Storage egy, a Microsoft által felügyelt felhőszolgáltatás, amely magas rendelkezésre állású, biztonságos, tartós, méretezhető és redundáns tárolást tesz lehetővé. A karbantartást és a kritikus problémák kezelését a Microsoft végzi el Önnek. 
 
-Az Azure Storage a következő három adatszolgáltatást tartalmazza: Blob Storage, File Storage és Queue Storage. A Blob Storage standard és prémium szintű tárolást is kínál – a prémium tárolás kizárólag SSD meghajtókon történik a lehető leggyorsabb teljesítmény biztosítása érdekében. Egy másik szolgáltatás a ritkán használt adatok tárolása, amelynek keretében az ilyen adatok nagy mennyiségben tárolhatók alacsony költségek mellett.
+Az Azure Storage a következő három adatszolgáltatást tartalmazza: Blob Storage, File Storage és Queue Storage. BLOB storage támogatja a standard és a prémium szintű storage, prémium szintű Storage használata csak az SSD-k hello leggyorsabb teljesítmény lehetséges. Egy másik szolgáltatás ritkán használt adatok tárolási, hogy lehetővé teszi a ritkán használt adatokhoz egy alacsonyabb költségek a nagy mennyiségű toostorage.
 
-Ebben a cikkben megismerkedhet a következőkkel:
-* az Azure Storage szolgáltatásai,
-* a tárfiókok típusai,
+Ebben a cikkben megismerkedhet a hello következő:
+* hello Azure Storage szolgáltatás
+* hello típusú tárfiókkal
 * a blobokhoz, üzenetsorokhoz és fájlokhoz való hozzáférés módjai,
 * titkosítás
 * replikáció, 
 * az adatok a tárolóba vagy a tárolóból való áthelyezése,
-* valamint a számos elérhető Storage ügyfélkódtár. 
+* hello sok storage ügyfélkódtáraival érhető el. 
 
 
 <!-- RE-ENABLE THESE AFTER MVC GOES LIVE 
-To get up and running with Azure Storage quickly, check out one of the following Quickstarts:
+tooget up and running with Azure Storage quickly, check out one of hello following Quickstarts:
 * [Create a storage account using PowerShell](storage-quick-create-storage-account-powershell.md)
 * [Create a storage account using CLI](storage-quick-create-storage-account-cli.md)
 -->
 
 
-## <a name="introducing-the-azure-storage-services"></a>Az Azure Storage szolgáltatásainak bemutatása
+## <a name="introducing-hello-azure-storage-services"></a>Hello Azure Storage szolgáltatások bemutatása
 
-Az Azure Storage által biztosított szolgáltatások – Blob Storage, File Storage és Queue Storage – használatához először létre kell hoznia egy tárfiókot, majd ezután azon a fiókon belül viheti át az adatait egy adott szolgáltatásba, illetve a szolgáltatásból máshová. 
+toouse hello szolgáltatások által biztosított Azure Storage – Blob-tároló, a File storage és a Queue storage--, először hozzon létre egy tárfiókot, és ezután belőle egy adott szolgáltatáshoz, hogy a tárfiókban lévő adatok vihetők át. 
 
 ## <a name="blob-storage"></a>Blob Storage
 
-A blobok lényegében ugyanolyan fájlok, mint amilyeneket a számítógépén (vagy táblagépén, mobileszközén stb.) is tárol. Lehetnek képek, Microsoft Excel-fájlok, HTML-fájlok, virtuális merevlemezek (VHD-k), big data (például naplók), vagy adatbázisok biztonsági másolatai – lényegében szinte bármi. A blobok tárolása tárolókban történik, amelyek a mappákhoz hasonlatosak. 
+A blobok lényegében ugyanolyan fájlok, mint amilyeneket a számítógépén (vagy táblagépén, mobileszközén stb.) is tárol. Lehetnek képek, Microsoft Excel-fájlok, HTML-fájlok, virtuális merevlemezek (VHD-k), big data (például naplók), vagy adatbázisok biztonsági másolatai – lényegében szinte bármi. BLOB tárolók, amelyek hasonló toofolders vannak tárolva. 
 
-A fájlok Blob Storage tárolóban való elhelyezése után a világ bármely pontjáról elérheti azokat URL-címek, a REST-felület vagy az Azure SDK-tároló ügyfélkódtárai használatával. A tárolók ügyfélkódtárai több nyelvhez, köztük a Node.js, a Java, a PHP, a Ruby, a Python és a .NET nyelvekhez is elérhetők. 
+Fájlok Blob Storage tárolóban végzett tárolása, után elérheti őket bárhonnan hello world URL-címekkel, a hello REST-felületen, vagy egy hello Azure SDK storage ügyfélkódtáraival. A tárolók ügyfélkódtárai több nyelvhez, köztük a Node.js, a Java, a PHP, a Ruby, a Python és a .NET nyelvekhez is elérhetők. 
 
 A bloboknak három típusa létezik: a blokkblobok, a hozzáfűző blobok és lapblobok (ezek a VHD-fájlokhoz használatosak).
 
-* A blokkblobokban hagyományos fájlok tárolhatók legfeljebb nagyjából 4,7 TB méretig. 
-* A lapblobokban közvetlen elérésű fájlok tárolhatók legfeljebb 8 TB méretig. Ezek a virtuális gépek alapját képező VHD-fájlokhoz használatosak.
-* A hozzáfűző blobok a blokkblobokhoz hasonlóan blokkokból állnak, azonban a hozzáfűzési műveletekhez vannak optimalizálva. Ezek például több virtuális gép adatainak egyazon blobba történő naplózására használhatók.
+* Blokkblobok olyan használt toohold szokásos fájlok mentése tooabout 4.7 TB. 
+* Lapblobokat a használt toohold elérésű fájlok mentése too8 TB-nál. Ezek a virtuális gépek biztonsági hello VHD-fájlok használhatók.
+* Hozzáfűző blobok hello blokkblobokhoz hasonlóan blokkokból épülnek fel, de vannak optimalizálva, műveletek hozzáfűzésére. Ezek többek között információkat toohello azonos blob-naplózás több virtuális gépek használják.
 
-A nagy adatkészleteknél, ahol a hálózati korlátok miatt irreális lenne az adatok vezetékes le- vagy feltöltése a Blob Storage-ba, elküldhet a Microsoftnak egy teljes merevlemez-készletet, hogy az adatokat közvetlenül az adatközpontból importálják vagy oda exportálják. Lásd: [Use the Microsoft Azure Import/Export Service to Transfer Data to Blob Storage](../storage-import-export-service.md) (A Microsoft Azure Import/Export szolgáltatás használata az adatok átviteléhez a Blob Storage-ba).
+A nagy adatkészleteknél, ahol a hálózati megkötések ellenőrizze vagy feltöltése a tooBlob adattárolás irreális hello hálózaton keresztül küldje el a merevlemez-meghajtók tooMicrosoft tooimport készletét, vagy exportálja az adatokat közvetlenül a hello adatközpont. Lásd: [hello a Microsoft Azure Import/Export szolgáltatás tooTransfer adatok tooBlob Storage használata](../storage-import-export-service.md).
 
 ## <a name="file-storage"></a>File Storage
 
-Az Azure Files szolgáltatás segítségével magas rendelkezésre állású hálózati fájlmegosztásokat hozhat létre, amelyek a szabványos kiszolgálói üzenetblokk (SMB) protokollon keresztül érhetőek el. Ez azt jelenti hogy ugyanazokhoz a fájlokhoz több virtuális gép is hozzáférhet olvasási és írási jogosultsággal. A fájlokat a REST-felület vagy a Storage klienskódtáraival is olvashatja. 
+hello Azure fájlok szolgáltatás lehetővé teszi tooset hello szabványos Server Message Block (SMB) protokoll használatával elérhető magas rendelkezésre állású hálózati fájlmegosztások fel. Azt jelenti, hogy több virtuális gép megoszthatja hello azonos fájlokat az olvasási és írási hozzáférést is. Hello fájlokat hello REST-felületen vagy a hello storage ügyfélkódtáraival is olvasható. 
 
-Az egyik dolog, ami megkülönbözteti az Azure File Storage tárolót a fájlok a vállalati fájlmegosztásokon való tárolásától, hogy a fájlokat a világ bármely pontjáról elérheti a rájuk mutató URL-címekkel, amelyek közös hozzáférésű jogosultságkód- (SAS-) tokenekkel rendelkeznek. SAS-tokeneket Ön is létrehozhat: ezek határozott ideig biztosítanak egyedi hozzáférést a privát objektumokhoz. 
+Egyetlen művelet, amelyik megkülönbözteti az Azure File storage egy vállalati fájlt megosztáson, hogy el tudja érni hello fájlokat bárhonnan a hello world toohello fájlra mutat, és egy közös hozzáférésű jogosultságkód (SAS) jogkivonatot tartalmazó URL-cím. Hozhat létre a SAS-tokenje; egy adott időtartamig lehetővé teszik a kívánt hozzáférés tooa személyes eszköz. 
 
 A fájlmegosztások számos gyakori forgatókönyvhöz használhatók: 
 
-* Számos helyszíni alkalmazás használ fájlmegosztásokat. Ezzel a szolgáltatással könnyebb migrálni azokat az alkalmazásokat, amelyek az Azure-ban osztják meg az adatokat. Ha a fájlmegosztást ugyanarra a meghajtóhelyre csatlakoztatja, amelyet a helyszíni alkalmazás használ, az alkalmazás fájlmegosztáshoz kapcsolódó része minimális vagy semennyi módosítással használható.
+* Számos helyszíni alkalmazás használ fájlmegosztásokat. A szolgáltatás révén egyszerűbben toomigrate ezeket az alkalmazásokat, amelyek közös adatok tooAzure. Csatlakoztatása hello fájl megosztási toohello azonos meghajtó betűjele, hello helyszíni alkalmazást használ, az alkalmazás hello fájlmegosztás hozzáférő hello részét minimális, ha van ilyen módosításait együtt kell működnie.
 
-* A konfigurációs fájlok fájlmegosztásokon tárolhatók, és több virtuális gépről is elérhetők. A több fejlesztő által egy csoportban használt eszközök és segédprogramok is tárolhatók fájlmegosztásokon, így mindenki elérheti őket, és mindenki ugyanazt a verziót használhatja.
+* A konfigurációs fájlok fájlmegosztásokon tárolhatók, és több virtuális gépről is elérhetők. Eszközök és segédprogramok egy csoport több fejlesztők által használt tárolható egy fájlmegosztást, győződjön meg arról, hogy mindenki választhatók ki, és használják-e a hello ugyanazt a verziót.
 
-* A diagnosztikai naplók, metrikák és összeomlási memóriaképek is a fájlmegosztásra írható, és később onnan feldolgozható és elemezhető adattípusok közé tartoznak.
+* Diagnosztikai naplók, metrikák és összeomlási memóriaképeket tooa fájlmegosztás írása és dolgozni, vagy később elemzett adatok három példák.
 
-Jelenleg az Active Directory-alapú hitelesítés és a hozzáférés-vezérlési listák (ACL-ek) még nem támogatottak, azonban a későbbiekben ez is megvalósul majd. A fájlmegosztáshoz való hozzáférés a tárfiók hitelesítő adataival hitelesíthető. Ez azt jelenti, hogy bárki, akinél a fájlmegosztás csatlakoztatva van, teljes írási/olvasási jogosultsággal rendelkezik rajta.
+Ez idő, az Active Directory-alapú hitelesítés és hozzáférés vezérlési listák (ACL) nem támogatott, de a jövőbeli hello valamikor fogja. hello tárfiók hitelesítő adatainak használt tooprovide hitelesítési hozzáférési toohello fájlmegosztás. Ez azt jelenti, hogy birtokában bárki hello megosztás csatlakoztatva lesz teljes olvasási/írási hozzáférést toohello megosztást.
 
 ## <a name="queue-storage"></a>Queue Storage
 
-Az Azure Queue szolgáltatás üzenetek tárolására és lehívására használható. Az üzenetsor üzenetei egyenként legfeljebb 64 KB méretűek lehetnek, és az üzenetsor akár több millió üzenetet is tartalmazhat. Az üzenetsorok általában aszinkron feldolgozásra szánt üzenetek listáit tárolják. 
+hello Azure Queue szolgáltatás használt toostore és lekérése üzenetek. Too64 KB méretű be lehet üzenetsor-üzeneteket, és több millió üzenetet tartalmazhat. A várólisták aszinkron módon feldolgozott üzenetek toobe általánosan használt toostore listája. 
 
-Tegyük fel például, hogy biztosítani szeretné az ügyfelei számára, hogy képeket tölthessenek fel, az egyes képekhez pedig miniatűröket szeretne létrehozni. Választhatná azt, hogy az ügyfeleknek a feltöltéskor várniuk kelljen a miniatűrök létrehozására. Alternatív megoldásként azonban használhat üzenetsort is. Amint az ügyfél befejezte a feltöltést, írjon egy üzenetet az üzenetsorba. Ezután egy Azure-függvénnyel hívja le az üzenetet az üzenetsorból, és hozza létre a miniatűrt. Ennek az eljárásnak minden egyes része külön méretezhető, és így szabadabban hangolhatja a felhasználási céloknak megfelelően.
+Például hogy azt szeretné, hogy a felhasználók toobe képes tooupload képek, és szeretné toocreate miniatűr képek. Az ügyfél várni toocreate hello miniatűrök hello képek feltöltése során lehet. Alternatív toouse várólista lenne. Hello ügyfél a feltöltés befejeződése után írható toohello üzenet-várólista. Akkor kell egy Azure-függvény üdvözlőüzenetére beolvasni hello a várólistából, és hozzon létre hello miniatűrökön. Egyes hello részei a feldolgozási is méretezhető külön-külön, így jobban kézben hangolása azt a használat során.
 
-<!-- this bookmark is used by other articles; you'll need to update them before this goes into production ROBIN-->
+<!-- this bookmark is used by other articles; you'll need tooupdate them before this goes into production ROBIN-->
 ## <a name="table-storage"></a>Table Storage
-<!-- add a link to the old table storage to this paragraph once it's moved -->
-A standard Azure Table Storage mostantól a Cosmos DB része. Emellett az Azure Table Storage prémium táblákra vonatkozó ajánlata is elérhető, teljesítményoptimalizált táblákkal, globális elosztással és automatikus másodlagos indexekkel. Ha további információra van szüksége, vagy szeretné kipróbálni az új prémium ajánlatot, tekintse meg az [Azure Cosmos DB: tábla API](https://aka.ms/premiumtables)-t ismertető cikket.
+<!-- add a link toohello old table storage toothis paragraph once it's moved -->
+A standard Azure Table Storage mostantól a Cosmos DB része. Emellett az Azure Table Storage prémium táblákra vonatkozó ajánlata is elérhető, teljesítményoptimalizált táblákkal, globális elosztással és automatikus másodlagos indexekkel. További toolearn, majd próbálja meg új premium élmény hello, vegye ki [Azure Cosmos DB: tábla API](https://aka.ms/premiumtables).
 
 ## <a name="disk-storage"></a>Lemezes tárolás
 
-Az Azure Storage csapat emellett a Disks szolgáltatás is a tulajdonában van, amely a virtuális gépek által használt felügyelt és nem felügyelt lemezképességeket tartalmazza. További információkért ezekkel a szolgáltatásokkal kapcsolatban lásd a [Számítási szolgáltatások dokumentációját](https://docs.microsoft.com/azure/#pivot=services&panel=Compute).
+hello Azure Storage csapat tulajdonosa lemezek, amely tartalmazza az összes felügyelt hello és a nem felügyelt lemezt képességeket virtuális gépek által használt is. Ezekről a szolgáltatásokról további információkért lásd: hello [számítási szolgáltatás dokumentációja](https://docs.microsoft.com/azure/#pivot=services&panel=Compute).
 
 ## <a name="types-of-storage-accounts"></a>A tárfiókok típusai 
 
-Ez a táblázat a tárfiókok típusait és az egyes típusokkal használható objektumokat mutatja be.
+Az alábbi táblázatban hello storage-fiókok és mely objektumok használhatók az összes különböző típusú.
 
 |**Tárfiók típusa**|**Általános célú standard**|**Általános célú prémium**|**Blob Storage, a gyakran és a ritkán használt adatok tárolási rétegei**|
 |-----|-----|-----|-----|
@@ -108,105 +108,105 @@ Kétféle általános célú tárfiók létezik.
 
 #### <a name="standard-storage"></a>Standard szintű Storage 
 
-A legszélesebb körben használt tárfiók a standard tárfiók, amely bármilyen típusú adathoz használható. A standard szintű tárfiókok az adatokat mágneses adathordozókon tárolják.
+hello legszélesebb körben használható storage-fiókok szabványos tárfiókok, amelyek az összes típusú adatokhoz használható. Standard szintű storage-fiókok mágneses media toostore adatok használata.
 
 #### <a name="premium-storage"></a>Prémium szintű Storage
 
-A prémium szintű tárfiók nagy teljesítményű tárolást biztosít a lapblobokhoz, amelyek elsősorban VHD-fájlokhoz használatosak. A prémium szintű tárfiókok az adatokat SSD meghajtókon tárolják. A Microsoft minden virtuális gépéhez a prémium szintű Storage szolgáltatást ajánlja.
+A prémium szintű tárfiók nagy teljesítményű tárolást biztosít a lapblobokhoz, amelyek elsősorban VHD-fájlokhoz használatosak. Prémium szintű tárfiókok SSD toostore adatok használata. A Microsoft minden virtuális gépéhez a prémium szintű Storage szolgáltatást ajánlja.
 
 ### <a name="blob-storage-accounts"></a>Blob Storage-fiókok
 
-A Blob Storage-fiók egy specializált tárfiók blokkblobok és hozzáfűző blobok tárolásához. Az ilyen fiókokban nem lehet lapblobokat tárolni, így VHD-fájlokat sem. Ezekben a fiókokban beállíthatja a hozzáférési szintet (gyakran vagy ritkán használt adatok). Ez a szint bármikor módosítható. 
+hello Blob Storage-fiók egy speciális tárfiók használt toostore blokkblobok és hozzáfűző blobok. Az ilyen fiókokban nem lehet lapblobokat tárolni, így VHD-fájlokat sem. Ezek a fiókok lehetővé teszik a hozzáférési réteg tooHot tooset, vagy ritkán; hello réteg bármikor módosíthatja. 
 
-A gyakran használt adatok hozzáférési szintje a gyakran elérni kívánt adatok tárolására szolgál – a tárolási költségek magasabbak, a blobok hozzáférési költsége azonban sokkal alacsonyabb. A ritkán használt adatok hozzáférési szintjén tárolt blobok hozzáférési költsége magasabb, a tárolási költség azonban sokkal alacsonyabb.
+hello gyakran használt adatok hozzáférési réteg a gyakran elért fájlokat szolgál – egy magasabb tárolási költsége kell fizetnie, de hello blobok elérése hello költségét sokkal alacsonyabb. A blobok hello ritkán használt adatok hozzáférési szint tárolja a magasabb költsége hello blobok elérése után kell fizetnie, de tárolók költségét hello sokkal alacsonyabb.
 
 ## <a name="accessing-your-blobs-files-and-queues"></a>A blobok, fájlok és üzenetsorok elérése
 
-Mindegyik tárfiók két hitelesítési kulccsal rendelkezik, amely bármelyike használható bármilyen művelethez. Mivel két kulcs van, időről-időre leválthatja ezeket, így növelhető a biztonság. A kulcsok biztonságba helyezése kritikus fontosságú, mivel a fiók nevével együtt korlátlan hozzáférést biztosítanak a tárfiókban tárolt összes adathoz. 
+Mindegyik tárfiók két hitelesítési kulccsal rendelkezik, amely bármelyike használható bármilyen művelethez. Alkalmanként tooenhance biztonsági kulcsok hello keresztül lehet vonni, két kulcs van. Nagyon fontos, hogy ezek a kulcsok biztonságba helyezni, mivel a birtokukban hello fiók nevét, valamint korlátlan hozzáféréssel tooall adatok hello tárfiókban. 
 
-Ebben a szakaszban két módját ismertetjük a tárfiók és a benne lévő adatok védelmének. A tárfiók és a benne lévő adatok védelmével kapcsolatos további információkért lásd az [Azure Storage biztonsági útmutatóját](storage-security-guide.md).
+Ez a szakasz a következőhöz: két módon toosecure hello tárfiók és a hozzá kapcsolódó adatokat. A tárfiókban és az adatok védelme kapcsolatos részletes információkért lásd: hello [Azure Storage biztonsági útmutató](storage-security-guide.md).
 
-### <a name="securing-access-to-storage-accounts-using-azure-ad"></a>A tárfiókokhoz való hozzáférés biztonságossá tétele az Azure AD használatával
+### <a name="securing-access-toostorage-accounts-using-azure-ad"></a>Hozzáférés biztosítása az Azure AD toostorage fiókok
 
-A tároló adataihoz való hozzáférés biztonságossá tételének egyik módja a tárfiók kulcsaihoz való hozzáférés szabályozása. A Resource Manager szerepköralapú hozzáférés-vezérlésének (RBAC) használatával szerepköröket rendelhet felhasználókhoz, csoportokhoz és alkalmazásokhoz. Ezek a szerepkörök engedélyezett vagy nem engedélyezett műveletek csoportjaihoz vannak rendelve. Ha az RBAC használatával ad hozzáférést egy tárfiókhoz, azzal csak a tárfiók felügyeleti műveleteit, például a hozzáférési szint módosítását engedélyezi. Az RBAC használatával nem adhat hozzáférést az adatobjektumokhoz, például az egyes tárolókhoz vagy fájlmegosztásokhoz. Mindazonáltal, az RBAC használatával hozzáférést adhat a tárfiók kulcsaihoz, amelyek lehetővé teszik az adatobjektumok olvasását. 
+Egyirányú toosecure hozzáférés tooyour tárolási adata toohello tárfiókkulcsok hozzáférés vezérlése. Az erőforrás-kezelő szerepköralapú hozzáférés-vezérlés (RBAC) hozzárendelheti a szerepkörökhöz toousers, csoportok és alkalmazások. Ezek a szerepkörök vannak társítva tooa meghatározott műveletek engedélyezett vagy le van tiltva. Az RBAC használata toogrant hozzáférés tooa tárfiók csak kezeli hello felügyeleti műveletek tárolási fiók, például a hello hozzáférési réteg módosítása. Az RBAC toogrant access toodata objektumok egy adott tárolóhoz vagy a fájlmegosztásnak például nem használható. Az RBAC toogrant hozzáférés toohello tárfiókkulcsok, amelyből a használt tooread hello adatobjektumainak azonban használhatja. 
 
 ### <a name="securing-access-using-shared-access-signatures"></a>Hozzáférés biztonságossá tétele közös hozzáférésű jogosultságkódok használatával 
 
-A közös hozzáférésű jogosultságkódok és a tárolt hozzáférési szabályzatok használatával gondoskodhat az adatobjektumok védelméről. A közös hozzáférésű jogosultságkód (SAS) egy biztonsági jogkivonatot tartalmazó karakterlánc, amelyet egy adategység URI azonosítójához csatolva hozzáférés adható adott tárolóobjektumokhoz, valamint korlátozások határozhatók meg, például engedélyek vagy a hozzáférés dátum-/időtartománya. Ez a szolgáltatás kiterjedt képességeket biztosít. Részletes információkért lásd: [Using Shared Access Signatures (SAS)](storage-dotnet-shared-access-signature-part-1.md) (Közös hozzáférésű jogosultságkódok (SAS) használata).
+Közös hozzáférésű jogosultságkód használnia, és hozzáférési házirendek toosecure tárolja az adatok objektumok. A közös hozzáférésű jogosultságkód (SAS), egy biztonsági jogkivonatot, amely egy karakterlánc van csatolva toohello URI, amely lehetővé teszi a toodelegate hozzáférés toospecific tárolási objektumokat és toospecify megkötések például engedélyekkel és hozzáférési számos hello dátum/idő az adott eszköz számára. Ez a szolgáltatás kiterjedt képességeket biztosít. Részletes információkért tekintse meg túl[használatával megosztott hozzáférési aláírásokkal (SAS)](storage-dotnet-shared-access-signature-part-1.md).
 
-### <a name="public-access-to-blobs"></a>Nyilvános hozzáférés a blobokhoz
+### <a name="public-access-tooblobs"></a>Nyilvános hozzáférés tooblobs
 
-A Blob szolgáltatás segítségével nyilvános hozzáférést adhat a tárolókhoz és annak blobjaihoz, vagy egy adott blobhoz. Ha egy tárolót vagy blobot nyilvánosként jelöl meg, bárki névtelenül, hitelesítés nélkül megtekintheti. Például akkor lehet érdemes ezt alkalmaznia, ha a webhelyén blobtárolóban lévő képeket, videókat vagy dokumentumokat használ. További információk: [Manage anonymous read access to containers and blobs](../blobs/storage-manage-access-to-resources.md) (Tárolók és blobok névtelen olvasási hozzáférésének kezelése). 
+hello Blob szolgáltatás lehetővé teszi tooprovide nyilvános hozzáférés tooa tároló és a benne található blobokat, vagy egy adott blob. Ha egy tárolót vagy blobot nyilvánosként jelöl meg, bárki névtelenül, hitelesítés nélkül megtekintheti. Mikor érdemes toodo példát ez esetén rendelkezik egy webhellyel, képek, videó vagy dokumentumok blobtárolóból használ. További információkért lásd: [névtelen olvasási hozzáférés toocontainers és a bináris objektumok kezelése](../blobs/storage-manage-access-to-resources.md) 
 
 ## <a name="encryption"></a>Titkosítás
 
-A Storage-szolgáltatásokban több alapszintű titkosítási módszer áll rendelkezésre. 
+Nincsenek hello tárolási szolgáltatások néhány alapvető típusú titkosítás. 
 
 ### <a name="encryption-at-rest"></a>Titkosítás inaktív állapotban 
 
-A Storage Service Encryption (SSE) az Azure tárfiókhoz tartozó Files szolgáltatáson (előzetes verzió) vagy Blob szolgáltatáson engedélyezhető. Engedélyezésével az adott szolgáltatásba írt összes adat titkosítva lesz az írást megelőzően. Az adatok olvasásakor a rendszer visszafejti az adatokat, mielőtt visszaadná azokat. 
+Engedélyezheti a Storage szolgáltatás titkosítási (SSE) vagy hello fájlok szolgáltatáson (előzetes verzió) vagy hello Azure-tárfiók a Blob szolgáltatás. Ha engedélyezve van, az adott szolgáltatás toohello írt összes adata titkosításra kerül-e írása előtt. Hello adatok olvasásakor az feladatátadás előtt adott vissza. 
 
 ### <a name="client-side-encryption"></a>Ügyféloldali titkosítás
 
-A Storage ügyfélkódtárai tartalmaznak olyan metódusokat, amelyek meghívásával az adatok programozott módon titkosíthatóak, mielőtt az ügyfélből az Azure-ba kerülnének. Az adatok tárolása titkosítva történik, tehát inaktív állapotban is titkosítva vannak. Az adatok lehívásakor azok visszafejtése a megérkezésük után történik. 
+hello storage ügyfélkódtáraival rendelkezik metódusok hívása tooprogrammatically adatok titkosítása, mielőtt elküldené a hello ügyfél tooAzure hello keresztülhaladnak a hálózaton keresztül. Az adatok tárolása titkosítva történik, tehát inaktív állapotban is titkosítva vannak. Vissza a hello adatok olvasásakor hello adatokat fogadni után vissza. 
 
 ### <a name="encryption-in-transit-with-azure-file-shares"></a>Titkosítás az átvitel során az Azure-fájlmegosztásokkal
 
-További információ a közös hozzáférésű jogosultságkódokról: [Using Shared Access Signatures (SAS)](../storage-dotnet-shared-access-signature-part-1.md) (Közös hozzáférésű jogosultságkódok (SAS) használata). További információ a tárfiók biztonságos hozzáféréséről: [Manage anonymous read access to containers and blobs](../blobs/storage-manage-access-to-resources.md) (Tárolók és blobok névtelen olvasási hozzáférésének kezelése) és [Az Azure Storage szolgáltatásainak hitelesítése](https://msdn.microsoft.com/library/azure/dd179428.aspx).
+További információ a közös hozzáférésű jogosultságkódokról: [Using Shared Access Signatures (SAS)](../storage-dotnet-shared-access-signature-part-1.md) (Közös hozzáférésű jogosultságkódok (SAS) használata). Lásd: [kezelheti a névtelen olvasási hozzáférés toocontainers és blobok](../blobs/storage-manage-access-to-resources.md) és [hello Azure Storage szolgáltatásainak hitelesítése](https://msdn.microsoft.com/library/azure/dd179428.aspx) biztonságos hozzáférést tooyour tárfiók olvashat.
 
-A tárfiók védelmével és a titkosítással kapcsolatos további információkért lásd az [Azure Storage biztonsági útmutatóját](storage-security-guide.md).
+A tárfiók és a titkosítás biztosításával kapcsolatos további részletekért lásd: hello [Azure Storage biztonsági útmutató](storage-security-guide.md).
 
 ## <a name="replication"></a>Replikáció
 
-Az adatok tartósságának biztosítása érdekében az Azure Storage egyszerre több példányban képes tárolni (és kezelni) az adatokat. Ezt replikációnak vagy más néven redundanciának nevezzük. A tárfiók üzembe helyezésekor meg kell választania a replikáció típusát. A legtöbb esetben ez a beállítás a tárfiók üzembe helyezését követően módosítható. 
+A sorrend tooensure, hogy az adatok tartósságát Azure Storage hello képességét tookeep rendelkezik (és kezelésére) az adatok többszörös lemásolását. Ezt replikációnak vagy más néven redundanciának nevezzük. A tárfiók üzembe helyezésekor meg kell választania a replikáció típusát. A legtöbb esetben ez a beállítás módosítható hello tárfiók telepítése után. 
 
-Mindegyik tárfiókban elérhető a **helyileg redundáns tárolás (LRS)**. Ez azt jelenti, hogy az Azure Storage három példányban tárolja az adatokat a tárfiók beállításakor megadott adatközpontban. Az adatok egyik példányának módosításakor a rendszer frissíti a másik két példányt is, mielőtt sikeres eredményt adna vissza. Ez azt jelenti, hogy a három replika mindig szinkronban van. Emellett a rendszer a három példányt külön tartalék tartományokban és frissítési tartományokban tárolja, aminek következtében az adatok akkor is elérhetők maradnak, ha az azokat tároló valamelyik tárolócsomópont meghibásodik, vagy frissítés következtében offline állapotba kerül. 
+Mindegyik tárfiókban elérhető a **helyileg redundáns tárolás (LRS)**. Ez azt jelenti, hogy három másolatot az adatok Azure Storage hello adatközpont által kezelt megadott, amikor hello tárfiók be lett állítva. Ha a változtatások véglegesítése tooone másolja, hello egyéb két másolatot frissítése sikeres visszatérése előtt. Ez azt jelenti, hogy hello három replikákat a rendszer mindig szinkronban. Is hello három másolatot a külön tartalék tartományokban lévő és frissítési tartományt, ami azt jelenti, még akkor is, ha az adatokat tároló csomópont meghibásodik, vagy tett offline toobe frissül érhető el az adatokat. 
 
 **Helyileg redundáns tárolás (LRS)**
 
-Amint azt fent kifejtettük, az LRS esetében az adatok három példányban vannak tárolva egyetlen adatközpontban. Így az adatok akkor is elérhetőek maradnak, ha egy tárolócsomópont meghibásodik vagy frissítés következtében offline állapotba kerül, akkor viszont nem, ha a teljes adatközpont elérhetetlenné válik.
+Amint azt fent kifejtettük, az LRS esetében az adatok három példányban vannak tárolva egyetlen adatközpontban. Ez kezeli hello probléma adatok elérhetetlenné válik, ha a tárolási csomópontnak meghibásodik vagy offline toobe frissítve lesz végrehajtva, de nem hello a gyorsítás esetében is az egész adatközpont elérhetetlenné válik.
 
 **Zónaredundáns tárolás (ZRS)**
 
-A zónaredundáns tárolás (ZRS) is három helyi példányt őriz az adatokból, azonban emellett egy másik hárompéldányos készlet is rendelkezésre áll. A második három példányból álló készlet aszinkron módon van replikálva egy vagy két másik régióban lévő adatközpontokba. Megjegyzendő, hogy a ZRS kizárólag általános célú tárfiókokban lévő blokkblobokhoz érhető el. Továbbá, miután létrehozott egy tárfiókot és kiválasztotta a ZRS-t, már nem módosíthatja a replikáció típusát más típusra, és ugyanez fordítva is igaz.
+Zónaredundáns tárolás (ZRS) hello három helyi másolatot az adatok, valamint egy másik csoportja az adatok három másolatot tart fenn. hello három példányban második együttesét replikálja a rendszer aszinkron módon belül egy vagy két régióban üzemeltetésében. Megjegyzendő, hogy a ZRS kizárólag általános célú tárfiókokban lévő blokkblobokhoz érhető el. Is, ha létrehozott egy tárfiókot, és a kiválasztott zrs-t, akkor nem alakíthatja más toouse tooany írja be a replikáció, vagy fordítva.
 
 A ZRS-fiókok nagyobb tartósságot biztosítanak az LRS-fiókoknál, azonban nem rendelkeznek metrikákkal vagy naplózási funkciókkal. 
 
 **Georedundáns tárolás (GRS)**
 
-A georedundáns tárolási (GRS) szolgáltatás is három helyi példányt őriz az adatokból egy elsődleges régióban, valamint emellett egy másik hárompéldányos készletet egy másodlagos régióban több száz kilométerre az elsődleges régiótól. Ha az elsődleges régióban hiba történne, az Azure Storage feladatátvételt hajt végre a másodlagos régióba. 
+Georedundáns tárolás (GRS) hello három helyi másolatot az adatok egy elsődleges régióban és más engedélykészletre miles hello elsődleges régió elhagyja az egy másodlagos régióban több száz az adatok három másolatot tart fenn. Hiba történne hello elsődleges régió hello esetben Azure Storage hajt végre feladatátvételt toohello másodlagos régióba. 
 
 **Írásvédett georedundáns tárolás (RA-GRS)** 
 
-Az írásvédett georedundáns tárolás megegyezik a GRS tárolással, annyi különbséggel, hogy itt olvasási jogokat kap a másodlagos helyen lévő adatokhoz. Ha az elsődleges adatközpont ideiglenesen elérhetetlenné válna, továbbra is olvashatja az adatokat a másodlagos helyről. Ezt rendkívül hasznos lehet. Például lehet egy olyan webalkalmazása, amely ilyenkor írásvédett módba vált, és a másodlagos példányra mutat, így valamilyen szinten továbbra is hozzáférést biztosít, még ha a frissítsek nem is érhetők el. 
+Írásvédett georedundáns tárolás hasonlít pontosan Georedundáns azzal a különbséggel, hogy be olvasási hozzáférés toohello adatok hello másodlagos helyen. Ha hello elsődleges adatközpont átmenetileg nem érhető el, folytathatja a tooread hello adatok hello másodlagos helyről. Ezt rendkívül hasznos lehet. Például lehet egy webes alkalmazás, amely csak olvasható módra vált és toohello másolat, mutat néhány hozzáférést annak ellenére, hogy a frissítések nem érhetők el. 
 
 > [!IMPORTANT]
-> A tárfiók létrehozása után módosíthatja az adatok replikálási módját, kivéve ha a fiók létrehozásakor a ZRS módot választotta. Azonban ügyeljen arra, hogy ha az  LRS-ről  GRS-re vagy RA- GRS-re vált, akkor lehetséges, hogy egyszeri adatátviteli díjat kell fizetnie.
+> Hogyan adatait a rendszer replikálja a tárfiók létrehozása után csak hello fiók létrehozásakor a ZRS megadott módosíthatja. Vegye figyelembe azonban, hogy egy egyszeri adatátviteli költségek, ha az LRS tooGRS vagy RA-GRS fel Önnek.
 >
 
 A replikációval kapcsolatos további információk: [Azure Storage replication](storage-redundancy.md) (Az Azure Storage replikációja).
 
-A vészhelyreállítással kapcsolatos információk: [What to do if an Azure Storage outage occurs](storage-disaster-recovery-guidance.md) (Mi a teendő az Azure Storage leállása esetén?).
+Vész-helyreállítási információkért lásd: [egy Azure Storage tervezett kimaradás esetén milyen toodo](storage-disaster-recovery-guidance.md).
 
-A magas rendelkezésre állás az RA-GRS tároló kiaknázásával történő biztosításával kapcsolatos példáért lásd: [Designing Highly Available Applications using RA-GRS](storage-designing-ha-apps-with-ragrs.md) (Magas rendelkezésre állású alkalmazások tervezése az RA-GRS használatával).
+A példa bemutatja, hogyan tooleverage RA-GRS tárolási tooensure magas rendelkezésre állású, lásd: [tervezése magas rendelkezésre álló használó alkalmazások RA-GRS](storage-designing-ha-apps-with-ragrs.md).
 
-## <a name="transferring-data-to-and-from-azure-storage"></a>Adatok áthelyezése az Azure Storage-ba és az Azure Storage-ból
+## <a name="transferring-data-tooand-from-azure-storage"></a>Adatok tooand átvitele az Azure Storage-ból
 
-Az AzCopy parancssori segédprogrammal blob- és fájladatokat másolhat egy tárfiókon belül vagy tárfiókok között. Segítségért lásd a következők cikkek valamelyikét:
+Használhat hello AzCopy parancssori segédprogram toocopy blob és a fájladatok a tárfiókon belül vagy tárfiókok között. Lásd: hello alábbi cikkek segítséget:
 
 * [Transfer data with AzCopy for Windows](storage-use-azcopy.md) (Adatok áthelyezése az AzCopy segédprogrammal Windows rendszeren)
 * [Transfer data with AzCopy for Linux](storage-use-azcopy-linux.md) (Adatok áthelyezése az AzCopy segédprogrammal Linux rendszeren)
 
-Az AzCopy az [Azure Adatátviteli könyvtárra](https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement/) épül, amelynek jelenleg az előzetes verziója érhető el.
+AzCopy épül hello [Azure adatátviteli könyvtárra](https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement/), amely érhető el jelenleg előzetes.
 
-Az Azure Import/Export szolgáltatás használatával nagy mennyiségben importálhat és exportálhat blobadatokat a tárfiókjába/tárfiókjából. Készítse elő és küldje el postán az adatokat tartalmazó merevlemezeket valamely Azure adatközpontnak, ahol az adatokat átmásolják a merevlemezekről/merevlemezekre, majd visszaküldik azokat az Ön számára. További információ az Import/Export szolgáltatásról: [Use the Microsoft Azure Import/Export Service to Transfer Data to Blob Storage](../storage-import-export-service.md) (A Microsoft Azure Import/Export szolgáltatás használata az adatok átviteléhez a Blob Storage-ba).
+hello Azure Import/Export szolgáltatás lehet használt tooimport vagy exportálási nagy mennyiségű blob adatok tooor importáljon a tárfiókba. Készítse elő, és több merevlemez-meghajtók tooan Azure-adatközpontba, ahol fogja átvinni hello adatok hello merevlemez-meghajtók és a levelezési és hello merevlemezek biztonsági tooyou küldése. Hello Import/Export szolgáltatás kapcsolatos további információkért lásd: [hello a Microsoft Azure Import/Export szolgáltatás tooTransfer adatok tooBlob Storage használata](../storage-import-export-service.md).
 
 ## <a name="pricing"></a>Díjszabás
 
-Az Azure Storage díjszabásával kapcsolatos részletes információkért lásd az [Árképzést ismertető oldalt](https://azure.microsoft.com/pricing/details/storage/blobs/).
+Az Azure Storage árazással kapcsolatos részletes információkért lásd: hello [árazás lap](https://azure.microsoft.com/pricing/details/storage/blobs/).
 
 ## <a name="storage-apis-libraries-and-tools"></a>Storage API-k, kódtárak és eszközök
-Az Azure Storage-erőforrások bármely olyan nyelvvel hozzáférhetők, amelyekkel HTTP/HTTPS kérelmek indíthatók. Ezenfelül az Azure Storage számos népszerű nyelvhez biztosít programozási kódtárakat. Ezek a kódtárak sok szempontból leegyszerűsítik az Azure Storage használatát, mivel számos részletet kezelnek (például a szinkron és aszinkron hívás, műveletek kötegelése, kivételek kezelése, automatikus újrapróbálkozások, működési viselkedés stb.). Jelenleg a következő nyelvekhez és platformokhoz érhetők el kódtárak (a továbbiak összeállítása folyamatban):
+Az Azure Storage-erőforrások bármely olyan nyelvvel hozzáférhetők, amelyekkel HTTP/HTTPS kérelmek indíthatók. Ezenfelül az Azure Storage számos népszerű nyelvhez biztosít programozási kódtárakat. Ezek a kódtárak sok szempontból leegyszerűsítik az Azure Storage használatát, mivel számos részletet kezelnek (például a szinkron és aszinkron hívás, műveletek kötegelése, kivételek kezelése, automatikus újrapróbálkozások, működési viselkedés stb.). Szalagtárak jelenleg a következő nyelvek hello és platformokhoz lévő többi hello folyamat:
 
 ### <a name="azure-storage-data-services"></a>Azure Storage-adatszolgáltatások
 * [A Storage szolgáltatások REST API-ja](/rest/api/storageservices/)
@@ -227,14 +227,14 @@ Az Azure Storage-erőforrások bármely olyan nyelvvel hozzáférhetők, amelyek
 * [További tudnivalók a Queue Storage-ról](../queues/storage-queues-introduction.md)
 
 <!-- RE-ENABLE THESE AFTER MVC GOES LIVE 
-To get up and running with Azure Storage quickly, check out one of the following Quickstarts:
+tooget up and running with Azure Storage quickly, check out one of hello following Quickstarts:
 * [Create a storage account using PowerShell](storage-quick-create-storage-account-powershell.md)
 * [Create a storage account using CLI](storage-quick-create-storage-account-cli.md)
 -->
 
-<!-- FIGURE OUT WHAT TO DO WITH ALL THESE LINKS.
+<!-- FIGURE OUT WHAT tooDO WITH ALL THESE LINKS.
 
-Azure Storage resources can be accessed by any language that can make HTTP/HTTPS requests. Additionally, Azure Storage offers programming libraries for several popular languages. These libraries simplify many aspects of working with Azure Storage by handling details such as synchronous and asynchronous invocation, batching of operations, exception management, automatic retries, operational behavior and so forth. Libraries are currently available for the following languages and platforms, with others in the pipeline:
+Azure Storage resources can be accessed by any language that can make HTTP/HTTPS requests. Additionally, Azure Storage offers programming libraries for several popular languages. These libraries simplify many aspects of working with Azure Storage by handling details such as synchronous and asynchronous invocation, batching of operations, exception management, automatic retries, operational behavior and so forth. Libraries are currently available for hello following languages and platforms, with others in hello pipeline:
 
 ### Azure Storage data services
 * [Storage Services REST API](https://docs.microsoft.com/rest/api/storageservices/)
@@ -258,7 +258,7 @@ Azure Storage resources can be accessed by any language that can make HTTP/HTTPS
 * [Storage Data Movement Client Library for .NET](https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement/)
 
 ### Tools and utilities
-* [Microsoft Azure Storage Explorer](../../vs-azure-tools-storage-manage-with-storage-explorer.md) is a free, standalone app from Microsoft that enables you to work visually with Azure Storage data on Windows, macOS, and Linux.
+* [Microsoft Azure Storage Explorer](../../vs-azure-tools-storage-manage-with-storage-explorer.md) is a free, standalone app from Microsoft that enables you toowork visually with Azure Storage data on Windows, macOS, and Linux.
 * [Azure Storage Client Tools](../storage-explorers.md)
 * [Azure SDKs and Tools](https://azure.microsoft.com/tools/)
 * [Azure Storage Emulator](http://www.microsoft.com/download/details.aspx?id=43709)
@@ -266,14 +266,14 @@ Azure Storage resources can be accessed by any language that can make HTTP/HTTPS
 * [AzCopy Command-Line Utility](http://aka.ms/downloadazcopy)
 
 ## Next steps
-To learn more about Azure Storage, explore these resources:
+toolearn more about Azure Storage, explore these resources:
 
 ### Documentation
 * [Azure Storage Documentation](https://azure.microsoft.com/documentation/services/storage/)
 * [Create a storage account](../storage-create-storage-account.md)
 
-<!-- after our quick starts are available, replace this link with a link to one of those. 
-Had to remove this article, it refers to the VS quickstarts, and they've stopped publishing them. Robin --> 
+<!-- after our quick starts are available, replace this link with a link tooone of those. 
+Had tooremove this article, it refers toohello VS quickstarts, and they've stopped publishing them. Robin --> 
 <!--* [Get started with Azure Storage in five minutes](storage-getting-started-guide.md)
 -->
 
@@ -288,29 +288,29 @@ Had to remove this article, it refers to the VS quickstarts, and they've stopped
 * [Ismerkedés a Windowshoz készült Azure File Storage szolgáltatással](../storage-dotnet-how-to-use-files.md)
 
 ### <a name="for-javaandroid-developers"></a>Java/Android-fejlesztőknek
-* [How to use Blob storage from Java (A Blob Storage használata Javával)](../blobs/storage-java-how-to-use-blob-storage.md)
-* [How to use Table storage from Java (A Table Storage használata Javával)](../../cosmos-db/table-storage-how-to-use-java.md)
-* [How to use Queue Storage from Java (A Queue Storage használata Javával)](../storage-java-how-to-use-queue-storage.md)
-* [How to use File Storage from Java (A File Storage használata Javával)](../storage-java-how-to-use-file-storage.md)
+* [Hogyan toouse Blob storage-ának Java](../blobs/storage-java-how-to-use-blob-storage.md)
+* [Hogyan toouse Table storage-ának Java](../../cosmos-db/table-storage-how-to-use-java.md)
+* [Hogyan toouse a Queue storage a Javával](../storage-java-how-to-use-queue-storage.md)
+* [Hogyan toouse File storage Java](../storage-java-how-to-use-file-storage.md)
 
 ### <a name="for-nodejs-developers"></a>Node.js-fejlesztőknek
-* [How to use Blob storage from Node.js (A Blob Storage használata Node.js-sel)](../blobs/storage-nodejs-how-to-use-blob-storage.md)
-* [How to use Table storage from Node.js (A Table Storage használata Node.js-sel)](../../cosmos-db/table-storage-how-to-use-nodejs.md)
-* [How to use Queue storage from Node.js (A Queue Storage használata Node.js-sel)](../storage-nodejs-how-to-use-queues.md)
+* [Hogyan toouse Blob-tároló Node.js-ből](../blobs/storage-nodejs-how-to-use-blob-storage.md)
+* [Hogyan toouse a Table storage Node.js-ből](../../cosmos-db/table-storage-how-to-use-nodejs.md)
+* [Hogyan toouse a Queue storage Node.js-ből](../storage-nodejs-how-to-use-queues.md)
 
 ### <a name="for-php-developers"></a>PHP-fejlesztőknek
-* [How to use Blob storage from PHP (A Blob Storage használata PHP-val)](../blobs/storage-php-how-to-use-blobs.md)
-* [How to use Table storage from PHP (A Table Storage használata PHP-val)](../../cosmos-db/table-storage-how-to-use-php.md)
-* [How to use Queue storage from PHP (A Queue Storage használata PHP-val)](../storage-php-how-to-use-queues.md)
+* [Hogyan toouse Blob-tároló php-ből](../blobs/storage-php-how-to-use-blobs.md)
+* [Hogyan toouse a Table storage php-ből](../../cosmos-db/table-storage-how-to-use-php.md)
+* [Hogyan toouse a Queue storage php-ből](../storage-php-how-to-use-queues.md)
 
 ### <a name="for-ruby-developers"></a>Ruby-fejlesztőknek
-* [How to use Blob storage from Ruby (A Blob Storage használata Rubyval)](../blobs/storage-ruby-how-to-use-blob-storage.md)
-* [How to use Table storage from Ruby (A Table Storage használata Rubyval)](../../cosmos-db/table-storage-how-to-use-ruby.md)
-* [How to use Queue storage from Ruby (A Queue Storage használata Rubyval)](../storage-ruby-how-to-use-queue-storage.md)
+* [Hogyan toouse Blob storage-ának Ruby](../blobs/storage-ruby-how-to-use-blob-storage.md)
+* [Hogyan toouse Table storage-ának Ruby](../../cosmos-db/table-storage-how-to-use-ruby.md)
+* [Hogyan toouse a Queue storage a Rubyhoz](../storage-ruby-how-to-use-queue-storage.md)
 
 ### <a name="for-python-developers"></a>Python-fejlesztőknek
-* [How to use Blob storage from Pythonnal (A Blob Storage használata Pythonnal)](../blobs/storage-python-how-to-use-blob-storage.md)
-* [How to use Table storage from Python (A Table Storage használata Pythonnal)](../../cosmos-db/table-storage-how-to-use-python.md)
-* [How to use Queue storage from Python (A Queue Storage használata Pythonnal)](../storage-python-how-to-use-queue-storage.md)   
-* [How to use File Storage from Python (A File Storage használata Pythonnal)](../storage-python-how-to-use-file-storage.md) 
+* [Hogyan toouse Blob storage-ának Python](../blobs/storage-python-how-to-use-blob-storage.md)
+* [Hogyan toouse Table storage-ának Python](../../cosmos-db/table-storage-how-to-use-python.md)
+* [Hogyan toouse a Queue storage a Python](../storage-python-how-to-use-queue-storage.md)   
+* [Hogyan toouse File storage Python](../storage-python-how-to-use-file-storage.md) 
 -->

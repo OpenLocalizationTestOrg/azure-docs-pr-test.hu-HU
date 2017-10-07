@@ -1,5 +1,5 @@
 ---
-title: "Új jelentés létrehozása az Azure Power BI Embedded egy adatkészletből |} Microsoft Docs"
+title: "az Azure Power BI Embedded egy adatkészletből új jelentés aaaCreate |} Microsoft Docs"
 description: "A Power BI Embedded jelentések most hozhatók létre a saját alkalmazásban egy adatkészletből."
 services: power-bi-embedded
 documentationcenter: 
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/11/2017
 ms.author: asaxton
-ms.openlocfilehash: 457f53aa76059dbb2faed6b264102f1f59b9918a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 41a0a52e4c833313f495bb5ff14749203fef9b41
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-new-report-from-a-dataset-in-power-bi-embedded"></a>A Power BI Embedded egy adatkészletből új jelentés létrehozása
 
 A Power BI Embedded jelentések most hozhatók létre a saját alkalmazásban egy adatkészletből. 
 
-A hitelesítési módszer hasonlít, hogy a jelentés ágyazza be. A DataSet adatkészlet vonatkozó hozzáférési jogkivonatok alapul. A powerbi.com webhelyen használt jogkivonatok ki által Azure Active Directory (AAD), és saját szolgáltatás által kibocsátott Power BI Embedded jogkivonatokat.
+hello hitelesítési módszer hasonlít toothat jelentés beágyazása. Hozzáférési jogkivonatok, amelyek adott tooa dataset alapul. A powerbi.com webhelyen használt jogkivonatok ki által Azure Active Directory (AAD), és saját szolgáltatás által kibocsátott Power BI Embedded jogkivonatokat.
 
-Ha egy beágyazott jelentést, a kiállított jogkivonatokat createing van egy adott adatkészlet. Jogkivonatok beágyazási URL-címet egy elemhez mindegyike rendelkezik egy egyedi token társítva kell lennie. Egy beágyazott jelentés létrehozásához *Dataset.Read és Workspace.Report.Create* hatókörök meg kell adni a hozzáférési jogkivonat.
+Ha egy beágyazott jelentés createing hello kiadott jogkivonatok egy adott adatkészlet. Jogkivonatok kell társítani a hello beágyazása az URL-cím hello azonos elem tooensure minden rendelkezik egy egyedi jogkivonatot. A rendezés toocreate egy beágyazott jelentés *Dataset.Read és Workspace.Report.Create* hatókörök hello hozzáférési jogkivonatot kell megadni.
 
-## <a name="create-access-token-needed-to-create-new-report"></a>Új jelentés létrehozásához szükséges hozzáférési jogkivonat létrehozása
+## <a name="create-access-token-needed-toocreate-new-report"></a>Access token szükséges toocreate új jelentés létrehozása
 
-A Power BI Embedded használ beágyazási jogkivonatot, amely HMAC aláírt JSON webes jogkivonatainak. A jogkivonatok az access-kulcsot az Azure Power BI Embedded munkaterület-csoportok vannak aláírva. Beágyazása a jogkivonatokat, alapértelmezés szerint, egy jelentés beágyazása egy alkalmazásba, csak olvasási hozzáférésre biztosítja. Beágyazása jogkivonatok egy adott jelentés ki, és lehet társítva egy beágyazási URL-CÍMÉT.
+A Power BI Embedded használ beágyazási jogkivonatot, amely HMAC aláírt JSON webes jogkivonatainak. hello jogkivonatok hello hozzáférési kulcsot a Azure Power BI Embedded munkaterület-csoportok vannak aláírva. Beágyazása a jogkivonatokat, alapértelmezés szerint, van olvasási használt tooprovide csak akkor férhessenek hozzá tooa jelentés tooembed egy alkalmazásba. Beágyazása jogkivonatok egy adott jelentés ki, és lehet társítva egy beágyazási URL-CÍMÉT.
 
-Hozzáférési jogkivonatok a kiszolgálón kell létrehozni a tárelérési kulcsokat a jogkivonatok bejelentkezési/titkosítására használja. Olyan hozzáférési jogkivonatot létrehozásával kapcsolatos további információkért lásd: [Authenticating és engedélyezése a Power BI Embedded](power-bi-embedded-app-token-flow.md). Emellett áttekintheti a [CreateReportEmbedToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#methods_) metódust. Íme egy példa Mi ez alábbihoz hasonlóan fog kinézni a .NET SDK használatával a Power BI.
+Hozzáférési jogkivonatok hello elérési kulcsok vannak használt toosign/titkosítása hello jogkivonatok hello kiszolgálón kell létrehozni. Információ toocreate hozzáférési tokent, lásd: [Authenticating és engedélyezése a Power BI Embedded](power-bi-embedded-app-token-flow.md). Emellett áttekintheti hello [CreateReportEmbedToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#methods_) metódust. Íme egy példa Mi ez néz hello .NET SDK használatával a Power BI.
 
-Ebben a példában az adathalmaz-azonosító, amely szeretnénk creat az új jelentést a van. Azt is meg kell adnia a a hatókörök *Dataset.Read és Workspace.Report.Create*.
+Ebben a példában a toocreat hello új jelentés szeretnénk az adathalmaz-azonosító van. Tooadd hello hatókört is kell *Dataset.Read és Workspace.Report.Create*.
 
-A *PowerBIToken osztály* kell telepíteni a [Power BI Core NuGut csomag](https://www.nuget.org/packages/Microsoft.PowerBI.Core/).
+Hello *PowerBIToken osztály* kell telepíteni hello [Power BI Core NuGut csomag](https://www.nuget.org/packages/Microsoft.PowerBI.Core/).
 
 **NuGet-csomag telepítése**
 
@@ -59,10 +59,10 @@ var token = embedToken.Generate("{access key}");
 
 ## <a name="create-a-new-blank-report"></a>Üres új jelentés létrehozása
 
-Ahhoz, hogy az új jelentés létrehozása a létrehozás konfigurációs kell megadni. Ennek tartalmaznia kell a hozzáférési jogkivonat, a embedURL és a datasetID kell létrehozni a jelentéskészítés vonatkozni fog. Ehhez szükséges, hogy telepítse a nuget [Power BI JavaScript csomag](https://www.nuget.org/packages/Microsoft.PowerBI.JavaScript/). A embedUrl https://embedded.powerbi.com/appTokenReportEmbed fog majd.
+A sorrend toocreate új jelentés, hello hozzon létre configuration kell megadni. Ennek tartalmaznia kell hello hozzáférési jogkivonatot, hello embedURL és hello datasetID, amely azt szeretnénk, hogy toocreate hello jelentéskészítés vonatkozni fog. Ehhez szükséges, hogy telepítse hello nuget [Power BI JavaScript csomag](https://www.nuget.org/packages/Microsoft.PowerBI.JavaScript/). hello embedUrl https://embedded.powerbi.com/appTokenReportEmbed fog majd.
 
 > [!NOTE]
-> Használhatja a [JavaScript-jelentés beágyazása minta](https://microsoft.github.io/PowerBI-JavaScript/demo/) funkciók tesztelésére. A különböző műveletek elérhető kódpéldák is biztosít.
+> Használhatja a hello [JavaScript-jelentés beágyazása minta](https://microsoft.github.io/PowerBI-JavaScript/demo/) tootest funkciót. Emellett a segítségével kódpéldák hello különböző műveletek érhetők el.
 
 **NuGet-csomag telepítése**
 
@@ -81,23 +81,23 @@ var embedCreateConfiguration = {
         datasetId: '5dac7a4a-4452-46b3-99f6-a25915e0fe55',
     };
     
-    // Grab the reference to the div HTML element that will host the report
+    // Grab hello reference toohello div HTML element that will host hello report
     var reportContainer = $('#reportContainer')[0];
 
     // Create report
     var report = powerbi.createReport(reportContainer, embedCreateConfiguration);
 ```
 
-Hívása *powerbi.createReport()* üres vászonból szerkesztési módban szerepelhet biztosítják a *div* elemet.
+Hívása *powerbi.createReport()* egy üres vásznon a hello szerepelhet szerkesztési módban megkönnyítő *div* elemet.
 
 ![](media/power-bi-embedded-create-report-from-dataset/pbi-embedded-create-new-report.png)
 
 ## <a name="save-new-reports"></a>Új jelentések menthetők
 
-A jelentés nem ténylegesen jön létre amíg meghívja a **Mentés másként** műveletet. A Fájl menüből, vagy JavaScript végezhető.
+hello jelentés nem ténylegesen jön létre amíg meghívja a hello **Mentés másként** műveletet. A Fájl menüből, vagy JavaScript végezhető.
 
 ```
- // Get a reference to the embedded report.
+ // Get a reference toohello embedded report.
     report = powerbi.get(reportContainer);
     
     var saveAsParameters = {
@@ -109,13 +109,13 @@ A jelentés nem ténylegesen jön létre amíg meghívja a **Mentés másként**
 ```
 
 > [!IMPORTANT]
-> A rendszer létrehoz egy új jelentést csak után **Mentés másként** nevezik. Miután menti, a vászonra továbbra is megjeleníti a dataset szerkesztési módban és nem a jelentésben. Szüksége lesz, töltse be újra az új jelentést, mint bármely más jelentés.
+> A rendszer létrehoz egy új jelentést csak után **Mentés másként** nevezik. Miután menti, a vásznon a hello továbbra is hello adatkészlet megjelenítése a szerkesztési módot, és nem hello jelentésben. Szüksége lesz tooreload hello új jelentés, mint bármely más jelentés.
 
 ![](media/power-bi-embedded-create-report-from-dataset/pbi-embedded-save-new-report.png)
 
-## <a name="load-the-new-report"></a>Az új jelentés betöltése
+## <a name="load-hello-new-report"></a>Hello új jelentés betöltése
 
-Kommunikálni az új jelentést kell úgy, ahogy az alkalmazás beágyazza egy rendszeres jelentés beágyazása, ami azt jelenti, hogy egy új jogkivonatot kell kiállítani, kifejezetten az új jelentést a, és ezután hívja meg a beágyazási metódust.
+Rendelés toointeract hello új jelentést kell azt a hello ugyanúgy hello alkalmazás beágyazza rendszeres jelentést, azaz a, egy új jogkivonatot kell kiállítani, kifejezetten a hello új jelentést, majd a hívás hello beágyazása metódus tooembed.
 
 ```
 <div id="reportContainer"></div>
@@ -126,16 +126,16 @@ var embedConfiguration = {
         reportId: '5dac7a4a-4452-46b3-99f6-a25915e0fe54',
     };
     
-    // Grab the reference to the div HTML element that will host the report
+    // Grab hello reference toohello div HTML element that will host hello report
     var reportContainer = $('#reportContainer')[0];
 
     // Embed report
     var report = powerbi.embed(reportContainer, embedConfiguration);
 ```
 
-## <a name="automate-save-and-load-of-a-new-report-using-the-saved-event"></a>Mentés automatizálhatja, és betölti az új jelentést a "mentett" esemény használatával
+## <a name="automate-save-and-load-of-a-new-report-using-hello-saved-event"></a>Mentés automatizálhatja és egy új jelentés használatával "mentett" esemény hello betöltése
 
-A "Mentés másként" automatizálásához és majd betölteni az új jelentést, hogy használja a "mentett" esemény. Ezt az eseményt a mentési művelet befejeződik, és adja vissza, egy Json-objektum, amely tartalmazza az új reportId, a jelentés nevét, a régi reportId (ha volt ilyen), és ha a művelet nem saveAs vagy mentse.
+A sorrend tooautomate hello folyamat a "Mentés másként" és "mentett" esemény hello majd betöltése hello új jelentést, hogy használatát. Ez az esemény lép működésbe, amikor hello mentési művelet befejeződik, és adja vissza, egy Json-objektum tartalmazó hello új reportId, a jelentés neve, a régi reportId hello (ha volt ilyen), és ha hello művelet volt saveAs vagy mentse.
 
 ```
 {
@@ -146,7 +146,7 @@ A "Mentés másként" automatizálásához és majd betölteni az új jelentést
 }
 ```
 
-Automatizálható a folyamat figyelni a "mentett" esemény, az új reportId tenni, létrehozhat az új jogkivonatot, és az új jelentés beágyazása.
+tooAutomate hello folyamat "mentett" hello esemény figyelni, hello új reportId tenni, létrehozhat hello új jogkivonatot, és hello új jelentés beágyazása.
 
 ```
 <div id="reportContainer"></div>
@@ -157,7 +157,7 @@ var embedCreateConfiguration = {
         datasetId: '5dac7a4a-4452-46b3-99f6-a25915e0fe55',
     };
     
-    // Grab the reference to the div HTML element that will host the report
+    // Grab hello reference toohello div HTML element that will host hello report
     var reportContainer = $('#reportContainer')[0];
 
     // Create report
@@ -171,14 +171,14 @@ var embedCreateConfiguration = {
     // SaveAs report
     report.saveAs(saveAsParameters);
 
-    // report.on will add an event handler which prints to Log window.
+    // report.on will add an event handler which prints tooLog window.
     report.on("saved", function(event) {
         
          // get new Token
          var newReportId =  event.detail.reportObjectId;
 
-        // create new Token. This is a function that the application should provide
-        var newToken = createAccessToken(newReportId,scopes /*provide the wanted scopes*/);
+        // create new Token. This is a function that hello application should provide
+        var newToken = createAccessToken(newReportId,scopes /*provide hello wanted scopes*/);
         
         
     var embedConfiguration = {
@@ -205,4 +205,4 @@ var embedCreateConfiguration = {
 [JavaScript beágyazási minta](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
 [A Power BI Core NuGut csomag](https://www.nuget.org/packages/Microsoft.PowerBI.Core/)  
 [A Power BI JavaScript-csomag](https://www.nuget.org/packages/Microsoft.PowerBI.JavaScript/)  
-További kérdései vannak? [Tegye próbára a Power BI közösségét](http://community.powerbi.com/)
+További kérdései vannak? [Próbálja meg a Power BI-Közösség hello](http://community.powerbi.com/)

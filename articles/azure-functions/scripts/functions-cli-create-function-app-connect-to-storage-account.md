@@ -1,6 +1,6 @@
 ---
-title: "Egy Azure Storage kapcsolódó Azure-függvény létrehozása |} Microsoft Docs"
-description: "Az Azure CLI-parancsfájlt minták –, amely kapcsolódik az Azure Storage Azure-függvény létrehozása"
+title: "egy Azure-függvény, amely összeköti az Azure Storage tooan aaaCreate |} Microsoft Docs"
+description: "Az Azure CLI-parancsfájlt minták –, amely a tooan Azure Storage Azure-függvény létrehozása"
 services: functions
 documentationcenter: functions
 author: rachelappel
@@ -16,11 +16,11 @@ ms.workload:
 ms.date: 04/20/2017
 ms.author: rachelap
 ms.custom: mvc
-ms.openlocfilehash: 36dbc2c181c9991a27163e3194800f63c6c0e01e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a51a2c17149478eb2d3d0d4034400ed00cd8416c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="integrate-function-app-into-azure-storage-account"></a>Függvény alkalmazás integrálja az Azure Storage-fiók
 
@@ -30,28 +30,28 @@ Ez a parancsfájlpélda hoz létre, a függvény alkalmazás és a Storage-fiók
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Ha a parancssori felület helyi telepítése és használata mellett dönt, a témakörben leírt lépésekhez az Azure parancssori felületének 2.0-s vagy annál újabb verzióját kell futtatnia. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, ebben a témakörben van szükség, hogy hello Azure CLI verzióját futtatja, 2.0-s vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-Ez a minta egy Azure-függvény alkalmazást hoz létre, és hozzáadja a tárolási kapcsolati karakterlánc Alkalmazásbeállítás.
+Ez a minta egy Azure-függvény alkalmazást hoz létre, és hozzáadja a hello tárolási kapcsolati karakterlánc tooan alkalmazás beállítása.
 
-[!code-azurecli-interactive[fő](../../../cli_scripts/azure-functions/create-function-app-connect-to-storage/create-function-app-connect-to-storage-account.sh "függvény alkalmazás integrálja az Azure Storage-fiók")]
+[!code-azurecli-interactive[main](../../../cli_scripts/azure-functions/create-function-app-connect-to-storage/create-function-app-connect-to-storage-account.sh "Integrate Function App into Azure Storage Account")]
 
 
 ## <a name="clean-up-deployment"></a>Az üzemelő példány eltávolítása
 
-A parancsfájl-minta futtatása után a következő parancs segítségével távolítsa el az erőforráscsoportot, az App Service-alkalmazást, és minden kapcsolódó erőforrások:
+Hello parancsfájl minta futtatása után a következő parancs hello lehet használt tooremove hello erőforráscsoport, az App Service alkalmazás és minden kapcsolódó erőforrások:
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok hello. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
-| [az bejelentkezés](https://docs.microsoft.com/cli/azure/#login) | Bejelentkezés az Azure-bA. |
+| [az bejelentkezés](https://docs.microsoft.com/cli/azure/#login) | Bejelentkezési tooAzure. |
 | [az csoport létrehozása](https://docs.microsoft.com/cli/azure/group#create) | Hozzon létre egy erőforráscsoportot, amelynek a helye |
 | [az storage-fiók létrehozása](https://docs.microsoft.com/cli/azure/storage/account) | Create a storage account |
 | [az functionapp létrehozása](https://docs.microsoft.com/cli/azure/functionapp#create) | Hozzon létre egy új funkció alkalmazást |
@@ -59,6 +59,6 @@ A parancsfájl a következő parancsokat. Minden egyes parancsa a tábla-parancs
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információ az Azure parancssori felület: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
+Az Azure CLI hello további információkért lásd: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
 
-További Azure Functions CLI parancsfájl minták megtalálhatók a [dokumentáció az Azure Functions](../functions-cli-samples.md).
+További Azure Functions CLI parancsfájl minták hello található [dokumentáció az Azure Functions](../functions-cli-samples.md).

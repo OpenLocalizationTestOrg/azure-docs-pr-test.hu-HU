@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Application Insights Telemetria korrelációs |} Microsoft Docs"
+title: "Application Insights Telemetria korrelációs aaaAzure |} Microsoft Docs"
 description: "Application Insights telemetria korrelációs"
 services: application-insights
 documentationcenter: .net
@@ -12,36 +12,36 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: bwren
-ms.openlocfilehash: 747c00842f4df9c7fbd816c99771ba8a267106a4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3ed8c589d237cac5daceac939ca893b7d81a2967
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="telemetry-correlation-in-application-insights"></a>Az Application Insights telemetria korrelációs
 
-A világ micro szolgáltatások minden logikai művelethez a szolgáltatás különböző összetevői végzett munkát. Ezeket az összetevőket külön felügyelhesse [Application Insights](app-insights-overview.md). A webes alkalmazás összetevő hitelesítési szolgáltató összetevő felhasználói fiók hitelesítő adatainak érvényesítéséhez, valamint az adatok lekérése a képi megjelenítéshez tartozó API összetevő kommunikál. Az API összetevőt a kapcsolja adatait kéri le más szolgáltatások és használhatja a gyorsítótár-szolgáltató összetevőinek és a számlázási összetevő a hívás kapcsolatos értesítés. Application Insights által támogatott elosztott telemetriai korrelációs. Ez lehetővé teszi, hogy melyik összetevő felelős a hibák vagy a teljesítmény romlását.
+Hello world micro szolgáltatások, az összes logikai művelethez hello szolgáltatás különböző összetevői végzett munkát. Ezeket az összetevőket külön felügyelhesse [Application Insights](app-insights-overview.md). hello web app összetevő hitelesítési szolgáltató összetevő toovalidate felhasználói hitelesítő adatokkal, és adatokkal hello API összetevő tooget a képi megjelenítéshez tartozó kommunikál. hello API összetevő a kapcsolja más szolgáltatások adatok lekérdezése és gyorsítótár-szolgáltató összetevőket használnak és hello számlázási összetevő a hívás kapcsolatos értesítés. Application Insights által támogatott elosztott telemetriai korrelációs. Melyik összetevő felelős a hibák vagy a teljesítmény romlását toodetect lehetővé teszi.
 
-Ez a cikk ismerteti az adatmodell több összetevő által küldött telemetriai összefüggéseket Application Insights segítségével. A környezet propagálás módszerek és protokollok magában foglalja. Is magában foglalja a korrelációs fogalmak a különböző nyelvekhez és platformokhoz végrehajtását.
+Ez a cikk ismerteti, hogy több összetevő által küldött hello használják az Application Insights toocorrelate telemetriai adatokat az adatmodellbe. Hello környezetben propagálás módszerek és protokollok magában foglalja. Hello korrelációs fogalmak a különböző nyelvekhez és platformokhoz hello végrehajtását is magában foglalja.
 
 ## <a name="telemetry-correlation-data-model"></a>Telemetria korrelációs adatmodell
 
-Az Application Insights definiál egy [adatmodell](application-insights-data-model.md) elosztott telemetriai korrelációhoz. Telemetria a logikai művelethez társítható, minden telemetriai elemnek egy nevű környezet mező `operation_Id`. Ez az azonosító elosztott nyomkövetésben szereplő minden telemetriai elem által közösen. Egy rétegben a telemetriai adatok elvesztését használatát, így még továbbra is társíthat más összetevők által küldött telemetriai adatokat.
+Az Application Insights definiál egy [adatmodell](application-insights-data-model.md) elosztott telemetriai korrelációhoz. tooassociate telemetriai hello logikai művelettel, minden telemetriai elemnek egy nevű környezet mező `operation_Id`. Ez az azonosító az elosztott hello nyomkövetési minden telemetriai elem által közösen. Egy rétegben a telemetriai adatok elvesztését használatát, így még továbbra is társíthat más összetevők által küldött telemetriai adatokat.
 
-Elosztott logikai műveletet rendszerint kisebb műveletkészlet - összetevői által feldolgozott kérelmek áll. Ezek a műveletek által meghatározott [telemetriai kérelem](application-insights-data-model-request-telemetry.md). Minden – kéréstelemetria rendelkezik saját `id` , amely globálisan egyedi módon azonosítja. És az összes telemetriai adat - nyomkövetéseket, kivételek, stb. Ehhez a kérelemhez társított-et kell beállítania a `operation_parentId` értékével a kérés `id`.
+Elosztott logikai műveletet rendszerint kisebb műveletkészlet - hello összetevői által feldolgozott kérelmek áll. Ezek a műveletek által meghatározott [telemetriai kérelem](application-insights-data-model-request-telemetry.md). Minden – kéréstelemetria rendelkezik saját `id` , amely globálisan egyedi módon azonosítja. Minden telemetriai adat - nyomkövetéseket, kivételek, stb. Ehhez a kérelemhez társított hello kell beállítania és `operation_parentId` toohello érték hello kérelem `id`.
 
-Minden kimenő művelet, például egy másik összetevő által képviselt http hívása [– függőségi telemetria](application-insights-data-model-dependency-telemetry.md). – Függőségi telemetria is határozza meg a saját `id` globálisan egyedi. – Kéréstelemetria, ez a függőségi hívás által kezdeményezett használja ezt a szolgáltatást, `operation_parentId`.
+Minden kimenő művelet, például http hívás tooanother összetevő által képviselt [– függőségi telemetria](application-insights-data-model-dependency-telemetry.md). – Függőségi telemetria is határozza meg a saját `id` globálisan egyedi. – Kéréstelemetria, ez a függőségi hívás által kezdeményezett használja ezt a szolgáltatást, `operation_parentId`.
 
-A nézet elosztott logikai művelet használatával hozhat létre `operation_Id`, `operation_parentId`, és `request.id` rendelkező `dependency.id`. Ezek a mezők is meghatározhat a okozatiság telemetriai hívások sorrendjét.
+Hello nézet elosztott logikai művelet használatával hozhat létre `operation_Id`, `operation_parentId`, és `request.id` rendelkező `dependency.id`. Ezek a mezők telemetriai hívások sorrendjét hello okozatiság is meghatározhat.
 
-Micro szolgáltatások környezet összetevők nyomkövetéseit előfordulhat, hogy keresse meg a különböző tárolók. Minden összetevő saját instrumentation kulcs lehet az Application Insights. Telemetriai adatainak lekérése a logikai műveletet, meg kell adatait kérdezi le minden tárolóból. Ha tárolók száma túl nagy, mutató hol következő rendelkeznie kell.
+Összetevők nyomkövetéseit micro szolgáltatások környezetben előfordulhat, hogy nyissa meg a toohello különböző tárolók. Minden összetevő saját instrumentation kulcs lehet az Application Insights. tooget telemetriai logikai hello a művelethez, kell minden egyes tárolási tooquery adatait. Ha a tárolók száma túl nagy, végre kell toohave mutató hol toolook tovább.
 
-Az Application Insights adatmodell határozza meg a probléma megoldására két mező: `request.source` és `dependency.target`. Az első mezőben azonosítja az összetevő, amely a függőség kérelem kezdeményezett, és a második azonosítja, hogy melyik összetevő a választ küldött a függőségi hívás.
+Az Application Insights adatmodell határozza meg két mezők toosolve probléma: `request.source` és `dependency.target`. hello első mező azonosítja, hello függőségi kérelmet kezdeményeztek hello összetevő, és hello második azonosító melyik összetevőnél hello függőségi hívás hello választ adott vissza.
 
 
 ## <a name="example"></a>Példa
 
-Vegyünk például egy alkalmazás készlet árak a külső API-jával készletek API hívása egy készlet aktuális piaci ára. A készlet árak alkalmazás is rendelkezik `Stock page` nyitható meg az ügyfél webes böngésző `GET /Home/Stock`. Az alkalmazás a készlet API lekérdezi egy HTTP-hívás használatával `GET /api/stock/value`.
+Vegyünk például egy alkalmazás készlet árak hello aktuális piaci ár egy készlet hello külső API hívása készletek API használatával. hello készlet árak alkalmazás is rendelkezik `Stock page` hello ügyfél webes böngésző használni `GET /Home/Stock`. hello alkalmazás lekérdezések hello készlet API használatával egy HTTP-hívás `GET /api/stock/value`.
 
 Lekérdezés eredményeként kapott telemetriai elemezheti:
 
@@ -51,7 +51,7 @@ Lekérdezés eredményeként kapott telemetriai elemezheti:
 | project timestamp, itemType, name, id, operation_ParentId, operation_Id
 ```
 
-Az eredmény nézet vegye figyelembe, hogy az összes telemetriai elemet a legfelső szintű közös a `operation_Id`. A lap – új egyedi azonosító ajax hívás esetén készült `qJSXU` hozzá van rendelve a függőségi telemetria pageView tartozó azonosító vettük `operation_ParentId`. Viszont a kiszolgálói kérelem használja ajax tartozó azonosítója `operation_ParentId`stb.
+A hello eredmény nézet vegye figyelembe, hogy az összes telemetriai elemet közös hello legfelső szintű `operation_Id`. Ajax hívás esetén készült hello lap – új egyedi azonosító `qJSXU` hozzárendelt toohello – függőségi telemetria és pageView tartozó azonosító használt `operation_ParentId`. Viszont a kiszolgálói kérelem használja ajax tartozó azonosítója `operation_ParentId`stb.
 
 | ItemType   | név                      | id           | operation_ParentId | operation_Id |
 |------------|---------------------------|--------------|--------------------|--------------|
@@ -60,28 +60,28 @@ Az eredmény nézet vegye figyelembe, hogy az összes telemetriai elemet a legfe
 | Kérelem    | GET otthoni/Stock            | KqKwlrSt9PA = | qJSXU              | STYz         |
 | függőség | /Api/stock/value beolvasása      | bBrf2L7mm2g = | KqKwlrSt9PA =       | STYz         |
 
-Most amikor a hívás `GET /api/stock/value` meg szeretné ismerni, hogy a kiszolgáló identitásának egy külső szolgáltatáshoz. Amelyen beállíthatja `dependency.target` megfelelően mezőben. Ha a külső szolgáltatás nem támogatja a figyelési - `target` értéke például a szolgáltatás állomásneve `stock-prices-api.com`. Azonban ha a szolgáltatás azonosítja magát vissza egy előre meghatározott HTTP-fejléc - `target` tartalmaz, amely lehetővé teszi, hogy a szolgáltatás telemetriai lekérdezésével elosztott nyomkövetési létrehozásához az Application Insights szolgáltatás identitásának. 
+Ha most hello hívás `GET /api/stock/value` tooan külső szolgáltatás végrehajtott azt szeretné, hogy a kiszolgáló tooknow hello identitásának. Amelyen beállíthatja `dependency.target` megfelelően mezőben. Ha a külső hello szolgáltatás nem támogatja a figyelési - `target` toohello állomásnév például hello szolgáltatás beállítása `stock-prices-api.com`. Azonban ha a szolgáltatás azonosítja magát vissza egy előre meghatározott HTTP-fejléc - `target` hello szolgáltatás identitást, amely lehetővé teszi, hogy az Application Insights elosztott toobuild nyomkövetési telemetria, hogy a szolgáltatás lekérdezésével tartalmaz. 
 
 ## <a name="correlation-headers"></a>Korrelációs fejlécek
 
-RFC javaslatot dolgozunk a [korrelációs HTTP protokollt](https://github.com/lmolkova/correlation/blob/master/http_protocol_proposal_v1.md). Ez a javaslat meghatározza, hogy két fejléc:
+Jelenleg is dolgozunk hello RFC javaslatot [korrelációs HTTP protokollt](https://github.com/lmolkova/correlation/blob/master/http_protocol_proposal_v1.md). Ez a javaslat meghatározza, hogy két fejléc:
 
-- `Request-Id`a globálisan egyedi azonosítót a hívás végrehajtása
-- `Correlation-Context`-portprofil az elosztott nyomkövetési tulajdonságok neve érték párok gyűjteménye
+- `Request-Id`hello globálisan egyedi azonosító hello hívás végrehajtása
+- `Correlation-Context`-portprofil hello name érték párok gyűjteménye elosztott hello nyomkövetési tulajdonságai
 
-A standard is határozza meg a két sémái `Request-Id` generációs - és a hierarchikus. Az egyszerű sémával nincs jól ismert `Id` definiálva kulcs az `Correlation-Context` gyűjtemény.
+hello standard is meghatároz két sémái `Request-Id` generációs - és a hierarchikus. Hello strukturálatlan sémával, nincs jól ismert `Id` hello definiálva kulcs `Correlation-Context` gyűjtemény.
 
-Az Application Insights határozza meg a [bővítmény](https://github.com/lmolkova/correlation/blob/master/http_protocol_proposal_v2.md) a korreláció HTTP protokollt. Használja `Request-Context` name érték párok propagálására, a közvetlen hívónak vagy a hívott fél által használt tulajdonságok gyűjteménye. Application Insights SDK használja ezt a fejlécet beállítani `dependency.target` és `request.source` mezőket.
+Az Application Insights meghatározása hello [bővítmény](https://github.com/lmolkova/correlation/blob/master/http_protocol_proposal_v2.md) hello korreláció HTTP protokollt. Használja `Request-Context` name érték párok hello közvetlen hívónak vagy a hívott fél által használt tulajdonságok toopropagate hello gyűjteménye. Application Insights SDK használja a fejléc tooset `dependency.target` és `request.source` mezőket.
 
 ## <a name="open-tracing-and-application-insights"></a>Nyissa meg a nyomkövetés és az Application Insights
 
 [Nyissa meg a nyomkövetési](http://opentracing.io/) és az Application Insights adatok modellek keresi 
 
-- `request`, `pageView` van leképezve **Span** rendelkező`span.kind = server`
-- `dependency`leképezve **Span** rendelkező`span.kind = client`
-- `id`az egy `request` és `dependency` van leképezve **Span.Id**
-- `operation_Id`leképezve **TraceId**
-- `operation_ParentId`leképezve **hivatkozás** típusa`ChileOf`
+- `request`, `pageView` túl leképezhető**Span** rendelkező`span.kind = server`
+- `dependency`túl leképezhető**Span** rendelkező`span.kind = client`
+- `id`az egy `request` és `dependency` túl leképezhető**Span.Id**
+- `operation_Id`túl leképezhető**TraceId**
+- `operation_ParentId`túl leképezhető**hivatkozás** típusa`ChileOf`
 
 Lásd: [adatmodell](application-insights-data-model.md) Application Insights-típusok és az adatok modell.
 
@@ -90,23 +90,23 @@ Lásd: [specification](https://github.com/opentracing/specification/blob/master/
 
 ## <a name="telemetry-correlation-in-net"></a>A .NET telemetriai korrelációs
 
-Idővel .NET definiált számos módon összefüggéseket telemetriai és diagnosztikai naplókat. Nincs `System.Diagnostics.CorrelationManager` így nyomon követéséhez [LogicalOperationStack és ActivityId](https://msdn.microsoft.com/library/system.diagnostics.correlationmanager.aspx). `System.Diagnostics.Tracing.EventSource`és Windows ETW határozza meg a metódus [SetCurrentThreadActivityId](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.setcurrentthreadactivityid.aspx). `ILogger`használja a [napló hatókörök](https://docs.microsoft.com/aspnet/core/fundamentals/logging#log-scopes). WCF és a Http átvitel közbeni "aktuális" környezetben propagálás fel.
+Időbeli .NET meghatározott módon toocorrelate telemetriai és diagnosztikai naplókat. Nincs `System.Diagnostics.CorrelationManager` tootrack így [LogicalOperationStack és ActivityId](https://msdn.microsoft.com/library/system.diagnostics.correlationmanager.aspx). `System.Diagnostics.Tracing.EventSource`Windows ETW hello módszer meghatározásához és [SetCurrentThreadActivityId](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.setcurrentthreadactivityid.aspx). `ILogger`használja a [napló hatókörök](https://docs.microsoft.com/aspnet/core/fundamentals/logging#log-scopes). WCF és a Http átvitel közbeni "aktuális" környezetben propagálás fel.
 
-Azokat a módszereket azonban automatikus elosztott nyomkövetés támogatásának engedélyezése nem. `DiagnosticsSource`módja a támogatja a gép korrelációs közötti automatikus. .NET-kódtárakra diagnosztika forrás támogatja, és engedélyezi a korrelációs környezetben, például a http szállítási keresztül gép terjesztésének közötti automatikus.
+Azokat a módszereket azonban automatikus elosztott nyomkövetés támogatásának engedélyezése nem. `DiagnosticsSource`van olyan módon toosupport gép korrelációs közötti automatikus. .NET-kódtárakra diagnosztika forrás támogatja, és lehetővé teszi az alhálózatok közötti gépek automatikus propagálás hello korrelációs környezet keresztül hello átviteli például a http.
 
-A [útmutató tevékenységben](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md) diagnosztika forrás tevékenységek nyomon követése használatának alapjait ismerteti. 
+Hello [tooActivities útmutató](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md) diagnosztika forrás tevékenységek nyomon követése hello alapjait ismerteti. 
 
-Az ASP.NET Core 2.0 támogatja a HTTP-fejlécek és az új tevékenység indítása. 
+Az ASP.NET Core 2.0 támogatja a HTTP-fejlécek kinyerési, és új tevékenység kezdési hello. 
 
-`System.Net.HttpClient`Kezdő verzió `<fill in>` támogatja a HTTP-fejlécek korreláció automatikus injektálási és nyomon követni a tevékenységként http hívása.
+`System.Net.HttpClient`Kezdő verzió `<fill in>` hello korrelációs HTTP-fejlécek és követési hello http hívás tevékenységként automatikus injektálási támogatja.
 
-Nincs új Http-modulja [Microsoft.AspNet.TelemetryCorrelation](https://www.nuget.org/packages/Microsoft.AspNet.TelemetryCorrelation/) az ASP.NET klasszikus. Ebben a modulban telemetriai korrelációs DiagnosticsSource használatával. A bejövő kérelem fejlécek alapján tevékenység elindul. Emellett a különböző szakaszaiban a kérelem feldolgozása a telemetriai adatok ad eredményül. Még a az esetekben, amikor fut az IIS feldolgozó minden szakasza egy másik kezelése szálak.
+Nincs új Http-modulja [Microsoft.AspNet.TelemetryCorrelation](https://www.nuget.org/packages/Microsoft.AspNet.TelemetryCorrelation/) a hello ASP.NET klasszikus. Ebben a modulban telemetriai korrelációs DiagnosticsSource használatával. A bejövő kérelem fejlécek alapján tevékenység elindul. Emellett a hello különböző szakaszaiban a kérelem feldolgozása telemetriai ad eredményül. Még a hello esetekben, amikor fut az IIS feldolgozó minden szakasza egy másik kezelése szálak.
 
-Application Insights SDK kezdési verzió `2.4.0-beta1` gyűjthet, és rendelje hozzá azt az aktuális tevékenység DiagnosticsSource és a tevékenység használja. 
+Application Insights SDK kezdési verzió `2.4.0-beta1` DiagnosticsSource és tevékenység toocollect telemetriai adatokat használ, és társítsa azt az aktuális tevékenység hello. 
 
 ## <a name="next-steps"></a>Következő lépések
 
 - [Egyéni telemetriai adatok írása](app-insights-api-custom-events-metrics.md)
 - A bevezetni a micro Application Insights szolgáltatás összetevők. Tekintse meg [által támogatott platformok](app-insights-platforms.md).
 - Lásd: [adatmodell](application-insights-data-model.md) Application Insights-típusok és az adatok modell.
-- Megtudhatja, hogyan [kiterjesztése és a telemetriai adatok szűrése](app-insights-api-filtering-sampling.md).
+- Ismerje meg, hogyan túl[kiterjesztése és a telemetriai adatok szűrése](app-insights-api-filtering-sampling.md).

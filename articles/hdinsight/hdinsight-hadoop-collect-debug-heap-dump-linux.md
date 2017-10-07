@@ -1,5 +1,5 @@
 ---
-title: "A Hadoop-szolgáltatás a HDInsight - Azure halommemória memóriaképek engedélyezése |} Microsoft Docs"
+title: "a HDInsight - Azure Hadoop szolgáltatások listázása aaaEnable halommemória |} Microsoft Docs"
 description: "A Hibakeresés és elemzésére szolgáló Hadoop Linux-alapú HDInsight-fürtök szolgáltatásai halommemória memóriaképek engedélyezése."
 services: hdinsight
 documentationcenter: 
@@ -16,24 +16,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: larryfr
-ms.openlocfilehash: 59942e989d622c2486edf181d76e13344c71e6f9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 49e30f26e1a83f19e068e9da253b5548caec70d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-heap-dumps-for-hadoop-services-on-linux-based-hdinsight"></a>Halommemória memóriaképek a Linux-alapú HDInsight Hadoop-szolgáltatások engedélyezése
 
 [!INCLUDE [heapdump-selector](../../includes/hdinsight-selector-heap-dump.md)]
 
-Halommemória memóriaképek tartalmazza az alkalmazás memória, beleértve a változók értékeit a biztonsági másolat létrehozásakor pillanatképet. Ezért futás közben felmerülő problémák diagnosztizálásához.
+Halommemória memóriaképek tartalmazhat hello alkalmazás memória, beleértve a változók értékeinek hello hello időpontban hello memóriakép létrehozása egy pillanatkép. Ezért futás közben felmerülő problémák diagnosztizálásához.
 
 > [!IMPORTANT]
-> A jelen dokumentumban leírt lépések csak a HDInsight-fürtök Linux használó dolgozhat. A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> hello ebben a dokumentumban csak a lépések Linux használó HDInsight-fürtökkel. Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a name="whichServices"></a>Szolgáltatások
 
-A következő szolgáltatások halommemória memóriaképek engedélyezéséhez:
+A következő szolgáltatások hello halommemória memóriaképek engedélyezéséhez:
 
 * **hcatalog** -tempelton
 * **Hive** -hiveserver2-n, metaadattárhoz, derbyserver
@@ -41,94 +41,94 @@ A következő szolgáltatások halommemória memóriaképek engedélyezéséhez:
 * **yarn** -resourcemanager, nodemanager, timelineserver
 * **hdfs** -datanode, secondarynamenode, namenode
 
-Is engedélyezheti a térkép halommemória memóriaképek és csökkentse a HDInsight által futtatott folyamatok.
+Is engedélyezheti a halommemória memóriaképek hello térkép és csökkentse a HDInsight által futtatott folyamatok.
 
 ## <a name="configuration"></a>Understanding halommemória memóriakép konfiguráció
 
-Úgy, hogy a beállítások engedélyezve vannak a halommemória memóriaképek (néven is ismert, azt, vagy paraméterek) számára a JVM-et a szolgáltatás indításakor. A legtöbb Hadoop-szolgáltatásokra módosíthatja a héjparancsfájlt át ezeket a beállításokat a szolgáltatás elindításához használja.
+Úgy, hogy a beállítások engedélyezve vannak a halommemória memóriaképek (néven is ismert, azt, vagy a paraméterek) toohello JVM-et, a szolgáltatás indításakor. A legtöbb Hadoop-szolgáltatásokra módosíthatja hello rendszerhéj használt parancsfájl toostart hello szolgáltatás toopass ezeket a beállításokat.
 
-Minden parancsprogram esetén nincs az exportálás  **\* \_OPTS**, amely tartalmazza a JVM-et átadott beállítást. Például a **hadoop-env.sh** parancsfájl, a sor kezdődő `export HADOOP_NAMENODE_OPTS=` a NameNode szolgáltatás beállításait tartalmazza.
+Minden parancsprogram esetén nincs az exportálás  **\* \_OPTS**, hello beállításokat tartalmazó átadott toohello JVM-et. Például a hello **hadoop-env.sh** parancsprogramot, kezdődő hello sort `export HADOOP_NAMENODE_OPTS=` hello NameNode szolgáltatás hello beállításait tartalmazza.
 
-Rendelve, és csökkentse folyamatok kissé eltérő, mert ezek a műveletek a MapReduce szolgáltatás egyik gyermekfolyamata. Minden egyes hozzárendelését, vagy csökkentse folyamat egy gyermek tárolóban fut, és a JVM beállításokat tartalmazó két bejegyzést is tartalmaz. Mindkét szereplő **mapred-site.xml**:
+Rendelve, és csökkentse folyamatok kissé eltérő, mivel ezek a műveletek egy hello MapReduce szolgáltatás folyamat. Minden egyes hozzárendelését, vagy csökkentse folyamat fut egy gyermek tárolóban, és két hello JVM beállításokat tartalmazó bejegyzést is tartalmaz. Mindkét szereplő **mapred-site.xml**:
 
 * **mapreduce.Admin.Map.child.Java.opts**
 * **mapreduce.Admin.reduce.child.Java.opts**
 
 > [!NOTE]
-> Az Ambari leíró replikálni a módosításokat a fürt csomópontjai között, a parancsfájlok és a mapred-site.xml beállítások módosítása Ambari használatát javasoljuk. Tekintse meg a [Ambari használatával](#using-ambari) szakasz lépéseit.
+> Javasoljuk az Ambari segítségével mindkét toomodify hello parancsfájlok és mapred-site.xml beállítások, mint Ambari kezelni replikálni a módosításokat hello fürt csomópontjai között. Lásd: hello [Ambari használatával](#using-ambari) szakasz lépéseit.
 
 ### <a name="enable-heap-dumps"></a>Halomürítések engedélyezése
 
-A következő beállítás lehetővé teszi, hogy halommemória memóriaképek egy OutOfMemoryError esetén:
+hello következő beállítással halommemória memóriaképek egy OutOfMemoryError esetén:
 
     -XX:+HeapDumpOnOutOfMemoryError
 
-A  **+**  azt jelzi, hogy ez a beállítás engedélyezve van-e. Alapértelmezés szerint le van tiltva.
+Hello  **+**  azt jelzi, hogy ez a beállítás engedélyezve van-e. hello alapértelmezett le van tiltva.
 
 > [!WARNING]
-> Halommemória memóriaképek nem engedélyezettek a HDInsight Hadoop-szolgáltatás alapértelmezés szerint, lehet, hogy nagy a memóriakép fájlokhoz. Ha engedélyezi ezeket a hibaelhárításhoz, ne felejtse el őket tiltani, miután a probléma másolható és a memóriaképek összegyűjtött.
+> Halommemória memóriaképek nem engedélyezettek a HDInsight Hadoop-szolgáltatás alapértelmezés szerint, hello memóriaképek tekintélyes lehet. Ha engedélyezi ezeket a hibaelhárításhoz, ne felejtse el azokat, amennyiben rendelkezik másolható hello problémát és az összegyűjtött hello memóriaképek toodisable.
 
 ### <a name="dump-location"></a>Biztonsági másolat helye
 
-A biztonsági másolat fájl alapértelmezett helye az aktuális munkakönyvtárban. Szabályozhatja, ha a fájl található a következő beállítás használatával:
+hello alapértelmezett hello memóriakép helye hello aktuális munkakönyvtárban. Szabályozhatja, ahol hello fájlt tárolja a következő beállítás hello használata:
 
     -XX:HeapDumpPath=/path
 
-Használata esetén például `-XX:HeapDumpPath=/tmp` hatására a memóriaképek könyvtárban kell tárolni.
+Használata esetén például `-XX:HeapDumpPath=/tmp` hello memóriaképek toobe hello könyvtárban találhatók okozza.
 
 ### <a name="scripts"></a>Parancsprogramok
 
-Egy parancsfájlt is el lehet indítani amikor egy **OutOfMemoryError** következik be. Például váltanak ki egy értesítést, így megtudhatja, hogy a hiba. A következő kapcsoló használatával indul el, a parancsfájl egy __OutOfMemoryError__:
+Egy parancsfájlt is el lehet indítani amikor egy **OutOfMemoryError** következik be. Például egy értesítés időt. így megtudhatja, hogy hello hiba történt. Használjon hello következő beállítást tootrigger parancsfájl egy __OutOfMemoryError__:
 
     -XX:OnOutOfMemoryError=/path/to/script
 
 > [!NOTE]
-> Mivel a Hadoop elosztott rendszer, bármely használt parancsfájl kell elhelyezni, amely a szolgáltatás fut a fürt összes csomópontján.
+> Mivel a Hadoop elosztott rendszer, bármely használt parancsfájl hello hello szolgáltatás fut a fürt minden csomópontján kell elhelyezni.
 > 
-> A parancsfájl kell is lehet, amely elérhető a fiók a szolgáltatás fut, és biztosítania kell a helyre végrehajtási engedélyeket. Például előfordulhat, hogy a parancsprogramok tárolásához kívánja `/usr/local/bin` és `chmod go+rx /usr/local/bin/filename.sh` adjon olvasási és végrehajtási engedélyeket.
+> hello parancsfájl kell is lehet, hogy elérhető-e hello fiók hello szolgáltatás fut, és biztosítania kell a helyre végrehajtási engedélyeket. Például előfordulhat, hogy kívánja toostore parancsfájlok `/usr/local/bin` és `chmod go+rx /usr/local/bin/filename.sh` toogrant olvasási és végrehajtási engedélyeket.
 
 ## <a name="using-ambari"></a>Ambari használatával
 
-A szolgáltatás konfigurációjának módosítása, tegye a következőket:
+egy szolgáltatás, a lépéseket követve használata hello toomodify hello konfigurációja:
 
-1. Nyissa meg a fürt Ambari webes felhasználói Felületét. Az URL-cím https://YOURCLUSTERNAME.azurehdinsight.net.
+1. Nyissa meg a fürt hello Ambari webes felhasználói Felületét. hello URL-címe: https://YOURCLUSTERNAME.azurehdinsight.net.
 
-    Amikor a rendszer kéri, a helyhez, a HTTP-fiók nevének hitelesíteni (alapértelmezett: admin) és a jelszót a fürt számára.
+    Amikor a rendszer kéri, hitelesítéshez toohello hely hello HTTP-fiók nevének (alapértelmezett: admin) és a jelszót a fürt számára.
 
    > [!NOTE]
-   > Kérheti másodszor Ambari által a felhasználónevet és jelszót. Ha igen, adja meg az azonos fióknevet és jelszót
+   > Kérheti másodszor által Ambari hello felhasználónevet és jelszót. Ha igen, adja meg ugyanazt a fióknevet és jelszót hello
 
-2. A lista a bal oldali meg és jelölje ki a módosítani kívánt szolgáltatási terület. Például **HDFS**. A központ területen válassza ki a **Configs** fülre.
+2. Hello listája hello bal oldali meg és jelölje ki azt szeretné, hogy toomodify hello szolgáltatási terület. Például **HDFS**. Hello center területen jelölje ki a hello **Configs** fülre.
 
     ![Ambari webes kijelölt HDFS Configs lap képe](./media/hdinsight-hadoop-heap-dump-linux/serviceconfig.png)
 
-3. Használja a **szűrő...**  bejegyzést, írjon be **jelentésküldési**. Csak a tartalmazó ezt a szöveget elemek jelennek meg.
+3. Hello segítségével **szűrő...**  bejegyzést, írjon be **jelentésküldési**. Csak a tartalmazó ezt a szöveget elemek jelennek meg.
 
     ![Szűrt lista](./media/hdinsight-hadoop-heap-dump-linux/filter.png)
 
-4. Keresés a  **\* \_OPTS** szolgáltatás bejegyzése szeretné a halommemória memóriaképek engedélyezése, majd adja meg az engedélyezni kívánt beállításokat. Az alábbi képen felvett `-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/` számára a **HADOOP\_NAMENODE\_OPTS** bejegyzést:
+4. Hello található  **\* \_OPTS** tooenable halommemória kiírása az szeretné, majd adja meg hello lehetőségeket hello szolgáltatás bejegyzése tooenable kívánja. A kép a következő hello, felvett `-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/` toohello **HADOOP\_NAMENODE\_OPTS** bejegyzést:
 
     ![A - XX HADOOP_NAMENODE_OPTS: + HeapDumpOnOutOfMemoryError - XX: HeapDumpPath = / tmp /](./media/hdinsight-hadoop-heap-dump-linux/opts.png)
 
    > [!NOTE]
-   > Ha halommemória engedélyezése a térkép listázása, vagy csökkentse gyermekfolyamat, keresse meg a mezők nevű **mapreduce.admin.map.child.java.opts** és **mapreduce.admin.reduce.child.java.opts**.
+   > Ha engedélyezése halommemória memóriaképek hello a hozzárendelését, vagy csökkentse a gyermekfolyamat, keresni, nevű hello mezők **mapreduce.admin.map.child.java.opts** és **mapreduce.admin.reduce.child.java.opts**.
 
-    Használja a **mentése** gombra a módosítások mentéséhez. A módosítások leíró rövid megjegyzés adhat meg.
+    Használjon hello **mentése** toosave hello módosítások gombra. Hello módosítások leíró rövid megjegyzés adhat meg.
 
-5. A módosítások léptek érvénybe, ha a **újraindítás szükséges** ikon jelenik meg egy vagy több szolgáltatás mellett.
+5. Miután hello módosítások történtek, hello **újraindítás szükséges** ikon jelenik meg egy vagy több szolgáltatás mellett.
 
     ![Indítsa újra a szükséges ikonra, és indítsa újra a gomb](./media/hdinsight-hadoop-heap-dump-linux/restartrequiredicon.png)
 
-6. Válassza ki a számítógép újraindítását igénylő minden szolgáltatást, és használja a **szolgáltatás műveletek** gombra kattint, hogy **kapcsolja be a karbantartási mód**. Karbantartási mód megakadályozza, hogy a riasztások generálása a szolgáltatásból, ha indítja újra.
+6. Jelöljön ki minden egyes szolgáltatás újraindítását igénylő, és hello **szolgáltatás műveletek** túl gomb**kapcsolja be a karbantartási mód**. A karbantartási mód megakadályozza, hogy a riasztások azt újraindításakor hello szolgáltatás elő.
 
     ![Kapcsolja be a karbantartási mód menü](./media/hdinsight-hadoop-heap-dump-linux/maintenancemode.png)
 
-7. Miután engedélyezte a karbantartási mód, használja a **indítsa újra a** gombra a szolgáltatás számára **indítsa újra az összes végrehajtott**
+7. Miután engedélyezte a karbantartási mód, használja a hello **indítsa újra a** hello szolgáltatás túl gomb**indítsa újra az összes végrehajtott**
 
     ![Indítsa újra az összes érintett bejegyzés](./media/hdinsight-hadoop-heap-dump-linux/restartbutton.png)
 
    > [!NOTE]
-   > a bejegyzéseket a **indítsa újra a** gomb más szolgáltatásaihoz eltérő lehet.
+   > hello bejegyzéseket hello **indítsa újra a** gomb más szolgáltatásaihoz eltérő lehet.
 
-8. A szolgáltatások újraindítása, ha a **szolgáltatás műveletek** gombra kattint, hogy **kapcsolja ki a karbantartási mód**. Az Ambari riasztások a szolgáltatás figyelésének folytatása.
+8. Ha hello szolgáltatás újraindítása, a hello **szolgáltatás műveletek** túl gomb**kapcsolja ki a karbantartási mód**. Az Ambari tooresume riasztások hello szolgáltatás figyelését.
 

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure biztonsági funkciói segítenek az identity management alkalmazással |} Microsoft Docs"
-description: " Ez a cikk az alapvető áttekintést nyújt az Azure biztonsági funkciókat, amelyek segítenek az identity management alkalmazással. Microsoft identitások és hozzáférések felügyeleti megoldások Súgó informatikai védelme alkalmazásokhoz és erőforrásokhoz való hozzáférést az vállalati adatközpontban és a felhőben, például a többtényezős hitelesítés és a feltételes hozzáférési házirendek ellenőrzéséhez további szintek engedélyezése. "
+title: "aaaAzure biztonsági funkciói segítenek az identity management alkalmazással |} Microsoft Docs"
+description: " Ez a cikk áttekintést hello alapvető Azure biztonsági funkcióit, amelyek segítenek az identity management alkalmazással. Microsoft identitások és hozzáférések felügyeleti megoldások Súgó informatikai hozzáférés tooapplications és erőforrások védelmében hello vállalati adatközpontban és hello felhőre, például a többtényezős hitelesítés és a feltételes érvényesítési további szinteket engedélyezése hozzáférési házirendek. "
 services: security
 documentationcenter: na
 author: TerryLanfear
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/09/2017
 ms.author: terrylan
-ms.openlocfilehash: 8d00882caf5411240c5f0a3533c78c3dbe361ef2
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f08e4f6cf2e48e455a16858b7fee08b53d5aa585
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-identity-management-security-overview"></a>Azure-identitás biztonsági – áttekintés
-Microsoft identitások és hozzáférések felügyeleti megoldások Súgó informatikai védelme alkalmazásokhoz és erőforrásokhoz való hozzáférést az vállalati adatközpontban és a felhőben, például a többtényezős hitelesítés és a feltételes hozzáférési házirendek ellenőrzéséhez további szintek engedélyezése. Gyanús tevékenységek figyelése keresztül speciális biztonsági jelentések, a naplózás és a riasztási segít mérsékelni a potenciális biztonsági problémákat. [Az Azure Active Directory Premium](../active-directory/active-directory-editions.md) biztosítja az egyszeri bejelentkezés felhő több ezer (SaaS) alkalmazások és webalkalmazások hozzáférést a helyszíni futtatása.
+Microsoft identitások és hozzáférések felügyeleti megoldások Súgó informatikai hozzáférés tooapplications és erőforrások védelmében hello vállalati adatközpontban és hello felhőre, például a többtényezős hitelesítés és a feltételes érvényesítési további szinteket engedélyezése hozzáférési házirendek. Gyanús tevékenységek figyelése keresztül speciális biztonsági jelentések, a naplózás és a riasztási segít mérsékelni a potenciális biztonsági problémákat. [Az Azure Active Directory Premium](../active-directory/active-directory-editions.md) biztosítja az egyszeri bejelentkezés toothousands felhőalapú (SaaS) alkalmazások és az access tooweb alkalmazások helyi futtatása.
 
-Biztonsági szempontból előnyökkel járhat az Azure Active Directory (AD) megadhatják a:
+Biztonsági szempontból előnyökkel járhat az Azure Active Directory (AD) megadhatják hello:
 
 * Létrehozásához és kezeléséhez minden felhasználó egy egyetlen identitást a hibrid vállalat, felhasználók, csoportok és az eszközök szinkronban tartása
-* Adja meg az egyszeri bejelentkezéses hozzáférést több ezer előre integrált Szolgáltatottszoftver-alkalmazásoknál, beleértve az alkalmazások
+* Egyszeri bejelentkezéses hozzáférést több ezer előre integrált Szolgáltatottszoftver-alkalmazásoknál például tooyour alkalmazások biztosítása
 * Engedélyezze a hozzáférést alkalmazásbiztonsági mind a helyszíni szabályalapú többtényezős hitelesítés kényszerítése, és a felhőalapú alkalmazásokhoz
-* A helyszíni webalkalmazások Azure AD-proxyn keresztül történő biztonságos táveléréséhez kiépítése
+* Rendelkezés biztonságos távoli hozzáférés tooon helyszíni webalkalmazást az Azure AD-alkalmazásproxy használatával
 
-Ez a cikk célja az identity management alkalmazással az Azure biztonsági szolgáltatásokat az alapvető áttekintés biztosítása. Azt adja meg egyes szolgáltatások az adatait, így további hivatkozásokat is adja meg.  
+hello Ez a cikk célja tooprovide hello alapvető Azure biztonsági funkcióit, amelyek segítenek az identity management alkalmazással áttekintését. Azt is biztosítanak, amelyek egyes szolgáltatások részleteit biztosítanak, így további hivatkozások tooarticles.  
 
-A cikk foglalkozik, a következő alapvető Azure identitáskezelési funkciói:
+hello a cikk a következő alapvető Azure identitáskezelési funkciói hello koncentrál:
 
 * Egyszeri bejelentkezés
 * Fordított proxy
@@ -45,13 +45,13 @@ A cikk foglalkozik, a következő alapvető Azure identitáskezelési funkciói:
 * Hibrid Identitáskezelés
 
 ## <a name="single-sign-on"></a>Egyszeri bejelentkezés
-Egyszeri bejelentkezés (SSO) azt jelenti, hogy nem tudnak hozzáférni az alkalmazások és az üzleti tevékenységet, egyszer csak egyetlen felhasználói fiókkal a bejelentkezéssel szükséges erőforrások. Miután bejelentkezett, van-e hozzáférési összes szolgáltatásbeli hitelesítéshez szükséges nélkül kell alkalmazást (például adjon meg egy jelszót) még egyszer.
+Egyszeri bejelentkezés (SSO) azt jelenti, hogy képes tooaccess alatt álló összes hello alkalmazásokat és erőforrásokat, hogy kell-e toodo üzleti történő bejelentkezéssel csak egyszer egyetlen felhasználói fiókkal. Miután bejelentkezett, van-e hozzáférési összes hello alkalmazás anélkül, hogy a szükséges tooauthenticate van szüksége (például adjon meg egy jelszót) még egyszer.
 
-Számos szervezet számítson arra, hogy szoftver alkalmazásokként egy szolgáltatott szoftverként (SaaS) például Office 365, a mezőben és a Salesforce a végfelhasználó hatékonyságát. Hagyományosan informatikai munkatársak külön-külön létrehozásához, és minden SaaS-alkalmazás a felhasználói fiókok frissítése szükséges, és a felhasználóknak kellett jegyezze meg a jelszót az egyes SaaS-alkalmazáshoz.
+Számos szervezet számítson arra, hogy szoftver alkalmazásokként egy szolgáltatott szoftverként (SaaS) például Office 365, a mezőben és a Salesforce a végfelhasználó hatékonyságát. Hagyományosan informatikai munkatársak szükséges tooindividually létrehozása és frissítése minden SaaS-alkalmazás felhasználói fiókokat, és felhasználók tooremember minden SaaS-alkalmazáshoz tartozó jelszót.
 
-Az Azure AD kiterjeszti a helyszíni Active Directory-környezeteket kiterjeszti a felhőbe, így a felhasználók használhatják a saját elsődleges szervezeti nem csak a tartományhoz csatlakoztatott eszközökre bejelentkezéshez és a vállalati erőforrásokat, de szükséges is minden a web- és SaaS-alkalmazásokhoz a feladat.
+Az Azure AD kiterjeszti a helyszíni Active Directory-környezeteket hello felhőbe engedélyezése a felhasználók toouse a szervezeti fiók elsődleges toonot csak bejelentkezési tootheir tartományhoz csatlakoztatott eszközökre és a vállalati erőforrásokhoz, de is összes hello web- és SaaS-alkalmazásokhoz a feladat szükséges.
 
-Nem csak felhasználóknak nem kell több példányban felhasználónevek és jelszavak kezelése, alkalmazás-hozzáférés csak alapján automatikusan kiosztott vagy vonja kiosztott szervezeti csoportok és az állapotuk egy alkalmazott. Az Azure AD vezet be, biztonsági és hozzáférés-irányítási szabályozási, amelyek segítségével központilag kezelheti a felhasználói hozzáférés SaaS-alkalmazások között.
+Nem csak felhasználók nem rendelkeznek toomanage több példányban felhasználónevei és jelszavai, alkalmazás-hozzáférés csak alapján automatikusan kiosztott vagy vonja kiosztott szervezeti csoportok és az állapotuk egy alkalmazott. Az Azure AD biztonsági vezet be, és hozzáférési irányítás vezérlők, amelyek lehetővé teszik, hogy toocentrally kezelését a felhasználói hozzáférés SaaS-alkalmazásokhoz.
 
 További információ:
 
@@ -60,7 +60,7 @@ További információ:
 * [Azure Active Directoryval az egyszeri bejelentkezés integrálása SaaS-alkalmazásokhoz](../active-directory/active-directory-sso-integrate-saas-apps.md)
 
 ## <a name="reverse-proxy"></a>Fordított proxy
-Az Azure AD-alkalmazásproxy lehetővé teszi, hogy a helyszíni alkalmazások, például közzététele [SharePoint](https://support.office.com/article/What-is-SharePoint-97b915e6-651b-43b2-827d-fb25777f446f?ui=en-US&rs=en-US&ad=US) helyek, [Outlook Web App](https://technet.microsoft.com/library/jj657718.aspx), és [IIS](http://www.iis.net/)-alapú alkalmazások a magánhálózaton belül és biztonságos hozzáférést biztosít a felhasználók a hálózaton kívülről. Alkalmazásproxy távoli hozzáférést és egyszeri bejelentkezés (SSO) biztosít számos különböző típusú, amely támogatja az Azure AD SaaS-alkalmazásokhoz több ezer a helyszíni alkalmazások. Az alkalmazottak bejelentkezhet az alkalmazások a saját eszközükön otthoni és a felhő alapú proxyn keresztül történő hitelesítéséhez.
+Az Azure AD-alkalmazásproxy lehetővé teszi, hogy a helyszíni alkalmazások, például közzététele [SharePoint](https://support.office.com/article/What-is-SharePoint-97b915e6-651b-43b2-827d-fb25777f446f?ui=en-US&rs=en-US&ad=US) helyek, [Outlook Web App](https://technet.microsoft.com/library/jj657718.aspx), és [IIS](http://www.iis.net/)-alapú alkalmazások a magánhálózaton belül és a hálózaton kívüli biztonságos hozzáférést toousers biztosít. Távoli hozzáférést biztosít az alkalmazás Proxy és egyszeri bejelentkezés (SSO) számos különböző helyszíni hello több ezer alkalmazások az Azure AD támogatja a Szolgáltatottszoftver-alkalmazáshoz. Az alkalmazottak tooyour alkalmazásokat is bejelentkezhetnek a saját eszközeik otthoni és a felhő alapú proxyn keresztül történő hitelesítéséhez.
 
 További információ:
 
@@ -70,7 +70,7 @@ További információ:
 * [Feltételes hozzáférés használata](../active-directory/active-directory-application-proxy-conditional-access.md)
 
 ## <a name="multi-factor-authentication"></a>Multi-Factor Authentication
-Az Azure többtényezős hitelesítés (MFA), amely egynél több ellenőrzési módszer használatát igényli, és a kritikus fontosságú második biztonsági réteget ad hozzá felhasználói bejelentkezéseket és tranzakciókat hitelesítési mód. Többtényezős hitelesítés segítségével hozzáférés biztonságossá tételét adatokhoz és alkalmazásokhoz egyszerű bejelentkezési folyamatot a felhasználó igény szerint betartása mellett. Erős hitelesítés, ellenőrzési lehetőségek széles keresztül biztosítja – a telefonhívás, szöveges üzenet vagy mobilalkalmazás értesítés vagy ellenőrző kód és a külső OAuth jogkivonatokat.
+Az Azure többtényezős hitelesítés (MFA), amely hello egynél több ellenőrzési módszer használatát igényli, és a kritikus fontosságú második réteget biztonsági toouser bejelentkezéseket és tranzakciókat ad hitelesítési mód. MFA segít a biztonságos működés érdekében hozzáférés toodata és alkalmazások mellett egyszerű bejelentkezési folyamatot a felhasználó igény szerint. Erős hitelesítés, ellenőrzési lehetőségek széles keresztül biztosítja – a telefonhívás, szöveges üzenet vagy mobilalkalmazás értesítés vagy ellenőrző kód és a külső OAuth jogkivonatokat.
 
 További információ:
 
@@ -79,15 +79,15 @@ További információ:
 * [Azure multi-factor Authentication működése](../multi-factor-authentication/multi-factor-authentication-how-it-works.md)
 
 ## <a name="security-monitoring-alerts-and-machine-learning-based-reports"></a>Biztonsági figyelést, a riasztások és a machine learning-alapú jelentések
-A biztonság ellenőrzése és a riasztások és a machine learning-alapú jelentések, amelyek azonosítják az inkonzisztens hozzáférési mintázatokat segítségével védelmet az üzleti. Azure Active Directory hozzáférési és használati jelentések segítségével hogy lássák az integritásra és a munkahely címtárában biztonságát. Ezt az információt a directory-rendszergazda is jobban meghatározhatja, ahol lehetséges biztonsági kockázatokat a vizsgálandó, hogy azok megfelelően megtervezheti kockázatok csökkentésének lehetőségeit.
+A biztonság ellenőrzése és a riasztások és a machine learning-alapú jelentések, amelyek azonosítják az inkonzisztens hozzáférési mintázatokat segítségével védelmet az üzleti. Használhatja az Azure Active Directory hozzáférési és használati jelentések toogain láthatósága hello adatintegritási és biztonsági a szervezete címtárát. Ezt az információt a directory-rendszergazda is jobban meghatározhatja, ahol lehetséges biztonsági kockázatokat, hogy azok megfelelően megtervezheti toomitigate kockázatok vizsgálandó.
 
-A klasszikus Azure portálra, a jelentések szerint vannak kategóriába sorolva a következőképpen:
+Hello a klasszikus Azure portálon, a jelentések szerint vannak kategóriába sorolva hello a következő módon:
 
-* Az anomáliadetektálási jelentések – eseményeket, amelyek jelenleg található a rendellenes bejelentkezési tartalmaznak. Célunk, ellenőrizze, hogy tisztában legyen ilyen tevékenység, és lehetővé teszik a tudni győződjön meg arról, hogy az esemény gyanúsnak meghatározása.
+* Anomáliadetektálási jelentések – jelentkezzen be, hogy észleltünk toobe rendellenes eseményeket tartalmazza. Célunk toomake tud-e a tevékenység, és lehetővé teszik a toobe képes toomake arról, hogy az esemény gyanúsnak meghatározása.
 * Integrált alkalmazás jelentések – betekintést, hogyan használja a szervezet a felhőalapú alkalmazásokhoz. Az Azure Active Directory integrálható a felhőalapú alkalmazások ezer.
-* Hibajelentések – azt jelzi, hogy a külső alkalmazásokba fiókok létesítésekor előforduló hibákat.
+* Hibajelentések – fiókok tooexternal alkalmazások létesítésekor előforduló hibákat jelzik.
 * Felhasználó-specifikus jelentései – eszköz/sign tevékenységek adatai egy adott felhasználó jelenítenek meg.
-* Tevékenység – tartalmaznak minden naplózott eseményeket rögzíti a elmúlt 24 óra, a legutóbbi 7 nap, vagy a utolsó 30 nap során, és a csoport tevékenység módosításainak és a jelszó alaphelyzetbe állítása és nyilvántartási tevékenység belül.
+* Tevékenységi naplóit – tartalmazhat Feljegyzés hello belül minden naplózott események az elmúlt 24 órában, az utolsó 7 napig, vagy utolsó 30 nap során, és a csoport tevékenység módosításainak és jelszó alaphelyzetbe állítása és nyilvántartási tevékenység.
 
 További információ:
 
@@ -96,9 +96,9 @@ További információ:
 * [Az Azure Active Directory-jelentéskészítés – útmutató](../active-directory/active-directory-reporting-guide.md)
 
 ## <a name="consumer-identity-and-access-management"></a>A felhasználói identitások és hozzáférés kezelése
-Az Azure Active Directory B2C egy magas rendelkezésre állású, globális, identitás szolgáltatást a felhasználók felé néző alkalmazások száz millió identitások alkalmazkodnak. Mobil- és webes platformokba is integrálható. A felhasználók testreszabható felületeken, meglévő közösségi hálózati fiókjaikkal vagy új hitelesítő adatok létrehozásával jelentkezhetnek be minden alkalmazásába.
+Az Azure Active Directory B2C egy magas rendelkezésre állású, globális, identitás szolgáltatást a felhasználók felé néző alkalmazások identitások millióinak toohundreds méretezi. Mobil- és webes platformokba is integrálható. A felhasználók bejelentkezhetnek tooall, testre szabható felhasználói élmény mellett az alkalmazások új vagy meglévő közösségi fiókjaik használatával.
 
-A múltban gyakori volt, hogy a felhasználók alkalmazásokra való regisztrációját és bejelentkezését megvalósítani kívánó alkalmazásfejlesztők maguk írták meg az ehhez szükséges kódot. Ennek keretében általában helyszíni adatbázisokat vagy rendszereket használtak a felhasználónevek és jelszavak tárolására. Az Azure Active Directory B2C integrálniuk a felhasználói Identitáskezelés alkalmazások segítségével biztonságos, szabványokon alapuló platformja és bővíthető szabályzatainak számos fejlettebb módszert kínál a szervezete.
+Az elmúlt hello alkalmazásfejlesztők számára toosign fel, és jelentkezzen be a fogyasztói alkalmazásokba integrálhassák lenne írt a saját kód. És ezeket használja, a helyszíni adatbázisokat vagy rendszereket toostore felhasználóneveket és jelszavakat. Az Azure Active Directory B2C kínál a szervezet egy jobb módon toointegrate felhasználói Identitáskezelés alkalmazásokba hello segítségével biztonságos, szabványokon alapuló platformja és bővíthető szabályzatainak számos.
 
 Azure Active Directory B2C használata esetén a felhasználók regisztrálhatnak az alkalmazások új hitelesítő adatok (e-mail címet és jelszót, vagy felhasználónév és jelszó) létrehozásával vagy meglévő közösségi fiókjaik használatával (Facebook, Google, Amazon, LinkedIn).
 
@@ -109,9 +109,9 @@ További információ:
 * [Az Azure Active Directory B2C előzetes verziója: Típusú alkalmazások](../active-directory-b2c/active-directory-b2c-apps.md)
 
 ## <a name="device-registration"></a>Eszközregisztráció
-Az Azure AD Eszközregisztrációval az alapja az eszközalapú [feltételes hozzáférés](../active-directory/active-directory-conditional-access-device-registration-overview.md) forgatókönyvek. Amikor regisztrál egy eszközt, az Azure Active Directory Eszközregisztráció látja el az eszközt, amikor a felhasználó bejelentkezik az eszköz hitelesítésére használt identitással. A hitelesített eszköz és az eszköz attribútumai ezután a feltételes hozzáférési házirendek betartatásához használhatók a felhőben és a helyszínen tárolt alkalmazások esetében.
+Az Azure AD Eszközregisztrációval szolgáltatás hello alapja eszközalapú [feltételes hozzáférés](../active-directory/active-directory-conditional-access-device-registration-overview.md) forgatókönyvek. Amikor regisztrál egy eszközt, az Azure Active Directory Eszközregisztrációs biztosít hello eszköz, amely használt tooauthenticate hello eszköz hello felhasználó bejelentkezésekor identitással. hello hitelesített eszköz és hello eszköz attribútumai – hello, majd lehet használt tooenforce feltételes hozzáférési házirendek hello felhő és a helyszínen tárolt alkalmazások esetében.
 
-Például az Intune mobileszköz-kezelési (MDM) megoldás kombinálva az Azure Active Directoryban tulajdonságok frissítése eszközzel kapcsolatos további információkat. Ez lehetővé teszi további feltételes hozzáférési szabályok létrehozását, amelyek arra kényszerítik az eszközhozzáféréseket, hogy megfeleljenek a biztonsági és megfelelőségi szabványoknak.
+Például az Intune mobileszköz-kezelési (MDM) megoldás kombinálva hello eszközattribútumokon az Azure Active Directoryban frissítődik hello eszközzel kapcsolatos további információk. Ez lehetővé teszi toocreate feltételes hozzáférési szabályok, amelyeket eszközök toomeet való hozzáférést a biztonsági és megfelelőségi szabványoknak.
 
 További információ:
 
@@ -120,22 +120,22 @@ További információ:
 * [Állítsa be az automatikus regisztráció, a Windows Azure Active Directory tartományhoz csatlakozó eszközök](../active-directory/active-directory-conditional-access-automatic-device-registration-setup.md)
 
 ## <a name="privileged-identity-management"></a>Privileged identity management
-Az Azure Active Directory (AD) Privileged Identity Management lehetővé teszi az emelt szintű identitások kezelését, irányítását és felügyeletét, és hozzáférést biztosít az Azure AD és más online szolgáltatások, például az Office 365 vagy a Microsoft Intune erőforrásaihoz.
+Az Azure Active Directory (AD) Privileged Identity Management lehetővé teszi kezelése, szabályozása és figyelése a kiemelt jogosultságú identitások és az Azure AD hozzáférési tooresources, valamint más Microsoft online szolgáltatások, például az Office 365-öt vagy a Microsoft Intune.
 
-Néha felhasználók el kell végezniük a jogosultságokhoz kötött műveletek Azure vagy az Office 365 erőforrásokat, vagy más SaaS-alkalmazásokhoz. Ez gyakran azt jelenti, hogy a szervezetek meg kell adni nekik az Azure AD állandó privilegizált hozzáférési jogosultsága. Ez a felhőben üzemeltetett erőforrásokhoz az egyre növekvő biztonsági kockázatot jelent, mert a szervezeteknek elég nem tud figyelni, ezek a felhasználók tevékenységeit a rendszergazda jogosultságokkal. Továbbá ha jogosultsági szintű hozzáféréssel rendelkező felhasználói fiók biztonsága sérül, egy megsértésének jelentős hatással lehet a felhő átfogó biztonsági. Az Azure AD Privileged Identity Management segít a kockázat megoldásához.
+Néha a felhasználóknak kell toocarry ki az Azure vagy az Office 365 erőforrásokhoz, vagy más Szolgáltatottszoftver-alkalmazásoknál privilegizált műveleteket. Ez gyakran azt jelenti, a szervezetek toogive őket állandó jogosultsági szintű hozzáférés az Azure ad-ben. Ez a felhőben üzemeltetett erőforrásokhoz az egyre növekvő biztonsági kockázatot jelent, mert a szervezeteknek elég nem tud figyelni, ezek a felhasználók tevékenységeit a rendszergazda jogosultságokkal. Továbbá ha jogosultsági szintű hozzáféréssel rendelkező felhasználói fiók biztonsága sérül, egy megsértésének jelentős hatással lehet a felhő átfogó biztonsági. Az Azure AD Privileged Identity Management segít tooresolve a kockázat.
 
 Az Azure AD Privileged Identity Management lehetővé teszi:
 
 * Mely felhasználók vannak-e az Azure AD-rendszergazdák
-* Engedélyezze az igény, "igény szerint" a Microsoft Online Services rendszergazdai hozzáféréssel, például Office 365 és az Intune-ban
+* Engedélyezze az igény, "csak az időben" rendszergazdai hozzáférés tooMicrosoft Online szolgáltatások, például Office 365 és az Intune-ban
 * Rendszergazda-hozzárendelések beolvasása a rendszergazdai hozzáférési műveleteiről és a változások
-* Egy kiemelt szerepkörhöz való hozzáféréssel kapcsolatos riasztásokat kaphat
+* Értesítéskérés a hozzáférés tooa kiemelt szerepkörű
 
 További információ:
 
 * [Azure AD Privileged Identity Management](../active-directory/active-directory-privileged-identity-management-configure.md)
 * [Szerepkörök az Azure AD Privileged Identity Management](../active-directory/active-directory-privileged-identity-management-roles.md)
-* [Az Azure AD Privileged Identity Management: Hogyan lehet hozzáadni vagy eltávolítani egy felhasználói szerepkör](../active-directory/active-directory-privileged-identity-management-how-to-add-role-to-user.md)
+* [Az Azure AD Privileged Identity Management: Hogyan tooadd vagy egy felhasználói szerepkör eltávolítása](../active-directory/active-directory-privileged-identity-management-how-to-add-role-to-user.md)
 
 ## <a name="identity-protection"></a>Identity Protection
 Az Azure AD Identity Protection olyan biztonsági szolgáltatás, amely a kockázati eseményekről és a szervezet identitásait érintő lehetséges biztonsági rések egyesített nézetét biztosítja. Azonosító adatok védelmét kihasználja a meglévő Azure Active Directory anomáliadetektálási az észlelési képességek (az Azure AD rendellenes Tevékenységjelentések keresztül elérhető), és vezet be új kockázat típusait, amely valós idejű rendellenességek észlelését.
@@ -146,7 +146,7 @@ További információ:
 * [9. csatornán: Az Azure AD és az Identity: Identity Protection előzetes kiadásának](https://channel9.msdn.com/Series/Azure-AD-Identity/Azure-AD-and-Identity-Show-Identity-Protection-Preview)
 
 ## <a name="hybrid-identity-management"></a>Hibrid Identitáskezelés
-A Microsoft identity megközelítése is a helyszíni és a felhő létrehozása a hitelesítés és engedélyezés az összes erőforráshoz, függetlenül a hely egyetlen felhasználói azonosítót.
+A Microsoft megközelítés tooidentity is lefedik a helyszíni és hello felhő létrehozása egy felhasználói azonosítót a hitelesítéshez és engedélyezéshez tooall erőforrások helyétől függetlenül.
 
 További információ:
 

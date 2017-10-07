@@ -1,6 +1,6 @@
 ---
-title: "Első lépések a Visual Studio és a table storage (az ASP.NET Core) szolgáltatások csatlakoztatott |} Microsoft Docs"
-description: "Ismerkedés az Azure Table storage egy ASP.NET Core projekt, a Visual Studio egy tárfiókot, a Visual Studio használatával történő kapcsolódás után kapcsolódó szolgáltatások"
+title: "a table storage és a Visual Studio (az ASP.NET Core) kapcsolódó szolgáltatások használatába aaaHow tooget |} Microsoft Docs"
+description: "Hogyan tooget után indítják el, az ASP.NET Core projektben a Visual Studio Azure Table storage csatlakozás a Visual Studio használatával tooa tárfiók kapcsolódó szolgáltatások"
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: tarcher
-ms.openlocfilehash: b64d4f7e55977c7ce144987f7600e5ddcb25596c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a8fb6aa085d78a087fcd14adbc765a0d59e0308
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-get-started-with-azure-table-storage-and-visual-studio-connected-services"></a>Ismerkedés az Azure Table storage és a Visual Studio kapcsolódó szolgáltatások
+# <a name="how-tooget-started-with-azure-table-storage-and-visual-studio-connected-services"></a>Hogyan tooget el az Azure Table storage és a Visual Studio kapcsolódó szolgáltatások
 [!INCLUDE [storage-try-azure-tools-tables](../../includes/storage-try-azure-tools-tables.md)]
 
 ## <a name="overview"></a>Áttekintés
-Ez a cikk ismerteti, hogyan Ismerkedés az Azure Table storage a Visual Studióban létrehozott vagy a Visual Studio használatával Azure-tárfiók az ASP.NET Core projekt hivatkozik után **kapcsolódó szolgáltatások hozzáadása** párbeszédpanel.
+Ez a cikk ismerteti, hogyan használatának Azure Table storage a Visual Studio után készített vagy egy Azure storage-fiók ASP.NET Core projektben hivatkozott használatával hello Visual Studio **kapcsolódó szolgáltatások hozzáadása** párbeszédpanel.
 
-Az Azure Table storage szolgáltatás lehetővé teszi nagy mennyiségű strukturált adatok tárolásához. A szolgáltatás egy nosql-alapú adattároló, amely elfogadja az érkező hitelesített hívásokat belül és kívül az Azure felhőben. Az Azure-táblák strukturált, nem relációs adatok tárolására alkalmasak.
+hello Azure Table storage szolgáltatás lehetővé teszi nagy mennyiségű toostore strukturált adatok. hello szolgáltatás egy NoSQL-adattár, amely a belső és külső hello Azure-felhőbe érkező hitelesített hívásokat fogadja. Az Azure-táblák strukturált, nem relációs adatok tárolására alkalmasak.
 
-A **kapcsolódó szolgáltatások hozzáadása** műveletet a megfelelő NuGet-csomagok az Azure storage a projekt eléréséhez telepíti, és a tárfiók kapcsolati karakterlánca ad hozzá a projekt konfigurációs fájlokat.
+Hello **kapcsolódó szolgáltatások hozzáadása** művelet hello megfelelő NuGet csomagjainak tooaccess az Azure storage telepíti a projekt és hello kapcsolati karakterláncot hozzáadja a hello tárolási fiók tooyour projekt konfigurációs fájlok.
 
 Azure Table storage használatával kapcsolatos további általános információkért lásd: [Ismerkedés az Azure Table storage használatának .NET](storage-dotnet-how-to-use-tables.md).
 
-A kezdéshez, először a tárfiókban lévő tábla létrehozásához. Mutat be egy Azure-tábla létrehozása a kódban. Is mutat be, hogyan hajthat végre alapszintű tábla és entitás műveletek, például a hozzáadása, módosítása, olvasási és táblaentitásokat olvasásakor. A Kódminták C nyelven íródtak\# code, és használja az Azure Storage ügyféloldali kódtára a .NET-hez.
+tooget elindult, először toocreate egy táblát a tárfiókban lévő. Mutat be, hogyan toocreate az Azure table-kódban. Is mutat be, hogyan tooperform egyszerű táblázat és entitás műveletek, például a hozzáadása, módosítása, olvasása, és olvasási tábla entitásokat. hello minták C nyelven íródtak\# code, és használja a hello Azure Storage ügyféloldali kódtára a .NET-hez.
 
-**Megjegyzés:** -hajtsa végre az Azure storage hívásainak ASP.NET Core API-k aszinkron. Lásd: [aszinkron programozás az Async és Await](http://msdn.microsoft.com/library/hh191443.aspx) további információt. Az alábbi kódot azt feltételezi, hogy aszinkron programozási módszerek vannak használatban.
+**Megjegyzés:** -hello API-hívások, hogy tooAzure tároló hajtsa végre az ASP.NET Core aszinkron. Lásd: [aszinkron programozás az Async és Await](http://msdn.microsoft.com/library/hh191443.aspx) további információt. az alábbi kód hello azt feltételezi, hogy aszinkron programozási módszerek vannak használatban.
 
 ## <a name="access-tables-in-code"></a>Hozzáférés táblák kódban
-Az ASP.NET Core projektek hozzáférnek, C# forrásfájlokat, amelyhez hozzáférhetnek az Azure table storage a következő elemek is kell.
+ASP.NET Core projektek tooaccess táblák, a következő elemek tooany C# forrásfájlok Azure table storage elérő tooinclude hello kell.
 
-1. Győződjön meg arról, hogy a névtér-deklarációk, a C# fájlban tetején az ezen **használatával** utasításokat.
+1. Győződjön meg arról, hogy a névtér-deklarációk hello hello C# fájlban hello tetején az ezen **használatával** utasításokat.
    
         using Microsoft.Framework.Configuration;
         using Microsoft.WindowsAzure.Storage;
         using Microsoft.WindowsAzure.Storage.Table;
         using System.Threading.Tasks;
         using LogLevel = Microsoft.Framework.Logging.LogLevel;
-2. Első egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. A következő kód segítségével beolvasása a a tárolási kapcsolati karakterlánc és a tárfiók adatait az Azure-szolgáltatások konfigurációjából.
+2. Első egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. A következő kód tooget használata hello hello a tárolási kapcsolati karakterlánc és hello Azure szolgáltatáskonfiguráció tárfiók adatait.
    
         CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
             CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
    
-    **Megjegyzés:** -összes a fenti kódot a kód előtt használja a következő mintában.
-3. Első egy **CloudTableClient** hivatkozhasson rá az a táblázat objektumok a tárfiókban lévő objektum.  
+    **Megjegyzés:** -a következő minták hello az összes fenti kódot hello kód előtt hello használja.
+3. Első egy **CloudTableClient** tooreference hello tábla objektumok a tárfiókban lévő objektum.  
    
-        // Create the table client.
+        // Create hello table client.
         CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-4. Első egy **CloudTable** referenciaobjektum bizonyos táblájához és entitások mutató hivatkozás.
+4. Első egy **CloudTable** objektum tooreference bizonyos táblájához és entitások.
    
-        // Get a reference to a table named "peopleTable"
+        // Get a reference tooa table named "peopleTable"
         CloudTable table = tableClient.GetTableReference("peopleTable");
 
 ## <a name="create-a-table-in-code"></a>Tábla létrehozása a kódban
-Az Azure-tábla létrehozásához csak adjon hozzá egy **CreateIfNotExistsAsync()**.
+az Azure tábla toocreate hello csak adjon hozzá egy túl**CreateIfNotExistsAsync()**.
 
-    // Create the CloudTable if it does not exist
+    // Create hello CloudTable if it does not exist
     await table.CreateIfNotExistsAsync();
 
-## <a name="add-an-entity-to-a-table"></a>Entitás hozzáadása a táblához
-Egy entitás hozzáadása egy táblát hozzon létre egy osztályt, amely meghatározza az entitás tulajdonságait. Az alábbi kód meghatároz egy entitásosztályt nevű **CustomerEntity** , amely használ az ügyfél keresztnevét sorkulcsnak és a vezetéknevét partíciókulcsnak.
+## <a name="add-an-entity-tooa-table"></a>Egy entitás tooa táblázat hozzáadása
+egy entitás tooa táblát hoz létre egy osztályt, amely tooadd hello az entitás tulajdonságait határozza meg. hello alábbi kód meghatároz egy entitásosztályt nevű **CustomerEntity** , hogy használ hello az ügyfél első hello sor kulcsként és vezetékneve hello partíció kulcsként.
 
     public class CustomerEntity : TableEntity
     {
@@ -85,49 +85,49 @@ Egy entitás hozzáadása egy táblát hozzon létre egy osztályt, amely meghat
         public string PhoneNumber { get; set; }
     }
 
-Entitások érintő tábla műveletet végzett használatával a **CloudTable** objektumot, amelyet korábban létrehozott "Hozzáférési táblák a kódban." A **TableOperation** objektum által jelképezett kell elvégezni a műveletet. Az alábbi példakód bemutatja, hogyan hozzon létre egy **CloudTable** objektum és a **CustomerEntity** objektum. A művelet előkészítéséhez egy **TableOperation** jön létre, beszúrja az ügyfélentitást a táblába. Végezetül a művelet CloudTable.ExecuteAsync meghívásával hajtható végre.
+Entitások érintő tábla műveletet végzett hello segítségével **CloudTable** objektumot, amelyet korábban létrehozott "Hozzáférési táblák a kódban." Hello **TableOperation** objektum által jelképezett hello művelet toobe történik. a következő kód példa azt mutatja meg hogyan hello toocreate egy **CloudTable** objektum és a **CustomerEntity** objektum. tooprepare hello műveletet, a **TableOperation** hello táblába tooinsert hello ügyfélentitást jön létre. Végezetül hello művelet CloudTable.ExecuteAsync meghívásával hajtható végre.
 
     // Create a new customer entity.
     CustomerEntity customer1 = new CustomerEntity("Harp", "Walter");
     customer1.Email = "Walter@contoso.com";
     customer1.PhoneNumber = "425-555-0101";
 
-    // Create the TableOperation that inserts the customer entity.
+    // Create hello TableOperation that inserts hello customer entity.
     TableOperation insertOperation = TableOperation.Insert(customer1);
 
-    // Execute the insert operation.
+    // Execute hello insert operation.
     await peopleTable.ExecuteAsync(insertOperation);
 
 ## <a name="insert-a-batch-of-entities"></a>Entitásköteg beszúrása
-Több entitás egyetlen írási művelettel egy táblába beszúrásához. Az alábbi példakód létrehoz két entitásobjektumot ("Jeff Smith" és "Ben Smith"), hozzáadja őket egy **TableBatchOperation** objektumba a **beszúrása** módszer, majd elindítja a művelet által hívott CloudTable.ExecuteBatchAsync.
+Több entitás egyetlen írási művelettel egy táblába beszúrásához. hello alábbi példakód létrehoz két entitásobjektumot ("Jeff Smith" és "Ben Smith"), azokat beveszi tooa **TableBatchOperation** hello használó **beszúrása** metódust, és hello művelet indítása hívó CloudTable.ExecuteBatchAsync.
 
-    // Create the batch operation.
+    // Create hello batch operation.
     TableBatchOperation batchOperation = new TableBatchOperation();
 
-    // Create a customer entity and add it to the table.
+    // Create a customer entity and add it toohello table.
     CustomerEntity customer1 = new CustomerEntity("Smith", "Jeff");
     customer1.Email = "Jeff@contoso.com";
     customer1.PhoneNumber = "425-555-0104";
 
-    // Create another customer entity and add it to the table.
+    // Create another customer entity and add it toohello table.
     CustomerEntity customer2 = new CustomerEntity("Smith", "Ben");
     customer2.Email = "Ben@contoso.com";
     customer2.PhoneNumber = "425-555-0102";
 
-    // Add both customer entities to the batch insert operation.
+    // Add both customer entities toohello batch insert operation.
     batchOperation.Insert(customer1);
     batchOperation.Insert(customer2);
 
-    // Execute the batch operation.
+    // Execute hello batch operation.
     await peopleTable.ExecuteBatchAsync(batchOperation);
 
-## <a name="get-all-of-the-entities-in-a-partition"></a>Egy partíció beolvasása összes entitások
-Egy tábla összes partíció entitástartományának lekérdezéséhez használja a **TableQuery** objektum. Az alábbi példakód megad egy szűrőt a „Smith” partíciókulcsú entitásokra. A példa megjeleníti a konzolon a lekérdezés eredményei között szereplő entitásokhoz tartozó mezőket.
+## <a name="get-all-of-hello-entities-in-a-partition"></a>Egy partíció beolvasása összes hello entitások
+egy tábla összes hello entitások egy partíció használjon tooquery egy **TableQuery** objektum. hello alábbi példakód megad egy szűrőt, ahol a "Smith" hello partíciókulcs az entitások. Ez a példa kinyomtatja hello lekérdezési eredmények toohello konzolon hello mezőket.
 
-    // Construct the query operation for all customer entities where PartitionKey="Smith".
+    // Construct hello query operation for all customer entities where PartitionKey="Smith".
     TableQuery<CustomerEntity> query = new TableQuery<CustomerEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Smith"));
 
-    // Print the fields for each customer.
+    // Print hello fields for each customer.
     TableContinuationToken token = null;
     do
     {
@@ -142,45 +142,45 @@ Egy tábla összes partíció entitástartományának lekérdezéséhez használ
     } while (token != null);
 
 ## <a name="get-a-single-entity"></a>Egyetlen entitás beolvasása
-Írhat egy lekérdezést egy adott entitás eléréséhez. A következő kódban a **TableOperation** adhatja meg az ügyfél "Ben Smith" nevű objektum. Ez a módszer adja vissza, csak egyetlen entitást helyett egy gyűjtemény és a visszaadott érték **Ableresult.Result** van egy **CustomerEntity** objektum. A leggyorsabban az egyetlen entitás lekérdezése partíció-és sorkulcsok megadása a lekérdezésben a **tábla** szolgáltatás.
+A lekérdezés tooget írhat egy adott entitás. hello következő kódban a **TableOperation** toospecify az ügyfél "Ben Smith" nevű objektum. Ez a módszer értéket ad vissza, egy gyűjtemény helyett csak egyetlen entitást, és hello értéket adott vissza **Ableresult.Result** van egy **CustomerEntity** objektum. Hello leggyorsabb módon tooretrieve hello az egyetlen entitás partíció-és sorkulcsok megadása a lekérdezésben **tábla** szolgáltatás.
 
     // Create a retrieve operation that takes a customer entity.
     TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Smith", "Ben");
 
-    // Execute the retrieve operation.
+    // Execute hello retrieve operation.
     TableResult retrievedResult = await peopleTable.ExecuteAsync(retrieveOperation);
 
-    // Print the phone number of the result.
+    // Print hello phone number of hello result.
     if (retrievedResult.Result != null)
        Console.WriteLine(((CustomerEntity)retrievedResult.Result).PhoneNumber);
     else
-       Console.WriteLine("The phone number could not be retrieved.");
+       Console.WriteLine("hello phone number could not be retrieved.");
 
 ## <a name="delete-an-entity"></a>Entitás törlése
-Miután megtalálta az entitás törölheti. A következő kód egy ügyfélentitást "Ben Smith" nevű keres, és megtalálja, ha azt törli őket.
+Miután megtalálta az entitás törölheti. hello alábbira megkeresi a "Ben Smith" nevű ügyfélentitást és találja, ha azt törli őket.
 
     // Create a retrieve operation that expects a customer entity.
     TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Smith", "Ben");
 
-    // Execute the operation.
+    // Execute hello operation.
     TableResult retrievedResult = peopleTable.Execute(retrieveOperation);
 
-    // Assign the result to a CustomerEntity object.
+    // Assign hello result tooa CustomerEntity object.
     CustomerEntity deleteEntity = (CustomerEntity)retrievedResult.Result;
 
-    // Create the Delete TableOperation and then execute it.
+    // Create hello Delete TableOperation and then execute it.
     if (deleteEntity != null)
     {
        TableOperation deleteOperation = TableOperation.Delete(deleteEntity);
 
-       // Execute the operation.
+       // Execute hello operation.
        await peopleTable.ExecuteAsync(deleteOperation);
 
        Console.WriteLine("Entity deleted.");
     }
 
     else
-       Console.WriteLine("Couldn't delete the entity.");
+       Console.WriteLine("Couldn't delete hello entity.");
 
 ## <a name="next-steps"></a>Következő lépések
 [!INCLUDE [vs-storage-dotnet-tables-next-steps](../../includes/vs-storage-dotnet-tables-next-steps.md)]

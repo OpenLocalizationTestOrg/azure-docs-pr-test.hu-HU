@@ -1,5 +1,5 @@
 ---
-title: "Azure SQL Database használata magas rendelkezésre állású szolgáltatás kialakítása |} Microsoft Docs"
+title: "Azure SQL Database használata magas rendelkezésre állású szolgáltatás aaaDesign |} Microsoft Docs"
 description: "További tudnivalók az Azure SQL Database használata magas rendelkezésre állású szolgáltatások alkalmazás tervét."
 keywords: "a felhő vész-helyreállítási, a vész-helyreállítási megoldások, az alkalmazás az adatok biztonsági mentése, a georeplikáció, üzleti folytonossági tervezése"
 services: sql-database
@@ -16,138 +16,138 @@ ms.tgt_pltfrm: NA
 ms.workload: data-management
 ms.date: 04/21/2017
 ms.author: sashan
-ms.openlocfilehash: 40fe0ae04eb94322356ed19773512e3bc383639c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 815f754ba7014cd8a1108a2d84c2a8f71d7030a5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="designing-highly-available-services-using-azure-sql-database"></a>Azure SQL Database használata magas rendelkezésre állású szolgáltatások tervezése
 
-Összeállításakor, és az Azure SQL Database-magas rendelkezésre állású szolgáltatások telepítése, használata [feladatátvételi csoportok és aktív georeplikáció](sql-database-geo-replication-overview.md) regionális meghibásodásokkal és katasztrofális kimaradások tűrőképességet biztosít, és gyors helyreállítás engedélyezéséhez a másodlagos adatbázisok. Ez a cikk általános alkalmazás-minták összpontosít, és az előnyöket és kompromisszumot alakítson ki az egyes beállítások attól függően, hogy az alkalmazás központi telepítési követelményei, a szolgáltatásiszint-szerződés rendszerre ismerteti forgalom késleltetés és a költségeket. Aktív georeplikáció a rugalmas készletek kapcsolatos információkért lásd: [rugalmas készlet vész-helyreállítási stratégiák](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md).
+Összeállításakor, és az Azure SQL Database-magas rendelkezésre állású szolgáltatások telepítése, használata [feladatátvételi csoportok és aktív georeplikáció](sql-database-geo-replication-overview.md) tooprovide rugalmasság tooregional hibák és katasztrofális kimaradások és engedélyezése gyors helyreállítás toohello másodlagos adatbázisok. A cikk általános alkalmazás-minták összpontosít, valamint ismerteti a hello előnyei és az egyes beállítások attól függően, hogy hello alkalmazás üzembe helyezés feltételeit, hello szolgáltatásiszint-szerződés rendszerre kompromisszumot forgalom késleltetés és a költségeket. Aktív georeplikáció a rugalmas készletek kapcsolatos információkért lásd: [rugalmas készlet vész-helyreállítási stratégiák](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md).
 
 ## <a name="design-pattern-1-active-passive-deployment-for-cloud-disaster-recovery-with-a-co-located-database"></a>1 a kialakítási mintában: aktív-passzív telepítési felhő vész-helyreállítási egy közös elhelyezésű adatbázis
-Ez a beállítás akkor legmegfelelőbb alkalmazásokat az alábbi adatokkal:
+Ez a beállítás bizonyul a legalkalmasabbnak alkalmazásokhoz a következő jellemzőkkel hello:
 
 * Egy Azure-régió aktív példány
-* Erős függőségi adatokhoz való hozzáférés olvasási és írási (RW)
-* A webalkalmazás és az adatbázis közötti-régió összekapcsolását érvénytelen miatt a késés és a forgalom költség    
+* Olvasási és írási (RW) hozzáférési toodata erős függőség
+* Kereszt-régió kapcsolat hello webalkalmazás és hello adatbázis között nincs elfogadható miatt toolatency és a forgalom költség    
 
-Ebben az esetben az alkalmazás üzembe helyezési topológia regionális katasztrófák kezelésére, az összes alkalmazás-összetevők érintett és feladatátvételi egységként kell megfelelően lett optimalizálva. A földrajzi redundancia céljából az alkalmazás logikáját és az adatbázis egy másik régióban replikálódnak, de nem használhatók az alkalmazás terhelés a normál körülmények között. Az alkalmazást a másodlagos régióban a másodlagos adatbázis SQL kapcsolati karakterláncának használatára kell konfigurálni. A TRAFFIC manager használatára van beállítva [feladatátvételi útválasztási módszer](../traffic-manager/traffic-manager-configure-failover-routing-method.md).  
+Ebben az esetben hello alkalmazás üzembe helyezési topológia regionális katasztrófák kezelésére, amikor az összes alkalmazás-összetevők érintett, és toofailover egységként kell megfelelően lett optimalizálva. A földrajzi redundancia céljából hello úgy az alkalmazáslogikát és hello adatbázis replikált tooanother régió azonban nem használhatók hello alkalmazás munkaterhelés hello rendeltetésszerű. hello alkalmazás hello másodlagos régióban konfigurált toouse SQL kapcsolódási karakterlánc toohello másodlagos adatbázis kell lennie. A TRAFFIC manager van beállítva toouse [feladatátvételi útválasztási módszer](../traffic-manager/traffic-manager-configure-failover-routing-method.md).  
 
 > [!NOTE]
 > [Az Azure traffic manager](../traffic-manager/traffic-manager-overview.md) használja a rendszer keresztül ez a cikk csak illusztrációs célokat szolgálnak. Minden terheléselosztási megoldás, amely támogatja a feladatátvételi útválasztási módszer használható.    
 >
 
-Az alábbi ábrán látható az ebben a konfigurációban, nem tervezett kimaradás előtt.
+a következő diagram hello ebben a konfigurációban, nem tervezett kimaradás előtt jeleníti meg.
 
 ![SQL-adatbázis georeplikáció konfigurációs. Felhőalapú vészhelyreállítás.](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern1-1.png)
 
-Az elsődleges régióban kimaradás után a az SQL Database szolgáltatás észleli, hogy az elsődleges adatbázis nem érhető el, és elindítani a feladatátvételt a másodlagos adatbázist, a paraméterek az Automatikus feladatátvétel házirend alapján. Attól függően, hogy az alkalmazás SLA-t dönthet úgy is konfigurálhatja a türelmi időszak kimutatását a szolgáltatáskimaradás és a feladatátvételi maga között. Adatvesztés kockázata türelmi idő beállításának csökkenti az esetekre, ahol a szolgáltatáskimaradás katasztrofális, és rendelkezésre állás biztosításához az a régió nem gyorsan vissza. A végpont feladatátvételt kezdeményez a traffic manager előtt a feladatátvételi csoport elindítja a feladatátvételt, az adatbázis, a webes alkalmazás nem nem tud csatlakozni az adatbázishoz. Az alkalmazás automatikusan újra megkísérli sikeres, amint az adatbázis feladatátvétel befejezését. 
+Hello elsődleges régióban kimaradás után hello SQL Database szolgáltatás észleli, hogy hello az elsődleges adatbázis nem elérhető, és indítás, feladatátvétel toohello másodlagos adatbázis hello paraméterek hello automatikus feladatátvétel házirend alapján. Attól függően, hogy az alkalmazás SLA-t megadhatja, hogy tooconfigure türelmi időszak hello kimaradás hello észlelése és hello feladatátvételi magát. A türelmi időszak beállítása csökkenti az adatok elvesztését toohello esetekben, amikor hello kimaradás katasztrofális, és rendelkezésre állási hello régióban gyorsan visszaállítására hello kockázatát. Ha hello végpont feladatátvétel előtt hello feladatátvételi csoport eseményindítók hello hello adatbázis feladatátvétel hello a traffic manager által kezdeményezett, hello webes alkalmazás nem képes tooreconnect toohello adatbázis. hello alkalmazás kísérlet tooreconnect automatikusan sikeres, amint hello adatbázis feladatátvétel befejezését. 
 
 > [!NOTE]
-> Az alkalmazás és az adatbázisok teljes koordinált feladatátvételi eléréséhez kell megtervezi a saját figyelési módszert, és a webes alkalmazás végpontok és az adatbázisok kézi feladatátvételt használnak.
+> tooachieve teljesen koordinált feladatátvételi hello alkalmazás és a hello adatbázisok, inkább megtervezi a saját figyelési módszert és kézi feladatátvételre hello webes alkalmazás végpontok és hello adatbázisok használatát.
 >
 
-Az alkalmazási végpontokat és az adatbázis a feladatátvétel befejezése után az alkalmazás újraindul a régióban B felhasználói kérelmek feldolgozásának, és együtt az adatbázisban marad, mert az elsődleges adatbázis jelenleg régióban a b kiszolgálóra. Ebben a forgatókönyvben az alábbi ábrán látható. Az összes diagramokon folytonos vonal jelzi az aktív kapcsolatok, pontozott vonal jelzi felfüggesztett kapcsolatok és leállítási jelet művelet eseményindítók jelzi.
+Hello alkalmazási végpontok és hello adatbázis hello feladatátvétele után hello alkalmazás újraindul hello régióban B hello felhasználói kérelmek feldolgozásához, és mert hello elsődleges adatbázis most maradnak hello adatbázis együtt B. régió Ebben a forgatókönyvben mutatja be a következő diagram hello. Az összes diagramokon folytonos vonal jelzi az aktív kapcsolatok, pontozott vonal jelzi felfüggesztett kapcsolatok és leállítási jelet művelet eseményindítók jelzi.
 
-![Georeplikáció: Feladatátvételi másodlagos adatbázishoz. Alkalmazás biztonsági mentését.](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern1-2.png)
+![Georeplikáció: Feladatátvételi toosecondary adatbázis. Alkalmazás biztonsági mentését.](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern1-2.png)
 
-Ha kimaradás történik, a másodlagos régióban, az elsődleges és a másodlagos adatbázis közötti replikációs hivatkozást fel van függesztve, de a feladatátvétel a rendszer nem indulnak el, mivel az elsődleges adatbázis nem változik. Az alkalmazás rendelkezésre állásának ebben az esetben nem változik, de az alkalmazás működik kitett, és ezért nagyobb a veszélye esetben mindkét régió sikertelen egymás után.
+Ha kimaradás hello másodlagos régióban, hello replikációs hivatkozás hello elsődleges és másodlagos adatbázis hello között fel van függesztve, de van hello feladatátvételi nem indulnak el, mert hello elsődleges adatbázis nem változik. hello alkalmazás rendelkezésre állásának ebben az esetben nem változik, de hello alkalmazás működik kitett, és ezért nagyobb a veszélye esetben mindkét régió sikertelen egymás után.
 
 > [!NOTE]
-> Vész-helyreállítási alkalmazástelepítéshez korlátozott konfiguráció két régió ajánlott. Ennek az az oka az Azure földrajzi többsége csak két régióban. Ez a konfiguráció számára nem nyújt védelmet az alkalmazás mindkét régió egyidejű katasztrofális hibája esetén.  Ilyen hiba valószínű esetben helyreállíthatja az adatbázisokat egy harmadik régiót használva [georedundáns helyreállítás művelet](sql-database-disaster-recovery.md#recover-using-geo-restore).
+> A vész-helyreállítási ajánlott alkalmazás központi telepítési korlátozott tootwo régiók hello-konfiguráció. Ez azért, mert a legtöbb hello Azure földrajzi kell csak két régióban. Ez a konfiguráció számára nem nyújt védelmet az alkalmazás mindkét régió egyidejű katasztrofális hibája esetén.  Ilyen hiba valószínű esetben helyreállíthatja az adatbázisokat egy harmadik régiót használva [georedundáns helyreállítás művelet](sql-database-disaster-recovery.md#recover-using-geo-restore).
 >
 
-A leállás elhárítására, ha a másodlagos adatbázist a rendszer automatikusan újra szinkronizálja az elsődleges. A szinkronizálás során az elsődleges teljesítményének sikerült némileg negatív hatással lehet, amelyet a szinkronizálható adatok mennyiségétől függően. A következő ábra szemlélteti a másodlagos régióban kimaradás.
+Miután hello kimaradás elhárítására, hello másodlagos adatbázis a rendszer automatikusan újra szinkronizálja hello elsődleges. A szinkronizálás során elsődleges hello teljesítményének sikerült némileg negatív hatással lehet attól függően, hogy hello adatmennyiséget, amelyet a toobe szinkronizálva. hello következő diagram azt ábrázolja kimaradás hello másodlagos régióban.
 
 ![Másodlagos adatbázis elsődleges szinkronizálva. Felhőalapú vészhelyreállítás.](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern1-3.png)
 
-A kulcs **előnyeit** ebben a kialakítási mintában a rendszer:
+hello kulcs **előnyeit** ebben a kialakítási mintában a rendszer:
 
-* Mindkét régió nélkül régióspecifikus beállításra, és nincs további logikát reagálni a feladatátvételi azonos a webes alkalmazás telepítve van. 
-* Az alkalmazások teljesítménye nincs hatással a feladatátvétel, a webes alkalmazás és az adatbázis mindig közös elhelyezésű.
+* hello ugyanarra a webes alkalmazásra telepített tooboth régiók régióspecifikus beállításra, és további logikát tooreact toohello feladatátvételi nélkül. 
+* hello alkalmazások teljesítménye nincs hatással a feladatátvételi hello webalkalmazásként való kezelése és hello adatbázis mindig közös elhelyezésű.
 
-A fő **kompromisszumot** a, hogy a redundáns alkalmazáspéldányt másodlagos régióban csak használt vész-helyreállítási.
+fő hello **kompromisszumot** , hogy hello redundáns alkalmazás hello másodlagos régióban példány csak a vész-helyreállítási használatos.
 
 ## <a name="design-pattern-2-active-active-deployment-for-application-load-balancing"></a>A kialakításban 2: aktív-aktív központi telepítés alkalmazás terheléselosztás
-A felhő vész helyreállítási lehetőség olyan környezethez a legalkalmasabb az alkalmazások a következő jellemzőkkel:
+A felhő vész helyreállítási lehetőség alkalmazásokhoz legmegfelelőbb hello a következő jellemzőkkel:
 
-* Adatbázis olvasási és írási műveletek nagy aránya
-* Adatbázis olvasási késése lényegesebb a végfelhasználói élményt biztosít, mint a írási késése 
+* Adatbázis magas aránya toowrites olvassa be
+* Adatbázis olvasási késése lényegesebb hello végfelhasználói élmény, mint hello írási késése 
 * Csak olvasható logika elkülöníthető írható-olvasható logika különböző kapcsolati karakterlánc használatával
-* Csak olvasható logika nem függ a teljes szinkronizálás folyik a legújabb adatok  
+* Csak olvasható logika nem függ a teljes szinkronizálás folyik hello legújabb frissítéseinek adatok  
 
-Ha az alkalmazások a következő jellemzőkkel rendelkezik, terheléselosztásának a végfelhasználói kapcsolatok különböző régiókban több alkalmazáspéldányt jelentősen javíthatja a teljes végfelhasználói élményt biztosít. Két, régiók, a vész-Helyreállítási pár kell kiválasztani, és a feladatátvételi csoport e régiók bele kell foglalni az adatbázisokat. Terheléselosztás alkalmazásához minden egyes régió az olvasási és írási (RW) logikával az olvasási és írási figyelő végpont a feladatátvételi csoport csatlakoztatva kell rendelkeznie az alkalmazás aktív példány. Ez garantálja, hogy a rendszer automatikusan kezdeményezni a feladatátvételt, ha az elsődleges adatbázis kimaradás van hatással. A csak olvasható programot (RO) a webes alkalmazás közvetlenül az adott régióban adatbázis csatlakozzon. A TRAFFIC manager használatára kell beállítani [teljesítmény útválasztási](../traffic-manager/traffic-manager-configure-performance-routing-method.md) rendelkező [végpont figyelési](../traffic-manager/traffic-manager-monitoring.md) minden egyes alkalmazás-példány engedélyezve van.
+Ha az alkalmazások a következő jellemzőkkel rendelkezik, terheléselosztásának hello végfelhasználói kapcsolatok különböző régiókban több alkalmazáspéldányt jelentősen növelheti hello általános végfelhasználói élmény. Két hello régiók szerint hello vész-Helyreállítási pár kell kiválasztani, és hello feladatátvételi csoport e régiók hello adatbázisok tartalmaznia kell. tooimplement terheléselosztás, minden egyes régió hello alkalmazás aktív példányának hello feladatátvételi csoport hello írható-olvasható (RW) kapcsolódó logika toohello írható-olvasható figyelő végponttal kell rendelkeznie. Ez garantálja, hogy a feladatátvétel hello automatikusan indul el, ha hello elsődleges adatbázis kimaradás van hatással. hello csak olvasható (RO) lévő logika hello webalkalmazás közvetlenül az adott régióban toohello adatbázis csatlakoznia. A TRAFFIC manager toouse kell beállítani [teljesítmény útválasztási](../traffic-manager/traffic-manager-configure-performance-routing-method.md) rendelkező [végpont figyelési](../traffic-manager/traffic-manager-monitoring.md) minden egyes alkalmazás-példány engedélyezve van.
 
-Mint #1 mintát érdemes lehet hasonló figyelési kérelem telepítése. De eltérően mintát #1, a figyelési alkalmazás nem lesz a végpont feladatátvételi kiváltásáért felelős.
+Mint #1 mintát érdemes lehet hasonló figyelési kérelem telepítése. De eltérően #1 mintában alkalmazás hello nem hello végpont feladatátvételi kiváltásáért felelős.
 
 > [!NOTE]
-> Amíg ez a minta egynél több másodlagos adatbázist használ, csak a másodlagos régióban b. a feladatátvételre használni, és a feladatátvételi csoport részének kell lennie.
+> Amíg ez a minta egynél több másodlagos adatbázist használ, csak másodlagos régióban b. hello a feladatátvételre használni, és hello feladatátvételi csoport részének kell lennie.
 >
 
-A TRAFFIC manager útválasztási át tudja irányítani a felhasználói kapcsolatok legközelebb a felhasználó földrajzi helye alkalmazáspéldány teljesítmény kell konfigurálni. A következő ábra szemlélteti ezt a konfigurációt nem tervezett kimaradás előtt.
+A TRAFFIC manager teljesítmény útválasztási toodirect hello felhasználói kapcsolatok toohello alkalmazás példány legközelebbi toohello felhasználó földrajzi helye kell konfigurálni. a következő diagram hello ebben a konfigurációban, nem tervezett kimaradás előtt mutatja be.
 
-![Nincs leállás: Teljesítmény alkalmazás legközelebbi történő továbbítást. A georeplikáció.](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern2-1.png)
+![Nincs leállás: teljesítmény útválasztási toonearest alkalmazás. A georeplikáció.](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern2-1.png)
 
-Ha egy adatbázis leállás észlel A régióban, a feladatátvételi csoport automatikusan indít el feladatátvétel az elsődleges adatbázis A régióban a másodlagos régióban a b kiszolgálóra. Azt is automatikusan frissíti az olvasási és írási figyelő végpont B régióban, írási és olvasási kapcsolatokat a webes alkalmazás nem csökkenhet. A traffic manager a kapcsolat nélküli végpontot fog kizárása az útválasztási táblában, de továbbra is a végfelhasználói forgalom a fennmaradó online példányok történő továbbítást. A csak olvasható SQL kapcsolati karakterláncok nem befolyásolja a, ezek mindig pontot ugyanabban a régióban az adatbázishoz. 
+Ha egy adatbázis leállás hello régióban A észlel, hello feladatátvételi csoport automatikusan indít el hello elsődleges adatbázis a terület A toohello másodlagos régióban b feladatainak átvétele Hello írható-olvasható figyelő végpont tooregion B, írható-olvasható kapcsolatok hello webalkalmazásban hatása nem lesz automatikusan frissíti. hello a traffic manager amelyeket kihagy a hello útvonaltábla hello offline végpontja, de továbbra is útválasztási hello végfelhasználói forgalom toohello további online példányai. hello írásvédett SQL kapcsolati karakterláncok nem befolyásolja a hello toohello adatbázis mindig mutatnak, ugyanabban a régióban. 
 
-A következő ábra szemlélteti a feladatátvétel után az új konfigurációt.
+hello a következő ábra azt mutatja be, új konfigurációs hello hello feladatátvételt követően.
 
 ![Konfigurációs feladatátvételt követően. Felhőalapú vészhelyreállítás.](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern2-2.png)
 
-A másodlagos régiók egyikében kimaradás esetén a traffic manager automatikusan eltávolítja a kapcsolat nélküli végpontot az adott régióban az útválasztási táblázatban. A replikációs csatornát a másodlagos adatbázist, az adott régióban fel lesz függesztve. A fennmaradó régiók további felhasználói forgalom beolvasása ebben a forgatókönyvben, mert az alkalmazás teljesítményének a szolgáltatáskimaradás alatt csökkenhet. Miután a szolgáltatáskimaradás elhárítására, a másodlagos adatbázist, az érintett területen azonnal szinkronizálható az elsődleges. A szinkronizálás során az elsődleges teljesítményének sikerült némileg negatív hatással lehet, amelyet a szinkronizálható adatok mennyiségétől függően. A következő ábra szemlélteti a nem tervezett kimaradás régióban a b kiszolgálóra.
+Egy másodlagos régióban hello kimaradás esetén hello a traffic manager automatikusan eltávolítja hello offline végpontot az adott régióban hello útválasztási táblázathoz. hello replikációs csatorna toohello másodlagos adatbázis az adott régióban fel lesz függesztve. Hello fennmaradó régiók további felhasználói forgalom beolvasása ebben a forgatókönyvben, mert hello alkalmazások teljesítménye érintett hello kimaradás során. Hello kimaradás elhárítására, miután hello hello érintett régióban másodlagos adatbázis azonnal szinkronizálja az elsődleges hello. Hello során elsődleges hello szinkronizálás teljesítményének sikerült némileg negatív hatással lehet attól függően, hogy hello adatmennyiséget, amelyet a toobe szinkronizálva. a következő diagram hello régióban b kimaradás mutatja be.
 
 ![Ezen kívül az másodlagos régióba. Felhőalapú vészhelyreállítás - georeplikálási.](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern2-3.png)
 
-A kulcs **előny** Ez a kialakítás minta az, hogy az alkalmazás munkaterhelés méretezheti a végfelhasználói optimális teljesítményének eléréséhez több másodlagos adatbázis között. A **mellékhatásokkal** ezt a beállítást a rendszer:
+hello kulcs **előny** Ez a kialakítás minta az, hogy hello alkalmazás munkaterhelés méretezheti több másodlagos adatbázist tooachieve hello végfelhasználói optimális teljesítménye között. Hello **mellékhatásokkal** ezt a beállítást a rendszer:
 
-* Az alkalmazáspéldányok és az adatbázis írható-olvasható kapcsolatainak rendelkezik változó késés és a költséghatékonyság
-* Az alkalmazások teljesítményének kihatással van a szolgáltatáskimaradás elhárítása során
+* Olvasási és írási kapcsolatok hello alkalmazáspéldányok és az adatbázis közötti rendelkeznek, különböző késést és költség
+* Alkalmazás teljesítményre hello kimaradás során
 
 > [!NOTE]
-> A hasonló megközelítést speciális munkaterhelések esetén, mint jelentéskészítési feladatok, a business intelligence eszközök vagy a biztonsági mentések kiszervezéséhez használható. Általában az ilyen terhelések jelentős adatbázis erőforrások kihasználásához ezért javasoljuk, hogy jelöljön ki egy másodlagos adatbázis azokat a teljesítmény szintű egyeztetni kell a várható terhelést.
+> A hasonló megközelítést használható toooffload kifejezetten munkaterhelések esetén, mint jelentéskészítési feladatok, a business intelligence eszközök vagy a biztonsági másolatok. Általában az ilyen terhelések jelentős adatbázis erőforrások kihasználásához ezért javasoljuk, hogy jelöljön ki egy hello másodlagos adatbázisok számukra a hello teljesítmény szintű egyező toohello várható terhelési.
 >
 
 ## <a name="design-pattern-3-active-passive-deployment-for-data-preservation"></a>A kialakításban 3: aktív-passzív telepítési az adatok megőrzése
-Ez a beállítás akkor legmegfelelőbb alkalmazásokat az alábbi adatokkal:
+Ez a beállítás bizonyul a legalkalmasabbnak alkalmazásokhoz a következő jellemzőkkel hello:
 
-* Az adatvesztés nagy üzleti áll. Az adatbázis feladatátvételi csak használható utolsó lehetőségként a szolgáltatáskimaradás katasztrófa esetén is.
-* Az alkalmazás műveletek csak olvasható és írható-olvasható módot támogat, és egy ideig működhet "csak olvasható módban".
+* Az adatvesztés nagy üzleti áll. hello adatbázis feladatátvételi csak használható utolsó lehetőségként katasztrofális hello kimaradás esetén.
+* hello alkalmazás műveletek csak olvasható és írható-olvasható módot támogat, és egy ideig működhet "csak olvasható módban".
 
-Ebben a mintában az alkalmazás csak olvasható módra vált az olvasási és írási kapcsolatok az időtúllépési hibák első indításakor. A webes alkalmazás mindkét régió telepít, és az olvasási és írási figyelő végpont kapcsolat és a csak olvasható figyelő másik kapcsolat. A Traffic manager használatára kell beállítani [feladatátvételi útválasztási](../traffic-manager/traffic-manager-configure-failover-routing-method.md) rendelkező [végpont figyelési](../traffic-manager/traffic-manager-monitoring.md) engedélyezve van az alkalmazás végpont minden régióban.
+Ebben a mintában hello alkalmazás csak tooread vált, időtúllépési hibák hello írható-olvasható kapcsolatok indításakor. Webalkalmazás hello telepített tooboth régiók és a csatlakozási toohello írható-olvasható figyelő végpont és a különböző csatlakozási toohello írásvédett figyelő végpont tartalmazza. hello a Traffic manager toouse kell beállítani [feladatátvételi útválasztási](../traffic-manager/traffic-manager-configure-failover-routing-method.md) rendelkező [végpont figyelési](../traffic-manager/traffic-manager-monitoring.md) hello alkalmazás végpont minden régióban engedélyezve van.
 
-A következő ábra szemlélteti ezt a konfigurációt nem tervezett kimaradás előtt.
+a következő diagram hello ebben a konfigurációban, nem tervezett kimaradás előtt mutatja be.
 
 ![Aktív-passzív telepítési feladatátvétel előtt. Felhőalapú vészhelyreállítás.](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern3-1.png)
 
-Ha a traffic manager régiónak A kapcsolat hibát észlel, automatikusan vált felhasználói forgalom az alkalmazáspéldány régióban a b kiszolgálóra. Ebben a mintában fontos, hogy megadta a türelmi időszak adatvesztéssel elég magas értékre, például 24 óra. Biztosítja, hogy adatvesztés megakadályozta, ha a szolgáltatáskimaradás elhárítására adott időn belül. A webalkalmazás a régióban B aktiválásakor az olvasási és írási műveletek indul sikertelenek lesznek. Ezen a ponton akkor át kell váltania a csak olvasható módra. Ebben a módban a kérelmeket a rendszer automatikus irányítsa a másodlagos adatbázis. Végzetes hiba esetén a szolgáltatáskimaradás nem szüntethető a türelmi időszak, és a feladatátvételi csoport akkor indul el, a feladatátvételt. Követően, hogy az írható-olvasható figyelő is elérhető lesz, és a hívások nem tesz további sikertelenek lesznek. Ezt az alábbi ábra szemlélteti.
+Amikor hello a traffic manager azt észleli, hogy a kapcsolat hibája tooregion A, automatikusan vált felhasználói forgalom toohello alkalmazáspéldány régióban a b kiszolgálóra. Ebben a mintában fontos, hogy állítsa hello türelmi időszak adatok elvesztését tooa elég magas érték, például 24 óra. Biztosítja, hogy adatvesztés megakadályozta, ha hello kimaradás elhárítására adott időn belül. Webes alkalmazás hello régióban B hello aktiválásakor hello olvasási és írási műveletek indul sikertelenek lesznek. Ezen a ponton akkor át kell váltania toohello írásvédett módban. Ez a mód hello kérelmek lesz automatikusan irányított toohello másodlagos adatbázis. Hello esetében egy végzetes hiba hello Leállás nem szüntethető hello türelmi időszakon belül, és hello feladatátvételi csoport hello feladatátvételt indít. Adott hello után írható-olvasható figyelő is elérhető lesz, és hello hívások tooit leáll sikertelenek lesznek. Ezt hello a következő ábra szemlélteti.
 
 ![Kimaradás: Alkalmazás csak olvasható módban. Felhőalapú vészhelyreállítás.](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern3-2.png)
 
-Ha az elsődleges régióban a szolgáltatáskimaradás elhárítására a türelmi időszak, a traffic manager észleli a kapcsolat visszaállítása az elsődleges régióban, felhasználói forgalom vissza az alkalmazáspéldány régióban azonosítójához. Adott alkalmazáspéldány után folytatja működését, és az elsődleges adatbázis használata a régióban A. írható-olvasható módban működik
+Hello kívül az elsődleges régióban hello elhárítására hello türelmi időszakon belül, a traffic manager érzékeli hello helyreállítása a kapcsolat elsődleges régióban hello és felhasználói forgalom hátsó toohello alkalmazáspéldány régióban A. vált Adott alkalmazáspéldány után folytatja működését, és hello elsődleges adatbázis használatával régióban A. írható-olvasható módban működik
 
-A régióban B kimaradás esetén a traffic manager azt észleli, az alkalmazás végpont régióban B hibája és a feladatátvételi csoport kapcsolók a csak olvasható figyelő régióban A. A leállás nem befolyásolja a végfelhasználói élményt biztosít, de az elsődleges adatbázis elérhetővé tehető a szolgáltatáskimaradás elhárítása során. Ezt az alábbi ábra szemlélteti.
+Hello régióban B kimaradás esetén hello a traffic manager hello alkalmazás végpont hello hibát észlel terület B és hello feladatátvételi csoport kapcsolók hello írásvédett figyelő tooregion A. A leállás nem befolyásolja a hello végfelhasználói élményt, de hello elsődleges adatbázis elérhetővé tehető hello kimaradás során. Ezt hello a következő ábra szemlélteti.
 
 ![Kimaradás: Másodlagos adatbázishoz. Felhőalapú vészhelyreállítás.](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern3-3.png)
 
-A leállás elhárítására, ha a másodlagos adatbázis azonnal szinkronizálja az elsődleges és a csak olvasható figyelő át lett váltva vissza a másodlagos adatbázis régióban a b kiszolgálóra. A szinkronizálás során az elsődleges teljesítményének sikerült némileg negatív hatással lehet, amelyet a szinkronizálható adatok mennyiségétől függően.
+Hello kimaradás elhárítására, miután hello másodlagos adatbázis azonnal szinkronizálva hello elsődleges és hello írásvédett figyelő kapcsolt hátsó toohello másodlagos adatbázis régióban a b kiszolgálóra. A szinkronizálás során elsődleges hello teljesítményének sikerült némileg negatív hatással lehet attól függően, hogy hello adatmennyiséget, amelyet a toobe szinkronizálva.
 
 Ebben a kialakításban van több **előnyeit**:
 
-* Adatvesztés Ezzel elkerülheti a átmeneti kimaradásainak során.
-* Állásidő csak milyen gyorsan a traffic manager észleli a csatlakozási hiba, amely konfigurálható függ.
+* Adatvesztés Ezzel elkerülheti hello átmeneti kimaradásainak során.
+* Állásidő csak milyen gyorsan a traffic manager észleli hello csatlakozási hiba, amely konfigurálható függ.
 
-A **kompromisszumot** van:
+Hello **kompromisszumot** van:
 
-* Alkalmazás csak olvasható módban képesnek kell lennie.
+* Alkalmazás képes toooperate kell lennie, csak olvasható módban.
 
 > [!NOTE]
-> Állandó szolgáltatáskimaradás régióban esetén manuálisan aktiválásakor adatbázis feladatátvétel és fogadja el az adatvesztés. Az alkalmazás olvasási és írási hozzáféréssel az adatbázishoz a másodlagos régióban fog működni.
+> Állandó szolgáltatáskimaradás hello régióban esetén manuálisan aktiválásakor adatbázis feladatátvétel és fogadja el a hello adatvesztés. az olvasási és írási hozzáférése toohello database hello másodlagos régióban hello alkalmazás fognak működni.
 >
 
 ## <a name="business-continuity-planning-choose-an-application-design-for-cloud-disaster-recovery"></a>Üzleti folytonosság tervezési: Válasszon egy alkalmazás tervét felhő katasztrófa utáni helyreállítás
-Egyes adott felhőalapú vész-helyreállítási stratégiát kombinálhatja, vagy az alkalmazás igényeinek leginkább megfelelő ezek a kialakítási minták kiterjesztése.  A korábban említett stratégia az SLA-t szeretne ajánlani az ügyfelek és az alkalmazás üzembe helyezési topológia alapul. A következő részekben talál a döntést, hogy az alábbi táblázat összehasonlítja a választási lehetőségek alapján a becsült adatvesztés vagy a helyreállítási időkorlát (RPO) pontot, majd becsült helyreállítási idő (Beszúrása).
+Egyes adott felhőalapú vész-helyreállítási stratégiát kombinálhatja, vagy ezek a kialakítási minták toobest igazodhat hello az alkalmazás igényeinek megfelelően bővítheti.  A korábban említett hello stratégia hello SLA-t szeretné toooffer tooyour ügyfelei és alkalmazás üzembe helyezési topológia hello alapul. toohelp útmutató döntés, hello a következő táblázat összehasonlítja hello döntések hello becsült adatok elvesztése vagy a helyreállítási időkorlát (RPO) és a becsült helyreállítási idő (Beszúrása) alapján.
 
 | Minta | A HELYREÁLLÍTÁSI IDŐKORLÁT | BESZÚRÁSA |
 |:--- |:--- |:--- |
@@ -158,9 +158,9 @@ Egyes adott felhőalapú vész-helyreállítási stratégiát kombinálhatja, va
 |||
 
 ## <a name="next-steps"></a>Következő lépések
-* További tudnivalók az Azure SQL adatbázis automatikus biztonsági mentés című [SQL-adatbázis automatikus biztonsági mentés](sql-database-automated-backups.md)
+* tudnivalók Azure SQL adatbázis automatikus biztonsági mentés, toolearn lásd: [SQL-adatbázis automatikus biztonsági mentés](sql-database-automated-backups.md)
 * Egy üzleti folytonosság – áttekintés és forgatókönyvek: [üzleti folytonosság – áttekintés](sql-database-business-continuity.md)
-* A helyreállítás automatikus biztonsági mentés használatával kapcsolatos további tudnivalókért lásd: [adatbázis visszaállítása a szolgáltatás által kezdeményezett biztonsági másolatból](sql-database-recovery-using-backups.md)
-* Gyorsabb helyreállítási beállításokkal kapcsolatos további tudnivalókért lásd: [aktív georeplikáció](sql-database-geo-replication-overview.md)  
-* Automatikus biztonsági mentés az Archiválás használatával kapcsolatos további tudnivalókért lásd: [adatbázis másolása](sql-database-copy.md)
+* toolearn a helyreállításhoz, az automatikus biztonsági mentés használatával kapcsolatban lásd: [adatbázis visszaállítása biztonsági másolatból hello szolgáltatás által kezdeményezett](sql-database-recovery-using-backups.md)
+* toolearn gyorsabb helyreállítási beállításokkal kapcsolatban lásd: [aktív georeplikáció](sql-database-geo-replication-overview.md)  
+* toolearn tartalmaznak, az automatikus biztonsági mentés használatával kapcsolatban lásd: [adatbázis másolása](sql-database-copy.md)
 * Aktív georeplikáció a rugalmas készletek kapcsolatos információkért lásd: [rugalmas készlet vész-helyreállítási stratégiák](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md).

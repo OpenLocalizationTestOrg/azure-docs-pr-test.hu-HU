@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Search összetett adattípusú modellek hogyan |} Microsoft Docs"
+title: "aaaHow toomodel összetett adattípusú az Azure Search |} Microsoft Docs"
 description: "A beágyazott vagy hierarchikus adatstruktúrák modellezhető az Azure Search-index egybesimított sorhalmaz és gyűjtemények adattípus használatával."
 services: search
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 05/01/2017
 ms.author: liamca
-ms.openlocfilehash: d576fd7bb267ae7a100589413185b595e3b2be42
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b330c5b322f4f33123a454be11733b977684b9e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-model-complex-data-types-in-azure-search"></a>Hogyan modell összetett adattípusú az Azure Search
-Az Azure Search-index néha feltöltésére használt külső adatkészletek hierarchikus vagy beágyazott alépítményeit, amely nem felosztása szépen táblázatos sorhalmazt tartalmaz. Példa ilyen struktúrák előfordulhat, hogy több helyről és telefonszámok tartalmazza az egy ügyfél több színek és méretek egyetlen termékváltozat, több szerzők egy könyv, és így tovább. A modellezési feltételeit, ezen szerkezetek néven megjelenhet *összetett adattípusú*, *összetett adattípusú*, *összetett adattípusok*, vagy *összesített adattípusok*, csak hogy néhányat említsünk.
+# <a name="how-toomodel-complex-data-types-in-azure-search"></a>Hogyan toomodel összetett adattípusokat az Azure Search
+Külső adatkészletek használt toopopulate Azure Search-index néha hierarchikus vagy beágyazott alépítményeit, amely nem felosztása szépen táblázatos sorhalmazt tartalmaz. Példa ilyen struktúrák előfordulhat, hogy több helyről és telefonszámok tartalmazza az egy ügyfél több színek és méretek egyetlen termékváltozat, több szerzők egy könyv, és így tovább. A modellezési feltételeit, láthatja, ezen szerkezetek említett tooas *összetett adattípusú*, *összetett adattípusú*, *összetett adattípusok*, vagy *összesített adattípusok*, kevés a tooname.
 
-Összetett adattípusú nem natív módon támogatja az Azure Search, de bevált megoldás tartalmaz egy kétlépéses folyamat egybesimítását szerkezetét, és használata a **gyűjtemény** adattípus meglévő kölcsönökre a belső struktúrában. A cikkben leírt eljárást követve lehetővé teszi a tartalom keres, jellemzőalapú, és szűrhetők.
+Összetett adattípusú nem natív módon támogatja az Azure Search, de bevált megoldás tartalmaz egy kétlépéses folyamat egybesimítását hello struktúra és használata a **gyűjtemény** adattípus tooreconstitute hello belső struktúra. A következő cikkben ismertetett hello módszer lehetővé teszi a tartalom toobe hello keresett, jellemzőalapú, és szűrhetők.
 
 ## <a name="example-of-a-complex-data-structure"></a>Összetett adatszerkezet – példa
-Általában a szóban forgó adatok JSON- vagy XML-dokumentumot, vagy egy NoSQL-tároló, például az Azure Cosmos DB elem található. Szerkezete a kihívás ered, több gyermek elemeket kell keresni és szűrt rendelkezik.  A bemutató a megoldás kiindulási pontként hajtsa végre a következő JSON-dokumentum, amely számos olyan példaként ügyfelek:
+A szóban forgó adatok hello általában JSON vagy XML-dokumentumot, vagy egy NoSQL-tároló, például az Azure Cosmos DB elem található. Szerkezete hello challenge ered, amelyek több alárendelt elemeket a Keresés és a szűrt toobe.  A ábrázoló hello megoldás kiindulási pontként érvénybe hello számos olyan, az ügyfelek például JSON-dokumentum a következő:
 
 ~~~~~
 [
@@ -63,22 +63,22 @@ Az Azure Search-index néha feltöltésére használt külső adatkészletek hie
 }]
 ~~~~~
 
-Amíg a mezőket "id" nevű, "name" és "Vállalati" csak egyszerűen képezhető le egy az egyhez típusú mezői belül az Azure Search-index, a "helyek" mező a helyek, hogy mindkét egy csoportja hely azonosítók, valamint a hely leírása tömböt tartalmaz. Fényében, hogy az Azure Search nem rendelkezik olyan adattípusú, amely támogatja ezt, igazolnia kell a következő modellre: Ez az Azure Search különböző módokon. 
+Amíg hello mezők "id" nevű, "name" és "Vállalati" csak egyszerűen képezhető le egy az egyhez típusú mezői belül az Azure Search-index, hello "helyek" mező a helyek, hogy mindkét egy csoportja hely azonosítók, valamint a hely leírása tömböt tartalmaz. Fényében, hogy az Azure Search nem rendelkezik olyan adattípusú, amely támogatja ezt, igazolnia kell a különböző módokon toomodel Ez az Azure Search. 
 
 > [!NOTE]
-> Ezzel a módszerrel is blogbejegyzés ismerteti Kirk Evans által [indexelő DocumentDB az Azure Search](https://blogs.msdn.microsoft.com/kaevans/2015/03/09/indexing-documentdb-with-azure-seach/), amely mutatja a technika nevű, "az adatok egybesimítását", amely lehetővé teszi, akkor egy egy nevű mező `locationsID` és `locationsDescription` , amely egyaránt [gyűjtemények](https://msdn.microsoft.com/library/azure/dn798938.aspx) (vagy karakterláncok).   
+> Ezzel a módszerrel is blogbejegyzés ismerteti Kirk Evans által [indexelő DocumentDB az Azure Search](https://blogs.msdn.microsoft.com/kaevans/2015/03/09/indexing-documentdb-with-azure-seach/), amely jelzi, hogy egy technika az úgynevezett "simítási hello adatok", amely során egy nevű mező kellene lennie `locationsID` és `locationsDescription` amelyek [gyűjtemények](https://msdn.microsoft.com/library/azure/dn798938.aspx) (vagy karakterláncok).   
 > 
 > 
 
-## <a name="part-1-flatten-the-array-into-individual-fields"></a>1. lépés: A tömb egyes mezőkbe Egybesimítására
-Ez az adatkészlet tervezhetők Azure Search-index, hozzon létre a beágyazott tartóelemeket egyes mezőket: `locationsID` és `locationsDescription` adatok típussal rendelkező [gyűjtemények](https://msdn.microsoft.com/library/azure/dn798938.aspx) (vagy karakterláncok). A mezők be kellene index "1" vagy "2" érték a `locationsID` a John Smith és az értékeket a "3" & "4" mezőben a `locationsID` Ilona Campbell mezőt.  
+## <a name="part-1-flatten-hello-array-into-individual-fields"></a>1. rész: Hello tömb Egybesimítására egyes mezőkbe
+toocreate az Azure Search-index, amelyre ez az adatkészlet egyes mezőket hello beágyazott tartóelemeket létrehozása: `locationsID` és `locationsDescription` adatok típussal rendelkező [gyűjtemények](https://msdn.microsoft.com/library/azure/dn798938.aspx) (vagy karakterláncok). A mezők hello be kellene index hello értéket "1" és "2" `locationsID` "3" & "4" hello a John Smith és hello értékek mezőjében `locationsID` Ilona Campbell mezőt.  
 
 Az adatok Azure Search belül néz ki: 
 
 ![mintaadatokat, 2 sor](./media/search-howto-complex-data-types/sample-data.png)
 
-## <a name="part-2-add-a-collection-field-in-the-index-definition"></a>2. lépés: Az index definícióját gyűjtemény mező felvétele
-A sémát indexeli az a mező definíciók hasonlóan néznének ki ebben a példában.
+## <a name="part-2-add-a-collection-field-in-hello-index-definition"></a>2. rész: Hello Indexdefiníció gyűjtemény mező felvétele
+Hello mező definíciók hello a sémát indexeli, előfordulhat, hogy keresse meg a hasonló toothis példa.
 
 ~~~~
 var index = new Index()
@@ -95,18 +95,18 @@ var index = new Index()
 };
 ~~~~
 
-## <a name="validate-search-behaviors-and-optionally-extend-the-index"></a>Keresési viselkedések érvényesítése és kiterjeszti az index
-Ha létrehozta az indexet, és az adatok betöltése, most tesztelheti a megoldás a dataset keresési lekérdezés végrehajtásának ellenőrzése. Minden egyes **gyűjtemény** mező lehet **kereshető**, **szűrhető** és **kategorizálható**. Érdemes, például a lekérdezések futtatása:
+## <a name="validate-search-behaviors-and-optionally-extend-hello-index"></a>Keresési viselkedések érvényesítése és kiterjeszti a hello index
+Ha létrehozott hello index és betöltött hello adatokat, most tesztelheti hello megoldás tooverify keresési lekérdezés végrehajtásának hello adatkészlet. Minden egyes **gyűjtemény** mező lehet **kereshető**, **szűrhető** és **kategorizálható**. Meg kell tudni toorun lekérdezések például:
 
-* Az Adventureworks központban dolgozó összes személyek keresése.
-* Megszámlálása egy otthoni Office dolgozó személyek számát.  
-* Annak a személynek egy otthoni irodában dolgozó bemutatják, milyen többi iroda működnek együtt az egyes helyeken a személyek számát.  
+* Hello "Adventureworks központ" dolgozó összes személyek keresése.
+* Megszámlálása egy otthoni Office dolgozó személyek hello száma.  
+* Egy otthoni Office működéséhez hello személyek megjelenítése milyen többi iroda működnek együtt az egyes helyeken hello személyek számát.  
 
-Ha ezzel a technikával egymástól esik esetén végre kell hajtani egy keresést, hogy mind a helyazonosító, valamint a hely leírása. Példa:
+Ha ezzel a technikával egymástól esik akkor, ha egy keresést, hogy mind hello helyazonosító, valamint hello hely leírását toodo van szüksége. Példa:
 
 * Minden személyek keresése, ahol egy otthoni Office rendelkeznek, és egy helyet azonosító, a 4.  
 
-Ha Emlékezzen vissza az eredeti tartalom ehhez hasonló keresést végrehajtani:
+Ha ilyen kikeresi hello eredeti tartalom Emlékezzen vissza:
 
 ~~~~
    {
@@ -115,9 +115,9 @@ Ha Emlékezzen vissza az eredeti tartalom ehhez hasonló keresést végrehajtani
    }
 ~~~~
 
-Azonban most, hogy külön mezőkbe azt választotta el az adatokat, tudunk afelől, hogy ha nincs lehetőség a Kezdőlap Office Ilona Campbell vonatkozik a `locationsID 3` vagy `locationsID 4`.  
+Azonban most, hogy a Microsoft hello adatok rendelkezik rétegekben külön mezők, tudunk semmilyen módon nem tudhatja, hogy ha hello Ilona Campbell otthoni Office túl`locationsID 3` vagy `locationsID 4`.  
 
-Ebben az esetben kezelésére, ad meg, amely egyesíti az összes adat egyetlen gyűjtemény indexe másik mezőt.  A példa kedvéért nevezzük fog ebben a mezőben `locationsCombined` , és azt fogja a tartalmat egy `||` Bár választhat, amely úgy gondolja, hogy bármely elválasztó karakter a tartalom egyedi készletének lenne. Példa: 
+Ebben az esetben toohandle másik mezőt, amely egyesíti hello adatok egyetlen gyűjtemény hello index határozza meg.  A példa kedvéért nevezzük fog ebben a mezőben `locationsCombined` és azt az egyes hello tartalom található egy `||` Bár választhat, amely úgy gondolja, hogy bármely elválasztó karakter a tartalom egyedi készletének lenne. Példa: 
 
 ![mintaadatokat, 2 sor elválasztóval](./media/search-howto-complex-data-types/sample-data-2.png)
 
@@ -129,12 +129,12 @@ Ennek segítségével `locationsCombined` mezőben azt most már képes még tö
 ## <a name="limitations"></a>Korlátozások
 Ez a módszer akkor hasznos, ha több forgatókönyvet, de nincs minden esetben alkalmazható.  Példa:
 
-1. Ha Ön az összetett adattípusú nem rendelkezik a statikus mezők halmaza alapján, és nem lehetett azon lehetséges típusait hozzárendelése egy mező. 
-2. A beágyazott objektumok frissítése néhány extra munkát annak meghatározására, hogy mit kell frissíteni az Azure Search-index szükséges
+1. Ha Ön az összetett adattípusú nem rendelkezik a statikus mezők halmaza alapján, és nincs módja toomap történt összes hello lehetséges típusokat tooa egyetlen mezőben. 
+2. Hello beágyazott objektumok frissítése szükséges néhány további munkahelyi toodetermine pontosan mit kell toobe hello Azure Search-index frissítése
 
 ## <a name="sample-code"></a>Mintakód
-Látható egy példa egy összetett JSON-adatkészlet index Azure Search szolgáltatásba történő, és képes lekérdezések száma ehhez az adatkészlethez ezzel [GitHub-tárház](https://github.com/liamca/AzureSearchComplexTypes).
+Példa a hogyan tooindex összetett JSON-adatok beállításának Azure Search szolgáltatásba történő, és képes lekérdezések száma ehhez az adatkészlethez, ezzel [GitHub-tárház](https://github.com/liamca/AzureSearchComplexTypes).
 
 ## <a name="next-step"></a>Következő lépés
-[Natív támogatást az összetett adattípusú szavazzon](https://feedback.azure.com/forums/263029-azure-search) az Azure Search UserVoice lapon, és adjon meg semmilyen további bemeneti szeretné, hogy a szolgáltatás megvalósítási kapcsolatban fontolja meg. Is érhető el nekem közvetlenül a Twitteren: @liamca.
+[Natív támogatást az összetett adattípusú szavazzon](https://feedback.azure.com/forums/263029-azure-search) hello Azure keresési UserVoice lapon, és minden további megadása, hogy szeretné funkció végrehajtására vonatkozó tooconsider. Közvetlenül a Twitteren: toome ki is elérhető @liamca.
 

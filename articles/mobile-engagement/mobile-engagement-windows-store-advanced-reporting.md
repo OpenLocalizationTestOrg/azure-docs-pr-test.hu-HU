@@ -1,6 +1,6 @@
 ---
-title: "Jelentéskészítés a MobileApps Engagement speciális Windows Universal"
-description: "Az Azure Mobile Engagement integrálása univerzális Windows-alkalmazások"
+title: "Univerzális speciális jelentéskészítés a MobileApps Engagement aaaWindows"
+description: "Hogyan tooIntegrate Azure Mobile Engagement az univerzális Windows-alkalmazások"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,13 +14,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/12/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: feac309db1ffce0945012e293bfc1df417aed876
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 20968f238ef7ae9dc0b8bb6dac3fb8bdb9bc3a10
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="advanced-reporting-with-the-windows-universal-apps-engagement-sdk"></a>Jelentéskészítés a a Windows univerzális alkalmazások Engagement SDK speciális
+# <a name="advanced-reporting-with-hello-windows-universal-apps-engagement-sdk"></a>Az univerzális alkalmazások Engagement SDK a Windows hello speciális jelentéskészítés
 > [!div class="op_single_selector"]
 > * [Univerzális Windows](mobile-engagement-windows-store-advanced-reporting.md)
 > * [Windows Phone Silverlight](mobile-engagement-windows-phone-integrate-engagement.md)
@@ -29,22 +29,22 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Ez a témakör ismerteti az univerzális Windows-alkalmazás további jelentéskészítési forgatókönyvekhez. Ilyen például a létrehozott alkalmazás alkalmazandó választható lehetőségek az [bevezetés](mobile-engagement-windows-store-dotnet-get-started.md) oktatóanyag.
+Ez a témakör ismerteti az univerzális Windows-alkalmazás további jelentéskészítési forgatókönyvekhez. Ilyen például, beállítások, amelyek segítségével létrehozott hello tooapply toohello app [bevezetés](mobile-engagement-windows-store-dotnet-get-started.md) oktatóanyag.
 
 ## <a name="prerequisites"></a>Előfeltételek
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-windows-store-prereqs.md)]
 
-Az oktatóanyag elindítása előtt először végezze el a [bevezetés](mobile-engagement-windows-store-dotnet-get-started.md) oktatóanyag, amely szándékosan közvetlen és egyszerű. Ez az oktatóanyag ismerteti a további beállítások közül választhat.
+Az oktatóanyag elindítása előtt először végezze hello [bevezetés](mobile-engagement-windows-store-dotnet-get-started.md) oktatóanyag, amely szándékosan közvetlen és egyszerű. Ez az oktatóanyag ismerteti a további beállítások közül választhat.
 
 ## <a name="specifying-engagement-configuration-at-runtime"></a>Futásidőben engagement konfiguráció megadása
-A bevonási konfigurációs központosított a `Resources\EngagementConfiguration.xml` fájlt a projekt, amely ahol lett megadva a a [bevezetés](mobile-engagement-windows-store-dotnet-get-started.md) témakör.
+hello Engagement konfigurációs rendszer központosított hello `Resources\EngagementConfiguration.xml` fájlt a projekt, amely ahol hello megadott [bevezetés](mobile-engagement-windows-store-dotnet-get-started.md) témakör.
 
-De azt is megadhatja, hogy futásidőben: hívása előtt az Engagement ügynök inicializálása a következő metódust:
+De azt is megadhatja, hogy futásidőben: a következő metódus hello Engagement ügynök inicializálása előtt hello hívása:
 
           /* Engagement configuration. */
           EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
 
-          /* Set the Engagement connection string. */
+          /* Set hello Engagement connection string. */
           engagementConfiguration.Agent.ConnectionString = "Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}";
 
           /* Initialize Engagement angent with above configuration. */
@@ -53,14 +53,14 @@ De azt is megadhatja, hogy futásidőben: hívása előtt az Engagement ügynök
 
 
 ## <a name="recommended-method-overload-your-page-classes"></a>Ajánlott módszer: túlterhelés a `Page` osztályok
-A felhasználók, a munkamenetek, a tevékenységek, az összeomlásokat és a műszaki statisztika számítási Engagement által igényelt összes napló jelentéskészítési aktiválásához végezze el az összes a `Page` alosztályokat örökli a `EngagementPage` osztályok.
+minden tooactivate hello reporting összes hello naplók szükséges Engagement toocompute felhasználók, munkamenetek, tevékenységeket, összeomlik és műszaki statisztika, ellenőrizze a `Page` alosztályokat örökölhet hello `EngagementPage` osztályok.
 
-Itt látható egy példa egy lap az alkalmazás. Ezt megteheti az ugyanaz az alkalmazás összes lapja esetében.
+Itt látható egy példa egy lap az alkalmazás. Mindent hello ugyanaz az alkalmazás összes lapja esetében.
 
 ### <a name="c-source-file"></a>C# forrásfájl
 A lap módosítása `.xaml.cs` fájlt:
 
-* Adja hozzá a `using` utasításokat:
+* Adja hozzá a tooyour `using` utasításokat:
   
       using Microsoft.Azure.Engagement;
 * Cserélje le `Page` rendelkező `EngagementPage`:
@@ -88,14 +88,14 @@ A lap módosítása `.xaml.cs` fájlt:
         }
 
 > [!IMPORTANT]
-> Ha az oldala felülírja az `OnNavigatedTo` metódust, hívja meg a következőt: `base.OnNavigatedTo(e)`. Ellenkező esetben a tevékenység nem kell jelenteni (a `EngagementPage` hívások `StartActivity` belül a `OnNavigatedTo` metódus).
+> Ha az oldala felülírja hello `OnNavigatedTo` módszer, lehet, hogy toocall `base.OnNavigatedTo(e)`. Ellenkező esetben hello tevékenység nem kell jelenteni (hello `EngagementPage` hívások `StartActivity` belül a `OnNavigatedTo` metódus).
 > 
 > 
 
 ### <a name="xaml-file"></a>XAML-fájl
 A lap módosítása `.xaml` fájlt:
 
-* Adja hozzá a következőt a névtér-deklarációkhoz:
+* Tooyour névtér-deklarációk hozzáadása:
   
       xmlns:engagement="using:Microsoft.Azure.Engagement"
 * Cserélje le `Page` rendelkező `engagement:EngagementPage`:
@@ -115,31 +115,31 @@ A lap módosítása `.xaml` fájlt:
             ...
         </engagement:EngagementPage >
 
-### <a name="override-the-default-behaviour"></a>Bírálja felül az alapértelmezett viselkedése
-Alapértelmezés szerint az osztály nevét a lap a tevékenység nevét, nem extra akkor számít. Ha az osztály a "Lap" utótagot használ, az Engagement eltávolítja.
+### <a name="override-hello-default-behaviour"></a>Bírálja felül a hello alapértelmezett viselkedése
+Alapértelmezés szerint hello osztálynév hello lap hello tevékenység nevét, nem extra akkor számít. Ha hello osztály hello "Lap" utótagot használ, az Engagement eltávolítja azt.
 
-Felülbírálhatja az alapértelmezett viselkedést, a neve, vegye fel ezt a kódot:
+toooverride hello alapértelmezett viselkedése hello nevét, adja hozzá ezt a kódot:
 
-        // in the .xaml.cs file
+        // in hello .xaml.cs file
         protected override string GetEngagementPageName()
         {
           /* your code */
           return "new name";
         }
 
-További információ a tevékenységi jelentést, adja hozzá a kódot:
+tooreport további információt a tevékenységet, adja hozzá ezt a kódot:
 
-        // in the .xaml.cs file
+        // in hello .xaml.cs file
         protected override Dictionary<object,object> GetEngagementPageExtra()
         {
           /* your code */
           return extra;
         }
 
-Ezek a módszerek nevezzük belül a `OnNavigatedTo` metódus a lap.
+Ezek a módszerek is meghívhatók hello `OnNavigatedTo` módszer a lap.
 
 ### <a name="alternate-method-call-startactivity-manually"></a>Másodlagos módszer: hívja `StartActivity()` manuálisan
-Ha nem, vagy nem szeretné, hogy túlterhelés a `Page` osztályok, ehelyett megkezdheti a tevékenységek meghívásával `EngagementAgent` módszerek közvetlenül.
+Ha nem, vagy nem toooverload a `Page` osztályok, ehelyett megkezdheti a tevékenységek meghívásával `EngagementAgent` módszerek közvetlenül.
 
 Azt javasoljuk, hogy hívása `StartActivity` belül a `OnNavigatedTo` metódus a lap.
 
@@ -152,12 +152,12 @@ Azt javasoljuk, hogy hívása `StartActivity` belül a `OnNavigatedTo` metódus 
 > [!IMPORTANT]
 > Gondoskodjon arról, hogy megfelelően a munkamenet befejezéséhez.
 > 
-> A Windows Universal SDK automatikusan meghívja a `EndActivity` módszer az alkalmazás bezárása után. Így **magas** hívására ajánlott a `StartActivity` módszer, amikor a felhasználó tevékenységét módosításához, és **soha** hívja a `EndActivity` metódus. Ez a módszer értesíti az Engagement-kiszolgálót, hogy az aktuális felhasználó elhagyta az alkalmazásról, így hatással van-e az összes alkalmazás naplóiban.
+> Univerzális Windows SDK hello automatikusan meghívja a hello `EndActivity` metódus hello alkalmazás bezárásakor. Így **magas** toocall hello ajánlott `StartActivity` metódus hello tevékenység hello felhasználó módosítja, amikor és túl**soha** hívás hello `EndActivity` metódust. Ez a módszer értesíti hello Engagement server hello jelenlegi felhasználó elhagyta hello alkalmazás, amely hatással van-e az összes alkalmazás naplóiban.
 > 
 > 
 
 ## <a name="advanced-reporting"></a>Speciális jelentéskészítés
-Szükség esetén előfordulhat, hogy szeretne jelentést készíteni, az alkalmazás-specifikus eseményeket, hibákat és feladatok, ehhez használja a többi metódusok találhatók a `EngagementAgent` osztály. A bevonási API lehetővé teszi, hogy minden bevonási speciális képességek használatát.
+Szükség esetén érdemes lehet tooreport alkalmazásspecifikus eseményeket, hibákat és feladatokat, toodo így, használjon más módszereket található hello hello `EngagementAgent` osztály. hello Engagement API lehetővé teszi, hogy minden bevonási speciális képességek használatát.
 
-További információkért lásd: [a speciális a Mobile Engagement az univerzális Windows-alkalmazás szerinti címkézését API használatával](mobile-engagement-windows-store-use-engagement-api.md).
+További információkért lásd: [hogyan toouse hello speciális a Mobile Engagement az univerzális Windows-alkalmazás API címkézés](mobile-engagement-windows-store-use-engagement-api.md).
 

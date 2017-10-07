@@ -1,5 +1,5 @@
 ---
-title: "A webalkalmazás egyéni tartománynév beállítása az Azure App Service által használt Traffic Manager terheléselosztás."
+title: "aaaConfigure egy webalkalmazást az Azure App Service szolgáltatásban a Traffic Manager a(z) terheléselosztást használó egyéni tartomány nevét."
 description: "Adjon nevet az egyéni tartomány egy egy webalkalmazást az Azure App Service szolgáltatásban, amely tartalmazza a Traffic Manager a(z) terheléselosztást."
 services: app-service\web
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2016
 ms.author: cephalin
-ms.openlocfilehash: 5f099201d9018a6f8577cb3daf127d09560fb94b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: dfde5fc6b445b30b10e03dcb03e8d072130d9377
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-a-custom-domain-name-for-a-web-app-in-azure-app-service-using-traffic-manager"></a>A webalkalmazáshoz tartozó egyéni tartománynév konfigurálása az Azure App Service szolgáltatásban a Traffic Managerrel
 [!INCLUDE [web-selector](../../includes/websites-custom-domain-selector.md)]
@@ -45,25 +45,25 @@ Ez a cikk általános útmutatást nyújt az Azure App Service egy egyéni tarto
 
 ## <a name="add-a-dns-record-for-your-custom-domain"></a>Az egyéni tartomány DNS-rekord hozzáadása
 > [!NOTE]
-> Ha tartományi Azure App Service Web Apps keresztül vásárolt, majd ugorjon a következő lépéseket és az utolsó lépésében hivatkozik [tartomány vásárlása Web Apps](custom-dns-web-site-buydomains-web-app.md) cikk.
+> Ha tartományi Azure App Service Web Apps keresztül vásárolt, majd ugorjon a következő lépéseket és az utolsó lépésében toohello hivatkozik [tartomány vásárlása Web Apps](custom-dns-web-site-buydomains-web-app.md) cikk.
 > 
 > 
 
-Az egyéni tartomány társítandó egy webalkalmazást az Azure App Service-ben, hozzá kell adnia egy új bejegyzést a DNS-tábla az egyéni tartomány a tartományregisztráló a tartománynév, a megvásárolt által biztosított eszközök segítségével. Az alábbi lépések segítségével keresse meg és a DNS-eszközök.
+tooassociate egy webalkalmazást az Azure App Service szolgáltatásban az egyéni tartományt, hozzá kell adnia egy új bejegyzést hello DNS-tábla az egyéni tartomány hello tartományregisztráló a tartománynév, a megvásárolt által biztosított eszközök segítségével. A következő lépéseket toolocate hello használja, és hello DNS-eszközök használata.
 
-1. Jelentkezzen be fiókjába a tartományregisztrálónál, és keresse meg a DNS-rekordok kezelése lapján. Keressen hivatkozásokat vagy a hely címkézve területéhez **tartománynév**, **DNS**, vagy **neve kezelő**. Ezen a lapon egy hivatkozást található gyakran kell a fiók adatainak megtekintésekor, majd egy hivatkozást, mint **a tartományok**.
-2. Miután megtalálta a felügyelet lapon a tartománynév, keresse meg a hivatkozást, amellyel lehetővé teszi a DNS-rekordjainak szerkesztését. Ez lehet, hogy legyen felsorolva egy **zónafájl**, **DNS-rekordok**, vagy mint egy **speciális** konfigurációs hivatkozására.
+1. Jelentkezzen be a tartományregisztrálónál tooyour fiókot, és keresse meg a DNS-rekordok kezelése lapon. Keressen hivatkozásokat vagy hello hely területek címkézve **tartománynév**, **DNS**, vagy **neve kezelő**. Gyakran toothis lapján található hivatkozás lehet a fiók adatainak megtekintésekor, majd egy hivatkozást, mint **a tartományok**.
+2. A tartománynév talált hello kezelés lapon, keresse meg a hivatkozást, amellyel lehetővé teszi a tooedit hello DNS-rekordokat. Ez lehet, hogy legyen felsorolva egy **zónafájl**, **DNS-rekordok**, vagy mint egy **speciális** konfigurációs hivatkozására.
    
-   * Az oldalon nagy valószínűséggel kell néhány rekord már létrehozott, például egy bejegyzés társítása "**@**"vagy"\*" "tartomány várakozást" lapot. Például közös altartományok rekordjait is tartalmazhat **www**.
-   * A lap fog említse meg **CNAME rekordok**, vagy adjon meg egy legördülő listán válasszon egy rekordtípust. Azt is tüntethető fel más bejegyzések például **A rekordok** és **MX-rekordok**. Bizonyos esetekben a CNAME-rekordok fogja meghívni az egyéb, mint egy **aliasrekordot**.
-   * A lap is, amely lehetővé teszi mezők **térkép** a egy **állomásnév** vagy **tartománynév** egy másik tartománynévvel.
-3. Minden tartományregisztráló a mintaadatokról eltérők lehetnek, amíg általában leképez *a* az egyéni tartománynevet (például **contoso.com**,) *való* a Traffic Manager szolgáltatásbeli tartománynevére (**contoso.trafficmanager.net**) használt a webalkalmazás.
+   * hello lap valószínűleg fog rendelkezni a már létrehozott, például egy bejegyzés társítása néhány rekord "**@**"vagy"\*" "tartomány várakozást" lapot. Például közös altartományok rekordjait is tartalmazhat **www**.
+   * hello lapon fog említse meg **CNAME rekordok**, vagy adjon meg egy legördülő tooselect az típusát. Azt is tüntethető fel más bejegyzések például **A rekordok** és **MX-rekordok**. Bizonyos esetekben a CNAME-rekordok fogja meghívni az egyéb, mint egy **aliasrekordot**.
+   * hello lap is, amelyek lehetővé teszik túl mezők**térkép** a egy **állomásnév** vagy **tartománynév** tooanother tartomány nevét.
+3. Minden tartományregisztráló hello mintaadatokról eltérők lehetnek, amíg általában leképez *a* az egyéni tartománynevet (például **contoso.com**,) *való* hello Traffic Manager szolgáltatásbeli tartománynevére (**contoso.trafficmanager.net**) használt a webalkalmazás.
    
    > [!NOTE]
-   > Azt is megteheti Ha egy olyan rekordot már használatban van, és megelőző jelleggel kötni az alkalmazások azt szeretné, létrehozhat egy további CNAME-rekordot. Ahhoz például, hogy megelőző jelleggel kötési **www.contoso.com** a webes alkalmazás, hozzon létre egy CNAME rekordot a **awverify.www** való **contoso.trafficmanager.net**. A webalkalmazás a "www" CNAME rekord módosítása nélkül Ezután felvehet "www.contoso.com". További információkért lásd: [hozzon létre DNS-rekordok az egyéni tartomány webalkalmazáshoz][CREATEDNS].
+   > Másik lehetőségként Ha a bejegyzést már használatban van, és toopreemptively kell kötni az alkalmazások tooit, létrehozhat egy további CNAME-rekordot. Például toopreemptively bind **www.contoso.com** tooyour webes alkalmazás, hozzon létre egy CNAME rekordot a **awverify.www** túl**contoso.trafficmanager.net**. Felveheti a "www.contoso.com" tooyour webalkalmazás hello "www" CNAME rekordot a módosítása nélkül. További információkért lásd: [hozzon létre DNS-rekordok az egyéni tartomány webalkalmazáshoz][CREATEDNS].
    > 
    > 
-4. Miután befejezte a hozzáadása vagy módosítása a regisztráló DNS-rekordokat, a módosítások mentéséhez.
+4. Miután befejezte a hozzáadása vagy módosítása a regisztráló DNS-rekordokat, hello módosítások mentéséhez.
 
 <a name="enabledomain"></a>
 
@@ -71,7 +71,7 @@ Az egyéni tartomány társítandó egy webalkalmazást az Azure App Service-ben
 [!INCLUDE [modes](../../includes/custom-dns-web-site-enable-on-traffic-manager.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-További információk: [Node.js fejlesztői központ](/develop/nodejs/).
+További információkért lásd: hello [Node.js fejlesztői központ](/develop/nodejs/).
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

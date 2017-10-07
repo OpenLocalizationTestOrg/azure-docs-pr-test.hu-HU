@@ -1,6 +1,6 @@
 ---
-title: "Webalkalmazás létrehozása az Azure App Service szolgáltatásban az Azure SDK for Java használatával"
-description: "Útmutató az Azure App Service programozott módon, az Azure SDK Java-webalkalmazás létrehozása."
+title: "egy webalkalmazást az Azure App Service hello Azure SDK-t használó Java aaaCreate"
+description: "Ismerje meg, hogyan toocreate programozott módon, Azure App Service webalkalmazás hello Javához készült Azure SDK-t."
 tags: azure-classic-portal
 services: app-service-web
 documentationcenter: Java
@@ -15,70 +15,70 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 02/25/2016
 ms.author: v-donntr
-ms.openlocfilehash: 08bb53de8cf437a5a2b1c3b38bce9f81b8349493
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 42ba86b7fbb5668b3675198d0c5bb454525f706b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-web-app-in-azure-app-service-using-the-azure-sdk-for-java"></a>Webalkalmazás létrehozása az Azure App Service szolgáltatásban az Azure SDK for Java használatával
-<!-- Azure Active Directory workflow is not yet available on the Azure Portal -->
+# <a name="create-a-web-app-in-azure-app-service-using-hello-azure-sdk-for-java"></a>Az Azure App Service hello Azure SDK-t használó Java-webalkalmazás létrehozása
+<!-- Azure Active Directory workflow is not yet available on hello Azure Portal -->
 
 ## <a name="overview"></a>Áttekintés
-Ez a forgatókönyv bemutatja, hogyan hozzon létre egy Java-alkalmazást hoz létre egy webalkalmazást az Azure SDK [Azure App Service][Azure App Service], majd az alkalmazást telepíti. Két részből áll:
+Ez a forgatókönyv bemutatja, hogyan toocreate egy Java-alkalmazást hoz létre egy webalkalmazást az Azure SDK [Azure App Service][Azure App Service], majd telepítenie kell egy alkalmazás tooit. Két részből áll:
 
-* 1. rész bemutatja, hogyan hozhat létre egy Java-alkalmazást, amely létrehozza a webalkalmazást.
-* 2. rész bemutatja, hogyan hozzon létre egy egyszerű "Hello, World" JSP alkalmazást, majd használja az FTP-ügyfél központi telepítése a kódot az App Service.
+* 1. rész bemutatja, hogyan toobuild Java-alkalmazás, amely létrehoz egy webalkalmazást.
+* 2. rész bemutatja, hogyan toocreate egy egyszerű "Hello, World" JSP alkalmazást, majd használja az FTP ügyfél toodeploy kód tooApp szolgáltatás.
 
 ## <a name="prerequisites"></a>Előfeltételek
 ### <a name="software-installations"></a>Szoftvertelepítés
-Ebben a cikkben a AzureWebDemo alkalmazáskód Azure Java SDK 0.7.0, amelyek segítségével lehet telepíteni használatával íródott a [Webplatform-telepítő] [ Web Platform Installer] (WebPI). Emellett ügyeljen arra, hogy a legújabb verzióját használja a [Eclipse Azure eszköztára][Azure Toolkit for Eclipse]. Az SDK telepítése után frissítse a függőségek az Eclipse-projekt futtatásával **frissítése** a **Maven Tárházak**, majd újra vegye fel a minden csomag legújabb verzióját a  **Függőségek** ablak. Az eclipse-ben telepített szoftvert verziója kattintva ellenőrizheti **Súgó > telepítésének részletei**; kell legalább a következő verziók:
+Ebben a cikkben AzureWebDemo alkalmazáskód hello Azure Java SDK 0.7.0, amelyek segítségével lehet telepíteni használatával készült hello [Webplatform-telepítő] [ Web Platform Installer] (WebPI). Ezenkívül győződjön meg arról, hogy toouse hello legújabb verziójának hello [Eclipse Azure eszköztára][Azure Toolkit for Eclipse]. Hello SDK telepítése után frissítse az Eclipse-projekt hello függőséget futtatásával **frissítése** a **Maven Tárházak**, majd újra vegye fel a hello minden csomag legújabb verzióját hello  **Függőségek** ablak. Az eclipse-ben telepített szoftvert hello verziója kattintva ellenőrizheti **Súgó > telepítésének részletei**; meg kell rendelkeznie legalább hello következő verziói:
 
 * A Microsoft Azure-tárak Java 0.7.0.20150309 csomag
 * Java EE-fejlesztőknek 4.4.2.20150219 készült eclipse IDE
 
 ### <a name="create-and-configure-cloud-resources-in-azure"></a>Hozza létre és konfigurálja a felhőben található erőforrásokat az Azure-ban
-Ez az eljárás megkezdése előtt kell egy aktív Azure-előfizetéssel rendelkezik, és állítsa be az alapértelmezett Active Directory (az AD) az Azure-on.
+Ez az eljárás megkezdése előtt kell toohave egy aktív Azure-előfizetéssel, és beállítható az alapértelmezett Active Directory (az AD) az Azure-on.
 
 ### <a name="create-an-active-directory-ad-in-azure"></a>Hozzon létre egy Active Directory (AD) az Azure-ban
-Ha még nem rendelkezik az Active Directory (AD) az Azure-előfizetése, jelentkezzen be a [a klasszikus Azure portálon] [ Azure classic portal] Microsoft-fiókjával. Ha több előfizetése van, kattintson a **előfizetések** és jelöljön ki az alapértelmezett könyvtárat a projekthez használni kívánt előfizetést. Kattintson a **alkalmaz** , hogy előfizetési nézetet.
+Ha még nem rendelkezik az Active Directory (AD) az Azure-előfizetése, jelentkezzen be hello [a klasszikus Azure portálon] [ Azure classic portal] Microsoft-fiókjával. Ha több előfizetése van, kattintson a **előfizetések** és select hello alapértelmezett címtár hello előfizetés keresi toouse ebben a projektben. Kattintson a **alkalmaz** tooswitch toothat előfizetési nézet.
 
-1. Válassza ki **Active Directory** a bal oldali menüből. **Új kattintson > Directory > egyéni létrehozás**.
+1. Válassza ki **Active Directory** a bal oldali menüben hello. **Új kattintson > Directory > egyéni létrehozás**.
 2. A **könyvtár hozzáadása**, jelölje be **új könyvtár létrehozása**.
 3. A **neve**, adja meg a könyvtár nevét.
-4. A **tartomány**, írja be a tartomány nevét. Ez az alapszintű tartománynevet, hogy a címtárban; alapértelmezés szerint az űrlap rendelkezik `<domain_name>.onmicrosoft.com`. A könyvtárnév vagy egy másik, a saját tartománynév alapján nevére. Később a szervezet már használja egy másik tartománynevet is hozzáadhat.
+4. A **tartomány**, írja be a tartomány nevét. Ez az alapszintű tartománynevet, hogy a címtárban; alapértelmezés szerint hello űrlap rendelkezik `<domain_name>.onmicrosoft.com`. Hello directory vagy egy másik, saját tartománynév alapján nevére. Később a szervezet már használja egy másik tartománynevet is hozzáadhat.
 5. A **ország vagy régió**, válassza ki a területi beállítás.
 
 AD a további információkért lásd: [Mi az Azure AD-címtár][What is an Azure AD directory]?
 
 ### <a name="create-a-management-certificate-for-azure"></a>Az Azure felügyeleti tanúsítvány létrehozása
-Az Azure SDK for Java felügyeleti tanúsítványokat használ az Azure-előfizetések való hitelesítéshez szükséges. Ezek a X.509 v3 alapján létrehozott tanúsítványok használatával egy ügyfélalkalmazást, amely a szolgáltatás felügyeleti API használatával előfizetési erőforrások kezeléséhez az előfizetés tulajdonosa nevében végezze a hitelesítést.
+hello Javához készült Azure SDK-t használ, felügyeleti tanúsítványok tooauthenticate Azure-előfizetések. Ezek a X.509 v3 alapján létrehozott tanúsítványok tooauthenticate hello szolgáltatásfelügyeleti API tooact nevében hello előfizetés tulajdonosának toomanage előfizetéshez kapcsolódó erőforrásokat használó ügyfél-alkalmazás használja.
 
-A kódot az alábbi eljárással egy önaláírt tanúsítványt használ az Azure-ral hitelesítéséhez. Ezzel az eljárással kell hozzon létre egy tanúsítványt, és töltse fel azt a [a klasszikus Azure portálon] [ Azure classic portal] előre. Ez a következő lépésekből áll:
+az alábbi eljárással hello kód egy önaláírt tanúsítványt tooauthenticate Azure használ. Az eljárás használatához toocreate tanúsítványt kell, és töltse fel toohello [a klasszikus Azure portálon] [ Azure classic portal] előre. Ebbe beletartozik az alábbi lépésekkel hello:
 
 * Az ügyféltanúsítvány képviselő PFX-fájl létrehozása, és mentse helyileg.
-* Felügyeleti tanúsítvány (CER-fájljával) a PFX-fájlból jön létre.
-* Töltse fel az Azure-előfizetéshez a CER-fájljával.
-* A PFX-fájl átalakítása JKS, mert a Java, hogy a formátum segítségével hitelesíti a tanúsítványok használatával.
-* Az alkalmazás hitelesítési kód, amely hivatkozik a helyi JKS fájl írása.
+* Felügyeleti tanúsítvány (CER-fájljával) hello PFX-fájlból jön létre.
+* Töltse fel a hello CER fájl tooyour Azure-előfizetés.
+* Hello PFX-fájl átalakítása JKS, mert Java használ, hogy formátum tooauthenticate tanúsítványok használatával.
+* Hello alkalmazás hitelesítési kód, amely hivatkozik a toohello helyi JKS fájl írása.
 
-Ez az eljárás befejezésekor a CER-tanúsítványt az Azure-előfizetése legyen elhelyezve, és a JKS tanúsítványt a helyi meghajtón legyen elhelyezve. A felügyeleti tanúsítványokról további információ: [létrehozása és feltöltése az Azure felügyeleti tanúsítvánnyal][Create and Upload a Management Certificate for Azure].
+Ez az eljárás befejezésekor hello CER tanúsítvány legyen elhelyezve, az Azure-előfizetése, és hello JKS tanúsítványt a helyi meghajtón legyen elhelyezve. A felügyeleti tanúsítványokról további információ: [létrehozása és feltöltése az Azure felügyeleti tanúsítvánnyal][Create and Upload a Management Certificate for Azure].
 
 #### <a name="create-a-certificate"></a>Tanúsítvány létrehozása
-A saját önaláírt tanúsítvány létrehozása, nyissa meg a parancskonzolról, az operációs rendszerben, és futtassa a következő parancsokat.
+toocreate a saját önaláírt tanúsítványt, nyissa meg a parancskonzolról, az operációs rendszerben, és futtassa a következő parancsok hello.
 
-> **Megjegyzés:** ezt a parancsot futtató számítógépen telepíteni kell a telepített JDK. Az elérési útját a kulcseszköz is, a JDK telepítésének helyét függ. További információkért lásd: [kulcs és a tanúsítvány eszköz (kulcseszközről)] [ Key and Certificate Management Tool (keytool)] a a Java online dokumentációt.
+> **Megjegyzés:** hello számítógép, amelyen ezt a parancsot futtatja hello telepített JDK kell rendelkeznie. Hello elérési toohello kulcseszközről is, hello hely telepítésének hello JDK függ. További információkért lásd: [kulcs és a tanúsítvány eszköz (kulcseszközről)] [ Key and Certificate Management Tool (keytool)] a hello Java online dokumentációt.
 > 
 > 
 
-A .pfx fájl létrehozásához:
+toocreate hello .pfx-fájlt:
 
     <java-install-dir>/bin/keytool -genkey -alias <keystore-id>
      -keystore <cert-store-dir>/<cert-file-name>.pfx -storepass <password>
      -validity 3650 -keyalg RSA -keysize 2048 -storetype pkcs12
      -dname "CN=Self Signed Certificate 20141118170652"
 
-A .cer fájl létrehozásához:
+toocreate hello .cer fájl:
 
     <java-install-dir>/bin/keytool -export -alias <keystore-id>
      -storetype pkcs12 -keystore <cert-store-dir>/<cert-file-name>.pfx
@@ -86,37 +86,37 @@ A .cer fájl létrehozásához:
 
 Ahol:
 
-* `<java-install-dir>`a könyvtár elérési útját a Java telepítve van.
-* `<keystore-id>`a kulcstár bejegyzés azonosítója (például `AzureRemoteAccess`).
-* `<cert-store-dir>`a könyvtár elérési útját, amelyben a tanúsítványok tárolni szeretné van (például `C:/Certificates`).
-* `<cert-file-name>`a tanúsítványfájl neve (például `AzureWebDemoCert`).
-* `<password>`a jelszó úgy dönt, hogy megvédeni a tanúsítványt; legalább 6 karakter hosszúságúnak kell lennie. Nincs jelszava, akkor adhatja meg, bár ez nem ajánlott.
-* `<dname>`alias társítandó X.500 megkülönböztető nevét, és a kibocsátó és a tulajdonos mezőt az önaláírt tanúsítvány használatos.
+* `<java-install-dir>`az hello elérési toohello könyvtár Java van telepítve.
+* `<keystore-id>`hello keystore bejegyzés azonosítója (például `AzureRemoteAccess`).
+* `<cert-store-dir>`hello elérési toohello könyvtár, amelyben toostore tanúsítványokat kívánja (például `C:/Certificates`).
+* `<cert-file-name>`hello tanúsítványfájl hello neve (például `AzureWebDemoCert`).
+* `<password>`hello jelszó tooprotect hello tanúsítvány; kiválasztása legalább 6 karakter hosszúságúnak kell lennie. Nincs jelszava, akkor adhatja meg, bár ez nem ajánlott.
+* `<dname>`hello X.500 megkülönböztető név toobe társított alias, és hello kibocsátó és tulajdonos mezőket hello önaláírt tanúsítványt használt.
 
 További információkért lásd: [létrehozása és feltöltése az Azure felügyeleti tanúsítvánnyal][Create and Upload a Management Certificate for Azure].
 
-#### <a name="upload-the-certificate"></a>A tanúsítvány feltöltése
-Önaláírt tanúsítvány feltöltése az Azure-ba, keresse fel a **beállítások** a klasszikus portálon lapon, majd kattintson a **felügyeleti tanúsítványok** fülre. Kattintson a **feltöltése** a lap alján, és keresse meg a létrehozott CER-fájl helyét.
+#### <a name="upload-hello-certificate"></a>Hello-tanúsítvány feltöltése
+tooupload egy önaláírt tanúsítványt tooAzure lépjen toohello **beállítások** hello klasszikus portál lapon, majd kattintson az hello **felügyeleti tanúsítványok** fülre. Kattintson a **feltöltése** hello hello alján lapon, és keresse meg a létrehozott hello CER-fájljával toohello helyét.
 
-#### <a name="convert-the-pfx-file-into-jks"></a>A PFX-fájl átalakítása JKS
-A a Windows parancssor (admin néven fut), CD-ről a könyvtárba, a tanúsítványokat tartalmazó és a következő parancsot, ahol `<java-install-dir>` címtár, amelyben a számítógépen telepítette a Java:
+#### <a name="convert-hello-pfx-file-into-jks"></a>Hello PFX-fájl átalakítása JKS
+Hello Windows parancssort (rendszergazdaként fut), a cd toohello könyvtárat tartalmazó hello tanúsítványokat, és futtassa a következő parancsot, hello ahol `<java-install-dir>` hello könyvtár, amelyben a számítógépre telepítette Java:
 
     <java-install-dir>/bin/keytool.exe -importkeystore
      -srckeystore <cert-store-dir>/<cert-file-name>.pfx
      -destkeystore <cert-store-dir>/<cert-file-name>.jks
      -srcstoretype pkcs12 -deststoretype JKS
 
-1. Amikor a rendszer kéri, adja meg a cél keystore jelszót; Ez lesz a JKS fájlhoz tartozó jelszót.
-2. Amikor a rendszer kéri, adja meg a forrás keystore jelszót; Ez az a PFX-fájljának megadott jelszót.
+1. Amikor a rendszer kéri, adja meg a hello cél keystore jelszót; Ez lesz hello jelszót hello JKS fájl.
+2. Amikor a rendszer kéri, adja meg a hello forrás keystore jelszót; Ez a megadott PFX-fájljának hello hello jelszót.
 
-A két jelszó nem kell azonosnak lennie. Nincs jelszava, akkor adhatja meg, bár ez nem ajánlott.
+hello két jelszó azonos hello toobe nem rendelkezik. Nincs jelszava, akkor adhatja meg, bár ez nem ajánlott.
 
 ## <a name="build-a-web-app-creation-application"></a>A webalkalmazás létrehozása alkalmazás létrehozása
-### <a name="create-the-eclipse-workspace-and-maven-project"></a>Az Eclipse munkaterület és a Maven Project létrehozása
-Ez a szakasz a munkaterületet, és egy Maven-projektjét, amely az alkalmazás létrehozását, nevű webalkalmazás AzureWebDemo hoz létre.
+### <a name="create-hello-eclipse-workspace-and-maven-project"></a>Hozzon létre Eclipse munkaterületet, és Maven Project hello
+Ez a szakasz a munkaterületet, és egy Maven-projektjét, amely hello alkalmazás létrehozását, nevű webalkalmazás AzureWebDemo hoz létre.
 
 1. Hozzon létre egy új Maven-projektet. Kattintson a **fájl > Új > Maven Project**. A **új Maven Project**, jelölje be **hozzon létre egy egyszerű projektet** és **alapértelmezett munkaterület helyet**.
-2. A második lapján **új Maven Project**, adja meg a következőket:
+2. Második lapján hello **új Maven Project**, adja meg a következőket hello:
    
    * Csoport azonosítója:`com.<username>.azure.webdemo`
    * Összetevő-azonosító: AzureWebDemo
@@ -125,37 +125,37 @@ Ez a szakasz a munkaterületet, és egy Maven-projektjét, amely az alkalmazás 
    * Name: AzureWebDemo
      
      Kattintson a **Befejezés** gombra.
-3. Nyissa meg az új projekt pom.xml fájlt a Project Explorer. Válassza ki a **függőségek** fülre. Mivel ez egy új projektet, még felsorolt csomagok száma.
-4. A Maven adattárak nézet megnyitásához. **Kattintson az ablak > nézet megjelenítése > más > Maven > Maven Tárházak** kattintson **OK**. A **Maven Tárházak** nézete jelenik meg az IDE alján.
-5. Nyissa meg **globális adattárak**, kattintson a jobb gombbal a **központi** tárház, és válassza ki **Rebuild Index**.
+3. Nyissa meg a Project Explorer hello új projekt pom.xml fájlt. Jelölje be hello **függőségek** fülre. Mivel ez egy új projektet, még felsorolt csomagok száma.
+4. Nyissa meg hello Maven adattárak megtekintése. **Kattintson az ablak > nézet megjelenítése > más > Maven > Maven Tárházak** kattintson **OK**. Hello **Maven Tárházak** nézete hello IDE hello alján jelenik meg.
+5. Nyissa meg **globális adattárak**, kattintson a jobb gombbal hello **központi** tárház, és válassza ki **Rebuild Index**.
    
     ![][1]
    
-    Ez a lépés a kapcsolat sebességétől függően több percig is eltarthat. Amikor újraépíti az indexet, megjelenik a Microsoft Azure csomagok a **központi** Maven-tárházat.
-6. A **függőségek**, kattintson a **Hozzáadás**. A **adja meg a csoport azonosítója...**  meg `azure-management`. Válassza ki az alapvető felügyeleti és az App Service Web Apps felügyeleti csomagok:
+    Ez a lépés attól függően, hogy a kapcsolat sebességétől hello több percig is eltarthat. Hello index újraépíti, amikor látnia kell a Microsoft Azure hello csomagok hello **központi** Maven-tárházat.
+6. A **függőségek**, kattintson a **Hozzáadás**. A **adja meg a csoport azonosítója...**  meg `azure-management`. Válassza ki az alapszintű és az App Service Web Apps hello csomagok:
    
         com.microsoft.azure  azure-management
         com.microsoft.azure  azure-management-websites
    
-   > **Megjegyzés:** követően egy új verzióra frissítésekor a függőségeket, azt újra hozzá kell minden, a lista a függőségi.
-   > Miután rákattintott **Hozzáadás** akkor jelenik meg, az új verziószámmal az egyes függőségek válassza ki a **függőségek** listája.
+   > **Megjegyzés:** hello függőségek követően egy új verzióra frissít, ha szüksége van-e toore-adjon hozzá minden hello függőségek ezen a listán.
+   > Miután rákattintott **Hozzáadás** és válassza az egyes függőségek hello hello az új verziószámmal valószínűleg **függőségek** lista.
    > 
    > 
 
-Kattintson az **OK** gombra. Az Azure csomagok majd megjelennek a **függőségek** listája.
+Kattintson az **OK** gombra. hello Azure csomagok akkor jelennek meg hello **függőségek** listája.
 
-### <a name="writing-java-code-to-create-a-web-app-by-calling-the-azure-sdk"></a>A webalkalmazás létrehozása az Azure SDK meghívásával Java programozás
-Következő lépésként írja meg az App Service webalkalmazás létrehozása Javához készült Azure SDK API-k behívó kód.
+### <a name="writing-java-code-toocreate-a-web-app-by-calling-hello-azure-sdk"></a>A webes alkalmazás Java-kóddal tooCreate írása hívása hello Azure SDK által
+Következő lépésként írja meg hello behívó kód API-k hello Azure SDK-t a Java toocreate hello App Service-webalkalmazások számára.
 
-1. Hozzon létre egy Java-osztály a fő belépési pont kódot tartalmazhatnak. A Project Explorer, kattintson a jobb gombbal a projektcsomópontra, és válassza ki **új > osztály**.
-2. A **új Java-osztály**, az osztály neve `WebCreator` , és ellenőrizze a **nyilvános statikus "void" main** jelölőnégyzetet. A megadott beállítások megjelenjen-e az alábbiak szerint:
+1. Hozzon létre egy Java class toocontain hello fő belépési pont kódot. A Project Explorer hello projekt csomóponton kattintson a jobb gombbal, és válassza ki **új > osztály**.
+2. A **új Java-osztály**, hello osztály neve `WebCreator` , és ellenőrizze a hello **nyilvános statikus "void" main** jelölőnégyzetet. hello beállításokat a következőképpen kell megjelennie:
    
     ![][2]
-3. Kattintson a **Befejezés** gombra. A WebCreator.java fájl Project Explorer jelenik meg.
+3. Kattintson a **Befejezés** gombra. hello WebCreator.java fájl Project Explorer jelenik meg.
 
-### <a name="calling-the-azure-api-to-create-an-app-service-web-app"></a>Az App Service webalkalmazás létrehozása az Azure API hívása
+### <a name="calling-hello-azure-api-toocreate-an-app-service-web-app"></a>Hello Azure API tooCreate egy App Service Web App hívja.
 #### <a name="add-necessary-imports"></a>Adja hozzá a szükséges importálása
-WebCreator.java adja hozzá az alábbi importálásokat; Ezek importálja az osztályokat a kezelési kódtárakat az Azure API-k fel hozzáférést biztosítanak:
+WebCreator.java adja hozzá a következő importálási utasításban; hello Ezek importálása nyújt hozzáférést tooclasses hello a kezelési kódtárakat Azure API-k fel:
 
     // General imports
     import java.net.URI;
@@ -180,10 +180,10 @@ WebCreator.java adja hozzá az alábbi importálásokat; Ezek importálja az osz
     import com.microsoft.windowsazure.core.utils.KeyStoreType;
 
 
-#### <a name="define-the-main-entry-point-class"></a>Adja meg a fő belépési pont osztály
-A AzureWebDemo alkalmazás célja egy App Service webalkalmazás létrehozása, mert az alkalmazás neve a fő osztályban `WebAppCreator`. Ez az osztály a fő belépési pont a webalkalmazás létrehozása az Azure Service Management API behívó kód biztosít.
+#### <a name="define-hello-main-entry-point-class"></a>Adja meg a hello fő belépési pont osztály
+Hello hello AzureWebDemo alkalmazás célja toocreate egy App Service Web App, mert az alkalmazás neve hello fő osztály `WebAppCreator`. Ez az osztály hello fő belépési pont behívó kód hello Azure szolgáltatásfelügyeleti API toocreate hello webalkalmazás biztosít.
 
-Adja hozzá az alábbi paraméterdefiníciókra web app és webtárhely. Meg kell adnia a saját Azure-előfizetés azonosítója és a tanúsítvány adatait.
+Adja hozzá az alábbi paraméterdefiníciókra hello webes alkalmazáshoz és webtárhely hello. Szüksége lesz tooprovide saját Azure-előfizetés azonosítója és a tanúsítvány adatait.
 
     public class WebAppCreator {
 
@@ -201,37 +201,37 @@ Adja hozzá az alábbi paraméterdefiníciókra web app és webtárhely. Meg kel
 
 Ahol:
 
-* `<subscription-id>`az Azure-előfizetése Azonosítóját, amelyen létrehozásához az erőforrás van.
-* `<certificate-store-path>`az elérési út és fájlnév a JKS fájlt a helyi tanúsítványtárolóban tároló könyvtárban van. Például `C:/Certificates/CertificateName.jks` Linux és `C:\Certificates\CertificateName.jks` Windows.
-* `<certificate-password>`az a jelszó a JKS tanúsítvány létrehozásakor megadott.
-* `webAppName`bármilyen nevet választania; Ez az eljárás nevét használja `WebDemoWebApp`. A teljes tartománynév a `webAppName` rendelkező a `domainName` fűzött, így ebben az esetben a teljes tartomány pedig `webdemowebapp.azurewebsites.net`.
+* `<subscription-id>`a rendszer használni kívánt toocreate hello erőforrás hello Azure-előfizetés Azonosítóját.
+* `<certificate-store-path>`hello elérési út és fájlnév toohello JKS fájlt a helyi tanúsítványtárolóban tároló könyvtárban van. Például `C:/Certificates/CertificateName.jks` Linux és `C:\Certificates\CertificateName.jks` Windows.
+* `<certificate-password>`az a JKS tanúsítvány létrehozásakor megadott hello jelszó.
+* `webAppName`bármilyen nevet választania; Ez az eljárás hello nevét használja `WebDemoWebApp`. hello teljes tartománynév megadása hello `webAppName` a hello `domainName` fűzött, így ebben az esetben hello teljes tartománya `webdemowebapp.azurewebsites.net`.
 * `domainName`meg kell adni a fentiek szerint.
-* `webSpaceName`megadott értékek egyike lehet: a [WebSpaceNames] [ WebSpaceNames] osztály.
+* `webSpaceName`hello definiált hello értékek egyike lehet: [WebSpaceNames] [ WebSpaceNames] osztály.
 * `appServicePlanName`meg kell adni a fentiek szerint.
 
-> **Megjegyzés:** minden alkalommal, amikor az alkalmazás futtatásához, módosítania kell a értékének `webAppName` és `appServicePlanName` (vagy törölje a webalkalmazást az Azure-portál) az alkalmazás ismételt futtatása előtt. Ellenkező esetben végrehajtása sikertelen lesz, mert ugyanaz az erőforrás már létezik az Azure-on.
+> **Megjegyzés:** minden alkalommal, amikor az alkalmazás futtatásához, toochange hello értékének kell `webAppName` és `appServicePlanName` (vagy az Azure portál hello hello a webalkalmazás törlése) hello alkalmazás ismételt futtatása előtt. Ellenkező esetben végrehajtása sikertelen lesz, mert hello ugyanaz az erőforrás már létezik az Azure-on.
 > 
 > 
 
-#### <a name="define-the-web-creation-method"></a>A webalkalmazás-létrehozási módjának megadása
-A következő határozza meg a webalkalmazás létrehozása egy metódust. Ezzel a módszerrel `createWebApp`, a web app és az webtárhely paramétereket határozza meg. Emellett hoz létre, és konfigurálja az App Service Web Apps-felügyeleti ügyfél, által definiált a [WebSiteManagementClient] [ WebSiteManagementClient] objektum. A felügyeleti ügyfél webalkalmazások létrehozása a kulcs. RESTful webes szolgáltatásokat, amelyek lehetővé teszik az alkalmazások (például létrehozása, update és delete, a műveletek végrehajtása) webes alkalmazásainak kezeléséhez a szolgáltatáskezelő API meghívásával nyújt.
+#### <a name="define-hello-web-creation-method"></a>Hello webes létrehozási módjának megadása
+A következő határozza meg a metódus toocreate hello webes alkalmazás. Ezzel a módszerrel `createWebApp`, hello web app és hello webtárhely hello paramétereit. Emellett hoz létre, és beállítja az hello App Service Web Apps felügyeleti ügyfél, hello által definiált [WebSiteManagementClient] [ WebSiteManagementClient] objektum. hello felügyeleti ügyfél kulcs toocreating webalkalmazások. Engedélyező alkalmazások toomanage webes alkalmazásokat (például létrehozása, update és delete, a műveletek végrehajtása) hello service management API meghívásával RESTful webes szolgáltatásokat nyújt.
 
     private static void createWebApp() throws Exception {
 
-        // Specify configuration settings for the App Service management client.
+        // Specify configuration settings for hello App Service management client.
         Configuration config = ManagementConfiguration.configure(
             new URI(uri),
             subscriptionId,
-            keyStoreLocation,  // Path to the JKS file
-            keyStorePassword,  // Password for the JKS file
+            keyStoreLocation,  // Path toohello JKS file
+            keyStorePassword,  // Password for hello JKS file
             KeyStoreType.jks   // Flag that you are using a JKS keystore
         );
 
-        // Create the App Service Web Apps management client to call Azure APIs
-        // and pass it the App Service management configuration object.
+        // Create hello App Service Web Apps management client toocall Azure APIs
+        // and pass it hello App Service management configuration object.
         WebSiteManagementClient webAppManagementClient = WebSiteManagementService.create(config);
 
-        // Create an App Service plan for the web app with the specified parameters.
+        // Create an App Service plan for hello web app with hello specified parameters.
         WebHostingPlanCreateParameters appServicePlanParams = new WebHostingPlanCreateParameters();
         appServicePlanParams.setName(appServicePlanName);
         appServicePlanParams.setSKU(SkuOptions.Free);
@@ -244,7 +244,7 @@ A következő határozza meg a webalkalmazás létrehozása egy metódust. Ezzel
         webSpaceDetails.setName(webSpaceName);
 
         // Set web app parameters.
-        // Note that the server farm name takes the Azure App Service plan name.
+        // Note that hello server farm name takes hello Azure App Service plan name.
         WebSiteCreateParameters webAppCreateParameters = new WebSiteCreateParameters();
         webAppCreateParameters.setName(webAppName);
         webAppCreateParameters.setServerFarm(appServicePlanName);
@@ -255,30 +255,30 @@ A következő határozza meg a webalkalmazás létrehozása egy metódust. Ezzel
         usageMetric.setSiteMode(WebSiteMode.Basic);
         usageMetric.setComputeMode(WebSiteComputeMode.Shared);
 
-        // Define the web app object.
+        // Define hello web app object.
         ArrayList<String> fullWebAppName = new ArrayList<String>();
         fullWebAppName.add(webAppName + domainName);
         WebSite webApp = new WebSite();
         webApp.setHostNames(fullWebAppName);
 
-        // Create the web app.
+        // Create hello web app.
         WebSiteCreateResponse webAppCreateResponse = webAppManagementClient.getWebSitesOperations().create(webSpaceName, webAppCreateParameters);
 
-        // Output the HTTP status code of the response; 200 indicates the request succeeded; 4xx indicates failure.
+        // Output hello HTTP status code of hello response; 200 indicates hello request succeeded; 4xx indicates failure.
         System.out.println("----------");
         System.out.println("Web app created - HTTP response " + webAppCreateResponse.getStatusCode() + "\n");
 
-        // Output the name of the web app that this application created.
+        // Output hello name of hello web app that this application created.
         String shinyNewWebAppName = webAppCreateResponse.getWebSite().getName();
         System.out.println("----------\n");
         System.out.println("Name of web app created: " + shinyNewWebAppName + "\n");
         System.out.println("----------\n");
     }
 
-A kód a HTTP-állapot, a válasz sikerességét vagy sikertelenségét jelző kimeneteként, és ha sikeres, a létrehozott webalkalmazás neve lesz kimeneti.
+hello kód kimeneteként hello HTTP-állapot – hello válasz sikerességét vagy sikertelenségét jelző, és ha sikeres, kimeneteként webalkalmazás létrehozása hello hello nevét.
 
-#### <a name="define-the-main-method"></a>A main() módszer megadása
-Adja meg, amely behívja a webalkalmazás létrehozása createWebApp() main() metódus kódot.
+#### <a name="define-hello-main-method"></a>Hello main() módszer megadása
+Adja meg a hello main() metódus kódot hívások createWebApp() toocreate hello webes alkalmazást.
 
 Végezetül hívás `createWebApp` a `main`:
 
@@ -294,8 +294,8 @@ Végezetül hívás `createWebApp` a `main`:
     }  // end of WebAppCreator class
 
 
-#### <a name="run-the-application-and-verify-web-app-creation"></a>Futtassa az alkalmazást, és ellenőrizze a webalkalmazás létrehozása
-Győződjön meg arról, hogy az alkalmazás fut, kattintson a **futtatása > futtassa**. Az alkalmazás befejeződésekor az Eclipse-konzolon a következő kimenetet kell megjelennie:
+#### <a name="run-hello-application-and-verify-web-app-creation"></a>Hello alkalmazás fut, és ellenőrizze a webalkalmazás létrehozása
+Kattintson az alkalmazást futtató tooverify **futtatása > futtassa**. Hello alkalmazás befejeződésekor kell megjelennie a következő kimeneti hello Eclipse konzolon hello:
 
     ----------
     Web app created - HTTP response 200
@@ -306,23 +306,23 @@ Győződjön meg arról, hogy az alkalmazás fut, kattintson a **futtatása > fu
 
     ----------
 
-Jelentkezzen be a klasszikus Azure portálra, majd kattintson a **webalkalmazások**. Az új webalkalmazásba meg kell jelennie a webes alkalmazások listájában néhány percen belül.
+Jelentkezzen be a klasszikus Azure portálon hello, majd kattintson a **webalkalmazások**. Új webalkalmazás hello meg kell jelennie hello webalkalmazások listájában néhány percen belül.
 
-## <a name="deploying-an-application-to-the-web-app"></a>A webalkalmazás az alkalmazások központi telepítése
-Miután futtatta AzureWebDemo, és kattintson az új webalkalmazásba, jelentkezzen be a klasszikus portálon létrehozott **Web Apps**, és válassza ki **WebDemoWebApp** a a **Web Apps** lista. A webes alkalmazás irányítópult-oldalon, kattintson **Tallózás** (kattintson az URL-címet, vagy `webdemowebapp.azurewebsites.net`) is. Egy üres helyőrző lap jelenik meg, mert nincs tartalom is közzé lett téve a webalkalmazáson még.
+## <a name="deploying-an-application-toohello-web-app"></a>Egy alkalmazás toohello webalkalmazás üzembe helyezése
+Után futtatta AzureWebDemo hello új webalkalmazás létrehozása, jelentkezzen be a klasszikus portálon hello gombra **Web Apps**, és válassza ki **WebDemoWebApp** a hello **Web Apps** lista. Hello webes alkalmazás irányítópult-oldalon, kattintson **Tallózás** (hello URL-címet, vagy `webdemowebapp.azurewebsites.net`) toonavigate tooit. Egy üres helyőrző lap jelenik meg, mert nincs tartalma még közzétett toohello webalkalmazás le lett.
 
-Ezután létrehoz a "Hello, World" alkalmazást, és központilag telepítenie kell a webalkalmazást.
+Ezután létrehoz egy "Hello, World" alkalmazást, és toohello webalkalmazás telepítése az.
 
 ### <a name="create-a-jsp-hello-world-application"></a>JSP Hello World-alkalmazás létrehozása
-#### <a name="create-the-application"></a>Az alkalmazás létrehozása
-Ahhoz, hogy bemutatják, hogyan lehet a webes alkalmazás központi telepítése, az alábbi eljárás bemutatja, hogyan hozzon létre egy egyszerű "Hello, World" Java-alkalmazást, és töltse fel az App Service Web-alkalmazást létrehozni az alkalmazást.
+#### <a name="create-hello-application"></a>Hello alkalmazás létrehozása
+A sorrend toodemonstrate hogyan toodeploy egy alkalmazás toohello webes hello a következő eljárás bemutatja, hogyan toocreate egy egyszerű "Hello World" Java-alkalmazást, és töltse fel toohello App Service Web App, az alkalmazás hozott létre.
 
-1. Kattintson a **fájl > Új > dinamikus webes projekt**. Nevezze el a következőképpen: `JSPHello`. Nem kell módosítania a ezen a párbeszédpanelen egyéb beállításait. Kattintson a **Befejezés** gombra.
+1. Kattintson a **fájl > Új > dinamikus webes projekt**. Nevezze el a következőképpen: `JSPHello`. Nem kell toochange ezen a párbeszédpanelen egyéb beállításait. Kattintson a **Befejezés** gombra.
    
     ![][3]
-2. A Project Explorer bontsa ki a **JSPHello** projektre, kattintson a jobb gombbal **WebContent**, majd kattintson a **új > JSP-fájl**. Új JSP-fájl párbeszédablakban nevezze el az új fájlt `index.jsp`. Kattintson a **Tovább** gombra.
-3. Az a **JSP-sablon kiválasztása** párbeszédpanelen válassza **új JSP-fájl (html)** kattintson **Befejezés**.
-4. Index.jsp, adja hozzá a következő kódot a `<head>` és `<body>` szakaszok címkét:
+2. A Project Explorer bontsa ki a hello **JSPHello** projektre, kattintson a jobb gombbal **WebContent**, majd kattintson a **új > JSP-fájl**. Hello új JSP-fájl létrehozása párbeszédpanelen hello új fájl neve `index.jsp`. Kattintson a **Tovább** gombra.
+3. A hello **JSP-sablon kiválasztása** párbeszédpanelen válassza **új JSP-fájl (html)** kattintson **Befejezés**.
+4. Index.jsp, adja hozzá a következő kódot a hello hello `<head>` és `<body>` szakaszok címkét:
    
         <head>
           ...
@@ -330,82 +330,82 @@ Ahhoz, hogy bemutatják, hogyan lehet a webes alkalmazás központi telepítése
         </head>
    
         <body>
-          Hello, the time is <%= date %> 
+          Hello, hello time is <%= date %> 
         </body>
 
-#### <a name="run-the-hello-world-application-in-localhost"></a>Futtassa a Hello World alkalmazásról localhost
-Ez az alkalmazás futtatása előtt kell néhány tulajdonságainak konfigurálása.
+#### <a name="run-hello-hello-world-application-in-localhost"></a>Hello Hello World alkalmazást futtat localhost
+Ez az alkalmazás futtatása előtt kell tooconfigure bizonyos tulajdonságait.
 
-1. Kattintson a jobb gombbal a **JSPHello** projektre, és válassza ki **tulajdonságok**.
-2. Az a **tulajdonságok** párbeszédpanel: Jelölje ki **Java Build elérési**, jelölje be a **rendezés és exportálása** lapon jelölje **JRE rendszerkönyvtár**, kattintson a **Mentése** áthelyezni a lista elejére.
+1. Kattintson a jobb gombbal hello **JSPHello** projektre, és válassza ki **tulajdonságok**.
+2. A hello **tulajdonságok** párbeszédpanel: Jelölje ki **Java Build elérési**, jelölje be hello **rendezés és exportálási** lapon jelölje **JRE rendszerkönyvtár**, kattintson a **Mentése** toomove azt toohello hello lista elejére.
    
     ![][4]
-3. Is a **tulajdonságok** párbeszédpanel: válasszon **megcélzott futtatókörnyezetek** kattintson **új**.
-4. Az a **új kiszolgáló Futtatókörnyezetét** párbeszédpanelen válasszon ki egy kiszolgálót, mint **Apache Tomcat v7.0** kattintson **következő**. Az a **Tomcat kiszolgálót** párbeszédpanelen, a set **neve** való `Apache Tomcat v7.0`, és állítsa be **Tomcat telepítési könyvtárát** azt a könyvtárat, amelyben a Tomcat verziójának telepítése használni kívánt kiszolgálót.
+3. Is a hello **tulajdonságok** párbeszédpanel: válasszon **megcélzott futtatókörnyezetek** kattintson **új**.
+4. A hello **új kiszolgáló Futtatókörnyezetét** párbeszédpanelen válasszon ki egy kiszolgálót, mint **Apache Tomcat v7.0** kattintson **következő**. A hello **Tomcat kiszolgálót** párbeszédpanelen, a set **neve** túl`Apache Tomcat v7.0`, és állítsa be **Tomcat telepítési könyvtárát** toohello directory hello verziója van telepítve Azt szeretné, hogy toouse tomcat kiszolgálót.
    
     ![][5]
    
     Kattintson a **Befejezés** gombra.
-5. Majd térjen vissza a **megcélzott futtatókörnyezetek** oldalán a **tulajdonságok** párbeszédpanel. Válassza ki **Apache Tomcat v7.0**, majd kattintson a **OK**.
+5. Majd térjen vissza toohello **megcélzott futtatókörnyezetek** hello oldalán **tulajdonságok** párbeszédpanel. Válassza ki **Apache Tomcat v7.0**, majd kattintson a **OK**.
    
     ![][6]
-6. Az az eclipse-ben **futtatása** menüben kattintson a **futtatása**. Az a **futtató** párbeszédablakban válassza **futtassa a kiszolgálón**. Az a **futtassa a kiszolgálón** párbeszédablakban válassza **Tomcat v7.0 Server**:
+6. Az hello Eclipse **futtassa** menüben kattintson a **futtatása**. A hello **futtató** párbeszédablakban válassza **futtassa a kiszolgálón**. A hello **futtassa a kiszolgálón** párbeszédablakban válassza **Tomcat v7.0 Server**:
    
     ![][7]
    
     Kattintson a **Befejezés** gombra.
-7. Az alkalmazás futtatásakor, kell megjelennie a **JSPHello** lap jelenik meg az eclipse-ben localhost ablakban (`http://localhost:8080/JSPHello/`), a következő üzenet:
+7. Ha hello az alkalmazás fut, megtekintheti az hello **JSPHello** lap jelenik meg az eclipse-ben localhost ablakban (`http://localhost:8080/JSPHello/`), megjelenítés hello a következő üzenetet:
    
-    `Hello World, the time is Tue Mar 24 23:21:10 GMT 2015`
+    `Hello World, hello time is Tue Mar 24 23:21:10 GMT 2015`
 
-#### <a name="export-the-application-as-a-war"></a>Az alkalmazások exportálásáról a WAR-fájlként
-A web project fájlok exportálása egy webes archívumfájl (WAR), hogy a webes alkalmazás ezután telepítheti azt. A következő webes projekt fájljai a WebContent mappában találhatók:
+#### <a name="export-hello-application-as-a-war"></a>Exportálás hello alkalmazás WAR-fájlként
+Hello web project fájlok exportálása egy webes archívumfájl (WAR), hogy Ezután telepítheti azt toohello webalkalmazás. hello következő web project fájlok találhatók hello WebContent mappában:
 
     META-INF
     WEB-INF
     index.jsp
 
-1. Kattintson a jobb gombbal a WebContent mappát, és válassza ki **exportálása**.
-2. A a **exportálása kiválasztása** párbeszédpanel, kattintson a **Web > WAR** fájlt, majd kattintson az **tovább**.
-3. Az a **WAR exportálása** párbeszédpanelen válassza ki a src könyvtár az aktuális projektben, és a végén a WAR-fájl nevét. Példa:
+1. Kattintson a jobb gombbal a hello WebContent mappa, és válassza ki **exportálása**.
+2. A hello **exportálása kiválasztása** párbeszédpanel, kattintson a **webes > WAR** fájlt, majd kattintson az **tovább**.
+3. A hello **WAR exportálása** párbeszédpanelen válassza ki a hello src directory hello aktuális projektben, és hello WAR-fájlt a hello végén hello nevét tartalmazza. Példa:
    
     `<project-path>/JSPHello/src/JSPHello.war`
 
-WAR fájlok telepítésével kapcsolatos további információkért lásd: [hozzáadása a Java-alkalmazások az Azure App Service Web Apps](web-sites-java-add-app.md).
+WAR fájlok telepítésével kapcsolatos további információkért lásd: [hozzáadása a Java-alkalmazás tooAzure App Service Web Apps](web-sites-java-add-app.md).
 
-### <a name="deploying-the-hello-world-application-using-ftp"></a>A Hello World alkalmazás használatával az FTP telepítése
-Válassza ki a külső FTP-ügyfél számára tegye közzé az alkalmazást. Ez az eljárás ismerteti a két lehetőség közül választhat: a Kudu konzol épített Azure; és FileZilla, olyan népszerű eszköz egy kényelmes, grafikus felhasználói felületen.
+### <a name="deploying-hello-hello-world-application-using-ftp"></a>Hello Hello World alkalmazás használatával FTP telepítése
+Jelöljön ki egy külső FTP ügyfél toopublish hello alkalmazást. Ez az eljárás ismerteti a két lehetőség közül választhat: hello Kudu konzol épített Azure; és FileZilla, olyan népszerű eszköz egy kényelmes, grafikus felhasználói felületen.
 
-> **Megjegyzés:** Eclipse Azure eszköztára támogatja a központi telepítést, hogy a storage-fiókok és a felhőalapú szolgáltatások, de jelenleg nem támogatja a webalkalmazások központi telepítés. Storage-fiókokra telepítheti, és a felhőalapú Azure telepítési projekt segítségével, a szolgáltatások [egy Hello World alkalmazás létrehozása az Azure az eclipse-ben](http://msdn.microsoft.com/library/azure/hh690944.aspx), de nem a webalkalmazások. Más módszerekkel például az FTP- vagy GitHub fájlok átvitele a webes alkalmazást.
+> **Megjegyzés:** hello Azure eszközkészlet az eclipse-ben támogatja a központi telepítés toostorage fiókokat és a felhőalapú szolgáltatások, de jelenleg nem támogatja a telepítési tooweb alkalmazások. Toostorage fiókok telepítheti, és a felhőalapú Azure telepítési projekt segítségével, a szolgáltatások [egy Hello World alkalmazás létrehozása az Azure az eclipse-ben](http://msdn.microsoft.com/library/azure/hh690944.aspx), de nem tooweb alkalmazások. Más módszerekkel például az FTP- vagy GitHub tootransfer fájlok tooyour webalkalmazás.
 > 
-> **Megjegyzés:** FTP-használ, a Windows parancssorából (a parancssori FTP.EXE segédprogram, amely a Windows részét képező) nem ajánlott. FTP-ügyfelek, amelyek aktív FTP, például a FTP.EXE, gyakran nem működik a tűzfalon keresztül. Aktív FTP címet adja meg egy belső LAN-alapú, amelyhez az FTP-kiszolgáló lesz valószínűleg nem tudnak majd kapcsolódni.
+> **Megjegyzés:** FTP hello Windows parancssorból (hello parancssori FTP.EXE segédprogram, amely a Windows részét képező) használata nem ajánlott. FTP-ügyfelek, amelyek aktív FTP FTP.EXE, például gyakran sikertelen toowork tűzfalon keresztül. Aktív FTP belső LAN-alapú címét adja meg, akkor toowhich egy FTP-kiszolgáló valószínűleg tooconnect sikertelen lesz.
 > 
 > 
 
-Egy App Service webalkalmazásba FTP használatával telepített további információkért lásd a következő témaköröket:
+További információ a központi telepítés tooan App Service web app használatával FTP tekintse meg a következő témakörök hello:
 
 * [Az FTP-segédprogrammal történő telepítése](web-sites-deploy.md)
 
 #### <a name="set-up-deployment-credentials"></a>Üzembe helyezési hitelesítő adatok beállítása
-Győződjön meg arról, hogy futtatta a **AzureWebDemo** alkalmazás hozzon létre egy webalkalmazást. Ezen a helyen lesz átvitelhez.
+Ellenőrizze, hogy futtatta hello **AzureWebDemo** alkalmazás toocreate egy webalkalmazást. Akkor fogja átvinni fájlokat toothis helyét.
 
-1. Jelentkezzen be a klasszikus portálra, és kattintson a **webalkalmazások**. Győződjön meg arról, hogy **WebDemoWebApp** jelenik meg a webes alkalmazások listájának, és győződjön meg arról, hogy fut-e. Kattintson a **WebDemoWebApp** megnyitásához a **irányítópult** lap.
-2. A a **irányítópult** lap **gyors áttekintése**, kattintson **az üzembe helyezési hitelesítő adatok beállítása** (Ha már rendelkezik üzembe helyezési hitelesítő adatokat, ez olvassa be  **A központi telepítési hitelesítő adatok alaphelyzetbe állítása**).
+1. Jelentkezzen be hello klasszikus portálra, és kattintson a **webalkalmazások**. Győződjön meg arról, hogy **WebDemoWebApp** azokból a webalkalmazásokból hello listájában jelenik meg, és győződjön meg arról, hogy fut-e. Kattintson a **WebDemoWebApp** tooopen a **irányítópult** lap.
+2. A hello **irányítópult** lap **gyors áttekintése**, kattintson a **az üzembe helyezési hitelesítő adatok beállítása** (már üzembe helyezési hitelesítő adatokat, ha ez olvassa be  **A központi telepítési hitelesítő adatok alaphelyzetbe állítása**).
    
-    Üzembe helyezési hitelesítő adatok társított Microsoft-fiókkal. Meg kell adnia a felhasználónevet és jelszót, amely segítségével telepítheti a Git és az FTP használatával. Ezek a hitelesítő adatok segítségével telepítése a Microsoft-fiókjához társított összes Azure-előfizetések bármely webalkalmazásban. Adja meg a Git és az FTP telepítési hitelesítő adatok a párbeszédpanelen, majd jegyezze fel a felhasználónevet és jelszót későbbi használatra.
+    Üzembe helyezési hitelesítő adatok társított Microsoft-fiókkal. Toospecify egy felhasználónév és jelszó használható Git és az FTP használatával toodeploy van szüksége. A Microsoft-fiókjához társított összes Azure-előfizetések is használhatja ezeket a hitelesítő adatok toodeploy tooany webalkalmazás. Adja meg a Git és az FTP telepítési hitelesítő adatok a hello párbeszédpanel, és a rekord hello felhasználónév és a jelszó későbbi használatra.
 
 #### <a name="get-ftp-connection-information"></a>FTP-kiszolgáló kapcsolati adatainak lekérése
-FTP központi telepítéséhez használandó alkalmazásfájlok az újonnan létrehozott webalkalmazáshoz, meg kell szereznie kapcsolati adatokat. Két módon lehet kapcsolati információkhoz. Egyik módja az, hogy keresse fel a web app **irányítópult** lapon; a más módon kell letölteni a webes alkalmazás közzétételi profil. A közzétételi profil XML-fájl, amely például FTP állomás nevét és a bejelentkezési hitelesítő adatokat biztosít a webalkalmazások Azure App Service-ben. Felhasználónév és jelszó használatával telepítheti az az Azure-fiókra, nem csak a másikat társított előfizetéseket bármely webalkalmazásban.
+toouse FTP toodeploy alkalmazás fájlok az újonnan létrehozott toohello web app alkalmazásban kell tooobtain kapcsolódási információt. Két módon tooobtain kapcsolódási információt. Egyirányú van toovisit hello webes alkalmazás **irányítópult** lapon; hello más módon toodownload hello webes alkalmazás közzétételi profil. hello közzétételi profil egy XML-fájl, amely például FTP állomás nevét és a bejelentkezési hitelesítő adatokat biztosít a webalkalmazások Azure App Service-ben. A felhasználónév és jelszó toodeploy tooany webalkalmazás hello Azure-fiókra, nem csak az egyik társított előfizetéseket használhatja.
 
-A webalkalmazás panelen az FTP-kiszolgáló kapcsolati adatainak beszerzése a [Azure Portal][Azure Portal]:
+tooobtain FTP csatlakozási adataival hello webalkalmazása panelén a hello [Azure Portal][Azure Portal]:
 
-1. A **Essentials**, található, és másolja a **FTP-állomásnév**. Ez a hasonló URI `ftp://waws-prod-bay-NNN.ftp.azurewebsites.windows.net`.
-2. A **Essentials**, található, és másolja **FTP vagy üzembe helyező felhasználónév**. Ez lesz az űrlap *webappname\deployment-username*, például `WebDemoWebApp\deployer77`.
+1. A **Essentials**, található, és másolja a hello **FTP-állomásnév**. Ez az hasonló URI túl`ftp://waws-prod-bay-NNN.ftp.azurewebsites.windows.net`.
+2. A **Essentials**, található, és másolja **FTP vagy üzembe helyező felhasználónév**. Ez lesz a hello űrlap *webappname\deployment-username*, például `WebDemoWebApp\deployer77`.
 
-Az FTP-kapcsolati adatok lekérését a közzétételi profil:
+a közzétételi profil tooobtain FTP csatlakozási adataival hello:
 
-1. A webalkalmazás panelen kattintson **Get közzétételi profil**. A .publishsettings fájl letöltése a helyi meghajtóra.
-2. Nyissa meg a .publishsettings-fájlt egy XML-szerkesztőben vagy szövegszerkesztőben, és keresse a `<publishProfile>` elemet tartalmazó `publishMethod="FTP"`. Például a következő formában:
+1. Hello webes alkalmazás paneljén kattintson **Get közzétételi profil**. A .publishsettings fájlt tooyour helyi meghajtót letöltése.
+2. Nyissa meg a hello .publishsettings fájlt egy XML-szerkesztőben vagy szövegszerkesztőben, és megkeresi hello `<publishProfile>` elemet tartalmazó `publishMethod="FTP"`. Az alábbihoz hasonló hello:
    
         <publishProfile
             profileName="WebDemoWebApp - FTP"
@@ -416,87 +416,87 @@ Az FTP-kapcsolati adatok lekérését a közzétételi profil:
             userPWD="<deployment-password>"
             ...
         </publishProfile>
-3. Vegye figyelembe, hogy a webalkalmazás `publishProfile` beállítások térkép FileZilla kezelő beállításai az alábbiak szerint:
+3. Vegye figyelembe, hogy hello webalkalmazás `publishProfile` beállítások leképezése toohello FileZilla kezelő beállításokat az alábbiak szerint:
 
-* `publishUrl`ugyanaz, mint **FTP-állomás neve**, az érték beállítása **állomás**.
-* `publishMethod="FTP"`azt jelenti, hogy megadta **protokoll** való **FTP - File Transfer Protocol**, és **titkosítási** való **egyszerű FTP használata**.
-* `userName`és `userPWD` kulcsok tényleges felhasználónév és jelszó értékeinek meg, ha alaphelyzetbe állítja az üzembe helyezési hitelesítő adatok. `userName`ugyanaz, mint **telepítési / FTP-felhasználó**. A leképezik **felhasználói** és **jelszó** a FileZilla.
-* `ftpPassiveMode="True"`azt jelenti, hogy az FTP-hely használja-e a passzív FTP-átvitel; Válassza ki **passzív** a a **átvitel beállításainak** fülre.
+* `publishUrl`ugyanaz, mint hello **FTP-állomás neve**, hello beállítása érték **állomás**.
+* `publishMethod="FTP"`azt jelenti, hogy megadta **protokoll** túl**FTP - File Transfer Protocol**, és **titkosítási** túl**egyszerű FTP használata**.
+* `userName`és `userPWD` értékei hello kulcsok tényleges felhasználónevet és jelszót meg, ha alaphelyzetbe állít egy hello üzembe helyezési hitelesítő adatokat. `userName`ugyanaz, mint hello **telepítési / FTP-felhasználó**. Túl leképezik**felhasználói** és **jelszó** a FileZilla.
+* `ftpPassiveMode="True"`azt jelenti, hogy a hello FTP-hely használja a passzív FTP-átvitel; Válassza ki **passzív** a hello **átvitel beállításainak** fülre.
 
-#### <a name="configure-the-web-app-to-host-a-java-application"></a>A webalkalmazás üzemeltetéséhez Java-alkalmazások konfigurálása
-Az alkalmazás közzététele előtt kell néhány konfigurációs beállításokat módosítaná, így a web app, Java-alkalmazások rendelkezhet.
+#### <a name="configure-hello-web-app-toohost-a-java-application"></a>Hello webalkalmazás toohost Java-alkalmazások konfigurálása
+Hello alkalmazás közzététele előtt kell toochange néhány konfigurációs beállítás, hogy hello webalkalmazás üzemeltethet Java-alkalmazások.
 
-1. A klasszikus portálon lépjen a webes alkalmazás **irányítópult** lapot, és kattintson **konfigurálása**. Az a **konfigurálása** lapján adja meg a következő beállításokat.
-2. A **Java-verziót** az alapértelmezett érték **ki**; válassza ki a Java verzióját a alkalmazás célkitűzések, például a 1.7.0_51. Ezt követően ellenőrizze azt is, amely **webes tároló** Tomcat Server verzióra van beállítva.
-3. A **alapértelmezett dokumentumok**, adja hozzá az index.jsp, és akár a lista elejére helyezze. (Az alapértelmezett webes alkalmazások fájlja hostingstart.html.)
+1. Hello klasszikus portálon lépjen toohello webes alkalmazás **irányítópult** lapot, és kattintson **konfigurálása**. A hello **konfigurálása** adja meg azokat a beállításokat a következő hello.
+2. A **Java-verziót** hello alapértelmezett érték a **ki**; válassza hello Java-verziót a alkalmazás célkitűzések, például a 1.7.0_51. Ezt követően ellenőrizze azt is, amely **webes tároló** Tomcat kiszolgálót tooa verziója van beállítva.
+3. A **alapértelmezett dokumentumok**adja hozzá az index.jsp és toohello hello lista elejére helyezze. (hello alapértelmezett webalkalmazások fájlja hostingstart.html.)
 4. Kattintson a **Save** (Mentés) gombra.
 
 #### <a name="publish-your-application-using-kudu"></a>A Kudu használó alkalmazások közzététele
-Egy tegye közzé az alkalmazást módja az Azure beépített Kudu hibakereső konzolt használja. A kudu ismert, hogy stabil és konzisztens legyen az App Service Web Apps és Tomcat kiszolgálót. A webalkalmazás a konzol érhető próbálja elérni az egy URL-cím a következő:
+Egyirányú toopublish hello alkalmazás Kudu hibakereső konzol az Azure beépített toouse hello. A kudu ismert toobe stabil és konzisztens legyen az App Service Web Apps és Tomcat kiszolgálót. Hello konzol hello webalkalmazás hozzáférni a keresse meg a következő képernyő hello tooa URL-címe:
 
 `https://<webappname>.scm.azurewebsites.net/DebugConsole`
 
-1. Az eljárás végrehajtásához a Kudu konzol itt található: a következő URL-címet; Keresse meg a következő helyről:
+1. Az eljárás használatához hello Kudu konzol itt található a következő URL-címet; hello: Keresse meg a toothis helye:
    
     `https://webdemowebapp.scm.azurewebsites.net/DebugConsole`
-2. A felső menüben válassza ki a **konzol Debug > CMD**.
-3. A konzol parancssorban navigáljon `/site/wwwroot` (vagy kattintson a `site`, majd `wwwroot` a könyvtár nézetben a lap tetején):
+2. Hello felső menüben válassza ki a **konzol Debug > CMD**.
+3. Hello konzol parancssorban lépjen a túl`/site/wwwroot` (vagy kattintson a `site`, majd `wwwroot` hello könyvtár nézetben hello oldal hello tetején):
    
     `cd /site/wwwroot`
-4. Miután megadta **Java-verziót**, Tomcat kiszolgálót kell létrehoznia a webapps könyvtárba. A konzol parancssorban keresse meg a webapps könyvtárba:
+4. Miután megadta **Java-verziót**, Tomcat kiszolgálót kell létrehoznia a webapps könyvtárba. Hello konzol parancssorban lépjen a toohello webapps könyvtárba:
    
     `mkdir webapps`
    
     `cd webapps`
-5. Húzza a JSPHello.war `<project-path>/JSPHello/src/` , és helyezze be a Kudu könyvtár nézetben a `/site/wwwroot/webapps`. Nem húzza a "Húzza ide a zip- és feltöltése" területet, mert a Tomcat fog csomagolja ki.
+5. Húzza a JSPHello.war `<project-path>/JSPHello/src/` , és helyezze a hello Kudu könyvtár nézetben a `/site/wwwroot/webapps`. Nem húzza toohello "Húzzon ide tooupload és zip" területen, mert a Tomcat fog csomagolja ki.
    
    ![][8]
 
-Első JSPHello.war, megjelenik a könyvtár munkaterület önmagában:
+Első JSPHello.war: hello directory területen megjelenik önmagában:
 
   ![][9]
 
-Rövid időn belül (valószínűleg 5 percnél kevesebb) Tomcat kiszolgálót fog csomagolja ki a WAR-fájlt egy kicsomagolt JSPHello könyvtárba. Kattintson a gyökérkönyvtár, hogy index.jsp unzipped és másolásához. Ha igen, lépjen vissza a webapps könyvtárba, megtekintéséhez, hogy a kibontott JSPHello directory készült. Ha nem látja ezeket az elemeket, várja meg, és ismételje meg.
+Rövid időn belül (valószínűleg 5 percnél kevesebb) Tomcat kiszolgálót fog csomagolja ki hello WAR-fájlt egy kicsomagolt JSPHello könyvtárba. Kattintson a hello ROOT directory toosee, hogy index.jsp unzipped és másolásához. Ha igen, lépjen vissza toohello webapps directory toosee e hello kicsomagolása JSPHello könyvtár létrehozása. Ha nem látja ezeket az elemeket, várja meg, és ismételje meg.
 
   ![][10]
 
 #### <a name="publish-your-application-using-filezilla-optional"></a>A FileZilla (nem kötelező) használó alkalmazások közzététele
-Egy másik eszköz segítségével teheti közzé az alkalmazást az FileZilla, a népszerű külső FTP-ügyfél kényelmesen, grafikus felhasználói felületen. Töltse le, és telepítse a FileZilla [http://filezilla-project.org/](http://filezilla-project.org/) Ha még nem rendelkezik azt. Az ügyfél használatáról további információkért lásd: a [FileZilla dokumentáció](https://wiki.filezilla-project.org/Documentation) és ezt a blogbejegyzést [FTP-ügyfelek - rész 4: FileZilla](http://blogs.msdn.com/b/robert_mcmurray/archive/2008/12/17/ftp-clients-part-4-filezilla.aspx).
+Egy másik toopublish hello alkalmazásnak eszköze FileZilla, a népszerű külső FTP-ügyfél kényelmesen, grafikus felhasználói felületen. Töltse le, és telepítse a FileZilla [http://filezilla-project.org/](http://filezilla-project.org/) Ha még nem rendelkezik azt. Hello ügyfél használatával kapcsolatos további információkért lásd: hello [FileZilla dokumentáció](https://wiki.filezilla-project.org/Documentation) és ezt a blogbejegyzést [FTP-ügyfelek - rész 4: FileZilla](http://blogs.msdn.com/b/robert_mcmurray/archive/2008/12/17/ftp-clients-part-4-filezilla.aspx).
 
 1. Kattintson a FileZilla, **fájl > kezelő**.
-2. Az a **kezelő** párbeszédpanel, kattintson a **új hely**. Megjelenik egy új, üres FTP-hely **válasszon bejegyzés** kéri, adjon meg egy nevet. Az alábbi eljárással nevezze el `AzureWebDemo-FTP`.
+2. A hello **kezelő** párbeszédpanel, kattintson a **új hely**. Megjelenik egy új, üres FTP-hely **válasszon bejegyzés** tooprovide nevét kéri. Az alábbi eljárással nevezze el `AzureWebDemo-FTP`.
    
-    Az a **általános** lapra, adja meg a következő beállításokat:
+    A hello **általános** lapra, adja meg a következő beállítások hello:
    
-   * **Állomás:** adja meg a **FTP-állomás neve** az irányítópultról másolt.
-   * **Port:** (ezt üresen hagyja, mert ez egy passzív átviteli, és a kiszolgáló használni kívánt portot határozza meg.)
+   * **Állomás:** Enter hello **FTP-állomás neve** hello irányítópultról másolt.
+   * **Port:** (hagyja üresen a mezőt, a passzív átvitel és hello server hello port toouse határozza meg.)
    * **Protokoll:** FTP fájlátviteli protokoll
    * **Titkosítás:** egyszerű FTP használata
    * **Bejelentkezési típusa:** normál
-   * **Felhasználó:** adja meg a központi telepítés / FTP-felhasználó, az irányítópultról másolt. Ez a teljes FTP felhasználónév, amely az űrlap *webappname\username*.
-   * **Jelszó:** adja meg, hogy a megadott az üzembe helyezési hitelesítő adatok megadása után a jelszót.
+   * **Felhasználó:** Enter hello telepítési / FTP-felhasználó hello irányítópultról másolt. Ez a hello teljes FTP felhasználónév, amelynek hello űrlap *webappname\username*.
+   * **Jelszó:** hello jelszó megadni, hogy a megadott hello üzembe helyezési hitelesítő adatok megadása után.
      
-     Az a **átvitel beállításainak** lapon jelölje be **passzív**.
-3. Kattintson a **Connect** (Csatlakozás) gombra. Ha sikeres, FileZilla tartozó konzol megjeleníti a `Status: Connected` üzenet és a probléma egy `LIST` paranccsal listát készíthet a könyvtár tartalma.
-4. Az a **helyi** hely panelen, jelölje ki a forráskönyvtár a JSPHello.war fájl található; az elérési út az alábbihoz hasonló lesz:
+     A hello **átvitel beállításainak** lapon jelölje be **passzív**.
+3. Kattintson a **Connect** (Csatlakozás) gombra. Ha sikeres, FileZilla tartozó konzol megjeleníti a `Status: Connected` üzenet és a probléma egy `LIST` toolist hello könyvtár tartalma parancsot.
+4. A hello **helyi** hely panelen, jelölje be hello forráskönyvtár mely hello JSPHello.war fájlban található; hello elérési hasonló toohello következő lesz:
    
     `<project-path>/JSPHello/src/`
-5. Az a **távoli** hely panelen, jelölje ki a célmappát. Ha telepíti a WAR-fájlt a `webapps` könyvtárhoz, a webes alkalmazás legfelső szintű. Navigáljon a `/site/wwwroot`, kattintson a jobb gombbal a `wwwroot`, és válassza ki **könyvtár létrehozása**. A könyvtár nevet `webapps` , és írja be a könyvtárhoz.
-6. A JSPHello.war átviteli `/site/wwwroot/webapps`. Válassza ki a JSPHello.war a **helyi** lista fájlt, kattintson a jobb gombbal a, és válassza ki **feltöltése**. Akkor jelenik meg kell megjelennie `/site/wwwroot/webapps`.
-7. Miután JSPHello.war másolta a webapps könyvtárba, Tomcat kiszolgálót automatikusan csomagolja ki (csomagolja ki) a fájlokat a WAR-fájlt. Bár Tomcat kiszolgálót megkezdése kicsomagolása szinte azonnal is telhet, mire hosszú idő (valószínűleg óra) a fájlok megjelennek az FTP-ügyfél számára.
+5. A hello **távoli** hely panelen, jelölje be hello célmappát. Telepíti a WAR-fájl toohello hello `webapps` hello webes alkalmazás legfelső szintű könyvtárába. Keresse meg a túl`/site/wwwroot`, kattintson a jobb gombbal a `wwwroot`, és válassza ki **könyvtár létrehozása**. Egyező hello könyvtár `webapps` , és írja be a könyvtárhoz.
+6. Átviteli túl JSPHello.war`/site/wwwroot/webapps`. Válassza ki a JSPHello.war hello **helyi** lista fájlt, kattintson a jobb gombbal a, és válassza ki **feltöltése**. Akkor jelenik meg kell megjelennie `/site/wwwroot/webapps`.
+7. Miután másolta JSPHello.war toohello webapps könyvtárba, Tomcat kiszolgálót automatikusan csomagolja ki (csomagolja ki) hello hello WAR-fájlt a fájlok. Bár Tomcat kiszolgálót megkezdése kicsomagolása szinte azonnal is telhet, mire hosszú idő (valószínűleg óra) hello fájlok tooappear hello FTP-ügyfél számára.
 
-#### <a name="run-the-hello-world-application-on-the-web-app"></a>A webalkalmazás a Hello World az alkalmazás futtatása
-1. Miután a WAR-fájl feltöltése, és ellenőrizte a Tomcat kiszolgálón egy kicsomagolt létrehozott `JSPHello` könyvtár, tallózással keresse meg a `http://webdemowebapp.azurewebsites.net/JSPHello` az alkalmazás futtatásához.
+#### <a name="run-hello-hello-world-application-on-hello-web-app"></a>A webalkalmazás hello hello Hello World az alkalmazás futtatása
+1. Miután hello WAR-fájl feltöltése, és ellenőrizte a Tomcat kiszolgálón egy kicsomagolt létrehozott `JSPHello` könyvtár, keresse meg a túl`http://webdemowebapp.azurewebsites.net/JSPHello` toorun hello alkalmazás.
    
-   > **Megjegyzés:** választva **Tallózás** a klasszikus portálon kaphat az alapértelmezett weblap közli, hogy "a Java-alapú webalkalmazás létrehozása sikeresen befejeződött." Lehetséges, hogy az alkalmazás kimenete helyett az alapértelmezett weblap megtekintéséhez a képernyőn látható weblapon frissítéséhez.
+   > **Megjegyzés:** választva **Tallózás** hello klasszikus portálon, kaphat hello alapértelmezett weblap, mely szerint a "a Java-alapú webalkalmazás létrehozása sikeresen befejeződött." Lehetséges, hogy toorefresh hello weblap rendelés tooview hello alkalmazás kimenet hello alapértelmezett weblap helyett.
    > 
    > 
-2. Az alkalmazás futásakor, megjelenik egy weblap, a következő eredménnyel:
+2. Hello alkalmazás futásakor kell: weblapot a következő kimeneti hello
    
-    `Hello World, the time is Tue Mar 24 23:21:10 GMT 2015`
+    `Hello World, hello time is Tue Mar 24 23:21:10 GMT 2015`
 
 #### <a name="clean-up-azure-resources"></a>Azure-erőforrások törlése
-Ez az eljárás egy App Service webalkalmazásba hoz. A számlázás történik az erőforrás mindaddig, amíg az létezik. Ha szeretné folytatni a web app használatával tesztelési, illetve a fejlesztési, érdemes lehet leállítása vagy törlése. A webes alkalmazás, amely le lett állítva továbbra is fel Önnek egy kis kell fizetni, de bármikor újraindíthatja azt. A webes alkalmazás törlésével feltöltött az összes adatot törli.
+Ez az eljárás egy App Service webalkalmazásba hoz. Számlázott hello erőforrás mindaddig, amíg az létezik. Kivéve, ha azt tervezi, hogy a tesztelési, illetve a fejlesztési hello web app használatával toocontinue, érdemes lehet leállítása vagy törlése. A webes alkalmazás, amely le lett állítva továbbra is fel Önnek egy kis kell fizetni, de bármikor újraindíthatja azt. A webes alkalmazás törlésével lévő tooit feltöltött adat elvész.
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

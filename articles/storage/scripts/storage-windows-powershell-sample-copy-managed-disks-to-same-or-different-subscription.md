@@ -1,6 +1,6 @@
 ---
-title: "Az Azure PowerShell-parancsfájl minta - példány (áthelyezése) által kezelt lemezeken ugyanazon vagy másik előfizetésbe |} Microsoft Docs"
-description: "Az Azure PowerShell-parancsfájl minta - példány (áthelyezése) által kezelt lemezeken ugyanazon vagy másik előfizetésbe"
+title: "PowerShell parancsfájl minta - aaaAzure másolása (áthelyezése) felügyelt lemezek toosame vagy másik előfizetést |} Microsoft Docs"
+description: "Az Azure PowerShell-parancsfájl minta - példány (áthelyezése) által felügyelt lemezek toosame vagy másik előfizetésben található"
 services: virtual-machines-windows
 documentationcenter: storage
 author: ramankumarlive
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 06/06/2017
 ms.author: ramankum
-ms.openlocfilehash: 6fa94de0461cc538a60d57ca3518141afd9d0469
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5a92118e10a14615e5b1713f1b90188b37b05305
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="copy-managed-disks-in-the-same-subscription-or-different-subscription-with-powershell"></a>Felügyelt lemezeket másolja a ugyanahhoz az előfizetéshez vagy másik előfizetést, a PowerShell használatával
+# <a name="copy-managed-disks-in-hello-same-subscription-or-different-subscription-with-powershell"></a>Felügyelt példány lemezeit hello ugyanaz az előfizetés vagy másik előfizetést, a PowerShell használatával
 
-Ez a parancsfájl egy létező felügyelt lemezes másolatot készít a ugyanahhoz az előfizetéshez vagy másik előfizetést. Az új lemez ugyanabban a régióban, mint a szülő kezelt lemez jön létre.   
+Ez a parancsfájl egy létező felügyelt lemezes másolatot készít a hello ugyanazt az előfizetést, vagy másik előfizetést. hello új lemez létrehozása a hello azonos régióban hello szülőként kezelt lemezre.   
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install.md)]
 
@@ -31,16 +31,16 @@ Ez a parancsfájl egy létező felügyelt lemezes másolatot készít a ugyanahh
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-powershell[fő](../../../powershell_scripts/storage/copy-managed-disks-to-same-or-different-subscription/copy-managed-disks-to-same-or-different-subscription.ps1 "másolási kezelt lemez")]
+[!code-powershell[main](../../../powershell_scripts/storage/copy-managed-disks-to-same-or-different-subscription/copy-managed-disks-to-same-or-different-subscription.ps1 "Copy managed disk")]
 
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat egy új kezelt lemez létrehozása a célként megadott előfizetés azonosítóját felügyelt lemezt használja. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+Ezt a parancsfájlt használja a következő parancsok toocreate hello célként megadott előfizetés használatával új felügyelt lemezes hello hello forrás azonosítója kezelt lemezre. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
-| [Új AzureRmDiskConfig](/powershell/module/azurerm.compute/New-AzureRmDiskConfig) | A lemez létrehozásához használt lemezkonfiguráció hoz létre. Ez magában foglalja az erőforrás-azonosítót a szülőlemezt, és a helyre, amely ugyanaz, mint a szülő lemez helyét.  |
+| [Új AzureRmDiskConfig](/powershell/module/azurerm.compute/New-AzureRmDiskConfig) | A lemez létrehozásához használt lemezkonfiguráció hoz létre. Ez magában foglalja a hello erőforrás-azonosítót hello szülőlemezt, és a helyre, amely ugyanaz, mint a szülő lemez hello helyét.  |
 | [Új AzureRmDisk](/powershell/module/azurerm.compute/New-AzureRmDisk) | Lemezkonfiguráció, a lemez neve és a paraméterként erőforráscsoport-név használatával lemezt hozott létre. |
 
 
@@ -48,6 +48,6 @@ A parancsfájl a következő parancsokat egy új kezelt lemez létrehozása a c�
 
 [A felügyelt lemezes virtuális gép létrehozása](./../../virtual-machines/scripts/virtual-machines-windows-powershell-sample-create-vm-from-managed-os-disks.md?toc=%2fpowershell%2fmodule%2ftoc.json)
 
-Az Azure PowerShell modul további információkért lásd: [Azure PowerShell dokumentációs](/powershell/azure/overview).
+Hello Azure PowerShell modul további információkért lásd: [Azure PowerShell dokumentációs](/powershell/azure/overview).
 
-További virtuális gép PowerShell-parancsfájl példák találhatók a [Azure Windows virtuális dokumentációját](../../virtual-machines/windows/powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+További virtuális gép PowerShell-parancsfájl példák találhatók hello [Azure Windows virtuális dokumentációját](../../virtual-machines/windows/powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).

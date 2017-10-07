@@ -1,6 +1,6 @@
 ---
-title: "Widevine-licencek kézbesíthet Azure Media Services használatával a partnerek |} Microsoft Docs"
-description: "Ez a cikk ismerteti, hogyan használható az Azure Media Services (AMS) által a PlayReady vagy a Widevine DRMs AMS dinamikusan titkosított adatfolyam továbbítására. A PlayReady-licenc Media Services PlayReady licenckiszolgáló származik, és Widevine-licenc castLabs licenckiszolgáló hozta."
+title: aaaUsing partnerek toodeliver Widevine-licencek tooAzure Media Services |} Microsoft Docs
+description: "Ez a cikk ismerteti, hogyan használhatja az Azure Media Services (AMS) toodeliver olyan adatfolyamra, amely dinamikusan titkosítja a PlayReady vagy a Widevine DRMs AMS. hello PlayReady licenc Media Services PlayReady licenckiszolgáló származik, és Widevine-licenc castLabs licenckiszolgáló hozta."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 6867e4f910970121df3858516c6bab3114c3c6f9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3c18a8a22ced239931dea5385020194bd6d83f28
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-partners-to-deliver-widevine-licenses-to-azure-media-services"></a>Partnerek használata a Widevine licencek kézbesítéséhez az Azure Media Services szolgáltatásba
+# <a name="using-partners-toodeliver-widevine-licenses-tooazure-media-services"></a>Partnerek toodeliver Widevine-licencek tooAzure Media Services használatával
 ## <a name="overview"></a>Áttekintés
-A Microsoft Azure Media Services lehetővé teszi, hogy MPEG-DASH védelme a Widevine DRM-Védelemmel, amely titkosítása a Common Encryption (CENC) megadását.
+A Microsoft Azure Media Services lehetővé teszi, hogy a toodeliver, MPEG-DASH védelme a Widevine DRM-Védelemmel, amelyek általános titkosítási (CENC) specifikáció hello titkosítása.
 
-A Media Services .NET SDK verzió 3.5.2 verziótól kezdődően a Media Services lehetővé teszi a Widevine-licencsablon konfigurálása és Widevine-licencek. A Widevine-licencek továbbításának támogatásához a következő AMS-partnereket is használhatja: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/) vagy [castLabs](http://castlabs.com/company/partners/azure/).
+Hello Media Services .NET SDK verzió 3.5.2 verziótól kezdődően a Media Services lehetővé teszi, hogy Ön tooconfigure Widevine-licencsablon és Widevine-licencek beolvasása. Használhatja a következő AMS-partnereket toohelp Widevine-licencek átadná hello: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).
 
 ## <a name="castlabs"></a>castLabs
-Használhat [castLabs](http://castlabs.com/company/partners/azure/) a Widevine-licencek. További információkért lásd: [Azure Media Services használatával castLabs képes biztosítani a DRM licencek](media-services-castlabs-integration.md)
+Használhat [castLabs](http://castlabs.com/company/partners/azure/) toodeliver Widevine-licencek. További információkért lásd: [castLabs használatával toodeliver DRM licencek tooAzure Media Services](media-services-castlabs-integration.md)
 
 ## <a name="axinom"></a>Axinom
-Használhat [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/) a Widevine-licencek. További információkért lásd: [Axinom használatával képes biztosítani a DRM licencek Azure Media Services szolgáltatáshoz](media-services-axinom-integration.md)
+Használhat [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/) toodeliver Widevine-licencek. További információkért lásd: [használatával Axinom toodeliver DRM-licencek tooAzure Media Services](media-services-axinom-integration.md)
 
 ## <a name="media-services-learning-paths"></a>Media Services képzési tervek
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

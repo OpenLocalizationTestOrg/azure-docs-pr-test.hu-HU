@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált LearnUpon |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és LearnUpon között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és LearnUpon között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/23/2017
 ms.author: jeedes
-ms.openlocfilehash: b6ac8acc244e9029be01ede5e0865c280171217d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fdb9c62172327a539f0459c98aa20e63fa441e4b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-learnupon"></a>Oktatóanyag: Azure Active Directoryval integrált LearnUpon
 
-Ebben az oktatóanyagban elsajátíthatja LearnUpon integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate LearnUpon az Azure Active Directoryval (Azure AD).
 
-LearnUpon integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+LearnUpon integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Megadhatja a LearnUpon hozzáféréssel rendelkező Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett LearnUpon (egyszeri bejelentkezés) számára a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Megadhatja a hozzáférés tooLearnUpon rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooLearnUpon (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs LearnUpon, a következőkre van szükség:
+az Azure AD integrálása LearnUpon tooconfigure, kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - Egy LearnUpon egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A gyűjteményből LearnUpon hozzáadása
+1. Hello gyűjteményből LearnUpon hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-learnupon-from-the-gallery"></a>A gyűjteményből LearnUpon hozzáadása
-Az Azure AD integrálása a LearnUpon konfigurálásához kell hozzáadnia LearnUpon a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-learnupon-from-hello-gallery"></a>Hello gyűjteményből LearnUpon hozzáadása
+tooconfigure hello integrációja LearnUpon az Azure AD-be, meg kell tooadd LearnUpon hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A gyűjteményből LearnUpon hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd LearnUpon hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
+3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **LearnUpon**.
+4. Hello keresési mezőbe, írja be a **LearnUpon**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_search.png)
 
-5. Az eredmények panelen válassza ki a **LearnUpon**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. A hello eredmények panelen válassza ki a **LearnUpon**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján LearnUpon.
 
-Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó LearnUpon a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a LearnUpon közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó LearnUpon tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello LearnUpon közötti kapcsolat kapcsolatot kell létrehozni toobe.
 
-LearnUpon, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
+LearnUpon, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
 
-Az Azure AD egyszeri bejelentkezést a LearnUpon tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés LearnUpon-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[LearnUpon tesztfelhasználó létrehozása](#creating-a-learnupon-test-user)**  - való Britta Simon valami LearnUpon, amely csatolva van a felhasználó az Azure AD-ábrázolását.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[LearnUpon tesztfelhasználó létrehozása](#creating-a-learnupon-test-user)**  -toohave egy megfelelője a Britta Simon a LearnUpon, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az LearnUpon alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az LearnUpon alkalmazásban.
 
-**Konfigurálása az Azure AD az egyszeri bejelentkezés LearnUpon, hajtsa végre az alábbi lépéseket:**
+**az Azure AD tooconfigure egyszeri bejelentkezést a LearnUpon, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure portálon a a **LearnUpon** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **LearnUpon** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_samlbase.png)
 
-3. Az a **LearnUpon tartomány és az URL-címek** területen tegye a következőket:
+3. A hello **LearnUpon tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_url.png)
 
-    Az a **válasz URL-CÍMEN** szövegmező, adja meg a következő minta használatával URL-címe:`https://<companyname>.learnupon.com/saml/consumer`
+    A hello **válasz URL-CÍMEN** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<companyname>.learnupon.com/saml/consumer`
 
     > [!NOTE] 
-    > Ne feledje, hogy ez a nem a tényleges érték. Ez az érték a tényleges válasz URL-címet frissíteni kell. Ez az érték ügyfél megszerezni [LearnUpon támogatási csoport](https://www.learnupon.com/features/support/).
+    > Ne feledje, hogy ez a nem hello valódi értékek. tooupdate ezt az értéket hello tényleges válasz URL-címmel rendelkezik. tooget ezt az értéket forduljon [LearnUpon támogatási csoport](https://www.learnupon.com/features/support/).
 
 
 
-4. A a **SAML-aláíró tanúsítványa** kattintson **tanúsítvány (Raw)** , és mentse a tanúsítványfájlt, a számítógépen.
+4. A hello **SAML-aláíró tanúsítványa** kattintson **tanúsítvány (Raw)** , és mentse a hello tanúsítványfájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_certificate.png) 
 
@@ -125,21 +125,21 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-learnupon-tutorial/tutorial_general_400.png)
 
-6. A a **LearnUpon konfigurációs** kattintson **konfigurálása LearnUpon** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **Sign-Out URL-címet, a SAML entitás azonosítója és a SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
+6. A hello **LearnUpon konfigurációs** kattintson **konfigurálása LearnUpon** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **Sign-Out URL-címet, a SAML entitás azonosítója és a SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_configure.png) 
 
 7. Nyisson meg egy másik böngészőben példány és a bejelentkezési LearnUpon be rendszergazdai fiókkal. 
 
-8. Kattintson a **beállítások** fülre.
+8. Kattintson a hello **beállítások** fülre.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_06.png)
 
-9. Kattintson a **egyszeri bejelentkezés – SAML**, és kattintson a **általános beállítások** SAML-beállítások konfigurálása.
+9. Kattintson a **egyszeri bejelentkezés – SAML**, és kattintson a **általános beállítások** tooconfigure SAML-beállításokat.
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_07.png) 
 
-10. Az a **általános beállítások** területen tegye a következőket:
+10. A hello **általános beállítások** csoportjában hajtsa végre az alábbi lépésekkel hello:
    
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_08.png)  
   
@@ -149,85 +149,85 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     c. Válassza ki **feltételek kihagyása** , **nem**.
 
-    d. Az a **SAML-jogkivonat utáni param neve** szövegmezőhöz kérelem feladás egy vagy több paramétert az SAML-alapú ügyfél URL-címe nevét a fenti típus, amely tartalmazza a SAML-előfeltétel ellenőrzése és a hitelesített – például a **SAMLResponse**.
+    d. A hello **SAML-jogkivonat utáni param neve** szövegmezőhöz kérelem feladás egy vagy több paraméter toohello SAML-alapú ügyfél URL-címe a fenti hello SAML-előfeltétel toobe ellenőrzése és a hitelesített – például tartalmazó hello nevét  **SAMLResponse**.
 
-    e. Az a **azonosító formátuma** szövegmező, hol található a SAML-előfeltétel a felhasználók azonosítója (E-mail címet) jelző érték található – például típus **urn: oasis: nevek: tc: SAML:1.1:nameid-formátum: emailAddress**.
+    e. A hello **azonosító formátuma** szövegmezőhöz típus hello érték, amely jelzi, ha a SAML-előfeltétel hello felhasználók azonosítója (E-mail címet) található - például **urn: oasis: nevek: tc: SAML:1.1:nameid-formátum: e-mail cím**.
   
-    f. Az a **azonosítása szolgáltató helye** szövegmező, írja be az értéket, amely jelzi, ahol a felhasználók kapnak, ha az Azure portál bejelentkezési képernyőjéről a feltöltött ikonra kattintanak.
+    f. A hello **azonosítása szolgáltató helye** szövegmező, a típus hello érték, amely jelzi, ha hello felhasználóknak legyenek elküldve tooif a feltöltött ikonra az Azure portál bejelentkezési képernyőjéről kattintanak.
   
-    g. Az a **jelentkezzen ki az URL-cím** szövegmező, illessze be a **Sign-Out URL-cím** , amely az Azure portálról másolta.
+    g. A hello **jelentkezzen ki az URL-cím** szövegmezőhöz Beillesztés hello **Sign-Out URL-cím** , amely az Azure-portálon hello másolta.
     
-    h. Kattintson a **ujját megrendelése kezelése**, majd töltse fel az ujjlenyomat a letöltött tanúsítvány.
+    h. Kattintson a **ujját megrendelése kezelése**, majd töltse fel a letöltött tanúsítvány hello ujjlenyomat.
 
-11. Kattintson a **felhasználói beállítások**, majd végezze el az alábbi lépéseket:
+11. Kattintson a **felhasználói beállítások**, és hajtsa végre az alábbi lépésekkel hello:
    
      ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_11.png)  
  
-    a. Az a **Keresztnév azonosító formátuma** szövegmezőben, az érték, amely közli, amennyiben az a SAML-előfeltétel a felhasználók Keresztnév található – például típusa: **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**.
+    a. A hello **Keresztnév azonosító formátuma** szövegmezőhöz típus hello érték, amely közli, amennyiben az a SAML-előfeltétel hello felhasználók Keresztnév található – például: **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**.
   
-    b. Az a **utolsó azonosító formátuma** szövegmezőben, az érték, amely közli, amennyiben az a SAML-előfeltétel a felhasználók Vezetéknév található – például típusa: **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname**.
+    b. A hello **utolsó azonosító formátuma** szövegmezőhöz típus hello érték, amely közli, amennyiben az a SAML-előfeltétel hello felhasználók Vezetéknév található – például: **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname**.
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-learnupon-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-learnupon-tutorial/create_aaduser_02.png) 
 
-3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
+3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-learnupon-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-learnupon-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-learnupon-test-user"></a>LearnUpon tesztfelhasználó létrehozása
 
-Ez a szakasz célja LearnUpon Britta Simon nevű felhasználót létrehozni. LearnUpon támogatja just-in-time kiosztást, amely alapértelmezés szerint van engedélyezve.
+hello ebben a szakaszban célja toocreate LearnUpon Britta Simon nevű felhasználó. LearnUpon támogatja just-in-time kiosztást, amely alapértelmezés szerint van engedélyezve.
 
-Nincs ebben a szakaszban az Ön művelet elem. Új felhasználó jön létre az LearnUpon elérésére, ha még nem létezik tett kísérlet során. [Az Azure AD-egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-single-sign-on).
+Nincs ebben a szakaszban az Ön művelet elem. Új felhasználó létrejön egy kísérlet tooaccess LearnUpon során, ha még nem létezik. [Az Azure AD-egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-single-sign-on).
 
 >[!NOTE]
->Ha hozzon létre manuálisan egy felhasználó van szüksége, forduljon a kell [LearnUpon támogatási csoport](https://www.learnupon.com/features/support/). 
+>Ha egy felhasználó toocreate manuálisan kell, toocontact kell [LearnUpon támogatási csoport](https://www.learnupon.com/features/support/). 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés LearnUpon Azure egyszeri bejelentkezéshez használandó.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooLearnUpon megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon hozzárendelése LearnUpon, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooLearnUpon, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **LearnUpon**.
+2. Hello alkalmazások listában válassza ki a **LearnUpon**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -235,7 +235,7 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -243,14 +243,14 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-Ha a hozzáférési panelen LearnUpon csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az LearnUpon alkalmazására.
-A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
+Ha a hozzáférési Panel hello hello LearnUpon csempe gombra kattint, automatikusan bejelentkezett tooyour LearnUpon alkalmazás szerezheti be.
+A hozzáférési Panel kapcsolatos további információkért lásd: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

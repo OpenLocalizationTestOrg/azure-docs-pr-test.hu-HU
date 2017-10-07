@@ -1,6 +1,6 @@
 ---
-title: "Ellenőrizze a forgalom Azure hálózati figyelő IP folyamata ellenőrizze - REST-|} Microsoft Docs"
-description: "Ez a cikk ismerteti, hogyan ellenőrizhető, ha a bejövő és kimenő forgalmat a virtuális gépek engedélyezett vagy megtagadott"
+title: "Ellenőrizze a aaaVerify forgalom Azure hálózati figyelő IP-adatfolyam - REST |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan toocheck, ha a virtuális gép forgalom tooor engedélyezett vagy megtagadott"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 6d3ce00a7d4f9c0cd57fa8815625a1065b03b5b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 956db0d326db597c6c402a9e8d4a5522c47c02d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="check-if-traffic-is-allowed-or-denied-with-ip-flow-verify-a-component-of-azure-network-watcher"></a>Ellenőrizze, hogy a forgalom engedélyezett vagy megtagadott IP-folyamat az Azure hálózati figyelőt összetevője ellenőrzése
 
@@ -30,17 +30,17 @@ ms.lasthandoff: 07/11/2017
 > - [Az Azure REST API-n](network-watcher-check-ip-flow-verify-rest.md)
 
 
-IP-adatfolyam ellenőrizze, hogy egy funkciója, amely lehetővé teszi, hogy ellenőrizze, hogy ha a forgalom engedélyezve van-e, vagy a virtuális gép hálózati figyelőt. Az érvényesítési futtathatja a bejövő vagy kimenő forgalmat. Ebben a forgatókönyvben akkor hasznos, ha szeretné, hogy a virtuális gép kommunikálhat külső erőforrás- vagy háttéradatbázis aktuális állapotának. IP-adatfolyam győződjön meg arról is használható, ha a hálózati biztonsági csoport (NSG) szabályok konfigurációja megfelelő-e, és hibáinak elhárítása az NSG-szabályok által blokkolt adatfolyamok ellenőrzése. Egy másik oka IP folyamat, ellenőrizze annak biztosítása, amelyet a letiltott forgalmat blokkol megfelelően az NSG.
+IP-adatfolyam ellenőrizze, hogy egy funkciója, amely lehetővé teszi tooverify forgalom engedélyezve van a virtuális gép tooor hálózati figyelőt. hello érvényesítési futtathatja a bejövő vagy kimenő forgalmat. Ebben a forgatókönyvben hasznos tooget e virtuális gép működik tooan külső erőforrás- vagy háttéradatbázis aktuális állapotának. IP-adatfolyam ellenőrzésére használt tooverify, ha a hálózati biztonsági csoport (NSG) szabályok konfigurációja megfelelő-e, és az NSG-szabályok blokkolt adatfolyamok hibaelhárítása. Egy másik oka IP folyamata győződjön meg arról, amelyet a letiltott tooensure forgalmat blokkol megfelelően hello NSG.
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-A PowerShell használatával REST API hívása ARMclient szolgál. ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient)
+ARMclient használt toocall hello REST API használatával PowerShell. ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient)
 
-Ez a forgatókönyv azt feltételezi, hogy már követte lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) létrehozása egy hálózati figyelőt.
+Ez a forgatókönyv azt feltételezi, hogy már követte hello lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) toocreate egy hálózati figyelőt.
 
 ## <a name="scenario"></a>Forgatókönyv
 
-Ebben a forgatókönyvben IP folyamat, ellenőrizze használatával győződjön meg arról, ha egy virtuális gép működik egy másik 443-as porton keresztül. Ha a forgalmat a rendszer megtagadja, a biztonsági szabály, amely megtagadja a forgalom adja vissza. IP-adatfolyam ellenőrizze kapcsolatos további információkért látogasson el a [IP folyamat ellenőrzése – áttekintés](network-watcher-ip-flow-verify-overview.md)
+Ez a forgatókönyv IP folyamata ellenőrizze tooverify használ, ha egy virtuális gép működik tooanother gép 443-as porton keresztül. Ha megtagadja a hello forgalom, hello biztonsági szabály, amely megtagadja a forgalom adja vissza. További információ az IP-adatfolyam győződjön meg arról, toolearn látogasson el [IP folyamat ellenőrzése – áttekintés](network-watcher-ip-flow-verify-overview.md)
 
 Ebben a forgatókönyvben azt:
 
@@ -56,10 +56,10 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>A virtuális gép beolvasása
 
-Futtassa a következő parancsfájl egy virtuális gép visszaállítására. A következő kódot a változók értékeit kell:
+A következő parancsfájl tooreturn hello egy virtuális gép futtatásához. a következő kódot kell hello változók értékeit hello:
 
-* **a subscriptionId** -az előfizetési azonosító használatával.
-* **resourceGroupName** -virtuális gépeket tartalmazó erőforráscsoport nevét.
+* **a subscriptionId** -előfizetési azonosító toouse hello.
+* **resourceGroupName** – hello virtuális gépeket tartalmazó erőforráscsoport nevét.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -68,7 +68,7 @@ $resourceGroupName = "<resource group name>"
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-A szükséges adatokat a rendszer a azonosítóját típus szerinti `Microsoft.Compute/virtualMachines`. Az eredményeket a következő példakód hasonló lesz:
+hello szükséges adatokat a rendszer hello azonosítóját a hello típusa `Microsoft.Compute/virtualMachines`. hello eredményeket kell lennie a következő példakód hasonló toohello:
 
 ```json
 ...,
@@ -100,15 +100,15 @@ pute/virtualMachines/ContosoVM/extensions/CustomScriptExtension"
 
 ## <a name="call-ip-flow-verify"></a>Hívás IP folyamat ellenőrzése
 
-Az alábbi példakód létrehozza a forgalmat egy adott virtuális gép kérelmet. A válasz adja vissza, ha a forgalom engedélyezve van, vagy ha a forgalmat a rendszer megtagadja. Ha a forgalom megtagadva is adja vissza, milyen szabály blokkolja a forgalmat.
+hello alábbi példa létrehoz egy kérelem tooverify hello forgalmat egy adott virtuális géphez. hello választ ad vissza, ha hello forgalom engedélyezve van, vagy ha hello forgalom megtagadva. Ha a forgalom is adja vissza, milyen szabály blokkok hello forgalom megtagadva.
 
 > [!NOTE]
-> IP-adatfolyam ellenőrizze, hogy megköveteli, hogy a virtuális gép erőforrásához van lefoglalva.
+> IP-adatfolyam ellenőrizze, hogy megköveteli, hogy a virtuális gép erőforrásához hello le van foglalva.
 
-A parancsfájl az erőforrás-azonosítót a virtuális gépek és a hálózati kártyát a virtuális gépen van szükség. Ezeket az értékeket az előző kimeneti által biztosított.
+hello parancsfájlhoz szükséges hello erőforrás-azonosítót a virtuális gépek és a hálózati kártya hello virtuális gépen. Ezek az értékek kimeneti megelőző hello által biztosított.
 
 > [!Important]
-> Az összes hálózati figyelő REST-hívást az erőforráscsoport neve a kérés URI, a hálózati figyelőt példányt tartalmazó, nem az erőforrásokat a diagnosztikai műveleteket hajt végre.
+> Az összes hálózati figyelő REST hívások hello hello kérelem URI hello egy hello hálózati figyelőt példányát, nem hello olyan erőforrásokat tartalmaz, a hello diagnosztikai műveleteket hajt végre, az erőforráscsoport neve.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -141,9 +141,9 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/ipFlowVerify?api-version=2016-12-01" $requestBody -verbose
 ```
 
-## <a name="understanding-the-results"></a>Az eredmények ismertetése
+## <a name="understanding-hello-results"></a>Hello eredmények ismertetése
 
-A válasz vissza azt ismerteti, hogy a forgalom engedélyezett vagy megtagadott. A válasz a következőképpen néz egyet az alábbi példákat:
+hello válasz vissza azt ismerteti, hogy hello forgalom engedélyezett vagy megtagadott. hello választ egyet a következő példák hello néz:
 
 **Engedélyezett**
 
@@ -165,7 +165,7 @@ A válasz vissza azt ismerteti, hogy a forgalom engedélyezett vagy megtagadott.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ha a forgalmat blokkol, és nem kell, lásd: [hálózati biztonsági csoportok kezelése](../virtual-network/virtual-network-manage-nsg-arm-portal.md) további információt a hálózati biztonsági csoportok.
+Ha a forgalmat blokkol, és nem kell, lásd: [hálózati biztonsági csoportok kezelése](../virtual-network/virtual-network-manage-nsg-arm-portal.md) toolearn további hálózati biztonsági csoportok.
 
 
 

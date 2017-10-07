@@ -1,6 +1,6 @@
 ---
-title: "Az Azure-Hello World felhőalapú szolgáltatás létrehozása az eclipse-ben"
-description: "Ismerje meg, hogyan hozhat létre egy egyszerű Hello World alkalmazást az Azure-eszközkészlet használata az eclipse-ben."
+title: "aaaCreate Hello World Felhőszolgáltatás az Azure-hoz az eclipse-ben"
+description: "Ismerje meg, hogyan egy egyszerű Hello World használó toocreate hello Azure eszköztára eclipse-ben."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,16 +14,16 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 9b31f0faeb6ee7b5e7b8fe3a1f2827133d6188e6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dfb81374aaf78e933c0bf83a1dbd98023801491a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-hello-world-cloud-service-for-azure-in-eclipse"></a>Az Azure-Hello World felhőalapú szolgáltatás létrehozása az eclipse-ben
-A következő lépések bemutatják a létrehozása és telepítése az Azure-bA alapszintű JSP-alkalmazás az Azure-eszközkészlet használata az eclipse-ben. A JSP példa az egyszerűség kedvéért azonban nagyon hasonló lépéseket az Azure-telepítés illeti lenne egy Java servlet megfelelő.
+hello következő lépések bemutatják, hogyan toocreate és központi telepítése egy alapszintű JSP alkalmazás tooAzure hello Azure eszközkészlet használata az eclipse-ben. A JSP példa az egyszerűség kedvéért azonban nagyon hasonló lépéseket az Azure-telepítés illeti lenne egy Java servlet megfelelő.
 
-Az alkalmazás az alábbihoz hasonlóan fog kinézni:
+hello alkalmazás hasonló toohello következő fog kinézni:
 
 ![][ic600360]
 
@@ -32,14 +32,14 @@ Az alkalmazás az alábbihoz hasonlóan fog kinézni:
 * Java EE-fejlesztőknek IDE Holdas Indigo vagy újabb. Ez letölthető <http://www.eclipse.org/downloads/>.
 * A Java-alapú webkiszolgáló vagy a kiszolgáló, például az Apache Tomcat, GlassFish, JBoss alkalmazáskiszolgáló, Jetty vagy IBM® WebSphere Liberty® alkalmazás kiszolgálómag terjesztési.
 * Azure-előfizetéssel, amely szerezhető: a <http://azure.microsoft.com/pricing/purchase-options/>.
-* Az Azure eszközkészlet az eclipse-ben. További információkért lásd: [az eclipse-ben az Azure eszközkészlet telepítésével][Installing the Azure Toolkit for Eclipse].
+* hello Azure eszköztára eclipse-ben. További információkért lásd: [telepítése hello Azure eszköztára Eclipse][Installing hello Azure Toolkit for Eclipse].
 
-## <a name="to-create-a-hello-world-application"></a>Hello World alkalmazás létrehozása
+## <a name="toocreate-a-hello-world-application"></a>toocreate egy Hello World alkalmazásról
 Először először foglalkozunk létrehoz egy Java-projektet.
 
-1. Indítsa el az Eclipse, és válassza a menü **fájl**, kattintson a **új**, és kattintson a **dinamikus webes projekt**. (Ha nem lát **dinamikus webes projekt** kattintás után az elérhető projektek tulajdonosaként **fájl**, **új**, majd tegye a következőket: kattintson **fájl**, kattintson a **új**, kattintson a **projekt …** , bontsa ki a **webes**, kattintson a **dinamikus webes projekt**, és kattintson a **következő**.)
+1. Indítsa el az eclipse-ben, és hello menüben kattintson **fájl**, kattintson a **új**, és kattintson a **dinamikus webes projekt**. (Ha nem lát **dinamikus webes projekt** kattintás után az elérhető projektek tulajdonosaként **fájl**, **új**, majd hello a következő: kattintson a **fájl**, kattintson a **új**, kattintson a **projekt...** , bontsa ki a **webes**, kattintson a **dinamikus webes projekt**, és kattintson a **következő**.)
 
-1. Ebben az oktatóanyagban a nevet a projektnek **MyHelloWorld**. (Ellenőrizze a nevet használja, ez az oktatóanyag következő lépései a WAR-fájlt, hogy az elnevezésük MyHelloWorld várt). A képernyő jelenik meg a következőhöz hasonló:
+1. Ez az oktatóanyag céljából, nevet hello projektnek **MyHelloWorld**. (Ellenőrizze a nevet használja, ez az oktatóanyag következő lépései a WAR-fájl MyHelloWorld nevű toobe várt). A képernyő jelenik meg hasonló toohello következő:
 
    ![][ic589576]
 
@@ -47,13 +47,13 @@ Először először foglalkozunk létrehoz egy Java-projektet.
 
 1. A Eclipse Project Explorer nézet, bontsa ki a **MyHelloWorld**. Kattintson a jobb gombbal a **WebContent** (Webes tartalom), majd a **New** (Új) elemre, és végül a **JSP File** (JSP-fájl) elemre.
 
-1. Az a **új JSP-fájl** párbeszédpanelen, a fájl neve **index.jsp**. A szülőmappa mint **MyHelloWorld/WebContent**, ahogy az a következőket:
+1. A hello **új JSP-fájl** párbeszédpanelen nevű hello fájl **index.jsp**. Hello fölérendelt mappája, tartsa **MyHelloWorld/WebContent**hello következő szerint:
 
    ![][ic659262]
 
-1. Az a **JSP-sablon kiválasztása** párbeszédpanel, az oktatóanyag válasszon alkalmazásában **új JSP-fájl (html)** kattintson **Befejezés**.
+1. A hello **JSP-sablon kiválasztása** párbeszédpanel, az oktatóanyag válasszon alkalmazásában **új JSP-fájl (html)** kattintson **Befejezés**.
 
-1. Ha megnyílt az index.jsp fájl az eclipse-ben, vegye fel dinamikusan megjelenő szöveg **Hello World!** a már meglévő `<body>` elemhez. A frissített `<body>` tartalma megjelenjen-e az alábbiak szerint:
+1. Hello index.jsp fájl megnyitásakor az eclipse-ben, adja hozzá szöveg toodynamically megjelenítési **Hello World!** hello meglévő belül `<body>` elemet. A frissített `<body>` tartalom hello következő jelennek meg:
    ```
    <body>
    <b><% out.println("Hello World!"); %></b>
@@ -61,141 +61,141 @@ Először először foglalkozunk létrehoz egy Java-projektet.
    ```
 1. Mentse az index.jsp.
 
-## <a name="to-deploy-your-application-to-azure-the-quick-and-simple-way"></a>Az Azure-ba, az alkalmazás telepítéséhez a gyors és egyszerű módja
-Amint kötötte Java-webalkalmazás rendelkezik, a következő helyi használatával próbálja ki közvetlenül az Azure felhőben.
+## <a name="toodeploy-your-application-tooazure-hello-quick-and-simple-way"></a>toodeploy az alkalmazás tooAzure, hello gyors és egyszerű módja
+Amint egy Java webes alkalmazás készen áll a tootest rendelkezik, a következő helyi tootry azt ki közvetlenül a hello Azure cloud hello is használhatja.
 
 1. Kattintson a Eclipse Project Explorer **MyHelloWorld**.
 
-2. Az Eclipse eszköztáron kattintson a **közzététel** legördülő gomb, és kattintson a **közzététele, Azure Cloud Service**
+2. Hello Eclipse eszköztárában kattintson hello **közzététel** legördülő gomb, és kattintson a **közzététele, Azure Cloud Service**
 
    ![][publishDropdownButton]
 
-3. Ha az alkalmazás az Azure-bA az első alkalommal való közzétételekor, és nem hozott létre egy Azure-telepítés-projektjét, amely előtt az alkalmazást, az Azure-telepítés projektben, automatikusan létrejön. Meg kell jelennie a következő kérését, amelyet a JDK-csomagot is tartalmazza, és a kiszolgáló, amely automatikusan telepíti az alkalmazás futtatásához.
+3. Ha közzéteszi a az alkalmazás tooAzure hello az első alkalommal, és nem hozott létre egy Azure-telepítés-projektjét, amely előtt az alkalmazást, az Azure-telepítés projektben, automatikusan létrejön. Meg kell jelennie a hello kérdezzen rá, amelyet követően is felsorolja a hello JDK csomagon és alkalmazáson kiszolgáló, amely automatikusan telepített toorun az alkalmazást.
 
    ![][ic789598]
    
-   A helyi megközelítés lehetővé teszi egy gyorsan és egyszerűen elvégezhető az alkalmazás teszteléséhez az Azure-ban anélkül, hogy egy adott kiszolgáló vagy a JDK, amely eltér az alapértelmezett értékeket konfigurálhatja. Ha elégedett az alapértelmezett beállításokat, kattintson **OK** folytatása előtt az alábbi lépéseket.
-   Azonban ha meg szeretné változtatni a JDK vagy az alkalmazáshoz használandó alkalmazás-kiszolgáló teheti, hogy később az automatikusan létrehozott, az Azure-telepítés projekt szerkesztésével, vagy kattintson **Mégse** most és olvasási a **tudnivalók az Azure-telepítési projektek szakasz** oktatóanyag.
+   Ez a helyi megközelítés lehetővé teszi, hogy egy egyszerűen és gyorsan tootest az alkalmazás az Azure-ban tooconfigure egy adott kiszolgáló vagy a JDK hello alapértelmezett értéke eltérő. Ha elégedett hello alapértelmezett beállításokat, kattintson **OK** az alábbi lépésekkel hello toocontinue.
+   Azonban ha azt szeretné, hogy toochange hello JDK vagy az alkalmazás alkalmazás-kiszolgáló toouse, ehhez később hello Azure telepítési projekt, automatikusan létrehozott szerkesztésével, vagy kattintson **Mégse** most és olvasása Hello **tudnivalók az Azure-telepítési projektek szakasz** oktatóanyag.
 
-4. Az a **Azure közzététel** párbeszédpanel:
+4. A hello **tooAzure közzététele** párbeszédpanel:
 
-   1. Ha kijelöléséhez egyetlen előfizetés sincs a **előfizetés** listában, de az előfizetési adatok importálása a következő lépésekkel:
+   1. Ha nincsenek előfizetések tooselect hello **előfizetés** listában, de kövesse ezeket a lépéseket tooimport az előfizetési adatai:
       1. Kattintson a **közzététele beállításfájl importálás**.
-      2. Az a **importálási előfizetési adatok** párbeszédpanel, kattintson a **KÖZZÉTÉTELI-beállítások fájl letöltése**. Ha még nem jelentkezik be az Azure-fiókjába, fogja kérni fogja a bejelentkezéshez. Majd kéri az Azure mentési beállítások fájl közzététele. Mentse a helyi számítógépen.
-      3. Még mindig a **importálási előfizetési adatok** párbeszédpanel, kattintson a **Tallózás** gombra, válassza ki a közzétételi beállítások fájlja helyileg az előző lépésben mentett, majd **nyissa meg**. A képernyőn a következőhöz hasonlóan kell kinéznie:![][ic644267]
+      2. A hello **importálási előfizetési adatok** párbeszédpanel, kattintson a **KÖZZÉTÉTELI-beállítások fájl letöltése**. Ha még nem jelentkezik be az Azure-fiókjába, a kért toolog fogja. Akkor kérni fogja az Azure toosave közzététele beállításfájl. Mentse a helyi számítógép tooyour.
+      3. Még tart a hello **importálási előfizetési adatok** párbeszédpanelen hello kattintson **Tallózás** gombra, jelölje be hello közzététele beállításfájl helyileg hello előző lépésben mentett, és kattintson a  **Nyissa meg**. A képernyő alábbihoz hasonló toohello következő:![][ic644267]
       4. Kattintson az **OK** gombra.
-   2. A **előfizetés**, válassza ki az előfizetést, amelyet az használja az üzembe helyezéshez.
-   3. A **tárfiók**, válassza ki a tárfiókot használja, vagy kattintson a kívánt **új** egy új tárfiók létrehozásához.
-   4. A **szolgáltatásnév**, válassza ki a felhőalapú szolgáltatást használja, vagy kattintson a kívánt **új** új felhőalapú szolgáltatás létrehozása.
-   5. A **cél operációs rendszer**, válassza ki a telepítéshez használni kívánt operációs rendszer verziója.
-   6. A **célkörnyezet**, válasszon ki a jelen oktatóanyag **átmeneti**. (Ha készen áll a munkakörnyezeti helyet szeretne telepíteni, akkor módosítani fogjuk ezt **éles**.)
-   7. Választható lehetőség: Gondoskodjon arról, hogy **felülírja a korábbi központi telepítés** be van jelölve, ha azt szeretné, a korábbi központi telepítés automatikusan felülírja az új központi telepítést. Ha engedélyezi ezt a beállítást, tartalma nem élmény "409 ütközés" problémák ugyanazon a helyen történő közzététel esetén.
-      Vegye figyelembe, hogy a **Azure közzététel** párbeszédpanel tartalmaz egy szakaszt **távelérési**. Alapértelmezés szerint nincs engedélyezve a távoli hozzáférés, és azt nem engedélyezi azt ebben a példában. Ahhoz, hogy a távoli elérés, akkor meg egy felhasználónevet és jelszót használja, ha távoli bejelentkezés. További információ a távelérés: [távelérés engedélyezése az Azure-telepítésekre az eclipse-ben][Enabling Remote Access for Azure Deployments in Eclipse].
-      A **Azure közzététel** párbeszédpanel jelenik meg a következőhöz hasonló:![][ic719488]
+   2. A **előfizetés**, válassza ki a kívánt az üzembe helyezéshez hello előfizetés.
+   3. A **tárfiók**, válassza ki, hogy Ön toouse, vagy kattintson a hello tárfiókot **új** toocreate egy új tárfiókot.
+   4. A **szolgáltatásnév**, válassza ki a hello felhőalapú szolgáltatás, hogy Ön toouse, vagy kattintson a **új** toocreate új felhőalapú szolgáltatás.
+   5. A **cél operációs rendszer**, jelölje be hello hello operációs rendszer verziója, amelyet az toouse az üzembe helyezéshez.
+   6. A **célkörnyezet**, válasszon ki a jelen oktatóanyag **átmeneti**. (Ha már készen áll a toodeploy tooyour munkakörnyezeti helyet, akkor módosítani fogjuk ezt túl**éles**.)
+   7. Választható lehetőség: Gondoskodjon arról, hogy **felülírja a korábbi központi telepítés** be van jelölve, ha azt szeretné, hogy az új központi telepítési tooautomatically felülírása hello a korábbi központi telepítés. Ha engedélyezi ezt a beállítást, toohello közzétételekor fog nem élmény "409 ütközés" problémák ugyanazon a helyen.
+      Vegye figyelembe, hogy hello **tooAzure közzététele** párbeszédpanel tartalmaz egy szakaszt **távelérési**. Alapértelmezés szerint nincs engedélyezve a távoli hozzáférés, és azt nem engedélyezi azt ebben a példában. Távelérés tooenable, írja be a felhasználói nevet és jelszót toouse bejelentkezéskor távolról. További információ a távelérés: [távelérés engedélyezése az Azure-telepítésekre az eclipse-ben][Enabling Remote Access for Azure Deployments in Eclipse].
+      A **tooAzure közzététele** párbeszédpanel jelenik meg hasonló toohello következő:![][ic719488]
 
-5. Kattintson a **közzététel** átmeneti környezet közzétételére.
+5. Kattintson a **közzététel** toopublish toohello átmeneti környezet.
 
-   Teljes build végrehajtásához felkéréskor kattintson **Igen**. Ez az első buildjéhez több percig is eltarthat.
+   Amikor a kért tooperform teljes build, kattintson **Igen**. Ez az első buildekhez hello több percig is eltarthat.
    Egy **Azure tevékenységnapló** az Eclipse többlapos Nézetek szakaszban megjeleníti.
-   ![][ic719489]Használhatja ezt a naplót, valamint a **konzol** nézet, hogy a telepítés előrehaladását. Helyett jelentkezzen be a [Azure felügyeleti portálon][Azure Management Portal], és használja a **Felhőszolgáltatások** szakasz állapotának figyelésére.
+   ![][ic719489]Akkor is ezt a naplót használja, valamint hello **konzol** megtekintéséhez toosee hello a központi telepítés végrehajtási állapotát. A másik lehetőség az toohello toolog [Azure felügyeleti portálon][Azure Management Portal], és hello **Felhőszolgáltatások** toomonitor hello állapot szakasz.
 
-6. Ha a központi telepítés telepítése sikeres volt, a **Azure tevékenységnapló** állapota megjelenik **közzétett**. Kattintson a **közzétett**, a következő ábrán látható módon, és a böngésző csak akkor nyílik meg a központi telepítési példánya.
+6. Ha a központi telepítés telepítése sikeres volt, hello **Azure tevékenységnapló** állapota megjelenik **közzétett**. Kattintson a **közzétett**, ahogy az alábbi hello lemezképet, és a böngészőben nyílik meg a központi telepítési példánya.
 
    ![][ic719490]
 
-Az átmeneti környezetben való központi telepítés volt, mert a DNS-neve lesz a képernyő http://&lt;*guid*&gt;. cloudapp.net, és a DNS-nevét és az alkalmazás egy utótagot tartalmaz URL-címet fog. Például http://447564652c20426f6220526f636b7321.cloudapp.net/MyHelloWorld. (A **MyHelloWorld** részére a kis-és nagybetűket.) A DNS-nevét is megtekinthető, ha a telepítés neve az Azure Platform felügyeleti portálon (belül a kezelési portálon, a Cloud Services része) gombra kattint.
+Mivel ez egy átmeneti környezet központi telepítési tooa, hello DNS-neve lesz hello űrlap http://&lt;*guid*&gt;. cloudapp.net és hello URL-cím hello DNS-nevet és egy utótagból, az alkalmazás fogja tartalmazni. Például http://447564652c20426f6220526f636b7321.cloudapp.net/MyHelloWorld. (hello **MyHelloWorld** részére a kis-és nagybetűket.) Azt is láthatja, hello DNS nevét, ha a hello Azure Platform Management Portal (belül hello kezelési portál hello Felhőszolgáltatások része) hello központi telepítés nevére kattint.
 
-Bár ez az útmutató az átmeneti üzembe helyezése, egy éles környezetbe való telepítés a következő ugyanazokat a lépéseket, kivéve belül a **Azure közzététel** párbeszédablakban válassza **éles** helyett **átmeneti** a a **célkörnyezet**. Egy éles környezetbe való telepítés eredményezi egy URL-címet a választott helyett egy GUID Azonosítót az átmeneti használt DNS-neve alapján.
+Bár ez az útmutató egy átmeneti környezet központi telepítési toohello az volt, a következő egy központi telepítési tooproduction hello ugyanazokat a lépéseket, kivéve belül hello **tooAzure közzététele** párbeszédablakban válassza **éles** Ahelyett, hogy **átmeneti** a hello **célkörnyezet**. A központi telepítés tooproduction eredményezi egy URL-címet a választott helyett egy GUID Azonosítót az átmeneti használt hello DNS-neve alapján.
 
 > [!WARNING]
-> Ezen a ponton a Azure alkalmazást a felhőbe telepített. Azonban a továbblépés előtt rájön, hogy egy telepített alkalmazást, akkor is, ha nem fut, továbbra is keletkeznek az előfizetéshez tartozó számlázható idő. Ezért fontos rendkívül nem kívánt központi telepítések törlése az Azure-előfizetéshez.
+> Ezen a ponton telepítette az Azure-alkalmazásokban toohello felhő. Azonban a továbblépés előtt rájön, hogy egy telepített alkalmazást, akkor is, ha nem fut, továbbra is tooaccrue számlázható idő az előfizetéséhez. Ezért fontos rendkívül nem kívánt központi telepítések törlése az Azure-előfizetéshez.
 > 
 > 
 
 ## <a name="about-azure-deployment-projects"></a>Az Azure-telepítés projektek
-Egy vagy több Azure Java-alkalmazások központi telepítéséhez, egy Azure-telepítési projekt van szükség. Azt a szerepet "csomag", az alkalmazások kell ahhoz, hogy közzé kell tenni az Azure-on be kell csomagolni.
+A rendezés toodeploy egy vagy több Java-alkalmazások tooAzure, az Azure-telepítési projekt van szükség. Lejátszás hello "csomagja", az alkalmazások kell csomagolni rendelés toobe közzé az Azure-on történő toobe hello szerepe.
 
-Mellett az alkalmazások kapcsolatos információkért az Azure-telepítés projektben vonatkozó információkat is tartalmaz egyéb legfontosabb összetevők a központi telepítés, a legfontosabb: az alkalmazás server tároló a webalkalmazás futtatásához, és a Java-futtatókörnyezet futtatásához. Azure Java futtatókörnyezeteket és választhat Java-alkalmazáskiszolgálók nagy mennyiségű támogatja.
+Mellett az alkalmazások hello tudnivalókat az Azure-telepítés projektben vonatkozó információkat is tartalmaz egyéb legfontosabb összetevők a központi telepítés, a legfontosabb: hello application server tároló toorun lévő, és a Java runtime toorun hello azt a. Azure Java futtatókörnyezeteket és választhat Java-alkalmazáskiszolgálók nagy mennyiségű támogatja.
 
-Bár az itt bemutatott példában jelentősen egyszerűsített oktatási célokra, az Azure-telepítés projektben is tartalmazhatnak más fontos konfigurációs adatait, amely lehetővé teszi az alkalmazásokkal szinte önkényesen összetett, méretezhető, magas rendelkezésre állású, többrétegű felhőszolgáltatások létrehozásához. Engedélyezheti a **munkamenet affinitás ("állandóságát munkamenet")**, **gyors gyorsítótárazás**, **SSL-feladatkiszervezést**, **tűzfalportot/útválasztási**, **távelérési**, és számos egyéb hatékony képességet.
+Itt hello példában jelentősen egyszerűsített oktatási célokra, bár az Azure-telepítés projektben is tartalmazhat más fontos konfigurációs adatait, amely lehetővé teszi toocreate szinte önkényesen összetett, méretezhető, magas rendelkezésre állású, többrétegű felhőszolgáltatások az alkalmazásokkal. Engedélyezheti a **munkamenet affinitás ("állandóságát munkamenet")**, **gyors gyorsítótárazás**, **SSL-feladatkiszervezést**, **tűzfalportot/útválasztási**, **távelérési**, és számos egyéb hatékony képességet.
 
-Ha befejezte az előző szakaszban a jelen oktatóanyag ("az alkalmazás központi telepítése az Azure-ba, a gyors és egyszerű módot"), ekkor a Project Explorer automatikusan jönnek létre, és nevű új Azure-telepítés projekt "**MyHelloWorld_onAzure**".
+Ha ez az oktatóanyag korábbi szakaszában hello befejeződött ("toodeploy az alkalmazás tooAzure, hello gyors és egyszerű módot"), ekkor egy új Azure-telepítés projektre a Project Explorer hozta létre automatikusan, és nevű hello " **MyHelloWorld_onAzure**".
 
-Sikerült is használatba vette az oktatóanyag először hoz létre egy üres az Azure-telepítés projekt saját magának, és majd adja hozzá a alkalmazás(ok) rá. Már egy folyamatot, de ad meg a kezdeti konfiguráció az elejétől.
+Sikerült is használatba vette az oktatóanyag először hoz létre egy üres az Azure-telepítés projekt saját magának, és majd adja hozzá a alkalmazás(ok) tooit. Már egy folyamatot, de felkínálva hello kezdeti konfigurációs hello elejétől teljesebb körű vezérlése.
 
-A teljesen új Azure-telepítés projekt létrehozásához kattintson a **új Azure-telepítési projekt** gomb ![][ic710876].
+teljesen új, Azure-telepítés új projekt toocreate kattintson hello **új Azure-telepítési projekt** gomb ![][ic710876].
 
-Függetlenül attól, hogy Ön már meglévő Azure-telepítés projekttel működik, vagy hozzon létre egyet a teljesen, le is tudja módosítani a konfigurációs beállításokat és az összetevők, például a JDK vagy a kiszolgáló, egyaránt bármikor könnyen.
+Függetlenül attól, hogy Ön már meglévő Azure-telepítés projekttel működik, vagy hozzon létre egyet a teljesen, képes toochange, a konfigurációs beállításokat és az összetevők, például hello JDK, vagy egyszerűen egyaránt hello alkalmazáskiszolgáló, tetszőleges időpontban.
 
-A JDK vagy a kiszolgáló vagy egy meglévő Azure-telepítés projektben Alkalmazáslista módosítása:
+toochange hello JDK, vagy hello alkalmazáskiszolgáló, vagy egy meglévő Azure-telepítés projektben hello alkalmazásainak listáját:
 
-1. Bontsa ki a projekt csomópontot (pl. **MyHelloWorld_onAzure**) a Project Explorer
+1. Bontsa ki a hello projektcsomópontra (pl. **MyHelloWorld_onAzure**) a Project Explorer hello
 
 2. Kattintson a jobb gombbal **WorkerRole1**
 
-3. Bontsa ki a **Azure** almenü a helyi menü
+3. Bontsa ki a hello **Azure** almenü hello helyi menü
 
 4. Kattintson a **kiszolgálókonfiguráció**
 
-Függetlenül attól, hogy használatba kiszolgáló konfigurációs lépéseket a fentiek szerint a meglévő Azure-telepítés projekt szerkesztésével, vagy teljesen új újat hoz létre, azonos típusú lehet konfigurálni a JDK-, kiszolgáló és az alkalmazás-összetevők párbeszédpanelek jelenjen meg. Több e párbeszédpanelek, módosítsa a JDK, a kiszolgáló és vegye fel vagy távolítsa el az alkalmazások üzembe helyezése esetén például a beállítások módosításáról lásd: a [kiszolgáló konfigurációs tulajdonságai] [ Server configuration properties] cikk.
+Függetlenül attól, hogy a kiszolgáló konfigurációs lépések indításakor meglévő Azure-telepítés projekt szerkesztésével, ahogy fent látható, vagy teljesen új újat hoz létre, látni fogja hello ugyanilyen típusú párbeszédpanelek tooconfigure lehetővé teszi a JDK kiszolgáló és az alkalmazás összetevők. toolearn több hogyan toochange hello beállításai azokat párbeszédpanelek, például toochange hello JDK, a kiszolgáló hello és hozzáadása vagy eltávolítása alkalmazások üzembe helyezése esetén lásd: hello [kiszolgáló konfigurációs tulajdonságai] [ Server configuration properties] cikk.
 
-## <a name="windows-only-to-deploy-your-application-to-the-compute-emulator"></a>Csak Windows: a compute emulator az alkalmazás központi telepítése
+## <a name="windows-only-toodeploy-your-application-toohello-compute-emulator"></a>Csak Windows: toodeploy az alkalmazás toohello compute emulator
 
 > [!NOTE]
-> Az Azure emulátorban Windows csak érhető el. Hagyja ki ebben a szakaszban, ha nem Windows operációs rendszert használ.
+> hello Azure emulátorban Windows csak érhető el. Hagyja ki ebben a szakaszban, ha nem Windows operációs rendszert használ.
 > 
 > 
 
-Ha létrehozott egy új Azure-telepítés projektet, a következő lépéseket korábbi, azaz implicit módon, Azure JDK és az alkalmazás az alkalmazás közzétételével kiszolgálók konfigurálva a felhő, de nem helyi emuláció. A projekt helyi emulátorban tesztelési előkészítéséhez kövesse az alábbi lépéseket:
+Ha létrehozott egy új Azure-telepítés projektet hello a korábbi, azaz implicit módon, az alkalmazás tooAzure közzétételével ismertetett lépéseket követve hello JDK és alkalmazáskiszolgálók hello felhő, de nem helyi emuláció lettek konfigurálva. tooprepare a projekt tesztelési hello helyi emulátorban, kövesse az alábbi lépéseket:
 
 1. Kattintson a Eclipse Project Explorer **MyHelloWorld_onAzure**.
 
 2. Kattintson a jobb gombbal a **WorkerRole1**.
 
-3. Bontsa ki a **Azure** almenü a helyi menü.
+3. Bontsa ki a hello **Azure** almenü hello helyi menü.
 
 4. Kattintson a **kiszolgálókonfiguráció**.
 
-5. Az a **JDK** fület, ellenőrizze, hogy ha az eszközkészlet előre konfigurált alapértelmezett helyi JDK meg. Ha nem, vagy ha meg szeretné változtatni az feltételezett alapértelmezett beállításokat, győződjön meg arról, hogy a **használja ezt az elérési utat a JDK helyi tesztelés céljából** jelölőnégyzet be van jelölve, és a JDK használni kívánt telepítési hely meg van adva. Ha szeretné módosítani, kattintson a **Tallózás** gombra, majd a Tallózás vezérlő meg és jelölje ki a használandó JDK könyvtár helyét.
+5. A hello **JDK** fület, ellenőrizze, hogy ha hello eszközkészlet előre konfigurált alapértelmezett helyi JDK meg. Ha nem, vagy ha azt szeretné, hogy toochange hello feltételezett alapértelmezett beállításokat, győződjön meg arról, hogy hello **használata hello JDK-útvonalról a helyi tesztelés céljából** jelölőnégyzet be van jelölve, és hello JDK telepítési helyet, amelyet az toouse van megadva. Ha azt szeretné, hogy toochange, hello kattintson **Tallózás** gombra, majd hello Tallózás vezérlővel hello JDK toouse hello könyvtár helyét.
 
-6. Kattintson a **Server** fülre.
+6. Kattintson a hello **Server** fülre.
 
-7. Az a **helyi kiszolgáló elérési útja** szövegmezőben a párbeszédpanel alján, adja meg a helyileg telepített kiszolgáló típusa és a párbeszédpanel tetején a kijelölt kiszolgáló fő verziószámának megfelelő elérési a **ilyen típusú kiszolgáló központi telepítése** jelölőnégyzetet. Ha az eltérő típusú vagy a kiszolgáló fő verziószáma, először módosítsa a kijelölés alapján tartozó jelölőnégyzet.
+7. A hello **helyi kiszolgáló elérési útja** hello párbeszédpanelen hello alján szövegmezőben adja meg a helyileg telepített kiszolgáló hello típusa és a kiválasztott hello párbeszédpanelen hello tetején hello kiszolgáló fő verziószámának megfelelő hello elérési Hello **ilyen típusú kiszolgáló központi telepítése** jelölőnégyzetet. Ha toouse egy eltérő típusú vagy hello alkalmazáskiszolgáló főverzióját, először módosítsa hello kiválasztás tartozó jelölőnégyzet alapján.
 
 8. Kattintson az **OK** gombra.
 
-9. Az Eclipse eszköztáron kattintson a **Azure emulátorban futtatása** gomb, ![][ic710879]. Ha a **Azure emulátorban futtatása** gomb nincs engedélyezve, ellenőrizze, hogy **MyHelloWorld_onAzure** Project Explorer Eclipse meg van jelölve, és ellenőrizze, hogy rendelkezik-e a Eclipse Project Explorer fókusz, az aktuális ablak. A először indítsa el a projekt teljes build és a Java-webalkalmazás a compute emulator majd elindítani. (Vegye figyelembe, hogy attól függően, hogy a számítógép teljesítményt nyújt, az első build is igénybe vehet néhány percet néhány másodperc között, de további buildek kap gyorsabban.) Az első összeállítása lépés befejezése után, kérni fogja a Windows felhasználói fiókok felügyelete (UAC) engedélyezéséhez módosításokat végrehajtani ezt a parancsot. Kattintson a **Yes** (Igen) gombra.
+9. Hello Eclipse eszköztárában kattintson hello **Azure emulátorban futtatása** gomb, ![][ic710879]. Ha hello **Azure emulátorban futtatása** gomb nincs engedélyezve, ellenőrizze, hogy **MyHelloWorld_onAzure** a Project Explorer Eclipse meg van jelölve, és ügyeljen arra, hogy a Eclipse Project Explorer fókusz hello, aktuális ablak. A először indítsa el a projekt teljes build és a Java-webalkalmazás hello compute emulator majd elindítani. (Vegye figyelembe, hogy attól függően, hogy a számítógép teljesítményt nyújt, hello első build eltarthat néhány másodpercig tooa néhány perc között, de további buildek kap gyorsabban.) Hello első összeállítása lépés befejezése után fog kérni fogja a Windows felhasználói fiókok felügyelete (UAC) tooallow által a parancs toomake tooyour számítógép változik. Kattintson a **Yes** (Igen) gombra.
 
 > [!IMPORTANT]
-> Ha nem látja a felhasználói fiókok felügyelete, ellenőrizze a felhasználói fiókok Felügyeletének ikon a Windows tálcán, és kattintson rá. Egyes esetekben a felhasználói fiókok felügyelete kérdés nem jelenik meg legfelső ablakban, de csak a tálca ikonként látható.
+> Ha nem látja hello UAC rákérdezés, ellenőrizze a hello hello UAC ikonra a tálcán, és kattintson rá. Néha hello irányuló UAC-kérés nem jelenik meg legfelső ablakban, de csak a tálca ikonként látható.
 > 
 > 
 
-1. Vizsgálja meg a compute emulator UI vannak-e problémák merülnek fel a projektet a kimenetét. Attól függően, hogy a központi telepítés tartalmát az alkalmazás teljesen kell elindítani a compute emulator belül néhány percig is eltarthat.
+1. Vizsgálja meg hello compute emulator UI toodetermine hello kimenete, ha merül fel a projektet. Attól függően, hogy a központi telepítés hello tartalmát az alkalmazás toobe hello compute emulator belül fut. néhány percig is eltarthat.
 
-2. A böngésző és az URL-címet használjon `http://localhost:8080/MyHelloWorld` címként (a `MyHelloWorld` az URL-cím része az kis-és nagybetűket). Megjelenik a MyHelloWorld alkalmazás (az index.jsp kimenete), az alábbi képen hasonlít:
+2. Indítsa el a böngészőt, és használják hello `http://localhost:8080/MyHelloWorld` hello címként (hello `MyHelloWorld` hello URL-cím része az kis-és nagybetűket). A MyHelloWorld alkalmazás (index.jsp hello kimenete), a kép a következő hasonló toohello kell megjelennie:
 
    ![][ic589579]
 
-Amikor készen áll az alkalmazás futtatását a compute emulator az Eclipse eszköztáron a leállításához kattintson a **visszaállítása Azure Emulátorban** gomb, ![][ic710880].
+Készen áll a toostop az alkalmazás futtatását hello compute emulator, hello Eclipse eszköztárán kattintson hello **visszaállítása Azure Emulátorban** gomb, ![][ic710880].
 
-## <a name="to-delete-your-deployment"></a>A központi telepítés törlése
-Ügyeljen arra, hogy törölni szeretné a központi telepítést Eclipse Azure eszköztára belül, **MyHelloWorld_onAzure** van tartozó Eclipse Project Explorer kijelölt, győződjön meg arról, az Eclipse Project Explorer van az aktuális ablak összpontosítson, és kattintson a **Közzététel megszüntetése** gomb, ![][ic710883], az Eclipse-eszköztáron. (Kattintson a jobb gombbal, végrehajtja a műveletet **MyHelloWorld_onAzure** tartozó Eclipse Project Explorer, kattintson a **Azure** , majd **Azure felhőből Undeploy**.) Ez megjeleníti a **közzétételének Azure-projekt** párbeszédpanel.
+## <a name="toodelete-your-deployment"></a>toodelete a központi telepítés
+toodelete belül hello Azure eszköztára eclipse-ben a központi telepítés győződjön meg arról, hogy **MyHelloWorld_onAzure** van tartozó Eclipse Project Explorer kijelölt, győződjön meg arról, hello Eclipse Project Explorer rendelkezik hello aktuális ablak összpontosítson, és kattintson a Hello **Közzététel megszüntetése** gomb, ![][ic710883], hello Eclipse eszköztáron. (Azt megteheti ugyanazon művelet hello kattintson a jobb gombbal **MyHelloWorld_onAzure** tartozó Eclipse Project Explorer, kattintson a **Azure** , majd kattintson **UndeployAzure-felhőből**.) Megjelenik az hello **közzétételének Azure-projekt** párbeszédpanel.
 
 ![][ic719491]
 
-Válassza ki az előfizetés és a felhőalapú szolgáltatás, amely tartalmazza a központi telepítés, ki kell jelölni a telepítést, törlése, és kattintson a kívánt **Közzététel megszüntetése**.
+Válassza ki a hello előfizetés és a felhőalapú szolgáltatás, amely tartalmazza a központi telepítés, a select hello telepítését szeretné, hogy toodelete, és kattintson **Közzététel megszüntetése**.
 
-(Törölni a példányt az eszközkészlet használata helyett, hogy használja a **Felhőszolgáltatások** az Azure felügyeleti portálon szakasza: keresse meg a központi telepítés, válassza ki azt, és kattintson a **törlése** gombra. Ezzel leállítja, és a központi telepítést, majd törölje. Ha csak szeretné, hogy állítsa le a telepítést, és nem törölhető, kattintson a **leállítása** gombra kattint, ahelyett, hogy a **törlése** gomb, de, mint a fenti nem törli a központi telepítést, ha számlázható díjakat továbbra is keletkeznek az üzembe helyezéshez, még akkor is, ha le van állítva).
+(Egy alternatív toousing hello eszközkészlet toodelete hello értékek egyikét toouse hello **Felhőszolgáltatások** hello Azure felügyeleti portálon szakasza: keresse meg a tooyour telepítési, válassza ki azt, és kattintson a hello **törlése** gombra. Ezzel leállítja, és majd törli, hello. Ha csak szeretné, hogy toostop hello központi telepítés, és nem törölhető, kattintson a hello **leállítása** gomb helyett hello **törlése** gombra kattint, a fentieknek, de ha nem törli a hello központi telepítését, számlázható díjak lesz továbbra is az üzembe helyezéshez tooaccrue akkor is, ha le van állítva).
 
 ## <a name="see-also"></a>Lásd még:
 [Eclipse Azure eszköztára][Azure Toolkit for Eclipse]
 
-[Az eclipse-ben az Azure eszközkészlet telepítése][Installing the Azure Toolkit for Eclipse] 
+[Hello Azure eszköztára Eclipse telepítése][Installing hello Azure Toolkit for Eclipse] 
 
-[What's New in Eclipse Azure eszköztára][What's New in the Azure Toolkit for Eclipse]
+[Újdonságok az Eclipse Azure eszköztára hello][What's New in hello Azure Toolkit for Eclipse]
 
-Azure Java használatával kapcsolatos további információkért lásd: a [Azure Java fejlesztői központból][Azure Java Developer Center].
+Azure Java használatával kapcsolatos további információkért lásd: hello [Azure Java fejlesztői központból][Azure Java Developer Center].
 
 <!-- URL List -->
 
@@ -204,9 +204,9 @@ Azure Java használatával kapcsolatos további információkért lásd: a [Azur
 [Azure Role Properties]: http://go.microsoft.com/fwlink/?LinkID=699525
 [Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
 [Enabling Remote Access for Azure Deployments in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699538
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 [Server configuration properties]: http://go.microsoft.com/fwlink/?LinkID=699525#server_configuration_properties
-[What's New in the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699552
+[What's New in hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699552
 
 <!-- IMG List -->
 

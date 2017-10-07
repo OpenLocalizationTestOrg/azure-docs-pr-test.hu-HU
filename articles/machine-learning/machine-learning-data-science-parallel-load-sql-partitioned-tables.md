@@ -1,5 +1,5 @@
 ---
-title: "Hozza létre, és az adatok gyors párhuzamos importálásakor táblák optimalizálása egy SQL-kiszolgálóra, egy Azure virtuális gépen való |} Microsoft Docs"
+title: "aaaBuild és optimalizálják az adatok gyors párhuzamos importálásakor táblák SQL-kiszolgálót egy Azure virtuális gépen |} Microsoft Docs"
 description: "Párhuzamos tömeges adatimportálás SQL partíciós táblák használatával"
 services: machine-learning
 documentationcenter: 
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: aae4e4f59e76bf48b00a2ee92aedd7d5643ba91a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ab748c47348ec6ca3b98ba39e27181bba5d36fc0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="parallel-bulk-data-import-using-sql-partition-tables"></a>Párhuzamos tömeges adatimportálás SQL partíciós táblák használatával
-Ez a dokumentum ismerteti, hogyan hozhat létre az SQL Server-adatbázis adatok gyors párhuzamos tömeges importálását a particionált táblákat. A big Data típusú adatok betöltését/átvitel SQL-adatbázishoz, az adatok importálása az SQL-adatbázis és a lekérdezések növelhető a *particionált táblák és nézetek*. 
+Ez a dokumentum azt ismerteti, hogyan toobuild particionált táblák gyors párhuzamos tömeges importálásához adatok tooa SQL Server-adatbázis. Big Data típusú adatok betöltését/átvitel tooa SQL-adatbázis, az adatok toohello SQL-adatbázis és a lekérdezések importálása növelhető a használatával *particionált táblák és nézetek*. 
 
 ## <a name="create-a-new-database-and-a-set-of-filegroups"></a>Hozzon létre egy új adatbázist és a fájlcsoport készlete
 * [Hozzon létre egy új adatbázist](https://technet.microsoft.com/library/ms176061.aspx), ha már nem létezik.
-* Adatbázis fájlcsoport hozzáadása az adatbázisban, ami a particionált fizikai fájlok tárolására. Ezt megteheti a [CREATE DATABASE](https://technet.microsoft.com/library/ms176061.aspx) Ha új vagy [ALTER DATABASE](https://msdn.microsoft.com/library/bb522682.aspx) az adatbázis már létezik.
-* Fájlokat adjon hozzá egy vagy több (szükség szerint) minden egyes adatbázis fájlcsoport.
+* Adja hozzá az adatbázis fájlcsoportok toohello adatbázisban, ami particionálva hello fizikai fájlok tárolására. Ezt megteheti a [CREATE DATABASE](https://technet.microsoft.com/library/ms176061.aspx) Ha új vagy [ALTER DATABASE](https://msdn.microsoft.com/library/bb522682.aspx) hello adatbázis már létezik.
+* Adjon hozzá egy vagy több (szükség szerint) fájlok tooeach adatbázis fájlcsoport.
   
   > [!NOTE]
-  > Adja meg a cél fájlcsoportban ehhez a partícióhoz adatokat tároló és a fizikai adatbázis fájl vagy fájlcsoport adatok tárolásához.
+  > Adja meg a hello cél fájlcsoportban a partíció és hello fizikai adatbázis fájlnevek adatokat tároló hello fájlcsoport adatok tárolásához.
   > 
   > 
 
-A következő példa egy új adatbázist hoz létre három kívül az elsődleges fájlcsoport és naplófájlcsoportok, az egyes egy fizikai fájlt tartalmazó. Az adatbázisfájlok be az SQL Server-példányt az alapértelmezett SQL Server-adatok mappa jönnek létre. Az alapértelmezett fájlhelyek kapcsolatos további információkért lásd: [fájlhelyek alapértelmezett és az SQL Server példány nevű](https://msdn.microsoft.com/library/ms143547.aspx).
+hello alábbi példa létrehoz egy új adatbázist az elsődleges hello és naplófájlcsoportok, az egyes egy fizikai fájlt tartalmazó három fájlcsoport. hello adatbázisfájlok hello alapértelmezett SQL Server-adatok mappában jönnek létre, a hello SQL Server-példány. További információ a hello alapértelmezett tárolási helyeit: [fájlhelyek az alapértelmezett és elnevezett példány az SQL Server](https://msdn.microsoft.com/library/ms143547.aspx).
 
     DECLARE @data_path nvarchar(256);
     SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)
@@ -55,26 +55,26 @@ A következő példa egy új adatbázist hoz létre három kívül az elsődlege
     ')
 
 ## <a name="create-a-partitioned-table"></a>Particionált tábla létrehozása
-Az adatok séma, a az előző lépésben létrehozott adatbázis fájlcsoportokat leképezve megfelelően particionált táblák létrehozása. Adatok importálása a particionált táblák tömeges esetén rekordok közötti elosztása a fájlcsoportokat megfelelően partícióséma, az alább ismertetett.
+Létrehozni a particionált toohello adatkulcsokat, hello előző lépésben létrehozott csatlakoztatott toohello adatbázis fájlcsoport szerint. Adatok importálása tömeges toohello particionált táblák, rekordok közötti elosztása hello fájlcsoport szerint tooa partícióséma, az alább ismertetett.
 
-**A partíciós tábla létrehozásához kell:**
+**a partíciós tábla toocreate, kell:**
 
-* [A partíciós függvények létrehozása](https://msdn.microsoft.com/library/ms187802.aspx) amely megadja, hogy az értékek/határok szereplő minden egyes partíciós tábla, pl., partíciók korlátozása havonta tartományán (néhány\_datetime\_mező) 2013-ben:
+* [A partíciós függvények létrehozása](https://msdn.microsoft.com/library/ms187802.aspx) értékek/határok toobe hello számos határozza meg, amely táblázatban szereplő minden egyes partíció, például toolimit partíciót hónaponként (néhány\_datetime\_mező) hello évben 2013:
   
         CREATE PARTITION FUNCTION <DatetimeFieldPFN>(<datetime_field>)  
         AS RANGE RIGHT FOR VALUES (
             '20130201', '20130301', '20130401',
             '20130501', '20130601', '20130701', '20130801',
             '20130901', '20131001', '20131101', '20131201' )
-* [Hozzon létre egy partícióséma](https://msdn.microsoft.com/library/ms179854.aspx) amely van leképezve a partíciós függvény minden egyes partíciótartomány fizikai fájlcsoport, pl.:
+* [Hozzon létre egy partícióséma](https://msdn.microsoft.com/library/ms179854.aspx) amely leképezhető minden partíciótartomány hello partíciós függvény tooa fizikai fájlcsoportban, pl.:
   
         CREATE PARTITION SCHEME <DatetimeFieldPScheme> AS  
-        PARTITION <DatetimeFieldPFN> TO (
+        PARTITION <DatetimeFieldPFN> too(
         <filegroup_1>, <filegroup_2>, <filegroup_3>, <filegroup_4>,
         <filegroup_5>, <filegroup_6>, <filegroup_7>, <filegroup_8>,
         <filegroup_9>, <filegroup_10>, <filegroup_11>, <filegroup_12> )
   
-  Mindegyik partíció, a függvény séma szerint érvényben lévő tartományok ellenőrzéséhez futtassa az alábbi lekérdezést:
+  tooverify hello tartományok érvényben az egyes partícióazonosító függően toohello függvény/sémát, futtassa a következő lekérdezés hello:
   
         SELECT psch.name as PartitionScheme,
             prng.value AS ParitionValue,
@@ -83,26 +83,26 @@ Az adatok séma, a az előző lépésben létrehozott adatbázis fájlcsoportoka
         INNER JOIN sys.partition_schemes psch ON pfun.function_id = psch.function_id
         INNER JOIN sys.partition_range_values prng ON prng.function_id=pfun.function_id
         WHERE pfun.name = <DatetimeFieldPFN>
-* [Particionált tábla létrehozása](https://msdn.microsoft.com/library/ms174979.aspx)(s) az adatok séma alapján történik, és adja meg a tábla, pl. particionálásához használt partíciós séma és a korlátozás mező:
+* [Particionált tábla létrehozása](https://msdn.microsoft.com/library/ms174979.aspx)(s) szerint tooyour adatkulcsokat, és adja meg, hello partíciós séma és a korlátozás mező használt toopartition hello tábla, pl.:
   
         CREATE TABLE <table_name> ( [include schema definition here] )
         ON <TablePScheme>(<partition_field>)
 
 További információkért lásd: [particionált táblák létrehozása és indexek](https://msdn.microsoft.com/library/ms188730.aspx).
 
-## <a name="bulk-import-the-data-for-each-individual-partition-table"></a>Tömeges importálásához minden egyes partíció tábla adatai
-* Előfordulhat, hogy a BCP, TÖMEGES Beszúrás vagy más módszerrel például [SQL Server varázsló](http://sqlazuremw.codeplex.com/). A megadott példa a BCP módszert használja.
-* [Az adatbázis módosítására](https://msdn.microsoft.com/library/bb522682.aspx) tranzakció naplózási séma átállítása tömegesen_naplózott naplózás, pl. terhek minimalizálása érdekében:
+## <a name="bulk-import-hello-data-for-each-individual-partition-table"></a>Tömeges hello adatokat importálhat minden egyes partíció táblához
+* Előfordulhat, hogy a BCP, TÖMEGES Beszúrás vagy más módszerrel például [SQL Server varázsló](http://sqlazuremw.codeplex.com/). a megadott hello példa hello BCP módszert használja.
+* [Az ALTER hello database](https://msdn.microsoft.com/library/bb522682.aspx) toochange tranzakciók naplózása a rendszer tooBULK_LOGGED toominimize növeli a naplózás, pl.:
   
         ALTER DATABASE <database_name> SET RECOVERY BULK_LOGGED
-* Adatbetöltési elősegítésére, nyissa meg a tömeges importálási műveletek párhuzamosan. A tömeges meggyorsítása tippek a big Data típusú adatok importálása az SQL Server-adatbázisok, lásd: [1 TB-os betölteni a kevesebb mint 1 óra](http://blogs.msdn.com/b/sqlcat/archive/2006/05/19/602142.aspx).
+* tooexpedite Adatbetöltési, indítsa el a hello tömeges importálási műveletek párhuzamosan. A tömeges meggyorsítása tippek a big Data típusú adatok importálása az SQL Server-adatbázisok, lásd: [1 TB-os betölteni a kevesebb mint 1 óra](http://blogs.msdn.com/b/sqlcat/archive/2006/05/19/602142.aspx).
 
-A következő PowerShell-parancsfájl párhuzamos adatok betöltése a BCP segítségével példája.
+hello következő PowerShell-parancsfájl példája párhuzamos adatok betöltése a BCP segítségével.
 
     # Set database name, input data directory, and output log directory
     # This example loads comma-separated input data files
-    # The example assumes the partitioned data files are named as <base_file_name>_<partition_number>.csv
-    # Assumes the input data files include a header line. Loading starts at line number 2.
+    # hello example assumes hello partitioned data files are named as <base_file_name>_<partition_number>.csv
+    # Assumes hello input data files include a header line. Loading starts at line number 2.
 
     $dbname = "<database_name>"
     $indir  = "<path_to_data_files>"
@@ -111,15 +111,15 @@ A következő PowerShell-parancsfájl párhuzamos adatok betöltése a BCP segí
     # Select authentication mode
     $sqlauth = 0
 
-    # For SQL authentication, set the server and user credentials
+    # For SQL authentication, set hello server and user credentials
     $sqlusr = "<user@server>"
     $server = "<tcp:serverdns>"
     $pass   = "<password>"
 
-    # Set number of partitions per table - Should match the number of input data files per table
+    # Set number of partitions per table - Should match hello number of input data files per table
     $numofparts = <number_of_partitions>
 
-    # Set table name to be loaded, basename of input data files, input format file, and number of partitions
+    # Set table name toobe loaded, basename of input data files, input format file, and number of partitions
     $tbname = "<table_name>"
     $basename = "<base_input_data_filename_no_extension>"
     $fmtfile = "<full_path_to_format_file>"
@@ -161,9 +161,9 @@ A következő PowerShell-parancsfájl párhuzamos adatok betöltése a BCP segí
     date
 
 
-## <a name="create-indexes-to-optimize-joins-and-query-performance"></a>Illesztések és a lekérdezési teljesítmény optimalizálása érdekében indexek létrehozása
-* Ha több tábla rendszer kinyeri az adatokat a modellezési, indexek létrehozása az illesztés kulcsok illesztési teljesítményének javítása.
-* [Indexek létrehozása](https://technet.microsoft.com/library/ms188783.aspx) (fürtözött vagy nem fürtözött) célcsoport-kezelési minden partíció esetében azonos fájlcsoport a pl.:
+## <a name="create-indexes-toooptimize-joins-and-query-performance"></a>Hozzon létre indexeket toooptimize illesztések és a lekérdezési teljesítmény
+* Ha több tábla rendszer kinyeri az adatokat a modellezési, indexek létrehozása hello illesztési kulcsok tooimprove hello illesztési teljesítmény.
+* [Indexek létrehozása](https://technet.microsoft.com/library/ms188783.aspx) (fürtözött vagy nem fürtözött) célcsoport-kezelési hello minden partíció esetében azonos fájlcsoport pl.:
   
         CREATE CLUSTERED INDEX <table_idx> ON <table_name>( [include index columns here] )
         ON <TablePScheme>(<partition)field>)
@@ -173,10 +173,10 @@ A következő PowerShell-parancsfájl párhuzamos adatok betöltése a BCP segí
         ON <TablePScheme>(<partition)field>)
   
   > [!NOTE]
-  > Előfordulhat, hogy az adatok importálása tömeges előtt indexek létrehozása mellett dönt. Az index létrehozása előtt tömeges importálását lelassítja az adatok betöltésekor.
+  > Úgy is dönthet, toocreate hello indexek tömeges hello adatok importálása előtt. Az index létrehozása előtt tömeges importálását lelassulnak hello adatok betöltésekor.
   > 
   > 
 
 ## <a name="advanced-analytics-process-and-technology-in-action-example"></a>Speciális elemzésekre folyamat és a technológia művelet példa
-A Cortana Analytics folyamat használata a nyilvános dataset végpont forgatókönyv példáért lásd: [Cortana Analytics folyamat működés közben: SQL Server használatával](machine-learning-data-science-process-sql-walkthrough.md).
+Cortana Analytics folyamat hello használata a nyilvános dataset végpont forgatókönyv példáért lásd: [Cortana Analytics folyamat működés közben: SQL Server használatával](machine-learning-data-science-process-sql-walkthrough.md).
 

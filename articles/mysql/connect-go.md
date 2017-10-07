@@ -1,6 +1,6 @@
 ---
-title: "Csatlakozás a MySQL-hez készült Azure-adatbázishoz a Go használatával | Microsoft Docs"
-description: "Ez a rövid útmutató több Go-mintakódot biztosít, amelyekkel csatlakozhat a MySQL-hez készült Azure-adatbázishoz, illetve adatokat kérdezhet le róla."
+title: "Segítségével nyissa meg a MySQL-adatbázis tooAzure kapcsolati |} Microsoft Docs"
+description: "A gyors üzembe helyezés több Ugrás mintakódok tooconnect használhat és MySQL az Azure-adatbázis adatait lekérdezése biztosít."
 services: mysql
 author: jasonwhowell
 ms.author: jasonh
@@ -11,32 +11,32 @@ ms.custom: mvc
 ms.devlang: go
 ms.topic: hero-article
 ms.date: 07/18/2017
-ms.openlocfilehash: 42a6b1c37de08971674c8b38f1e13bfd657f8b03
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: e8067b807ee729e04850c5325f476806bcd54983
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-mysql-use-go-language-to-connect-and-query-data"></a>MySQL-hez készült Azure-adatbázis: Csatlakozás és adatok lekérdezése a Go használatával
-Ez a rövid útmutató azt ismerteti, hogyan lehet csatlakozni a MySQL-hez készült Azure-adatbázishoz [Go](https://golang.org/) nyelven írt kóddal, Windows, Ubuntu Linux és Apple macOS platformról. Azt is bemutatja, hogyan lehet SQL-utasítások használatával adatokat lekérdezni, beszúrni, frissíteni és törölni az adatbázisban. A cikk feltételezi, hogy Ön ismeri a Go használatával történő fejlesztést, de még járatlan a MySQL-hez készült Azure-adatbázis használatában.
+# <a name="azure-database-for-mysql-use-go-language-tooconnect-and-query-data"></a>MySQL az Azure-adatbázishoz: nyelvi tooconnect és lekérdezési adatok használata nyissa meg
+A gyors üzembe helyezés bemutatja, hogyan tooconnect tooan Azure adatbázis MySQL használatára vonatkozó code nyelven írt hello [lépjen](https://golang.org/) Windows, az Ubuntu Linux és az Apple macOS platformok nyelvet. Azt illusztrálja, hogyan toouse SQL utasítás tooquery beszúrási, frissítési és törlési hello adatbázis adatait. Ez a cikk feltételezi, hogy jártas használatával nyissa meg, azonban, hogy új tooworking MySQL az Azure-adatbázissal.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ebben a rövid útmutatóban a következő útmutatók valamelyikében létrehozott erőforrásokat használunk kiindulási pontként:
+A gyors üzembe helyezés kiindulási pontként ezek az útmutatók valamelyikével létrehozott hello erőforrást használ:
 - [Azure-adatbázis létrehozása MySQL-kiszolgálóhoz az Azure Portal használatával](./quickstart-create-mysql-server-database-using-azure-portal.md)
 - [Azure-adatbázis létrehozása MySQL-kiszolgálóhoz az Azure CLI használatával](./quickstart-create-mysql-server-database-using-azure-cli.md)
 
 ## <a name="install-go-and-mysql-connector"></a>A Go és a MySQL-összekötő telepítése
-Telepítse a [Go](https://golang.org/doc/install)-t és a [go-sql-driver for MySQL](https://github.com/go-sql-driver/mysql#installation) illesztőt a saját számítógépére. Kövesse az egyes platformoknak megfelelő lépéseket:
+Telepítse [lépjen](https://golang.org/doc/install) és hello [Ugrás-sql-illesztőprogramját MySQL](https://github.com/go-sql-driver/mysql#installation) a saját számítógépén. Attól függően, hogy a platform a hello lépésekkel:
 
 ### <a name="windows"></a>Windows
-1. [Töltse le](https://golang.org/dl/) és telepítse a Microsoft Windowshoz készült Go-t a [telepítési utasítások](https://golang.org/doc/install) szerint.
-2. Nyissa meg a parancssort a Start menüből.
+1. [Töltse le](https://golang.org/dl/) és nyissa meg a Microsoft Windows toohello szerint telepítse [telepítési utasításokat](https://golang.org/doc/install).
+2. Indítsa el a parancssor hello hello start menüből.
 3. Hozzon létre egy mappát a projekt számára, például `mkdir  %USERPROFILE%\go\src\mysqlgo`.
-4. Nyissa meg a projektmappát (például `cd %USERPROFILE%\go\src\mysqlgo`).
-5. Úgy állítsa be a GOPATH környezeti változóját, hogy a forráskód könyvtárára mutasson. `set GOPATH=%USERPROFILE%\go`.
-6. Telepítse a [go-sql-driver for mysql](https://github.com/go-sql-driver/mysql#installation) illesztőt a `go get github.com/go-sql-driver/mysql` parancs futtatásával.
+4. Például módosítsa a könyvtárat hello projekt mappába `cd %USERPROFILE%\go\src\mysqlgo`.
+5. Állítsa be a hello környezeti változó GOPATH kód toopoint toohello forráskönyvtár keresése. `set GOPATH=%USERPROFILE%\go`.
+6. Telepítse a hello [nyissa meg az sql-illesztőprogram a mysql](https://github.com/go-sql-driver/mysql#installation) hello futtatásával `go get github.com/go-sql-driver/mysql` parancs.
 
-   Összefoglalva, telepítse a Go-t, majd futtassa ezeket a parancsokat a parancssorban:
+   Összefoglalva nyissa meg telepítette, akkor a hello parancssorban futtassa az alábbi parancsokat:
    ```cmd
    mkdir  %USERPROFILE%\go\src\mysqlgo
    cd %USERPROFILE%\go\src\mysqlgo
@@ -45,12 +45,12 @@ Telepítse a [Go](https://golang.org/doc/install)-t és a [go-sql-driver for MyS
    ```
 
 ### <a name="linux-ubuntu"></a>Linux (Ubuntu)
-1. Indítsa el a Bash felületet. 
+1. Indítsa el a hello Bash rendszerhéjat. 
 2. Telepítse a Go-t a `sudo apt-get install golang-go` parancs futtatásával.
 3. Hozzon létre egy mappát a projekt számára a kezdőkönyvtárban (például `mkdir -p ~/go/src/mysqlgo/`).
-4. Nyissa meg a projektmappát (például `cd ~/go/src/mysqlgo/`).
-5. Úgy állítsa be a GOPATH környezeti változót, hogy egy érvényes forráskönyvtárra mutasson, például az aktuális kezdőkönyvtár Go mappájára. A bash felületen futtassa az `export GOPATH=~/go` parancsot, amellyel a Go könyvtárát GOPATH útvonalként adhatja meg az aktuális felületi munkamenetre.
-6. Telepítse a [go-sql-driver for mysql](https://github.com/go-sql-driver/mysql#installation) illesztőt a `go get github.com/go-sql-driver/mysql` parancs futtatásával.
+4. Például módosítsa a könyvtárat hello mappába `cd ~/go/src/mysqlgo/`.
+5. Set hello GOPATH környezeti változó toopoint tooa érvényes forrás címtár, például az aktuális otthoni könyvtár mappában nyissa meg. Hello rendszerhéjakba, futni `export GOPATH=~/go` tooadd hello GOPATH hello hello aktuális rendszerhéj munkamenetet, nyissa meg könyvtár.
+6. Telepítse a hello [nyissa meg az sql-illesztőprogram a mysql](https://github.com/go-sql-driver/mysql#installation) hello futtatásával `go get github.com/go-sql-driver/mysql` parancs.
 
    Összefoglalva, futtassa ezeket a bash-parancsokat:
    ```bash
@@ -62,12 +62,12 @@ Telepítse a [Go](https://golang.org/doc/install)-t és a [go-sql-driver for MyS
    ```
 
 ### <a name="apple-macos"></a>Apple macOS
-1. Töltse le és telepítse a Go-t a platformjának megfelelő [telepítési utasítások](https://golang.org/doc/install) szerint. 
-2. Indítsa el a Bash felületet. 
+1. Töltse le és telepítse a Go szerint toohello [telepítési utasításokat](https://golang.org/doc/install) a platformhoz megfelelő. 
+2. Indítsa el a hello Bash rendszerhéjat. 
 3. Hozzon létre egy mappát a projekt számára a kezdőkönyvtárban (például `mkdir -p ~/go/src/mysqlgo/`).
-4. Nyissa meg a projektmappát (például `cd ~/go/src/mysqlgo/`).
-5. Úgy állítsa be a GOPATH környezeti változót, hogy egy érvényes forráskönyvtárra mutasson, például az aktuális kezdőkönyvtár Go mappájára. A bash felületen futtassa az `export GOPATH=~/go` parancsot, amellyel a Go könyvtárát GOPATH útvonalként adhatja meg az aktuális felületi munkamenetre.
-6. Telepítse a [go-sql-driver for mysql](https://github.com/go-sql-driver/mysql#installation) illesztőt a `go get github.com/go-sql-driver/mysql` parancs futtatásával.
+4. Például módosítsa a könyvtárat hello mappába `cd ~/go/src/mysqlgo/`.
+5. Set hello GOPATH környezeti változó toopoint tooa érvényes forrás címtár, például az aktuális otthoni könyvtár mappában nyissa meg. Hello rendszerhéjakba, futni `export GOPATH=~/go` tooadd hello GOPATH hello hello aktuális rendszerhéj munkamenetet, nyissa meg könyvtár.
+6. Telepítse a hello [nyissa meg az sql-illesztőprogram a mysql](https://github.com/go-sql-driver/mysql#installation) hello futtatásával `go get github.com/go-sql-driver/mysql` parancs.
 
    Összefoglalva, telepítse a Go-t, majd futtassa ezeket a bash-parancsokat:
    ```bash
@@ -78,32 +78,32 @@ Telepítse a [Go](https://golang.org/doc/install)-t és a [go-sql-driver for MyS
    ```
 
 ## <a name="get-connection-information"></a>Kapcsolatadatok lekérése
-Kérje le a MySQL-hez készült Azure Database-hez való csatlakozáshoz szükséges kapcsolatadatokat. Ehhez szükség lesz a teljes kiszolgálónévre és bejelentkezési hitelesítő adatokra.
+MySQL hello kapcsolat szükséges információkat tooconnect toohello Azure adatbázis beolvasása. Teljesen minősített kiszolgáló nevét és a bejelentkezési hitelesítő adatokat hello van szüksége.
 
-1. Jelentkezzen be az [Azure portálra](https://portal.azure.com/).
-2. Az Azure Portal bal oldali menüjében kattintson az **Összes erőforrás** lehetőségre, és keressen rá a létrehozott kiszolgálóra (például: **myserver4demo**).
-3. Kattintson a **myserver4demo** kiszolgálónévre.
-4. Válassza a kiszolgáló **tulajdonságlapját**. Jegyezze fel a **Kiszolgálónevet** és a **Kiszolgáló-rendszergazdai bejelentkezési nevet**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
+2. A hello Azure-portálon a bal oldali menüből, kattintson az **összes erőforrás** , és keresse meg rendelkezik gyűrött, például a hello kiszolgáló **myserver4demo**.
+3. Hello kiszolgáló nevére kattint **myserver4demo**.
+4. Jelölje be hello server **tulajdonságok** lap. Jegyezze fel a hello **kiszolgálónév** és **kiszolgálói rendszergazda bejelentkezési név**.
  ![MySQL-hez készült Azure-adatbázis – Kiszolgáló-rendszergazdai bejelentkezés](./media/connect-go/1_server-properties-name-login.png)
-5. Amennyiben elfelejtette a kiszolgálója bejelentkezési adatait, lépjen az **Áttekintés** oldalra, ahol kikeresheti a kiszolgáló-rendszergazda bejelentkezési nevét, valamint szükség esetén új jelszót kérhet.
+5. Ha elfelejti a kiszolgálói bejelentkezési adatok, keresse meg a toohello **áttekintése** tooview hello kiszolgálói rendszergazda bejelentkezési név lapon, és ha szükséges, állítsa vissza a hello jelszót.
    
 
 ## <a name="build-and-run-go-code"></a>Go kód felépítése és futtatása 
-1. Golang-kód írásához használhat egy egyszerű szövegszerkesztőt, ilyen például Microsoft Windows rendszeren a Jegyzettömb, Ubuntu rendszeren a [vi](http://manpages.ubuntu.com/manpages/xenial/man1/nvi.1.html#contenttoc5) vagy a [Nano](https://www.nano-editor.org/), macOS rendszeren pedig a TextEdit. Ha a funkciógazdagabb interaktív fejlesztési környezeteket (IDE-ket) részesít előnyben, próbálja ki a Jetbrains [Gogland](https://www.jetbrains.com/go/) a Microsoft [Visual Studio Code](https://code.visualstudio.com/) vagy az [Atom](https://atom.io/) eszközt.
-2. Az alábbi szakaszokban található Go-kódokat illessze be szövegfájlokba, és mentse a fájlokat a projektmappába \*.go kiterjesztéssel, például `%USERPROFILE%\go\src\mysqlgo\createtable.go` (Windows) vagy `~/go/src/mysqlgo/createtable.go` (Linux) elérési úton.
-3. Keresse meg a `HOST`, a `DATABASE`, a `USER` és a `PASSWORD` állandót a kódban, és a példaértékeket cserélje le a saját értékeire. 
-4. Nyissa meg a parancssort vagy a bash rendszerhéjat. Lépjen a projektmappára. Windows rendszer például a következővel: `cd %USERPROFILE%\go\src\mysqlgo\`. Linuxon: `cd ~/go/src/mysqlgo/`.  A fentiekben említettek közül egyes IDE-szerkesztők hibakeresési és futásidejű képességeket biztosítanak anélkül, hogy rendszerhéjparancsokra lenne szükség.
-5. Futtassa a kódot a `go run createtable.go` parancs beírásával az alkalmazás fordításához és futtatásához. 
-6. Vagy a kód natív alkalmazásba való beépítéséhez írja be a `go build createtable.go` parancsot, majd indítsa el a `createtable.exe` fájlt az alkalmazás futtatásához.
+1. toowrite Golang kódot, használhatja egy egyszerű szövegszerkesztőben, például a Jegyzettömbben a Microsoft Windows [vi](http://manpages.ubuntu.com/manpages/xenial/man1/nvi.1.html#contenttoc5) vagy [Nano](https://www.nano-editor.org/) Ubuntu, vagy a macOS TextEdit. Ha a funkciógazdagabb interaktív fejlesztési környezeteket (IDE-ket) részesít előnyben, próbálja ki a Jetbrains [Gogland](https://www.jetbrains.com/go/) a Microsoft [Visual Studio Code](https://code.visualstudio.com/) vagy az [Atom](https://atom.io/) eszközt.
+2. Illessze be a hello hello szakaszokat kódot nyissa meg a szövegfájlok, és mentse a projekt mappába kiterjesztésű \*.go, például a Windows útvonalhoz `%USERPROFILE%\go\src\mysqlgo\createtable.go` vagy Linux elérési `~/go/src/mysqlgo/createtable.go`.
+3. Keresse meg a hello `HOST`, `DATABASE`, `USER`, és `PASSWORD` konstansok hello kódot, és a név felülírandó hello példaértékeket a saját értékekkel. 
+4. Indítsa el a hello parancssort, vagy a bash rendszerhéjat. Lépjen a projektmappára. Windows rendszer például a következővel: `cd %USERPROFILE%\go\src\mysqlgo\`. Linuxon: `cd ~/go/src/mysqlgo/`.  Néhány hello IDE szerkesztők említett ajánlatot hibakeresési és futásidejű képességek anélkül, hogy a rendszerhéj-parancsok.
+5. A kódra hello hello parancs beírásával `go run createtable.go` toocompile hello alkalmazást, és futtassa azt. 
+6. Másik lehetőségként toobuild hello kód natív alkalmazásba `go build createtable.go`, majd indítsa el `createtable.exe` toorun hello alkalmazás.
 
 ## <a name="connect-create-table-and-insert-data"></a>Csatlakozás, táblák létrehozása és adatok beszúrása
-Az alábbi kód használatával csatlakozhat a kiszolgálóhoz, hozhat létre táblát, és töltheti be az adatokat egy **INSERT** SQL-utasítással. 
+Használja hello alábbi tooconnect toohello server code, hozzon létre egy táblát, és hello használatával végzett betölteni egy **BESZÚRÁSA** SQL-utasításban. 
 
-A kód három csomagot importál: az [sql package](https://golang.org/pkg/database/sql/) és a [go sql driver for mysql](https://github.com/go-sql-driver/mysql#installation) csomagot illesztőként a MySQL-hez készült Azure adatbázissal való kommunikációhoz, illetve az [fmt package](https://golang.org/pkg/fmt/) csomagot a nyomtatott bemenetekhez és kimenetekhez a parancssoron.
+hello kód importálja három csomagot: hello [sql csomag](https://golang.org/pkg/database/sql/), hello [mysql nyissa meg az sql-illesztőprogramját](https://github.com/go-sql-driver/mysql#installation) , egy illesztőprogram toocommunicate hello MySQL az Azure-adatbázis és hello [fmt csomag](https://golang.org/pkg/fmt/)nyomtatott bemeneti és kimeneti hello parancssorban.
 
-A kód meghívja az [sql.Open()](http://go-database-sql.org/accessing.html) metódust a MySQL-hez készült Azure-adatbázishoz való csatlakozáshoz, majd a [db.Ping()](https://golang.org/pkg/database/sql/#DB.Ping) metódussal ellenőrzi a kapcsolatot. A rendszer a folyamat során [adatbázis-leírót](https://golang.org/pkg/database/sql/#DB) használ, amely az adatbázis-kiszolgáló kapcsolatkészletét tárolja. A kód többször is meghívja az [Exec()](https://golang.org/pkg/database/sql/#DB.Exec) metódust, hogy különböző DDL-parancsokat futtasson. A kód a [Prepare()](http://go-database-sql.org/prepared.html) és az Exec() metódussal előkészített utasításokat is futtat különböző paraméterekkel három sor beszúrásához. A rendszer minden alkalommal egyéni checkError() metódust használ a hibák ellenőrzéséhez és a kilépéshez.
+hello kód metódus meghívja [sql. Open()](http://go-database-sql.org/accessing.html) tooconnect tooAzure MySQL és az ellenőrzések hello kapcsolat metódussal adatbázis [db. Ping()](https://golang.org/pkg/database/sql/#DB.Ping). A [adatbázis-leíró](https://golang.org/pkg/database/sql/#DB) használja a rendszer keresztül, hello kapcsolatkészlet hello adatbázis-kiszolgáló rendelkezik. hello kód hívások hello [Exec()](https://golang.org/pkg/database/sql/#DB.Exec) metódus többször toorun több DDL-parancsok. hello kódot is használ hello [Prepare()](http://go-database-sql.org/prepared.html) és Exec() toorun előkészített utasítás eltérő paraméterekkel rendelkező tooinsert három sort. Minden alkalommal, amikor egy egyéni checkError() módszer esetén használt toocheck hiba történt, és tooexit vészhelyzeti.
 
-Cserélje le a `host`, `database`, `user` és `password` állandókat a saját értékeire. 
+Cserélje le a hello `host`, `database`, `user`, és `password` állandók saját értékekkel. 
 
 ```Go
 package main
@@ -140,7 +140,7 @@ func main() {
 
     err = db.Ping()
     checkError(err)
-    fmt.Println("Successfully created connection to database.")
+    fmt.Println("Successfully created connection toodatabase.")
 
     // Drop previous table of same name if one exists.
     _, err = db.Exec("DROP TABLE IF EXISTS inventory;")
@@ -174,13 +174,13 @@ func main() {
 ```
 
 ## <a name="read-data"></a>Adatok olvasása
-A következő kóddal csatlakozhat, és beolvashatja az adatokat a **SELECT** SQL-utasítással. 
+Használjon hello alábbi code tooconnect, és hello adatok segítségével olvassa a **kiválasztása** SQL-utasításban. 
 
-A kód három csomagot importál: az [sql package](https://golang.org/pkg/database/sql/) és a [go sql driver for mysql](https://github.com/go-sql-driver/mysql#installation) csomagot illesztőként a MySQL-hez készült Azure adatbázissal való kommunikációhoz, illetve az [fmt package](https://golang.org/pkg/fmt/) csomagot a nyomtatott bemenetekhez és kimenetekhez a parancssoron.
+hello kód importálja három csomagot: hello [sql csomag](https://golang.org/pkg/database/sql/), hello [mysql nyissa meg az sql-illesztőprogramját](https://github.com/go-sql-driver/mysql#installation) , egy illesztőprogram toocommunicate hello MySQL az Azure-adatbázis és hello [fmt csomag](https://golang.org/pkg/fmt/)nyomtatott bemeneti és kimeneti hello parancssorban.
 
-A kód meghívja az [sql.Open()](http://go-database-sql.org/accessing.html) metódust a MySQL-hez készült Azure-adatbázishoz való csatlakozáshoz, majd a [db.Ping()](https://golang.org/pkg/database/sql/#DB.Ping) metódussal ellenőrzi a kapcsolatot. A rendszer a folyamat során [adatbázis-leírót](https://golang.org/pkg/database/sql/#DB) használ, amely az adatbázis-kiszolgáló kapcsolatkészletét tárolja. A kód meghívja a [Query()](https://golang.org/pkg/database/sql/#DB.Query) metódust a kiválasztott parancs futtatásához. Ezután a [Next()](https://golang.org/pkg/database/sql/#Rows.Next) metódust futtatja az eredmények közötti iterációhoz, a [Scan()](https://golang.org/pkg/database/sql/#Rows.Scan) használatával elemzi az oszlopértékeket, és menti az értéket a változókba. A rendszer minden alkalommal egyéni checkError() metódust használ a hibák ellenőrzéséhez és a kilépéshez.
+hello kód metódus meghívja [sql. Open()](http://go-database-sql.org/accessing.html) tooconnect tooAzure MySQL és az ellenőrzések hello kapcsolat metódussal adatbázis [db. Ping()](https://golang.org/pkg/database/sql/#DB.Ping). A [adatbázis-leíró](https://golang.org/pkg/database/sql/#DB) használja a rendszer keresztül, hello kapcsolatkészlet hello adatbázis-kiszolgáló rendelkezik. hello kód hívások hello [Query()](https://golang.org/pkg/database/sql/#DB.Query) metódus toorun hello kijelölési parancs. Majd futása [Next()](https://golang.org/pkg/database/sql/#Rows.Next) keresztül hello eredménykészlet tooiterate és [Scan()](https://golang.org/pkg/database/sql/#Rows.Scan) tooparse hello oszlop értékek, a változók hello érték mentése. Minden alkalommal, amikor egy egyéni checkError() módszer esetén használt toocheck hiba történt, és tooexit vészhelyzeti.
 
-Cserélje le a `host`, `database`, `user` és `password` állandókat a saját értékeire. 
+Cserélje le a hello `host`, `database`, `user`, és `password` állandók saját értékekkel. 
 
 ```Go
 package main
@@ -217,7 +217,7 @@ func main() {
 
     err = db.Ping()
     checkError(err)
-    fmt.Println("Successfully created connection to database.")
+    fmt.Println("Successfully created connection toodatabase.")
 
     // Variables for printing column data when scanned.
     var (
@@ -226,7 +226,7 @@ func main() {
         quantity int
     )
 
-    // Read some data from the table.
+    // Read some data from hello table.
     rows, err := db.Query("SELECT id, name, quantity from inventory;")
     checkError(err)
     defer rows.Close()
@@ -243,13 +243,13 @@ func main() {
 ```
 
 ## <a name="update-data"></a>Adatok frissítése
-A következő kód használatával csatlakozhat, és frissítheti az adatokat az **UPDATE** SQL-utasítással. 
+Használjon hello következő code tooconnect, és frissítse a hello adatok segítségével egy **frissítése** SQL-utasításban. 
 
-A kód három csomagot importál: az [sql package](https://golang.org/pkg/database/sql/) és a [go sql driver for mysql](https://github.com/go-sql-driver/mysql#installation) csomagot illesztőként a MySQL-hez készült Azure adatbázissal való kommunikációhoz, illetve az [fmt package](https://golang.org/pkg/fmt/) csomagot a nyomtatott bemenetekhez és kimenetekhez a parancssoron.
+hello kód importálja három csomagot: hello [sql csomag](https://golang.org/pkg/database/sql/), hello [mysql nyissa meg az sql-illesztőprogramját](https://github.com/go-sql-driver/mysql#installation) , egy illesztőprogram toocommunicate hello MySQL az Azure-adatbázis és hello [fmt csomag](https://golang.org/pkg/fmt/)nyomtatott bemeneti és kimeneti hello parancssorban.
 
-A kód meghívja az [sql.Open()](http://go-database-sql.org/accessing.html) metódust a MySQL-hez készült Azure-adatbázishoz való csatlakozáshoz, majd a [db.Ping()](https://golang.org/pkg/database/sql/#DB.Ping) metódussal ellenőrzi a kapcsolatot. A rendszer a folyamat során [adatbázis-leírót](https://golang.org/pkg/database/sql/#DB) használ, amely az adatbázis-kiszolgáló kapcsolatkészletét tárolja. A kód meghívja az [Exec()](https://golang.org/pkg/database/sql/#DB.Exec) metódust a frissítési parancs futtatásához. A rendszer minden alkalommal egyéni checkError() metódust használ a hibák ellenőrzéséhez és a kilépéshez.
+hello kód metódus meghívja [sql. Open()](http://go-database-sql.org/accessing.html) tooconnect tooAzure MySQL és az ellenőrzések hello kapcsolat metódussal adatbázis [db. Ping()](https://golang.org/pkg/database/sql/#DB.Ping). A [adatbázis-leíró](https://golang.org/pkg/database/sql/#DB) használja a rendszer keresztül, hello kapcsolatkészlet hello adatbázis-kiszolgáló rendelkezik. hello kód hívások hello [Exec()](https://golang.org/pkg/database/sql/#DB.Exec) metódus toorun hello frissítés parancsot. Minden alkalommal, amikor egy egyéni checkError() módszer esetén használt toocheck hiba történt, és tooexit vészhelyzeti.
 
-Cserélje le a `host`, `database`, `user` és `password` állandókat a saját értékeire. 
+Cserélje le a hello `host`, `database`, `user`, és `password` állandók saját értékekkel. 
 
 ```Go
 package main
@@ -286,7 +286,7 @@ func main() {
 
     err = db.Ping()
     checkError(err)
-    fmt.Println("Successfully created connection to database.")
+    fmt.Println("Successfully created connection toodatabase.")
 
     // Modify some data in table.
     rows, err := db.Exec("UPDATE inventory SET quantity = ? WHERE name = ?", 200, "banana")
@@ -298,13 +298,13 @@ func main() {
 ```
 
 ## <a name="delete-data"></a>Adat törlése
-A következő kód használatával csatlakozhat, és eltávolíthatja az adatokat a **DELETE** SQL-utasítással. 
+Használjon hello alábbi code tooconnect, és távolítsa el az adatokat egy **törlése** SQL-utasításban. 
 
-A kód három csomagot importál: az [sql package](https://golang.org/pkg/database/sql/) és a [go sql driver for mysql](https://github.com/go-sql-driver/mysql#installation) csomagot illesztőként a MySQL-hez készült Azure adatbázissal való kommunikációhoz, illetve az [fmt package](https://golang.org/pkg/fmt/) csomagot a nyomtatott bemenetekhez és kimenetekhez a parancssoron.
+hello kód importálja három csomagot: hello [sql csomag](https://golang.org/pkg/database/sql/), hello [mysql nyissa meg az sql-illesztőprogramját](https://github.com/go-sql-driver/mysql#installation) , egy illesztőprogram toocommunicate hello MySQL az Azure-adatbázis és hello [fmt csomag](https://golang.org/pkg/fmt/)nyomtatott bemeneti és kimeneti hello parancssorban.
 
-A kód meghívja az [sql.Open()](http://go-database-sql.org/accessing.html) metódust a MySQL-hez készült Azure-adatbázishoz való csatlakozáshoz, majd a [db.Ping()](https://golang.org/pkg/database/sql/#DB.Ping) metódussal ellenőrzi a kapcsolatot. A rendszer a folyamat során [adatbázis-leírót](https://golang.org/pkg/database/sql/#DB) használ, amely az adatbázis-kiszolgáló kapcsolatkészletét tárolja. A kód meghívja az [Exec()](https://golang.org/pkg/database/sql/#DB.Exec) metódust a törlési parancs futtatásához. A rendszer minden alkalommal egyéni checkError() metódust használ a hibák ellenőrzéséhez és a kilépéshez.
+hello kód metódus meghívja [sql. Open()](http://go-database-sql.org/accessing.html) tooconnect tooAzure MySQL és az ellenőrzések hello kapcsolat metódussal adatbázis [db. Ping()](https://golang.org/pkg/database/sql/#DB.Ping). A [adatbázis-leíró](https://golang.org/pkg/database/sql/#DB) használja a rendszer keresztül, hello kapcsolatkészlet hello adatbázis-kiszolgáló rendelkezik. hello kód hívások hello [Exec()](https://golang.org/pkg/database/sql/#DB.Exec) metódus toorun hello törlése paranccsal. Minden alkalommal, amikor egy egyéni checkError() módszer esetén használt toocheck hiba történt, és tooexit vészhelyzeti.
 
-Cserélje le a `host`, `database`, `user` és `password` állandókat a saját értékeire. 
+Cserélje le a hello `host`, `database`, `user`, és `password` állandók saját értékekkel. 
 
 ```Go
 package main
@@ -340,7 +340,7 @@ func main() {
 
     err = db.Ping()
     checkError(err)
-    fmt.Println("Successfully created connection to database.")
+    fmt.Println("Successfully created connection toodatabase.")
 
     // Modify some data in table.
     rows, err := db.Exec("DELETE FROM inventory WHERE name = ?", "orange")

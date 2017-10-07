@@ -1,6 +1,6 @@
 ---
-title: "A Microsoft Azure-ban a személyes adatok védelme |} Microsoft Docs"
-description: "Első cikk a cikkek segítséget a személyes adatok védelme az Azure használatával"
+title: "aaaProtect személyes adatokat a Microsoft Azure |} Microsoft Docs"
+description: "Először a következő cikket: cikkek toohelp sorozata használhatja az Azure tooprotect személyes adatok"
 services: security
 documentationcenter: na
 author: Barclayn
@@ -15,21 +15,21 @@ ms.workload: na
 ms.date: 08/22/2017
 ms.author: barclayn
 ms.custom: 
-ms.openlocfilehash: dfb046374397c8a19672ce6b67741903fff6e178
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cbffd3872552cbd0f12539535898c41ecf7789e8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="protect-personal-data-in-microsoft-azure"></a>A Microsoft Azure-ban a személyes adatok védelme
 
-Ez a cikk be, amelyek segítenek cikkek személyes adatok védelme az Azure biztonsági technológiák és szolgáltatások segítségével. Ez az a kulcsfontosságú követelmény az számos vállalati és iparági megfelelési és irányítási kezdeményezések. A forgatókönyv probléma utasítás és a vállalati célok ide tartoznak.
+Ez a cikk bemutatja a cikkek, amelyek segítenek az Azure biztonsági technológiák és szolgáltatások tooprotect személyes adatok felhasználásával. Ez az a kulcsfontosságú követelmény az számos vállalati és iparági megfelelési és irányítási kezdeményezések. hello esetben probléma utasítás és a vállalati célok ide tartoznak.
 
 ## <a name="scenario-and-problem-statement"></a>Forgatókönyv és probléma fényében
 
-Egy nagy körutazás cég, az Amerikai Egyesült Államokban telephelyének bővíti a műveleteket a mediterrán, Adriai, és Balti tengerek, valamint a Brit-szigetekre útvonalak biztosítani. Támogatás ezeket, több kisebb körutazás sorok Olaszország, Németországban, Dánia és az Egyesült szerzett
+A nagy körutazás vállalati telephelyének hello az Amerikai Egyesült Államokban, a műveletek toooffer útvonalak hello mediterrán, Adriai, és Balti tengerek, valamint hello Brit-szigetekre növekszik. toosupport e erőfeszítéseket szerzett több kisebb körutazás sorok Olaszország, német, Dánia és hello brit
 
-A vállalat a Microsoft Azure használ a felhőben tárolt vállalati adatokat. Ide tartozhat alkalmazott és/vagy ügyféladatok, mint:
+hello vállalati hello felhő Microsoft Azure toostore vállalati adatait használja. Ide tartozhat alkalmazott és/vagy ügyféladatok, mint:
 
 - címek
 - telefonszámok
@@ -37,23 +37,23 @@ A vállalat a Microsoft Azure használ a felhőben tárolt vállalati adatokat. 
 - orvosi adatok
 - Hitelkártya-adatokhoz
 
-A vállalati adatok azokat, hogy szükség lenne rá részlegek számára elérhető tétele közben kell védeni az alkalmazottak és a felhasználói adatok védelme. (például a bérszámfejtési és foglalások részlegek)
+hello vállalati kell védelmében hello az alkalmazottak és a felhasználói adatok szükség lenne rá adatok elérhető toothose osztályai tétele közben. (például a bérszámfejtési és foglalások részlegek)
 
 ## <a name="company-goals"></a>Vállalati célok 
 
 - Adatforrások, amelyek tartalmazzák a személyes adatok titkosítását, ha a felhőben található.
 
-- Az átvitel során titkosítva van a személyes adatok egyik helyről egy másikra. Ez érvényét veszti, ha az adatok áramlanak a virtuális hálózaton vagy az interneten keresztül a vállalati adatközpontban és az Azure felhőalapú között.
+- Egy hely tooanother a személyes adatok az átvitel során titkosítva van. Ez érvényét veszti, ha hello adatok áramlanak hello virtuális hálózaton vagy hello interneten keresztül hello vállalati adatközpontban és a hello Azure-felhő között.
 
 - Személyes adatok sértetlenségét és bizalmasságát védik a jogosulatlan hozzáférés erős Identitáskezelés és hozzáférés-vezérlési technológiák.
 
 - Személyes adatok védve van az adatok biztonsági szabályok megsértésére felügyelet biztonsági réseket és a fenyegetések kitettség.
 
-- Biztonsági állapotát az Azure-szolgáltatásokat, amely tárolja, és a személyes adatok megfelelőségét ellenőrizni kell, hogy azonosítsa a finomhangolási lehetőségeket, amelyekkel jobban megvédheti a személyes adatok.
+- hello Azure-szolgáltatásokat, amely tárolja, és a személyes adatokat biztonsági állapotának értékelik tooidentify lehetőségek toobetter személyes adatok védelme.
 
 ## <a name="data-protection-guidance"></a>Data protection útmutató
 
-A következő cikkek műszaki útmutató útmutatást, amelyek segítségével a fent felsorolt személyes adatok védelem céljainak eléréséhez tartalmaznak:
+a következő cikkek hello műszaki útmutató-tooguidance, amely segít a fent felsorolt hello személyes adatok védelem céljainak eléréséhez tartalmazza:
 
 - [Az Azure titkosítási technológiák](protect-personal-data-at-rest.md)
 

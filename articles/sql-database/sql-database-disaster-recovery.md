@@ -1,6 +1,6 @@
 ---
-title: "SQL-adatbázis vészhelyreállítás |} Microsoft Docs"
-description: "Megtudhatja, hogyan regionális adatközpontban szolgáltatáskimaradás vagy az Azure SQL Database aktív georeplikáció, georedundáns helyreállítás képességek sikertelen egy adatbázis helyreállítása."
+title: "Adatbázis vész-helyreállítási aaaSQL |} Microsoft Docs"
+description: "Ismerje meg, hogyan toorecover regionális adatközpontban szolgáltatáskimaradás vagy hiba az adatbázis hello Azure SQL Database aktív georeplikáció és georedundáns helyreállítás képességeit."
 services: sql-database
 documentationcenter: 
 author: anosov1960
@@ -15,88 +15,88 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/14/2017
 ms.author: sashan
-ms.openlocfilehash: e33f69bf04b32a31aae3c311c41aa44e4da5016a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bae08485863067748107ec4808e52d8e88e2de0d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="restore-an-azure-sql-database-or-failover-to-a-secondary"></a>Egy Azure SQL Database vagy feladatátvételi visszaállításához a másodlagos
-Az Azure SQL-adatbázis helyreállításához a kimaradás a következő szolgáltatásokat biztosítja:
+# <a name="restore-an-azure-sql-database-or-failover-tooa-secondary"></a>Visszaállítás egy másodlagos Azure SQL Database vagy feladatátvételi tooa
+Az Azure SQL-adatbázis a következő lehetőségeket biztosít a kimaradás helyreállítása hello kínálja:
 
 * [Aktív georeplikáció](sql-database-geo-replication-overview.md)
 * [Georedundáns helyreállítás](sql-database-recovery-using-backups.md#point-in-time-restore)
 
-Üzleti folytonossági forgatókönyvek és a szolgáltatások, ezek a forgatókönyvek támogatása, lásd: [az üzletmenet folytonossága](sql-database-business-continuity.md).
+toolearn üzleti folytonossági forgatókönyvek és ezek a forgatókönyvek támogatása hello szolgáltatásokkal kapcsolatban lásd: [az üzletmenet folytonossága](sql-database-business-continuity.md).
 
-### <a name="prepare-for-the-event-of-an-outage"></a>Az esemény a nem tervezett kimaradás előkészítése
-A sikeres a helyreállítás egy másik adatterülethez aktív georeplikáció vagy georedundáns biztonsági mentések használatával, elő kell készíteni egy kiszolgáló egy másik adatközpontban szolgáltatáskimaradás új elsődleges kiszolgálóként való amennyiben szükséges, valamint jól meghatározott lépései dokumentált, és tesztelt, zökkenőmentes helyreállítási merülhetnek fel. Előkészítő lépések a következők:
+### <a name="prepare-for-hello-event-of-an-outage"></a>A nem tervezett kimaradás hello esemény előkészítése
+A sikeres a helyreállítás tooanother adatterület aktív georeplikáció vagy georedundáns biztonsági mentések van szüksége egy kiszolgáló egy másik adatközponti szolgáltatáskimaradás toobecome hello új elsődleges kiszolgáló tooprepare kell hello kell merülnek fel, valamint jól meghatározott lépései dokumentált és tesztelt tooensure zökkenőmentes helyreállítást. Előkészítő lépések a következők:
 
-* A logikai kiszolgáló egy másik régióban legyen, az új elsődleges kiszolgáló azonosítására szolgál. Az aktív georeplikáció ez lesz, és lehet, hogy mindegyik másodlagos kiszolgáló legalább egy. Georedundáns helyreállítás, a rendszer általában lehet a kiszolgáló a [párosított régió](../best-practices-availability-paired-regions.md) a régió, ahol az adatbázis is található.
-* Azonosítsa, és opcionálisan, a kiszolgálószintű tűzfal szabályok definiálása a felhasználók az új elsődleges adatbázis eléréséhez szükséges.
-* Határozza meg, hogyan kívánja irányítsa át a felhasználókat az új elsődleges kiszolgáló, például kapcsolati karakterláncok módosításával, vagy ha megváltoztatja a DNS-bejegyzéseket.
-* Határozza meg, és másik lehetőségként létrehozhatja a bejelentkezések szerepel a fő adatbázist az új elsődleges kiszolgáló, és győződjön meg arról, a bejelentkezési adatok rendelkezik megfelelő engedélyekkel a master adatbázisban, ha van ilyen. További információkért lásd: [SQL-adatbázis biztonsági katasztrófa utáni helyreállítás után](sql-database-geo-replication-security-config.md)
-* A riasztási szabályok, amelyeket frissítenie kell az új elsődleges adatbázis hozzárendelése kell azonosítani.
-* Dokumentálja az aktuális elsődleges adatbázis naplózási konfiguráció
-* Hajtsa végre a [vész-helyreállítási részletezési](sql-database-disaster-recovery-drills.md). A georedundáns helyreállítás kimaradás szimulálása, törölheti vagy nevezze át a forrásadatbázis alkalmazás csatlakozási hiba okozza. Az aktív georeplikáció kimaradás szimulálása, letilthatja a webalkalmazáshoz vagy a virtuális gép csatlakozik az adatbázis vagy az adatbázis feladatátvétel alkalmazás csatlakozási hibákhoz vezethet.
+* Hello logikai kiszolgáló egy másik régióban toobecome hello új elsődleges kiszolgáló azonosítására szolgál. Az aktív georeplikáció ez lesz, és lehet, hogy mindegyik hello másodlagos kiszolgáló legalább egy. Georedundáns helyreállítás, a rendszer általában lehet egy kiszolgálóhoz az hello [párosított régió](../best-practices-availability-paired-regions.md) hello régió, ahol az adatbázis is található.
+* Azonosíthatja, és opcionálisan, hello kiszolgálószintű tűzfal szabályok meghatározásához szükséges a felhasználók tooaccess hello új elsődleges adatbázis.
+* Határozza meg, hogyan fog tooredirect felhasználók toohello új elsődleges kiszolgáló, például kapcsolati karakterláncok módosításával, vagy ha megváltoztatja a DNS-bejegyzéseket.
+* Azonosíthatja, és opcionálisan létrehozása, hello bejelentkezések kell hello főadatbázis hello új elsődleges kiszolgálón megtalálható, és győződjön meg arról a bejelentkezések megfelelő engedélyek hello főadatbázisban, ha van ilyen. További információkért lásd: [SQL-adatbázis biztonsági katasztrófa utáni helyreállítás után](sql-database-geo-replication-security-config.md)
+* A riasztási szabályok, amelyeket toobe frissített toomap toohello új elsődleges adatbázis kell azonosítania.
+* A dokumentum hello naplózási konfiguráció hello aktuális elsődleges adatbázis
+* Hajtsa végre a [vész-helyreállítási részletezési](sql-database-disaster-recovery-drills.md). egy georedundáns helyreállítás, a szolgáltatáskimaradás toosimulate törölheti vagy nevezze át a hello source adatbázis toocause alkalmazás csatlakozási hiba. az aktív georeplikáció kimaradás toosimulate, letilthatja hello webalkalmazás vagy virtuális gép csatlakoztatott toohello adatbázis vagy a feladatátvételi hello adatbázis toocause alkalmazás kapcsolathibái.
 
-## <a name="when-to-initiate-recovery"></a>Mikor érdemes elindítani a helyreállítást
-A helyreállítási művelet hatással van az alkalmazás. Az SQL kapcsolati karakterlánc vagy a DNS-sel átirányítása módosítani kell, és állandó adatvesztést eredményezhet. Ezért el kell végezni csak az utolsó tovább, mint az alkalmazás helyreállítási idő célkitűzése valószínűleg a szolgáltatáskimaradás esetén. Ha az alkalmazás központi telepítése éles az alkalmazás állapotának rendszeres figyelés végrehajtásához, és, hogy a helyreállítási indokolt-e az állítás használja a következő adatpontokhoz:
+## <a name="when-tooinitiate-recovery"></a>Amikor tooinitiate helyreállítási
+hello helyreállítási művelet hello alkalmazás hatással van. Hello SQL kapcsolati karakterlánc vagy a DNS-sel átirányítása módosítani kell, és állandó adatvesztést eredményezhet. Ezért el kell végezni csak a hosszabb, mint az alkalmazás helyreállítási idő célkitűzése valószínűleg toolast hello kimaradás esetén. Ha hello alkalmazás telepített tooproduction hello alkalmazás állapotának rendszeres figyelés végrehajtásához, és a következő adatokat, amelyek hello helyreállítási pontok tooassert indokolt hello használata:
 
-1. Állandó csatlakozási hiba az alkalmazás rétegtől az adatbázisba.
-2. Az Azure-portálon kapcsolatos incidens riasztás széleskörű hatással van a régióban jelenik meg.
-3. Csökkentett teljesítményű az Azure SQL adatbázis-kiszolgáló van megjelölve.
+1. Állandó csatlakozási hiba hello alkalmazás réteg toohello adatbázisból.
+2. hello Azure-portálon kapcsolatos incidens riasztás széleskörű hatással van a hello régióban jelenik meg.
+3. "csökkentett teljesítményű" Hello Azure SQL Database-kiszolgálóhoz van megjelölve.
 
-Attól függően, hogy az alkalmazás tűréshatár és a lehetséges üzleti felelősséget vegye figyelembe a következő helyreállítási beállítások.
+Attól függően, hogy az alkalmazás tolerancia toodowntime és a lehetséges üzleti felelősség vegye figyelembe a következő helyreállítási beállítások hello.
 
-Használja a [helyreállítható adatbázishibák beolvasása](https://msdn.microsoft.com/library/dn800985.aspx) (*LastAvailableBackupDate*) a legújabb georeplikált visszaállítási pontok eléréséhez.
+Használjon hello [helyreállítható adatbázishibák beolvasása](https://msdn.microsoft.com/library/dn800985.aspx) (*LastAvailableBackupDate*) tooget hello legújabb georeplikált visszaállítási pontot.
 
 ## <a name="wait-for-service-recovery"></a>Várjon, amíg a szolgáltatás helyreállítás
-Az Azure-csoportok munkát gondossággal állítsa vissza a szolgáltatás rendelkezésre állása gyorsan lehető, de attól függően, hogy a legfelső szintű oka az órák vagy napok vehet igénybe.  Ha az alkalmazás működését jelentős állásidőt egyszerűen megvárhatja a helyreállítás végrehajtásához. Ebben az esetben a letöltés intézkedés nem szükséges. A szolgáltatás jelenlegi állapota tekintheti meg a [Azure az állapotjelző irányítópulthoz](https://azure.microsoft.com/status/). A régió a helyreállítás után az alkalmazás rendelkezésre állásának visszaáll.
+hello Azure csapatok gondossággal toorestore szolgáltatás rendelkezésre állása, gyorsan lehető, de hello alapvető oka attól függően is igénybe vehet, órák vagy napok.  Ha az alkalmazás működését egyszerűen megvárhatja hello helyreállítási toocomplete jelentős állásidőt. Ebben az esetben a letöltés intézkedés nem szükséges. A szolgáltatás jelenlegi állapota hello tekintheti meg a [Azure az állapotjelző irányítópulthoz](https://azure.microsoft.com/status/). Hello régió hello helyreállítása után az alkalmazás rendelkezésre állásának visszaáll.
 
-## <a name="fail-over-to-geo-replicated-secondary-database"></a>Feladatok átadása a georeplikált másodlagos adatbázis
-Ha az alkalmazás állásidőt eredményezhet üzleti felelősség kell használni georeplikált adatbázisának vagy adatbázisainak az alkalmazásban. Ez lehetővé teszi az alkalmazás egy másik régióban egy esetleges leállás esetén rendelkezésre állási gyors visszaállításához. Megtudhatja, hogyan [georeplikáció konfigurálása](sql-database-geo-replication-portal.md).
+## <a name="fail-over-toogeo-replicated-secondary-database"></a>Feladatok átadása a másodlagos adatbázis toogeo replikált
+Ha az alkalmazás állásidőt eredményezhet üzleti felelősség kell használni georeplikált adatbázisának vagy adatbázisainak az alkalmazásban. Ez lehetővé teszi a hello tooquickly visszaállítási rendelkezésre állásának egy esetleges leállás esetén egy másik régióban. Ismerje meg, hogyan túl[georeplikáció konfigurálása](sql-database-geo-replication-portal.md).
 
-Kezdeményezze a feladatátvételt, a georeplikált másodlagos a támogatott módszerek egyikének használatával kell az adatbázis(ok) rendelkezésre állását visszaállítására.
+hello toorestore rendelkezésre állását database(s) meg kell tooinitiate hello feladatátvételi toohello georeplikált másodlagos hello támogatott módszerek egyikének használatával.
 
-Georeplikált másodlagos adatbázishoz feladatátvételt használja az alábbi útmutatókban egyikét:
+Hello útmutatók toofail keresztül tooa georeplikált másodlagos adatbázis a következő egyikét használja:
 
-* [Feladatok átadása a georeplikált másodlagos Azure portál használatával](sql-database-geo-replication-portal.md)
-* [Feladatok átadása a georeplikált másodlagos PowerShell használatával](scripts/sql-database-setup-geodr-and-failover-database-powershell.md)
-* [Feladatok átadása a T-SQL használatával georeplikált másodlagos](sql-database-geo-replication-transact-sql.md)
+* [Feladatok átadása tooa georeplikált másodlagos Azure portál használatával](sql-database-geo-replication-portal.md)
+* [Georeplikált másodlagos tooa átkapcsolás PowerShell használatával](scripts/sql-database-setup-geodr-and-failover-database-powershell.md)
+* [Feladatok átadása tooa georeplikált másodlagos T-SQL használatával](sql-database-geo-replication-transact-sql.md)
 
 ## <a name="recover-using-geo-restore"></a>Georedundáns helyreállítás használatával állítsa helyre
-Ha az alkalmazás állásidő üzleti felelősség eredményez [georedundáns helyreállítás](sql-database-recovery-using-backups.md) az alkalmazás-adatbázisok helyreállítása módszerként. A legújabb georedundáns biztonsági másolatból létrehoz egy másolatot az adatbázisról.
+Ha az alkalmazás állásidő üzleti felelősség eredményez [georedundáns helyreállítás](sql-database-recovery-using-backups.md) mint egy metódus toorecover az alkalmazás-adatbázisra. Hello adatbázisát a legújabb georedundáns biztonsági másolatból hoz létre.
 
 ## <a name="configure-your-database-after-recovery"></a>A helyreállítás után az adatbázis konfigurálása
-Ha georeplikáció feladatátvételi vagy georedundáns helyreállítás kimaradás helyreállítás használ, győződjön meg arról, hogy a kapcsolatot az új adatbázisok helyesen van-e konfigurálva, hogy a normál alkalmazási függvény folytathatók. Ez az ellenőrzőlista a helyreállított adatbázis éles kész állapotba hozásához feladatok.
+Georeplikálási feladatátvételi vagy a kimaradás georedundáns helyreállítás toorecover használatakor győződjön meg arról, hogy hello kapcsolat toohello új adatbázisok helyesen van-e konfigurálva, hogy a normál alkalmazási függvény hello folytathatók. A feladatok tooget ellenőrzőlistáját a helyreállított adatbázis éles készen van.
 
 ### <a name="update-connection-strings"></a>A kapcsolati karakterláncok frissítése
-A helyreállított adatbázis legyen elhelyezve egy másik kiszolgálón, mert kell frissíteni az alkalmazás kapcsolati karakterláncot, hogy adott kiszolgálóra mutasson.
+Mivel a helyreállított adatbázis egy másik kiszolgálón legyen elhelyezve, meg kell tooupdate az alkalmazás kapcsolódási karakterlánc toopoint toothat kiszolgáló.
 
-Kapcsolati karakterláncok módosításával kapcsolatos további információkért tekintse meg a megfelelő fejlesztői nyelvét a [kapcsolattára](sql-database-libraries.md).
+Kapcsolati karakterláncok módosításával kapcsolatos további információkért lásd: hello megfelelő fejlesztői nyelvét a [kapcsolattára](sql-database-libraries.md).
 
 ### <a name="configure-firewall-rules"></a>Tűzfalszabályok konfigurálása
-Győződjön meg arról, hogy a tűzfal szabályaiban konfigurált kiszolgálón és az adatbázis pontosan megegyeznek az elsődleges kiszolgáló és az elsődleges adatbázis be lett állítva kell. További információkért lásd: [hogyan: tűzfal beállításainak konfigurálása (Azure SQL Database)](sql-database-configure-firewall-settings.md).
+Meg kell, hogy hello tűzfalszabályok konfigurálása kiszolgálón és hello adatbázis egyezés azokat eredetileg konfigurálták a hello elsődleges kiszolgáló és az elsődleges adatbázis toomake. További információkért lásd: [hogyan: tűzfal beállításainak konfigurálása (Azure SQL Database)](sql-database-configure-firewall-settings.md).
 
 ### <a name="configure-logins-and-database-users"></a>Bejelentkezések és adatbázis-felhasználók konfigurálása
-Győződjön meg arról, hogy az alkalmazás által használt bejelentkezési adatok léteznek-e a kiszolgálón, amely üzemelteti a helyreállított adatbázis kell. További információkért lásd: [biztonsági beállítások a georeplikációért](sql-database-geo-replication-security-config.md).
+Meg kell, hogy létezik-e az alkalmazás által használt összes hello bejelentkezések hello a kiszolgálón, amely üzemelteti a helyreállított adatbázis toomake. További információkért lásd: [biztonsági beállítások a georeplikációért](sql-database-geo-replication-security-config.md).
 
 > [!NOTE]
-> Állítsa be, és a kiszolgáló tűzfalszabályainak és bejelentkezések (és a rájuk vonatkozó engedélyek) Ellenőrizze a vész-helyreállítási részletezési során. A kiszolgálói szintű objektumok és azok konfigurációja nem érhetők el a szolgáltatáskimaradás elhárítása során.
+> Állítsa be, és a kiszolgáló tűzfalszabályainak és bejelentkezések (és a rájuk vonatkozó engedélyek) Ellenőrizze a vész-helyreállítási részletezési során. A kiszolgálói szintű objektumok és azok konfigurációja nem érhetők el hello kimaradás során.
 > 
 > 
 
 ### <a name="setup-telemetry-alerts"></a>A telepítő telemetriai riasztások
-Győződjön meg arról, hogy a meglévő riasztási szabály beállítások hozzárendelése a helyreállított adatbázis és a másik kiszolgáló frissítését kell.
+Toomake arról, hogy a meglévő riasztási szabály beállítások frissített toomap toohello helyreállított adatbázis és hello másik kiszolgálóra van szüksége.
 
 Adatbázis értesítési szabályokkal kapcsolatos további információkért lásd: [riasztás értesítések fogadása](../monitoring-and-diagnostics/insights-receive-alert-notifications.md) és [követése szolgáltatásának állapota](../monitoring-and-diagnostics/insights-service-health.md).
 
 ### <a name="enable-auditing"></a>Naplózás engedélyezése
-Ha az adatbázis eléréséhez szükség van a naplózás szüksége az adatbázis helyreállítása után a naplózás engedélyezéséhez. További információkért lásd: [adatbázis naplózásának](sql-database-auditing.md).
+Ha a naplózás tooaccess szükség van az adatbázis tooenable kell naplózás hello adatbázis helyreállítása után. További információkért lásd: [adatbázis naplózásának](sql-database-auditing.md).
 
 ## <a name="next-steps"></a>Következő lépések
-* További tudnivalók az Azure SQL adatbázis automatikus biztonsági mentés című [SQL-adatbázis automatikus biztonsági mentés](sql-database-automated-backups.md)
-* Üzleti folytonosság tervezési és helyreállítási forgatókönyvekkel kapcsolatos további tudnivalókért lásd: [folytonosságának forgatókönyvek](sql-database-business-continuity.md)
-* A helyreállítás automatikus biztonsági mentés használatával kapcsolatos további tudnivalókért lásd: [adatbázis visszaállítása a szolgáltatás által kezdeményezett biztonsági másolatból](sql-database-recovery-using-backups.md)
+* tudnivalók Azure SQL adatbázis automatikus biztonsági mentés, toolearn lásd: [SQL-adatbázis automatikus biztonsági mentés](sql-database-automated-backups.md)
+* toolearn kapcsolatos üzleti folytonossági tervezési és helyreállítási forgatókönyvek, lásd: [folytonosságának forgatókönyvek](sql-database-business-continuity.md)
+* toolearn a helyreállításhoz, az automatikus biztonsági mentés használatával kapcsolatban lásd: [adatbázis visszaállítása biztonsági másolatból hello szolgáltatás által kezdeményezett](sql-database-recovery-using-backups.md)
 

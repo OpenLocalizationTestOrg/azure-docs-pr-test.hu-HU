@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB Python API, az SDK és az erőforrások |} Microsoft Docs"
-description: "Tudnivalók a Python API és SDK, beleértve a kiadási dátum, használatból való kivonást dátumok és az Azure Cosmos DB Python SDK verziói között végrehajtott módosításokat."
+title: "aaaAzure Cosmos DB Python API SDK & erőforrások |} Microsoft Docs"
+description: "Tudnivalók az hello Python API és az SDK kiadási dátum, használatból való kivonást dátumok és módosítások hello Azure Cosmos DB Python SDK verziói között."
 services: cosmos-db
 documentationcenter: python
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 05/24/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 70d2550f713ff0e9daed235eb8053589b8682633
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1a164b72d2bd819de87df0229357b82e2177af2f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-python-sdk-release-notes-and-resources"></a>Az Azure Cosmos DB Python SDK: A kibocsátási megjegyzések és erőforrások
 > [!div class="op_single_selector"]
@@ -43,9 +43,9 @@ ms.lasthandoff: 08/18/2017
 
 <tr><td>**SDK telepítési utasításokat**</td><td>[Python SDK telepítési utasításokat](http://azure.github.io/azure-documentdb-python/)</td></tr>
 
-<tr><td>**Hozzájárul az SDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-python)</td></tr>
+<tr><td>**Közreműködési lehetőségek tooSDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-python)</td></tr>
 
-<tr><td>**Első lépések**</td><td>[Ismerkedés a Python SDK-val](documentdb-python-application.md)</td></tr>
+<tr><td>**Első lépések**</td><td>[Ismerkedés a hello Python SDK](documentdb-python-application.md)</td></tr>
 
 <tr><td>**Aktuális támogatott platform**</td><td>[Python 2.7](https://www.python.org/downloads/) és [Python 3.5](https://www.python.org/downloads/)</td></tr>
 </table></br>
@@ -58,13 +58,13 @@ ms.lasthandoff: 08/18/2017
 ### <a name="a-name210210"></a><a name="2.1.0"/>2.1.0
 * Összesítési lekérdezéseket (COUNT, MIN, MAX, SUM és átlagos) támogatása.
 * A beállítás a letiltás SSL ellenőrzési Cosmos DB emulatorban futtatásakor hozzá.
-* Függő kérések modul kell lennie, pontosan 2.10.0 korlátozásának eltávolítva.
-* Minimális átviteli sebességet 2500 RU/mp 10,100 RU/mp a particionált gyűjtemények szintűre csökkent.
+* Függő kérések modul toobe pontosan 2.10.0 hello korlátozása eltávolítva.
+* A particionált gyűjtemények 10,100 RU/mp too2500 RU/mp a minimális átviteli szintűre csökkent.
 * Támogatja a tárolt eljárás végrehajtása során parancsfájl naplózásának engedélyezéséről.
-* REST API-verziót a "2017 bumped-01-19' ebben a kiadásban.
+* REST API-verzió bumped túl "2017-01-19' ebben a kiadásban.
 
 ### <a name="a-name201201"></a><a name="2.0.1"/>2.0.1
-* A dokumentációs célú Szerkesztői módosítja.
+* A Szerkesztői módosítások végrehajtott toodocumentation megjegyzések.
 
 ### <a name="a-name200200"></a><a name="2.0.0"/>2.0.0
 * Python 3.5 támogatása.
@@ -73,33 +73,33 @@ ms.lasthandoff: 08/18/2017
 * FELSŐ/ORDERBY lekérdezések particionált gyűjtemények támogatása.
 
 ### <a name="a-name190190"></a><a name="1.9.0"/>1.9.0
-* Szabályozottan halmozott kérelmek hozzáadott újrapróbálkozási házirend támogatása. (A szabályozottan halmozott kérelmek egy kérelem aránya túl nagy kivétel, hibakód 429 kapnak.) Alapértelmezés szerint Azure Cosmos DB újrapróbálja kilenc alkalommal az egyes kérelmek 429. Hibakód: a rendszer észlelt, amikor az retryAfter idő a válaszfejlécet érvényesítenie. A rögzített újrapróbálkozási időköz most már beállítható a RetryOptions tulajdonság részeként a ConnectionPolicy objektum Ha azt szeretné, figyelmen kívül hagyja a próbálkozások közötti kiszolgáló által visszaadott retryAfter idő. Azure Cosmos-adatbázis most megvárja, legfeljebb 30 másodpercig (függetlenül újrapróbálkozások száma) leszabályozta, és visszaadja a választ 429. Hibakód: minden egyes kérelemhez. Most is lehet a RetryOptions tulajdonságban ConnectionPolicy objektumon.
-* Cosmos DB most adja vissza x-ms-szabályozási--újrapróbálkozások és x-ms-throttle-retry-wait-time-ms a válaszfejlécek minden kérelemben a késleltetési jelöléséhez újra számát és a próbálkozások közötti várta a kérelem cummulative idő szerint.
-* Eltávolította a RetryPolicy osztály és a megfelelő tulajdonságával (retry_policy), a document_client osztály kitett, és ehelyett bevezetett teszi ki a ConnectionPolicy osztály, amely felülbírálhatja az alapértelmezett beállítások némelyike használható RetryOptions tulajdonsága RetryOptions osztály.
+* Szabályozottan halmozott kérelmek hozzáadott újrapróbálkozási házirend támogatása. (A szabályozottan halmozott kérelmek egy kérelem aránya túl nagy kivétel, hibakód 429 kapnak.) Alapértelmezés szerint Azure Cosmos DB újrapróbálja kilenc alkalommal az egyes kérelmek 429. Hibakód: a rendszer észlelt, amikor hello retryAfter idő hello válaszfejléc érvényesítenie. A rögzített újrapróbálkozási időköz most már beállítható hello RetryOptions tulajdonság részeként hello ConnectionPolicy objektum Ha azt szeretné, hogy a kiszolgáló által visszaadott hello újrapróbálkozások között tooignore hello retryAfter idő. Azure Cosmos-adatbázis most megvárja, legfeljebb 30 másodpercig minden egyes kérelemhez (függetlenül újrapróbálkozások száma) leszabályozta, és hibakód 429 hello választ ad vissza. Most is lehet a hello RetryOptions tulajdonság ConnectionPolicy objektumon.
+* Cosmos DB most adja vissza x-ms-szabályozási--újrapróbálkozások és x-ms-throttle-retry-wait-time-ms, minden kérelem toodenote hello késleltetési hello válaszfejlécek újrapróbálkozás száma és hello cummulative időpontja hello kérelem hello újrapróbálkozások között várt.
+* Eltávolított hello RetryPolicy osztály és hello megfelelő tulajdonságával (retry_policy) kikerültek a hello document_client osztály, és ehelyett bevezetett ConnectionPolicy osztály, amely használt toooverride hello RetryOptions tulajdonsága kitettségének RetryOptions osztály Néhány hello alapértelmezett ismételje meg a beállításokat.
 
 ### <a name="a-name180180"></a><a name="1.8.0"/>1.8.0
-* Több területi adatbázis fiókok támogatása.
+* Több területi adatbázis fiókok hozzáadott hello támogatása.
 
 ### <a name="a-name170170"></a><a name="1.7.0"/>1.7.0
-* Idő a Live(TTL) szolgáltatás dokumentumok támogatása.
+* Hozzáadott hello idő tooLive(TTL) szolgáltatás dokumentumok támogatása.
 
 ### <a name="a-name161161"></a><a name="1.6.1"/>1.6.1
-* Kiszolgáló oldalán particionálás a különleges karakterek engedélyezéséhez partitionkey elérési kapcsolatos hibajavítások.
+* Hibajavítások kapcsolódó tooserver ügyféloldali particionálás partitionkey elérési út tooallow különleges karaktereket.
 
 ### <a name="a-name160160"></a><a name="1.6.0"/>1.6.0
 * Megvalósított [particionált gyűjtemények](partition-data.md) és [felhasználói teljesítményszintet](performance-levels.md). 
 
 ### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0
-* Kivonatoló & tartomány hozzáadása partícióazonosító feloldókat, elősegítve ezzel a horizontális alkalmazások között több partíciót.
+* Kivonatoló & tartomány hozzáadása partíció feloldókat tooassist a horizontális az alkalmazások több partíciót.
 
 ### <a name="a-name142142"></a><a name="1.4.2"/>1.4.2
-* Upsert megvalósításához. Új UpsertXXX módszerek Upsert szolgáltatás támogatása érdekében adott hozzá.
+* Upsert megvalósításához. Új UpsertXXX módszerek toosupport Upsert szolgáltatás hozzá.
 * Azonosító-alapú útválasztás megvalósítása. Nincs nyilvános API-módosítás, belső összes módosítását.
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 * Támogatja a földrajzi index.
 * Ellenőrzi az összes erőforrás id tulajdonság. Erőforrások azonosító nem tartalmazhat?, /, #, \, karaktereket vagy záró szóközt.
-* Új fejléc "index átalakítása folyamatban" hozzáadása ResourceResponse.
+* Hozzáadja az új fejléc "index átalakítása folyamatban" tooResourceResponse.
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
 * V2 indexelési házirendet alkalmazza.
@@ -111,14 +111,14 @@ ms.lasthandoff: 08/18/2017
 * GA SDK.
 
 ## <a name="release--retirement-dates"></a>Kiadás & használatból való kivonást dátumok
-Microsoft legalább értesítést küldenek **12 hónapon keresztül** SDK eltávolítása érdekében vagy újabb támogatott verzióra való áttérés előtt.
+Microsoft legalább értesítést küldenek **12 hónapon keresztül** előre kivonása az SDK-t rendelés toosmooth hello átmenet tooa vagy újabb támogatott verzióra.
 
-Új szolgáltatásait és funkcióit és optimalizálás csak hozzá az aktuális SDK, így javasoljuk, hogy mindig a legújabb SDK verzióra frissít legkorábban lehető. 
+Új szolgáltatásait és funkcióit és optimalizálás csak hozzáadott toohello aktuális SDK-t, így célszerű a lehető leghamarabb javasoljuk, hogy Ön mindig frissítési toohello SDK letöltéséhez. 
 
-A Cosmos DB kivont SDK használatával fog kell elutasította a szolgáltatás.
+A kérelem tooCosmos DB kivont SDK használatával a program elutasítja hello szolgáltatás.
 
 > [!WARNING]
-> Az Azure DocumentDB Python SDK-es vagy korábbi összes verziója **1.0.0** a rendszerből **2016. február 29-én**. 
+> Hello Azure DocumentDB SDK-t a Python előzetes tooversion összes verziója **1.0.0** a rendszerből **2016. február 29-én**. 
 > 
 > 
 
@@ -152,5 +152,5 @@ A Cosmos DB kivont SDK használatával fog kell elutasította a szolgáltatás.
 [!INCLUDE [cosmos-db-sdk-faq](../../includes/cosmos-db-sdk-faq.md)]
 
 ## <a name="see-also"></a>Lásd még:
-A Cosmos DB kapcsolatos további információkért lásd: [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) szolgáltatás lapján. 
+toolearn Cosmos DB kapcsolatos további információkért lásd: [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) szolgáltatás lapján. 
 

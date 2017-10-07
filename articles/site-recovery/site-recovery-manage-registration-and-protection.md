@@ -1,6 +1,6 @@
 ---
-title: "Távolítsa el a kiszolgálókat, és tiltsa le a védelmet |} Microsoft Docs"
-description: "Ez a cikk ismerteti, hogyan a Site Recovery-tároló kiszolgálók regisztrációját, és tiltsa le a védelmet a virtuális gépek és fizikai kiszolgálók."
+title: "aaaRemove kiszolgálók és a tiltsa le a védelmet |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan toounregister kiszolgálót a Site Recovery tároló és a virtuális gépek és fizikai kiszolgálók toodisable védelem."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,82 +14,82 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 03/27/2017
 ms.author: raynew
-ms.openlocfilehash: 43f92a35dc9b04584badd1c9f1152470246b5012
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 95f20433f782c93685ad4bae93c6bc0e2d2f2356
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="remove-servers-and-disable-protection"></a>Kiszolgálók eltávolítása és a védelem letiltása
 
-Az üzleti folytonossági és vészhelyreállítási (BCDR) helyreállítási stratégia hozzájárul az Azure Site Recovery szolgáltatásban. A szolgáltatás koordinálja a replikációt, a feladatátvételi és a helyreállítási virtuális gépek és fizikai kiszolgálók. A gépeket az Azure-ba, vagy egy másodlagos helyszíni adatközpontba replikálhatja. A szolgáltatás gyors áttekintéséhez olvassa el az [Azure Site Recovery szolgáltatás mibenlétével foglalkozó](site-recovery-overview.md) cikket.
+hello Azure Site Recovery szolgáltatás hozzájárul tooyour üzleti folytonossági és vészhelyreállítási (BCDR) helyreállítási stratégiát. hello szolgáltatás koordinálja a replikációt, a feladatátvételi és a helyreállítási virtuális gépek és fizikai kiszolgálók. Gépek replikált tooAzure vagy tooa másodlagos helyszíni adatközpontba lehet. A szolgáltatás gyors áttekintéséhez olvassa el az [Azure Site Recovery szolgáltatás mibenlétével foglalkozó](site-recovery-overview.md) cikket.
 
-Ez a cikk ismerteti az Azure portálon Recovery Services-tároló kiszolgálók regisztrációját, és tiltsa le a védelmet a Site Recovery által védett gépek.
+Ez a cikk ismerteti, hogyan toounregister kiszolgálókat a Recovery Services hello Azure-portálon a tároló, és hogyan Site Recovery által védett gépek toodisable védelmét.
 
-Megjegyzéseit vagy kérdéseit a cikk alján, vagy az [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) teheti fel.
+Ez a cikk vagy a hello hello alsó megjegyzések vagy kérdések utáni [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 ## <a name="unregister-a-connected-configuration-server"></a>A csatlakoztatott konfigurációs kiszolgáló regisztrációját
 
-Ha VMware virtuális gépek vagy windowsos/Linuxos fizikai kiszolgálók replikálása az Azure-ba, az alábbiak szerint tudja törölni a tárolóból egy csatlakoztatott konfigurációs kiszolgáló:
+Ha VMware virtuális gépek vagy windowsos/Linuxos fizikai kiszolgálók tooAzure replikálja, az alábbiak szerint tudja törölni a tárolóból egy csatlakoztatott konfigurációs kiszolgáló:
 
-1. Tiltsa le a gép védelmét. A **védett elemek** > **replikált elemek**, kattintson a jobb gombbal a gép > **törlése**.
-2. Szüntesse meg a szabályzatoknak. A **Site Recovery-infrastruktúra** > **a VMWare és fizikai gépek** > **replikációs házirendek**, kattintson duplán a tartozó házirend. Kattintson a jobb gombbal a kiszolgáló > **Disassociate**.
-3. Távolítsa el a további helyszíni folyamat és fő célkiszolgálóra. A **Site Recovery-infrastruktúra** > **a VMWare és fizikai gépek** > **konfigurációs kiszolgálók**, kattintson a jobb gombbal a kiszolgáló > **törlése**.
-4. A konfigurációs kiszolgáló törlése.
-5. Manuálisan távolítsa el a fő célkiszolgálón futó mobilitási szolgáltatás (Ez lesz az vagy egy különálló kiszolgáló vagy a konfigurációs kiszolgálón futó).
+1. Tiltsa le a gép védelmét. A **védett elemek** > **replikált elemek**, kattintson a jobb gombbal hello gép > **törlése**.
+2. Szüntesse meg a szabályzatoknak. A **Site Recovery-infrastruktúra** > **a VMWare és fizikai gépek** > **replikációs házirendek**, kattintson duplán a hello tartozó házirend. Kattintson a jobb gombbal hello konfigurációs kiszolgáló > **Disassociate**.
+3. Távolítsa el a további helyszíni folyamat és fő célkiszolgálóra. A **Site Recovery-infrastruktúra** > **a VMWare és fizikai gépek** > **konfigurációs kiszolgálók**, kattintson a jobb gombbal hello kiszolgáló > **Törlése**.
+4. Hello konfigurációs kiszolgáló törlése.
+5. Manuálisan távolítsa el a fő célkiszolgáló hello futó hello mobilitási szolgáltatás (Ez lesz az vagy egy különálló kiszolgáló vagy a hello konfigurációs kiszolgálón futó).
 6. Távolítsa el a további folyamat kiszolgálókat.
-7. Távolítsa el a konfigurációs kiszolgálót.
-8. A konfigurációs kiszolgálón, távolítsa el a MySQL Site Recovery által telepített példányát.
-9. A konfigurációs kiszolgáló beállításjegyzékében a kulcs törlése ``HKEY_LOCAL_MACHINE\Software\Microsoft\Azure Site Recovery``.
+7. Távolítsa el a hello konfigurációs kiszolgálót.
+8. Hello konfigurációs kiszolgálón távolítsa el a Site Recovery által telepített MySQL hello példányát.
+9. Hello beállításjegyzék hello konfigurációs kiszolgáló hello kulcs törlése ``HKEY_LOCAL_MACHINE\Software\Microsoft\Azure Site Recovery``.
 
 ## <a name="unregister-a-unconnected-configuration-server"></a>A frissíthető konfigurációs kiszolgáló regisztrációját
 
-Ha VMware virtuális gépek vagy windowsos/Linuxos fizikai kiszolgálók replikálása az Azure-ba, az alábbiak szerint tudja törölni a tárolóból egy frissíthető konfigurációs kiszolgáló:
+Ha VMware virtuális gépek vagy windowsos/Linuxos fizikai kiszolgálók tooAzure replikálja, az alábbiak szerint tudja törölni a tárolóból egy frissíthető konfigurációs kiszolgáló:
 
-1. Tiltsa le a gép védelmét. A **védett elemek** > **replikált elemek**, kattintson a jobb gombbal a gép > **törlése**. Válassza ki **gép kezelésének leállítása**.
-2. Távolítsa el a további helyszíni folyamat és fő célkiszolgálóra. A **Site Recovery-infrastruktúra** > **a VMWare és fizikai gépek** > **konfigurációs kiszolgálók**, kattintson a jobb gombbal a kiszolgáló > **törlése**.
-3. A konfigurációs kiszolgáló törlése.
-4. Manuálisan távolítsa el a fő célkiszolgálón futó mobilitási szolgáltatás (Ez lesz az vagy egy különálló kiszolgáló vagy a konfigurációs kiszolgálón futó).
+1. Tiltsa le a gép védelmét. A **védett elemek** > **replikált elemek**, kattintson a jobb gombbal hello gép > **törlése**. Válassza ki **hello gép kezelésének leállítása**.
+2. Távolítsa el a további helyszíni folyamat és fő célkiszolgálóra. A **Site Recovery-infrastruktúra** > **a VMWare és fizikai gépek** > **konfigurációs kiszolgálók**, kattintson a jobb gombbal hello kiszolgáló > **Törlése**.
+3. Hello konfigurációs kiszolgáló törlése.
+4. Manuálisan távolítsa el a fő célkiszolgáló hello futó hello mobilitási szolgáltatás (Ez lesz az vagy egy különálló kiszolgáló vagy a hello konfigurációs kiszolgálón futó).
 5. Távolítsa el a további folyamat kiszolgálókat.
-6. Távolítsa el a konfigurációs kiszolgálót.
-7. A konfigurációs kiszolgálón, távolítsa el a MySQL Site Recovery által telepített példányát.
-8. A konfigurációs kiszolgáló beállításjegyzékében a kulcs törlése ``HKEY_LOCAL_MACHINE\Software\Microsoft\Azure Site Recovery``.
+6. Távolítsa el a hello konfigurációs kiszolgálót.
+7. Hello konfigurációs kiszolgálón távolítsa el a Site Recovery által telepített MySQL hello példányát.
+8. Hello beállításjegyzék hello konfigurációs kiszolgáló hello kulcs törlése ``HKEY_LOCAL_MACHINE\Software\Microsoft\Azure Site Recovery``.
 
 ## <a name="unregister-a-connected-vmm-server"></a>Egy csatlakoztatott VMM-kiszolgáló regisztrációjának törlése
 
-Ajánlott eljárásként azt javasoljuk, hogy a VMM-kiszolgáló regisztrációjának törlése Azure való csatlakozáskor. Ez biztosítja, hogy a VMM-kiszolgáló (és más VMM-kiszolgálókon és párosított) beállításainak megtisztítva megfelelően. Frissíthető kiszolgáló csak akkor törlése, ha probléma van a végleges megfeleléssel összefüggő. Ha a VMM-kiszolgáló nincs csatlakoztatva, szüksége lesz manuálisan a beállításokat egy parancsfájlt futtathat.
+Ajánlott eljárásként azt javasoljuk hello VMM-kiszolgáló regisztrációjának törlése, ha tooAzure van csatlakoztatva. Ez biztosítja, hogy hello VMM-kiszolgáló (és más VMM-kiszolgálókon és párosított) beállításainak megtisztítva megfelelően. Frissíthető kiszolgáló csak akkor törlése, ha probléma van a végleges megfeleléssel összefüggő. Ha hello VMM-kiszolgáló nincs csatlakoztatva, szüksége lesz toomanually futtatni egy parancsfájlt tooclean beállításokat.
 
-1. Állítsa le a felhőket a VMM-kiszolgálón el szeretné távolítani a virtuális gépek replikálása.
-2. Törölje a törölni kívánt VMM-kiszolgálón felhők által használt hálózati leképezések. A **Site Recovery-infrastruktúra** > **System Center VMM** > **Hálózatleképezés**, kattintson a jobb gombbal a hálózatra való leképezés > **törlése**.
-3. Felhőből a VMM-kiszolgálón szeretné eltávolítani a replikációs házirend társítását.  A **Site Recovery-infrastruktúra** > **System Center VMM** >  **replikációs házirendek**, kattintson duplán a tartozó házirend. Kattintson a jobb gombbal a felhő > **Disassociate**.
-4. Törölje a VMM-kiszolgáló vagy az aktív VMM-csomópont. A **Site Recovery-infrastruktúra** > **System Center VMM** > **VMM-kiszolgálókon**, kattintson a jobb gombbal a kiszolgáló > **törlése**.
-5. Távolítsa el manuálisan a VMM-kiszolgálón a szolgáltató. Ha rendelkezik fürttel, távolítsa el az összes csomópontot.
-6. Ha az Azure-bA replikál, manuálisan távolítsa el a Microsoft a Recovery Services agent Hyper-V gazdagépek a törölt felhőkben.
+1. Állítsa le a virtuális gépek VMM-kiszolgálónak tooremove hello felhőkben replikálása.
+2. Törölje a felhő hello toodelete kívánt VMM-kiszolgáló által használt hálózati leképezések. A **Site Recovery-infrastruktúra** > **System Center VMM** > **Hálózatleképezés**, kattintson a jobb gombbal a hálózatra való leképezés hello >  **Törlés**.
+3. Szüntesse meg a VMM-kiszolgálónak tooremove hello felhőből replikációs házirendek.  A **Site Recovery-infrastruktúra** > **System Center VMM** >  **replikációs házirendek**, kattintson duplán a kapcsolódó hello házirend. Kattintson a jobb gombbal a hello felhő > **Disassociate**.
+4. Hello VMM-kiszolgáló vagy az aktív VMM-csomópont törlése. A **Site Recovery-infrastruktúra** > **System Center VMM** > **VMM-kiszolgálókon**, kattintson a jobb gombbal hello server >  **Törlés**.
+5. Távolítsa el manuálisan a VMM-kiszolgáló hello szolgáltató hello. Ha rendelkezik fürttel, távolítsa el az összes csomópontot.
+6. TooAzure replikál, hello Microsoft Recovery Services Agent ügynököt manuálisan távolítsa el a Hyper-V gazdagépekről törölt hello felhőkben.
 
 
 
 ### <a name="unregister-an-unconnected-vmm-server"></a>Az frissíthető a VMM-kiszolgáló regisztrációjának törlése
 
-1. Állítsa le a felhőket a VMM-kiszolgálón el szeretné távolítani a virtuális gépek replikálása.
-2. Törölje a VMM-kiszolgálón, amely a törölni kívánt felhők által használt hálózati leképezések. A **Site Recovery-infrastruktúra** > **System Center VMM** > **Hálózatleképezés**, kattintson a jobb gombbal a hálózatra való leképezés > **törlése**.
-3. Vegye figyelembe a VMM-kiszolgáló Azonosítóját.
-4. Felhőből a VMM-kiszolgálón szeretné eltávolítani a replikációs házirend társítását.  A **Site Recovery-infrastruktúra** > **System Center VMM** >  **replikációs házirendek**, kattintson duplán a tartozó házirend. Kattintson a jobb gombbal a felhő > **Disassociate**.
-5. Törölje a VMM-kiszolgáló vagy az aktív csomópontra. A **Site Recovery-infrastruktúra** > **System Center VMM** > **VMM-kiszolgálókon**, kattintson a jobb gombbal a kiszolgáló > **törlése**.
-6. Töltse le és futtassa a [karbantartási parancsprogramot](http://aka.ms/asr-cleanup-script-vmm) a VMM-kiszolgálón. Nyissa meg a PowerShell használata a **Futtatás rendszergazdaként** kapcsoló, a végrehajtási házirend az alapértelmezett (LocalMachine) hatókör módosítására. A parancsfájl adja meg az Azonosítót, a VMM-kiszolgáló el szeretné távolítani. A parancsfájl a regisztrációs és felhőpárosítási adatait a kiszolgálóról távolítja el.
-5. Futtassa a karbantartási parancsprogramot bármely más VMM-kiszolgálókon, amelyek tartalmazzák a felhők eltávolítani kívánt VMM-kiszolgálón van párosítva-felhő.
-6. Futtassa a karbantartási parancsprogramot a bármely más passzív VMM-fürtcsomóponton, hogy a szolgáltató telepítve.
-7. Távolítsa el manuálisan a VMM-kiszolgálón a szolgáltató. Ha rendelkezik fürttel, távolítsa el az összes csomópontot.
-8. Ha Ön replikálása Azure-ba, eltávolíthatja a Microsoft Recovery Services Agent ügynököt a Hyper-V gazdagépekről, a törölt felhőkben.
+1. Állítsa le a virtuális gépek VMM-kiszolgálónak tooremove hello felhőkben replikálása.
+2. A felhők, amelyet az toodelete hello VMM-kiszolgáló által használt hálózati leképezéseket törölhet. A **Site Recovery-infrastruktúra** > **System Center VMM** > **Hálózatleképezés**, kattintson a jobb gombbal a hálózatra való leképezés hello >  **Törlés**.
+3. Vegye figyelembe a VMM-kiszolgáló hello hello azonosítója.
+4. Szüntesse meg a VMM-kiszolgálónak tooremove hello felhőből replikációs házirendek.  A **Site Recovery-infrastruktúra** > **System Center VMM** >  **replikációs házirendek**, kattintson duplán a kapcsolódó hello házirend. Kattintson a jobb gombbal a hello felhő > **Disassociate**.
+5. Törölje a hello VMM-kiszolgáló vagy az aktív csomópontra. A **Site Recovery-infrastruktúra** > **System Center VMM** > **VMM-kiszolgálókon**, kattintson a jobb gombbal hello server >  **Törlés**.
+6. Töltse le és futtassa a hello [karbantartási parancsprogramot](http://aka.ms/asr-cleanup-script-vmm) hello VMM-kiszolgálón. Nyissa meg a Powershellt a hello **Futtatás rendszergazdaként** beállítás, toochange hello végrehajtási házirend hello alapértelmezett (LocalMachine) hatókör. Hello parancsfájlban adja meg a hello Azonosítóját a VMM-kiszolgálónak tooremove hello. hello parancsfájl regisztrációs és felhőpárosítási információk hello kiszolgálóról távolítja el.
+5. Bármely más kiszolgálókon a VMM-felhő van párosítva a VMM-kiszolgálónak tooremove hello felhők tartalmazó hello karbantartási parancsprogramot fut.
+6. Futtassa a hello karbantartási parancsprogramot a bármely más passzív VMM-fürtcsomóponton, amely hello szolgáltató telepítve van.
+7. Távolítsa el manuálisan a VMM-kiszolgáló hello szolgáltató hello. Ha rendelkezik fürttel, távolítsa el az összes csomópontot.
+8. Ha tooAzure replikálása, akkor eltávolíthatja hello Microsoft Recovery Services Agent ügynököt Hyper-V gazdagépek törölt hello felhőkben.
 
 ## <a name="unregister-a-hyper-v-host-in-a-hyper-v-site"></a>A Hyper-V gazdagépet a Hyper-V hely regisztrációjának törlése
 
 A VMM által nem felügyelt Hyper-V-gazdagépek egy Hyper-V helyre gyűjti az adatokat. Távolítsa el a gazdagép egy Hyper-V hely az alábbiak szerint:
 
-1. Tiltsa le a replikációt a gazdagépen található Hyper-V virtuális gépek esetén.
-2. Szüntesse meg a Hyper-V hely házirendek. A **Site Recovery-infrastruktúra** > **a Hyper-V helyek** >  **replikációs házirendek**, kattintson duplán a tartozó házirend. Kattintson a jobb gombbal a hely > **Disassociate**.
-3. Hyper-V-gazdagépek törlése. A **Site Recovery-infrastruktúra** > **System Center VMM** > **Hyper-V-gazdagépek**, kattintson a jobb gombbal a kiszolgáló > **törlése**.
-4. Hyper-V hely törlése után minden gazdagép el lettek távolítva belőle. A **Site Recovery-infrastruktúra** > **System Center VMM** > **Hyper-V helyek**, kattintson a jobb gombbal a hely > **törlése**.
-5. Futtassa az alábbi parancsfájlt minden Hyper-V állomáson eltávolított. A parancsfájl a szükségtelenné vált beállításait a kiszolgálón, és megszünteti azt a tárolóból.
+1. Tiltsa le a hello gazdagépen található Hyper-V virtuális gépek replikációját.
+2. Házirendek hello Hyper-V hely társítását. A **Site Recovery-infrastruktúra** > **a Hyper-V helyek** >  **replikációs házirendek**, kattintson duplán a kapcsolódó hello házirend. Kattintson a jobb gombbal hello hely > **Disassociate**.
+3. Hyper-V-gazdagépek törlése. A **Site Recovery-infrastruktúra** > **System Center VMM** > **Hyper-V-gazdagépek**, kattintson a jobb gombbal hello server >  **Törlés**.
+4. Hello Hyper-V hely törlése után minden gazdagép el lettek távolítva belőle. A **Site Recovery-infrastruktúra** > **System Center VMM** > **Hyper-V helyek**, kattintson a jobb gombbal hello hely >  **Törlés**.
+5. Futtassa a parancsfájlt minden Hyper-V állomáson, amelyről eltávolította a következő hello. hello parancsfájl hello futtató kiszolgáló beállításain a szükségtelenné vált, és megszünteti azt a hello tárolójából.
 
 
         `` pushd .
@@ -101,13 +101,13 @@ A VMM által nem felügyelt Hyper-V-gazdagépek egy Hyper-V helyre gyűjti az ad
              $isAdmin=$principal.IsInRole($administrators)
              if (!$isAdmin)
              {
-                "Please run the script as an administrator in elevated mode."
+                "Please run hello script as an administrator in elevated mode."
                 $choice = Read-Host
                 return;       
              }
 
             $error.Clear()    
-            "This script will remove the old Azure Site Recovery Provider related properties. Do you want to continue (Y/N) ?"
+            "This script will remove hello old Azure Site Recovery Provider related properties. Do you want toocontinue (Y/N) ?"
             $choice =  Read-Host
 
             if (!($choice -eq 'Y' -or $choice -eq 'y'))
@@ -120,7 +120,7 @@ A VMM által nem felügyelt Hyper-V-gazdagépek egy Hyper-V helyre gyűjti az ad
             $service = Get-Service -Name $serviceName
             if ($service.Status -eq "Running")
             {
-                "Stopping the Azure Site Recovery service..."
+                "Stopping hello Azure Site Recovery service..."
                 net stop $serviceName
             }
 
@@ -152,12 +152,12 @@ A VMM által nem felügyelt Hyper-V-gazdagépek egy Hyper-V helyre gyűjti az ad
                 "Registry keys removed."
             }
 
-            # First retrive all the certificates to be deleted
+            # First retrive all hello certificates toobe deleted
             $ASRcerts = Get-ChildItem -Path cert:\localmachine\my | where-object {$_.friendlyname.startswith('ASR_SRSAUTH_CERT_KEY_CONTAINER') -or $_.friendlyname.startswith('ASR_HYPER_V_HOST_CERT_KEY_CONTAINER')}
             # Open a cert store object
             $store = New-Object System.Security.Cryptography.X509Certificates.X509Store("My","LocalMachine")
             $store.Open('ReadWrite')
-            # Delete the certs
+            # Delete hello certs
             "Removing all related certificates"
             foreach ($cert in $ASRcerts)
             {
@@ -176,42 +176,42 @@ A VMM által nem felügyelt Hyper-V-gazdagépek egy Hyper-V helyre gyűjti az ad
 
 ## <a name="disable-protection-for-a-vmware-vm-or-physical-server"></a>Tiltsa le a védelmet a VMware virtuális gép vagy fizikai kiszolgálón
 
-1. A **védett elemek** > **replikált elemek**, kattintson a jobb gombbal a gép > **törlése**.
+1. A **védett elemek** > **replikált elemek**, kattintson a jobb gombbal hello gép > **törlése**.
 2. A **eltávolítása gép**, válassza ki az alábbi lehetőségek egyikét:
-    - **(Ajánlott) a gép védelmének letiltása**. Ez a beállítás használatával állítsa le a gép replikálása. Webhely-helyreállítási beállításai automatikusan törlődnek. Ez a beállítás a következő körülmények között csak akkor jelenik meg:
-        - **Már átméretezte a virtuális gép kötet**– Ha azt szeretné, hogy a kötet a virtuális gép állapota kritikus állapotba kerül. Válassza ezt a beállítást, letiltja a védelem során az Azure-ban a helyreállítási pontok megőrzése. Ha engedélyezi a gép védelmét, az átméretezett kötet adatait Azure használatával lesz áthelyezve.
-        - **Nemrég futtatását feladatátvevő**– egy feladatátvételi teszt a környezet futtatása után válassza ezt a beállítást, a helyszíni gépeket újra védelmének megkezdéséhez. Letiltja a virtuális gépeken, és ezután engedélyeznie kell azokat újra védelmét. Letiltja a gépet, amelynek ez a beállítás nincs hatással a replika virtuális gép az Azure-ban. Ne távolítsa el a mobilitási szolgáltatást a számítógépről.
-    - **Gép kezelésének leállítása**. Ha ezt a beállítást, a gép csak törlődni fognak a tárolóból. A helyszíni védelmi beállítások a gép nem érinti. Távolítsa el a számítógép beállításait, és távolítsa el a gépet az Azure-előfizetés, kell tisztítsa meg a beállításokat a mobilitási szolgáltatás eltávolításával.
+    - **Tiltsa le a védelmet (ajánlott) hello gép**. Használja ezt a beállítást toostop hello gép replikálása. Webhely-helyreállítási beállításai automatikusan törlődnek. A következő körülmények között hello ezt a lehetőséget csak akkor jelenik meg:
+        - **Hello méretű kötet már átméretezte**– során egy kötet hello virtuális gép kritikus állapotba kerül. Válassza ezt a beállítást toodisables védelmének biztosítását, ugyanakkor az Azure-ban a helyreállítási pontok megőrzése. Ha engedélyezi a hello gép védelmét, hello átméretezték, ezért hello kötet fognak átvitt tooAzure.
+        - **Nemrég futtatását feladatátvevő**– futtatását követően egy feladatátvételi tootest a környezetében, válassza ki a beállítás toostart újra védelme a helyszíni gépeket. Letiltja a virtuális gépeken, és akkor szüksége tooenable védelmi őket újra. Ez a beállítás letiltása hello gép nincs hatással a hello replika virtuális gép az Azure-ban. Ne távolítsa el a mobilitási szolgáltatás hello hello gépről.
+    - **Hello gép kezelésének leállítása**. Ha ezt a beállítást, hello gép csak eltávolítja a hello tárolójából. A helyszíni hello gép védelmi beállításai nem érinti. tooremove beállításait hello gépen, és tooremove hello gép hello Azure-előfizetéssel, kell tooclean hello beállítások hello mobilitási szolgáltatás eltávolításával.
 
 ## <a name="disable-protection-for-a-hyper-v-vm-in-a-vmm-cloud"></a>Tiltsa le a védelmet a Hyper-V virtuális gépek VMM-felhőben
 
-1. A **védett elemek** > **replikált elemek**, kattintson a jobb gombbal a gép > **törlése**.
+1. A **védett elemek** > **replikált elemek**, kattintson a jobb gombbal hello gép > **törlése**.
 2. A **eltávolítása gép**, válassza ki az alábbi lehetőségek egyikét:
 
-    - **(Ajánlott) a gép védelmének letiltása**. Ez a beállítás használatával állítsa le a gép replikálása. Webhely-helyreállítási beállításai automatikusan törlődnek.
-    - **Gép kezelésének leállítása**. Ha ezt a beállítást, a gép csak törlődni fognak a tárolóból. A helyszíni védelmi beállítások a gép nem érinti. Távolítsa el a számítógép beállításait, és távolítsa el a gépet az Azure-előfizetés, meg kell törölnie a beállítások manuálisan, az alábbi utasításokat. Vegye figyelembe, hogy törölje a virtuális gépet és annak merevlemezei válassza ki, ha azok fogja eltávolítani a célhelyről.
+    - **Tiltsa le a védelmet (ajánlott) hello gép**. Használja ezt a beállítást toostop hello gép replikálása. Webhely-helyreállítási beállításai automatikusan törlődnek.
+    - **Hello gép kezelésének leállítása**. Ha ezt a beállítást, hello gép csak eltávolítja a hello tárolójából. A helyszíni hello gép védelmi beállításai nem érinti. tooremove beállítások hello gépen, és tooremove hello gép hello Azure-előfizetéssel, kell tooclean hello-beállítások mentése manuálisan, a hello utasításokat az alábbi. Vegye figyelembe, hogy ha toodelete hello virtuális gép és annak merevlemezei választja, akkor fog törlődni hello célhelyet.
 
-### <a name="clean-up-protection-settings---replication-to-a-secondary-vmm-site"></a>Védelmi beállítások - replikációt, hogy a VMM másodlagos hely törlése
+### <a name="clean-up-protection-settings---replication-tooa-secondary-vmm-site"></a>Védelmi beállítások - replikáció tooa VMM másodlagos hely törlése
 
-Ha a kiválasztott **gép kezelésének leállítása** és Ön replikálása egy másodlagos helyre, és futtassa ezt a parancsfájlt a beállításokat az elsődleges virtuális gép az elsődleges kiszolgálón. A VMM-konzolon kattintson a PowerShell gombra a VMM PowerShell-konzol megnyitásához. SQLVM1 cserélje le a virtuális gép nevét.
+Ha a kiválasztott **hello gép kezelésének leállítása** és replikálása tooa másodlagos helyet, a parancsfájl futtatása a hello elsődleges kiszolgáló tooclean hello elsődleges virtuális gép hello beállításokat. Hello VMM-konzolon kattintson a hello PowerShell gomb tooopen hello VMM PowerShell-konzolban. Cserélje le a virtuális gép nevének hello SQLVM1.
 
          ``$vm = get-scvirtualmachine -Name "SQLVM1"
          Set-SCVirtualMachine -VM $vm -ClearDRProtection``
-2. A másodlagos VMM-kiszolgálón futtassa ezt a parancsfájlt a másodlagos virtuális gép beállításait:
+2. Hello másodlagos VMM-kiszolgálón futtassa a parancsfájl tooclean hello másodlagos virtuális gép hello beállításokat:
 
         ``$vm = get-scvirtualmachine -Name "SQLVM1"
         Remove-SCVirtualMachine -VM $vm -Force``
-3. A másodlagos VMM-kiszolgálón frissítse a virtuális gépek a Hyper-V gazdagép-kiszolgálón, hogy a másodlagos virtuális gép újra a VMM-konzol lekérdezi észlelte.
-4. A fenti lépések kapcsolja ki a replikációs beállításokat a VMM-kiszolgálón. Ha le kívánja állítani a virtuális gép replikálását, futtassa a következő parancsfájlt bizony az elsődleges és másodlagos virtuális gépeket. SQLVM1 cserélje le a virtuális gép nevét.
+3. VMM-kiszolgálón hello másodlagos hello virtuális gépek hello Hyper-V gazdakiszolgálón, frissítése, hogy hello másodlagos virtuális gép lekérdezi észlelt újra hello VMM-konzolon.
+4. hello a fenti lépéseket hello a replikációs beállításokat a VMM-kiszolgáló hello törlődnek. Ha azt szeretné, hogy hello virtuális gép, futtassa a következő parancsfájl bizony hello toostop replikálása hello az elsődleges és másodlagos virtuális gépeket. Cserélje le a virtuális gép nevének hello SQLVM1.
 
         ``Remove-VMReplication –VMName “SQLVM1”``
 
-### <a name="clean-up-protection-settings---replication-to-azure"></a>Védelmi beállításokat - replikáció az Azure-bA
+### <a name="clean-up-protection-settings---replication-tooazure"></a>Védelmi beállításokat - replikáció tooAzure
 
-1. Ha a kiválasztott **gép kezelésének leállítása** és replikálja az Azure-ba, a parancsfájl futtatásával a forrás VMM-kiszolgálón, a PowerShell használatával a VMM-konzolról.
+1. Ha a kiválasztott **hello gép kezelésének leállítása** és tooAzure replikálni, futtassa ezt a parancsfájlt a forráskiszolgálón hello VMM PowerShell használatával hello VMM-konzolról.
         ``$vm = get-scvirtualmachine -Name "SQLVM1"
         Set-SCVirtualMachine -VM $vm -ClearDRProtection``
-2. A fenti lépések törölje a replikációs beállításokat a VMM-kiszolgálón. Állítsa le a replikációt a virtuális gép a Hyper-V kiszolgálón futó, futtassa a parancsfájlt. SQLVM1 cserélje le a virtuális gép, és a host01.contoso.com nevű, a Hyper-V gazdakiszolgáló nevét.
+2. hello a fenti lépéseket hello a replikációs beállításokat a VMM-kiszolgáló hello törölje. hello Hyper-V gazdakiszolgálón futó hello virtuális gép replikálása toostop futtassa ezt a parancsfájlt. Cserélje le SQLVM1 hello nevét, valamint a virtuális gép, host01.contoso.com hello nevű hello Hyper-V gazdagép-kiszolgálón.
 
         ``$vmName = "SQLVM1"
         $hostName  = "host01.contoso.com"
@@ -222,14 +222,14 @@ Ha a kiválasztott **gép kezelésének leállítása** és Ön replikálása eg
 
 ## <a name="disable-protection-for-a-hyper-v-vm-in-a-hyper-v-site"></a>Tiltsa le a védelmet a Hyper-V virtuális gépek a Hyper-V hely
 
-Ez az eljárás használható, ha az Azure Hyper-V virtuális gépek a VMM-kiszolgáló nem replikál.
+Ez az eljárás használható, ha a Hyper-V virtuális gépek tooAzure nélkül egy VMM-kiszolgáló replikál.
 
-1. A **védett elemek** > **replikált elemek**, kattintson a jobb gombbal a gép > **törlése**.
-2. A **eltávolítása gép**, a következő lehetőségek közül választhat:
+1. A **védett elemek** > **replikált elemek**, kattintson a jobb gombbal hello gép > **törlése**.
+2. A **eltávolítása gép**, kiválaszthatja az alábbi beállítások hello:
 
-   - **(Ajánlott) a gép védelmének letiltása**. Ez a beállítás használatával állítsa le a gép replikálása. Webhely-helyreállítási beállításai automatikusan törlődnek.
-   - **Gép kezelésének leállítása**. Ha ezt a beállítást a gép csak törlődni fognak a tárolóból. A helyszíni védelmi beállítások a gép nem érinti. Távolítsa el a számítógép beállításait, és távolítsa el a virtuális gépet az Azure-előfizetés, tisztítása a beállításokat manuálisan kell. Ha szeretné, törölje a virtuális gépet és annak merevlemezei, akkor azok törlődnek a célhelyről.
-3. Ha a kiválasztott **gép kezelésének leállítása**, futtassa ezt a parancsfájlt a forráskiszolgálón a Hyper-V gazdagép, eltávolítja a virtuális gép replikálása. SQLVM1 cserélje le a virtuális gép nevét.
+   - **Tiltsa le a védelmet (ajánlott) hello gép**. Használja ezt a beállítást toostop hello gép replikálása. Webhely-helyreállítási beállításai automatikusan törlődnek.
+   - **Hello gép kezelésének leállítása**. Ha ezt a beállítást hello gép csak törlődni fog a hello tárolójából. A helyszíni hello gép védelmi beállításai nem érinti. tooremove beállítások hello gépen, és tooremove hello a virtuális gép hello Azure-előfizetéssel, kell tooclean hello-beállítások mentése manuálisan. Ha ki kell választania toodelete hello virtuális gép és annak merevlemezei, akkor azok törlődnek a hello célhelyet.
+3. Ha a kiválasztott **hello gép kezelésének leállítása**, futtassa a parancsfájl hello forrás Hyper-V gazdakiszolgálón, tooremove hello virtuális gép replikálása. Cserélje le a virtuális gép nevének hello SQLVM1.
 
         $vmName = "SQLVM1"
         $vm = Get-WmiObject -Namespace "root\virtualization\v2" -Query "Select * From Msvm_ComputerSystem Where ElementName = '$vmName'"

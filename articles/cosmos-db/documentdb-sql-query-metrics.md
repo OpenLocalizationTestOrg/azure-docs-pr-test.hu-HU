@@ -1,6 +1,6 @@
 ---
-title: "SQL-lekérdezés metrikák Azure Cosmos DB DocumentDB API |} Microsoft Docs"
-description: "További tudnivalók állíthatnak be, és a hibakeresési Azure Cosmos DB kérelmek SQL lekérdezési teljesítményét."
+title: "Azure Cosmos DB DocumentDB API aaaSQL lekérdezés metrikáját |} Microsoft Docs"
+description: "További információk a hogyan tooinstrument és hibakeresési hello Azure Cosmos DB kérelmek SQL-lekérdezések teljesítményét."
 keywords: "SQL-szintaxis, sql-lekérdezést, az sql-lekérdezések, json lekérdezési nyelv, adatbázis fogalmait és az sql-lekérdezések, összesítő függvények"
 services: cosmos-db
 documentationcenter: 
@@ -15,47 +15,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: arramac
-ms.openlocfilehash: d928113e809e5ad43901e79dc256a8a39c210181
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2fee3786b7d48d254162699471943e316764b003
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tuning-query-performance-with-azure-cosmos-db"></a>Az Azure Cosmos DB lekérdezési teljesítmény hangolása
-Az Azure Cosmos DB biztosít egy [SQL API-t a lekérdezésre adatok](documentdb-sql-query.md), anélkül, hogy a séma vagy másodlagos kulcsot. Ez a cikk a fejlesztők számára a következő adatokat tartalmazza:
+Az Azure Cosmos DB biztosít egy [SQL API-t a lekérdezésre adatok](documentdb-sql-query.md), anélkül, hogy a séma vagy másodlagos kulcsot. Ez a cikk ismerteti a következő információk fejlesztőknek hello:
 
 * Nagy részletességű Azure Cosmos adatbázis SQL-lekérdezés végrehajtása működéséről
 * A lekérdezés kérés- és válaszfejlécekről, és az ügyfél SDK-beállítások részletei
 * Tippek és ajánlott eljárások a lekérdezési teljesítmény
-* Példák SQL végrehajtási statisztika lekérdezési teljesítmény hibakeresési használatára
+* Példák hogyan tooutilize SQL végrehajtási statisztika toodebug lekérdezési teljesítmény
 
 ## <a name="about-sql-query-execution"></a>Tudnivalók az SQL-lekérdezés végrehajtása
 
-Az Azure Cosmos Adatbázisba, adattárolásra-tárolókban, amely bármelyik növelhető [tárolási méretét, vagy kérjen teljesítmény](partition-data.md). Azure Cosmos-adatbázis zökkenőmentesen arányosan adatok fizikai partíciók kezeléséhez az adatmennyiség-növekedés, vagy növelje a kiosztott átviteli sebesség a színfalak között. A tárolóhoz, a támogatott közül vagy a REST API használatával adhat ki az SQL-lekérdezések [DocumentDB SDK-k](documentdb-sdk-dotnet.md).
+Az Azure Cosmos Adatbázisba, adattárolásra-tárolókban, amely milyen mértékben növelhető a tooany [tárolási méretét, vagy kérjen teljesítmény](partition-data.md). Azure Cosmos-adatbázis zökkenőmentesen arányosan adatok különböző fizikai partíciók hello magában foglalja az toohandle adatmennyiség-növekedés vagy a kiosztott átviteli sebesség növekedését. SQL-lekérdezések tooany tároló hello REST API vagy hello támogatott egyikének használatával adhat ki [DocumentDB SDK-k](documentdb-sdk-dotnet.md).
 
-Particionálás rövid áttekintést: megadhatja a partíciós kulcs, például a "város", amely megadja, hogy milyen adatok fizikai partíciók osztani. Egyetlen partíciókulcs tartozó adatokat (például "város" == "Seattle") a fizikai partíción belül található, de általában egyetlen fizikai partícióján több partíciós kulcsok. Amikor egy partíció eléri a tárolási méretét, a szolgáltatás zökkenőmentesen felosztja a partíció két új partíciót és a partíciókulcs egyenlően osztja ezek a partíciók közötti. Mivel partíció átmeneti, az API-k használata egy "partíció kulcs tartományt", amely azt jelzi, a tartományokat a partíciós kulcs kivonatok absztrakciós. 
+Particionálás rövid áttekintést: megadhatja a partíciós kulcs, például a "város", amely megadja, hogy milyen adatok fizikai partíciók osztani. Adatok tartozó tooa egyetlen partíciós kulcs (például "város" == "Seattle") a fizikai partíción belül található, de általában egyetlen fizikai partícióján több partíciós kulcsok. Amikor egy partíció mérete eléri, hello szolgáltatás zökkenőmentesen hello partíció felosztja a két új partíció és hello partíciókulcs egyenlően osztja ezek a partíciók közötti. Mivel partíció átmeneti, hello API-k használata egy "partíció kulcs tartományt", amely azt jelzi, a partíciós kulcs kivonatok hello tartományok absztrakciós. 
 
-Lekérdezés kiadni Azure Cosmos DB, az SDK logikai lépéseket hajtja végre:
+A lekérdezés tooAzure Cosmos DB elküldésekor hello SDK logikai lépéseket hajtja végre:
 
-* Elemezni az SQL-lekérdezést a lekérdezés-végrehajtási terv meghatározásához. 
-* Ha a lekérdezés tartalmaz egy szűrőt a partíciós kulcs ellen, például `SELECT * FROM c WHERE c.city = "Seattle"`, egyetlen partícióra történik. Ha a lekérdezés nem rendelkezik egy szűrőt a partíciós kulcs, majd az összes partíció végrehajtása, eredmények egyesítve lesznek az ügyféloldali.
-* A lekérdezés minden partíció sorozat futtatásuk vagy párhuzamosan, alapuló ügyfél-konfigurációt. Minden partíción belül előfordulhat, hogy a lekérdezés egyet vagy lekérdezés összetettségétől függően további kiszolgálókkal való adatváltások számát konfigurálva az ajánlott méretet, és sebességét, a gyűjtemény kiépítése. Minden egyes végrehajtása számát adja vissza [egységek kérelem](request-units.md) felhasznált lekérdezés-végrehajtáshoz, és szükség esetén lekérdezés végrehajtási statisztika. 
-* Az SDK-t egy a lekérdezés eredményeinek összefoglalását partíciók keresztül hajtja végre. Például ha a lekérdezés egy ORDER BY közötti partíciók magában foglalja, majd az egyes partíciók eredményei egyesítési rendezett to globálisan sorrendet az eredményeket. Ha a lekérdezés például összesítést `COUNT`, az egyes partíciók száma összeadódnak eredményezett a teljes száma.
+* Hello SQL lekérdezés toodetermine hello lekérdezés végrehajtási terv elemezni. 
+* Ha hello lekérdezés szűrője hello partíciókulcs ellen, például `SELECT * FROM c WHERE c.city = "Seattle"`, irányított tooa egy partíció. Ha hello lekérdezés nem rendelkezik egy szűrőt a partíciós kulcs, majd az összes partíció végrehajtása, eredmények egyesítve lesznek az ügyféloldali.
+* hello lekérdezés minden partíció sorozat futtatásuk vagy párhuzamosan, alapuló ügyfél-konfigurációt. Minden partíción belül hello lekérdezés tehetik az egyik vagy hello lekérdezés összetettségét, attól függően, hogy további kiszolgálókkal való adatváltások számát konfigurálva az ajánlott méretet, és a kiosztott átviteli sebesség hello gyűjtemény. Minden egyes végrehajtása hello számát adja vissza [egységek kérelem](request-units.md) felhasznált lekérdezés-végrehajtáshoz, és szükség esetén lekérdezés végrehajtási statisztika. 
+* hello SDK egy összegzési hello lekérdezési eredmények között partíciók hajt végre. Például ha hello lekérdezés szerint egy ORDER BY partíciók között, majd az egyes partíciók eredményei egyesítési rendezve tooreturn eredmények globálisan rendezett sorrendben. Ha hello lekérdezés például összesítést `COUNT`, az egyes partíciók hello számok pedig összegzett tooproduce hello teljes száma.
 
-Az SDK-k a lekérdezés-végrehajtáshoz különböző lehetőségeket kínál. Például a .NET ezek a lehetőségek állnak rendelkezésre a `FeedOptions` osztály. A következő táblázat ismerteti ezeket a beállításokat, és milyen hatással lesznek a lekérdezés-végrehajtási idő. 
+hello SDK-k a lekérdezés-végrehajtáshoz különböző lehetőségeket kínál. Például a .NET ezek a lehetőségek állnak rendelkezésre hello `FeedOptions` osztály. hello következő táblázat ismerteti ezeket a beállításokat, és milyen hatással lesznek a lekérdezés-végrehajtási idő. 
 
 | Beállítás | Leírás |
 | ------ | ----------- |
-| `EnableCrossPartitionQuery` | Meg kell igaz a lekérdezést, amely igényel között legfeljebb egy partíciója hajthatnak végre. Ez az egy explicit jelzőt, amely lehetővé teszi annak tudatában teljesítmény mellékhatásokkal végre fejlesztési idő alatt. |
-| `EnableScanInQuery` | Igaz értéket, ha az indexelő visszavonta igényét, de a lekérdezés segítségével a vizsgálat futtatását szeretne értékre kell állítani. Csak végezhető el, ha a kért szűrő elérési útja indexelő le van tiltva. | 
-| `MaxItemCount` | A kiszolgáló / oda-vissza visszaadandó elemek maximális száma. -1-beállítása, hogy a kiszolgáló kezelése az elemek száma. Vagy ezt az értéket csak kevés elemek száma oda-vissza beolvasása csökkenthető. 
-| `MaxBufferedItemCount` | Ez egy ügyféloldali beállítást, és korlátozza a memória-felhasználás kereszt-partíció ORDER BY végrehajtása során használt. A nagyobb érték csökkentheti a kereszt-partíció rendezés a késési. |
-| `MaxDegreeOfParallelism` | Lekérdezi vagy beállítja az ügyféloldali futtatása során az Azure DocumentDB adatbázis-szolgáltatás a párhuzamos lekérdezés-végrehajtás párhuzamos műveletek számát. Egy pozitív tulajdonság értéke a értékét párhuzamos műveletek számának korlátozása. Ha az értéke kisebb, mint 0, a rendszer automatikusan úgy dönt, futtatásához párhuzamos műveletek számát. |
-| `PopulateQueryMetrics` | Lehetővé teszi, hogy a lekérdezés-végrehajtás, mint a fordítás során, a index hurok idő és a dokumentum különböző fázisait töltött idő statisztika részletes naplózás betöltési ideje. Lekérdezés teljesítmény eseményadatokat Azure-támogatással rendelkező megoszthatja zónalekérdezési statisztika kimenetét. |
-| `RequestContinuation` | A lekérdezés-végrehajtás történő lekérdezés által visszaadott folytatási átlátszatlan folytathatja. A folytatási kód magában foglalja a lekérdezés-végrehajtáshoz szükséges összes állapotát. |
-| `ResponseContinuationTokenLimitInKb` | Korlátozhatja a kiszolgáló által visszaadott folytatási maximális méretét. Szükség lehet állítsa-e az alkalmazás-állomás korlátok a válasz fejléc mérete. A teljes időtartam és a lekérdezés felhasznált RUs növelheti a beállítás.  |
+| `EnableCrossPartitionQuery` | Az összes lekérdezés, amely több partíciót keresztül végrehajtott toobe tootrue kell beállítani. Ez az egy explicit jelző tooenable meg toomake tudatos teljesítmény mellékhatásokkal fejlesztési idő alatt. |
+| `EnableScanInQuery` | Meg kell tootrue Ha visszavonta igényét a indexelő, de ennek ellenére is szeretné toorun hello lekérdezés segítségével a vizsgálat. Csak végezhető el, ha a hello indexelő kért szűrő elérési útja le van tiltva. | 
+| `MaxItemCount` | az elemek tooreturn oda-vissza toohello kiszolgálónként hello maximális számát. Túl-1 értékre állításával, hogy hello kiszolgáló kezelése hello elemek száma. Vagy csökkenthető a érték tooretrieve csak kevés elemek száma oda-vissza. 
+| `MaxBufferedItemCount` | Ez egy ügyféloldali beállítást, és toolimit hello memória-felhasználás használt kereszt-partíció ORDER BY végrehajtása során. A nagyobb érték csökkentheti a kereszt-partíció rendezés hello késését. |
+| `MaxDegreeOfParallelism` | Lekérdezi vagy beállítja a hello száma párhuzamos műveletek hello Azure DocumentDB adatbázis-szolgáltatás a párhuzamos lekérdezés-végrehajtás során az ügyféloldali futtatni. Egy pozitív tulajdonság értéke korlátozza hello száma párhuzamos műveletek toohello érték beállítása. Ha az érték 0-nál tooless, hello rendszer automatikusan eldönti hello száma párhuzamos műveletek toorun. |
+| `PopulateQueryMetrics` | Lehetővé teszi, hogy a lekérdezés-végrehajtás, mint a fordítás során, a index hurok idő és a dokumentum különböző fázisait töltött idő statisztika részletes naplózás betöltési ideje. Azure-támogatás toodiagnose lekérdezés teljesítményproblémák megoszthatja zónalekérdezési statisztika kimenetét. |
+| `RequestContinuation` | A lekérdezés által visszaadott hello nem átlátszó folytatási kód történő lekérdezés-végrehajtás folytathatja. hello folytatási kód magában foglalja a lekérdezés-végrehajtáshoz szükséges összes állapotát. |
+| `ResponseContinuationTokenLimitInKb` | Korlátozhatja hello kiszolgáló által visszaadott folytatási hello hello maximális méretét. Előfordulhat, hogy tooset ez szükséges-e az alkalmazás-állomás korlátok a válasz fejléc mérete. Beállítás megnőhet hello teljes időtartamát és hello lekérdezés felhasznált RUs.  |
 
-Például vessen példalekérdezést a partíciós kulcs egy gyűjtemény kért `/city` a partíció, és a kiépített 100 000 RU/s átviteli sebesség. A lekérdezés segítségével kér le `CreateDocumentQuery<T>` a .NET, a következő:
+Például vessen példalekérdezést a partíciós kulcs egy gyűjtemény kért `/city` kulcs és 100 000 RU/s átviteli kiosztott hello partíció. A lekérdezés segítségével kér le `CreateDocumentQuery<T>` a .NET hasonló hello:
 
 ```cs
 IDocumentQuery<dynamic> query = client.CreateDocumentQuery(
@@ -72,7 +72,7 @@ IDocumentQuery<dynamic> query = client.CreateDocumentQuery(
 FeedResponse<dynamic> result = await query.ExecuteNextAsync();
 ```
 
-A fenti, SDK részlet felel meg a következő REST API-kérelem:
+hello SDK kódrészletben bemutatott, megfelel-e toohello REST API-kérelem a következő:
 
 ```
 POST https://arramacquerymetrics-westus.documents.azure.com/dbs/db/colls/sample/docs HTTP/1.1
@@ -99,9 +99,9 @@ Expect: 100-continue
 {"query":"SELECT * FROM c WHERE c.city = 'Seattle'"}
 ```
 
-Minden egyes lekérdezés végrehajtása lap megfelel-e a REST API `POST` rendelkező a `Accept: application/query+json` fejlécet, és az SQL-lekérdezést a törzsében. Minden egyes lekérdezés esetén egy vagy több kerekíteni az a kiszolgáló elérését a `x-ms-continuation` token annál az ügyfél és kiszolgáló folytatja a végrehajtási között. A konfigurációs beállítások FeedOptions kerülnek átadásra a kiszolgálói kérelem fejléc formájában. Például `MaxItemCount` megfelel-e `x-ms-max-item-count`. 
+Minden egyes lekérdezés végrehajtása lap megfelel tooa REST API `POST` a hello `Accept: application/query+json` fejléc, és SQL-lekérdezés hello hello törzsében. Minden egyes lekérdezés esetén egy vagy több kerekíteni hello kiszolgálóval való adatváltások számát toohello `x-ms-continuation` token annál hello ügyfél és kiszolgáló tooresume végrehajtási között. hello konfigurációs beállítások FeedOptions átadott toohello server kérelemfejléc hello formájában. Például `MaxItemCount` megfelel-e túl`x-ms-max-item-count`. 
 
-A kérelem a következő (csonkolt olvashatóság) választ ad vissza:
+hello kérelem adja vissza (az olvashatóság csonkolt) hello következő választ:
 
 ```
 HTTP/1.1 200 Ok
@@ -128,54 +128,54 @@ x-ms-gatewayversion: version=1.14.33.2
 Date: Tue, 27 Jun 2017 21:59:49 GMT
 ```
 
-A kulcs válaszfejlécek a lekérdezés által visszaadott közé tartoznak a következők:
+hello kulcs válaszfejlécek hello lekérdezés által visszaadott hello alábbiakat foglalja magába:
 
 | Beállítás | Leírás |
 | ------ | ----------- |
-| `x-ms-item-count` | A válaszban visszaküldött elemek száma. Ez az függ a megadott `x-ms-max-item-count`, a válasz maximális terhelés méretének, a kiosztott átviteli sebesség és a lekérdezés-végrehajtási idő illeszkedő elemek száma. |  
-| `x-ms-continuation:` | A folytatási kód folytatni a lekérdezés futtatása, ha további eredmények érhetők el. | 
-| `x-ms-documentdb-query-metrics` | A lekérdezés végrehajtása statisztikája. Ez a lekérdezés-végrehajtás különböző szakaszainak töltött időt a statisztikai adatait tartalmazó tagolt karakterláncot. Visszaadott if `x-ms-documentdb-populatequerymetrics` értéke `True`. | 
-| `x-ms-request-charge` | Hány [egységek kérelem](request-units.md) a lekérdezés által felhasznált. | 
+| `x-ms-item-count` | hello válaszként visszaküldött elemek hello száma. Ez az függ a megadott hello `x-ms-max-item-count`, hello hello válasz maximális terhelés méretének, a hello kiosztott átviteli sebesség és a lekérdezés-végrehajtási idő illeszkedő elemek száma. |  
+| `x-ms-continuation:` | hello folytatási token tooresume hello lekérdezés futtatása, ha további eredmények érhetők el. | 
+| `x-ms-documentdb-query-metrics` | hello zónalekérdezési statisztika hello végrehajtásra. Ez a lekérdezés-végrehajtás különböző fázisait hello töltött időt a statisztikai adatait tartalmazó tagolt karakterláncot. Visszaadott if `x-ms-documentdb-populatequerymetrics` értéke túl`True`. | 
+| `x-ms-request-charge` | hello száma [egységek kérelem](request-units.md) hello lekérdezés használni. | 
 
-A REST API kérelemfejléc és a beállítások a részletekért lásd: [erőforrásokat a DocumentDB REST API használatával](https://docs.microsoft.com/rest/api/documentdb/querying-documentdb-resources-using-the-rest-api).
+További részletek a hello REST API kérelemfejléc és beállítások: [hello DocumentDB REST API-t használó erőforrásokat](https://docs.microsoft.com/rest/api/documentdb/querying-documentdb-resources-using-the-rest-api).
 
 ## <a name="best-practices-for-query-performance"></a>Gyakorlati tanácsok a lekérdezési teljesítmény
-Leggyakoribb Azure Cosmos DB lekérdezések teljesítményét befolyásoló tényezők a következők: A Microsoft feltárva minden, az alábbi témakörökben találja ebben a cikkben.
+Az alábbiakban hello Azure Cosmos DB lekérdezési teljesítményt befolyásoló leggyakoribb tényezők hello. A Microsoft feltárva minden, az alábbi témakörökben találja ebben a cikkben.
 
 | Tényező | Tipp | 
 | ------ | -----| 
-| Kiosztott átviteli kapacitás | RU mérjük lekérdezésenként, és győződjön meg arról, hogy rendelkezik-e a szükséges kiosztott átviteli sebesség a lekérdezések. | 
-| Particionálás és partíciós kulcsok | A partíciós kulcs értékét a szűrőfeltételben az alacsony késleltetés az alkalmazást a lekérdezések. |
+| Kiosztott átviteli kapacitás | RU mérjük lekérdezésenként, és győződjön meg arról, hogy rendelkezik-e hello szükséges kiosztott átviteli sebesség a lekérdezések. | 
+| Particionálás és partíciós kulcsok | Lekérdezések alkalmazást a hello a partíciós kulcs értéke az alacsony késleltetés hello szűrőfeltételben. |
 | SDK-t és a lekérdezés beállításai | Kövesse a bevált gyakorlatokat SDK például közvetlen kapcsolatot, és az ügyféloldali lekérdezés végrehajtási beállítások hangolását. |
-| Hálózati késés | Protokollterhelés a mérési hálózati fiókot, és többhelyű API-k használata a legközelebbi régiót olvasni. |
-| Indexelési házirendet | Győződjön meg arról, hogy rendelkezik-e a szükséges indexelési elérési utak/házirendet a lekérdezéshez. |
-| Lekérdezés-végrehajtási metrikák | Vizsgálja meg a lekérdezés végrehajtása metrikák lekérdezés- és alakzatok lehetséges újraírások azonosításához.  |
+| Hálózati késés | Hálózati terhelés a mérési fiókot, és használja a hello többhelyű API-k tooread legközelebbi régiót. |
+| Indexelési házirendet | Győződjön meg arról, hogy rendelkezik-e szükséges hello indexelési elérési utak/házirendet hello lekérdezéshez. |
+| Lekérdezés-végrehajtási metrikák | Hello lekérdezés végrehajtási metrikák tooidentify lehetséges újraírások lekérdezés- és alakzatok elemzése.  |
 
 ### <a name="provisioned-throughput"></a>Kiosztott átviteli kapacitás
-Cosmos DB az adatokat, minden egyes kérelem egységek (RU) másodpercenként kifejezett fenntartott átviteli tárolók hoz létre. Egy 1 KB-os dokumentum olvasási 1 RU, és minden művelet (beleértve a lekérdezések) normalizálva összetettsége alapján RUs rögzített száma. Például ha 1000 RU/mp a tároló üzembe, és rendelkezik a lekérdezés például `SELECT * FROM c WHERE c.city = 'Seattle'` , amely feldolgozó 5 RUs, majd végezhet (1000 RU/mp) / (5 RU/lekérdezés) = 200 lekérdezés/s ilyen lekérdezések száma másodpercenként. 
+Cosmos DB az adatokat, minden egyes kérelem egységek (RU) másodpercenként kifejezett fenntartott átviteli tárolók hoz létre. Egy 1 KB-os dokumentum olvasási 1 RU, és minden művelet (beleértve a lekérdezések) összetettsége alapján RUs száma rögzített normalizált tooa. Például ha 1000 RU/mp a tároló üzembe, és rendelkezik a lekérdezés például `SELECT * FROM c WHERE c.city = 'Seattle'` , amely feldolgozó 5 RUs, majd végezhet (1000 RU/mp) / (5 RU/lekérdezés) = 200 lekérdezés/s ilyen lekérdezések száma másodpercenként. 
 
-Ha több mint 200 állapotlekérdezés/mp, a szolgáltatás elindul, bejövő kérelmek Sebességhatároló 200/mp feletti. Az SDK-k automatikusan kezelik az ebben az esetben egy leállítási újra elvégzésével, ezért bizonyára észrevette, hogy a lekérdezések egy nagyobb késleltetéssel járhat. A szükséges érték a létesített átviteli sebesség növelése javítja a lekérdezés-késleltetés és a teljesítményt. 
+Ha több mint 200 állapotlekérdezés/mp, hello szolgáltatás elindul, bejövő kérelmek Sebességhatároló 200/mp feletti. SDK-k hello automatikusan kezelik az ebben az esetben egy leállítási újra elvégzésével, ezért bizonyára észrevette, hogy a lekérdezések egy nagyobb késleltetéssel járhat. Hello kiosztott átviteli sebesség toohello növelése szükséges érték javítja a lekérdezés-késleltetés és a teljesítményt. 
 
-Kapcsolatos további tudnivalókért lásd: [egységek kérelem](request-units.md).
+További információ a kérelemegység, toolearn lásd: [egységek kérelem](request-units.md).
 
 ### <a name="partitioning-and-partition-keys"></a>Particionálás és partíciós kulcsok
-Az Azure Cosmos DB általában lekérdezések hajtsa végre a következő sorrendben a leggyorsabb/legtöbb hatékony a lassabb/kevésbé hatékony. 
+Az Azure Cosmos DB általában lekérdezések hajtsa végre a következő sorrendbe leggyorsabb/legtöbb hatékony tooslower/kevésbé hatékony hello. 
 
 * Egy olyan partíciót és elem kulcsot az beszerzése
 * Egy szűrési záradékot a egypartíciós kulcs lekérdezése
 * Az egyik tulajdonságnak sem egyenlőség vagy tartomány szűrő záradék nélkül lekérdezése
 * Lekérdezése nélkül szűrők
 
-Tekintse át az összes partíció lekérdezéseket kell nagyobb késleltetéssel járhat, és magasabb RUs felhasználhat. Mindegyik partíció rendelkezik, az automatikus indexeléshez szemben az összes tulajdonság, mert a lekérdezés szolgáltatható hatékonyan az indexből ebben az esetben. Lekérdezések, amelyek több partíciót gyorsabban párhuzamossági lehetőségek segítségével végezheti el.
+Lekérdezi, hogy szükség tooconsult összes partíció szükséges nagyobb késleltetéssel járhat, és magasabb RUs felhasználhat. Mindegyik partíció rendelkezik, az automatikus indexeléshez szemben az összes tulajdonság, mert hello lekérdezés szolgáltatható hatékonyan hello indexből ebben az esetben. Lekérdezések, amelyek több partíciót gyorsabb hello párhuzamossági beállítások használatával végezheti el.
 
-Particionálás és partíciókulcsok kapcsolatos további információkért lásd: [Azure Cosmos DB a particionálás](partition-data.md).
+További információ a particionálás és partíciós kulcsok toolearn lásd [Azure Cosmos DB a particionálás](partition-data.md).
 
 ### <a name="sdk-and-query-options"></a>SDK-t és a lekérdezés beállításai
-Lásd: [teljesítmény tippek](performance-tips.md) és [Teljesítménytesztelés](performance-testing.md) az beszerzése a legjobb ügyféloldali teljesítményével az Azure Cosmos-Adatbázisból. Tartalmazzák a legújabb SDK-k használatával, a platform-specifikus konfigurációk például alapértelmezett kapcsolatok száma, szemétgyűjtés, gyakoriságának beállítása és a közvetlen/TCP például egyszerűsített kapcsolati lehetőségek használatával. 
+Lásd: [teljesítmény tippek](performance-tips.md) és [Teljesítménytesztelés](performance-testing.md) a hogyan tooget hello Azure Cosmos DB legjobb ügyféloldali teljesítményét. Ez magában foglalja, használja legújabb SDK, alapértelmezett kapcsolatok száma, gyakoriságát szemétgyűjtés, például a platform-specifikus konfigurációk konfigurálásával és használatával egyszerűsített kapcsolati lehetőségek például közvetlen/TCP hello. 
 
 
 #### <a name="max-item-count"></a>Elemek maximális száma
-A lekérdezések, értékének `MaxItemCount` jelentős hatással lehet a végpont lekérdezés idejét. Minden egyes oda-vissza a kiszolgálóhoz fog visszaadni elemeinek száma nagyobb `MaxItemCount` (100 elemek alapértelmezett). Ezt a nagyobb érték beállítást (a -1 érték legnagyobb, és az ajánlott) javítja a lekérdezés teljes időtartama, ha a kiszolgáló és az ügyfél, különösen a lekérdezések nagy eredményhalmazt közötti adatváltások számát korlátozza.
+A lekérdezések, hello értékének `MaxItemCount` jelentős hatással lehet a végpont lekérdezés idejét. Minden egyes üzenetváltási toohello server hello elemszáma nagyobb visszaadható `MaxItemCount` (100 elemek alapértelmezett). Tooa magasabb érték (-1 érték legnagyobb, és az ajánlott) javítja a lekérdezés teljes időtartam korlátozásával hello kiszolgáló és az ügyfél, különösen a lekérdezések nagy eredményhalmazt közötti adatváltások számát.
 
 ```cs
 IDocumentQuery<dynamic> query = client.CreateDocumentQuery(
@@ -188,7 +188,7 @@ IDocumentQuery<dynamic> query = client.CreateDocumentQuery(
 ```
 
 #### <a name="max-degree-of-parallelism"></a>Párhuzamossági maximális fok
-A lekérdezések hangolja a `MaxDegreeOfParallelism` felismerésében a legjobb az alkalmazáshoz, különösen akkor, ha Ön lekérdezésére kereszt-partíció (nélkül egy szűrőt a partíciókulcs érték). `MaxDegreeOfParallelism`a feladatok maximális száma párhuzamos, azaz, a maximális száma párhuzamos látogatják partíciók szabályozza. 
+A lekérdezések, hangolja hello `MaxDegreeOfParallelism` tooidentify hello bevált konfigurációkat az alkalmazáshoz, különösen akkor, ha Ön lekérdezésére kereszt-partíció (nélkül egy szűrőt a hello partíciókulcs érték). `MaxDegreeOfParallelism`hello feladatok maximális száma párhuzamos, azaz hello legfeljebb párhuzamosan meglátogatott partíciók toobe szabályozza. 
 
 ```cs
 IDocumentQuery<dynamic> query = client.CreateDocumentQuery(
@@ -202,11 +202,11 @@ IDocumentQuery<dynamic> query = client.CreateDocumentQuery(
 ```
 
 Tegyük fel, amelyek
-* D = alapértelmezett maximális száma párhuzamos tevékenységek (= az ügyfélszámítógépen. a processzor teljes száma)
+* D = alapértelmezett maximális száma párhuzamos tevékenységek (= hello ügyfélszámítógépen. a processzor teljes száma)
 * P = párhuzamos tevékenységek maximális száma a felhasználó által megadott
-* N =, amelyet a lekérdezést a meglátogatott partíciók száma
+* N =, amelyet a meglátogatott toobe lekérdezést a partíciók száma
 
-Az alábbiakban hogyan a párhuzamos lekérdezések viselkednek a p különböző értékeket következményei
+Az alábbiakban hogyan hello párhuzamos lekérdezések viselkednek a p különböző értékeket következményei
 * (P == 0) = > soros üzemmód
 * (P == 1) = > maximális egy feladat
 * (P > 1) = > Min (P, N) párhuzamos tevékenységek 
@@ -215,15 +215,15 @@ Az alábbiakban hogyan a párhuzamos lekérdezések viselkednek a p különböz�
 Az SDK kibocsátási megjegyzéseket, és a részletek megvalósított osztályokat és metódusokat: [DocumentDB SDK-k](documentdb-sdk-dotnet.md)
 
 ### <a name="network-latency"></a>Hálózati késés
-Lásd: [Azure Cosmos DB globális terjesztési](tutorial-global-distribution-documentdb.md) globális terjesztési beállítása, és csatlakozzon a legközelebbi régiót. Hálózati késés jelentős hatással a lekérdezési teljesítményre van szüksége több üzenetváltások utak számát vagy a lekérdezés nagy eredményhalmazt beolvasása. 
+Lásd: [Azure Cosmos DB globális terjesztési](tutorial-global-distribution-documentdb.md) hogyan tooset akár globális terjesztési, és csatlakozzon toohello legközelebbi régiót. Hálózati késés jelentős hatással van a lekérdezési teljesítmény kell toomake kiszolgálóval végzett több adatváltásra vagy egy nagy eredményhalmazt hello lekérdezésből beolvasása. 
 
-A lekérdezés végrehajtása mérőszámokat szakasz azt ismerteti, hogyan lekérdezések server végrehajtási idejének lekérdezésére ( `totalExecutionTimeInMs`), így meg tudja különböztetni a lekérdezés-végrehajtás töltött időt és az idő a hálózati átvitel során.
+hello lekérdezés végrehajtási mérőszámokat szakasz azt ismerteti, hogyan tooretrieve hello lekérdezések server végrehajtási idő ( `totalExecutionTimeInMs`), így meg tudja különböztetni a lekérdezés-végrehajtás töltött időt és az idő a hálózati átvitel során.
 
 ### <a name="indexing-policy"></a>Indexelési házirendet
-Lásd: [konfigurálása az indexelési házirendet](indexing-policies.md) indexeléshez elérési utak, különböző, és módok és milyen hatással lesznek a lekérdezés végrehajtása. Alapértelmezés szerint az indexelési házirendet használja kivonatoló indexelő karakterláncok, amelyek a következő időponttól érvényes egyenlőség lekérdezések, de nem lekérdezések tartomány rendelés lekérdezések. Ha lekérdezések karakterláncok, ajánlott az összes karakterlánc tartomány index típusának megadásával. 
+Lásd: [konfigurálása az indexelési házirendet](indexing-policies.md) indexeléshez elérési utak, különböző, és módok és milyen hatással lesznek a lekérdezés végrehajtása. Alapértelmezés szerint házirend indexelő hello használja kivonatoló indexelő karakterláncok, amelyek a következő időponttól érvényes egyenlőség lekérdezések, de nem lekérdezések tartomány rendelés lekérdezések. Ha lekérdezések karakterláncok, ajánlott hello index Tartománytípus az összes karakterlánc megadása. 
 
 ## <a name="query-execution-metrics"></a>Lekérdezés-végrehajtási metrikák
-A lekérdezés-végrehajtás részletes metrikák szerezheti be a nem kötelező sikeres `x-ms-documentdb-populatequerymetrics` fejléc (`FeedOptions.PopulateQueryMetrics` a .NET SDK-ban). A visszaadott érték `x-ms-documentdb-query-metrics` rendelkezik a következő kulcs-érték párok azt jelentette, hogy a speciális lekérdezés-végrehajtás hibaelhárításához. 
+A lekérdezés-végrehajtás részletes metrikák szerezheti be a választható hello sikeres `x-ms-documentdb-populatequerymetrics` fejléc (`FeedOptions.PopulateQueryMetrics` a hello .NET SDK-val). a visszaadott érték hello `x-ms-documentdb-query-metrics` kulcs-érték párok azt jelentette, hogy a speciális lekérdezés-végrehajtás hibaelhárításához a következő hello rendelkezik. 
 
 ```cs
 IDocumentQuery<dynamic> query = client.CreateDocumentQuery(
@@ -245,8 +245,8 @@ IReadOnlyDictionary<string, QueryMetrics> metrics = result.QueryMetrics;
 | ------ | -----| ----------- |
 | `totalExecutionTimeInMs` | ezredmásodperc | Lekérdezés-végrehajtási idő | 
 | `queryCompileTimeInMs` | ezredmásodperc | Lekérdezés fordítás során  | 
-| `queryLogicalPlanBuildTimeInMs` | ezredmásodperc | Logikai lekérdezésterv építi | 
-| `queryPhysicalPlanBuildTimeInMs` | ezredmásodperc | Fizikai lekérdezésterv építi | 
+| `queryLogicalPlanBuildTimeInMs` | ezredmásodperc | Idő toobuild logikai lekérdezésterv | 
+| `queryPhysicalPlanBuildTimeInMs` | ezredmásodperc | Idő toobuild fizikai lekérdezésterv | 
 | `queryOptimizationTimeInMs` | ezredmásodperc | A lekérdezés optimalizálása töltött idő | 
 | `VMExecutionTimeInMs` | ezredmásodperc | Idő a lekérdezés futásidejű | 
 | `indexLookupTimeInMs` | ezredmásodperc | Idő a fizikai index réteg | 
@@ -257,27 +257,27 @@ IReadOnlyDictionary<string, QueryMetrics> metrics = result.QueryMetrics;
 | `retrievedDocumentSize` | Bájtok | A beolvasott dokumentumokat a bájtok teljes mérete  | 
 | `outputDocumentCount` | Száma | Kimeneti dokumentumok száma | 
 | `writeOutputTimeInMs` | ezredmásodperc | Lekérdezés-végrehajtási idő ezredmásodpercben | 
-| `indexUtilizationRatio` | arány (< = 1) | A betöltött dokumentumok száma szűrőt egyező dokumentumok száma aránya  | 
+| `indexUtilizationRatio` | arány (< = 1) | Hello szűrő toohello betöltött dokumentumok száma egyező dokumentumok száma aránya  | 
 
-Az ügyfél SDK-k belső teheti több lekérdezési műveletek kiszolgálásához a lekérdezés minden partíción belül. Az ügyfél hívást egynél több partíciónkénti Ha meghaladja a teljes eredmények `x-ms-max-item-count`, ha a lekérdezés meghaladja a kiosztott átviteli sebesség a partíció található, vagy ha a lekérdezés forgalma eléri a maximális méretet egy oldalon, vagy ha a lekérdezés eléri a rendszer lefoglalt időkorlátja. Minden egyes részleges lekérdezés-végrehajtás adja vissza egy `x-ms-documentdb-query-metrics` lap. 
+hello ügyfél SDK-k belső tehet több lekérdezés műveletek tooserve hello lekérdezés minden partíción belül. hello ügyfél hívást egynél több partíciónkénti Ha hello teljes eredmények ennél nagyobb `x-ms-max-item-count`, ha hello lekérdezés meghaladja hello kiosztott átviteli sebesség hello partíció, vagy ha hello lekérdezés hasznos eléri-e a hello maximális mérete egy oldalon, vagy ha hello lekérdezés eléri-e a hello a rendszer lefoglalt időkorlátja. Minden egyes részleges lekérdezés-végrehajtás adja vissza egy `x-ms-documentdb-query-metrics` lap. 
 
-Az alábbiakban néhány mintalekérdezések, és a lekérdezés-végrehajtás visszaadni értelmezése a metrikák egy részénél: 
+Az alábbiakban néhány mintalekérdezések, és hogyan toointerpret néhány hello metrikák adott vissza a lekérdezés-végrehajtás: 
 
 | Lekérdezés | A minta-metrika | Leírás | 
 | ------ | -----| ----------- |
-| `SELECT TOP 100 * FROM c` | `"RetrievedDocumentCount": 101` | A beolvasott dokumentumokat értéke 100 + 1 kombinációval felel meg a TOP záradék. Lekérdezési idő többnyire töltött `WriteOutputTime` és `DocumentLoadTime` mivel ez a vizsgálat. | 
-| `SELECT TOP 500 * FROM c` | `"RetrievedDocumentCount": 501` | RetrievedDocumentCount már nagyobb (500 + 1 a TOP záradék megfelelően). | 
+| `SELECT TOP 100 * FROM c` | `"RetrievedDocumentCount": 101` | hello száma beolvasott dokumentumokat: 100 + 1 toomatch hello TOP záradék. Lekérdezési idő többnyire töltött `WriteOutputTime` és `DocumentLoadTime` mivel ez a vizsgálat. | 
+| `SELECT TOP 500 * FROM c` | `"RetrievedDocumentCount": 501` | RetrievedDocumentCount már nagyobb (500 + 1 toomatch hello TOP záradék). | 
 | `SELECT * FROM c WHERE c.N = 55` | `"IndexLookupTime": "00:00:00.0009500"` | Hamarosan 0.9 ms van töltött IndexLookupTime kulcs kereséshez, mert az index keresési `/N/?`. | 
 | `SELECT * FROM c WHERE c.N > 55` | `"IndexLookupTime": "00:00:00.0017700"` | Valamivel több (1.7 ms) töltött idő IndexLookupTime keresztül tartomány vizsgálatot, mivel az index keresési `/N/?`. | 
 | `SELECT TOP 500 c.N FROM c` | `"IndexLookupTime": "00:00:00.0017700"` | A fordított egyszerre `DocumentLoadTime` előző lekérdezésekhez, de kisebb `WriteOutputTime` , mert azt még kivetítéséről csak egy tulajdonság. | 
-| `SELECT TOP 500 udf.toPercent(c.N) FROM c` | `"UserDefinedFunctionExecutionTime": "00:00:00.2136500"` | Hamarosan 213 ms töltött `UserDefinedFunctionExecutionTime` feldolgozás alatt álló UDF minden értékének `c.N`. |
-| `SELECT TOP 500 c.Name FROM c WHERE STARTSWITH(c.Name, 'Den')` | `"IndexLookupTime": "00:00:00.0006400", "SystemFunctionExecutionTime": "00:00:00.0074100"` | Hamarosan 0,6 ms töltött `IndexLookupTime` a `/Name/?`. A lekérdezés-végrehajtási idő (ms ~ 7) a legtöbb `SystemFunctionExecutionTime`. |
+| `SELECT TOP 500 udf.toPercent(c.N) FROM c` | `"UserDefinedFunctionExecutionTime": "00:00:00.2136500"` | Hamarosan 213 ms töltött `UserDefinedFunctionExecutionTime` UDF végrehajtása hello minden értékének a `c.N`. |
+| `SELECT TOP 500 c.Name FROM c WHERE STARTSWITH(c.Name, 'Den')` | `"IndexLookupTime": "00:00:00.0006400", "SystemFunctionExecutionTime": "00:00:00.0074100"` | Hamarosan 0,6 ms töltött `IndexLookupTime` a `/Name/?`. A legtöbb hello lekérdezés végrehajtási idő (ms ~ 7) a `SystemFunctionExecutionTime`. |
 | `SELECT TOP 500 c.Name FROM c WHERE STARTSWITH(LOWER(c.Name), 'den')` | `"IndexLookupTime": "00:00:00", "RetrievedDocumentCount": 2491,  "OutputDocumentCount": 500` | Lekérdezést végrehajtja a rendszer egy vizsgálatot, mivel a program `LOWER`, és 500 2491 lekérdezése dokumentumból ad vissza. |
 
 
 ## <a name="next-steps"></a>Következő lépések
-* A támogatott SQL-lekérdezési operátorok és kulcsszavak kapcsolatos további tudnivalókért lásd: [SQL-lekérdezés](documentdb-sql-query.md). 
-* Kapcsolatos további tudnivalókért lásd: [egységek kérelem](request-units.md).
-* Az indexelő házirenddel kapcsolatos további tudnivalókért lásd: [indexelő házirend](indexing-policies.md) 
+* toolearn hello támogatott SQL lekérdezési operátorok és a kulcsszavakat, lásd: [SQL-lekérdezés](documentdb-sql-query.md). 
+* toolearn kapcsolatos, lásd: [egységek kérelem](request-units.md).
+* toolearn indexelési házirendet kapcsolatban lásd: [indexelő házirend](indexing-policies.md) 
 
 

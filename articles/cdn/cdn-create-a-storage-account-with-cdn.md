@@ -1,6 +1,6 @@
 ---
-title: "Azure-tárfiók integrálása az Azure CDN |} Microsoft Docs"
-description: "Ismerje meg, hogyan használható az Azure tartalom Delivery Network (CDN) tartalmak nagy sávszélességű kézbesítéséhez az Azure Storage blobs gyorsítótárazása révén."
+title: "egy Azure storage-fiók Azure CDN aaaIntegrate |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse hello Azure tartalom Delivery Network (CDN) toodeliver nagy sávszélességű tartalom gyorsítótárazása révén blobok Azure Storage-ból."
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,75 +14,75 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 511076935d06ed0908341044e37069e74530be49
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e44716969d6a784265cc4b1da34f0d021a17b38d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="integrate-an-azure-storage-account-with-azure-cdn"></a>Azure-tárfiók integrálása az Azure CDN szolgáltatás használata
-CDN az az Azure storage engedélyezhető a gyorsítótár teljes tartalmát. A fejlesztők a tartalmak nagy sávszélességű kézbesítéséhez a blobok és számítási példányokért fizikai csomópontokon az Egyesült Államok, Európa, Ázsia, Ausztrália és Dél-Amerika a statikus tartalom gyorsítótárazása révén globális megoldást kínál.
+CDN lehet engedélyezve az Azure tárterületet lévő tartalmak toocache. A fejlesztők a tartalmak nagy sávszélességű kézbesítéséhez a blobok és számítási példányokért fizikai csomópontokon hello az Amerikai Egyesült Államok, Európa, Ázsia, Ausztrália és Dél-Amerika a statikus tartalom gyorsítótárazása révén globális megoldást kínál.
 
 ## <a name="step-1-create-a-storage-account"></a>1. lépés: Tárfiók létrehozása
-A következő eljárással hozzon létre egy új tárfiókot, Azure-előfizetéssel. A storage-fiók az Azure storage-szolgáltatásokhoz való hozzáférést. A tárfiók eléréséhez szükséges az Azure storage szolgáltatás összetevői a névtér a legmagasabb szintű jelöli: Blob-szolgáltatások, Queue szolgáltatások és Table szolgáltatások. További információkért tekintse meg a [Microsoft Azure Storage bemutatása](../storage/common/storage-introduction.md).
+A következő eljárás toocreate egy új tárfiókot, Azure-előfizetéshez tartozó hello használata. A storage-fiók az Azure storage-szolgáltatásokhoz való hozzáférést. hello tárfiók hello legmagasabb szintű hello névtér eléréséhez hello az Azure storage szolgáltatás összetevői jelöli: Blob-szolgáltatások, Queue szolgáltatások és Table szolgáltatások. További információkért tekintse meg a toohello [Azure Storage bemutatása tooMicrosoft](../storage/common/storage-introduction.md).
 
-Hozzon létre egy tárfiókot, vagy a szolgáltatás rendszergazdájának vagy társadminisztrátorának a társított előfizetés kell lennie.
+a tárfiók toocreate, kell lennie, vagy hello szolgáltatás rendszergazdájának vagy társadminisztrátorának a kapcsolódó hello előfizetés.
 
 > [!NOTE]
-> Többféleképpen hozzon létre egy tárfiókot, beleértve az Azure portál és a Powershell segítségével.  Ebben az oktatóanyagban használni fogjuk az Azure portálon.  
+> Többféleképpen is használhat egy tárfiókot, beleértve a hello Azure portál és a Powershell toocreate.  Ebben az oktatóanyagban használni fogjuk hello Azure portálon.  
 > 
 > 
 
-**A storage-fiók egy Azure-előfizetés létrehozása**
+**toocreate egy tárfiókot, Azure-előfizetések**
 
-1. Jelentkezzen be az [Azure portálra](https://portal.azure.com).
-2. Válassza ki a bal felső sarokban, **új**. Az a **új** párbeszédpanelen válassza **adatok + tárolás**, majd kattintson a **tárfiók**.
+1. Jelentkezzen be toohello [Azure Portal](https://portal.azure.com).
+2. Hello bal felső sarokban, válassza ki **új**. A hello **új** párbeszédpanelen válassza **adatok + tárolás**, majd kattintson a **tárfiók**.
     
-    A **storage-fiók létrehozása** panel jelenik meg.   
+    Hello **storage-fiók létrehozása** panel jelenik meg.   
 
     ![Storage-fiók létrehozása][create-new-storage-account]  
 
-3. Az a **neve** mezőbe írja be egy altartomány nevét. Ez a bejegyzés 3-24 kisbetűket és számokat tartalmazhat.
+3. A hello **neve** mezőbe írja be egy altartomány nevét. Ez a bejegyzés 3-24 kisbetűket és számokat tartalmazhat.
    
-    Ez az érték lesz az állomásnév, az előfizetés Blob, sor vagy tábla erőforrásainak címzéséhez használt URI-Azonosítóra belül. Egy tároló-erőforrás a Blob szolgáltatás megoldására használhatja egy URI-t a következő formátumban, ahol  *&lt;StorageAccountLabel&gt;*  hivatkozik a beírt érték **adjon meg egy URL-cím**:
+    Ez az érték lesz hello állomásnév belül hello hello előfizetés Blob, sor vagy tábla erőforrásainak címzéséhez használt URI-Azonosítóra. A Blob szolgáltatás hello tároló erőforrás megoldására használt URI hello a következő formátumban, ahol  *&lt;StorageAccountLabel&gt;*  beírt toohello érték hivatkozik **URL-címetadjonmeg**:
    
     http://*&lt;StorageAcountLabel&gt;*.blob.core.windows.net/*&lt;mycontainer&gt;*
    
-    **Fontos:** az URL-cím címke űrlapok a tárfiók URI altartomány, és az Azure-ban az összes üzemeltetett szolgáltatások egyedinek kell lennie.
+    **Fontos:** hello URL-cím címke űrlapok hello altartomány hello storage-fiókjának URI és az Azure-ban az összes üzemeltetett szolgáltatások egyedinek kell lennie.
    
-    Ezt az értéket is használja a tárfiók a portálon, vagy neveként ezt a fiókot programozott módon való hozzáférés során.
-4. Hagyja meg az alapértelmezett értéket **telepítési modell**, **fiók kind**, **teljesítmény**, és **replikációs**. 
-5. Válassza ki a **előfizetés** , amely a tárolási fiók használandó.
+    Ez az érték is használható hello neveként a tárfiók hello portálon, vagy ennek a fióknak programozott módon való hozzáférés során.
+4. Hagyja meg az alapértelmezett hello beállításait **telepítési modell**, **fiók kind**, **teljesítmény**, és **replikációs**. 
+5. Jelölje be hello **előfizetés** , hogy hello tárfiók lesz használható.
 6. Válasszon ki vagy hozzon létre egy **erőforráscsoportot**.  További információ az erőforráscsoportokkal kapcsolatban: [Az Azure Resource Manager áttekintése](../azure-resource-manager/resource-group-overview.md#resource-groups).
 7. Válasszon egy helyet a tárfiók.
-8. Kattintson a **Create** (Létrehozás) gombra. A storage-fiók létrehozása eltarthat néhány percet.
+8. Kattintson a **Create** (Létrehozás) gombra. hello a hello storage-fiók létrehozása eltarthat néhány percig toocomplete.
 
-## <a name="step-2-enable-cdn-for-the-storage-account"></a>2. lépés: A tárfiók CDN engedélyezése
+## <a name="step-2-enable-cdn-for-hello-storage-account"></a>2. lépés: A hello tárfiók CDN engedélyezése
 
-Az a legújabb integrációs most engedélyezheti a CDN a tárfiók anélkül, hogy a tároló portálbővítményt. 
+A legújabb integrációs hello most már engedélyezheti CDN a tárfiók a tárolási portálbővítményt maradjanak. 
 
-1. Válassza ki a tárfiókot, keressen a "CDN" vagy a bal oldali navigációs menü görgessen lefelé, majd kattintson az "Azure CDN".
+1. Válassza ki hello tárfiókot, "CDN" vagy görgessen lefelé kereshet hello bal oldali navigációs menü, majd kattintson az "Azure CDN".
     
-    A **Azure CDN** panel jelenik meg.
+    Hello **Azure CDN** panel jelenik meg.
 
     ![CDN engedélyezése navigációs][cdn-enable-navigation]
     
-2. Írja be a szükséges adatokat az új végpont létrehozásához
+2. Új végpont létrehozásához szükséges hello beírásával
     - **CDN-profil**: hozzon létre egy új, vagy egy meglévő profil.
-    - **IP-címek**: csak akkor kell új CDN-profil létrehozásakor válassza ki a tarifacsomagot.
+    - **IP-címek**: csak akkor kell tooselect egy tarifacsomagra új CDN-profil létrehozásakor.
     - **CDN-végpont nevének**: Adja meg a választott / egy végpont nevét.
 
     > [!TIP]
-    > A létrehozott CDN-végpont használja az állomásnevet a tárfiók származási alapértelmezés szerint.
+    > CDN-végpont létrehozása hello származási hello állomásnév a tárfiók alapértelmezés szerint használja.
 
     ! [cdn új végpont létrehozásához] [a cdn-új-végpont-létrehozása]
 
-3. A létrehozás után az új végpont a fenti végpont listában jelennek meg.
+3. A létrehozás után hello új végpont a fenti hello végpont listában jelennek meg.
 
     ![tárolási új CDN-végpont][cdn-storage-new-endpoint]
 
 > [!NOTE]
-> Azure CDN-bővítmény engedélyezése a CDN is választhatja. [Oktatóanyag](#Tutorial-cdn-create-profile).
+> TooAzure CDN bővítmény tooenable CDN is választhatja. [Oktatóanyag](#Tutorial-cdn-create-profile).
 > 
 > 
 
@@ -90,31 +90,31 @@ Az a legújabb integrációs most engedélyezheti a CDN a tárfiók anélkül, h
 
 ## <a name="step-3-enable-additional-cdn-features"></a>3. lépés: További CDN-funkciók engedélyezése
 
-A storage-fiók "Azure CDN" panelen kattintson a CDN-végpont a listából a CDN konfigurációs panel megnyitásához. További CDN szolgáltatásai engedélyezheti a kézbesítésre, például a tömörítés, lekérdezési karakterláncot, földrajzi szűrést. Adja hozzá az egyéni tartomány leképezése a CDN-végpont is, és az egyéni tartomány HTTPS engedélyezése.
+A storage-fiók "Azure CDN" panelen kattintson az hello CDN-végpont hello lista tooopen CDN konfigurációs paneljén. További CDN szolgáltatásai engedélyezheti a kézbesítésre, például a tömörítés, lekérdezési karakterláncot, földrajzi szűrést. Adja hozzá az egyéni tartomány leképezése tooyour CDN-végpont is, és az egyéni tartomány HTTPS engedélyezése.
     
 ![CDN cdn tárolással][cdn-storage-cdn-configuration]
 
 ## <a name="step-4-access-cdn-content"></a>4. lépés: Hozzáférési CDN-tartalom
-A CDN a gyorsítótárazott tartalom eléréséhez a CDN a portálon megadott URL-CÍMÉT használja. A gyorsítótárazott blob címet a következőhöz hasonló lesz:
+megadott tooaccess gyorsítótárba helyezték a tartalmat a hello CDN, a CDN URL-cím használata hello hello portálon. gyorsítótárazott blob hello címet hasonló toohello következő lesz:
 
 http://<*EndpointName*\>.azureedge.net/ <*myPublicContainer*\>/<*Blobnév*\>
 
 > [!NOTE]
-> Ha engedélyezi a CDN hozzáférést egy tárfiókba, az összes nyilvánosan elérhető objektumok jogosultak a CDN peremhálózati gyorsítótár. Ha módosítja a CDN jelenleg gyorsítótárazott objektumhoz, az új tartalom nem lesz elérhető a CDN mindaddig, amíg a CDN tartalmát frissíti, a gyorsítótárazott tartalom idő a működés közbeni időszak lejártával.
+> Ha engedélyezi a CDN hozzáférés tooa storage-fiók, az összes nyilvánosan elérhető objektumok jogosultak a CDN peremhálózati gyorsítótár. Ha módosít egy objektumot, amely jelenleg tárolja a hello CDN, hello új tartalmak nem lesznek elérhetők keresztül hello CDN amíg nem hello CDN tartalmát frissíti, hello gyorsítótárazott tartalom idő a működés közbeni időszak lejártával.
 > 
 > 
 
-## <a name="step-5-remove-content-from-the-cdn"></a>5. lépés: A tartalom eltávolítása a CDN-t
-Ha már nem szeretne gyorsítótárazása az objektum az az Azure Content Delivery Network (CDN), akkor is igénybe vehet az alábbi lépések egyikét:
+## <a name="step-5-remove-content-from-hello-cdn"></a>5. lépés: Tartalom eltávolítása a CDN hello
+Ha már nem kívánja toocache egy objektumot a hello Azure Content Delivery Network (CDN), akkor hello lépések valamelyikét hajthatja végre:
 
-* Biztosíthatja, hogy a tároló privát nyilvános helyett. További információk: [Manage anonymous read access to containers and blobs](../storage/blobs/storage-manage-access-to-resources.md) (Tárolók és blobok névtelen olvasási hozzáférésének kezelése).
-* Tiltsa le, vagy törölni a CDN-végpontot a felügyeleti portál használatával.
-* Az üzemeltetett szolgáltatás nem válaszol a kérelmekre a objektum módosíthatja.
+* Hogy hello tároló privát nyilvános helyett. Lásd: [kezelheti a névtelen olvasási hozzáférés toocontainers és blobok](../storage/blobs/storage-manage-access-to-resources.md) további információt.
+* Tiltsa le, vagy törölni hello CDN-végpontot hello felügyeleti portál használatával.
+* Az üzemeltetett szolgáltatás toono hosszabb válaszoljon toorequests hello objektum módosíthatja.
 
-Az objektum már gyorsítótárazza a CDN gyorsítótárában marad, amíg az objektum idő a működés közbeni időszakának lejártáig támogatja, vagy a végpont véglegesen törlődnek. Az idő a működés közbeni időszak lejártával a CDN ellenőrzi, hogy a CDN-végpont továbbra is érvényes, és az objektum névtelenül továbbra is elérhetők maradnak. Ha nem, majd az objektum rendszer már nem gyorsítótárazható.
+Az objektum már gyorsítótárazza a hello CDN gyorsítótárában marad, amíg hello objektum hello idő a működés közbeni időszak lejár, vagy hello végpont véglegesen törlődnek. Hello idő a működés közbeni időszak lejár, hello CDN ellenőrzi toosee e hello CDN-végpont továbbra is érvényes, és hello objektum névtelenül továbbra is elérhetők maradnak. Ha nem, majd hello objektum rendszer már nem gyorsítótárazható.
 
 ## <a name="additional-resources"></a>További források
-* [CDN-tartalom leképezése egyéni tartományra](cdn-map-content-to-custom-domain.md)
+* [Hogyan tooMap CDN tartalom tooa egyéni tartományhoz](cdn-map-content-to-custom-domain.md)
 * [Az egyéni tartomány HTTPS engedélyezése](cdn-custom-ssl.md)
 
 [create-new-storage-account]: ./media/cdn-create-a-storage-account-with-cdn/CDN_CreateNewStorageAcct.png

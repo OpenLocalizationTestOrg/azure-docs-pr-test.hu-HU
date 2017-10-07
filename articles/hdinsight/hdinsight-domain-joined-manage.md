@@ -1,6 +1,6 @@
 ---
-title: "Tartományhoz csatlakozó HDInsight-fürtök - Azure kezelése |} Microsoft Docs"
-description: "A tartományhoz a HDInsight-fürtök kezelése"
+title: "aaaManage tartományhoz a HDInsight-fürtök - Azure |} Microsoft Docs"
+description: "Ismerje meg, hogyan toomanage tartományhoz HDInsight-fürtök"
 services: hdinsight
 documentationcenter: 
 author: saurinsh
@@ -16,37 +16,37 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/25/2016
 ms.author: saurinsh
-ms.openlocfilehash: 9b56ce6cc5bdd3b8d48d047751e978cad08598e1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 233ddf0953e981f9a24b77d9dde194d590e5e6d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-domain-joined-hdinsight-clusters-preview"></a>Tartományhoz csatlakozó HDInsight-fürtök (előzetes verzió) kezelése
-Ismerje meg, a felhasználók és a szerepköröket, a tartományhoz, és a tartományhoz a HDInsight-fürtök kezelése.
+Ismerje meg, hello felhasználók és a tartományhoz, és hogyan toomanage tartományhoz HDInsight-fürtök hello szerepkörök.
 
 ## <a name="users-of-domain-joined-hdinsight-clusters"></a>A tartományhoz a HDInsight-fürtök felhasználók
-Egy HDInsight-fürthöz nem csatlakozó tartomány-van két olyan felhasználói fiókot, amely a fürt létrehozása során jönnek létre:
+Egy HDInsight-fürthöz nem csatlakozó tartomány-van két olyan felhasználói fiókot, amely hello fürt létrehozása során jönnek létre:
 
-* **Ambari admin**: Ez a fiók akkor is *Hadoop felhasználói* vagy *HTTP felhasználói*. Ez a fiók használható jelentkezhet be az Ambari https://&lt;clustername >. azurehdinsight.net. Is használható lekérdezéseket futtathat az Ambari nézetek, külső eszközök (azaz PowerShell, lépni a Templeton, Visual Studio) keresztül feladatok végrehajtása és a Hive ODBC-illesztővel és az Üzletiintelligencia-eszközök (pl. Excel, Power bi vagy Tableau) a hitelesítést.
-* **SSH-felhasználó**: Ez a fiók SSH együtt, és sudo parancsok. A Linux virtuális gépek legfelső szintű engedélyekkel rendelkezik.
+* **Ambari admin**: Ez a fiók akkor is *Hadoop felhasználói* vagy *HTTP felhasználói*. Ez a fiók lehet a következő https:// tooAmbari használt toolog&lt;clustername >. azurehdinsight.net. Azt is használt toorun lekérdezései Ambari nézetek, feladatok külső eszközök (azaz PowerShell, lépni a Templeton, Visual Studio) keresztül hajtható végre, és hello Hive ODBC-illesztővel és az Üzletiintelligencia-eszközök (pl. Excel, Power bi vagy Tableau) a hitelesítést.
+* **SSH-felhasználó**: Ez a fiók SSH együtt, és sudo parancsok. Legfelső szintű jogosultságokkal toohello Linux virtuális gépeket tartalmaz.
 
-A tartományhoz csatlakoztatott HDInsight-fürt három mellett Ambari rendszergazda új felhasználókat és SSH-felhasználó rendelkezik.
+Egy tartományhoz csatlakozó HDInsight-fürt rendelkezik három új felhasználók hozzáadása tooAmbari rendszergazda és az SSH-felhasználó.
 
-* **Pletyka admin**: Ez egy a Apache Pletyka helyi rendszergazdai fiók. Az active directory tartományi felhasználó nincs. Ez a fiók használható házirendek beállítása, és más felhasználók rendszergazdák vagy delegált rendszergazdák (így ezen házirendek kezelése). Alapértelmezés szerint a felhasználónév az *admin* és a jelszó megegyezik az Ambari rendszergazdai jelszavát. A jelszó a Pletyka a beállítások lapon lehet frissíteni.
-* **Fürt tartományi felhasználót a rendszergazda**: A fiók egy active directory tartományi felhasználóra, beleértve az Ambari és Pletyka Hadoop fürthöz rendszergazdaként kijelölt legyen. Fürt létrehozása során a felhasználó hitelesítő adatait kell megadnia. A felhasználó rendelkezik-e a következő engedélyekkel:
+* **Pletyka admin**: Ez egy hello helyi Apache Pletyka rendszergazdai fiók. Az active directory tartományi felhasználó nincs. Ehhez a fiókhoz használt toosetup házirendek kell, és ellenőrizze a más felhasználók rendszergazdák vagy delegált rendszergazdák (így ezen házirendek kezelése). Alapértelmezés szerint hello felhasználónév az *admin* és hello jelszó van hello megegyeznek a hello Ambari rendszergazdai jelszavát. hello jelszó hello beállításai lapon a Pletyka lehet frissíteni.
+* **Fürt tartományi felhasználót a rendszergazda**: ezt a fiókot az active directory tartományi felhasználó, beleértve az Ambari és Pletyka Hadoop-fürt felügyeleti hello kijelölt. Fürt létrehozása során a felhasználó hitelesítő adatait kell megadnia. Ez a felhasználó rendelkezik jogosultsággal a következő hello:
 
-  * Számítógépek csatlakoztatása a tartományhoz, és helyezze el őket a szervezeti egységet a fürt létrehozása során belül.
-  * Hozzon létre szolgáltatásnevekről belül a szervezeti egységet a fürt létrehozása során.
+  * Gépek toohello tartományhoz, és helyezze el őket belül hello szervezeti egységet a fürt létrehozása során.
+  * Hozzon létre szolgáltatásnevekről belül hello szervezeti egységet a fürt létrehozása során.
   * Névkeresési DNS-bejegyzéseket létrehozni.
 
-    Megjegyzés: az egyéb AD a felhasználóknak is ezeket a jogokat.
+    Megjegyzés: hello más AD felhasználók is ezeket a jogokat.
 
-    Nincsenek egyes végpontok a fürtben (például lépni a Templeton) Pletyka által nem kezelt, és ezért nem biztonságos. A végpontok az összes felhasználó számára, kivéve a fürt rendszergazdai tartományi felhasználó van zárolva.
-* **Rendszeres**: fürt létrehozása során megadhatja a több active directory-csoportokat. Ebben a csoportokban lévő felhasználók Pletyka és az Ambari lesznek szinkronizálva. Ezek a felhasználók tartományi felhasználók, és hozzáférhetnek csak Pletyka által felügyelt végpontok (például hiveserver2-n). Az RBAC-házirendek és ezek a felhasználók használható naplózási lesz.
+    Nincsenek egyes végpontok (például lépni a Templeton) hello fürtön belül Pletyka által nem kezelt, és ezért nem biztonságos. A végpontok hello fürt rendszergazdai tartományi felhasználó kivételével minden felhasználóra van zárolva.
+* **Rendszeres**: fürt létrehozása során megadhatja a több active directory-csoportokat. Ebben a csoportokban lévő hello felhasználók szinkronizált tooRanger és Ambari lesz. Ezek a felhasználók tartományi felhasználók pedig a hozzáférési tooonly Pletyka által felügyelt végpontok (például hiveserver2-n). Összes hello RBAC-házirendek és naplózás alkalmazható toothese felhasználók.
 
 ## <a name="roles-of-domain-joined-hdinsight-clusters"></a>A tartományhoz a HDInsight-fürtök szerepkörök
-Tartományhoz csatlakozó HDInsight rendelkezik a következő szerepkörök:
+A HDInsight a tartományhoz a következő szerepkörök hello rendelkezik:
 
 * A Fürtfelügyelő
 * Fürt operátor
@@ -54,57 +54,57 @@ Tartományhoz csatlakozó HDInsight rendelkezik a következő szerepkörök:
 * Szolgáltatás operátor
 * Fürt felhasználói
 
-**Ezek a szerepkörök engedélyeinek megtekintéséhez**
+**Ezek a szerepkörök toosee hello engedélyei**
 
-1. Nyissa meg az Ambari felügyeleti felhasználói Felületét.  Lásd: [nyissa meg az Ambari kezelőfelület](#open-the-ambari-management-ui).
-2. Kattintson a bal oldali menü **szerepkörök**.
-3. Kattintson a kék kérdőjel az engedélyek megtekintéséhez:
+1. Nyissa meg a hello Ambari kezelő felhasználói felületén.  Lásd: [nyitott hello Ambari felügyeleti felhasználói felület](#open-the-ambari-management-ui).
+2. Hello bal oldali menüben kattintson **szerepkörök**.
+3. Kattintson a kék hello kérdőjel toosee hello engedélyek:
 
     ![HDInsight szerepkörök engedélyekkel a tartományhoz](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-roles-permissions.png)
 
-## <a name="open-the-ambari-management-ui"></a>Nyissa meg az Ambari kezelőfelület
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+## <a name="open-hello-ambari-management-ui"></a>Nyissa meg a hello Ambari felügyeleti felhasználói felület
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
 2. Nyissa meg a HDInsight-fürt egy panelen. Lásd: [listája és megjelenítése fürtök](hdinsight-administer-use-management-portal.md#list-and-show-clusters).
-3. Kattintson a **irányítópult** a felső menüben Ambari megnyitásához.
-4. Jelentkezzen be az Ambari segítségével a fürt rendszergazdai tartományi felhasználónevet és jelszót.
-5. Kattintson a **Admin** legördülő menü felső sarokban található jobbra, és kattintson a **kezelése az Ambari**.
+3. Kattintson a **irányítópult** a hello felső menüjében tooopen Ambari.
+4. Jelentkezzen be tooAmbari hello fürt rendszergazdai tartományi felhasználónevet és jelszót használja.
+5. Hello kattintson **Admin** hello jobb felső sarokban, és kattintson a legördülő menü **kezelése az Ambari**.
 
     ![Tartományhoz csatlakozó HDInsight kezelése az Ambari](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-manage-ambari.png)
 
-    A felhasználói felület néz ki:
+    felhasználói felület hello néz ki:
 
     ![Tartományhoz csatlakozó HDInsight Ambari kezelőfelület](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui.png)
 
-## <a name="list-the-domain-users-synchronized-from-your-active-directory"></a>A tartományi felhasználók az Active Directoryból szinkronizált felsorolása
-1. Nyissa meg az Ambari felügyeleti felhasználói Felületét.  Lásd: [nyissa meg az Ambari kezelőfelület](#open-the-ambari-management-ui).
-2. Kattintson a bal oldali menü **felhasználók**. Ekkor megjelenik a HDInsight-fürthöz az Active Directoryból szinkronizált felhasználók.
+## <a name="list-hello-domain-users-synchronized-from-your-active-directory"></a>Az Active Directoryból szinkronizált hello tartományi felhasználók listázása
+1. Nyissa meg a hello Ambari kezelő felhasználói felületén.  Lásd: [nyitott hello Ambari felügyeleti felhasználói felület](#open-the-ambari-management-ui).
+2. Hello bal oldali menüben kattintson **felhasználók**. Ekkor megjelenik az Active Directory toohello HDInsight-fürtjéhez szinkronizált senki hello.
 
     ![Tartományhoz csatlakozó HDInsight Ambari felügyeleti felhasználói felület felhasználók listázása](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui-users.png)
 
-## <a name="list-the-domain-groups-synchronized-from-your-active-directory"></a>Az Active Directoryból szinkronizált csoportok listázása
-1. Nyissa meg az Ambari felügyeleti felhasználói Felületét.  Lásd: [nyissa meg az Ambari kezelőfelület](#open-the-ambari-management-ui).
-2. Kattintson a bal oldali menü **csoportok**. Ekkor megjelenik az összes, a a HDInsight-fürthöz az Active Directoryból szinkronizált csoportok.
+## <a name="list-hello-domain-groups-synchronized-from-your-active-directory"></a>Az Active Directoryból szinkronizált hello tartomány csoportjainak
+1. Nyissa meg a hello Ambari kezelő felhasználói felületén.  Lásd: [nyitott hello Ambari felügyeleti felhasználói felület](#open-the-ambari-management-ui).
+2. Hello bal oldali menüben kattintson **csoportok**. Ekkor megjelenik az Active Directory toohello HDInsight-fürtjéhez szinkronizált összes hello csoport.
 
     ![Tartományhoz csatlakozó HDInsight Ambari felügyeleti felhasználói felület listázza a csoportokat](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui-groups.png)
 
 ## <a name="configure-hive-views-permissions"></a>Nézetek Hive-engedélyek konfigurálása
-1. Nyissa meg az Ambari felügyeleti felhasználói Felületét.  Lásd: [nyissa meg az Ambari kezelőfelület](#open-the-ambari-management-ui).
-2. Kattintson a bal oldali menü **nézetek**.
-3. Kattintson a **HIVE** a részletek megjelenítéséhez.
+1. Nyissa meg a hello Ambari kezelő felhasználói felületén.  Lásd: [nyitott hello Ambari felügyeleti felhasználói felület](#open-the-ambari-management-ui).
+2. Hello bal oldali menüben kattintson **nézetek**.
+3. Kattintson a **HIVE** tooshow hello részleteit.
 
     ![HDInsight Ambari felügyeleti tartományhoz felhasználói felület Hive-nézetek](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui-hive-views.png)
-4. Kattintson a **Hive View** hivatkozás Hive nézetek konfigurálásához.
-5. Görgessen le a **engedélyek** szakasz.
+4. Kattintson a hello **Hive View** tooconfigure Hive nézetekhez kapcsolni.
+5. Görgessen lefelé toohello **engedélyek** szakasz.
 
     ![HDInsight Ambari felügyeleti tartományhoz felhasználói felület Hive nézetek engedélyek konfigurálása](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui-hive-views-permissions.png)
-6. Kattintson a **felhasználó hozzáadása** vagy **csoport hozzáadása**, és adja meg a felhasználókat vagy csoportokat, amelyek a Hive-nézetek használatával.
+6. Kattintson a **felhasználó hozzáadása** vagy **csoport hozzáadása**, majd adja meg a hello felhasználók vagy csoportok, a Hive-nézetek használatával.
 
-## <a name="configure-users-for-the-roles"></a>A szerepkörök a felhasználók konfigurálása
- Szerepkörök és a rájuk vonatkozó engedélyek listájának megtekintéséhez lásd: [szerepkörök a tartományhoz csatlakoztatott HDInsight-fürtök](#roles-of-domain---joined-hdinsight-clusters).
+## <a name="configure-users-for-hello-roles"></a>Felhasználók hello szerepkörök konfigurálása
+ toosee szerepköröket és engedélyeiket, listáját lásd: [szerepkörök a tartományhoz csatlakoztatott HDInsight-fürtök](#roles-of-domain---joined-hdinsight-clusters).
 
-1. Nyissa meg az Ambari felügyeleti felhasználói Felületét.  Lásd: [nyissa meg az Ambari kezelőfelület](#open-the-ambari-management-ui).
-2. Kattintson a bal oldali menü **szerepkörök**.
-3. Kattintson a **felhasználó hozzáadása** vagy **csoport hozzáadása** felhasználók és csoportok hozzárendelése különböző szerepeknek.
+1. Nyissa meg a hello Ambari kezelő felhasználói felületén.  Lásd: [nyitott hello Ambari felügyeleti felhasználói felület](#open-the-ambari-management-ui).
+2. Hello bal oldali menüben kattintson **szerepkörök**.
+3. Kattintson a **felhasználó hozzáadása** vagy **csoport hozzáadása** tooassign felhasználók és csoportok toodifferent szerepkörök.
 
 ## <a name="next-steps"></a>Következő lépések
 * A tartományhoz csatlakoztatott HDInsight-fürtök konfigurálásához lásd: [Tartományhoz csatlakoztatott HDInsight-fürtök konfigurálása](hdinsight-domain-joined-configure.md).

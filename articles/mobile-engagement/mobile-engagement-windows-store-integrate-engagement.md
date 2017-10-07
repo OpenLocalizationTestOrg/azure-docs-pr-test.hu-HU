@@ -1,6 +1,6 @@
 ---
-title: "Windows univerzális alkalmazások Engagement SDK-integráció"
-description: "Az Azure Mobile Engagement integrálása univerzális Windows-alkalmazások"
+title: "aaaWindows univerzális alkalmazások Engagement SDK-integráció"
+description: "Hogyan tooIntegrate Azure Mobile Engagement az univerzális Windows-alkalmazások"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 898160814304fa8ec65622056a77ca9d4caf2c99
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 18543798099c233dbe55cc387ba0216e369c8596
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-universal-apps-engagement-sdk-integration"></a>Windows univerzális alkalmazások Engagement SDK-integráció
 > [!div class="op_single_selector"]
@@ -29,12 +29,12 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Ez az eljárás ismerteti a legegyszerűbben úgy Engagement elemzés és Monitorozási funkciók az univerzális Windows-alkalmazás aktiválása.
+Ez az eljárás ismerteti a hello legegyszerűbb módja tooactivate Engagement elemzés és Monitorozási funkciók az univerzális Windows-alkalmazás.
 
-Az alábbi lépéseket kell aktiválni a jelentés az összes statisztikai adatok felhasználók, a munkamenetek, a tevékenységek, az összeomlásokat és a Technicals kiszámításához szükséges naplók elegendő. A jelentés más hasonló eseményeket, hibákat és feladatok statisztika kiszámításához szükséges naplók az Engagement API segítségével manuálisan hajtható végre (lásd: [a speciális a Mobile Engagement az univerzális Windows-alkalmazás szerinti címkézését API használatával](mobile-engagement-windows-store-use-engagement-api.md) óta ezek a statisztikákat a függő alkalmazást.
+a lépéseket követve hello a naplók elegendő tooactivate hello jelentés szükséges toocompute felhasználók, a munkamenetek, a tevékenységek, az összeomlásokat és a Technicals minden statisztikai adatok. hello jelentés naplók szükséges toocompute más statisztika hasonló eseményeket, hibákat és feladatokat kell elvégezni hello Engagement API segítségével manuálisan (lásd: [hogyan toouse hello speciális a Mobile Engagement az univerzális Windows-alkalmazás API címkézés](mobile-engagement-windows-store-use-engagement-api.md) óta Ezek a statisztikákat a függő alkalmazást.
 
 ## <a name="supported-versions"></a>Támogatott verziók
-A Mobile Engagement SDK Windows Universal alkalmazásokkal való csak integrálhatók a Windows-futtatókörnyezet és célzó univerzális Windows Platform-alkalmazások:
+Mobile Engagement SDK Windows Universal alkalmazásokkal való hello csak integrálhatók a Windows-futtatókörnyezet és célzó univerzális Windows Platform-alkalmazások:
 
 * Windows 8
 * Windows 8.1
@@ -42,63 +42,63 @@ A Mobile Engagement SDK Windows Universal alkalmazásokkal való csak integrálh
 * Windows 10 (asztali és mobil családok)
 
 > [!NOTE]
-> Ha Windows Phone Silverlight céloz meg, akkor tekintse meg a [Windows Phone Silverlight-integráció eljárás](mobile-engagement-windows-phone-integrate-engagement.md).
+> Ha a Windows Phone Silverlight céloz meg, majd tekintse meg a toohello [Windows Phone Silverlight-integráció eljárás](mobile-engagement-windows-phone-integrate-engagement.md).
 > 
 > 
 
-## <a name="install-the-mobile-engagement-universal-apps-sdk"></a>A Mobile Engagement univerzális alkalmazások SDK telepítése
+## <a name="install-hello-mobile-engagement-universal-apps-sdk"></a>Hello Mobile Engagement univerzális alkalmazások SDK telepítése
 ### <a name="all-platforms"></a>Összes platform
-A Mobile Engagement SDK az univerzális Windows-alkalmazás neve Nuget-csomagként érhető el *MicrosoftAzure.MobileEngagement*. Telepítheti azt a Visual Studio Nuget-Csomagkezelőjét.
+Mobile Engagement SDK az univerzális Windows-alkalmazás hello nevű Nuget-csomagként érhető el *MicrosoftAzure.MobileEngagement*. A Visual Studio Nuget-Csomagkezelő hello telepítheti.
 
 ### <a name="windows-8x-and-windows-phone-81"></a>A Windows 8.x és Windows Phone 8.1
-NuGet automatikusan telepíti az SDK-erőforrások a `Resources` mappa a projekt gyökerében.
+NuGet automatikusan telepíti a hello SDK erőforrások hello `Resources` mappát a hello a projekt gyökerében.
 
 ### <a name="windows-10-universal-windows-platform-applications"></a>Windows 10 univerzális Windows Platform-alkalmazások
-NuGet nem automatikus központi telepítése még az UWP-alkalmazás az SDK-erőforrások. Meg kell azt manuálisan mindaddig, amíg az erőforrások telepítése a NuGet bevezetik:
+NuGet nem automatikus központi telepítése még az UWP-alkalmazás hello SDK-erőforrások. Az erőforrások telepítése amíg manuálisan újra bevezették NuGet toodo közül választhat:
 
 1. Nyissa meg a Fájlkezelőben.
-2. Nyissa meg azt a következő (**x.x.x** telepíti Engagement verziója): *% USERPROFILE %\\.nuget\packages\MicrosoftAzure.MobileEngagement\\*  *x.x.x**\\content\win81*
-3. Húzza a **erőforrások** a Fájlkezelőben a Visual Studio projekt gyökerében mappát.
-4. A Visual Studióban válassza ki a projektet, és aktiválja a **megjelenítése minden fájl** a ikon a **Megoldáskezelőben**.
-5. Egyes fájlok nem szerepelnek a projektet. Importálandó őket egyszerre kattintson a jobb gombbal a **erőforrások** mappa, **zárja ki a projekt** egy másikra a kattintson a jobb gombbal, majd a **erőforrások** mappa, **szerepeljenek projekt** újból felvenni az egész mappa. Az összes fájlt a **erőforrások** mappa mostantól beletartoznak a projekthez.
+2. Keresse meg a következő helyen toohello (**x.x.x** telepíti Engagement hello verziója): *% USERPROFILE %\\.nuget\packages\MicrosoftAzure.MobileEngagement\\*  *x.x.x**\\content\win81*
+3. A fogd és vidd hello **erőforrások** hello fájl explorer toohello a projekt gyökerében a Visual Studio mappát.
+4. A Visual Studio válassza ki a projektet, és aktiválja a hello **megjelenítése minden fájl** ikonja felett hello **Megoldáskezelőben**.
+5. Egyes fájlok nem szerepelnek a hello projekt. őket egyszerre kattintson jobb gombbal a hello tooimport **erőforrások** mappa, **zárja ki a projekt** majd egy másik kattintson jobb gombbal a hello **erőforrások** mappa, **belefoglalása a projekt** toore-hello egész mappa tartalmazza. Minden fájl a hello **erőforrások** mappa mostantól beletartoznak a projekthez.
 
-## <a name="add-the-capabilities"></a>A képességek hozzáadása
-Az Engagement SDK-t kell bizonyos funkciók, a Windows SDK a megfelelő működéshez.
+## <a name="add-hello-capabilities"></a>Hello képességek hozzáadása
+hello Engagement SDK megfelelően kell néhány hello Windows SDK-t a rendelés toowork képességeit.
 
-Nyissa meg a `Package.appxmanifest` fájlt, és ne feledje, hogy a következő lehetőségei vannak deklarálva:
+Nyissa meg a `Package.appxmanifest` fájlt, és ne feledje, hogy a következő képességeket hello deklarált:
 
 * `Internet (Client)`
 
-## <a name="initialize-the-engagement-sdk"></a>Az Engagement SDK inicializálása
+## <a name="initialize-hello-engagement-sdk"></a>Hello Engagement SDK inicializálása
 ### <a name="engagement-configuration"></a>Bevonási konfiguráció
-A bevonási konfigurációs központosított a `Resources\EngagementConfiguration.xml` fájlt a projekt.
+hello Engagement konfigurációs rendszer központosított hello `Resources\EngagementConfiguration.xml` fájlt a projekt.
 
-Adja meg, hogy a fájl szerkesztése:
+A fájl toospecify szerkesztése:
 
 * Az alkalmazás kapcsolati karakterlánc címkék között `<connectionString>` és `<\connectionString>`.
 
-Ha azt szeretné, ehelyett meg futásidőben, hívása előtt az Engagement ügynök inicializálása a következő metódust:
+Ha azt szeretné, hogy a futtatókörnyezet ehelyett hívása hello következő toospecify metódus hello Engagement ügynök inicializálása előtt:
 
           /* Engagement configuration. */
           EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
 
-          /* Set the Engagement connection string. */
+          /* Set hello Engagement connection string. */
           engagementConfiguration.Agent.ConnectionString = "Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}";
 
           /* Initialize Engagement angent with above configuration. */
           EngagementAgent.Instance.Init(e, engagementConfiguration);
 
-A kapcsolati karakterlánc az alkalmazás a klasszikus Azure-portálon jelenik meg.
+hello kapcsolati karakterlánc az alkalmazás megjelenik a klasszikus Azure portál hello.
 
 ### <a name="engagement-initialization"></a>Bevonási inicializálása
-Amikor létrehoz egy új projektet egy `App.xaml.cs` fájl jön létre. Ez az osztály örökli `Application` és számos fontos metódust tartalmaz. Azt az Engagement SDK inicializálása is használható.
+Amikor létrehoz egy új projektet egy `App.xaml.cs` fájl jön létre. Ez az osztály örökli `Application` és számos fontos metódust tartalmaz. Azt is használt tooinitialize hello Engagement SDK-t.
 
-Módosítsa a `App.xaml.cs`:
+Módosítsa a hello `App.xaml.cs`:
 
-* Adja hozzá a `using` utasításokat:
+* Adja hozzá a tooyour `using` utasításokat:
   
       using Microsoft.Azure.Engagement;
-* Adja meg az Engagement inicializálására egyszer minden hívásoknál megosztásához metódus:
+* Adja meg a metódus tooshare hello Engagement inicializálására egyszer minden hívásoknál:
   
       private void InitEngagement(IActivatedEventArgs e)
       {
@@ -108,13 +108,13 @@ Módosítsa a `App.xaml.cs`:
   
         EngagementAgent.Instance.Init(e, engagementConfiguration);
       }
-* Hívás `InitEngagement` a a `OnLaunched` módszert:
+* Hívás `InitEngagement` a hello `OnLaunched` módszert:
   
       protected override void OnLaunched(LaunchActivatedEventArgs e)
       {
         InitEngagement(e);
       }
-* Az alkalmazás indításakor egy egyéni séma, egy másik alkalmazás vagy a parancssor használatával, majd a `OnActivated` metódust. Is kell kezdeményezni az Engagement SDK-t, az alkalmazás aktiválásakor. Ehhez az szükséges, bírálja felül `OnActivated` módszert:
+* Az alkalmazás indításakor egyéni megjelenítve, egy másik alkalmazás vagy hello parancssori majd hello `OnActivated` metódust. Az alkalmazás aktiválásakor is kell tooinitiate hello Engagement SDK-t. tehát felülbírálása toodo `OnActivated` módszert:
   
       protected override void OnActivated(IActivatedEventArgs args)
       {
@@ -122,20 +122,20 @@ Módosítsa a `App.xaml.cs`:
       }
 
 > [!IMPORTANT]
-> Kifejezetten nem ajánlott, hogy az alkalmazás egy másik helyen adja hozzá az Engagement inicializálására.
+> Kifejezetten nem ajánlott, tooadd hello Engagement inicializálására az alkalmazás egy másik helyen.
 > 
 > 
 
 ## <a name="basic-reporting"></a>Alapvető jelentéskészítési
 ### <a name="recommended-method-overload-your-page-classes"></a>Ajánlott módszer: túlterhelés a `Page` osztályok
-A jelentés minden, a felhasználók, a munkamenetek, a tevékenységek, az összeomlásokat és a műszaki statisztika számítási Engagement által igényelt naplók aktiválásához egyszerűen végezheti el az összes a `Page` alosztályokat örökli a `EngagementPage` osztályok.
+Rendelés tooactivate hello jelentésben az összes hello naplók szükséges Engagement toocompute felhasználók, munkamenetek, tevékenységeket, összeomlik és műszaki statisztika, egyszerűen végezheti el az összes a `Page` alosztályokat örökölhet hello `EngagementPage` osztályok.
 
-Íme egy példa bemutatja, hogyan ehhez az alkalmazás egy lap. Ezt megteheti az ugyanaz az alkalmazás összes lapja esetében.
+Íme egy példa bemutatja, hogyan toodo Ez az alkalmazás egy lap. Mindent hello ugyanaz az alkalmazás összes lapja esetében.
 
 #### <a name="c-source-file"></a>C# forrásfájl
 A lap módosítása `.xaml.cs` fájlt:
 
-* Adja hozzá a `using` utasításokat:
+* Adja hozzá a tooyour `using` utasításokat:
   
       using Microsoft.Azure.Engagement;
 * Cserélje le `Page` rendelkező `EngagementPage`:
@@ -163,14 +163,14 @@ A lap módosítása `.xaml.cs` fájlt:
         }
 
 > [!IMPORTANT]
-> Ha az oldala felülírja az `OnNavigatedTo` metódust, hívja meg a következőt: `base.OnNavigatedTo(e)`. Ellenkező esetben a tevékenységről nem készül jelentés (az `EngagementPage` meghívja a `StartActivity` tevékenységet az `OnNavigatedTo` metódusán belül).
+> Ha az oldala felülírja hello `OnNavigatedTo` módszer, lehet, hogy toocall `base.OnNavigatedTo(e)`. Ellenkező esetben hello tevékenység nem készíthető jelentés (hello `EngagementPage` hívások `StartActivity` belül a `OnNavigatedTo` metódus).
 > 
 > 
 
 #### <a name="xaml-file"></a>XAML-fájl
 A lap módosítása `.xaml` fájlt:
 
-* Adja hozzá a következőt a névtér-deklarációkhoz:
+* Tooyour névtér-deklarációk hozzáadása:
   
       xmlns:engagement="using:Microsoft.Azure.Engagement"
 * Cserélje le `Page` rendelkező `engagement:EngagementPage`:
@@ -190,33 +190,33 @@ A lap módosítása `.xaml` fájlt:
             ...
         </engagement:EngagementPage >
 
-#### <a name="override-the-default-behaviour"></a>Bírálja felül az alapértelmezett viselkedése
-Alapértelmezés szerint az osztály nevét a lap a tevékenység nevét, nem extra akkor számít. Ha az osztály a "Lap" utótagot használ, Engagement is törlődik.
+#### <a name="override-hello-default-behaviour"></a>Bírálja felül a hello alapértelmezett viselkedése
+Alapértelmezés szerint hello osztálynév hello lap hello tevékenység nevét, nem extra akkor számít. Ha hello osztály hello "Lap" utótagot használ, Engagement is törlődik.
 
-Ha azt szeretné, felülbírálhatja az alapértelmezett viselkedést, a neve, vegyük fel ezt a kódot:
+Ha toooverride hello alapértelmezett viselkedése hello neveként, egyszerűen adja hozzá a tooyour kódot:
 
-        // in the .xaml.cs file
+        // in hello .xaml.cs file
         protected override string GetEngagementPageName()
         {
           /* your code */
           return "new name";
         }
 
-Ha szeretne jelentést készíteni a tevékenységi néhány további informations, adhat hozzá ezt a kódot:
+Ha azt szeretné tooreport néhány további informations a tevékenységet, a tooyour kódot is hozzáadhat:
 
-        // in the .xaml.cs file
+        // in hello .xaml.cs file
         protected override Dictionary<object,object> GetEngagementPageExtra()
         {
           /* your code */
           return extra;
         }
 
-Ezek a módszerek nevezzük belül a `OnNavigatedTo` metódus a lap.
+Ezek a módszerek is meghívhatók hello `OnNavigatedTo` módszer a lap.
 
 ### <a name="alternate-method-call-startactivity-manually"></a>Másodlagos módszer: hívja `StartActivity()` manuálisan
-Ha nem, vagy nem szeretné, hogy túlterhelés a `Page` osztályok, ehelyett megkezdheti a tevékenységek meghívásával `EngagementAgent` módszerek közvetlenül.
+Ha nem, vagy nem toooverload a `Page` osztályok, ehelyett megkezdheti a tevékenységek meghívásával `EngagementAgent` módszerek közvetlenül.
 
-Ajánlott hívására `StartActivity` belül a `OnNavigatedTo` metódus a lap.
+Azt javasoljuk, hogy toocall `StartActivity` belül a `OnNavigatedTo` metódus a lap.
 
             protected override void OnNavigatedTo(NavigationEventArgs e)
             {
@@ -227,31 +227,31 @@ Ajánlott hívására `StartActivity` belül a `OnNavigatedTo` metódus a lap.
 > [!IMPORTANT]
 > Gondoskodjon arról, hogy megfelelően a munkamenet befejezéséhez.
 > 
-> A Windows Universal SDK automatikusan meghívja a `EndActivity` módszer az alkalmazás bezárása után. Így **magas** hívására ajánlott a `StartActivity` módszer, amikor a felhasználó tevékenységét módosításához, és **soha** hívja a `EndActivity` metódus, ez a módszer kiszolgálónak küldi az Engagement, amely aktuális felhasználó rendelkezik kilép az alkalmazásból, a rendszer minden alkalmazásnaplók hatással van.
+> Univerzális Windows SDK hello automatikusan meghívja a hello `EndActivity` metódus hello alkalmazás bezárásakor. Így **magas** toocall hello ajánlott `StartActivity` metódus hello tevékenység hello felhasználó módosítja, amikor és túl**soha** hívás hello `EndActivity` módszer, ez a módszer küld tooEngagement kiszolgáló, hogy az aktuális felhasználó rendelkezik-e hagyja hello alkalmazás, a rendszer minden alkalmazásnaplók hatással van.
 > 
 > 
 
 ## <a name="advanced-reporting"></a>Speciális jelentéskészítés
-A jelentés adott alkalmazásesemények, a hibák és a feladatok, érdemes lehet ehhez használhatja a többi módszerek található a `EngagementAgent` osztály. A bevonási API lehetővé teszi, hogy Engagement speciális funkciók használatára.
+Szükség esetén érdemes lehet tooreport adott eseményeket, hibákat és feladatokat, toodo így, használjon más módszereket található hello hello `EngagementAgent` osztály. hello Engagement API lehetővé teszi, hogy toouse Engagement speciális funkciók.
 
-További információkért lásd: [a speciális a Mobile Engagement az univerzális Windows-alkalmazás szerinti címkézését API használatával](mobile-engagement-windows-store-use-engagement-api.md).
+További információkért lásd: [hogyan toouse hello speciális a Mobile Engagement az univerzális Windows-alkalmazás API címkézés](mobile-engagement-windows-store-use-engagement-api.md).
 
 ## <a name="advanced-configuration"></a>Speciális konfiguráció
 ### <a name="disable-automatic-crash-reporting"></a>Automatikus összeomlási jelentések letiltása
-A jelentéskészítési funkció bekapcsolása automatikus összeomlási letilthatja. Ezután amikor nem kezelt kivétel lép fel, Engagement nem semmit.
+Bármikor letilthatja hello automatikus összeomlási jelentéskészítési funkció bekapcsolása. Ezután amikor nem kezelt kivétel lép fel, Engagement nem semmit.
 
 > [!WARNING]
-> Ha le szeretné letiltani ezt a funkciót, vegye figyelembe, hogy ha egy nem kezelt összeomlási történik, az alkalmazásban, Engagement nem küld a összeomlási **és** nem zárja be a munkamenet és feladatok.
+> Ha azt tervezi, toodisable ezt a szolgáltatást, vegye figyelembe, hogy ha egy nem kezelt összeomlási történik, az alkalmazásban, Engagement nem küld hello összeomlási **és** hello munkamenet és feladatok nem zárható be.
 > 
 > 
 
-Automatikus összeomlási jelentések letiltásához testreszabása a attól függően, hogy a módját, deklarált, akkor a konfiguráció:
+toodisable automatikus összeomlási reporting, attól függően, hogy hello módja, deklarált, konfiguráció csak testreszabása:
 
 #### <a name="from-engagementconfigurationxml-file"></a>A `EngagementConfiguration.xml` fájl
-Jelentés összeomlási beállítása `false` közötti `<reportCrash>` és `</reportCrash>` címkék.
+Állítsa be a jelentés túl összeomlik miattuk`false` közötti `<reportCrash>` és `</reportCrash>` címkék.
 
 #### <a name="from-engagementconfiguration-object-at-run-time"></a>A `EngagementConfiguration` futási időben objektum
-A jelentés összeomlási értéke HAMIS, a EngagementConfiguration objektum használatával.
+Állítsa be a jelentés összeomlási toofalse a EngagementConfiguration objektum használatával.
 
         /* Engagement configuration. */
         EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
@@ -261,18 +261,18 @@ A jelentés összeomlási értéke HAMIS, a EngagementConfiguration objektum has
         engagementConfiguration.Agent.ReportCrash = false;
 
 ### <a name="burst-mode"></a>Nagy sebességű átvitel
-Alapértelmezés szerint a bevonási service-jelentéseken naplók valós időben. Ha az alkalmazás naplók nagyon gyakran, érdemes meghajtóin a naplókat, és jelentést őket egyszerre egy rendszeres időközönként alap (Ez a "kapacitásnövelés mód" nevezzük).
+Alapértelmezés szerint hello Engagement service-jelentéseken naplók valós időben. Ha az alkalmazás naplók nagyon gyakran, jelenti jobb toobuffer hello naplók és tooreport őket egyszerre egy rendszeres időközönként alap (Ez a lehetőség hello "kapacitásnövelés mód").
 
-Ehhez a metódus meghívására:
+toodo tehát hello metódus hívása:
 
         EngagementAgent.Instance.SetBurstThreshold(int everyMs);
 
-Az argumentum értéke a **ezredmásodperc**. Bármikor Ha a valós idejű naplózási újraaktiválni kívánt, csak hívja a módszer minden paraméter nélkül, vagy a 0 érték.
+hello argumentum értéke a **ezredmásodperc**. Bármikor Ha azt szeretné, hogy tooreactivate hello valós idejű naplózási, csak hívja hello metódus bármely paraméter nélkül vagy hello 0 értékkel.
 
-A kapacitásnövelés módja kissé az eszközakkumulátor élettartamának növelhető, de hatással van a bevonási figyelő: minden munkamenetek és feladatok időtartama a rendszer kerekíti a kapacitásnövelés küszöbértéket (így munkamenetek és feladatok rövidebb, mint a kapacitásnövelés küszöbértéke nem lehet látható). Javasoljuk, hogy egy mint 30000 (30s) kapacitásnövelés küszöbértékkel. Akkor érdemes figyelembe vennie, amelyet a naplók 300 elemet korlátozódnak. Ha a küldő túl hosszú néhány naplók elveszhet.
+hello kapacitásnövelés mód némileg növeli hello akkumulátor élettartama hello Engagement figyelő azonban hatással van: az összes munkamenetek és feladatok is lesznek kerekített toohello kapacitásnövelés küszöbértéket (így munkamenetek és feladatok rövidebb, mint a hello kapacitásnövelés küszöbértéke nem lehet látható). Az ajánlott toouse egy mint 30000 (30s) kapacitásnövelés küszöbértéket. Vegye figyelembe a mentett naplókat még korlátozott too300 elemek toobe rendelkezik. Ha a küldő túl hosszú néhány naplók elveszhet.
 
 > [!WARNING]
-> A kapacitásnövelés küszöbértéke kisebb, mint 1s időszakra nem konfigurálható. Ha erre, az SDK jelennek meg a hiba: a nyomkövetés, és automatikusan visszaállítja az alapértelmezett érték, azaz 0s. Ez akkor indul el, az SDK jelentheti a naplók valós időben.
+> hello kapacitásnövelés küszöbértéke kisebb, mint 1s tooa időszak nem lehet konfigurálni. Ha úgy próbálja toodo, hello SDK hello hiba: a nyomkövetési bemutatják és automatikusan toohello alapértelmezett értékét, azaz 0s alaphelyzetbe állítása. Ez akkor indul el, hello SDK tooreport hello naplók valós időben.
 > 
 > 
 

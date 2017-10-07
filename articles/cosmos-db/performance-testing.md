@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB méretezés és teljesítmény tesztelése |} Microsoft Docs"
-description: "Ismerje meg, hogyan hajthat végre a méretezés és teljesítmény az Azure Cosmos DB tesztelése"
+title: "aaaAzure Cosmos DB méretezés és teljesítmény tesztelése |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooperform méretezése és a teljesítmény tesztelése az Azure Cosmos DB"
 keywords: "A teljesítmény tesztelése"
 services: cosmos-db
 author: arramac
@@ -15,44 +15,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: arramac
-ms.openlocfilehash: b5a1edd08819e82437c5b22d8eb131665d7c9645
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 46d1217e11a39ee970a868de9a5c5dfcf52cedf3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="performance-and-scale-testing-with-azure-cosmos-db"></a>Teljesítmény és méretezhetőség, az Azure Cosmos DB tesztelése
-Teljesítmény- és mérettesztelés az alkalmazásfejlesztés kulcsfontosságú lépés. Több alkalmazás az adatbázis-rétegből jelentős hatással az átfogó teljesítményét és méretezhetőségét, és ezért a teljesítmény tesztelése kritikus összetevője. [Az Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) erre a célra kialakított rugalmasan méretezhető és kiszámítható teljesítményt, és ezért egy nagyszerű méretezése nagy teljesítményű adatbázis-rétegből igénylő alkalmazásokhoz. 
+Teljesítmény- és mérettesztelés az alkalmazásfejlesztés kulcsfontosságú lépés. Számos alkalmazás, az adatbázis-rétegből hello jelentős hatással van hello átfogó teljesítményét és méretezhetőségét, és ezért kritikus összetevője teljesítményét teszteli. [Az Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) erre a célra kialakított rugalmasan méretezhető és kiszámítható teljesítményt, és ezért egy nagyszerű méretezése nagy teljesítményű adatbázis-rétegből igénylő alkalmazásokhoz. 
 
-Ez a cikk a fejlesztők a Cosmos DB munkaterhelések teljesítményét teszt csomagok végrehajtási, vagy nagy teljesítményű alkalmazás forgatókönyvek Cosmos DB kiértékelése hivatkozás. Elsősorban az adatbázis vizsgálati elkülönített teljesítmény összpontosít, de ajánlott eljárások az üzemi környezetben működő alkalmazásokat is tartalmazza.
+Ez a cikk a fejlesztők a Cosmos DB munkaterhelések teljesítményét teszt csomagok végrehajtási, vagy nagy teljesítményű alkalmazás forgatókönyvek Cosmos DB kiértékelése hivatkozás. Elsősorban hello adatbázis vizsgálati elkülönített teljesítmény összpontosít, de ajánlott eljárások az üzemi környezetben működő alkalmazásokat is tartalmazza.
 
-A cikk elolvasása után lesz a következő kérdések megválaszolásához:   
+A cikk elolvasása után fog tudni tooanswer hello a következő kérdéseket:   
 
 * Hol található a .NET ügyfél mintaalkalmazás Cosmos DB teljesítmény teszteléshez? 
 * Hogyan elérése a saját ügyfélalkalmazás magas teljesítmény szintek Cosmos DB?
 
-Első lépésként kóddal, töltse le a projektet a [Azure Cosmos DB teljesítményének tesztelése minta](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark). 
+tooget használatába a kódot, töltse le a hello projekt [Azure Cosmos DB teljesítményének tesztelése minta](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark). 
 
 > [!NOTE]
-> Ez az alkalmazás célja a jobb teljesítmény érdekében kívül Cosmos DB kibontása ügyfélgépek kis számú ajánlott eljárásai bemutatják. Ez nem tették bemutatása a szolgáltatást, amely méretezhető korlátlanul bővíthető maximális kapacitását.
+> hello az alkalmazás célja gyakorlati tanácsok toodemonstrate kívül Cosmos DB jobb teljesítményt kibontott ügyfélgépek kis számú. Ez nem tették hello szolgáltatást, amely méretezhető korlátlanul bővíthető toodemonstrate hello maximális kapacitását.
 > 
 > 
 
-Ha a keresett Cosmos DB teljesítmény javítása érdekében az ügyféloldali konfigurációs beállítások, lásd: [Azure Cosmos DB teljesítmény tippek](performance-tips.md).
+Ha az ügyféloldali konfigurációs beállítások tooimprove Cosmos DB teljesítmény keres, tekintse meg [Azure Cosmos DB teljesítmény tippek](performance-tips.md).
 
-## <a name="run-the-performance-testing-application"></a>Futtatható az alkalmazás tesztelése
-Első lépésként a leggyorsabban fordításához és futtatásához a .NET-példa az alábbi az alábbi lépések elvégzésével. Is ajánlott felülvizsgálni a forráskódot, és a saját ügyfélalkalmazásait hasonló konfigurációkat valósítható meg.
+## <a name="run-hello-performance-testing-application"></a>Hello teljesítménytesztelési alkalmazás futtatása
+hello leggyorsabb módon tooget lépések van toocompile és futtatási hello .NET mintaalkalmazás az alábbi hello lépéseket leírtak szerint. Is tekintse át a hello forráskódját és hasonló konfigurációkat tooyour saját ügyfélalkalmazások megvalósításához.
 
-**1. lépés:** töltse le a projektet a [Azure Cosmos DB teljesítményének tesztelése minta](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark), vagy oszthatja ketté a GitHub-tárházban.
+**1. lépés:** letöltési hello projektet a [Azure Cosmos DB teljesítményének tesztelése minta](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark), vagy elágazás hello GitHub-tárházban.
 
-**2. lépés:** módosítsa a beállításokat a végponti URL-cím, AuthorizationKey, CollectionThroughput és DocumentTemplate az App.config fájlban (nem kötelező).
+**2. lépés:** végponti URL-cím, AuthorizationKey, CollectionThroughput és DocumentTemplate (opcionális) az App.config fájlban hello beállításainak módosítása.
 
 > [!NOTE]
-> Gyűjtemények nagy átviteli sebességgel üzembe helyezése, előtt tekintse meg a [árképzést ismertető oldalra](https://azure.microsoft.com/pricing/details/cosmos-db/) becsléséhez gyűjteményenként költségeket. Az Azure Cosmos DB váltók tárolási és átviteli sebességet egymástól függetlenül óránként, így költségeket takaríthat törlése, és így csökkenti az átviteli sebessége a Azure Cosmos DB gyűjtemények tesztelés után.
+> Gyűjtemények nagy átviteli sebességgel üzembe helyezése, előtt tekintse meg az toohello [árképzést ismertető oldalra](https://azure.microsoft.com/pricing/details/cosmos-db/) tooestimate hello költségek gyűjteményenként. Az Azure Cosmos DB váltók tárolási és átviteli sebességet egymástól függetlenül óránként, így költségeket takaríthat törlése vagy a Azure Cosmos DB gyűjtemények hello átviteli lowering tesztelés után.
 > 
 > 
 
-**3. lépés:** fordítsa le és futtassa a konzolalkalmazást a parancssorból. A következőhöz hasonló kimenetnek kell megjelennie:
+**3. lépés:** összegzik és hello Konzolalkalmazás hello parancssorból futtassa. Hello hasonló kimenetnek kell megjelennie:
 
     Summary:
     ---------------------------------------------------------------------
@@ -98,15 +98,15 @@ Első lépésként a leggyorsabban fordításához és futtatásához a .NET-pé
     DocumentDBBenchmark completed successfully.
 
 
-**(Ha szükséges), a 4. lépés:** az eszköze (RU/mp) jelentett átviteli azonosnak kell lennie, vagy nagyobb, mint a gyűjtemény a létesített átviteli sebesség. Ha nem, a kis lépésekkel DegreeOfParallelism növelése segítenek eléri a határértéket. Ha az ügyfél alkalmazásból átviteli trületek elindítani az alkalmazást az azonos vagy azoktól eltérő gépeken több példánya segítséget a különböző példányai között létesített eléri. Ha ebben a lépésben segítségre van szüksége, kérjük, írjon egy e-mailek askcosmosdb@microsoft.com vagy a támogatási jegy fájl a [Azure Portal](https://portal.azure.com).
+**(Ha szükséges), a 4. lépés:** hello átviteli jelentett (RU/mp) hello eszközből hello azonos vagy nagyobb, mint hello kiosztott átviteli sebesség hello gyűjtemény kell lennie. Ha nem, növekvő hello DegreeOfParallelism kis lépésekkel segítenek elérni hello korlátot. Ha az ügyfél alkalmazásból hello átviteli trületek hello alkalmazás több példánya indítása a hello azonos vagy különböző példányok eléri a határértéket kiépített hello hello között különböző gépek nyújtanak segítséget. Ha ebben a lépésben segítségre van szüksége, kérjük, írjon e-mailt tooaskcosmosdb@microsoft.com vagy a fájl egy támogatási jegy a hello [Azure Portal](https://portal.azure.com).
 
-Miután az alkalmazás futását, próbálkozzon másik [házirendek indexelő](indexing-policies.md) és [konzisztenciaszintek](consistency-levels.md) átviteli sebesség és a késleltetés gyakorolt hatásuk megértéséhez. Is ajánlott felülvizsgálni a forráskódot, és a saját tesztelési programcsomagok vagy üzemi környezetben működő alkalmazásokhoz hasonló konfigurációkat valósítja meg.
+Miután hello alkalmazás fut, próbálja meg különböző [házirendek indexelő](indexing-policies.md) és [konzisztenciaszintek](consistency-levels.md) toounderstand átviteli sebesség és a késleltetés gyakorolt hatásának. Hello forráskód áttekintheti és hasonló konfigurációkat tooyour saját tesztelési programcsomagok vagy üzemi környezetben működő alkalmazásokat is.
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben a cikkben azt venni, hogyan hajthat végre a teljesítmény és méretezhetőség tesztelték Cosmos Adatbázisba egy .NET-Konzolalkalmazás használatával. Tekintse meg az Azure Cosmos DB használatáról további információt az alábbi hivatkozásokat követve.
+Ebben a cikkben azt venni, hogyan hajthat végre a teljesítmény és méretezhetőség tesztelték Cosmos Adatbázisba egy .NET-Konzolalkalmazás használatával. Azure Cosmos DB használatával kapcsolatos további információkért tekintse meg az alábbi toohello hivatkozásokat követve.
 
 * [Az Azure Cosmos adatbázis teljesítményének tesztelésekor minta](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)
-* [Ügyfél-konfigurációs beállítások Azure Cosmos DB teljesítmény javítása érdekében](performance-tips.md)
+* [Ügyfél konfigurációs beállítások tooimprove Azure Cosmos DB teljesítmény](performance-tips.md)
 * [Kiszolgálóoldali particionálás az Azure Cosmos-Adatbázisba](partition-data.md)
 
 

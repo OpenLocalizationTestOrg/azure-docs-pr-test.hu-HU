@@ -1,6 +1,6 @@
 ---
-title: "Egy JSON-objektum átadása egy Azure Automation-runbook |} Microsoft Docs"
-description: "Egy runbook JSON-objektumként paraméterek továbbítása"
+title: a JSON aaaPass objektum tooan Azure Automation-runbook |} Microsoft Docs
+description: "Hogyan toopass paraméterek tooa runbook JSON-objektumként"
 services: automation
 documentationcenter: dev-center-name
 author: eslesar
@@ -13,32 +13,32 @@ ms.tgt_pltfrm: powershell
 ms.workload: TBD
 ms.date: 06/15/2017
 ms.author: eslesar
-ms.openlocfilehash: eac0e95a46731b9d396ea0590e629d61ca6a7d70
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8229a16015d549927ead5496c70e9fb391d35498
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="pass-a-json-object-to-an-azure-automation-runbook"></a>Egy JSON-objektum átadása egy Azure Automation-runbook
+# <a name="pass-a-json-object-tooan-azure-automation-runbook"></a>Adjon át egy JSON-objektum tooan Azure Automation-forgatókönyv
 
-Lehet hasznos, ha szeretné, hogy egy runbook egy JSON-fájlban használni kívánt adatok tárolásához.
-Például előfordulhat, hogy hozzon létre egy JSON-fájl, amely tartalmazza az összes runbook átadni kívánt paramétert.
-Ehhez az szükséges, akkor a JSON alakítható át karakterlánccá, majd a karakterlánc át kell alakítania egy PowerShell-objektum előtt annak tartalmát a runbookhoz.
+Ez lehet a hasznos toostore adat, amelyet az toopass tooa runbook egy JSON-fájlban.
+Például létrehozhat egy JSON-fájl, amely tartalmazza az összes hello paraméterek toopass tooa runbook szeretné.
+toodo, hogy tooconvert hello JSON tooa karakterlánc és alakítsa át a tartalmak toohello runbook előtt hello karakterlánc tooa PowerShell-objektum.
 
-Ebben a példában, mi létrehozunk egy PowerShell-parancsfájlt, amely behívja [Start-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) PowerShell runbook, a tartalmát a JSON átadja a runbook indítása.
-A PowerShell-forgatókönyv egy Azure virtuális Gépen, a paraméterek lekérése lett átadva a JSON a virtuális gép elindul.
+Ebben a példában, mi létrehozunk egy PowerShell-parancsfájlt, amely behívja [Start-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) toostart hello JSON toohello runbook tartalmának hello átadásakor PowerShell-forgatókönyv.
+hello PowerShell runbook elindul egy Azure virtuális Gépen, hello paraméterek hello lett átadva a JSON-NÁ. a virtuális gép hello lekérése.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban a következő hello szüksége:
 
 * Egy Azure-előfizetés. Ha még nem rendelkezik fiókkal, [aktiválhatja MSDN-előfizetői előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/), illetve <a href="/pricing/free-account/" target="_blank">[regisztrálhat egy ingyenes fiókot](https://azure.microsoft.com/free/).
-* [Automation-fiók](automation-sec-configure-azure-runas-account.md) a forgatókönyv tárolásához és az Azure erőforrásokban való hitelesítéshez.  Ennek a fióknak jogosultsággal kell rendelkeznie a virtuális gép elindításához és leállításához.
+* [Automation-fiók](automation-sec-configure-azure-runas-account.md) toohold hello runbook és tooAzure erőforrások hitelesítéséhez.  Ezt a fiókot kell toostart engedéllyel rendelkezik, és állítsa le a virtuális gép hello.
 * Egy Azure virtuális gép. Ezt a gépet leállítjuk és elindítjuk, tehát ne olyan virtuális gépet használjon, amely élesben működik.
-* Az Azure Powershell telepítve a helyi számítógépen. Lásd: [telepítse és konfigurálja az Azure Powershellt](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.1.0) hogyan Azure PowerShell kérhet információt.
+* Az Azure Powershell telepítve a helyi számítógépen. Lásd: [telepítse és konfigurálja az Azure Powershellt](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.1.0) információ tooget Azure PowerShell.
 
-## <a name="create-the-json-file"></a>A JSON-fájl létrehozása
+## <a name="create-hello-json-file"></a>Hello JSON-fájl létrehozása
 
-Írja be a következő teszt a fájlt, és mentse a fájt `test.json` valahol a helyi számítógépen.
+Típus hello következő tesztelése a fájlt, és mentse a fájt `test.json` valahol a helyi számítógépen.
 
 ```json
 {
@@ -47,14 +47,14 @@ Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
 }
 ```
 
-## <a name="create-the-runbook"></a>Hozza létre a runbookot
+## <a name="create-hello-runbook"></a>Hello runbook létrehozása
 
 Hozzon létre egy új "Test-Json" az Azure Automationben nevű PowerShell-forgatókönyv.
-Megtudhatja, hogyan hozzon létre egy új PowerShell runbookot, lásd: [az első PowerShell runbook](automation-first-runbook-textual-powershell.md).
+Hogyan toocreate egy új PowerShell-forgatókönyv: toolearn [az első PowerShell runbook](automation-first-runbook-textual-powershell.md).
 
-A JSON-adatok fogadására, a runbook egy objektum szükséges bemeneti paraméterként.
+tooaccept hello JSON-adatokat, hello runbook objektum szükséges bemeneti paraméterként.
 
-A runbook ezután használhatja a JSON-ban meghatározott tulajdonságokat.
+hello runbook használhatja a hello JSON meghatározott hello tulajdonság.
 
 ```powershell
 Param(
@@ -62,40 +62,40 @@ Param(
      [object]$json
 )
 
-# Connect to Azure account   
+# Connect tooAzure account   
 $Conn = Get-AutomationConnection -Name AzureRunAsConnection
 Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
     -ApplicationID $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
 
-# Convert object to actual JSON
+# Convert object tooactual JSON
 $json = $json | ConvertFrom-Json
 
-# Use the values from the JSON object as the parameters for your command
+# Use hello values from hello JSON object as hello parameters for your command
 Start-AzureRmVM -Name $json.VMName -ResourceGroupName $json.ResourceGroup
  ```
 
  Mentse, és tegye közzé ezt a runbookot az Automation-fiókban.
 
-## <a name="call-the-runbook-from-powershell"></a>A runbook hívja a Powershellből
+## <a name="call-hello-runbook-from-powershell"></a>Hívás hello runbook PowerShell
 
-Most hívása a runbook a helyi gép Azure PowerShell használatával.
-Futtassa a következő PowerShell-parancsokat:
+Most hívása hello runbook a helyi gép Azure PowerShell használatával.
+Futtassa a következő PowerShell-parancsok hello:
 
-1. Jelentkezzen be az Azure:
+1. Jelentkezzen be tooAzure:
    ```powershell
    Login-AzureRmAccount
    ```
-    Az Azure hitelesítő adatait kéri.
-1. A JSON-fájl tartalmának beolvasása és konvertálható karakterláncra:
+    Meg vannak felszólító tooenter Azure hitelesítő adatait.
+1. Első hello hello JSON-fájl tartalmát, és konvertálja tooa karakterlánc:
     ```powershell
     $json =  (Get-content -path 'JsonPath\test.json' -Raw) | Out-string
     ```
-    `JsonPath`az elérési utat, ahová mentette a JSON-fájl van.
-1. Karakterlánc tartalmát `$json` PowerShell objektumhoz:
+    `JsonPath`hello elérési utat, ahová mentette hello JSON-fájl van.
+1. Átalakítás hello karakterlánc tartalmát `$json` tooa PowerShell objektum:
    ```powershell
    $JsonParams = @{"json"=$json}
    ```
-1. Létrehozni egy kivonattáblát a paramétereinek `Start-AzureRmAutomstionRunbook`:
+1. Létrehozni egy kivonattáblát hello paramétereinek `Start-AzureRmAutomstionRunbook`:
    ```powershell
    $RBParams = @{
         AutomationAccountName = 'AATest'
@@ -104,17 +104,17 @@ Futtassa a következő PowerShell-parancsokat:
         Parameters = $JsonParams
    }
    ```
-   Figyelje meg, az értéke határozza meg `Parameters` és a PowerShell-objektum, amely tartalmazza a JSON-fájl értékeinek. 
-1. Elindítja a runbookot
+   Figyelje meg, hogy hello értékét állítja `Parameters` toohello PowerShell-objektum, amely a JSON-fájl hello hello értékeket tartalmaz. 
+1. Hello runbook elindítása
    ```powershell
    $job = Start-AzureRmAutomationRunbook @RBParams
    ```
 
-A runbook értékeket használja a JSON-fájlt a virtuális gép elindításához.
+hello runbook hello JSON-fájl toostart egy virtuális gép hello értékeit használja.
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Szöveges szerkesztővel PowerShell és a PowerShell-munkafolyamati forgatókönyvek szerkesztésével kapcsolatos további tudnivalókért lásd: [szöveges az Azure Automation runbookjai szerkesztése](automation-edit-textual-runbook.md) 
-* További információ létrehozása és importálása a runbookok további tudnivalókért lásd: [létrehozása vagy egy Azure Automation forgatókönyv importálása](automation-creating-importing-runbook.md)
+* További információ a szöveges szerkesztőt, PowerShell és a PowerShell-munkafolyamati forgatókönyvek Szerkesztés toolearn lásd [szöveges az Azure Automation runbookjai szerkesztése](automation-edit-textual-runbook.md) 
+* További információ az létrehozása és importálása a runbookok, toolearn lásd: [létrehozása vagy egy Azure Automation forgatókönyv importálása](automation-creating-importing-runbook.md)
 
 

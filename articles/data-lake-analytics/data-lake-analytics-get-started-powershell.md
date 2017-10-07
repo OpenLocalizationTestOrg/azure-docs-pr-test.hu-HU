@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Lake Analytics használatának első lépései az Azure PowerShell-lel | Microsoft Docs"
-description: "Az Azure PowerShell használata egy Data Lake Analytics-fiók létrehozásához, egy Data Lake Analytics-feladat létrehozására U-SQL használatával, valamint a feladat elküldésére. "
+title: "az Azure Data Lake Analytics az Azure PowerShell lépései aaaGet |} Microsoft Docs"
+description: "Azure PowerShell toocreate egy Data Lake Analytics-fiókot használja, hozzon létre egy U-SQL használatával a Data Lake Analytics-feladatot, valamint hello feladat elküldéséhez. "
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/04/2017
 ms.author: edmaca
-ms.openlocfilehash: 4f73e27c733edae658d1ea3bdabe48076328279b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cb9b35352d1cc9a78337448b1d6835875a212e08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-analytics-using-azure-powershell"></a>Az Azure Data Lake Analytics használatának első lépései az Azure PowerShell-lel
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
-Ebből a cikkből megtudhatja, hogyan használhatja az Azure PowerShellt Azure Data Lake Analytics-fiókok létrehozására, majd U-SQL-feladatok elküldéséhez és futtatásához. További információk a Data Lake Analyticsről: [Azure Data Lake Analytics overview](data-lake-analytics-overview.md) (Az Azure Data Lake Analytics áttekintése).
+Ismerje meg, hogyan toouse Azure PowerShell toocreate Azure Data Lake Analytics fiókok majd küldje el és U-SQL feladatok futtatásához. További információk a Data Lake Analyticsről: [Azure Data Lake Analytics overview](data-lake-analytics-overview.md) (Az Azure Data Lake Analytics áttekintése).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az oktatóanyag elkezdéséhez az alábbiakkal kell rendelkeznie:
+Ez az oktatóanyag elkezdéséhez hello a következő információkat kell rendelkeznie:
 
 * **Egy Azure Data Lake Analytics-fiók**. Lásd: [Ismerkedés a Data Lake Analytics szolgáltatással](https://docs.microsoft.com/en-us/azure/data-lake-analytics/data-lake-analytics-get-started-portal).
-* **Munkaállomás Azure PowerShell-lel**. Lásd: [How to install and configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása).
+* **Munkaállomás Azure PowerShell-lel**. Lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview).
 
-## <a name="log-in-to-azure"></a>Jelentkezzen be az Azure-ba
+## <a name="log-in-tooazure"></a>Jelentkezzen be tooAzure
 
-Ez az oktatóanyag feltételezi az Azure PowerShell használatának előzetes ismeretét. Az előzetes ismeretek fontos része az Azure-ba történő bejelentkezés. Ha segítségre van szüksége, tekintse meg az [Ismerkedés az Azure PowerShell szolgáltatással](https://docs.microsoft.com/en-us/powershell/azure/get-started-azureps) című cikket.
+Ez az oktatóanyag feltételezi az Azure PowerShell használatának előzetes ismeretét. Különösen tooknow szüksége, hogy a tooAzure toolog. Lásd: hello [Ismerkedés az Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/get-started-azureps) Ha segítségre van szüksége.
 
-Előfizetés nevével történő bejelentkezéshez:
+toolog be egy előfizetés nevét:
 
 ```
 Login-AzureRmAccount -SubscriptionName "ContosoSubscription"
 ```
 
-Az előfizetés neve helyett előfizetés-azonosítót is használhat a bejelentkezéshez:
+Hello előfizetés neve helyett egy előfizetési azonosító toolog a is használhatja:
 
 ```
 Login-AzureRmAccount -SubscriptionId "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ```
 
-Sikeres művelet esetén a parancs kimenete az alábbi szöveghez hasonlít:
+Ha sikeres, a parancs kimenetének hello néz hello a következő szöveget:
 
 ```
 Environment           : AzureCloud
@@ -59,9 +59,9 @@ SubscriptionName      : ContosoSubscription
 CurrentStorageAccount :
 ```
 
-## <a name="preparing-for-the-tutorial"></a>Felkészülés az oktatóanyag elvégzésére
+## <a name="preparing-for-hello-tutorial"></a>Hello oktatóanyag előkészítése
 
-A jelen oktatóanyagban szereplő PowerShell-kódrészletek ezeket a változókat használják az adattárolásra:
+Ebben az oktatóanyagban hello PowerShell kódtöredékek ezeket az információkat használja a változók toostore:
 
 ```
 $rg = "<ResourceGroupName>"
@@ -78,7 +78,7 @@ Get-AdlAnalyticsAccount -ResourceGroupName $rg -Name $adla
 
 ## <a name="submit-a-u-sql-job"></a>U-SQL-feladat elküldése
 
-Hozzon létre egy PowerShell-változót a U-SQL-szkript tárolásához.
+Hozzon létre egy PowerShell-változó toohold hello U-SQL parancsfájlt.
 
 ```
 $script = @"
@@ -90,19 +90,19 @@ $script = @"
         ) AS 
               D( customer, amount );
 OUTPUT @a
-    TO "/data.csv"
+    too"/data.csv"
     USING Outputters.Csv();
 
 "@
 ```
 
-Küldje el a szkriptet.
+Hello parancsfájl nyújt.
 
 ```
 $job = Submit-AdlJob -AccountName $adla –Script $script
 ```
 
-Azt is megteheti, hogy fájlként menti a szkriptet, és a következő paranccsal küldi el:
+Azt is megteheti sikerült hello parancsfájl menteni a fájlt, és küldje el a hello a következő parancsot:
 
 ```
 $filename = "d:\test.usql"
@@ -111,25 +111,25 @@ $job = Submit-AdlJob -AccountName $adla –ScriptPath $filename
 ```
 
 
-Kérje le egy adott feladat állapotát. Használja a parancsmagot addig, amíg a feladat be nem fejeződik.
+Egy adott feladat hello állapotának beolvasása. Ez a parancsmag továbbra is használatára, amíg megjelenik a hello történik.
 
 ```
 $job = Get-AdlJob -AccountName $adla -JobId $job.JobId
 ```
 
-Ahelyett, hogy újra és újra meghívná a Get-AdlAnalyticsJob parancsmagot a feladat befejeződéséig, használja a Wait-AdlJob parancsmagot.
+Helyett Get-AdlAnalyticsJob és újra amíg a feladat befejeződik, hello várakozási-AdlJob parancsmagot használhatja.
 
 ```
 Wait-AdlJob -Account $adla -JobId $job.JobId
 ```
 
-Töltse le a kimeneti fájlt.
+Hello kimeneti fájl letöltéséhez.
 
 ```
 Export-AdlStoreItem -AccountName $adls -Path "/data.csv" -Destination "C:\data.csv"
 ```
 
 ## <a name="see-also"></a>Lásd még:
-* Ha ugyanezt az oktatóanyagot más eszközök használatával szeretné megtekinteni, kattintson az oldal tetején található lapválasztókra.
-* A U-SQL nyelv megismerése: [Get started with Azure Data Lake Analytics U-SQL language](data-lake-analytics-u-sql-get-started.md) (Ismerkedés az Azure Data Lake Analytics U-SQL nyelvével).
+* toosee hello ugyanaz az oktatóanyagot más eszközök használatával hello szeretné a hello hello lap tetején kattintson.
+* toolearn U-SQL, lásd: [Ismerkedés az Azure Data Lake Analytics U-SQL nyelv](data-lake-analytics-u-sql-get-started.md).
 * Felügyeleti feladatok: [Manage Azure Data Lake Analytics using Azure Portal](data-lake-analytics-manage-use-portal.md) (Az Azure Data Lake Analytics kezelése az Azure Portallal).

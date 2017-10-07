@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure Mobile Engagement Xamarin.iOS-alkalmazásokkal való használatával"
-description: "Ismerje meg, hogyan használható az Azure Mobile Engagement a Xamarin.iOS-alkalmazásokhoz kapcsolódó elemzésekkel és leküldéses értesítésekkel."
+title: "az Azure Mobile Engagement xamarin.IOS elindítva aaaGet"
+description: "Megtudhatja, hogyan toouse Azure Mobile Engagement az elemzések és leküldéses értesítések Xamarin.iOS-alkalmazásokhoz."
 services: mobile-engagement
 documentationcenter: xamarin
 author: piyushjo
@@ -14,71 +14,71 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 9938c3e994acf31244825b1afb347f8c9f90ebe3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 02340a744753dcc5cd1b6888a5fa87628be47b68
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-mobile-engagement-for-xamarinios-apps"></a>Ismerkedés az Azure Mobile Engagement Xamarin.iOS-alkalmazásokkal való használatával
 [!INCLUDE [Hero tutorial switcher](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
-Ebben a témakörben elsajátíthatja, hogy miként használható az Azure Mobile Engagement az alkalmazáshasználat megértéséhez, valamint leküldéses értesítések Xamarin.iOS-alkalmazásba történő küldéséhez szegmentált felhasználók számára.
+Ez a témakör bemutatja, hogyan toouse Azure Mobile Engagement toounderstand az alkalmazás használatának és a küldési leküldéses értesítések toosegmented felhasználók Xamarin.iOS-alkalmazásba.
 Ebben az oktatóanyagban létrehoz egy üres Xamarin.iOS-alkalmazást, amely alapszintű adatokat gyűjt, és leküldéses értesítéseket fogad az Apple leküldéses értesítési rendszerének (APNS) használatával.
 
 > [!NOTE]
-> Az Azure Mobile Engagement szolgáltatást 2018 márciusától megszüntetjük, és jelenleg csak meglévő ügyfelek számára érhető el. További információkért lásd: [Mobile Engagement](https://azure.microsoft.com/en-us/services/mobile-engagement/).
+> hello Azure Mobile Engagement szolgáltatás március 2018 rendszerből, és jelenleg csak a rendelkezésre álló tooexisting ügyfelek. További információkért lásd: [Mobile Engagement](https://azure.microsoft.com/en-us/services/mobile-engagement/).
 
-Az oktatóanyaghoz az alábbiakra lesz szükség:
+Ez az oktatóanyag hello következő szükséges:
 
 * [Xamarin Studio](http://xamarin.com/studio). Használhatja a Visual Studiót is a Xamarinhoz, de ez az oktatóanyag a Xamarin Studiót használja. A telepítési útmutatás itt található: [Setup and Install for Visual Studio and Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) (A Visual Studio és a Xamarin beállítása és telepítése). 
 * [Mobile Engagement Xamarin SDK](https://www.nuget.org/packages/Microsoft.Azure.Engagement.Xamarin/)
 
 > [!NOTE]
-> Az oktatóanyag elvégzéséhez egy aktív Azure-fiókra lesz szüksége. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-xamarin-ios-get-started).
+> toocomplete ebben az oktatóanyagban rendelkeznie kell egy aktív Azure-fiókra. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-xamarin-ios-get-started).
 > 
 > 
 
 ## <a id="setup-azme"></a>A Mobile Engagement beállítása az iOS-alkalmazáshoz
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a id="connecting-app"></a>Az alkalmazás csatlakoztatása a Mobile Engagement háttérrendszeréhez
-Ez az oktatóanyag egy „alapszintű integrációt” mutat be, ami minimálisan szükséges az adatok gyűjtéséhez és leküldéses értesítés küldéséhez.
+## <a id="connecting-app"></a>Csatlakozás az alkalmazás toohello Mobile Engagement háttérrendszeréhez
+Ez az oktatóanyag egy "alapszintű integrációt" mutat minimális hello határozza meg a szükséges toocollect dátumát és leküldéses értesítés küldéséhez.
 
-Létre fogunk hozni egy alapszintű alkalmazást a Xamarin segítségével az integráció bemutatásához:
+Létre fogunk hozni egy alapszintű alkalmazást a Xamarin toodemonstrate hello integrációja:
 
 ### <a name="create-a-new-xamarinios-project"></a>Új Xamarin.iOS-projekt létrehozása
-1. Indítsa el a Xamarin Studiót. Lépjen a **File** -> **New** -> **Solution** (Fájl > Új > Megoldás) lehetőségre. 
+1. Indítsa el a Xamarin Studiót. Nyissa meg túl**fájl** -> **új** -> **megoldás** 
    
     ![][1]
-2. Válassza a **Single View App** (Egynézetes alkalmazás) lehetőséget, majd ellenőrizze, hogy a választott nyelv a **C#**-e, és kattintson a **Next** (Tovább) gombra.
+2. Válassza ki **egyetlen alkalmazás megtekintése**, ellenőrizze, hogy a kiválasztott hello nyelv **C#** majd **következő**.
    
     ![][2]
-3. Töltse ki az **App Name** (Alkalmazás neve) és az **Organization Identifier** (Szervezeti azonosító) mezőt, majd kattintson a **Next** (Tovább) gombra. 
+3. Adja meg a hello **alkalmazásnév** és hello **Organization Identifier** , majd **tovább**. 
    
     ![][3]
    
    > [!IMPORTANT]
-   > Győződjön meg róla, hogy az iOS-alkalmazás majdani üzembe helyezéséhez használandó közzétételi profil olyan alkalmazásazonosítót használ, amely pontosan megegyezik az itt szereplő csomagazonosítóval. 
+   > Győződjön meg arról, hogy a közzétételi profil olyan alkalmazásazonosítót használ az iOS-alkalmazás az alkalmazás Azonosítóját, amely megfelel használ pontosan az itt rendelkeznek Bundle Identifier hello toodeploy hello. 
    > 
    > 
-4. Frissítse a **Project Name** (Projekt neve), a **Solution Name** (Megoldás neve) és a **Location** (Hely) értékét, ha szükséges, majd kattintson a **Create** (Létrehozás) gombra.
+4. Frissítés hello **projektnevet**, **megoldás neve** és **hely** Ha szükséges, majd kattintson a **létrehozása**.
    
     ![][4]
 
-A Xamarin Studio létrehozza a bemutatóalkalmazást, amelybe integrálni fogjuk a Mobile Engagementet. 
+Xamarin Studio létrehozza a hello bemutatóalkalmazást, amelyben integrálni fogjuk a Mobile Engagementet. 
 
-### <a name="connect-your-app-to-mobile-engagement-backend"></a>Az alkalmazás csatlakoztatása a Mobile Engagement háttérrendszeréhez
-1. Kattintson a jobb gombbal a **Packages** mappára a Solution (Megoldás) ablakban, és válassza az **Add Packages...** (Csomagok hozzáadása...) lehetőséget.
+### <a name="connect-your-app-toomobile-engagement-backend"></a>Csatlakozás az alkalmazás tooMobile Engagement háttérrendszeréhez
+1. Kattintson jobb gombbal a hello **csomagok** megoldás a windows hello, és válassza ki a mappát **csomagok hozzáadása...**
    
     ![][5]
-2. Keresse meg a **Microsoft Azure Mobile Engagement Xamarin SDK**-t, és adja hozzá a megoldásához.  
+2. Keresse meg a hello **Microsoft Azure Mobile Engagement Xamarin SDK** , és adja hozzá tooyour megoldás.  
    
     ![][6]
-3. Nyissa meg az **AppDelegate.cs** fájlt, és adja hozzá a következő using utasítást:
+3. Nyissa meg **AppDelegate.cs** és adja hozzá hello következő using utasítást:
    
         using Microsoft.Azure.Engagement.Xamarin;
-4. A **FinishedLaunching** metódusban adja hozzá a következőket a Mobile Engagement háttérrendszeréhez való csatlakozás inicializálásához. Győződjön meg arról, hogy hozzáadta a **ConnectionString** karakterláncot. Ez a kód egy helyőrző **NotificationIcon** elemet is használ, amelyet a Mobile Engagement SDK ad hozzá, és amelyet érdemes lecserélni. 
+4. A hello **FinishedLaunching** módszer, adja hozzá a következő tooinitialize hello kapcsolat Mobile Engagement háttérrendszeréhez való hello. Győződjön meg arról, hogy tooadd a **ConnectionString**. Ezt a kódot is használ egy helyőrző **NotificationIcon** amelyet hello Mobile Engagement SDK, amelyet érdemes tooreplace. 
    
         EngagementConfiguration config = new EngagementConfiguration {
                         ConnectionString = "YourConnectionStringFromAzurePortal",
@@ -87,25 +87,25 @@ A Xamarin Studio létrehozza a bemutatóalkalmazást, amelybe integrálni fogjuk
         EngagementAgent.Init (config);
 
 ## <a id="monitor"></a>Valós idejű figyelés engedélyezése
-Az adatok küldésének megkezdéséhez és annak biztosításához, hogy a felhasználók aktívak, legalább egy képernyőt el kell küldenie a Mobile Engagement háttérrendszere számára.
+A sorrend toostart adatküldés és biztosítása hello felhasználók aktívak legalább egy képernyőt toohello Mobile Engagement háttérrendszeréhez el kell küldenie.
 
-1. Nyissa meg a **ViewController.cs** fájlt, és adja hozzá a következő using utasítást:
+1. Nyissa meg **ViewController.cs** és adja hozzá hello következő using utasítást:
    
         using Microsoft.Azure.Engagement.Xamarin;
-2. Cserélje le az osztályt, amelytől a `ViewController` örököl, a `UIViewController` osztályról az `EngagementViewController` osztályra. 
+2. Cserélje le a hello osztály, amelyből `ViewController` örököl `UIViewController` túl`EngagementViewController`. 
 
 ## <a id="monitor"></a>Az alkalmazás csatlakoztatása a valós idejű megfigyeléshez
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
 ## <a id="integrate-push"></a>Leküldéses értesítések és alkalmazáson belüli üzenetek engedélyezése
-A Mobile Engagement lehetővé teszi a felhasználókkal folytatott interakciót és a felhasználók elérését a kampányok részeként megjelenő leküldéses értesítésekkel és alkalmazáson belüli üzenetekkel. Ez a modul REACH (Elérés) néven érhető el a Mobile Engagement portálon.
-Az alábbi szakaszok állítják be az alkalmazást a fogadásukra.
+Mobile Engagement lehetővé teszi a felhasználókkal toointeract és elérése révén a leküldéses értesítések és alkalmazáson belüli üzenetekkel hello kampányok. Ez a modul REACH neve hello a Mobile Engagement portálon.
+hello alábbi szakaszok állítják be az alkalmazás tooreceive őket.
 
 ### <a name="modify-your-application-delegate"></a>Az alkalmazás delegáltjának módosítása
-1. Nyissa meg az **AppDelegate.cs** fájlt, és adja hozzá a következő using utasítást:
+1. Nyissa meg hello **AppDelegate.cs** és adja hozzá hello következő using utasítást:
    
         using System; 
-2. Most a `FinishedLaunching` metóduson belül adja hozzá az alábbiakat a leküldéses üzenetek regisztrálásához a következő után: `EngagementAgent.init(...)`
+2. Most belül hello `FinishedLaunching` módszer, adja hozzá a következő leküldéses üzenetek után tooregister hello`EngagementAgent.init(...)`
    
         if (UIDevice.CurrentDevice.CheckSystemVersion(8,0))
         {
@@ -124,7 +124,7 @@ Az alábbi szakaszok állítják be az alkalmazást a fogadásukra.
                 UIRemoteNotificationType.Sound |
                 UIRemoteNotificationType.Alert);
         }
-3. Végül frissítse vagy vegye fel a következő metódusokat:
+3. Végül frissítse vagy vegye fel a következő módszerek hello:
    
         public override void DidReceiveRemoteNotification (UIApplication application, NSDictionary userInfo, 
             Action<UIBackgroundFetchResult> completionHandler)
@@ -140,15 +140,15 @@ Az alábbi szakaszok állítják be az alkalmazást a fogadásukra.
    
         public override void FailedToRegisterForRemoteNotifications(UIApplication application, NSError error)
         {
-            Console.WriteLine("Failed to register for remote notifications: Error '{0}'", error);
+            Console.WriteLine("Failed tooregister for remote notifications: Error '{0}'", error);
         }
-4. A megoldás **Info.plist** fájljában ellenőrizze, hogy a **csomagazonosító** megegyezik-e az **alkalmazásazonosítóval**, amely az Apple fejlesztési központján belüli létrehozási profiljában szerepel. 
+4. Az a **Info.plist** hello megoldásban fájlt, győződjön meg arról, hogy hello **Bundle Identifier** megegyezik-e hello **Alkalmazásazonosító** a létesítési profilban az Apple fejlesztői hello rendelkezik Center. 
    
     ![][7]
-5. Ugyanebben az **Info.plist** fájlban ellenőrizze, hogy kiválasztotta-e az **Enable Background Modes** (Háttérmódok engedélyezése) és a **Remote Notifications** (Távoli értesítések) lehetőségeket. 
+5. Az azonos hello **Info.plist** fájlt, győződjön meg arról, hogy be van jelölve hello **Háttérmódok engedélyezése** és **távoli értesítések**. 
    
      ![][8]
-6. Futtassa az alkalmazást azon az eszközön, amelyet ehhez a közzétételi profilhoz társított. 
+6. Futtassa a hello alkalmazást ehhez a közzétételi profilhoz társított hello eszközön. 
 
 [!INCLUDE [mobile-engagement-ios-send-push-push](../../includes/mobile-engagement-ios-send-push.md)]
 

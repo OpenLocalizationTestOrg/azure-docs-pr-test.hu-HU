@@ -1,6 +1,6 @@
 ---
-title: "A logikai alkalmazás figyelése és a get észrevételeket fusson, OMS - Azure Logic Apps |} Microsoft Docs"
-description: "A logic app fut, Naplóelemzés és az Operations Management Suite (OMS) insights és gazdagabb hibakeresési adatainak lekérése – hibaelhárítás és diagnosztika figyelése"
+title: "a Logic Apps alkalmazást aaaMonitor és get észrevételeket fusson, OMS - Azure Logic Apps |} Microsoft Docs"
+description: "A logic app fut, Naplóelemzés és az Operations Management Suite (OMS) tooget insights és – hibaelhárítás és diagnosztika gazdagabb hibakeresési részletei figyelése"
 author: divyaswarnkar
 manager: anneta
 editor: 
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/9/2017
 ms.author: LADocs; divswa
-ms.openlocfilehash: 0e9f0ef3c87b5c0da1cc4ad16d37178c8f5c9625
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a76fd6d1ff5c0010550be0f991514ce95f659fd6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-and-get-insights-about-logic-app-runs-with-operations-management-suite-oms-and-log-analytics"></a>Logikai alkalmazás figyelése és a get észrevételeket fut, az Operations Management Suite (OMS) és a Naplóelemzési
 
-Figyelési és gazdagabb hibakeresési információ bekapcsolása Naplóelemzési logikai alkalmazás létrehozásakor egy időben. A Naplóelemzési biztosít naplózásának és figyelésének a logikai alkalmazásnak diagnosztika futtatása az Operations Management Suite (OMS) portálon keresztül. A Logic Apps-kezelési megoldás az OMS-be való hozzáadásakor a logic app futtatása és a kívánt részletes adatok, például állapot, a végrehajtási idő, a ismételt továbbítása során állapot és a korrelációs azonosító lekérése összesített állapotát.
+Figyelési és gazdagabb hibakeresési információ bekapcsolása Naplóelemzési: hello ugyanannyi időt vesz igénybe, ha logikai alkalmazás létrehozása. A Naplóelemzési biztosít a diagnosztika naplózásának és figyelésének a logikai alkalmazásnak hello Operations Management Suite (OMS) portálon keresztül futtatja. Hello Logic Apps felügyeleti megoldás tooOMS hozzáadásakor összesített állapotának beolvasása a logic app futtatása és a kívánt részletes adatok, például állapot, a végrehajtási idő, a ismételt továbbítása során állapot és a korrelációs azonosító.
 
-Ez a témakör bemutatja, hogyan Naplóelemzési be-és a Logic Apps-kezelési megoldás telepítése OMS, tekintse meg a futtatókörnyezet események és az adatok a Logic Apps alkalmazást futtatni.
+Ez a témakör bemutatja, hogyan tooturn Naplóelemzési vagy a telepítés hello-e az OMS Logic Apps felügyeleti megoldás, futásidejű események és a logikai alkalmazásnak adatok futtathatók.
 
  > [!TIP]
- > A meglévő logic Apps alkalmazások figyeléséhez, az alábbi lépéseket követve [diagnosztikai naplózás bekapcsolásához és a logic app futásidejű adatokat küldeni a OMS](../logic-apps/logic-apps-monitor-your-logic-apps.md#azure-diagnostics).
+ > toomonitor a meglévő logic apps, kövesse az alábbi lépéseket túl [diagnosztikai naplózás bekapcsolásához és a logic app futásidejű adatok tooOMS küldése](../logic-apps/logic-apps-monitor-your-logic-apps.md#azure-diagnostics).
 
 ## <a name="requirements"></a>Követelmények
 
-Kezdés előtt kell az OMS-munkaterület rendelkezik. Ismerje meg, [OMS-munkaterület létrehozása](../log-analytics/log-analytics-get-started.md). 
+Mielőtt elkezdené, toohave OMS-munkaterület szüksége. Ismerje meg, [hogyan toocreate OMS-munkaterület](../log-analytics/log-analytics-get-started.md). 
 
 ## <a name="turn-on-diagnostics-logging-when-creating-logic-apps"></a>A logic apps létrehozásakor diagnosztikai naplózás bekapcsolása
 
@@ -39,26 +39,26 @@ Kezdés előtt kell az OMS-munkaterület rendelkezik. Ismerje meg, [OMS-munkater
 
    ![Logikai alkalmazás létrehozása](media/logic-apps-monitor-your-logic-apps-oms/find-logic-apps-azure.png)
 
-2. Az a **hozzon létre logikai alkalmazás** lapján látható ezen feladatok végrehajtásával:
+2. A hello **hozzon létre logikai alkalmazás** lapján látható ezen feladatok végrehajtásával:
 
    1. Adjon meg egy nevet a Logic Apps alkalmazást, és válassza ki az Azure-előfizetéshez. 
    2. Hozzon létre vagy válasszon ki egy Azure-erőforráscsoportot.
-   3. Állítsa be **Analytics jelentkezzen** való **a**. 
-   Válassza ki az OMS-munkaterület, ahol szeretné elküldeni a adatait a Logic Apps alkalmazást futtat. 
-   4. Ha elkészült, válassza ki a **rögzítés az irányítópulton** > **létrehozása**.
+   3. Állítsa be **Naplóelemzési** túl**a**. 
+   Jelölje be hello OMS-munkaterület, ahová a logikai alkalmazásnak túl adatküldés fut. 
+   4. Ha elkészült, válassza ki a **PIN-kód toodashboard** > **létrehozása**.
 
       ![Logikai alkalmazás létrehozása](./media/logic-apps-monitor-your-logic-apps-oms/create-logic-app.png)
 
       Ez a lépés befejezése után az Azure létrehoz a logikai alkalmazás, amely most már az OMS-munkaterület társított. 
-      Emellett ebben a lépésben is automatikusan telepíti a Logic Apps-kezelési megoldás az OMS-munkaterület.
+      Emellett ebben a lépésben is automatikusan telepíti hello Logic Apps-kezelési megoldás az OMS-munkaterület.
 
-3. Megtekintheti a logic app futó OMS-ben, [folytassa a következő lépéseket](#view-logic-app-runs-oms).
+3. a Logic Apps alkalmazást futtat OMS-ben, tooview [folytassa a következő lépéseket](#view-logic-app-runs-oms).
 
-## <a name="install-the-logic-apps-management-solution-in-oms"></a>Az OMS a Logic Apps-kezelési megoldás telepítése
+## <a name="install-hello-logic-apps-management-solution-in-oms"></a>Az OMS hello Logic Apps-kezelési megoldás telepítése
 
-Ha Ön már engedélyezve van a Naplóelemzési a logikai alkalmazás létrehozása után, kihagyhatja ezt a lépést. Már van a Logic Apps felügyeleti megoldás, OMS telepítve.
+Ha Ön már engedélyezve van a Naplóelemzési a logikai alkalmazás létrehozása után, kihagyhatja ezt a lépést. Már van telepítve az OMS hello Logic Apps felügyeleti megoldás.
 
-1. Az a [Azure-portálon](https://portal.azure.com), válassza a **több szolgáltatások**. Keresse meg a "naplóelemzési" szűrőként, és válassza a **Naplóelemzési** látható módon:
+1. A hello [Azure-portálon](https://portal.azure.com), válassza a **több szolgáltatások**. Keresse meg a "naplóelemzési" szűrőként, és válassza a **Naplóelemzési** látható módon:
 
    ![Válassza ki a "Naplóelemzési"](media/logic-apps-monitor-your-logic-apps-oms/find-log-analytics.png)
 
@@ -70,15 +70,15 @@ Ha Ön már engedélyezve van a Naplóelemzési a logikai alkalmazás létrehoz�
 
    ![Válassza ki a "OMS-portálon"](media/logic-apps-monitor-your-logic-apps-oms/oms-portal-page.png)
 
-4. A kezdőlapon OMS a frissítési szalagcím akkor jelenik meg, ha válassza ki a szalagcím, hogy az OMS-munkaterület először frissítenie. Válassza a **megoldások gyűjtemény**.
+4. A OMS kezdőlap hello frissítési szalagcím akkor jelenik meg, ha válasszon hello szalagcím, hogy az OMS-munkaterület először frissítenie. Válassza a **megoldások gyűjtemény**.
 
    ![Válassza ki a "Megoldások gyűjtemény"](media/logic-apps-monitor-your-logic-apps-oms/solutions-gallery.png)
 
-5. A **minden megoldás**, található, és válassza ki a csempe a **Logic Apps felügyeleti** megoldás.
+5. A **minden megoldás**, található, és válassza ki a hello csempéjére a hozzá tartozó hello **Logic Apps felügyeleti** megoldás.
 
    ![Válassza ki a "Logic Apps kezelése"](media/logic-apps-monitor-your-logic-apps-oms/logic-apps-management-tile2.png)
 
-6. Az OMS-munkaterület a megoldás telepítéséhez válassza **Hozzáadás**.
+6. az OMS-munkaterület tooinstall hello megoldás kiválasztása **Hozzáadás**.
 
    ![Válassza a "Hozzáadás" a "Logic Apps kezelése"](media/logic-apps-monitor-your-logic-apps-oms/add-logic-apps-management-solution.png)
 
@@ -86,52 +86,52 @@ Ha Ön már engedélyezve van a Naplóelemzési a logikai alkalmazás létrehoz�
 
 ## <a name="view-your-logic-app-runs-in-your-oms-workspace"></a>A Logic Apps alkalmazást futtat az OMS-munkaterület megjelenítése
 
-1. Számát és a logic app kísérletekhez állapotának megtekintéséhez nyissa meg a az OMS-munkaterület áttekintő lapja. Tekintse át a részleteket a a **Logic Apps felügyeleti** csempére.
+1. tooview hello számát és a logikai alkalmazás állapotának fut, nyissa meg toohello az OMS-munkaterület áttekintő lapja. Tekintse át a hello hello részleteket **Logic Apps felügyeleti** csempére.
 
    ![Logic app futtatása száma és állapotát megjelenítő áttekintés csempe](media/logic-apps-monitor-your-logic-apps-oms/overview.png)
 
    > [!Note]
-   > Ha a frissítési szalagcím akkor jelenik meg, a Logic Apps felügyeleti csempe helyett, válassza ki azt a transzparens, hogy az OMS-munkaterület először frissítenie.
+   > Ha a frissítési szalagcím hello Logic Apps felügyeleti csempe nem jelenik meg, válassza ki a hello transzparens, hogy az OMS-munkaterület először frissítenie.
   
    > ![A frissítés "OMS-munkaterület"](media/logic-apps-monitor-your-logic-apps-oms/oms-upgrade-banner.png)
 
-2. További információt a logic app futtatása az összefoglaló megtekintéséhez válassza a **Logic Apps felügyeleti** csempére.
+2. tooview összegzését, amelyen további információkat talál a logic app futtatja, válasszon hello **Logic Apps felügyeleti** csempére.
 
    A logic app fut itt, név, illetve végrehajtási állapot szerint vannak csoportosítva.
 
    ![Állapotának összegzése a Logic Apps alkalmazást futtat](media/logic-apps-monitor-your-logic-apps-oms/logic-apps-runs-summary.png)
    
-3. Az összes fut, egy adott logikai alkalmazást vagy az állapot megtekintéséhez jelölje ki a logikai alkalmazás vagy egy állapotát.
+3. az összes hello tooview futtatása egy adott logikai alkalmazás vagy az állapot, a logikai alkalmazás vagy egy állapot válassza hello sort.
 
-   Íme egy példa, amely megjeleníti az adott logikai alkalmazás a fut:
+   Itt a következő példa bemutatja, az adott logikai alkalmazás összes hello fut:
 
    ![A logikai alkalmazást vagy egy állapot nézet futtatások](media/logic-apps-monitor-your-logic-apps-oms/logic-app-run-details.png)
 
    > [!NOTE]
-   > A **meghiúsultak** az oszlopban látható a "Yes" újraküldött futtató a kísérletekhez.
+   > Hello **meghiúsultak** az oszlopban látható a "Yes" újraküldött futtató a kísérletekhez.
 
-4. Az eredmények szűréséhez végezheti el az ügyféloldali és a kiszolgálóoldali szűrés.
+4. toofilter ezek annak az eredménye, hajthat végre az ügyféloldali és a kiszolgálóoldali szűrés.
 
-   * Ügyféloldali szűrő: az oszlopok, válassza ki a kívánt szűrőket. 
+   * Ügyféloldali szűrő: az oszlopok, válassza ki a kívánt hello szűrőket. 
    Néhány példa:
 
      ![Példa oszlopszűrők](media/logic-apps-monitor-your-logic-apps-oms/filters.png)
 
-   * Kiszolgálóoldali szűrés: Válasszon egy olyan adott időkeretet, vagy fut, amely megjelenik a számát, a hatókör vezérlőt használja az oldal tetején. 
+   * Kiszolgálóoldali szűrés: toochoose adott időpont ablak vagy toolimit hello számos fut, amely megjelenik, használjon hello hatókör vezérlő hello oldal hello tetején. 
    Alapértelmezés szerint csak 1000 rekordok jelennek meg egyszerre. 
    
-     ![Az időszak módosítása](media/logic-apps-monitor-your-logic-apps-oms/change-interval.png)
+     ![Változás hello időkerete](media/logic-apps-monitor-your-logic-apps-oms/change-interval.png)
  
-5. A műveletek és az adatait a megadott futtató megtekintéséhez válasszon ki egy sort, amely a napló lapon nyílik meg. 
+5. minden tooview hello műveletek és egy adott futtatási, válassza ki az adataikat egymás után, amely hello napló keresése oldal megnyitása. 
 
-   * A táblázat ezek az információk megtekintéséhez válassza **tábla**.
-   * Ha módosítani szeretné a lekérdezést, szerkesztheti a lekérdezési karakterláncot a keresési sávon. 
+   * tooview ezt az információt a tábla válasszon **tábla**.
+   * toochange hello lekérdezés, szerkesztheti hello keresősávban hello lekérdezési karakterláncot. 
    A jobb teljesítmény érdekében válasszon **Advanced Analytics**.
 
      ![Műveletek és a Futtatás logikai alkalmazás részleteinek megtekintése](media/logic-apps-monitor-your-logic-apps-oms/log-search-page.png)
 
-     Itt az Azure Naplóelemzés oldalon frissítheti lekérdezések és az eredmények megtekintése a táblából. 
-     Ez a lekérdezés használ [Kusto lekérdezési nyelv](https://docs.loganalytics.io/learn/tutorials/getting_started_with_queries.html), amelyen szerkesztheti, ha meg szeretné tekinteni, eltérő eredményeket. 
+     Itt hello Azure Naplóelemzés lapján frissítheti lekérdezések és nézet hello eredmények hello táblából. 
+     Ez a lekérdezés használ [Kusto lekérdezési nyelv](https://docs.loganalytics.io/learn/tutorials/getting_started_with_queries.html), amelyen szerkesztheti, ha azt szeretné, hogy tooview eltérő eredményt. 
 
      ![Az Azure Log Analytics - lekérdezési nézet](media/logic-apps-monitor-your-logic-apps-oms/query.png)
 

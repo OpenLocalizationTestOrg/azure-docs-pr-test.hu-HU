@@ -1,6 +1,6 @@
 ---
-title: "Adatfolyam-Azure diagnosztikai adatokat a gyakran használt adatok elérési útja az Event Hubs használatával |} Microsoft Docs"
-description: "Azure Diagnostics konfigurálása az Event Hubs végpontok közötti, beleértve a közös forgatókönyvre vonatkozó útmutatást."
+title: "aaaStreaming Azure diagnosztikai adatokat hello gyors elérési út az Event Hubs használatával |} Microsoft Docs"
+description: "Az Event Hubs konfigurálása Azure Diagnostics végén tooend, beleértve a közös forgatókönyvre vonatkozó útmutatást."
 services: event-hubs
 documentationcenter: na
 author: rboucher
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/13/2017
 ms.author: robb
-ms.openlocfilehash: 1c05bd6dc4c4d394aa043b9995de9c184e4f14c6
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a2528ddd0688d1c23a8631e769ca016dd79e4159
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="streaming-azure-diagnostics-data-in-the-hot-path-by-using-event-hubs"></a>Adatfolyam-Azure diagnosztikai adatokat a gyakran használt adatok elérési útja az Event Hubs használatával
-Az Azure Diagnostics metrikák és a naplók összegyűjtésére felhőalapú szolgáltatások virtuális gépek (VM) és az eredmények átvitele az Azure Storage rugalmas módszereket biztosítja. A 2016. március (SDK 2.9) időkereten belül-től kezdődően diagnosztika küldése egyéni adatforrások, működés közbeni elérési adatok átviteléhez az másodpercben használatával [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/).
+# <a name="streaming-azure-diagnostics-data-in-hello-hot-path-by-using-event-hubs"></a>Adatfolyam-továbbítási Azure diagnosztikai adatokat hello gyors elérési út az Event Hubs használatával
+Az Azure Diagnostics rugalmas lehetőségeket biztosítja a toocollect metrikákat, és naplózza a felhőalapú szolgáltatások virtuális gépek (VM) és átviteli eredmények tooAzure tároló. Hello 2016. március (SDK 2.9) időkereten belül-től kezdődően küldjön diagnosztikai toocustom adatforrások, gyors útvonal adatok átviteléhez az másodpercben használatával [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/).
 
 Támogatott adattípusok a következők:
 
@@ -31,25 +31,25 @@ Támogatott adattípusok a következők:
 * Alkalmazás-naplók
 * Az Azure Diagnostics infrastruktúra naplók
 
-Ez a cikk bemutatja, hogyan Azure Diagnostics konfigurálása az Event Hubs végpontok közötti. Útmutató a következő gyakori forgatókönyvek esetén is ismerteti:
+Ez a cikk bemutatja, hogyan tooconfigure Azure Diagnostics az Event Hubs az end tooend. Emellett útmutatást a következő gyakori helyzetek hello:
 
-* A naplók és metrikákat, az Event Hubs küldött testreszabása
-* Minden környezetben konfigurációk módosítása
-* Az Event Hubs adatfolyam adatok megtekintése
-* A kapcsolat hibaelhárítása  
+* Hogyan naplózza az toocustomize hello és metrikákat, küldött tooEvent hubok
+* Hogyan toochange beállításai minden környezetben
+* Hogyan tooview Event Hubs adatok folyamatos átviteléhez
+* Hogyan tootroubleshoot hello kapcsolat  
 
 ## <a name="prerequisites"></a>Előfeltételek
-Event Hubs receieving Azure diagnosztikai adatait a Cloud Services, a virtuális gépek, a virtuálisgép-méretezési csoportok és a Service Fabric-től kezdve az Azure SDK 2.9 és a megfelelő Azure-eszközök Visual Studio támogatott.
+Event Hubs receieving adatait Azure Diagnostics Cloud Services, a virtuális gépek, a virtuálisgép-méretezési csoportok és a Service Fabric hello Azure SDK 2.9 és a Visual Studio Azure eszközök megfelelő hello kezdve támogatott.
 
 * Az Azure Diagnostics bővítmény 1.6 ([Azure SDK for .NET 2.9 vagy újabb](https://azure.microsoft.com/downloads/) céloz ez alapértelmezés szerint)
 * [A Visual Studio 2013 vagy újabb verzió](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)
-* Egy alkalmazás használatával az Azure Diagnostics meglévő konfigurációk egy *.wadcfgx* fájl- és a következő módszerek egyikét:
+* Egy alkalmazás használatával az Azure Diagnostics meglévő konfigurációk egy *.wadcfgx* fájl- és hello a következő módszerek egyikét:
   * A Visual Studio: [diagnosztika konfigurálása az Azure Felhőszolgáltatások és virtuális gépek](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md)
   * A Windows PowerShell: [a PowerShell használata Azure Cloud Services diagnosztika engedélyezése](../cloud-services/cloud-services-diagnostics-powershell.md)
-* Esemény hubok névtér kiosztása a cikkenként [Bevezetés az Event Hubs használatába](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
+* Esemény hubok névtér hello cikkenként kiépített [Bevezetés az Event Hubs használatába](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
 
-## <a name="connect-azure-diagnostics-to-event-hubs-sink"></a>Csatlakozás Azure Diagnostics Event Hubs fogadó
-Alapértelmezés szerint Azure Diagnostics mindig küld naplókat, valamint a metrikák egy Azure Storage-fiókot. Egy alkalmazás is adatokat küldhet Event hubs egy új hozzáadásával **fogadók esetében** szakaszában a **PublicConfig** / **WadCfg** eleme a *. wadcfgx* fájlt. A Visual Studio a *.wadcfgx* fájl található a következő elérési úton: **Felhőszolgáltatás-projekt** > **szerepkörök** > **() RoleName)** > **diagnostics.wadcfgx** fájlt.
+## <a name="connect-azure-diagnostics-tooevent-hubs-sink"></a>Csatlakozás Azure Diagnostics tooEvent hubok fogadó
+Alapértelmezés szerint Azure Diagnostics mindig a küldi naplók és a metrikák tooan Azure Storage-fiók. Egy alkalmazás egy új hozzáadásával is küldhetünk adatok tooEvent hubok **fogadók esetében** hello szakasza **PublicConfig** / **WadCfg** hello eleme*.wadcfgx* fájlt. A Visual Studio hello *.wadcfgx* fájl elérési útja a következő hello tárolja: **Felhőszolgáltatás-projekt** > **szerepkörök** > **() RoleName)** > **diagnostics.wadcfgx** fájlt.
 
 ```xml
 <SinksConfig>
@@ -72,18 +72,18 @@ Alapértelmezés szerint Azure Diagnostics mindig küld naplókat, valamint a me
 }
 ```
 
-Ebben a példában az event hub URL-cím értéke az event hubs teljesen minősített névtere: az Event Hubs névtér + "/" + eseményközpont neveként.  
+Ebben a példában hello eseményközpont URL-cím értéke toohello teljesen minősített hello az event hubs névtér: az Event Hubs névtér + "/" + eseményközpont neveként.  
 
-Az event hubs URL-cím jelenik meg a [Azure-portálon](http://go.microsoft.com/fwlink/?LinkID=213885) az Event Hubs irányítópulton.  
+URL-cím jelenik meg hello hello eseményközpont [Azure-portálon](http://go.microsoft.com/fwlink/?LinkID=213885) hello Event Hubs irányítópulton.  
 
-A **gyűjtése** mindaddig, amíg a ugyanazt az értéket használja a rendszer folyamatosan keresztül a konfigurációs fájl nevét állítható be bármilyen érvényes karakterláncot.
+Hello **gyűjtése** neve tooany érvényes karakterlánc beállítható, mindaddig, amíg hello ugyanazt az értéket használja a rendszer folyamatosan keresztül hello konfigurációs fájlban.
 
 > [!NOTE]
-> Előfordulhat, további felül, például a *applicationInsights* ebben a szakaszban konfigurálni. Az Azure Diagnostics lehetővé teszi, hogy egy vagy több mosdók kell megadni, ha mindegyik fogadó is deklarálva van a **PrivateConfig** szakasz.  
+> Előfordulhat, további felül, például a *applicationInsights* ebben a szakaszban konfigurálni. Az Azure Diagnostics lehetővé teszi, hogy egy vagy több fogadók esetében meg, ha mindegyik fogadó is deklarálva van hello toobe **PrivateConfig** szakasz.  
 >
 >
 
-Az Event Hubs fogadó is kell deklarált és definiált a **PrivateConfig** szakasza a *.wadcfgx* konfigurációs fájlban.
+hello Event Hubs fogadó is kell deklarált és definiált hello **PrivateConfig** hello szakasza *.wadcfgx* konfigurációs fájlban.
 
 ```XML
 <PrivateConfig xmlns="http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration">
@@ -104,19 +104,19 @@ Az Event Hubs fogadó is kell deklarált és definiált a **PrivateConfig** szak
 }
 ```
 
-A `SharedAccessKeyName` értékének meg kell felelnie egy közös hozzáférésű Jogosultságkód (SAS) és egy házirendet, amely definiálva van a **Event Hubs** névtér. Keresse meg az Event Hubs irányítópult a [Azure-portálon](https://manage.windowsazure.com), kattintson a **konfigurálása** lapot, és hozzon létre egy elnevezett házirendet (például "SendRule"), amely rendelkezik *küldése* engedélyek. A **StorageAccount** deklarálva van a **PrivateConfig**. Nincs szükség itt értékeket módosíthatja, ha működnek. Ebben a példában azt az értéket üresen hagyja, ez az a jele, hogy egy alárendelt eszköz állítja be az értékeket. Például a *ServiceConfiguration.Cloud.cscfg* környezet konfigurációs fájl beállítja a környezet megfelelő neveket és a kulcsokat.  
+Hello `SharedAccessKeyName` értékének meg kell felelnie egy közös hozzáférésű Jogosultságkód (SAS) és egy házirendet, amely hello definiáltak **Event Hubs** névtér. Keresse meg az Event Hubs irányítópult toohello hello [Azure-portálon](https://manage.windowsazure.com), hello kattintson **konfigurálása** lapot, és hozzon létre egy elnevezett házirendet (például "SendRule"), amely rendelkezik *küldése* engedélyek. Hello **StorageAccount** deklarálva van a **PrivateConfig**. Nincs szükség az itt toochange értékek Ha működnek. Ebben a példában a Microsoft hello értékek üresen hagyja, vagyis a jele, hogy egy alárendelt eszköz állítja be hello értékek. Például hello *ServiceConfiguration.Cloud.cscfg* környezet konfigurációs fájl beállítja hello környezet megfelelő neveket és a kulcsok.  
 
 > [!WARNING]
-> Az Event Hubs SAS-kulcsot a egyszerű szövegként vannak tárolva a *.wadcfgx* fájlt. Gyakran ezt a kulcsot rendszer ellenőrzi, hogy verziókövetési vagy érhető el a build Server eszközként, szükség szerint kell védeni. Azt javasoljuk, hogy egy SAS-kulcsot használ itt a *csak küldése* engedélyeit, hogy egy rosszindulatú felhasználó írhat az event hubs, de nem hallgatni vagy az adatbázis felügyeletét.
+> hello Event Hubs SAS-kulcsot a hello egyszerű szövegként vannak tárolva *.wadcfgx* fájlt. Gyakran ezt a kulcsot be van jelölve, a toosource ellenőrző vagy a build Server eszközként elérhető, megfelelő módon kell védeni. Azt javasoljuk, hogy egy SAS-kulcsot használ itt a *csak küldése* engedélyeit, hogy egy rosszindulatú felhasználó írhat toohello eseményközpont, de nem tooit figyelésére vagy az adatbázis felügyeletét.
 >
 >
 
-## <a name="configure-azure-diagnostics-to-send-logs-and-metrics-to-event-hubs"></a>Azure diagnosztikai naplók és a metrikák küldeni az Event Hubs konfigurálása
-Című szakaszban leírtaknak megfelelően korábban, az összes alapértelmezett és egyéni diagnosztikai adatainak, ez azt jelenti, metrikákat és a naplókat, automatikusan küldése Azure Storage beállított. Az Event Hubs és a további fogadó adja meg a gyökér vagy a levél csomópont az event hubs küldendő a hierarchiában. Ez magában foglalja az ETW-események, a teljesítményszámlálók, a Windows eseménynaplóiban keresse meg és az alkalmazásnaplók.   
+## <a name="configure-azure-diagnostics-toosend-logs-and-metrics-tooevent-hubs"></a>Konfigurálja az Azure Diagnostics toosend naplók és a metrikák tooEvent hubok
+Című szakaszban leírtaknak megfelelően korábban, az összes alapértelmezett és egyéni diagnosztikai adatainak, ez azt jelenti, metrikákat és a naplókat, automatikusan küldött tooAzure tárolási konfigurált hello időközök. Az Event Hubs és a további fogadó a legfelső szintű vagy levél csomópont hello hierarchia toobe toohello eseményközpont küldött adhat meg. Ez magában foglalja az ETW-események, a teljesítményszámlálók, a Windows eseménynaplóiban keresse meg és az alkalmazásnaplók.   
 
-Fontos figyelembe venni, hogy hány adatpontok ténylegesen átviszi az Event Hubs. Általában a fejlesztők adatátvitelt kis késleltetésű közbeni elérési útja, amely kell használni, és gyorsan értelmezi. Riasztások vagy az automatikus skálázási szabályok figyelő rendszerek példák. A fejlesztők is előfordulhat, hogy egy másik elemzési tároló konfigurálása és keressen rá az áruházban – például Azure Stream Analytics, Elasticsearch, egy egyéni figyelési rendszer vagy más kedvenc figyelési rendszer.
+Fontos, hány adatpontok ténylegesen kell tooconsider tooEvent hubok át. Általában a fejlesztők adatátvitelt kis késleltetésű közbeni elérési útja, amely kell használni, és gyorsan értelmezi. Riasztások vagy az automatikus skálázási szabályok figyelő rendszerek példák. A fejlesztők is előfordulhat, hogy egy másik elemzési tároló konfigurálása és keressen rá az áruházban – például Azure Stream Analytics, Elasticsearch, egy egyéni figyelési rendszer vagy más kedvenc figyelési rendszer.
 
-Az alábbiakban néhány példa konfigurációkra.
+hello az alábbiakban néhány példa konfigurációkat.
 
 ```xml
 <PerformanceCounters scheduledTransferPeriod="PT1M" sinks="HotPath">
@@ -146,7 +146,7 @@ Az alábbiakban néhány példa konfigurációkra.
 }
 ```
 
-A fenti példában a fogadó és a szülő érvényes **PerformanceCounters** a hierarchiában, ami azt jelenti, hogy minden gyermek csomópont **PerformanceCounters** Event Hubs kapnak.  
+A fenti példa hello, hello fogadó esetében alkalmazott toohello szülő **PerformanceCounters** hello hierarchiában, ami azt jelenti, hogy minden gyermek csomópont **PerformanceCounters** tooEvent hubok küldi.  
 
 ```xml
 <PerformanceCounters scheduledTransferPeriod="PT1M">
@@ -188,9 +188,9 @@ A fenti példában a fogadó és a szülő érvényes **PerformanceCounters** a 
 }
 ```
 
-Az előző példában a gyűjtő csak három számláló alkalmazzák: **kérései**, **elutasítja kérelmeket**, és **processzoridő százalékos**.  
+Hello előző példában hello fogadó alkalmazott tooonly három számláló áll: **kérései**, **elutasítja kérelmeket**, és **processzoridő százalékos**.  
 
-A következő példa bemutatja, hogyan egy fejlesztő korlátozhatja a fontos metrikák e szolgáltatás állapotát a használt elküldött adatok mennyisége.  
+hello következő példa bemutatja, hogyan fejlesztők is korlátozását hello elküldött adatok toobe hello kritikus metrikákat, amelyeket a szolgáltatás állapotát.  
 
 ```XML
 <Logs scheduledTransferPeriod="PT1M" sinks="HotPath" scheduledTransferLogLevelFilter="Error" />
@@ -203,32 +203,32 @@ A következő példa bemutatja, hogyan egy fejlesztő korlátozhatja a fontos me
 }
 ```
 
-Ebben a példában a gyűjtő naplók alkalmazott, és csak a hiba szintű nyomkövetési szűrve van.
+Ebben a példában hello fogadó alkalmazott toologs és szűrt csak tooerror szintű nyomkövetési.
 
 ## <a name="deploy-and-update-a-cloud-services-application-and-diagnostics-config"></a>Központi telepítése és a Cloud Services alkalmazás- és diagnosztikai konfiguráció frissítése
-A Visual Studio az alkalmazás és az Event Hubs fogadó konfigurációs központi telepítése a legegyszerűbb útvonalat biztosít. Megtekintheti és szerkesztheti a fájlt, nyissa meg a *.wadcfgx* fájlt a Visual Studio, szerkesztheti és mentheti. Az elérési út **Felhőszolgáltatás-projekt** > **szerepkörök** > **(RoleName)** > **diagnostics.wadcfgx**.  
+A Visual Studio hello legegyszerűbb elérési toodeploy hello alkalmazás és az Event Hubs fogadó konfigurációs biztosít. tooview és Szerkesztés hello fájlt, nyissa meg hello *.wadcfgx* fájlt a Visual Studio, szerkesztheti és mentheti. hello elérési út **Felhőszolgáltatás-projekt** > **szerepkörök** > **(RoleName)** > **diagnostics.wadcfgx**.  
 
-Ezen a ponton az összes telepítési és telepítési műveletek frissítése a Visual Studio, a Visual Studio Team System, és minden parancsokkal és parancsprogramokkal MSBuild és -felhasználási alapuló a **/t: közzététele** cél közé tartozik a *.wadcfgx* a csomagolási folyamatban. Emellett központi telepítések és frissítések a fájl Azure segítségével telepítheti a megfelelő Azure diagnosztikai ügynök bővítményt a virtuális gépeken.
+Ezen a ponton az összes központi telepítés és frissítés a Visual Studio, a Visual Studio Team System, és minden parancsokkal és parancsprogramokkal MSBuild alapulnak, és hello használó műveletek **/t: közzététele** cél tartalmaznak hello *.wadcfgx*  hello csomagolás folyamat során. Emellett központi telepítések és frissítések központi telepítését hello fájl tooAzure hello megfelelő Azure diagnosztikai ügynök bővítményt a virtuális gépeken.
 
-Az alkalmazás és az Azure diagnosztikai konfiguráció telepítése után az irányítópulton az event hubs tevékenység azonnal látni fogja. Ez azt jelzi, hogy készen áll áthelyezése a közbeni elérési adatok megtekintése az Ön által választott figyelő ügyfél vagy elemző eszközben.  
+Hello alkalmazás és az Azure diagnosztikai konfiguráció telepítése után hello irányítópult hello az event hubs tevékenység azonnal látni fogja. Ez azt jelzi, hogy róla, hogy készen áll a toomove adatokon tooviewing hello közbeni elérési hello figyelő ügyfél vagy elemzésük az Ön által választott eszközben.  
 
-Az alábbi ábrán az Event Hubs irányítópult jeleníti meg, kifogástalan küldése az event hubs némi várakozás után 23 óra kezdő diagnosztikai adatok. Ha ez az alkalmazás lett telepítve a frissített *.wadcfgx* fájlt, és a fogadó lett megfelelően konfigurálva.
+A következő ábra hello hello Event Hubs irányítópult jeleníti meg, megfelelő küld diagnosztikai adatok toohello event hub kiindulási némi várakozás után 23 óra. Ha ez hello alkalmazás lett telepítve, a frissített *.wadcfgx* fájlt, és hello fogadó lett megfelelően konfigurálva.
 
 ![][0]  
 
 > [!NOTE]
-> Amikor módosításokat az Azure Diagnostics konfigurációs fájljában (.wadcfgx), javasoljuk, hogy leküldéses a frissítések a teljes alkalmazás, valamint a konfigurációs Visual Studio közzététel, vagy a Windows PowerShell-parancsfájl használatával.  
+> Ha frissítések toohello Azure Diagnostics konfigurációs fájljában (.wadcfgx), javasoljuk, hogy leküldéses hello frissítések toohello teljes alkalmazás, valamint a hello konfigurációs Visual Studio közzététel, vagy a Windows PowerShell-parancsfájl használatával.  
 >
 >
 
 ## <a name="view-hot-path-data"></a>Közbeni elérési adatok megtekintése
-Korábban bemutatott, nincsenek sok használati esetek figyelését, és az Event Hubs adatok feldolgozása.
+Korábban bemutatott, nincsenek az Event Hubs adatfeldolgozás figyelő tooand sok alkalmazási helyzetei.
 
-Egy egyszerű megoldás, az event hubs figyelését, valamint a kimeneti adatfolyamba nyomtatása egy kis teszt Konzolalkalmazás létrehozásához. Az alábbi kód, amely részletesen kifejtett elhelyezheti [Bevezetés az Event Hubs használatába](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)), egy konzolalkalmazásban.  
+Egy egyszerű módszer egy kis tesztelési konzol alkalmazás toolisten toohello eseményközpont toocreate és nyomtatási hello kimeneti adatfolyam. A következő kódra, amely részletesen kifejtett hello elhelyezheti [Bevezetés az Event Hubs használatába](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)), egy konzolalkalmazásban.  
 
-Vegye figyelembe, hogy a konzol alkalmazásnak tartalmaznia kell a [esemény processzor állomás NuGet-csomag](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost/).  
+Vegye figyelembe, hogy hello Konzolalkalmazás tartalmaznia kell hello [esemény processzor állomás NuGet-csomag](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost/).  
 
-Ne felejtse el lecserélni az értéket a csúcsos zárójelek a **fő** függvény erőforrások értékekkel.   
+Ne feledje tooreplace hello értékek hello a csúcsos zárójelek **fő** függvény erőforrások értékekkel.   
 
 ```csharp
 //Console application code for EventHub test client
@@ -303,7 +303,7 @@ namespace EventHubListener
             options.ExceptionReceived += (sender, e) => { Console.WriteLine(e.Exception); };
             eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>(options).Wait();
 
-            Console.WriteLine("Receiving. Press enter key to stop worker.");
+            Console.WriteLine("Receiving. Press enter key toostop worker.");
             Console.ReadLine();
             eventProcessorHost.UnregisterEventProcessorAsync().Wait();
         }
@@ -312,15 +312,15 @@ namespace EventHubListener
 ```
 
 ## <a name="troubleshoot-event-hubs-sinks"></a>Az Event Hubs mosdók hibaelhárítása
-* Az event hubs nem szerepelnek a bejövő vagy kimenő eseményhez kapcsolódó tevékenység várt módon.
+* hello event hubs nem szerepelnek a bejövő vagy kimenő eseményhez kapcsolódó tevékenység várt módon.
 
-    Ellenőrizze, hogy az eseményközpont sikeresen lett kiépítve. Az összes Kapcsolatinformáció a **PrivateConfig** szakasza *.wadcfgx* az erőforrás értékének egyeznie kell, mint a portálon. Győződjön meg arról, hogy rendelkezik-e a biztonsági Társítások házirend lett meghatározva (a példában szereplő "SendRule" jelöli), valamint a portál *küldése* engedélyt.  
-* Egy adott frissítés után az event hubs eseményközponthoz már nem bejövő vagy kimenő eseményhez kapcsolódó tevékenység jeleníti meg.
+    Ellenőrizze, hogy az eseményközpont sikeresen lett kiépítve. A hello összes Kapcsolatinformáció **PrivateConfig** szakasza *.wadcfgx* az erőforrás hello értékének egyeznie kell hello portal látható módon. Győződjön meg arról, hogy rendelkezik-e a biztonsági Társítások házirend lett meghatározva (hello példában "SendRule" jelöli) hello portal, valamint *küldése* engedélyt.  
+* Egy adott frissítés után hello event hubs nem bejövő vagy kimenő eseményhez kapcsolódó tevékenység jelenik meg.
 
-    Először ellenőrizze, hogy a event hub és konfigurációs adatokat megfelelő, korábban leírtak szerint. Egyes esetekben a **PrivateConfig** az egy központi telepítési alaphelyzetbe áll. A javasolt javítás szükséges összes módosításokat egy *.wadcfgx* a projektet, majd a teljes alkalmazás frissítés leküldéses. Ha ez nem lehetséges, győződjön meg arról, hogy a diagnosztika frissítés leküldéses értesítések teljes **PrivateConfig** , amely tartalmazza az SAS-kulcsot.  
-* A javaslatok próbáltam, és az event hubs továbbra sem működik.
+    Először is győződjön meg arról, hogy hello eseményközpont, és a konfigurációs adatok helyességéről, amint azt korábban. Egyes esetekben hello **PrivateConfig** az egy központi telepítési alaphelyzetbe áll. hello ajánlott javítás minden változás túl toomake*.wadcfgx* a projekt hello és a teljes alkalmazás frissítés majd leküldéses. Ha ez nem lehetséges, győződjön meg arról, hogy hello diagnosztika update leküldéses értesítések teljes **PrivateConfig** , amely tartalmazza a hello SAS-kulcsot.  
+* Hello javaslatok próbáltam, és hello eseményközpont továbbra sem működik.
 
-    Nézzük meg az Azure Storage táblázatban maga Azure diagnosztikai naplók és a hibákat tartalmazó: **WADDiagnosticInfrastructureLogsTable**. Egy elem egy eszközzel, mint [Azure Tártallózó](http://www.storageexplorer.com) csatlakozni ehhez a tárfiókhoz, ebben a táblázatban megtekintheti, és adja hozzá a lekérdezés az időbélyegzési az elmúlt 24 órában. Az eszköz segítségével exportálja egy CSV-fájlt, majd nyissa meg például a Microsoft Excel alkalmazásban. Excel segítségével egyszerűen-kártya karakterláncokat, például keresni **EventHubs**, hogy milyen hibát jelez.  
+    Nézzük meg magát Azure diagnosztikai naplók és a hibákat tartalmazó hello Azure Storage tábla: **WADDiagnosticInfrastructureLogsTable**. Egy elem toouse olyan eszköz, például [Azure Tártallózó](http://www.storageexplorer.com) tooconnect toothis tárfiókot, ebben a táblázatban megtekintheti, és adja hozzá a lekérdezés az időbélyegzési hello utolsó 24 órában. Hello eszköz tooexport egy CSV-fájlt használ, és nyissa meg a Microsoft Excel alkalmazásban. Excel segítségével könnyen toosearch-kártya karakterláncok, például a **EventHubs**, toosee milyen hibát jelez.  
 
 ## <a name="next-steps"></a>Következő lépések
 • [További információ az Event Hubs](https://azure.microsoft.com/services/event-hubs/)
@@ -379,7 +379,7 @@ namespace EventHubListener
 </DiagnosticsConfiguration>
 ```
 
-A kiegészítő *ServiceConfiguration.Cloud.cscfg* az ebben a példában a következőhöz hasonló.
+kiegészítő hello *ServiceConfiguration.Cloud.cscfg* az ebben a példában a következőhöz hasonló, hello.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -505,7 +505,7 @@ A virtuális gépek egyenértékű alapú Json-beállítások a következőképp
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Az alábbi webhelyeken további információt talál az Event Hubsról:
+További információ az Event Hubs érhetők el a következő hivatkozások hello:
 
 * [Event Hubs – áttekintés](../event-hubs/event-hubs-what-is-event-hubs.md)
 * [Eseményközpont létrehozása](../event-hubs/event-hubs-create.md)

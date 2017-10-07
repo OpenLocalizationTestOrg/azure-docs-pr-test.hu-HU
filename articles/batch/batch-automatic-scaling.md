@@ -1,6 +1,6 @@
 ---
-title: "Automatikus méretezési számítási csomópontok az Azure Batch-készlet |} Microsoft Docs"
-description: "A felhő készlet dinamikusan úgy, hogy a készlet számítási csomópontok száma automatikus skálázás engedélyezése."
+title: "aaaAutomatically méretezési számítási csomópontok az Azure Batch-készlet |} Microsoft Docs"
+description: "Enable automatikus méretezésének egy felhőalapú készlet toodynamically beállítása hello hello készlet számítási csomópontjainak számát."
 services: batch
 documentationcenter: 
 author: tamram
@@ -15,52 +15,52 @@ ms.workload: multiple
 ms.date: 06/20/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f0e49cd8a64a48c53f5b6104703164a597c797f0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b6d1e0c5d8e0e56e15a4d3588150f2466a689f19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-automatic-scaling-formula-for-scaling-compute-nodes-in-a-batch-pool"></a>Hozzon létre egy méretezhetővé válik a Batch-készlet számítási csomópontjainak automatikus méretezési képlet
 
-Az Azure Batch automatikusan át tudja méretezni készletek meghatározott paraméterei alapján. Az automatikus skálázás kötegelt csomópontok dinamikusan hozzáadja egy feladat igények növekedése erőforráskészletben, és eltávolítja a számítási csomópontok, mivel csökkentik. Az időt és pénzt takaríthat automatikusan beállítja a kötegelt alkalmazás által használt csomópontok száma. 
+Az Azure Batch automatikusan át tudja méretezni készletek meghatározott paraméterei alapján. Az automatikus skálázás kötegelt dinamikusan kerülnek be a csomópontok tooa készlet feladat igények növekedése, és eltávolítja a számítási csomópontok, mivel csökkentik. A kötegelt alkalmazás által használt csomópontok száma hello automatikusan módosításával időt és pénzt is mentheti. 
 
-Automatikus skálázás a számítási csomópontok készletét társítja azt engedélyezi egy *automatikus skálázás képlet* megadhat. A Batch szolgáltatás az automatikus skálázás képlet használatával határozhatja meg a számítási feladatok végrehajtásához szükséges számítási csomópontok számát. Számítási csomópontok lehet, hogy dedikált csomópontok vagy [alacsony prioritású csomópontok](batch-low-pri-vms.md). Kötegelt válaszol-e a szolgáltatás metrikák összegyűjtött adatokon rendszeres időközönként. A metrikák adatok használatával, kötegelt módosítja a képlet alapján és konfigurálható időközönként a készlet számítási csomópontjainak számát.
+Automatikus skálázás a számítási csomópontok készletét társítja azt engedélyezi egy *automatikus skálázás képlet* megadhat. hello Batch szolgáltatás használja hello automatikus skálázás képlet toodetermine hello számítási csomópontok száma, amelyek a szükséges tooexecute a terhelést. Számítási csomópontok lehet, hogy dedikált csomópontok vagy [alacsony prioritású csomópontok](batch-low-pri-vms.md). Kötegelt tooservice metrikák összegyűjtött adatokon rendszeresen válaszol. A metrikák adatok használatával, kötegelt módosítja a képlet alapján és konfigurálható időközönként hello készlet számítási csomópontjai hello száma.
 
-A tárolókészlet létrehozásakor vagy meglévő címkészlet automatikus skálázás engedélyezéséhez. Az automatikus skálázás beállítása készletben meglévő képlet is módosíthatja. Kötegelt lehetővé teszi a képletekben kiértékelése előtt rendel készletek és automatikus méretezési futtatása állapotának figyelésére.
+A tárolókészlet létrehozásakor vagy meglévő címkészlet automatikus skálázás engedélyezéséhez. Az automatikus skálázás beállítása készletben meglévő képlet is módosíthatja. Kötegelt lehetővé teszi a képletekben toopools és toomonitor hello állapotának automatikus skálázás hozzárendelése előtt fut tooevaluate.
 
-A cikk ismerteti a különböző entitások, amelyek az automatikus skálázás képletek, beleértve a változók, operátorok, műveletek és funkciók alkotják. Különböző számítási erőforrás és a feladat metrikák belül kötegelt beszerzése arról lesz szó. A metrikák segítségével állítsa be a készlet csomópontok száma erőforrás-használat és a feladat állapota alapján. A Microsoft majd azt ismertetik, hogyan képlet és automatikus skálázás engedélyezése a készlet a Batch REST és a .NET API-k használatával. Végül azt befejezéséhez néhány példa képletek.
+Ez a cikk ismerteti, amelyek hello különféle entitásokat, amelyek az automatikus skálázás képletek, beleértve a változók, operátorok, műveletek és funkciók alkotják. Arról lesz szó hogyan tooobtain különböző számítási erőforrás és a feladat metrikák kötegelt belül. Ezek a készlet csomópontok száma alapuló erőforrás-használat és a feladat állapota metrikák tooadjust is használhatja. Majd ismerteti hogyan hello a képlet tooconstruct és automatikus méretezésének készlet használatával is lehetővé teszik, hogy Batch REST és a .NET API-k. Végül azt befejezéséhez néhány példa képletek.
 
 > [!IMPORTANT]
-> Batch-fiók létrehozásakor megadhatja a [fiókkonfiguráció](batch-api-basics.md#account), amely meghatározza, hogy készletek foglal le a Batch szolgáltatás az előfizetéshez (alapértelmezett), vagy a felhasználó az előfizetéshez. A Batch-fiók a kötegelt szolgáltatáskonfiguráció hozta létre, ha a fiók korlátozva magok használható a feldolgozás maximális számát. A Batch szolgáltatás méretezi a számítási csomópontok csak alapvető korlátnak. Emiatt a Batch szolgáltatás nem jut el az automatikus skálázás képlet által meghatározott számítási csomópontok cél száma. Lásd: [kvótái és korlátai az Azure Batch szolgáltatás](batch-quota-limit.md) információk megtekintéséhez és a fiók kvótákat növelését.
+> Batch-fiók létrehozásakor megadhatja a hello [fiókkonfiguráció](batch-api-basics.md#account), amely meghatározza, hogy készletek foglal le a Batch szolgáltatás az előfizetéshez (hello alapértelmezett), vagy a felhasználó az előfizetéshez. A Batch-fiók hello alapértelmezett Batch szolgáltatás konfigurációs hozta létre, ha a fiók használható a feldolgozás magok maximális száma korlátozott tooa. hello Batch szolgáltatás méretezi a számítási csomópontok csak másolatot toothat core korlátot. Emiatt hello Batch szolgáltatás nem jut el az automatikus skálázás képlet által meghatározott számítási csomópontok száma hello cél. Lásd: [kvótái és korlátai hello Azure Batch szolgáltatás](batch-quota-limit.md) információk megtekintéséhez és a fiók kvótákat növelését.
 >
->Ha a felhasználó előfizetéshez konfigurációjával létrehozta a fiókot, a fiók az előfizetés magkvótája megosztja. További információkért lásd [az Azure-előfizetésekre és -szolgáltatásokra vonatkozó korlátozásokat, kvótákat és megkötéseket](../azure-subscription-service-limits.md) ismertető témakör [a virtuális gépek korlátaira](../azure-subscription-service-limits.md#virtual-machines-limits) vonatkozó részét.
+>Hello felhasználói előfizetési konfigurációval létrehozta a fiókot, ha a fiók hello előfizetés hello magkvótája megosztja. További információkért lásd [az Azure-előfizetésekre és -szolgáltatásokra vonatkozó korlátozásokat, kvótákat és megkötéseket](../azure-subscription-service-limits.md) ismertető témakör [a virtuális gépek korlátaira](../azure-subscription-service-limits.md#virtual-machines-limits) vonatkozó részét.
 >
 >
 
 ## <a name="automatic-scaling-formulas"></a>Automatikus méretezési képletek
-Az automatikus méretezési képlete karakterlánc-értéke megadhat egy vagy több utasítást tartalmaz. Az automatikus skálázás képlet hozzá van rendelve egy alkalmazáskészlet [autoScaleFormula] [ rest_autoscaleformula] elem (Batch REST) vagy [CloudPool.AutoScaleFormula] [ net_cloudpool_autoscaleformula] a tulajdonság (Batch .NET). A Batch szolgáltatás a képlet használatával a következő időszakú feldolgozási a készlet számítási csomópontjai cél számának meghatározásához. A képlet karakterlánc nem haladhatja meg a 8 KB-os, pontosvesszővel elválasztva, amely tartalmazhat sortörést és megjegyzéseket legfeljebb 100 utasításokat tartalmazhatnak.
+Az automatikus méretezési képlete karakterlánc-értéke megadhat egy vagy több utasítást tartalmaz. hello automatikus skálázás képlet hozzá van rendelve a tooa készlet [autoScaleFormula] [ rest_autoscaleformula] elem (Batch REST) vagy [CloudPool.AutoScaleFormula] [ net_cloudpool_autoscaleformula] a tulajdonság (Batch .NET). hello Batch szolgáltatás használ a számítási csomópontok képlet toodetermine hello cél száma hello készletben hello következő intervallum feldolgozása. hello képlet karakterlánc nem haladhatja meg a 8 KB-os, mentése too100 utasításokat, amelyek pontosvesszővel elválasztva, és tartalmazhat sortörést és megjegyzéseket is tartalmazhat.
 
-Az eltolásokat tekintheti automatikus méretezési képletek, egy kötegelt automatikus skálázás "nyelv". Képletadat kimutatásai, szabad formátumú kifejezések szolgáltatás által definiált változókat (a változók határozzák meg a Batch szolgáltatás) és a felhasználói változók (Ön által meghatározott változók) is tartalmazhatja. Azok a feladatra, beépített típusok, a kezelők és a funkciók használatával, ezeket az értékeket különféle műveleteket végezhet. Például egy utasítás is igénybe vehet a következő formában:
+Az eltolásokat tekintheti automatikus méretezési képletek, egy kötegelt automatikus skálázás "nyelv". Képletadat kimutatásai, szabad formátumú kifejezések szolgáltatás által definiált változókat (hello Batch szolgáltatás által beállított változók) és a felhasználó által definiált változókat (Ön által meghatározott változók) is tartalmazhatja. Azok a feladatra, beépített típusok, a kezelők és a funkciók használatával, ezeket az értékeket különféle műveleteket végezhet. Például egy utasítás is igénybe vehet a következő képernyő hello:
 
 ```
 $myNewVariable = function($ServiceDefinedVariable, $myCustomVariable);
 ```
 
-Képletek általában több utasítás műveleteket értékek, amelyek akkor kapja meg az előző utasítások tartalmaznak. Például azt szereznie értéket `variable1`, majd átadása egy függvény adatokkal való feltöltéséhez `variable2`:
+Képletek általában több utasítás műveleteket értékek, amelyek akkor kapja meg az előző utasítások tartalmaznak. Például azt szereznie értéket `variable1`, tooa függvény toopopulate átadni `variable2`:
 
 ```
 $variable1 = function1($ServiceDefinedVariable);
 $variable2 = function2($OtherServiceDefinedVariable, $variable1);
 ```
 
-Vegye fel a számítási csomópontok cél számos elérésének automatikus skálázás képlet ezekről az utasításokról. Dedikált csomópontok és alacsony prioritású csomópont is saját tárolóbeállítások, így megadhatja az egyes csomópont target. Az automatikus skálázás képlet tartalmazhat egy célértéke dedikált csomópontok, alacsony prioritású csomópont target értéket vagy mindkettőt.
+Vegye fel az automatikus skálázás képlet tooarrive a számítási csomópontok cél számú ezekről az utasításokról. Dedikált csomópontok és alacsony prioritású csomópont is saját tárolóbeállítások, így megadhatja az egyes csomópont target. Az automatikus skálázás képlet tartalmazhat egy célértéke dedikált csomópontok, alacsony prioritású csomópont target értéket vagy mindkettőt.
 
-Lehet, hogy a tároló csomópontok száma nagyobb, alsó, illetve ugyanaz, mint a csomópontok a készlet típusú aktuális száma. Kötegelt a készlet automatikus skálázás képlet kiértékelése adott időközönként (lásd: [automatikus skálázás intervallumok](#automatic-scaling-interval)). Kötegelt beállítása minden típusú csomópont szám, amely az automatikus skálázás képlet megadja a kiértékelési idején a tárolókészlet cél száma.
+csomópontok száma hello cél lehet magasabb, alsó, vagy hello ugyanaz, mint az adott típusú hello készletben csomópontok hello aktuális száma. Kötegelt a készlet automatikus skálázás képlet kiértékelése adott időközönként (lásd: [automatikus skálázás intervallumok](#automatic-scaling-interval)). Kötegelt módosítja hello cél hello gyűjtő toohello száma az automatikus skálázás képlet meghatározó értékelési hello időpontban csomópontjának típusonkénti darabszámot.
 
 ### <a name="sample-autoscale-formula"></a>Minta automatikus skálázás képlet
 
-Íme egy példa az automatikus skálázás úgy, hogy működik a legtöbb esetben lehet beállítani. A változók `startingNumberOfVMs` és `maxNumberofVMs` példában képlet módosítható az igényeinek megfelelően. A képlet dedikált csomópontok méretezi, de méretezési alacsony prioritású, valamint csomópontra érvényes kell módosítani. 
+Íme egy példa az automatikus skálázás úgy, hogy a legtöbb forgatókönyvhöz módosított toowork lehet. változók hello `startingNumberOfVMs` és `maxNumberofVMs` hello példa képlet módosított tooyour igényeit is lehet. A képlet dedikált csomópontok méretezi, de lehet módosított tooapply tooscale alacsony prioritású csomópontok is. 
 
 ```
 startingNumberOfVMs = 1;
@@ -70,52 +70,52 @@ pendingTaskSamples = pendingTaskSamplePercent < 70 ? startingNumberOfVMs : avg($
 $TargetDedicatedNodes=min(maxNumberofVMs, pendingTaskSamples);
 ```
 
-Az automatikus skálázás képlettel a készlet először hozza létre egyetlen virtuális gépen. A `$PendingTasks` metrika határozza meg, amelyek fut, vagy az aszinkron feladatok száma. A képlet talál átlagos száma függőben lévő feladatok az elmúlt 180 másodperc és beállítása a `$TargetDedicatedNodes` változó ennek megfelelően. A képlet biztosítja, hogy a cél dedikált csomópontok száma soha nem meghaladja 25 virtuális gépek. Új feladatok be, mivel a készlet automatikusan nő. A feladat befejeződött virtuális gépek szabad egyenként válnak, valamint az automatikus skálázás képlet zsugorítja a készlet.
+Az automatikus skálázás képlettel hello készlet először hozza létre egyetlen virtuális gépen. Hello `$PendingTasks` metrika fut, vagy az aszinkron feladatok hello számát határozza meg. hello képlet hello átlagos száma függőben lévő feladatok talál hello utolsó 180 másodperc, és beállítja a hello `$TargetDedicatedNodes` változó ennek megfelelően. hello képlet biztosítja, hogy soha nem dedikált csomópontok hello cél száma meghaladja a 25 virtuális gépek. Új feladatok be, mivel hello készlet automatikusan nő. Feladat befejeződött virtuális gépek szabad egyenként válik, és hello automatikus skálázás képlet zsugorítja hello készlet.
 
 ## <a name="variables"></a>Változók
-Mindkét használhatja **szolgáltatás által definiált** és **felhasználói** az automatikus skálázás képletekben változók. A szolgáltatás által definiált változókat a Batch szolgáltatás beépített. Néhány szolgáltatás által definiált változókat írható-olvasható, és csak olvasható. Felhasználói változók az alábbiak változókat, amelyek adhat meg. A példa az előző részben található képletben `$TargetDedicatedNodes` és `$PendingTasks` szolgáltatás által definiált változók. Változók `startingNumberOfVMs` és `maxNumberofVMs` felhasználói változók.
+Mindkét használhatja **szolgáltatás által definiált** és **felhasználói** az automatikus skálázás képletekben változók. a Batch szolgáltatás toohello beépített hello szolgáltatás által definiált változókat. Néhány szolgáltatás által definiált változókat írható-olvasható, és csak olvasható. Felhasználói változók az alábbiak változókat, amelyek adhat meg. Hello előző részben, hello példa képletben `$TargetDedicatedNodes` és `$PendingTasks` szolgáltatás által definiált változók. Változók `startingNumberOfVMs` és `maxNumberofVMs` felhasználói változók.
 
 > [!NOTE]
-> Szolgáltatás által definiált változókat mindig előzi dollárjelet ($). Felhasználói változók az dollárjel nem kötelező megadni.
+> Szolgáltatás által definiált változókat mindig előzi dollárjelet ($). A felhasználói változók hello dollárjel nem kötelező megadni.
 >
 >
 
-Az alábbi táblázatok tartalmazzák, amelyeket a Batch szolgáltatás írási és olvasási és az írásvédett változók.
+a következő táblák hello mindkét írható-olvasható, és csak olvasható változók, amelyeket a Batch szolgáltatás hello megjelenítése.
 
-Get, és adja meg a készlet számítási csomópontjai számú kezelését a szolgáltatás által definiált változók értékeit:
+Get, és adja meg a szolgáltatás által definiált változók értékeit hello számítási csomópontok száma toomanage hello a készletben:
 
 | Olvasási és írási szolgáltatás által definiált változó | Leírás |
 | --- | --- |
-| $TargetDedicatedNodes |A dedikált cél száma számítási csomópontok a készlet. Dedikált csomópontok száma cél van megadva, mert a készlet mindig nem érhetik el a kívánt csomópontok számát. Például ha a cél dedikált csomópontok száma módosul a automatikus skálázás próbaverzióként előtt a készlet elérte a kezdeti célként, majd a készlet előfordulhat, hogy nem érte el a cél. <br /><br /> A Batch szolgáltatás beállításokkal létre egy fiókot a készlet nem érhetik el a célértéket Ha a cél meghaladja a kötegelt fiók csomópont vagy core kvóta. A felhasználó előfizetéshez beállításokkal létre egy fiókot a készlet nem érhetik el a célértéket, ha a cél meghaladja az előfizetés megosztott magkvótája.|
-| $TargetLowPriorityNodes |Alacsony prioritású cél száma számítási csomópontok a készlet. Alacsony prioritású csomópontok száma cél van megadva, mert a készlet mindig nem érhetik el a kívánt csomópontok számát. Például ha a cél alacsony prioritású csomópontok száma módosul a automatikus skálázás próbaverzióként előtt a készlet elérte a kezdeti célként, majd a készlet előfordulhat, hogy nem érte el a cél. Egy készlet is nem érhetik el a célértéket Ha a cél meghaladja a kötegelt fiók csomópont vagy core kvóta. <br /><br /> Alacsony prioritású számítási csomóponton további információkért lásd: [alacsony prioritású virtuális gépek használata a kötegelt (előzetes verzió)](batch-low-pri-vms.md). |
-| $NodeDeallocationOption |A művelet, amikor a számítási csomópontok el lesznek távolítva a készletben. Lehetséges értékek:<ul><li>**requeue**--feladatok azonnal leáll, és, hogy azok újraütemezte helyezi őket újra a feladat-várólistába.<li>**Állítsa le**--feladatok azonnal leáll, és eltávolítja azokat a feladat-várólistán.<li>**taskcompletion**--vár a jelenleg futó feladatok befejezéséhez, majd eltávolítja a csomópontot a készletből.<li>**retaineddata**– az összes helyi feladat őrzi meg a csomóponton, hogy a csomópont eltávolítása a készletből előtt tisztítani vár.</ul> |
+| $TargetDedicatedNodes |hello cél száma dedikált számítási csomópontjain hello készlet. dedikált csomópontok száma hello cél van megadva, mert a készlet nem lehetséges, hogy mindig elérése szükséges hello csomópontok száma. Például ha dedikált csomópontok száma hello cél módosítása előtt hello automatikus skálázás értékelésével készlet elérte hello kezdeti cél, majd hello készlet nem érte el hello cél. <br /><br /> Egy fiók, létre hello Batch szolgáltatás konfigurációs készlet nem érhetik el a célértéket Ha hello cél meghaladja a kötegelt fiók csomópont vagy core kvótát. Egy fiók, létre hello felhasználói előfizetés konfigurációs készlet nem érhetik el a célértéket Ha hello cél meghaladja hello megosztott magkvótája hello előfizetés.|
+| $TargetLowPriorityNodes |alacsony prioritású hello cél száma számítási csomópontjain hello készlet. alacsony prioritású csomópontok száma hello cél van megadva, mert a készlet nem lehetséges, hogy mindig elérése szükséges hello csomópontok száma. Például ha alacsony prioritású csomópontok száma hello cél módosítása előtt hello automatikus skálázás értékelésével készlet elérte hello kezdeti cél, majd hello készlet nem érte el hello cél. Egy készlet is nem érhetik el a célértéket Ha hello cél meghaladja a kötegelt fiók csomópont vagy core kvóta. <br /><br /> Alacsony prioritású számítási csomóponton további információkért lásd: [alacsony prioritású virtuális gépek használata a kötegelt (előzetes verzió)](batch-low-pri-vms.md). |
+| $NodeDeallocationOption |hello művelet, amikor a számítási csomópontok el lesznek távolítva a készletben. Lehetséges értékek:<ul><li>**requeue**--feladatok azonnal leáll, és úgy, hogy azok újraütemezte helyezi őket újra a feladat-várólistán hello.<li>**Állítsa le**--feladatok azonnal leáll, és eltávolítja azokat a hello feladat-várólistán.<li>**taskcompletion**--vár a jelenleg futó toofinish feladatokat, majd eltávolítja a hello csomópont hello készletből.<li>**retaineddata**– hello készletből hello csomópont eltávolítása előtt tisztítani hello helyi feladat megőrzi lévő összes adat hello csomópont toobe vár.</ul> |
 
-A Batch szolgáltatás metrikák alapuló módosításokra szolgáltatás által definiált változókhoz értékének kaphat:
+A szolgáltatás által definiált változókat toomake módosításának hello kötegelt szolgáltatásból metrikák alapuló hello érték is beolvasásához:
 
 | Csak olvasható szolgáltatás által definiált változó | Leírás |
 | --- | --- |
-| $CPUPercent |Az átlagos CPU-használat százalékos aránya |
-| $WallClockSeconds |A felhasznált másodpercek számát. |
-| $MemoryBytes |A használt mérete (MB) átlagos száma. |
-| $DiskBytes |A helyi lemezeken használt gigabájt átlagos száma. |
-| $DiskReadBytes |A beolvasott bájtok száma. |
-| $DiskWriteBytes |Az írt bájtok száma. |
-| $DiskReadOps |A végrehajtott lemezolvasási műveletek száma. |
-| $DiskWriteOps |A végrehajtott írási lemez műveletek száma. |
-| $NetworkInBytes |Bejövő bájtok száma. |
-| $NetworkOutBytes |Küldött bájtok száma. |
-| $SampleNodeCount |A számítási csomópontok száma. |
-| $ActiveTasks |A végrehajtásra kész, de még nem végrehajtása feladatok száma. A $ActiveTasks száma minden feladatokat, amelyek az aktív állapotú, és amelynek függőségek teljesülnek tartalmazza. Minden feladatot, amely az aktív állapotban van, de amelynek függőségek nem teljesülnek a $ActiveTasks száma nem tartoznak.|
-| $RunningTasks |Futó állapotban feladatok száma. |
-| $PendingTasks |$ActiveTasks és $RunningTasks összege. |
-| $SucceededTasks |Sikeresen befejeződött feladatok száma. |
-| $FailedTasks |A sikertelen feladatok száma. |
-| $CurrentDedicatedNodes |A számítási csomópontok dedikált aktuális száma. |
-| $CurrentLowPriorityNodes |Alacsony prioritású aktuális száma a számítási csomópontok, beleértve azoknak a fürtöknek, pre-empted volt. |
-| $PreemptedNodeCount | A készlet pre-empted állapotban lévő csomópontok száma. |
+| $CPUPercent |a processzorhasználat aránya átlagos hello. |
+| $WallClockSeconds |felhasznált másodperces hello számát. |
+| $MemoryBytes |hello átlagos száma mérete (MB) használt. |
+| $DiskBytes |hello hello helyi lemezeken használt gigabájt átlagos száma. |
+| $DiskReadBytes |hello olvasott bájtok számát. |
+| $DiskWriteBytes |hello írt bájtok száma. |
+| $DiskReadOps |lemezolvasási műveletek száma hello végre. |
+| $DiskWriteOps |hello végrehajtott írási lemez műveletek száma. |
+| $NetworkInBytes |hello bejövő bájtok száma. |
+| $NetworkOutBytes |küldött bájtok száma hello. |
+| $SampleNodeCount |a számítási csomópontok száma hello. |
+| $ActiveTasks |hello a száma, amelyek készen tooexecute, de még nem végrehajtása feladatok. hello $ActiveTasks száma minden feladatokat, amelyek hello aktív állapotban, és amelynek függőségek teljesülnek tartalmazza. Minden feladatot hello aktív állapotban, de amelynek függőségek nem teljesülnek hello $ActiveTasks száma nem tartoznak.|
+| $RunningTasks |feladatok fut. hello száma. |
+| $PendingTasks |$ActiveTasks és $RunningTasks hello összege. |
+| $SucceededTasks |hello számos feladatot, amely sikeresen befejeződött. |
+| $FailedTasks |a sikertelen feladatok száma hello. |
+| $CurrentDedicatedNodes |hello aktuális száma dedikált számítási csomópontjain. |
+| $CurrentLowPriorityNodes |alacsony prioritású hello aktuális száma számítási csomópontok, beleértve azoknak a fürtöknek, pre-empted törölték. |
+| $PreemptedNodeCount | hello készletben pre-empted állapotban lévő csomópontok hello száma. |
 
 > [!TIP]
-> A csak olvasható, a szolgáltatás által meghatározott változók az előző táblázatban látható *objektumok* , adja meg a különböző módszereket a hozzájuk kapcsolódó adatok eléréséhez. További információkért lásd: [szerezze be a mintaadatokat](#getsampledata) című cikkben.
+> hello csak olvasható, a szolgáltatás által meghatározott hello előző táblázatban látható értékek *objektumok* társított minden egyes tooaccess adatok különböző módszereket biztosító. További információkért lásd: [szerezze be a mintaadatokat](#getsampledata) című cikkben.
 >
 >
 
@@ -126,12 +126,12 @@ Ezek a típusok támogatottak a képlet:
 * doubleVec
 * doubleVecList
 * Karakterlánc
-* Timestamp típusú--időbélyeg olyan összetett struktúra, amely a következő tagot tartalmaz:
+* Timestamp típusú--időbélyeg egy összetett struktúra, amely tartalmazza a következő tagok hello:
 
   * Év
   * a hónap (1-12)
   * a nap (1-31)
-  * milyen napra esik (a kell száma; például hétfő 1)
+  * milyen napra esik (hello formátumban szám; például hétfő 1)
   * óra (24 órás számformátumú; például 13 azt jelenti, hogy 1 óra)
   * a perc (00 és 59 közötti)
   * második (00 és 59 közötti)
@@ -149,7 +149,7 @@ Ezek a típusok támogatottak a képlet:
   * TimeInterval_Year
 
 ## <a name="operations"></a>Műveletek
-Ezeket a műveleteket az előző szakaszban felsorolt típusok engedélyezettek.
+Ezeket a műveleteket a hello előző szakaszban felsorolt hello típusok engedélyezettek.
 
 | Művelet | Támogatott operátorok | Eredménytípus |
 | --- | --- | --- |
@@ -173,38 +173,38 @@ Ezeket a műveleteket az előző szakaszban felsorolt típusok engedélyezettek.
 Dupla típusú értékként Ternáris operátorral tesztelése során (`double ? statement1 : statement2`), nem nulla van **igaz**, és nulla **hamis**.
 
 ## <a name="functions"></a>Functions
-Ezek előre definiált **funkciók** érhetők el, hogy az automatikus méretezési képlet definiálásakor használja.
+Ezek előre definiált **funkciók** toouse egy automatikus méretezési képlet definiálásakor érhetők el.
 
 | Függvény | Visszatérési típusa | Leírás |
 | --- | --- | --- |
-| AVG(doubleVecList) |Dupla |A doubleVecList átlagértékét összes értékét adja vissza. |
-| len(doubleVecList) |Dupla |A a doubleVecList létrehozott vektor hosszának beolvasása. |
-| LG(Double) |Dupla |A napló alap 2. a dupla adja vissza. |
-| LG(doubleVecList) |doubleVec |A component-wise napló alap 2. a doubleVecList adja vissza. Egy vec(double) paraméter explicit módon kell átadni. Ellenkező esetben a dupla lg(double) verzió feltételezi. |
-| ln(Double) |Dupla |A kettős természetes naplójának adja vissza. |
-| ln(doubleVecList) |doubleVec |A component-wise napló alap 2. a doubleVecList adja vissza. Egy vec(double) paraméter explicit módon kell átadni. Ellenkező esetben a dupla lg(double) verzió feltételezi. |
-| log(Double) |Dupla |A napló a kettős 10 alap adja vissza. |
-| log(doubleVecList) |doubleVec |A component-wise napló a doubleVecList alap 10 adja vissza. Egy vec(double) explicit módon kell átadni a egyetlen dupla paramétert. Ellenkező esetben a dupla log(double) verzió feltételezi. |
-| Max(doubleVecList) |Dupla |A doubleVecList maximális értékét adja vissza. |
-| Min(doubleVecList) |Dupla |A doubleVecList minimális értékét adja vissza. |
-| NORM(doubleVecList) |Dupla |A két-alapértelmezetté a doubleVecList létrehozott vektor adja vissza. |
-| a PERCENTILIS (doubleVec v, dupla p) |Dupla |A PERCENTILIS elem a v vektor beolvasása. |
+| AVG(doubleVecList) |Dupla |Beolvasása hello hello doubleVecList szereplő összes érték átlagos értékét. |
+| len(doubleVecList) |Dupla |Beolvasása hello hello doubleVecList létrehozott hello vektor hosszának. |
+| LG(Double) |Dupla |2 értéket adja vissza hello napló alapszintű hello a dupla. |
+| LG(doubleVecList) |doubleVec |Hello component-wise napló hello doubleVecList alap 2 adja vissza. Egy vec(double) hello paraméter explicit módon kell átadni. Ellenkező esetben hello dupla lg(double) verzió feltételezi. |
+| ln(Double) |Dupla |Beolvasása hello dupla hello természetes naplóját. |
+| ln(doubleVecList) |doubleVec |Hello component-wise napló hello doubleVecList alap 2 adja vissza. Egy vec(double) hello paraméter explicit módon kell átadni. Ellenkező esetben hello dupla lg(double) verzió feltételezi. |
+| log(Double) |Dupla |Visszaadja hello napló hello alap 10 dupla. |
+| log(doubleVecList) |doubleVec |Hello component-wise napló hello doubleVecList alap 10 adja vissza. Egy vec(double) hello egyetlen dupla paraméter explicit módon kell átadni. Ellenkező esetben hello dupla log(double) verzió feltételezi. |
+| Max(doubleVecList) |Dupla |Beolvasása hello hello doubleVecList maximális értéket. |
+| Min(doubleVecList) |Dupla |Beolvasása hello hello doubleVecList minimális értéket. |
+| NORM(doubleVecList) |Dupla |Vissza a két-alapértelmezetté hello vektor hello doubleVecList létrehozott hello. |
+| a PERCENTILIS (doubleVec v, dupla p) |Dupla |Beolvasása hello PERCENTILIS elem hello vektor v. |
 | rand() |Dupla |Egy véletlenszerű értéke 0,0 és 1,0 között. |
-| Range(doubleVecList) |Dupla |A doubleVecList a minimális és maximális értékek különbségét adja vissza. |
-| STD(doubleVecList) |Dupla |A doubleVecList értékek minta szórását adja vissza. |
-| Stop() | |Leállítja az automatikus skálázás kifejezés kiértékelése. |
-| Sum(doubleVecList) |Dupla |A doubleVecList összetevőit összegét adja vissza. |
-| idő (dateTime karakterlánc = "") |időbélyeg |Ha átadva adja vissza a jelenlegi időpontnál, ha nincs átadott paraméter van, vagy a dátum/idő karakterlánc időbélyegzőjét. Támogatott dátum és idő formátumok a következők: W3C-DTF és RFC 1123. |
-| val (doubleVec v, dupla i) |Dupla |Az elem, helyén i vektoros v, a nulla kezdődő indexű értékét adja vissza. |
+| Range(doubleVecList) |Dupla |Hello doubleVecList hello hello minimális és maximális értékek különbségét adja vissza. |
+| STD(doubleVecList) |Dupla |Beolvasása hello minta szórásának hello doubleVecList hello értékeit. |
+| Stop() | |Leállítja a hello automatikus skálázás kifejezés kiértékelése. |
+| Sum(doubleVecList) |Dupla |Beolvasása hello hello doubleVecList összetevői összes hello összege. |
+| idő (dateTime karakterlánc = "") |időbélyeg |Ha adja vissza hello időbélyegzőjét hello aktuális idő paraméterek át lettek adva, vagy hello hello dátum/idő karakterlánc időbélyegzőjét, ha átadva. Támogatott dátum és idő formátumok a következők: W3C-DTF és RFC 1123. |
+| val (doubleVec v, dupla i) |Dupla |Hello tényező, amely helyén i vektoros v, a nulla kezdődő indexű hello értékét adja vissza. |
 
-A függvények, az előző táblázatban ismertetett fogadhatnak egy listát, amelynek argumentuma. A vesszővel elválasztott lista bármilyen kombinációját *dupla* és *doubleVec*. Példa:
+Egy listát, amelynek argumentuma fogadhatnak hello függvények hello előző táblázatban ismertetett. hello vesszővel elválasztott lista bármilyen kombinációját *dupla* és *doubleVec*. Példa:
 
 `doubleVecList := ( (double | doubleVec)+(, (double | doubleVec) )* )?`
 
-A *doubleVecList* érték alakítja át egyetlen *doubleVec* kiértékelése előtt. Például ha `v = [1,2,3]`, majd hívja `avg(v)` hívása egyenértékű `avg(1,2,3)`. Hívása `avg(v, 7)` hívása egyenértékű `avg(1,2,3,7)`.
+Hello *doubleVecList* értéke egyetlen konvertált tooa *doubleVec* kiértékelése előtt. Például ha `v = [1,2,3]`, majd hívja `avg(v)` egyenértékű toocalling van `avg(1,2,3)`. Hívása `avg(v, 7)` egyenértékű toocalling van `avg(1,2,3,7)`.
 
 ## <a name="getsampledata"></a>Szerezze be a mintaadatokat
-A Batch szolgáltatás által biztosított metrikákat adatok (minták) automatikus skálázási hajtanak végre műveleteket. A képlet növekszik, vagy zsugorítja megszerzi a szolgáltatásból értékek alapján a készlet méretét. A szolgáltatás által definiált változókat leírt korábban olyan objektumok, adja meg a különböző módszereket, hogy az objektum társított adatok eléréséhez. Például az alábbi kifejezés látható, a CPU-használat az elmúlt 5 percben beolvasása kérelem:
+Hello Batch szolgáltatás által biztosított metrikákat adatok (minták) automatikus skálázási hajtanak végre műveleteket. A képlet nő, vagy zsugorítja a készlet méretét, amelyek hello szolgáltatás megszerzi hello értékek alapján. hello szolgáltatás által definiált változókat leírt korábban olyan objektumok, amelyek különböző módszereket biztosítanak a társított objektumokat, amelyek tooaccess vonatkozó adatokat. Például hello következő kifejezés mutatja egy kérelem tooget hello utolsó öt percen CPU-használat:
 
 ```
 $CPUPercent.GetSample(TimeInterval_Minute * 5)
@@ -212,58 +212,58 @@ $CPUPercent.GetSample(TimeInterval_Minute * 5)
 
 | Módszer | Leírás |
 | --- | --- |
-| GetSample() |A `GetSample()` metódus egy adatok minták-vektorát adja vissza.<br/><br/>Egy minta érték metrikák adatok érdemes 30 másodperc. Más szóval minták akkor kapja meg, 30 másodperces. Azonban az alábbi esetekben, amikor egy minta gyűjt, és elérhető képlet késleltetés van. Mint ilyen nem minden mintákat egy adott időszakra vonatkozóan egy képlettel értékelésre érhetők el.<ul><li>`doubleVec GetSample(double count)`<br/>Adja meg a legutóbbi minták összegyűjtött beszerezni minták számát.<br/><br/>`GetSample(1)`a legutóbbi elérhető minta adja vissza. A metrikák, például `$CPUPercent`, azonban ez nem használható, mert nem lehet tudni, hogy *amikor* gyűjtötte a program a minta. Előfordulhat, hogy friss, vagy a rendszer problémák miatt előfordulhat, hogy sokkal régebbi. Érdemes ebben az esetben egy adott időintervallumban alább látható módon használatára.<li>`doubleVec GetSample((timestamp or timeinterval) startTime [, double samplePercent])`<br/>Adja meg vagy időszakon minta adatgyűjtést. Szükség esetén azt is a százalékos értékét határozza meg, hogy a kért időkereten belül el kell érnie minták.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10)`20 minták alakítanák vissza, ha az elmúlt 10 perc minden minták léteznek CPUPercent előzményeit. Ha az elmúlt percben az előzményeket nem volt elérhető, azonban csak 18 minták akkor adja vissza. Ebben az esetben:<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 95)`fognak működni, mert a minták csak 90 %-át érhetők el.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 80)`járnak.<li>`doubleVec GetSample((timestamp or timeinterval) startTime, (timestamp or timeinterval) endTime [, double samplePercent])`<br/>Adatgyűjtés a kezdési idő és a befejezési idő időkeretet határozza meg.<br/><br/>Fent említett nincs amikor minta gyűjt, és elérhető képlet késleltetés. Ez a késés használatakor vegye figyelembe a `GetSample` metódust. Lásd: `GetSamplePercent` alatt. |
-| GetSamplePeriod() |Egy korábbi minta adathalmaz végrehajtott minták a dátumtartományt ad vissza. |
-| Count() |A metrika előzmények minták teljes számát adja vissza. |
-| HistoryBeginTime() |A metrika a legrégebbi rendelkezésre álló adatok minta időbélyegzőjét adja vissza. |
-| GetSamplePercent() |Egy adott időintervallumban a rendelkezésre álló minták aránya adja vissza. Példa:<br/><br/>`doubleVec GetSamplePercent( (timestamp or timeinterval) startTime [, (timestamp or timeinterval) endTime] )`<br/><br/>Mivel a `GetSample` módszer nem jár sikerrel, ha minták százalékos visszaadott kisebb, mint a `samplePercent` megadott, használhatja a `GetSamplePercent` először ellenőrzési módszert. Majd egy másik műveletet hajthatnak végre, ha elegendő minták léteznek, Leállítás, az automatikus méretezési értékelése nélkül. |
+| GetSample() |Hello `GetSample()` metódus egy adatok minták-vektorát adja vissza.<br/><br/>Egy minta érték metrikák adatok érdemes 30 másodperc. Más szóval minták akkor kapja meg, 30 másodperces. Azonban az alábbi esetekben, amikor egy minta gyűjt, és elérhető tooa képlet késleltetés van. Mint ilyen nem minden mintákat egy adott időszakra vonatkozóan egy képlettel értékelésre érhetők el.<ul><li>`doubleVec GetSample(double count)`<br/>Minták tooobtain hello legutóbbi minták összegyűjtött hello számát adja meg.<br/><br/>`GetSample(1)`az utolsó elérhető minta hello adja vissza. A metrikák, például `$CPUPercent`, azonban ez nem használható mert lehetetlen tooknow *amikor* hello minta gyűjtötte a program. Előfordulhat, hogy friss, vagy a rendszer problémák miatt előfordulhat, hogy sokkal régebbi. Érdemes az ilyen esetekben toouse egy adott időintervallumban alább látható módon.<li>`doubleVec GetSample((timestamp or timeinterval) startTime [, double samplePercent])`<br/>Adja meg vagy időszakon minta adatgyűjtést. Másik lehetőségként azt is, amely hello elérhetőnek kell lennie a minták hello százalékos kért időkereten belül.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10)`20 minták alakítanák vissza, ha az elmúlt 10 perc hello összes mintát hello CPUPercent előzmények léteznek. Ha a előzmények hello utolsó perce nem volt elérhető, azonban csak 18 minták akkor adja vissza. Ebben az esetben:<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 95)`fognak működni, mert csak 90 százalékos hello minták érhetők el.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 80)`járnak.<li>`doubleVec GetSample((timestamp or timeinterval) startTime, (timestamp or timeinterval) endTime [, double samplePercent])`<br/>Adatgyűjtés a kezdési idő és a befejezési idő időkeretet határozza meg.<br/><br/>Fent említett nincs amikor minta gyűjt, és elérhető tooa képlet késleltetés. Hello használatakor vegye figyelembe az a késleltetés `GetSample` metódust. Lásd: `GetSamplePercent` alatt. |
+| GetSamplePeriod() |Egy korábbi minta adathalmaz végrehajtott minták hello dátumtartományt ad vissza. |
+| Count() |Beolvasása hello hello metrika előzmények minták száma. |
+| HistoryBeginTime() |Beolvasása hello hello legrégebbi rendelkezésre álló adatok minta hello metrika időbélyegzőjét. |
+| GetSamplePercent() |Értéket ad vissza egy adott időintervallumban a rendelkezésre álló minták százalékos hello. Példa:<br/><br/>`doubleVec GetSamplePercent( (timestamp or timeinterval) startTime [, (timestamp or timeinterval) endTime] )`<br/><br/>Mivel hello `GetSample` módszer nem jár sikerrel, ha a visszaadott minták hello aránya nem éri el hello `samplePercent` megadott, használhat hello `GetSamplePercent` metódus toocheck első. Majd egy másik műveletet hajthatnak végre, ha elegendő minták léteznek, Leállítás, hello automatikus méretezési értékelése nélkül. |
 
-### <a name="samples-sample-percentage-and-the-getsample-method"></a>Minták, a minta százalék, és a *GetSample()* módszer
-Az automatikus skálázás képlet alapvető működéséhez szerezze be a tevékenység- és metrika értékét, és majd módosítsa a készlet mérete az adatok alapján. Fontos, hogy az automatikus skálázás képletek hogyan működnek együtt a metrikai adatok (minták).
+### <a name="samples-sample-percentage-and-hello-getsample-method"></a>Minták, a minta százalékos és hello *GetSample()* módszer
+hello alapvető működéséhez, az automatikus skálázás képlet tooobtain tevékenység- és metrika értékét, majd állítsa be a készlet méretét az adatok alapján. Mint ilyen akkor fontos toohave pontosan ismeri a automatikus skálázás képletek hogyan működnek együtt a metrikai adatok (minták).
 
 **Példák**
 
-A Batch szolgáltatás rendszeres időközönként tevékenység- és metrikákat mintát vesz igénybe, és elérhetővé válnak az automatikus skálázás képletek. Ezeket a mintákat a Batch szolgáltatás 30 másodpercenként rögzítését. Van azonban általában a késleltetés között, ha ezek a minták rögzítve, és amikor a rendelkezésre álló (és tudja olvasni.) az automatikus skálázás formulákat. Továbbá például hálózati vagy egyéb infrastrukturális problémára különböző tényezők miatt minták előfordulhat, hogy nem rögzíti egy adott időszakban.
+hello Batch szolgáltatás rendszeres időközönként a tevékenység- és mérőszámok mintát vesz igénybe, és elérhető tooyour automatikus skálázás képletek lehetővé teszi. Ezeket a mintákat hello Batch szolgáltatás által 30 másodpercenként rögzítését. Van azonban általában a késleltetés között, ha ezek a minták rögzítve, és elérhetővé válnak túl (és tudja olvasni.) az automatikus skálázás formulákat. Emellett toovarious tényezőkkel, például hálózati vagy egyéb infrastrukturális problémára, miatt minták előfordulhat, hogy nem rögzíti egy adott időszakban.
 
 **A minta százalékos aránya**
 
-Ha `samplePercent` számára a `GetSample()` metódus vagy a `GetSamplePercent()` metódus lehívásra kerül, _százalék_ hivatkozik a teljes lehetséges minták a Batch szolgáltatás által rögzített és száma összehasonlítása az automatikus skálázás képlet elérhető mintát.
+Amikor `samplePercent` toohello átadása `GetSample()` metódus vagy hello `GetSamplePercent()` metódus lehívásra kerül, _százalékos_ hivatkozik tooa összehasonlítása hello száma minták hello Batch szolgáltatás által rögzített és hello a száma, amelyek a rendelkezésre álló tooyour automatikus skálázás képlet minták.
 
-Nézzük timespan érték 10 perc példaként. Minták tárolja, 30 másodperces timespan érték 10 perc belül, mert a köteg által rögzített minták maximális száma lenne 20 minták (2 / perc). Azonban a jelentéskészítési mechanizmus és más olyan problémák Azure-ban rejlő késését, mert előfordulhat, csak az automatikus skálázás képlet olvasásra rendelkezésre álló 15 minták. Tehát például az, hogy 10 perc alatt 75 %-a rögzített minták száma érhetők el a képlet.
+Nézzük timespan érték 10 perc példaként. Minták tárolja, 30 másodperces timespan érték 10 perc belül, mert hello maximális kötegelt rögzített minták száma 20 minták (2 / perc) lehet. Előfordulhat azonban, miatt toohello hello jelentéskészítő mechanizmus és más olyan problémák Azure-ban rejlő késését, nem csak 15 mintákat, amelyek a rendelkezésre álló tooyour automatikus skálázás képlet olvasását. Így például, hogy 10 perc alatt 75 %-a hello rögzített minták száma lehet elérhető tooyour képlet.
 
 **GetSample() és minta tartományok**
 
-Az automatikus skálázás képletek fog növekszik és a készletek zsugorítását &mdash; csomópontok hozzáadása vagy eltávolítása a csomópontok. Csomópontok pénz költségeket, mert szeretne biztosítani, hogy a képletekben módszerhez egy intelligens elemzés, amely elegendő adatokon alapul. Ezért azt javasoljuk, hogy használja-e a trendek-elemzés a képletekben. Ez a típus növekszik, és az összegyűjtött minták alapján készletek zsugorítja.
+Az automatikus skálázás képletek folyamatos toobe növekvő, és a készletek zsugorítását &mdash; csomópontok hozzáadása vagy eltávolítása a csomópontok. Csomópontok pénz költségeket, mert a képlet egy intelligens módot használó elegendő adatot alapuló elemzési tooensure kívánt. Ezért azt javasoljuk, hogy használja-e a trendek-elemzés a képletekben. Ez a típus növekszik, és az összegyűjtött minták alapján készletek zsugorítja.
 
-Ehhez használja `GetSample(interval look-back start, interval look-back end)` minták vektor vissza:
+Igen, használjon toodo `GetSample(interval look-back start, interval look-back end)` tooreturn vektor minták:
 
 ```
 $runningTasksSample = $RunningTasks.GetSample(1 * TimeInterval_Minute, 6 * TimeInterval_Minute);
 ```
 
-A fenti sor kötegelt kiértékelésekor értékek vektor vissza minták számos. Példa:
+Hello sorban fölött kötegelt kiértékelésekor értékek vektor vissza minták számos. Példa:
 
 ```
 $runningTasksSample=[1,1,1,1,1,1,1,1,1,1];
 ```
 
-Miután minták vektoros összegyűjtött használhatók funkciók, például a `min()`, `max()`, és `avg()` jelentéssel bíró értékek kapcsolattípusokból származhatnak az összegyűjtött tartományon.
+Miután hello vektoros minták összegyűjtött használhatók funkciók, például a `min()`, `max()`, és `avg()` tooderive jelentéssel bíró értékeinek hello gyűjtött tartományon.
 
-A fokozott biztonság érdekében kényszerítheti a kiértékelési sikertelen lesz, ha kisebb, mint egy bizonyos minta százalék érhető el egy adott időszakra vonatkozóan. Ha kényszeríti a kiértékelési sikertelen lesz, kötegelt, hogy további a képlet értékelése megszűnik, ha nem érhető el a megadott százalék minták utasította. Ebben az esetben nem módosítja a készlet méretét. Minták sikeres értékeléséhez szükséges százalékos megadásához adja meg azt a harmadik paraméter `GetSample()`. Itt 75 százalékával minták követelményt van megadva:
+A fokozott biztonság érdekében beállíthatja egy kiértékelési toofail Ha kisebb, mint egy bizonyos minta százalék érhető el egy adott időszakra vonatkozóan. Ha egy kiértékelési toofail kényszerítéséhez utasította további kötegelt toocease hello képlet értékelése hello megadott százalékos minták nem áll rendelkezésre. Ebben az esetben nem történik változás toohello készletméretet. toospecify szükséges százalékos arányában minták hello értékelési toosucceed, adja meg azt, a harmadik paraméter túl hello`GetSample()`. Itt 75 százalékával minták követelményt van megadva:
 
 ```
 $runningTasksSample = $RunningTasks.GetSample(60 * TimeInterval_Second, 120 * TimeInterval_Second, 75);
 ```
 
-A minta rendelkezésre állási késés előfordulhat, mert fontos mindig adjon meg egy időtartományt megjelenését visszaírt kezdő időpontja korábbi, mint egy perc. Az minták propagálásához a rendszer körülbelül egy percet vesz igénybe, így minták a tartomány `(0 * TimeInterval_Second, 60 * TimeInterval_Second)` nem érhető el. Ebben az esetben használhatja a százalékos paramétere `GetSample()` adott minta százalékos követelmény kényszerítése.
+Mivel a minta rendelkezésre állási késés előfordulhat, fontos tooalways adjon meg egy időtartományt a következő megjelenését visszaírt kezdő időpontja korábbi, mint egy perc. Körülbelül egy percet vesz igénybe a minták toopropagate hello rendszeren keresztül, így minták hello közé `(0 * TimeInterval_Second, 60 * TimeInterval_Second)` nem érhető el. Ebben az esetben hello százalékos paraméterét használhatja `GetSample()` tooforce egy adott minta százalékos követelményt.
 
 > [!IMPORTANT]
-> A Microsoft **erősen ajánlott** , amikor **elkerülése érdekében a megbízható függő *csak* a `GetSample(1)` az automatikus skálázás képletekben**. Ennek az az oka `GetSample(1)` lényegében szerint a Batch szolgáltatás "Adja meg az utolsó mintát, rendelkezik, függetlenül attól, hogy mennyivel beolvasni." Csak egy egyszeres, és lehet, hogy egy régebbi mintát, mert nem lehet jellemző a legutóbbi tevékenység vagy erőforrás állapotának nagyobb képe. Ha a `GetSample(1)`, győződjön meg arról, hogy része egy nagyobb utasítás, és nem az egyetlen adatpont, amely a képlet támaszkodik.
+> A Microsoft **erősen ajánlott** , amikor **elkerülése érdekében a megbízható függő *csak* a `GetSample(1)` az automatikus skálázás képletekben**. Ennek az az oka `GetSample(1)` lényegében szerint toohello Batch szolgáltatás, a "Me hello rendelkezik, az utolsó minta adjon nem számít, hogy mennyivel beolvasni." Csak egy egyszeres, és lehet, hogy egy régebbi mintát, mert nem lehet képviselője hello nagyobb kép legutóbbi tevékenység vagy erőforrás-állapot. Ha a `GetSample(1)`, győződjön meg arról, hogy a nagyobb utasítás részét, és nem hello csak pontja, amely a képlet támaszkodik.
 >
 >
 
 ## <a name="metrics"></a>Mérőszámok
-Erőforrás és a feladat metrikák képlet definiálásakor még használhatja. Módosíthatja a dedikált csomópontok a készlet az beszerzése és kiértékelése metrikák adatokon alapulnak cél száma. Tekintse meg a [változók](#variables) szakasz fölött mindegyik metrikát olvashat.
+Erőforrás és a feladat metrikák képlet definiálásakor még használhatja. Hello készletben hello metrikák adatokon alapulnak beszerzése és értékelje ki dedikált csomópontok száma hello cél módosíthatja. Lásd: hello [változók](#variables) szakasz fölött mindegyik metrikát olvashat.
 
 <table>
   <tr>
@@ -272,7 +272,7 @@ Erőforrás és a feladat metrikák képlet definiálásakor még használhatja.
   </tr>
   <tr>
     <td><b>Erőforrás</b></td>
-    <td><p>Erőforrás metrikáit a CPU, a sávszélesség, a memória használata, a számítási csomópontok és a csomópontok száma alapulnak.</p>
+    <td><p>Erőforrás metrikák hello CPU, a hello sávszélesség, a számítási csomópontok hello memóriahasználata alapulnak, és hello csomópontok száma.</p>
         <p> A szolgáltatás által definiált változókat hasznosak korrekciók csomópontok száma alapján:</p>
     <p><ul>
             <li>$TargetDedicatedNodes</li>
@@ -297,7 +297,7 @@ Erőforrás és a feladat metrikák képlet definiálásakor még használhatja.
   </tr>
   <tr>
     <td><b>Tevékenység</b></td>
-    <td><p>Feladat metrikák függőben, például az aktív, a feladatok állapotának alapulnak, és befejeződött. A következő szolgáltatás által definiált változókat hasznosak feladat mérőszámok alapján készletméretet korrekciók:</p>
+    <td><p>Feladat metrikák függőben, feladatok, például az aktív, hello állapotának alapulnak, és befejeződött. hello következő szolgáltatás által definiált változókat hasznos, ha a feladat mérőszámok alapján készletméretet korrekciók:</p>
     <p><ul>
       <li>$ActiveTasks</li>
       <li>$RunningTasks</li>
@@ -309,15 +309,15 @@ Erőforrás és a feladat metrikák képlet definiálásakor még használhatja.
 </table>
 
 ## <a name="write-an-autoscale-formula"></a>Az automatikus skálázás képlet írása
-Kibővített kialakítást hozhat létre az automatikus skálázás képlet képező utasításokat, amelyek a fenti összetevőket használnak, majd egyesítése egy teljes képlet ezen utasításokat. Ebben a szakaszban egy példa automatikus skálázás képlet által végrehajtható műveleteket az egyes valós méretezési döntések tudjuk létrehozni.
+Kibővített kialakítást hozhat létre az automatikus skálázás képlet képező utasításokat, amelyek a fenti összetevők hello használja, majd egyesítése egy teljes képlet ezen utasításokat. Ebben a szakaszban egy példa automatikus skálázás képlet által végrehajtható műveleteket az egyes valós méretezési döntések tudjuk létrehozni.
 
-Először is határozza meg az új automatikus skálázás képlet követelményei. A képlet a következőket:
+Először is határozza meg az új automatikus skálázás képlet hello követelményei. hello képlet a következőket:
 
-1. Dedikált számítási csomópontok a készlet cél számának növelése, ha a CPU-használata túl magas.
-2. Dedikált számítási csomópontok a készlet cél számának csökkentéséhez, amikor a CPU-használat alacsony.
-3. Mindig korlátozása 400 dedikált csomópontok maximális száma.
+1. Növelje a készlet dedikált számítási csomópontok száma hello célja, ha a CPU-használata túl magas.
+2. Egy dedikált számítási csomópontok száma hello cél csökkentéséhez, amikor a CPU-használat alacsony.
+3. Mindig korlátozása hello too400 dedikált csomópontok maximális száma.
 
-A csomópontok számának növeléséhez során magas CPU-használatot, definiálni kell az utasítást, amely tölti fel a felhasználó által definiált változó (`$totalDedicatedNodes`) értékkel, amely 110 százalékos aránya a cél száma dedikált csomópontok, de csak akkor, ha a minimális átlagos CPU-használat során a elmúlt 10 perc 70 százalék felett volt. Ellenkező esetben használja az értéket a kijelölt csomópontok száma.
+magas CPU-használat során csomópontok száma tooincrease hello hello utasításban, amely tölti fel a felhasználó által definiált változó határozza meg (`$totalDedicatedNodes`) 110 százalékát hello aktuális cél dedikált csomópontok száma, de csak akkor, ha értékkel hello minimális átlagos CPU-használat hello során az utolsó 10 percet 70 százalék felett volt. Ellenkező esetben használja a hello értéket a kijelölt csomópontok hello aktuális száma.
 
 ```
 $totalDedicatedNodes =
@@ -325,7 +325,7 @@ $totalDedicatedNodes =
     ($CurrentDedicatedNodes * 1.1) : $CurrentDedicatedNodes;
 ```
 
-A *csökkentése* során alacsony processzorhasználat, a következő utasítás a képletben dedikált csomópontok száma beállítja azonos `$totalDedicatedNodes` változó – 90 százalékára az aktuális célként kijelölt csomópontok száma, ha a átlagos processzorhasználat százalékos mértéke az elmúlt 60 perc alatt 20 % volt. Ellenkező esetben használja az aktuális értéke `$totalDedicatedNodes` , amely jelenleg a fenti utasításban feltöltve.
+túl*csökkentése* hello dedikált csomópontok száma alacsony CPU-használat során, a képlet beállítása hello a következő utasítás azonos hello `$totalDedicatedNodes` hello aktuális cél dedikált csomópontok száma ha hello változó too90 százaléka átlagos CPU-használat hello elmúlt 60 perc volt a 20 százalékát. Ellenkező esetben használja az aktuális értéke hello `$totalDedicatedNodes` , amely jelenleg a fenti hello utasításban feltöltve.
 
 ```
 $totalDedicatedNodes =
@@ -333,13 +333,13 @@ $totalDedicatedNodes =
     ($CurrentDedicatedNodes * 0.9) : $totalDedicatedNodes;
 ```
 
-Most dedikált számítási csomópontok legfeljebb 400 cél számának korlátozása:
+Most korlátozása dedikált számítási csomópontok tooa legfeljebb 400 hello cél száma:
 
 ```
 $TargetDedicatedNodes = min(400, $totalDedicatedNodes)
 ```
 
-A teljes képlet a következő:
+Az alábbiakban hello teljes képlet:
 
 ```
 $totalDedicatedNodes =
@@ -353,15 +353,15 @@ $TargetDedicatedNodes = min(400, $totalDedicatedNodes)
 
 ## <a name="create-an-autoscale-enabled-pool-with-net"></a>A .NET az automatikus skálázás engedélyezve készlet létrehozása
 
-Az automatikus skálázást engedélyezve van a .NET-készlet létrehozása, kövesse az alábbi lépéseket:
+az automatikus skálázást engedélyezve van a .NET, a készlet toocreate kövesse az alábbi lépéseket:
 
-1. A készlet létrehozásához [BatchClient.PoolOperations.CreatePool](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.createpool).
-2. Állítsa be a [CloudPool.AutoScaleEnabled](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleenabled) tulajdonságot `true`.
-3. Állítsa be a [CloudPool.AutoScaleFormula](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleformula) az automatikus skálázás képlettel tulajdonság.
-4. (Választható) Állítsa be a [CloudPool.AutoScaleEvaluationInterval](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleevaluationinterval) tulajdonság (alapértelmezett érték 15 perc).
-5. A címkészlet, amely véglegesíti [CloudPool.Commit](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commit) vagy [CommitAsync](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commitasync).
+1. Hozzon létre hello címkészlet, amely [BatchClient.PoolOperations.CreatePool](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.createpool).
+2. Set hello [CloudPool.AutoScaleEnabled](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleenabled) tulajdonság túl`true`.
+3. Set hello [CloudPool.AutoScaleFormula](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleformula) az automatikus skálázás képlettel tulajdonság.
+4. (Választható) Set hello [CloudPool.AutoScaleEvaluationInterval](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleevaluationinterval) tulajdonság (alapértelmezett érték 15 perc).
+5. Hello címkészlet, amely véglegesíti [CloudPool.Commit](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commit) vagy [CommitAsync](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commitasync).
 
-A következő kódrészletet az automatikus skálázás engedélyezve készlet .NET hoz létre. A készlet automatikus skálázás képlet állítja be a cél több hétfőn 5 dedikált csomópontot, és minden egyéb a hét napja, 1. A [automatikus méretezési időköz](#automatic-scaling-interval) 30 percre van beállítva. Ebben és más C# kódtöredékek ebben a cikkben `myBatchClient` megfelelően inicializálva példánya a [BatchClient] [ net_batchclient] osztály.
+hello következő kódrészletet létrehoz egy automatikus skálázás engedélyezve készlet .NET. hello készlet automatikus skálázás képlet beállítja hello cél számát dedikált csomópontok too5 hétfőn, és minden egyéb hello hét napján 1. Hello [automatikus méretezési időköz](#automatic-scaling-interval) van beállítva too30 perc. Ezen és egyéb C# kódtöredékek ebben a cikkben hello `myBatchClient` hello megfelelően inicializálva példánya [BatchClient] [ net_batchclient] osztály.
 
 ```csharp
 CloudPool pool = myBatchClient.PoolOperations.CreatePool(
@@ -375,54 +375,54 @@ await pool.CommitAsync();
 ```
 
 > [!IMPORTANT]
-> Az automatikus skálázás engedélyezve készletet hoz létre, ha nem adja meg a _targetDedicatedComputeNodes_ paraméter vagy a _targetLowPriorityComputeNodes_ hívásakor paraméter **CreatePool** . Ehelyett adja meg a **AutoScaleEnabled** és **AutoScaleFormula** a készlet tulajdonságai. Ezek a tulajdonságok értékeit minden típusú csomópont target számának meghatározásához. Manuálisan méretezze át az automatikus skálázás-kompatibilis készlet is, a (például a [BatchClient.PoolOperations.ResizePoolAsync][net_poolops_resizepoolasync]), első **letiltása** automatikus méretezésének a tárolókészlet, majd méretezze át.
+> Az automatikus skálázás engedélyezve készletet hoz létre, ha nem ad meg hello _targetDedicatedComputeNodes_ paraméter vagy hello _targetLowPriorityComputeNodes_ hello paraméter hívja túl **CreatePool**. Ehelyett adja meg a hello **AutoScaleEnabled** és **AutoScaleFormula** hello készlet tulajdonságai. Ezen tulajdonságok hello értékek meghatározzák, hogy minden csomópont típusú hello cél száma. Emellett toomanually átméretezése az automatikus skálázás engedélyezve készlet (például a [BatchClient.PoolOperations.ResizePoolAsync][net_poolops_resizepoolasync]), első **tiltsa le a** az automatikus skálázás hello készletet, majd méretezze át.
 >
 >
 
-Mellett Batch .NET, használhatja a másik [kötegelt SDK-k](batch-apis-tools.md#azure-accounts-for-batch-development), [Batch REST](https://docs.microsoft.com/rest/api/batchservice/), [kötegelt PowerShell-parancsmagok](batch-powershell-cmdlets-get-started.md), és a [kötegelt CLI](batch-cli-get-started.md) számára automatikus skálázás konfigurálása.
+Ezenkívül tooBatch .NET használhatja bármelyik más hello [kötegelt SDK-k](batch-apis-tools.md#azure-accounts-for-batch-development), [Batch REST](https://docs.microsoft.com/rest/api/batchservice/), [kötegelt PowerShell-parancsmagok](batch-powershell-cmdlets-get-started.md), és hello [kötegelt CLI](batch-cli-get-started.md)tooconfigure automatikus skálázást.
 
 
 ### <a name="automatic-scaling-interval"></a>Automatikus méretezési időköz
-Alapértelmezés szerint a Batch szolgáltatás 15 percenként állítja be a készlet méretét az automatikus skálázási képletnek megfelelően. Ez az időtartam alatt a következő alkalmazáskészlet tulajdonságaiban használatával konfigurálható:
+Alapértelmezés szerint hello Batch szolgáltatás beállítása szerint tooits automatikus skálázás képlet, 15 percenként a készlet méretét. Ez az időtartam alatt a következő alkalmazáskészlet tulajdonságaiban hello segítségével konfigurálható:
 
 * [CloudPool.AutoScaleEvaluationInterval] [ net_cloudpool_autoscaleevalinterval] (kötegelt .NET)
 * [autoScaleEvaluationInterval] [ rest_autoscaleinterval] (REST API-t)
 
-A minimális időköze öt perc, a maximális 168 óra. Ha az időközönkénti ezen a tartományon kívül van megadva, a Batch szolgáltatás egy hibás kérés (400) hibaüzenetet adja vissza.
+hello minimális időköze az öt percet, és hello maximális 168 óra. Időközönkénti ezen a tartományon kívül van megadva, ha a Batch szolgáltatás hello egy hibás kérés (400) hibaüzenetet adja vissza.
 
 > [!NOTE]
-> Automatikus skálázás nem célja jelenleg igazodjanak kisebb, mint egy percen belül, de ahelyett, hogy olyan fokozatosan futtatása a munkaterhelés, a készlet méretének beállítása.
+> Automatikus skálázás nem jelenleg tervezett toorespond toochanges kisebb, mint egy percen belül, de ahelyett, hogy a gyűjtő tooadjust hello mérete fokozatosan szánt futtatja, a munkaterhelés.
 >
 >
 
 ## <a name="enable-autoscaling-on-an-existing-pool"></a>Egy meglévő készlet automatikus skálázás engedélyezéséhez
 
-Minden egyes kötegelt SDK biztosítja az automatikus skálázás engedélyezéséhez. Példa:
+Minden egyes kötegelt SDK biztosít egy módon tooenable automatikus skálázást. Példa:
 
 * [BatchClient.PoolOperations.EnableAutoScaleAsync] [ net_enableautoscaleasync] (kötegelt .NET)
 * [A készlet automatikus skálázás engedélyezése] [ rest_enableautoscale] (REST API-t)
 
-Ha engedélyezi az automatikus skálázás meglévő címkészlet, vegye figyelembe a következő szempontokat:
+Ha engedélyezi az automatikus skálázás meglévő címkészlet, tartsa szem előtt tartva hello pontok a következő:
 
-* Ha az automatikus skálázás jelenleg le van tiltva a készletet az automatikus skálázás engedélyezéséhez a kérelem elküldésekor, adjon meg érvényes automatikus skálázás képlet a kérelem elküldésekor. Opcionálisan megadhat az automatikus skálázás újraértékelési időközét. Ha nem adja meg a időközt, az alapértelmezett érték 15 perc szolgál.
-* Ha automatikus skálázás jelenleg engedélyezve van a készletet, megadhatja az automatikus skálázás képlet, egy újraértékelési időközét, vagy mindkettőt. Ezek a tulajdonságok közül legalább egy meg kell adnia.
+* Ha az automatikus skálázás jelenleg le van tiltva a hello készlet hello kérelem tooenable automatikus skálázás küldésekor, adjon meg érvényes automatikus skálázás képlet hello kérés elküldésekor. Opcionálisan megadhat az automatikus skálázás újraértékelési időközét. Ha nem adja meg a időközt, hello alapértelmezett érték 15 perc szolgál.
+* Ha az automatikus skálázás hello készlet jelenleg engedélyezve van, megadhatja az automatikus skálázás képlet, egy újraértékelési időközét, vagy mindkettőt. Ezek a tulajdonságok közül legalább egy meg kell adnia.
 
-  * Ha egy új automatikus skálázás újraértékelési időközét adja meg, majd a meglévő értékelésének ütemezése le van állítva, és új ütemezés szerint elindult. Az új ütemezés kezdési ideje az az idő, amelynél a kérelem automatikus skálázás engedélyezéséhez ki.
-  * Ha nincs megadva vagy az automatikus skálázás képlet vagy újraértékelési időközét, a Batch szolgáltatás továbbra is az aktuális értéket használja.
+  * Ha egy új automatikus skálázás újraértékelési időközét adja meg, majd hello meglévő értékelésének ütemezése le van állítva, és új ütemezés szerint elindult. hello új ütemezés kezdési idő az hello idő, mely hello kérelem tooenable automatikus skálázás ki.
+  * Kihagyása vagy hello automatikus skálázás képlet vagy a kiértékelési időköz, a Batch szolgáltatás hello toouse hello aktuális értéket továbbra is.
 
 > [!NOTE]
-> Ha a megadott értékek a *targetDedicatedComputeNodes* vagy *targetLowPriorityComputeNodes* paraméterei a **CreatePool** módszer a tárolókészlet létrehozásakor .NET, vagy egy másik nyelven összehasonlítható paraméterekhez, majd ezeket az értékeket figyelmen kívül hagyja az automatikus méretezési képlet kiértékelésekor.
+> Ha a hello értéket adott meg *targetDedicatedComputeNodes* vagy *targetLowPriorityComputeNodes* hello paraméterei **CreatePool** metódus hello létrehozásakor a .NET, vagy egy másik nyelvet, majd ezeket az értékeket hello összehasonlítható paramétereinek alkalmazáskészlet figyelmen kívül lesznek hagyva, automatikus skálázás képlet hello kiértékelésekor.
 >
 >
 
-A C# kódrészletet használja a [Batch .NET] [ net_api] szalagtár meglévő címkészlet automatikus skálázás engedélyezéséhez:
+A C# kódrészletet használja hello [Batch .NET] [ net_api] könyvtár tooenable automatikus skálázás meglévő címkészlet:
 
 ```csharp
-// Define the autoscaling formula. This formula sets the target number of nodes
-// to 5 on Mondays, and 1 on every other day of the week
+// Define hello autoscaling formula. This formula sets hello target number of nodes
+// too5 on Mondays, and 1 on every other day of hello week
 string myAutoScaleFormula = "$TargetDedicatedNodes = (time().weekday == 1 ? 5:1);";
 
-// Set the autoscale formula on the existing pool
+// Set hello autoscale formula on hello existing pool
 await myBatchClient.PoolOperations.EnableAutoScaleAsync(
     "myexistingpool",
     autoscaleFormula: myAutoScaleFormula);
@@ -430,7 +430,7 @@ await myBatchClient.PoolOperations.EnableAutoScaleAsync(
 
 ### <a name="update-an-autoscale-formula"></a>Az automatikus skálázás képlet frissítése
 
-A képlet meglévő automatikus skálázás engedélyezve címkészlet frissítéséhez hívható meg a művelet újra az új képletet az automatikus skálázás engedélyezéséhez. Például, ha az automatikus skálázás már engedélyezve van a `myexistingpool` eljárás végrehajtásakor a következő .NET-kódot, az automatikus skálázás képlet helyére tartalmát `myNewFormula`.
+egy meglévő automatikus skálázás engedélyezve készlet, hívás hello művelet tooenable automatikus skálázás újra az új képlet hello tooupdate hello képletet. Például, ha az automatikus skálázás már engedélyezve van a `myexistingpool` eljárás végrehajtásakor a következő kód .NET hello, az automatikus skálázás képlet helyére hello tartalmát `myNewFormula`.
 
 ```csharp
 await myBatchClient.PoolOperations.EnableAutoScaleAsync(
@@ -438,9 +438,9 @@ await myBatchClient.PoolOperations.EnableAutoScaleAsync(
     autoscaleFormula: myNewFormula);
 ```
 
-### <a name="update-the-autoscale-interval"></a>Frissítés az automatikus skálázás időköz
+### <a name="update-hello-autoscale-interval"></a>Frissítési hello automatikus skálázás időköz
 
-Az automatikus skálázás újraértékelési időközét egy meglévő automatikus skálázás engedélyezve készlet frissítéséhez hívható meg a művelet újra az új időköz az automatikus skálázás engedélyezéséhez. Ha például az automatikus skálázás újraértékelési időközét beállítása és 60 perc már automatikus skálázás engedélyezve a .NET-készletre vonatkozó:
+tooupdate hello automatikus skálázás újraértékelési időközét meglévő automatikus skálázás engedélyezve-készlet, hívás hello művelet tooenable automatikus skálázás újra az új hello időköz. Például tooset hello automatikus skálázás értékelési időköz too60 perc már automatikus skálázás engedélyezve a .NET-készletre vonatkozó:
 
 ```csharp
 await myBatchClient.PoolOperations.EnableAutoScaleAsync(
@@ -450,50 +450,50 @@ await myBatchClient.PoolOperations.EnableAutoScaleAsync(
 
 ## <a name="evaluate-an-autoscale-formula"></a>Az automatikus skálázás képlet kiértékelése
 
-Mielőtt telepítené azt a készlethez kiértékelheti az képletet. Ezzel a módszerrel tesztelheti a képletet, hogy hogyan kimutatásait értékelje ki a képletet üzembe helyezésre előtt.
+A képlet kiértékelheti tooa készlet alkalmazása előtt. Ezzel a módszerrel tesztelheti hello képlet toosee hogyan kimutatásait kiértékelése előtt hello képlet üzembe helyezésre.
 
-Az automatikus skálázás képlet kiértékeléséhez, először engedélyeznie kell a készlet egy érvényes képletet az automatikus skálázást. Egy készlet, amely még nem rendelkezik engedélyezett automatikus skálázás képlet teszteléséhez használja a egysoros `$TargetDedicatedNodes = 0` Ha először engedélyezi az automatikus skálázást. Ezután segítségével a következők egyikét értékelje ki a vizsgálni kívánt képlet:
+az automatikus skálázás képlet tooevaluate, először engedélyeznie kell egy érvényes képlettel hello készlet automatikus skálázást. egy készlet, amely még nem rendelkezik az automatikus skálázás képlet tootest engedélyezve van, hello egysoros képlet használata `$TargetDedicatedNodes = 0` Ha először engedélyezi az automatikus skálázást. Ezt követően használja a következő tooevaluate hello képletet tootest hello egyikét:
 
 * [BatchClient.PoolOperations.EvaluateAutoScale](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.evaluateautoscale) vagy [EvaluateAutoScaleAsync](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.evaluateautoscaleasync)
 
-    A Batch .NET módszerekhez kiértékelése egy meglévő készlet és az automatikus skálázás képletet tartalmazó karakterlánc Azonosítóját.
+    A Batch .NET módszerekhez hello azonosító egy meglévő készlet és hello automatikus skálázás képlet tooevaluate tartalmazó karakterláncot.
 
 * [Az automatikus méretezési képlet kiértékelése](https://docs.microsoft.com/rest/api/batchservice/evaluate-an-automatic-scaling-formula)
 
-    A REST API-kérelem, adja meg az URI azonosító a készlet Azonosítóját, és az automatikus skálázás képlet a *autoScaleFormula* eleme a kérés törzsében. A válasz a művelet bármilyen melyikhez kapcsolódhat a képlet hibát adatokat tartalmaz.
+    A REST API-kérelem a adja meg a hello készlet hello URI-azonosító, és automatikus skálázási képletnek hello hello *autoScaleFormula* hello kérelemtörzset eleme. hello válasz hello művelet bármely kapcsolódó toohello képlet hiba információkat tartalmaz.
 
-Ezen [Batch .NET] [ net_api] kódrészletet, azt az automatikus skálázás képlet kiértékeléséhez. Ha a készlet nem rendelkezik automatikus skálázás engedélyezve van, engedélyezzük az első.
+Ezen [Batch .NET] [ net_api] kódrészletet, azt az automatikus skálázás képlet kiértékeléséhez. Ha hello készlet nem rendelkezik automatikus skálázás engedélyezve van, engedélyezzük az első.
 
 ```csharp
-// First obtain a reference to an existing pool
+// First obtain a reference tooan existing pool
 CloudPool pool = await batchClient.PoolOperations.GetPoolAsync("myExistingPool");
 
-// If autoscaling isn't already enabled on the pool, enable it.
+// If autoscaling isn't already enabled on hello pool, enable it.
 // You can't evaluate an autoscale formula on non-autoscale-enabled pool.
 if (pool.AutoScaleEnabled == false)
 {
-    // We need a valid autoscale formula to enable autoscaling on the
-    // pool. This formula is valid, but won't resize the pool:
+    // We need a valid autoscale formula tooenable autoscaling on the
+    // pool. This formula is valid, but won't resize hello pool:
     await pool.EnableAutoScaleAsync(
         autoscaleFormula: "$TargetDedicatedNodes = {pool.CurrentDedicatedNodes};",
         autoscaleEvaluationInterval: TimeSpan.FromMinutes(5));
 
-    // Batch limits EnableAutoScaleAsync calls to once every 30 seconds.
-    // Because we want to apply our new autoscale formula below if it
+    // Batch limits EnableAutoScaleAsync calls tooonce every 30 seconds.
+    // Because we want tooapply our new autoscale formula below if it
     // evaluates successfully, and we *just* enabled autoscaling on
-    // this pool, we pause here to ensure we pass that threshold.
+    // this pool, we pause here tooensure we pass that threshold.
     Thread.Sleep(TimeSpan.FromSeconds(31));
 
-    // Refresh the properties of the pool so that we've got the
+    // Refresh hello properties of hello pool so that we've got the
     // latest value for AutoScaleEnabled
     await pool.RefreshAsync();
 }
 
-// We must ensure that autoscaling is enabled on the pool prior to
+// We must ensure that autoscaling is enabled on hello pool prior to
 // evaluating a formula
 if (pool.AutoScaleEnabled == true)
 {
-    // The formula to evaluate - adjusts target number of nodes based on
+    // hello formula tooevaluate - adjusts target number of nodes based on
     // day of week and time of day
     string myFormula = @"
         $curTime = time();
@@ -503,32 +503,32 @@ if (pool.AutoScaleEnabled == true)
         $TargetDedicatedNodes = $isWorkingWeekdayHour ? 20:10;
     ";
 
-    // Perform the autoscale formula evaluation. Note that this code does not
-    // actually apply the formula to the pool.
+    // Perform hello autoscale formula evaluation. Note that this code does not
+    // actually apply hello formula toohello pool.
     AutoScaleRun eval =
         await batchClient.PoolOperations.EvaluateAutoScaleAsync(pool.Id, myFormula);
 
     if (eval.Error == null)
     {
-        // Evaluation success - print the results of the AutoScaleRun.
-        // This will display the values of each variable as evaluated by the
+        // Evaluation success - print hello results of hello AutoScaleRun.
+        // This will display hello values of each variable as evaluated by the
         // autoscale formula.
         Console.WriteLine("AutoScaleRun.Results: " +
             eval.Results.Replace("$", "\n    $"));
 
-        // Apply the formula to the pool since it evaluated successfully
+        // Apply hello formula toohello pool since it evaluated successfully
         await batchClient.PoolOperations.EnableAutoScaleAsync(pool.Id, myFormula);
     }
     else
     {
-        // Evaluation failed, output the message associated with the error
+        // Evaluation failed, output hello message associated with hello error
         Console.WriteLine("AutoScaleRun.Error.Message: " +
             eval.Error.Message);
     }
 }
 ```
 
-A következő kódrészletet látható képlet sikeres kiértékelési eredménye hasonló:
+A következő kódrészletet látható hello képlet sikeres értékelése eredménye hasonló:
 
 ```
 AutoScaleRun.Results:
@@ -542,17 +542,17 @@ AutoScaleRun.Results:
 
 ## <a name="get-information-about-autoscale-runs"></a>Automatikus skálázás futtatása adatainak beolvasása
 
-Győződjön meg arról, hogy a várt módon működik-e a képletet, azt javasoljuk, hogy rendszeres időközönként ellenőrizze az automatikus skálázás fut, a készlet végző kötegelt eredményeit. A tehát (vagy frissítse) egy hivatkozást, a készletbe és az utolsó automatikus skálázás futtatása tulajdonságainak vizsgálata.
+a képlet szerint végző tooensure várt, azt javasoljuk, hogy rendszeres időközönként ellenőrizze a kötegelt végzi, a készlet hello automatikus skálázás kísérletekről hello eredményeit. toodo tehát beolvasása (vagy frissítse) egy hivatkozás toohello tárolókészlet, és az utolsó automatikus skálázás futtatása hello tulajdonságainak vizsgálata.
 
-A Batch .NET a [CloudPool.AutoScaleRun](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscalerun) tulajdonság rendelkezik, amelyek információval szolgálnak a legújabb automatikus skálázás futtatnak majd elvégezni a készlet több tulajdonságok:
+A Batch .NET hello [CloudPool.AutoScaleRun](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscalerun) tulajdonság több tulajdonságai hello legújabb automatikus skálázás hello készlet elvégezni futtatnak ismertetik:
 
 * [AutoScaleRun.Timestamp](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.autoscalerun.timestamp)
 * [AutoScaleRun.Results](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.autoscalerun.results)
 * [AutoScaleRun.Error](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.autoscalerun.error)
 
-A REST API-ban a [készlet adatainak beolvasása](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool) kérelmet a készletbe, amely tartalmazza a legújabb automatikus skálázás információk futtatni információt ad vissza a [autoScaleRun](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool#bk_autrun) tulajdonság.
+Hello REST API-t, a hello [készlet adatainak beolvasása](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool) kérelem hello készletbe, amely tartalmazza a hello legújabb automatikus skálázás hello információk futtatni információt ad vissza [autoScaleRun](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool#bk_autrun) tulajdonság.
 
-A következő C# kódrészletet használja a Batch .NET kódtár adatokat a legutóbbi automatikus skálázás futtassa a készlet nyomtathat _myPool_:
+hello következő C# kódrészletet használja hello Batch .NET könyvtár tooprint információ hello utolsó automatikus skálázás futtassa a készlet _myPool_:
 
 ```csharp
 await Cloud pool = myBatchClient.PoolOperations.GetPoolAsync("myPool");
@@ -561,7 +561,7 @@ Console.WriteLine("Result:" + pool.AutoScaleRun.Results.Replace("$", "\n  $"));
 Console.WriteLine("Error: " + pool.AutoScaleRun.Error);
 ```
 
-Az előző részlet Példakimenet:
+Részlet megelőző hello Példakimenet:
 
 ```
 Last execution: 10/14/2016 18:36:43
@@ -576,12 +576,12 @@ Error:
 ```
 
 ## <a name="example-autoscale-formulas"></a>Példa automatikus skálázás képletek
-Vizsgáljuk meg néhány képletek, amelyek megjelenítik a különböző módon úgy, hogy a készlet számítási erőforrások mennyisége.
+Vizsgáljuk meg néhány képletek, amelyek különböző módokon tooadjust hello számítási erőforrások mennyisége a készletben.
 
 ### <a name="example-1-time-based-adjustment"></a>1. példa: Időalapú módosítása
-Tegyük fel, hogy úgy, hogy a készlet méretét, és a hét napja, nap alapul. Ez a példa bemutatja, hogyan növelhető vagy csökkenthető ennek megfelelően a készletben található csomópontok számát.
+Tegyük fel, hogy tooadjust hello készlet mérete alapján hello hét napja hello napját és idejét. Ez a példa bemutatja, hogyan tárolókészlet hello csomópontok tooincrease vagy csökken hello számának megfelelően.
 
-A képlet először beolvassa az aktuális idővel. Ha a hét napja (1-5) és munkaidőn (8 AM a 18: 00) belül, a cél készletméretet értéke 20 csomópontot. Ellenkező esetben az értéke 10 csomópontok.
+hello képlet először beolvassa hello aktuális idő. Ha a hét napja (1-5) és munkaidőn belül (8 AM too6 PM), hello cél készletméretet too20 csomópontok van beállítva. Ellenkező esetben van állítva, akkor too10 csomópontok.
 
 ```
 $curTime = time();
@@ -592,54 +592,54 @@ $TargetDedicatedNodes = $isWorkingWeekdayHour ? 20:10;
 ```
 
 ### <a name="example-2-task-based-adjustment"></a>2. példa: Feladatalapú módosítása
-Ebben a példában a készlet méretét módosul a várólistán lévő feladatok száma alapján. Megjegyzések és a sortöréseket a képlet karakterláncok elfogadhatók.
+Ebben a példában hello készletméretet módosul hello várólistában lévő feladatok hello száma alapján. Megjegyzések és a sortöréseket a képlet karakterláncok elfogadhatók.
 
 ```csharp
-// Get pending tasks for the past 15 minutes.
+// Get pending tasks for hello past 15 minutes.
 $samples = $ActiveTasks.GetSamplePercent(TimeInterval_Minute * 15);
-// If we have fewer than 70 percent data points, we use the last sample point,
-// otherwise we use the maximum of last sample point and the history average.
+// If we have fewer than 70 percent data points, we use hello last sample point,
+// otherwise we use hello maximum of last sample point and hello history average.
 $tasks = $samples < 70 ? max(0,$ActiveTasks.GetSample(1)) : max( $ActiveTasks.GetSample(1), avg($ActiveTasks.GetSample(TimeInterval_Minute * 15)));
-// If number of pending tasks is not 0, set targetVM to pending tasks, otherwise
+// If number of pending tasks is not 0, set targetVM toopending tasks, otherwise
 // half of current dedicated.
 $targetVMs = $tasks > 0? $tasks:max(0, $TargetDedicatedNodes/2);
-// The pool size is capped at 20, if target VM value is more than that, set it
-// to 20. This value should be adjusted according to your use case.
+// hello pool size is capped at 20, if target VM value is more than that, set it
+// too20. This value should be adjusted according tooyour use case.
 $TargetDedicatedNodes = max(0, min($targetVMs, 20));
 // Set node deallocation mode - keep nodes active only until tasks finish
 $NodeDeallocationOption = taskcompletion;
 ```
 
 ### <a name="example-3-accounting-for-parallel-tasks"></a>3. példa: Párhuzamos tevékenységek nyilvántartás
-Ebben a példában a készlet méretét, a feladatok száma alapján állítja be. A képlet is figyelembe veszi a [MaxTasksPerComputeNode] [ net_maxtasks] érték, amely be van állítva a készletet. Ez a módszer akkor hasznos, ahol [párhuzamos tevékenység végrehajtása](batch-parallel-node-tasks.md) a készlet engedélyezve lett.
+Ez a példa hello készletméretet hello feladatok száma alapján állítja be. A képlet is veszi figyelembe hello [MaxTasksPerComputeNode] [ net_maxtasks] hello készlethez beállított értéket. Ez a módszer akkor hasznos, ahol [párhuzamos tevékenység végrehajtása](batch-parallel-node-tasks.md) a készlet engedélyezve lett.
 
 ```csharp
-// Determine whether 70 percent of the samples have been recorded in the past
+// Determine whether 70 percent of hello samples have been recorded in hello past
 // 15 minutes; if not, use last sample
 $samples = $ActiveTasks.GetSamplePercent(TimeInterval_Minute * 15);
 $tasks = $samples < 70 ? max(0,$ActiveTasks.GetSample(1)) : max( $ActiveTasks.GetSample(1),avg($ActiveTasks.GetSample(TimeInterval_Minute * 15)));
-// Set the number of nodes to add to one-fourth the number of active tasks (the
-// MaxTasksPerComputeNode property on this pool is set to 4, adjust this number
+// Set hello number of nodes tooadd tooone-fourth hello number of active tasks (the
+// MaxTasksPerComputeNode property on this pool is set too4, adjust this number
 // for your use case)
 $cores = $TargetDedicatedNodes * 4;
 $extraVMs = (($tasks - $cores) + 3) / 4;
 $targetVMs = ($TargetDedicatedNodes + $extraVMs);
-// Attempt to grow the number of compute nodes to match the number of active
+// Attempt toogrow hello number of compute nodes toomatch hello number of active
 // tasks, with a maximum of 3
 $TargetDedicatedNodes = max(0,min($targetVMs,3));
-// Keep the nodes active until the tasks finish
+// Keep hello nodes active until hello tasks finish
 $NodeDeallocationOption = taskcompletion;
 ```
 
 ### <a name="example-4-setting-an-initial-pool-size"></a>4. példa: Egy kezdeti mérete beállítása
-Ez a példa bemutatja egy C# kódrészletet az automatikus skálázás képlettel, amely egy megadott számára korlátozva a csomópontok a készlet méretét határoz meg egy kezdeti időszak. Ezután azt állítja be a készlet mérete alapján fut számát és az aktív feladatok a kezdeti időszak eltelte után.
+Ez a példa azt mutatja be a C#-kód részlet az automatikus skálázás úgy, hogy beállítja a készlet méretének tooa hello csomópontok száma megadott egy kezdeti időszak. Majd helyesbíti hello készlet mérete alapján hello fut, és aktív feladatok után hello kezdeti időszak lejárt.
 
-A képlet a következő kódrészletet:
+a következő kódrészletet hello hello képlet:
 
-* Négy csomópont állítja be a kezdeti mérete.
-* A készlet életciklus első 10 percen belül nem igazítja a készlet méretét.
-* 10 perc elteltével beolvassa a maximális értékének száma az elmúlt 60 percen belül futó és az aktív feladatok.
-  * Ha mindkét értékek 0 (Ez azt jelzi, hogy a feladat nem fut, vagy az elmúlt 60 perc aktív volt-e), a készlet méretét értéke 0.
+* Beállítja a hello kezdeti készlet mérete toofour csomópontok.
+* Nem hello készlet méretének módosítása belül hello hello készlet életciklus első 10 perc.
+* 10 perc elteltével beolvassa a hello maximális értékének hello fut a száma, és az aktív feladatok belül hello elmúlt 60 perc.
+  * Ha mindkét értékek 0 (Ez azt jelzi, hogy egy feladat sem volt futó vagy hello aktív elmúlt 60 perc), hello készletméretet too0 van beállítva.
   * Ha bármelyik érték nullánál nem kisebb, nem történik változás.
 
 ```csharp
@@ -656,8 +656,8 @@ string formula = string.Format(@"
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-* [Azure Batch számítási erőforrás-használat csomópont egyidejű feladatok maximális](batch-parallel-node-tasks.md) részletesen ismerteti, hogyan hajthat végre több feladat egyidejű a készlet számítási csomópontjain. Mellett automatikus skálázást Ez a szolgáltatás segíthet feladat időtartama bizonyos munkaterhelések esetén, így pénzt takaríthat csökkenthető.
-* Egy másik hatékonyságát gyorsító győződjön meg arról, hogy a kötegelt kérelem a Batch szolgáltatás lekérdezi a legoptimálisabb módon. Lásd: [hatékonyan lekérdezése az Azure Batch szolgáltatás](batch-efficient-list-queries.md) megtudhatja, hogyan átmenő a hálózaton, amikor több ezer számítási csomópontok és a feladatok állapotának lekérdezése adatok korlátozásához.
+* [Azure Batch számítási erőforrás-használat csomópont egyidejű feladatok maximális](batch-parallel-node-tasks.md) részletesen ismerteti, hogyan hajthat végre több feladat egyidejű hello számítási csomópontok a készlethez. Továbbá tooautoscaling, ez a szolgáltatás segíthet bizonyos munkaterhelések esetén, így pénzt takaríthat toolower feladat időtartama.
+* Egy másik hatékonyságát gyorsító győződjön meg arról, hogy a kötegelt kérelem lekérdezések hello hello legtöbb optimális módját a Batch szolgáltatás. Lásd: [hello Azure Batch szolgáltatás hatékony lekérdezéséhez](batch-efficient-list-queries.md) toolearn hogyan toolimit hello átmenő hello keresztülhaladnak a hálózaton, ha több ezer hello állapotának adatok mennyisége számítási csomópontok és a feladatok.
 
 [net_api]: https://docs.microsoft.com/dotnet/api/microsoft.azure.batch
 [net_batchclient]: https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.batchclient

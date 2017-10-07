@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Machine Learning automatikus adatok csővezeték-Adatlap |} Microsoft Docs"
-description: "Nyomtatható Adatlap, amely azt ismerteti, hogyan beállítása az Azure Machine Learning webszolgáltatásba az automatikus csővezeték-e az adatok a helyszínen, streamelés esetén az Azure-ban vagy harmadik fél felhőszolgáltatásban."
+title: "Gépi tanulás aaaAzure automatikus adatok csővezeték-Adatlap |} Microsoft Docs"
+description: "Nyomtatható Adatlap, amely bemutatja, hogyan tooset egy automatizált adatokat a következő feldolgozási sorban tooyour Azure Machine Learning webszolgáltatás-e az adatok a helyszínen, streamelés esetén az Azure-ban vagy harmadik fél felhőszolgáltatásban."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: mithal;garye
-ms.openlocfilehash: e212b2c935eb0ae64ed1cd2e6dc1564f8fcd503b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 045f5c0a40fe301fcdc8df61a156f93246286174
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cheat-sheet-for-an-automated-data-pipeline-for-azure-machine-learning-predictions"></a>Gyorsreferencia az Azure Machine Learning-előrejelzések automatikus folyamatához
-A **Microsoft Azure Machine Learning automatikus adatok csővezeték-adatlap** segít a technológia beolvasni az adatokat, hogy a Machine Learning segítségével történő navigálás webszolgáltatás, ahol azt is pontozni a prediktív elemzési modell.
+Hello **Microsoft Azure Machine Learning automatikus adatok csővezeték-adatlap** segít a technológia használható tooget az adatok tooyour Machine Learning webszolgáltatásba ahol azt is pontozni által a prediktív történő navigálás elemzési modell.
 
-Attól függően az adatok-e a helyszínen, a felhőben, vagy streaming valós idejű, az adatok áthelyezése a webszolgáltatási végpontot pontozó elérhető különböző eljárásokat.
-Ez Adatlap végigvezeti a döntést, meg kell győződnie, és hivatkozásokat segíthetnek a megoldást kínál.
+Attól függően, hogy az adatok a helyszínen a hello felhő, vagy a streaming valós idejű, számos különböző mechanizmusok elérhető toomove hello adatok tooyour webszolgáltatási végpontot pontozó.
+A megoldás a csal lap bemutatja, hogyan hello döntést kell toomake, és végig kínál, melyek segíthetnek hivatkozások tooarticles fejlesztéséhez.
 
-## <a name="download-the-machine-learning-automated-data-pipeline-cheat-sheet"></a>Töltse le a Machine Learning automatikus folyamat Adatlap
-Miután letöltötte a Adatlap, nyomtathatja tabloid méretben (11 x 17).
+## <a name="download-hello-machine-learning-automated-data-pipeline-cheat-sheet"></a>Töltse le a hello Machine Learning automatikus folyamat Adatlap
+Miután letöltötte hello Adatlap, nyomtathatja tabloid méretben (11 x 17).
 
-Töltse le a Adatlap:  **[Microsoft Azure Machine Learning automatikus adatok csővezeték-Adatlap](http://download.microsoft.com/download/C/C/7/CC726F8B-2E6F-4C20-9B6F-AFBEE8253023/microsoft-machine-learning-operationalization-cheat-sheet_v1.pdf)**
+Töltse le a hello Adatlap itt:  **[Microsoft Azure Machine Learning automatikus adatok csővezeték-Adatlap](http://download.microsoft.com/download/C/C/7/CC726F8B-2E6F-4C20-9B6F-AFBEE8253023/microsoft-machine-learning-operationalization-cheat-sheet_v1.pdf)**
 
 ![Microsoft Azure Machine Learning Studio képességek áttekintése][op-cheat-sheet]
 
@@ -37,9 +37,9 @@ Töltse le a Adatlap:  **[Microsoft Azure Machine Learning automatikus adatok cs
 
 
 ## <a name="more-help-with-machine-learning-studio"></a>További segítség a Machine Learning Studio használatához
-* Microsoft Azure Machine Learning áttekintését lásd: [Bevezetés a Microsoft Azure machine learning](machine-learning-what-is-machine-learning.md).
-* Egy pontozási webszolgáltatás-bővítmény telepítése egy ismertetése [központi telepítése az Azure Machine Learning webszolgáltatás](machine-learning-publish-a-machine-learning-web-service.md).
-* Hogyan pontozási webszolgáltatás felhasználásához tárgyalását lásd: [hogyan kell használni az Azure Machine Learning Web service](machine-learning-consume-web-services.md).
+* Microsoft Azure Machine Learning áttekintését lásd: [a Microsoft Azure learning bevezetés toomachine](machine-learning-what-is-machine-learning.md).
+* Hogyan előzetesben toodeploy pontozási webszolgáltatás, lásd: [központi telepítése az Azure Machine Learning webszolgáltatás](machine-learning-publish-a-machine-learning-web-service.md).
+* Bemutatja, hogyan leírását tooconsume pontozási webszolgáltatás, lásd: [hogyan tooconsume az Azure Machine Learning Web service](machine-learning-consume-web-services.md).
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

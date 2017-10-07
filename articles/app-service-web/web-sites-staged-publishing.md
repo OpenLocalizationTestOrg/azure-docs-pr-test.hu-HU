@@ -1,6 +1,6 @@
 ---
-title: "Átmeneti környezet az Azure App Service web Apps beállítása |} Microsoft Docs"
-description: "Ismerje meg, előkészített közzététele az Azure App Service web Apps használatával."
+title: "átmeneti környezet az Azure App Service web Apps mentése aaaSet |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse előkészített közzététele az Azure App Service web Apps."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -15,66 +15,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/16/2016
 ms.author: cephalin
-ms.openlocfilehash: ca27c55eaaceb3109b1450c550330dfc416fdf55
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 338424100a20bf823323313fb6699e439f367421
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-staging-environments-in-azure-app-service"></a>Átmeneti környezet az Azure App Service beállítása
 <a name="Overview"></a>
 
-A webalkalmazás, webes alkalmazás a Linux, mobil háttér és API-alkalmazás telepítésekor [App Service](http://go.microsoft.com/fwlink/?LinkId=529714), telepíthet egy külön üzembe helyezési pont helyett az alapértelmezett éles tárolóhelyre futtatáskor a **szabványos** vagy **prémium** App Service-csomag mód. Üzembe helyezési saját állomásnevek ténylegesen élő alkalmazások. Alkalmazás tartalmát és konfigurációk elemek lecserélhető között két üzembe helyezési, beleértve az éles webalkalmazásra. A telepített környezet tárolóhelye az alkalmazás telepítése az alábbi előnyökkel jár:
+Ha központilag telepíti a webalkalmazás, webes alkalmazás a Linux, mobil háttér és API-alkalmazás túl[App Service](http://go.microsoft.com/fwlink/?LinkId=529714), központilag telepíthető tooa külön üzembe helyezési pont helyett hello alapértelmezett éles tárolóhelyre hello futtatásakor **Standard**vagy **prémium** App Service-csomag mód. Üzembe helyezési saját állomásnevek ténylegesen élő alkalmazások. Alkalmazás tartalmát és konfigurációk elemek lecserélhető között két üzembe helyezési, beleértve a hello éles tárolóhelyre. Az alkalmazás tooa üzembe helyezési pont telepítése a következő előnyöket hello rendelkezik:
 
-* Mielőtt az éles webalkalmazásra a csere, ellenőrizheti egy átmeneti üzembe helyezési tárhelyet az alkalmazások változásairól.
-* Központilag telepíthetők az alkalmazások a tárhely először és csere az éles környezetben biztosítja, hogy a összes példányát a tárolóhely Mielőtt éles környezetben felcserélés folyamatban vannak tárolóhelyspecifikus. Ez megszünteti állásidő, az alkalmazás központi telepítésekor. A forgalom átirányítása zökkenőmentes-kérelmek nem dobja swap műveletek miatt. A teljes munkafolyamat konfigurálásával automatizálható [automatikus felcserélés](#Auto-Swap) , ha nincs szükség a előtti swap érvényesítése.
-* Egy felcserélés után a tárolóhely korábban előkészített alkalmazással most már rendelkezik az előző éles alkalmazások. Ha a módosításokat, azokat az éles tárolóhelyre felcserélve nem a várt módon, közvetlenül a "utolsó ismert helyes"nevű hely eléréséhez a azonos virtuális végezhet vissza.
+* Egy átmeneti üzembe helyezési tárhelyet az alkalmazások változásairól előtt hello éles tárhelyének csere azt is ellenőrzi.
+* Először telepítése egy tooa tárolóhelye és csere az éles környezetben biztosítja, hogy a hello tárolóhely összes példányát, mielőtt éles környezetben felcserélés folyamatban vannak tárolóhelyspecifikus. Ez megszünteti állásidő, az alkalmazás központi telepítésekor. hello forgalom átirányítása zökkenőmentes-kérelmek nem dobja swap műveletek miatt. A teljes munkafolyamat konfigurálásával automatizálható [automatikus felcserélés](#Auto-Swap) , ha nincs szükség a előtti swap érvényesítése.
+* A lapozófájl-kapacitás után hello tárolóhely korábban előkészített alkalmazással most már hello előző éles alkalmazások. Ha az éles tárolóhelyre hello felcserélve hello módosítások nem a várt módon, azonos felcserélése azonnal tooget az "utolsó ismert helyes webhely" biztonsági hello végezheti el.
 
-Minden App Service-csomag mód támogatja az üzembe helyezési pontok különböző számú. Tárolóhely száma megállapítása: az alkalmazás mód támogatja, lásd: [App Service szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/app-service/).
+Minden App Service-csomag mód támogatja az üzembe helyezési pontok különböző számú. toofind hello helyek száma, az alkalmazás mód is támogat, lásd: [App Service szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/app-service/).
 
-* Ha az alkalmazás több tárolóhelye van, a mód nem módosítható.
+* Ha az alkalmazás még több üzembe helyezési ponti, hello mód nem módosítható.
 * Skálázás nem érhető el a nem végleges pont felcserélése.
-* Csatolt erőforrás-kezelés nem végleges pont felcserélése nem támogatott. Az a [Azure Portal](http://go.microsoft.com/fwlink/?LinkId=529715) csak, úgy kerülheti el a lehetséges hatásairól az éles tárhely ideiglenesen a nem éles tárolóhelyre áthelyezése egy másik App Service csomag módot. Vegye figyelembe, hogy az nem éles tárhely kell ismét közös azonos módot az éles tárolóhelyre ahhoz, hogy a két felcserélése is.
+* Csatolt erőforrás-kezelés nem végleges pont felcserélése nem támogatott. A hello [Azure Portal](http://go.microsoft.com/fwlink/?LinkId=529715) csak, elkerülheti a célgyűjtemény az éles tárhely hello nem éles tárolóhelyre tooa másik App Service csomag mód ideiglenesen áthelyezésével. Vegye figyelembe, hogy hello nem éles tárolóhelyre ismét közös hello hello éles tárolóhelyre előtt hello két üzembe helyezési ponti kicserélheti azonos módban.
 
 <a name="Add"></a>
 
 ## <a name="add-a-deployment-slot"></a>Adja hozzá egy üzembe helyezési tárhelyet
-Futnia kell az alkalmazást a **szabványos** vagy **prémium** ahhoz, hogy engedélyezheti a több üzembe helyezési mód.
+hello app futnia kell a hello **szabványos** vagy **prémium** meg tooenable több üzembe helyezési mód sorrendjének.
 
-1. Az a [Azure Portal](https://portal.azure.com/), nyissa meg az alkalmazás [erőforráspanelen](../azure-resource-manager/resource-group-portal.md#manage-resources).
-2. Válassza ki a **üzembe helyezési** lehetőséget, majd kattintson az **tárhely felvétele**.
+1. A hello [Azure Portal](https://portal.azure.com/), nyissa meg az alkalmazás [erőforráspanelen](../azure-resource-manager/resource-group-portal.md#manage-resources).
+2. Válassza ki a hello **üzembe helyezési** lehetőséget, majd kattintson az **tárhely felvétele**.
    
     ![Adja hozzá egy új üzembe helyezési tárhelyet][QGAddNewDeploymentSlot]
    
    > [!NOTE]
-   > Ha az alkalmazás már nem része a **szabványos** vagy **prémium** mód, kapni fog egy üzenetet, a támogatott módok előkészített közzététel engedélyezéséhez. Ezen a ponton rendelkezik választhatja **frissítése** , és keresse meg a **méretezési** fülre az alkalmazás a folytatás előtt.
+   > Ha hello alkalmazás még nincs hello **szabványos** vagy **prémium** mód, kapni fog egy üzenetet támogatott hello módok előkészített közzététel engedélyezésére. Ezen a ponton rendelkezik hello beállítás tooselect **frissítése** , és keresse meg a toohello **méretezési** fülre az alkalmazás a folytatás előtt.
    > 
    > 
-3. Az a **tárhely hozzáadása** panelen nevezze el a tárhely, és válassza ki, hogy egy másik meglévő üzembe helyezési pont az alkalmazáskonfiguráció klónozását. Kattintson a pipa jelre a folytatáshoz.
+3. A hello **tárhely hozzáadása** panelen adjon hello tárolóhelye egy olyan nevet, és válassza ki e tooclone alkalmazás-konfiguráció egy másik meglévő üzembe helyezési pont. Kattintson a pipa jelre toocontinue hello.
    
     ![Konfigurációs forrás][ConfigurationSource1]
    
-    Először ad hozzá egy tárolóhely, csak két lehetősége van: az alapértelmezett tárolóhelyről, éles környezetben, vagy egyáltalán nem klónozott konfigurációs.
-    A létrehozást követően több üzembe helyezési ponti, lesz klónozza a nem az éles tárhely beállításait:
+    hello hozzáadásakor tárhely, csak hogy két választási lehetőség: Klónozott konfigurációs hello alapértelmezett tárolóhelyről éles környezetben, vagy egyáltalán nem.
+    A létrehozást követően több üzembe helyezési ponti, fogja képes tooclone konfigurációs eltérő hello éles környezetben a tárolóhelyről:
    
     ![Konfigurációs forrás][MultipleConfigurationSources]
-4. Az alkalmazás erőforrás paneljén kattintson **üzembe helyezési**, majd kattintson az erőforráspanelről, hogy a tárhely, metrikákat és csakúgy, mint bármely más alkalmazás-konfigurációs vannak beállítva egy üzembe helyezési tárhelyet. A tárhely neve jelezve, az üzembe helyezési pont megjelenítő a panel tetején látható.
+4. Az alkalmazás erőforrás paneljén kattintson **üzembe helyezési**, majd kattintson a központi telepítés tárolóhely tooopen, hogy a tárhely erőforrás panelről, metrikákat és csakúgy, mint bármely más alkalmazás-konfigurációs. hello hello tárolóhely neve látható hello panel tooremind hello tetején, hogy a rendszer azért jelenítette hello üzembe helyezési pont.
    
     ![Központi telepítés tárolóhely cím][StagingTitle]
-5. Kattintson az alkalmazás URL-CÍMÉT a tárolóhely panelen. Figyelje meg a telepített környezet tárolóhelye saját állomásnév és is egy élő app. Az üzembe helyezési pont nyilvános hozzáférés korlátozására, lásd: [App Service Web App – webes hozzáférés letiltása nem éles üzembe helyezési](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/).
+5. Kattintson a hello a tárhely panelen hello alkalmazás URL-CÍMÉT. Figyelje meg hello üzembe helyezési pont saját állomásnév és is egy élő alkalmazást. toolimit nyilvános hozzáférés toohello üzembe helyezési pont, lásd: [App Service Web App – blokk web access toonon éles üzembe helyezési](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/).
 
-Nincs tartalom központi telepítési tárolóhely létrehozása után. A tárolóhely telepítene egy másik tárház ágat, vagy egy teljesen más tárházba. A tárolóhely konfigurációs is módosíthatja. A közzétételi profil vagy a központi telepítési társított hitelesítő adatokat a telepített környezet tárolóhelye tartalom frissítések használja.  Például végezheti [ezt a tárolóhelyet a git közzététele](app-service-deploy-local-git.md).
+Nincs tartalom központi telepítési tárolóhely létrehozása után. Egy másik tárház ágat, vagy egy teljesen más tárház toohello tárolóhely telepítése. Hello helyezési pont konfigurációját módosíthatja is. Használjon hello hello üzembe helyezési pont tartalomfrissítéseket társított profil vagy a központi telepítési hitelesítő adatok közzététele.  Például végezheti [toothis tárolóhely a git közzététele](app-service-deploy-local-git.md).
 
 <a name="AboutConfiguration"></a>
 
 ## <a name="configuration-for-deployment-slots"></a>Az üzembe helyezési konfiguráció
-Klónozza a másik üzembe helyezési pont konfigurációja, a klónozott konfigurációs esetén szerkeszthető. Továbbá bizonyos konfigurációs elemek követi a tartalmat a lapozófájl-kapacitás (nem tárolóhely adott) keresztül közben más konfigurációs elemek ugyanaz a tárolóhely marad a lapozófájl-kapacitás (tárolóhely adott) után. A következő listákban konfiguráció szerint változnak, ha Ön felcserélése megjelenítése.
+A klón a másik üzembe helyezési pont konfigurációja hello klónozott konfigurációs esetén szerkeszthető. Továbbá néhány konfigurációs elemek követi hello tartalom a lapozófájl-kapacitás (nem tárolóhely adott) keresztül közben hello azonos tárolóhely a lapozófájl-kapacitás (tárolóhely adott) után más konfigurációs elemek marad. hello következő listákban megjelenítése változnak, ha Ön felcserélése hello konfigurációt.
 
 **Beállítások, amelyek van cserélve**:
 
 * Általános beállítások - keretrendszer verziója, 32 vagy 64 bites, például webes szoftvercsatornák
-* Alkalmazásbeállítások (beállítható úgy, hogy a tárhely anyagot)
-* Kapcsolati karakterláncok (beállítható úgy, hogy a tárhely anyagot)
+* Alkalmazásbeállítások (konfigurált toostick tooa tárolóhely is lehet)
+* Kapcsolati karakterláncok (konfigurált toostick tooa tárolóhely is lehet)
 * Kezelőleképezések
 * Megfigyelési és diagnosztikai beállítások
 * Webjobs-feladatok tartalom
@@ -87,91 +87,91 @@ Klónozza a másik üzembe helyezési pont konfigurációja, a klónozott konfig
 * Skálázási beállításokat
 * Webjobs-feladatok bejegyzéstípusait
 
-Egy alkalmazás beállítás vagy a kapcsolati karakterlánc (nem cserélhető fel) tárhely anyagot konfigurálása, hozzáférés-a **Alkalmazásbeállítások** paneljén adott tárhely, majd válassza ki a **tárolóhely beállítás** mezőben a konfiguráció a tárolóhely kell odatapadjon elemei. Vegye figyelembe, hogy jelölés egy konfigurációs elem, ha adott tárolóhely létrehozásáról szóló az elem nem cserélhető között az alkalmazáshoz kapcsolódó összes üzembe helyezési hatását.
+egy beállítás vagy a kapcsolati karakterlánc toostick tooa tárolóhelye (nem cserélhető fel), hozzáférési hello tooconfigure **Alkalmazásbeállítások** panel egy adott tárhely, majd jelölje be hello **tárolóhely beállítás** hello be konfigurációs elemek, amelyek kell odatapadjon hello tárolóhely. Vegye figyelembe, hogy jelölés egy konfigurációs elem, ha adott tárolóhely létrehozásáról szóló az elem nem cserélhető között hello alkalmazáshoz kapcsolódó összes hello üzembe helyezési hello hatását.
 
 ![Tárolóhely-beállítások][SlotSettings]
 
 <a name="Swap"></a>
 
 ## <a name="swap-deployment-slots"></a>Központi telepítés felcserélése 
-Az üzembe helyezési kicserélheti a **áttekintése** vagy **üzembe helyezési** a app erőforráspanelen ábrázolása.
+Kicserélheti az üzembe helyezési a hello **áttekintése** vagy **üzembe helyezési** a app erőforráspanelen ábrázolása.
 
 > [!IMPORTANT]
-> Mielőtt egy üzembe helyezési pont alkalmazás felcserélni a éles környezetben, győződjön meg arról, hogy minden adott nem tárolóhely-beállítások kívánt felcserélés célja, hogy vannak-e konfigurálva.
+> Mielőtt egy üzembe helyezési pont alkalmazás felcserélni a éles környezetben, győződjön meg arról, hogy az összes nem tárolóhely adott beállításai toohave kívánt hello swap cél azt.
 > 
 > 
 
-1. Központi telepítés felcserélése, kattintson a **Swap** gombra a parancssávon az alkalmazás vagy a telepített környezet tárolóhelye parancsra a parancssávon.
+1. üzembe helyezési tooswap, kattintson a hello **felcserélése** hello parancssáv hello alkalmazás vagy a hello parancssávon, egy üzembe helyezési pont gombra.
    
     ![Lapozófájl-kapacitás gomb][SwapButtonBar]
 
-2. Győződjön meg arról, hogy a lapozófájl-kapacitás forrás- és a lapozófájl-kapacitás cél megfelelően vannak beállítva. A felcserélés célja általában az éles webalkalmazásra. Kattintson a **OK** elvégezni a műveletet. A művelet befejezése után az üzembe helyezési rendelkezik lett cserélve.
+2. Győződjön meg arról, hogy hello swap forrás- és a lapozófájl-kapacitás a célkiszolgáló megfelelően vannak-e beállítva. Általában hello felcserélés célja hello éles tárolóhelyre. Kattintson a **OK** toocomplete hello műveletet. Hello művelet befejezése után hello üzembe helyezési rendelkezik lett cserélve.
 
     ![Felcserélés befejezése](./media/web-sites-staged-publishing/SwapImmediately.png)
 
-    Az a **felcserélés előnézettel** típus felcserélése, lásd: [felcserélés előnézettel (több fázisban swap)](#Multi-Phase).  
+    A hello **felcserélés előnézettel** típus felcserélése, lásd: [felcserélés előnézettel (több fázisban swap)](#Multi-Phase).  
 
 <a name="Multi-Phase"></a>
 
 ## <a name="swap-with-preview-multi-phase-swap"></a>A felcserélés előnézettel (több fázisban swap)
 
 A felcserélés előnézettel, vagy több fázisban swap leegyszerűsíti a tárolóhely konfigurációs elemeket, például kapcsolati karakterláncok érvényesítése.
-A kritikus fontosságú munkaterhelésekhez, érvényesíteni szeretné, hogy az alkalmazás az éles tárolóhelyre konfiguráció alkalmazása várt viselkedik, és végezze el az ilyen érvényesítési *előtt* az alkalmazást éles környezetben van cserélve. Felcserélés előnézettel az alábbiakra lesz szüksége.
+A kritikus fontosságú munkaterhelésekhez, azt szeretné, hogy az alkalmazás hello toovalidate hello éles tárolóhelyre konfiguráció alkalmazása várt viselkedik, és végezze el az ilyen érvényesítési *előtt* hello alkalmazást éles környezetben van cserélve. Felcserélés előnézettel az alábbiakra lesz szüksége.
 
 > [!NOTE]
 > A felcserélés előnézettel a webalkalmazásokban Linux rendszeren nem támogatott.
 
-Használatakor a **a felcserélés előnézettel** beállítás (lásd: [telepítési felcserélése](#Swap)), az App Service a következőket teszi:
+Hello használata esetén **a felcserélés előnézettel** beállítás (lásd: [telepítési felcserélése](#Swap)), az App Service hello a következő:
 
-- Megtartja a céltárolóhelyre változatlan marad, így nem érinti a meglévő terhelése, hogy a bővítőhely (pl. éles környezet).
-- A forrás tárolási helyre, beleértve a tárolóhely-specifikus kapcsolati karakterláncok és Alkalmazásbeállítások céltárolóhelyen konfigurációs elemeinek vonatkozik.
-- A forrás tárolási helyre, a fent említett konfigurációs elemeket a munkavégző folyamatok újraindul.
-- Amikor befejezte a lapozófájl-kapacitás: a warmed létrehozása előtti forrás tárolási helyre helyezi a hangsúlyt a céltárolóhelyre. A rendeltetési tárolási helyre helyezi át a forrás tárolási helyre, mint egy manuális felcserélés.
-- Ha megszakítja a lapozófájl-kapacitás: újra alkalmazza a forrás tárolási helyre konfigurációs elemet a forrás tárolási helyre.
+- A memóriában tárolja hello cél tárolóhely változatlan ezért meglévő terhelése, hogy a bővítőhely (pl. éles) nem változik.
+- Hello konfigurációs elemeinek hello tárolóhely toohello forrás céltárolóhelyen, beleértve a hello tárolóhely-specifikus kapcsolati karakterláncok és Alkalmazásbeállítások vonatkozik.
+- Újraindítja a munkavégző folyamatok hello hello forrás tárolási helyre, a fent említett konfigurációs elemeket.
+- Hello swap befejezésekor: a kurzor hello warmed létrehozása előtti forrás tárolási helyre történő hello céltárolóhelyen. hello céltárolóhelyen hello forrás tárolási helyre, mint egy manuális felcserélés áthelyezése történik.
+- Ha megszakítja a hello lapozófájl-kapacitás: hello konfigurációs elemek hello forrás tárolóhely toohello forrás tárolási helyre, újra alkalmazza.
 
-Megtekintheti, pontosan hogyan az alkalmazás működik a céltárolóhelyre konfigurációjával kapcsolatban. Ellenőrzés befejezése után végezze el a lapozófájl-kapacitás egy külön lépésben. Ez a lépés előnye, hogy a forrás tárolási helyre már tárolóhelyspecifikus a kívánt konfigurációval rendelkezik, és az ügyfelek nem tapasztalnak állásidőt fog tapasztalni.  
+Megtekintheti, pontosan hogyan hello app működik hello cél a tárhely konfigurációjával kapcsolatban. Ellenőrzés befejezése után el kell végeznie egy külön lépésben hello lapozófájl-kapacitás. Ez a lépés rendelkezik hello előnye, hogy hello forrás tárolási helyre már tárolóhelyspecifikus hello kívánt konfigurációval, és az ügyfelek nem tapasztalnak állásidőt fog tapasztalni.  
 
-Több fázisban swap érhető el az Azure PowerShell-parancsmagok-példák az Azure PowerShell-parancsmagok telepítési üzembe helyezési ponti szakaszban szerepelnek.
+Hello Azure PowerShell-parancsmagok érhető el több fázisban swap minták hello Azure PowerShell-parancsmagok a központi telepítési üzembe helyezési ponti szakaszban szerepelnek.
 
 <a name="Auto-Swap"></a>
 
 ## <a name="configure-auto-swap"></a>Az automatikus felcserélés konfigurálása
-Az automatikus felcserélés leegyszerűsíti a DevOps helyzetekben, ahol szeretné folyamatosan alkalmazás telepítése az állásidő és nulla hidegindítás a végfelhasználók az alkalmazás. Ha egy üzembe helyezési pont van konfigurálva az automatikus felcserélés éles környezetben, minden alkalommal, amikor a kód frissítése leküldése a tárolóhely, App Service lesz automatikusan felcserélése az alkalmazás éles környezetben után azt rendelkezik már tárolóhelyspecifikus tárolóhelye.
+Az alkalmazás a nulla hidegindítás és állásidő automatikus felcserélés leegyszerűsíti DevOps forgatókönyvek toocontinuously, ahová telepíteni a végfelhasználók hello alkalmazás. Konfigurálásakor egy üzembe helyezési pont az automatikus felcserélés éles környezetben, minden alkalommal, amikor a kód frissítés toothat aljzat leküldéses App Service lesz automatikusan felcserélése hello alkalmazást éles környezetben után azt rendelkezik már tárolóhelyspecifikus hello tárolóhelye.
 
 > [!IMPORTANT]
-> Ha engedélyezi az automatikus felcserélés a tárhely, ellenőrizze, hogy a tárhely konfigurációs pontosan a cél tárolóhely (általában az éles tárolóhelyre) készült konfigurációs.
+> Ha engedélyezi az automatikus felcserélés a tárhely, győződjön meg arról hello bővítőhely pontosan hello konfigurációját hello cél tárolóhely (általában hello éles tárolóhelyre) számára készült.
 > 
 > 
 
 > [!NOTE]
 > Az automatikus felcserélés a webalkalmazásokban Linux rendszeren nem támogatott.
 
-Az automatikus felcserélés konfigurálása tárhely is könnyen. Kövesse az alábbi lépéseket:
+Az automatikus felcserélés konfigurálása tárhely is könnyen. Kövesse az alábbi hello lépéseket:
 
 1. A **üzembe helyezési**, válassza ki, nem éles tárhely és kiválasztható **Alkalmazásbeállítások** , hogy a tárhely erőforrás panelén.  
    
     ![][Autoswap1]
-2. Válassza ki **a** a **automatikus felcserélés**, válassza ki a kívánt cél bővítőhely a **automatikus felcserélés tárolóhely**, és kattintson a **mentése** parancsra a parancssávon. Ellenőrizze, hogy a tárhely pontosan a cél tárolóhely szánt konfigurációját.
+2. Válassza ki **a** a **automatikus felcserélés**, jelölje be hello kívánt cél tárolóhely a **automatikus felcserélés tárolóhely**, és kattintson a **mentése** hello parancs sávon. Ellenőrizze, hogy hello bővítőhely pontosan hello cél tárolóhely szánt hello konfigurációját.
    
-    A **értesítések** lapon villogjon, egy zöld **sikeres** a művelet végrehajtása után.
+    Hello **értesítések** lapon villogjon, egy zöld **sikeres** hello művelet végrehajtása után.
    
     ![][Autoswap2]
    
    > [!NOTE]
-   > Tesztelje az automatikus felcserélés az alkalmazásra vonatkozóan, először jelölje ki a cél nem éles tárhely **automatikus felcserélés tárolóhely** Ismerkedjen meg a szolgáltatás számára.  
+   > tootest automatikus felcserélés az alkalmazáshoz, először kiválaszthatja a cél nem éles tárhely **automatikus felcserélés tárolóhely** toobecome ismeri a hello szolgáltatást.  
    > 
    > 
-3. Hajtsa végre egy adott üzembe helyezési pont kódot küldeni. Az automatikus felcserélés rövid idő múlva történjen, és a frissítés jelenik meg a cél a tárhely URL-címen.
+3. A kód leküldéses toothat üzembe helyezési pont hajtható végre. Az automatikus felcserélés rövid idő múlva történjen, és hello frissítés jelenik meg a cél a tárhely URL-címen.
 
 <a name="Rollback"></a>
 
-## <a name="to-rollback-a-production-app-after-swap"></a>A visszaállítás után swap éles alkalmazások
-Ki a hibákat a tárolóhelycsere élesben azonosít, ha visszaállíthatja az üzembe helyezési ponti azok előtti swap állapota az azonos két üzembe helyezési ponti azonnal csere által.
+## <a name="toorollback-a-production-app-after-swap"></a>lapozófájl-kapacitás után éles alkalmazások toorollback
+Ki a hibákat a tárolóhelycsere élesben azonosít, ha roll hello üzembe helyezési ponti hátsó tootheir előtti swap állapotok hello azonos két üzembe helyezési ponti azonnal csere által.
 
 <a name="Warm-up"></a>
 
 ## <a name="custom-warm-up-before-swap"></a>Egyéni bemelegítési swap előtt
-Néhány alkalmazás egyéni bemelegítési műveletek lehet szükség. A `applicationInitialization` konfigurációs elem a Web.config fájlban lehetővé teszi egyéni inicializálási műveletek végrehajtása előtt a kérelem érkezik. A csereművelet végrehajtásához az egyéni bemelegítési várakozik. Íme egy minta web.config töredéket.
+Néhány alkalmazás egyéni bemelegítési műveletek lehet szükség. Hello `applicationInitialization` konfigurációs elem a Web.config fájlban lehetővé teszi, hogy toospecify egyéni inicializálási műveletek toobe hajtani egy kérelem érkezik. hello cserélő művelet várakozik a egyéni bemelegítési toocomplete. Íme egy minta web.config töredéket.
 
     <applicationInitialization>
         <add initializationPage="/" hostName="[app hostname]" />
@@ -180,8 +180,8 @@ Néhány alkalmazás egyéni bemelegítési műveletek lehet szükség. A `appli
 
 <a name="Delete"></a>
 
-## <a name="to-delete-a-deployment-slot"></a>Egy üzembe helyezési pont törlése
-Egy üzembe helyezési pont paneljén nyissa meg a telepített környezet tárolóhelye panelen, kattintson a **áttekintése** (az alapértelmezett oldal), és kattintson a **törlése** parancsra a parancssávon.  
+## <a name="toodelete-a-deployment-slot"></a>toodelete egy üzembe helyezési tárhelyet
+Egy üzembe helyezési tárhelyet, nyitott hello telepített környezet tárolóhelye panelen hello paneljén kattintson **áttekintése** (hello alapértelmezett oldal), és kattintson a **törlése** hello parancs sávon.  
 
 ![Egy üzembe helyezési pont törlése][DeleteStagingSiteButton]
 
@@ -190,9 +190,9 @@ Egy üzembe helyezési pont paneljén nyissa meg a telepített környezet tárol
 <a name="PowerShell"></a>
 
 ## <a name="azure-powershell-cmdlets-for-deployment-slots"></a>Az üzembe helyezési tárhely az Azure PowerShell-parancsmagjai
-Az Azure PowerShell modul, amely kezelése a Windows PowerShell, hiszen támogatják az kezelése az Azure App Service üzembe helyezési segítségével Azure-parancsmagokat kínál.
+Az Azure PowerShell egy modul, amely a parancsmagok toomanage Azure támogatják az Azure App Service üzembe helyezési kezelése Windows PowerShell használatával.
 
-* A telepítése és konfigurálása az Azure PowerShell és az Azure PowerShell hitelesítéséhez az Azure előfizetéssel rendelkező információkért lásd: [telepítése és konfigurálása a Microsoft Azure PowerShell](/powershell/azure/overview).  
+* A telepítése és konfigurálása az Azure PowerShell és az Azure PowerShell hitelesítéséhez az Azure előfizetéssel rendelkező információkért lásd: [hogyan tooinstall, és konfigurálja a Microsoft Azure PowerShell](/powershell/azure/overview).  
 
 - - -
 ### <a name="create-a-web-app"></a>Webalkalmazás létrehozása
@@ -207,7 +207,7 @@ New-AzureRmWebAppSlot -ResourceGroupName [resource group name] -Name [app name] 
 ```
 
 - - -
-### <a name="initiate-a-swap-with-review-multi-phase-swap-and-apply-destination-slot-configuration-to-source-slot"></a>Indítson el egy felcserélés felülvizsgálati (több fázisban swap) és a cél tárolóhely konfiguráció alkalmazása a forrás tárolási helyre
+### <a name="initiate-a-swap-with-review-multi-phase-swap-and-apply-destination-slot-configuration-toosource-slot"></a>Indítson el egy felcserélés felülvizsgálati (több fázisban swap) és tárhely – konfiguráció toosource céltárolóhelyen alkalmazása
 ```
 $ParametersObject = @{targetSlot  = "[slot name – e.g. “production”]"}
 Invoke-AzureRmResourceAction -ResourceGroupName [resource group name] -ResourceType Microsoft.Web/sites/slots -ResourceName [app name]/[slot name] -Action applySlotConfig -Parameters $ParametersObject -ApiVersion 2015-07-01
@@ -238,39 +238,39 @@ Remove-AzureRmResource -ResourceGroupName [resource group name] -ResourceType Mi
 <a name="CLI"></a>
 
 ## <a name="azure-command-line-interface-azure-cli-commands-for-deployment-slots"></a>Az üzembe helyezési tárhely az Azure parancssori felület (CLI) parancsok
-Az Azure parancssori felület platformfüggetlen parancsokat biztosít működik-e az Azure-ral, hiszen támogatják az App Service üzembe helyezési pontok kezelése.
+hello Azure CLI-platformok parancsokat biztosít működik-e az Azure-ral, hiszen támogatják az App Service üzembe helyezési pontok kezelése.
 
-* Telepítése és konfigurálása az Azure parancssori felület, beleértve az Azure parancssori felület csatlakoztatása az Azure-előfizetéshez, további információkért lásd: [telepítése és konfigurálása az Azure parancssori felület](../cli-install-nodejs.md).
-* Az Azure App Service az Azure parancssori felületen használható parancsok listáját, hívja meg a `azure site -h`.
+* Az utasításokat a telepítése és konfigurálása az Azure parancssori felület hello, beleértve a vonatkozó tooconnect Azure CLI tooyour Azure-előfizetéssel, lásd: [telepítése és konfigurálása az Azure parancssori felület hello](../cli-install-nodejs.md).
+* hello Azure CLI-t, az Azure App Service szolgáltatásban elérhető toolist hello parancsokat hívás `azure site -h`.
 
 > [!NOTE] 
 > A [Azure CLI 2.0](https://github.com/Azure/azure-cli) parancsok a üzembe helyezési, lásd: [az App Service web üzembe helyezési pont](/cli/azure/appservice/web/deployment/slot).
 
 - - -
 ### <a name="azure-site-list"></a>az Azure webhely-lista
-Az aktuális előfizetésben az alkalmazásokkal kapcsolatos információk hívás **azure webhelylista**, az alábbi példa.
+Ebben az előfizetésben hello hello alkalmazásokkal kapcsolatos információk hívás **azure webhelylista**, a következő példa hello a.
 
 `azure site list webappslotstest`
 
 - - -
 ### <a name="azure-site-create"></a>az Azure-webhely létrehozása
-Egy üzembe helyezési tárhely létrehozása, hívja meg a **azure-webhely létrehozása** és adja meg a meglévő alkalmazás és a tárolóhely létrehozásához, az alábbi példában látható módon nevét.
+a telepített környezet tárolóhelye toocreate hívja **azure-webhely létrehozása** és adja meg egy meglévő alkalmazást hello nevét és hello tárolóhely toocreate, mint például a következő hello hello nevét.
 
 `azure site create webappslotstest --slot staging`
 
-Az új tárhely verziókövetésének engedélyezéséhez használja a **– git** beállítás, az alábbi példában látható módon.
+hello új tárhely, használjon hello tooenable verziókövetését **– git** lehetőség, mint például a következő hello.
 
 `azure site create --git webappslotstest --slot staging`
 
 - - -
 ### <a name="azure-site-swap"></a>az Azure site lapozófájl-kapacitás
-Ahhoz, hogy a frissített telepítési az éles alkalmazások tárolóhely, használja a **azure hely swap** parancs a Csere műveletet, az alábbi példában látható módon. Az éles alkalmazás nem fog tapasztalni bármely állásidő, és nem fog változni hidegindítás.
+toomake hello frissített telepítési tárolóhely hello éles alkalmazások, használja a hello **azure hely swap** parancs tooperform csereművelet, mint például a következő hello. hello éles alkalmazások nem fog tapasztalni bármely állásidő, és nem fog változni hidegindítás.
 
 `azure site swap webappslotstest`
 
 - - -
 ### <a name="azure-site-delete"></a>az Azure webhely törlése
-Az üzembe helyezési pont, amely már nem szükséges törölheti a **azure webhely törlése** parancs, az alábbi példában látható módon.
+toodelete üzembe helyezési pont, amely már nem szükséges, használjon hello **azure webhely törlése** parancs, mint például a következő hello.
 
 `azure site delete webappslotstest --slot staging`
 
@@ -281,8 +281,8 @@ Az üzembe helyezési pont, amely már nem szükséges törölheti a **azure web
 > 
 
 ## <a name="next-steps"></a>Következő lépések
-[Az Azure App Service Web App – webes hozzáférés letiltása nem éles üzembe helyezési](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)
-[Bevezetés az App Service Linux](./app-service-linux-intro.md)
+[Az Azure App Service Web App – blokkolása web access toonon éles üzembe helyezési](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)
+[bemutatása tooApp szolgáltatás Linux](./app-service-linux-intro.md)
 [Microsoft Azure ingyenes próbaverzió](https://azure.microsoft.com/pricing/free-trial/)
 
 <!-- IMAGES -->

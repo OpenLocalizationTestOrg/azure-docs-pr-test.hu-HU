@@ -1,6 +1,6 @@
 ---
-title: "Rövid útmutató – Azure Docker CE-fürt létrehozása Linux rendszeren | Microsoft Docs"
-description: "Ebből a rövid útmutatóból megtudhatja, hogyan hozhat létre az Azure CLI segítségével Docker CE-fürtöt Linux-tárolókhoz az Azure Container Service-ben."
+title: "aaaQuickstart - Azure Docker CE fürt Linux |} Microsoft Docs"
+description: "Ismerje meg gyorsan, toocreate Linux tárolók az Azure Tárolószolgáltatásban hello Azure parancssori felület a Docker CE fürtökben."
 services: container-service
 documentationcenter: 
 author: neilpeterson
@@ -17,27 +17,27 @@ ms.workload: na
 ms.date: 08/25/2017
 ms.author: nepeters
 ms.custom: 
-ms.openlocfilehash: 7b8336e3865e7032e3ee0d5e4ee712bcb95aa4b5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6c26c12ed085ec379c3486095a5fa51379afc5a2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-docker-ce-cluster"></a>Docker CE-fürt üzembe helyezése
 
-Ebben a rövid útmutatóban egy Docker CE-fürtöt helyezünk üzembe az Azure CLI-vel. Ezután egy webes előtérrendszert és egy Redis-példányt magában foglaló többtárolós alkalmazást helyezünk üzembe és futtatunk a fürtön. Miután végeztünk ezzel, az alkalmazás elérhető lesz az interneten.
+A gyors üzembe helyezési Docker CE fürttagként van telepítve hello Azure parancssori felület használatával. Egy előtér-webkiszolgáló és a Redis példánya több tároló alkalmazás majd üzemel, és futtatása hello fürtön. Ezt követően hello alkalmazás keresztül érhető el-e hello internet.
 
 A Docker CE az Azure Container Service-ben előzetes verzióban érhető el, és **éles számítási feladatokra nem használható**.
 
 Ha nem rendelkezik Azure-előfizetéssel, mindössze néhány perc alatt létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) a virtuális gép létrehozásának megkezdése előtt.
 
-Ha a CLI helyi telepítését és használatát választja, akkor ehhez a gyorsútmutatóhoz az Azure CLI 2.0.4-es vagy újabb verziójára lesz szükség. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli).
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, a gyors üzembe helyezés van szükség, hogy verzióját hello Azure CLI 2.0.4 vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli).
 
 ## <a name="create-a-resource-group"></a>Hozzon létre egy erőforráscsoportot
 
-Hozzon létre egy erőforráscsoportot az [az group create](/cli/azure/group#create) paranccsal. Az Azure-erőforráscsoport olyan logikai csoport, amelyben az Azure-erőforrások üzembe helyezése és kezelése zajlik.
+Hozzon létre egy erőforráscsoportot hello [az csoport létrehozása](/cli/azure/group#create) parancsot. Az Azure-erőforráscsoport olyan logikai csoport, amelyben az Azure-erőforrások üzembe helyezése és kezelése zajlik.
 
-A következő példában létrehozunk egy *myResourceGroup* nevű erőforráscsoportot a *ukwest* helyen.
+hello alábbi példa létrehoz egy erőforráscsoportot *myResourceGroup* a hello *ukwest* helyét.
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location ukwest
@@ -60,19 +60,19 @@ Kimenet:
 
 ## <a name="create-docker-swarm-cluster"></a>Docker Swarm-fürt létrehozása
 
-Az Azure Container Service-ben az [az acs create](/cli/azure/acs#create) paranccsal hozhat létre Docker CE-fürtöt. 
+Hozzon létre egy Docker CE fürtöt az Azure Tárolószolgáltatásban hello [az acs létre](/cli/azure/acs#create) parancsot. 
 
-A következő példa egy *mySwarmCluster* nevű fürtöt hoz létre egy Linux-főcsomóponttal és három Linux-ügyfélcsomóponttal.
+hello alábbi példakód létrehozza a fürt nevű *mySwarmCluster* egy Linux fő csomópont- és Linux-ügynök három csomópontot.
 
 ```azurecli-interactive
 az acs create --name mySwarmCluster --orchestrator-type dockerce --resource-group myResourceGroup --generate-ssh-keys
 ```
 
-Néhány perc múlva befejeződik a parancs végrehajtása, és visszaadja a fürttel kapcsolatos adatokat JSON formátumban.
+Pár perc múlva hello parancs befejeződött, és hello fürt json formátumú információt ad vissza.
 
-## <a name="connect-to-the-cluster"></a>Csatlakozás a fürthöz
+## <a name="connect-toohello-cluster"></a>Csatlakoztassa toohello fürtöt
 
-A rövid útmutató során szükség lesz a Docker Swarm-főkiszolgáló és a Docker-ügynökkészlet teljes tartománynevére. Futtassa az alábbi parancsot a fő és az ügynök FQDN-ek lekéréséhez.
+A gyors üzembe helyezési teljes kell hello hello Docker Swarm fő és a Docker-ügynök készlet hello teljes Tartományneve. Futtassa a következő parancs tooreturn hello mindkét hello főkiszolgáló-ügynök teljes tartományneveit.
 
 
 ```bash
@@ -87,24 +87,24 @@ Master                                                               Agent
 myswarmcluster-myresourcegroup-d5b9d4mgmt.ukwest.cloudapp.azure.com  myswarmcluster-myresourcegroup-d5b9d4agent.ukwest.cloudapp.azure.com
 ```
 
-Hozzon létre egy SSH-alagutat a Swarm-főkiszolgáló felé. Az `MasterFQDN` elemet cserélje le a Swarm-főkiszolgáló FQDN címére.
+Hozzon létre egy SSH alagút toohello Swarm fő. Cserélje le `MasterFQDN` hello Swarm főkiszolgáló hello FQDN címmel.
 
 ```bash
 ssh -p 2200 -fNL localhost:2374:/var/run/docker.sock azureuser@MasterFQDN
 ```
 
-Adja meg a `DOCKER_HOST` környezeti változót. Ez lehetővé teszi a Docker Swarmra irányuló Docker-parancsok futtatását anélkül, hogy meg kellene adni a gazdagép nevét.
+Set hello `DOCKER_HOST` környezeti változó. Ez lehetővé teszi toorun docker parancsok elleni Docker Swarm hello hello gazdagép toospecify hello neve nélkül.
 
 ```bash
 export DOCKER_HOST=localhost:2374
 ```
 
-Most már készen áll a Docker-szolgáltatások futtatására a Docker Swarmon.
+Most már áll készen toorun Docker-szolgáltatásokat a Docker Swarm hello.
 
 
-## <a name="run-the-application"></a>Az alkalmazás futtatása
+## <a name="run-hello-application"></a>Hello alkalmazás futtatása
 
-Hozzon létre egy `azure-vote.yaml` nevű fájlt, és másolja az alábbi tartalmat a fájlba.
+Hozzon létre egy fájlt `azure-vote.yaml` és a következő tartalom másolása hello bele.
 
 
 ```yaml
@@ -123,7 +123,7 @@ services:
         - "80:80"
 ```
 
-Futtassa a [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) parancsot az Azure Vote-szolgáltatás létrehozásához.
+Futtassa a hello [docker verem telepítése](https://docs.docker.com/engine/reference/commandline/stack_deploy/) toocreate hello Azure szavazattal szolgáltatás parancsot.
 
 ```bash
 docker stack deploy azure-vote --compose-file azure-vote.yaml
@@ -137,13 +137,13 @@ Creating service azure-vote_azure-vote-back
 Creating service azure-vote_azure-vote-front
 ```
 
-Használja a [docker stack ps](https://docs.docker.com/engine/reference/commandline/stack_ps/) parancsot, hogy visszatérjen az alkalmazás üzembe helyezési állapotához.
+Használjon hello [docker verem ps](https://docs.docker.com/engine/reference/commandline/stack_ps/) tooreturn hello központi telepítési állapotának hello alkalmazás parancsot.
 
 ```bash
 docker stack ps azure-vote
 ```
 
-Az alkalmazás akkor áll készen, ha az egyes szolgáltatások `CURRENT STATE` állapota `Running`.
+Egyszer hello `CURRENT STATE` minden szolgáltatás van `Running`, hello alkalmazás készen áll.
 
 ```bash
 ID                  NAME                            IMAGE                                 NODE                               DESIRED STATE       CURRENT STATE                ERROR               PORTS
@@ -151,30 +151,30 @@ tnklkv3ogu3i        azure-vote_azure-vote-front.1   microsoft/azure-vote-front:r
 lg99i4hy68r9        azure-vote_azure-vote-back.1    redis:latest                          swarmm-agentpool0-66066781000002   Running             Running about a minute ago
 ```
 
-## <a name="test-the-application"></a>Az alkalmazás tesztelése
+## <a name="test-hello-application"></a>Hello alkalmazás tesztelése
 
-Lépjen a Swarm-ügynökkészlet teljes tartománynevére az Azure Vote-alkalmazás teszteléséhez.
+Keresse meg a toohello hello Swarm ügynök készlet tootest kimenő hello Azure szavazattal alkalmazás teljes Tartományneve.
 
-![Az Azure Vote keresését ábrázoló kép](media/container-service-docker-swarm-mode-walkthrough/azure-vote.png)
+![Böngészés tooAzure szavazattal képe](media/container-service-docker-swarm-mode-walkthrough/azure-vote.png)
 
 ## <a name="delete-cluster"></a>Fürt törlése
-Ha a fürtre már nincs szükség, az [az group delete](/cli/azure/group#delete) paranccsal törölheti az erőforráscsoportot, a tárolószolgáltatást és az összes kapcsolódó erőforrást.
+Amikor hello fürt már nem szükséges, használhatja a hello [az csoport törlése](/cli/azure/group#delete) tooremove hello erőforráscsoport, a tárolószolgáltatás és a minden kapcsolódó erőforrások parancsot.
 
 ```azurecli-interactive
 az group delete --name myResourceGroup --yes --no-wait
 ```
 
-## <a name="get-the-code"></a>A kód letöltése
+## <a name="get-hello-code"></a>Hello kód beolvasása
 
-Ebben a rövid útmutatóban előre létrehozott tárolórendszerképekkel hoztunk létre egy Docker-szolgáltatást. A kapcsolódó alkalmazáskód, Docker-fájl és Compose-fájl a GitHubon érhető el.
+A gyors üzembe helyezési az előre létrehozott tároló képek használt toocreate egy Docker-szolgáltatás volt. hello alkalmazáskód, Dockerfile, és a kapcsolódó új fájlt a Githubon érhetők el.
 
 [https://github.com/Azure-Samples/azure-voting-app-redis](https://github.com/Azure-Samples/azure-voting-app-redis.git)
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben a rövid útmutatóban egy Docker Swarm-fürtöt és azon egy többtárolós alkalmazást helyezett üzembe.
+A gyors üzembe helyezési a Docker Swarm-fürt telepítése, és a tároló több alkalmazás tooit telepítve.
 
-A Docker Swarm és a Visual Studio Team Services integrálásával kapcsolatos információk megtekintéséhez olvassa el a CI/CD, a Docker Swarm és a VSTS használatával foglalkozó cikket.
+meleg Docker integrálása a Visual Studio Team Services, kapcsolatos toolearn toohello CI/CD Docker Swarm és VSTS továbbra is.
 
 > [!div class="nextstepaction"]
 > [CI/CD – Docker Swarm és VSTS](./container-service-docker-swarm-setup-ci-cd.md)

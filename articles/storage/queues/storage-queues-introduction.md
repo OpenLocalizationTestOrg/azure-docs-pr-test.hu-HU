@@ -1,6 +1,6 @@
 ---
-title: "Azure Queue storage bemutatása |} Microsoft Docs"
-description: "Azure Queue storage bemutatása"
+title: a Queue storage aaaIntroduction tooAzure |} Microsoft Docs
+description: "A Queue storage bemutatása tooAzure"
 services: storage
 documentationcenter: 
 author: robinsh
@@ -14,41 +14,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: robinsh
-ms.openlocfilehash: 4db7552a1b76c89151405c55c8682abbb5326bb6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 669effedff7beedde8a119c350a2a70edafedcf0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-queues"></a>Az üzenetsorok bemutatása
+# <a name="introduction-tooqueues"></a>Bevezetés tooQueues
 
-Az Azure Queue Storage szolgáltatás üzenetek nagy számban történő tárolására szolgál, amelyek HTTP- vagy HTTPS-kapcsolattal, hitelesített hívásokon keresztül a világon bárhonnan elérhetők. Egyetlen üzenetsor akár 64 KB méretű is lehet, és a tárfiók maximális kapacitásán belül több millió üzenetet tartalmazhat.
+Az Azure Queue storage egy olyan szolgáltatás, amely képes bárhonnan elérhetők a HTTP vagy HTTPS PROTOKOLLT használ, hitelesített hívásokon keresztül hello world üzenetek nagy számban tárolásához. Egyetlen üzenetsor mentése too64 KB méretű is lehet, és tartalmazhat több millió üzenetet toohello maximális kapacitásán belül a storage-fiók mentése.
 
 ## <a name="common-uses"></a>Gyakori használati mód
 
 A Queue Storage gyakori használati módjai:
 
-* Hátralékos munkák létrehozása aszinkron feldolgozáshoz
-* Üzenetek átadása egy Azure webes szerepkörről egy Azure feldolgozói szerepkörnek
+* A munkahelyi tooprocess várakozó aszinkron módon létrehozása
+* Üzenetek átadása egy Azure webes szerepkör tooan Azure feldolgozói szerepkörnek
 
 ## <a name="queue-service-concepts"></a>A Queue szolgáltatás alapfogalmai
 
-A Queue szolgáltatás az alábbi összetevőkből áll:
+Queue szolgáltatás hello hello a következő összetevőket tartalmazza:
 
 ![Várólista fogalmak](./media/storage-queues-introduction/queue1.png)
 
-* **URL-formátum:** Az üzenetsorok a következő URL-formátummal érhetők el:   
+* **URL-formátum:** várólisták, amelyek megcímezhető hello URL-cím formátuma a következő használatával:   
     http://`<storage account>`.queue.core.windows.net/`<queue>` 
   
-    Az ábra egyik üzenetsora a következő URL-címmel érhető el:  
+    a következő URL-cím hello hello ábra egyik üzenetsora címek:  
   
     `http://myaccount.queue.core.windows.net/images-to-download`
 
-* **A tárfiók:** Azure Storage minden hozzáférés a storage-fiók segítségével történik. A tárfiókok kapacitásával kapcsolatos további információkért lásd: [Azure Storage Scalability and Performance Targets](../common/storage-scalability-targets.md?toc=%2fazure%2fstorage%2fqueues%2ftoc.json) (Az Azure Storage méretezhetőségi és teljesítménycéljai).
+* **A tárfiók:** összes keresztül férnek hozzá tooAzure tárolási történik egy tárfiókot. A tárfiókok kapacitásával kapcsolatos további információkért lásd: [Azure Storage Scalability and Performance Targets](../common/storage-scalability-targets.md?toc=%2fazure%2fstorage%2fqueues%2ftoc.json) (Az Azure Storage méretezhetőségi és teljesítménycéljai).
 
-* **Üzenetsor:** Az üzenetsorok üzenetek készleteit tartalmazzák. Az összes üzenetnek üzenetsorban kell lennie. Vegye figyelembe, hogy az üzenetsor neve csak kisbetűket tartalmazhat. Az üzenetsorok elnevezésével kapcsolatos információkat lásd: [Naming Queues and Metadata](https://msdn.microsoft.com/library/azure/dd179349.aspx) (Üzenetsorok és metaadatok elnevezése).
+* **Üzenetsor:** Az üzenetsorok üzenetek készleteit tartalmazzák. Az összes üzenetnek üzenetsorban kell lennie. Vegye figyelembe, hogy hello várólista neve csak kisbetűket. Az üzenetsorok elnevezésével kapcsolatos információkat lásd: [Naming Queues and Metadata](https://msdn.microsoft.com/library/azure/dd179349.aspx) (Üzenetsorok és metaadatok elnevezése).
 
-* **Üzenet:** Egy legfeljebb 64 KB méretű, tetszőleges méretű üzenet. A maximális időt, amely egy üzenetet a várólistában lévő maradjanak hét nap.
+* **Üzenet:** egy üzenet jelenik meg, tetszőleges méretű a too64 KB fel. hello maximális időtartam, egy üzenet maradhat hello sorban hét nap.
 
 ## <a name="next-steps"></a>Következő lépések
 

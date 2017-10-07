@@ -1,6 +1,6 @@
 ---
-title: "Rendelje hozzá, és az Azure erőforrás-házirendek kezelése |} Microsoft Docs"
-description: "Az Azure erőforrás-házirendek alkalmazása előfizetésekhez és erőforráscsoportokhoz, és erőforrás-házirendekkel megtekintéséhez módját ismerteti."
+title: "aaaAssign és az Azure erőforrás-házirendek kezelése |} Microsoft Docs"
+description: "Ismerteti, hogyan tooapply Azure erőforráscsoport házirendek toosubscriptions és erőforrás-sablonok, és hogyan tooview erőforrás-házirendekkel."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/26/2017
 ms.author: tomfitz
-ms.openlocfilehash: b204cffa8fab0ad27a9f78a81c04f0a0225d95f5
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b6999b43bbcc80d2fde9911352fd4352fa453443
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="assign-and-manage-resource-policies"></a>Rendelje hozzá, és erőforrás-házirendek kezelése
 
-A házirend megvalósítása, hajtsa végre ezeket a lépéseket:
+egy házirend tooimplement, végezze el ezeket a lépéseket:
 
-1. Ellenőrizze a házirend-definíciók száma (beleértve az Azure által biztosított beépített házirendek) az egyik már létezik-e az előfizetés, amely megfelel a követelményeknek.
+1. Ellenőrizze a házirend-definíciók (beleértve az Azure által biztosított beépített házirendek) toosee, ha már létezik ilyen az előfizetés, amely megfelel a követelményeknek.
 2. Ha van ilyen, annak neve olvasható.
-3. Ha még nem létezik, adja meg a házirend JSON szabály, és adja hozzá az előfizetés a házirend-definíció. Ebben a lépésben elérhetővé teszi a házirend a hozzárendeléshez, de nem felel meg a szabályokat az előfizetéséhez.
-4. Mindkét esetben rendelje hozzá a házirendet (például egy előfizetés vagy az erőforrás csoport) hatókörbe. A szabályok a házirend kényszerítése megtörtént.
+3. Ha még nem létezik, határozza meg a JSON hello házirendszabály, és adja hozzá az előfizetés a házirend-definíció. Ez a lépés hatására hello házirend rendelhető hozzá, de nem alkalmazza a hello szabályok tooyour előfizetés.
+4. Mindkét esetben rendelni hello házirend tooa hatáskörüket (például egy előfizetés vagy az erőforrás csoportot). hello szabályok hello házirend kényszerítése megtörtént.
 
-Ez a cikk foglalkozik a házirend-definíció létrehozása, és rendelje hozzá, hogy definíció REST API-t, a PowerShell vagy az Azure CLI hatókör lépéseket. Ha inkább a portál használatával rendelje hozzá a házirendek, lásd: [hozzárendelésére és kezelésére erőforrás-házirendek használata Azure-portálon](resource-manager-policy-portal.md). Ez a cikk nem a szintaxist a házirend-definíció létrehozására összpontosít. Házirendet a szintaxissal kapcsolatos információkért lásd: [erőforrás házirendek – áttekintés](resource-manager-policy.md).
+Ez a cikk egy házirend-definíció hello lépéseket toocreate összpontosít, és rendelje hozzá a REST API-t, a PowerShell vagy az Azure CLI tooa definition hatókörnek. Ha jobban szeret toouse hello portál tooassign házirendek, lásd: [használata Azure-portál tooassign és erőforrás-házirendek kezeléséhez](resource-manager-policy-portal.md). Ez a cikk nem hello házirend-definíció létrehozása hello szintaxisának összpontosítanak. Házirendet a szintaxissal kapcsolatos információkért lásd: [erőforrás házirendek – áttekintés](resource-manager-policy.md).
 
 ## <a name="rest-api"></a>REST API
 
 ### <a name="create-policy-definition"></a>Házirend-definíció létrehozása
 
-A házirendet hozhat létre a [REST API-t a házirend-definíciók](/rest/api/resources/policydefinitions). A REST API lehetővé teszi létrehozása és törlése a házirend-definíciók és meglévő definíciók adatainak beolvasása.
+Létrehozhat egy házirendet hello [REST API-t a házirend-definíciók](/rest/api/resources/policydefinitions). hello REST API lehetővé teszi a toocreate és törlése, házirend-definíciók, meglévő definíciók adatainak beolvasása.
 
-Házirend-definíció létrehozásához futtassa:
+a házirend-definíció toocreate futtatása:
 
 ```HTTP
 PUT https://management.azure.com/subscriptions/{subscription-id}/providers/Microsoft.authorization/policydefinitions/{policyDefinitionName}?api-version={api-version}
 ```
 
-Az alábbi példához hasonló egy kérelemtörzset a következők:
+A kérelem törzsében hasonló toohello a következő példa a következők:
 
 ```json
 {
@@ -52,14 +52,14 @@ Az alábbi példához hasonló egy kérelemtörzset a következők:
       "allowedLocations": {
         "type": "array",
         "metadata": {
-          "description": "The list of locations that can be specified when deploying resources",
+          "description": "hello list of locations that can be specified when deploying resources",
           "strongType": "location",
           "displayName": "Allowed locations"
         }
       }
     },
     "displayName": "Allowed locations",
-    "description": "This policy enables you to restrict the locations your organization can specify when deploying resources.",
+    "description": "This policy enables you toorestrict hello locations your organization can specify when deploying resources.",
     "policyRule": {
       "if": {
         "not": {
@@ -77,22 +77,22 @@ Az alábbi példához hasonló egy kérelemtörzset a következők:
 
 ### <a name="assign-policy"></a>Házirend hozzárendelése
 
-A házirend-definíció a kívánt hatóköre keresztül is alkalmazhat a [REST API-t a házirend-hozzárendelések](/rest/api/resources/policyassignments). A REST API lehetővé teszi, hogy hozhat létre és a házirend-hozzárendelések törlése és a meglévő hozzárendelés adatainak beolvasása.
+Hello házirend-definíció szükséges hello hatókör hello keresztül is alkalmazhat [REST API-t a házirend-hozzárendelések](/rest/api/resources/policyassignments). hello REST API lehetővé teszi a toocreate házirend-hozzárendelést, és törlése meglévő hozzárendelések adatainak beolvasása.
 
-Házirend-hozzárendelés létrehozásához futtassa:
+egy házirend-hozzárendelést toocreate futtatása:
 
 ```HTTP
 PUT https://management.azure.com /subscriptions/{subscription-id}/providers/Microsoft.authorization/policyassignments/{policyAssignmentName}?api-version={api-version}
 ```
 
-A {házirend-hozzárendelés} a házirend-hozzárendelés neve.
+{házirend-hozzárendelés} hello hello hello házirend-hozzárendelés neve.
 
-Az alábbi példához hasonló egy kérelemtörzset a következők:
+A kérelem törzsében hasonló toohello a következő példa a következők:
 
 ```json
 {
   "properties":{
-    "displayName":"West US only policy assignment on the subscription ",
+    "displayName":"West US only policy assignment on hello subscription ",
     "description":"Resources can only be provisioned in West US regions",
     "parameters": {
       "allowedLocations": { "value": ["northeurope", "westus"] }
@@ -104,16 +104,16 @@ Az alábbi példához hasonló egy kérelemtörzset a következők:
 ```
 
 ### <a name="view-policy"></a>Házirend megtekintése
-A házirend beszerzéséhez használja a [házirend-definíció beolvasása](https://docs.microsoft.com/rest/api/resources/policydefinitions#PolicyDefinitions_Get) műveletet.
+egy házirend tooget hello használja [házirend-definíció beolvasása](https://docs.microsoft.com/rest/api/resources/policydefinitions#PolicyDefinitions_Get) műveletet.
 
 ### <a name="get-aliases"></a>Aliasok beolvasása
-A REST API-n keresztül aliasok le:
+Hello REST API-n keresztül aliasok le:
 
 ```HTTP
 GET /subscriptions/{id}/providers?$expand=resourceTypes/aliases&api-version=2015-11-01
 ```
 
-Az alábbi példában az alias definíciójának. Ahogy látja, alias határoz meg elérési utak a különböző API-verziók, akkor is, amikor egy tulajdonság nevének módosítása. 
+a következő példa hello alias definíciójának jeleníti meg. Ahogy látja, alias határoz meg elérési utak a különböző API-verziók, akkor is, amikor egy tulajdonság nevének módosítása. 
 
 ```json
 "aliases": [
@@ -140,16 +140,16 @@ Az alábbi példában az alias definíciójának. Ahogy látja, alias határoz m
 
 ## <a name="powershell"></a>PowerShell
 
-A PowerShell-példákkal a folytatás előtt győződjön meg arról, hogy [telepítve a legújabb verzió](/powershell/azure/install-azurerm-ps) az Azure PowerShell. Házirend-paraméterek 3.6.0 verzióban lettek hozzáadva. Ha egy korábbi, a példák, hibaüzenetet jelzi, hogy a paraméter nem található.
+Hello PowerShell-példákkal a folytatás előtt győződjön meg arról, hogy [hello legújabb verziójának telepítése](/powershell/azure/install-azurerm-ps) az Azure PowerShell. Házirend-paraméterek 3.6.0 verzióban lettek hozzáadva. Ha egy korábbi, hello példák vissza, hibát jelző hello paraméter nem található.
 
 ### <a name="view-policy-definitions"></a>Házirend-definíciók megtekintése
-Az előfizetés az összes házirend-definíciók, használja a következő parancsot:
+toosee összes házirend-definíciók az előfizetéshez használatban hello a következő parancsot:
 
 ```powershell
 Get-AzureRmPolicyDefinition
 ```
 
-Összes elérhető, házirend-beállítást, többek között beépített házirendek adja vissza. Minden egyes házirend eredmény abban az esetben a következő formátumban:
+Összes elérhető, házirend-beállítást, többek között beépített házirendek adja vissza. Minden egyes házirend eredmény abban az esetben a következő formátumban hello:
 
 ```powershell
 Name               : e56962a6-4747-49cd-b67b-bf8b01975c4c
@@ -157,18 +157,18 @@ ResourceId         : /providers/Microsoft.Authorization/policyDefinitions/e56962
 ResourceName       : e56962a6-4747-49cd-b67b-bf8b01975c4c
 ResourceType       : Microsoft.Authorization/policyDefinitions
 Properties         : @{displayName=Allowed locations; policyType=BuiltIn; description=This policy enables you to
-                     restrict the locations your organization can specify when deploying resources. Use to enforce
+                     restrict hello locations your organization can specify when deploying resources. Use tooenforce
                      your geo-compliance requirements.; parameters=; policyRule=}
 PolicyDefinitionId : /providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c
 ```
 
-Mielőtt továbblép a házirend-definíció létrehozása, tekintse meg a beépített házirendek. Ha egy beépített házirendet kell korlátok érvényes, kihagyhatja a házirend-definíció létrehozása. Ehelyett a beépített házirend hozzárendelése a kívánt hatóköre.
+Mielőtt továbblép toocreate házirend-definíció nézze meg a hello beépített házirendek. Ha egy beépített házirendet érvényes hello korlátok van szüksége, kihagyhatja a házirend-definíció létrehozása. Ehelyett hozzárendelése hello beépített házirend szükséges toohello hatókör.
 
 ### <a name="create-policy-definition"></a>Házirend-definíció létrehozása
-A szabályzat definíciója használatával hozhat létre a `New-AzureRmPolicyDefinition` parancsmag.
+A házirend-definíció hello segítségével hozhat létre `New-AzureRmPolicyDefinition` parancsmag.
 
 ```powershell
-$definition = New-AzureRmPolicyDefinition -Name coolAccessTier -Description "Policy to specify access tier." -Policy '{
+$definition = New-AzureRmPolicyDefinition -Name coolAccessTier -Description "Policy toospecify access tier." -Policy '{
   "if": {
     "allOf": [
       {
@@ -193,15 +193,15 @@ $definition = New-AzureRmPolicyDefinition -Name coolAccessTier -Description "Pol
 }'
 ```            
 
-A kimeneti tárolja egy `$definition` objektum, amely házirend-hozzárendelés során használatos. 
+hello kimeneti tárolja egy `$definition` objektum, amely házirend-hozzárendelés során használatos. 
 
-Ahelyett, hogy adja meg a JSON-paraméterként, megadhatja a házirendszabály tartalmazó .JSON kiterjesztésű fájl elérési útja.
+Ahelyett, hogy adja meg a hello JSON paraméterként, megadhatja a hello elérési tooa .JSON kiterjesztésű fájlt tartalmazó hello házirendszabályt.
 
 ```powershell
-$definition = New-AzureRmPolicyDefinition -Name coolAccessTier -Description "Policy to specify access tier." -Policy "c:\policies\coolAccessTier.json"
+$definition = New-AzureRmPolicyDefinition -Name coolAccessTier -Description "Policy toospecify access tier." -Policy "c:\policies\coolAccessTier.json"
 ```
 
-Az alábbi példakód létrehozza a házirend-definíció paramétereket tartalmaz:
+hello alábbi példa létrehoz egy házirend-definíció, amely tartalmazza a Paraméterek:
 
 ```powershell
 $policy = '{
@@ -228,26 +228,26 @@ $parameters = '{
     "allowedLocations": {
         "type": "array",
         "metadata": {
-          "description": "The list of locations that can be specified when deploying storage accounts.",
+          "description": "hello list of locations that can be specified when deploying storage accounts.",
           "strongType": "location",
           "displayName": "Allowed locations"
         }
     }
 }' 
 
-$definition = New-AzureRmPolicyDefinition -Name storageLocations -Description "Policy to specify locations for storage accounts." -Policy $policy -Parameter $parameters 
+$definition = New-AzureRmPolicyDefinition -Name storageLocations -Description "Policy toospecify locations for storage accounts." -Policy $policy -Parameter $parameters 
 ```
 
 ### <a name="assign-policy"></a>Házirend hozzárendelése
 
-A szabályzatot a kívánt hatókörben futtatásával kell alkalmazni a `New-AzureRmPolicyAssignment` parancsmag. A következő példa egy erőforráscsoportot a szabályzat rendeli.
+Hello futtatásával kell alkalmazni kívánt hello hatókörből hello házirend `New-AzureRmPolicyAssignment` parancsmag. a következő példa hello hello házirend tooa erőforráscsoport rendeli hozzá.
 
 ```powershell
 $rg = Get-AzureRmResourceGroup -Name "ExampleGroup"
 New-AzureRMPolicyAssignment -Name accessTierAssignment -Scope $rg.ResourceId -PolicyDefinition $definition
 ```
 
-Rendelje hozzá egy házirendet, mely paraméterek szükségesek, hozzon létre, és ezen értékekkel rendelkező objektum. Az alábbi példa lekérdezi a beépített házirend, és átadja a paraméterek értékeit:
+tooassign egy házirendet a szükséges paraméter, hozzon létre, és ezen értékekkel rendelkező objektum. hello alábbi példa lekérdezi egy beépített házirend, és átadja a paraméterek értékeit:
 
 ```powershell
 $rg = Get-AzureRmResourceGroup -Name "ExampleGroup"
@@ -259,14 +259,14 @@ New-AzureRMPolicyAssignment -Name locationAssignment -Scope $rg.ResourceId -Poli
 
 ### <a name="view-policy-assignment"></a>Házirend-hozzárendelés megtekintése
 
-Egy adott házirend-hozzárendelés használatához:
+egy adott házirend-hozzárendelést tooget használja:
 
 ```powershell
 $rg = Get-AzureRmResourceGroup -Name "ExampleGroup"
 (Get-AzureRmPolicyAssignment -Name accessTierAssignment -Scope $rg.ResourceId
 ```
 
-Házirend-definíció a házirend-szabálya megtekintéséhez használja:
+tooview hello házirend szabály a házirend-definíció, használja:
 
 ```powershell
 (Get-AzureRmPolicyDefinition -Name coolAccessTier).Properties.policyRule | ConvertTo-Json
@@ -274,7 +274,7 @@ Házirend-definíció a házirend-szabálya megtekintéséhez használja:
 
 ### <a name="remove-policy-assignment"></a>Távolítsa el a házirend-hozzárendelés 
 
-Házirend-hozzárendelés eltávolításához használja:
+egy házirend-hozzárendelést tooremove használja:
 
 ```powershell
 Remove-AzureRmPolicyAssignment -Name regionPolicyAssignment -Scope /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}
@@ -283,17 +283,17 @@ Remove-AzureRmPolicyAssignment -Name regionPolicyAssignment -Scope /subscription
 ## <a name="azure-cli"></a>Azure CLI
 
 ### <a name="view-policy-definitions"></a>Házirend-definíciók megtekintése
-Az előfizetés az összes házirend-definíciók, használja a következő parancsot:
+toosee összes házirend-definíciók az előfizetéshez használatban hello a következő parancsot:
 
 ```azurecli
 az policy definition list
 ```
 
-Összes elérhető, házirend-beállítást, többek között beépített házirendek adja vissza. Minden egyes házirend eredmény abban az esetben a következő formátumban:
+Összes elérhető, házirend-beállítást, többek között beépített házirendek adja vissza. Minden egyes házirend eredmény abban az esetben a következő formátumban hello:
 
 ```azurecli
 {                                                            
-  "description": "This policy enables you to restrict the locations your organization can specify when deploying resources. Use to enforce your geo-compliance requirements.",                      
+  "description": "This policy enables you toorestrict hello locations your organization can specify when deploying resources. Use tooenforce your geo-compliance requirements.",                      
   "displayName": "Allowed locations",
   "id": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
   "name": "e56962a6-4747-49cd-b67b-bf8b01975c4c",
@@ -312,14 +312,14 @@ az policy definition list
 }
 ```
 
-Mielőtt továbblép a házirend-definíció létrehozása, tekintse meg a beépített házirendek. Ha egy beépített házirendet kell korlátok érvényes, kihagyhatja a házirend-definíció létrehozása. Ehelyett a beépített házirend hozzárendelése a kívánt hatóköre.
+Mielőtt továbblép toocreate házirend-definíció nézze meg a hello beépített házirendek. Ha egy beépített házirendet érvényes hello korlátok van szüksége, kihagyhatja a házirend-definíció létrehozása. Ehelyett hozzárendelése hello beépített házirend szükséges toohello hatókör.
 
 ### <a name="create-policy-definition"></a>Házirend-definíció létrehozása
 
-A házirend-definíció a házirend-definíció parancs az Azure parancssori felület használatával hozhat létre.
+A házirend-definíció Azure parancssori felület használatával hello házirend-definíció paranccsal hozhat létre.
 
 ```azurecli
-az policy definition create --name coolAccessTier --description "Policy to specify access tier." --rules '{
+az policy definition create --name coolAccessTier --description "Policy toospecify access tier." --rules '{
   "if": {
     "allOf": [
       {
@@ -346,7 +346,7 @@ az policy definition create --name coolAccessTier --description "Policy to speci
 
 ### <a name="assign-policy"></a>Házirend hozzárendelése
 
-A házirend-hozzárendelés paranccsal alkalmazhatja a szabályzatot a kívánt hatókörbe. A következő példa egy házirend rendel egy erőforráscsoportot.
+Hello házirend szükséges toohello hatókör hello házirend-hozzárendelés paranccsal is alkalmazhat. a következő példa hello házirend tooa erőforráscsoport rendeli hozzá.
 
 ```azurecli
 az policy assignment create --name coolAccessTierAssignment --policy coolAccessTier --scope /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}
@@ -354,7 +354,7 @@ az policy assignment create --name coolAccessTierAssignment --policy coolAccessT
 
 ### <a name="view-policy-assignment"></a>Házirend-hozzárendelés megtekintése
 
-Házirend-hozzárendelés megtekinteni, adja meg a házirend-hozzárendelés neve és a hatókör:
+tooview egy házirend-hozzárendelést adjon meg, hello házirend-hozzárendelés neve és hello hatókör:
 
 ```azurecli
 az policy assignment show --name coolAccessTierAssignment --scope "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}"
@@ -362,12 +362,12 @@ az policy assignment show --name coolAccessTierAssignment --scope "/subscription
 
 ### <a name="remove-policy-assignment"></a>Távolítsa el a házirend-hozzárendelés 
 
-Házirend-hozzárendelés eltávolításához használja:
+egy házirend-hozzárendelést tooremove használja:
 
 ```azurecli
 az policy assignment delete --name coolAccessTier --scope /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-* Nagyvállalatoknak az [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Azure nagyvállalati struktúra - előíró előfizetés-irányítás) című cikk nyújt útmutatást az előfizetéseknek a Resource Managerrel való hatékony kezeléséről.
+* A vállalatok használatát erőforrás-kezelő tooeffectively segítségükkel előfizetések kezelése című [Azure enterprise scaffold - előíró előfizetés irányítás](resource-manager-subscription-governance.md).
 

@@ -1,6 +1,6 @@
 ---
-title: "A Service Map megoldás használata az Operations Management Suite |} Microsoft Docs"
-description: "Szolgáltatástérkép egy Operations Management Suite megoldás, amely automatikusan észleli a Windows és Linux rendszerek alkalmazás-összetevők, és leképezi a szolgáltatások közötti kommunikáció. Ez a cikk a Service Map telepítése a környezetben, és használja azt a különféle forgatókönyvekhez, amik részletesen."
+title: "az Operations Management Suite Szolgáltatástérkép megoldás aaaUse hello |} Microsoft Docs"
+description: "Szolgáltatástérkép Operations Management Suite megoldás, amely automatikusan felderíti az alkalmazás-összetevők a Windows és Linux rendszerek és a maps hello szolgáltatások közötti kommunikáció. Ez a cikk a Service Map telepítése a környezetben, és használja azt a különféle forgatókönyvekhez, amik részletesen."
 services: operations-management-suite
 documentationcenter: 
 author: daveirwin1
@@ -14,112 +14,112 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 11/22/2016
 ms.author: daseidma;bwren;dairwin
-ms.openlocfilehash: 2e5475a0563549ddfaa2c146e4acf94c019841ec
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f7c209182c9171cc520192ac13ca4d85174081b5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-service-map-solution-in-operations-management-suite"></a>Az Operations Management Suite a Szolgáltatástérkép megoldás használja
-A Szolgáltatástérkép automatikusan felderíti az alkalmazás-összetevőket Windows és Linux rendszereken, és feltérképezi a szolgáltatások közötti kommunikációt. Szolgáltatástérkép, használatával megtekintheti a kiszolgálók, amelyek Ön szerint egyik módja: összekapcsolt rendszerekhez, hogy a kritikus szolgáltatásokhoz. Szolgáltatástérkép jeleníti meg a kiszolgálók, a folyamatok közötti kapcsolatokat, és portok között bármely TCP-csatlakoztatott architektúra, a konfiguráció nem szükséges másik ügynököt telepíteni.
+# <a name="use-hello-service-map-solution-in-operations-management-suite"></a>Az Operations Management Suite hello Szolgáltatástérkép megoldás használja
+Szolgáltatástérkép automatikusan észleli a Windows és Linux rendszerek alkalmazás-összetevők és a maps hello szolgáltatások közötti kommunikáció. Szolgáltatástérkép, használatával megtekintheti a kiszolgálók, amelyek Ön szerint egyik hello módon: összekapcsolt rendszerekhez, hogy a kritikus szolgáltatásokhoz. Szolgáltatástérkép jeleníti meg a kiszolgálók, folyamatok és portok közötti kapcsolatok között bármely TCP-csatlakoztatott architektúra az eltérő szükség konfigurálásra hello ügynököt telepíteni.
 
-Ez a cikk ismerteti a Szolgáltatástérkép használatával részleteit. Szolgáltatástérkép és bevezetési ügynökök konfigurálásával kapcsolatos további információkért lásd: [Operations Management Suite megoldás konfigurálása a Service Map](operations-management-suite-service-map-configure.md).
+Ez a cikk ismerteti a Szolgáltatástérkép használatával hello részleteit. Szolgáltatástérkép és bevezetési ügynökök konfigurálásával kapcsolatos további információkért lásd: [Operations Management Suite megoldás konfigurálása a Service Map](operations-management-suite-service-map-configure.md).
 
 
 ## <a name="use-cases-make-your-it-processes-dependency-aware"></a>Eseteinek: Ellenőrizze az informatikai feldolgozza a fürttámogató függőség
 
 ### <a name="discovery"></a>Felderítés
-Szolgáltatástérkép függőségek közös hivatkozás térképet automatikusan létrehozza a kiszolgálón, a folyamatok és a harmadik féltől származó szolgáltatással. Észleli, és hozzárendeli az összes TCP-függőség, jelzés nélküli kapcsolatok, a távoli külső rendszerek függ, és a hagyományos sötét területet a hálózaton, például az Active Directory függőségeket azonosító. Szolgáltatástérkép deríti fel, amely a felügyeleti rendszer létesíteni, hibás hálózati kapcsolatok gondoskodik a potenciális server hibás konfigurációja, a szolgáltatáskimaradás és a hálózati problémák azonosításához.
+Szolgáltatástérkép függőségek közös hivatkozás térképet automatikusan létrehozza a kiszolgálón, a folyamatok és a harmadik féltől származó szolgáltatással. Észleli, és hozzárendeli az összes TCP-függőség, jelzés nélküli kapcsolatokat, a távoli külső rendszerek függ, és a függőségek tootraditional sötét területet a hálózaton, például az Active Directory azonosító. Szolgáltatástérkép deríti fel, hogy a felügyeleti rendszer próbált toomake, hibás hálózati kapcsolatok gondoskodik a potenciális server hibás konfigurációja, a szolgáltatáskimaradás és a hálózati problémák azonosításához.
 
 ### <a name="incident-management"></a>Incidenskezelés
-Szolgáltatástérkép segít, hogy bemutatja, hogyan kapcsolódnak a rendszerek, és egymást érintő probléma elkülönítési a munka bizonytalanságát megszüntetéséhez. Mellett azonosítása sikertelen kapcsolatok, ennek segítségével azonosíthatja a helytelenül konfigurált terheléselosztók, kritikus szolgáltatások meglepő vagy túlzott terhelése, és ügyfelek, például a fejlesztői gépek beszélgetne éles rendszerek esetén. a támadó. Integrált munkafolyamatokkal rendelkező Operations Management Suite módosítása nyomon követése, azt is láthatja, hogy a change esemény egy háttér-gépen, vagy szolgáltatás ismerteti az alapvető ok egy incidens.
+Szolgáltatástérkép segít, hogy bemutatja, hogyan kapcsolódnak a rendszerek, és egymást érintő hello munka bizonytalanságát probléma elkülönítési megszüntetéséhez. Ezenkívül tooidentifying sikertelen kapcsolatok, hanem a helytelenül konfigurált terheléselosztók, kritikus szolgáltatások meglepő vagy túlzott terhelése azonosítása és támadó ügyfelek, például a fejlesztői gépek tooproduction rendszerek van szó. Az Operations Management Suite módosítása követési integrált munkafolyamatok használatával is megtekinthető e egy háttér-gép vagy szolgáltatás-megváltoztatási esemény ismerteti az incidensek alapvető oka hello.
 
 ### <a name="migration-assurance"></a>Áttelepítési megbízhatósági
-Szolgáltatástérkép használatával hatékonyan megtervezése programot, egyre gyorsabban jelennek meg, és a segítségével győződjön meg arról, hogy semmi sem hátrahagyott és jelzés nélküli nem kiesések Azure áttelepítések ellenőrzése. Minden egymástól kölcsönösen függnek, áttelepítése együtt, mérje fel a Rendszerkonfiguráció és a kapacitás, és adja meg, hogy a futó rendszer van még kiszolgáló felhasználók, vagy egy jelölt leszerelése áttelepítési helyett a rendszer felderíthetők. A lépés befejezése után, akkor is ellenőrizhesse ügyfél terhelés és identitás ellenőrzése, hogy a vizsgálati rendszerek és az ügyfelek csatlakoznak. Ha az alhálózat tervezési és a tűzfal-meghatározások problémák vannak, a Service Map maps sikertelen kapcsolatok mutasson, a kapcsolatot igénylő rendszerek.
+Szolgáltatástérkép használatával hatékonyan megtervezése programot, egyre gyorsabban jelennek meg, és a segítségével győződjön meg arról, hogy semmi sem hátrahagyott és jelzés nélküli nem kiesések Azure áttelepítések ellenőrzése. Felderítése rendszerek minden egymástól kölcsönösen függnek, hogy szükség toomigrate együtt, mérje fel a Rendszerkonfiguráció és a kapacitás, és adja meg, hogy a futó rendszer van még kiszolgáló felhasználók vagy jelöltségét ellenőrző az áttelepítési helyett leszerelése. Hello lépés befejezése után ellenőrizheti, hogy az ügyfél a terhelési és identitás tooverify, amely tesztrendszerek, és az ügyfelek kapcsolódik. Az alhálózat tervezési és a tűzfal-meghatározások problémák vannak, ha a Service Map maps sikertelen kapcsolatok pontját kapcsolatot igénylő rendszerek toohello.
 
 ### <a name="business-continuity"></a>Az üzletmenet folytonossága
-Ha a használja az Azure Site Recovery, és kell meghatározása a helyreállítási folyamata az alkalmazás-környezethez, a Service Map súgó automatikusan láthatja, hogyan rendszerek támaszkodnak egymástól annak érdekében, hogy a helyreállítási terv nem megbízható. Egy kritikus fontosságú kiszolgáló vagy csoport kiválasztása, és tekintse meg az ügyfeleknek, azonosíthatja, mely előtér-rendszerek helyreállítása után a kiszolgáló visszaállítása, és elérhető. Ezzel szemben kritikus fontosságú kiszolgálók háttér-függőségek megtekintésével azonosíthatja, mely rendszerek helyreállítása előtt a rendszer visszaállítja a fókusz rendszerek.
+Ha Azure Site Recovery használ, és kell hello helyreállítási feladatütemezési alkalmazás környezetre Szolgáltatástérkép meghatározása súgó automatikusan láthatja, hogyan rendszerek támaszkodnak egymással, hogy megbízható-e a helyreállítási terv tooensure. Egy kritikus fontosságú kiszolgáló vagy csoport kiválasztása, és tekintse meg az ügyfeleknek, azonosíthatja melyik előtér-rendszerek toorecover után hello kiszolgáló visszaállítása, és elérhető. Ezzel szemben kritikus fontosságú kiszolgálók háttér-függőségek megtekintésével azonosíthatja, mely rendszerek toorecover a fókusz rendszerek visszaállítása előtt.
 
 ### <a name="patch-management"></a>A javítások
-Szolgáltatástérkép javítja a használatára az Operations Management Suite rendszer frissítések értékelését jelenít meg, amelyek egyéb csoportok és a kiszolgálók a szolgáltatástól függenek, így akkor is értesítést küldhet nekik előre le a rendszer a javítás végrehajtása előtt. Szolgáltatástérkép is javítja a javítás-kezelés az Operations Management Suite azáltal, hogy bemutatja, hogy a szolgáltatások elérhető és megfelelően csatlakoztatott után lett, és újraindul.
+Szolgáltatástérkép hello Operations Management Suite rendszer frissítések értékelését használatát fokozza a jelenít meg, amelyek egyéb csoportok és a kiszolgálók a szolgáltatástól függenek, így akkor is értesítést küldhet nekik előre le a rendszer a javítás végrehajtása előtt. Szolgáltatástérkép is javítja a javítás-kezelés az Operations Management Suite azáltal, hogy bemutatja, hogy a szolgáltatások elérhető és megfelelően csatlakoztatott után lett, és újraindul.
 
 
 ## <a name="mapping-overview"></a>Leképezési áttekintése
-Szolgáltatástérkép ügynökök gyűjtse össze a TCP-kapcsolódó folyamatok információi a kiszolgálón, amelyen telepítve van és a bejövő és kimenő kapcsolatok az összes folyamat részleteit. A listában, a bal oldali ablaktáblán kiválaszthatja a gépeket vagy csoportokat, amelyeknek Szolgáltatástérkép keresztül a megadott időtartomány függősége megjelenítéséhez. Gép függőségi képezi le egy adott gép helyezi a hangsúlyt, és azok megjelenítése, amelyek közvetlen TCP-ügyfelek vagy kiszolgálók, hogy a gép összes gép.  Gép maps kiszolgálók és a Függőségek megjelenítése.
+Szolgáltatástérkép ügynökök hello kiszolgálón, ahol azok van telepítve, és részleteit hello bejövő és kimenő kapcsolatok az egyes folyamatokhoz tartozó összes TCP-csatlakoztatott folyamatokról adatainak összegyűjtése. Hello hello bal oldali ablaktábla listájában kiválaszthatja a gépeket vagy csoportok Szolgáltatástérkép ügynökök toovisualize függősége a megadott időtartomány keresztül. Gép függőségi képezi le egy adott gép helyezi a hangsúlyt, és azok megjelenítése, hello gépeire közvetlen TCP-ügyfelek vagy kiszolgálók gép.  Gép maps kiszolgálók és a Függőségek megjelenítése.
 
 ![Szolgáltatástérkép áttekintése](media/oms-service-map/service-map-overview.png)
 
-A térkép az aktív hálózati kapcsolatokkal rendelkező folyamatok futtatásával megjelenítése a kijelölt időtartományban gépek bővíthető. Ha egy távoli számítógéphez a Szolgáltatástérkép ügynök ki van bontva, a folyamat részletei láthatók, csak a kommunikációt a fókusz gép folyamatok jelennek meg. Ügynök nélküli előtér-gépek, amelyek kapcsolódnak a fókusz géppé száma fel van tüntetve a folyamatok, amelyekhez csatlakoznak bal oldalán. Ha a fókusz gépen, hogy így egy háttér-számítógépen, amelyen nincs ügynök van kapcsolat, a háttér-kiszolgálófiók szerepel a Port kiszolgálócsoport mellett egyéb kapcsolatokat ugyanazt a portszámot.
+Gépek hello térkép tooshow hello futó folyamatok aktív hálózati kapcsolatokkal hello kijelölt időtartományban bővíthető. Bővített tooshow folyamat részletei a Szolgáltatástérkép ügynökkel távoli számítógép esetén csak a hello fókusz gép kommunikáló folyamatok jelennek meg. ügynök nélküli előtér-gépek hello fókusz géppé csatlakozó hello száma fel van tüntetve hello bal oldalán található hello folyamatok való csatlakozáshoz. Ha hello fókusz gépen van egy kapcsolat tooa háttér-számítógép, amelyen nincs ügynök, hello háttér-kiszolgáló egy olyan kiszolgálócsoportot Port szerepel, és egyéb kapcsolatok toohello azonos port száma.
 
-Alapértelmezés szerint a Szolgáltatástérkép maps megjelenítése a függőségi adatokat az elmúlt 30 percben. Bal felső idő vezérlők használatával lekérdezheti a maps korábbi idő porttartományok akár egy óráig hogyan függőségek kikeresi az elmúlt (például incidens vagy előtt változott meg valami) megjelenítéséhez. Szolgáltatástérkép tárolja a fizetős munkaterületek 30 napig, és a munkaterületek 7 napban.
+Alapértelmezés szerint a Service Map maps megjelenítése hello függőségi adatokat az elmúlt 30 percben. Hello bal felső hello használható vezérlők használatával kérdezheti le maps korábbi idő porttartományok tooone óra tooshow hogyan függőségek kikeresi az hello be (például incidens vagy előtt változott meg valami) múltbeli. Szolgáltatástérkép tárolja a fizetős munkaterületek 30 napig, és a munkaterületek 7 napban.
 
 ## <a name="status-badges-and-border-coloring"></a>Állapot jelvények és szegély színezés
-A térkép kiszolgálónként alján lehet a kiszolgáló állapotinformációról igényinek állapot jelvények listáját. A jelvények jelzi, hogy a kiszolgáló, az Operations Management Suite megoldás Integrációk egyikéből néhány információt. Egy jelvény kattintva viszi közvetlenül a jobb oldali állapot részleteit. A jelenleg elérhető állapot jelvények tartalmazza a riasztások, a ügyfélszolgálatához, a módosítások, a biztonsági és a frissítések.
+Az egyes kiszolgálók hello leképezés alsó hello lehet hello server állapotinformációról igényinek állapot jelvények listáját. hello jelvények jelzi, hogy néhány információt hello kiszolgáló hello Operations Management Suite megoldás Integrációk egyikéből. Egy jelvény kattintva viszi közvetlenül hello állapot részleteit toohello hello jobb oldali ablaktáblán. hello jelenleg elérhető állapot jelvények tartalmaz riasztások, a ügyfélszolgálatához, a módosítások, a biztonsági és a frissítések.
 
-Attól függően, hogy az állapot jelvények súlyossága gép csomópont szegélyek színes piros (kritikus), sárga (figyelmeztetés), vagy kék (tájékoztató). A szín a állapot jelvények bármelyikét legsúlyosabb károkat okozó állapotát jelöli. Szürke szegélyt megadni a csomópont, amelynek nincs Állapotjelzők jelzi.
+Attól függően, hogy hello állapot jelvények hello súlyossága gép csomópont szegélyek színes piros (kritikus), sárga (figyelmeztetés), vagy kék (tájékoztató). hello szín hello legsúlyosabb károkat okozó állapotát hello állapot jelvények bármelyikének mutatja be. Szürke szegélyt megadni a csomópont, amelynek nincs Állapotjelzők jelzi.
 
 ![Állapot jelvények](media/oms-service-map/status-badges.png)
 
 ## <a name="machine-groups"></a>Számítógép-csoportok
-Gép csoportok lehetővé teszik a kiszolgálók, nem csak egy hívjuk fel egy leképezést egy többrétegű alkalmazást vagy a kiszolgáló fürt összes tagja egy csoportja körül maps láthatja.
+Gép csoportok lehetővé teszik, hogy Ön toosee maps része a több kiszolgáló, nem csak egy hívjuk fel egy leképezést egy többrétegű alkalmazást vagy a kiszolgáló fürt összes hello tagja.
 
-Felhasználók válassza ki, melyik kiszolgálókat együtt egy csoporthoz tartozik, és válassza ki a csoport nevét.  Ezután kiválaszthatja a csoportban található összes folyamatok és kapcsolatok megtekintéséhez, vagy csak a folyamatok és a csoport többi tagja közvetlenül kapcsolódó kapcsolatok megtekintéséhez.
+Felhasználók válassza ki, melyik kiszolgálókat együtt egy csoporthoz tartozik, és válassza a hello csoport nevét.  Ezután válassza ki a tooview hello csoportban található összes folyamatok és kapcsolatok, vagy megtekintheti csak hello folyamatok és kapcsolatok toohello közvetlenül kapcsolódó egyéb hello csoport tagjai.
 
 ![Számítógép-csoport](media/oms-service-map/machine-group.png)
 
 ### <a name="creating-a-machine-group"></a>Számítógép-csoport létrehozása
-Hozzon létre egy csoportot, válassza ki a gép vagy gépek felsorolja a gépeket, és kattintson a kívánt **Hozzáadás csoporthoz**.
+toocreate egy csoportot, válassza hello gép vagy gépek kívánt hello gépeken listán, és kattintson **toogroup hozzáadása**.
 
 ![Csoport létrehozása](media/oms-service-map/machine-groups-create.png)
 
-Itt választhat **hozzon létre új** és nevezze el a csoportot.
+Itt választhat **hozzon létre új** , és nevezze el hello csoport.
 
 ![Csoport neve](media/oms-service-map/machine-groups-name.png)
 
 >[!NOTE]
->Gép csoportok jelenleg csak 10 kiszolgálókra, de a korlát növeléséhez hamarosan tervezzük.
+>Gép csoportok jelenleg korlátozott too10 kiszolgálók, de tervezzük tooincrease ezt a határt hamarosan.
 
 ### <a name="viewing-a-group"></a>Egy csoport megtekintése
-A létrehozását követően néhány olyan csoportot, a csoportok lapon kiválasztásával megtekintheti őket.
+Néhány csoport létrehozása után is megtekintheti őket hello csoportok fülre.
 
 ![Csoportok lap](media/oms-service-map/machine-groups-tab.png)
 
-Ezután válassza ki a csoport nevét a gép csoport a térkép megtekintéséhez.
-![Gép](media/oms-service-map/machine-group.png) a gépeket, a csoporthoz tartozó eljárásokat a fehér a térképen.
+Ezután válassza ki a számítógép csoport hello neve tooview hello hozzárendelése.
+![Gép](media/oms-service-map/machine-group.png) hello gépek toohello csoporthoz tartozó eljárásokat a fehér hello a térképen.
 
-A csoport kibontásával felsorolja a gépeket, a gép csoportot alkotó.
+Növekvő hello csoport hello gép csoportot alkotó hello gépekhez felsorolja.
 
 ![Gép gépek](media/oms-service-map/machine-groups-machines.png)
 
 ### <a name="filter-by-processes"></a>Folyamatok szűrése
-A nézet összes folyamatok és kapcsolatok megjelenítő a csoport, és csak a gazdarendszerhez közvetlenül kapcsolódik a számítógép csoport között válthat.  Az alapértelmezett nézet az összes folyamat megjelenítéséhez.  A térkép felett szűrő ikonra kattintva módosíthatja a nézetet.
+Hello térképnézet folyamatok és a kapcsolatokat megjelenítő hello csoport közötti váltás, és csak hello azokon, közvetlenül a gép toohello vonatkoznak.  az alapértelmezett nézet hello tooshow az összes folyamat.  Hello nézet hello térkép felett hello szűrő ikonra kattintva módosíthatja.
 
 ![Szűrő csoport](media/oms-service-map/machine-groups-filter.png)
 
-Ha **minden folyamat** van jelölve, a térkép tartalmazza minden folyamat és kapcsolatok az egyes gépek csoportban.
+Ha **minden folyamat** van kijelölve, hello térkép megjeleníti minden folyamat és kapcsolatok az egyes gépek hello abban hello csoport.
 
 ![Minden számítógép csoport dolgozza fel.](media/oms-service-map/machine-groups-all.png)
 
-Ha csak a megjelenítendő nézetet **csoport csatlakoztatva folyamatok**, a térkép fog leszűkítheti csak folyamatok és-kapcsolatok közvetlenül csatlakoztatott más számítógépekre, a csoport létrehozása egyszerűsített nézete.
+Hello nézet csak tooshow módosításakor **csoport csatlakoztatva folyamatok**, hello térkép fog maradt le tooonly ezen folyamatok és a kapcsolatokat, amelyek közvetlenül csatlakoztatott tooother gépek hello csoportjában egyszerűsített nézetek létrehozásával.
 
 ![Számítógép csoport szűrve folyamatok](media/oms-service-map/machine-groups-filtered.png)
  
-### <a name="adding-machines-to-a-group"></a>Gépek felvétele egy csoportba
-Egy meglévő csoporthoz hozzáadni, jelölőnégyzeteket mellett a gépeket, majd kattintson **Hozzáadás csoporthoz**.  Válassza ki a csoport hozzá szeretné adni a gépeket.
+### <a name="adding-machines-tooa-group"></a>Gépek tooa hozzáadása csoporthoz
+tooadd gépek tooan meglévő csoporthoz, ellenőrizze a hello mezők szeretne, és kattintson a Tovább toohello gépek **toogroup hozzáadása**.  Ezt követően válassza a kívánt tooadd hello gépek hello csoport.
  
 ### <a name="removing-machines-from-a-group"></a>Gép eltávolítása egy csoportból
-A csoportok listájában bontsa ki a csoport nevét a gép csoport lévő számítógépek listáját.  Ezután kattintson a három pont menü mellett látható a gép eltávolítása, és válassza ki a **eltávolítása**.
+Hello csoportok listában megadott csoportokat bontsa ki a hello csoport neve toolist hello gépek hello számítógép csoportjához.  Kattintson a hello három pont menü következő toohello gépen szeretné, hogy tooremove, és válassza a **eltávolítása**.
 
 ![Gép eltávolítása a csoportból](media/oms-service-map/machine-groups-remove.png)
 
 ### <a name="removing-or-renaming-a-group"></a>Eltávolítása, vagy egy csoport átnevezése
-Kattintson a csoport nevét, a csoport lista melletti három pont menü.
+Kattintson a hello három pont menü következő toohello csoport nevére a hello listájából.
 
 ![Számítógép csoport menü](media/oms-service-map/machine-groups-menu.png)
 
 
 ## <a name="role-icons"></a>Szerepkör ikon
-Bizonyos folyamatok szolgálnak ki adott szerepkörök gépek: webalkalmazás-kiszolgálók, alkalmazás-kiszolgálókat, adatbázis, és így tovább. Szolgáltatástérkép jelzi a folyamat, illetve a számítógép mezők szerepkör ikonok azonosításához egy pillanat alatt a szerepkör egy folyamat vagy a kiszolgálón betöltött szerepe.
+Bizonyos folyamatok szolgálnak ki adott szerepkörök gépek: webalkalmazás-kiszolgálók, alkalmazás-kiszolgálókat, adatbázis, és így tovább. Szolgáltatástérkép jelzi a folyamat, és a gép mezők szerepkör ikonok toohelp azonosítása egy pillanat alatt hello szerepkör egy folyamat vagy a kiszolgálón betöltött szerepe.
 
 | Szerepkör ikon | Leírás |
 |:--|:--|
@@ -133,44 +133,44 @@ Bizonyos folyamatok szolgálnak ki adott szerepkörök gépek: webalkalmazás-ki
 
 
 ## <a name="failed-connections"></a>Nem sikerült kapcsolatok
-Nem sikerült kapcsolatok együtt jelennek meg a Service Map maps folyamatok és a számítógépek, piros szaggatott vonal jelzi, hogy egy folyamat vagy port eléréséhez ügyfélrendszer meghiúsul. Hibás kapcsolatok minden rendszer a Service Map telepített ügynökkel küld jelentést, hogy a rendszer esetén a sikertelen kapcsolódás kísérlet azt. Szolgáltatástérkép ezt a folyamatot nem sikerült kapcsolatot létesíteni a TCP-szoftvercsatornák megfigyelésével méri. Ez a hiba eredhet tűzfal, az ügyfél vagy kiszolgáló vagy a távoli szolgáltatás nem volt elérhető helytelen beállítása.
+Nem sikerült kapcsolatok megjelennek-e Szolgáltatástérkép leképezi a folyamatok és a számítógépek, piros szaggatott vonal jelzi, hogy az ügyfélrendszer tooreach meghiúsul a folyamatot vagy port. Nem sikerült kapcsolatot a rendszer a telepített Service Map ügynökkel küld jelentést hello egy tett kísérlet során nem sikerült hello kapcsolat esetén is, hogy a rendszer. Szolgáltatástérkép betartásával tooestablish teljesítő TCP-szoftvercsatornák a kapcsolat a folyamat méri. Ezt a hibát okozhatja egy tűzfal, a helytelen konfiguráció hello ügyfél vagy kiszolgáló, vagy a távoli szolgáltatás nem volt elérhető.
 
 ![Nem sikerült kapcsolatok](media/oms-service-map/failed-connections.png)
 
-Hibás kapcsolatok elősegítheti a hibaelhárítást, áttelepítési érvényesítési, biztonsági elemzés és a teljes architectural understanding ismertetése. Nem sikerült kapcsolatok néha ártalmatlan, de gyakran pontok közvetlenül a problémát, például egy feladatátvételi környezetet hirtelen kiderül, hogy nem érhető el, vagy két alkalmazásrétegek nem képes kommunikálni a felhőben az áttelepítés után.
+Hibás kapcsolatok elősegítheti a hibaelhárítást, áttelepítési érvényesítési, biztonsági elemzés és a teljes architectural understanding ismertetése. Hibás kapcsolatok néha ártalmatlan, de gyakran pontok közvetlenül tooa probléma, például egy feladatátvételi környezetet hirtelen kiderül, hogy nem érhető el, vagy két alkalmazásrétegek nem tootalk éppen egy felhőalapú áttelepítése után.
 
 ## <a name="client-groups"></a>Az ügyfélcsoportok
-Az ügyfélcsoportok a térképen jelölőnégyzetéből, amelyek megfelelnek az ügyfél gépek, amelyeken nincs függőségi ügynökök. Egyetlen ügyfél csoport jelöli az ügyfelek egy adott folyamat vagy a számítógép.
+Az ügyfélcsoportok hello térképen jelölőnégyzetéből, amelyek megfelelnek az ügyfél gépek, amelyeken nincs függőségi ügynökök. Egyetlen ügyfél csoport hello ügyfelek egy adott folyamat vagy a számítógép jelenti.
 
 ![Az ügyfélcsoportok](media/oms-service-map/client-groups.png)
 
-Egy ügyfél csoportban lévő kiszolgálók IP-címeit, jelölje ki a csoport. A csoport tartalmát jelennek meg a **ügyfél tulajdonságai** ablaktáblán.
+toosee hello IP-címek hello kiszolgálók ügyfél-csoportjában válassza hello csoport. hello csoport hello tartalmát hello szereplő **ügyfél tulajdonságai** ablaktáblán.
 
 ![Ügyfél csoport tulajdonságai](media/oms-service-map/client-group-properties.png)
 
 ## <a name="server-port-groups"></a>Kiszolgálóport csoportok
-Kiszolgálóport csoportok jelölőnégyzetéből, amelyek megfelelnek a kiszolgálókon, amelyeken nincs függőségi ügynökök server portok. A lista tartalmazza az portot és a kapcsolatokat ehhez a porthoz kiszolgálók számának számát. Bontsa ki a jelölőnégyzetet, hogy az egyes kiszolgálók és a kapcsolatokat. Ha a mezőben csak egy kiszolgáló, a neve vagy IP-cím szerepel.
+Kiszolgálóport csoportok jelölőnégyzetéből, amelyek megfelelnek a kiszolgálókon, amelyeken nincs függőségi ügynökök server portok. hello mezőben hello kiszolgálóport és hello több kiszolgálót kapcsolatok toothat port számát tartalmazza. Bontsa ki a hello mezőben toosee hello egyes kiszolgálók és a kapcsolatokat. Ha csak egy kiszolgáló hello mezőben, hello nevét vagy IP-cím szerepel.
 
 ![Kiszolgálóport csoportok](media/oms-service-map/server-port-groups.png)
 
 ## <a name="context-menu"></a>Helyi menü
-A három ponttal (…) a lap tetején kattintson jobb bármely kiszolgáló jeleníti meg, hogy a kiszolgáló a helyi menü.
+Hello három ponttal (…) hello tetején kattintson jobb bármely kiszolgáló hello helyi menüjére, hogy a kiszolgáló jeleníti meg.
 
 ![Nem sikerült kapcsolatok](media/oms-service-map/context-menu.png)
 
 ### <a name="load-server-map"></a>Betöltési server térkép
-Kattintson a **terhelés Server térkép** új leképezés a kijelölt kiszolgálón, az új fókusz gép viszi.
+Kattintson a **terhelés Server térkép** tooa új leképezés hello kijelölt kiszolgálón, a hello új fókusz gép viszi.
 
 ### <a name="show-self-links"></a>Megjeleníti az önhivatkozások
-Kattintson a **megjelenítése Self-Links** újrarajzolások számában megadva a kiszolgáló csomópontjára, így azokat az önhivatkozások, amelyek kezdődnek és zárulnak folyamatok belül a kiszolgáló TCP-kapcsolatok. Ha erre az önhivatkozások jelennek meg, a menü parancs változások **elrejtése Self-Links**, így kikapcsolhatja azokat.
+Kattintson a **megjelenítése Self-Links** újrarajzolja hello server csomóponton, így azokat az önhivatkozások, amelyeket kezdődnek és zárulnak folyamatok belül hello kiszolgáló TCP-kapcsolatok. Ha erre az önhivatkozások is hello menü parancs végrehajtása túl is látható,**elrejtése Self-Links**, így kikapcsolhatja azokat.
 
 ## <a name="computer-summary"></a>A számítógép összefoglaló
-A **gép összegzés** ablaktáblán egy kiszolgáló operációs rendszer, függőség számát és az Operations Management Suite megoldásait adatait áttekintését tartalmazza. Ezen adatok közé tartoznak a teljesítménymutatók, szolgáltatásjegyek ügyfélszolgálati, változások követését, biztonsági és frissítéseket.
+Hello **gép összegzés** ablaktáblán egy kiszolgáló operációs rendszer, függőség számát és az Operations Management Suite megoldásait adatait áttekintését tartalmazza. Ezen adatok közé tartoznak a teljesítménymutatók, szolgáltatásjegyek ügyfélszolgálati, változások követését, biztonsági és frissítéseket.
 
 ![Gép összefoglalás ablaktábla](media/oms-service-map/machine-summary.png)
 
 ## <a name="computer-and-process-properties"></a>Számítógép és a folyamat tulajdonságai
-Navigálás a Szolgáltatástérkép térkép, kiválaszthatja a gépek és a folyamatok ahhoz, hogy azok tulajdonságaival kapcsolatos további környezetben. Gépek DNS-neve, IPv4 címek, CPU és memória kapacitás, virtuális gép típusa, operációs rendszer és verzió, a időt és az Operations Management Suite és a Service Map ügynökök azonosítók újraindítás utolsó kapcsolatos adatok megadása.
+Amikor a Service Map térkép, kiválaszthatja a gépek és a folyamatok toogain további környezet adnak a tulajdonságaikról. Gépek DNS-neve, IPv4 címek, CPU és memória kapacitás, virtuális gép típusa, operációs rendszer és verzió, a időt és az Operations Management Suite és a Service Map ügynökök hello azonosítók újraindítás utolsó kapcsolatos adatok megadása.
 
 ![Számítógép-tulajdonságok panelen](media/oms-service-map/machine-properties.png)
 
@@ -178,53 +178,53 @@ Folyamat részletes adatainak összegyűjtése futó folyamatok, beleértve a fo
 
 ![Folyamat tulajdonságok panelen](media/oms-service-map/process-properties.png)
 
-A **folyamat összegzése** ablaktábla a folyamat kapcsolatban, beleértve annak kötött portok, a bejövő és kimenő kapcsolatok további információkkal szolgál, és a kapcsolatok nem sikerült.
+Hello **folyamat összegzése** ablaktábla hello folyamat kapcsolatot, beleértve annak kötött portok, a bejövő és kimenő kapcsolatok további információkkal szolgál, és a kapcsolatok nem sikerült.
 
 ![Folyamat összefoglalás ablaktábla](media/oms-service-map/process-summary.png)
 
 ## <a name="operations-management-suite-alerts-integration"></a>Az Operations Management Suite riasztások integráció
-Szolgáltatástérkép integrálódik az Operations Management Suite riasztások a kiválasztott időtartomány égetett riasztások a kiválasztott kiszolgálóhoz tartozó megjeleníthető. A kiszolgáló megjelenít egy ikont, ha nincsenek az aktuális riasztásokat, és a **gép riasztások** ablaktábla listázza a riasztásokat.
+Szolgáltatástérkép integrálódik az Operations Management Suite riasztások indította tooshow riasztások hello kijelölt kiszolgálón kiválasztott hello időtartományba esik. hello server megjelenít egy ikont, ha nincsenek az aktuális riasztások és hello **gép riasztások** ablaktábla listázza a hello riasztásokat.
 
 ![Gép riasztások panelen](media/oms-service-map/machine-alerts.png)
 
-Ahhoz, hogy a Service Map vonatkozó értesítések megjelenítése, hozzon létre egy szabályt, amely egy adott számítógép következik be. Megfelelő riasztások létrehozásához:
-- Számítógép csoporthoz záradékot tartalmazni (például **számítógép időköze 1 perces**).
-- Válassza ki riasztást küld, metrika mérési alapján.
+tooenable Szolgáltatástérkép toodisplay vonatkozó riasztásokat, amely egy adott számítógép következik be riasztási szabályt létrehozni. toocreate megfelelő riasztások:
+- Lehet például egy záradék toogroup számítógép (például **számítógép időköze 1 perces**).
+- Válassza ki a tooalert metrika mérési alapján.
 
 ![Riasztási konfigurációja](media/oms-service-map/alert-configuration.png)
 
 
 ## <a name="operations-management-suite-log-events-integration"></a>Operations Management Suite naplózási események integráció
-Szolgáltatástérkép integrálható a naplófájl-keresési megjelenítése a kiválasztott kiszolgálóhoz tartozó összes elérhető napló események száma a kijelölt időtartományban. Esemény száma naplófájl-keresési ugorhat, és az egyéni naplózási eseményeket a listában bármely sorára kattintson.
+Szolgáltatástérkép integrálható a keresési napló tooshow hello kiválasztott kiszolgálóhoz tartozó összes elérhető napló események számát hello kijelölt időtartományban. Esemény száma toojump tooLog keresési hello lista bármely sorára kattintson, és hello egyedi aktiválási naplót eseményeket.
 
 ![Gép naplóeseményeket ablaktábla](media/oms-service-map/log-events.png)
 
 ## <a name="operations-management-suite-service-desk-integration"></a>Az Operations Management Suite szolgáltatás ügyfélszolgálati integráció
-Szolgáltatástérkép integráció az informatikai szolgáltatás Management-összekötő akkor automatikus, ha a két megoldás engedélyezve és konfigurálva az Operations Management Suite-munkaterülettel. Az integráció a Szolgáltatástérkép lett címkézve "Ügyfélszolgálatához." További információkért lásd: [ITSM munkaelemek IT Service Management-összekötő segítségével központilag kezelheti](https://docs.microsoft.com/azure/log-analytics/log-analytics-itsmc-overview).
+Szolgáltatástérkép integrációja hello IT Service Management-összekötő akkor automatikus, ha a két megoldás engedélyezve és konfigurálva az Operations Management Suite-munkaterülettel. a Service Map hello integrációs lett címkézve "Ügyfélszolgálatához." További információkért lásd: [ITSM munkaelemek IT Service Management-összekötő segítségével központilag kezelheti](https://docs.microsoft.com/azure/log-analytics/log-analytics-itsmc-overview).
 
-A **gép ügyfélszolgálatához** ablaktábla listázza a kijelölt időtartományban a kiválasztott kiszolgálóhoz tartozó összes informatikai szolgáltatások kezelésében eseményt. A kiszolgáló megjelenít egy ikont, ha az aktuális elem és a gép ügyfélszolgálatához ablaktábla listázza azokat.
+Hello **gép ügyfélszolgálatához** ablaktábla listázza a kiválasztott hello időtartomány hello a kiválasztott kiszolgálóhoz tartozó összes informatikai szolgáltatások kezelésében eseményt. hello server megjelenít egy ikont, ha nincsenek aktuális elemek és hello gép ügyfélszolgálatához ablaktábla listázza azokat.
 
 ![Gép ügyfélszolgálatához ablaktábla](media/oms-service-map/service-desk.png)
 
-A cikk a csatlakoztatott ITSM megoldásban megnyitásához kattintson **nézet munkaelem**.
+Kattintson a csatlakoztatott ITSM megoldásban tooopen hello elem **nézet munkaelem**.
 
-A naplófájl-keresési elem részleteinek megtekintéséhez kattintson **jelenjen meg a keresési napló**.
+hello elem a napló keresési tooview hello részletekért kattintson **jelenjen meg a keresési napló**.
 
 
 ## <a name="operations-management-suite-change-tracking-integration"></a>Az Operations Management Suite változások követése integráció
 Szolgáltatástérkép integráció a változások követése akkor automatikus, ha a két megoldás engedélyezve és konfigurálva az Operations Management Suite-munkaterülettel.
 
-A **gép változások követése** ablaktábla listázza az összes módosításokat, a legutóbbi első, valamint egy hivatkozást a naplóban keresse meg a további részletek lebontva.
+Hello **gép változások követése** ablaktábla listázza a összes módosítás, a legutóbbi hello először, valamint egy hivatkozást toodrill le tooLog keresse meg a további részletek.
 
 ![Gép változások követése ablaktábla](media/oms-service-map/change-tracking.png)
 
-Az alábbi képen, amelyeket konfigurációváltozás esemény részletes nézet kijelölése után **megjelenítése a Naplóelemzési**.
+hello példánycsoportokat, amelyeket konfigurációváltozás esemény részletes nézet kijelölése után **megjelenítése a Naplóelemzési**.
 
 ![Konfigurációváltozás esemény](media/oms-service-map/configuration-change-event.png)
 
 
 ## <a name="operations-management-suite-performance-integration"></a>Az Operations Management Suite teljesítmény-integráció
-A **gépek teljesítménye** ablaktábla megjeleníti a kiválasztott kiszolgálóhoz tartozó szabványos teljesítménymutatók. A mérőszámok közé tartozik a CPU kihasználtsága, memória-felhasználás, küldött és fogadott hálózati bájtok és a legfelső szintű folyamatok listáját által küldött és fogadott hálózati bájtok. Ahhoz, hogy a hálózati teljesítményadatokat, kell is engedélyezte az Operations Management Suite átviteli adatok 2.0 megoldás.
+Hello **gépek teljesítménye** ablaktáblán jelennek meg a standard teljesítménymutatók hello kijelölt kiszolgálóra vonatkozóan. hello mérőszámok közé tartozik a CPU kihasználtsága, memória-felhasználás, küldött és fogadott hálózati bájtok és hello felső folyamatok listáját által küldött és fogadott hálózati bájtok. tooget hello hálózati teljesítményadatokat kell is engedélyezte hello Operations Management Suite átviteli adatok 2.0 megoldás.
 
 ![Gép teljesítmény ablaktábla](media/oms-service-map/machine-performance.png)
 
@@ -232,7 +232,7 @@ A **gépek teljesítménye** ablaktábla megjeleníti a kiválasztott kiszolgál
 ## <a name="operations-management-suite-security-integration"></a>Az Operations Management Suite biztonsági integráció
 Biztonsági és a naplózási szolgáltatás térkép integrációját akkor automatikus, ha a két megoldás engedélyezve és konfigurálva az Operations Management Suite-munkaterülettel.
 
-A **gép biztonsági** ablaktábla megjeleníti azokat az adatokat az Operations Management Suite biztonsági és hitelesítési megoldás a kijelölt kiszolgálóra vonatkozóan. A panelen a kiszolgáló függőben lévő biztonsági problémák összegzését a kijelölt időtartományban sorolja fel. Kattintson bármelyik a biztonsági problémák csukja le a velük kapcsolatos részletek napló keresése.
+Hello **gép biztonsági** ablaktábla megjeleníti azokat a hello Operations Management Suite biztonsági és hitelesítési megoldás hello kijelölt kiszolgáló adatait. hello ablaktábla listázza a függőben lévő biztonsági problémák hello kiszolgáló összegzését hello kijelölt időtartományban. Kattintson bármelyik hello biztonsági problémák csukja le a velük kapcsolatos részletek napló keresése.
 
 ![Számítógép biztonsági ablaktábla](media/oms-service-map/machine-security.png)
 
@@ -240,76 +240,76 @@ A **gép biztonsági** ablaktábla megjeleníti azokat az adatokat az Operations
 ## <a name="operations-management-suite-updates-integration"></a>Az Operations Management Suite frissítések integráció
 Szolgáltatástérkép integráció a frissítéskezelés akkor automatikus, ha a két megoldás engedélyezve és konfigurálva az Operations Management Suite-munkaterülettel.
 
-A **Machine frissítések** ablaktáblán jelennek meg az Operations Management Suite frissítés felügyeleti megoldás a kiválasztott kiszolgálóhoz tartozó adatokat. A panelen a kiszolgáló a hiányzó frissítésekkel összegzését a kijelölt időtartományban sorolja fel.
+Hello **Machine frissítések** ablaktábla hello Operations Management Suite frissítés felügyeleti megoldás hello kijelölt kiszolgáló adatait jeleníti meg. hello ablaktábla listázza a hiányzó frissítésekkel hello kiszolgáló összegzését hello kijelölt időtartományban.
 
 ![Gép változások követése ablaktábla](media/oms-service-map/machine-updates.png)
 
 ## <a name="log-analytics-records"></a>Log Analytics-rekordok
-Szolgáltatástérkép számítógép és a folyamat leltáradatok érhető el [keresési](../log-analytics/log-analytics-log-searches.md) a Naplóelemzési. Ezek az adatok alkalmazhat, amely tartalmazza az áttelepítés megtervezése, kapacitáselemzési, felderítési és igény szerinti teljesítmény hibaelhárítási forgatókönyveket.
+Szolgáltatástérkép számítógép és a folyamat leltáradatok érhető el [keresési](../log-analytics/log-analytics-log-searches.md) a Naplóelemzési. Az adatok tooscenarios, amely tartalmazza az áttelepítés megtervezése, kapacitáselemzési, felderítési és igény szerinti teljesítmény hibaelhárítási is alkalmazhatja.
 
-Külön rekordot minden egyedi számítógép és a folyamat mellett a rekordokat, amelyek egy folyamat vagy a számítógép indításakor vagy előre telepített szolgáltatás leképezés óránként jön létre. Ezeket a rekordokat az alábbi táblázatban a jellemzőkkel rendelkezik. A mezők és értékek a ServiceMapComputer_CL események leképezés a gép erőforrás ServiceMap Azure Resource Manager API-ja mezőket. A mezők és értékek a ServiceMapProcess_CL események leképezés a mezők a folyamat erőforrás ServiceMap Azure Resource Manager API-ban. A ResourceName_s mező megegyezik a megfelelő Resource Manager szerinti erőforrás neve mezőjében. 
+Külön rekordot minden egyedi számítógép és a folyamat óránként jön létre, továbbá toohello rögzíti, amelyek egy folyamat vagy a számítógép indításakor vagy előre telepített tooService hozzárendelését. Ezeket a rekordokat a következő táblák hello hello jellemzőkkel rendelkezik. hello mezők és értékek hello ServiceMapComputer_CL események képezze le a gép erőforrás hello ServiceMap Azure Resource Manager API hello toofields. hello mezők és értékek hello ServiceMapProcess_CL események leképezése hello hello ServiceMap Azure Resource Manager API folyamat erőforrás toohello mezőit. hello ResourceName_s mező hello megfelelő Resource Manager szerinti erőforrás hello név mezője megegyezik. 
 
 >[!NOTE]
->Szolgáltatástérkép szolgáltatások növekedésével a mezők kitöltése, változhat.
+>Szolgáltatástérkép szolgáltatások növekedésével a mezők kitöltése tulajdonos toochange.
 
-Nincsenek egyedi folyamatok és -számítógépek azonosításához használható belsőleg generált tulajdonságokat:
+Nincsenek belsőleg generált tulajdonságok tooidentify egyedi folyamatokat és az olyan számítógépek is használhatja:
 
-- Számítógép: Használata ResourceId vagy ResourceName_s a számítógépet az Operations Management Suite-munkaterülethez belül egyedi azonosításához.
-- Folyamat: Használata ResourceId egy folyamatot, az Operations Management Suite-munkaterülethez belül egyedi azonosításához. ResourceName_s egyedi, a gép, amelyen a folyamat fut (MachineResourceName_s) keretén belül 
+- Számítógép: Használata ResourceId vagy ResourceName_s toouniquely azonosítsa a számítógépet az Operations Management Suite-munkaterülethez belül.
+- Folyamat: Használata ResourceId toouniquely azonosítja a belül az Operations Management Suite-munkaterülethez. ResourceName_s egyedi hello gép mely hello folyamat fut. (MachineResourceName_s) hello környezeten belül 
 
-Több rekord is tartozhat egy adott folyamat és a megadott időtartomány számítógépe, mert a lekérdezések visszaadhatják egynél több rekordot ugyanazon a számítógépen vagy folyamat. Csak a legutóbbi rekord egészítse "|} a deduplikáció ResourceId"a lekérdezéshez.
+Mivel több rekord is létezik egy adott folyamat és a számítógép egy megadott időtartományba esik, a lekérdezések visszaadhatják a hello egynél több rekordot ugyanazon a számítógépen vagy folyamat. tooinclude csak hello legutóbbi rekord hozzáadása "|} a deduplikáció ResourceId"toohello lekérdezés.
 
 ### <a name="servicemapcomputercl-records"></a>ServiceMapComputer_CL rekordok
-Típusú rekordok *ServiceMapComputer_CL* van a Service Map ügynökkel kiszolgálók Hardverleltár-adatait. Ezeket a rekordokat az alábbi táblázatban a jellemzőkkel rendelkezik:
+Típusú rekordok *ServiceMapComputer_CL* van a Service Map ügynökkel kiszolgálók Hardverleltár-adatait. Ezeket a rekordokat a következő táblázat hello hello jellemzőkkel rendelkezik:
 
 | Tulajdonság | Leírás |
 |:--|:--|
 | Típus | *ServiceMapComputer_CL* |
 | SourceSystem | *OpsManager* |
-| ResourceId | A munkaterület egyik számítógépére egyedi azonosítója |
-| ResourceName_s | A munkaterület egyik számítógépére egyedi azonosítója |
-| ComputerName_s | A számítógép teljes Tartományneve |
-| Ipv4Addresses_s | Címek a kiszolgáló IPv4 listája |
-| Ipv6Addresses_s | Listáját a kiszolgáló IPv6-címek |
+| ResourceId | az egyik számítógépére hello munkaterület hello egyedi azonosítója |
+| ResourceName_s | az egyik számítógépére hello munkaterület hello egyedi azonosítója |
+| ComputerName_s | hello számítógépének FQDN-neve |
+| Ipv4Addresses_s | Hello kiszolgáló IPv4-címek listája |
+| Ipv6Addresses_s | Hello kiszolgáló IPv6-címek listája |
 | DnsNames_s | DNS-nevek tömbje |
 | OperatingSystemFamily_s | A Windows vagy Linux |
-| OperatingSystemFullName_s | Az operációs rendszer teljes neve  |
-| Bitness_s | Bitszámértékének meghatározása a gép (32 bites vagy 64 bites)  |
-| PhysicalMemory_d | A fizikai memória MB-ban |
-| Cpus_d | Processzorok száma |
-| CpuSpeed_d | A Processzor sebessége MHz-ben|
+| OperatingSystemFullName_s | hello hello operációs rendszer teljes név  |
+| Bitness_s | hello bitszámának hello machine (32 bites vagy 64 bites)  |
+| PhysicalMemory_d | hello fizikai memória MB-ban |
+| Cpus_d | hello processzorok száma |
+| CpuSpeed_d | hello processzorsebesség MHz-ben|
 | VirtualizationState_s | *ismeretlen*, *fizikai*, *virtuális*, *hipervizor* |
 | VirtualMachineType_s | *Hyper-v*, *vmware*, és így tovább |
-| VirtualMachineNativeMachineId_g | A hipervizor által hozzárendelt, a virtuális gép azonosítója |
-| VirtualMachineName_s | A virtuális gép neve |
-| BootTime_t | A rendszerindítás |
+| VirtualMachineNativeMachineId_g | hello a hipervizor által hozzárendelt virtuális gép azonosítója |
+| VirtualMachineName_s | virtuális gép hello hello neve |
+| BootTime_t | hello rendszerindítás |
 
 
 
 ### <a name="servicemapprocesscl-type-records"></a>ServiceMapProcess_CL típusú rekordok
-Típusú rekordok *ServiceMapProcess_CL* rendelkezik TCP kapcsolódó eljárások a Hardverleltár-adatait a Szolgáltatástérkép ügynökök kiszolgálókon. Ezeket a rekordokat az alábbi táblázatban a jellemzőkkel rendelkezik:
+Típusú rekordok *ServiceMapProcess_CL* rendelkezik TCP kapcsolódó eljárások a Hardverleltár-adatait a Szolgáltatástérkép ügynökök kiszolgálókon. Ezeket a rekordokat a következő táblázat hello hello jellemzőkkel rendelkezik:
 
 | Tulajdonság | Leírás |
 |:--|:--|
 | Típus | *ServiceMapProcess_CL* |
 | SourceSystem | *OpsManager* |
-| ResourceId | A munkaterület belül a folyamat egyedi azonosítója |
-| ResourceName_s | A gépen, amelyen fut a folyamat egyedi azonosítója|
-| MachineResourceName_s | A gép erőforrás neve |
-| ExecutableName_s | A folyamat végrehajtható fájljának neve |
-| StartTime_t | A folyamat készlet kezdete |
-| FirstPid_d | Az első azonosítója (PID) folyamatkészletben |
-| Description_s | A folyamat leírása |
-| CompanyName_s | A vállalat neve |
-| InternalName_s | A belső neve |
-| ProductName_s | A termék nevét |
-| ProductVersion_s | A verzió |
-| FileVersion_s | A fájl verziója |
-| CommandLine_s | A parancssorból |
-| ExecutablePath z | A végrehajtható fájl elérési útja |
-| WorkingDirectory_s | A munkakönyvtár |
-| Felhasználónév | A fiók, amely alatt a folyamat végrehajtása történik |
-| UserDomain | A tartományhoz, amely alatt a folyamat végrehajtása történik |
+| ResourceId | hello hello munkaterület belül a folyamat egyedi azonosítója |
+| ResourceName_s | hello hello gépen, amelyen fut a folyamat egyedi azonosítója|
+| MachineResourceName_s | hello gép hello erőforrás neve |
+| ExecutableName_s | hello hello folyamat végrehajtható fájl nevét |
+| StartTime_t | hello folyamat készlet kezdési ideje |
+| FirstPid_d | hello első azonosítója (PID) hello folyamatkészletben |
+| Description_s | hello folyamat leírása |
+| CompanyName_s | hello hello vállalat neve |
+| InternalName_s | hello belső neve |
+| ProductName_s | hello hello termék neve |
+| ProductVersion_s | hello termékverzió |
+| FileVersion_s | hello fájlverzió |
+| CommandLine_s | hello parancssor |
+| ExecutablePath z | hello elérési toohello végrehajtható fájl |
+| WorkingDirectory_s | hello munkakönyvtár |
+| Felhasználónév | hello fiók alatt mely hello folyamat végrehajtása történik |
+| UserDomain | hello tartomány alapján mely hello folyamat végrehajtása történik |
 
 
 ## <a name="sample-log-searches"></a>Naplókeresési minták
@@ -317,13 +317,13 @@ Típusú rekordok *ServiceMapProcess_CL* rendelkezik TCP kapcsolódó eljáráso
 ### <a name="list-all-known-machines"></a>Az összes ismert gép felsorolása
 Típus = ServiceMapComputer_CL |} a deduplikáció ResourceId
 
-### <a name="list-the-physical-memory-capacity-of-all-managed-computers"></a>Minden felügyelt számítógéphez fizikai memória kapacitásának listában.
+### <a name="list-hello-physical-memory-capacity-of-all-managed-computers"></a>Lista hello fizikai memória kapacitása minden felügyelt számítógéphez.
 Típus = ServiceMapComputer_CL |} Válassza ki a PhysicalMemory_d, ComputerName_s |} A Deduplikáció ResourceId
 
 ### <a name="list-computer-name-dns-ip-and-os"></a>Számítógép neve, a DNS, az IP és a az operációs rendszer.
 Típus = ServiceMapComputer_CL |} Válassza ki a ComputerName_s, OperatingSystemFullName_s, DnsNames_s, IPv4Addresses_s |} a deduplikáció ResourceId
 
-### <a name="find-all-processes-with-sql-in-the-command-line"></a>A parancssorban "sql" az összes folyamat keresése
+### <a name="find-all-processes-with-sql-in-hello-command-line"></a>Az "sql" minden folyamat található hello parancssor
 Típus = ServiceMapProcess_CL CommandLine_s = \*sql\* |} deduplikáció ResourceId
 
 ### <a name="find-a-machine-most-recent-record-by-resource-name"></a>Található (legutóbbi rekord) gép neve szerint
@@ -346,21 +346,21 @@ Típus = ServiceMapComputer_CL OperatingSystemFullName_s = \*CentOS\* |} Külön
 
 
 ## <a name="rest-api"></a>REST API
-A kiszolgáló, a folyamat és a függőségi adatokat a Service Map keresztül érhető el az összes a [szolgáltatás térkép REST API](https://docs.microsoft.com/rest/api/servicemap/).
+Minden hello server, a folyamat és a függőségi Szolgáltatástérkép adatai hello keresztül elérhető [szolgáltatás térkép REST API](https://docs.microsoft.com/rest/api/servicemap/).
 
 
 ## <a name="diagnostic-and-usage-data"></a>diagnosztikai és használati adatok
-A Microsoft automatikusan használati és teljesítményadatokat gyűjt a Szolgáltatástérkép szolgáltatás használata. A Microsoft ezeket az adatokat ellátására és fejlesztésére minőségének, biztonsági és integritását, a Service Map szolgáltatást használja. Ahhoz, hogy pontos és hatékony hibaelhárítási képességei, szerepel a szoftver, például az operációs rendszer és a verziója, a IP-cím, a DNS-nevét és a munkaállomás neve konfigurációs adatait. A Microsoft nem gyűjti, neveket, címeket és egyéb kapcsolattartási adatait.
+A Microsoft automatikusan használati és teljesítményadatokat gyűjt a Szolgáltatástérkép szolgáltatás hello használata. A Microsoft ezen adatok tooprovide használ, és hello minőségének, biztonsági és hello Szolgáltatástérkép szolgáltatás integritásának javítására. tooprovide pontos és hatékony hibaelhárítási képességei, hello adatok tartalmazzák a szoftverek, például az operációs rendszer és a verziója, a IP-cím, a DNS-nevét és a munkaállomás neve hello konfigurációs adatait. A Microsoft nem gyűjti, neveket, címeket és egyéb kapcsolattartási adatait.
 
-Adatok gyűjtésével és használatával kapcsolatos további információkért lásd: a [Microsoft Online Services adatvédelmi nyilatkozatát](https://go.microsoft.com/fwlink/?LinkId=512132).
+Adatok gyűjtésével és használatával kapcsolatos további információkért lásd: hello [Microsoft Online Services adatvédelmi nyilatkozatát](https://go.microsoft.com/fwlink/?LinkId=512132).
 
 
 ## <a name="next-steps"></a>Következő lépések
-További információ [keresések jelentkezzen](../log-analytics/log-analytics-log-searches.md) a Log Analyticshez Szolgáltatástérkép által gyűjtött adatok lekéréséhez.
+További információ [keresések jelentkezzen](../log-analytics/log-analytics-log-searches.md) a Naplóelemzési tooretrieve Szolgáltatástérkép által összegyűjtött adatokat.
 
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
-Tekintse meg a [hibaelhárítási szakaszában a Szolgáltatástérkép konfigurálása dokumentum](operations-management-suite-service-map-configure.md#troubleshooting).
+Lásd: hello [hibaelhárítási szakaszában hello konfigurálása a Service Map dokumentum](operations-management-suite-service-map-configure.md#troubleshooting).
 
 
 ## <a name="feedback"></a>Visszajelzés

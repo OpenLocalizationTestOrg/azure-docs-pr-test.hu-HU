@@ -1,5 +1,5 @@
 ---
-title: "SQL-adatraktár adatainak megjelenítése Power BI használatával |Microsoft Azure"
+title: a Power BI Microsoft Azure SQL Data Warehouse adatainak aaaVisualize
 description: "SQL-adatraktár adatainak megjelenítése Power BI használatával"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: integrate
 ms.date: 10/31/2016
 ms.author: martinle;barbkess
-ms.openlocfilehash: a41393730143b14e91318a61858d989fff3786c1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0425cf5abe7bc001b2a41df4d09bf5f2e42527e0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="visualize-data-with-power-bi"></a>Adatok megjelenítése Power BI használatával
 > [!div class="op_single_selector"]
@@ -31,66 +31,66 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Ez az oktatóanyag az SQL-adatraktárhoz Power BI-on keresztül történő kapcsolódást
+Az oktatóanyag bemutatja, hogyan toouse Power BI tooconnect tooSQL Data warehouse-ba, és néhány alapvető képi megjelenítéseket készíthet.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-SQL-Data-Warehouse-Sample-Data-and-PowerBI/player]
 > 
 > 
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
+az oktatóanyag teljesítéséhez toostep, lesz szüksége:
 
-* Egy SQL Data Warehouse, előre feltöltve az AdventureWorksDW adatbázisával. Ennek létrehozásához olvassa el az [SQL Data Warehouse létrehozása][Create a SQL Data Warehouse] című cikket, és válassza a mintaadatok betöltését. Ha már rendelkezik egy adatraktárral, de nincsenek mintaadatai, [a mintaadatokat manuálisan is betöltheti][load sample data manually].
+* SQL Data Warehouse előzetes betöltését hello AdventureWorksDW adatbázishoz. tooprovision a, lásd: [SQL Data Warehouse létrehozása] [ Create a SQL Data Warehouse] és tooload hello minta adatok kiválasztásához. Ha már rendelkezik egy adatraktárral, de nincsenek mintaadatai, [a mintaadatokat manuálisan is betöltheti][load sample data manually].
 
-## <a name="1-connect-to-your-database"></a>1. Csatlakozás az adatbázishoz
-A Power BI megnyitása és csatlakozás az AdventureWorksDW adatbázishoz:
+## <a name="1-connect-tooyour-database"></a>1. Csatlakozás tooyour adatbázis
+a Power BI tooopen, és csatlakozzon a tooyour AdventureWorksDW adatbázishoz:
 
-1. Jelentkezzen be az [Azure Portalra][Azure portal].
+1. Jelentkezzen be a hello [Azure-portálon][Azure portal].
 2. Kattintson az **SQL adatbázisok** elemre, és válassza ki az AdventureWorks nevű SQL Data Warehouse-adatbázist.
    
     ![Adatbázis keresése][1]
-3. Kattintson a „Megnyitás Power BI-ban” gombra.
+3. Hello "Megnyitás Power BI-ban" gombra.
    
     ![Power BI gomb][2]
-4. Az SQL Data Warehouse csatlakozási oldalán most meg kell jelennie az adatbázis webcímének. Kattintson a Tovább gombra.
+4. Meg kell jelennie hello SQL Data Warehouse csatlakozási oldalán az adatbázis webcímének. Kattintson a Tovább gombra.
    
     ![Power BI-csatlakozás][3]
-5. Adja meg az Azure SQL-kiszolgálón használt felhasználónevét és jelszavát, és teljesen csatlakozni fog az SQL Data Warehouse-adatbázishoz.
+5. Adja meg az Azure SQL server-felhasználónevét és jelszavát, és nem fogja teljesen csatlakoztatott tooyour SQL Data Warehouse-adatbázis.
    
     ![Power BI-bejelentkezés][4]
-6. Ha bejelentkezett a Power BI-ba, kattintson az AdventureWorksDW adatkészletre a bal oldali panelen. Ekkor megnyílik az adatbázis.
+6. Miután bejelentkezett a Power bi-ban, kattintson a hello AdventureWorksDW adatkészletre a bal oldali panelen hello. Ekkor megnyílik hello adatbázis.
    
     ![Power BI, AdventureWorksDW megnyitása][5]
 
 ## <a name="2-create-a-report"></a>2. Jelentés létrehozása
-Most már készen áll az AdventureWorksDW-mintaadatok elemzésére a Power BI használatával. Az elemzés végrehajtásához az AdventureWorksDW AggregateSales nevű nézete használható. Ebben a nézetben megtalálhatóak a vállalati értékesítés elemzéséhez szükséges fő mutatók.
+Meg vannak a Power BI tooanalyze toouse most már készen áll az AdventureWorksDW-mintaadatok. tooperform hello elemzést követően az AdventureWorksDW aggregatesales nevű nézete rendelkezik. Ebben a nézetben megtalálhatóak hello alapvető metrikákat hello hello vállalati értékesítés elemzéséhez.
 
-1. Az értékesítési összegeket irányítószám szerint megjelenítő térkép létrehozásához kattintson a jobb oldali panelen az AggregateSales nézetre annak kibontásához. Kattintson a PostalCode és a SalesAmount oszlopra azok kiválasztásához.
+1. az értékesítési összegeket toopostal kód hello jobb oldali ablaktáblában szerint térképre toocreate kattintson hello AggregateSales nézet tooexpand azt. Kattintson a PostalCode és a SalesAmount hello oszlopok tooselect őket.
    
     ![Power BI, AggregateSales kijelölése][6]
    
     A Power BI automatikusan felismeri, hogy ezek földrajzi adatok, és egy térképen jeleníti meg azokat.
    
     ![Power BI, térkép][7]
-2. Ez a lépés egy oszlopdiagramot hoz létre, amely az értékesítési összegeket az ügyfélbevételek szerint jeleníti meg. Ennek létrehozásához lépjen a kibontott AggregateSales nézetre. Kattintson a SalesAmount mezőre. Húzza a CustomerIncome mezőt balra, és helyezze a Tengely alá.
+2. Ez a lépés egy oszlopdiagramot hoz létre, amely az értékesítési összegeket az ügyfélbevételek szerint jeleníti meg. toocreate a lépjen toohello kibontott AggregateSales nézetre. Kattintson a SalesAmount mezőre hello. Húzza a hello Customerincome mezőt toohello balra, és helyezze a tengely alá.
    
     ![Power BI, tengely kijelölése][8]
    
-    Az oszlopdiagramot a bal oldalra helyeztük.
+    Hello sávdiagram hello balra helyeztük.
    
     ![Power BI, oszlop][9]
-3. Ez a lépés egy vonaldiagramot hoz létre, amely az értékesítési összegeket a megrendelési dátumok szerint mutatja. Ennek létrehozásához lépjen a kibontott AggregateSales nézetre. Kattintson a SalesAmount és az OrderDate oszlopra. A Megjelenítések oszlopban kattintson a vonaldiagram ikonjára (ez az első ikon a második sorban a Megjelenítések alatt).
+3. Ez a lépés egy vonaldiagramot hoz létre, amely az értékesítési összegeket a megrendelési dátumok szerint mutatja. toocreate a lépjen toohello kibontott AggregateSales nézetre. Kattintson a SalesAmount és az OrderDate oszlopra. Hello képi megjelenítések oszlopban kattintson a vonaldiagram ikonjára hello; Ez az első ikon hello hello a második sorban a megjelenítések alatt.
    
     ![Power BI, vonaldiagram kiválasztása][10]
    
-    Mostanra rendelkezésére áll egy jelentés, amely az adatok három különböző megjelenítését tartalmazza.
+    Most már rendelkezik egy jelentést, amely hello adatok három különböző megjelenítését.
    
     ![Power BI, vonal][11]
 
 A folyamatot bármikor mentheti a **Fájl** gombra kattintva, majd a **Mentés** lehetőséget választva.
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy ízelítőt kapott a mintaadatok kezeléséből, megismerkedhet a [fejlesztés][develop], a [betöltés][load] és az [áttelepítés][migrate] folyamatával, vagy körülnézhet a [Power BI webhelyén][Power BI website].
+Most, hogy ízelítőt kapott bizonyos idő toowarm hello mintaadatokkal, lásd: hogyan túl[fejlesztése][develop], [betölteni][load], vagy [ Telepítse át][migrate]. Vessen egy pillantást hello vagy [Power BI webhelyén][Power BI website].
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-find-database.png
@@ -111,7 +111,7 @@ Most, hogy ízelítőt kapott a mintaadatok kezeléséből, megismerkedhet a [fe
 [develop]: sql-data-warehouse-overview-develop.md
 [load]: sql-data-warehouse-overview-load.md
 [load sample data manually]: sql-data-warehouse-load-sample-databases.md
-[connecting to SQL Data Warehouse]: sql-data-warehouse-integrate-power-bi.md
+[connecting tooSQL Data Warehouse]: sql-data-warehouse-integrate-power-bi.md
 [Create a SQL Data Warehouse]: sql-data-warehouse-get-started-provision.md
 
 <!--Other-->

@@ -9,51 +9,51 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 05/10/2017
-ms.openlocfilehash: 150c4f53c5ab6a6425b6af7d286d4c1518b006f8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1d46a4434c483c3612a9a7b4cdef718d6dc3e765
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-database-for-postgresql-server-firewall-rules"></a>Azure-adatbázis PostgreSQL-kiszolgáló tűzfalszabályainak
-Tűzfalak tagadni a hozzáférést minden az adatbázis-kiszolgáló csak akkor adja meg, mely számítógépek rendelkeznek engedéllyel. A tűzfal engedélyezi a hozzáférést a kiszolgálóhoz, az egyes kérelmek az eredeti IP-címe alapján.
-A tűzfal konfigurálásakor olyan tűzfalszabályokat adhat meg, amelyek meghatározzák az elfogadható IP-címtartományokat. Tűzfal-szabályokat hozhat létre a kiszolgálói szinten.
+Tűzfalak tooyour adatbázis-kiszolgáló minden hozzáférés tiltása, amíg megadhatja, hogy mely számítógépek rendelkeznek engedéllyel. hello tűzfal engedélyezi a hozzáférést toohello kiszolgáló IP-cím az egyes kérelmek származó hello alapján.
+tooconfigure tűzfalszabályok elfogadható IP-címek tartományát adja meg a tűzfal létrehozása. Hello kiszolgálószintű tűzfal-szabályokat hozhat létre.
 
-**Tűzfal-szabályok:** ezek a szabályok engedélyezi az ügyfelek számára a teljes Azure-adatbázis eléréséhez PostgreSQL-kiszolgáló esetén ez azt jelenti, hogy összes adatbázis belül az azonos logikai kiszolgáló. Kiszolgálószintű tűzfal-szabályokat konfigurálhatja az Azure-portál használatával vagy az Azure parancssori felület parancsait. Kiszolgálószintű tűzfal-szabályok létrehozása, az előfizetés tulajdonosa vagy egy előfizetés közreműködői kell lennie.
+**Tűzfal-szabályok:** ezeket a szabályokat a teljes Azure-adatbázis engedélyezze ügyfelek tooaccess PostgreSQL-kiszolgálón, ez azt jelenti, hogy az összes hello adatbázis belül hello azonos logikai kiszolgáló. Kiszolgálószintű tűzfal-szabályokat hello Azure-portál használatával vagy az Azure parancssori felület parancsait konfigurálhatja. szabályok toocreate kiszolgálószintű tűzfal, hello előfizetés tulajdonosának vagy egy előfizetés közreműködőjének kell lennie.
 
 ## <a name="firewall-overview"></a>Tűzfal áttekintése
-Az adatbázis elérésére az Azure-adatbázis PostgreSQL-kiszolgáló alapértelmezés szerint a tűzfal blokkolja. A kiszolgáló egy másik számítógépről használatának megkezdéséhez meg kell adnia egy vagy több kiszolgálószintű engedélyezésére szolgáló tűzfalszabályok a kiszolgáló elérését. Használja a tűzfalszabályok adja meg, melyik IP-címtartományok engedélyezi az internetről. A tűzfalszabályok nincs hatással a hozzáférést az Azure portál magát.
-Kapcsolódási kísérletek az internetről és az Azure először eltelik a tűzfalon keresztül is eléri a PostgreSQL-adatbázisban a következő ábrán látható módon:
+Az összes adatbázis hozzáférés tooyour Azure adatbázis PostgreSQL-kiszolgáló alapértelmezés szerint hello tűzfal blokkolja. toobegin a kiszolgálót egy másik számítógépre, a használatával kell toospecify egy vagy több kiszolgálószintű tűzfal szabályok tooenable tooyour kiszolgáló. Hello tűzfal szabályok toospecify mely IP-címtartományt a hello Internet tooallow használja. Hello tűzfalszabályok ne legyenek hatással Access toohello magát az Azure portál.
+A kapcsolódási kísérletek hello Internet, és Azure először haladnak keresztül hello tűzfal ahhoz, azok képes elérni a PostgreSQL-adatbázisban, ahogy az ábra a következő hello:
 
-![A tűzfal működése áramló – példa](media/concepts-firewall-rules/1-firewall-concept.png)
+![Példa áramló hello tűzfal működése](media/concepts-firewall-rules/1-firewall-concept.png)
 
-## <a name="connecting-from-the-internet"></a>Csatlakozás az internetről
-Az Azure-adatbázishoz PostgreSQL-kiszolgálón lévő összes adatbázis kiszolgálószintű tűzfal-szabályokat alkalmazni. Ha a kérés IP-címe a kiszolgálószintű tűzfalszabályokban megadott tartományok egyikében található, a tűzfal engedélyezi a csatlakozást.
-Ha az IP-cím, a kérelem nem az adatbázis-szintjére, vagy a kiszolgálószintű tűzfalszabály megadott tartományok belül van, a kapcsolódási kérelem sikertelen lesz.
-Például ha az alkalmazás a PostgreSQL JDBC-illesztőt csatlakozik, felmerülhet a hiba történt a csatlakozás, ha a tűzfal blokkolja a kapcsolatot.
+## <a name="connecting-from-hello-internet"></a>A hello Internet csatlakoztatása
+Kiszolgálószintű tűzfal-szabályokat alkalmazni tooall adatbázisok hello Azure adatbázis PostgreSQL-kiszolgáló. Ha hello IP-cím hello kérelem hello kiszolgálószintű tűzfal szabályokban megadott hello tartományok egyikébe esik, hello kapcsolat kapnak.
+Ha hello IP-cím hello kérelem nincs belül hello tartományok hello adatbázis szintű valamelyikében vagy megadott kiszolgálószintű tűzfal-szabályok, hello kapcsolódási kérelem sikertelen lesz.
+Például ha az alkalmazás a PostgreSQL JDBC-illesztőt csatlakozik, a hiba történt a tooconnect, amikor hello tűzfal blokkolja a hello kapcsolat találkozhat.
 > java.util.concurrent.ExecutionException: java.lang.RuntimeException: org.postgresql.util.PSQLException: végzetes: nincs pg\_hba.conf bejegyzés állomás "123.45.67.890", a felhasználó "adminuser", az adatbázis "postgresql", SSL
 
 ## <a name="programmatically-managing-firewall-rules"></a>Tűzfalszabályok szoftveres kezelése
-Az Azure portálon kívül tűzfalszabályok programozott módon, Azure parancssori Felülettel kezelhetők.
+Emellett Azure-portálon, a szabályok lehetnek tűzfal toohello felügyelt programozott módon az Azure parancssori felület használatával.
 Lásd még: [hozzon létre és kezelheti az Azure-adatbázis PostgreSQL-tűzfalszabályok Azure parancssori felület használatával](howto-manage-firewall-using-cli.md)
 
-## <a name="troubleshooting-the-database-firewall"></a>Az adatbázistűzfal hibaelhárítása
-Amikor PostgreSQL-kiszolgáló szolgáltatás a Microsoft Azure adatbázishoz való hozzáférés nem a várt módon működnek várja, vegye figyelembe a következő szempontokat:
+## <a name="troubleshooting-hello-database-firewall"></a>Hello adatbázis tűzfal hibaelhárítása
+Vegye figyelembe a következő pontokat, amikor hozzáférési toohello Microsoft Azure-adatbázis PostgreSQL-kiszolgáló szolgáltatás nem a várt módon működnek várt hello:
 
-* **Az engedélyezési listán módosításai nem lépnek érvénybe még:** lehet, mint amennyit egy 5 perces késleltetést használ az vált, az Azure-adatbázishoz PostgreSQL-kiszolgáló tűzfal konfigurációjának érvénybe léptetéséhez.
+* **Módosítások toohello engedélyezési lista rendelkezik még nincsenek érvényben:** lehet, mint amennyit egy 5 perces késleltetést használ az Azure-adatbázis toohello PostgreSQL-kiszolgáló tűzfal konfigurációs tootake hatás változik.
 
-* **A bejelentkezés nem engedélyezett, vagy helytelen jelszót használt:** egy bejelentkezési nincs engedélye az PostgreSQL-kiszolgálóhoz tartozó Azure-adatbázis, vagy a használt jelszó nem megfelelő, ha a kapcsolat az Azure-adatbázishoz PostgreSQL-kiszolgáló megtagadva. Egy tűzfalbeállítás létrehozása lehetővé teszi az ügyfelek számára a kiszolgálóhoz való csatlakozás megkísérlését, azonban minden egyes ügyfélnek meg kell adnia a szükséges biztonsági hitelesítő adatokat.
+* **hello bejelentkezési nincs engedélyezve, vagy helytelen jelszót használt:** egy bejelentkezési nincs engedélye az hello Azure Database-kiszolgáló vagy hello használt jelszó PostgreSQL helytelen az, ha hello Azure-adatbázis kapcsolati toohello PostgreSQL Server megtagadva. Csak egy tűzfal-beállítás létrehozásához biztosít az ügyfelek számára egy lehetőség tooattempt tooyour server; kapcsolódás minden ügyfél hello szükséges biztonsági adatokat kell megadni.
 
-Például egy JDBC-ügyfélprogram segítségével a következő hiba jelenhetnek meg.
+Például egy JDBC-ügyfélprogram segítségével hello a következő hiba jelenhet meg.
 > java.util.concurrent.ExecutionException: java.lang.RuntimeException: org.postgresql.util.PSQLException: végzetes: "felhasználónév" felhasználói jelszó hitelesítése sikertelen.
 
-* **Dinamikus IP-cím**: Ha az internetkapcsolata dinamikus IP-címkezeléssel rendelkezik, és problémákat okoz a tűzfalon való átjutás, próbálja ki a következő megoldások valamelyikét:
+* **Dinamikus IP-cím:** Ha az internethez, a dinamikus IP-címzést és tapasztal hello tűzfalon keresztül történt, próbálkozzon a következő megoldások hello egyikét:
 
-* Az internetszolgáltató (ISP) kérjen a PostgreSQL-kiszolgáló az Azure-adatbázishoz hozzáférő ügyfélszámítógépekhez rendelt IP-címtartományt, és adja hozzá az IP-címtartományt, egy tűzfalszabályt.
+* Kérje meg az internetszolgáltató (ISP) hello IP-címtartomány hozzárendelt tooyour ügyfélszámítógépek számára, hogy hozzáférési hello Azure adatbázis PostgreSQL-kiszolgáló, és adja hozzá a hello IP-címtartomány tűzfal szabály.
 
-* Állítson be statikus IP-címeket az ügyfélszámítógépei számára, majd adja meg az IP-címeket tűzfalszabályokként.
+* Első statikus IP-címzés helyette az ügyfélszámítógépek számára, és adja hozzá a hello IP-címek, tűzfal-szabályokat.
 
 ## <a name="next-steps"></a>Következő lépések
 A kiszolgáló- és adatbázis tűzfal-szabályok létrehozása a cikkekben talál:
-* [Hozzon létre és kezelheti az Azure-adatbázis PostgreSQL-tűzfalszabályok az Azure portál használatával](howto-manage-firewall-using-portal.md)
+* [Hozzon létre és kezelheti az Azure-adatbázis PostgreSQL-tűzfalszabályok hello Azure-portál használatával](howto-manage-firewall-using-portal.md)
 * [Hozzon létre és kezelheti az Azure-adatbázis PostgreSQL-tűzfalszabályok Azure parancssori felület használatával](howto-manage-firewall-using-cli.md)

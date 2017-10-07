@@ -1,6 +1,6 @@
 ---
-title: "A napló használata az Azure AD Privileged Identity Management |} Microsoft Docs"
-description: "Útmutató: az auditnapló használata az Azure Privileged Identity Management bővítmény."
+title: "az Azure AD Privileged Identity Management aaaHow toouse hello audit napló |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse hello napló hello Azure Privileged Identity Management bővítmény."
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,48 +15,48 @@ ms.workload: identity
 ms.date: 02/14/2017
 ms.author: billmath
 ms.custom: pim
-ms.openlocfilehash: 7d9a5255a64d46c1388d328a606b3f297d61262b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 36987eaab9fe02c5dd7b4f4705e487299430745d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-audit-log-in-pim"></a>A PIM a napló használatával
-A Privileged Identity Management (PIM) napló segítségével tekintse meg a felhasználó-hozzárendeléseket és aktiválások egy adott időtartamon belül. Ha meg szeretné tekinteni a teljes naplózási előzmények a bérlői rendszergazda, a végfelhasználó és a szinkronizálási tevékenység, beleértve a tevékenység használhatja a [Azure Active Directory hozzáférési és használati jelentések.](active-directory-view-access-usage-reports.md)
+# <a name="using-hello-audit-log-in-pim"></a>A PIM hello napló használatával
+Használhatja hello Privileged Identity Management (PIM) naplózási napló toosee összes hello felhasználó hozzárendelést és aktiválások egy adott időtartamon belül. Ha azt szeretné, toosee hello teljes naplózási előzmények tevékenység a bérlői rendszergazda, a végfelhasználó és a szinkronizálási tevékenység, beleértve a hello használhatja [Azure Active Directory hozzáférési és használati jelentések.](active-directory-view-access-usage-reports.md)
 
-## <a name="navigate-to-the-audit-log"></a>Keresse meg a napló
-Az a [Azure-portálon](https://portal.azure.com) irányítópultot, válassza ki a **Azure AD Privileged Identity Management** alkalmazást. Ott, hozzáférni a biztonsági naplóba kattintva **kiemelt szerepköröket kezelése** > **naplózási előzmények** a PIM irányítópulton.
+## <a name="navigate-toohello-audit-log"></a>Keresse meg a toohello audit napló
+A hello [Azure-portálon](https://portal.azure.com) irányítópultot, válassza hello **Azure AD Privileged Identity Management** alkalmazást. Ott, hozzáférési napló hello kattintva **kiemelt szerepköröket kezelése** > **naplózási előzmények** hello PIM irányítópulton.
 
-## <a name="the-audit-log-graph"></a>Az ellenőrzési napló diagramhoz
-A napló segítségével tekintse meg az összes aktiválás, napi maximális aktiválások és napi átlagos aktiválások vonaldiagramon.  Az adatok szerepkör szűrhető Ha több szerepkör van a naplózási előzmények.
+## <a name="hello-audit-log-graph"></a>hello naplózási napló diagramhoz
+Hello naplózási napló tooview hello összes aktiválás, napi maximális aktiválások és napi átlagos aktiválások vonaldiagramon használható.  Hello adatok szerepkör szűrhető Ha több szerepkör hello naplózási előzmények szerepel.
 
-Használja a **idő**, **művelet**, és **szerepkör** gombokra kattintva rendezheti a naplót.
+Használjon hello **idő**, **művelet**, és **szerepkör** gombok toosort hello napló.
 
-## <a name="the-audit-log-list"></a>A vizsgálati naplók listája
-A vizsgálati naplók listája oszlopai a következők:
+## <a name="hello-audit-log-list"></a>hello naplózási naplók listája
+a hello napló napló listájában hello oszlopok a következők:
 
-* **Kérelmező** – a felhasználóknak, akik a szerepkör aktiválása vagy módosítsa a kért.  Ha az érték "Azure rendszer", ellenőrizze a Azure naplózási további információt.
-* **Felhasználói** -aktiválásával vagy az adott szerepkörhöz hozzárendelt felhasználó.
-* **Szerepkör** -a szerepkörhöz hozzárendelt, vagy a felhasználó által aktivált.
-* **A művelet** – a kérelmező által végrehajtott műveleteket. Ez magában foglalhatja hozzárendelés, helyekhez, aktiválás vagy deaktiválás.
-* **Idő** – Ha a művelet történt.
-* **Mintafelismerési** -szöveg az aktiválás során az az oka mező megadása esetén megjelenik itt.
+* **Kérelmező** -hello felhasználó, aki a kért hello szerepkör aktiválása vagy módosítása.  Hello értéke "Azure rendszer", ha a naplóban hello Azure naplózási további információt.
+* **Felhasználói** -hello felhasználó az aktiválás vagy tooa szerepkörrel rendelkeznek.
+* **Szerepkör** -hello szerepkör vagy felhasználó hello aktiválására.
+* **A művelet** – hello kérelmező hello műveleteit. Ez magában foglalhatja hozzárendelés, helyekhez, aktiválás vagy deaktiválás.
+* **Idő** – Ha hello művelet történt.
+* **Mintafelismerési** -szöveg hello OK mezőbe az aktiválás során megadása esetén megjelenik itt.
 * **Lejárati** – csak akkor érvényes, a szerepkörök aktiválásához.
 
-## <a name="filter-the-audit-log"></a>A napló szűrése
-A gombra kattintva megjelenik a napló információkat szűrheti is a **szűrő** gombra.  A **frissítés diagram (paraméterek) panelen** jelenik meg.
+## <a name="filter-hello-audit-log"></a>Szűrő hello audit napló
+Hello információkat megjelenő hello naplóban hello kattintva szűrheti **szűrő** gombra.  Hello **frissítés diagram (paraméterek) panelen** jelenik meg.
 
-Miután beállította a szűrőket, kattintson a **frissítés** a naplóban szereplő adatok szűrésére.  Ha az adatok nem jelennek meg azonnal, frissítse az oldalt.
+Hello szűrők beállítását követően kattintson **frissítés** toofilter hello adatok hello naplóban.  Ha hello adatok nem jelennek meg azonnal, frissítse a hello lapot.
 
-### <a name="change-the-date-range"></a>Módosítás dátumtartományban
-Használja a **Ma**, **múlt héten**, **elmúlt hónap**, vagy **egyéni** gombokkal módosíthatja az időtartományt a biztonsági napló.
+### <a name="change-hello-date-range"></a>Hello dátumtartomány módosítása
+Használjon hello **Ma**, **múlt héten**, **elmúlt hónap**, vagy **egyéni** toochange hello időtartománya hello napló gomb.
 
-Ha úgy dönt, a **egyéni** gomb, Ön által megadott egy **a** dátummezője és egy **való** dátum mezőben adja meg a napló dátumtartomány.  HH/nn/éééé formátumban adja meg a dátumok, vagy kattintson a a **naptár** ikonra, és válassza ki a dátum alapján.
+Ha úgy dönt, hogy hello **egyéni** gomb, Ön által megadott egy **a** dátummezője és egy **való** dátum mező toospecify dátumtartomány hello naplóhoz.  Hello dátumát éééé/hh/nn formátumban adja meg, vagy kattintson a hello **naptár** ikonra, és válassza a hello dátumát a naptárból.
 
-### <a name="change-the-roles-included-in-the-log"></a>A naplóban szereplő szerepkörök módosítása
-Ellenőrizze, vagy törölje a jelet a **szerepkör** vagy kizárja a a naplóból szerepkörönként jelölőnégyzetét.
+### <a name="change-hello-roles-included-in-hello-log"></a>Hello szerepköreinek hello napló módosítása
+Ellenőrizze, vagy törölje a jelet hello **szerepkör** jelölőnégyzet következő tooeach szerepkör tooinclude vagy kizárási azt hello jelentkezzen.
 
-<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
+<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
 ## <a name="next-steps"></a>Következő lépések
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 

@@ -1,5 +1,5 @@
 ---
-title: "A Stream Analytics JSON-kimenetét |} Microsoft Docs"
+title: a Stream Analytics aaaJSON kimeneti |} Microsoft Docs
 description: "Ismerje meg, hogyan Stream Analytics egy célcsoport kijelölésével az Azure Cosmos DB JSON kimeneti adatok archiválása és alacsony késésű lekérdezései strukturálatlan JSON-adatokat."
 keywords: JSON kimeneti
 documentationcenter: 
@@ -15,41 +15,41 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: samacha
-ms.openlocfilehash: cc80b0080c806541362a1ef2d71b95862bd51ca2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fa717818c839ecd7a60fcee33d22011990fd5878
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="target-azure-cosmos-db-for-json-output-from-stream-analytics"></a>Cél Azure Cosmos DB JSON-kimenetét a Stream Analytics
 A Stream Analytics célba [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/) JSON-kimenetét, engedélyezi az archiválási és alacsony késésű kérelmek strukturálatlan JSON-adatokat. Ez a dokumentum ismertet néhány gyakorlati tanácsok a konfiguráció alkalmazásához.
 
-Azok számára, akiknek nem ismeri az Cosmos DB, vessen egy pillantást [Azure Cosmos DB képzési terv](https://azure.microsoft.com/documentation/learning-paths/documentdb/) a kezdéshez. 
+Azok számára, akiknek nem ismeri az Cosmos DB, vessen egy pillantást [Azure Cosmos DB képzési terv](https://azure.microsoft.com/documentation/learning-paths/documentdb/) tooget elindult. 
 
 Megjegyzés: A Mongo DB API alapú Cosmos DB gyűjtemények jelenleg nem támogatott. 
 
 ## <a name="basics-of-cosmos-db-as-an-output-target"></a>Egy kimeneti célként Cosmos DB alapjai
-Az Azure Cosmos DB kimeneti a Stream Analytics lehetővé teszi, hogy írása a streamfeldolgozási eredmények JSON kimenetként a Cosmos DB következő gyűjtemény(ek) készleteit szinkronizálja azokat. A Stream Analytics nem gyűjtemények létrehozása az adatbázis ehelyett nincs szükség kell létrehoznia őket előzetes megfizetése esetén. Ez az, hogy a számlázási költségek Cosmos DB gyűjtemények nem érzékelhető, és úgy, hogy a teljesítmény, a konzisztencia és a kapacitás közvetlenül a gyűjtemények észlelheti a [Cosmos DB API-k](https://msdn.microsoft.com/library/azure/dn781481.aspx). A folyamatos átviteli feladat gyűjtemények logikailag külön egy Cosmos adatfolyam-feladatot DB adatbázishoz használatát javasoljuk.
+hello Azure Cosmos DB kimenetet a Stream Analytics lehetővé teszi, hogy írása a streamfeldolgozási eredmények JSON kimenetként a Cosmos DB következő gyűjtemény(ek) készleteit szinkronizálja azokat. A Stream Analytics nem hoz létre gyűjteményeket az adatbázis ehelyett nincs szükség toocreate őket előzetes megfizetése esetén. Ez azért, hogy hello számlázási költségek Cosmos DB gyűjtemények átlátszó tooyou, és így hello teljesítmény hangolás konzisztencia és a gyűjtemények közvetlenül kapacitásának hello [Cosmos DB API-k](https://msdn.microsoft.com/library/azure/dn781481.aspx). Azt javasoljuk, egy Cosmos DB adatbázishoz folyamatos átviteli feladat toologically külön a folyamatos átviteli feladat-gyűjteményekben.
 
-A Cosmos DB adatgyűjtési beállítások némelyike részleteket lejjebb olvashatja.
+Hello Cosmos DB adatgyűjtési beállítások némelyike részleteket lejjebb olvashatja.
 
 ## <a name="tune-consistency-availability-and-latency"></a>Konzisztencia, a rendelkezésre állás és a késleltetés hangolása
-Saját alkalmazás igényeinek Cosmos DB lehetővé teszi, hogy jól hangolja az adatbázis és a gyűjtemények és konzisztencia, a rendelkezésre állás és a késleltetés közötti kompromisszumot. Attól függően, hogy milyen szintű olvasási konzisztenciát elleni forgatókönyv igényeinek és olvasási késés, kiválaszthatja a konzisztenciaszint adatbázis fiókja. Alapértelmezés szerint is Cosmos DB engedélyezi szinkron indexelő minden CRUD-műveletnek a gyűjteményhez. Ez a beállítás egy másik hasznos az írási/olvasási teljesítményt Cosmos DB szabályozására. A témakörrel kapcsolatos további információkért tekintse át a [módosítsa az adatbázis és a lekérdezés konzisztenciaszintek](../documentdb/documentdb-consistency-levels.md) cikk.
+toomatch alkalmazás igényeinek, Cosmos DB lehetővé teszi toofine hangolási hello adatbázis és a gyűjtemények és a ellenőrizze kompromisszumot konzisztencia, a rendelkezésre állás és a késleltetés között. Attól függően, hogy milyen szintű olvasási konzisztenciát elleni forgatókönyv igényeinek és olvasási késés, kiválaszthatja a konzisztenciaszint adatbázis fiókja. Alapértelmezés szerint is Cosmos DB engedélyezi szinkron indexelő minden CRUD művelet tooyour gyűjteményen. Ez az egy másik kapcsolót toocontrol hello írási/olvasási Cosmos DB teljesítményét. A témakörrel kapcsolatos további információkért tekintse át a hello [módosítsa az adatbázis és a lekérdezés konzisztenciaszintek](../documentdb/documentdb-consistency-levels.md) cikk.
 
 ## <a name="upserts-from-stream-analytics"></a>A Stream Analytics Upserts
-Cosmos DB Stream Analytics integrációja lehetővé teszi beszúrásához vagy frissítéséhez rögzíti a megadott azonosító oszlop alapján Cosmos DB gyűjteményben. Ez más néven a egy *Upsert*.
+Cosmos DB Stream Analytics integrációja lehetővé teszi tooinsert vagy frissítés rögzíti a Cosmos DB gyűjtemény egy adott dokumentum azonosító oszlop alapján. Ez a hivatkozott tooas is egy *Upsert*.
 
-A Stream Analytics használja az optimista Upsert módszert használja, ha frissítések csak végzett amikor insert Dokumentumazonosítója ütközés miatt sikertelen. A frissítés végzi el a Stream Analytics, a javítás, lehetővé teszi, hogy a dokumentumhoz, azaz hozzáadása új tulajdonságok vagy cseréje a meglévő tulajdonságot Növekményesen történik részleges frissítések. Vegye figyelembe, hogy megváltoztatja a tömb tulajdonságok a JSON-dokumentum eredményben a tömbben teljes első felülírja, azaz a tömb értékei nem egyesített.
+A Stream Analytics használja az optimista Upsert módszert használja, ha frissítések csak végzett amikor insert tooa Dokumentumazonosítója ütközés miatt sikertelen. A frissítés végzi el a Stream Analytics, a javítás, lehetővé teszi, hogy a részleges frissítési toohello dokumentum, azaz hozzáadása új tulajdonságok vagy cseréje a meglévő tulajdonságot Növekményesen történik. Vegye figyelembe, hogy hello értékek tömb-tulajdonságokat a JSON-dokumentum változásait hello teljes tömb első felül eredményez, azaz nem egyesített hello tömb.
 
 ## <a name="data-partitioning-in-cosmos-db"></a>A Cosmos DB adatparticionálás
-A cosmos DB [particionált gyűjtemények](../cosmos-db/partition-data.md) az ajánlott módszer az adatok felosztásának vannak. 
+A cosmos DB [particionált gyűjtemények](../cosmos-db/partition-data.md) ajánlott módszer az adatok felosztásának hello. 
 
-Egyetlen Cosmos DB gyűjtemények Stream Analytics továbbra is lehetővé teszi az adatok a lekérdezési mintáknak és a teljesítménye az alkalmazás igényeinek alapuló particionálásához. Minden gyűjtemény legfeljebb 10GB adatot (maximum) tartalmazhat, és jelenleg nincs mód vertikális felskálázás (vagy túlcsordulás) egy gyűjtemény. Kiterjesztése, a Stream Analytics lehetővé teszi több gyűjtemény egy adott előtaggal rendelkező írni (használati részleteit lásd alább). A Stream Analytics használ a konzisztens [kivonatoló partíció feloldó](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.partitioning.hashpartitionresolver.aspx) stratégia alapján a felhasználó a megadott kimeneti rekordjai particionálásához PartitionKey oszlop. A folyamatos átviteli feladat kezdési időpontban a megadott előtaggal rendelkező gyűjtemények száma használatos a kimeneti partíciók száma, amelyre párhuzamosan ír a feladat (Cosmos DB gyűjtemények = kimeneti partíciók). A lusta indexelési ezzel együtt egyetlen gyűjtemény csak szúrja be, kapcsolatos 0,4 MB/s teljesítménye várhatók. Több gyűjteményt használ lehetővé teszi, nagyobb átviteli sebesség és a nagyobb kapacitás elérése érdekében.
+Egyetlen Cosmos DB gyűjtemények Stream Analytics továbbra is lehetővé teszi az adatok alapján hello lekérdezési mintáknak és a teljesítménye az alkalmazás igényeinek toopartition. Minden lehetséges, hogy too10GB adatok (maximum), és jelenleg nincs módja tooscale fel van másolatot tartalmaz (vagy túlcsordulás) gyűjtemény. Kiterjesztése, a Stream Analytics lehetővé teszi egy adott előtaggal rendelkező toowrite toomultiple gyűjtemények (használati részleteit lásd alább). A Stream Analytics használ konzisztens hello [kivonatoló partíció feloldó](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.partitioning.hashpartitionresolver.aspx) hello felhasználó alapján stratégia megadott PartitionKey oszlop toopartition a kimeneti rögzíti. hello előtag megadott folyamatos átviteli feladat kezdési ideje hello hello gyűjtemények száma vettük hello kimeneti partíciószám toowhich hello feladat ír tooin párhuzamos (Cosmos DB gyűjtemények = kimeneti partíciók). A lusta indexelési ezzel együtt egyetlen gyűjtemény csak szúrja be, kapcsolatos 0,4 MB/s teljesítménye várhatók. Több gyűjteményt használ lehetővé tehetik, hogy tooachieve nagyobb átviteli teljesítményt és nagyobb kapacitást.
 
-Ha azt tervezi, a partíciók száma növelésére a jövőben, szükség lehet a feladat leállítása, a meglévő gyűjtemények új gyűjteményekbe adatait újraparticionálása, és indítsa újra a Stream Analytics-feladat. További részleteket a PartitionResolver használatával, és újra particionálás mintakód, valamint követő post fognak szerepelni. A cikk [particionálás és Cosmos DB skálázás](../documentdb/documentdb-partition-data.md) is részletesen itt.
+Ha a jövőben hello tooincrease hello partíciók száma, szükség lehet toostop a feladatot, a meglévő gyűjtemények új gyűjtemények, majd indítsa újra hello Stream Analytics-feladat újraparticionálása hello adatait. További részleteket a PartitionResolver használatával, és újra particionálás mintakód, valamint követő post fognak szerepelni. hello cikk [particionálás és Cosmos DB skálázás](../documentdb/documentdb-partition-data.md) is részletesen itt.
 
 ## <a name="cosmos-db-settings-for-json-output"></a>JSON kimeneti cosmos DB beállításai
-Az alább látható információt adatkérést Cosmos-adatbázis létrehozása a Stream Analytics kimenetként állít elő. Ez a szakasz a Tulajdonságok definíció magyarázattal szolgál.
+Az alább látható információt adatkérést Cosmos-adatbázis létrehozása a Stream Analytics kimenetként állít elő. Ez a szakasz hello tulajdonságok definíció magyarázattal szolgál.
 
 Particionált gyűjtemény | Több "Egypartíciós" gyűjtemény
 ---|---
@@ -58,14 +58,14 @@ Particionált gyűjtemény | Több "Egypartíciós" gyűjtemény
 
   
 > [!NOTE]
-> A **több "Egypartíciós" gyűjtemény** forgatókönyv partíciós kulcs használatát igényli, és a támogatott konfiguráció. 
+> Hello **több "Egypartíciós" gyűjtemény** forgatókönyv partíciós kulcs használatát igényli, és a támogatott konfiguráció. 
 
-* **A kimeneti Alias** – tekintse meg a kimenetet a ASA lekérdezés alias egy  
-* **A fiók neve** – a név vagy a végpont URI-azonosítója a Cosmos DB fiók.  
-* **Kulcs fiók** – Cosmos DB fiók a megosztott elérési kulcsot.  
-* **Adatbázis** – Cosmos-adatbázis az adatbázis nevét.  
-* **Gyűjteménynévmintája** – a gyűjtemény nevét vagy a használandó gyűjtemények gyűjteménynévmintája. A gyűjteménynév-formátum az opcionális {partition} token használatával, ahol a partíciók 0-tól kezdődnek lehet létrehozni. Minta érvényes bemenetei a következők:  
+* **A kimeneti Alias** – egy alias toorefer ezt a kimenetet a ASA lekérdezés  
+* **A fiók neve** – hello nevét vagy a végpont URI-jának hello Cosmos DB fiók.  
+* **Kulcs fiók** – Cosmos DB fiók hello hello megosztott hozzáférési kulcsot.  
+* **Adatbázis** – hello Cosmos DB adatbázis neve.  
+* **Gyűjteménynévmintája** – hello gyűjtemény neve vagy a használt hello gyűjtemények toobe mintát. hello gyűjteménynév-formátum használatával hello opcionális {partition} token, ahol a partíciók 0-tól kezdődnek lehet létrehozni. Minta érvényes bemenetei a következők:  
   1\) MyCollection – egy gyűjteményt a következő "MyCollection" néven már léteznie kell.  
   2\) MyCollection {partition} – ilyen gyűjteményeknek létezniük kell – "MyCollection0", "MyCollection1", "MyCollection2" és így tovább.  
-* **Kulcs partícióazonosító** – nem kötelező. Ez csak akkor van szükség, ha a gyűjteménynévmintája {particionáló} jogkivonatot használ. A kimeneti eseményekben a kimenet gyűjtemények közötti particionálására szolgáló kulcs megadásához használt mező neve. Egyetlen gyűjtemény kimeneti bármilyen tetszőleges kimeneti oszlop lehet például PartitionId használt.  
-* **Dokumentálja azonosító** – nem kötelező. A kimeneti eseményekben a mely Beszúrás vagy frissítés műveletek alapuló elsődleges kulcs megadásához használt mező neve.  
+* **Kulcs partícióazonosító** – nem kötelező. Ez csak akkor van szükség, ha a gyűjteménynévmintája {particionáló} jogkivonatot használ. a kimeneti használt események toospecify hello kulcsban a kimenet gyűjtemények közötti particionálására hello mező hello nevét. Egyetlen gyűjtemény kimeneti bármilyen tetszőleges kimeneti oszlop lehet például PartitionId használt.  
+* **Dokumentálja azonosító** – nem kötelező. a kimeneti eseményekben a hello mező hello nevét használja toospecify hello elsődleges kulcs mely Beszúrás vagy frissítés műveletek alapulnak.  

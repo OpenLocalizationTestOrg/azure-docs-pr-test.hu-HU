@@ -1,6 +1,6 @@
 ---
-title: "Hogyan kell megadni az engedélyeket az egyéni által fejlesztett alkalmazás |} Microsoft Docs"
-description: "Hogyan engedélyezze, hogy az egyéni által fejlesztett alkalmazás használatával, az Azure AD portálon vagy az egy URL-paramétert"
+title: "aaaHow toogrant engedélyek tooa egyéni által fejlesztett alkalmazás |} Microsoft Docs"
+description: "Hogyan toogrant engedélyek tooyour egyéni által fejlesztett alkalmazás használatával hello a Azure AD portálon vagy az egy URL-paramétert"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,33 +13,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 336b945929f80e1a566f7cf71b40fd799a98c12d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e43a105fff60fbf912bdf4f60260f86ee289328d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-grant-permissions-to-a-custom-developed-application"></a>Hogyan kell megadni az engedélyeket az egyéni által fejlesztett alkalmazás
+# <a name="how-toogrant-permissions-tooa-custom-developed-application"></a>Hogyan toogrant engedélyek tooa egyéni által fejlesztett alkalmazás
 
-Ha szeretné, hogy a hozzájárulás megelőző jelleggel meg az alkalmazást, vagy nem beleegyezett hiba történt az alkalmazások futnak, próbálkozzon az alábbi lépéseket.
+Ha a kívánt toogrant hozzájárulási megelőző jelleggel az alkalmazás vagy futnak hiba történt, hogy tooan app nem beleegyezett, próbálja meg az alábbi lépéseket.
 
-## <a name="how-to-perform-admin-consent-for-your-application"></a>Az alkalmazás Admin hozzájárulási végrehajtása
+## <a name="how-tooperform-admin-consent-for-your-application"></a>Hogyan tooperform Admin hozzájárulási az alkalmazáshoz
 
-Azt a hatását, hogy a szervezete összes felhasználója számára az alkalmazásba hozzájárulás megadása.
+Ennek hatása hello biztosítása hozzájárulási toohello alkalmazás a szervezete összes felhasználója számára.
 
-1. Keresse meg a **App regisztrációk** panelen, egy **globális rendszergazda**, majd válassza ki az alkalmazást.
+1. Keresse meg a toohello **App regisztrációk** panelen, egy **globális rendszergazda**, majd válassza hello app.
 
-2. Válassza ki **szükséges engedélyek**, majd végül nyomja le a **engedélyt adjon** gomb a panel tetején.
+2. Válassza ki **szükséges engedélyek**, és végül kattintson a hello **engedélyt adjon** hello panel felső hello gombra.
 
-Alternatív megoldásként, hogyan hozhat létre a kérelmek *login.microsoftonline.com* a az alkalmazás configs és a hozzáfűzendő *& Rákérdezés = admin\_hozzájárulás*. Után rendszergazdai hitelesítő adataival bejelentkezni, az alkalmazás rendelkezik az összes felhasználó jóváhagyását.
+Alternatív megoldásként, hogyan hozhat létre a kérelem túl*login.microsoftonline.com* a az alkalmazás configs és a hozzáfűzendő *& Rákérdezés = admin\_hozzájárulás*. Után rendszergazdai hitelesítő adataival bejelentkezni, hello alkalmazás rendelkezik az összes felhasználó jóváhagyását.
 
-## <a name="how-to-force-user-consent-for-your-application"></a>Az alkalmazás a felhasználói hozzájárulás kényszerítése
+## <a name="how-tooforce-user-consent-for-your-application"></a>Hogyan tooforce felhasználói hozzájárulás az alkalmazáshoz
 
-* Hitelesítési kérelmek alakzatot hozzáfűzése *& Rákérdezés hozzájárulási =* igénylő felhasználók számára, hogy hozzájárulás minden alkalommal, amikor a hitelesítéshez.
+* Hitelesítési kérelmek alakzatot hozzáfűzése *& Rákérdezés hozzájárulási =* minden alkalommal, amikor a hitelesítéshez a végfelhasználók tooconsent igénylő.
 
 ## <a name="next-steps"></a>Következő lépések
 
-[Hozzájárulás és AzureAD alkalmazások integrálása](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications)
+[Hozzájárulás és az alkalmazások integrálása tooAzureAD](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications)
 
 [Hozzájárulás és Permissioning AzureAD v2.0 az összevont alkalmazások](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-scopes)<br>
 

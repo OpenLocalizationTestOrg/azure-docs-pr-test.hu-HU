@@ -1,6 +1,6 @@
 ---
-title: "Csatlakozás Azure IoT Suite használatával az Intel NUC átjáró |} Microsoft Docs"
-description: "A Microsoft IoT kereskedelmi átjáró Kit és a távoli figyelési előkonfigurált megoldást használni. Az Azure IoT peremhálózati átjáró használatával kapcsolódni a távoli felügyeleti megoldás, szimulált telemetriai adatokat küldeni a felhőben és a megoldás irányítópultja metódusokra válaszolni."
+title: "egy átjáró tooAzure használatával az Intel NUC IoT Suite aaaConnect |} Microsoft Docs"
+description: "Hello Microsoft IoT kereskedelmi átjáró Kit és hello távoli figyelési előkonfigurált megoldást használni. Használjon hello Azure IoT peremhálózati átjáró tooconnect toohello távoli felügyeleti megoldás, szimulált telemetriai toohello felhő küldhet, és válaszolhat a toomethods hello megoldás irányítópultja meghívni."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -14,56 +14,56 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 9ed57d3c23e2adbd42c054f33c8ed46e3d6c9792
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 46b545fc21b054191c8f78ace20fc628f839a819
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-azure-iot-edge-gateway-to-the-remote-monitoring-preconfigured-solution-and-send-simulated-telemetry"></a>Csatlakozzon a távoli figyelési előkonfigurált megoldást az Azure IoT peremhálózati átjárót, és szimulált telemetriai adatokat küldhet
+# <a name="connect-your-azure-iot-edge-gateway-toohello-remote-monitoring-preconfigured-solution-and-send-simulated-telemetry"></a>Csatlakozzon a távoli felügyeleti előkonfigurált megoldás Azure IoT peremhálózati átjáró toohello és szimulált telemetriai adatokat küldhet
 
 [!INCLUDE [iot-suite-gateway-kit-selector](../../includes/iot-suite-gateway-kit-selector.md)]
 
-Az oktatóanyag bemutatja, ezzel szimulálva a hőmérséklet és a páratartalom adatokat küldeni a távoli felügyeleti előkonfigurált megoldás Azure IoT Edge használata. Az oktatóprogram:
+Az oktatóanyag bemutatja, hogyan toouse Azure IoT peremhálózati toosimulate hőmérséklet és a páratartalom adatok toosend toohello távoli felügyelet előre megoldás. hello oktatóprogram:
 
-- Az Azure IoT peremhálózati minta átjáró végrehajtásához.
-- Az IoT Suite távoli megfigyelési előre konfigurált megoldás, a felhő alapú háttér.
+- Az Azure IoT peremhálózati tooimplement minta átjáró.
+- mint hello felhőalapú háttér hello IoT Suite távoli megfigyelési előre konfigurált megoldás.
 
 ## <a name="overview"></a>Áttekintés
 
-Ebben az oktatóanyagban végezze el a következő lépéseket:
+Az oktatóanyag befejezése hello a következő lépéseket:
 
-- Telepítse a távoli felügyeleti előkonfigurált megoldás egy példányát az Azure-előfizetéshez. Ebben a lépésben automatikusan telepíti és konfigurálja a több Azure-szolgáltatásokhoz.
-- Az Intel NUC átjáróeszköz beállítása a számítógép és a távoli felügyeleti megoldás folytatott kommunikációhoz.
-- Konfigurálja az IoT peremhálózati átjáró, amely megtalálható a megoldás irányítópultja szimulált telemetriai adatokat küldhet.
+- Hello távoli figyelési előkonfigurált megoldás tooyour Azure-előfizetés-példányt telepítése. Ebben a lépésben automatikusan telepíti és konfigurálja a több Azure-szolgáltatásokhoz.
+- Az Intel NUC átjáró eszköz toocommunicate a számítógép és a távoli felügyeleti megoldás hello beállítása.
+- Konfigurálja a hello IoT peremhálózati átjáró toosend szimulált telemetriai adatokból, hogy a hello megoldás irányítópultja tekintheti meg.
 
 [!INCLUDE [iot-suite-gateway-kit-prerequisites](../../includes/iot-suite-gateway-kit-prerequisites.md)]
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
 > [!WARNING]
-> A távoli felügyeleti megoldás látja el az Azure-előfizetéshez az Azure szolgáltatások. A központi telepítés által adott jelentéseket tükrözik a valós vállalati architektúra. Szükségtelen Azure felhasználási díjak elkerülése az előre konfigurált megoldást a következő azureiotsuite.com a példányának törlése után vele. Ha újra kell az előkonfigurált megoldás, egyszerűen létrehozhatja azt. További információ a felhasználás csökkentése a távoli felügyeleti megoldás futtatása közben: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config].
+> távoli hello figyelési megoldást kiosztja az Azure-előfizetéshez az Azure szolgáltatások. hello központi telepítés által adott jelentéseket tükrözik a valós vállalati architektúra. tooavoid szükségtelen Azure felhasználási díjak, az előre konfigurált hello megoldást a következő azureiotsuite.com példányának törlése, vele befejezése után. Ha újra kell hello előkonfigurált megoldás, egyszerűen létrehozhatja azt. Hello távoli figyelési megoldást futtatása közben felhasználás csökkentése kapcsolatos további információkért lásd: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config].
 
 [!INCLUDE [iot-suite-gateway-kit-view-solution](../../includes/iot-suite-gateway-kit-view-solution.md)]
 
-Ismételje meg az előző lépéseket egy második eszköz, például egy eszköz azonosítójával **device02**. A minta elküldi az adatokat a távoli felügyeleti megoldás az átjáró két szimulált eszközökről.
+Ismételje meg a hello előző lépéseket tooadd egy második eszköz, például egy eszköz azonosítójával **device02**. hello minta adatot küld a két szimulált eszköz hello átjáró toohello távoli figyelési megoldást igényelnek.
 
 [!INCLUDE [iot-suite-gateway-kit-prepare-nuc-connectivity](../../includes/iot-suite-gateway-kit-prepare-nuc-connectivity.md)]
 
 [!INCLUDE [iot-suite-gateway-kit-prepare-nuc-software](../../includes/iot-suite-gateway-kit-prepare-nuc-software.md)]
 
-## <a name="build-the-custom-iot-edge-module"></a>Az egyéni IoT peremhálózati modul létrehozása
+## <a name="build-hello-custom-iot-edge-module"></a>Hello egyéni IoT peremhálózati modul létrehozása
 
-Most már lefordíthatja az egyéni IoT peremhálózati modul, amely lehetővé teszi, hogy az átjáró üzeneteket küldhet a távoli figyelési megoldást igényelnek. Átjáró és az IoT-Edge modulok konfigurálásával kapcsolatos további információkért lásd: [Azure IoT peremhálózati fogalmak][lnk-gateway-concepts].
+Most már lefordíthatja hello egyéni IoT peremhálózati modul, amely lehetővé teszi a hello átjáró toosend üzenetek toohello távoli figyelési megoldást igényelnek. Átjáró és az IoT-Edge modulok konfigurálásával kapcsolatos további információkért lásd: [Azure IoT peremhálózati fogalmak][lnk-gateway-concepts].
 
-Töltse le az egyéni IoT peremhálózati modulok forráskódja a Githubról a következő parancsokkal:
+Hello egyéni IoT peremhálózati modulok hello forráskódja letölthető GitHub hello a következő parancsok használatával:
 
 ```bash
 cd ~
 git clone https://github.com/Azure-Samples/iot-remote-monitoring-c-intel-nuc-gateway-getting-started.git
 ```
 
-Hozni az egyéni IoT biztonsági modult, a következő parancsokkal:
+Build hello hello a következő parancsok használatával egyéni IoT peremhálózati modult:
 
 ```bash
 cd ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/simulator
@@ -72,22 +72,22 @@ sed -i -e 's/\r$//' build.sh
 ./build.sh
 ```
 
-A build script a build mappában helyezi el a libsimulator.so egyéni IoT peremhálózati modul.
+hello build script hello libsimulator.so egyéni IoT peremhálózati modul hello build mappába helyezi.
 
-## <a name="configure-and-run-the-iot-edge-gateway"></a>Konfigurálja és futtassa az IoT-átjáró
+## <a name="configure-and-run-hello-iot-edge-gateway"></a>Konfigurálására és futtatására hello IoT peremhálózati átjáró
 
-Most már konfigurálhatja az IoT peremhálózati átjáró szimulált telemetriai adatokat küldeni a távoli figyelési irányítópulton. Átjáró és az IoT-Edge modulok konfigurálásával kapcsolatos további információkért lásd: [Azure IoT peremhálózati fogalmak][lnk-gateway-concepts].
+Hello IoT peremhálózati átjáró toosend szimulált telemetriai tooyour távoli figyelési irányítópult mostantól konfigurálható. Átjáró és az IoT-Edge modulok konfigurálásával kapcsolatos további információkért lásd: [Azure IoT peremhálózati fogalmak][lnk-gateway-concepts].
 
 > [!TIP]
-> Ebben az oktatóanyagban a használja, a standard `vi` az Intel NUC a szövegszerkesztőben. Ha még nem használta `vi` , el kell végeznie egy bevezető oktatóanyag, például a [Unix - a vi szerkesztő oktatóanyag] [ lnk-vi-tutorial] való ismerkedésre a szerkesztő. Másik lehetőségként telepítheti a könnyebben [nano](https://www.nano-editor.org/) a paranccsal szerkesztő `smart install nano -y`.
+> Ebben az oktatóanyagban hello szabvány használata `vi` hello Intel NUC a szövegszerkesztőben. Ha még nem használta `vi` , el kell végeznie egy bevezető oktatóanyag, például a [Unix - hello vi szerkesztő oktatóanyag] [ lnk-vi-tutorial] toofamiliarize saját kezűleg a szerkesztő. Másik lehetőségként telepítése könnyebben hello [nano](https://www.nano-editor.org/) hello paranccsal szerkesztő `smart install nano -y`.
 
-Nyissa meg a minta konfigurációs fájlt a **vi** szerkesztő a következő parancsot:
+Nyissa meg hello minta konfigurációs fájlt a hello **vi** szerkesztő hello a következő parancs használatával:
 
 ```bash
 vi ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/simulator/remote_monitoring.json
 ```
 
-Az IOT hubbal modul konfigurációjában keresse meg a következő sorokat:
+Keresse meg az alábbi hello konfigurációban hello IOT hubbal modul hello:
 
 ```json
 "args": {
@@ -97,9 +97,9 @@ Az IOT hubbal modul konfigurációjában keresse meg a következő sorokat:
 }
 ```
 
-Cserélje le a helyőrző értékeket az IoT-központ adatokat létrehozott és mentett Ez az oktatóanyag elején. IoTHubName értékét a következőképpen néz **yourrmsolution37e08**, és IoTSuffix értéke általában **azure-devices.net**.
+Cserélje le a hello helyőrző értékeket az IoT-központ adatokat létrehozott és mentett hello hello elejére ebben az oktatóanyagban. hello érték IoTHubName a következőhöz hasonló **yourrmsolution37e08**, és hello IoTSuffix értéke általában **azure-devices.net**.
 
-A hozzárendelési modul konfigurációjában keresse meg a következő sorokat:
+Keresse meg az alábbi hello konfigurációban a hello hozzárendelési module hello:
 
 ```json
 args": [
@@ -116,39 +116,39 @@ args": [
 ]
 ```
 
-Cserélje le a **deviceID** és **deviceKey** helyőrzőt azonosítóit és a két eszköz a távoli felügyeleti megoldás korábban létrehozott kulcsokat.
+Cserélje le a hello **deviceID** és **deviceKey** helyőrzőt hello azonosítók és kulcsok hello távoli figyelési megoldást korábban létrehozott hello két eszközökhöz.
 
 Mentse a módosításokat.
 
-Most már futtathatja az IoT peremhálózati átjáró a következő parancsokkal:
+Most futtathatja hello IoT peremhálózati átjáró használatával hello a következő parancsokat:
 
 ```bash
 cd ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/simulator
 /usr/share/azureiotgatewaysdk/samples/simulated_device_cloud_upload/simulated_device_cloud_upload remote_monitoring.json
 ```
 
-Az átjáró elindítja az Intel NUC és szimulált telemetriai adatokat küld a távoli figyelési megoldást:
+hello átjáró hello Intel NUC kezdődik, és elküldi a szimulált telemetriai toohello távoli figyelési megoldást:
 
 ![Az IoT-átjárónak állít elő, szimulált telemetriai adat][img-simulated telemetry]
 
-Nyomja le az **Ctrl-C** kilép a programból bármikor.
+Nyomja le az **Ctrl-C** tooexit hello program tetszőleges időpontban.
 
-## <a name="view-the-telemetry"></a>A telemetriai adatok megtekintése
+## <a name="view-hello-telemetry"></a>Nézet hello telemetriai adat
 
-Az IoT-átjárónak szimulált telemetriai most küld a távoli figyelési megoldást igényelnek. A telemetriai adatokat a megoldás irányítópultján tekintheti meg.
+hello IoT peremhálózati átjáró most küld szimulált telemetriai toohello távoli figyelési megoldást igényelnek. Hello telemetriai hello megoldás irányítópultján tekintheti meg.
 
-- Nyissa meg a megoldás irányítópultja.
-- Válassza ki a két eszköz, az átjárót konfigurált a **nézet eszköz** legördülő menüből.
-- Az átjáró eszközökről telemetriai adatok az irányítópulton jeleníti meg.
+- Keresse meg a toohello megoldás irányítópultja.
+- Válasszon ki egy konfigurált hello hello átjáró két hello eszközök **eszköz tooView** legördülő menüből.
+- hello telemetriai hello átjáró eszközökről hello irányítópulton jeleníti meg.
 
-![A szimulált átjáró eszközök telemetriai adatok megjelenítéséhez][img-telemetry-display]
+![A szimulált hello átjáró eszközökről telemetriai megjelenítése][img-telemetry-display]
 
 > [!WARNING]
-> Ha nem adja meg a távoli figyelési megoldást igényelnek fut az Azure-fiókjával, a futtatásakor a kell fizetni. További információ a felhasználás csökkentése a távoli felügyeleti megoldás futtatása közben: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config]. Ha befejezte, használja az előkonfigurált megoldás törlése az Azure-fiókjával.
+> Ha nem adja meg hello távoli felügyeleti megoldás az Azure-fiókjával fut, a hello futásakor kell fizetni. Hello távoli figyelési megoldást futtatása közben felhasználás csökkentése kapcsolatos további információkért lásd: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config]. Ha befejezte, használja előre konfigurált hello megoldás törlése az Azure-fiókjával.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Látogasson el a [Azure IoT-fejlesztői központhoz](https://azure.microsoft.com/develop/iot/) további mintákat és Azure IoT-dokumentációja.
+A Microsoft hello [Azure IoT-fejlesztői központhoz](https://azure.microsoft.com/develop/iot/) további mintákat és Azure IoT-dokumentációja.
 
 [img-simulated telemetry]: ./media/iot-suite-gateway-kit-get-started-simulator/appoutput.png
 

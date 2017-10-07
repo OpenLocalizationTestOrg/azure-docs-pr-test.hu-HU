@@ -1,6 +1,6 @@
 ---
-title: "Adatok másolása az Azure Data Factory használatával fájlrendszer |} Microsoft Docs"
-description: "Ismerje meg az adatok másolása és egy helyszíni fájlrendszer az Azure Data Factory használatával."
+title: "az Azure Data Factory használatával fájlrendszer aaaCopy adatok |} Microsoft Docs"
+description: "Megtudhatja, hogyan toocopy adatok tooand egy helyszíni fájlrendszerből Azure Data Factory használatával."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: jingwang
-ms.openlocfilehash: 52305e54f539de6aba2ba9cc856a09e04d608ded
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 201b8bc3ffa639df781443aa0c3f95c975d280be
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="copy-data-to-and-from-an-on-premises-file-system-by-using-azure-data-factory"></a>Adatok másolása és egy helyszíni fájlrendszer az Azure Data Factory használatával
-Ez a cikk ismerteti, hogyan használható a másolási tevékenység során az Azure Data Factory belőle egy helyszíni fájlrendszer adatok másolása. Buildekről nyújtanak a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk, amelynek során adatátvitel a másolási tevékenység az általános áttekintést.
+# <a name="copy-data-tooand-from-an-on-premises-file-system-by-using-azure-data-factory"></a>Adatok tooand másolása egy helyszíni fájlrendszer Azure Data Factory használatával
+Ez a cikk azt ismerteti, hogyan toouse hello Azure Data Factory toocopy adatok belőle egy helyszíni fájlrendszer a másolási tevékenység. -Buildekről nyújtanak a hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikket, amely adatmozgás általános áttekintést hello másolási tevékenység során.
 
 ## <a name="supported-scenarios"></a>Támogatott helyzetek
-Adatokat másolhat **egy helyi fájl rendszerből** tárolja a következő adatokat:
+Adatokat másolhat **egy helyi fájl rendszerből** toohello a következő adatokat tárolja:
 
 [!INCLUDE [data-factory-supported-sink](../../includes/data-factory-supported-sinks.md)]
 
-Adatok másolása a következő adatokat tárolja **egy helyszíni fájlrendszerhez**:
+Adatok másolása a következő adatokat tárolja hello **tooan helyszíni fájlrendszer**:
 
 [!INCLUDE [data-factory-supported-sources](../../includes/data-factory-supported-sources.md)]
 
 > [!NOTE]
-> Másolási tevékenység nem törli a forrásfájl, miután sikerült átmásolni a cél. Ha a forrásfájl törlése után sikeres másolatot van szüksége, létrehozhat egy egyéni törölje a fájlt, és az adatcsatorna használja a tevékenységet. 
+> Másolási tevékenység nem hello forrásfájl törlése, miután sikeresen másolt toohello cél. Ha toodelete hello forrásfájl után sikeres másolatát, hozzon létre egy egyéni tevékenység toodelete hello fájlt, és a hello tevékenység hello folyamat. 
 
 ## <a name="enabling-connectivity"></a>Kapcsolat engedélyezése
-Adat-előállító támogatja a csatlakozást egy helyszíni fájlrendszer keresztül érkező vagy oda irányuló **az adatkezelési átjáró**. A helyszíni környezetben a Data Factory szolgáltatásnak bármely támogatott helyszíni adattár, beleértve a fájlrendszer való kapcsolódáshoz telepítenie kell az adatkezelési átjáró. Az adatkezelési átjáró és az átjáró beállításának lépéseit, lásd: [helyezze át az adatokat a helyszíni adatforrások és az adatkezelési átjáró a felhő közötti](data-factory-move-data-between-onprem-and-cloud.md). Az adatkezelési átjáró kívül más bináris fájlokat telepítve kell lennie egy helyszíni fájlrendszer érkező vagy oda irányuló kommunikációra. Telepítse, és az adatkezelési átjáró használja, akkor is, ha a fájlrendszer Azure IaaS virtuális gépen. Az átjáró kapcsolatos részletes információkért lásd: [az adatkezelési átjáró](data-factory-data-management-gateway.md).
+Adat-előállító támogat egy helyszíni fájlrendszerből keresztül csatlakozó tooand **az adatkezelési átjáró**. Telepítenie kell az adatkezelési átjáró hello hello adat-előállító szolgáltatás tooconnect tooany támogatott helyszíni adattároló többek között a fájlrendszer a helyszíni környezetben. toolearn az adatkezelési átjáró és hello átjáró beállításának lépéseit lásd: [helyezze át az adatokat a helyszíni adatforrások és az adatkezelési átjáró hello felhő között](data-factory-move-data-between-onprem-and-cloud.md). Az adatkezelési átjáró, leszámítva más bináris fájlokat kell telepített toobe toocommunicate tooand egy helyi fájl rendszerből. Telepítse, és az adatkezelési átjáró hello használja, akkor is, ha fájlrendszer hello Azure IaaS virtuális gépen. Hello átjáró kapcsolatos részletes információkért lásd: [az adatkezelési átjáró](data-factory-data-management-gateway.md).
 
-Linux fájlmegosztás használatához telepítenie [Samba](https://www.samba.org/) a Linux-kiszolgálón, telepítse az adatkezelési átjáró a Windows server. Az adatkezelési átjáró telepítése egy Linux-kiszolgálón nem támogatott.
+Linux fájlmegosztást, toouse telepítése [Samba](https://www.samba.org/) a Linux-kiszolgálón, telepítse az adatkezelési átjáró a Windows server. Az adatkezelési átjáró telepítése egy Linux-kiszolgálón nem támogatott.
 
 ## <a name="getting-started"></a>Bevezetés
 A másolási tevékenység, amely helyezi át az adatokat, vagy az operációs rendszer különböző eszközök/API-k használatával létrehozhat egy folyamatot.
 
-Hozzon létre egy folyamatot a legegyszerűbb módja használatára a **másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) létrehozásával egy folyamatot, az adatok másolása varázsló segítségével gyorsan útmutatást.
+hello legegyszerűbb módja toocreate adatcsatorna toouse hello **másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) hello másolása adatok varázslóval adatcsatorna létrehozásával gyors útmutatást.
 
-Az alábbi eszközöket használhatja a folyamatokat létrehozni: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager sablon**, **.NET API**, és **REST API**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) hozzon létre egy folyamatot a másolási tevékenység részletes útmutatóját.
+Használhatja a következő eszközök toocreate adatcsatorna hello: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager-sablon **, **.NET API**, és **REST API-t**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) részletesen toocreate a másolási tevékenység az adatcsatorna számára.
 
-Akár az eszközök vagy API-k, hajtsa végre a következő lépésekkel hozza létre egy folyamatot, amely mozgatja az adatokat a forrás-tárolóban a fogadó tárolóban:
+Akár hello eszközök vagy API-k, hajtsa végre a következő lépéseket toocreate egy folyamatot, amely áthelyezi a forrásadatok az adattároló tooa fogadó adattár hello:
 
 1. Hozzon létre egy **adat-előállító**. Egy adat-előállító tartalmazhat egy vagy több folyamatok. 
-2. Hozzon létre **összekapcsolt szolgáltatások** bemeneti és kimeneti adatok csatolásához tárolja a a data factory. Például ha a másolt adatok az az Azure blob storage egy helyszíni fájlrendszerhez, hoz létre a helyszíni fájlrendszerben és az Azure storage-fiók összekapcsolása a data factory két társított szolgáltatások. Egy helyszíni fájlrendszer jellemző csatolt szolgáltatás tulajdonságait, lásd: [szolgáltatástulajdonságok kapcsolódó](#linked-service-properties) szakasz.
-3. Hozzon létre **adatkészletek** a másolási művelet bemeneti és kimeneti adatok. A példában az előző lépésben említett hozzon létre egy adatkészlet adja meg a blob-tároló és a bemeneti adatokat tartalmazó mappát. És hoz létre egy másik dataset adja meg a mappát és a fájl nevét a fájlrendszert (nem kötelező). A helyszíni fájlrendszer adott adatkészlet tulajdonságai, lásd: [adatkészlet tulajdonságai](#dataset-properties) szakasz.
-4. Hozzon létre egy **csővezeték** , amely fogad egy bemeneti adatkészlet és egy kimeneti adatkészletet másolási tevékenységgel. A korábban említett példában BlobSource forrás-és FileSystemSink akár használhatja a fogadó a másolási tevékenységhez. Hasonlóképpen a helyszíni fájlrendszer az Azure Blob Storage másolása, használható FileSystemSource és BlobSink a másolási tevékenység. A másolási tevékenység tulajdonságai a helyszíni fájlrendszer jellemző, lásd: [tevékenység Tulajdonságok másolása](#copy-activity-properties) szakasz. További részletek a tárolóban használatáról a forrás vagy a fogadó a hivatkozásra a adattároló az előző szakaszban.
+2. Hozzon létre **összekapcsolt szolgáltatások** toolink bemeneti és kimeneti adatok tárolók tooyour adat-előállítóban. Adatok másolása az Azure blob storage tooan helyszíni fájlrendszer a, akkor hozzon létre például két összekapcsolt szolgáltatások toolink a helyszíni fájlrendszerben és az Azure storage tooyour adat-előállítóban. Csatolt szolgáltatás tulajdonságait, amelyek adott tooan helyszíni fájlrendszer, lásd: [szolgáltatástulajdonságok kapcsolódó](#linked-service-properties) szakasz.
+3. Hozzon létre **adatkészletek** toorepresent bemeneti és kimeneti adatok hello a másolási művelet. Hello utolsó lépésében említett hello például létrehoz egy adatkészlet toospecify hello blobtárolót és hello bemeneti adatokat tartalmazó mappát. És egy másik dataset toospecify hello mappa nevét és a fájlrendszert (nem kötelező) létrehozása. Adatkészlet tulajdonságai adott tooon helyszíni fájlrendszer, a következő témakörben: [adatkészlet tulajdonságai](#dataset-properties) szakasz.
+4. Hozzon létre egy **csővezeték** , amely fogad egy bemeneti adatkészlet és egy kimeneti adatkészletet másolási tevékenységgel. A korábban említett hello példában BlobSource forrás-és FileSystemSink akár használhatja a fogadó hello másolási tevékenységhez. Hasonlóképpen a helyi fájl rendszer tooAzure Blob Storage másolása, használható FileSystemSource és BlobSink hello másolási tevékenység. A másolási tevékenység tulajdonságai adott tooon helyszíni fájlrendszer, lásd: [tevékenység Tulajdonságok másolása](#copy-activity-properties) szakasz. További információkért hogyan toouse egy adatok tárolót, mint a forrás- és a fogadó hivatkozásra hello az adattároló hello előző szakaszban.
 
-A varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és a feldolgozási sor) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások a JSON formátum használatával.  Másolja az adatokat, az operációs rendszer használt adat-előállító entitások JSON-definíciók minták, lásd: [JSON példák](#json-examples-for-copying-data-to-and-from-file-system) című szakaszát.
+Hello varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és hello pipeline) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások hello JSON formátumban.  Az adat-előállító entitások, amelyek az operációs rendszer használt toocopy adatok JSON-definíciók minták, lásd: [JSON példák](#json-examples-for-copying-data-to-and-from-file-system) című szakaszát.
 
-A következő szakaszok részletesen bemutatják, amely segítségével határozza meg a Data Factory tartozó entitások fájlrendszerre JSON-tulajdonságok:
+a következő szakaszok hello JSON-tulajdonságok esetében használt toodefine adat-előállító entitások adott toofile rendszer részleteit tartalmazzák:
 
 ## <a name="linked-service-properties"></a>A kapcsolódószolgáltatás-tulajdonságok
-Egy helyszíni fájlrendszer hozzákapcsolhatja egy az Azure data factory, a **a helyi fájlkiszolgáló** társított szolgáltatás. A következő táblázat ismerteti, amelyek a helyszíni fájl kiszolgálóhoz kapcsolódó szolgáltatásra vonatkozó JSON-elemek szerepelnek.
+Egy helyi fájl rendszer tooan az Azure data factory hello társíthatja **a helyi fájlkiszolgáló** társított szolgáltatás. hello a következő táblázat ismerteti, amelyek adott toohello a helyi fájlkiszolgáló társított szolgáltatás JSON-elemek szerepelnek.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| type |Győződjön meg arról, hogy a type tulajdonság értéke **OnPremisesFileServer**. |Igen |
-| állomás |Adja meg a legfelső szintű mappa elérési útját, amelyet szeretne másolni. Az escape-karakter használata "\" a speciális karakterek a karakterláncban. Lásd: [minta kapcsolódó szolgáltatás és az adatkészlet-definíciók](#sample-linked-service-and-dataset-definitions) példákat. |Igen |
-| felhasználói azonosítóját |Adja meg a felhasználó, aki hozzáfér a kiszolgáló Azonosítóját. |Nem (Ha úgy dönt, hogy encryptedCredential) |
-| jelszó |Adja meg a felhasználó (userid) jelszavát. |Nem (Ha úgy dönt, hogy encryptedCredential |
-| encryptedCredential |Adja meg a titkosított hitelesítő adatokat kaphat a New-AzureRmDataFactoryEncryptValue parancsmag futtatásával. |Nem (Ha úgy dönt, hogy adja meg a felhasználói azonosítót és jelszót a szövegként) |
-| gatewayName |Megadja a Data Factory kell csatlakozni a helyi fájlkiszolgálón használó átjáró nevét. |Igen |
+| type |Győződjön meg arról, hogy hello típusú tulajdonsága túl**OnPremisesFileServer**. |Igen |
+| állomás |Hello legfelső szintű megjeleníteni kívánt toocopy hello mappa elérési útját adja meg. Hello escape-karakter használata "\" hello karakterlánc speciális karakter. Lásd: [minta kapcsolódó szolgáltatás és az adatkészlet-definíciók](#sample-linked-service-and-dataset-definitions) példákat. |Igen |
+| felhasználói azonosítóját |Adja meg a toohello kiszolgáló hello felhasználó hello Azonosítót. |Nem (Ha úgy dönt, hogy encryptedCredential) |
+| jelszó |Adja meg a hello jelszó hello (userid). |Nem (Ha úgy dönt, hogy encryptedCredential |
+| encryptedCredential |Adja meg a hello titkosított hitelesítő adatokat, amelyek a parancsmagot a New-AzureRmDataFactoryEncryptValue hello kaphat. |Nem (Ha úgy dönt, toospecify felhasználói azonosítót és jelszót a szövegként) |
+| gatewayName |Megadja, hogy a Data Factory kell használnia tooconnect toohello a helyi fájlkiszolgáló hello átjáró hello nevét. |Igen |
 
 
 ### <a name="sample-linked-service-and-dataset-definitions"></a>Példa társított szolgáltatás és a dataset definíciók
@@ -114,24 +114,24 @@ Egy helyszíni fájlrendszer hozzákapcsolhatja egy az Azure data factory, a **a
 ## <a name="dataset-properties"></a>Adatkészlet tulajdonságai
 Illetve meghatározásához adatkészletek rendelkezésre álló tulajdonságok teljes listáját lásd: [adatkészletek létrehozása](data-factory-create-datasets.md). Például struktúra, a rendelkezésre állás és a házirend a DataSet adatkészlet JSON hasonlítanak minden adatkészlet esetében.
 
-A typeProperties szakaszban nem egyezik az adatkészlet egyes típusú. Például a hely és az adattár adatok formátuma adatokat tartalmazza. A typeProperties szakasz az adatkészlet típusú **fájlmegosztási** tulajdonságai a következők:
+hello typeProperties szakaszban nem egyezik az adatkészlet egyes típusú. Például a hello helyét és hello adattár hello adatok formátuma adatokat tartalmazza. hello typeProperties szakasz hello adatkészlet típusú **fájlmegosztási** rendelkezik hello következő tulajdonságai:
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| folderPath |Adja meg a részleges elérési útja a mappához. Az escape-karakter használata "\" a speciális karakterek a karakterláncban. Lásd: [minta kapcsolódó szolgáltatás és az adatkészlet-definíciók](#sample-linked-service-and-dataset-definitions) példákat.<br/><br/>Ez a tulajdonság a kombinálhatja **partitionBy** szeretné, hogy a mappa elérési utak alapján szelet kezdő és záró dátum-idő. |Igen |
-| fileName |Adja meg a fájl nevét a **folderPath** Ha azt szeretné, hogy a tábla egy adott fájlra a mappában. Ha nem ad meg ehhez a tulajdonsághoz értéket, a tábla a mappában lévő összes fájlt mutat.<br/><br/>Ha **Fájlnév** nincs megadva egy kimeneti adatkészlet és **preserveHierarchy** nincs megadva a tevékenység fogadó, a létrehozott fájl neve nem a következő formátumban: <br/><br/>`Data.<Guid>.txt`(Példa: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |Nem |
-| fileFilter |Adjon meg egy szűrőt, amely minden fájl helyett a fájlok Tárolónév részhalmazának kiválasztására szolgál. <br/><br/>Két érték engedélyezett: `*` (több karaktert) és `?` (egyetlen karakter).<br/><br/>1. példa: "fileFilter": "* .log"<br/>2. példa: "fileFilter": 2014 - 1-?. txt"<br/><br/>Vegye figyelembe, hogy fileFilter egy bemeneti fájlmegosztási adatkészlet esetében alkalmazható. |Nem |
-| partitionedBy |PartitionedBy segítségével adjon meg egy dinamikus folderPath/fájlnevet idősorozat adatok. Példa: az adatok óránkénti paraméteres folderPath. |Nem |
-| Formátumban | A következő formátumban típusok támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**, **ParquetFormat**. Állítsa be a **típus** tulajdonság a formátuma a következő értékek egyikét. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, hogy **másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a Formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
-| Tömörítés | Adja meg a típus és az adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**. Támogatott szintek a következők: **Optimal** és **leggyorsabb**. Lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
+| folderPath |Hello részleges toohello mappáját adja meg. Hello escape-karakter használata "\" hello karakterlánc speciális karakter. Lásd: [minta kapcsolódó szolgáltatás és az adatkészlet-definíciók](#sample-linked-service-and-dataset-definitions) példákat.<br/><br/>Ez a tulajdonság a kombinálhatja **partitionBy** toohave mappák elérési útjaiban szelet alapján kezdő és záró dátum-idő. |Igen |
+| fileName |Meg kell adnia hello fájl hello nevet hello **folderPath** Ha azt szeretné, hogy hello tábla toorefer tooa adott fájl hello mappában. Ha nem ad meg semmilyen értéket ehhez a tulajdonsághoz, hello tábla mutat tooall fájlok hello mappában.<br/><br/>Ha **Fájlnév** nincs megadva egy kimeneti adatkészlet és **preserveHierarchy** nincs megadva a tevékenység fogadó hello név hello létrehozott fájl formátuma a következő hello van: <br/><br/>`Data.<Guid>.txt`(Példa: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |Nem |
+| fileFilter |Adja meg a szűrő toobe tooselect használja, minden fájl helyett a hello folderPath fájlok egy részét. <br/><br/>Két érték engedélyezett: `*` (több karaktert) és `?` (egyetlen karakter).<br/><br/>1. példa: "fileFilter": "* .log"<br/>2. példa: "fileFilter": 2014 - 1-?. txt"<br/><br/>Vegye figyelembe, hogy fileFilter egy bemeneti fájlmegosztási adatkészlet esetében alkalmazható. |Nem |
+| partitionedBy |Az idősorozat adatok partitionedBy toospecify dinamikus folderPath/fileName is használhatja. Példa: az adatok óránkénti paraméteres folderPath. |Nem |
+| Formátumban | a következő formátumban típusok hello támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**, ** ParquetFormat**. Set hello **típus** tulajdonság alapján formátum tooone ezeket az értékeket. További információkért lásd: [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné, túl**másolja a fájlokat-van** közötti fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a hello formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
+| Tömörítés | Adja meg a hello típusát és hello adatok tömörítése szintjét. Támogatott típusok a következők: **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**. Támogatott szintek a következők: **Optimal** és **leggyorsabb**. Lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
 
 > [!NOTE]
 > Nem használható egyszerre fájlnév és fileFilter.
 
 ### <a name="using-partitionedby-property"></a>PartitionedBy tulajdonság használatával
-Az előző szakaszban említett, megadhat egy dinamikus folderPath és a fájlnév idő adatsorozat adatokhoz a **partitionedBy** tulajdonság, [adat-előállító funkciók és a rendszer változók](data-factory-functions-variables.md).
+Hello előző szakaszban említett, megadhatja a dinamikus folderPath és a sorozat időadatok fájlnevét hello **partitionedBy** tulajdonság, [adat-előállító funkciók és hello rendszerváltozók](data-factory-functions-variables.md).
 
-További részleteket a idősorozat adatkészleteket, az ütemezés és a szeletek ismertetése: [adatkészletek létrehozása](data-factory-create-datasets.md), [ütemezés és a végrehajtás](data-factory-scheduling-and-execution.md), és [folyamatok létrehozása](data-factory-create-pipelines.md).
+toounderstand idősorozat adatkészleteket, az ütemezés és a szeletek, a további részletek: [adatkészletek létrehozása](data-factory-create-datasets.md), [ütemezés és a végrehajtás](data-factory-scheduling-and-execution.md), és [folyamatok létrehozása](data-factory-create-pipelines.md).
 
 #### <a name="sample-1"></a>1. példa:
 
@@ -143,7 +143,7 @@ További részleteket a idősorozat adatkészleteket, az ütemezés és a szelet
 ],
 ```
 
-Ebben a példában {szelet} váltja fel a Data Factory rendszerváltozó SliceStart formátumban (YYYYMMDDHH) értékét. A szelet kezdete SliceStart hivatkozik. A folderPath nem azonos az egyes szeletek. Például: wikidatagateway/wikisampledataout/2014100103 vagy wikidatagateway/wikisampledataout/2014100104.
+Ebben a példában {szelet} hello értékű hello adat-előállító rendszer változó SliceStart hello formátumban (YYYYMMDDHH) váltja fel. SliceStart toostart idő hello szelet hivatkozik. hello folderPath nem azonos az egyes szeletek. Például: wikidatagateway/wikisampledataout/2014100103 vagy wikidatagateway/wikisampledataout/2014100104.
 
 #### <a name="sample-2"></a>2. példa:
 
@@ -159,45 +159,45 @@ Ebben a példában {szelet} váltja fel a Data Factory rendszerváltozó SliceSt
 ],
 ```
 
-Ebben a példában év, hónap, nap és SliceStart idején ki kell olvasni a külön változókat, amelyek a fájlnév és a folderPath tulajdonság.
+Ebben a példában év, hónap, nap és SliceStart idején ki kell olvasni a hello folderPath és a fájlnév tulajdonságot használó külön változók.
 
 ## <a name="copy-activity-properties"></a>Másolási tevékenység tulajdonságai
-Szakaszok & rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: a [létrehozása folyamatok](data-factory-create-pipelines.md) cikk. Az összes tevékenység tulajdonságai, például nevét, leírását, valamint bemeneti és kimeneti adatkészletek és házirendek érhetők el. Mivel a tulajdonságok érhetők el a **typeProperties** szakasz a tevékenység tevékenységek minden típusának függenek.
+Szakaszok & rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: hello [létrehozása folyamatok](data-factory-create-pipelines.md) cikk. Az összes tevékenység tulajdonságai, például nevét, leírását, valamint bemeneti és kimeneti adatkészletek és házirendek érhetők el. Mivel tulajdonságok érhetők el hello **typeProperties** hello tevékenység szakasza tevékenységek minden típusának függenek.
 
-A másolási tevékenység során két érték források és mosdók típusától függően. Egy helyszíni fájlrendszerből helyez át adatokat, ha a forrás típusa beállítása a másolási tevékenység **FileSystemSource**. Hasonlóképpen, ha egy helyszíni fájlrendszerhez helyez át adatokat, beállítása a fogadó típusa a másolási tevékenység **FileSystemSink**. Ez a témakör FileSystemSource és FileSystemSink által támogatott tulajdonságokról.
+A másolási tevékenység során két érték források és mosdók hello típusától függően. Ha adatok egy helyi fájl rendszerből, beállítása hello forrástípus hello másolási tevékenység túl**FileSystemSource**. Hasonlóképpen, ha adatokat tooan helyszíni fájlrendszer, beállítása hello a fogadó típusa másolási tevékenység hello túl**FileSystemSink**. Ez a témakör FileSystemSource és FileSystemSink által támogatott tulajdonságokról.
 
-**FileSystemSource** támogatja a következő tulajdonságokkal:
-
-| Tulajdonság | Leírás | Megengedett értékek | Szükséges |
-| --- | --- | --- | --- |
-| Rekurzív |Azt jelzi, hogy az adatok olvasható rekurzív módon az almappákat, illetve csak a megadott mappát. |IGAZ, hamis (alapértelmezés) |Nem |
-
-**FileSystemSink** támogatja a következő tulajdonságokkal:
+**FileSystemSource** következő tulajdonságai hello támogatja:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| copyBehavior |Másolás viselkedését határozza meg, ha az adatforrás BlobSource vagy a fájlrendszer. |**PreserveHierarchy:** őrzi meg a fájl hierarchia a célmappában. Ez azt jelenti, hogy a forrásfájl, a forrásmappához relatív elérési út ugyanaz, mint a relatív a cél elérési útja a célként megadott mappába.<br/><br/>**FlattenHierarchy:** minden fájl a forrásmappából az első szintű célmappában jönnek létre. A cél fájlok jönnek létre automatikusan létrehozott névvel.<br/><br/>**Mergefiles típusú:** egyesíti a forrásmappából egy fájl összes fájlt. Ha a fájl neve/blob neve meg van adva, az egyesített fájlnév a megadott név. Ellenkező esetben egy automatikusan létrehozott nevét. |Nem |
+| Rekurzív |Azt jelzi, hogy hello adatolvasás rekurzív módon hello almappák vagy csak a megadott mappa hello. |IGAZ, hamis (alapértelmezés) |Nem |
+
+**FileSystemSink** következő tulajdonságai hello támogatja:
+
+| Tulajdonság | Leírás | Megengedett értékek | Szükséges |
+| --- | --- | --- | --- |
+| copyBehavior |Hello másolási viselkedését határozza meg, ha hello adatforrás BlobSource vagy a fájlrendszer. |**PreserveHierarchy:** hello fájl hierarchia hello célmappában megőrzi. Ez azt jelenti, hogy van hello ugyanaz, mint a hello relatív elérési útja hello cél fájl toohello célmappa hello hello forrás fájl toohello forrásmappa relatív elérési út.<br/><br/>**FlattenHierarchy:** hello forrásmappából minden fájl első szintű hello célmappában jönnek létre. hello fájljaira jönnek létre automatikusan létrehozott névvel.<br/><br/>**Mergefiles típusú:** forrásfájlból hello mappa tooone minden fájl egyesíti. Ha hello fájl neve/blob neve meg van adva, a hello egyesített fájl neve az hello megadott név. Ellenkező esetben egy automatikusan létrehozott nevét. |Nem |
 
 ### <a name="recursive-and-copybehavior-examples"></a>rekurzív és copyBehavior példák
-Ez a szakasz ismerteti az eredményül kapott viselkedéstől a másolási művelet kombinációk a rekurzív és a copyBehavior tulajdonság értéktartománya.
+Ez a szakasz ismerteti a hello viselkedésről hello másolási műveletek kombinációk hello rekurzív és a copyBehavior tulajdonság értéktartománya.
 
 | rekurzív érték | copyBehavior érték | Viselkedésről |
 | --- | --- | --- |
-| Igaz |preserveHierarchy |A forrásmappa mappa1 az alábbi struktúrával,<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>a célmappa mappa1 forrásaként azonos struktúrájú jön létre:<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5 |
-| Igaz |flattenHierarchy |A forrásmappa mappa1 az alábbi struktúrával,<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>a cél az alábbi szerkezettel mappa1 jön létre: <br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;automatikusan létrehozott nevet a file1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;automatikusan létrehozott nevet File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;automatikusan létrehozott nevet fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;automatikusan létrehozott nevet File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;automatikusan létrehozott nevet File5 |
-| Igaz |mergefiles típusú |A forrásmappa mappa1 az alábbi struktúrával,<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>a cél az alábbi szerkezettel mappa1 jön létre: <br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 + File2 + fájl3 + File4 + 5 fájl tartalmát egy fájlba, egy fájl automatikusan létrehozott névvel egyesítve lesznek. |
-| hamis |preserveHierarchy |A forrásmappa mappa1 az alábbi struktúrával,<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>a tároló mappa mappa1 jön létre az alábbi szerkezettel:<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/><br/>Fájl3, File4 és File5 Subfolder1 nem felvételre. |
-| hamis |flattenHierarchy |A forrásmappa mappa1 az alábbi struktúrával,<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>a tároló mappa mappa1 jön létre az alábbi szerkezettel:<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;automatikusan létrehozott nevet a file1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;automatikusan létrehozott nevet File2<br/><br/>Fájl3, File4 és File5 Subfolder1 nem felvételre. |
-| hamis |mergefiles típusú |A forrásmappa mappa1 az alábbi struktúrával,<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>a tároló mappa mappa1 jön létre az alábbi szerkezettel:<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 + File2 tartalma egyesítődnek fájl automatikusan létrehozott névvel egy fájlba.<br/>&nbsp;&nbsp;&nbsp;&nbsp;Automatikusan létrehozott nevet a file1 kiszolgálón<br/><br/>Fájl3, File4 és File5 Subfolder1 nem felvételre. |
+| Igaz |preserveHierarchy |A forrásmappa mappa1 a struktúra, a következő hello<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>hello tároló mappa mappa1 azonos szerkezeti hello forrásaként hello jön létre:<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5 |
+| Igaz |flattenHierarchy |A forrásmappa mappa1 a struktúra, a következő hello<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>a következő struktúra hello hello cél mappa1 jön létre: <br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;automatikusan létrehozott nevet a file1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;automatikusan létrehozott nevet File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;automatikusan létrehozott nevet fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;automatikusan létrehozott nevet File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;automatikusan létrehozott nevet File5 |
+| Igaz |mergefiles típusú |A forrásmappa mappa1 a struktúra, a következő hello<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>a következő struktúra hello hello cél mappa1 jön létre: <br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 + File2 + fájl3 + File4 + 5 fájl tartalmát egy fájlba, egy fájl automatikusan létrehozott névvel egyesítve lesznek. |
+| hamis |preserveHierarchy |A forrásmappa mappa1 a struktúra, a következő hello<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>a következő struktúra hello hello tároló mappa mappa1 jön létre:<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/><br/>Fájl3, File4 és File5 Subfolder1 nem felvételre. |
+| hamis |flattenHierarchy |A forrásmappa mappa1 a struktúra, a következő hello<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>a következő struktúra hello hello tároló mappa mappa1 jön létre:<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;automatikusan létrehozott nevet a file1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;automatikusan létrehozott nevet File2<br/><br/>Fájl3, File4 és File5 Subfolder1 nem felvételre. |
+| hamis |mergefiles típusú |A forrásmappa mappa1 a struktúra, a következő hello<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 kiszolgálón<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fájl3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>a következő struktúra hello hello tároló mappa mappa1 jön létre:<br/><br/>Mappa1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 + File2 tartalma egyesítődnek fájl automatikusan létrehozott névvel egy fájlba.<br/>&nbsp;&nbsp;&nbsp;&nbsp;Automatikusan létrehozott nevet a file1 kiszolgálón<br/><br/>Fájl3, File4 és File5 Subfolder1 nem felvételre. |
 
 ## <a name="supported-file-and-compression-formats"></a>Támogatott formátumú és tömörítés
 Lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md) cikk részletei.
 
-## <a name="json-examples-for-copying-data-to-and-from-file-system"></a>Az adatok másolása a JSON-példák fájlrendszer
-Az alábbi példák megadják minta JSON-definíciókat tartalmazzon, segítségével hozzon létre egy folyamatot a [Azure-portálon](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md), vagy [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Adatok másolása egy a helyszíni fájlrendszerben és az Azure Blob Storage tárolóban mutatnak. Adatok másolása azonban *közvetlenül* bármelyik sem a felsorolt nyelő források [támogatott források és mosdók](data-factory-data-movement-activities.md#supported-data-stores-and-formats) másolási tevékenység az Azure Data Factory használatával.
+## <a name="json-examples-for-copying-data-tooand-from-file-system"></a>Az adatok tooand Másolás a fájlrendszerből JSON példák
+hello alábbi példák megadják minta JSON-definíciók használható toocreate adatcsatorna hello segítségével [Azure-portálon](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md), vagy [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Azok hogyan toocopy adatok tooand egy a helyszíni fájlrendszerben és az Azure Blob Storage tárolóban. Adatok másolása azonban *közvetlenül* bármelyik hello források tooany felsorolt hello nyelő [támogatott források és mosdók](data-factory-data-movement-activities.md#supported-data-stores-and-formats) másolási tevékenység az Azure Data Factory használatával.
 
-### <a name="example-copy-data-from-an-on-premises-file-system-to-azure-blob-storage"></a>Példa: Adatok másolása az egy helyszíni fájlrendszer az Azure Blob-tároló
-Ez a példa bemutatja, hogyan egy helyszíni fájlrendszer adatok másolása az Azure Blob storage. A minta a következő adat-előállító entitások rendelkezik:
+### <a name="example-copy-data-from-an-on-premises-file-system-tooazure-blob-storage"></a>Példa: Adatok másolása egy helyi fájl rendszer tooAzure Blob-tároló
+Ez a példa bemutatja, hogyan egy helyi fájl rendszer tooAzure Blob-tároló toocopy adatait. hello minta a következő adat-előállító entitások hello rendelkezik:
 
 * A társított szolgáltatás típusa [OnPremisesFileServer](#linked-service-properties).
 * A társított szolgáltatás típusa [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -205,9 +205,9 @@ Ez a példa bemutatja, hogyan egy helyszíni fájlrendszer adatok másolása az 
 * Egy kimeneti [dataset](data-factory-create-datasets.md) típusú [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 * A [csővezeték](data-factory-create-pipelines.md) a másolási tevékenység által használt [FileSystemSource](#copy-activity-properties) és [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-Az alábbi minta másol idősorozat adatokat egy helyszíni fájlrendszer az Azure Blob storage óránként. A JSON-tulajdonságok ezeket a mintákat a használt a szakaszok ismertetik a minta után.
+a következő minta hello átmásolja-idősoros adatok egy helyi fájl rendszer tooAzure Blob-tároló minden órában. Ezeket a mintákat a használt hello JSON-tulajdonságok hello minta után hello szakaszok ismertetik.
 
-Első lépésként állítsa be az adatkezelési átjáró szerint utasításait [helyezze át az adatokat a helyszíni adatforrások és az adatkezelési átjáró a felhő közötti](data-factory-move-data-between-onprem-and-cloud.md).
+Első lépésként állítsa be az adatkezelési átjáró szerint hello utasításait [helyezze át az adatokat a helyszíni adatforrások és az adatkezelési átjáró hello felhő között](data-factory-move-data-between-onprem-and-cloud.md).
 
 **A helyi fájlkiszolgáló társított szolgáltatáshoz:**
 
@@ -226,7 +226,7 @@ Első lépésként állítsa be az adatkezelési átjáró szerint utasításait
 }
 ```
 
-Azt javasoljuk, a **encryptedCredential** tulajdonság inkább a **userid** és **jelszó** tulajdonságait. Lásd: [fájlkiszolgáló társított szolgáltatás](#linked-service-properties) részleteiről a társított szolgáltatás.
+Azt javasoljuk, hello **encryptedCredential** tulajdonság helyette hello **userid** és **jelszó** tulajdonságok. Lásd: [fájlkiszolgáló társított szolgáltatás](#linked-service-properties) részleteiről a társított szolgáltatás.
 
 **Az Azure tárolás társított szolgáltatásának:**
 
@@ -244,9 +244,9 @@ Azt javasoljuk, a **encryptedCredential** tulajdonság inkább a **userid** és 
 
 **A helyi rendszer bemeneti adatkészlet fájl:**
 
-Adatok van felvett egy új fájl óránként. A fájlnév és a folderPath tulajdonság alapján a szelet kezdési idejét határozza meg.  
+Adatok van felvett egy új fájl óránként. hello folderPath, és a fájlnév tulajdonságok alapján hello szelet hello kezdési idejét határozza meg.  
 
-Beállítás `"external": "true"` adat-előállító tájékoztatja, hogy az adatkészlet data factoryval való külső, és egy tevékenység adat-előállító nem hozzák.
+Beállítás `"external": "true"` adat-előállító tájékoztatja, hogy hello dataset külső toohello adat-előállítót, és egy tevékenység hello adat-előállítóban nem hozzák.
 
 ```JSON
 {
@@ -310,7 +310,7 @@ Beállítás `"external": "true"` adat-előállító tájékoztatja, hogy az ada
 
 **Az Azure Blob storage kimeneti adatkészlet:**
 
-Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1). A mappa elérési útját a BLOB a szelet által feldolgozott kezdési ideje alapján dinamikusan történik. A mappa elérési útját használja, év, hónap, nap, és a kezdési idő órában részeit.
+Adatot ír tooa új blob minden órában (gyakoriság: óra, időköz: 1). hello mappa elérési útja hello BLOB dinamikusan értékeli hello szelet által feldolgozott hello kezdési ideje alapján. hello mappa elérési útját használja hello év, hónap, nap és óra részei hello kezdési ideje.
 
 ```JSON
 {
@@ -370,7 +370,7 @@ Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1). A mapp
 
 **A másolási tevékenység során a fájlrendszer és a Blob fogadó folyamat:**
 
-A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és kimeneti adatkészletek használatára van konfigurálva, és óránkénti futásra nem ütemezték. Az adatcsatorna JSON-definícióból a **forrás** típusúra **FileSystemSource**, és **fogadó** típusúra **BlobSink**.
+hello folyamat másolatot tevékenységet tartalmaz, amely konfigurált toouse hello bemeneti és kimeneti adatkészletek, és ütemezett toorun óránként. Hello adatcsatorna JSON-definícióból, hello **forrás** típusuk értéke túl**FileSystemSource**, és **fogadó** típusuk értéke túl**BlobSink**.
 
 ```JSON
 {  
@@ -418,8 +418,8 @@ A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és
 }
 ```
 
-### <a name="example-copy-data-from-azure-sql-database-to-an-on-premises-file-system"></a>Példa: Adatok másolása az Azure SQL-adatbázis egy helyszíni fájlrendszerhez
-A következő példában:
+### <a name="example-copy-data-from-azure-sql-database-tooan-on-premises-file-system"></a>Példa: Adatok másolása az Azure SQL Database tooan helyszíni fájlrendszer
+a következő példa azt mutatja be hello:
 
 * A társított szolgáltatás típusa [AzureSqlDatabase.](data-factory-azure-sql-connector.md#linked-service-properties)
 * A társított szolgáltatás típusa [OnPremisesFileServer](#linked-service-properties).
@@ -427,7 +427,7 @@ A következő példában:
 * Egy kimeneti adatkészlet típusú [fájlmegosztási](#dataset-properties).
 * A másolási tevékenység által használt az adatcsatorna [SqlSource](data-factory-azure-sql-connector.md##copy-activity-properties) és [FileSystemSink](#copy-activity-properties).
 
-A minta-idősoros adatok egy Azure SQL tábla másolja egy helyi fájlrendszer minden órában. A JSON-tulajdonságok ezeket a mintákat a használt szakaszok ismertetik a minta után.
+hello minta másol idősorozat adatokat az Azure SQL táblázat tooan helyszíni fájlrendszer minden órában. Ezeket a mintákat a használt hello JSON-tulajdonságok hello minta után szakaszok ismertetik.
 
 **A társított szolgáltatásnak Azure SQL Database:**
 
@@ -460,13 +460,13 @@ A minta-idősoros adatok egy Azure SQL tábla másolja egy helyi fájlrendszer m
 }
 ```
 
-Azt javasoljuk, a **encryptedCredential** tulajdonság használata helyett a **userid** és **jelszó** tulajdonságait. Lásd: [fájlrendszer társított szolgáltatás](#linked-service-properties) részleteiről a társított szolgáltatás.
+Azt javasoljuk, hello **encryptedCredential** hello használata helyett tulajdonság **userid** és **jelszó** tulajdonságok. Lásd: [fájlrendszer társított szolgáltatás](#linked-service-properties) részleteiről a társított szolgáltatás.
 
 **Az Azure SQL bemeneti adatkészlet:**
 
-A minta feltételezi, hogy létrehozott egy tábla "MyTable" Azure SQL-ben, és egy idősorozat adatok "timestampcolumn" nevű oszlopot tartalmaz.
+hello minta feltételezi, hogy létrehozott egy tábla "MyTable" Azure SQL-ben, és egy idősorozat adatok "timestampcolumn" nevű oszlopot tartalmaz.
 
-Beállítás ``“external”: ”true”`` adat-előállító tájékoztatja, hogy az adatkészlet data factoryval való külső, és egy tevékenység adat-előállító nem hozzák.
+Beállítás ``“external”: ”true”`` adat-előállító tájékoztatja, hogy hello dataset külső toohello adat-előállítót, és egy tevékenység hello adat-előállítóban nem hozzák.
 
 ```JSON
 {
@@ -495,7 +495,7 @@ Beállítás ``“external”: ”true”`` adat-előállító tájékoztatja, h
 
 **A helyszíni rendszer kimeneti adatkészlet fájl:**
 
-Adatokat egy új fájlt másolja minden órában. A folderPath és a blob fájlnevét határozza meg a kezdési időt a szelet alapján.
+Adata másolt tooa új fájl óránként. hello folderPath és hello blob fájlnevét határozza meg hello szelet hello kezdési ideje alapján.
 
 ```JSON
 {
@@ -559,7 +559,7 @@ Adatokat egy új fájlt másolja minden órában. A folderPath és a blob fájln
 
 **A másolási tevékenység során egy SQL-forrás és fogadó fájlrendszer folyamaton belül:**
 
-A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és kimeneti adatkészletek használatára van konfigurálva, és óránkénti futásra nem ütemezték. Az adatcsatorna JSON-definícióból a **forrás** típusúra **SqlSource**, és a **fogadó** típusúra **FileSystemSink**. A megadott SQL-lekérdezést a **SqlReaderQuery** tulajdonság kiválasztása az adatok másolása az elmúlt órában.
+hello folyamat másolatot tevékenységet tartalmaz, amely konfigurált toouse hello bemeneti és kimeneti adatkészletek, és ütemezett toorun óránként. Hello adatcsatorna JSON-definícióból, hello **forrás** típusuk értéke túl**SqlSource**, és hello **fogadó** típusuk értéke túl**FileSystemSink**. hello SQL-lekérdezésben megadott hello **SqlReaderQuery** tulajdonság jelöli ki hello adatok hello toocopy óránként túlra.
 
 ```JSON
 {  
@@ -609,7 +609,7 @@ A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és
 ```
 
 
-A másolási tevékenység definíciójának fogadó adatkészletből oszlopok forrás adatkészletből oszlopokat is leképezheti. További információkért lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
+Forrás adatkészlet toocolumns hello másolási tevékenységdefinícióban fogadó adatkészletből oszlopokat is leképezheti. További információkért lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
 
 ## <a name="performance-and-tuning"></a>Teljesítmény és finomhangolás
- Az adatátvitelt jelölik a (másolási tevékenység során) az Azure Data Factory és különböző módokon optimalizálása azt a teljesítményt befolyásoló legfontosabb tényezők kapcsolatos további tudnivalókért lásd: a [másolási tevékenység teljesítmény- és hangolási útmutató](data-factory-copy-activity-performance.md).
+ toolearn kulccsal kapcsolatos tényezők az adatátvitelt jelölik a (másolási tevékenység során) az Azure Data Factory és különböző módokon toooptimize hatás hello teljesítmény, lásd: hello [másolási tevékenység teljesítmény- és hangolási útmutató](data-factory-copy-activity-performance.md).

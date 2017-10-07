@@ -1,5 +1,5 @@
 ---
-title: "MySQL az Azure-adatbázis korlátozásai |} Microsoft Docs"
+title: "a MySQL az Azure-adatbázis aaaLimitations |} Microsoft Docs"
 description: "A MySQL az Azure-adatbázis előzetes verzió korlátozásai ismerteti."
 services: mysql
 author: jasonh
@@ -9,19 +9,19 @@ editor: jasonwhowell
 ms.service: mysql-database
 ms.topic: article
 ms.date: 05/10/2017
-ms.openlocfilehash: c61d70897b66c2ffee819ac98c38ab75000db907
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9c877c592bf640f62182d8761c9c51363882d706
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="limitations-in-azure-database-for-mysql-preview"></a>Az Azure-adatbázis korlátozásai MySQL (előzetes verzió)
-Az Azure-adatbázishoz a MySQL-szolgáltatás nyilvános előzetes verziójában van. A következő szakaszok ismertetik a kapacitás és az adatbázis szolgáltatásban működik korlátok.
+hello Azure adatbázis MySQL szolgáltatás nyilvános előzetes verziójában van. hello következő részek a kapacitás és működési korlátai hello adatbázis szolgáltatásban.
 
 ## <a name="service-tier-maximums"></a>Szolgáltatási szint méretkorlát
 Azure MySQL-adatbázis a kiszolgáló létrehozása választhat több szolgáltatásszinttel rendelkezik. További információkért lásd: [az egyes szolgáltatásszinteken elérhető](concepts-service-tiers.md).  
 
-Nincs kapcsolatok, a számítási egység és a tárolás, az egyes szolgáltatásszintek tartalmának maximális száma a szolgáltatás előzetes az alábbiak szerint: 
+Hiba egy maximális száma érték a kapcsolatok, a számítási egység és a tárolás, az egyes szolgáltatásszinteken hello szolgáltatás előzetes, az alábbiak szerint: 
 
 |                            |                   |
 | :------------------------- | :---------------- |
@@ -39,7 +39,7 @@ Nincs kapcsolatok, a számítási egység és a tárolás, az egyes szolgáltat�
 | Alapszintű szolgáltatásszint         | 1 TB              |
 | Standard szolgáltatásszint      | 1 TB              |
 
-Túl sok a kapcsolat elérésekor a következő hibaüzenet jelenhet meg:
+Túl sok a kapcsolat elérésekor hello a következő hiba jelenhet meg:
 > 1040 (08004). hiba: Túl sok a kapcsolat
 
 ## <a name="preview-functional-limitations"></a>Előzetes verzió működési korlátozásai:
@@ -55,7 +55,7 @@ Túl sok a kapcsolat elérésekor a következő hibaüzenet jelenhet meg:
 - Dinamikusan áthelyezése előfizetés és az erőforráscsoport előre létrehozott kiszolgálók jelenleg nem támogatott.
 
 ### <a name="point-in-time-restore"></a>Pont-a--visszaállítás egy korábbi időpontra:
-1.  Különböző szolgáltatási rétegben és/vagy számítási egység és a tárhely mérete visszaállítása nem engedélyezett.
+1.  Toodifferent szolgáltatásréteg és/vagy számítási egység és a tárhely mérete visszaállítása nem engedélyezett.
 2.  Az eldobott kiszolgáló visszaállítása nem támogatott.
 
 ## <a name="next-steps"></a>További lépések:

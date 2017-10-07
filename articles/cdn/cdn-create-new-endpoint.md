@@ -1,6 +1,6 @@
 ---
-title: "Az Azure CDN használatának első lépései | Microsoft Docs"
-description: "Ez a témakör azt mutatja be, hogyan engedélyezhető az Azure Content Delivery Network (CDN). Az oktatóanyag végigvezeti Önt egy új CDN-profil és -végpont létrehozásán."
+title: "aaaGetting Azure CDN használatbavételének |} Microsoft Docs"
+description: "Ez a témakör bemutatja, hogyan tooenable hello Azure Content Delivery Network (CDN). hello az oktatóanyag végigvezeti egy új CDN-profil és -végpont hello létrehozása."
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,87 +14,87 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: d263e911d0d0b3cdc1e48e300a3c8a0994b38c39
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0ce9802bfd7b60e70a9a62330f5593fc17ea07d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-azure-cdn"></a>Az Azure CDN használatának első lépései
 Ez a témakör egy új CDN-profil és -végpont létrehozásán keresztül vezeti Önt végig az Azure CDN aktiválásán.
 
 > [!IMPORTANT]
-> A CDN működésének bemutatásáért, valamint az általa nyújtott szolgáltatások listájáért tekintse meg a [Tartalomkézbesítési hálózat (CDN) – áttekintés](cdn-overview.md) című dokumentumot.
+> Egy bevezető toohow CDN működik, valamint a szolgáltatások listáját, lásd: hello [CDN áttekintésével](cdn-overview.md).
 > 
 > 
 
 ## <a name="create-a-new-cdn-profile"></a>Új CDN-profil létrehozása
-A CDN-profil CDN-végpontok gyűjteménye.  Minden profil egy vagy több CDN-végpontot tartalmaz.  Előfordulhat, hogy több profil használatával rendszerezni szeretné a CDN-végpontokat internetes tartomány, webalkalmazás vagy más feltétel alapján.
+A CDN-profil CDN-végpontok gyűjteménye.  Minden profil egy vagy több CDN-végpontot tartalmaz.  Kezdésként érdemes lehet toouse több profilok tooorganize a CDN-végpontokat internetes tartomány, webalkalmazás vagy más feltétel alapján.
 
 > [!NOTE]
-> Alapértelmezés szerint egy Azure-előfizetéssel nyolc CDN-profil használható. Az egyes CDN-profilokban legfeljebb tíz CDN-végpont lehet.
+> Alapértelmezés szerint egy Azure-előfizetéssel korlátozott tooeight CDN-profil. Minden egyes CDN-profil CDN-végpontok korlátozott tooten.
 > 
-> A CDN-díjszabást a CDN-profilok szintjén alkalmazzuk. Ha több Azure CDN-tarifacsomagot szeretne vegyesen használni, több CDN-profilra lesz szüksége.
+> A CDN-díjszabást hello CDN profil szinten alkalmazzák. Ha a toouse Azure CDN vegyesen tarifacsomagok, szüksége lesz a több CDN-profilt.
 > 
 > 
 
 [!INCLUDE [cdn-create-profile](../../includes/cdn-create-profile.md)]
 
 ## <a name="create-a-new-cdn-endpoint"></a>Új CDN-végpont létrehozása
-**Új CDN-végpont létrehozása**
+**új CDN-végpont toocreate**
 
-1. Az [Azure portálon](https://portal.azure.com) lépjen a CDN-profilra.  Lehetséges, hogy a profilt az előző lépésben az irányítópulton rögzítette.  Amennyiben nem rögzítette, kattintson **Tallózás** gombra, majd a **CDN-profilok** elemre, végül kattintson arra a profilra, amelyet hozzá szeretne adni a végponthoz.
+1. A hello [Azure Portal](https://portal.azure.com), keresse meg a tooyour CDN-profilt.  Előfordulhat, hogy rendelkezik rögzítette azt toohello irányítópult hello előző lépésben.  Ha nem, akkor megtalálja kattintva **Tallózás**, majd **CDN-profilra**, és kattintson a hello-profil tervezi tooadd a végponthoz.
    
-    Megjelenik a CDN-profil panelje.
+    CDN-profil panelje hello jelenik meg.
    
     ![CDN-profil][cdn-profile-settings]
-2. Kattintson a **Végpont hozzáadása** gombra.
+2. Kattintson a hello **végpont hozzáadása** gombra.
    
     ![Végpont hozzáadása gomb][cdn-new-endpoint-button]
    
-    Megjelenik a **Végpont hozzáadása** panel.
+    Hello **végpont hozzáadása** panel jelenik meg.
    
     ![Végpont hozzáadása panel][cdn-add-endpoint]
-3. Adja meg a CDN-végpont kívánt nevét a **Név** mezőben.  A rendszer ezt a nevet fogja használni a gyorsítótárazott erőforrások eléréséhez a `<endpointname>.azureedge.net` tartományban.
-4. A **Forrása típusa** legördülő menüben válassza ki a forrástípust.  Azure Storage-fiók esetén válassza a **Storage**, Azure Cloud Service szolgáltatás esetén a **Cloud Service**, Azure Web Apps esetén a **Webalkalmazás**, az összes többi nyilvánosan elérhető (az Azure rendszerben vagy máshol tárolt) webkiszolgáló-forrás esetén pedig az **Egyéni forrás** lehetőséget.
+3. Adja meg a CDN-végpont kívánt nevét a **Név** mezőben.  Ez a név a gyorsítótárazott erőforrások hello tartomány lesz használt tooaccess `<endpointname>.azureedge.net`.
+4. A hello **forrása típusa** legördülő menüben válassza ki a forrástípust.  Azure Storage-fiók esetén válassza a **Storage**, Azure Cloud Service szolgáltatás esetén a **Cloud Service**, Azure Web Apps esetén a **Webalkalmazás**, az összes többi nyilvánosan elérhető (az Azure rendszerben vagy máshol tárolt) webkiszolgáló-forrás esetén pedig az **Egyéni forrás** lehetőséget.
    
     ![A CDN-forrása típusa](./media/cdn-create-new-endpoint/cdn-origin-type.png)
-5. A **Forrás állomásneve** legördülő menüben válassza ki vagy adja meg a forrástartományt.  A legördülő menüben szerepelni fog a 4. lépésben megadott típusú összes rendelkezésre álló forrás.  Ha a **Forrása típusa** számára az *Egyéni forrás* beállítást választotta ki, akkor be kell írnia az egyéni forrás tartományát.
-6. A **Forrás elérési útvonala** szövegmezőbe írja be a gyorsítótárazni kívánt erőforrások elérési útját. A mezőt üresen is hagyhatja, ha engedélyezni szeretné az 5. lépésben megadott tartomány bármely erőforrásának gyorsítótárazását.
-7. A **Forrás állomásfejléce** mezőben adja meg azt az állomásfejlécet, amelyet a CDN-nek minden egyes kérelemmel el kell küldenie; vagy hagyja meg az alapértelmezett értéket.
+5. A hello **forrásállomásnév** legördülő menüben válasszon ki vagy írja be a forrástartományt.  hello legördülő lista felsorolja az összes rendelkezésre álló források a 4. lépésben megadott hello típusú.  Ha a kiválasztott *egyéni forrás* , a **forrása típusa**, akkor be kell írnia az egyéni forrás hello tartományban.
+6. A hello **forrás elérési útvonalának** szöveg mezőbe írja be a kívánt toocache, vagy hagyja üresen tooallow gyorsítótár 5. lépésben megadott hello tartomány bármely erőforrásának hello elérési toohello erőforrásokat.
+7. A hello **forrás állomásfejlécét**adja meg a kívánt minden egyes kérelemmel CDN toosend hello hello állomásfejléc, vagy hagyja hello alapértelmezett.
    
    > [!WARNING]
-   > Bizonyos típusú források – például az Azure Storage és a Web Apps – esetén az állomásfejlécnek egyeznie kell a forrás tartományával. Hacsak a forrás a tartománytól eltérő állomásfejléc használatát nem igényli, hagyja meg az alapértelmezett értéket.
+   > Bizonyos típusú források – például az Azure Storage és a Web Apps hello host fejléc toomatch hello hello eredeti tartomány szükséges. Ha nincs forrás a tartománytól eltérő állomásfejléc használatát nem igényli, hagyja hello alapértelmezett értéket.
    > 
    > 
-8. A **Protokoll** és a **Forrásport** mezőben adja meg a forráson az erőforrások eléréséhez használt protokollokat és portokat.  Legalább egy protokollt (a HTTP vagy a HTTPS protokollt) ki kell választani.
+8. A **protokoll** és **forrásport**adja meg a hello protokollok és portok használt tooaccess az erőforrások hello származási helyen.  Legalább egy protokollt (a HTTP vagy a HTTPS protokollt) ki kell választani.
    
    > [!NOTE]
-   > A **Forrásport** értéke csak azt befolyásolja, hogy a végpont melyik portot használja az információk forrásról való lekéréséhez.  Magát a végpontot a végügyfelek – a **Forrásport** értékétől függetlenül – csak az alapértelmezett HTTP- és HTTPS-porton (azaz a 80-as és a 443-as porton) keresztül érik el.  
+   > Hello **forrásport** csak érinti a milyen port hello végpont hello forrásból tooretrieve információkat használja.  hello maga végpont csak akkor elérhető tooend ügyfelek hello alapértelmezett HTTP és HTTPS-portok (80-as és 443-as), függetlenül attól, hello **forrásport**.  
    > 
-   > Az **Akamai Azure CDN** típusú végpontok esetén a források számára nem áll rendelkezésre a teljes TCP-porttartomány.  A nem engedélyezett forrásportok listáját lást: [Azure CDN from Akamai Allowed Origin Ports](https://msdn.microsoft.com/library/mt757337.aspx) (Az Akamai Azure CDN engedélyezett forrásportjai).  
+   > **Akamai Azure CDN** végpontok nem teszik lehetővé az hello teljes TCP-porttartomány esetén a források számára.  A nem engedélyezett forrásportok listáját lást: [Azure CDN from Akamai Allowed Origin Ports](https://msdn.microsoft.com/library/mt757337.aspx) (Az Akamai Azure CDN engedélyezett forrásportjai).  
    > 
-   > A CDN-tartalom HTTPS-kapcsolaton keresztüli elérésére a következő korlátozások vonatkoznak:
+   > CDN elérése HTTPS-kapcsolaton keresztül tartalmat rendelkezik a következő korlátozások hello:
    > 
-   > * A CDN által biztosított SSL-tanúsítványt kell használni. A rendszer nem támogatja a harmadik féltől származó tanúsítványokat.
-   > * A HTTPS-tartalom eléréséhez a CDN által biztosított tartományt (`<endpointname>.azureedge.net`) kell használni. A HTTPS nem támogatott az egyéni tartománynevek (CNAME) esetén, mivel a CDN jelenleg nem támogatja az egyéni tanúsítványokat.
+   > * Hello hello CDN által biztosított SSL-tanúsítványt kell használnia. A rendszer nem támogatja a harmadik féltől származó tanúsítványokat.
+   > * Hello CDN által biztosított tartományt kell használnia (`<endpointname>.azureedge.net`) tooaccess HTTPS-tartalom. HTTPS-támogatás nem érhető el egyéni tartománynevek (CNAME), mert hello CDN nem támogatja az egyéni tanúsítványokat jelenleg.
    > 
    > 
-9. Az új végpont létrehozásához kattintson a **Hozzáadás** gombra.
-10. A végpont a létrehozás után megjelenik a profil végpontjainak listájában. A listanézetben látható a gyorsítótárazott tartalom eléréséhez használható URL-cím, valamint a forrástartomány is.
+9. Kattintson a hello **Hozzáadás** gomb toocreate hello új végpont.
+10. Hello végpont létrehozását követően hello-profil végpontjainak listájában jelenik meg. hello listanézetben látható, hello URL-cím toouse tooaccess gyorsítótárazott tartalmat, valamint hello forrástartományt.
     
     ![CDN-végpont][cdn-endpoint-success]
     
     > [!IMPORTANT]
-    > A végpont nem vehető használatba azonnal, mivel némi időre van szükség a regisztráció CDN-rendszeren belüli propagálásához.  Az <b>Akamai Azure CDN</b> típusú profilok propagálása általában egy percen belül befejeződik.  A <b>Verizon Azure CDN</b> típusú profilok propagálása általában 90 percen belül befejeződik, ám egyes esetekben több időt is igénybe vehet.
+    > hello végpont nem azonnal elérhetővé válik, használatra hello regisztrációs toopropagate keresztül hello CDN időt vesz igénybe.  Az <b>Akamai Azure CDN</b> típusú profilok propagálása általában egy percen belül befejeződik.  A <b>Verizon Azure CDN</b> típusú profilok propagálása általában 90 percen belül befejeződik, ám egyes esetekben több időt is igénybe vehet.
     > 
-    > A felhasználók 404-es HTTP-válaszkódot kapnak, ha a CDN-tartománynevet azelőtt próbálják meg használni, mielőtt végbement volna a végpont-konfiguráció POP-kre történő propagálása.  Ha a végpont létrehozása óta már több óra is eltelt, mégis 404-es válaszkódot kap, olvassa el a [404-es állapotot visszaadó CDN-végpontok hibaelhárítása](cdn-troubleshoot-endpoint.md) című cikket.
+    > Próbálja meg toouse hello CDN-tartománynevet, mielőtt hello végpont-konfiguráció propagálása toohello POP felhasználók HTTP 404-es válaszkódot kapnak.  Ha a végpont létrehozása óta már több óra is eltelt, mégis 404-es válaszkódot kap, olvassa el a [404-es állapotot visszaadó CDN-végpontok hibaelhárítása](cdn-troubleshoot-endpoint.md) című cikket.
     > 
     > 
 
 ## <a name="see-also"></a>Lásd még:
 * [Lekérdezési karakterláncot tartalmazó kérelmek gyorsítótárazási viselkedésének vezérlése](cdn-query-string.md)
-* [CDN-tartalom leképezése egyéni tartományra](cdn-map-content-to-custom-domain.md)
+* [Hogyan tooMap CDN tartalom tooa egyéni tartományhoz](cdn-map-content-to-custom-domain.md)
 * [Eszközök előzetes betöltése Azure CDN-végponton](cdn-preload-endpoint.md)
 * [CDN-végpont végleges törlése](cdn-purge-endpoint.md)
 * [404-es állapotot visszaadó CDN-végpontok hibaelhárítása](cdn-troubleshoot-endpoint.md)

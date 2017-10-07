@@ -1,6 +1,6 @@
 ---
-title: "Hibaelhárítás: Hiányzó adatok a letöltött Azure Active Directory-tevékenységnaplókban | Microsoft Docs"
-description: "A letöltött Azure Active Directory-tevékenységnaplókból hiányzó adatok problémájára nyújt megoldást."
+title: "Hibáinak elhárítása: Hiányzó adatok hello letöltött Azure Active Directory tevékenységi naplóit |} Microsoft Docs"
+description: "A letöltött Azure Active Directory tevékenységi naplóit feloldási toomissing adatokat biztosít."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,30 +15,30 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 3d56f89035da4d1a0074256b165663f81fc2b01e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 027b70e6efc570f81d3c836f50ee52aaa89be71a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="i-cant-find-any-data-in-the-azure-active-directory-activity-logs-i-have-downloaded"></a>Nem találhatók adatok az Azure Active Directory letöltött tevékenységnaplóiban
+# <a name="i-cant-find-any-data-in-hello-azure-active-directory-activity-logs-i-have-downloaded"></a>Nem található adatok hello Azure Active Directory tevékenységi naplóit le van töltve
 
 
 ## <a name="symptoms"></a>Probléma
 
-Letöltöttem a tevékenységnaplókat (audit vagy bejelentkezési), és nem látom a kiválasztott időre vonatkozó összes rekordot. Hogy miért? 
+Le hello tevékenységi naplóit (naplózási vagy bejelentkezéseket) töltve, és nem szerepel az összes hello rekord elfogadása hello ideje. Hogy miért? 
 
  ![Jelentéskészítés](./media/active-directory-reporting-troubleshoot-missing-data-download/01.png)
  
 
 ## <a name="cause"></a>Ok
 
-Amikor tevékenységnaplókat tölt le az Azure Portalon, 120 ezer rekordra korlátozzuk a letöltött tartományt, és a legfrissebb elemek kerülnek előre. 
+Ha le az Azure-portálon hello tevékenységi naplóit, azt hello méretezési too120K rekordok, legtöbb rendezve korlátozására legutóbbi. 
 
 ## <a name="resolution"></a>Megoldás:
 
-Az [Azure AD Reporting API-kkal](active-directory-reporting-api-getting-started.md) akár egymillió rekordot is lekérdezhet. Azt ajánljuk, hogy futtasson egy ütemezett szkriptet, amely meghívja a jelentéskészítő API-kat, hogy növekményes módon kérdezzék le az egy adott időszakra (például egy napra vagy hétre) vonatkozó rekordokat.
+Kihasználhatja [az Azure AD Reporting API-k](active-directory-reporting-api-getting-started.md) toofetch tooa millió rekordok álljon. Az ajánlott megoldás, egy meghatározott időtartamra vonatkozóan egy egyedi módon rögzíti, amely behívja hello jelentéskészítési API-k toofetch ütemezés szerint parancsfájlt toorun, (például naponta vagy hetente).
 
 ## <a name="next-steps"></a>Következő lépések
-További információ: [Jelentéskészítés az Azure Active Directoryban – gyakori kérdések](active-directory-reporting-faq.md).
+Lásd: hello [Azure Active Directory – gyakori kérdések reporting](active-directory-reporting-faq.md).
 

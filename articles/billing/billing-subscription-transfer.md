@@ -1,7 +1,7 @@
 ---
-title: "Azure-előfizetés tulajdonjogának átruházása másik fiókra |} Microsoft Docs"
-description: "Ismerteti, hogyan lehet egy Azure-előfizetés átvitele egy másik felhasználó, és a folyamat kapcsolatos néhány gyakran ismételt kérdések (GYIK)"
-keywords: "azure-előfizetésre, az azure átviteli előfizetés átvitele, azure-előfizetés áthelyezése egy másik fiókot, azure új előfizetés tulajdonos, azure-előfizetés átvitele egy másik fiókkal"
+title: "Azure-előfizetés tulajdonjogának tooanother fiók aaaTransfer |} Microsoft Docs"
+description: "Ismerteti, hogyan tootransfer egy Azure-előfizetés tooanother felhasználó, és néhány gyakori kérdések (GYIK) hello folyamat"
+keywords: "azure-előfizetésre, az azure átviteli előfizetés átvitele, helyezze át az azure-előfizetés tooanother fiókot, azure új előfizetés tulajdonos, átviteli azure előfizetés tooanother fiók"
 services: 
 documentationcenter: 
 author: genlin
@@ -17,144 +17,144 @@ ms.topic: article
 ms.date: 06/13/2017
 ms.author: genli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8a856c39eb11546f35cb4e8c21e6bdcce98857a8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d2d9f5d9ccd34738701493e5f31c2f83a02f5d48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="transfer-ownership-of-an-azure-subscription-to-another-account"></a>Egy másik fiókot az Azure-előfizetés tulajdonjogának átruházása
+# <a name="transfer-ownership-of-an-azure-subscription-tooanother-account"></a>Egy Azure-előfizetés tooanother fiók tulajdonjogának átruházása
 
-Használatalapú fizetés, Visual Studio, a művelet, vagy az Account Center BizSpark előfizetések vihetők át az előfizetés egy másik felhasználóhoz. Azure-előfizetés típusaival kapcsolatban, valamint a külső szolgáltatások átruházása támogatjuk. 
+Az előfizetés tooanother felhasználói hello Account Center – használatalapú fizetés, a Visual Studio, a művelet csomag vagy a BizSpark előfizetésekhez vihetők át. Azure-előfizetés típusaival kapcsolatban, valamint a külső szolgáltatások átruházása hello támogatott. 
 
-Azure-előfizetés tulajdonjogának átruházása, ha a kívánt meg:
+Érdemes lehet egy Azure-előfizetés tootransfer tulajdonjogát, ha Ön:
 
-* Számlázási tulajdonjogát, hogy valaki más Azure-előfizetése felett oldalon kell.
-* Regisztráció az Azure használt fiók módosítani szeretne. Lehet, hogy a Microsoft-Account használja, de azt jelentette, hogy használja a munkahelyi vagy iskolai fiókját.
-* Az Azure-előfizetéshez áthelyezése egy címtárban másik szeretné.
-* Azure és az Office 365 a különböző bérlők, és szeretnék vonják össze.
+* A számlázási tulajdonosi jogait a más Azure-előfizetés toosomeone toohand van szükségük.
+* Szeretné, hogy toochange hello fiókot használja az Azure szolgáltatáshoz toosign. Lehet, hogy a Microsoft-Account használja, de azt jelentette, hogy toouse a munkahelyi vagy iskolai fiók helyett.
+* Toomove szeretné, hogy egy címtárban tooanother az Azure-előfizetése.
+* Azure és az Office 365 a különböző bérlők, és szeretnék tooconsolidate.
 
-Az előfizetés egy másik ajánlatra módosításához lásd [az Azure-előfizetéshez Váltás másik ajánlatra](billing-how-to-switch-azure-offer.md). 
+toochange a különböző előfizetés tooa kínálnak, lásd: [az Azure-előfizetés tooanother ajánlatot váltani](billing-how-to-switch-azure-offer.md). 
 
 ## <a name="transfer-ownership-of-an-azure-subscription"></a>Azure-előfizetés tulajdonjogának átruházása
 > [!VIDEO https://channel9.msdn.com/Series/Microsoft-Azure-Tutorials/Transfer-an-Azure-subscription/player]
 >
 >
 
-1. Jelentkezzen be a(z) <https://account.windowsazure.com/Subscriptions>. A fiók rendszergazdájához, és egy tulajdonosi átvitelt végezni, hogy rendelkezik. Ki-e a Fiókadminisztrátor az előfizetés, lásd: a [gyakran ismételt kérdések](#faq).
+1. Jelentkezzen be a(z) <https://account.windowsazure.com/Subscriptions>. Toobe hello Fiókadminisztrátort tooperform Tulajdonjog átadásának rendelkezik. toofind, akik hello Fiókadminisztrátort hello előfizetés, lásd: hello [gyakran ismételt kérdések](#faq).
 
-2. Válassza ki az előfizetés átvitele.
+2. Válassza ki a hello előfizetés tootransfer.
 
-3. Kattintson a **előfizetés átviteli** lehetőséget. Lásd: [gyakran ismételt kérdések](#no-button) Ha nem látja a gombra.
+3. Kattintson a hello **előfizetés átviteli** lehetőséget. Lásd: [gyakran ismételt kérdések](#no-button) Ha nem látja hello gombra.
 
    ![Azure-fiók előfizetések lap](./media/billing-subscription-transfer/image1.png)
-4. Adja meg a címzettet.
+4. Adja meg a hello címzett.
 
    ![Átviteli előfizetés párbeszédpanel](./media/billing-subscription-transfer/image2.PNG)
-5. A címzett automatikusan kapni fog egy elfogadási hivatkozást tartalmazó e-mailt.
+5. hello címzett automatikusan kap egy e-maileket az elfogadási kapcsolaton.
 
-   ![Előfizetés átviteli e-mail címzett](./media/billing-subscription-transfer/image3.png)
-6. A címzett a hivatkozásra való kattintás után követnie kell az utasításokat, többek között a fizetési információk megadásával.
+   ![Előfizetés átviteli e-mail toorecipient](./media/billing-subscription-transfer/image3.png)
+6. hello címzett hello hivatkozásra kattint, és a következő hello utasításokat, beleértve a fizetési adatok megadása.
 
    ![Első előfizetési átviteli weblapot](./media/billing-subscription-transfer/image4.png)
 
    ![Második előfizetési átviteli weblapot](./media/billing-subscription-transfer/image5.png)
-7. Sikerült! Az Előfizetés most át.
+7. Sikerült! hello előfizetés most át.
 
 ## <a name="transfer-subscription-ownership-for-enterprise-agreement-ea-customers"></a>A nagyvállalati szerződés (EA) ügyfelek előfizetés tulajdonjogának átruházása
-A vállalati rendszergazda vihetők át a beléptetési belül előfizetések tulajdonjogát. Első lépésként tekintse meg a [átviteli fiók tulajdonjogának](https://ea.azure.com/helpdocs/changeAccountOwnerForASubscription) a EA portálon.
+Vállalati rendszergazda hello tulajdonjogát, a beléptetési belül előfizetések vihetők át. tooget indult el, lásd: [átviteli fiók tulajdonjogának](https://ea.azure.com/helpdocs/changeAccountOwnerForASubscription) hello EA portálon.
 
 ## <a name="next-steps-after-accepting-ownership-of-a-subscription"></a>Az előfizetés tulajdonosa elfogadása követő lépések
-1. A Fiókadminisztrátor is. Tekintse át, és frissítse a szolgáltatás-rendszergazda és a Társadminisztrátorok. A rendszergazdák kezelése a [a klasszikus Azure portálon](https://manage.windowsazure.com) beállításainak megnyitásával. [További tudnivalók a rendszergazdai szerepkörökről](billing-add-change-azure-subscription-administrator.md).
+1. Most már áll hello fiók rendszergazdájához. Felülvizsgálata és aktualizálása céljából hello szolgáltatás-rendszergazda és a Társadminisztrátorok. A hello rendszergazdák kezelése [a klasszikus Azure portálon](https://manage.windowsazure.com) tooSettings címen. [További tudnivalók a rendszergazdai szerepkörökről](billing-add-change-azure-subscription-administrator.md).
 
-2. Szerepköralapú hozzáférés-vezérlést (RBAC) használata az előfizetés és -szolgáltatásokra. Látogasson el az [Azure Portalra](https://portal.azure.com). [További tudnivalók az RBAC](../active-directory/role-based-access-control-configure.md)
+2. Szerepköralapú hozzáférés-vezérlést (RBAC) használata az előfizetés és -szolgáltatásokra. A Microsoft hello [Azure-portálon](https://portal.azure.com). [További tudnivalók az RBAC](../active-directory/role-based-access-control-configure.md)
 
 3. Frissítse a hitelesítő adatokat, beleértve az előfizetés szolgáltatásokkal:
    
-   * A felhasználó előfizetéshez kapcsolódó erőforrásokat rendszergazdai jogosultságokat adjon felügyeleti tanúsítványok. További információkért lásd: [létrehozása és felügyeleti az Azure-tanúsítvány feltöltése](../cloud-services/cloud-services-certs-create.md)
+   * Hello felhasználó engedélyeket admin toosubscription erőforrások felügyeleti tanúsítványok. További információkért lásd: [létrehozása és felügyeleti az Azure-tanúsítvány feltöltése](../cloud-services/cloud-services-certs-create.md)
    
    * Tárelérési kulcsok szolgáltatások, például tároló. További információkért lásd: [tudnivalók az Azure storage-fiókok](../storage/common/storage-create-storage-account.md)
    
    * Távoli hozzáférési hitelesítő adatok, szolgáltatások, például Azure virtuális gépeken. 
 
-4. [Az előfizetés számlázási riasztások frissítése](billing-set-up-alerts.md) , a [Azure Account Center](https://account.windowsazure.com/Subscriptions). 
+4. [Az előfizetés számlázási riasztások frissítése](billing-set-up-alerts.md) : hello [Azure Account Center](https://account.windowsazure.com/Subscriptions). 
 
-5. Ha a partnerrel dolgozik, fontolja meg a Partnerazonosítót. Ebben az előfizetésben. A partner Partnerazonosítóját, a frissítéshez a [Azure Account Center](https://account.windowsazure.com/Subscriptions).
+5. Ha a partnerrel dolgozik, fontolja meg hello Partnerazonosítót. Ebben az előfizetésben. Frissítheti a hello hello Partnerazonosító [Azure Account Center](https://account.windowsazure.com/Subscriptions).
 
 <a id="faq"></a>
 
 ## <a name="frequently-asked-questions-faq"></a>Gyakori kérdések (GYIK)
-* <a name="whoisaa"></a>**Ki-e a fiókadminisztrátor az előfizetés?**
+* <a name="whoisaa"></a>**Ki-e hello előfizetés hello fiókadminisztrátort?**
 
-  A fiókadminisztrátor az a személy, aki regisztrált a vagy vásárolt Azure-előfizetést. Engedélyezett-e hozzáférni a [Account Center](https://account.windowsazure.com/Home/Index) és -előfizetések létrehozása, szakítsa meg a előfizetések, az előfizetés számlázási módosítása, vagy módosítsa a szolgáltatás-rendszergazda például különböző felügyeleti feladatok elvégzésére. Ha nem biztos, aki a fiókadminisztrátor az előfizetéshez, tegye a következőket megállapítása.
+  hello fiókadminisztrátort hello személy, aki regisztrált a vagy vásárolt Azure-előfizetés hello. Meghatalmazott tooaccess hello fontosságúak [Account Center](https://account.windowsazure.com/Home/Index) és hasonló előfizetések létrehozása, előfizetések megszakítja, módosítsa az előfizetéshez hello számlázási vagy hello szolgáltatás-rendszergazda módosíthatja különféle felügyeleti feladatok elvégzésére. Ha nem biztos, aki hello fiókja rendszergazda-előfizetéssel, használja a következő lépéseket toofind kimenő hello.
 
-  1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-  2. A központ menüben válassza ki a **előfizetés**.
-  3. Válassza ki az előfizetést, és ellenőrizze, majd keresse meg a **beállítások**.
-  4. Válassza ki **tulajdonságok**. A fiókadminisztrátor az előfizetés jelenik meg a **Fiókadminisztrátor** mezőbe.  
+  1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+  2. Hello központ menüben válassza ki a **előfizetés**.
+  3. Jelölje ki azt szeretné, hogy toocheck, majd az hello előfizetést **beállítások**.
+  4. Válassza ki **tulajdonságok**. hello fiókadminisztrátort hello előfizetés hello megjelenő **Fiókadminisztrátor** mezőbe.  
 
 * **Nem minden átviszi a? Többek között az erőforráscsoportok, a virtuális gépek, a lemezek és a többi futó szolgáltatások?**
 
-  Igen, az erőforrások, mint például virtuális gépek, a lemezek és a webhelyek átvitelét az új tulajdonos. Azonban bármely [rendszergazdai szerepkörök](billing-add-change-azure-subscription-administrator.md) és [szerepköralapú hozzáférés-vezérlés (RBAC)](../active-directory/role-based-access-control-configure.md) létrehozott házirendeket nem veszi át más címtárak között.
+  Igen, az erőforrások, például virtuális gépek, lemezek, és webhelyek átviteli toohello új tulajdonosa. Azonban bármely [rendszergazdai szerepkörök](billing-add-change-azure-subscription-administrator.md) és [szerepköralapú hozzáférés-vezérlés (RBAC)](../active-directory/role-based-access-control-configure.md) létrehozott házirendeket nem veszi át más címtárak között.
 
-* <a id="no-button"></a>**Miért nem látom az előfizetés átvitele gomb?**
+* <a id="no-button"></a>**Miért nem látom az előfizetés átvitele hello gomb?**
 
-  Ha nem látja a **átviteli előfizetés** gombra, majd az előfizetéshez nem támogatjuk az előfizetés átvitele. [Forduljon a támogatási szolgálathoz](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
+  Ha nem lát hello **átviteli előfizetés** gombra, majd az előfizetéshez nem támogatjuk az előfizetés átvitele. [Forduljon a támogatási szolgálathoz](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
 
 * **Az előfizetés átadása szolgáltatás leállási eredményez?**
 
-  Nincs hatással a szolgáltatás. Az előfizetés átvitele visszavonja az előfizetés aktuális rendszergazdai fiók alatt, és a címzett fiók alatt egy előfizetést hoz létre. Az új előfizetés az alapul szolgáló Azure-szolgáltatásokhoz való hozzá rendelve. Az előfizetés-azonosító változatlan marad.
+  Nincs hatása toohello szolgáltatás. Hello előfizetés átvitele érvényteleníti hello előfizetés hello jelenlegi fiók rendszergazdájához, és hello címzett fiók alatt egy előfizetést hoz létre. hello új előfizetés, a társított toohello alapul szolgáló Azure-szolgáltatásokhoz. hello előfizetési azonosító maradt hello azonos.
 
-* **Hogyan használjam ezt a folyamatot előfizetéshez tartozó könyvtárat szeretne váltani?**
+* **Hogyan használja a folyamat toochange hello könyvtár előfizetéshez?**
 
-  Azure-előfizetéssel, amely a Fiókadminisztrátor tartozik a címtárban jön létre. Ha könyvtárat szeretne váltani, vigye át az előfizetést a célkönyvtárat egy felhasználói fiókhoz. Átadás elfogadásához a lépéseket, hogy a felhasználó befejeződésekor az előfizetés automatikusan átkerül a célkönyvtárat.
+  Azure-előfizetés hello könyvtárban jön létre, hogy hello tartozik fiók rendszergazdájához. toochange hello könyvtár, átviteli hello előfizetés tooa felhasználói fiók hello célkönyvtár a forráskönyvtárban található. Hello lépéseket tooaccept átviteli, hogy a felhasználó befejeződésekor hello előfizetés automatikusan áthelyezett toohello célkönyvtár a forráskönyvtárban.
 
-* **Ha I átveszi egy másik szervezet előfizetés számlázási tulajdonosi jogokat, tegye azok továbbra is az erőforrások eléréséhez?**
+* **Ha I átveszi egy másik szervezet előfizetés számlázási tulajdonosi jogokat, tegye mindaddig toohave toomy-erőforrások eléréséhez?**
 
-  Ha az előfizetés át egy másik bérlőnek, az előző tenanthoz társított felhasználók elveszíti a hozzáférést az előfizetéshez. Akkor is, ha a felhasználó nem egy szolgáltatás-rendszergazdai vagy társadminisztrátori többé, előfordulhat, hogy továbbra is hozzáférhetnek az előfizetéseket a más védelmi mechanizmus, beleértve:
+  Ha hello előfizetés átvitt tooanother bérlő, a hello előző tenanthoz társított hello felhasználók elveszítik hozzáférés toohello előfizetés. Akkor is, ha egy felhasználó nincs szolgáltatás-rendszergazdák vagy társadminisztrátornak többé, előfordulhat, hogy rendelkezik az access toohello előfizetéseket a más védelmi mechanizmus, beleértve:
 
-  * A felhasználó előfizetéshez kapcsolódó erőforrásokat rendszergazdai jogosultságokat adjon felügyeleti tanúsítványok. További információkért lásd: [létrehozása és feltöltése az Azure felügyeleti tanúsítvánnyal](../cloud-services/cloud-services-certs-create.md).
+  * Hello felhasználó engedélyeket admin toosubscription erőforrások felügyeleti tanúsítványok. További információkért lásd: [létrehozása és feltöltése az Azure felügyeleti tanúsítvánnyal](../cloud-services/cloud-services-certs-create.md).
   * Tárelérési kulcsok szolgáltatások, például tároló. További információkért lásd: [tudnivalók az Azure storage-fiókok](../storage/common/storage-create-storage-account.md).
   * Távoli hozzáférési hitelesítő adatok, szolgáltatások, például Azure virtuális gépeken.
 
- Ha a címzett kell korlátozni az erőforrásokhoz való hozzáférést, akkor vegye figyelembe bármely a szolgáltatáshoz társított titkos kulcsok frissítése. A legtöbb erőforrást frissíthetik az alábbi lépéseket követve:
+ Hello címzettje toorestrict tootheir-erőforrások eléréséhez szükséges, ha azok érdemes bármely hello szolgáltatáshoz társított titkos kulcsok frissítése. A legtöbb erőforrást frissíthető hello lépések segítségével:
 
-    1. Nyissa meg az [Azure Portal](https://portal.azure.com).
-    2. A központ menüben válassza ki a **összes erőforrás**.
-    3. Válassza ki az erőforrást. 
-    4. Az erőforrás panel kattintson **beállítások**. Itt megtekintheti, és frissítse a meglévő titkos kulcsok.
+    1. Nyissa meg toohello [Azure-portálon](https://portal.azure.com).
+    2. Hello központ menüben válassza ki a **összes erőforrás**.
+    3. Válassza ki a hello erőforrás. 
+    4. Hello erőforrás paneljén kattintson **beállítások**. Itt megtekintheti, és frissítse a meglévő titkos kulcsok.
 
-* **Ha az előfizetés számlázási ciklus közepén átvinni, nem a címzett fizetési – a teljes számlázási ciklus?**
+* **Ha hello előfizetést hello középső, számlázási ciklus hello átvinni, nem hello címzett fizetési – hello teljes számlázási ciklus?**
 
-  A küldő bármilyen, hogy befejeződött-e az átvitel pontig jelentett használati felelős. A címzett nem az újabb verziók esetében az átviteli időt jelentett használati felelős. Előfordulhat, hogy néhány használati átvitel előtt történt, de ezek után történt. A használati a címzett számlázási tartalmazza.
+  hello küldője bármely be, hogy befejeződött-e hello átviteli toohello pont jelentett használati felelős. hello címzett hello idő az újabb verziók esetében az átviteli jelentett használati felelős. Előfordulhat, hogy néhány használati átvitel előtt történt, de ezek után történt. hello használati hello címzett számlázási tartalmazza.
 
-* **A címzett rendelkezik használati és számlázási előzmények elérésére?**
+* **Hello címzett hozzáférés toousage és számlázási előzmények rendelkezik?**
 
-  A címzett számára elérhető összes információ mennyisége az utolsó számlázási, vagy ha az előfizetés áthelyezése történt, az első számlázási előtt létrehozott, az aktuális egyenleg. A többi a használati és számlázási előzmények nem viszi át az előfizetéshez.
+  hello csak információkat elérhető toohello címzett hello utolsó számlázási hello memóriamennyiség, vagy hello előfizetés áthelyezése történt, mielőtt hello első számlázási jött létre, ha hello aktuális elosztása. hello használati és számlázási előzmények hello részeinek nem viszi át hello előfizetéssel.
 
-* **Az ajánlat módosítható egy átvitel közben?**
+* **Hello ajánlat módosítható egy átvitel közben?**
 
-  Az ajánlat azonosnak kell maradnia. Ha módosítani szeretné az ajánlatot, lásd: [az Azure-előfizetéshez Váltás másik ajánlatra](billing-how-to-switch-azure-offer.md).
+  hello ajánlat kell maradnia hello azonos. toochange ajánlatát, lásd: [az Azure-előfizetés tooanother ajánlatot váltani](billing-how-to-switch-azure-offer.md).
 
-* **Átvihető előfizetés egy másik országban egy felhasználói fiókot?**
+* **Egy előfizetés tooa felhasználói fiók egy másik országban vihetők át?**
 
-  Egy előfizetés átvitele egy felhasználói fiókhoz, egy másik országban nem, nem támogatott. A címzett felhasználói fióknak ugyanabban az országban kell lennie.
+  Egy előfizetés tooa felhasználói fiók egy másik országban átvitele nem, nem támogatott. hello címzett felhasználói fióknak kell lennie a hello ugyanabból az országból.
 
-* **A címzett használhatja egy másik fizetési módot?**
+* **Hello címzett használhatja egy másik fizetési módot?**
 
-  Igen. De az előfizetés számlázási előzmények be van-e osztani két fiókot.  
+  Igen. De hello előfizetés számlázási előzmények be van-e osztani két fiókot.  
 
-* **A fizetési módot feladatátvétele után az Azure-előfizetés átvitele?**
+* **Hello fizetési mód feladatátvétele után az Azure-előfizetés átvitele?**
 
-  Fogadja el az előfizetés átadása, hitelkártyával vagy hasonló fizetési metódust meg kell adni, az előfizetés fizetési. Például ha Bálint Jane előfizetés továbbítja, és Jane fogadja el az átvitelt, Jane biztosítania kell a fizetési módot, az előfizetés fizetési. Az átvitel befejezése után, Jane az előfizetés nem Bob lesz számlázva.
+  tooaccept az előfizetés átadása, hitelkártyával vagy hasonló fizetési mód meg kell adni toopay hello az előfizetéshez. Például ha Bálint visz át egy előfizetés tooJane, és Jane hello átviteli fogad el, Jane adjon meg egy fizetési mód toopay hello előfizetés. Hello átviteli befejezése után, Jane hello előfizetés nem Bob lesz számlázva.
 
-* **Hogyan adatait és szolgáltatásait saját Azure-előfizetés át az új előfizetés?**
+* **Hogyan át adatokat és az Azure-előfizetés toonew előfizetéshez tartozó szolgáltatásokat?**
 
-  Ha az előfizetés tulajdonosa nem tudja áthelyezni, manuálisan áttelepítheti az erőforrások. Lásd: [erőforrások áthelyezése új erőforráscsoportba vagy előfizetésbe](../azure-resource-manager/resource-group-move-resources.md).
+  Ha az előfizetés tulajdonosa nem tudja áthelyezni, manuálisan áttelepítheti az erőforrások. Lásd: [erőforrások toonew erőforráscsoportba vagy előfizetésbe áthelyezése](../azure-resource-manager/resource-group-move-resources.md).
 
 
 
 ## <a name="need-help-contact-support"></a>Segítség Forduljon a támogatási szolgálathoz.
-Ha további segítségre van, [forduljon a támogatási szolgálathoz](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) a probléma elhárítva gyors eléréséhez. 
+Ha további segítségre van, [forduljon a támogatási szolgálathoz](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) a probléma megoldódik gyorsan tooget. 
 
 

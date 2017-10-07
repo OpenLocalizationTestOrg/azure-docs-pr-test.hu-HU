@@ -1,6 +1,6 @@
 ---
-title: "Névkeresési DNS az Azure-szolgáltatásokhoz |} Microsoft Docs"
-description: "Az Azure-ban tárolt szolgáltatások DNS-névlekérdezés konfigurálása"
+title: "az Azure szolgáltatások DNS aaaReverse |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooconfigure fordított az Azure-ban tárolt szolgáltatások DNS-keresések"
 services: dns
 documentationcenter: na
 author: jtuliani
@@ -12,54 +12,54 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/29/2017
 ms.author: jonatul
-ms.openlocfilehash: 63701e1ce0c1c6dcf2ce02ebce272b8280395e7f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c6fe1d80232f124be86dd7fc57abc20699be7eba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-reverse-dns-for-services-hosted-in-azure"></a>Az Azure-ban tárolt szolgáltatások címfeloldási DNS konfigurálása
 
-Ez a cikk az Azure-ban tárolt szolgáltatások DNS-névlekérdezés konfigurálását ismerteti.
+Ez a cikk azt ismerteti, hogyan tooconfigure névkeresési DNS-keresések az Azure-ban tárolt szolgáltatások.
 
-Az Azure szolgáltatások IP-címek hozzárendelése az Azure-ban, és a Microsoft tulajdonában használják. A címfeloldási DNS-rekordok (PTR-rekordok) kell létrehozni a megfelelő Microsoft által birtokolt névkeresési DNS-címkeresési zónák. Ez a cikk azt ismerteti, hogyan ehhez.
+Az Azure szolgáltatások IP-címek hozzárendelése az Azure-ban, és a Microsoft tulajdonában használják. A címfeloldási DNS-rekordok (PTR-rekordok) hello megfelelő Microsoft által birtokolt névkeresési DNS-címkeresési zónák kell létrehozni. Ez a cikk azt ismerteti, hogyan toodo ez.
 
-Ez a forgatókönyv nem keverendő teszi [üzemeltetni a hozzárendelt IP-címtartományokhoz az Azure DNS-névkeresési DNS-címkeresési zónák](dns-reverse-dns-hosting.md). Ebben az esetben az IP-címtartományai a névkeresési zóna által képviselt kell rendelni a szervezetben, általában az Internetszolgáltató által.
+Ez a forgatókönyv nem tévesztendők össze a hello képességét túl[hello névkeresési DNS-címkeresési zónák a hozzárendelt IP-címtartományokhoz az Azure DNS-állomás](dns-reverse-dns-hosting.md). Ebben az esetben hello IP-címtartományok hello névkeresési zóna által képviselt kell rendelni tooyour a szervezeten belül, általában az Internetszolgáltató által.
 
 A cikk elolvasása előtt meg kell ismernie a [címfeloldási DNS- és támogatás az Azure-ban – áttekintés](dns-reverse-dns-overview.md).
 
 Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).
-* A Resource Manager üzembe helyezési modellel számítási erőforrások (például virtuális gépek, a virtuálisgép-méretezési csoportok vagy a Service Fabric-fürtök) PublicIpAddress erőforrás keresztül érhetők el. DNS-névlekérdezés úgy vannak konfigurálva, a PublicIpAddress "ReverseFqdn" tulajdonsággal.
-* A klasszikus üzembe helyezési modellel a számítási erőforrások elérhetők felhőalapú szolgáltatások segítségével. DNS-névlekérdezés úgy vannak konfigurálva, a felhőalapú szolgáltatás "ReverseDnsFqdn" tulajdonság használatával.
+* Hello Resource Manager üzembe helyezési modellel számítási erőforrások (például virtuális gépek, a virtuálisgép-méretezési csoportok vagy a Service Fabric-fürtök) PublicIpAddress erőforrás keresztül érhetők el. DNS-névlekérdezés hello "ReverseFqdn" hello PublicIpAddress tulajdonsága használatával vannak konfigurálva.
+* Hello klasszikus üzembe helyezési modellel a számítási erőforrások elérhetők felhőalapú szolgáltatások segítségével. DNS-névlekérdezés hello Felhőszolgáltatás hello "ReverseDnsFqdn" tulajdonságának használatával vannak konfigurálva.
 
-Névkeresési DNS jelenleg nem támogatott az Azure App Service.
+Névkeresési DNS jelenleg nem támogatott a hello Azure App Service szolgáltatásban.
 
 ## <a name="validation-of-reverse-dns-records"></a>A címfeloldási DNS-rekordok érvényesítése
 
-A harmadik fél nem kell tudni az Azure-szolgáltatás a leképezés csak akkor a DNS-tartományok címfeloldási DNS-rekordok létrehozása. Ennek megelőzése érdekében Azure csak lehetővé teszi, hogy amennyiben a címfeloldási DNS-rekord megadott tartománynév megegyezik a címfeloldási DNS-rekord létrehozása, vagy oldja fel, a DNS-nevét vagy IP-címhez a nyilvános vagy a Felhőszolgáltatás azonos Azure-előfizetést.
+A harmadik fél nem lehet képes toocreate címfeloldási DNS-rekordok az Azure-szolgáltatások leképezési tooyour DNS-tartományok. tooprevent, Azure csak lehetővé teszi a hello címfeloldási DNS-rekord megadott tartománynév esetén az azonos hello, vagy megegyezik a hello szolgáltatás oldja fel a rendszer, DNS-nevét vagy IP-címét egy nyilvános vagy felhő hello címfeloldási DNS-rekord létrehozása hello Azure-előfizetés.
 
-Az ellenőrzés csak akkor hajtható végre, ha a címfeloldási DNS-rekord beállítani vagy módosítani. Rendszeres ismételt érvényesítése nem megy végbe.
+Az ellenőrzés csak akkor hajtható végre, ha hello címfeloldási DNS-rekord beállítani vagy módosítani. Rendszeres ismételt érvényesítése nem megy végbe.
 
-Például: Tegyük fel, hogy a nyilvános erőforrás van, a DNS-név contosoapp1.northus.cloudapp.azure.com és IP-cím 23.96.52.53. Az a PublicIpAddress ReverseFqdn adhatók meg:
-* A nyilvános DNS-nevének contosoapp1.northus.cloudapp.azure.com
-* Ugyanazt az előfizetést, például a contosoapp2.westus.cloudapp.azure.com egy másik nyilvános DNS-neve
-* A kreatív DNS-beli név, például a app1.contoso.com, mindaddig, amíg ez a név *első* konfigurálva, egy CNAME contosoapp1.northus.cloudapp.azure.com, vagy egy másik nyilvános ugyanahhoz az előfizetéshez.
-* A kreatív DNS-beli név, például a app1.contoso.com, mindaddig, amíg ez a név *első* konfigurálva, az A rekord az IP-cím 23.96.52.53, vagy olyan ugyanazt az előfizetést másik nyilvános IP-címét.
+Például: Tegyük fel, hogy hello PublicIpAddress erőforrás hello DNS-név contosoapp1.northus.cloudapp.azure.com és IP-cím 23.96.52.53 rendelkezik. ReverseFqdn hello hello PublicIpAddress adhatók meg:
+* hello PublicIpAddress hello DNS-nevét, contosoapp1.northus.cloudapp.azure.com
+* hello DNS-beli név olyan hello a különböző nyilvános az azonos előfizetést, például az contosoapp2.westus.cloudapp.azure.com
+* A kreatív DNS-beli név, például a app1.contoso.com, mindaddig, amíg ez a név *első* konfigurált, egy CNAME toocontosoapp1.northus.cloudapp.azure.com vagy tooa különböző PublicIpAddress hello ugyanahhoz az előfizetéshez.
+* A kreatív DNS-beli név, például a app1.contoso.com, mindaddig, amíg ez a név *első* konfigurált IP-címet A rekord toohello 23.96.52.53, vagy egy másik nyilvános IP-címe toohello hello ugyanahhoz az előfizetéshez.
 
-Az azonos megkötések alkalmazása névkeresési DNS-szolgáltatásokhoz.
+hello azonos megkötések alkalmazása tooreverse DNS-szolgáltatásokhoz.
 
 
 ## <a name="reverse-dns-for-publicipaddress-resources"></a>Névkeresési DNS PublicIpAddress erőforrások
 
-Ez a témakör részletes útmutatást PublicIpAddress erőforrások címfeloldási DNS konfigurálása a Resource Manager üzembe helyezési modellel, az Azure PowerShell, Azure CLI 1.0 vagy Azure CLI 2.0. Nyilvános erőforrások címfeloldási DNS konfigurálása jelenleg nem támogatott az Azure-portálon.
+Ez a témakör részletes útmutatást hogyan tooconfigure fordított PublicIpAddress erőforrások hello Resource Manager üzembe helyezési modellel, az Azure PowerShell, Azure CLI 1.0 vagy Azure CLI 2.0 DNS. Nyilvános erőforrások címfeloldási DNS konfigurálása jelenleg nem támogatott hello Azure-portálon keresztül.
 
 Az Azure jelenleg támogatja a fordított DNS kizárólag a nyilvános IPv4-erőforrások. Az IPv6 nem támogatott.
 
-### <a name="add-reverse-dns-to-an-existing-publicipaddresses"></a>Névkeresési DNS hozzáadása egy meglévő PublicIpAddresses
+### <a name="add-reverse-dns-tooan-existing-publicipaddresses"></a>Meglévő PublicIpAddresses címfeloldási DNS tooan hozzáadása
 
 #### <a name="powershell"></a>PowerShell
 
-Névkeresési DNS hozzáadása egy meglévő nyilvános:
+tooadd címfeloldási DNS tooan meglévő PublicIpAddress:
 
 ```powershell
 $pip = Get-AzureRmPublicIpAddress -Name "PublicIp" -ResourceGroupName "MyResourceGroup"
@@ -67,7 +67,7 @@ $pip.DnsSettings.ReverseFqdn = "contosoapp1.westus.cloudapp.azure.com."
 Set-AzureRmPublicIpAddress -PublicIpAddress $pip
 ```
 
-Névkeresési DNS hozzáadása egy meglévő nyilvános, amely még nem rendelkezik a DNS-név, is meg kell adnia a DNS-név:
+tooadd fordított DNS tooan meglévő PublicIpAddress, amely még nem rendelkezik a DNS-név, meg kell adnia a DNS-név:
 
 ```powershell
 $pip = Get-AzureRmPublicIpAddress -Name "PublicIp" -ResourceGroupName "MyResourceGroup"
@@ -79,13 +79,13 @@ Set-AzureRmPublicIpAddress -PublicIpAddress $pip
 
 #### <a name="azure-cli-10"></a>Azure CLI 1.0
 
-Névkeresési DNS hozzáadása egy meglévő nyilvános:
+tooadd címfeloldási DNS tooan meglévő PublicIpAddress:
 
 ```azurecli
 azure network public-ip set -n PublicIp -g MyResourceGroup -f contosoapp1.westus.cloudapp.azure.com.
 ```
 
-Névkeresési DNS hozzáadása egy meglévő nyilvános, amely még nem rendelkezik a DNS-név, is meg kell adnia a DNS-név:
+tooadd fordított DNS tooan meglévő PublicIpAddress, amely még nem rendelkezik a DNS-név, meg kell adnia a DNS-név:
 
 ```azurecli
 azure network public-ip set -n PublicIp -g MyResourceGroup -d contosoapp1 -f contosoapp1.westus.cloudapp.azure.com.
@@ -93,13 +93,13 @@ azure network public-ip set -n PublicIp -g MyResourceGroup -d contosoapp1 -f con
 
 #### <a name="azure-cli-20"></a>Azure CLI 2.0
 
-Névkeresési DNS hozzáadása egy meglévő nyilvános:
+tooadd címfeloldási DNS tooan meglévő PublicIpAddress:
 
 ```azurecli
 az network public-ip update --resource-group MyResourceGroup --name PublicIp --reverse-fqdn contosoapp1.westus.cloudapp.azure.com.
 ```
 
-Névkeresési DNS hozzáadása egy meglévő nyilvános, amely még nem rendelkezik a DNS-név, is meg kell adnia a DNS-név:
+tooadd fordított DNS tooan meglévő PublicIpAddress, amely még nem rendelkezik a DNS-név, meg kell adnia a DNS-név:
 
 ```azurecli
 az network public-ip update --resource-group MyResourceGroup --name PublicIp --reverse-fqdn contosoapp1.westus.cloudapp.azure.com --dns-name contosoapp1
@@ -107,7 +107,7 @@ az network public-ip update --resource-group MyResourceGroup --name PublicIp --r
 
 ### <a name="create-a-public-ip-address-with-reverse-dns"></a>Hozzon létre egy nyilvános IP-cím a címfeloldási DNS-ben
 
-A címfeloldási DNS tulajdonság már meg van adva egy új nyilvános létrehozása:
+új toocreate hello nyilvános névkeresési DNS tulajdonság már meg van adva:
 
 #### <a name="powershell"></a>PowerShell
 
@@ -129,7 +129,7 @@ az network public-ip create --name PublicIp --resource-group MyResourceGroup --l
 
 ### <a name="view-reverse-dns-for-an-existing-publicipaddress"></a>Egy meglévő nyilvános címfeloldási DNS megtekintése
 
-A konfigurált értéket egy meglévő nyilvános megjelenítése:
+tooview hello értéket egy meglévő nyilvános konfigurálva:
 
 #### <a name="powershell"></a>PowerShell
 
@@ -151,7 +151,7 @@ az network public-ip show --name PublicIp --resource-group MyResourceGroup
 
 ### <a name="remove-reverse-dns-from-existing-public-ip-addresses"></a>Távolítsa el a címfeloldási DNS a meglévő nyilvános IP-címek
 
-A címfeloldási DNS tulajdonság eltávolítása egy meglévő nyilvános:
+a címfeloldási DNS-tulajdonságot egy meglévő nyilvános tooremove:
 
 #### <a name="powershell"></a>PowerShell
 
@@ -176,11 +176,11 @@ az network public-ip update --resource-group MyResourceGroup --name PublicIp --r
 
 ## <a name="configure-reverse-dns-for-cloud-services"></a>Névkeresési DNS konfigurálása a Cloud Services csomag
 
-Ez a témakör részletes útmutatást a Felhőszolgáltatások fordított DNS konfigurálása a klasszikus üzembe helyezési modellel, az Azure PowerShell. Névkeresési DNS konfigurálása a Cloud Services nem támogatja az Azure-portál, Azure CLI 1.0-s vagy Azure CLI 2.0.
+Ez a témakör részletes útmutatást hogyan tooconfigure névkeresési DNS-szolgáltatásokhoz hello klasszikus üzembe helyezési modellel, az Azure PowerShell. Névkeresési DNS konfigurálása a Cloud Services Azure CLI 1.0-s vagy Azure CLI 2.0 hello Azure-portálon keresztül nem támogatott.
 
-### <a name="add-reverse-dns-to-existing-cloud-services"></a>Névkeresési DNS hozzáadása meglévő Cloud Services csomag
+### <a name="add-reverse-dns-tooexisting-cloud-services"></a>Adja hozzá a címfeloldási DNS tooexisting Cloud Services
 
-A címfeloldási DNS-rekord hozzáadása egy meglévő felhőalapú szolgáltatást:
+létező felhőalapú szolgáltatás, címfeloldási DNS rekord tooan tooadd:
 
 ```powershell
 Set-AzureService –ServiceName "contosoapp1" –Description "App1 with Reverse DNS" –ReverseDnsFqdn "contosoapp1.cloudapp.net."
@@ -188,7 +188,7 @@ Set-AzureService –ServiceName "contosoapp1" –Description "App1 with Reverse 
 
 ### <a name="create-a-cloud-service-with-reverse-dns"></a>A címfeloldási DNS-felhőalapú szolgáltatás létrehozása
 
-Új felhőalapú szolgáltatás létrehozása a címfeloldási DNS tulajdonság már meg van adva:
+toocreate hello címfeloldási DNS a tulajdonság már meg van adva egy új Felhőszolgáltatás:
 
 ```powershell
 New-AzureService –ServiceName "contosoapp1" –Location "West US" –Description "App1 with Reverse DNS" –ReverseDnsFqdn "contosoapp1.cloudapp.net."
@@ -196,7 +196,7 @@ New-AzureService –ServiceName "contosoapp1" –Location "West US" –Descripti
 
 ### <a name="view-reverse-dns-for-existing-cloud-services"></a>Nézet névkeresési DNS meglévő Cloud Services csomag
 
-Létező felhőalapú szolgáltatást szeretné megtekinteni a címfeloldási DNS-tulajdonság:
+tooview hello címfeloldási DNS tulajdonsága egy meglévő felhőalapú szolgáltatást:
 
 ```powershell
 Get-AzureService "contosoapp1"
@@ -204,7 +204,7 @@ Get-AzureService "contosoapp1"
 
 ### <a name="remove-reverse-dns-from-existing-cloud-services"></a>Távolítsa el a címfeloldási DNS a meglévő Cloud Services csomag
 
-A címfeloldási DNS tulajdonság eltávolítása egy meglévő felhőalapú szolgáltatást:
+a fordított DNS-tulajdonságot egy meglévő Felhőszolgáltatáshoz tooremove:
 
 ```powershell
 Set-AzureService –ServiceName "contosoapp1" –Description "App1 with Reverse DNS" –ReverseDnsFqdn ""
@@ -216,25 +216,25 @@ Set-AzureService –ServiceName "contosoapp1" –Description "App1 with Reverse 
 
 Szabad fontosságúak!  Nincs a címfeloldási DNS-rekordok vagy lekérdezések további költség nélkül.
 
-### <a name="will-my-reverse-dns-records-resolve-from-the-internet"></a>A címfeloldási DNS-rekordok feloldja az internetről?
+### <a name="will-my-reverse-dns-records-resolve-from-hello-internet"></a>A címfeloldási DNS rekordok hárítsa el a hello fog internet?
 
-Igen. Ha egyszer már megadta a címfeloldási DNS-tulajdonság az Azure Service, Azure kezeli a DNS-delegálás és győződjön meg arról, hogy címfeloldási DNS-rekord megszünteti az összes internetes felhasználó számára szükséges DNS-zónák.
+Igen. Ha elvégezte a hello címfeloldási DNS-tulajdonság az Azure Service, Azure kezeli az összes hello DNS-delegálás, és a DNS-zónák szükséges, hogy a DNS-rekord fordított tooensure megszünteti az összes internetes felhasználó számára.
 
 ### <a name="are-default-reverse-dns-records-created-for-my-azure-services"></a>Alapértelmezett címfeloldási DNS-rekordok létrejönnek az az Azure-szolgáltatásokat?
 
-Nem. Névkeresési DNS egyik választható szolgáltatása nem. Nincs alapértelmezett címfeloldási DNS-rekordok jönnek létre, ha nem konfigurálja őket.
+Nem. Névkeresési DNS egyik választható szolgáltatása nem. Nincs alapértelmezett címfeloldási DNS-rekordok jönnek létre, ha úgy dönt, hogy nem tooconfigure őket.
 
-### <a name="what-is-the-format-for-the-fully-qualified-domain-name-fqdn"></a>Mi az a teljes tartománynév (FQDN) formátumban?
+### <a name="what-is-hello-format-for-hello-fully-qualified-domain-name-fqdn"></a>Mi az a hello formátumát hello teljesen minősített tartománynevét (FQDN)?
 
 Teljes tartománynevek előre sorrendben legyenek megadva, és egy pontot (például "app1.contoso.com.") kell végződnie.
 
-### <a name="what-happens-if-the-validation-check-for-the-reverse-dns-ive-specified-fails"></a>Mi történik, ha az eredetiség ellenőrzésének a címfeloldási DNS-fiókjához megadott sikertelen?
+### <a name="what-happens-if-hello-validation-check-for-hello-reverse-dns-ive-specified-fails"></a>Mi történik, ha hello hello érvényességi ellenőrzését I megadott DNS fordított sikertelen?
 
-A névkeresési DNS-ellenőrzés sikertelen lesz, ahol konfigurálhatja a címfeloldási DNS-rekord a művelet sikertelen lesz. Javítsa ki a címfeloldási DNS értékét szükség szerint, és próbálkozzon újra.
+Hello címfeloldási DNS-ellenőrzés sikertelen lesz, ahol hello művelet tooconfigure hello címfeloldási DNS-rekord nem sikerül. Javítsa ki a hello címfeloldási DNS-értéket szükség szerint, és próbálkozzon újra.
 
 ### <a name="can-i-configure-reverse-dns-for-azure-app-service"></a>Beállítható címfeloldási DNS az Azure App Service?
 
-Nem. Névkeresési DNS nem támogatott az Azure App Service szolgáltatásban.
+Nem. Névkeresési DNS hello Azure App Service nem támogatott.
 
 ### <a name="can-i-configure-multiple-reverse-dns-records-for-my-azure-service"></a>Beállítható több címfeloldási DNS-rekordok az Azure Service?
 
@@ -244,13 +244,13 @@ Nem. Azure egyetlen címfeloldási DNS-rekord támogatja az egyes Azure Cloud Se
 
 Nem. Az Azure jelenleg támogatja a fordított DNS csak az IPv4-alapú PublicIpAddress erőforrások és a Felhőszolgáltatások.
 
-### <a name="can-i-send-emails-to-external-domains-from-my-azure-compute-services"></a>Lehet küldeni e-mailek külső tartományokhoz a saját Azure számítási szolgáltatások?
+### <a name="can-i-send-emails-tooexternal-domains-from-my-azure-compute-services"></a>Lehet küldeni e-mailek tooexternal tartományok a saját Azure számítási szolgáltatások?
 
-Nem. [Az Azure Compute szolgáltatások nem támogatják a külső tartományokkal az e-maileket küldő](https://blogs.msdn.microsoft.com/mast/2016/04/04/sending-e-mail-from-azure-compute-resource-to-external-domains/)
+Nem. [Az Azure Compute szolgáltatások nem támogatják a küldő e-mailek tooexternal tartományok](https://blogs.msdn.microsoft.com/mast/2016/04/04/sending-e-mail-from-azure-compute-resource-to-external-domains/)
 
 ## <a name="next-steps"></a>Következő lépések
 
 A címfeloldási DNS-további információkért lásd: [Wikipedia névkeresési DNS](http://en.wikipedia.org/wiki/Reverse_DNS_lookup).
 <br>
-Megtudhatja, hogyan [az az Internetszolgáltató által hozzárendelt IP-címtartományt, az Azure DNS-névkeresési zóna](dns-reverse-dns-for-azure-services.md).
+Ismerje meg, hogyan túl[állomás hello névkeresési zónát az Internetszolgáltató által hozzárendelt IP-címtartományt, az Azure DNS-](dns-reverse-dns-for-azure-services.md).
 

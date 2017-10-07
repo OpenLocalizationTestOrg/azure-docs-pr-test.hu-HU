@@ -1,6 +1,6 @@
 ---
-title: "Egy egyszerű kísérlet a Machine Learning Studióban | Microsoft Docs"
-description: "Ez a Machine Learning-oktatóanyag egy egyszerű adatelemezési kísérletet mutat be. Egy regressziós algoritmus használatával fogjuk előre megbecsülni egy autó árát."
+title: "aaaA egyszerű kísérletben a Machine Learning Studióban |} Microsoft Docs"
+description: "Ez a Machine Learning-oktatóanyag egy egyszerű adatelemezési kísérletet mutat be. Egy regressziós algoritmus segítségével egy autó árára hello azt fogja előre jelezni."
 keywords: "kísérlet,lineáris regresszió,machine learning-algoritmusok,machine learning-oktatóanyag,prediktív modellezési technikák,adatelemzési kísérlet"
 services: machine-learning
 documentationcenter: 
@@ -15,30 +15,30 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 03/20/2017
 ms.author: garye
-ms.openlocfilehash: 0539e9d04c61d35de56a29d350c07654c095c576
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fb215851d380acf7d0f4934a426283369f9c4ccb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="machine-learning-tutorial-create-your-first-data-science-experiment-in-azure-machine-learning-studio"></a>Machine Learning-oktatóanyag: Az első adatelemzési kísérlet létrehozása az Azure Machine Learning Studióban
 
 Ha korábban még soha nem használta az **Azure Machine Learning Studiót**, ez az oktatóanyag Önnek szól.
 
-Ebben az oktatóanyagban végigvezetjük azon, hogyan hozhat létre egy gépi tanulási kísérletet első alkalommal a Studio használatával. A kísérlet egy olyan analitikai modellt tesztel, amely különböző változók (például márka, műszaki jellemzők) alapján előre megbecsüli egy autó árát.
+Ebben az oktatóanyagban hogyan végigvesszük toouse Studio hello az első alkalom toocreate tartalmazó gépi tanulási kísérlet. hello kísérlet egy elemzési modell, amely képes különböző változók, például a márka és a műszaki adatok alapján autók árát hello tesztelni.
 
 > [!NOTE]
-> Az oktatóanyag bemutatja az alapokat, azt, hogy hogyan húzhat be modulokat a kísérletbe és kapcsolhatja össze azokat, és hogyan futtathatja a kísérletet és tekintheti meg az eredményeket. Nem térünk ki a gépi tanulás általános témakörére, mint ahogy arra sem, hogyan választhat a Studióban lévő 100+ beépített algoritmus és adatmanipulációs modell közül, és hogyan használhatja azokat.
+> Az oktatóanyag bemutatja, hogyan toodrag és vidd modulok alakzatot kísérletbe, hello alapjait összekapcsolhatja őket, hello kísérlet futtatása, és nézze meg hello eredmények. Nem fogjuk toodiscuss hello általános témakör a gépi tanulás vagy hogyan tooselect és -felhasználási hello 100 + beépített algoritmusok és az adatok adatkezelési modulok Studio szerepel.
 >
->Ha most ismerkedik a gépi tanulással, az [Adatelemzés kezdőknek](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) videósorozat nagyszerű hely az induláshoz. Ez a videósorozat remek bevezetőt kínál hétköznapi nyelven és elterjedt fogalmak használatával a gépi tanulás témakörébe.
+>Ha új toomachine tanulási, hello videósorozat [Adattudomány kezdőknek](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) előfordulhat, hogy a megfelelő hely toostart. A videósorozat egy nagyszerű bemutatása toomachine tanulási mindennapos és fogalmak.
 >
->Ha a gépi tanulás már ismerős az Ön számára, és csak a Machine Learning Studióval kapcsolatos általános információk, valamint a Studióban elérhető gépi tanulási algoritmusok érdeklik, íme néhány remek forrásanyag:
+>Ha jártas a gépi tanulás, de a Machine Learning Studióban, és hello gépi tanulási algoritmusok, tartalmaz további általános információt keres, az alábbiakban néhány jó erőforrások:
 >
 - [Mi a Machine Learning Studio?](machine-learning-what-is-ml-studio.md) - Ez a Studio magas szintű áttekintése.
-- [A Machine Learning alapjai algoritmus példákkal](machine-learning-basics-infographic-with-algorithm-examples.md) – Ez az infografika hasznos lehet, ha többet szeretne megtudni a Machine Learning Studióban elérhető különféle gépi tanulási algoritmusokról.
-- [Gépi tanulási útmutató](https://gallery.cortanaintelligence.com/Tutorial/Machine-Learning-Guide-1) – Ez az útmutató hasonló információkat tartalmaz, mint a fenti infografika, de interaktív formában.
-- [Gépi tanulási algoritmus-adatlap](machine-learning-algorithm-cheat-sheet.md) és [Algoritmusok kiválasztása a Microsoft Azure Machine Learninghez](machine-learning-algorithm-choice.md) – Ez a letölthető poszter és a kísérő cikk mélységükben tárgyalják a Studio algoritmusait.
-- [Machine Learning Studio: Súgó az algoritmusokhoz és modulokhoz](https://msdn.microsoft.com/library/azure/dn905974.aspx) – Ez az összes Studio modul teljes referenciaanyaga, beleértve a gépi tanulási algoritmusokat.
+- [Gépi tanulási algoritmus példákkal alapjai](machine-learning-basics-infographic-with-algorithm-examples.md) -e infographic akkor hasznos, ha azt szeretné, hogy további információk a Machine Learning Studióban található gépi tanulási algoritmusok különböző típusú hello toolearn.
+- [Számítógép-tanulási útmutató](https://gallery.cortanaintelligence.com/Tutorial/Machine-Learning-Guide-1) -Ez az útmutató ismerteti hasonló fenti hello infographic, de interaktív formátumot.
+- [Gépi tanulási algoritmus-adatlap](machine-learning-algorithm-cheat-sheet.md) és [hogyan toochoose algoritmusok használata a Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md) -a letölthető poszter és kísérő cikk tárgyalja részletesen hello Studio algoritmusok.
+- [A Machine Learning Studio: Algoritmust és modult súgó](https://msdn.microsoft.com/library/azure/dn905974.aspx) -Ez az összes Studio modult, beleértve a gépi tanulási algoritmusok hello teljes referenciája
 
 <!-- -->
 
@@ -46,299 +46,299 @@ Ebben az oktatóanyagban végigvezetjük azon, hogyan hozhat létre egy gépi ta
 
 ## <a name="how-does-machine-learning-studio-help"></a>Hogyan lehet a segítségére a Machine Learning Studio?
 
-A Machine Learning Studio prediktív modellezési módszerekkel előre programozott, húzással kezelhető moduljaival megkönnyíti a kísérletek beállítását.
+A Machine Learning Studio segítségével könnyen tooset energiájának prediktív modellezési módszereket a fogd és vidd modulok használata a kísérlet fel.
 
-Az interaktív, vizuális munkaterület használatával az ***adathalmazokat*** és elemzési ***modulokat*** egy interaktív vászonra húzhatja. Itt összekapcsolja őket a Machine Learning Studio eszközben futtatható ***kísérletekké***.
-***Létrehoz egy modellt***, ***betanítja a modellt***, majd ***pontozza és teszteli a modellt***.
+Az interaktív, vizuális munkaterület használatával az ***adathalmazokat*** és elemzési ***modulokat*** egy interaktív vászonra húzhatja. Együtt tooform csatlakoztassa őket egy ***kísérletezhet*** , amelyen futtatja, a Machine Learning Studióban.
+Ön ***modell létrehozása***, ***hello modell betanításához***, és ***pontszám és tesztelési hello modell***.
 
-A újra és újra átdolgozhatja a modellt, módosíthatja és futtathatja a kísérletet, amíg azokat ez eredményeket nem hozza, amelyeket vár. Ha a modell elkészült, közzéteheti ***webszolgáltatásként***, így mások is küldhetnek bele adatokat és kaphatnak előjelzéseket.
+Akkor is többször a modell tervezési hello kísérlet szerkesztése és is fut, amíg nem ad meg hello eredmények keres. Ha a modell elkészült, közzéteheti ***webszolgáltatásként***, így mások is küldhetnek bele adatokat és kaphatnak előjelzéseket.
 
 ## <a name="open-machine-learning-studio"></a>A Machine Learning Studio megnyitása
 
-A Studio használatának elkezdéséhez lépjen a [https://studio.azureml.net](https://studio.azureml.net) helyre. Ha korábban már bejelentkezett a Machine Learning Studióba, kattintson a **Sign in** (Bejelentkezés) lehetőségre. Ellenkező esetben kattintson a **Sign up here** (Regisztráció itt) lehetőségre, majd válasszon az ingyenes vagy a fizetős lehetőség használata közül.
+tooget lépések Studio, a go túl[https://studio.azureml.net](https://studio.azureml.net). Ha korábban már bejelentkezett a Machine Learning Studióba, kattintson a **Sign in** (Bejelentkezés) lehetőségre. Ellenkező esetben kattintson a **Sign up here** (Regisztráció itt) lehetőségre, majd válasszon az ingyenes vagy a fizetős lehetőség használata közül.
 
-![Bejelentkezés a Machine Learning Studióba][sign-in-to-studio]
+![Jelentkezzen be a Learning Studio tooMachine][sign-in-to-studio]
 <br/>
-***Bejelentkezés a Machine Learning Studióba***
+***Jelentkezzen be a Learning Studio tooMachine***
 
-## <a name="five-steps-to-create-an-experiment"></a>A kísérlet létrehozásának öt lépése
+## <a name="five-steps-toocreate-an-experiment"></a>A kísérlet öt lépése toocreate
 
-Ebben a Machine Learning oktatóanyagban öt lépés végrehajtásával fogjuk megalkotni a Machine Learning Studio-kísérletet, amely elvégzi a modell létrehozását, betanítását és pontozását. Ezek:
+A machine learning oktatóanyagban bemutatjuk öt alapvető lépéseket toobuild egy kísérletben a Machine Learning Studio toocreate, vonat, hajtsa végre, a modell pontozása:
 
 - **Modell létrehozása**
     - [1. lépés: Az adatok beszerzése]
-    - [2. lépés: Az adatok előkészítése]
+    - [2. lépés: Hello adatok előkészítése]
     - [3. lépés: A jellemzők meghatározása]
-- **A modell betanítása**
+- **Hello tanítási**
     - [4. lépés: Tanulási algoritmus kiválasztása és alkalmazása]
-- **A modell pontozása és tesztelése**
+- **Pontszám és tesztelési hello modell**
     - [5. lépés: Új autó árának előrejelzése]
 
 [1. lépés: Az adatok beszerzése]: #step-1-get-data
-[2. lépés: Az adatok előkészítése]: #step-2-prepare-the-data
+[2. lépés: Hello adatok előkészítése]: #step-2-prepare-the-data
 [3. lépés: A jellemzők meghatározása]: #step-3-define-features
 [4. lépés: Tanulási algoritmus kiválasztása és alkalmazása]: #step-4-choose-and-apply-a-learning-algorithm
 [5. lépés: Új autó árának előrejelzése]: #step-5-predict-new-automobile-prices
 
 > [!TIP] 
-> A [Cortana Intelligence Galleryben](https://gallery.cortanaintelligence.com) megtalálja az alábbi kísérlet egy működő példányát. Lépjen a **[Your first data science experiment - Automobile price prediction](https://gallery.cortanaintelligence.com/Experiment/Your-first-data-science-experiment-Automobile-price-prediction-1)** (Az első adatelemzési kísérlet – Autó árának előrejelzése) lapra, és kattintson az **Open in Studio** (Megnyitás a Studióban) lehetőségre a kísérlet Machine Learning Studio munkaterületre való letöltéséhez.
+> Egy működő hello található hello szereplő következő [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com). Nyissa meg túl**[az első adattudomány kísérletezhet - autó árának előrejelzése](https://gallery.cortanaintelligence.com/Experiment/Your-first-data-science-experiment-Automobile-price-prediction-1)**  kattintson **Megnyitás a Studióban** toodownload hello kísérletben a Machine Learning a másolatát Studio munkaterületen.
 
 
 ## <a name="step-1-get-data"></a>1. lépés: Az adatok beszerzése
 
-A Machine Learning alkalmazásához először is adatokra van szüksége.
-A Machine Learning Studio számos mintaként használható adathalmazt tartalmaz, de számos más forrásból is importálhat adatokat. Ebben a példában a munkaterületén megtalálható **Automobile price data (Raw)** (Nyers autóáradatok) nevű mintahalmazt fogjuk használni.
+hello elsőként tooperform gépi tanulás van szüksége az adatai.
+A Machine Learning Studio számos mintaként használható adathalmazt tartalmaz, de számos más forrásból is importálhat adatokat. Ehhez a példához hello mintahalmazt fogjuk használni **Automobile price data (Raw)**, amely tartalmazza a munkaterületen.
 Ebben az adathalmazban számos különböző autót bemutató bejegyzés szerepel. A bejegyzések számos adatot (például márka, típus, műszaki specifikációk, ár) tartalmaznak.
 
-A következőképpen vonhatja be az adathalmazt a kísérletbe.
+Ez hogyan tooget hello kísérletbe való adatkészlet.
 
-1. Új kísérlet létrehozásához kattintson a Machine Learning Studio ablakának alsó részén található **+NEW** (Új létrehozása) gombra, és válassza az **EXPERIMENT** (Kísérlet), majd a **Blank Experiment** (Üres kísérlet) lehetőséget.
+1. Hozzon létre egy új kísérlet kattintva **+ új** hello hello Machine Learning Studio ablakának alsó részén, jelölje ki a **KÍSÉRLETEZHET**, majd válassza ki **üres kísérlet**.
 
-2. A kísérlet kap egy alapértelmezett nevet, amelyet a vászon tetején láthat. Jelölje ki ezt a szöveget, és módosítsa valami értelmesebbre, például arra, hogy **Autó árának előrejelzése**. A névnek nem kell egyedinek lennie.
+2. hello kísérlet hello vásznon a hello tetején megjelenik egy alapértelmezett nevet kap. Válassza ki a szöveget, és adjon neki például értelmezhető, toosomething **autó árának előrejelzése**. hello névnek nem kell egyedi toobe.
 
-    ![A kísérlet átnevezése][rename-experiment]
+    ![Nevezze át a hello kísérlet][rename-experiment]
 
-2. A kísérletvászontól balra az adathalmazokat és modulokat tartalmazó paletta látható. A paletta tetején található keresőmezőbe gépelje be, hogy **automobile**. A rendszer megjeleníti az **Automobile price data (Raw)** (Nyers autóáradatok) nevű adathalmazt. Húzza rá az adathalmazt a kísérletvászonra.
+2. hello kísérletvászonra toohello balra az adathalmazokat és modulokat tartalmazó paletta. Típus **automobile** hello keresőmezőbe paletta toofind hello adatkészlethez feliratú hello tetején **Automobile price data (Raw)**. Húzza a dataset toohello kísérlet vászonra.
 
-    ![Az autókat tartalmazó adathalmaz megkeresése és a kísérleti vászonra húzása][type-automobile]
+    ![Hello autókat tartalmazó adathalmaz található, és húzza a kísérletvászonra hello][type-automobile]
     <br/>
-    ***Az autókat tartalmazó adathalmaz található, majd húzza a kísérletvászonra***
+    ***Hello autókat tartalmazó adathalmaz található, és húzza a kísérletvászonra hello***
 
-Ha szeretné megtekinteni az adatokat, kattintson az autókat tartalmazó adathalmaz alsó részén látható kimeneti portra, és válassza a **Visualize** (Képi megjelenítés) elemet.
+toosee mi ezek az adatok úgy tűnik, hello kimeneti port hello hello autókat tartalmazó adathalmaz alsó részén kattintson, majd **Visualize**.
 
-![Kattintson a kimeneti portra, majd válassza a „Visualize” (Képi megjelenítés) lehetősége][select-visualize]
+![Kattintson a hello kimeneti portra, és válassza a "Megjelenítés"][select-visualize]
 <br/>
-***Kattintson a kimeneti portra, majd válassza a „Visualize” (Képi megjelenítés) lehetőséget***
+***Kattintson a hello kimeneti portra, és válassza a "Megjelenítés"***
 
 > [!TIP]
-> Az adathalmazok és modulok kis körökkel jelölt bemeneti és kimeneti portokkal rendelkeznek – a bemeneti portok felül, a kimeneti portok alul találhatók.
-Az adatfolyam létrehozásához a kísérlet során össze fogja kötni az egyik modul kimeneti portját egy másik modul bemeneti portjával.
-Ha meg szeretné tekinteni, hogyan jelennek meg az adatok az adatfolyam egy adott pontján, kattintson az adathalmaz vagy modul kimeneti portjára.
+> Adathalmazokat és modulokat bemeneti rendelkezik, és kimeneti portok kisméretű körök - hello felső bemeneti portok által képviselt kimeneti portot hello lap alján.
+a folyamat az adatok kísérletbe toocreate, lesz csatlakozzon a kimeneti portra, egy modul tooan bemeneti port egy másik.
+Bármikor kattintson a dataset vagy modul toosee hello kimeneti portjára hello adatok a következőképpen néz ezen a ponton a hello adatfolyam.
 
-Ebben a minta adatkészletben minden autópéldány külön sorban szerepel, az egyes autókhoz tartozó változók pedig oszlopokban jelennek meg. Az egy adott autóhoz tartozó változók alapján megpróbáljuk előrejelezni az árát a jobb szélső oszlopban (26. oszlop, a neve „price” (ár)).
+Minta DataSet adatkészletben minden példány autók sorként, és minden autó társított hello változók oszlopaiként. Egy adott automobile tartozó hello változók megadott, az oktatóanyagban módosítjuk tootry toopredict hello ár jobb szélső oszlop (oszlop 26, című "price").
 
-![Az autókra vonatkozó adatok megtekintése az adatokat megjelenítő ablakban][visualize-auto-data]
+![Hello adatok képi megjelenítési ablakot hello autó adatainak megtekintéséhez][visualize-auto-data]
 <br/>
-***Az autókra vonatkozó adatok megtekintése az adatokat megjelenítő ablakban***
+***Hello adatok képi megjelenítési ablakot hello autó adatainak megtekintéséhez***
 
-A jobb felső sarokban látható „**x**” gombra kattintva zárja be a képi megjelenítési ablakot.
+Bezárás hello képi megjelenítési ablakot hello kattintva "**x**" hello jobb felső sarokban.
 
-## <a name="step-2-prepare-the-data"></a>2. lépés: Az adatok előkészítése
+## <a name="step-2-prepare-hello-data"></a>2. lépés: Hello adatok előkészítése
 
-Az adathalmazok elemzése előtt általában némi előfeldolgozás szükséges. Talán észrevette például, hogy az oszlopok számos sorából hiányoznak az értékek. Ahhoz, hogy a modell elemezni tudja az adatokat, el kell távolítani a hiányzó értékeket. Ebben az esetben törölni fogjuk azokat a sorokat, amelyekből értékek hiányoznak. A **normalized-losses** (normalizált veszteségek) című oszlopból ráadásul rendkívül sok érték hiányzik, ezért ezt az oszlopot teljesen kizárjuk a modellből.
+Az adathalmazok elemzése előtt általában némi előfeldolgozás szükséges. Például észrevette, hogy hiányoznak az értékek hello oszlopok számos sorából hello. A hiányzó értékeket kell tisztítani, hello modell elemezni tudja hello adatok megfelelően toobe. Ebben az esetben törölni fogjuk azokat a sorokat, amelyekből értékek hiányoznak. Emellett hello **normalized-losses** oszlop nem rendelkezik a hiányzó értékeket, nagy részét, így igazolnia kell, hogy oszlop kizárásához hello modellből regisztrálását.
 
 > [!TIP]
-> A legtöbb modul használatának előfeltétele a bemeneti adatok hiányzó értékeinek törlése.
+> Hiányzik a bemeneti adatok tisztítására szolgáló hello hello modulok többsége használatának előfeltétele.
 
-Először hozzáadunk egy modult, amely eltávolítja a **normalized-losses** (normalizált veszteségek) oszlopot, majd hozzáadunk egy másik modult, amely eltávolítja az összes sort, amelyből adatok hiányoznak.
+Először adja hozzá azt az a modul, amely eltávolítja a hello **normalized-losses** oszlop teljesen, majd azt egy másik modul, amely eltávolítja az összes sort, amelyből adatok hiányoznak.
 
-1. A modulpaletta tetején található keresőmezőbe gépelje be a **select columns** (oszlopok kijelölése) kifejezést, és amikor a rendszer megjeleníti a [Adathalmaz oszlopainak kijelölése][select-columns] modult, húzza azt a kísérletvászonra. Ezzel a modullal kiválaszthatjuk, hogy melyik adatoszlopokat szeretnénk bevonni a modellbe, vagy éppen kizárni a modellből.
+1. Típus **egy oszlopot válasszon ki** hello keresőmezőbe hello modul paletta toofind hello hello tetején [Select Columns in Dataset] [ select-columns] modult, majd húzza a kísérletvászonra toohello . Ezzel a modullal kiválaszthatjuk, melyik adatoszlopokat azt szeretné, hogy tooinclude, vagy éppen kizárni hello modell tooselect.
 
-2. Kösse össze az **Automobile price data (Raw)** (Autóárak adatai (nyers)) című adathalmaz kimeneti portját a [Select Columns in Dataset][select-columns] (Adathalmaz oszlopainak kijelölése) modul bemeneti portjával.
+2. Csatlakozás hello kimeneti portjára hello **Automobile price data (Raw)** dataset toohello bemeneti portját hello [Select Columns in Dataset] [ select-columns] modul.
 
-    ![A „Select Columns in Dataset” (Adathalmaz oszlopainak kijelölése) modul hozzáadása a kísérletvászonhoz, majd összekötése][type-select-columns]
+    ![Adja hozzá a hello "Válasszon oszlopok a Dataset" modul toohello kísérletvászonra, és csatlakoztassa][type-select-columns]
     <br/>
-    ***A "Válasszon oszlopok a Dataset" modul felvétele a kísérletvászonra, és csatlakoztassa***
+    ***Adja hozzá a hello "Válasszon oszlopok a Dataset" modul toohello kísérletvászonra, és csatlakoztassa***
 
-3. Kattintson a [Select Columns in Dataset][select-columns] (Adathalmaz oszlopainak kijelölése) modulra, majd a **Properties** (Tulajdonságok) panelen kattintson a **Launch column selector** (Oszlopválasztó elindítása) elemre.
+3. Kattintson a hello [Select Columns in Dataset] [ select-columns] modul, és kattintson **Oszlopválasztás** a hello **tulajdonságok** ablaktáblán.
 
-    - A bal oldalon kattintson a **With rules** (Szabályokkal) lehetőségre
-    - A **Begin With** (Kezdés a következővel) területen kattintson az **All columns** (Minden oszlop) lehetőségre. Ezzel megadja, hogy a [Select Columns in Dataset][select-columns] (Adathalmaz oszlopainak kijelölése) modul az összes oszlopot feldolgozza (kivéve azokat, amelyeket hamarosan ki fogunk zárni).
-    - A legördülő listákból válassza az **Exclude** (Kizárás) és a **column names** (oszlopnevek) lehetőséget, majd kattintson a szövegmezőbe. Megjelenik az oszlopnevek listája. Válassza a **normalized-losses** (normalizált veszteségek) lehetőséget, amely aztán bekerül a szövegdobozba.
-    - Az oszlopválasztó bezárásához kattintson a pipa (OK) gombra (a jobb alsó területen).
+    - Hello bal oldalon kattintson **szabályokkal**
+    - A **Begin With** (Kezdés a következővel) területen kattintson az **All columns** (Minden oszlop) lehetőségre. Ezzel megadja [Select Columns in Dataset] [ select-columns] toopass összes hello oszlopát (kivéve az ilyen oszlopokat kapcsolatos tooexclude el).
+    - Hello legördülő listákat, válassza ki **kizárása** és **oszlopnevek**, és kattintson a hello szövegdobozba. Megjelenik az oszlopnevek listája. Válassza ki **normalized-losses**, és a hozzáadott toohello szövegmezőben.
+    - Hello pipa (OK) gomb tooclose hello Oszlopválasztó (a jobb alsó hello) gombra.
 
-    ![Az oszlopválasztó elindítása és a „normalized-losses” (normalizált veszteségek) oszlop kizárása][launch-column-selector]
+    ![Indítsa el a hello Oszlopválasztó és hello "normalized-losses" oszlop kizárása][launch-column-selector]
     <br/>
-    ***Az Oszlopválasztó elindítása és az "normalized-losses" oszlop kizárása***
+    ***Indítsa el a hello Oszlopválasztó és hello "normalized-losses" oszlop kizárása***
 
-    Ekkor a **Select Columns in Dataset** (Adathalmaz oszlopainak kijelölése) modul Properties (Tulajdonságok) panelje jelzi, hogy a modul a **normalized-losses** ( normalizált veszteségek) kivételével az adathalmaz összes oszlopát fel fogja dolgozni.
+    Most hello tulajdonságok panelen az **Select Columns in Dataset** azt jelzi, hogy azt fog továbbítani az összes oszlop hello adatkészletből kivéve **normalized-losses**.
 
-    ![A tulajdonságok panelen látható, hogy a „normalized-losses” ( normalizált veszteségek) oszlop ki van zárva][showing-excluded-column]
+    ![hello tulajdonságok panelen látható hello "normalized-losses" oszlop ki van zárva.][showing-excluded-column]
     <br/>
-    ***A Tulajdonságok panelen látható, hogy a "normalized-losses" oszlop nem***
+    ***hello tulajdonságok panelen látható hello "normalized-losses" oszlop ki van zárva.***
 
     > [!TIP]
-    A modulokhoz megjegyzéseket adhat. Ehhez kattintson duplán a kívánt modulra, majd gépelje be a megjegyzés szövegét. Így egyetlen pillantással felmérheti, hogy mire szolgál az adott modul a kísérletben. A jelen esetben kattintson duplán a [Select Columns in Dataset][select-columns] (Adathalmaz oszlopainak kijelölése) modulra, és írja be az „Exclude normalized losses” (A normalized-losses oszlop kizárása) szöveget.
+    A Megjegyzés tooa modul duplán hello modul és a belépés szöveget adhat hozzá. Ez segít gyorsan áttekintse milyen hello modul a kísérletben végez műveletet. Ebben az esetben kattintson duplán a hello [Select Columns in Dataset] [ select-columns] modul és a típus hello Megjegyzés "Kizárási normalizált veszteségek."
     >
     >
 
 
-    ![Megjegyzés hozzáadása egy modulhoz dupla kattintással][add-comment]
+    ![Kattintson duplán egy modul tooadd Megjegyzés][add-comment]
     <br/>
-    ***Kattintson duplán a modulra megjegyzést fűzni***
+    ***Kattintson duplán egy modul tooadd Megjegyzés***
 
-3. Húzza a [Clean Missing Data][clean-missing-data] (Hiányzó adatok törlése) modult a kísérletvászonra, és kösse össze a [Select Columns in Dataset][select-columns] (Adathalmaz oszlopainak kijelölése) modullal. A **Properties** (Tulajdonságok) panel **Cleaning mode** (Törlés módja) beállításánál válassza a **Remove entire row** (Teljes sor eltávolítása) lehetőséget. Ezzel arra utasítja a [Clean Missing Data][clean-missing-data] (Hiányzó adatok törlése) modult, hogy ha hiányzó adatot talál, az egész sort törölje. Kattintson duplán a modulra, és írja be a következő megjegyzést: „Hiányzó értéket tartalmazó sorok törlése”.
+3. A csomóponthúzási hello [Clean Missing Data] [ clean-missing-data] modul toohello vászonra kísérletek kifejlesztéséhez, és csatlakoztassa toohello [Select Columns in Dataset] [ select-columns] modul. A hello **tulajdonságok** ablaktáblán válassza előbb **teljes sor eltávolítása** alatt **Cleaning mód**. Ezzel megadja [Clean Missing Data] [ clean-missing-data] tooclean hello adatait a hiányzó értékeket tartalmazó sorok eltávolítása. Kattintson duplán a hello modul, és írja be a hello megjegyzést "Hiányzó értéket tartalmazó sorok eltávolítása."
 
-    ![Törlés módjának beállítása „Remove entire row” (Teljes sor eltávolítása) lehetőségre a „Clean Missing Data” (Hiányzó adatok törlése) modulnál][set-remove-entire-row]
+    ![Hello tisztítási mód beállítása túl "teljes sor eltávolítása" hello "Clean Missing Data" modul][set-remove-entire-row]
     <br/>
-    ***A "Teljes sor eltávolítása" a "Clean Missing Data" modul tisztítási mód beállítása***
+    ***Hello tisztítási mód beállítása túl "teljes sor eltávolítása" hello "Clean Missing Data" modul***
 
-4. A kísérlet futtatásához kattintson a lap alján található **RUN** (Futtatás) parancsra.
+4. Futtassa a hello kísérlet kattintva **futtatása** alján hello hello.
 
-    A kísérlet befejezését követően az összes modulnál megjelenik egy zöld pipa, amely jelzi, hogy az adott modul sikeresen lefutott. A jobb felső sarokban pedig megjelenik a **Finished running** (Futtatás befejeződött) állapot.
+    Hello kísérlet futása befejeződött, minden hello modul kell egy zöld pipa tooindicate, hogy sikeresen befejeződött. Figyelje meg is hello **végzett futó** állapot hello jobb felső sarokban.
 
-![A kísérlet várható megjelenése a futtatás után][early-experiment-run]
+![Után is fut, hello kísérlet kell kinéznie][early-experiment-run]
 <br/>
-***A kísérlet várható megjelenése a futtatás után***
+***Után is fut, hello kísérlet kell kinéznie***
 
 > [!TIP]
-> Miért futtattuk a kísérletet most? A kísérlet futtatásával biztosítható, hogy az adatokhoz tartozó oszlopdefiníciók az adatkészletből áthaladnak a [Select Columns in Dataset][select-columns] (Adathalmaz oszlopainak kijelölése) modulon és a [Clean Missing Data][clean-missing-data] (Hiányzó adatok törlése) modulon. Ez azt jelenti, hogy a [Clean Missing Data][clean-missing-data] (Hiányzó adatok törlése) modulhoz kapcsolt modulok is megkapják ugyanezeket az adatokat.
+> Miért azt futott hello kísérlet most? Futó hello kísérletet, szükség szerint hello oszlopdefiníciók az adataink hello adatkészletből hello keresztül továbbítja [Select Columns in Dataset] [ select-columns] modul, és a hello [Clean Missing Data] [ clean-missing-data] modul. Ez azt jelenti, hogy a Microsoft connect túl modul[Clean Missing Data] [ clean-missing-data] ezt az információt is.
 
-Eddig még csupán az adatok megtisztítását végeztük el a kísérletben. Ha szeretné megtekinteni a megtisztított adathalmazt, kattintson a [Clean Missing Data][clean-missing-data] (Hiányzó adatok törlése) modul bal oldali kimeneti portjára, és válassza a **Visualize** (Képi megjelenítés) lehetőséget. Láthatja, hogy a **normalized-losses** oszlop eltűnt, ahogy a hiányzó értékek is.
+Összes azt fel toothis pont hello kísérletben megtette az tiszta hello adatai. Tooview tisztítani hello dataset, kattintson a bal oldali kimeneti portjára hello hello [Clean Missing Data] [ clean-missing-data] modul, és válassza ki **Visualize**. Figyelje meg, hogy hello **normalized-losses** oszlop már nem része, és nincsenek hiányzó értékek.
 
-Most, hogy megtisztítottuk az adatokat, megadhatjuk, hogy mely jellemzőket szeretnénk felhasználni a prediktív modellben.
+Most, hogy hello adatok tiszta, a rendszer készen áll a toospecify funkciók megismeréséhez azt módosítjuk toouse hello prediktív modellben.
 
 ## <a name="step-3-define-features"></a>3. lépés: A jellemzők meghatározása
 
 A gépi tanulásban a *jellemzők* azok a külön-külön mérhető tulajdonságok, amelyekre kíváncsiak vagyunk. Adathalmazunk minden sora egy-egy autót képvisel, az oszlopok pedig az autók különböző jellemzőit tartalmazzák.
 
-A prediktív modellben használandó jellemzők helyes megválasztásához fontos a kísérletezés, illetve a megoldani kívánt probléma jó ismerete. Bizonyos jellemzők ugyanis hasznosabbak a cél előrejelzéséhez, mint mások. Ráadásul egyes jellemzők erős korrelációban állnak más jellemzőkkel, és eltávolíthatók. A példánkban például szorosan összefügg a city-mpg (fogyasztás városban) és highway-mpg (fogyasztás autópályán), ezért az egyiket eltávolíthatjuk anélkül, hogy lényegesen befolyásolnánk az előrejelzést.
+Egy jó funkcióinak a prediktív modellben szükséges kísérletezhet és hello problémával kapcsolatos Tudásbázis keresése kívánt toosolve. Egyes szolgáltatások akkor nagyobb, mint a többire hello cél előrejelzéséhez. Ráadásul egyes jellemzők erős korrelációban állnak más jellemzőkkel, és eltávolíthatók. Például város-mpg és highway-mpg szorosan kapcsolódnak, azt másikat, és távolítsa el más hello hello előrejelzés jelentős befolyásolása nélkül.
 
-Ideje, hogy létrehozzuk a modellt az adathalmaz jellemzőinek meghatározott részhalmaza alapján. Később visszatérhet ehhez a lépéshez, és más jellemzőket kiválasztva ismét lefuttathatja a kísérletet, ha kíváncsi rá, hogy úgy jobb eredményeket kap-e. Kezdésként azonban a következő funkciókat próbáljuk ki:
+Létrehozzuk a modellt, amely az adathalmaz hello funkciók egy részét használja. Térjen vissza később és más jellemzőket, futtassa újra a hello kísérlet, és tekintse meg, ha jobb eredményeket kap. De toostart, próbáljon a következő funkciók hello:
 
     make, body-style, wheel-base, engine-size, horsepower, peak-rpm, highway-mpg, price
 
 
-1. Húzzon egy újabb [Select Columns in Dataset][select-columns] (Adathalmaz oszlopainak kijelölése) modult a kísérletvászonra. Kösse össze a [Clean Missing Data][clean-missing-data] (Hiányzó adatok törlése) modul bal oldali kimeneti portját a [Select Columns in Dataset][select-columns] (Adathalmaz oszlopainak kijelölése) modul bemenetével.
+1. Húzzon egy újabb [Select Columns in Dataset] [ select-columns] modul toohello kísérlet vászonra. Csatlakozás a bal oldali kimeneti portjára hello hello [Clean Missing Data] [ clean-missing-data] modul toohello bemeneti hello [Select Columns in Dataset] [ select-columns] modul.
 
-    ![A „Select Columns in Dataset” (Adathalmaz oszlopainak kijelölése) modul összekötése a „Clean Missing Data” (Hiányzó adatok törlése) modullal][connect-clean-to-select]
+    ![Csatlakozás hello "Válasszon oszlopok a Dataset" modul toohello "Clean Missing Data" modul][connect-clean-to-select]
     <br/>
-    ***A "Válasszon oszlopok a Dataset" modul csatlakozni a "Clean Missing Data" modul***
+    ***Csatlakozás hello "Válasszon oszlopok a Dataset" modul toohello "Clean Missing Data" modul***
 
-2. Kattintson duplán a modulra, és írja be: „Az előrejelzéshez használatos jellemzők kiválasztása”.
+2. Kattintson duplán a hello modul, és írja be a "Szolgáltatások előrejelzés kiválasztása."
 
-2. Kattintson a **Properties** (Tulajdonságok) panel **Launch column selector** (Oszlopválasztó indítása) elemére.
+2. Kattintson a **Oszlopválasztás** a hello **tulajdonságok** ablaktáblán.
 
 3. Kattintson a **With rules** (Szabályokkal) lehetőségre.
 
-4. A **Begin With** (Kezdés a következővel) területen kattintson a **No columns** (Egyetlen oszlop sem) lehetőségre. A szűrősorban válassza ki az **Include** (Belefoglalás) és a **column names** (oszlopnevek) lehetőséget, és jelölje ki az oszlopnevek listáját a szövegmezőben. Ezzel arra utasítja a modult, hogy csak az általunk megadott oszlopokat (tulajdonságokat) dolgozza fel.
+4. A **Begin With** (Kezdés a következővel) területen kattintson a **No columns** (Egyetlen oszlop sem) lehetőségre. Hello szűrő sorban válassza **Include** és **oszlopnevek** , és válassza ki az oszlopnevek listája hello szövegmezőben. Ezzel megadja hello modul toonot továbbítása (szolgáltatások) oszlopot, azzal a különbséggel, adtuk meg hello.
 
-5. Kattintson a pipa (OK) gombra.
+5. Hello pipa (OK) gombra.
 
-    ![Az előrejelzésbe bevonni kívánt oszlopok (tulajdonságok) kijelölése][select-columns-to-include]
+    ![Válassza ki a hello (szolgáltatások) oszlopok tooinclude hello előrejelzés][select-columns-to-include]
     <br/>
-    ***Az előrejelzés foglalandó (szolgáltatások) oszlopok kiválasztása***
+    ***Válassza ki a hello (szolgáltatások) oszlopok tooinclude hello előrejelzés***
 
-Ezzel létrehoz egy szűrt adathalmazt, amelyben csak a következő lépésben használandó tanulási algoritmusnak továbbítani kívánt tulajdonságok szerepelnek. Később visszatérhet ide, és más jellemzőkkel is elvégezheti az előrejelzést.
+Ezzel létrehozza azt szeretnénk, hogy a tanulási algoritmus fogjuk használni, a következő lépésben hello toopass toohello csak hello szolgáltatásokat tartalmazó szűrt adatkészlet. Később visszatérhet ide, és más jellemzőkkel is elvégezheti az előrejelzést.
 
 ## <a name="step-4-choose-and-apply-a-learning-algorithm"></a>4. lépés: Tanulási algoritmus kiválasztása és alkalmazása
 
-Most, hogy előkészítettük az adatokat, a prediktív modell létrehozásához már csak a tanítás és a tesztelés szükséges. A következőkben az adatok segítségével elvégezzük a modell betanítását, majd a modell tesztelésével megállapítjuk, hogy milyen pontossággal képes előre jelezni az árakat.
-<!-- For now, don't worry about *why* we need to train and then test a model.-->
+Most, hogy készen áll a hello adatokat, hozhat létre, a prediktív modell áll betanításra és tesztelésre. Az adatok tootrain hello modellt fogjuk használni, és majd teszteljük fogja hello modell toosee milyen közeli képes toopredict árak.
+<!-- For now, don't worry about *why* we need tootrain and then test a model.-->
 
-A *besorolás* és a *regresszió* két algoritmus, amelynek segítségével felügyelt gépi tanítás valósítható meg. Besoroláskor a válaszok előrejelzése megadott kategóriakészletből történik (például: színek (vörös, kék vagy zöld)). A rendszer a számok előrejelzésére regressziós módszert használ.
+A *besorolás* és a *regresszió* két algoritmus, amelynek segítségével felügyelt gépi tanítás valósítható meg. Besoroláskor a válaszok előrejelzése megadott kategóriakészletből történik (például: színek (vörös, kék vagy zöld)). Regressziós használt toopredict több.
 
-Mivel az árat szeretnénk előre jelezni, ami egy szám, regressziós algoritmust fogunk használni. Ebben a példában egy egyszerű *lineáris regressziós* modellt használunk.
+Azt szeretnénk, ha toopredict ár, amely egy számot, mert egy regressziós algoritmus fogjuk használni. Ebben a példában egy egyszerű *lineáris regressziós* modellt használunk.
 
 > [!TIP]
-> Ha szeretne többet megtudni a Machine Learning algoritmusok különböző típusairól és az alkalmazási területükről, érdemes megnéznie az Adatelemzés kezdőknek sorozat [The five questions data science answers](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) (Öt kérdés, amelyre az adatelemzés megadja a választ) című első videóját. Érdemes lehet megtekintenie a [Machine learning basics with algorithm examples](machine-learning-basics-infographic-with-algorithm-examples.md) (A Machine Learning alapjai algoritmuspéldákkal) infografikát is, vagy a [Machine learning algorithm cheat sheet](machine-learning-algorithm-cheat-sheet.md) (Machine Learning algoritmus-adatlap) ábrát.
+> Ha azt szeretné, hogy több különböző típusú gépi tanulási algoritmusok toolearn, és ha toouse őket, Adattudomány hello kezdők sorozata, előfordulhat, hogy megtekinti hello első videó [hello öt kérdésekre adatok tudományos válaszok](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md). Hello infographic is előfordulhat, hogy megnézi [gépi tanulási algoritmus példákkal alapjai](machine-learning-basics-infographic-with-algorithm-examples.md), vagy tekintse meg a hello [gépi tanulási algoritmus-adatlap](machine-learning-algorithm-cheat-sheet.md).
 
-A modell betanításához az árat tartalmazó adathalmazt biztosítunk számára. A modell megvizsgálja adatokat, és összefüggéseket keres az autó tulajdonságai és az ára között. Ezután teszteljük a modellt. Ehhez olyan autók tulajdonságkészletét töltjük be, amelyeket ismerünk, és megnézzük, hogy mennyire sikeresen tudja a modell előre jelezni az ismert árakat.
+Adjon neki a hello ár tartalmazó adatkészletet hello modell azt betanításához. hello modell hello adatokat, és keresse meg egy autó szolgáltatások és az ár közötti összefüggések keres. Majd teszteljük fogja hello modell - igazolnia kell adjon neki az autók el jártasak funkciókat, és tekintse meg, milyen pontossággal hello modell előre toopredicting hello ismert ár.
 
-Az adatok a modell betanítására és tesztelésére is használhatók. Ehhez két halmazra, egy tanítási és egy tesztelési halmazra osztjuk fel az adatokat.
+Hello modell betanítása és vizsgálja, hogy a külön modell betanítására és tesztelésére adatkészletek hello adatok rendezze az adatokat fogjuk használni.
 
-1. Jelölje ki, majd húzza a kísérletvászonra a [Split Data][split] (Adatok felosztása) modult, majd kösse össze a legutóbb használt [Select Columns in Dataset][select-columns] (Adathalmaz oszlopainak kijelölése) modullal.
+1. Válassza ki, majd húzza a hello [Split Data] [ split] modul toohello vászonra kísérletek kifejlesztéséhez, és csatlakoztassa toohello utolsó [Select Columns in Dataset] [ select-columns] a modul.
 
-2. Kattintással jelölje ki a [Split Data][split] (Adatok felosztása) modult. Keresse meg a **Properties** (Tulajdonságok) panelen a vászontól jobbra a **Fraction of rows in the first output dataset** (Sorok hányadosa az első kimeneti adathalmazban) beállítást, és adja meg a 0,75 értéket. Így az adatok 75 százalékát a modell betanítására, 25 százalékát pedig a modell tesztelésére használhatjuk (a későbbiekben más százalékokkal is elvégezheti a kísérletet).
+2. Kattintson a hello [Split Data] [ split] modul tooselect azt. Hello található **hello sorok először kimeneti adatkészlet** (a hello **tulajdonságok** ablaktábla toohello jog a vásznon a hello), majd állítsa be too0.75. Ezzel a módszerrel kell felhasználása hello tootrain hello adatmodell 75 százalékát, és 25 százalékát tesztelési (később, kísérletezhet különböző százalékos használatával).
 
-    ![A „Split Data” (Adatok felosztása) modul felosztási értékének beállítása 0,75-re][set-split-data-percentage]
+    ![Ossza fel azon részét, hello "Split Data" modul too0.75 set hello][set-split-data-percentage]
     <br/>
-    ***A felosztott azon részét, a "Split Data" modul 0,75 beállítása***
+    ***Ossza fel azon részét, hello "Split Data" modul too0.75 set hello***
 
     > [!TIP]
-    > A **Random seed** (Véletlenszám-generálás kezdőértéke) paraméter módosításával különböző véletlenszerűen kiválasztott mintákat hozhat létre, amelyeket szintén felhasználhat a modell betanítására és tesztelésére. Ez a paraméter szabályozza a pszeudo-véletlenszám-generátor kezdőértékét.
+    > Hello módosításával **véletlenszerű kezdőérték** paraméter, hozhat létre különböző véletlenszerűen kiválasztott mintákat a modell betanítására és tesztelésére. Ezzel a paraméterrel állítható hello összehangolása hello pszeudo véletlenszám-generátor kezdőértékét.
 
-2. Futtassa a kísérletet. A kísérlet futtatásakor a [Select Columns in Dataset][select-columns] (Adathalmaz oszlopainak kijelölése) és a [Split Data][split] (Adatok felosztása) modul átadja a következőkben hozzáadott moduloknak az oszlopdefiníciókat.  
+2. Hello kísérlet futtatása. Hello kísérlet futtatásakor hello [Select Columns in Dataset] [ select-columns] és [Split Data] [ split] modulok oszlop definíciók toohello adja át. a modulok a következőkben hozzáadott mellett.  
 
-3. A tanulási algoritmus kiválasztásához bontsa ki a vászontól balra, a modulpalettán található **Machine Learning** (Gépi tanulás) kategóriát, majd bontsa ki az **Initialize Model** (Inicializálási modell) kategóriát is. Itt számos modulkategória közül választhat, amelyek segítségével inicializálható a gépi tanulási algoritmus. Ehhez a kísérlethez válassza a **Regression** (Regresszió) kategóriában található [Linear Regression][linear-regression] (Lineáris regresszió) modult, majd húzza a kísérletvászonra.
-(A modult úgy is megkeresheti, ha a paletta keresőmezőjébe beírja a „linear regression” kifejezést.)
+3. tooselect hello tanulási algoritmus, bontsa ki a hello **Machine Learning** hello modul paletta toohello balra kategóriájában hello a kísérletvászonra, és végül **inicializálása modell**. Itt számos modulkategória közül választhat, amelyek használt tooinitialize gépi tanulási algoritmusok lehetnek. Ehhez a kísérlethez válassza ki a hello [lineáris regressziós] [ linear-regression] alatt hello modul **regressziós** kategóriát, és húzza a kísérletvászonra toohello.
+(Megtalálhat hello modul hello paletta keresőmezőjébe írja be a "linear regression".)
 
-4. Keresse meg, majd húzza a kísérletvászonra a [Train Model][train-model] (Modell betanítása) modult. Kösse össze a [Linear Regression][linear-regression] (Lineáris regresszió) modul kimenetét a [Train Model][train-model] (Modell betanítása) modul bal oldali bemenetével, és kösse össze a [Split Data][split] (Adatok felosztása) modul adatbetanítási kimenetét (bal oldali port) a [Train Model][train-model] (Modell betanítása) modul jobb oldali bemenetével.
+4. Keresse meg, és húzza hello [tanítási modell] [ train-model] modul toohello kísérlet vászonra. Csatlakozás hello hello kimenete [lineáris regressziós] [ linear-regression] toohello modul bal oldali bemeneti hello [tanítási modell] [ train-model] modul, és hello adatokat tartalmazó kimenetével (bal oldali port) a hello betanítása [Split Data] [ split] modul toohello jobb bemeneti hello [tanítási modell] [ train-model] a modul.
 
-    ![A „Train Model” (Modell betanítása) modul összekötése a „Linear Regression” (Lineáris regresszió) és a „Split Data” (Adatok felosztása) modulokkal][connect-train-model]
+    ![Csatlakozás hello "Tanítási modell" modul tooboth hello "Linear Regression" és "Split Data" modulok][connect-train-model]
     <br/>
-    ***A "Tanítási modell" modul csatlakozni a "Linear Regression" és a "Split Data" modulok***
+    ***Csatlakozás hello "Tanítási modell" modul tooboth hello "Linear Regression" és "Split Data" modulok***
 
-5. Kattintson a [Train Model][train-model] (Modell betanítása) modulra, kattintson a **Properties** (Tulajdonságok) panel **Launch column selector** (Oszlopválasztó indítása) elemére, és válassza ki a **price** (ár) oszlopot. Ez az az érték, amelyet a modellünk megpróbál előre jelezni.
+5. Hello kattintson [tanítási modell] [ train-model] modult, kattintson a **Oszlopválasztás** a hello **tulajdonságok** ablaktáblán, és jelölje ki hello **ár** oszlop. Ez az, hogy a modell-e a további folyamatos toopredict hello érték.
 
-    Jelölje ki a **price** (ár) oszlopot az oszlopválasztóban. Ehhez helyezze át az **Available columns** (Elérhető oszlopok) listáról a **Selected columns** (Kiválasztott oszlopok) listára.
+    Hello választja **ár** hello Oszlopválasztó hello való áthelyezésével oszlopa **elérhető oszlopok** toohello listában **kijelölt oszlopok** listája.
 
-    ![Az ár oszlop kiválasztása a „Train Model” (Modell betanítása) modulhoz][select-price-column]
+    ![Válassza ki a hello ár oszlop hello "Tanítási modell" modul][select-price-column]
     <br/>
-    ***Válassza ki az ár oszlop "Tanítási modell" modul***
+    ***Válassza ki a hello ár oszlop hello "Tanítási modell" modul***
 
-6. Futtassa a kísérletet.
+6. Hello kísérlet futtatása.
 
-Ezzel kapunk egy betanított regressziós modellt, amely képes pontszámot rendelni az új autóadatokhoz, és így előre jelezni az árakat.
+Most már tudunk képzett regressziós modell, amely használt tooscore új autó adatok toomake ár előrejelzéseket lehet.
 
-![A kísérlet várható megjelenése a futtatás után][second-experiment-run]
+![Után fut, hello kísérlet most hasonlóan kell kinéznie Ez][second-experiment-run]
 <br/>
-***A kísérlet várható megjelenése a futtatás után***
+***Után fut, hello kísérlet most hasonlóan kell kinéznie Ez***
 
 ## <a name="step-5-predict-new-automobile-prices"></a>5. lépés: Új autó árának előrejelzése
 
-Most, hogy adataink 75 százalékával betanítottuk a modellt, a maradék 25 százalék pontozásával megállapíthatjuk, hogy mennyire működik jól.
+Most, hogy azt már betanítása hello-modellben adataink 75 százalékával, használhatjuk tooscore hello maradék 25 százalék hello adatok toosee mennyire működik.
 
-1. Keresse meg, majd húzza a kísérletvászonra a [Score Model][score-model] (Modell pontozása) modult. Kösse össze a [Train Model][train-model] (Modell betanítása) modul kimenetét a [Score Model][score-model] (Modell pontozása) modul bal oldali bemeneti portjával. Kösse össze a [Split Data][split] (Adatok felosztása) modul tesztelési adatokat tartalmazó kimenetét (jobb oldali portját) a [Score Model][score-model] (Modell pontozása) modul jobb oldali bemeneti portjával.
+1. Keresse meg, és húzza hello [Score Model] [ score-model] modul toohello kísérlet vászonra. Csatlakozás hello hello kimenete [tanítási modell] [ train-model] bal oldali bemeneti portját a modul toohello [Score Model][score-model]. Csatlakozás hello tesztelési adatokat tartalmazó kimenetével (jobb oldali portjával) a hello [Split Data] [ split] modul toohello jobb oldali bemeneti portját [Score Model][score-model].
 
-    ![A „Score Model” (Modell pontozása) modul összekötése a „Train Model” (Modell betanítása) és a „Split Data” (Adatok felosztása) modulokkal][connect-score-model]
+    ![Csatlakozás hello "Score Model" modul tooboth hello "Tanítási modell" és "Split Data" modulok][connect-score-model]
     <br/>
-    ***A "Score Model" modul csatlakozni a "Tanítási modell" és a "Split Data" modulok***
+    ***Csatlakozás hello "Score Model" modul tooboth hello "Tanítási modell" és "Split Data" modulok***
 
-2. Futtassa a kísérletet, és tekintse meg a [Score Model][score-model] (Modell pontozása) modul eredményét (kattintson a [Score Model][score-model] modul kimeneti portjára, majd válassza a **Visualize** (Képi megjelenítés) lehetőséget). A modul megjeleníti az előre jelzett árat, valamint a tesztadatokból ismert tényleges értéket.  
+2. Hello kísérlet futtatásához és megtekintéséhez hello hello kimenete [Score Model] [ score-model] modul (hello kimeneti portjára kattintson [Score Model] [ score-model] és kiválasztása **Megjelenítése**). hello áron előre jelzett értékek és ismert értékeinek hello Tesztadatok hello hello kimenet megjelenítése.  
 
-    ![A „Score Model” (Modell pontozása) modul kimenete][score-model-output]
+    ![Hello "Score Model" modul kimenete][score-model-output]
     <br/>
-    ***A "Score Model" modul kimenete***
+    ***Hello "Score Model" modul kimenete***
 
-3. Végül teszteljük az eredmény minőségét. Jelölje ki, majd húzza a kísérletvászonra az [Evaluate Model][evaluate-model] (Modell kiértékelése) modult, és kösse össze a [Score Model][score-model] (Modell pontozása) modul kimenetét az [Evaluate Model][evaluate-model] (Modell kiértékelése) bal oldali bemeneti portjával.
+3. Végezetül teszteljük hello eredmények hello minőségét. Válassza ki, majd húzza a hello [modell kiértékelése] [ evaluate-model] modul toohello kísérlet vászonra, és csatlakozzon a hello hello kimenete [Score Model] [ score-model] bal oldali bemeneti modul toohello [modell kiértékelése][evaluate-model].
 
     > [!TIP]
-    > Az [Evaluate Model][evaluate-model] (Modell kiértékelése) modulon két bemeneti port található, mivel két modell összehasonlítására is használható. Később hozzáadhat egy másik algoritmust a kísérlethez, és az [Evaluate Model][evaluate-model] (Modell kiértékelése) modul segítségével ellenőrizheti, melyik ad jobb eredményeket.
+    > Vannak két bemeneti portok hello [modell kiértékelése] [ evaluate-model] modul mert használt toocompare két modell párhuzamos lehet. Később, akkor egy másik algoritmus toohello kísérlet hozzáadhat és használhat [modell kiértékelése] [ evaluate-model] toosee melyik jobb eredményt ad.
 
-4. Futtassa a kísérletet.
+4. Hello kísérlet futtatása.
 
-Az [Evaluate Model][evaluate-model] (Modell kiértékelése) modul eredményének megtekintéséhez kattintson a kimeneti portra, majd válassza a **Visualize** (Képi megjelenítés) lehetőséget.
+hello tooview hello kimenete [modell kiértékelése] [ evaluate-model] modulban kattintson hello kimeneti portra, és válassza **Visualize**.
 
-![A kísérlet kiértékelésének eredménye][evaluation-results]
+![Hello kísérleti fázisú funkciókat kiértékelésének eredménye][evaluation-results]
 <br/>
-***A kísérlet kiértékelésének eredménye***
+***Hello kísérleti fázisú funkciókat kiértékelésének eredménye***
 
-A következő statisztikák tekinthetők meg:
+hello a következő statisztikák tekinthetők láthatók:
 
-- **Mean Absolute Error** (átlagos abszolút eltérés, MAE): az abszolút eltérések átlaga (*eltérésnek* az előre jelzett érték és a tényleges érték közötti különbséget nevezzük).
-- **Root Mean Squared Error** (gyökátlagos négyzetes eltérés, RMSE): a tesztelési adathalmazon végzett előrejelzések eltéréseinek négyzetéből számított átlag négyzetgyöke.
-- **Relative Absolute Error** (relatív abszolút eltérés): a tényleges értékek és az összes tényleges értékek átlaga közötti különbségek abszolút eltérésének átlaga.
-- **Relative Squared Error** (relatív négyzetes eltérés): a négyzetes eltérések átlaga a tényleges értékek és az összes tényleges érték átlaga közötti különbség négyzetes értékéhez viszonyítva.
-- **Coefficient of Determination** (determinációs együttható): ez az **R-négyzet értéke** néven is ismert statisztikai mérőszám azt mutatja, hogy a modell mennyire illik az adatokhoz.
+- **Mean Absolute Error** (MAE): hello abszolút eltérésének átlaga (egy *hiba* hello különbség hello előre meghatározott és tényleges értékkel hello).
+- **Root Mean Squared hiba** (Gyökátlagos): hello négyzetgyökét hello tesztelési adathalmazon végzett előrejelzések eltéréseinek négyzetéből hello átlaga.
+- **Relative Absolute Error**: hello abszolút eltérésének relatív toohello abszolút eltérés és az összes tényleges értékek átlaga hello tényleges értékek átlaga.
+- **Relatív Squared hiba**: hello átlaga relatív négyzetes értékéhez toohello négyzet hello tényleges értékek és hello összes tényleges értékek átlaga közötti különbség.
+- **Együttható**: néven is ismert hello **R-négyzet értéke**, jelezve, hogy mennyire illik legjobban a modell hello adatok statisztikai mérőszám azt.
 
-Az összes hibastatisztikára igaz, hogy minél kisebb az érték, annál jobb a modell. A kisebb értékek azt jelzik, hogy az előrejelzés közelebb van a tényleges értékekhez. A **Coefficient of Determination** (determinációs együttható) értéke minél közelebb van az egyhez (1,0-hoz), annál pontosabb az előrejelzés.
+Az egyes hello hiba statisztika, kisebb célszerűbb. A kisebb értékek azt jelzik, hogy hello előrejelzés közelebb hello tényleges értékek. A **Coefficient of Determination**, hello közelebb értéke pedig tooone (1.0) hello jobb hello előrejelzéseket.
 
 ## <a name="final-experiment"></a>Elkészült kísérlet
 
-Az elkészült kísérletnek a következőképpen kell kinéznie:
+hello elkészült kísérletnek kell kinéznie:
 
-![Az elkészült kísérlet][complete-linear-regression-experiment]
+![hello elkészült kísérletnek][complete-linear-regression-experiment]
 <br/>
-***Az elkészült kísérlet***
+***hello elkészült kísérletnek***
 
 ## <a name="next-steps"></a>Következő lépések
 
-Most, hogy az első Machine Learning oktatóanyag végére ért, és beállította kísérletét, tovább dolgozhat a modell javításán, majd üzembe helyezheti prediktív webszolgáltatásként.
+Hello első machine learning oktatóanyag elvégzése után, és beállította kísérletét rendelkezik, továbbra is tooimprove hello modell, és majd telepítenie kell azt prediktív webszolgáltatásként.
 
-- **A modell továbbfejlesztése a művelet ismétlésével** – Például módosíthatja az előrejelzéshez használt jellemzők körét. Emellett módosíthatja a [Linear Regression][linear-regression] (Lineáris regresszió) algoritmus tulajdonságait, vagy akár egy teljesen más algoritmust is kipróbálhat. Akár két különböző gépi tanulási algoritmus segítségével is futtathatja a kísérletet, majd az [Evaluate Model][evaluate-model] (Modell kiértékelése) modul használatával összehasonlíthatja az eredményeket.
-Több modell összehasonlítására egyetlen kísérletben a [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com) [Compare Regressors](https://gallery.cortanaintelligence.com/Experiment/Compare-Regressors-5) (Regresszorok összehasonlítása) részében találhat példát.
+- **Többször tootry tooimprove hello modell** – például hello funkcióra az előrejelzés a módosíthatja. Hello hello tulajdonságait módosíthatja vagy [lineáris regressziós] [ linear-regression] algoritmust, vagy próbálja meg egy teljesen más algoritmust is. Még egy időben tanulási algoritmusok tooyour kísérlet különböző gépi és hasonlítsa össze azokat két hello segítségével [modell kiértékelése] [ evaluate-model] modul.
+Hogyan toocompare egyetlen kísérlet, a több modellek: példa [összehasonlítása Regresszort](https://gallery.cortanaintelligence.com/Experiment/Compare-Regressors-5) a hello [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com).
 
     > [!TIP]
-    > Az ismétlések egy példányának másolásához használja az oldal alján található **SAVE AS** (Mentés másként) gombot. A kísérlet összes ismétlésének megtekintéséhez kattintson az oldal alján található **VIEW RUN HISTORY** (Futtatási előzmények megtekintése) parancsra. További információ: [Kísérlet ismétléseinek kezelése az Azure Machine Learning Studióban][runhistory].
+    > toocopy ismétlések kísérletbe, használjon hello **SAVE AS** alján hello hello gombra. Gombra kattintva megtekintheti az összes hello ismétlések kísérletbe **futtatása ELŐZMÉNYEINEK megtekintése** hello lap hello alján. További információ: [Kísérlet ismétléseinek kezelése az Azure Machine Learning Studióban][runhistory].
 
 [runhistory]: machine-learning-manage-experiment-iterations.md
 
-- **A modell telepítése prediktív webszolgáltatásként** – Ha már elégedett a modellel, helyezze üzembe webszolgáltatásként, amely új adatok alapján képes előre jelezni az autók árát. További információ: [Azure Machine Learning-webszolgáltatás üzembe helyezése][publish].
+- **A prediktív webszolgáltatásként hello modell rendszerbe állítása** – Ha elégedett a modellel, telepítheti azt egy webes szolgáltatás toobe toopredict autó árának használt új adatok használatával. További információ: [Azure Machine Learning-webszolgáltatás üzembe helyezése][publish].
 
 [publish]: machine-learning-publish-a-machine-learning-web-service.md
 
-Szeretne többet megtudni? Ha szeretné részletesebben megismerni a modellek létrehozásához, tanításához, pontozásához és üzembe helyezéséhez használható folyamatot, olvassa el [a prediktív megoldások Azure Machine Learning segítségével való fejlesztését][walkthrough] ismertető cikket.
+Szeretné, hogy további toolearn? Hello folyamat létrehozása, betanítási, pontozási és központi telepítése egy modell széles körű, és részletes útmutatást lásd: [prediktív megoldás kifejlesztése az Azure Machine Learning segítségével][walkthrough].
 
 [walkthrough]: machine-learning-walkthrough-develop-predictive-solution.md
 
@@ -356,7 +356,7 @@ Szeretne többet megtudni? Ha szeretné részletesebben megismerni a modellek l�
 [evaluation-results]:./media/machine-learning-create-experiment/evaluation-results.png
 [complete-linear-regression-experiment]:./media/machine-learning-create-experiment/complete-linear-regression-experiment.png
 
-<!-- temporarily switching GIFs to PNGs to remove animation --> 
+<!-- temporarily switching GIFs tooPNGs tooremove animation --> 
 [type-automobile]:./media/machine-learning-create-experiment/type-automobile.png
 [type-select-columns]:./media/machine-learning-create-experiment/type-select-columns.png
 [launch-column-selector]:./media/machine-learning-create-experiment/launch-column-selector.png
@@ -365,7 +365,7 @@ Szeretne többet megtudni? Ha szeretné részletesebben megismerni a modellek l�
 
 [set-split-data-percentage]:./media/machine-learning-create-experiment/set-split-data-percentage.png
 
-<!-- temporarily switching GIFs to PNGs to remove animation --> 
+<!-- temporarily switching GIFs tooPNGs tooremove animation --> 
 [connect-train-model]:./media/machine-learning-create-experiment/connect-train-model.png
 [select-price-column]:./media/machine-learning-create-experiment/select-price-column.png
 

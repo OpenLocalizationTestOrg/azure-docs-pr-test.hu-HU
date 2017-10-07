@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB: Webalkalmazás létrehozása .NET-tel és MongoDB API-val | Microsoft Docs"
-description: "Egy .NET-es kódmintát mutat be, amellyel csatlakozni lehet az Azure Cosmos DB MongoDB API-hoz, és lekérdezést lehet végezni vele"
+title: "Azure Cosmos DB: A .NET webalkalmazás létrehozása és MongoDB API hello |} Microsoft Docs"
+description: "Megadja a .NET kódminta, használhatja a tooconnect tooand lekérdezés hello Azure Cosmos DB MongoDB API"
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -15,21 +15,21 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: 2d30bec75d701b1fd55355d1e139350b6d828c9a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c85cc47f772a19aaa7181611b75a8acaedbc4c42
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-build-a-mongodb-api-web-app-with-net-and-the-azure-portal"></a>Azure Cosmos DB: MongoDB API Webalkalmazás létrehozása .NET-tel és az Azure Portallal
+# <a name="azure-cosmos-db-build-a-mongodb-api-web-app-with-net-and-hello-azure-portal"></a>Azure Cosmos-adatbázis: A .NET MongoDB API webalkalmazás létrehozása és hello Azure-portálon
 
-Az Azure Cosmos DB a Microsoft globálisan elosztott többmodelles adatbázis-szolgáltatása. Segítségével gyorsan létrehozhat és lekérdezhet dokumentum-, kulcs/érték és gráf típusú adatbázisokat, melyek mindegyike felhasználja az Azure Cosmos DB középpontjában álló globális elosztási és horizontális skálázhatósági képességeket. 
+Az Azure Cosmos DB a Microsoft globálisan elosztott többmodelles adatbázis-szolgáltatása. Gyorsan hozzon létre, és a dokumentum, a kulcs/érték és a graph adatbázisok, amelyek kihasználhassa hello globális terjesztési és horizontális skálázhatóságot képességekről az Azure-Cosmos adatbázis hello core lekérdezése. 
 
-A rövid útmutató bemutatja, hogyan hozhat létre az Azure Portal segítségével Azure Cosmos DB-fiókot, dokumentum-adatbázist, és gyűjteményt. Ezután létrehozhatja és üzembe helyezheti a [MongoDB .NET driver-re](https://docs.mongodb.com/ecosystem/drivers/csharp/) épülő feladatlista webalkalmazást. 
+A gyors üzembe helyezési bemutatja, hogyan toocreate Azure Cosmos DB fiókkal, a dokumentum-adatbázis és gyűjtemény használja hello Azure-portálon. Kell majd build és hello épülő feladatok lista webalkalmazás üzembe helyezése [MongoDB .NET illesztőprogram](https://docs.mongodb.com/ecosystem/drivers/csharp/). 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Ha nincs telepítve a Visual Studio 2017, letöltheti és használhatja az **ingyenes** [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/)t. Ügyeljen arra, hogy engedélyezze az **Azure Development** használatát a Visual Studio telepítése során.
+Ha még nincs telepítve a Visual Studio 2017, töltse le és használja a hello **szabad** [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/). Győződjön meg arról, hogy engedélyezze **Azure fejlesztési** hello Visual Studio telepítése során.
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 <a id="create-account"></a>
@@ -37,25 +37,25 @@ Ha nincs telepítve a Visual Studio 2017, letöltheti és használhatja az **ing
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount-mongodb.md)]
 
-## <a name="clone-the-sample-application"></a>A mintaalkalmazás klónozása
+## <a name="clone-hello-sample-application"></a>Klónozza a mintaalkalmazást hello
 
-Klónozzunk egy MongoDB API-alkalmazást a GitHubról, állítsuk be a kapcsolati karakterláncot, és futtassuk. Látni fogja, milyen egyszerű az adatokkal programozott módon dolgozni. 
+Most tegyük a githubból, a klón a MongoDB API app hello kapcsolati karakterlánc beállítása, és futtassa azt. Láthatja, milyen egyszerűen adatokkal toowork programozott módon. 
 
-1. Nyisson meg egy git terminálablakot, például a git bash eszközt, és a `cd` paranccsal lépjen egy munkakönyvtárba.  
+1. Nyisson meg egy git terminálablakot, például a git bash eszközt, és `cd` tooa munkakönyvtárát.  
 
-2. Futtassa a következő parancsot a mintatárház klónozásához. 
+2. Futtassa a következő parancs tooclone hello minta tárház hello. 
 
     ```bash
     git clone https://github.com/Azure-Samples/azure-cosmos-db-mongodb-dotnet-getting-started.git
     ```
 
-3. Ezután nyissa meg a megoldásfájlt a Visual Studióban. 
+3. Ezután nyissa meg a hello megoldásfájlt a Visual Studio. 
 
-## <a name="review-the-code"></a>A kód áttekintése
+## <a name="review-hello-code"></a>Tekintse át a hello kódot
 
-Tekintsük át, hogy mi történik az alkalmazásban. Nyissa meg a **Dal.cs** fájlt a **DAL** könyvtárból: az itt található kódsorok hozzák létre az Azure Cosmos DB erőforrásokat. 
+Most Meggyőződünk arról, mi történik a hello app gyors áttekintése. Nyissa meg hello **Dal.cs** hello fájlt **DAL** könyvtár, és látható, hogy ezek a sorok, a kód hello Azure Cosmos DB erőforrások létrehozása. 
 
-* A Mongo Client inicializálása.
+* Hello Mongo ügyfél inicializálása.
 
     ```cs
         MongoClientSettings settings = new MongoClientSettings();
@@ -75,7 +75,7 @@ Tekintsük át, hogy mi történik az alkalmazásban. Nyissa meg a **Dal.cs** f�
         MongoClient client = new MongoClient(settings);
     ```
 
-* Az adatbázis és a gyűjtemény lekérése.
+* Hello adatbázis és gyűjtemény hello beolvasása.
 
     ```cs
     private string dbName = "Tasks";
@@ -93,47 +93,47 @@ Tekintsük át, hogy mi történik az alkalmazásban. Nyissa meg a **Dal.cs** f�
 
 ## <a name="update-your-connection-string"></a>A kapcsolati karakterlánc frissítése
 
-Lépjen vissza az Azure Portalra a kapcsolati karakterlánc adataiért, majd másolja be azokat az alkalmazásba.
+Most lépjen vissza az Azure portál tooget toohello kapcsolati karakterlánc adatainak és hello alkalmazásba másolja.
 
-1. Az [Azure Portalon](http://portal.azure.com/) az Azure Cosmos DB-fiókban a bal oldalsávon kattintson a **Kapcsolati karakterlánc** elemre, majd kattintson az **írási/olvasási kulcsok** lehetőségre. A következő lépésben használja a képernyő jobb oldalán lévő másolási gombokat a felhasználónév, a jelszó és a gazdagép másolásához a Dal.cs fájlba.
+1. A hello [Azure-portálon](http://portal.azure.com/), az Azure Cosmos DB a fiókot, kattintson a bal oldali navigációs hello **kapcsolati karakterlánc**, és kattintson a **írható-olvasható kulcsok**. Hello másolási gombok hello jobb oldalán hello képernyő toocopy hello felhasználónév, jelszó és a kiszolgáló hello Dal.cs fájlba hello következő lépésben fogja használni.
 
-2. Nyissa meg a **DAL** könyvtárban található **Dal.cs** fájlt. 
+2. Nyissa meg hello **Dal.cs** hello fájlban **DAL** könyvtár. 
 
-3. Másolja ki a **felhasználónév** érteket a Portalról (a másolási gomb használatával), és ezt adja meg a **felhasználónév** értékeként a **Dal.cs** fájlban. 
+3. Másolás a **felhasználónév** portálról hello (hello Másolás gombra) értékét, és könnyebben hello értékének hello **felhasználónév** a a **Dal.cs** fájlt. 
 
-4. Ezután másolja ki a **gazdagép** értékét a Portalról, és adja meg a **gazdagép** értékeként a **Dal.cs** fájlban. 
+4. Másolja a **állomás** hello portálról értékét, és könnyebben hello értékének hello **állomás** a a **Dal.cs** fájlt. 
 
-5. Végezetül másolja ki a **jelszó** értékét a Portalról, és azt adja meg a **jelszó** értékeként a **Dal.cs** fájlban. 
+5. Végül másolja a **jelszó** hello portálról értékét, és könnyebben hello értékének hello **jelszó** a a **Dal.cs** fájlt. 
 
-Az alkalmazás frissítve lett minden olyan információval, amely az Azure Cosmos DB-vel való kommunikációhoz szükséges. 
+Most már frissítette az alkalmazást az Azure Cosmos DB toocommunicate szükséges összes hello információval. 
     
-## <a name="run-the-web-app"></a>A webalkalmazás futtatása
+## <a name="run-hello-web-app"></a>Hello webes alkalmazás futtatása
 
-1. A Visual Studióban kattintson a jobb gombbal a **Megoldáskezelő** projektre, majd kattintson a **NuGet-csomagok kezelése** parancsra. 
+1. A Visual Studióban, kattintson a jobb gombbal a hello projekt **Megoldáskezelőben** majd **NuGet-csomagok kezelése**. 
 
-2. A NuGet **Tallózás** mezőjébe írja be a *MongoDB.Driver* szöveget.
+2. A hello NuGet **Tallózás** mezőbe írja be *MongoDB.Driver*.
 
-3. Az eredmények közül telepítse a **MongoDB.Driver** könyvtárat. Ez telepíti a MongoDB.Driver-csomagot és az összes függőségeit.
+3. Hello eredmények közül telepítse a hello **MongoDB.Driver** könyvtárban. Ez telepíti a hello MongoDB.Driver csomagot, valamint az összes függősége.
 
-4. Az alkalmazás futtatásához nyomja le a CTRL + F5 billentyűkombinációt. Az alkalmazás megjelenik a böngészőben. 
+4. Kattintson a CTRL + F5 toorun hello alkalmazás. Az alkalmazás megjelenik a böngészőben. 
 
-5. Kattintson a **Létrehozás** lehetőségre a böngészőben, és hozzon létre néhány új tevékenységet a tevékenységek lista alkalmazásban.
+5. Kattintson a **létrehozása** a böngésző hello és néhány új feladatot létrehozni a feladat alkalmazás.
 
-## <a name="review-slas-in-the-azure-portal"></a>Tekintse át az SLA-kat az Azure Portalon
+## <a name="review-slas-in-hello-azure-portal"></a>Tekintse át a szolgáltatásiszint-szerződések a hello Azure-portálon
 
 [!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-resources"></a>Az erőforrások eltávolítása
 
-Ha az alkalmazást már nem használja, akkor a következő lépésekkel a mintaalkalmazás által létrehozott összes erőforrást törölheti az Azure Portalon:
+Toocontinue toouse az alkalmazás nem fog, ha törli az összes erőforrást hozta létre a gyors üzembe helyezés hello az Azure-portálon az alábbi lépésekkel hello:
 
-1. Az Azure Portal bal oldali menüjében kattintson az **Erőforráscsoportok** lehetőségre, majd kattintson a létrehozott erőforrás nevére. 
-2. Az erőforráscsoport lapján kattintson a **Törlés** elemre, írja be a törölni kívánt erőforrás nevét a szövegmezőbe, majd kattintson a **Törlés** gombra.
+1. A hello hello Azure-portálon a bal oldali menüből, kattintson az **erőforráscsoportok** és kattintson a létrehozott hello erőforrás hello nevét. 
+2. Az erőforrás csoport lapján kattintson a **törlése**, írja be a hello szövegmező hello erőforrás toodelete hello nevét, és kattintson **törlése**.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben a rövid útmutatóban bemutattuk, hogyan lehet Azure Cosmos DB-fiókot létrehozni, és a MongoDB-hez tartozó API használatával webalkalmazást futtatni. Most további adatokat importálhat a Cosmos DB-fiókba. 
+A gyors üzembe helyezés mér megismerte, hogyan toocreate Azure Cosmos DB fiók és a web app használatával futtatja hello API mongodb-protokolltámogatással. További adatok tooyour Cosmos DB fiókot most importálhatja. 
 
 > [!div class="nextstepaction"]
-> [Adatok importálása az Azure Cosmos DB-be a MongoDB API-hoz](mongodb-migrate.md)
+> [Adatok importálása az Azure Cosmos DB a hello MongoDB API](mongodb-migrate.md)
 

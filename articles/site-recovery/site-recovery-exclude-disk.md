@@ -1,6 +1,6 @@
 ---
-title: "Lemezek kizárása a védelem alól Azure Site Recovery használatával | Microsoft Docs"
-description: "Ez a cikk azt ismerteti, miért és hogyan zárhat ki virtuálisgép-lemezeket a replikációból VMware–Azure, valamint Hyper-V–Azure replikációs forgatókönyvek esetén."
+title: "használja az Azure Site Recovery általi védelem aaaExclude lemezei |} Microsoft Docs"
+description: "Ismerteti, miért és hogyan tooexclude VM lemezek VMware tooAzure és a Hyper-V tooAzure forgatókönyvek a replikációból."
 services: site-recovery
 documentationcenter: 
 author: nsoneji
@@ -14,129 +14,129 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 06/05/2017
 ms.author: nisoneji
-ms.openlocfilehash: fccbe88e3c0c2b2f3e9958f5f2f27adc017e4d03
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f47146bc57aeab3fce90123d0894fa86dde93417
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="exclude-disks-from-replication"></a>Lemezek kizárása a replikációból
-Ez a cikk azt mutatja be, hogyan zárhatóak ki lemezek a replikációból. A kizárás segítségével optimalizálható a felhasznált replikációs sávszélesség, valamint optimalizálhatók a lemezek által felhasznált céloldali erőforrások. A szolgáltatás VMware–Azure és Hyper-V–Azure forgatókönyvek esetén támogatott.
+Ez a cikk ismerteti, hogyan tooexclude lemezek, a replikációból. Ez a kizárás felhasznált hello replikáció sávszélesség-optimalizálását, vagy ilyen lemezeket használó hello céloldali erőforrások optimalizálására. hello szolgáltatás támogatott VMware tooAzure és a Hyper-V tooAzure forgatókönyveit tartalmazza.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Alapértelmezés szerint a rendszer a gép minden lemezét replikálja. Ha ki szeretne zárni egy lemezt a replikációból, a replikáció engedélyezése előtt manuálisan telepítenie kell a mobilitási szolgáltatást a gépre, ha a replikálás a VMware-ből az Azure-ba történik.
+Alapértelmezés szerint a rendszer a gép minden lemezét replikálja. egy lemezt a replikációból tooexclude, manuálisan kell telepítenie hello mobilitási szolgáltatás hello gépen előtt a replikáció engedélyezése, ha a VMware tooAzure replikál.
 
 
 ## <a name="why-exclude-disks-from-replication"></a>Miért érdemes lemezeket kizárni a replikációból?
 A lemezek kizárása a replikációból az alábbiak miatt lehet szükséges:
 
-- A kizárt lemezen előforduló adatváltozások nem fontosak, vagy nincs szükség azok replikálására.
+- a kizárt hello lemezen van churned hello adatok nem fontos, vagy nem szükséges a replikált toobe.
 
-- Tárterületet és hálózati erőforrásokat szeretne megtakarítani az adatváltozások replikálásának kihagyásával.
+- Nem replikálja a forgalom kívánt toosave tárolási és hálózati erőforrásokat.
 
-## <a name="what-are-the-typical-scenarios"></a>Melyek a tipikus forgatókönyvek?
-Azonosíthatók az adatváltozások egyes típusai, amelyek a leginkább alkalmasak a kizárásra. Ilyen például a lapozófájlba (pagefile.sys) vagy a Microsoft SQL Server tempdb fájljába való írás. A számítási feladattól, valamint a tárolási alrendszertől függően a lapozófájl jelentős mértékű változást rögzíthet. Az ilyen adatoknak az elsődleges helyről az Azure-ba irányuló replikálása azonban rendkívül erőforrás-igényes lenne. Így az alábbi lépésekkel optimalizálhatja azon virtuális gépek replikálását, amelyek egyetlen virtuális lemeze az operációs rendszert és a lapozófájlt is tartalmazza:
+## <a name="what-are-hello-typical-scenarios"></a>Mik azok a jellemző forgatókönyvek hello?
+Azonosíthatók az adatváltozások egyes típusai, amelyek a leginkább alkalmasak a kizárásra. Például előfordulhat, hogy beírja tooa lapozófájl (pagefile.sys), illetve adatokat ír ugyanebbe toohello tempdb fájl a Microsoft SQL Server. Attól függően, hogy hello munkaterhelés és a hello tárolóalrendszer hello lapozófájl jelentős mennyiségű forgalom tud regisztrálni. Azonban ezek az adatok replikálásához hello elsődleges hely tooAzure lenne erőforrás-igényesek. Így a következő lépéseket toooptimize replikációs egyetlen virtuális lemez, amelyen hello operációs rendszer és a hello lapozófájlt a virtuális gép hello is használhatja:
 
-1. Ossza fel a virtuális lemezt két virtuális lemezre. Az egyik virtuális lemezen az operációs rendszer, a másikon a lapozófájl található.
-2. Zárja ki a lapozófájl lemezét a replikációból.
+1. Egy virtuális lemezt hello felosztása két virtuális lemezt. Egy olyan virtuális lemezt hello operációs rendszerrel rendelkezik, és más hello van hello lapozófájl.
+2. Hello lemezen a lapozófájl kizárása a replikációból.
 
-Ugyanígy az alábbi lépésekkel optimalizálhatja az olyan virtuális gépek replikálását, amelyek a Microsoft SQL Server tempdb fájlját és a rendszeradatbázis-fájlt is tartalmazzák:
+Hasonlóképpen használja a következő lépéseket toooptimize egy lemezt, amelynek mindkét hello Microsoft SQL Server tempdb ező hello, és a rendszer adatbázisfájl hello:
 
-1. Tárolja a rendszeradatbázist és a tempdb fájlt két különböző lemezen.
-2. Zárja ki a tempdb lemezét a replikációból.
+1. Két különböző lemezek hello rendszeradatbázis és a tempdb tartani.
+2. Hello tempdb lemez kizárása a replikációból.
 
-## <a name="how-to-exclude-disks-from-replication"></a>Hogyan zárhatók ki lemezek a replikációból?
+## <a name="how-tooexclude-disks-from-replication"></a>Hogyan tooexclude a replikációból lemezek?
 
-### <a name="vmware-to-azure"></a>VMware – Azure
-Ha az Azure Site Recovery portálról szeretne virtuális gépet védelemmel ellátni, kövesse a [Replikálás engedélyezése](site-recovery-vmware-to-azure.md) munkafolyamatot. A munkafolyamat negyedik lépésében a **REPLIKÁLNI KÍVÁNT LEMEZ** oszlop használatával zárhat ki lemezeket a replikációból. Alapértelmezés szerint az összes lemez ki van jelölve replikációra. Törölje azoknak a lemezeknek a jelölését, amelyeket ki szeretne zárni a replikációból, majd végezze el a lépéseket a replikáció engedélyezéséhez.
+### <a name="vmware-tooazure"></a>VMware tooAzure
+Hajtsa végre a hello [engedélyezze a replikálást](site-recovery-vmware-to-azure.md) munkafolyamat tooprotect egy virtuális gép hello Azure Site Recovery portálról. A hello negyedik lépése annak hello munkafolyamat, használja a hello **lemez tooREPLICATE** oszlop tooexclude lemezeket a replikációból. Alapértelmezés szerint az összes lemez ki van jelölve replikációra. Törölje a lemezeket, hogy szeretné-e a replikáció, és majd a teljes hello lépéseket tooenable replikációs tooexclude hello négyzetének jelölését.
 
-![Lemezek kizárása a replikációból és a VMware replikációjának engedélyezése Azure-beli feladat-visszavételhez](./media/site-recovery-exclude-disk/v2a-enable-replication-exclude-disk1.png)
+![Lemezek kizárása a replikációból és VMware tooAzure feladat-visszavételi replikációs engedélyezése](./media/site-recovery-exclude-disk/v2a-enable-replication-exclude-disk1.png)
 
 
 >[!NOTE]
 >
-> * Csak olyan lemezeket zárhat ki, amelyeken már telepítve van a mobilitási szolgáltatás. A mobilitási szolgáltatást manuálisan kell telepítenie, mivel a szolgáltatás csak a replikáció engedélyezése után, a leküldéses mechanizmus használatával lesz telepítve.
+> * Kizárhat, hogy csak azok a lemezek, amelyeket már hello mobilitási szolgáltatás telepítve van. Hello mobilitásiszolgáltatás csak telepítve van a replikáció engedélyezése után hello leküldéses mechanizmus használatával, ezért szüksége toomanually telepítés hello mobilitási szolgáltatás.
 > * Csak az alaplemezek zárhatók ki a replikációból. Nem zárhatja ki az operációsrendszer-lemezeket és a dinamikus lemezeket.
-> * A replikáció engedélyezése után már nem lehet ahhoz lemezeket hozzáadni, vagy lemezeket eltávolítani belőle. Lemez hozzáadásához vagy eltávolításához le kell tiltania, majd újra engedélyeznie kell a gép védelmét.
-> * Ha kizár egy olyan lemezt, amely valamely alkalmazás működéséhez szükséges, az Azure-ba történő feladatátvétel esetén manuálisan létre kell majd hozni a lemezt az Azure-ban, hogy a replikált alkalmazás futtatható legyen. Másik megoldásként integrálhatja az Azure Automationt egy helyreállítási tervbe a lemez a gép feladatátvétele során való létrehozásához.
-> * Windows rendszerű virtuális gépek: Az Azure-ban manuálisan létrehozott lemezek nem vesznek részt a feladatátvételben. Ha például végrehajtja három lemez feladatátvételét, kettőt pedig közvetlenül az Azure Virtual Machinesben hoz létre, csak a feladatátvételben részt vevő három lemezen lesz végrehajtva a feladat-visszavétel. A manuálisan létrehozott lemezek nem vehetők fel a feladat-visszavételbe vagy a helyszínről az Azure-ba történő védelem-újrabeállításba.
+> * A replikáció engedélyezése után már nem lehet ahhoz lemezeket hozzáadni, vagy lemezeket eltávolítani belőle. Ha szeretné, hogy tooadd, vagy zárja ki egy lemezt, akkor toodisable védelmi hello számítógéphez szükségesek, és majd engedélyezze újból.
+> * Ha kizárja a olyan lemezzel, amelyet egy alkalmazás toooperate a feladatátvételi tooAzure után szükség van szüksége lesz toocreate hello lemez manuálisan az Azure-ban, hogy a replikált hello alkalmazás futtatható. Alternatív megoldásként integrálhatja az Azure automation helyreállítási terv toocreate hello lemezre hello gép feladatátvétele során.
+> * Windows rendszerű virtuális gépek: Az Azure-ban manuálisan létrehozott lemezek nem vesznek részt a feladatátvételben. Ha például végrehajtja három lemez feladatátvételét, kettőt pedig közvetlenül az Azure Virtual Machinesben hoz létre, csak a feladatátvételben részt vevő három lemezen lesz végrehajtva a feladat-visszavétel. Manuálisan létrehozott feladat-visszavétel vagy a védelem-újrabeállítási helyszíni tooAzure a lemezek nem adhat meg.
 > * Linux rendszerű virtuális gépek: Az Azure-ban manuálisan létrehozott lemezek részt vesznek a feladatátvételben. Ha például végrehajtja három lemez feladatátvételét, kettőt pedig közvetlenül az Azure Virtual Machinesben hoz létre, mind az öt lemezen végre lesz hajtva a feladat-visszavétel. A manuálisan létrehozott lemezek nem zárhatók ki a feladat-visszavételből.
 >
 
-### <a name="hyper-v-to-azure"></a>Hyper-V – Azure
-Ha az Azure Site Recovery portálról szeretne virtuális gépet védelemmel ellátni, kövesse a [Replikálás engedélyezése](site-recovery-hyper-v-site-to-azure.md) munkafolyamatot. A munkafolyamat negyedik lépésében a **REPLIKÁLNI KÍVÁNT LEMEZ** oszlop használatával zárhat ki lemezeket a replikációból. Alapértelmezés szerint az összes lemez ki van jelölve replikációra. Törölje azoknak a lemezeknek a jelölését, amelyeket ki szeretne zárni a replikációból, majd végezze el a lépéseket a replikáció engedélyezéséhez.
+### <a name="hyper-v-tooazure"></a>Hyper-V tooAzure
+Hajtsa végre a hello [engedélyezze a replikálást](site-recovery-hyper-v-site-to-azure.md) munkafolyamat tooprotect egy virtuális gép hello Azure Site Recovery portálról. A hello negyedik lépése annak hello munkafolyamat, használja a hello **lemez tooREPLICATE** oszlop tooexclude lemezeket a replikációból. Alapértelmezés szerint az összes lemez ki van jelölve replikációra. Törölje a lemezeket, hogy szeretné-e a replikáció, és majd a teljes hello lépéseket tooenable replikációs tooexclude hello négyzetének jelölését.
 
-![Lemezek kizárása a replikációból és a Hyper-V replikációjának engedélyezése Azure-beli feladat-visszavételhez](./media/site-recovery-vmm-to-azure/enable-replication6-with-exclude-disk.png)
+![Lemezek kizárása a replikációból, és engedélyezze a replikálást a Hyper-V tooAzure feladat-visszavételre](./media/site-recovery-vmm-to-azure/enable-replication6-with-exclude-disk.png)
 
 >[!NOTE]
 >
-> * Csak az alaplemezek zárhatók ki a replikációból. Nem zárhatja ki az operációsrendszer-lemezeket. Azt javasoljuk, hogy ne zárja ki a dinamikus lemezeket. Az Azure Site Recovery nem tudja azonosítani, melyik virtuális merevlemez (VHD) alapszintű és melyik dinamikus a vendég virtuális gépen.  Ha nem zárja ki az összes függő dinamikus kötet lemezét, a védett dinamikus lemezek hibás lemezzé válnak a feladatátvételi virtuális gépen, és a lemezen lévő adatok nem lesznek elérhetőek.
-> * A replikáció engedélyezése után már nem lehet ahhoz lemezeket hozzáadni, vagy lemezeket eltávolítani belőle. Lemez hozzáadásához vagy eltávolításához le kell tiltania, majd újra engedélyeznie kell a virtuális gép védelmét.
-> * Ha kizár egy olyan lemezt, amely valamely alkalmazás működéséhez szükséges, az Azure-ba történő feladatátvétel után manuálisan létre kell hozni a lemezt az Azure-ban, hogy a replikált alkalmazás futtatható legyen. Másik megoldásként integrálhatja az Azure Automationt egy helyreállítási tervbe a lemez a gép feladatátvétele során való létrehozásához.
-> * Az Azure-ban manuálisan létrehozott lemezek nem vesznek részt a feladatátvételben. Ha például végrehajtja három lemez feladatátvételét, két lemezt pedig közvetlenül az Azure virtuális gépeken hoz létre, csak a feladatátvételben részt vevő három lemezen lesz végrehajtva az Azure-ból a Hyper-V-re történő feladat-visszavétel. A manuálisan létrehozott lemezek nem vehetők fel a feladat-visszavételbe vagy a Hyper-V-ről az Azure-ba történő visszirányú replikálásba.
+> * Csak az alaplemezek zárhatók ki a replikációból. Nem zárhatja ki az operációsrendszer-lemezeket. Azt javasoljuk, hogy ne zárja ki a dinamikus lemezeket. Az Azure Site Recovery nem azonosítható melyik virtuális merevlemez (VHD) alapszintű vagy dinamikus hello Vendég virtuális gépen.  Ha az összes függő dinamikus kötet lemez nem kizárt, hello védett dinamikus lemez egy meghibásodott lemez a virtuális gépen a feladatátvevő válik, és hello a lemezen levő adatok nem érhető el.
+> * A replikáció engedélyezése után már nem lehet ahhoz lemezeket hozzáadni, vagy lemezeket eltávolítani belőle. Ha szeretné, hogy tooadd, vagy zárja ki egy lemezt, akkor kell toodisable védelmi hello virtuális gép, és majd engedélyezze újból.
+> * Ha kizárja a olyan lemezzel, amelyet egy alkalmazás toooperate van szükség, feladatátvevő tooAzure után lesz szüksége toocreate hello lemez manuálisan az Azure-ban, hogy a replikált hello alkalmazás futtatható. Alternatív megoldásként integrálhatja az Azure automation helyreállítási terv toocreate hello lemezre hello gép feladatátvétele során.
+> * Az Azure-ban manuálisan létrehozott lemezek nem vesznek részt a feladatátvételben. Például ha sikertelen a több mint három lemezt, és két közvetlenül az Azure virtuális gépek létrehozásához, csak három lemezt, amely a feladatátvételt volt sikertelen lesz újból az Azure tooHyper-V. Manuálisan létrehozott feladat-visszavétel vagy a visszirányú replikálás a Hyper-V tooAzure lemezek nem adhat meg.
 
 
 
 ## <a name="end-to-end-scenarios-of-exclude-disks"></a>Lemezek kizárásának teljes körű forgatókönyvei
-Az alábbiakban két forgatókönyvet találhat a lemezek kizárása funkció megértése érdekében:
+Mérlegeljük, két forgatókönyvek toounderstand hello kizárási lemez funkció:
 
 - SQL Server tempdb lemeze
 - Lapozófájl (pagefile.sys) lemeze
 
-### <a name="exclude-the-sql-server-tempdb-disk"></a>SQL Server tempdb-adatbázist tartalmazó lemezének kizárása
+### <a name="exclude-hello-sql-server-tempdb-disk"></a>Hello SQL Server tempdb lemez kizárása
 Vegyünk egy SQL Server virtuális gépet, amely tempdb-adatbázisa kizárható.
 
-A virtuális gép neve a SalesDB-ben.
+hello virtuális lemez neve hello SalesDB.
 
-A forrás virtuális gépen lévő lemezek a következők:
+Hello forrás virtuális gép lemezeinek a következők:
 
 
-**Lemez neve** | **Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **A lemez adattípusa**
+**Lemez neve** | **Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **Adattípus hello lemezen**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 | C:\ | Operációsrendszer-lemez
 DB-Disk1| Disk1 | D:\ | SQL-rendszeradatbázis és 1. felhasználói adatbázis
-DB-Disk2 (a lemez ki lett zárva a védelemből) | Disk2 | E:\ | Ideiglenes fájlok
-DB-Disk3 (a lemez ki lett zárva a védelemből) | Disk3 | F:\ | SQL tempdb-adatbázis (mappa elérési útja (F:\MSSQL\Data\) </br /> </br />a feladatátvétel előtt írja le a mappa elérési útját.
+Adatbázis-2. (a védelemből kizárt hello lemez) | Disk2 | E:\ | Ideiglenes fájlok
+Adatbázis-Disk3 (a védelemből kizárt hello lemez) | Disk3 | F:\ | A tempdb adatbázis SQL (mappa elérési útja (F:\MSSQL\Data\) < /br/>< /br/> írja le a feladatátvétel előtt hello mappa elérési útját.
 DB-Disk4 | Disk4 |G:\ |2. felhasználói adatbázis
 
-Mivel a virtuális gép két lemezén ideiglenes az adatváltozás, a SalesDB virtuális gép védelme során zárja ki a Disk2 és a Disk3 lemezt a replikációból. Az Azure Site Recovery nem replikálja ezeket a lemezeket. A feladatátvétel során ezek a lemezek nem lesznek jelen a feladatátvételi virtuális gépen az Azure-ban.
+Mivel a két lemez hello virtuális gép adatforgalommal ideiglenes, hello SalesDB virtuális gép védelme érdekében, nem 2. és Disk3 a replikációból. Az Azure Site Recovery nem replikálja ezeket a lemezeket. Feladatátvétel esetén lemezek nem kerülnek a hello feladatátvételi virtuális gépet az Azure.
 
-A feladatátvétel után az Azure virtuális gépen lévő lemezek a következők:
+Lemezek hello Azure virtuális gép a feladatátvételt követően a következők:
 
-**Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **A lemez adattípusa**
+**Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **Adattípus hello lemezen**
 --- | --- | ---
 DISK0 | C:\ | Operációsrendszer-lemez
-Disk1 | E:\ | Ideiglenes tároló</br /> </br />ezt a lemezt az Azure adja hozzá, és az első elérhető betűjellel látja el.
+Disk1 | E:\ | Ideiglenes tárolási < /br / >< /br / > Azure ad hozzá a lemezt, és hozzárendeli a hello első elérhető meghajtóbetűjelet.
 Disk2 | D:\ | SQL-rendszeradatbázis és 1. felhasználói adatbázis
 Disk3 | G:\ | 2. felhasználói adatbázis
 
-Mivel a Disk2 és a Disk3 lemez ki lett zárva a SalesDB virtuális gépből, az E: az első elérhető meghajtóbetűjel a listában. Az Azure hozzárendeli az E: betűjelet az ideiglenes tárolókötethez. A meghajtó betűjelei minden replikált lemez esetében ugyanazok maradnak.
+2. és Disk3 ki lettek zárva hello SalesDB virtuális gépről, mert a E: hello első meghajtóbetűjelet hello rendelkezésre listájában. Azure hozzárendel E: toohello ideiglenes tárolóköteten. Replikált hello lemezein levelek megmaradnak hello meghajtó hello azonos.
 
-A Disk3 lemez, amely az SQL-kiszolgáló tempdb-adatbázisát tartalmazta (tempdb mappa elérési útja: F:\MSSQL\Data\), ki lett zárva a replikációból. A lemez nem lesz elérhető a feladatátvételi virtuális gépen. Ennek következtében az SQL szolgáltatás leállított állapotba kerül, és az F:\MSSQL\Data elérési utat igényli.
+Disk3, amely hello SQL tempdb lemez volt (a tempdb mappa elérési útja F:\MSSQL\Data\), ki lett zárva a replikációból. hello lemez hello feladatátvételt a virtuális gép nem érhető el. Ennek eredményeképpen hello SQL szolgáltatás leállított állapotban van, ezért az hello F:\MSSQL\Data elérési útja.
 
-Kétféleképpen hozhatja létre ezt az elérési utat:
+Nincsenek két módon toocreate az elérési út:
 
 - Új lemez hozzáadásával és a tempdb mappa elérési útjának hozzárendelésével.
-- Meglévő ideiglenes tárolólemez használatával a tempdb mappa elérési útjaként.
+- Meglévő ideiglenes tárolási lemez használata a hello tempdb mappa elérési útját.
 
 #### <a name="add-a-new-disk"></a>Új lemez hozzáadása:
 
-1. A feladatátvétel előtt írja le az SQL tempdb.mdf és tempdb.ldf fájljainak elérési útját.
-2. Az Azure Portalon adjon hozzá egy új lemezt a feladatátvételi virtuális géphez, amelynek mérete legalább akkora, mint a forrásként szolgáló SQL-kiszolgáló tempdb-adatbázisát tartalmazó lemezé (Disk3).
-3. Jelentkezzen be az Azure virtuális gépre. A lemezkezelési (diskmgmt.msc) konzolból inicializálja és formázza az újonnan hozzáadott lemezt.
-4. Rendelje hozzá ugyanazt a meghajtóbetűjelet, amelyet az SQL-kiszolgáló tempdb-adatbázisát tartalmazó lemez (F:) használt.
-5. Hozza létre a tempdb mappát az F: köteten (F:\MSSQL\Data).
-6. Indítsa el az SQL szolgáltatást a szolgáltatáskonzolról.
+1. Jegyezze fel SQL tempdb.mdf és a feladatátvétel előtt tempdb.ldf hello elérési útját.
+2. Hello Azure-portálon hozzá egy új lemezt toohello feladatátvételi virtuális gép hello ugyanaz vagy további mérete legyen, mint hello SQL tempdb forráslemez (Disk3).
+3. Bejelentkezés toohello Azure virtuális géphez. A hello Lemezkezelés (diskmgmt.msc) konzolon inicializálása és formázása hello újonnan hozzáadott lemez.
+4. Hozzárendelése hello hello SQL tempdb lemez (F:) által használt azonos meghajtóbetűjele.
+5. Hozzon létre egy tempdb mappát hello F: kötet (F:\MSSQL\Data).
+6. Hello SQL szolgáltatás hello szolgáltatás konzoljáról indítható el.
 
-#### <a name="use-an-existing-temporary-storage-disk-for-the-sql-tempdb-folder-path"></a>Használjon meglévő ideiglenes tárolólemezt az SQL tempdb mappa elérési útjaként:
+#### <a name="use-an-existing-temporary-storage-disk-for-hello-sql-tempdb-folder-path"></a>Meglévő ideiglenes tárolási lemez használata a hello SQL tempdb mappa elérési útja:
 
 1. Nyisson meg egy parancssort.
-2. Futtassa az SQL Servert helyreállítási módban a parancssorból.
+2. SQL Server helyreállítási módban a hello parancssorból futtassa.
 
         Net start MSSQLSERVER /f / T3608
 
-3. Futtassa a következő sqlcmd parancsot a tempdb elérési útjának az új elérési útra történő módosításához.
+3. Futtassa a következő sqlcmd toochange hello tempdb toohello új útvonal hello.
 
         sqlcmd -A -S SalesDB        **Use your SQL DBname**
         USE master;     
@@ -149,50 +149,50 @@ Kétféleképpen hozhatja létre ezt az elérési utat:
         GO
 
 
-4. Állítsa le a Microsoft SQL Server szolgáltatást.
+4. Hello Microsoft SQL Server szolgáltatás leállítása.
 
         Net stop MSSQLSERVER
-5. Indítsa el a Microsoft SQL Server szolgáltatást.
+5. Indítsa el a hello Microsoft SQL Server szolgáltatást.
 
         Net start MSSQLSERVER
 
-Az ideiglenes tárolólemezzel kapcsolatos Azure-irányelvekről az alábbi cikkekben olvashat:
+Tekintse meg a következő ideiglenes tároló lemez Azure útmutatás toohello:
 
-* [SSD meghajtók használata Azure virtuális gépeken az SQL Server tempdb-adatbázisának és pufferkészlet-bővítményeinek tárolására](https://blogs.technet.microsoft.com/dataplatforminsider/2014/09/25/using-ssds-in-azure-vms-to-store-sql-server-tempdb-and-buffer-pool-extensions/)
+* [SSD-k használata az Azure virtuális gépek toostore SQL Server TempDB és a puffer készlet bővítmények](https://blogs.technet.microsoft.com/dataplatforminsider/2014/09/25/using-ssds-in-azure-vms-to-store-sql-server-tempdb-and-buffer-pool-extensions/)
 * [Ajánlott eljárások az SQL Server teljesítményének Azure Virtual Machines szolgáltatásbeli növeléséhez](https://docs.microsoft.com/azure/virtual-machines/windows/sql/virtual-machines-windows-sql-performance)
 
-### <a name="failback-from-azure-to-an-on-premises-host"></a>Feladat-visszavétel (Azure-ból helyszíni gazdagépre)
-Most pedig tekintsük át, melyik lemezek lesznek replikálva, amikor feladatátvételt hajt végre Azure-ból helyi VMware vagy Hyper-V-gazdagépre. Az Azure szolgáltatásban manuálisan létrehozott lemezek nem lesznek replikálva. Ha például végrehajtja három lemez feladatátvételét, kettőt pedig közvetlenül az Azure virtuális gépeken hoz létre, csak a feladatátvételben részt vevő három lemezen lesz végrehajtva a feladat-visszavétel. A manuálisan létrehozott lemezek nem vehetők fel a feladat-visszavételbe vagy a helyszínről az Azure-ba történő védelem-újrabeállításba. A rendszer továbbá az ideiglenes tárolólemezeket sem replikálja a helyszíni gazdagépekre.
+### <a name="failback-from-azure-tooan-on-premises-host"></a>Feladat-visszavétel (az Azure tooan a helyi gazdagép)
+Most tegyük megértéséhez hello lemezek replikált történő feladatátadást követően Azure tooyour helyszíni VMware- vagy Hyper-V gazdagépen. Az Azure szolgáltatásban manuálisan létrehozott lemezek nem lesznek replikálva. Ha például végrehajtja három lemez feladatátvételét, kettőt pedig közvetlenül az Azure virtuális gépeken hoz létre, csak a feladatátvételben részt vevő három lemezen lesz végrehajtva a feladat-visszavétel. Manuálisan létrehozott feladat-visszavétel vagy a védelem-újrabeállítási helyszíni tooAzure a lemezek nem adhat meg. Azt is replikálódnak hello ideiglenes tárolási lemez tooon helyszíni gazdagépek.
 
-#### <a name="failback-to-original-location-recovery"></a>Feladat-visszavétel eredeti helyre való helyreállítás céljából
+#### <a name="failback-toooriginal-location-recovery"></a>Feladat-visszavétel toooriginal helyre történő helyreállítást
 
-Az előző példában az Azure virtuális gép lemezkonfigurációja a következő:
+Hello előző példában hello Azure virtuális gép lemez konfigurációját a következőképpen történik:
 
-**Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **A lemez adattípusa**
+**Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **Adattípus hello lemezen**
 --- | --- | ---
 DISK0 | C:\ | Operációsrendszer-lemez
-Disk1 | E:\ | Ideiglenes tároló</br /> </br />ezt a lemezt az Azure adja hozzá, és az első elérhető betűjellel látja el.
+Disk1 | E:\ | Ideiglenes tárolási < /br / >< /br / > Azure ad hozzá a lemezt, és hozzárendeli a hello első elérhető meghajtóbetűjelet.
 Disk2 | D:\ | SQL-rendszeradatbázis és 1. felhasználói adatbázis
 Disk3 | G:\ | 2. felhasználói adatbázis
 
 
-#### <a name="vmware-to-azure"></a>VMware – Azure
-Amikor a feladat-visszavétel az eredeti helyre történik, a feladat-visszavételi virtuális gép lemezkonfigurációja nem tartalmaz kizárt lemezeket. A VMware–Azure replikációból kizárt lemezek nem lesznek elérhetőek a feladat-visszavételi virtuális gépen.
+#### <a name="vmware-tooazure"></a>VMware tooAzure
+Feladat-visszavétel toohello eredeti helyre történik, amikor hello feladat-visszavételt a virtuális gép lemezkonfiguráció nincs kizárt lemezek. Lemezek, amelyek ki lettek zárva az VMware tooAzure nem lesz elérhető hello feladat-visszavételt a virtuális gépen.
 
-A tervezett, Azure-ból helyszíni VMware-re történő feladatátvétel után a VMware virtuális gépen (eredeti hely) lévő lemezek a következők:
+Tervezett feladatátvétel az Azure tooon helyszíni VMware után lemezek hello VMWare virtuális gép (az eredeti helyre) a következők:
 
-**Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **A lemez adattípusa**
+**Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **Adattípus hello lemezen**
 --- | --- | ---
 DISK0 | C:\ | Operációsrendszer-lemez
 Disk1 | D:\ | SQL-rendszeradatbázis és 1. felhasználói adatbázis
 Disk2 | G:\ | 2. felhasználói adatbázis
 
-#### <a name="hyper-v-to-azure"></a>Hyper-V – Azure
-Amikor a feladat-visszavétel az eredeti helyre történik, a feladat-visszavételi virtuális gép lemezkonfigurációja ugyanaz marad, mint a Hyper-V eredeti virtuálisgép-lemezkonfigurációja. A Hyper-V hely–Azure replikációból kizárt lemezek elérhetőek a feladat-visszavételi virtuális gépen.
+#### <a name="hyper-v-tooazure"></a>Hyper-V tooAzure
+Ha feladat-visszavétel toohello eredeti helyére, hello feladat-visszavételt a virtuális gép lemez konfigurációs marad hello ugyanaz legyen, mint a Hyper-V eredeti virtuális gép lemezkonfigurációja. Lemezek, amelyek ki lettek zárva az Hyper-V hely tooAzure hello feladat-visszavételt a virtuális gép érhetők el.
 
-A tervezett, Azure-ból helyszíni Hyper-V-re történő feladatátvétel után a Hyper-V virtuális gépen (eredeti hely) lévő lemezek a következők:
+Az Azure tooon helyszíni Hyper-V tervezett feladatátvétel után lemezek hello Hyper-V virtuális gépen (eredeti helyre) a következők:
 
-**Lemez neve** | **Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **A lemez adattípusa**
+**Lemez neve** | **Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **Adattípus hello lemezen**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 |   C:\ | Operációsrendszer-lemez
 DB-Disk1 | Disk1 | D:\ | SQL-rendszeradatbázis és 1. felhasználói adatbázis
@@ -201,69 +201,69 @@ DB-Disk3 (kizárt lemez) | Disk3 | F:\ | SQL tempdb-adatbázis (mappa elérési 
 DB-Disk4 | Disk4 | G:\ | 2. felhasználói adatbázis
 
 
-#### <a name="exclude-the-paging-file-pagefilesys-disk"></a>A lapozófájl (pagefile.sys) lemezének kizárása
+#### <a name="exclude-hello-paging-file-pagefilesys-disk"></a>Hello lapozófájl (pagefile.sys) lemezen kizárása
 
 Vegyünk egy virtuális gépet, amely lapozófájllemeze kizárható.
 Két eset létezik.
 
-#### <a name="case-1-the-paging-file-is-configured-on-the-d-drive"></a>1. eset: A lapozófájl a D: meghajtón van konfigurálva
-Itt láthatja a lemezkonfigurációt:
+#### <a name="case-1-hello-paging-file-is-configured-on-hello-d-drive"></a>1. eset: hello lapozófájlt a hello D: meghajtó
+Hello lemez konfigurációját a következő:
 
 
-**Lemez neve** | **Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **A lemez adattípusa**
+**Lemez neve** | **Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **Adattípus hello lemezen**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 | C:\ | Operációsrendszer-lemez
-DB-Disk1 (a lemez ki lett zárva a védelemből) | Disk1 | D:\ | pagefile.sys
+Adatbázis-1. lemez (hello védelemből kizárt hello lemez) | Disk1 | D:\ | pagefile.sys
 DB-Disk2 | Disk2 | E:\ | Felhasználói adatok, 1
 DB-Disk3 | Disk3 | F:\ | Felhasználói adatok, 2
 
-Itt láthatja a forrás virtuális gép lapozófájl-beállításait:
+Az alábbiakban hello lapozófájl-beállításokhoz hello forrás virtuális gépen:
 
 ![Lapozófájl-beállítások a forrás virtuális gépen](./media/site-recovery-exclude-disk/pagefile-on-d-drive-sourceVM.png)
 
 
-A virtuális gép VMware–Azure vagy Hyper-V–Azure feladatátvétele után az Azure virtuális gépen található lemezek a következők:
+Hello virtuális gép VMware tooAzure vagy a Hyper-V tooAzure feladatátvétel után hello Azure virtuális gép lemezeinek a következők:
 
-**Lemez neve** | **Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **A lemez adattípusa**
+**Lemez neve** | **Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **Adattípus hello lemezen**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 | C:\ | Operációsrendszer-lemez
 DB-Disk1 | Disk1 | D:\ | Ideiglenes tároló</br /> </br />pagefile.sys
 DB-Disk2 | Disk2 | E:\ | Felhasználói adatok, 1
 DB-Disk3 | Disk3 | F:\ | Felhasználói adatok, 2
 
-Mivel a Disk1 nevű lemez (D:) ki lett zárva, a D: az első elérhető meghajtóbetűjel a listában. Az Azure a D: betűjelet rendeli hozzá az ideiglenes tárolókötethez. Mivel a D: meghajtó elérhető az Azure virtuális gépen, a virtuális gép lapozófájl-beállításai nem változnak.
+1. lemez (D:) ki lett zárva, mert a D: hello első meghajtóbetűjelet hello rendelkezésre listájában. Azure hozzárendel D: toohello ideiglenes tárolóköteten. Hello Azure virtuális gép D: érhető el, mert a hello lapozási fájl beállítása hello virtuális gép marad hello azonos.
 
-Itt láthatja az Azure virtuális gép lapozófájl-beállításait:
+Az alábbiakban hello lapozófájl-beállításokhoz a hello Azure virtuális gépen:
 
 ![Lapozófájl-beállítások az Azure virtuális gépen](./media/site-recovery-exclude-disk/pagefile-on-Azure-vm-after-failover.png)
 
-#### <a name="case-2-the-paging-file-is-configured-on-another-drive-other-than-d-drive"></a>2. eset: A lapozófájl másik meghajtón van konfigurálva (nem a D: meghajtón)
+#### <a name="case-2-hello-paging-file-is-configured-on-another-drive-other-than-d-drive"></a>2. eset: hello lapozófájlt másik meghajtón (eltérő D:)
 
-Itt láthatja a forrás virtuális gép lemezkonfigurációját:
+Hello forrás virtuális gép lemez konfigurációját a következő:
 
-**Lemez neve** | **Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **A lemez adattípusa**
+**Lemez neve** | **Vendég operációsrendszer-lemez száma** | **Meghajtó betűjele** | **Adattípus hello lemezen**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 | C:\ | Operációsrendszer-lemez
-DB-Disk1 (a lemez ki lett zárva a védelemből) | Disk1 | G:\ | pagefile.sys
+Adatbázis-1. lemez (a védelemből kizárt hello lemez) | Disk1 | G:\ | pagefile.sys
 DB-Disk2 | Disk2 | E:\ | Felhasználói adatok, 1
 DB-Disk3 | Disk3 | F:\ | Felhasználói adatok, 2
 
-Itt láthatja a helyszíni virtuális gép lapozófájl-beállításait:
+Az alábbiakban hello lapozófájl-beállításokhoz hello a helyszíni virtuális gépen:
 
-![Lapozófájl-beállítások a helyszíni virtuális gépen](./media/site-recovery-exclude-disk/pagefile-on-g-drive-sourceVM.png)
+![Lapozás hello a helyszíni virtuális gép beállításai](./media/site-recovery-exclude-disk/pagefile-on-g-drive-sourceVM.png)
 
-A virtuális gép VMware/Hyper-V–Azure feladatátvétele után az Azure virtuális gépen lévő lemezek a következők:
+Hello virtuális gép VMware-vagy Hyper-V tooAzure a feladatátvétel után hello Azure virtuális gép lemezeinek a következők:
 
-**Lemez neve**| **Vendég operációsrendszer-lemez száma**| **Meghajtó betűjele** | **A lemez adattípusa**
+**Lemez neve**| **Vendég operációsrendszer-lemez száma**| **Meghajtó betűjele** | **Adattípus hello lemezen**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0  |C:\ |Operációsrendszer-lemez
 DB-Disk1 | Disk1 | D:\ | Ideiglenes tároló</br /> </br />pagefile.sys
 DB-Disk2 | Disk2 | E:\ | Felhasználói adatok, 1
 DB-Disk3 | Disk3 | F:\ | Felhasználói adatok, 2
 
-Mivel a D: az első elérhető meghajtóbetűjel a listában, az Azure ezt a betűjelet rendeli hozzá az ideiglenes tárolókötethez. A meghajtó betűjele minden replikált lemez esetében ugyanaz marad. Mivel a G: lemez nem érhető el, a rendszer a C: meghajtót használja a lapozófájlhoz.
+Mivel D: hello elérhető hello listából első meghajtóbetűjelet, Azure rendeli D: toohello ideiglenes tárolóköteten. Replikált hello lemezein hello meghajtó betűjele továbbra is hello azonos. Hello G: lemez nem érhető el, mert hello rendszer lapozófájl hello hello C: meghajtó fogja használni.
 
-Itt láthatja az Azure virtuális gép lapozófájl-beállításait:
+Az alábbiakban hello lapozófájl-beállításokhoz a hello Azure virtuális gépen:
 
 ![Lapozófájl-beállítások az Azure virtuális gépen](./media/site-recovery-exclude-disk/pagefile-on-Azure-vm-after-failover-2.png)
 
